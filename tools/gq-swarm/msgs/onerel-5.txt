@@ -1,0 +1,3 @@
+The chain group BS(1,2) *_Z BS(1,2), vertex group of Higman's group and base of Baumslag-Gersten, lies in B_A
+
+Kaloujnine-Krasner with a twist: the twisted coset lamplighter M_1 embeds in the untwisted coset lamplighter BS(1,2) wr_(A/<b>) A, which lies in B_A by the BS(1,2) centralizer realization. M_1 contains a chain configuration, so the chain reduction puts G_1 in B_A and in a finitely presented simple group. General form: A *_C (N x| C) lies in B_A whenever C is realized in A and self-centralizing up to a finite set in N x| C. What remains for H4 is closing four chains into a cycle; for BG, a shift conjugator.

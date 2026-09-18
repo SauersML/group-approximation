@@ -1,0 +1,121 @@
+NOTITLE aff-q-does-not-embed-in-aut-thompson-f-proof
+BADTARGET aff-q-does-not-embed-in-aut-thompson-f-proof -> aff-q-does-not-embed-in-aut-thompson-f ()
+ROUTE aff-q-does-not-embed-in-aut-thompson-f-proof -> aff-q-does-not-embed-in-aut-thompson-f | req: 
+CLAIM aff-q-does-not-embed-in-aut-thompson-f | **ESTABLISHED** through `aff-q-does-not-embed-in-aut-thompso
+NOTITLE bffhz-closures-cannot-create-gl-n-q-proof
+BADTARGET bffhz-closures-cannot-create-gl-n-q-proof -> bffhz-closures-cannot-create-gl-n-q ()
+DANGLING bffhz-closures-cannot-create-gl-n-q-proof requires gl-n-q-fixes-a-vertex-in-free-splittings 
+ROUTE bffhz-closures-cannot-create-gl-n-q-proof -> bffhz-closures-cannot-create-gl-n-q | req: gl-n-q-fixes-a-vertex-in-free-splittings 
+CLAIM bffhz-closures-cannot-create-gl-n-q | **ESTABLISHED** through `bffhz-closures-cannot-create-gl-n-q
+CLAIM char-two-linear-groups-satisfy-boone-higman | **ESTABLISHED (2026-09-12)** through
+CLAIM countable-char-zero-linear-groups-embed-in-fp-simple-groups | **OPEN.** For every `n >= 1` and every field `K` of characte
+BADTARGET fg-groups-have-fg-derivative-images-proof -> fg-groups-have-fg-derivative-images ()
+ROUTE fg-groups-have-fg-derivative-images-proof -> fg-groups-have-fg-derivative-images | req: 
+CLAIM fg-groups-have-fg-derivative-images | **ESTABLISHED** through `fg-groups-have-fg-derivative-images
+BADTARGET fg-piecewise-linear-hosts-omit-natural-gl-n-q-proof -> fg-piecewise-linear-hosts-omit-natural-gl-n-q ()
+DANGLING fg-piecewise-linear-hosts-omit-natural-gl-n-q-proof requires fg-groups-have-fg-derivative-images 
+ROUTE fg-piecewise-linear-hosts-omit-natural-gl-n-q-proof -> fg-piecewise-linear-hosts-omit-natural-gl-n-q | req: fg-groups-have-fg-derivative-images 
+CLAIM fg-piecewise-linear-hosts-omit-natural-gl-n-q | **ESTABLISHED** through `fg-piecewise-linear-hosts-omit-natu
+CLAIM germ-extensions-omit-standard-gl-n-q | **ESTABLISHED** (elementary; lane-proved, not independently 
+CLAIM gl-infinity-q-embeds-in-fp-simple-group | **OPEN.** The group `GL_∞(Q) = ⋃_N GL_N(Q)` embeds in a fini
+BADTARGET gl-n-q-bh-via-permutational-class -> gl-n-q-embeds-in-fp-simple-group ()
+DANGLING gl-n-q-bh-via-permutational-class requires gl-n-q-in-permutational-boone-higman-class type-a-action-gives-boone-higman-for-subgroups 
+ROUTE gl-n-q-bh-via-permutational-class -> gl-n-q-embeds-in-fp-simple-group | req: gl-n-q-in-permutational-boone-higman-class type-a-action-gives-boone-higman-for-subgroups 
+BADTARGET gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups-proof -> gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups ()
+DANGLING gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups-proof requires clapham-fp-embedding-preserves-word-problem boone-higman-thompson-simple-envelope 
+ROUTE gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups-proof -> gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups | req: clapham-fp-embedding-preserves-word-problem boone-higman-thompson-simple-envelope 
+CLAIM gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups | **ESTABLISHED** by `gl-n-q-embeds-in-fg-simple-and-fp-decida
+CLAIM gl-n-q-embeds-in-fp-simple-group | **OPEN.** For every `n >= 2` there is a finitely presented s
+BADTARGET gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups-proof -> gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups ()
+DANGLING gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups-proof requires rational-linear-groups-satisfy-boone-higman 
+ROUTE gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups-proof -> gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups | req: rational-linear-groups-satisfy-boone-higman 
+CLAIM gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups | **ESTABLISHED** by `gl-n-q-embeds-in-ultraproduct-of-fp-simp
+CLAIM gl-n-q-explicit-natural-fp-overgroup | **OPEN.** For every `n >= 2`, give an explicit and natural f
+NOTITLE gl-n-q-fixes-a-vertex-in-free-splittings-proof
+BADTARGET gl-n-q-fixes-a-vertex-in-free-splittings-proof -> gl-n-q-fixes-a-vertex-in-free-splittings ()
+ROUTE gl-n-q-fixes-a-vertex-in-free-splittings-proof -> gl-n-q-fixes-a-vertex-in-free-splittings | req: 
+CLAIM gl-n-q-fixes-a-vertex-in-free-splittings | **ESTABLISHED** through `gl-n-q-fixes-a-vertex-in-free-split
+BADTARGET gl-n-q-generated-by-gl-n-z-and-prime-dilations-proof -> gl-n-q-generated-by-gl-n-z-and-prime-dilations ()
+ROUTE gl-n-q-generated-by-gl-n-z-and-prime-dilations-proof -> gl-n-q-generated-by-gl-n-z-and-prime-dilations | req: 
+CLAIM gl-n-q-generated-by-gl-n-z-and-prime-dilations | **ESTABLISHED (2026-09-17)** through
+CLAIM gl-n-q-in-permutational-boone-higman-class | **OPEN.** For every `n >= 2` there are:
+BADTARGET gl-n-q-root-needs-only-nontrivial-psl-maps-proof -> gl-n-q-root-needs-only-nontrivial-psl-maps ()
+DANGLING gl-n-q-root-needs-only-nontrivial-psl-maps-proof requires gl-n-q-targets-are-cofinal-in-n 
+ROUTE gl-n-q-root-needs-only-nontrivial-psl-maps-proof -> gl-n-q-root-needs-only-nontrivial-psl-maps | req: gl-n-q-targets-are-cofinal-in-n 
+CLAIM gl-n-q-root-needs-only-nontrivial-psl-maps | **ESTABLISHED** by `gl-n-q-root-needs-only-nontrivial-psl-ma
+BADTARGET gl-n-q-root-via-just-infinite-hosts -> gl-n-q-embeds-in-fp-simple-group ()
+DANGLING gl-n-q-root-via-just-infinite-hosts requires sl-odd-q-simple-inputs-for-gl-n-q-root simple-group-in-fp-simple-iff-fp-just-infinite-host sl-odd-q-has-fp-just-infinite-host 
+ROUTE gl-n-q-root-via-just-infinite-hosts -> gl-n-q-embeds-in-fp-simple-group | req: sl-odd-q-simple-inputs-for-gl-n-q-root simple-group-in-fp-simple-iff-fp-just-infinite-host sl-odd-q-has-fp-just-infinite-host 
+BADTARGET gl-n-q-root-via-nontrivial-psl-maps -> gl-n-q-embeds-in-fp-simple-group ()
+DANGLING gl-n-q-root-via-nontrivial-psl-maps requires gl-n-q-root-needs-only-nontrivial-psl-maps psl-n-q-maps-nontrivially-to-fp-simple-groups 
+ROUTE gl-n-q-root-via-nontrivial-psl-maps -> gl-n-q-embeds-in-fp-simple-group | req: gl-n-q-root-needs-only-nontrivial-psl-maps psl-n-q-maps-nontrivially-to-fp-simple-groups 
+BADTARGET gl-n-q-targets-are-cofinal-in-n-proof -> gl-n-q-targets-are-cofinal-in-n ()
+ROUTE gl-n-q-targets-are-cofinal-in-n-proof -> gl-n-q-targets-are-cofinal-in-n | req: 
+CLAIM gl-n-q-targets-are-cofinal-in-n | **ESTABLISHED** by `gl-n-q-targets-are-cofinal-in-n-proof` (
+BADTARGET gl-n-q-type-a-via-projective-extension -> gl-n-q-in-permutational-boone-higman-class ()
+DANGLING gl-n-q-type-a-via-projective-extension requires pgl-q-projective-type-a-extension gl-n-q-targets-are-cofinal-in-n 
+ROUTE gl-n-q-type-a-via-projective-extension -> gl-n-q-in-permutational-boone-higman-class | req: pgl-q-projective-type-a-extension gl-n-q-targets-are-cofinal-in-n 
+NOTITLE gl-n-q-via-gl-infinity-q
+BADTARGET gl-n-q-via-gl-infinity-q -> gl-n-q-embeds-in-fp-simple-group ()
+DANGLING gl-n-q-via-gl-infinity-q requires gl-infinity-q-embeds-in-fp-simple-group 
+ROUTE gl-n-q-via-gl-infinity-q -> gl-n-q-embeds-in-fp-simple-group | req: gl-infinity-q-embeds-in-fp-simple-group 
+CLAIM gl-n-qbar-embeds-in-fp-simple-group | **OPEN.** For every `n >= 2`, the countable group `GL_n(Qbar
+NOTITLE gl-n-qbar-via-countable-char-zero-linear-groups
+BADTARGET gl-n-qbar-via-countable-char-zero-linear-groups -> gl-n-qbar-embeds-in-fp-simple-group ()
+DANGLING gl-n-qbar-via-countable-char-zero-linear-groups requires countable-char-zero-linear-groups-embed-in-fp-simple-groups 
+ROUTE gl-n-qbar-via-countable-char-zero-linear-groups -> gl-n-qbar-embeds-in-fp-simple-group | req: countable-char-zero-linear-groups-embed-in-fp-simple-groups 
+CLAIM infinite-field-leavitt-units-are-not-finitely-generated | **ESTABLISHED** by `infinite-field-leavitt-units-not-fg-proo
+BADTARGET infinite-field-leavitt-units-not-fg-proof -> infinite-field-leavitt-units-are-not-finitely-generated ()
+ROUTE infinite-field-leavitt-units-not-fg-proof -> infinite-field-leavitt-units-are-not-finitely-generated | req: 
+CLAIM leavitt-unit-groups-over-every-field-are-simple-mod-scalars | **ESTABLISHED** by `leavitt-unit-groups-over-every-field-sim
+BADTARGET leavitt-unit-groups-over-every-field-simple-mod-scalars-proof -> leavitt-unit-groups-over-every-field-are-simple-mod-scalars ()
+DANGLING leavitt-unit-groups-over-every-field-simple-mod-scalars-proof requires leavitt-gl-equals-el-and-perfect-unit-group leavitt-center-is-coefficient-field leavitt-units-embed-in-their-scalar-quotient 
+ROUTE leavitt-unit-groups-over-every-field-simple-mod-scalars-proof -> leavitt-unit-groups-over-every-field-are-simple-mod-scalars | req: leavitt-gl-equals-el-and-perfect-unit-group leavitt-center-is-coefficient-field leavitt-units-embed-in-their-scalar-quotient 
+NOTITLE lifts-add-no-unipotent-divisibility-proof
+BADTARGET lifts-add-no-unipotent-divisibility-proof -> lifts-add-no-unipotent-divisibility ()
+ROUTE lifts-add-no-unipotent-divisibility-proof -> lifts-add-no-unipotent-divisibility | req: 
+CLAIM lifts-add-no-unipotent-divisibility | **ESTABLISHED** through `lifts-add-no-unipotent-divisibility
+CLAIM number-field-gl-n-embeds-in-fp-simple-group | **OPEN.** For every number field `K` and every `n >= 2`, the
+NOTITLE number-field-gl-n-via-gl-n-q
+BADTARGET number-field-gl-n-via-gl-n-q -> number-field-gl-n-embeds-in-fp-simple-group ()
+DANGLING number-field-gl-n-via-gl-n-q requires gl-n-q-embeds-in-fp-simple-group number-field-linear-groups-embed-in-gl-n-q 
+ROUTE number-field-gl-n-via-gl-n-q -> number-field-gl-n-embeds-in-fp-simple-group | req: gl-n-q-embeds-in-fp-simple-group number-field-linear-groups-embed-in-gl-n-q 
+NOTITLE number-field-linear-groups-embed-in-gl-n-q-proof
+BADTARGET number-field-linear-groups-embed-in-gl-n-q-proof -> number-field-linear-groups-embed-in-gl-n-q ()
+ROUTE number-field-linear-groups-embed-in-gl-n-q-proof -> number-field-linear-groups-embed-in-gl-n-q | req: 
+CLAIM number-field-linear-groups-embed-in-gl-n-q | **ESTABLISHED** by `number-field-linear-groups-embed-in-gl-n
+BADTARGET permutational-host-forms-agree-for-countable-inputs-proof -> permutational-host-forms-agree-for-countable-inputs ()
+DANGLING permutational-host-forms-agree-for-countable-inputs-proof requires fp-finitary-alternating-overgroups-have-type-a-actions finitary-symmetric-extensions-of-oligomorphic-actions-are-fp twisted-btb-clopen-action-is-type-a twisted-brin-thompson-finite-presentation-criterion type-a-action-gives-boone-higman-for-subgroups abstract-btb-simple-quotient-fp-gate 
+ROUTE permutational-host-forms-agree-for-countable-inputs-proof -> permutational-host-forms-agree-for-countable-inputs | req: fp-finitary-alternating-overgroups-have-type-a-actions finitary-symmetric-extensions-of-oligomorphic-actions-are-fp twisted-btb-clopen-action-is-type-a twisted-brin-thompson-finite-presentation-criterion type-a-action-gives-boone-higman-for-subgroups abstract-btb-simple-quotient-fp-gate 
+CLAIM permutational-host-forms-agree-for-countable-inputs | **ESTABLISHED** by `permutational-host-forms-agree-for-count
+CLAIM pgl-q-projective-type-a-extension | **OPEN.** For infinitely many `m >= 2` there are
+BADTARGET piecewise-commutative-linear-hosts-miss-linear-gl-n-q-proof -> piecewise-commutative-linear-hosts-miss-linear-gl-n-q ()
+ROUTE piecewise-commutative-linear-hosts-miss-linear-gl-n-q-proof -> piecewise-commutative-linear-hosts-miss-linear-gl-n-q | req: 
+CLAIM piecewise-commutative-linear-hosts-miss-linear-gl-n-q | **ESTABLISHED** through `piecewise-commutative-linear-hosts-
+CLAIM proper-semisimple-cat0-groups-contain-no-gl-2-q | **ESTABLISHED (classical argument; no priority claimed; not 
+NOTITLE prufer-groups-do-not-embed-in-gl-infinity-q-proof
+BADTARGET prufer-groups-do-not-embed-in-gl-infinity-q-proof -> prufer-groups-do-not-embed-in-gl-infinity-q ()
+ROUTE prufer-groups-do-not-embed-in-gl-infinity-q-proof -> prufer-groups-do-not-embed-in-gl-infinity-q | req: 
+CLAIM prufer-groups-do-not-embed-in-gl-infinity-q | **ESTABLISHED** by `prufer-groups-do-not-embed-in-gl-infinit
+CLAIM psl-n-q-maps-nontrivially-to-fp-simple-groups | **OPEN.** For infinitely many `n >= 2` there are a finitely 
+CLAIM rational-linear-groups-satisfy-boone-higman | **ESTABLISHED (literature import).** Every finitely generate
+BADTARGET simple-group-in-fp-simple-iff-fp-just-infinite-host-proof -> simple-group-in-fp-simple-iff-fp-just-infinite-host ()
+DANGLING simple-group-in-fp-simple-iff-fp-just-infinite-host-proof requires just-infinite-over-simple-subgroup-gives-fp-simple-host 
+ROUTE simple-group-in-fp-simple-iff-fp-just-infinite-host-proof -> simple-group-in-fp-simple-iff-fp-just-infinite-host | req: just-infinite-over-simple-subgroup-gives-fp-simple-host 
+CLAIM simple-group-in-fp-simple-iff-fp-just-infinite-host | **ESTABLISHED** by `simple-group-in-fp-simple-iff-fp-just-in
+CLAIM sl-n-q-is-colimit-of-lattice-stabilizers | **OPEN (proof written, two textbook imports not yet quoted a
+CLAIM sl-odd-q-has-fp-just-infinite-host | **OPEN.** For infinitely many odd `m >= 3` there are a finit
+BADTARGET sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially-proof -> sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially ()
+DANGLING sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially-proof requires sl-odd-q-simple-inputs-for-gl-n-q-root fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree 
+ROUTE sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially-proof -> sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially | req: sl-odd-q-simple-inputs-for-gl-n-q-root fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree 
+CLAIM sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially | **ESTABLISHED** by `sl-odd-q-in-fp-simple-iff-fp-overgroup-m
+BADTARGET sl-odd-q-just-infinite-host-from-root -> sl-odd-q-has-fp-just-infinite-host ()
+DANGLING sl-odd-q-just-infinite-host-from-root requires gl-n-q-embeds-in-fp-simple-group 
+ROUTE sl-odd-q-just-infinite-host-from-root -> sl-odd-q-has-fp-just-infinite-host | req: gl-n-q-embeds-in-fp-simple-group 
+BADTARGET sl-odd-q-simple-inputs-for-gl-n-q-root-proof -> sl-odd-q-simple-inputs-for-gl-n-q-root ()
+DANGLING sl-odd-q-simple-inputs-for-gl-n-q-root-proof requires gl-n-q-targets-are-cofinal-in-n 
+ROUTE sl-odd-q-simple-inputs-for-gl-n-q-root-proof -> sl-odd-q-simple-inputs-for-gl-n-q-root | req: gl-n-q-targets-are-cofinal-in-n 
+CLAIM sl-odd-q-simple-inputs-for-gl-n-q-root | **ESTABLISHED** by `sl-odd-q-simple-inputs-for-gl-n-q-root-p
+BADTARGET type-a-orbit-accumulation-forces-fg-nontrivial-germs-proof -> type-a-orbit-accumulation-forces-fg-nontrivial-germs ()
+ROUTE type-a-orbit-accumulation-forces-fg-nontrivial-germs-proof -> type-a-orbit-accumulation-forces-fg-nontrivial-germs | req: 
+CLAIM type-a-orbit-accumulation-forces-fg-nontrivial-germs | **ESTABLISHED** by `type-a-orbit-accumulation-forces-fg-nont

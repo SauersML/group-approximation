@@ -1,0 +1,7 @@
+No nontrivial germ is shift-conjugate to a proper power; add lessons for general BH
+
+If the germ shifting map sends x to x^k with k != -1, then x = 1. Conjugating by the index-one shift
+preserves orbit and end counts of germs, while a k-th power multiplies ends by k and shrinks cycles.
+So BS(1,k) has no near action on N with t acting as the shift, cyclic groups cannot witness the
+finitely generated form of MZ Question 3.18, and the BS(1,2) test case on the OPEN node is refuted.
+Lesson paragraphs are added to the F_m nodes, per the insight-first rule.

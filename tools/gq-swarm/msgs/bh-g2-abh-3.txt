@@ -1,0 +1,14 @@
+Characterize the fibres the ABHT fold accepts: one determining rational half-plane, exactly
+
+For n >= 2 the ABHT fold over F_n x Z is faithful (all configurations are x (x) y) iff the upper half-plane of the
+fibre is determining. The proof: rows along flow lines are fibre points, flow lines merge toward the end, and a
+non-determined past grafted onto one branch breaks faithfulness. Up to GL_2(Z) and recoding, the fold accepts
+exactly the Z^2 SFTs with a rational determining normal. The rigidity transfer uses only the downward rule, so the
+fold is quantum rigid exactly when the fibre is. Horizontal expansivity is sufficient, not necessary, and corner
+determinism is enough. Poses the open target foldable-free-minimal-quantum-rigid-z2-sft-exists. The landed
+crossing-wire shift is not corner-deterministic, and its foldability is left undecided. Its A4 SW-deterministic
+variant would fold, which would give a free minimal rigid SFT on F_n x Z with no dependence on J_2.
+
+Lesson for general BH: folds need one-sided determinism, not expansivity. One corner rule is the common interface
+of both non-amenable transfers, the tree fold and the A2 Busemann transplant, so the Z^2 crux object should be
+built corner-deterministic from the start.

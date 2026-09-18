@@ -1,0 +1,14 @@
+Heisenberg rung of the CAP gate: explicit rigid seed of H_3(Z) and the complexity it certifies
+
+heisenberg-rigid-seed-certifies-only-the-malcev-normal-form (ESTABLISHED, lane proof):
+- the seed is the sign pattern of the Mal'cev coordinates: pointers toward level 0 and C_Z ⊠ C_Z on
+  the sink coset. The shear is harmless because sink letters live on one coset only;
+- the forcing radius is linear, the forcing length is quadratic (the distortion of the center), and
+  the certified word problem is the logspace normal form;
+- in general, seeds from locally finite splittings are pointers plus one sink, so they certify only
+  Britton normal forms. Rung 1b and everything the class-C splitting theorem reaches cannot witness
+  not-CAP.
+
+Lesson for general BH: in a rigid seed, complexity can enter only through distortion of what the
+forcing must traverse. A CAP test needs relative seeds over infinite-index, computation-distorted
+associated subgroups, and the quantity to bound is forcing length, not radius.

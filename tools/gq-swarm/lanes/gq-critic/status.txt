@@ -1,0 +1,234 @@
+     brin-thompson-nv-cnd-proper-modulo-triangular-subgroup | "For n >= 2 the Brin-Thompson group nV carries a cnd function proper modulo the triangular subgroup T_n"
+     steinberg-finite-presentation-and-kazhdan-theorem | Steinberg groups over finitely presented unital rings are finitely presented in rank at least four and have property T
+ESTA abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q | In a permutational wreath product with abelian lamps and finite point stabilizers, nonabelian torsion-free nilpotent sub
+ESTA adelic-deck-lifts-exclude-affine-q-n-and-fp-bases | Lift groups through the adelic covering A^n -> (A/Q)^n cannot carry Aff_n(Q) through the deck group, and over a finitely
+ESTA af-groupoid-rings-have-no-fg-subring-containing-q | For an AF groupoid, no finitely generated ring of compactly supported functions under convolution contains Q, whatever t
+ESTA aff-n-over-z-localized-at-ell-is-rf-and-self-similar | For a prime l, Aff_n(Z_(l)) — which contains every GL_n(Z[1/P]) with l not in P — is residually finite and acts faithful
+ESTA aff-q-does-not-embed-in-aut-thompson-f | Aff(Q), SL_2(Q) and GL_2(Q) embed neither in T-bar nor in Aut(F), and T-bar contains no Q^2
+ESTA aff-q-forces-distortion-in-abelian-kernels | In every finitely generated overgroup of Aff(Q), every abelian quotient kills a finitely generated subgroup with a disto
+ESTA aff-q-in-integral-unit-hosts-reduces-to-finite-fields | A copy of Aff(Q) in a finitely generated integral-form unit group already lives over a finite field, so the Leavitt rout
+ESTA almost-v-fw-subgroups-act-through-finitely-many-germs | An FW group of Cantor homeomorphisms that are locally in V off finite sets virtually acts, modulo a subgroup of V, throu
+ESTA aperiodic-tree-almost-automorphism-fg-subgroups-are-rf | On a rooted tree whose branching is not eventually periodic, every finitely generated group of almost automorphisms is r
+ESTA ascending-unions-embed-along-coherent-chains | An ascending union embeds in a group exactly when its terms embed along a chain whose restrictions agree up to conjugacy
+ESTA bffhz-closures-cannot-create-gl-n-q | The BFFHZ free-product and mapping-torus closures cannot create GL_n(Q), and the BFFHZ actor puts SL_n(Q) in its M-Torel
+ESTA borel-two-q-is-units-times-aff-q | The Borel subgroup B_2(Q) is Q^x x Aff(Q), so B_2(Q) lies in B_A exactly when Aff(Q) does
+ESTA bounded-harmonic-rings-are-not-finitely-presented | Crossed-product rings that get Q from one harmonic function are not finitely presented, have no finitely presented cover
+ESTA brin-thompson-first-return-maps-lie-in-kv | The first-return map of an element of kV to a clopen set with bounded return times is conjugate, by a brick-local homeom
+ESTA bs13-embeds-in-brin-thompson-3v | The Baumslag-Solitar group BS(1,3) embeds in the Brin-Thompson group 3V
+ESTA cantor-crossed-clopen-symbols-factor-through-coinvariants | In a ring over a Cantor Γ-system, the K_2 symbols of locally constant rational units factor through the dimension group 
+ESTA capacity-chain-presentation-is-not-simple | The finite presentation of the capacity-chain ring has a bi-infinite chain module, so the presented ring is not simple
+ESTA char-p-linear-groups-have-no-distorted-cyclic-subgroups | In a finitely generated linear group over a field of positive characteristic every infinite cyclic subgroup is undistort
+ESTA char-p-transcendental-gl-n-avoids-v-and-va-for-n-ge-3 | If K has characteristic p and is not algebraic over F_p, then for n >= 3 GL_n(K) embeds in neither V nor VA
+ESTA char-two-linear-groups-satisfy-boone-higman | Every finitely generated linear group over a field of characteristic two satisfies Boone--Higman
+ESTA char-zero-representable-rings-embed-in-fp-simple-rings | Every ring embeddable in M_D(C ⊗ Q<x_1..x_m>), C a finitely generated commutative Q-algebra or field of characteristic z
+ESTA circle-groups-with-divisible-free-germs-omit-gl-n-q | Germ-local form - if every point-germ group of a circle or interval group has no divisible subgroup, divisible abelian s
+ESTA clopen-crossed-product-subrings-have-local-annihilation | A unital subring of C(X,k) ⋊ Γ containing every clopen indicator has local annihilation, for Γ acting on an infinite com
+ESTA comm-of-z-n-times-torsion-group-splits | Comm(Z^n x B) = GL_n(Q) x Comm(B) when B is a torsion group with trivial FC-centre, so these abstract commensurators are
+ESTA commensurating-end-germ-groups-omit-aff-q | No finitely generated group of dyadic PL end-germs commensurating the germ of x -> x+1 contains Aff(Q), SL_2(Q) or PSL_2
+ESTA cone-sl2-and-v-put-central-scalars-in-derived-subgroup | In a ring with a Leavitt family and an infinite central subfield K, any unit subgroup containing V and one cone copy of 
+ESTA countable-virtually-abelian-groups-embed-in-2v | Every countable virtually abelian group, in particular every countable abelian group, embeds in the Brin-Thompson group 
+ESTA crossing-move-hierarchies-have-odd-branching | In a one-head move hierarchy with bounded junctions and slowly growing domains, crossings split into an odd number of su
+ESTA dilation-letters-cannot-divide-the-unit-class | Dilation letters N -> pN + r and resolvents cannot make the unit class of a one-register-per-type completion divisible b
+ESTA divisible-elements-act-elliptically-on-trees | In any action on a tree, an element with roots of infinitely many orders is elliptic, and a copy of (Q,+) fixes a vertex
+ESTA extension-product-closures-cannot-create-sl-n-q | Closing a class under subgroups, extensions, direct products and free products never creates SL_n(Q) or GL_n(Q) from gro
+ESTA fg-automorphism-hosts-contain-no-divisible-subgroup | Automorphism groups of finitely generated residually finite groups, and finitely generated groups of automorphisms of sc
+ESTA fg-cremona-subgroups-have-arithmetic-linear-part | In a finitely generated subgroup of Bir(P^m_Q) the linear elements lie in PGL_{m+1}(Z[1/N]), so no linearizable copy of 
+ESTA fg-groups-have-fg-derivative-images | A cocycle of a finitely generated group whose generators take finitely many values lands in a finitely generated subgrou
+ESTA fg-groups-with-normal-q-n-have-non-fp-quotients | A finitely generated group with a normal subgroup isomorphic to Q^n acts on it through some GL_n(Z[1/m]), and its quotie
+ESTA fg-linear-groups-have-roots-at-finitely-many-primes | In a finitely generated linear group over a field, an element of infinite order has q-th roots for only finitely many pr
+ESTA fg-metabelian-groups-have-roots-at-finitely-many-primes | In a finitely generated metabelian group an element of infinite order in the derived subgroup has q-th roots for only fi
+ESTA fg-piecewise-linear-hosts-omit-natural-gl-n-q | Finitely generated groups with a finitely valued linear cocycle never carry GL_n(Q), Aff(Q) or (Q,+) with their natural 
+ESTA fg-pl-quasi-similarity-groups-contain-no-gl-2-q | No finitely generated periodic PL quasi-similarity group of the line contains Aff(Q), B_2(Q), SL_n(Q) or GL_n(Q)
+ESTA fg-q-rings-have-no-matrix-representations | A finitely generated ring containing Q has no unital ring homomorphism into any matrix ring over a nonzero commutative r
+ESTA fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings | Every finitely generated semiprime PI Q-algebra, in particular every semiprime one of GK dimension at most one, embeds i
+ESTA fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups | Every finitely generated subgroup of GL_n(Q) embeds in a finitely presented simple twisted Brin--Thompson group, which a
+ESTA fg-subrings-of-integral-form-algebras-omit-q | A finitely generated subring of an algebra with finitely generated structure constants contains no copy of Q
+ESTA field-envelopes-pass-to-algebraic-closures | If a field embeds in a finitely presented simple ring then so does its algebraic closure, so every countable field of fi
+ESTA finitely-presented-harmonic-cuntz-ring-contains-q | An explicit six-generator finitely presented *-ring with a Leavitt family contains Q and maps onto the harmonic Cuntz ri
+ESTA fp-alt-fin-hosts-have-fp-near-images | A finitely presented permutation group containing the finitary alternating group has a finitely presented near image, an
+ESTA fp-linear-hosts-of-sl-q-have-wild-h3-quotients | A finitely presented group between finitary SL(Q) and SL(Q)·Mon has a quotient with infinitely generated H_3
+ESTA fp-simple-q-algebras-embed-in-fp-simple-rings | A Q-algebra embeds in a finitely presented simple ring exactly when it embeds in a finitely presented simple Q-algebra
+ESTA fp-simple-ring-of-characteristic-zero-exists | Some simple ring finitely presented as a ring (over Z) has characteristic zero (equivalently Q embeds in one)
+ESTA full-corners-must-kill-rational-k2-symbols | If E_N(R) is finitely presented and Q ⊆ R, then every full idempotent corner eRe sends K_2(Q) to a finite group
+ESTA germ-extensions-omit-standard-gl-n-q | Groups that are locally in a finitely generated piecewise-projective or piecewise-affine group off a nowhere dense set, 
+ESTA gl-n-over-algebraic-extensions-of-f-p-embed-in-v | For every algebraic extension K of a finite field, for example the algebraic closure of F_p, every GL_n(K) embeds in Tho
+ESTA gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings | For each prime p, GL_n(Q) acts faithfully on the vertices of the Bruhat-Tits building of PGL_(n+1)(Q_p), and PGL_2(Q) an
+ESTA gl-n-q-almost-v-hosts-need-lattice-germs | A finitely generated almost-V host of GL_n(Q), n >= 3, has one singular germ group containing a finite-index subgroup of
+ESTA gl-n-q-embeddings-are-branches-of-homomorphism-trees | Embeddings of SL_m(Q) into a group S are the infinite branches of a tree of homomorphisms of S-integer groups; finitely 
+ESTA gl-n-q-embeddings-detected-by-nontrivial-homomorphisms | A homomorphism from SL_m(Q) (m odd), Aff(Q), U_n(Q) or (Q,+) into any group is injective as soon as one named element su
+ESTA gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring | GL_n(Q) embeds in the finitely generated elementary group E_(n+1)(R_T) of the finitely presented Toeplitz ring R_T
+ESTA gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups | GL_n(Q) embeds in a finitely presented group with solvable word problem and in a finitely generated simple group with so
+ESTA gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups | GL_n(Q) embeds in an ultraproduct of finitely presented simple groups, so the local form of the GL_n(Q) root holds and n
+ESTA gl-n-q-explicit-natural-fp-overgroup | For every n >= 2 some explicit and natural finitely presented group contains GL_n(Q)
+ESTA gl-n-q-fixes-a-vertex-in-free-splittings | GL_n(Q), SL_n(Q), Aff(Q), U_3(Q) and (Q,+) fix a vertex in every action on a tree with trivial edge stabilizers
+ESTA gl-n-q-generated-by-gl-n-z-and-prime-dilations | GL_n(Q) is generated by GL_n(Z) and the commuting prime dilations diag(p,1,...,1)
+ESTA gl-n-q-hosts-cannot-act-on-one-manifolds | No group acting faithfully on a one-manifold with finitely many components contains GL_n(Q) for n >= 3, and none acting 
+ESTA gl-n-q-lies-in-prime-shift-permutation-group | GL_n(Q) and Aff(Q) lie in finitely generated 2-transitive permutation groups in which all prime dilations are conjugate
+ESTA gl-n-q-root-needs-only-nontrivial-psl-maps | PSL_n(Q) is simple and cofinal with GL_n(Q), so the root needs only a nontrivial homomorphism of PSL_n(Q) into an embedd
+ESTA gl-n-q-targets-are-cofinal-in-n | GL_n(Q), SL_n(Q) and PGL_n(Q) are mutually cofinal under embedding, so the root may be proved for any infinite set of n 
+ESTA gl2-q-fa-subgroups-are-finite | Every subgroup of GL_2(Q) or PGL_2(Q) with Serre's property FA is finite, so fixed-point obstructions exclude no host fo
+ESTA harmonic-coefficient-rings-are-k-equivalent-to-lc | Adjoining the translates of a harmonic function to LC(X,Q) does not change algebraic K-theory, and a harmonic ring is th
+ESTA harmonic-cuntz-el3-is-fg-simple-over-all-gl-n-q | The scalar quotient of EL_3 over the harmonic Cuntz ring is a finitely generated simple group with solvable word problem
+ESTA harmonic-cuntz-ring-is-purely-infinite-simple | The harmonic Cuntz ring, generated by the Cuntz operators and one harmonic diagonal function, contains Q, has two-sided 
+ESTA harmonic-cuntz-simple-group-is-not-finitely-presented | The harmonic Cuntz simple group EL_3(C_h)/Q^x is not finitely presented
+ESTA harmonic-elimination-puts-q-in-odometer-crossed-products | Over any odometer factor, one harmonic function and the translation units generate a ring containing Q, by eliminating t
+ESTA ibn-failure-makes-rational-scalars-elementary | If R contains Q and R^m ≅ R^(m+k), then λ^k I_M is elementary for all λ in Q^x and every rank M = m'N with m' >= m, N >=
+ESTA infinite-field-leavitt-units-are-not-finitely-generated | Over an infinite field the Leavitt unit group and its scalar quotient are not finitely generated, and no finitely genera
+ESTA infinite-prime-localizations-embed-in-no-fg-linear-group | For an infinite set P of primes, Z[1/P] embeds in no finitely generated linear group over any field, so neither do GL_n(
+ESTA infinitely-generated-symbols-block-fp-elementary-groups | If the Steinberg symbols of commuting units generate an infinitely generated subgroup of K_2(R), then no E_N(R) with N >
+ESTA infinitely-q-divisible-dvr-matrices-are-torsion | Over a mixed-characteristic DVR with finitely generated residue field, a matrix with q^j-th roots for every j has finite
+ESTA integral-form-algebras-have-no-fg-subring-containing-q | No finitely generated subring of M_n(A ⊗ K) contains a copy of Q when A has free abelian additive group
+ESTA integral-leavitt-unit-group-contains-q | The finitely generated subgroup of the integral binary Leavitt unit group generated by V and one transvection contains Q
+ESTA integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields | Finitely generated unit groups of integral-form algebras over any field are residually finite-field, so their copies of 
+ESTA iwahori-overgroups-not-automaton-linear-or-metabelian | A group of tree automorphisms containing the rational Iwahori group is not an automaton group, and if finitely generated
+ESTA laurent-rational-symbols-block-fp-elementary-groups | Over a skew Laurent ring B[u^±1; σ] whose base detects rational scalars in K_1, the symbols {λ, u} are infinitely genera
+ESTA leavitt-centralizer-units-are-elementary-in-rank-three | A unit that commutes with a binary Leavitt pair is an elementary matrix in rank three; so Q^x scalars are central in E_m
+ESTA leavitt-germ-traces-satisfy-frobenius | Over F_2 the isotropy-class traces of the binary Leavitt algebra satisfy a Frobenius identity, so a unit with 2^k-th roo
+ESTA leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1 | If a subring A centralizes a binary Leavitt pair of S, then E_N(A) embeds in St_(3N+1)(S); so St_10(S) contains every GL
+ESTA leavitt-pairs-embed-sl-n-q-in-steinberg-groups | In any ring containing Q and a binary Leavitt pair, SL_N(Q) embeds in the Steinberg group of rank 6N+1
+ESTA leavitt-resolvent-derived-units-mod-centre-not-fp | The derived unit group of the Leavitt resolvent ring is not finitely presented modulo its centre
+ESTA leavitt-resolvent-ring-is-fp-and-contains-q | The six-generator Leavitt resolvent ring R_L is finitely presented, nonzero, contains Q unitally, and carries a Leavitt 
+ESTA leavitt-resolvent-ring-is-fp-simple-of-char-zero | The binary Leavitt ring with a number operator and its resolvent is simple, of characteristic zero, contains Q, and is f
+ESTA leavitt-scalar-commutators-block-fp-central-quotients | A group whose commutator subgroup meets its centre in a non-finitely-generated subgroup has no finitely presented centra
+ESTA leavitt-tuples-make-rational-scalar-powers-elementary | In a ring containing Q and a Leavitt (1,d)-tuple, every (d-1)-th power of a rational scalar is elementary, so the scalar
+ESTA leavitt-unit-groups-over-every-field-are-simple-mod-scalars | Over every field k the unit group of L_k(1,2) is perfect and simple modulo the scalars k^x
+ESTA lifts-add-no-unipotent-divisibility | A central or covering lift of a group without (Q,+) contains none of GL_n(Q), SL_n(Q), PGL_n(Q), PSL_n(Q), Aff(Q), B_2(Q
+ESTA matricial-divisibility-kills-rational-k2-symbols | If R ≅ M_n(R_n) as unital rings for n divisible by every integer, then K_2(Q) -> K_2(R) is zero
+ESTA matrix-corner-laurent-rings-block-fp-elementary-groups | A matrix ring over a Z-graded ring with a degree-one unit and a commutative or tracial degree-zero part has no finitely 
+ESTA no-q-in-tree-product-actions-with-finite-stabilizers | A group acting on a finite product of trees with finite vertex stabilizers contains no copy of (Q,+), so no discrete sub
+ESTA normal-germ-extensions-of-thompson-v-contain-no-sl3z | Finite germ extensions of Higman–Thompson groups with normalizing or finite-index germs contain no finite-index subgroup
+ESTA number-field-linear-groups-embed-in-gl-n-q | For a number field K of degree d, restriction of scalars embeds GL_n(K) in GL_nd(Q)
+ESTA nv-rational-subgroups-with-power-conjugacy-are-flat | A copy of Q in nV with one element conjugate to a proper power has zero exponents at all periodic points, so the landed 
+ESTA odometer-factor-witnesses-mix-coordinates | An element of kV with an infinite odometer factor has no power in any conjugate of the triangular subgroup, so k >= 2 an
+ESTA one-steinberg-group-contains-every-gl-n-q | For any ring S containing Q and a binary Leavitt pair, the single group St_4(S) contains SL_m(Q) and GL_n(Q) for every m
+ESTA periodic-point-germ-groups-omit-aff-q | Finite products of finitely generated germ groups that commensurate the local contractions at eventually periodic points
+ESTA permutational-host-forms-agree-for-countable-inputs | The type (A), finitary-alternating and simple-host forms of permutational Boone--Higman agree for every input group, fin
+ESTA pgl-n-q-acts-on-rational-polyhedral-cantor-set | PGL_n(Q) acts faithfully on the Cantor set of rational polyhedral regions of RP^(n-1); for n = 2 it is the blow-up at P^
+ESTA pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori | PGL_2(Q) embeds in the Rover--Nekrashevych group V_p(Gamma_p) of the rational Iwahori group, a self-similar group that i
+ESTA piecewise-commutative-linear-hosts-miss-linear-gl-n-q | A finitely generated group of homeomorphisms that are piecewise in a topologically free group linear over a commutative 
+ESTA pl-line-hosts-bound-dilation-rank | A group of PL homeomorphisms of the line with slopes in a rank-r group contains no D x| M with D non-cyclic in Q and ran
+ESTA pl-quasi-similarity-groups-scale-rational-lines-by-ratio | In a periodic PL quasi-similarity group of the line, an element normalizing a copy of (Q,+) acts on it by multiplication
+ESTA pp-circle-and-lift-hosts-miss-gl-n-q | Finitely generated piecewise-projective and PL circle groups, and their lifts to R, contain none of GL_n(Q), SL_n(Q), PS
+ESTA pp-circle-divisible-subgroups-act-freely | In a group of circle homeomorphisms that are piecewise in a projective or affine group without divisible subgroups, divi
+ESTA prime-shift-dilation-normalizers-are-nowhere-continuous | A permutation of Q that shifts the primes on the dilation group is c*sigma on each half-line and is discontinuous at eve
+ESTA prime-shift-hnn-groups-are-not-finitely-presented | The prime-shift HNN groups are not finitely presented; A_1 or K_n can be finitely presented or contain finitary permutat
+ESTA proper-semisimple-cat0-groups-contain-no-gl-2-q | A group acting properly by semisimple isometries on a CAT(0) space contains no GL_2(Q), SL_2(Q), Aff(Q) or U_3(Q)
+ESTA prufer-groups-do-not-embed-in-gl-infinity-q | No Prufer group Z(p^infinity) embeds in the finitary group GL_infinity(K) of a number field K, so GL_n(Qbar) lies in no 
+ESTA q-algebra-elementary-quotients-contain-gl-n-q | For every ring containing Q, the projective elementary group PE_N(R) contains PSL_N(Q), and GL_n(Q) for N >= n+2
+ESTA q-embeds-in-a-corner-of-a-fp-toeplitz-ring | Q embeds unitally in a corner of an explicit finitely presented Toeplitz ring with a number operator and its resolvent
+ESTA q-free-lifts-reach-only-lattice-affine-q-groups | A dilated copy of Q survives no normal series with Q-free or central factors, and Q^n x| Gamma is Q-free-by-Q-free exact
+ESTA q-free-normal-towers-omit-aff-q | A group with a finite chain of normal subgroups whose factors contain no (Q,+) contains neither Aff(Q) nor B_2(Q), while
+ESTA q-x2-z-in-t-check-blows-up-the-doubling-fixed-point | In every copy of Q x|_2 Z in T-check the doubling semiconjugacy blows up its fixed point to an interval, so the copy of 
+ESTA q-x2-z-in-t-check-has-a-doubling-semiconjugacy | Every copy of Q x|_2 Z in T-check = <T-bar, x -> 2x> is semiconjugate to the affine one, never by a PL map, and never wi
+ESTA rational-bs12-hull-embeds-in-a-fg-solvable-group | The rational hull D_2 = Q x|_2 Z of BS(1,2) embeds in an explicit 4-generator solvable group of derived length at most 3
+ESTA rational-function-fields-embed-in-fp-simple-rings | For every k the rational function field Q(t_1..t_k) embeds unitally in an explicit simple ring finitely presented as a r
+ESTA rational-iwahori-group-is-union-of-fp-self-similar-groups | The rational Iwahori group Gamma_p is the ascending union of the finitely presented self-similar Iwahori groups Gamma_p(
+ESTA rational-k1-detection-forces-infinite-order-unit-class | If K_1(R) detects the rational scalars up to a finitely generated kernel, then the unit class [1_R] has infinite order i
+ESTA rational-leavitt-path-k1-k2-scalar-dichotomy | For a rational Leavitt path algebra, either the rational scalars die in K_1 or the rational symbols survive in K_2, both
+ESTA rational-linear-groups-satisfy-boone-higman | Every finitely generated subgroup of GL_n(Q) embeds in a finitely presented simple group
+ESTA rational-scalars-obstruct-fp-elementary-hosts | Over a ring containing Q, elementary rational scalars make PE_N(R) and R^x/Z(R^x) infinitely presented, so K_1 must dete
+ESTA rational-slope-germ-groups-have-bs-but-no-heisenberg | Germs with rational asymptotic slope contain every BS(1,m) but no nonabelian nilpotent group
+ESTA rational-stepping-stones-in-nv-need-bs12-or-heisenberg | If Aff(Q), SL_2(Q) or GL_n(Q) (n >= 2) embeds in a Brin-Thompson group nV, so does BS(1,2); if U_3(Q) or GL_n(Q) (n >= 3
+ESTA register-comparison-presentations-are-not-simple | A register presentation with a translation chain and a finite-fibre comparison between two unbounded registers is never 
+ESTA regular-germ-extension-attractors-are-undistorted | In finite germ extensions of V, wandering singularities and (in the central-germ regime) attracting points force undisto
+ESTA renormalizable-thompson-elements-are-odometer-codes | A renormalizable element of kV is exactly a bounded odometer of a brick code, and it factors onto the m-adic odometer wi
+ESTA renormalizable-thompson-elements-give-baumslag-solitar | An element of kV with a bounded-prefix height-m tower renormalization gives BS(1,m) inside (k+1)V
+ESTA renormalization-heights-force-eigenvalue-roots | A height-m renormalization makes the eigenvalue group closed under m-th roots, and a coprime renormalization multiplies 
+ESTA resolvent-ring-presentation-is-not-faithful-on-r-bar | The eight-relator resolvent ring R_l does not present its residually finite model R̄_l, since e x e - e x^q e is nonzero
+ESTA resolvent-vacuum-rings-have-no-k0-state | A resolvent vacuum forces infinitely many orthogonal copies of the vacuum idempotent, so a simple host with one is not s
+ESTA rf-near-image-permutation-groups-omit-rationals | A permutation group whose near image is residually finite, such as a Houghton group, contains no (Q,+) and so none of Af
+ESTA rf-resolvent-ring-has-z-localized-corner | For every prime l an explicit five-generated residually finite ring has a corner containing Z_(l) unitally
+ESTA rsg-equicontinuity-program-cannot-exclude-gl-n-q | The equicontinuity test for proper-power conjugates cannot exclude GL_n(Q), SL_2(Q) or Aff(Q) from finite-nucleus RSGs
+ESTA scaled-rationals-in-nv-need-aperiodic-core-elements | A copy of Q in nV scaled by a rational a != ±1 consists of elements with zero periodic exponents and an aperiodic core, 
+ESTA simple-group-in-fp-simple-iff-fp-just-infinite-host | An infinite simple group, finitely generated or not, embeds in a finitely presented simple group iff it maps nontriviall
+ESTA single-register-rings-divide-unit-at-finitely-many-primes | With one unbounded register per state type and shift or reset letters, K_0 of a register completion divides a unit class
+ESTA sl-2-q-is-an-amalgam-of-sl-2-z-localized-at-ell | For every prime l, SL_2(Q) is the amalgam of two conjugate copies of the residually finite group SL_2(Z_(l)) over Γ_0(l)
+ESTA sl-m-q-passes-to-finite-index-and-commutator-cores | SL_m(Q) lies in every finite-index subgroup and every commutator subgroup of a host, so a finite-index simple monolith o
+ESTA sl-n-of-infinite-fields-lie-in-no-residually-finite-group | For every infinite field K and n >= 2, SL_n(K) has no nontrivial finite quotient, so GL_n(K) lies in no residually finit
+ESTA sl-n-q-is-colimit-of-lattice-stabilizers | SL_n(Q) is the colimit of the stabilizers of squarefree diagonal lattices over the restricted product of Bruhat-Tits cha
+ESTA sl-n-q-lacks-property-fw | SL_n(Q) and GL_n(Q) lack property FW (and FA) for every n >= 2, although for n >= 3 they are directed unions of Kazhdan 
+ESTA sl-n-q-lies-in-finite-residual-of-every-overgroup | For n >= 2 every finite-index subgroup of every group containing GL_n(Q) contains SL_n(Q), and the finite residual of GL
+ESTA sl-n-q-lies-in-one-factor-of-every-normal-series | In every normal series of a group containing SL_n(Q), a single factor carries a perfect image of SL_n(Q) with all its ro
+ESTA sl-n-z-circle-actions-factor-through-finite-groups | Every continuous action on the circle of a finite-index subgroup of SL(n,Z), n >= 3, factors through a finite group (Wit
+ESTA sl-n-z-localized-embeds-in-fg-rf-elementary-group | SL_n(Z_(l)) and GL_n(Z_(l)) — hence Z_(l) and every GL_n(Z[1/P]) with l not in P — embed in the finitely generated resid
+ESTA sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially | For odd m, SL_m(Q) embeds in a finitely presented simple group iff some finitely presented overgroup maps to one without
+ESTA sl-odd-q-simple-inputs-for-gl-n-q-root | For odd m >= 3 the group SL_m(Q) is an infinite simple group containing GL_n(Q) for n < m, so the GL_n(Q) root has simpl
+ESTA sl-q-local-amalgam-gluing-is-the-whole-problem | SL_m(Q) is the colimit of its four-index subgroups, so gluing hosts of the pieces of any such amalgam is equivalent to e
+ESTA sl2-casimir-cannot-separate-verma-from-finite-dimensional | The Casimir element and its resolvents act by equal scalars on L(k) and on the Verma submodule of M(k), so no central re
+ESTA sl3-congruence-transfer-kills-abelianization | For n >= 3 and d >= 2 the transfer from the abelianization of Γ_n(d) to that of Γ_n(d^2) is zero, so the congruence odom
+ESTA sl3-toeplitz-harmonic-pe-groups-are-simple | The projective elementary groups PE_N(R_T) of the SL_3(Z) Toeplitz harmonic ring are infinite simple groups with centre 
+ESTA sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational | A finitely generated simple ring over an SL_3(Z) Toeplitz subshift contains Q, detects Q^x in K_1, is matricially divisi
+ESTA smart-induced-map-has-brick-local-height-3-renormalization | The induced SMART element of 2V has a brick-local height-3 renormalization, deleting one cell next to the head
+ESTA smart-induced-on-genuine-moves-has-exact-tripling | SMART induced on its level-zero moves is an element of 2V whose level-k sweeps take exactly 3^k steps
+ESTA smart-level-zero-return-map-factors-onto-3-adic-odometer | The first-return map of the SMART moving-tape homeomorphism to its level-0 configurations is conjugate to an element of 
+ESTA some-brin-thompson-element-factors-onto-an-odometer | For some k and m >= 2, some element of the Brin-Thompson group kV has the m-adic odometer as a topological factor
+ESTA split-finitary-sl-q-extensions-are-not-fp | A finitely generated split extension of finitary SL(Q) by monomial matrices is never finitely presented
+ESTA st-n-of-ring-quotient-adds-one-relator-per-ideal-generator | For n >= 4, St_n(F/I) is St_n(F) with one extra relator x_12(ρ) for each generator ρ of the two-sided ideal I
+ESTA steinberg-groups-of-fp-rings-are-fp-in-rank-five | For every finitely presented unital ring R and every n >= 5, the Steinberg group St_n(R) is finitely presented, with an 
+ESTA steinberg-rf-forces-ring-rf | For N >= 3 every finite quotient of St_N(R) factors through St_N(F) for a finite quotient ring F of R, so St_N(R) residu
+ESTA tbar-embeds-in-laurent-leavitt-unit-group | The Ghys--Sergiescu lift T-bar of Thompson's group T, and so (Q,+), embeds in the unit group of the binary Leavitt algeb
+ESTA thompson-units-have-few-roots-in-leavitt-unit-group | In the binary Leavitt unit group a conjugate of an infinite-order Thompson unit has k-th roots only for k dividing its c
+ESTA three-v-contains-aperiodic-rationals | The Brin-Thompson group 3V contains a copy of Q none of whose nontrivial elements has a periodic point
+ESTA tracial-harmonic-ring-keeps-rational-scalars | A finitely generated simple tracial ring contains Q, has centre Q, and keeps every rational scalar other than ±1 out of 
+ESTA twisted-bt-point-fixing-actor-elements-are-divisible | In a twisted Brin-Thompson group SV_G every infinite-order element that ignores one coordinate, in particular every infi
+ESTA type-a-orbit-accumulation-forces-fg-nontrivial-germs | In a type (A) action by homeomorphisms, a point whose orbit accumulates at it has a nontrivial finitely generated germ g
+ESTA u3-q-in-kronecker-integral-units-needs-a-torus | A copy of U_3(Q) in a Kronecker limit of integral general linear groups needs an element with an eigenvalue that is not 
+ESTA u3-q-not-in-q-free-cantor-wreaths | U_3(Q) embeds in no continuous wreath LC(C,H) x| Gamma with Gamma Q-free when the divisible subgroups of H are torsion-f
+ESTA unit-roots-divide-centralizer-rank | If a transcendental unit of an algebra over a field has a k-th root, then k divides its centralizer rank, so a unit with
+ESTA va-singular-point-germ-groups-are-t-bar | The germ group of VA at each of its singular points is a copy of T-bar whose centre is the V-shift
+ESTA weighted-monomial-hosts-of-sl-q-need-wild-stabilizers | A finitely generated monomial-times-finitary host of finitary SL(Q) needs a point stabilizer whose weight character has 
+ESTA z-localizations-embed-in-gl-n-only-along-inclusion | Z[1/P] embeds in some GL_N(Z[1/P']) only if P is contained in P', so GL_n(Z[1/P]) embeds in GL_N(Z[1/P']) exactly when P
+ESTA z-localized-embeds-in-fg-rf-soluble-group | Z_(l) embeds in an explicit three-generated residually finite soluble group of derived length at most 3 with solvable wo
+ESTA z-localized-embeds-in-fp-kazhdan-steinberg-group | For every prime l and N >= 4, Z_(l) embeds in the finitely presented Kazhdan group St_N(R_l) of the eight-relator resolv
+OPEN aff-n-z-localized-lies-in-fp-self-similar-group | For some prime l and every n, the self-similar group Aff_n(Z_(l)) lies in a finitely presented self-similar group
+OPEN aff-q-embeds-in-fp-simple-group | The rational affine group Aff(Q) = Q x| Q^x embeds in a finitely presented simple group
+OPEN bs12-embeds-in-brin-thompson-2v | The Baumslag--Solitar group BS(1,2) embeds in some Brin--Thompson group nV with n ≥ 2
+OPEN cantor-crossed-q-rings-need-odd-divisible-coinvariants | Over a torsion-free Farrell-Jones group, clopen symbols detect the odd part of the dimension group tensor K_2(Q), so Can
+OPEN char-zero-ring-boone-higman | Every finitely generated Q-algebra with solvable word problem embeds in a finitely presented simple ring
+OPEN countable-char-zero-fields-embed-in-fp-simple-rings | Every countable field of characteristic zero embeds in a finitely presented simple ring
+OPEN countable-char-zero-linear-groups-embed-in-fp-simple-groups | Every countable linear group over a field of characteristic zero embeds in a finitely presented simple group
+OPEN countable-decidable-groups-embed-in-fp-simple-groups | Every countable group with a solvable word problem embeds in a finitely presented simple group (countable-input Boone–Hi
+OPEN fp-central-simple-q-ring-with-trivial-leavitt-k-theory | Some finitely presented ring is a simple Q-algebra with centre Q whose Leavitt tensor B ⊗ L_Q(1,2) has K_1 = K_2 = 0
+OPEN fp-simple-resolvent-ring-with-divisible-unit-class | Some simple ring finitely presented over Z gets Q from a resolvent vacuum, has [1] of infinite order and divisible by ev
+OPEN gl-infinity-q-embeds-in-fp-simple-group | The finitary group GL_infinity(Q) embeds in a finitely presented simple group
+OPEN gl-n-f2t-embeds-in-fp-simple-group | For every n >= 2 the group GL_n(F_2(t)) embeds in a finitely presented simple group
+OPEN gl-n-q-embeds-in-binary-leavitt-unit-group | For every n >= 2 the group GL_n(Q) embeds, as an abstract group, in the unit group of the binary Leavitt algebra over F_
+OPEN gl-n-q-embeds-in-fp-simple-group | For every n >= 2 the group GL_n(Q) embeds in a finitely presented simple group
+OPEN gl-n-q-in-permutational-boone-higman-class | For every n >= 2 the group GL_n(Q) embeds in a finitely presented group with an action of type (A)
+OPEN gl-n-qbar-embeds-in-fp-simple-group | For every n >= 2, GL_n of the algebraic numbers embeds in a finitely presented simple group
+OPEN gl-n-z-localized-at-ell-embeds-in-fp-simple-group | For a prime l and n >= 2, GL_n(Z_(l)) — hence every GL_n(Z[1/P]) with l not in P — embeds in a finitely presented simple
+OPEN gl2-q-embeds-in-fp-simple-group | GL_2(Q) embeds in a finitely presented simple group
+OPEN harmonic-cuntz-simple-group-is-finitely-presented | The harmonic Cuntz simple group EL_3(C_h)/Q^x is finitely presented
+OPEN infinite-order-leavitt-unit-conjugate-to-its-diagonal-copy | Some unit of infinite order of the binary Leavitt algebra over F_2 is conjugate to its diagonal copy, equivalently L ⊗ F
+OPEN leavitt-units-over-s-integers-are-finitely-presented | For every m >= 1 the unit group of L_Z[1/m](1,2) is finitely presented
+OPEN number-field-gl-n-embeds-in-fp-simple-group | For every number field K and every n >= 2, GL_n(K) embeds in a finitely presented simple group
+OPEN pgl-q-projective-type-a-extension | For infinitely many m, PGL_m(Q) lies in a finitely presented group whose type (A) action contains the projective action 
+OPEN psl-n-q-maps-nontrivially-to-fp-simple-groups | For infinitely many n there is a nontrivial homomorphism from PSL_n(Q) to a finitely presented simple group
+OPEN psl2-q-embeds-in-fp-simple-group | The countable simple group PSL_2(Q) embeds in a finitely presented simple group
+OPEN q-algebra-with-fp-simple-projective-elementary-group | Some ring containing Q has finitely presented simple projective elementary groups PE_N(R) for infinitely many N
+OPEN q-coefficient-leavitt-tensor-unit-groups-are-fp | For a finitely presented central simple Q-ring B with vanishing Leavitt K-theory the unit group of B ⊗ L_Q(1,2) is finit
+OPEN rational-bs12-hall-overgroup-in-permutational-bh-class | The Hall-type 4-generator solvable overgroup of Q x|_2 Z lies in the permutational Boone--Higman class B_A
+OPEN rational-bs12-hull-in-permutational-bh-class | The rational hull D_2 = Q x|_2 Z of BS(1,2) lies in the permutational Boone--Higman class B_A
+OPEN rational-function-field-embeds-in-binary-leavitt-algebra | The rational function field F_2(t) embeds as a unital subring of the binary Leavitt algebra L_(F_2)(1,2)
+OPEN rational-iwahori-group-lies-in-fp-self-similar-group | For some prime p the rational Iwahori group Gamma_p lies in a finitely presented self-similar group whose Rover--Nekrash
+OPEN rational-leavitt-simple-group-embeds-in-fp-simple-group | The countable simple group L_Q(1,2)^x / Q^x embeds in a finitely presented simple group
+OPEN rational-slope-germ-group-contains-aff-plus-q | The rational-slope germ group at infinity contains Aff+(Q) = Q x| Q_{>0}
+OPEN rationals-do-not-embed-in-binary-leavitt-unit-group | The additive group of the rationals does not embed in the unit group of the binary Leavitt algebra over F_2
+OPEN rationals-embed-in-binary-leavitt-unit-group | The additive group of the rationals embeds in the unit group of the binary Leavitt algebra over F_2
+OPEN regular-germ-extensions-have-no-bs-relations | No regular finite germ extension of V contains an infinite-order element conjugate to a proper power of itself
+OPEN resolvent-presentation-ring-is-residually-finite | For some prime l the eight-relator resolvent ring R_l is residually finite
+OPEN resolvent-register-units-give-rational-symbols | In a register completion, invertible register units pair with Q^x into an infinitely generated symbol group unless the t
+OPEN resolvent-steinberg-group-is-residually-finite | For some prime l and some N >= 4, the finitely presented Kazhdan group St_N(R_l) is residually finite
+OPEN rf-resolvent-elementary-group-is-fp | For some prime l and some N >= 3, the elementary group E_N(R̄_l) over the residually finite resolvent ring is finitely p
+OPEN sl-2-q-embeds-in-fp-simple-group | SL_2(Q) embeds in a finitely presented simple group
+OPEN sl-2-z-localized-has-fp-hecke-overgroup | For some prime l, SL_2(Z_(l)) lies in a finitely presented group in which the Hecke correspondence at l extends to finit
+OPEN sl-odd-q-has-fp-just-infinite-host | For infinitely many odd m, SL_m(Q) maps nontrivially to a finitely presented group that is just-infinite above its image
+OPEN sl2-q-embeds-in-fp-simple-group | SL_2(Q) embeds in a finitely presented simple group
+OPEN sl2-vacuum-hosts-admit-verma-type-modules | A finitely presented sl_2 vacuum host that realizes every L(k) also admits a Verma-type module, so it is not simple, unl
+OPEN sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget | The SL_3(Z) Toeplitz harmonic ring meets both clauses of the UHF K-budget, in every full corner and for every unit
+OPEN t-check-contains-q-rtimes-2-z | The finitely presented group T-check = <T-bar, x -> 2x> contains a subgroup isomorphic to Q x|_2 Z
+OPEN u3-q-embeds-in-fp-simple-group | The rational Heisenberg group U_3(Q) embeds in a finitely presented simple group
+OPEN z-localized-embeds-in-fp-rf-group | For some prime l, the additive group Z_(l) embeds in a finitely presented residually finite group
+REFU capacity-chain-resolvent-ring-has-rational-k0 | The capacity-chain resolvent ring is finitely presented and simple, gets Q from a resolvent vacuum, and has [1] of infin
+REFU leavitt-resolvent-derived-units-mod-centre-fp-simple | For the Leavitt resolvent ring R_L, the derived unit group [R_L^x, R_L^x] modulo its centre is finitely presented and si
+REFU sl3-toeplitz-harmonic-elementary-groups-are-fp | For infinitely many N, the elementary group E_N(R_T) of the SL_3(Z) Toeplitz harmonic ring is finitely presented

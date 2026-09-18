@@ -1,0 +1,8 @@
+Fix the conjugator in the Wächter–Weiß non-finite-presentation proof and state its scope
+
+bh-free-02 correction to f454b873d. Step 2 must conjugate by checksub{id}: the copy
+checksub{r} passes to an R-state after $ and would move the Σ̃-letter, breaking the
+support computation. Also records the check (l. 900–1100 of the TeX) that only the
+check-mark states toggle digits, says that PSPACE-hardness for finite R off the
+encoding letters comes from the paper's general-R proof, marks R moving the encoding
+letters as not covered, and removes an unverified remark about the binary group.

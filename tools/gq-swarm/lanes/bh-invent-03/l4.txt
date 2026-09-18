@@ -1,0 +1,5 @@
+**(L4) Domination.** Suppose `P ≤ Q` for `Q` in the partition `𝒫_w = {Π_w(f)}_f ∪ {Σ_w}`. Then `P`, and hence
+`1 − P`, commutes with every member of `𝒫_w`, and with every idempotent `R ≤ Q'` for some `Q' ∈ 𝒫_w`, `Q' ≠ Q`.
+- `P` commutes with `Q` because `P ≤ Q`.
+- For `Q' ≠ Q`: `PQ' = PQQ' = 0 = Q'QP = Q'P`.
+- Then `PR = (PQ')R = 0` and `RP = R(Q'P) = 0`.

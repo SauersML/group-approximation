@@ -1,0 +1,12 @@
+Free SFTs without two-sided faults: surjective strip automata in every rational direction; products excluded
+
+- no-two-sided-fault-sfts-have-rich-strips-in-all-directions: for the design target
+  free-minimal-sft-without-two-sided-faults-exists, every rational direction carries a surjective strip automaton
+  that is non-injective exactly at non-expansive lines. The strip subshift has no periodic point, so it is
+  non-sofic, and Cyr-Kra gives it at least quadratic complexity. Products of Z-subshifts (product substitution
+  tilings) always have two-sided faults, because an infinite Z-subshift has asymptotic pairs on both sides (a
+  Morse-Hedlund argument). Kari-Papasoglu corner determinism qualifies only if an axis seed is forced.
+- The open design node gets a pointer (Attempt 5).
+
+Lesson for general BH: a determinism-rigid free SFT needs an irreversible time arrow across every rational line;
+self-simulation must run inside an irreversible Ledrappier-type rule, not beside it.

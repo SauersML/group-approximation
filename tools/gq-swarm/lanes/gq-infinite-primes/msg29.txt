@@ -1,0 +1,12 @@
+Z-graded rings with a degree-one unit fail the scalar K-budget
+
+Lane gq-infinite-primes. A grading with a unit u in degree 1 makes R the skew
+Laurent ring R_0[u^+-1; Ad u] with Q in R_0. Either Q^x -> K_1(R) has a
+non-finitely generated kernel, or the symbols {lambda, u} are infinitely
+generated in K_2 and no E_N(R) is finitely presented. Kills the ring
+lamplighter U_n x| Z (K_0 = Z[1/n], [1] of infinite order) and every
+Baumslag-type cure with homogeneous relations. Calibration: the Pimsner
+constraint 1 - [X] injective is forced on the rational K_1 classes by the
+symbol item, not by K_1 detection or K_0.
+
+Also gate Attempt 7.

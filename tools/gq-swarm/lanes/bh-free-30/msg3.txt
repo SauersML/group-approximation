@@ -1,0 +1,7 @@
+Every odd root of the 2V_tau odometer has an explicit doubling conjugator
+
+New ESTABLISHED lane-proof claim odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators:
+for every odd q, an explicit q-th root r of s = tau x id and u_q = u c in 2V_tau with
+u_q r u_q^{-1} = r^2, via the conjugator g(A_i x w) = x A_{2i} w, which intertwines rho with
+Phi(rho^2), and an explicit cocycle solution. So 2V_tau contains (1/q)Z[1/2] semidirect <2>
+containing the odometer, for each odd q separately.

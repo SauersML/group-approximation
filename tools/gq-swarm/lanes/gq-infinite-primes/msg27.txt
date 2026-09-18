@@ -1,0 +1,12 @@
+Line pairs detect R/bR, so gate rings fail the type (A) test on lines
+
+Lane gq-infinite-primes. For lines e_1 R and (e_1 + e_2 b)R = x_21(b) e_1 R, the
+quotient of R^N by their sum is R/bR + R^(N-2), a GL_N(R)-invariant of the pair.
+With b = 1 - e this is eR + R^(N-2), with class [e] + (N-2)[1]. Every ring with
+R = M_n(R_n) for infinitely many n and [1] of infinite order (items 3-4 of the
+divisible-unit gate, or U_Q inside R) has infinitely many idempotent classes,
+so E_N(R) and PE_N(R) have infinitely many orbits of pairs on lines.
+
+Also: algebraic-closure symbol node refereed (a 0f26bb63e, b fad9054a8); nits
+applied and all inputs repinned (Milnor p. 101, Bass-Tate via Dennis-Stein
+11(ii), van der Kallen Thm 1 with d = 0, Dennis-Stein 9(a)).

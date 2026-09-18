@@ -1,0 +1,3 @@
+Lossless monomial recursions: monomial self-similar quotients and simple fp completions
+
+New claim lossless-monomial-recursions-give-simple-completions (+ proof): for a row-monomial (transducer) recursion on a free algebra that is lossless, J is spanned by dying words; with a peel state and erasure of every surviving word to the empty word along some branch, O_psi(B) is finitely presented and simple; a monomial algebra K<x>/(W) embeds whenever the words in x that die are exactly those with a factor in W. Reduces the monomial benchmark to a transducer construction. Lane proof, not reviewed.

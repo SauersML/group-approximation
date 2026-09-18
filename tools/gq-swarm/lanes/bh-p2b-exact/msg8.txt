@@ -1,0 +1,8 @@
+E3 prime for hyperbolic seeds: finite shadow bases need upstream certification; status and the vertical-gluing route
+
+New node v-stabilized-horofunction-hosts-need-upstream-certification (OPEN statement; items 1-3 lane proof). It records:
+- the unstabilized horofunction full group is finitely presented (BBMZ, via contracting RSGs), while F_infinity is open and their topological attempt failed;
+- the V-stabilized host that E3 prime needs is not an RSG;
+- a finite shadow basis needs upstream certification (UC): trees have it, and ball-pattern tiles of horofunctions do not, since a deep window pins the upstream value only to an interval;
+- tree end shifts as the calibration;
+- the vertical gluing route V(L) with LC(X,V) x| L over the full group L, whose one gap is the X-local label relations.

@@ -1,0 +1,6 @@
+Blowing up the emitter of Grigorchuk's envelope needs (IE') for the Grigorchuk group itself
+
+grigorchuk-envelope-emitter-reduces-to-ie-prime-for-grigorchuk:
+- The Bass-Serre tree of the ascending envelope G*_phi has one up-edge per vertex, down-edges indexed by G/phi(G), and a fixed end.
+- Via psi(phi(g)) = (theta(g), g), the branch set G/phi(G) becomes, up to finite index and a trivially acting kernel, finitely many free orbits of G acting through level-one sections.
+- So a finite-type (IE') blow-up exists only if the Grigorchuk group itself, up to commensurability, has an SFT with isolated free orbits. No seed mechanism is known for it, and Cannon's metric seed needs (TP). This is not yet a concrete (IE') instance.

@@ -1,0 +1,15 @@
+SteinbergFP: every GL_n(Q) embeds in St_10(R_L), and St_10(R_L) is finitely presented
+
+Completes the explicit finitely presented overgroup of every GL_n(Q) (Kourovka 14.10(c),
+BBMZ Problem 2.7). Not yet wired into the root.
+
+- Swindle: for a binary Leavitt family of S and an injective φ : F →+* S whose image commutes
+  with t₀, t₁, the base copy St_V(F) → St_{Option (Fin 3 × V)}(S) has kernel exactly K₂(V, F)
+  when St_V(F) is perfect, so E_V(F) embeds. The block swap intertwines the base and doubled
+  copies on matrices; the resulting cocycle is central after one room index, hence a
+  homomorphism, hence trivial by perfectness; on K₂ the doubled copy splits into rows 0 and 1.
+- Embedding: GL_n(ℚ) ↪ E_{3k}(ℚ) ≅ E_3(M_k(ℚ)) ↪ St_10(M_k(R_L)) ≅ St_10(R_L) with k = 2ⁿ
+  (Morita), and steinberg_ten_resolvent_contains_all_gl:
+  IsFinitelyPresented St_10(R_L) ∧ ∀ n, ∃ injective GL_n(ℚ) →* St_10(R_L).
+
+Green MSI builds; axioms propext, Classical.choice, Quot.sound only.

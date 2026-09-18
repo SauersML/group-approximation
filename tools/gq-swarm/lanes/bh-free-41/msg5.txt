@@ -1,0 +1,5 @@
+Reduce MathOverflow 412219 to normal-closure commutation
+
+The mixed identity [x c x^-1, d] holds exactly when the normal closures of c
+and d commute. So an f.p. group with solvable word problem and undecidable
+normal-closure commutation would make E(G) not recursively presented.

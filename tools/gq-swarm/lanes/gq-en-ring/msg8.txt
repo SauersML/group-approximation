@@ -1,0 +1,3 @@
+gq-en-ring: fix the periodic-branching sentence in the counter-engine note
+
+State the torsion relation (b-1)[P_n] = 0 for periodic branching correctly.

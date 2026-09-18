@@ -1,0 +1,5 @@
+F.g. torsion subgroups of the full-shift topological full group are finite; the [[σ]] source of 2V torsion is dead
+
+New ESTABLISHED lane proof full-shift-topological-full-groups-are-torsion-locally-finite. Every finitely generated torsion subgroup of [[Σ^Z]], and of RFA(Z,n,k), is finite. The proof is Barbieri–Kari–Salo's single-element pumping, plus a Ramsey-homogeneous triple of cuts, a relation-cycle argument, and drift on an aperiodic re-embedding.
+
+Since [[Σ^Z]] ≤ 2V (Salo), an infinite f.g. torsion subgroup of 2V must use writing machines (RTM, which is LEF). Attempt 2 is added on brin-thompson-2v-is-torsion-locally-finite, and the superseded [[σ]]-candidates remark is marked in place. Attempt 3 is added on some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup.

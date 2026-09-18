@@ -1,0 +1,8 @@
+Return-time test for renormalizations; correct the binary phase counts (hash bug)
+
+renormalization-return-times-tend-to-zero-adically: a height-m
+renormalization makes the phase local at linear depth and forces returns to
+any point to tend to 0 in Z_m (calibrated on SMART: returns = 0 mod 729).
+The binary machine M returns with n = 29*2^m + 4 = 4 mod 8 up to radius 18.
+The earlier phase-conflict counts in section 3d were a hash-merge artifact
+and are withdrawn in section 3e.

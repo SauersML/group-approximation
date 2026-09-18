@@ -1,0 +1,17 @@
+Reduce Boone-Higman for all finitely presented residually finite groups to spinal branch groups (Bishop-Schesler)
+
+This imports Bishop-Schesler's Theorem B: every finitely generated recursively presented
+effectively residually finite (EFRF^+) group Frattini-embeds in a finitely generated,
+recursively presented, EFRF^+ branch group. Their corollary reduces Boone-Higman for
+EFRF^+ groups to branch groups. Every finitely presented residually finite group is
+EFRF^+, so BBMZ Problem 5.3 items (2) closed MCG, (3) Out(F_n), (7) fp metabelian and
+(12) fp RF all reduce to one class: spinal branch groups over computable growing
+alphabets. Unlike the self-similar route, this route has no regular-tree failure point.
+
+Their Question 1.1 (branch hosts with solvable word problem for all decidable residually
+finite groups) is recorded as open. It is settled for effective inputs, so it is
+equivalent to its case for Rauzy's non-effective groups, and those force
+non-effective branch hosts.
+
+The problem-list artifact gains a fourth pass (40 papers from 2025-26 and two problem
+lists), with lessons for general Boone-Higman.

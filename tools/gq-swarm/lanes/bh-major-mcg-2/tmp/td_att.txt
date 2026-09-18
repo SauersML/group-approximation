@@ -1,0 +1,15 @@
+3. **An instance of TD arising from a split tree** (lane bh-major-mcg-2, 2026-09-18).
+   - `split-tree-restrictions-to-a-child-need-not-be-split-trees` gives a 10-piece
+     `D ∈ Trees(Δ)` respecting `x_0 = x_1`. Its restriction to
+     `H_1 = {x_1 ≤ x_0}` is a descendant dissection of `H_1` with 7 pieces, all in
+     `Desc(H_1)`, and it is not a split tree.
+   - It is dominated after two extra splits, of the two pieces straddling the plane of
+     the chosen first split `v_{02}` of `H_1`.
+   - It comes from the far-edge sub-case of LD_atom, via interleaved resolutions of
+     unit-corner lines.
+   - So TD genuinely needs refinement, even for restrictions of split trees to a child,
+     where synchronization holds automatically.
+   - The repair was local: cut the pieces that straddle the chosen first split, then
+     recurse. That suggests the measure missing in Attempt 1 should count only
+     straddling pieces.
+

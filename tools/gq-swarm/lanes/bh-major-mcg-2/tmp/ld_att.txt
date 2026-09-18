@@ -1,0 +1,16 @@
+## Attempts
+
+1. **Counterexample** (lane bh-major-mcg-2, 2026-09-18).
+   - **The dissection.** First split `(0,2)`, then:
+     - the far-edge split of `K` at `u = (2,0,1)`;
+     - minimal resolutions of the unit-corner lines, by the words `tts` in `K_a` and
+       `sst` in `K_b`;
+     - `K'` split at `c`.
+   - **Why it fails.** The seven pieces in `{x_1 ≤ x_0}` straddle every first split
+     of that half.
+   - **Ore is not refuted for the pair.** Two more splits, of `P_2` and `P_3` at their
+     edges `(e_0, z)`, give a common refinement with `E_{01}`.
+   - **Replacement input.** WLD (`edge-split-dissections-refine-into-any-first-split`):
+     refinement is allowed. The route `edge-split-ore-via-first-split-refinements`
+     shows that WLD is equivalent to Ore's condition.
+

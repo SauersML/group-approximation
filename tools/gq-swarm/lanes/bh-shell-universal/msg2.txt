@@ -1,0 +1,4 @@
+Attempts entry on decidable-inputs-have-fp-shell-envelopes: genuine-action generalization
+
+bh-shell-universal: record that the regular-only obstructions do not bind general
+genuine-action shells, and point to the weaker universal claim (1cebf3088).

@@ -1,0 +1,6 @@
+Link the SL_2(Q) permanence target to its obstruction-side nodes
+
+Add Attempt 4 to sl2-q-in-permutational-boone-higman-class, citing
+sl-2-q-root-group-is-parabolic-in-every-prime-factor and
+fg-restricted-product-actions-have-finite-support: envelopes must mix primes,
+and u(1/m!) must have growing word length.

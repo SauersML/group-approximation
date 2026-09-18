@@ -1,0 +1,6 @@
+Referee the F_infinity tree-host, non-ascending HNN and seed-domination nodes: all PASS
+
+bh-ref-engines checked the three proofs line by line, checking Thumann's operad hypotheses and Li's
+Zappa-Szep example against their sources. Wording fix: strong faithfulness must be stated for the
+graph-of-finite and virtually polycyclic examples. The seed-domination gluing is Cohen's cut-and-glue
+argument (groups with two or more ends have no strongly aperiodic SFT), extended to seeds; credit added.

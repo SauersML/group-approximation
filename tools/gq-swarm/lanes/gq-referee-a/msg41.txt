@@ -1,0 +1,3 @@
+Referee report: ascending HNN extensions of free groups contain no Z[1/P] PASS
+
+Proof-gap lens on ascending-hnn-extensions-of-free-groups-contain-no-z-localized (6f285b1d1). Stallings lemma incl. non-cyclically-reduced s checked; divisibility is automatic (subgroup of Z); nits N1-N3.

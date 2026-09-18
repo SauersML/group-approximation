@@ -1,0 +1,6 @@
+Full-corner copies of Q force central rational scalars
+
+A full corner eRe containing Q unitally forces R to contain Q centrally
+(Morita invariance of the centre, proved inline), so embedding GL_n(Q)
+through a corner does not escape rational-scalars-obstruct-fp-elementary-hosts.
+Lane proof, elementary, not reviewed; no novelty claimed.

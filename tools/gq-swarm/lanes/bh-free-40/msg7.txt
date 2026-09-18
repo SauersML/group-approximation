@@ -1,0 +1,3 @@
+Hyperbolic type (A) node: weaker sufficient hypothesis, and where a counterexample must live
+
+Any subgroup that virtually contains an infinite normal subgroup of a finite-index subgroup has nontrivial core in a non-elementary hyperbolic group (finite intersections of infinite normal subgroups are infinite, by commutators of independent loxodromics), so the conditional corollary only needs every finitely generated full-limit-set subgroup to be of virtual-fiber type. Records the one-pass attempt; the general case stays open.

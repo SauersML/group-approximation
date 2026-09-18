@@ -1,0 +1,5 @@
+FP_∞ node: add elementary amenable groups of type FP_∞
+
+Virtually soluble by Kropholler–Martínez-Pérez–Nucinkis (secondary citation on main),
+so the soluble case plus finite-extension closure puts every virtually torsion-free
+elementary amenable FP_∞ group in B_A.

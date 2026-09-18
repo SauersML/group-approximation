@@ -1,0 +1,7 @@
+Seeds decide their word problem at the origin; rigidity is decided on the derived subshift
+
+Two results for the v6 seed gate.
+(1) A recursively presented group with an effectively closed subshift having an isolated point with trivial stabilizer has solvable word problem, uniformly: the seed is a Pi^0_1 singleton, hence computable, and w = 1 iff the seed pattern reappears at w^-1. So fp plus a seed forces solvable WP and decidable language, answering the question left open in seeds-never-survive-marked-approximation, and CAP is purely about the cost of the forcing search.
+(2) If every isolated point of a subshift is locally forced, the subshift is quantum rigid iff its derived subshift is. So a locally forced seed is rigid iff its seedless boundary is, and locally forced countable subshifts of finite Cantor-Bendixson rank are rigid (recovering C_Z with no computation).
+
+Lesson for general BH: the origin is classical. Forced defects are invisible to quantum rigidity, and the word problem is paid for in the forcing from the origin; rigidity and minimality are paid for on the perfect kernel, where free layers are fatal.

@@ -1,0 +1,7 @@
+Slice attractors of a spatial 2V in piecewise-affine hosts must expand a prime
+
+In a spatial copy of 2V in CT_P(Z) (or B, G_(2,3) = R_(3)), the image T of a slice contraction has an
+attractor K on which the other stack's V acts faithfully. If T has only integer slopes near K, with
+a common contracted prime, then K sits over finitely many rational centres and V acts by scalings
+between them. Orbits in K then grow polynomially, but q_2 maps them onto V-orbits on C, which grow
+exponentially. So surviving designs need slice contractions with expanding, Conway-type pieces.

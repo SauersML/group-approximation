@@ -1,0 +1,10 @@
+Finite index in a purely infinite minimal full group is local fullness at one cone; both open shell instances reduce to local certificates
+
+bh-shell-arith. General tool: a compressible subgroup of the topological full group of a purely
+infinite minimal essentially principal groupoid contains the commutator subgroup iff it contains
+the commutator subgroup of the local full group on one clopen set (Matui simple2, read at source);
+compressibility comes free from any tree-like piece, and tree compatibility fails exactly through
+equicontinuity of rigid stabilizers. Applied to the unequal-radix A_5*A_6 shell and to
+bh-shell-germ's twisted C_2*C_3 shell (Attempt 2, bounded MSI local-certificate search: no
+certificate; x_0 is itself a T_3-automorphism, so a certificate needs x_1 or pi_[00][10]).
+Lesson-for-general-BH paragraphs included. Lane proofs, not reviewed; no novelty claimed.

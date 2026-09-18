@@ -1,0 +1,8 @@
+Record a Cartier-type test of the KMS groups for self-similarity
+
+The naive Cartier division on the KMS solvable groups is not a homomorphism: it
+sends the Add command relation x_{q_i A_0} = x_{q_j A_0} P_n to
+x_{q_i A_0} = x_{q_j A_0} C(P_n) = -x_{q_j A_0}, which KMS Theorem tmm(b) forbids
+for p = 2. A Cartier-type virtual endomorphism must move configuration
+generators, so the construction problem becomes a Minsky-type machine whose
+relations commute with dividing every counter by p. Attempt entry only.

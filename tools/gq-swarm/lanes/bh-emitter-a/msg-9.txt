@@ -1,0 +1,12 @@
+Order seeds: order-preserving actions with monotone paths give rigid relative seeds
+
+order-seeds-are-rigid-relative-seeds (ESTABLISHED, lane proof): for a finitely generated group acting
+order-preservingly with a densely ordered orbit, a finitely generated point stabilizer and monotone
+paths between orbit points, the cut at the point is a rigid relative seed (RS1-RS3, every D >= 1, every
+field). Instances: the real-cut seed for (BS(1,2), <b>); groups with a dense left order whose positive
+cone is finitely generated lie in class C, with the positivity oracle as forced point. It poses
+Question (O): a finitely presented group with such an order and a hard word problem would refute CAP.
+
+Lesson for general BH: relative seeds need not come from trees. Order actions with monotone connectivity
+give them, with rigidity from monotone chains, so a seed certifies exactly the order's comparison
+problem, and CAP becomes a question about hard comparison problems of finitely generated positive cones.

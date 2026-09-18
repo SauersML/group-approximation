@@ -1,0 +1,6 @@
+Aff(Q) target: record BS(1,3) in 3V as the p = 3 dilation piece
+
+Add Attempt 6: bs13-embeds-in-brin-thompson-3v (both referees passed; flip
+pending a priority check) supplies the p = 3 dilation relation in 3V. State
+what remains for an nV host of Aff(Q): commuting dilations for every prime
+acting on one copy of Q.

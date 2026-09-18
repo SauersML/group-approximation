@@ -1,0 +1,5 @@
+K_n reduction: apply referee a and b nits (PASS on both lenses)
+
+Title and distinct_from wording (W1-W4), bridge to the x_12(1) form of HNN
+item 2, inverses in item 1, Bieri--Strebel pages and secondary source, and
+the Baumslag fallback via item 4.

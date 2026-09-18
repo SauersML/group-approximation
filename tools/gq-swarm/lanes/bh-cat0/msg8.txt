@@ -1,0 +1,8 @@
+Apply referee b's fixes to the 61db7e38a batch and record its PASS
+
+W1: the gluing keeps H_e = G_e on H's subgraph, as BLIW Lemma 10.1 needs. W2: both
+arithmetic instances are finitely presented. Strong approximation for SL_1(D) is
+now stated with S = {inf, q} and pinned (Rapinchuk 1207.4425 Thm 2.3); G is a
+cocompact lattice in the open subgroup G_1 x G_2; the Margulis node's general
+statement is the one used for SL_n(Z). W3: cocompactness of definite quaternion
+S-arithmetic groups is marked unpinned. Referee b PASS: 613ac7fec.

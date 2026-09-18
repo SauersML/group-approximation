@@ -1,0 +1,11 @@
+Tanner's question: Stein groups whose slope is commensurable with an (F) unit are finitely presented
+
+If β lies in Z[c] and β^b = c^a for an (F) unit c, then V(Z[c],⟨β⟩,ℓ) is a full contracting RSG on the a-block
+recoding of the c-shift, so it is finitely presented. The proof runs the Pisot finite-nucleus argument with real slope
+exponents; block recoding keeps the boundary set and the finite nucleus. Example: β = θ+1 = θ³ with θ plastic. Its
+β-shift is not of finite type (d_β(1) = 201^∞), yet V(Z[θ],⟨θ+1⟩,ℓ) is perfect, hence a finitely presented simple group.
+The (F) node gets a pointer.
+
+Lesson for general BH: finite presentation of RSG hosts sees the numeration, not the slope's greedy shift. The gate is
+the existence of one finite numeration for the pair (breakpoint module, slope group), and block recoding moves it along
+commensurability.

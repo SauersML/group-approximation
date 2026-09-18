@@ -1,0 +1,11 @@
+Kill natural gluings of affine hosts for GL_n(Q) (derivative cocycle)
+
+A finitely generated group whose generators have finitely many linear parts
+(piecewise affine or piecewise projective) has all derivatives in GL_N(R) for
+a finitely generated ring R, which never contains Q. So divisible subgroups
+and SL_n(Q) act with trivial derivative at their fixed points, and GL_n(Q),
+(Q,+), Aff(Q) and PSL_2(Q) cannot act with their natural derivatives at a
+fixed point. Gluing Scott's Sc(n), Zaremsky's affine hosts or adelic V-type
+groups along the chain GL_n(Z[1/m!]) while keeping the natural action
+therefore never gives a finitely generated group; BHM's fixed-point-free
+Q <= T-bar is not affected.

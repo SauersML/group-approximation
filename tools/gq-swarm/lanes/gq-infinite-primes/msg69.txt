@@ -1,0 +1,12 @@
+K_2 stability holds for R_L: K_2(N,R_L) = Q^x, central, and St_N(R_L) has solvable WP
+
+Lane gq-infinite-primes. Khanh comparison argument for E_n(R_L) acting on its
+simply connected frame complex, modulo the central C = j(K_2(n-1)): stabilizer
+sections come from K_1-injective stability (GE + compression), and the edge and
+triangle relations use exact Weyl lifts omega_12 = w_12 d_1 with d_1 a word in
+h_12(a), h_12(W), h_12(aW) lifting diag(-1,1,...) via -1 = [a, W]; the leftover
+K_2 elements live on three coordinates, hence in C. So K_2(n) = j(K_2(n-1)) for
+n >= 5; surjective implies injective gives U_N = 1 for all N >= 3; K_2(N,R_L) =
+Q^x is central; with the search detector St_N(R_L) has solvable word problem.
+Gate 1 of the shell route closes; gates 2-3 (germ group, enumeration) remain.
+Attempts on the shell node, the centrality node and the WP reduction node.

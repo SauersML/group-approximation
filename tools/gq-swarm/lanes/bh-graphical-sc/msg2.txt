@@ -1,0 +1,14 @@
+Decidable graphical groups with isometric expanders or a proper cubulation, and a coCF test for exactness of V
+
+Land decidable-graphical-non-exact-groups-exist, ESTABLISHED as a lane proof with its
+route. Osajda's arXiv:1406.5015 groups, one with isometrically embedded expanders and one
+acting properly on a CAT(0) cube complex without property A, can be built from recursive
+labelled sequences (his Remark r:recurs) and have solvable word problem. The algorithm is
+Dehn's, run on the finitely many components of girth below 2|w|, and it relies on
+Gruber's graphical diagram lemmas.
+
+Also land the OPEN claim every-cocf-group-is-exact. It implies that V is exact, and under
+Lehnert's conjecture it is equivalent to exactness of V. It also records that a
+non-exact subgroup of V must be coCF.
+
+Cross-link the graphical test case to its instances, including bh-testcases' Osajda node.

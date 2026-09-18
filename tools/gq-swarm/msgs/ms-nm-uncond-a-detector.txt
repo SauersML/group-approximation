@@ -1,0 +1,5 @@
+Record the live unconditional-detector run on the non-MF census
+
+A live run on Slurm msismall (job 1326470) over origin/main 4a734659e found 0 new findings, 0 stale register
+lines and 78 accepted occurrences of the 31 register entries. All sit at tex l.1604, 2135 and 2149, and
+nothing at or before l.1300.

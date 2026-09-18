@@ -1,0 +1,8 @@
+Stable symbol lemma: infinitely generated symbols block fp E_N
+
+If E_N(R) is finitely presented (N >= 3), Neumann plus centrality of stable
+K_2 make the image of K_2(N,R) in K_2(R) finitely generated, and it contains
+every Steinberg symbol of commuting units. So an infinitely generated image of
+K_2(Q) excludes a ring host with no centrality proviso at rank N. Update the
+K-budget artifact (Leavitt-path row) and record the tracial attempt under the
+elementary-host premise.

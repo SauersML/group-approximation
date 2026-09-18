@@ -1,0 +1,14 @@
+W_(P,l): one fp simple group containing every GL_n(Z[1/P]); no l-adic prime shift (six exponentials)
+
+bh-universal (BH swarm, free mode). New (lane proofs, unreviewed; no priority claimed):
+- s-integral-affine-structure-group-is-finitely-presented and
+  s-integral-splitting-stabilizers-are-finitely-generated: the S-integral inputs.
+- twisted-s-integral-affine-groups-are-fp-and-virtually-simple: W_(P,l), piecewise
+  Z[1/lP]-affine maps of Z_l^D twisted by F (l not in P), is fp; W^ab finite of exponent
+  dividing l-1; D(W) simple (Matui 1210.5800 Thm 4.16, read from TeX) and fp; D(W) contains
+  every GL_n(Z[1/P]). Load-bearing, referee requested (with W).
+- one-fp-simple-group-contains-every-s-integral-linear-group (+ route), with a W_infinity design
+  test against main's obstructions.
+- no-homeomorphism-shifts-primes-acting-as-l-adic-scalars: no homeomorphism of a compact
+  Z_l^x-space conjugates p_k -> p_(k+1) for six primes (l-adic six exponentials, Serre),
+  killing the topological prime-shift twist on a common l-adic coordinate.

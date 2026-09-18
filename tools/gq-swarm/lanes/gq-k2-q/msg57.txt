@@ -1,0 +1,7 @@
+gq-k2-q: Leavitt doubling is stably conjugate to stabilization (gate 1, condition (i))
+
+With T = diag(t), S = diag(s) mutually inverse rectangular matrices from the
+Leavitt pair, U = diag(T, S) conjugates g + I_2N to D(g) + I_N, and perfectness
+gives stab D = c_U stab on St_N(R). So injective stability at N follows from
+it at 2N plus injectivity of the block map on K_2, and is equivalent to it when
+the block map is bijective on K_2. No absolute injectivity; no kernel element found.

@@ -1,0 +1,3 @@
+Referee reports: renormalization return times PASS; central-deformation Attempts 4-5 PASS
+
+Proof-gap lens on renormalization-return-times-tend-to-zero-adically (first review; N1 radius-direction nit) and on the t-homotopy argument and the St_N(T)_rf fng => I_rf(T) f.g. lemma of central-deformation-euler-host-has-fng-steinberg-residual (N1 finite-quotient wording, N2 I_rf(T_p) = [[I_rf(B),0],[0,0]]).

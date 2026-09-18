@@ -1,0 +1,3 @@
+Referee report (citation lens): mixed-degree units lift non-positive fixed classes PASS
+
+ABC NK vanishing for a corner isomorphism is in the proof of Prop 7.5 (via Prop 7.1, Lemma 7.2, Thm 3.6), not Thm 7.6; transfers to an ultramatricial core with an easier substitute for Prop 7.1. Index formula and K_*(Q)-linearity not found in ABC. AGGP reference confirmed as ABC [3].

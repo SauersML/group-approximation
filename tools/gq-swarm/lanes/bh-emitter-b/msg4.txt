@@ -1,0 +1,6 @@
+Ã2 seeds are locally forced; rigidity is exactly that of their perfect seedless boundary
+
+The origin-projection seeds are locally forced with radius 1, so by the derived-subshift theorem they are
+quantum rigid iff their seedless boundary is. That boundary has no isolated points (two limits along
+diverging rays or opposite sector directions), so no Cantor-Bendixson reduction goes further. The open
+claim for the phase seed now points to the reduction.

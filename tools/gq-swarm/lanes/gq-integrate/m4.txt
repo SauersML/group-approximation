@@ -1,0 +1,6 @@
+Record the dead Leavitt-resolvent route into the GL_n(Q) root
+
+gl-n-q-bh-via-leavitt-resolvent-units needs
+leavitt-resolvent-derived-units-mod-centre-fp-simple, which
+leavitt-resolvent-derived-units-mod-centre-not-fp refutes. Mark the route dead
+in its body and add root Attempts item 19.

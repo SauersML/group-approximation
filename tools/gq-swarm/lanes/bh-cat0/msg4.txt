@@ -1,0 +1,12 @@
+Groups of finite index in their commensurator have no torsion-free faithful BS members
+
+If G is torsion-free with trivial virtual center and finite index in its abstract
+commensurator, every graph of groups commensurable with G, with finite-index edges
+and torsion-free vertex groups, maps to Comm(G) injectively on vertex groups; a
+finite-index normal subgroup of Comm(G) pulls back to a compatible family, hence to
+a nontrivial normal subgroup fixing the Bass-Serre tree. So for lattices in
+Isom(H^n), n >= 3, faithful torsion-free members of BS_G exist exactly for
+arithmetic lattices (Mostow-Prasad + Margulis), a second obstruction to the
+Bux-Llosa Isenrich-Wu Theorem C route beyond residual finiteness. Also applies
+referee a's nits (PASS, 36198483f) to the a732dc8b6 nodes. Lane proof; no priority
+claimed.

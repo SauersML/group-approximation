@@ -1,0 +1,9 @@
+E2 on the E1 overgroup: plane-local floating freedom kills rigidity; couple floating data across planes
+
+In a lift over Lambda_0 x H whose undetermined coordinates have no cross-plane rules, the valid
+fillings are a product over planes, so freedom in two planes more than 2D apart kills D-rigidity
+by the far-modification lemma. Minimal lifts of non-SFT inputs must have free planes, and the E1
+input on (Lambda_1 x Z) * Z is non-SFT (infinitely many ends). The keyed-slot lift compares only
+table carriers across planes, so gate E2 requires coupling its floating identities across planes
+by bijective transports; the residual E2 checks are skeleton crossing-wire rigidity, crossing of
+copied table wires, and centrality. Lane proof (Parts 1-2), design-level (Parts 3-4), unreviewed.

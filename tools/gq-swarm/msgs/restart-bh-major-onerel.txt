@@ -1,0 +1,3 @@
+Finite germ extensions of V with two singular rational orbits contain Baumslag-Solitar chain configurations
+
+Landed by the coordinator after a restart stopped lane bh-major-onerel before it could land this draft. The text is the lane's own, unchanged.

@@ -1,0 +1,13 @@
+Kourovka 17.61 lane pass 4: Ore tree presentation of CT_P(Z); reduce the transposition presentation to V
+
+- New node ct-p-z-has-the-ore-tree-presentation (Fact O, lane proof): the tree-style presentation
+  by splits and permutations, via validity, Ore localization and the vertex group.
+- Artifact section 5: with forced lifts, psi is idempotent on the kernel. The {2,p,q}-cube
+  hexagon plus the binary colour change rule show the kernel equals psi(kernel), so psi = id,
+  and all colour-exchange defects vanish.
+- Hence if the transposition relations present Thompson V (Bleak-Quick), they present CT_P(Z)
+  for every finite P.
+
+Lesson for general BH: the colour with two edges is a 2-cell swindle (D -> D + 2psi(z) - z), the
+elementary shadow of [B] = 2[B]. It kills all mixed colour obstructions of the transposition
+presentation, leaving only the Thompson V core.

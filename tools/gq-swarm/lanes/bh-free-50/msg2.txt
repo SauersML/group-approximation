@@ -1,0 +1,6 @@
+Locate the faulty step in Kojima-Sheng: Lem:Flip reverses a product
+
+The counterexample pair is worked through their block calculus for p = 3. The
+filtration lemmas and Prop:TandR hold on it. Lem:Flip fails: its proof gets
+(hg)-invariance of R^p but concludes (gh)-invariance. Prop:Identity and
+everything after it inherit the reversal. The explicit blocks are recorded.

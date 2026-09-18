@@ -1,0 +1,16 @@
+Referee PASS for the answers to Kourovka 21.74(b),(c) and 21.75
+
+Adversarial referee pass, checked against the printed problems (arXiv:1401.0300v46) and, for
+21.74, against the Kari-Ollinger MFCS 2008 PDF read directly.
+
+- ct-z-finite-cycle-problems-are-undecidable: PASS. The reduction is complete; it is conditional
+  only on the published Kari-Ollinger Theorems 3 and 6, used as printed. Noted that (c) can avoid
+  the one-line 3-to-2 counter conversion by using a third prime.
+- ct-p1-and-ct-p2-always-generate-ct-p1-union-p2: PASS. Every step was verified by hand, and the
+  17.60 definition includes the prime 2, which is what the proof uses.
+- ct-z-north-south-element-has-no-finite-cycles: the formula and items 1 and 3 PASS; item 2 was
+  not reviewed.
+
+Lesson for general BH: both answers work because CT_P(Z) contains the full 2-power part in every
+colour. That shared colour both routes and reversibilizes: disjoint doubling turns any bijection
+that is piecewise a canonical class map into a product of two involutions.

@@ -1,0 +1,6 @@
+Gate Attempt 12: finite stable range route unavailable for gate hosts
+
+Lane gq-infinite-primes. Finite stable range forces stable finiteness
+(Vaserstein: sr(M_n R) = ceil((sr R - 1)/n) + 1, and stable range 1 gives
+direct finiteness), while gate hosts are not stably finite. So the Weibel
+K_2 stability route does not reach the finite-rank gap.

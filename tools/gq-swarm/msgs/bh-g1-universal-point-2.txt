@@ -1,0 +1,9 @@
+CAP rung (1a): the BS(1,2) rigid seed written out and measured
+
+bs12-rigid-seed-is-its-normal-form: an explicit six-letter SFT (pointers D, U_0, U_1 and the C_Z
+sink letters), the seed x(1) = *, the seed point in closed form in the coordinates (s, q) of
+Z[1/2] x| Z, and the operator certificate (tree chains plus the + chain on the sink line; rigid for
+D >= 2 over every field). It certifies exactly WP(BS(1,2)), which is in P. It is forced at linear
+radius despite exponential distortion. For every locally finite splitting seed the tree layer is
+the Britton normal form, so the construction is complexity-neutral and CAP is not decided on
+locally finite rungs.

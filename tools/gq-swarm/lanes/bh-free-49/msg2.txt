@@ -1,0 +1,7 @@
+Record the CAT(0) host exclusion and the closure-theorem method-kill on the Higman group node
+
+Two Attempts entries on `higman-group-satisfies-boone-higman`, from the lane
+nodes landed in a7af2a20a: proper cocompact CAT(0) hosts are dead for H4, and
+the common-retract amalgam, graph-product and relative-holomorph closure
+theorems cannot be applied through H4's own splittings. Status of the node is
+unchanged (OPEN).

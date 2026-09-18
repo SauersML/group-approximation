@@ -1,0 +1,10 @@
+gq-k2-q: K_2 of Cantor-crossed Q-rings and harmonic coefficient rings
+
+Clopen symbols of any ring over a Cantor Gamma-system factor through the
+dimension group tensor K_2(Q), and vanish at odometer-saturated classes.
+Harmonic coefficient rings are K-equivalent to LC(X,Q) (excision along the
+singular fibres), so R_T = F x| SL_3(Z) has the coefficient K-theory of
+LC(X,Q). Open: over torsion-free Farrell-Jones groups the odd part of the
+clopen-symbol map is injective, making odd divisibility of the dimension
+group necessary for Cantor-crossed Q-hosts. The R_T question itself is moot
+after 1111ca113.

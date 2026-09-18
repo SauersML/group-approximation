@@ -1,0 +1,5 @@
+Fat-edge reduction recorded on the two HNN permanence nodes
+
+Attempts on bh-embeddability-survives-decidable-edge-hnn and on the Magnus
+step: via the double, the orbit-finite-edge clause moves to the vertex group;
+what remains is a symmetric actor for the double plus faithfulness.

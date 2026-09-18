@@ -1,0 +1,3 @@
+Referee report: Leavitt resolvent K-theory is shifted rational K-theory PASS
+
+Proof-gap lens on leavitt-resolvent-k-theory-is-shifted-rational-k-theory (8229faadb). B-plus embedding and injectivity via the model, U = R_L, the block computation of 1 - [X], and the register-node hypotheses (incl. reset flatness from point indicators) checked; nits N1-N3.

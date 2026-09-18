@@ -1,0 +1,15 @@
+Artin groups: folding retractions, block reduction of permutational BH, forest-type Artin groups in B_A
+
+- artin-ordinary-foldings-are-retractions (+ proof): foldings of generators onto a
+  standard parabolic that respect each edge (same image; one side 1 with even label;
+  distinct adjacent images with dividing label) are retractions; the length map onto
+  <v> is a retraction for all labels.
+- artin-pbh-reduces-along-folding-separators (+ proof): A_Γ ∈ B_A iff both sides of a
+  folding separation are; in particular iff every block of Γ is. Example
+  A(A_3) *_{A(A_2)} A(A_3), outside the odd-component reduction.
+- forest-artin-groups-satisfy-permutational-boone-higman (+ proof): every forest-type
+  Artin group (any labels) lies in B_A and embeds in an fp simple group.
+- artin-groups-satisfy-boone-higman: status bullets and Attempt 5.
+
+Lane proofs, not independently reviewed; no priority claimed (ordinary retractions are
+those of arXiv:2603.15314).

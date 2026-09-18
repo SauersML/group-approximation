@@ -1,0 +1,3 @@
+Note that the rank induction for edge-split synchronization also feeds the Ore route
+
+Since Ore for the edge-split operad is equivalent to synchronization plus tree domination, the reduction of synchronization to totally irrational shared rays serves both finiteness routes for the closed-MCG host. Stale remark about LD_atom replaced.

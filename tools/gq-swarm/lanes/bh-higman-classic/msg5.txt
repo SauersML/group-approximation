@@ -1,0 +1,6 @@
+Q1.4 Attempt 3: pure one-sided expansions of generator copies and layered normal forms
+
+With generators whose restrictions are single generators up to V (true for V ≤ G ≤ N(V)),
+pure left and right expansions of generator copies are derivable by a recursion that lowers
+depth. Every word then reaches a layered normal form. The gap narrows to collapsing layers,
+i.e. to pure expansions of products such as t^n. Lane analysis, not reviewed.

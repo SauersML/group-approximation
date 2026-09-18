@@ -1,0 +1,5 @@
+Referee C: pisot-stein-groups-are-contracting-rsgs and the Pisot IET corollary PASS-with-fixes
+
+Steps 2-5 were re-derived, and the uniform slope-defect bound (step 3) holds
+uniformly in f. The fixes are wording, dependency and trust-surface
+restatements only.

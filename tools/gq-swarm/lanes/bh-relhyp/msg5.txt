@@ -1,0 +1,5 @@
+bh-relhyp: second route for centralizer-amalgam closure via BFFHZ Theorems C and E
+
+pbh-centralizer-amalgam-via-theorem-e-proof: embeds the relative holomorph of a fp simple MIF
+host in Aut_G(G * F_2), so the closure theorem rests only on BFFHZ Theorems C and E plus the
+elementary embedding. The claim now lists both routes.

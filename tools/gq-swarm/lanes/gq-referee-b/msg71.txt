@@ -1,0 +1,5 @@
+gq-referee-b: PASS on BLIW 11.1 type-(A) reading, arithmetic faithful members, CAT(0) tree factor
+
+BLIW 2408.05673v2 read in the PDF (Thm 11.1, Lemma 10.1 needs H_e = G_e, Lemma 8.3, Prop 9.2,
+Remark 12.7); NST scopes match; strong approximation pinned (Rapinchuk 1207.4425 Thm 2.3);
+Foertsch-Lytchak Thm 1.1 pinned; quaternion cocompactness unpinned. W1-W4.

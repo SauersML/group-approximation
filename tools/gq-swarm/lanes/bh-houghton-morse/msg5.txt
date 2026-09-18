@@ -1,0 +1,6 @@
+Note that the F_2 case of the strand-stack lesson is independent of nu
+
+R_nu contains lambda(P), so every input containing F_2 has R_nu containing
+F_2 for every enumeration. Pinning cannot close this case, because
+polyhedral one-ended designs pass it (square-spiral-z2-enumeration-is-ball-rigid).
+Record the resulting split of gates, following bh-free-48.

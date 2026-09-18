@@ -1,0 +1,6 @@
+HNN extensions split over their vertex group via the double; lessons
+
+Every A*_phi is the HNN extension of the double A *_(phi C_1) tAt^-1 along
+A -> tAt^-1, so the orbit-finite-edge clause of type (A) permanence moves
+from the edge to the vertex group. Apply referee-a nits (b0507adb6,
+9d96cb601) and add Lesson-for-general-BH paragraphs to three nodes.

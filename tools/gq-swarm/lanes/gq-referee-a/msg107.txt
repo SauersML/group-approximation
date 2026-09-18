@@ -1,0 +1,3 @@
+Referee report: rf hosts cannot realize the Lysenok substitution PASS
+
+Proof-gap lens on rf-hosts-cannot-realize-the-lysenok-substitution (de682dfb7). K cap N = 1, k = n t^m, sigma^(m+j) = conj(h) on sigma^j(Gamma) and the strict conjugation chain checked; two nits.

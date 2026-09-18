@@ -1,0 +1,14 @@
+Adversarial check of euclidean-building-lattices-lie-in-permutational-bh-class: PASS with two nits and one trust note
+
+Lane check (bh-verify-euclid) of bh-groupoid's general Euclidean-building theorem (38b9f88f9). Every
+cocompact lattice in a locally finite thick irreducible Euclidean building lies in B_A. Items checked:
+- box calculus and the composition lemma: re-derived;
+- cylinder exchanges;
+- complete reducibility: re-derived;
+- Ciobotaru–Le Bars hypotheses, read at source;
+- Li thm:deg hypotheses, read at source;
+- the stabilized comparison lemma;
+- Titz Mite–Witzel applicability.
+Nits: the Σ_j M_j sentence in Step 3 is repairable by per-colour reversibility; restrict the statement to
+dimension ≥ 2. Trust note: 2601.13092 is an unrefereed preprint; its live topological-freeness chain has
+no author flags, but it was not re-derived.

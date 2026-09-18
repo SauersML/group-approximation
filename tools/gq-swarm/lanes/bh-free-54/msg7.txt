@@ -1,0 +1,3 @@
+Use only simplicity of the derived full group in the swap theorem
+
+The swap subgroup meets the derived full group nontrivially, since a commutator of two overlapping swaps is a nontrivial element of both, and it is normal there. Simplicity of the derived full group (Matui) then forces it to contain the whole derived subgroup. So the argument needs only Matui's simplicity theorem, not the stronger normal-subgroup statement cited before.

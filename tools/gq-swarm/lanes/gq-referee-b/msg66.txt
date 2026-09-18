@@ -1,0 +1,5 @@
+gq-referee-b: PASS on leavitt-refinement-identifies-unstable-k2-levels (citation lens)
+
+Voronetsky 2004.08551v2 read at source: Prop 1 (n >= 4, S = {1}: F_alpha bijective) needs only a
+complete Morita-equivalent orthogonal family; applied to M_(r+1)(R) via alpha_r it is D_r. Khanh
+padded centrality (any unital ring, m >= 3) and Weibel III 5.5 / p.39 (GL acts trivially on K_2) pinned.

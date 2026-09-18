@@ -1,0 +1,2 @@
+L 8 total 58470 pureV stats (autT3, aut g-conj, aut g^-1-conj): {(True, True, True): 1, (True, False, False): 103, (False, False, False): 1200, (True, False, True): 1, (True, True, False): 1}
+s_g aut T3 None g s_g g^-1 = a? True

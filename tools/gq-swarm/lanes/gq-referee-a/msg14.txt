@@ -1,0 +1,6 @@
+Referee report: integral unit hosts reduce to finite fields PASS
+
+Proof-gap review of integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields
+(7af878fd4). The residual finite-field embedding, the transfer of SL_n(Q) and
+PSL_n(Q), the group-algebra criterion and the K_1 corner argument check; one
+step (perfectness of the derived subgroup in case (b)) should be stated.

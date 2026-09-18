@@ -1,0 +1,8 @@
+Profinite translation groupoids times any ample groupoid give no simple hosts
+
+The topological full group of (G acting on its completion) x H is an increasing
+union of cocycle-measurability subgroups F_i, each with a normal subgroup K_i
+meeting G in N_i. A finitely generated simple subgroup containing G is
+therefore isomorphic to G. So a simple host for a residually finite group
+cannot come from the profinite translation action plus independent expanding
+dynamics. Lane proof, not reviewed.

@@ -1,0 +1,13 @@
+Referee PASS: odometer-root hosts, adder hosts, finite-edge isolated points, free-group relative seeds
+
+- odometer-root-hosts-are-non-affine-and-non-contracting (bh-gln-tracka): PASS.
+- adder-hosts-linearize-odd-odometer-roots (bh-free-16): PASS. The pseudo-freeness condition was
+  confirmed.
+- sft-isolated-points-are-finite-state-across-finite-edge-groups (bh-g3-topfree): PASS, with one
+  wording note in (UE) for amalgams.
+- relative-seeds-on-free-groups-have-fg-stabilizers (bh-g1-universal-point): PASS. It is
+  consistent with the virtually free case above.
+
+Lesson for general BH: finite interfaces and finite nuclei are what keep automata finite-state. The
+odometer roots break the nucleus, and finite cuts preserve finiteness, so any complexity has to
+cross an infinite interface or live in a one-ended piece.

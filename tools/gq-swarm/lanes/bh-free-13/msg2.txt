@@ -1,0 +1,4 @@
+Point the full-shift residual finiteness node to the stronger torsion theorem
+
+bh-free-06 landed full-shift-topological-full-groups-are-torsion-locally-finite (360ac2690),
+which contains item 2 of this node without Zelmanov. Record it in distinct_from and Scope.

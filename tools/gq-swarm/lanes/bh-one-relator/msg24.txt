@@ -1,0 +1,3 @@
+Adversarial check of the room lemma: PASS
+
+The face lemma, the Sym(4) Coxeter relations, the injectivity of pi, the equivariance moves and the generation claim of v-times-gluing-presentations-are-exact all check. The lemma is consistent with the non-exact finite shadows (no spare room there) and with the Bleak-Quick proof for the two-point model. Lesson: exactness proofs by spare room must fail on finite shadows, and they do.

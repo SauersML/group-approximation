@@ -1,0 +1,10 @@
+Self-similar hosts for Gamma_p: no prime shifts on T_p, finite-state generators must be wild
+
+p-adic-dilation-normalizers-act-by-power-maps: via p-adic six exponentials, a
+tree automorphism normalizing a rank-three dilation group acts by a rational
+power map, so no element of Aut(T_p) permutes three primes among the d_q.
+finite-state-mobius-pieces-see-finitely-many-primes: finite-state generators
+locally Moebius on a dense open set add finitely many primes to Gamma_p(1).
+Attempts recorded on rational-iwahori-group-lies-in-fp-self-similar-group
+(Attempt 5, with the automaton-group reduction at the f.g. level) and on
+euler-lamplighter-has-a-faithful-finite-state-action (Attempt 2).

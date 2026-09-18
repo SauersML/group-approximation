@@ -1,0 +1,8 @@
+Decide the attractor question for Stein groups negatively and sharpen the Aff(Q) premise
+
+Boshernitzan's PL circle map with slopes 2 and 2/3 lies in the Stein group T_{2,3} and has irrational
+rotation number log2/log3. So Stein groups with at least two primes contain infinite-order elements
+without hyperbolic periodic points, and the root bound cannot kill the Stein host. What survives: copies
+of Q or BS(1,m) must use rotation-like elements with clopen periodic parts. Boshernitzan's element itself
+has no roots of order at least 2 in any rational-slope PL group, by an exponential-chart and unique
+factorization argument.

@@ -1,0 +1,4 @@
+Scalar-clause node: record referee-b PASS (bd0d11d05), C1 and C2
+
+Lane gq-infinite-primes. The d-merge is d-1 iterates of Voronetsky Prop 1;
+the N-th power map has kernel in {+-1}, not trivial.

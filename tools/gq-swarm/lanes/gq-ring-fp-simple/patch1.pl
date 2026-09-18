@@ -1,0 +1,5 @@
+s/RLEN = int\(sys\.argv\[4\]\) if len\(sys\.argv\) > 4 else 3\n/RLEN = int(sys.argv[4]) if len(sys.argv) > 4 else 3\nWIDE = len(sys.argv) > 5 and sys.argv[5] == 'wide'\n/;
+s/Wm = \(\(0, 1\), \(1, 0\)\); Dm = \(\(-1, 0\), \(0, 1\)\)\nGENS, INV = \[\], \[\]\nfor j in range\(-J, J \+ 1\):\n    for M, Mi in \(\(X, Xi\), \(Xi, X\), \(Y, Yi\), \(Yi, Y\)\):\n        GENS\.append\(\(j, M\)\)/Wm = ((0, 1), (1, 0)); Dm = ((-1, 0), (0, 1))\nX2 = ((1, 2), (0, 1)); X2i = ((1, -2), (0, 1)); Y2 = ((1, 0), (2, 1)); Y2i = ((1, 0), (-2, 1))\nPAIRS = [(X, Xi), (Xi, X), (Y, Yi), (Yi, Y)]\nif WIDE:\n    PAIRS += [(X2, X2i), (X2i, X2), (Y2, Y2i), (Y2i, Y2)]\nINVM = {a: b for a, b in PAIRS}\nGENS, INV = [], []\nfor j in range(-J, J + 1):\n    for M, Mi in PAIRS:\n        GENS.append((j, M))/;
+s/        Mi = \{X: Xi, Xi: X, Y: Yi, Yi: Y\}\[M\]\n/        Mi = INVM[M]\n/;
+s/\{X: 'X', Xi: 'x', Y: 'Y', Yi: 'y', Wm: 'W', Dm: 'D'\}/{X: 'X', Xi: 'x', Y: 'Y', Yi: 'y', X2: 'P', X2i: 'p', Y2: 'Q', Y2i: 'q', Wm: 'W', Dm: 'D'}/;
+s/print\('generators:', NG, ' J =', J,/print('generators:', NG, ' wide =', WIDE, ' J =', J,/;

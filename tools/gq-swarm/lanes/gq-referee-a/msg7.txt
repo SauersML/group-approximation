@@ -1,0 +1,7 @@
+Referee report: Kazhdan finiteness in nV via cnd transversal PASS
+
+Proof-gap review of the conditional routes
+kazhdan-finiteness-in-nv-via-cnd-transversal (4bfc08e51) and
+gl-3-z-in-no-nv-via-cnd-transversal (93792b520): the automorphism, covering
+and intersection steps check. Both remain conditional on the open transversal
+cnd function.

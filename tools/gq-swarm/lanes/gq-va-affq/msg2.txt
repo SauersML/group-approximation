@@ -1,0 +1,9 @@
+Periodic-point germ groups that commensurate delta_p omit Aff(Q)
+
+In a finite germ extension of V_{d,r}, a finite product of finitely generated
+germ groups at eventually periodic points that commensurate the local
+contractions contains no Aff(Q), SL_2(Q) or PSL_2(Q): centralizers of powers
+of delta_p embed in C(D,Z) x| V_{d,t}, which has no distorted cyclic subgroups
+(sup-norm of the cocycle plus Bleak et al.'s theorem for V_n), while the modular
+maps force a distorted <T_1, D_a> into their kernel. So SingFix groups at such
+points contain no Aff(Q). No unrefereed import is used.

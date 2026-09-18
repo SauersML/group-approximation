@@ -1,0 +1,6 @@
+Referee report: KMS configuration letters inherit exponent p PASS
+
+Proof-gap review of kms-configuration-letters-inherit-exponent-p (178d7a40e):
+from the relations G1, G5 a) and G5 c), x_u conjugated by A_i^n equals
+x_u x_{uA_i}^n, so every configuration letter containing an A-letter has
+order dividing p; the G8 conclusion is correctly conditional on KMS Lemma 4.5.

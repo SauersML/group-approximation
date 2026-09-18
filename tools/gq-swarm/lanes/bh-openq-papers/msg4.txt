@@ -1,0 +1,13 @@
+Point the PSL_2 tree-vertex wreath node to the non-residual-finiteness refutation; vigorous hosts are 2-generated
+
+- lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a said that the self-similar question of
+  arXiv:2609.01868 "stays open". bh-free-46 has since shown that the group is not residually
+  finite (z-wr-psl2-z-half-is-not-residually-finite), so it lies in no self-similar group.
+  The node and the lane artifact now say so. The B_A result is unchanged.
+- fp-infinite-simple-group-not-two-generated gains an Attempts section:
+  - arXiv:2607.21754 Theorem 1.1 shows that every finitely generated simple vigorous group
+    is (m,n)-generated. This covers V, nV, groups of dynamical origin and twisted
+    Brin-Thompson groups, and so every finitely presented simple host the Boone-Higman
+    machinery builds.
+  - A positive answer must use a simple group that is not vigorous. The candidates and the
+    remaining rank bounds are listed.

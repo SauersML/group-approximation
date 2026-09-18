@@ -1,0 +1,3 @@
+Referee report: frame-generated simple rings have no vacuum PASS
+
+Proof-gap lens on frame-generated-simple-rings-have-no-vacuum (a863176f1). Structure, normal form, Gram recursion, E_m induction, vanishing of q t_beta s_alpha q, Fock truncation and the R_L computation checked; nits N1-N3.

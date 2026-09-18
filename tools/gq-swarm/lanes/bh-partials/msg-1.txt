@@ -1,0 +1,5 @@
+Matui's question reduces exactly to minimal free Z^N SFTs: finitely generated full groups of free actions force expansivity
+
+For a free action of any countable group, a finitely generated subgroup of the topological full group that contains the 3-cycles forces the action to be a subshift: the generators' cocycle partition is a generating partition. So derived full groups of non-expansive free minimal Z^N actions are not even finitely generated. With "finite presentation forces finite type", Matui's question (arXiv:1602.00383) is equivalent to its case of minimal free Z^N SFTs. The Matui node and the residually finite node are updated to match.
+
+Lesson for general BH: finite generation is expansivity, so full-group hosts over free dynamics are symbolic, and Matui's question and the Z^2 gate (P2, E2) are one problem.

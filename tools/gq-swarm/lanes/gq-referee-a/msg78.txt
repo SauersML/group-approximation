@@ -1,0 +1,3 @@
+Referee report: arithmetic Lie lattices faithful BS members and H^2 x tree PASS
+
+Proof-gap lens on arithmetic-lie-lattices-faithful-bs-proof and cat0-hyperbolic-plane-tree-type-a-proof (a732dc8b6). Lemma without NST (rank one incl. surface groups) confirmed; countability, Kazhdan-Margulis chain, virtual surface fibre group via central extension killed by a degree-|A| cover, degenerate trees checked; nits N1-N3.

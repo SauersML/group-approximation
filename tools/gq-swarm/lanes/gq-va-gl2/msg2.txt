@@ -1,0 +1,5 @@
+Root gl-n-q: record the n = 2 germ-extension attempt (gq-va-gl2)
+
+Attempt 17: VA dead by O4; arbitrary finite germ extensions obstruct nothing
+without finite presentation; regular regime reduced to one dynamical type
+(8fc27465a) with the remainder recorded as an open claim.

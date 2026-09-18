@@ -1,0 +1,4 @@
+gq-referee-b: PASS on bg-in-isometric-brick-hosts-needs-unbounded-exponents (citation lens)
+
+2V_tau, 2V_{G_N} (x -> ax+b, a a 2-adic unit) and V_2(G) are isometric-section brick groups;
+the Lipschitz entropy bound (K-H 3.2.9, Kushnirenko) not read, replaced by a spanning-set proof.

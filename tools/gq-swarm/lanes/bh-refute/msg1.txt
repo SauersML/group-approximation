@@ -1,0 +1,9 @@
+Separators of Boone–Higman must omit nested decidable hosts; hereditary decision problems beyond WP do not separate
+
+New claim bh-separators-must-omit-nested-decidable-hosts (lane proof, elementary):
+- host transfer: any subgroup-closed separating class omits some f.g. simple Kazhdan
+  FA group with solvable WP lying inside a finitely presented group with solvable WP;
+- hereditary torsion, membership and conjugacy problems fail (S1) at 2V and V;
+- complexity classes P_T separate iff the T-instance of
+  fp-simple-groups-with-arbitrarily-complex-word-problem fails; Kuznetsov-profile
+  bounds reduce to P_T.

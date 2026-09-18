@@ -1,0 +1,5 @@
+A bounded-exponent separator for Boone–Higman, and periodic subgroups of circle and tree-product groups
+
+New OPEN claim some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup. For odd n >= 665 the subgroup-closed class P_n (every f.g. subgroup of exponent dividing n is finite) separates Boone–Higman iff no finitely presented simple group contains an infinite f.g. group of exponent n. This is a non-decision-problem candidate separator, weaker than BBMZ 5.3(6).
+
+New ESTABLISHED lemma circle-and-tree-product-periodic-subgroups-are-finite (lane proof: Margulis's alternative with rotation numbers, and Serre's fixed-point corollary). It excludes T, T_{n,r}, circle groups, lattices in products of trees and rank-2 Kac–Moody lattices as witnesses.

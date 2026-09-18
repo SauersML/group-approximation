@@ -1,0 +1,10 @@
+Characterize residually finite permutational wreaths with abelian lamps by closed stabilizers
+
+A wr_X G with A nontrivial abelian is residually finite iff A and G are residually finite
+and every point stabilizer is closed in the profinite topology of G. Necessity: an element of
+the closure but not of K makes two distinct lamps equal in every finite quotient. Sufficiency:
+push lamps forward along a finite equivariant quotient of X that separates the support.
+Lesson: residually finite host routes (self-similar, automaton, Zaremsky's) see only closed
+stabilizers, which is independent of the decidability Boone-Higman needs; non-LERF coset inputs
+force non-residually-finite hosts. Also adds the lesson paragraph to the PSL_2(Z[1/2]) instance.
+Lane proof, elementary, not reviewed; no priority claimed.

@@ -1,0 +1,9 @@
+Busemann transplants over A~2 lattices are quantum rigid iff the fibre is: centrality (C) by cylinder transport
+
+Far skeleton events are sums of sector cylinders at the tile site. Projective-plane uniqueness makes a
+sector cylinder the germ times a strictly smaller cylinder at each open-cone expansion site, so induction
+on the radius makes the skeleton central without any far commutation. Coherence plus a canonical sector
+chain then hand the tiles to the fibre family. With the rigid skew product P as skeleton this is
+unconditional: every type-preserving A~2 lattice simply transitive on one vertex type (index-3 in CMSZ,
+Kazhdan) carries free SFTs that are quantum rigid iff their cone-deterministic Z^2 fibre is.
+The open Busemann node records the A~2 settlement.

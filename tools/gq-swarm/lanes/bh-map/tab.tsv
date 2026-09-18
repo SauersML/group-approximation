@@ -1,0 +1,304 @@
+a2-boone-higman-via-rs-two-graph-full-groups	route	vertex-free-type-rotating-a2-groups-satisfy-boone-higman		
+a2-kernel-removal-iff-image-satisfies-pbh	claim		**ESTABLISHED**	
+a2-kernel-removal-via-pbh-and-recursive-kernels	route	a2-pairs-embed-in-a2-pairs-with-fng-kernels		
+a5-arithmetic-shell-envelope-embeds-in-fp-simple-group	claim			
+a5-arithmetic-shell-envelope-is-finitely-presented	claim			
+a5-arithmetic-shell-envelope-is-not-finitely-presented	claim		**ESTABLISHED**	
+a5-free-product-has-simple-arithmetic-shell-envelope	claim			
+accessible-shell-inputs-admit-no-shift-normalizing-enumeration	claim		**ESTABLISHED**	
+actor-algebra-cannot-wordize-shell-phase-tag	claim			
+admissibly-oriented-artin-groups-satisfy-boone-higman	claim		**OPEN.**	
+algebra-boone-higman-conjecture	claim		**OPEN.**	
+algebraic-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED.**	
+arithmetic-shell-envelopes-have-decidable-word-problem	claim			
+artin-groups-satisfy-boone-higman	claim		**OPEN.**	
+artin-pbh-reduces-to-odd-component-cliques	claim			
+atlas-collision-shell-boundary-floor-reduction	route	atlas-six-relator-regular-face-defect-floor		
+atlas-finite-nontrivial-s3-shell-pays-boundary	claim		**REFUTED.**	REFUTED_BY
+aut-free-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (literature import).**	
+automatic-groups-satisfy-boone-higman	claim		**OPEN.**	
+b-tilde-artin-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED.**	
+balanced-raw-lamp-orbit-cannot-approximate-shell-pvm	claim			
+baumslag-char-zero-metabelian-group-satisfies-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+baumslag-gersten-group-satisfies-boone-higman	claim		**OPEN.**	
+baumslag-gersten-primitive-shell-microstates	route	baumslag-gersten-mark-survives-opnorm-corona		
+baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman	claim		**ESTABLISHED (literature import).**	
+bg-cycle-triviality-is-closed-under-the-pbh-calculus	claim		**ESTABLISHED**	
+bh-direct-products-via-mif-envelopes	route	boone-higman-closed-under-finite-direct-products		
+bh-embeddability-forces-decidable-edge-membership	claim			
+bh-embeddability-survives-decidable-edge-hnn	claim		**OPEN.**	
+bh-embeddability-survives-magnus-subgroup-hnn	claim		**OPEN.**	
+bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh	claim		**ESTABLISHED**	
+bh-product-closure-via-a2-kernel-removal	route	boone-higman-closed-under-finite-direct-products		
+bh-product-closure-via-boone-higman-conjecture	route	boone-higman-closed-under-finite-direct-products		
+bh-product-closure-via-relatively-simple-kernel-removal	route	boone-higman-closed-under-finite-direct-products		
+bh-type-a-class-closed-under-permutational-lamp-wreaths	claim		**ESTABLISHED**	
+binary-leavitt-pbh-via-chen-module-lines	route	binary-leavitt-unit-group-satisfies-pbh		
+binary-leavitt-pbh-via-mif-envelope	route	binary-leavitt-unit-group-satisfies-pbh		
+binary-leavitt-unit-group-satisfies-pbh	claim		**ESTABLISHED (2026-09-13)**	
+boone-higman-closed-under-finite-direct-products	claim		**OPEN.**	
+boone-higman-conjecture	claim			
+boone-higman-from-countable-decidable-bh	route	boone-higman-conjecture		
+boone-higman-from-infinite-simple-inputs	route	boone-higman-conjecture		
+boone-higman-from-simple-fa-inputs	route	boone-higman-conjecture		
+boone-higman-iff-fp-just-infinite-hosts	claim		**ESTABLISHED**	
+boone-higman-iff-infinite-simple-inputs	claim		**ESTABLISHED 2026-08-30**	
+boone-higman-iff-isolated-hosts-and-local-boone-higman	claim		**ESTABLISHED**	
+boone-higman-iff-simple-kazhdan-decidable-inputs	claim		**ESTABLISHED**	
+boone-higman-implies-relative-permutational-bh	claim		**ESTABLISHED (literature import).**	
+boone-higman-thompson-simple-envelope	claim			
+boone-higman-type-a-class-closed-under-finite-extensions	claim			
+boone-higman-via-bader-shalom-lattice-hosts	route	boone-higman-conjecture		
+boone-higman-via-bffhz-action-image	route	boone-higman-conjecture		
+boone-higman-via-central-simple-leavitt-tensor-host	route	boone-higman-conjecture		
+boone-higman-via-ck-maximal-kernel	route	boone-higman-conjecture		
+boone-higman-via-ck-quotient-cosets	route	boone-higman-conjecture		
+boone-higman-via-complexity-graded-universal-inputs	route	boone-higman-conjecture		
+boone-higman-via-decidable-edge-towers	route	boone-higman-conjecture		
+boone-higman-via-enlarged-shell-stabilizers	route	boone-higman-conjecture		
+boone-higman-via-fiber-product-criterion	route	boone-higman-conjecture		
+boone-higman-via-finite-bi-index-envelope	route	boone-higman-conjecture		
+boone-higman-via-finitely-presented-simple-ring-quotient	route	boone-higman-conjecture		
+boone-higman-via-fp-shell-envelopes	route	boone-higman-conjecture		
+boone-higman-via-hypothesis-free-shift-compiler	route	boone-higman-conjecture		
+boone-higman-via-infinite-shift-compiler	route	boone-higman-conjecture		
+boone-higman-via-isolated-overgroup-and-local-boone-higman	route	boone-higman-conjecture		
+boone-higman-via-kazhdan-boone-higman	route	boone-higman-conjecture		
+boone-higman-via-leavitt-units-of-rigid-sft-overgroups	route	boone-higman-conjecture	**OPEN.**	
+boone-higman-via-local-boone-higman	route	boone-higman-conjecture		
+boone-higman-via-maximal-quotient-of-the-envelope	route	boone-higman-conjecture		
+boone-higman-via-perfect-shell-envelopes	route	boone-higman-conjecture		
+boone-higman-via-permutational-boone-higman	route	boone-higman-conjecture		
+boone-higman-via-projective-ring-host	route	boone-higman-conjecture		
+boone-higman-via-rover-nekrashevych-hosts	route	boone-higman-conjecture		
+boone-higman-via-sandwich-ring-simplicity	route	boone-higman-conjecture		
+boone-higman-via-shell-germ-stabilizers	route	boone-higman-conjecture		
+boone-higman-via-shell-stabilizer-overgroups	route	boone-higman-conjecture		
+boone-higman-via-shift-higman-compiler	route	boone-higman-conjecture		
+boone-higman-via-units-of-cantor-crossed-leavitt-tensors	route	boone-higman-conjecture		
+boone-higman-via-universal-fp-self-similar-host	route	boone-higman-conjecture		
+boone-higman-via-universal-leavitt-host	route	boone-higman-conjecture		
+boone-higman-via-v-times-aperiodic-sft-full-groups	route	boone-higman-conjecture		
+c-tilde-artin-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED.**	
+cat0-groups-satisfy-boone-higman	claim		**OPEN.**	
+centerless-fp-finitely-many-conjugacy-classes-gives-pbh	claim		**ESTABLISHED**	
+char-p-linear-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+char-p-linear-pbh-via-polynomial-self-similar-hosts	route	char-p-linear-groups-satisfy-permutational-boone-higman		
+char-two-curve-linear-groups-satisfy-boone-higman	claim			
+char-two-curve-linear-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+char-two-laurent-linear-groups-satisfy-boone-higman	claim			
+char-two-leavitt-path-pbh-via-binary-embedding	route	char-two-leavitt-path-unit-groups-satisfy-pbh		
+char-two-leavitt-path-unit-groups-satisfy-pbh	claim		**ESTABLISHED (2026-09-13)**	
+char-two-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+char-two-linear-pbh-via-binary-leavitt-actor	route	char-two-curve-linear-groups-satisfy-permutational-boone-higman		
+char-two-surface-linear-groups-satisfy-boone-higman	claim			
+char-zero-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+char-zero-linear-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+char-zero-linear-pbh-via-polynomial-self-similar-hosts	route	char-zero-linear-groups-satisfy-permutational-boone-higman		
+char-zero-ring-boone-higman	claim		**OPEN.**	
+ck-finite-bi-index-hole-is-kazhdan-boone-higman	claim		**ESTABLISHED**	
+ck-finite-bi-index-hole-via-kazhdan-boone-higman	route	ck-envelope-simple-core-has-finite-bi-index		
+closed-surface-mapping-class-groups-satisfy-boone-higman	claim		**OPEN.**	
+compact-3-manifold-groups-satisfy-pbh	claim		**OPEN.**	
+compact-3-manifold-pbh-via-nonfibered-graph-case	route	compact-3-manifold-groups-satisfy-pbh		
+complex-fp-simple-groups-from-apapa-rf-boone-higman	route	fp-simple-groups-with-arbitrarily-complex-word-problem		
+complex-fp-simple-groups-from-boone-higman	route	fp-simple-groups-with-arbitrarily-complex-word-problem		
+coset-section-words-bound-raw-shell-incidence	route	raw-denominator-incidence-kills-off-diagonal-shell-orbit		
+countable-decidable-bh-from-boone-higman	route	countable-decidable-groups-embed-in-fp-simple-groups		
+cyclic-germ-brown-complexes-force-virtually-cyclic-shell-input	claim		**ESTABLISHED**	
+decidable-edge-tower-premise-is-equivalent-to-boone-higman	claim		**OPEN.**	
+decidable-inputs-have-computable-non-fp-shell-envelopes	claim			
+decidable-inputs-have-fp-one-singularity-shell-stabilizer	claim			
+decidable-inputs-have-fp-shell-envelopes	claim			
+decidable-inputs-have-fp-shell-stabilizers	claim			
+decidable-shell-stabilizers-via-one-singularity-clause	route	decidable-inputs-have-fp-shell-stabilizers		
+deligne-lattice-satisfies-boone-higman	claim		**OPEN.**	
+diagonal-shell-action-has-off-diagonal-orbital-kernel	route	two-equivariant-shell-pvms-have-independent-coordinate-escape		
+drutu-sapir-group-satisfies-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+dyadic-radial-shell-couplings-have-one-third-boundary	claim			
+e-type-artin-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED**	
+e-type-artin-pbh-via-spherical-permutational-form	route	e-type-artin-groups-satisfy-permutational-boone-higman		
+even-fc-artin-groups-satisfy-permutational-boone-higman	claim			
+exactness-separates-boone-higman-iff-fp-simple-groups-exact	claim		**ESTABLISHED (unreviewed).**	
+exotic-a2-lattices-satisfy-boone-higman	claim		**OPEN.**	
+finitary-permanence-closures-collapse-boone-higman-to-base	claim		**ESTABLISHED**	
+finite-affine-sl3-root-shell-keeps-interior-overlap	claim			
+finite-shell-coset-tower-is-a-nonlinear-unstabilized-lift	claim		OPEN	
+finite-shell-window-cannot-wordize-returning-tag	claim			
+five-parahoric-overlap-saturations-give-global-shell-pvm	claim			
+fixed-base-shell-inputs-embed-in-odometer-rn-groups	claim		**ESTABLISHED**	
+fixed-base-shells-embed-in-contracting-rsg	claim			
+folner-separators-of-boone-higman	claim		**ESTABLISHED**	
+fp-metabelian-bh-via-quasi-linear-pbh	route	fp-metabelian-groups-satisfy-boone-higman		
+fp-metabelian-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+fp-minimal-crossed-product-patterns-fill-width-r-shells	claim		**OPEN.**	
+fp-minimal-crossed-products-have-shell-bounded-complexity	claim		**OPEN**	
+fp-residually-finite-boone-higman	claim		**OPEN.**	
+fp-rf-apapa-bh-from-fp-rf-boone-higman	route	fp-rf-apapa-groups-satisfy-boone-higman		
+fp-rf-apapa-groups-satisfy-boone-higman	claim		**OPEN.**	
+fp-rf-boone-higman-from-boone-higman	route	fp-residually-finite-boone-higman		
+fp-rf-boone-higman-via-fp-self-similar-overgroups	route	fp-residually-finite-boone-higman		
+fp-self-similar-subgroups-satisfy-permutational-boone-higman	claim		**ESTABLISHED.**	
+fp-shell-envelopes-are-unique-shell-solutions-of-their-relators	claim		**ESTABLISHED**	
+fp-simple-amenable-folner-growth-via-boone-higman	route	fp-simple-amenable-subgroups-beat-every-recursive-folner-bound		
+fp-simple-full-mf-radical-from-boone-higman	route	fp-simple-full-mf-radical-group		
+fp-simple-highly-transitive-groups-satisfy-pbh	claim		**ESTABLISHED (literature import).**	
+fp-simple-kac-moody-lattices-satisfy-pbh	claim		**ESTABLISHED.**	
+fp-simple-kac-moody-pbh-via-mif-and-theorem-c	route	fp-simple-kac-moody-lattices-satisfy-pbh		
+fp-simple-large-dehn-via-boone-higman	route	fp-simple-dehn-functions-realize-every-recursive-lower-bound		
+fp-simple-mif-embedding-via-permutational-boone-higman	route	fp-simple-groups-embed-in-fp-simple-mif-groups		
+fp-simple-nonexact-group-via-boone-higman	route	fp-simple-nonexact-group		
+fp-simple-nonsofic-from-boone-higman	route	fp-simple-nonsofic-group		
+free-centre-by-metabelian-groups-satisfy-boone-higman	claim		**OPEN.**	
+free-shift-shell-envelopes-are-not-finitely-presented	claim			
+free-shift-shell-relations-are-finitely-certified	claim			
+free-solvable-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED**	
+free-solvable-pbh-via-magnus-and-wreath-closure	route	free-solvable-groups-satisfy-permutational-boone-higman		
+general-shell-envelopes-cover-perfect-inputs	route	perfect-decidable-inputs-have-fp-shell-envelopes		
+gl-n-q-bh-via-steinberg-shell-envelope	route	gl-n-q-embeds-in-fp-simple-group		
+gl-n-q-in-permutational-boone-higman-class	claim		**OPEN.**	
+global-field-soluble-linear-products-satisfy-boone-higman	claim		**ESTABLISHED.**	
+halo-shell-invariant-conjugations-are-virtually-inner	claim		ESTABLISHED	
+hard-type-a-actors-from-permutational-boone-higman	route	type-a-actors-with-arbitrarily-hard-word-problem		
+hereditary-approximation-disproofs-of-boone-higman	claim		**ESTABLISHED**	
+higman-group-satisfies-boone-higman	claim		**OPEN.**	
+hyperbolic-groups-satisfy-boone-higman	claim		**ESTABLISHED (literature import).**	
+infinite-simple-input-boone-higman	claim		**OPEN.**	
+irrational-slope-v-tau-pbh-via-orbit-action	route	irrational-slope-v-tau-subgroups-satisfy-pbh		
+irrational-slope-v-tau-subgroups-satisfy-pbh	claim			
+isolated-overgroup-via-boone-higman	route	every-decidable-group-embeds-in-an-isolated-group		
+isolated-overgroups-via-permutational-boone-higman-class	route	linear-and-metabelian-groups-embed-in-isolated-groups		
+kazhdan-boone-higman-conjecture	claim		**OPEN.**	
+kazhdan-boone-higman-via-central-simple-leavitt-tensor-host	route	kazhdan-boone-higman-conjecture		
+kazhdan-boone-higman-via-elementary-leavitt-hosts	route	kazhdan-boone-higman-conjecture		
+kazhdan-boone-higman-via-finite-bi-index-envelope	route	kazhdan-boone-higman-conjecture		
+kazhdan-boone-higman-via-projective-ring-host	route	kazhdan-boone-higman-conjecture		
+leavitt-pbh-via-cantor-module-affine-actor	route	binary-leavitt-unit-group-satisfies-pbh		
+leavitt-pbh-via-clopen-orbit-action	route	binary-leavitt-unit-group-satisfies-pbh		
+leavitt-square-unit-groups-mod-scalars-satisfy-pbh	claim		**ESTABLISHED**	
+leavitt-square-units-pbh-via-chen-line-action	route	leavitt-square-unit-groups-mod-scalars-satisfy-pbh		
+leavitt-subalgebra-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (conditional on the imported finite presentation).**	
+leavitt-unit-groups-mod-scalars-satisfy-pbh	claim		**ESTABLISHED**	
+leavitt-units-pbh-via-chen-module-line-action	route	leavitt-unit-groups-mod-scalars-satisfy-pbh		
+linton-shell-sofic-via-generic-semidirect-closure	route	linton-shell-sofic		
+linton-shell-sofic-via-sofic-action	route	linton-shell-sofic		
+linton-shell-sofic	claim		OPEN	
+local-boone-higman-conjecture	claim		**OPEN.**	
+local-boone-higman-from-boone-higman	route	local-boone-higman-conjecture		
+local-boone-higman-iff-boone-higman	claim		**ESTABLISHED**	
+lodha-circle-group-pbh-via-qp1-action	route	lodha-circle-group-satisfies-pbh		
+lodha-circle-group-satisfies-pbh	claim		**ESTABLISHED**	
+magnus-hnn-permanence-forces-one-relator-boone-higman	claim		**ESTABLISHED (conditional theorem).**	
+mif-free-product-automorphism-ascending-hnn-is-pbh	claim		**ESTABLISHED**	
+mixed-characteristic-linear-products-satisfy-pbh	claim		**ESTABLISHED (2026-09-13)**	
+mixed-characteristic-products-pbh-via-type-a-permanence	route	mixed-characteristic-linear-products-satisfy-pbh		
+mixed-permanence-closures-collapse-boone-higman-to-base	claim		**ESTABLISHED**	
+native-forty-two-shell-has-a-noncommuting-pair	claim			
+no-finite-arithmetic-hecke-corner-can-have-shell-atom-trace	claim			
+nonfibered-closed-graph-manifold-groups-satisfy-pbh	claim		**OPEN.**	
+npa-dimension-law-from-two-sided-shell-count	route	npa-critical-face-first-order-dimension-law		
+npa-nullity-upper-bound-via-triangular-shell	route	npa-first-order-nullity-at-most-2k-plus-3		
+npa-shell-pivot-count-is-five-k-minus-three	claim			
+one-ended-shell-inputs-admit-no-shift-normalizing-enumeration	claim		**ESTABLISHED**	
+one-relator-bh-from-boone-higman	route	one-relator-groups-satisfy-boone-higman		
+one-relator-groups-satisfy-boone-higman	claim		**OPEN.**	
+one-relator-sofic-via-linton-shell	route	one-relator-groups-sofic		
+out-free-groups-satisfy-boone-higman	claim		**OPEN.**	
+outer-extensions-of-fp-simple-mif-groups-satisfy-pbh	claim		**ESTABLISHED**	
+pbh-class-closed-under-common-retract-amalgams	claim			
+pbh-class-closed-under-graph-products	claim		**ESTABLISHED**	
+pbh-class-closed-under-relative-holomorphs	claim		**ESTABLISHED**	
+pbh-closed-under-permutational-wreaths-with-infinite-stabilizers	claim		**OPEN.**	
+pbh-groups-act-freely-in-relative-automorphism-actors	claim		**ESTABLISHED**	
+pbh-passes-to-relative-free-group-automorphisms	claim		**ESTABLISHED**	
+pbh-via-bh-and-a2-kernel-removal	route	permutational-boone-higman-conjecture		
+pbh-via-fp-finitary-overgroups	route	permutational-boone-higman-conjecture		
+pbh-via-orbit-finite-affine-actors	route	permutational-boone-higman-conjecture		
+pbh-wreath-closure-via-free-relative-automorphism-orbits	route	permutational-boone-higman-closed-under-wreath-products		
+perfect-decidable-inputs-have-fp-shell-envelopes	claim			
+perfect-input-shell-envelopes-are-simple	claim			
+perfect-shell-actions-have-fp-permutation-extensions	claim			
+perfect-shell-pairs-have-finite-biindex-fp-hosts	claim			
+perfect-shell-presentations-give-finite-biindex-hosts	route	perfect-shell-pairs-have-finite-biindex-fp-hosts		
+perfect-shell-retained-hosts-give-action-extensions	route	perfect-shell-actions-have-fp-permutation-extensions		
+permutational-boone-higman-closed-under-wreath-products	claim		**ESTABLISHED**	
+permutational-boone-higman-conjecture	claim		**OPEN.**	
+permutational-boone-higman-iff-finitary-alternating-hosts	claim		**ESTABLISHED**	
+permutational-boone-higman-via-mif-envelopes	route	permutational-boone-higman-conjecture		
+permutational-boone-higman-via-v-times-aperiodic-sft-full-groups	route	permutational-boone-higman-conjecture		
+permuted-free-product-linton-radical-gives-sofic-shell	claim			
+polynomial-linear-groups-satisfy-boone-higman-via-zaremsky	route	polynomial-linear-groups-satisfy-boone-higman		
+polynomial-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+positive-char-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+positive-char-surface-linear-groups-satisfy-boone-higman	claim			
+power-map-free-mapping-tori-satisfy-permutational-boone-higman	claim		**ESTABLISHED**	
+prime-field-leavitt-pbh-via-chen-module-vectors	route	prime-field-leavitt-unit-groups-satisfy-pbh		
+prime-field-leavitt-pbh-via-covered-module-amalgam	route	prime-field-leavitt-unit-groups-satisfy-pbh		
+prime-field-leavitt-unit-groups-satisfy-pbh	claim		**OPEN for odd `p`.**	
+primitive-shell-bs-clock-has-optimal-opnorm-matcher	claim		**ESTABLISHED.**	
+primitive-shell-sorted-matcher-has-no-fourier-return	claim		**ESTABLISHED.**	
+primitive-shell-sorted-matcher-is-one-phase-torus	claim		**ESTABLISHED.**	
+product-of-trees-faithful-factor-pbh-via-bass-serre-induction	route	product-of-trees-lattices-with-faithful-factor-satisfy-pbh		
+product-of-trees-lattices-satisfy-permutational-boone-higman	claim		**OPEN.**	
+product-of-trees-lattices-with-faithful-factor-satisfy-pbh	claim		**ESTABLISHED.**	
+product-of-two-trees-lattices-satisfy-permutational-boone-higman	claim		**ESTABLISHED**	
+product-variety-free-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED**	
+product-variety-pbh-via-mod-m-magnus-and-wreath-closure	route	product-variety-free-groups-satisfy-permutational-boone-higman		
+punctured-surface-mcgs-satisfy-permutational-boone-higman	claim		**ESTABLISHED (literature import).**	
+quasi-linear-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+quasi-linear-pbh-via-coordinate-projections	route	quasi-linear-groups-satisfy-permutational-boone-higman		
+random-walk-separators-of-boone-higman	claim		**ESTABLISHED**	
+rational-linear-groups-satisfy-boone-higman	claim		**ESTABLISHED (literature import).**	
+rational-regular-shell-actions-require-virtually-cyclic-input	claim			
+rational-shell-permutations-are-eventually-periodic	claim			
+raw-denominator-incidence-kills-off-diagonal-shell-orbit	claim			
+relative-pbh-closed-under-finite-direct-products	claim		**ESTABLISHED**	
+relatively-simple-removal-between-pbh-and-bh-of-quotient	claim		**ESTABLISHED**	
+route-form-shell-inputs-have-computable-mixed-near-relations	claim			
+scalar-active-mixed-shell-has-marked-regular-model	claim		**ESTABLISHED.**	
+shell-ascending-gate-is-a-finite-window-inclusion	claim		**ESTABLISHED**	
+shell-cantor-embeddings-are-finite-germ-extensions	claim			
+shell-coset-induction-preserves-core-freeness	claim			
+shell-envelope-and-one-singularity-wp-are-equivalent	claim			
+shell-envelope-fp-forces-fp-germ-group	claim		**ESTABLISHED**	
+shell-envelopes-are-full-cantor-groups	claim			
+shell-finite-biindex-hosts-require-large-intersections	claim			
+shell-finite-point-stabilizers-are-finitely-generated	claim			
+shell-finite-prefix-cannot-certify-presentation	claim			
+shell-fp-stabilizer-forces-fp-germ-group	claim			
+shell-germ-fp-is-an-ascending-hnn-gate	claim			
+shell-germ-group-has-index-two-fiber-product	claim			
+shell-isotropy-germ-index-argument	route	shell-isotropy-germs-fail-bhm-germ-hypothesis		
+shell-isotropy-germs-fail-bhm-germ-hypothesis	claim			
+shell-mobius-extensions-see-finitely-many-primes	claim		**ESTABLISHED**	
+shell-one-singularity-fp-forces-two-point-stabilizers-fp	claim			
+shell-prefix-core-detects-finite-ray-enumerations	claim			
+shell-prefix-germ-is-not-normal-or-finite-index	claim			
+shell-recursive-presentations-compute-enumerations	claim			
+simple-fa-input-boone-higman	claim		**OPEN.**	
+six-shell-hecke-gap-is-blind-to-cross-chart-gram-energy	claim			
+sl2-q-in-permutational-boone-higman-class	claim		**OPEN.**	
+spherical-artin-boone-higman-reduces-to-e6-e7-e8	claim			
+spherical-artin-groups-satisfy-boone-higman	claim		**ESTABLISHED (2026-09-12)**	
+spherical-artin-groups-satisfy-permutational-boone-higman	claim		**ESTABLISHED (2026-09-13)**	
+spherical-artin-pbh-via-char-zero-linear-groups	route	spherical-artin-groups-satisfy-permutational-boone-higman		
+stein-and-irrational-slope-f-groups-pbh-via-orbit-action	route	stein-and-irrational-slope-f-groups-satisfy-pbh		
+stein-and-irrational-slope-f-groups-satisfy-pbh	claim		**ESTABLISHED**	
+stein-group-v23-pbh-via-orbit-action	route	stein-group-v23-subgroups-satisfy-pbh		
+stein-group-v23-subgroups-satisfy-pbh	claim			
+steinberg-resolvent-shell-envelope-is-finitely-presented	claim		**OPEN.**	
+terminated-digit-fiber-stabilizer-repairs-shell-action	claim			
+terminated-digit-host-has-infinite-shell-biindex	claim			
+three-manifold-groups-pbh-off-nonfibered-graph-manifolds	claim		**ESTABLISHED (2026-09-13)**	
+three-shell-stabilizers-present-shell-envelope	route	decidable-inputs-have-fp-shell-envelopes		
+titz-witzel-lattices-pbh-from-mif-kernels	route	titz-witzel-lattices-satisfy-permutational-boone-higman		
+titz-witzel-lattices-satisfy-permutational-boone-higman	claim		**OPEN.**	
+two-equivariant-shell-pvms-have-independent-coordinate-escape	claim			
+two-sl3-shell-charts-have-a-rotated-flip-escape	claim			
+type-a-action-gives-boone-higman-for-subgroups	claim			
+vertex-free-type-rotating-a2-groups-satisfy-boone-higman	claim		**OPEN.**	
+virtually-cyclic-inputs-have-fp-shell-stabilizers	claim			
+virtually-fibered-3-manifold-groups-satisfy-pbh	claim		**ESTABLISHED (2026-09-13)**	
+virtually-free-by-cyclic-groups-satisfy-boone-higman	claim		**ESTABLISHED.**	
+zaremsky-2-14-boone-higman-conjecture	claim			
+zaremsky-2-14-by-boone-higman	route	zaremsky-2-14-boone-higman-conjecture		

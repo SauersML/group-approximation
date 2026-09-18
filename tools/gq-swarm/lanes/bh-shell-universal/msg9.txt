@@ -1,0 +1,5 @@
+Shell shift admits no Baumslag-Solitar conjugation; ray lemma for shift-stable near groups
+
+bh-shell-universal: if s Gamma s^-1 <= Gamma for a f.g. near group, then Gamma is near trivial or
+N is cofinitely finitely many infinite orbits. With an end count, no nontrivial a satisfies
+s^(+-1) a s^(-+1) = a^m for |m| >= 2. Lane proof, not reviewed.

@@ -1,0 +1,7 @@
+LANDED 97e4e6159 on origin/main (parent 30955c632):
+ .../gq-bh-free-54-unimodular-prime-search.md       | 497 +++++++++++++++++++++
+ ...rojective-full-groups-are-finitely-presented.md |  49 ++
+ ...full-groups-fp-via-thumann-operad-finiteness.md | 129 ++++++
+ ...unimodular-dissection-operad-has-finite-type.md | 166 +++++++
+ ...r-dissections-have-egyptian-fraction-volumes.md | 105 +++++
+ 5 files changed, 946 insertions(+)

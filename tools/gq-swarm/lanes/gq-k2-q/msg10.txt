@@ -1,0 +1,5 @@
+gq-k2-q: record where hypothesis (P) is now proved for three nodes
+
+register-completion-pimsner-from-supercoherence (3542cca5d) proves the Pimsner
+sequence for single-register completions with a spine, so the single-register,
+dilation and top-determination no-go results hold unconditionally there.

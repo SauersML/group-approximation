@@ -1,0 +1,9 @@
+Apply referee fixes and credit notes to the gq ring-envelope nodes
+
+Record referee a and b passes on the four char-0 envelope claims. Fix: the
+GL_n(K) consequence lives in (R_k (x) L_Q)^x for positive transcendence
+degree; central quotients containing Q^x; scalar-matrix presentation of
+M_e(R); non-unital A in the Z-vs-Q equivalence; extension from Z[t,
+registers]; basis ordering. Add a Known/credit note: finitely presented
+simple algebras over a char-0 field are classical (Weyl, Leavitt,
+Nekrashevych); the point is finite presentation as a ring over Z.

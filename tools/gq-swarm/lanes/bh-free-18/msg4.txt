@@ -1,0 +1,5 @@
+Add general-BH lessons to the BS(1,m), BS(1,-m) and renormalization nodes
+
+Per INSIGHT FIRST: ascending HNN extensions of Z in nV reduce to which branching numbers a
+self-similar one-head hierarchy realizes; power-conjugacy realized by dynamics symmetrizes, so only
+|m| matters; renormalizations of Turing-type elements are local identities, certifiable outright.

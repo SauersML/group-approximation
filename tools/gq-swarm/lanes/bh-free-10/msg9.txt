@@ -1,0 +1,17 @@
+Padding adds the whole-group stratum: HNN of V from a free involution to one with a fixed cone lies in B_A
+
+- finite-subgroups-of-full-cantor-groups-conjugacy-criterion: new Part 4 (padding
+  π_U: D -> D, which acts on U and trivially elsewhere), so conjugacy after padding ⟺ the
+  padded type sets Σ ∪ {H} match.
+- finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a: padded form. All graphs of
+  subgroups of V with prime-order edge groups lie in B_A, and so does
+  <V, t | t c_1 t^-1 = c_2> (free vs. fixed-cone involution).
+- pbh-closed-under-finite-edge-graphs-of-groups: that test case is settled; the new test
+  case is Klein four-groups with different intermediate strata.
+- b-a-groups-embed-in-full-hosts-with-free-torsion: Attempt 3 (padding adds strata, never
+  removes them).
+
+Lesson for general BH: in full hosts, stabilizer strata can be added for free (padding),
+so the whole finite-edge obstruction is removing intermediate strata. That is what free
+torsion, via bundle-twisted Brin–Thompson hosts, would do.
+Lane proof, not reviewed.

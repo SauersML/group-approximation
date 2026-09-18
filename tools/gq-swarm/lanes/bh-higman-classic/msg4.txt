@@ -1,0 +1,11 @@
+Groups between V and N(V) are self-similar up to V; Scott-type presentation of their full closures
+
+- v-by-normalizer-groups-are-self-similar (+proof): for V ≤ G ≤ N(V), the normalized
+  restrictions to invariant cones stay in G. Also [[G]] = <V, ι_0(G)>, every element has a
+  cone-partition normal form, and triviality of a normal form is decided piece by piece.
+- Attempt 2 on fp-rsgs-have-fp-full-closures: an explicit finite candidate presentation of
+  [[G]], surjective and injective on normal forms. The one missing step is normalization,
+  where asynchronous V-parts force a descent. That descent is what Scott (synchronous) and
+  Theorem B (contracting) avoid.
+
+Lane proof, not reviewed.

@@ -1,0 +1,7 @@
+Growth gap for Higman images: attempt 1, stack reformulation and assessment
+
+Lane bh-testcases. Records that nV elements are reversible n-stack machines
+with E = maximal net stack change; V has a linear gap, SMART has logarithmic
+speed, and Callard–Salo's remarks on Kari–Ollinger/Hooper machines (sublinear
+movement) make a universal gap at (log m)^2 along 2^m unlikely. Points the
+triviality route at the variation identity specific to the four-cycle.

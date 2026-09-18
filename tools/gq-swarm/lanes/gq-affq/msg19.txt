@@ -1,0 +1,7 @@
+Machines with exact m-fold branching for every odd m tested
+
+A calibrated MSI search of reversible two-shape SMART-format machines finds
+only branching 3 up to 4 symbols, and quintic tables with 5 symbols. The
+smallest generalizes to an explicit family M_m (m odd, m symbols) with
+T(L+1) = m T(L) + m + 1 exactly, verified for m <= 11, L <= 7. Landed OPEN
+pending a move lemma; it is the first step toward BS(1,m) in 3V for all odd m.

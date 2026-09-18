@@ -1,0 +1,10 @@
+Kourovka 20.44: best-known form of the dichotomy, and why no provable counterexample was found
+
+Status page: 20.44 holds for Kohl's G_T iff the 3x+1 map has finitely many components on Z
+(7b84a747f); counterexamples need unbounded glued orbits with no rational local invariant
+(1c4a8a43c). Records why Conway-type full-shift maps, machine/passenger codes and dilation
+symmetries fail, and conjectures the dichotomy for every finitely generated subgroup of
+CT_0(Z) = V.
+
+Lesson for general BH: subgroup-orbit statistics in CT_P(Z) follow the one-base/two-base split;
+type (A) finiteness must be imposed on the host's clopen action, not certified from subgroup orbits.

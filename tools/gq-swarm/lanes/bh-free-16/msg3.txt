@@ -1,0 +1,10 @@
+Prove that atomless invariant measures of V-elements live on their periodic part
+
+A height-cocycle argument (letters written minus letters read) shows that every atomless measure
+invariant under an element of V is supported where some power is locally the identity. With
+Markov-Kakutani this gives: an element of V normalizing an amenable action induces an automorphism
+that is periodic on a nonempty invariant closed set, and never dilates a divisible group without a
+fixed point. Consequence: in nV, SV_G and the free colour of 2V_tau, a copy of Q x| <2> whose Q acts
+on a coordinate without fixed points cannot dilate through a homeomorphic base map there; with
+bh-free-30's tail-map theorem, both one-coordinate shapes are dead. Adds a Lesson for general BH to
+the earlier tree-coding node. Lane bh-free-16; lane proof, not reviewed.

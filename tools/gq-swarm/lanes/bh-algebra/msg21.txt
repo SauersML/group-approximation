@@ -1,0 +1,3 @@
+Row factors lift Z crossed products into Z² hosts: gate U decouples into 1D embedding + G2 realization
+
+New claim row-factors-lift-z-crossed-products-into-z2-hosts: a row factor rho: X -> Y (equivariant along e_1, onto) gives an injective unital hom LC(Y,K) x Z -> LC(X,K) x Z², hence embeddings of Leavitt tensors, GL_n, units and full groups. Gate U over Z² thus splits into a 1D problem (G in ((LC(Y,F_2) x Z) ⊗ L)^x for effective Y, no fp or rigidity) and G2 (rigid free minimal Z² SFT with that row factor). Lesson for general BH included. Lane proof, not reviewed.

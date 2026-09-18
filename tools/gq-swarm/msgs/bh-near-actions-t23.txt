@@ -1,0 +1,12 @@
+T_{2,3} and T_tau are F_infinity: finite-set data of an oligomorphic action controls finiteness
+
+- oligomorphic-actions-with-f-n-set-stabilizers-are-f-n: with finitely many orbits on k-subsets (k <= n+1)
+  and F_n setwise stabilizers, the group is F_n (Brown on the full simplex). For n = 2 this certifies
+  finite presentation, and hence type (A), from 3-set stabilizers.
+- circle-pl-groups-inherit-finiteness-from-interval-groups: under (S) and (R), T(A,P) is F_n when F(A,P) is.
+  T_{2,3} and T_tau are F_infinity, and their circle actions are of type (A).
+- New routes close stein-groups-t23-and-v23-are-finitely-presented and
+  irrational-slope-t-tau-and-v-tau-are-finitely-presented (V_tau via the golden Pisot coding); status updated,
+  and irrational-slope-v-tau-subgroups-satisfy-pbh is now ESTABLISHED. T_xz and V_xz are fp simple groups in B_A.
+
+Lesson: the fp clause of type (A) reduces to 3-set stabilizers for 3-oligomorphic actions.

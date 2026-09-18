@@ -1,0 +1,5 @@
+Referee reports: Toeplitz corner, E_(n+1) embedding, integral-form obstruction PASS
+
+Proof-gap reviews of the three gq-ring-fp-simple nodes in 7bbbef172. All
+pass; one item of the integral-form covered list (integral Leavitt-Nekrashevych
+completions) needs a freeness argument that is not given.

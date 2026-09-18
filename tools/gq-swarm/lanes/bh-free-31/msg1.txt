@@ -1,0 +1,6 @@
+Show mixed-radix prefix-replacement groups omit Baumslag-Solitar groups and Q
+
+A V-type group over the factorial odometer, where every rational has a finite expansion,
+is the natural candidate host for Aff(Q). Over any mixed radix, the prefix-replacement group
+is locally finite when the radix sequence is not eventually periodic, and embeds in a
+Higman-Thompson group otherwise. So it contains no BS(1,m) with |m| >= 2, no (Q,+), and no Aff(Q).

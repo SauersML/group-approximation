@@ -1,0 +1,1 @@
+almost-automorphism-torsion-subgroups-are-rf: item 8 (no non-RF f.g. torsion group, e.g. Tarski monsters, embeds in the almost automorphism group)

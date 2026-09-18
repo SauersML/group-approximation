@@ -1,0 +1,7 @@
+Second referee of the minimal crossing-wire rigid Z^2 SFT: PASS at design level, one layout repair
+
+bh-ref-e1-a referee sections on minimal-crossing-wire-fixed-point-shift-is-quantum-rigid (+ proof) and the crossing layout artifact.
+- Slots are frame-forced scalars in every face-local edge family: checked edge by edge against the zone table.
+- The routing condition of bh-free-09 holds: every DR minimality component is coordinate-fixed or wired and crossed.
+- Minimality matches DR 1802.01461 section 3.2, read at source.
+- Required repair R1: bits on opposite sides must sit at the same rows and columns, since adjacent macrotiles share edges.

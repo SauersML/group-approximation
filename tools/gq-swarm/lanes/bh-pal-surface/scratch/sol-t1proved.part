@@ -1,0 +1,17 @@
+/-- **Kourovka 14.10(c), BBMZ Problem 2.7**, proved outright:
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q` states the same
+proposition over byte-identical copies of the shared definitions, so it closes this one by
+definitional unfolding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q :
+    Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
+      ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
+        SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
+  GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q
+
+/-- The same statement under its `_of` name; no hypothesis is outstanding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q_of :
+    Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
+      ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
+        SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
+  explicit_fp_overgroup_of_all_gl_n_q
+

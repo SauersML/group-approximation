@@ -1,0 +1,8 @@
+Integrate both Q1.15 referees: direct link lemma, Lemma E-prime, and the pure-hole datum checked in full
+
+Cuntz F_infinity proof: the link-lemma instance is now Lemma L (Dickson plus doubling, referee A), so Li
+lem:link:n-conn_3 and the packing number are no longer used; section 8 records neutrally that Li written
+proof asserts its key step without argument, crediting Li framework. New route writes out (St), (LCM),
+lcms and the isotropy identification for the pure-hole datum. Host proof: Lemma E replaced by Lemma E-prime
+(later vertex q), used in TF, Acyc and minimality. Full flagged Garside verification added. perron-weights
+item 3 marked conditional. Q1.15 claim stays OPEN pending cross-check.

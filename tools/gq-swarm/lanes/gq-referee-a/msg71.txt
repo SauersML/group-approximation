@@ -1,0 +1,3 @@
+Referee report: lift-presented automaton groups satisfy Boone-Higman PASS
+
+Proof-gap lens on lift-presented-automaton-groups-satisfy-boone-higman (5ff53c09f). Regrouping preserves relator kernel and lift ideals, finite abelianization host, cone conjugacy by prefix replacement and the cone-diagonal landing in [V,V] checked; nits N1-N2.

@@ -1,0 +1,5 @@
+gq-referee-b: review of the conditional nV Kazhdan-finiteness routes
+
+Citation/hypothesis review of kazhdan-finiteness-in-nv-via-cnd-transversal and
+gl-3-z-in-no-nv-via-cnd-transversal: PASS as conditional routes. Checked
+Delorme-Guichardet, left cosets, the triangular item 3 at f = 1, and Farley.

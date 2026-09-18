@@ -1,0 +1,6 @@
+Add the binomial-encoding no-go to the Cartier test of the KMS groups
+
+If command relations are binomials and a Cartier-type virtual endomorphism
+preserves the relation module, every counter step is divisible by all powers of
+p, hence zero. A hard self-similar Minsky-type design must use polynomial
+operators or odometer-style counters.

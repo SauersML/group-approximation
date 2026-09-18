@@ -1,0 +1,10 @@
+Out(F_n) BH: push the Aut/Out band into the boundary full group; piecewise-representative route
+
+Aut(F_n) meets [[F_n ⋉ ∂F_n]] exactly in Inn(F_n) (Grossman), so H = [[F_n ⋉ ∂F_n]]·Aut(F_n)
+is a finitely presented extension of Out(F_n) by a centerless group. It splits over a finite-index
+subgroup iff that subgroup acts on ∂F_n by piecewise representatives (PR); virtual sections are
+the one-piece case. In rank 2g >= 4 the Euler class of the capping extension forces every PR
+action to move the surface-word periodic point with infinite orbit.
+
+New open premise (PR), new open finiteness claim for the resulting host, and a route to
+out-free-groups-satisfy-boone-higman (n >= 4) through Matui simplicity and property (T).

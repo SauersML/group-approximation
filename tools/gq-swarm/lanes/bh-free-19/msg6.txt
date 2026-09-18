@@ -1,0 +1,21 @@
+Finitely presented 1-D piecewise-projective groups specialize to algebraic data; hard-slope D(V_lambda) has no such host
+
+fp-piecewise-projective-groups-specialize-to-algebraic-data (lane proof, elementary given
+Tarski-Seidenberg, not reviewed): let G be finitely presented and act faithfully by
+piecewise-projective maps of an interval, the circle or the line, with arbitrary real data.
+The representations of G of the same combinatorial type form a semialgebraic set defined
+over Q. Its real algebraic points are dense, and nontriviality of finitely many elements
+is open. So:
+(1) G maps to piecewise-projective maps over a real number field, nontrivially on any
+    finite set;
+(2) G has solvable word problem;
+(3) every finitely generated simple subgroup of G embeds over a real number field and has
+    polynomial-time word problem. In particular, finitely presented simple groups of this
+    kind have polynomial-time word problem.
+
+hard-slope-thompson-groups-have-no-piecewise-projective-hosts: for the Liouville slopes
+of transcendental-slope-thompson-groups-have-hard-word-problems, D(V_lambda) embeds in
+no finitely presented piecewise-projective group. So V_lambda and D(V_lambda) are not
+finitely presented, without using Tanner's homology.
+
+This settles the piecewise-projective part of Attempt 8's open item on the Birget root.

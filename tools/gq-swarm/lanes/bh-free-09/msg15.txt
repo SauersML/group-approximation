@@ -1,0 +1,8 @@
+Rigid-seed constructions pass the separable-modifications test
+
+In the wall-chamber distance seeds, orientations along a nested wall chain switch once. So any two
+modifications of one point have difference sets within r_0 + 2, which covers surface, median and
+product seeds; products preserve the test. Relative-seed and Kurosh tower gluings pass on audit,
+through their unique sink or end. Apartment computations for the A~2 and C~2 building seeds find
+no separable freedom (a boundary field's freedom points toward its own limit), and the one
+remaining configuration to settle is flagged.

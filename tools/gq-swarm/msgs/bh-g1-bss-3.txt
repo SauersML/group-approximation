@@ -1,0 +1,8 @@
+Keyed slots bypass the phase-field condition; boundary-plane lifts are topologically free
+
+Correction to the phase-field reading of gate E1: keyed diversification slots supply the forced
+plane-varying floating data, so no phase cocycle, measure or boundary geometry is needed for
+existence. Test of the natural tree (Busemann height) cocycle: the Sturmian label factor cannot
+trivialize it mod 2^k (eigenvalue argument); the full criterion is left open as no longer needed.
+Minimal lifts over boundary planes W_3 x W_3 are topologically free; full freeness along W_3^2 is
+the one extra gate for a non-amenable-plane variant. Lane proof, unreviewed.

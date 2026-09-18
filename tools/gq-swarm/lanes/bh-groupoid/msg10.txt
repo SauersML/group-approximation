@@ -1,0 +1,5 @@
+Show that scaling-free subgroups of finitely coded full groups are unit-like
+
+A finitely generated subgroup of the full group of a finitely coded groupoid whose degree cocycle is a continuous coboundary is residually finite, and on the whole unit space it is virtually a subgroup of a finite product of unit groups. In the minimal case bounded displacement on one orbit suffices (Gottschalk–Hedlund). So infinite simple, quasisimple or non-residually-finite inputs must change level without bound along every orbit, and infinite Kazhdan inputs must scale when the units are a-T-menable.
+
+This answers synthesis gate G3g lane (j): a Li coding of G_V × (Λ ⋉ X) that keeps translations level-preserving forces Λ residually finite, so over Λ_0 = St_10(R_L) the missing input is scaling, not rigidity. Lane proof, not reviewed.

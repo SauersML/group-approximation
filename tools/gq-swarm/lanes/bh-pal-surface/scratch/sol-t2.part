@@ -1,0 +1,11 @@
+/-- The proposition the class-transposition development owes for Kourovka 17.59. -/
+def Kourovka1759Owed : Prop :=
+  (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
+    {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n}
+
+/-- Kourovka 17.59, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_59_of (h : Kourovka1759Owed) :
+    (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
+      {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
+  h
+

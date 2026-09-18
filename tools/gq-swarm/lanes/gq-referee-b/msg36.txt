@@ -1,0 +1,3 @@
+Referee report (citation lens): Euler base annihilator over the lamplighter PASS
+
+Items 1-3 correct; no unread citation beyond Schanuel. Baumslag instance verified from the presentation. Fixes: BR remark written in the conjugation convention opposite to KMS (pair is (beta_-1^-1, beta^-1)), title should name the induced module, add the ker(epsilon) generation line.

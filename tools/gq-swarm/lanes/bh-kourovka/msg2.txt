@@ -1,0 +1,11 @@
+Answer Kourovka 17.60: the class transposition groups CT_P(Z) are pairwise non-isomorphic
+
+For any two distinct sets P, Q of odd primes, finite or infinite, CT_P(Z) and CT_Q(Z) are not isomorphic.
+
+Proof outline:
+- Matui's spatial theorem makes an isomorphism conjugate by a homeomorphism of the profinite completions.
+- The germ group at a rational point acts by multiplication by P'-smooth ratios.
+- Its minimal stable sets are the prime axes Z_q.
+- Each axis is labeled by the unique prime ell for which the induced shell rotation of an open subgroup of Z_q^x has infinitely many continuous eigenvalues of ell-power order.
+
+This supersedes the partial answer. Lane proof, not reviewed.

@@ -1,0 +1,4 @@
+gq-en-ring: record referee C second pass on the R_T group-side nodes
+
+Cite gq-referee-c PASS (second pass after referee B) for the local-annihilation
+lemma, the PE_N(R_T) simplicity claim and the host route.

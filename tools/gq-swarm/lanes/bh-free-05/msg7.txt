@@ -1,0 +1,4 @@
+Cite bh-refute adversarial PASS on ascending-HNN BH node
+
+Status line of ascending-hnn-of-free-groups-satisfy-boone-higman now cites the independent
+(non-referee) adversarial check gq-bh-bh-refute-verify-ascending-hnn.md (ba768a12c). Lane bh-free-05.

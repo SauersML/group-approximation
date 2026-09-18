@@ -1,0 +1,12 @@
+Code cube complex actions by geodesics modulo square flips, with cubes as states
+
+For a group acting freely and cocompactly on a CAT(0) cube complex, the hyperplanes
+adjacent to a vertex that separate it from a point pairwise cross and span a cube,
+and a path x -> y -> z is geodesic exactly when the two such cubes at y share no
+hyperplane. So geodesics modulo square flips form a finite-object category whose
+states are pointed cubes, with Niblo-Reeves normal cube paths as normal forms. The
+group acts on the regular part of the Roller boundary by bisections of its left
+regular groupoid, via the median of o, go and g-omega. This specializes to the cube
+k-graph of tree products and to reduced traces for RAAGs. It reduces the cubulated
+case of Boone-Higman (BBCMP Question 1.15) to Li's finiteness conditions for this
+one category, plus closedness of the regular boundary and faithfulness.

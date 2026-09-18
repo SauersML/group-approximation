@@ -1,0 +1,15 @@
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:33:53: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:57:68: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:57:38: typeclass instance problem is stuck
+  HMul (Matrix (Fin (Module.finrank L V)) (Fin (Module.finrank L V)) L) ?m.193 (Fin (Module.finrank L V) → L)
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `HMul` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:104:65: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:104:7: typeclass instance problem is stuck
+  HMul (Matrix (Fin (d j)) (Fin (d j)) L) ?m.210 L
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `HMul` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.

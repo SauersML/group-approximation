@@ -1,0 +1,13 @@
+Prove Lemma H and put all cocompact lattices on reducible Euclidean buildings in B_A
+
+Lemma H: an automorphism of a thick Euclidean building (or tree) fixing an open set
+of chambers at infinity fixes an apartment and balls of every radius pointwise. It
+needs no discreteness, so it gives effectiveness factorwise for lattices in products.
+The proof: branching apartments across walls of every direction kill the
+translation and diagram parts, and convexity plus a CAT(0) comparison put balls
+inside shadow cones.
+
+With product boxes as cells, complete reducibility factor by factor gives strongly
+connected pieces, and the rescale, phase and stabilize machine then puts every
+cocompact lattice on a finite product of thick Euclidean buildings and trees in B_A,
+irreducible lattices and torsion included. Lesson: finite boundary codings multiply.

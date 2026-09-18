@@ -1,0 +1,9 @@
+Kill Mobius-spinal prime-shift extensions of the Iwahori group
+
+Adjoining to a finitely generated Mobius group finitely many tree
+automorphisms that are Mobius off 0 and shell-wise Mobius near 0, with
+sections at vertex 0 back in the group, yields a group meeting PGL_2(Q)
+inside some PGL_2(Z[1/N]): the section condition is a recursion
+M_{j+1} = rho F(M_j) rho^{-1} in one finitely generated subgroup. So the
+prime-shift design z -> u_{v(z)} z cannot give Gamma_p; recorded as
+Attempt 4 on the open input.

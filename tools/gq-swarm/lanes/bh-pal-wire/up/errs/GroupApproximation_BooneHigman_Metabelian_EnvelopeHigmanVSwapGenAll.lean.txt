@@ -1,0 +1,16 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:157:8: failed to synthesize instance of type class
+  Top (Subgroup ↥(higmanThompsonV X))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:158:9: failed to synthesize instance of type class
+  OrderTop (Subgroup ↥(higmanThompsonV X))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:157:13: unsolved goals
+X : Type u_1
+inst✝¹ : Finite X
+inst✝ : Nontrivial X
+H : Subgroup ↥(higmanThompsonV X)
+hH : ∀ (v w : List X) (h1 : ¬v <+: w) (h2 : ¬w <+: v), ⟨coneSwap v w h1 h2, ⋯⟩ ∈ H
+⊢ H = ⊤
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:168:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_closure_eq_top`

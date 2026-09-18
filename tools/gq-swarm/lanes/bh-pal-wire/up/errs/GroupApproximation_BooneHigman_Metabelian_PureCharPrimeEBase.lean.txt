@@ -1,0 +1,36 @@
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:53:27: Application type mismatch: The argument
+  φ q⁻¹
+has type
+  MulAut B
+of sort `Type` but is expected to have type
+  Type ?u.64
+of sort `Type (?u.64 + 1)` in the application
+  @MulAut.mul_apply (φ q⁻¹)
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:51:29: unsolved goals
+B Q : Type
+inst✝¹ : Group B
+inst✝ : Group Q
+φ : Q →* MulAut B
+H : Subgroup (B ⋊[φ] Q)
+hQ : SemidirectProduct.inr.range ≤ H
+q : Q
+b : ↥(eBase H)
+⊢ (φ q⁻¹) ((φ q) ↑b) = ↑b
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:57:27: Application type mismatch: The argument
+  φ q
+has type
+  MulAut B
+of sort `Type` but is expected to have type
+  Type ?u.78
+of sort `Type (?u.78 + 1)` in the application
+  @MulAut.mul_apply (φ q)
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:55:30: unsolved goals
+B Q : Type
+inst✝¹ : Group B
+inst✝ : Group Q
+φ : Q →* MulAut B
+H : Subgroup (B ⋊[φ] Q)
+hQ : SemidirectProduct.inr.range ≤ H
+q : Q
+b : ↥(eBase H)
+⊢ (φ q) ((φ q⁻¹) ↑b) = ↑b

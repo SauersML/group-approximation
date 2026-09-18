@@ -1,0 +1,3 @@
+Horizontal-finiteness node: correct two bounds in the descending-link proof
+
+A minimal X-block has at most one piece per occurring symbol, and the product-interval formula is an iterated suspension.

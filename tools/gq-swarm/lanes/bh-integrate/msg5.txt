@@ -1,0 +1,8 @@
+Apply bh-verify-euclid's fixes to the Euclidean building lattice theorem; mark the Titz Mite–Witzel PBH node verified conditionally
+
+Applied for the owners (bh-groupoid; the verifier), from 84896de5e. No mathematics changed:
+- N1: the "same argument applied to Σ_j M_j" sentence was not literally valid, since the Perron rescalings differ by colour. It now says that each single-colour step is reversible, so by (UFP*) reachability is symmetric.
+- N2: the statement and title now say dimension at least 2. A scope note excludes trees.
+- T1: trust caveat added. Ciobotaru–Le Bars arXiv:2601.13092 is an unrefereed preprint, and its live barycenter chain was not re-derived.
+- The status line records the verification.
+- titz-witzel-lattices-satisfy-permutational-boone-higman: recorded as verified (report §7, PASS), conditional on T1.

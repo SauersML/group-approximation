@@ -1,0 +1,7 @@
+Validate the binary hierarchy machine for BS(1,2): exact doubling on hierarchical tapes, failure on counter-letter junk
+
+On MSI, the radius-1 reversible design E->ER, S->RS, R->ES gives exactly doubling Y-counts with gap 12 and
+phi U^2 = U phi along the zero-tape orbit. R, P and P^-1 pass exhaustively. The tower check T fails on long
+b-blocks for the default fill and for every partial fill explored. The search over all fills was not
+completed. Lesson: the binary wall is completeness (no periodic points on counter-letter backgrounds), not the
+hierarchy.

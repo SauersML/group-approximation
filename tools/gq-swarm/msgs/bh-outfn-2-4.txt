@@ -1,0 +1,10 @@
+Out(F_n) piecewise-integral-projective actions: easy cases ruled out, sphere-coordinate proposal
+
+For n >= 3, Out(F_n) has no faithful action on the circle by homeomorphisms ((Z/2)^n) and no
+faithful piecewise-integral-projective (PIP) action on a compact polyhedron of dimension <= 1
+(such groups embed in V, but Z^2*Z does not). For n >= 4 no faithful PIP action has a single
+linear piece (non-linearity), and finite length coordinates cannot serve as the atlas
+(Smillie-Vogtmann). The remaining natural candidate is opened as a claim: Hatcher normal
+coordinates of sphere systems relative to a maximal system, with the obstacles recorded (the
+sphere condition is non-linear, the normal fan has dimension 5n-5, and no Whitehead-move formula
+is known). A rank-3 enumeration test is proposed.

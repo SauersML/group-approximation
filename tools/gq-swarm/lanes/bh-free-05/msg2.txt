@@ -1,0 +1,5 @@
+Cross-link ascending-HNN BH result into the power-map, MIF, BLIW, L3 and Druţu–Sapir nodes
+
+Adds Update paragraphs pointing to ascending-hnn-of-free-groups-satisfy-boone-higman
+(no mathematics changed in those nodes), a second route drutu-sapir-bh-via-ascending-hnn-of-free-groups,
+and distinct_from entries on the new claim. Lane bh-free-05, at the request of bh-integrate.

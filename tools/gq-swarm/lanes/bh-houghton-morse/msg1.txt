@@ -1,0 +1,8 @@
+Add a general pinning lemma and Schreier-ball test for FSym-containing groups
+
+A finitely presented permutation group containing FSym(X) inside a finitely
+generated subgroup H = <A> is rigid: every homomorphism fixing A is the
+inclusion, so finitely many relations pin the remaining generators. Perturbed
+generator tuples whose Schreier balls all reappear in the original graph
+therefore certify non-finite-presentation. This is the general form of the
+mechanism behind free-shift-houghton-like-envelopes-are-not-fp.

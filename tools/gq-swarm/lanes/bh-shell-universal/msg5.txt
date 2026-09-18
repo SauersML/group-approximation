@@ -1,0 +1,5 @@
+Restriction realizations of twisted shells are trivial
+
+bh-shell-universal: a twisted genuine shell action is never the restriction of a homeomorphism
+group to a dense forward orbit of a homeomorphism. This covers minimal Cantor systems and
+2-adic/V-type groups with a = +1. Genuine twisted actions must be exotic. Lane proof, not reviewed.

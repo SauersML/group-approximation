@@ -1,0 +1,10 @@
+Matui's question: derived full groups of residually finite free minimal Z^N actions are not f.p.; the rest is exactly the non-RF (aperiodic-SFT-type) actions
+
+New claim rf-free-minimal-zn-actions-have-non-fp-derived-full-groups (+ proof): residually finite
+(Kerr-Nowak) free minimal Z^N actions have LEF full groups (Ma 2209.00580 Thm 5.5, read at source),
+so D([[phi]]) is not finitely presented (Vershik-Gordon + Matui simplicity). Covers all products of
+minimal Cantor Z-systems and all free Z^N-odometers.
+
+New claim zn-subshift-is-rf-iff-periodically-approximable (+ proof, lane proof): a Z^N-subshift is
+residually finite iff it has periodic model families at every radius; hence minimal subsystems of
+weakly aperiodic SFTs are never residually finite. Attempt 1 on free-minimal-zn-derived-full-groups-are-never-fp.

@@ -1,0 +1,9 @@
+Pin the failing step of arXiv:2609.01868 Theorem B(3) at source
+
+Read the TeX of 2609.01868v1 and Cornulier math/0509090v2 on MSI. The printed X is the
+coset set PSL_2(Z)\PSL_2(Z[1/2]), so the node answers the question as printed. Theorem
+B(3) fails in the faithfulness step of Theorem A: support preservation under the virtual
+endomorphisms does not force the translates into K H_omega. When K H_i = G for every i,
+the sum-zero lamp subgroup lies in the f-core, so the construction is not faithful. The
+Cornulier remark concerns residual finiteness of PSL_2(Z[1/p]) itself, not of the wreath
+product. Adds a cross-reference to the double node, which uses the same density.

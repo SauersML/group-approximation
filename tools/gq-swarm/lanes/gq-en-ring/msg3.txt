@@ -1,0 +1,7 @@
+gq-en-ring: IBN failure makes rational scalars elementary
+
+Establish that for a ring containing Q with R^m = R^(m+k), every lambda^k I_M
+is elementary at the ranks M = m'N (m' >= m, N >= 2), so those PE_M(R) are
+not finitely presented; Leavitt families kill every rank. Mark the Leavitt
+resolvent ring dead for the projective elementary premise, and record the
+forced Leavitt-free class restriction with a countable calibration L_Q(E).

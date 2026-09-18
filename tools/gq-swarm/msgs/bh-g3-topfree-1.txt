@@ -1,0 +1,7 @@
+Relax the master route's free SFT to a topologically free one with torsion-free isotropy
+
+Audit both master routes: freeness is used only as topological freeness
+(central simplicity, effectiveness, faithfulness) and as freeness of finite
+subgroups (the K-gate). Add the relaxed premises (E') and (K'), the relaxed
+ring-side route, and a Kuznetsov-type theorem: a finitely presented group with
+a quantum-rigid minimal topologically free SFT has solvable word problem.

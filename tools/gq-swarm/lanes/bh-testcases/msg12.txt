@@ -1,0 +1,11 @@
+Product closure: type [A_2] actions of S × T come from factors; TW kernels remain
+
+Lane bh-testcases. New node: a faithful action of S × T (S, T infinite simple)
+with finitely many orbits on pairs and f.g. stabilizers forces a factor to have
+a proper f.g. subgroup of finite bi-index, or S ≅ T with finitely many
+conjugacy classes (Goursat: full-projection core-free stabilizers are graphs,
+double cosets = conjugacy classes). So envelopes built on S × T itself die.
+Attempts 12–13 on the product-closure node and a correction on the JE node:
+with Amir–Lazarovich and Khanh's Leavitt unit group in B_A, the Titz
+Mite–Witzel kernels are the only recorded f.p. simple groups not known in B_A;
+the sharpest open instances are Γ̌ × Γ̌, Γ̌ × V and even Γ̌ × Z/2.

@@ -1,0 +1,6 @@
+Record why pushing all four generators by common fixed loops fails for lantern factorizations
+
+Attempt 15 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: the push part of a lifted
+commutator is u·a(v)·c(u)^-1·[a,b](v)^-1; common fixed loops keep the relator, but for any
+lantern-based factorization the first pair fixes only powers of the boundary loop. The
+two-leaf test case is handed to bh-free-21.

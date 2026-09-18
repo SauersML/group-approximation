@@ -1,0 +1,5 @@
+Line-pair node: record referee-a PASS (4652928f8), apply N1
+
+Lane gq-infinite-primes. The centre of E_N(R) consists of central scalars and
+fixes every line, so PE_N(R) always acts with the E_N-orbits; the conditional
+phrase is dropped.

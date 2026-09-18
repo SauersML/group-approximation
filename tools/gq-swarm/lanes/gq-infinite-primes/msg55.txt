@@ -1,0 +1,5 @@
+Refinement node: record referee-b PASS on item 1 (dcf202f7c)
+
+Lane gq-infinite-primes. Voronetsky 2004.08551v2 read at source by referee b:
+the refinement bijection for n >= 4 with no stable-rank hypothesis, perfectness
+for n >= 3; padded-centrality line numbers and the GL-action pin corrected.

@@ -1,0 +1,8 @@
+Two-leaf graph manifolds in mapping class groups: fibering criterion and the boundary slope ratio
+
+New claim two-leaf-graph-manifold-twist-realizations (lane proof for items 1, 3, 4): for two
+leaf blocks, fibering means parallel boundary words in the JSJ torus; a mapping class group
+realization with the torus in a two-curve twist group sends each fiber to a single twist
+power, and point pushing on both sides gives only fibered manifolds. A non-virtually-fibered
+example needs one leaf block with relator product T_x^m' T_y^n', m'/n' outside [-1, 0).
+Attempt 10 on nonfibered-closed-graph-manifold-groups-satisfy-pbh.

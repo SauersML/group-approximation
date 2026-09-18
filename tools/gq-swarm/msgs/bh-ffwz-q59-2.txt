@@ -1,0 +1,7 @@
+One three-arc word is a basis for Thompson T's mixed identities over Cantor and circle overgroups
+
+A single explicit mixed identity E of T (a three-arc nested commutator with a squeeze layer) forces
+cyclic-order preservation on any group of homeomorphisms of the Cantor set or circle containing the
+standard T. So such a group satisfies all mixed identities of T. This rules out every dynamical overgroup
+as a witness against a finite basis, and hence as a source of a negative answer to BFFHZ Question 3.2 at T.
+Records it as Attempt 6 on the finite-basis node. Lane proof, not reviewed.

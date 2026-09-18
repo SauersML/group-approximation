@@ -1,0 +1,6 @@
+Obstruction: SL_n(Q) lies in the finite residual of every overgroup
+
+For n >= 2, every finite-index subgroup of every group containing GL_n(Q)
+contains SL_n(Q), and the finite residual of GL_n(Q) is exactly SL_n(Q). This is
+the exact form of the root obstruction O1: finite-quotient certificates of the
+stages GL_n(Z[1/m!]) never pass to their union GL_n(Q).

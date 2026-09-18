@@ -1,0 +1,8 @@
+SK SKAttestB: axiom audit of every census row of simple_kazhdan_sofic_group.tex l.>480
+
+Two new modules, Full/SKAttestB/{LEFHosts,WordProblems}, audit all 203 declarations listed by the 66 formalized
+census rows of lem:nn, lem:host, lem:halfline, cor:host, cor:wp and sec:questions, grouped by row.
+#audit_closed_axioms is used for the 23 input-free theorems, #audit_axioms for the rest.
+105 of these declarations had no audit line anywhere before.
+Every declaration was also checked to exist on main, to lie in the root import closure, and to take only the
+printed hypotheses of its sentence (no owed Statement binder). The modules are not wired into the root.

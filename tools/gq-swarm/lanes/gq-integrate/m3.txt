@@ -1,0 +1,5 @@
+Add the proof route for the sl_2 Casimir obstruction
+
+sl2-casimir-cannot-separate-verma-from-finite-dimensional was stated
+ESTABLISHED with no route. Add a direct route with the standard argument:
+the Casimir scalar, the singular vector f^(k+1) v_k, and Z(U) = Q[Omega].

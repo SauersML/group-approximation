@@ -1,0 +1,8 @@
+bh-relhyp: graphs of groups over conjugation-realized good edges lie in B_A; rel-hyperbolic permanence implies finite-edge amalgam closure
+
+- pbh-graphs-of-groups-over-realized-good-edges (+ proof): vertex groups in one D in B_A,
+  edges realized by conjugation, edge images good => pi_1 in B_A.
+- rel-hyperbolic-permanence-implies-finite-edge-amalgams: calibration (both forms).
+- OPEN node: Attempt 3 and consequence; cross-reference on the finite-index node;
+  artifact section on graph manifolds (product ambient groups only give flip gluings).
+Lane proofs, not reviewed.

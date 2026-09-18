@@ -1,0 +1,5 @@
+gq-referee-b: PASS on twisted BT type F_n criterion, necessity, grid spheres (citation/priority)
+
+BZ Conjecture H quote and 8 labels verified in TeX; FFWZ quotes and Prop 4.8(ii) (faithful
+only) verified; FFWZ Lemma 4.9 gap reading supported at source; bounded arXiv search finds no
+resolution of Conjecture H; Cameron not needed; Quillen pinned secondarily. W1-W4.

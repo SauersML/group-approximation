@@ -1,0 +1,7 @@
+Lodha fp simple circle group S acts on P^1(Q) with type (A): PBH and Q3.4 for S
+
+From the TeX of arXiv:1710.06220: Stab_S(inf) = <F, w_{sigma,tau}> via standard
+forms, and F has at most 8 orbits on the w-generators, so the stabilizer is f.g.
+T is 2-transitive on P^1(Q) and S is f.p. So S admits a type (A) action itself,
+giving a positive case of Zaremsky Q5.13(i) and BFFHZ Q3.4. Lane proof, not
+reviewed; no novelty claimed.

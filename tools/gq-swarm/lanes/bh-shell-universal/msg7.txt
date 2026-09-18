@@ -1,0 +1,6 @@
+Shell envelopes depend only on the near image of the input
+
+bh-shell-universal: finitary permutations give V elements, so the genuine-action shell envelope
+depends only on the subgroup of index-zero near permutations. Every finitely generated such
+group has an envelope via arbitrary lifts, which contains its full preimage in Sym(N).
+Realizability is never an obstruction. Lane proof, not reviewed.

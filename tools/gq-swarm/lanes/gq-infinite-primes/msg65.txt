@@ -1,0 +1,8 @@
+R_L compresses every nonzero element to a scalar; GE and K_1 stability for R_L
+
+Lane gq-infinite-primes. Refining to a common level, extracting a nonzero
+base coefficient, and compressing with a tagged vacuum word 1^k 2 1^m 2 gives
+y x z = 1 for every nonzero x in R_L. With simplicity this is the hypothesis
+of the Menal-Moncasi GE theorem (as quoted by Khanh), so GL_n(R_L) is
+elementary times diagonal and GL_n(R_L)/E_n(R_L) = K_1(R_L) = Z for n >= 3. Input
+(S1) of the frame-complex route to condition (i) now holds.

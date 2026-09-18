@@ -1,0 +1,12 @@
+Refute the generic V * Z claim: V and a homeomorphism never generate their free product
+
+For every nontrivial homeomorphism t of a Hausdorff space and any group T whose rigid
+stabilizers of open sets are nonabelian, pick an open U with t(U) disjoint from U and
+noncommuting a, b in T supported in U. Then [[t,a],b] = [a^{-1},b] holds in Homeo(X),
+while the corresponding length-8 alternating word is nontrivial in T * <t>. So
+<V,t> is never V * <t> in Homeo(Cantor), for any t, not just generically.
+
+This refutes fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers (its Baire
+step overlooks that syllables of V fix open sets pointwise) and reopens the remark in
+permutational-boone-higman-iff-dense-cantor-actors on whether the stabilizer clause
+can be dropped. Lane proof, elementary, not reviewed; no novelty claimed.

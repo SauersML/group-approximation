@@ -1,0 +1,6 @@
+Record two BG host attempts: the relative-holomorph engine and twisted BT
+
+Free-product mapping tori Q semidirect Z (Q = M * F, beta(M) ~ M) contain BG
+only if M semidirect Z does, and only if M x Z does for (T)-type beta; twisted
+Brin-Thompson hosts have only a local twist cocycle, so no global reduction
+to bs12.

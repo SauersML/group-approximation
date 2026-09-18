@@ -1,0 +1,6 @@
+CK kernel hole holds for perfect subgroups of the binary Leavitt unit group; clause (b) contains the stable K_2 budget
+
+bh-ck-kernel lane proof (elementary, not reviewed). Positive instance of
+ck-sandwich-ring-has-fp-projective-simple-quotient via the square-module recipe at
+L_(F_2)(1,2), and a transfer lemma: an infinitely generated image of K_2(4,R) in K_2(R)
+kills clause (b).

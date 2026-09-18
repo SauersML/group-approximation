@@ -1,0 +1,5 @@
+Adversarial check: BS(1,m) ≤ 3V for every odd m — PASS
+
+Artifact gq-bh-bh-refute-verify-bs1m-in-3v.md: hand re-derivation of the SMART_m move proposition
+(both inductions, counts, mirror symmetry, reversibility) and of the m-dependent renormalization
+inputs (entry bounds, exact count, parent table, local rows, level-1 φ table); attacks tried.

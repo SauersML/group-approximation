@@ -1,0 +1,5 @@
+Record the rational BS(1,2) register attempt over the 2V_tau actor
+
+Lane bh-free-16. An actor of type (A) can contain the dilation, but conjugation by it moves the register copy of Q
+to the tower of s^2; the natural corrections need a translation-like BS(1,2) generator in the actor. States the exact
+next question. Attempt only, no claims.

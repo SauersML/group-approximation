@@ -1,0 +1,16 @@
+SteinbergFP: R_L, St_{d+5}(R_L) finitely presented, and the Leavitt swap machinery
+
+First green pieces of the explicit finitely presented overgroup of every GL_n(Q)
+(Kourovka 14.10(c), BBMZ Problem 2.7). New directory, not yet wired into the root.
+
+- ResolventRing: R_L as ℤ⟨Fin 6⟩ modulo the two-sided ideal of its nine relators;
+  St_{d+5}(R_L) is finitely presented; nonzero integers are units and ℚ → Z(R_L).
+- Model: R_L acts on ℕ → ℚ (trailing-ones weights), so R_L ≠ 0 and ℚ ↪ R_L.
+- Doubling: the Leavitt doubling St_V(S) → St_{V×2}(S), x_ij(a) ↦ ∏ x_{(i,s),(j,t)}(t_s a s_t).
+- Diagonal: block-diagonal St_I(S) → St_{I×V}(S) and its elementary matrix.
+- Swap: the elementary 3×3 Leavitt swap W₁ = U⁻¹ (w₂₁ w₁₀) B⁻¹.
+- Intertwine: the block swap conjugates the base copy to the doubled copy on matrices.
+- Room: K₂ becomes central after adjoining one index (LVCentral, transported to Option).
+- Morita: M_{2^j}(S) ≅ S and the scalar Leavitt family of M_ι(S).
+
+All modules build green on MSI with only propext, Classical.choice and Quot.sound.

@@ -1,0 +1,9 @@
+bh-relhyp: relatively hyperbolic reduction to fp simple peripherals; permanence implies free-product closure; OPEN permanence claim with gate (RB)
+
+Three nodes and one artifact from lane bh-relhyp (lane proofs, not reviewed):
+- rel-hyperbolic-groups-embed-with-fp-simple-peripherals (+ route): via Dahmani's
+  combination theorem, peripherals can be swapped for finitely presented simple hosts.
+- rel-hyperbolic-bh-permanence-implies-free-product-closure: the permanence statement is
+  at least as hard as free-product closure of the Boone--Higman class.
+- rel-hyperbolic-groups-with-bh-peripherals-satisfy-bh: OPEN, with known cases,
+  reductions and the missing input (RB) for a germ-extension route.

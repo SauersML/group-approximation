@@ -1,0 +1,7 @@
+gq-borel-q: root needs only nontrivial maps of the simple PSL_n(Q)
+
+PSL_n(Q) is simple (SL_n(Q) itself for odd n) and cofinal with GL_n(Q), so
+the root is equivalent to a nontrivial homomorphism of PSL_n(Q) into a group
+embeddable in a finitely presented simple group, for infinitely many n.
+Faithfulness and kernel disjointness come for free. Adds the open target in
+that form and its route into the root.

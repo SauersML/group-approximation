@@ -1,0 +1,8 @@
+FW inputs fail every shell window whose shifted copies commute
+
+For an infinite finitely generated FW input and a genuine action with infinite
+supports, if the copies c_0..c_N pairwise commute then s^-1 rho(P) s is not in
+W_N: shift invariance puts the left copy into c_N times a central subgroup,
+the derived subgroup then satisfies window zero for s^(N+1), and that fails
+(levels of the N+1 forward rays, local finiteness of Sym(m)-powers). Closes
+the W = P^(N+1) positive shape for Kazhdan inputs.

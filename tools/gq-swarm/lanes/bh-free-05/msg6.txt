@@ -1,0 +1,6 @@
+Domain-exact HNN hosts: kernel elements are multi-valley hyperbolics
+
+New lemma domain-exact-hnn-hosts-have-multivalley-kernels: if G = P*_phi maps to Y*_Phi with
+P ∩ C_1 = A, every kernel element is hyperbolic on T_G with >= 2 height-maxima per axis period
+(down-cone injectivity). Ascending corollary reproves injectivity for any vertex group. Attempts
+refinement on bh-embeddability-survives-decidable-edge-hnn. Lane bh-free-05, lane proof.

@@ -1,0 +1,7 @@
+Countable-input Boone-Higman node and its routes
+
+Add countable-decidable-groups-embed-in-fp-simple-groups (OPEN, equivalent to
+Boone-Higman by survey Cor. 3.5 and the trivial converse), with routes into the
+GL_n(Q) root (GL_n(Q) is decidable, survey Prop. 3.3) and into
+countable-char-zero-linear-groups-embed-in-fp-simple-groups (GL_n over a
+computable algebraic closure of Q(t_1, t_2, ...) is decidable, Rabin 1960).

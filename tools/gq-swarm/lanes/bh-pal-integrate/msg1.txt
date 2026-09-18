@@ -1,0 +1,9 @@
+Map the metabelian Boone-Higman Lean chain for the Palomar megapair
+
+Four of the ten gap statements behind the finitely presented metabelian endpoint are now
+closed on main: the pure characteristic-p module statement, the Bruhat big cell, the
+Rover-Nekrashevych finite relator core, and perfection of the generalized torsion V. The
+other six are open and under active work. The finitely generated linear statement waits on
+the same six. The artifact records the exact endpoint names, the build and wiring convention
+(no root import of the chain), and a proposed wiring file that states both targets from the
+six open gaps.

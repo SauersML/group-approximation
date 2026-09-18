@@ -1,0 +1,10 @@
+Steinberg-algebra finite presentation is a Kakutani invariant; automorphic extensions need no rigidity but are capped
+
+Full corners of finitely presented algebras are finitely presented, so finite presentation of the Steinberg
+algebra (the rigidity gate E2 / premise E-prime) is an invariant of the groupoid up to Kakutani equivalence. In
+particular quantum rigidity of Z^2 SFTs is invariant under orbit-equivalence recodings. A finitely presented
+group of outer automorphisms of a groupoid with finitely presented algebra gives a finitely presented central
+simple crossed product with no rigidity hypothesis, but its word problem is then bounded by the algebra's.
+So rigidity and the carrier principle are one gate.
+
+Lane bh-invent-03; elementary lane proofs, unreviewed.

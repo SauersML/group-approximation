@@ -1,0 +1,3 @@
+Referee report: Euler lamplighter acts faithfully on the l-ary tree PASS
+
+Proof-gap lens on euler-lamplighter-acts-faithfully-on-the-l-ary-tree (c49d99f83). Items 1-4 PASS incl. the measure picture; N3 needed for residual l-finiteness at odd l; notes H1-H3 on the OPEN finite-state companion.

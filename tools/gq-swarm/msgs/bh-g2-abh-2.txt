@@ -1,0 +1,13 @@
+Reduce ABHT's F_n x Z rigidity and the Jeandel-Rao minimal subshift to Labbe's scale-2 question
+
+Labbe's substitutive structure of Jeandel-Rao tilings joins the minimal subshift X_0 (ABHT's horizontally
+expansive fibre) to the 19-tile shift Omega_U by recognizable 2-dimensional morphisms onto up to a shift, an
+embedding and a shear conjugacy. A recognizable morphism onto up to a shift is a Kakutani equivalence of the
+Z^2 transformation groupoids (block origins form a full clopen transversal), so finite presentation of the
+crossed product, and between SFTs quantum rigidity, passes along the chain in both directions. With the
+path-fold theorem and the scale-two theorem: X_0, Omega_U and ABHT's minimal free SFT on F_n x Z are rigid
+together, exactly when J_2(Omega_U) = 0. No computation was run; the J_2 computation belongs to bh-g2-labbe.
+
+Lesson for general BH: gate E2 is a Kakutani-class question. Pick the model with the geometry the construction
+needs (an expansive direction for folding) and decide rigidity on the model with the smallest finite check
+(the self-similar one). E2 over one-ended non-amenable F_n x Z and the Z^2 rigidity certificate were one gate.

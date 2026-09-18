@@ -1,0 +1,11 @@
+Leavitt: Q embeds in <V, 1 + x_01 y_00> <= U(L_Z(1,2))
+
+In the unit group of the integral binary Leavitt algebra, integer matrices on
+cone configurations refine by Kronecker products, so a V-rotation of k+1 refined
+copies times one copy is a (k+1)-st root of a transvection. This gives a
+compatible root system a_{k+1}^{k+1} = a_k in the finitely generated group
+<V, t>, hence (Q,+), in characteristic 0 for every coefficient ring. That group
+also contains every GL_r(Z) and distorted unipotents, so it passes O1-O4 as a
+host candidate for GL_n(Q). The copy of Q does not extend to Aff(Q) by
+conjugation: t is not conjugate to t^p. Also update the ring-level obstruction
+to point here.

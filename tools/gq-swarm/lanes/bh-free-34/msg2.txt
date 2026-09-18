@@ -1,0 +1,15 @@
+Open Kourovka 7.19 with its routes, and kill hard base points in V-like actors
+
+Kourovka 7.19 (Cannonito) asks for an explicit finitely presented simple group whose word
+problem is not primitive recursive. The node records the verbatim question and notes that its
+existence form follows from the complexity root at the single bound Ackermann. It also notes
+that every known explicit finitely presented simple group is primitive recursive.
+
+Two routes. One goes through an explicit type (A) actor whose orbit problem is not primitive
+recursive; that premise is OPEN. The other is a constructive Boone-Higman embedding of one explicit
+C'(1/6) group G_A with a diagonal non-primitive-recursive set A.
+
+New established lemma: in a group of Cantor homeomorphisms containing V, the stabilizer of a
+non-eventually-periodic point where every element is locally a prefix replacement is an
+ascending union of proper subgroups, hence not finitely generated. The same holds in nV. So
+hardness cannot be placed in the base point of a type (A) action on such hosts.

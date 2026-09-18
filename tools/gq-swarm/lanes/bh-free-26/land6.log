@@ -1,0 +1,4 @@
+LANDED 790908c2f on origin/main (parent 4236be608):
+ ...nas-hypotheses-hold-for-leavitt-tensor-hosts.md | 25 +++++++
+ ...itt-tensor-k-theory-is-carried-by-nil-groups.md | 85 ++++++++++++++++++++++
+ 2 files changed, 110 insertions(+)

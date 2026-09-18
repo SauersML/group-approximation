@@ -1,0 +1,5 @@
+Witte citation route: record Parwani Theorem 1.2 and referee-b check
+
+Referee gq-referee-b confirmed the secondary quotation of Witte (1994) as
+Theorem 1.2 of Parwani arXiv:math/0504189v1. Record the theorem number and the
+review; the primary AMS text is still unread.

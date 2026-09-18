@@ -1,0 +1,3 @@
+Seed tower: m-adic mortality is uniform and makes H_0 finite, so pinned halting marks are forced at infinity only for trivial machines
+
+A modular machine terminates on every m-adic configuration iff its running time on N^2 is uniformly bounded, and then H_0(M) is finite. Rogue sheets of a mark-type relative seed for (K_M, T_M) run the m-adic machine, so mortality on N^2 forces marks on the genuine sheet (isolation) but never at infinity for machines with infinite H_0.

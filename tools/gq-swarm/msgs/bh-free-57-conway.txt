@@ -1,0 +1,6 @@
+Conway amusical permutation is the full 3-shift inside CT(Z); diagonal rigidity of CT_P(Z)
+
+The amusical permutation lies in CT_{3}(Z) and is conjugate on Z_2 x Z_3 to the two-sided full
+3-shift. So CT(Z) contains the full-shift full group and every right-angled Artin group. CT_P(Z)
+acts by one affine map in all prime coordinates, so it has no one-stack writes in these coordinates,
+and V acquires odometer fibres. Bearing on Kourovka 17.58 and 19.46 recorded; 17.58 stays open.

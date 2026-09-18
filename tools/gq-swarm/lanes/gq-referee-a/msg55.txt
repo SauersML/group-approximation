@@ -1,0 +1,3 @@
+Referee reports: resolvent E_N not fp PASS; corner symbols and Steinberg residual second reviews PASS (R1)
+
+Proof-gap lens on resolvent-elementary-groups-are-not-fp, second reviews of resolvent-ring-corner-symbols-survive-in-k2 and resolvent-steinberg-rf-residual-is-infinitely-normally-generated. R1: step 3 of the residual node needs K_rf inside K_2(N,R_l), true since R_l is RF.

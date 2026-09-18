@@ -1,0 +1,11 @@
+Kourovka 20.44: a counterexample needs orbits of unbounded size (affine rigidity of small orbits)
+
+If a finitely generated subgroup of CT(Z) has infinitely many orbits of size at most s, the set
+of points in such orbits is a union of residue classes up to a finite set, so orbit minima have
+positive lower density. Together with the 3x+1 reduction (7b84a747f), a counterexample needs
+infinitely many unbounded or infinite orbits glued by translations, with no local invariant at
+a rational point. No provable example is known; 20.44 stays open.
+
+Lesson for general BH: orbit statistics of subgroups split into a clopen layer (decidable,
+positive density) and a dynamical Collatz layer; orbit finiteness must be imposed on the host's
+own action.

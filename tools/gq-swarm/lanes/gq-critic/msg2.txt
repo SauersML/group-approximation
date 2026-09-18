@@ -1,0 +1,8 @@
+Add gq critic pass 2: untried hosts, sharpest gates, meta-theorems
+
+Second completeness pass over the root Attempts, 69 boards and ~230 gq
+claim nodes. It corrects pass 1 (SL_n(Q) lacks FW), lists host families
+never tried (the adelic-building complex of groups, St_N(R_L) and Thompson
+actors for twisted Brin-Thompson groups, solenoid groupoids, Aff(Q) in the
+rational group), ranks the sharpest open gates, and states three
+meta-theorems (localization, the K_1/K_2 principle, coherence) with inputs.

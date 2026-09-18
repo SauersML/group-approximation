@@ -1,0 +1,7 @@
+Hyperbolic groups quasi-isometrically embed in finitely presented simple groups
+
+The BBMZ chain G <= G*Z <= [[G*Z | horofunction boundary]] <= SV_Gamma is undistorted at every step. G*Z acts
+locally faithfully on its horofunction boundary (Bass-Serre tree argument), and label length is
+subadditive on full groups, so locally determined labels bound distortion. This settles the
+quasi-isometric half of Zaremsky's question (arXiv:2201.00711) for hyperbolic groups; the type F_infinity
+half stays open. Lane proofs, not reviewed; no priority claimed.

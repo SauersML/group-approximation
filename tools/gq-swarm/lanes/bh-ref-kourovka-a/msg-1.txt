@@ -1,0 +1,6 @@
+Referee Kourovka 17.60 and 21.73: PASS with minor gaps
+
+Adversarial referee sections on ct-p-z-groups-are-pairwise-nonisomorphic (17.60) and
+ct-z-conjugacy-problem-is-undecidable (21.73). Matui 1210.5800 citations checked at source.
+21.73 gap: the explicit prime set {3,5,7,11,13} needs (H) for 2-counter machines from an
+initial configuration; with the step counter the proof gives P = {3,5,7,11,13,17}.

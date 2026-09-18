@@ -1,0 +1,6 @@
+Scout the Lean coverage of the linear-groups Boone-Higman theorem
+
+T3 (every f.g. linear group over any field embeds in an f.p. simple group) is already a
+sub-goal of the metabelian chain: its linear-host and envelope halves are on disk, and it
+shares the metabelian root's six open gap Statements. The report maps each informal step
+to its Lean declaration and recommends a thin wiring module instead of new hosts.

@@ -1,0 +1,6 @@
+Referee the seed constructions: real-cut BG seed and order seeds PASS; modular reader needs orientation-conditioned rules
+
+Referee sections on the real-cut relative seed for (BS(1,2), <b>) and BG in C (PASS), the general
+order-seed theorem (PASS), and the modular-machine scaling seed. There parts 1-2 PASS, and part 3
+holds once the transport and reader rules are applied only along edges away from the sink; part 4 is
+correctly open.

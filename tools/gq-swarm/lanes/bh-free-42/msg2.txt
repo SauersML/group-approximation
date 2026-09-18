@@ -1,0 +1,11 @@
+Colour-preserving subgroups of one-vertex product lattices: abelian quotients are transducer cocycles, so Amir-Lazarovich Lambda'^+ is perfect; Kourovka 21.46 node
+
+bh-free-42. A lattice acting simply transitively on the vertices of T x X_L is a transducer
+(state z reads letter D, outputs zeta_z(D), moves to delta_D(z)); via the tree amalgam, every
+homomorphism Lambda'^+ -> F_2 is a solution of f1(D)+f2(zeta_z D)+c = h(z)+h(delta_D z). Transitive
+legal moves leave only constants, so Lambda'^+ = [Lambda',Lambda'] is perfect for every AL lattice
+and every BMW seed; a torsion-free (cd 3) AL simple lattice would need a nonabelian finite simple
+quotient of Lambda'^+. New OPEN node for Kourovka 21.46 records the dead routes (RSV doubles; AL
+lattices, closed for the known seeds by bh-free-extensions) and what is left, with the source for
+Radu's three-tree non-existence theorem. The torsion-iff-index-four node gains a pointer to these
+and a Lesson paragraph. Lane proof, not reviewed.

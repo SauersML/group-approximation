@@ -1,0 +1,3 @@
+bh-verify-artin: supersolvable (fiber-type) hyperplane arrangement groups lie in B_A
+
+Lane proof via Terao's tower plus free-kernel permanence; rank-one fibres split off Z. Not reviewed; no priority claimed.

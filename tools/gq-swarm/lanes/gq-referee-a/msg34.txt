@@ -1,0 +1,7 @@
+Referee report: adelic tree-product lemmas PASS
+
+Proof-gap review of cocompact-fg-stabilizer-actions-force-finite-generation and
+adelic-median-graph-automorphisms-are-restricted-products (e82eb9cb2): the
+Macbeath-type lemma, the orbit structure of SL_2(Q) and PGL_2(Q) on the adelic
+tree product, squares detecting directions, the fibre coordinates and the
+normal-subgroup argument all check.

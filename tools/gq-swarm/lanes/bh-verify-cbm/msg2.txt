@@ -1,0 +1,9 @@
+Record that free centre-by-metabelian linearity is Gupta-Wehrfritz 1976, Remark 3
+
+Both 1976 papers were fetched via MSI and read. N. D. Gupta-Wehrfritz, Arch. Math. 27 (1976),
+Remark 3 on p. 454 states that every free centre-by-metabelian group of finite rank is linear.
+Facts (ii) and (iii), credited to C. K. Gupta, give torsion elementary abelian of rank C(n,4)
+and residual 2-finiteness. The lane chain is a new proof of a known theorem; the priority line
+on the linearity node and the verification report are updated.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

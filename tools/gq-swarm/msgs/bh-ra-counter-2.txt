@@ -1,0 +1,3 @@
+Wall-orientation ambients need locally short walls; non-exact small cancellation walls fail
+
+The principal pair across one edge differs exactly on that wall's vertex carrier, so a 2D-disconnected carrier kills D-rigidity. Over graphical C(1/6) groups with walls through relators of unbounded girth (the Arzhantseva-Osajda and Osajda non-exact regime), conditional on quasi-isometrically embedded walls, the wall ambient is non-rigid at every scale. Minimal subsets are not settled.

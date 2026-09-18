@@ -1,0 +1,7 @@
+Record referee b's PASS and say the hyperbolic B_A read-off is two lines from print
+
+Referee b checked every BBMZ quote and label and passed both nodes. Following
+its warning W1, the hyperbolic node now says that BFFHZ Theorem C with the
+BBMZ proof of Proposition 5.1 already gives items 1 and 2, and that the useful
+content is the product corollaries. Fix two theorem numbers in the route and
+point to BBMZ Question 1.3 from the questions node.

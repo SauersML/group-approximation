@@ -1,0 +1,6 @@
+K_2: bounded MSI search for a hidden relation finds none (Attempt 4, evidence)
+
+Words in sigma_2^j-conjugates of elementary matrices (|j|<=1 to length 5, 1.64M
+elements with partial length 6; |j|<=2 and wide shears to length 4): no linear
+relation with |det| != 1 and no r-translated match. Calibrated; independent
+sympy verifier; scripts and outputs in the artifact.

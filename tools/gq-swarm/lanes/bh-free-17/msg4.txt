@@ -1,0 +1,16 @@
+Show that persistent self-similar hosts build their input from their carry kernel
+
+Let a self-similar group have a persistent retraction onto H with kernel K. The
+elements of H that centralize K, restricted to those fixing the first level,
+embed in K^X through their first-level carries c^x c^{-1}. The rest of H acts
+faithfully on K.
+
+So if K is finite-rank torsion-free abelian-by-free-abelian with the abelian
+part characteristic, as for LISW's Z[1/N]^n x| <N>, then every abelian subgroup
+of H has finite rank. Such hosts can never reach Z wr Z or the finitely
+presented metabelian group Z[t^+-1,(1+t)^-1] x| Z^2, for any alphabet or
+self-similar structure. This extends the rigid-ring barrier from affine hosts
+to all persistent hosts.
+
+The Question 1.10 node gets a pointer and a wording fix.
+Lane proof, not reviewed.

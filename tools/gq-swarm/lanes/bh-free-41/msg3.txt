@@ -1,0 +1,6 @@
+Calibrate the V support constraints against free subgroups of T
+
+Free subgroups of PSL_2(Z) in T satisfy every support and attractor
+constraint with full supports, so a surface-group obstruction in V must use
+one-endedness. A finite attractor orbit only forces a locally trivial normal
+subgroup.

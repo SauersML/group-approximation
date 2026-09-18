@@ -1,0 +1,3 @@
+If `n*` exists, take `ω = n*`. This is in the class, and `n*` then has infinite level. By the
+definition of `X_T` its ruler value is free, and rules 2 and 3 never apply to its row. So the
+row at `n*` imposes nothing. If `n*` does not exist, take any `ω` in the class.

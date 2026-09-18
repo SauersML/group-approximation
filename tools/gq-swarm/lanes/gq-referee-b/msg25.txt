@@ -1,0 +1,7 @@
+gq-referee-b: review of register-comparison-presentations-are-not-simple
+
+Hypothesis/scope review with proof check: PASS. D1-D7 and C1-C4 delimit the
+covered class, the proof uses only elementary facts, and the capacity
+instance meets C1-C4. Three amendments: choose P_f as the full product so the
+generic-cell inclusion holds over Q(delta); relations from the base closure;
+C1 is used only via C4.

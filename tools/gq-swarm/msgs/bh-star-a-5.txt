@@ -1,0 +1,11 @@
+HP on F x H: seeds whose tree pointers are read with bounded spread are never scattered
+
+A seed over F x H (F free) records the pointer on every column. If an honest reading scheme reads
+every tree-ball near one common height, then each infinite reduced word gives a distinct boundary
+point, so the boundary has the cardinality of the continuum. Products, glued seeds, light cones,
+homomorphism heights and persistent search schedules all read with bounded spread. Transient token
+designs do not, but they break the separation lemma and are not seeds.
+
+So a scattered seed over F x H must spread its readings across unboundedly many heights on some
+tree-ball, for every honest scheme. Whether local consistency forces persistence, which would settle
+the pointer-hiding conjecture on this group, stays open.

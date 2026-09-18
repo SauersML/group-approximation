@@ -1,0 +1,14 @@
+Baumslag-Gersten rung: a glued seed with non-elementary forcing length and a polynomial word problem
+
+baumslag-gersten-seed-forcing-length-is-non-elementary:
+- relative seeds on BS(1,2): y_a for <a> (a sink vertex of the BS tree) and y_b for <b> (a marked axis
+  with C_Z on axis cosets). Both satisfy (RS1): isolated, with stabilizer exactly the subgroup;
+- the glued seed over BG = HNN(BS(1,2), <a> -> <b>) satisfies (C1). BG is in class C once y_b is rigid
+  (RS2 and RS3 are open), by the relative-seed gluing theorem;
+- its forcing length is at least tower(log n - 3), while WP(BG) is polynomial (Myasnikov-Ushakov-Won).
+  So forcing length is not a complexity certificate.
+Also corrects the rung-1b lesson in the Heisenberg node.
+
+Lesson for general BH: distortion, even non-elementary, certifies nothing. Forcing length is a
+design-dependent upper bound; the CAP invariant is the complexity of evaluating the forced labels, i.e.
+the membership oracles the relative seeds must be. A real CAP test needs hard-membership subgroups.

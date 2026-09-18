@@ -1,0 +1,9 @@
+P2 prime b: the gluing kernel is relatively perfect
+
+Lift the doubling swindle to the gluing group (mixed relations follow from
+[M_0,N_1]=1 via local labels); with V-conjugate copies this gives
+K = [K, Gamma~]. So the centrality lemma of P2 prime b Attempt 1 is
+equivalent to K = 1, exactness of the gluing presentation.
+
+Lesson for general BH: swindles make kernels of self-similar presentations
+relatively perfect, so central-kernel tricks can only prove exactness.

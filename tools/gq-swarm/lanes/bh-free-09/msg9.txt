@@ -1,0 +1,7 @@
+Quantum rigidity is not closed under fibre products over the same group
+
+Ledrappier's shift and its mirror image are each quantum rigid, but their fibre product over Z^2 has
+nonzero configurations supported in opposite half-planes, so it has walls and is not rigid. This is the
+first explicit failure of the centrality condition (C) with both layers rigid. A site version of
+cylinder transport certifies (C) for fibre products over any group, and in the example it is blocked
+exactly along the antipodal direction.

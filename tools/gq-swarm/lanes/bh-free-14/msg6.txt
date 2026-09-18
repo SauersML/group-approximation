@@ -1,0 +1,10 @@
+Deligne's class survives on every linear rational projective host
+
+No homomorphism Sp_2n(Z) -> GL_N(Z) (n >= 2) makes Deligne's class die on the
+rational Cantorization S^_(N-1): every V_lambda has invariants under the
+long-root SL_2 (the H-invariant weights of C[G/U] form a monoid containing all
+fundamental weights), giving an orbit in no rational hyperplane with a
+symplectic block in its stabilizer; then Mackey-Moore as before. Corrects my
+earlier remark that k*std escapes the obstruction (two nodes amended). The
+rational projective route for Deligne now needs a genuinely piecewise
+embedding of Sp_2n(Z) in T_m.

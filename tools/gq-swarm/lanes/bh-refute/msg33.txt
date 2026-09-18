@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on fg Cremona subgroups have arithmetic linear part

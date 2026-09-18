@@ -1,0 +1,6 @@
+Aff(Q) target: BS(1,3) in 3V is now established
+
+Update Attempt 6: bs13-embeds-in-brin-thompson-3v is ESTABLISHED
+(d4064ce79; three referee passes, numerical validation, bounded priority
+check). Note that Aff(Q) also needs BS(1,2) in the host, still open, which
+calls for a binary analogue of the SMART hierarchy.

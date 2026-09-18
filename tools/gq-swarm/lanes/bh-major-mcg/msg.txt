@@ -1,0 +1,8 @@
+Train-track split cones have least common descendants; closed-MCG skeleton
+
+Split descendants of a complete train track either have cones with disjoint interiors
+or a least common descendant whose cone is the intersection (wall locality plus
+commuting splits, Levi-style induction). This supplies the right-LCM half of the
+finite-presentation gate for the train-track host of closed Mod(S_g). Agol's
+Corollary spliteq (read at source) settles the Serret gate at minimal suited
+laminations. Adds the team skeleton for BBMZ 5.3(2).

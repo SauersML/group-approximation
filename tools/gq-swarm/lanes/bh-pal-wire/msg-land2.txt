@@ -1,0 +1,4 @@
+BH metabelian chain: generic clearing-denominators lemma; two latent Subgroup API fixes (unprobed)
+
+CharZeroCoordsDenominators: the matrix embedding is now proved for any commutative ring L with an injective map to Q whose range contains the rationals of denominator dividing m. Z[1/m] is then a substitution, so MvPolynomial.map and RingHom.range are never elaborated at Localization.Away.
+EnvelopeGenTorsion and EnvelopeWreathEmbedConeV (downstream of the reds, never built): MonoidHom.map_closure, and an explicit subgroup argument for Subgroup.closure_le.

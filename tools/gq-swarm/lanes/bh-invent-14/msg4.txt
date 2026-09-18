@@ -1,0 +1,10 @@
+The Aanderaa-Cohen rope is the digit-letter orbit of one element; relative seeds pass through it
+
+In Cohen (CGT 1989, section 9.6) the rope relations p^-1 t_a p = t_a w_a(b) d, a in I, are one relation
+transported by the free monoid on the digit letters a_i; membership in the rope is finite-state, so it
+is no CAP obstacle. The relative-seed gluing proof uses finite generation only of vertex groups, so the
+rope is covered once (H_1, C+-) carry relative seeds. Reordering the tower (a_i before p) gives an HNN
+B_1 over free groups (proved) and removes the infinite rank modulo two Britton checks (R1), (R2).
+
+Lesson for general BH: infinite rank is an artifact of order; the seed tower work concentrates in a
+Kurosh-type gluing (input-free) and the halting HNN (CAP).

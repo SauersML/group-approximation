@@ -1,0 +1,3 @@
+Referee report (citation lens): T_p Attempts 5-9 on the central-deformation Euler host PASS
+
+Quillen and NK vanishing pinned to Weibel K-book V.6.2-6.3 (noncommutative allowed, D regular); DS detector p. 255 needs F perfect; Berrick-Keating via Xi L4.1. Fixes: E_N not St_N in the congruence lemma, reverse inclusion for I_rf(T_p) supplied, Attempt 8 title, detector sentence.

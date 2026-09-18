@@ -1,0 +1,5 @@
+Link the settled PSL_2(Z[1/2]) test case on the decidable-wreath node
+
+The second test case of pbh-closed-under-decidable-permutational-wreaths is settled in
+B_A by the clopen-stabilizer wreath nodes (lane bh-openq-papers), which also put the
+PSL_2(Z[1/2]) double along PSL_2(Z) in B_A.

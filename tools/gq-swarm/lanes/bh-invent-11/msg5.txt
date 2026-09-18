@@ -1,0 +1,10 @@
+Seed full groups are oligomorphic actors whose orbit problem reads the seed; hard actors merge into SEED
+
+For an SFT over Gamma with a seed (isolated point, trivial stabilizer, dense orbit), the
+topological full group contains every finitary permutation of the seed orbit, so it acts faithfully
+and highly transitively there, and conjugates of one cylinder swap reduce the two-cell patterns of
+the seed configuration along words to its orbit problem. With finite presentation and one finitely
+generated stabilizer this is a type (A) actor whose hardness is that of the seed configuration, not
+of Gamma. A route reduces type-a-actors-with-arbitrarily-hard-word-problem to an OPEN claim of hard
+evaluation seeds with finitely presented full groups; the Gamma = Z rung is empty, since isolated
+points of Z-SFTs are eventually periodic.

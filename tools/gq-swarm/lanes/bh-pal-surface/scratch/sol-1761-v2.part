@@ -1,0 +1,23 @@
+/-- The proposition the class-transposition development owes for Kourovka 17.61. -/
+def Kourovka1761Owed : Prop :=
+  ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+    Group.IsFinitelyPresented (classTranspositionGroupOver P)
+
+/-- Kourovka 17.61, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_61_of (h : Kourovka1761Owed) :
+    ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+      Group.IsFinitelyPresented (classTranspositionGroupOver P) :=
+  h
+
+/-- The proposition the graph-product development owes for BFFHZ Question 3.1. -/
+def GraphProductOwed : Prop :=
+  ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+    (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G)
+
+/-- BFFHZ Question 3.1, answered positively, from the proposition the graph-product
+development owes. -/
+theorem graph_product_embeds_in_type_a_group_of (h : GraphProductOwed) :
+    ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) :=
+  h
+

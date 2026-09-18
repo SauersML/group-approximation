@@ -1,0 +1,4 @@
+Referee C: credit the St_n direct proof as the standard bootstrap
+
+The n >= 5 proof is the standard relator bootstrap written out; no novelty claimed.
+Also records the independent referee-b PASS (95b06dff9).

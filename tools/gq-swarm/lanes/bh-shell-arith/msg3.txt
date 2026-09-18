@@ -1,0 +1,10 @@
+Commuting ray translations with a shared inflow ray are not realizable; the two-radix host meets every fp-ray condition except realizability
+
+bh-shell-arith. New elementary lemma: two commuting near permutations that drain the same ray
+into different rays have no genuine realization on any set commensurate with N (cf. Cornulier's
+Kapoudjian class for Houghton near actions). Application: the F_infinity two-radix odometer host
+acts genuinely on {0,1} x Z with s the translation; on the nonnegative ray it is a finitely
+presented near group with the shift, a finitely generated non-virtually-abelian index kernel and
+infinite supports, but localized-odometer pairs make the index kernel non-realizable. Recorded as
+an Attempt on fp-ray-near-actions-with-the-shift-exist. Also qualifies two of my nodes as
+regular-shell statements, per bh-integrate. Lane proofs, not reviewed; no novelty claimed.

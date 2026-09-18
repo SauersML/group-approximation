@@ -1,0 +1,3 @@
+Embed closed-surface mapping class groups in the full group of integral projective germs on the rational Cantorization
+
+The mapping class group acts on PML by piecewise integral linear maps in train-track charts, so it acts on the Stone space of the rational polyhedral regular-open algebra by finitely many integral pieces. That full group is isomorphic to the topological full group of GL_{m+1}(Z) acting on the rational Cantorization of S^m, m = 6g-7, which is proved full and clopen transitive through unimodular subdivisions. Boone-Higman for closed Mod(S_g), g >= 3, now rests only on the new open finite-presentation claim for that group.

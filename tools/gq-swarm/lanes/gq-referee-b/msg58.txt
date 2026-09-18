@@ -1,0 +1,3 @@
+Referee report (citation lens): isometric frames over rank-one bases fail the K-budget PASS
+
+Bass cancellation pinned to Weibel K-book I Ex. 1.5; filtered-ring K_0 to Weibel V.6.4/6.4.1/6.4.2. W1 coprime-pair claim false with torsion; W2 item 3 excludes only ranks divisible by j; W3 Ore localizations need a different argument. Gate Attempt 12 reading of single-register Part 2 correct.

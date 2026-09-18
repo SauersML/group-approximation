@@ -1,0 +1,5 @@
+Status hygiene: automatic groups are not a BH class on main; hyperbolic-in-nV is OPEN; Kojima–Sheng nV torsion local finiteness is a claim with an invalid proof
+
+- gq-bh-bh-kourovka-problems.md: drop "automatic" from the list of BH classes on main; automatic-groups-satisfy-boone-higman is OPEN.
+- every-hyperbolic-group-embeds-in-some-brin-thompson-group: add the missing OPEN status line; "is the affirmative answer" now reads "if true, is".
+- Four nodes cited Kojima–Sheng arXiv:2603.18410 "nV is torsion locally finite" as a theorem or unrefereed import. For n >= 2 its proof is invalid (kojima-sheng-two-generator-torsion-criterion-fails-in-v, a22c90a4a) and the statement is open; the citations now say so. No mathematics changed.

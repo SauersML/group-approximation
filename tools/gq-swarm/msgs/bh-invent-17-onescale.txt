@@ -1,0 +1,3 @@
+One-scale filling decides finite presentation of V-times-subshift hosts
+
+The host is finitely presented iff the loops of one cocompact domain level die at a larger level, since it is then a retract of a finitely presented orbifold group. A finite shadow basis gives this for free. Self-similarity only propagates a filling across scales, so for the crossing-wire tiles the open step is the nonlinear one-scale form of quantum rigidity. Credit: every input reached by the tree hosts already satisfies BH by Bux-Llosa Isenrich-Wu; correct the priority remark.

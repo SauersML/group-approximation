@@ -1,0 +1,1 @@
+Assigned: adversarial PASS on Tarocchi's [G_3,G_3] simple

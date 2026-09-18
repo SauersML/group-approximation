@@ -1,0 +1,9 @@
+E2 for plane lifts: letters are central, rigidity is clustered freedom, transport couplings cannot be minimal
+
+In crossing-wire table lifts over Lambda_0 x Z^2, copied table wires cross inside every zone, so
+all letter and table idempotents of all planes commute and are central; with central coordinates,
+E2 reduces to relative rigidity at frozen (skeleton, input), which holds iff the free planes
+cluster within 2D and the cluster fibre is rigid. Coupling floating identities by bijective
+table-dependent transports would make the lift rigid, but the slots force a single parallel
+section, an invariant factor that determines the point, so such a lift is never minimal for a
+non-SFT input; the transport design rule of 3bf21d2d6 is withdrawn. Lane proof, unreviewed.

@@ -1,0 +1,155 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+# WORK IN PROGRESS. This metadata describes Palomar/comparator-boone-higman.json only.
+# That configuration is pending: its solution still proves most selected theorems from
+# propositions the development has not yet discharged, so nothing is published in
+# status.main_results and this record is not a submission.
+project:
+  name: "Boone-Higman Embeddings and Related Printed Questions (work in progress)"
+  description: >-
+    Work in progress. This configuration collects printed open questions around the
+    Boone-Higman conjecture that were answered in this repository, stated in Mathlib's
+    vocabulary. It covers four answers. First, an explicit finitely presented group
+    containing every GL_n(Q): the Steinberg group St_10(R_L) of a six-generator,
+    nine-relation ring R_L (Kourovka Notebook 14.10(c); Belk, Bleak, Matucci and
+    Zaremsky, Problem 2.7). Second, embeddings of every finitely presented, and every
+    finitely generated, metabelian group into finitely presented simple groups (Problem
+    5.3(7) of the same survey), together with every finitely generated linear group
+    over any field, and the intermediate embedding of those linear groups into finitely
+    presented self-similar groups (Llosa Isenrich, Schesler and Wu, Question 1.11).
+    Third, the equality of Kohl's class transposition group CT(Z) with the group of
+    residue-class-wise affine permutations fixing the nonnegative integers setwise
+    (Kourovka Notebook 17.59). Fourth, a negative answer to Question 3.3 of Belk,
+    Fournier-Facio, Hyde and Zaremsky on mixed identities of finitely presented simple
+    groups. The configuration also states the existence of a finitely presented infinite
+    simple group, whose witness is Hyde and Lodha's Q_2; that theorem is already proved.
+    The remaining theorems are proved in the solution only from explicit hypotheses
+    that the development is still discharging.
+  authors: [Sauers]
+  responsible_maintainers: [SauersML]
+  license: Apache-2.0
+
+classification:
+  arxiv: [math.GR, math.RA, math.KT, math.DS]
+  msc2020: ["20F05", "20E32", "20F10", "19C09", "20E08"]
+
+sources:
+  - title: Boone-Higman embeddings and related printed questions
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Claude (Anthropic)
+        role: developed the arguments, the Lean development and the prose of this submission under the user's direction
+    note: >-
+      The answers collected here were found and written up in this repository under the
+      user's direction. Their proofs are internal and have not had external expert
+      review; bounded literature searches found no earlier answers, which is not a
+      certification of priority. The Lean development is in progress, and the solution
+      module records exactly which propositions each theorem still assumes.
+
+  - title: Progress around the Boone-Higman Conjecture
+    authors: [James Belk, Collin Bleak, Francesco Matucci, Matthew C. B. Zaremsky]
+    year: 2023
+    type: paper
+    id: https://arxiv.org/abs/2306.16356
+    location: Problem 2.7 and Problem 5.3(7) (version 3)
+    relationship: background
+    note: >-
+      States the Boone-Higman conjecture and poses the questions answered by
+      explicit_fp_overgroup_of_all_gl_n_q and by the two metabelian theorems.
+
+  - title: "Unsolved Problems in Group Theory. The Kourovka Notebook"
+    authors: [E. I. Khukhro, V. D. Mazurov]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/1401.0300
+    location: Problems 14.10(c) (P. de la Harpe) and 17.59 (S. Kohl)
+    relationship: background
+    note: >-
+      Records Problem 14.10(c), an explicit finitely presented group containing GL_n(Q),
+      and Problem 17.59, whether CT(Z) is the group of residue-class-wise affine
+      permutations fixing the nonnegative integers setwise.
+
+  - title: Infinitely presented simple groups separated by homological finiteness properties
+    authors: [Claudio Llosa Isenrich, Eduard Schesler, Xiaolei Wu]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2510.01952
+    location: Question 1.11
+    relationship: background
+    note: >-
+      Asks whether every finitely generated linear group embeds in a finitely generated
+      self-similar group.
+
+  - title: "Boone-Higman embeddings of Aut(F_n) and mapping class groups of punctured surfaces"
+    authors: [James Belk, Francesco Fournier-Facio, James Hyde, Matthew C. B. Zaremsky]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2503.21882
+    location: Question 3.3
+    relationship: background
+    note: >-
+      Asks whether, for every finitely presented simple group G, the mixed identities
+      J_G(G * F_n) are finitely normally generated in G * F_n.
+
+  - title: Finitely presented simple left-orderable groups in the landscape of Richard Thompson's groups
+    authors: [James Hyde, Yash Lodha]
+    year: 2025
+    type: paper
+    id: https://arxiv.org/abs/2302.04805
+    location: Theorem 1.3 and Theorem 4.8
+    relationship: other
+    note: >-
+      Annales Scientifiques de l'Ecole Normale Superieure 58 (2025), 419-432. Supplies
+      the finitely presented infinite simple group Q_2 used for
+      exists_finitely_presented_infinite_simple; its simplicity and finite presentation
+      are proved in the Lean development.
+
+automation:
+  methods:
+    - method: agent
+      models: [Claude (Anthropic)]
+      framework: Claude Code
+      tool_setup: >-
+        AI-assisted mathematical exploration and Lean proof development, followed by
+        submission preparation and remote verification.
+  notes: >-
+    Claude found and wrote up the arguments, produced the Lean development, and wrote
+    the prose of this submission, under the user's direction.
+
+review:
+  status: self-assessed
+  notes: >-
+    Work in progress. The arguments behind the pending theorems have had internal AI
+    checks only; no human expert review or Palomar editorial acceptance is claimed.
+    Verification for a selected revision will be recorded in that revision's GitHub
+    Actions runs once the solution is hypothesis-free.
+
+repository:
+  role: substantive-development
+
+status:
+  scope: >-
+    Work in progress. Palomar/comparator-boone-higman.json is pending, so no theorem is
+    published here. In Palomar/BooneHigmanSolution.lean,
+    exists_finitely_presented_infinite_simple is proved outright; every other selected
+    theorem is proved only in its _of form, from an explicit hypothesis.
+  main_results: []
+
+fidelity:
+  divergences: >-
+    Groups range over Type 0. The metabelian and linear theorems state only the
+    embedding into a finitely presented simple group, not the word-problem half of the
+    Boone-Higman biconditional, which is Kuznetsov's classical direction. The linear
+    self-similar theorem asks for a finitely presented self-similar group, which is
+    stronger than the finitely generated one in the printed question; self-similarity
+    is rendered as a subgroup of permutations of the rooted d-ary tree List (Fin d)
+    that preserve lengths and contain every state of every element. The Steinberg
+    group is given by generators x_ij(r) with the standard relations, with x_ii(r)
+    set to 1. Residue-class-wise affine permutations are rendered as permutations g of
+    Z with a modulus m such that c g(n) = a n + b on each residue class, with c nonzero.
+    The Question 3.3 theorem asserts the negative answer, the existence of a finitely
+    presented simple group whose mixed identities are not finitely normally generated.
+
+acknowledgements: Built on Lean 4 and Mathlib; the mathematical sources are credited in sources.

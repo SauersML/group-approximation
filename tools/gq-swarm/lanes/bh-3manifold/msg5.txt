@@ -1,0 +1,5 @@
+Record the partially pushed leaf block reformulation of the graph manifold design problem
+
+Attempt 11 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: forgetting the pushing
+puncture turns the boundary slope ratio into e/n' - 1, where T_x^e is the relator image in
+the capped mapping class group; pushing is e = 0, and e != 0 forces a non-free image there.

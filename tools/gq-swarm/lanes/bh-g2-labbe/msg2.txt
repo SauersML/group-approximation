@@ -1,0 +1,9 @@
+Collapse quantum rigidity to one scale for recognizable self-morphisms; Labbe's shift is decided at scale 2
+
+For a Z^2 SFT with a shape-consistent self-morphism (letter images of side >= 2) that is locally
+recognizable at radius R, a non-commuting operator tiling at scale D >= max(r,1,ceil(R/2)) inflates to a
+non-commuting covariant tiling at scale 2D: recognizability puts the tower's corner projection in the child
+algebra, and width-projection compressions then conjugate the corner by the parent translations. So rigidity
+holds at all scales >= D_* or none. For Labbe's 19-tile shift, omega^2 is recognizable at R = 3 (exact: 420
+legal 7x7 windows, no conflict; conflicts at R = 2), so D_* = 2: the crossed product is finitely presented iff
+J_2 = 0. Adds a pointer to the open target node.

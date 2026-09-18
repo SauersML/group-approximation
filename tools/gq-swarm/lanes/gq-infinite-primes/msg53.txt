@@ -1,0 +1,4 @@
+Refinement node: record referee-a PASS on items 2-4 (2d373a8ea), N1 and N2
+
+Lane gq-infinite-primes. V = T_r + u written out; the bounded-step hypothesis
+is V-prime in E_3(R), which gives V_m in E_(m+2) at every level.

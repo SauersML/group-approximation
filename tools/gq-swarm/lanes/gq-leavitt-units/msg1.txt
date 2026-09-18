@@ -1,0 +1,9 @@
+Leavitt units over fields: simple mod scalars; not f.g. over infinite k
+
+Over every field k, L_k(1,2)^x is perfect and every normal subgroup lies in
+the scalars or is everything, by the Lean root detection read without its
+trivial-centre hypothesis; so L_Q(1,2)^x/Q^x is a countable simple group
+containing GL_infinity(Q). Over infinite k neither the unit group nor its
+scalar quotient is finitely generated, and in characteristic zero no finitely
+generated subring of L_k(1,n) contains Q (reduction to a finite residue field).
+Agent-verified only.

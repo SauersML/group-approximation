@@ -1,0 +1,7 @@
+Add a "Lesson for general BH" section to the W verification report
+
+bh-verify-W (BH swarm). The W proof uses exactly four inputs, and type (A) generalizes from
+colors (the Boolean lattice) to splitting geometries over a finite field (subspace lattices,
+via Solomon-Tits). Splittings see only X/lX, which removes the Z-valued pair invariants that
+blocked vector actions. The germ-cocycle quasi-retraction is the matching necessary test for
+new host designs.

@@ -1,0 +1,3 @@
+Leavitt tensors of power-of-2 completions are Z-crossed products; K-gate put into Farrell-Jones form
+
+New claim leavitt-tensors-of-2-power-completions-are-z-crossed-products: for an LN completion R with 2^b letters, U = sum_x s_x ⊗ e_mu(x)^* is a unit of bidegree (1,-b) and R ⊗ L_2 = (R_0 ⊗ L_2) x_(Ad U) Z; with a regular supercoherent base, K(R_0 ⊗ L_2) = 0 and K(R ⊗ L_2) is exactly the twisted Nil groups. Applied to R_2 (4 letters), the GL_n(F_2(t)) K-gate becomes twisted-Nil vanishing, the same shape as the Farrell-Jones route for L^(⊗d). Lesson: one coherence statement for Leavitt algebras over regular bases would make every register-completion host K-trivial. Lane proof, not reviewed.

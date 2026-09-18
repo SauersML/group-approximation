@@ -1,0 +1,10 @@
+{
+  "challenge_module": "Palomar.LIXStrongChallenge",
+  "solution_module": "Palomar.LIXStrongSolution",
+  "theorem_names": [
+    "ProblemLIXStrong.exists_simple_separable_powers_outside_U0",
+    "ProblemLIXStrong.exists_simple_separable_order_six_witness",
+    "ProblemLIXStrong.exists_simple_separable_squarefree_witness"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

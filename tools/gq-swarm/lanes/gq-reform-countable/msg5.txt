@@ -1,0 +1,5 @@
+Criterion node: drop the unused Kazhdan-host input (referee C)
+
+Boone-Higman implies it for the decidable overgroup P_m directly, so the
+route no longer requires fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree;
+the H_m step becomes an unused remark. Referee C PASS, b16f34bc0.

@@ -1,0 +1,8 @@
+P2 prime b: type-changing transpositions lift coherently; free-product gluing reduces to the local transposition presentation
+
+B-interleaved ladders give canonical lifts of every labelled transposition of V times a free product
+action into the free-product gluing group, with (O), both splits and all conjugacy configurations
+verified (full columns via the point case, under a cylinder-stabilizer hypothesis that holds for full
+shifts over torsion-free groups). So FPG follows from the Quick-type local presentation of the full
+group, and exactness over F_n from that presentation plus EX(Z). FPG is checked directly for PSL(2,Z)
+on two points.

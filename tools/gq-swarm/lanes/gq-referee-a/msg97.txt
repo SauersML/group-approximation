@@ -1,0 +1,3 @@
+Referee report: twisted Brin-Thompson type F_n criterion and grid-sphere lemma PASS
+
+Proof-gap lens on twisted-brin-thompson-type-fn-criterion and stein-complex-elementary-intervals-are-grid-spheres (4292385f3). BZ and FFWZ read at source; extension closure, interval splitting, Quillen fibers, grid stabilizers and orbit count checked; six nits; second independent pass recommended given the claimed open conjecture.

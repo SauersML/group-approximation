@@ -1,0 +1,10 @@
+Near images of finitary-alternating hosts; Houghton-type hosts omit Q
+
+A finitely presented group Gamma with Alt_fin(X) <= Gamma <= Sym(X) has a
+finitely presented near image Gamma/(Gamma cap FSym(X)), and every subgroup
+embeds there modulo a locally finite normal subgroup; for GL_n(Q) that
+subgroup lies in {+-I}. So the finitary-alternating form of the GL_n(Q)
+target first needs a finitely presented overgroup of GL_n(Q) with a faithful
+near action. Hosts with residually finite near image (Houghton groups,
+eventually affine, isometric or tree-automorphic permutation groups) contain
+no (Q,+) at all. Recorded as Attempt 1 of the permutational target.

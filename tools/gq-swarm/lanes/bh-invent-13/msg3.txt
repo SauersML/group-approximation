@@ -1,0 +1,7 @@
+Coornaert-Papadopoulos 2001 checked at source: it does not prove the horofunction lemma HL
+
+Their theorem conjugates (Phi_0, alpha) to a one-sided SFT for a single map, with local-to-global along the
+tube of one gradient ray. It is not a group SFT, and their horofunctions contain the limits of distance
+functions without being known to equal them. Records the exact citation, the usable statements (Prop 3.4,
+Cor 3.6), and the proved inclusion of the horofunction boundary in Phi_0. HL stays open; coordinated with
+bh-g2-buildings.

@@ -1,0 +1,9 @@
+Euler base is not finitely presented over any overgroup of Z wr Z
+
+Lane gq-infinite-primes. Over Z[Z wr Z] the annihilator of the Euler base
+generator is sum_m x^m ker(eps), not finitely generated (grading by x
+confines generators to finitely many lamps); faithful flatness extends this
+to the induced module over any overgroup, Baumslag group included. Over the
+ring D one left and one two-sided relation suffice. Bottleneck Attempt 6.
+Also: referee a/b reviews linked on the calibration node; referee-b
+wording fixes (G7 unused, convention, finite-index step, Wehrfritz unread).

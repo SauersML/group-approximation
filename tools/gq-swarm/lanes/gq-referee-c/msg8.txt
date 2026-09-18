@@ -1,0 +1,5 @@
+Referee C: PASS for matricial divisibility killing rational K_2 symbols
+
+Re-derives the diagonal-multiplies-by-n fact at Milnor level: the block map St(M_n(B)) -> St(B)
+is an isomorphism of universal central extensions, and block copies of a K_2 class coincide by the
+central-conjugation argument, so beta delta_* is multiplication by n; Tate torsion finishes.

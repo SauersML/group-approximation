@@ -1,0 +1,15 @@
+Artin groups: hub-cone reduction; triangle-free all-3 Artin groups (e.g. the all-3 four-cycle) in B_A
+
+- artin-hub-cones-reduce-pbh-to-coned-cliques (+ proof): if every vertex has a label
+  k_v >= 2 dividing all its incident labels, then A_Γ is a standard parabolic subgroup
+  of the Artin group of the cone with hub labels k_v, whose vertex stars are foldable
+  separators; so permutational BH for A_Γ reduces to the coned maximal cliques.
+- triangle-free-all-3-artin-groups-satisfy-pbh (+ proof):
+  with k = 3 every coned edge is the Euclidean triangle Ã_2, so every triangle-free
+  all-3 Artin group lies in B_A and embeds in an fp simple group. Includes the all-3
+  four-cycle, which is not virtually cocompactly cubulated (HJP) and has no foldable
+  separator of its own.
+- artin-pbh-reduces-along-folding-separators: Scope updated (four-cycle now reached).
+- artin-groups-satisfy-boone-higman: status bullet and Attempt 6.
+
+Lane proofs, not independently reviewed; no priority claimed.

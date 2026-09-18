@@ -1,0 +1,1 @@
+Rotation (self-chosen): adversarial PASS on almost-all one-relator groups satisfy BH (SS labels checked at source)

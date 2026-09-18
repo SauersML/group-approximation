@@ -1,0 +1,9 @@
+Apply referee b's fixes to the arithmetic Lie lattice and H^2 x T nodes
+
+W1: title says "irreducible arithmetic lattice". The finiteness of
+G ∩ prod_{i≠j} L_i now has its three-line proof (G L_j dense; closed normalizer;
+connected group centralizes a discrete one). W2: the degenerate H^2 x R case passes
+to a torsion-free lattice before Scott and removes the finite kernel by finite
+covers. Witte Morris pins for Borel density, commensurator density, arithmeticity,
+finite presentation, the {2,3} quaternion group, and (addendum) Godement
+cocompactness of definite quaternion S-arithmetic groups. Referee b PASS: 11e1f46e9.

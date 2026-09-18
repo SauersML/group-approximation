@@ -1,0 +1,3 @@
+Referee report (citation lens): frame-generated simple rings have no vacuum PASS
+
+Items 1-4 correct; Toeplitz analogy motivation only; isometric-frame item 1 and R_L presentation used in range. W1: full-vacuum sentence needs injective phi; W2: dichotomy needs matricial base; W3: finite-rank gap still open, room statement conditional on (P).

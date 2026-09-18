@@ -1,0 +1,12 @@
+Put Z^2 * Z in an F_infinity full germ extension of V by recoding its normal-form boundary
+
+A regular path space with state-preserving prefix replacements recodes into Thompson's V
+by complete binary prefix codes, so an action that is prefix-replacement off finitely
+many eventually periodic points lies in a full, clopen-transitive finite germ extension
+of V, and the Belk-Hyde-Matucci finiteness corollary then needs only the germ condition.
+For Z^2 * Z on the BBCMP diagonal normal-form boundary this gives a type F_infinity host
+with four singular orbits of rational points and germ groups Z^2 over Z, outside V and
+outside the finite-nucleus RSG class. The corner node's replacement table is corrected
+(several rows paired prefixes ending in different states), and the automatic-groups
+premise is sharpened: the automaton's own base has K_0 = Z^5 and is not clopen transitive,
+so the recoding is needed, and only E1' and E4' remain.

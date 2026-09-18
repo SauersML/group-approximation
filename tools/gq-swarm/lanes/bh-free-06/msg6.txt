@@ -1,0 +1,7 @@
+Röver–Nekrashevych groups inherit F_n from any cover whose kernel dies under splitting; V_f is F_∞ for hyperbolic PCF rational maps
+
+New ESTABLISHED lane proof: wreath-recursion-thompson-groups-inherit-fn (+ -proof). For any group B and any wreath recursion B → B ≀ S_d, injective or not, V_{d,r}(B, ψ) is F_n whenever B is. It equals V_{d,r}(G) exactly when ker(B → G) = ∪K_j. The method is an EI cloning category with a calculus of fractions (Quillen A), collage pushouts, a Stein retraction, and descending links as polyhedral joins of ⊔BK_1 over d-matching complexes (Belk–Forrest grounding, plus a new cone-replacement lemma). It re-proves Nekrashevych's fp theorem and Röver's F_∞.
+
+New ESTABLISHED: hyperbolic-pcf-rational-nekrashevych-groups-are-f-infinity (cover π_1(M), which is free; kernel dying by Nekrashevych Prop pr:expandingpi1). New OPEN: contracting-groups-have-dying-kernel-covers-of-type-fn, with a torsion obstruction to free covers. Attempt 1 added on contracting-rover-nekrashevych-groups-are-f-infinity.
+
+Lesson for general BH: finiteness of a Thompson envelope comes from any nice cover of the labels whose kernel dies. Categories, not Stein complexes, handle non-faithful labels.

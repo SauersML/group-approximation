@@ -1,0 +1,10 @@
+Semiprime PI Q-algebras embed in simple rings fp over Z; tape attempt
+
+Every finitely generated semiprime PI Q-algebra (so every semiprime one of
+GK dimension <= 1, by Small-Stafford-Warfield) embeds in M_N(C_0) with C_0 a
+finitely generated commutative Q-algebra (Posner on prime quotients, bounded
+PI degree), hence in a simple ring finitely presented over Z. Record the
+shift-tape attempt at Q(t_1, t_2, ...): the tape over a Thompson crossed
+product is finitely presented, but its values are one-pass bounded-rank
+programs, which miss generic polynomials; diagonal subfields of LN
+completions have transcendence degree at most dim B.

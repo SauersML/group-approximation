@@ -1,0 +1,9 @@
+Kazhdan subgroups of almost-V have no central elements in V; Deligne lattice sits in one germ group
+
+A Kazhdan group of Cantor homeomorphisms with finite V-singular sets has no
+infinite-order central element in a conjugate of V: push it to the orbit space
+of an attracting basin, where it acts through V (Haagerup) and then through an
+abelian group of translation numbers. For the Deligne lattice this kills the
+central kernel of the FW germ map, so a finite-index subgroup embeds in one
+singular germ group, with its center singular. Revealing-pair input read at
+source (arXiv:1107.0672 TeX). Lane proofs, not independently reviewed.

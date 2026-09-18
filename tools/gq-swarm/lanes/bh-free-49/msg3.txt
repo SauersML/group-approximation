@@ -1,0 +1,32 @@
+Reduce the Higman chain group to one local configuration: amalgams over centralizer-separated edges lie in the permutational class
+
+Lane bh-free-49. Three claims with proof routes (lane proofs, not reviewed;
+no priority claimed).
+
+1. pbh-amalgams-over-centralizer-separated-edges. If a B_A group L contains
+   X and Y, and some subgroup D of L that is a centralizer in a B_A overgroup
+   has X ∩ D = C = Y ∩ D, then X *_C Y is in B_A. The same holds for HNN
+   extensions whose edge map is conjugation in L. For one-sided retracts,
+   the separating subgroup comes free from a product through the retraction.
+   Injectivity costs nothing here: conjugate one vertex group by the stable
+   letter of the identity-edge HNN over D and apply Britton's lemma.
+   Configurations are elliptic, so these steps never create one.
+
+2. bs12-base-generator-is-a-centralizer-in-b-a. <b> is realized as a
+   centralizer in a B_A overgroup of BS(1,2), through BS(1,4) in
+   PSL_2(Z[1/2]), the tree-vertex lamps, and index-two induction. So the
+   coset lamplighters over BS(1,2)/<b> and <a,b,t | b^a=b^2, [b,t]=1> lie in
+   B_A. They are not linear over any finite product of fields.
+
+3. higman-chain-group-pbh-iff-chain-configuration. G_1 = BS(1,2) *_Z BS(1,2)
+   is the vertex group of H4 and the base of BG's HNN extension. It lies in
+   B_A iff some B_A group, equivalently some finitely presented twisted
+   Brin-Thompson group, contains a with a^-1 b a = b^2 and b^-1 c b = c^2
+   and c of infinite order. No linear, quasi-linear or metabelian group
+   has such a configuration. The canonical solvable candidate is the twisted
+   coset lamplighter M_1 = G_1/[N,N].
+
+Lesson for general BH: in the permutational class, faithfulness of a
+graph-of-groups input is free given a vertex-faithful image. What is left
+is local and twisted: one configuration of the vertex groups, which must
+come from a primitive host.

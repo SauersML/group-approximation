@@ -1,0 +1,7 @@
+gq-referee-b: review of local annihilation and simplicity of PE_N(R_T)
+
+Citation/hypothesis review of clopen-crossed-product-subrings-have-local-
+annihilation, sl3-toeplitz-harmonic-pe-groups-are-simple and the host route:
+PASS. The Lean criterion signature (3 <= card, IsSimpleRing, LocalAnnihilation)
+matches R_T. Record correction: parts 1-3 of the R_T ring node have one referee
+pass, not two.

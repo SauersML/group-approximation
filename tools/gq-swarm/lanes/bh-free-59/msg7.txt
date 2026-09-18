@@ -1,0 +1,11 @@
+A projective thickening of SL_d(Z[1/2]) hosting Neumann's group; fp open
+
+Gamma_P = <SL_d(Z[1/2]), 3-cycle> acting on P^{d-1}(Z/m) for odd m, d >= 3, is
+finitely generated and residually finite, and contains Neumann's exact group on an affine
+line. Unlike every affine thickening, it has no periodization fake: normal subgroups of
+SL_d(Z[1/2]) are central or contain unipotents with fixed points (NST + CSP). Its degree
+set is co-finite in the maximal one, so the co-infinite obstruction is also absent. Finite
+presentability reduces to one explicit truncation and is left open; a yes answers MO
+491978.
+
+Written inline, not independently reviewed; NST and CSP are cited as textbook inputs.

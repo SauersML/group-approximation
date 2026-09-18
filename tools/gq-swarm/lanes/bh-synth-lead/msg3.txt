@@ -1,0 +1,10 @@
+Synthesis v3: split the master route into a group-side track and a fixed-Farrell-Jones ring track
+
+The ring-side K-gate is exactly a Farrell-Jones instance for the acting group. Putting the input
+inside the acting group therefore needs Farrell-Jones for groups containing every decidable group.
+v3 makes the group side (P2', a finiteness theorem with no normal form) the primary track. It adds
+a ring track over one fixed Farrell-Jones group, with complexity in the SFT language and an
+algebraic embedding gate U, and records the conditional theorem "(star) + FJ + Khanh => BH".
+It also folds in: deterministic time lifts inherit rigidity; finite-state Li-coded hosts are
+capped at 2^{Cl^2}; thick-building flat SFTs are never rigid; and the verify-master passes.
+Programmable Z^2 rigidity is promoted to the top gate for both tracks.

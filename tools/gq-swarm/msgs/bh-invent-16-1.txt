@@ -1,0 +1,8 @@
+Commutant-compression dichotomy: automorphisms of minimal systems fix proximal factors; subshift automorphisms are outer over ICC scaffolds
+
+Maps into proximal systems are unique, so automorphisms act fibrewise over every proximal factor and are
+determined by one point. Proximal (compression-rigid) SFTs have trivial commutant, and a minimally almost
+periodic group of automorphisms is trivial on almost automorphic, proximal-over-skeleton and principal
+compact extensions, which covers every rigid row SFT on main. Over a scaffold with trivial FC-centre,
+automorphisms meet neither the full group nor the unit group of the crossed product. So cellular-automaton
+realizations of an input neither bypass gate U nor revive time lifts.

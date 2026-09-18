@@ -1,0 +1,5 @@
+Kourovka 21.46: color-preserving inputs exist; Amir-Lazarovich density needs no vertex-transitivity
+
+bm-lattices-have-color-preserving-edge-groups. Every torsion-free edge-transitive non-residually-finite lattice on T' x T_d has an index-at-most-2 subgroup of the same kind whose edge group is conjugate into the right-angled Coxeter group W_{lk(D)}. The proof uses bipartite quotients and Konig's theorem, with inputs from the Burger-Mozes and Radu torsion-free groups. A parity caveat for U(Alt) is recorded.
+
+al-local-to-global-holds-without-vertex-transitivity. Amir-Lazarovich's local-to-global proof (arXiv:2605.09493, section 4) goes through verbatim when its 2-ball condition is imposed at every vertex and the induction is run at all vertices at once. Then the closure contains the simple group U^+, so density of a cocompact twisted amalgam is a finite check. The mathematics is theirs; the source lines used are cited.

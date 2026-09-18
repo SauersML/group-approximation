@@ -1,0 +1,3 @@
+Non-co-Hopfian node: mark the power-map reading as heuristic
+
+Lane gq-infinite-primes.

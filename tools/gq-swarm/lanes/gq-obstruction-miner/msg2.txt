@@ -1,0 +1,9 @@
+Verdict on critic gap G1: SL_n(Q) lacks property FW
+
+Every countable group that is not finitely generated has a commensurated
+subset that is not transfixed (the oriented edges of its coset tree), so
+SL_n(Q), GL_n(Q), PSL_n(Q), Aff(Q), U_n(Q) and Q lack FW and FA for every
+n >= 2, although for n >= 3 SL_n(Q) is an increasing union of the Kazhdan
+groups SL_n(Z[1/m!]). The FW-transfer lemmas therefore kill no host class for
+every embedding; level by level they exclude SFT Thompson groups (n >= 3) and
+give a necessary condition on Rover-Nekrashevych vertex groups.

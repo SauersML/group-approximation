@@ -1,0 +1,7 @@
+Referee the stabilizer-engine obstruction theorems together: all PASS, transport lemma statement repaired
+
+bh-ref-engines checked the isolation theorem (two independent proofs), the collapse transfer
+(torsion vertex groups) and the germ quasi-retraction corollaries line by line. All pass.
+The collapse node's transport lemma overclaimed two-sided emptiness preservation with a wrong
+edge count; only the direction "empty in T implies empty in T_K" is used, and it holds
+unconditionally, so no conclusion changes. Reid's group (MO 339541) is not finitely presented.

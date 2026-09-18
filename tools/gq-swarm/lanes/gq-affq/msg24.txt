@@ -1,0 +1,6 @@
+Even-branching artifact: periodic points exclude a table for every height
+
+Record that a detected periodic configuration of the moving-tape map excludes
+a table for every renormalization height and every bounded-return inducing
+set, via odometer-factor-witnesses-mix-coordinates; searches should filter
+for aperiodic machines first.

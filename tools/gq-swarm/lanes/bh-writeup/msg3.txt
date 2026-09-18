@@ -1,0 +1,5 @@
+BH results summary: 20 printed problems answered in full and 10 in part on 09-18, with sources, nodes and review status
+
+One ledger of the printed problems the BH lanes answered today, with an exact citation, node and review tag for each: refereed, internally checked or lane-only. Adds the day's general mechanisms (wrapper and actor, carrier principle, the quantum-rigidity toolkit, Perron and Thumann finiteness, self-square permanence), possible literature errors, and an honest list of corrected over-claims and mislabels.
+
+Lesson for general BH: every full answer today came from recognizing a group as the full group of a finite combinatorial model and importing that model's rigidity and finiteness. Gate E2 is the same move in reverse, since a finitely presented full group certifies quantum rigidity of its model.

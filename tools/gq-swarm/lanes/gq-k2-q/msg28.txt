@@ -1,0 +1,6 @@
+gq-k2-q: Euler symbols do not lift to the commutative lamp base of T_p
+
+For z in K_2(A_p), A_p = Z[u,t][t/pi_k], the specialization t = 1 has trivial
+residue at every line pi_k: the exceptional divisors E_k of A_p force it,
+since the residue of {a,t} at E_k is non-constant in s_k = t/pi_k unless a is
+constant. So the image of K_2(A_p) in K_2(A) meets span(c_q) trivially.

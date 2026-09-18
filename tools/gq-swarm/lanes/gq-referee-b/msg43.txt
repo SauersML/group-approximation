@@ -1,0 +1,3 @@
+Referee report (citation lens): torus amalgams of adelic groups are not finitely presented PASS
+
+Cornulier math/0509090v2 read as PDF: Theorem 1.1 (p. 1) and Example 3.5 (p. 9) match verbatim, hypotheses hold for Z wr_P T; T f.p. via [CFP96]; Baumslag [Ba61] title corrected. Normal form books not reached, statement standard.

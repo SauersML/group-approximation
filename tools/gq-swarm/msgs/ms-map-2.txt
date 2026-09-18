@@ -1,0 +1,3 @@
+Update the manuscript worklist: claims, conflict ruling, outage probe note, waist residual pointers
+
+Records the lane claims for both notes, resolves the overlap on the transient-matrices rows, notes that the first endpoint probe died at the source sync in the network outage (no Lean result), and adds pointers for refereeing the two open Greendlinger residuals.

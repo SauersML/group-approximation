@@ -1,0 +1,5 @@
+Record proof attempts toward Sigma^1-symmetry on the finitely generated form of MZ Question 3.18
+
+Supports of finitely generated B with c(B) in B are cofinite, orbits refine downward, Thompson-type
+realizations fail because expanding supports force infinite backward orbits, and bounded-displacement
+limits give only density. No proof; the next case is abelian B.

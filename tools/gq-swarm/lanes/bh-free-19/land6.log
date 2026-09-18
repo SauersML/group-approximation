@@ -1,0 +1,6 @@
+LANDED c77e9f4da on origin/main (parent 16bd2d9b5):
+ ...ojective-groups-specialize-to-algebraic-data.md | 111 +++++++++++++++++++++
+ ...groups-with-arbitrarily-complex-word-problem.md |   5 +
+ ...on-groups-have-no-piecewise-projective-hosts.md |  48 +++++++++
+ ...l-slope-thompson-groups-satisfy-boone-higman.md |  10 ++
+ 4 files changed, 174 insertions(+)

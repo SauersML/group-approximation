@@ -1,0 +1,9 @@
+R_l is residually finite: path normal form; bottleneck reduced to K_2
+
+Lane gq-infinite-primes. The eight-relator ring R_l is D plus an ideal with
+an explicit path basis [a|k_1..k_s|b] (universal-property proof, no Diamond
+Lemma), and it is residually finite for every prime l: twisted-shift finite
+modules separate it, using density of alternating words in F_l[Z * C_m] and
+Gruenberg. So E_N(R_l) is a f.g. RF group containing Z_(l), a quotient of
+the f.p. St_N(R_l) (rank five). New OPEN K_2 targets with routes into the
+Z_(l) bottleneck; corner tame symbols recorded as the deciding question.

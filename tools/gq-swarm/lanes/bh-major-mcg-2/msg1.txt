@@ -1,0 +1,3 @@
+Reduce edge-split synchronization in every rank to shared rays at totally irrational directions
+
+Synchronization of edge-split cells in rank m+1 (the directedness input of the Stein-Farley route to finite presentation of the closed-MCG host) follows from one shared-ray statement at totally irrational directions in ranks 3..m+1: face cut into the rational hull, link lift, and a face lemma handle every rationally constrained direction by induction on rank. The shared-ray statement is proved at very well approximable directions by a Legendre-type capture lemma and recorded as open in general. Notes on two existing nodes that the plane lemma already holds in every rank by the cut lemma, so Ore for the edge-split operad reduces to LD_atom in every rank.

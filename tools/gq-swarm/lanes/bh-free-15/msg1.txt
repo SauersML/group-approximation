@@ -1,0 +1,9 @@
+Record two 2026 preliminary BH preprints; Artin normal-form full groups fix a point
+
+- artifact gq-bh-bh-free-15-2026-preprints.md: Mandel–Matucci (Boone–Higman theorem
+  and decision problems; f.g. simple S in Thm 1.2; Sacerdote's f.g. claim unproved)
+  and Belk–Bleak–Chatterji–Matucci–Perego (continuous automatic groups; rational
+  boundary actions; named Questions 1.12, 1.15, 1.16; fp of [[G|dL]] open, non-contracting).
+- claim artin-normal-form-boundary-full-groups-fix-a-point (lane proof): Delta^{-oo}
+  is a global fixed point of a finite-type Artin group on its Deligne normal-form
+  boundary, so [[A|dL]] = A.N_p is never simple.

@@ -1,0 +1,3 @@
+Referee report: Leavitt one-step kernels and surjective K_2 stability PASS
+
+Proof-gap lens on leavitt-stabilization-kernels-are-one-step (c3f866213) and leavitt-surjective-k2-stability-implies-injective (e73333e45). All unit and twist identities re-expanded; three nits.

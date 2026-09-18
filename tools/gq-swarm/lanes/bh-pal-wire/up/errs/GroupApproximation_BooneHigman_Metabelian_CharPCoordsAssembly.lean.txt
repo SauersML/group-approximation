@@ -1,0 +1,6 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:60:12: Unknown constant `Algebra.fg_adjoin_finset`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:33: failed to synthesize instance of type class
+  Field (ZMod p)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:9: Tactic `rcases` failed: `x✝ : ?m.175` is not an inductive datatype

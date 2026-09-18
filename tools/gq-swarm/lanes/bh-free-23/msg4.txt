@@ -1,0 +1,10 @@
+State the one-ended obstacle of BBMZ-hyperbolic Question 1.1 as a unique recurrent component
+
+- New claim sft-irreducible-core-iff-unique-recurrent-component (lane proof, elementary, not
+  reviewed): a subshift of finite type without isolated points or empty cones has an irreducible
+  core exactly when its graph has a single strongly connected component containing a cycle.
+- For hyperbolic groups, the remaining obstacle is therefore that the atom-type graph must have a
+  unique recurrent component.
+- Attempt 3 on the Q1.1 node records the loxodromic labelling of recurrent components, and the
+  exact germ-gate property that cut vertices supply in free products and that is missing for
+  one-ended groups.

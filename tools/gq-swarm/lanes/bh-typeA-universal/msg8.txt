@@ -1,0 +1,9 @@
+Record referee a's PASS on the type F_n criterion and add its general lesson
+
+Referee a passed the type F_n criterion and the interval lemma. Its nits
+N1-N6 are applied: the e = n case, the truncation zigzag, the sign
+convention, why sub-intervals are elementary, the twist relation, and forest
+classes in intervals. Add the "lesson for general BH" paragraphs: for
+faithful actions SV_G is F_n iff Z wr_S G is, so simplicity through twisted
+Brin-Thompson groups costs no finiteness, and stabilizer computations do not
+pass to actions through a quotient.

@@ -1,0 +1,7 @@
+Any 2V in CT_P(Z) needs germ degrees of rank at least 2r; odometer-fibre designs are impossible
+
+A slab lemma: germs of the Kohl groupoid whose degrees lie in a rank-l sublattice form a subset of
+the leaf with asymptotic dimension at most l. With Matte Bon's leaf embedding this forces rank >= 2r
+for any 2V in CT_P(Z). For CT_{3}(Z) it rules out all-slopes-in-2^Z (odometer fibres), 3^Z, 6^Z and
+cyclic designs. Compares with the odometer hosts B and G_(2,3), where the bound is rank + 1 and
+rank-one designs survive. 2V <= CT(Z) is still open.

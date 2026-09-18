@@ -1,0 +1,8 @@
+Prove Boone-Higman for all ascending HNN extensions of f.g. free groups
+
+Every mapping torus F*_phi of an injective endomorphism of a finitely generated free group
+embeds in a generalised Baumslag-Solitar group over F_2 (via M. Hall's theorem on Y = F * Z),
+hence by Bux-Llosa Isenrich-Wu (arXiv:2408.05673, thm:free-groups, rem:burger-mozes) in a
+simple group of type F_infinity and in a type (A) group. Settles the open test case
+phi(x)=xy, phi(y)=yx of power-map-free-mapping-tori-satisfy-permutational-boone-higman.
+Lane proof (bh-free-05), not reviewed, no priority claimed.

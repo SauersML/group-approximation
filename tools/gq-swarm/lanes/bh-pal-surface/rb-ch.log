@@ -1,0 +1,18 @@
+==> syncing sources to /projects/standard/hsiehph/sauer354/nonsofic_existence
+==> building PalomarBooneHigmanChallenge on the compute node (log tag: bhpalsurface)
+===== ERROR INDEX =====
+2:warning: Palomar/BooneHigmanChallenge.lean:145:8: declaration uses `sorry`
+3:warning: Palomar/BooneHigmanChallenge.lean:153:8: declaration uses `sorry`
+4:warning: Palomar/BooneHigmanChallenge.lean:159:8: declaration uses `sorry`
+5:warning: Palomar/BooneHigmanChallenge.lean:166:8: declaration uses `sorry`
+6:warning: Palomar/BooneHigmanChallenge.lean:174:8: declaration uses `sorry`
+7:warning: Palomar/BooneHigmanChallenge.lean:183:8: declaration uses `sorry`
+8:warning: Palomar/BooneHigmanChallenge.lean:190:8: declaration uses `sorry`
+9:warning: Palomar/BooneHigmanChallenge.lean:197:8: declaration uses `sorry`
+===== CONTEXT (from first error) =====
+===== STATUS =====
+warning: Palomar/BooneHigmanChallenge.lean:183:8: declaration uses `sorry`
+warning: Palomar/BooneHigmanChallenge.lean:190:8: declaration uses `sorry`
+warning: Palomar/BooneHigmanChallenge.lean:197:8: declaration uses `sorry`
+Build completed successfully (1803 jobs).
+RC=0

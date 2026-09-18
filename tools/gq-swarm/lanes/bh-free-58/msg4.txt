@@ -1,0 +1,12 @@
+bh-free-58: Kourovka 21.73 — the conjugacy problem in CT(Z) is undecidable
+
+Each reversible counter machine M with an initial configuration x* yields two
+explicit words A_M, B_M in class transpositions (moduli {2,3,5,7,11,13}-smooth).
+If M halts from x*, they are conjugate by an explicit involution. If not, no
+RCWA(Z) element conjugates them. This follows from arithmetic rigidity at
+infinity: rcwa conjugators are linear on the far ends of multiplicative orbits,
+so non-S cofactors are end invariants, and one additive twist at the touch
+configuration is detected. Consequences: conjugacy is undecidable (Sigma^0_1-
+complete) for every group between CT_{3,5,7,11,13}(Z) and RCWA(Z), including the
+fp simple CT_P(Z). Input: universality of reversible counter machines (Morita
+1996, not read at source). Lane proof, not reviewed.

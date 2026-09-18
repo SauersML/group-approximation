@@ -1,0 +1,9 @@
+Place simplicity of finite presentations in Pi^0_2, show it is Sigma^0_1-hard, and show uniform Kuznetsov bounds would drop it to Delta^0_2
+
+bh-free-02 (BH swarm, free lane, logic seed). New lane-proof claim
+simplicity-of-finite-presentations-arithmetical-position (+ proof): SIMPLE_fp is in
+Pi^0_2 and Sigma^0_1-hard via P -> V x G_P, hence not co-r.e.; and if Kuznetsov
+profiles of fp simple groups had a uniform recursive bound, SIMPLE_fp would lie in
+Delta^0_2. So a Pi^0_2-completeness proof would refute such bounds (a BH-type
+consequence reached arithmetically). Supplies the missing "simple" row for the fp
+column of the arithmetical complexity table; exact level left OPEN.

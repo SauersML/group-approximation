@@ -1,0 +1,3 @@
+Referee report: torus amalgams of adelic groups are not finitely presented PASS
+
+Proof-gap lens on torus-amalgams-of-adelic-groups-are-not-finitely-presented (a74bcb9ce). Filtration, C(Z)-compatibility, colimit, length-4 normal form, (FP) step, item-4 pushout with C cap M normal and H-invariant checked. W1: "any upper parabolic" must be restricted to first block of size 1.

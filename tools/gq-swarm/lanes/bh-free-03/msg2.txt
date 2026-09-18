@@ -1,0 +1,6 @@
+Quadratic-slope interval exchange groups embed in fp simple groups
+
+bh-free-03: corollary of substitution-subshift-full-groups-satisfy-boone-higman.
+IET(Z + alpha Z) is the topological full group of the Sturmian rotation, which is
+substitutive for quadratic alpha. Lane proof, not reviewed; the Sturmian input is
+cited, not read at source.

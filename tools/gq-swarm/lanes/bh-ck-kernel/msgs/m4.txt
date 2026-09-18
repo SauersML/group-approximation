@@ -1,0 +1,9 @@
+BH: exchange the shell route's group presentation gate for an algebra one (germ-groupoid Steinberg algebras)
+
+bh-ck-kernel, free mode. New: for a f.g. faithful Cantor host Gamma containing V, the germ
+groupoid's Steinberg algebra A_(F_2)(G_Gamma) is a FINITELY GENERATED central simple
+F_2-algebra with Gamma in its units (lane proof; ring generation by one cylinder idempotent
+plus the group generators, via cylinder transitivity). Applied to shell envelopes this gives
+a new gate, finite presentation of the ALGEBRA, and a route to Boone--Higman through the
+landed Leavitt-tensor criterion. For Gamma = V the algebra is L_(F_2)(1,2), which is finitely
+presented, so the gate is not vacuous.

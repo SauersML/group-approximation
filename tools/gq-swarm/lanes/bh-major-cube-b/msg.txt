@@ -1,0 +1,6 @@
+Perron heights do not give Li finiteness: the real gate is merge packing
+
+The F_k reduced-word coding (pointed-cube category of a tree) has Perron weights but infinitely many
+non-simply-connected Witzel complexes E(x_N), x_N = (a, a^-1, N b, N b^-1). Li's link lemma needs the
+packing number, not a height, so perron-substitution-finiteness-proof is invalidated. Adds the repaired
+criterion (height + Pack), the thin-cycle obstruction to Pack, and a correction note on the Perron node.

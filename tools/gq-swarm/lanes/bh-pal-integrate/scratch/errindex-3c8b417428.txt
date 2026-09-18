@@ -1,0 +1,102 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:75:60: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:79:6: Unknown constant `Subgroup.closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:80:26: Unknown constant `Subgroup.closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:84:10: Unknown constant `Subgroup.mem_map.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:87:25: Unknown constant `Subgroup.mem_map.mp`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:87:9: Tactic `rcases` failed: `x✝ : ?m.15 h1 h2` is not an inductive datatype
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:92:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:157:8: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:158:9: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:157:13: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:168:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_closure_eq_top`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:55:15: Invalid field `map`: The environment does not contain `Eq.map`, so it is not possible to project the field `map` from an expression
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:73:16: Invalid field `map`: The environment does not contain `Eq.map`, so it is not possible to project the field `map` from an expression
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:61:8: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:60:62: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:32:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'MonoidAlgebra.semiring', which is 'non
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:33:53: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:57:68: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:57:38: typeclass instance problem is stuck
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:104:65: expected token
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:104:7: typeclass instance problem is stuck
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean:59:0: automatically included section variable(s) unused in theorem `GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTw
+error: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:133:9: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'MonoidAlgebra.semiring', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:26:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_c
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:33:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_c
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:40:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_tail_c
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:47:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_tail_c
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean:90:16: Tactic `simp` failed with a nested error:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:82:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image_one_apply`:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:98:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.map_one_shift`:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:119:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image_mul`:
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:60:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.commSemiring', which is 'nonco
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:115:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'sigma', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:123:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.nonAssocSemiring', which is '
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:141:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputabl
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:99:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.carryDigits_nil`:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:101:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.carryDigits_cons`:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:125:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.listPoint_nil`:
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:127:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.listPoint_cons`:
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:125:27: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:132:62: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:135:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.AffineFP.model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:140:12: Unknown identifier `model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:139:86: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:152:6: Unknown identifier `model_conj_single`
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:151:84: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:172:4: typeclass instance problem is stuck
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:180:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.AffineFP.model_commutator`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:35:22: Unknown constant `Localization.Away`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:65:8: declaration uses `sorry`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:79:36: Invalid argument name `A` for function `awayMulLeft`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:93:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.CharPCoords.awayMulLeft_injective`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:100:25: Unknown constant `Localization.Away`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:101:23: Unknown constant `Localization.Away`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:76:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'GroupRing.affineAction', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:60:12: Unknown constant `Algebra.fg_adjoin_finset`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:33: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:9: Tactic `rcases` failed: `x✝ : ?m.175` is not an inductive datatype
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:53:27: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:51:29: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:57:27: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:55:30: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:53:9: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'MonoidAlgebra.semiring', which is 'noncomputable
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/MatrixId.lean:39:65: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/RowColumn/VecProd.lean:35:0: automatically included section variable(s) unused in theorem `GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowC
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/RowColumn/VecProd.lean:60:0: automatically included section variable(s) unused in theorem `GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowC
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:129:16: unexpected token ':='; expected '}'
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:120:4: Insufficient number of fields for `⟨...⟩` constructor: Constructor `Exists.intro` has 2 explicit field, but only 1 was provided
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:120:5: Fields missing: `map_one'`, `map_mul'`
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:121:10: invalid {...} notation, expected type is not known
+error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:43:54: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:113:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHas
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHas
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:217:4: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:219:4: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:202:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:221:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_sigma`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:254:40: failed to synthesize instance of type class
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:255:36: Unknown identifier `eHighArtinHasse_sigma`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:34:26: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:36:4: Unknown constant `Subgroup.closure_le.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:56:42: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:50:81: unsolved goals
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:68:11: Unknown constant `Subgroup.closure_le.mpr`
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:69:4: No goals to be solved
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:108:12: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:109:12: Type mismatch
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean:117:48: Application type mismatch: The argument
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean:125:48: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:84:43: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:90:2: Unknown constant `GroupApproximation.BooneHigman.Metabelian.CharZeroHost.mvPolynomial_mem_range_of_den_dvd`
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:134:6: Unknown identifier `mvPolynomial_mem_range_of_den_dvd`
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:114:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:110:6: Application type mismatch: The argument
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:129:21: Function expected at
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:134:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:166:8: Tactic `introN` failed: There are no additional binders or `let` bindings in the goal to introduce
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:70:4: 'change
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:74:4: 'change ⁅stabDiagLeftPerm n R (x i j hij a), stabDiagLeftPerm n R (x k l hkl b)⁆ = 1' tactic does nothing
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:78:4: 'change
+error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:120:63: Application type mismatch: The argument
+SENTINEL

@@ -1,0 +1,7 @@
+The q-difference lamplighter is residually finite but not quasi-linear
+
+A commutator acting by a power map on a torsion-free abelian normal subgroup rules
+out linearity over finite products of fields. So the 3-generated abelian-by-Heisenberg
+group Z[1/q][x^±] ⋊ <x·, f(x) ↦ f(qx)> is outside the quasi-linear route, although it is
+residually finite with solvable word problem. Its Boone–Higman embedding is recorded as
+OPEN, with a mapping-torus reduction via normalizing permutations of type (A) actors.

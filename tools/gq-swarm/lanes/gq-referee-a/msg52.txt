@@ -1,0 +1,3 @@
+Referee report: Euler ring symbols in small finite quotients PASS
+
+Proof-gap lens on euler-ring-symbols-in-small-finite-quotients (2a43d7e42, 9b0927fca). Fermat quotient, P root count, Hilbert symbol and orbit product, l | m, Stirling/Mahler, Vandermonde separation, w_k units and polarization checked; nits N1-N5.

@@ -1,0 +1,5 @@
+Record Mihailova-type attempts on the nonrecursive [A_2] kernel claim
+
+Stabilizers of type [A_2] actions are recursive, so Mihailova undecidability
+must sit in the core. Fibre-product actions of A x A over any fp quotient
+have r.e. kernels. For F x F the factor parts of the kernel are recursive.

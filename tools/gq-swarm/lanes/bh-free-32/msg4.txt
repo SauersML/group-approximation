@@ -1,0 +1,10 @@
+Twisted Brin-Thompson hosts over automatic actors are PSPACE-capped; restriction principle for SFT full-group hosts
+
+SV_Gamma = BV_S x| Gamma splits a word into an actor part and conjugated brick maps. For an actor
+acting on a regular language by synchronous rational permutations, every finitely generated
+subgroup of SV_Gamma has word problem in PSPACE (coNP for Thompson-type actors), so a twisted
+Brin-Thompson host is exactly as hard as its actor's permutational problems. Full-group elements
+preserve closed invariant sets, so dense finite orbits push every finitely generated simple
+subgroup of [[G_V x (Lambda x| X)]] into V, and over Z folding makes these hosts omega-automatic
+(PSPACE). This records how the master route's free minimal SFT hosts escape the definable-host
+cap: through the shift rule of Lambda_0 and the language of X, never through parameters.

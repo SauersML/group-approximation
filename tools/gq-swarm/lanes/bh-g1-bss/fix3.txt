@@ -1,0 +1,14 @@
+- **Floating data is a plane-global section field (CORRECTED 2026-09-18).** An earlier
+  version claimed that minimality forces a unique section. That argument was wrong and is
+  withdrawn.
+  - The windowing argument of Theorem C shows that, at each level `k` and skeleton position
+    `z`, the floating identities of all planes form one parallel section `s_k(z)`. That argument
+    uses slots at transplant-matched positions.
+  - But `s_k(z)` depends on the position `z`. So it is not a global invariant datum, and its
+    level sets are not closed invariant sets.
+  - What is true instead: adjoin the section field `(s_k(z))` to the skeleton layer. It is
+    read continuously and is plane-global. Relative to this *enlarged skeleton* and the
+    letters, (Det) holds.
+  - So Theorem D applies, with (i) and (ii) asked of the enlarged skeleton.
+  - The freedom that remains is the choice of sections at degenerate chains. It is shared by
+    all planes, so it creates no separable pair across planes.

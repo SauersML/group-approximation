@@ -1,0 +1,5 @@
+gq-referee-b: PASS on Houghton-like strongly shift-similar import, route, and germ-group imports
+
+MZ 2202.00822v2 TeX (hash matches) labels and quotes verbatim; MZ vs Zaremsky definitions of
+strongly shift-similar equivalent for infinite groups, so Z Prop 5.3 applies to MZ Prop 5.5;
+Renz via EZ Thm 2.3 pinned; (I2) hypotheses match.

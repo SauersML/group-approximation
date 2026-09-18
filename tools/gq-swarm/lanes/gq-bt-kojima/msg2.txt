@@ -1,0 +1,4 @@
+Root attempts: Brin-Thompson hosts are gated by BS(1,2) and H_3(Z) in nV
+
+Add attempt 11 to gl-n-q-embeds-in-fp-simple-group, pointing to the three
+gq-bt-kojima claims landed in dc7ed0ea3.

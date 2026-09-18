@@ -1,0 +1,15 @@
+Decorated Garside odometer full groups: F_infinity hosts for finite-type Artin groups
+
+- claim decorated-garside-odometer-full-groups-are-type-f-infinity (lane proof):
+  for a homogeneous Garside monoid P, the binary-decorated category
+  (P x_l F_2^+) x F_2^+ x F_2^+ with a binary odometer satisfies Li's degree-map
+  Zappa-Szep theorem (arXiv:2110.04505 thm:deg, lem:deg--t<d, ex:ZS(II)), so its
+  topological full group F_P is F_infinity.
+- claim artin-groups-embed-in-decorated-garside-odometer-groups
+  (lane proof): an explicit lift of the Deligne-boundary action (two-sided
+  decoration shift by the length homomorphism, odometer for the Delta^2 level)
+  embeds A into F_P; faithfulness imported from BBCMP Thm 2.4.
+- claim garside-odometer-groups-have-simple-finite-index-commutator
+  (OPEN) and route spherical-artin-bh-via-decorated-garside-odometer-groups:
+  simplicity plus finite abelianization would give BH for all finite-type Artin
+  groups (BBCMP Q1.12) without the char-0 linear chain.

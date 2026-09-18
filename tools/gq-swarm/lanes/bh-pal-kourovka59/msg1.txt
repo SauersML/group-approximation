@@ -1,0 +1,18 @@
+Ask for an elementary proof that piecewise-canonical permutations of Z are products of class transpositions
+
+This is the only non-elementary input to the answer to Kourovka 17.59: the
+k-graph node supplies it from the generation theorem for topological full
+groups of purely infinite minimal groupoids.
+
+Proved here, elementary: piecewise-canonical permutations form a group, and
+boxes pull back to boxes; for proper boxes A, B a product of at most two class
+transpositions restricts to the canonical map A -> B, because two meeting boxes
+cover Z only if one of them is Z; transpositions of two pieces of one partition
+generate a copy of Sym(M) that changes neither partition, so the bijection
+between the two partitions may be chosen freely.
+
+Open: the induction on the number of pieces. Composing with the helper element
+splits the pieces of the target partition that meet its support without lying
+inside it, so the piece count can grow. Three variants are recorded with the
+reason each fails. This is the same coherence gap already recorded on the
+transposition-presentation node.

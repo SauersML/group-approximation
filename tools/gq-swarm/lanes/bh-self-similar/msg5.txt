@@ -1,0 +1,3 @@
+Lift-presentability is invariant under level regrouping
+
+V_d(G) is finitely presented iff V_{d^m}(G) is for the level-m regrouped action: level-1 lift ideals are level-m lift ideals, and the level-1 lift ideal of R is caught by the level-m lift ideal of the sections of R down to depth m-1. So the fixed-letter obstruction and run compression extend to words fixed by every state.

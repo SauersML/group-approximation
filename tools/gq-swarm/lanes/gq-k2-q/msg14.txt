@@ -1,0 +1,10 @@
+gq-k2-q: Z_(l) in trees and free-group mapping tori; host-class survey
+
+Z_(l), and any rank-one group divisible by infinitely many primes, fixes a
+vertex or an end of every tree it acts on, so in a graph of groups it lies in
+a vertex group or along an ascending ray of stabilizers. Consequently no
+free-by-cyclic group, and no mapping torus of a free group endomorphism that
+is injective on rational homology, contains Z_(l); in general Z_(l) forces an
+element whose iterates sink through the lower central series. The artifact
+surveys the literature (Rauzy; KMS through gq-infinite-primes) and the host
+classes now excluded.

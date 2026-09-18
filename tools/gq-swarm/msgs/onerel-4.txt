@@ -1,0 +1,3 @@
+Soluble groups of finite Hirsch length contain no Baumslag-Solitar chain configuration
+
+One eigenvector count on the derived series: an element of a soluble group of Hirsch length h has at most h infinite-order eigen-elements with distinct dilation rates, while a chain configuration needs the rates 2^(2^n) for all n. This excludes polycyclic, soluble minimax and all iterated ascending HNN towers over Z, answering the height-four question left open in chain-configurations-need-unboundedly-many-dilation-eigenvalues, and shows the ascending zoom-tower engine cannot certify a host for the chain group.

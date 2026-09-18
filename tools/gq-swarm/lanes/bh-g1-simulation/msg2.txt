@@ -1,0 +1,10 @@
+Universal hyperaperiodic points on every decidable group: E1 chain closes at design level
+
+Nested maximal separated markers with locally distinct identifiers, encoded bottom-up in four
+symbols, give a free subshift with decidable language and separated gluing on every infinite
+finitely generated group with solvable word problem (the finite-horizon lemma: greedy marker
+systems have no dead ends past a computable horizon). A computable point sampling the whole
+language near the origin infinitely often is hyperaperiodic and universal, so the open premise
+of m2-envelopes-via-free-product-with-z has a route. With the free-product lemma and the keyed
+plane lift this gives (P1) for all decidable inputs, including St_10(R_L) * Z times Z^2 for
+GL_n(Q). Three links need review. Status notes appended to the three chain nodes.

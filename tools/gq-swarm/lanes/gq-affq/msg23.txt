@@ -1,0 +1,7 @@
+Even branching: Jacobsthal machines exist but are not globally 2-adic
+
+Non-mirror SMART-format search: 140 two-shape 3-symbol tables have exact
+Jacobsthal first-arrival times, and local inducing sets with exactly doubling
+counts and bounded gaps exist along the hierarchy. On random tapes none of the
+fully defined candidates has a readable -1 or i eigenvalue (harness calibrated
+on SMART), so none can carry a height-2 renormalization as found.

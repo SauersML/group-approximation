@@ -1,0 +1,8 @@
+FW inputs admit no twisted shell normalization (window zero dead)
+
+For an input with property FW and any action on N with infinite supports,
+no endomorphism twist s^-1 rho_g s = rho_phi(g) exists: transfixing the
+graph of the shift and following the unique forward ray forces finite
+supports. So the infinite-order-twist mechanism for genuine shell actions is
+impossible for Kazhdan inputs such as St_N(R_L). Record it on the Steinberg
+shell claim and qualify its regular-only wording.

@@ -1,0 +1,5 @@
+Root gl-n-q: record the permanence-closure obstruction (Attempt 6)
+
+Point the root at extension-product-closures-cannot-create-sl-n-q: products,
+extensions, wreath products and free products of groups without SL_n(Q) or
+PSL_n(Q) never contain GL_n(Q).

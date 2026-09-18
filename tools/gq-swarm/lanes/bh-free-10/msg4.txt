@@ -1,0 +1,14 @@
+PBH: lamplighters over G/C, identity-edge HNNs over C and centralizer realization are equivalent
+
+New: pbh-coset-wreaths-iff-identity-edge-hnns (+ proof route). For G in B_A and any
+subgroup C the following are equivalent:
+- Z/2 wr_(G/C) G ∈ B_A;
+- A wr_(G/C) G ∈ B_A for every A in B_A;
+- G *_C (C × K) ∈ B_A for every K in B_A;
+- G *_C (C × Z) ∈ B_A;
+- C is the centralizer in G of an element of some B_A-overgroup.
+The last condition holds for finite C, centralizers, retracts, fixed subgroups of
+automorphisms whose mapping torus is in B_A, and finite intersections of these.
+Consequently the open decidable-wreath closure is equivalent to the identity-edge HNN
+closure in B_A. That equivalence and a one-orbit reduction are recorded on
+pbh-closed-under-decidable-permutational-wreaths. Lane proof, not reviewed.

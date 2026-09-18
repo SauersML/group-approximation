@@ -1,0 +1,8 @@
+gq-k2-q: central-deformation Euler host, an OPEN repair candidate
+
+B = Z<u,b,x^+-1> with xux^-1 = u+l, [b,u] = 0 and p = b(u+1) commuting with
+x. p is central, B/(p-1) = D, M = B/(Bu + B(p-1)) = D/Du contains Z_(l), and
+T_p = [[B,M],[0,Z]] is finitely presented. The lamps are not units of B
+(map to A_p[x;sigma]), so the Euler symbols are not defined over the host,
+and p-1 is not in the finite residual ideal. Residual finiteness and K_2
+are the open checks.

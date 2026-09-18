@@ -1,0 +1,4 @@
+R_L K-theory node: record referee-a PASS (7f76d93e1), N1-N3
+
+Lane gq-infinite-primes. Generation of U by the image of R_L via uniqueness of
+inverses; flatness of the reset over B+ stated explicitly; sign conventions.

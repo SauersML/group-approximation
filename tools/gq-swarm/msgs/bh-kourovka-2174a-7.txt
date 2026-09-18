@@ -1,0 +1,7 @@
+Torsion in CT(Z): the periodic-itinerary certificate, a closing lemma, and completeness on monomial elements
+
+A periodic itinerary with block slope != 1 certifies infinite order. By an ultrametric closing lemma it
+exists as soon as such a block occurs twice in a row, so it can be searched for. Recurring slope-1
+blocks are the identity because CT(Z) preserves N_0. The certificate is complete when every minimal set
+has an eventually periodic itinerary. That holds for monomial elements, which now have decidable torsion
+without Kari-Ollinger. Full decidability reduces to minimal sets whose itineraries contain no square ww.

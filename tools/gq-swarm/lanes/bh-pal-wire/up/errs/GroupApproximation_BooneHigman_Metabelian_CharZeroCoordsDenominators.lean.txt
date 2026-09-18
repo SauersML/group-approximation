@@ -1,0 +1,16 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:84:43: Application type mismatch: The argument
+  MvPolynomial.map θ
+has type
+  @RingHom (MvPolynomial σ (Localization.Away ↑m)) (MvPolynomial σ ℚ) AddMonoidAlgebra.nonAssocSemiring
+    AddMonoidAlgebra.nonAssocSemiring
+but is expected to have type
+  @RingHom ?m.25 (MvPolynomial σ ℚ) NonAssocRing.toNonAssocSemiring AddMonoidAlgebra.nonAssocRing.toNonAssocSemiring
+in the application
+  (MvPolynomial.map θ).range
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:90:2: Unknown constant `GroupApproximation.BooneHigman.Metabelian.CharZeroHost.mvPolynomial_mem_range_of_den_dvd`
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:134:6: Unknown identifier `mvPolynomial_mem_range_of_den_dvd`
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:114:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.

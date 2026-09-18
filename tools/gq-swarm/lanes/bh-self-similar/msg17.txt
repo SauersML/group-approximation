@@ -1,0 +1,3 @@
+Record referee-a PASS on the cycling-relator, odometer, descent, regrouping, finitary and spinal nodes; apply nits
+
+State which halves of Theorem A each consequence uses, the letter convention for inverse letters, the injective component weight, e != 0 in the odometer classification, L_1(M_alpha) in N in the regrouping successor step, transient depth t, and correct the finitary reduction to states on or below a cycle (W1).

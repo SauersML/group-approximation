@@ -1,0 +1,6 @@
+Problem 2.7 root: add the finitary SL(Q) monomial-host class kill
+
+Record in the host-class table that split finitary SL_X(Q) extensions by
+weighted permutations are never finitely presented, and that finitely
+presented or finitely generated ones need wild H_3 quotients or wild point
+stabilizers (gq-deep-ring-2 lane results already on main).

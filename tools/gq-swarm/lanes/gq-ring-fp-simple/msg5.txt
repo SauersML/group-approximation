@@ -1,0 +1,7 @@
+Record referee verdicts on the gq ring nodes; mark D/Z(D) claim refuted
+
+The Leavitt resolvent ring passed three referees (a proof gaps, b citations,
+c independent proof); faithfulness on B now comes from the explicit model.
+The Toeplitz, E_(n+1) and integral-form nodes passed referee a; restrict the
+integral-form list to completions whose Z-form is free abelian. The derived
+units claim is REFUTED by leavitt-resolvent-derived-units-mod-centre-not-fp.

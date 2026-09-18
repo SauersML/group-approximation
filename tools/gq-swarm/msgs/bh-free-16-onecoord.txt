@@ -1,0 +1,9 @@
+One-coordinate registers of Q admit no dilation in coordinatewise hosts (nV, SV_G, 2V_tau)
+
+A register copy of Q living in one coordinate of a coordinatewise cellular host is normalized
+as x -> dx by no element of the host, however that element permutes or mixes the other
+coordinates. Invariance of the twist pi o t - d pi under the small register rotations makes it
+piecewise constant and forces t to read the register through the register coordinate. Chains
+of positive-shadow boxes then pull boundary values back into one finitely generated subgroup of
+R, whose rational part is cyclic. The escapes left are exactly registers spread over several
+coordinates and genuinely two-dimensional (odometer-type) germs. Lane proof, unreviewed.

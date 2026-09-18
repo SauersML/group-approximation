@@ -1,0 +1,8 @@
+The abelianized Aut(F_n) to Out(F_n) extension splits over a finite-index subgroup
+
+Dividing the Fox determinant cocycle by n - 1 on the subgroup where it is
+divisible gives a crossed homomorphism that is the identity on H_1(F_n), and its
+zero set is a complement over a finite-index subgroup of Out(F_n). This decides
+the open abelian item in the Attempts of
+out-free-groups-virtually-embed-in-aut-free-groups: the integral class dies
+virtually. No virtual section of Aut(F_n) to Out(F_n) is constructed.

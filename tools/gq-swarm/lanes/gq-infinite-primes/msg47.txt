@@ -1,0 +1,7 @@
+Out(V) root node: record referee-b PASS (97242cc3b), W1 and W2
+
+Lane gq-infinite-primes. W1: the one-sided paper statement on finitely
+generated torsion subgroups is in a comment block; flagged in the artifact. W2:
+the Z[1/2] consequence is restricted to Aut(X_2^Z); transfer to all full
+shifts would need Kim-Roush, not read. Boyle 2008 pins recorded; the root
+problem is cited in Salo wording.

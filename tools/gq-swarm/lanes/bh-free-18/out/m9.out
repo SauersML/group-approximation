@@ -1,0 +1,15 @@
+m = 9  (3.1s)
+  R                                                            PASS
+  M(k<=4, longest 14761 steps)                                 PASS
+  E leaves=248                                                 PASS
+  T leaves=324                                                 PASS
+  C leaves=292                                                 PASS
+  P leaves=164                                                 PASS
+  P-1 leaves=36                                                PASS
+  I leaves=324                                                 PASS
+  max entry 5, max return 6                                    PASS
+  neg-I(row p image b2) leaves=444 fails=216                   PASS
+  neg-P(row p image b2) leaves=228 fails=72                    PASS
+  neg-T(A + b2 on x1) leaves=324 fails=160                     PASS
+  neg-M(swapped resets): wrong end: b k=1 sp=1 ss=0 (h=5 s=q1) PASS
+  ALL PASS

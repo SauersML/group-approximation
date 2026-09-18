@@ -1,0 +1,12 @@
+bh-logic: MH gets its own node and implies the complexity root
+
+New OPEN claim mihailova-centralizing-hnn-extensions-embed-in-fp-simple-groups
+(MH). Proved about it:
+- it follows from Boone-Higman and from the decidable-edge HNN permanence;
+- H(Q) is isomorphic to (F *_N (N x Z)) x| F, and it is torsion-free, so Q need
+  not embed in it;
+- MH implies fp-simple-groups-with-arbitrarily-complex-word-problem, via a linear
+  reduction chain, so no fixed host (DV_F, nV) can realize every H(Q).
+The finite-presentation route now requires the MH node, and the index-set claim
+cites the barrier.
+Lane proofs, not reviewed.

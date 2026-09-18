@@ -1,0 +1,6 @@
+Snapshot the GL_n(Q) and Boone-Higman swarm coordination files under tools/gq-swarm
+
+Lander, lane rules, roster, lane boards and the landing log, so the swarm state survives a reboot of the scratchpad.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Cx1kxpcwHuuQ8mqh4hcKQy

@@ -1,0 +1,8 @@
+Busemann transplants along products of trees preserve quantum rigidity; centrality (C) proved there
+
+For any lattice acting simply transitively on the vertices of a product of trees (F_m x F_n, BMW groups
+including irreducible ones), and any extra factor Lambda_0, the Busemann transplant of a cone-deterministic
+spacetime over Lambda_0 x Z^r is an SFT that is free iff the fibre is and quantum rigid iff the fibre is.
+The centrality step (C) is proved by monotone arrow chains: each chain piece either freezes the far arrow
+or lets the tile expansion step closer. Updates the open Busemann node: settled for products of trees,
+open for A~2.

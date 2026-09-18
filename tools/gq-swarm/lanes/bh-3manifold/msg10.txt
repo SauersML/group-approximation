@@ -1,0 +1,6 @@
+Extend free- and surface-by-B_A closure to kernels that are products of free and surface groups
+
+Addendum item 5 on free-by-pbh-and-surface-by-pbh-groups-lie-in-type-a-class: every
+automorphism of a finite product of nonabelian free and closed surface groups permutes
+the factors, so its automorphism group is in B_A, and extensions of B_A groups by such
+products stay in B_A.

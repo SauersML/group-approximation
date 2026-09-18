@@ -1,0 +1,9 @@
+Restore the Attempts section of the Question 1.10 node and correct one claim in it
+
+My previous landing (13e6f8134) edited this node from a copy that predated
+10e994129. That dropped the Attempts section added by lane bh-openq-papers.
+This commit puts that section back verbatim, below it the status section from
+13e6f8134, and one bracketed correction. Their note said the rigid split
+extension "can stay finitely generated". By
+rigid-affine-hosts-are-linear-over-number-fields it cannot for a rigid ring
+that is not algebraic.

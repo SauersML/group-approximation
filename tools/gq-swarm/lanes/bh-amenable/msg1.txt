@@ -1,0 +1,8 @@
+Put a Juschenko-Monod group in 2V by lifting full groups along factor maps
+
+Land three lane proofs: the topological full group of an aperiodic factor embeds in the full group of
+any extension; nV contains the full group of each of its elements on a clopen invariant set; and so
+the full group of the SMART trace subshift lies in 2V, which gives a finitely generated infinite simple
+amenable group inside a finitely presented simple group. Also land the open realization problem, the
+open Boone-Higman claims for Juschenko-Monod groups with decidable language and for computable
+Grigorchuk groups, their routes, and the lane artifact.

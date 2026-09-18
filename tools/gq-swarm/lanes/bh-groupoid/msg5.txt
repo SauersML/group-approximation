@@ -1,0 +1,6 @@
+Prove Boone–Higman for type-preserving vertex-free Ã2 groups, completing BH for every group acting freely by type rotating automorphisms on the vertices of a thick Ã2 building
+
+- type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups (new, lane proof): phase-0 reduction,
+  degree lattice L = {a+2b ≡ 0 mod 3}, skew product over L/nZ^2, then Li–Matui.
+- vertex-free-type-rotating-a2-groups-satisfy-boone-higman: OPEN -> ESTABLISHED (lane proofs, unreviewed).
+- exotic-a2-lattices-satisfy-boone-higman: remaining gap is torsion (non-free actions); frontier §8.

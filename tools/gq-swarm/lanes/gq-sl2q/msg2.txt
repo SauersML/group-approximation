@@ -1,0 +1,6 @@
+Tie the two SL_2(Q) claim ids together
+
+sl2-q-embeds-in-fp-simple-group (90fb10146) and sl-2-q-embeds-in-fp-simple-group
+(39b37d26f) state the same claim. Add two routes making them equivalent,
+cross-link them, and note that no homomorphism SL_2(Q) -> PGL_2(K) is
+injective (item 5a of pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori).

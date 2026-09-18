@@ -1,0 +1,9 @@
+Euler base in a triangular ring: f.p. Steinberg host with no corner obstruction
+
+Lane gq-infinite-primes. T_l = [[D, D/Du],[0, Z]] is a finitely presented
+residually finite ring whose off-diagonal corner is the Euler base M,
+containing Z_(l). So M embeds in the finitely presented St_N(T_l), N >= 5,
+and G_l in the f.g. RF group E_N(T_l). Z_(l) is only a square-zero bimodule,
+so the corner tame-symbol obstruction for R_l does not arise. The bottleneck
+reduces to residual finiteness: new OPEN claims on the finite residual of
+St_N(T_l) and on K_2(N, T_l), with routes. Bottleneck Attempt 7.

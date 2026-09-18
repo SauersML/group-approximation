@@ -1,0 +1,8 @@
+Strongly proximal boundary geometry voids the return-time obstacle of minimal self-simulation
+
+Lemma: a minimal strongly proximal system is disjoint from every minimal system with an
+invariant measure. The boundary of Z/2*Z/2*Z/2 is a nearest-neighbour paradoxical SFT that is
+minimal and strongly proximal. So for measured inputs the geometry/input joining is always the
+product, and Barbieri-Sablik-Salo's obstacle (b) cannot occur. Injective codings with minimal
+product force finite type over every countable group, so the floating locus is the whole of gate E1.
+Lane proof, unreviewed.

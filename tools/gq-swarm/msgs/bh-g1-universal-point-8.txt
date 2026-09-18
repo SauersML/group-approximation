@@ -1,0 +1,8 @@
+Digit paths only transport the halting core mark; its negative certificate is one K_M predicate
+
+digit-paths-only-transport-the-halting-core-mark: an E-coset of B_1 meets H_1 in at most one
+P-coset gP, and by Kurosh normal form it is core for A_pm iff all syllables of g but the last lie in
+P_pm and the last K_M-syllable lies in <U>P; that predicate is constant on the trace. So the digit
+paths carry the core mark by transport only (free edge groups have no room for space-time diagrams,
+and deterministic tree readers are sliding-block factors), and the negative certificate is the
+single K_M predicate [g in <U>P]. Cosets with empty trace are the tree half of gate RR.

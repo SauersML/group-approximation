@@ -1,0 +1,12 @@
+Prime-shift HNN groups are not finitely presented; sigma has no tame version
+
+Follow-up on the prime-shift overgroups (lane gq-deep-typeA-2, not reviewed).
+The HNN groups Pi_n (Pi_1 for Aff(Q)) are finitely generated but not finitely
+presented: killing the normal closure of one unipotent leaves Z/2 x (Z wr Z).
+So A_1 or K_n can be finitely presented only if some dilation m_r, r != 1,
+lies in the normal closure of the translations (resp. x_12(1)), a hidden
+relation; if Pi_1 -> A_1 is injective then A_1 has no finitary permutations
+(Bass-Serre) and A_1^ab = Z/2 x Z^2. Separately, every permutation of Q that
+conjugates the dilation group by a prime shift is c*sigma on each half-line
+and is discontinuous at every point for the real and all p-adic topologies,
+so a tamer sigma must give up normalizing the dilations.

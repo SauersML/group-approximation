@@ -1,0 +1,8 @@
+Bridge the free-torsion stabilization gate to the synthesis master route
+
+b-a-groups-embed-in-full-hosts-with-free-torsion, Attempt 4: an fp full host over a free
+minimal subshift of Λ ⊇ G (master route S1 / crux G3g) makes all finite subgroups of G
+free, so it would also give finite-edge closure of B_A.
+
+Lesson for general BH: the S1 crux and the finite-edge closure of B_A ask for the same
+object, a free Cantor action inside a finitely presented full group.

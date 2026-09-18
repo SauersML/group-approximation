@@ -1,0 +1,10 @@
+Stable K_2 class of R_L is computable by search; condition (ii) holds
+
+Lane gq-infinite-primes. Equalities in St_M(R_L) are recursively enumerable
+(R_L has solvable word problem), and every stable class of K_2(R_L) = Q^x is a
+unique symbol {lambda, N+1}. So searching over M, lambda and derivations of
+w = {lambda, N+1}_M halts and returns the Pimsner value. This is condition (ii)
+of the word-problem reduction, so solvability of the word problem of St_N(R_L)
+reduces to injective stability (i). Without (i), K_2(N,R_L) = U_N x| Q^x and the
+word problem is solvable iff nontriviality in U_N is r.e. Attempt 2 on the
+reduction node.

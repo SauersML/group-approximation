@@ -1,0 +1,8 @@
+Finitely presented germ extensions of V are locally rigid; free-product hosts fail
+
+If <V, x_1..x_k> with each x_i V-local off finitely many points is finitely
+presented, the x_i are the only homeomorphisms satisfying its short
+relations. For the ping-pong annular hosts of residually finite groups, one
+deep annulus can be conjugated without changing any short relation, so
+<V, G> is never finitely presented (G = Z/2 and Z included). Lesson: a BH
+host must carry a finite depth-transport rule. Lane proof, not reviewed.

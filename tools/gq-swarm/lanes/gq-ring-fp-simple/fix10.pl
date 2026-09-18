@@ -1,0 +1,4 @@
+undef $/; $_ = <STDIN>;
+s/The\ncriterion node itself is an unrefereed lane proof; referee b checked the parts used \(normal\nform and the main direction of part 3\), and referee c's proof does not use it\./The\ncriterion node `leavitt-nekrashevych-completion-simplicity-criterion` was later refereed\nPASS by `gq-referee-c` (`gq-referee-c-leavitt-nekrashevych-completion-simplicity-criterion.md`,\n282b018d4), including the embedding theorem it uses./;
+s/\(lane proof; refereed PASS by `gq-referee-a` \(proof gaps, `gq-referee-a-rational-function-fields-embed-in-fp-simple-rings\.md`, 69a3cc64f\)/(lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-rational-function-fields-embed-in-fp-simple-rings.md`, 69a3cc64f); `gq-referee-c` also checked the application of the completion criterion to `R_k` (`gq-referee-c-leavitt-nekrashevych-completion-simplicity-criterion.md`, 282b018d4)/;
+print;

@@ -1,0 +1,8 @@
+gq-en-ring: PE_N of the SL_3(Z) Toeplitz harmonic ring is simple
+
+Establish local annihilation for unital subrings of C(X,k) x| Gamma containing
+all clopen indicators, so that the Lean ring criterion makes PE_N(R_T) simple,
+with centre of order at most 2 and finite presentation equivalent to that of
+E_N(R_T). Add the open finite-presentation target and the route from it to the
+projective elementary host premise. Record the R1 reduction for letter-cylinder
+corners.

@@ -1,0 +1,6 @@
+Extend the FW window-zero obstruction to endomorphism twists toward p
+
+For m > 0 the index argument needs no surjectivity: infinite orbits of the
+twisted action map onto infinite orbits, the index forces all orbits finite,
+and orbit sizes can only drop along the shift. So FW inputs fail the (G+)
+window-zero gate for every twist, and the other direction for automorphisms.

@@ -1,0 +1,9 @@
+Boone-Higman would give a finitely presented simple group that is not coarsely embeddable
+
+Land the OPEN claim fp-simple-group-not-coarsely-embeddable-in-hilbert-space. Such a
+group would also fail the Baum-Connes conjecture with coefficients, by Osajda's
+Corollary c:Hilbert and permanence under subgroups.
+
+Also land its route through the decidable group G_exp, which has isometrically embedded
+expanders, and the graphical Boone-Higman case. Haagerup hosts are excluded, and L^x is
+the only non-Haagerup finitely presented simple host in the graph.

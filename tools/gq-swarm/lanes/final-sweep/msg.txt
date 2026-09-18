@@ -1,0 +1,14 @@
+Land the Boone-Higman swarm's unlanded lane drafts and Lean edits
+
+The lanes stopped mid-work when the local session ended. This lands every
+lane file that never reached main:
+
+- 27 new research nodes and artifacts (one assembled from its MSI job output) (lane
+  proofs, not reviewed; each node carries its own status line);
+- 11 new Lean modules and 9 Lean edits from the Palomar and simple-Kazhdan
+  lanes (graph products, class-transposition presentation, Higman V
+  calibration, SkOpen, Leavitt K2 rows). These are not probe-verified;
+  red modules stay off the root import;
+- 7 in-progress edits to existing research nodes, merged three-way onto
+  current main, including referee B's cross-check of referee A's Q1.15
+  repairs (all three PASS) and the R1-repaired diagonal-time SW layout.

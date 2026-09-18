@@ -1,0 +1,9 @@
+CGP Question 4 for Hall-Abels central quotients: Hall's group lies in the isolated group A_4/Z
+
+Every finitely generated subgroup of a central quotient A_n/C of the Hall-Abels triangular groups
+over Z[1/p] embeds in an isolated group; Hall's non-residually-finite A_3/Z sits in A_4/Z, isolated
+by Cornulier-Guyot-Pitsch Prop. 5.7 (Abels' finite presentation). A direct consequence of CGP 5.4,
+credited there. It answers Question 4 on non-residually-finite soluble inputs, where Boone-Higman is
+open and locally moving hosts are excluded, and reduces Boone-Higman for Hall's group to the single
+isolated group A_{4,p}/Z. Records attempt 7 on the Question 4 node and the known case on the
+soluble minimax node.

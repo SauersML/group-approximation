@@ -1,0 +1,3 @@
+Refute the atom-plane rearrangement lemma for the edge-split operad; reduce Ore to first-split refinements
+
+A ten-piece edge-split dissection of the triangle cone respects the plane x0 = x1 but its restriction to the half x1 <= x0 is not edge-split (exact check, script in the artifact), so LD_atom and LD_gen are false and the route to Ore through them is dead. Two further splits give a common refinement for this pair, so Ore is not refuted. New route: in every rank Ore is equivalent to WLD, that every edge-split dissection can be refined into one that splits first at a prescribed edge. Notes added to the refuted node, the dead route, the Ore node and the common-refinement node.

@@ -1,0 +1,11 @@
+Exhibit a simple Kazhdan group with a trivial-core self-embedding: the corner map on EL_n over the binary Leavitt algebra
+
+The corner map g -> I + s_1 (g - I) t_1 is an injective, non-surjective
+endomorphism of EL_n(L_(F_2)(1,2)), n >= 3, a finitely generated simple
+Kazhdan group, and its iterated images intersect trivially: the normal-form
+basis of the Leavitt path algebra is carried into itself by x -> s_1 x t_1
+with both words lengthened. So the co-Hopfian exclusion for descending shell
+window zero does not cover the reduced Boone-Higman input class. The
+descending-sign node gains necessary conditions for simple shell groups, and
+its routing paragraph is re-scoped to FW shell groups, since the route allows
+any overgroup of the input as the shell group.

@@ -1,0 +1,5 @@
+Aff(Q) target: record the prime-shift permutation route
+
+Add Attempt 5 to aff-q-embeds-in-fp-simple-group: the 2-transitive group
+A_1 = <x+1, 2x, -x, sigma> of Q contains Aff(Q), so a finite presentation of A_1
+with finitely generated point stabilizers would give a type (A) host.

@@ -1,0 +1,7 @@
+SW causality lemma and a diagonal-time layout: route to a foldable free minimal rigid Z^2 SFT
+
+In an SW-deterministic block a tile depends only on boundary colours to its lower left, so a self-simulated
+rule must be causal in the side encodings (top bit p sees only bottom bits at positions <= p). A diagonal-time
+rule (top from left, right from bottom, same-position copies; zone CA x_(t+1)(i) = F(x_t(i-1), x_t(i-2)), a
+universal one-way CA after y_t(i) = x_t(i+t)) meets it. The resulting minimal crossing-wire shift is free,
+minimal, 1-rigid and corner-deterministic, conditional on the layout; route into the foldable target.

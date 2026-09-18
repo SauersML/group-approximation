@@ -1,0 +1,8 @@
+Halving directions of the twisted integral-affine group are oligomorphic mod 2
+
+bh-universal (BH swarm, free mode). New claim integral-affine-splitting-types-have-finitely-many-tuple-orbits
+(lane proof, unreviewed): the global affine symmetries (Z^(D) x| GL(Z;D)) x| F of Z_2^D act on
+index-2 "halving directions" through GL(F_2;D) x| F, with finitely many orbits on k-tuples
+(dependency patterns over F_2). So the Z-valued pair invariants that block vector actions of
+E(Z) do not arise for the Stein-Farley structure of W; recorded as Attempt 1 on
+twisted-integral-affine-full-group-is-finitely-presented with the precise missing steps.

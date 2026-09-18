@@ -1,0 +1,9 @@
+Induced SMART alternates head direction: -1 eigenvalue; BS(1,2) criterion
+
+Prove by hand from the table that SMART induced on genuine level-0 moves
+reverses the head direction at every step, so -1 is a continuous eigenvalue
+read from the state alone. A height-2 renormalization (BS(1,2) in 3V) would
+then need i as an eigenvalue: a continuous square root of the direction. MSI
+test: no Z/4 eigenfunction reads a window of radius at most 6 (Z/3 needs
+radius 1, Z/2 radius 0). Evidence, not a proof, against SMART as a BS(1,2)
+base.

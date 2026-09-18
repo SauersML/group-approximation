@@ -1,0 +1,9 @@
+The germ method is local: fp extensions of tame bases have fp germ groups
+
+Axiomatize the base in the almost-V germ theorem: over any finitely generated
+group of homeomorphisms with finitely presented germ groups that moves points
+locally (V_(d,r), nV, F, T, ...), a finitely presented extension with finite
+singular sets has finitely presented germ groups at every point. Lesson for
+general BH: the germ method neither creates nor destroys finite presentation
+at a point, so it is a one-point problem about fp overgroups of the input.
+Lane proof (the V proof, referee-a PASS, with the base axiomatized).

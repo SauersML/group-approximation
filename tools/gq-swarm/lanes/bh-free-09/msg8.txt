@@ -1,0 +1,7 @@
+Quantum rigidity of an SFT extension is centrality of the base plus pointwise rigidity
+
+For any SFT extension over any finitely generated group, and on spaces of any dimension, quantum
+rigidity holds exactly when every quantum family has central base idempotents and each fibre is
+rigid relative to its frozen base point. The proof localizes at points of the base. This removes the
+finite-dimensional restriction from the Busemann transplant reduction, and shows that the centrality
+statement (C) is the whole G2 content of every layered design.

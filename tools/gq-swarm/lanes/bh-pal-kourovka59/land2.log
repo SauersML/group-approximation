@@ -1,0 +1,4 @@
+LANDED 0e0c97d15 on origin/main (parent d5cae8796):
+ ...e-rcwa-group-fixing-the-nonnegative-integers.md |   5 +
+ ...ical-permutations-are-transposition-products.md | 214 ++++++++++++---------
+ 2 files changed, 128 insertions(+), 91 deletions(-)

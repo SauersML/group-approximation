@@ -1,0 +1,8 @@
+(RT): finitely generated torsion in finitely presented simple groups is residually finite - the uniform Burnside separator
+
+New OPEN claim fp-simple-groups-have-residually-finite-torsion, in the refutation direction: (RT)
+for all fp simple groups refutes BH (B(2,665) violates it, Zelmanov); it implies the bounded-exponent
+separator P_n for every n. Census: (RT) is proved for V, V_{d,r}, all Rover-Nekrashevych groups, circle
+groups, tree-product lattices, Kac-Moody lattices with 2-dim buildings or hyperbolic Weyl group - all by
+one equicontinuity principle. Open exactly where it breaks: nV, contracting RSGs, twisted BT, Kac-Moody
+with Z^2 and a spherical triple, aperiodic-SFT full groups. Lesson for general BH included.

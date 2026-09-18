@@ -1,0 +1,7 @@
+Add gq state-of-attack snapshot 1 (GL_n(Q) swarm)
+
+Compile the lane boards and gq landings as of 2026-09-17 22:48 into one
+state-of-attack artifact by family: approaches with first falsifiable steps,
+reductions recorded by the host-theorem extraction, standing obstructions,
+recorded dead ends, the Mikaelian priority note for Problem 2.7, and open
+needs. No claims of its own.

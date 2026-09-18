@@ -1,0 +1,3 @@
+Fix a joined bullet line in integral-leavitt-unit-group-contains-q
+
+Restore the newline lost in the previous edit.

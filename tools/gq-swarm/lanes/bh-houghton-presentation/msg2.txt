@@ -1,0 +1,9 @@
+Strongly shift-similar groups of type F_m have Houghton-like groups of type F_m for every n
+
+Permutation groups that contain FSym and whose finite-set stabilizers are of type F_m stay in
+that class under finitary mixing. The proof applies Brown's criterion to the balanced slice of the
+infinite cube of recolorings: the slice is contractible, and cube stabilizers are products of
+finite-set stabilizers. With H_n(G)/(G^n.FSym) = Z^(n-1), this answers the third sentence of
+Mallery-Zaremsky Question 5.13 positively, and the first two for strongly shift-similar G. Also
+correct two statements on the finite-presentation node: a claimed arXiv check that was never run,
+and an equivalence that is only an implication. Lane proofs, not reviewed.

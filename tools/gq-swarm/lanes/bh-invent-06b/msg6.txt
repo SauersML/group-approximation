@@ -1,0 +1,9 @@
+Fixed-point-free Roever-Nekrashevych elements are conservative: no compression, no escaping drift, no ping-pong
+
+- fixed-point-free-rover-nekrashevych-elements-are-conservative: in V_d(K), drift escaping to +inf or
+  -inf along one orbit gives a cone contraction and hence a periodic point (future-minimum or
+  record-low times plus pigeonhole), and compressing a clopen set makes drift escape for almost
+  every point of the wandering set (Bernoulli measure). So freely acting free subgroups admit no
+  clopen ping-pong and consist of conservative, twisted-drift elements. The twisted case stays open,
+  as a Cantor analogue of free groups of circle rotations, which Hoelder forbids on the circle. The
+  asynchronous-RSG extension needs a lower bound on nucleus output lag.

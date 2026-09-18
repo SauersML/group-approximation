@@ -1,0 +1,9 @@
+Isolated-embeddable class: products, finite extensions, ascending HNN of isolated groups
+
+New ascending-hnn-of-isolated-groups-embed-in-isolated-groups (+ proof): groups embedding in
+isolated groups are closed under finite products and finite extensions (J wr S_k isolated), and
+contain every ascending HNN extension of an isolated group (dichotomy: isolated, or virtually
+I x Z). So S*_alpha is in the class for every fp simple S and injective endomorphism alpha (no
+MIF). Criterion for the Baumslag-Gersten group (not settled). Attempt 6 on CGP Question 4:
+abelian/central monolith hosts and their reduction to type (A) for permutation modules.
+Lane bh-free-05, lane proofs, not reviewed.

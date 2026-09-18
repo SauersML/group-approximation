@@ -1,0 +1,6 @@
+Seeds never survive marked approximation over finitely presented groups
+
+A seed pattern admits no configuration over any proper marked approximation of an fp group (pull back
+along the quotient, then use uniqueness and trivial stabilizer). So a seed is relative isolation, and
+for seeded groups this is equivalent to finite presentation. The approximation obstructions that kill
+emitter engines therefore cannot touch seed engines over fp groups. Lane proof, not reviewed.

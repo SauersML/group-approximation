@@ -1,0 +1,11 @@
+Generalize the Cantor shell to genuine actions; fp shell envelopes for all virtually abelian inputs, including one-ended Z^k
+
+bh-shell-universal (BH swarm). The shell proofs on main never use regularity of the
+input action. With any action on N whose nonidentity elements have infinite support,
+the envelope, germ group, fiber product, germ-test necessity and finitely generated
+stabilizers all go through. The one-ended window obstruction and the virtually cyclic
+prefix-core cap are specific to regular enumerations. Eventually periodic genuine actions
+give finitely presented shell envelopes, and they exist exactly for virtually abelian
+inputs; Z^2 passes both germ gates with window 0 (near group Z^2 ⋊ Z, rotation twist).
+New OPEN universal claim decidable-inputs-have-fp-genuine-action-shell-envelopes, wired
+to boone-higman-conjecture. Lane proofs, not reviewed; no priority claimed.

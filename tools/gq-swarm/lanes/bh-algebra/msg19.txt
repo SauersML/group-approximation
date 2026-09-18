@@ -1,0 +1,3 @@
+Subshift languages give monomial algebras in crossed products; benchmark A_X over fixed Z / Z²
+
+New claim subshift-languages-give-monomial-algebras-in-crossed-products: conditioned translations xi_a = 1_[a] u embed the monomial algebra of any subshift language in LC(Y,K) ⋊ Z (no cancellation: disjoint cylinders). The S-gap shift gives A_X = K<x,y>/(xy^n x : n in X) in LC(Y_S) ⋊ Z, and over Z² via a row-language realization (DRS / Aubrun-Sablik, cited). Gate U at the algebra level reduces to G2: a free minimal quantum-rigid Z² SFT with row language L_S. Lesson for general BH included. Lane proof, not reviewed.

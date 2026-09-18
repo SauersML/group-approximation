@@ -1,0 +1,11 @@
+Configuration test: non-matching atoms map onto 2 or 3 atoms; for reflection groups the repaired engine is the cubical one
+
+One Slurm job (1328791, 37 s). Controls: the tree has no failures; the Z^2 grid gives bounded images
+(2 atoms). In the right-angled pentagon (levels 1-5) and hexagon (levels 1-3) groups, every non-matching
+atom maps exactly onto a union of 2 or 3 atoms at one level, bounded and level-independent.
+
+Proved for right-angled Coxeter groups: atoms are Roller cylinders over the walls meeting the ball. So the
+failures are exactly at wall endpoints, and the repair tiles are cylinders over wall sets of translated
+balls, which is the cubical Garside engine (F_infinity after Cuntz stabilization). For Kazhdan hyperbolic
+inputs the repair needs a finite-type invariant intersection-closed family of shadow translates, which
+walls cannot supply. Artifact: gq-bh-finf-hyp-configuration-test.md.

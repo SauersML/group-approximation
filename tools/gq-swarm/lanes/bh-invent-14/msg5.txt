@@ -1,0 +1,11 @@
+Reordered Aanderaa-Cohen tower: (R1) and (R2) hold; every associated subgroup is finitely generated
+
+With the digit letters a_i adjoined before p, the Higman tower H_1 -> B_1 -> B_2 -> B_3 = H_3 (Cohen,
+Combinatorial Group Theory, CUP 1989, sections 9.4 and 9.6) is a chain of genuine HNN extensions. The
+subgroup lemma for HNN extensions gives <t,a_i> = <td,a_i> via t -> td (both free of rank 2n+1, with
+traces P, P-prime on H_1) and A_+ = A_- (both HNN extensions of free products over the halting indices
+I_0). The infinite-rank rope is gone; remaining seed inputs are Kurosh-type and regular relative seeds,
+the halting pair (B_2, A_+-), and the input.
+
+Lesson for general BH: the subgroup lemma turns orbit presentations into genuine splittings, so CAP is
+concentrated in one pair whose trace on K is the halting set.

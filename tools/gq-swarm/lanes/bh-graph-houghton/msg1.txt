@@ -1,0 +1,7 @@
+Reduce Boone–Higman for graph Houghton groups to finite presentation of one eventually rigid G-automorphism group
+
+Hill–Kwak–Udall–West ask whether graph Houghton groups satisfy Boone–Higman. PB_r embeds, via a lift based at
+an end, in the group P_G(r) of eventually rigid G-automorphisms of G * F(X). For G finitely generated, infinite,
+simple and MIF, P_G(r) acts on finitely supported G-homomorphisms faithfully and highly transitively, with
+finitely generated stabilizers, localizing BFFHZ's lemmas. Finite presentation of P_G(r) is recorded as the one
+open gate, with a bounded-support presentation criterion. Lane proofs, not reviewed.

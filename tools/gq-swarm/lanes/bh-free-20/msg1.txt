@@ -1,0 +1,9 @@
+Embed Grigorchuk's finitely presented amenable group in a contracting Röver–Nekrashevych group
+
+Lysenok's endomorphism of the first Grigorchuk group keeps each element as its own last
+section, with first section of finite image that becomes finitary after two steps.
+A general lemma embeds any such ascending HNN extension in the Röver–Nekrashevych group of
+an enlarged self-similar group, using one element of Thompson's F. For Lysenok's
+endomorphism the enlarged automaton is bounded, hence contracting, so BBMZ Corollary
+cor:RN_BH puts Grigorchuk's group H in a finitely presented simple group, and H lies in the
+permutational class. Lane proof, not reviewed; no priority claimed.

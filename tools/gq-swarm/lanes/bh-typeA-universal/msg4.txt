@@ -1,0 +1,7 @@
+Apply referee a's nits and add wreath products of hyperbolic groups
+
+Record referee a's PASS on the hyperbolic B_A node and the BBMZ questions
+node, note that stabilizers are finitely generated at every orbit point, spell
+out the atom stabilizer step, and add the corollary that restricted wreath
+products of hyperbolic groups over sets with finite point stabilizers satisfy
+Boone--Higman, via the landed wreath closure of B_A.

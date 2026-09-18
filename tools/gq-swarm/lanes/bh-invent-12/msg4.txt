@@ -1,0 +1,12 @@
+Splittings with finitely many relative root primes never create Z_(S)
+
+New claim finite-root-prime-splittings-never-create-z-semilocal (lane proof, elementary Bass-Serre).
+Roots travel along a tree only through edge inclusions, and each inclusion H <= B passes only the
+primes dividing the relative root indices min{i : v^i in H}. So if these primes are finitely many,
+every copy of Z_(S) lies in one vertex stabilizer up to them. The class of groups whose elements have
+roots at finitely many primes is closed under such splittings.
+
+Excluded as (SL) witnesses: mapping tori of free-group endomorphisms (the Borisov-Sapir residually
+finite HNN extensions, infinite-index images included), and graphs of free, free abelian or nilpotent
+groups. This generalizes part 6 of the end-shift node without residual finiteness. A witness must
+contain an irreducible piece or an infinitely root-deficient edge.

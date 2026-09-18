@@ -1,0 +1,5 @@
+Record the pass-2 verdict on the Z_(l) bottleneck and the E_N(R_l-bar) node
+
+Lane gq-infinite-primes. Attempts only: the bottleneck is reduced to
+residual finiteness of St_N(R_l); sub-question 1 fails; no known
+obstruction (Rauzy, Kharlampovich-Myasnikov-Sapir) applies.

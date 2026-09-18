@@ -1,0 +1,7 @@
+FW shell inputs at window zero (other direction) are highly transitive
+
+If an FW input satisfies s rho(P) s^-1 <= rho(P) for an action with infinite
+supports, it acts highly transitively on finitely many cofinite orbits, so it
+has trivial centre and no finite normal subgroups. With the landed opposite
+direction, window zero is dead in both directions for FW inputs with centre:
+E_N(R_L) never passes, and St_N(R_L) needs non-central K_2.

@@ -1,0 +1,9 @@
+Root gl-n-q: one-sentence criterion and the local form via ultraproducts
+
+For odd m, SL_m(Q) embeds in a finitely presented simple group iff some finitely
+presented overgroup maps to one without killing a fixed element; for a fixed
+overgroup this is one existential sentence, and the decidable overgroups of
+survey Prop. 3.3 and their simple Kazhdan hosts give a ladder of single-group
+sufficient conditions. Separately, Zaremsky Thm 1.2 assembles into an embedding
+of GL_n(Q) in an ultraproduct of finitely presented simple groups, so the local
+form of the root holds and no universal sentence can refute it.

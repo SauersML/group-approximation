@@ -1,0 +1,7 @@
+Add root gl-n-q-explicit-natural-fp-overgroup (BBMZ Problem 2.7)
+
+Record Problem 2.7 / Kourovka 14.10 (explicit natural finitely presented
+overgroup of GL_n(Q)) as an OPEN root: sources, the known cases
+(Higman existence, Mikaelian announcement, Belk-Hyde-Matucci for Q), the
+necessary features of any host, a status table of host classes, and a
+second, germ-at-infinity argument that Aff(Q) is not in Brin group A.

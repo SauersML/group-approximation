@@ -1,0 +1,13 @@
+    # displacement (6,0): window [0,6] x [0,2H], ends (0,H), (6,H); separating bands of 4 agreeing columns [1,4] or [2,5]
+    def walls6(name, Lbox, Hmax):
+        for h, level in local_levels(Lbox, 5, 7, 2 * Hmax + 1, cap, BUDGET):
+            if h % 2 == 0: continue
+            H = (h - 1) // 2; out = []
+            for lo in (1, 2):
+                g = defaultdict(set)
+                for P in level: g[tuple(row[lo:lo + 4] for row in P)].add((P[H][0], P[H][6]))
+                wl = sum(1 for S in g.values() if any(p[0] != q[0] and p[1] != q[1] for p in S for q in S))
+                out.append('band[%d,%d] bands=%d walls=%d' % (lo, lo + 3, len(g), wl))
+            log('WALL6 %s H=%d h=%d local=%d  %s' % (name, H, h, len(level), '  '.join(out)))
+    walls6('labbe-e1', LAB5, 3 if SMOKE else 6)
+    walls6('labbe-e2', LAB5T, 3 if SMOKE else 6)

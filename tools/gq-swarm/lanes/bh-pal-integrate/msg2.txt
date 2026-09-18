@@ -1,0 +1,3 @@
+Grade the metabelian BH chain map by an MSI build; frontier is now route A
+
+Version 2 of the chain map. A trusted MSI build of origin/main 3c8b417428 shows 32 red modules (27 BH, 5 SK). None of the ten frontier-three gaps is closed by build: items 1, 5, 9, 10 are proved in their own files but import red modules. The smallest conditional root is bhNagaoUncond_fpMetabelian_routeA with four open inputs (S1, P1, Z1, H1), and T2 and T3 follow from the same four. Records the red set, the repair owners and the lane activity per gap.

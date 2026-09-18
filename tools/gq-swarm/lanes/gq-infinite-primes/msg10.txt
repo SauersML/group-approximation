@@ -1,0 +1,5 @@
+Link gq-referee-a proof-gap reviews on four Z_(l) bottleneck nodes
+
+All four passed (f7c331985). Record the reports in artifacts and update the
+review status lines; the soluble-host node notes that its derived-length
+lower bound rests on the unreviewed metabelian roots node.

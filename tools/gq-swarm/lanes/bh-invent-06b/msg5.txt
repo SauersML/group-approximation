@@ -1,0 +1,8 @@
+Free actions in Roever-Nekrashevych hosts: drifting elements have periodic points, coboundary drift collapses to S_n wr K
+
+- free-actions-in-rover-nekrashevych-hosts-have-zero-drift: in V_d(K), an element with nonzero mean
+  depth drift for some invariant measure maps a cone strictly into itself by a contraction, so it
+  has a periodic point; freely acting subgroups are therefore drift-free. A finitely generated
+  subgroup with coboundary drift embeds in S_n x| K^n, so for contracting K it has no free subgroup.
+  A free group acting freely in V_d(K) with contracting K therefore needs a non-coboundary cocycle
+  with zero drift for every element: the exact residue of the question.

@@ -1,0 +1,10 @@
+Brin-Thompson hosts for GL_n(Q): twisted hosts unobstructed; SL_3(Z) route
+
+Every finitely generated subgroup of GL_n(Q) embeds in a finitely presented
+simple twisted Brin-Thompson group SV_G, which also contains kV for k <= |S|,
+hence Q; so O2-O4 and every finitary obstruction fail for that family. New
+route: the transversal cnd function of brin-thompson-nv-cnd-proper-modulo-
+triangular-subgroup alone excludes GL_3(Z) from every nV (Zaremsky 2.19(c)).
+Verdict artifact: O4 fails for nV (Callard-Salo distortion), BS(1,2) and
+H_3(Z) in nV open (Sheng 2209.11982 withdrawn), and BS(1,2) needs a drift-free
+base, so Kojima-Sheng roots of V-elements never serve.

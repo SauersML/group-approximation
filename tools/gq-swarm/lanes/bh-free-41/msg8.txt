@@ -1,0 +1,5 @@
+Point the MO 412219 reductions at the unconditional answer
+
+Add status notes linking the two bh-free-41 reductions to
+fp-decidable-group-whose-e-is-not-recursively-presented, which answers the
+finitely presented case outright.

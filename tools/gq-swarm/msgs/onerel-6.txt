@@ -1,0 +1,3 @@
+Every finite Baumslag-Solitar chain lies in B_A, with its top generator realized
+
+Induction from BS(1,2): the amalgam step uses the twisted-lamplighter form of the chain-group theorem, and realization of the new top generator comes from intersecting its centralizer (the new base Z[1/2]) with the preimage of a realizing lamp under the quotient to the twisted lamplighter. Cycles (Higman groups) and the shift (Baumslag-Gersten) are not claimed.

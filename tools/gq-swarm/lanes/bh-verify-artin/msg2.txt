@@ -1,0 +1,17 @@
+bh-verify-artin: free-kernel permanence, toric route to Euclidean Artin groups and its limits
+
+Lane proofs, not reviewed; no priority claimed.
+
+- free-kernel-extensions-stay-in-the-permutational-class: (f.g. free, rank >= 2)-by-B_A
+  groups lie in B_A, via G ↪ Aut(K) × G/K; also iterates and bundles over aspherical
+  bases. Covers free-by-Z^2, free-by-linear, free-by-Aut(F_n).
+- fiber-type-toric-arrangement-groups-lie-in-the-pbh-class: π_1 of every fiber-type
+  (supersolvable) toric or elliptic arrangement complement lies in B_A
+  (Bibby–Delucchi towers).
+- euclidean-artin-toric-commensurability: A(X̃) ∈ B_A iff π_1(toric Weyl complement)
+  ∈ B_A; reproves C̃_n uniformly.
+- weyl-toric-arrangements-b-d-e-f-are-not-fiber-type: B_n (n>=3), D_n (n>=4), E_6–8
+  and F_4 toric arrangements are not fiber-type for any lattice. So toric bundles
+  cannot reach B̃_n, D̃_n, Ẽ or F̃_4; Li–Roushon's nonlinearity is essential for B̃_n.
+- Artifact: an invariant-map obstruction explaining why Li–Roushon does not transfer
+  to D̃_n (both cone points occupied at once).

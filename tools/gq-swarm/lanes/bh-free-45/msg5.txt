@@ -1,0 +1,10 @@
+Twisted Brin-Thompson groups of full contracting RSGs inherit F_n from the RSG family (conditional reduction)
+
+In a full contracting RSG, finite-set stabilizers of rational points are, up to finite index, iterated
+ascending HNN extensions of full RSGs on clopen subsets with the same nucleus. This upgrades the BBMZ
+finite-generation proof. So Belk-Zaremsky Theorem 4 makes SV_Gamma of type F_n once that family is F_n,
+and their quasi-retraction shows SV_Gamma of type F_n forces Gamma of type F_n. Hence a positive answer to
+BBMZ Question 1.2 would give every hyperbolic group, Kazhdan ones included, an undistorted embedding in a
+simple group of type F_infinity. The hypothesis is open: BBMZ Theorem 3.1 is finite presentability only,
+and the Skipper-Zaremsky Roever-Nekrashevych question is its open special case. Lane proof; no priority
+claimed.

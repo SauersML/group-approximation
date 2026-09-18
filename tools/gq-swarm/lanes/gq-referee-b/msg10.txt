@@ -1,0 +1,6 @@
+gq-referee-b: reviews of the St_(3N+1) sharpening and quotient relators
+
+Citation/hypothesis reviews of leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1
+and st-n-of-ring-quotient-adds-one-relator-per-ideal-generator: both PASS.
+The elementary factorization of W and GL_n(Q) in St_10(S) are checked; the
+relator presentation is explicit only relative to the Krstic-McCool presentation.

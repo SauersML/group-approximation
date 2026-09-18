@@ -1,0 +1,6 @@
+Add gq inverter biography of the GL_n(Q) negation
+
+What "GL_n(Q) embeds in no fp simple group" forces (Boone-Higman fails with
+named witnesses; a compactness failure of B_A along GL_n(Z[1/k!]); no finite
+certificate refutes a host containing all finite groups), the constraints any
+host must meet, and five construction recipes. Inverter lane, gq swarm.

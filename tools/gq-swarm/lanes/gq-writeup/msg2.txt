@@ -1,0 +1,8 @@
+Add Problem 2.7 write-up skeleton and state-of-attack snapshot 2
+
+Write-up skeleton for the answer to BBMZ Problem 2.7 / Kourovka 14.10(c) as
+recorded in Cairn: the ring R_L, the two Steinberg embedding lemmas, finite
+presentation (Krstic-McCool with three witnesses, and the direct rank >= 5
+proof), St_10(R_L) containing every GL_n(Q), the trust record, priority,
+open points and an expert checklist. No claims beyond the cited nodes.
+Snapshot 2 of the state-of-attack artifact records Gx27 established and G open.

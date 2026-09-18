@@ -1,0 +1,13 @@
+Decide lift-ideal membership path by path, and lift-present the one-configuration layer of the Wächter–Weiß check-mark automaton by two commutators
+
+bh-free-02 (BH swarm, free lane; INSIGHT FIRST). New general lane-proof claim
+lift-ideal-membership-is-decided-along-paths (+ proof): a relator lies in a lift ideal
+once, along every infinite path, some section does (König), giving a working criterion
+with no activity hypothesis. First use: single-configuration-check-mark-group-is-lift-
+presented (+ proof): the one-configuration layer C_2 of the Wächter–Weiß check-mark
+automaton, of exponential activity, non-contracting and containing Z wr Z, has relator
+kernel the lift ideal of [A',N] and [Z,N], so V_3(C_2) is finitely presented. Artifact
+gq-bh-bh-free-02-check-mark-layers.md isolates the remaining crux in the configuration
+layer: the skip and continue states generate Z wr Z persistent along 0^ω, whose
+relators can enter a lift ideal only by normal closure. Recorded on
+fp-simple-group-with-pspace-complete-word-problem.

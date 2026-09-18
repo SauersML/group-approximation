@@ -1,0 +1,3 @@
+Type (A) point stabilizers are hyperbolically full
+
+A stabilizer of an action with finitely many orbits on pairs is never elliptic, and never quasiconvex with non-full limit set, in a non-elementary hyperbolic action. So locally quasiconvex hyperbolic groups have no type (A) action, and Higman envelopes have none induced from vertex groups. For a non-exact input the permutational route is unobstructed by (RA) and by exactness: orbit-finiteness is free for Osajda-type inputs (Hull-Osin, conditional), and the gap is one fg hyperbolically full stabilizer in an fp overgroup, whose success gives the first fp simple non-exact group.

@@ -1,0 +1,3 @@
+undef $/; $_ = <STDIN>;
+s/- \*\*Noncommutative relations\.\*\* Relations not in the base closure, for example\n  `sl_2`-type commutator relations among letters, or relations between letters beyond\n  \(D6\)\./- **Noncommutative relations.** Relations not in the base closure, for example\n  `sl_2`-type commutator relations among letters, or relations between letters beyond\n  (D6). Lane `gq-k2-q` shows the `sl_2` route hides the same comparison, between the\n  running weight and the top weight, and admits Verma-type modules\n  (`sl2-vacuum-hosts-admit-verma-type-modules`, f9915b838). That argument is separate from\n  this theorem./;
+print;

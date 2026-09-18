@@ -1,0 +1,6 @@
+Leavitt rings: all GL_n(R) are one group inside PE_N(R)
+
+For a ring with a Leavitt pair, GL_n(R) = R^x embeds in PE_N(R) for every N >= 3 via
+Whitehead, so BH for all R-linear groups is exactly finite presentation of one projective
+elementary group. This holds for L_F2(1,2) and fails for every ring containing Q, which
+locates the GL_n(Q) obstruction in the central rational scalars.

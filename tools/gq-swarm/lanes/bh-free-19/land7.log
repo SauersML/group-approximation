@@ -1,0 +1,9 @@
+LANDED 2030248b4 on origin/main (parent 67a77eb6c):
+ ...ojective-groups-specialize-to-algebraic-data.md | 12 +++
+ ...-real-box-map-groups-are-not-universal-hosts.md | 85 ++++++++++++++++++++++
+ ...e-no-pair-finite-actions-with-fg-stabilizers.md |  9 +++
+ ...on-groups-have-no-piecewise-projective-hosts.md |  7 ++
+ ...-dense-free-subgroups-without-fg-stabilizers.md |  7 ++
+ ...lope-thompson-groups-have-hard-word-problems.md | 12 +++
+ ...-homeomorphism-never-generate-a-free-product.md | 10 +++
+ 7 files changed, 142 insertions(+)

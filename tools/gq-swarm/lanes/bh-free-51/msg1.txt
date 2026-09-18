@@ -1,0 +1,30 @@
+Make condition (E1) of the automatic-groups germ-extension route decidable, and reduce (E4) to a rate test
+
+Three results for the normal-form germ-extension route to BBMZ Problem 5.3(11).
+
+1. rational-germ-singular-sets-are-finite-graph-path-spaces: for a rational
+   homeomorphism of a normal-form boundary, the singular set over the boundary
+   Thompson group is exactly the path space of an explicit finite graph built
+   from the transducer and the boundary automaton. Hence it is finite iff every
+   recurrent vertex of the pruned graph has out-degree one, in which case all
+   singular points are eventually periodic; and if a recurrent vertex has two
+   return paths, the singular set contains a Cantor set. The criterion is
+   decidable. This explains both the four corners of the Z^2 * Z calibration and
+   the uncountable failure of the product form on F_2 x F_2.
+
+2. thin-rational-actions-give-finite-germ-extensions: thinness of finitely many
+   generators together with clopen transitivity (E5) gives all three
+   Belk-Hyde-Matucci axioms, so (E1) follows from (E5) plus a finite check, and
+   the singular set of the host is countable and consists of eventually periodic
+   points.
+
+3. germ-rate-homomorphism-tests-germ-extension-finiteness: at an eventually
+   periodic point the base germ group is infinite cyclic, and there is a
+   germ-rate homomorphism to the positive rationals killing it. If (E4) holds
+   there, the rate group is finitely generated, so only finitely many primes
+   occur; and (E4) does hold whenever the germ group is finitely generated
+   abelian. This gives both a sufficient condition covering flats and a
+   refutation test for expanding germs.
+
+All are lane proofs, elementary, not independently reviewed, with no priority
+claimed. The BBCMP rationality input (Cor 1.8) and Thm 1.7 were read at source.

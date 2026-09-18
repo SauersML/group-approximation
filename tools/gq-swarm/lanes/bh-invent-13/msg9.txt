@@ -1,0 +1,7 @@
+C_n-tilde building lattices carry locally forced finite-type seeds
+
+For every n >= 2, torsion-free type-preserving cocompact lattices in thick C_n-tilde buildings carry a
+locally forced seed. Labels are singular subspaces S of one polar factor of the vertex link. Outward labels
+are T meet S-perp (one-or-all axiom), and descents close in one step through S join T. By the
+derived-subshift theorem, seed rigidity is equivalent to rigidity of the boundary. With all type-0 origins
+that boundary is perfect, and its rigidity suffices.

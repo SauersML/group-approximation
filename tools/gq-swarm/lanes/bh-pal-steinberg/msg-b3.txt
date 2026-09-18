@@ -1,0 +1,11 @@
+SteinbergFP: Kourovka 14.10(c) in the exact form of the Palomar challenge
+
+Challenge.lean repeats, with identical bodies, the challenge's R_L (a RingQuot of ℤ⟨Fin 6⟩)
+and its Steinberg presentation on symbols (i, j, r) : Fin n × Fin n × R, and proves
+explicit_fp_overgroup_of_all_gl_n_q over them. It uses two isomorphisms: the RingQuot and
+two-sided-ideal presentations of R_L agree, and the symbol presentation of St_n(R) agrees with
+the repository's SteinbergGroup (Fin n) R.
+
+A test file with the challenge's definitions copied verbatim closes the challenge theorem by
+`exact GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q` (definitional
+unfolding only). Axioms: propext, Classical.choice, Quot.sound. Green MSI build.

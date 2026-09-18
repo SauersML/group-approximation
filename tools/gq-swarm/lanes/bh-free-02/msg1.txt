@@ -1,0 +1,11 @@
+Show that equivariant scalings give only linear vertex groups for faithful finite-index HNN extensions
+
+bh-free-02 (BH swarm, free lane, logic/complexity seed). New lane-proof claim
+equivariant-scaling-hnn-vertex-groups-are-linear (+ proof): for A = M ⋊ H with M
+elementary abelian and an H-equivariant scaling of finite index, the ascending HNN
+extension acts faithfully on its tree only if A is linear over F_p((x)). This kills
+the scaling shape of the Bux–Llosa Isenrich–Wu route to
+fp-simple-groups-with-arbitrarily-complex-word-problem (recorded as Attempt 5 there),
+and in particular excludes hard KMS groups as such vertex groups. Notes artifact
+gq-bh-bh-free-02-complexity-root-notes.md records the survey of routes, the
+double-coset decidability lemma for type (A) actors, and beyond-coNP targets.

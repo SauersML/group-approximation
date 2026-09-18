@@ -1,0 +1,12 @@
+Wire the metabelian and linear Boone-Higman endpoints from the six open gaps
+
+GroupApproximation/BooneHigmanLinear/FrontierFour.lean composes existing
+endpoints of the metabelian chain and adds no new mathematics.  Four of the
+ten frontier-three gap Statements are now proved outright on main (items 1,
+5, 9, 10), so this module plugs them in and states
+
+  finitelyPresentedMetabelianStatement_of_frontierFour
+  finitelyGeneratedLinearStatement_of_frontierFour
+
+from exactly items 2, 3, 4, 6, 7 and 8.  The module is not imported by the
+root; the Palomar Solution imports it directly.

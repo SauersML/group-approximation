@@ -1,0 +1,11 @@
+Lagrangian Brin-Thompson host: Deligne's lattice in a f.g. simple group for every n >= 2
+
+Unimodular Maslov cells (signature cells of unimodular symplectic frames) Cantorize
+Lambda_n(R) into a minimal, expansive, topologically free Sp_2n(Z)-space with a decidable
+clopen algebra; one frame separates any two Lagrangians (Levi scaling plus integral
+translation). Crossing with the Cuntz groupoid (and F_3^{2n}\0 for even n) gives
+2V_Lambda(n), whose commutator subgroup is simple and finitely generated (Matui,
+Nekrashevych) and contains Deligne's lattice for every n >= 2 via the Maslov cocycle
+into V and a finite-abelianization diagonal trick. At n = 1 the host is 2V and the
+lattice is B_3. Finite presentation stays OPEN; conditional route to
+deligne-lattice-satisfies-boone-higman.

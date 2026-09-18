@@ -1,0 +1,6 @@
+Record the support and attractor attempt on survey Question 4.7
+
+Three lane-proof constraints landed. An equivariant Cantor-to-circle map gives
+no obstruction, since hyperbolic groups already act rationally on a Cantor
+set mapping onto their boundary. So a negative answer must separate V from
+the rational group.

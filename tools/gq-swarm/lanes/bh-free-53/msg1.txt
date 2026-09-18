@@ -1,0 +1,7 @@
+Shell germ Steinberg algebras are never simple; the algebra gate splits into A and A/J versions
+
+Every shell envelope's germ Steinberg algebra contains the nonzero singular element
+(1 - u_g) s_0 (1 - u_g) t_0, over every field, so it is not simple and the groupoid is not
+Hausdorff. The envelope still embeds in the units of A/J. Record this as a correction to step 3
+of the germ-algebra Boone-Higman route, and as Attempt 2 on the algebra-to-germ-group claim:
+the input-letter truncation of Attempt 1 does not reach the A/J version the route needs.

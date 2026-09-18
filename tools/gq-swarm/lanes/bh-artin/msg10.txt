@@ -1,0 +1,5 @@
+Mark ct-p1-and-ct-p2-generate-ct-of-the-union as a second proof of bh-free-37's 21.75 node
+
+The two lanes landed the same theorem a minute apart (UNOWNED-board collision). The
+primary node is ct-p1-and-ct-p2-always-generate-ct-p1-union-p2 (bh-free-37, claimed
+first); this node is retitled and marked as an independent second proof.

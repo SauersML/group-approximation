@@ -1,0 +1,3 @@
+Referee report (citation lens): Euler triangular Steinberg retracts to Euler Steinberg PASS
+
+No external citation; retract lemma checked. W1: R_l corner symbols are not in St_N(D). W2: title overstates the role of the base.

@@ -1,0 +1,6 @@
+Hard cusps are canonical and flux-free: the local model shared by relative-boundary routes to BH
+
+Every free cocompact cusp of a Cantor action is (P x Cantor)^+. For one-ended P (every infinite f.g.
+simple group) the germs at the cusp commuting with P are exactly P-equivariant fundamental-domain
+changes; for P = Z the two ends give independent Houghton flux germs. Right multiplication realizes
+the (B)_p x S germ shape of the relhyp gate inside the stabilizer engine. Lane proof, not reviewed.

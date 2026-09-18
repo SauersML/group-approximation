@@ -1,0 +1,6 @@
+Record the bounded GAP/RCWA search on the finitely generated form of MZ Question 3.18
+
+Three approved MSI runs. Calibration confirmed the hand relations, the planted positives were found, and the
+power lemma predicted zero hits correctly. There was no closure of shifted class transpositions and no
+Thompson-F prototype with x_0 acting as the shift among small RCWA+ elements. Weak evidence only; the artifact
+records the scripts and outputs.

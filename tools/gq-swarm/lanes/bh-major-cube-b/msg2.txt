@@ -1,0 +1,6 @@
+Thin cycles decide Li merge packing; powers cannot remove them
+
+Packing fails iff a hitting set of types carries a thin growth cycle (Dickson plus monotone rare-type
+count), so the condition is decidable from finite type data. Li (2_Gamma) re-imports one-layer
+expansions into every power Garside family, so raw tree and product-of-tree codings fail at every
+power; only a new category (Matui-type recoding) helps. Sharpens the Q1.15 gate.

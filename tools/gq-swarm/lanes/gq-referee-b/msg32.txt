@@ -1,0 +1,3 @@
+Referee report (citation lens): KMS Minsky groups contain no Z_(l) PASS
+
+Every quote matches KMS-322.tex; Theorem 4.3(a) applies to every Minsky machine. Seven wording fixes, including one false quotation, S_3(X), and a ZN_3 slip in KMS Theorem 4.19.

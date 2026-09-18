@@ -1,0 +1,6 @@
+Host synthesis: correct the Deligne half of the dissection-category gate
+
+bh-free-55 (f86da7972) showed Maslov Cantorizations have no finite dissection
+type at n = 2, so no pair-diagram engine reaches 2V_Lambda(2). The artifact now
+says the dissection-category theorem covers rational-corner hosts (T_m for closed
+MCG, W for GL_n(Z)) only, and lists what Deligne needs instead.

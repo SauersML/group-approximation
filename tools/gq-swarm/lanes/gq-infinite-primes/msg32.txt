@@ -1,0 +1,13 @@
+Isometric shift frames over matricial bases fail the K-budget; referee-b follow-ups
+
+Lane gq-infinite-primes. A frame s t = 1, t s = p in M_k(B) over a matricial
+base B containing Q (K_0(B) in Q) makes [1] = [p] = r[1]. Index r != 1: [1]
+has finite order, so K_1 detection fails (no grading used). Index 1: the
+frame yields a unit, of degree one in a graded ring, so the graded dichotomy
+applies. Covers index-d Cuntz-Pimsner shifts over U_Q-type bases and the ring
+lamplighter. Open: ungraded index-one, Toeplitz frames, multi-type bases.
+Gate Attempt 8.
+
+Referee-b second reviews: retract node W1/W2 (corner symbols are not
+D-symbols; title no longer overstates), second PASS recorded on the
+line-pair and graded nodes.

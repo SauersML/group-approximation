@@ -1,0 +1,8 @@
+Show BHM's cheap corollary over V certifies only cover-centralizer hosts; FP_2 shell route to Zaremsky 1.25
+
+Over V, BHM Corollary 2.10 needs rational singular points and germ groups commuting
+with a power of the V-germ, whose centralizers are C(C,Z) x| V. Every certified host
+lies in an explicit group of word-problem time 2^O(l), so the corollary cannot carry
+Boone-Higman. The ceiling is attained by a finitely presented simple group V-sharp
+containing C(C,Z) x| V and Q. BHM's finiteness theorem also holds for FP_n, which
+gives a new route to Zaremsky Problem 1.25 through FP_2 shell envelopes (open gate).

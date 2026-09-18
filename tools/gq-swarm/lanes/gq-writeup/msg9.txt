@@ -1,0 +1,10 @@
+Obstruction summaries: withdraw the M-degree bounded-gap and +4 evidence
+
+Apply gq-nv-obstruct's complete 6+6/3 scan (30841be4c) to both 09-18
+summaries: M-degree's maximal Y-gap grows by 6 per level, so the bounded-return
+example of artifact 3d/3e, the +4 return-offset evidence and the
+recognizability-not-counting reading are marked withdrawn, not deleted. Record
+the corrected picture: every exact binary candidate in the class fails bounded
+junctions through a hidden carry sweep, and the class theorem is unproved. The
+return-time lemma entry stands with both referees. Add a hygiene note on the
+lemma's stale calibration.

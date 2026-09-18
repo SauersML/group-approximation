@@ -1,0 +1,3 @@
+Referee report: central-deformation Euler host Attempts 6-9 PASS
+
+Proof-gap lens on Attempts 6-9 of central-deformation-euler-host-has-fng-steinberg-residual. Positional relations, B tensor Q and the torsion kernel (domain claim for every finite piece), both Baumslag-letter computations, the K_2 splitting, vanishing where p is a unit and the grading homotopy checked. N1 supplies a model for torsion-free b_k^r mod p; N2 finite-level injectivity; N3 Berrick-Keating dependency.

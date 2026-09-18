@@ -1,0 +1,11 @@
+Characteristic-zero ring envelopes: Q(t_1..t_k), representable rings, Q-bar
+
+Q(t_1..t_k) embeds in an explicit finitely presented simple ring R_k (registers,
+one transported resolvent G = N + 1 + sum (t_i - C_i) P_i, simplicity by the
+Leavitt-Nekrashevych criterion). Hence every ring embeddable in
+M_D(C (x) Q<x>), C a finitely generated commutative Q-algebra or field, embeds
+in a finitely presented simple ring. Algebraic closures transfer through
+R (x) L_Q(1,2), so every countable field of finite transcendence degree,
+including Q-bar, embeds. For Q-algebras, envelopes over Z and over Q agree
+(centre of R_L is Q). Open: Q(t_1, t_2, ...), and the general ring form, which
+is the algebra Boone-Higman conjecture over Q. Lane proofs, not refereed.

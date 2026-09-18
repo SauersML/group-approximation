@@ -1,0 +1,13 @@
+Gate U for simple inputs is a dense Schreier realization; Kazhdan inputs kill amenable, polynomial-growth and virtually free scaffolds
+
+For an infinite simple group G and a fixed scaffold Lambda, embedding G in the full group of a free
+Lambda-subshift, faithfully on every invariant subset, is equivalent to a coarsely dense injective Lipschitz
+realization of some nontrivial Schreier quotient K\Cay(G) in Lambda. The host subshift, cut out by (T1),
+(T2) and a density condition, is then effectively closed from WP(G) alone. This corrects the non-free escape
+in translation-like-hosts-are-capped-by-separation-profiles: without density, minimal subsystems can
+collapse to the identity table.
+
+For Kazhdan inputs the realizations are one-ended and uniformly nonamenable, which kills amenable,
+polynomial-growth and virtually free scaffolds. So Track B's full-group input mechanism cannot run over
+Z^2. F2 x F2 passes every test; whether some infinite simple Kazhdan group realizes over it is recorded
+as open.

@@ -1,0 +1,11 @@
+Prove the horofunction lemma: every hyperbolic group has an SFT horofunction compactification
+
+hyperbolic-groups-have-sft-horofunction-compactifications: on any hyperbolic Cayley graph, for
+k >= 13 delta + 4, every function that is k-locally a distance function is a limit of distance
+functions. The defect f - d(.,q) to a local target q is non-increasing along descents and
+non-decreasing along geodesics toward q. The four-point condition forces every geodesic from an
+upstream point to q through the window where q fits, so the defect is constant upstream. So the
+distance-gradient SFT is exactly the horofunction compactification, with an isolated dense seed orbit,
+for every hyperbolic group, Kazhdan ones included. No merging is used; merging fails in general
+(Webster-Winchester non-Busemann points, read at source). Rigidity stays open. Also marks HL as
+proved in the reduction node. Lane proof, unreviewed.

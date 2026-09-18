@@ -1,0 +1,12 @@
+Proper actions on products of 2-dim CAT(0) complexes are torsion locally finite; 2-dim Kac-Moody fp simple lattices host no infinite periodic group
+
+New claim two-dim-cat0-product-groups-are-torsion-locally-finite (+ proof, lane proof, from
+Norin-Osajda-Przytycki Cor 1.3 read at source): a group acting with finite point stabilizers on a
+finite product of CAT(0) triangle complexes and trees has only finite f.g. torsion subgroups.
+Applies to the fp simple Kazhdan Kac-Moody lattices with 2-dimensional Davis buildings (e.g.
+Lambda_(2,4,6)(q)), Ã2 and Fuchsian building lattices, products. Excludes them as hosts for
+Burnside groups; dimension >= 3 buildings stay open (NOP Conjecture 1.5).
+
+fp-simple-groups-can-contain-infinite-finite-exponent-groups: marked DUPLICATE of bh-free-06's
+some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup (landed 26 s earlier), kept as pointer.
+free-burnside-groups-satisfy-boone-higman Attempt 2: point to the canonical node, add the Kac-Moody exclusion.

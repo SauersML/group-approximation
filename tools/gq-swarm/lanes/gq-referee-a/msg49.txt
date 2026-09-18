@@ -1,0 +1,3 @@
+Referee report: algebraic closure kills rational Steinberg symbols PASS
+
+Proof-gap lens on algebraic-closure-kills-rational-steinberg-symbols (05a4c7c2e). Injective stability plus functoriality, torsion/torsion-free, unital Qbar in R_L (extension automatic), commutative-subring bimultiplicativity and the divisibility step checked; nits N1-N3.

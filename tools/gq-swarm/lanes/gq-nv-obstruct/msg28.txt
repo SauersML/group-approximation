@@ -1,0 +1,3 @@
+Return-time lemma: mark the withdrawn M° calibration example in place (30841be4c)
+
+The SMART calibration and the statement are unchanged.

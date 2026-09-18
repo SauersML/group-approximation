@@ -1,0 +1,5 @@
+Root attempts: Leavitt unit groups over commutative coefficients
+
+Record the Leavitt findings under Attempts of the root: the countable simple
+host L_Q(1,2)^x/Q^x, no Q in f.g. Leavitt subrings over fields, and the
+scalar obstruction for Q-coefficient Leavitt tensor hosts.

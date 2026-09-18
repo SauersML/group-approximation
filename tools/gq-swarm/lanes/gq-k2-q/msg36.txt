@@ -1,0 +1,6 @@
+gq-k2-q: T_p: B tensor Q is the commutative-lamp ring; the kernel to it is the Z-torsion
+
+Rationally the lamp commutators vanish; the commutative lamp algebra
+Q[u,p,b_k]/(b_k pi_k - p) is a domain (complete intersection whose special
+fibres E_k are lines), isomorphic to A_p tensor Q. So B is residually finite
+iff its Z-torsion is separated by finite quotients.

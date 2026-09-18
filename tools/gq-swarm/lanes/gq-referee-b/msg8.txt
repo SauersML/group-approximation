@@ -1,0 +1,6 @@
+gq-referee-b: review of the Leavitt scalar-commutator obstruction
+
+Citation/hypothesis review of leavitt-scalar-commutators-block-fp-central-quotients
+and leavitt-resolvent-derived-units-mod-centre-not-fp: PASS. AGP Thm 2.4 and
+Thm 4.2 and ABC Cor 7.7 checked at source; the refutation of the Leavitt
+resolvent unit route stands.

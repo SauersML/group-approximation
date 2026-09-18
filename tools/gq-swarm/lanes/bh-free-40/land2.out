@@ -1,0 +1,5 @@
+LANDED 5f5975668 on origin/main (parent 8c014f114):
+ research/out-free-groups-satisfy-boone-higman.md   | 10 +++
+ ...inite-stabilizers-contain-fully-irreducibles.md |  5 ++
+ ...abilizers-have-infinitely-many-double-cosets.md | 93 ++++++++++++++++++++++
+ 3 files changed, 108 insertions(+)

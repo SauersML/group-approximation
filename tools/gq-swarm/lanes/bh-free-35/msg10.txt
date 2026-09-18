@@ -1,0 +1,3 @@
+Referee note: mark the no-two-sided-fault evidence for the minimal crossing-wire shift as argued, not proved
+
+Lesson for general BH: the evidence that side-local hierarchies make every rational line expansive is a layout argument, not yet a theorem.

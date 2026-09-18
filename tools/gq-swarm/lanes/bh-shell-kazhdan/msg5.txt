@@ -1,0 +1,9 @@
+Z admits window zero only with automorphism twists
+
+bh-shell-kazhdan (BH swarm). New claim cyclic-input-window-zero-needs-an-automorphism-twist with proof
+route (lane proof, elementary, unreviewed): for P = Z acting with infinite supports, window zero with twist
+a -> a^k, |k| >= 2, is impossible in both directions. Cycle lengths are monotone along the shift ray, and
+line coordinates are scaled by k (after an ends count forces infinitely many lines), while every value is
+taken by infinitely many points. So Z passes window zero only through automorphism twists, hence only
+eventually periodically. This calibrates the open FW sign -1 case: non-surjective twists fail by counting
+whenever orbits carry sizes or coordinates; the residual FW configuration is highly transitive.

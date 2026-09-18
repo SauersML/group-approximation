@@ -1,0 +1,7 @@
+Binary scan, complete 6+6/3 class: every exact binary Y comes with a walk; M°'s gap is not bounded
+
+All 72 sub-slices (185,794,560 machines, 1,541,886 binary-timing candidates), ranked without the lossy
+signature dedupe. A bounded-junction filter on the zero-overhead Y of every candidate leaves 1,053 at
+3.2e7 steps, and in each the head range inside some Y-gap grows by one or two cells per level. M°'s
+maximal Y-gap grows by 6 per level (87 was its value at level 17), so the "recognizability, not
+counting" reading of §3d/§3e is withdrawn for this class. Artifact §3f with scripts; bs12 Attempts entry.

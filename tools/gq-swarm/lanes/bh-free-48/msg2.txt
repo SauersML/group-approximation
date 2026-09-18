@@ -1,0 +1,8 @@
+Square-spiral enumeration of Z^2 is ball-rigid; pinning lesson
+
+The square spiral is determined by its far Schreier balls from a finite seed:
+successor steps are forced to be unit steps, and its four diagonal defect lines
+propagate straight out of the seed. So ball-transplant flexibility cannot kill
+every one-ended input; the spiral dies at the germ gate instead. This also adds
+a partial answer and a Lesson for general BH paragraph to the pinning node:
+finite presentation splits into a germ gate and a pinning gate.

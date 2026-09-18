@@ -1,0 +1,8 @@
+Show three-tree lattices with a discrete factor image satisfy permutational Boone-Higman
+
+A discrete factor image makes that factor's kernel a lattice on the remaining
+trees. The normalizer of such a lattice is discrete by a centralizer argument,
+so the lattice splits virtually as kernel times a free group. For three trees
+the kernel is a two-tree lattice, already in the type (A) class, so the whole
+lattice is too. The open multi-tree claim is reduced to totally non-discrete
+lattices whose fibres fail the normal subgroup property (Attempt 4).

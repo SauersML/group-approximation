@@ -1,0 +1,11 @@
+Put the odd-prime Leavitt hosts and every twisted S-integral affine group in B_A
+
+projective-leavitt-tensor-units-lie-in-the-permutational-class: for every prime p and tensor
+degree d, M_d ⋊ (L_p^(⊗d))^x is finitely presented with a type (A) affine action, and
+u ↦ u ⊗ (u*)^(-1) embeds the simple quotient by F_p^x into the unit group in degree 2d.
+
+twisted-integral-affine-groups-lie-in-the-permutational-class: W_(P,ℓ), including W, acts
+with type (A) on ordered partitions of Z_ℓ^D into ℓ clopen pieces of unit class, which
+absorbs the Z/(ℓ−1) clopen class at odd ℓ.
+
+Lesson: on both host machines of the graph, PBH is exactly finite presentation of the host.

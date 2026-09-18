@@ -1,0 +1,9 @@
+Land the three meta-theorems of critic pass 2 as assembly claims
+
+MT-A (localization over germ-type, circle, almost-V and tree hosts), MT-B (the
+K_1/K_2 principle: Steinberg groups over rings with Q and a Leavitt pair
+contain every GL_n(Q), while the landed quotient forms are infinitely
+presented), and MT-C (coherence: finitely generated, ultraproduct and chain
+forms of the root). Each is ESTABLISHED as the conjunction of the landed
+claims its route requires; the critic's unifying readings are kept in a
+separate section marked heuristic and are not claimed.

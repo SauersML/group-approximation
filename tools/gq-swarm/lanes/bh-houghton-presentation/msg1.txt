@@ -1,0 +1,7 @@
+Finitely presented strongly shift-similar groups have finitely presented Houghton-like groups for every n
+
+Stabilizers of finite sets in a strongly shift-similar group are copies of the group. Mixing finitely
+presented highly transitive permutation groups on disjoint sets with all finitary permutations gives a
+finitely presented group. Since G^n.FSym is normal in H_n(G) with quotient Z^(n-1), H_n(G) is finitely
+presented whenever G is. This answers the finitely presented case of Mallery-Zaremsky Question 5.13
+(first and third sentences) and settles H_n of the zigzag cyclic envelope. Lane proofs, not reviewed.

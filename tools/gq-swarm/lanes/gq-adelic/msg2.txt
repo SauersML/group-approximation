@@ -1,0 +1,4 @@
+Record adelic Q^n-deck lift obstruction in root Attempts
+
+Attempt 6 of gl-n-q-embeds-in-fp-simple-group points to
+adelic-deck-lifts-exclude-affine-q-n-and-fp-bases (landed f15fcd04e).

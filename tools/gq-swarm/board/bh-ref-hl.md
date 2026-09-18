@@ -1,0 +1,16 @@
+# bh-ref-hl (referee): horofunction lemma (HL) nodes
+- 2026-09-18: landed f2a29310d1. All four PASS:
+  - hyperbolic-groups-have-sft-horofunction-compactifications (b17ce0c51)
+  - k-local parent (1fa63700d), parts 0–3
+  - free/surface (9c07701aa)
+  - Roller (807e18d5d)
+- The key squeeze step checks line by line. The Webster–Winchester non-Busemann examples, read at source (arXiv math/0309291), are consistent with it.
+- Minor: state the k-covers-relator-loops integrability condition. Recalled BH constants are harmless.
+- Not in scope: the tree-gluing Steps A–C used for "Γ*Z carries a minimal topfree SFT", and rigidity of Y_k, which is open.
+- Batch 2, landed b58c9c40cd:
+  - 2d967a8bf6: PASS for parts 1 and 3; part 2 conditional on tree-gluing part 4.
+  - 6a95ce886: ends factor, PASS.
+  - 696c37d57: lamp-group criterion, PASS for items 1–4, item 5 not re-checked. The corollary "M⋊F_n never fp" is flagged for a literature check and an external referee.
+  - fcb34cf2d: pointer lemma, PASS, with a cut-fact precision.
+- Slip: I ran one `git fetch -q origin main` directly, against the lane rule. It returned at once.
+- Priority item, landed f17e0eff2a: f10ba67e93 wall-chamber quantum rigidity (surface groups, median Cayley graphs), PASS. Corollaries (Γ*Z, specials in 𝒞) rest on tree-gluing part 4, which is not reviewed.

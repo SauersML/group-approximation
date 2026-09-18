@@ -1,0 +1,9 @@
+Finite products of hyperbolic groups quasi-isometrically embed in finitely presented simple groups
+
+Groups that are undistorted in a type (A) actor quasi-isometrically embed in the finitely presented simple
+group SV of the actor (Belk-Zaremsky quasi-retraction). This undistorted class is closed under finite
+direct products (disjoint-union actions) and finite-index overgroups (Kaloujnine-Krasner plus finite
+wreaths). Hyperbolic groups enter through the BBMZ horofunction full group, and Aut(F_n) enters as a
+retract of the BFFHZ group. So finite products of hyperbolic groups and copies of Aut(F_n), and their
+finite-index overgroups, get the quasi-isometric half of Zaremsky's question. Lane proof, formal on
+landed nodes; no priority claimed.

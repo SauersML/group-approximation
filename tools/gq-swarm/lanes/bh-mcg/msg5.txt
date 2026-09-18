@@ -1,0 +1,10 @@
+Reduce the train-track Serret gate to local germs at partial traces
+
+Attempt 1 on train-track-trace-groupoid-hosts-closed-mcg: by compactness and
+fullness, membership of a mapping class in the full group is local germ
+existence at every trace. Slides must join tail equivalence (Penner-Harer:
+carried means splits plus shifts). Generic filling traces look fine. The
+decisive case is traces confined to a subsurface, where mapping classes
+supported on the frozen complement must act by finitely many split and slide
+moves ("twists are splits", the analogue of parabolics acting on continued
+fraction tails by shifts). Reasoning only.

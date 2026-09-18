@@ -1,0 +1,3 @@
+Referee the SFT-lift half of the E1 route: PASS conditional on one repairable key-domain gap
+
+Independent referee checks (DR arXiv:1802.01461 read at source) on the keyed-slot lift, its claim, the keyed-slots bypass node and the storage-column route. Determination, freeness, key separation, transverse-factor minimality and composition check out; slot keys must be the full level-K input field (repair G1); the gluing-to-lift step needs the same convention inversion as step 2.

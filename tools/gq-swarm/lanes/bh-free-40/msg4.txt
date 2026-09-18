@@ -1,0 +1,3 @@
+Limit-set escaping lemma and the Out(F_n) type (A) verdict
+
+If a loxodromic element has both fixed points outside the limit set of H in a hyperbolic G-space (no properness or quasiconvexity), H has infinitely many double cosets. For Out(F_n) every subgroup with finitely many double cosets therefore has limit set in the free factor boundary meeting every fully irreducible fixed pair, and dense (density via cited double density). Hull-Osin highly transitive actions show the only remaining obstruction is finite generation of stabilizers. Attempt 7 on the root; not decided.

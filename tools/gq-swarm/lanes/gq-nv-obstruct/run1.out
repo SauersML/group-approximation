@@ -1,0 +1,16 @@
+steps per run 177147 kmax 7
+zero-b1   Ytimes   59049  max return gap 6  desub depth 8  offsets per level [[0], [0], [0], [0], [0], [0], [0], [0], [0]]
+zero-p1   Ytimes   59049  max return gap 6  desub depth 8  offsets per level [[0], [0], [0], [0], [0], [0], [0], [0], [0]]
+random-0  Ytimes   59049  max return gap 6  desub depth 8  offsets per level [[0], [1], [1], [0], [0], [0], [2], [2], [0]]
+random-1  Ytimes   59050  max return gap 6  desub depth 8  offsets per level [[1], [1], [2], [0], [2], [0], [0], [0], [2]]
+random-2  Ytimes   59049  max return gap 6  desub depth 8  offsets per level [[2], [2], [0], [2], [0], [2], [0], [1], [1]]
+random-3  Ytimes   59050  max return gap 6  desub depth 8  offsets per level [[0], [1], [2], [0], [0], [1], [2], [0], [2]]
+sparse    Ytimes   59049  max return gap 6  desub depth 8  offsets per level [[0], [0], [0], [0], [0], [0], [0], [0], [0]]
+k=1  radius 3  distinct windows 5832  conflicts 0
+k=2  radius 4  distinct windows 51753  conflicts 0
+k=3  radius 5  distinct windows 271606  conflicts 0
+k=4  radius 6  distinct windows 390654  conflicts 0
+k=5  radius 7  distinct windows 408690  conflicts 0
+k=6  radius 8  distinct windows 412135  conflicts 0
+k=7  radius 9  distinct windows 409414  conflicts 0
+SMART_INDUCED_ODOMETER_DONE

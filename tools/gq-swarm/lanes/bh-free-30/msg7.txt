@@ -1,0 +1,5 @@
+Canonical solenoid route to Q semidirect 2 in 2V_tau is dead by the no-common-tree-coding theorem
+
+local T-similarities are exactly T-almost-automorphisms, so rational-rotations-and-doubling-have-no-common-tree-coding
+excludes the tree coding needed by q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding. What survives: exotic free
+Q_odd/Z-actions not conjugate to rational rotations. Target node updated.

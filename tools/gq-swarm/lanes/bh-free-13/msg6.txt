@@ -1,0 +1,10 @@
+Q-exact recorded: it contains the exactness of Thompson's F; non-exact actors give non-exact hosts
+
+amenable-groupoid-full-groups-are-exact (OPEN, synthesis Q-exact): implies V hence F exact (V is the
+full group of the amenable Cuntz groupoid); if F is non-exact, T and V are fp simple non-exact groups.
+Records why Scarparo's relative-amenability method stalls for V (C is (V, V_0inf)-amenable, but the
+stabilizer contains V), and the Haagerup and contracting Rover-Nekrashevych test cases.
+thompson-group-f-is-exact (OPEN): Scarparo arXiv:2109.01111 (read at source): F exact iff T exact.
+thompson-f-exact-via-amenable-full-groups (route).
+some-nonexact-group-has-a-type-a-action (OPEN) and route fp-simple-nonexact-group-via-nonexact-type-a-actor.
+fp-simple-nonexact-group: Attempt 4 (F bottleneck, census split, lessons).

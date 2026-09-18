@@ -1,0 +1,9 @@
+Record the chain-configuration reduction on the Higman and Baumslag-Gersten nodes
+
+Attempts entries only, citing 10249e417: the common vertex group G_1 (= K,
+the height-two tower of BG) lies in B_A iff some B_A group contains a
+chain configuration. So a configuration is necessary for both test cases.
+Status of both nodes unchanged (OPEN).
+
+Lesson for general BH: faithfulness of graph-of-groups inputs is free in the
+permutational class, so both test cases now hinge on one local configuration.

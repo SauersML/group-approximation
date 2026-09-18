@@ -1,0 +1,3 @@
+Referee A for BBCMP Q1.15: conditional PASS after two repairs (Li link lemma, Lemma E)
+
+Independent referee of the Q1.15 host. Li's lem:link:n-conn_3 over Gamma(*) is not proved by Li's text; a direct Dickson-lemma proof is supplied for the pure-hole Cuntz datum. Lemma E is false with holes whose witness walls lie beyond the first cube; Lemma E-prime repairs it. Garside heads and norms, Corollary D and simple2 hypotheses, and the embedding checked. Claim stays OPEN pending a check of the two repairs.

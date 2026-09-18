@@ -1,0 +1,7 @@
+Decouple one-steinberg-group-contains-every-gl-n-q from the ring D
+
+The claim holds for any ring S with Q and a Leavitt pair, so its proof route needs
+only the rank-4 Steinberg finite-presentation theorem. Drop
+finitely-presented-divisible-ring-engine from the route's requires, and move the
+Leavitt-pair check for D into the D route. The St_4(R_L) route into Problem 2.7 then
+no longer depends on D, as referee b required (A3).

@@ -1,0 +1,5 @@
+R_l residual finiteness: gq-referee-a PASS; fix one index slip
+
+In the delta != 0 case the surviving vector is f_t in V_t (the k-term gives
+f_k(lt) f_(t-k)), not a vector of V_(t+k). Link the proof-gap review on the
+normal-form and residual-finiteness claims.

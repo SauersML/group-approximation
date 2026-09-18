@@ -1,0 +1,3 @@
+Referee batch: superperfection LTP, faithful HNN half-tree upgrade, plane-local freedom, and full check of the incomparable-lift items 1-4
+
+PASS for e7fc5a5be (Li vanishing corollary verified at source; repairable nit on the perfectness conjugator), 58fb2e8438 items 1-3 (item 4 KMS structure not checked at source), 3bf21d2d65 Parts 1-2, and 02399e478 items 1-4 including the Delta-case. The independent K = 1 proof (9752ecd5d) shares items 1-4, so it does not cover gaps there, but it removes the dependence on the generation step.

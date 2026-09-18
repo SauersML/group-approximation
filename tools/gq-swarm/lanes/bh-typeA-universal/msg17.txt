@@ -1,0 +1,11 @@
+Replace the join sentence for BZ lem:VE_conn with the labelled matching complex argument
+
+Referee c found a second error in Belk-Zaremsky's proof of lem:VE_conn: for m
+at least 5 the covering sets meet for non-disjoint pairs too, so the recorded
+"intersections are joins" sentence was false. Both route nodes now use the
+corrected argument. VE_m is the labelled matching complex of K_m, a complete
+join over the matching complex M(K_m), which is weakly Cohen-Macaulay of
+dimension nu(m). So VE_m is (nu(m)-1)-connected by Hatcher-Wahl Proposition
+3.5, and the conclusion is unchanged. The necessity citation now also requires
+the faithful realization, which makes the germinal twists of FFWZ
+Proposition 4.17 well defined for non-faithful actions.

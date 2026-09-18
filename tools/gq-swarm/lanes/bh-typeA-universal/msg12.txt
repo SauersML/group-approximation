@@ -1,0 +1,9 @@
+Record referee a's PASS on the non-faithful criterion and its correction to BZ's VE_m lemma
+
+Referee a passed the colored-subgroup embedding and the non-faithful criterion,
+including the transfer of Belk-Zaremsky sections 5-7 to the S-colored Stein
+complex and the pi_1 filtration. Its nits are applied. The main one records
+that BZ's proof of lem:VE_conn misdescribes VE_m^{i,j}, which also contains
+vertices matching neither leaf. The lemma still holds, because VE_m^{i,j} is a
+join with VE_(m-2). The faithful route gets the same remark. The FFWZ
+generating relations are now quoted verbatim.

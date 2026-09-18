@@ -1,0 +1,3 @@
+Referee report: free-shift Houghton-like envelopes not fp, and regular enumerations PASS
+
+Proof-gap lens on free-shift-houghton-like-envelopes-are-not-fp and regular-enumerations-can-make-near-shift-free-product (6362d6c31). Local stability, the failing transposition relation, finite determination and the fresh-trajectory genericity checked; three nits.

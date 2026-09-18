@@ -1,0 +1,3 @@
+Referee reports: p-adic dilation normalizers PASS; finite-state Mobius pieces PASS with R1
+
+Proof-gap lens on p-adic-dilation-normalizers-act-by-power-maps and finite-state-mobius-pieces-see-finitely-many-primes (dee7ac8ab). Continuity/extension, log-linearity, six exponentials step, power law, rank-two remarks checked; Baire composition, pole argument, rational coefficients, Z[1/N] bound checked. R1 supplies the f.g.-ring lemma behind the third Reading bullet.

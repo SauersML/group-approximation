@@ -1,0 +1,1 @@
+Synchronization node: the one-step split lemma is false; record the braid-cut strategy and its two hand wins

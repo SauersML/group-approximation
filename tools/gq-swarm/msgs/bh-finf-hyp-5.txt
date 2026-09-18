@@ -1,0 +1,12 @@
+Test cone matching on right-angled Coxeter groups: condition (C) fails for the pentagon group, and settle colour-tameness
+
+One Slurm job (1328148, 19 s). The tree calibration passes (only the level-1 root failure). The Z^2 grid
+control fails at its 4 corners at every level. The right-angled pentagon group (hyperbolic, circle
+boundary) has 4 persistent nested chains of non-matching atoms per generator through every computed
+level. These are at the wall endpoints, which are branch points. So (C) fails even for a cubulated
+hyperbolic group, and the nucleus-tile operad is the wrong engine. The next test is configuration
+insertions.
+
+Colour-tameness holds iff every colour has an operation with inputs of that colour only. That fails
+for unstabilized SFT operads, already for free groups, and holds after Cuntz stabilization. Script and
+results are in research/artifacts/gq-bh-finf-hyp-cone-matching-test.md.

@@ -1,0 +1,7 @@
+Soften the locally finite splitting consequence in the Heisenberg seed node
+
+The seed layer adds nothing, but iterated Britton reduction is the only remaining source of complexity;
+say that instead of "never witnesses not-CAP".
+
+Lesson for general BH: state a cap as "seed layer adds nothing over the splitting normal form"; the
+normal form is where any remaining complexity of such groups lives.

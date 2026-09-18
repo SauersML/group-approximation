@@ -1,0 +1,12 @@
+Reorganize the Boone–Higman summary by general lessons and mechanisms
+
+Second rolling summary, covering the 268 landings since 27bee4278, written
+per the 10:48 insight-first order. Nine mechanism lessons: the wrapper layer
+(twisted Brin–Thompson criterion, Cuntz stabilization), complexity ceilings,
+finite presentation as regularity, rigid inputs are not actors, permanence
+as centralizer-realizability, the FW shell window theorem, central
+extensions, linear hosts by primes, and property (F) units. Adds the named
+problems answered or corrected in this pass, the refutations, and the
+sharpest open forms of the compiler question. Every entry carries its
+review status; most are unreviewed lane proofs with arXiv-only priority
+checks.

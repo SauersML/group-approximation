@@ -1,0 +1,14 @@
+Lampshuffler bases certify no strand shift for one-ended inputs; one infinite-order letter already kills strand bases
+
+New ESTABLISHED lane proof (bh-free-47):
+- lampshuffler-bases-lift-no-shift-for-one-ended-inputs. Lemma: for one-ended P, a finite-index A <= P, and an
+  injective near map mu of P with lambda(A) conjugated into lambda(P), mu has index zero. This extends the
+  one-ended normalization result from A = P, mu = s^m. Consequence: over the base FSym(X) * prod_j lambda^(j)(P)
+  of H_n(E_nu(P)), every letter certified by the lifting criterion has zero near index on every strand. So no
+  certificate exists.
+
+Edit to strand-map-bases-lift-only-bounded-displacement-letters: Corollary 2. For P not virtually cyclic, no
+rho_g with g of infinite order is certified over a strand-map base, for any nu. Periodic displacement leaves
+finitely many orbits, while the orbits of lambda_g are the cosets of <g>.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>

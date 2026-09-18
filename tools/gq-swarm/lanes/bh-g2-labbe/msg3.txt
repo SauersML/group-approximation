@@ -1,0 +1,10 @@
+Context splits cross Labbe's axis faults at scale 2; resonant (6,0) certificates are provably non-local
+
+New sound criterion (contextual closure): case-split over a pairwise-commuting context where each context
+pattern determines one end; partial-box legality makes any commuting rectangle usable. Only double faults
+obstruct it, and a double fault inside a window gives an explicit 2-dim representation of the window algebra,
+which excludes every certificate supported there. Calibrated (checkerboard, Ledrappier fill; full shift
+certifies nothing). One Slurm job, 51 s: in Labbe's scale-2 presentation determinism certifies exactly B_4, while
+context splits plus the determinism steps they unlock certify 26 of 40 offsets at distance 5, including both
+axis fault normals; the diagonal offsets remain open; at the golden-resonant (6,0) windows of height <= 11 carry
+non-commuting 2-dim representations. A Groebner run cannot terminate on this presentation.

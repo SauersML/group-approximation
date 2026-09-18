@@ -1,0 +1,5 @@
+Apply referee b fixes to the semiprime PI envelope nodes
+
+Multilinearize the identity before Amitsur-Levitzki; cite Bergman gap
+theorem and Pappacena-Small-Wald for the GK <= 1 case; record the
+referee b pass (fbf1d1170); referee a pending.

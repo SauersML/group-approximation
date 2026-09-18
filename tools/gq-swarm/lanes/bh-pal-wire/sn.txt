@@ -1,0 +1,8 @@
+GroupApproximation.BooneHigman.Products.Hosts
+GroupApproximation.BooneHigman.Products.Assembly
+GroupApproximation.BooneHigman.Products.FinitePi
+GroupApproximation.BooneHigman.Products.ProductTree
+GroupApproximation.BooneHigman.Statement.API
+GroupApproximation.Algebra.ProductFinitePresentation
+GroupApproximation.BooneHigman.Statement.Basic
+GroupApproximation.BooneHigman.Trees.TreeAut

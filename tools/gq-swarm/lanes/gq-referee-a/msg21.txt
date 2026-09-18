@@ -1,0 +1,7 @@
+Referee reports: three gq-deep-adelic-1 obstructions PASS (proof gaps)
+
+Proof-gap reviews of fg-q-rings-have-no-matrix-representations,
+af-groupoid-rings-have-no-fg-subring-containing-q and
+matrix-corner-laurent-rings-block-fp-elementary-groups (a922d082a). All pass;
+the reports give a short extension of the AF result to non-unital copies of Q
+and one missing sentence about idempotents in the corner argument.

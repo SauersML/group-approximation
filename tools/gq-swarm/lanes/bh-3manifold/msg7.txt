@@ -1,0 +1,7 @@
+Explicit candidate embedding of a non-virtually-fibered graph manifold group in a punctured mapping class group
+
+Attempt 13 on nonfibered-closed-graph-manifold-groups-satisfy-pbh: a lantern-based
+two-commutator factorization of the boundary twist, lifted through the pushing kernel so
+the relator is exactly T_y, together with a pushed leaf gives a candidate two-leaf graph
+manifold group with non-parallel boundary words inside a punctured mapping class group.
+Freeness of the lifted block and injectivity of the amalgam remain open.

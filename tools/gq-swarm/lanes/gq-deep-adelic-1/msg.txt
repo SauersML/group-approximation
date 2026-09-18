@@ -1,0 +1,10 @@
+Tracial harmonic ring keeps rational scalars; Laurent symbols block fp E_N
+
+A finitely generated simple tracial ring R_h (a harmonic function inside
+C(X) x| Z over a minimal subshift) contains Q, has centre Q, and by the
+Fuglede-Kadison determinant keeps every scalar other than +-1 out of E_N, so
+the centre clause of the elementary-host route can be met. But for any skew
+Laurent ring over a Q-algebra base that detects scalars in K_1, the symbols
+{lambda, u} embed an infinitely generated group in K_2 (ABC boundary map),
+so no E_N is finitely presented. Record the resulting K-budget for ring hosts
+of GL_n(Q) and the shape that remains.

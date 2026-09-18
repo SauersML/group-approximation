@@ -1,0 +1,8 @@
+gq-referee-b: reviews of three GL_n(Q) obstruction nodes
+
+Citation/hypothesis-match reviews. lifts-add-no-unipotent-divisibility:
+PASS. germ-extensions-omit-standard-gl-n-q: PASS with wording fixes (BHM
+definition locus, tower induction, Malcev over A_f).
+piecewise-commutative-linear-hosts-miss-linear-gl-n-q: PASS with wording
+fixes (instances 3 and 5 vacuous for part (b), T is isomorphic to the PIP
+group, PIP spheres need the ray sphere).

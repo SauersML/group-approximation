@@ -1,0 +1,3 @@
+Referee report: Leavitt refinement identifies unstable K_2 levels, items 2-4 PASS
+
+Proof-gap lens on leavitt-refinement-identifies-unstable-k2-levels (414f75d29), items 2-4: block conjugation V = T_r + u, stable compatibility, computability of D_r^-1, padded-centrality step and kernel identity checked; item 1 is citation (referee b).

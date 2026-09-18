@@ -1,0 +1,7 @@
+Calibration worlds: add circle-group test and Witte node
+
+Add T6(c): d65ff92ff shows divisible subgroups of f.g. finitely piecewise
+projective circle groups and their lifts act freely with N(D) = C(D), so no
+element scales them (Step 1 checked by this lane). Cite the landed Witte node
+5a140f21e in T8, and make the n = 2 case of T8 explicit: line and interval
+hosts fail by torsion, circle hosts fall to T6(c).

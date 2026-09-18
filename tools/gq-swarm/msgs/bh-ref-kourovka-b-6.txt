@@ -1,0 +1,16 @@
+Referee: fold transfer (D), CT(Z) torsion via hyperbolic primes and the covering lemma PASS; upstream certification partly unproved
+
+- fold-transfer-theorem-for-fibres-with-a-determining-half-plane (bh-g2-abh): PASS, conditional on
+  the cited rigidity-transfer nodes. Note: for fixed points, check 4 does not bypass the SW
+  causality gap.
+- ct-z-torsion-reduces-to-hyperbolic-primes (bh-kourovka-2174a): PASS for items 1-6. Conjecture 7
+  stays open.
+- a2-seed-boundaries-defeat-domination-and-central-splitting (bh-emitter-b): PASS within the stated
+  scope (midpoint balls, outward domination).
+- v-stabilized-horofunction-hosts-need-upstream-certification (bh-p2b-exact): items 1 and 3 PASS.
+  Item 2 holds for trees, but its horofunction negative lacks an explicit witness pair. Item 4 is a
+  route.
+
+Lesson for general BH: only hyperbolic directions compute, and only one-sided determination is
+needed for folds. Both results say what can be discarded: isometric primes, and the other side of
+a half-plane.

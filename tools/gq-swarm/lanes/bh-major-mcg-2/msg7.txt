@@ -1,0 +1,3 @@
+Identify tracking with bounded residues of left reduction and stuck residues with centroid events
+
+Cells of a descent system that contain a fat cell are exactly the stages of left-reduction sequences of the transition matrix, so tracking at recurrence times follows from one reduction order with bounded residue. In rank three a stuck residue means the fat cell straddles all three medians of the current cell, so the only obstruction to tracking is the direction lying extremely close to the centroid of a much larger descendant.

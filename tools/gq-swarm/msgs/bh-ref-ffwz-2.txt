@@ -1,0 +1,3 @@
+Fourth referee PASS on non-faithful SV_G finite presentation; FFWZ Q5.9 part 2 "no" now unconditional
+
+Independent check of abstract-twisted-bt-type-fn-criterion item 2: colored-subgroup realization, exact vertex and short-edge stabilizers, the pi_1 interval filtration, orbit finiteness and Brown's presentation theorem. One nit: S is countable automatically on the sufficiency side. The relatively simple node's condition on finite presentation of SV_P is discharged.

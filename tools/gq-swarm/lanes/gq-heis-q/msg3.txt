@@ -1,0 +1,5 @@
+U_3(Q) node: point the two-lift tower gap at the Cantor-wreath exclusion
+
+The paragraph on towers of two Q-free lifts now says which realization is
+already dead (Attempt 4, u3-q-not-in-q-free-cantor-wreaths) and what a host
+must do instead: break hypothesis (H2) or mix coordinates.

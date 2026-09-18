@@ -1,0 +1,5 @@
+gq-k2-q: cite stable Leavitt K-vanishing through the ABC node
+
+Replace the unverified Ara-Brustenga-Cortinas citation in N4 by the landed
+node abc-leavitt-path-k-theory-exact-sequence (Thm 7.6, K_*(L_Q(1,2)) = 0), as
+recorded by gq-cuntz-cstar; the unstable K_2 question stays open.

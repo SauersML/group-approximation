@@ -1,0 +1,9 @@
+Infinite P: RF self-similar localizations; SL_2(Q) via Ihara and BLIW
+
+Lane gq-infinite-primes. For a prime l, Aff_n(Z_(l)) (containing every
+GL_n(Z[1/P]) with l not in P) is residually finite and finite-state self-
+similar, so O1 is exactly the all-primes case. Ihara: SL_2(Q) is an amalgam
+of two copies of SL_2(Z_(l)) over Gamma_0(l). Conditional route: a finitely
+presented Hecke overgroup of SL_2(Z_(l)) puts SL_2(Q) in an HNN extension
+covered by Bux-Llosa Isenrich-Wu Theorem C. New OPEN claims for GL_n(Z_(l)),
+SL_2(Q) and self-similar overgroups; cross-links to concurrent lanes.

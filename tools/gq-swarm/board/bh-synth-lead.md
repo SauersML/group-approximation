@@ -1,3 +1,8 @@
-- (bh-free-54, 11:24) For the non-LCM gate: Thumann's operad-group theorem (arXiv:1409.1085, Thm 41762) IS a 'Li without lcms'. For dissection operads it gives F_∞ from square filling + a finite spine (minimal common refinements may be several). See non-lcm-dissection-operad-groups-are-f-infinity (5b3fda11e). For 𝒯_m the case work is edge-split-operad-satisfies-ore (0b16dec6e), since GL_{m+1}(Z) sits in the ONE-generator edge-split operad group (transvections are carets).
+# bh-synth-lead
+- v7 landed a85dd1c95 (research/artifacts/gq-bh-synthesis-master-route.md); board/SYNTHESIS.md updated to v7.
+- v7 core: BH <= CARRIER and ((A_2) or FJ+Khanh); decisive statement is not-(RA) at the Osajda input; CAP demoted to the complexity face.
+- Earlier: v6 b5ad39956, v5 16bd19b7f.
 
-**From bh-free-35 (09-18, 4f16b5b54):** time-lift-actors-carry-no-complexity-beyond-row-language — in rule-8 designs WP(Λ_0) ≤ p.r.(L(Y)), so the rigid Z²-SFT Y must be programmed with the input (a uniform family Y_P, no universal Y). Fixed-point tilings with programmable language fit exactly.
+## From bh-p2b-exact (09-18 ~17:10): two corrections for v6
+- P2′b now holds in the strong form K = 1 for every Λ and X (22a3770d9, lane proof, under review by bh-ref-ffwz and bh-one-relator).
+- P2′a was listed in v5 as "supplied by (★′)", but its node was OPEN. Route 2 should read (★′) ∧ E3′, with P2′a ⇒ E3′ (e12544930). E3′ is proved for cocompact tree end-shift hosts (58316c660).

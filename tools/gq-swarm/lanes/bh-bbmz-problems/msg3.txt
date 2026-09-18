@@ -1,0 +1,14 @@
+bh-bbmz-problems: BFFHZ Question 3.3 answered negatively (Thompson's T)
+
+New claim thompson-t-mixed-identities-are-not-finitely-normally-generated, with proof
+route; lane proof, not reviewed. For every n >= 1, the mixed identities of T are not
+finitely normally generated in T*F_n, so (T*F_n)/J_T(T*F_n) is not finitely presented.
+
+- Localization: every map supported in a small generic neighbourhood satisfies a given
+  mixed identity. The word collapses to P^s there, and s = 0 because an infinite-order
+  t in T supported there must satisfy the identity.
+- Separation: V breaks the three-arc identity at every scale.
+- So a finite set is killed by x -> P while another identity survives. Descent covers
+  all ranks.
+
+The Q3.3 reformulation node and the status artifact are updated. Q3.2 for T stays open.

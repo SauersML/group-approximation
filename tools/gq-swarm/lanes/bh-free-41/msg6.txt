@@ -1,0 +1,6 @@
+Reduce MathOverflow 412219 to a nonrecursive type [A_2] kernel
+
+If some type [A_2] action has a nonrecursive kernel, the finitely presented
+wreath product (Z/2) wr_S G has E(W) not recursively presented. The lamp at a
+point and a group element satisfy the mixed identity [x c x^-1, g] exactly
+when g lies in the kernel on that orbit.

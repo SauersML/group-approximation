@@ -1,0 +1,7 @@
+gq-k2-q: partial-gauge core of the Leavitt algebra realizes the Pascal Pimsner data, but has a character
+
+The fixed ring R of L_Q(1,2) under the letter-2 grading has the isometric frame
+(t_1, s_1) over the Pascal core B (K_0 = Z[t]) acting by x(1-t): 1 - A = xt is
+injective with cokernel Z spanned by [1]. Under (P) with Q-bar: K_1 = scalars,
+K_2 = 0. But R preserves the line of the word 1^infinity, so it has a character
+and is not simple: the Pascal boundary t = 0. Finite generation of R is open.

@@ -1,0 +1,8 @@
+Odometer-factor hole: SMART already triples exactly after recounting
+
+Record, from the transcribed SMART table, the hand-checked level recursion
+f(k+1) = 3f(k) + 4 and the observation that g = f + 2 = 3^(k+1) triples
+exactly, so a "variant with f(k+1) = 3f(k)" is an accounting change, not a
+new machine. Macro crossing times are all 0 mod 3, so they do not obstruct a
+Z_3 eigenvalue. Note what a height-3 renormalization of SMART would still
+need, and point to the substitution plan already recorded.

@@ -1,0 +1,3 @@
+Referee reports: mixed-degree units PASS; frame-designs bracket summary W1-W2
+
+Proof-gap lens on mixed-degree-units-lift-non-positive-fixed-classes (items 1-3 PASS, item 4 implication from CSL; nits N1-N4 incl. direct index-formula argument and v + b >= 0) and on the summary frame-designs-for-the-ring-gate-are-bracketed (W1: unit-symmetry inhomogeneous branch is a reduction, not a failure; W2: sl2 node is OPEN).

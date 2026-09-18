@@ -1,0 +1,7 @@
+Frame-complex route: order-2 edge element and exact Weyl lift
+
+Lane gq-infinite-primes. Since [-1] = 0 in K_1(R_L) and GL_n/E_n injects into K_1,
+the honest transposition P_12 lies in E_n(R_L), so Khanh presentation holds
+verbatim; d = D^-1(h_12(-1)) and omega = w_12 d give an exact lift of P_12. Left:
+omega^2 (a central element of K_2(n)) in j(K_2(n-1)), and the braid relation
+modulo C.

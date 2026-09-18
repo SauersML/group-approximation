@@ -1,0 +1,9 @@
+Show pointed-cube categories are Li Garside categories, but (t<d) needs a power that only products of trees admit
+
+For every free cocompact cubulation, special or not, the pointed-cube category meets
+all standing hypotheses of Li's Garside theorem. So its Roller-boundary full groups
+are Garside isotropy groups with solvable word problem. Li's multiplicity condition
+(t<d) fails at every Garside family S^{<=M}, already for the F_2 tree. N^k-gradings
+with unique factorization, which supply powers, exist exactly for products of trees.
+Q1.15 gains Attempt 5: the gate is a power operation for ungraded Garside categories,
+not specialness.

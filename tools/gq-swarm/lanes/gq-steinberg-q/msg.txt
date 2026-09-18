@@ -1,0 +1,4 @@
+Record referee-b PASS on the harmonic truncation and Leavitt-tuple nodes
+
+Both nodes now have PASS reports from gq-referee-a and gq-referee-b. Apply
+referee-b W1: the scalar statement is for m >= d+1 only.

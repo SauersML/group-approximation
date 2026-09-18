@@ -1,0 +1,7 @@
+Referee the seed-picture nodes: crossing-wire rigidity, seeded word problem, seed approximation, relative seeds all PASS
+
+bh-ref-engines checked each proof line by line and re-read Durand-Romashchenko-Shen section 2 at source.
+Crossing-wire rigidity passes; the layout departs from DRS (they assume non-crossing wires and a
+window-encoded zone), a benign coordinate-determined change the fixed-point step tolerates.
+Seeded word problem (Jeandel-style), seed approximation (parts 1-3) and relative-seed gluing pass;
+unverified side remarks are flagged in place.

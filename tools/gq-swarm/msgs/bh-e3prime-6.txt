@@ -1,0 +1,7 @@
+Grigorchuk group: a branch-type seed for G/Stab(1^inf); free orbits and finite type stay open
+
+grigorchuk-schreier-tip-seeds-a-non-free-orbit:
+- One-defect lemma: an SFT compactification has a pattern occurring at most once per configuration (on one coset of the stabilizer), and its remainder is an SFT.
+- Branch seed: 1^inf is the only point fixed by b, c and d. So in the fixed-generator label subshift over G, the Schreier-ray tip configuration is isolated with dense orbit G/P, where P = Stab(1^inf) is infinite.
+- Open: whether this subshift is of finite type over G, and whether a free seed exists.
+- The growth argument against Cannon seeds does not close: finitely many cone types bound geodesic growth, not element growth.

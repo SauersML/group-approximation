@@ -1,0 +1,6 @@
+(RA) over free groups: rigid subshifts factor onto the boundary; Mozes-type homogeneous subshifts are not rigid
+
+- The single-free-branch theorem holds for every subshift. Over Λ_0 × F_n, the free branches of nested slabs converge to an equivariant end, so an invariant probability measure lives on points determined by one slab.
+- Over F_n, every quantum-rigid subshift without isolated points is a continuous extension of ∂F_n, hence topologically amenable. This is (RA) for free groups.
+- The covering-map SFT of a complete square complex, Γ\Aut(T_1×T_2), and its algebraic homogeneous subshifts Γ\(H_1×H_2) are measure-preserving over F_m×F_n and never quantum rigid. Compact stabilizers of slab states rotate every branch at once.
+- The (RA) node gets a progress section.

@@ -1,0 +1,3 @@
+Higman-V Step-B core: cone-local conjugation settles the per-cycle-symmetrizable cases; an explicit F-like instance isolates what remains
+
+Paper-level lane proof on HigmanVCStepBCoreStatement (input H1 of the metabelian route-A root). Claim A: C-local balanced elements conjugate through h in Q. Claim B: this settles every core instance that can be symmetrized cycle by cycle, which strictly extends the proved symmetric case. Claim C: an explicit d = 2 instance satisfies every core hypothesis, admits no such data, and has an infinite-order product; the single Q-identity it needs is written out as a calibration target. Not formalized, not reviewed; the statement stays open.

@@ -1,0 +1,6 @@
+gq-k2-q: central-deformation host: lamps do not commute even in finite quotients
+
+In the characteristic-l fibre (u = -1, p = 0) every pi_k vanishes, so the
+lamps b_k act by arbitrary periodic matrices; finitely many commutators
+[b_0, b_j] never imply the rest. B is strictly larger than its commutative
+image and pi_0 is a zero-divisor.

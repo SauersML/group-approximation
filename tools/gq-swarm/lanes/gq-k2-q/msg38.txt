@@ -1,0 +1,6 @@
+gq-k2-q: T_p: Baumslag letter fails; p-nilpotent side reduced to K_2(B, B_+)
+
+An additive or multiplicative Baumslag letter on the lamps forces
+(2pi_0^2 + 4l pi_0 + l^2) M = 0 or l(2pi_1 - 1) M = 0, so M loses Z_(l).
+K_2(B) = K_2(B_0) + K_2(B, B_+) with |K_2(B_0)| <= 4; K_2(B, B_+) dies in every
+finite quotient where p is a unit (NK_2(D) = 0) and vanishes if NK_2(B) = 0.

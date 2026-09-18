@@ -1,0 +1,3 @@
+K-gate for GL_n(F_2(t)) reduced to regular supercoherence of the char-2 point-indicator base
+
+Attempt 5 on horner-resolvent-leavitt-tensor-k1-k2-vanish: K_*(R_2 ⊗ L) = 0 follows from K_*(B⁺_2 ⊗ L) = 0 (ABC 3.6 register-completion Pimsner sequence over base B⁺_2 ⊗ L), which follows from B⁺_2 regular supercoherent (Ara-Cortinas Prop 6.2). Remaining open step: regular supercoherence of the explicit two-variable point-indicator base B⁺_2 (a regularity computation over F_2, no K-theory), the analogue of eventually-rational-register-ring-is-regular-supercoherent. So the whole GL_n(F_2(t)) gate is now a pure regularity question.

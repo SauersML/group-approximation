@@ -1,0 +1,8 @@
+Record two proved limits of the degree-monoid host route
+
+pbh-via-degree-monoid-boundary-full-groups gains a "Limits of the route" section.
+(L1) The unit group acts on the boundary through a residually finite quotient, since it
+permutes the finitely many cylinders of each degree. So non-residually-finite subgroups of
+the hosts must come from boundary combinatorics (baker maps), not from the units.
+(L2) The hosts are F_infinity, so this route toward BH necessarily answers BBMZ survey
+Question 5.6 positively for every group it reaches.

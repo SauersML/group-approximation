@@ -1,0 +1,7 @@
+Show images of coprime Baumslag-Solitar groups in VA are cyclic-by-cyclic, excluding Thompson hosts at BS(2,3)
+
+Using the Burillo-Felipe undistortedness of infinite cyclic subgroups of VA (as quoted in O4),
+every image of BS(m,n) with gcd(m,n) = 1 and |m| != |n| inside VA has a of finite order and is
+cyclic-by-cyclic. So the commutator [tat^-1, a] of BS(2,3) dies in every image in F, T, V or VA,
+and no isolated finitely presented subgroup of V approximates BS(2,3), the test case of
+Cornulier-Guyot-Pitsch Question 1 (Attempt 3 recorded there). Lane proof, not reviewed.

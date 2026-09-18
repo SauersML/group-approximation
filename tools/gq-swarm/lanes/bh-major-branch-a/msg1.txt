@@ -1,0 +1,9 @@
+Bishop–Schesler branch groups are annular hosts over V; fp annular germ groups are HNN-recursive
+
+Recode the growing-alphabet spinal tree into binary (c_n(x_n) = 0): every Bishop–Schesler
+branch group sits in a one-orbit finite germ extension of V as an annular host, with G × Alt(6)
+in the germ group. With depth-disjoint codes that germ group is (G × Alt(6)) ≀ Z, so the host is
+never finitely presented. In general, a finitely presented annular host has germ group an HNN
+extension over a finitely generated group of depth-sequences (Bieri–Strebel), with the depth
+transport as associated isomorphism. Open target: fp residually finite groups as passengers
+pinned by an ascending driver (non-ascending HNN germ groups).

@@ -1,0 +1,8 @@
+Stabilizer engines are finitely presented only over isolated vertex groups
+
+A marked-group approximation argument: emitter engines over groups approximating B converge to F_B,
+so an fp engine forces B to be isolated (fp and finitely discriminable). Reid's group (MO 339541) and
+its derived group are not finitely presented; engines of RF groups and of infinitely presented
+simple inputs are infinitely presented, which refutes simple-inputs-have-finitely-presented-stabilizer-
+engines and makes Track C circular. Finite-type blow-ups (isolated seed orbits) are the surviving
+form. Lane proof, not reviewed.

@@ -1,0 +1,6 @@
+bh-logic: circulant test family has no naive lamplighter host
+
+Adds item 6 to circulant-graph-wreath-products-satisfy-boone-higman: for
+nonempty E, G_U embeds in no restricted wreath product H wr Z with a in the
+base and t of nonzero shift. This is a corollary of the bounded-width lemma.
+Lane proof, not reviewed.

@@ -1,0 +1,6 @@
+Record that finitely presented simple groups of infinite commutator width exist (Caprace-Fujiwara)
+
+The third item of AimPL Groups of dynamical origin Problem 3.1 asks for a finitely
+presented simple group of commutator width at least 2. Caprace-Fujiwara (arXiv:0809.0470,
+Cor cor:KM:simple, read at source) already give infinitely many, with infinite commutator
+width, answering Kourovka 14.13. The node was marked OPEN; this corrects the status.

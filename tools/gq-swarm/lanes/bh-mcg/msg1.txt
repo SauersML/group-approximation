@@ -1,0 +1,11 @@
+Reduce closed-surface MCG Boone-Higman to finitely presented full Cantor hosts
+
+New route closed-mcg-bh-via-full-cantor-host with open premise
+closed-mcg-virtually-embeds-in-fp-full-cantor-group: a finite-index subgroup of
+Mod(S_g) inside any finitely presented, full, clopen-transitive Cantor group
+(for example nV) suffices, via the type (A) clopen action and finite-index
+closure of the permutational class. Records that the V exclusion does not
+transfer to 2V (RAAGs embed in 2V), that the Heisenberg obstruction cannot apply
+(solvable subgroups of Mod are virtually abelian), and the PIP/train-track coding
+as the candidate mechanism. Attempt 8 on the closed-surface root. No embedding
+is claimed.

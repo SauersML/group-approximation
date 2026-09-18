@@ -1,0 +1,6 @@
+Referee report: central scalar commutators block fp quotients PASS
+
+Proof-gap review of leavitt-scalar-commutators-block-fp-central-quotients and
+leavitt-resolvent-derived-units-mod-centre-not-fp (90ff0b8ea). The group
+lemma, the Leavitt K_1 step and the instances check, so the Leavitt resolvent
+unit-group route to the root is refuted as stated.

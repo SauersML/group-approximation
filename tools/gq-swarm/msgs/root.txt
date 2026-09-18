@@ -1,0 +1,8 @@
+Add root gl-n-q-embeds-in-fp-simple-group (BBMZ Problem 5.3(5), literal)
+
+The survey arXiv:2306.16356v3 asks whether the countable group GL_n(Q) itself
+embeds in a finitely presented simple group (p. 7, Problem 5.3(5)); Zaremsky's
+Theorem 1.2 covers only its finitely generated subgroups. Record the question
+as an OPEN root with the known cases and three route obstructions (no
+residually finite overgroup; SL_3(Z) excludes V and VA for n >= 3; Q is not
+in V), and correct the two nodes that called item (5) settled.

@@ -1,0 +1,7 @@
+Referee report: Leavitt resolvent ring PASS (proof gaps)
+
+Proof-gap review of leavitt-resolvent-ring-is-fp-simple-of-char-zero and
+fp-simple-ring-of-characteristic-zero-exists (aaf4b1279): the isomorphism
+with the Leavitt-Nekrashevych completion, psi-minimality, aperiodicity, and
+the applicability of the simplicity criterion to a non-finitely-generated
+localized base all check. Priority is left to the literature lane.

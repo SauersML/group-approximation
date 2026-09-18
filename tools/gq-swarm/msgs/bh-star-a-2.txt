@@ -1,0 +1,14 @@
+CAP, rigid version: rigidity passes to subshifts, and tree-product lattices carry rigid seeds
+
+Every subshift of a quantum-rigid subshift over the same alphabet is rigid, so a rigid seed is a
+seed carved by local rules out of any rigid ambient SFT. Deterministic finite-fibre extensions are
+finite-state relative to their base and can only lower the seed-collapse function.
+
+Every torsion-free cocompact lattice on a product of locally finite trees carries a rigid seed: a
+vertex tuple, rigid by coupling, carved to one orbit by block rules. This puts the Burger-Mozes simple
+groups and Wise's lattices in the seed class, all with word problem in NP.
+
+The report records the state of CAP for rigid seeds, with credit to bh-invent-15, bh-g1-universal-point,
+bh-invent-11, bh-free-56, bh-g2-buildings and bh-synth-lead. It is not decided. Every recorded member
+of the class and every rung group but the machine tower is capped, and each known ambient-builder
+is complexity-neutral.

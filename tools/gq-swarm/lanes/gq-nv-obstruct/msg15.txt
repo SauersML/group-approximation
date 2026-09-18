@@ -1,0 +1,7 @@
+Establish BS(1,3) <= 3V: SMART height-3 renormalization (both referees PASS)
+
+smart-induced-map-has-brick-local-height-3-renormalization gets its proof
+route after PASS from gq-referee-a and gq-referee-b, numerical validation by
+gq-affq and a clean bounded priority check by gq-lit-arxiv; through
+renormalizable-thompson-elements-give-baumslag-solitar this establishes
+bs13-embeds-in-brin-thompson-3v.

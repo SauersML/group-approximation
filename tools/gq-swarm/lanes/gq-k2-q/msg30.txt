@@ -1,0 +1,6 @@
+gq-k2-q: Euler symbols are invisible from T_p (t-homotopy)
+
+phi: B -> D[t], b -> t/pi_0, specializes to B -> D at t = 1 and to
+B -> Z[u][x;sigma] at t = 0; by homotopy invariance for the regular ring D
+the two agree on K_2, and K_2(Z[u][x;sigma]) has order at most 4 (ABC).
+So the image of K_2(T_p) in K_2(T_l) meets span(c_q) only in 0.

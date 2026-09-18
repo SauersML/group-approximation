@@ -1,0 +1,16 @@
+Finite cuts are finite-state: isolated SFT points over finite-edge splittings decompose into vertex-group seeds
+
+- sft-isolated-points-are-finite-state-across-finite-edge-groups (ESTABLISHED, lane proof): if A
+  splits over a finite subgroup, every isolated point of every SFT over A (no rigidity assumed) is a
+  finite-state recursion along Bass-Serre normal forms of finitely many isolated points of SFTs over
+  the vertex groups (branch independence at the finite interface plus isolation). So membership in
+  its stabilizer is poly-time reducible to the vertex groups; by induction for finite graphs of groups
+  with finite edge groups. Over virtually free groups every such stabilizer is finitely generated with
+  regular normal forms, so (F_n, C) is a relative seed iff C is fg. For finitely presented groups
+  (Dunwoody), CAP for relative seeds reduces to one-ended groups. Remark: over trees, horospherical
+  computation layers collapse to finite-state cap automata.
+- sft-isolated-points-finite-edge-groups-proof (route).
+
+Lesson for general BH: seeds cannot compute across ends. A non-finite-state rigid coding must
+compute inside a one-ended group or across an infinite edge interface; first test F_2 x F_2 with a
+Mihailova fiber product (a two-sided locally forced labelling of the quotient).

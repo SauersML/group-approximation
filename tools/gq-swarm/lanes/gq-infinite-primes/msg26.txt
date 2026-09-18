@@ -1,0 +1,11 @@
+Rings containing the algebraic closure kill every rational Steinberg symbol
+
+Lane gq-infinite-primes. If Qbar embeds unitally in R (extending Q -> R), the
+image of K_2(N,Q) in St_N(R) is trivial for every N >= 3: K_2(Q) is torsion
+(Tate), K_2(Qbar) is torsion-free (Suslin), and K_2(N,F) -> K_2(F) is
+injective for fields. R_L contains Qbar, so the literal rational symbol
+budget for finitely presented rings containing Q is false; a budget that
+bites must exclude Qbar. With Qbar central, every {lambda, x} is infinitely
+divisible and must vanish once E_N(R) is finitely presented.
+
+Also Attempt 6 on the divisible-unit-class gate.

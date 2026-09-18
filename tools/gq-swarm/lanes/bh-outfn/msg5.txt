@@ -1,0 +1,6 @@
+Class-two obstruction test for Aut(F_n) to Out(F_n) on commuting pairs
+
+On a commuting pair in IA_n, class-two virtual splitting of the inner
+extension forces a rational solution of one quadratic equation in two vectors
+of H; only traceless Johnson parts matter. Recorded as Attempt 1 on the
+nilpotent tower node. No obstructing pair is exhibited.

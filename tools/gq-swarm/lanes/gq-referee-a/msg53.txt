@@ -1,0 +1,3 @@
+Referee report: one-sided inverses cannot repair the Steinberg residual PASS
+
+Proof-gap lens on one-sided-inverses-cannot-repair-the-steinberg-residual (0b9dedd64). Residual correspondence, kernel of St_N(T) -> St_N(T/I) incl. N = 3, Dedekind-finiteness and Part 3 checked; nits N1-N2.

@@ -1,0 +1,3 @@
+Referee report: BG PBH reduces to Higman group plus a lamp wreath PASS
+
+Proof-gap lens on baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath (175da33f5) and the hierarchy-phase Attempt on the Labbe quantum-tiling node. Britton pinch correspondence in all four sign cases, the exponent-map necessity remark, and the infinite-edge clause checked; four nits.

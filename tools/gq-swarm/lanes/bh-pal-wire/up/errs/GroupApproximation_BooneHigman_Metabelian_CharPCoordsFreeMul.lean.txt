@@ -1,0 +1,10 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:35:22: Unknown constant `Localization.Away`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:65:8: declaration uses `sorry`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:79:36: Invalid argument name `A` for function `awayMulLeft`
+
+Hint: Perhaps you meant one of the following parameter names:
+  • `P`: A̵P̲
+  • `r`: A̵r̲
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:93:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.CharPCoords.awayMulLeft_injective`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:100:25: Unknown constant `Localization.Away`
+error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:101:23: Unknown constant `Localization.Away`

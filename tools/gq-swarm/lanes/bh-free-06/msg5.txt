@@ -1,0 +1,5 @@
+Torsion local finiteness extends to irreducible SFT full groups; constraint on the nV Schreier-subshift route; 2V node cross-linked
+
+full-shift-topological-full-groups-are-torsion-locally-finite: add a proved extension to infinite irreducible two-sided SFTs (y' built from two distinct first-return loops). Consequence for nv-periodic-groups-via-schreier-subshift-factors: g|_U cannot be conjugate to an irreducible SFT.
+
+brin-thompson-2v-is-torsion-locally-finite: distinct_from links to bh-free-01's existence node and to the full-shift theorem. Attempt 3 records the two-stack obstacle and the LEF gap for bounded exponent in RTM.

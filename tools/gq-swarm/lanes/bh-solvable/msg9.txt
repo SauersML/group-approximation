@@ -1,0 +1,7 @@
+Put the centre of Abels' quotient at one point at infinity: a product-form p-adic model where A_p/C is its own germ group
+
+New node abels-quotient-product-form-model-with-one-singular-point (lane proof): the coset model
+of A_p/C on Q_p^2 x Q_p/Z_p has independent p-adic affine coordinates and polynomial fiber
+cocycles, one fixed singular point, and an injective germ map; Hall's B/C acts through one
+coordinate. Groups with a torsion monolith avoid rational V-germ groups. Attempt 3 on
+fg-soluble-minimax-groups-satisfy-boone-higman records the two remaining gates.
