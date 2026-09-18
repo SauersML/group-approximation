@@ -5717,6 +5717,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Taq
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiRotation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06h.AllCells
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerCommutator
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
