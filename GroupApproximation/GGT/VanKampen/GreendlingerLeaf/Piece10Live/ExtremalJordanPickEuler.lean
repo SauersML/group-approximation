@@ -278,9 +278,8 @@ theorem extremalJordanPickEuler_first_uncrossed (K : PocketFaceSet D eps X lo hi
       RotationBetween X.toCombMap (X.toCombMap.alpha d₀) (K.boundary.cycle.next d₀ hd₀)
         (K.boundary.cycle.next d hd)) := by
   have hfrd : SectorNoninterleaving.SectorFree X.toCombMap K.boundary.cycle
-      (K.boundary.cycle.next d hd) (X.toCombMap.alpha d) := by
-    by_contra hc
-    exact h ((extremalJordanPickEuler_nonFirst_iff K hd).mpr hc)
+      (K.boundary.cycle.next d hd) (X.toCombMap.alpha d) :=
+    Classical.byContradiction fun hc => h ((extremalJordanPickEuler_nonFirst_iff K hd).mpr hc)
   have hn₀ : K.boundary.cycle.next d₀ hd₀ ∈ K.boundary.cycle := List.next_mem _ _ hd₀
   have hxn : X.toCombMap.alpha d₀ ≠ K.boundary.cycle.next d hd := fun h' =>
     K.boundary_alpha_not_mem hd₀ (by rw [h']; exact List.next_mem _ _ hd)
@@ -331,9 +330,8 @@ theorem extremalJordanPickEuler_three_nonFirst (K : PocketFaceSet D eps X lo hi)
     have hvd : X.toCombMap.vertexOf (X.toCombMap.alpha d) =
         X.toCombMap.vertexOf (X.toCombMap.alpha d₀) :=
       (X.toCombMap.vertexOf_eq_iff _ _).mpr hsc.symm
-    have hnfd : P10ChordLift.NonFirstTurn K d hd := by
-      by_contra hfd
-      exact hcross (extremalJordanPickEuler_first_uncrossed K hd₀ hd hfd)
+    have hnfd : P10ChordLift.NonFirstTurn K d hd := Classical.byContradiction fun hfd =>
+      hcross (extremalJordanPickEuler_first_uncrossed K hd₀ hd hfd)
     have hdd₁ : d ≠ d₁ := by
       intro heq
       subst heq
