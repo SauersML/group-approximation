@@ -1,0 +1,35 @@
+{'test': 'odometer', 't': -3, 'N': 5, 'seeds': 4, 'closure_full': True}
+{'test': 'odometer', 't': -3, 'N': 17, 'seeds': 4, 'closure_full': True}
+{'test': 'odometer', 't': -3, 'N': 64, 'seeds': 4, 'closure_full': True}
+{'test': 'odometer', 't': -3, 'N': 101, 'seeds': 4, 'closure_full': True}
+{'test': 'odometer', 't': -1, 'N': 3, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': -1, 'N': 17, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': -1, 'N': 64, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': -1, 'N': 101, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 0, 'N': 3, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 0, 'N': 17, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 0, 'N': 64, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 0, 'N': 101, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 2, 'N': 4, 'seeds': 3, 'closure_full': True}
+{'test': 'odometer', 't': 2, 'N': 17, 'seeds': 3, 'closure_full': True}
+{'test': 'odometer', 't': 2, 'N': 64, 'seeds': 3, 'closure_full': True}
+{'test': 'odometer', 't': 2, 'N': 101, 'seeds': 3, 'closure_full': True}
+{'test': 'odometer', 't': 5, 'N': 7, 'seeds': 6, 'closure_full': True}
+{'test': 'odometer', 't': 5, 'N': 17, 'seeds': 6, 'closure_full': True}
+{'test': 'odometer', 't': 5, 'N': 64, 'seeds': 6, 'closure_full': True}
+{'test': 'odometer', 't': 5, 'N': 101, 'seeds': 6, 'closure_full': True}
+{'test': 'odometer', 't': 1, 'N': 3, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 1, 'N': 17, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 1, 'N': 64, 'seeds': 2, 'closure_full': True}
+{'test': 'odometer', 't': 1, 'N': 101, 'seeds': 2, 'closure_full': True}
+{'test': 'threshold_exact', 'p': '5/32', 'fixed_point': '1/3', 'tangent': True, 'closure_density': '11/27'}
+{'test': 'threshold_iter', 'p': 0.15, 'y': 0.266187}
+{'test': 'threshold_iter', 'p': 0.155, 'y': 0.303502}
+{'test': 'threshold_iter', 'p': 0.15625, 'y': 0.333329}
+{'test': 'threshold_iter', 'p': 0.1575, 'y': 1.0}
+{'test': 'threshold_iter', 'p': 0.16, 'y': 1.0}
+{'test': 'threshold_iter', 'p': 0.2, 'y': 1.0}
+{'test': 'hypertree_mc', 'radius': 7, 'p': 0.12, 'reps': 400, 'root_in_closure': 0.163}
+{'test': 'hypertree_mc', 'radius': 7, 'p': 0.15625, 'reps': 400, 'root_in_closure': 0.275}
+{'test': 'hypertree_mc', 'radius': 7, 'p': 0.19, 'reps': 400, 'root_in_closure': 0.44}
+{'test': 'hypertree_mc', 'radius': 7, 'p': 0.25, 'reps': 400, 'root_in_closure': 0.78}

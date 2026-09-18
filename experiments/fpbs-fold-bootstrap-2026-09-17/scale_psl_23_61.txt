@@ -1,0 +1,8 @@
+{'group': 'PSL2(23)', 'n': 6072, 'mal': False, 'greedy': 698, 'greedy_ratio': 0.11495, 'pruned': 623, 'pruned_ratio': 0.1026}
+{'group': 'PSL2(23)', 'n': 6072, 'mal': True, 'greedy': 625, 'greedy_ratio': 0.10293, 'pruned': 496, 'pruned_ratio': 0.08169}
+{'group': 'PSL2(31)', 'n': 14880, 'mal': False, 'greedy': 1741, 'greedy_ratio': 0.117, 'pruned': 1530, 'pruned_ratio': 0.10282}
+{'group': 'PSL2(31)', 'n': 14880, 'mal': True, 'greedy': 1205, 'greedy_ratio': 0.08098, 'pruned': 987, 'pruned_ratio': 0.06633}
+{'group': 'PSL2(47)', 'n': 51888, 'mal': False, 'greedy': 6310, 'greedy_ratio': 0.12161, 'pruned': None, 'pruned_ratio': None}
+{'group': 'PSL2(47)', 'n': 51888, 'mal': True, 'greedy': 5436, 'greedy_ratio': 0.10476, 'pruned': None, 'pruned_ratio': None}
+{'group': 'PSL2(61)', 'n': 113460, 'mal': False, 'greedy': 13236, 'greedy_ratio': 0.11666, 'pruned': None, 'pruned_ratio': None}
+{'group': 'PSL2(61)', 'n': 113460, 'mal': True, 'greedy': 13844, 'greedy_ratio': 0.12202, 'pruned': None, 'pruned_ratio': None}
