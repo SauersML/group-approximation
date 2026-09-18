@@ -14,7 +14,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `tree-product-busemann-transplant-rigidity-proof` (lane bh-invent-04,
-2026-09-18; elementary and algebraic lane proof, not reviewed; no priority claimed). Quantum families
+2026-09-18; elementary and algebraic lane proof, one adversarial referee PASS (see Referee); no priority claimed). Quantum families
 (Q1–Q3) and `D`-quantum rigidity are as in `fp-v-times-subshift-full-groups-force-quantum-rigidity`;
 nothing below restricts `dim W` or `char k`.
 
@@ -115,3 +115,36 @@ So a cone-deterministic `Y` is quantum rigid (at some scale) iff its transplant 
 - **Consequence for the master route.** A non-amenable factor can create fibre rigidity only through
   geometry whose germ events are not chains, as in Ã2 or other higher-rank geometry. Everything
   tree-like is a change of coordinates.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked `tree-product-busemann-transplant-rigidity-proof` line by line.
+
+- **Step 0.** Item 2: a `γ_i` that fixes `ξ_i` with zero translation cannot be hyperbolic, and it
+  cannot be an inversion either, since an inversion fixes no end. So it is elliptic and fixes a ray
+  pointwise, hence fixes a vertex of `V`, and `γ = 1`.
+- **Step 1.** Site independence of `[x → x']`: `γ S_j o` is exactly the set of `T_j`-neighbours of
+  `γo`, so the ball-sum argument of the path fold applies along `S_j`- and `Λ_0`-edges.
+  - `[x→x'] + [x'→x] = I` holds.
+  - `A_(j+1) ⊑ A_j` holds, since two distinct letters at one site are orthogonal.
+- **Step 2.** All sites are within `R_W < D`.
+- **Step 3, the induction `H_i(n) ⇒ H_i(n+1)`.** It is correct as written.
+  - `Σ Q_j = I` telescopes, and each `Q_j` commutes with `M` by `H_i(n)`.
+  - Pieces `j < n`: `B_n Q_j = Q_j`, because `A_n ⊑ A_j`. So `PQ_j = [x''=g_n] Q_j`, and
+    `[P, Q_j M] = 0`.
+  - Piece `n`: `A_n ⊑ A_0,…,A_(U−1)`, because `U <= R_W < 2D <= n`. So the `T_i`-forward path is the
+    geodesic. Summing over the other trees' assignments gives
+    `A_n T_a = Σ_(σ') A_n e_(σ') Φ^a_σ`.
+  - Every tile of `Φ` sits at `T_i`-distance `n + 1 − u_i <= n` from `x'`. This is where
+    `u_i >= 1` is used, and `H_i(n)` applies there.
+- **Step 4.** Coherence closes by induction, because `u_i >= 1` makes the forward paths merge one
+  step sooner.
+- **Step 5.** The canonical line is a geodesic with `b_i(ℓ_i(m)) = m`. In (Q3), `e ⊑ e'`, and the
+  partial pattern lies within `(2r+1)D_Y <= D`; a realization would contain `α`.
+- **Step 6.** `T_a = Σ_z [b(γ)=z] F_a(λ, z)` follows by Step 4, because vertices at one level
+  share a forward ancestor.
+
+**Not re-checked:**
+- item 5 and the converse, which cite the down-direction fold node;
+- Corollary (b)'s Kari–Papasoglu 4-way determinism, which is recalled from the literature;
+- the novelty of existence over `F_m × F_n` and over BMW groups, as the node itself says.
