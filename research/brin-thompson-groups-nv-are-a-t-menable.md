@@ -151,3 +151,18 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
   - **Not ruled out:** supports with some `V × id`-invariant piece where `v` is not ℓ². Examples
     are charts with non-triangular last coordinate, all charts, point orbits, and non-chart
     parameter spaces.
+- **swarm-0917-w6-nv-last2 (2026-09-17): the triangular split collapses to the one hole R1.**
+  - **Result (ESTABLISHED):** `brin-thompson-nv-haagerup-iff-proper-modulo-triangular`. For
+    `n ≥ 2`, `nV` is Haagerup iff some cnd function is proper modulo `T_n`, iff one is proper
+    modulo `V^n`.
+  - **Mechanism:** finitely many automorphic images of `T_n` meet in a finite group
+    (`brin-thompson-nv-product-subgroup-has-finite-shear-core`). Coordinate permutations cut
+    `T_n` down to `V^n`. Shears `t^{(i,j)}_s` (`s ∈ S`, a generating set of `V`) cut `V^n` down
+    to at most `2^n` elements, because `Z(V) = 1`. Averaging then applies
+    (`haagerup-iff-proper-mod-subgroup-with-finite-automorphic-core`).
+  - **New route:** `brin-thompson-nv-a-t-menable-via-proper-modulo-triangular`. It has one hole,
+    R1, and the hole is also necessary. R2 and Problem B are consequences of R1
+    (`brin-thompson-nv-cnd-proper-on-triangular-via-transversal`), so they are no longer
+    independent prerequisites.
+  - **Does not transfer:** to `K = ker c` or the diagonal subgroup, because small-support
+    elements survive finite conjugation.
