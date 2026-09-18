@@ -5509,6 +5509,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Poly
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.UPoly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStableK2.Reduction
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Minsky
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCentral.Endpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
