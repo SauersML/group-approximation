@@ -85,3 +85,20 @@ settle `c_d = 2d/(sqrt3 pi) + O(1)`.
    remaining holes are that inequality (`K_4` is the first open case; numerical minima `2 + 2 sqrt3`,
    `5 + sqrt5` at `m = 4, 5`) and the non-clique, non-hole facets
    (`hermitian-edge-trace-norm-other-stab-facets`).
+5. *Rank-one reduction plus a Yudin-type energy LP (w6-078, 2026-09-18). Large cliques are solved; an
+   obstruction is proved at `m = 4, 5`.* Write `C = C_+ - C_-`, and let `d` be the common diagonal.
+   Einollahzadeh's modulus lemma, together with the Schur product `conj(C_+) o C_-`, gives unit vectors
+   with Gram matrix `G` such that `d_i d_j |1 - G_ij|^2 >= 1`. Averaging over the edges of `K_m` gives
+   `||C||_1 >= 2E(G)/(m-1)`, with `E(G) = sum 1/|1-G_ij|`. An explicit positive-definite-kernel
+   certificate, checked by interval arithmetic, then proves the clique inequality `||C||_1 >= sqrt3 (m-1)`
+   for every `m >= 6` (`hermitian-edge-trace-norm-clique-inequality-large-m`). That is, (**) holds on
+   `K_m` with unit weights for `m >= 6`.
+
+   The same route dies at `m = 4, 5`, and this is proved, not only observed. The LP value equals the
+   true minimum of `E`, which is attained by the 4th and 5th roots of unity. These minima are
+   `2 + 4 sqrt2 = 7.657 < 7.794` and `13.764 < 13.856`, the needed values `(sqrt3/2)(m-1)^2`. So no argument that goes through uniform averaging can
+   close them. The loss-free replacement is the fractional-matching statement `(M_m)`:
+   `2 nu_f(1/|1-G_ij|) >= (sqrt3/2)(m-1)`. Its numerical minima are `1 + sqrt3` and `(5 + sqrt5)/2`,
+   exactly half the minima of `||C||_1`. The open core of the clique case is now `(M_4)` and `(M_5)`, a
+   statement about the best perfect matching of 4 (or 5) unit vectors. By the facet reduction, weighted cliques are
+   open only through `m = 4, 5`. The non-clique, non-hole facets are also still open.
