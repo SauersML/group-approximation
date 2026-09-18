@@ -202,3 +202,25 @@ This is the coordinator's design target of 2026-09-18.
       a directly finite matrix ring, hence directly finite. Gate hosts are not stably finite
       (`resolvent-vacuum-rings-have-no-k0-state`), so they have infinite stable range. Vaserstein's formula was not
       read at source.
+13. **The multi-type gap, positive-fixed-vector case: closed, 2026-09-18 (lane `gq-infinite-primes`).**
+    `degree-one-corner-unitaries-fail-the-k-budget`. This uses no Pimsner sequence and no resolvent vacuum, so it is
+    stated for the widened gate: finitely presented and simple, `Q̄ ⊆ R` unitally, the K-budget.
+    - A fixed idempotent `e in B`, with `φ(e) ~ e`, gives a degree-one unitary on the full corner `e R e`, and so a
+      unit `u_e` of `R`.
+    - Either `λ -> [λ e + 1 - e]` has a non-finitely generated kernel, or the Steinberg symbols `{λ, u_e}` are
+      infinitely generated.
+    - `K_0(B) -> K_0(R)` kills `(1 - φ_*) K_0(B)` unconditionally. So a relation
+      `t[1_B] - n[e] in (1 - φ_*) K_0(B)` with `n != 0` makes the first case fail `K_1` detection.
+    - **Multi-type matricial bases.** Over `K_0(B) = Q^m` with a nonnegative matrix `A = φ_*`, the budget fails
+      whenever `ker(1 - A)` has a nonzero vector `v >= 0` with `[1_B] in Q v + (1 - A) Q^m`. This includes
+      `dim coker(1 - A) = 1` with `v ∉ im(1 - A)`, and every irreducible `A` of spectral radius `1`. In that case the
+      forced `K_2` classes are symbols of units of `R`: the answer to Attempt 10 is **yes**.
+    - **Still open.**
+      - `ker(1 - A)` meets the nonnegative cone only in `0` while `[1_B] ∉ im(1 - A)`. Example: `A = [[2,1],[2,3]]`,
+        with fixed vectors `Q(1,-1)`.
+      - `rank coker(1 - A) >= 2` without the span condition.
+      - Ungraded simple quotients.
+    - **Pimsner scope.** `register-completion-pimsner-from-supercoherence` proves (P) for single-register completions
+      with a spine, with every `δ_n` in `B⁺`. The present result does not need it. (P) enters only the reading that
+      rational `K_1` detection forces `det(1 - φ_*) = 0`, and item 7(a) of the new node gives that part
+      unconditionally.
