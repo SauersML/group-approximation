@@ -49,9 +49,13 @@ Fix `b ≥ 2`, a digit `0 ≤ e < b`, and a residue `0 ≤ r < b`.
 For `b ∈ {2, 3}`, `Φ` is `b`-regular over `Q`.
 - By induction on `j`, `Φ(b^j n + r) = B_{j,r}(n) Φ(n) + A_{j,r}(n)`, where `A_{j,r}`
   and `B_{j,r}` are periodic mod `P`, with the same `P` for all `j`.
-- So the `b`-kernel of `Φ` lies in `{χ·Φ + χ' : χ, χ' periodic mod P}`, a `Q`-space of
-  dimension `≤ 2P`. In Bell's notation (Def. 1.2), `M_Q(Φ; b)` is finitely
+- So the `b`-kernel of `Φ` lies in `{χ·Φ + χ' : χ, χ' periodic mod P} =: W`, a `Q`-space
+  of dimension `≤ 2P`. In Bell's notation (Def. 1.2), `M_Q(Φ; b)` is finitely
   generated.
+- The `b`-kernel sequences are also integer-valued, so `M_Z(Φ; b)` is finitely generated
+  too: evaluation at `dim W` suitable points embeds the integer-valued part of `W` in
+  `Z^d`, and `Z` is Noetherian. So Bell's Theorem 1.5, stated for `(Z, k)`-regular
+  sequences, applies as stated.
 - `Φ` is integer-valued. The recursion with bounded coefficients gives
   `|Φ(n)| ≤ C n^D`.
 
