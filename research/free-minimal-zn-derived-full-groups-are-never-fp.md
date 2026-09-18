@@ -23,7 +23,7 @@ Matui writes:
 > We do not know if D([[G_φ]]) can be finitely presented when φ is a free minimal
 > action of Z^N.
 
-**Reduction on main (added 2026-09-18).** For free minimal subshifts, `zd-derived-full-group-fp-forces-finite-type` shows a finitely presented derived full group forces finite type. So among free minimal subshifts the open cases are the shifts of finite type. The reduction does not cover non-expansive (non-subshift) actions; for `Z`-actions their derived full groups are not even finitely generated (Matui), and the `Z^N` analogue is not recorded on main. The first test case is Labbé's `Omega_U` (`labbe-shift-derived-full-group-is-finitely-presented`, `labbe-shift-derived-full-group-is-lef`, both OPEN). A finitely presented answer for `Omega_U` refutes this claim. `periodic-approximable-subshifts-host-no-fp-simple-group` covers the periodically approximable case, and aperiodic SFTs are exactly where periodic approximations fail.
+**Reduction on main (added 2026-09-18).** For free minimal subshifts, `zd-derived-full-group-fp-forces-finite-type` shows a finitely presented derived full group forces finite type. So among free minimal subshifts the open cases are the shifts of finite type. Non-expansive actions add nothing: for free actions a finitely generated derived full group forces the action to be a subshift (`free-action-fg-alternating-full-groups-force-expansivity`). So by `free-minimal-zn-fp-derived-full-groups-live-only-on-sfts` this question is **equivalent** to the question for free minimal `Z^N` SFTs, `N >= 2` (Attempt 3). The first test case is Labbé's `Omega_U` (`labbe-shift-derived-full-group-is-finitely-presented`, `labbe-shift-derived-full-group-is-lef`, both OPEN). A finitely presented answer for `Omega_U` refutes this claim. `periodic-approximable-subshifts-host-no-fp-simple-group` covers the periodically approximable case, and aperiodic SFTs are exactly where periodic approximations fail.
 
 **Status on main.** `circle-rotation-zd-derived-full-groups-are-not-fp` (review
 PASS) settles one family of free minimal `Z^d` actions. For `N = 1` the answer is
@@ -80,10 +80,20 @@ Accessed 2026-09-18; recorded in `research/artifacts/gq-bh-openq-lists.md`.
      grows with the 2-adic valuation of the shear, `Ξ_min` is not an SFT and `D` is not finitely presented. The patch
      size was not determined here. Mod-2 homology gives no obstruction: from GJS Thm 5.1,
      `H^2(Ω; Z/2) ≅ (Z/2)^9` and `H^1(Ω; Z/2) ≅ (Z/2)^2`.
-   - **Non-subshift actions.** Not treated. If `D` is not finitely generated for non-expansive actions, those cases
-     are trivial. That was not checked.
+   - **Non-subshift actions.** Not treated here. (Settled in Attempt 3: `D` is not finitely generated for them.)
    - **Lesson for general BH.** Z^N full-group hosts of finitely presented simple groups live only on strongly
      aperiodic SFTs. Every obstruction family on main (LEF / periodic approximation, finite type, abelian homology)
      is silent exactly there. So the question has become: do the local rules of an aperiodic SFT supply finitely many
      relations? That is the same "finite type ⇒ finite presentation" gate as premise (P2) of
      `boone-higman-via-v-times-aperiodic-sft-full-groups`.
+3. **Non-expansive actions are trivial; the question is exactly the SFT question (2026-09-18, lane `bh-partials`).**
+   - **The lemma.** `free-action-fg-alternating-full-groups-force-expansivity`: for a free action of any countable group
+     with at least four elements, a finitely generated subgroup of the full group that contains the 3-cycles forces the
+     action to be conjugate to a subshift. The reason: two points with the same code for the generators' cocycle partition
+     are moved by every word through the same group element, while some 3-cycle moves one and fixes the other.
+   - **The reduction.** `free-minimal-zn-fp-derived-full-groups-live-only-on-sfts`: for free minimal `Z^N` actions, `D` is
+     finitely generated iff the action is a subshift. If `D` is finitely presented, the action is a minimal free SFT.
+   - **So this claim is equivalent to:** no free minimal `Z^N` SFT has a finitely presented derived full group. Its first
+     test case is Labbé's `Omega_U`.
+   - **Lesson for general BH.** Matui's question and the master route's `Z^2` building block (P2, E2) are now one gate.
+     Outside minimal free SFTs there is nothing left to decide.
