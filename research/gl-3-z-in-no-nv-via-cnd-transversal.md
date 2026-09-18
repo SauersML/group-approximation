@@ -55,3 +55,11 @@ So `GL_3(Z)` embeds in no `mV`, and `n = 3` witnesses the target. ∎
 **Remark.** Steps 1–4 use only property (T). They show that every Kazhdan
 subgroup of `nV` has a finite-index subgroup inside `T_n`, given `ψ_1`. Step 5 is
 the only place where `SL_3(Z)` is used.
+
+**Review.** gq-referee-a, proof-gap lens: PASS as a conditional route (report
+landed d89c65d4d). The referee noted that given `ψ_1`,
+`kazhdan-finiteness-in-nv-via-cnd-transversal` already makes `SL_3(Z)` finite
+inside `nV`, which is absurd. So step 5 and its unreviewed input
+`triangular-subgroups-of-nv-contain-no-heisenberg-or-sl3z` are not needed for
+Zaremsky 2.19(c)/(d). That shorter chain is recorded in the other route. This
+route is kept because it uses only one conjugate of `T_n`.
