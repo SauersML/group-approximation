@@ -91,3 +91,24 @@ arithmetic half of that split, and it involves no winding estimate.
   - *Survivor.* Tensor-inducing a `1/3` needs a class `y in P(H) \ (P(H)^0 + R(H))`. That is a class in a
     non-identity component of `P(H)`, with norm models, not in `P(H)^0 + R(H)`, and with `TI(y) = e(b/3)`. Only its
     component in the finite group `P(H)/P(H)^0` matters.
+- **2026-09-18, swarm-0917-w12-w12-deligne-last1 (operator-algebras): comparison with bounded-level targets is
+  killed as a class, and the w8 tensor-cube conditional is a tautology.** See
+  `deligne-maslov-tensor-functors-are-asymptotically-regular`, ESTABLISHED. This hole stays OPEN.
+  - *Invariant.* Push a `1/3`-model into the tracial ultraproduct. It becomes a trace on `A_omega`, and by
+    `deligne-maslov-sector-traces-are-central-regular` it is central-regular. So `tr U_n(g) -> 0` at every
+    non-central `g`, and the same holds for every tensor functor `U^(x a) (x) conj(U)^(x c) (x) R` with `a + c >= 1`
+    and arbitrary `R`.
+  - *Class killed.* Comparing any such functor with a trivial, scalar, finite-image or bounded-level target on a
+    finite-index subgroup, whether by stability, rigidity or averaging. Every such argument dies when evaluated at a
+    non-central element of the kernel: the functor has trace `0` there and the target has trace `1`, so the HS
+    distance is `sqrt 2`. HS-stability versions die too.
+  - *The w8 conditional.* "Every cube is `Q`-close to a finite-image hom" fails for every cube once one
+    `1/3`-model exists. So the conditional's hypothesis is equivalent to `1/3 not in P_op`, which is the flagship.
+  - *Survivor.* Only comparisons with unbounded-level targets whose characters are asymptotically regular remain.
+    This is Dadarlat-type matricial stability, which is exactly where w8 found instability.
+  - *Uniform side, conditional.* The route remark gives a level-free contradiction for uniform models. It needs a
+    verbatim citation of `H^2_b(Lambda, R) = R [b]` for finite-index `Lambda < Sp_4(Z)` (non-cocompact
+    Burger--Monod); only the cocompact JEMS 1999 abstract was verified. The remark does not reach point-norm
+    models.
+  - *Literature.* GLMR (arXiv:2301.00476) does not cover `Sp_4(Z)`. Its Prop 1.0.12 makes lattices in covers of
+    Hermitian groups not uniformly `U(1)`-stable. BLSW needs every non-compact factor to have rank at least `3`.
