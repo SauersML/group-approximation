@@ -1,0 +1,23 @@
+== verify_surface.py surfaces_m2_census/phi939.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, 1, -1], "M^k>0 at k": 2, "darts": 224, "V": 88, "E": 112, "chi(X)": -24, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "gates": "abcABA", "f-corners": 24, "genus of S*_f(X)": 13}
+exit=0
+== verify_surface_multi.py surfaces_m2_census/phi939.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, 1, -1], "M^k>0 at k": 2, "components of X": 1, "darts": 224, "V": 88, "E": 112, "chi(X)": -24, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "components of S*": 1, "gates": "abcABA", "f-corners": 24, "genus of S*_f(X)": 13}
+exit=0
+== verify_surface.py surfaces_m2_census/phi4010.json
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w3-074/experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface.py", line 206, in <module>
+    main()
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w3-074/experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface.py", line 200, in main
+    assert comps == 1 and chi < 0
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+exit=1
+== verify_surface_multi.py surfaces_m2_census/phi4010.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, -1, 1], "M^k>0 at k": 2, "components of X": 2, "darts": 64, "V": 28, "E": 32, "chi(X)": -4, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4], "components of S*": 1, "gates": "abaABA", "f-corners": 6, "genus of S*_f(X)": 3}
+exit=0
+== validate_certificates.py
+surfaces_m2_census/phi939.json phi0={"a": "ab", "b": "bca", "c": "caab"} minus=AA,AA,BCBC,BCBC,aa,aa,bcbc,bcbc maxval=4 polygons=8054 vertices=88 chi=-24.0 feasible=True
+surfaces_m2_census/phi4010.json phi0={"a": "ab", "b": "babc", "c": "abb"} minus=AC,B,ac,b maxval=4 polygons=13426 vertices=28 chi=-4.0 feasible=True
+summary: 2 certificates, 0 failures
+exit=0
