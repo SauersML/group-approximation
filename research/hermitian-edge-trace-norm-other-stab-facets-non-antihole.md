@@ -41,3 +41,14 @@ The local-minimisation ratios in `hermitian-edge-trace-norm-other-stab-facets` a
   (sharp only when `d_i = d_j` along the matching); this was not isolated. So webs need a different route, such as a
   covering by induced subgraphs with a certified minimum (as the house does for `C̄_7`), or the
   direct SDP branch-and-bound on the whole graph.
+- 2026-09-18 (w7-078), **window coverings prove the webs `C_n^2`.** `hermitian-edge-trace-norm-web-rank-k2`
+  (ESTABLISHED, computer-assisted) proves `||C||_1 >= sqrt3 (n - floor(n/3))` on `C_n^2` for every
+  `n >= 8`. That covers every rank facet of those webs (a facet iff `3` does not divide `n`).
+  - The `n` windows of six consecutive vertices induce `P_6^2` and cover each vertex 6 times.
+  - Since `n - floor(n/3) <= 3n/4`, a single certified piece `c(P_6^2) >= 4.5 sqrt3` does every `n`
+    at once. The branch-and-bound needs 1770 boxes.
+
+  The same scheme works for any `k`. The numerical supremum of the needed window ratio
+  `c(P_w^k)/(sqrt3 w)` over the webs with `n >= 2k+3` is `3k/(3k+2)`, attained at `n = 3k+2`. The
+  numerical values of `c(P_6^3)` and `c(P_7^3)` are `0.832` and `0.833` of `sqrt3 w` (need `0.818`),
+  so `k = 3` is within reach. For large `k` the windows must grow, because `3k/(3k+2) -> 1`.

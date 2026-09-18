@@ -1,0 +1,42 @@
+k 2 n 6 alpha 2 #max 3 rank 3 
+k 2 n 7 alpha 2 #max 7 rank 7 FACET
+k 2 n 8 alpha 2 #max 12 rank 8 FACET
+k 2 n 9 alpha 3 #max 3 rank 3 
+k 2 n 10 alpha 3 #max 10 rank 10 FACET
+k 2 n 11 alpha 3 #max 22 rank 11 FACET
+k 2 n 12 alpha 4 #max 3 rank 3 
+k 2 n 13 alpha 4 #max 13 rank 13 FACET
+k 2 n 14 alpha 4 #max 35 rank 14 FACET
+k 2 n 15 alpha 5 #max 3 rank 3 
+k 2 n 16 alpha 5 #max 16 rank 16 FACET
+k 2 n 17 alpha 5 #max 51 rank 17 FACET
+k 2 n 18 alpha 6 #max 3 rank 3 
+k 2 n 19 alpha 6 #max 19 rank 19 FACET
+k 3 n 8 alpha 2 #max 4 rank 4 
+k 3 n 9 alpha 2 #max 9 rank 9 FACET
+k 3 n 10 alpha 2 #max 15 rank 10 FACET
+k 3 n 11 alpha 2 #max 22 rank 11 FACET
+k 3 n 12 alpha 3 #max 4 rank 4 
+k 3 n 13 alpha 3 #max 13 rank 13 FACET
+k 3 n 14 alpha 3 #max 28 rank 14 FACET
+k 3 n 15 alpha 3 #max 50 rank 15 FACET
+k 3 n 16 alpha 4 #max 4 rank 4 
+k 3 n 17 alpha 4 #max 17 rank 17 FACET
+k 3 n 18 alpha 4 #max 45 rank 18 FACET
+k 3 n 19 alpha 4 #max 95 rank 19 FACET
+k 3 n 20 alpha 5 #max 4 rank 4 
+k 3 n 21 alpha 5 #max 21 rank 21 FACET
+k 4 n 10 alpha 2 #max 5 rank 5 
+k 4 n 11 alpha 2 #max 11 rank 11 FACET
+k 4 n 12 alpha 2 #max 18 rank 12 FACET
+k 4 n 13 alpha 2 #max 26 rank 13 FACET
+k 4 n 14 alpha 2 #max 35 rank 14 FACET
+k 4 n 15 alpha 3 #max 5 rank 5 
+k 4 n 16 alpha 3 #max 16 rank 16 FACET
+k 4 n 17 alpha 3 #max 34 rank 17 FACET
+k 4 n 18 alpha 3 #max 60 rank 18 FACET
+k 4 n 19 alpha 3 #max 95 rank 19 FACET
+k 4 n 20 alpha 4 #max 5 rank 5 
+k 4 n 21 alpha 4 #max 21 rank 21 FACET
+k 4 n 22 alpha 4 #max 55 rank 22 FACET
+k 4 n 23 alpha 4 #max 115 rank 23 FACET
