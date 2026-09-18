@@ -43,16 +43,54 @@ open GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
 theorem endBlock_not_isEndBlock_middle {α : Type*} {p : α → Bool} {a b c : α}
     (hab : b ≠ a) (hbc : b ≠ c) (ha : p a = false) (hb : p b = true) (hc : p c = false) :
     ¬GL05b.IsEndBlock p [a, b, c] := by
-  have hf : [a, b, c].filter p = [b] := by simp [ha, hb, hc]
-  rintro ⟨i, h | h⟩ <;> rw [hf] at h <;> rcases i with _ | _ | _ | i <;> simp at h <;> simp_all
+  have hf : [a, b, c].filter p = [b] := by
+    rw [List.filter_cons_of_neg (ne_true_of_eq_false ha), List.filter_cons_of_pos hb,
+      List.filter_cons_of_neg (ne_true_of_eq_false hc), List.filter_nil]
+  rintro ⟨i, h | h⟩
+  · rw [hf] at h
+    rcases i with _ | i
+    · exact List.cons_ne_nil b [] h
+    · have h' : [b] = a :: [b, c].take i := h
+      exact hab (List.cons_eq_cons.mp h').1
+  · rw [hf] at h
+    rcases i with _ | _ | _ | i
+    · have h' : [b] = [a, b, c] := h
+      exact List.cons_ne_nil b [c] (List.cons_eq_cons.mp h').2.symm
+    · have h' : [b] = [b, c] := h
+      exact List.cons_ne_nil c [] (List.cons_eq_cons.mp h').2.symm
+    · have h' : [b] = [c] := h
+      exact hbc (List.cons_eq_cons.mp h').1
+    · have h' : [b] = ([] : List α).drop i := h
+      rw [List.drop_nil] at h'
+      exact List.cons_ne_nil b [] h'
 
 /-- **Two end darts are not an end block**: on `[a, b, c]`, a predicate false only on `b` filters
 to `[a, c]`, which is neither a prefix nor a suffix. -/
 theorem endBlock_not_isEndBlock_ends {α : Type*} {p : α → Bool} {a b c : α}
     (hab : a ≠ b) (hcb : c ≠ b) (ha : p a = true) (hb : p b = false) (hc : p c = true) :
     ¬GL05b.IsEndBlock p [a, b, c] := by
-  have hf : [a, b, c].filter p = [a, c] := by simp [ha, hb, hc]
-  rintro ⟨i, h | h⟩ <;> rw [hf] at h <;> rcases i with _ | _ | _ | i <;> simp at h <;> simp_all
+  have hf : [a, b, c].filter p = [a, c] := by
+    rw [List.filter_cons_of_pos ha, List.filter_cons_of_neg (ne_true_of_eq_false hb),
+      List.filter_cons_of_pos hc, List.filter_nil]
+  rintro ⟨i, h | h⟩
+  · rw [hf] at h
+    rcases i with _ | _ | i
+    · exact List.cons_ne_nil a [c] h
+    · have h' : [a, c] = [a] := h
+      exact List.cons_ne_nil c [] (List.cons_eq_cons.mp h').2
+    · have h' : [a, c] = a :: b :: [c].take i := h
+      exact hcb (List.cons_eq_cons.mp (List.cons_eq_cons.mp h').2).1
+  · rw [hf] at h
+    rcases i with _ | _ | _ | i
+    · have h' : [a, c] = [a, b, c] := h
+      exact hcb (List.cons_eq_cons.mp (List.cons_eq_cons.mp h').2).1
+    · have h' : [a, c] = [b, c] := h
+      exact hab (List.cons_eq_cons.mp h').1
+    · have h' : [a, c] = [c] := h
+      exact List.cons_ne_nil c [] (List.cons_eq_cons.mp h').2
+    · have h' : [a, c] = ([] : List α).drop i := h
+      rw [List.drop_nil] at h'
+      exact List.cons_ne_nil a [c] h'
 
 /-! ## The four failures of the conclusion -/
 
