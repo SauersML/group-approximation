@@ -64,3 +64,28 @@ in this repository.
   `finite-moment-hardness-via-structured-label-groups` is dead. What
   survives is exponentially large laws whose swaps generate `Alt(2n)` and
   that are not one orbit of the vertex stabilizer.
+* Projective alphabet lifts cannot amplify (swarm-0917, 2026-09-17).
+  Split the hole into (a) a combinatorial amplification to `t`-wise uniform
+  bounded-moment laws and (b) a soundness transfer. Part (a) alone is
+  already met by standalone designs, so the difficulty sits entirely in (b).
+  Claim `projective-alphabet-lifts-cannot-amplify-pairing-moments` kills
+  the case where (b) is projective, meaning `p' o phi' = phi o p` for label
+  maps `p` from an arbitrary hard instance.
+  * **Transfer inequality.** For every map of weight `w` and surplus
+    `g = 2n' - |p(Sigma')|`,
+    `||1_(E') D'||_q >= w theta_* m^((q-2) g/(2q))`, and the output moment
+    dominates the pulled-back input moment.
+  * **Consequence.** A bounded surplus gives no amplification. An unbounded
+    surplus blows up for `q >= 3` unless there are `exp(Omega(n'/log n'))`
+    projections per vertex, even for polynomial-support inputs (support count
+    `(2n')^(3g/2)` per input kernel).
+  * **Evidence.** Exact regression checks are in
+    `experiments/projective-amplification-2026-09-17/`. The doubling lift of
+    the fully rich law reaches moment `2.27e14` at `n = 64`, while the uniform
+    law stays below 1.8.
+  * **Status.** The route `finite-moment-hardness-via-projective-amplification`
+    is dead.
+  * **What survives.** Non-projective transfers that pair across input kernel
+    classes on a constant fraction of pairs (list decoding, BKM Appendix B
+    merges), long-code re-encodings with exponentially many projections, and
+    `q = 2`.
