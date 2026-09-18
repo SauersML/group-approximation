@@ -14,7 +14,8 @@ alternatives.
 * the corrected enclosed pocket;
 * the short nearest pocket.
 
-Either statement closes both roots.  The residual 10 alternatives are the sub-arc region move,
+Each of `nmWire_LeafCensus` and `nmWire_MinimalLeaves` closes both roots.  The residual 10
+alternatives are the sub-arc region move,
 the kept sub-walk, or its core.  The lobe-removal alternative is in `NMWire.Lobe`.
 
 This module is routing only.  It certifies no printed sentence on its own.
@@ -84,8 +85,10 @@ theorem nmWire_copy_of_copyLeaves (h : nmWire_CopyLeaves) :
 
 /-- **Osin's Lemma 4.4 at least-area diagrams, at universes `0, 0, 0`, from the census.** -/
 theorem nmWire_greendlinger_of_leafCensus (h : nmWire_LeafCensus) :
-    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0} :=
-  nmWire_greendlinger_of_copy_step (nmWire_copy_of_copyLeaves h.2) (nmWire_step_of_stepLeaves h.1)
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0} := by
+  obtain ⟨hstep, hcopy⟩ := h
+  exact nmWire_greendlinger_of_copy_step (nmWire_copy_of_copyLeaves hcopy)
+    (nmWire_step_of_stepLeaves hstep)
 
 #audit_axioms GroupApproximation.Full.NMWire.nmWire_greendlinger_of_leafCensus
 
@@ -98,8 +101,9 @@ theorem nmWire_torsionFreeEndpoints_of_leafCensus (h : nmWire_LeafCensus) :
 #audit_axioms GroupApproximation.Full.NMWire.nmWire_torsionFreeEndpoints_of_leafCensus
 
 /-- The minimal leaf set is an instance of the census. -/
-theorem nmWire_leafCensus_of_minimalLeaves (h : nmWire_MinimalLeaves) : nmWire_LeafCensus :=
-  ⟨Or.inr (Or.inr h.1), Or.inl ⟨h.2.1, Or.inl h.2.2⟩⟩
+theorem nmWire_leafCensus_of_minimalLeaves (h : nmWire_MinimalLeaves) : nmWire_LeafCensus := by
+  obtain ⟨hcore, hencl, hshort⟩ := h
+  exact And.intro (Or.inr (Or.inr hcore)) (Or.inl (And.intro hencl (Or.inl hshort)))
 
 #audit_axioms GroupApproximation.Full.NMWire.nmWire_leafCensus_of_minimalLeaves
 
