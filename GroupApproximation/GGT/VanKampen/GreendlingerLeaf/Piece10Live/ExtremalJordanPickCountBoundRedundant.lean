@@ -16,12 +16,12 @@ Proof.  In the walk map `P`, a free sector means `σ_P (next d) = α d`
 (`extremalJordanPickCountBound_sigma_eq`).  For every retained dart `z`, `α z` and `σ_P z` share
 a face class off `c` (`extremalJordanPickCountBound_faceClass_sigma`).  So `σ_P (α d)` is
 `R'`-linked to `d`, and it is a dart of `c`: a face class off `c` stays in `faces`, and the
-reverse of a dart of `c` is based outside `faces`.  Walk the `σ_P`-orbit of `x` from `α d₁`, keeping the invariant
-`extremalJordanPickCountBound_inv`: the current dart, or its reverse, is a dart of `c` that is
-`R'`-linked to `d₁`.  A dart `y` of `c` has `σ_P y = α d` with `next d = y`.  If `d = d₁` we have
-linked `d₁` to `next d₁ = y`.  Otherwise the passage `d → y` is an `R'`-path, and `d` is linked to
-`d₁`.  The orbit returns to `next d₁`, and the reverse of `next d₁` is not in `c`.  So the first
-alternative must have occurred.
+reverse of a dart of `c` is based outside `faces`.  Walk the `σ_P`-orbit of `x` from `α d₁`,
+keeping the invariant `extremalJordanPickCountBound_inv`: the current dart, or its reverse, is
+a dart of `c` that is `R'`-linked to `d₁`.  A dart `y` of `c` has `σ_P y = α d` with
+`next d = y`.  If `d = d₁` we have linked `d₁` to `next d₁ = y`.  Otherwise the passage `d → y`
+is an `R'`-path, and `d` is linked to `d₁`.  The orbit returns to `next d₁`, and the reverse of
+`next d₁` is not in `c`.  So the first alternative must have occurred.
 
 ## Mathematical infrastructure
 
