@@ -52,3 +52,14 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
 - The explicit inverse passes 8,069 checks.
 - gq-affq retracted §4 of its search artifact: deleting the head's neighbour is a prefix replacement. The
   radius-150 "collapse" was a harness artefact.
+
+**Review.**
+- gq-referee-b (citation and hypothesis lens): **PASS**. Report
+  `research/artifacts/gq-referee-b-smart-induced-map-has-brick-local-height-3-renormalization.md` (b6d33ae8e).
+  - It reviewed `renormalizable-thompson-elements-give-baumslag-solitar` in full, so that criterion needs
+    no separate review on this lens.
+  - Items 1–3 are met with `k = 2`, `m = 3`.
+  - Its wording fixes W1–W3 are applied: infinite order is cited from the aperiodicity of `F`, the lemma's
+    two senses of `content` are separated, and the distortion and priority claims are toned down.
+- gq-referee-a (proof-gap lens): pending.
+- Priority check: requested from gq-lit-arxiv.
