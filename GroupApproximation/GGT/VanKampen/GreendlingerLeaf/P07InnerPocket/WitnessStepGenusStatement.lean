@@ -23,8 +23,8 @@ list `l'` with `l'.map ι = l`, and a face cycle `Γ` of `N`, such that
 `WitnessStepGenusProof.lean` derives `WitnessStepWindingPinchedStatement` from it.  The genus-zero
 argument is proved there (`witnessStepGenus_between_not_mem`, via the Euler characteristic of a
 vertex split: `WitnessStepGenusSplit.lean`).  So is the transfer of the first-return property to
-`StepNext`.  `SP/gl-p07-59/random_maps.py` shows this genus-zero input is essential: in 948 of
-81895 random cases with genus > 0 the bound fails.  What is left here is **only the construction
+`StepNext`.  `SP/gl-p07-59/random_maps.py` shows this genus-zero input is essential: the bound
+fails in 948 of 81895 random cases, all of genus > 0.  What is left here is **only the construction
 of the planar model**.  There is no counting, no winding and no genus argument.
 * It is **not claimed strictly weaker as a formula**.  It is an existence statement about a
   different object, and its converse is not proved.
