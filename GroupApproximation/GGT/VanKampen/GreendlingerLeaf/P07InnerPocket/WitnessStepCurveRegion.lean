@@ -36,7 +36,7 @@ namespace FourPieceWitness
 theorem witnessStepCurve_hop_of_facePerm {M : CombMap.{u}} {Γ : List M.Dart} {d e : M.Dart}
     (h : M.facePerm d = e) : witnessStepCurve_Hop M Γ (M.alpha d) e :=
   ⟨1, Nat.one_pos, by rw [pow_one, ← h, PocketRun.facePerm_eq_sigma_alpha],
-    fun _ _ hk1 => absurd hk1 (by omega)⟩
+    fun k hk hk1 => absurd hk1 (by omega)⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepCurve_hop_of_facePerm
 
@@ -103,7 +103,7 @@ theorem witnessStepCurve_hop_of_boundaryStep {R : Finset X.toCombMap.Face}
   refine ⟨m, hm, he, fun k h0 hkm => ⟨fun hmem => hΓ _ hmem (hk k h0 hkm).1 (hk k h0 hkm).2,
     fun hmem => ?_⟩⟩
   have h2 := hΓ _ hmem (hk k h0 hkm).2
-  rw [X.toCombMap.alpha_involutive] at h2
+  rw [X.toCombMap.alpha_involutive ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d))] at h2
   exact h2 (hk k h0 hkm).1
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepCurve_hop_of_boundaryStep
@@ -113,7 +113,8 @@ theorem witnessStepCurve_chain_of_arc {Γ : List X.toCombMap.Dart} {k : Fin X.rC
     (A : CyclicArc (cellDarts X k)) {s l t : List X.toCombMap.Dart}
     (h : A.darts = s ++ l ++ t) :
     l.IsChain (fun p q => witnessStepCurve_Hop X.toCombMap Γ (X.toCombMap.alpha p) q) := by
-  have hc := PocketRun.arcDarts_isChain (X.faceBoundary (cell X k).face) A
+  have hc : A.darts.IsChain fun d e => X.toCombMap.facePerm d = e :=
+    PocketRun.arcDarts_isChain (X.faceBoundary (cell X k).face) A
   rw [h] at hc
   exact (hc.infix (List.infix_append s l t)).imp fun _ _ hr => witnessStepCurve_hop_of_facePerm hr
 
@@ -125,8 +126,9 @@ theorem witnessStepCurve_chain_of_boundary (c : RegionCandidate D eps X)
     (hΓ : ∀ d ∈ Γ, X.toCombMap.faceOf d ∈ c.1 → X.toCombMap.faceOf (X.toCombMap.alpha d) ∉ c.1)
     {n : ℕ} {s l t : List X.toCombMap.Dart} (h : c.2.boundary.cycle.rotate n = s ++ l ++ t) :
     l.IsChain (fun p q => witnessStepCurve_Hop X.toCombMap Γ (X.toCombMap.alpha p) q) := by
-  have hc := isChain_rotate_of_isChain_closes c.2.boundary.cycle_nonempty
-    c.2.boundary.cycle_chain c.2.boundary.cycle_closes n
+  have hc : (c.2.boundary.cycle.rotate n).IsChain (Embedded.BoundaryStep X c.1) :=
+    isChain_rotate_of_isChain_closes c.2.boundary.cycle_nonempty
+      c.2.boundary.cycle_chain c.2.boundary.cycle_closes n
   rw [h] at hc
   exact (hc.infix (List.infix_append s l t)).imp fun _ _ hr =>
     witnessStepCurve_hop_of_boundaryStep hΓ hr
