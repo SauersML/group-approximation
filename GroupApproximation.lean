@@ -5897,6 +5897,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Closure
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterFolner
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterState
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacter
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductOperators
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
