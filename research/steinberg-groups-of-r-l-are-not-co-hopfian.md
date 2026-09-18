@@ -27,3 +27,14 @@ Elementary given the cited nodes. No priority is claimed.
 - The exception recorded by bh-free-33 requires an injective endomorphism with **trivial** iterated core. The twist
   endomorphisms here have iterated core containing `K_2(N, R_L)`. So they do not supply the exception.
 - Whether some other injective endomorphism of `St_N(R_L)` has trivial iterated core is open.
+
+## Attempts
+
+1. **Trivial iterated core via ring-induced endomorphisms, 2026-09-18 (this lane): not found.**
+   - Every endomorphism `St_N(θ)` induced by a unital ring endomorphism `θ` acts on `K_2(N, R_L) ≅ Q^x` by `λ -> λ^d`,
+     where `d` is the multiplicity of `θ` on `K_0`-rank.
+     - The twist and the corner maps have `d = 1`, so they fix `K_2`.
+     - The diagonal doubling `θ(r) = e r e* + f r f*` has `d = 2`. It kills `{-1, N+1}_N`, so it is not injective.
+   - A trivial iterated core would need an injective endomorphism that moves the central `Q^x` off itself, for example
+     inducing a prime shift. Ring-induced endomorphisms fix `Q` pointwise and cannot do this. A non-ring endomorphism
+     of `St_N(R_L)` with that property is not known.
