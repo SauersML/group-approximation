@@ -25097,6 +25097,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · decidable-inputs-have-fp-shell-stabilizers [OPEN] A decidable infinite finite presentation admits an enumeration with three finitely presented shell stabilizers
 - 2026-09-18 · decidable-inputs-have-fp-one-singularity-shell-stabilizer [OPEN] A decidable infinite finite presentation admits an enumeration whose one-singularity shell stabilizer is finitely presented
 - 2026-09-18 · projective-lift-moment-transfer-proof [COMPLETE] Lifted colourings, a power count, Jensen and Chebyshev give the projective moment transfer and its kill of bounded-map amplification
 - 2026-09-18 · projective-alphabet-lifts-cannot-amplify-pairing-moments [ESTABLISHED] A reduction whose output kernels refine input kernels through a few label projections multiplies the pull-back q-moment by m^((q-2)g/(2q)), so it can make no pairing law smooth
@@ -25104,7 +25105,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · finite-moment-hardness-via-projective-amplification [INVALIDATED] Dead -- obtain finite-moment 2-to-1 hardness by amplifying an arbitrary hard 2-to-1 instance with a projective alphabet-lifting gadget
 - 2026-09-18 · small-set-expansion-hypothesis [OPEN] Small-Set Expansion Hypothesis -- for every eta there is delta making it NP-hard to tell Phi_G(delta) >= 1-eta from Phi_G(delta) <= eta
 - 2026-09-18 · gap-sse-on-f2-cayley-graphs-is-polynomial [OPEN] There is an absolute eta_0 > 0 such that for every dyadic delta, Gap-SSE(eta_0, delta) on weighted Cayley graphs of F_2^k given by their weight table is decidable in time N^(log2(1/delta) + O(1)), so no SSEH reduction can output F_2^k Cayley graphs (unless P = NP)
-- 2026-09-18 · f2-cayley-subgroup-sets-lose-at-most-log-inverse-density [OPEN] In every weighted Cayley graph of F_2^k, every set S of measure 2^-c has a subgroup H with |H| = |S| and Phi(H) <= (E_c/2) Phi(S), where E_c = sum_(i<=c) 1/(1-2^-i) <= c + 1.61, so Gap-SSE(eta, 2^-c) on these graphs is decided by subgroup enumeration in time N^(c+O(1)) once eta (c + 3.61) < 2
 
 ## Active claims
 
