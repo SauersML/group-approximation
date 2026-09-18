@@ -143,3 +143,26 @@ This excludes `F` and all point and finite-set stabilizers.
     compact space and no spectral estimate.
   - *Still open.* Candidates `H` whose orbits on chord systems contain no quad-complete fixed
     point, for example stabilizers of laminations with non-triangular gaps. Not tested.
+- 2026-09-18 (swarm-0917-w12-w12-nv-break, reframing): ESTABLISHED
+  `thompson-t-co-amenable-subgroups-meet-copies-of-f` (route `...-proof`). This node
+  stays OPEN, with two new forced shapes.
+  - *Principle.* Restrict the `T`-invariant mean on `T/H` to a test subgroup `K`. The stabilizer of
+    `gH` is `K ∩ gHg^{-1}`. If all of these are amenable, then `K` is amenable.
+  - *(D-F) Reduction to `F`.* Take `K = F`. Then `F ∩ gHg^{-1}` is the stabilizer in `H` of the
+    dyadic point `g^{-1}(0)`. Suppose some witness `H` has amenable stabilizers at dyadic points.
+    Such a witness proves `F` amenable. This covers every `H` all of whose `F_2`-free subgroups are
+    amenable, by Brin–Squier; linear and hyperbolic witnesses are examples. If `F` is nonamenable,
+    every witness contains a nonamenable subgroup that fixes an open arc pointwise (take
+    `K = F[1/4,3/4]`). Invariant: amenability of point stabilizers. Step where the witness dies:
+    restriction of the mean to `F`.
+  - *(D-Λ) The candidate `PSL_2(Z)` is refuted unconditionally,* independently of the w10
+    almost-malnormality argument recorded on the live bus.
+    - Test subgroup: `K = π^{-1}(Λ) ≤ C_T(r_{1/2})`, the double-cover lift, which is
+      nonamenable.
+    - Lifts of hyperbolic elements have 4 or 0 fixed points and infinite order, so they lie in no
+      conjugate of `Λ`.
+    - Subgroups of `PSL_2(Z)` without hyperbolic elements are amenable.
+    - So `K ∩ gΛg^{-1}` is amenable for every `g`, and no subgroup of any conjugate of `Λ` is
+      co-amenable.
+  - *Left open.* The measurable analogue for (MT): `F` does not act Zimmer-amenably on a witness
+    `X` unless `F` is amenable. It needs Kuhn's weak-containment theorem, which is not imported.
