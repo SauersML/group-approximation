@@ -79,7 +79,6 @@ theorem roseLobeOsinPiece_isPiece {G : Type u} [Group G] {Lambda : Type w}
     (hi : (cellDarts X i).rotate n = a :: (A ++ S))
     (hj : (cellDarts X j).rotate m = T ++ (a :: A).reverse.map X.toCombMap.alpha) :
     HullSC.RelWord.IsPiece D W eps (dartWord X (a :: A)) (dartWord X (a :: (A ++ S))) := by
-  classical
   -- the two face cycles through the shared edge `{a, α a}`
   have cycP : X.toCombMap.IsFaceCycle (a :: (A ++ S)) := by
     rw [← hi]
