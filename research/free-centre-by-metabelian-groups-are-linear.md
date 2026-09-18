@@ -12,11 +12,20 @@ distinct_from:
 **ESTABLISHED** by `free-centre-by-metabelian-linearity-via-gamma-seven-quotient`
 (lane proof, not independently reviewed).
 
-**Priority.** No novelty is claimed. A bounded search (web and arXiv, 2026-09-18) found
-no statement that `C_n` is linear, or residually nilpotent, for `n >= 4`. Kofinas,
-arXiv:2603.27648 §2.3, records that Hurley's residual-nilpotence argument "fails" for
-`n >= 4`, and works in rank 3 only. Both inputs used here are classical: Gupta–Levin 1986,
-Lemma 4.4, and C. K. Gupta 1973.
+**Priority. The theorem is known (1976); this node gives a new proof.** The source is N. D. Gupta and
+B. A. F. Wehrfritz, "Some residual properties of certain nilpotent-by-Abelian groups", Arch. Math. 27
+(1976) 449–455 (doi:10.1007/BF01224698). bh-verify-cbm read it at source on 2026-09-18 (PDF via MSI).
+- **p. 454, Remark 3:** "Every free centre-by-metabelian group of finite rank has a faithful
+  representation of finite degree (depending on the rank) over the ring R_0". That is linearity in
+  characteristic 0, for every finite rank. p. 450 says the same in words.
+- **p. 454, facts (ii) and (iii), credited to C. K. Gupta (1969, 1973):**
+  - the torsion `[F'', F]N/[F'', F]` is elementary abelian of rank `C(r,4)`, so `d = 2` here;
+  - `F/[F'', F]` is residually a finite 2-group, so it is residually nilpotent and residually finite.
+- **New here:** the explicit `(2n+1)`-dimensional corner representation, the exact homological
+  computation of its kernel as `T_n`, and the `γ_c` patch.
+- **Also read, not relevant:** Gupta–Levin, Comm. Algebra 4 (1976) 249–270, which is about separating laws
+  for nilpotent quotients. Kofinas, arXiv:2603.27648 §2.3, records only that Hurley's embedding is not
+  faithful for `n >= 4`.
 
 ## Statement
 
