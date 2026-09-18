@@ -82,3 +82,27 @@ so this says the transitivity degree of `F` is 1.
     `thompson-f-no-two-transitive-via-disagreement-set-type`:
     - `thompson-f-two-transitive-disagreement-sets-are-not-cantor` (OPEN);
     - `thompson-f-two-transitive-disagreement-sets-have-no-interior` (OPEN).
+- 2026-09-18 (swarm-0917-w8-w8-z-follow, reframing: colourings of irrational
+  orbits). **Partial; the node stays open.**
+  - Proved `thompson-f-two-transitive-irrational-orbit-colorings`
+    (unreviewed). At an irrational `y` the germ group is trivial, so
+    `F_y = G_y` and the local stalk `Ω/G_y` is `H\F·y`. So agreement of two
+    points at `y` is equality of `H`-orbit labels, and `Ω` embeds
+    equivariantly into colourings of any irrational orbit that meets `D_0`.
+    There are uncountably many such orbits.
+  - Consequence: every point stabilizer `H` is the part-wise stabilizer of
+    its own orbit partition of an irrational orbit, with at least two dense
+    parts. So Problem 2.20 is exactly the Le Boudec–Matte Bon
+    partition-stabilizer question, restricted to irrational orbits.
+  - The two open halves become statements about `H` alone. By Baire category,
+    `D_0` is Cantor iff `H` is transitive on some irrational orbit (then on a
+    comeagre set of them). `D_0` has interior iff `H` is transitive on none.
+    Equivalently:
+    - `...-are-not-cantor` says no `H` satisfies `F = H·F_y` for an
+      irrational `y`;
+    - `...-have-no-interior` says every `H` satisfies it for some `y`.
+  - In the Cantor case, at every good irrational `y`, `Ω = Ω/B_y × Ω/A_y` and
+    `H ∩ G_y = (H ∩ A_y) × (H ∩ B_y)`, where `G_y = A_y × B_y` is the product
+    of the left and right parts.
+  - Missing: a proof that `F = H·F_y`, with `F_y = A_y × B_y`, is incompatible
+    with two double cosets, or that it is forced.
