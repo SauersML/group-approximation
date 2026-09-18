@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -206,5 +207,42 @@ quantifier-shift).** Artifact
 - **What survives.**
   - (D1) via a P1-type bundling inequality for crossings of deep edges.
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
+
+  The claim stays OPEN.
+
+**Spectral fold-seed floor; chord isoperimetry is what remains (September
+18, 2026, swarm-0917-w13-w13-fp-last1, host-geometry).** Artifact
+`research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md`. Scripts in
+`experiments/fpbs-z3-overgroup-2026-09-17/`.
+- **Result.** [[fpbs-strongly-ergodic-actions-have-fold-seed-floor]] is
+  ESTABLISHED. For every non-atomic p.m.p. action of `L`,
+  `sigma_b ≥ inf_{μ(I)=1/2} μ(I \ (a^{-1}I ∩ b^{-1}I)) ≥ (1 − rho_X)/4`.
+  - Stop the closure rounds at measure 1/2. Each derived point uses up its own
+    triple inside the crossing set, injectively, so the seeds pay for its
+    `a,b`-boundary.
+  - The Markov gap bounds that boundary from below.
+  - On the Bernoulli class this gives `(2 − √3)/8 ≈ 0.0335` at every depth
+    `X ∘ φ^j`, against the w8 constant `1/80`.
+  - Every strongly ergodic action has `sigma_b > 0`, which is the open half of
+    the w11 conjecture.
+  - Through Theorem B, `relC_{≤ r} ≥ (2 − √3)/(8r)`.
+- **Where it stops for this claim (artifact §4.4).** Lemma 1.1 needs a witness
+  for each derived point *inside* the crossing set, with no witness shared.
+  - A chord graphing derives `w ~ bw` through circuits of unbounded length.
+  - Adding chord mass `δ` can raise the derived mass by more than any multiple
+    of `δ` (the w12 example `bab ⊔ bbab`), so no such crossing set exists in
+    general.
+  - Theorem B's unfolding pays `|h|_{K,b}` seeds per chord to get around this,
+    and that factor is the whole loss.
+- **New decomposition.** On spectral-gap actions, the claim (D0, `r > 0`)
+  follows from a *chord isoperimetry*. For a generating `Φ`, build a derivation
+  in which each chord, counted once, is the unique witness for the points it
+  derives, and stop it at a crossing set `I` with `μ(I) ∈ [1/3, 2/3]`. Then
+  `μ(Φ) ≥ C^{-1} μ(I \ (a^{-1}I ∩ b^{-1}I)) ≥ (2/9)(1 − rho)/C`. The
+  isoperimetry can fail on its own, and a failure would have to exhibit
+  circuits whose derived mass per unit of chord mass is unbounded.
+- **Dead (artifact §4.5).** Z/3 * Z/3 overgroup normalizer.
+  `search_alpha.py` found no conjugate of the triangle rotation, over
+  conjugators with at most 5 Nielsen moves, mapping `K` to a conjugate of `K`.
 
   The claim stays OPEN.
