@@ -127,7 +127,8 @@ theorem k2DilateSt_genFamily_relation_quotient
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFP.k2DilateSt_genFamily_relation_quotient
 
-/-- `St_I(P) → (∏_r St_I(A[X])) / (eventually trivial)`, `x_{ij}(q) ↦ [(x_{ij}(F_r(q)))_r]`. -/
+/-- `St_I(P) → (∏_r St_I(A[X])) / (eventually trivial)`,
+`x_{ij}(q) ↦ [(x_{ij}(F_r(q)))_r]`. -/
 noncomputable def k2DilateSt_toQ :
     SteinbergGroup I (k2DilateSt_pullback s) →*
       (ℕ → SteinbergGroup I (Polynomial A)) ⧸ k2DilateSt_eventuallyOne I A :=
