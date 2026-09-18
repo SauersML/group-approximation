@@ -37,7 +37,7 @@ requires:
     bounded `c`, because `t_2 s_1 = 0 = t_1 s_2`.
   - Pure infiniteness also looks available: `t_2 t_1^k f s_1^k s_2 = f(k)` for base functions `f`.
   - The cone vectors must be chosen so that the extended frames stay in the `E_n`-orbit.
-- **(S1) `K_1`-injective stability at `n - 1` and `n - 2`.** By `leavitt-k1-stability-is-one-step`, item 3, it follows
-  from `K_1`-surjective stability. Its natural source is that `GL_1(R_L)` hits `K_1(R_L) = Z` through `N + 1`, but
-  surjectivity at each finite rank is not yet shown.
+- **(S1) `K_1`-injective stability at `n - 1` and `n - 2`: now supplied** by `leavitt-ge-rings-have-stable-k1-at-rank-three`,
+  via Menal--Moncasi GE (read through Khanh) and the compression `y x z = 1` for `R_L`. So `GL_m(R_L)/E_m(R_L) = Z` for
+  `m >= 3`. For `n = 4` the edge stabilizer needs `m = n - 2 = 2`, so take `n >= 5`.
 - **Signs.** The characteristic-`0` bookkeeping of the Weyl and triangle relations.
