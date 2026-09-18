@@ -62,8 +62,8 @@ crossed products, where truncating the harmonic function supplies the positive-c
   above, and `bounded-harmonic-rings-are-not-finitely-presented`).
 - **Integral forms and AF groupoid rings.** Their finitely generated subrings omit `Q`
   (`integral-form-algebras-have-no-fg-subring-containing-q`,
-  `af-groupoid-rings-have-no-fg-subring-containing-q`). This covers Weyl algebras, enveloping algebras, group
-  and Steinberg algebras, and Euler-type skew Laurent rings.
+  `af-groupoid-rings-have-no-fg-subring-containing-q`). This covers the algebras `A ⊗ K` with `A` free abelian: group,
+  Leavitt path, Weyl and Steinberg algebras, together with their matrix rings and corners.
 - **What is left.** A new mechanism is needed: finitely many integer relations with no positive-characteristic
   solution, realized in a stably finite ring and producing `Q` without an orbit of orthogonal evaluation
   idempotents.
