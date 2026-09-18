@@ -8,7 +8,7 @@ distinct_from:
   nekrashevych-fp-iff-cycle-germ-groups-fp: that computes germ groups as a groupoid quotient; this identifies them with subgroups of the automaton group itself.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; no priority claimed; not yet refereed).
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-and-spine-hosts-branch-substitutions.md`.
 
 ## Statement
 
@@ -21,7 +21,8 @@ distinct_from:
 2. **Weaker sufficient condition.** Let `G` be separated over a base `B`
    (`separated-automata-reduce-bh-to-fp-overgroups-of-the-base`). Suppose `B <= K <= P`, where `K` is finitely
    presented and `P` is an automaton group whose action is lift-presented. `P` need not be finitely presented;
-   for example `P` could be contracting. Then `G` is LP-embeddable, hence Boone–Higman.
+   for example `P` could be contracting (that `contracting ⇒ lift-presented` uses the necessity half of Theorem A of
+   `rover-nekrashevych-fp-iff-finite-lift-presentation`). Then `G` is LP-embeddable, hence Boone–Higman.
 3. **Necessity for spine groups.** Suppose `G <= G^+`, where `G^+` is an automaton group acting on the same tree
    and extending `G`'s action. Suppose also that a spine letter `z` is stable for `G^+` in a closed family, and
    that `G^+`'s action is lift-presented. Then `L_z(G) <= L_z(G^+)`, which is finitely presented. For the
@@ -56,13 +57,12 @@ so `g = 1`. Hence the germ map is injective on `L_y`. Since `L_y` is a group, th
   `G` in a separated automaton group over `P'`. Every closed-path element acts on `Y'`-blocks by an element of
   `φ(B̂) ⊆ K' := K ≀ Sym(Y)`. So each germ group embeds in `Sym(Z∖z) × K'`.
 - **Saturation.** Add spinal loops at each `z`, with germ data the generators of `Sym(Z∖z) × K'`. Their sections
-  lie in `P'`; add these as states. Then every germ group equals `Sym(Z∖z) × K'`, which is finitely presented.
+  lie in `P'`; add these as states. They are finitely many and closed under inverses, and the base group is unchanged. Then every germ group equals `Sym(Z∖z) × K'`, which is finitely presented.
 - **Conclusion.** The separated criterion (§1 there) needs only a lift-presented base and finitely presented germ
   groups. So the enlarged group is lift-presented.
 
 **3.** Elements of `L_z(G)` fix `z` and equal their section at `z` in the common action, so they lie in `L_z(G^+)`.
-That group is finitely presented by 1. For the spine group, `L_2(G) ⊇ ⟨ŝ_γ⟩ ≅ Γ`. It is all of it by the germ
-computation in `nekrashevych-fp-iff-cycle-germ-groups-fp`, consequence 2. ∎
+That group is finitely presented by 1. For the spine group, `L_2(G) ⊇ ⟨ŝ_γ⟩ ≅ Γ`, which is all that is needed. ∎
 
 ## Lesson for general BH
 

@@ -122,3 +122,51 @@ theorem k2PolyNagaoTorus_W_conj_tmi (c : (ZMod p)ˣ) :
   exact e
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_W_conj_tmi
+
+/-- `T(α, β) x'(f) = x'(β α⁻¹ f) T(α, β)`. -/
+theorem k2PolyNagaoTorus_T_mul_x (α β : (ZMod p)ˣ) (f : Polynomial (ZMod p)) :
+    k2PolyNagaoTorus_T p hmL hmi hLi α β * x L m hmL.symm f =
+      x L m hmL.symm (Polynomial.C ((β * α⁻¹ : (ZMod p)ˣ) : ZMod p) * f) *
+        k2PolyNagaoTorus_T p hmL hmi hLi α β := by
+  have hu : β⁻¹⁻¹ * (α * β)⁻¹ * β⁻¹⁻¹ = β * α⁻¹ := by
+    rw [inv_inv, mul_inv_rev, mul_inv_cancel_left]
+    exact mul_comm _ _
+  have hc : Polynomial.C ((β⁻¹⁻¹ : (ZMod p)ˣ) : ZMod p) *
+      (f * Polynomial.C (((α * β)⁻¹ : (ZMod p)ˣ) : ZMod p)) *
+        Polynomial.C ((β⁻¹⁻¹ : (ZMod p)ˣ) : ZMod p) =
+      Polynomial.C ((β * α⁻¹ : (ZMod p)ˣ) : ZMod p) * f := by
+    rw [← hu]
+    simp only [Units.val_mul, map_mul]
+    ring
+  have e1 := k2PolyNagaoTorus_tmi_conj_x hmL hmi hLi (α * β) f
+  have h2 : (k2PolyDeg_torus p m L i hmL hmi hLi β)⁻¹ *
+      x L m hmL.symm (f * Polynomial.C (((α * β)⁻¹ : (ZMod p)ˣ) : ZMod p)) =
+      x L m hmL.symm (Polynomial.C ((β * α⁻¹ : (ZMod p)ˣ) : ZMod p) * f) *
+        (k2PolyDeg_torus p m L i hmL hmi hLi β)⁻¹ := by
+    rw [← map_inv (k2PolyDeg_torus p m L i hmL hmi hLi) β,
+      k2PolyNagaoWeyl_torus_mul_x hmL hmi hLi β⁻¹, hc]
+  rw [k2PolyNagaoTorus_T]
+  exact k2PolyNagaoTorus_grp_comm e1 h2
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_T_mul_x
+
+/-- `W⁻¹ T(α, β) W = T(β, α)`. -/
+theorem k2PolyNagaoTorus_W_conj_T (α β : (ZMod p)ˣ) :
+    (w m L hmL (-1 : (Polynomial (ZMod p))ˣ))⁻¹ * k2PolyNagaoTorus_T p hmL hmi hLi α β *
+        w m L hmL (-1 : (Polynomial (ZMod p))ˣ) = k2PolyNagaoTorus_T p hmL hmi hLi β α := by
+  have e : (w m L hmL (-1 : (Polynomial (ZMod p))ˣ))⁻¹ * k2PolyNagaoTorus_T p hmL hmi hLi α β *
+        w m L hmL (-1 : (Polynomial (ZMod p))ˣ) =
+      ((w m L hmL (-1 : (Polynomial (ZMod p))ˣ))⁻¹ * k2PolyDeg_torus p m L i hmL hmi hLi β *
+          w m L hmL (-1 : (Polynomial (ZMod p))ˣ))⁻¹ *
+        ((w m L hmL (-1 : (Polynomial (ZMod p))ˣ))⁻¹ *
+          k2PolyDeg_torus p m i L hmi hmL hLi.symm (α * β) *
+            w m L hmL (-1 : (Polynomial (ZMod p))ˣ)) := by
+    rw [k2PolyNagaoTorus_T]
+    group
+  rw [e, k2PolyNagaoWeyl_W_conj_torus hmL hmi hLi β,
+    k2PolyNagaoTorus_W_conj_tmi hmL hmi hLi (α * β), k2PolyNagaoTorus_T, mul_comm β α]
+  exact k2PolyNagaoTorus_hom_aux (k2PolyDeg_torus p m L i hmL hmi hLi) α β _
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_W_conj_T
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

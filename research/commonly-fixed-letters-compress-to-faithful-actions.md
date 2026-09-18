@@ -9,7 +9,7 @@ distinct_from:
   lift-presented-automaton-groups-satisfy-boone-higman: that consumes one lift-presented action; this produces new finite-state actions to feed it.
 ---
 
-**ESTABLISHED** by `commonly-fixed-letters-compress-to-faithful-actions-proof` (lane proof, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-commonly-fixed-letters-compress-and-spine-grigorchuk.md`.
+**ESTABLISHED** by `commonly-fixed-letters-compress-to-faithful-actions-proof` (lane proof, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-commonly-fixed-letters-compress-and-spine-grigorchuk.md`. Referee b (citations, priority) PASS: `research/artifacts/gq-referee-b-run-compression-cycling-relators-odometer-regrouping.md`. The persistent case (`p = 0`, `q = 1`) is the inverse of Skipper–Witzel–Zaremsky arXiv:1712.05361 Lemma 5.3 (p. 14), whose faithfulness argument (the inclusion `{1..d-1} -> {1..d}` gives an embedding `T_{d-1} -> T_d` with invariant image) is consequence 1 read backwards; general `(p, q)` compression is not in SWZ §5.
 
 ## Setting
 

@@ -67,3 +67,27 @@ one-point question. Can a *finitely presented ascending driver* pin, by single-d
 equations, an input's residual chain written one finite quotient per depth? This is the
 one-point, V-germ incarnation of the master route's "compiler". The driver is the machine;
 the passenger pinning is the rigidity.
+
+## Attempts
+
+**Attempt 1 (bh-major-branch-c, 09-18): the pinning step (gate 2), with the calibrations F₂, SL₃(Z) and surface groups.** Two structural constraints are landed; no driver has been constructed.
+
+- `pinned-annular-passengers-are-class-functions-of-the-driver`. Pinned depth data are fixed by every automorphism of V that fixes the driver datum. So the pinned quotient `G/N_n` depends only on the `Aut(V)`-class of `ρ∘μ^n`, and growth needs an infinite `μ*`-orbit in `Hom(M,V)/Aut(V)`. Four driver families are dead:
+  - `Aut(V)`-induced drivers, including the "`μ = conj(R)`, `R ∈ V`" candidate above when it acts on all of `M`;
+  - cone-copy drivers;
+  - faithful diagonal (block-doubling) drivers;
+  - more generally, any faithful driver that confines the passenger inside `ρμ^n(M)`. Such a driver collapses to the ascending case.
+- `pinned-passengers-collapse-when-the-shifted-system-is-solvable`. If the pinning system with shifted parameters `μ̂(m̂)` has any solution in the base `L`, the passenger is a driver germ. So a genuine non-ascending passenger needs "a unique solution in `V` at each depth" together with "no solution in `L`".
+
+**Calibrations.**
+- **F₂.** F₂ ≤ V, so constant data realize it ascendingly. It says nothing about pinning growing finite quotients.
+- **SL₃(Z) and other Kazhdan inputs.** Their V-images are finite, since V is Haagerup (Farley). By bh-free-22's remark, they are never their own telescopes. They could still be passengers in a larger telescope `M̂` (`Ĝ ≤ M̂` with `μ̂(G) ⊄ G`), and that is not excluded here. So SL₃(Z) is a genuine test of this framework, even though it satisfies BH by linearity.
+- **Closed surface groups.** Not attempted.
+
+**What remains for gate 2.** A driver `(M, μ, ρ)` must satisfy all four of these:
+- `ρ∘μ^n` are pairwise non-`Aut(V)`-conjugate;
+- `ρ` is non-faithful with varying kernels, or `Γ_n = ρμ^n(M)` has small double centralizers;
+- a finite system pins `r_n(G)` uniquely at each depth;
+- the shifted systems are unsolvable in `L`.
+
+No natural driver meets these. The next test is a non-faithful driver from a reversible counter machine acting on the annulus, with `ρμ^n` reading the machine's configuration at time `n`.

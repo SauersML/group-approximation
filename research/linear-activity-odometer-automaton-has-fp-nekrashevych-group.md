@@ -11,7 +11,7 @@ distinct_from:
 **ESTABLISHED** (lane proof below via `relator-complexity-descent-gives-free-splitting`; no
 priority claimed; whether Boone–Higman for this group was known by other means was not checked).
 
-Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`.
+Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`. Referee b (citations, priority) PASS: `research/artifacts/gq-referee-b-run-compression-cycling-relators-odometer-regrouping.md`. No name for this group was found (bounded search); `b` is the spinal product of odometers on the cones `1^k 0`. It is amenable, since every linear-activity automaton group is (Amir–Angel–Virág, arXiv:0905.2007, JEMS 2013), and no earlier Boone–Higman proof for it was found.
 
 ## The automaton
 
