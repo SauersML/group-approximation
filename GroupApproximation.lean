@@ -5639,6 +5639,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingTra
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.RelatedWorkStatements
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Ext
 import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordMF.CliffordLift
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.ReturnSection
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockCells
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockPlacement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
