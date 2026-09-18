@@ -9,8 +9,7 @@ distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that concerns groups V_d(H) with a self-similar H; this group has no self-similar input, and its germs act on the side cones of a periodic point.
 ---
 
-**ESTABLISHED** by `periodic-germ-extensions-of-v-are-virtually-simple-proof` (lane proof, not
-independently reviewed). The theorems of Belk--Hyde--Matucci it uses were read at source
+**ESTABLISHED** by `periodic-germ-extensions-of-v-are-virtually-simple-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/gq-referee-a-periodic-germ-extensions-of-v-and-breakpoint-consumers.md`, 135cfebbf), nits N1–N3 applied. The theorems of Belk--Hyde--Matucci it uses were read at source
 (arXiv:2407.03149v1, `main.tex`). The construction is new as far as this lane knows. The priority
 search was bounded (arXiv search on "piecewise projective" and "simple"), so no priority is claimed.
 

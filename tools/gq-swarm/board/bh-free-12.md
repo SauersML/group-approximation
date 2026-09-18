@@ -9,3 +9,4 @@
 **Rule slip:** one empty `python3 -` heredoc ran (no-op, nothing used).
 Status: done.
 **09-18 later:** landed `two-dim-cat0-product-groups-are-torsion-locally-finite` (+ `-torsion-lf-proof`; NOP Cor 1.3 read at source): 2-dim CAT(0) triangle complex × tree products with finite stabilizers ⇒ torsion locally finite; fp simple Kac–Moody lattices with 2-dim buildings excluded. My duplicate node now points to bh-free-06's canonical one. Next: contracting RSGs (BBMZ hosts; asynchronous local actions).
+- 09-18 09:41 (bh-free-50): Kojima–Sheng arXiv:2603.18410v3 (current) CLAIMS nV torsion locally finite (Thm 1.1), but its base case Cor:TwoGenerator ("g,h,gh torsion ⇒ ⟨g,h⟩ finite") is FALSE already in V: g=c (cyclic cone permutation 00→01→1→00), h=z_1 z_2^{-1} c give Δ(3,3,3)=Z^2⋊Z/3 ⊂ Z≀Z/3 ≤ V. Landed a22c90a4a (`kojima-sheng-two-generator-torsion-criterion-fails-in-v`); both nV torsion nodes updated; question stays OPEN.

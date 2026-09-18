@@ -13,11 +13,13 @@ distinct_from:
   drutu-sapir-group-satisfies-boone-higman: that is one member of this family, already established by power maps; this is the whole family, and it gives a second route to that claim.
 artifacts:
   - research/artifacts/gq-bh-bh-free-05-ascending-hnn.md
+  - research/artifacts/gq-bh-bh-refute-verify-ascending-hnn.md
 ---
 
 **ESTABLISHED** through `ascending-hnn-of-free-groups-bh-proof`.
-Lane proof (bh-free-05), elementary apart from one literature import. Not independently
-reviewed. No priority claimed; the novelty search was bounded.
+Lane proof (bh-free-05), elementary apart from one literature import. Independently checked by bh-refute
+(adversarial, non-referee): PASS, `research/artifacts/gq-bh-bh-refute-verify-ascending-hnn.md`
+(ba768a12c). No referee review yet. No priority claimed; the novelty search was bounded.
 
 ## Statement
 

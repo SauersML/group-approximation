@@ -53,3 +53,33 @@ presented `G`:
   groups.
 
 **Tractability.** Medium to high, on the logic side (bh-logic, bh-bbmz-problems).
+
+## Attempts
+
+1. **Finitely generated version: answered negatively** (bh-openq-lists, 09-18).
+   `fg-decidable-group-whose-e-is-not-recursively-presented` builds a 3-generator group
+   `Γ` with a recursive presentation and a solvable word problem such that `J_1(Γ)` is
+   not r.e. So `E(Γ)` is not recursively presented, and it embeds in no finitely
+   presented group.
+   - **The group:** `Γ = (N_2 ⋊ Z) *_C (C × Z)`, where `N_2` is free nilpotent of class 2
+     on the `t`-shifts of one generator.
+   - **The rows:** the derived subgroup splits into `t`-invariant rows `R_d`, one per
+     commutator distance `d`. These are normal subgroups of the base, each a single
+     conjugation orbit, and they are pairwise independent.
+   - **The encoding:** `c` centralizes exactly the recursive set of basis commutators
+     indexed by `H`. The words `[c, x^{-1} [a_0, a_d] x]` then encode "row `d` lies in
+     `H`", a Π₁-complete property.
+2. **What finite presentation would need.** The construction relies on two facts in the
+   host `P`: each row `R_d` is normal in `P`, and the element `c` centralizes a prescribed
+   recursive set of rows. Mixed identities do not pass to overgroups. So embedding `Γ` in
+   a finitely presented group (Clapham, Higman) loses the (⇐) direction, because
+   conjugates of `[a_0, a_d]` by new elements leave `R_d`. Retracts do not help either:
+   restricting `x` only gives `J_1(P) ∩ (Γ * <x>) ⊆ J_1(Γ)`. Two constructions would
+   answer the finitely presented question:
+   - a finitely presented `P ⊇ Γ` that normalizes every row `R_d`, for example with `Γ`
+     normal in `P` and `P` acting row-preservingly;
+   - a direct finitely presented group with infinitely many independent normal subgroups,
+     each a single conjugation orbit that behaves like a free abelian row.
+
+   Finitely generated metabelian groups satisfy max-n (P. Hall), so the second option
+   needs a non-metabelian finitely presented group. Neither was found.

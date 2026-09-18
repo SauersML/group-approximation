@@ -1,1 +1,5 @@
 bh-free-40: direction = direct type (A) actors for Out(F_n); first result = necessary condition on pair-finite stabilizers (bounded-orbit double-coset lemma + Handel–Mosher).
+- LANDED 03e0d4ae7: bounded-orbit-subgroups-have-infinitely-many-double-cosets; out-free-pair-finite-stabilizers-contain-fully-irreducibles; Attempt 4 on out-free-groups-satisfy-boone-higman.
+- Open lead: does Stab([w]) for w a filling (e.g. one-boundary surface) class have finitely many double cosets in Out(F_n)? Invariant to try: self-intersection of φ(w) as a curve on the surface determined by [w].
+- LANDED 5f5975668: surface-word-stabilizers-have-infinitely-many-double-cosets (test case settled NEGATIVELY: Aut-orbit of one-cusp surface word grows exponentially via a_1 -> a_1 c; Mod-orbits polynomial by Mirzakhani, cited). Updates on out-free-pair node and root Attempt 5.
+- Remaining shapes for a direct Out(F_n) type (A) stabilizer: none of the standard geometric stabilizers; open: multi-boundary / nonorientable surface words, non-geometric constructions.
