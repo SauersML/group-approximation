@@ -14,7 +14,7 @@ distinct_from:
   hermitian-edge-trace-norm-clique-inequality-large-m: that proves m >= 6 by an energy LP, which provably cannot reach m = 5.
 ---
 
-**OPEN - partially certified; the remaining work is a mechanical computation of about 2.5 CPU-hours.**
+**OPEN - partially certified (9 of 16 slices); the remaining 7 slices are running.**
 Every Hermitian `5 x 5` matrix `C` with `C_ii = 0` and `|C_ij| >= 1` for `i != j` should satisfy
 
 ```text
@@ -38,7 +38,7 @@ star real and shifts every free phase by `pi`. Complex conjugation negates every
 first free phase `theta_23` can be taken in `[0, pi/2]`. That interval is cut into 16 slices
 `[i pi/32, (i+1) pi/32]`, `i = 0..15`, and in each slice the other five phases range over `[0, 2pi)^5`.
 
-**Certified so far** (`k5_partial_runs.log`). Slices `i = 0, 1, 2, 6, 7, 11, 12` (7 of 16) print `ALL CLOSED`. Slices `3, 4, 5, 8, 9, 10, 13, 14, 15` are not yet certified. Each closed slice took about 28,000–32,000
+**Certified so far** (`k5_partial_runs.log`). Slices `i = 0, 1, 2, 3, 6, 7, 10, 11, 12` (9 of 16) print `ALL CLOSED` (slices 3 and 10 added by lane w7-078). Slices `4, 5, 8, 9, 13, 14, 15` are running. Each closed slice took about 28,000–32,000
 boxes and 41,000–45,000 SDP solves, in about 16 minutes on one core. The smallest SDP value at any box
 centre was `7.255` (slice 7), so the margin over `6.928` is comfortable everywhere so far.
 

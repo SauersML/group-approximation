@@ -110,3 +110,32 @@ resumed 138 boxes on stack
 solves 40000 closed 27905 stack 56 minval 7.286949 t 1279
 solves 42000 closed 29291 stack 27 minval 7.286949 t 1351
 n16s12 m=5 first phase in [1.178097,1.276272]: ALL CLOSED  boxes 31685 (reused parent Z 17239)  solves 45402  min center value 7.286949 at [1.1945, 5.6287, 5.6287, 4.9742, 5.6287, 1.1781]  smallest half-width 1.31e-01  time 1475s
+===== slice 3 of 16 (k5lane.sh 16 3; log k5_n16_s3.log)
+solves 2000 closed 1386 stack 710 minval 7.392354 t 38
+solves 6000 closed 4156 stack 633 minval 7.286565 t 103
+solves 10000 closed 6949 stack 542 minval 7.286565 t 175
+solves 12000 closed 8316 stack 507 minval 7.286565 t 212
+solves 20000 closed 13853 stack 389 minval 7.286565 t 346
+solves 24000 closed 16641 stack 302 minval 7.286565 t 408
+solves 26000 closed 18008 stack 267 minval 7.286565 t 444
+solves 28000 closed 19386 stack 251 minval 7.286565 t 489
+solves 34000 closed 23553 stack 146 minval 7.286565 t 621
+solves 36000 closed 24951 stack 82 minval 7.286565 t 672
+solves 40000 closed 27707 stack 23 minval 7.286565 t 778
+n16s3 m=5 first phase in [0.294524,0.392699]: ALL CLOSED  boxes 28990 (reused parent Z 15398)  solves 41853  min center value 7.286565 at [0.3763, 5.1051, 0.9163, 6.1523, 1.4399, 1.1781]  smallest half-width 1.31e-01  time 827s
+===== slice 10 of 16 (k5lane.sh 16 10; log k5_n16_s10.log)
+solves 8000 closed 5601 stack 570 minval 7.287224 t 143
+solves 10000 closed 7012 stack 540 minval 7.287224 t 175
+solves 12000 closed 8402 stack 513 minval 7.287224 t 214
+solves 14000 closed 9812 stack 496 minval 7.287224 t 257
+solves 16000 closed 11211 stack 486 minval 7.277598 t 287
+solves 20000 closed 14031 stack 407 minval 7.277598 t 351
+solves 22000 closed 15434 stack 348 minval 7.277598 t 381
+solves 24000 closed 16848 stack 312 minval 7.277598 t 414
+solves 26000 closed 18245 stack 280 minval 7.277598 t 451
+solves 28000 closed 19649 stack 258 minval 7.277598 t 498
+solves 30000 closed 21038 stack 248 minval 7.277598 t 542
+solves 32000 closed 22435 stack 224 minval 7.277598 t 588
+solves 36000 closed 25243 stack 137 minval 7.277598 t 682
+solves 40000 closed 28061 stack 54 minval 7.277598 t 785
+n16s10 m=5 first phase in [0.981748,1.079922]: ALL CLOSED  boxes 31562 (reused parent Z 17401)  solves 44994  min center value 7.277598 at [1.0308, 5.6287, 5.3669, 6.0214, 4.9742, 4.9742]  smallest half-width 2.62e-01  time 913s
