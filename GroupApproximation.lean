@@ -5841,6 +5841,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.H2
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GHWAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.PermAlg
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecPoly
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecWords
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Reduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
