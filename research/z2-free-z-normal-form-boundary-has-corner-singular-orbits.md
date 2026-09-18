@@ -2,105 +2,124 @@
 rg: 2
 id: z2-free-z-normal-form-boundary-has-corner-singular-orbits
 kind: claim
-title: On its free-product normal-form boundary, Z^2 * Z is a germ extension of the boundary Thompson group with four corner singular orbits and germ groups Z^2 over a Z of Thompson germs
+title: On its free-product normal-form boundary, Z^2 * Z acts by state-preserving prefix replacements except at four corners, where the germ group is Z^2 over a Z of prefix-replacement germs
 distinct_from:
-  z2-free-z-embeds-in-a-finite-nucleus-rsg: that asks whether Z^2 * Z embeds in a rational similarity group with finite nucleus, where rational fixed points of Z^2 cannot carry faithful rank-2 germs; this exhibits an action where Z^2 does carry faithful rank-2 germs, at four points only, relative to a base group with trivial nucleus, which is the setting of Belk--Hyde--Matucci germ extensions instead.
-  finite-nucleus-rsg-abelian-stabilizers-have-rank-one-germs: that is the rank-one germ lemma for finite-nucleus RSGs; this is the calibration showing that the same flat produces exactly the germ-group shape that the Belk--Hyde--Matucci finiteness theorem accepts.
+  z2-free-z-embeds-in-a-finite-nucleus-rsg: that asks whether Z^2 * Z embeds in a rational similarity group with finite nucleus, where rational fixed points of Z^2 cannot carry faithful rank-2 germs; this exhibits an action where Z^2 does carry faithful rank-2 germs, at four points only.
+  finite-nucleus-rsg-abelian-stabilizers-have-rank-one-germs: that is the rank-one germ lemma for finite-nucleus RSGs; this is the calibration showing that a flat produces exactly the germ-group shape that the Belk--Hyde--Matucci finiteness theorem accepts.
+  z2-free-z-lies-in-an-fp-full-germ-extension-of-v: that is the finitely presented host built from this action by recoding into V; this is the local computation it uses.
   automatic-groups-embed-in-corner-germ-extensions: that is the OPEN premise for all automatic groups; this is its first worked instance.
 artifacts:
   - research/artifacts/gq-bh-bh-free-21-automatic-germ-extensions.md
 ---
 
 **ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).
+*Corrected 2026-09-18 (second landing):* the first version's replacement table named several
+cylinders wrongly, pairing prefixes that end in different states. The corrected table is below.
+The conclusions are unchanged.
 
 ## Setting
 
 - **Z^2.** Belk--Bleak--Chatterji--Matucci--Perego, *Rational embeddings of continuous
   automatic groups* (preliminary version, 2026, read at source), Example 1.1(2): on
   `Z^2 = <x, y>` the language `L_2` of words `(ab)^m a^n` and `(ab)^m b^n`, with
-  `a in {x, x^-1}`, `b in {y, y^-1}` and `m, n >= 0`, is a continuous normal form. Explicitly,
-  `(p, q)` has normal form `(ab)^|q| a^(|p|-|q|)` if `|p| >= |q|`, and `(ab)^|p| b^(|q|-|p|)`
-  otherwise, with `a = x^sgn(p)` and `b = y^sgn(q)`.
-- **The product.** `G = Z^2 * <t>`, generators `x^±, y^±, t^±`. `L` is the set of reduced
-  alternating products of syllables: nontrivial `L_2`-words and `t^k` with `k != 0`.
-- **Boundary.** `∂L` is the set of accumulation points of `L` in `X^ω`. It consists of:
-  - infinite alternating words;
-  - a finite alternating prefix followed by an infinite `L_2`-syllable, or by `t^±∞`.
-- **Base group.** `B` is the group of homeomorphisms of `∂L` that are locally prefix
-  replacements `uw -> u'w` between prefixes with equal follower sets (the boundary Thompson
-  group of the finite follower-set graph of `L`). By definition it is full.
+  `a ∈ {x, X}`, `b ∈ {y, Y}` (`X = x^-1`, `Y = y^-1`) and `m, n >= 0`, is a continuous normal
+  form. Explicitly, `(p, q)` has normal form `(ab)^|q| a^(|p|-|q|)` if `|p| >= |q|`, and
+  `(ab)^|p| b^(|q|-|p|)` otherwise, with `a = x^sgn(p)` and `b = y^sgn(q)`.
+- **The product.** `G = Z^2 * <t>`, `T = t^-1`, with generating set `x, X, y, Y, t, T`. `L` is
+  the set of reduced alternating products of syllables: nontrivial `L_2`-words and `t^k` with
+  `k != 0`.
+
+## The automaton
+
+`Pref(L)` is recognized by the deterministic automaton `𝒜` with initial state `q0` and 16
+further states. Here `a ∈ {x, X}` and `b ∈ {y, Y}`, and every state except `q0` and `Q_t`, `Q_T`
+also has the edges `t -> Q_t` and `T -> Q_T`.
+
+| state | meaning (after reading ...) | other edges |
+|---|---|---|
+| `q0` | nothing | `x -> A_x`, `X -> A_X`, `y -> P_y`, `Y -> P_Y`, `t -> Q_t`, `T -> Q_T` |
+| `Q_t`, `Q_T` | `t^k`, `T^k` (k >= 1) | own loop `t` (resp. `T`); `x -> A_x`, `X -> A_X`, `y -> P_y`, `Y -> P_Y` |
+| `A_a` | one letter `a` of a new syllable | `a -> P_a`, `y -> D_ay`, `Y -> D_aY` |
+| `P_a` | `(ab)^m a^n`, `n >= 2` | `a -> P_a` |
+| `P_b` | `b^n` or `(ab)^m b^n` | `b -> P_b` |
+| `D_ab` | `(ab)^m`, `m >= 1` | `a -> E_ab`, `b -> P_b` |
+| `E_ab` | `(ab)^m a`, `m >= 1` | `b -> D_ab`, `a -> P_a` |
+
+- Every state has out-degree at least 3, and the 16 states other than `q0` form one strongly
+  connected component.
+- `∂L`, the accumulation points of `L` in `X^ω`, is the space of infinite paths of `𝒜` from
+  `q0`. It is a Cantor space.
+- A *state-preserving prefix replacement* is a map `[u] -> [u']`, `uw -> u'w`, where `u, u'` are
+  paths from `q0` ending at the same state.
 
 ## Statement
 
-1. **Continuity and faithfulness.** `L` is a continuous normal form, `∂L` is a Cantor space,
-   and `G` acts faithfully on `∂L`.
-2. **t is Thompson.** `t` lies in `B`.
-3. **Singular points of the Z^2 generators.** `sing(x^±1) = sing(y^±1) = C`, where
-   `C = {(x^ε y^δ)^∞ : ε, δ = ±1}` is the set of four *corners*. So every element of `G` has
-   finitely many singular points, and `sing(G) = G·C`. That set is countable and consists of
-   four `B`-orbits, one for each corner tail.
-4. **Germ groups.** Let `Γ = <B, G>`, and let `c = (x^ε y^δ)^∞` be a corner.
-   - `Stab_G(c) = Z^2`, and `(Γ)_c ≅ Z^2` faithfully.
-   - `(B)_c ≅ Z` is generated by the period shift `(x^ε y^δ)^k u -> (x^ε y^δ)^(k+1) u`. This
-     equals the germ of the diagonal element `(ε, δ)`.
-   - So `(B)_c` is normal in `(Γ)_c` and `(Γ)_c/(B)_c ≅ Z`, which has type `F_∞`.
-
-So Z^2 * Z meets the germ condition (3) of Belk--Hyde--Matucci `cor:MainFinitenessCorollary`
-(arXiv:2407.03149v1, read at source) at every singular point, for every `n`.
+1. **Continuity and faithfulness.** `L` is a continuous normal form, and `G` acts faithfully on
+   `∂L`.
+2. **t is regular.** `t` and `T` act everywhere locally by state-preserving prefix replacements.
+3. **Singular points.** `x^±1` and `y^±1` act locally by state-preserving prefix replacements
+   at every point except the four *corners* `C = {(ab)^∞}`. Each corner is fixed by all of
+   `Z^2`, and at each corner these generators agree with no prefix replacement at all.
+4. **Germ groups.** At a corner `c = (ab)^∞`, the germs of `Z^2` form a faithful copy of `Z^2`.
+   The germ of the diagonal `δ = (sgn a, sgn b)` is the one-period shift
+   `(ab)^M w -> (ab)^(M+1) w`, which is a state-preserving prefix replacement at `D_ab`.
 
 ## Proof
 
-Write `c_I = (xy)^∞`. The other corners follow by the sign symmetries of `L_2`.
+- **(1)**
+  - Continuity is the criterion of the preprint's Prop. 2.1: `t` changes common-prefix lengths
+    by at most one, and a `Z^2` generator only rewrites the first syllable, through the
+    continuous action on `L_2 ∪ ∂L_2`.
+  - `∂L` has no isolated points, because every boundary point is a limit of infinite
+    alternating words.
+  - Faithfulness: for `g != 1` with normal form `w`, pick `ξ = (s t)^∞` with a `Z^2`-letter `s`
+    chosen so that `w`'s last syllable does not cancel into `ξ`. Then `gξ = wξ != ξ`.
+- **(2)** `t` acts by the following maps, with matching end states in each case. `T` is
+  symmetric.
+  - `[s] -> [ts]` for a `Z^2`-letter `s` (end state `A_a` or `P_b`);
+  - `[t^k] -> [t^(k+1)]` for `k >= 1` (`Q_t`);
+  - `[Ts] -> [s]` for a `Z^2`-letter `s` (`A_a` or `P_b`);
+  - `[T^k] -> [T^(k-1)]` for `k >= 2` (`Q_T`).
+- **(3)** Take the generator `x`; the others are symmetric. Every point of `∂L` other than a
+  corner has a neighbourhood on which `x` is one of these maps (end states in brackets):
 
-- **(1) Continuity.**
-  - Use the criterion of the preprint's Prop. 2.1 over the monoid generators.
-  - For `t`, common prefix lengths change by at most one.
-  - For a `Z^2` generator, the action only rewrites the first `Z^2`-syllable, through the
-    continuous action on `L_2 ∪ ∂L_2`. If two words share their whole first syllable and
-    more, then so do their images.
-  - `∂L` is compact, metrizable and totally disconnected. It has no isolated points, because
-    every boundary point is a limit of infinite alternating words.
-  - Faithfulness: for `g != 1` with normal form `w`, pick `ξ = (s t)^∞` with a `Z^2`-letter
-    `s` chosen so that `w`'s last syllable does not cancel into `ξ`. Then `gξ = wξ != ξ`.
-- **(2) t is Thompson.** `t` acts by these prefix replacements, each between prefixes with
-  equal follower sets:
-  - `[s] -> [ts]` for a `Z^2`-letter `s`;
-  - `[t^k] -> [t^(k+1)]` for `k >= 1`;
-  - `[t^-1 s] -> [s]` and `[t^-k] -> [t^-(k-1)]` for `k >= 2`.
-- **(3) Singular points.**
-  - `x` rewrites only the first syllable. Away from infinite first syllables it is a prefix
-    replacement. On points with an infinite first syllable it acts as on `∂L_2`.
-  - At the non-corner points of `∂L_2` it is locally one replacement:
+  | point | neighbourhood and replacement |
+  |---|---|
+  | first letter `t` or `T` | `[t] -> [xt]`, `[T] -> [xT]` (`Q_t`, `Q_T`) |
+  | first syllable finite, `= w_(p,q)`, then `t` or `T` | `[w_(p,q) t] -> [w_(p+1,q) t]` (`Q_t`), and likewise with `T`; `[t]` if `(p+1,q) = 0` |
+  | `x^∞` | `[x^N] -> [x^(N+1)]`, `N >= 2` (`P_x`) |
+  | `X^∞` | `[X^N] -> [X^(N-1)]`, `N >= 3` (`P_X`) |
+  | `y^∞`, `Y^∞` | `[b^N] -> [x b^N]`, `N >= 2` (`P_b`) |
+  | `(xb)^m x^∞`, `m >= 1` | `[(xb)^m x^N] -> [(xb)^m x^(N+1)]`, `N >= 2` (`P_x`) |
+  | `(Xb)^m X^∞`, `m >= 1` | `[(Xb)^m X^N] -> [(Xb)^m X^(N-1)]`, `N >= 3` (`P_X`) |
+  | `(xb)^m b^∞`, `m >= 1` | `[(xb)^m b^N] -> [(xb)^(m+1) b^(N-1)]`, `N >= 2` (`P_b`) |
+  | `(Xb)^m b^∞`, `m >= 1` | `[(Xb)^m b^N] -> [(Xb)^(m-1) b^(N+1)]`, `N >= 1` (`P_b`) |
 
-    | point | replacement |
-    |---|---|
-    | `x^±∞`, `y^±∞` | `[x] -> [xx]`, `[x^-2] -> [x^-1]`, `[y^K] -> [xy^K]` |
-    | `(ab)^m a^∞` | `(ab)^m a -> (ab)^m aa`, or `(ab)^m a^-1 a^-1 -> (ab)^m a^-1` when `a = x^-1` |
-    | `(xy)^m y^∞` | `(xy)^m y -> (xy)^(m+1)` |
-    | `(x^-1 y)^m y^∞` | `(x^-1 y)^m -> (x^-1 y)^(m-1) y` |
-  - At `c_I`, `x` fixes every point `(xy)^M x^∞`, but moves `(xy)^M y^∞` to
-    `(xy)^(M+1) y^∞`.
-  - Any prefix replacement defined near `c_I` that fixes all of the points `(xy)^M x^∞` with
-    `M >= K` is the identity near `c_I`. So `x` is singular at `c_I`, and likewise at the
-    other three corners. The same holds for `y`.
-- **(4) Germ groups.**
-  - Stabilizer: `(p,q) + (N,N)` has normal form `(xy)^(N+min(p,q))·(tail)`, so every element
-    of `Z^2` fixes `c_I`. Every element outside `Z^2` changes a finite prefix, so moves `c_I`.
-  - Faithfulness of the `Z^2` germs: `(p,q)` sends `(xy)^M y^∞` to `(xy)^(M+p) y^∞` and
-    `(xy)^M x^∞` to `(xy)^(M+q) x^∞`. So its germ at `c_I` is trivial only if `p = q = 0`.
-  - `B`-germs at `c_I`: a prefix replacement fixing `c_I` maps `[(xy)^K]` to `[(xy)^K']`.
-    Hence `(B)_c = Z`, generated by the shift. The diagonal `xy` acts on all of `[xy]` as that
-    shift.
-  - Singular germs of `Γ` at `c_I` come only from `x^±, y^±` at `c_I`. `B` preserves tails, so
-    it never carries another corner into `c_I`. Conjugation by shift germs is trivial, since
-    `Z^2` is abelian. So `(Γ)_c = Z^2 ⊃ (B)_c = <(1,1)>`. ∎
+  - Each row follows from the normal-form formula for `(p+1, q)`.
+  - These cases cover every point of `∂L` except the four corners.
+  - At `c = (xy)^∞`: `x` fixes `c`, and it fixes each point `(xy)^M x^∞`, but it moves
+    `(xy)^M y^∞` to `(xy)^(M+1) y^∞`. Any prefix replacement defined near `c` that fixes `c` and
+    all `(xy)^M x^∞` with `M >= K` is the identity near `c`. So `x` agrees with no prefix
+    replacement near `c`. The same holds at the other corners and for `X`, `y`, `Y`.
+- **(4)** `(p,q)` sends `(xy)^M y^∞` to `(xy)^(M+p) y^∞` and `(xy)^M x^∞` to `(xy)^(M+q) x^∞`.
+  These points accumulate at `c`, so the germ of `(p,q)` at `c` is trivial only if `p = q = 0`.
+  The diagonal `xy` maps `[(xy)^M] -> [(xy)^(M+1)]`, with both prefixes ending at `D_xy`. ∎
+
+## The automaton's own Thompson group is not clopen transitive
+
+Let `B_𝒜` be the full group of state-preserving prefix replacements of `∂L`.
+- **The invariant.** Sending a clopen set, decomposed into cylinders, to the sum of the end
+  states of those cylinders is a well-defined invariant of `B_𝒜`-local equivalence. Its target
+  is `K_0 = Z^16 / <s - Σ_{s -> s'} s'>`: refinement respects the relations, and `B_𝒜`-local
+  maps match cylinders with equal end states.
+- **The computation.** Solving the 16 relations gives `K_0 ≅ Z^5`. The classes of `[t]`
+  (`Q_t`) and `[x]` (`A_x`) differ.
+- **Consequence.** `B_𝒜` is not clopen transitive, so condition (E5) of
+  `automatic-groups-embed-in-corner-germ-extensions` fails for the automaton's own base.
+- **The repair.** `z2-free-z-lies-in-an-fp-full-germ-extension-of-v` replaces `B_𝒜` by `V`,
+  using `prefix-replacement-actions-recode-into-germ-extensions-of-v`.
 
 ## Scope
 
-- This does not prove that `Γ` is finitely presented. The remaining Belk--Hyde--Matucci
-  hypotheses are the gates of `automatic-groups-embed-in-corner-germ-extensions`:
-  - finite presentation of `Fix_B(M)` for `|M| <= 2`;
-  - finitely many `B`-orbits on `sing(Γ)^2`;
-  - localization.
-- `Z^2 * Z` already satisfies Boone--Higman (it is linear). The point is methodological: a flat
-  produces finitely many singular orbits whose germ groups have exactly the accepted shape.
+- `Z^2 * Z` already satisfies Boone--Higman: it is a right-angled Artin group, hence linear.
+  The point here is the method.
