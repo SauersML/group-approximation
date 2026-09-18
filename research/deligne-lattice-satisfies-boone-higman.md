@@ -206,7 +206,20 @@ simple group contains `Gamma~`.
   - *Open.* Finite presentation of `D(2V_Λ(n))`:
     `lagrangian-brin-thompson-group-is-finitely-presented`, via the route
     `deligne-lattice-bh-via-lagrangian-brin-thompson-group`.
-  - *First test.* The dissection question on the unimodular triangle, recorded
+  - *Simplicity is free.* `2V_Λ(n)` itself is simple and acyclic
+    (`cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple`).
+  - *Which flag varieties can host.* Among real flag varieties of `Sp_{2n}`, the lift
+    exists exactly when the flag type contains a Lagrangian. Profinite models never
+    host (`deligne-class-dies-over-flag-varieties-iff-flag-has-lagrangian`).
+  - *Standard engine excluded at `n = 2`.* No Maslov Cantorization of `Λ_2` has
+    finite dissection type, so `2V_Λ(2)` has no `Sp_4(Z)`-rigid pair-diagram
+    calculus (`maslov-cantorizations-have-no-finite-dissection-type`). The reason is
+    corners over `Q(√(2p))` for all odd primes `p`.
+    - What remains: a non-algebraic recoordinatization of `Λ` with rational corners, a
+      genuinely piecewise-linear action on a sphere Cantorization
+      (`deligne-class-dies-on-some-rational-projective-host`), or a finiteness proof
+      without diagrams.
+  - *First test (answered no).* The dissection question on the unimodular triangle, recorded
     there.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone

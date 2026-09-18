@@ -77,3 +77,19 @@ C1-C4; BFFHZ Remark 3.5). **Queue:** empty. **Dead / Sparks:** none.
 - run compression + spine Grigorchuk (bh-self-similar): PASS both, W1 BH step via Theorem A necessity; N1 p=0
 - fw-inputs no twisted shell normalization (gq-typeA-design): PASS, N1-N2, overlap w/ bh-kazhdan-inputs flagged
 - fw twisted-normalizing genuine shell (bh-kazhdan-inputs): PASS for countable P, W1 countability, N1-N2
+- kojima-sheng two-generator criterion fails in V (coordinator): PASS, contradiction with printed Cor confirmed at source
+- rcwa-groups-satisfy-boone-higman (coordinator): PASS, dependency note ct-p-z unreviewed, N1-N3
+- fp strongly shift-similar => fp H_n(G) + finitary mixing + stabilizers (coordinator): PASS all three, N1-N3
+- leavitt-resolvent-k2-stability-holds + frame complex + GE K1 + K1 one-step (gq-infinite-primes, urgent): PASS all four, N1-N6
+- commensurator-rigid BS products + CAT(0) X x T (bh-cat0): PASS both, W1 line case non-simplicial, N1
+- free-shift Houghton envelopes not fp + regular enumerations (bh-map): PASS both, N1-N3
+- fp almost-V groups have fp germ groups (bh-kazhdan-inputs): PASS, N1-N3
+- twisted BT type F_n criterion + grid-sphere lemma (bh-typeA-universal): PASS both, N1-N6, recommend 2nd independent pass
+- baumslag-gersten splits over BS12 edges (bh-one-relator): PASS, N1-N3
+- equicontinuous square conjugators trivial in brick hosts (bh-one-relator): PASS, N1-N3
+- cycling relators + odometer automaton + descent (bh-self-similar): PASS all three, N1-N4
+- level regrouping + finitary + spinal extensions (bh-self-similar): PASS all three, W1 finitary consequence wording, N1-N4
+- fp germ extensions of locally moving bases (bh-kazhdan-inputs): PASS, W1 F endpoints fail (B3), N1
+- abstract twisted BT colored subgroup + F_n criterion all actions (bh-typeA-universal): PASS both, N1 BZ VE_conn cover sentence (join repair), N2-N4
+- nekrashevych fp iff cycle germ groups fp (bh-self-similar): PASS, N1 formal-letter arrows, N2-N3
+- BG PBH reduces to H_4 + lamp wreath, and Labbe hierarchy-phase Attempt (bh-one-relator): PASS, N1-N4

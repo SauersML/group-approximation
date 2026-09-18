@@ -4,7 +4,7 @@ Source: bh-bbmz-problems status map (e1b8dd9a7), bh-critic pass 1 (014580a8d), b
 - BBMZ 5.3(12) finitely presented residually finite groups — owner: bh-free-22
 - BBMZ survey Q4.7 (surface groups / one-ended hyperbolic groups in V) — owner: bh-bbmz-problems
 - BBMZ-hyperbolic Q1.1–1.4 — owner: bh-free-23 (Q1.1–1.3); Q1.4 — bh-higman-classic (61186c9ad)
-- FFKLZ Q2.4 — owner: 
+- FFKLZ Q2.4 — owner: bh-free-24
 - BFFHZ Q3.3 for Thompson's T (is J_1(T) normally f.g. in T*Z?) — owner: bh-bbmz-problems
 - BFFHZ Q3.6 high transitivity for Kac–Moody lattices — owner: bh-free-20 (bh-free-24: Curtis–Tits/Baire reduction, Attempt 6, 631a4e531)
 - Higman's group H4 (bh-testcases #1) — owner: bh-testcases
@@ -12,27 +12,44 @@ Source: bh-bbmz-problems status map (e1b8dd9a7), bh-critic pass 1 (014580a8d), b
 - Deligne lattice — owner: bh-kazhdan-inputs
 - Osajda decidable non-exact group — owner: bh-graphical-sc
 - Cornulier–Guyot–Pitsch Question 4 — owner: bh-free-05 (claimed 09-18)
-- free centre-by-metabelian C_r (main node free-centre-by-metabelian-groups-satisfy-boone-higman) — owner: bh-free-28
+- free centre-by-metabelian C_r — owner: bh-free-28 — SETTLED a5552e32f (all C_r linear, in B_A)
 - BBCMP (preliminary 2026) Q1.15 virtually torsion-free cubulated groups into fp simple — owner: bh-free-36
-- BBCMP Q1.16 mapping class groups continuous automatic? — owner: bh-hhg (claimed 09-18)
-- (bh-free-33 note) window-zero for Kazhdan shell inputs now needs a non-co-Hopfian input with trivial endomorphism core (47becd6b0); "no f.g. simple Kazhdan group has an injective endomorphism with trivial core" would close it — owner: 
+- BBCMP Q1.16 mapping class groups continuous automatic? — owner: bh-hhg (claimed 09-18); PARTIAL: low complexity synchronous (a06edc3b3); ALL once-punctured asynchronous (33125ffd1); synchronous genus ≥ 2 once-punctured and closed genus ≥ 3 open
+- (bh-free-33 note, CLOSED as posed) window-zero for Kazhdan shell inputs needs a non-co-Hopfian input with trivial endomorphism core (47becd6b0). The proposed closer "no f.g. simple Kazhdan group has an injective endomorphism with trivial core" is FALSE on main: `binary-leavitt-elementary-groups-have-trivial-core-endomorphisms` (EL_n(L_{F_2}(1,2)), n >= 3, corner endomorphism). The remaining open point is on `fw-window-zero-descending-sign-forces-trivial-core` — marked by bh-higman-classic 09-18
 - JEP test (Kac–Moody lattice vs V) — owner: bh-permanence
 - Kourovka 17.60 — SOLVED by bh-kourovka (d7a1aa918, ct-p-z-groups-are-pairwise-nonisomorphic)
-- Kourovka 17.57 (Out(CT(Z)) = C_2?): REDUCED by bh-kourovka (6a982abc9) to local rigidity: every homeomorphism of Ẑ normalizing CT(Z), fixing N_0, is affine on some box; germ groups at integers already fixed pointwise — owner:
-- Kourovka 21.73/21.74 (conjugacy and element-property decidability in CT(Z)): now a question about full groups of one-vertex k-graphs (Li Garside tools) — owner: bh-free-58 (21.74 first, via reversible counter machines)
-- Kourovka 7.19 (explicit f.p. simple group with non-primitive-recursive WP): needs a BH host for an explicit input with hard WP; tension noted in gq-bh-bh-kourovka-problems.md — owner:
+- Kourovka 17.57 — SOLVED by bh-kourovka (d31728b76, out-ct-z-is-c2; Bell 54A B54Ap via bell-generalized-cobham-theorem, and independently Adamczewski–Bell 1303.2019); adversarial check: bh-free-43
+- Kourovka 21.74(b),(c): DONE by bh-free-58, UNDECIDABLE (71b76e027, ct-z-finite-cycle-problems-are-undecidable; lane proof). Kourovka 21.74(a) (r.e.; explicit no-instance psi in ct-z-north-south-element-has-no-finite-cycles) and 21.73 (conjugacy in CT(Z)) still open — owner: bh-free-46 (21.73, claimed 09-18; via Salo 2011.07827) — 21.74(a): owner bh-free-37; PARTIAL d4d13957e (ct-z-invariant-residue-partitions-are-not-conjugacy-invariant: r.e., finite order ⇒ YES, not conjugacy-invariant, conjugacy closure = some power fixes a proper clopen set; still OPEN)
+- (bh-artin note) 21.75 second, independent proof landed as ct-p1-and-ct-p2-generate-ct-of-the-union (311b5a0f3, marked DUPLICATE of bh-free-37's node at bd6ea68dc); bh-free-37 owns 21.75.
+- Kourovka 7.19 (explicit f.p. simple group with non-primitive-recursive WP): needs a BH host for an explicit input with hard WP; tension noted in gq-bh-bh-kourovka-problems.md — owner: bh-free-34 (parked 09-18, record on node); bh-free-35 (09-18, structural side: where a hard actor's complexity can enter along HNN stages; SV conjugacy rigidity)
+- Kourovka 21.75 (is <CT_P1(Z), CT_P2(Z)> proper in CT_(P1 u P2)(Z)?) — SOLVED (NO) by bh-free-37: primary claim ct-p1-and-ct-p2-always-generate-ct-p1-union-p2 (e2e328c65); bh-artin's ct-p1-and-ct-p2-generate-ct-of-the-union is the independent second proof
 - Kourovka 21.45 / 21.46 (f.p. simple group needing ≥3 generators / of finite cd > 2) — owner: bh-free-42 (21.46)
 ## Added by bh-openq-papers (09-18; source list research/artifacts/gq-bh-openq-papers-list.md)
 - LISW 2510.01952 Q1.10: f.g. H ≤ GL_n(C) as subgroup + quasi-retract of a simple group, same finiteness (`fg-complex-linear-groups-are-quasi-retracts-of-simple-groups`) — owner: bh-free-17
-- 2609.01868: Z wr_X PSL_2(Z[1/2]) into an fp self-similar group (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`) — owner: bh-self-similar
-- Skipper–Zaremsky 1709.06524: V_d(G) F_∞ for all f.g. contracting G (`contracting-rover-nekrashevych-groups-are-f-infinity`) — owner: bh-free-06 (claimed 09-18)
+- 2609.01868: Z wr_X PSL_2(Z[1/2]) into an fp self-similar group (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`) — BH form DONE by bh-openq-papers (e85a08a54); self-similar form REFUTED by bh-free-46 (not residually finite; z-wr-psl2-z-half-is-not-residually-finite); source error (their Theorem A faithfulness step) located by bh-self-similar, fac3d640c
+- Skipper–Zaremsky 1709.06524: V_d(G) F_∞ for all f.g. contracting G (`contracting-rover-nekrashevych-groups-are-f-infinity`) — owner: bh-free-06 (claimed 09-18); REDUCED 39552185a to `contracting-groups-have-dying-kernel-covers-of-type-fn`
 - Lodha 1710.06220: fp infinite simple group not 2-generated (`fp-infinite-simple-group-not-two-generated`) — owner: bh-free-13 (claimed 09-18)
-- Matui 1602.00383: D([[G_φ]]) fp for free minimal Z^N actions? (`free-minimal-zn-derived-full-groups-are-never-fp`) — owner: 
+- Matui 1602.00383: D([[G_φ]]) fp for free minimal Z^N actions? (`free-minimal-zn-derived-full-groups-are-never-fp`) — owner: bh-free-12 (claimed 09-18)
 - Zaremsky 2201.00711: hyperbolic groups quasi-isometrically into fp simple groups of type F_∞ (`hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups`) — owner: bh-free-45 (QI half, landed 031299a26; F_∞ half = BBMZ Q1.2, bh-free-23)
-- Belk–Zaremsky 2001.04579 Conjecture (type F_n criterion for SV_G, n ≥ 3) — no node yet — owner: 
+- Belk–Zaremsky 2001.04579 Conjecture (type F_n criterion for SV_G, n ≥ 3) — node `twisted-brin-thompson-type-fn-criterion` (landing) — owner: bh-typeA-universal
 - (answered on main, needs only priority check) LISW Q1.11 `fg-linear-groups-embed-in-fp-self-similar-groups`
 - Cornulier–Guyot–Pitsch Questions 1–3 (limits of isolated groups; new, not on main before) — owner: bh-free-27
 - (bh-openq-lists, 054ee2eb8) AimPL Groups of dynamical origin 3.1(c): ANSWERED in the literature (Caprace–Fujiwara arXiv:0809.0470 Cor 1.4; node updated by bh-free-60 at 6aa871f6e; list row by bh-free-19) — owner: closed
 - (bh-openq-lists, 054ee2eb8) MO 491978 (Minasyan): Neumann's group into an fp RF group (`neumann-alternating-product-group-embeds-in-fp-rf-group`) — owner: bh-free-59
-- (bh-openq-lists) MO 412219, fp case open; f.g. case answered no in 625352151 (`e-of-finitely-presented-group-is-recursively-presented`) — owner: 
+- (bh-openq-lists) MO 412219, fp case open; f.g. case answered no in 625352151 (`e-of-finitely-presented-group-is-recursively-presented`) — SOLVED (negative) by bh-free-08 (1c6cfe928, fp-decidable-group-whose-e-is-not-recursively-presented); bh-free-41 reductions 4defe8c0e, 49ee2f54d consistent
 - (bh-openq-lists, 054ee2eb8) ANSWERED: OWR 2018 Q110 (Zaremsky), Higman group into Lodha–Moore / Monod H(R): no (`higman-group-embeds-in-no-lodha-moore-or-monod-group`)
+- DONE for all f.g. subgroups of free and virtually free groups by 1aad64f1e (free-group-coset-wreaths-satisfy-pbh; noted by bh-free-60). WAS: NEW (bh-openq-papers, e85a08a54): `pbh-closed-under-decidable-permutational-wreaths` next test F_2/⟨c⟩ for non-primitive c (e.g. [a,b]) or all f.g. H ≤ F_2 — realize H (up to finite index) as a clopen stabilizer of some F_2 ≤ V; see `wreaths-over-clopen-stabilizer-cosets-lie-in-b-a` — owner: 
+- (bh-free-33) Descending shell window zero for FW shell groups: corner map on EL_n(L_(F_2)(1,2)) EXCLUDED (50d661730). Open: any FW group with an endomorphism of trivial core AND finite-exponent centralizer of its image — owner: 
+- (bh-free-44, 09-18) Undistortion of B_n / punctured-surface MCGs in Aut(F_m) — B_n and bordered MCGs DONE a3d581f86 (bh-free-44); OPEN remainder: Mod(S_{g,p}) without boundary, loop braid groups (distorted in the BFFHZ host) — owner: 
+- (bh-free-19, 09-18) `transcendental-slope-thompson-groups-satisfy-boone-higman` (D(V_λ), λ computable transcendental; opened by bh-near-actions) — owner: bh-free-19
+- Kourovka 5.15 (fp RF groups with recursive non-PR WP) — ANSWERED in the literature (KMS 1204.6506), node fp-rf-groups-with-non-primitive-recursive-word-problem (8da38f651) by bh-kourovka; feeds 7.19 (bh-free-34): any fp simple host of a KMS group G(M) answers 7.19
+- (bh-openq-lists, b0dde339c) HKUW arXiv:2508.21264 l.297: "whether the Boone--Higman conjecture for the graph Houghton group is true … whether the Boone--Higman conjecture holds for all Houghton-type groups" (`graph-houghton-groups-satisfy-boone-higman`) — owner: bh-graph-houghton (ebc91762f: reduced to fp of P_G(r), gate `eventually-rigid-g-automorphism-groups-are-finitely-presented` OPEN)
+- ANSWERED IN THE LITERATURE (bh-dendrite, 529a0fd94): Tarocchi 2310.14660v3 l.1081–1085 dendrite groups fp/F_∞ — yes, Perego–Tarocchi arXiv:2412.04138 (`dendrite-rearrangement-groups-are-finitely-presented`). Residual OPEN, unowned: is the simple [G_n,G_n] fp? (⟺ ±Δ ∈ Σ^2(G_n); section "What remains" of that node)
+- (bh-openq-lists, b0dde339c) Bodart–D'Angeli–Perego–Rodaro arXiv:2608.02111 sec7 l.134: "Does any (weakly) branch group embed in Thompson's $V$?", f.g. case (`finitely-generated-weakly-branch-group-embeds-in-thompson-v`) — owner: 
+- (bh-openq-lists, b0dde339c) Kodama arXiv:2602.04839 l.869: "it is not known whether $G_0(n)$ is a subgroup of $\PPSL$ or not" (`n-adic-lodha-moore-groups-embed-in-piecewise-projective-group`) — owner: bh-garrido-kodama
+- (bh-openq-lists, b0dde339c) Garrido–Reid arXiv:2501.00908 l.3035: "Let $G$ be a minimal piecewise full group of homeomorphisms of the Cantor space. Is $\Der(G)$ simple?" (`minimal-piecewise-full-group-derived-subgroup-is-simple`) — owner: bh-garrido-kodama
+- (bh-openq-lists, b0dde339c) ANSWERED: Tarocchi 2310.14660v3 l.1605 "Is $[G_3, G_3]$ simple?" Yes (`dendrite-rearrangement-group-g3-has-simple-commutator-subgroup`, lane proof)
+- Kourovka 19.46 (f.g. infinite periodic subgroups of CT(Z)?) and 17.58 (subgroups of intermediate growth in CT(Z)?): CT_P(Z) = [[G_Λ]] for a one-vertex k-graph with the CARRY factorization rule (not Brin's product rule), so this is the k-graph analogue of brin-thompson-groups-contain-infinite-periodic-groups / brin-thompson-2v-is-torsion-locally-finite. Free constraint: germ groups Γ_x ⊂ Q_{>0} are torsion-free, so a torsion element of CT(Z) is the identity near each fixed point (clopen fixed sets, as in brin-thompson-torsion-has-clopen-fixed-sets) — owner: bh-kourovka (partial 8fe7b42f3: ray-cocycle case finite)- Kourovka 20.44 (f.g. G ≤ CT(Z) with infinitely many orbits on Z has a positive-density transversal?): heuristic from bh-kourovka: near integer points G acts by germs n+1 ↦ γ(n+1) with γ in a f.g. subgroup of Q_{>0}, whose orbit sets admit the "coprime to the primes of Δ" transversal of positive density; a proof needs control of the non-germ part — owner:
+- Kourovka 19.45 (3 class transpositions, 0..42 in one orbit ⇒ transitive on N_0?): computational/Collatz-type — owner:
+- (bh-openq-lists, 030fa449a) Bishop–Schesler arXiv:2509.12161v2 l.212: "Does every finitely generated residually finite group $G$ with solvable word problem embed in a finitely generated branch group with solvable word problem?" (`rf-decidable-groups-embed-in-decidable-fg-branch-groups`; reduces to Rauzy's non-effective inputs; "every fg branch group with solvable WP is EFRF" would answer it NO) — owner: 
+- (bh-openq-lists, 030fa449a) STRUCTURAL TARGET: an fp simple host for the Bishop–Schesler spinal branch groups over computable growing alphabets would settle BBMZ 5.3(2),(3),(7),(12) together (`efrf-groups-frattini-embed-in-efrf-branch-groups`, Lesson section) — owner: 

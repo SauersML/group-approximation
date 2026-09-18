@@ -21,3 +21,17 @@ Direction (09-18): adversarial end-to-end verification of main's claimed answer 
   - Lane proof, not reviewed.
   - Open next steps: PBH / type (A) for H_P; RCWA(R) for other rings (Kohl); RCWA(Z^d).
 - Lane done.
+- LANDED (msg5): rcwa-z-is-generated-by-class-shifts-reflections-and-transpositions. Kohl's RCWA-manual factorization conjecture follows from 17.59 via reflections, then shifts. Next: RCWA(O_K) for PIDs via Li thm:deg on the ax+b monoid; RCWA(F_q[t]) via digits ⋈ F_q^*.
+- LANDED 3d627a21a: rcwa-z-generated-by-class-shifts-reflections-transpositions (Kohl's RCWA-manual factorization conjecture). Reflections, then class shifts, reduce to an element fixing N_0; 17.59 finishes.
+- LANDED 70d3bcc74: rcwa-groups-over-pids-satisfy-boone-higman (+ route rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof).
+  - Covers O_K of class number one, F_q[t] (digit submonoid) and Z_(π) (reduction to Z[1/N]).
+  - Host: full group of the ax+b monoid boundary groupoid × O_2. F_∞ by Li thm:deg, perfect by Künneth + Li Vanish, simple by Matui.
+- LANDED (after 70d3bcc74): rcwa-groups-satisfy-permutational-boone-higman. The hosts are highly transitive (clopen equivalence by splitting), so BFFHZ Thm C puts all these RCWA groups and CT_P(Z) in B_A.
+- Open, noted: Kohl's RCWA(Z^2) with general lattices (no UFP* for M_2(Z)); class number > 1 (no lcms); a single f.p. simple host for all of RCWA(Z) or CT(Z).
+- LANDED 21adb0ba0 (+ the limits commit, + 77e902c25): pbh-via-degree-monoid-boundary-full-groups. General finiteness transfer: a UFP*-degree monoid with lcms, finite residues and F_∞ units, × O_2, gives an F_∞ simple highly transitive host.
+  - Limits: L1 the units act through a residually finite quotient; L2 the hosts are F_∞, which ties the route to survey Q5.6.
+  - Obstruction: for n ≥ 2 the lattice monoid admits no UFP* degree map.
+  - Referee-a nits applied to rcwa-groups-satisfy-boone-higman.
+- OPEN, for anyone: Li's Garside criterion (St)/(LCM)/(t<d) for Z^n ⋊ M_n^{(p)}(Z), with central Garside element pI. That gives Kohl's RCWA(Z^n) and lattice-coset / GL_n-type hosts.
+- For synthesis S1b / slot (j), a pointer (not a claim): for Λ = Z, a two-sided vertex-SFT splits at the origin as left rays × right rays over the origin vertex. That is a 2-graph with finite C^0, so Z-SFT full groups (× O_2) are Li-coded and F_∞. For one-ended Λ, cuts around finite sets have unbounded boundary patterns, which clashes with Li's finite C^0. That is the precise difficulty the pointed-cube categories (bh-free-36) must beat.
+- Lane done (11:15).
