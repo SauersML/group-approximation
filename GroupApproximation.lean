@@ -6007,6 +6007,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTLaurent
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientRels
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHalfExactUnit
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHalfExactOne
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductSaturation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
