@@ -52,6 +52,7 @@ theorem suslinCongPow_gen_le (S : Type*) [CommRing S] :
       (elementaryGroup (Fin 2 ⊕ Unit) S).comap (stabilizeUnit (R := S) (κ := Unit)) := by
   have hE : (elementaryGroup (Fin 2 ⊕ Unit) S).Normal :=
     suslinNormal_elementaryGroup_normal suslinCongLoc_three
+  rw [suslinCongPow_gen]
   apply sInf_le
   rw [Set.mem_setOf_eq]
   refine ⟨hE.comap _, ?_, ?_, ?_⟩

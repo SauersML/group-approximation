@@ -120,4 +120,44 @@ theorem higmanVCOrbitMulti_mem_S_of_step {d : ℕ} {a b : List (Fin d)} (hab : �
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_mem_S_of_step
 
+/-- The step, required on every deep covering antichain. -/
+def higmanVCOrbitMulti_Closed (d L : ℕ) (a b : List (Fin d)) : Prop :=
+  ∀ C : Finset (List (Fin d)), higmanVCTreeNFWitPivot_IsAC C → (∀ c ∈ C, L ≤ c.length) →
+    (∃ M : ℕ, ∀ w : List (Fin d), w.length = M → ∃ c ∈ C, c <+: w) →
+      higmanVCOrbitMulti_Step d a b C
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_Closed
+
+/-- **Residual W⁷**: the canonical one-letter step.  LOUD: `W⁷ ⇔ W⁗ ⇔ W⁶` as Props
+(Higman-strength).  `W⁷` is strictly smaller in proof content only (see the module doc). -/
+def HigmanVCOrbitMultiStatement : Prop :=
+  ∀ d : ℕ, 1 < d → ∀ N : ℕ, ∃ n : ℕ, N ≤ n ∧ ∃ a b : List (Fin d), a.length = n ∧
+    b.length = n + 1 ∧ ¬ a <+: b ∧ ¬ b <+: a ∧ higmanVCOrbitMulti_Closed d (n + 1) a b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCOrbitMultiStatement
+
+/-- **`W⁷ → W⁗`.**  No class exclusion is used: the step closes every `h ∈ H_C`. -/
+theorem higmanVCOrbitMulti_all_of_multi (hM : HigmanVCOrbitMultiStatement) :
+    HigmanVCOrbitAllStatement := by
+  intro d hd N
+  obtain ⟨n, hn, a, b, ha, hb, hab, hba, hcl⟩ := hM d hd N
+  exact ⟨n, hn, a, b, ha, hb, hab, hba, fun C hC hL hW h hh _ _ =>
+    higmanVCOrbitMulti_mem_S_of_step hab hba hC (hcl C hC hL hW) hh⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_all_of_multi
+
+/-- **`W⁷ → W⁶`.** -/
+theorem higmanVCOrbitMulti_stem_of_multi (hM : HigmanVCOrbitMultiStatement) :
+    HigmanVCOrbitStemStatement :=
+  higmanVCOrbitStem_stem_of_all (higmanVCOrbitMulti_all_of_multi hM)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_stem_of_multi
+
+/-- **`W⁷ → W''`.** -/
+theorem higmanVCOrbitMulti_gap_of_multi (hM : HigmanVCOrbitMultiStatement) :
+    HigmanVCOrbitGapStatement :=
+  higmanVCOrbitStem_gap_of_stem (higmanVCOrbitMulti_stem_of_multi hM)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_gap_of_multi
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
