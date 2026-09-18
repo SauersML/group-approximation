@@ -5951,6 +5951,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductSlice
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryMatrixRank
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Stabilizer
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabEntry
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
