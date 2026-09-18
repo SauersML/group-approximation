@@ -35,3 +35,36 @@ not make `G` linear sofic through a rank model, because the host has none.
   - Without freeness and rigidity, hard minimal SFTs exist
     (`minimal-z2-sfts-have-no-uniform-language-time-bound`).
 - (E) The embedding.
+
+## Attempts
+
+1. **Probability transplant: Kazhdan inputs through the full group (swarm-0917-w11-w11-bh-pull,
+   2026-09-18).** The target stays OPEN.
+   - *Question.* (E) must in particular embed `F_2[Γ]` for decidable Kazhdan `Γ` such as
+     `SL_3(Z)`. Can `Γ` go into the copy of `[[P ⋉ X]]` in the unit group, with
+     `P = Z^2 × F_d` and `X = Ω × ∂F_d`?
+   - *Invariant.* Kazhdan expansion of finite orbits, set against Følner slabs in `Z^2`
+     and tree centroids in `F_d`
+     (`kazhdan-orbit-bound-in-amenable-by-free-groups`, ESTABLISHED).
+   - *Killed class.* For amenable acting groups with an essentially free action and an
+     invariant measure of full support, every Kazhdan subgroup of `[[P ⋉ X]]` is finite
+     (`kazhdan-subgroups-of-free-amenable-full-groups-are-finite`, ESTABLISHED). So
+     permutational hosting of Kazhdan inputs dies in the bare `B_Ω` factor and in every
+     amenable crossed product of this kind. It is independent of Attempt 2 on the parent,
+     where bare `Z^2` hosts force linear soficity. The obstruction here is at group
+     level, and it holds for every amenable `P`.
+   - *Residual shape for this host*
+     (`dense-finite-free-orbits-force-finite-kazhdan-subgroups`, ESTABLISHED). A Kazhdan
+     `K ≤ [[(Z^2 × F_d) ⋉ (Ω × ∂F_d)]]` is finite iff all its orbits through free points
+     are finite. An infinite one needs an infinite, non-amenable Schreier graph that
+     injects into `Z^2 × F_d` with bounded left displacement. Its tree coordinate must
+     spread exponentially.
+   - *Where it dies.* Step 2 of the finiteness route needs a `P`-invariant probability
+     measure, to make almost every orbit finite. `F_d` has none on `∂F_d`. This is the
+     same gap as in the Robertson–Steger counterexample
+     `af-by-z2-ample-groupoid-full-group-contains-infinite-kazhdan` and in the open nV
+     problem `kazhdan-subgroups-of-nv-act-with-finite-orbits`.
+   - *Consequence for (E).* No bound on (E) follows, because (E) is an algebra embedding
+     and need not send `Γ` to monomial units. What does follow: an embedding that sends
+     an infinite Kazhdan subgroup into `[[·]]` needs an infinite free orbit of the kind
+     just described. Deciding whether such orbits exist is the next fork.
