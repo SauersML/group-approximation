@@ -5,8 +5,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Conjugation by a Weyl-type element in a Steinberg group (lane bh-met-90d)
 
-This holds over an arbitrary unital ring `R` and a finite index type `I`.  Fix `c ≠ L` in `I` and set
-`w = x_{c,L}(1) · x_{L,c}(-1) · x_{c,L}(1)` (`czStabGen_weyl`).  For a root that avoids `c`,
+This holds over an arbitrary unital ring `R` and a finite index type `I`.  Fix `c ≠ L` in `I`
+and set `w =x_{c,L}(1) · x_{L,c}(-1) · x_{c,L}(1)` (`czStabGen_weyl`).  For a root that avoids `c`,
 conjugation by `w` acts as the transposition `c ↔ L` on the indices, with no signs:
 
 * `czStabGen_weyl_conj_fix`: `w x_{p,q}(a) w⁻¹ = x_{p,q}(a)` when `p, q ∉ {c, L}`;

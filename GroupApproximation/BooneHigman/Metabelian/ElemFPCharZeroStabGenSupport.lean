@@ -116,7 +116,8 @@ theorem czStabGen_mem_map_of_conj {w z : St (n + 1) R} (hzK : z ∈ K2 (Fin (n +
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_mem_map_of_conj
 
-/-- **Support lemma.**  `K₂(n+1) ∩ czStabGen_off R j.castSucc ≤ stab K₂(n)`, any ring, any `n`. -/
+/-- **Support lemma.**  `K₂(n+1) ∩ czStabGen_off R j.castSucc ≤ stab K₂(n)`, for any ring
+and any `n`. -/
 theorem czStabGen_mem_map_of_off (j : Fin n) {z : St (n + 1) R}
     (hzK : z ∈ K2 (Fin (n + 1)) R) (hz : z ∈ czStabGen_off R j.castSucc) :
     z ∈ (K2 (Fin n) R).map (stab n R) :=

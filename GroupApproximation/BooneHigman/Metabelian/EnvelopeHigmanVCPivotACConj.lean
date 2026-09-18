@@ -86,4 +86,66 @@ theorem higmanVCPivotAC_push_isAC {d B : ℕ} (hd : 1 < d)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCPivotAC_push_isAC
 
+/-- **Conjugation by a pushing word.**  If `g` pushes at threshold `N` and every word of the
+antichain `C` has length `≥ B + N`, then `mk g * H_C * (mk g)⁻¹ ≤ H_{push d B g C}`. -/
+theorem higmanVCPivotAC_conj_mem {d N B : ℕ} (hd : 1 < d)
+    {g : FreeGroup (List (Fin d) × List (Fin d))} (hP : HigmanVCCommonPush d g N)
+    {C : Finset (List (Fin d))} (hC : higmanVCTreeNFWitPivot_IsAC C)
+    (hlen : ∀ c ∈ C, B + N ≤ c.length) {h : higmanVCCommon_Q d}
+    (hh : h ∈ higmanVCTreeNFWitPivot_H d C) :
+    higmanVCCommon_mk d g * h * (higmanVCCommon_mk d g)⁻¹ ∈
+      higmanVCTreeNFWitPivot_H d (higmanVCPivotAC_push d B g C) := by
+  obtain ⟨r, rfl⟩ := higmanVCTreeNFWitPivot_mem_H.mp hh
+  clear hh
+  induction r using FreeGroup.induction_on with
+  | C1 =>
+    rw [map_one, map_one, mul_one, mul_inv_cancel]
+    exact Subgroup.one_mem _
+  | of p =>
+    obtain ⟨⟨x, hx⟩, ⟨y, hy⟩⟩ := p
+    rw [higmanVCAll_iota_of]
+    show higmanVCCommon_mk d g * higmanVCCommon_mk d (FreeGroup.of (x, y)) *
+      (higmanVCCommon_mk d g)⁻¹ ∈ _
+    by_cases hxy : x = y
+    · subst hxy
+      rw [higmanVCCommon_mk_comparable (x := x) (y := x) fun h => h.1 (List.prefix_refl x),
+        mul_one, mul_inv_cancel]
+      exact Subgroup.one_mem _
+    · have h1 : ¬ x <+: y := hC x hx y hy hxy
+      have h2 : ¬ y <+: x := hC y hy x hx (Ne.symm hxy)
+      have hxl := hlen x hx
+      have hyl := hlen y hy
+      obtain ⟨x', y', hmx, hmy, hlx, hly, e⟩ := hP x y (by omega) (by omega) h1 h2
+      have e' : higmanVCCommon_mk d g * higmanVCCommon_mk d (FreeGroup.of (x, y)) *
+          (higmanVCCommon_mk d g)⁻¹ = higmanVCCommon_mk d (g * FreeGroup.of (x, y) * g⁻¹) := by
+        rw [map_mul, map_mul, map_inv]
+      rw [e', e]
+      have hx' : x' ∈ higmanVCPivotAC_push d B g C :=
+        higmanVCPivotAC_mem_push.mpr ⟨x, hx, ⟨x', hmx, by omega⟩, higmanVCPivotAC_img_eq hd hmx⟩
+      have hy' : y' ∈ higmanVCPivotAC_push d B g C :=
+        higmanVCPivotAC_mem_push.mpr ⟨y, hy, ⟨y', hmy, by omega⟩, higmanVCPivotAC_img_eq hd hmy⟩
+      exact higmanVCTreeNFWitPivot_mem_H.mpr
+        ⟨FreeGroup.of (⟨x', hx'⟩, ⟨y', hy'⟩),
+          congrArg (higmanVCCommon_mk d) (higmanVCAll_iota_of _ _)⟩
+  | inv_of p ih =>
+    have e : higmanVCCommon_mk d g *
+        higmanVCCommon_mk d (higmanVCAll_iota C ((FreeGroup.of p)⁻¹)) *
+        (higmanVCCommon_mk d g)⁻¹ = (higmanVCCommon_mk d g *
+          higmanVCCommon_mk d (higmanVCAll_iota C (FreeGroup.of p)) *
+            (higmanVCCommon_mk d g)⁻¹)⁻¹ := by
+      simp only [map_inv, mul_inv_rev, inv_inv, mul_assoc]
+    rw [e]
+    exact Subgroup.inv_mem _ ih
+  | mul g₁ g₂ ih₁ ih₂ =>
+    have e : higmanVCCommon_mk d g * higmanVCCommon_mk d (higmanVCAll_iota C (g₁ * g₂)) *
+        (higmanVCCommon_mk d g)⁻¹ = (higmanVCCommon_mk d g *
+          higmanVCCommon_mk d (higmanVCAll_iota C g₁) * (higmanVCCommon_mk d g)⁻¹) *
+        (higmanVCCommon_mk d g * higmanVCCommon_mk d (higmanVCAll_iota C g₂) *
+          (higmanVCCommon_mk d g)⁻¹) := by
+      simp only [map_mul, mul_assoc, inv_mul_cancel_left]
+    rw [e]
+    exact Subgroup.mul_mem _ ih₁ ih₂
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCPivotAC_conj_mem
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
