@@ -175,3 +175,14 @@ None recorded before 2026-09-17.
    Together with attempt 1, which kills lifts whose deck group is `Q`-free, covering lifts supply the divisible
    unipotent part only in a finitely generated lift group over a base that is not finitely presented, and only
    through divisible subgroups that are not contained in the deck group.
+
+8. **Permanence closures (products, extensions, wreaths, free products), 2026-09-17:
+   dead for every n >= 2.** `extension-product-closures-cannot-create-sl-n-q`: the
+   class of groups that receive only trivial homomorphisms from `SL_n(Q)` contains
+   every Q-free and every `BS(1,4)`-free group (residually finite, solvable, `V`,
+   `T`, `VA`, `T-bar`, `A`). It is closed under subgroups, extensions, arbitrary
+   direct products and free products, so under every wreath product and every
+   finite-index overgroup. The permanence theorems of the permutational class
+   therefore never produce `GL_n(Q)` from those bases. A route must leave the
+   class through a directed union, a graph of groups with nontrivial edges, or a
+   Thompson-type completion (`SV_G`, `V_d(G)`, germ extensions, `nV`).
