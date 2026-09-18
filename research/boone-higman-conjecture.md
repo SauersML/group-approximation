@@ -398,6 +398,29 @@ conjecture's two halves without narrowing either.
     - A table-defined separator refutes `local-boone-higman-conjecture` with a
       single finite system.
 
+12. **Exactness as the separating property of Attempt 7** (transplanter lane
+    c-pz3, swarm-0917, 2026-09-18).
+    - *Lemma.* `decidable-residually-finite-non-exact-group-exists`
+      (ESTABLISHED, unreviewed). Osajda's recursive residually finite
+      non-exact group has solvable word problem: a word of length `≤ n` is
+      trivial in `G` iff it is trivial in the finitely presented residually
+      finite stage `G_n` (his conditions (C) and (D)), and McKinsey decides
+      `G_n` uniformly. With `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`
+      this gives a non-exact decidable simple Kazhdan LEF group.
+    - *Result.* `exactness-separates-boone-higman-iff-fp-simple-groups-exact`
+      (ESTABLISHED, unreviewed). (S2) holds for exactness, so exactness
+      disproves the conjecture iff every finitely presented simple group is
+      exact. If the conjecture holds, `fp-simple-nonexact-group` (OPEN) holds.
+    - *Kill.* Invariant: property A. Step: the universal embedding step.
+      Every class of exact hosts dies there, even for residually finite
+      inputs: linear groups, hyperbolic groups, cocompactly cubulated groups,
+      lattices on products of trees, finite asymptotic dimension. Unlike
+      Attempt 11, the decidable side is unconditional, since the witness is
+      sofic and hyperlinear.
+    - *Survivors.* A host class carrying the conjecture must contain
+      non-exact groups. The exactness of `V`, `nV`, `SV_G` and `L^x` is not
+      settled in this graph.
+
 **September 17: one decidable host per complexity bound.**  This attempt
 decomposes the conjecture as follows.
 
