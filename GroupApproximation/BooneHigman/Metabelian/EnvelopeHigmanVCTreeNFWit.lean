@@ -199,3 +199,56 @@ theorem higmanVCTreeNFWit_solve {G : Type*} [Group G] {x y z b b' : G}
   simp only [mul_assoc]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWit_solve
+
+/-- **Reduction (proved, direct):** a pivot-closed double-coset normal form gives the level
+gap. -/
+theorem higmanVCTreeNFWit_level_of_dc (h : HigmanVCTreeNFWitStatement) :
+    HigmanVCTreeLevelStatement := by
+  intro d hd N
+  obtain ⟨n, hN, a, b, ha, hb, hab, hba, τ, hτ, ht⟩ := h d hd N
+  refine ⟨n, hN, a, b, ha, hb, hab, hba, fun r hr hG => ?_⟩
+  obtain ⟨u₁, hu₁, q, u₂, hu₂, e⟩ :=
+    higmanVCTreeNFWit_mem_S.mp (higmanVCTreeNFWit_mem_S_of_G hτ ht hG)
+  obtain ⟨β, hβ, β', hβ', hq⟩ := higmanVCTreeNFWit_dc_iff.mp (hτ.2.1 q)
+  have hE : higmanVCTreeNF_E d (higmanVCCommon_mk d r) = 1 := by
+    rw [higmanVCTreeNF_E_mk]
+    exact MonoidHom.mem_ker.mp hr
+  rw [e, map_mul, map_mul, hq] at hE
+  have hτq : τ q ∈ higmanVCTreeNF_U d := by
+    refine hτ.2.2 q (β⁻¹ * u₁⁻¹ * u₂⁻¹ * β'⁻¹) ?_ ?_
+    · exact (higmanVCTreeNF_U d).mul_mem ((higmanVCTreeNF_U d).mul_mem
+        ((higmanVCTreeNF_U d).mul_mem ((higmanVCTreeNF_U d).inv_mem hβ)
+          ((higmanVCTreeNF_U d).inv_mem hu₁)) ((higmanVCTreeNF_U d).inv_mem hu₂))
+        ((higmanVCTreeNF_U d).inv_mem hβ')
+    · simp only [map_mul, map_inv]
+      exact higmanVCTreeNFWit_solve hE
+  refine higmanVCTreeNF_U_faithful (by omega) hr ?_
+  rw [e]
+  exact (higmanVCTreeNF_U d).mul_mem ((higmanVCTreeNF_U d).mul_mem hu₁ hτq) hu₂
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWit_level_of_dc
+
+/-- **Wire to the defect gap** of lane bh-met-77i. -/
+theorem higmanVCTreeNFWit_defect_of_dc (h : HigmanVCTreeNFWitStatement) :
+    HigmanVCTreeDefectStatement :=
+  higmanVCTreeLevel_defect_of_level (higmanVCTreeNFWit_level_of_dc h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWit_defect_of_dc
+
+/-- **Endpoint:** the double-coset normal form gives (1). -/
+theorem higmanVCTreeNFWit_ker_le_of_dc (h : HigmanVCTreeNFWitStatement) (d : ℕ) (hd : 1 < d) :
+    (higmanVC_evalAll d).ker ≤ Subgroup.normalClosure (higmanVC_rels d fun _ => True) :=
+  higmanVCTreeLevel_ker_le_of_level (higmanVCTreeNFWit_level_of_dc h) d hd
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWit_ker_le_of_dc
+
+/-- **The Schreier gap from the double-coset normal form.**  LOUD: routed through (1) and the
+converse `higmanVCTreeNF_schreier_of_ker_le` (trivial witness `X = Q`), not a direct coset
+witness. -/
+theorem higmanVCTreeNFWit_schreier_of_dc (h : HigmanVCTreeNFWitStatement) :
+    HigmanVCTreeNFSchreierStatement :=
+  higmanVCTreeNF_schreier_of_ker_le (higmanVCTreeNFWit_ker_le_of_dc h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWit_schreier_of_dc
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
