@@ -9,7 +9,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** as the conjunction of the nodes cited in each item, through
-`frame-designs-for-the-ring-gate-are-bracketed-proof`. Each item carries the hypotheses and conditional inputs of
+`frame-designs-for-the-ring-gate-are-bracketed-proof`. Refereed: gq-referee-a (1a50e4465) and gq-referee-b (FAIL as
+written, repairable, 1805e6063); all required fixes applied. Each item carries the hypotheses and conditional inputs of
 its node, and nothing more. No new mathematics is added here.
 
 **The widened gate.** `R` is finitely presented and simple, with `Q̄ ⊆ R` unitally, which already kills `K_2(Q)` in
@@ -23,33 +24,38 @@ The group-host premise needs more than this, so failing the budget excludes a de
 `t` in degree `-1`. This holds for every presentation by these relations plus homogeneous ones
 (`isometric-frames-over-rank-one-bases-fail-the-k-budget`, item 4).
 
-**Statement.** Every frame design of the widened gate has `s t = 1` (item 1). It fails the K-budget in cases 2--7.
-In case 8 it fails gate condition 4, divisibility of `[1]` by every integer.
+**Statement.** Every frame design of the widened gate has `s t = 1` (item 1). It fails the K-budget in cases 2--6
+and in the graded branch of case 7. The inhomogeneous branch of case 7 is a reduction to a finitely generated core,
+not an exclusion. In case 8 it fails gate condition 4 (divisibility of `[1]` by every integer) or simplicity.
 1. **Vacuum.** `s t = 1` is forced, so no Toeplitz vacuum survives (`frame-generated-simple-rings-have-no-vacuum`).
    Every case below has `s t = 1`, and `[1] = [t s]` in `K_0(R)` over any `B`.
-2. **Index `!= 1`.** Suppose `m[t s] = n[1_B]` in `K_0(B)` with `m != n`. Then `[1]` is torsion, and `K_1` detection
-   fails. No grading is needed (`isometric-shift-frames-over-uhf-bases-fail-the-k-budget`, items 1--2).
+2. **Index `!= 1`.** Suppose `m[t s] = n[1_B]` in `K_0(B)` with `m != n`. Then `[1]` is torsion (item 1 of
+   `isometric-shift-frames-over-uhf-bases-fail-the-k-budget`, over any `B`), and `K_1` detection fails
+   (`rational-k1-detection-forces-infinite-order-unit-class`, item 1). No grading is needed.
 3. **Matricial one-type bases, graded** (`isometric-shift-frames-over-uhf-bases-fail-the-k-budget`, item 3).
 4. **Rank-one bases, graded.** `K_0(B) ⊗ Q = Q[1_B]` and `sr(B)` finite. The conclusion covers `E_N` for `N`
-   divisible by `j`, and every `N` when projectives in the unit class are free. This includes localizations of
+   divisible by `j`, and every `N` under (R3): `K_0(B) = Z[1_B]` and unit-class projectives are free. This includes localizations of
    `Q[N]`, `R_L`'s base, and Weyl-type bases at ranks divisible by `j`
    (`isometric-frames-over-rank-one-bases-fail-the-k-budget`).
 5. **Multi-type matricial bases, graded, with a positive fixed vector** `v >= 0` of `A = φ_*` spanning `[1_B]` modulo
    `im(1 - A)`. This includes irreducible `A` of spectral radius `1` (`degree-one-corner-unitaries-fail-the-k-budget`).
-6. **Multi-type matricial bases, graded, with `A` invertible and a corner isometry,** conditional on (CSL)
+6. **Multi-type matricial bases, graded, with `A` invertible and a corner isometry,** conditional on the two
+   remaining parts of (CSL), `K_*(Q)`-linearity and the index formula; the exact sequence itself is derivable
    (`mixed-degree-units-lift-non-positive-fixed-classes`). With `ker(1 - A) = 0`, `[1]` is torsion unconditionally.
 7. **Unit symmetries.** A unit normalizing a `σ`-simple core either makes `R` skew Laurent, which is killed by
-   `graded-rings-with-degree-one-units-fail-the-k-budget`, or is inessential: the core is finitely generated and the
-   symmetry has finite order on its `K`-theory (`unit-symmetries-of-a-core-are-graded-or-inessential`).
-8. **Register completions,** conditional on (P), which is proved in the spine form
-   (`register-completion-pimsner-from-supercoherence`).
+   `graded-rings-with-degree-one-units-fail-the-k-budget` (graded branch), or is inessential (inhomogeneous branch):
+   the core is finitely generated, the symmetry has finite order on its `K`-theory, and the core inherits the gate
+   properties (`unit-symmetries-of-a-core-are-graded-or-inessential`). The second branch is a reduction.
+8. **Register completions,** conditional on (P), which is proved in the spine form with every `δ_n in B⁺`
+   (`register-completion-pimsner-from-supercoherence`). These exclude gate condition 4 or simplicity.
    - Shift/reset letters on any finite number of types (`single-register-rings-divide-unit-at-finitely-many-primes`).
    - One type with any affine letters (`top-determined-register-rings-cannot-divide-the-unit`).
    - Nonsingular dilation designs (`dilation-letters-cannot-divide-the-unit-class`).
    - Two-register comparisons are not simple (`register-comparison-presentations-are-not-simple`).
-   - `sl_2`-type relations (`sl2-vacuum-hosts-admit-verma-type-modules`).
+   - `sl_2`-type relations: heuristic only, since `sl2-vacuum-hosts-admit-verma-type-modules` is OPEN (a heuristic
+     no-go with a reduction). Listed in What remains as (h).
    The first three exclude divisibility of `[1]` by every integer, which is gate condition 4 and not part of the
-   widened budget. The last two exclude simplicity. So item 8 applies to the widened gate only when divisibility
+   widened budget. The fourth excludes simplicity. So item 8 applies to the widened gate only when divisibility
    is also required, or through simplicity.
 
 ## What remains
@@ -58,11 +64,15 @@ A frame design escapes items 1--8 only if it is one of:
 - **(a)** a multi-type register design with dilation letters that is not top-determined;
 - **(b)** a design over a base with `K_0(B) ⊗ Q` of rank at least `2` that is neither a product of `U_Q`-type rings nor
   of register type;
-- **(c)** a multi-type matricial design with non-positive fixed classes, if (CSL) fails for it, or if `A` is
-  singular or no corner isometry exists;
+- **(c)** every multi-type matricial design not covered by items 5 and 6: a fixed vector `v >= 0` that does not
+  span `[1_B]` modulo `im(1 - A)`, or non-positive fixed classes, together with `A` singular, no corner isometry, or
+  (CSL) failing;
 - **(d)** a rank-one base without free unit-class projectives, at elementary ranks prime to `j`;
 - **(e)** an ungraded simple quotient of a graded frame ring;
-- **(f)** a unit symmetry of a core that is not `σ`-simple.
+- **(f)** a unit symmetry of a core that is not `σ`-simple, and any design whose finitely generated core escapes
+  after the reduction of item 7;
+- **(g)** a rank-one base of infinite stable range;
+- **(h)** noncommutative register relations of `sl_2` type, where only a heuristic no-go exists.
 
 Designs that are not frame-generated are outside this bracket. That includes stably finite IBN rings with
 `Q̄ ⊆ R` (gq-critic pass 3, U1).
