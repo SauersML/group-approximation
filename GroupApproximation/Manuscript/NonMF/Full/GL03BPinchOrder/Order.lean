@@ -243,3 +243,57 @@ theorem ord_pos_lt (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     exact ord_false_of_cross hw hM hinner x₀ hx₀ hn h0 hj0 hjk hk ha hb (by omega) (by omega)
       (ord_alpha_X_eq_wd hw hM x₀ hx₀ 0 (w.length - 1) hn hL0)
       (ord_alpha_X_eq_wd hw hM x₀ hx₀ j a ha hwa) (ord_alpha_X_eq_wd hw hM x₀ hx₀ k b hb hwb)
+
+/-- **The lake reads the walk backwards.**  Let `w` be a noncrossing closed walk in a planar map
+whose inner reclosing keeps the Euler characteristic, and let `x₀` be a walk-map dart whose
+reversal is the last dart of `w`.  Then the face orbit of `x₀` in the walk map, reversed and with
+every dart reversed, is a sublist of `w`.  (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex 2134.) -/
+theorem lakeWalk_reverse_map_alpha_sublist (hw : IsNoncrossingClosedWalk M w)
+    (hM : M.IsPlanar)
+    (hinner : (Surgery.MapCollapse.reclosedMap M (sideFaces M w)
+      (hw.innerCycle hM)).eulerCharacteristic = M.eulerCharacteristic)
+    (x₀ : (walkMap M w).Dart) (hx : ∃ s : List M.Dart, w = s ++ [M.alpha x₀.1]) :
+    (lakeWalk M w x₀).reverse.map M.alpha <+ w := by
+  classical
+  obtain ⟨s, hs⟩ := hx
+  have hlen : w.length = s.length + 1 := by
+    rw [hs, List.length_append, List.length_singleton]
+  have hn : w.length - 1 < w.length := by omega
+  have key : ∀ l : List M.Dart, l = s ++ [M.alpha x₀.1] →
+      ∀ h : l.length - 1 < l.length, l[l.length - 1]'h = M.alpha x₀.1 := by
+    intro l hl h
+    subst hl
+    exact List.getElem_concat_length
+      (by rw [List.length_append, List.length_singleton, Nat.add_sub_cancel]) h
+  have hlast : w[w.length - 1] = M.alpha x₀.1 := key w hs hn
+  have hx₀ : M.alpha x₀.1 ∈ w := by
+    rw [← hlast]
+    exact List.getElem_mem hn
+  have hmemL : ∀ i, M.alpha (((walkMap M w).facePerm ^ i) x₀).1 ∈ w :=
+    fun i => (lake_orbit hw hM x₀ hx₀ i).2
+  exact reverse_map_sublist_of_pos M.alpha
+    (fun i => w.idxOf (M.alpha (((walkMap M w).facePerm ^ i) x₀).1))
+    (fun i _ => List.idxOf_lt_length_of_mem (hmemL i))
+    (fun i hi => (List.getElem_idxOf (List.idxOf_lt_length_of_mem (hmemL i))).trans
+      (congrArg M.alpha (getElem_lakeWalk x₀ i hi).symm))
+    (fun i j hij hj => ord_pos_lt hw hM hinner x₀ hn hlast hij
+      (lt_of_lt_of_eq hj (length_lakeWalk x₀)) (List.idxOf_lt_length_of_mem (hmemL i))
+      (List.idxOf_lt_length_of_mem (hmemL j))
+      (List.getElem_idxOf (List.idxOf_lt_length_of_mem (hmemL i)))
+      (List.getElem_idxOf (List.idxOf_lt_length_of_mem (hmemL j))))
+
+end GroupApproximation.Full.GL03BPinchOrder
+
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_pow_add_apply
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_pow_zero_apply
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_lake_ne
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_lake_not_mem
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_alpha_X_eq_wd
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.not_sixDart_of_val
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.firstHit_wd
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.firstHit_lake
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ordSix
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_false_of_cross
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ord_pos_lt
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.lakeWalk_reverse_map_alpha_sublist
