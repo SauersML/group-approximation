@@ -162,3 +162,37 @@ extensions.
       `a_1(W)` missing a loop through the collar.
     - **Still open:** that condition, freeness of the four lifts (their capped images are
       not free), and injectivity of the amalgam with the pushed leaf.
+13. **Explicit candidate** (bh-3manifold, 2026-09-18). *Item 1 of attempt 12 solved;
+    freeness and injectivity open.*
+    - **Source.** Baykur, arXiv:1206.3512v2 (TeX read on MSI), l.206--262: the explicit
+      factorization of `t_δ^{2k}` into `k + 1` commutators by push maps and the generalized
+      lantern relation. The odd powers are deferred to BKM there.
+    - **An explicit `T_y` in two commutators** (same method, lantern case). Take a sphere
+      with boundary `y` and holes `A_1, A_2, A_3`, glued along the holes to a connected `Z`,
+      giving `Σ'` of genus `>= 2` with boundary `y`. Let `X_{ij}` be the lantern curve around
+      `A_i, A_j`. Boundary twists commute with the lantern twists, so the lantern relation
+      gives `T_y = (t_{X_12} t_{A_1}^-1)(t_{X_23} t_{A_2}^-1)(t_{X_13} t_{A_3}^-1)`. So
+      `T_y = [t_{X_12} t_{A_1}^-1, φ] [t_{X_13}, ψ]` for `φ` with `φ(X_12) = A_2`,
+      `φ(A_1) = X_23`, and `ψ` with `ψ(X_13) = A_3`. Both exist rel `∂` by change of
+      coordinates: each pair consists of disjoint nonseparating curves with connected
+      complement, since `Z` is connected.
+    - **Lift.** Push `B_1 = φ` along the based loop `v` around `A_1` on the `y`-side of
+      `X_23`. A computation like attempt 12's, for a push on the second entry, gives
+      `[(1, a), (v, b)] = (a(v) [a, b](v)^-1, [a, b])`. So the relator is exactly `T_y` iff
+      `(b a b^-1)(v) = v`. Here `b a b^-1 = t_{A_2} t_{X_23}^-1`, and `v` misses `A_2` and
+      `X_23`, so the lifted relator is `T_y`: `m' = 0`, `n' = 1`. Also `v ∉ <ℓ>`, since `A_1`
+      is essential.
+    - **Lattice matching.** With the pushed leaf `(Push(pi_1 Y_v), T_y)` and the lifted leaf
+      `H x <T_x>`, both boundary tori are `<T_x, T_y>`, since `(-1, 1), (0, 1)` and
+      `(0, 1), (1, 0)` are both bases. The boundary words `(-1, 1)` and `(0, 1)` are not
+      parallel, so the abstract amalgam is a non-fibered two-leaf graph manifold group
+      (`two-leaf-graph-manifold-twist-realizations`, item 1). By item 2 (the Svetlov
+      reading) it is not virtually fibered.
+    - **Host.** `S = Σ' ∪_y P ∪_x Y'_v`, with `P` the pair of pants containing the puncture
+      `p`. It is punctured, so `Mod(S)` is in `B_A`.
+    - **Open:** (a) `H = <t_{X_12} t_{A_1}^-1, Push(v) φ, t_{X_13}, ψ>` is free of rank 4.
+      Its image in `Mod(Σ')` is not free; kernel elements of exponent sum zero in the
+      relator map to nontrivial push products `Π Push([u_i, ℓ])`, which is encouraging but
+      proves nothing. (b) Injectivity of the amalgam. Candidate tools, untried: ping-pong
+      on the curve complex (Koberda / Clay--Mangahas type combination theorems), or
+      Bass--Serre theory for the pushed leaf through the Birman exact sequence.
