@@ -10,8 +10,10 @@ artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
 
-**ESTABLISHED as a reduction** (lane proof, not reviewed). Kourovka 17.57 itself stays
-**OPEN**. No priority is claimed.
+**ESTABLISHED as a reduction** (lane proof, not reviewed). No priority is claimed.
+Kourovka 17.57 is now answered **yes** on main: `ct-z-normalizers-are-2-and-3-regular`
+and `out-ct-z-is-c2` prove condition (b) from dilation recursions in bases 2 and 3 and a
+Cobham-type theorem, bypassing the local germ approach recorded under "What remains".
 
 Inputs:
 - Matui arXiv:1210.5800, read at source: Theorem `spatial`, Proposition `tfg=F`, and
@@ -91,7 +93,7 @@ the germ groupoid of canonical box maps on `Ẑ`. Let
 
    **(a) ⇒ (b).** Every element of `F` is affine on boxes.
 
-## What remains, and why it is genuinely local
+## What remains, and why it is genuinely local (superseded by `out-ct-z-is-c2`)
 
 (b) is a local rigidity statement for a germ `f` of `(Ẑ, 0)`, with `f(0) = 0`, that
 commutes with all dilations `u ↦ γu` (`γ ∈ Q_{>0}`) as germs, by item 3. It also

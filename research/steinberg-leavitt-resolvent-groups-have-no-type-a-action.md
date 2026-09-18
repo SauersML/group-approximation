@@ -9,9 +9,10 @@ distinct_from:
   type-a-actors-have-no-infinite-virtually-central-subgroup: that is the general necessary condition on actors; this is its application to one named finitely presented overgroup of GL_n(Q).
 ---
 
-**OPEN, conditional.** It is established given
-`k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`, through route
-`st-n-r-l-no-type-a-action-via-centre`.
+**ESTABLISHED** through route `st-n-r-l-no-type-a-action-via-centre`. Its centrality input
+`k2-central-in-steinberg-groups-of-leavitt-resolvent-ring` now rests on
+`leavitt-resolvent-k2-stability-holds`, a lane proof by gq-infinite-primes that has not been
+independently reviewed. It became established on 2026-09-18.
 
 **Statement.** Let `N >= 5` and `Γ = St_N(R_L)`. Then no action of `Γ` on a set
 with finitely many orbits of two-element subsets is faithful. In particular `Γ`

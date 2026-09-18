@@ -144,3 +144,37 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
      that boundary-orbit wreath products over tree groups, the simplest outputs of the
      criterion, are never finitely presented. So finite presentation has to come from
      the KMS relations, not from the wreath shape.
+
+5. **The known PSPACE-hard automaton groups, in finite-commutator form, are not
+   finitely presented** (bh-free-02, 2026-09-18). Wächter--Weiß
+   (arXiv:1906.03424v3, read from the TeX) build PSPACE-complete automaton groups
+   from a Turing-machine checking mode and a conjunction group `R`.
+   - *Finite `R` dies.* For finite `R` acting off the encoding letters, for example
+     `A_5`, the group is locally-finite-by-`Z`. By Bieri--Strebel it is therefore
+     not finitely presented
+     (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+   - *The binary headline group (`R` = Aleshin's `F_3`)* is open. The paper says
+     nothing about finite presentation.
+   - *Design lesson.* A finitely presented PSPACE-hard automaton group cannot read a
+     finite conjunction group off below a virtually cyclic checking group.
+   - **Verdict (bh-free-25, later on 09-18): dead in both shapes.**
+     - *Lamp-digit shape.* `kms-configuration-modules-have-trivial-coinvariants`: G5a and
+       G5b give `T = I_Q·T`, so every invariant `λ` vanishes and the premise is false.
+     - *Affine shape, any block size.* Scalar, 2×2 and larger matrices over `F_p[[X]]`
+       all fall to `affine-self-similar-groups-are-function-field-linear`:
+       a finitely generated self-similar group of affine maps of `F_p[[X]]^d` is linear
+       over a finite separable extension of `F_p(X)`, by a Jacobian argument on the
+       section equations. So its word problem is polynomial time, and no hard group
+       embeds in it.
+     - *What is left.* Sections whose linear parts differ from the parent (non-Toeplitz
+       causal linear maps), or nonlinear transducers.
+     - *Non-Toeplitz linear corners too (bh-free-25).*
+       `two-counter-kms-top-has-no-affine-self-similar-action`: for `K ≥ 2` the KMS top
+       factor `B_0` has no faithful self-similar affine action with its lamps as
+       translations, on any `p^d`-ary tree and with arbitrary causal linear corners,
+       infinite-state included.
+       - The corners give an injective ring endomorphism `ψ̃`. A unit-equation lemma makes
+         it a product of one-variable maps.
+       - For `K ≥ 2` the shift is then `g·ψ̃` with `g ∈ R` on a finite-codimension ideal.
+         A `σ`-stable nonzero ideal then has all digits zero.
+       - So any self-similar KMS realization must be nonlinear on digits.

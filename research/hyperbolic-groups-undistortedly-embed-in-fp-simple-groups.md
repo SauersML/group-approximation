@@ -18,7 +18,9 @@ reviewed; no priority claimed, bounded arXiv-only search).
    Concretely `S = SV_Γ` for the full contracting RSG `Γ = [[ G*Z | ∂_h(G*Z) ]]` of BBMZ
    (arXiv:2309.06224, Theorem `thrm:hyp_to_contracting` and Proposition `prop:contr_to_simple`).
 2. Every full contracting RSG `Γ` is undistorted in the finitely presented simple twisted Brin–Thompson
-   group `SV_Γ` of `prop:contr_to_simple`. Here `Γ` acts on the orbit `S` of a rational point.
+   group `SV_Γ` of `prop:contr_to_simple`. Here `Γ` acts on the orbit `S` of a rational point. Item 2 is a
+   special case of Belk–Zaremsky, arXiv:2001.04579, Theorem 2 (`thm:quasi-retracts`) (every finitely generated `G` is
+   undistorted in a finitely generated `SV_G`); only item 1, through `G*Z <= Γ`, is new here.
 
 **What this answers.** It answers, for hyperbolic groups, the "(quasi-isometrically?)" refinement of
 Zaremsky's question (arXiv:2201.00711v1, TeX main.tex l.495–497; recorded as
@@ -26,8 +28,11 @@ Zaremsky's question (arXiv:2201.00711v1, TeX main.tex l.495–497; recorded as
 (quasi-isometrically?) into a finitely presented simple group (even of type F_∞?) … hyperbolic groups."
 
 The "(even of type F_∞?)" refinement stays OPEN. It asks for `SV_Γ`, or some other undistorted host, to
-be of type F_∞. For `SV_Γ` this is tied to BBMZ Question `quest:F_infty` (are full contracting RSGs of type F_∞?) and
-to the Belk–Zaremsky type F_n conjecture for twisted Brin–Thompson groups.
+be of type F_∞. For this host it comes down to BBMZ Question `quest:F_infty` (are full contracting RSGs of type
+F_∞?). `Γ` acts oligomorphically on `S` (BBMZ `prop:HighlyTransitiveAction`), so Belk–Zaremsky's Theorem 4
+(arXiv:2001.04579, `thm:FinitenessTheorem`, a theorem, not a conjecture) makes `SV_Γ` of type F_∞ once `Γ` and the
+stabilizers in `Γ` of finite subsets of `S` are F_∞. Conversely, `SV_Γ` of type F_∞ forces `Γ` to be F_∞
+(quasi-retract, their Theorem 2 (`thm:quasi-retracts`), plus Alonso). Their conjecture is only the sharper characterization.
 
 **Scope.** Finite hyperbolic groups are trivial cases. The lemmas used are
 `full-group-label-length-bounds-distortion` and

@@ -35,6 +35,9 @@ In particular:
    let `SV_Γ = [[V ≀_S Γ | C^S]]` (BBMZ, Section `sec:ending`). Then `Γ` (acting by coordinate
    permutations) is undistorted in every finitely generated `K` with `Γ <= K <= SV_Γ`, in particular in
    `SV_Γ` whenever that group is finitely generated.
+   For `K = SV_Γ` this is Belk–Zaremsky, arXiv:2001.04579, Theorem 2 (`thm:quasi-retracts`; arXiv numbering, imported as `twisted-brin-thompson-groups-quasi-retract-onto-acting-group`), proved there
+   by an explicit quasi-retraction `SV_Γ -> Γ`. The label-length proof below is different and also covers
+   intermediate `K`, but the `K = SV_Γ` case is theirs.
 
 ## Proof
 

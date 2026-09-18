@@ -76,3 +76,29 @@ without a genuine action to pull back. No such construction is written here.
    - **Consequence.** The algebra gate, if it holds, may avoid the ascending-HNN clause that
      the group gate needs. The way to refute this claim is an enumeration whose germ group is
      boundedly but not finitely presented, with a finitely presented algebra.
+2. **The counterexample side (bh-free-53, 09-18).** *No counterexample found. It shows that
+   the claim has two versions, and that Attempt 1 covers only one of them.*
+   - **`A_nu` is never simple.** By [[shell-germ-steinberg-algebras-are-never-simple]], for every
+     `g ≠ 1` the element `f_g = (1 - u_g) s_0 (1 - u_g) t_0` is a nonzero singular function,
+     supported on four germs at `p`. So the Boone--Higman route has to use a simple quotient,
+     most naturally `A_nu/J` with `J` the singular ideal. The version of this claim the route
+     needs is: `A_nu/J` finitely presented ⇒ `Q_nu` finitely presented.
+   - **Attempt 1 does not reach that version.** Its matrix model is the fibre module over
+     `F_2[Q]`. There the `p`-column of `f_g` is `1 + r_g + τ r_g τ^(-1) + r_g τ r_g τ^(-1)`,
+     which is nonzero in `F_2[Q]`, and nonzero in `F_2[Q']` too, because the four words are
+     already distinct in `Q`. So the model is not a representation of `A_nu/J`, where
+     `f_g = 0`. A model for `A_nu/J` must kill these four-term combinations. The orbit module
+     `F_2[Ω]` does kill `f_g`, but that is the near-permutation setting in which "The expected
+     proof" is stuck.
+   - **Where a counterexample for `A_nu` must live.** By Attempt 1, `Q_nu` must have a
+     presentation with boundedly many input letters but no finite presentation, as for
+     `Z ≀ Z`. The germ groups have room for lamp-type subgroups: `r_g` moves only even shells
+     and `τ r_h τ^(-1)` moves only odd shells, so they commute exactly on large shells, and
+     `P × P <= Q_nu` via `(g, h) |-> r_g τ r_h τ^(-1)`. No enumeration was found for which
+     `Q_nu` is boundedly but not finitely presented while `A_nu` is finitely presented.
+   - **The characteristic-2 mechanism.** Linear relations among germs can imply group relations.
+     For example `1 + b + c + d = 0` with `b^2 = c^2 = d^2 = 1` forces `bc = cb` over `F_2`.
+     This is a way for an algebra presentation to be shorter than a group presentation. Its standard instance, Bartholdi's tree-enveloping algebra of the
+     Grigorchuk group, is recursively presented with the infinite families `σ^n(CACACAC)` and
+     `σ^n(DACACAD)` (arXiv math/0410226, theorem `thm:=2:pres`, read from the e-print). So it gives no finitely presented instance. Search log:
+     `research/artifacts/gq-bh-bh-free-53-algebra-gate-counterexample-search.md`.

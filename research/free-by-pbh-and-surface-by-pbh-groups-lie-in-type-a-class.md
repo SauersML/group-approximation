@@ -74,12 +74,59 @@ in `B_A` (`char-zero-linear-groups-satisfy-permutational-boone-higman` and
 `char-p-linear-groups-satisfy-permutational-boone-higman`). `Aut(F_m)` and punctured mapping class groups are in `B_A` by the
 nodes above.
 
+## Addendum (2026-09-18): product kernels
+
+5. **Products.** Let `Γ = Γ_1 x ... x Γ_k`, each `Γ_i` free of finite rank `>= 2` or a closed
+   orientable surface group of genus `>= 2`. Then every automorphism of `Γ` permutes the
+   factors, so `Π Aut(Γ_i)` has finite index in `Aut(Γ)`. Hence `Aut(Γ)` is in `B_A`, and every
+   `Γ`-by-`B_A` group is in `B_A`. The same holds in item 3 with such products as factors.
+
+*Proof.* `Γ` has trivial center. Let `α ∈ Aut(Γ)`, `N = α(Γ_1)` and `M = α(Π_{i>1} Γ_i)`. These
+are commuting normal subgroups with `NM = Γ` and `N ∩ M = 1`. For each `j`, the projections
+`π_j(N)` and `π_j(M)` are commuting normal subgroups generating `Γ_j`. A nontrivial normal
+subgroup of `Γ_j` is not cyclic, since `Γ_j` is not virtually cyclic, and centralizers of
+nontrivial elements of `Γ_j` are cyclic, so it has trivial centralizer. Hence one of the
+two projections is trivial. So there is a set `J` of indices with `N <= Π_{j∈J} Γ_j` and
+`M <= Π_{j∉J} Γ_j`, and `NM = Γ` forces `N = Π_{j∈J} Γ_j`. `N ≅ Γ_1` is directly
+indecomposable: in a direct product of two nontrivial groups, an element of the first
+factor centralizes the whole second factor, while centralizers in `Γ_1` are cyclic. So
+`|J| = 1`, and `α` maps `Γ_1` onto some `Γ_j`, and likewise for every factor. So
+`Aut(Γ) = (Π Aut(Γ_i)) ⋊ P`, with `P` the finite group permuting isomorphic factors. Now
+`Π Aut(Γ_i)` is in `B_A` by item 2 and part 1 of
+`boone-higman-type-a-class-closed-under-finite-extensions`, and so is `Aut(Γ)` by part 2.
+The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
+`(π_1 S_g x π_1 S_h)`-by-(any group in `B_A`).
+
+6. **Virtually inner extensions.** Let `1 -> Γ -> H -> Q -> 1` with `Γ` of trivial center and in
+   `B_A`, `Q` in `B_A`, and suppose the outer action `Q -> Out(Γ)` has finite image. Then `H` is
+   in `B_A`. In particular this holds for every extension when `Out(Γ)` is finite.
+
+*Proof.* Let `Ã <= Aut(Γ)` be the preimage of that finite image. By item 1, `H` embeds in
+`Ã x Q`. `Ã` contains `Inn(Γ) ≅ Γ` with finite index, so it is in `B_A` by part 2 of
+`boone-higman-type-a-class-closed-under-finite-extensions`, and `Ã x Q` is in `B_A` by part 1.
+
+*Instances.*
+- `Γ = pi_1(M)` for a finite-volume hyperbolic 3-manifold `M`. It is centerless, linear
+  (so in `B_A` by `char-zero-linear-groups-satisfy-permutational-boone-higman`), and
+  `Out(Γ)` is finite by Mostow--Prasad rigidity. So every `pi_1(M)`-by-`B_A` group is in
+  `B_A`, e.g. extensions by `Z^m`, surface groups or `Aut(F_n)`.
+- More generally, any centerless linear group with finite outer automorphism group
+  qualifies. This includes torsion-free lattices in simple Lie groups not locally
+  isomorphic to `PSL_2(R)` (strong rigidity; rigidity inputs not re-read here).
+- **Hyperbolic kernels.** Every hyperbolic group is in `B_A`
+  (`hyperbolic-groups-lie-in-the-permutational-class`, referees a and b PASS). So item 6
+  applies to every hyperbolic `Γ` with trivial center (e.g. torsion-free non-elementary) and
+  finite `Out(Γ)`. By Paulin's theorem with the Rips--Bestvina--Feighn theory of actions on
+  R-trees (inputs not re-read here), `Out(Γ)` is finite when `Γ` is one-ended and does not split
+  over a virtually cyclic subgroup. So every extension of a group in `B_A` by such a `Γ` is in
+  `B_A`. When `Out(Γ)` is infinite, item 6 still covers extensions whose outer action has
+  finite image.
+
 ## Scope
 
 - The kernel must be finitely generated, free or a closed surface group of genus at
   least two. Other centerless kernels work whenever their automorphism group is in
-  `B_A`; for example kernels that are finite direct products of such groups are not
-  treated here, since that needs the structure of `Aut` of a product.
+  `B_A`; finite direct products of such groups are handled in item 5 below.
 - This says nothing about Out(F_n) or closed-surface mapping class groups themselves:
   they are quotients of `Aut(F_n)` and `Mod(S_(g,1))`, not extensions of them.
 - The open 3-manifold case `nonfibered-closed-graph-manifold-groups-satisfy-pbh` is not

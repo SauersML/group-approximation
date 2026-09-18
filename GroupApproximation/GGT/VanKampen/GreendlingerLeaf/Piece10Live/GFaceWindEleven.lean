@@ -107,9 +107,10 @@ def gfaceWindEleven_Statement : Prop :=
 
 /-- **The residual is weaker than `gfaceWindTen_Statement`** (it only adds hypotheses). -/
 theorem gfaceWindEleven_of_ten (h : gfaceWindTen_Statement.{v}) :
-    gfaceWindEleven_Statement.{v} :=
-  fun M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 W R hl hnc _ _ _ _ _ _ _ _ _ _ _ =>
-    h M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 W R hl hnc
+    gfaceWindEleven_Statement.{v} := by
+  intro M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 W R hl hnc
+    _ _ _ _ _ _ _ _ _ _ _
+  exact h M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 W R hl hnc
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindEleven_of_ten
 

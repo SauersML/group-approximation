@@ -15,8 +15,22 @@ distinct_from:
 **ESTABLISHED** (lane bh-free-18, lane proof, not reviewed). It follows the refereed `m = 3` proof
 (`research/artifacts/gq-gq-nv-obstruct-smart-renormalization.md`, §1–§3) step by step, with the move
 proposition, nesting and parent table of `odd-smart-machines-have-exact-m-fold-moves` in place of
-Callard--Salo's Proposition 3.2. No numerical check was run (no local compute); an MSI whole-tape
-check of `φ U^m = U φ` at `m = 5` would be the natural validation.
+Callard--Salo's Proposition 3.2.
+
+**Checks.**
+- **Machine certificate** (`research/artifacts/gq-bh-bh-free-18-odd-smart-certificate.md`, MSI, single
+  core, seconds). It is an exhaustive lazy search over all of `Γ^Z × Q`: it branches only on the cells
+  that are actually read, and it compares unread cells symbolically. For m = 3, 5, 7, 9, 11 it decides:
+  - the table is reversible;
+  - entry into `Y` takes ≤ 5 steps and return ≤ 6;
+  - `Y = A ⊔ UA ⊔ … ⊔ U^{m-1}A` with `U^m A = A`;
+  - `φ : A → Y` is a bijection with the stated inverse;
+  - `φ U^m = U φ` on all of `A`.
+
+  Planted negatives fail and the m = 3 calibration passes. The identity reads only 3 or 4 cells beyond
+  the head, so for these m the renormalization is proved by exhaustion, without the lemma below.
+- **Independent hand check** by bh-refute: PASS, not a referee report
+  (`research/artifacts/gq-bh-bh-refute-verify-bs1m-in-3v.md`, e28fb9446).
 
 ## Setting
 

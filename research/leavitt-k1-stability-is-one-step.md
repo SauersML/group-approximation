@@ -8,8 +8,8 @@ distinct_from:
   leavitt-surjective-k2-stability-implies-injective: that deduces injective from surjective stability for K_2; this does the same for K_1.
 ---
 
-**ESTABLISHED** through `leavitt-k1-stability-is-one-step-proof`. Lane proof, not independently reviewed.
-It is elementary given the refinement surjection `α(E_n) = E_(n+1)` (Voronetsky, via
+**ESTABLISHED** through `leavitt-k1-stability-is-one-step-proof`. Refereed: gq-referee-a PASS, proof-gap lens (report
+b8e762b33). It is elementary given the refinement surjection `α(E_n) = E_(n+1)` (Voronetsky, via
 `leavitt-refinement-identifies-unstable-k2-levels`). No priority is claimed.
 
 **Setting.** `R` has a Leavitt pair `e, f`, and `n >= 3`. `α_n(A) = T_n A U_n` is the refinement isomorphism
