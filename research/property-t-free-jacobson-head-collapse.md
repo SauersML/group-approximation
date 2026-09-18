@@ -186,3 +186,60 @@ instead of `4`) changes no conclusion.
   with a model-specific, non-generic proof of `(MSG)` for a finite subset.
   By `model-spectral-gap-quantifier-ladder`, a representation-generic proof is
   a Kazhdan theorem. The claim stays OPEN.
+
+- **calibration, swarm-0917 (swarm-0917-w9-w9-ptl-pull): maximal parabolics of
+  EL_3(J) are LEF -- every one-parabolic argument dies.**
+
+  *Proposal.* Test whether the head can be killed inside the nonamenable
+  subgroup that all three-index attempts so far have used. That subgroup is
+  the column parabolic `G_1 = J^2 x| EL_2(J) = <x_12, x_21, x_13, x_23>`, the
+  w7 group `K`. It contains both commutator families, the Toeplitz commutator,
+  the compressor `u` and the whole Levi `EL_2(J)`.
+
+  *Result.* `jacobson-rank-three-parabolics-are-lef` (established, route
+  `jacobson-rank-three-parabolics-lef-proof`, script
+  `experiments/jacobson-parabolic-lef-2026-09-17/check_parabolic_lef.py`).
+  1. `[[g, X], [0, c]]` with `g in EL_2(J)`, `X in M_(2 x m)(J)` and
+     `c in GL_m(F)` form an LEF group. The model is
+     `[[Phi_M(g), ev_d(X)], [0, c (x) 1]]`, where `Phi_M` is the mirror-glued
+     model of `binary-jacobson-el2-is-lef` and `ev_d(X)` evaluates the column
+     on `e_0, ..., e_(d-1)`. The map `ev_d` is left `J`-equivariant, and it is
+     injective on `T`-degree `< d`.
+  2. Every proper parabolic of `EL_3(J)` is conjugate to `G_1`, or is sent to
+     it by `g -> (g^tau)^(-1)`. So every proper parabolic is LEF, and the
+     head survives there.
+  3. Every finite quotient of `G_1` kills the head. An `EL_2(J)`-invariant
+     finite-index `W <= J^2` is `I ⊕ I`, and `J/I` finite forces `ST = 1`.
+     So `G_1` is LEF but not residually finite, and it is not finitely
+     presented.
+  4. `<G_1, x_31(1)> = <G_1, x_32(1)> = EL_3(J)`.
+
+  *Invariant.* The local embedding `Psi_(M,d)` into
+  `GL(W_M ⊕ F^(md))`, which is exactly multiplicative on balls and keeps
+  `x_13(Q)` at distance `sqrt 2` from `1` in the regular representation.
+
+  *Step where it dies.* Consider any argument that uses only relations and
+  asymptotic multiplicativity inside one proper parabolic of one index
+  triple. Examples:
+  - Whitehead, symbol or index relations of `EL_2(J)`;
+  - `u N u^(-1) <= N`;
+  - either three-index commutator family;
+  - relative-(T)-style projections for `(K, N)`;
+  - finite-image module collapse.
+
+  Any such argument would kill the head in the LEF group `G_1`. This covers
+  the nonamenable-`L` transport left open by the previous entry whenever `L`
+  lies in one parabolic. It also subsumes the rank-two obstruction
+  `binary-jacobson-el2-is-lef`: three indices alone are not enough.
+
+  *What is left.* Two distinct maximal parabolics on a triple already
+  generate `EL_3(J)`. So by `binary-jacobson-mark-dichotomy-holds-from-rank-two`,
+  a three-index proof is the same as proving that `EL_3(J)` is not MF. That is
+  open, and stronger than what the rank-five (T) route gives. A (T)-free proof
+  must either prove `EL_3(J)` is not MF, or use at least four indices in an
+  essential way.
+
+  Open spark: is the two-by-two parabolic `M_2(J) x| (EL_2(J) x EL_2(J))`
+  inside `EL_4(J)` LEF? `ev_d` is not right equivariant for nonconstant right
+  multiplication. If this group is not LEF, it is the smallest four-index
+  witness. The claim stays OPEN.

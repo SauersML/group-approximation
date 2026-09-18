@@ -367,3 +367,41 @@ the von Neumann cocycle `omega` of `L(E) = R x|_(alpha,omega) Q` is a coboundary
 untwisting uses unitaries of `R`, which are not finite-rank perturbations), and it does not exclude semidirect
 decompositions of `pi^(-1)(Gamma)` along normal subgroups other than `L`. The remaining decision points are the
 Popa vanishing-cohomology test for the corner action and wall-rigid approximations of `P`, both recorded above.
+
+### Wall-asymmetric traces of P are inert (swarm-0917-w9-w9-nh-pull, symbolic-dynamics / calibrator, 2026-09-18)
+
+*Approach tried.* Take up step (i) of the mirror-head swap entry: build head-seeing traces of `P` from traces of `P`
+that distinguish the two walls, combined with the LEF ambient traces by products, tensor powers, direct sums and
+mixtures.
+
+*Result* (`jacobson-mirror-exact-trace-part-is-multiplicative`, established). The whole class dies.
+- **The mirror-exact part.** For a trace `tau` of `P`, let `tau^flat(g) = lim_j avg_(F_j) tau(y g)`, with `F_j`
+  finite subgroups increasing to `L_-`. This is `tau` cut down by the central projection onto the `L_-`-invariant
+  vectors, and it factors through `E`.
+  - For extremal `tau` it equals `tau` or `0`.
+  - `E` is hyperlinear iff some CE trace of `P` has `tau^flat` nonconstant on `L_+` (via Theorem JH).
+- **The death step.** `GL_fin(V_-)` has no nontrivial finite-dimensional unitary representation. Hilbert--Schmidt
+  intertwiners then give `(H_1 (x) H_2)^(L_-) = H_1^(L_-) (x) H_2^(L_-)`, so `(tau_1 tau_2)^flat = tau_1^flat tau_2^flat`.
+- **The inert class.** `N = {tau : tau^flat constant on L_+}` is closed under products, mixtures and conjugation. It
+  contains:
+  - every trace with no `L_-`-invariant vectors;
+  - the wall-asymmetric rank traces `psi_a (x) psi_b` extended by zero, with `b >= 1`, which separate `w` from `w'`;
+  - every restriction of a trace of `H_bi`, or of any overgroup containing the finitary site permutations. This part
+    is list-free and holds on all of `L_+`, not only at the head.
+- **Invariant.** `tau -> tau^flat|_(L_+)`.
+
+*Calibration.* Step (i), "distinguish the two walls", is necessary but not sufficient, and it does not decompose the
+hole.
+- A wall-asymmetric trace with no mirror-exact mass kills the flat part of every product it enters.
+- What is needed is CE mass on the mirror-exact face (traces equal to `1` on `L_-`) that charges the head. That is
+  the hole itself, by (MX2).
+
+*Where it stops (hole stays OPEN).* Pointwise limits are the only operation left open.
+- `m(tau) = tau^flat(1)` is only upper semicontinuous, so a limit of inert traces could gain mirror-exact mass.
+- If the extreme characters of `GL(infinity,2)` are exactly `2^(-k rank(g-1))` (Skudlarek's list, **not imported**;
+  the graph has only GKV's countability statement), then `m` and `flat` are weak*-continuous and `N` is closed.
+- **Next falsifiable step.**
+  - Import Skudlarek's classification verbatim. That closes `N` under limits. The positive side must then produce a
+    CE trace of `P` outside the closed, convex, product-closed set `N` by a mechanism that is not a limit of inherited
+    traces.
+  - Or exhibit a sequence of CE traces in `N` whose limit charges the head on the mirror-exact face.
