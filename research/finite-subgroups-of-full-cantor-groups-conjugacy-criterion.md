@@ -38,6 +38,11 @@ Let `D` be full and clopen transitive, `H_1, H_2 ≤ D` finite with clopen fixed
    have `Σ = {1}` and empty fixed sets.
 3. **Finite overgroups.** If `F ≤ D` is finite and acts freely, and `E` is a finite group
    containing `F`, then some embedding `E -> D` restricts to the inclusion on `F`.
+4. **Padding.** For every proper nonempty clopen `U`, there is an injective homomorphism
+   `π_U: D -> D` such that, for every finite `H ≤ D` with clopen fixed sets, `π_U(H)` has
+   clopen fixed sets and `Σ(π_U(H)) = Σ(H) ∪ {π_U(H)}`. Here `π_U(d)` acts on `U` as a
+   D-local copy of `d` and is the identity off `U`. So two finite subgroups are conjugate
+   along `θ` after padding iff `θ(Σ^+(H_1)) = Σ^+(H_2)`, where `Σ^+(H) = Σ(H) ∪ {H}`.
 
 ## Examples
 
@@ -45,7 +50,10 @@ Let `D` be full and clopen transitive, `H_1, H_2 ≤ D` finite with clopen fixed
   `V` permutes the cones of some partition by prefix replacement, so its fixed set is
   clopen. So part 1 is a conjugacy criterion for finite subgroups of `V`.
   - Two involutions of `V`, one free and one with a fixed cone, are **not** conjugate in
-    `V`. Their type sets are `{1}` and `{1, Z/2}`.
+    `V`. Their type sets are `{1}` and `{1, Z/2}`. After padding both are `{1, Z/2}`, so
+    their padded images **are** conjugate in `V`. The same holds for any two subgroups of
+    prime order, and more generally for any finite subgroups whose point stabilizers are
+    all trivial or the whole group.
 - **`T ≤ V`.** Every nontrivial finite-order element of Thompson's `T` acts on the circle
   without fixed points. An orientation-preserving circle homeomorphism of finite order with
   a fixed point is the identity. The quotient map from the Cantor set to the circle is

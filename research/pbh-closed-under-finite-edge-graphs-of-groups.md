@@ -22,20 +22,24 @@ groups, the fundamental group lies in `B_A`.
 
 **Known cases.**
 - Centralized edges (`free-permutational-products-preserve-pbh`).
-- Vertex groups in one full Cantor host with matching edge strata, for example all
-  finite-edge graphs of subgroups of Thompson's `T`
-  (`finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a`).
+- Vertex groups in one full Cantor host with matching padded edge strata
+  (`finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a`). Examples:
+  - all finite-edge graphs of subgroups of Thompson's `T`;
+  - all graphs of subgroups of `V` with edge groups of prime order.
 - Vertex groups with a finite quotient injective on the edge groups
   (`pbh-finite-edge-closure-equivalences`, finite-quotient case).
 
-**First test case.** Let `c_1 ∈ V` be a free involution (for example the swap of the
-cones `0` and `1`), and `c_2 ∈ V` an involution with a fixed cone (for example the swap of
-`00` and `01` fixing `1`). Is `⟨V, t | t c_1 t^(-1) = c_2⟩` in `B_A`? It is finitely
-presented and has solvable word problem.
-- It is not covered by the full-host theorem inside `V`, since the type sets are `{1}` and
-  `{1, Z/2}`.
-- It is not covered by finite quotients, since `V` is simple.
-- A positive answer is predicted by `permutational-boone-higman-conjecture`.
+**Settled test case.** `⟨V, t | t c_1 t^(-1) = c_2⟩`, for a free involution `c_1` and an
+involution `c_2` with a fixed cone, lies in `B_A`. After padding, both involutions have
+type set `{1, Z/2}` and are conjugate in `V`
+(`finite-edge-graphs-of-full-cantor-subgroups-lie-in-b-a`, padded form).
+
+**Test case.** In `V`, let `C_1 ≅ Z/2 × Z/2` act freely. Let `C_2 ≅ Z/2 × Z/2` have a
+cone whose stabilizer is exactly one involution `⟨a⟩`. Take `θ: C_1 -> C_2` any isomorphism.
+Is `V*_θ ∈ B_A`? The padded type sets are `{1, C}` and a set containing `⟨a⟩`, so padding
+does not help. Diagonal embeddings into `nV` replace a type set by its closure under
+intersections of conjugates (hand remark), so they do not help either. In every natural host
+tried here, strata are only added, never removed.
 
 **Route.** `finite-edge-closure-via-free-torsion-full-hosts`, through the stabilization
 problem `b-a-groups-embed-in-full-hosts-with-free-torsion`.

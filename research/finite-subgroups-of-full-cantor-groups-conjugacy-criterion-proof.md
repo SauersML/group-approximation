@@ -83,6 +83,18 @@ Let `F ≤ D` act freely, `E ⊇ F` finite, and `E = ⊔_(i=1)^n F e_i` with `e_
   - On the clopen piece `c φ_i(U_1)`, `a` acts as `c' φ_j φ_i^(-1) c^(-1)`, which is
     D-local. So `a ∈ D` by fullness.
 
+## Part 4. Padding
+
+- **The map.** By clopen transitivity choose a D-local homeomorphism `φ: Y -> U`. Put
+  `π_U(d) = φ d φ^(-1)` on `U` and the identity on `Y \ U`.
+  - `π_U(d)` is a D-local homeomorphism of `Y`, so it lies in `D` by fullness.
+  - `π_U` is an injective homomorphism.
+- **Fixed sets.** `Fix(π_U(h)) = φ(Fix(h)) ∪ (Y \ U)`, which is clopen.
+- **Strata.** For `K ≠ H`, `Y_(π_U K)(π_U H) = φ(Y_K(H))`. The stratum of the whole group is
+  `φ(Fix(H)) ∪ (Y \ U)`, which is nonempty. So `Σ(π_U(H)) = π_U(Σ(H)) ∪ {π_U(H)}`.
+- **Conjugacy after padding.** Apply Part 1 to `π_U(H_1)`, `π_U(H_2)` and
+  `π_U θ π_U^(-1)`.
+
 ## The examples
 
 - **`V` is full and clopen transitive.** A locally prefix-replacing homeomorphism is, by

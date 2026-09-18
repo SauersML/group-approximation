@@ -39,6 +39,12 @@ finite-edge closure (`finite-edge-closure-via-free-torsion-full-hosts`).
      it is finitely presented. This is a twisted Brin–Thompson group over a *nontrivial
      bundle*. No finite-presentation criterion for it is known here; Zaremsky's criterion
      covers the trivial bundle.
+3. **Padding: adds strata, never removes them.** Acting on a proper clopen and trivially
+   elsewhere adds the whole-group stratum to every finite subgroup
+   (`finite-subgroups-of-full-cantor-groups-conjugacy-criterion`, Part 4). That already
+   settles edge groups whose stabilizers are trivial or everything, for example prime
+   order. Removing an intermediate stratum is exactly what freeness does, and no natural
+   host tried here does it.
 
 ## Lesson for general BH
 
