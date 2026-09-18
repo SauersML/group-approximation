@@ -11,9 +11,12 @@ refuted_by:
   - leavitt-resolvent-derived-units-mod-centre-not-fp
 ---
 
-**OPEN.** Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`,
-`D = [R_L^x, R_L^x]`, and `Z(D)` its centre. Then `D/Z(D)` is finitely presented and
-simple.
+**REFUTED (2026-09-17)** by `leavitt-resolvent-derived-units-mod-centre-not-fp`
+(Attempt 4): `Q^x <= [D, D] ∩ Z(D)`, so `D/Z(D)` is not finitely presented.
+
+**Refuted statement.** Let `R_L` be the ring of
+`leavitt-resolvent-ring-is-fp-simple-of-char-zero`, `D = [R_L^x, R_L^x]`, and `Z(D)` its
+centre. Then `D/Z(D)` is finitely presented and simple.
 
 **Why.** `GL_n(Q)` embeds in `D` and meets `Z(D)` trivially, for every `n`
 (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`, part 3). So this claim gives

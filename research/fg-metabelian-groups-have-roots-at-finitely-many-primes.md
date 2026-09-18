@@ -2,32 +2,49 @@
 rg: 2
 id: fg-metabelian-groups-have-roots-at-finitely-many-primes
 kind: claim
-title: In a finitely generated metabelian group an element of infinite order has q-th roots for only finitely many primes q, so no such group contains Z_(l) or Z[1/P] with P infinite
+title: In a finitely generated metabelian group an element of infinite order in the derived subgroup has q-th roots for only finitely many primes q, so no Z[1/P] with P infinite embeds
 distinct_from:
-  fg-linear-groups-have-roots-at-finitely-many-primes: that is the same conclusion for finitely generated linear groups over one field; finitely generated metabelian groups need not be linear, and this is proved directly from generic freeness.
-  fp-metabelian-groups-satisfy-boone-higman: that embeds finitely presented metabelian groups in finitely presented simple groups; this shows that metabelian overgroups, including the finitely presented envelopes of Baumslag and Remeslennikov, cannot carry the residually finite hosts the gq routes need.
+  fg-linear-groups-have-roots-at-finitely-many-primes: that is the same root statement for finitely generated linear groups over fields; this is for finitely generated metabelian groups, which need not be linear.
+  infinite-prime-localizations-embed-in-no-fg-linear-group: that excludes Z[1/P] from finitely generated linear groups; this excludes it from finitely generated metabelian groups.
 ---
 
 **ESTABLISHED** through `fg-metabelian-groups-have-roots-at-finitely-many-primes-proof`.
-Lane proof, not independently reviewed. No priority is claimed.
+Lane proof, not independently reviewed. Folklore-type (generic freeness); no
+priority is claimed.
 
-**Statement.** Let `G` be a finitely generated metabelian group and `x in G` of
-infinite order. Then there are only finitely many primes `q` for which some
-`y in G` satisfies `y^q = x`.
+## Statement
 
-**Consequences.**
-- No finitely generated metabelian group contains `Z_(l)`, `Z[1/P]` with `P` an
-  infinite set of primes, or `(Q,+)`. In each, `1` has `q`-th roots for
-  infinitely many `q`.
-- Finitely generated metabelian groups are residually finite (P. Hall), and every
-  one embeds in a finitely presented metabelian group (Baumslag, Remeslennikov;
-  survey arXiv:2306.16356v3, footnote 9). So this route to a finitely presented
-  residually finite group fails for these inputs. It cannot supply the host `Λ` of
-  `sl-2-z-localized-has-fp-hecke-overgroup`, a witness for
-  `z-localized-embeds-in-fp-rf-group`, or a self-similar host of
-  `aff-n-z-localized-lies-in-fp-self-similar-group`.
-- The conclusion also follows from `fg-linear-groups-have-roots-at-finitely-many-primes`
-  through Wehrfritz's embedding of finitely generated metabelian groups in finite
-  products of linear groups over fields of different characteristics: `x` and its
-  roots project to some factor where `x` has infinite order. The proof here does not
-  use that import.
+Let `G` be a finitely generated metabelian group, so `G'` is abelian.
+1. If `x ∈ G'` has infinite order, then there are only finitely many primes `q`
+   for which `y^q = x` for some `y ∈ G`.
+2. For every infinite set `P` of primes, the additive group `Z[1/P]` embeds in no
+   finitely generated metabelian group. This includes `Z_(l) = Z[1/(all primes ≠ l)]`
+   and `Q`.
+
+## Consequences
+
+- **Self-similar affine hosts in rank one.** `Aff_1(Z_(l)) = Z_(l) ⋊ Z_(l)^×` is
+  metabelian. By item 2, it lies in no finitely generated metabelian group. So a
+  finitely presented self-similar overgroup, as sought in
+  `aff-n-z-localized-lies-in-fp-self-similar-group` (n = 1) and in
+  `rational-iwahori-group-lies-in-fp-self-similar-group`, is not metabelian.
+  This rules out the rank-one versions of Zaremsky's affine hosts
+  `Z[1/m] ⋊ <units>`, and every other metabelian construction.
+- **With the linear case.** Together with
+  `fg-linear-groups-have-roots-at-finitely-many-primes`, any finitely generated
+  group containing `Z[1/P]`, with `P` infinite, is neither linear over a field
+  nor metabelian.
+
+## Addendum (lane gq-infinite-primes, 2026-09-17)
+
+Not independently reviewed.
+- **Item 1 for every element of G.** Let `x in G` have infinite order and `y_q^q = x`
+  for infinitely many `q`. Write `G/G' = Z^s ⊕ T` with `T` finite of exponent `ε`.
+  - The `Z^s`-parts of `x̄` and of every `ȳ_q` vanish, since they are divisible by
+    infinitely many primes, respectively killed by `q`.
+  - So `z = x^ε in G'` has infinite order and the `q`-th roots `y_q^ε`.
+  - Item 1 applies to `z` and gives a contradiction.
+- **No metabelian Λ.** The Baumslag--Remeslennikov finitely presented metabelian
+  envelopes are residually finite, but by item 2 they cannot supply the host `Λ` of
+  `sl-2-z-localized-has-fp-hecke-overgroup` or a witness of
+  `z-localized-embeds-in-fp-rf-group`.

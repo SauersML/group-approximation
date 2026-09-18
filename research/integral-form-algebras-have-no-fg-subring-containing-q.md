@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `integral-form-algebras-have-no-fg-subring-containing-q-proof`
-(lane proof, not independently reviewed).
+(lane proof; refereed PASS by gq-referee-a, artifact `gq-referee-a-integral-form-algebras-have-no-fg-subring-containing-q.md`, 7bf46a046).
 
 **Statement.** Let `A` be a ring, unital or not, whose additive group is free abelian.
 Let `K` be any field and `n >= 1`. Then no finitely generated subring of
@@ -24,9 +24,10 @@ for all their matrix rings and corners.
   are a `Z`-basis;
 - Weyl algebras `A_m(K)`, with basis `x^i ∂^j`;
 - Steinberg algebras `A_K(G)` of ample groupoids, where `A_Z(G)` is free abelian;
-- Leavitt--Nekrashevych completions and crossed products whose defining data are
-  integral (`leavitt-nekrashevych-completion-embeds-and-is-fp`), applied to `B ⊗ K`
-  with `B` free abelian.
+- Leavitt--Nekrashevych completions `O_ψ(B) ⊗ K` with integral data, but only when the
+  `Z`-form `O_ψ(B)` is itself free abelian. That is not automatic: its core is a direct
+  limit of free groups, and such limits need not be free (`Z -2-> Z -2-> ...` gives
+  `Z[1/2]`). Referee a, 7bf46a046.
 
 **Consequence for the GL_n(Q) swarm.** Every finitely generated ring that contains
 `Q` needs a generator that no integral form carries, for example a resolvent such
