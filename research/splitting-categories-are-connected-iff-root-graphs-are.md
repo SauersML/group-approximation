@@ -179,6 +179,13 @@ Induction on the number of pieces:
   - For each minimal one found, check whether `E_12` (or another atom) lies below it with
     smaller common upper bounds for both new pairs.
   - If none exist up to a bound that also closes the argument, (B_E) holds.
+- **Update (search, 2026-09-18).** Exotic two-sided bounds do exist.
+  - In rank 4 the commuting pair `E_01, E_23` has a 13-piece minimal common upper bound that
+    is not above the square, with root graph `{E_01, E_23}` and no edge
+    (`disjoint-edge-splits-have-an-exotic-two-sided-minimal-bound`).
+  - So (B_E) in the form "only squares and flops" is false.
+  - (R_E) now asks for bounded degree of these pinwheel-type elements in each rank.
+  - In rank 3 nothing exotic was found in the searched range.
 
 ## Lesson for general BH
 
