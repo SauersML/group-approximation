@@ -95,3 +95,17 @@ The first two constraints are from
    - So this action cannot supply `Λ`; this is items (c) and (d) of
      `iwahori-overgroups-not-automaton-linear-or-metabelian`. A usable
      action of such a group on `T_p` would have to be non-linear.
+4. **Prime-shift spinal extensions of `Γ_p(1)`: dead when Möbius on shells
+   (2026-09-18, lane gq-rn-varying-degree).** Take `Λ = ⟨Γ_p(1), g_1, ..., g_r⟩`,
+   where each `g_i`:
+   - fixes 0;
+   - is locally in `PGL_2(Q)` off 0;
+   - acts on every small shell `S_j` by some `M^{(i)}_j ∈ PGL_2(Q)`. The
+     prime-shift element `z ↦ u_{v(z)} z` is the model case.
+
+   By `shell-mobius-extensions-see-finitely-many-primes`, if the sections at
+   vertex 0 lie in `Λ`, then `Λ ∩ PGL_2(Q) <= PGL_2(Z[1/N])` for some `N`. The
+   reason is that the section condition becomes a recursion
+   `M_{j+1} = ρ F(M_j) ρ^{-1}` inside one finitely generated subgroup of
+   `PGL_2(Q)`. So the spine must be non-Möbius on infinitely many shells, or
+   the singular sets must be infinite.

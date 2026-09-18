@@ -2,69 +2,71 @@
 rg: 2
 id: register-completion-pimsner-from-supercoherence-proof
 kind: route
-title: Pick one spine isometry as t_+, identify R with a corner skew Laurent ring, and run ABC 3.6 and 7.2
+title: Take t_+ as the sum of the spine letters, run ABC 3.6 on the corner skew Laurent structure, kill NK by supercoherence and flatness, and telescope the core
 target: register-completion-pimsner-from-supercoherence
 requires:
   - abc-twisted-laurent-k-theory-fibration
   - eventually-rational-register-ring-is-regular-supercoherent
 ---
 
-Lane proof, not independently reviewed. Notation as in the claim.
+Lane proof, repaired after the referee reports. Notation as in the claim.
 
-## 1. The grading and the core
-`R` is `ℤ`-graded by total letter length: `deg s_x = 1`, `deg t_x = −1`, `deg b = 0` for
-`b ∈ B⁺`. All defining relations are homogeneous, so `R = ⊕_k R_k`. The **core** is
-`R_0 = ⊕_ρ colim_n M_(P_ρ,n)(B⁺_ρ)`, spanned by the words `s_μ b t_ν` with `|μ| = |ν|`;
-at level `n` the matrix units are `s_μ t_ν` for paths `μ, ν` of length `n` with the same
-range, and the transition `M_n -> M_(n+1)` pads by `b ↦ Σ_x s_x σ_x(b) t_x`. This is the
-standard core of a Leavitt-type ring, and it is a filtered colimit of matrix rings over
-`B⁺`.
+## 1. Corner skew Laurent structure (repair of G3, referee a's construction)
+`R` is `ℤ`-graded by letter length, and all defining relations are homogeneous. Put
+`t_+ = Σ_ρ s_(x_ρ)` and `t_- = Σ_ρ t_(x_ρ)`. The spine letters have distinct ranges, so
+`t_- t_+ = Σ_ρ t_(x_ρ) s_(x_ρ) = Σ_ρ p_ρ = 1`. AGGP Lemma 2.4 gives
+`R = R_0[t_+, t_-; φ]` with `φ(d) = t_+ d t_-`, and no Morita step is needed. `R_0` is a
+unital `Q`-algebra, hence `ℤ`-flat and H'-unital (ABC Remark 2.2).
 
-## 2. R is a corner skew Laurent ring
-Pick a base type `ρ_0` and its spine letter `x_0 = x_(ρ_0)`, a loop at `ρ_0`
-(strong connectivity lets us route the spine so that `x_0 : ρ_0 -> ρ_0`; otherwise replace
-`x_0` by a spine cycle and regrade by that cycle length). Put `t_+ = s_(x_0) ∈ R_1` and
-`t_- = t_(x_0) ∈ R_(-1)`.
-- `t_- t_+ = t_(x_0) s_(x_0) = α_(x_0) = p_(ρ_0)`.
+## 2. The core and its K-theory (repair of G2)
+- **Stages.** `R_0 = colim_n R_(0,n)`, where `R_(0,n)` is spanned by `s_μ b t_ν`, with
+  `|μ| = |ν| = n` and `b ∈ B⁺`. The transition pads by `b ↦ Σ_x s_x σ_x(b) t_x`.
+- **Each stage.** `R_(0,n)` is the corner `q M_(P_n)(B⁺) q`, where `q = diag(α_μ)`
+  records path availability. For every type `τ`, the spine path
+  `x_(s^(n−1)τ) … x_(sτ) x_τ` ends at `τ` with full availability. So `q` is full, and
+  Morita invariance gives `K(R_(0,n)) ≅ G = ⊕_ρ K(B⁺_ρ)`.
+- **The colimit.** The transitions induce `[X]`, so `K(R_0) = colim(G →[X] G →[X] …)`,
+  because `K` commutes with filtered colimits (ABC, proof of Lemma 3.5).
+- **The telescope.** `φ` prepends spine letters, so `φ_*` is the index shift `s` on the
+  colimit, with `s ι_n = ι_(n+1)` for the canonical maps `ι_n : G -> K(R_0)`. From
+  `ι_n = ι_(n+1)[X]` we get `s^(-1) ι_n = ι_n [X]`. The exact sequence
+  `0 -> ⊕_n G -> ⊕_n G -> colim -> 0` of the telescope then gives
+  `coker(1 − φ_*) ≅ coker(1 − [X] on G)` and `ker(1 − φ_*) ≅ ker(1 − [X] on G)`.
 
-Restrict to the unital corner `p_(ρ_0) R p_(ρ_0)`, or, when there are several types, first
-apply the standard reduction that a strongly connected finite type graph with a spine is
-Morita equivalent to the single-type corner at `ρ_0` (collapse each type to `ρ_0` along the
-spine; this is the row-finite reduction of ABC §5 in the coefficient-ring setting). On that
-corner `t_- t_+ = 1`. By AGGP Lemma 2.4 (quoted in the claim), the corner is
-`R_0'[t_+, t_-; φ]` with `φ(d) = t_+ d t_-` a corner isomorphism of its core `R_0'`. Morita
-invariance of `K`-theory lets us compute on this corner and transport back.
-
-## 3. H'-unitality and supercoherence
-- `R_0'` is unital-on-each-level and a filtered colimit of matrix rings over `B⁺`, hence
-  flat as a `ℤ`-module, hence H'-unital (ABC Remark 2.2: H'-unital = H-unital for
-  `ℤ`-flat rings, and unital rings are H-unital; filtered colimits of H'-unital rings are
-  H'-unital).
-- `S = φ^(-1)R_0'` is the colimit of `R_0' →φ R_0' →φ ...`. Its unitization is regular
-  supercoherent: `B⁺` is regular supercoherent by
-  `eventually-rational-register-ring-is-regular-supercoherent`; matrix rings over a regular
-  supercoherent ring are regular supercoherent; and the colimit maps `M_(P,n) -> M_(P,n+1)`
-  are split inclusions of a free corner, hence flat, so ABC Proposition 7.1 applies
-  verbatim with `B⁺` in the role of `k`.
+## 3. The NK terms vanish (repair of G1)
+Let `S = φ^(-1)R_0 = colim(R_0 →φ R_0 →φ …)`, with automorphism `φ̂`, and let
+`D = S ⊕ Q` be its `Q`-unitization. By the ABC step quoted in the claim,
+`NK(R_0, φ)_± = NK(D, φ̂)_±`, so by Lemma 7.2 it suffices that `D` is regular
+supercoherent.
+- **D is a filtered colimit.** `D = colim_n D_n`, where `D_n = R_(0,n) ⊕ Q ≅ R_(0,n) × Q`,
+  since each `R_(0,n)` is unital. The transitions `D_n -> D_(n+1)` are unital.
+- **Each `D_n` is regular supercoherent.** `R_(0,n)` is Morita equivalent to a finite
+  product of factors of `B⁺`. Those are regular supercoherent by
+  `eventually-rational-register-ring-is-regular-supercoherent`, parts 1–3. Coherence and
+  finite projective dimension of finitely presented modules are Morita invariant, and so
+  are they over polynomial rings, because `M_m(A)[t] = M_m(A[t])`.
+- **The transitions are flat, on both sides.**
+  - The padding maps are block maps whose blocks are `B⁺` viewed through the substitutions
+    `σ_x`, cut down by availability idempotents. These are flat by part 4 of that node.
+  - The spine maps `φ` are untwisted corner embeddings. Over the image corner, the
+    remaining blocks are standard column modules, which are finitely generated projective.
+  - The `Q` factor is a field.
+- **Filtered colimits.** A filtered colimit of regular supercoherent rings along flat maps
+  is regular supercoherent, by an elementary argument.
+  - Coherence: a finitely generated left ideal of `D[t_1..t_p]` comes from some
+    `D_n[t…]`. Its syzygies there are finitely generated, and flat base change carries them
+    to `D[t…]`.
+  - Regularity: a finitely presented module comes from a finite stage. A finite resolution
+    by finitely generated projectives there stays exact after the flat base change.
+- **Conclusion.** Hence `NK(D, φ̂)_± = 0` by Lemma 7.2.
 
 ## 4. The sequence
-ABC Theorem 3.6 with `A = ℤ` gives
-`K(R_0'[t_+, t_-; φ]) = NK_+ ⊕ NK_- ⊕ hocofiber(K(R_0') →(1−φ_*) K(R_0'))`. By §3 and
-Lemma 7.2 the `NK`-terms vanish, so
-`K(R) = hocofiber(K(R_0') →(1−φ_*) K(R_0'))`, i.e. the long exact sequence
-`... -> K_n(R_0') →(1−φ_*) K_n(R_0') -> K_n(R) -> K_(n−1)(R_0') -> ...`.
-- **Morita.** `R_0'` is a filtered colimit of matrix rings over `B⁺`, so
-  `K_n(R_0') = K_n(B⁺)` compatibly with `φ_*`. Under this, `1 − φ_*` is `1 − [X]`, where
-  `[X]` is the transfer of the register correspondence, by definition of the padding map in
-  §1.
-- **Injection.** The sequence gives a short exact
-  `0 -> coker(1 − [X] : K_n(B⁺) -> K_n(B⁺)) -> K_n(R) -> ker(1 − [X] on K_(n−1)(B⁺)) -> 0`.
-  So `coker(1 − [X])` injects into `K_n(R)` for every `n`. That is (P). ∎
+ABC Theorem 3.6, with `A = ℤ` and §3, gives
+`K(R) = hocofiber(K(R_0) →(1−φ_*) K(R_0))`, and §2 identifies its cokernel and kernel.
+That is the statement. ∎
 
-## 5. Remark on the resolvent tension
-Drop the resolvents. Then `B⁺` becomes the field `Q`, `R` becomes `L_Q(E_∞)` for the
-infinite state graph, and ABC Theorem 7.6 (row-finite quivers over the regular supercoherent
-`k = Q`, extended to the infinite case by `K`-theory's commuting with the filtered colimit
-of finite complete subgraphs) gives (P) with no extra hypothesis. Adjoining the resolvents,
-which is forced to make `1/m` exist, is exactly what replaces the coefficient field `Q` by
-`B⁺` and turns supercoherence into the one remaining question.
+## 5. Remark (heuristic)
+Without resolvents, and with registers bounded, the same computation is ABC Theorem 7.6
+for a row-finite quiver over `k = Q`. Unbounded registers are not literally a quiver
+algebra, so this comparison is only heuristic (referee b). The resolvents that make `1/m`
+exist are what replace `Q` by `B⁺` as the coefficient ring.

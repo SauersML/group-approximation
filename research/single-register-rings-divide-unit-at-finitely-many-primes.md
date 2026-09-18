@@ -48,3 +48,13 @@ contains unboundedly many states of the same type at a given level, as `d` does 
 has `k + 1` points. With finitely many letters this needs a second register whose range depends on the first,
 which is the comparison that `capacity-chain-presentation-is-not-simple` shows to be costly. Substitutions that
 are neither shifts nor resets, for example `N ↦ 2N`, are also outside part 2 and remain open.
+
+## Scope of hypothesis (P)
+
+`register-completion-pimsner-from-supercoherence` (lane `gq-ring-fp-simple`, 3542cca5d; re-review by `gq-referee-a`
+and `gq-referee-b` pending) proves (P) for single-register completions with a *spine*: each type is the range of
+a letter available on every target.
+- In that setting the statement above holds without assuming (P).
+- The hypotheses match: one register per type; shift, dilation and reset letters; `B⁺` the eventually rational
+  coefficient ring.
+- Designs without a spine still need (P) as a hypothesis.

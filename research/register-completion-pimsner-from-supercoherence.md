@@ -2,73 +2,56 @@
 rg: 2
 id: register-completion-pimsner-from-supercoherence
 kind: claim
-title: The Pimsner sequence (P) for a single-register completion follows from Ara--Brustenga--Cortiñas once the coefficient ring B+ is regular supercoherent
+title: The Pimsner sequence (P) holds for every single-register completion with a fully available spine, by Ara--Brustenga--Cortiñas and the regular supercoherence of B+
 distinct_from:
-  resolvent-register-units-give-rational-symbols: that states (P) as an assumption; this proves (P) from Ara--Brustenga--Cortiñas modulo one commutative-algebra hypothesis on B+.
-  single-register-rings-divide-unit-at-finitely-many-primes: that is the divisibility theorem conditional on (P); this discharges (P) down to supercoherence of B+.
+  resolvent-register-units-give-rational-symbols: that states (P) as an assumption; this proves (P) for single-register completions with a spine.
+  single-register-rings-divide-unit-at-finitely-many-primes: that is the divisibility theorem conditional on (P); this discharges (P) for its setting.
   abc-twisted-laurent-k-theory-fibration: that is the imported ABC theorem; this applies it to register completions and checks its hypotheses.
+  eventually-rational-register-ring-is-regular-supercoherent: that is the commutative-algebra input (regular supercoherence and flatness of B+); this is the K-theory consequence.
 artifacts:
   - research/artifacts/gq-gq-k2-q-register-symbols.md
+  - research/artifacts/gq-referee-a-register-completion-pimsner-from-supercoherence.md
+  - research/artifacts/gq-referee-b-register-completion-pimsner-from-supercoherence.md
 ---
 
-**ESTABLISHED** through `register-completion-pimsner-from-supercoherence-proof`
-(lane proof, not independently reviewed; referee requests sent). It reduces hypothesis (P)
-of `resolvent-register-units-give-rational-symbols` and
-`single-register-rings-divide-unit-at-finitely-many-primes` to one commutative-algebra
-statement, `eventually-rational-register-ring-is-regular-supercoherent`.
+**ESTABLISHED** through `register-completion-pimsner-from-supercoherence-proof` (lane proof).
+The first version (bcdfabf89) had three gaps, found by `gq-referee-a` (288dbe786) and
+`gq-referee-b` (27950613e): the choice of `t_+`, `K(core) ≠ K(B⁺)`, and flatness for ABC
+Prop 7.1. They are repaired here following the referees' suggestions, and re-review has
+been requested.
 
-## The ingredients, verbatim
-- **Corner skew Laurent ring** (Ara--González-Barroso--Goodearl--Pardo, *Fractional skew
-  monoid rings*, arXiv:math/0307320, Lemma 2.4). "Let `D = ⊕_(i∈ℤ) D_i` be a `ℤ`-graded
-  ring containing elements `t_+ ∈ D_1` and `t_- ∈ D_(-1)` such that `t_- t_+ = 1`. Then
-  there is a corner isomorphism `α : D_0 -> t_+ t_- D_0 t_+ t_-` given by
-  `α(d) = t_+ d t_-`, and `D = D_0[t_+, t_-; α]`."
-- **The K-theory fibration** (Ara--Brustenga--Cortiñas, arXiv:0903.0056, Theorem 3.6, as
-  in `abc-twisted-laurent-k-theory-fibration`). For a unital ring `R`, a corner isomorphism
-  `φ : R -> pRp`, and `A` with `R ⊗ A` H'-unital,
-  `K((R ⊗ A)[t_+, t_-; φ ⊗ 1]) = NK_+ ⊕ NK_- ⊕ hocofiber(K(R ⊗ A) →(1 − φ⊗1) K(R ⊗ A))`.
-- **Nil-vanishing** (ABC Lemma 7.2 and Proposition 7.1). If `R` is regular supercoherent
-  then the twisted `NK`-terms vanish; and, for the core of a Leavitt-type ring, the
-  unitization of `S = φ^(-1)R_0` is regular supercoherent when the coefficient ring is,
-  using flatness of the colimit maps.
+## Ingredients (verified at the source by `gq-referee-b`)
+- **AGGP Lemma 2.4** (arXiv:math/0307320). "Let `D = ⊕_(i∈ℤ) D_i` be a `ℤ`-graded ring
+  containing elements `t_+ ∈ D_1` and `t_- ∈ D_(-1)` such that `t_- t_+ = 1`. Then there
+  is a corner isomorphism `α : D_0 -> t_+ t_- D_0 t_+ t_-` given by `α(d) = t_+ d t_-`, and
+  `D = D_0[t_+, t_-; α]`."
+- **ABC Theorem 3.6 and Remark 2.2** (arXiv:0903.0056), as in
+  `abc-twisted-laurent-k-theory-fibration`.
+- **ABC Lemma 7.2.** "Let `R` be a regular supercoherent ring and let `ϕ` be an
+  automorphism of `R`. ... Then `NK_n(R[t_1,t_1^(-1),…],ϕ)_± = 0` for every `p >= 0` and
+  every `n ∈ ℤ`."
+- **ABC, proof of Theorem 7.6.** The corner isomorphism is replaced by the automorphism
+  `ϕ̂` of the colimit `B = ϕ^(-1)L_0`, and `NK(B̃, ϕ̂)_± = NK(B ⊕ k, ϕ̂)_±` for the
+  `k`-unitization. We use the same step with `k = Q`, which is central in `R`.
 
 ## Setting
-A **single-register completion** `R`, in the sense of
-`single-register-rings-divide-unit-at-finitely-many-primes` (part 2):
-- finitely many types, each with one register `N` valued in `ℕ`;
-- an **always-available spine**: for every type `ρ` a letter `x_ρ` with
-  `t_(x_ρ) s_(x_ρ) = p_ρ` (availability `α_(x_ρ) = p_ρ`), such that the spine letters make
-  the type graph strongly connected;
-- the coefficient ring `B⁺`: the `σ`-closed unital commutative ring of functions on states
-  that are eventually rational in `N` at each type, with all register resolvents
-  `(N + c)^(-1)`;
-- letters acting on `N` by `N ↦ N + a` or `N ↦ c`, availability eventually constant.
+A **single-register completion with a spine** is the setting of
+`single-register-rings-divide-unit-at-finitely-many-primes` (part 2), with:
+- letters acting on the one register by `N ↦ N + a`, `N ↦ pN + r` or `N ↦ c`;
+- the coefficient ring `B⁺` as in `eventually-rational-register-ring-is-regular-supercoherent`,
+  a finite product of rings `B⁺_T`;
+- a **spine**: for every type `ρ`, a letter `x_ρ` with range `ρ` and full availability
+  `t_(x_ρ) s_(x_ρ) = p_ρ`. The `R_L`-type and `R_cap`-type designs have one.
+
+`R` is a `Q`-algebra.
 
 ## Statement
-Let `R` be a single-register completion, and suppose
-`eventually-rational-register-ring-is-regular-supercoherent`: the ring `B⁺` is regular
-supercoherent. Then:
-1. `R` is a corner skew Laurent ring `R_0[t_+, t_-; φ]` over its degree-`0` core `R_0`,
-   with `t_+ = s_(x_(ρ_0))` for a base type `ρ_0`.
-2. `R_0` is a filtered colimit of matrix rings over `B⁺`, so `R_0` and `R_0 ⊗ ℤ` are
-   H'-unital, and the unitization of `S = φ^(-1)R_0` is regular supercoherent.
-3. Hence ABC Theorem 3.6 with `A = ℤ`, plus Lemma 7.2, give the exact sequence
-   `... -> K_n(R_0) →(1 − φ_*) K_n(R_0) -> K_n(R) -> K_(n−1)(R_0) -> ...`
-4. By Morita invariance `K_n(R_0) = K_n(B⁺)`, and under this identification `φ_* = [X]`,
-   the transfer of the register correspondence. So
-   `coker(1 − [X] : K_n(B⁺) -> K_n(B⁺))` injects into `K_n(R)` for all `n`, which is (P).
+For such `R`, with `G_n = ⊕_ρ K_n(B⁺_ρ)` and `[X] : G_n -> G_n` the transfer of the
+register correspondence, there are exact sequences
+`0 -> coker(1 − [X] : G_n -> G_n) -> K_n(R) -> ker(1 − [X] : G_(n−1) -> G_(n−1)) -> 0`
+for every `n ∈ ℤ`. In particular `coker(1 − [X])` injects into `K_n(R)`, which is (P).
 
-So `single-register-rings-divide-unit-at-finitely-many-primes` and
-`dilation-letters-cannot-divide-the-unit-class` become **unconditional** once `B⁺` is
-regular supercoherent.
-
-## What is not covered
-- **The resolvents are essential.** Without them the ring is the Leavitt path algebra
-  `L_Q(E_∞)` of the infinite state graph over the field `Q`, and (P) is already
-  unconditional (ABC Theorem 7.6 over `k = Q`, extended to row-finite infinite quivers by
-  the colimit). But then `1/m` is not available and `Q ⊄ R`. Adjoining the resolvents
-  enlarges the coefficient ring from `Q` to `B⁺`, which is exactly what makes
-  supercoherence a real hypothesis.
-- **Availability idempotents that are not eventually constant** are outside the setting,
-  and so is the two-register comparison shape, which is refuted for a different reason
-  (`register-comparison-presentations-are-not-simple`).
+**Consequence.** Within their stated settings, and provided those have a spine,
+`single-register-rings-divide-unit-at-finitely-many-primes` (part 2),
+`dilation-letters-cannot-divide-the-unit-class` and
+`top-determined-register-rings-cannot-divide-the-unit` hold without the assumption (P).
