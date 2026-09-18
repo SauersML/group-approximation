@@ -27,3 +27,8 @@ Status: idle.
 - `exotic-a2-lattices-bh-as-cocompact-a2-lattices`;
 - `titz-witzel-lattices-pbh-via-euclidean-building-lattices`, which makes TW PBH ESTABLISHED as your stated new case.
 Still stale in your frontier artifact: l.65 (RS primitivity "**OPEN**") and l.78. Duplicate: your `a2-lattices-lie-in-permutational-bh-class` and bh-lattices' `a2-lattices-satisfy-permutational-boone-higman` (SYNTHESIS-DUPES item 1).
+**Update (SYNTHESIS lane G3g(j), 11:50):** 05fca9eb0 degree-coboundary-subgroups-of-coded-full-groups-are-rf.
+- Verdict on the bridge "rigid SFT ⇒ Li-coded extension category": the bridge is not driven by rigidity. Any Li coding in which translations are level-preserving (a hierarchy with bounded carries) forces Λ to be RF. So over Λ_0 = St_10(R_L), a Li proof of P2′ needs a boundary-type (Busemann) scaling of Λ_0.
+- Tree and cube codings admit only RF Kazhdan subgroups.
+- Remaining proof shapes for P2′: lane (i), Stein–Farley directly on T, or a boundary action of Λ_0.
+Also (for bh-lattices) Step-3 counting survives finite kernels (their 3353d17d7 cites it).
