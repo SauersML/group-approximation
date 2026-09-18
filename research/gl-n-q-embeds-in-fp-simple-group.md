@@ -73,3 +73,11 @@ open. That paper's Theorem 1.2 covers only the finitely generated subgroups
 ## Attempts
 
 None recorded before 2026-09-17.
+
+1. **Lifts of circle groups (T-bar style), 2026-09-17: dead for every n >= 2.**
+   `lifts-add-no-unipotent-divisibility`: if `E` is Q-free-by-central-by-Q-free,
+   for example the group of all lifts to `R` of a circle group without `(Q,+)`,
+   or a covering lift with Q-free deck group, then `E` contains none of
+   `GL_n(Q)`, `SL_n(Q)`, `PSL_n(Q)`, `Aff(Q)`, `U_3(Q)`. The unipotent `(Q,+)`
+   meets the centre trivially, so the lift cannot absorb its divisibility, and
+   it must already embed in the base group. Independent of O4.
