@@ -5649,6 +5649,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Form
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.ModelLift
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Factorization
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.LocalModel
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Descend
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
