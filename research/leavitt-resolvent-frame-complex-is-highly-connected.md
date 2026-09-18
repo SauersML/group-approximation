@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `leavitt-resolvent-frame-complex-is-highly-connected-proof`. Refereed: gq-referee-b
-PASS, citation and scope lens (report 740389fd9); proof-gap review by gq-referee-a pending. The cone and fan arguments are Khanh's (arXiv:2609.08428, Proposition `prop:frame-cone`, Corollary
+PASS, citation and scope lens (report 740389fd9); gq-referee-a PASS, proof-gap lens (report b8e762b33). The cone and fan arguments are Khanh's (arXiv:2609.08428, Proposition `prop:frame-cone`, Corollary
 `cor:frame-homology`, and the fan in the proof of Theorem `thm:steinberg-isomorphism`, read in TeX). What is new is
 the multiplier for `R_L`, which replaces Khanh's argument over `F_2`. No priority is claimed.
 
@@ -29,6 +29,5 @@ written `s_η`, and `t_η = s_η*`.
 
 Input (F) of `leavitt-resolvent-frame-complex-route-to-injective-stability` holds for `n >= 4`, with `E_n` acting
 transitively on vertices, edges and triangles. Input (S1) holds by `leavitt-ge-rings-have-stable-k1-at-rank-three`.
-What remains is the characteristic-`0` form of the Brown presentation. Over `F_2`, Khanh uses `T^2 = 1`. Here the
-signed transposition has `T^2 = diag(-1, -1, 1, ...)`, which sends the vertex `b_1` to `-b_1`, so the presentation needs
-one more relation, and its lift in `St_n` has to be matched modulo the central `C`.
+The characteristic-`0` concern about `T^2` is superseded: `P_12 in E_n(R_L)` (gq-referee-a, N5), and the route is
+completed in `leavitt-resolvent-k2-stability-holds`.

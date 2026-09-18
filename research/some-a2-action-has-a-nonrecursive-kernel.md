@@ -79,3 +79,24 @@ typically no finitely generated orbit-finite normal subgroup, so Attempt 1's
 obstruction does not apply. The reduction and the tame cases are recorded in
 `type-a-hnn-realization-with-unsolvable-word-problem`. Finite-index edge groups die by
 `permutation-hnn-realization-of-type-a-actor-is-a2` (b).
+
+**Attempt (bh-free-41, 2026-09-18): Mihailova-type data.** Lane proof, elementary, not reviewed. It closes several natural shapes of witness; none is constructed.
+1. **Stabilizers are recursive.** In any type `[A_2]` action of a finitely presented `G`, the finitely many double
+   cosets `G_s g G_s` are r.e. sets of words that partition all words, so each is recursive; in particular `G_s`
+   is. So a Mihailova subgroup, whose membership is undecidable, can never be a stabilizer. Mihailova-type
+   undecidability has to sit in the core `K = core_G(G_s)`, with `G_s` itself decidable.
+2. **Recursively presented images give r.e. kernels.** `K` is r.e. iff `G/K` is recursively presented. So every
+   construction whose image is defined by an r.e. set of relations dies. For example, let `A` be any finitely
+   presented group, `φ : A ↠ Q` with `Q` finitely presented, and let `A × A` act on `Q` by
+   `(u,v)·x = φ(u) x φ(v)^{-1}`.
+   - The kernel is `{(u,v) : φ(u) = φ(v) ∈ Z(Q)}`.
+   - That set is r.e., since equality in `Q` is r.e. and centrality needs only the finitely many generators.
+   - This extends Attempt 2 from `F_k` to every `A`.
+   A witness's image must be a group of computable permutations whose relations are genuinely `Π_1`.
+3. **The factor parts over `F × F` are recursive.** Let `G = F × F` with `F` free, act of type `[A_2]` with
+   stabilizer `H`, and suppose `p_1(H)` and `p_2(H)` have finite index in `F`.
+   - Put `H_1 = {u : (u,1) ∈ H}`. It is normal in `p_1(H)` and recursive by item 1.
+   - Then `K ∩ (F × 1) = core_F(H_1) × 1`, which is a finite intersection of conjugates of `H_1`, hence
+     recursive. The same holds for `1 × F`.
+   - So in `F × F` a witness must hide its non-recursive part in the Goursat graph part of `K`, the
+     identification `p_1(K)/K_1 ≅ p_2(K)/K_2`.
