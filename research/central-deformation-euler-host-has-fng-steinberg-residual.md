@@ -135,3 +135,26 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      - Centrality of `K_2(N, ·)` also needs a stable-range bound, and none is known for `B`.
    - *Remaining route.* The `p`-localization sequence, with the `E_k`-residue invariant of Attempt 2 lifted to the
      skew-Laurent level.
+4. **(C2, skew-Laurent level) The Euler symbols are invisible from `T_p`: a `t`-homotopy (2026-09-18, lane gq-k2-q).**
+   This supersedes the residue argument of Attempt 2, which it contains. Inputs:
+   - Quillen's homotopy invariance `K_2(R[t]) ≅ K_2(R)` for left regular noetherian `R`, applied to `D`.
+     `D = A[x^(±1); σ]` is noetherian of global dimension at most 3, since `A` is regular of dimension 2.
+     Textbook, not re-read.
+   - `abc-twisted-laurent-k-theory-fibration`, applied to `Z[u]`.
+
+   Steps:
+   - *The deformation.* `u ↦ u`, `b ↦ t π_0^(-1)`, `x ↦ x` defines a ring map `φ : B -> D[t]` with `p ↦ t`. The
+     relations hold because `t` is central and commutes with `x`.
+     - `ev_1 ∘ φ` is the quotient `B -> B/(p − 1) = D`.
+     - `ev_0 ∘ φ` sends `b ↦ 0`, so it factors as `B -> Z[u][x^(±1); σ] ⊆ D`.
+   - *Homotopy.* Both `ev_0` and `ev_1` invert `K_2(D) ≅ K_2(D[t])`, so they agree on `K_2`. Hence the map
+     `K_2(B) -> K_2(D)` induced by `B -> D` factors through `K_2(Z[u][x^(±1); σ])`.
+   - *That group is finite.* By `abc-twisted-laurent-k-theory-fibration` for the regular ring `Z[u]` and
+     `σ(u) = u + l`, it is an extension of `ker(1 − σ on K_1(Z[u]) = {±1})` by
+     `coker(1 − σ on K_2(Z[u]) = K_2(Z))`. So it has order at most 4.
+   - *Conclusion.* The image of `K_2(B) -> K_2(D)` has order at most 4.
+     - The retraction `T_l -> D × Z` restricted to `T_p` factors through `B × Z`. So the image of
+       `K_2(T_p) -> K_2(T_l)` meets the free abelian group spanned by the `c_q` only in `0`.
+     - The obstruction of `euler-ring-rational-symbols-are-infinitely-generated` does not come from `T_p`.
+   - *Not covered.* Classes of `K_2(N, T_p)` in the kernel of `K_2(T_p) -> K_2(T_l)`, the unstable `K_2(N, ·)`,
+     and whether such classes die in every finite quotient.
