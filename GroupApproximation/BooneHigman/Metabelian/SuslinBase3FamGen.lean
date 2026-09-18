@@ -28,8 +28,9 @@ supplies `SL₃ = E₃`).  It is strictly smaller in PROOF CONTENT: every normal
 USED (the earlier reductions `SuslinBase3Core*`, `SuslinBase3Cong*` never use it).  The class
 discharged is not contained in `E₂(A[X])`: for `A = 𝔽_p[t₁..t_k]`, `k ≥ 2`, with
 `ψ : tᵢ ↦ X tᵢ` and `τ` Cohn's matrix `[[1 + t₁t₂, t₁²], [-t₂², 1 - t₁t₂]] ∈ SL₂(A) \ E₂(A)`,
-`ψ(τ)` is normalized (`X = 0` gives `1`) and specializes at `X = 1` to `τ ∉ E₂(A)`, so `ψ(τ) ∉ E₂(A[X])`.  (Remark only; this
-file makes no claim about the congruence `σ ≡ 1 mod 𝔪^N` for such `σ`.)
+`ψ(τ)` is normalized (`X = 0` gives `1`) and specializes at `X = 1` to `τ ∉ E₂(A)`, so
+`ψ(τ) ∉ E₂(A[X])`.  (Remark only; this file makes no claim about the congruence
+`σ ≡ 1 mod 𝔪^N` for such `σ`.)
 
 TRUE on the families exactly when `SuslinBase3CongPowStab` is (the equivalence); the remaining gap
 is K1-regularity (rank 2 plus one stabilization, one polynomial variable) for the normalized
