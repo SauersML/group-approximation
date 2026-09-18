@@ -141,3 +141,74 @@ theorem k2PolyNF_eps_spec {K : Finset I} {L : I} {v : I → Polynomial (ZMod p)}
     (fun g => g ∈ k2PolyDeg_G p K L ∧ act g (unitVec L) = v) hv
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_eps_spec
+
+/-- **Closure (Schreier / van der Waerden).**  If `σ(x v)⁻¹ x σ(v) ∈ Q` for every generating
+root `x` of `G` and every orbit point `v`, then `σ(g v)⁻¹ g σ(v) ∈ Q` for every `g ∈ G`. -/
+theorem k2PolyNF_closure {K : Finset I} {L : I}
+    (σ : (I → Polynomial (ZMod p)) → SteinbergGroup I (Polynomial (ZMod p)))
+    (hgen : ∀ (i j : I) (hij : i ≠ j) (a : Polynomial (ZMod p)), i ∈ insert L K →
+      j ∈ insert L K → ∀ v : I → Polynomial (ZMod p),
+        (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) →
+          (σ (act (x i j hij a) v))⁻¹ * x i j hij a * σ v ∈ k2PolyNF_Q p K L)
+    {g : SteinbergGroup I (Polynomial (ZMod p))} (hg : g ∈ k2PolyDeg_G p K L) :
+    ∀ v : I → Polynomial (ZMod p), (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) →
+      (σ (act g v))⁻¹ * g * σ v ∈ k2PolyNF_Q p K L := by
+  refine rootSpan_induction (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K)
+    (Q := fun g => ∀ v : I → Polynomial (ZMod p),
+      (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) →
+        (σ (act g v))⁻¹ * g * σ v ∈ k2PolyNF_Q p K L) ?_ ?_ ?_ hg
+  · intro i j hij a hq v hv
+    have hq' : i ∈ insert L K ∧ j ∈ insert L K := hq
+    exact hgen i j hij a hq'.1 hq'.2 v hv
+  · intro v _
+    show (σ (act 1 v))⁻¹ * 1 * σ v ∈ k2PolyNF_Q p K L
+    rw [act_one, mul_one, inv_mul_cancel]
+    exact Subgroup.one_mem _
+  · intro g k _ hk hg' hk' v hv
+    show (σ (act (g * k) v))⁻¹ * (g * k) * σ v ∈ k2PolyNF_Q p K L
+    have hkG : k ∈ k2PolyDeg_G p K L := hk
+    have hkv := k2PolyNF_orbit_act hkG hv
+    have e : (σ (act (g * k) v))⁻¹ * (g * k) * σ v =
+        ((σ (act g (act k v)))⁻¹ * g * σ (act k v)) * ((σ (act k v))⁻¹ * k * σ v) := by
+      rw [act_mul]
+      group
+    rw [e]
+    exact Subgroup.mul_mem _ (hg' (act k v) hkv) (hk' v hv)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_closure
+
+/-- **The criterion gives the residual.** -/
+theorem k2PolyNF_stab_of_coset (hCo : k2PolyNF_CosetStatement) : k2PolyNF_StabStatement := by
+  intro p _ I _ _ K L hLK hK hthird hconst ih g hg hfix
+  obtain ⟨σ, hσ, hgen⟩ := hCo p K L hLK hK hthird hconst ih
+  have h1 := k2PolyNF_closure σ hgen hg (unitVec L) ⟨1, Subgroup.one_mem _, act_one _⟩
+  rw [hfix] at h1
+  have e : g = σ (unitVec L) * ((σ (unitVec L))⁻¹ * g * σ (unitVec L)) *
+      (σ (unitVec L))⁻¹ := by
+    group
+  rw [e]
+  exact Subgroup.mul_mem _ (Subgroup.mul_mem _ hσ h1) (Subgroup.inv_mem _ hσ)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_stab_of_coset
+
+/-- **The residual gives the criterion** (so the two are equivalent): take `σ = k2PolyNF_eps`.
+-/
+theorem k2PolyNF_coset_of_stab (hS : k2PolyNF_StabStatement) : k2PolyNF_CosetStatement := by
+  intro p _ I _ _ K L hLK hK hthird hconst ih
+  have hst := hS p K L hLK hK hthird hconst ih
+  refine ⟨k2PolyNF_eps p K L, ?_, ?_⟩
+  · obtain ⟨h1, h2⟩ := k2PolyNF_eps_spec (p := p) (K := K) (L := L) (v := unitVec L)
+      ⟨1, Subgroup.one_mem _, act_one _⟩
+    exact hst _ h1 h2
+  · intro i j hij a hi hj v hv
+    have hxG : x i j hij a ∈ k2PolyDeg_G p K L :=
+      x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hij a ⟨hi, hj⟩
+    obtain ⟨hvG, hvact⟩ := k2PolyNF_eps_spec hv
+    obtain ⟨hwG, hwact⟩ := k2PolyNF_eps_spec (k2PolyNF_orbit_act hxG hv)
+    refine hst _ (Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.inv_mem _ hwG) hxG) hvG) ?_
+    rw [act_mul, act_mul, hvact]
+    exact k2PolyNF_act_inv hwact
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_coset_of_stab
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

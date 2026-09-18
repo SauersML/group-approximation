@@ -35,7 +35,7 @@ an element `y ∈ St(M, P)` with `fst y = 1` and `snd y = 1` must die after padd
   `x_ij(lift h)`".  Modulo `I²`, conjugates by `E(A)` have nonzero diagonal part.
 * The step from `k2KarInj_conj_mem` to normality of `S` in `St(M, L[X])` needs a
   Vaserstein-type argument, and it is not done.  Every "construct the action" route found
-  was circular: it goes through `k2Karoubi_Faithful`, which is `R1` again.
+  was circular: faithfulness of the witness is `R1` again (`k2Karoubi_faithful_of_inj`).
 
 Nothing here uses `k2DilateSt_PullbackStatement`, `k2PullExc_*`, dilation, p-power
 filtrations, Witt vectors, Cohen theory, excision or homotopy invariance.
