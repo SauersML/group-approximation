@@ -5537,6 +5537,7 @@ import GroupApproximation.Manuscript.NonMF.Full.AtomRepresentatives.AtomBaseSet
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.LabelledMap
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.ShellAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.KMSPresentation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Lifts
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

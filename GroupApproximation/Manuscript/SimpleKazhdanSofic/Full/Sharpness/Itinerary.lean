@@ -50,12 +50,14 @@ variable {X : Type} [TopologicalSpace X] (T : X ≃ₜ X) {k : Type} [Ring k]
 def translates (F : Set (LocallyConstant X k)) : Set (LocallyConstant X k) :=
   {h | ∃ f ∈ F, ∃ n : ℤ, LocallyConstant.comap ⟨⇑(T ^ n), (T ^ n).continuous⟩ f = h}
 
+omit [Ring k] in
 theorem comap_zpow_zero (f : LocallyConstant X k) :
     LocallyConstant.comap ⟨⇑(T ^ (0 : ℤ)), (T ^ (0 : ℤ)).continuous⟩ f = f := by
   ext x
   show f ((T ^ (0 : ℤ)) x) = f x
   rw [zpow_zero, Homeomorph.one_apply]
 
+omit [Ring k] in
 theorem comap_mem_translates {F : Set (LocallyConstant X k)} {h : LocallyConstant X k}
     (hh : h ∈ translates T F) (m : ℤ) :
     LocallyConstant.comap ⟨⇑(T ^ m), (T ^ m).continuous⟩ h ∈ translates T F := by
