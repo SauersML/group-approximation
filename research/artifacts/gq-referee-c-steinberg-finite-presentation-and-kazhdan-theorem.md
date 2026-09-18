@@ -10,6 +10,9 @@
 - **Finite presentation, n >= 5: PASS.** I give a self-contained proof (§2) for every finitely presented unital
   associative ring, commutative or not. It is elementary, uses only (R1)–(R3), and gives an explicit
   presentation.
+  - **Credit:** this is the standard relator bootstrap, written out here. No novelty is claimed.
+  - **Second check:** `gq-referee-b` independently checked §2 and passed it (95b06dff9,
+    `gq-referee-b-steinberg-direct-finite-presentation.md`).
 - **Finite presentation, n = 4: PASS as a literature import only.**
   - The statement is Krstić–McCool, *Presenting GL_n(k⟨T⟩)*, J. Pure Appl. Algebra 141 (1999) 175–183,
     Theorem 3.
