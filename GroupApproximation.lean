@@ -5517,6 +5517,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL01.Bridge
 import GroupApproximation.Manuscript.NonMF.Full.GL01.Triangle
 import GroupApproximation.Manuscript.NonMF.Full.GL01.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL03C.Listing
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.Triangle
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
