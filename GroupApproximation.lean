@@ -5585,6 +5585,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Dichotom
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.Gluing
 import GroupApproximation.Manuscript.NonMF.Full.AtomRepresentatives.AtomCells
 import GroupApproximation.Manuscript.NonMF.Full.AtomRepresentatives.AtomTower
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Phase
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
