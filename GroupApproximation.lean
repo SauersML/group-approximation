@@ -6010,6 +6010,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUn
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductSaturation
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexIndexAlg
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryProjection
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeMilnor
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeLadder
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
