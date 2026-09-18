@@ -48,3 +48,26 @@ question.
   regular-trace LEF models, and it maps onto `E` with locally finite simple
   kernel `L_-`.  So an argument that never sees the quotient by `L_-`
   refutes a true statement.
+
+## Attempts
+
+- **2026-09-18, tensor saturation of the transport's spectral input
+  (swarm-0917-w9-w9-ptl-break, stability-approximation).**  The attempt
+  asked whether the Kesten gap `(MSG)` that the manuscript transport
+  needs in the adjoint corona of a regular-trace model could be proved
+  model-generically without `(T)`.  It cannot, except as a relative
+  `(tau)` theorem.  `delta-e-adjoint-msg-is-fd-uniform-gap` shows the
+  following.
+  - Once one model `sigma` as in (H1) exists, `sigma (+) (sigma tensor U)`
+    is again an (H1) model for every operator-norm model `U` of `E`.
+  - Its adjoint corona contains `[U]` as an exact, normalized-rank-zero
+    reducing corner.
+  - So proving `(MSG)` on `L` for all (H1) models is equivalent to proving
+    `(exists (H1) model) => T_MF(E,L)`.
+  - That forces a uniform spectral gap for `L` on every finite-dimensional
+    unitary representation of `E`. It includes `(tau)` for the image of
+    `L` in the congruence quotients of `SL_5(F_2[z^(+-1)])`.
+
+  Status: obstruction ESTABLISHED; this hole stays OPEN.  The only
+  spectral arguments left are model-specific ones that use a property
+  destroyed by adding a rank-zero tensor block (the tracial rung).

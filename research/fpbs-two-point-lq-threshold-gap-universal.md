@@ -81,3 +81,31 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     Thinning is an equality on trees, so no monotone parameter coupling can
     improve the exponent. New information is needed at `p_c + 0`.
     See Section 5 of `lq-threshold-power-monotonicity-2026-09-17.md`.
+* **Infinite-cluster reduction and intersection moments (swarm-0917-w9,
+  reframing).**
+  - *Proved* (`fpbs-lq-two-point-infinite-cluster-reduction`, established; it
+    uses Hermon–Hutchcroft through `fpbs-supercritical-finite-susceptibility`):
+    - `sum_x (tau^fin_p)^q <= chi^fin(p) < infinity` for every `p > p_c` and
+      every `q >= 1`. So every `p_q`, `q_0` and [Q] itself depend only on
+      `tau^inf`.
+    - `Z^inf_k` is the expected intersection of `k` independent infinite
+      clusters of `o`.
+    - `Z_q(p) < infinity` at one `p` gives `gamma(p) >= log(gr)/q` (kernel
+      (K)), infinite-cluster ball growth at most `(1-1/q) log gr`, and
+      nonuniqueness.
+  - *New hole:* [Q_fin], `fpbs-two-point-some-lq-above-pc-universal`, which is
+    `q_0 < infinity`. It gives the chain
+    `[Q] => [Q_fin] => (K) => p_c < p_u`, with routes
+    `fpbs-some-lq-from-lq-threshold-gap` and
+    `fpbs-worst-pair-kernel-via-some-lq-two-point`.
+  - *Consequence for methods:*
+    - The collapse families H2/H5 have Bernoulli `tau^fin` and `theta` but
+      `q_0 = infinity`.
+    - So no argument from finite-cluster observables, `theta` or local laws
+      proves [Q] or [Q_fin].
+  - *Where Russo–BK with the pivotal split dies* (Section 5 of
+    `lq-infinite-cluster-reduction-2026-09-18.md`):
+    - The finite-side pivotal terms are at most `C chi^fin(p) Z_q(p)`.
+    - Closing by Gronwall then needs `int chi^fin dp < infinity` at `p_c+`,
+      which fails on `T_d`. Replacing it by an `l^r` bound is circular.
+    - The pivotal term with both sides infinite is left uncontrolled.
