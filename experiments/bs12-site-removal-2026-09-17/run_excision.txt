@@ -1,0 +1,24 @@
+L=59 runs=[(0, 58), (58, 1)] r=4 s=6 long_runs=1 gauge_return=5.5e-16
+  exact(C1,Z1)=1.2e-15  ||C1-C||=0.4450 (bound 0.4488)  ||Z1-Z||=2.73e-03 (bound 1.47e-01)
+  lowest h eigenvalues [0.003005 0.012055 0.026968 0.048014]  max leak/E=9.2  (a=6.71e+07)
+  theta=||(1-P_F1)P_V||=1.66e-01
+  padding removal k=1: eps=0.0538 -> errC=0.4498 errZ=0.0028 exact=1.4e-14 unit=1.3e-14 leak=4.8e-15
+L=59 runs=[(0, 58), (58, 1)] r=6 s=6 long_runs=1 gauge_return=6.4e-16
+  exact(C1,Z1)=1.2e-15  ||C1-C||=0.2846 (bound 0.2856)  ||Z1-Z||=1.75e-03 (bound 1.47e-01)
+  lowest h eigenvalues [0.003017 0.012008 0.027075 0.04782 ]  max leak/E=18.9  (a=1.72e+10)
+  theta=||(1-P_F1)P_V||=4.81e-01
+  padding removal k=2: eps=0.1082 -> errC=0.2892 errZ=0.0066 exact=6.8e-15 unit=5.7e-15 leak=5.7e-15
+L=225 runs=[(0, 150), (150, 4), (154, 70), (224, 1)] r=10 s=8 long_runs=2 gauge_return=7.7e-16
+  exact(C1,Z1)=1.6e-15  ||C1-C||=0.1652 (bound 0.1653)  ||Z1-Z||=4.75e-04 (bound 3.68e-02)
+  lowest h eigenvalues [0.000449 0.001794 0.002058 0.004036]  max leak/E=59.8  (a=1.8e+16)
+  theta=||(1-P_F1)P_V||=2.40e-01
+  padding removal k=2: eps=0.0424 -> errC=0.1664 errZ=0.0007 exact=1.3e-14 unit=1.0e-14 leak=4.2e-15
+L=225 runs=[(0, 150), (150, 4), (154, 70), (224, 1)] r=16 s=8 long_runs=1 gauge_return=2.7e-15
+  exact(C1,Z1)=4.6e-15  ||C1-C||=0.1013 (bound 0.1013)  ||Z1-Z||=2.91e-04 (bound 3.68e-02)
+  lowest h eigenvalues [0.000449 0.001794 0.002058 0.004036]  max leak/E=160  (a=3.02e+23)
+  padding removal k=3: theta=||(1-P_F1)P_V||=0.573 >= 1/2, outside the theorem's regime; skipped
+L=134 runs=[(90, 1), (91, 2), (93, 40), (133, 91)] r=6 s=6 long_runs=2 gauge_return=6.4e-16
+  exact(C1,Z1)=1.6e-15  ||C1-C||=0.2846 (bound 0.2856)  ||Z1-Z||=3.49e-03 (bound 1.47e-01)
+  lowest h eigenvalues [0.001221 0.00488  0.006744 0.010973]  max leak/E=21.7  (a=1.72e+10)
+  theta=||(1-P_F1)P_V||=2.57e-01
+  padding removal k=2: eps=0.0696 -> errC=0.2865 errZ=0.0035 exact=1.1e-14 unit=1.0e-14 leak=4.6e-15
