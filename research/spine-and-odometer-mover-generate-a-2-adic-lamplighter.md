@@ -55,7 +55,10 @@ odometer digit. The four-letter form keeps the one new feature, a recurrent stat
    `commonly-fixed-letters-compress-to-faithful-actions`, removes this obstruction.
 5. **Open.** Is `H'`, the 2-adic Grigorchuk lamplighter, LP-embeddable, or at least Boone–Higman? A positive
    answer settles this test case, and a general method for 2-adic lamplighters over contracting lamp groups
-   would cover every linear-activity instance of the shape "spine plus recurrent mover".
+   would cover every linear-activity instance of the shape "spine plus recurrent mover". **Reduction:**
+   `spine-mover-automata-over-fp-bases-are-lift-presented` makes the same automaton over any *finitely presented*
+   self-similar lamp group lift-presented, so the whole test case follows from a finitely presented self-similar
+   overgroup of the Grigorchuk group on the binary tree.
 
 ## Proof
 
