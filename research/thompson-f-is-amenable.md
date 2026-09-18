@@ -324,3 +324,21 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
   - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
     surviving cubical route to exactness, and it is not a route to amenability.
+- **Proof strength: elementary arithmetic (swarm-0917-w10-w10-f-pull, 2026-09-18, quantifier-shift, obstruction-miner).**
+  `thompson-f-amenability-unprovable-in-elementary-arithmetic` is ESTABLISHED (unrefereed). It is
+  unconditional: `IΔ0 + Exp + Th_Π1(N)` does not prove the Π2 Følner sentence `∀n ∃A (A is c^-n-Følner)`, nor any
+  sentence that elementarily implies it. The same holds for `EA`.
+  - *Class killed:* every argument whose Π2 content lives in elementary arithmetic. It may be non-constructive
+    (counting, pigeonhole, averaging, probabilistic existence, case splits) and may use arbitrary true Π1 facts.
+    This sharpens "Explicit Følner families" from families of bounded complexity to proofs of bounded strength.
+  - *Invariant:* the growth of the Følner search `g_Γ`, compared with the provably recursive functions
+    (`ea-provably-recursive-functions-are-kalmar-elementary`, Henk–Pakhomov verbatim).
+  - *Where every member dies:* witness extraction. The finitely many Π1 axioms are absorbed into the search.
+    Then `g_Γ` is Kalmár elementary, so `g_Γ <= exp_(k+1)`, against Moore's `|A| >= exp_n(0)`.
+  - *Calibration:* Brieussel–Zheng `Δ_U` with `U = exp_n(0)` is amenable, and its Følner sentence is equally
+    unprovable. So the kill measures Følner growth only, not amenability.
+  - *Gates:* the Ore form (Bartholdi elimination iterates `τ` factorially) and Moore's Ramsey form (Towsner's bound
+    iterates `R` `Θ(log 1/ε)` times). Both escape, since an elementary witness there gives only a tower Følner bound.
+    These are the graph's two recorded survivors: exponential Ore radius and elementary `R_F`.
+  - *Next rung (open):* `IΣ1`, `PRA` and `WKL0` prove every tower total. Killing them needs a
+    non-primitive-recursive lower bound on the Følner function of `F`.
