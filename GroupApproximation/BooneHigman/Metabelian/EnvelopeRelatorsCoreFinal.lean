@@ -142,9 +142,11 @@ theorem rnCore_nfRelators_le [Nontrivial X] (H : Subgroup (TreeAut X)) (hH : IsS
     refine rcore_disj_subset H N hne hcomm (rcoreE_spec x₀ (List.cons_ne_nil x₁ []))
       (rcoreE_spec x₀ (List.cons_ne_nil x₁ [x₁])) fun h k => ⟨?_, ?_⟩
     · have hm := hD ⟨(rcoreE x₀ [x₁], [x₁]), Set.mem_insert _ _, h, k, rfl⟩
+      rw [rfL_apply, rfConjL_apply]
       exact rf_commute_of_mem hm
     · have hm := hD ⟨(rcoreE x₀ [x₁, x₁], [x₁, x₁]),
         Set.mem_insert_of_mem _ (Set.mem_singleton _), h, k, rfl⟩
+      rw [rfL_apply, rfConjL_apply]
       exact rf_commute_of_mem hm
   have hsplit : nfSplitRelators H x₀ ⊆ N := by
     rintro r ⟨h, a, c, k, l', hl', hall', hk, hc, ha, rfl⟩
