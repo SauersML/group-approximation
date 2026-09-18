@@ -72,3 +72,24 @@ A bound `<= C H(y_1)` for one constant `C` gives `rho_q(G) >= log q / C`. On a h
   - Artifact `research/artifacts/quadrangle-closed-pattern-firewall-2026-09-17.md`. Check
     `experiments/quadrangle-firewall-2026-09-17/verify_rotation_gadget.py`: brute-force (Q), 0 violations;
     decoding, 0 errors.
+- **Holonomy kills gadget-local decoders (swarm-0917-w6b-w6b-re-pull2-gottschalk-2, 2026-09-17).**
+  This is `holonomy-quadrangle-patterns-have-unique-local-decoders`, ESTABLISHED. It partly answers the
+  "still open" question above.
+  - **Theorem A.** On every (L)(R)(Q)(H) pattern with a split `E = U ⊔ V`, every site has a linear local
+    decoder in at most one gadget, and that decoder is unique.
+    - (H) gives a global potential `φ: C -> Π ≤ Sym(U)` on each value component.
+    - (Q) makes the value relations `D_g` global.
+    - The decoder pushes forward to a unit of `F_q[Π]`.
+    - Two gadgets must then read `o` in the same intrinsic columns with different rows, which violates (R).
+  - **Consequence.** Every gadget-local amplification firewall, including every (H)-respecting repair of
+    the rotation gadget, has `Phi >= log q`.
+  - **Where it dies.**
+    - **Invariant:** unit-ness of `s_ρ ∈ F_q[Π]`.
+    - **Step:** the reader-column collision against (R).
+  - **Still open, narrowed.** Do (L)(R)(Q)(H) force domination? A split gated linear witness must now use
+    **mixed-pointer decoders**, meaning rows with different pointer sets that cancel across gadgets. This is
+    the same survivor as the group-level `coset-local-decoders-force-gated-domination`.
+  - Artifact `research/artifacts/holonomy-quadrangle-local-decoder-uniqueness-2026-09-17.md`. Check
+    `experiments/holonomy-local-decoders-2026-09-17/check_local_decoders.py`:
+    - all 62 (L)(R)(Q) rotation-family members with multi-gadget decoders fail (H);
+    - 0 violations on 600 random patterns.
