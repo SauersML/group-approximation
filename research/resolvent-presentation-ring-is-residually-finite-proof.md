@@ -51,10 +51,14 @@ elements `z^α ε z^(n_1) ε ... ε z^(n_s) ε z^β` of `F_l[Z * C_m]` (`z` a ge
   most `s` such letters, and reduced forms in free products are unique.
 - So its coefficient is `λ_(τ*) c^(s+1) != 0`, a contradiction.
 
-`Z * C_m` is residually finite: Gruenberg, *Residual properties of infinite soluble
-groups*, Proc. LMS (3) 7 (1957), Theorem 4.1, Corollary (ii), p. 44 (free products of
-residually finite groups are residually finite; location from a search record, not
-re-read here).
+`Z * C_m` is residually finite because it is virtually free. The kernel of the map
+`Z * C_m -> C_m` that kills `z` and is the identity on `C_m` has index `m` and meets
+every conjugate of `C_m` trivially, so it is free by the Kurosh subgroup theorem. Free
+groups are residually finite, and so are finite extensions of residually finite groups
+(intersect the conjugates of a finite-index normal subgroup). Pointer, not needed:
+Gruenberg, *Residual properties of infinite soluble groups*, Proc. LMS (3) 7 (1957),
+Theorem 4.1, Corollary (ii), p. 44, for free products in general (location from a
+search record only).
 - So some finite quotient `Q` is injective on the finitely many group elements in the
   expansions.
 - In the regular representation of `F_l[Q]` the images stay independent: the

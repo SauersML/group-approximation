@@ -29,8 +29,13 @@ literature input.
 
 ## Attempts
 
-1. **Two families of candidate invisible elements (heuristic; the K-theory imports
-   below were not checked at source).**
+1. **Two families of candidate invisible elements (heuristic).** Three K-theory inputs
+   below were NOT read at source:
+   - (K-a) the fundamental theorem for twisted Laurent rings, and the claim that the cokernel
+     of `1 - σ` on `K_2(Q(u))` contains `K_2(Q)` (this needs two further unchecked facts);
+   - (K-b) `K_2(Z/p^r) = 0` for `p` odd (Dennis--Stein, per gq-referee-b);
+   - (K-c) `K_2(Z_(l)) ⊇ ⊕_(q != l) F_q^×` (Tate plus Dennis--Stein injectivity for discrete
+     valuation rings, per gq-referee-b).
    - *Symbols from `Z`.* The class `{-1,-1}` comes from `K_2(Z) = Z/2`. It maps nontrivially
      to `K_2(Q(u)[x^(±1); σ])`: `R_l -> D ⊆ Q(u)[x^(±1); σ]`, and the twisted Laurent
      fundamental theorem gives a cokernel of `1 - σ` on `K_2(Q(u))` that contains
@@ -53,7 +58,8 @@ literature input.
        its normal closures are just the subgroups it generates. It contains an infinitely
        generated subgroup, so this claim fails for `R_l`, and
        `resolvent-elementary-group-is-fp` fails too. (Centrality of `K_2(N, R)` for
-       noncommutative `R` is itself not known here.)
+       noncommutative `R` is not known here. The known criterion, `N >= sr(R) + 2`, needs a
+       stable-rank bound for `R_l` that has not been proved.)
      - *The test that decides it.* Compute `K_2(R_l)` through the split extension
        `0 -> (e) -> R_l -> D -> 0`, with `K_2(D)` from the twisted Laurent theorem
        (plausibly finite). The question is whether `K_2` of the path ideal

@@ -2,6 +2,8 @@
 rg: 2
 id: resolvent-presentation-ring-is-residually-finite
 kind: claim
+artifacts:
+  - research/artifacts/gq-referee-b-resolvent-presentation-ring-is-residually-finite.md
 title: For some prime l the eight-relator resolvent ring R_l is residually finite
 distinct_from:
   rf-resolvent-ring-has-z-localized-corner: that constructs the residually finite quotient R̄_l of R_l from the modules M_r; this asks whether R_l itself is residually finite, which would make it a finitely presented residually finite ring with Z_(l) in a corner.
@@ -10,7 +12,8 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-18)** through `resolvent-presentation-ring-is-residually-finite-proof`, for every
-prime `l`. Lane proof, not independently reviewed; referee requests sent. It uses the path normal form
+prime `l`. Lane proof. Citation and hypothesis review PASS by gq-referee-b (report in
+`artifacts`); proof-gap reviews by gq-referee-a and gq-referee-c are pending. It uses the path normal form
 `resolvent-ring-has-path-normal-form`, and density of alternating words in `F_l[Z * C_m]` together with
 Gruenberg's theorem.
 
