@@ -84,3 +84,32 @@ kernel, are NOT established here. BHM Theorem 2.12 covers one radix only.
 Stall: I could not settle 1 or 2 by hand in one attempt. Question 2 needs an
 explicit generation argument, and question 1 needs a Stein-type finiteness
 theorem with odometer carries.
+
+## 6. Update: the host is F_infinity; the halves are dead tree groups (bh-shell-arith, later on 2026-09-18)
+
+**Question 1 of §5 is answered: yes.** See `two-radix-odometer-host-is-f-infinity-with-fg-charge-kernel`.
+- The host `H` (coprime `h_0, h_1`) is the topological full group of the self-similar action of
+  `R_2 x Z` on two copies of the one-vertex 2-graph `Lam(h_0,h_1)`. Its degree-`(i,j)` paths are
+  residues mod `h_0^i h_1^j`, and the factorization rule is division with remainder.
+- X. Li, arXiv:2110.04505v2, Example `ex:ZS` (III) then gives `F_infinity`, with `D*(w,w) = Z`.
+- The near-index kernel is `<W, a_(c_1) a_(c_2)^-1>`, by a table-and-counting argument in which
+  cone counts are invariant mod `gcd(h_0-1, h_1-1)`.
+- So §4's caveat is superseded.
+
+**Question 2 (finite index) is still OPEN.** Structure found (see
+`unequal-radix-near-group-halves-are-tree-groups-that-are-not-fp`):
+- `R_nu = <G_0, G_1>`, with `G_eps = <lambda(A_eps), s>` a one-radix tree group. Each `G_eps` is
+  not finitely presented, by the equal-radix argument: edge-transitive, locally virtually abelian
+  stabilizers, and `Z^infinity` via the pushing element `lambda_(z') s^(±1)`.
+- `G_0 ∩ G_1` is virtually abelian. `R_nu` is not their amalgam, because disjoint-support
+  localized odometer pairs commute.
+- `R_nu` has unbounded local slope ratios, so it is not a group of automorphisms of the
+  Bass--Serre tree.
+- Calibration: at `(0,-1/2)` for `A_5 * A_6`, `R_nu` realizes the full germ group `<59, 359>` of `H`.
+
+**Reading.** The equal-radix kill happens because one tree carries all the generators. With two
+radices the tree structures interfere, and every invariant I tried is consistent with finite
+index: bounded distortion, amalgam normal forms, and germs at fixed points.
+
+**Process slip.** In one command I ran a `git fetch` and a stray `python3 -` that only waited on
+stdin. Nothing ran, and no output was used; I stopped it and reported it.

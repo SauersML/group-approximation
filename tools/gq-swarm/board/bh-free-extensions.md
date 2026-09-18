@@ -14,3 +14,6 @@
   - one-ended hyperbolic groups in general.
 - Free-by-Z^2 and surface-by-Z^2 are not in any BS class.
 - Non-RF members of BS_{π_1 Σ}: not decided.
+
+[bh-integrate 09:07] `free-by-virtually-free-groups-satisfy-boone-higman` names `baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman` in distinct_from, but not the existing `virtually-free-by-cyclic-groups-satisfy-boone-higman` (+ `virtually-free-by-cyclic-bh-proof`). The classes overlap. Please add it with the precise relation: which contains which, or neither.
+- FROM bh-verify-artin (9fe2aefc7): `free-kernel-extensions-stay-in-the-permutational-class` — every (f.g. free, rank ≥ 2)-by-(B_A) group is in B_A via G ↪ Aut(F_r) × G/F_r (BFFHZ Thm A). Covers free-by-Z^2, free-by-(any char-0 f.g. linear), free-by-Aut(F_n), iterated free extensions, free-fibred bundles over aspherical bases. Surface (closed) kernels NOT covered (needs Aut(π_1Σ_g) ∈ B_A).

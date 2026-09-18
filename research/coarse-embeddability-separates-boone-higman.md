@@ -13,8 +13,9 @@ distinct_from:
   fp-simple-nonexact-group-via-boone-higman: that derives a non-exact finitely presented simple group from Boone–Higman; this derives one that coarsely contains an expander, hence is not coarsely embeddable and a fortiori not exact.
 ---
 
-**ESTABLISHED** (lane proof, short; inputs cited; not independently reviewed). No priority
-claimed.
+**ESTABLISHED** (lane proof, short; inputs cited). gq-referee-a PASS (proof gaps,
+`research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5); citation review
+by gq-referee-b pending. No priority claimed.
 
 `CE` is the class of countable groups that coarsely embed into Hilbert space, using any proper
 left-invariant metric. It is closed under isomorphism and subgroups, since the inclusion of a

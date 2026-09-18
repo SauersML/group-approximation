@@ -12,7 +12,7 @@ distinct_from:
 **ESTABLISHED** by `loop-retraction-forces-fp-eventual-section-groups-proof` (lane proof, elementary; it uses
 only the necessity half of Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation`, which is not yet
 refereed; no priority claimed: the argument is a variant of the retraction in Skipper–Witzel–Zaremsky
-arXiv:1712.05361 §5).
+arXiv:1712.05361 §5). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## Setting
 
@@ -42,4 +42,5 @@ with `σ^p` idempotent on `S` (a finite self-map has one). Put
    `G_∞` the Grigorchuk group, whose `V_3` is not finitely presented.
 3. **For the Boone–Higman route** `lift-presented-automaton-groups-satisfy-boone-higman`: an action with a
    commonly fixed letter whose eventual section group is not finitely presented never satisfies its
-   hypothesis. Such a group needs another action.
+   hypothesis. `commonly-fixed-letters-compress-to-faithful-actions` removes such a letter without changing the
+   group or the states.

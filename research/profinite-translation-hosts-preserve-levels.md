@@ -69,10 +69,17 @@ design back inside that bracket.
 
 ## Scope
 
-- Nothing here excludes non-profinite free minimal Cantor actions with divisible
-  coinvariants. For those, item 2 fails and the question stays open; a perfect `Γ` acting
-  on a Bratteli--Vershik model with unbounded branching is the natural test, and no node on
-  main decides it.
+- **Correction (same lane): the non-profinite case is partly decided on main.** Item 2
+  fails for non-profinite actions: a Toeplitz subshift has an odometer factor with unbounded
+  periods, its crossed product is finitely generated (`minimal-subshift-algebra-is-simple-lef-ring`,
+  item 1), and `[1]` is then divisible by every period, because the translates of a
+  level-`n` clopen are equivalent idempotents. But over `Z` such rings are LEF (same node,
+  item 3), and a finitely presented simple LEF ring is finite
+  (`lef-simple-rings-are-not-finitely-presented`). So over `Z`, periodic approximability
+  replaces level preservation as the obstruction. What remains open is a free minimal Cantor
+  action of a finitely generated perfect group whose crossed product is not LEF and has
+  divisible unit class. Non-LEF-ness forces a genuinely non-finite mechanism (a Leavitt-type
+  compression is the known one), which leads back to `frame-designs-for-the-ring-gate-are-bracketed`.
 - Items 1-2 need no freeness, minimality or perfectness. Item 3 uses freeness.
 - `k` is a field only to make `K_0(k)` free on `[k]`; any ring with `K_0` finitely
   generated gives the same conclusion in item 3.

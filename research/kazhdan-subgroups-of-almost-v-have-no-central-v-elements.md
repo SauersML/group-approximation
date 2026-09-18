@@ -9,9 +9,8 @@ distinct_from:
   type-a-actors-have-no-infinite-virtually-central-subgroup: that forbids infinite virtually central subgroups in type (A) actors; this is a different, dynamical restriction on where an infinite center can sit inside almost-V hosts.
 ---
 
-**ESTABLISHED** by `kazhdan-almost-v-central-v-elements-proof` (lane proof, elementary
-from landed nodes plus the revealing-pair structure of elements of `V`; not independently
-reviewed; no novelty claimed).
+**ESTABLISHED** by `kazhdan-almost-v-central-v-elements-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-germ-extensions.md, bdc9e959c; lane proof, elementary
+from landed nodes plus the revealing-pair structure of elements of `V`; citation review by referee-b pending; no novelty claimed).
 
 ## Setting
 

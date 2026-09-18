@@ -11,7 +11,12 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `bbmz-oligomorphic-twisted-questions-proof` (lane proof, elementary, assembling
-landed nodes; not independently reviewed). No priority claimed; Zaremsky's text, where type (A)
+landed nodes). Referee a (proof gaps): PASS in
+`research/artifacts/gq-referee-a-hyperbolic-groups-lie-in-the-permutational-class.md` (2bdad9399),
+nit N2 applied. Referee b (citations): PASS,
+`research/artifacts/gq-referee-b-hyperbolic-groups-lie-in-the-permutational-class.md` (9ec4a1a7c):
+numbering and wording of Questions 1.5 and 1.6 checked verbatim.
+No priority claimed; Zaremsky's text, where type (A)
 was introduced after these questions were posed, was not re-read for a remark to the same effect.
 
 ## The questions
@@ -22,6 +27,9 @@ arXiv:2309.06224v3, §1.3 (TeX, read on MSI):
   finitely presented oligomorphic group with finitely generated stabilizers of finite subsets?"
 - **Question 1.6.** "Does every finitely presented simple group embed in a finitely presented
   (simple) twisted Brin--Thompson group?"
+
+A related oligomorphic question is BBMZ Question 1.3, for finitely presented subgroups of the
+rational group `R_{Γ,E}`; it is not treated here.
 
 Here a group of permutations of `S` is *oligomorphic* when it has finitely many orbits on `S^n`
 for every `n` (Cameron), and the twisted Brin--Thompson group `SV_G` is defined by BBMZ for a group
