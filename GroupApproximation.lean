@@ -5621,6 +5621,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06f.Statement
 import GroupApproximation.Manuscript.NonMF.Full.GL06f.Reduction
 import GroupApproximation.Manuscript.NonMF.Full.GL06g.Doubling
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.RawWord
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.PRem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
