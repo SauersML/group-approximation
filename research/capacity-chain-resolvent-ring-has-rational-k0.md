@@ -7,9 +7,18 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the design target, with a finitely generated K_2 condition; this is one explicit candidate for its conditions 1-4.
   leavitt-resolvent-ring-is-fp-simple-of-char-zero: R_L has every letter available everywhere, a Leavitt tuple, so [1] = 0; here availability depends on registers, and the resulting correspondence has index 1 on [1].
   resolvent-vacuum-rings-have-no-k0-state: that forces any such ring to be stateless; this candidate is consistent with it, being purely infinite by design.
+refuted_by:
+  - capacity-chain-presentation-is-not-simple
 ---
 
-**OPEN.** The ring `R_cap` below is finitely presented, simple and purely infinite. It
+**REFUTED (2026-09-18)** by `capacity-chain-presentation-is-not-simple`: the finitely many
+relations below admit a bi-infinite `c`-chain module with non-integral capacity, so the
+presented ring is not simple, with or without `a_u`. The concrete ring may still be simple,
+but it is not presented by these relations. Lane `gq-k2-q` also found 4-torsion in `K_0`
+with `a_u`, and a non-finitely-generated tail-unit cokernel
+(`resolvent-register-units-give-rational-symbols`).
+
+**Refuted statement.** The ring `R_cap` below is finitely presented, simple and purely infinite. It
 contains `Q` through a resolvent vacuum. In `K_0(R_cap)`, `[1] = −V_0` has infinite order
 and is divisible by every `n`, so `R_cap ≅ M_n(R_n)` for every `n`. By
 `resolvent-vacuum-rings-have-no-k0-state`, `R_cap` is then stateless.
