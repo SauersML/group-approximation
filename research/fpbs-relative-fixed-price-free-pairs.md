@@ -9,6 +9,7 @@ distinct_from:
   fpbs-locally-free-malnormally-exhausted-finite-cost: that is the open finite-cost statement for the malnormally exhausted case of locally free groups; this is a finitely generated pair inequality that implies finite cost for every locally free group with finite c*.
 artifacts:
   - research/artifacts/fpbs-relative-fixed-price-decomposition-2026-09-17.md
+  - research/artifacts/fpbs-fold-bootstrap-seeding-2026-09-17.md
 ---
 
 **OPEN.** Let `K ≤ L` be nontrivial finitely generated free groups, and let
@@ -53,3 +54,36 @@ Conversely, that floor refutes this claim (artifact §3.2, Proposition 3).
   Its hypothesis fails exactly for malnormal `K`.
 - **Relative L2 and rank-gradient bounds.** They vanish, so they separate
   nothing.
+
+**Fold bootstrap: exact single-double-coset criterion, odometer actions and
+iid seeds (September 18, 2026, swarm-0917-w7-w7-fp-follow, finite-models).**
+Artifact `research/artifacts/fpbs-fold-bootstrap-seeding-2026-09-17.md`.
+Scripts in `experiments/fpbs-fold-bootstrap-2026-09-17/`.
+- **Exact criterion.** At `K = <a, bab^{-2}> ≤ F_2`, for every free action,
+  `E_K ∨ b|_A = E_L` iff the 2-of-3 closure of `A` on the triples
+  `{w, aw, bw}` is conull. The proof is a Stallings fold of the coset hulls
+  (artifact §1). So graphings using the double coset `K b K` alone achieve
+  exactly `σ_b = inf { μ(A) : cl(A) conull }`.
+- **Settled for odometer actions.** If the action has a factor
+  `z ↦ z + χ(g)` on `Ẑ` with `χ(a) = 1`, then three residues mod `N` suffice,
+  so `relC = 0` (Lemma 2.1). For `Gamma_mal` this gives
+  [[fpbs-mal-odometer-product-actions-have-cost-two]]: `β × Ẑ_χ` has cost 2
+  for every free `β`, and `C(Gamma_mal) = 2`.
+- **Bernoulli bound.** For iid single-site seeds the closure is conull iff
+  `p > 5/32`. The triple complex is a hypertree, the recursion is
+  `y = p + (1−p)(2y^2 − y^4)`, and it is tangent at `y = 1/3`. So Bernoulli
+  has `relC ≤ 5/32`, and `5/32` is the exact single-site sprinkling
+  threshold. It is not `0`, and a bound per stage does not telescope to a
+  finite cost.
+- **Where it dies for Bernoulli.** The Bernoulli shift is mixing, so it has no
+  compact factor, and the odometer seeds are not available. Nonabelian finite
+  quotients give only `r(Q)/|Q| ≈ 0.10` (best `848/8192`, Zassenhaus
+  `(2,4)`). No lower bound on `σ_b` is known. The BLPS mass-transport bound
+  for 2-neighbour bootstrap fails because core-free complements can be
+  many-ended.
+- **Remaining case.** The claim is now open exactly for free actions without
+  such a factor, Bernoulli first. There, `relC = 0` needs either
+  factor-of-iid seed sets with conull closure and density tending to `0`
+  (iid single-site seeds need more than `5/32`), or labels outside
+  `K b^{±1} K`.
+
