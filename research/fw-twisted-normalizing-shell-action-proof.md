@@ -2,47 +2,60 @@
 rg: 2
 id: fw-twisted-normalizing-shell-action-proof
 kind: route
-title: FW straightens the shift into a genuine equivariant bijection of index m; orbits and index force every orbit to be finite and bounded, so P is finite
+title: FW straightens the shift into a genuine equivariant bijection of index m; the index forces every orbit to be finite, and orbit sizes decrease along the shift, so P is finite
 target: fw-inputs-admit-no-twisted-normalizing-genuine-shell-action
 requires:
   - genuine-action-shell-envelopes-generalize-the-regular-shell
 ---
 
-Suppose the near equality holds. Write `ρ' = ρ∘φ`, an action of `P` on `N` with **the same
-orbits as `ρ`**, because `φ` is surjective. A **near permutation** is a bijection between
-cofinite subsets of `N`. Its index is `ind(f) = |N \ im f| - |N \ dom f|`, and two near
-permutations that agree off a finite set have the same index. `ind(s^m) = m`.
+Suppose the near equality holds for all `g`. A **near permutation** of a set `S` is a
+bijection between cofinite subsets of `S`. Its index is
+`ind(f) = |S \ im f| - |S \ dom f|`, and two near permutations of `S` that agree off a
+finite set have the same index. For `m > 0`, the shift `s^m` restricted to a union of `r`
+arithmetic rays `c + mN` has index `r` as a near permutation of any set containing that
+union with finite complement.
 
-1. **Straightening (FW).** The hypothesis says `s^m ρ'_g = ρ_g s^m` off a finite set, for
-   every `g`. Let `P` act on `N × N` by `g(x,y) = (ρ'_g x, ρ_g y)`. Then the graph `Γ` of
-   `s^m` is a commensurated subset. By FW there is a `P`-invariant `Γ'` with `Γ' Δ Γ`
-   finite. Let `Γ''` be the set of pairs of `Γ'` whose first coordinate and second
-   coordinate each occur in exactly one pair of `Γ'`. It is `P`-invariant, differs from
-   `Γ` by a finite set, and is the graph of an equivariant bijection
-   `f : (X, ρ') -> (Y, ρ)` between cofinite invariant sets `X, Y`. Here `f = s^m` off a
-   finite set, so `ind(f) = m`. Replacing `f, ρ', m` by `f^-1, ρ, -m` and `φ` by `φ^-1`
-   if needed, assume `m > 0`.
-2. **Orbits.** `X` and `Y` are cofinite and invariant, so they contain every infinite orbit.
-   Let `N_fin` be the union of the finite orbits. `f` maps orbits onto orbits of the same
-   cardinality, so it maps `N \ N_fin` bijectively onto itself, and `X ∩ N_fin` onto
-   `Y ∩ N_fin`. The index is additive over this splitting, and the infinite part
-   contributes `0`. So `f` restricted to `N_fin` is a near permutation of `N_fin` of index
-   `m`.
-3. **Chains.** Choose `M` such that `f = s^m` on `[M, ∞)`. Enlarge it so that every finite
-   orbit meeting `[M', ∞)` lies in `[M, ∞)`: only finitely many orbits meet `[0, M)`. For a
-   finite orbit `O ⊆ [M, ∞)`, `f(O) = O + m` is a finite orbit. If `O ⊆ [M+m, ∞)`, then
-   `O - m = f^-1(O)` is one too. So the finite orbits in `[M, ∞)` form disjoint chains
-   `O_i + km`, `k >= 0`, with base orbits `O_i` whose minimum lies in `[M, M+m)`. There are
-   at most `m` bases. On their union `F`, `s^m` shifts each chain by one step, so as a near
-   permutation of `N_fin` it has index `Σ_i |O_i|`. It agrees with `f` off a finite set, so
-   `Σ_i |O_i| = m`.
-4. **Density.** Chain `i` puts at least `|O_i|(L - c)` points into `[M, M + Lm)`, for a
-   constant `c` independent of `L`. So `F` has at least `m(L - c)` of the `Lm` points
-   there, and `[M, ∞) \ F` is finite. An infinite orbit has infinitely many points in
-   `[M, ∞)`, so **every orbit is finite**. The orbits in `[M, ∞)` have at most `m` points,
-   and there are finitely many others, so all orbits have at most `K` points for some `K`.
-5. **Conclusion.** `P` is finitely generated (a countable FW group has property FA, hence is
-   finitely generated). So it has finitely many homomorphisms to `Sym(K)`. The
-   intersection of their kernels is a finite-index subgroup acting trivially on every
-   orbit, hence on `N`. Every nontrivial element moves infinitely many points, so that
-   subgroup is trivial and `P` is finite. This contradicts the hypothesis. `∎`
+**Step 0. `φ` is an injective homomorphism.** `ρ` is injective into `NearSym(N)`, because
+every `g ≠ 1` has infinite support, and conjugation by `s^m` is multiplicative. So (★)
+forces `ρ_(φ(gh)) = ρ_(φ(g)) ρ_(φ(h))` in `NearSym(N)`, hence `φ(gh) = φ(g)φ(h)`, and
+`ρ∘φ` is an action. If `φ(g) = 1`, then `ρ_g = s^m s^-m ρ_g s^m s^-m` is the
+identity near infinity. So `ρ_g` has finite support, and `g = 1`.
+
+**Step 1. Straightening (FW).** Put `ρ' = ρ∘φ`, an action with infinite supports. The
+hypothesis says `ρ_g s^m = s^m ρ'_g` off a finite set, for every `g`. Let `P` act on
+`N × N` by `g(x,y) = (ρ'_g x, ρ_g y)`. The graph of `s^m` is then a commensurated subset. By
+FW there is an invariant `Γ'` differing from it by a finite set. Keep the pairs of `Γ'`
+whose first and second coordinates each occur in exactly one pair. This is still
+invariant, still differs from the graph by a finite set, and is the graph of an
+equivariant bijection `f : (X, ρ') -> (Y, ρ)` between cofinite invariant sets, with
+`f = s^m` off a finite set. So `ind(f) = m`.
+
+**Step 2. The case `m > 0`, `φ` any endomorphism.** Write `a ~ b` for "same `ρ`-orbit" and
+`a ≈ b` for "same `ρ'`-orbit", which means same orbit of `φ(P)`, so `≈` refines `~`. `f` maps
+each `≈`-class in `X` bijectively onto a `~`-class in `Y`. Let `I` and `I'` be the unions of
+the infinite `~`-classes and the infinite `≈`-classes. Then `I' ⊆ I`, `X ⊇ I'`, `Y ⊇ I`,
+and `f` maps `I'` bijectively onto `I`. Choose `M` with `[M, ∞) ⊆ X` and `f(a) = a + m`
+for `a >= M`.
+1. *Residue classes.* For `a >= M`, `a in I'` iff `a + m in I`. With `I' ⊆ I`, this gives
+   `a + m in I ⟹ a in I`. So in each residue class mod `m`, `I` meets `[M, ∞)` in an
+   initial segment. It is either the whole class from some point on, or finite. So
+   `I ∩ [M, ∞)` agrees up to a finite set with a union of `r` full classes, and so does
+   `I'`. In particular `I \ I'` is finite.
+2. *Index.* As a near permutation of `I`, `f|_(I')` has image all of `I`, so its index is
+   `-|I \ I'| <= 0`. On the tail it is `s^m` on `r` rays, so its index is `r >= 0`. Hence
+   `r = 0`, and `I ∩ [M, ∞)` is finite. An infinite orbit is an infinite subset of `N`, so
+   **every `ρ`-orbit is finite**.
+3. *Sizes.* For `a >= M`, the orbit of `a + m` is `f` of the `≈`-class of `a`. That class lies inside
+   the orbit of `a`, and `f` is a bijection, so `|orbit(a + m)| <= |orbit(a)|`. (The image
+   itself need not lie inside the orbit of `a`; only the size inequality is used.) Orbit sizes on `[M, ∞)` are
+   therefore bounded by their maximum on `[M, M+m)`. Only finitely many orbits meet
+   `[0, M)`. So every orbit has at most `K` points for some `K`.
+4. *Conclusion.* `P` is finitely generated by hypothesis. So `P`
+   has finitely many homomorphisms to `Sym(K)`. The intersection of their kernels has
+   finite index and acts trivially on every orbit, hence on `N`. Its elements have finite
+   support, so it is trivial, and `P` is finite. This is a contradiction.
+
+**Step 3. The case `m < 0`, `φ` an automorphism.** `f^-1 : (Y, ρ) -> (X, ρ')` is
+equivariant and agrees with `s^(-m)` off a finite set. Also `ρ = ρ'∘φ^-1`. So `f^-1`
+witnesses the hypothesis of Step 1 for the action `ρ'` (infinite supports), the
+automorphism `φ^-1` and the exponent `-m > 0`. Step 2 applies. `∎`

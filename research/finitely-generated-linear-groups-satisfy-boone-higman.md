@@ -75,6 +75,10 @@ following.
 
 **Stronger form, not claimed here.** In characteristic `p` the groups are in the
 permutational class `B_A`, by the reviewed node above. In characteristic zero that
-is `char-zero-linear-groups-satisfy-permutational-boone-higman`, whose last input is
-marked not independently reviewed. So the uniform permutational statement waits on
-that review.
+is `char-zero-linear-groups-satisfy-permutational-boone-higman`. Its last input,
+`fp-self-similar-subgroups-satisfy-permutational-boone-higman` (a), has PASS in
+`research/artifacts/review-pbh-charzero-spherical-2026-09-13.md` (row 3), and the chain
+was re-checked end to end by lane bh-verify-metabelian (05d6a15ff). *(Status line
+updated 2026-09-18 by bh-integrate; it previously said that input was unreviewed.)*
+The uniform permutational statement over all fields is not stated as a separate
+claim here.

@@ -91,3 +91,30 @@ distinct_from:
      example locally `∞`-transitive closures) force a faithful factor, hence `B_A`.
    - **Exact gap.** Irreducible three-tree lattices with such an `N_ij`. Existence
      unknown.
+7. **Boundary k-graphs (bh-lattices, 2026-09-18).** *Works for every virtually
+   torsion-free lattice, any number of factors.*
+   `virtually-torsion-free-tree-lattices-satisfy-pbh`, in three steps:
+   - **Embedding.** A torsion-free lattice embeds in the topological full group of
+     the `N`-th power of its cube k-graph. A phase coordinate `(Z/N)^k` absorbs the
+     Busemann lag, and `N` is chosen so that every vertex has two loops of every
+     colour. That group is `F_∞` by Li's higher-rank-graph theorem
+     (`torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`).
+   - **Type (A).** After stabilizing by the Cuntz groupoid, refining cylinder
+     decompositions makes any two nonempty clopen sets in a strongly connected
+     piece equivalent, so the clopen action is of type (A)
+     (`stabilized-kgraph-full-groups-have-type-a-actions`).
+   - **Remaining gap.** Only lattices with no torsion-free subgroup of finite
+     index. For three trees, they must also be irreducible with a discrete normal
+     subgroup in a factor closure (Attempt 6).
+8. **Torsion allowed (bh-lattices, 2026-09-18).** *Works for faithful lattices
+   on thick leafless trees.* `cocompact-tree-product-lattices-lie-in-type-a-class`:
+   the cube stabilizers become a finite germ groupoid acting self-similarly on a
+   transported cube k-graph, and Li's Zappa--Sz\'ep Example (III) replaces his
+   plain k-graph theorem. The power, phase and stabilization steps are unchanged.
+   - **What is left of this claim.** Its setting allows an action on `X` with a
+     finite kernel, and trees with leaves or with two ends. Lines split off as
+     discrete factors (`discrete-factor-tree-lattices-are-virtually-products`), and
+     pruning leaves does not change the action on the boundary. But a finite normal
+     subgroup acting trivially on `X` acts trivially on `∏ ∂T_i`, so it does not embed
+     in the full group. The remaining case is exactly a nontrivial finite kernel that
+     survives in no finite-index subgroup of `Gamma`.

@@ -135,7 +135,30 @@ extensions.
       to the central `T_x^e != 1`. So freeness of the block must come from the
       point-pushing kernel: the block is a lift of a non-free surface-group image with a
       nontrivial boundary-twist relator. Such images need `T_x^e` to be a product of `h'`
-      commutators in `Mod(Σ_{h',1})`, which fails for `h' = 1` (there
-      `Mod(Σ_{1,1})^ab = Z` and `T_x = (T_a T_b)^6` maps to `12`).
+      commutators in `Mod(Q̂)`. *Correction (attempt 12):* the ambient is `Mod(Q̂)`, of any
+      genus `g`, not `Mod(Σ_{h',1})`. For `g >= 2`, Baykur (arXiv:1206.3512, abstract) gives
+      commutator length `floor((|e|+3)/2)` for `T_∂^e`, so this is possible iff
+      `|e| <= 2h' - 2`. In particular it fails for `h' = 1` and works for `h' = 2`, `e = ±1`.
     - Still open: choosing lifts whose kernel part is exactly `(T_y T_x^-1)^{-n'}`,
       freeness of the lift, and injectivity of the amalgam.
+12. **Lifting the capped relator** (bh-3manifold, 2026-09-18). *Reduced to one explicit
+    condition plus freeness and injectivity; not constructed.* Let `Σ' ⊂ Q̂` be the
+    complement of the collar between `y` and `x = ∂Q̂`, so `∂Σ' = y` and `p` lies in the
+    collar. `Mod(Σ')` meets the pushing kernel trivially, so
+    `Push(pi_1(Q̂, p)) ⋊ Mod(Σ') <= Mod(Q, p)`, with `Mod(Σ')` acting on `pi_1(Q̂, p)` by based
+    automorphisms. Write elements as `(u, a)`.
+    - **Relator.** Take `a_1, b_1, a_2, b_2 ∈ Mod(Σ')` with `[a_1, b_1][a_2, b_2] = T_y` (Baykur,
+      genus of `Σ' >= 2`), and the lifts `(u, a_1), (1, b_1), (1, a_2), (1, b_2)`. A direct
+      computation gives `[(u, a_1), (1, b_1)] = (u · c(u)^-1, [a_1, b_1])` with
+      `c = a_1 b_1 a_1^-1`. So the relator product is `Push(u c(u)^-1) T_y`, which equals `T_y`,
+      i.e. `m' = 0`, `n' = 1`, exactly when `c` fixes `u`.
+    - **Consequence.** With the `v` block pushed, that is the non-virtually-fibered case
+      `m'/n' = 0` (attempt 10, item 5).
+    - **Non-degeneracy.** `T_y` acts on `pi_1(Q̂, p)` as conjugation by the boundary loop
+      `ℓ` (`T_y = T_x Push(ℓ)^-1`, and `T_x` acts trivially). So `T_y` is not central in the
+      lifted block, as it must not be, iff `u ∉ <ℓ>`.
+    - **The explicit condition.** Find a Baykur factorization in which `a_1 b_1 a_1^-1` fixes
+      some based loop `u ∉ <ℓ>`, e.g. `b_1` supported on a proper subsurface `W` with
+      `a_1(W)` missing a loop through the collar.
+    - **Still open:** that condition, freeness of the four lifts (their capped images are
+      not free), and injectivity of the amalgam with the pushed leaf.

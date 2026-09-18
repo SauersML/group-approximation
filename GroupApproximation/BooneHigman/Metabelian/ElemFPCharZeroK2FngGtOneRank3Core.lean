@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2FngGtOneRank3Map
+import Mathlib.Tactic.Group
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -105,7 +106,66 @@ theorem czK2FngGtOneRank3_mem_Q_of_top {X : Type*} [MulAction (elementaryGroup (
   rw [e]
   exact Q.mul_mem (Q.mul_mem h0 h) (Q.inv_mem h0)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_mem_Q_of_top
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_mem_Q_of_top
+
+/-- `N ≤ K₂(3, S)` when `s ⊆ K₂(3, S)`. -/
+theorem czK2FngGtOneRank3_N_le (φ : R →+* S) (s : Set (SteinbergGroup (Fin 3) S))
+    (hs : s ⊆ K2 (Fin 3) S) : czK2FngGtOneRank3_N φ s ≤ K2 (Fin 3) S := by
+  unfold czK2FngGtOneRank3_N
+  refine Subgroup.normalClosure_le_normal ?_
+  rintro _ (⟨u, hu, rfl⟩ | hu)
+  · exact ringMap_mem_K2 φ hu
+  · exact hs hu
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_N_le
+
+/-- **`Q ∩ K₂ ⊆ N`** for an injective coefficient map. -/
+theorem czK2FngGtOneRank3_mem_N_of_mem_Q (φ : R →+* S) (hφ : Function.Injective φ)
+    (s : Set (SteinbergGroup (Fin 3) S)) (hs : s ⊆ K2 (Fin 3) S)
+    {k : SteinbergGroup (Fin 3) S} (hkQ : k ∈ czK2FngGtOneRank3_Q φ s)
+    (hk : k ∈ K2 (Fin 3) S) : k ∈ czK2FngGtOneRank3_N φ s := by
+  have hkQ' : k ∈ (ringMap (I := Fin 3) φ).range ⊔ czK2FngGtOneRank3_N φ s := hkQ
+  haveI : (czK2FngGtOneRank3_N φ s).Normal := Subgroup.normalClosure_normal
+  obtain ⟨y, hy, z, hz, rfl⟩ := Subgroup.mem_sup_of_normal_right.mp hkQ'
+  obtain ⟨v, rfl⟩ := MonoidHom.mem_range.mp hy
+  have hzK : z ∈ K2 (Fin 3) S := czK2FngGtOneRank3_N_le φ s hs hz
+  have hv : v ∈ K2 (Fin 3) R := by
+    rw [mem_K2_iff]
+    apply czK2FngGtOneRank3_elemMap_injective (ι := Fin 3) φ hφ
+    rw [← projection_ringMap, map_one]
+    have h1 := (mem_K2_iff _).mp hk
+    rw [map_mul, (mem_K2_iff z).mp hzK, mul_one] at h1
+    exact h1
+  have hv' : ringMap φ v ∈ ringMap φ '' (K2 (Fin 3) R : Set (SteinbergGroup (Fin 3) R)) :=
+    Set.mem_image_of_mem (ringMap φ) hv
+  have hvN : ringMap φ v ∈ czK2FngGtOneRank3_N φ s := by
+    unfold czK2FngGtOneRank3_N
+    exact Subgroup.subset_normalClosure (Set.subset_union_left hv')
+  exact Subgroup.mul_mem _ hvN hz
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_mem_N_of_mem_Q
+
+/-- **Converse direction only.**  If `K₂(3, S) ≤ N`, then every `g` whose projection lies in the
+image of `E_3(R)` lies in `Q`. -/
+theorem czK2FngGtOneRank3_mem_Q_of_projection (φ : R →+* S) (s : Set (SteinbergGroup (Fin 3) S))
+    (hle : K2 (Fin 3) S ≤ czK2FngGtOneRank3_N φ s) {g : SteinbergGroup (Fin 3) S}
+    (hg : projection g ∈ (elementaryGroupMap (ι := Fin 3) φ).range) :
+    g ∈ czK2FngGtOneRank3_Q φ s := by
+  obtain ⟨e, he⟩ := MonoidHom.mem_range.mp hg
+  obtain ⟨v, rfl⟩ := projection_surjective e
+  have hk : (ringMap φ v)⁻¹ * g ∈ K2 (Fin 3) S := by
+    rw [mem_K2_iff, map_mul, map_inv, projection_ringMap, he, inv_mul_cancel]
+  have e' : g = ringMap φ v * ((ringMap φ v)⁻¹ * g) := by
+    group
+  unfold czK2FngGtOneRank3_Q
+  rw [e']
+  exact Subgroup.mul_mem _ (Subgroup.mem_sup_left (MonoidHom.mem_range.mpr ⟨v, rfl⟩))
+    (Subgroup.mem_sup_right (hle hk))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_mem_Q_of_projection
 
 end Core
 
