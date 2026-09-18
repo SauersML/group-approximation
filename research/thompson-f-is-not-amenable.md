@@ -108,7 +108,15 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   for flows on all of `F` that depend arbitrarily on the negative part `q_g` of the normal form
   (`thompson-f-degree-aware-automaton-flows-cannot-certify`). There a pumped vine plus a fair coin
   spreads the leaf count, and splitting moves its law by `O(1/√N)`. Open: rules that read per-tree
-  sizes, depths or exact shapes of the positive part.
+  sizes, depths or exact shapes of the positive part, and flows on pairs of forests.
+- **Flow rules reading an observation (the observation gate).** `thompson-f-flow-certificate-observation-gate`:
+  a flow rule that reads only an observation `Ψ` of the forest exists iff `Ψ` has positive shadow defect
+  `δ_λ(Ψ)`, by Sion's minimax theorem. So non-amenability is `δ_λ(id_M) > 0`, and every flow kill is a
+  dominated shadow law. Dead observations: constants (Ore property), Schreier graphs with Følner sets,
+  profile plus tree count, and now profile plus tree count plus total caret count (a random right-comb
+  padding over the pumping period). *Invariant:* a dominated shadow law. Dies: every flow reading only
+  coarse or finite-state data. Not covered: unbounded per-tree data and reduced pairs of forests.
+  (swarm-0917, obstruction-miner.)
 - **Bounded cohomology with separable coefficients.** Amenability is equivalent to
   `H^n_b(G; E) = 0` for all dual modules `E`. Dies for separable `E`: by Monod, arXiv:2112.13741,
   `H^n_b(F; E) = 0` for all `n >= 1` and every separable dual `E`. The node
