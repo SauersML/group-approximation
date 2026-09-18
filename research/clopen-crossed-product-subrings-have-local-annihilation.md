@@ -6,11 +6,14 @@ title: A unital subring of C(X,k) ⋊ Γ containing every clopen indicator has l
 distinct_from:
   steinberg-algebras-have-local-annihilation: that is the Steinberg algebra A_k(G) of an ample groupoid, whose elements are finite combinations of χ_B; this allows arbitrary continuous coefficient functions (for example the harmonic function of the SL_3(Z) Toeplitz ring), which are not locally constant, as long as the subring contains all clopen indicators.
   local-annihilation-makes-projective-el-simple: that is the criterion that consumes local annihilation; this supplies it for crossed-product-type subrings.
+artifacts:
+  - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md
 ---
 
-**ESTABLISHED** by `clopen-crossed-product-subrings-have-local-annihilation-proof` (lane proof,
-elementary; not independently reviewed; it is the Steinberg-algebra argument with the coefficient
-functions allowed to be arbitrary).
+**ESTABLISHED** by `clopen-crossed-product-subrings-have-local-annihilation-proof` (elementary: the
+Steinberg-algebra argument with the coefficient functions allowed to be arbitrary). Referee
+`gq-referee-b` PASS (`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md`).
+The additive-span form proved here is stronger than the Lean predicate `LocalAnnihilation`.
 
 ## Statement
 
