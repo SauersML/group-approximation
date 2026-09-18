@@ -125,6 +125,12 @@ In the piece-permutation shadow, `M` and `N` give two dihedral groups of order 8
 four-group. `Sym(4)` is not their amalgam. So exactness must come from the room that splitting into cones
 provides, and not from the pieces alone.
 
+**Update (bh-one-relator, 2026-09-18): the braid holds.**
+`splitting-kills-the-finite-shadow-parity-of-the-gluing-group` proves `x = 1` in `Γ~`. Finite shadows with 3 to 5 cones
+are `Sym(2m) × Z/2`, where the `Z/2` is the parity of copy swaps, and the doubling `x = x_0 x_1` kills it. As a
+consequence, every symmetric piece-permutation group lifts to `Γ~`. What remains for exactness of this model is
+consistency across partitions.
+
 ## Lesson for general BH
 
 The gluing layer of the group route is universal in both variables:

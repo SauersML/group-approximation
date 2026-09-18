@@ -259,6 +259,21 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
       words.
     - Gap hosts, where co-amenability of `H ∩ K` does not descend to `K` (Monod–Popa).
     - Cantor hosts such as `nV`.
+- **Schreier windows over `Z ≀ Z` for the norm lower bound (swarm-0917-w12-w12-f-follow,
+  census-computation).**
+  - *Setup.* `H = ⟨x_0, h⟩ ≅ Z ≀ Z` is amenable, so windows in `Sch(H\F)` give lower bounds on `‖P_F‖`
+    that dominate those of Cayley balls.
+  - *Answers need 6a72890d.* `H` is exactly the stabilizer of the tiling by `x_0`-translates of `[1/2,3/4]`
+    decorated with standard bumps. Each coset has a unique computable representative
+    (`thompson-f-z-wr-z-cosets-have-a-canonical-form`).
+  - *Price, measured.* Schreier balls grow about `2.63` per radius, not the `1.85` behind the need.
+    Radius 27 would be about `10^11` cosets.
+  - *Per vertex the quotient wins, but not enough within reach.*
+    - Schreier `B_11` gives `0.8846` on 77823 cosets, against `0.8648` for Cayley `B_11`.
+    - Greedy Perron windows give `0.8966` at `4·10^5` vertices, gaining `0.004` per e-fold.
+    - Beating `0.910677` needs about `10^7`–`5·10^7` vertices. It also requires `‖P_{H\F}‖ > 0.910677`,
+    which is unknown.
+  - *Status.* Not closed. It could not prove `‖P‖ < 1` in any case, since this is a lower-bound method.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

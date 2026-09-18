@@ -5,12 +5,19 @@ kind: claim
 title: Conjecture - an operad with transformations whose transformation groups act oligomorphically on its elementary classes, with type F-infinity stabilizers of finite tuples, has operad groups of type F-infinity; this unifies Thumann's theorem, the Röver–Nekrashevych transfer and the twisted Brin–Thompson criterion
 requires:
   - thumann-operad-groups-need-only-f-infinity-transformations
+  - thumann-finiteness-without-finite-type
   - finite-type-operad-groups-split-over-a-label-kernel
 ---
 
 **OPEN** (conjecture, lane bh-invent-07, 2026-09-18). Proposed as the operadic finiteness engine for
-"programmable" hosts. Parts (a) and (b) of the reduction below are lane sketches, not reviewed; part
-(c) is the open gate. No priority claimed.
+"programmable" hosts. Part (a) of the reduction below is an argument under a local-finiteness hypothesis (LF), and part
+(b) is a lane sketch; neither is reviewed. Part (c) is the connectivity gate. No priority claimed.
+
+**Update (2026-09-18, bh-invent-07).** Gate (c) is proved under a splitting condition (G) by
+`thumann-finiteness-without-finite-type` (Variant), assuming very elementary classes of bounded
+degree. (G) asks that the splitting category of every large elementary class be highly connected.
+So the conjecture holds whenever (O1) and (O2) supply cocompactness and stabilizers, which is the
+content of (a) under (LF) and of the sketch (b), and (G) holds. Without (G) it stays open.
 
 ## Setting
 
@@ -43,29 +50,44 @@ Each `Aut_ℐ(c)` is `F_∞`. For an `F_n` version, read `F_n` throughout.
    - (O2) says the stabilizers of finite subsets are `F_∞`.
    - Together these are type `(A_∞)`. There the conjecture is the Belk–Zaremsky criterion (their
      Conjecture H), which is claimed on main by `twisted-brin-thompson-type-fn-criterion`
-     (bh-typeA-universal; referee a PASS, second pass pending).
+     (bh-typeA-universal; referees a, b and c PASS).
 
 ## Reduction (what is proved, what is open)
 
 Thumann's proof has three parts: Brown's criterion applied to `Γ ↷ 𝒰/𝒢`, with the degree filtration.
-1. **(a) Finitely many `Γ`-orbits of cells in each `(𝒰/𝒢)_n`.**
-   - Repeat the surjectivity argument (arXiv:1409.1085, l.3814–3833), with the finite set `S`
-     replaced by a set of `ℐ`-orbit representatives of elementary operations.
-   - The pull-through step (Observation `37111`) moves every elementary operation at the root into
-     the orbit of a representative.
-   - Lower levels are normalized modulo input transformations, which `𝒰/𝒢` divides out.
-   - (O1) then bounds the number of orbits of cells.
-   - Lane sketch.
+1. **(a) Finitely many `Γ`-orbits of cells in each `(𝒰/𝒢)_n`: argument under (O1) and (LF).**
+   - Up to `Γ`, a `p`-cell is a chain `P_0 → ⋯ → P_p` of arrows of `𝒮`, of degree at most `n`,
+     modulo transformations at every object. Thumann's construction at l.3804–3833 gives a
+     surjection from such chains onto cells modulo `Γ`, and changing an intermediate object by a
+     transformation does not change the cell.
+   - The composite `P_0 → P_p` is a tensor of operations. Modulo transformations at both ends it is
+     a multiset (a sequence, in the planar case) of two-sided classes of total degree at most `n`.
+     Every operation is a composite of elementary ones, so by (O1) there are finitely many.
+   - **(LF)** Every operation has finitely many factorizations through intermediate objects, up to
+     transformations of those objects.
+     - It holds in suboperads of `End(TOP, ⊔)` in which an operation is determined, up to input
+       transformations, by its partition into pieces, as for dissection operads and the twisted cube
+       operad. There a factorization is a coarsening of the partition, and a partition has finitely
+       many coarsenings. It can fail when operations with the same pieces differ by homeomorphisms
+       that are not transformations.
+     - It is the local-finiteness hypothesis of
+       `bounded-refinement-operads-reduce-to-their-carriers`, extended from elementary divisors to
+       all divisors.
+   - A cell is a `p`-step factorization of its composite. So each composite carries finitely many
+     cells, and there are finitely many orbits of cells.
+   - This is an argument, not reviewed. The only hypothesis added is (LF).
 2. **(b) Cell stabilizers are `F_∞`.** Thumann's proposition (l.3700–3781) needs exactly the groups
    `H_θ` and finite intersections of their conjugates, so this is (O2). Lane sketch.
-3. **(c) Connectivity of descending links tends to infinity with degree. OPEN in general.**
-   - Thumann's core/corona argument uses finitely many elementary classes in each descending link.
+3. **(c) Connectivity of descending links tends to infinity with degree. PROVED under (G)**
+   (`thumann-finiteness-without-finite-type`); open without it.
+   - Thumann's core/corona argument uses a bound on the degrees of elementary classes only once, in
+     the corona estimate. The core already allows infinitely many archetypes.
    - With infinitely many classes, a descending link is a "colored" arc complex: each merge carries a
      class from `E`, and the merges must be jointly realizable.
-   - For `SV_G`, Belk–Zaremsky and the node above prove the needed connectivity (matching complexes
-     across coordinates).
-   - A general proof would show that oligomorphic colorings of Thumann's arc complexes keep
-     connectivity growing linearly.
+   - Thumann's arc complex theorem already handles such colorings: its archetype sets may be
+     infinite. What infinitely many classes add is the splitting of large elementary classes, and
+     that is exactly condition (G).
+   - For `SV_G`, (G) is the grid-sphere computation (`stein-complex-elementary-intervals-are-grid-spheres`).
 
 ## Why it matters (programmable hosts)
 

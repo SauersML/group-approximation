@@ -11,7 +11,9 @@ artifacts:
   - research/artifacts/solve-mixed-identity-undecidable-2026-09-13.md
 ---
 
-**OPEN.** Some group `G` has a type `[A_2]` action on `S`, in the sense of
+**ESTABLISHED** (2026-09-18, lane proofs, not reviewed) through
+`non-removable-a2-kernel-from-nonrecursive-kernel`, from `some-a2-action-has-a-nonrecursive-kernel`.
+Some group `G` has a type `[A_2]` action on `S`, in the sense of
 Fournier-Facio--Wu--Zaremsky (arXiv:2603.24687), with kernel `K`, such that
 `(G, K)` sharply embeds in no `(G', K')` with `G' ↷ S'` of type `[A_2]` and `K'`
 finitely normally generated in `G'`.

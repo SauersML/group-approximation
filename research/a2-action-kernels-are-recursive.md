@@ -11,7 +11,8 @@ distinct_from:
   a2-kernel-removal-iff-image-satisfies-pbh: that proves removal of one kernel is the permutational conclusion for the image; this is the computability hypothesis under which that conclusion would follow from the permutational conjecture.
 ---
 
-**OPEN.**
+**REFUTED** (2026-09-18, lane proof, not reviewed) by `some-a2-action-has-a-nonrecursive-kernel`,
+through `nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`.
 
 **Statement.** Let `G ↷ S` be of type [A_2], in the sense of
 Fournier-Facio--Wu--Zaremsky, arXiv:2603.24687v2, Definition 1.3:

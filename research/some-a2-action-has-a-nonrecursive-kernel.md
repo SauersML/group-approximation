@@ -10,7 +10,10 @@ distinct_from:
   type-a-hnn-realization-with-unsolvable-word-problem: that asks for a witness of one specific shape, an HNN extension of a type (A) actor realized by one more permutation; this allows any type [A_2] action.
 ---
 
-**OPEN.** Some group `G` has an action on a set `S` of type `[A_2]`, in the sense of
+**ESTABLISHED** (2026-09-18, lane proof, not reviewed) by
+`nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`. The witness is the abstract
+Röver--Nekrashevych group of a free group with a Bartholdi--Mitrofanov recursion table,
+acting on clopen sets. Some group `G` has an action on a set `S` of type `[A_2]`, in the sense of
 Fournier-Facio--Wu--Zaremsky (arXiv:2603.24687):
 - `G` is finitely presented;
 - point stabilizers are finitely generated;

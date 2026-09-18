@@ -168,3 +168,30 @@ because every cylinder merges with its own copy. So for cubulated groups, and fo
 finite Garside coding, the Boone–Higman host problem is now purely dynamical: find a
 closed invariant set with a bisection action and no open set trapped beyond a loop, then
 compare clopen sets.
+
+8. **(bh-major-cube-b, 09-18) Gate (G1) is the real obstruction, and it is geometric.**
+   `pointed-cube-bisection-locus-is-the-regular-boundary`:
+   - **The locus is exactly `R`.** Under (TF), elements of `G` act by germs of the
+     pointed-cube groupoid exactly at the regular points.
+   - **What goes wrong elsewhere.** At a tail running beside a hyperplane `H`, every `g`
+     that moves `H` across the base point changes the last-cube state forever. There
+     `Max(o,gz) ≠ g Max(o,z)` at every vertex `z` of the tail.
+   - **Consequence.** A closed carrier must lie inside `R`. For `Z² * Z` (a tree of flats)
+     every nonempty closed invariant set contains the non-regular point `(+∞,0)` of a
+     flat, so (G1) fails outright.
+
+   So the pointed-cube + Cuntz route proves Q1.15 exactly for cubulations with a closed
+   regular carrier: products of thick trees (item 3 bis) and whatever else has `R` closed.
+   (G2) and (G3) are only needed after (G1).
+   - **Next step.** A coding that stratifies the boundary by the hyperplanes a tail runs
+     beside. Those strata are Roller boundaries of hyperplanes, one dimension lower, so
+     induction on dimension is available. The germ at a stratum point should then be a
+     prefix replacement plus a finite flag.
+   - **Conjecture.** For essential cocompact `X`, `R` is closed iff `X` is a product of
+     trees up to compact and Euclidean factors.
+
+**Lesson for general BH (Attempt 8).** Finiteness and rank were not the obstructions. What
+matters is **resynchronization**: a coded host sees `g` as a bisection only where codings
+from `o` and `go` agree after a finite prefix. For wall-based geodesic codings that is the
+set of tails that eventually leave every wall, so a closed carrier needs "no tail stays
+beside a wall" in the limit.

@@ -112,3 +112,18 @@ groups, where they are the sharpest open part:
      - all finite products of these with hyperbolic groups and braid groups.
    - Still open: the QI refinement for `Mod(S_{g,p})` with `g >= 1`, `p >= 1` and no boundary (genus `g = 1`
      with `p = 1` is hyperbolic, so it is covered); `g >= 3` closed; the F_∞ half.
+
+7. **(bh-finf-hyp, 09-18) For the BBMZ host, the F_∞ half is a question about `G` on its own
+   horofunction boundary, and it has a necessary homological test.**
+   `bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid` (ESTABLISHED, lane proof):
+   - **Dynamics.** Every element of `[[G*Z | ∂_h]]` acts finitarily (by atom morphisms) off
+     finitely many coset pieces `Y_v ≅ ∂_h G`.
+   - **Homology.** The groupoid homology in degrees `≥ 2` equals `H_k(G; C(∂_h G, Z))`.
+   - **The test.** By Li's infinite-loop-space theorem, if the simple group `D([[G*Z | ∂_h]])`
+     is F_n, then `H_k(G; C(∂_h G, Q))` is finite-dimensional for `2 ≤ k ≤ n`. It holds for
+     surface groups. For closed hyperbolic manifold groups in middle degrees, including Kazhdan
+     `Sp(n,1)` lattices, it is OPEN; there it is the Čech cohomology of the horofunction
+     suspension `M̃ ×_G ∂_h G`.
+   - **Why finite germ theory does not settle it.** Belk–Hyde–Matucci's finite germ extension
+     theorem cannot be applied directly. On `∂_h`, the coset pieces are chopped by `V_{Γ,E}`.
+     If they are collapsed to points, the transport base is not finitely generated.
