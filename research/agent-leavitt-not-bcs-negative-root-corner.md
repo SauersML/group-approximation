@@ -676,3 +676,36 @@ half of the next step above.
   this claim, branch (M) then reduces entirely to point models, and a finite-group certificate of the head must put
   definite template weight on branch (P) or on bounded-exception sections. The alternative is to exhibit a primitive
   irreducible representation family in branch (P) whose `St_4(J)`-relators are nearly scalar and not scalar.
+**Rank-weighted head kill has no tracial form (swarm-0917-w12-w12-nh-pull, 2026-09-18, family
+stability-approximation).** Landed as `rank-weighted-head-kill-hypotheses-hold-in-a-sofic-group` (established by
+route, unreviewed). It is a class kill for the survivor input "hyperlinearity of `EL_20(J)` sees `x_13(q)`".
+- *Witness.* Take `G = GL_fin(F_2^(X)) x| V` with `V = Z[1/2]^3 x| (SL_3(Z) x Z)` and `X = V/L`, where
+  `L = Z^3 x| SL_3(Z)`. `G` satisfies every hypothesis that
+  `jacobson-head-collapses-by-rank-weighted-transport` uses:
+  - a Kazhdan compression subgroup `L`, with a compressor `v` of index `8`, a centralizing `c`, and `l`;
+  - a transvection `d = [vcv^-1, l]`;
+  - an infinite simple locally finite normal `K` with `C_G(K) = 1`;
+  - the uniform bound `C = 4` over `SL_m(F_2)` stages.
+  
+  Yet `G` is sofic, and in a permutation model `tau(p_d) = 1/2`.
+- *Death step.* Commutant transport.
+  - Cutoffs, the weighted null subgroup and the bound `tau(e) <= 4 tau(p_d)` all survive exactly in `R^omega`.
+  - The bounded `L`-central sequence `pi(c) e_N` is sent by `Ad pi(v)` to a sequence with `L`-commutator norm `sqrt 2`.
+  - Transport is equivalent to `d in N_e`. The norm proof gets it from stable finiteness of the `d_n^2` conjugation
+    corona, which `B(L^2(R^omega))` lacks.
+- *Kills.* Every tracial, Hilbert-Schmidt or sofic transcription of the MF head kill that uses only local
+  compression-cell data. Together with `jacobson-corner-compressor-hulls-carry-fredholm-index`, which kills corner
+  rigid-defect certificates, both local routes to a hyperlinear head kill are closed.
+- *Separating invariant.* The compressor index character, `[L : vLv^-1] = 8` here and a positive Fredholm index for
+  `EL_3(J)` corners, extends to `G -> Z` in the witness. The soficity proof consumes that extension. It cannot extend
+  in the perfect Kazhdan group `EL_n(J)`, `n >= 3`.
+- *Where it stops (hole stays OPEN).* A nonhyperlinearity proof for the head must use ambient property (T) or
+  perfectness of `EL_n(J)`, or some finer property that `G` lacks. The survivor input also remains undecided.
+- **Next falsifiable step.** Decide whether the equality `Ad pi(u) P_H Ad pi(u)* = P_H` holds on the vector
+  `pi(c) e` in every tracial representation `pi` of `EL_20(J)` that sees the head. Here `H = EL_3(J)` and `P_H` is its
+  Kazhdan projection on `L^2`.
+  - The inequality `>=` always holds.
+  - Equality is exactly the missing transport, and it would kill the head.
+  - In the witness `G` equality fails, and there the index character extends to `G -> Z`.
+  - A failure inside `EL_20(J)` would be a hyperlinear model that sees the head. It could not come from an extended
+    index character.
