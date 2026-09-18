@@ -5689,6 +5689,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingEnd
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Macros
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.BorelSolvable
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridCoarse
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerPerm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
