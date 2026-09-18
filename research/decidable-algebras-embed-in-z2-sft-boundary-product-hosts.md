@@ -104,3 +104,12 @@ not make `G` linear sofic through a rank model, because the host has none.
      and need not send `Γ` to monomial units. What does follow: an embedding that sends
      an infinite Kazhdan subgroup into `[[·]]` needs an infinite free orbit of the kind
      just described. Deciding whether such orbits exist is the next fork.
+1. **Host-geometry kill for Kazhdan inputs via tree-slab separators** (swarm-0917-w11-w11-z-break).
+   - Result: ESTABLISHED `tree-times-zk-images-have-polynomial-ball-separators`. Its item 3 shows
+     that no transitive Kazhdan orbit whose stabilizer meets a copy of `Z^4` or `F₂×F₂` finitely has an
+     injective bounded-displacement map into `Z^2×F_d`.
+   - Residual: need d2d6a0cb is split into the proved slab lemma and the OPEN
+     `kazhdan-schreier-graphs-have-superquadratic-ball-separation`, via route
+     `kazhdan-z2-free-injection-dies-by-ball-separation`.
+   - Dead as stated: relative FW by pulled-back tree walls. The walls have `Z^2`-sized boundaries.
+   - The target stays OPEN.
