@@ -1,0 +1,7 @@
+{"census": "census_50_30.json", "idx": 258, "R": 8, "short": 4, "solver": "Cadical153", "sat": false, "clauses": 11045771, "secs": 370.3}
+{"census": "census_50_30.json", "idx": 258, "R": 8, "short": 4, "solver": "Glucose4", "sat": false, "clauses": 11045771, "secs": 340.6}
+R8s4 258 exit=0
+{"census": "census_50_30.json", "idx": 470, "R": 8, "short": 4, "solver": "Cadical153", "sat": false, "clauses": 11045771, "secs": 391.4}
+{"census": "census_50_30.json", "idx": 470, "R": 8, "short": 4, "solver": "Glucose4", "sat": false, "clauses": 11045771, "secs": 352.9}
+R8s4 470 exit=0
+FIN

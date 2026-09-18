@@ -1,0 +1,9 @@
+Negative controls on c6-13 (k=6, r=13), each a one-line edit of the certificate:
+$ n1: line 1000 (D 9 0 0 2 0 0 | 5 0 0 2 0 0) deleted
+FAIL line 1253: domination fails
+$ n2: line 1001 dominator 1 2 2 2 0 0 replaced by 3 3 2 2 0 0
+FAIL line 1001: domination fails
+$ n3: line 1001 duplicated
+FAIL line 1002: x not present
+$ n4: line 1001 dominator replaced by -1 2 2 2 0 0
+FAIL line 1001: w not in hull(0,x,e_k)

@@ -96,3 +96,21 @@ the Kaplansky zero-divisor conjecture."
    - What remains is the balanced and intermediate range.  It needs the
      coefficients themselves, not supports or extreme degrees.  The
      extremal-coset route of this lane is dead there.
+7. **Coefficients on the witness support (reduction; `rips-segev-witness-divisors-need-saturated-supports`, obstruction `rips-segev-cores-have-no-infinite-cyclic-quotient`).**
+   Take `beta = c_0 + c_1 a + c_2 b + c_3 ab` with `D = c_0 c_3 - c_1 c_2`.
+   - If `D = 0` then `beta` factors as `(x_0 + x_1 a)(y_0 + y_1 b)` and is
+     regular, for every coefficient pattern.
+   - If `D != 0`, an annihilator has a *saturated* support: no product of
+     `X · supp beta` is unique, and every pair `h, h a` in `X` has a triple
+     product at `h a` or at `h a b`.
+   - So witness-support regularity follows from a coefficient-free statement:
+     `K` has no finite saturated set.
+   - Ports together with top and bottom coefficients cannot decide it, because
+     `Gamma` realizes arbitrary extreme scalars with no coincidence equations.
+     The realizing support `A` is not saturated.
+   - Gradings are dead.  Relator cycles give positive relations of both
+     exponent signs, so `Hom(K, Q) = 0` and `H_1(K)` is finite, and `K` has no
+     locally indicable quotient.  Any nontrivial unique-product quotient would
+     still settle `{1,a,b,ab}` completely, but none is known.
+   - Next: decide whether a finite saturated set exists, by a van Kampen
+     argument at the top pair of a maximal `a`-run.

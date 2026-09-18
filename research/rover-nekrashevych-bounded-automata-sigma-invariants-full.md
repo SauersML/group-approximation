@@ -33,3 +33,6 @@ characters of `G`.
 - **Next class.** Contracting `G` with polynomial activity growth. Belk–Hyde–Matucci pass from `V_{d,r}G_i` to
   `V_{d,r}G_{i+1}` by a finite germ extension whose base `V_{d,r}G_i` can carry characters, so the base-trivial theorem
   does not apply directly.
+  - Done in `rover-nekrashevych-polynomial-activity-tower-sigma-full` (unreviewed), through
+    `germ-extension-point-fixer-sigma-heredity`. For `n = 0` it also gives the relative statement at every finite set
+    of rational points.

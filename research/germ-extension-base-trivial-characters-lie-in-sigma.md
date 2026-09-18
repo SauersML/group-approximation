@@ -43,3 +43,8 @@ isotropy group, so no potential exists.
 - Open extension: `χ` nonzero on `B`. There the charge is only defined modulo `χ(B)`. One would need `[χ|_B]` in the
   invariants of the vertex stabilizers `Fix_B(M)`. This is the case needed to pass from `V_d G_i` to `V_d G_{i+1}` in the
   polynomial-activity tower of Belk–Hyde–Matucci (their remark after `thm:RoverNek`).
+  - Done (unreviewed). `germ-extension-base-nontrivial-characters-via-point-fixers` reduces this case to exactly that
+    condition, using Meinert's criterion on `K_{<=m}`.
+  - `germ-extension-point-fixer-sigma-heredity` then makes the condition hereditary. It needs this theorem with
+    hypothesis 4 weakened (its Lemma W).
+  - `rover-nekrashevych-polynomial-activity-tower-sigma-full` applies it to the whole tower.
