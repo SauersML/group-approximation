@@ -60,3 +60,17 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What would move this claim.* Either a de-colouring theorem for sections of cover pairs with base-independent
     decoder over the colouring shift, or the Rokhlin hub. Artifact
     `research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md`.
+- **Symmetric-locus localization (swarm-0917-w9-w9-gs-last1, 2026-09-18; reframing). Sharpens the de-colouring
+  question. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cover-pair-sections-localize-to-the-symmetric-locus`. A cover pair has
+    a section iff some seed `ξ : A^G → X` (continuous, equivariant) is exact at `1` on
+    `Sym_E = ∪_{e ∈ E \ {1}} Fix(e)`. Off `Sym_E` the non-exact set is compact and `E`-free, so a finite clopen
+    greedy colouring schedules Lemma-2 lifts continuously. Artifact
+    `research/artifacts/symmetric-locus-seeds-2026-09-18.md`.
+  - *Kills the interface-buffer obstruction.* The third bullet of "Where the converse dies" is not an
+    obstruction, over any `G`. Theorem S has no lifted/unlifted interface: every non-exact site is lifted.
+  - *What is left.* The converse (Gottschalk ⇒ this claim) now asks only for one seed exact on the finitely many
+    closed sets `Fix(e)`. On `Fix(e)` this is an `⟨e⟩`-coset lift: lift at all `e^j` at once by an `e`-invariant
+    patch, where Lemma 2 fails because `e ∈ E`. At constants it is the first bullet (a constant `b^G ∈ X` with
+    `F(b^G) = a^G`). A counterexample to this claim at a surjunctive `G` must be a cover pair in which this coset
+    lift is impossible for some `e ∈ E \ {1}`.
