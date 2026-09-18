@@ -179,3 +179,50 @@ def WitnessStepGenusSucc (N : CombMap.{u}) (l : List N.Dart) (x y : N.Dart) : Pr
       N.alpha ((N.sigma ^ k) (N.alpha x)) ∉ l
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessStepGenusSucc
+
+/-- **A successor step survives the split at another step's run.**  Let the step from `p`
+run for `m ≥ 2` vertex rotations through unkept darts.  Split the vertex at `alpha p` and
+at the last unkept dart `sigma ^ (m - 1) (alpha p)`.  Then the successor step from any
+other kept `z` still connects `z` to its successor. -/
+theorem witnessStepGenus_step_lift (N : CombMap.{u}) [DecidableEq N.Dart] {l : List N.Dart}
+    {p z z' : N.Dart} {m : ℕ} (hm : 2 ≤ m) (hpl : p ∈ l)
+    (hrun : ∀ k : ℕ, 0 < k → k < m → (N.sigma ^ k) (N.alpha p) ∉ l ∧
+      N.alpha ((N.sigma ^ k) (N.alpha p)) ∉ l)
+    (hz : z ∈ l) (hzp : z ≠ p) (hs : WitnessStepGenusSucc N l z z') :
+    Relation.EqvGen
+      (PinchSplit.toCombMap N (N.alpha p) ((N.sigma ^ (m - 1)) (N.alpha p))).Adjacent z z' := by
+  obtain ⟨mz, _, hz', hzrun⟩ := hs
+  refine Relation.EqvGen.trans _ (N.alpha z) _ (Relation.EqvGen.rel _ _ (Or.inl rfl)) ?_
+  rw [← hz']
+  apply witnessStepGenus_run_lift
+  intro j hj
+  have hαz : N.alpha (N.alpha z) = z := N.alpha_involutive z
+  have hαp : N.alpha (N.alpha p) = p := N.alpha_involutive p
+  have hA : ∀ i : ℕ, i < mz → (N.sigma ^ i) (N.alpha z) ≠ N.alpha p := by
+    intro i hi heq
+    rcases Nat.eq_zero_or_pos i with h0 | hpos
+    · rw [h0, pow_zero, Equiv.Perm.one_apply] at heq
+      exact hzp (N.alpha.injective heq)
+    · exact (hzrun i hpos hi).2 (by rw [heq, hαp]; exact hpl)
+  refine ⟨hA j hj, ?_⟩
+  intro heq
+  rcases le_or_gt (m - 1) j with hle | hlt
+  · have hcomp : (N.sigma ^ (m - 1)) ((N.sigma ^ (j - (m - 1))) (N.alpha z)) =
+        (N.sigma ^ j) (N.alpha z) := by
+      rw [← Equiv.Perm.mul_apply (N.sigma ^ (m - 1)), ← pow_add, Nat.add_sub_of_le hle]
+    apply hA (j - (m - 1)) (by omega)
+    apply (N.sigma ^ (m - 1)).injective
+    rw [hcomp]
+    exact heq
+  · have hcomp : (N.sigma ^ j) ((N.sigma ^ (m - 1 - j)) (N.alpha p)) =
+        (N.sigma ^ (m - 1)) (N.alpha p) := by
+      rw [← Equiv.Perm.mul_apply (N.sigma ^ j), ← pow_add, Nat.add_sub_of_le hlt.le]
+    have hi : (N.sigma ^ (m - 1 - j)) (N.alpha p) = N.alpha z := by
+      apply (N.sigma ^ j).injective
+      rw [hcomp]
+      exact heq.symm
+    exact (hrun (m - 1 - j) (by omega) (by omega)).2 (by rw [hi, hαz]; exact hz)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepGenus_step_lift
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness
