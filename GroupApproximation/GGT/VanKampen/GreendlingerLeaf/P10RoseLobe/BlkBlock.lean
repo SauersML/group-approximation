@@ -208,3 +208,28 @@ theorem roseLobeBlk_side {faces : Finset M.Face} {c : List M.Dart}
       exact hr ((P10Rose.faceOf_mem_iff_of_walkEqvGen hc h).mpr ((hc d).mp hd).1)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_side
+
+/-- **The block clause of a one-sided face-class move, from contiguity alone.**  If `z` is
+constant along the face-class steps of the closed duplicate-free walk `c` and lies on one side
+of it, a cyclically contiguous removed block of `movePred z` closes up, and so does the kept
+block. -/
+theorem roseLobeBlk_block_of_side {c A B C : List M.Dart} {z : M.Dart → Bool}
+    (hz : ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y → z x = z y)
+    (hside : (∀ d ∈ c, z (M.alpha d) = false) ∨ ∀ d ∈ c, z d = false)
+    (hw : IsClosedDartWalk M c) (hnd : c.Nodup) (hABC : c = A ++ B ++ C)
+    (hblk : (B.filter (movePred M z) = [] ∧ (A ++ C).filter (movePred M z) = A ++ C ∧
+        A ++ C ≠ []) ∨
+      (B.filter (movePred M z) = B ∧ (A ++ C).filter (movePred M z) = [] ∧ B ≠ [])) :
+    (B.filter (movePred M z) = [] ∧ (A ++ C).filter (movePred M z) = A ++ C ∧ A ++ C ≠ [] ∧
+        (B = [] ∨ IsClosedDartWalk M B)) ∨
+      (B.filter (movePred M z) = B ∧ (A ++ C).filter (movePred M z) = [] ∧
+        IsClosedDartWalk M B) := by
+  rcases hside with hI | hO
+  · exact roseLobeBlk_block_close (roseLobeBlk_balanced_boundary hz)
+      (roseLobeBlk_removed_iff_in hz hI) hw hnd hABC hblk
+  · exact roseLobeBlk_block_close (roseLobeBlk_balanced_boundary_rev hz)
+      (roseLobeBlk_removed_iff_out hz hO) hw hnd hABC hblk
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_block_of_side
+
+end Removed
