@@ -40,7 +40,7 @@ Paths are relative to `GroupApproximation/BooneHigman/Metabelian/`.
    `ElemFP.PolyK2CubeNilStatement` (`ElemFPK2OneVarNilCube.lean:124`) by
    `polyK2OneVarNil_of_cubeNil` (`ElemFPK2OneVarNilCube.lean:150`).  Through
    `PolyK2NilPosStatement` (`polyK2CubeNil_of_nilPos`, `ElemFPK2OneVarNilCube.lean:141`, and
-   `polyK2OneVarNil_of_nilPos`, `ElemFPK2OneVar.lean:110`) the cube gap is logically
+   `polyK2NilPos_of_oneVar`, `ElemFPK2OneVar.lean:103`) the cube gap is logically
    equivalent; it differs only in form.
 6. `ElemFP.FieldK2VanishingStatement` (`ElemFPK2Split.lean:55`).  No reduction on disk.
 7. `ElemFPCharZero.CharZeroStableK2FGStatement` (`ElemFPCharZeroEndpoint.lean:65`).  Reduced by

@@ -9,7 +9,8 @@ import GroupApproximation.Meta.AxiomGuard
 See the module docstring of `FourPieceWitnessPlanarAudit.lean`.  This module proves:
 * the same witness under the connectivity hypotheses (A) and (B)
   (`FourPieceWitness.witnessFaces_enclosedFaceSetSucc_of_connected`);
-* the planar statement implies the corrected one (`pocketFourPieceWitnessPlanarCorrected_of_planar`);
+* the planar statement implies the corrected one
+  (`pocketFourPieceWitnessPlanarCorrected_of_planar`);
 * the corrected residual of lane gl-p07-21c implies the corrected one
   (`pocketFourPieceWitnessPlanarCorrected_of_arcAuditResidual`).
 -/
@@ -39,7 +40,7 @@ theorem witnessFaces_enclosedFaceSetSucc_of_connected {a b : RegionCandidate D e
       EnclosedFaceSetSucc X (witnessFaces a b K c) outerWalk ∧
         ∀ d ∈ outerWalk, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K c :=
   exists_enclosedFaceSetSucc_of_connected (X := X) (F := witnessFaces a b K c)
-    (fun h =>hout (witnessFaces_subset_sideFaces h)) ⟨c, mem_witnessFaces_self hc⟩ hA hB
+    (fun h => hout (witnessFaces_subset_sideFaces h)) ⟨c, mem_witnessFaces_self hc⟩ hA hB
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessFaces_enclosedFaceSetSucc_of_connected
 
