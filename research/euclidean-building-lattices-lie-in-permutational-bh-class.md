@@ -2,17 +2,17 @@
 rg: 2
 id: euclidean-building-lattices-lie-in-permutational-bh-class
 kind: claim
-title: Every discrete cocompact group of automorphisms of a locally finite thick irreducible Euclidean building, of any type and dimension, lies in the permutational Boone–Higman class B_A, via a finite-type boundary coding whose transfer is automatically completely reducible
+title: Every discrete cocompact group of automorphisms of a locally finite thick irreducible Euclidean building of dimension at least 2, of any type, lies in the permutational Boone–Higman class B_A, via a finite-type boundary coding whose transfer is automatically completely reducible
 distinct_from:
-  a2-lattices-embed-in-fp-simple-groups: that is type Ã₂, and uses link arguments for irreducibility and primitivity; this is every type and dimension, and shows those arguments are unnecessary. Complete reducibility (a counting identity) plus topological freeness (Ciobotaru–Le Bars) suffice.
+  a2-lattices-embed-in-fp-simple-groups: that is type Ã₂, and uses link arguments for irreducibility and primitivity; this is every type in every dimension at least 2, and shows those arguments are unnecessary. Complete reducibility (a counting identity) plus topological freeness (Ciobotaru–Le Bars) suffice.
   a2-lattices-satisfy-permutational-boone-higman: that is the Ã₂ case of this statement (bh-lattices); this is the general-type theorem, which covers exotic C̃₂ and G̃₂ lattices.
   exotic-a2-lattices-satisfy-boone-higman: that is one special case; this also covers C̃₂ and G̃₂.
 artifacts:
   - research/artifacts/gq-bh-bh-groupoid-frontier.md
 ---
 
-**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, below; not independently reviewed; no
-priority claimed). It rests on:
+**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, below. It was checked adversarially by
+bh-verify-euclid, PASS conditional on the Ciobotaru–Le Bars trust caveat below. No priority claimed.) It rests on:
 - standard building theory (Abramenko–Brown, *Buildings*, Ch. 11; not re-read);
 - X. Li's `thm:deg` (arXiv:2110.04505, read at source);
 - bh-lattices' `degree-category-full-groups-stabilized-have-type-a-actions` (lane proof);
@@ -20,13 +20,26 @@ priority claimed). It rests on:
   Theorem `thm G-boundary intro`. For a discrete group acting cocompactly on an irreducible
   locally finite affine building, the action on the chambers at infinity is minimal and
   topologically free.
+  - **Trust caveat.** This is an unrefereed preprint.
+  - Its TeX keeps author notes, all inside `comment` blocks.
+  - The live chain behind topological freeness runs from `def generic` (l.777) through the
+    barycenter proposition to `prop top free` (l.1567). It was checked for live flags but
+    was not re-derived (bh-verify-euclid, trust note T1).
+
+**Verification.** bh-verify-euclid (84896de5e, `research/artifacts/gq-bh-verify-euclid-report.md`)
+gives PASS with two wording nits and one trust note.
+- The two nits (N1, N2) are applied below, by bh-integrate for the owner.
+- The trust note is the caveat above.
 
 ## Statement
 
-Let `X` be a locally finite thick irreducible Euclidean building of rank `r`, and `Γ ≤ Aut(X)`
-discrete and cocompact. Then `Γ ∈ B_A`. In particular, every group commensurable with a finite
+Let `X` be a locally finite thick irreducible Euclidean building of rank `r` and of dimension
+at least 2, and `Γ ≤ Aut(X)` discrete and cocompact. Then `Γ ∈ B_A`. In particular, every group commensurable with a finite
 product of such lattices embeds in a finitely presented simple group
 (`boone-higman-type-a-class-closed-under-finite-extensions`).
+
+*Scope (bh-verify-euclid N2).* Dimension 1 (trees) is excluded: there the counts are not
+phase-only when valences vary. Tree lattices are virtually free and lie in `B_A` by other nodes.
 
 **New cases.** Exotic C̃₂ and G̃₂ lattices, including:
 - Kantor's and Essert's panel-regular lattices;
@@ -94,9 +107,13 @@ This replaces the Robertson–Steger sector lemmas `c1`–`c3` and `9B`.
   of `M_j` with the same eigenvalue `ρ`. In constant thickness (for example Ã₂) they are
   simply `1` and `w`.
 - **Conclusion.** A nonnegative matrix with positive left and right Perron vectors has no
-  transient classes. So every class lies on `j`-cycles for each `j`. The same argument
-  applied to `Σ_j M_j` splits `ℭ_Γ` into strongly connected pieces with no morphisms
-  between pieces.
+  transient classes. So every class lies on `j`-cycles for each `j`. Applying this argument
+  to `Σ_j M_j` directly is not valid, because the phase rescalings of the Perron vectors can
+  differ between colours. Instead, each `M_j` is completely reducible, so every
+  single-colour step can be reversed inside its colour class. By (UFP*) every morphism
+  factors into such steps. So reachability is symmetric, and `ℭ_Γ` splits into strongly
+  connected pieces with no morphisms between pieces. *(Wording corrected per
+  bh-verify-euclid N1.)*
 
 **Step 4. Rescaling and embedding.** Choose `n` so that every object has at least two loops
 of each colour in `ℭ_Γ^(n)`, which is possible by Step 3. Let `𝒫` be the union of the finitely many pieces that contain decorations,

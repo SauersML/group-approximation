@@ -131,3 +131,24 @@ These are the (F) criteria used in `f-unit-fields-are-characterized-by-isolated-
 - **Counterexample.** `Q(√3)`.
 - **Totally real fields.** There the condition is also sufficient, via `β = ε_0 u^{2N}` and Theorem A.
 - **Complex cubic fields.** They all qualify, because their unit arguments are dense.
+
+## Addendum 4 (09-18): negative bases, read at source
+
+- **KSV, arXiv:1701.04609** (`neg/ksv-1701.04609.tex`).
+  - The α-SRS is `τ_{r,α}(z) = (z_1,…,z_{d−1}, −⌊rz + α⌋)`.
+  - Proposition `p:conjugacy2` conjugates Ito--Sadahiro's `T_{−β}` on `Z[β] ∩ [ℓ_β, ℓ_β+1)` to `τ_{r,α}`, with
+    `α = β/(β+1)` and `r` the cofactor of `x + β`.
+  - The proof (`φ(z) = rz − ⌊rz + α⌋`, then `−βr_i = r_{i−1} − c_i`) never uses the value of `α`. With `α = 0` it
+    conjugates `T'(y) = {−βy}` on `Z[β] ∩ [0,1)` to the classical SRS `τ_r`.
+- **SRS survey, arXiv:1312.0386** (`neg/srs-survey-1312.0386.tex`).
+  - Definition `def:sow` (set of witnesses): `±e_i ∈ V`, and `z ∈ V` implies `τ_r(z), −τ_r(−z) ∈ V`.
+  - Theorem `thm:Brunotte` (= ABBPT Theorem 5.1): `r ∈ D^0_d` iff every element of a set of witnesses reaches `0`.
+    Its proof is two lines from the almost-linearity identity; finiteness of `V` is not needed.
+  - Proposition `prop:betanumformula` is Hollander's conjugacy of `T_β` with `τ_r`. Its proof uses only that `β`
+    is a root and `r` the cofactor, not the sign of `β`.
+  - Proposition `pro:D10`: `D^0_1 = [0,1)`. So a quadratic Pisot unit `β` has (F−₀) iff its conjugate lies in `(0,1)`, that
+    is, iff `N(β) = +1`. This is the exact complement of the positive-base quadratic case (norm −1).
+- **Lane's witness set.** For `0 < r_0 < … < r_{d−1} < 1`, the alternating-sign vectors in `{−1,0,1}^d` form a set
+  of witnesses, and each reaches `0` within `2d` steps. This is recorded in
+  `algebraic-interval-exchange-groups-satisfy-boone-higman`, item 1. A published version of this monotone
+  criterion may exist; none was found in the survey, and no priority is claimed.

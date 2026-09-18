@@ -49,3 +49,24 @@ The two difficulties are:
    proof of the premise for all `X` needs either that reachability, or a base that grows with `X` (still
    free, so that the fence stays inapplicable), or non-lossless recursions where cancellation adds power.
    No obstruction is known: the fence is inapplicable, and the substitution dynamics is Turing-shaped.
+4. **Where the K-theory of these hosts lives** (2026-09-18, lane `bh-algebra`, after `bh-free-53`).
+   - `binary-self-similar-completions-over-free-bases-have-zero-kh` (d4f9c0796) gives
+     `KH(O_ψ(K<X>)) = 0` for binary `ψ`, injective or not.
+   - By `noninjective-ln-completions-have-self-similar-bases`, `O_ψ(K<X>) ≅ O_(ψ̄)(B/J)` with `ψ̄`
+     injective. So its nil terms, the whole of `K` minus `KH`, are those of an injective completion
+     over the self-similar quotient `B/J`.
+   - For the lossless monomial recursions of `lossless-monomial-recursions-give-simple-completions`,
+     `B/J` is the monomial algebra `K<X>/(dying words)`. So the ring-side `K`-gate for these hosts
+     reduces to twisted-nil vanishing over monomial algebras, not over the free base.
+   - **The same tension from both sides.** The recursions that escape the complexity fence are the
+     non-injective ones. Their `B/J` is a monomial algebra with infinitely many relations when `X` is
+     hard, and such algebras are not expected to be coherent. So escaping the fence is exactly what
+     endangers regularity.
+   - **For the group transfer the alphabet size is irrelevant.** The group route uses `O_ψ ⊗ L_2`, and
+     `KH(A ⊗ L_2) = 0` for every `A` (`leavitt-tensor-k-theory-is-pure-twisted-nil`). The
+     "keep `d = 2`" caution matters only when `O_ψ` itself is used as the `K`-trivial host.
+   - *Lesson for general BH.* Complexity and regularity pull against each other in every self-similar
+     host: complexity needs a non-injective recursion, and non-injectivity puts a non-coherent monomial
+     algebra under the completion. A universal route needs a coherence mechanism for monomial algebras
+     with decidable, non-regular relation sets, or it must get complexity from somewhere other than the
+     kernel `J`.

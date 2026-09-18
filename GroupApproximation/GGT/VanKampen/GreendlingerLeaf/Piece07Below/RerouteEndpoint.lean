@@ -15,7 +15,7 @@ left for residual 07 is the all-cells refutation
 `RerouteStatement`.
 
 **LOUD: build caveat.**  This module imports `GL03BPinch/Endpoint`, which in turn imports
-`GL03BPinchOrder.ORDERMODULE` and cites `GL03BPinchOrder.lakeWalk_reverse_map_alpha_sublist`.  At
+`GL03BPinchOrder.Order` and cites `GL03BPinchOrder.lakeWalk_reverse_map_alpha_sublist`.  At
 the time of writing, neither exists on disk; `GL03BPinchOrder` holds only `Split` and `Theta`.
 `GL03BPinch/Endpoint` is not registered in `GroupApproximation.lean`.  Until that module builds,
 this one does not either.  The `_corr` forms in `RerouteStatement` and `RerouteFrontier` take the

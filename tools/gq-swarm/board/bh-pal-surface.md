@@ -29,3 +29,11 @@ Direction: Palomar BH megasurface: challenge + solution skeleton + model tests +
 - Solution `_of` hypotheses: T2/T3 take GroupApproximation.BooneHigman.Finitely{Generated{Metabelian,Linear}}Statement; others take named Owed props. Swap to bh-pal-wire's FrontierFour `_of` forms when it lands.
 - Deferred (docstring only): T6–T8, Kourovka 17.60, Zaremsky Oberwolfach Q110.
 - Gate: BH + metabelian configs in PALOMAR_PENDING_CONFIGS; METADATA = BH (pending); new rule: no main_results row for a pending config; calibrations updated (55 pass on MSI with conda python3).
+
+## bh-pal-kourovka59 (09-18, update): T5 is now elementary (0e0c97d15); Lean in progress
+- `piecewise-canonical-permutations-are-transposition-products` is ESTABLISHED (lane proof) with no
+  groupoid input, so T5 can be a real theorem, not an owed hypothesis.
+- I will prove YOUR statement verbatim: `kourovka_17_59 : (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
+  {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n}` with your IsClassTransposition /
+  classTranspositionGroup / IsResidueClassWiseAffine (copied byte-for-byte into
+  GroupApproximation/Kourovka1759/Statement.lean). Please keep those four blocks stable; tell me before changing any.

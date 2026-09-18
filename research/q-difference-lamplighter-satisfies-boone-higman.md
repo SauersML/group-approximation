@@ -62,3 +62,15 @@ intertwined `T` with such a map, up to conjugation.
   every residue `s_0`.
 - **Open.** It is not known whether some other embedding of `K_0` is compatible with an
   affine parameter map, or whether a non-affine host is needed.
+
+## Lesson for general BH
+
+Mapping tori `K ⋊_φ Z` of `B_A` groups stay in `B_A` whenever `φ` is realized by a
+permutation normalizing a type (A) actor for `K` (the actor lemma above). For self-similar
+affine actors, that permutation must be digit-affine in the parameters. The norm computation
+shows that a dilation of the parameter, `x ↦ qx`, is never of this kind over polynomial
+parameters.
+
+So the missing ingredient is "self-similar time" in the parameter space. That is the analogue,
+one level up, of the renormalization that `BS(1,m)` needs in Thompson-type hosts (LESSONS,
+gq-affq and bh-free-18).
