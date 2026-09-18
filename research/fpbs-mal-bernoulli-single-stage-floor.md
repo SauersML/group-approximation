@@ -10,6 +10,8 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-mal-mapping-torus-2026-09-18.md
+  - experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -208,3 +210,35 @@ quantifier-shift).** Artifact
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
 
   The claim stays OPEN.
+
+**Ascending HNN overgroup (September 18, 2026, swarm-0917-w10-w10-fp-break,
+reframing).** Artifact `research/artifacts/fpbs-mal-mapping-torus-2026-09-18.md`,
+script `experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py`.
+- **Shape tested.** Decide the price of `Gamma_mal`, and so this claim through
+  [[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]], inside the mapping torus
+  `G = <a, b, t | [a, t], t^{-1} b t = b a b^{-2}> = Gamma_mal ⋊ Z`. This
+  group has two generators and one relator. It has `G^ab = Z^2`,
+  `relC(R_G; R_{<a,b>}) = 0` in every free action, and infimal cost 1.
+- **Lemma (proved).** `Z^2 = <a, t>` is malnormal in `G`.
+  - An infinite intersection `g Z^2 g^{-1} ∩ Z^2` with `g ∉ Z^2` forces
+    `phi^j(u) ∈ <a> u <a>` for some `u ∉ <a>` that begins and ends with
+    `b^{±1}`.
+  - But `|phi(u)|_b = |u|_b + 2s`, where `s` is the number of `b`-syllables.
+  - The search finds no solution for `|u| ≤ 10` and `j ≤ 4`.
+  - Consequently `G` has trivial centre.
+- **Where it dies.**
+  - *(K1) Chains stall.* The Gaboriau chain and wq-normal criteria started
+    from `<a>`, `<t>` or `<a, t>` stop at `Z^2`.
+  - *(K2) Twice-used letters are excluded.* The twice-used-letter theorem
+    fails in every basis: the relator lies in the commutator subgroup, so it
+    would have the form `s x^p s^{-1} x^{-p}`, and then `x^p` would be
+    central.
+  - *(K3) No transfer to this claim.* The price of `G` and this claim do not
+    constrain each other. Going from the failure of the floor to price one for
+    `G` needs a cost bound on every free `N`-action. That is the OPEN
+    [[fpbs-normal-subgroup-bounded-cost-fixed-price-one]] with `K = 2`, since
+    Gaboriau's normal-subgroup theorem gives only infimal cost.
+- **Invariant.** The strict growth of `b`-length under `phi`, and the one-way
+  character of cost transfer through normal subgroups.
+
+The claim stays OPEN.
