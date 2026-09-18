@@ -5945,6 +5945,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingDefect
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingTrace
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingEndpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.FinModel
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Decode
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
