@@ -186,3 +186,34 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
   - **Forced shape for R1:** weights exponential in germ size on the rare regions `{L = ℓ}`, i.e.
     infinite-measure Maharam walls in `C^n × Z^n`. They must not be fibre-constant and must sit at
     fibre height `≍ L`, which gives odometer-type growth `≍ log N`.
+- **Zipper transplant: Matui, Hughes, Lehnert/Farley (2026-09-17, e-nv-affine; class-kill plus
+  loophole closure).**
+  - **Dictionary.** Matui's zipper for `[[G_A]]` (arXiv:1210.5800, l.2054–2175) uses
+    `Ω` = classes of compact open `G`-sets with cylinder source, modulo `U_{μ,ν}`, and
+    `Z` = cylinders. Its analogue for `G_2^n` has `Ω_n` = brick-source bisections modulo
+    products of `U_{μ_i,ν_i}`, and `Z_n` = bricks.
+  - **Where it fails.** Matui's step (b), "φ_α([C_λ]) is in Z iff C_λ is contained in some
+    C_{ν_i}", bounds the broken cylinders by the number of words of length `< m(α)`. For
+    bricks, only one side has to be short, so infinitely many bricks break. These are the
+    codimension-one faces of `brin-thompson-brick-charts-are-not-commensurated`.
+  - **Class-kill.** `brin-thompson-2v-embeds-in-no-zipper-group` (OPEN: candidate proof,
+    demoted at landing because its referee votes were lost): no group with a zipper action
+    contains a distorted element.
+    - So `2V` embeds in no SFT full group `[[G_A]]`, in no locally finitely determined group
+      of local similarities of any compact ultrametric space, and in no group acting
+      properly on a space with walls.
+    - This settles the "Local similarities" bullet above: no choice of metric helps.
+    - **Invariant:** distortion of the Callard–Salo element.
+    - **Where every member dies:** step (b) made formal as the bounded-or-linear dichotomy.
+      Zipper counts are linear along `⟨f⟩`, but they are `O(log^4 N)`.
+  - **Expansivity loophole closed (OPEN, one narrow gap).**
+    `expansive-amenable-purely-infinite-groupoid-hosts-kazhdan` builds
+    `(M ⋊ Γ) × G_2`, with `Γ` a hyperbolic Kazhdan group and `M` a free minimal subshift
+    extension of its horofunction subshift. That groupoid is expansive in Nekrashevych's
+    sense, compactly generated, amenable (by Ozawa's boundary theorem, which avoids the
+    exactness import), minimal, effective and purely infinite, and `Γ ≤ [[𝒢]]`. The gap is
+    `hyperbolic-cayley-graph-ozawa-boundary-facts`.
+  - **Surviving lever.** `G_2^n` carries a continuous `Z^n`-cocycle with AF kernel. The
+    host's canonical cocycle has kernel `(M ⋊ Γ) × AF`, which contains `Γ`. A Haagerup proof
+    must use such structure, with `ψ(f^N) → ∞` and `ψ(f^N) = O(log^8 N)`, and so it cannot
+    be an integer wall count.
