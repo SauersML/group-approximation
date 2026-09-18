@@ -2,16 +2,23 @@
 rg: 2
 id: ct-z-normalizers-are-2-and-3-regular
 kind: claim
-title: Every homeomorphism of the profinite integers normalizing CT(Z) restricts to a bijection of N_0 (after the flip) that is both 2-regular and 3-regular; with Bell's Cobham-type theorem for regular sequences this gives Out(CT(Z)) = C_2, answering Kourovka 17.57
+title: Every homeomorphism of the profinite integers normalizing CT(Z) restricts to a bijection of N_0 (after the flip) that is both 2-regular and 3-regular with polynomial growth; with Bell's generalized Cobham theorem this gives Out(CT(Z)) = C_2, answering Kourovka 17.57
 requires:
   - out-ct-z-is-c2-iff-normalizers-are-somewhere-affine
+  - bell-generalized-cobham-theorem
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
 
-**Items 1–2 ESTABLISHED** (lane proof, not reviewed). **Item 3 CONDITIONAL** on one
-cited theorem that was **not read at source**: the SLC/EMIS PDFs are bot-walled from
-MSI. No priority is claimed.
+**ESTABLISHED** (lane proof, not reviewed). No priority is claimed.
+
+Items 1–2 are self-contained. Item 3 imports Bell's Theorem 1.4 (Sém. Lothar. Combin.
+54A (2006), Art. B54Ap), which is pinned at source in `bell-generalized-cobham-theorem`.
+The earlier citation to "SLC 55, B55f" was wrong.
+
+`out-ct-z-is-c2` gives a second, independent route to the same conclusion. It replaces
+Bell by Adamczewski–Bell arXiv:1303.2019, Theorem `thm: main`, read at source, and
+writes out the steps from regular to quasi-polynomial to affine class in full.
 
 Notation is as in `out-ct-z-is-c2-iff-normalizers-are-somewhere-affine`:
 - `F = CT(Z) = [[G]]` acts on `Ẑ`.
@@ -40,36 +47,33 @@ Fix `b ≥ 2`, a digit `0 ≤ e < b`, and a residue `0 ≤ r < b`.
 ## 2. Regularity and growth
 
 For `b ∈ {2, 3}`, `Φ` is `b`-regular over `Q`.
-- By induction, `Φ(b^j n + r) = B_{j,r}(n) Φ(n) + A_{j,r}(n)`, where `A_{j,r}` and
-  `B_{j,r}` are periodic mod `P`.
+- By induction on `j`, `Φ(b^j n + r) = B_{j,r}(n) Φ(n) + A_{j,r}(n)`, where `A_{j,r}`
+  and `B_{j,r}` are periodic mod `P`, with the same `P` for all `j`.
 - So the `b`-kernel of `Φ` lies in `{χ·Φ + χ' : χ, χ' periodic mod P}`, a `Q`-space of
-  dimension `≤ 2P`.
+  dimension `≤ 2P`. In Bell's notation (Def. 1.2), `M_Q(Φ; b)` is finitely
+  generated.
 - `Φ` is integer-valued. The recursion with bounded coefficients gives
   `|Φ(n)| ≤ C n^D`.
 
-## 3. Conditional conclusion: Out(CT(Z)) = C_2
+## 3. Conclusion: Out(CT(Z)) = C_2
 
-**Input (recalled, not read at source).** J. P. Bell, "A generalization of Cobham's
-theorem for regular sequences", Sém. Lothar. Combin. 55 (2005/07), Art. B55f: a
-sequence that is both `k`-regular and `l`-regular, with `k, l` multiplicatively
-independent, is (eventually) a quasi-polynomial.
-- If the published form is only "satisfies a linear recurrence", it still suffices. An
-  integer sequence satisfying a linear recurrence with polynomially bounded growth is
-  eventually a quasi-polynomial: its rational generating function has integer
-  coefficients, so by Fatou and Kronecker its poles are at roots of unity.
-
-**Given the input.** There are `N` and `n_0` such that on each class
-`i mod N` (`n ≥ n_0`), `Φ` agrees with a polynomial `p_i ∈ Q[t]`.
-- **Some class is affine.**
-  - Injectivity rules out `deg p_i = 0`.
-  - If every `deg p_i ≥ 2`, then `#{n : Φ(n) ≤ Y} = O(√Y)`. But `Φ(N_0) = N_0` forces
-    this count to be `Y + 1`.
-  - So some class has `Φ(n) = an + c` with `a > 0` rational.
-- **Extension to a box.** `{n ≥ n_0 : n ≡ i mod N}` is dense in the box `B(i, N)`, so
-  `φ(z) = az + c` on `B(i, N)`.
-- **Conclusion.** That is condition (b) of `out-ct-z-is-c2-iff-normalizers-are-somewhere-affine`,
-  hence `Out(CT(Z)) = ⟨σ⟩ ≅ C_2`. This answers Kourovka 17.57 positively, modulo the
-  cited theorem.
+1. **Linear recurrence.** Bell, Theorem 1.4 with `R = Q`, `k = 2`, `l = 3`, gives
+   one for `Φ`, over `Q`.
+2. **Quasi-polynomial.** Integer values and polynomial growth make the characteristic
+   roots roots of unity. This is Bell's Theorem 1.5, or the self-contained steps 4–6
+   of `out-ct-z-is-c2`. So there are `N` and `n_0` such that, on each class
+   `i mod N` (`n ≥ n_0`), `Φ` agrees with a polynomial `p_i ∈ Q[t]`.
+3. **Some class is affine.**
+   - Injectivity rules out `deg p_i = 0`.
+   - If every `deg p_i ≥ 2`, then `#{n : Φ(n) ≤ Y} = O(√Y)`. But `Φ(N_0) = N_0`
+     forces this count to be `Y + 1`.
+   - So some class has `Φ(i + Nt) = c_0 + c_1 t` (`t ≥ t_0`), with integers
+     `c_1 > 0` and `c_0`.
+4. **Extension to a box.** By density of `{i + Nt : t ≥ t_0}` in `B(i, N)`, `φ` is
+   affine on `B(i, N)`.
+5. **Conclusion.** That is condition (b) of
+   `out-ct-z-is-c2-iff-normalizers-are-somewhere-affine`, hence
+   `Out(CT(Z)) = ⟨σ⟩ ≅ C_2`. This answers Kourovka 17.57 positively.
 
 ## Remarks
 
@@ -79,5 +83,3 @@ independent, is (eventually) a quasi-polynomial.
 - **Why one prime is not enough.** For `V` (`P = ∅`), only base-2 dilations exist, and
   2-regularity alone does not force piecewise affinity. That is consistent with
   `Out(V) ≅ O_2` being infinite.
-- **Gap to close.** Read Bell's paper at source, or find a self-contained proof for
-  sequences obeying the recursions of item 1.
