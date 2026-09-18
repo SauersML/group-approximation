@@ -276,3 +276,24 @@ roots = ["Palomar.MetabelianBooneHigmanSolution"]
 [[lean_lib]]
 name = "PalomarMetabelianBooneHigmanModelTests"
 roots = ["Palomar.MetabelianBooneHigmanModelTests"]
+
+# The Comparator configuration `Palomar/comparator-boone-higman.json`: the
+# Boone–Higman megasubmission (work in progress), collecting the printed questions
+# answered here (Kourovka 14.10(c) and 17.59, BBMZ Problems 2.7 and 5.3(7), finitely
+# generated linear groups, Llosa Isenrich–Schesler–Wu Question 1.11, BFFHZ Question
+# 3.3, and a finitely presented infinite simple group).  `Palomar/BooneHigmanChallenge.lean`
+# imports Mathlib only; `Palomar/BooneHigmanSolution.lean` is a skeleton whose `_of`
+# theorems carry the propositions the development still owes.  Not in `defaultTargets`.
+[[lean_lib]]
+name = "PalomarBooneHigmanChallenge"
+roots = ["Palomar.BooneHigmanChallenge"]
+
+[[lean_lib]]
+name = "PalomarBooneHigmanSolution"
+roots = ["Palomar.BooneHigmanSolution"]
+
+# `PalomarBooneHigmanModelTests` exercises the shared block on controls; it is not a
+# submission library.
+[[lean_lib]]
+name = "PalomarBooneHigmanModelTests"
+roots = ["Palomar.BooneHigmanModelTests"]
