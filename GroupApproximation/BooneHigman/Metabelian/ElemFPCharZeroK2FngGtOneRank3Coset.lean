@@ -64,8 +64,10 @@ def czK2FngGtOneRank3_SectionProp {R S : Type*} [CommRing R] [CommRing S] (φ : 
   ∃ σ : (elementaryGroup (Fin 3) S ⧸ (elementaryGroupMap (ι := Fin 3) φ).range) →
       SteinbergGroup (Fin 3) S,
     σ (QuotientGroup.mk 1) ∈ czK2FngGtOneRank3_Q φ s ∧
-    (∀ (i j : Fin 3) (h : i ≠ j), czK2FngGtOneRank3_Check (czK2FngGtOneRank3_Q φ s) σ (x i j h 1)) ∧
-    (∀ (i j : Fin 3) (h : i ≠ j), czK2FngGtOneRank3_Check (czK2FngGtOneRank3_Q φ s) σ (x i j h u))
+    (∀ (i j : Fin 3) (h : i ≠ j),
+      czK2FngGtOneRank3_Check (czK2FngGtOneRank3_Q φ s) σ (x i j h 1)) ∧
+    (∀ (i j : Fin 3) (h : i ≠ j),
+      czK2FngGtOneRank3_Check (czK2FngGtOneRank3_Q φ s) σ (x i j h u))
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_SectionProp
