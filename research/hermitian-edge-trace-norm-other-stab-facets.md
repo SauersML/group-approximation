@@ -28,3 +28,16 @@ minimization): odd antiholes `C̄_7` (ratio `1.189`), `C̄_9` (`1.108`); wheels 
 (`1.157`), `W_7` with hub weight `3` (`1.239`); webs `C_8^2` (`1.155`), `C_11^3` (`1.185`),
 `C_7^2` (`1.189`), `C_10^3` (`1.209`). The smallest ratio seen is at the antihole `C̄_9`; antiholes
 contain large cliques, which is where the tension concentrates.
+
+## Attempts
+
+- 2026-09-18 (w7-078): **split off the odd antiholes and proved them except `C̄_11`**
+  (route `hermitian-edge-trace-norm-other-stab-facets-antihole-split`). Antiwebs are rank-perfect, so
+  the only full-support facet of `C̄_n` is `x(V) <= 2`. `hermitian-edge-trace-norm-odd-antihole-facets-by-size`
+  proves `||C||_1 >= sqrt3 (n-2)` on `C̄_n` for every odd `n >= 7` except `n = 11`:
+  - `n = 7` by a covering with houses;
+  - `n = 9` and `n >= 15` by coverings with cliques;
+  - `n = 13` by a new kernel LP on the rank-one reduction.
+
+  `n = 11` reduces to `c_5 >= 7.0857` (`hermitian-edge-trace-norm-odd-antihole-c11`). What remains
+  is `hermitian-edge-trace-norm-other-stab-facets-non-antihole`.
