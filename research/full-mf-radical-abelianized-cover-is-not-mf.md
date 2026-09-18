@@ -14,6 +14,7 @@ artifacts:
   - research/relation-lamp-wreath-is-mf-with-nontrivial-fd-radical.md
   - research/stable-abelianized-cover-is-subgroup-monotone.md
   - research/abelianized-cover-df-forces-cofinite-congruence-df.md
+  - research/abelianized-cover-mf-radical-is-union-of-local-cover-radicals.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -201,3 +202,44 @@ claimed.
   - **Virtual extraction.**  Passing to a finite-index torsion-free or
     residually finite piece is impossible.  A nontrivial full-radical group
     has no proper finite-index subgroup, because finite groups are MF.
+- **Finitary form of DF via local-commutator covers (2026-09-18).**
+  `abelianized-cover-mf-radical-is-union-of-local-cover-radicals`
+  (ESTABLISHED) proves a continuity theorem.  For `F` free of finite rank,
+  normal subgroups `K_L` increasing to `K`, and `H_L = F/K_L ->> H = F/K`,
+  it gives `Rad_MF(H) = U_L pi_L(Rad_MF(H_L))` as an increasing union.
+  - The proof amplifies to `||sigma(g) - 1|| >= sqrt 3` using tensor powers.
+    Then it chooses corona models of the `H_L` diagonally, so that they
+    assemble into a single model of `H`.
+  - If each `K_L` is finitely normally generated, it also gives
+    `H` LEF iff `U_L pi_L(fr(H_L)) = 1`.
+
+  Applied to `N_L = <<[u,v] : u,v in R cap S_L>>`, with `U N_L = [R,R]`:
+  - `(DF)` is equivalent to `(DF_L)` for ONE finite `L`.  `(DF_L)` says that
+    the finitely presented group `Gamma_L = F/N_L` has an MF-radical word
+    `w in [F,F] \ [R,R]`.
+  - `(DF_L)` is monotone in `L`.  Its certificate involves only finitely
+    many commutation relations.
+  - `E` is LEF iff no word outside `[R,R]` lies in the finite residual of
+    any `Gamma_L`.
+
+  **What this changes.**
+  - `(DF)` is now a statement about a single finitely presented group with
+    `Gamma_L^ab = Z^|X|`, which is therefore not Kazhdan.  Previously it was
+    a statement about the infinitely related group `E`.
+  - Each `(DF_L)` is a prerequisite that can fail on its own.
+  - The exact-permutation obstruction recorded above becomes a question
+    about residual finiteness of finitely presented groups.  Non-abelian
+    finite quotients of `Gamma_L` have diameter `>= (L-c+1)/2`, and their
+    commutator subgroup is `phi([R,R])`.
+  - Explicit cofinal presentations avoid the word problem of `G`.  Take
+    `Gamma'_k = <X | [v r_i v^-1, v' r_j v'^-1] : |v|,|v'| <= k>`.  Here
+    `U N'_k = [R,R]`, and `Gamma_(2k+c) ->> Gamma'_k`.
+  - Spark: if `(DF_L)` holds, then `Gamma_L / Rad_MF` is a quotient to aim
+    for.  If `Rad_MF(Gamma_L)` itself is nontrivial, `Gamma_L` is a
+    finitely presented, non-Kazhdan, non-MF group written down directly from
+    the presentation of `G`.
+
+  **Where it stops.**  No `(DF_L)` is proved, and no `Gamma_L` is shown to be
+  residually finite on `[F,F] \ [R,R]`.  The finitary form moves the
+  difficulty but does not remove it.  The analytic content of `(DF)` is
+  unchanged.
