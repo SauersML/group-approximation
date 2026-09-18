@@ -67,7 +67,8 @@ theorem suslinCongPow_kmShape_mem {S : Type*} [CommRing S]
     ring
   obtain ⟨c, hc⟩ : ∃ c : (Matrix (Fin 2) (Fin 2) S)ˣ,
       (c : Matrix (Fin 2) (Fin 2) S) = !![1 + t * y, y * y; -(t * t), 1 - t * 1 * y] :=
-    ⟨Matrix.SpecialLinearGroup.toGL ⟨_, hdet⟩, rfl⟩
+    ⟨Matrix.SpecialLinearGroup.toGL
+      ⟨!![1 + t * y, y * y; -(t * t), 1 - t * 1 * y], hdet⟩, rfl⟩
   have h1 : (1 + t * y) * 1 - y * t = 1 := by ring
   have hcH : c ∈ H :=
     hM _ _ c (1 + t * y) y t 1 y t 1 h1 (suslinCongPow_eU_pair_val t y)
@@ -89,7 +90,7 @@ theorem suslinCongPow_elementary_le_gen (S : Type*) [CommRing S] :
 theorem suslinCongPow_km_mem {A : Type*} [CommRing A] (q : A) (k : ℕ) :
     suslinCongDecide_km q k ∈ suslinCongPow_gen A[X] :=
   suslinCongPow_mem_gen_of fun H hE hM ↦
-    suslinCongPow_kmShape_mem H hE hM (C q) (X ^ k) _ rfl
+    suslinCongPow_kmShape_mem H hE hM (C q) (X ^ k) (suslinCongDecide_km q k) rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_km_mem
 
@@ -100,6 +101,54 @@ theorem suslinCongPow_stab_km_mem {A : Type*} [CommRing A] (q : A) (k : ℕ) :
   suslinCongPow_gen_le A[X] (suslinCongPow_km_mem q k)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_stab_km_mem
+
+/-- The image of `h_{q,k}` under `f : A[X] →+* S`. -/
+theorem suslinCongPow_map_km_val {A S : Type*} [CommRing A] [CommRing S] (f : A[X] →+* S)
+    (q : A) (k : ℕ) :
+    ((elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_km q k) :
+        (Matrix (Fin 2) (Fin 2) S)ˣ) : Matrix (Fin 2) (Fin 2) S) =
+      !![1 + f (C q) * f (X ^ k), f (X ^ k) ^ 3; f (C q) ^ 3,
+        1 - f (C q) * f (X ^ k) + f (C q) ^ 2 * f (X ^ k) ^ 2] := by
+  change f.mapMatrix (suslinCongDecide_kmMat q k) = _
+  refine Matrix.ext fun i j ↦ ?_
+  fin_cases i <;> fin_cases j <;>
+    simp [RingHom.mapMatrix_apply, suslinCongDecide_kmMat] <;> ring
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_map_km_val
+
+/-- `f(h_{q,k}) ∈ suslinCongPow_gen S` for every `f : A[X] →+* S`. -/
+theorem suslinCongPow_map_km_mem {A S : Type*} [CommRing A] [CommRing S] (f : A[X] →+* S)
+    (q : A) (k : ℕ) :
+    elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_km q k) ∈ suslinCongPow_gen S :=
+  suslinCongPow_mem_gen_of fun H hE hM ↦
+    suslinCongPow_kmShape_mem H hE hM (f (C q)) (f (X ^ k))
+      (elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_km q k))
+      (suslinCongPow_map_km_val f q k)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_map_km_mem
+
+/-- **`f(σ_{q,k}) ∈ suslinCongPow_gen S`** for the witness `σ_{q,k} = suslinCongDecide_wit q k`
+and every `f : A[X] →+* S`. -/
+theorem suslinCongPow_map_wit_mem_gen {A S : Type*} [CommRing A] [CommRing S]
+    (f : A[X] →+* S) (q : A) (k : ℕ) :
+    elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_wit q k) ∈ suslinCongPow_gen S := by
+  rw [suslinCongDecide_wit, map_mul, map_mul, elementaryMatrixUnitMap_elementaryUnit,
+    elementaryMatrixUnitMap_elementaryUnit]
+  exact mul_mem (mul_mem (suslinCongPow_map_km_mem f q k)
+    (suslinCongPow_elementary_le_gen S (elementaryUnit_mem _ _ _ _)))
+    (suslinCongPow_elementary_le_gen S (elementaryUnit_mem _ _ _ _))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_map_wit_mem_gen
+
+/-- **`diag(f(σ_{q,k}), 1) ∈ E₃(S)`**, unconditionally, for every `f : A[X] →+* S`. -/
+theorem suslinCongPow_stab_map_wit_mem {A S : Type*} [CommRing A] [CommRing S]
+    (f : A[X] →+* S) (q : A) (k : ℕ) :
+    stabilizeUnit (R := S) (κ := Unit)
+        (elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_wit q k)) ∈
+      elementaryGroup (Fin 2 ⊕ Unit) S :=
+  suslinCongPow_gen_le S (suslinCongPow_map_wit_mem_gen f q k)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongPow_stab_map_wit_mem
 
 end Absorption
 end Metabelian
