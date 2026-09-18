@@ -48,3 +48,31 @@ as a named problem in the literature.
   - It dies at degree `>= 3`. Ioana's theorem controls 1-cocycles into groups, which reach degree two through
     extensions. No rigidity is known for measurable `q`-cochains with `q >= 3`. So the high-degree half used by
     `torsion-free-hyperbolic-mod-p-classes-die-virtually` has no measurable reformulation.
+- **Group-ring / approximation transplant (swarm-0917-w11). Dead, killed by a calibrator.** The idea was to
+  derive goodness, or just degree-two goodness, from inputs that make sense for any group and are known or
+  expected for hyperbolic groups:
+  - Strong Atiyah, domain group rings, and `L^2` vanishing with Lück approximation;
+  - residual finiteness and residual-`p`, linearity, and finite type;
+  - and, for the Kazhdan case where cubulation dies, property (T).
+
+  **Calibrator.** `Γ(3) ≤ SL_3(Z)` has every one of these properties. It is torsion-free, Kazhdan, linear over
+  `Z`, residually 3, and satisfies Strong Atiyah (`congruence-kazhdan-groups-satisfy-strong-atiyah`). Its group
+  ring is a domain in characteristic 0 and 3. Yet it fails degree-two goodness
+  (`sl3z-level-three-fails-degree-two-goodness`).
+  - `b_2(Γ(3)) = 26` (`sl3z-level-three-congruence-subgroup-has-b2-26`, from Lee--Szczarba's `b_3 = 27` and
+    Harder's `χ = 0`). So `|H^2(Γ(3); Z/n)| >= n^26`.
+  - The profinite side is bounded independently of `n` (`sl3z-finite-index-fd-projective-multiplier-is-finite`).
+
+  **Where every member of the class dies.** At the degree-two step. The invariant is the count
+  `|H^2_cts(G^; Q/Z)[n]| >= n^(b_2) / |G^ab|`, which degree-two goodness forces for a Kazhdan group.
+  - No combination of the listed inputs forces the profinite multiplier to be infinite: `Γ(3)` has all of them
+    and a finite one.
+  - So any proof of (G2) for hyperbolic Kazhdan groups must use hyperbolicity itself. Two candidate ingredients
+    are closure of hyperbolicity under finite central extensions, and quasi-isometric rigidity of the
+    extension.
+  - **First concrete test.** The hyperbolic Kazhdan group of
+    `ghb7-congruence-kernel-hyperbolic-kazhdan-with-large-b2` has `b_2 > 0`. If it is good in degree two, its
+    profinite multiplier has `n`-torsion of order `>= n^(b_2) / |G^ab|` for every `n`. This is the opposite of
+    `Γ(3)`.
+  - **The `Z`-extension version.** `Γ(3)` also has a torsion-free finitely presented Kazhdan non-RF central
+    `Z`-extension. This is the phenomenon a hyperbolic counterexample would need, realized here in higher rank.
