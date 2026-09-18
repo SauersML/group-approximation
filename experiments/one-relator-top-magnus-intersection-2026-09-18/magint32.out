@@ -1,0 +1,33 @@
+INT AAtATatatAATTattaTT n=2 W0=A0.A0.A1.a0.a1.A2.A2.a0.a2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtATatatATTattaaTT n=2 W0=A0.A0.A1.a0.a1.A2.a0.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtATatataTTattAATT n=2 W0=A0.A0.A1.a0.a1.a2.a0.A2.A2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtATatataaTTattATT n=2 W0=A0.A0.A1.a0.a1.a2.a2.a0.A2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtATattAATTatataTT n=2 W0=A0.A0.A1.a0.A2.A2.a0.a1.a2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattATTatataaTT n=2 W0=A0.A0.A1.a0.A2.a0.a1.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattaTTatatAATT n=2 W0=A0.A0.A1.a0.a2.a0.a1.A2.A2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattaaTTatatATT n=2 W0=A0.A0.A1.a0.a2.a2.a0.a1.A2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtAtATatATTattaaTT n=2 W0=A0.A0.A1.A2.a1.A2.a0.a2.a2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtAtaTTattaTatAATT n=2 W0=A0.A0.A1.a2.a0.a2.a1.A2.A2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {0: (1, True), 1: (1, True)}] -> NONEXC
+INT AAtAtaTatAATTattaTT n=2 W0=A0.A0.A1.a2.a1.A2.A2.a0.a2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {0: (1, True)}] -> NONEXC
+INT AAtAtaTataTTattAATT n=2 W0=A0.A0.A1.a2.a1.a2.a0.A2.A2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {0: (1, True), 1: (1, True)}] -> NONEXC
+INT AAtaTatAtATTattaaTT n=2 W0=A0.A0.a1.a0.A1.A2.a0.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtaTatAtaTTattAATT n=2 W0=A0.A0.a1.a0.A1.a2.a0.A2.A2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtaTatAtaaTTattATT n=2 W0=A0.A0.a1.a0.A1.a2.a2.a0.A2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True)}] -> NONEXC
+INT AAtaTattAATTatAtaTT n=2 W0=A0.A0.a1.a0.A2.A2.a0.A1.a2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtaTattATTatAtaaTT n=2 W0=A0.A0.a1.a0.A2.a0.A1.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtaTattaaTTatAtATT n=2 W0=A0.A0.a1.a0.a2.a2.a0.A1.A2 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtatATAtATTattaaTT n=2 W0=A0.A0.a1.A2.A1.A2.a0.a2.a2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtataTAtaTTattAATT n=2 W0=A0.A0.a1.a2.A1.a2.a0.A2.A2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {0: (1, True), 1: (1, True)}] -> NONEXC
+INT AAttAATTatATatataTT n=2 W0=A0.A0.A2.A2.a0.A1.a0.a1.a2 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAttAATTatAtaTataTT n=2 W0=A0.A0.A2.A2.a0.A1.a2.a1.a2 exps=[-1, 0, 0] [s=a0 S-EXP-NONZERO {}] [s=a2 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAttATATataTattaaTT n=2 W0=A0.A0.A2.A1.a0.a1.a0.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAttATaTatATattaaTT n=2 W0=A0.A0.A2.a1.a0.A1.a0.a2.a2 exps=[0, 0, 1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAtATattAATTattaTaT n=2 W0=A0.A0.A1.a0.A2.A2.a0.a2.a1 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattATTattaaTaT n=2 W0=A0.A0.A1.a0.A2.a0.a2.a2.a1 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattaTTattAATaT n=2 W0=A0.A0.A1.a0.a2.a0.A2.A2.a1 exps=[0, 0, -1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtATattaaTTattATaT n=2 W0=A0.A0.A1.a0.a2.a2.a0.A2.a1 exps=[0, 0, 1] [s=a0 NONEXC {-1: (1, True), 0: (1, True)}] -> NONEXC
+INT AAtAtAATTattaTTataT n=2 W0=A0.A0.A1.A2.A2.a0.a2.a0.a1 exps=[0, 0, -1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAtAtATTattaaTTataT n=2 W0=A0.A0.A1.A2.a0.a2.a2.a0.a1 exps=[0, 0, 1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAtAtaTTattAATTataT n=2 W0=A0.A0.A1.a2.a0.A2.A2.a0.a1 exps=[0, 0, -1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+INT AAtAtaaTTattATTataT n=2 W0=A0.A0.A1.a2.a2.a0.A2.a0.a1 exps=[0, 0, 1] [s=a0 NONEXC {-2: (1, True), -1: (1, True)}] -> NONEXC
+SENTINEL_DONE

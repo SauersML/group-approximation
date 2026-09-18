@@ -43,11 +43,108 @@ in a finitely presented simple `Q`-algebra.
    So a copy of `K_∞` would need elements of nonzero degree, or a base `B` that is not a
    localization of a finitely generated polynomial ring.
 2. **Possible routes (not attempted).**
-   - Registers whose *index* is dynamic, e.g. a letter that shifts
-     `t_i ↦ t_(i+1)` inside a noncommutative base.
    - Transcendental power-series constants, such as `e^(t^m)`, defined by finitely many
      differential relations `D E_m = E_m D + m t^(m−1) E_m`, transported along the
      letters. The functions `e^(t^m)` are algebraically independent over `Q(t)`.
    - A general algebra Boone--Higman theorem over `Q`, `char-zero-ring-boone-higman`,
      for a finitely generated decidable algebra containing `K_∞`, for example one from
      Bokut's two-generator embedding. Whether that algebra is decidable is unchecked.
+3. **Shift tape over a Thompson crossed product (2026-09-18, lane `gq-ring-fp-simple`,
+   suggested by the coordinator).** The finite presentation of the tape works, but the
+   evaluation mechanism dies.
+   - **Setting.** Index the variables by the dyadic rationals `I ⊂ (0,1)`. Let Thompson's
+     group `F` act on `I` and on `Z[T_I]` by permuting variables.
+   - **The tape is finitely presented.** The crossed product `Z[T_I] ⋊ F` is presented by
+     `F`, one generator `T_p`, `[T_p, g] = 0` for generators `g` of `Stab_F(p)`, and
+     `[T_p, T_q] = 0` for one representative of each of the two orbits of `F` on pairs of
+     distinct dyadics. That is finitely many relations, since `Stab_F(p) ≅ F × F` is
+     finitely generated and `F` is transitive on increasing pairs.
+   - **The shift is consistent.** A shift letter `sh` with `h s_sh = s_sh φ(h)` and
+     `T_p s_sh = s_sh T_(p/2)` is compatible for all variables at once. Here `φ(h)` is `h`
+     conjugated into `[0, 1/2]` and extended by the identity, so `θ(x) = x/2` is
+     `φ`-equivariant: `θ(hx) = φ(h) θ(x)`. The O_ψ criterion's ψ-minimality and
+     aperiodicity appear to go through for the noncommutative base
+     `S^(-1) Z[T_I, registers] ⋊ F`, because `Q(T_I) ⋊ F` is simple: `F` acts faithfully
+     on the field. This was sketched, not written out.
+   - **Why the letters are restricted.** Compatibility with `F` forces every register
+     update to be `φ(F)`-invariant. The only variables such updates can name are `T_q` with
+     `q ∈ [1/2, 1)`, fixed by `φ(F)`, and those are read through a shift-type "load"
+     letter. So along any word the registers evaluate a *one-pass* program: variables
+     arrive in order, and each is read once into a bounded register file.
+   - **Where it dies.** Such values have bounded rank across every cut of the variable
+     order. Take a generic irreducible `q(x, y)` of `y`-degree `e`, and suppose `q` divides
+     `Σ_(i<=w) a_i(x) b_i(y)` with `w <= e`. Then `b_1(y), ..., b_w(y)` would be linearly
+     dependent over `Q(x)` in the function field of the curve `q = 0`. For `w = 2` this
+     forces `b_1/b_2 ∈ Q(x) ∩ Q(y) = Q`, which fails for generic curves, whose variables are
+     not separated. A prime dividing a product of values divides one value, so generic
+     `q` of high degree are never inverted. This is sketched here only for rank `<= 2`; the
+     general bounded-rank form is a heuristic.
+   - **A bound on diagonal subfields (proved).** In any Leavitt--Nekrashevych completion
+     over a localization `B` of a finitely generated commutative `Q`-algebra of Krull
+     dimension `δ`, every subfield of the diagonal `colim B^(d^L)` has transcendence
+     degree `<= δ`. Such a field maps injectively to a residue field of some stage
+     `B -> colim_ξ B` along a word `ξ`. So `K_∞` needs either an infinite-dimensional
+     base with an evaluation mechanism beyond one pass, or a non-diagonal commutative
+     subring.
+4. **Shift skew Laurent ring and a Baumslag tape (2026-09-18, lane `gq-ring-fp-simple`,
+   suggested by the coordinator).** The tape is solved; inversion is not.
+   - **Landed** (`k-infinity-lies-in-a-simple-localization-of-an-fp-ring`):
+     - `T = Z[t_v : v ∈ Z[s^(±1),(1+s)^(-1)]] ⋊ Z^2` is finitely presented, with three
+       generators and three relations beyond inverses. The second letter
+       `y t y^-1 = t + x t x^-1` does what `a^t = a a^s` does for Baumslag's group.
+     - Its localization `K_∞ ⋊ Z^2` is simple and contains `K_∞`. So is
+       `K_∞[x^(±1); σ]`.
+     - No finitely generated subring of either crossed product, or of any
+       `Frac(P) ⋊ G` with `G` degree-preserving, contains `K_∞`. The inverses must come
+       from outside.
+   - **Registers over the tape: design notes, heuristic except where marked.**
+     - *A shared evaluation point fails.* Transport the `R_k` registers along the shift,
+       with one integer register `C` for all variables, and the resolvent value can be
+       `0`. For example `N + 1 + t·(-1) + (t - c)·1` vanishes for `c = N + 1`. Each
+       variable needs its own point.
+     - *Translations would repair it.* Build `g` at the point `0`, with values `g(0) >= 1`,
+       then apply an automorphism `φ` of the tape: shifts, and the translation `z` with
+       `t ↦ t + 1` fixing the other `t_k`. Then the values `φ(g)` are never zero, and every
+       nonzero `q` is `± φ(g)`.
+     - But the natural relations for `z` (`z t z^-1 = t + 1`, `[z, t_1] = 0`, and
+       Baumslag's relations for `<x, y, z>`) leave `(z - 1)·t_k`, `k >= 2`, undetermined.
+       Pinning the translation functional `c_0` on `V` takes infinitely many values.
+       Functionals determined by a recurrence or an eigen-relation have finite-rank
+       orbits, and their points are not Zariski dense in wide windows.
+     - *Units cannot commute with the registers (rigorous).* Let a unit `u` commute with
+       `s_m`, `s_m^*` and `M`, where `s_m^* M s_m = t M`. Let a vacuum letter give
+       `s_v^* M s_v = 1`, with `s_v` and `s_v^*` commuting with `t` and `u t u^-1`.
+       Then `(t - u t u^-1) M = 0` and `t = u t u^-1`.
+     - So a group moving the tape must move the registers, giving copies `u X u^-1`. Those
+       need `[X, u Y u^-1] = 0` for all `u`, and register values admit no additive
+       Baumslag relation. Otherwise the group must move the letters, which is Attempt 3's
+       one-pass restriction.
+     - Which relation family cannot be finite is therefore identified, but not proved
+       infinite: register-copy commutation, or the translation functional.
+5. **Why twisted tapes are one-pass, and what one pass cannot invert (2026-09-18, lane
+   `gq-ring-fp-simple`).** Two lemmas behind the death in Attempt 3.
+   - **Single twist forces one pass (rigorous).** Let a group `G` of units act on the tape
+     positions without a global fixed point. Let a letter satisfy `h s = s φ(h)` for an
+     injective `φ : G -> G`, relabel positions by an injective `θ` with
+     `θ(hp) = φ(h) θ(p)`, and read only positions in `Fix(φ(G))`.
+     - If `θ(p) ∈ Fix(φ(G))`, then `θ(hp) = θ(p)`, so `hp = p` for all `h`.
+     - Hence after the letter no old variable is readable. Every variable is read at
+       exactly one letter.
+     - A bounded register file then evaluates a one-pass streaming program.
+   - **One pass cannot reach generic irreducibles (proved for the algebraic streaming
+     model).** Let the value be `F(R_1(x), ..., R_W(x), y)`, with `x = (x_1..x_k)` the
+     variables read before `y`, `R_i` polynomials, and `F` a polynomial. Let
+     `q(x, y) = Σ_α c_α(x) y^α` be irreducible, with `x -> [c_α(x)]` generically finite,
+     as it is for generic `q` of `y`-degree `>= k`. If `q` divides the value, then `W >= k`.
+     - *Proof.* For generic `y` the hypersurface `{q(·, y) = 0}` is a component of the
+       `R`-saturated set `{F(R(x), y) = 0}`. So generic fiber components of `R` lie in
+       it.
+     - As `y` varies, they lie in the fibers of `x -> [c_α(x)]`, which are finite. But
+       the fibers of `R : A^k -> A^W` have dimension `>= k - W`.
+     - Since a prime dividing a product of values divides one value, inverses of such
+       `q` are unreachable with `W < k` registers. This makes the bounded-rank heuristic
+       of Attempt 3 rigorous for the streaming model.
+   - **Consequence for designs.** A host for `K_∞` of register type needs re-readable
+     variables, hence several twists, or an untwisted group of units. Attempt 4 shows the
+     untwisted version runs into the register-copy relations. Whether several twists can
+     be finitely presented is open.

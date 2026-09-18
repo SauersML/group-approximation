@@ -1,0 +1,1 @@
+{"group": "F2", "m": 1, "n": 3, "ball": 53, "interior": 17, "status": 0, "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)", "seconds": 0.4, "delta": -0.0, "alpha": [-0.0, -0.0, -0.0, 0.5, 0.5], "beta": [-0.0, 0.5, 0.5, 0.0, -0.0], "E": [0, 3, 11, 12, 14, 15, 36, 37, 39, 41, 42, 43, 44, 45, 47, 48, 49, 50, 51, 52], "dual_bound_delta": -0.0}

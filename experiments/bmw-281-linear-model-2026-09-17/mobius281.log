@@ -1,0 +1,25 @@
+relation 0 0 True
+relation 0 1 True
+relation 0 2 True
+relation 1 0 True
+relation 1 1 True
+relation 1 2 True
+relation 2 0 True
+relation 2 1 True
+relation 2 2 True
+relation 3 0 True
+relation 3 1 True
+relation 3 2 True
+T^2 = 1 True
+ALL True
+control T t0 = t0 T (expect False) False
+control A1 t1 = t1 A1 (expect False) False
+order of tau a2 on level 1 3
+order of tau a2 on level 2 9
+order of tau a2 on level 3 9
+order of tau a2 on level 4 9
+order of tau a2 on level 5 27
+order of tau a2 on level 6 27
+order of tau a2 on level 7 27
+order of tau a2 on level 8 27
+order of tau a2 on level 9 27

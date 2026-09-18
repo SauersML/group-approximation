@@ -47,3 +47,48 @@ missing is the finite-output compiler
       used as an **edge**;
     - a non-`Delta^0_2` vertex table;
     - a construction that is not a colimit (lamp modules).
+- **w5-111, 2026-09-18: KMS edges and Kazhdan double cones are not one-way propagators (obstruction).**
+  - *Result.*  [[kazhdan-double-cones-add-one-sigma1-bit]] closes two of the escapes left by w3-111.
+  - *KMS edges.*  An assembly's presentation uses only the generators of each edge group, never its
+    relators.  So a KMS machine group used as an **edge** is the free edge on the same words.  It adds only
+    an amenability certificate for the image subgroup in the vertex, and a KMS-edge propagator is equivalent
+    to a vertex-side one.
+  - *Kazhdan cones.*  For a double pair `Gamma ≤ G` (with `G *_Gamma G` nonsofic, as in Kun-Thom v3), the cone
+    `X(H,C) = (H * G)/<<[C, Gamma]>>` is sofic iff `H` is sofic and `C = 1`.  It is finitely presented iff `C`
+    is finitely generated.  So any computable nest of cones adds one `Sigma^0_1` conjunct and keeps a
+    `Delta^0_2` locus `Delta^0_2`.
+  - *Calibration.*  With `C` infinitely generated and recursively enumerated, the cone gives a new proof of
+    `Pi^0_2`-hardness for recursive presentations.
+  - *Exact step.*  Finite presentation forces `C` to be finitely generated.  This is the double-form
+    counterpart of the Cornulier obstruction to the wreath amplifier.
+  - *What survives.*  Twisted-diagonal cones `(H x Gamma) *_(Gamma_psi) G`.  They are finitely presented with
+    a possibly infinitely generated centraliser `C_H(psi(Gamma))`, and nonsofic when that centraliser is
+    nontrivial.  Their positive branch needs a soficity theorem for amalgams over a Kazhdan subgroup that is
+    not a free factor, and no such theorem is known.
+- **w6-111, 2026-09-18: twisted-diagonal cones need a profinitely invisible core (obstruction).**
+  - *Result.*  [[twisted-diagonal-cones-need-a-profinitely-invisible-core]] kills the twisted-cone route of
+    w5-111 for every twist that the finite quotients of `G` can see.
+  - *Mechanism.*  Restricting a Kun-Thom pair to a finite-index normal level `G_1` gives a Kun-Thom pair
+    `Gamma ∩ G_1 ≤ G_1`.  So `(H x Gamma) *_(Gamma_psi) G` contains the double `G_1 *_(Gamma ∩ G_1) G_1`, and is
+    nonsofic, as soon as `C_H(psi(Gamma ∩ G_1)) ≠ 1` at some level.
+  - *Consequence.*  For amenable `H`, such as the machine group, the twist `psi` has finite image, and the
+    deciding invariant is `C_H(F_inf)`, where `F_inf` is the invisible core `∩_levels psi(Gamma ∩ G_1)`.  It is
+    not `C_H(psi(Gamma))`.  Visible twists, or twists with abelian cores, always give nonsofic cones, on INF as
+    well as on FIN.
+  - *Exact loophole.*  Evaluation at the origin on the Theorem E pair has core `PSL_r(F_q)` (simple and
+    centreless), and every cone through it contains the finite twisted cone
+    [[finite-twisted-kazhdan-cone-is-sofic]].  That cone is not residually finite.  Its soficity is now the
+    single question the route rests on.
+- **w7-111, 2026-09-18: block Kun-Thom subpairs close the twisted-cone route in rank at least five (obstruction).**
+  - *Result.*  By [[block-subpairs-make-twisted-kazhdan-cones-nonsofic]], for a Theorem E pair of rank `r ≥ 5`,
+    every twisted-diagonal cone `(H x Gamma) *_(Gamma_psi) G` with `H ≠ 1` is nonsofic, for **every** twist
+    `psi`.  The same holds in rank four when `q ∉ {2, 3, 5}`.  In particular the finite twisted cone
+    [[finite-twisted-kazhdan-cone-is-sofic]] is refuted in those ranks, and the invisible-core loophole of w6-111
+    is closed there.
+  - *Mechanism.*  A 3-element coordinate block gives a subgroup `G_S ≤ G` whose trace on `Gamma` is exactly the
+    block group `Gamma_S`, by Suslin's theorem.  The pair `(G_S, Gamma_S)` is the rank-three Theorem E pair.  Any
+    `h ∈ H \ 1` centralising `psi(Gamma_S)` embeds `G_S *_(Gamma_S) G_S` into the cone, by amalgam normal form.
+    Such an `h` is supplied by `psi` of an elementary matrix supported off the block, or of a non-scalar
+    diagonal matrix in rank four.
+  - *Residue.*  Only the rank-three pairs remain, together with rank four for `q ∈ {2, 3, 5}`.  The test case is
+    [[rank-three-finite-twisted-kazhdan-cone-is-sofic]].

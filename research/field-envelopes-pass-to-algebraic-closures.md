@@ -9,8 +9,7 @@ distinct_from:
   rational-function-fields-embed-in-fp-simple-rings: that provides the purely transcendental base fields Q(t_1..t_k); this passes to all their algebraic extensions.
 ---
 
-**ESTABLISHED** through `field-envelopes-pass-to-algebraic-closures-proof` (lane proof,
-not independently reviewed; referee requests sent). No priority is claimed.
+**ESTABLISHED** through `field-envelopes-pass-to-algebraic-closures-proof` (lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-field-envelopes-pass-to-algebraic-closures.md`, 69a3cc64f) and `gq-referee-b` (`gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4)). No priority is claimed.
 
 **Statement.**
 1. **Transfer.** Let `K` be a field of characteristic zero that embeds in a finitely
@@ -24,10 +23,11 @@ not independently reviewed; referee requests sent). No priority is claimed.
    - `Q̄`, which already lies in `R_L`, since `R_L ⊇ L_Q(1,2)`;
    - every algebraic extension of `Q`;
    - `Q̄(t)` and the algebraic closure of `Q(t_1..t_k)`.
-3. **Consequence.** `GL_n(Q̄)` embeds in `R_L^x`, and so does `GL_n(K)` for every
-   countable field `K` of characteristic zero and finite transcendence degree. By
-   `leavitt-scalar-commutators-block-fp-central-quotients`, such unit groups have no
-   finitely presented central quotients.
+3. **Consequence.** `GL_n(Q̄)` embeds in `R_L^x`. For a countable field `K` of
+   characteristic zero and finite transcendence degree `k >= 1`, `GL_n(K)` embeds in
+   `(R_k ⊗_Q L_Q(1,2))^x`. By `leavitt-scalar-commutators-block-fp-central-quotients`,
+   such unit groups have no finitely presented quotient by a central subgroup containing
+   `Q^x`.
 
 **Mechanism.**
 - A countable algebraic extension `E = ∪ E_i` of `K`, with `[E_i : K] = d_i`, embeds in the

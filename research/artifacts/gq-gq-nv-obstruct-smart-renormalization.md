@@ -57,9 +57,14 @@ The preimage of a start of `M_x(0)` is in `A`:
 
 ## 2. The key lemma: one level less, one cell less
 
-Write `content_K(x, s_+, s_*, ρ)` for the domain content (tape and head) of `M_x(K)` at the first
-`Y`-point of its `ρ`-th level-1 sub-move, where `ρ = (i_{K-1}, …, i_1)` in base 3. Write
-`content_{K-1}(x, s_+, s_*, ρ)` for the content of `M_x(K-1)` at the start of its `ρ`-th level-0 sub-move.
+Use two names (referee note W2).
+- `C1_K(x, s_+, s_*, ρ)` is the domain content (tape and head) of `M_x(K)` at the first `Y`-point of its
+  `ρ`-th level-1 sub-move, where `ρ = (i_{K-1}, …, i_1)` in base 3.
+- `C0_{K-1}(x, s_+, s_*, ρ)` is the content of `M_x(K-1)` at the start of its `ρ`-th level-0 sub-move.
+
+In the rest of this note, `content_K(…, ρ)` means `C1_K` and `content_{K-1}(…, ρ)` means `C0_{K-1}`,
+except in the induction step. There, `content_K(σ(x)_i, β, ρ')` means `C1_K` and
+`content_{K-1}(σ(x)_i, β, ρ')` means `C0_{K-1}` of the sub-move.
 
 **Lemma.** `φ(content_K(x,s_+,s_*,ρ)) = content_{K-1}(x,s_+,s_*,ρ)` for all `K >= 1`, all types `x`, all
 `s_+ ∈ {1,2}`, `s_* ∈ {0,1,2}` and all `ρ`. Here `φ` acts on the 3-cell region of the current level-1
@@ -114,6 +119,6 @@ sub-move, and the rest of the domain is kept.
   in the sense of `renormalizable-thompson-elements-give-baumslag-solitar`, items 1–3.
 - That node gives `s = U' × id ∈ 3V` and `u ∈ 3V` with `u s u^-1 = s^3`, where `U' = ψ U ψ^-1`. So
   `BS(1,3) ≅ ⟨s, u⟩ ≤ 3V`.
-- It also gives an element of `3V` with logarithmic distortion, `|s^{3^n}| = O(n)`. That improves the
-  known `O(log^4 N)` rate (Callard–Salo) to `O(log N)`, in `3V`.
+- It also gives an element of `3V` with logarithmic distortion, `|s^{3^n}| = O(n)`. Callard–Salo's element
+  of `mV` is a different construction, with `O(log^4 N)`; this is not a comparison of the same element.
 - **Not claimed:** `BS(1,2)`, which would need a binary hierarchy, and anything for `2V` itself.

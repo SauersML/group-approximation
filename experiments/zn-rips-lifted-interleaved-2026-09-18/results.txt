@@ -1,0 +1,25 @@
+# Verifier output for the (n,r) = (7,10) certificates (vcert.cpp; k = 1 is trivial, see the route)
+$ ./vcert 2 10 <(zcat certs/cert-7-10-k2.txt.gz)
+k=2 r=10 |Lmax|=110
+moves: A=20 B=88 D=1 (K steps 0) left=1 dfs=1198 -> VERIFIED: ends at {e_k}
+$ ./vcert 3 10 <(zcat certs/cert-7-10-k3.txt.gz)
+k=3 r=10 |Lmax|=780
+moves: A=201 B=576 D=2 (K steps 0) left=1 dfs=48942 -> VERIFIED: ends at {e_k}
+$ ./vcert 4 10 <(zcat certs/cert-7-10-k4.txt.gz)
+k=4 r=10 |Lmax|=4180
+moves: A=1360 B=2816 D=3 (K steps 0) left=1 dfs=1109942 -> VERIFIED: ends at {e_k}
+$ ./vcert 5 10 <(zcat certs/cert-7-10-k5.txt.gz)
+k=5 r=10 |Lmax|=18182
+moves: A=7001 B=11176 D=4 (K steps 0) left=1 dfs=16877778 -> VERIFIED: ends at {e_k}
+$ ./vcert 6 10 <(zcat certs/cert-7-10-k6.txt.gz)
+k=6 r=10 |Lmax|=67122
+moves: A=27444 B=37752 D=5 S=1920 (K steps 0) left=1 dfs=196848586 -> VERIFIED: ends at {e_k}
+$ ./vcert 7 10 <(zcat certs/cert-7-10-k7.txt.gz)
+k=7 r=10 |Lmax|=216952
+moves: A=86065 B=85023 D=43943 K=1920 (K steps 40756) left=1 dfs=2168697972 -> VERIFIED: ends at {e_k}
+
+# Negative controls (mutated certificates, all rejected)
+k=3, line 2 replaced by 'A -9 1 0 | 0 1 0'        -> FAIL line 2: domination fails
+k=5, last line dropped                          -> moves: A=7001 B=11176 D=3 ... left=2 -> NOT at {e_k}
+k=5, first B line duplicated at the front       -> FAIL line 7003: x not present (second copy)
+k=7, first K move with one link step removed    -> FAIL line 182950: final link not a cone on w

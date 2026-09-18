@@ -1,0 +1,20 @@
+brute-force check of E(d^-1 v d) = S(v)(X^N_h): 300 random words agree
+== calibration k = 2 (known theorem: metabelian <a^m,c^m> collapses) ==
+  w0=[x,y] P=2: |u1|=30, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-6: -1, -4: 2, 0: -2, 2: 1}
+  w0=[x,y] P=4: |u1|=78, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-30: -1, -28: 1, -16: 1, -12: -1, 0: -1, 2: 1}
+  w0=[x,y] P=8: |u1|=1038, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-510: -1, -508: 1, -256: 1, -252: -1, 0: -1, 2: 1}
+  w0=[x2,y2] P=2: |u1|=56, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-4: 1, 0: -3, 4: 3, 8: -1}
+  w0=[x2,y2] P=4: |u1|=128, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-16: 1, -12: -1, 0: -1, 4: 1, 12: -1, 16: 1, 28: 1, 32: -1}
+  w0=[x2,y2] P=8: |u1|=1568, exps(u1)=(0, 0), image of u1 in P_d/P_d' nonzero: True  {-256: 1, -252: -1, 0: -1, 4: 1, 252: -1, 256: 1, 508: 1, 512: -1}
+== k = 3 chain ==
+  w0 = [[x,y],[y,x2]], x = c_1 c_0^-1, y = c_0^-1 c_1, x2 = c_0 c_1 c_0^-2
+  w0 as a word (1=a, -1=a^-1, 2=c, -2=c^-1): [1, -2, -1, 2, 2, 1, -2, -1, -2, 1, 2, 2, -1, 2, 1, -2, -1, -2, 1, -2, -1, 2, 2, 1, 2, -1, -2, -2, -2, 1, 2, -1, 2, 1, -2, -2, -1, 2, 1, 2, -1, 2, 1, -2, -1, -2, -2, 1, 2, -1, 2, 1, 2, -1, -2, -2]
+  P=2 (m=1): |u1|=116, S(u1) nonzero: True (24 monomials, l1 = 92)
+    exact E(u2) with n=6: 24 nonzero terms, l1 = 92, max exponent has 1025 bits
+  P=4 (m=2): |u1|=284, S(u1) nonzero: True (24 monomials, l1 = 260)
+  P=8 (m=3): |u1|=3644, S(u1) nonzero: True (24 monomials, l1 = 3620)
+  P=16 (m=4): |u1|=917564, S(u1) nonzero: True (24 monomials, l1 = 917540)
+  symbolic (N_0 = 2, N_1 = M = 2^P formal): 24 nonzero formal terms, p-range 3; nonzero for every M > 6
+  M = 2^(2^m) > 6 for m >= 2; smaller m checked numerically above
+  other w0 = [[x,y],[x2,y2]]: S(u1) nonzero at P=2: True
+  other w0 = [[x2,y2],[y,x2]]: S(u1) nonzero at P=2: True

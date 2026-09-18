@@ -147,7 +147,7 @@ theorem towerFun_one (T : X ≃ₜ X) {V : Set X} {n : ℕ} {k : Fin n → ℤ}
   by_cases h : ∃ i : Fin n, (T ^ (-k i)) z ∈ V
   · obtain ⟨i, hi⟩ := h
     rw [towerFun_of_mem T hdisj 1 i hi, Equiv.Perm.one_apply, homeoPow_apply_homeoPow_neg_apply]
-  · push_neg at h
+  · push Not at h
     exact towerFun_of_notMem T V k 1 h
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.towerFun_one
@@ -164,7 +164,7 @@ theorem towerFun_mul (T : X ≃ₜ X) {V : Set X} {n : ℕ} {k : Fin n → ℤ}
     rw [towerFun_of_mem T hdisj σ i hi, towerFun_of_mem T hdisj π (σ i) hlev,
       homeoPow_neg_apply_homeoPow_apply, towerFun_of_mem T hdisj (π * σ) i hi,
       Equiv.Perm.mul_apply]
-  · push_neg at h
+  · push Not at h
     rw [towerFun_of_notMem T V k σ h, towerFun_of_notMem T V k π h,
       towerFun_of_notMem T V k (π * σ) h]
 

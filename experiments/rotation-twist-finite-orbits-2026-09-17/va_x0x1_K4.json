@@ -1,0 +1,20 @@
+{
+ "S": "x0x1",
+ "K": 4,
+ "tuples": 256,
+ "virtually_abelian_twists": [
+  {
+   "orbit": [
+    "0",
+    "1/4",
+    "1/2"
+   ],
+   "index": 3,
+   "abelian_kernel_generators": 6,
+   "twists": [
+    "1/2",
+    "0"
+   ]
+  }
+ ]
+}

@@ -145,3 +145,84 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      A variant with `f(k+1) = 3 f(k)` exactly is the natural candidate for a
      height-3 renormalization.
    - *Verdict.* Still open either way.
+- 2026-09-18 (lane gq-nv-obstruct). **Search for a binary SMART: not found.** See
+  `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md`.
+  - The `m = 3` analogue is done: `bs13-embeds-in-brin-thompson-3v`.
+  - For `m = 2`, why SMART-type hierarchies are ternary: crossing-only hierarchies branch oddly, and
+    prefix consistency constrains mixed ones. The natural binary scheme is the Jacobsthal recursion
+    `a→ac, b→bd, c→ba, d→ab`.
+  - Exhaustive MSI searches covered 2+2 to 4+4 states, and mirror-symmetric 4+4 with 3 symbols and 6+6
+    with 2 symbols. The only binary counters found have per-level overhead `Θ(j)`.
+  - A partial search of mirror-symmetric 8+8 states with 2 symbols found machines with binary frontier
+    timing `t_{j+1} = 2t_j + {0,-2}`, for example mask 169. Their cyclic periods and per-type counts count
+    against a clean 2-adic hierarchy. Open.
+- 2026-09-18 (lane gq-nv-obstruct, after critic pass 2). **Still open. The forms not covered by the parity lemma.**
+  - *Scope of `crossing-move-hierarchies-have-odd-branching`.* It does **not** exclude one-head binary
+    hierarchies. It forces each crossing to split as (crossing, return). Prefix consistency then selects
+    the Jacobsthal scheme `C→ ↦ C→ R_R`, `R_R ↦ C← C→`, with durations `C(k+1) = C(k) + 2C(k-1)`, which
+    is `2^k` up to bounded terms.
+  - *Structural fact about that scheme.* Every return turns one cell short of its move's anchor. So the
+    anchor cell is visited only at the move's first step. As a result:
+    - the turning cell needs a mark that the move cannot erase itself (the head never returns there);
+    - the parent's return re-reaches exactly that cell, so the mark can be reused and erased one level up.
+    - Whether a finite mark alphabet makes this consistent at every level is the whole design problem.
+      By hand it did not close in the direct attempt: the backward crossing's own leftover mark lands in
+      the forward crossing's block.
+  - *(a) Two heads, or an even-arity odometer code built directly in `kV`.* Not constructed.
+    - A direct binary brick code `(e_0, e_1)` with `T e_0 = e_1`, `T e_1 = e_0 T` gives
+      `T(x) = e_0^r e_1 e_0^{-1} e_1^{-r} x` on `e_1^r X_0`. That is brick-local only if these maps
+      stabilize near the limit set `⋂ e_1^r X`.
+    - For prefix-insertion codes in one or two coordinates, including coordinate swaps, the recursion
+      depth is unbounded there. This is the odometer defect of item 4 of
+      `renormalizable-thompson-elements-are-odometer-codes`.
+    - So the finiteness has to come from a machine's dynamics, as it does for SMART, and not from a
+      formula for the code.
+  - *(b) Joint `BS(1,2)` and `BS(1,3)`.* This contains `BS(1,2)`, so it waits on it.
+    `renormalization-heights-force-eigenvalue-roots` (gq-affq) and the Durand–Cobham conjecture there
+    suggest that one base will not carry heights 2 and 3.
+- **2026-09-18 (lane gq-affq): two-head / even-arity route, one design pass. No candidate.**
+  `research/artifacts/gq-affq-binary-two-head-design.md`.
+  - *Two heads on one tape are not elements of `kV`.* The finite segment between the heads is
+    not a Cantor coordinate.
+  - *A second coordinate as a displacement stack* makes the Jacobsthal turn test bounded. It moves
+    the cost into merging nested counters, which means deleting a separator at depth `L`, the
+    same linear walk found in the one-head search.
+  - *Tower of Hanoi on three stacks (`3V`)* has exact doubling, `f+1 = 2^n`, with no walk. But
+    the even-step move is an order comparison of unbounded labels. On MSI, parity, a last-move
+    mark, depth-2 parity and size mod `M` (`M <= 12`, with `n <= 15`) all leave conflicts.
+  - *Conjecture:* a binary hierarchy needs control information that grows with the level. Inside
+    `kV` that costs either unbounded lookahead or a walk that breaks exact doubling. No candidate
+    reached the `i ∈ E(S)` filter of `smart-induced-map-alternates-head-direction`.
+- 2026-09-18 (lane gq-nv-obstruct, targeted binary-timing scan). **No base found. The obstruction looks
+  like recognizability, not counting.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3d. (**That reading
+  is withdrawn:** see the complete-scan entry below.)
+  - (**Withdrawn, §3f.**) Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is
+    mask 21 with 6+6 states and 3 symbols: block sizes `29·2^m`, gap 87. In fact its maximal gap grows by
+    6 per level, and 87 is its value at level 17.
+  - **Corrected (§3e):** the earlier conflict counts came from a hash bug. `mod 2` and `mod 4` are
+    consistent at radius 9. The obstruction is in the return times: the first configuration `y` of the
+    orbit returns with `n = 29·2^m + 4 ≡ 4 mod 8` (certified to radius 18). By
+    `renormalization-return-times-tend-to-zero-adically`, convergence of these returns would exclude a
+    height-2 renormalization.
+  - So no height-2 renormalization appears. This agrees with gq-affq's growing-control-information
+    conjecture.
+- **2026-09-18 (lane gq-affq): the odometer just outside `nV`, and why it cannot be imported directly.**
+  - *Host next door.* `odometer-2v-is-fp-simple-and-contains-bs12` (both referees PASS) puts `BS(1,2) = ⟨τ×id, u⟩`
+    in `2V_τ = ⟨2V, τ×id⟩`, an `F_∞` simple Katsura–Exel–Pardo full group. So Attempt 1 (odometer realization) is
+    valid one step outside `2V`. If `2V_τ` embedded in some `nV`, this node would follow.
+  - *No direct import (lane argument; `research/artifacts/gq-affq-kep-odometer-host.md` §7).*
+    - A brick-local self-homeomorphism of `C^k` lies in `kV`, and `τ × id^{k-1} ∉ kV`.
+    - So by `brin-thompson-first-return-maps-lie-in-kv`, no bounded-return first-return map of any `W ∈ kV` is
+      brick-locally conjugate to `τ × id^{k-1}`.
+    - A witness must therefore have the odometer only as a factor, as SMART's `U` has `Z_3` for `BS(1,3)`: the
+      binary-hierarchy problem of lane gq-nv-obstruct.
+- 2026-09-18 (lane gq-nv-obstruct, the complete 6+6/3 scan). **No base in the class. Every exact binary `Y`
+  comes with a linear walk.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3f.
+  - All 185,794,560 mirror-symmetric machines with 6+6 states and 3 symbols (mask 21) were scanned. Of these,
+    1,541,886 have binary frontier timing, and 1,467,416 have a nonempty zero-overhead `Y`.
+  - A filter on the growth of the maximal `Y`-gap leaves 1,053 of them at 3.2·10^7 steps.
+  - In every one of the 1,053, the head range inside some `Y`-gap grows by one or two cells per level. That
+    is a carry sweep hidden under a larger constant gap, so none survives.
+  - The phase is often local on these machines; one has returns `≡ 0 mod 2^14` at radius 10. So what fails
+    is the bounded return time needed by `brin-thompson-first-return-maps-lie-in-kv`, not recognizability.
+  - Not a proof: one orbit per machine, finitely many levels.

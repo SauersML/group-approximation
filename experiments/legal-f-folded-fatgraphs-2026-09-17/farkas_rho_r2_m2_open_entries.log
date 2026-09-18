@@ -1,0 +1,71 @@
+== python3 farkas_rho.py farkas_r2_m2_61_mask_abAB.json
+propagation re-check: 16 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'ccba', 'c': 'bbcb'} m 2 r 2 mask abAB types 1996 dead types 1764 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 175 max R 598.0
+z'_norm 15885.0 (/D = 0.015885) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997843471.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_108_mask_acAC.json
+propagation re-check: 16 surviving windows, all in the live list
+phi0 {'a': 'abb', 'b': 'bccc', 'c': 'cabb'} m 2 r 2 mask acAC types 1958 dead types 1734 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 183 max R 151025.0
+z'_norm 167506.0 (/D = 0.167506) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499998964684.0, 4: -2.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_108_mask_bcBC.json
+propagation re-check: 16 surviving windows, all in the live list
+phi0 {'a': 'abb', 'b': 'bccc', 'c': 'cabb'} m 2 r 2 mask bcBC types 1958 dead types 1694 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 227 max R 30144.0
+z'_norm 14942.0 (/D = 0.014942) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997776410.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_198_mask_acAC.json
+propagation re-check: 10 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'aaab', 'c': 'bbca'} m 2 r 2 mask acAC types 1862 dead types 1720 windows 10 D 1000000 key y
+shift: darts with R_d > 0: 101 max R 160732.0
+z'_norm 398956.0 (/D = 0.398956) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997866354.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_198_mask_bcBC.json
+propagation re-check: 16 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'aaab', 'c': 'bbca'} m 2 r 2 mask bcBC types 1862 dead types 1622 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 214 max R 65126.0
+z'_norm 62829.0 (/D = 0.062829) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997736767.0, 4: 0.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_1632_mask_abAB.json
+propagation re-check: 10 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'cacc'} m 2 r 2 mask abAB types 1729 dead types 1575 windows 10 D 1000000 key y
+shift: darts with R_d > 0: 119 max R 138760.0
+z'_norm 185071.0 (/D = 0.185071) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499998622374.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_1632_mask_bcBC.json
+propagation re-check: 8 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'cacc'} m 2 r 2 mask bcBC types 1729 dead types 1595 windows 8 D 1000000 key y
+shift: darts with R_d > 0: 82 max R 32882.0
+z'_norm 162011.0 (/D = 0.162011) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499998055778.0, 4: 0.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_1633_mask_bcBC.json
+propagation re-check: 8 surviving windows, all in the live list
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'ccac'} m 2 r 2 mask bcBC types 1729 dead types 1595 windows 8 D 1000000 key y
+shift: darts with R_d > 0: 90 max R 24109.0
+z'_norm 230109.0 (/D = 0.230109) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997896737.0, 4: -2.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_1744_mask_acAC.json
+propagation re-check: 16 surviving windows, all in the live list
+phi0 {'a': 'bcb', 'b': 'abbc', 'c': 'bcbb'} m 2 r 2 mask acAC types 1752 dead types 1512 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 227 max R 15354.0
+z'_norm 1118162.0 (/D = 1.11816) max window charge 0.0 max polygon charge -1.0 {2: -1.0, 3: -499998945893.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+== python3 farkas_rho.py farkas_r2_m2_4485_mask_bcBC.json
+propagation re-check: 14 surviving windows, all in the live list
+phi0 {'a': 'abb', 'b': 'bca', 'c': 'babb'} m 2 r 2 mask bcBC types 1261 dead types 1095 windows 14 D 1000000 key y
+shift: darts with R_d > 0: 117 max R 52988.0
+z'_norm 11184.0 (/D = 0.011184) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499997389889.0, 4: -1.0}
+FARKAS VERIFIED
+exit=0
+REVERIFY DONE

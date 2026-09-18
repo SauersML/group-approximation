@@ -81,7 +81,7 @@ theorem b4_topHomologyTransferNonzeroWitness (n : ℕ) (d : B4TopData n)
       ∃ z : homologyZMod2 (TopCat.of (RP n)) n,
         (kroneckerMap (TopCat.of (RP n)) n).hom ((cohTransferZMod2 n n).hom c) z ≠ 0 := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     exact htr (by ext z; simpa using hcon z)
   refine ⟨z, ?_⟩
   -- Transfer–Kronecker adjunction: `⟨c, tr_* z⟩ = ⟨tr c, z⟩ ≠ 0`.

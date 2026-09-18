@@ -137,6 +137,7 @@ theorem relKer_third {N : ℕ} (hN : 3 ≤ N) (i j : Fin N) : ∃ m : Fin N, m �
   exact ⟨⟨t, by omega⟩, fun h => hti (congrArg Fin.val h), fun h => htj (congrArg Fin.val h)⟩
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_third
+
 /-- **Non-opposite conjugation.**  If `x_kl` is not opposite to `x_ij` and `a ∈ (p)`, then
 `x_kl(b) x_ij(a) x_kl(b)⁻¹ ∈ U`. -/
 theorem relKer_conj_nonopp {N : ℕ} (i j k l : Fin N) (hij : i ≠ j) (hkl : k ≠ l) (a b : C₂)
@@ -156,7 +157,7 @@ theorem relKer_conj_nonopp {N : ℕ} (i j k l : Fin N) (hij : i ≠ j) (hkl : k 
       exact (relKer_U N).mul_mem
         (relKer_x_mem_U N _ _ _ _ ((CohnTwo.pIdeal (ZMod 2)).mul_mem_left _ _ ha))
         (relKer_x_mem_U N _ _ hij a ha)
-    · rw [(x_commute_of_ne k l i j hkl hij hli (fun h' => hjk h'.symm) b a).eq,
+    · rw [(x_commute_of_ne k l i j hkl hij hli hjk b a).eq,
         mul_inv_cancel_right]
       exact relKer_x_mem_U N i j hij a ha
 

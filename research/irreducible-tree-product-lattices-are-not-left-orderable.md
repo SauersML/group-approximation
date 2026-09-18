@@ -62,3 +62,16 @@ finite-index subgroup, and it projects densely there (artifact part 2, §1).
     case.
   - Assemble the whole argument as one proof route and send it for review. No structural input
     specific to trees is known to be missing.
+- (w3-107, 2026-09-18) **Census evidence in degrees (4,4) and (5,3).** In
+  `bmw-degree-44-53-parity-kernels-not-left-orderable`, the Thompson–Wielandt test (`irred_tw.py`)
+  certifies 73 BMW classes as irreducible with 2-transitive local actions on both trees: 41 in degree
+  (4,4) and 32 in degree (5,3), listed in `localact.log`.
+  - Such a `Γ` is a lattice in `G_1 × G_2`, where `G_i` is the closure of its `i`-th projection.
+    `G_i` is non-discrete and locally 2-transitive.
+  - `Γ` itself has torsion, so it is trivially not left-orderable. The check that matters is on the
+    torsion-free finite-index subgroup `Γ^+`.
+  - For all 73, `Γ^+` has an UNSAT positive-cone instance already at radius 4, so no finite-index
+    subgroup containing `Γ^+` is left-orderable.
+  - This is evidence for the strong, virtual form of this claim in these degrees, not a proof of it.
+  - In the same census, the only classes not refuted, `40_40#193/#281/#332`, have intransitive local
+    actions on both trees. They are the OPEN node `bmw-44-sat-survivor-parity-kernels-not-left-orderable`.

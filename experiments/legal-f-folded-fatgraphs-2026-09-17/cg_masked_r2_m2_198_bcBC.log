@@ -1,0 +1,26 @@
+propagation: surviving windows ['bbb', 'bbc', 'bcb', 'bcc', 'cbb', 'cbc', 'ccb', 'ccc', 'BBB', 'BBC', 'BCB', 'BCC', 'CBB', 'CBC', 'CCB', 'CCC']
+phi0 {'a': 'bbc', 'b': 'aaab', 'c': 'bbca'} m 2 r 2 mask bcBC windows alive 16 slots 57600
+phase 1 it 1 obj 14.000000 cols 3000 pairs 1557 min rc -4 LB -46 best -16 {2: -2.0, 3: inf, 4: -4.0} added 3000 t 3.2 tm 0.0  dartLB -16
+phase 1 it 2 obj 3.750000 cols 6000 pairs 3573 min rc -6.605 LB -61.47 best -16 {2: -3.4737, 3: inf, 4: -6.6047} added 3000 t 6.6 tm 0.5  dartLB -21.87
+phase 1 it 3 obj 2.668171 cols 8580 pairs 4145 min rc -7.287 LB -65.35 best -16 {2: -3.9796, 3: inf, 4: -7.2873} added 2580 t 11.1 tm 2.1  dartLB -26.96
+phase 1 it 4 obj 1.377150 cols 10634 pairs 4311 min rc -6.428 LB -54.47 best -16 {2: -2.7478, 3: inf, 4: -6.4277} added 2054 t 17.9 tm 6.1  dartLB -19.24
+phase 1 it 5 obj 0.969264 cols 12220 pairs 4481 min rc -5.902 LB -49.11 best -16 {2: -0.5369, 3: inf, 4: -5.9021} added 1586 t 25.8 tm 10.9  dartLB -16.15
+phase 1 it 6 obj 0.699892 cols 13767 pairs 4623 min rc -5.554 LB -45.68 best -14.2 {2: -0.0977, 3: inf, 4: -5.554} added 1547 t 34.8 tm 17.2  dartLB -14.2
+phase 1 it 7 obj 0.539926 cols 15200 pairs 4701 min rc -5.316 LB -43.42 best -12.03 {2: 0.0, 3: inf, 4: -5.3161} added 1433 t 46.1 tm 25.4  dartLB -12.03
+phase 1 it 8 obj 0.454844 cols 16548 pairs 4765 min rc -4.724 LB -38.41 best -9.802 {2: 0.0, 3: inf, 4: -4.7243} added 1348 t 58.2 tm 34.7  dartLB -9.802
+phase 1 it 9 obj 0.373535 cols 17702 pairs 4848 min rc -4.266 LB -34.55 best -8.405 {2: 0.0, 3: inf, 4: -4.2658} added 1154 t 70.3 tm 43.6  dartLB -8.405
+phase 1 it 10 obj 0.320482 cols 18772 pairs 4931 min rc -3.511 LB -28.33 best -7.238 {2: 0.0, 3: inf, 4: -3.5108} added 1070 t 82.3 tm 52.4  dartLB -7.238
+phase 1 it 11 obj 0.280033 cols 19759 pairs 4976 min rc -3.272 LB -26.35 best -6.137 {2: -0.1439, 3: inf, 4: -3.2719} added 987 t 96.2 tm 63.0  dartLB -6.137
+phase 1 it 12 obj 0.250207 cols 20614 pairs 5037 min rc -2.95 LB -23.72 best -5.114 {2: 0.0, 3: inf, 4: -2.95} added 855 t 111.0 tm 74.7  dartLB -5.114
+phase 1 it 13 obj 0.245381 cols 21314 pairs 5084 min rc -2.422 LB -19.43 best -3.654 {2: 0.0, 3: inf, 4: -2.4217} added 700 t 127.5 tm 88.0  dartLB -3.654
+phase 1 it 14 obj 0.236488 cols 21925 pairs 5114 min rc -1.681 LB -13.41 best -2.485 {2: 0.0, 3: inf, 4: -1.6809} added 611 t 144.0 tm 101.0  dartLB -2.485
+phase 1 it 15 obj 0.225064 cols 22476 pairs 5127 min rc -1.254 LB -9.947 best -2.074 {2: 0.0, 3: inf, 4: -1.2539} added 551 t 162.4 tm 116.2  dartLB -2.074
+phase 1 it 16 obj 0.222774 cols 22995 pairs 5139 min rc -0.6121 LB -4.742 best -1.046 {2: 0.0, 3: inf, 4: -0.6121} added 519 t 180.8 tm 131.9  dartLB -1.046
+phase 1 it 17 obj 0.222222 cols 23377 pairs 5139 min rc -1.002 LB -7.904 best -0.9329 {2: 0.0, 3: inf, 4: -1.0019} added 382 t 197.7 tm 145.9  dartLB -0.9329
+phase 1 it 18 obj 0.222222 cols 23677 pairs 5139 min rc -1.03 LB -8.13 best -0.9329 {2: 0.0, 3: inf, 4: -1.0297} added 300 t 214.6 tm 160.1  dartLB -1.124
+phase 1 it 19 obj 0.222222 cols 23859 pairs 5141 min rc -1.299 LB -10.31 best -0.9329 {2: 0.0, 3: inf, 4: -1.299} added 182 t 231.6 tm 174.6  dartLB -1.489
+phase 1 it 20 obj 0.222222 cols 23969 pairs 5141 min rc -0.3839 LB -2.892 best -0.1083 {2: 0.0, 3: inf, 4: -0.3839} added 110 t 248.4 tm 188.7  dartLB -0.1083
+phase 1 it 21 obj 0.222222 cols 24003 pairs 5141 min rc -0.2605 LB -1.891 best 0.04837 {2: 0.0, 3: inf, 4: -0.2605} added 34 t 264.4 tm 202.2  dartLB 0.04837
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible
+window flow {'bbb': 0.055556, 'bbc': 0.083333, 'bcb': 0.050412, 'bcc': 0.060699, 'cbb': 0.083333, 'cbc': 0.027778, 'ccb': 0.060699, 'ccc': 0.07819, 'BBB': 0.055556, 'BBC': 0.083333, 'BCB': 0.050081, 'BCC': 0.06103, 'CBB': 0.083333, 'CBC': 0.027778, 'CCB': 0.06103, 'CCC': 0.077859}

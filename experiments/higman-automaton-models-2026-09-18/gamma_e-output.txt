@@ -1,0 +1,15 @@
+Syntax warning: Unbound global variable in gamma_e.g:12
+       " log2ord=",List(gens,x->Log(Order(Image(P,x)),2)),"\n");
+                                                ^
+e=2 class<=2 log2|G|=10 log2ord=[ 2, 2, 2, 2 ]
+e=2 class<=3 log2|G|=16 log2ord=[ 2, 2, 2, 2 ]
+e=2 class<=4 log2|G|=24 log2ord=[ 2, 2, 2, 2 ]
+e=3 class<=3 log2|G|=20 log2ord=[ 3, 3, 3, 3 ]
+e=3 class<=4 log2|G|=32 log2ord=[ 3, 3, 3, 3 ]
+e=3 class<=5 log2|G|=52 log2ord=[ 3, 3, 3, 3 ]
+e=4 class<=4 log2|G|=36 log2ord=[ 4, 4, 4, 4 ]
+e=4 class<=5 log2|G|=60 log2ord=[ 4, 4, 4, 4 ]
+e=4 class<=6 log2|G|=98 log2ord=[ 4, 4, 4, 4 ]
+e=5 class<=5 log2|G|=64 log2ord=[ 5, 5, 5, 5 ]
+e=5 class<=6 log2|G|=106 log2ord=[ 5, 5, 5, 5 ]
+e=5 class<=7 log2|G|=180 log2ord=[ 5, 5, 5, 5 ]

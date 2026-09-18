@@ -1,0 +1,54 @@
+$ python3 verify_klein.py ../bmw-census-left-orders-2026-09-17/census_40_30.json chains_census_40_30.json --trace
+  v2012|h inverts v|h30:
+    v2 v0 v1 v2 h3 h0 v2 v1 v0 v2 h3 h0
+    = v2 v0 v1 v2 h3 v2 h1 v1 v0 v2 h3 h0
+    = v2 v0 v1 v2 v2 h2 h1 v1 v0 v2 h3 h0
+    = v2 v0 v1 h2 h1 v1 v0 v2 h3 h0
+    = v2 v0 v1 h2 v1 h2 v0 v2 h3 h0
+    = v2 v0 v1 v1 h1 h2 v0 v2 h3 h0
+    = v2 v0 h1 h2 v0 v2 h3 h0
+    = v2 v0 h1 v0 h2 v2 h3 h0
+    = v2 v0 v0 h1 h2 v2 h3 h0
+    = v2 h1 h2 v2 h3 h0
+    = v2 h1 v2 h3 h3 h0
+    = v2 v2 h0 h3 h3 h0
+    = h0 h3 h3 h0
+    = h0 h0
+    = 1
+  v|h21 inverts v2012|h:
+    h2 h1 v2 v0 v1 v2 h1 h2 v2 v0 v1 v2
+    = h2 v2 h0 v0 v1 v2 h1 h2 v2 v0 v1 v2
+    = v2 h3 h0 v0 v1 v2 h1 h2 v2 v0 v1 v2
+    = v2 h3 v0 h0 v1 v2 h1 h2 v2 v0 v1 v2
+    = v2 v1 h3 h0 v1 v2 h1 h2 v2 v0 v1 v2
+    = v2 v1 h3 v1 h0 v2 h1 h2 v2 v0 v1 v2
+    = v2 v1 v0 h3 h0 v2 h1 h2 v2 v0 v1 v2
+    = v2 v1 v0 h3 v2 h1 h1 h2 v2 v0 v1 v2
+    = v2 v1 v0 v2 h2 h1 h1 h2 v2 v0 v1 v2
+    = v2 v1 v0 v2 h2 h2 v2 v0 v1 v2
+    = v2 v1 v0 v2 v2 v0 v1 v2
+    = v2 v1 v0 v0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+  v01|h inverts v|h21:
+    v0 v1 h2 h1 v1 v0 h2 h1
+    = v0 v1 h2 v1 h2 v0 h2 h1
+    = v0 v1 v1 h1 h2 v0 h2 h1
+    = v0 h1 h2 v0 h2 h1
+    = v0 h1 v0 h2 h2 h1
+    = v0 v0 h1 h2 h2 h1
+    = h1 h2 h2 h1
+    = h1 h1
+    = 1
+  v|h30 inverts v01|h:
+    h3 h0 v0 v1 h0 h3 v0 v1
+    = h3 v0 h0 v1 h0 h3 v0 v1
+    = v1 h3 h0 v1 h0 h3 v0 v1
+    = v1 h3 v1 h0 h0 h3 v0 v1
+    = v1 v0 h3 h0 h0 h3 v0 v1
+    = v1 v0 h3 h3 v0 v1
+    = v1 v0 v0 v1
+    = v1 v1
+    = 1
+class 55 Klein chain of length 4 verified: Gamma^+ is not left-orderable

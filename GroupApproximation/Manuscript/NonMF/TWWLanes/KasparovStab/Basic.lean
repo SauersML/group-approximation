@@ -93,7 +93,7 @@ theorem eq_of_norm_sub_le (E : CStarModule.{v, w} B) {x y : E.carrier}
   have h0 : E.norm (x - y) = 0 := by
     refine le_antisymm ?_ (E.norm_nonneg _)
     by_contra hlt
-    push_neg at hlt
+    push Not at hlt
     have h1 := h (E.norm (x - y) / 2) (half_pos hlt)
     linarith
   exact sub_eq_zero.mp ((E.norm_eq_zero_iff _).mp h0)

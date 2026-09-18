@@ -1,0 +1,26 @@
+(1) sections of u = c b^-1: [(('c', 1), ('b', -1)), (('b', 1),), (('p', (7, 0, 1, 2, 5, 10, 9, 3, 8, 4, 6)),)]
+(1) u^55 = 1: True (expected True)
+(1) u^11 = 1: False (expected False)
+(1) u^5 = 1: False (expected False)
+(1) b^55 = 1: True
+(2) step 0: b*alpha  cycle length of 1: 11
+(2) step 1: b*alpha beta  cycle length of 1: 5
+(2) step 2: b*beta  cycle length of 1: 5
+(2) T-orbit of alpha enters a 2-cycle at step 1; product of cycle lengths on it = 25 > 1
+(3) c^11 = 1: False (expected False)
+(3) (b alpha)^11 = 1: False (expected False)
+(3) c^55 = 1: False (expected False)
+(3) (b alpha)^55 = 1: False (expected False)
+(3) c^121 = 1: False (expected False)
+(3) (b alpha)^121 = 1: False (expected False)
+(3) c^275 = 1: False (expected False)
+(3) (b alpha)^275 = 1: False (expected False)
+(3) [b, c] = 1: False (expected False)
+(4) mass identities for e_u and e_b (+ e_u) hold on all 37448 words of length <= 5
+(5) 5586 stable pairs up to length 6: letters read at point 1, or all-u words read at point 2
+(6) trivial reduced words of length <= 6: 0 (0 with nonzero exponents); violating mod 55: 0
+done
+
+real	0m21.220s
+user	0m3.601s
+sys	0m0.055s

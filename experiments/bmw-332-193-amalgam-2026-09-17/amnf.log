@@ -1,0 +1,8 @@
+332V K-rels(len<=12): 603 not trivial in A: 0 | A-defs hold in K: True | rho hom on A: True | points fixed by rho(G1): [0] | missing letters [3] moved: [True]
+332H K-rels(len<=12): 242 not trivial in A: 0 | A-defs hold in K: True | rho hom on A: True | points fixed by rho(G1): [0] | missing letters [3] moved: [True]
+193V K-rels(len<=12): 242 not trivial in A: 0 | A-defs hold in K: True | rho hom on A: True | points fixed by rho(G1): [2] | missing letters [1] moved: [True]
+193H K-rels(len<=12): 242 not trivial in A: 0 | A-defs hold in K: True | rho hom on A: True | points fixed by rho(G1): [2] | missing letters [1] moved: [True]
+332V defining relators [(0, 1, 0, 1), (0, 2, 0, 2), (1, 2, 1, 2), (0, 1, 2)] all sections trivial in A: True
+332H defining relators [(0, 1, 0, 1), (0, 2, 0, 2), (1, 2, 1, 2), (0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3)] all sections trivial in A: True
+193V defining relators [(0, 1, 0, 1), (0, 2, 0, 2), (1, 2, 1, 2), (0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3)] all sections trivial in A: True
+193H defining relators [(0, 1, 0, 1), (0, 3, 0, 3), (1, 3, 1, 3), (0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2)] all sections trivial in A: True

@@ -1,0 +1,8 @@
+{"census": "census_40_40.json", "idx": 193, "side": "V", "fixed_letter": 2, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+{"census": "census_40_40.json", "idx": 281, "side": "V", "fixed_letter": 3, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+{"census": "census_40_40.json", "idx": 332, "side": "V", "fixed_letter": 3, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+klt V exit=0
+{"census": "census_40_40.json", "idx": 193, "side": "H", "fixed_letter": 3, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+{"census": "census_40_40.json", "idx": 281, "side": "H", "fixed_letter": 3, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+{"census": "census_40_40.json", "idx": 332, "side": "H", "fixed_letter": 3, "steps": 6, "D": 3, "NL": 4, "certificate": null}
+klt H exit=0

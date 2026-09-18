@@ -22,6 +22,11 @@ items 1 and 3).
   `G` is a section `D/(D ∩ Σ)` of a type `F` group, with `Σ` of type `F`.
 - It is equivalent to: every such `G` has a type `F` Mikhailova triple
   `(H, S, phi)` with `WP(G) = phi^{-1}(S)`.
+- It is equivalent to: the torsion-free, finitely generated, recursively
+  presented double `F(B) *_{N_U} F(B)` embeds in a group of type `F`
+  (`type-f-benignness-is-embedding-of-the-double`). Its `F_m` version is
+  implied by `E_m`, the universal form of Zaremsky 1.1. Conversely, a
+  counterexample to its `F_{n+1}` version answers Zaremsky 1.1 negatively.
 
 **Why it matters for Zaremsky 1.1.** It implies that every such `WP(G)` reduces
 to the word problem of a type `F` group by the inverse-respecting
@@ -37,3 +42,87 @@ and three occurrences would remain.
 
 **The exact missing step** is a type `F` witness for joins or normal closures
 of type `F` benign subgroups.
+
+## Attempts
+
+- **The normal-closure lemma is the whole problem, not a step; the classical
+  join witness is not even finitely presented** (proposed-established,
+  w6-117, 2026-09-18).
+  - The statement is equivalent to: `<<C>>` is `F_m`-benign for every
+    finitely generated `C ≤ F`.
+  - It follows from: every finitely generated subgroup of `F × F` is
+    `F_m`-benign. One join suffices: `<C × 1, ΔF> ∩ (F × 1) = <<C>> × 1`.
+  - The classical witness for that join is the Mikhailova fibre product
+    `F ×_P F`, which is not finitely presented for infinite `P` (BHMS).
+  - See `type-f-normal-closure-lemma-is-the-whole-benign-problem`.
+- **Separable witnesses are dead** (proposed-established, w6-117).
+  - If `Σ` is profinitely closed in `Λ`, then `F/N` is residually finite.
+  - `U` is not residually finite, so every witness for `N_U` has a
+    non-closed `Σ`.
+  - This kills, as a class: LERF hosts, virtual retracts of residually finite
+    hosts, type `FP_k` subgroups of products of `k` limit groups (so every
+    type `F` witness in a product of free groups), and Bestvina--Brady or
+    Kropholler-type kernels in residually finite groups.
+  - The Boone-tower base case is consistent: its `Σ` is non-separable.
+  - See `separable-benign-witness-forces-rf-quotient`.
+- **Semidirect join holds for normalized witnesses; the converse is one
+  fibre product** (proposed-established, w7-117, 2026-09-18).
+  - If `H ≤ K` of type `F` normalizes the witness `Σ` of `L` and `H ∩ L = 1`,
+    then `(Λ, ΣH)` witnesses `LH`.
+  - (d) is equivalent to benignness of the single fibre product
+    `F(B) ×_U F(B)`, and (d) gives type `F` benignness of every r.e.
+    subgroup of a free group (the full type `F` Higman benign theorem).
+  - Sufficient: `U` embeds in `N_Λ(Σ)/Σ` for a type `F` pair ("`U` is
+    Weyl"), which is the same as an `F`-normalized witness for `N_U`.
+  - Still open: root ⇒ normalized witness. The Boone-tower witness is not
+    normalized.
+  - See `normalized-benign-witnesses-give-the-semidirect-join`.
+- **The Weyl class is closed under free products and liftable HNN
+  extensions; the lift is benignness again** (proposed-established, w8-117,
+  2026-09-18).
+  - `G_1 * G_2` is Weyl via `(Λ_1 × Σ_2) *_{Σ_1 × Σ_2} (Σ_1 × Λ_2)`. In
+    particular `G` Weyl ⇒ `G * Z` Weyl.
+  - HNN extensions and amalgams are Weyl when the identification lifts to a
+    `Σ`-preserving isomorphism of type `F_m` extensions `A/Σ -> B/Σ`.
+  - Lifting forces type `F_m` associated subgroups (Higman's construction
+    then needs type `F_m` benign witnesses, so it is circular) and matching
+    outer actions on `Σ`.
+  - See `weyl-class-closes-under-free-products-and-liftable-hnn`.
+- **Obstruction: a normalized witness for `N_U` needs an `Out`-universal
+  `Σ`** (proposed-established, w8-117).
+  - With `Λ` torsion-free, the outer action of the Weyl group on `Σ` has
+    abelian kernel on every finite subgroup (Schur).
+  - So `U`'s alternating groups embed in the homologically trivial part of
+    `Out(Σ)`.
+  - This kills `Σ` free, free abelian, surface, RAAG or with finite `Out`.
+  - The Weyl route survives only if some type `F` group has `A_n` in its
+    Torelli `Out` for infinitely many `n`.
+  - See `u-weyl-pairs-need-out-sigma-to-contain-all-finite-simples`.
+- **Kill: `U` is not type `F` Weyl, so the normalized route is dead**
+  (proposed-established, w9-117, 2026-09-18).
+  - In a torsion-free pair, every elementary abelian `p`-subgroup of
+    `N_Λ(Σ)/Σ` has rank `≤ 2 cd Σ + Σ_i rk_p Aut H_i(Σ; Z)`. This is
+    Browder's exponent bound on the projective complex `Z ⊗_{ZΣ} P_*`.
+  - `U ⊇ (Z/2)^r` for all `r`, so `N_U` has no `F(B)`-normalized type `F`
+    witness.
+  - The same holds for `V`, `Z/2 ≀ Z` and Grigorchuk's group.
+  - What remains for (d) is non-normalized witnesses only, or `F_m` variants
+    with torsion in `Λ`.
+  - See `type-f-weyl-groups-have-bounded-elementary-abelian-ranks`.
+- **Commensurated witnesses: the Browder kill does not extend, but linear
+  and tree witnesses die** (proposed-established, w10-117, 2026-09-18).
+  - Every finite `Q ≤ F/N` is `E_Q/Σ_Q`, where `Σ_Q` is the `Q`-core of any
+    witness `Σ`. It is finite index in `Σ` when `F` commensurates `Σ`.
+    Browder bounds the part of `Q` acting trivially on `H_*(Σ_Q)` by
+    `2 cd Σ`.
+  - Obstruction: the constant `c_p(Σ)` does not survive. The amalgams
+    `F_r *_M F_2` are torsion-free type `F` commensurated witnesses with the
+    fixed `Σ = F_2` and `F/N = (Z/p)^r`.
+  - Kill: if `Σ ∩ F` is cut out by a compact open subgroup under a
+    `p`-adic linear representation (S-arithmetic congruence witnesses), or
+    is a vertex stabilizer in a locally finite tree, then finite subgroups
+    of `F/N` have bounded ranks. So `U`, `V` and `Z/2 ≀ Z` have no such
+    witness, with or without torsion in `Λ`.
+  - Surviving shape: commensurated witnesses whose relative Schlichting
+    completion is non-linear and not a tree.
+  - See `commensurated-witnesses-survive-browder-but-die-when-linear`.

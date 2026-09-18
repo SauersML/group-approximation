@@ -108,3 +108,31 @@ finite set.
   - *Where it dies.* Every pair that is not trivially Ore reduces to a `K[F]` pair. The transplant adds no
     leverage beyond the root Ore route (`thompson-f-amenable-iff-group-ring-is-ore`) or its obstructions
     (`thompson-f-ore-obstructions-must-see-finite-support`).
+- **Symbolic-dynamics transplant: full-group hosts reduce to orbit recurrence (2026-09-18,
+  swarm-0917-w7-w7-f-pull; dead end, with one ESTABLISHED by-product).** The idea was to place `F` inside an
+  amenable topological full group `[[H ↷ Y]]` (or a fragmentation of a minimal `Z`-action, or piecewise `BS(1,2)`
+  maps) and inherit extensive amenability of `F ↷ D` from the host's orbit action.
+  - *Dictionary.* `F ≤ [[H ↷ Y]]` makes each element of `F` move points a bounded distance in the `H`-orbital
+    graphs. Every known amenability engine for full groups (Juschenko–Monod, Juschenko–Nekrashevych–de la Salle,
+    Juschenko–Matte Bon–Monod–de la Salle, Nekrashevych fragmentations) takes as input recurrent orbital graphs, or
+    graphs of subexponential growth.
+  - *Where the recurrent engines die.* `thompson-f-does-not-embed-in-wobbling-groups-of-recurrent-graphs` already
+    kills finitely supported symmetric recurrence on bounded-degree graphs. The remaining loophole was a host whose
+    orbit chain is recurrent only for a heavy-tailed, infinitely supported or non-symmetric measure, possibly on an
+    infinitely generated host. `f-prime-acts-trivially-in-every-measure-recurrent-action` (ESTABLISHED, unrefereed)
+    closes it. For any countable `G`, any `θ : F → G`, any transitive `G`-set and any measure whose support generates
+    `G` as a semigroup, recurrence of the induced chain forces `θ(F′)` to act trivially.
+    - *Invariant.* The escape probability `P_x(T⁺ = ∞)`, written as a capacity.
+    - *Mechanism.* Subordination to full support keeps the Green function comparable. Symmetrization cannot raise
+      capacity, via the equilibrium-potential bound. Rayleigh comparison with `θ(S)` then carries the capacity to
+      the Schreier network of `F`, where the base theorem applies.
+    - *Consequence.* The mean inverted orbit is ballistic for every generating measure in every host where `F′`
+      acts.
+  - *Where the transplant dies.* A host that could still help must have transient orbital graphs on the orbits where
+    `F′` acts, for every measure. Its extensive amenability must then be proved by rare-event inverted-orbit
+    confinement (`f-dyadic-ea-iff-inverted-orbit-confinement`), and that is this claim again, transported by bounded
+    displacement. Subexponential-growth hosts are already excluded by Chaudkhari
+    (`thompson-f-confined-subgroups-fix-finite-sets`).
+  - Two cheaper symbolic ideas also fail:
+    - `F`-equivariant cellular automata on `A^D` are trivial, since each point stabilizer has two infinite orbits.
+    - Witnesses from Markov random sets with bounded state space fail calibration already for `Z`.

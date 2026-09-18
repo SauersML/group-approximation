@@ -73,7 +73,10 @@ Lane proof, not independently reviewed. Notation as in the claim. It follows the
     inverse of `ψ_u(G)`, since `t_u Γ s_u ψ_u(G) = t_u Γ G s_u = 1` and
     `ψ_u(G) t_u Γ s_u = t_u G Γ s_u = 1`.
   - Every `σ ∈ Σ` is some `ψ_u`, so every element of `T`, hence of `S`, is invertible in
-    `R_k`. The image of `Π` is commutative. So `Π -> R_k` extends to `B -> R_k`, and the
+    `R_k`. Work first with `Π_Z = Z[t, registers]`: its image in `R_k` is commutative, and
+    `T ⊆ Π_Z` contains every positive integer (the vacuum values `n + 1`). So
+    `B = S^(-1) Π_Z` (as `S^(-1)Π_Z` already contains `Q`), and `Π_Z -> R_k` extends to
+    `B -> R_k`; only then is `Q ⊆ R_k` known. The
     covariance `b = Σ s_x σ_x(b) t_x` passes to inverses. This gives `O_ψ -> R_k`.
 - **Back.** `R_k -> O_ψ` fixes `s_x`, `t_x`, `t_j` and the registers, and sends `Γ` to
   `G^(-1) ∈ B`. The relations (Cov) are covariance for the registers.

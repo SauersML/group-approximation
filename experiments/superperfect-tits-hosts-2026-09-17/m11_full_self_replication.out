@@ -1,0 +1,9 @@
+|P| = 7920  moved points = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 
+ ]  transitive on 1..11: true
+P perfect: true  H_2(P) = [  ]
+M_12 = <point stabilizers>: true
+alpha = ( 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11)  beta = ( 1, 2, 3, 4, 8)
+( 5,10, 7,11, 6)
+|H| = 971072858812858549162727178240000000000  |M_11|^10 = 
+971072858812858549162727178240000000000
+all 45 pair projections onto M_11 x M_11: true

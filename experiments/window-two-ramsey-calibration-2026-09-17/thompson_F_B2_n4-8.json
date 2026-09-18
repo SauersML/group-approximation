@@ -1,0 +1,190 @@
+{
+ "group": "F",
+ "window": "B_2",
+ "radii": [
+  4,
+  8
+ ],
+ "results": [
+  {
+   "n": 4,
+   "E": "some geodesic starts with x1^{+-1}",
+   "|I_n|": 17,
+   "distinct_pictures": 9,
+   "lp_value": 0.875,
+   "exact_value": "7/8",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 4,
+   "E": "every geodesic starts with x1^{+-1}",
+   "|I_n|": 17,
+   "distinct_pictures": 9,
+   "lp_value": 0.875,
+   "exact_value": "7/8",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 4,
+   "E": "some geodesic starts with x0^{+-1}",
+   "|I_n|": 17,
+   "distinct_pictures": 9,
+   "lp_value": 0.875,
+   "exact_value": "7/8",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 4,
+   "E": "every geodesic starts with x0^{+-1}",
+   "|I_n|": 17,
+   "distinct_pictures": 9,
+   "lp_value": 0.875,
+   "exact_value": "7/8",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 5,
+   "E": "some geodesic starts with x1^{+-1}",
+   "|I_n|": 53,
+   "distinct_pictures": 21,
+   "lp_value": 0.769230769230769,
+   "exact_value": "10/13",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 5,
+   "E": "every geodesic starts with x1^{+-1}",
+   "|I_n|": 53,
+   "distinct_pictures": 24,
+   "lp_value": 0.7586206896551725,
+   "exact_value": "22/29",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 5,
+   "E": "some geodesic starts with x0^{+-1}",
+   "|I_n|": 53,
+   "distinct_pictures": 24,
+   "lp_value": 0.7586206896551725,
+   "exact_value": "22/29",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 5,
+   "E": "every geodesic starts with x0^{+-1}",
+   "|I_n|": 53,
+   "distinct_pictures": 23,
+   "lp_value": 0.7692307692307692,
+   "exact_value": "10/13",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 6,
+   "E": "some geodesic starts with x1^{+-1}",
+   "|I_n|": 161,
+   "distinct_pictures": 29,
+   "lp_value": 0.7000000000000001,
+   "exact_value": "7/10",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 6,
+   "E": "every geodesic starts with x1^{+-1}",
+   "|I_n|": 161,
+   "distinct_pictures": 35,
+   "lp_value": 0.5454545454545455,
+   "exact_value": "6/11",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 6,
+   "E": "some geodesic starts with x0^{+-1}",
+   "|I_n|": 161,
+   "distinct_pictures": 35,
+   "lp_value": 0.5454545454545454,
+   "exact_value": "6/11",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 6,
+   "E": "every geodesic starts with x0^{+-1}",
+   "|I_n|": 161,
+   "distinct_pictures": 31,
+   "lp_value": 0.7000000000000001,
+   "exact_value": "7/10",
+   "exact_value_gt_half": true
+  },
+  {
+   "n": 7,
+   "E": "some geodesic starts with x1^{+-1}",
+   "|I_n|": 475,
+   "distinct_pictures": 50,
+   "lp_value": 0.5,
+   "exact_value": "1/2",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 7,
+   "E": "every geodesic starts with x1^{+-1}",
+   "|I_n|": 475,
+   "distinct_pictures": 61,
+   "lp_value": 0.4,
+   "exact_value": "2/5",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 7,
+   "E": "some geodesic starts with x0^{+-1}",
+   "|I_n|": 475,
+   "distinct_pictures": 61,
+   "lp_value": 0.39999999999999997,
+   "exact_value": "2/5",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 7,
+   "E": "every geodesic starts with x0^{+-1}",
+   "|I_n|": 475,
+   "distinct_pictures": 52,
+   "lp_value": 0.49999999999999994,
+   "exact_value": "1/2",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 8,
+   "E": "some geodesic starts with x1^{+-1}",
+   "|I_n|": 1381,
+   "distinct_pictures": 79,
+   "lp_value": 0.47058823529411764,
+   "exact_value": "8/17",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 8,
+   "E": "every geodesic starts with x1^{+-1}",
+   "|I_n|": 1381,
+   "distinct_pictures": 91,
+   "lp_value": 0.24074074074074078,
+   "exact_value": "13/54",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 8,
+   "E": "some geodesic starts with x0^{+-1}",
+   "|I_n|": 1381,
+   "distinct_pictures": 91,
+   "lp_value": 0.24074074074074078,
+   "exact_value": "13/54",
+   "exact_value_gt_half": false
+  },
+  {
+   "n": 8,
+   "E": "every geodesic starts with x0^{+-1}",
+   "|I_n|": 1381,
+   "distinct_pictures": 81,
+   "lp_value": 0.47058823529411764,
+   "exact_value": "8/17",
+   "exact_value_gt_half": false
+  }
+ ]
+}

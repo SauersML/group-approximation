@@ -1,0 +1,147 @@
+# Generation: ./lcs2 k r certs/c<k>-<r>.txt (then gzip -9n). Each run was repeated and gave a byte-identical file.
+$ ./lcs2 2 11 c2-11.txt
+k=2 r=11 orbits=75 step1=75 step2=0 step3=0 maxDeferred=0 testsA=97 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 3 11 c3-11.txt
+k=3 r=11 orbits=235 step1=235 step2=0 step3=0 maxDeferred=0 testsA=436 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 4 11 c4-11.txt
+k=4 r=11 orbits=490 step1=490 step2=0 step3=0 maxDeferred=0 testsA=1396 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 5 11 c5-11.txt
+k=5 r=11 orbits=816 step1=816 step2=0 step3=0 maxDeferred=0 testsA=4335 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 6 11 c6-11.txt
+k=6 r=11 orbits=1187 step1=1178 step2=9 step3=0 maxDeferred=0 testsA=15398 testsB=88 t=0s REACHES {e_k}
+$ ./lcs2 7 11 c7-11.txt
+k=7 r=11 orbits=1584 step1=1541 step2=4 step3=39 maxDeferred=29 testsA=88237 testsB=22803 t=1s REACHES {e_k}
+$ ./lcs2 2 13 c2-13.txt
+k=2 r=13 orbits=102 step1=102 step2=0 step3=0 maxDeferred=0 testsA=136 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 3 13 c3-13.txt
+k=3 r=13 orbits=353 step1=353 step2=0 step3=0 maxDeferred=0 testsA=714 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 4 13 c4-13.txt
+k=4 r=13 orbits=793 step1=793 step2=0 step3=0 maxDeferred=0 testsA=2608 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 5 13 c5-13.txt
+k=5 r=13 orbits=1395 step1=1395 step2=0 step3=0 maxDeferred=0 testsA=9167 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 6 13 c6-13.txt
+k=6 r=13 orbits=2113 step1=2100 step2=13 step3=0 maxDeferred=0 testsA=36826 testsB=139 t=1s REACHES {e_k}
+$ ./lcs2 7 13 c7-13.txt
+k=7 r=13 orbits=2906 step1=2853 step2=0 step3=53 maxDeferred=44 testsA=209319 testsB=45131 t=4s REACHES {e_k}
+$ ./lcs2 2 15 c2-15.txt
+k=2 r=15 orbits=133 step1=133 step2=0 step3=0 maxDeferred=0 testsA=183 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 3 15 c3-15.txt
+k=3 r=15 orbits=504 step1=504 step2=0 step3=0 maxDeferred=0 testsA=1155 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 4 15 c4-15.txt
+k=4 r=15 orbits=1214 step1=1214 step2=0 step3=0 maxDeferred=0 testsA=4638 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 5 15 c5-15.txt
+k=5 r=15 orbits=2251 step1=2251 step2=0 step3=0 maxDeferred=0 testsA=17359 testsB=0 t=1s REACHES {e_k}
+$ ./lcs2 6 15 c6-15.txt
+k=6 r=15 orbits=3547 step1=3539 step2=8 step3=0 maxDeferred=0 testsA=77110 testsB=64 t=2s REACHES {e_k}
+$ ./lcs2 7 15 c7-15.txt
+k=7 r=15 orbits=5026 step1=4964 step2=6 step3=56 maxDeferred=43 testsA=505123 testsB=59306 t=14s REACHES {e_k}
+$ ./lcs2 2 17 c2-17.txt
+k=2 r=17 orbits=168 step1=168 step2=0 step3=0 maxDeferred=0 testsA=238 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 3 17 c3-17.txt
+k=3 r=17 orbits=692 step1=692 step2=0 step3=0 maxDeferred=0 testsA=1742 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 4 17 c4-17.txt
+k=4 r=17 orbits=1780 step1=1780 step2=0 step3=0 maxDeferred=0 testsA=8141 testsB=0 t=0s REACHES {e_k}
+$ ./lcs2 5 17 c5-17.txt
+k=5 r=17 orbits=3471 step1=3471 step2=0 step3=0 maxDeferred=0 testsA=31727 testsB=0 t=1s REACHES {e_k}
+$ ./lcs2 6 17 c6-17.txt
+k=6 r=17 orbits=5684 step1=5679 step2=5 step3=0 maxDeferred=0 testsA=158742 testsB=26 t=6s REACHES {e_k}
+$ ./lcs2 7 17 c7-17.txt
+k=7 r=17 orbits=8295 step1=8229 step2=8 step3=58 maxDeferred=50 testsA=1143623 testsB=108223 t=39s REACHES {e_k}
+
+# Verification: ./overv k r c<k>-<r>.txt  (wall time in parentheses)
+$ ./overv 2 11 c2-11.txt
+k=2 r=11 |Lmax|=132
+orbit moves=76 point moves=131 left=1 dfs=1558 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 3 11 c3-11.txt
+k=3 r=11 |Lmax|=1023
+orbit moves=237 point moves=1022 left=1 dfs=41675 -> VERIFIED: ends at {e_k}
+(1 s)
+$ ./overv 4 11 c4-11.txt
+k=4 r=11 |Lmax|=5984
+orbit moves=493 point moves=5983 left=1 dfs=547596 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 5 11 c5-11.txt
+k=5 r=11 |Lmax|=28347
+orbit moves=820 point moves=28346 left=1 dfs=4628573 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 6 11 c6-11.txt
+k=6 r=11 |Lmax|=113652
+orbit moves=1192 point moves=113651 left=1 dfs=28871850 -> VERIFIED: ends at {e_k}
+(1 s)
+$ ./overv 7 11 c7-11.txt
+k=7 r=11 |Lmax|=397727
+orbit moves=1590 point moves=397726 left=1 dfs=143689263 -> VERIFIED: ends at {e_k}
+(5 s)
+$ ./overv 2 13 c2-13.txt
+k=2 r=13 |Lmax|=182
+orbit moves=103 point moves=181 left=1 dfs=2946 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 3 13 c3-13.txt
+k=3 r=13 |Lmax|=1651
+orbit moves=355 point moves=1650 left=1 dfs=102970 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 4 13 c4-13.txt
+k=4 r=13 |Lmax|=11284
+orbit moves=796 point moves=11283 left=1 dfs=1678669 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 5 13 c5-13.txt
+k=5 r=13 |Lmax|=62257
+orbit moves=1399 point moves=62256 left=1 dfs=17075713 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 6 13 c6-13.txt
+k=6 r=13 |Lmax|=289562
+orbit moves=2118 point moves=289561 left=1 dfs=125121841 -> VERIFIED: ends at {e_k}
+(2 s)
+$ ./overv 7 13 c7-13.txt
+k=7 r=13 |Lmax|=1170247
+orbit moves=2912 point moves=1170246 left=1 dfs=705695473 -> VERIFIED: ends at {e_k}
+(17 s)
+$ ./overv 2 15 c2-15.txt
+k=2 r=15 |Lmax|=240
+orbit moves=134 point moves=239 left=1 dfs=4409 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 3 15 c3-15.txt
+k=3 r=15 |Lmax|=2495
+orbit moves=506 point moves=2494 left=1 dfs=185772 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 4 15 c4-15.txt
+k=4 r=15 |Lmax|=19520
+orbit moves=1217 point moves=19519 left=1 dfs=3614328 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 5 15 c5-15.txt
+k=5 r=15 |Lmax|=123023
+orbit moves=2255 point moves=123022 left=1 dfs=43665062 -> VERIFIED: ends at {e_k}
+(1 s)
+$ ./overv 6 15 c6-15.txt
+k=6 r=15 |Lmax|=651888
+orbit moves=3552 point moves=651887 left=1 dfs=376934571 -> VERIFIED: ends at {e_k}
+(7 s)
+$ ./overv 7 15 c7-15.txt
+k=7 r=15 |Lmax|=2992383
+orbit moves=5032 point moves=2992382 left=1 dfs=2529020776 -> VERIFIED: ends at {e_k}
+(52 s)
+$ ./overv 2 17 c2-17.txt
+k=2 r=17 |Lmax|=306
+orbit moves=169 point moves=305 left=1 dfs=7372 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 3 17 c3-17.txt
+k=3 r=17 |Lmax|=3587
+orbit moves=694 point moves=3586 left=1 dfs=386911 -> VERIFIED: ends at {e_k}
+(0 s)
+$ ./overv 4 17 c4-17.txt
+k=4 r=17 |Lmax|=31620
+orbit moves=1783 point moves=31619 left=1 dfs=8953303 -> VERIFIED: ends at {e_k}
+(1 s)
+$ ./overv 5 17 c5-17.txt
+k=5 r=17 |Lmax|=224213
+orbit moves=3475 point moves=224212 left=1 dfs=125356608 -> VERIFIED: ends at {e_k}
+(2 s)
+$ ./overv 6 17 c6-17.txt
+k=6 r=17 |Lmax|=1334262
+orbit moves=5689 point moves=1334261 left=1 dfs=1235277731 -> VERIFIED: ends at {e_k}
+(27 s)
+$ ./overv 7 17 c7-17.txt
+k=7 r=17 |Lmax|=6863495
+orbit moves=8301 point moves=6863494 left=1 dfs=9261890462 -> VERIFIED: ends at {e_k}
+(189 s)

@@ -64,3 +64,125 @@ open part is finite presentation. One concrete route is
      and the explicit host `G_l` of `z-localized-embeds-in-fg-rf-soluble-group` satisfies both. So an affirmative
      answer to the effective-RF form of the Kharlampovich--Myasnikov--Sapir question, left open by Rauzy,
      would give this claim. The Kharlampovich--Myasnikov--Sapir groups themselves are soluble of class 3, as is `G_l`.
+2. **Third pass (2026-09-18, lane gq-infinite-primes): the ring side is closed, and the gap is K_2.**
+   - `R_l` has an explicit path normal form (`resolvent-ring-has-path-normal-form`).
+   - `R_l` is residually finite for every `l` (`resolvent-presentation-ring-is-residually-finite`). So
+     `E_N(R_l)` is a finitely generated residually finite group containing `Z_(l)`, and it is a quotient of the
+     finitely presented `St_N(R_l)`.
+   - Two new routes reduce this claim to K-theory of `R_l`:
+     - `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`, from
+       `resolvent-steinberg-rf-residual-is-finitely-normally-generated`;
+     - `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l`, from `resolvent-elementary-group-is-fp`.
+   - The deciding computation: do the corner tame symbols from `K_2(Z_(l)) ⊇ ⊕_(q != l) F_q^×` survive in
+     `St_N(R_l)`? If they do not, or only finitely many matter, the claim follows. If infinitely many
+     survive independently and `K_2(N, R_l)` is central, both routes through `R_l` fail, and the ring must be
+     modified.
+3. **Fourth pass (2026-09-18): the K_2 gap closes negatively for R_l, and the claim stays OPEN.**
+   - Lane gq-k2-q proved `resolvent-ring-corner-symbols-survive-in-k2`. `θ_* : K_2(Z_(l)) -> K_2(R_l)` is
+     injective, detected on the quotient `R_l / J ≅ D ⊕ M_Z^fin(Z_(l))` by Suslin excision and Morita. So the corner
+     tame symbols `{q, g_q}`, `q != l`, give an infinitely generated subgroup of stable `K_2`. Checked by this lane:
+     `J` is an ideal by the multiplication rules of `resolvent-ring-has-path-normal-form`, and the quotient
+     multiplies as matrix units.
+   - Consequences:
+     - `resolvent-elementary-groups-are-not-fp` refutes `resolvent-elementary-group-is-fp`, so route
+       `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l` is closed.
+     - `resolvent-steinberg-rf-residual-is-infinitely-normally-generated` is ESTABLISHED, with both K-theory
+       inputs read at source (69ed7e51a; confirmed by gq-referee-b, 7a9be50ac). It closes route
+       `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`.
+     - For `l` odd the surviving corner symbols lie in the finite residual, so `St_N(R_l)` is not residually
+       finite. `resolvent-steinberg-group-is-residually-finite` stays open only at `l = 2`.
+   - **What is NOT refuted.**
+     - This claim itself. It asks for some finitely presented residually finite group containing `Z_(l)`, and the
+       obstruction concerns quotients of `St_N(R_l)` only.
+     - A finitely presented residually finite quotient of `St_N(R_l)` whose kernel strictly contains the finite
+       residual is not excluded; whether `Z_(l)` survives in one is unknown.
+   - **Standing assets.**
+     - `R_l`: a finitely presented residually finite ring with `Z_(l)` in a corner.
+     - `E_N(R_l)`: finitely generated and residually finite.
+     - The effectively residually finite soluble host `G_l` (`z-localized-embeds-in-fg-rf-soluble-group`).
+   - **The lesson for new routes.** Any ring route must also kill `K_2` of the scalars it adds. Two devices kill
+     the corner in finite quotients: divisibility of `[e]`, and Leavitt pairs. So neither helps (artifact
+     `gq-gq-k2-q-resolvent-corner.md` §3). Non-Steinberg routes, such as Kharlampovich--Myasnikov--Sapir-type
+     constructions for `G_l`, are untouched.
+4. **Route (a), Kharlampovich--Myasnikov--Sapir groups (2026-09-18, lane gq-infinite-primes): excluded.** Read
+   from the arXiv:1204.6506v5 e-print; artifact `gq-gq-infinite-primes-kms-reading.md`.
+   - The paper proves no embedding theorem. Its §1.1.7 only poses the unrestricted residually finite Higman
+     question.
+   - Its groups `G(M)` lie in `𝒜_p^2 𝒜` (Theorem 4.3(a)), so every torsion-free subgroup is free abelian of finite
+     rank (`kms-minsky-groups-contain-no-z-localized`). No `G(M)` contains `Z[1/q]`, `Z_(l)` or `G_l`.
+   - The failing hypothesis is the exponent-`p` base. A characteristic-0 variant of the KMS construction, with a
+     `Z_(l)`-module base over a finitely presented metabelian top, is not supplied by the paper. It would need three
+     new ingredients:
+     - a finitely presented metabelian extension of the `Z ≀ Z`-action;
+     - finitely many module relations;
+     - a residual-finiteness proof that does not use finite exponent (the paper's Theorem 4.17 does).
+5. **A characteristic-0 KMS variant: calibration (2026-09-18, lane gq-infinite-primes).**
+   - *Known limit of the general question.* The unrestricted residually finite Higman embedding (every finitely
+     generated residually finite group with solvable word problem embeds in a finitely presented residually
+     finite group) is false: E. Rauzy, *Obstruction to a Higman embedding theorem for residually finite groups
+     with solvable word problem*, arXiv:2002.02540v2 (17 Mar 2021), Theorem 1
+     (`rf-higman-embedding-for-decidable-groups-fails`). His counterexample is not effectively residually finite,
+     while `G_l` is.
+   - *The naive variant is inconsistent.* Relations G1–G8 with only the base exponent law dropped still force
+     `x_(uA_i)^p = 1` (`kms-configuration-letters-inherit-exponent-p`). The exponent law on the A-letters,
+     transported by G5 a), kills torsion-freeness.
+   - *The fully characteristic-0 variant.* Dropping the A-letter exponent too gives what artifact
+     `gq-gq-infinite-primes-kms-reading.md` §4 analyses, without proof. Residual finiteness would plausibly
+     survive, with finitely generated abelian quotients of `T` in place of finite ones. But the base would be free
+     abelian, so the group would contain no `Z_(l)`. The crux moves to ingredient (2): a module relation with a
+     non-unit scalar, such as the Euler relation of `G_l`. With that relation, ingredient (3) is hard again.
+6. **Ingredient (2) for the Euler base: the freest extension fails (2026-09-18, lane gq-infinite-primes).**
+   `euler-base-annihilator-over-lamplighter-is-not-fg`:
+   - Over the ring `D` the Euler base `M = Z_(l)[y^(±1)]` needs one left relation and one two-sided relation
+     (the Euler element `r = xβx^(-1) - β - l`).
+   - Over `Z[Z≀Z]` its annihilator is not finitely generated. So finitely many of the shifted Euler relations
+     `r x^k f_0 = 0` never suffice.
+   - The induced module over any overgroup `Q ⊇ Z≀Z`, Baumslag's finitely presented metabelian group
+     included, is not finitely presented.
+   - At the generator, the Euler relation is a BR-conjoint relation (KMS Lemma 4.1 form, pair `(β_(-1), β)`,
+     polynomial `t - l`). But BR propagates along the lamps, not along `x`.
+   - Open: a finitely presented base that is a proper quotient of the induced module and still contains `M`.
+     Deliverable (a), an explicit finite presentation, is not achieved.
+7. **A finitely presented host with no corner obstruction (2026-09-18, lane gq-infinite-primes).**
+   - *The ring.* Put the Euler base in the off-diagonal corner of `T_l = [[D, D/Du],[0, Z]]`
+     (`euler-triangular-ring-is-fp-rf`). `T_l` is a finitely presented residually finite ring.
+   - *The group.* `St_N(T_l)` is finitely presented for `N >= 5` (rank-five node) and contains the Euler base
+     `M ⊇ Z_(l)` through `x_12` (`euler-base-embeds-in-fp-steinberg-group`). `E_N(T_l)` is finitely generated,
+     residually finite, and contains `G_l`.
+   - *Why the corner obstruction goes away.* The Steinberg commutator relations carry the `D`-action on `M`,
+     so the Euler relation needs only the finitely many relations of the ring `D`. `Z_(l)` is now a
+     square-zero bimodule, not a corner ring, so the tame-symbol obstruction for `R_l` has no analogue.
+   - *What remains.* Only residual finiteness:
+     - `euler-triangular-steinberg-rf-residual-is-fng` suffices (route
+       `z-localized-fp-rf-via-euler-triangular-steinberg`);
+     - in turn it follows from `euler-triangular-ring-has-fg-central-unstable-k2`.
+     - Heuristically, stable `K_2(T_l) = K_2(D) ⊕ K_2(Z)` is finite. Three inputs are unread: triangular
+       K-theory, the twisted Laurent theorem, and stability.
+   - This is the most promising live route to the bottleneck.
+8. **The triangular route after gq-k2-q (2026-09-18, lane gq-infinite-primes).**
+   - gq-k2-q (29881297a) showed that the Euler ring `D` has infinite-rank `K_2`, via the symbols
+     `{π_0, π_q}`. So `K_2(N, T_l)` is not finitely generated, and neither `E_N(T_l)` nor `E_N(D)` is finitely
+     presented.
+   - `St_N(D)` is a retract of `St_N(T_l)` (`euler-triangular-steinberg-retracts-to-euler-steinberg`). So the
+     triangular route needs `euler-ring-steinberg-rf-residual-is-fng`: whether infinitely many independent
+     `{π_0, π_q}` die in every finite quotient. That question is NOT decided. The partial analysis and the
+     smallest test ring are in that node's Attempts.
+   - **Design constraint.** `Z_(l)` in the base comes from the lamps `π_k` acting invertibly. Finite
+     presentation needs that invertibility as ring relations, which makes the `π_k` units and creates the
+     symbols. This lane has no concrete way to decouple the two.
+9. **Decoupling the lamps from units: the ring repair (2026-09-18, lane gq-k2-q).** Still OPEN.
+   - *The Euler residual is not decided.* In `euler-ring-steinberg-rf-residual-is-fng`, every `c_q` dies in the
+     folding quotients `F_(r,N)` with `r <= l − 1` (`euler-ring-symbols-in-small-finite-quotients`). The
+     cyclotomic point detects `c_q` on `A`, but its σ-orbit does not.
+   - *One-sided inverses do not decouple.* `one-sided-inverses-cannot-repair-the-steinberg-residual`:
+     `Γ_N(T)` depends only on `T/I_rf(T)`, and residually finite rings are Dedekind-finite.
+   - *A central deformation does decouple, conditionally.* `central-deformation-euler-host-has-fng-steinberg-residual`
+     (PARKED).
+     - The host `T_p` is finitely presented, carries `Z_(l)` in its residually finite quotient, and has no lamp
+       units.
+     - A `t`-homotopy shows `K_2(T_p)` meets the Euler symbols in at most 4 classes (refereed PASS).
+     - It still needs three things:
+       1. `I_rf(B)` finitely generated, e.g. finite quotients separating the `Z`-torsion of `B`;
+       2. the part of `K_2(B, B_+)` that dies in every finite quotient to be finitely generated;
+       3. control of unstable `K_2(N, T_p)`.
+     - A Baumslag letter cannot remove the torsion, and regularity cannot give `NK_2 = 0`.

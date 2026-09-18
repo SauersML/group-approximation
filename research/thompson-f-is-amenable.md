@@ -255,3 +255,72 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     as the Følner tower.
   - *Also:* Theorem A there is an unconditional upper bound on the return probabilities of `F`, of
     exponential type at every computable length.
+- **Liouville measures for actions, both directions (swarm-0917-w7-w7-f-follow, 2026-09-17, probability-random).**
+  - *Established:*
+    - `amenably-coupled-actions-admit-symmetric-liouville-measures`. Every transitive action in which each finite
+      set lies in one orbit of an amenable subgroup (LAT) has a non-degenerate symmetric Liouville measure. It
+      covers every orbit of `F` in `(0,1)` (via a chain element `f` with `f(t_i) = t_{i+1}`), `T ↷ D/Z`, and every
+      lamplighter action.
+    - `juschenko-zheng-question-5-fails-for-countable-groups`. `SL_2(R_alg) = BK`, with abelian stabilizers.
+    - `liouville-action-criteria-cannot-decide-thompson-f-amenability`, the class kill.
+    - The import `juschenko-zheng-liouville-actions`.
+  - *Invariant:* LAT.
+  - *Dies at:*
+    - Kaimanovich's criterion ("find an action with no Liouville measure") dies at "exhibit the action". LAT
+      actions are always Liouville. Non-LAT `F`-sets exist only if `F` is nonamenable, and they certify it with no
+      boundary theory. On the regular action the criterion is the root.
+    - The positive direction dies at "Liouville ⟹ amenable". `T ↷ D/Z` is a counterexample, and so are
+      `P_f(F_2) ⋊ F_2` and `SL_2(R_alg)`. Also `F ↷ D` and its lamplighter action are Liouville unconditionally.
+  - *Survives, open:* the group-level Liouville program, and Juschenko–Zheng's Question 5 for finitely generated
+    groups together with a LAT `F`-set with abelian stabilizers, which would follow from `F = HK`, `H` amenable,
+    `K` abelian.
+- **2026-09-18 (swarm-0917-w8-w8-f-pull), abelian factorizations `F = HK` (obstruction-miner, host-geometry).**
+  This attacks the factorization survivor of the previous entry.
+  - *Established (unrefereed):* `thompson-f-abelian-cofactors-fixing-an-interval-force-f-into-h`. If `F = HK`
+    with `K` abelian, then:
+    - either `H` contains a copy of `F`, or `F` acts faithfully on `F/H ≅ K` with `C_F(K)` acting by translations;
+    - if `K` fixes an open interval pointwise, then `H ⊇ F(a,b) ⊇` a copy of `F`.
+    So `H` amenable forces `F` amenable, and the route is circular.
+  - *Invariant:* a copy of `F` in the cofactor. *Dies at:* proving `H` amenable.
+  - *Open, reduced:* the general case, `thompson-f-abelian-factorizations-put-f-into-the-cofactor`. This includes
+    dense-support `K` such as `⟨x_0⟩`.
+    - Lemma A and an orbital reduction show that it follows from a negative answer to problem (SA): no transitive
+      action of `F ≀ Z` on `Z` with the top generator as shift and no point stabilizer of the base factor containing
+      a copy of `F`.
+    - Proved constraints on a counterexample: the base factor acts faithfully, and the base group does not act freely.
+- **Juschenko–Zheng Question 5 through T = F·R_D (swarm-0917-w8-w8-f-last1, 2026-09-18, reframing).**
+  - *Established:* `jz-question-5-for-thompson-t-implies-f-nonamenable`. Every `g ∈ T` is uniquely
+    `g = fρ` with `f ∈ F` and `ρ` the dyadic rotation `ρ_{−g⁻¹(0)}`. So `F` acts simply transitively on
+    `X = T/R_D`, whose stabilizers are conjugates of the Prüfer 2-group `R_D`. If `F` is amenable, `T ↷ X` is
+    LAT, hence symmetric-Liouville, and `T` (finitely presented, nonamenable) answers Question 5 negatively.
+  - *Invariant:* the exact factorization `T = F·R_D` with `R_D` abelian.
+  - *Dies at:* the w7 survivor's step "assume Question 5 for finitely generated groups". Applied to `T` it
+    already proves `F` nonamenable, so that hypothesis contradicts the conclusion it was meant to serve. The same
+    holds for any "Liouville + stabilizers in `𝒮` ⟹ amenable" criterion for finitely generated groups with
+    `𝒮 ∋ R_D`, and for amenable stabilizers directly via `T ↷ D/Z`. No Liouville-action route to this root
+    survives.
+  - *Consequence:* this root implies that Question 5 fails for finitely presented groups, as Juschenko and
+    Zheng expect.
+  - *Spawned:* `thompson-f-not-amenable-via-rotation-cosets-of-thompson-t`, which targets the negation, with the OPEN
+    prerequisite `thompson-t-dyadic-rotation-cosets-are-not-amenably-transitive` (some finite `S ⊆ F` has no
+    dyadic-rotation twist generating an amenable subgroup of `T`). If that fails, Question 5 fails for `T`
+    unconditionally.
+- **Cube-complex boundary routes (swarm-0917-w9-w9-f-pull, 2026-09-18, host-geometry, obstruction-miner).**
+  - *Established:* `stein-farley-height-fixes-a-roller-boundary-point`.
+    - The Farley CAT(0) cube complex `X_F`, the space of `F`'s proper cubical action, is graded by height.
+      Every edge raises the height by 1, and upward expansions are directed.
+    - So the upper halfspaces of the expansion hyperplanes form a non-principal ultrafilter `σ_F ∈ ∂X_F`
+      fixed by `F`, whose horofunction is the height. `F` acts simply transitively on each horosphere.
+  - *Invariant:* `σ_F`, the up-orientation of the expansion hyperplanes.
+  - *Class killed, and where it dies:*
+    - Amenability of `F`, or its exactness (property A), via a topologically or Zimmer amenable action on
+      `X̄_F`, `∂X_F`, or any compact `F`-space with an `F`-fixed point, is root-equivalent. The approximately
+      equivariant maps evaluated at `σ_F` are already a Reiter sequence, and quantitatively the support radius
+      is at least `log` of Moore's tower.
+    - For the opposite direction, the Roller-boundary Tits-alternative and Poisson-boundary tools need no finite
+      orbit in `X̄`, and `F` has one.
+  - *Calibration:* `V` acts on its own graded Farley complex with a fixed Roller point and transitive horosphere
+    actions (stabilizers `S_n`), yet contains `F_2`. So the fixed-point data are neutral. Any cube-complex proof
+    must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
+  - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
+    surviving cubical route to exactness, and it is not a route to amenability.

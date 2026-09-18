@@ -126,3 +126,70 @@ The exact form of the BKM balanced set is assumed to contain `W_kappa`.
 Otherwise (T) and (T1) still hold with `theta_*` as defined.
 
 DERIVATION projective-lift-moment-transfer-proof
+
+## Attempts
+
+* **2026-09-18, e2-w2-audit-ugc2 (calibration): adversarial scope audit of the
+  class kill. Verdict: survives. Two statements are made precise below; nothing
+  is refuted, and the status stays ESTABLISHED.**
+
+  * **Artifact re-run.** `check_projective_lift_moments.py` passes in 2.6 s and
+    prints `ALL CHECKS PASSED`: 720 exact rational comparisons of (T) and (T1),
+    60 cases of the block count `prod (|B|-1)!!` against (S), and the closed
+    form for the doubling lift cross-checked by enumeration. The printed numbers
+    match the claim exactly: at `m = 2`, `q = 3` the doubling lift gives
+    `7.4003` at `n = 4` and `2.2700e14` at `n = 64`, while the uniform law on
+    matchings of `[4n]` stays at `1.7463, 1.3733, 1.6081, 1.4611, 1.5472`, all
+    below `1.8`.
+    *Correction to the prose:* the demo's window is not "a unit window" but the
+    balanced count window `E' = { |#0 - 2n| <= sqrt(4n) }` (script line 141,
+    `counts_ok`, and `window()` at line 221). At `q = 4` the uniform column
+    reaches `2.0189`, so the "below 1.8" sentence is specific to `q = 3`.
+  * **Proof lens: Steps 0 to 5 check out.** Verified independently: Step 0's
+    derivation of (K) from `p' o phi' = phi o p`; the pointwise domination (1),
+    where the coupling of `(pi, lambda)` is used correctly (compatibility is
+    pointwise in the pair, so `Pr[z o p const on lambda | i] >= Pr[z const on
+    pi|_S | i]` even though `pi` varies); the exponent count
+    `-2n' + qn' - qs/2 + s = (q-2) g/2`; the Jensen step with `c <= s/2`; both
+    Chebyshev variance bounds (`2n' R/m` and `4n'/m`, giving `R/kappa^2` and
+    `2/kappa^2` after the union bound over `m` colours); the block count in
+    Step 4 including the `c_B = 2, |B| = 2` exception; and the Hölder/support
+    argument of (K2) with `U(T) <= |supp mu_s| m^(-n')`.
+  * **Quantifier check: randomized, adaptive and non-uniform members are
+    covered.** Everything is a statement about the single law `mu'` at one
+    output left vertex and the per-edge relation (K), so the reduction's own
+    randomness sits inside the mixture and the label maps may depend on the
+    instance. No uniformity is used anywhere.
+  * **Alphabet-shrinking lifts are not a loophole.** `p_i` maps `Sigma'` onto
+    `S_i`, so `s_i <= 2n'` and `g_i >= 0` always; there is no regime where the
+    surplus factor `m^((q-2) g_i / 2)` is below 1.
+  * **Precision 1: what `k` counts.** (K1) to (K3) count *couplings*, and a
+    coupling is a pair (label map, input left vertex). Reading `pi` as "a kernel
+    at some input left vertex" with that vertex fixed per `i` is what makes
+    (K4)'s sentence "this is the input condition itself" true. If a single
+    coupling were allowed to aggregate several input left vertices, `D_(S,i)`
+    would be a mixture of their kernel densities, and by Jensen
+    `||1_E D_mix||_q^q <= sum_j w_j ||1_E D_j||_q^q`, so a bounded mixture
+    moment would *not* bound any individual input vertex's moment. Under the
+    fixed-vertex reading the kill is unaffected: splitting by input vertex only
+    raises `k`, and (K2), (K3) bound `k S_in` from below, which is the honest
+    content.
+  * **Precision 2: the side condition in (K3).** The conclusion
+    `k >= exp(Omega(n'/log n'))` needs the second branch of the `min` to be
+    large, i.e. `S_in <= m^(n'/2) / exp(Omega_(q,m,C)(n'/log n'))`. So
+    "polynomially many input kernels" must be read as polynomially many *in the
+    output alphabet parameter* `n'`, or more weakly `S_in = m^(o(n'))`, not
+    polynomially many in the instance size. On Grassmann and affine 2-to-1
+    instances the alphabet is exponential in the ambient dimension, so `m^(n')`
+    dwarfs any instance-size polynomial and the condition holds; but the
+    parenthetical is a side condition, not a consequence of the theorem, and it
+    should be checked instance family by instance family.
+  * **Calibration lens: no false kill.** The identity lift (`k = 1`, `p = id`,
+    `g = 0`) forces `lambda = pi`, so the kill reduces to "the output is the
+    input" and asserts nothing. The doubling lift of the fully rich law, the one
+    construction that is supposed to amplify, is exactly the case the artifact
+    shows blowing up. Nothing in the graph exhibits a bounded-`k`, bounded-`g`
+    reduction that produces a smooth law from an unsmooth one, and the
+    survivors (P1) to (P4) already name the escape routes, including the
+    long-code regime `k >= exp(Omega(n'/log n'))` that the proved reductions
+    actually use.

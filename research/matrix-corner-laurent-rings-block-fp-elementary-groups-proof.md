@@ -74,8 +74,10 @@ Lane proof (gq-deep-adelic-1), not independently reviewed. Notation as in the ta
 8. **A degree-one unit.** Pick `γ ∈ Γ'` with `φ(γ) = 1`. Then `v = χ_C u_γ = χ_C u_γ χ_C ∈ S_1`, and
    `v · χ_C u_(γ^(-1)) = χ_C χ_(γC) = χ_C = 1_S`. The other composite is `1_S` as well, so `v` is a
    unit of `S`.
-9. **A tracial degree-zero part.** `e = ρ(χ_C)` is a nonzero projection in the finite factor `M`, so
-   `eMe` is a finite factor, and `ρ` restricts to a unital map `S_0 ⊆ S -> eMe`.
+9. **A tracial degree-zero part.** `e = ρ(χ_C)` is a nonzero idempotent of the finite factor `M`. In
+   the example `ρ` is a `*`-map, so `e` is a projection. In general an idempotent of a C*-algebra is
+   similar to a projection `p` (referee remark), so `eMe ≅ pMp` is a finite factor. Either way `ρ`
+   restricts to a unital map `S_0 ⊆ S -> eMe`.
 
    For the example in 5: `M = L^∞(X, μ) ⋊ Γ` is a II_1 factor for a free ergodic action preserving
    an atomless probability measure (Murray–von Neumann). Also `μ(C) = 1/k > 0`, because the `k`

@@ -1,0 +1,84 @@
+seed=1 loop_row1=False clustered_rows=False n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=64 (walk<girth: 64, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=124 (walk<girth: 124, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=184 (walk<girth: 184, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=304 (walk<girth: 304, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=424 (walk<girth: 424, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+seed=1 loop_row1=True clustered_rows=False n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=1=loops(Phi) b_edge_v1,0->v1,10=True
+   M=89 |L_S|=1 chains=24 (walk<girth: 4, violations 0, longest 1) longest_any=6 repeating_a_line=20 min_walk_of_repeating=1
+   M=1000000 |L_S|=2 chains=564 (walk<girth: 64, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000 |L_S|=3 chains=624 (walk<girth: 124, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=10000000000000000 |L_S|=4 chains=684 (walk<girth: 184, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000000000000000000 |L_S|=6 chains=804 (walk<girth: 304, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=924 (walk<girth: 424, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+seed=1 loop_row1=False clustered_rows=True n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 84, violations 0, longest 2) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 264, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 484, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 1304, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 2664, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+seed=1 loop_row1=False clustered_rows=True n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=6=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 64, violations 0, longest 1) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 124, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 184, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 304, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 424, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+seed=2 loop_row1=False clustered_rows=False n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=64 (walk<girth: 64, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=124 (walk<girth: 124, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=184 (walk<girth: 184, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=304 (walk<girth: 304, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=424 (walk<girth: 424, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+seed=2 loop_row1=True clustered_rows=False n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=1=loops(Phi) b_edge_v1,0->v1,10=True
+   M=89 |L_S|=1 chains=24 (walk<girth: 4, violations 0, longest 1) longest_any=6 repeating_a_line=20 min_walk_of_repeating=1
+   M=1000000 |L_S|=2 chains=564 (walk<girth: 64, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000 |L_S|=3 chains=624 (walk<girth: 124, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=10000000000000000 |L_S|=4 chains=684 (walk<girth: 184, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000000000000000000 |L_S|=6 chains=804 (walk<girth: 304, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=924 (walk<girth: 424, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+seed=2 loop_row1=False clustered_rows=True n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 84, violations 0, longest 2) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 264, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 484, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 1304, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 2664, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+seed=2 loop_row1=False clustered_rows=True n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=4=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 64, violations 0, longest 1) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 124, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 184, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 304, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 424, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+seed=3 loop_row1=False clustered_rows=False n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=64 (walk<girth: 64, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=124 (walk<girth: 124, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=184 (walk<girth: 184, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=304 (walk<girth: 304, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=424 (walk<girth: 424, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+seed=3 loop_row1=True clustered_rows=False n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=1=loops(Phi) b_edge_v1,0->v1,10=True
+   M=89 |L_S|=1 chains=24 (walk<girth: 4, violations 0, longest 1) longest_any=6 repeating_a_line=20 min_walk_of_repeating=1
+   M=1000000 |L_S|=2 chains=564 (walk<girth: 64, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000 |L_S|=3 chains=624 (walk<girth: 124, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=10000000000000000 |L_S|=4 chains=684 (walk<girth: 184, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=100000000000000000000000000 |L_S|=6 chains=804 (walk<girth: 304, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=924 (walk<girth: 424, violations 0, longest 1) longest_any=6 repeating_a_line=500 min_walk_of_repeating=1
+seed=3 loop_row1=False clustered_rows=True n=1500 girth(Phi)=5 max_b_run=2 same_line_b_edges=0=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 84, violations 0, longest 2) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 264, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 484, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 1304, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 2664, violations 0, longest 3) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+seed=3 loop_row1=False clustered_rows=True n=1500 girth(Phi)=1 max_b_run=2 same_line_b_edges=5=loops(Phi) b_edge_v1,0->v1,10=False
+   M=89 |L_S|=1 chains=4 (walk<girth: 4, violations 0, longest 1) longest_any=1 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000 |L_S|=2 chains=84 (walk<girth: 64, violations 0, longest 1) longest_any=2 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000 |L_S|=3 chains=264 (walk<girth: 124, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=10000000000000000 |L_S|=4 chains=484 (walk<girth: 184, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=100000000000000000000000000 |L_S|=6 chains=1304 (walk<girth: 304, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None
+   M=1000000000000000000000000000000000000 |L_S|=8 chains=2664 (walk<girth: 424, violations 0, longest 1) longest_any=3 repeating_a_line=0 min_walk_of_repeating=None

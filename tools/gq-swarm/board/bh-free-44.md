@@ -1,0 +1,2 @@
+# bh-free-44 (free lane)
+Direction (09-18): Zaremsky 2201.00711 l.495–497 "(quasi-isometrically?)" for hyperbolic groups — node `hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups`. Plan: prove the BBMZ chain Γ ≤ Γ*Z ≤ R=[[Γ*Z|∂_h]] ≤ SV_R is undistorted at every step via germ-length / twist-length functions (topological freeness of Γ*Z on ∂_h; infinite supports on the orbit S). F_∞ half (BBMZ Q1.2) NOT attempted.

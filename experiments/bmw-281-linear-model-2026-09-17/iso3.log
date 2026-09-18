@@ -1,0 +1,9 @@
+autsize 26244
+Syntax warning: Unbound global variable in iso3.g:10
+    pm := List([1..27], i -> First([1..27], j -> Image(f, Stabilizer(M,i)) = S\
+tabilizer(K,j)));
+                                                       ^
+CONJ [ 1, 2, 3, 5, 6, 4, 8, 7, 9, 25, 27, 26, 23, 24, 22, 20, 21, 19, 16, 18, 
+  17, 12, 10, 11, 15, 13, 14 ]
+true
+Reading file "iso3.g" has been aborted.

@@ -1,0 +1,65 @@
+# rank 3, C2 26: CHUNK=800 ./loop.sh 3 26 s24r3.txt empty.txt new1714r3.txt r3r 1
+# s24r3.txt = thzsearch 3 24 dump (280213, EXHAUSTED); new1714r3.txt = the 1714 tunnel-only states of ak3-aut-tunnel-closed-exhaustion
+DONE A 280213..281927 moves 5322632 capped 37645 tunnels 5284987 in-range 116390 classes 8148 PRIM 0
+round r3r1: new states 1714, m classes new 8148
+B chunk 0 exit 0
+DONE B 0..800 moves 3011540 capped 22015 tunnels 2989525 NEW 803 PRIM 0 next-level 1296 goals-of-m PRIM 0 planar 794 THICK 0 PROJ 0 thick-calls 2394 undecided 0
+B chunk 800 exit 0
+DONE B 800..1600 moves 2362220 capped 7809 tunnels 2354411 NEW 636 PRIM 0 next-level 2377 goals-of-m PRIM 0 planar 800 THICK 0 PROJ 0 thick-calls 2400 undecided 0
+B chunk 1600 exit 0
+DONE B 1600..2400 moves 2490936 capped 8265 tunnels 2482671 NEW 479 PRIM 0 next-level 1795 goals-of-m PRIM 0 planar 794 THICK 0 PROJ 0 thick-calls 2394 undecided 0
+B chunk 2400 exit 0
+DONE B 2400..3200 moves 2937508 capped 20082 tunnels 2917426 NEW 521 PRIM 0 next-level 1409 goals-of-m PRIM 0 planar 800 THICK 0 PROJ 0 thick-calls 2400 undecided 0
+B chunk 3200 exit 0
+DONE B 3200..4000 moves 2340520 capped 22002 tunnels 2318518 NEW 140 PRIM 0 next-level 1383 goals-of-m PRIM 0 planar 672 THICK 0 PROJ 0 thick-calls 2272 undecided 0
+B chunk 4000 exit 0
+DONE B 4000..4800 moves 2296700 capped 26853 tunnels 2269847 NEW 56 PRIM 0 next-level 1207 goals-of-m PRIM 0 planar 702 THICK 0 PROJ 0 thick-calls 2302 undecided 0
+B chunk 4800 exit 0
+DONE B 4800..5600 moves 2289700 capped 30027 tunnels 2259673 NEW 0 PRIM 0 next-level 975 goals-of-m PRIM 0 planar 711 THICK 0 PROJ 0 thick-calls 2311 undecided 0
+B chunk 5600 exit 0
+DONE B 5600..6400 moves 2320360 capped 28786 tunnels 2291574 NEW 0 PRIM 0 next-level 772 goals-of-m PRIM 0 planar 637 THICK 0 PROJ 0 thick-calls 2237 undecided 0
+B chunk 6400 exit 0
+DONE B 6400..7200 moves 2624356 capped 28161 tunnels 2596195 NEW 163 PRIM 0 next-level 883 goals-of-m PRIM 0 planar 672 THICK 0 PROJ 0 thick-calls 2272 undecided 0
+B chunk 7200 exit 0
+DONE B 7200..8000 moves 2553600 capped 16155 tunnels 2537445 NEW 411 PRIM 0 next-level 1232 goals-of-m PRIM 0 planar 756 THICK 0 PROJ 0 thick-calls 2356 undecided 0
+B chunk 8000 exit 0
+DONE B 8000..8148 moves 472416 capped 4590 tunnels 467826 NEW 0 PRIM 0 next-level 214 goals-of-m PRIM 0 planar 132 THICK 0 PROJ 0 thick-calls 428 undecided 0
+landings: 156 classes
+EXHAUSTED new states 224 processed 224 tunnels 721694 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 448 undecided 0
+ROUND r3r1 DONE new 224
+DONE A 281927..282151 moves 722372 capped 678 tunnels 721694 in-range 17305 classes 1334 PRIM 0
+round r3r2: new states 224, m classes new 1154
+B chunk 0 exit 0
+DONE B 0..800 moves 2475536 capped 15589 tunnels 2459947 NEW 1421 PRIM 0 next-level 2243 goals-of-m PRIM 0 planar 800 THICK 0 PROJ 0 thick-calls 2400 undecided 0
+B chunk 800 exit 0
+DONE B 800..1154 moves 1170680 capped 7306 tunnels 1163374 NEW 258 PRIM 0 next-level 910 goals-of-m PRIM 0 planar 354 THICK 0 PROJ 0 thick-calls 1062 undecided 0
+landings: 81 classes
+EXHAUSTED new states 131 processed 131 tunnels 409650 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 262 undecided 0
+ROUND r3r2 DONE new 131
+DONE A 282151..282282 moves 410564 capped 914 tunnels 409650 in-range 10859 classes 829 PRIM 0
+round r3r3: new states 131, m classes new 722
+B chunk 0 exit 0
+DONE B 0..722 moves 2263856 capped 16138 tunnels 2247718 NEW 802 PRIM 0 next-level 2386 goals-of-m PRIM 0 planar 722 THICK 0 PROJ 0 thick-calls 2166 undecided 0
+landings: 38 classes
+EXHAUSTED new states 53 processed 53 tunnels 163845 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 106 undecided 0
+ROUND r3r3 DONE new 53
+DONE A 282282..282335 moves 164192 capped 347 tunnels 163845 in-range 4601 classes 359 PRIM 0
+round r3r4: new states 53, m classes new 311
+B chunk 0 exit 0
+DONE B 0..311 moves 977480 capped 6970 tunnels 970510 NEW 124 PRIM 0 next-level 1061 goals-of-m PRIM 0 planar 311 THICK 0 PROJ 0 thick-calls 933 undecided 0
+landings: 8 classes
+EXHAUSTED new states 17 processed 17 tunnels 52980 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 34 undecided 0
+ROUND r3r4 DONE new 17
+DONE A 282335..282352 moves 53172 capped 192 tunnels 52980 in-range 1465 classes 95 PRIM 0
+round r3r5: new states 17, m classes new 87
+B chunk 0 exit 0
+DONE B 0..87 moves 278684 capped 1991 tunnels 276693 NEW 0 PRIM 0 next-level 265 goals-of-m PRIM 0 planar 87 THICK 0 PROJ 0 thick-calls 261 undecided 0
+landings: 0 classes
+EXHAUSTED new states 0 processed 0 tunnels 0 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 0 undecided 0
+ROUND r3r5 DONE new 0
+LOOP CLOSED at round r3r5 base 282352

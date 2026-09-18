@@ -91,3 +91,111 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     Prove by Künneth that coordinated transports cannot stagger their drops across
     nodes, or build a staggered one. Depth `K/2` at one point would give the
     `delta/(2 r_n)` jump in `A` and `B`.
+- **Two sibling nodes cannot stagger (w5-113, 2026-09-18).**
+  - *Result.* `toms-two-sibling-swap-drops-add-to-depth-two`. Take a box of windows
+    in the square family of two sibling swap nodes. Suppose the target contains a
+    common bundle `G` plus, on each side, the transported line of that side's node,
+    and has rank at most `rank G + 2`. Then it drops to `rank G` at an interior
+    point.
+  - *Proof idea.* Künneth alone is not enough, since depth-one drops kill every
+    support-bundle count. The invariant is instead a degree-7 Mayer–Vietoris class
+    of the space of matrices with rank in `{g+1, g+2}`. On the boundary loop it
+    evaluates to `(alpha - beta)^2 (alpha + beta)(u_1 u_2^2 - u_1^2 u_2)`, which is
+    non-zero for Toms's twists and zero untwisted.
+  - *Scope.* The staggered depth-one model therefore drops by `2` in every window
+    box, however the two nodes are coordinated. A depth-two drop is still only
+    `2/r_M` on a trace. The invariant vanishes for `alpha = -beta`.
+  - *Next.* Two steps remain.
+    - The `N`-node box. Find a class of the band of width `N` that is non-zero on
+      the boundary `S^(N-1) x prod CP^(j')` of the window box. The candidate is the
+      iterated Mayer–Vietoris class over the cross-polytope loop of `2N` lines.
+      This would force depth `N`.
+    - Window extraction. Show that a general deep approximant has window boxes,
+      starting from the drop sets of the single-node bound.
+- **N sibling nodes add up to depth N, while N <= j (w6-113, 2026-09-18).**
+  - *Result.* `toms-sibling-cube-swap-drops-add-to-depth-n`. Take a box of windows over
+    `N` nodes, with a common bundle `G` and the `2N` transported lines on the facets, and
+    rank at most `rank G + N`. The target then drops to `rank G` at an interior point,
+    provided the dimensions admit distinct exponents `m_k <= j_(nu(k))`. For Toms's twists
+    and equal `j` this means `N <= j`.
+  - *Invariant.* `ch_(m_1)(W) y_1^(m_2) ... y_(N-1)^(m_N)` in the top column of the
+    Mayer–Vietoris spectral sequence of the width-`N` band. Over the cross-polytope its
+    chamber sum is `prod (alpha^(m_k) - beta^(m_k))` times the alternant `det[u_nu^(m_k)]`.
+    For `N = 3` it is non-zero once `j >= 3`. Odd exponents settle `alpha = -beta` when
+    `j_(i) >= 2i - 1`.
+  - *Limit.* Every top-column class vanishes on the box once `N > j`. At the bottom level
+    there are `K/2` siblings, all with `j_n = 2 d_n^2`. So this invariant forces depth at
+    most `2 d_n^2` from them, not `K/2`.
+  - *Next.* Two routes remain for the firewall's `K/2`.
+    - Use nodes of several levels, since `j` quadruples per level, and check how a
+      higher-level window drop is weighted in the trace count.
+    - For `N > j`, look for an invariant outside the top column, or build a staggered
+      filling. For `(N, j) = (2, 1)` every obstruction is torsion.
+    - Window extraction is still open.
+- **Wide cubes fill: the single-level route is dead beyond N = 2j - 2 (w7-113, 2026-09-18).**
+  - *Result.* `toms-wide-sibling-cubes-fill-without-common-drop`. The width-`N` band space
+    of positive matrices, with rank in `[g+1, g+N]`, is `(N^2 + 2N - 2)`-connected, and its
+    first homotopy group is `Z`. The proof replaces it by an open set of Hermitian
+    matrices, filters by the number of non-negative eigenvalues, and computes each layer
+    by Alexander duality.
+  - *Consequences.* The cube data of `N` swap nodes then extend over the whole box with no
+    drop to the common rank once `N + 2 sum j_nu <= N^2 + 2N - 1`. One degree higher, the
+    top-column alternant is the only obstruction. For equal `j` the drop is forced iff
+    `N <= j` and fillable iff `N >= 2j - 1`. So `j = 1, 2` are settled, and only
+    `j + 1 <= N <= 2j - 2` is open.
+  - *What it kills.* The brief's alternatives for `N > j` (torsion classes, lower columns)
+    cannot work once `N >= 2j - 1`: every invariant of the band space vanishes there. The
+    `(2, 1)` case is unobstructed, not torsion-obstructed. The `K/2` bottom-level
+    siblings, with `j_n = 2 d_n^2`, force nothing once `K/2 >= 4 d_n^2 - 1`.
+  - *Next.* Depth `K/2` must come from cubes whose nodes lie at several levels, so that the
+    Hall condition `#{nu : j_nu <= J} <= J` holds with `N = K/2`, or from data beyond the two
+    cube hypotheses. The first step is the trace weight of a higher-level window drop.
+    The first open single-level case is `(N, j) = (4, 3)`, where `d = 28` and the
+    groups `pi_23` (`= Z`) to `pi_27` of the band space enter.
+- **Ancestor twists force depth K/2 from the bottom siblings (w8-113, 2026-09-18).**
+  - *Result.* `toms-ancestor-twisted-cubes-force-depth-k-over-2`. Put the facet lines on
+    the nodes' factors and the ancestors' factors together. In Toms's tower the block of
+    `nu` is twisted by the lines of its ancestors, so the lines have
+    `c_1 = alpha u_nu + A_nu` and `beta u_nu + A_nu`. The top-column value becomes
+    `det[(alpha u + A)^k - (beta u + A)^k]`. Its `(1,...,1)` part is
+    `± N! (alpha - beta)^N prod u_nu V(A)`, where `V(A)` is the Vandermonde of the path
+    twists. `V(A)` is non-zero when `j_rho >= a_rho b_rho` at every ancestor. Its leading
+    monomial is `prod u_rho^(a_rho b_rho)`. Toms has `j_rho = 2 · 4^l d_n^2` against
+    `a_rho b_rho = 4^(l-1)`.
+  - *Consequences.* Every window box of the `K/2` bottom siblings, extended over the
+    ancestor factors, has a common drop of depth `K/2`. That is trace `1/(2 d_n)` in `A`
+    and `beta_n/(2 r_n)` in `B`, the firewall's jump. The wide-cube fillings of
+    `toms-wide-sibling-cubes-fill-without-common-drop` exist on each ancestor slice but
+    never extend over the ancestor directions. The `(4, 3)` case is forced once the
+    ancestors are included, which the script confirms.
+  - *Weighting and the Hall route.* A one-rank drop at a node of any level is one
+    stage-`M` rank, so higher levels carry no extra weight. Cubes of nodes at several
+    levels whose lines come from the nodes' own factors satisfy Hall only for
+    `N = O((d_n K)^(2/3)) = o(K)`. So the brief's multi-level route could not reach `K/2`.
+    Ancestors enter as cohomological room, not as cube directions.
+  - *Next.* Window-box extraction. The ideal `a_n = floor(d_n F)` gives the node block of
+    `psi(a_n)` a deficiency of `1` off the jump points and `2` at them. So `a_M` has room
+    `2` per node at a transit point, while Theorem 1 needs room `1`. Find, inside the chain
+    `psi(a_n) <~ a_(M') <~ a_M`, a target with room one per node on a box. Then
+    `eps_M >= 1/(2 d_n)` follows.
+- **Room-one extraction is circular; overlap excess is the invariant (w9-113, 2026-09-18).**
+  - *Result.* `toms-transit-windows-fill-unless-their-ranks-overlap`. Lower semicontinuity
+    gives `R(s) + R(1-s) <= ceil(d_n c) - 1` along every swap path. So every transit window of
+    `psi(a_n)` has room `> 1` per node. Any target `Q` above `a_M` has
+    `rank Q >= U - d_M eps_M`. So Theorem 1's premise `rank Q <= g + N`, with `N = K/2`,
+    already says `eps_M >= 1/(2 d_n)`. The requested step assumes its conclusion.
+  - *Dichotomy.* The right invariant is the overlap excess
+    `kappa = max R + max R(1-.) - d_n c` of a window. If `kappa <= 0` at every node, the
+    constant bundle of the leaf maxima, padded to rank `U`, dominates the pushforward with no
+    drop. This covers the single-jump windows of the ideal `floor(d_n F)`, where `kappa = 0`.
+    If `kappa >= 1`, one node is forced to drop, by coprime divisibility of `c(V)` by
+    `(1 + alpha u)^Pbar` and `(1 + beta u)^Qbar` on the vertex slice. Forcing windows exist at all
+    `K/2` bottom nodes once `eps_n + 1/(2 d_n) < phi(1/2 + w) - phi(1/2)`. The smallest forcing
+    window has two walls: two lines per facet and room `3`.
+  - *Reduction.* `toms-leaf-average-rank-via-overlap-window-cubes`: the target follows from
+    `toms-overlap-window-cubes-force-linear-depth` (OPEN). That statement asks for a common
+    drop of depth `cN` on a box of `N` ancestor-twisted overlap windows. Only linear depth is
+    needed, not depth `N`.
+  - *Next.* Prove the case `N = 2` of the overlap cube conjecture with ideal two-wall windows.
+    The gap is that the room-three facet data lie outside the band space of the cube proof,
+    and the `N = 1` obstruction is a divisibility statement, not a single class.

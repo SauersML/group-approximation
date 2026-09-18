@@ -1,0 +1,28 @@
+{
+ "group": "F",
+ "n": 11,
+ "ball": 244823,
+ "interior": 88257,
+ "family": [
+  4,
+  5,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  28,
+  29
+ ],
+ "cnf_clauses": 1765140,
+ "unsat": true,
+ "drat_verified": true,
+ "drat_tail": [
+  "s VERIFIED",
+  "",
+  "c verification time: 2.259 seconds"
+ ]
+}

@@ -1,0 +1,26 @@
+trial  0 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  1 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  2 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  3 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  4 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  5 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  6 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  7 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  8 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  9 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial 10 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial 11 n=24 girth(Phi)=3 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+seed 2: 12 trials, 0 violations of 2*rep >= gamma, equality in 12
+
+real	0m47.529s
+user	0m10.507s
+sys	0m0.024s
+trial  0 n=32 girth(Phi)=2 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  1 n=32 girth(Phi)=2 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+trial  2 n=32 girth(Phi)=2 gamma=2 min hop-repeat distance=1  2*rep>=gamma: True
+trial  3 n=32 girth(Phi)=2 gamma=4 min hop-repeat distance=2  2*rep>=gamma: True
+seed 3: 4 trials, 0 violations of 2*rep >= gamma, equality in 4
+
+real	2m36.156s
+user	0m41.740s
+sys	0m0.038s

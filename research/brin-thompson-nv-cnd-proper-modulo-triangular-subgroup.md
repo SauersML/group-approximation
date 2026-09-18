@@ -8,6 +8,12 @@ distinct_from:
   brin-thompson-nv-no-cubical-action-proper-mod-triangular: that proves the cubical version of this statement is false; this asks for an arbitrary cnd function
 ---
 
+**OPEN.** No proof and no refutation is recorded.
+- The cubical candidates are dead, by `brin-thompson-nv-no-cubical-action-proper-mod-triangular`.
+- Weighted and non-cubical cocycles are unexplored.
+- The refutation test of the gq-nv-obstruct attempt has not been carried out. That test is a subset with
+  relative property (T) not contained in finitely many cosets of `V^n`.
+
 **Statement.** Let `n ≥ 2` and let `T_n ≤ nV` be the triangular subgroup of
 `brin-thompson-triangular-subgroup-is-undistorted`. There is a conditionally negative definite
 function `ψ_1` on `nV` such that each sublevel set `{ψ_1 ≤ R}` lies in finitely many left cosets of `T_n`.
@@ -45,3 +51,35 @@ wall counts.
     many left cosets of `V^n`. Such a subset would also refute the Haagerup property of `nV`.
   So this half is no easier than finiteness of Kazhdan subgroups. Constructing `ψ_1` needs a
   non-cubical cocycle that is unbounded but polylogarithmic on the Callard–Salo element; not attempted.
+- **2026-09-18 (swarm-0917-w7-w7-nv-pull): witnesses carried by finite clopen cuts (die;
+  class-kill).**
+  - R1 implies Problem B(Z), which implies a `C_0` witness for `C(C,Z) ⋊ V ≤ 2V` with no
+    `1_C`-invariant vectors. Established `clopen-extractable-spectra-carry-no-almost-invariant-vectors`
+    to constrain where that witness's spectral law can live.
+  - Suppose the `C(C,Z)`-spectrum lies on a `V`-invariant character set with an equivariant Borel map
+    to probabilities on proper clopens. Then the spectral part has norm at most `1032ε`, where `ε` is
+    the defect under `h_1, h_2, h_3`.
+  - This kills "random finite cut, Haar below" witnesses: every law absolutely continuous to a
+    countable sum of Haar extensions over nontrivial finite clopen algebras.
+  - **Invariant:** the maximal-pure leaf partition.
+  - **Where every member dies:**
+    - Shallow clopens have mass at most `46ε`.
+    - On deep clopens, leaf-uniform Lebesgue averaging commutes with the three moves.
+    - The averaged probability on `C` is then paradoxical.
+  - **Surviving:** characters whose natural cut is infinite (random open or nowhere-dense closed
+    sets with infinitely many leaves). There no normalizable equivariant leaf weighting exists.
+  - A positive R1 must place its witnesses there.
+- **2026-09-18 (swarm-0917-w8-w8-nv-pull): V-fixed-point witnesses (die; class-kill).**
+  - R1 implies Problem B(Z), which needs a cnd function on `C(C,Z) ⋊ V ≤ 2V` that is unbounded on
+    `Z·1_C`. Established `cantor-central-v-elliptic-witnesses-die`: every cnd function on
+    `C(C,Z) ⋊ V` that is bounded on `V` is bounded on `Z·1_C`.
+  - *Class.* Affine actions with a `V`-fixed point. Equivalently, `V`-invariant cnd functions
+    `ψ(f) = Φ(Im f)` on `C(C,Z)`, or exactly `V`-invariant spectral laws. The class includes the
+    additive split `ψ_A + ψ_V∘p`, `L^α` constructions whose norm depends on the image set, and
+    `E g(X(f))` for a random real homomorphism `X` with invariant law (such an `X` is `0` a.s.).
+  - **Invariant:** the exchangeable phases `χ(1_{[1^{i-1}0]})`, whose partial sums all have one law.
+  - **Where every member dies:** de Finetti's directing measure `ν`. Cesàro averaging gives
+    `φ(k·1_U) = P(ν̂(k) = 1) ≥ P(ν = δ_0) = φ(1_U)`, hence `ψ(k·1_C) ≤ 4ψ(1_{[0]})`.
+  - **Surviving:** witnesses unbounded on `V` whose spectral laws are almost invariant with
+    non-vanishing defect. The argument needs exchangeability under all of `S_n` for every `n`, and
+    it has no quantitative version under a fixed finite set.
