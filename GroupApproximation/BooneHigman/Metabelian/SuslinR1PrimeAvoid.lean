@@ -40,7 +40,8 @@ theorem suslinR1Prime_dvd_of_irreducible {R : Type*} [CommMonoid R] {π w : R}
 of `z` that divides `x + y l` divides `x` and `y`. -/
 theorem suslinR1Prime_exists_avoid {R : Type*} [CommRing R] [WfDvdMonoid R] {x y z : R}
     (hz : z ≠ 0) :
-    ∃ l : R, ∀ π : R, Prime π → π ∣ z → π ∣ x + y * l → π ∣ x ∧ π ∣ y := by
+    ∃ l : R, ∀ π : R, Prime π → π ∣ z → π ∣ x + y * l →
+      π ∣ x ∧ π ∣ y := by
   classical
   obtain ⟨f, hirr, hassoc⟩ := WfDvdMonoid.exists_factors z hz
   refine ⟨(f.filter fun w ↦ ¬w ∣ x).prod, fun π hπ hπz hπs ↦ ?_⟩
@@ -102,7 +103,8 @@ theorem suslinR1Prime_avoidCol {A : Type*} [CommRing A] [Nontrivial A]
     [WfDvdMonoid (Polynomial A)] {N : ℕ} (hN : 3 ≤ N)
     (τ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A)) (r : Fin N) :
     ∃ ε ∈ elementaryGroup (Fin N) (Polynomial A), ∃ t : Fin N,
-      ∀ π : Polynomial A, Prime π → ¬suslinR1Int_rowIdeal (τ * ε) r t ≤ Ideal.span {π} := by
+      ∀ π : Polynomial A, Prime π →
+        ¬suslinR1Int_rowIdeal (τ * ε) r t ≤ Ideal.span {π} := by
   obtain ⟨c, hc⟩ := suslinR1Prime_exists_ne_zero τ r
   have hcard : 1 < ((Finset.univ : Finset (Fin N)).erase c).card := by
     rw [Finset.card_erase_of_mem (Finset.mem_univ c), Finset.card_univ, Fintype.card_fin]

@@ -62,7 +62,8 @@ contains an element that is monic after an automorphism, the primewise local Sta
 in every size `N ≥ 3` (with `c = 1`). -/
 theorem suslinR1Prime_primewiseLocal_of_monicLocal {A : Type*} [CommRing A] [Nontrivial A]
     [WfDvdMonoid (Polynomial A)] {N : ℕ} (hN : 3 ≤ N)
-    (hmon : ∀ J : Ideal (Polynomial A), (∀ π : Polynomial A, Prime π → ¬J ≤ Ideal.span {π}) →
+    (hmon : ∀ J : Ideal (Polynomial A),
+      (∀ π : Polynomial A, Prime π → ¬J ≤ Ideal.span {π}) →
       ∃ φ : Polynomial A ≃+* Polynomial A, ∃ q ∈ J, (φ q).Monic) :
     SuslinR1IntPrimewiseLocal A N := by
   intro τ _ _
@@ -105,7 +106,7 @@ theorem suslinR1Prime_primewiseLocal_of_zero_eq_one {A : Type*} [CommRing A] {N 
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_primewiseLocal_of_zero_eq_one
 
 /-- **The residual Statement** (matrix-free; the `d = 1` case of Suslin's monic polynomial
-theorem over `ℤ[1/m]`, see the module docstring): for `m ≠ 0`, every ideal of
+result over `ℤ[1/m]`, see the module docstring): for `m ≠ 0`, every ideal of
 `ℤ[1/m][s_1,…,s_k][X]` lying in no principal prime ideal contains an element that is monic
 in `X` after a ring automorphism. -/
 def suslinR1Prime_MonicStatement : Prop :=

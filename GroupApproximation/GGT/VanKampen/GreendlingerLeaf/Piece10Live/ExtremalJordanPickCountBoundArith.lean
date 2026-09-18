@@ -135,6 +135,57 @@ theorem extremalJordanPickCountBound_vertex_next (K : PocketFaceSet D eps X lo h
   OuterPinchIsolated.rel_next_of_isChain K.boundary.cycle_nonempty K.boundary.cycle_nodup
     hK.1 hK.2 hd
 
+/-- **Every linking step is a path** of face steps and added passages.  A first passage that is
+not added is the chosen one at a vertex all of whose passages are first; it is redundant. -/
+theorem extremalJordanPickCountBound_step_link (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) (x y : X.toCombMap.Dart) (h : ExtremalJordanPickThreeStep K x y) :
+    Relation.EqvGen (fun a b =>
+      CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) a b ∨
+        (a ∈ extremalJordanPickCountBound_redSet K ∧ b = extremalJordanPickCountBound_nxt K a))
+      x y := by
+  rcases h with h | ⟨hx, rfl, hfirst⟩
+  · exact Relation.EqvGen.rel _ _ (Or.inl h)
+  by_cases hS : x ∈ extremalJordanPickCountBound_redSet K
+  · exact Relation.EqvGen.rel _ _ (Or.inr ⟨hS, (extremalJordanPickCountBound_nxt_eq K hx).symm⟩)
+  have hn : extremalJordanPickCount_nonFirstAt K
+        (X.toCombMap.vertexOf (X.toCombMap.alpha x)) = 0 ∧
+      x = extremalJordanPickCountBound_pick K (X.toCombMap.vertexOf (X.toCombMap.alpha x)) := by
+    by_contra hne
+    exact hS ((extremalJordanPickCountBound_mem_redSet K x).mpr
+      ⟨hx, fun ⟨_, hnf⟩ => hfirst hnf, hne⟩)
+  have hfree : ∀ d (hd : d ∈ K.boundary.cycle),
+      X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf (X.toCombMap.alpha x) →
+        ¬P10ChordLift.NonFirstTurn K d hd := by
+    intro d hd hdx hnf
+    have h0 := hn.1
+    unfold extremalJordanPickCount_nonFirstAt at h0
+    rw [Finset.card_eq_zero, Finset.eq_empty_iff_forall_notMem] at h0
+    exact h0 d (Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd, ⟨hd, hnf⟩, hdx⟩)
+  refine extremalJordanPickCountBound_redundant X.toCombMap K.boundary.cycle
+    K.boundary.cycle_nodup ?_ K.faces K.boundary.cycle_mem_iff _ ?_ hx ?_ ?_
+  · exact fun d hd => extremalJordanPickCountBound_vertex_next K hK hd
+  · exact fun a b hab => Or.inl hab
+  · exact fun d hd hdx => (extremalJordanPickEuler_firstIff K d hd).mp (hfree d hd hdx)
+  · intro d hd hdx hne
+    have hdS : d ∈ extremalJordanPickCountBound_redSet K := by
+      refine (extremalJordanPickCountBound_mem_redSet K d).mpr
+        ⟨hd, fun ⟨hd', hnf⟩ => hfree d hd' hdx hnf, fun ⟨_, hpk⟩ => hne ?_⟩
+      exact hpk.trans ((congrArg (extremalJordanPickCountBound_pick K) hdx).trans hn.2.symm)
+    exact Relation.EqvGen.rel _ _ (Or.inr ⟨hdS, (extremalJordanPickCountBound_nxt_eq K hd).symm⟩)
+
+/-- **Inside classes**: `#In ≤ #L + #S`. -/
+theorem extremalJordanPickCountBound_in_le (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) :
+    (K.boundary.cycle.toFinset.image (Quot.mk (CombMap.FaceClassStep X.toCombMap
+        (walkKeep X.toCombMap K.boundary.cycle)))).card ≤
+      (extremalJordanPickCount_linked K).card + (extremalJordanPickCountBound_redSet K).card := by
+  refine (extremalJordanPickCountBound_card_steps
+    (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle))
+    (extremalJordanPickCountBound_nxt K) K.boundary.cycle.toFinset
+    (extremalJordanPickCountBound_redSet K)).trans (Nat.add_le_add_right ?_ _)
+  unfold extremalJordanPickCount_linked
+  exact extremalJordanPickCountBound_card_mono (extremalJordanPickCountBound_step_link K hK) _
+
 end BoundArith
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
