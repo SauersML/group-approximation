@@ -40,3 +40,6 @@ Step 1: read the question and answers at source; step 2: own fp RF host or obstr
   Q <= Aff(Z[1/N]^d) with a translation (periodized fake over kA^d). Covers ASL_d(Z) hosts containing Neumann's exact G.
 - 71e81a4b0 neumann-projective-host-candidate: Gamma_P = <SL_d(Z[1/2]), 3-cycle> on P^{d-1}(Z/m), m odd, d >= 3:
   RF, contains Neumann's exact G, no periodization fake (NST+CSP), co-infinite obstruction absent. fp OPEN = sharp target.
+- aa0ae6e48 schur-multiplier-obstruction-kills-thickening-hosts: DECIDED the projective candidate: NOT fp. LHS lemma:
+  FP_2 + perfect N + H_3(Q) fg ⟹ H_2(N)_Γ fg; the coordinate Schur classes give infinitely many. Kills every thickening
+  over an FP_3 group. MO 491978 stays open: any fp host must mix the A_m, i.e. no retracting normal coordinates.
