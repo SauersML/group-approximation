@@ -186,3 +186,21 @@ a cycle of equations through the window.
 
   Still alive: (List-Seed) with `O_gamma(1)` references (need a06a9ee8), or
   (Seed) restricted to inputs with no generic rank-`(l+1)` homogeneous kernel.
+* **(List-Seed) with an l-free list, need `a06a9ee8` (2026-09-18,
+  swarm-0917-w13-w13-ugc-last1).** **Refuted** in
+  `dkkms-list-seed-needs-lists-exponential-in-l` (Theorem LS). On J-instances
+  with a homogeneous kernel `Φ = (φ, ζ)` of rank `2l`, the labelling that
+  switches to `x + <d, ζ>` on the defect line `c(S) = Φ(S) ∩ (0 x F_2^l) = <(0,d)>`
+  has value `>= 0.609`. Its satisfied mass on the defect branches is `>= 0.28`.
+  Every per-tuple reference covers at most `9 · 2^(-l)` of it, so every list of
+  fewer than `2^(l-6)` references leaves more than `gamma/2` uncovered, for
+  all `gamma <= 0.109`. The corrected prerequisites of the constant-bias kill,
+  each of which can fail, are:
+  - (List-Seed_l) with list size `2^(Theta(l))`, which is not refuted, since
+    `2^l` references cover this family;
+  - a list-decoding rerun of Theorem C that loses a factor `2^(-Theta(l))`,
+    which DKKMS outer soundness `exp(-k/exp(ql))` can afford at large `k`, but
+    which is unproved.
+
+  Any rerun that needs one reference of honest mass above `1/2` also fails
+  here: the heaviest reference has mass `0.289`.
