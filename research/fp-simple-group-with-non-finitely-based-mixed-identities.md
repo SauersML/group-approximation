@@ -90,3 +90,15 @@ closure in `S * <x>` of the substitution instances of `W`.
    - *Reframing.* `J_1(T) = J_1(Homeo+(S^1); T)`, so at `T` the question is one
      about mixed identities of the Polish group `Homeo+(S^1)` with constants
      from `T`.
+6. **Overgroups of `T` acting on the Cantor set: die (2026-09-18, bh-ffwz-q59, lane proof).**
+   `thompson-t-identities-one-word-basis-over-cantor-overgroups` gives one explicit word
+   `E ∈ J_1(T)`, a three-arc nested commutator with a "squeeze" layer. Any `M` with
+   `T ≤ M ≤ Homeo(C)` or `Homeo(S^1)`, `T` in its standard action, that satisfies `E` preserves the
+   cyclic order, and so satisfies all of `J_k(T)`.
+   - *Mechanism.* `T` moves any orientation break into the configuration
+     `h(A_1) ⊆ A_2`, `h(A_2) ⊆ A_1`, `h(A_3) ⊆ A_3`. It then squeezes three conjugates into
+     one arc, where the nested commutator is nontrivial.
+   - *What dies.* `V`, Röver--Nekrashevych-type and other Cantor groups containing `T`, and
+     `⟨T, g⟩` for any order-breaking homeomorphism `g` of `C` or `S^1`.
+   - *What survives.* Abstract overgroups with no faithful action on `C` extending `T`
+     (amalgams, HNN extensions, `(T * <x>)/N_W`), and the rational-orbit blow-ups of Attempt 5.
