@@ -85,7 +85,8 @@ theorem trace_conjTranspose_mul_self_conj (U M : Matrix n n ℂ) (hU1 : Uᴴ * U
     simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, Matrix.mul_assoc]
   rw [e, hU1, Matrix.mul_one, Matrix.mul_assoc U Mᴴ M, trace_conj_unitary U _ hU1]
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.trace_conjTranspose_mul_self_conj
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.trace_conjTranspose_mul_self_conj
 
 /-- The unnormalised squared Hilbert--Schmidt norm as `re tr(Nᴴ N)`. -/
 theorem re_trace_conjTranspose_mul_self (N : Matrix n n ℂ) :
@@ -96,7 +97,8 @@ theorem re_trace_conjTranspose_mul_self (N : Matrix n n ℂ) :
     Complex.re_sum, h]
   exact Finset.sum_comm
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.re_trace_conjTranspose_mul_self
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.re_trace_conjTranspose_mul_self
 
 /-- `tr(D X D) = ∑ᵢ μᵢ² Xᵢᵢ` for `D = diag(μ)`. -/
 theorem trace_diagonal_mul_mul_diagonal (μ : n → ℝ) (X : Matrix n n ℂ) :
@@ -107,7 +109,8 @@ theorem trace_diagonal_mul_mul_diagonal (μ : n → ℝ) (X : Matrix n n ℂ) :
   push_cast
   ring
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.trace_diagonal_mul_mul_diagonal
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.trace_diagonal_mul_mul_diagonal
 
 /-- `tr(D D) = ∑ᵢ μᵢ²`. -/
 theorem trace_diagonal_mul_diagonal (μ : n → ℝ) :
@@ -132,7 +135,8 @@ theorem normSq_commutator_diagonal_apply (μ : n → ℝ) (X : Matrix n n ℂ) (
   rw [e, Complex.normSq_mul, Complex.normSq_ofReal]
   ring
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.normSq_commutator_diagonal_apply
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.normSq_commutator_diagonal_apply
 
 /-- The entries of `X D`. -/
 theorem normSq_mul_diagonal_apply (μ : n → ℝ) (X : Matrix n n ℂ) (i j : n) :

@@ -97,7 +97,8 @@ theorem connesTrickStatement_of_layerRounding (h : LayerRoundingStatement.{u}) :
       | exact hc2 x hx
       | (rw [e]; exact hc2 x hx)
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.connesTrickStatement_of_layerRounding
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.connesTrickStatement_of_layerRounding
 
 /-- Layer rounding and nuclear approximate densities give locally amenable traces. -/
 theorem nuclearLocallyAmenableTrace_of_layerRounding_of_nuclearDensity
@@ -107,7 +108,8 @@ theorem nuclearLocallyAmenableTrace_of_layerRounding_of_nuclearDensity
   NuclearAmenable.nuclearLocallyAmenableTrace_of_connesTrick_of_nuclearDensity
     (connesTrickStatement_of_layerRounding h) h12
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.nuclearLocallyAmenableTrace_of_layerRounding_of_nuclearDensity
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.nuclearLocallyAmenableTrace_of_layerRounding_of_nuclearDensity
 
 /-- Layer rounding and nuclear approximate densities give the separable nuclear amenable
 trace Statement. -/

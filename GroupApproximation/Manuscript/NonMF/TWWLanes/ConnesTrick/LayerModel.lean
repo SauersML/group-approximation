@@ -66,7 +66,7 @@ theorem layerVec_conj_apply (c : Y → ℕ) (k : ℕ) (M : Matrix Y Y ℂ) (p q 
   simp only [Matrix.mul_apply, hL]
   simp only [layerVec, Matrix.of_apply]
   by_cases hp : (p.2 : ℕ) = k <;> by_cases hq : (q.2 : ℕ) = k <;>
-    simp [hp, hq, ite_mul, mul_ite, Finset.sum_ite_eq, Finset.sum_ite_eq']
+    simp [hp, hq]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.layerVec_conj_apply
 

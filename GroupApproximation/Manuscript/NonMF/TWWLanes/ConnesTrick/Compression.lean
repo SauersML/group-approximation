@@ -35,7 +35,8 @@ variable {A : Type u} [CStarAlgebra A]
 theorem form_eq_dotProduct {m : Type*} [Fintype m] (M : Matrix m m ℂ) (u v : m → ℂ) :
     ∑ x : m, ∑ y : m, (starRingEnd ℂ) (u x) * M x y * v y = star u ⬝ᵥ (M *ᵥ v) := by
   first
-    | simp only [dotProduct, mulVec, Finset.mul_sum, Pi.star_apply, starRingEnd_apply, mul_assoc]
+    | (simp only [dotProduct, mulVec, Finset.mul_sum, Pi.star_apply, starRingEnd_apply,
+        mul_assoc]; done)
     | simp [dotProduct, mulVec, Finset.mul_sum, mul_assoc]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.form_eq_dotProduct
@@ -47,7 +48,8 @@ theorem dotProduct_conjTranspose_mul_mul_mulVec {m n : Type*} [Fintype m] [Finty
   rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec,
     ← Matrix.star_mulVec]
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.dotProduct_conjTranspose_mul_mul_mulVec
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.dotProduct_conjTranspose_mul_mul_mulVec
 
 /-- Moves the innermost of three finite sums to the outside. -/
 theorem sum_sum_sum_comm {α β γ M : Type*} [AddCommMonoid M] [Fintype α] [Fintype β]
@@ -82,7 +84,8 @@ theorem isCompletelyPositiveOnMatrices_sum_conj {ι : Type*} [Fintype ι] (Y Z :
   rw [sum_sum_sum_comm, Complex.im_sum, Complex.re_sum]
   exact ⟨Finset.sum_eq_zero fun k _ ↦ (hk k).1, Finset.sum_nonneg fun k _ ↦ (hk k).2⟩
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.isCompletelyPositiveOnMatrices_sum_conj
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.isCompletelyPositiveOnMatrices_sum_conj
 
 /-- **A compression of a completely positive map is completely positive.** -/
 theorem isCompletelyPositiveOnMatrices_conj (Y Z : FiniteModel) (φ : A → Matrix Y Y ℂ)
@@ -93,7 +96,8 @@ theorem isCompletelyPositiveOnMatrices_conj (Y Z : FiniteModel) (φ : A → Matr
     | simpa only [Fintype.sum_unique] using h
     | simpa using h
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.isCompletelyPositiveOnMatrices_conj
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.isCompletelyPositiveOnMatrices_conj
 
 /-- Compression `M ↦ Vᴴ M V`, as a `ℂ`-linear map between matrix algebras. -/
 def conjLinear {m n : Type*} [Fintype m] [Fintype n] (V : Matrix m n ℂ) :

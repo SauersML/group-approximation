@@ -96,7 +96,8 @@ theorem hasDiagonalDensities_of_hasApproxInvariantDensities {τ : A → ℂ}
         normSq_mul_diagonal_apply μ _ i j
     exact e.symm.le.trans (hmul x hx y hy)
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.hasDiagonalDensities_of_hasApproxInvariantDensities
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.hasDiagonalDensities_of_hasApproxInvariantDensities
 
 end
 
