@@ -60,8 +60,8 @@ model configuration, but a lake is needed on about a third of the random ones.
 58 generator).  Per configuration it reruns the five planar checks of `core.py`, checks the two
 added hypotheses, searches the class-form conclusion clause by clause, and compares with the
 gl-p10-58 check of the NoBub conclusion (`AGREE`).  Models: `315` configurations, all with a
-lobe witness, `0` failures.  Random seeds `0`-`3` (`300` each): `281408` configurations
-(`192125` lobe, `88283` lake), `0` without a witness, `0` disagreements with gl-p10-58, `0`
+lobe witness, `0` failures.  Random seeds `0`-`7` (`300` each): `494752` configurations
+(`327801` lobe, `166951` lake), `0` without a witness, `0` disagreements with gl-p10-58, `0`
 failures of the planar or the added hypotheses.
 
 ## Manuscript status
