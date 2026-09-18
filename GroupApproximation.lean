@@ -5600,6 +5600,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Coefficien
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.DirectedUnion
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalTraceModels
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Prenex
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Lifts
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
