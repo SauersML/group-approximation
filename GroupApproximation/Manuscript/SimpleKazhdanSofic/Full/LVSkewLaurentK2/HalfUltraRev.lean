@@ -139,7 +139,7 @@ def skHalfK2_fwd : SkewLaurent S →+* SkewLaurent (skHalfK2_Rev S) :=
 theorem skHalfK2_fwd_single (g : Multiplicative ℤ) (a : S) :
     skHalfK2_fwd S (SkewMonoidAlgebra.single g a) =
       SkewMonoidAlgebra.single g⁻¹ (skHalfK2_toRevRingEquiv S a) := by
-  show SkewMonoidAlgebra.liftNC ((skHalfK2_fwdConst S : S →+* _) : S →+ _) (skHalfK2_fwdT S)
+  show SkewMonoidAlgebra.liftNC ((skHalfK2_fwdConst S : S →+* _) : S →+ _) ⇑(skHalfK2_fwdT S)
     (SkewMonoidAlgebra.single g a) = _
   rw [SkewMonoidAlgebra.liftNC_single]
   show SkewMonoidAlgebra.single 1 (skHalfK2_toRevRingEquiv S a) *

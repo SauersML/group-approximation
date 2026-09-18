@@ -75,7 +75,7 @@ theorem leavittToQuotient_respects :
   · exact congrArg ((pIdeal k).ringCon.mkₐ k)
       (RingQuot.mkAlgHom_rel k (CohnRelation.t1_s1 (k := k)))
   · refine mk_eq_mk_of_sub_mem k ?_
-    have hp : cohnP k ∈ pIdeal k := TwoSidedIdeal.subset_span (Set.mem_singleton _)
+    have hp : cohnP k ∈ pIdeal k := TwoSidedIdeal.subset_span (Set.mem_singleton (cohnP k))
     have hneg := TwoSidedIdeal.neg_mem (pIdeal k) hp
     have heq : quotientMap k
         (FreeAlgebra.ι k BinaryLeavitt.s0 * FreeAlgebra.ι k BinaryLeavitt.t0 +

@@ -21,8 +21,11 @@ artifacts:
 - The norm −1 case stands. Take `λ = ε_m`; the host is `V(Z[ε_m],⟨ε_m⟩,N)`, with finite presentation from
   `pisot-unit-slope-stein-groups-are-finitely-presented`. Equivalently use `pisot-interval-exchange-groups-satisfy-boone-higman`.
 - Norm +1 fields, such as `Q(√3)`, are **withdrawn here**. They lie in no (F)-unit field
-  (`f-unit-fields-are-characterized-by-isolated-sign-units`). Only `IET(Z+αZ)` is covered, via bh-free-03's substitutive route.
-  General minimal interval exchanges over them are open.
+  (`f-unit-fields-are-characterized-by-isolated-sign-units`). `IET(Z+αZ)` was covered first, via bh-free-03's
+  substitutive route.
+- **Update (09-18):** the statement below now holds for every real quadratic field, including norm +1 fields, by
+  `algebraic-interval-exchange-groups-satisfy-boone-higman` (negative-base codings). That node covers every
+  real number field.
 
 ## Statement
 

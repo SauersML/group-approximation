@@ -83,9 +83,12 @@ in `C`.
 - **Virtual center.** `VZ(G) = 1`, because finite-index subgroups are Zariski dense
   in the adjoint group (Borel density).
 
-**Trust surface.** Cited and not re-read:
-- Mostow--Prasad rigidity;
-- Margulis's commensurator theorem;
-- Borel density;
+**Trust surface.** Pinned by referee b in Witte Morris, *Introduction to Arithmetic Groups*,
+math/0106063v6: Mostow rigidity (15.1.2), pp. 309--310, whose hypotheses hold for
+`Isom(X)^0` with `X` irreducible and `X ≠ H^2`; Borel density, Cor. 4.5.3
+(`C_G(Γ) = Z(G)`), which gives `VZ = 1`; the commensurator criterion, Remark 5.2.5(1) and
+Ex. 5.2#3.
+
+Cited and not re-read:
 - the functoriality of abstract commensurators in Step 2;
 - the Bass--Serre presentation of `H`.

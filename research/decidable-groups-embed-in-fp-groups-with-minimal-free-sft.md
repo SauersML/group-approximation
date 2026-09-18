@@ -87,3 +87,30 @@ The implication is complete; two OPEN premises remain.
 word problem such that no finitely presented overgroup of `Λ` carries a minimal
 free SFT. No invariant separating minimal SFTs from strongly aperiodic SFTs over
 one-ended groups with solvable word problem is recorded in this graph.
+
+**Source check on Attempt 1 (2026-09-18, bh-g1-simulation).** Attempt 1 cites
+Barbieri–Sablik–Salo (arXiv:2104.05141) for strongly aperiodic SFTs on `Λ_0 x Z`. The
+TeX, read at source, says otherwise:
+- **What it proves.** Theorem `thm:selfsimulation`: every product of two finitely
+  generated *non-amenable* groups is self-simulable. Corollary `cor:stronglyaperiodic`:
+  hence such products carry strongly aperiodic SFTs when their word problem is decidable.
+- **What it excludes.** Proposition `prop:villexample`: `F_k x Z` is *not*
+  self-simulable.
+- **Consequence.** The cited source gives the SFT on `Λ_0 x F_2` or `Λ_1 x Λ_1`, but not
+  on `Λ_0 x Z`. Attempt 1's conclusion is unaffected, because it dies at minimality
+  either way.
+
+**Attempt 4 (2026-09-18, bh-g1-simulation): minimal self-simulation on non-amenable
+squares.** Route `minimal-free-sft-via-minimal-self-simulation-of-squares`.
+- **Reduction.** (P1) follows from two premises:
+  - (M2) for the Clapham envelope `Λ_1` of `K x F_2`;
+  - the minimal case of BSS self-simulation for `Λ_1 x Λ_1`
+    (`nonamenable-products-have-minimal-sft-extensions-of-free-inputs`). This is a
+    restricted form of BSS's printed Question `Q:minimal`.
+- **What it avoids.** Plane-invariance, the hierarchy requirement and reading pressure
+  all disappear.
+- **What it keeps.** The joint-diversification crux of Attempt 3 survives as a phase
+  field on unanchored grids.
+- **Constraint.** By `simple-subgroups-act-trivially-on-equicontinuous-factors`, any
+  witness over an envelope of an infinite simple input is not almost automorphic. The
+  input lives inside the fibers of its maximal equicontinuous factor.

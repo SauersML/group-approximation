@@ -87,3 +87,16 @@ Consequently `Z^2 * Z` lies in `B_A` and embeds in a finitely presented simple g
 - **Status of BH for Z^2 * Z.** Already known by linearity and by `2V`. The new content is the
   host, and the fact that the automatic-structure boundary of the BBCMP normal form feeds the
   Belk--Hyde--Matucci machine end to end.
+
+## Lesson for general BH
+
+*Added 2026-09-18.*
+
+**A flat is harmless as a germ.** A flat that V cannot contain becomes harmless once it is
+placed at a rational point as a germ group. There the diagonal is the period shift, and the
+host stays finitely presented because only `Z^2/<δ>` needs a presentation.
+
+**How this generalizes.** The same shape covers any parabolic-type subgroup `P` with a central
+element acting as the shift. That is the *relative* version of the V-host.
+`rational-germ-groups-of-germ-extensions-of-v-embed-in-2v` bounds what `P` can be: a spiral
+group inside `2V`.
