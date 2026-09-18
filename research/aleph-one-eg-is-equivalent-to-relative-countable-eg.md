@@ -44,3 +44,7 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - REG_ω is therefore `Π^1_2`, so by Shoenfield absoluteness it has the same truth value in `V`, in `L` and in every forcing extension.
   - By the equivalence, so does "EG for groups of size `≤ ℵ_1`". Unlike the Whitehead problem for `ℵ_1`-free abelian groups, the `ℵ_1` case of Eilenberg--Ganea cannot be settled by forcing or by `V = L`.
 - **Higher cardinals (sketch).** For `κ ≥ ℵ_0`, let REG_κ be REG for pairs of size `≤ κ`. The same two proofs, with elementary submodels of size `κ` containing `κ` as a subset, give REG_κ ⇔ EG for groups of size `≤ κ^+`.
+
+## Attempts
+
+- **w4-048, 2026-09-17: obstruction mining on admissible pairs.** Landed `relative-eg-pair-base-meets-its-conjugates-in-free-groups`: `pd I_{G/H} ≤ 1` alone forces `H ∩ gHg^{-1}` free for all `g ∉ H` and `H_2(H) ↪ H_2(G)`. Profile items added: the base of a minimal counterexample is self-commensurating and malnormal modulo free. Dead candidate families: normal bases (Bestvina–Brady kernels in 2-dimensional RAAGs, fibres), proper finite-index bases, all non-free pairs in `BS(1,n)`, HNN vertex groups over non-free edge groups. Detection via doubles `G *_H G` or any countable tree of copies of `G` over `H` cannot succeed without refuting countable EG outright, since those groups are countable with `cd ≤ 2`.
