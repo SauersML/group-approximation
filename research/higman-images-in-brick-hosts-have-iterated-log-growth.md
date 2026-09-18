@@ -79,3 +79,41 @@ action is trivial. `𝔅_n` acts faithfully, so `ψ` is trivial. ∎
   with exponent sums at most `O((log m)^2)` along `2^m`. Not all four are equicontinuous.
   None is an odometer-type equicontinuous map with a free `Z/2` quotient
   (`equicontinuous-bs-bases-force-conjugator-entropy`).
+
+## Attempts on the growth gap
+
+**Attempt 1 (bh-testcases, 2026-09-18): neither direction decided; the gap is probably false in general.**
+- **Stack reformulation.** An element of `nV` is a reversible machine on `n` stacks (the
+  coordinates). Each step reads and rewrites a bounded prefix of every stack. `δ_g` is the
+  net push/pop per stack, so `E_g(N)` is the largest net change in a stack height over `N`
+  steps, from any configuration.
+  - For `n = 1` (`V`) there is a linear gap: an element of infinite order has an
+    attracting periodic orbit. Along a flow line cones shrink by a fixed amount per period,
+    so `E_g(N) ≥ cN`, while torsion-like pieces have bounded `E`. This is the standard
+    dynamics of `V`, recalled and not re-read.
+  - For `n ≥ 2` the head of a simulated Turing machine is a stack pair, and sublinear
+    growth occurs. The SMART element behind `BS(1,3) ≤ 3V` has logarithmic speed
+    (Callard–Salo, arXiv:2208.00685, `distortion-2-finitary.tex`, proof of
+    Lemma `smart-distorted-on-cyclic-tapes`: "the logarithmic speed of SMART is well known").
+- **Why a universal gap at `(log m)^2` along `2^m` is unlikely.**
+  - Callard–Salo (`distortion-0-main.tex`, final section) note that the Kari–Ollinger
+    reversible "Hooper trick" always produces Turing machines with sublinear movement
+    (zero Lyapunov exponents; citing Guillon–Salo 2017 and Jeandel 2014). They also say
+    they exhibit elements of `2V` with polylogarithmic word-norm growth.
+  - Hooper-type recursive simulations can insert computable delays before each step.
+    Such an element would plausibly have unbounded head excursions but displacement `o(g(N))`
+    for any prescribed computable unbounded `g`.
+  - A single such element in `2V`, with `g(N) = (log log N)^2`, refutes the gap.
+  - This is not constructed here; robustness against arbitrary tape contents is the
+    whole difficulty.
+- **Consequence for Higman's group.** The triviality route needs structure specific to the
+  four-cycle, not a universal gap. The identity behind item 2 already gives more than an
+  inequality:
+  `δ_(γ_(i+1)^(2^m))(x) = δ_(γ_i^m)(γ_(i+1) y) − δ_(γ_i^m)(y) + δ_(γ_(i+1))(y)`, with
+  `y = γ_i^-m x`.
+  - So `E_(i+1)(2^m)` measures how much `δ_(γ_i^m)` varies between `y` and the nearby point
+    `γ_(i+1) y`.
+  - A lower bound on that variation would give the lower growth bound the argument needs.
+- **Next.** Either build a delayed Hooper/Kari–Ollinger element of `2V` with iterated-log
+  movement, which refutes the gap, or exploit the variation identity for the four linked
+  generators.
