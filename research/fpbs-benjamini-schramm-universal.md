@@ -516,6 +516,23 @@ content in that region.
   collapses. So the failure is not evidence about uniqueness. A correct input
   must be exhaustion-specific. Open: the log law along a fixed exhaustion,
   where `X J X` carries unbounded spine-routed mass.
+* **The exhaustion norm law (2026-09-18, w8-123).**
+  `fpbs-exhaustion-activation-gate-norm-law`: run Theorem 1 of the reduced
+  gate in one exhaustion volume `W` at a time. The spine forces
+  `||X^W_t|| >= m(t)^2 |W|` (it is connected). First/last-spine-vertex BK
+  gives `||X^W_s|| <= B + B^2 m(s)|W|`, with `B = ||T^Bern_{t_1}||` finite
+  below `p_{2->2}`. So each volume charges a fixed mass `c_0` to the
+  density window `[1/|W|, sqrt(A/|W|)]`. Summing over volume scales gives
+  `kappa_A = infinity` at every spine birth, along every exhaustion. The rate
+  is log-log in general and log under decorrelation.
+
+  **Where it dies:** the exhaustion form of (AG), and of (AG*) and the full
+  gate, fails for every connected invariant spine born from `∅` when
+  `p_c < p_{2->2}`, whether or not the family collapses. A sparse exhaustion
+  lowers the rate but not the divergence. Activation gates of the form
+  `D^A <= kappa X J X` are therefore dead as a separator of uniqueness.
+  Surviving: inputs not bounded by the norm of `X J X`, and the Br route
+  (`Br <= C T J T` over plain volumes).
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
