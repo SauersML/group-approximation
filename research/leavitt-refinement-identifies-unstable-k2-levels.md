@@ -41,7 +41,8 @@ citation lens (report dcf202f7c, W1 applied).
    - `St_r(R_L) ≅ St_3(R_L)` for all `r >= 3`. So the word problem of `St_r(R_L)` is solvable at one level iff at
      every level, and the same holds for recursive enumerability of nontriviality in `U_r`.
    - Gate 1 is the same question at `N = 3, 4, 5` or `10`.
-4. **Bounded-step form.** Suppose that `V' = [[e*, 0, 0], [f*, 0, 0], [0, e, f]]` lies in `E_3(R)`. Then
+4. **Bounded-step form** (superseded by `leavitt-stabilization-kernels-are-one-step`, which gives one step with no
+   hypothesis). Suppose that `V' = [[e*, 0, 0], [f*, 0, 0], [0, e, f]]` lies in `E_3(R)`. Then
    `V_m = I_(m-1) ⊕ V'` lies in `E_(m+2)(R)` for every `m >= 3`, which the kernel identity at all levels needs
    (gq-referee-a, N2). Then for `x in St_r(R)`,
    `j j (D_r x) = ω · j j j (x) · ω^-1` in `St_(r+3)(R)` for some `ω`, where `j` is one-step stabilization. It follows
