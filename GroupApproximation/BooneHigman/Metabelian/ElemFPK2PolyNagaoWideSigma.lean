@@ -53,7 +53,8 @@ noncomputable def k2PolyNagaoWide_qsel (K : Finset I) (m L : I) (v : I → Polyn
 /-- **The section.**  `σ(v) = q_v · σ₀(r_v)`. -/
 noncomputable def k2PolyNagaoWide_sigma (K : Finset I) (m L : I) (hmL : m ≠ L)
     (v : I → Polynomial (ZMod p)) : SteinbergGroup I (Polynomial (ZMod p)) :=
-  k2PolyNagaoWide_qsel p K m L v * k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v)
+  k2PolyNagaoWide_qsel p K m L v *
+    k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_sigma
 
@@ -82,7 +83,7 @@ theorem k2PolyNagaoWide_rep_spec {K : Finset I} {m L : I} (hmK : m ∈ K)
     {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) :
     k2PolyNagaoWide_repSet p K m L v (k2PolyNagaoWide_rep p K m L v) := by
   obtain ⟨q, hq, r, hr, e⟩ := k2PolyNagaoWide_rep_exists hmK hv
-  exact Classical.epsilon_spec ⟨r, hr, q, hq, e⟩
+  exact Classical.epsilon_spec (p := k2PolyNagaoWide_repSet p K m L v) ⟨r, hr, q, hq, e⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_rep_spec
 
@@ -91,7 +92,9 @@ theorem k2PolyNagaoWide_qsel_spec {K : Finset I} {m L : I} (hmK : m ∈ K)
     {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) :
     k2PolyNagaoWide_qsel p K m L v ∈ k2PolyNF_Q p K L ∧
       act (k2PolyNagaoWide_qsel p K m L v) (k2PolyNagaoWide_rep p K m L v) = v :=
-  Classical.epsilon_spec (k2PolyNagaoWide_rep_spec hmK hv).2
+  Classical.epsilon_spec
+    (p := fun q => q ∈ k2PolyNF_Q p K L ∧ act q (k2PolyNagaoWide_rep p K m L v) = v)
+    (k2PolyNagaoWide_rep_spec hmK hv).2
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_qsel_spec
 
@@ -121,5 +124,78 @@ theorem k2PolyNagaoWide_rep_act {K : Finset I} {m L : I}
   rw [k2PolyNagaoWide_repSet_act hg]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_rep_act
+
+/-- **`Q`-equivariance.**  Given `Stab(J, m)`, the check of `σ` holds at every `g ∈ Q`. -/
+theorem k2PolyNagaoWide_check_Q {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hLK : L ∉ K) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    {g : SteinbergGroup I (Polynomial (ZMod p))} (hg : g ∈ k2PolyNF_Q p K L) :
+    k2PolyEuclid_Check p K L (k2PolyNagaoWide_sigma p K m L hmL) g := by
+  intro v hv
+  have hv' := k2PolyNF_orbit_act (k2PolyNagaoWide_Q_le_G K L hg) hv
+  have hr := k2PolyNagaoWide_rep_spec (m := m) hmK hv
+  have hq := k2PolyNagaoWide_qsel_spec (m := m) hmK hv
+  have hq' := k2PolyNagaoWide_qsel_spec (m := m) hmK hv'
+  have e : k2PolyNagaoWide_rep p K m L (act g v) = k2PolyNagaoWide_rep p K m L v :=
+    k2PolyNagaoWide_rep_act hg v
+  rw [e] at hq'
+  have ht : (k2PolyNagaoWide_qsel p K m L (act g v))⁻¹ * g * k2PolyNagaoWide_qsel p K m L v ∈
+      k2PolyNF_Q p K L :=
+    Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.inv_mem _ hq'.1) hg) hq.1
+  have htr : act ((k2PolyNagaoWide_qsel p K m L (act g v))⁻¹ * g *
+      k2PolyNagaoWide_qsel p K m L v) (k2PolyNagaoWide_rep p K m L v) =
+      k2PolyNagaoWide_rep p K m L v := by
+    rw [act_mul, act_mul, hq.2]
+    exact k2PolyNagaoWide_act_inv hq'.2
+  have h := k2PolyNagaoWide_core hmL hmK hLK hthird hStab hr.1 ht htr
+  unfold k2PolyNagaoWide_sigma
+  rw [e]
+  have e2 : (k2PolyNagaoWide_qsel p K m L (act g v) *
+        k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v))⁻¹ * g *
+      (k2PolyNagaoWide_qsel p K m L v *
+        k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v)) =
+      (k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v))⁻¹ *
+        ((k2PolyNagaoWide_qsel p K m L (act g v))⁻¹ * g * k2PolyNagaoWide_qsel p K m L v) *
+        k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v) := by
+    group
+  rw [e2]
+  exact h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_check_Q
+
+/-- `σ(e_L) ∈ Q`. -/
+theorem k2PolyNagaoWide_sigma_unitVec {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hLK : L ∉ K) : k2PolyNagaoWide_sigma p K m L hmL (unitVec L) ∈ k2PolyNF_Q p K L := by
+  have ho : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = unitVec L :=
+    ⟨1, Subgroup.one_mem _, act_one _⟩
+  obtain ⟨_, q, hq, e⟩ := k2PolyNagaoWide_rep_spec (m := m) hmK ho
+  have hr : k2PolyNagaoWide_rep p K m L (unitVec L) = unitVec L :=
+    (k2PolyNagaoWide_act_inv e).symm.trans (k2PolyNF_Q_fix hLK (Subgroup.inv_mem _ hq))
+  unfold k2PolyNagaoWide_sigma
+  rw [hr, k2PolyNagaoSigma_sigma_unitVec, mul_one]
+  exact (k2PolyNagaoWide_qsel_spec (m := m) hmK ho).1
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_sigma_unitVec
+
+/-- **All checks but one.**  Given `Stab(J, m)` and the single check at `x_mL(1)`, `σ`
+passes every check of `k2PolyNagao_Gens`: the others are at elements of `Q`. -/
+theorem k2PolyNagaoWide_gens_of_check {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hLK : L ∉ K) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    (hres : k2PolyEuclid_Check p K L (k2PolyNagaoWide_sigma p K m L hmL)
+      (x m L hmL (1 : Polynomial (ZMod p)))) :
+    k2PolyNagao_Gens p K L (k2PolyNagaoWide_sigma p K m L hmL) m hmL := by
+  have hQ : ∀ g ∈ k2PolyNF_Q p K L,
+      k2PolyEuclid_Check p K L (k2PolyNagaoWide_sigma p K m L hmL) g :=
+    fun _ hg => k2PolyNagaoWide_check_Q hmL hmK hLK hthird hStab hg
+  have hSQ : ∀ {a b : I} (hab : a ≠ b), a ∈ K → b ∈ K →
+      x a b hab (1 : Polynomial (ZMod p)) ∈ k2PolyNF_Q p K L := fun hab ha hb =>
+    Subgroup.mem_sup_left (S := k2PolyDeg_S p K) (T := k2PolyDeg_V p K L)
+      (x_mem_rootSpan (p := fun i j => i ∈ K ∧ j ∈ K) hab 1 ⟨ha, hb⟩)
+  exact ⟨fun _ him hi => ⟨hQ _ (hSQ him hi hmK), hQ _ (hSQ him.symm hmK hi)⟩, hres,
+    hQ _ (k2PolyNagaoSigma_x_mem_Q hmL hmK _), hQ _ (k2PolyNagaoSigma_x_mem_Q hmL hmK _),
+    fun _ _ => hQ _ (k2PolyNagaoSigma_x_mem_Q hmL hmK _)⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_gens_of_check
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
