@@ -154,7 +154,7 @@ presented case stays OPEN; the exact gap is Attempt 2 on
 | # | Question (source, TeX line) | Node | Status |
 |---|---|---|---|
 | F1 | Tarocchi arXiv:2310.14660v3 l.1605 (also thesis 2412.02339 l.5583): "Is $[G_3, G_3]$ simple?" | `dendrite-rearrangement-group-g3-has-simple-commutator-subgroup` | **ANSWERED yes** (lane proof, this pass) |
-| F2 | Tarocchi 2310.14660v3 l.1081–1085: dendrite rearrangement groups "Are they finitely presented? Are they $F_\infty$?" | `dendrite-rearrangement-groups-are-finitely-presented` | OPEN |
+| F2 | Tarocchi 2310.14660v3 l.1081–1085: dendrite rearrangement groups "Are they finitely presented? Are they $F_\infty$?" | `dendrite-rearrangement-groups-are-finitely-presented` | ANSWERED in the literature: Perego–Tarocchi arXiv:2412.04138v1 prove every $G_n$ is $F_\infty$ (bh-dendrite, 09-18) |
 | F3 | Hill–Kwak–Udall–West arXiv:2508.21264 l.297: "whether the Boone--Higman conjecture for the graph Houghton group is true … whether the Boone--Higman conjecture holds for all Houghton-type groups" | `graph-houghton-groups-satisfy-boone-higman` | OPEN. The preprints review had screened this paper as low relevance, missing the BH question |
 | F4 | Bodart–D'Angeli–Perego–Rodaro arXiv:2608.02111 sec7 l.134: "Does any (weakly) branch group embed in Thompson's $V$?" | `finitely-generated-weakly-branch-group-embeds-in-thompson-v` | OPEN for f.g. groups. The literal reading is answered yes by the finitary automorphism group (lane remark on the node) |
 | F5 | Kodama arXiv:2602.04839 l.869: "it is not known whether $G_0(n)$ is a subgroup of $\PPSL$ or not" | `n-adic-lodha-moore-groups-embed-in-piecewise-projective-group` | OPEN. It bears on the Higman-group obstruction |
@@ -196,3 +196,74 @@ presented case stays OPEN; the exact gap is Attempt 2 on
 
 **Posted for bh-free-08** (owner of the finitely presented case of MO 412219): the
 E(G) insights are on its board.
+
+## G. Fourth pass: structural questions in 2025–2026 papers and problem lists (09-18, INSIGHT FIRST)
+
+**Method.**
+- The arXiv API was queried over 24 more math.GR topics (489 papers from 2025–26),
+  and papers already read were dropped (402 left).
+- 40 were chosen for Boone–Higman structure (closure, universal hosts,
+  characterizations). Their TeX was read on MSI (`gqsrc/bh-openq/hunt4/`).
+
+| # | Question (source) | Node | Status |
+|---|---|---|---|
+| G1 | Bishop–Schesler arXiv:2509.12161v2, Theorem B and Corollary `cor:boone-higman`: BH for EFRF^+ groups reduces to EFRF^+ branch groups | `efrf-groups-frattini-embed-in-efrf-branch-groups` | ESTABLISHED (literature import) |
+| G2 | Bishop–Schesler l.212: "Does every finitely generated residually finite group $G$ with solvable word problem embed in a finitely generated branch group with solvable word problem?" | `rf-decidable-groups-embed-in-decidable-fg-branch-groups` | OPEN. Settled for EFRF^+ inputs; equivalent to its non-effective (Rauzy) case |
+
+**The structural point of G1.** All fp RF groups are EFRF^+. So BBMZ 5.3(2) closed MCG,
+5.3(3) Out(F_n), 5.3(7) fp metabelian and 5.3(12) fp RF all reduce to Boone–Higman for
+one class: finitely generated, recursively presented, EFRF^+ spinal branch groups over
+computable growing alphabets. Unlike main's self-similar route, this route has no
+regular-tree failure point.
+
+**Recorded, no node.**
+- **Darbinyan–Steenbock arXiv:2504.12707, Question `quest-1`:** "Does there exist a
+  countable group with no computable left-order that embeds into a finitely-generated
+  group with computable left-order?" Lane remark: on the literal reading the answer is
+  yes.
+  - Take `Q_S = <1/p : p ∈ S>` for a non-c.e. set of primes `S`. A computable copy
+    would make `S` c.e. up to finite difference, so `Q_S` has no computable copy and
+    hence no computable left order.
+  - `Q_S ≤ Q`, and `Q` computably embeds in a finitely generated group with computable
+    left order, by their Theorem `thm-finitization`.
+  - The intended reading presumably requires `G` to be computable with no computable
+    copy carrying a computable left order (Harrison-Trainor). That reading stays open.
+- **Darbinyan–Steenbock Question 2:** "Is there a quasi-isometric version of
+  Boone-Higman's theorem for left-orderable groups?"
+  - Their family theorem (`T: family computable left order`) plus Olshanskii's
+    undistorted Higman embedding already give a version: a finitely generated group
+    has a computable left order iff it QI-embeds in a finitely generated simple group
+    with computable left order that is QI-embedded in a finitely presented group.
+  - The converse direction is their Lemma 2.2 of arman_new.
+  - The real open core is a left-orderable Thompson theorem: every finitely generated
+    left-orderable group with decidable word problem into a finitely generated simple
+    left-orderable group with decidable word problem.
+- **Fournier-Facio–Zaremsky arXiv:2607.21727 (Higman's rope trick):** Questions
+  `quest:higher_F` and `quest:higher_FP` (embedding in F_n and FP_n groups), and
+  Theorem A (recursively presented FP_n hosts give F_n hosts). Already used on main
+  (`acyclic-host-*` nodes; BBMZ Q5.6 node).
+- **Hyde–Lodha arXiv:2509.09788:** finitely generated highly transitive MIF
+  overgroups that preserve amenability or no-free-subgroups. It bears on the BFFHZ
+  route, which needs MIF hosts. No printed open question beyond the one it answers.
+- **Problem list on foliations and diffeomorphism groups, arXiv:2503.18274** (a
+  conference problem list, l.328–340):
+  - "For any $n\geq 2$, is there a simple orderable group of type $F_n$ but not
+    $F_{n+1}$?"
+  - "Is there a finitely presented, or even type $F_\infty$, boundedly acyclic simple
+    orderable group?"
+  - "Are Burger--Mozes' examples of simple groups orderable?"
+  - Epstein's "Is $PL_0(M)$ … a simple group?" (l.1142).
+  - These concern orderable fp simple groups, which are left-orderable-host questions
+    for Boone–Higman.
+- **Problems on handlebody groups, arXiv:2502.21177:** no Boone–Higman question.
+  Handlebody groups sit inside closed-surface MCGs, so they inherit any answer to
+  BBMZ 5.3(2).
+- **Rauzy arXiv:2002.02540** (read for G2): Dyson groups `L(A)`. They are RF iff `A`
+  is profinitely closed, and EFRF iff `A` is effectively closed.
+
+**Lesson for general BH (this pass).** The residually finite part of the open list is
+a single host problem. Build finitely presented simple overgroups for spinal branch
+groups over computable growing alphabets, the Bishop–Schesler groups. The
+non-effective residually finite inputs of Rauzy are harmless for Boone–Higman, since
+simple hosts are never residually finite. So effectiveness matters only for
+intermediate residually finite hosts.

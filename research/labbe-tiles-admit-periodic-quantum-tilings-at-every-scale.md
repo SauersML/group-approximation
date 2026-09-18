@@ -62,3 +62,15 @@ tiling.
 - **Topology.** The context complex on a finite torus is not simply connected, so the tree-cover
   commutation of `research/artifacts/quantum-rigidity-group-shifts-and-gluing-2026-09-13.md`
   (Proposition P2) does not apply. A witness must change frames around both cycles of the torus.
+- **Hierarchy-phase gauges (bh-one-relator, 2026-09-18).** *Dead, for a structural reason that
+  transfers.*
+  - *Design.* For a hierarchical shift with an odometer factor, put the phase digits above the
+    torus period into `W`. Glue the seams of the torus by the phase shifts `S_1, S_2`; these are
+    commuting permutation matrices, and are the natural holonomy around the two cycles.
+  - *Why it fails.* The resulting family consists of conjugates of diagonal (multiplication)
+    operators by monomial matrices. It is therefore commutative, hence a classical periodic tiling.
+    Truncating the phase space reinstates the carry at the top digit as a local defect.
+  - *General lesson.* Holonomy that normalizes a maximal commutative frame never produces
+    contextuality. A witness needs holonomy that is non-monomial with respect to every local
+    classical frame. This refines the "Topology" entry above: a frame change around the cycles is
+    necessary, but a permutation of a fixed frame is not enough.

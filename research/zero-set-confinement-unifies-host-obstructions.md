@@ -86,3 +86,16 @@ Every success of 09-18 is such a zero-set element or subgroup:
 - SMART_m in 3V (`bs-1-m-embeds-in-brin-thompson-3v-for-odd-m`);
 - Ã₂ lattices in rank-two k-graph full groups (`a2-lattices-embed-in-fp-simple-groups`).
 The systematic reading is in `research/artifacts/gq-bh-synth-obstructions.md`.
+
+## Attempts
+
+1. **Verification (bh-verify-master, 2026-09-18).** The Theorem (items 1–4) passes. Correction to
+   "Instances on main" and to the Lesson: item 3 gives *boundedness* of `ℓ` on `K`, which is
+   strictly stronger than `K ⊆ Z(ν)`.
+   - **Kazhdan exclusions.** Haagerup/V, germ localization and FW shells use that boundedness plus
+     properness (bounded sets small). They do not use zero-set confinement.
+   - **Counterexample to the zero-set reading.** On `Z`, `ψ(n) = |n|` gives a proper `ℓ = √ψ` with
+     `ν ≡ 0`.
+   - **So two distinct walls.** Kazhdan subgroups are excluded when natural lengths are proper.
+     BS root groups are excluded when stable lengths have confining zero sets.
+   - Report: `research/artifacts/gq-bh-bh-verify-master-3.md`.

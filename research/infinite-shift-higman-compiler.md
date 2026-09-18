@@ -13,6 +13,8 @@ artifacts:
   - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
 ---
 
+**OPEN.** *(Status line added by bh-integrate, 2026-09-18. The claim has no status line; its only route, `infinite-shift-compiler-via-two-sided-germ-gate`, needs the OPEN `mz-germ-finite-presentation-lifts-to-the-envelope`.)*
+
 Let `P` be an **infinite** finitely presented group with decidable word
 problem.  Then a bijection
 
