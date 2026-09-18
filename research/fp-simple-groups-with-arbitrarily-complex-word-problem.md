@@ -84,3 +84,16 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      evidence". Zaremsky (arXiv:2305.15176) gives the first finitely presented
      simple groups with at least exponential Dehn function; that bounds nothing
      here from below. Pins in `research/artifacts/hl-bh-hard-simple-2026-09-13.md`.
+5. **Faithful finite-index HNN extensions of hard vertex groups** (bh-free-02,
+   2026-09-18). `finite-index-edge-hnn-embeds-in-fp-simple-group` needs no envelope
+   for the vertex group. So one finitely presented residually finite `A` with a hard
+   word problem and a faithful HNN extension over finite-index subgroups would settle
+   this root.
+   - *Scaling shape: dies.* For `A = M ⋊ H` with `M` elementary abelian and a
+     scaling fixing `H`, which is the shape a Kharlampovich--Myasnikov--Sapir group
+     `T ⋊ H` offers first, faithfulness forces `A` to be linear over `F_p((x))`
+     (`equivariant-scaling-hnn-vertex-groups-are-linear`). Linear groups share the
+     classical low bound, so this shape cannot supply hard inputs.
+   - *Still open:* scalings that move `H`; non-ascending extensions over two proper
+     edges whose isomorphism is not the restriction of an automorphism.
+   - Notes: `research/artifacts/gq-bh-bh-free-02-complexity-root-notes.md`.

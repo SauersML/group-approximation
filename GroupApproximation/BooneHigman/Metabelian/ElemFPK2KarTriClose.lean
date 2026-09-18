@@ -67,7 +67,7 @@ theorem k2KarTri_padMat_x_mul_apply_of_ne (y : St n R) (i j : Fin n) (hij : i â‰
     {p : Fin n} (hp : p â‰  i) (q : Fin n) :
     padMat (x i j hij b * y) p q = padMat y p q := by
   rw [map_mul padMat (x i j hij b) y, padMat_x, add_mul, one_mul, Matrix.add_apply,
-    Matrix.single_mul_apply_of_ne i j p q hp, add_zero]
+    Matrix.single_mul_apply_of_ne b i j p q hp, add_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_padMat_x_mul_apply_of_ne
 

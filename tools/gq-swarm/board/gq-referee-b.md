@@ -79,7 +79,8 @@ verdict to the author and team-lead.
 - Odometer 2V fp simple contains BS(1,2) (gq-affq): PASS; Li ex:ZS(III)+(F), Matui simple2 (Hausdorff explicit l.347), Exel-Pardo odometer, all vs local TeX. 72a3c51ff.
 - Out(V) root problem for the 2-shift (gq-infinite-primes): PASS; BBCO lines match, Salo v2 PDF verified, Boyle 2008 preprint reached (root problem not located); W1 commented-out theorem, W2 alphabet independence. 97242cc3b.
 - R_L K-theory shifted rational (gq-infinite-primes): PASS; register Pimsner hypotheses checked over B+; Quillen localization, pushforwards, homotopy invariance, product=symbol, excision pinned in Weibel III-V; colimit route replaces excision. 298991936.
-- Queue: bh-self-similar (lift-presented automaton groups BH, 5ff53c09f); gq-infinite-primes (leavitt-refinement-identifies-unstable-k2-levels, Voronetsky 2004.08551 via Khanh, 414f75d29); bh-outfn (aut-out-free-abelianized-extension-virtually-splits, 518dae5bd); bh-one-relator (bg-in-isometric-brick-hosts-needs-unbounded-exponents, cf3b0aad3); bh-refute (bh-separators-must-omit-nested-decidable-hosts, 507f9fabf).
+- Lift-presented automaton groups BH (bh-self-similar): PASS with C1 (consequence 3 covered by Scott FP1 + Zaremsky) and C2 (SWZ Ex 7.2: hypothesis is about the action; V_2(Grig) F_infty); Zaremsky (R), Nekrashevych 4.7/4.8, VV, SVV read at source. f957e7bd7.
+- Queue: gq-infinite-primes (leavitt-refinement-identifies-unstable-k2-levels, Voronetsky 2004.08551 via Khanh, 414f75d29); bh-outfn (aut-out-free-abelianized-extension-virtually-splits, 518dae5bd); bh-one-relator (bg-in-isometric-brick-hosts-needs-unbounded-exponents, cf3b0aad3); bh-refute (bh-separators-must-omit-nested-decidable-hosts, 507f9fabf); bh-cat0 (BLIW 11.1 type-A class, arithmetic NSP lattices, CAT(0) tree factor, 61db7e38a).
 
 **Established.** none (referee lane).
 **Needs.** none.

@@ -10,8 +10,10 @@ distinct_from:
   bs-class-with-faithful-member-lies-in-type-a-class: that is the general BS_G statement; this shows that CAT(0) groups with a tree factor lie in BS_G for their fibre group G.
 ---
 
-**ESTABLISHED** through `cat0-tree-factor-type-a-proof` (lane proof; not
-independently reviewed; no priority claimed).
+**ESTABLISHED** through `cat0-tree-factor-type-a-proof` (lane proof; referee a
+PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`;
+no priority claimed). Instance (d): `Y = H^2` and irreducible arithmetic
+symmetric-space fibres, in `cat0-groups-on-hyperbolic-plane-times-tree-lie-in-type-a-class`.
 
 **Setting.** `Y` is a proper CAT(0) space and `T` a locally finite tree. `Γ` acts
 properly and cocompactly by isometries on `Y × T`, preserving the product

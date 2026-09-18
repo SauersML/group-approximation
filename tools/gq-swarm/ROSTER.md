@@ -163,3 +163,5 @@
 bh-shell-arith, bh-shell-kazhdan, bh-shell-germ, bh-higman-classic, bh-ck-kernel, bh-algebra, bh-groupoid, bh-near-actions, bh-typeA-oligomorphic, bh-logic, bh-hhg, bh-amenable, bh-lattices, bh-artin, bh-critic.
 ## BH swarm wave 4 (09-18 ~08:55)
 bh-relhyp, bh-free-extensions, bh-graphical-sc, bh-kourovka, bh-bbmz-problems, bh-universal, bh-testcases, bh-integrate, bh-writeup; bh-linear-fields rotated to Thompson-like groups (target already established as finitely-generated-linear-groups-satisfy-boone-higman, ff3174b2a).
+## BH swarm wave 5 (09-18 ~09:10, free lanes): bh-free-01..15; bh-preprints (deep recent-preprint review); bh-palomar-plan (Palomar megasubmission plan); bh-verify-{metabelian,artin,linear}.
+## BH swarm wave 6 (09-18 ~09:20): bh-openq-papers, bh-openq-lists (literature open-question hunters → board/UNOWNED.md); bh-free-16..28 (cool solves; 21 automatic groups, 22 fp RF groups, 23 BBMZ-hyperbolic Qs, 24 Kac–Moody Q3.6/FFKLZ Q2.4).

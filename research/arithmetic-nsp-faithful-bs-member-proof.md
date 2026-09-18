@@ -36,7 +36,9 @@ Since `c ∈ M`, some `c^m`, `m >= 1`, lies in `K <= G`. This is a contradiction
   `G` is trivial.
 - (C): a finite-index `N <= G` contains `x_ij(k)` for some `k >= 1` and all
   `i ≠ j`. Their Zariski closures are the full root groups, which generate `SL_n`.
-  So `N` is Zariski dense, and its centralizer in `PGL_n(R)` is trivial.
+  So `N` is Zariski dense. If `g ∈ PGL_n(R)` centralizes `N`, a lift satisfies
+  `g x g^{-1} = λ(x) x` with `λ(x) = ±1`. So `g` centralizes `ker λ`, which has index
+  `<= 2` in `N` and is still Zariski dense, and `g` is trivial in `PGL_n(R)`.
 - `c = diag(r,1,...,1)` commensurates `SL_n(Z)`. If `c^m = λA` in `GL_n(R)` with
   `A ∈ SL_n(Z)`, then comparing entries gives `λ^{-1} ∈ Z` and `λ^n = r^m`. That
   forces `|λ| <= 1` and `r^m <= 1`, which is false for `m >= 1`.

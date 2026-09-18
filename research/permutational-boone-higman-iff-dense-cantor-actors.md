@@ -90,13 +90,15 @@ is exactly PBH, which is OPEN, and the theorem gives the following sharper readi
   finitely presented simple group `SV_G`
   (`twisted-brin-thompson-wp-equals-actor-orbit-problem`).
 
-## The stabilizer clause cannot be dropped
+## Is the stabilizer clause needed? (OPEN)
 
-It is not true that every finitely presented dense subgroup of `Homeo(C)` has
-finitely generated clopen stabilizers.
-`fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` shows that a generic
-`t` gives `⟨V,t⟩ ≅ V * Z`. That group is finitely presented and dense, but none of
-its clopen stabilizers is finitely generated. So the clause in (2) carries real
-content. It holds for finitely presented full groups containing standard `V`
+*Corrected 09-18 (bh-free-19).* This section used to say the clause cannot be dropped,
+citing `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` (a generic `t`
+with `⟨V,t⟩ ≅ V * Z`). That claim is REFUTED by
+`v-and-a-homeomorphism-never-generate-a-free-product`: `⟨V,t⟩` is never `V * ⟨t⟩` for
+any `t ≠ 1`. So whether every finitely presented dense subgroup of `Homeo(C)` has
+finitely generated clopen stabilizers is open; no witness either way is on main.
+
+The clause does hold for finitely presented full groups containing standard `V`
 (`fp-full-binary-cantor-groups-have-type-a-actions`) and for twisted Brin–Thompson
-groups, but not for free-product enlargements of `V`.
+groups.

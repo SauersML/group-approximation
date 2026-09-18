@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `bs-class-faithful-member-type-a-proof` (lane proof, a
-reading of a literature proof; not independently reviewed; no priority claimed).
+reading of a literature proof; referee a PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`; no priority claimed).
 
 **Setting.** For a group `G`, `BS_G` is the class of fundamental groups of finite
 graphs of groups all of whose vertex and edge groups are abstractly commensurable

@@ -109,3 +109,59 @@ theorem gfaceWindTen_transfer {M : CombMap.{v}} {w L : List M.Dart}
   | trans x₁ x₂ x₃ h₁₂ _ ih₁ ih₂ =>
       intro hx
       exact .trans _ _ _ (ih₁ hx) (ih₂ ((mem_sideFaces_iff_of_eqvGen w h₁₂).mp hx))
+
+/-- **Side nesting.**  In a planar map, if every dart of `L` has its face on the side of the simple
+closed walk `W`, and the face `o` is off both sides, then the side of `L` lies in the side of
+`W`. -/
+theorem gfaceWindTen_nest {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart}
+    (hW : IsSimpleClosedWalk M W) (hLW : ∀ d ∈ L, M.faceOf d ∈ sideFaces M W)
+    {o : M.Face} (hoW : o ∉ sideFaces M W) (hoL : o ∉ sideFaces M L) :
+    sideFaces M L ⊆ sideFaces M W := by
+  intro F hF
+  obtain ⟨z, rfl⟩ : ∃ z, M.faceOf z = F := Quotient.exists_rep F
+  obtain ⟨zo, rfl⟩ : ∃ zo, M.faceOf zo = o := Quotient.exists_rep o
+  by_contra hFW
+  have hW' := hW.reverseAlpha
+  have hside := gfaceWindTen_outside hM hW
+  have hzW' : M.faceOf z ∈ sideFaces M (W.reverse.map M.alpha) := by
+    rw [hside, mem_sideOutside_iff]
+    exact hFW
+  have hoW' : M.faceOf zo ∈ sideFaces M (W.reverse.map M.alpha) := by
+    rw [hside, mem_sideOutside_iff]
+    exact hoW
+  obtain ⟨d1, hd1, h1⟩ := (mem_sideFaces_iff M _ z).mp hzW'
+  obtain ⟨d2, hd2, h2⟩ := (mem_sideFaces_iff M _ zo).mp hoW'
+  have hzzo : Relation.EqvGen
+      (CombMap.FaceClassStep M (walkKeep M (W.reverse.map M.alpha))) z zo :=
+    .trans _ _ _ (.symm _ _ h1) (.trans _ _ _ (.symm _ _ (gfaceWindTen_class_head hW' d1 hd1))
+      (.trans _ _ _ (gfaceWindTen_class_head hW' d2 hd2) h2))
+  have hLW' : ∀ d ∈ L, M.faceOf d ∉ sideFaces M (W.reverse.map M.alpha) := by
+    intro d hd h
+    rw [hside, mem_sideOutside_iff] at h
+    exact h (hLW d hd)
+  have hzzoL := gfaceWindTen_transfer hLW' hzzo hzW'
+  obtain ⟨d, hd, hdz⟩ := (mem_sideFaces_iff M L z).mp hF
+  exact hoL ((mem_sideFaces_iff M L zo).mpr ⟨d, hd, .trans _ _ _ hdz hzzoL⟩)
+
+/-- **Strict side nesting.**  Under the hypotheses of `gfaceWindTen_nest`, if `L` is a simple
+closed walk with a dart off `W`, its side has fewer faces than the side of `W`. -/
+theorem gfaceWindTen_card_lt {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart}
+    (hW : IsSimpleClosedWalk M W) (hL : IsSimpleClosedWalk M L)
+    (hLW : ∀ d ∈ L, M.faceOf d ∈ sideFaces M W)
+    {o : M.Face} (hoW : o ∉ sideFaces M W) (hoL : o ∉ sideFaces M L)
+    {x : M.Dart} (hxL : x ∈ L) (hxW : x ∉ W) :
+    (sideFaces M L).card < (sideFaces M W).card := by
+  refine Finset.card_lt_card (Finset.ssubset_iff_subset_ne.mpr
+    ⟨gfaceWindTen_nest hM hW hLW hoW hoL, fun heq => hxW ?_⟩)
+  have hb := (hL.isBoundaryDart_sideFaces_iff hM x).mpr hxL
+  rw [heq] at hb
+  exact (hW.isBoundaryDart_sideFaces_iff hM x).mp hb
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_head
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_outside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_transfer
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_nest
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_card_lt

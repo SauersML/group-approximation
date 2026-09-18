@@ -10,8 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `arithmetic-nsp-faithful-bs-member-proof` (lane proof,
-elementary apart from the cited normal subgroup theorems; not independently
-reviewed; no priority claimed).
+elementary apart from the cited normal subgroup theorems; referee a PASS,
+`research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`;
+no priority claimed).
 
 **Lemma.** Let `L` be a locally compact, second countable group and `G <= L` a
 finitely generated discrete subgroup with finite covolume (a lattice). Assume:

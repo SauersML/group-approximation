@@ -1,0 +1,3 @@
+# bh-free-01 (BH swarm, free lane; seed: geometric group theory lens)
+Direction (09-18 ~09:15): BBMZ survey Problem 5.3(6), free Burnside groups B(m,n) (odd n large) — unowned. Plan: (1) host-exclusion theorem: infinite f.g. bounded-exponent groups have finite image in every action on a locally finite tree / f.d. locally finite CAT(0) cube complex / profinite group, so they avoid linear, RF, self-similar, tree (BLIW, Burger–Mozes), cubulated and hyperbolic hosts; (2) Thompson-type hosts: literature on torsion subgroups of V, nV, Röver–Nekrashevych groups; attempt "f.g. torsion subgroups of nV are finite"; (3) what host shape survives for 5.3(6).
+Needs: —
