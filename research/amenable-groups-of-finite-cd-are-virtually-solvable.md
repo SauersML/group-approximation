@@ -98,3 +98,34 @@ finite cd would answer this question negatively; see
     along a chain `G ⊃ N ⊃ N' ⊃ …` of such subgroups and find a termination invariant.  No
     candidate invariant, for example a Fox-Jacobian rank deficit, is yet known to be monotone
     along such a chain.
+- 2026-09-18 (lane w6-112, inverter, family minimal-counterexample): attacked "no finitely generated
+  normal subgroup with infinite torsion quotient in amenable cd 2" through the `G/N`-coinvariants.
+  - **Landed, structure.** `cd-two-torsion-quotient-counterexamples-embed-in-out`:
+    - In such a pair, `Z(N) = C_G(N) = 1`, so `Q = G/N` embeds in `Out(N)` and `G` is the full
+      preimage of `Q` in `Aut(N)`.
+    - `H_1(G; U) ≅ V / Σ_i (1 − e_i)V` is an isomorphism, not only a quotient, with `V = H_1(N; U)`
+      and `e_i` the averages over the finite cyclic groups `⟨q_i⟩`. Each `e_i V ≠ 0`.
+    - The image of `Q` in `Aut(N^ab)` and in every `Out(N/C)` with `C` characteristic of finite
+      index is finite (Burnside–Schur).
+    - The torsion case is equivalent to: for centreless amenable `N` of cd 2, the preimage in
+      `Aut(N)` of an infinite finitely generated amenable torsion subgroup of `Out(N)` has cd at
+      least 3.
+  - **Landed, obstruction.** `cd-two-kazhdan-kernel-with-grigorchuk-quotient`: Ollivier–Wise over
+    the first Grigorchuk group gives a finitely generated torsion-free `Γ` of cd 2 with a finitely
+    generated Kazhdan `N ⊴ Γ` and `Γ/N ≅ 𝔊`. The coinvariant formula still holds there.
+    - So every argument using amenability only through `G/N` is dead. This covers Cheeger–Gromov
+      for `Q`, finite-cyclic averaging, finite linear shadows, and rank counts that see `N` only as
+      finitely generated.
+    - The failing step: none of them uses amenability of `N`. In the positive direction that input
+      enters only through the EA-radical theorem.
+  - **Why the direct attack stalls.** The w5-112 mapping torus needs a `Z`-character on the
+    coefficient group, and Lück's cyclic covers need growing index. A torsion quotient offers
+    neither. Rank-deficit invariants have infimum 0 in amenable groups, and attaining 0 is `FP_2`
+    itself.
+  - **Next.**
+    - Use amenability of `N` through a Følner-type exhaustion of `V = H_1(N; U)` that is
+      `Q`-equivariant. The target is that the sum of the kernels of the `e_i` is all of `V`.
+    - Alternatively, decide `H_1(Γ; U(Γ))` for the Ollivier–Wise–Grigorchuk group. If it is
+      nonzero, the coinvariant route needs amenability of `N` in an essential way.
+    - The `Out(N)` form also asks whether a centreless amenable cd-2 `N` can carry an infinite
+      finitely generated torsion group of outer automorphisms at all.

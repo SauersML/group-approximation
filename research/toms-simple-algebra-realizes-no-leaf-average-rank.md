@@ -91,3 +91,24 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     Prove by Künneth that coordinated transports cannot stagger their drops across
     nodes, or build a staggered one. Depth `K/2` at one point would give the
     `delta/(2 r_n)` jump in `A` and `B`.
+- **Two sibling nodes cannot stagger (w5-113, 2026-09-18).**
+  - *Result.* `toms-two-sibling-swap-drops-add-to-depth-two`. Take a box of windows
+    in the square family of two sibling swap nodes. Suppose the target contains a
+    common bundle `G` plus, on each side, the transported line of that side's node,
+    and has rank at most `rank G + 2`. Then it drops to `rank G` at an interior
+    point.
+  - *Proof idea.* Künneth alone is not enough, since depth-one drops kill every
+    support-bundle count. The invariant is instead a degree-7 Mayer–Vietoris class
+    of the space of matrices with rank in `{g+1, g+2}`. On the boundary loop it
+    evaluates to `(alpha - beta)^2 (alpha + beta)(u_1 u_2^2 - u_1^2 u_2)`, which is
+    non-zero for Toms's twists and zero untwisted.
+  - *Scope.* The staggered depth-one model therefore drops by `2` in every window
+    box, however the two nodes are coordinated. A depth-two drop is still only
+    `2/r_M` on a trace. The invariant vanishes for `alpha = -beta`.
+  - *Next.* Two steps remain.
+    - The `N`-node box. Find a class of the band of width `N` that is non-zero on
+      the boundary `S^(N-1) x prod CP^(j')` of the window box. The candidate is the
+      iterated Mayer–Vietoris class over the cross-polytope loop of `2N` lines.
+      This would force depth `N`.
+    - Window extraction. Show that a general deep approximant has window boxes,
+      starting from the drop sets of the single-node bound.

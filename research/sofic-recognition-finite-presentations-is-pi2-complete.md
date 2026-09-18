@@ -47,3 +47,21 @@ missing is the finite-output compiler
       used as an **edge**;
     - a non-`Delta^0_2` vertex table;
     - a construction that is not a colimit (lamp modules).
+- **w5-111, 2026-09-18: KMS edges and Kazhdan double cones are not one-way propagators (obstruction).**
+  - *Result.*  [[kazhdan-double-cones-add-one-sigma1-bit]] closes two of the escapes left by w3-111.
+  - *KMS edges.*  An assembly's presentation uses only the generators of each edge group, never its
+    relators.  So a KMS machine group used as an **edge** is the free edge on the same words.  It adds only
+    an amenability certificate for the image subgroup in the vertex, and a KMS-edge propagator is equivalent
+    to a vertex-side one.
+  - *Kazhdan cones.*  For a double pair `Gamma ≤ G` (with `G *_Gamma G` nonsofic, as in Kun-Thom v3), the cone
+    `X(H,C) = (H * G)/<<[C, Gamma]>>` is sofic iff `H` is sofic and `C = 1`.  It is finitely presented iff `C`
+    is finitely generated.  So any computable nest of cones adds one `Sigma^0_1` conjunct and keeps a
+    `Delta^0_2` locus `Delta^0_2`.
+  - *Calibration.*  With `C` infinitely generated and recursively enumerated, the cone gives a new proof of
+    `Pi^0_2`-hardness for recursive presentations.
+  - *Exact step.*  Finite presentation forces `C` to be finitely generated.  This is the double-form
+    counterpart of the Cornulier obstruction to the wreath amplifier.
+  - *What survives.*  Twisted-diagonal cones `(H x Gamma) *_(Gamma_psi) G`.  They are finitely presented with
+    a possibly infinitely generated centraliser `C_H(psi(Gamma))`, and nonsofic when that centraliser is
+    nontrivial.  Their positive branch needs a soficity theorem for amalgams over a Kazhdan subgroup that is
+    not a free factor, and no such theorem is known.

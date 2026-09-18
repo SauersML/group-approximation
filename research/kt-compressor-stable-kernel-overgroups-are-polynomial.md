@@ -42,3 +42,18 @@ For `d ≥ 2` no valuation ring meets `R` in `A`, so the one-variable density ar
 gives `H·SL_r(R ∩ O_ν) = SL_r(R)` for the valuations `ν` that `H` moves. Transvections
 `h e_ij(a) h^(-1) = I + a·(he_i)(e_j^T h^(-1))` lie in `H`. Splitting them into elementary
 matrices needs coefficients in `R`, which `H` does not contain.
+
+## Attempts
+
+* **Resolved (w5-121): proved, via `kt-kernel-overgroups-polynomial-via-vertex-compressors-proof`.**
+  The compressor is chosen after the column. For a column `u = he_i` of `h ∈ H` and a bad
+  exponent `m` of `uv^T` with `m_(i0) < 0`, pick `P ∈ Mon` whose rows all lie in one open
+  normal cone of `conv(∪ supp u_k)`, at a vertex `m*`, and all lie close to `e_(i0)`.
+  Then `x^(−Pm*)·P·u` is `A`-unimodular: on the torus because `u` is `R`-unimodular, and on
+  every coordinate hyperplane because only the `m*` monomial survives. By
+  Quillen–Suslin and zero-entry extraction, `P·(uv^T) ∈ M_r(A)`. But `Pm` is negative in
+  every coordinate, a contradiction. So every conjugated transvection is polynomial, and
+  `H = SL_r(A)` by the transvection criterion. This uses one `P` per bad exponent, which
+  avoids the cone gap `∩ P^(-1)(N^d) ⊋ N^d` of the fixed-shape compressors `I + kE_21`.
+  It also treats the Koszul-type columns `(x_1,x_2,x_3)` like any other column. In `d = 1`,
+  where `P = 1`, it reproves the maximality calibration.

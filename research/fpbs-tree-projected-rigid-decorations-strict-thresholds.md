@@ -94,6 +94,23 @@ established claims:
   decoration. A small-`m` route needs vertical steps or deeper excursions, with the
   vertical-step root `0.0777 < p*`, together with an exact pattern transfer. The lumped
   count with vertical steps is worse at every `m` from 3 to 18.
+* **Vertical steps and offset classes (2026-09-18).**
+  `fpbs-tree-projected-vertical-slot-second-moment` adds one oriented vertical step
+  per slot to the excursion trails. It tracks the fibre offset in the classes
+  `h = -c, 0, c` and generic, and bounds the transfer by a monotone LP capacity map.
+  This avoids the double counting that made the lumped matrix worse with vertical
+  steps. An exact Collatz–Wielandt certificate settles `v = 2` for `m = 15, 16, 17`,
+  for all heights. So `v = 2` with uniform multiplicity is now closed for every
+  `m >= 15`.
+  **Where it stops:**
+  * At `m = 14` the certificate fails, with margin `-0.0045`.
+  * Two excursions per slot are worse below `m = 16`: the heights-uniform count
+    `m^comps (m-1)^fedges` loses more than the first moment gains.
+  * At `m = 3`, even the first moment of these ensembles vanishes below `p*`: with
+    one vertical step and at most 3 excursions per slot, `3W <= 0.9987`.
+
+  `m = 3..14` needs exact pattern counts in place of the uniform bound, together with
+  vertical moves in both orientations.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts

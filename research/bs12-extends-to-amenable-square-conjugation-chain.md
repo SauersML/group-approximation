@@ -7,9 +7,14 @@ distinct_from:
   amenable-alphabet-magnus-shift-dictionary-sofic: that is the dictionary theorem with an amenable alphabet as hypothesis; this is the calibration instance of that hypothesis at the model singular extreme, BG.
   bg-shift-chains-die-in-residually-linear-alphabets: that rules out residually periodic, linear, solvable and compact alphabets; this asks whether an amenable alphabet outside that class exists.
   baumslag-gersten-group-satisfies-boone-higman: that asks for an embedding of BG in a finitely presented simple group; this asks for an amenable group containing the Magnus kernel's chain faithfully on one piece, and says nothing about BG itself embedding.
+artifacts:
+  - research/bs12-amenable-square-chain-induced-tower-proof.md
 ---
 
-OPEN. Is there an amenable group `Q` containing
+ESTABLISHED (written proof, unreviewed): yes, and `Q` can be taken locally
+solvable. Proof: [[bs12-amenable-square-chain-induced-tower-proof]].
+
+The question was: is there an amenable group `Q` containing
 `BS(1,2) = <x_0, x_1 | x_1^(-1) x_0 x_1 = x_0^2>` as a subgroup, together with
 elements `x_2, x_3, ...` such that
 
@@ -57,3 +62,23 @@ elements `x_2, x_3, ...` such that
   injective endomorphism `theta` with `theta(s) = s^2`, the ascending HNN
   extension of `(P', theta)` is amenable and supplies `t`. This reduces the
   extension lemma to building self-similar amenable overgroups.
+
+## Attempts
+
+1. **Induced-module prepend tower (w5-073, 2026-09-18).** *Settles the
+   claim positively.* [[bs12-amenable-square-chain-induced-tower-proof]].
+   - **Prepend step.** `Phi(K,c) = (Q[K] (x)_(Q[<c>]) Q_(1/2)) rtimes K`,
+     with the new bottom letter `e = 1 (x) 1`. This gives `c^(-1) e c = e^2`,
+     and `e` has infinite order. `Phi` is functorial for injective maps that
+     fix `c`, and it keeps solvability, raising the derived length by one.
+   - **Tower.** `H_0 = Z`, `H_(k+1) = Phi(H_k, bottom)`. Functoriality gives
+     injective maps `H_k -> H_(k+1)` that fix the bottom `k+1` letters. So the
+     direct limit is a locally solvable group with an infinite **forward**
+     chain faithful on `BS(1,2)`, although each step only **prepends**.
+   - **Not the extension lemma.** The "inductive form" above, an amenable
+     extension for arbitrary `(P,s)`, is not proved and is not needed. The
+     tower never solves the singular forward equation. It solves only the
+     backward equation, which is linear, universally.
+   - **Stronger.** `Phi(H_inf) = H_inf` gives a shift endomorphism. So `BG`
+     has an elementary amenable quotient in which `a` has infinite order:
+     [[baumslag-gersten-elementary-amenable-quotient-keeps-a]].

@@ -479,6 +479,27 @@ content in that region.
   the jump estimate (b) is not load-bearing. Next: split the density into the
   off-spine Russo part and the activation part, and decide whether the Russo
   part alone factorizes against `T J T`.
+* **Annealed pivotal factorization and the reduced gate (2026-09-18,
+  w6-123).** `fpbs-annealed-pivotal-factorization-off-spine-bridges`: in any
+  quenched product over a label-independent environment, the off-spine Russo
+  part satisfies `R <= T J beta + beta J T <= 2 T J T` uniformly in `Lambda`,
+  up to pivotals that bridge two pieces of `Z ∩ Lambda`. The reason is that
+  off bridges one separated cluster avoids the spine, so it is a pure Bernoulli
+  cluster and annealing factorizes. In spine-augmented volumes `Lambda ∪ Z_t`
+  there are no bridges, since the spine is connected. There
+  `D^R <= 2 (t-s) X J X`, and the activation part is at most the explicit
+  kernel `beta_s (S_t - S_s) beta_s`, with `S` the spine two-point function.
+  `fpbs-spine-increment-activation-gate` reruns the Bihari gate over this
+  exhaustion, with an atomless right-endpoint measure. So (G) reduces to the
+  single fully annealed inequality (AG*): `beta (S_t - S_s) beta <= kappa_A X J X`.
+  Every collapse family over a connected spine grown from `∅` violates it,
+  the continuous-activation family included.
+
+  **Where it dies:** the Russo part is not the obstruction. The whole failure
+  is the Bernoulli-sandwiched spine increment. Heuristically this is
+  `∫ dS/S = infinity`, because `S_{p_c} = 0`. Next: prove the log law
+  `kappa_A((s,t]) >= c log(m(t)/m(s))`, and identify an invariant input that
+  forces (AG*).
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
