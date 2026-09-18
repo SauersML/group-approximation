@@ -6013,6 +6013,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryPr
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeMilnor
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeLadder
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Assembly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.SchreierSwap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
