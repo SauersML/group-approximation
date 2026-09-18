@@ -106,8 +106,8 @@ theorem surjStab_col_row_mem_map {g h : St n R} {v w : Fin n → R}
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_col_row_mem_map
 
-/-- `x` has a conjugate of the form `(stab g₁ · padCol v₁)(stab g₂ · padRow w)(stab g₃ · padCol v₃)`,
-i.e. a conjugate in `P Q P`. -/
+/-- `x` has a conjugate in `P Q P`, i.e. of the form
+`(stab g₁ · padCol v₁)(stab g₂ · padRow w)(stab g₃ · padCol v₃)`. -/
 def SurjStabConjTriple (x : St (n + 1) R) : Prop :=
   ∃ (z : St (n + 1) R) (g₁ g₂ g₃ : St n R) (v₁ w v₃ : Fin n → R),
     z * x * z⁻¹ =

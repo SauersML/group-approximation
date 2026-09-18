@@ -94,7 +94,8 @@ theorem eq_one_of_row_zero_finset (L : I) (T : Finset I) (hLT : L ∉ T) :
     have h1 : act v' (unitVec b) = unitVec b :=
       act_eq_self_of_rootSpan (p := fun i j => i = L ∧ j ∈ T)
         (fun _ j hp => by
-          rw [unitVec_apply, if_neg (show j ≠ b from fun hjb => hbT (by rw [← hjb]; exact hp.2))]) hv'
+          rw [unitVec_apply,
+            if_neg (show j ≠ b from fun hjb => hbT (by rw [← hjb]; exact hp.2))]) hv'
     have hd : d = 0 := by
       have e := hfix b hbL
       rw [act_mul, h1, act_x_apply, if_pos rfl] at e

@@ -128,3 +128,56 @@ theorem petalTurnInv_initial {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X
       side := hside }
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurn.petalTurnInv_initial
+
+/-- **The petal search terminates** in a walk turning to its successors. -/
+theorem exists_succTurn_of_inv {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X.toCombMap.Dart}
+    {x₀ : X.toCombMap.Dart} (hE : PetalTurnEnv X T t₁ t₂) :
+    ∀ (n : ℕ) (W₀ : List X.toCombMap.Dart), W₀.length ≤ n → PetalTurnInv X T t₁ t₂ x₀ W₀ →
+      ∃ W₁ : List X.toCombMap.Dart, PetalTurnInv X T t₁ t₂ x₀ W₁ ∧ PetalSucc.SuccTurn X W₁ := by
+  intro n
+  induction n with
+  | zero =>
+    intro W₀ hn hI
+    exact absurd (List.eq_nil_of_length_eq_zero (Nat.le_zero.mp hn)) hI.ne_nil
+  | succ n ih =>
+    intro W₀ hn hI
+    rcases succTurn_or_cut hI.chain hI.closes with hS | ⟨u, y, B, y', v, rfl, hv, hbad⟩
+    · exact ⟨W₀, hI, hS⟩
+    · obtain ⟨hl₁, hl₂⟩ := length_cut_lt u B v y y'
+      rcases petalTurnInv_cut hE hI hv hbad with hI' | hI'
+      · exact ih (y :: B) (by omega) hI'
+      · exact ih (u ++ y' :: v) (by omega) hI'
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurn.exists_succTurn_of_inv
+
+/-- **The cactus petal as a turning walk on `∂K`** (lane gl-p06-18b). -/
+theorem cellPocketLakeFreePetalTurn : CellPocketLakeFreePetalTurnStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j K _hij _hlabel _hW hw _hfree C _hC hCK
+  have hE := petalTurnEnv_of_cellPocket K hw
+  obtain ⟨x₀, hx₀⟩ := Quotient.exists_rep C.face
+  have hx₀' : X.toCombMap.faceOf x₀ = C.face := hx₀
+  have hs : X.toCombMap.faceOf x₀ ∈ sideFaces X.toCombMap K.boundary.cycle := by
+    rw [sideFaces_boundaryCycle_eq (X.toCombMap.connected_of_planar X.planar) K.boundary
+      K.outerFace_not_mem, hx₀']
+    exact hCK
+  obtain ⟨W₁, hI, hS⟩ := exists_succTurn_of_inv hE (invDarts X K.boundary.cycle).length
+    (invDarts X K.boundary.cycle) (Nat.le_refl _) (petalTurnInv_initial hE hw hs)
+  refine ⟨W₁, hI.ne_nil, hS, ?_, 0, ?_, ?_, ?_⟩
+  · rw [← hx₀']
+    exact hI.side
+  · rw [List.rotate_zero]
+    exact hI.sublist
+  · rw [List.rotate_zero]
+    exact hI.conv₁
+  · rw [List.rotate_zero]
+    exact hI.conv₂
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurn.cellPocketLakeFreePetalTurn
+
+/-- **The lake-free enclosed face set statement holds.** -/
+theorem cellPocketFaceSetLakeFreeEnclosed : CellPocketFaceSetLakeFreeEnclosedStatement.{u, w, v} :=
+  cellPocketFaceSetLakeFreeEnclosed_of_petalTurn cellPocketLakeFreePetalTurn
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurn.cellPocketFaceSetLakeFreeEnclosed
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.PetalTurn

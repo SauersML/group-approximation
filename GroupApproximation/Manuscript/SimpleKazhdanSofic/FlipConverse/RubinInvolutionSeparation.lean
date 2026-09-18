@@ -22,8 +22,8 @@ homomorphism, so it kills every involution.  But the first-return map `T_V ∈ F
   `Φ F_V ≤ F_{closure O}`.  Take `p = Φ g` with `g ∈ F_V`, and an involution `σ ∈ [[S]]`
   supported off `closure O`.  Then `σ` commutes with every `Φ f` above, so `Φ⁻¹ σ` commutes with
   every involution of `[[T]]` supported in `V`.  By `supportedIn_compl_of_forall_involution_commute`
-  it lies in `F_{Vᶜ}`, hence commutes with `g`.  So `p` commutes with `σ`, and the same forcing lemma
-  on `Y` gives `p ∈ F_{closure O}`.
+  it lies in `F_{Vᶜ}`, hence commutes with `g`.  So `p` commutes with `σ`, and the same forcing
+  lemma on `Y` gives `p ∈ F_{closure O}`.
 * Lower bound, from separation (`rubinRigid_closure_involutionImageSupport_le_rubinTransport`):
   suppose `Φ f`, `Φ k` have disjoint moved sets whenever `f`, `k` are involutions with
   `f ∈ F_V`, `k ∈ F_{Vᶜ}`.  For such `k` the open set `movedSet (Φ k)` misses `O`, hence misses
