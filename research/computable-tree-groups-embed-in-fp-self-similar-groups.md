@@ -85,3 +85,35 @@ fail while that one holds.
      finitely presented self-similar construction (affine hosts, contracting
      groups through Nekrashevych) contains groups with unbounded word problem
      complexity, by (N2) and `kms-groups-avoid-commutative-algebra-affine-hosts`.
+2. **Hull then Higman, with the uniform hulls killed (2026-09-17).** Route
+   `computable-tree-embedding-via-decidable-self-similar-hulls`.
+   - *The split.* This claim holds iff two halves hold, and each is implied by
+     this claim.
+     - (3a) `computable-tree-groups-embed-in-decidable-fg-self-similar-groups`:
+       a finitely generated self-similar hull with solvable word problem. This is
+       the co-r.e. side, since a finite section table gives a computable action.
+     - (3b) `decidable-fg-self-similar-groups-embed-in-fp-self-similar`: a
+       Higman step for inputs that already have a section table. This is the
+       r.e. side.
+   - *Claimed obstruction (OPEN, pending referee review).* `computable-tree-involution-escapes-local-self-similar-hulls`.
+     - Diagonalizing a rigid swap far out on the spine against every finite
+       section table gives a computable involution `g` of `T_2`. For any fixed
+       computable list of injective level-local re-encodings (alphabet
+       enlargements, fixed idle-level schedules, finite-state conjugations,
+       blockings), each re-encoding sends `g` outside every finitely generated
+       self-similar group.
+     - The input `(C_2, g)` has trivial word problem.
+   - *What it kills.* Attempt 1 above with a fixed idle schedule, and Attempt 3
+     of `every-fp-rf-group-embeds-in-fp-self-similar-group`, the self-similar
+     closure of the given action.
+   - *What survives.* Only re-encodings chosen from the input, e.g. idle levels
+     scheduled by the running time of the portrait algorithm, can build the hull.
+   - *Where it stops.* Neither half is proved.
+     - For (3a) the missing piece is a mechanism that realizes input-dependent
+       schedules with a finite table while keeping the word problem decidable.
+       Bartholdi--Mitrofanov (arXiv:1710.10109) show that functionally recursive
+       groups can have undecidable word problem, so tables can compute, but they
+       give no control of decidability.
+     - For (3b) no Higman-type construction preserving self-similarity is known.
+       Contracting automata groups such as the first Grigorchuk group are the
+       first test inputs.
