@@ -61,10 +61,15 @@ handles it, without the torsion hypothesis.
 Corlette and Gromov--Schoen for `Sp(n,1)` and `F_4^(-20)`), case 2b occurs only for
 `H^n`, `n >= 3`, and `CH^n`, `n >= 2`. This is not used in the proof.
 
-**Trust surface.** Cited, not re-read:
-- Foertsch--Lytchak;
-- Mostow--Prasad rigidity, including that every automorphism of `Isom(X)^0` is
-  induced by an isometry;
-- Borel density;
+**Trust surface.** Pinned by referee b in Witte Morris, *Introduction to Arithmetic Groups*,
+math/0106063v6: Mostow rigidity (15.1.2), pp. 309--310, whose hypotheses hold for
+`Isom(X)^0` with `X` irreducible and `X ≠ H^2`; Borel density, Cor. 4.5.3
+(`C_G(Γ) = Z(G)`), which gives `VZ = 1`; the commensurator criterion, Remark 5.2.5(1) and
+Ex. 5.2#3; arithmeticity, Thm 5.2.1, which excludes only `SO(1,n)` and `SU(1,n)`.
+Foertsch--Lytchak is pinned in
+`research/artifacts/gq-referee-b-bs-class-faithful-member-and-cat0-tree-factor.md`.
+
+Cited, not re-read:
+- that every automorphism of `Isom(X)^0` is induced by an isometry;
 - linearity of lattices via the adjoint representation;
 - the fact that a finite extension of a discrete subgroup is discrete.
