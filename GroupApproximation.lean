@@ -5613,6 +5613,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.Relators
 import GroupApproximation.Manuscript.NonMF.Full.GL05c.Statement
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.StarAlgebra
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.FoldAlgebra
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.TranslationForm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
