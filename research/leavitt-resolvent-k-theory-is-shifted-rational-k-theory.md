@@ -9,8 +9,8 @@ distinct_from:
   leavitt-resolvent-derived-units-mod-centre-not-fp: that excludes the central quotients through scalar commutators; this excludes E_N(R_L) itself through infinitely generated symbols.
 ---
 
-**ESTABLISHED** through `leavitt-resolvent-k-theory-is-shifted-rational-k-theory-proof`. Lane proof, not
-independently reviewed. It applies the refereed `register-completion-pimsner-from-supercoherence`, together with
+**ESTABLISHED** through `leavitt-resolvent-k-theory-is-shifted-rational-k-theory-proof`. Refereed: gq-referee-a PASS, proof-gap lens
+(report 7f76d93e1, N1--N3 applied); one referee so far. It applies the refereed `register-completion-pimsner-from-supercoherence`, together with
 Quillen's localization sequence for a Dedekind domain and excision for `⊕_N Q`, neither read at source. It makes
 §3 of `research/artifacts/gq-steinberg-q-e-n-of-resolvent-ring-status.md` a theorem. No priority is claimed.
 
