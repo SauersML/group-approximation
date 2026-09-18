@@ -79,3 +79,26 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
 universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
+
+section PickStep
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **A uniform choice class**: a choice class (`ExtremalClassChoice`) that keeps every dart or
+removes every dart of each arc (`ExtremalMinimalArcUniform`). -/
+def ExtremalJordanPickStepUniform (K : PocketFaceSet D eps X lo hi) (r : X.toCombMap.Dart) :
+    Prop :=
+  ExtremalClassChoice K r ∧ ExtremalMinimalArcUniform K r K.targetArc.darts ∧
+    ExtremalMinimalArcUniform K r (invDarts X K.sourceArc.darts)
+
+/-- **A uniform choice class is a pool class**: a uniform arc is met through one end
+(`extremalJordan_arcEnd_of_uniform`). -/
+theorem extremalJordanPickStep_pool_of_uniform (K : PocketFaceSet D eps X lo hi)
+    {r : X.toCombMap.Dart} (h : ExtremalJordanPickStepUniform K r) :
+    ExtremalJordanPickPool K r :=
+  ⟨h.1, extremalJordan_arcEnd_of_uniform K r K.targetArc.darts h.2.1,
+    extremalJordan_arcEnd_of_uniform K r (invDarts X K.sourceArc.darts) h.2.2⟩
+
+end PickStep
+
