@@ -65,11 +65,15 @@ independently reviewed.
 4. **From swaps to the derived subgroup.**
    - A conjugate of a swap by an element of `[[𝒢]]` is again a swap. So the swaps
      generate a nontrivial normal subgroup `S ⊴ [[𝒢]]`, and `S ≤ G_𝒪`.
-   - For minimal purely infinite effective ample groupoids, every nontrivial
-     subgroup of `[[𝒢]]` normalized by `D([[𝒢]])` contains `D([[𝒢]])`. This is Matui,
-     *Topological full groups of one-sided shifts of finite type*, J. reine angew.
-     Math. 2015, around Theorem 4.16; recalled, not re-read.
-   - Hence `D([[𝒢]]) ≤ S ≤ G_𝒪`. A perfect subgroup `L` satisfies
+   - For minimal purely infinite effective ample groupoids on a Cantor space,
+     `D([[𝒢]])` is simple. This is Matui, *Topological full groups of one-sided
+     shifts of finite type*, J. reine angew. Math. 2015, Theorem 4.16; recalled, not
+     re-read. Only simplicity is used.
+   - `S ∩ D([[𝒢]])` is normal in `D([[𝒢]])`, and it is nontrivial.
+     - Take swaps `τ_1, τ_2 ∈ S` whose supports overlap without being equal. Then
+       `[τ_1, τ_2] ≠ 1`.
+     - This commutator lies in `D([[𝒢]])`, and in `S` because `S` is normal.
+   - Simplicity then gives `D([[𝒢]]) ≤ S ≤ G_𝒪`. A perfect subgroup `L` satisfies
      `L = [L, L] ≤ D([[𝒢]])`.
 
 ## Instances

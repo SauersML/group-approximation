@@ -113,3 +113,56 @@ theorem p10FM_inZ_alpha_iff (F : Finset M.Face) {B c : List M.Dart} (hB : ∀ d 
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists.p10FM_inZ_alpha_iff
+
+/-- **Region constancy** of a quadrant colouring along the face classes of `c`. -/
+theorem p10FM_z_step (F : Finset M.Face) {B c : List M.Dart} (hB : ∀ d ∈ B, d ∈ c)
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d) (p q : Bool) :
+    ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y →
+      p10FM_z M F B p q x = p10FM_z M F B p q y := by
+  intro x y hxy
+  rcases hxy with rfl | ⟨hk, rfl⟩
+  · exact p10FM_z_congr M (by rw [M.faceOf_facePerm x])
+  · exact p10FM_z_congr M (p10FM_inZ_alpha_iff M F hB hc p q hk)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists.p10FM_z_step
+
+/-- **Independence**: no boundary dart of `F` has both faces in one quadrant. -/
+theorem p10FM_z_indep (F : Finset M.Face) {B c : List M.Dart}
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d) (p q : Bool) :
+    ∀ d ∈ c, p10FM_z M F B p q d = false ∨ p10FM_z M F B p q (M.alpha d) = false := by
+  intro d hd
+  obtain ⟨hin, hout⟩ := (hc d).mp hd
+  by_cases hq : q = true
+  · right
+    rw [p10FM_z_eq_false_iff M F B p q (M.alpha d)]
+    rintro ⟨-, hF⟩
+    exact hout (hF.mpr hq)
+  · left
+    rw [p10FM_z_eq_false_iff M F B p q d]
+    rintro ⟨-, hF⟩
+    exact hq (hF.mp hin)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists.p10FM_z_indep
+
+/-- A face outside `F` and off the quadrant stays outside the moved face set. -/
+theorem p10FM_not_mem_flip {F : Finset M.Face} {B c : List M.Dart} (hB : ∀ d ∈ B, d ∈ c)
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d) {p q : Bool} {f : M.Face}
+    (hf : f ∉ F) (hnz : ¬p10FM_InZ M F B p q f) : f ∉ flipFaces M F (p10FM_z M F B p q) :=
+  not_mem_flipFaces (p10FM_z_step M F hB hc p q) hf fun x hx =>
+    (p10FM_z_eq_false_iff M F B p q x).mpr (by rw [hx]; exact hnz)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists.p10FM_not_mem_flip
+
+/-- A face of `F` off the quadrant stays inside the moved face set. -/
+theorem p10FM_mem_flip {F : Finset M.Face} {B c : List M.Dart} (hB : ∀ d ∈ B, d ∈ c)
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d) {p q : Bool} {f : M.Face}
+    (hf : f ∈ F) (hnz : ¬p10FM_InZ M F B p q f) : f ∈ flipFaces M F (p10FM_z M F B p q) :=
+  mem_flipFaces (p10FM_z_step M F hB hc p q) hf fun x hx =>
+    (p10FM_z_eq_false_iff M F B p q x).mpr (by rw [hx]; exact hnz)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists.p10FM_mem_flip
+
+end Colour
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExists

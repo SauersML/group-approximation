@@ -49,6 +49,17 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
      of that graph after attaching finitely many orbits of 2-cells.
    - This is the Stein–Farley question in amalgam form, shared with bh-g3-steinfarley.
 
+3. **Local transposition presentation (bh-one-relator, 2026-09-18).** *Open; partly checked.*
+   `v-times-full-groups-have-local-transposition-presentations` states the Quick-type presentation of
+   `F(T)`: basic transpositions of product pieces, with order, conjugacy and two-directional split
+   relations. For finite free `X` this is Bleak--Quick for `V_(2,n)`, and for `nV` it is Quick's
+   Theorem `thm:infpres`.
+   - With lifts to `Γ~`, it gives `K = 1`.
+   - Order, both splits and representative disjoint commutations are verified in `Γ~` from (R1) and
+     (R2).
+   - Conjugacy with overlapping supports is the open part. It is combinatorics in `Γ~`, with no
+     dynamics.
+
 **Lesson for general BH.**
 - The gluing half of P2′ is a statement about Thompson-type self-similarity, not about dynamics. If the target
   `F(T)` is superperfect, as Li's theorem is expected to give (recalled, not read), it is enough to prove that the kernel of a finitely presented self-similar model is
