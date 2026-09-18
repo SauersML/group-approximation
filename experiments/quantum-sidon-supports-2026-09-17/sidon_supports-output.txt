@@ -1,0 +1,18 @@
+E1 dim Phi(A_0) = 36 dim Phi(A_1) = 36
+E1 Phi(A_0), Phi(A_1) commute: err 6.071532165918825e-18
+E1 S(0,0) dim 4 blocks ([2], 1)
+E1 S(0,1) dim 9 blocks ([3], 1)
+E1 S(0,2) dim 1 blocks ([1], 1)
+E1 S(1,1) dim 4 blocks ([2], 1)
+E1 k_min product over N-slots = 6 (d = 6 )
+E1 site-1 supports commute: err 3.656112350607221e-16
+E1 site-1 supports generate dim 36 of 36
+E1 dim tensor of supports 36 = dim Phi(A_0) 36 ; membership residual 6.731800026102354e-16
+E2 Phi(A_0), Phi(A_1) commute: err 1.1535911115245767e-16
+E2 site-0 support of Phi(A_0): dim 4 ; of Phi(A_1): dim 2
+E2 these supports commute? err 1.0 (nonzero = teeth)
+E3 commute err 3.3306690738754686e-16
+E3 dim/centre product 169.0 vs d^2 = 100
+E3 k_min product 1 vs d = 10
+E4 dim image 16 S1 blocks ([2], 1) S2 blocks ([2], 1)
+E4 k_min product 4 >= d = 4
