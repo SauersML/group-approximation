@@ -5775,6 +5775,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Extend
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Cases
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Injective
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSequence
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTValuation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
