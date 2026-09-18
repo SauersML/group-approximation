@@ -6,11 +6,15 @@ title: A group acting on a connected graph with finitely many orbits of vertices
 distinct_from:
   sl-n-q-is-colimit-of-lattice-stabilizers: that presents SL_n(Q) as the colimit over the restricted product of chambers; this counts the orbits of that action and shows no cocompact model with finitely generated stabilizers exists for any of the gq targets.
   adelic-median-graph-automorphisms-are-restricted-products: that computes the full automorphism group of the adelic median graph; this is the orbit structure of SL_2(Q) and PGL_2(Q) on it, and a general finite-generation lemma.
+artifacts:
+  - research/artifacts/gq-referee-a-adelic-tree-product-lemmas.md
 ---
 
 **ESTABLISHED** through
 `cocompact-fg-stabilizer-actions-force-finite-generation-proof`
 (elementary and standard; no novelty is claimed; not independently reviewed).
+*Reviewed (gq-referee-a, proof-gap lens, 2026-09-18):* PASS. See
+`research/artifacts/gq-referee-a-adelic-tree-product-lemmas.md`.
 
 ## Statement
 

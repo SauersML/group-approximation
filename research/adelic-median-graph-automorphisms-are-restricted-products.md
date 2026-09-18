@@ -7,11 +7,15 @@ distinct_from:
   cocompact-fg-stabilizer-actions-force-finite-generation: that counts the orbits of SL_2(Q) and PGL_2(Q) on the adelic median graph; this computes the full automorphism group of the graph and rules out envelopes acting on it.
   no-q-in-tree-product-actions-with-finite-stabilizers: that excludes (Q,+) from actions on products of trees with finite vertex stabilizers; this allows arbitrary stabilizers but only automorphisms of the adelic graph, and rules out finitely generated groups of them.
   lifts-add-no-unipotent-divisibility: that rules out central and covering lifts as hosts; this rules out groups of automorphisms of the development of the adelic complex of groups.
+artifacts:
+  - research/artifacts/gq-referee-a-adelic-tree-product-lemmas.md
 ---
 
 **ESTABLISHED** through
 `adelic-median-graph-automorphisms-are-restricted-products-proof`
 (elementary; no novelty is claimed; not independently reviewed).
+*Reviewed (gq-referee-a, proof-gap lens, 2026-09-18):* PASS. See
+`research/artifacts/gq-referee-a-adelic-tree-product-lemmas.md`.
 
 ## Setup
 
