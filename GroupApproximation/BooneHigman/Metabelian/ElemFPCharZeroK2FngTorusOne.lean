@@ -57,9 +57,9 @@ noncomputable def czK2FngTorus_slThreeOneEquiv :
   toFun := Matrix.SpecialLinearGroup.map czK2FngTorus_oneRingEquiv.toRingHom
   invFun := Matrix.SpecialLinearGroup.map czK2FngTorus_oneRingEquiv.symm.toRingHom
   left_inv g := Matrix.SpecialLinearGroup.ext _ _ fun i j ↦ by
-    simp [Matrix.SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, Matrix.map_apply]
+    simp
   right_inv g := Matrix.SpecialLinearGroup.ext _ _ fun i j ↦ by
-    simp [Matrix.SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, Matrix.map_apply]
+    simp
   map_mul' x y := map_mul (Matrix.SpecialLinearGroup.map czK2FngTorus_oneRingEquiv.toRingHom) x y
 
 #audit_axioms

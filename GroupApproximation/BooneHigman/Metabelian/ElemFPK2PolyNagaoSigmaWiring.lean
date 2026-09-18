@@ -178,10 +178,10 @@ theorem k2PolyNagaoSigma_stab_of_statement (hS : k2PolyNagaoSigma_Statement) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_stab_of_statement
 
 /-- **Endpoint.**  The residual gives `K₂(N, F_p[X]) = ⊥` for `N ≥ 5`. -/
-theorem k2PolyNagaoSigma_K2_eq_bot_of_statement (hS : k2PolyNagaoSigma_Statement) {p : ℕ}
+theorem k2PolyNagaoSigma_K2_bot_of_stmt (hS : k2PolyNagaoSigma_Statement) {p : ℕ}
     (hp : p.Prime) {N : ℕ} (hN : 5 ≤ N) : K2n N (Polynomial (ZMod p)) = ⊥ :=
   k2PolyNagao_K2_eq_bot_of_mono (k2PolyNagaoSigma_mono_of_statement hS) hp hN
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_K2_eq_bot_of_statement
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_K2_bot_of_stmt
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

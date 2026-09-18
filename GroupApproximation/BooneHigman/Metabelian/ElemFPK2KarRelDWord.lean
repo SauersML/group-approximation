@@ -63,14 +63,16 @@ theorem k2KarRel_D_dies {M : ℕ} (i j k : Fin M) (hij : i ≠ j) (hik : i ≠ k
     (h : Polynomial (Localization.Away s)) :
     cubeDiagDilate_StDies (k2KarRel_W s i j k hik hjk t a n h *
       (k2KarRel_W s i j k hik hjk t (s * a) (n + 1) h)⁻¹) := by
-  refine ⟨M + 1, Nat.le_succ M, ?_⟩
-  have hl : ∀ m : Fin M, Fin.castLEEmb (Nat.le_succ M) m ≠ Fin.last M := fun m e => by
-    have h1 : m.val = M := congrArg Fin.val e
-    have h2 := m.isLt
-    omega
-  have hne := (Fin.castLEEmb (Nat.le_succ M)).injective.ne hij
+  refine ⟨M + 1, Nat.le_add_right M 1, ?_⟩
+  have hl : ∀ m : Fin M, Fin.castLEEmb (Nat.le_add_right M 1) m ≠ Fin.last M :=
+    fun m e => by
+      have h1 : m.val = M := congrArg Fin.val e
+      have h2 := m.isLt
+      omega
+  have hinj := (Fin.castLEEmb (Nat.le_add_right M 1)).injective
   rw [map_mul, map_inv, k2KarRel_indexMap_W, k2KarRel_indexMap_W,
-    k2KarRel_W_succ s _ _ _ (Fin.last M) hne _ _ (hl i) (hl j) (hl k) ht h, mul_inv_cancel]
+    k2KarRel_W_succ s _ _ _ (Fin.last M) (hinj.ne hij) (hinj.ne hik) (hinj.ne hjk) (hl i)
+      (hl j) (hl k) ht h, mul_inv_cancel]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarRel_D_dies
 
