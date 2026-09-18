@@ -5,6 +5,7 @@ kind: claim
 title: Every dissection of a unimodular cell into its edge-split descendants is refined by one split tree that restricts to a split tree on each piece
 artifacts:
   - research/artifacts/gq-bh-free-54-edge-split-reversing-tests.md
+  - research/artifacts/gq-bh-free-54-tree-domination-tests.md
 distinct_from:
   edge-split-ore-iff-synchronization-and-tree-domination: that proves Ore's condition is equivalent to synchronization plus this statement; this is the tree-domination statement itself, still open.
   unimodular-cells-synchronize-under-edge-splits: that asks whether descendant systems of two nested cells meet (pointwise, Serret-type); this asks whether descendant cells of one cell, once they tile it, can be organized into a single split tree, a purely combinatorial question.
@@ -83,6 +84,48 @@ Notation is as in `edge-split-ore-iff-synchronization-and-tree-domination`.
    - The repair was local: cut the pieces that straddle the chosen first split, then
      recurse. That suggests the measure missing in Attempt 1 should count only
      straddling pieces.
+4. **The cut-and-synchronize recursion: the split rule decides everything** (lane
+   bh-free-54, 2026-09-18). The recursion `td(C, F)` runs on fragments `F` tiling `C`,
+   all in `Desc(C)`:
+   - stop if `F = {C}`;
+   - otherwise choose a first split `s` of `C`;
+   - cut every fragment straddling its plane, using the cut lemma;
+   - replace every fragment that lies in a child without descending from it by a
+     synchronization tree (bh-free-61's braid-cut game);
+   - recurse into both children.
+
+   **Correctness.** Each piece `r` of `D` is only ever refined by split trees of its
+   own fragments. So on termination the leaves `T` satisfy `T ∈ Trees(C)` and
+   `T|r ∈ Trees(r)` for every `r`. So TD follows from termination of `td` for some
+   rule choosing `s`. Two rules were tested:
+   - **R1, follow the deepest.** Take `s` to be one descent step of the fragment with
+     the largest entry sum. **It runs away.** In rank 3, 19 of 23 random non-tree
+     instances hit the caps (up to 179549 cuts and 23859 synchronizations). In rank 4,
+     18 of 70 did.
+   - **R2, least damage.** Minimise twice the number of straddling fragments plus the
+     number of non-inherited ones. **It always terminated, with a small repair.**
+     - Rank 3: 23 of 23 random instances, at most 5 cuts, depth at most 13, and at
+       most 1.27 times as many leaves as pieces.
+     - Rank 4: 70 of 70 random instances, at most 7 cuts, and at most 1.83 times as
+       many leaves as pieces.
+     - All named instances. `Z` gives 4 leaves (1 cut), `M` and `M′` give 8 each
+       (2 cuts), the 9-piece prime gives 13 (4 cuts), and bh-major-mcg-2's 7-piece
+       restriction gives 9 (2 cuts, matching its hand repair).
+     - **No synchronization was ever needed under R2.** Every cut fragment landed in
+       the descendant set of its child.
+
+   **Conjecture (TD-LD).** The least-damage recursion terminates on every
+   descendant dissection. It would imply (TD), and then Ore's condition given (Sync_m).
+
+   **What a proof needs.** A potential that R2 decreases. It cannot be the entry sums
+   of fragments, since R1 decreases the deepest one and diverges. It should count
+   straddling pairs, as Attempt 3 suggested.
+
+   **Why no synchronization in rank 3.** By the vertex and facet lemmas of
+   `rank-two-synchronization-off-totally-irrational-rays`, a fragment of a child that
+   shares a ray with it descends from it. So synchronization can only be forced by
+   fragments that meet no ray of the child. Least damage counts such fragments, and
+   in every test it found splits that create none.
 
 ## Evidence (MSI, single core)
 
@@ -103,6 +146,15 @@ Positive answers were re-checked with an independent absolute-coordinate test.
 Scripts and outputs are in
 `research/artifacts/gq-bh-free-54-edge-split-reversing-tests.md`.
 
+- **Cut-and-synchronize recursion (Attempt 4)** (one msismall core, 495 s).
+  - **Calibration.** In rank 2 (`m = 1`) it returns `T = D` exactly on 140 of 140
+    split trees, with no cuts or synchronizations.
+  - **Rank 3 random instances.** These are restrictions to a child of cut and
+    synchronized random split trees: 1738 in all, of which 1715 are already trees.
+  - **Rank 4 random instances.** Of 1024, 954 are already trees.
+  - Scripts and outputs are in
+    `research/artifacts/gq-bh-free-54-tree-domination-tests.md`.
+
 ## Lesson for general BH
 
 A tree-domination statement is the combinatorial core of every Thompson-like host
@@ -111,3 +163,7 @@ cell by cell, they can reach as one global expansion.
 - **Rank one.** It is automatic, because nodes nest.
 - **Higher rank.** Nodes overlap, and it becomes a Garside-type completeness question
   for reversing through the flop squares.
+- **Choose splits by damage, not by descent.** In the tests, the repair that
+  tree domination needs is small and local exactly when each split is chosen to
+  minimise the fragments it disturbs. Following one piece's descent path, which is
+  the Garside-style normal-form instinct, diverges.

@@ -2,7 +2,7 @@
 rg: 2
 id: bounded-refinement-operads-reduce-to-their-carriers
 kind: claim
-title: If any two elementary moves of an operad with transformations have a common refinement of bounded degree, orbit finiteness in that degree gives the transformation group finitely many orbits on pairs of moves, so the carrier is already a Zaremsky actor and operadic hosts can only beat twisted Brin--Thompson through unbounded refinement depth
+title: If any two elementary moves of an operad with transformations have a common refinement of bounded degree, orbit finiteness in that degree gives the transformation group finitely many orbits on pairs of moves, so the carrier is already a Zaremsky actor and inputs placed among the transformations of a bounded-refinement operad gain nothing beyond twisted Brin--Thompson
 requires:
   - type-a-action-gives-boone-higman-for-subgroups
   - thumann-operad-groups-need-only-f-infinity-transformations
@@ -94,10 +94,28 @@ transformations.
   `interval-spherical-brown-criterion` counts only intervals of bounded length `L` whose open part
   is disconnected. It asks for the union `Y_L` of such intervals to be simply connected, that is,
   for every long pair relation to be a consequence of short ones.
-  - This is the only place where the operadic language can produce an actor from a carrier that is
-    not an actor.
-  - The finite-type calibration is the non-LCM dissection operads
-    (`non-lcm-dissection-operad-groups-are-f-infinity`) and the closed-MCG hosts.
+  - In the transformation channel, this is the only place where the operadic language can produce
+    an actor from a carrier that is not an actor.
+  - The non-LCM dissection operads (`non-lcm-dissection-operad-groups-are-f-infinity`) and the
+    closed-MCG hosts are infinite-spine operads, but they carry their inputs in the other channel
+    (Scope correction below).
+
+## Scope correction (lane, 2026-09-18, after the referee pass)
+
+This node concerns inputs placed **among the transformations** `ℐ_c`. An operad host can also carry
+a group `Λ` **through its dynamics**, when `Λ` acts by fractions rather than by transformations.
+In that channel the host is the full group `[[Λ]]`
+(`symmetric-ore-operads-containing-their-carrier-are-full-groups`). `Λ` may then have infinitely
+many orbits on pairs of tiles even when refinement is bounded.
+
+The example is the edge-split operad. It is finitely generated with transformation group `S_{m+1}`,
+and its spine is conjectured finite. Its carrier `GL_{m+1}(Z)` has infinitely many orbits on pairs
+of unimodular cones.
+
+So the first version's title phrase, "operadic hosts can only beat twisted Brin--Thompson through
+unbounded refinement depth", was too broad. It holds for the transformation channel only, and the
+title now says so. The referee's scope sentence below should be read the same way. The lemma
+itself, as the referee checked it, is unchanged.
 
 ## Lesson for general BH
 
@@ -105,12 +123,30 @@ transformations.
 - **Bounded refinement.** Common refinements of bounded size turn any orbit-finiteness of an operad
   back into Zaremsky's pair-orbit condition on the carrier. Operadic, Garside-type (LCM) and
   cube-type move languages are then no more powerful than twisted Brin--Thompson: whatever they
-  certify, the transformation group already certifies alone.
-- **The sharpened operadic actor problem.** It is the only operadic regime that can beat
-  twisted Brin--Thompson. Find a finitely presented `ℐ ⊇ G` and moves such that:
+  certify through their transformations, the transformation group already certifies alone.
+- **The sharpened operadic actor problem, transformation channel.** This is the only regime of
+  that channel that can beat twisted Brin--Thompson. Find a finitely presented `ℐ ⊇ G` and moves
+  such that:
   - `ℐ` has infinitely many orbits on pairs of moves;
   - the pair relations of bounded length lie in finitely many orbits;
   - they generate all longer relations (simple connectivity of `Y_L`).
 
-  An input with no Zaremsky actor can be carried only this way. It is also the point where the
-  closed-MCG hosts (the non-LCM gate) and the universal route meet.
+  Through the transformations, an input with no Zaremsky actor can be carried only this way.
+- **The other channel.** The dynamics channel needs no pair-orbit condition at all. There the
+  carrier acts by fractions, and the host is its full group
+  (`symmetric-ore-operads-containing-their-carrier-are-full-groups`). The closed-MCG hosts use
+  this channel.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review.
+- **Part 1.** Divisibility is equivariant, so `e_i ∣ μ = μ_j·h` gives `e_i·h^{-1} ∣ μ_j`, and every
+  orbit meets the finite set `⋃_j Div(μ_j)²`.
+- **Part 2.** The four conditions of Zaremsky's type (A) are exactly the listed hypotheses.
+- **Part 3.** This is definitional.
+- **The twisted Brin–Thompson instance.** The degree-3 common multiple of `θ_s` and `θ_t` is right:
+  splitting along `t` then `s` gives the same brick partition.
+
+**Scope.** The lemma is a reduction, not a construction. It shows that bounded-refinement operads
+certify nothing beyond their carrier, so the content that remains is the unbounded-refinement regime
+it names.

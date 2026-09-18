@@ -40,12 +40,12 @@ embeds in such a host would already be a new case of that conjecture. The candid
   actions on locally finite trees with infinitely many ends are excluded.
 - **Hosts that exist.** All of these already lie in the permutational class:
   - Houghton groups `H_n` (`n ≥ 3`);
-  - `FSym(Z) ⋊ V_(2,1)(⟨a⟩)` on the integers, with the odometer as translation (lane proof;
-    finite generation of its point stabilizers is unchecked);
+  - `FSym(Z) ⋊ V_(2,1)(⟨a⟩)` on the integers, with the odometer as translation (lane proof), and
+    `V_(2,1)(⟨a⟩)` itself (`higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness`);
   - the Houghton-like groups `H_n(G)` of finitely presented strongly shift-similar `G`.
 
   So the statement holds for every group certified by the shift-similar route.
-- **Closure.**
+- **Closure** (see also `higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness`: without faithfulness, hosts are closed under port amalgams, HNN extensions and free products; faithfulness is the one missing clause).
   - Finite direct products of hosts are hosts: take the product action and the product of the
     abelian subgroups.
   - Finite-index subgroups of hosts are hosts: a finite-index subgroup of `A` still has

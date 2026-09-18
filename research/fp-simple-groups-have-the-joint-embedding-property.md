@@ -128,3 +128,11 @@ embed in one finitely presented simple group.
      product closure of `B_A`, gives the common host. The open statement is untouched. A
      counterexample would need a finitely presented simple group outside `B_A`, and none is
      known.
+7. **Correction to Attempt 6, and the census** (lane `bh-major-product`, 2026-09-18).
+   - The odd-prime Leavitt hosts `(L_p ⊗ L_p)^× / F_p^×` have been in `B_A` since 09-13
+     (`leavitt-square-unit-groups-mod-scalars-satisfy-pbh`). Attempt 6's doubling route is a
+     second proof, new only in tensor degree `d >= 3`.
+   - `fp-simple-group-census-lies-in-the-permutational-class` records coverage family by family,
+     including the Hyde–Lodha line groups `Q_n`. JE holds for every pair drawn from the census.
+   - The weakest links there are the Titz Mite–Witzel coverage (Ciobotaru–Le Bars caveat), the
+     Kac–Moody coverage (Rybak), and the Stein-type coverage (Stein 1992, not read).
