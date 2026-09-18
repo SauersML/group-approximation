@@ -5948,6 +5948,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.FinModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Decode
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtBusby
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductSlice
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
