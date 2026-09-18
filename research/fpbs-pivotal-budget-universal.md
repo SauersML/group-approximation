@@ -321,3 +321,49 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
 
     The maximiser moves toward `p_c` (`1.8e-4` at `n=140`).
   * *Verdict.* The target stays open. Any proof must enter through the gate.
+* **Calibrate against amenable worlds (transplanter/calibration, b-p-bs3, swarm-0917).**
+  * *Sandwich (rigorous, from established nodes).*
+    - `fpbs-l2-gap-gives-bounded-pivotal-counts` gives `p_c<p_(2->2)` ⇒ PB.
+    - `fpbs-pivotal-budget-implies-nonuniqueness` gives PB ⇒ `p_c<p_u`.
+    - Hence a graph where PB fails has `p_c=p_(2->2)` and refutes Hutchcroft's
+      critical-l2 conjecture (`fpbs-nonamenability-bounds-critical-connectivity-operator`).
+    - PB is therefore no easier to *disprove* than that conjecture. By
+      `fpbs-tree-walk-pivotal-count-bounded-below-l2-threshold`, it must be
+      *proved* with genuinely linear counts.
+  * *Where nonamenability enters (rigorous).* Integrating (1.1) gives
+    `int_c^p E_q[N_(n,R)|E_(n,R)] dq/q = log(a_(n,R)(p)/a_(n,R)(c))`.
+    - On any transitive graph with uniqueness at `p`, the right side lies
+      between `log(theta(p)^2/a_n(c)) - o_R(1)` and `log(1/a_(n,R)(c))`.
+    - The only nonamenable input is Schramm's `a_n(c)<=rho^n`. It makes the
+      integrated count at least `n log(1/rho) + 2 log theta(p)` under collapse.
+    - Nothing in the hypothesis PB refers to `rho`. PB is a pivotal statement
+      that could hold on amenable graphs, where `rho=1` and the theorem is
+      silent.
+    - Quantitatively, if PB holds with `(C,p0)` and `p0>p_u`, then
+      `C >= log(1/rho)/log(p_u/p_c)`, because nonuniqueness is an interval
+      ending at `p_u`. So as `rho -> 1`, the budget constant must blow up
+      unless `p_u/p_c -> 1` at a comparable rate.
+  * *Amenable calibration (heuristic only, not a result).*
+    - On `Z^d` with `d>=11`, the lace-expansion two-point bound `|x|^(2-d)`
+      gives `a_n(p_c) ≍ n^(-(d-2)/2)`. The integrated count is then `O(log n)`.
+    - On `Z^2` at `p_c=1/2`, the four-arm exponent suggests `E[N|E]` is of
+      order `min(|X_n|, L(p))^(3/4) <= n^(3/8)`.
+    - Both suggest PB holds, far from saturated, on amenable graphs with
+      `p_c=p_u`.
+  * *Consequences for method choice.*
+    - A disproof of PB must use a mechanism that does not operate on these
+      amenable worlds. The only precise obstruction on record,
+      `fpbs-hierarchical-pivotal-amplification`, is of that nontransitive,
+      multiscale type.
+    - A proof of PB may be amenability-blind, but it must then be sharp to
+      within the linear order that trees show is necessary above
+      `p_(2->2)`.
+  * *Where it dies.*
+    - No amenable transitive graph with `p_c<1` has a *rigorous* PB. The
+      `Z^2` and `Z^d` numbers rest on unproved uniform-in-`R`
+      near-critical pivotal bounds.
+    - The heuristic therefore kills no class of approaches. It only
+      calibrates that the budget, as stated, does not detect amenability.
+    - The one rigorous price, `C >= log(1/rho)/log(p_u/p_c)`, is the
+      contrapositive of the conditional theorem and adds no new constraint.
+    - No new node was filed.
