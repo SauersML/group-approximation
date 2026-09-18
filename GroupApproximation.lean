@@ -5974,6 +5974,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.Units
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Assembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeWitness
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraNorm
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapInductiveLimitSum
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
