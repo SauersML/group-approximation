@@ -72,7 +72,8 @@ search record only).
   `g = 1`. Write `δ = Σ_k x^k f_k` with some `f_k != 0`. Pick an integer `t` with
   `f_k(lt) != 0` (a rational function has finitely many zeros), `r` with
   `f_k(lt) ∉ l^r Z_(l)`, and `N` a multiple of `l^(r-1)` larger than the spread of the
-  `k`. Then `δ` does not kill the basis vector of the copy `V_(t+k)`.
+  `k`. Applied to the basis vector `f_t` of `V_t`, the `k`-term of `δ` gives
+  `f_k(lt) f_(t-k)`, and the other terms land in other copies. So `δ f_t != 0`.
 - **Case δ = 0.** Let `ν = min_τ v_l(c_τ)` and `F_0 = {τ : v_l(c_τ) = ν}`. For
   `τ in F_0` with `s >= 1`, `ν < min m_(k_i)`, so `l^ν | k_i` for all `i`.
   - Take `r = ν+1` and `N = l^ν`.

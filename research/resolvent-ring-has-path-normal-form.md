@@ -2,6 +2,8 @@
 rg: 2
 id: resolvent-ring-has-path-normal-form
 kind: claim
+artifacts:
+  - research/artifacts/gq-referee-a-resolvent-ring-normal-form-and-rf.md
 title: The eight-relator resolvent ring R_l is a skew Laurent ring D plus an ideal with an explicit path basis [a|k_1..k_s|b] over Z_(l) and cyclic l-groups
 distinct_from:
   resolvent-ring-presentation-is-not-faithful-on-r-bar: that shows R_l is larger than its model R̄_l; this computes R_l exactly.
@@ -9,8 +11,8 @@ distinct_from:
   rf-resolvent-ring-has-z-localized-corner: that builds the corner copy of Z_(l) in the model; this identifies the whole ring, including the corner e R_l e as a tensor algebra over Z_(l).
 ---
 
-**ESTABLISHED** through `resolvent-ring-has-path-normal-form-proof`. Lane proof, not
-independently reviewed. It uses no Diamond Lemma: an explicit ring is built and the
+**ESTABLISHED** through `resolvent-ring-has-path-normal-form-proof`. Lane proof; proof-gap
+review PASS by gq-referee-a (report in `artifacts`). It uses no Diamond Lemma: an explicit ring is built and the
 universal properties are compared.
 
 **Notation.**
