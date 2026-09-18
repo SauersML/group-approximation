@@ -158,8 +158,8 @@ theorem cornerConj_x_other {i j : I} (hij : i ≠ j) (hiA : i ≠ A) (hiB : i �
     (x_commute_of_ne A B i j hAB hij hiB.symm hjA t b).mul_inv_cancel
   have hL : ∀ t : S, x B A hAB.symm t * x i j hij b * (x B A hAB.symm t)⁻¹ = x i j hij b :=
     fun t => (x_commute_of_ne B A i j hAB.symm hij hiA.symm hjB t b).mul_inv_cancel
-  rw [cornerConj, corner_conj_mul, corner_conj_mul, corner_conj_mul, corner_conj_mul, hU (-1), hL 1, hU (u - 1), hL (-v),
-    hU u]
+  rw [cornerConj, corner_conj_mul, corner_conj_mul, corner_conj_mul, corner_conj_mul,
+    hU (-1), hL 1, hU (u - 1), hL (-v), hU u]
 
 end Corner
 

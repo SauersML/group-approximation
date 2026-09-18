@@ -26,7 +26,9 @@ contractive and hence continuous.
 * `UHFModel.re_trace_star_mul_mul_le_left`, `UHFModel.re_trace_star_mul_mul_le_right`
   (`‖b a‖₂, ‖a b‖₂ ≤ ‖b‖ ‖a‖₂`);
 * `UHFModel.re_trace_star_star_mul_star` (`‖a*‖₂ = ‖a‖₂`);
-* `UHFModel.re_trace_star_mul_self_le` (`‖z‖₂² ≤ ‖z‖²`).
+* `UHFModel.re_trace_star_mul_self_le` (`‖z‖₂² ≤ ‖z‖²`);
+* `UHFModel.normSq_trace_le`, `UHFModel.norm_trace_le_sqrt` (`|tr_Q x| ≤ ‖x‖₂`);
+* `UHFModel.trace_star`, `UHFModel.ofReal_re_trace_star_mul_self`.
 -/
 
 namespace GroupApproximation.Full.TWWSchafhauser
@@ -158,6 +160,49 @@ theorem re_trace_star_mul_self_le (z : Q) : (M.trace (star z * z)).re ≤ ‖z�
   calc (M.trace (star z * z)).re ≤ ‖M.trace (star z * z)‖ := Complex.re_le_norm _
     _ ≤ ‖star z * z‖ := M.norm_trace_le _
     _ = ‖z‖ ^ 2 := by rw [CStarRing.norm_star_mul_self, sq]
+
+/-- **Cauchy--Schwarz for the trace**: `|tr_Q(x)|² ≤ ‖x‖₂²`. -/
+theorem normSq_trace_le (x : Q) : Complex.normSq (M.trace x) ≤ (M.trace (star x * x)).re :=
+  ge_of_tendsto' (M.tendsto_re_trace_star_ι_mul_ι x) fun m ↦ by
+    rw [M.trace_eq m]
+    exact normSq_normTrace_le_hsNormSq (uhfLevel m) (M.expect m x)
+
+/-- `|tr_Q(x)| ≤ ‖x‖₂`. -/
+theorem norm_trace_le_sqrt (x : Q) : ‖M.trace x‖ ≤ Real.sqrt ((M.trace (star x * x)).re) := by
+  have h := Real.sqrt_le_sqrt (M.normSq_trace_le x)
+  rw [Complex.normSq_eq_norm_sq, Real.sqrt_sq (norm_nonneg _)] at h
+  exact h
+
+/-- On a building block the trace commutes with the involution. -/
+theorem trace_star_ι (m : ℕ) (a : Matrix (uhfLevel m) (uhfLevel m) ℂ) :
+    M.trace (star (M.ι m a)) = star (M.trace (M.ι m a)) := by
+  rw [← map_star (M.ι m) a, M.trace_ι m, M.trace_ι m, Matrix.star_eq_conjTranspose]
+  exact TracialUltraproduct.normTrace_conjTranspose _ _
+
+/-- **The trace of `Q` is self-adjoint**: `tr_Q(x*) = conj tr_Q(x)`. -/
+theorem trace_star (x : Q) : M.trace (star x) = star (M.trace x) := by
+  have h1 : Tendsto (fun m : ℕ ↦ M.trace (star (M.ι m (M.expect m x)))) atTop
+      (𝓝 (M.trace (star x))) :=
+    (M.continuous_trace.tendsto (star x)).comp (M.tendsto_ι_expect_nhds x).star
+  have h2 : Tendsto (fun m : ℕ ↦ star (M.trace (M.ι m (M.expect m x)))) atTop
+      (𝓝 (star (M.trace x))) :=
+    ((M.continuous_trace.tendsto x).comp (M.tendsto_ι_expect_nhds x)).star
+  have h1' : Tendsto (fun m : ℕ ↦ star (M.trace (M.ι m (M.expect m x)))) atTop
+      (𝓝 (M.trace (star x))) :=
+    Tendsto.congr (fun m ↦ M.trace_star_ι m (M.expect m x)) h1
+  exact tendsto_nhds_unique h1' h2
+
+/-- **`tr_Q(x* x)` is real.** -/
+theorem ofReal_re_trace_star_mul_self (x : Q) :
+    (((M.trace (star x * x)).re : ℝ) : ℂ) = M.trace (star x * x) := by
+  have h1 : Tendsto (fun m : ℕ ↦ ((hsNormSq (uhfLevel m) (M.expect m x) : ℝ) : ℂ)) atTop
+      (𝓝 (((M.trace (star x * x)).re : ℝ) : ℂ)) :=
+    (Complex.continuous_ofReal.tendsto _).comp (M.tendsto_re_trace_star_ι_mul_ι x)
+  have h2 : Tendsto (fun m : ℕ ↦ ((hsNormSq (uhfLevel m) (M.expect m x) : ℝ) : ℂ)) atTop
+      (𝓝 (M.trace (star x * x))) :=
+    Tendsto.congr (fun m ↦ M.trace_star_ι_mul_ι m (M.expect m x))
+      (M.tendsto_trace_star_ι_mul_ι x)
+  exact tendsto_nhds_unique h1 h2
 
 end UHFModel
 

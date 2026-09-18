@@ -52,6 +52,7 @@ theorem isClosed_c0Set : IsClosed (c0Set F) := by
   have hg' : Tendsto (fun n => ‖g n‖) atTop (𝓝 0) := hg
   obtain ⟨N, hN⟩ := exists_lt_of_tendsto_zero hg' (half_pos hε)
   refine ⟨N, fun n hn => ?_⟩
+  show dist ‖f n‖ 0 < ε
   rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
   have h1 : ‖f n - g n‖ ≤ ‖f - g‖ := lp.norm_apply_le_norm ENNReal.top_ne_zero (f - g) n
   have h2 : ‖f n‖ - ‖g n‖ ≤ ‖f n - g n‖ := norm_sub_norm_le (f n) (g n)
@@ -66,10 +67,11 @@ def truncate (N : ℕ) (x : ∀ n : Fin N, F n) : lp F ∞ :=
   ⟨fun n => if h : n < N then x ⟨n, h⟩ else 0, by
     refine memℓp_infty_iff.2 ⟨‖x‖, ?_⟩
     rintro _ ⟨n, rfl⟩
+    show ‖(if h' : n < N then x ⟨n, h'⟩ else (0 : F n))‖ ≤ ‖x‖
     by_cases h : n < N
-    · simp only [dif_pos h]
+    · rw [dif_pos h]
       exact norm_le_pi_norm x ⟨n, h⟩
-    · simp only [dif_neg h, norm_zero]
+    · rw [dif_neg h, norm_zero]
       exact norm_nonneg x⟩
 
 theorem truncate_apply_of_lt {N n : ℕ} (x : ∀ n : Fin N, F n) (h : n < N) :
@@ -102,17 +104,20 @@ theorem c0Set_subset_closure_truncate :
   have hf' : Tendsto (fun n => ‖f n‖) atTop (𝓝 0) := hf
   refine Metric.mem_closure_iff.2 fun ε hε => ?_
   obtain ⟨N, hN⟩ := exists_lt_of_tendsto_zero hf' (half_pos hε)
-  refine ⟨truncate N fun n => f n.1, Set.mem_iUnion.2 ⟨N, ⟨fun n => f n.1, rfl⟩⟩, ?_⟩
+  let t : lp F ∞ := truncate N (fun m : Fin N => f m.1)
+  refine ⟨t, Set.mem_iUnion.2 ⟨N, ⟨fun m : Fin N => f m.1, rfl⟩⟩, ?_⟩
   rw [dist_eq_norm]
-  have hle : ‖f - truncate N fun n => f n.1‖ ≤ ε / 2 := by
+  have hle : ‖f - t‖ ≤ ε / 2 := by
     refine lp.norm_le_of_forall_le (half_pos hε).le fun n => ?_
-    have hsub : (f - truncate N fun n => f n.1) n = f n - truncate N (fun n => f n.1) n := rfl
+    have hsub : (f - t) n = f n - t n := rfl
     rw [hsub]
     by_cases h : n < N
-    · rw [truncate_apply_of_lt _ h, sub_self, norm_zero]
+    · have ht : t n = f n := truncate_apply_of_lt (fun m : Fin N => f m.1) h
+      rw [ht, sub_self, norm_zero]
       exact (half_pos hε).le
-    · rw [truncate_apply_of_not_lt _ h, sub_zero]
-      exact (hN n (Nat.le_of_not_lt h)).le
+    · have ht : t n = 0 := truncate_apply_of_not_lt (fun m : Fin N => f m.1) h
+      rw [ht, sub_zero]
+      exact (hN n (not_lt.1 h)).le
   linarith
 
 /-- **The norm-null sequences of separable spaces form a separable set.** -/
@@ -192,7 +197,7 @@ theorem mem_c0Subalgebra {f : lp E ∞} :
   Iff.rfl
 
 theorem isClosed_c0Subalgebra : IsClosed ((c0Subalgebra E : Set (lp E ∞))) :=
-  isClosed_c0Set
+  isClosed_c0Set (F := E)
 
 /-- The direct sum is a C⋆-algebra. -/
 instance c0Subalgebra.nonUnitalCStarAlgebra : NonUnitalCStarAlgebra (c0Subalgebra E) :=
@@ -205,7 +210,14 @@ theorem separableSpace_of_subset_c0Set [∀ n, TopologicalSpace.SeparableSpace (
 
 instance c0Subalgebra.separableSpace [∀ n, TopologicalSpace.SeparableSpace (E n)] :
     TopologicalSpace.SeparableSpace (c0Subalgebra E) :=
-  separableSpace_of_subset_c0Set E (s := (c0Subalgebra E : Set (lp E ∞))) le_rfl
+  separableSpace_of_subset_c0Set E (s := (c0Subalgebra E : Set (lp E ∞))) fun _ hx => hx
+
+/-- The direct sum of commutative algebras is commutative. -/
+theorem c0Subalgebra_mul_comm (hE : ∀ (n : ℕ) (a b : E n), a * b = b * a)
+    (x y : c0Subalgebra E) : x * y = y * x := by
+  refine Subtype.ext (lp.ext ?_)
+  funext n
+  exact hE n ((x : lp E ∞) n) ((y : lp E ∞) n)
 
 end Algebra
 
@@ -220,16 +232,13 @@ open GroupApproximation.Full.TWWUCT.Bootstrap.InductiveLimit
 noncomputable section
 
 /-- **The countable C⋆-direct sum** `⊕ₙ A n` of separable non-unital C⋆-algebras. -/
-def SepNUCStarAlgebra.c0Sum (A : ℕ → SepNUCStarAlgebra) : SepNUCStarAlgebra where
+abbrev SepNUCStarAlgebra.c0Sum (A : ℕ → SepNUCStarAlgebra) : SepNUCStarAlgebra where
   carrier := c0Subalgebra fun n => (A n : Type)
 
 /-- A direct sum of commutative algebras is commutative. -/
 theorem SepNUCStarAlgebra.IsCommutative.c0Sum {A : ℕ → SepNUCStarAlgebra}
-    (hA : ∀ n, (A n).IsCommutative) : (SepNUCStarAlgebra.c0Sum A).IsCommutative := by
-  intro x y
-  refine Subtype.ext (lp.ext ?_)
-  funext n
-  exact hA n (x.1 n) (y.1 n)
+    (hA : ∀ n, (A n).IsCommutative) : (SepNUCStarAlgebra.c0Sum A).IsCommutative :=
+  fun x y => c0Subalgebra_mul_comm (fun n => (A n : Type)) (fun n => hA n) x y
 
 end
 

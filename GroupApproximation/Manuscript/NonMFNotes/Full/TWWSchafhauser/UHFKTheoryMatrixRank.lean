@@ -29,7 +29,7 @@ same trace have literally the same diagonal `D`, and `D * U*` implements
 
 namespace GroupApproximation.Full.TWWSchafhauser
 
-open Matrix Unitary
+open Matrix
 
 /-- An antitone `{0,1}`-valued sequence is determined by its sum (the counting
 step behind RLL Ex. 3.4, `thm:fixed-radical-membership` in
@@ -107,16 +107,16 @@ theorem uhfK_sum_eigenvalues_eq_sum_eigenvalues₀ {p : Matrix n n ℂ} (hA : p.
 theorem uhfK_trace_eq_natCast {p : Matrix n n ℂ} (hp : IsStarProjection p) :
     ∃ r : ℕ, r ≤ Fintype.card n ∧ p.trace = (r : ℂ) := by
   have hA := uhfK_isHermitian hp
-  classical
-  refine ⟨#{i | hA.eigenvalues i = 1}, ?_, ?_⟩
+  refine ⟨(Finset.univ.filter fun i => hA.eigenvalues i = 1).card, ?_, ?_⟩
   · exact Finset.card_le_univ _
-  · rw [hA.trace_eq_sum_eigenvalues, ← Finset.sum_boole]
+  · rw [hA.trace_eq_sum_eigenvalues, Finset.natCast_card_filter]
     refine Finset.sum_congr rfl fun i _ => ?_
     rcases uhfK_eigenvalues_zero_or_one hp hA i with h | h
-    · rw [if_neg (by rw [h]; norm_num), h]
-      simp
-    · rw [if_pos h, h]
-      simp
+    · have hne : hA.eigenvalues i ≠ 1 := by rw [h]; norm_num
+      rw [if_neg hne]
+      simp [h]
+    · rw [if_pos h]
+      simp [h]
 
 /-- A projection conjugated from `d` by a unitary is equivalent to `d`, implemented
 by `d * U*`. -/
@@ -150,11 +150,12 @@ theorem uhfK_murrayVonNeumannEquiv_of_trace_eq {p q : Matrix n n ℂ}
   have hB := uhfK_isHermitian hq
   rw [hA.trace_eq_sum_eigenvalues, hB.trace_eq_sum_eigenvalues] at h
   have h' : ∑ i, hA.eigenvalues i = ∑ i, hB.eigenvalues i := by exact_mod_cast h
-  rw [uhfK_sum_eigenvalues_eq_sum_eigenvalues₀, uhfK_sum_eigenvalues_eq_sum_eigenvalues₀] at h'
+  rw [uhfK_sum_eigenvalues_eq_sum_eigenvalues₀ hA, uhfK_sum_eigenvalues_eq_sum_eigenvalues₀ hB] at h'
   have h0 : hA.eigenvalues₀ = hB.eigenvalues₀ :=
     uhfK_antitone_zero_one_eq hA.eigenvalues₀_antitone hB.eigenvalues₀_antitone
       (uhfK_eigenvalues₀_zero_or_one hp hA) (uhfK_eigenvalues₀_zero_or_one hq hB) h'
-  have hev : hA.eigenvalues = hB.eigenvalues := funext fun _ => congrFun h0 _
+  have hev : hA.eigenvalues = hB.eigenvalues :=
+    funext fun i => by simp only [Matrix.IsHermitian.eigenvalues, h0]
   have hDp := uhfK_murrayVonNeumannEquiv_diagonal hp hA
   have hDq := uhfK_murrayVonNeumannEquiv_diagonal hq hB
   rw [hev] at hDp

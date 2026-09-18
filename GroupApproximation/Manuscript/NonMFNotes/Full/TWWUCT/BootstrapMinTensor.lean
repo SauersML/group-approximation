@@ -58,8 +58,8 @@ variable {A C}
 /-- Elementary tensors multiply leg by leg. -/
 theorem gen_mul_gen (a a' : A) (c c' : C) :
     gen A C a c * gen A C a' c' = gen A C (a * a') (c * c') := by
-  rw [gen, gen, gen, ← map_mul, Algebra.TensorProduct.tmul_mul_tmul,
-    Unitization.inr_mul, Unitization.inr_mul]
+  rw [gen, gen, gen, ← map_mul (minTensorIn (Unitization ℂ A) (Unitization ℂ C)),
+    Algebra.TensorProduct.tmul_mul_tmul, Unitization.inr_mul, Unitization.inr_mul]
 
 /-- The adjoint of an elementary tensor. -/
 theorem star_gen (a : A) (c : C) : star (gen A C a c) = gen A C (star a) (star c) := by
@@ -160,9 +160,17 @@ def tmul (a : A) (c : C) : closed A C :=
 variable (A C)
 
 /-- The elementary tensor map `A × C → A⁺ ⊗_min C⁺` is continuous. -/
-theorem continuous_gen : Continuous fun p : A × C => gen A C p.1 p.2 :=
-  KirchbergAlgebra.continuous_minTensorIn_tmul.comp
-    ((Unitization.continuous_inr (𝕜 := ℂ)).prodMap (Unitization.continuous_inr (𝕜 := ℂ)))
+theorem continuous_gen : Continuous fun p : A × C => gen A C p.1 p.2 := by
+  have h1 : Continuous fun p : Unitization ℂ A × Unitization ℂ C =>
+      minTensorIn (Unitization ℂ A) (Unitization ℂ C) (p.1 ⊗ₜ[ℂ] p.2) :=
+    GroupApproximation.KirchbergAlgebra.continuous_minTensorIn_tmul
+  have h2 : Continuous fun p : A × C =>
+      ((Unitization.inr p.1 : Unitization ℂ A), (Unitization.inr p.2 : Unitization ℂ C)) :=
+    ((Unitization.continuous_inr (𝕜 := ℂ)).comp continuous_fst).prodMk
+      ((Unitization.continuous_inr (𝕜 := ℂ)).comp continuous_snd)
+  exact h1.comp h2
+
+variable {A C}
 
 /-- **Separability**: `A ⊗_min C` is separable when `A` and `C` are. -/
 instance separableSpace_closed [TopologicalSpace.SeparableSpace A]
@@ -176,9 +184,8 @@ instance separableSpace_closed [TopologicalSpace.SeparableSpace A]
       (closure (Submodule.span ℂ (generators A C) : Set (Ambient A C))) :=
     _root_.TopologicalSpace.isSeparable_closure.2
       (_root_.TopologicalSpace.IsSeparable.span (R := ℂ) hT)
-  exact hS.separableSpace
-
-variable {A C}
+  have hS' : _root_.TopologicalSpace.IsSeparable (closed A C : Set (Ambient A C)) := hS
+  exact hS'.separableSpace
 
 /-! ## Commutativity -/
 
@@ -226,6 +233,11 @@ theorem closure_comm (hA : ∀ x y : A, x * y = y * x) (hC : ∀ x y : C, x * y 
     exact h1 w hw x hx
   exact closure_minimal hsub hcl hy
 
+/-- `A ⊗_min C` is commutative when `A` and `C` are. -/
+theorem closed_comm (hA : ∀ x y : A, x * y = y * x) (hC : ∀ x y : C, x * y = y * x)
+    (x y : closed A C) : x * y = y * x :=
+  Subtype.ext (closure_comm hA hC (mem_closed.1 x.2) (mem_closed.1 y.2))
+
 end MinTensor
 
 /-- **The minimal tensor product** `A ⊗_min C` of separable non-unital C⋆-algebras. -/
@@ -234,12 +246,8 @@ def SepNUCStarAlgebra.minTensor (A C : SepNUCStarAlgebra) : SepNUCStarAlgebra wh
 
 /-- **A minimal tensor product of commutative algebras is commutative.** -/
 theorem SepNUCStarAlgebra.IsCommutative.minTensor {A C : SepNUCStarAlgebra}
-    (hA : A.IsCommutative) (hC : C.IsCommutative) : (A.minTensor C).IsCommutative := by
-  intro x y
-  show (x : MinTensor.closed A C) * (y : MinTensor.closed A C) =
-    (y : MinTensor.closed A C) * (x : MinTensor.closed A C)
-  exact Subtype.ext (MinTensor.closure_comm hA hC (MinTensor.mem_closed.1 x.2)
-    (MinTensor.mem_closed.1 y.2))
+    (hA : A.IsCommutative) (hC : C.IsCommutative) : (A.minTensor C).IsCommutative :=
+  fun x y => MinTensor.closed_comm (A := A) (C := C) hA hC x y
 
 end
 

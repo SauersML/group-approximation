@@ -36,7 +36,7 @@ namespace GroupApproximation.Full.TWWUCT
 
 open Topology
 
-universe u v w
+universe u v
 
 /-- A discrete group acting on a topological space by continuous maps. -/
 structure DiscreteAction (G : Type u) [Group G] (Z : Type v) [TopologicalSpace Z] where

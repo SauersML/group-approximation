@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseCorners
+import GroupApproximation.Analysis.CStarOrderZero
 
 /-!
 # The complement of a dilation is an inverse
