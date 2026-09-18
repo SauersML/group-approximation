@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `lift-presented-automaton-groups-satisfy-boone-higman-proof`
-(lane proof, elementary given the cited inputs; not independently reviewed; no priority claimed).
+(lane proof, elementary given the cited inputs; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-lift-presented-automaton-groups-satisfy-boone-higman.md`. Citation review (referee b) pending.
 
 ## Setting
 
