@@ -154,7 +154,8 @@ theorem gfaceWindNine_arcs (K : PocketFaceSet D eps X lo hi) {c : List X.toCombM
           extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g) (X.toCombMap.alpha d)) = mid) ∧
     (gfaceWindClause_TgtGap K ∨
       ∃ pre mid post : List X.toCombMap.Dart, K.targetArc.darts = pre ++ mid ++ post ∧
-        K.targetArc.darts.filter (extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g)) = mid) := by
+        K.targetArc.darts.filter
+          (extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g)) = mid) := by
   refine ⟨Or.inr ⟨[], K.sourceArc.darts, [], by simp, ?_⟩,
     Or.inr ⟨[], K.targetArc.darts, [], by simp, ?_⟩⟩
   · exact List.filter_eq_self.mpr fun d hd =>
