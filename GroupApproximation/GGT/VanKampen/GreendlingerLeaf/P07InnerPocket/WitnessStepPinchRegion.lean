@@ -107,3 +107,78 @@ theorem witnessStepPinch_arc_mid_faces_alpha {c : RegionCandidate D eps X}
   exact ⟨hm.2, hm.1⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_arc_mid_faces_alpha
+
+/-- **Region joint: end of `c.sideFrom i` to the reversed last dart of `c.cellArcList j`.** -/
+theorem witnessStepPinch_fan_sideI_end {c : RegionCandidate D eps X}
+    {F : Finset X.toCombMap.Face} (hR : ∀ f ∈ F, f ∉ c.1) (hij : i ≠ j) (hc : c.JoinsCells i j)
+    {p q : List X.toCombMap.Dart} {d z : X.toCombMap.Dart} (hS : c.sideFrom i = p ++ [d])
+    (hA : c.cellArcList j = q ++ [z]) :
+    WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha d) (X.toCombMap.alpha z) := by
+  obtain ⟨n, hn⟩ := RegionCandidate.boundary_cycle_rotate_of_joinsCells hij hc
+  have h : c.2.boundary.cycle.rotate n = (invDarts X (c.cellArcList i) ++ p) ++
+      d :: X.toCombMap.alpha z :: (invDarts X q ++ c.sideFrom j) := by
+    rw [hn, hS, hA, witnessStepPinch_invDarts_concat]
+    simp
+  exact witnessStepPinch_fan_of_boundaryStep (witnessStepPinch_boundaryStep_mid c h) hR
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_fan_sideI_end
+
+/-- **Region joint: first dart of `c.cellArcList j` to the start of `c.sideFrom j`.** -/
+theorem witnessStepPinch_fan_sideJ_start {c : RegionCandidate D eps X}
+    {F : Finset X.toCombMap.Face} (hR : ∀ f ∈ F, f ∉ c.1) (hij : i ≠ j) (hc : c.JoinsCells i j)
+    {q r : List X.toCombMap.Dart} {z' g : X.toCombMap.Dart} (hA : c.cellArcList j = z' :: q)
+    (hS : c.sideFrom j = g :: r) : WitnessStepPinchFan X.toCombMap F z' g := by
+  obtain ⟨n, hn⟩ := RegionCandidate.boundary_cycle_rotate_of_joinsCells hij hc
+  have h : c.2.boundary.cycle.rotate n =
+      (invDarts X (c.cellArcList i) ++ c.sideFrom i ++ invDarts X q) ++
+        X.toCombMap.alpha z' :: g :: r := by
+    rw [hn, hA, hS, witnessStepPinch_invDarts_cons]
+    simp
+  have hf := witnessStepPinch_fan_of_boundaryStep (witnessStepPinch_boundaryStep_mid c h) hR
+  rwa [X.toCombMap.alpha_involutive z'] at hf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_fan_sideJ_start
+
+/-- **Region joint (closing): end of `c.sideFrom j` to the reversed last dart of
+`c.cellArcList i`.** -/
+theorem witnessStepPinch_fan_sideJ_end {c : RegionCandidate D eps X}
+    {F : Finset X.toCombMap.Face} (hR : ∀ f ∈ F, f ∉ c.1) (hij : i ≠ j) (hc : c.JoinsCells i j)
+    {p q : List X.toCombMap.Dart} {d z'' : X.toCombMap.Dart} (hS : c.sideFrom j = p ++ [d])
+    (hA : c.cellArcList i = q ++ [z'']) :
+    WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha d) (X.toCombMap.alpha z'') := by
+  obtain ⟨n, hn⟩ := RegionCandidate.boundary_cycle_rotate_of_joinsCells hij hc
+  have h : c.2.boundary.cycle.rotate n = invDarts X (c.cellArcList i) ++
+      (c.sideFrom i ++ invDarts X (c.cellArcList j) ++ p ++ [d]) := by
+    rw [hn, hS]
+    simp only [List.append_assoc]
+  have hP : invDarts X (c.cellArcList i) = X.toCombMap.alpha z'' :: invDarts X q := by
+    rw [hA, witnessStepPinch_invDarts_concat]
+  exact witnessStepPinch_fan_of_boundaryStep (witnessStepPinch_boundaryStep_close c h rfl hP) hR
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_fan_sideJ_end
+
+/-- **Region joint (closing, empty side): when `c.sideFrom j = []`, the first dart of
+`c.cellArcList j` to the reversed last dart of `c.cellArcList i`.** -/
+theorem witnessStepPinch_fan_cellJ_cellI {c : RegionCandidate D eps X}
+    {F : Finset X.toCombMap.Face} (hR : ∀ f ∈ F, f ∉ c.1) (hij : i ≠ j) (hc : c.JoinsCells i j)
+    (hS : c.sideFrom j = []) {q q' : List X.toCombMap.Dart} {z' z'' : X.toCombMap.Dart}
+    (hAj : c.cellArcList j = z' :: q) (hAi : c.cellArcList i = q' ++ [z'']) :
+    WitnessStepPinchFan X.toCombMap F z' (X.toCombMap.alpha z'') := by
+  obtain ⟨n, hn⟩ := RegionCandidate.boundary_cycle_rotate_of_joinsCells hij hc
+  have h : c.2.boundary.cycle.rotate n = invDarts X (c.cellArcList i) ++
+      (c.sideFrom i ++ invDarts X q ++ [X.toCombMap.alpha z']) := by
+    rw [hn, hS, hAj, witnessStepPinch_invDarts_cons]
+    simp
+  have hP : invDarts X (c.cellArcList i) = X.toCombMap.alpha z'' :: invDarts X q' := by
+    rw [hAi, witnessStepPinch_invDarts_concat]
+  have hf := witnessStepPinch_fan_of_boundaryStep
+    (witnessStepPinch_boundaryStep_close c h rfl hP) hR
+  rwa [X.toCombMap.alpha_involutive z'] at hf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_fan_cellJ_cellI
+
+end PinchRegion
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
