@@ -104,3 +104,16 @@ z in Rad_MF(E_3).                                      (DER2)
     alongside that same open statement.
   - *New split.* flagship `<=` [`C*_r(Sp_4 Z, c_(1/3))` not MF] and [`C*_r(Sp_4 Z)` MF]. Each prerequisite can fail
     on its own. Surviving routes must use non-tempered finite-dimensional structure.
+- **2026-09-18, swarm-0917-w13-w13-deligne-break (finite-models): torsion-point duality for induced
+  Torelli characters. Refutation route not found; floor reduced to short positive relations.**
+  - A refutation would need honest `Mod(S_2)`-representations with a separating twist near `omega I`.
+    The candidate class was `Ind_Lambda^M phi` with `Lambda >= I`.
+  - `mod-s2-induced-torelli-characters-have-positive-relation-floors` (ESTABLISHED) shows three things.
+    Their defect is exactly `(1/3) min ||psi||_B` over integral `psi = chi mod 3` on
+    `B = im H_2(Gamma')`. Any relation `b in B` with `3 not| chi(b)` gives the floor `1/(3||b||_1)`. The
+    base value is `1/15`.
+  - Where the known mechanism dies: the only positive relations constructed are transfers, with
+    `chi = 5[Sp_4(Z):Gamma']`, which vanish mod 3 on every index divisible by 3.
+  - Uniformity of this class is now `mod-s2-torelli-positive-relations-have-bounded-mass` (OPEN).
+  - This class cannot refute the flagship unless `A_+ -> infinity`. The class stays open, but it is now
+    a combinatorial question about short positive products of separating twists.
