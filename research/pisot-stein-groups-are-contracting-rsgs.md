@@ -19,7 +19,12 @@ claimed). Inputs:
 - standard β-numeration: the greedy algorithm, Parry's admissibility criterion, and "β-shift is of finite type
   iff d_β(1) is finite" (Parry; Ito--Takahashi). The first two were read at source in Frougny's survey; see the
   artifact.
-- property (F) (Frougny--Solomyak, ETDS 12 (1992)): cited, not read at source.
+- property (F).
+  - Our (F) is Akiyama's (F') and, for units, Frougny--Solomyak's (F).
+  - **Read at source:** Akiyama, "Pisot numbers and greedy algorithm" (gq/src/bh-near-actions/beta/akiyama.pdf):
+    the definitions of (F) and (F'), Proposition 1, the finite decision procedure (Theorem 2), and "the smallest
+    Pisot number θ, x³ − x − 1, has (F)" (p. 9).
+  - **Cited, not read:** Frougny--Solomyak, ETDS 12 (1992), for the metallic and d-bonacci examples.
 
 ## Definitions
 
@@ -29,6 +34,7 @@ claimed). Inputs:
   - It also forces `β` to be Pisot (Frougny--Solomyak). We assume Pisot explicitly anyway: all other
     conjugates `σ(β)` satisfy `|σ(β)| < 1`.
 - **Examples.**
+  - the smallest Pisot number (plastic), `x³ = x + 1` (Akiyama, read at source);
   - `β² = mβ + 1` (`m ≥ 1`), whose inverses are the metallic means;
   - every root `β > 1` of `x^d − a_1x^{d−1} − … − a_d` with `a_1 ≥ a_2 ≥ … ≥ a_d = 1`, such as the
     tribonacci number and all d-bonacci numbers (Frougny--Solomyak's sufficient condition).
