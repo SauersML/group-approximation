@@ -80,3 +80,86 @@ abbrev WalkDegenCaseNoninterleave {G : Type u} [Group G] {Lambda : Type w}
       (invDarts X outerWalk)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PinchCase.WalkDegenCaseNoninterleave
+
+/-- **Remaining gap of lane gl-p07-39b.**  The premise block of `WalkDegenStepStatement`,
+verbatim.  Then Base, but only when the witness walk fails a noninterleave clause (N); and
+Improve, lane 38's absorption step.  See the module docstring. -/
+def WalkDegenCaseStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (FourPieceWitness.witnessFaces a b K C.face) outerWalk →
+        (∀ d ∈ outerWalk, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈
+          FourPieceWitness.witnessFaces a b K C.face) →
+        ¬ (0 < (a.cellArcList i).length ∧ 0 < (a.cellArcList j).length ∧
+            0 < (b.cellArcList i).length ∧ 0 < (b.cellArcList j).length ∧
+            (∀ d ∈ G₁.darts, PocketRun.PinchFreeAt X.toCombMap d) ∧
+            (∀ d ∈ G₂.darts, PocketRun.PinchFreeAt X.toCombMap d)) →
+        ¬ (FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts)
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave
+              (fun e => e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts)
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+              (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∈ b.sideFrom i))
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+              (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∉ b.sideFrom i))
+              (invDarts X outerWalk) ∧
+            ((∃ d ∈ outerWalk, d ∉ G₁.darts) →
+              ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₁.darts →
+                outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                  (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₁.darts →
+                walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+            ((∀ d ∈ outerWalk, d ∈ G₁.darts) →
+              ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q) ∧
+            ((∃ d ∈ outerWalk, d ∉ G₂.darts) →
+              ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₂.darts →
+                outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                  (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₂.darts →
+                walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+            ((∀ d ∈ outerWalk, d ∈ G₂.darts) →
+              ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q)) →
+          (¬ WalkDegenCaseNoninterleave b G₁ G₂ outerWalk →
+              ((∃ (faces : Finset X.toCombMap.Face) (ow : List X.toCombMap.Dart),
+                  FourPieceWitness.AbsorbFaceSetBasic a b K G₁ G₂ C.face faces ow) ∨
+                FourPieceWitness.AbsorbFaceSetBranchTwo i j C.face)) ∧
+            (∀ (faces : Finset X.toCombMap.Face) (ow : List X.toCombMap.Dart),
+              FourPieceWitness.AbsorbFaceSetBasic a b K G₁ G₂ C.face faces ow →
+              ¬ FourPieceWitness.AbsorbFaceSetStepGood G₁ G₂ ow →
+              FourPieceWitness.AbsorbFaceSetExposed K G₁ G₂ faces ow →
+              (∃ (faces' : Finset X.toCombMap.Face) (ow' : List X.toCombMap.Dart),
+                  FourPieceWitness.AbsorbFaceSetBasic a b K G₁ G₂ C.face faces' ow' ∧
+                    (faces.card < faces'.card ∨
+                      FourPieceWitness.AbsorbFaceSetStepGood G₁ G₂ ow')) ∨
+                FourPieceWitness.AbsorbFaceSetBranchTwo i j C.face)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PinchCase.WalkDegenCaseStatement
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PinchCase

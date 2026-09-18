@@ -90,8 +90,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 theorem extremalBlock_targetBlockNoWrap_nil (K : PocketFaceSet D eps X lo hi) :
     TargetBlockNoWrap K [] := by
   have h := K.targetArc.start.isLt
-  show K.targetArc.start.1 + ([] : List X.toCombMap.Dart).length ≤ (outerDarts X).length
-  simp only [List.length_nil, Nat.add_zero]
+  show K.targetArc.start.1 + 0 ≤ (outerDarts X).length
   omega
 
 /-- **A uniform target arc has its kept block as a prefix**, so the block does not wrap. -/
@@ -107,3 +106,82 @@ theorem extremalBlock_targetPrefix_of_uniform (K : PocketFaceSet D eps X lo hi)
   · refine ⟨[], [], K.targetArc.darts, ?_, ?_, hnw⟩
     · simp
     · exact List.filter_eq_nil_iff.mpr fun x hx => by simp [hnone x hx]
+
+/-- **The block clauses from class choice, linked runs and uniform arcs** (pointwise), for a
+pocket in walk order.  No bound on `hi` is used. -/
+theorem extremalBlock_clauses_of_uniform (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (r : X.toCombMap.Dart) (hchoice : P10ExtremalRegion.ExtremalClassChoice K r)
+    (hlink : P10ExtremalRegion.ExtremalMinimalLinkedRuns K r)
+    (hT : P10ExtremalRegion.ExtremalMinimalArcUniform K r K.targetArc.darts)
+    (hS : P10ExtremalRegion.ExtremalMinimalArcUniform K r (invDarts X K.sourceArc.darts)) :
+    ∃ kept : Fin X.rCellCount, ExtremalBlockClauses K r kept := by
+  have hstr : P10ExtremalRegion.ExtremalClassStretches K r :=
+    P10ExtremalRegion.extremalMinimal_classStretches_of_uniform K r hlink hT hS
+  obtain ⟨kept, hkf, havoid⟩ := P10ExtremalRegion.regionChoice_of_classChoice K r hchoice
+  obtain ⟨hrout, hsource, hkept⟩ := P10ExtremalRegion.flipClauses_of_avoid K r kept hkf havoid
+  have hne : K.boundary.cycle.filter (keptPred K r) ≠ [] :=
+    P10ExtremalBlock.filter_keptPred_ne_nil K r kept hrout hkept
+  have hch : (K.boundary.cycle.filter (keptPred K r)).IsChain fun d e =>
+      X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e :=
+    P10ExtremalRegion.isChain_filter_keptPred_of_stretchesClosed K hK r
+      (P10ExtremalRegion.stretchesClosed_of_classStretches K hK r hstr)
+  have hsblk : ∃ pre mid post : List X.toCombMap.Dart, K.sourceArc.darts = pre ++ mid ++ post ∧
+      K.sourceArc.darts.filter (keptPred K r) = mid :=
+    P10ExtremalRegion.exists_filter_block_of_noGap (keptPred K r)
+      (P10ExtremalRegion.sourceNoGap_of_classStretches K r hstr)
+  exact ⟨kept, hrout, hsource, hkept, hne, hch, hsblk,
+    extremalBlock_targetPrefix_of_uniform K r hT⟩
+
+end Uniform
+
+/-- **The uniform block statement** (OPEN, PLAUSIBLE; no counterexample in lane gl-p10-16's
+model, 9010 configurations).  Under the premises of `RoseExtremalBlockStatement` (no bound on
+`hi`), some class `r` has `ExtremalClassChoice`, linked removed runs, and both arcs uniform.
+Logically STRONGER than `RoseExtremalBlockStatement` and than
+`P10ExtremalRegion.ExtremalMinimalUniformStatement` (see the module docstring). -/
+def ExtremalBlockUniformStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, P10ExtremalRegion.ExtremalClassChoice K r ∧
+          P10ExtremalRegion.ExtremalMinimalLinkedRuns K r ∧
+          P10ExtremalRegion.ExtremalMinimalArcUniform K r K.targetArc.darts ∧
+          P10ExtremalRegion.ExtremalMinimalArcUniform K r (invDarts X K.sourceArc.darts)
+
+/-- **The block statement (with wrap) from the uniform block statement.** -/
+theorem roseExtremalBlock_of_extremalBlockUniform
+    (h : ExtremalBlockUniformStatement.{u, w, v}) :
+    RoseExtremalBlockStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨kept, hc⟩ := extremalBlock_clauses_of_uniform K hK r hchoice hlink hT hS
+  exact ⟨r, kept, hc⟩
+
+/-- **The extremal minimal uniform statement from the uniform block statement** (drop the premise
+`hi ≤ |outerDarts X|`): both branches rest on the same planar gap. -/
+theorem extremalMinimalUniform_of_extremalBlockUniform
+    (h : ExtremalBlockUniformStatement.{u, w, v}) :
+    P10ExtremalRegion.ExtremalMinimalUniformStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi _ hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+
+/-- **The outer pinch step section from the uniform block statement.** -/
+theorem extremalBlock_outerPinchStep_of_uniform (h : ExtremalBlockUniformStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  outerPinchStep_of_block (roseExtremalBlock_of_extremalBlockUniform h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.extremalBlock_targetBlockNoWrap_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.extremalBlock_targetPrefix_of_uniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.extremalBlock_clauses_of_uniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.ExtremalBlockUniformStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.roseExtremalBlock_of_extremalBlockUniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.extremalMinimalUniform_of_extremalBlockUniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalResidual.extremalBlock_outerPinchStep_of_uniform

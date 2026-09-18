@@ -2,7 +2,7 @@
 rg: 2
 id: lifts-add-no-unipotent-divisibility-proof
 kind: route
-title: Direct proof by a transfer lemma through Q-free normal subgroups with central quotients
+title: Direct proof by a transfer lemma for groups without (Q,+)
 target: lifts-add-no-unipotent-divisibility
 requires: []
 ---

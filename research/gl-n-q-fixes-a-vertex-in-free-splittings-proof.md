@@ -2,7 +2,7 @@
 rg: 2
 id: gl-n-q-fixes-a-vertex-in-free-splittings-proof
 kind: route
-title: Direct proof: divisible elements are elliptic in trees with trivial edge stabilizers
+title: Direct proof on trees with trivial edge stabilizers
 target: gl-n-q-fixes-a-vertex-in-free-splittings
 requires: []
 ---

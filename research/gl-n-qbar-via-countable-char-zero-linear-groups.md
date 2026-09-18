@@ -2,7 +2,7 @@
 rg: 2
 id: gl-n-qbar-via-countable-char-zero-linear-groups
 kind: route
-title: Via countable characteristic-zero linear groups
+title: GL_n(Qbar) is a countable characteristic-zero linear group
 target: gl-n-qbar-embeds-in-fp-simple-group
 requires:
   - countable-char-zero-linear-groups-embed-in-fp-simple-groups

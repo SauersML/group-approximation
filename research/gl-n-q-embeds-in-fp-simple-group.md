@@ -175,3 +175,42 @@ None recorded before 2026-09-17.
    Together with attempt 1, which kills lifts whose deck group is `Q`-free, covering lifts supply the divisible
    unipotent part only in a finitely generated lift group over a base that is not finitely presented, and only
    through divisible subgroups that are not contained in the deck group.
+
+8. **Permanence closures (products, extensions, wreaths, free products), 2026-09-17:
+   dead for every n >= 2.** `extension-product-closures-cannot-create-sl-n-q`: the
+   class of groups that receive only trivial homomorphisms from `SL_n(Q)` contains
+   every Q-free and every `BS(1,4)`-free group (residually finite, solvable, `V`,
+   `T`, `VA`, `T-bar`, `A`). It is closed under subgroups, extensions, arbitrary
+   direct products and free products, so under every wreath product and every
+   finite-index overgroup. The permanence theorems of the permutational class
+   therefore never produce `GL_n(Q)` from those bases. A route must leave the
+   class through a directed union, a graph of groups with nontrivial edges, or a
+   Thompson-type completion (`SV_G`, `V_d(G)`, germ extensions, `nV`).
+
+9. **Other countable fields as testbeds, 2026-09-17 (lane gq-countable-fields).** See
+   `research/artifacts/gq-gq-countable-fields-transfer.md`.
+   - **O1 without divisibility.** `sl-n-of-infinite-fields-lie-in-no-residually-finite-group`:
+     `SL_n(K)` has no finite quotients for every infinite field `K`, so O1 holds in every characteristic.
+     Characteristic `p` does not escape it.
+   - **Calibration.** `gl-n-over-algebraic-extensions-of-f-p-embed-in-v`: `GL_n(F_p-bar) <= V`. So O1-type
+     facts never exclude a finitely presented simple host.
+   - **O4 is characteristic-zero specific.** `char-p-linear-groups-have-no-distorted-cyclic-subgroups`.
+   - **O2 persists in characteristic p.** `char-p-transcendental-gl-n-avoids-v-and-va-for-n-ge-3`, through
+     the Kazhdan lattice `SL_3(F_p[t])`.
+   - **Function-field analogue.** `gl-n-f2t-embeds-in-fp-simple-group` (OPEN) is the analogue with the
+     unipotent difficulty removed. It has a conditional route through
+     `rational-function-field-embeds-in-binary-leavitt-algebra` (OPEN).
+   - **Minor.** `GL_1(Q) = Q^x ≅ Z/2 × ⊕_ω Z` already lies in `V` (survey Theorem 4.3(1)–(2)).
+
+10. **One-dimensional piecewise-projective and PL hosts and their lifts, 2026-09-17: dead for every n >= 2,
+   for every embedding.** `pp-circle-and-lift-hosts-miss-gl-n-q` (lane gq-pp-psl2q), from
+   `pp-circle-divisible-subgroups-act-freely`. In a circle group whose pieces lie in a group with no divisible
+   abelian subgroup (every finitely generated group of piecewise `PSL_2(R)` or PL circle maps with finitely many
+   breakpoints), a divisible abelian subgroup `D` has trivial germs at any common fixed point, so it acts freely.
+   Then `rot` is injective on `D`, normalizers of `D` centralize it, and `D` meets `[A,A]` trivially for amenable
+   `A`. The same holds for lifts to `R` through the translation number. The unipotent `(Q,+)` of `GL_n(Q)`,
+   `SL_n(Q)`, `PSL_n(Q)`, `Aff(Q)`, `B_2(Q)`, `U_3(Q)` is normalized nontrivially, or lies in `[U,U]`, so none of
+   these groups embeds. This covers `T`, `T-bar`, Lodha's `S`, the Lodha--Moore groups, finitely generated subgroups
+   of Monod's `H(A)`, and the Stein and irrational-slope PL groups. These hosts can contain `BS(1,2)`, so O4 does
+   not reach them, and `T-bar` contains `(Q,+)`, so divisibility alone is not excluded. Not covered: `RP^(n-1)` for
+   `n >= 3`, infinitely many breakpoints, and Cantor-set hosts.
