@@ -146,3 +146,28 @@ a cycle of equations through the window.
     uniform on links); (T2) families whose only square presentations are thin
     and fail (E); (T3) dense-link bases failing (F1) to (F4). The constant-bias
     cell is untouched.
+* **Constant-bias cell via 50% seed structure (2026-09-18).** **Dead under
+  NP not in RP for A-side-non-honest witnesses; the claim stays OPEN.** See
+  `constant-bias-selectors-need-seed-dishonest-witnesses` (Theorem C, Lemma F).
+  - *What is proved.* On any doubled LEC with `gamma'/4`-uniform directions,
+    (M), fibre separation `kappa` and outer soundness below
+    `Theta(gamma'^6 4^(-l)/K^2)`, consider any selector with YES lift value
+    `1/2 + gamma`, at any value in `(1/2, 1)`. It puts the source in RP unless
+    some YES labelling of value `>= 1/2 + gamma` has seed-dishonest satisfied
+    mass `> gamma - gamma' - r - kappa` against every defect-`r` honest
+    reference of every good outer labelling.
+  - *Why the old approach missed the cell.* The reading of the selector's own
+    bits at the witness's seeds pays only for satisfied ev-dishonest mass, not
+    for violated mass. So 99% rigidity is not needed.
+  - *What is killed.* A-side non-honesty is worth at most
+    `kappa = 1/(2^l - 1)` on Grassmann tests. So zoom-type, mixed and garbage
+    A-labellings over honest seeds are dead.
+  - *Survivors.* The cell `(1/2, 1 - 10^(-5))` now needs one of four failures:
+    - (C1) no read-out;
+    - (C2) marginal blow-up;
+    - (C3) loose outer soundness;
+    - (C4) YES labellings of value `> 1/2` whose satisfied seeds disagree, on
+      constant mass, with every honest encoding of every good assignment.
+
+    (C4) is a selector-free statement about B-labels alone. Also still alive:
+    2-to-2 inner games.
