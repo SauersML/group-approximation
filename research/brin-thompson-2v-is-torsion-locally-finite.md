@@ -6,6 +6,8 @@ title: Every finitely generated periodic subgroup of the Brin–Thompson group 2
 distinct_from:
   some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup: that is the open existence question for f.p. simple hosts of infinite bounded-exponent groups; this decides it for the one host where the known argument for V breaks, in either direction.
   circle-and-tree-product-periodic-subgroups-are-finite: that settles circle groups and tree-product lattices; this is the open two-stack case.
+  brin-thompson-groups-contain-infinite-periodic-groups: that asks for an infinite f.g. periodic subgroup of some nV, n >= 2 (bh-free-01); this is the barrier form at n = 2, so this claim implies the negation of that one at n = 2 only. New work on constructions goes there; barrier work goes here.
+  full-shift-topological-full-groups-are-torsion-locally-finite: that settles the read-only head subgroup [[Σ^Z]] <= 2V; this is the whole of 2V.
 artifacts:
   - research/artifacts/gq-bh-bh-free-06-one-stack-pumping.md
 ---
@@ -74,3 +76,17 @@ artifacts:
      counterexample in `2V` must couple tape-dependent movement with writing, as in
      the elementary machines `EL = <RFA, LP>`, whose torsion problem is
      undecidable (arXiv:2303.17270, Theorem 1.2).
+3. **Why the cycle-and-drift argument does not extend to two stacks (2026-09-18, lane
+   `bh-free-06`).** *Obstacle located; no proof and no counterexample.*
+   - The argument in `full-shift-topological-full-groups-are-torsion-locally-finite`
+     needs a fixed labelled graph `Γ_x` on `Z` whose edges are read off the unchanging
+     input. A writing element moves input from one stack to the other and changes it,
+     so the orbit graph of a configuration is no longer a local function of one fixed
+     tape. The Ramsey step then has no fixed partition to be homogeneous for.
+   - For **bounded exponent**, a witness inside `RTM(Z,2,1)` would be an infinite
+     f.g. LEF group of bounded exponent, since `RTM` is LEF (arXiv:1603.08715,
+     Theorem 6). Zelmanov's theorem gives finiteness for residually finite groups
+     only. Its Lie-ring method uses the power law on elements of unbounded length, so
+     a LEF approximation, which enforces the law only on short words, does not
+     obviously suffice. Whether every f.g. LEF group of bounded exponent is finite is
+     not settled here.
