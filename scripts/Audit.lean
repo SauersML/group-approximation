@@ -830,7 +830,28 @@ def zeroInputEndpoints : List Name :=
    -- `lem:transient-matrices` with the compact-subset sentence of its proof:
    ``GroupApproximation.Full.NM11.printedCompactOrbitBound,
    ``GroupApproximation.Full.NM11.printedClopenNhdsOrbitBound,
-   ``GroupApproximation.Full.NM11.printedTransientMatrices_compact_closed]
+   ``GroupApproximation.Full.NM11.printedTransientMatrices_compact_closed,
+   -- The `Manuscript/NonMFNotes/Full` endpoints (`non_mf_group_notes.tex`),
+   -- collected with printed labels in `Full/Root/NonMFNotesFull.lean`.  Only
+   -- binder-free endpoints whose module import closure contains none of the
+   -- literature packages below are listed; the `Gstar`, `VisibleQuotient`,
+   -- `AbelianBoundary`, `TorsionFree`, `CliffordAmenable` and `Arithmetic`
+   -- endpoints import quarantined modules and are deliberately not listed.
+   -- `thm:exact-mf-residual`, the defect computation (partial endpoint):
+   ``GroupApproximation.Full.NN01.exactResidual_state,
+   ``GroupApproximation.Full.NN01.exactResidualDefects,
+   -- `thm:mf-radical-arithmetic` and the radical-word semantics:
+   ``GroupApproximation.Full.NN02.manuscriptMFRadicalArithmetic,
+   ``GroupApproximation.Full.NN02.manuscriptRadicalWordSemantics,
+   ``GroupApproximation.Full.NN02b.manuscriptLiteralMFRadicalArithmetic,
+   ``GroupApproximation.Full.NN02b.manuscriptLiteralRadicalWordSemantics,
+   -- `thm:fixed-radical-membership`, the unconditional clauses:
+   ``GroupApproximation.Full.NN03.notesFixedRadicalMembershipClauses,
+   -- Printed prose sentences (`E₀` kernel, Deligne type, block comparison):
+   ``GroupApproximation.Full.NN12.e0_printed,
+   ``GroupApproximation.Full.NN12.markedGroup_isDeligneType,
+   ``GroupApproximation.Full.NN12.findim_paragraph_printed,
+   ``GroupApproximation.Full.NN12.blockComparison_printed]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool
