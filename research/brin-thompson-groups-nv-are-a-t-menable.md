@@ -217,3 +217,23 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     host's canonical cocycle has kernel `(M ⋊ Γ) × AF`, which contains `Γ`. A Haagerup proof
     must use such structure, with `ψ(f^N) → ∞` and `ψ(f^N) = O(log^8 N)`, and so it cannot
     be an integer wall count.
+- **Brick-size functionals (2026-09-17, swarm-0917 e-nv-compute; exact census plus class-kill).**
+  - Tools: `experiments/brin-thompson-cnd-2026-09-17/`. They compute 2V brick diagrams exactly: composition, and the
+    minimal brick count `L` by a guillotine DP checked against brute force. They also run a zero-sum spectral cnd census
+    with exact integer or Decimal certificates.
+  - **Class-kill.** `brin-thompson-nv-max-type-size-functions-are-not-cnd` (established): no `ψ` with
+    `ψ(g(w)) ~ κ G(‖w‖_∞)` on the `Z^3` of disjoint-support baker maps `b_00, b_01, b_1` is cnd, even plus
+    `M(1 − δ_e)`. Here `G` is regularly varying of index `≥ 1/4`.
+    - This kills `log L`, `(log L)^β` (`β ≥ 1/4`), diagram depth and its powers. `log L` is the natural survivor of the
+      distortion test: it is cnd on `V` and grows like `log N` on distorted elements.
+    - **Invariant:** the asymptotic shape of `ψ` on that `Z^3`, where `log L = ‖w‖_∞ log 2 + O(1)`.
+    - **Where every member dies:** `ℓ^∞`-type kernels on `Z^3` are not of negative type (integer certificate for
+      `‖·‖_∞^{1/4}` on `{−5..5}^3`, then Schoenberg powers), transported to `ψ` by a scaling limit.
+    - `L − 1`, `√L − 1` and the symmetrized exponent integrals `∫(|a_x|+|a_y|)`, `∫|a_x − a_y|` die on small exact
+      random witnesses.
+  - **Lesson:** random test sets of up to 320 elements do not detect the failure of `(log L)^{1/2}` or `(log L)^{3/4}`,
+    so a cnd census on `nV` must include structured abelian configurations.
+  - **Survivors:** slowly varying functions such as `log log L`, and functions additive over disjoint supports
+    (`ℓ^1`-like) on that `Z^3`.
+  - **Not done:** numerics along the Callard–Salo element. Word norms are not computable by brute force, and the
+    obstruction above does not use distortion.
