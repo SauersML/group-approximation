@@ -64,3 +64,21 @@ finite quotient. If so, and `K_2(N, D)` is central, this claim fails.
        `c_q` to `ζ^(-qm) = 1`.
    - *Still open:* the folding quotients `F_(r,N)` with `r >= 3`, and `K_2` of the crossed product `ρ_m(D)` itself,
      where the commutative part still sees `c_q`.
+4. **Towards a uniform kill (2026-09-18, lane gq-k2-q).** Not decided.
+   - *Proved:* every `c_q` dies in every folding quotient `F_(r,N)` with `r <= l − 1`, for `l` odd.
+     `euler-ring-symbols-in-small-finite-quotients`, Part 4, shows `K_2(N, Z[u]/(l,u)^r) = 0`.
+   - *Reduction to genuine crossed products (elementary).* Let `F = D/J` be finite, `Ā` the image of `A`, and `X` the
+     image of `x`, of order `m`.
+     - `D -> Ā ⋊ Z/m`, `x -> X`, is well defined and onto a finite ring, and `F` is a quotient of it.
+     - So it suffices to kill `c_q` in `K_2(N, Ā ⋊ Z/m)` for every finite σ-stable quotient `Ā` of `A` with
+       `σ^m = 1`.
+     - There, conjugation by `X` is inner, so the image of `c_q` factors through `K_2(Ā)_σ`.
+   - *Why Galois descent does not close it.* If `Ā` were Galois over `Ā^σ`, the crossed product would be
+     `End_(Ā^σ)(Ā)`, and the image of `c_q` would be its transfer to `K_2(Ā^σ)`.
+     - In every quotient computed so far, `Ā` is local and `σ` fixes its closed point. This covers `F_(r,N)` and the
+       cyclotomic orbits, because `σ(u) - u = l` lies in the maximal ideal. The action is wild, and the crossed
+       product is not Azumaya.
+     - The transfer gives only `res ∘ ind = Σ_i σ^i`. That is blind by the orbit-length argument, and it does not
+       show `ind(c_q) = 0`.
+   - *Open boundary.* `r = l` for `F_(r,N)`, where `K_2(Z[u]/(l,u)^l)` should be `Z/l` on `u^(l−1) du`. More
+     generally, `K_2` of wild crossed products `Ā ⋊ Z/m` with `l | m`.
