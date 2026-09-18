@@ -5803,6 +5803,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRFa
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Shift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitCorona
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.ListOps
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiLevelSwaps
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
