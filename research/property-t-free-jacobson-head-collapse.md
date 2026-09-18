@@ -558,3 +558,39 @@ instead of `4`) changes no conclusion.
   however, depth-1 (C) forces (C) at depths 2-4. The next finite target is
   therefore a proof that depth-1 (C) propagates, or a model in which it does
   not. The claim stays OPEN.
+- **operator-algebras, swarm-0917 (swarm-0917-w12-w12-ptl-break): head
+  survival in `P_{2,2}(J)` forces weak containment of the regular
+  representation.**
+
+  *Result (established reduction and class kill).*
+  `p22-head-survival-forces-regular-weak-containment`. For
+  `P = M_2(J) x| (EL_2(J) x EL_2(J))` and `h = x_13(Q)`, the following are
+  equivalent:
+  - `h` survives in some MF model;
+  - `P` is MF;
+  - some MF model weakly contains `lambda_P`.
+
+  *Mechanism.*
+  - Levi-stable subgroups of `M_2(J)` are the `M_2(I)`, and every nonzero
+    ideal of `J` contains `Q`. With `C_P(N) = N`, every head-keeping
+    homomorphism of `P` is injective.
+  - The Levi acts topologically freely on `N^`, through the faithful socle
+    `M_2((Q))`.
+  - The tensor upgrade `(+)_{j<=J_k} sigma^{(x) j}` makes the spectrum of the
+    radical full.
+  - Archbold-Spielberg then gives `ker pi <= ker lambda_P`.
+
+  *Corollary.* (HC) holds iff no MF model of `EL_5(J)` restricts on `P` to a
+  representation weakly containing `lambda_P`.
+
+  *Class killed.* The P22-local obstructions of three kinds are vacuous:
+  - spectral-support or window-rank obstructions, including the w11
+    survivor "Levi unitaries mixing eigenspaces non-pointwise": WLOG the
+    model is spectrally full;
+  - C*-relational index or isometry obstructions, which are refuted by
+    `lambda_P` itself, since it keeps `h` and has a faithful trace.
+
+  *Where it dies (for the hole).* The local statement `h in Rad_MF(P)`
+  holds iff `P_{2,2}(J)` is not MF. This is an MF/quasidiagonality question
+  about `lambda_P`, not a finite-model question. If `C*_r(P_{2,2}(J))` is MF,
+  the P22 lane is dead. That is undecided. The claim stays OPEN.
