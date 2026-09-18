@@ -201,3 +201,16 @@ None recorded before 2026-09-17.
      unipotent difficulty removed. It has a conditional route through
      `rational-function-field-embeds-in-binary-leavitt-algebra` (OPEN).
    - **Minor.** `GL_1(Q) = Q^x ≅ Z/2 × ⊕_ω Z` already lies in `V` (survey Theorem 4.3(1)–(2)).
+
+10. **One-dimensional piecewise-projective and PL hosts and their lifts, 2026-09-17: dead for every n >= 2,
+   for every embedding.** `pp-circle-and-lift-hosts-miss-gl-n-q` (lane gq-pp-psl2q), from
+   `pp-circle-divisible-subgroups-act-freely`. In a circle group whose pieces lie in a group with no divisible
+   abelian subgroup (every finitely generated group of piecewise `PSL_2(R)` or PL circle maps with finitely many
+   breakpoints), a divisible abelian subgroup `D` has trivial germs at any common fixed point, so it acts freely.
+   Then `rot` is injective on `D`, normalizers of `D` centralize it, and `D` meets `[A,A]` trivially for amenable
+   `A`. The same holds for lifts to `R` through the translation number. The unipotent `(Q,+)` of `GL_n(Q)`,
+   `SL_n(Q)`, `PSL_n(Q)`, `Aff(Q)`, `B_2(Q)`, `U_3(Q)` is normalized nontrivially, or lies in `[U,U]`, so none of
+   these groups embeds. This covers `T`, `T-bar`, Lodha's `S`, the Lodha--Moore groups, finitely generated subgroups
+   of Monod's `H(A)`, and the Stein and irrational-slope PL groups. These hosts can contain `BS(1,2)`, so O4 does
+   not reach them, and `T-bar` contains `(Q,+)`, so divisibility alone is not excluded. Not covered: `RP^(n-1)` for
+   `n >= 3`, infinitely many breakpoints, and Cantor-set hosts.
