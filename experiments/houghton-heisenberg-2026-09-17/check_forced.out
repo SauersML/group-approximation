@@ -1,0 +1,8 @@
+HNN relators rho_X, rho_a trivial: ok
+m 2 len 14 forced matching ok, sum inv 4 = m^2(m-1); DP min 4
+m 3 len 20 forced matching ok, sum inv 18 = m^2(m-1); DP min 18
+m 4 len 26 forced matching ok, sum inv 48 = m^2(m-1); DP min 48
+m 5 len 32 forced matching ok, sum inv 100 = m^2(m-1); DP min 100
+m 6 len 38 forced matching ok, sum inv 180 = m^2(m-1); DP min 180
+m 7 len 44 forced matching ok, sum inv 294 = m^2(m-1); DP min 294
+m 8 len 50 forced matching ok, sum inv 448 = m^2(m-1); DP min 448

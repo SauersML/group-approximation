@@ -15,10 +15,10 @@ Lane bh-g2-fixedpoint-a, 2026-09-18. This is the construction step (§2) of
   - Every tile computes its top coordinate `(i, j+1)` from its **left** edge, and its right coordinate
     `(i+1, j)` from its **bottom** edge.
 - **Horizontal side (bottom and top) of a macrotile.** Bit positions lie in `P ⊂ [N/3, 2N/3]`, spaced 3
-  apart, in blocks ordered left to right: `P_c` (coordinates), `P_1` (first component), `P_2` (second
-  component), `P_f` (the (p4) fields and DR's rank and role fields).
+  apart, in blocks ordered left to right: `P_c` (coordinates), `P_1, P_2, P_3` (first, second, third
+  components), `P_f` (the (p4) fields and DR's rank and role fields).
 - **Vertical side (left and right).** Heights `Q ⊂ [N/3, 2N/3]`, in blocks ordered bottom to top:
-  `Q_c, Q_1, Q_2, Q_f`.
+  `Q_c, Q_1, Q_2, Q_3, Q_f`.
 - **Causality (§1 of the claim).** Entry `p` of a top colour may depend on the left colour and on bottom
   entries at positions `<= p`. Entry `q` of a right colour may depend on the bottom colour and on left
   entries at heights `<= q`.
@@ -42,8 +42,8 @@ blank, and the parenthesis gives the check that the family is causal at level 1.
 | END_L, END_B | a wire bit is absorbed; outputs `∗` | trivial |
 | COMB_T | `((σ, v), β) ↦ ((σ, v), σ ? v : β)` | top uses the left and the same-position bottom bit |
 | COMB_R | `(λ, (σ, v)) ↦ (σ ? v : λ, (σ, v))`, where `λ` is a forwarded bit or pair | right uses the bottom and the same-height left |
-| ZT (zone_T cell) | `((a, a'), s) ↦ ((s, a), F(a, a'))` | top from left; right = bottom plus the left's first component, moved from `Q_1` to `Q_2` (up) |
-| ZR (zone_R cell) | `(s, (a, a')) ↦ (F'(a, a'), (s, a))` | the transpose; the top's second component moves from `P_1` to `P_2` (right) |
+| ZT (zone_T cell, §7) | `((a_1, a_2, a_3), s) ↦ ((s, a_1, a_2), F_U(a_3, a_2, a_1))` | top from left; right = bottom plus the left's components shifted up (`Q_1 → Q_2 → Q_3`) |
+| ZR (zone_R cell, §7) | `(s, (b_1, b_2, b_3)) ↦ (F_U(b_3, b_2, b_1), (s, b_1, b_2))` | the transpose; the top's components shift right (`P_1 → P_2 → P_3`) |
 | zone boundary, quiescent | `∅` on outer edges | trivial |
 | slot frame and slot | DR §3.2 as SW islands: frame colours are functions of real coordinates, and inner tiles follow ZT/ZR/wire rules with fake coordinates | trivial |
 
@@ -58,9 +58,7 @@ blank, and the parenthesis gives the check that the family is causal at level 1.
   - Its row 0 holds copies of all left inputs `Q`.
   - It computes the role, from the coordinates in `Q_c`, and the top colour's `F`-part (layout artifact
     §4 checks).
-  - It runs `U` as a one-way CA. The tape drifts right one cell per step, so width `T + S` and height `T`
-    suffice for `T` steps in space `S` (standard, recalled). With `y_t(i) = x_t(i+t)`, the ZT rule is a
-    radius-1 one-way CA.
+  - It runs `U` as the drift-2 tableau of §7: width `S + 2T` and height `T` for `T` steps in space `S`.
 - **zone_R** occupies `[a_R, b_R] × [c_R, d_R]`, with `a_R > max P` and `d_R < min Q`, in the lower-right
   ninth. It is the transpose, fed by bottom inputs `P`, and computes the right colour's `G`-part.
 - Both zones are `poly(log N) × poly(log N)`.
@@ -117,7 +115,90 @@ blank, and the parenthesis gives the check that the family is causal at level 1.
 
 - **Written out:** tiles, geometry, crossings and causality.
 - **Not re-verified line by line:**
-  - that `U` can be run as a one-way CA with drift inside `poly(log N)` zones (standard);
-  - that the free area suffices for DR's slot counts (as in the minimal node's "Room" paragraph).
+  - (closed in §7) running `U` in the zones: an explicit drift-2 tableau, not a general one-way-CA citation;
+  - (closed in §8) free area for slots: an explicit count, and the upper-right ninth is free.
 - **To merge:** bh-invent-04's multi-block causal side format, when landed. If it differs, one of the two
   formats should cite the other.
+
+## 7. The zone: a one-head TM on a drift-2 diagonal (closes §6, first point)
+
+`U` is DRS's universal machine: states `Q ∋ q_0, q_acc`, cell symbols `Γ'` (with the read-only program bit),
+transitions `δ(q, a) = (q', a', D)` with `D ∈ {L, R}`, and `q_acc` halting. Contents are
+`C = Γ' ∪ (Q × Γ') ∪ {∅}`, where `∅` means outside the tape.
+
+**Placement.** Tape cell `c` at time `t` sits in zone column `x_0 + c + 2t`, row `t`.
+- In one step the head moves from column `x_0 + c + 2t` to `x_0 + c ± 1 + 2t + 2`, that is by `+1` or `+3`.
+  So the head only moves right.
+- The new content of cell `c`, in column `y = x_0 + c + 2t + 2`, depends on the old contents of cells
+  `c − 1, c, c + 1`. Those sit in columns `y − 3, y − 2, y − 1`, all to the left in row `t`.
+
+**The ZT family.**
+
+| edge | colour |
+|---|---|
+| bottom | `s ∈ C`, the content of this column at time `t` |
+| left | `(a_1, a_2, a_3)`, the contents of columns `y − 1, y − 2, y − 3` in row `t` |
+| right | `(s, a_1, a_2)` |
+| top | `F_U(a_3, a_2, a_1)` |
+
+The right edge is a relay window of depth 3. The top is the local update `F_U(l, m, r)`:
+- `m = (q, a)` with `δ(q, a) = (q', a', D)` gives `a'`;
+- `m = a` and `l = (q, b)` with `δ(q, b) = (q', ·, R)` gives `(q', a)`;
+- `m = a` and `r = (q, b)` with `δ(q, b) = (q', ·, L)` gives `(q', a)`;
+- `m = (q_acc, a)` gives `(q_acc, a)`;
+- otherwise `m = a` gives `a`, and `∅` gives `∅`.
+
+There is **no tile** for two converging heads, or for a halting state other than `q_acc`, so rejection is
+enforced.
+
+**Boundary and rows.**
+- Row 0 holds the inputs (wire copies) and the program bits, fixed by coordinates, at columns
+  `x_0 + c`. The start head `(q_0, a)` is at `x_0`, and blanks and `∅` fill the rest.
+- The zone's left boundary edges are `(∅, ∅, ∅)`. Cells never move left of cell 0, since the tape region in
+  row `t` is `[x_0 + 2t, x_0 + 2t + S)`.
+- In the last row `T` only tiles whose `F_U`-value is head-free or `q_acc` exist. Output wires leave the top
+  at the output cells' columns `x_0 + 2T + c` and go up and right.
+- Size: width `S + 2T + 3`, height `T`, which is `poly(log N_k)` for DRS's checks.
+
+**Checks.**
+- SW: the tile is fixed by its left and bottom edges.
+- Causality at level 1:
+  - the top depends on the left only;
+  - the right's first component is the bottom;
+  - the right's second and third components come from the left's first and second, moved up
+    `Q_1 → Q_2 → Q_3`.
+- Face-rule reachability: by induction on `x + y` from row 0 and the left boundary.
+
+**ZR** is the transpose: time runs rightward, the tape drifts up 2 per column, and the right edge equals
+`F_U(b_3, b_2, b_1)` read from the bottom window.
+
+## 8. Free area at level `k` (closes §6, second point)
+
+Measure a rank-`k` macrotile in rank-`(k−1)` tiles, side `N = N_k`. Let `K = O(log N_(k+1)) = O(C log N)` be
+the number of side bits, since `N_(k+1) = N^C`.
+- **Wires**, counting widths and the spacing gap 3: side runs, private rows and columns, the long crossing
+  copies, fan-out columns `z_k`, and the zone output rows and columns. That is at most `8K` lines, each of
+  length at most `N`. Area `<= 32 K N = O(N log N)`.
+- **Zones** zone_T and zone_R: `2 (S + 2T + 3) T = poly(log N)`.
+- **Slots.**
+  - Zone windows: at most `4 · poly(log N)` positions times `|C|^4` fillings.
+  - Crossing, fan, merge and COMB windows: `O(K^2)` positions times at most 16 fillings.
+  - Each slot with its frame and a gap needs a `7 × 7` block.
+  - Total `poly(log N)`.
+- **Free region.** No private line enters the upper-right ninth `R_free = [2N/3 + 3, N − m − 3]^2`:
+  - top outputs use columns `P ⊂ [N/3, 2N/3]`, and right outputs use rows `Q ⊂ [N/3, 2N/3]`;
+  - zone_T and zone_R are in the upper-left and lower-right ninths;
+  - bottom copies run at heights `< N/3`, zone_T output rows at columns `< 2N/3`, and zone_R output
+    columns at heights `<= 2N/3`;
+  - the shifted-forward columns run at heights `<= 2N/3`.
+
+  So `R_free` is blank and has area `(N/3 − m − 6)^2 >= N^2/10` for large `N`. All `poly(log N)` slots fit
+  there, pairwise separated, at distance `>= 3` from every wire and zone.
+- **Free fraction.** At least `1 − O(log N / N) → 1` of the macrotile is blank. That exceeds DR's (p1) need
+  (free area of linear size near the zone), since slots need no vertical alignment here.
+
+## 9. Lesson for general BH
+
+A self-simulating deterministic tiling can compute universally without any backward signal. Let the tape
+drift faster than the head (drift 2 against head speed 1). Every dependency then points backward in space,
+and causality becomes a matter of geometry, not of the machine.
