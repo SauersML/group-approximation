@@ -6099,6 +6099,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparableKOneApprox
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Inputs
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbAmplifyOp
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorEndo
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
