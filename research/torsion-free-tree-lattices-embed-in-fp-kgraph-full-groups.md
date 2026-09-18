@@ -6,6 +6,8 @@ title: A torsion-free cocompact lattice on a product of thick leafless trees emb
 distinct_from:
   odometer-2v-is-fp-simple-and-contains-bs12: that applies Li's higher-rank-graph theorem to one explicit one-vertex 2-graph; this builds a k-graph from any torsion-free tree-product lattice and forces Li's loop hypothesis by a power-and-phase trick.
   product-of-trees-lattices-with-faithful-factor-satisfy-pbh: that needs a faithful or separating factor; this uses the boundary action on the product of the tree boundaries and needs no hypothesis on kernels, closures or residual finiteness.
+  primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple: that removes Li's loop hypothesis for 2-graphs with primitive colour matrices by the same rescaling, skew-product and full-shift steps (found independently the same day by bh-groupoid); this needs any rank k and allows colour matrices that are block diagonal and periodic, as cube k-graphs are.
+  li-finite-k-graph-full-groups-are-f-infinity: that is the imported finiteness theorem; this builds the k-graph to which it is applied.
 ---
 
 **ESTABLISHED** through `tree-lattice-kgraph-power-phase-proof` (lane proof; not
@@ -30,6 +32,11 @@ and torsion-free, with finitely many vertex orbits on `X`. So `Γ` acts freely o
 4. **Finiteness.** `F` is of type `F_∞`, by Li, *Left regular representations of
    Garside categories II*, arXiv:2110.04505v2, Theorem `thm:k-graphs` and the
    corollary after it.
+
+**Prior art for the construction.** The cube `k`-graph of a group acting simply
+transitively on the vertices of a product of trees is in Mutter--Radu--Vdovina,
+arXiv:2012.05561 (read at source; see the priority check on
+`cocompact-tree-product-lattices-lie-in-type-a-class`).
 
 **Scope.**
 - Residual finiteness, irreducibility and the factor closures play no role. This

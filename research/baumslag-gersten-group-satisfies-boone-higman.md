@@ -185,6 +185,42 @@ group contains it.
     `x ↦ 2x` and a conjugator of `x ↦ 2x` to `x ↦ 4x` form one. So one loophole is germs
     of finite odd order at those points. The other is non-linear germ groups.
 
+- **Where the obstruction sits, and a global-twist constraint (open, 2026-09-18).**
+  - `BG` is acylindrically hyperbolic, highly transitive and MIF
+    (`baumslag-gersten-group-is-highly-transitive-and-mif`). Of the clauses of type (A), only
+    finite generation of point stabilizers fails: every faithful action of `BG` with finitely
+    many orbits of two-element subsets has an infinitely generated point stabilizer. BFFHZ's
+    Theorem E cannot be run on `BG` itself, since for non-simple `G` the invariant
+    `ψ(ker φ)` gives `Aut_G(G*F_n)` infinitely many orbits of pairs.
+  - `BG/<<t^n>> ≅ H_n ⋊ C_n`, with `H_n` Higman's group
+    (`baumslag-gersten-group-maps-onto-higman-groups`). So `BG ↠ H_4 ⋊ C_4`, and every
+    homomorphism sending `t` to an element of order at most `3` kills `a`.
+  - **Germinal-twist rigidity in `SV_G`** (lane argument, sharpening the twisted
+    Brin--Thompson entry above). Let `γ_κ(h) ∈ G` be the germinal twist of `h ∈ SV_G` at `κ`,
+    a cocycle. Global twists `τ_g`, `τ_h` are conjugate in `SV_G` iff `g ~ h` in `G`. For `⇐`,
+    use `τ_k`. For `⇒`, if `f τ_g f^-1 = τ_h`, evaluate germinal twists at `f(κ)` for a
+    constant point `κ`: `h = γ_κ(f) g γ_κ(f)^-1`. Consequently, a homomorphism `φ : BG → SV_G`
+    with `φ(a) = τ_α` and `φ(b) = τ_β` gives `β = λ α λ^-1`, where `λ = γ_κ(φ(t))`, and
+    `β α β^-1 = α^2`. So `a ↦ α`, `t ↦ λ` is a homomorphism `BG → G`, whether or not `φ(t)`
+    fixes `κ`. If `φ` is injective on `<a, b>`, then `<α, β> ≅ BS(1,2)`.
+  - **What this means for a design.** A global-twist host `SV_G` needs a type (A) actor `G`
+    containing a quotient of `BG` in which `BS(1,2) = <a, t a t^-1>` survives. `G = BG` is
+    excluded. `H_n ⋊ C_n` for `n ≥ 4` is such a quotient, but a type (A) actor containing
+    `H_n` would already put `H_n` into the finitely presented simple group `SV_G`, which is
+    open (for `n = 4` it is the `H4` test case). Designs that dodge the constraint must realize `a` or `b` by
+    elements that are not global twists.
+
+- **Stable permutation over `BS(1,2)` edges (reduction, 2026-09-18).**
+  `baumslag-gersten-splits-over-bs12-edges`: `BG ≅ K*_ψ` with `K = ⟨a_0, a_1, a_2⟩` the height-two
+  tower and edges `B_0 = ⟨a_0, a_1⟩ → B_1 = ⟨a_1, a_2⟩`.
+  - Unlike the cyclic splitting, the edge `B_0` can be orbit-finite. On
+    `W = ±1/3 + Z[1/2]`, an orbit on which `2V_τ` acts with type (A), `B_0` is transitive.
+  - Any bijection `π` with `π(r + 1) = 2π(r)` realizes the edge map.
+  - So `BG ∈ B_A` follows from two things: a type (A) actor containing `K` with
+    `a_2 = π a_1 π^-1`, and faithfulness of `Γ*_ψ` on `W`.
+  - `a_2 ∉ 2V_τ`, by entropy. The actor `Γ*_ψ ⊋ BG` is consistent with the global-twist
+    constraint above: it contains `BG` itself, not only a quotient.
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),

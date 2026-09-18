@@ -4,7 +4,7 @@ id: tree-lattice-kgraph-power-phase-proof
 kind: route
 title: Build the cube k-graph, get loops from non-backtracking closed walks in a power, and absorb the Busemann lag modulo N into a phase coordinate
 target: torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
-requires: [product-of-trees-faithful-factor-pbh-via-bass-serre-induction, tree-lattice-block-splitting-proof]
+requires: [product-of-trees-faithful-factor-pbh-via-bass-serre-induction, tree-lattice-block-splitting-proof, li-finite-k-graph-full-groups-are-f-infinity]
 ---
 
 Notation as in the target. An *oriented cube* is `c = (e_1, ..., e_k)` with `e_i`

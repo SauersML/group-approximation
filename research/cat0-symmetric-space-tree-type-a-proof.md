@@ -12,6 +12,26 @@ factor, and `X` and `T` are non-isometric irreducible factors. If `T` is a line,
 `R` is the Euclidean de Rham factor. Either way isometries preserve the
 decomposition (Foertsch--Lytchak; cited, not re-read). Otherwise it is a hypothesis.
 
+**Simplicial action.** With a branch point, isometries of `T` preserve branch
+vertices, and the vertices are exactly the points at integer distance from a branch
+vertex, so `Γ` acts on `T` by tree automorphisms. Steps 1--3 assume this.
+
+**Step 0 (`T` a line, any action).** Let `Γ` be virtually torsion-free.
+- Properness makes the kernel of `Γ → Isom(X) × Isom(R)` finite. A torsion-free
+  finite-index `Γ_1 ≤ Γ` therefore embeds.
+- Let `Γ_2 ≤ Γ_1` be the finite-index subgroup mapping into
+  `Isom(X)^0 × Isom(R)`.
+- `Isom(X)^0` has trivial center, so its adjoint representation is faithful.
+  `Isom(R) ≅ R ⋊ Z/2` embeds in `GL_2(R)` as affine maps.
+- So `Γ_2` is a finitely generated subgroup of a real linear group, and
+  `char-zero-linear-groups-satisfy-permutational-boone-higman` gives `Γ_2 ∈ B_A`.
+- Item 2 of `boone-higman-type-a-class-closed-under-finite-extensions` gives
+  `Γ ∈ B_A`.
+
+This step is due to referee a, who pointed out that for `T = R` the translation
+parts can be dense, for example `Γ = {(g, φ(g) + n)}` with `φ : G → R` of image
+`Z + √2 Z`. Then `Γ` is not simplicial on `R`, and Step 1 does not apply.
+
 **Step 1 (the fibre lattice).** By item 1 of
 `cat0-groups-with-a-tree-factor-lie-in-type-a-class`, `Γ ∈ BS_G` with `G = Γ_v`.
 `G` acts properly and cocompactly on `X × {v}`.

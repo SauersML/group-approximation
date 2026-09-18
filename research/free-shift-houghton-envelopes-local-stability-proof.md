@@ -10,7 +10,8 @@ requires:
   - regular-enumerations-can-make-near-shift-free-product
 ---
 
-Lane proof, not independently reviewed. Notation as in the target. Write `X = [n] x N`. Each ray `{k} x N` is
+Lane proof. Referee a PASS (`research/artifacts/gq-referee-a-free-shift-houghton-envelopes-and-regular-enumerations.md`,
+afbbd1818); nits N1 and N2 are applied below. Notation as in the target. Write `X = [n] x N`. Each ray `{k} x N` is
 split into its even and odd strands, and each strand is identified with `N` (source convention `N = {1,2,...}`,
 transported to this graph's convention as in the citation node). In these coordinates:
 - `rho^(k)_g` acts on the even strand of ray `k` by `lambda_g`, where `lambda_g(nu(h)) = nu(gh)`, and is the
@@ -24,7 +25,7 @@ goes to one strand `j'` by `m -> m + c_(a,j)`. The reason is that `E_2` elements
 `H_n` / `H_n(E_2)` elements are, on each quasi-ray, `beta ∘ g ∘ beta^-1` with `g ∈ E_2`, hence eventually strand
 shifts. Fix a word `w = l_1 ... l_L` in the generators. Let `E` be the union of the `Φ_a` over the K-letters
 occurring in `w`, together with the finitely many points where a strand map with `c < 0` would be undefined. Then
-`E` is finite.
+`E` is finite, and it depends only on the K-letters of `w`, not on `nu` or `nu'`.
 
 ## Item 1 (local stability)
 
@@ -55,8 +56,10 @@ do not depend on `x` or `nu'`.
 - These finitely many computations, of length at most `L` from the finite set `E`, use `lambda'_g^(±1)` at finitely
   many points. The values `lambda'_g(nu'(h)) = nu'(gh)` and `lambda'_g^-1(nu'(h)) = nu'(g^-1 h)` depend only on
   `nu'` at finitely many elements of `P`.
-- Let `S` be the finite set of such elements used in the computations for `nu`. If `nu'` agrees with `nu` on `S`,
-  every exceptional computation gives the same points for `nu'` as for `nu`.
+- Let `S` be the finite set of such elements used in the computations for `nu`. Explicitly, for each point `y`
+  where a letter `rho^(k)_(g^(±1))` is applied in an exceptional computation, `S` contains `nu^-1(y)` and
+  `g^(±1) nu^-1(y)`. Then `lambda'_(g^(±1))(y) = nu'(g^(±1) nu'^-1(y))` equals the `nu`-value whenever `nu'` agrees
+  with `nu` on `S`. So in that case every exceptional computation gives the same points for `nu'` as for `nu`.
 - So the exceptional trajectories for `nu` and `nu'` are the same trajectories. Their starting points and images
   coincide, and `w(nu)(x) = x` gives `w(nu')(x) = x`.
 
@@ -65,7 +68,10 @@ Hence `w(nu') = 1` for every `nu'` agreeing with `nu` on `S`.
 ## Item 2 (not finitely presented)
 
 Suppose `Γ_nu` is finitely presented. A finitely presented group has a finite presentation on any finite
-generating set, so take `Γ_nu = <Y | r_1, ..., r_m>` with `Y` the generating set above.
+generating set. Take `Y` to be a finite generating set of `K` together with the letters `rho^(k)_g`. Here `K` is
+finitely generated: `E_2` by Mallery--Zaremsky Observation 3.24, and `H_n(E_2)` for `n >= 2` by Corollary 5.11.
+Then take `Γ_nu = <Y | r_1, ..., r_m>`. The "K-letters" of item 1 are the elements of this finite generating set of
+`K`.
 
 **Choice of `nu'`.**
 - Let `S = S_(r_1) ∪ ... ∪ S_(r_m)` from item 1, and fix a generator `g ≠ 1` of `P`.

@@ -15,3 +15,10 @@ Status: finished; idle.
 - latest: `solvable-bs-groups-have-faithful-generalized-bs-witnesses`. BS(1,m) has a faithful witness, so all of BS_{BS(1,m)} satisfies BH. Composes with bh-free-extensions' product lemma.
 - Attempts note on `bh-embeddability-survives-decidable-edge-hnn`, with the necessary condition B̄ ∩ Φ(Ā) = B for Hall hosts. The one-sided finite-index case passes it; its full injectivity is OPEN.
 Status: finished; idle.
+**Infinite-index HNN of free groups (coordinator's follow-up):** landed `domain-exact-hnn-hosts-have-multivalley-kernels`.
+- If P ∩ C_1 = A, every kernel element is hyperbolic with ≥ 2 height-maxima per axis period. The proof is down-cone injectivity.
+- This reproves ascending injectivity for ANY vertex group.
+- One-sided case (A finite index): the gap is exactly the multi-valley kernel elements.
+- Two-sided case: domain exactness is impossible in finite-index-edge hosts.
+- F-elliptic freeness test: not an obstruction, by M. Hall.
+Status: stalled after a real attempt; idle.

@@ -41,6 +41,33 @@ solvable exactly when membership in `C` is decidable
 
 The test cases recorded on the refuted node all have decidable stabilizers, so they
 are test cases of this claim:
-- `Z wr_(F_2/⟨a⟩) F_2`, with infinite cyclic stabilizers;
+- `Z wr_(F_2/⟨a⟩) F_2`, with infinite cyclic stabilizers. **Settled (2026-09-18):** `⟨a⟩ = C_(F_2)(a)`, so
+  case 2 of `pbh-coset-wreaths-iff-identity-edge-hnns` applies. More generally, every
+  finitely generated stabilizer in a free top group is covered by
+  `free-group-coset-wreaths-satisfy-pbh`;
 - `Z wr_X PSL_2(Z[1/2])` over `X = PSL_2(Z)\PSL_2(Z[1/2])`
-  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`).
+  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`). **Settled in `B_A` (2026-09-18,
+  lane bh-openq-papers):** `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` and
+  `wreaths-over-clopen-stabilizer-cosets-lie-in-b-a` realize the coset space through
+  clopen stabilizers. With the criterion of `free-permutational-products-preserve-pbh`,
+  this also puts the double `PSL_2(Z[1/2]) *_(PSL_2(Z)) PSL_2(Z[1/2])` and its
+  centralizing HNN extensions in `B_A` (`double-of-psl2-z-half-along-psl2-z-lies-in-b-a`).
+  The self-similar form of the question stays open.
+
+## Reductions
+
+- **One orbit is enough.** `A wr_(X_1 ⊔ X_2) G` embeds diagonally in
+  `(A wr_(X_1) G) × (A wr_(X_2) G)`, via `(f_1 f_2, g) -> ((f_1, g), (f_2, g))`, and `B_A`
+  is closed under finite products. So the claim reduces to `X = G/C`.
+- **Equivalent forms** (`pbh-coset-wreaths-iff-identity-edge-hnns`). For one orbit
+  `G/C`, the claim for all `A` is equivalent to each of:
+  - `Z/2 wr_(G/C) G ∈ B_A`;
+  - the identity-edge HNN extension `G *_C (C × Z) ∈ B_A`;
+  - `C = C_G(m)` for some element `m` of some `B_A`-overgroup of `G`.
+
+  So this claim is equivalent to the permutational form of the identity-edge case of
+  `bh-embeddability-survives-decidable-edge-hnn`, and to the realization of every
+  decidable subgroup as a centralizer in an overgroup. That node lists the subgroups
+  already covered: finite subgroups, centralizers of finite sets, retracts, fixed
+  subgroups of automorphisms with mapping torus in `B_A`, and finite intersections of
+  these.

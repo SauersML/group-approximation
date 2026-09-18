@@ -6,6 +6,7 @@ title: For every odd m >= 3 an 8-state reversible Turing machine on m letters ha
 distinct_from:
   smart-induced-on-genuine-moves-has-exact-tripling: that is the case m = 3 (SMART itself), after inducing on level-0 moves; this defines one reversible machine for every odd m and proves its move proposition, which specializes at m = 3 to Callard--Salo's Proposition 3.2.
   crossing-move-hierarchies-have-odd-branching: that shows one-head crossing hierarchies can only branch an odd number of times; this realizes every odd branching number m = 2r+1 by an explicit reversible machine.
+  smart-type-machines-branch-by-every-odd-number: that is gq-affq's independently found family M_m (a different table with the same timing), landed OPEN pending a move lemma; this is SMART_m with its move proposition proved.
 ---
 
 **ESTABLISHED** (lane bh-free-18, elementary lane proof, not reviewed). No priority claimed: two
@@ -94,5 +95,9 @@ if `σ_* = 0`, the parent has type `t` and the sub-move is its first (`b`, `d`) 
 `σ_* ≠ 0`, then `σ_+ = x_j` or `y_j` fixes the parent (`b` in a `d` or `p` parent, `d` in a `b` or `q`
 parent, `p` in a `b` or `q` parent, `q` in a `d` or `p` parent) and the index. The last sub-move of `b`
 and `p` is `p`; of `d` and `q` it is `q`. Moves of type `b` or `d` are never last sub-moves.
+
+**Machine check.** The proposition, including the step counts, confinement, the `s_+`/`s_*` clauses and the
+`m^k` count of `Y`-points, is verified exhaustively for all boundary pairs with k ≤ 6, 5, 4, 4, 3 at
+m = 3, 5, 7, 9, 11 (`research/artifacts/gq-bh-bh-free-18-odd-smart-certificate.md`, check M).
 
 Consumed by `odd-smart-induced-map-has-height-m-renormalization`.

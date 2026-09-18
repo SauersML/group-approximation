@@ -247,3 +247,23 @@ only through a proof that does not pass through the conjecture.
   choice of `α`. Whether a generic `α` gives an injective map is OPEN.
 
 - **Refinement (bh-free-05).** `domain-exact-hnn-hosts-have-multivalley-kernels`: in the one-sided case every kernel element of the Hall-host map is hyperbolic on `T_G`, with at least two height-maxima per period. That is the precise remaining gap there. Also checked: with `F` elliptic in a `BS_{F_2}` host, the forced subgroup `P' *_D tF_1t^-1` must be free. That imposes nothing, because M. Hall lets one choose `P'` with `D` a free factor, so it is not an obstruction.
+
+## Attempt (bh-free-10, 2026-09-18): identity edges in the permutational class
+
+*Settles (P2) of Attempt 9 over finite edges; reduces it over infinite ones.* By
+`free-permutational-products-preserve-pbh` (lane proof, not reviewed):
+- **Finite edges.** For `A ∈ B_A` and a finite `C <= A`, the identity-edge extension
+  `A *_C (C × Z)` lies in `B_A`. So does `A *_C (C × K)` for every `K ∈ B_A`. No
+  retraction `A -> C` is needed. An HNN extension `A*_phi` over finite edges lies in
+  `B_A` as soon as `phi` is conjugation inside some `B_A`-overgroup of `A`; this is the
+  same `t -> u s` untwisting as Attempt 9.
+- **Infinite edges.** For any `C <= A`, `A *_C (C × Z)` lies in `B_A` if the
+  lamplighter `Z/2 wr_(A/C) A` does. That is an instance of the open
+  `pbh-closed-under-decidable-permutational-wreaths`, whose decidability hypothesis is
+  exactly this claim's decidable membership. The version over arbitrary coset spaces
+  is refuted by `pbh-wreath-closure-fails-over-undecidable-stabilizers`, through the
+  same Mihailova mechanism as `bh-embeddability-forces-decidable-edge-membership`.
+- **Mechanism.** In `Aut_M(M * F(x, y))`, the factors `w K w^(-1)` go to transvections
+  by `g_w K g_w^(-1)`, with `g_w = y δ_(wC) y` built from a lamp `δ_(wC)`. The base `A`
+  acts by twisted conjugations. The lamp's centralizer in `A` is exactly `C`, which is
+  what makes the copies free.

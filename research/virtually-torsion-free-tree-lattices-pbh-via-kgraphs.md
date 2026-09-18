@@ -2,7 +2,7 @@
 rg: 2
 id: virtually-torsion-free-tree-lattices-pbh-via-kgraphs
 kind: route
-title: Embed a torsion-free finite-index subgroup in the full group of its powered cube k-graph, check effectiveness and minimal pieces, and stabilize by the Cuntz groupoid
+title: Embed a torsion-free finite-index subgroup in the full group of its powered cube k-graph, split the power into strongly connected pieces, and stabilize by the Cuntz groupoid
 target: virtually-torsion-free-tree-lattices-satisfy-pbh
 requires: [torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups, tree-lattice-kgraph-power-phase-proof, stabilized-kgraph-full-groups-have-type-a-actions, boone-higman-type-a-class-closed-under-finite-extensions]
 ---
@@ -15,37 +15,22 @@ finite-index overgroups (item 2 of `boone-higman-type-a-class-closed-under-finit
 it suffices that `Γ_1 ∈ B_A`. `Γ_1` acts freely on `X`, since its vertex
 stabilizers are finite and torsion-free, and with finitely many orbits. By
 `torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`, `Γ_1 ≤ F(𝒢_(Λ_N)|_Z)`,
-where `Z` is the whole unit space `∂Λ` (all vertex boundaries, each once) and
-`Λ_N` has at least two loops of every colour at every vertex.
+where `Z` is the union of all vertex boundaries (each once) and `Λ_N` has at least
+two loops of every colour at every vertex.
 
-**Step 1 (𝒢_Λ is effective).** For `x ∈ ∂Λ([c])`, corresponding to `ξ ∈ B_c`, a
-nontrivial isotropy element is `(x, m - n, x)` with `m ≠ n` and
-`σ^m x = σ^n x`. Lifting to `X`, some `γ ∈ Γ_1` fixes `ξ` and translates along
-the ray to `ξ_j` for some `j` with `m_j ≠ n_j`, so `pr_j(γ)` is hyperbolic with
-`ξ_j` an end of its axis. For each `j`, the ends of axes of hyperbolic elements
-of `pr_j(Γ_1)` form a countable set. `∂T_j` has no isolated points. So points `ξ`
-avoiding these sets in every coordinate are dense in every box, and they have
-trivial isotropy. A second countable étale groupoid with dense trivial isotropy
-is effective. `𝒢_(Λ_N)` is an open subgroupoid of `𝒢_Λ` with the same unit space,
-so it is effective too.
+**Step 1 (Λ_N splits into strongly connected pieces).** For vertices `v, w` of
+`Λ`, write `v ⇝ w` if some path of `Λ` with range `v` and source `w` has degree in
+`N·N^k`. These are exactly the paths of `Λ_N`.
+- `⇝` is reflexive (loops) and transitive.
+- **Symmetric.** `Λ` is strongly connected (Step 3 of the phase route). Given `λ`
+  from `v` to `w` of degree `Nm`, take any `μ` from `w` to `v` of degree `d`. Then
+  `(μλ)^(N-1) μ` runs from `w` to `v` with degree
+  `(N-1)(d + Nm) + d = Nd + N(N-1)m`, a multiple of `N`.
+So `⇝` is an equivalence relation. No path of `Λ_N` joins different classes, and
+`Λ_N` restricted to each class is strongly connected. Thus `Λ_N` is a disjoint
+union of strongly connected finite `k`-graphs, each vertex keeping its two loops
+of every colour.
 
-**Step 2 (𝒢_Λ is minimal).** `Λ` is strongly connected (Step 3 of the phase
-route). For `x ∈ ∂Λ` and a path `λ`, choose `n`, and a path `μ` from `s(λ)` to
-the range of `σ^n x`. Then `λ μ σ^n x ∈ Z(λ)` is tail equivalent to `x`. So every
-orbit is dense.
-
-**Step 3 (finitely many minimal pieces for Λ_N).** `𝒢_(Λ_N)` is the kernel of the
-continuous cocycle `c = d mod N : 𝒢_Λ -> A = (Z/N)^k`. Let `𝒢_Λ ⋊_c A` be the
-skew product on `∂Λ x A`.
-- Choose a minimal closed invariant set `M` (by compactness). Its translates
-  `a + M` are minimal, and `M` projects onto `∂Λ` (the projection of an orbit is a
-  `𝒢_Λ`-orbit, which is dense by Step 2). So the translates cover `∂Λ x A`.
-- Two minimal sets are equal or disjoint, so `∂Λ x A` is a finite disjoint union
-  of closed minimal invariant sets, and each is clopen.
-- The `𝒢_(Λ_N)`-orbit of `y` is the skew orbit of `(y, 0)` intersected with the
-  clopen set `∂Λ x {0}`. So the sets `(a + M) ∩ (∂Λ x {0})` are finitely many clopen
-  `𝒢_(Λ_N)`-invariant pieces of `Z`, each minimal.
-
-**Step 4 (conclusion).** By Steps 0–3, `Λ_N` and `Z` satisfy the hypotheses of
-`stabilized-kgraph-full-groups-have-type-a-actions`, so `F(𝒢_(Λ_N)|_Z) ∈ B_A`.
-Its subgroup `Γ_1` lies in `B_A`, and hence so does `Γ`.
+**Step 2 (conclusion).** `Λ_N` and `Z` satisfy the hypotheses of
+`stabilized-kgraph-full-groups-have-type-a-actions`, so `F(𝒢_(Λ_N)|_Z) ∈ B_A`. Its
+subgroup `Γ_1` lies in `B_A`, and hence so does `Γ`.

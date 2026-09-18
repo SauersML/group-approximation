@@ -132,3 +132,14 @@ Tools already in the scratchpad (`gq/src/kep/`) for the finiteness step:
 - Whether a Garside-category model of the Deligne boundary satisfies Li's
   hypotheses is OPEN and unexplored. It is the natural next step for anyone taking
   BBCMP Q1.12 through full groups.
+- **Warning, from this lane's own failed attempt (aaf40d700, corrected).** Grading
+  a category by the Garside monoid itself does not work.
+  - Li's monoid boundary of `A^+` is a single point: all principal right ideals of
+    a Garside monoid meet.
+  - The Artin group then lives in the isotropy of the groupoid
+    (`garside-decorated-groupoids-hide-artin-groups-in-isotropy`), and no simple
+    subgroup of the resulting F_infinity full group contains it.
+  - A working model must make `A` act faithfully on the unit space. That needs a
+    left-cancellative category or self-similar action whose boundary carries the
+    normal-form dynamics, such as the left-greedy normal-form SFT itself, and not
+    `A^+`.

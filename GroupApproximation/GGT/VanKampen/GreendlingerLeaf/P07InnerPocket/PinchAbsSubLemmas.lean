@@ -15,9 +15,8 @@ For a face set `F` and a boundary circuit `comp` of its complement, `w' = pinchL
 * `pinchAbsSub_OutAdj`: two faces off the side of a walk `w` that share an edge.
   `pinchAbsSub_out_iff`: when `F ⊆ sideFaces w`, a chain of `pinchAbsSub_OutAdj` steps joins
   faces on the same side of `w'` (every step is an edge with both faces off `F`).
-* `pinchAbsSub_not_mem_set`: a reached face of the rest is off `pinchAbs_set`;
-  `pinchAbsSub_reach_iff`: along a reach chain from a bad face all faces lie on one side of `w'`.
-* `pinchAbsSub_set_subset`: `pinchAbs_set ⊆ sideFaces K.walk` when `f ∈ sideFaces K.walk`.
+The `pinchAbs_set` specific lemmas (`pinchAbsSub_set_subset`, `pinchAbsSub_not_mem_set`,
+`pinchAbsSub_reach_iff`) are in `PinchAbsSubSub.lean`.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

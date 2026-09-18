@@ -72,3 +72,62 @@ used. It is reported to team-lead as a rule slip.
   in every real quadratic field. This supersedes the norm −1 restriction of
   `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`. That node remains true and gives a smaller host:
   the finite-index derived subgroup itself.
+
+## Addendum 2: Pisot slopes as contracting RSGs (`pisot-stein-groups-are-contracting-rsgs`)
+
+**Sources.**
+- Frougny, "Non-standard number representation: computer arithmetic, beta-numeration and quasicrystals"
+  (2003 survey; open PDF, irif.fr/~cf/publications/cargese.pdf, copied to gq/src/bh-near-actions/beta/). Read
+  at source, pp. 8–9:
+  - the greedy algorithm (Rényi);
+  - Parry's admissibility criterion (`s` is a β-expansion iff every shift is `<` `d*_β(1)`);
+  - definitions of Parry and simple Parry numbers;
+  - "if β is a Pisot number then it is a Parry number";
+  - Theorem 3: normalization is computable by a finite transducer for Pisot β.
+- Frougny--Solomyak, "Finite beta-expansions", ETDS 12 (1992). Used for the definition of (F), "(F) ⇒ Pisot",
+  and the sufficient condition `a_1 ≥ … ≥ a_d ≥ 1`. **Not read at source:** the Cambridge PDF request from MSI
+  returned an HTML page.
+- "β-shift is SFT iff d_β(1) is finite" (Parry; Ito--Takahashi) is used as standard.
+
+**Relation to bh-free-03's open direction.** Their artifact §6 proposed exactly this coding for translations,
+and stopped at a uniform bound on the "level defect". Step 3 of the route supplies that bound:
+- `L_β` depends only on `β`;
+- it comes from a conjugate-growth length lemma, step 2, using only Pisot and (F);
+- it holds for all affine pieces `x ↦ β^k x + c` at depths `≥ N(f)`;
+- so scalings are covered as well as translations.
+
+**Referee targets.** Step 3 (the boundary-straddling argument) and step 2 (the length lemma) are the
+load-bearing points. The claim that the level-`n` left endpoints are exactly the points of length `≤ n` uses
+(F) and Parry's theorem.
+
+## Addendum 3 (09-18): Cleary read at source; Hollander and FS via ARS; (F)-field characterization
+
+**Cleary.** Obtained from Project Euclid on MSI (cookie-jar route), stored at gq/src/bh-near-actions/cleary/.
+- Cleary 1995 (RMJM 25, 935–955) proves: `F(1, Z[√2], ⟨(√2+1)^i⟩)` is finitely presented and `FP_∞`, via
+  Brown's criterion on a poset of ω-regular subdivisions. On p. 954 he adds that the same argument works for
+  `λ` with `1 = nλ + λ²`, the metallic means.
+- Cleary 2000 (Illinois J. Math. 44, 453–464) develops τ-regular subdivision for the golden ratio and applies
+  it to F-type groups.
+- **Neither paper treats V-versions or norm +1 slopes.** Matui's Remark (2412.05492, l. 859) overstates this
+  ("V(Z[λ],⟨λ⟩,ℓ) … λ an algebraic integer of degree two").
+- **Consequences, all corrected on main:**
+  - `stein-v-groups-act-with-type-a-on-breakpoints`: its quadratic instance is now limited to norm −1 slopes;
+    norm +1 is OPEN.
+  - `quadratic-interval-exchange-full-groups-satisfy-boone-higman`: now norm −1 fields only.
+  - `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`: input (C) is now
+    `pisot-unit-slope-stein-groups-are-finitely-presented`.
+
+**FS and Hollander.** Akiyama--Rao--Steiner, "A certain finiteness property of Pisot number systems" (JNT 107,
+2004; open PDF at irif.fr/~steiner/weak.pdf, copied to gq/src/bh-near-actions/beta/ars-weak.pdf), p. 2, states
+verbatim:
+- **Theorem A** (Frougny--Solomyak): the dominant root of `x^d − b_1x^{d−1} − … − b_d` with `b_1 ≥ … ≥ b_d > 0`
+  is Pisot with (F).
+- **Theorem B** (Hollander): the same with `b_1 > Σ_{i≥2} b_i`, `b_i ≥ 0`.
+
+These are the (F) criteria used in `f-unit-fields-are-characterized-by-isolated-sign-units`.
+
+**(F)-unit fields.** `every-real-number-field-lies-in-an-f-unit-field` is refuted.
+- **Necessary condition.** An isolated-sign unit, via Akiyama's Proposition 1 and a parity count of real roots.
+- **Counterexample.** `Q(√3)`.
+- **Totally real fields.** There the condition is also sufficient, via `β = ε_0 u^{2N}` and Theorem A.
+- **Complex cubic fields.** They all qualify, because their unit arguments are dense.
