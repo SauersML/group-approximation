@@ -165,7 +165,7 @@ land_set() {  # check these requests on top of HEAD; commit them if they pass, e
   [ $# = 0 ] && return 0
   local r h ok=() bad=0
   for r in "$@"; do
-    if copy_in "$r"; then ok+=("$r"); else mv "$r/out" "$r/out.pending"; echo 4 >"$r/code.pending"; bad=1; fi
+    if copy_in "$r"; then ok+=("$r"); else { mv "$r/out" "$r/out.pending"; echo 4 >"$r/code.pending"; } 2>/dev/null || true; bad=1; fi
   done
   # A request that no longer merges onto this main may have half-copied: drop it and start over.
   if [ "$bad" = 1 ]; then reset_wt; land_set ${ok[@]+"${ok[@]}"}; return 0; fi
@@ -227,7 +227,9 @@ for attempt in $(seq 1 200); do
     if [ "$checks" = 1 ]; then
       # Requests whose paths vanished fail at once; the rest are bisected.
       for r in "${batch[@]}"; do
-        if copy_in "$r"; then live+=("$r"); else echo 4 >"$r/code.pending"; mv "$r/out" "$r/out.pending"; fi
+        # A request withdrawn after the batch was read (its directory removed) is skipped.
+        [ -f "$r/paths" ] || continue
+        if copy_in "$r"; then live+=("$r"); else { echo 4 >"$r/code.pending"; mv "$r/out" "$r/out.pending"; } 2>/dev/null || true; fi
       done
       reset_wt
     else
@@ -292,6 +294,7 @@ if [ -z "$landed" ]; then
 fi
 
 for r in "${batch[@]}"; do
+  [ -d "$r" ] || continue
   if [ -f "$r/sha" ]; then
     echo "landed $(cat "$r/sha") on $remote/main" >"$r/out"; echo 0 >"$r/code.tmp"
     rnode="$(cat "$r/node")"
