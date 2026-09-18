@@ -10,7 +10,10 @@ requires: []
 Notation as in the target. Imports are from Belk--Zaremsky, arXiv:2001.04579 (TeX on MSI),
 and from Quillen, *Homotopy properties of the poset of nontrivial p-subgroups of a group*,
 Adv. Math. 28 (1978), Proposition 1.6 (the fiber lemma; the version BZ cite as
-[quillen78]). The fiber lemma was not re-read at source by this lane.
+[quillen78]). The fiber lemma was not re-read at source by this lane. Referee b pins it
+secondarily through Guzeev, arXiv:2307.00177, Theorem 4, stated for `≤`-fibers; apply it to
+the opposite posets for the `≥`-fibers used here. BZ's own Nerve-Lemma proof of Lemma 7.6
+is an alternative source for the same dichotomy.
 
 **Step 1. The interval is a poset of partitions.** By BZ Proposition `prop:JoinForests` and
 its proof, vertices of `F_q` above `[id_q]` correspond to unordered dyadic partitions of

@@ -1,0 +1,121 @@
+---
+rg: 2
+id: determinism-closure-certifies-quantum-rigidity
+kind: claim
+title: Two-sided determinism closure certifies quantum rigidity of a Z^2 SFT, and fault slabs in two directions defeat it in every recoding
+requires: [sft-crossed-product-fp-iff-quantum-rigid, labbe-shift-is-wall-rigid]
+distinct_from:
+  permutive-triangle-sfts-are-quantum-rigid: that is one determinism mechanism (triangles, by a lamp-style distance induction); this is the general closure criterion for arbitrary finite determination rules, which recovers the triangle case, together with the exact geometric obstruction to every such proof.
+  wall-rigid-z2-sft-is-quantum-rigid: that asks whether wall rigidity suffices; this shows that for shifts with fault slabs, including Labbé's, no determinism argument can be the proof.
+---
+
+**ESTABLISHED (lane proof, elementary, unreviewed; no priority claimed).**
+
+**Setting.** `Ω ⊆ A^(Z^2)` is an SFT with forbidden patterns in `B_r`, and `D >= r`. Here `B_R` is the sup-norm
+ball. The generators `P_z^a` satisfy (Q1)–(Q3) of `sft-crossed-product-fp-iff-quantum-rigid`, with commutation
+for `|z - z'|_∞ <= 2D`.
+- **Rule.** A finite `F ⊆ Z^2 \ {0}` with `F ∪ {0}` inside a translate of `B_D` is a *rule* if the restriction
+  of legal patterns from `F ∪ {0}` to `F` is injective. That is, the `F`-pattern determines the tile at `0`.
+- **Closure.** `C` is the least `C ⊆ Z^2` that contains `B_(2D)` and satisfies:
+  - `C = -C`;
+  - (w) if `v + F ⊆ C` for a rule `F`, then `v ∈ C`;
+  - (z) if `v - F ⊆ C` for a rule `F`, then `v ∈ C`.
+
+## Theorem
+
+1. **Criterion.** If `v ∈ C`, then `[P_z^a, P_(z+v)^b] = 0` for all `z, a, b`. So if `C = Z^2`, `Ω` is
+   `D`-quantum rigid, and `LC(Ω, k) ⋊ Z^2` is finitely presented over every field.
+2. **Calibration.** For a triangle-permutive SFT (any two of `x(z), x(z+e_1), x(z+e_2)` determine the third),
+   `C = Z^2` for every `D >= 1`. This recovers `permutive-triangle-sfts-are-quantum-rigid`, item 1.
+3. **Fault-slab obstruction.** Call `ν ≠ 0` a *fault normal* if some `x ≠ y ∈ Ω` have
+   `Δ(x,y) = {t : x(t) != y(t)}` inside a slab `{|⟨t, ν⟩| <= c}`. Then no rule lies in either open half-plane
+   `{±⟨t, ν⟩ > 0}`, and `C ⊆ {|⟨t, ν⟩| <= max over B_(2D) of |⟨t,ν⟩|}`. With two non-parallel fault normals,
+   `C` is bounded, so the criterion fails at every `D`. Fault normals are conjugacy invariants: a recoding by
+   block maps of radius `s` moves `Δ` by at most `s`. So the failure holds in **every recoding**.
+4. **Labbé's shift.** `Ω_U` has fault normals perpendicular to each of its four fault directions `(1,0)`,
+   `(0,1)`, `(1,-1)`, `(1,-φ)`. Two tilings over a torus point lying on exactly one boundary-segment orbit
+   differ on one full fault line, and parallel exact-hit sheets sit at bounded offsets
+   (`labbe-shift-is-wall-rigid-proof`, step 5). So no determinism closure, in any recoding, proves
+   `labbe-wang-shift-crossed-product-is-finitely-presented`. This makes the heuristic "permutive propagation:
+   dead as it stands" on that node exact.
+
+## Proof
+
+**Lemma 1 (determinism is an operator identity).** If `F` is a rule, then
+`P_z^a = Σ_(p ∈ L_F(a)) Π_(f∈F) P_(z+f)^(p(f))`, where `L_F(a)` is the set of legal `F`-patterns forcing `a` at `0`.
+- All factors lie in one `D`-ball, so they pairwise commute.
+- A pattern on a subset of a `D`-ball that is not in the language has vanishing product: it is a sum over its
+  extensions to the ball, each of which vanishes by (Q3).
+- Now expand `P_z^a` against the partition of unity `Σ_p Π P^p` on `F`. The terms where `p` together with `a`
+  at `0` is illegal vanish. For `p` forcing `a`, `Π P^p = Π P^p P_z^a`.
+
+**Lemma 2 (propagation).** If `X` commutes with every `P_(z+f)^c` for `f ∈ F`, it commutes with `P_z^a`.
+This is immediate from Lemma 1.
+
+**Item 1.** Induct along the construction of `C`, for all `z` at once.
+- **Base:** (Q2).
+- **Symmetry:** commutation is symmetric.
+- **(w):** `w = z + v` has `P_w^b ∈ alg{P_(w+f)}`, and the offsets `(w + f) - z = v + f` lie in `C`.
+- **(z):** `P_z^a ∈ alg{P_(z+f)}`, and the offsets `w - (z+f) = v - f` lie in `C`.
+
+**Item 2.** Use the rules `T_1 = {e_1, e_2}`, `T_2 = {-e_1, -e_1+e_2}` and `T_3 = {-e_2, e_1-e_2}`. Each
+`T_i ∪ {0}` is a unit triangle, inside `B_1`. `B_R ⊆ C` with `R >= 1` gives `B_(R+1) ⊆ C`:
+1. **Generic edge points.**
+   - Right edge `(R+1, j)`, `j < R`: `v + T_2`.
+   - Top edge `(j, R+1)`, `j < R`: `v + T_3`.
+   - Left edge `(-R-1, j)`, `j > -R`: `v - T_2`.
+   - Bottom edge `(j, -R-1)`, `j > -R`: `v - T_3`.
+2. **End points.**
+   - `(R+1, R)` and `(R, R+1)`: `v - T_1`.
+   - `(-R-1, -R)` and `(-R, -R-1)`: `v + T_1`.
+3. **Corners.**
+   - `(R+1, R+1)`: `v - T_1`.
+   - `(R+1, -R-1)`: `v + T_2`.
+   - `(-R-1, R+1)`: `v + T_3`.
+   - `(-R-1, -R-1)`: `v + T_1`.
+
+Each step uses only points already added. The (z)-steps (the down triangles) are essential. With (w)-steps
+alone, and no use of symmetry, each certified `P_(z+v)` would lie in the commutative algebra generated by
+`z + B_(2D)`. If that held for all `v`, every configuration would be determined by a finite pattern, so `Ω`
+would be finite. The (z)-steps are what let infinite shifts pass.
+
+**Item 3.** Let `F` be finite with `⟨f, ν⟩ < 0` for all `f ∈ F`, and put `η = min |⟨f,ν⟩|`. Pick `p ∈ Δ(x,y)` with
+`⟨p, ν⟩ < inf_Δ ⟨·, ν⟩ + η`. Then `p + F` misses `Δ`, so `x` and `y` agree on `p + F` and differ at `p`, and `F`
+is not a rule. The case `⟨f,ν⟩ > 0` is symmetric, using a near-maximal `p`.
+- If `v` is added with `⟨v,ν⟩ > M := sup_C |⟨·,ν⟩|`, then (w) needs `⟨f, ν⟩ < 0` on `F`, and (z) needs `> 0`.
+  Both are excluded.
+- Negation preserves `|⟨·,ν⟩|`, and `-ν` is also a fault normal.
+- So `|⟨v, ν⟩| <= M_0` throughout.
+
+**Item 4.** It follows from item 3 and the cited fibre description.
+
+## Where a Labbé proof must go (heuristic, torus model, not checked against the partition data)
+
+- **Non-fault half-planes determine.** In the torus model `x + φ^(-2) n`, a boundary segment family in
+  direction `d` is resolved by positions along `d` from the tile: same column, same row, same anti-diagonal, or
+  the invariant irrational leaf. So every open half-plane whose normal is not one of the four fault normals
+  contains a rule. The closure is blocked only at the fault normals, as item 3 forces.
+- **At a fault normal the failure is local in phase space.** Take the vertical faults. The (w)-rule from the
+  west fails only for torus points near the extreme-offset vertical line of the tile at `w`. The (z)-rule from
+  the east fails only near the opposite extreme line at `z`. A case split by near-fault patterns can therefore
+  cross the normal, except where both failures coincide.
+- **Resonance.** Both failures coincide only when `‖(L - m_0) φ^(-2)‖` is below the scale-`D` resolution,
+  where `L` is the horizontal separation and `m_0` is fixed by the partition. Such resonant `L` occur with
+  positive density at every fixed `D`.
+- **What is left.** A rigidity proof for `Ω_U` must commute generators across resonant separations through
+  something other than determinism, for instance through crossings with faults of another direction. A
+  refutation, a periodic quantum tiling (`labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`), would
+  have to concentrate its noncommutativity on resonant pairs.
+
+## Lesson for general BH
+
+Determinism gives rigidity exactly when commutation can be pushed across every direction from one side or the
+other. Faults, meaning pairs of configurations that differ only inside a slab, block this in their normal
+direction, in every recoding. So a free minimal SFT that is rigid for determinism reasons must have no fault
+slabs in two directions.
+- Every toral-rotation coding, Labbé's and the Jeandel–Rao-type ones, has them. Its rigidity, if true, needs a
+  mechanism that crosses faults.
+- Self-similar (fixed-point) tilings whose supertile parse is locally unique are the natural candidates for
+  fault-free free minimal SFTs, which is Conjecture G2-fp.
+- The closure is also a mechanical test that any proposed rigid SFT over Λ₀ × H can be run through before
+  anyone attempts a proof.
