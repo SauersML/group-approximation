@@ -5,7 +5,6 @@ kind: route
 title: Kill K_2 of matrix rings over Q with Cuntz families of every size, then lift St_4(M_m(Q)) into St_4(S)
 target: one-steinberg-group-contains-every-gl-n-q
 requires:
-  - finitely-presented-divisible-ring-engine
   - steinberg-finite-presentation-and-kazhdan-theorem
 artifacts:
   - research/artifacts/gq-referee-a-one-steinberg-group-contains-every-gl-n-q.md
@@ -17,13 +16,11 @@ Direct proof, written in the target under `## Attempts`, item 1, steps (a)–(e)
 Referees a, b and c returned PASS, conditional on the classical `K_2` inputs listed below.
 
 **Graph inputs.**
-- `finitely-presented-divisible-ring-engine` supplies the finitely presented ring `D`. The target exhibits a
-  binary Leavitt pair in it, which gives the explicit host `St_4(D)` of part 3. gq-referee-c reviewed `D` in
-  `gq-referee-c-finitely-presented-divisible-ring-engine.md`. gq-referee-b passed this route conditional on
-  that review, which was still missing at the time.
 - `steinberg-finite-presentation-and-kazhdan-theorem` gives finite presentation of `St_4(S)` for finitely
   presented `S`, which is part 3.
-- Parts 1 and 2 hold for every ring `S` with `Q` and a Leavitt pair, and need neither node.
+- Parts 1 and 2 hold for every ring `S` with `Q` and a Leavitt pair and need no graph node. No specific ring
+  is required: the explicit hosts `D` and `R_L` enter only through the routes
+  `gl-n-q-explicit-via-st-4-of-divisible-ring` and `gl-n-q-explicit-via-st-4-of-resolvent-ring`.
 
 **Literature inputs.** These are cited in the proof and are not graph nodes:
 - centrality of `K_2(n, A)` for `n >= sr(A) + 2` (Voronetsky, arXiv:2004.08551v2, introduction, citing
