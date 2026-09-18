@@ -59,3 +59,27 @@ independently of Gottschalk's conjecture.
   - **Next test.** Construct, or rule out, an injective `tau` on `T^(Q/Z)` with
     `D = s + s^2 - t`. On every finite-subgroup block it would have degree 0, so it must
     carry information between blocks with unbounded memory.
+- 2026-09-18 (swarm-0917-w10-w10-gs-follow): C2 holds for every LEF group, at every `d`
+  (`lef-groups-are-torus-surjunctive`, ESTABLISHED, unreviewed; artifact
+  `research/artifacts/lef-torus-small-fibre-2026-09-18.md`).
+  - **Key input.** A dimension-free small-fibre lemma: a map `T^N -> T^N` with fibres
+    of sup-diameter `<= 1/16` is onto and bijective on `H^1`, with the constant
+    independent of `N`.
+  - **Finite models.** Uniform injectivity of `tau` makes the fibres of exact LEF-model
+    maps `tau_Q` small, and `tau_Q^* = phi(D)`. So `phi(D) in GL_d(Z[Q])`, and `D` is a
+    two-sided non-zero-divisor.
+  - **Belief change: the w9 conclusion is refuted.** Locally finite groups are LEF, so
+    C2 and TS hold on `Q/Z`, `Z(2^inf) x Z(3^inf)` and `Alt_fin(N)`, all previously
+    listed as smallest open hosts. The w9 next test is answered negatively:
+    `D = s + s^2 - t` never occurs for an injective `tau` over an LEF group.
+  - **New host.** `FSym(Z) ⋊ Z` is finitely generated, LEF and not residually finite.
+  - **What stays open.** Finitely presented LEF groups are residually finite, so the
+    remaining open hosts are non-LEF. The first cases are `d = 2` over `BS(2,3)` or
+    Thompson's `F`, since `d = 1` is covered there by the domain case. Non-LEF groups
+    with torsion and nonsofic groups remain open too.
+  - **Obstruction (artifact Section 5).** No defect-tolerant small-fibre lemma exists.
+    - *Example.* A map `T^N -> T^N` can be injective in `N - 1` coordinates and still
+      satisfy `f^* = 0`: embed `T^(N-1)` in a small ball.
+    - *Consequence.* The sofic extension must use locality of `tau_sigma` at the
+      defects, not only a fibre bound.
+  - The node stays OPEN for general `G`.
