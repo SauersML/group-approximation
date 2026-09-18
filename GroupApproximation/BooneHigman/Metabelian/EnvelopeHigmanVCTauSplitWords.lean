@@ -107,7 +107,8 @@ theorem higmanVCTauSplit_maps_dM {d : ℕ} {m o : List (Fin d)}
     (h1 : ¬ higmanVCTau_descP m o <+: m.take 3) (h2 : ¬ m.take 3 <+: higmanVCTau_descP m o) :
     MapsCone (coneSwap (higmanVCTau_descP m o) (m.take 3) h1 h2) (higmanVCTau_dM m o) m := by
   have h := (mapsCone_coneSwap_left h1 h2).append (m.drop 3)
-  rwa [List.take_append_drop] at h
+  rw [List.take_append_drop] at h
+  exact h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_maps_dM
 
