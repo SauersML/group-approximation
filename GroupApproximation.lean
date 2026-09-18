@@ -5933,6 +5933,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionR
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtCorona
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.BKROps
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Wired
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.ColRow
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
