@@ -92,7 +92,8 @@ theorem streamAgree_prepend {N : ℕ} {x y : Cantor X} (h : StreamAgree N x y) (
 
 /-- Every initial segment of `f x` is determined by an initial segment of `x`. -/
 def LocallyDetermined (f : Cantor X → Cantor X) : Prop :=
-  ∀ (x : Cantor X) (N : ℕ), ∃ M : ℕ, ∀ y : Cantor X, StreamAgree M x y → StreamAgree N (f x) (f y)
+  ∀ (x : Cantor X) (N : ℕ), ∃ M : ℕ, ∀ y : Cantor X,
+    StreamAgree M x y → StreamAgree N (f x) (f y)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.LocallyDetermined
 
