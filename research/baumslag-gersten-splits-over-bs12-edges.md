@@ -47,6 +47,11 @@ Only (R1) with this `a_2`, and (R4).
   that need `t`, such as equicontinuity with the smallest-prime argument, or unbounded exponent sums
   (`bg-in-isometric-brick-hosts-needs-unbounded-exponents`), do not apply to `K`. What remains is the
   symmetry: `B_1` must act on `X` as `B_0` does, via the shift.
+- **Tower copies in brick hosts.** In any group of brick maps with isometric sections, the middle
+  element `a_1` of a copy of `K` is not equicontinuous and has unbounded exponent sums
+  (`equicontinuous-square-conjugators-are-trivial-in-brick-hosts`). So in `2V_τ` the odometer
+  `s` cannot play `a_1`, and `a_0 = s`, `a_1 = u` is the only arrangement of the known
+  `BS(1,2)`.
 - **Why the cyclic splitting cannot be used this way.** For `BG = B_0 *_(⟨a_0⟩ → ⟨a_1⟩)`, clause (R2)
   would ask for an orbit-finite `D_1 ⊇ ⟨a_0⟩` with `D_1 ∩ B_0 = ⟨a_0⟩`. `D_1 = ⟨a_0⟩` is impossible by
   the regular-orbit invariant of `type-a-actors-have-no-proper-power-cyclic-edge-splittings`. With
