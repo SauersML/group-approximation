@@ -80,9 +80,9 @@ theorem k2Karoubi_snd_mem {y : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
 
 /-- `q y = snd y`. -/
 noncomputable def k2Karoubi_q (s : A) (M : ℕ) : k2PullRel_ker s M →* k2Karoubi_kerB s M where
-  toFun y := ⟨ringMap (k2PullRel_snd s) y, k2Karoubi_snd_mem y.2⟩
-  map_one' := Subtype.ext (map_one (ringMap (k2PullRel_snd s)))
-  map_mul' a b := Subtype.ext (map_mul (ringMap (k2PullRel_snd s)) a b)
+  toFun y := ⟨ringMap (I := Fin M) (k2PullRel_snd s) y, k2Karoubi_snd_mem y.2⟩
+  map_one' := Subtype.ext (map_one (ringMap (I := Fin M) (k2PullRel_snd s)))
+  map_mul' a b := Subtype.ext (map_mul (ringMap (I := Fin M) (k2PullRel_snd s)) a b)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_q
 
@@ -96,7 +96,7 @@ noncomputable def k2Karoubi_alpha (s : A) (M : ℕ) :
 theorem k2Karoubi_coe_q (y : k2PullRel_ker s M) :
     ((k2Karoubi_q s M y : k2Karoubi_kerB s M) :
         SteinbergGroup (Fin M) (Polynomial (Localization.Away s))) =
-      ringMap (k2PullRel_snd s) y :=
+      ringMap (I := Fin M) (k2PullRel_snd s) y :=
   rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_coe_q
@@ -121,10 +121,11 @@ theorem k2Karoubi_coe_u (i j : Fin M) (hij : i ≠ j) (h : Polynomial (Localizat
 
 /-- `F1` for the canonical witness. -/
 theorem k2Karoubi_F1 : k2PullRel_F1 (k2Karoubi_q s M) (k2Karoubi_alpha s M) := by
-  intro i j k l hij hkl hjk hli _ _
+  intro i j k l hij hkl hjk hli t h
   apply Subtype.ext
   rw [k2Karoubi_coe_alpha, k2Karoubi_coe_u, ringMap_x,
-    (x_commute_of_ne k l i j hkl hij hli hjk _ _).eq, mul_inv_cancel_right]
+    (x_commute_of_ne k l i j hkl hij hli hjk (Polynomial.C t)
+      (h - Polynomial.C (h.eval 0))).eq, mul_inv_cancel_right]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_F1
 

@@ -94,3 +94,132 @@ theorem czStFourFP_X_rep (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_rep
 
+/-- `X` extends `n ↦ yⁿ`. -/
+theorem czStFourFP_X_int (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) (n : ℤ) :
+    czStFourFP_X t y hsurj (n : R) = y ^ n := by
+  rw [czStFourFP_X_rep ht hq hinj hsurj (n : R) 0 n (by rw [pow_zero, one_mul])]
+  simp only [pow_zero, inv_one, one_mul, mul_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_int
+
+/-- `X` is additive. -/
+theorem czStFourFP_X_add (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) (r s : R) :
+    czStFourFP_X t y hsurj (r + s) = czStFourFP_X t y hsurj r * czStFourFP_X t y hsurj s := by
+  obtain ⟨k₁, n₁, h₁⟩ := hsurj r
+  obtain ⟨k₂, n₂, h₂⟩ := hsurj s
+  have hr := czStFourFP_bs_shift hq h₁ k₂
+  have hs := czStFourFP_bs_shift hq h₂ k₁
+  rw [add_comm k₂ k₁] at hs
+  have hrs : q ^ (k₁ + k₂) * (r + s) = ((Q ^ k₂ * n₁ + Q ^ k₁ * n₂ : ℤ) : R) := by
+    rw [mul_add, hr, hs, Int.cast_add]
+  rw [czStFourFP_X_rep ht hq hinj hsurj (r + s) _ _ hrs,
+    czStFourFP_X_rep ht hq hinj hsurj r _ _ hr, czStFourFP_X_rep ht hq hinj hsurj s _ _ hs,
+    zpow_add]
+  simp only [mul_assoc, mul_inv_cancel_left]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_add
+
+/-- Integer multiples: `X(s) ^ n = X(n s)`. -/
+theorem czStFourFP_X_zpow (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) (s : R) (n : ℤ) :
+    czStFourFP_X t y hsurj s ^ n = czStFourFP_X t y hsurj ((n : R) * s) := by
+  obtain ⟨k, a, h⟩ := hsurj s
+  have h' : q ^ k * ((n : R) * s) = ((a * n : ℤ) : R) := by
+    rw [mul_left_comm, h, Int.cast_mul, mul_comm]
+  rw [czStFourFP_X_rep ht hq hinj hsurj s k a h,
+    czStFourFP_X_rep ht hq hinj hsurj _ k (a * n) h', zpow_mul]
+  have e := conj_zpow (i := n) (a := (t ^ k)⁻¹) (b := y ^ a)
+  rw [inv_inv] at e
+  exact e
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_zpow
+
+/-- `t X(r) t⁻¹ = X(q r)`. -/
+theorem czStFourFP_X_conj_t (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) (r : R) :
+    t * czStFourFP_X t y hsurj r * t⁻¹ = czStFourFP_X t y hsurj (q * r) := by
+  obtain ⟨k, n, h⟩ := hsurj r
+  have h₁ : q ^ (k + 1) * r = ((Q * n : ℤ) : R) := by
+    rw [pow_succ', mul_assoc, h, Int.cast_mul, hq]
+  have h₂ : q ^ k * (q * r) = ((Q * n : ℤ) : R) := by
+    rw [mul_left_comm, h, Int.cast_mul, hq]
+  rw [czStFourFP_X_rep ht hq hinj hsurj r (k + 1) (Q * n) h₁,
+    czStFourFP_X_rep ht hq hinj hsurj (q * r) k (Q * n) h₂, pow_succ, mul_inv_rev]
+  simp only [mul_assoc, mul_inv_cancel_left, mul_inv_cancel, mul_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_conj_t
+
+/-- `tᵏ X(r) t⁻ᵏ = X(qᵏ r)`. -/
+theorem czStFourFP_X_conj_t_pow (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) (k : ℕ) (r : R) :
+    t ^ k * czStFourFP_X t y hsurj r * (t ^ k)⁻¹ = czStFourFP_X t y hsurj (q ^ k * r) :=
+  czStFourFP_conj_pow_iter (f := czStFourFP_X t y hsurj)
+    (czStFourFP_X_conj_t ht hq hinj hsurj) k r
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_conj_t_pow
+
+end Level
+
+/-- If conjugation by `g` commutes with conjugation by `t`, it commutes with conjugation by
+`tᵏ`. -/
+theorem czStFourFP_conj_comm_pow {P : Type*} [Group P] {g t : P}
+    (hcomm : ∀ h, g * (t * h * t⁻¹) * g⁻¹ = t * (g * h * g⁻¹) * t⁻¹) (k : ℕ) (h : P) :
+    g * (t ^ k * h * (t ^ k)⁻¹) * g⁻¹ = t ^ k * (g * h * g⁻¹) * (t ^ k)⁻¹ := by
+  induction k generalizing h with
+  | zero => simp only [pow_zero, one_mul, inv_one, mul_one]
+  | succ k ih =>
+    have e : ∀ u : P, t ^ (k + 1) * u * (t ^ (k + 1))⁻¹ = t ^ k * (t * u * t⁻¹) * (t ^ k)⁻¹ := by
+      intro u
+      rw [pow_succ, mul_inv_rev]
+      simp only [mul_assoc]
+    rw [e, e, ih, hcomm]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_conj_comm_pow
+
+/-- The same for conjugation by `t⁻ᵏ`. -/
+theorem czStFourFP_conj_comm_pow_inv {P : Type*} [Group P] {g t : P}
+    (hcomm : ∀ h, g * (t * h * t⁻¹) * g⁻¹ = t * (g * h * g⁻¹) * t⁻¹) (k : ℕ) (h : P) :
+    g * ((t ^ k)⁻¹ * h * t ^ k) * g⁻¹ = (t ^ k)⁻¹ * (g * h * g⁻¹) * t ^ k := by
+  have e := czStFourFP_conj_comm_pow hcomm k ((t ^ k)⁻¹ * h * t ^ k)
+  have hh : t ^ k * ((t ^ k)⁻¹ * h * t ^ k) * (t ^ k)⁻¹ = h := by
+    simp only [mul_assoc, mul_inv_cancel_left, mul_inv_cancel, mul_one]
+  rw [hh] at e
+  rw [e]
+  simp only [mul_assoc, inv_mul_cancel_left, inv_mul_cancel, mul_one]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_conj_comm_pow_inv
+
+section Scale
+
+variable {P : Type*} [Group P] {t y : P} {Q : ℤ} {R : Type*} [CommRing R] {q : R}
+
+/-- **Scaling.**  If `g y g⁻¹ = X(ρ)` and conjugation by `g` commutes with conjugation by `t`,
+then `g X(r) g⁻¹ = X(ρ r)`. -/
+theorem czStFourFP_X_conj_of (ht : t * y * t⁻¹ = y ^ Q) (hq : q = (Q : R))
+    (hinj : Function.Injective (Int.cast : ℤ → R))
+    (hsurj : ∀ r : R, ∃ k : ℕ, ∃ n : ℤ, q ^ k * r = (n : R)) {g : P} {ρ : R}
+    (hy : g * y * g⁻¹ = czStFourFP_X t y hsurj ρ)
+    (hcomm : ∀ h, g * (t * h * t⁻¹) * g⁻¹ = t * (g * h * g⁻¹) * t⁻¹) (r : R) :
+    g * czStFourFP_X t y hsurj r * g⁻¹ = czStFourFP_X t y hsurj (ρ * r) := by
+  obtain ⟨k, n, h⟩ := hsurj r
+  have e₁ : t ^ k * czStFourFP_X t y hsurj (ρ * r) * (t ^ k)⁻¹ =
+      czStFourFP_X t y hsurj ((n : R) * ρ) := by
+    rw [czStFourFP_X_conj_t_pow ht hq hinj hsurj k, mul_left_comm, h, mul_comm]
+  rw [czStFourFP_X_rep ht hq hinj hsurj r k n h, czStFourFP_conj_comm_pow_inv hcomm k,
+    ← conj_zpow, hy, czStFourFP_X_zpow ht hq hinj hsurj, ← e₁]
+  simp only [mul_assoc, inv_mul_cancel_left, inv_mul_cancel, mul_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_X_conj_of
+
+end Scale
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
+

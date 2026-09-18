@@ -61,7 +61,7 @@ def k2Karoubi_InjAt {A : Type u} [CommRing A] (s : A) : Prop :=
 /-- **Reduction**: `R1` gives the relative action residual, via the canonical witness. -/
 theorem k2Karoubi_actionAt_of_injAt {A : Type u} [CommRing A] {s : A}
     (h : k2Karoubi_InjAt s) : k2PullRel_ActionAt s := fun M₀ ↦
-  ⟨M₀, le_rfl, k2Karoubi_kerB s M₀, inferInstance, k2Karoubi_q s M₀, k2Karoubi_alpha s M₀,
+  ⟨M₀, le_rfl, ↥(k2Karoubi_kerB s M₀), inferInstance, k2Karoubi_q s M₀, k2Karoubi_alpha s M₀,
     k2Karoubi_faithful_of_inj (h M₀), k2Karoubi_Compat, k2Karoubi_F1, k2Karoubi_F2,
     k2Karoubi_F3⟩
 
