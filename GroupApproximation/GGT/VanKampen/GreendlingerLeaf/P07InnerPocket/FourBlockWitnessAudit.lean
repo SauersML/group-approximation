@@ -118,3 +118,98 @@ nondegeneracy premise.  **A route to it through these statements must add the hy
   the corrected noninterleave statement from the corrected four-block statement.
   `FourBlockWitnessLabel.lean` proves step 1 and isolates the smaller residual.
 -/
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
+
+universe u w v
+
+open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
+
+namespace FourPieceWitness
+
+/-- **Corrected residual of lane gl-p07-24: the witness outside walk reads four blocks, for
+nondegenerate candidates.**  This is `FourBlockStatement` with the four contact arcs of `a` and `b`
+nonempty.  `FourBlockStatement` itself is false (model M9, module docstring). -/
+def FourBlockNondegStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    0 < (a.cellArcList i).length → 0 < (a.cellArcList j).length →
+    0 < (b.cellArcList i).length → 0 < (b.cellArcList j).length →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (witnessFaces a b K C.face) outerWalk →
+        (∀ d ∈ outerWalk,
+          X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face) →
+        ∃ (n : ℕ) (U₁ U₂ U₃ U₄ : List X.toCombMap.Dart),
+          (invDarts X outerWalk).rotate n = U₁ ++ U₂ ++ U₃ ++ U₄ ∧
+          (∀ e ∈ U₁, e ∈ invDarts X G₁.darts) ∧
+          (∀ e ∈ U₃, e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts) ∧
+          (∀ e ∈ U₂, e ∉ invDarts X G₁.darts ∧ e ∉ invDarts X G₂.darts) ∧
+          (∀ e ∈ U₄, e ∉ invDarts X G₁.darts ∧ e ∉ invDarts X G₂.darts) ∧
+          (((∀ e ∈ U₂, X.toCombMap.alpha e ∈ b.sideFrom i) ∧
+              ∀ e ∈ U₄, X.toCombMap.alpha e ∉ b.sideFrom i) ∨
+            ((∀ e ∈ U₂, X.toCombMap.alpha e ∉ b.sideFrom i) ∧
+              ∀ e ∈ U₄, X.toCombMap.alpha e ∈ b.sideFrom i))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.FourBlockNondegStatement
+
+/-- **Corrected clause 3 for the cut-down witness, for nondegenerate candidates.**  This is
+`PocketFourPieceWitnessNoninterleaveStatement` with the four contact arcs of `a` and `b` nonempty.
+`PocketFourPieceWitnessNoninterleaveStatement` itself is false (model M9, module docstring). -/
+def NoninterleaveNondegStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    0 < (a.cellArcList i).length → 0 < (a.cellArcList j).length →
+    0 < (b.cellArcList i).length → 0 < (b.cellArcList j).length →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (witnessFaces a b K C.face) outerWalk →
+        (∀ d ∈ outerWalk,
+          X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face) →
+        FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts)
+            (invDarts X outerWalk) ∧
+          FourPiece.CyclicNoInterleave
+            (fun e => e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts)
+            (invDarts X outerWalk) ∧
+          FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+            (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∈ b.sideFrom i))
+            (invDarts X outerWalk) ∧
+          FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+            (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∉ b.sideFrom i))
+            (invDarts X outerWalk)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.NoninterleaveNondegStatement
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
