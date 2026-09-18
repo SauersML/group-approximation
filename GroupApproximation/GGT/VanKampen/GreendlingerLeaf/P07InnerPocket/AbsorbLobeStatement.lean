@@ -74,8 +74,8 @@ abbrev AbsorbLobeMaximal {G : Type u} [Group G] {Lambda : Type w}
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.AbsorbLobeMaximal
 
-/-- **Remaining gap of lane gl-p07-41.**  This is `AbsorbFaceSetStatement` with Improve restricted to
-card-maximal basic pairs (`AbsorbLobeMaximal`).  See the module docstring. -/
+/-- **Remaining gap of lane gl-p07-41.**  This is `AbsorbFaceSetStatement` with Improve restricted
+to card-maximal basic pairs (`AbsorbLobeMaximal`).  See the module docstring. -/
 def AbsorbLobeStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)

@@ -137,6 +137,15 @@ A method should reproduce these, or say why it does not need to.
   - Scott and Röver–Nekrashevych-type affine models;
   - adelic and solenoid V-like models;
   - piecewise-projective `PSL_2(Q)` and `PGL_n(Q)` hosts.
+- **(c) Circle groups and their lifts** (`pp-circle-divisible-subgroups-act-freely` and
+  `pp-circle-and-lift-hosts-miss-gl-n-q` *(node)*, d65ff92ff). In a f.g. finitely piecewise-`Λ` circle group,
+  with `Λ <= PSL_2(R)` satisfying their hypothesis (D), and in its lift to `R`:
+  - a divisible abelian `D` acts freely;
+  - rotation or translation number is injective on `D`, so `N(D) = C(D)`.
+
+  So no element scales `D`. That excludes `Aff(Q)`, `SL_2(Q)` and `GL_2(Q)` even in nonstandard
+  position, because the proof uses no natural action. Calibration check of Step 1 by this lane: correct.
+  `Aff_+(Q) <= Homeo_+(S^1)` is not a counterexample, because it has infinitely many pieces.
 - **Hits lanes:** `gq-germ-design`, `gq-solenoid`, `gq-adelic`, `gq-deep-adelic-1`, `gq-tbar-lift-n`,
   `gq-pp-*`, `gq-scott-union`, `gq-rn-varying-degree`.
 - **Pass:** say which elements carry `D` non-standardly (not as elements of `L`, and fixed-point-free), or
@@ -159,7 +168,7 @@ A method should reproduce these, or say why it does not need to.
 - **Pass, for n >= 3:** name the Kazhdan-compatible part of the host (a vertex stabilizer, or a
   non-cubical piece) that holds `SL_3(Z)`.
 
-## T8. One-manifold hosts (Witte)
+## T8. One-manifold hosts (Witte; `gl-n-q-hosts-cannot-act-on-one-manifolds` *(node)*, 5a140f21e)
 
 - **Source.** Witte, *Arithmetic groups of higher Q-rank cannot act on 1-manifolds*, Proc. AMS 122
   (1994) 333–340, as stated by Parwani, arXiv:math/0504189, Theorem 1.2: "If Γ is a subgroup of finite
@@ -170,7 +179,10 @@ A method should reproduce these, or say why it does not need to.
   group.
 - **Kills, for n >= 3:** every host inside `Homeo(S^1)`, `Homeo(R)` or `Homeo([0,1])`. That includes `T`,
   `T-bar`, `F`, piecewise-projective circle and line groups, their lifts, and every left-orderable host.
-- **n = 2** is not killed: `PGL_2(Q)` acts on `RP^1`. Combine with T5 (lifts), T6 (pieces) and M3
+- **n = 2.** Line and interval hosts are killed by torsion: `SL_2(Q)` has elements of order 3 and 4,
+  and `Homeo(R)` has no torsion beyond order 2. Circle hosts are not killed by T8, since `PGL_2(Q)` acts on
+  `RP^1`, but for finitely piecewise projective circle groups T6(c) kills them. Combine with T5 (lifts),
+  T6 (pieces) and M3
   (`fg-simple-projective-interval-groups-are-trivial` *(node)*: f.g. simple piecewise-projective
   interval groups are trivial).
 - `gq-pp-higher` works on `RP^(n-1)` and is not affected.

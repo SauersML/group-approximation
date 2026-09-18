@@ -460,6 +460,25 @@ content in that region.
     - The missing inputs are expected extrinsic growth of infinite clusters
       strictly below `gr`, and a subexponential finite-cluster susceptibility,
       at one `p > p_c`.
+* **Continuous spine activation (2026-09-18, w5-123).** This settles the
+  (a)/(b) question left by `fpbs-quenched-bk-russo-collapse-operator-gate`.
+  `fpbs-continuous-activation-collapse-family` gives a collapse family, with
+  the same (S1)-(S4) and (H1)-(H5), in which spine edges switch on one at a
+  time, at continuously distributed times. The spines are interpolated
+  through invariant geodesic forests with product-of-uniform levels.
+  - Every quenched jump is a single edge of weight at most `1`.
+  - Every local annealed probability, and every `T^Lambda`, is absolutely
+    continuous in `t`, so there are no annealed jump atoms.
+  - Collapse families do not need infinite total jump weight. However, the
+    quenched density must exceed `p_u` somewhere just above `p_c`
+    (Proposition 3 there).
+
+  **Where it dies:** (G) still fails, now in its density term alone. The
+  ratio `dT^Lambda/dr : T^Lambda J T^Lambda` is integrable for each fixed
+  `Lambda`, but not uniformly in `Lambda` (non-equicontinuity in volume). So
+  the jump estimate (b) is not load-bearing. Next: split the density into the
+  off-spine Russo part and the activation part, and decide whether the Russo
+  part alone factorizes against `T J T`.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.

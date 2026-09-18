@@ -134,3 +134,19 @@ exist in every dimension, and (LOC) fails at exactly one step: `z^2` is not in t
   - **Next falsifiable step.** Can a rank-`k` tuple of `SL_3(Z)` contain a `4 pi` cone-point
     configuration for the pair `(e_13, e_23)`? That is, is there a translation surface whose affine
     structure is compatible with both parabolics `<e_13, e_23> x| SL_2` and `<e_12, e_13> x| SL_2`?
+- **Higher-rank relators do force linear `phi` once `g >= 5` (2026-09-18, w5-124, transplanter).** See
+  `sln-relators-force-linear-commutator-growth`.
+  - **Import from filling geometry.** The rank defect of a trivial word is at most `k` times its area.
+    Combine the Lubotzky-Mozes-Raghunathan shortcuts with Young's quadratic Dehn function for
+    `SL_n(Z)`, `n >= 5`. A dyadic filling (replace `w_j w_j` by `w_(j+1)` at cost `O(j^2)`) gives
+    `Area([u^L, v^L]) = O(L)`. So `phi(L) <= C_g k L` for commuting `SL_g`-root pairs, and `SL_g(Z)`
+    lifts to `Gamma_n`.
+  - **Answer to the cone-point question.** For `g >= 5` no rank-`k` sector tuple has a
+    Wollmilchsau cone-point or dislocation configuration at scales `L >> k`. The quadratic defect
+    class dies. Conversely, the Wollmilchsau tuples give `Area_P([b^L, c^L]) >= L^2/2` in
+    `Z^2 x| SL_2(Z)`.
+  - **Open.**
+    - `g = 3, 4`: this needs polynomial area for the doubling loops in `SL_3(Z)` or `SL_4(Z)`.
+    - Long-root pairs: this needs a polynomial Dehn function for `Sp_(2g)(Z)`.
+    - Linear `phi` does not give closeness to commuting pairs (see the slit origami). The next
+      step is a sublinear conversion defect `rank(rho(u)^L - rho(W_L(u))) = o(L)`.

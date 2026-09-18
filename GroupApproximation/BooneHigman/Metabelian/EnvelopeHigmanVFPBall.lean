@@ -15,7 +15,7 @@ Route.
   `FreeGroup.lift (vgenShortSwaps (Fin d))` of reduced length at most `higmanVFPBound d = 8d+64`.
   The involution, symmetry, comparable-letter, commutation and conjugation relators (reduced
   length at most `4`) and the split relators `(v w) = ∏ₐ (va wa)` (length `d+1`) all lie in it
-  (`EnvelopeHigmanVFPLetters.lean`, `EnvelopeHigmanVFPSplit.lean`).
+  (`EnvelopeHigmanVFPLetters.lean`, `EnvelopeHigmanVFPSplitRel.lean`).
 * `higmanVFP_relators_finite`: it is finite, since `toWord` is injective into the finite set of
   lists of length at most `8d+64` over `Fin n × Bool`.
 * `higmanVFP_relators_subset_ker`: it lies in the kernel (by definition).

@@ -91,3 +91,61 @@ theorem suslinDilAn_dilate_eq_zero {u : B} {g : Polynomial B}
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_dilate_eq_zero
 
 end Dilate
+
+section Lift
+
+variable {B S : Type*} [CommRing B] [CommRing S] (φ : B →+* S) (s : B)
+
+/-- Denominators pass to polynomials: if every `c ∈ S` has `c φ(s)^t ∈ φ(B)`, then every
+`f ∈ S[Y]` has `f φ(s)^t ∈ φ(B[Y])`. -/
+theorem suslinDilAn_surj_poly (hsurj : ∀ c : S, ∃ (t : ℕ) (a : B), c * φ s ^ t = φ a)
+    (f : Polynomial S) :
+    ∃ (t : ℕ) (g : Polynomial B),
+      f * Polynomial.mapRingHom φ (Polynomial.C s) ^ t = Polynomial.mapRingHom φ g := by
+  simp only [Polynomial.coe_mapRingHom, Polynomial.map_C]
+  induction f using Polynomial.induction_on' with
+  | add p q hp hq =>
+    obtain ⟨t₁, g₁, h₁⟩ := hp
+    obtain ⟨t₂, g₂, h₂⟩ := hq
+    refine ⟨t₁ + t₂, g₁ * Polynomial.C s ^ t₂ + g₂ * Polynomial.C s ^ t₁, ?_⟩
+    rw [Polynomial.map_add, Polynomial.map_mul, Polynomial.map_mul, Polynomial.map_pow,
+      Polynomial.map_pow, Polynomial.map_C, ← h₁, ← h₂]
+    ring
+  | monomial n c =>
+    obtain ⟨t, a, h⟩ := hsurj c
+    refine ⟨t, Polynomial.monomial n a, ?_⟩
+    rw [← Polynomial.C_pow, Polynomial.monomial_mul_C, h, Polynomial.map_monomial]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_surj_poly
+
+/-- Kernels pass to polynomials: if `φ(b) = 0` forces `s^n b = 0`, the same holds on `B[Y]`. -/
+theorem suslinDilAn_ker_poly (hker : ∀ b : B, φ b = 0 → ∃ n : ℕ, s ^ n * b = 0)
+    (g : Polynomial B) (hg : Polynomial.mapRingHom φ g = 0) :
+    ∃ n : ℕ, Polynomial.C s ^ n * g = 0 := by
+  rw [Polynomial.coe_mapRingHom] at hg
+  have hc : ∀ i : ℕ, ∃ n : ℕ, s ^ n * g.coeff i = 0 := fun i ↦ hker _ (by
+    rw [← Polynomial.coeff_map φ, hg, Polynomial.coeff_zero])
+  choose n hn using hc
+  refine ⟨g.support.sup n, ?_⟩
+  ext i
+  rw [← Polynomial.C_pow, Polynomial.coeff_C_mul, Polynomial.coeff_zero]
+  by_cases hi : i ∈ g.support
+  · obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_le (Finset.le_sup (f := n) hi)
+    rw [hd, pow_add, mul_comm (s ^ n i) (s ^ d), mul_assoc, hn i, mul_zero]
+  · rw [Polynomial.notMem_support_iff.1 hi, mul_zero]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_ker_poly
+
+theorem suslinDilAn_C_pow_mul_mono {u : B} {g : Polynomial B} {n m : ℕ}
+    (h : Polynomial.C u ^ n * g = 0) (hnm : n ≤ m) : Polynomial.C u ^ m * g = 0 := by
+  obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hnm
+  rw [pow_add, mul_comm (Polynomial.C u ^ n), mul_assoc, h, mul_zero]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_C_pow_mul_mono
+
+end Lift
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation

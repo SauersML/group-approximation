@@ -49,7 +49,9 @@ theorem frameCone4_not_isFrameEdge_self {A : Type*} [Ring A] [Nontrivial A] (u :
         (g : Matrix (Fin 4) (Fin 4) A)) 0 1 := by
     simp only [Matrix.mul_apply]
     exact Finset.sum_congr rfl fun k _ => by rw [(hg k).1, (hg k).2]
-  rw [g.inv_mul, Matrix.one_apply_eq, Matrix.one_apply_ne (by decide : (0 : Fin 4) ≠ 1)] at h1
+  rw [show ((g⁻¹ : (Matrix (Fin 4) (Fin 4) A)ˣ) : Matrix (Fin 4) (Fin 4) A) *
+      (g : Matrix (Fin 4) (Fin 4) A) = 1 from g.inv_mul, Matrix.one_apply_eq,
+    Matrix.one_apply_ne (by decide : (0 : Fin 4) ≠ 1)] at h1
   exact one_ne_zero h1
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameFan.frameCone4_not_isFrameEdge_self

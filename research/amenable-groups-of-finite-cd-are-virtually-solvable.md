@@ -66,3 +66,35 @@ finite cd would answer this question negatively; see
   - **Next.** Rule out a counterexample with a nontrivial normal subgroup `N` of infinite index
     that is finitely generated (Bieri 1976 handles `FP` normal subgroups). Then combine with the
     EA-radical-free constraint to force a just-infinite-type counterexample.
+- 2026-09-18 (lane w5-112, inverter, family cohomology-index): attacked "a finitely generated
+  normal subgroup `N` of infinite index in a two-dimensional counterexample has cd 1, without
+  assuming `FP_2`". Not resolved. The step is reduced to one precise case.
+  - **Landed, exact vanishing.** `ascending-hnn-quotients-have-vanishing-affiliated-first-homology`
+    covers any group `G = ⟨K, t⟩` with `K` finitely generated, `tKt⁻¹ ⊆ K`, and a character
+    killing `K` that sends `t` to 1. For every such group, `H_1(G; U(G)) = 0` exactly, not merely
+    in dimension 0, with no finiteness assumption on `G`.
+    - The proof uses Lück's mapping-torus theorem in degree 2, not degree 1. On the finite
+      mapping torus of the rose, the `d` HNN relators then span all 1-cycles over `U(G)`.
+    - Consequence: `Σ¹(G) ≠ ∅` implies `H_1(G; U(G)) = 0`.
+    - This refutes the w3-112 reading that "nothing makes" `coker(1 − tφ_*)` vanish: it always
+      vanishes.
+  - **Landed, consequences in dimension 2.** `amenable-cd-two-ascending-hnn-groups-are-baumslag-solitar`:
+    - An amenable cd-2 group with that structure is `BS(1,m)`.
+    - In an amenable group of cd at most 2, a finitely generated `N` normal in `H` with `H/N ≅ Z`
+      is `1` or `Z`.
+    - A counterexample has `Σ¹ = ∅`, so the Σ¹ descent never starts. For every nontrivial finitely
+      generated normal `N`, `G/N` is torsion. There is no infinite EA quotient by a finitely
+      generated normal subgroup.
+    - If `[G : N] = ∞`, then `N` is itself a counterexample.
+  - **Precise obstruction.** The only open case is `G/N` an infinite finitely generated amenable
+    torsion group, where `N` is again a counterexample. There `H_0(N; U) = 0`, and `H_1(G; U)` is a
+    quotient of the `G/N`-coinvariants of `H_1(N; U)`. With a `Z` quotient the mapping torus kills
+    them, but with a torsion quotient there is no `Z`-direction.
+  - **Calibration, dimension 3.** `Z[1/6] ⋊ Z²` is metabelian of cd 3. It has a finitely generated
+    normal subgroup `Z[1/6] ⋊_{2/3} Z` with quotient `Z` and cd 3, so there is no cd drop. The
+    step is genuinely two-dimensional.
+  - **Next.** Show that a finitely generated amenable group of cd 2 has no finitely generated
+    normal subgroup with infinite torsion quotient. Alternatively, build a minimal counterexample
+    along a chain `G ⊃ N ⊃ N' ⊃ …` of such subgroups and find a termination invariant.  No
+    candidate invariant, for example a Fox-Jacobian rank deficit, is yet known to be monotone
+    along such a chain.
