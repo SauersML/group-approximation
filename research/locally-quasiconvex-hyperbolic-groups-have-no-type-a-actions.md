@@ -97,3 +97,36 @@ orbits have infinitely many pair orbits. No conflict.
 - **The core-free question.** A finitely generated, core-free, infinite-index,
   double-coset-finite subgroup of a hyperbolic group would have to be a
   counterexample to that hypothesis.
+
+## Attempts
+
+1. **One pass at the hypothesis of item 4 (bh-free-40, 09-18).** Not decided.
+   - **A weaker hypothesis suffices.** Suppose `H_0 ≤ H` has finite index,
+     `H_0` is infinite, and `H_0 ⊴ G_0` with `[G:G_0] < ∞`. Then
+     `core_G(H) ≠ 1`, with no abelian-quotient assumption.
+     - Take `G_2 ⊴ G` of finite index inside every conjugate of `G_0`. Then
+       each `gH_0g⁻¹ ∩ G_2` is an infinite normal subgroup of `G_2`, and only
+       finitely many occur.
+     - In a non-elementary hyperbolic group, two infinite normal subgroups `N`
+       and `N'` contain independent loxodromics `a` and `b`. Then
+       `[a^m, b^m] ∈ [N, N']` has infinite order for large `m` (ping-pong), so
+       `[N, N']` is infinite normal.
+     - By induction, the finite intersection is infinite, and it lies in
+       `core_G(H)`.
+     - So item 4 holds under this assumption: every finitely generated subgroup
+       with full limit set is virtually an infinite normal subgroup of a
+       finite-index subgroup, or has finite index. Trivial finite radical is not
+       needed for this form. Item 3 is its instance given by tameness.
+   - **Where a counterexample must live.** It must be finitely generated, with
+     full limit set, and virtually contain no infinite normal subgroup of any
+     finite-index subgroup. So it must be neither quasiconvex nor of
+     virtual-fiber type.
+   - **What was tried.**
+     - Subgroups of a Rips kernel `N ⊴ G` would need a Cannon–Thurston image
+       covering `∂G`.
+     - Invariant free factors in reducible atoroidal free-by-cyclic groups
+       produce subgroups that are normal in a smaller free-by-cyclic group. Their
+       limit set is that subgroup's, which is not full.
+     - Kernels of maps to `Z` in higher-dimensional hyperbolic groups are normal.
+   - **Literature.** Bounded arXiv searches found no statement either way. The
+     general hyperbolic case stays OPEN.
