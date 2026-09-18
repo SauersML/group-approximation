@@ -22,7 +22,8 @@ This file sets up the splitting at finite stages:
   `K₂(n, S[t^ε;φ^ε])` in the kernel of the augmentation dies after padding;
 * `baseSurjective_halfConst_of_nilK2Trivial`: `NilK2Trivial` makes `K₂(S) → K₂(S[t^ε;φ^ε])`
   stably surjective, so that `LVStableK2.stableK2Trivial_of_baseSurjective` reduces
-  `HalfK2Statement S` to stable `K₂(S) = 0` and `NilK2Trivial S (±1)`.
+  `HalfK2Statement S` to stable `K₂(S) = 0` and `NilK2Trivial S (±1)`;
+* `halfK2Statement_of_nilK2Trivial`: that reduction.
 -/
 
 namespace GroupApproximation.Full.LVSkewLaurentK2
@@ -176,6 +177,96 @@ theorem skewHalf_le_halfSupport (ε : ℤ) : skewHalf S ε ≤ halfSupport S ε 
     change SkewMonoidAlgebra.coeff
       (SkewMonoidAlgebra.single (Multiplicative.ofAdd ε) (1 : S)) g = 0
     rw [SkewMonoidAlgebra.coeff_single, Finsupp.single_eq_of_ne hg1]
+
+/-- For `ε ≠ 0`, the coefficient of `t⁰` is a ring map on `halfSupport S ε`.
+(`yaoseq6.tex` `thm:skewyao`, Step 1, the augmentation `R[t₊] → R`;
+`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+def halfSupportAug (ε : ℤ) (hε : ε ≠ 0) : halfSupport S ε →+* S where
+  toFun x := SkewMonoidAlgebra.coeff (x : SkewLaurent S) 1
+  map_one' := by
+    change SkewMonoidAlgebra.coeff (1 : SkewLaurent S) 1 = 1
+    rw [SkewMonoidAlgebra.coeff_one, Finsupp.single_eq_same]
+  map_mul' x y := by
+    change SkewMonoidAlgebra.coeff ((x : SkewLaurent S) * (y : SkewLaurent S)) 1 =
+      SkewMonoidAlgebra.coeff (x : SkewLaurent S) 1 * SkewMonoidAlgebra.coeff (y : SkewLaurent S) 1
+    exact coeff_one_mul_of_halfSupported hε ((mem_halfSupport S).mp x.2)
+      ((mem_halfSupport S).mp y.2)
+  map_zero' := by
+    change SkewMonoidAlgebra.coeff (0 : SkewLaurent S) 1 = 0
+    rw [SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
+  map_add' x y := by
+    change SkewMonoidAlgebra.coeff ((x : SkewLaurent S) + (y : SkewLaurent S)) 1 =
+      SkewMonoidAlgebra.coeff (x : SkewLaurent S) 1 + SkewMonoidAlgebra.coeff (y : SkewLaurent S) 1
+    rw [SkewMonoidAlgebra.coeff_add, Finsupp.add_apply]
+
+/-- The augmentation `S[t^ε;φ^ε] → S`, `t^ε ↦ 0`, for `ε ≠ 0`.
+(`yaoseq6.tex` `thm:skewyao`, Step 1, the augmentation `R[t₊] → R`;
+`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+def halfAug (ε : ℤ) (hε : ε ≠ 0) : skewHalf S ε →+* S :=
+  (halfSupportAug S ε hε).comp (Subring.inclusion (skewHalf_le_halfSupport S ε))
+
+/-- The augmentation takes the coefficient of `t⁰`.
+(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem halfAug_apply (ε : ℤ) (hε : ε ≠ 0) (x : skewHalf S ε) :
+    halfAug S ε hε x = SkewMonoidAlgebra.coeff (x : SkewLaurent S) 1 :=
+  rfl
+
+/-- The augmentation retracts the constants, elementwise.
+(`yaoseq6.tex` `thm:skewyao`, Step 1; `simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem halfAug_halfConst (ε : ℤ) (hε : ε ≠ 0) (a : S) : halfAug S ε hε (halfConst S ε a) = a := by
+  rw [halfAug_apply]
+  change SkewMonoidAlgebra.coeff (SkewMonoidAlgebra.single (1 : Multiplicative ℤ) a) 1 = a
+  rw [SkewMonoidAlgebra.coeff_single, Finsupp.single_eq_same]
+
+/-- The augmentation retracts the constants.
+(`yaoseq6.tex` `thm:skewyao`, Step 1; `simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem halfAug_comp_halfConst (ε : ℤ) (hε : ε ≠ 0) :
+    (halfAug S ε hε).comp (halfConst S ε) = RingHom.id S :=
+  RingHom.ext fun a => halfAug_halfConst S ε hε a
+
+/-- **Twisted nil-`K₂` vanishes at finite stages**: every element of `K₂(n, S[t^ε;φ^ε])` in the
+kernel of the augmentation `S[t^ε;φ^ε] → S` dies after padding.  This is `NK₂(S, φ)_ε = 0`
+(`yaoseq6.tex` l.1169ff: `NK(R,φ)_± = 0` for regular supercoherent `R`; Yao 1995, Thm 2.1;
+`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+def NilK2Trivial (ε : ℤ) (hε : ε ≠ 0) : Prop :=
+  ∀ (n : ℕ) (k : SteinbergGroup (Fin n) (skewHalf S ε)), projection k = 1 →
+    ringMap (halfAug S ε hε) k = 1 → ∃ (N : ℕ) (h : n ≤ N), indexMap (Fin.castLEEmb h) k = 1
+
+/-- **Splitting `K₂(S[t^ε;φ^ε]) = K₂(S) ⊕ NK₂(S,φ)_ε`, surjectivity half.**  If twisted nil-`K₂`
+vanishes, then every element `k` of `K₂(n, S[t^ε;φ^ε])` is, after padding, the image of an
+element of `K₂(N, S)`: namely of the augmentation of `k`, since `k · (const (aug k))⁻¹` lies in
+both kernels.  (`yaoseq6.tex` `thm:skewyao`, Step 1; `simple_kazhdan_sofic_group.tex`
+l.733-735, leaf T1b.iii.) -/
+theorem baseSurjective_halfConst_of_nilK2Trivial (ε : ℤ) (hε : ε ≠ 0)
+    (hN : NilK2Trivial S ε hε) : LVStableK2.StableK2BaseSurjective (halfConst S ε) := by
+  intro n k hk
+  have hy : projection (ringMap (halfAug S ε hε) k) = 1 := by
+    rw [LVCohnK2.projection_ringMap, hk, map_one]
+  have hk' : projection (k * (ringMap (halfConst S ε) (ringMap (halfAug S ε hε) k))⁻¹) = 1 := by
+    rw [map_mul, map_inv, LVCohnK2.projection_ringMap, hy, map_one, hk, inv_one, mul_one]
+  have hk'' :
+      ringMap (halfAug S ε hε) (k * (ringMap (halfConst S ε) (ringMap (halfAug S ε hε) k))⁻¹) =
+        1 := by
+    rw [map_mul, map_inv, LVCohnK2.ringMap_ringMap, halfAug_comp_halfConst,
+      LVCohnK2.ringMap_id_apply, mul_inv_cancel]
+  obtain ⟨N, hnN, hNk⟩ := hN n _ hk' hk''
+  refine ⟨N, hnN, indexMap (Fin.castLEEmb hnN) (ringMap (halfAug S ε hε) k),
+    LVH2GL3.projection_indexMap_eq_one (Fin.castLEEmb hnN) hy, ?_⟩
+  rw [map_mul, map_inv, mul_inv_eq_one] at hNk
+  rw [← LVStableK2.indexMap_ringMap]
+  exact hNk.symm
+
+/-- **Reduction of lane 3b.**  Stable `K₂(S) = 0` together with `NK₂(S,φ)_± = 0` gives
+`HalfK2Statement S`.  (`yaoseq6.tex` `thm:skewyao`, Steps 1-2, l.574-640, and l.1169ff;
+`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem halfK2Statement_of_nilK2Trivial (hK2 : LVH2GL3.StableK2Trivial S)
+    (hpos : NilK2Trivial S 1 one_ne_zero) (hneg : NilK2Trivial S (-1) (by decide)) :
+    HalfK2Statement S := by
+  show LVH2GL3.StableK2Trivial (skewHalf S 1) ∧ LVH2GL3.StableK2Trivial (skewHalf S (-1))
+  exact ⟨LVStableK2.stableK2Trivial_of_baseSurjective (halfConst S 1)
+      (baseSurjective_halfConst_of_nilK2Trivial S 1 one_ne_zero hpos) hK2,
+    LVStableK2.stableK2Trivial_of_baseSurjective (halfConst S (-1))
+      (baseSurjective_halfConst_of_nilK2Trivial S (-1) _ hneg) hK2⟩
 
 end Augmentation
 

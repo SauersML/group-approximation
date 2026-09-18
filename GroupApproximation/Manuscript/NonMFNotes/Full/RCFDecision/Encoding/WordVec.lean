@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.CPoly
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Vars
 import GroupApproximation.Computability.PresentationCodes
+import Mathlib.Data.Matrix.Mul
 import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 
 /-!
@@ -76,7 +77,7 @@ theorem encEvalVec_vecOf (ρ : ℕ → ℝ) (tag t d : ℕ) (r : Fin d) :
   show cpEval ρ (((List.range d).map fun x =>
       (mvVar (encIdx tag t x 0 0), mvVar (encIdx tag t x 0 1))).getD r cpZero) = _
   rw [encGetD_map_range _ _ r.isLt]
-  exact Complex.ext (mvEval_var ρ _) (mvEval_var ρ _)
+  exact Complex.ext (mvEval_var ρ (encIdx tag t r 0 0)) (mvEval_var ρ (encIdx tag t r 0 1))
 
 theorem cpEval_letterEntry (P : PresentationCode) (ρ : ℕ → ℝ) (d : ℕ) (a : ℕ × Bool)
     (r s : Fin d) :
@@ -84,7 +85,7 @@ theorem cpEval_letterEntry (P : PresentationCode) (ρ : ℕ → ℝ) (d : ℕ) (
   obtain ⟨i, b⟩ := a
   cases b
   · exact (cpEval_conj ρ (encGEntry (i % genCount P) s r)).trans
-      (Matrix.conjTranspose_apply (encUmat P ρ d (letterOf P i)) r s).symm
+      (Matrix.conjTranspose_apply (encUmat P ρ d (letterOf P i)) s r).symm
   · rfl
 
 theorem encEvalVec_applyLetter (P : PresentationCode) (ρ : ℕ → ℝ) (d : ℕ) (a : ℕ × Bool)

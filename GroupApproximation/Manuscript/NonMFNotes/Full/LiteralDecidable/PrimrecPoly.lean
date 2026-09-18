@@ -27,14 +27,14 @@ theorem primrec_negCoef {c : α → Coef} (hc : Primrec c) : Primrec fun x => ne
 theorem primrec_mulVar {j : α → ℕ} {p : α → Poly} (hj : Primrec j) (hp : Primrec p) :
     Primrec fun x => mulVar (j x) (p x) := by
   show Primrec fun x => (p x).map fun m => (m.1, j x :: m.2)
-  have h2 : Primrec fun q : α × (Coef × List ℕ) => ((q.2.1, j q.1 :: q.2.2) : Coef × List ℕ) :=
+  have h2 : Primrec₂ fun (x : α) (m : Coef × List ℕ) => ((m.1, j x :: m.2) : Coef × List ℕ) :=
     Primrec.pair (Primrec.fst.comp Primrec.snd)
       (Primrec.list_cons.comp (hj.comp Primrec.fst) (Primrec.snd.comp Primrec.snd))
   exact Primrec.list_map hp h2
 
 theorem primrec_negPoly {p : α → Poly} (hp : Primrec p) : Primrec fun x => negPoly (p x) := by
   show Primrec fun x => (p x).map fun m => (negCoef m.1, m.2)
-  have h2 : Primrec fun q : α × (Coef × List ℕ) => ((negCoef q.2.1, q.2.2) : Coef × List ℕ) :=
+  have h2 : Primrec₂ fun (_ : α) (m : Coef × List ℕ) => ((negCoef m.1, m.2) : Coef × List ℕ) :=
     Primrec.pair (primrec_negCoef (Primrec.fst.comp Primrec.snd)) (Primrec.snd.comp Primrec.snd)
   exact Primrec.list_map hp h2
 
@@ -72,14 +72,14 @@ theorem primrec_compileMono {c : α → Coef} {l : α → List (ℕ × Bool)} (h
 
 theorem primrec_compileRe {p : α → CPoly} (hp : Primrec p) : Primrec fun x => compileRe (p x) := by
   show Primrec fun x => (p x).flatMap fun m => (compileMono m.1 m.2).1
-  have h2 : Primrec fun q : α × (Coef × List (ℕ × Bool)) => (compileMono q.2.1 q.2.2).1 :=
+  have h2 : Primrec₂ fun (_ : α) (m : Coef × List (ℕ × Bool)) => (compileMono m.1 m.2).1 :=
     Primrec.fst.comp
       (primrec_compileMono (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd))
   exact Primrec.list_flatMap hp h2
 
 theorem primrec_compileIm {p : α → CPoly} (hp : Primrec p) : Primrec fun x => compileIm (p x) := by
   show Primrec fun x => (p x).flatMap fun m => (compileMono m.1 m.2).2
-  have h2 : Primrec fun q : α × (Coef × List (ℕ × Bool)) => (compileMono q.2.1 q.2.2).2 :=
+  have h2 : Primrec₂ fun (_ : α) (m : Coef × List (ℕ × Bool)) => (compileMono m.1 m.2).2 :=
     Primrec.snd.comp
       (primrec_compileMono (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd))
   exact Primrec.list_flatMap hp h2
@@ -88,10 +88,10 @@ theorem primrec_compileSystem {S : α → CSystem} (hS : Primrec S) :
     Primrec fun x => compileSystem (S x) := by
   show Primrec fun x => (((S x).1.flatMap fun p => [compileRe p, compileIm p],
     (S x).2.map fun p => compileRe p) : PolySystem)
-  have h1 : Primrec fun q : α × CPoly => ([compileRe q.2, compileIm q.2] : List Poly) :=
+  have h1 : Primrec₂ fun (_ : α) (p : CPoly) => ([compileRe p, compileIm p] : List Poly) :=
     Primrec.list_cons.comp (primrec_compileRe Primrec.snd)
       (Primrec.list_cons.comp (primrec_compileIm Primrec.snd) (Primrec.const []))
-  have h2 : Primrec fun q : α × CPoly => compileRe q.2 := primrec_compileRe Primrec.snd
+  have h2 : Primrec₂ fun (_ : α) (p : CPoly) => compileRe p := primrec_compileRe Primrec.snd
   exact Primrec.pair (Primrec.list_flatMap (Primrec.fst.comp hS) h1)
     (Primrec.list_map (Primrec.snd.comp hS) h2)
 
@@ -109,8 +109,8 @@ theorem primrec_kdelta {j k : α → ℕ} (hj : Primrec j) (hk : Primrec k) :
 
 theorem primrec_negC {p : α → CPoly} (hp : Primrec p) : Primrec fun x => negC (p x) := by
   show Primrec fun x => (p x).map fun m => (negCoef m.1, m.2)
-  have h2 : Primrec fun q : α × (Coef × List (ℕ × Bool)) =>
-      ((negCoef q.2.1, q.2.2) : Coef × List (ℕ × Bool)) :=
+  have h2 : Primrec₂ fun (_ : α) (m : Coef × List (ℕ × Bool)) =>
+      ((negCoef m.1, m.2) : Coef × List (ℕ × Bool)) :=
     Primrec.pair (primrec_negCoef (Primrec.fst.comp Primrec.snd)) (Primrec.snd.comp Primrec.snd)
   exact Primrec.list_map hp h2
 
@@ -143,8 +143,8 @@ theorem primrec_sumProd {n d : α → ℕ} {f g : α → ℕ → ℕ × Bool} (h
     (((false, n x), [f x l, g x l]) : Coef × List (ℕ × Bool))
   have hf' : Primrec fun q : α × ℕ => f q.1 q.2 := hf
   have hg' : Primrec fun q : α × ℕ => g q.1 q.2 := hg
-  have h2 : Primrec fun q : α × ℕ =>
-      (((false, n q.1), [f q.1 q.2, g q.1 q.2]) : Coef × List (ℕ × Bool)) :=
+  have h2 : Primrec₂ fun (x : α) (l : ℕ) =>
+      (((false, n x), [f x l, g x l]) : Coef × List (ℕ × Bool)) :=
     Primrec.pair (Primrec.pair (Primrec.const false) (hn.comp Primrec.fst))
       (Primrec.list_cons.comp hf' (Primrec.list_cons.comp hg' (Primrec.const [])))
   exact Primrec.list_map (Primrec.list_range.comp hd) h2
@@ -164,8 +164,8 @@ theorem primrec_grid {d : α → ℕ} {F : α → ℕ → ℕ → CPoly} (hd : P
   have hpair : Primrec fun q : (α × ℕ) × ℕ => ((q.1.1, q.1.2, q.2) : α × ℕ × ℕ) :=
     Primrec.pair (Primrec.fst.comp Primrec.fst)
       (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd)
-  have h0 : Primrec fun q : (α × ℕ) × ℕ => F q.1.1 q.1.2 q.2 := hF.comp hpair
-  have h1 : Primrec fun y : α × ℕ => (List.range (d y.1)).map fun k => F y.1 y.2 k :=
+  have h0 : Primrec₂ fun (y : α × ℕ) (k : ℕ) => F y.1 y.2 k := hF.comp hpair
+  have h1 : Primrec₂ fun (x : α) (j : ℕ) => (List.range (d x)).map fun k => F x j k :=
     Primrec.list_map (Primrec.list_range.comp (hd.comp Primrec.fst)) h0
   exact Primrec.list_flatMap (Primrec.list_range.comp hd) h1
 

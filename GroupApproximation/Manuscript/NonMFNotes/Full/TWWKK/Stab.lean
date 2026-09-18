@@ -7,8 +7,9 @@ import Mathlib.Analysis.CStarAlgebra.Unitization
 # The stabilization `𝒦 ⊗ B` of a non-unital C⋆-algebra
 
 Cuntz's picture of Kasparov theory (J. Cuntz, *A new look at KK-theory*, K-Theory 1 (1987)
-31--51; Blackadar, *K-Theory for Operator Algebras*, 13 and 17.8) uses the stabilization
-`𝒦 ⊗ B` of a C⋆-algebra `B` by the compact operators on `ℓ²(ℕ)`.  We realize it spatially:
+31--51; Blackadar, *K-Theory for Operator Algebras*, 13 and 17.8) uses the
+stabilization `𝒦 ⊗ B` of a C⋆-algebra `B` by the compact operators on `ℓ²(ℕ)`.
+We realize it spatially:
 
 * `Stab.rep B : B →⋆ₙₐ[ℂ] B(H_B)`: a faithful representation of `B`, the diagonal GNS
   representation of all states of the unitization `B⁺` restricted to `B`
@@ -38,17 +39,19 @@ variable (B : Type u) [NonUnitalCStarAlgebra B]
 
 /-! ## A faithful representation -/
 
+/-- The index family of the faithful representation: all states of the unitization. -/
+def states : CStarState.State (Unitization ℂ B) → CStarState.State (Unitization ℂ B) :=
+  id
+
 /-- The Hilbert space of the faithful representation of `B`: the Hilbert sum of the GNS spaces
 of all states of the unitization. -/
 abbrev RepSpace : Type u :=
-  CStarState.FamilyGNSSpace
-    (id : CStarState.State (Unitization ℂ B) → CStarState.State (Unitization ℂ B))
+  CStarState.FamilyGNSSpace (states B)
 
 /-- **The faithful representation** of `B`: the diagonal GNS representation of the unitization,
 restricted to `B`. -/
 def rep : B →⋆ₙₐ[ℂ] (RepSpace B →L[ℂ] RepSpace B) :=
-  (CStarState.familyGNSStarAlgHom
-      (id : CStarState.State (Unitization ℂ B) → CStarState.State (Unitization ℂ B))).toNonUnitalStarAlgHom.comp
+  (CStarState.familyGNSStarAlgHom (states B)).toNonUnitalStarAlgHom.comp
     (Unitization.inrNonUnitalStarAlgHom ℂ B)
 
 /-- The representation `rep B` is faithful: the GNS family of all states separates points of the
@@ -56,17 +59,16 @@ unitization (`exists_state_norm_le_gnsRep`). -/
 theorem rep_injective : Function.Injective (rep B) := by
   intro a b h
   have hsep : ∀ x : Unitization ℂ B, x ≠ 0 →
-      ∃ φ : CStarState.State (Unitization ℂ B),
-        ((id φ : CStarState.State (Unitization ℂ B)).gnsRep).hom x ≠ 0 := by
+      ∃ φ : CStarState.State (Unitization ℂ B), ((states B φ).gnsRep).hom x ≠ 0 := by
     intro x hx
     obtain ⟨φ, hφ⟩ := CStarState.exists_state_norm_le_gnsRep x
     refine ⟨φ, fun h0 => hx ?_⟩
     have h0' : (φ.gnsRep).hom x = 0 := h0
     rw [h0', norm_zero] at hφ
     exact norm_le_zero_iff.mp hφ
-  exact Unitization.inr_injective
-    (CStarState.familyGNSStarAlgHom_injective
-      (id : CStarState.State (Unitization ℂ B) → CStarState.State (Unitization ℂ B)) hsep h)
+  have h' : CStarState.familyGNSStarAlgHom (states B) (a : Unitization ℂ B) =
+      CStarState.familyGNSStarAlgHom (states B) (b : Unitization ℂ B) := h
+  exact Unitization.inr_injective (CStarState.familyGNSStarAlgHom_injective (states B) hsep h')
 
 /-- The faithful representation is isometric. -/
 theorem norm_rep (b : B) : ‖rep B b‖ = ‖b‖ :=
@@ -138,11 +140,10 @@ theorem matUnit_mul_matUnit (i j k l : ℕ) (S T : RepSpace B →L[ℂ] RepSpace
   change lp.single 2 i (S ((lp.single 2 k (T (x l)) : Space B) j)) =
     (if j = k then matUnit B i l (S * T) else 0) x
   by_cases h : j = k
-  · subst h
-    rw [if_pos rfl, lp.single_apply_self]
-    rfl
-  · rw [if_neg h, lp.single_apply_ne 2 k _ h, map_zero, lp.single_zero]
-    rfl
+  · rw [if_pos h, h]
+    exact congrArg (fun v => lp.single 2 i (S v)) (lp.single_apply_self 2 k (T (x l)))
+  · rw [if_neg h, lp.single_apply_ne 2 k _ h, map_zero]
+    exact lp.single_zero 2 i
 
 theorem matUnit_mul_self (i j l : ℕ) (S T : RepSpace B →L[ℂ] RepSpace B) :
     matUnit B i j S * matUnit B j l T = matUnit B i l (S * T) := by

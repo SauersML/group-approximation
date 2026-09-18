@@ -109,8 +109,7 @@ theorem exists_adapted_generators (e : BinaryLeavittAlgebra k) (m n : ℕ) :
       -- `u' = u - ∑ c j • w' j` has vanishing constant terms.
       have hκ : kappa k m (u - ∑ j, c j • w' j) = 0 := by
         rw [map_sub, map_sum, ← hc, sub_eq_zero]
-        refine Finset.sum_congr rfl fun j _ => ?_
-        rw [map_smul, Function.comp_apply]
+        exact Finset.sum_congr rfl fun j _ => (map_smul (kappa k m) (c j) (w' j)).symm
       have hu'M : u - ∑ j, c j • w' j ∈ colFil k e m (n + 1) := by
         refine (mem_colFil k).mpr ⟨?_, fun δ => ?_⟩
         · refine Submodule.sub_mem _ ((mem_colFil k).mp hu).1
@@ -130,10 +129,12 @@ theorem exists_adapted_generators (e : BinaryLeavittAlgebra k) (m n : ℕ) :
       have ht : ∀ i : Fin 2, (family k).t i • (u - ∑ j, c j • w' j) ∈
           Submodule.span (BinaryLeavittAlgebra k) (Set.range w') := by
         intro i
-        refine hle (hwspan _ ((mem_colFil k).mpr ⟨?_, fun δ => ?_⟩))
-        · exact Submodule.smul_mem _ _ ((mem_colFil k).mp hu'M).1
-        · rw [Pi.smul_apply, smul_eq_mul]
-          exact t_mul_mem_fil k (hpos δ) i
+        have hM : (family k).t i • (u - ∑ j, c j • w' j) ∈ colFil k e m n := by
+          refine (mem_colFil k).mpr ⟨?_, fun δ => ?_⟩
+          · exact Submodule.smul_mem _ _ ((mem_colFil k).mp hu'M).1
+          · rw [Pi.smul_apply, smul_eq_mul]
+            exact t_mul_mem_fil k (hpos δ) i
+        exact hle (hwspan _ hM)
       have hu'span : u - ∑ j, c j • w' j ∈
           Submodule.span (BinaryLeavittAlgebra k) (Set.range w') := by
         have hdecomp : u - ∑ j, c j • w' j =
@@ -145,7 +146,7 @@ theorem exists_adapted_generators (e : BinaryLeavittAlgebra k) (m n : ℕ) :
           (Submodule.smul_mem _ _ (ht 1))
       have hsum : ∑ j, c j • w' j ∈ Submodule.span (BinaryLeavittAlgebra k) (Set.range w') :=
         Submodule.sum_mem _ fun j _ =>
-          Submodule.smul_of_tower_mem _ (c j) (Submodule.subset_span ⟨j, rfl⟩)
+          Submodule.smul_of_tower_mem _ (c j) (Submodule.subset_span (Set.mem_range_self j))
       have h := Submodule.add_mem _ hu'span hsum
       rwa [sub_add_cancel] at h
 
