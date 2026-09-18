@@ -5920,6 +5920,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.ExactnessAss
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.ExactnessCorollary
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetLimOne
 import GroupApproximation.Manuscript.NonMF.Full.GL06h.OneCell
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderShift
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderCentral
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderPeriodic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
