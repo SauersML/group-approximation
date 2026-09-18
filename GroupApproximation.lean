@@ -5706,6 +5706,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Compres
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupCocycle
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupProper
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Reduction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Intertwine
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
