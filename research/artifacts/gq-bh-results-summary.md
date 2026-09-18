@@ -22,6 +22,12 @@ Updated again at `5a7d8353e` (16:43 CDT):
 - T_{2,3}, T_τ, V_τ finitely presented (`8c548b3da`, §5);
 - the Kourovka 21.140 reduction (`6dc3f9d10`, §4).
 
+Updated again at `21a63f269` (16:53 CDT):
+- The BS(1,2) chain claims failed review (`4b2fdd3d9`) and are OPEN (§8). This summary never
+  listed them as results.
+- These remain referee PASS: Kourovka 21.74(b,c), 21.75, 17.60 and 17.61; BFFHZ Q3.1; MO 339541;
+  FFWZ Q5.9.
+
 It supersedes §3 of `gq-bh-bh-writeup-state.md` (10:51), which remains the
 lessons-by-mechanism summary.
 
@@ -309,7 +315,13 @@ acting group Λ.
 
 **M6. Permanence.**
 - **Coset wreaths.** Coset-wreath closure ⇔ identity-edge HNN closure ⇔ centralizer realization
-  (`pbh-coset-wreaths-iff-identity-edge-hnns`).
+  (`pbh-coset-wreaths-iff-identity-edge-hnns`, referee PASS conditional on its literature inputs,
+  `4b2fdd3d9`).
+  - **Scope:** only **restricted** wreath products, with finitely supported lamp functions. Twisted
+    coset lamplighters and unrestricted products are not covered. The BS(1,2) chain failed exactly
+    here (§8).
+  - The Z wr_X PSL_2(Z[1/2]) lamp wreaths of §5 are restricted, so they are within scope. Their node
+    `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` has had only a partial check, with no verdict.
 - **Graph products** (BFFHZ Q3.1, §2).
 - **Self-square hosts.** Every host machine on main contains its own square: the Cuntz cone shift,
   the Leavitt corner map, and the Brin–Thompson clopen stabilizer. So product closure is never a
@@ -376,6 +388,19 @@ All four are lane proofs [LP] unless marked.
 - The synthesis lane estimates BH "leaning true, about 65/35". That is an opinion, not evidence.
 
 ## 8. Corrections and over-claims (today)
+
+**Failed review, now OPEN (do not cite as results):**
+- `higman-chain-group-lies-in-b-a`: "G_1 = BS(1,2) *_Z BS(1,2) lies in B_A" (80ce687aa);
+- `baumslag-solitar-chains-of-every-length-lie-in-b-a`: "BS chains of every length lie in B_A" (23e5c5c7d).
+
+Both failed at the Kaloujnine–Krasner step (referee `4b2fdd3d9`). The map lands in the
+**unrestricted** product C^(A/C) ⋊ A, since κ_b is nontrivial at every b-fixed coset. The B_A results
+cited cover only restricted coset lamplighters. So Higman's group and Baumslag–Gersten get no B_A
+vertex group from this route.
+- Flag for its owner lane (not edited here): `baumslag-gersten-in-b-a-from-a-root-separated-shift`
+  still says the chain node "settles the base K".
+- `bs12-base-generator-is-a-centralizer-in-b-a` passed, conditional on two lane nodes, and only for
+  the restricted lamplighter.
 
 **Refuted or dead routes:**
 - the Houghton lifting reduction: `houghton-like-envelopes-lift-finite-presentation-from-germs` is
