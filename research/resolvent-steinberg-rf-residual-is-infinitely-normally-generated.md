@@ -8,9 +8,12 @@ distinct_from:
   resolvent-elementary-groups-are-not-fp: that concerns E_N(R_l); this concerns the residually finite quotient of St_N(R_l), and needs in addition that the corner symbols die in every finite quotient.
 artifacts:
   - research/artifacts/gq-gq-k2-q-resolvent-corner.md
+  - research/artifacts/gq-referee-a-resolvent-steinberg-rf-residual-is-infinitely-normally-generated.md
 ---
 
 **ESTABLISHED (2026-09-18)**, lane proof (gq-k2-q).
+- `gq-referee-a` PASS, with the required addition R1 applied in step 3
+  (`research/artifacts/gq-referee-a-resolvent-steinberg-rf-residual-is-infinitely-normally-generated.md`).
 - `gq-referee-b` checked steps 1–4 given the two inputs below and found them correct, and later confirmed both
   source reads against the PDF pages (addendum 7a9be50ac to
   `research/artifacts/gq-referee-b-resolvent-ring-corner-symbols-survive-in-k2.md`).
@@ -45,7 +48,8 @@ set. Hence `resolvent-steinberg-rf-residual-is-finitely-normally-generated` fail
    - For odd `l`, every `c(λ,μ)` lies in `K_rf`.
    - For `l = 2`, the corner symbols killed by the limit map to `lim_r K_2(Z/2^r)`, a group of order at most `2`,
      form a subgroup of index at most `2`. It lies in `K_rf` and is still not finitely generated.
-3. **Stable image.** Let `ι : St_N(R_l) -> St(R_l)`. Stable `K_2(R_l)` is central in `St(R_l)` (Milnor [69, §5], as quoted in Dennis–Stein, LNM 342, p. 245), so
+3. **Stable image.** Let `ι : St_N(R_l) -> St(R_l)`. First, `K_rf ⊆ K_2(N, R_l)`: `R_l` is residually finite, so
+   `E_N(R_l) ≤ GL_N(R_l)` is residually finite, and `K_rf` dies in `E_N(R_l)` (gq-referee-a, R1). Stable `K_2(R_l)` is central in `St(R_l)` (Milnor [69, §5], as quoted in Dennis–Stein, LNM 342, p. 245), so
    `ι(g k g^(-1)) = ι(k)` for `k ∈ K_2(N, R_l)`. The normal closure of a finite set `{k_i} ⊂ K_rf` therefore has
    finitely generated image `⟨ι(k_i)⟩`.
 4. **Conclusion.** `ι(K_rf)` contains the corner-symbol classes of step 2. By

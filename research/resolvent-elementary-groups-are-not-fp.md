@@ -8,10 +8,13 @@ distinct_from:
   resolvent-ring-corner-symbols-survive-in-k2: that is the K_2 input; this is the group-theoretic consequence.
 artifacts:
   - research/artifacts/gq-gq-k2-q-resolvent-corner.md
+  - research/artifacts/gq-referee-a-resolvent-elementary-groups-are-not-fp.md
 ---
 
-**ESTABLISHED (2026-09-18)** through `resolvent-elementary-groups-are-not-fp-proof`. Lane proof (gq-k2-q), not
-independently reviewed. It refutes `resolvent-elementary-group-is-fp`, and so closes the route
+**ESTABLISHED (2026-09-18)** through `resolvent-elementary-groups-are-not-fp-proof`. Lane proof (gq-k2-q). *Reviewed:* PASS
+by `gq-referee-a` (`research/artifacts/gq-referee-a-resolvent-elementary-groups-are-not-fp.md`). Only the
+finite-generation half of the symbol lemma is used, since the corner symbols are not symbols of commuting units of
+`R_l`, and that half needs no finite generation of `R_l`. It refutes `resolvent-elementary-group-is-fp`, and so closes the route
 `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l` to `z-localized-embeds-in-fp-rf-group`.
 
 **Statement.** For every prime `l` and every `N >= 3`, `E_N(R_l)` is not finitely presented. Neither is
