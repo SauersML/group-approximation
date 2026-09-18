@@ -5867,6 +5867,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Statement
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Assembly
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.OneCell
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTMass
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiRoomAlternating
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
