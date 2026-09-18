@@ -106,8 +106,9 @@ variable {p : ℕ} [Fact p.Prime]
 theorem k2PolyDeg_torus_apply (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n)
     (c : (ZMod p)ˣ) :
     k2PolyDeg_torus p m L n hmL hmn hLn c =
-      h m L hmL (Units.map (Polynomial.C : ZMod p →+* Polynomial (ZMod p)).toMonoidHom c) :=
-  k2PolyDeg_ringMap_h _ m L hmL c
+      h m L hmL (Units.map (Polynomial.C : ZMod p →+* Polynomial (ZMod p)).toMonoidHom c) := by
+  show ringMap (Polynomial.C : ZMod p →+* Polynomial (ZMod p)) (h m L hmL c) = _
+  exact k2PolyDeg_ringMap_h _ m L hmL c
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_torus_apply
 

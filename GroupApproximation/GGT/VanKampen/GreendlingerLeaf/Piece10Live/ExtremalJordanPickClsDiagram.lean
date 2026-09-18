@@ -269,3 +269,37 @@ theorem pK_invSrc :
   rfl
 
 end GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.G
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.label
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.W
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cellS
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cellK0
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.diagram
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.instNeZeroCells
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.instOfNatDiagramDart
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.instDecEqDiagramDart
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.iS
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.iK0
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.letters
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.relator_signs
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.boundaryValue_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.leastArea
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cellDarts_iS
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.outerDarts_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.sArc
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.sArc_darts
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.tArc
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.tArc_darts
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.faceIn
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.pFaces
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.face_mem_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cyc
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.bd_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.pCycle
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.decomp
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.side_norm
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.empty_norm
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.pK
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.pK_target
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.pK_invSrc

@@ -117,7 +117,7 @@ theorem witnessStepReclose_reclosed_of_order (h : witnessStepReclose_OrderStatem
     witnessStepReclose_cycle E' hnb', witnessStepReclose_followsBoundary E' hnb',
     fun d hd => ?_, ?_⟩
   · show d ∈ outerWalk.rotate r
-    exact List.mem_rotate.mpr hd
+    exact (List.mem_rotate (n := r)).mpr hd
   · exact hr
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepReclose_reclosed_of_order

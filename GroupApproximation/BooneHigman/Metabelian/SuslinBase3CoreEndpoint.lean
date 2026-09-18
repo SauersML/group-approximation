@@ -23,9 +23,8 @@ Lane `bh-met-91h`.  Target: `SuslinBase3GlobalStatement` (`SuslinBase3Endpoint.l
   part of the problem — `SL_2(κ[X]) = E_2(κ[X])` for `κ = A/𝔪` by the Euclidean algorithm, the
   lift of the factorization to `A[X]` and its normalization at `X = 0` — is discharged here.
 * It is TRUE.  Truth witness only: `suslinBase3Core_global_of_localCaseFamily`, from Suslin's
-  local case.  It is NOT asserted for general `A` (the cusp `k[t², t³]` has `NK₁ ≠ 0`, and a
-  normalized non-elementary class there can be taken `≡ 1` modulo the cusp maximal ideal, by the
-  reduction above run in reverse).
+  local case.  It is NOT asserted for general `A`: by the reduction above it is equivalent,
+  over every `A`, to `SuslinBase3StabLocal A 2`, whose content is `K₁`-regularity.
 * **Remaining gap.**  The congruence core: stably, a normalized `σ ∈ SL_2(A[X])` with
   `σ ≡ 1 mod 𝔪` becomes elementary over `A_𝔪[X]`.  Its diagonal entries are `1 + (𝔪-terms)`,
   which are NOT units of `A_𝔪[X]` in general (e.g. `1 + tX`, `t ∈ 𝔪`), so no Whitehead-lemma
