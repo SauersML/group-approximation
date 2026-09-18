@@ -20,7 +20,7 @@ There is no second variable and no Quillen matrix: this is exactly what local Ho
   `S = A_a[X]`, `s = a` and the Quillen matrix `σ = τ(X + Y) τ(X)⁻¹` (which has `σ(Y = 0) = 1`)
   gives `σ(X + a^k Y) τ(X)⁻¹ ∈ E_N(A[X][Y])`, i.e. `a^k ∈ Q(τ)`, and `a^k ∉ 𝔪`
   (`suslinDilAn_quillen_of_map`).  So `τ` is itself one of the generators.
-* **Converse** (`suslinDilationAnalyticStatement_of_generated`): generators give `a ∉ 𝔪` with
+* **Converse** (`suslinDilAn_statement_of_generated`): generators give `a ∉ 𝔪` with
   `a ∈ Q(τ)` (`suslinDilation_quillen_of_mem_closure`); substituting `Y ↦ -X/a` over `A_a`
   turns `τ(X + aY) τ(X)⁻¹` into `τ(0) τ(X)⁻¹ = τ(X)⁻¹`, so `τ ∈ E_N(A_a[X])`.
 
@@ -241,3 +241,38 @@ theorem suslinDilAn_locallyElementary_of_generated {A : Type*} [CommRing A] {N :
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_locallyElementary_of_generated
+
+/-- **The localized Statement**: `SuslinDilationAnalyticLocallyElementary` for the two
+coefficient families, under the hypotheses of `SuslinDilationGeneratedStatement`. -/
+def SuslinDilationAnalyticStatement : Prop :=
+  (∀ (p : ℕ) [Fact p.Prime] (k N : ℕ), 1 ≤ k →
+      (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.CharPPoly p k) N') → 3 ≤ N →
+        SuslinDilationAnalyticLocallyElementary (Chain.CharPPoly p k) N) ∧
+    ∀ (m k N : ℕ),
+      (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.SIntPoly m k) N') → 3 ≤ N →
+        SuslinDilationAnalyticLocallyElementary (Chain.SIntPoly m k) N
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinDilationAnalyticStatement
+
+/-- **The reduction**: the localized Statement gives the generated Statement. -/
+theorem suslinDilationGenerated_of_analytic (h : SuslinDilationAnalyticStatement) :
+    SuslinDilationGeneratedStatement :=
+  ⟨fun p _ k N hk hA hN ↦ suslinDilAn_generated_of_locallyElementary hN (h.1 p k N hk hA hN),
+    fun m k N hA hN ↦ suslinDilAn_generated_of_locallyElementary hN (h.2 m k N hA hN)⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilationGenerated_of_analytic
+
+/-- The converse: the two Statements are equivalent. -/
+theorem suslinDilAn_statement_of_generated (h : SuslinDilationGeneratedStatement) :
+    SuslinDilationAnalyticStatement :=
+  ⟨fun p _ k N hk hA hN ↦ suslinDilAn_locallyElementary_of_generated hN (h.1 p k N hk hA hN),
+    fun m k N hA hN ↦ suslinDilAn_locallyElementary_of_generated hN (h.2 m k N hA hN)⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_statement_of_generated
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation
