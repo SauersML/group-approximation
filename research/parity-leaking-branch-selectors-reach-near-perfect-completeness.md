@@ -103,3 +103,26 @@ a cycle of equations through the window.
   constant-bias cell `(1/2, 1 - 10^(-5))`. On DKKMS this node stays killed
   only by the rigidity route (`near-perfect-selectors-on-rigid-dkkms-instances-put-np-in-rp`).
   Spectral methods cannot touch the constant-bias cell.
+* **Non-DKKMS instances via an instance-free Theorem S (2026-09-18).**
+  **Dead under NP not in RP on every rigid doubled LEC; the claim stays OPEN.**
+  By `near-perfect-selectors-die-on-every-rigid-doubled-lec` (Theorem S\*), the
+  DKKMS kill holds for any reduction `x -> D(x)` into a composed 2-to-1 game.
+  The reduction needs four things: a linear read-out `(a_e, x_e, ev_e)` into an
+  outer game with `F_2^m` labels and `1/16`-uniform directions; comparable
+  marginals; 99% local rigidity (Rig) on YES instances; and NO outer value
+  below `p0^2 c1 / 2`. The views, certificate and parity leakage play no part.
+  The new ingredient is a bit-free branch identity, so the witness may carry the
+  selector's own bits.
+  - *The survivor splits.* "Non-DKKMS `D(I)`" becomes four failable
+    prerequisites. A realisation of this claim near completeness `1` needs
+    (F1) no linear read-out, (F2) marginal blow-up, (F3) outer soundness not
+    below `Theta(4^(-l))`, or (F4) YES labellings of value `-> 1` that are far
+    from every locally honest labelling.
+  - *No second family on record.* By
+    `kms-2to2-reduction-is-sound-only-for-colorings`, the KMS TR16-124
+    instances are sound only against `(j, delta)`-colorings. Their authors
+    attribute value soundness to a constraint-removing modification, which is
+    the DKK(M)S line. No value-sound reduction meeting (F1) to (F4) is on record.
+  - *Still alive.* The constant-bias cell, 2-to-2 inner games, and new
+    constructions. (F4) is the sharpest target. It would be killed by showing
+    that 1%-soundness of a Grassmann 2-to-1 test forces 99% local rigidity.
