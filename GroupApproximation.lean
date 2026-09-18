@@ -6085,6 +6085,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Clos
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Transfer
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Canonical
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientSolvable
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecWords
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecPoly
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecFormula
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
