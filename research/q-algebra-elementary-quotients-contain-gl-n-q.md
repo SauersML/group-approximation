@@ -7,10 +7,13 @@ distinct_from:
   gl-n-q-root-needs-only-nontrivial-psl-maps: that embeds GL_n(Q) in PSL_k(Q) over Q itself; this transports PSL_N(Q) into E_N(R)/Z(E_N(R)) for every ring R containing Q, where the centre is computed over R.
   gl-n-q-targets-are-cofinal-in-n: that compares GL_n(Q), SL_n(Q), PGL_n(Q) for different n; this is about the elementary groups of an arbitrary Q-algebra R.
   leavitt-unit-groups-over-every-field-are-simple-mod-scalars: that embeds GL_n(Q) in L_Q(1,2)^x / Q^x through prefix codes; this is ring-general and uses only the inclusion Q -> R.
+artifacts:
+  - research/artifacts/gq-referee-b-q-algebra-elementary-quotients-contain-gl-n-q.md
 ---
 
 **ESTABLISHED** by `q-algebra-elementary-quotients-contain-gl-n-q-proof`
-(elementary; not independently reviewed; no novelty claimed).
+(elementary; no novelty claimed). Referee `gq-referee-b` PASS, no amendments
+(`research/artifacts/gq-referee-b-q-algebra-elementary-quotients-contain-gl-n-q.md`).
 
 ## Statement
 
