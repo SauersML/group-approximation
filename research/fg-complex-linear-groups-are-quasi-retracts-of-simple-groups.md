@@ -27,3 +27,39 @@ presented and simple (Zaremsky, arXiv:2405.09722, Theorem 1.1). What is missing 
 (1) matching finiteness properties below type `F_2` and above it, and (3) a
 quasi-retract: the transcendental coordinates `s_j` enter the host, and LISW's
 Theorem 1.4 construction retracts only onto the split extension of `H` over `Q`.
+
+## Attempts
+
+1. **LISW's route with transcendental parameters (2026-09-18, lane bh-openq-papers).** Read
+   against LISW §§5–7 (TeX l.635–866). Their proof has three steps:
+   - (i) `Q ≤ GL_n(R)` for a *rigid* subring `R ⊆ Z_p`, meaning `R ∩ pZ_p = pR`
+     (Definition `def:p-rigid`). This makes `R^n ⋊ Q` self-similar with persistent
+     retraction onto `Q` (Lemma `lem:rigid-self-similar-and-retract`).
+   - (ii) A finiteness step: `Γ = K_{n,N} ⋊ Q`, where `K_{n,N} = ⟨Z[1/N]^n, diag(N)⟩ ≅ Z^n *_{×N}`
+     is of type `F_∞`.
+   - (iii) The persistent retraction gives a quasi-retraction `V_d(Γ) → Q`
+     (Lemma `lem:pers-retr-implies-quasi-retr`).
+
+   **Step (i) extends to `C` (lane proof, elementary).**
+   - Choose algebraically independent `τ^(1), …, τ^(k) ∈ Z_p`, and let `τ^(j)_i` be the `i`-fold
+     digit shift, defined by `τ^(j)_i = a^(j)_i + p τ^(j)_(i+1)` with digits `a^(j)_i`.
+   - Let `R = ⋃_i Z[1/N][τ^(1)_i, …, τ^(k)_i]`, an ascending union of polynomial rings.
+   - *`R` is rigid.* If `x = f(τ_i) ∈ pZ_p`, then substituting `τ_i = a_i + pτ_(i+1)` gives
+     `x = f(a_i) + p·g(τ_(i+1))` with `g` over `Z[1/N]`. Here `f(a_i) ∈ pZ_p ∩ Z[1/N] = pZ[1/N]`,
+     so `x ∈ pR`.
+   - Every finitely generated `H ≤ GL_n(C)` embeds in `GL_M(Z[1/N][s_1..s_k])`
+     (`char-zero-linear-groups-embed-in-polynomial-s-integer-groups`), hence in `GL_M(R)` via
+     `s_j ↦ τ^(j)_0`.
+   - So `R^M ⋊ H` is self-similar on the `p^M`-regular tree with a persistent retraction onto `H`.
+
+   **Step (ii) is where it fails.**
+   - The translation module must be `H`-invariant and closed under the state maps
+     `b ↦ (Ax + b − x')/p`. Once `H` has transcendental entries this forces infinite rank: the
+     degree in `τ` grows under the `H`-action.
+   - So no analogue of the rank-`n` solenoid `Z[1/N]^n` with one dilation is available. The
+     split extension can stay finitely generated, but it typically loses finiteness properties:
+     compare `Z[t] ⋊ ⟨t⟩ = Z ≀ Z`, which is not finitely presented, and LISW Remark
+     `rem:loosing-Fn`. Condition (1) of the question then fails.
+   - A proof along these lines needs a finitely generated, finiteness-preserving substitute for
+     `K_{n,N}` that is invariant under both the digit shift of `τ` and the `H`-action. None
+     is known.
