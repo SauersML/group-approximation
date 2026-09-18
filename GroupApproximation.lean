@@ -5631,6 +5631,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.RotationBlo
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeStab
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeGeneration
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeRelation
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalAlgebra
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
