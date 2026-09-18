@@ -100,7 +100,8 @@ theorem higmanVCStepB_core_full (hK : HigmanVCStepBCoreStatement) {d : ℕ} (hd 
       ∀ w : List (Fin d), w.length = L → ∃ c ∈ C, c <+: w)
     {D : Finset (List (Fin d))} (hD : higmanVCTreeNFWitPivot_IsAC D)
     (href : ∀ z ∈ D, ∃ c ∈ C, c <+: z)
-    (hdeep : ∀ z ∈ D, ∀ c ∈ C, c.length < z.length) {h : higmanVCCommon_Q d} (hh : h ∈ higmanVCTreeNFWitPivot_H d C)
+    (hdeep : ∀ z ∈ D, ∀ c ∈ C, c.length < z.length)
+    {h : higmanVCCommon_Q d} (hh : h ∈ higmanVCTreeNFWitPivot_H d C)
     {P : higmanVCCommon_Q d} (hP : P ∈ higmanVCTreeNFWitPivot_H d D) :
     h * P ∈ higmanVCTreeNFWitPivot_S d := by
   by_cases hU : h ∈ higmanVCTreeNF_U d

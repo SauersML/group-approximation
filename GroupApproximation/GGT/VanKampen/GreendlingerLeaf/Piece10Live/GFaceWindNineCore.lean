@@ -141,3 +141,99 @@ theorem gfaceWindNine_mem_src (K : PocketFaceSet D eps X lo hi) {d : X.toCombMap
     (hd : d ∈ K.sourceArc.darts) : X.toCombMap.alpha d ∈ invDarts X K.sourceArc.darts := by
   show X.toCombMap.alpha d ∈ K.sourceArc.darts.reverse.map X.toCombMap.alpha
   exact List.mem_map.mpr ⟨d, List.mem_reverse.mpr hd, rfl⟩
+
+/-- **Clauses 8 and 9 from the arcs**: when the walk of a `0/1` state contains the inverse
+source arc and the target arc, both filters are the whole arcs. -/
+theorem gfaceWindNine_arcs (K : PocketFaceSet D eps X lo hi) {c : List X.toCombMap.Dart}
+    {g : X.toCombMap.Face → ℤ}
+    (hbd : ∀ x, extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g) x = true ↔ x ∈ c)
+    (hs : ∀ d ∈ invDarts X K.sourceArc.darts, d ∈ c) (ht : ∀ d ∈ K.targetArc.darts, d ∈ c) :
+    (gfaceWindClause_SrcGap K ∨
+      ∃ pre mid post : List X.toCombMap.Dart, K.sourceArc.darts = pre ++ mid ++ post ∧
+        K.sourceArc.darts.filter (fun d =>
+          extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g) (X.toCombMap.alpha d)) = mid) ∧
+    (gfaceWindClause_TgtGap K ∨
+      ∃ pre mid post : List X.toCombMap.Dart, K.targetArc.darts = pre ++ mid ++ post ∧
+        K.targetArc.darts.filter (extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g)) = mid) := by
+  refine ⟨Or.inr ⟨[], K.sourceArc.darts, [], by simp, ?_⟩,
+    Or.inr ⟨[], K.targetArc.darts, [], by simp, ?_⟩⟩
+  · exact List.filter_eq_self.mpr fun d hd =>
+      (hbd (X.toCombMap.alpha d)).mpr (hs _ (gfaceWindNine_mem_src K hd))
+  · exact List.filter_eq_self.mpr fun d hd => (hbd d).mpr (ht d hd)
+
+/-- **Passing from the arcs**: a `0/1` cobounded state whose walk contains the inverse source
+arc and the target arc passes, given clause 5 and, for an empty source arc, clause 4. -/
+theorem gfaceWindNine_pass_of_facts (K : PocketFaceSet D eps X lo hi)
+    {c : List X.toCombMap.Dart} {g : X.toCombMap.Face → ℤ}
+    (hcob : ∀ d, g (X.toCombMap.faceOf d) - g (X.toCombMap.faceOf (X.toCombMap.alpha d)) =
+      gfaceWind_lind c d - gfaceWind_lind c (X.toCombMap.alpha d))
+    (h01 : ∀ f, g f = 0 ∨ g f = 1) (hne : ∀ x, x ∈ c → X.toCombMap.alpha x ∉ c)
+    (hs : ∀ d ∈ invDarts X K.sourceArc.darts, d ∈ c) (ht : ∀ d ∈ K.targetArc.darts, d ∈ c)
+    (h4 : K.sourceArc.darts ≠ [] ∨ gfaceWindNine_C4 K c g) (h5 : gfaceWindNine_C5 K c g) :
+    gfaceWindNine_Pass K c g := by
+  obtain ⟨h8, h9⟩ := gfaceWindNine_arcs K (gfaceWindNine_bd hcob h01 hne) hs ht
+  refine ⟨Or.inl h01, ?_, h5, h8, h9⟩
+  rcases h4 with h4 | h4
+  · obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil _ h4
+    refine Or.inl ⟨(cell X K.source).face,
+      Or.inr ⟨X.toCombMap.alpha d, hs _ (gfaceWindNine_mem_src K hd), ?_⟩,
+      Relation.ReflTransGen.refl⟩
+    rw [X.toCombMap.alpha_involutive d]
+    exact faceOf_of_mem_cellDarts (K.sourceArc.mem_cycle_of_mem_darts hd)
+  · exact h4
+
+/-- **LOUD: the start state passes.**  The pocket face set itself satisfies every clause of a
+winding choice; only `F' ≠ K` (from a nonempty sequence) excludes it. -/
+theorem gfaceWindNine_pass_start (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk) :
+    gfaceWindNine_Pass K K.boundary.cycle (gfaceWind_ind K.faces) := by
+  have hc := K.boundary.cycle_mem_iff
+  have h0 : gfaceWind_Inv X.toCombMap K.boundary.cycle X.outerFace K.boundary.cycle
+      (gfaceWind_ind K.faces) :=
+    gfaceWind_inv_start (fun d => (hc d).symm) hK.1 K.outerFace_not_mem
+  obtain ⟨-, -, hcob, -⟩ := h0
+  have hne : ∀ x, x ∈ K.boundary.cycle → X.toCombMap.alpha x ∉ K.boundary.cycle :=
+    fun x hx hax => ((hc x).mp hx).2 ((hc _).mp hax).1
+  refine gfaceWindNine_pass_of_facts K hcob (gfaceWindSix_ind01 K.faces) hne ?_ ?_
+    (Or.inr (Or.inr ?_)) (Or.inr ⟨K.kept, ?_⟩)
+  · intro d hd
+    rw [K.decomposition]
+    exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hd))
+  · intro d hd
+    rw [K.decomposition]
+    exact List.mem_append_right _ hd
+  · rw [gfaceWind_mem_faces, gfaceWind_ind_neg K.source_not_mem]
+    norm_num
+  · rw [gfaceWind_mem_faces]
+    exact gfaceWind_ind_pos K.kept_mem
+
+/-- **LOUD: the reflexive form is trivial**: a passing state is reached along a possibly empty
+sign-keeping path, namely the start.  The reachability residual must be nonempty. -/
+theorem gfaceWindNine_refl_trivial (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk) :
+    ∃ (c : List X.toCombMap.Dart) (g : X.toCombMap.Face → ℤ),
+      Relation.ReflTransGen (gfaceWindNine_PStep X.toCombMap X.outerFace)
+        (K.boundary.cycle, gfaceWind_ind K.faces) (c, g) ∧ gfaceWindNine_Pass K c g :=
+  ⟨_, _, Relation.ReflTransGen.refl, gfaceWindNine_pass_start K hK⟩
+
+end Nine
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_PStep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_mono
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_bd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_C4
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_C5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_Pass
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_choice_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_Reach
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_choice_of_reach
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_reach_of_head
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_mem_src
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_arcs
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_pass_of_facts
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_pass_start
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindNine_refl_trivial
