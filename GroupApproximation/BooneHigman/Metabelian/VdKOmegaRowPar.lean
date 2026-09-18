@@ -109,7 +109,8 @@ theorem vdkOmega_PiMinus_inr (g : St n R) :
 theorem vdkOmega_PiMinus_inl_single (k : Fin n) (b : R) :
     vdkOmega_PiMinus (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k b))) =
       rowRoot k b :=
-  (SemidirectProduct.lift_inl vdkOmega_rowHom (stab n R) vdkOmega_compatMinus _).trans
+  (SemidirectProduct.lift_inl vdkOmega_rowHom (stab n R) vdkOmega_compatMinus
+    (Multiplicative.ofAdd (Pi.single k b))).trans
     (rowVec_update_zero k b)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_PiMinus_inl_single
@@ -118,7 +119,8 @@ theorem vdkOmega_PiMinus_inl_single (k : Fin n) (b : R) :
 theorem vdkOmega_Pi_inl_single (i : Fin n) (a : R) :
     vdkParPres_Pi (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i a))) =
       colRoot i a :=
-  (SemidirectProduct.lift_inl vdkParPres_colHom (stab n R) vdkParPres_compat _).trans
+  (SemidirectProduct.lift_inl vdkParPres_colHom (stab n R) vdkParPres_compat
+    (Multiplicative.ofAdd (Pi.single i a))).trans
     (colVec_update_zero i a)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_Pi_inl_single
