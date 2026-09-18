@@ -116,6 +116,27 @@ theorem witnessStepLobe_faceOf_alpha_not_mem_of_mem_curve {a b : RegionCandidate
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_faceOf_alpha_not_mem_of_mem_curve
 
+/-- **Clause 2 of the Cycle statement for the collapsed set.**  A curve entry `e` with its face
+in the witness has `alpha e` on every rotation of the outer walk: `faceOf (alpha e) ∉ F` and
+`faceOf e ∈ F`, so `mem_iff` puts `alpha e` on the walk. -/
+theorem witnessStepLobe_alpha_mem_rotate_of_mem_curve {a b : RegionCandidate D eps X}
+    {K : CellPocketWalk D eps X i j} {c : X.toCombMap.Face}
+    (hw : IsNoncrossingClosedWalk X.toCombMap K.walk) (hca : c ∉ a.1) (hcb : c ∉ b.1)
+    {G₁ : CyclicArc (cellDarts X i)}
+    (hG₁ : K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    {G₂ : CyclicArc (cellDarts X j)}
+    (hG₂ : K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X (witnessFaces a b K c) ow)
+    (r : ℕ) {e : X.toCombMap.Dart} (he : e ∈ witnessSublistCurve a b G₁ G₂)
+    (hF : X.toCombMap.faceOf e ∈ witnessFaces a b K c) :
+    X.toCombMap.alpha e ∈ ow.rotate r := by
+  refine List.mem_rotate.mpr ((E.mem_iff (X.toCombMap.alpha e)).mpr
+    ⟨witnessStepLobe_faceOf_alpha_not_mem_of_mem_curve hw hca hcb hG₁ hG₂ he, Or.inl ?_⟩)
+  rw [X.toCombMap.alpha_involutive e]
+  exact hF
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_alpha_mem_rotate_of_mem_curve
+
 end LobeFace
 
 end FourPieceWitness

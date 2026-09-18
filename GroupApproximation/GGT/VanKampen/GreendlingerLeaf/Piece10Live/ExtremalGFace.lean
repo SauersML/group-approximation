@@ -39,9 +39,11 @@ from `4` to `0`.
 Scratchpad `gl-p10-47/gface.py` (Lean-faithful: `facePerm d = sigma (alpha d)`, first turns,
 rotation sectors, crossed turns, `FaceClassStep`, `flipFaces`, `movePred`) with the worst case
 of relator cells `{source, kept}` only: the gl-p10-40 witness passes for all 181 decompositions
-and all five choices of kept face; random planar maps (`gface.py`, up to eight edges) and
-G-face-biased maps (`search2.py`: loop-heavy maps, perturbations of the witness) give no
-violation.  The search does not model least area or labels.
+and all five choices of kept face (905 cases, one needs a union of regions).  Random planar maps
+(`gface.py`, up to eight edges: 6849 instances) and loop-heavy maps (`search2.py`: 31571
+instances) give no violation, but also no case that needs a union: they almost never reach the
+G-face regime, so the evidence there rests on the witness.  The search does not model least area
+or labels.
 
 ## Manuscript status
 
