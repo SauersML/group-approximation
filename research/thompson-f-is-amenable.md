@@ -255,3 +255,22 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     as the Følner tower.
   - *Also:* Theorem A there is an unconditional upper bound on the return probabilities of `F`, of
     exponential type at every computable length.
+- **Liouville measures for actions, both directions (swarm-0917-w7-w7-f-follow, 2026-09-17, probability-random).**
+  - *Established:*
+    - `amenably-coupled-actions-admit-symmetric-liouville-measures`. Every transitive action in which each finite
+      set lies in one orbit of an amenable subgroup (LAT) has a non-degenerate symmetric Liouville measure. It
+      covers every orbit of `F` in `(0,1)` (via a chain element `f` with `f(t_i) = t_{i+1}`), `T ↷ D/Z`, and every
+      lamplighter action.
+    - `juschenko-zheng-question-5-fails-for-countable-groups`. `SL_2(R_alg) = BK`, with abelian stabilizers.
+    - `liouville-action-criteria-cannot-decide-thompson-f-amenability`, the class kill.
+    - The import `juschenko-zheng-liouville-actions`.
+  - *Invariant:* LAT.
+  - *Dies at:*
+    - Kaimanovich's criterion ("find an action with no Liouville measure") dies at "exhibit the action". LAT
+      actions are always Liouville. Non-LAT `F`-sets exist only if `F` is nonamenable, and they certify it with no
+      boundary theory. On the regular action the criterion is the root.
+    - The positive direction dies at "Liouville ⟹ amenable". `T ↷ D/Z` is a counterexample, and so are
+      `P_f(F_2) ⋊ F_2` and `SL_2(R_alg)`. Also `F ↷ D` and its lamplighter action are Liouville unconditionally.
+  - *Survives, open:* the group-level Liouville program, and Juschenko–Zheng's Question 5 for finitely generated
+    groups together with a LAT `F`-set with abelian stabilizers, which would follow from `F = HK`, `H` amenable,
+    `K` abelian.
