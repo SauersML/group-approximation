@@ -2,6 +2,7 @@
 rg: 2
 id: aff-q-does-not-embed-in-aut-thompson-f-proof
 kind: route
+title: Direct proof from four cited Belk-Hyde-Matucci statements
 target: aff-q-does-not-embed-in-aut-thompson-f
 requires: []
 artifacts:

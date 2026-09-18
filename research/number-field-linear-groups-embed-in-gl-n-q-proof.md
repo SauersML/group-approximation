@@ -2,6 +2,7 @@
 rg: 2
 id: number-field-linear-groups-embed-in-gl-n-q-proof
 kind: route
+title: Direct proof by restriction of scalars along a Q-basis
 target: number-field-linear-groups-embed-in-gl-n-q
 requires: []
 ---

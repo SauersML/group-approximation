@@ -2,6 +2,7 @@
 rg: 2
 id: number-field-gl-n-via-gl-n-q
 kind: route
+title: Via restriction of scalars into GL_(nd)(Q)
 target: number-field-gl-n-embeds-in-fp-simple-group
 requires:
   - gl-n-q-embeds-in-fp-simple-group
