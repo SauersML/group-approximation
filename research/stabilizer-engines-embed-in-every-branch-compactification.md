@@ -10,7 +10,7 @@ requires:
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed): parts 1–3.
-Part 4 is a dictionary. Its amenability clause 4(c) is PLAUSIBLE, not proved here.
+Part 4 is a dictionary, and all of it is proved (4(c) revised 09-18: the classifiability remark is withdrawn).
 
 **Notation.** `S` is a countable infinite group, `D = Z/2 * S`, and `T` is the Bass–Serre tree
 (S-vertices `gS`, Z/2-vertices `g(Z/2)`, edges `g ∈ D`). The edges at `v = gS` are `gs`, `s ∈ S`.
@@ -52,11 +52,15 @@ Its vertex point `∞_v` is an infinite emitter with isotropy `S`.
    - (b) The isotropy of `D ⋉ Ω^K` at `ξ_v ∈ ∂_v` is a conjugate of `Stab_S(ξ)`. At an end it is
      trivial or infinite cyclic. So the input `S` is isotropy only when `∂` has an S-fixed point.
      If `S ↷ ∂` has torsion-free stabilizers, all isotropy is torsion-free.
-   - (c) (PLAUSIBLE) `D ⋉ Ω^K` is amenable iff `S ↷ K` is amenable. An amenable `K` exists iff `S` is
-     exact (Ozawa; `K = βS` works). Then `C*_r(D ⋉ Ω^K)` is nuclear and satisfies the UCT (Tu). When it
-     is simple and purely infinite, it is a Kirchberg algebra, classified by K-theory.
-     By contrast, `C*_r(D ⋉ Ω^{S⁺})` contains `C*_r(S)` at every emitter, so it is non-nuclear for
-     every non-amenable `S`.
+   - (c) The projection `ρ_v : Ω^K → K` is continuous and S-equivariant. It is the identity on `∂_v`
+     and sends the shadow through the edge `gs` to `s`, and `ρ_v^{-1}(U) = N(v,U)`. So if `S ↷ K` is
+     amenable, then so is `S ↷ Ω^K`.
+     In the other direction, an amenable étale groupoid has amenable isotropy. The isotropy of
+     `D ⋉ Ω^{S⁺}` at `∞_v` is `S`, so for non-amenable `S` the one-point engine is non-amenable, and its
+     reduced C*-algebra is non-nuclear (Anantharaman-Delaroche–Renault).
+     No classifiability claim is made for blow-up engines. Revision 09-18: an earlier version stated,
+     as plausible, that amenability of `S ↷ K` makes the engine algebra a Kirchberg algebra. That
+     statement is withdrawn.
 
 ## Proof
 
@@ -154,9 +158,8 @@ pointwise.
 - **Ring route.**
   - A blow-up whose remainder has torsion-free stabilizers removes `S` from isotropy (4b), which
     lifts the v5 (K′) warning about inputs in isotropy.
-  - With an amenable remainder (4c, `S` exact), the engine algebra is a UCT Kirchberg algebra.
-    Kirchberg–Phillips and HK/AH-type results then compute its invariants from `C(∂) ⋊_r S`, in place
-    of the non-nuclear `C*_r(S)`.
+  - The identification of finite-type blow-ups with SFT compactifications, and the hyperbolic case, are
+    in `finite-type-branch-blow-ups-are-sft-compactifications`.
 
 ## Lesson for general BH
 
