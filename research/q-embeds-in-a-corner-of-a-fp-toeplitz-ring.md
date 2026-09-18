@@ -9,8 +9,7 @@ distinct_from:
   fp-simple-ring-of-characteristic-zero-exists: that asks for a finitely presented SIMPLE ring of characteristic zero; R_T contains Q but is not simple, since its concrete model is not simple and every simple quotient of that model kills Q.
 ---
 
-**ESTABLISHED** through `q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof` (lane proof,
-not independently reviewed). No priority is claimed: the ring is a Toeplitz ring with a
+**ESTABLISHED** through `q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof` (lane proof; refereed PASS by gq-referee-a, artifact `gq-referee-a-q-embeds-in-a-corner-of-a-fp-toeplitz-ring.md`, 7bf46a046). No priority is claimed: the ring is a Toeplitz ring with a
 number operator and its resolvent, and the computation is elementary.
 
 **Statement.** Let

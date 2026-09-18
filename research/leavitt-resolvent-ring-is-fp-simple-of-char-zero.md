@@ -10,10 +10,19 @@ distinct_from:
   leavitt-nekrashevych-completion-simplicity-criterion: that is the general criterion; this applies it to one completion over a non-finitely-generated base.
 artifacts:
   - research/artifacts/gq-gq-lit-arxiv-priority.md
+  - research/artifacts/gq-referee-a-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md
+  - research/artifacts/gq-referee-b-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md
+  - research/artifacts/gq-referee-c-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md
 ---
 
 **ESTABLISHED** through `leavitt-resolvent-ring-is-fp-simple-of-char-zero-proof` (lane
-proof, not independently reviewed; referee requests sent). No priority is claimed beyond
+proof). **Refereed PASS three times:** `gq-referee-a` (proof gaps,
+`gq-referee-a-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md`, 8f4edc918),
+`gq-referee-b` (citations and hypotheses, `gq-referee-b-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md`,
+dfd8468b9), and `gq-referee-c` (an independent proof that avoids the completion criterion,
+`gq-referee-c-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md`, f7c7c3e04). The
+criterion node itself is an unrefereed lane proof; referee b checked the parts used (normal
+form and the main direction of part 3), and referee c's proof does not use it. No priority is claimed beyond
 a bounded search: no source found states the existence of a finitely presented simple
 ring of characteristic zero (lane `gq-lit-arxiv`, artifact `gq-gq-lit-arxiv-priority.md`
 §6). The closest known results each give only part of it. `L_(F_p)(1,n)` is finitely

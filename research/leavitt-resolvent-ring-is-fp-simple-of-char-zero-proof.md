@@ -9,7 +9,7 @@ requires:
   - leavitt-nekrashevych-completion-embeds-and-is-fp
 ---
 
-Lane proof, not independently reviewed. Write `R = R_L`, `P = s_1 t_1`,
+Lane proof, refereed PASS by gq-referee-a, gq-referee-b and gq-referee-c. Write `R = R_L`, `P = s_1 t_1`,
 `E = s_2 t_2 = 1 - P`.
 
 ## 1. Commutation and resolvents
@@ -80,8 +80,11 @@ Let `y ∈ O_k`, `k > 0`, commute with the core `C`. Follow part 4 of the criter
 
 ## 6. Conclusion
 - `R ≅ O_ψ` is simple, by the criterion, from §4 and §5.
-- `R ≠ 0`, because `B -> O_ψ` is injective (`leavitt-nekrashevych-completion-embeds-and-is-fp`,
-  part 2, since `ψ` is injective). So `Q ⊆ R` (§2).
+- `R ≠ 0`, and `B` embeds in `R`: in the model on `Q^(X)` (see the claim), `b ∈ B` acts on
+  `e_ξ` by the scalar `b(ℓ)`, where `ℓ` is the number of leading 1's of `ξ`. Every `ℓ >= 0`
+  occurs, so the model is faithful on `B` (referee b, A2). This also gives part 2 of
+  `leavitt-nekrashevych-completion-embeds-and-is-fp`, the only part of that node used here,
+  without its general argument. So `Q ⊆ R` (§2).
 - `M_2(R) ≅ R` via `(x_ij) ↦ Σ s_i x_ij t_j`, so `R ≅ R^n` as modules and `M_n(R) ≅ R`
   for all `n >= 1`.
 - `GL_n(Q)` embeds in `SL_(n+2)(Q)` by `g ↦ diag(g, det(g)^(-1), 1)`. `SL_(n+2)(Q)` is
