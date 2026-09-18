@@ -62,15 +62,18 @@ def eHighWittE_g : MvPolynomial σ (ZMod (p ^ e)) →+* TruncatedWittVector p e 
 def eHighWittE_c0 : TruncatedWittVector p e (eHighWittE_L p σ) →+* eHighWittE_L p σ where
   toFun x := x.coeff ⟨0, Nat.pos_of_ne_zero (NeZero.ne e)⟩
   map_one' := by
+    show (1 : TruncatedWittVector p e (eHighWittE_L p σ)).coeff ⟨0, _⟩ = 1
     rw [← map_one (WittVector.truncate (p := p) (R := eHighWittE_L p σ) e),
       WittVector.coeff_truncate]
-    exact WittVector.one_coeff_zero _
+    exact WittVector.one_coeff_zero _ _
   map_mul' x y := by
+    show (x * y).coeff ⟨0, _⟩ = x.coeff ⟨0, _⟩ * y.coeff ⟨0, _⟩
     rw [eHighWittE_tw_mul_coeff, ← TruncatedWittVector.coeff_out x,
       ← TruncatedWittVector.coeff_out y]
     exact WittVector.mul_coeff_zero _ _
   map_zero' := TruncatedWittVector.coeff_zero p e _ _
   map_add' x y := by
+    show (x + y).coeff ⟨0, _⟩ = x.coeff ⟨0, _⟩ + y.coeff ⟨0, _⟩
     rw [eHighWittE_tw_add_coeff, ← TruncatedWittVector.coeff_out x,
       ← TruncatedWittVector.coeff_out y]
     exact WittVector.add_coeff_zero _ _

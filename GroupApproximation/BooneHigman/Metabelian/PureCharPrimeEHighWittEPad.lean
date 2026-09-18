@@ -134,7 +134,8 @@ theorem eHighWittE_pad_subst {τ : Type} (R : MvPolynomial τ ℤ) (f : τ → N
     exact eHighWittE_pad_mono (eHighWittE_pad_mul (eHighWittE_pad_const 0 _)
       (eHighWittE_pad_prod m.support (fun t x => f t x ^ m t) (fun t => m t * D0)
         fun t => eHighWittE_pad_pow (hf t) (m t))) ((zero_add _).trans_le hle)
-  · exact (eval₂_eq (algebraMap ℤ L) (fun t => f t x) R).symm.trans (aeval_def R).symm
+  · exact (eval₂_eq (algebraMap ℤ L) (fun t => f t x) R).symm.trans
+      (aeval_def (fun t => f t x) R).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_pad_subst
 
