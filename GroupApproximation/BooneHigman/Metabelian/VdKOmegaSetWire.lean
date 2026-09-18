@@ -42,6 +42,8 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 open GroupApproximation.BooneHigman.SteinbergBasic GroupApproximation.SteinbergGroup
 open scoped commutatorElement
 
+section MixedOne
+
 variable {n : ℕ} {R : Type*} [CommRing R] (X : Type*)
 
 /-- The one mixed identity for a row action `ρ` on `P̃ × X`:
@@ -55,6 +57,8 @@ def vdkOmegaSet_MixedOne
     vdkOmegaSet_alpha X (vdkParPres_inr (x i₀ j₀ h 1))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_MixedOne
+
+end MixedOne
 
 /-- **The residual data.**  A pointed set `X` and a row action `ρ` on `P̃ × X` satisfying the
 generator relations and one mixed identity. -/
@@ -80,7 +84,8 @@ theorem vdkOmegaSet_hasOmegaOne_of_hasRows {n : ℕ} {R : Type} [CommRing R]
   rw [vdkOmegaSet_rv_beta]
   exact hone
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_hasOmegaOne_of_hasRows
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_hasOmegaOne_of_hasRows
 
 /-- **The residual.**  For every commutative ring `R` of stable rank `≤ r` there are a pointed
 set `X` and a row action `ρ` on `P̃ × X` (`P̃ = R^{r+3} ⋊ St_{r+3}(R)`) satisfying the

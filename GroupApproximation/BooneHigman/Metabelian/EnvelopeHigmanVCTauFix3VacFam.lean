@@ -74,3 +74,47 @@ theorem higmanVCTauFix3Vac_bf2 {d : ℕ} (hd : 1 < d) {m0 m1 m2 e y1 c c' : Fin 
     higmanVCTauD2_inc2 ys [c'] (ho y1).symm⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_bf2
+
+/-- **The single-letter shape.**  For `W = [m0, m1*, c]`, `|V| = 3`, `¬ [e] <+: V` and
+`e ≠ m0`, the instance `(m0 m1 m2 r, [e])` is both-fixed for `(W, V)` or one-fixed for
+`(V, W)`. -/
+theorem higmanVCTauFix3Vac_single {d : ℕ} (hd : 1 < d) {V W : List (Fin d)}
+    {m0 m1 m2 e c : Fin d} (r : List (Fin d)) (hW : W = [m0, higmanVCTau_other m1, c])
+    (hV : V.length = 3) (hVy : ¬ [e] <+: V) (he : e ≠ m0) :
+    higmanVCTauFix3_BothFixed W V (m0 :: m1 :: m2 :: r) [e] ∨
+      higmanVCTauRest_OneFixed V W (m0 :: m1 :: m2 :: r) [e] := by
+  have ho := higmanVCTauSplit_other_ne hd
+  subst hW
+  rcases V with _ | ⟨v0, _ | ⟨v1, _ | ⟨v2, _ | ⟨v3, V⟩⟩⟩⟩
+  · simp only [List.length_nil] at hV <;> omega
+  · simp only [List.length_cons, List.length_nil] at hV <;> omega
+  · simp only [List.length_cons, List.length_nil] at hV <;> omega
+  swap
+  · simp only [List.length_cons] at hV <;> omega
+  by_cases hx : ¬ m0 :: m1 :: m2 :: r <+: [v0, v1, v2] ∧ ¬ [v0, v1, v2] <+: m0 :: m1 :: m2 :: r
+  · left
+    unfold higmanVCTauFix3_BothFixed
+    exact ⟨rfl, rfl, higmanVCTauD2_inc2 (m2 :: r) [c] (ho m1).symm, hx,
+      higmanVCTauBridge_inc_cons [] [higmanVCTau_other m1, c] he,
+      higmanVCTauFix3_incHead [] (List.cons_ne_nil _ _) hVy⟩
+  right
+  have hpre : [v0, v1, v2] <+: m0 :: m1 :: m2 :: r := by
+    by_contra hn
+    refine hx ⟨fun h => hn ?_, hn⟩
+    have hlen : (m0 :: m1 :: m2 :: r).length = [v0, v1, v2].length := by
+      have := h.length_le
+      simp only [List.length_cons, List.length_nil] at this ⊢
+      omega
+    exact Eq.subst (motive := fun u => [v0, v1, v2] <+: u) (h.eq_of_length hlen).symm
+      (List.prefix_refl _)
+  obtain ⟨h0, h1'⟩ := List.cons_prefix_cons.mp hpre
+  obtain ⟨h1, h2'⟩ := List.cons_prefix_cons.mp h1'
+  obtain ⟨h2, -⟩ := List.cons_prefix_cons.mp h2'
+  rw [h0, h1, h2]
+  unfold higmanVCTauRest_OneFixed
+  exact ⟨m0, m1, higmanVCTau_other m1, m2, c, e, r, (ho m1).symm, he, rfl, rfl,
+    Or.inl ⟨rfl, rfl⟩⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_single
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
