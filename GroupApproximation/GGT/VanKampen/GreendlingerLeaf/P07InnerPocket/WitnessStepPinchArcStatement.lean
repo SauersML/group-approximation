@@ -2,7 +2,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessS
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Greendlinger leaf P07, lane gl-p07-57: the entry step into the prefix lands at the curve-first dart
+# Greendlinger leaf P07, lane gl-p07-57: the entry step into the prefix lands curve-first
 
 Lane gl-p07-57.  States the residual `FourPieceWitness.WitnessStepPinchArcStatement`.  Certifies
 no printed sentence on its own.  NOT COMPILED.
