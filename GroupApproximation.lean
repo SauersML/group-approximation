@@ -5833,6 +5833,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.RelSix
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.KTwoVanish
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFModelLift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureBasic
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.MatrixCorner
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
