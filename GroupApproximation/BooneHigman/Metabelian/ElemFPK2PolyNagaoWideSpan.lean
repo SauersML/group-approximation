@@ -181,7 +181,7 @@ theorem k2PolyNagaoWide_Gml_conj_Qm {K : Finset I} (hmK : m ∈ K) (hLK : L ∉ 
   by_cases hbk : b = k
   · have hbl : b ≠ l := fun e => hkl (hbk.symm.trans e)
     have hbK : b ∈ insert L K := by rw [hbk]; exact hq'.1
-    rw [x_congr hkl hbl hbk.symm rfl rfl, conj_x_left a b l hab hbl hal c d]
+    rw [x_congr hkl hbl hbk.symm rfl (rfl : d = d), conj_x_left a b l hab hbl hal c d]
     exact Subgroup.mul_mem _
       (x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) hal _ ⟨haK, hq'.2⟩)
       (x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) hbl _ ⟨hbK, hq'.2⟩)

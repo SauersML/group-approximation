@@ -42,6 +42,7 @@ def suslinZLocal_Group (R : Type*) [CommRing R] : Subgroup (Matrix (Fin 2) (Fin 
 theorem suslinZLocal_group_le_comap (R : Type*) [CommRing R] :
     suslinZLocal_Group R ≤
       (elementaryGroup (Fin 2 ⊕ Unit) R).comap (stabilizeUnit (R := R) (κ := Unit)) := by
+  show elementaryGroup (Fin 2) R ⊔ Subgroup.closure (suslinZLocal_TSet R) ≤ _
   refine sup_le ?_ ?_
   · intro x hx
     exact Subgroup.mem_comap.mpr
