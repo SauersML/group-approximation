@@ -84,8 +84,7 @@ theorem witnessStepDescent_parity_of_descent (h : WitnessStepDescentStatement.{u
   rcases h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
       hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb
       hlab with hfwd | hbwd
-  · refine Or.inl fun n s t x y hr _ _ _ _ _ pre mid post hcurve n' s' t' x' y' hr' hx' hy'
-      _ _ => ?_
+  · refine Or.inl fun _ _ _ _ _ hr _ _ _ _ _ _ _ _ hcurve _ _ _ _ _ hr' hx' hy' _ _ => ?_
     exact witnessStepDescent_false_of_entry (witnessSublist_curve_nodup a b G₁ G₂) hfwd hr
       hcurve hr' hx' hy'
   · exact Or.inr hbwd
