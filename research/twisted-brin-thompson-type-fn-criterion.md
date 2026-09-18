@@ -13,11 +13,22 @@ distinct_from:
 **ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18,
 **not yet reviewed**). No priority claimed beyond the literature check below.
 
-## The conjecture
+## The conjecture, and what BZ proved
+
+BZ prove a sufficient condition, not the characterization. Their Theorem
+`thm:FinitenessTheorem` (TeX l.178–184) says: "Let G be an oligomorphic group of permutations
+of a countable set S. Let n ∈ N ∪ {∞}, and suppose that (1) G is of type F_n, and (2) The
+stabilizer in G of every finite subset of S is of type F_n. Then SV_G is of type F_n as well."
+- That theorem asks for finitely many orbits on `k`-subsets for **every** `k`, and for every
+  finite-set stabilizer to be of type `F_n`.
+- They then write (l.218): "Theorem [FinitenessTheorem] does not appear to be sharp. We
+  conjecture the following precise characterization".
+- The conjecture weakens both hypotheses to the graded ones below. It is this conjecture that
+  FFWZ record as open.
 
 Belk--Zaremsky, *Twisted Brin--Thompson groups*, arXiv:2001.04579 (Geom. Topol. 26 (2022)),
 introduction, TeX lines 220–227 (read on MSI), for a group `G` acting faithfully on a
-countable set `S`:
+countable set `S` (the conjecture itself):
 
 > "The group SV_G is of type F_n if and only if the following conditions hold:
 > (1) The action of G on S has finitely many orbits of n-element subsets.
