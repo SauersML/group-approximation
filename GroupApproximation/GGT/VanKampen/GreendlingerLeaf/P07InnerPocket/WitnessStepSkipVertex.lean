@@ -33,7 +33,7 @@ theorem witnessStepSkip_eq_append_singleton {β : Type*} {L : List β} {d : β} 
   obtain ⟨s, t, hst⟩ := List.append_of_mem hd
   cases t with
   | nil => exact ⟨s, hst⟩
-  | cons g q => exact absurd ⟨s, q, hst⟩ (hno g)
+  | cons g q => exact (hno g ⟨s, q, hst⟩).elim
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSkip_eq_append_singleton
 
