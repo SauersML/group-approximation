@@ -71,9 +71,36 @@ surjective for `i = n`.
 Proposition `prop:E_hi_conn` (descending links `E_m` are at least
 `min(ν(m/2)−2, log_2(m/2)−2)`-connected), BZ Proposition `prop:cible` (`X` contractible) and
 Bestvina--Brady Morse theory. It uses no hypothesis on `G ↷ S` beyond faithfulness. Fix such
-an `m`. (Referee a noted that BZ's proof of `lem:VE_conn` misdescribes `VE_m^{i,j}`: it also
-contains vertices matching neither `i` nor `j`. The lemma survives, since `VE_m^{i,j}` is a
-join `|A| * |VE_{m−2}|`; see `abstract-twisted-bt-type-fn-colored-stein-proof`, Step 1.)
+an `m`.
+
+**BZ `lem:VE_conn` is true, but its published proof has two errors.** Referee c (W1,
+`research/artifacts/gq-bh-referee-c-conjecture-h-and-ffwz.md`, 488bd5ce1) gives the corrected
+proof used here.
+- *The errors.*
+  - `VE_m^{i,j}` also contains vertices that avoid `i` and `j` (referee a).
+  - For `m ≥ 5` the covering sets meet for non-disjoint pairs as well: the merge of leaves
+    4, 5 lies in both `VE_5^{1,2}` and `VE_5^{1,3}`. So BZ's nerve is larger than the
+    matching complex, and the Nerve-Lemma computation does not go through.
+  - The join description `|A_{ij}| * |VE_{m−2}|` recorded earlier is correct for one pair,
+    but intersections for non-disjoint families are not joins.
+- *Correct argument.* A vertex of `VE_m` is a nonempty set of disjoint merged pairs of the `m`
+  leaves. Each pair carries a label, the class of (color, twist, twist) modulo the left
+  twisted permutations. The order is reverse inclusion of labelled matchings, since
+  un-merging pairs expands. So `VE_m` is the order complex of the face poset of the labelled
+  matching complex `M_L(K_m)` of the complete multigraph, and is homeomorphic to it. Every
+  label set is nonempty, because `S ≠ ∅`.
+  - The projection `M_L(K_m) → M(K_m)` is a complete join complex in the sense of
+    Hatcher--Wahl: surjective, injective on simplices, and with preimage of each simplex the
+    join of the label sets.
+  - `M(K_m)` is `(ν(m)−1)`-connected, with `ν(m) = ⌊(m−2)/3⌋` (Björner--Lovász--Vrećica--
+    Živaljević, J. London Math. Soc. 49 (1994), Thm 4.1, as BZ cite). The link of a
+    `p`-simplex is `M(K_{m−2p−2})`, and `ν(m) − ν(m−2p−2) ≤ ⌈(2p+2)/3⌉ ≤ p+1`. So `M(K_m)`
+    is weakly Cohen--Macaulay of dimension `ν(m)`.
+  - By Hatcher--Wahl, Duke Math. J. 155 (2010), Proposition 3.5 (recalled by referee c, not
+    re-read at source), `M_L(K_m)` is weakly Cohen--Macaulay of dimension `ν(m)`, hence
+    `(ν(m)−1)`-connected.
+  - The rest of `prop:E_hi_conn` stands: the merge link is `≅ VE_{μ_1}`, and the split-link
+    lemmas are reproved by `stein-complex-elementary-intervals-are-grid-spheres`.
 
 ## Step 2. The interval filtration
 

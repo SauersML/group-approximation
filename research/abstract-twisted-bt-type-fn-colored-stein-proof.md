@@ -44,15 +44,37 @@ None of them uses that the split colors exhaust the coordinates, or that `G` act
 on the split colors. `Stab_G(C)` for `C ⊆ S` is the same group for `G ↷ S'` and for
 `G ↷ S`.
 
-**Checked.** Referee a checked the transfer line by line and passed it. Its nit N1 is a
-correction to BZ `lem:VE_conn`, affecting this route and the faithful case equally, and not
-the truth of the lemma.
-- BZ's sentence "VE_m^{i,j} is the union of the stars of its rank-(m−1) vertices that match
-  i and j" misses the vertices matching neither `i` nor `j`. For `m = 4`, a merge of
-  leaves 3, 4 is incomparable with every merge of leaves 1, 2.
-- The lemma still holds. `VE_m^{i,j}` is the join `|A| * |VE_{m−2}|`, with `A` the set of
-  merges of `i` and `j`. It is therefore `(ν(m)−1)`-connected, and the intersections are
-  joins too.
+**Checked.** Referees a and c checked the transfer line by line and passed it. The labels
+here are `S`-colors with twists in `G`.
+
+**BZ `lem:VE_conn` is true, but its published proof has two errors.** Referee c (W1,
+`research/artifacts/gq-bh-referee-c-conjecture-h-and-ffwz.md`, 488bd5ce1) gives the corrected
+proof used here.
+- *The errors.*
+  - `VE_m^{i,j}` also contains vertices that avoid `i` and `j` (referee a).
+  - For `m ≥ 5` the covering sets meet for non-disjoint pairs as well: the merge of leaves
+    4, 5 lies in both `VE_5^{1,2}` and `VE_5^{1,3}`. So BZ's nerve is larger than the
+    matching complex, and the Nerve-Lemma computation does not go through.
+  - The join description `|A_{ij}| * |VE_{m−2}|` recorded earlier is correct for one pair,
+    but intersections for non-disjoint families are not joins.
+- *Correct argument.* A vertex of `VE_m` is a nonempty set of disjoint merged pairs of the `m`
+  leaves. Each pair carries a label, the class of (color, twist, twist) modulo the left
+  twisted permutations. The order is reverse inclusion of labelled matchings, since
+  un-merging pairs expands. So `VE_m` is the order complex of the face poset of the labelled
+  matching complex `M_L(K_m)` of the complete multigraph, and is homeomorphic to it. Every
+  label set is nonempty, because `S ≠ ∅`.
+  - The projection `M_L(K_m) → M(K_m)` is a complete join complex in the sense of
+    Hatcher--Wahl: surjective, injective on simplices, and with preimage of each simplex the
+    join of the label sets.
+  - `M(K_m)` is `(ν(m)−1)`-connected, with `ν(m) = ⌊(m−2)/3⌋` (Björner--Lovász--Vrećica--
+    Živaljević, J. London Math. Soc. 49 (1994), Thm 4.1, as BZ cite). The link of a
+    `p`-simplex is `M(K_{m−2p−2})`, and `ν(m) − ν(m−2p−2) ≤ ⌈(2p+2)/3⌉ ≤ p+1`. So `M(K_m)`
+    is weakly Cohen--Macaulay of dimension `ν(m)`.
+  - By Hatcher--Wahl, Duke Math. J. 155 (2010), Proposition 3.5 (recalled by referee c, not
+    re-read at source), `M_L(K_m)` is weakly Cohen--Macaulay of dimension `ν(m)`, hence
+    `(ν(m)−1)`-connected.
+  - The rest of `prop:E_hi_conn` stands: the merge link is `≅ VE_{μ_1}`, and the split-link
+    lemmas are reproved by `stein-complex-elementary-intervals-are-grid-spheres`.
 
 With Bestvina--Brady Morse theory, as in FFWZ Proposition 4.8(ii): for every `n` there is
 `M` with `X^S_m` `(n−1)`-connected for `m ≥ M`.
