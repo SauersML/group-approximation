@@ -1,0 +1,615 @@
+multicharge.py: seed 11, 120 covers per fibre (600 covers). Commands:
+  nice -n 10 timeout 1200 python3 multicharge.py G 11 120   for G in S3 Q8 A4 S3on3 S4on4
+S3, Q8, A4: regular fibres. S3on3, S4on4: natural (non-free) actions on 3 and 4 points.
+Shapes: thin, random HNF and thick tori, N <= 484; up to 13 charged faces.
+All assertions passed (exit 0 for every group): box-count lemma on every non-neutral cluster, flatness,
+site bounds of constructions A and B, rank([b,c]-I) >= S/2, Theorem A (regular) and Theorem B (all) bounds.
+rho_lower = max over boxes s,t <= M of rank([b^s,c^t]-I)/(s+t) <= rho.
+
+SUMMARY S3 cases 120 best construction {'A': 87, 'B': 33} box-count checks 38 worst dist/rho_lower by construction {'A': 37.5, 'B': 0.674}
+SUMMARY Q8 cases 120 best construction {'B': 36, 'A': 84} box-count checks 30 worst dist/rho_lower by construction {'B': 1.047, 'A': 19.205}
+SUMMARY A4 cases 120 best construction {'A': 87, 'B': 33} box-count checks 33 worst dist/rho_lower by construction {'A': 35.204, 'B': 1.56}
+SUMMARY S3on3 cases 120 best construction {'A': 87, 'B': 33} box-count checks 38 worst dist/rho_lower by construction {'A': 52.0, 'B': 0.704}
+SUMMARY S4on4 cases 120 best construction {'A': 91, 'B': 29} box-count checks 32 worst dist/rho_lower by construction {'A': 35.963, 'B': 1.185}
+
+Per-cover lines:
+S3 N=380 a=20 c=14 d=19 lam1=20 n=6 A:530 theta=- rho>=15.600 dist/rho=33.974
+S3 N=18 a=3 c=2 d=6 lam1=3 n=10 A:27 theta=- rho>=17.000 dist/rho=1.588
+S3 N=180 a=12 c=1 d=15 lam1=12 n=4 A:33 theta=- rho>=6.000 dist/rho=5.500
+S3 N=29 a=29 c=9 d=1 lam1=5 n=5 A:14 theta=- rho>=9.000 dist/rho=1.556
+S3 N=39 a=13 c=12 d=3 lam1=4 n=9 A:31 theta=- rho>=15.000 dist/rho=2.067
+S3 N=204 a=12 c=11 d=17 lam1=12 n=4 A:27 theta=- rho>=18.857 dist/rho=1.432
+S3 N=24 a=3 c=1 d=8 lam1=3 n=5 A:21 theta=- rho>=12.000 dist/rho=1.750
+S3 N=24 a=4 c=2 d=6 lam1=4 n=4 A:21 theta=- rho>=10.667 dist/rho=1.969
+S3 N=21 a=3 c=2 d=7 lam1=3 n=4 A:27 theta=- rho>=6.000 dist/rho=4.500
+S3 N=24 a=3 c=1 d=8 lam1=3 n=10 A:63 theta=- rho>=18.000 dist/rho=3.500
+S3 N=360 a=20 c=4 d=18 lam1=20 n=2 A:12 B:4 theta=1 rho>=7.778 dist/rho=0.514
+S3 N=195 a=15 c=4 d=13 lam1=15 n=2 A:254 theta=- rho>=18.947 dist/rho=13.406
+S3 N=29 a=29 c=18 d=1 lam1=7 n=9 A:45 theta=- rho>=18.667 dist/rho=2.411
+S3 N=272 a=16 c=7 d=17 lam1=16 n=2 A:6 B:3 theta=1 rho>=5.739 dist/rho=0.523
+S3 N=24 a=4 c=2 d=6 lam1=4 n=5 A:17 theta=- rho>=8.000 dist/rho=2.125
+S3 N=304 a=16 c=4 d=19 lam1=16 n=2 A:6 B:3 theta=1 rho>=5.739 dist/rho=0.523
+S3 N=30 a=3 c=0 d=10 lam1=3 n=2 A:12 theta=- rho>=9.818 dist/rho=1.222
+S3 N=260 a=13 c=11 d=20 lam1=13 n=2 A:16 theta=- rho>=13.867 dist/rho=1.154
+S3 N=330 a=22 c=13 d=15 lam1=22 n=2 A:4 B:4 theta=1 rho>=7.652 dist/rho=0.523
+S3 N=216 a=18 c=8 d=12 lam1=18 n=2 A:9 B:3 theta=1 rho>=5.800 dist/rho=0.517
+S3 N=306 a=17 c=8 d=18 lam1=17 n=2 A:12 B:4 theta=1 rho>=7.758 dist/rho=0.516
+S3 N=18 a=2 c=0 d=9 lam1=2 n=3 A:25 theta=- rho>=10.400 dist/rho=2.404
+S3 N=308 a=22 c=13 d=14 lam1=22 n=4 A:10 B:4 theta=1 rho>=7.714 dist/rho=0.519
+S3 N=304 a=16 c=9 d=19 lam1=16 n=3 A:47 theta=- rho>=16.000 dist/rho=2.938
+S3 N=192 a=12 c=0 d=16 lam1=12 n=4 A:22 theta=- rho>=12.444 dist/rho=1.768
+S3 N=24 a=4 c=3 d=6 lam1=4 n=4 A:6 theta=- rho>=8.000 dist/rho=0.750
+S3 N=21 a=3 c=1 d=7 lam1=3 n=7 A:29 theta=- rho>=14.667 dist/rho=1.977
+S3 N=462 a=21 c=2 d=22 lam1=21 n=6 A:12 theta=- rho>=11.400 dist/rho=1.053
+S3 N=182 a=13 c=1 d=14 lam1=13 n=2 A:8 B:4 theta=1 rho>=7.467 dist/rho=0.536
+S3 N=52 a=13 c=11 d=4 lam1=6 n=7 A:61 theta=- rho>=17.429 dist/rho=3.500
+S3 N=272 a=17 c=0 d=16 lam1=16 n=4 A:36 theta=- rho>=11.400 dist/rho=3.158
+S3 N=342 a=19 c=7 d=18 lam1=19 n=2 A:6 B:6 theta=2 rho>=10.857 dist/rho=0.553
+S3 N=196 a=14 c=6 d=14 lam1=14 n=4 A:228 theta=- rho>=11.429 dist/rho=19.950
+S3 N=238 a=17 c=1 d=14 lam1=15 n=2 A:6 theta=- rho>=10.737 dist/rho=0.559
+S3 N=264 a=22 c=13 d=12 lam1=21 n=4 A:43 B:7 theta=1 rho>=13.391 dist/rho=0.523
+S3 N=340 a=20 c=2 d=17 lam1=19 n=6 A:26 theta=- rho>=15.364 dist/rho=1.692
+S3 N=25 a=25 c=21 d=1 lam1=5 n=7 A:32 theta=- rho>=13.600 dist/rho=2.353
+S3 N=180 a=15 c=5 d=12 lam1=15 n=2 A:39 theta=- rho>=10.957 dist/rho=3.560
+S3 N=27 a=3 c=0 d=9 lam1=3 n=6 A:13 theta=- rho>=11.500 dist/rho=1.130
+S3 N=18 a=3 c=1 d=6 lam1=3 n=6 A:26 theta=- rho>=10.500 dist/rho=2.476
+S3 N=294 a=14 c=10 d=21 lam1=14 n=3 A:20 theta=- rho>=10.933 dist/rho=1.829
+S3 N=23 a=23 c=17 d=1 lam1=5 n=5 A:18 theta=- rho>=10.667 dist/rho=1.688
+S3 N=304 a=16 c=2 d=19 lam1=16 n=2 A:42 B:6 theta=2 rho>=10.800 dist/rho=0.556
+S3 N=169 a=13 c=11 d=13 lam1=13 n=2 A:16 theta=- rho>=13.867 dist/rho=1.154
+S3 N=264 a=22 c=11 d=12 lam1=22 n=4 A:371 theta=- rho>=18.333 dist/rho=20.236
+S3 N=240 a=15 c=3 d=16 lam1=15 n=2 A:4 B:4 theta=1 rho>=7.500 dist/rho=0.533
+S3 N=24 a=4 c=3 d=6 lam1=4 n=10 A:51 theta=- rho>=16.000 dist/rho=3.188
+S3 N=192 a=16 c=12 d=12 lam1=16 n=5 A:12 theta=- rho>=8.000 dist/rho=1.500
+S3 N=16 a=2 c=1 d=8 lam1=2 n=7 A:36 theta=- rho>=13.333 dist/rho=2.700
+S3 N=32 a=16 c=9 d=2 lam1=6 n=7 A:39 theta=- rho>=14.000 dist/rho=2.786
+S3 N=28 a=4 c=1 d=7 lam1=4 n=2 A:3 theta=- rho>=4.800 dist/rho=0.625
+S3 N=28 a=4 c=2 d=7 lam1=4 n=2 A:6 theta=- rho>=5.455 dist/rho=1.100
+S3 N=306 a=18 c=6 d=17 lam1=18 n=2 A:9 B:3 theta=1 rho>=5.818 dist/rho=0.516
+S3 N=26 a=2 c=1 d=13 lam1=2 n=8 A:22 theta=- rho>=13.333 dist/rho=1.650
+S3 N=462 a=22 c=8 d=21 lam1=22 n=6 A:26 theta=- rho>=12.000 dist/rho=2.167
+S3 N=378 a=18 c=0 d=21 lam1=18 n=2 A:3 B:3 theta=1 rho>=5.684 dist/rho=0.528
+S3 N=380 a=20 c=8 d=19 lam1=20 n=3 A:8 B:8 theta=1 rho>=14.545 dist/rho=0.550
+S3 N=52 a=26 c=7 d=2 lam1=9 n=8 A:33 theta=- rho>=13.778 dist/rho=2.395
+S3 N=20 a=10 c=2 d=2 lam1=4 n=2 A:10 theta=- rho>=5.455 dist/rho=1.833
+S3 N=10 a=5 c=4 d=2 lam1=3 n=7 A:23 theta=- rho>=11.000 dist/rho=2.091
+S3 N=192 a=12 c=9 d=16 lam1=12 n=2 A:12 theta=- rho>=10.286 dist/rho=1.167
+S3 N=221 a=17 c=15 d=13 lam1=15 n=2 A:36 B:3 theta=1 rho>=5.667 dist/rho=0.529
+S3 N=52 a=26 c=20 d=2 lam1=8 n=2 A:4 B:4 theta=1 rho>=7.467 dist/rho=0.536
+S3 N=221 a=17 c=8 d=13 lam1=17 n=2 A:8 B:8 theta=2 rho>=14.316 dist/rho=0.559
+S3 N=28 a=2 c=1 d=14 lam1=2 n=5 A:29 theta=- rho>=10.000 dist/rho=2.900
+S3 N=16 a=4 c=1 d=4 lam1=4 n=8 A:30 theta=- rho>=14.000 dist/rho=2.143
+S3 N=40 a=4 c=0 d=10 lam1=4 n=4 A:21 theta=- rho>=6.000 dist/rho=3.500
+S3 N=27 a=3 c=2 d=9 lam1=3 n=6 A:20 theta=- rho>=10.667 dist/rho=1.875
+S3 N=28 a=4 c=0 d=7 lam1=4 n=9 A:22 theta=- rho>=15.333 dist/rho=1.435
+S3 N=44 a=22 c=18 d=2 lam1=6 n=4 A:7 theta=- rho>=7.000 dist/rho=1.000
+S3 N=260 a=20 c=4 d=13 lam1=17 n=4 A:113 theta=- rho>=25.750 dist/rho=4.388
+S3 N=12 a=2 c=0 d=6 lam1=2 n=2 A:8 theta=- rho>=6.286 dist/rho=1.273
+S3 N=240 a=15 c=8 d=16 lam1=15 n=4 A:231 theta=- rho>=7.909 dist/rho=29.207
+S3 N=12 a=2 c=0 d=6 lam1=2 n=3 A:15 theta=- rho>=7.000 dist/rho=2.143
+S3 N=23 a=23 c=14 d=1 lam1=6 n=6 A:15 theta=- rho>=11.600 dist/rho=1.293
+S3 N=18 a=3 c=2 d=6 lam1=3 n=7 A:27 theta=- rho>=16.500 dist/rho=1.636
+S3 N=56 a=14 c=13 d=4 lam1=5 n=8 A:34 theta=- rho>=14.000 dist/rho=2.429
+S3 N=300 a=15 c=7 d=20 lam1=15 n=6 A:230 theta=- rho>=15.467 dist/rho=14.871
+S3 N=210 a=14 c=9 d=15 lam1=14 n=2 A:4 B:4 theta=1 rho>=7.467 dist/rho=0.536
+S3 N=46 a=23 c=4 d=2 lam1=6 n=7 A:38 theta=- rho>=17.500 dist/rho=2.171
+S3 N=26 a=26 c=11 d=1 lam1=6 n=9 A:40 theta=- rho>=16.000 dist/rho=2.500
+S3 N=484 a=22 c=20 d=22 lam1=22 n=2 A:6 B:3 theta=1 rho>=5.760 dist/rho=0.521
+S3 N=320 a=16 c=2 d=20 lam1=16 n=4 A:24 theta=- rho>=15.391 dist/rho=1.559
+S3 N=380 a=19 c=3 d=20 lam1=19 n=4 A:24 B:11 theta=1 rho>=17.700 dist/rho=0.621
+S3 N=192 a=16 c=2 d=12 lam1=14 n=2 A:3 B:3 theta=1 rho>=5.714 dist/rho=0.525
+S3 N=28 a=4 c=1 d=7 lam1=4 n=4 A:36 theta=- rho>=8.000 dist/rho=4.500
+S3 N=36 a=9 c=3 d=4 lam1=7 n=2 A:9 theta=- rho>=5.400 dist/rho=1.667
+S3 N=195 a=15 c=12 d=13 lam1=15 n=4 A:225 theta=- rho>=6.000 dist/rho=37.500
+S3 N=21 a=21 c=10 d=1 lam1=3 n=3 A:14 theta=- rho>=7.200 dist/rho=1.944
+S3 N=360 a=20 c=11 d=18 lam1=20 n=2 A:6 B:3 theta=1 rho>=5.760 dist/rho=0.521
+S3 N=56 a=14 c=3 d=4 lam1=7 n=9 A:45 theta=- rho>=16.000 dist/rho=2.812
+S3 N=18 a=3 c=2 d=6 lam1=3 n=11 A:37 theta=- rho>=18.000 dist/rho=2.056
+S3 N=16 a=2 c=0 d=8 lam1=2 n=4 A:18 theta=- rho>=7.000 dist/rho=2.571
+S3 N=24 a=4 c=2 d=6 lam1=4 n=8 A:23 theta=- rho>=13.000 dist/rho=1.769
+S3 N=204 a=12 c=3 d=17 lam1=12 n=2 A:6 theta=- rho>=10.737 dist/rho=0.559
+S3 N=48 a=24 c=15 d=2 lam1=9 n=8 A:57 theta=- rho>=17.143 dist/rho=3.325
+S3 N=180 a=12 c=9 d=15 lam1=12 n=2 A:6 B:3 theta=1 rho>=5.684 dist/rho=0.528
+S3 N=396 a=22 c=20 d=18 lam1=20 n=2 A:6 B:3 theta=1 rho>=5.739 dist/rho=0.523
+S3 N=240 a=20 c=11 d=12 lam1=20 n=6 A:23 theta=- rho>=13.333 dist/rho=1.725
+S3 N=27 a=3 c=1 d=9 lam1=3 n=6 A:43 theta=- rho>=13.000 dist/rho=3.308
+S3 N=396 a=22 c=2 d=18 lam1=20 n=2 A:6 B:6 theta=2 rho>=10.800 dist/rho=0.556
+S3 N=24 a=2 c=1 d=12 lam1=2 n=3 A:15 theta=- rho>=7.333 dist/rho=2.045
+S3 N=266 a=14 c=3 d=19 lam1=14 n=2 A:3 B:3 theta=1 rho>=5.600 dist/rho=0.536
+S3 N=24 a=4 c=1 d=6 lam1=4 n=4 A:30 theta=- rho>=11.200 dist/rho=2.679
+S3 N=24 a=8 c=1 d=3 lam1=4 n=12 A:47 theta=- rho>=22.000 dist/rho=2.136
+S3 N=24 a=2 c=0 d=12 lam1=2 n=10 A:30 theta=- rho>=15.000 dist/rho=2.000
+S3 N=25 a=25 c=17 d=1 lam1=4 n=6 A:31 theta=- rho>=14.667 dist/rho=2.114
+S3 N=30 a=15 c=6 d=2 lam1=7 n=2 A:4 theta=- rho>=7.273 dist/rho=0.550
+S3 N=18 a=2 c=0 d=9 lam1=2 n=10 A:53 theta=- rho>=18.000 dist/rho=2.944
+S3 N=195 a=15 c=14 d=13 lam1=14 n=2 A:48 B:4 theta=1 rho>=7.692 dist/rho=0.520
+S3 N=27 a=3 c=2 d=9 lam1=3 n=8 A:39 theta=- rho>=15.333 dist/rho=2.543
+S3 N=462 a=21 c=16 d=22 lam1=21 n=3 A:9 B:3 theta=1 rho>=5.951 dist/rho=0.504
+S3 N=224 a=14 c=2 d=16 lam1=14 n=4 A:36 theta=- rho>=8.000 dist/rho=4.500
+S3 N=22 a=22 c=4 d=1 lam1=5 n=6 A:37 theta=- rho>=12.500 dist/rho=2.960
+S3 N=252 a=18 c=16 d=14 lam1=16 n=3 A:51 B:9 theta=1 rho>=13.357 dist/rho=0.674
+S3 N=342 a=19 c=18 d=18 lam1=19 n=2 A:12 B:4 theta=1 rho>=7.771 dist/rho=0.515
+S3 N=18 a=2 c=0 d=9 lam1=2 n=5 A:10 theta=- rho>=10.667 dist/rho=0.938
+S3 N=44 a=11 c=8 d=4 lam1=7 n=5 A:50 theta=- rho>=16.000 dist/rho=3.125
+S3 N=272 a=17 c=1 d=16 lam1=17 n=2 A:9 B:6 theta=2 rho>=10.667 dist/rho=0.562
+S3 N=330 a=22 c=20 d=15 lam1=17 n=2 A:4 B:4 theta=1 rho>=7.667 dist/rho=0.522
+Q8 N=380 a=20 c=14 d=19 lam1=20 n=2 A:12 B:6 theta=1 rho>=11.520 dist/rho=0.521
+Q8 N=28 a=4 c=1 d=7 lam1=4 n=6 A:40 theta=- rho>=20.857 dist/rho=1.918
+Q8 N=306 a=17 c=6 d=18 lam1=17 n=5 A:30 theta=- rho>=22.240 dist/rho=1.349
+Q8 N=270 a=15 c=0 d=18 lam1=15 n=2 A:6 B:6 theta=1 rho>=11.250 dist/rho=0.533
+Q8 N=39 a=13 c=7 d=3 lam1=7 n=2 A:30 theta=- rho>=11.143 dist/rho=2.692
+Q8 N=225 a=15 c=2 d=15 lam1=15 n=2 A:18 B:6 theta=1 rho>=11.571 dist/rho=0.519
+Q8 N=192 a=16 c=12 d=12 lam1=16 n=4 A:30 theta=- rho>=30.316 dist/rho=0.990
+Q8 N=260 a=13 c=7 d=20 lam1=13 n=2 A:6 B:6 theta=1 rho>=11.143 dist/rho=0.538
+Q8 N=27 a=3 c=2 d=9 lam1=3 n=8 A:30 theta=- rho>=24.000 dist/rho=1.250
+Q8 N=30 a=30 c=25 d=1 lam1=6 n=5 A:30 theta=- rho>=23.143 dist/rho=1.296
+Q8 N=28 a=4 c=1 d=7 lam1=4 n=4 A:18 theta=- rho>=12.000 dist/rho=1.500
+Q8 N=216 a=12 c=6 d=18 lam1=12 n=2 A:18 B:6 theta=1 rho>=11.571 dist/rho=0.519
+Q8 N=280 a=20 c=11 d=14 lam1=20 n=4 A:486 B:6 theta=1 rho>=12.000 dist/rho=0.500
+Q8 N=399 a=19 c=7 d=21 lam1=19 n=4 A:14 B:6 theta=1 rho>=11.789 dist/rho=0.509
+Q8 N=308 a=22 c=9 d=14 lam1=22 n=2 A:12 B:6 theta=1 rho>=11.520 dist/rho=0.521
+Q8 N=12 a=2 c=0 d=6 lam1=2 n=2 A:6 theta=- rho>=8.000 dist/rho=0.750
+Q8 N=28 a=4 c=2 d=7 lam1=4 n=6 A:60 theta=- rho>=24.000 dist/rho=2.500
+Q8 N=204 a=17 c=10 d=12 lam1=17 n=6 A:412 theta=- rho>=23.294 dist/rho=17.687
+Q8 N=36 a=12 c=6 d=3 lam1=6 n=8 A:36 theta=- rho>=24.000 dist/rho=1.500
+Q8 N=210 a=14 c=10 d=15 lam1=14 n=2 A:12 theta=- rho>=21.000 dist/rho=0.571
+Q8 N=204 a=12 c=6 d=17 lam1=12 n=4 A:304 theta=- rho>=22.154 dist/rho=13.722
+Q8 N=399 a=21 c=7 d=19 lam1=21 n=4 A:16 B:6 theta=1 rho>=11.840 dist/rho=0.507
+Q8 N=228 a=19 c=15 d=12 lam1=16 n=4 A:54 theta=- rho>=34.667 dist/rho=1.558
+Q8 N=30 a=3 c=0 d=10 lam1=3 n=8 A:86 theta=- rho>=21.000 dist/rho=4.095
+Q8 N=280 a=14 c=6 d=20 lam1=14 n=4 A:78 theta=- rho>=32.000 dist/rho=2.438
+Q8 N=357 a=21 c=20 d=17 lam1=18 n=2 A:6 B:6 theta=1 rho>=11.667 dist/rho=0.514
+Q8 N=396 a=18 c=4 d=22 lam1=18 n=2 A:8 B:4 theta=1 rho>=7.680 dist/rho=0.521
+Q8 N=33 a=11 c=9 d=3 lam1=5 n=5 A:42 theta=- rho>=18.667 dist/rho=2.250
+Q8 N=16 a=2 c=1 d=8 lam1=2 n=5 A:30 theta=- rho>=19.500 dist/rho=1.538
+Q8 N=27 a=3 c=1 d=9 lam1=3 n=6 A:60 theta=- rho>=22.800 dist/rho=2.632
+Q8 N=14 a=2 c=1 d=7 lam1=2 n=6 A:30 theta=- rho>=20.000 dist/rho=1.500
+Q8 N=234 a=13 c=12 d=18 lam1=13 n=2 A:6 B:6 theta=1 rho>=11.143 dist/rho=0.538
+Q8 N=380 a=19 c=17 d=20 lam1=19 n=4 A:36 theta=- rho>=23.048 dist/rho=1.562
+Q8 N=308 a=22 c=18 d=14 lam1=18 n=2 A:246 B:12 theta=2 rho>=22.500 dist/rho=0.533
+Q8 N=440 a=22 c=2 d=20 lam1=22 n=2 A:12 B:6 theta=1 rho>=11.520 dist/rho=0.521
+Q8 N=420 a=20 c=18 d=21 lam1=20 n=2 A:114 B:6 theta=1 rho>=11.520 dist/rho=0.521
+Q8 N=195 a=13 c=11 d=15 lam1=13 n=4 A:232 theta=- rho>=22.286 dist/rho=10.410
+Q8 N=22 a=22 c=14 d=1 lam1=5 n=7 A:34 theta=- rho>=20.667 dist/rho=1.645
+Q8 N=24 a=12 c=0 d=2 lam1=2 n=6 A:56 theta=- rho>=17.000 dist/rho=3.294
+Q8 N=340 a=20 c=2 d=17 lam1=19 n=2 A:12 B:12 theta=2 rho>=21.818 dist/rho=0.550
+Q8 N=26 a=13 c=2 d=2 lam1=4 n=2 A:18 theta=- rho>=10.909 dist/rho=1.650
+Q8 N=30 a=3 c=1 d=10 lam1=3 n=4 A:26 theta=- rho>=14.800 dist/rho=1.757
+Q8 N=234 a=13 c=9 d=18 lam1=13 n=2 A:12 B:6 theta=1 rho>=11.400 dist/rho=0.526
+Q8 N=24 a=4 c=1 d=6 lam1=4 n=6 A:34 theta=- rho>=16.000 dist/rho=2.125
+Q8 N=30 a=6 c=3 d=5 lam1=6 n=4 A:12 theta=- rho>=18.000 dist/rho=0.667
+Q8 N=24 a=4 c=1 d=6 lam1=4 n=2 A:6 theta=- rho>=9.600 dist/rho=0.625
+Q8 N=18 a=3 c=2 d=6 lam1=3 n=7 A:42 theta=- rho>=21.333 dist/rho=1.969
+Q8 N=12 a=2 c=0 d=6 lam1=2 n=5 A:36 theta=- rho>=15.333 dist/rho=2.348
+Q8 N=23 a=23 c=14 d=1 lam1=6 n=5 A:40 theta=- rho>=18.667 dist/rho=2.143
+Q8 N=54 a=27 c=8 d=2 lam1=9 n=8 A:140 theta=- rho>=32.400 dist/rho=4.321
+Q8 N=18 a=3 c=0 d=6 lam1=3 n=6 A:42 theta=- rho>=20.000 dist/rho=2.100
+Q8 N=252 a=18 c=16 d=14 lam1=16 n=2 A:6 B:6 theta=1 rho>=11.478 dist/rho=0.523
+Q8 N=18 a=18 c=9 d=1 lam1=2 n=4 A:24 theta=- rho>=16.000 dist/rho=1.500
+Q8 N=336 a=21 c=13 d=16 lam1=21 n=2 A:6 B:6 theta=1 rho>=11.455 dist/rho=0.524
+Q8 N=204 a=12 c=10 d=17 lam1=12 n=4 A:30 theta=- rho>=24.400 dist/rho=1.230
+Q8 N=300 a=20 c=4 d=15 lam1=19 n=2 A:6 B:6 theta=1 rho>=11.520 dist/rho=0.521
+Q8 N=42 a=6 c=5 d=7 lam1=6 n=2 A:24 theta=- rho>=18.000 dist/rho=1.333
+Q8 N=12 a=2 c=1 d=6 lam1=2 n=3 A:12 theta=- rho>=12.000 dist/rho=1.000
+Q8 N=252 a=21 c=13 d=12 lam1=20 n=4 A:40 B:10 theta=1 rho>=18.261 dist/rho=0.548
+Q8 N=45 a=9 c=8 d=5 lam1=6 n=5 A:46 theta=- rho>=16.444 dist/rho=2.797
+Q8 N=28 a=2 c=1 d=14 lam1=2 n=8 A:46 theta=- rho>=22.000 dist/rho=2.091
+Q8 N=336 a=16 c=0 d=21 lam1=16 n=2 A:18 B:12 theta=2 rho>=21.913 dist/rho=0.548
+Q8 N=273 a=13 c=8 d=21 lam1=13 n=4 A:48 theta=- rho>=39.913 dist/rho=1.203
+Q8 N=266 a=19 c=13 d=14 lam1=19 n=3 A:478 theta=- rho>=40.000 dist/rho=11.950
+Q8 N=29 a=29 c=13 d=1 lam1=5 n=3 A:20 theta=- rho>=13.333 dist/rho=1.500
+Q8 N=28 a=4 c=3 d=7 lam1=4 n=13 A:104 theta=- rho>=39.000 dist/rho=2.667
+Q8 N=40 a=20 c=8 d=2 lam1=8 n=2 A:6 B:6 theta=1 rho>=11.200 dist/rho=0.536
+Q8 N=36 a=4 c=2 d=9 lam1=4 n=2 A:12 theta=- rho>=16.000 dist/rho=0.750
+Q8 N=234 a=13 c=8 d=18 lam1=13 n=5 A:56 theta=- rho>=23.231 dist/rho=2.411
+Q8 N=330 a=15 c=14 d=22 lam1=15 n=3 A:14 B:12 theta=1 rho>=11.467 dist/rho=1.047
+Q8 N=234 a=13 c=12 d=18 lam1=13 n=6 A:326 theta=- rho>=44.286 dist/rho=7.361
+Q8 N=54 a=9 c=3 d=6 lam1=9 n=6 A:54 theta=- rho>=31.714 dist/rho=1.703
+Q8 N=24 a=4 c=1 d=6 lam1=4 n=4 A:30 theta=- rho>=20.571 dist/rho=1.458
+Q8 N=39 a=13 c=4 d=3 lam1=7 n=2 A:18 theta=- rho>=10.800 dist/rho=1.667
+Q8 N=40 a=20 c=9 d=2 lam1=6 n=4 A:84 theta=- rho>=20.571 dist/rho=4.083
+Q8 N=50 a=25 c=13 d=2 lam1=5 n=4 A:30 theta=- rho>=22.000 dist/rho=1.364
+Q8 N=221 a=17 c=9 d=13 lam1=17 n=2 A:12 B:6 theta=1 rho>=11.500 dist/rho=0.522
+Q8 N=252 a=14 c=2 d=18 lam1=14 n=4 A:10 theta=- rho>=16.667 dist/rho=0.600
+Q8 N=225 a=15 c=3 d=15 lam1=15 n=5 A:84 theta=- rho>=32.870 dist/rho=2.556
+Q8 N=208 a=16 c=4 d=13 lam1=16 n=2 A:4 B:4 theta=1 rho>=7.529 dist/rho=0.531
+Q8 N=30 a=3 c=0 d=10 lam1=3 n=9 A:84 theta=- rho>=31.500 dist/rho=2.667
+Q8 N=18 a=3 c=0 d=6 lam1=3 n=2 A:12 theta=- rho>=10.286 dist/rho=1.167
+Q8 N=252 a=21 c=7 d=12 lam1=19 n=6 A:80 theta=- rho>=28.571 dist/rho=2.800
+Q8 N=24 a=4 c=2 d=6 lam1=4 n=9 A:48 theta=- rho>=28.000 dist/rho=1.714
+Q8 N=18 a=3 c=2 d=6 lam1=3 n=5 A:28 theta=- rho>=15.333 dist/rho=1.826
+Q8 N=27 a=3 c=0 d=9 lam1=3 n=9 A:60 theta=- rho>=28.667 dist/rho=2.093
+Q8 N=378 a=18 c=14 d=21 lam1=18 n=4 A:54 theta=- rho>=23.818 dist/rho=2.267
+Q8 N=306 a=18 c=1 d=17 lam1=18 n=4 A:284 B:10 theta=1 rho>=18.889 dist/rho=0.529
+Q8 N=56 a=14 c=9 d=4 lam1=9 n=2 A:100 theta=- rho>=23.600 dist/rho=4.237
+Q8 N=255 a=15 c=7 d=17 lam1=15 n=6 A:18 theta=- rho>=30.000 dist/rho=0.600
+Q8 N=240 a=16 c=14 d=15 lam1=16 n=3 A:26 B:16 theta=1 rho>=21.412 dist/rho=0.747
+Q8 N=30 a=3 c=1 d=10 lam1=3 n=4 A:32 theta=- rho>=10.667 dist/rho=3.000
+Q8 N=34 a=17 c=3 d=2 lam1=5 n=6 A:58 theta=- rho>=20.000 dist/rho=2.900
+Q8 N=238 a=14 c=6 d=17 lam1=14 n=2 A:18 B:6 theta=1 rho>=11.586 dist/rho=0.518
+Q8 N=255 a=17 c=10 d=15 lam1=17 n=6 A:432 theta=- rho>=48.000 dist/rho=9.000
+Q8 N=400 a=20 c=5 d=20 lam1=20 n=2 A:6 B:6 theta=1 rho>=11.429 dist/rho=0.525
+Q8 N=19 a=19 c=4 d=1 lam1=5 n=2 A:4 theta=- rho>=6.400 dist/rho=0.625
+Q8 N=24 a=4 c=3 d=6 lam1=4 n=3 A:24 theta=- rho>=16.000 dist/rho=1.500
+Q8 N=26 a=26 c=19 d=1 lam1=6 n=8 A:60 theta=- rho>=27.000 dist/rho=2.222
+Q8 N=192 a=16 c=0 d=12 lam1=12 n=2 A:8 B:4 theta=1 rho>=7.529 dist/rho=0.531
+Q8 N=238 a=17 c=10 d=14 lam1=17 n=4 A:36 theta=- rho>=40.000 dist/rho=0.900
+Q8 N=252 a=14 c=13 d=18 lam1=14 n=4 A:48 theta=- rho>=18.947 dist/rho=2.533
+Q8 N=255 a=17 c=4 d=15 lam1=17 n=6 A:96 theta=- rho>=22.667 dist/rho=4.235
+Q8 N=380 a=19 c=16 d=20 lam1=19 n=2 A:18 B:6 theta=1 rho>=11.676 dist/rho=0.514
+Q8 N=266 a=19 c=17 d=14 lam1=16 n=4 A:24 theta=- rho>=36.750 dist/rho=0.653
+Q8 N=399 a=21 c=2 d=19 lam1=21 n=2 A:18 B:6 theta=1 rho>=11.684 dist/rho=0.514
+Q8 N=30 a=10 c=8 d=3 lam1=5 n=6 A:64 theta=- rho>=21.143 dist/rho=3.027
+Q8 N=361 a=19 c=2 d=19 lam1=19 n=2 A:4 B:4 theta=1 rho>=7.600 dist/rho=0.526
+Q8 N=28 a=4 c=2 d=7 lam1=4 n=7 A:66 theta=- rho>=24.000 dist/rho=2.750
+Q8 N=462 a=22 c=18 d=21 lam1=22 n=4 A:36 theta=- rho>=33.000 dist/rho=1.091
+Q8 N=180 a=15 c=14 d=12 lam1=13 n=6 A:72 theta=- rho>=22.571 dist/rho=3.190
+Q8 N=286 a=13 c=7 d=22 lam1=13 n=2 A:18 B:6 theta=1 rho>=11.613 dist/rho=0.517
+Q8 N=289 a=17 c=8 d=17 lam1=17 n=6 A:428 theta=- rho>=22.286 dist/rho=19.205
+Q8 N=10 a=10 c=9 d=1 lam1=2 n=3 A:12 theta=- rho>=9.000 dist/rho=1.333
+Q8 N=462 a=22 c=4 d=21 lam1=22 n=4 A:558 theta=- rho>=29.565 dist/rho=18.874
+Q8 N=28 a=4 c=2 d=7 lam1=4 n=7 A:32 theta=- rho>=20.000 dist/rho=1.600
+Q8 N=21 a=3 c=1 d=7 lam1=3 n=11 A:94 theta=- rho>=33.000 dist/rho=2.848
+Q8 N=144 a=12 c=5 d=12 lam1=12 n=4 A:30 theta=- rho>=28.800 dist/rho=1.042
+Q8 N=56 a=7 c=1 d=8 lam1=7 n=5 A:30 theta=- rho>=21.750 dist/rho=1.379
+Q8 N=300 a=20 c=8 d=15 lam1=20 n=2 A:4 B:4 theta=1 rho>=7.619 dist/rho=0.525
+A4 N=380 a=20 c=14 d=19 lam1=20 n=6 A:1104 theta=- rho>=31.360 dist/rho=35.204
+A4 N=18 a=3 c=2 d=6 lam1=3 n=10 A:58 theta=- rho>=36.000 dist/rho=1.611
+A4 N=180 a=12 c=1 d=15 lam1=12 n=4 A:88 theta=- rho>=16.000 dist/rho=5.500
+A4 N=29 a=29 c=9 d=1 lam1=5 n=5 A:34 theta=- rho>=20.889 dist/rho=1.628
+A4 N=39 a=13 c=12 d=3 lam1=4 n=9 A:68 theta=- rho>=32.000 dist/rho=2.125
+A4 N=204 a=12 c=11 d=17 lam1=12 n=4 A:72 theta=- rho>=46.476 dist/rho=1.549
+A4 N=24 a=3 c=1 d=8 lam1=3 n=8 A:68 theta=- rho>=42.000 dist/rho=1.619
+A4 N=24 a=4 c=2 d=6 lam1=4 n=4 A:36 theta=- rho>=27.429 dist/rho=1.312
+A4 N=21 a=3 c=2 d=7 lam1=3 n=4 A:56 theta=- rho>=14.667 dist/rho=3.818
+A4 N=24 a=3 c=1 d=8 lam1=3 n=10 A:124 theta=- rho>=36.000 dist/rho=3.444
+A4 N=360 a=20 c=4 d=18 lam1=20 n=4 A:78 B:14 theta=1 rho>=26.880 dist/rho=0.521
+A4 N=195 a=15 c=4 d=13 lam1=15 n=2 A:552 theta=- rho>=50.526 dist/rho=10.925
+A4 N=29 a=29 c=18 d=1 lam1=7 n=9 A:110 theta=- rho>=42.000 dist/rho=2.619
+A4 N=272 a=16 c=7 d=17 lam1=16 n=2 A:16 B:8 theta=1 rho>=15.304 dist/rho=0.523
+A4 N=24 a=4 c=2 d=6 lam1=4 n=6 A:68 theta=- rho>=22.000 dist/rho=3.091
+A4 N=304 a=16 c=4 d=19 lam1=16 n=4 A:24 B:40 theta=1 rho>=16.000 dist/rho=1.500
+A4 N=30 a=3 c=0 d=10 lam1=3 n=4 A:66 theta=- rho>=20.889 dist/rho=3.160
+A4 N=260 a=13 c=11 d=20 lam1=13 n=2 A:32 theta=- rho>=27.733 dist/rho=1.154
+A4 N=330 a=22 c=13 d=15 lam1=22 n=2 A:8 B:8 theta=1 rho>=15.304 dist/rho=0.523
+A4 N=216 a=18 c=8 d=12 lam1=18 n=2 A:18 B:6 theta=1 rho>=11.600 dist/rho=0.517
+A4 N=306 a=17 c=8 d=18 lam1=17 n=2 A:18 B:6 theta=1 rho>=11.636 dist/rho=0.516
+A4 N=18 a=2 c=0 d=9 lam1=2 n=3 A:62 theta=- rho>=24.000 dist/rho=2.583
+A4 N=308 a=22 c=13 d=14 lam1=22 n=2 A:8 B:8 theta=1 rho>=15.304 dist/rho=0.523
+A4 N=304 a=16 c=9 d=19 lam1=16 n=4 A:92 B:46 theta=1 rho>=36.720 dist/rho=1.253
+A4 N=192 a=12 c=0 d=16 lam1=12 n=6 A:70 theta=- rho>=36.267 dist/rho=1.930
+A4 N=24 a=4 c=3 d=6 lam1=4 n=4 A:14 theta=- rho>=18.667 dist/rho=0.750
+A4 N=21 a=3 c=1 d=7 lam1=3 n=9 A:78 theta=- rho>=39.333 dist/rho=1.983
+A4 N=462 a=21 c=2 d=22 lam1=21 n=4 A:24 B:8 theta=1 rho>=16.000 dist/rho=0.500
+A4 N=182 a=13 c=1 d=14 lam1=13 n=2 A:12 B:6 theta=1 rho>=11.200 dist/rho=0.536
+A4 N=52 a=13 c=11 d=4 lam1=6 n=7 A:120 theta=- rho>=42.000 dist/rho=2.857
+A4 N=272 a=17 c=0 d=16 lam1=16 n=4 A:96 theta=- rho>=30.400 dist/rho=3.158
+A4 N=342 a=19 c=7 d=18 lam1=19 n=3 A:28 theta=- rho>=22.600 dist/rho=1.239
+A4 N=196 a=14 c=6 d=14 lam1=14 n=4 A:492 theta=- rho>=30.476 dist/rho=16.144
+A4 N=238 a=17 c=1 d=14 lam1=15 n=2 A:16 theta=- rho>=28.632 dist/rho=0.559
+A4 N=264 a=22 c=13 d=12 lam1=21 n=4 A:88 B:16 theta=1 rho>=30.609 dist/rho=0.523
+A4 N=340 a=20 c=2 d=17 lam1=19 n=4 A:56 B:8 theta=1 rho>=16.000 dist/rho=0.500
+A4 N=25 a=25 c=21 d=1 lam1=5 n=8 A:56 theta=- rho>=34.000 dist/rho=1.647
+A4 N=180 a=15 c=5 d=12 lam1=15 n=3 A:86 B:20 theta=1 rho>=25.826 dist/rho=0.774
+A4 N=27 a=3 c=0 d=9 lam1=3 n=5 A:58 theta=- rho>=20.667 dist/rho=2.806
+A4 N=18 a=3 c=1 d=6 lam1=3 n=7 A:62 theta=- rho>=25.000 dist/rho=2.480
+A4 N=294 a=14 c=10 d=21 lam1=14 n=3 A:48 theta=- rho>=28.800 dist/rho=1.667
+A4 N=23 a=23 c=17 d=1 lam1=5 n=5 A:48 theta=- rho>=24.000 dist/rho=2.000
+A4 N=304 a=16 c=2 d=19 lam1=16 n=2 A:84 B:12 theta=2 rho>=21.600 dist/rho=0.556
+A4 N=169 a=13 c=11 d=13 lam1=13 n=2 A:24 theta=- rho>=20.800 dist/rho=1.154
+A4 N=44 a=11 c=3 d=4 lam1=7 n=2 A:8 theta=- rho>=14.933 dist/rho=0.536
+A4 N=264 a=22 c=11 d=12 lam1=22 n=4 A:800 theta=- rho>=44.000 dist/rho=18.182
+A4 N=240 a=15 c=3 d=16 lam1=15 n=2 A:8 B:8 theta=1 rho>=15.000 dist/rho=0.533
+A4 N=24 a=4 c=3 d=6 lam1=4 n=10 A:110 theta=- rho>=39.333 dist/rho=2.797
+A4 N=192 a=16 c=12 d=12 lam1=16 n=4 A:30 B:26 theta=1 rho>=16.667 dist/rho=1.560
+A4 N=16 a=2 c=1 d=8 lam1=2 n=7 A:102 theta=- rho>=31.333 dist/rho=3.255
+A4 N=32 a=16 c=9 d=2 lam1=6 n=8 A:80 theta=- rho>=35.600 dist/rho=2.247
+A4 N=28 a=4 c=1 d=7 lam1=4 n=1 A:32 theta=- rho>=15.273 dist/rho=2.095
+A4 N=28 a=4 c=2 d=7 lam1=4 n=4 A:16 theta=- rho>=16.000 dist/rho=1.000
+A4 N=306 a=18 c=6 d=17 lam1=18 n=2 A:24 B:8 theta=1 rho>=15.515 dist/rho=0.516
+A4 N=26 a=2 c=1 d=13 lam1=2 n=8 A:64 theta=- rho>=32.000 dist/rho=2.000
+A4 N=462 a=22 c=8 d=21 lam1=22 n=6 A:48 theta=- rho>=24.000 dist/rho=2.000
+A4 N=378 a=18 c=0 d=21 lam1=18 n=2 A:8 B:8 theta=1 rho>=15.158 dist/rho=0.528
+A4 N=380 a=20 c=8 d=19 lam1=20 n=4 A:38 B:14 theta=1 rho>=26.190 dist/rho=0.535
+A4 N=52 a=26 c=7 d=2 lam1=9 n=9 A:74 theta=- rho>=41.500 dist/rho=1.783
+A4 N=20 a=10 c=2 d=2 lam1=4 n=3 A:28 theta=- rho>=15.000 dist/rho=1.867
+A4 N=10 a=5 c=4 d=2 lam1=3 n=7 A:50 theta=- rho>=25.000 dist/rho=2.000
+A4 N=192 a=12 c=9 d=16 lam1=12 n=2 A:32 theta=- rho>=27.429 dist/rho=1.167
+A4 N=221 a=17 c=15 d=13 lam1=15 n=2 A:72 B:6 theta=1 rho>=11.333 dist/rho=0.529
+A4 N=52 a=26 c=20 d=2 lam1=8 n=2 A:8 B:8 theta=1 rho>=14.933 dist/rho=0.536
+A4 N=221 a=17 c=8 d=13 lam1=17 n=2 A:16 B:16 theta=2 rho>=28.632 dist/rho=0.559
+A4 N=28 a=2 c=1 d=14 lam1=2 n=5 A:68 theta=- rho>=24.000 dist/rho=2.833
+A4 N=16 a=4 c=1 d=4 lam1=4 n=9 A:76 theta=- rho>=33.000 dist/rho=2.303
+A4 N=40 a=4 c=0 d=10 lam1=4 n=4 A:64 theta=- rho>=16.000 dist/rho=4.000
+A4 N=27 a=3 c=2 d=9 lam1=3 n=8 A:54 theta=- rho>=30.000 dist/rho=1.800
+A4 N=28 a=4 c=0 d=7 lam1=4 n=10 A:62 theta=- rho>=38.667 dist/rho=1.603
+A4 N=44 a=22 c=18 d=2 lam1=6 n=6 A:60 theta=- rho>=29.778 dist/rho=2.015
+A4 N=260 a=20 c=4 d=13 lam1=17 n=4 A:260 theta=- rho>=52.750 dist/rho=4.929
+A4 N=12 a=2 c=0 d=6 lam1=2 n=2 A:8 theta=- rho>=10.667 dist/rho=0.750
+A4 N=240 a=15 c=8 d=16 lam1=15 n=6 A:538 theta=- rho>=26.800 dist/rho=20.075
+A4 N=12 a=2 c=0 d=6 lam1=2 n=3 A:32 theta=- rho>=14.333 dist/rho=2.233
+A4 N=23 a=23 c=14 d=1 lam1=6 n=7 A:40 theta=- rho>=27.000 dist/rho=1.481
+A4 N=18 a=3 c=2 d=6 lam1=3 n=6 A:20 theta=- rho>=25.500 dist/rho=0.784
+A4 N=56 a=14 c=13 d=4 lam1=5 n=11 A:110 theta=- rho>=42.800 dist/rho=2.570
+A4 N=300 a=15 c=7 d=20 lam1=15 n=6 A:506 theta=- rho>=30.933 dist/rho=16.358
+A4 N=210 a=14 c=9 d=15 lam1=14 n=2 A:8 B:8 theta=1 rho>=14.933 dist/rho=0.536
+A4 N=46 a=23 c=4 d=2 lam1=6 n=7 A:78 theta=- rho>=36.500 dist/rho=2.137
+A4 N=26 a=26 c=11 d=1 lam1=6 n=9 A:92 theta=- rho>=33.000 dist/rho=2.788
+A4 N=484 a=22 c=20 d=22 lam1=22 n=2 A:16 B:8 theta=1 rho>=15.360 dist/rho=0.521
+A4 N=320 a=16 c=2 d=20 lam1=16 n=4 A:64 theta=- rho>=42.087 dist/rho=1.521
+A4 N=380 a=19 c=3 d=20 lam1=19 n=4 A:54 B:22 theta=1 rho>=39.000 dist/rho=0.564
+A4 N=28 a=4 c=2 d=7 lam1=4 n=5 A:46 theta=- rho>=19.333 dist/rho=2.379
+A4 N=192 a=16 c=2 d=12 lam1=14 n=2 A:8 B:8 theta=1 rho>=15.238 dist/rho=0.525
+A4 N=28 a=4 c=1 d=7 lam1=4 n=4 A:56 theta=- rho>=15.000 dist/rho=3.733
+A4 N=36 a=9 c=3 d=4 lam1=7 n=2 A:24 theta=- rho>=14.400 dist/rho=1.667
+A4 N=195 a=15 c=12 d=13 lam1=15 n=4 A:476 theta=- rho>=16.000 dist/rho=29.750
+A4 N=21 a=21 c=10 d=1 lam1=3 n=2 A:8 theta=- rho>=10.667 dist/rho=0.750
+A4 N=360 a=20 c=11 d=18 lam1=20 n=2 A:16 B:8 theta=1 rho>=15.360 dist/rho=0.521
+A4 N=21 a=3 c=0 d=7 lam1=3 n=2 A:24 theta=- rho>=15.750 dist/rho=1.524
+A4 N=56 a=14 c=3 d=4 lam1=7 n=9 A:94 theta=- rho>=30.667 dist/rho=3.065
+A4 N=18 a=3 c=2 d=6 lam1=3 n=11 A:96 theta=- rho>=37.000 dist/rho=2.595
+A4 N=16 a=2 c=0 d=8 lam1=2 n=4 A:40 theta=- rho>=16.000 dist/rho=2.500
+A4 N=24 a=4 c=2 d=6 lam1=4 n=8 A:50 theta=- rho>=28.667 dist/rho=1.744
+A4 N=204 a=12 c=3 d=17 lam1=12 n=2 A:16 theta=- rho>=28.632 dist/rho=0.559
+A4 N=48 a=24 c=15 d=2 lam1=9 n=8 A:72 theta=- rho>=32.889 dist/rho=2.189
+A4 N=180 a=12 c=9 d=15 lam1=12 n=2 A:12 B:6 theta=1 rho>=11.368 dist/rho=0.528
+A4 N=396 a=22 c=20 d=18 lam1=20 n=2 A:16 B:8 theta=1 rho>=15.304 dist/rho=0.523
+A4 N=240 a=20 c=11 d=12 lam1=20 n=6 A:48 theta=- rho>=30.476 dist/rho=1.575
+A4 N=27 a=3 c=1 d=9 lam1=3 n=8 A:86 theta=- rho>=28.500 dist/rho=3.018
+A4 N=396 a=22 c=2 d=18 lam1=20 n=2 A:16 B:16 theta=2 rho>=28.800 dist/rho=0.556
+A4 N=24 a=2 c=1 d=12 lam1=2 n=3 A:26 theta=- rho>=11.778 dist/rho=2.208
+A4 N=266 a=14 c=3 d=19 lam1=14 n=2 A:6 B:6 theta=1 rho>=11.200 dist/rho=0.536
+A4 N=24 a=4 c=1 d=6 lam1=4 n=6 A:72 theta=- rho>=23.600 dist/rho=3.051
+A4 N=24 a=8 c=1 d=3 lam1=4 n=12 A:94 theta=- rho>=47.000 dist/rho=2.000
+A4 N=24 a=2 c=0 d=12 lam1=2 n=9 A:58 theta=- rho>=35.000 dist/rho=1.657
+A4 N=25 a=25 c=17 d=1 lam1=4 n=8 A:50 theta=- rho>=31.000 dist/rho=1.613
+A4 N=30 a=15 c=6 d=2 lam1=7 n=2 A:6 theta=- rho>=10.909 dist/rho=0.550
+A4 N=18 a=2 c=0 d=9 lam1=2 n=10 A:102 theta=- rho>=39.000 dist/rho=2.615
+A4 N=195 a=15 c=14 d=13 lam1=14 n=4 A:74 theta=- rho>=28.615 dist/rho=2.586
+A4 N=27 a=3 c=2 d=9 lam1=3 n=8 A:100 theta=- rho>=36.667 dist/rho=2.727
+A4 N=462 a=21 c=16 d=22 lam1=21 n=2 A:16 B:8 theta=1 rho>=15.360 dist/rho=0.521
+A4 N=224 a=14 c=2 d=16 lam1=14 n=4 A:70 theta=- rho>=15.789 dist/rho=4.433
+A4 N=22 a=22 c=4 d=1 lam1=5 n=5 A:92 theta=- rho>=20.500 dist/rho=4.488
+A4 N=252 a=18 c=16 d=14 lam1=16 n=4 A:104 B:48 theta=1 rho>=41.733 dist/rho=1.150
+A4 N=342 a=19 c=18 d=18 lam1=19 n=2 A:24 B:8 theta=1 rho>=15.543 dist/rho=0.515
+A4 N=18 a=2 c=0 d=9 lam1=2 n=7 A:56 theta=- rho>=29.333 dist/rho=1.909
+S3on3 N=380 a=20 c=14 d=19 lam1=20 n=6 A:251 theta=- rho>=7.760 dist/rho=32.345
+S3on3 N=18 a=3 c=2 d=6 lam1=3 n=10 A:11 theta=- rho>=7.000 dist/rho=1.571
+S3on3 N=180 a=12 c=1 d=15 lam1=12 n=4 A:11 theta=- rho>=2.000 dist/rho=5.500
+S3on3 N=29 a=29 c=9 d=1 lam1=5 n=5 A:6 theta=- rho>=4.000 dist/rho=1.500
+S3on3 N=39 a=13 c=12 d=3 lam1=4 n=9 A:13 theta=- rho>=6.000 dist/rho=2.167
+S3on3 N=204 a=12 c=11 d=17 lam1=12 n=4 A:9 theta=- rho>=6.857 dist/rho=1.312
+S3on3 N=24 a=3 c=1 d=8 lam1=3 n=5 A:9 theta=- rho>=5.200 dist/rho=1.731
+S3on3 N=24 a=4 c=2 d=6 lam1=4 n=4 A:7 theta=- rho>=4.571 dist/rho=1.531
+S3on3 N=21 a=3 c=2 d=7 lam1=3 n=4 A:9 theta=- rho>=2.000 dist/rho=4.500
+S3on3 N=24 a=3 c=1 d=8 lam1=3 n=10 A:27 theta=- rho>=8.000 dist/rho=3.375
+S3on3 N=360 a=20 c=4 d=18 lam1=20 n=2 A:6 B:2 theta=1 rho>=3.889 dist/rho=0.514
+S3on3 N=195 a=15 c=4 d=13 lam1=15 n=2 A:119 theta=- rho>=6.316 dist/rho=18.842
+S3on3 N=29 a=29 c=18 d=1 lam1=7 n=9 A:17 theta=- rho>=8.667 dist/rho=1.962
+S3on3 N=272 a=16 c=7 d=17 lam1=16 n=2 A:2 B:1 theta=1 rho>=1.913 dist/rho=0.523
+S3on3 N=24 a=4 c=2 d=6 lam1=4 n=5 A:7 theta=- rho>=3.636 dist/rho=1.925
+S3on3 N=304 a=16 c=4 d=19 lam1=16 n=2 A:2 B:1 theta=1 rho>=1.913 dist/rho=0.523
+S3on3 N=30 a=3 c=0 d=10 lam1=3 n=2 A:4 theta=- rho>=4.364 dist/rho=0.917
+S3on3 N=260 a=13 c=11 d=20 lam1=13 n=2 A:8 theta=- rho>=6.933 dist/rho=1.154
+S3on3 N=330 a=22 c=13 d=15 lam1=22 n=2 A:2 B:2 theta=1 rho>=3.826 dist/rho=0.523
+S3on3 N=216 a=18 c=8 d=12 lam1=18 n=2 A:3 B:1 theta=1 rho>=1.933 dist/rho=0.517
+S3on3 N=306 a=17 c=8 d=18 lam1=17 n=2 A:6 B:2 theta=1 rho>=3.879 dist/rho=0.516
+S3on3 N=18 a=2 c=0 d=9 lam1=2 n=3 A:12 theta=- rho>=4.000 dist/rho=3.000
+S3on3 N=308 a=22 c=13 d=14 lam1=22 n=4 A:4 B:2 theta=1 rho>=3.826 dist/rho=0.523
+S3on3 N=304 a=16 c=9 d=19 lam1=16 n=3 A:17 theta=- rho>=5.500 dist/rho=3.091
+S3on3 N=192 a=12 c=0 d=16 lam1=12 n=4 A:8 theta=- rho>=5.333 dist/rho=1.500
+S3on3 N=24 a=4 c=3 d=6 lam1=4 n=4 A:2 theta=- rho>=3.200 dist/rho=0.625
+S3on3 N=21 a=3 c=1 d=7 lam1=3 n=7 A:13 theta=- rho>=6.667 dist/rho=1.950
+S3on3 N=462 a=21 c=2 d=22 lam1=21 n=6 A:4 theta=- rho>=3.818 dist/rho=1.048
+S3on3 N=182 a=13 c=1 d=14 lam1=13 n=2 A:4 B:2 theta=1 rho>=3.733 dist/rho=0.536
+S3on3 N=52 a=13 c=11 d=4 lam1=6 n=7 A:27 theta=- rho>=6.857 dist/rho=3.938
+S3on3 N=272 a=17 c=0 d=16 lam1=16 n=4 A:12 theta=- rho>=3.867 dist/rho=3.103
+S3on3 N=342 a=19 c=7 d=18 lam1=19 n=2 A:2 B:2 theta=2 rho>=3.619 dist/rho=0.553
+S3on3 N=196 a=14 c=6 d=14 lam1=14 n=4 A:108 theta=- rho>=3.810 dist/rho=28.350
+S3on3 N=238 a=17 c=1 d=14 lam1=15 n=2 A:2 theta=- rho>=3.579 dist/rho=0.559
+S3on3 N=264 a=22 c=13 d=12 lam1=21 n=4 A:21 B:3 theta=1 rho>=5.739 dist/rho=0.523
+S3on3 N=340 a=20 c=2 d=17 lam1=19 n=6 A:10 theta=- rho>=7.636 dist/rho=1.310
+S3on3 N=25 a=25 c=21 d=1 lam1=5 n=7 A:14 theta=- rho>=5.600 dist/rho=2.500
+S3on3 N=180 a=15 c=5 d=12 lam1=15 n=2 A:13 theta=- rho>=3.652 dist/rho=3.560
+S3on3 N=27 a=3 c=0 d=9 lam1=3 n=6 A:5 theta=- rho>=5.000 dist/rho=1.000
+S3on3 N=18 a=3 c=1 d=6 lam1=3 n=6 A:10 theta=- rho>=4.500 dist/rho=2.222
+S3on3 N=294 a=14 c=10 d=21 lam1=14 n=3 A:8 theta=- rho>=3.733 dist/rho=2.143
+S3on3 N=23 a=23 c=17 d=1 lam1=5 n=5 A:6 theta=- rho>=4.667 dist/rho=1.286
+S3on3 N=304 a=16 c=2 d=19 lam1=16 n=2 A:14 B:2 theta=2 rho>=3.600 dist/rho=0.556
+S3on3 N=169 a=13 c=11 d=13 lam1=13 n=2 A:8 theta=- rho>=6.933 dist/rho=1.154
+S3on3 N=264 a=22 c=11 d=12 lam1=22 n=4 A:174 theta=- rho>=7.333 dist/rho=23.727
+S3on3 N=240 a=15 c=3 d=16 lam1=15 n=2 A:2 B:2 theta=1 rho>=3.750 dist/rho=0.533
+S3on3 N=24 a=4 c=3 d=6 lam1=4 n=10 A:21 theta=- rho>=6.000 dist/rho=3.500
+S3on3 N=192 a=16 c=12 d=12 lam1=16 n=5 A:4 theta=- rho>=3.765 dist/rho=1.062
+S3on3 N=16 a=2 c=1 d=8 lam1=2 n=7 A:14 theta=- rho>=4.667 dist/rho=3.000
+S3on3 N=32 a=16 c=9 d=2 lam1=6 n=7 A:19 theta=- rho>=5.429 dist/rho=3.500
+S3on3 N=28 a=4 c=1 d=7 lam1=4 n=2 A:1 theta=- rho>=1.778 dist/rho=0.562
+S3on3 N=28 a=4 c=2 d=7 lam1=4 n=2 A:2 theta=- rho>=1.818 dist/rho=1.100
+S3on3 N=306 a=18 c=6 d=17 lam1=18 n=2 A:3 B:1 theta=1 rho>=1.939 dist/rho=0.516
+S3on3 N=26 a=2 c=1 d=13 lam1=2 n=8 A:8 theta=- rho>=5.333 dist/rho=1.500
+S3on3 N=462 a=22 c=8 d=21 lam1=22 n=6 A:12 theta=- rho>=5.333 dist/rho=2.250
+S3on3 N=378 a=18 c=0 d=21 lam1=18 n=2 A:1 B:1 theta=1 rho>=1.895 dist/rho=0.528
+S3on3 N=380 a=20 c=8 d=19 lam1=20 n=3 A:4 B:4 theta=1 rho>=7.273 dist/rho=0.550
+S3on3 N=52 a=26 c=7 d=2 lam1=9 n=8 A:11 theta=- rho>=5.571 dist/rho=1.974
+S3on3 N=20 a=10 c=2 d=2 lam1=4 n=2 A:4 theta=- rho>=1.818 dist/rho=2.200
+S3on3 N=10 a=5 c=4 d=2 lam1=3 n=7 A:9 theta=- rho>=4.000 dist/rho=2.250
+S3on3 N=192 a=12 c=9 d=16 lam1=12 n=2 A:4 theta=- rho>=3.429 dist/rho=1.167
+S3on3 N=221 a=17 c=15 d=13 lam1=15 n=2 A:12 B:1 theta=1 rho>=1.889 dist/rho=0.529
+S3on3 N=52 a=26 c=20 d=2 lam1=8 n=2 A:2 B:2 theta=1 rho>=3.733 dist/rho=0.536
+S3on3 N=221 a=17 c=8 d=13 lam1=17 n=2 A:4 B:4 theta=2 rho>=7.158 dist/rho=0.559
+S3on3 N=28 a=2 c=1 d=14 lam1=2 n=5 A:14 theta=- rho>=4.000 dist/rho=3.500
+S3on3 N=16 a=4 c=1 d=4 lam1=4 n=8 A:12 theta=- rho>=6.000 dist/rho=2.000
+S3on3 N=40 a=4 c=0 d=10 lam1=4 n=4 A:7 theta=- rho>=2.000 dist/rho=3.500
+S3on3 N=27 a=3 c=2 d=9 lam1=3 n=6 A:8 theta=- rho>=4.500 dist/rho=1.778
+S3on3 N=28 a=4 c=0 d=7 lam1=4 n=9 A:8 theta=- rho>=6.000 dist/rho=1.333
+S3on3 N=44 a=22 c=18 d=2 lam1=6 n=4 A:3 theta=- rho>=3.000 dist/rho=1.000
+S3on3 N=260 a=20 c=4 d=13 lam1=17 n=4 A:56 theta=- rho>=11.250 dist/rho=4.978
+S3on3 N=12 a=2 c=0 d=6 lam1=2 n=2 A:4 theta=- rho>=2.857 dist/rho=1.400
+S3on3 N=240 a=15 c=8 d=16 lam1=15 n=4 A:110 theta=- rho>=3.909 dist/rho=28.140
+S3on3 N=12 a=2 c=0 d=6 lam1=2 n=3 A:7 theta=- rho>=3.429 dist/rho=2.042
+S3on3 N=23 a=23 c=14 d=1 lam1=6 n=6 A:7 theta=- rho>=5.200 dist/rho=1.346
+S3on3 N=18 a=3 c=2 d=6 lam1=3 n=7 A:13 theta=- rho>=7.500 dist/rho=1.733
+S3on3 N=56 a=14 c=13 d=4 lam1=5 n=8 A:16 theta=- rho>=5.000 dist/rho=3.200
+S3on3 N=300 a=15 c=7 d=20 lam1=15 n=6 A:107 theta=- rho>=7.733 dist/rho=13.836
+S3on3 N=210 a=14 c=9 d=15 lam1=14 n=2 A:2 B:2 theta=1 rho>=3.733 dist/rho=0.536
+S3on3 N=46 a=23 c=4 d=2 lam1=6 n=7 A:18 theta=- rho>=8.000 dist/rho=2.250
+S3on3 N=26 a=26 c=11 d=1 lam1=6 n=9 A:18 theta=- rho>=7.000 dist/rho=2.571
+S3on3 N=484 a=22 c=20 d=22 lam1=22 n=2 A:2 B:1 theta=1 rho>=1.920 dist/rho=0.521
+S3on3 N=320 a=16 c=2 d=20 lam1=16 n=4 A:8 theta=- rho>=5.130 dist/rho=1.559
+S3on3 N=380 a=19 c=3 d=20 lam1=19 n=4 A:10 B:5 theta=1 rho>=7.100 dist/rho=0.704
+S3on3 N=192 a=16 c=2 d=12 lam1=14 n=2 A:1 B:1 theta=1 rho>=1.905 dist/rho=0.525
+S3on3 N=28 a=4 c=1 d=7 lam1=4 n=4 A:18 theta=- rho>=4.000 dist/rho=4.500
+S3on3 N=36 a=9 c=3 d=4 lam1=7 n=2 A:3 theta=- rho>=1.800 dist/rho=1.667
+S3on3 N=195 a=15 c=12 d=13 lam1=15 n=4 A:104 theta=- rho>=2.000 dist/rho=52.000
+S3on3 N=21 a=21 c=10 d=1 lam1=3 n=3 A:6 theta=- rho>=3.200 dist/rho=1.875
+S3on3 N=360 a=20 c=11 d=18 lam1=20 n=2 A:2 B:1 theta=1 rho>=1.920 dist/rho=0.521
+S3on3 N=56 a=14 c=3 d=4 lam1=7 n=9 A:20 theta=- rho>=6.667 dist/rho=3.000
+S3on3 N=18 a=3 c=2 d=6 lam1=3 n=11 A:13 theta=- rho>=7.000 dist/rho=1.857
+S3on3 N=16 a=2 c=0 d=8 lam1=2 n=4 A:6 theta=- rho>=3.333 dist/rho=1.800
+S3on3 N=24 a=4 c=2 d=6 lam1=4 n=8 A:9 theta=- rho>=5.000 dist/rho=1.800
+S3on3 N=204 a=12 c=3 d=17 lam1=12 n=2 A:2 theta=- rho>=3.579 dist/rho=0.559
+S3on3 N=48 a=24 c=15 d=2 lam1=9 n=8 A:25 theta=- rho>=7.333 dist/rho=3.409
+S3on3 N=180 a=12 c=9 d=15 lam1=12 n=2 A:2 B:1 theta=1 rho>=1.895 dist/rho=0.528
+S3on3 N=396 a=22 c=20 d=18 lam1=20 n=2 A:2 B:1 theta=1 rho>=1.913 dist/rho=0.523
+S3on3 N=240 a=20 c=11 d=12 lam1=20 n=6 A:11 theta=- rho>=5.733 dist/rho=1.919
+S3on3 N=27 a=3 c=1 d=9 lam1=3 n=6 A:20 theta=- rho>=5.000 dist/rho=4.000
+S3on3 N=396 a=22 c=2 d=18 lam1=20 n=2 A:2 B:2 theta=2 rho>=3.600 dist/rho=0.556
+S3on3 N=24 a=2 c=1 d=12 lam1=2 n=3 A:7 theta=- rho>=3.556 dist/rho=1.969
+S3on3 N=266 a=14 c=3 d=19 lam1=14 n=2 A:1 B:1 theta=1 rho>=1.867 dist/rho=0.536
+S3on3 N=24 a=4 c=1 d=6 lam1=4 n=4 A:12 theta=- rho>=4.800 dist/rho=2.500
+S3on3 N=24 a=8 c=1 d=3 lam1=4 n=12 A:21 theta=- rho>=10.000 dist/rho=2.100
+S3on3 N=24 a=2 c=0 d=12 lam1=2 n=10 A:12 theta=- rho>=6.000 dist/rho=2.000
+S3on3 N=25 a=25 c=17 d=1 lam1=4 n=6 A:15 theta=- rho>=6.667 dist/rho=2.250
+S3on3 N=30 a=15 c=6 d=2 lam1=7 n=2 A:2 theta=- rho>=3.636 dist/rho=0.550
+S3on3 N=18 a=2 c=0 d=9 lam1=2 n=10 A:25 theta=- rho>=8.000 dist/rho=3.125
+S3on3 N=195 a=15 c=14 d=13 lam1=14 n=2 A:24 B:2 theta=1 rho>=3.846 dist/rho=0.520
+S3on3 N=27 a=3 c=2 d=9 lam1=3 n=8 A:17 theta=- rho>=6.667 dist/rho=2.550
+S3on3 N=462 a=21 c=16 d=22 lam1=21 n=3 A:3 B:1 theta=1 rho>=2.000 dist/rho=0.500
+S3on3 N=224 a=14 c=2 d=16 lam1=14 n=4 A:18 theta=- rho>=4.000 dist/rho=4.500
+S3on3 N=22 a=22 c=4 d=1 lam1=5 n=6 A:17 theta=- rho>=5.500 dist/rho=3.091
+S3on3 N=252 a=18 c=16 d=14 lam1=16 n=3 A:25 B:3 theta=1 rho>=5.714 dist/rho=0.525
+S3on3 N=342 a=19 c=18 d=18 lam1=19 n=2 A:6 B:2 theta=1 rho>=3.886 dist/rho=0.515
+S3on3 N=18 a=2 c=0 d=9 lam1=2 n=5 A:4 theta=- rho>=4.000 dist/rho=1.000
+S3on3 N=44 a=11 c=8 d=4 lam1=7 n=5 A:23 theta=- rho>=6.571 dist/rho=3.500
+S3on3 N=272 a=17 c=1 d=16 lam1=17 n=2 A:3 B:2 theta=2 rho>=3.556 dist/rho=0.562
+S3on3 N=330 a=22 c=20 d=15 lam1=17 n=2 A:2 B:2 theta=1 rho>=3.833 dist/rho=0.522
+S4on4 N=380 a=20 c=14 d=19 lam1=20 n=6 A:351 theta=- rho>=9.760 dist/rho=35.963
+S4on4 N=18 a=3 c=2 d=6 lam1=3 n=10 A:17 theta=- rho>=9.000 dist/rho=1.889
+S4on4 N=180 a=12 c=1 d=15 lam1=12 n=4 A:22 theta=- rho>=5.833 dist/rho=3.771
+S4on4 N=29 a=29 c=9 d=1 lam1=5 n=5 A:11 theta=- rho>=6.000 dist/rho=1.833
+S4on4 N=39 a=13 c=12 d=3 lam1=4 n=10 A:23 theta=- rho>=11.000 dist/rho=2.091
+S4on4 N=204 a=12 c=11 d=17 lam1=12 n=4 A:9 theta=- rho>=10.286 dist/rho=0.875
+S4on4 N=24 a=3 c=1 d=8 lam1=3 n=8 A:17 theta=- rho>=12.000 dist/rho=1.417
+S4on4 N=24 a=4 c=2 d=6 lam1=4 n=5 A:12 theta=- rho>=9.600 dist/rho=1.250
+S4on4 N=21 a=3 c=2 d=7 lam1=3 n=4 A:18 theta=- rho>=4.000 dist/rho=4.500
+S4on4 N=24 a=3 c=1 d=8 lam1=3 n=9 A:34 theta=- rho>=8.667 dist/rho=3.923
+S4on4 N=360 a=20 c=4 d=18 lam1=20 n=4 A:21 B:3 theta=1 rho>=5.760 dist/rho=0.521
+S4on4 N=195 a=15 c=4 d=13 lam1=15 n=2 A:178 theta=- rho>=12.632 dist/rho=14.092
+S4on4 N=29 a=29 c=18 d=1 lam1=7 n=9 A:20 theta=- rho>=8.667 dist/rho=2.308
+S4on4 N=272 a=16 c=7 d=17 lam1=16 n=2 A:2 B:1 theta=1 rho>=1.913 dist/rho=0.523
+S4on4 N=24 a=4 c=2 d=6 lam1=4 n=7 A:14 theta=- rho>=7.000 dist/rho=2.000
+S4on4 N=304 a=16 c=4 d=19 lam1=16 n=6 A:7 theta=- rho>=5.875 dist/rho=1.191
+S4on4 N=30 a=3 c=0 d=10 lam1=3 n=3 A:8 theta=- rho>=4.909 dist/rho=1.630
+S4on4 N=260 a=13 c=11 d=20 lam1=13 n=2 A:12 theta=- rho>=10.400 dist/rho=1.154
+S4on4 N=330 a=22 c=13 d=15 lam1=22 n=2 A:2 B:2 theta=1 rho>=3.826 dist/rho=0.523
+S4on4 N=216 a=18 c=8 d=12 lam1=18 n=2 A:9 B:3 theta=1 rho>=5.800 dist/rho=0.517
+S4on4 N=306 a=17 c=8 d=18 lam1=17 n=2 A:6 B:2 theta=1 rho>=3.879 dist/rho=0.516
+S4on4 N=18 a=2 c=0 d=9 lam1=2 n=3 A:18 theta=- rho>=8.000 dist/rho=2.250
+S4on4 N=308 a=22 c=13 d=14 lam1=22 n=4 A:6 B:2 theta=1 rho>=4.000 dist/rho=0.500
+S4on4 N=304 a=16 c=9 d=19 lam1=16 n=4 A:15 B:11 theta=1 rho>=9.280 dist/rho=1.185
+S4on4 N=192 a=12 c=0 d=16 lam1=12 n=6 A:20 theta=- rho>=10.667 dist/rho=1.875
+S4on4 N=24 a=4 c=3 d=6 lam1=4 n=6 A:10 theta=- rho>=5.500 dist/rho=1.818
+S4on4 N=21 a=3 c=1 d=7 lam1=3 n=9 A:23 theta=- rho>=9.333 dist/rho=2.464
+S4on4 N=462 a=21 c=2 d=22 lam1=21 n=6 A:6 theta=- rho>=4.000 dist/rho=1.500
+S4on4 N=182 a=13 c=1 d=14 lam1=13 n=2 A:6 B:3 theta=1 rho>=5.600 dist/rho=0.536
+S4on4 N=52 a=13 c=11 d=4 lam1=6 n=7 A:36 theta=- rho>=12.000 dist/rho=3.000
+S4on4 N=272 a=17 c=0 d=16 lam1=16 n=4 A:36 theta=- rho>=11.400 dist/rho=3.158
+S4on4 N=342 a=19 c=7 d=18 lam1=19 n=3 A:10 theta=- rho>=11.000 dist/rho=0.909
+S4on4 N=196 a=14 c=6 d=14 lam1=14 n=4 A:148 theta=- rho>=11.429 dist/rho=12.950
+S4on4 N=238 a=17 c=1 d=14 lam1=15 n=2 A:2 theta=- rho>=3.579 dist/rho=0.559
+S4on4 N=264 a=22 c=13 d=12 lam1=21 n=4 A:22 B:4 theta=1 rho>=7.652 dist/rho=0.523
+S4on4 N=340 a=20 c=2 d=17 lam1=19 n=6 A:16 theta=- rho>=7.818 dist/rho=2.047
+S4on4 N=25 a=25 c=21 d=1 lam1=5 n=8 A:18 theta=- rho>=11.500 dist/rho=1.565
+S4on4 N=180 a=15 c=5 d=12 lam1=15 n=2 A:28 B:2 theta=1 rho>=3.840 dist/rho=0.521
+S4on4 N=27 a=3 c=0 d=9 lam1=3 n=7 A:23 theta=- rho>=9.000 dist/rho=2.556
+S4on4 N=18 a=3 c=1 d=6 lam1=3 n=7 A:19 theta=- rho>=8.000 dist/rho=2.375
+S4on4 N=294 a=14 c=10 d=21 lam1=14 n=3 A:12 theta=- rho>=7.200 dist/rho=1.667
+S4on4 N=23 a=23 c=17 d=1 lam1=5 n=3 A:6 theta=- rho>=4.500 dist/rho=1.333
+S4on4 N=304 a=16 c=2 d=19 lam1=16 n=2 A:28 B:4 theta=2 rho>=7.200 dist/rho=0.556
+S4on4 N=169 a=13 c=11 d=13 lam1=13 n=2 A:4 theta=- rho>=3.467 dist/rho=1.154
+S4on4 N=44 a=11 c=3 d=4 lam1=7 n=2 A:11 theta=- rho>=4.714 dist/rho=2.333
+S4on4 N=264 a=22 c=11 d=12 lam1=22 n=4 A:250 theta=- rho>=9.167 dist/rho=27.273
+S4on4 N=240 a=15 c=3 d=16 lam1=15 n=2 A:2 B:2 theta=1 rho>=3.750 dist/rho=0.533
+S4on4 N=24 a=4 c=3 d=6 lam1=4 n=11 A:38 theta=- rho>=12.000 dist/rho=3.167
+S4on4 N=27 a=3 c=2 d=9 lam1=3 n=1 A:3 theta=- rho>=4.500 dist/rho=0.667
+S4on4 N=192 a=16 c=12 d=12 lam1=16 n=5 A:9 theta=- rho>=6.000 dist/rho=1.500
+S4on4 N=16 a=2 c=1 d=8 lam1=2 n=8 A:33 theta=- rho>=12.667 dist/rho=2.605
+S4on4 N=32 a=16 c=9 d=2 lam1=6 n=8 A:28 theta=- rho>=7.000 dist/rho=4.000
+S4on4 N=28 a=4 c=1 d=7 lam1=4 n=2 A:12 theta=- rho>=4.800 dist/rho=2.500
+S4on4 N=28 a=4 c=2 d=7 lam1=4 n=4 A:7 theta=- rho>=5.000 dist/rho=1.400
+S4on4 N=306 a=18 c=6 d=17 lam1=18 n=2 A:3 B:1 theta=1 rho>=1.939 dist/rho=0.516
+S4on4 N=26 a=2 c=1 d=13 lam1=2 n=8 A:23 theta=- rho>=8.000 dist/rho=2.875
+S4on4 N=462 a=22 c=8 d=21 lam1=22 n=6 A:16 theta=- rho>=8.000 dist/rho=2.000
+S4on4 N=378 a=18 c=0 d=21 lam1=18 n=2 A:2 B:2 theta=1 rho>=3.789 dist/rho=0.528
+S4on4 N=380 a=20 c=8 d=19 lam1=20 n=4 A:14 B:4 theta=1 rho>=7.524 dist/rho=0.532
+S4on4 N=52 a=26 c=7 d=2 lam1=9 n=9 A:15 theta=- rho>=12.750 dist/rho=1.176
+S4on4 N=20 a=10 c=2 d=2 lam1=4 n=2 A:8 theta=- rho>=3.636 dist/rho=2.200
+S4on4 N=10 a=5 c=4 d=2 lam1=3 n=7 A:14 theta=- rho>=7.333 dist/rho=1.909
+S4on4 N=192 a=12 c=9 d=16 lam1=12 n=2 A:12 theta=- rho>=10.286 dist/rho=1.167
+S4on4 N=221 a=17 c=15 d=13 lam1=15 n=2 A:24 B:2 theta=1 rho>=3.778 dist/rho=0.529
+S4on4 N=52 a=26 c=20 d=2 lam1=8 n=2 A:2 B:2 theta=1 rho>=3.733 dist/rho=0.536
+S4on4 N=221 a=17 c=8 d=13 lam1=17 n=2 A:6 B:6 theta=2 rho>=10.737 dist/rho=0.559
+S4on4 N=28 a=2 c=1 d=14 lam1=2 n=5 A:17 theta=- rho>=6.000 dist/rho=2.833
+S4on4 N=16 a=4 c=1 d=4 lam1=4 n=9 A:24 theta=- rho>=10.000 dist/rho=2.400
+S4on4 N=40 a=4 c=0 d=10 lam1=4 n=6 A:21 theta=- rho>=5.000 dist/rho=4.200
+S4on4 N=27 a=3 c=2 d=9 lam1=3 n=8 A:15 theta=- rho>=7.000 dist/rho=2.143
+S4on4 N=28 a=4 c=0 d=7 lam1=4 n=10 A:17 theta=- rho>=9.000 dist/rho=1.889
+S4on4 N=44 a=22 c=18 d=2 lam1=6 n=7 A:21 theta=- rho>=9.778 dist/rho=2.148
+S4on4 N=260 a=20 c=4 d=13 lam1=17 n=4 A:70 theta=- rho>=13.125 dist/rho=5.333
+S4on4 N=12 a=2 c=0 d=6 lam1=2 n=2 A:2 theta=- rho>=2.667 dist/rho=0.750
+S4on4 N=240 a=15 c=8 d=16 lam1=15 n=6 A:163 theta=- rho>=9.529 dist/rho=17.105
+S4on4 N=12 a=2 c=0 d=6 lam1=2 n=3 A:11 theta=- rho>=5.143 dist/rho=2.139
+S4on4 N=23 a=23 c=14 d=1 lam1=6 n=7 A:14 theta=- rho>=9.500 dist/rho=1.474
+S4on4 N=18 a=3 c=2 d=6 lam1=3 n=9 A:20 theta=- rho>=10.667 dist/rho=1.875
+S4on4 N=56 a=14 c=13 d=4 lam1=5 n=11 A:35 theta=- rho>=13.000 dist/rho=2.692
+S4on4 N=300 a=15 c=7 d=20 lam1=15 n=6 A:158 theta=- rho>=7.733 dist/rho=20.431
+S4on4 N=210 a=14 c=9 d=15 lam1=14 n=2 A:1 B:1 theta=1 rho>=1.867 dist/rho=0.536
+S4on4 N=46 a=23 c=4 d=2 lam1=6 n=7 A:27 theta=- rho>=9.500 dist/rho=2.842
+S4on4 N=26 a=26 c=11 d=1 lam1=6 n=9 A:28 theta=- rho>=10.000 dist/rho=2.800
+S4on4 N=484 a=22 c=20 d=22 lam1=22 n=4 A:6 B:4 theta=1 rho>=4.000 dist/rho=1.000
+S4on4 N=320 a=16 c=2 d=20 lam1=16 n=4 A:14 theta=- rho>=8.957 dist/rho=1.563
+S4on4 N=380 a=19 c=3 d=20 lam1=19 n=4 A:12 B:7 theta=1 rho>=10.500 dist/rho=0.667
+S4on4 N=28 a=4 c=2 d=7 lam1=4 n=5 A:7 theta=- rho>=4.000 dist/rho=1.750
+S4on4 N=192 a=16 c=2 d=12 lam1=14 n=2 A:1 B:1 theta=1 rho>=1.905 dist/rho=0.525
+S4on4 N=28 a=4 c=1 d=7 lam1=4 n=6 A:11 theta=- rho>=9.000 dist/rho=1.222
+S4on4 N=36 a=9 c=3 d=4 lam1=7 n=2 A:9 theta=- rho>=5.400 dist/rho=1.667
+S4on4 N=195 a=15 c=12 d=13 lam1=15 n=4 A:151 theta=- rho>=5.733 dist/rho=26.337
+S4on4 N=21 a=21 c=10 d=1 lam1=3 n=3 A:6 theta=- rho>=4.000 dist/rho=1.500
+S4on4 N=360 a=20 c=11 d=18 lam1=20 n=2 A:6 B:3 theta=1 rho>=5.760 dist/rho=0.521
+S4on4 N=21 a=3 c=0 d=7 lam1=3 n=2 A:8 theta=- rho>=4.800 dist/rho=1.667
+S4on4 N=56 a=14 c=3 d=4 lam1=7 n=9 A:31 theta=- rho>=11.500 dist/rho=2.696
+S4on4 N=18 a=3 c=2 d=6 lam1=3 n=11 A:33 theta=- rho>=14.000 dist/rho=2.357
+S4on4 N=16 a=2 c=0 d=8 lam1=2 n=4 A:14 theta=- rho>=5.000 dist/rho=2.800
+S4on4 N=24 a=4 c=2 d=6 lam1=4 n=8 A:13 theta=- rho>=8.667 dist/rho=1.500
+S4on4 N=204 a=12 c=3 d=17 lam1=12 n=2 A:6 theta=- rho>=10.737 dist/rho=0.559
+S4on4 N=48 a=24 c=15 d=2 lam1=9 n=10 A:25 theta=- rho>=8.000 dist/rho=3.125
+S4on4 N=180 a=12 c=9 d=15 lam1=12 n=2 A:6 B:3 theta=1 rho>=5.684 dist/rho=0.528
+S4on4 N=396 a=22 c=20 d=18 lam1=20 n=2 A:2 B:1 theta=1 rho>=1.913 dist/rho=0.523
+S4on4 N=240 a=20 c=11 d=12 lam1=20 n=6 A:13 theta=- rho>=9.524 dist/rho=1.365
+S4on4 N=27 a=3 c=1 d=9 lam1=3 n=9 A:27 theta=- rho>=9.500 dist/rho=2.842
+S4on4 N=396 a=22 c=2 d=18 lam1=20 n=2 A:6 B:6 theta=2 rho>=10.800 dist/rho=0.556
+S4on4 N=24 a=2 c=1 d=12 lam1=2 n=3 A:12 theta=- rho>=5.556 dist/rho=2.160
+S4on4 N=266 a=14 c=3 d=19 lam1=14 n=2 A:3 B:3 theta=1 rho>=5.600 dist/rho=0.536
+S4on4 N=24 a=4 c=1 d=6 lam1=4 n=5 A:16 theta=- rho>=7.333 dist/rho=2.182
+S4on4 N=24 a=8 c=1 d=3 lam1=4 n=12 A:21 theta=- rho>=10.000 dist/rho=2.100
+S4on4 N=24 a=2 c=0 d=12 lam1=2 n=10 A:27 theta=- rho>=11.000 dist/rho=2.455
+S4on4 N=25 a=25 c=17 d=1 lam1=4 n=8 A:17 theta=- rho>=10.500 dist/rho=1.619
+S4on4 N=30 a=15 c=6 d=2 lam1=7 n=2 A:2 theta=- rho>=3.636 dist/rho=0.550
+S4on4 N=18 a=2 c=0 d=9 lam1=2 n=10 A:19 theta=- rho>=11.000 dist/rho=1.727
+S4on4 N=195 a=15 c=14 d=13 lam1=14 n=4 A:23 theta=- rho>=5.375 dist/rho=4.279
+S4on4 N=27 a=3 c=2 d=9 lam1=3 n=9 A:23 theta=- rho>=11.333 dist/rho=2.029
+S4on4 N=462 a=21 c=16 d=22 lam1=21 n=3 A:6 B:2 theta=1 rho>=3.951 dist/rho=0.506
+S4on4 N=224 a=14 c=2 d=16 lam1=14 n=4 A:18 theta=- rho>=4.000 dist/rho=4.500
+S4on4 N=22 a=22 c=4 d=1 lam1=5 n=6 A:31 theta=- rho>=9.000 dist/rho=3.444
+S4on4 N=252 a=18 c=16 d=14 lam1=16 n=4 A:25 B:7 theta=1 rho>=9.481 dist/rho=0.738
+S4on4 N=18 a=2 c=0 d=9 lam1=2 n=6 A:12 theta=- rho>=7.333 dist/rho=1.636
