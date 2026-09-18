@@ -25865,6 +25865,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · rs-boundary-groupoid-is-expansive-amenable-kazhdan-host [ESTABLISHED] The Robertson–Steger boundary action of a Kazhdan PGL_3 lattice is an amenable, minimal, expansive subshift on a Cantor set; its action groupoid (and its product with G_2) is compactly generated and expansive with an infinite Kazhdan group in its full group, so compact generation and expansivity do not separate G_2^n from Kazhdan hosts
 - 2026-09-18 · thompson-f-binomial-multipliers-see-every-conjugate [ESTABLISHED] A multiplier putting b v into (1 + lambda g) R must generate a group containing a nontrivial power of every conjugate of g by the reduced support of b, and transverse binomial factors can always be divided out
 - 2026-09-18 · f-dyadic-rare-confinement-rate-at-most-cogrowth-exponent [ESTABLISHED] The rare-confinement exponent of the dyadic inverted orbit is minus the log of a cylinder-compressed Koopman norm, at most the cogrowth exponent of F, and invisible to every Walsh-level spectral gap
 - 2026-09-18 · nv-point-germ-groups-embed-in-zn-by-slope [ESTABLISHED] The germ of an element of nV at a fixed point is determined by its slope vector, so point germ groups of every subsystem are abelian of rank at most n, and brick self-compressions force fixed points with nonzero slope
@@ -25872,7 +25873,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · maslov-mod3-projective-defect-gap [OPEN] The two nontrivial mod-three Maslov projective sectors of Sp4(Z) have a dimension-free normalized-HS defect gap
 - 2026-09-18 · deligne-auxiliary-radical-transfer-proof [COMPLETE] Push the radical down to the residually finite base, use centrality of C_3 for the coinvariants, and flexibility of amenable images for the rest
 - 2026-09-18 · deligne-auxiliary-radical-transfer-needs-rigid-image [ESTABLISHED] An approximation radical pushed into Deligne's triple cover along any homomorphism dies unless the auxiliary group's maximal approximable quotient maps onto a Deligne-rigid subgroup
-- 2026-09-18 · dimension-descent-operation-equivalence-proof [COMPLETE] Minimal dimension and one ultraproduct identify the descent hypothesis with MF-residual membership
 
 ## Active claims
 
