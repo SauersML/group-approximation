@@ -52,3 +52,15 @@ finite quotient. If so, and `K_2(N, D)` is central, this claim fails.
    - Relators that only act on `M`, such as `(x^k B x^(-k))(π_k) - 1` killing the generator, are module
      relations, and those do not propagate (same lemma).
    - This lane sees no concrete way around it.
+3. **The two-step quotient and the cyclotomic orbit (2026-09-18, lane gq-k2-q).** Not decided. See
+   `euler-ring-symbols-in-small-finite-quotients`.
+   - *`F_(2,l)` kills every `c_q`,* already in `K_2(N, C)`.
+     - For `l` odd, `c_q = z^q` with `z = {1+y, 1+l}`. The Steinberg relation `{t(1+y), 1 − t(1+y)} = 1` kills `z` for
+       any `t` with `P(t) = Σ_(k<l) t^k/k != 0` in `F_l`, and such `t ∉ {0,1}` exists.
+     - For `l = 2`, `c_q = {1+y, −(1+y)} = 1`.
+   - *The cyclotomic point detects `c_q` on `A`, but its orbit does not.*
+     - Under `u -> ζ_l − 1`, the image of `c_q` in `K_2(O_K/𝔭^n) ≅ Z/l` (`n >= l+1`) has Hilbert symbol `ζ^(-q)`.
+     - The σ-orbit of that point has length `m` divisible by `l`. The induced `D -> M_m(O_K/𝔭^n)` therefore sends
+       `c_q` to `ζ^(-qm) = 1`.
+   - *Still open:* the folding quotients `F_(r,N)` with `r >= 3`, and `K_2` of the crossed product `ρ_m(D)` itself,
+     where the commutative part still sees `c_q`.
