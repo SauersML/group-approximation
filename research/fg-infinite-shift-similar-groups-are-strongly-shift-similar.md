@@ -45,3 +45,13 @@ subgroup `Γ <= Sym(N)/FSym(N)` satisfies `c(Γ) ⊊ Γ`.
 - *Commensurated subsets for `BS(1,2)`.* The affine action on `Z[1/2]` (`a = +1`, `t = /2`) was tried with subsets
   `{y >= 0 : den(y) <= f(y)}`. None is commensurated by both `a` and `t`: bounded denominators break `t`, and
   unbounded ones break `a` at infinitely many jumps. No counterexample and no proof.
+- *Sparse transpositions plus one window rotation.* Take `x = rho̅_0` of the non-finitely-generated example, and let
+  `y` rotate each window `W_i = [2^(i-1)+2, 2^i+1]` down by one step.
+  - For each `k`, `y c^k(x) y^-1 = c^(k+1)(x)` at infinity, so `< x, y >` contains every `c^k(x)`.
+  - It fails: `c(y) = z y`, where `z` carries `2^i` to `2^(i+1)` across windows. But `< x, y >` preserves every
+    `W_i`, so `c(< x, y >)` is not contained in `< x, y >`.
+  - Lesson: a finitely generated `Γ` with `c(Γ) ⊆ Γ` cannot preserve a window structure unless that structure is
+    shift-invariant up to `Γ`. Making it shift-invariant tends to make `c` onto.
+- *Candidate source of examples (untested).* Residue-class-wise affine permutations of `N` (Kohl's RCWA groups)
+  are closed under `c` and `c^-1`, and they contain many finitely generated subgroups. A finitely generated RCWA
+  subgroup with `c(Γ) ⊊ Γ` would settle the node negatively.
