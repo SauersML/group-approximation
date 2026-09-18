@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `commensurator-finite-no-faithful-bs-proof` (lane proof;
-not independently reviewed; no priority claimed).
+referee a PASS,
+`research/artifacts/gq-referee-a-hecke-products-and-commensurator-rigidity.md`;
+no priority claimed).
 
 **Notation.**
 - For a group `V`, `VZ(V)` is its virtual center: the elements centralizing a
