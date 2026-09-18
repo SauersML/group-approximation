@@ -14,7 +14,7 @@ unless it is marked "archive". Wording is paraphrased; numbers are exact.
 |---|---|---|---|
 | 17.61 (Kohl) | Is CT_P(Z) finitely presented for finite P? | **Yes.** CT_P(Z) = [[G_Λ]] for an explicit one-vertex (\|P\|+1)-graph Λ; it is simple and of type F_∞. | `ct-p-z-is-a-one-vertex-k-graph-full-group` |
 | 17.59 (Kohl) | Is CT(Z) the group of all RCWA permutations of Z fixing N_0 setwise? | **Yes.** | `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers` |
-| 17.60 (Kohl) | Are the CT_P(Z) pairwise non-isomorphic? | **Partial.** CT_P ≅ CT_Q implies \|P\| = \|Q\| (isotropy rank via Matui's spatial isomorphism theorem). Sets of equal size are OPEN; a sketched invariant is on the node. | `ct-p-z-isomorphism-type-remembers-the-number-of-primes` |
+| 17.60 (Kohl) | Are the CT_P(Z) pairwise non-isomorphic? | **Yes**, for all sets of odd primes (finite or infinite). Matui makes an isomorphism spatial. The germ groups at rational points have "prime axes" as minimal stable sets. Each axis is labeled by the unique prime ℓ with infinite ℓ-primary eigenvalue group of the induced shell rotation. (The earlier partial node gives |P| = |Q|.) | `ct-p-z-groups-are-pairwise-nonisomorphic` (+ `ct-p-z-isomorphism-type-remembers-the-number-of-primes`) |
 
 **The mechanism.** Residue classes with P'-smooth moduli are the cylinders of a
 one-vertex k-graph whose infinite-path space is the profinite completion
@@ -43,7 +43,7 @@ of the boundary groupoid with the k-graph groupoid [Li21a].
 | 21.45 | Fournier-Facio | F.p. infinite simple group needing more than two generators? | Well-known, OPEN. Unowned. |
 | 21.46 | Fournier-Facio | F.p. infinite simple group of finite cohomological dimension > 2? | Well-known, OPEN. Burger–Mozes gives cd 2; candidates would be simple torsion-free lattices in products of ≥ 3 trees. Unowned. |
 | 20.33 | Grochow (after A. Bauer) | Relativized Higman embedding for X-computable presentations. | Computability; suggested for bh-logic. |
-| 17.57 | Kohl | Is Out(CT(Z)) = ⟨n ↦ −n−1⟩ ≅ C_2? | New angle: CT(Z) = ⋃ CT_P(Z) with CT_P = [[G_{Λ_P}]], and Matui/Rubin make automorphisms of each CT_P spatial. Unowned. |
+| 17.57 | Kohl | Is Out(CT(Z)) = ⟨n ↦ −n−1⟩ ≅ C_2? | **Reduced** (`out-ct-z-is-c2-iff-normalizers-are-somewhere-affine`). Out ≅ N_{Homeo(Ẑ)}(CT(Z))/CT(Z). Every normalizer preserves Z, maps N_0 to N_0 or Z_{<0}, and fixes each integer's germ group Q_{>0}^× pointwise. Out = C_2 iff every normalizer fixing N_0 is affine on some box. That local rigidity is OPEN; the one-prime calibration (Out(V) ≅ O_2 infinite) shows it must use many primes. |
 | 17.58 | Kohl | Does CT(Z) have subgroups of intermediate growth? | Unowned; CT(Z) ⊇ V. |
 | 21.73, 21.74 | Kohl | Decidability of conjugacy in CT(Z), and of properties of elements. | CT_P = [[G_{Λ_P}]] brings Garside and groupoid tools (Li). Unowned. |
 | 15.19 | Grigorchuk et al. | Finite-state (automaton) realizability questions for residually-p groups with solvable WP; e.g. is Z ≀ (Z ≀ Z) in F_2? | Related to bh-self-similar. |

@@ -132,3 +132,62 @@ theorem k2PolyNagaoWide_tau_mem (b : Polynomial (ZMod p)) :
   · exact Subgroup.one_mem _
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_tau_mem
+/-- Every Euclidean word `pair a b` lies in `G_{mL}` (well-founded induction on `deg a`). -/
+theorem k2PolyNagaoWide_pair_mem (a : Polynomial (ZMod p)) :
+    ∀ b, k2PolyNagaoSigma_pair p m L hmL a b ∈ k2PolyNagaoWide_Gml p m L := by
+  induction a using (Polynomial.degree_lt_wf (R := ZMod p)).induction with
+  | _ a ih =>
+    intro b
+    by_cases ha : a = 0
+    · rw [ha, k2PolyNagaoSigma_pair_zero]
+      exact k2PolyNagaoWide_tau_mem hmL b
+    · rw [k2PolyNagaoSigma_pair_of_ne p m L hmL ha]
+      exact Subgroup.mul_mem _
+        (Subgroup.mul_mem _ (k2PolyNagaoWide_x_mem_Gml hmL.symm (Or.inr rfl) (Or.inl rfl) _)
+          (k2PolyNagaoWide_w_mem hmL _))
+        (ih _ (Polynomial.degree_mod_lt b ha) _)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_pair_mem
+
+/-- `σ₀(v) = pair (v m) (v L) ∈ G_{mL}`. -/
+theorem k2PolyNagaoWide_sigma0_mem (v : I → Polynomial (ZMod p)) :
+    k2PolyNagaoSigma_sigma p m L hmL v ∈ k2PolyNagaoWide_Gml p m L := by
+  show k2PolyNagaoSigma_pair p m L hmL (v m) (v L) ∈ k2PolyNagaoWide_Gml p m L
+  exact k2PolyNagaoWide_pair_mem hmL (v m) (v L)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_sigma0_mem
+
+/-- `G_{mL}` normalises `Q^m`: for `a, b ∈ {m, L}`, `k ∈ K ∪ {L}`, `l ∈ K \ {m}`, the
+conjugate `x_ab(c) x_kl(d) x_ab(c)⁻¹` is `x_al(cd) x_bl(d)` when `b = k`, else `x_kl(d)`. -/
+theorem k2PolyNagaoWide_Gml_conj_Qm {K : Finset I} (hmK : m ∈ K) (hLK : L ∉ K)
+    {s : SteinbergGroup I (Polynomial (ZMod p))} (hs : s ∈ k2PolyNagaoWide_Gml p m L)
+    {u : SteinbergGroup I (Polynomial (ZMod p))} (hu : u ∈ k2PolyNagaoWide_Qm p K m L) :
+    s * u * s⁻¹ ∈ k2PolyNagaoWide_Qm p K m L := by
+  refine rootSpan_normalizes (p := fun i j => (i = m ∨ i = L) ∧ (j = m ∨ j = L))
+    (q := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) ?_ hs hu
+  intro a b hab c hp k l hkl d hq
+  have hp' : (a = m ∨ a = L) ∧ (b = m ∨ b = L) := hp
+  have hq' : k ∈ insert L K ∧ l ∈ K.erase m := hq
+  have hlm : l ≠ m := Finset.ne_of_mem_erase hq'.2
+  have hlL : l ≠ L := fun e => hLK (by rw [← e]; exact Finset.mem_of_mem_erase hq'.2)
+  have hal : a ≠ l := by
+    rcases hp'.1 with e | e
+    · exact fun e' => hlm (e'.symm.trans e)
+    · exact fun e' => hlL (e'.symm.trans e)
+  have haK : a ∈ insert L K := by
+    rcases hp'.1 with e | e
+    · exact Finset.mem_insert_of_mem (by rw [e]; exact hmK)
+    · exact Finset.mem_insert.2 (Or.inl e)
+  by_cases hbk : b = k
+  · have hbl : b ≠ l := fun e => hkl (hbk.symm.trans e)
+    have hbK : b ∈ insert L K := by rw [hbk]; exact hq'.1
+    rw [x_congr hkl hbl hbk.symm rfl rfl, conj_x_left a b l hab hbl hal c d]
+    exact Subgroup.mul_mem _
+      (x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) hal _ ⟨haK, hq'.2⟩)
+      (x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) hbl _ ⟨hbK, hq'.2⟩)
+  · rw [conj_of_commute (x_commute_of_ne a b k l hab hkl hbk (Ne.symm hal) c d)]
+    exact x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m) hkl d hq'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_Gml_conj_Qm
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

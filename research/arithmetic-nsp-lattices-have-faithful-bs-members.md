@@ -11,7 +11,8 @@ distinct_from:
 
 **ESTABLISHED** through `arithmetic-nsp-faithful-bs-member-proof` (lane proof,
 elementary apart from the cited normal subgroup theorems; referee a PASS,
-`research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`;
+`research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`; referee b PASS,
+`research/artifacts/gq-referee-b-bs-class-faithful-member-and-cat0-tree-factor.md`;
 no priority claimed).
 
 **Lemma.** Let `L` be a locally compact, second countable group and `G <= L` a
@@ -23,7 +24,9 @@ finitely generated discrete subgroup with finite covolume (a lattice). Assume:
 Put `G_1 = G ∩ c^{-1}Gc` and `H_c = ⟨G, t | t x t^{-1} = c x c^{-1}, x ∈ G_1⟩`.
 Then `H_c ∈ BS_G`, and `H_c` acts faithfully on its Bass--Serre tree.
 
-**Instances.** Each satisfies (N), (C) and has such a `c`.
+**Instances.** Each satisfies (N), (C) and has such a `c`. Both `G` are finitely
+presented (lattices: `SL_n(Z)` and S-arithmetic groups), which
+`bs-class-with-faithful-member-lies-in-type-a-class` needs.
 1. `G` a torsion-free finite-index subgroup of `SL_n(Z)`, `n >= 3`, in
    `L = PGL_n(R)`, with `c = diag(r, 1, ..., 1)` for a prime `r`.
 2. `G` a torsion-free finite-index subgroup of `Λ = O[1/pq]^× / Z[1/pq]^×`, where
