@@ -27,6 +27,16 @@ restricted to periodic points, as in Theorem B of
 
 ## Consequences
 
+**Named hosts in the regime.** By Corollary 2 of
+`normal-germ-extensions-of-thompson-v-contain-no-sl3z`, the hypotheses hold for:
+- `VA`, and so for its subgroup `T̄` containing `Q`;
+- every binary Rover--Nekrashevych group `V_2(G)` of a bounded automata group `G`, such as
+  Rover's group over the Grigorchuk group.
+
+So every Kazhdan subgroup of these groups is finite. For the Rover--Nekrashevych case this
+upgrades `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf` from residually finite to
+finite, for bounded automata.
+
 Each of the following contains an infinite Kazhdan subgroup, so none embeds in such a `G`:
 - `SL_n(Z)` for `n >= 3` and every group containing a finite-index subgroup of one,
   including `GL_n(Q)`, `n >= 3` (this recovers Theorem B there);

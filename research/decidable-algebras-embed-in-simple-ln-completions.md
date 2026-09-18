@@ -78,3 +78,11 @@ Röver--Nekrashevych commutators.
    Belyaev's associative Higman theorem is known here only from a secondary source)
    together with Boone--Higman for finitely presented algebras with solvable word
    problem.
+5. **Scope of Attempt 3's kill** (2026-09-18, lane `bh-algebra`). The kill uses
+   `ln-completion-word-problem-reduces-to-base-algebra`, which assumes `ψ` injective. Transducer
+   recursions on a free algebra are usually *not* injective: their self-similar kernel `J` is the
+   relation ideal of an automaton algebra. By `noninjective-ln-completions-have-self-similar-bases`,
+   `O_ψ(B)` is still finitely presented, and it is the completion of `B/J` along the injective `ψ̄`.
+   Its base `B/J` need not be finitely presented, so neither this premise's shape nor the fence
+   applies. The weaker premise `decidable-algebras-embed-in-simple-self-similar-completions` keeps the
+   transducer route open for the monomial benchmark.

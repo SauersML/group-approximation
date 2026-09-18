@@ -6,6 +6,7 @@ title: Every subgroup of the topological full group of a minimal interval exchan
 requires:
   - stein-v-groups-act-with-type-a-on-breakpoints
 distinct_from:
+  quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier) treats IET(Z+αZ) on [0,1) through contracting RSGs; this allows any finitely generated translation group Γ inside a real quadratic field and any interval length, via rescaling into a Stein V-group, and states the minimal-IET full-group corollary.
   stein-v-groups-act-with-type-a-on-breakpoints: that is the type (A) theorem for Stein V-groups with its Sturmian corollary; this applies it to all minimal interval exchanges defined over a real quadratic field, with any number of intervals.
   fp-simple-groups-have-no-interval-exchange-action: that says a finitely presented infinite simple group cannot act nontrivially by interval exchanges; here the interval exchange groups are subgroups of a finitely presented simple group that does not itself act by interval exchanges, so the two are consistent.
   interval-exchange-groups-are-lef: that makes every finitely generated interval exchange group LEF, so none of these derived full groups is finitely presented; this places them inside finitely presented simple groups anyway.

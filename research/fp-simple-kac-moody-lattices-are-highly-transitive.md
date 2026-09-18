@@ -236,3 +236,51 @@ part, high transitivity, which this node asks.
      Levi amalgam, or show that the pairwise Levi relations force identifications that
      block it even in non-spherical type. Sources fetched this session are in the swarm
      scratchpad `src/bh-free-24/` (FFKLZ, BFFHZ, Rybak and Le Boudec--Matte Bon TeX).
+7. **Attacking (E): the link-by-link free completion closes up; one curvature lemma
+   (2026-09-18, lane bh-free-24; elementary, not reviewed). (E) stays OPEN.**
+   - **Set-up.** By Lemma A, a `Λ`-set is a covering of the Levi triangle of groups
+     (vertex groups `L_12, L_13, L_23`, edge groups `L_1, L_2, L_3`, face group `T`),
+     and `L_ij = ⟨L_i, L_j⟩`. So a `Λ`-set is a `T`-set with three `L_i`-actions such
+     that each pair generates an action factoring through `L_ij`. The link at a vertex of
+     type `ij` of the development is the coset graph `Γ_ij` of `L_ij` with respect to
+     `L_i, L_j` (edges = cosets of `T`), since `L_i ∩ L_j = T`.
+   - **What works: stars.** Completing one vertex whose partial data is a single `i`-edge
+     together with the `j`-edges through its chambers (a star in `Γ_ij`) always succeeds.
+     Distinct `j`-panels through distinct chambers of an `i`-panel are disjoint cosets, so
+     the star embeds `L_i`- and `L_j`-equivariantly into a regular `L_ij`-orbit, and the
+     rest of the orbit is new points.
+   - **What fails: the growth order.** After one completion step the new points acquire
+     edges at several *different* uncompleted vertices. Concretely: once a `13`-vertex
+     `u` is completed, each point of a `3`-edge `E ⊂ u` lies on a different `1`-edge of
+     `u` (because `L_1 ∩ L_3 = T`). Completing those `12`-vertices then gives the points
+     of `E` their `2`-edges from different sources, all at the same `23`-vertex. So that
+     vertex's partial link is no longer a star but a union of stars meeting in `E`. The
+     `L_23`-relations can then force identifications. Whether they do is exactly (E).
+     There is no order of completion that avoids this, because every triangle has
+     vertices of all three types.
+   - **Lemma C (curvature, from simplicity).** Let `g_J` be the girth of `Γ_J`. Then
+     `Σ_{|J|=2} 1/g_J ≥ 1/2`.
+     - Proof: otherwise give each triangle the hyperbolic metric with angle `2π/g_J` at
+       the vertex of type `J`. The link condition holds, so the (simply connected,
+       locally finite) development is CAT(−1) (Gersten–Stallings, Bridson–Haefliger
+       II.12). Then `Λ`, acting on it properly and cocompactly with finite stabilizers, is
+       hyperbolic, and so is `S_q = Λ/Z`. An infinite hyperbolic group is not simple
+       (non-elementary ones are SQ-universal, Olshanskii/Delzant; standard, not re-read).
+     - For `(2,4,6)`: `L_12 = L_1 L_2`, since the commuting type gives a product. So any
+       coset of `L_1` meets any coset of `L_2` (in a `T`-coset), `Γ_12` is complete
+       bipartite, and `g_12 = 4`. Hence `1/g_13 + 1/g_23 ≥ 1/4`.
+     - The Moore bound (vertex degree about `q^2`, about `q^{10}` vertices in the `G_2`
+       Levi) already predicts girths of about 10 or less, so the lemma is a calibration,
+       not a surprise.
+   - **Consequence for (E).** The development is not CAT(−1) with these links, and its
+     links are dense graphs of small girth. So Ronan–Tits / Ballmann–Brin style free
+     constructions, which embed partial links of diameter below half the girth, do not
+     apply. Any proof of (E) needs a global mechanism, for example a choice of the growth
+     order adapted to the root system, or an ambient action (such as on `X_+`) whose
+     orbits are perturbed. It cannot be done link by link.
+   - **Symmetry remark (not proved here).** The Chevalley–Cartan involution of the Tits
+     functor exchanges `U_α` and `U_{−α}` and so swaps `B_+` and `B_−`. That would
+     transfer `km-building-open-subgroups-have-infinite-bi-index` and
+     `km-building-open-subgroups-have-infinite-ht-orbits` to the negative completion.
+     Existence of the involution on the minimal Kac–Moody group over `F_q` is standard
+     but was not checked at source.

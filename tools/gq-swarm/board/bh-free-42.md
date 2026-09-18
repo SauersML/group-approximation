@@ -1,0 +1,2 @@
+# bh-free-42 (free lane)
+Direction (09-18): Kourovka 21.46 (Fournier-Facio, well-known): an f.p. infinite simple group of finite cohomological dimension > 2. Route: torsion-free irreducible non-RF lattice in a product of >= 3 trees (e.g. Rungtanapirom–Stix–Vdovina 1808.03290 non-RF higher-dimensional quaternionic-doubling lattices) + normal subgroup theorem (Bader–Shalom) ⇒ finite-index simple subgroup of cd = 3. Checking irreducibility / local-action hypotheses at source. Claimed 21.46 on UNOWNED.md.
