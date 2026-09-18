@@ -64,6 +64,26 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
     `ℓ : K_Λ -> L`.
   - Rank four is settled: `EL_4(J) ≅ St_4(J)` is finitely presented
     (`jacobson-el4-is-finitely-presented-steinberg-group`). Rank three stays open.
+* **Mirror fibre product (swarm-0917-w6-w6-nh-break, 2026-09-17).** Recorded in
+  `jacobson-toeplitz-extension-is-a-mirror-quotient-of-a-lef-group`.
+  - `GL_3(J) = EL_3(J)` by Fredholm index.
+  - `E x_(SL_3(A)) E_mirror` embeds in the untwisted bilateral LEF group
+    `H_bi`. So `E = P / L_-`, with `P` LEF and `L_-` locally finite and simple.
+  - The Toeplitz cocycle cancels against its mirror. So no property that
+    lifts from `E` to an extension with locally finite kernel can obstruct
+    soficity. This includes every pattern visible in subgroups of `H_bi`.
+  - The problem is now exactly the quotient step. `E` is sofic iff `P` has
+    sofic approximations that are asymptotically trivial on finite subsets of
+    `L_-` and separated off `L_-`.
+  - **Where it stops.** No nontrivial finite subgroup of `L_-` is normalized
+    by generators of `P` (`V^3` is a simple `M_3(J)`-module). The orbit-set
+    proof for finite kernels therefore does not transplant, and the periodic
+    LEF models act faithfully on `L_-`.
+  - **Also dead.** Haar orbit-relation amalgamation over the halves. For
+    generic points the stabilizers lie in `L`, so a reduced alternating group
+    word gives a reduced groupoid chain. The relation amalgam then reproduces
+    the amalgam kernel `ker q`, and the Toeplitz commutator closes a chain in
+    `R_(H_0)`.
 * **Next.**
   1. Decide whether `E` is finitely presented (`binary-jacobson-el3-is-finitely-presented`). If it is, `E` is neither
      LEF nor LEA.
