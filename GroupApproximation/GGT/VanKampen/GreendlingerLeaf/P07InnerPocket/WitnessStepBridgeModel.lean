@@ -104,3 +104,58 @@ theorem witnessStepBridge_succ_of_turn (M : CombMap.{v}) (O : Finset M.Face)
     exact hclaim _ hval
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepBridge_succ_of_turn
+
+/-- **The reclosed mirror is a planar model of the curve.**  Take a boundary cycle `B` of a face
+set `O` that follows its boundary and carries the walk, and on whose inverse reading `w'` has its
+order on the inverse walk.  Then the mirror of the reclosed map, the kept-dart inclusion, the lift
+of the walk and the lift of `B.cycle` witness the conclusion of
+`WitnessStepGenusBridgeStatement`. -/
+theorem witnessStepBridge_model {X : DiscDiagram.{u, w, v} W} {F : Finset X.toCombMap.Face}
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X F ow) (O : Finset X.toCombMap.Face)
+    (B : BoundaryCycle X.toCombMap O) (hwalk : B.FollowsBoundary)
+    (hsub : ∀ d ∈ ow, d ∈ B.cycle) (w' : List X.toCombMap.Dart)
+    (hcompat : ∀ c ∈ invDarts X ow, ∀ d ∈ invDarts X ow,
+      (WitnessStepGenusBefore w' c d ↔ WitnessStepGenusBefore (invDarts X B.cycle) c d)) :
+    ∃ (N : CombMap.{v}) (ι : N.Dart → X.toCombMap.Dart) (l' Γ : List N.Dart),
+      N.IsPlanar ∧ l'.map ι = invDarts X ow ∧
+      (∀ (n : ℕ) (s t : List N.Dart) (c d : N.Dart), l'.rotate n = s ++ c :: d :: t →
+        WitnessStepGenusSucc N l' c d) ∧
+      N.IsFaceCycle Γ ∧ (∀ d ∈ l', d ∈ Γ) ∧
+      ∀ c ∈ l', ∀ d ∈ l',
+        (WitnessStepGenusBefore w' (ι c) (ι d) ↔ WitnessStepGenusBefore Γ c d) := by
+  have H : ∀ d ∈ ow, Surgery.MapCollapse.IsBoundaryDart X.toCombMap O d :=
+    fun d hd => isBoundaryDart_of_mem_cycle X.toCombMap O B d (hsub d hd)
+  have HB := isBoundaryDart_of_mem_cycle X.toCombMap O B
+  have hmap : (witnessStepBridge_liftList X.toCombMap O ow H).map Subtype.val =
+      invDarts X ow :=
+    witnessStepBridge_liftList_map X.toCombMap O ow H
+  have hΓmap : (witnessStepBridge_liftList X.toCombMap O B.cycle HB).map Subtype.val =
+      invDarts X B.cycle :=
+    witnessStepBridge_liftList_map X.toCombMap O B.cycle HB
+  refine ⟨witnessStepBridge_mirror (reclosedMap X.toCombMap O B),
+    (Subtype.val : KeptDart X.toCombMap O → X.toCombMap.Dart),
+    witnessStepBridge_liftList X.toCombMap O ow H,
+    witnessStepBridge_liftList X.toCombMap O B.cycle HB,
+    witnessStepBridge_mirror_planar _ (reclosedMap_planar X.toCombMap O B hwalk X.planar),
+    hmap, ?_, witnessStepBridge_reclosed_isFaceCycle X.toCombMap O B hwalk X.planar,
+    witnessStepBridge_liftList_subset X.toCombMap O ow B.cycle H HB hsub, ?_⟩
+  · intro n s t c d h
+    obtain ⟨m, hm, hσ, hnot⟩ := witnessStepBridge_turn E (witnessStepBridge_rotate_val hmap h)
+    exact witnessStepBridge_succ_of_turn X.toCombMap O B hwalk ow _
+      (witnessStepBridge_liftList_mem X.toCombMap O ow H) c d m hm hσ hnot
+  · intro c hc d hd
+    have hc1 : Subtype.val c ∈ invDarts X ow := by
+      rw [← hmap]
+      exact List.mem_map_of_mem hc
+    have hd1 : Subtype.val d ∈ invDarts X ow := by
+      rw [← hmap]
+      exact List.mem_map_of_mem hd
+    refine (hcompat _ hc1 _ hd1).trans ?_
+    rw [← hΓmap]
+    exact witnessStepBridge_before_map Subtype.val_injective
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepBridge_model
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
