@@ -38,4 +38,6 @@ What this route does not give:
   (`non-ibn-rational-hosts-have-infinite-elementary-centre`). So this does not reach
   `gl-n-q-embeds-in-fp-simple-group`.
 
-Status: the first requirement is OPEN pending review, so the target is not yet reached.
+Status: the first requirement passed three referees (see its node). `D` itself was reviewed
+only by `gq-referee-c`. The companion route `gl-n-q-explicit-via-st-4-of-resolvent-ring`
+uses the ring `R_L`, which `gq-referee-b` checked.
