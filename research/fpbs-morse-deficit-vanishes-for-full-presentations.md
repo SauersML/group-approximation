@@ -231,3 +231,24 @@ Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, 
 - *Not ruled out.* Balanced multi-letter matchings at any list. An attack on them needs the joint law of per-cell
   height vectors, not per-letter marginals.
 - *Status.* The node stays OPEN.
+
+### 2026-09-18 — swarm-0917-w10-w10-fp-pull (transplanter, calibration): the sharp test, one side kept, is a relative problem in F_2
+
+- *Artifact.* `research/artifacts/fpbs-amalgam-sharp-test-one-side-kept-2026-09-18.md`.
+- *Reduction (written deduction, Prop 1).* On `abaBabcdcDcd`, keep every `a`- and `b`-edge. Then `Phi_{a,b} ∪ F`
+  generates iff `F ∪ R_<v>` generates the restricted `F(c,d)`-Bernoulli relation, where `v = cdcDcd`. The proof is
+  normal-form induction on alternations. So this family reaches cost 3 iff `RC(v) = 1`. `RC(v)` is the relative
+  Cayley cost of `F(c,d)` over `<v>`, and `RC(v) >= 1`.
+- *Class kill (Prop 2).* Certificates of the form "one letter's edges plus sparse edges" need `<s, v>` of finite
+  index. By the Schreier rank formula that means `{s, v}` is a basis. `v` is Whitehead-minimal at cyclic length 5,
+  so it is not primitive (`experiments/fpbs-amalgam-sharp-test-2026-09-17/whitehead.py`), and the same holds for `u`.
+  The Morse form of this family is the `k = 3` single-letter matching, which w8 already killed.
+- *Where it dies.* The step "sparse edges join `<s,v>`-cosets" fails, because `<s,v>` has infinite index for both
+  letters on both sides.
+- *Pivot rejected.* The ascending-HNN overgroup `M` of `Gamma_mal` is `<b,t | [t, b^-1 t b t^-1 b^2]>`.
+  - Lemma B gives nothing about finiteness.
+  - The converse transfer needs an action-wise form of the OPEN
+    `fpbs-bounded-cost-outer-cyclic-extension-price-one`, which is circular for `Gamma_mal` (artifact §3).
+- *Not ruled out.* Matchings inside `F(c,d)` relative to `<v>` that vary position and use both letters. The cross-letter
+  need now lives in the rank-2 free group, with no `a` or `b`.
+- *Status.* The node stays OPEN.
