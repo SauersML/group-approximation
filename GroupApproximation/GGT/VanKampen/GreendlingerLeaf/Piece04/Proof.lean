@@ -11,8 +11,8 @@ The route, every arrow proved with no holes:
 
 * `Final.proof_of_windowShape` (module `Piece04.Final`) reduces GapSpan to
   `ClassPocketWindowShapeStatement`, through `proof_of_gapSpanResidual` (module
-  `Piece04.Reduction`), `rCell_of_windowShape` (module `Piece04.RotationTurns`) and `fullWordDiffKind` (module
-  `Piece04.FullWord`).
+  `Piece04.Reduction`), `rCell_of_windowShape` (module `Piece04.RotationTurns`) and
+  `fullWordDiffKind` (module `Piece04.FullWord`).
 * `WindowShape.Assembly.windowShape` (module `Piece04.WindowShape.AssemblyClosed`) proves
   `ClassPocketWindowShapeStatement`.
 

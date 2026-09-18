@@ -15,14 +15,16 @@ import GroupApproximation.Meta.AxiomGuard
 ## Carto re-audit (lane nm-chain-03)
 
 The three endpoints of `Manuscript/NonMF/ChainB/CoreRingReflectionAmplification.lean`
-(`manuscriptSentence_applyPrecedingArgumentToCornerMap`, `manuscriptSentence_matrixUnitsKillMatrixIdeal`,
+(`manuscriptSentence_applyPrecedingArgumentToCornerMap`,
+`manuscriptSentence_matrixUnitsKillMatrixIdeal`,
 `manuscriptSentence_matrixQuotientIsLEF`) were re-read against the built corpus: every name
 resolves (`isIdempotentElem_map_single_one`, `matrixUnitCornerHom`, `coe_matrixUnitCornerHom`,
-`isDedekindFiniteMonoid_corner`, `map_eq_zero_of_forall_entry_mem` in `Algebra/DirectlyFiniteCorner`;
-`CoreRingReflection.killsKernelOfDirectlyFinite_coreRestrict`; `ClopenCrossedProduct.transientIdeal`,
-`mem_transientIdeal` in `Dynamics/TransientIdealExact`; `ChainCore.coreModelsLEFStatement`;
-`Pestov91.IsLEFRing.matrix`), the matrix unit is `Matrix.single` (the v4.32.0 name, not the deprecated
-`stdBasisMatrix`), and the proof terms are the ones of the built `CoreRingReflectionProofClosed`.  No
+`isDedekindFiniteMonoid_corner`, `map_eq_zero_of_forall_entry_mem` in
+`Algebra/DirectlyFiniteCorner`; `CoreRingReflection.killsKernelOfDirectlyFinite_coreRestrict`;
+`ClopenCrossedProduct.transientIdeal`, `mem_transientIdeal` in `Dynamics/TransientIdealExact`;
+`ChainCore.coreModelsLEFStatement`; `Pestov91.IsLEFRing.matrix`), the matrix unit is
+`Matrix.single` (the v4.32.0 name, not the deprecated `stdBasisMatrix`), and the proof terms are
+the ones of the built `CoreRingReflectionProofClosed`.  No
 statement is false and no hypothesis beyond the printed setting is taken.
 
 One fidelity nit: the printed "Its quotient $M_m(R_Y)$" identifies `M_m(R_Y)` as the quotient of
@@ -74,11 +76,13 @@ theorem mapMatrix_coreRestrict_surjective
 its entries lie in the transient ideal `I = ker (R_X → R_Y)`. -/
 theorem mapMatrix_coreRestrict_eq_zero_iff
     {X : Type} [MetricSpace X] [CompactSpace X] [TotallyDisconnectedSpace X] (T : X ≃ₜ X)
-    (k : Type) [Field k] (m : ℕ) (M : Matrix (Fin m) (Fin m) (GroupApproximation.ClopenCrossedProduct T k)) :
+    (k : Type) [Field k] (m : ℕ)
+    (M : Matrix (Fin m) (Fin m) (GroupApproximation.ClopenCrossedProduct T k)) :
     (GroupApproximation.ChainCore.DynamicRankBudget.coreRestrict T k).mapMatrix M = 0 ↔
       ∀ i j, M i j ∈ GroupApproximation.ClopenCrossedProduct.transientIdeal T k
         (GroupApproximation.ChainCore.DynamicRankBudget.image_core T) :=
-  (mapMatrix_eq_zero_iff (Fin m) (GroupApproximation.ChainCore.DynamicRankBudget.coreRestrict T k) M).trans
+  (mapMatrix_eq_zero_iff (Fin m)
+      (GroupApproximation.ChainCore.DynamicRankBudget.coreRestrict T k) M).trans
     (forall_congr' fun i => forall_congr' fun j =>
       (GroupApproximation.ClopenCrossedProduct.mem_transientIdeal T k
         (GroupApproximation.ChainCore.DynamicRankBudget.image_core T)).symm)
