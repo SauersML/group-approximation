@@ -42,3 +42,22 @@ Observation 5.8 this is the descending link in the Stein–Farley complex.
     Warning: spheres around two loops are not preserved by cabling;
   - (R3) Abels–Holz higher generation by cabling subgroups;
   - (R4) comparison with Collins' marked cactus graphs.
+- 2026-09-17 (swarm-0917-w8-w8-z-last1): reduced to one open statement. See route
+  `loop-braid-desc-links-connected-via-forbidden-ring-coning` and artifact
+  `zp-loop-braid-forbidden-ring-push-reduction-2026-09-17.md`.
+  - **Family.** The forbidden-ring family is `X_n(F) = t^{-1}(OM(K_{[n]∖F}))`.
+  - **Proved.**
+    - Link Lemma: `lk(σ) ≅ X_{n−m}(F ∪ Fus_σ)`.
+    - Base cases for every n: connected for free count `N ≥ 5`, simply connected for `N ≥ 8`.
+    - A BFMWZ 3.10-style Morse filtration by use of the rings v, w, giving
+      `(X_n(F), Y)` `(min(c(N−2), c(N−3)) + 1)`-connected.
+  - **Hence.** `conn L_n(LB_*) ≥ ⌊(n−5)/3⌋` follows from the single open claim
+    `loop-braid-forbidden-ring-coning-statement`: Y is `η(N)`-connected, needed only in one
+    degree.
+  - **Push Lemma.** The naive Push Lemma "`X_n(F ∪ {v, w}) ↪ X_n(F)` is π-null" is equivalent to
+    the target, so it is not a reduction.
+  - **Computation (abelianized stabilizer colimits).** `Y` at free count 7 and `X_n(F)` at free
+    count 5 are not simply connected (3-torsion; claim
+    `loop-braid-free-count-five-not-simply-connected`).
+  - **Where the 2D proof breaks.** The BFMWZ cut-along-α∪α' step has no annulus analogue, because
+    of the clasp obstruction (artifact §7).
