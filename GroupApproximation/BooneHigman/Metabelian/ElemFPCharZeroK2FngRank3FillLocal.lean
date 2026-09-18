@@ -65,7 +65,7 @@ open scoped Classical in
 /-- The combing: `1` at `y₀`, otherwise a geodesic word from `y₀` to `y`. -/
 noncomputable def czK2FngRank3Fill_sigma (m p : ℕ) (y : czK2FngRank3Bld_X m p) :
     FreeGroup czK2FngRank3Bld_Letter :=
-  if y = QuotientGroup.mk 1 then 1 else
+  if y = (QuotientGroup.mk 1 : czK2FngRank3Bld_X m p) then 1 else
     FreeGroup.mk (Classical.epsilon fun l : List (czK2FngRank3Bld_Letter × Bool) ↦
       l.length = czK2FngRank3Fill_ht m p y ∧
         czK2FngRank3Bld_evE m p (FreeGroup.mk l) •
