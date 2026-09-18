@@ -7,8 +7,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 This module isolates the planar part of `PocketFourPieceInputProofResidualStatement`
 (`FourPieceInputProofStatement.lean`) for the witness
-`F = FourPieceWitness.witnessFaces a b K C.face` (`FourPieceWitnessDef.lean`).  The context is Osin, arXiv:math/0411039v3, §9, proof
-of Lemma 9.7(b).
+`F = FourPieceWitness.witnessFaces a b K C.face` (`FourPieceWitnessDef.lean`).  The context is
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 
 ## The statement
 
