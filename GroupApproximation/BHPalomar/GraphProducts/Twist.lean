@@ -223,8 +223,8 @@ theorem conj_inr_inl {N G : Type*} [Group N] [Group G] {φ : G →* MulAut N} (g
 /-- `π(y h y⁻¹)` is `h` in the second factor. -/
 theorem piHom_conj_y (h : H) :
     piHom (𝕪 * Coprod.inl h * 𝕪⁻¹ : TwP H) = SemidirectProduct.inl (CoprodI.of (i := true) h) := by
-  rw [map_mul, map_mul, map_inv, piHom_y, piHom_inl, conj_inr_inl, swapZ_one_apply, swapHom_of]
-  rfl
+  rw [map_mul, map_mul, map_inv, piHom_y, piHom_inl, conj_inr_inl, swapZ_one_apply, swapHom_of,
+    Bool.not_false]
 
 /-- Kill the first factor of `H ∗ H`. -/
 def killFalse : HH H →* H := CoprodI.lift fun b => bif b then MonoidHom.id H else 1

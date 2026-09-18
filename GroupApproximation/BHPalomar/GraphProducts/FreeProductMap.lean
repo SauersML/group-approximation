@@ -68,7 +68,8 @@ theorem lift_of_comp_injective (f : ∀ i, M i →* N i) (hf : ∀ i, Function.I
   have h1 : (wordMap f hf (Word.equiv a)).prod = (wordMap f hf (Word.equiv b)).prod := by
     rw [wordMap_prod, wordMap_prod, ha, hb, hab]
   have h2 : wordMap f hf (Word.equiv a) = wordMap f hf (Word.equiv b) :=
-    Word.equiv.symm.injective h1
+    Word.equiv.symm.injective (show Word.equiv.symm (wordMap f hf (Word.equiv a)) =
+      Word.equiv.symm (wordMap f hf (Word.equiv b)) from h1)
   have h3 : Word.equiv a = Word.equiv b := wordMap_injective f hf h2
   exact Word.equiv.injective h3
 

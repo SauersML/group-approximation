@@ -104,16 +104,16 @@ def relAut (H : Type) [Group H] (n : ℕ) : Subgroup (MulAut (Coprod H (FreeGrou
   carrier := {α | ∀ h : H, α (Coprod.inl h) = Coprod.inl h}
   mul_mem' := by
     intro a b ha hb
-    simp only [Set.mem_setOf_eq] at ha hb ⊢
+    show ∀ h : H, (a * b) (Coprod.inl h) = Coprod.inl h
     intro h
     rw [MulAut.mul_apply, hb h, ha h]
   one_mem' := by
-    simp only [Set.mem_setOf_eq]
+    show ∀ h : H, (1 : MulAut (Coprod H (FreeGroup (Fin n)))) (Coprod.inl h) = Coprod.inl h
     intro h
     exact MulAut.one_apply _
   inv_mem' := by
     intro a ha
-    simp only [Set.mem_setOf_eq] at ha ⊢
+    show ∀ h : H, a⁻¹ (Coprod.inl h) = Coprod.inl h
     intro h
     conv_lhs => rw [← ha h]
     exact MulAut.inv_apply_self a _
