@@ -54,8 +54,9 @@ theorem czTriOff_padHom_submatrix {ι κ R : Type*} [Fintype ι] [DecidableEq ι
     by_cases hab : a = b
     · subst hab
       rw [Matrix.one_apply_eq, Matrix.one_apply_eq]
-    · rw [Matrix.one_apply_ne hab,
-        Matrix.one_apply_ne (fun h' => hab (congrArg Subtype.val h'))]
+    · have hne : (⟨a, ha⟩ : {c : κ // c ∉ Set.range e}) ≠ ⟨b, hb⟩ :=
+        fun h' => hab (congrArg Subtype.val h')
+      rw [Matrix.one_apply_ne hab, Matrix.one_apply_ne hne]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czTriOff_padHom_submatrix
 
