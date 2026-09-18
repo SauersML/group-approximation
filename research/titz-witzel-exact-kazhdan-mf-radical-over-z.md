@@ -109,3 +109,27 @@ titz-witzel-exact-kazhdan-mf-radical-over-z-proof
   - *What remains.* Lower-bound `delta_t(k)` uniformly in `k` for tuples with a uniform Laplacian gap: a
     non-perturbative estimate. It must be operator-norm specific, because on this route `K` is also
     required to be sofic, and simple Kazhdan MF groups are hyperlinear.
+
+- **Non-residually-finite core of `K` (2026-09-17, swarm-0917 d-tfs-twex, calibration). Dead for the
+  whole subgroup-and-mark class.** The natural certificate for "`K` is not MF" is the Radu
+  product-of-trees core `π_1(S_R) ⊆ K`: it carries the non-residual finiteness of `K` and the mark
+  `(xz)^4`.
+  - *Result.* `radu-bmw-lattice-is-mf` (ESTABLISHED) proves that `Γ_R ⊇ π_1(S_R)` is MF. It uses the
+    new general theorem `free-generalized-wreath-over-residually-finite-group-is-mf` (ESTABLISHED):
+    `Z ≀^*_X Q` is MF for every countable residually finite `Q` and countable `Q`-set `X`, so every
+    free-kernel tree extension of a residually finite group is MF. The proof uses slow unitary bumps
+    along Schreier graphs of finite quotients.
+  - *Invariant.* A faithful norm-corona model of `Γ_R`. In it the relators are exact, `δ^4 != 1`, and
+    `[y δ^2 y, δ] != 1`.
+  - *Step where every member dies.*
+    - An argument that finds a non-MF subgroup, or a mark forced into `Rad_MF`, inside the core fails
+      at the core, which is MF.
+    - A robust transfer of Titz Mite--Witzel Prop. 3.4(4) with Lemma 3.5 ("commutator dies ⇒ mark
+      dies") dies at the collapse of `[y δ^2 y, δ]`, which is false in operator norm (item 3). By
+      `radu-mark-is-controlled-by-one-commutator`, every other step of that chain is quantitative in
+      any bi-invariant metric.
+    - Combined with wave 4 (no compression defects) and wave 5 (no perturbative mechanisms), the
+      open clause needs input from the building outside `π_1(S_R)`, or from property (T) of `K`
+      used non-perturbatively.
+  - *What survives.* The Hamming form `radu-commutator-collapse` is untouched: the corona models
+    separate at a vanishing fraction of the coordinates. The claim stays OPEN.
