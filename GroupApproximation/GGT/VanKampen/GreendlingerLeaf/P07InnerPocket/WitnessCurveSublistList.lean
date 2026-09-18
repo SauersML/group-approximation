@@ -19,7 +19,7 @@ Certifies no printed sentence on its own.
   step, and the forward steps chain to a sublist.
 -/
 
-namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList
 
 variable {α : Type*}
 
@@ -29,7 +29,7 @@ def StepNext (w l : List α) (x y : α) : Prop :=
   (∃ u v z : List α, w = u ++ x :: (v ++ y :: z)) ∨
     ∃ u z : List α, w = u ++ y :: z ∧ ∀ t ∈ u, t ∉ l
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.StepNext
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.StepNext
 
 /-- A step relation for `l` is one for any list whose entries lie in `l`. -/
 theorem StepNext.mono {w l m : List α} {x y : α} (hm : ∀ e ∈ m, e ∈ l)
@@ -38,7 +38,7 @@ theorem StepNext.mono {w l m : List α} {x y : α} (hm : ∀ e ∈ m, e ∈ l)
   · exact Or.inl h
   · exact Or.inr ⟨u, z, hw, fun t ht htm => hu t ht (hm t htm)⟩
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.StepNext.mono
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.StepNext.mono
 
 /-- In a duplicate-free word, the position of an entry is unique. -/
 theorem append_cons_inj_of_nodup {x : α} {u u' r r' : List α} (hw : (u ++ x :: r).Nodup)
@@ -65,7 +65,7 @@ theorem append_cons_inj_of_nodup {x : α} {u u' r r' : List α} (hw : (u ++ x ::
       obtain ⟨hu, hr⟩ := ih (List.nodup_cons.mp hw).2 h2
       exact ⟨by rw [hcc, hu], hr⟩
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.append_cons_inj_of_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.append_cons_inj_of_nodup
 
 /-- A word that meets `l` has a first entry in `l`. -/
 theorem exists_first_entry {l w : List α} (h : ∃ x ∈ l, x ∈ w) :
@@ -90,7 +90,7 @@ theorem exists_first_entry {l w : List α} (h : ∃ x ∈ l, x ∈ w) :
         exact hc
       · exact hu t h'
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.exists_first_entry
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.exists_first_entry
 
 /-- The first entry of a word in `l` is unique. -/
 theorem first_entry_unique {l z z' : List α} {y y' : α} {u u' : List α}
@@ -117,7 +117,7 @@ theorem first_entry_unique {l z z' : List α} {y y' : α} {u u' : List α}
       exact ih (List.cons_eq_cons.mp h).2 (fun t ht => hu t (by simp [ht]))
         (fun t ht => hu' t (by simp [ht]))
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.first_entry_unique
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.first_entry_unique
 
 /-- **Forward steps chain to a sublist.**  If `y` sits in `w` before `z`, and every consecutive
 pair of `y :: l` is a forward step of the duplicate-free word `w`, then `y :: l <+ y :: z`. -/
@@ -139,6 +139,6 @@ theorem sublist_of_forward {w : List α} (hw : w.Nodup) :
     rw [hz]
     exact List.cons_sublist_cons.mpr (hsub.trans (List.sublist_append_right v _))
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep.sublist_of_forward
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.sublist_of_forward
 
-end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.CurveStep
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList
