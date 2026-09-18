@@ -13,8 +13,8 @@ This module shrinks the family of elements on which that local condition has to 
 
 * `czNK2_ConeOverStatement A`: the local condition, but only for the **cone images**
   `w = j(ι v)`, where `v ∈ K₂(n + 5, A[s_0..s_n])` is killed by every `π_i`, `ι` pads the rank
-  once to `n + 6`, and `j : s_0 ↦ s_0 s_{n+1}` is the cone of `ElemFPCharZeroK2CubeResidueFieldCone`.
-  These `w` live at `k = n + 1` base variables and the minimal rank `n + 6 = k + 5`.
+  once to `n + 6`, and `j : s_0 ↦ s_0 s_{n+1}` is the cone of module
+  `ElemFPCharZeroK2CubeResidueFieldCone`.  These `w` live at `k = n + 1` base variables and the minimal rank `n + 6 = k + 5`.
 * `czNK2_dies_of_coneOver`: every cube element `v` at rank `n + 5` dies after padding.  Quillen
   patching (`cubeNilField_dies_of_local`) kills `w`, using `hres` (every maximal ideal contains a
   rational prime) to reach the residual; the retraction `s_{n+1} ↦ 1` of the cone carries the death
@@ -33,8 +33,8 @@ proved below.  No statement `S` with `S → CZCubeResFieldStatement` proved can 
 logically.  The residual is **strictly smaller in proof content**: it is the sub-family of
 `CZCubeResFieldOverStatement` at `(k, N) = (n + 1, n + 6)` made of the elements `j(ι v)`.  Those
 elements come from one rank lower (`n + 5`), depend on `s_0` only through `s_0 s_{last}`, and are
-also killed by `s_{last} ↦ 0`.  The local condition on all other cube elements, including the
-`n = 0` input `k = 0` that bh-met-81 obtained by coning, is derived here.
+also killed by `s_{last} ↦ 0`.  The local condition on every other cube element at minimal rank
+is derived here: each such `u` (at `k` base variables) is itself a `v` with `n = k`, so it dies.
 
 The target is **not** proved.  Its content is Quillen's `NK₂ = 0` for the regular ring
 `ℤ[1/m][s_1..s_k]`, locally at `𝔪`.  Every `B_𝔪` here has Krull dimension at least 2, so there
