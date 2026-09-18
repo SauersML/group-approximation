@@ -69,7 +69,7 @@ route.
 | `P06Assembly.greendlinger_of_frontier` (Waist:101) | D: consumes the vacuous one |
 | `P06Assembly.proof_of_innerPocketEnclosed_of_bypass` (Proof:70) | D: same |
 | producers in P07InnerPocket (Assembly:44,85, LakeReadFixRoute:55, …) | D: target is false |
-| `Full.GL06.relativeGreendlinger_of_allCells_of_core` (GL06/Assembly; now conditional) | A: see below |
+| `Full.GL06.relativeGreendlinger_of_allCells_of_core` (GL06/Assembly, conditional) | A: below |
 
 The P06Bypass rows are marked R because `GL06e.CellPocketWalkRefutedBelowSectionStatement` has the
 same body as `P06Bypass.CellPocketWalkRefutedBelowSectionStatement`.  So
