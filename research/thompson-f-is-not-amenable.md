@@ -183,6 +183,18 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     example `{x_a x_b x_c : a <= 2, b <= 3, c <= 4}`, where none appears through `D = 10`. Degree-one sets
     with gaps have cores at `D = |J| − 1` (computed), but the block construction does not cover them.
   (c-pz0, obstruction-miner, host-geometry.)
+- **Invariant pivot orders.** A pivot-order certificate
+  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`) is killed when the order is
+  left- or right-invariant on `F`, for every finite set
+  (`thompson-f-invariant-pivot-orders-cannot-certify-doubling`). The step where it fails: two private
+  points at `m` force a two-sided descent `g m ≺ m ≻ g^-1 m` with `g ∈ S^-1 S \ {1}`. Invariance turns
+  this into `c ≺ 1` and `c^-1 ≺ 1`. The failure occurs at any deep `m`, where all competitors are
+  positive, and deep elements exist by common right multiples.
+  - An order that first compares a bi-ordered quotient only certifies one fiber of `S`, which must
+    itself double and have at least four elements.
+  - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
+    maximum.
+  - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
