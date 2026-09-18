@@ -81,3 +81,14 @@ scale, closed under the completion that produces the far-away part of `y`. That 
 same small-library, cross-depth locality that `annular-free-product-germ-hosts-are-not-finitely-presented`
 (bh-free-22) and the master route's conjecture G2-fp ask for, now in its simplest
 (single-point, zero-dimensional) form.
+
+**Proved at design level (2026-09-18, bh-g1-simulation; unreviewed):**
+route `universal-hyperaperiodic-points-via-decidable-free-subshifts`.
+- It holds for every infinite finitely generated group with solvable word problem, including
+  `St_10(R_L)`, Thompson's `V` and Clapham envelopes.
+- The library-closure obstacle of Attempt 1 disappears. The library is the whole language of a
+  free subshift built from nested maximal separated markers with locally distinct identifiers
+  (`decidable-groups-carry-flexible-free-subshifts`). That language is closed
+  under completion by construction, and it is decidable because greedy marker systems have no
+  dead ends beyond a computable horizon.
+- The critical step for review is lemma (E) of `identifier-markers-give-decidable-free-subshifts`.

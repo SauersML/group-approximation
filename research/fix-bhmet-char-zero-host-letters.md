@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-char-zero-host-letters
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters: failed to compile definition, consider marking it as 'noncomputable' ..."
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:115:4
 error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:123:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.nonAssocSemiring', which is '
 error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:141:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputabl
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-char-zero-host-letters`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

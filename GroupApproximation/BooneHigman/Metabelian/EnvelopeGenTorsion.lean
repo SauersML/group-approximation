@@ -57,7 +57,7 @@ theorem gentorsion_mem_closure_image {G A B : Type*} [Group G] [Group A] [Group 
     rw [hS]
     exact Subgroup.mem_top x
   have e := Subgroup.mem_map_of_mem (g.comp f) hx
-  rw [Subgroup.map_closure, MonoidHom.coe_comp, Set.image_comp] at e
+  rw [MonoidHom.map_closure, MonoidHom.coe_comp, Set.image_comp] at e
   exact e
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_mem_closure_image
@@ -111,7 +111,7 @@ theorem rnGeneratorTorsion_of_vPerfect (hperf : GenTorsionVPerfectStatement) :
         gentorsionGens H S a) ≤
       (powMonoidHom 2 :
         Abelianization ↥(envelopeV X H) →* Abelianization ↥(envelopeV X H)).range := by
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨t, ht | ht, rfl⟩
     · obtain ⟨k, -, rfl⟩ := ht
       exact gentorsion_loc_sq hVc hH [] k

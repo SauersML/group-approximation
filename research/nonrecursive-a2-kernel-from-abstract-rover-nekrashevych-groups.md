@@ -8,7 +8,7 @@ requires:
   - abstract-rover-nekrashevych-groups-are-finitely-presented
 ---
 
-Lane proof by bh-ffwz-q59, 2026-09-18. It is not reviewed and no priority is claimed.
+Lane proof by bh-ffwz-q59, 2026-09-18. One referee PASS (bh-ref-ffwz, see Referee below); no priority is claimed.
 
 **Literature input.** L. Bartholdi and I. Mitrofanov, *The word and order problems for
 self-similar and automata groups*, arXiv:1710.10109v4, Theorem A″ (p. 2, read from the arXiv
@@ -127,3 +127,41 @@ structure of the actors it removes kernels from. For the Theorem C actors of fin
 presented simple groups, that structure is mixed identities: the question becomes whether
 those kernels are recursive and their images lie in the permutational class. General actors
 are out of reach.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS
+
+- **Literature input verified at source.** I read the arXiv:1710.10109 TeX source (label
+  `thm:wp_uniform`). Theorem A″ reads verbatim: "There is a functionally recursive group
+  ⟨Φ⟩ with Φ: A×S→F_S×A such that {s∈F_S | s=1 in ⟨Φ⟩} is not recursive". ⟨Φ⟩ is F_S modulo
+  the kernel of the action (eq:action) on A*, exactly as used.
+- **Step 0 (a small precision to add).** In the left action `ℓ(g)(u) = u^{g^{-1}}`, the letter
+  permutation is `π_s = σ_s^{-1}`, where `σ_s` is the first-letter map of `s`. The state at `i`
+  is the Φ-state of `s` at `σ_s^{-1}(i)`. With that, ρ_ψ and ℓ agree by induction on word
+  length (generators, then products), so `N = ker ρ_ψ` is the Bartholdi–Mitrofanov kernel.
+  `|A| ≥ 2` is needed for `V_d`, and holds for any nontrivial table.
+- **Step 2, type [A_2].** Checked against the FFWZ definition read in their TeX source: `F_n`
+  group, `Stab(T)` of type `F_{n−|T|}`, finitely many orbits on `S^n`.
+  - The pattern count 7·(d−1)^4 is correct: 7 emptiness patterns.
+  - The one-orbit-per-pattern argument is correct.
+  - The splitting `P_U = D(U) × D(U^c)` is correct, since image cones of a table are exactly
+    the `C(β(p))`.
+  - The generation of `D(Y)` is correct.
+- **Step 3.** It is correct: `r` is a computable homomorphism, `r(f) ∈ K ⇔ f ∈ N`, and K
+  would be recursive otherwise.
+- **Consequence 2 checked.** The chain through `non-removable-a2-kernel-from-nonrecursive-kernel`
+  and `a2-kernel-removal-forces-recursive-kernel` (b) is correct: an embedding into an fp
+  `G'` with finitely normally generated `K'` makes `K` r.e., and it is co-r.e. by (a). Only the
+  equality reading of "sharply embeds" for pairs is used (see the next paragraph).
+- **Reading of the question.** FFWZ Q5.9, arXiv:2603.24687v2 TeX `quest:relBH_to_BH`,
+  verbatim: "For G↷S an action of type [A_2] with kernel K, does there always exist an action
+  G'↷S' of type [A_2] with kernel K' finitely normally generated, such that (G,K) sharply
+  embeds in (G',K')? Does every finitely presented relatively simple (G,N) sharply embed in a
+  finitely presented relatively simple (G',N') such that N' is finitely normally generated
+  in G'?"
+  - "Sharply embeds" is defined in their Definition 1.6 only for a group into a pair.
+  - For pairs, I read it, as the lane did, as their "embeds" (`ι(G) ∩ N' = ι(N)`). That is how
+    they use it in Lemma 5.2.
+  - The answer "no" is for that reading.
+- **Not checked.** Consequence 4 (non-fp point stabilizers of `P/K`) was not verified.
+- **Credit.** The undecidability is entirely Bartholdi–Mitrofanov's, built on Minsky machines.
+  This node packages it into an oligomorphic finitely presented action.
