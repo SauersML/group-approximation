@@ -92,10 +92,14 @@ theorem suslinR2_blockLocal_of_stabLocal {A : Type*} [CommRing A] {N : ℕ}
   have hb : IsCoordinateBlock r (elementaryMatrixUnitMap (ι := Fin N)
       (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) τ * F) := hblock
   refine h τ hdet h0 𝔪 h𝔪 F hF r fun c ↦ ?_
-  rw [hb.1 c]
+  have hc1 := hb.1 c
   by_cases hc : c = r
-  · rw [if_pos hc.symm, if_pos hc]
-  · rw [if_neg (Ne.symm hc), if_neg hc]
+  · rw [if_pos hc.symm] at hc1
+    rw [if_pos hc]
+    exact hc1
+  · rw [if_neg (Ne.symm hc)] at hc1
+    rw [if_neg hc]
+    exact hc1
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2_blockLocal_of_stabLocal
 

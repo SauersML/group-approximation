@@ -103,3 +103,51 @@ theorem nk2Core_sliceRetract_comp_cone (n : ℕ) :
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Core_sliceRetract_comp_cone
 
 end Slice
+
+section Natural
+
+variable {B B' : Type*} [CommRing B] [CommRing B']
+
+/-- `f[t][y] ∘ σ_a = σ_{f a} ∘ f[t]`. -/
+theorem nk2Core_mapMap_comp_shift (f : B →+* B') (a : B) :
+    (Polynomial.mapRingHom (Polynomial.mapRingHom f)).comp (quillenShift B a) =
+      (quillenShift B' (f a)).comp (Polynomial.mapRingHom f) :=
+  Polynomial.ringHom_ext
+    (fun b ↦ by
+      simp only [RingHom.comp_apply, quillenShift_C, Polynomial.coe_mapRingHom, Polynomial.map_C])
+    (by
+      simp only [RingHom.comp_apply, quillenShift_X, Polynomial.coe_mapRingHom,
+        Polynomial.map_add, Polynomial.map_mul, Polynomial.map_C, Polynomial.map_X])
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Core_mapMap_comp_shift
+
+/-- `f[t][y] ∘ C = C ∘ f[t]`. -/
+theorem nk2Core_mapMap_comp_C (f : B →+* B') :
+    (Polynomial.mapRingHom (Polynomial.mapRingHom f)).comp
+        (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) =
+      (Polynomial.C : Polynomial B' →+* Polynomial (Polynomial B')).comp
+        (Polynomial.mapRingHom f) :=
+  RingHom.ext fun g ↦ by
+    simp only [RingHom.comp_apply, Polynomial.coe_mapRingHom, Polynomial.map_C]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Core_mapMap_comp_C
+
+/-- Naturality of the Quillen difference: `f[t][y] (v_a(u)) = v_{f a}(f[t] u)`. -/
+theorem nk2Core_K2Map_quillenDiff {N : ℕ} (f : B →+* B') (u : K2 (Fin N) (Polynomial B))
+    (a : B) :
+    K2Map (Polynomial.mapRingHom (Polynomial.mapRingHom f)) (quillenDiff u a) =
+      quillenDiff (K2Map (Polynomial.mapRingHom f) u) (f a) := by
+  rw [quillenDiff, quillenDiff, map_mul, map_inv,
+    K2Map_K2Map (Polynomial.mapRingHom (Polynomial.mapRingHom f)) (quillenShift B a),
+    K2Map_K2Map (Polynomial.mapRingHom (Polynomial.mapRingHom f))
+      (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)),
+    nk2Core_mapMap_comp_shift, nk2Core_mapMap_comp_C,
+    K2Map_K2Map (quillenShift B' (f a)) (Polynomial.mapRingHom f),
+    K2Map_K2Map (Polynomial.C : Polynomial B' →+* Polynomial (Polynomial B'))
+      (Polynomial.mapRingHom f)]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Core_K2Map_quillenDiff
+
+end Natural
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

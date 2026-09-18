@@ -87,16 +87,16 @@ theorem suslinR2_block_core (T : (Matrix ι ι (Polynomial B))ˣ)
   have hD0E : D0 ∈ elementaryGroup ι B := by
     rw [← hD0, ← hM, map_mul, map_mul, hT0, one_mul]
     exact Subgroup.mul_mem _
-      (elementaryGroup_map_le (Polynomial.constantCoeff (R := B))
+      (elementaryGroup_map_le (ι := ι) (Polynomial.constantCoeff (R := B))
         (Subgroup.mem_map_of_mem _ hF))
-      (elementaryGroup_map_le (Polynomial.constantCoeff (R := B))
+      (elementaryGroup_map_le (ι := ι) (Polynomial.constantCoeff (R := B))
         (Subgroup.mem_map_of_mem _ hP))
   have hD0B : D0 ∈ coordinateBlock B r := by
     rw [← hD0]
     exact suslinR2_map_mem_coordinateBlock _ hMP
   refine ⟨F * P * elementaryMatrixUnitMap (Polynomial.C (R := B)) D0⁻¹,
     Subgroup.mul_mem _ (Subgroup.mul_mem _ hF hP)
-      (elementaryGroup_map_le (Polynomial.C (R := B))
+      (elementaryGroup_map_le (ι := ι) (Polynomial.C (R := B))
         (Subgroup.mem_map_of_mem _ (inv_mem hD0E))), ?_, ?_⟩
   · rw [← mul_assoc, ← mul_assoc, hM]
     exact Subgroup.mul_mem _ hMP (suslinR2_map_mem_coordinateBlock _ (inv_mem hD0B))
