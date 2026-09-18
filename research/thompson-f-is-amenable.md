@@ -324,3 +324,19 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
   - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
     surviving cubical route to exactness, and it is not a route to amenability.
+- **Explicit spectral test vectors (swarm-0917-w13-w13-f-break, 2026-09-18, census-computation).**
+  Amenability is `||P|| = 1`, so the approach is to push certified Rayleigh quotients toward 1.
+  - *Established:* `thompson-f-norm-bound-from-forest-renewal-test-vector`, `||P|| > 0.9397`.
+    - The certificate is one nonnegative product-form vector on pointed-forest windows of `F`.
+    - It is evaluated exactly by a renewal recursion, with no moment data.
+    - It beats the moment-route optimum `0.9107`.
+    - It puts the reduced cogrowth above `2.6088`, outside ERJvR's published estimate `2.53±0.03`.
+  - *Belief change:* the numerical case for non-amenability rested on `||P|| ≈ 0.93`, and that support
+    is gone. The float optimum of the ansatz family still rises with the tree-size cutoff:
+    `0.8777, 0.9118, 0.9290, 0.9400` at `N = 9, 20, 40, 80`.
+  - *Invariant:* the bulk-tree size law of the optimiser, with mean `7.45` at `N = 40` and `12.57`
+    at `N = 80`.
+  - *Dies at:* every finitely supported certificate is strictly below 1. `Kf = 4f` forces `f` to be
+    constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
+  - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
+    that is, whether the optimal tree-size law escapes to infinity.
