@@ -91,3 +91,55 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides OuterPinchIsolated
+open scoped Classical
+
+/-- **The uncut rose step when every competing pocket is stuck** (OPEN residual).  The hypotheses
+of `CellRoseUncutStatement`, with `AllNonFirstTurnsCrossed K ∧ ¬ CellCut K` (and the absence of
+an in-place move) replaced by `p06RoseRedraw_AllStuck K`. -/
+def p06RoseRedraw_RoseStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (i j : Fin X.rCellCount),
+    i ≠ j → X.LeastArea → (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : CellPocketFaceSet D eps X i j, K.ClosedWalk → ¬ K.FirstTurns →
+      K.firstArc.length < (cellDarts X i).length →
+      K.secondArc.length < (cellDarts X j).length →
+      ¬Unpinched X.toCombMap K.faces → p06RoseRedraw_AllStuck K →
+        ∃ (X' : DiscDiagram.{u, w, v} W) (i' j' : Fin X'.rCellCount)
+          (K' : CellPocketFaceSet D eps X' i' j'),
+          Nonempty (OEquivalentDiscDiagram X X') ∧
+            (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧ i' ≠ j' ∧
+            K'.ClosedWalk ∧ K'.firstArc.length < (cellDarts X' i').length ∧
+            K'.secondArc.length < (cellDarts X' j').length ∧
+            K'.repeatedVisits < K.repeatedVisits
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseRedraw_RoseStatement
+
+/-- **The uncut rose step without a move, from the residual**: by cases on whether every
+competing pocket is stuck. -/
+theorem p06RoseRedraw_noMove_of_rose (h : p06RoseRedraw_RoseStatement.{u, w, v}) :
+    p06RoseUncut_NoMoveStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j hij hlea hlabel K hK hnft hfirst hsecond hpinch _ _ _
+  by_cases hall : p06RoseRedraw_AllStuck K
+  · exact h D eps X i j hij hlea hlabel K hK hnft hfirst hsecond hpinch hall
+  · exact p06RoseRedraw_step_notAll hlabel K hall
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseRedraw_noMove_of_rose
+
+/-- **The residual follows from the target**: `p06RoseRedraw_AllStuck K` at `K₂ = K` gives the
+three hypotheses it replaces.  So the residual is not stronger than the target. -/
+theorem p06RoseRedraw_rose_of_noMove (h : p06RoseUncut_NoMoveStatement.{u, w, v}) :
+    p06RoseRedraw_RoseStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j hij hlea hlabel K hK hnft hfirst hsecond hpinch hall
+  obtain ⟨hrose, hcut, hmove, -⟩ := hall i j K hij hK hfirst hsecond le_rfl
+  exact h D eps X i j hij hlea hlabel K hK hnft hfirst hsecond hpinch hrose hcut hmove
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseRedraw_rose_of_noMove
+
+/-- **The uncut rose step from the residual**, through `p06RoseUncut_cellRoseUncut_of_noMove`. -/
+theorem p06RoseRedraw_uncut_of_rose (h : p06RoseRedraw_RoseStatement.{u, w, v}) :
+    CellRoseUncutStatement.{u, w, v} :=
+  p06RoseUncut_cellRoseUncut_of_noMove (p06RoseRedraw_noMove_of_rose h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseRedraw_uncut_of_rose
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
