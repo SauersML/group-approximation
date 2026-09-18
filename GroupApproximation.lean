@@ -5992,6 +5992,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProduct
 import GroupApproximation.Manuscript.NonMF.Full.GL03D.KeptWalk
 import GroupApproximation.Manuscript.NonMFNotes.Full.CommNuclear.Unital
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Carrier
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtStable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
