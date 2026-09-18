@@ -100,3 +100,42 @@ partial, not a proof.
     orthocomplement close to an exact packet.  It is the one remaining gap
     between `(TPC)` and the `k=0` question, and it is itself a special case
     of the `k=0` question.  The hole stays OPEN.
+
+2026-09-18, swarm-0917-w12 (operator-algebras, belief breaker).  Partial
+result; the node stays OPEN.
+
+- *Conjugator half on separated spectra: established.*
+  `bs12-separated-doubling-spectra-correct-conjugators-unpadded` proves the
+  following.  If `spec B'` is squaring-invariant and `gamma`-separated, then
+  pinching `A` along `E_(B'^2)` and `E_(B')` and taking the polar part gives an
+  exact `C` with `||C-A|| <= 7 eta/min(gamma,1)`, with `k=0` and `B'` fixed.
+  The tool is a Wiener-norm Schur multiplier for `1/(y-z)`.  So `(TPC)` holds
+  with `k=0` whenever the shadowed spectrum has bounded doubling period
+  (`epsilon = O(4^L delta)`).
+- *The ratio is sharp: the base must move.*  Take `A_s = W exp(is(V+V^*))`,
+  `B = D` (clock), `W D W^* = D^2`, `N` odd.  Then `eta <= 2 s gamma` and
+  `delta = O(s/N) -> 0`.  Yet every exact `C` with `C D C^* = D^2` is at least
+  `~|J_1(2s)|/2` from `A_s`, uniformly in `N`.  So "fix `B'`, correct `A`" is a
+  dead approach exactly when `eta/gamma` is not small.  Any proof of `(TPC)`
+  must move the spectrum of `B'` on long periodic orbits.
+- *Dead scheme.*  Keeping `C = A_s` and solving `Z = sqrt(A Z A^*)` by
+  iteration, choosing on each eigenspace the root nearest to the current `Z`,
+  fails even at `s = 0.05`.  At `N = 27` the residual is `0.16` and
+  `||Z-D||` is `1.95` (`experiments/bs12-fourier-twist-2026-09-17/probe.py`).
+  The branch choice cannot be continuous.  A positively expansive
+  homeomorphism lives only on a finite space, so there is no continuous,
+  near-identity, doubling-equivariant coarsening of a fine spectrum.  This
+  scheme says nothing about whether `(A_s, D)` is correctable.
+- *Open test family.*  `(A_s, D)` for fixed `s` and `N -> infinity` (`3 | N`)
+  is the sharp test for `(TPC)` and ESS Q3.  In the Fourier basis, `A_s` is
+  a weighted doubling with multiplier `phi(m) = e^(2is cos(2 pi m/N))`.  The
+  Livsic holonomy `phi(0)^2 / (phi(N/3) phi(2N/3)) = e^(6is)` rules out
+  first-order gauge corrections `(U A_s U'^*, U D U^*)`, unless
+  `e^(6is) = 1`.  The linear functional
+  `Phi(Y) = <f_0,Y f_0> - (<f_(N/3),Y f_(N/3)> + <f_(2N/3),Y f_(2N/3)>)/2`
+  vanishes on linear coboundaries and has `Phi(s(V+V^*)) = 3s`.  This is only
+  a linearization at `(W, D)`.  Exact pairs whose `Z` has a different, long
+  period spectrum within `O(s)` are not excluded, so belief on this family is
+  unresolved.  A proof that every exact pair stays `c(s) > 0` away would refute
+  ESS Q3.  An explicit spectrum-changing correction would be the first case of
+  `(TPC)` in the regime `eta ~ gamma`.
