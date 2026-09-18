@@ -79,7 +79,9 @@ theorem suslinLocalCase_of_locallyElementary {A : Type*} [CommRing A] {N : ℕ}
         (elementaryMatrixUnitMap (ι := Fin N)
           (Polynomial.mapRingHom (algebraMap A (Localization.Away a))) τ) ∈
       elementaryGroup (Fin N) (Polynomial (Localization.AtPrime 𝔪)) :=
-    elementaryGroup_map_le (ι := Fin N) _ (Subgroup.mem_map_of_mem _ hmem)
+    elementaryGroup_map_le (ι := Fin N)
+      (Polynomial.mapRingHom (suslinLocalCase_toLoc (Localization.AtPrime 𝔪) ha'))
+      (Subgroup.mem_map_of_mem _ hmem)
   rwa [suslinLocalCase_map_poly_comp, suslinLocalCase_toLoc_comp] at hmap
 
 #audit_axioms

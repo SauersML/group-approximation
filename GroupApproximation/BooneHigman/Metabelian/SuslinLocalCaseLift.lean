@@ -72,8 +72,12 @@ theorem suslinLocalCase_lift_of_mem (S : Type*) [CommRing S] [Algebra A S]
           (Polynomial.mapRingHom (suslinLocalCase_trans (dvd_mul_right a b))) e *
         elementaryMatrixUnitMap (ι := Fin N)
           (Polynomial.mapRingHom (suslinLocalCase_trans (dvd_mul_left b a))) f,
-      mul_mem (elementaryGroup_map_le (ι := Fin N) _ (Subgroup.mem_map_of_mem _ he))
-        (elementaryGroup_map_le (ι := Fin N) _ (Subgroup.mem_map_of_mem _ hf)), ?_⟩
+      mul_mem (elementaryGroup_map_le (ι := Fin N)
+          (Polynomial.mapRingHom (suslinLocalCase_trans (dvd_mul_right a b)))
+          (Subgroup.mem_map_of_mem _ he))
+        (elementaryGroup_map_le (ι := Fin N)
+          (Polynomial.mapRingHom (suslinLocalCase_trans (dvd_mul_left b a)))
+          (Subgroup.mem_map_of_mem _ hf)), ?_⟩
     rw [map_mul, suslinLocalCase_map_poly_comp, suslinLocalCase_map_poly_comp,
       suslinLocalCase_toLoc_comp_trans S ha (M.mul_mem ha hb) (dvd_mul_right a b),
       suslinLocalCase_toLoc_comp_trans S hb (M.mul_mem ha hb) (dvd_mul_left b a)]
@@ -107,7 +111,9 @@ theorem suslinLocalCase_away_of_loc (S : Type*) [CommRing S] [Algebra A S]
   have h := hbP b dvd_rfl
   rw [suslinLocalCase_map_poly_comp, suslinLocalCase_trans_comp] at h
   rw [h]
-  exact elementaryGroup_map_le (ι := Fin N) _ (Subgroup.mem_map_of_mem _ he)
+  exact elementaryGroup_map_le (ι := Fin N)
+    (Polynomial.mapRingHom (suslinLocalCase_trans (dvd_mul_right a b)))
+    (Subgroup.mem_map_of_mem _ he)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_away_of_loc
 
