@@ -57,7 +57,9 @@ theorem higmanVCTauSplit_val_fuel {d : ℕ} (hd : 1 < d) :
         by_cases h2 : ¬ (v, w).1 <+: (v, w).2 ∧ ¬ (v, w).2 <+: (v, w).1
         · have h1' : ¬ (v.length ≤ 3 ∧ w.length ≤ 3) := h1
           have hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2) := by omega
-          have hl := higmanVCTauSplit_pair_len hd h2.1 h2.2 hs
+          have hvw : ¬ v <+: w := h2.1
+          have hwv : ¬ w <+: v := h2.2
+          have hl := higmanVCTauSplit_pair_len hd hvw hwv hs
           rw [if_pos h2, if_pos h2,
             ih k (higmanVCTau_pX (v, w)) (higmanVCTau_pY (v, w)) (by omega) (by omega)]
         · rw [if_neg h2, if_neg h2]
