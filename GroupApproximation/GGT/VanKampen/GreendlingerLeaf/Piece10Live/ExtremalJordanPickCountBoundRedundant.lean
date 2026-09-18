@@ -106,6 +106,7 @@ theorem extremalJordanPickCountBound_inv_step [DecidableEq M.Dart] (hnodup : c.N
       (M.vertexOf (M.alpha d₁)) ((walkMap M c).sigma z) := by
   have hnot : ∀ d ∈ c, M.alpha d ∉ c := fun d hd hα => ((hc d).mp hd).2 ((hc _).mp hα).1
   have hvσ := extremalJordanPickCountBound_vertexOf_sigma M c z
+  unfold extremalJordanPickCountBound_inv at hz ⊢
   rcases hz with hg | ⟨hvx, ⟨hz, hE⟩ | ⟨hz, hE⟩⟩
   · exact Or.inl hg
   · obtain ⟨d, hd, hnext⟩ : ∃ d, ∃ hd : d ∈ c, c.next d hd = z.1 :=
@@ -137,6 +138,61 @@ theorem extremalJordanPickCountBound_inv_step [DecidableEq M.Dart] (hnodup : c.N
     exact Or.inr ⟨hvσ.trans hvx, Or.inl ⟨hmem,
       Relation.EqvGen.trans _ _ _ hE (extremalJordanPickCountBound_eqvGen_mono hFC hW)⟩⟩
 
+/-- **The last passage at an all-free vertex is redundant.** -/
+theorem extremalJordanPickCountBound_redundant [DecidableEq M.Dart] (hnodup : c.Nodup)
+    (hvn : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (c.next d hd))
+    (faces : Finset M.Face)
+    (hc : ∀ d, d ∈ c ↔ M.faceOf d ∈ faces ∧ M.faceOf (M.alpha d) ∉ faces)
+    (R' : M.Dart → M.Dart → Prop)
+    (hFC : ∀ a b, CombMap.FaceClassStep M (walkKeep M c) a b → R' a b)
+    {d₁ : M.Dart} (hd₁ : d₁ ∈ c)
+    (hsf : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d₁) →
+      SectorNoninterleaving.SectorFree M c (c.next d hd) (M.alpha d))
+    (hlink : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d₁) → d ≠ d₁ →
+      Relation.EqvGen R' d (c.next d hd)) :
+    Relation.EqvGen R' d₁ (c.next d₁ hd₁) := by
+  have hnot : ∀ d ∈ c, M.alpha d ∉ c := fun d hd hα => ((hc d).mp hd).2 ((hc _).mp hα).1
+  have hzn : walkKeep M c (c.next d₁ hd₁) := Or.inl (List.next_mem c d₁ hd₁)
+  have hσn := extremalJordanPickCountBound_sigma_next M c hnot ⟨_, hzn⟩ hd₁ rfl
+    (hsf d₁ hd₁ rfl)
+  have base : extremalJordanPickCountBound_inv M c R' (Relation.EqvGen R' d₁ (c.next d₁ hd₁))
+      d₁ (M.vertexOf (M.alpha d₁)) ((walkMap M c).sigma ⟨_, hzn⟩) := by
+    unfold extremalJordanPickCountBound_inv
+    refine Or.inr ⟨by rw [hσn], Or.inr ⟨?_, ?_⟩⟩
+    · rw [hσn, M.alpha_involutive d₁]
+      exact hd₁
+    · rw [hσn, M.alpha_involutive d₁]
+      exact Relation.EqvGen.refl d₁
+  have hpow : ∀ n : ℕ, extremalJordanPickCountBound_inv M c R'
+      (Relation.EqvGen R' d₁ (c.next d₁ hd₁)) d₁ (M.vertexOf (M.alpha d₁))
+      (((walkMap M c).sigma ^ n) ((walkMap M c).sigma ⟨_, hzn⟩)) := by
+    intro n
+    induction n with
+    | zero =>
+      rw [pow_zero, Equiv.Perm.one_apply]
+      exact base
+    | succ n ih =>
+      rw [pow_succ', Equiv.Perm.mul_apply]
+      exact extremalJordanPickCountBound_inv_step M c hnodup hvn faces hc R' hFC hd₁ hsf hlink
+        _ ih
+  have hcyc : (walkMap M c).sigma.SameCycle ((walkMap M c).sigma ⟨_, hzn⟩) ⟨_, hzn⟩ :=
+    Equiv.Perm.sameCycle_apply_left.mpr (Equiv.Perm.SameCycle.refl _ _)
+  obtain ⟨i, hi⟩ := hcyc.exists_nat_pow_eq
+  have hfin := hpow i
+  rw [hi] at hfin
+  unfold extremalJordanPickCountBound_inv at hfin
+  rcases hfin with hg | ⟨-, ⟨-, hE⟩ | ⟨hα, -⟩⟩
+  · exact hg
+  · exact hE
+  · exact (hnot _ (List.next_mem c d₁ hd₁) hα).elim
+
 end BoundRedundant
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_eqvGen_mono
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_inv
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_vertexOf_sigma
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_sigma_next
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_inv_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_redundant

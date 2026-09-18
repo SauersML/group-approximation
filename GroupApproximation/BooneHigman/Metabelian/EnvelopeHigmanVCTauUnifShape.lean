@@ -119,7 +119,7 @@ theorem higmanVCTauUnif_deep_of_classify (h : HigmanVCTauUnifClassifyStatement) 
   · rcases higmanVCTauUnif_shape_hops hd hS hA hmx hmy with hH | hH
     · exact h4 hH
     · exact h6 hH
-  · rcases higmanVCTauUnif_shape_hops hd hS (by omega) hmy hmx with hH | hH
+  · rcases higmanVCTauUnif_shape_hops (n := n) hd hS (by omega) hmy hmx with hH | hH
     · exact h4 (higmanVCTauUnif_hopD_swap hH)
     · exact h6 (higmanVCTauUnif_hopCD_swap hH)
 

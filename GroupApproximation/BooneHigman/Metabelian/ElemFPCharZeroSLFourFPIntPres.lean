@@ -97,7 +97,7 @@ theorem czSLFourFP_phi_rels : ∀ r ∈ czSLFourFP_intRels I,
       FreeGroup.lift_apply_of]
     change ⁅SteinbergGroup.x i j hij (1 : ℤ), SteinbergGroup.x j k hjk 1⁆ *
       (SteinbergGroup.x i k hik 1)⁻¹ = 1
-    rw [SteinbergGroup.x_commutator, one_mul, mul_inv_cancel]
+    rw [SteinbergGroup.x_commutator i j k hij hjk hik, one_mul, mul_inv_cancel]
 
 /-- The homomorphism `φ : yᵢⱼ ↦ xᵢⱼ(1)`. -/
 def czSLFourFP_phi : czSLFourFP_IntGroup I →* SteinbergGroup I ℤ :=

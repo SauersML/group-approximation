@@ -22,7 +22,8 @@ so `#(s.image φ) = #s - #(supp f) + #(cycleType f)`: the number of `f`-orbits o
    (`extremalJordanPickCyc_cycleOf_eq_iff`).  Two maps with the same kernel on a finset have
    images of the same size (`extremalJordanPickCyc_card_image_congr`, by induction on the finset).
 4. `(supp f).image (cycleOf f)` is `cycleFactorsFinset f` (`extremalJordanPickCyc_image_cycleOf`),
-   and its size is `#(cycleType f)`, because `cycleType f` is that finset mapped by `card ∘ support`.
+   and its size is `#(cycleType f)`, since `cycleType f` is that finset mapped by
+   `card ∘ support`.
 So `#(s.image φ) = #A + #(cycleType f)` and `#A + #(supp f) = #s`.
 
 ## Mathematical infrastructure

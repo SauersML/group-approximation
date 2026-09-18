@@ -23,8 +23,8 @@ The mixed class contains all three classes discharged so far:
 It is strictly larger than their union.  Take `a = 00`, `b = 010` and
 `h = swap(001, 011) · swap(000, 01000)`.  Evaluated in `V_2`, `h` is not a/b-balanced:
 the near cone `000` goes to `01000`, a length change.  Its twist
-`swap(0100, 0000) · swap(001, 011)` is not balanced either: the near cone `0100` goes to
-`0000`.  The symmetry search of 77x finds no tree of depth `≤ 5`.  Yet
+`swap(0100, 0000) · swap(0101, 011)` is not balanced either: the near cone `0101` goes to
+`011`.  The symmetry search of 77x finds no tree of depth `≤ 5`.  Yet
 `h = swap(001, 011) · (t · swap(0100, 0000) · t⁻¹)` is mixed, and both swaps are balanced.
 See `SP/bh-met-91d/mix_search.py` and `mix_check.py`.  In the fixed antichain `C` of 77x
 there are 14 such products of one balanced and one `t`-balanced swap.  Also 400/400 random

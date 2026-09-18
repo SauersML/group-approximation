@@ -15,7 +15,7 @@ families hold for these images:
 
 Both composites are the identity on generators (`xᵢⱼ(1) ^ a = xᵢⱼ(a)`), so
 `czSLFourFP_intEquiv : czSLFourFP_IntGroup I ≃* St_I(ℤ)` and `St_I(ℤ)` is finitely presented for
-every finite index type `I` (`czSLFourFP_steinbergInt_isFinitelyPresented`).  No rank
+every finite index type `I` (`czSLFourFP_stInt_isFinitelyPresented`).  No rank
 hypothesis and no literature input is used.
 -/
 
@@ -89,7 +89,7 @@ def czSLFourFP_intEquiv : czSLFourFP_IntGroup I ≃* SteinbergGroup I ℤ :=
     (czSLFourFP_phi_comp_psi I)
 
 /-- **`St_I(ℤ)` is finitely presented** for every finite index type `I`. -/
-theorem czSLFourFP_steinbergInt_isFinitelyPresented :
+theorem czSLFourFP_stInt_isFinitelyPresented :
     Group.IsFinitelyPresented (SteinbergGroup I ℤ) :=
   haveI := czSLFourFP_intGroup_isFinitelyPresented I
   Group.IsFinitelyPresented.equiv (czSLFourFP_intEquiv I)
@@ -105,6 +105,6 @@ end
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czSLFourFP_phi_comp_psi
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czSLFourFP_intEquiv
 #audit_axioms
-  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czSLFourFP_steinbergInt_isFinitelyPresented
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czSLFourFP_stInt_isFinitelyPresented
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
