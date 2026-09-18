@@ -82,8 +82,7 @@ theorem eHighWitt_polySpace_sep {N : Type} (w : σ → ℕ) (co : N → σ → L
     show w v + 1 * (d - w v) = d
     have hv' := hwd v
     omega
-  · rw [eHighWitt_evalMap_apply, eHighWitt_evalMap_apply, map_mul, map_mul, map_pow, map_pow,
-      aeval_X, aeval_X, aeval_X, aeval_X]
+  · simp only [eHighWitt_evalMap_apply, map_mul, map_pow, aeval_X]
     show co x v * 1 ^ (d - w v) ≠ co y v * 1 ^ (d - w v)
     rwa [one_pow, mul_one, mul_one]
 
