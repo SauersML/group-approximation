@@ -5,6 +5,7 @@ kind: claim
 title: Well-founded Morse matchings over short trivial words almost exhaust the cycle dimension of every Bernoulli Cayley graphing
 artifacts:
   - research/artifacts/fpbs/docs/bernoulli-morse-collapse-criterion.md
+  - research/artifacts/fpbs/docs/dual-forest-morse-matching-one-relator.md
 distinct_from:
   fpbs-bernoulli-cycle-tail-compactness: that asks for compact near-minimizing sequences among arbitrary graphings; this restricts to subgraphings of one Cayley graphing organised by cell matchings, so it additionally contains subgraphing attainment (Q3 of the artifact) and can fail even if the cost-Betti equality holds
   fpbs-bernoulli-morse-collapse-criterion: that proves the criterion and the limit formula; this is the open assertion that the limit is zero
@@ -60,6 +61,23 @@ finite list, so `m(R) = gap(R) + A(R)` with the relation gap `gap(R) = z - rho(R
 survives: `gap(P_L) -> 0`, so this claim is equivalent to `lim_L A(P_L) = 0`, asymptotic attainment of the l2 rank by
 well-founded matchings. For finite presentations `gap = 0`, and there (Q1) is exactly `A(R) = 0`. Artifact:
 `research/artifacts/fpbs/docs/morse-l2-inequality-and-lamplighter-gap.md`.
+
+**2026-09-17 (swarm-0917-w5-pull-fp-1): dual-forest matchings along a two-incidence edge class.** This proves (Q1),
+and hence this claim, fixed price and `C(b) = 1 + beta_1`, for every infinite `<S | w^m>` in which some generator is
+used exactly twice in `w`. See `fpbs-one-relator-twice-used-letter-fixed-price`.
+
+- By Weinbaum the boundary cycles are embedded, so each `s`-edge lies on exactly two distinct cycles.
+- The dual graph on cycles has component `<w,t><w>`. The Freiheitssatz gives an element of infinite order in
+  `<w,t>`, so the components are infinite.
+- Matching each cycle to the `s`-edge toward its parent in a BFS forest around sparse iid markers gives mass
+  `(1 - eps)/m`. Mass transport makes the trees finite, and children of a matched edge are exactly its tree children.
+- This reaches the proper-power ceiling `1/m` with the single relator `w^m`.
+
+It does not reach the general claim, and dies as a general method at the incidence count. If every letter is used at
+least three times, an `s`-edge has `k >= 3` incidences. A matched edge is then a child of the matched edges of all
+`k - 1` other incident cells, so well-foundedness needs a Borel peeling of the incidence hypergraph, which nothing
+here supplies. Kazhdan groups, and one-relator groups in which every letter repeats, are untouched. Artifact:
+`research/artifacts/fpbs/docs/dual-forest-morse-matching-one-relator.md`.
 
 **2026-09-17 (swarm-0917-w5-pull-fp-3, transplanter, group-rings): split the premise, and fix the Q3 route by
 letting S grow.** The Q3 attempt above dies because it keeps the long edges as Cayley paths. Keep them as generators
@@ -127,3 +145,28 @@ action is at least as good at `S`. It comes through one of two channels:
 **Next falsifiable step.** Decide (P1) at a 2-generator Kazhdan `Cay(Gamma, S)`. A sufficient input would be this: does the
 Hutchcroft–Pete invariant sparse subgraph, joined with iid, lie in the weak closure of factor-of-iid subgraphings of
 `Cay(Gamma, S)`?
+
+**2026-09-18 (swarm-0917-w6-w6-fp-pull, transplanter, operator-algebras): move Poulin–Wróbel's cutting
+(arXiv:2606.23506, Theorem 3.4) to Bernoulli by replacing its `Z/n` phase windows with a Borel rule.** The attempt
+dies for the whole fixed-position class whenever `Lambda = <P>` is nonamenable. New ESTABLISHED claim:
+`fpbs-fixed-position-morse-matchings-die-on-bernoulli`.
+
+1. **Heights force invariance.** Take a well-founded matching of each cell to its `s`-edge at one designated
+   position. Its height sublevel sets `X_k` grow by at most `delta = mu(X \ A)` per level and are `2 delta`-almost
+   invariant under every `p in P`.
+2. **Bernoulli has a gap.** On Bernoulli, `L^2_0` restricted to `Lambda` is a sum of `l^2(Lambda / K)` with `K`
+   finite. So the Kesten gap applies, and it gives `delta >= min(1/4, 3(1 - rho)/32)`.
+3. **What it means.** Lemma 3.3's phases are not a removable artifact of the proof. Any cutting at a fixed position
+   must build a structure that is almost invariant under `Lambda`.
+
+**Survivors:**
+- matchings whose position varies from cell to cell (dual-forest type);
+- for `m >= 2`, schemes where the transversal is modulated;
+- longer trivial words.
+
+**Calibration:**
+- `<P>` cyclic (twice-used letter, `m = 1`): no obstruction.
+- PW's coset action: no gap, so no obstruction.
+- The class already fails at a presentation of `F_3`.
+
+Artifact: `research/artifacts/fpbs/docs/fixed-position-cutting-spectral-obstruction.md`.
