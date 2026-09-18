@@ -1,6 +1,8 @@
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenMove
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenInduct
 import Mathlib.Data.Set.Finite.Lattice
+import Mathlib.Algebra.Group.Subgroup.Lattice
+import Mathlib.Algebra.Group.Subgroup.Map
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

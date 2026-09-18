@@ -66,11 +66,16 @@ compute the abelianization of G".
    - `H_*(G; Q)` is `Q` in degrees 0 and 1 and vanishes above.
    - `G` is not isomorphic to any Higman–Thompson group `V_{n,r}` or Brin–Higman–Thompson
      group, since those have finite abelianization.
-5. **Open.** Is `G` (equivalently `G'`) finitely presented? Li's Garside finiteness
-   theorem does not apply, because the vertices of `T` are infinite emitters.
-   - Near a vertex, `t` together with the finitary permutations of the branches is a copy
-     of the Houghton group `H_2 = FSym(Z) ⋊ Z`, which is not finitely presented.
-   - That is only a heuristic; finite presentation of `G` is open.
+5. **Not finitely presented** (added 2026-09-18). Neither `G` nor `G'` is finitely
+   presented, by `free-product-emitter-full-groups-need-isolated-vertex-groups`.
+   - Finite presentation would force the vertex group `Z` to be isolated in the space of
+     marked groups. But `Z` is residually finite, so its fillings `Z → Z/d` are nearby
+     proper quotients.
+   - The realization maps land in Reid's own groups for finite `d`, and each of them
+     kills the nontrivial element `t^d`.
+   - The earlier heuristic was the Houghton group `H_2 = FSym(Z) ⋊ Z` near a vertex,
+     which is not finitely presented. It pointed the right way. Li's Garside finiteness
+     theorem does not apply, because the vertices of `T` are infinite emitters.
 
 ## Lesson for general BH
 
@@ -79,4 +84,51 @@ The full group then has infinite abelianization, and its simple derived group ha
 homology of the germ group shifted up. The general mechanism is recorded in the parent
 node: infinite vertex groups survive as isotropy and as homology. For hosts it means that
 full groups with parabolic germs are a genuinely different family from Thompson-like
-ones. Their finite presentation is the open gate.
+ones. Their finite presentation fails whenever the parabolic germ group is not isolated (item 5).
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review. This pass also covers the proof in the parent node
+`free-product-boundary-groupoids-carry-the-vertex-group-homology`.
+
+**The question.** Read through the StackExchange API on MSI, 2026-09-18. The title, the presentation of
+`D`, the definitions of `E`, `T`, `P`, `X` and `G`, the remark on `G_{d−1,d}`, and the last sentence
+(derived group finitely generated and simple; abelianization unclear) all match the paraphrase. It has
+0 answers and was posted 2019-08-31.
+
+**The identification**, checked:
+- **The group.** For `d = 0`, `a_c = t^c a_0 t^{−c}`, so `D = ⟨a_0⟩ * ⟨t⟩`.
+- **The tree.** Cosets `eB` (`e ∈ E`) are the `B`-vertices. The `A`-vertex `e t^c A` joins
+  `e t^c B = eB` to `e t^c a_0 B = e a_c B`, so Reid's Cayley graph is the Bass–Serre tree with the
+  valence-2 `A`-vertices suppressed. `E` acts by left translation and `t` by conjugation, as Reid says.
+- **The space.** A point of `P` in the closure of the rays is a consistent choice of half-trees in which
+  each vertex has at most one edge pointing away from it. Following those edges gives either an end, or
+  a vertex at which every edge points inward. Every vertex occurs, since it has infinite valence. So `X`
+  is the ends together with the vertices, the parent's space with `k = 2` and `B = Z`.
+
+**The parent's proof**, checked line by line: dynamics, the Mayer–Vietoris sequence and both module
+decompositions, the recursion `(*)` and the descent to `ker ∂ = 0`, the functional `μ` (both invariance
+formulas recomputed), and item 5.
+
+**The imports**, read at source: Li, arXiv:2209.08087, sha256 `8e04cdb5…0a6a56`.
+- `cor:AHConj` needs only that `G` is an ample groupoid, minimal, with comparison, whose unit space is
+  locally compact Hausdorff without isolated points.
+- It also states that its map `ζ` "coincide[s]" with Matui's map (Mat16 §2.3). That is what identifies
+  the `Z/2` with the class of a half-tree transposition.
+- The introduction's corollary on rational homology matches item 4 of the parent.
+
+**Items 2–4 of this node** follow:
+- `[1_H] = [1_K]`, and `μ(C(w;F)) = 2 − |F|`.
+- `H_2(Z) = 0`, so the sequence splits as `Z ⊕ Z/2`.
+- `η` is integral because `μ_*` sends the generator `[1_X ⊗ t]` to `2[t]`.
+- The element (`t` on `[a_1]`, `t^{−1}` on `[a_2]`) is an involution with `η = 0`, and its class is `ζ`
+  of the generator.
+- `H_*(G';Q) = 0` in positive degrees, because `H_{≥2}(Z;Q) = 0`.
+
+**Gaps.** None affects the answer.
+1. In the parent (step 4), "every clopen set is a finite disjoint union of vertex neighbourhoods" is
+   asserted without proof. It holds: basic sets are finite intersections of half-trees and vertex
+   neighbourhoods, and every half-tree is such a union by (ii).
+2. "In Reid's notation μ(X) = 2, μ([a_c]) = 1" is loose: Reid defines neither `μ` nor `[a_c]`. Read
+   `[a_c]` as the half-tree across the edge `{1, a_c}`.
+3. Priority was searched only on MathOverflow.

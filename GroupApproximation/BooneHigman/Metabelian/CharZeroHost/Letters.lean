@@ -24,6 +24,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace CharZeroHost
 
+noncomputable section
+
 open MvPolynomial
 
 /-- Reduction data: a ring hom onto `ZMod p` whose kernel is `p A`. -/
@@ -149,6 +151,8 @@ theorem dig_castVec [NeZero p] (D : DigitData A p) (a : Fin k â†’ ZMod p) {n : â
   rw [map_natCast, ZMod.natCast_zmod_val]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.dig_castVec
+
+end
 
 end CharZeroHost
 end Metabelian

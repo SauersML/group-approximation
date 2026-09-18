@@ -58,3 +58,12 @@ not checked in full.
   `y` itself, `w(λ) = y(λ g)` for one `g` determined by the degenerate
   hierarchy: a "delegation to infinity" that stays coupled to `L`. No such
   mechanism is known.
+
+**Bypassed (2026-09-18, bh-g1-simulation).** For free `Y` this statement is no longer needed.
+- `keyed-diversification-slots-give-plane-constant-minimal-lifts` does not control the floating
+  tuples. It realizes every one of them in diversification slots whose content is keyed by the
+  plane's own level-`K` table.
+- Freeness of `Y` makes these keys distinct on any finite window of planes.
+- The "local-only constraint" kill above presupposes that floating content recurs only at finite
+  chains, where it is `Y`-data. Slots remove that presupposition.
+- The statement itself (`Y`-coherent floating tuples) stays OPEN, and it is not claimed here.

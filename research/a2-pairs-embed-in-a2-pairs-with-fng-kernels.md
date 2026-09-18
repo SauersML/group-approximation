@@ -15,7 +15,11 @@ artifacts:
   - research/artifacts/bh-type-a-actions-2026-09-12.md
 ---
 
-**OPEN.** This is the first part of Fournier-Facio--Wu--Zaremsky,
+**REFUTED** (2026-09-18, lane proofs, not reviewed) by `a2-pair-with-non-removable-kernel-exists`.
+The answer to the first part of Question 5.9 is no: see
+`nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`.
+
+This is the first part of Fournier-Facio--Wu--Zaremsky,
 arXiv:2603.24687v2, Question 5.9, read from the PDF text on MSI:
 
 > "For G ↷ S an action of type [A_2] with kernel K, does there always exist an

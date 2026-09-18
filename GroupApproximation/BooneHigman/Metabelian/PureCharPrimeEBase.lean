@@ -50,11 +50,11 @@ def eBaseAutOf (hQ : (SemidirectProduct.inr : Q →* B ⋊[φ] Q).range ≤ H) (
   invFun b := ⟨φ q⁻¹ (b : B), eBase_aut_mem H hQ q⁻¹ b⟩
   left_inv b := Subtype.ext (by
     show φ q⁻¹ (φ q (b : B)) = (b : B)
-    rw [← MulAut.mul_apply (φ q⁻¹) (φ q) (b : B), ← map_mul, inv_mul_cancel, map_one,
+    rw [← MulAut.mul_apply B (φ q⁻¹) (φ q) (b : B), ← map_mul, inv_mul_cancel, map_one,
       MulAut.one_apply])
   right_inv b := Subtype.ext (by
     show φ q (φ q⁻¹ (b : B)) = (b : B)
-    rw [← MulAut.mul_apply (φ q) (φ q⁻¹) (b : B), ← map_mul, mul_inv_cancel, map_one,
+    rw [← MulAut.mul_apply B (φ q) (φ q⁻¹) (b : B), ← map_mul, mul_inv_cancel, map_one,
       MulAut.one_apply])
   map_mul' a b := Subtype.ext (map_mul (φ q) (a : B) (b : B))
 

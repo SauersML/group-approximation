@@ -7,9 +7,16 @@ requires:
   - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that is the proved necessary condition (decidable vertex group); this is the open sufficiency statement for simple inputs.
+refuted_by:
+  - stabilizer-engines-of-non-fp-simple-groups-are-not-fp
 ---
 
-**OPEN** (stated by bh-free-60, 2026-09-18). Notation `F_B`, `D(F_B)` is as in
+**REFUTED (2026-09-18)** by `stabilizer-engines-of-non-fp-simple-groups-are-not-fp`: a finitely
+presented `D(F_S)` forces `S` to be finitely presented (`fp-stabilizer-engines-need-fp-vertex-groups`,
+via a quasi-retraction onto `Z/2 * S`), and `S = D(F_(Z≀Z))` is a decidable finitely generated
+simple group that is not. The live form is `fp-decidable-vertex-groups-have-fp-stabilizer-engines`.
+
+**Refuted statement** (stated by bh-free-60, 2026-09-18). Notation `F_B`, `D(F_B)` is as in
 `free-product-boundary-groupoids-carry-the-vertex-group-homology`, with `k = 2`.
 
 **Claim.** Let `S` be an infinite finitely generated simple group with solvable word

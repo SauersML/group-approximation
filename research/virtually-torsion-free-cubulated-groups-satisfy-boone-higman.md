@@ -131,3 +131,67 @@ label-injective codings never have it, and powers supply it only under an additi
 grading, which exists only for products. So a host for groups with non-splitting flats
 must get its loops from an overcoding (a full shift, as in Salo) or from a finiteness
 theorem for deterministic codings (primitive type matrix in place of diagonal ≥ 2).
+
+6. **(bh-major-cube-b, 09-18) The Garside layer holds for all cubulations; the real
+   finiteness gate is merge packing.**
+   - `pointed-cube-categories-are-li-garside-categories`: `C_X` satisfies Li's
+     `intro:Gars` hypotheses for every free cocompact cubulation, special or not.
+   - `perron-weights-do-not-give-li-finiteness`: a Perron weight does not replace
+     (`t<d`), and the Perron proof is invalid. Li's proof needs a height plus merge
+     packing (Pack).
+   - `thin-cycles-decide-li-packing`: (Pack) fails exactly along thin cycles, and on raw
+     tree and product codings it fails at every power.
+7. **(bh-major-cube-b, 09-18) Cuntz stabilization removes the finiteness gate.**
+   `cuntz-stabilized-garside-full-groups-are-f-infinity`: for every Li-Garside category
+   with trivial units and (Acyc), `F((𝒢 × G_2)_Y^Y)` is of type `F_∞`. No loops, no degree
+   map and no (`t<d`) are needed. For a torsion-free cubulated `G`, Q1.15 now reduces to
+   three gates, none of them about finiteness:
+   - **(G1) Bisection action on a closed set.** A closed invariant `X ⊆ Ω_∞(C_X)`,
+     inside the base cone, on which `G` acts faithfully by global bisections of `C_X`.
+     The regular part `R` works if it is closed, which is the old closedness gate.
+   - **(G2) (Acyc) on `X`.** No nonempty open subset of `X` lies in `∩_m σ^m·X(v)` for a
+     loop `σ` of `C_X`, i.e. beyond the axis ray of one element. This holds for products
+     of thick trees on `∏ ∂T_i`.
+   - **(G3) From `F_∞` to a host.** Either:
+     - comparison for `𝒢_X × G_2` (the degree-category proof of
+       `finitely-coded-cantor-actions-give-type-a-hosts`, with Li's cylinder types in
+       place of vertex cylinders; not yet checked), which gives `B_A`; or
+     - minimality and effectiveness of `𝒢_X` together with Li's acyclicity route of
+       `cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple` (stated there for
+       action groupoids), which gives a finitely presented simple host.
+
+   Then `G ↪ F((𝒢_X × G_2)_Y^Y)` by `g ↦ g × id`.
+
+**Lesson for general BH (Attempts 6–7).** For higher-rank codings the finiteness wall was
+merge packing, not loops or eigenvalues. One Cuntz stabilization gives packing for free,
+because every cylinder merges with its own copy. So for cubulated groups, and for every
+finite Garside coding, the Boone–Higman host problem is now purely dynamical: find a
+closed invariant set with a bisection action and no open set trapped beyond a loop, then
+compare clopen sets.
+
+8. **(bh-major-cube-b, 09-18) Gate (G1) is the real obstruction, and it is geometric.**
+   `pointed-cube-bisection-locus-is-the-regular-boundary`:
+   - **The locus is exactly `R`.** Under (TF), elements of `G` act by germs of the
+     pointed-cube groupoid exactly at the regular points.
+   - **What goes wrong elsewhere.** At a tail running beside a hyperplane `H`, every `g`
+     that moves `H` across the base point changes the last-cube state forever. There
+     `Max(o,gz) ≠ g Max(o,z)` at every vertex `z` of the tail.
+   - **Consequence.** A closed carrier must lie inside `R`. For `Z² * Z` (a tree of flats)
+     every nonempty closed invariant set contains the non-regular point `(+∞,0)` of a
+     flat, so (G1) fails outright.
+
+   So the pointed-cube + Cuntz route proves Q1.15 exactly for cubulations with a closed
+   regular carrier: products of thick trees (item 3 bis) and whatever else has `R` closed.
+   (G2) and (G3) are only needed after (G1).
+   - **Next step.** A coding that stratifies the boundary by the hyperplanes a tail runs
+     beside. Those strata are Roller boundaries of hyperplanes, one dimension lower, so
+     induction on dimension is available. The germ at a stratum point should then be a
+     prefix replacement plus a finite flag.
+   - **Conjecture.** For essential cocompact `X`, `R` is closed iff `X` is a product of
+     trees up to compact and Euclidean factors.
+
+**Lesson for general BH (Attempt 8).** Finiteness and rank were not the obstructions. What
+matters is **resynchronization**: a coded host sees `g` as a bisection only where codings
+from `o` and `go` agree after a finite prefix. For wall-based geodesic codings that is the
+set of tails that eventually leave every wall, so a closed carrier needs "no tail stays
+beside a wall" in the limit.

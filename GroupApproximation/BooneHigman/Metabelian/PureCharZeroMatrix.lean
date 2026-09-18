@@ -20,6 +20,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+noncomputable section
+
 section AffMat
 
 variable {Q : Type*} [CommGroup Q] {W : Type*} [AddCommGroup W] [Module (MonoidAlgebra ℤ Q) W]
@@ -101,6 +103,8 @@ theorem kkAffGL_injective
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffGL_injective
 
 end AffMat
+
+end
 
 end Coprimary
 end Metabelian

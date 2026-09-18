@@ -79,6 +79,7 @@ theorem isTreeMap_act (g : Matrix m m (MvPolynomial σ F)) (b : m → MvPolynomi
 
 /-! ### The identity pair -/
 
+omit [DecidableEq σ] in
 theorem image_one_apply [DecidableEq m] (e : m → F) (j : m) :
     image (1 : Matrix m m (MvPolynomial σ F)) 0 e j = C (e j) := by
   rw [image, Matrix.one_mulVec, add_zero]
@@ -95,6 +96,7 @@ theorem digit_carry_one [DecidableEq m] (e : m → F) (a : {i : σ // i ≠ i₀
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.digit_carry_one
 
+omit [Fintype m] in
 theorem map_one_shift [DecidableEq m] (a : {i : σ // i ≠ i₀} → F) :
     (1 : Matrix m m (MvPolynomial σ F)).map (shift i₀ a) = 1 :=
   Matrix.map_one (shift i₀ a) (map_zero (shift i₀ a)) (map_one (shift i₀ a))
@@ -115,6 +117,7 @@ theorem act_one [DecidableEq m] (v : List (Letter m F i₀)) :
 
 /-! ### Products -/
 
+omit [DecidableEq σ] in
 /-- The first-level image of a product pair `(g g', b + g b')`. -/
 theorem image_mul (g g' : Matrix m m (MvPolynomial σ F)) (b b' : m → MvPolynomial σ F)
     (e : m → F) : image (g * g') (b + g *ᵥ b') e = g *ᵥ image g' b' e + b := by

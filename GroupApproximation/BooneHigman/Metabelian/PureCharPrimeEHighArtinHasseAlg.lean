@@ -109,6 +109,7 @@ theorem eHighArtinHasse_conj_trans (act : Q → M → M)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_trans
 
+omit [AddCommGroup M] in
 /-- Conjugation is multiplicative in `q`. -/
 theorem eHighArtinHasse_conj_mul (act : Q → M → M)
     (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
@@ -138,6 +139,7 @@ theorem eHighArtinHasse_conj_mul (act : Q → M → M)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_mul
 
+omit [AddCommGroup M] in
 /-- Conjugation by `Ψ 1` is the identity. -/
 theorem eHighArtinHasse_conj_one (act : Q → M → M)
     (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
@@ -191,6 +193,58 @@ def eHighArtinHasse_restr {A : Type} [Ring A] [Algebra L A] (B : Subalgebra L A)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_restr
 
+/-- Conjugation by `Ψ q`, restricted to the translation algebra. -/
+def eHighArtinHasse_conjB (act : Q → M → M)
+    (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
+    (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
+    (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
+    (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V) (q : Q) :
+    eHighArtinHasse_alg V htrans →ₐ[L] eHighArtinHasse_alg V htrans :=
+  eHighArtinHasse_restr _ (eHighArtinHasse_conj act hmul hone V hact q)
+    (eHighArtinHasse_conj_mem act hadd hmul hone V htrans hact q)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB
+
+theorem eHighArtinHasse_conjB_val (act : Q → M → M)
+    (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
+    (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
+    (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
+    (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V) (q : Q)
+    (b : eHighArtinHasse_alg V htrans) :
+    (eHighArtinHasse_conjB act hadd hmul hone V htrans hact q b : Module.End L V) =
+      eHighArtinHasse_conj act hmul hone V hact q b :=
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_val
+
+theorem eHighArtinHasse_conjB_mul (act : Q → M → M)
+    (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
+    (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
+    (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
+    (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V) (q r : Q)
+    (b : eHighArtinHasse_alg V htrans) :
+    eHighArtinHasse_conjB act hadd hmul hone V htrans hact (q * r) b =
+      eHighArtinHasse_conjB act hadd hmul hone V htrans hact q
+        (eHighArtinHasse_conjB act hadd hmul hone V htrans hact r b) := by
+  apply Subtype.ext
+  rw [eHighArtinHasse_conjB_val, eHighArtinHasse_conjB_val, eHighArtinHasse_conjB_val]
+  exact eHighArtinHasse_conj_mul act hmul hone V hact q r b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_mul
+
+theorem eHighArtinHasse_conjB_one (act : Q → M → M)
+    (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
+    (hmul : ∀ q r x, act (q * r) x = act q (act r x)) (hone : ∀ x, act 1 x = x)
+    (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
+    (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V)
+    (b : eHighArtinHasse_alg V htrans) :
+    eHighArtinHasse_conjB act hadd hmul hone V htrans hact 1 b = b := by
+  apply Subtype.ext
+  rw [eHighArtinHasse_conjB_val]
+  exact eHighArtinHasse_conj_one act hmul hone V hact b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_one
+
 /-- The action of `Q` on the translation algebra by conjugation. -/
 def eHighArtinHasse_sigma (act : Q → M → M)
     (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
@@ -198,25 +252,20 @@ def eHighArtinHasse_sigma (act : Q → M → M)
     (V : Submodule L (M → L)) (htrans : ∀ m : M, ∀ f ∈ V, (fun x => f (x + m)) ∈ V)
     (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V) :
     Q →* (eHighArtinHasse_alg V htrans ≃ₐ[L] eHighArtinHasse_alg V htrans) where
-  toFun q := AlgEquiv.ofAlgHom
-    (eHighArtinHasse_restr _ (eHighArtinHasse_conj act hmul hone V hact q)
-      (eHighArtinHasse_conj_mem act hadd hmul hone V htrans hact q))
-    (eHighArtinHasse_restr _ (eHighArtinHasse_conj act hmul hone V hact q⁻¹)
-      (eHighArtinHasse_conj_mem act hadd hmul hone V htrans hact q⁻¹))
-    (AlgHom.ext fun b => Subtype.ext (by
-      show eHighArtinHasse_conj act hmul hone V hact q
-          (eHighArtinHasse_conj act hmul hone V hact q⁻¹ b.1) = b.1
-      rw [← eHighArtinHasse_conj_mul act hmul hone V hact, mul_inv_cancel,
-        eHighArtinHasse_conj_one act hmul hone V hact]))
-    (AlgHom.ext fun b => Subtype.ext (by
-      show eHighArtinHasse_conj act hmul hone V hact q⁻¹
-          (eHighArtinHasse_conj act hmul hone V hact q b.1) = b.1
-      rw [← eHighArtinHasse_conj_mul act hmul hone V hact, inv_mul_cancel,
-        eHighArtinHasse_conj_one act hmul hone V hact]))
-  map_one' := AlgEquiv.ext fun b => Subtype.ext
-    (eHighArtinHasse_conj_one act hmul hone V hact b.1)
-  map_mul' q r := AlgEquiv.ext fun b => Subtype.ext
-    (eHighArtinHasse_conj_mul act hmul hone V hact q r b.1)
+  toFun q := AlgEquiv.ofAlgHom (eHighArtinHasse_conjB act hadd hmul hone V htrans hact q)
+    (eHighArtinHasse_conjB act hadd hmul hone V htrans hact q⁻¹)
+    (AlgHom.ext fun b => by
+      rw [AlgHom.comp_apply, AlgHom.id_apply, ← eHighArtinHasse_conjB_mul, mul_inv_cancel,
+        eHighArtinHasse_conjB_one])
+    (AlgHom.ext fun b => by
+      rw [AlgHom.comp_apply, AlgHom.id_apply, ← eHighArtinHasse_conjB_mul, inv_mul_cancel,
+        eHighArtinHasse_conjB_one])
+  map_one' := AlgEquiv.ext fun b => by
+    rw [AlgEquiv.one_apply]
+    exact eHighArtinHasse_conjB_one act hadd hmul hone V htrans hact b
+  map_mul' q r := AlgEquiv.ext fun b => by
+    rw [AlgEquiv.mul_apply]
+    exact eHighArtinHasse_conjB_mul act hadd hmul hone V htrans hact q r b
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_sigma
 
@@ -249,9 +298,12 @@ theorem eHighArtinHasse_exists_units_of_polyFun (act : Q → M → M)
       ∀ y ∈ Set.range (eHighArtinHasse_trans V htrans), x * y = y * x := by
     rintro _ ⟨a, rfl⟩ _ ⟨b, rfl⟩
     rw [← map_mul, ← map_mul, mul_comm a b]
-  haveI : IsMulCommutative (eHighArtinHasse_alg V htrans) :=
+  haveI hB : IsMulCommutative (eHighArtinHasse_alg V htrans) :=
     Algebra.isMulCommutative_adjoin L hcomm
-  refine ⟨eHighArtinHasse_alg V htrans, inferInstance, inferInstance, inferInstance,
+  letI instB : CommRing (eHighArtinHasse_alg V htrans) :=
+    { (inferInstance : Ring (eHighArtinHasse_alg V htrans)) with
+      mul_comm := hB.is_comm.comm }
+  refine ⟨eHighArtinHasse_alg V htrans, instB, inferInstance, inferInstance,
     eHighArtinHasse_theta V htrans, eHighArtinHasse_sigma act hadd hmul hone V htrans hact,
     ?_, ?_⟩
   · intro a b hab

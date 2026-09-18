@@ -23,6 +23,7 @@ noncomputable section
 
 variable {p : ℕ} {R : Type*} [Fact p.Prime] [CommRing R]
 
+omit [Fact (Nat.Prime p)] in
 theorem eHighWittE_init_coeff_lt (x : WittVector p R) {j i : ℕ} (h : i < j) :
     (WittVector.init j x).coeff i = x.coeff i := by
   simp only [WittVector.init, WittVector.select, WittVector.coeff_mk]
@@ -30,6 +31,7 @@ theorem eHighWittE_init_coeff_lt (x : WittVector p R) {j i : ℕ} (h : i < j) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_coeff_lt
 
+omit [Fact (Nat.Prime p)] in
 theorem eHighWittE_init_coeff_ge (x : WittVector p R) {j i : ℕ} (h : j ≤ i) :
     (WittVector.init j x).coeff i = 0 := by
   simp only [WittVector.init, WittVector.select, WittVector.coeff_mk]
@@ -37,6 +39,7 @@ theorem eHighWittE_init_coeff_ge (x : WittVector p R) {j i : ℕ} (h : j ≤ i) 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_coeff_ge
 
+omit [Fact (Nat.Prime p)] in
 theorem eHighWittE_tail_coeff_lt (x : WittVector p R) {j i : ℕ} (h : i < j) :
     (WittVector.tail j x).coeff i = 0 := by
   simp only [WittVector.tail, WittVector.select, WittVector.coeff_mk]
@@ -44,6 +47,7 @@ theorem eHighWittE_tail_coeff_lt (x : WittVector p R) {j i : ℕ} (h : i < j) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_tail_coeff_lt
 
+omit [Fact (Nat.Prime p)] in
 theorem eHighWittE_tail_coeff_ge (x : WittVector p R) {j i : ℕ} (h : j ≤ i) :
     (WittVector.tail j x).coeff i = x.coeff i := by
   simp only [WittVector.tail, WittVector.select, WittVector.coeff_mk]

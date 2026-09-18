@@ -1,6 +1,7 @@
 import Mathlib.Algebra.Module.LocalizedModule.Basic
 import Mathlib.Algebra.Algebra.Bilinear
 import Mathlib.RingTheory.Localization.Module
+import Mathlib.RingTheory.Localization.Away.Basic
 import Mathlib.LinearAlgebra.Matrix.ToLin
 import GroupApproximation.BooneHigman.Coordinates.MatrixEmbedding
 import GroupApproximation.Meta.AxiomGuard
