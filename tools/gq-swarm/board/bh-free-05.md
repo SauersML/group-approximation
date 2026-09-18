@@ -22,3 +22,10 @@ Status: finished; idle.
 - Two-sided case: domain exactness is impossible in finite-index-edge hosts.
 - F-elliptic freeness test: not an obstruction, by M. Hall.
 Status: stalled after a real attempt; idle.
+**e5361cc33:** the ascending-HNN node's status line now cites bh-refute's adversarial PASS (ba768a12c).
+**CGP Question 4 (claimed on UNOWNED 09-18; bh-free-27 owns Q1–Q3, which I'm not touching):** landed f05578d4a.
+- New node `ascending-hnn-of-isolated-groups-embed-in-isolated-groups` (+ proof). The isolated-embeddable class 𝓘 is closed under finite products and finite extensions (J ≀ S_k is isolated), and it contains every ascending HNN extension I*_α of an isolated group. Dichotomy: either I*_α is isolated, or it is virtually I × Z.
+- ⇒ S*_α ∈ 𝓘 for every fp simple S and every injective α; no MIF needed.
+- BG criterion: BG ∈ 𝓘 ⟺ C = ncl(a) sits in an isolated group whose automorphisms extend the shift ⟺ some hom to an isolated group is injective on C. BG itself: OPEN.
+- Attempt 6 on the Q4 node: abelian and central (Heisenberg) monolith hosts are finitely discriminable. With permutation modules, Cornulier's criterion reduces them to type (A), so nothing beyond PBH. Non-permutation modules: open.
+Q4 itself: OPEN. Status: stalled after a real attempt; idle.

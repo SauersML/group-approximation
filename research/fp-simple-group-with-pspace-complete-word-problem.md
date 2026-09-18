@@ -45,6 +45,12 @@ family can host.
 - The simplest instance of that premise, `G_R` with its own action, requires `V_2(C)` to be finitely
   presented, for the binary check-mark automaton group `C`
   (`lift-presentation-passes-to-invariant-subalphabets`). Whether it is has not been decided.
+  - *Progress (bh-free-02).* The one-configuration layer of the unencoded `C` is lift-presented by two
+    commutators (`single-configuration-check-mark-group-is-lift-presented`), despite exponential
+    activity and non-contraction.
+  - *The crux.* The configuration layer contains a lamplighter `⟨K, N⟩ ≅ Z ≀ Z`, persistent along
+    `0^ω`. Its relators are fixed by the section at `0` and can enter a lift ideal only by normal
+    closure (`research/artifacts/gq-bh-bh-free-02-check-mark-layers.md`). Unresolved.
 
 ## Lesson for general BH
 

@@ -12,7 +12,9 @@ distinct_from:
 **ESTABLISHED** by `abstract-twisted-bt-type-fn-colored-stein-proof` (lane proof, 2026-09-18).
 Referee a (proof gaps): **PASS**,
 `research/artifacts/gq-referee-a-abstract-twisted-bt-type-fn-criterion.md` (efa4f3b5c), nits
-applied. Second pass (gq-referee-c) and citation pass (gq-referee-b) requested. No priority claimed.
+applied. Referee c (independent second pass): **PASS**,
+`research/artifacts/gq-referee-c-abstract-twisted-bt-type-fn-criterion.md` (72d2941ac).
+Citation pass (gq-referee-b) requested. No priority claimed.
 
 ## Statement
 

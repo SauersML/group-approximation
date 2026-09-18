@@ -31,8 +31,9 @@ What would remain is transcendental parameters (`transcendental-slope-thompson-g
 - **Obstruction.** A unit with another positive real conjugate never has (F) (Akiyama, Proposition 1). So no
   real quadratic unit of norm +1 has (F), and fields such as `Q(√3)` are not of the form `Q(β)` with β quadratic.
   They could still lie inside a larger `Q(β)`.
-  - `Q(√3)` is covered anyway, by `quadratic-interval-exchange-full-groups-satisfy-boone-higman` through the
-    type (A) route.
+  - `Q(√3)` is covered anyway, by `algebraic-interval-exchange-groups-satisfy-boone-higman` through negative-base
+    codings. That node covers every real number field, so the Boone--Higman purpose of this question is met
+    without (F). (An earlier line here credited the type (A) route; that route was withdrawn for norm +1 fields.)
 - **Decidability.** (F) is decidable for a given Pisot β by a finite computation (Akiyama, Theorem 2). So
   candidate `β` for a given `K` can be tested.
 - **Candidates.** Pisot units generating `K` exist in every real `K`: the unit lattice meets the open cone where

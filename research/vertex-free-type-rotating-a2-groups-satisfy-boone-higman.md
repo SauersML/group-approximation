@@ -19,13 +19,15 @@ final update below. The type-transitive and type-preserving cases are
 automorphisms of `B` acting freely on the vertices with finitely many orbits. Then `Γ`
 embeds in a finitely presented simple group.
 
-**Reduction** (route `a2-boone-higman-via-rs-two-graph-full-groups`). This follows from
-three nodes:
-- `a2-group-embeds-in-full-group-of-its-rs-two-graph`, OPEN because of missing pins;
-- `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic`, OPEN, and the real gap
-  for exotic buildings;
-- `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple`, whose proof is complete
-  modulo the standard k-graph facts.
+**Route.** `vertex-free-type-rotating-a2-bh-by-type-rotation-character`: the case split on
+the type-rotation character of the final update below.
+
+*Superseded first reduction* (route `a2-boone-higman-via-rs-two-graph-full-groups`). It used
+three nodes. Their current statuses (bh-integrate, 2026-09-18) are:
+- `a2-group-embeds-in-full-group-of-its-rs-two-graph`: ESTABLISHED;
+- `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic`: REFUTED as stated (period 3
+  for type-preserving `Γ`), so this route is dead;
+- `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple`: ESTABLISHED.
 
 **Scope.** The simply transitive CMSZ groups on exotic Ã₂ buildings belong to this class.
 By Bader–Caprace–Lécureux (pinned in `exotic-a2-lattices-satisfy-boone-higman`) they have

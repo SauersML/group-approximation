@@ -5,7 +5,7 @@ kind: claim
 title: Every cocompact lattice of a locally finite thick Ã2 building, exotic or not and torsion allowed, lies in the type (A) class
 distinct_from:
   a2-lattices-embed-in-fp-simple-groups: that embeds each such lattice in an infinite simple group of type F_infinity; this puts it in the permutational class B_A, which is closed under finite-index overgroups, direct products and subgroups.
-  exotic-a2-lattices-satisfy-boone-higman: that is the open question for exotic buildings; this settles it in the permutational form for cocompact lattices, through the host of bh-groupoid.
+  exotic-a2-lattices-satisfy-boone-higman: that is the plain Boone--Higman form for exotic buildings (now ESTABLISHED through `a2-lattices-embed-in-fp-simple-groups`); this gives the permutational form for cocompact lattices, through the host of bh-groupoid.
 ---
 
 **ESTABLISHED** through `a2-lattices-pbh-via-stabilized-orbit-category` (lane proof;

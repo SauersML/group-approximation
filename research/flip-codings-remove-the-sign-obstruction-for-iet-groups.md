@@ -2,15 +2,18 @@
 rg: 2
 id: flip-codings-remove-the-sign-obstruction-for-iet-groups
 kind: claim
-title: Every real number field is Q(β) for a Pisot unit β with the negative finiteness property, so orientation-reversing (negative-base) codings face no sign obstruction; a negative-base analogue of the Pisot RSG theorem would give Boone--Higman for every interval exchange group with algebraic parameters
+title: Every real number field is Q(β) for a Pisot unit β with the negative finiteness property, so orientation-reversing (negative-base) codings face no sign obstruction; with the negative-base RSG theorem this gives Boone--Higman for every interval exchange group with algebraic parameters
 distinct_from:
   f-unit-fields-are-characterized-by-isolated-sign-units: that shows positive-base (F) codings reach exactly the fields with an isolated-sign unit, excluding Q(√3); this shows the obstruction is an orientation artifact, since negative-base finiteness is available in every real field.
-  pisot-stein-groups-are-contracting-rsgs: that is the positive-base RSG theorem; its negative-base analogue is the open step here.
+  pisot-stein-groups-are-contracting-rsgs: that is the positive-base RSG theorem; its negative-base analogue, the former open step here, is `negative-base-pisot-stein-groups-are-contracting-rsgs`.
+  algebraic-interval-exchange-groups-satisfy-boone-higman: that is the payoff, proved.
 artifacts:
   - research/artifacts/gq-bh-bh-near-actions-stein-slopes-reading.md
 ---
 
-**OPEN** as a whole. Items 1–3 are ESTABLISHED as lane proofs. Their inputs were read at source:
+**ESTABLISHED** (lane proofs, not reviewed). Items 1–3 are proved here. Item 4, the former open step, is proved in
+`negative-base-pisot-stein-groups-are-contracting-rsgs`; the payoff is
+`algebraic-interval-exchange-groups-satisfy-boone-higman`. Their inputs were read at source:
 - Krčmáriková--Steiner--Vávra (arXiv:1701.04609, TeX in `gq/src/bh-near-actions/neg/`): Theorem `t:dominant` and
   the introduction's statement of the MPV necessary condition;
 - Masáková--Pelantová--Vávra (arXiv:1002.1009): the Ito--Sadahiro admissibility theorem and the expansions
@@ -41,7 +44,7 @@ artifacts:
    - **Negative base.** The corresponding obstruction is a negative real conjugate (MPV, as quoted in KSV). It
      forces only that the other real conjugates be positive, which item 1 provides in every field.
    - **Parity.** The relative norm `N_{Q(β)/K}(β)` is then totally positive, which imposes nothing.
-4. **The open step: a negative-base RSG theorem.** A contracting-RSG theorem is needed for piecewise maps
+4. **The negative-base RSG theorem (formerly open; now proved).** A contracting-RSG theorem is needed for piecewise maps
    `y ↦ ±β^k y + c` with `c ∈ Z[β]`, coded by a negative-base shift.
    - **Where the positive-base proof transfers.** Pisot lattice finiteness of offsets and the conjugate-growth
      length lemma transfer verbatim.
@@ -51,14 +54,15 @@ artifacts:
      - One checks `−βℓ_β − ℓ_β = β`, so the transformation preserves that coset.
      - Translating by `−ℓ_β` turns it into `S(y) = {β(1−y)}` on `[0,1)`, whose boundary set is `∪ S^{−n}(orbit of 0)`
        inside `Z[β]`.
-   - **What is needed.** The finiteness property matching the boundary coset: every `z ∈ Z[β] ∩ [0,1)` reaches the
-     orbit of `0` under `S`, or equivalently under `y ↦ {−βy}`. KSV's (−F) is the corresponding statement for the
-     coset of `0`. Hand checks for `β = 2+√3` all terminate (`1/β, 2/β, √3−1, 2√3−3, 3√3−5, 1/β²`), but no proof is
-     given here.
-   - **Payoff.** With it, the proof of `pisot-stein-groups-are-contracting-rsgs` should go through with slopes
-     `±β^{−n}`. The follower-set graph is finite for Pisot `β`, and `BBMZ`'s framework allows a clopen `E` in an
-     edge shift. That would put every interval exchange group with algebraic parameters inside a finitely
-     presented simple group, by item 1 and rescaling.
+   - **What is needed.** The finiteness property matching the boundary coset: every `z ∈ Z[β] ∩ [0,1)` reaches `0`
+     under `T'(y) = {−βy}`. KSV's (−F) is the corresponding statement for the other coset.
+   - **Resolution (2026-09-18).** `T'` is conjugate to the classical SRS `τ_r` of the cofactor of `x + β`, and
+     `0 < r_0 < … < r_{d−2} < 1` puts `r` in `D^0` by an explicit set of witnesses. The units of item 1 satisfy this,
+     and so does every norm `+1` quadratic unit, including `2+√3` (where `r_0 = 2−√3`). See
+     `algebraic-interval-exchange-groups-satisfy-boone-higman`, item 1.
+   - **Payoff.** The proof of `pisot-stein-groups-are-contracting-rsgs` goes through with slopes `±β^k`
+     (`negative-base-pisot-stein-groups-are-contracting-rsgs`). So every finitely generated interval exchange group
+     with algebraic parameters lies in a finitely presented simple group.
 
 ## Lesson for general BH
 
@@ -68,5 +72,6 @@ The field restriction in arithmetic full-group hosts is an orientation artifact,
 - The finiteness engine is Pisot lattice compactness of the renormalized offsets, and it is universal over real
   algebraic data.
 
-What remains is a digit-system finiteness statement, not a group-theoretic obstruction. A contracting-RSG route to
-Boone--Higman for all "algebraic" piecewise-affine groups should therefore be possible.
+What remained was a digit-system finiteness statement, not a group-theoretic obstruction. It is an SRS condition
+with a one-line set of witnesses, so the contracting-RSG route reaches every real algebraic interval exchange
+group.
