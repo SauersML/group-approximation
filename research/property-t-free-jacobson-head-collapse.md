@@ -144,3 +144,45 @@ instead of `4`) changes no conclusion.
   *What is left.* A (T)-free proof must use a Steinberg commutator in three
   distinct indices. The target stays OPEN. This is the first non-amenable
   calibration, strengthening the `SL_fin ⋊ <u>` calibration above.
+
+- **operator-algebras, swarm-0917 (swarm-0917-w8-w8-ptl-follow): corona
+  saturation -- the column prerequisite `P_N in B` is false; every amenable
+  transport subgroup dies.**
+
+  *Proposal.* Follow the one step left by the root-column entry above: place
+  `P_N` in `B` through non-group elements of the corona, or failing that
+  through some other amenable `L<=St_5(J)` that carries the cell certificate.
+
+  *Result.* There are two new established nodes.
+  1. `corona-fixed-projection-membership-is-finite-markov-gap` holds for every
+     subgroup `L`. By ultraproduct saturation over all free ultrafilters,
+     `P_L in pi(B)` iff a finite symmetric `F subset L` has
+     `Fix(F)=Fix(L)` and a spectral gap of `h_F` at `1`. In that case
+     `P_L=chi_{1}(h_F) in C*(sigma~(<F>))`. So no non-group element of `B`
+     can supply a transport projection, and `P_N in B` already implies
+     `P_N in A_K`.
+  2. `amenable-subgroup-fixed-projection-is-never-in-adjoint-corona`. Suppose
+     `L` is amenable, has an infinite class `O=L.g`, and `tr V_n -> delta_e` on
+     `<L,g>`. Then `delta_o -> [V_n(o)]` embeds `l^2(O)` isometrically in
+     `Fix(L)^perp`, and Folner pushforwards give almost-invariant vectors there.
+     So `P_L notin B`.
+     - Since `x_13(a)x_21(1)x_13(a)^(-1)=x_21(1)x_23(a)`, the prerequisite
+       "`P_N in B`" is **false** in every `delta_e`-profile model on `K`.
+     - Since `Z(EL_5(J))=1` (because `Z(J)=F_2`) and `EL_5(J)` is finitely
+       generated, **no infinite amenable `L<=EL_5(J)`** has `P_L in B` in the
+       `delta_e`-profile models of `EL_5(J)`. These are exactly the models
+       that `jacobson-regular-character-not-mf-without-property-t` must exclude.
+
+  *Invariant.* The amenable conjugation representation on `l^2` of an infinite
+  `L`-class, embedded in the ultraproduct by the trace profile.
+
+  *Step where it dies.* Producing `P_L in B` for an amenable `L`, by any
+  means: relative (T), Markov calculus, Folner or window averages, carrier
+  projections, corona modules. It is a gap statement for a finite subset
+  (saturation), and it is refuted by the Folner vectors.
+
+  *What is left.* Transport can only run through a **nonamenable** `L` whose
+  conjugation action is uniformly non-amenable on all its infinite classes,
+  with a model-specific, non-generic proof of `(MSG)` for a finite subset.
+  By `model-spectral-gap-quantifier-ladder`, a representation-generic proof is
+  a Kazhdan theorem. The claim stays OPEN.
