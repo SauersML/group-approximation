@@ -1,0 +1,11 @@
+[H4] |W|=14400 #s1hat=120 #snhat=600 deg=20 pairwise-bounded triples=1200 without common upper bound=0 ex=[]
+[A3] |W|=24 #s1hat=4 #snhat=4 deg=3 pairwise-bounded triples=4 without common upper bound=0 ex=[]
+[B3] |W|=48 #s1hat=6 #snhat=8 deg=4 pairwise-bounded triples=8 without common upper bound=0 ex=[]
+[H3] |W|=120 #s1hat=12 #snhat=20 deg=5 pairwise-bounded triples=20 without common upper bound=0 ex=[]
+[A2] |W|=6 #s1hat=3 #snhat=3 deg=2 pairwise-bounded triples=1 without common upper bound=1 ex=[((), (0,), (1, 0))]
+[B3r] |W|=48 #s1hat=8 #snhat=6 deg=3 pairwise-bounded triples=32 without common upper bound=8 ex=[((), (0, 1, 0), (2, 0, 1, 0)), ((), (0, 1, 0), (1, 2, 0, 1, 0)), ((), (2, 0, 1, 0), (1, 2, 0, 1, 0))]
+[H3r] |W|=120 #s1hat=20 #snhat=12 deg=3 pairwise-bounded triples=140 without common upper bound=20 ex=[((), (0, 1, 0), (2, 0, 1, 0)), ((), (1, 0, 1, 0), (1, 2, 0, 1, 0)), ((), (2, 1, 0, 1, 0), (1, 2, 
+[A4] |W|=120 #s1hat=5 #snhat=5 deg=4 pairwise-bounded triples=10 without common upper bound=0 ex=[]
+[B4] |W|=384 #s1hat=8 #snhat=16 deg=8 pairwise-bounded triples=32 without common upper bound=0 ex=[]
+[D4] |W|=192 #s1hat=8 #snhat=8 deg=4 pairwise-bounded triples=32 without common upper bound=0 ex=[]
+[H4r] |W|=14400 #s1hat=600 #snhat=120 deg=4 pairwise-bounded triples=152400 without common upper bound=22800 ex=[((), (0, 1, 0), (2, 3, 0, 1, 2, 0, 1, 0)), ((), (0, 1, 0), (2, 3, 0, 1, 2, 1, 0, 1, 0))

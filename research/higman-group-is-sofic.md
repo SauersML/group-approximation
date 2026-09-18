@@ -91,6 +91,20 @@ equivalent to `H4` having some nontrivial sofic quotient
      `Q[T^±1]`-module, `T^e - 1` is injective, so these errors cannot create infinite rank. This
      kills derived-length-3 edge images of infinite Hirsch length whose second derived subgroup has
      finite rank, e.g. the Heisenberg-type central extension of `Z wr Z` with `G''` infinite cyclic.
+   - **The one-sided span method is dead above the bottom derived layer (w3-053, 2026-09-18).**
+     See `higman-one-sided-span-bound-fails-at-derived-length-three` and
+     `higman-b-side-derived-closure-stays-in-bottom-layer`.
+     - **Explicit example.** There is a group satisfying the `b`-side relations with `A''' = 1` and a
+       free cyclic `Q[X^±,Y^±]`-module `A'/A'' ⊗ Q`. So Step 2 (bound the `gamma`-span of `z` from the
+       `b` side) is false at derived length 3.
+     - **Universal statement.** In `G_1 = <a,b,c>`, `ncl(F_ac^(k)) ∩ F_ac <= P^(k-1)`, where
+       `P = ncl_F(c)`. So the universal `b`-side group with `A^(k) = 1` has free solvable
+       `A/A^(k-1)`.
+     - **Consequence.** A collapse proof for derived length `>= 3` must bound the bottom layer
+       `A^(k-1)/A^(k)` one-sidedly, or couple both sides before bounding `A'/A''`.
+     - **The candidate.** `[z, z^alpha]` is not usable as stated, since `b^P` does not normalize
+       `<alpha,gamma>`. The `phi`-stable pieces are `u_k = gamma^(alpha^k)`, with
+       `u_k^(b^(P^k)) = u_k^2`.
    - Open: amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
      derived length at least 3), and non-elementary-amenable `A`. GAP could not decide the
      metabelian-type relators at `2*10^6` cosets. After sw-053b, the solvable survivors are those

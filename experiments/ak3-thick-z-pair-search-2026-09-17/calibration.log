@@ -1,0 +1,78 @@
+== thzsearch 3 13 2000000 xxYYY xyxYXY
+RANK 3 CAP 13 NPERM 48 NWA 90
+GOAL PRIM  at state 21 (parent 6): YXXYXYXX XXXYY
+CHAIN 3
+  XXXYY XYxYXy
+  XXXYY XXYXyxY
+  XXXYY XXYXXYXY
+thick calls 42 undecided 0
+exit 0 time 0s
+== thzsearch 3 13 2000000 xxYYY xyxYXY noprim
+RANK 3 CAP 13 NPERM 48 NWA 90
+GOAL THICK  at state 70 (parent 30): xyx XXYXY
+CHAIN 5
+  XXXYY XYxYXy
+  XXYxY XXyxYxy
+  XXYxY XYXYxy
+  XXYXY XYXYxy
+  XXY XXYXY
+thick calls 141 undecided 0
+exit 0 time 1s
+== thzsearch 2 13 2000000 xxYYY xyxYXY noprim
+RANK 2 CAP 13 NPERM 8 NWA 12
+GOAL THICK  at state 70 (parent 30): xyx XXYXY
+CHAIN 5
+  XXXYY XYxYXy
+  XXYxY XXyxYxy
+  XXYxY XYXYxy
+  XXYXY XYXYxy
+  XXY XXYXY
+thick calls 71 undecided 0
+exit 0 time 0s
+== thzsearch 3 13 2000000 xxYYY xyxYXY count
+RANK 3 CAP 13 NPERM 48 NWA 90
+GOAL PRIM  at state 21 (parent 6): YXXYXYXX XXXYY
+CHAIN 3
+  XXXYY XYxYXy
+  XXXYY XXYXyxY
+  XXXYY XXYXXYXY
+GOAL THICK  at state 2978 (parent 698): XXYYYXXX XXXYY
+CHAIN 8
+  XXXYY XYxYXy
+  XXYxY XXyxYxy
+  XXYxY XYXYxy
+  XXYxy XYXyxy
+  XXY XXYxy
+  XY XXY
+  XXY XXXYY
+  XXXYY XXXXXYYY
+EXHAUSTED depth 15 states 311170 processed 311170
+goals PRIM 310906 THICK 9 PROJ 0; thick calls 519 undecided 0
+exit 0 time 187s
+== thzsearch 3 9 2000000 xx yyy
+RANK 3 CAP 9 NPERM 48 NWA 90
+GOAL THICK at start
+CHAIN 1
+  XX YYY
+exit 0 time 0s
+== thzsearch 3 11 2000000 xx yyy
+RANK 3 CAP 11 NPERM 48 NWA 90
+GOAL THICK at start
+CHAIN 1
+  XX YYY
+exit 0 time 0s
+== thzsearch 3 13 2000000 xxxYYYY xyxYXY
+RANK 3 CAP 13 NPERM 48 NWA 90
+EXHAUSTED depth 0 states 1 processed 1
+goals PRIM 0 THICK 0 PROJ 0; thick calls 2 undecided 0
+exit 0 time 0s
+== thzsearch 2 13 2000000 xxxYYYY xyxYXY
+RANK 2 CAP 13 NPERM 8 NWA 12
+EXHAUSTED depth 0 states 1 processed 1
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1 undecided 0
+exit 0 time 0s
+== thzsearch check 3 noprim  (stdin: AK(2); (x^2,y^3); (xxY, XXYXY))
+GOAL THICK xx yyy g=0
+GOAL THICK xxY XXYXY g=0
+CHECKED 3 pairs; goals PRIM 0 THICK 2 PROJ 0; thick calls 4 undecided 0
+exit 0

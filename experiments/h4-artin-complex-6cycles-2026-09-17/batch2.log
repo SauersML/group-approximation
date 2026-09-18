@@ -1,0 +1,21 @@
+[B3] Ls=(2, 2, 2, 2) Lu=2 K=4 sizes=(14, 30, 14, 30) |RU|=31
+  no quasi-centre found: (0, (4,)) (-2, (44, 32)) (-1, (46,)) (-1, (34, 7))
+  no quasi-centre found: (-1, (43,)) (0, (3, 15)) (0, (1,)) (-1, (44, 13))
+  no quasi-centre found: (0, (2, 4)) (-1, (32,)) (-1, (46,)) (-1, (34, 7))
+  no quasi-centre found: (0, (2, 4)) (0, (3, 15)) (0, (1,)) (-2, (32, 44))
+  no quasi-centre found: (0, (2, 4)) (0, (3, 15)) (0, (1,)) (-1, (32,))
+[B3] Ls=(2, 2, 2, 2) {'tuples_abc': 5880, 'cycles': 2323, 'trivial': 1909, 'found': 334, 'none': 80} retry={'Lu2': 4, 'K2': 5, 'resolved': 80, 'unresolved': 0, 'RU2': 446} qc(k,len)={'(0, 1)': 86, '(-1, 1)': 78, '(0, 2)': 52, '(-2, 2)': 51, '(-1, 2)': 67} time=80.3s
+[H3] Ls=(2, 2, 2, 2) Lu=2 K=4 sizes=(14, 52, 14, 52) |RU|=53
+  no quasi-centre found: (0, (4,)) (-2, (116, 104)) (-1, (118,)) (-1, (96, 13))
+  no quasi-centre found: (-1, (115,)) (0, (3, 15)) (0, (1,)) (-1, (116, 13))
+  no quasi-centre found: (0, (2, 4)) (-1, (104,)) (-1, (118,)) (-1, (96, 13))
+  no quasi-centre found: (0, (2, 4)) (0, (3, 15)) (0, (1,)) (-2, (104, 116))
+  no quasi-centre found: (0, (2, 4)) (0, (3, 15)) (0, (1,)) (-1, (104,))
+[H3] Ls=(2, 2, 2, 2) {'tuples_abc': 10192, 'cycles': 2314, 'trivial': 1909, 'found': 334, 'none': 71} retry={'Lu2': 4, 'K2': 5, 'resolved': 71, 'unresolved': 0, 'RU2': 1366} qc(k,len)={'(0, 1)': 86, '(-1, 1)': 78, '(0, 2)': 52, '(-2, 2)': 51, '(-1, 2)': 67} time=194.1s
+[A3] Ls=(2, 2, 2, 2) Lu=2 K=4 sizes=(14, 14, 14, 14) |RU|=15
+  no quasi-centre found: (0, (1,)) (0, (8,)) (0, (6, 4)) (-1, (20,))
+  no quasi-centre found: (0, (1,)) (0, (8,)) (0, (6, 4)) (-2, (21, 15))
+  no quasi-centre found: (0, (1,)) (0, (8,)) (0, (6, 4)) (-1, (15,))
+  no quasi-centre found: (0, (1,)) (0, (8,)) (0, (6, 4)) (-1, (16, 7))
+  no quasi-centre found: (0, (1,)) (0, (8,)) (-2, (16, 19)) (-1, (20,))
+[A3] Ls=(2, 2, 2, 2) {'tuples_abc': 2744, 'cycles': 2827, 'trivial': 2005, 'found': 386, 'none': 436} retry={'Lu2': 4, 'K2': 5, 'resolved': 96, 'unresolved': 340, 'RU2': 96} qc(k,len)={'(0, 1)': 93, '(-1, 1)': 96, '(0, 2)': 55, '(-2, 2)': 54, '(-1, 2)': 88} time=61.5s

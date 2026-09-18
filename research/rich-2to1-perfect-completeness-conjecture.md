@@ -124,3 +124,21 @@ completeness. The survivors are listed in that node.
     - prove (H1)/(H2) by transplanting global hypercontractivity from the
       multi-slice or `S_n`;
     - then discretise to a finite rich instance.
+* 2026-09-17, e-ugc-pull-transplant (transplanter via finite-models): split the
+  rotated-frame survivor into prerequisites that can fail separately, and closed
+  the discretisation half.
+  - Established: `rotated-frame-universe-discretises-to-robust-rich-2to1-sdp-gaps`.
+    Pushing `U_n` forward along a fine Borel partition gives, at every fixed
+    `n` and every `eta > 0`, a finite rich instance with basic SDP value at
+    least `1 - eta` and value at most `val(U_n) + eta`. Richness is exact
+    because the pairing is independent of the left frame, and labellings lift
+    to Borel strategies.
+  - Open, isolated: `rotated-frame-universe-rich-2to1-game-has-vanishing-value`.
+    Its decomposition is (A1) small-set expansion of `T_e` modulo the
+    `(w, x_a+x_a')` algebra, and (A2) no consistent pair-sum-local selection.
+  - Numerics: every argmax-of-potential strategy decays. Linear is best, with
+    value 0.18 at `n = 1024` and a local exponent of about `-0.22`.
+  - Target question: `rich-2to1-perfect-completeness-has-robust-basic-sdp-gaps`,
+    via route `robust-basic-sdp-gaps-from-rotated-frame-universe`. If that
+    claim is false, basic SDP with a threshold depending on `n` refutes
+    Conjecture 7.

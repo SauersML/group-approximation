@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check the compressed special words of the distorted Boone group H_M.
 
-H_M = < G_M, s | s^-1 y s = y^m >.  The configuration of the
+H_M = < G_M, s | [s,t] = [s,x] = 1, s^-1 y s = y^m >.  The configuration of the
 compiled machine on input n is f(n) = (A, encList m front(n)) with
 
     front(n) = [c_cons] + reverse(trNat n)   (trNat = binary digits, LSB first)
@@ -22,7 +22,13 @@ TrNatRecurrence.trNat_eq_cons).  The proof node claims:
 
 (1) is checked in the faithful representation y -> [[1,1],[0,1]],
 s -> [[1/m,0],[0,1]] of BS(1,m).  (2) is checked as an equality of free words
-after free reduction.  Single-threaded, a few seconds.
+after free reduction.
+ (4) the most-significant-first Horner word: y^B = s^-(N+1) Z(v) in BS(1,m), with
+     Z(v) = prod_{j=N..0} s y^d_j = C1 . phi(v) . C2 letter for letter, phi a single
+     free-monoid homomorphism with no inverses.  Since s commutes with t and x in
+     H_M, u^-1 t u = Z^-1 (x^-a t x^a) Z, so the halting word is a pattern in ONE
+     homomorphism with four occurrences.
+Single-threaded, a few seconds.
 """
 from fractions import Fraction
 import random
@@ -119,6 +125,17 @@ def check_one(rng):
                + sum((power('s', -1) + power('y', c1) for _ in range(e)), [])
                + power('s', e + 2) + psi(v))
     assert free_reduce(pattern) == free_reduce(Y), (v, e, k)
+    # (4) one-homomorphism form (MSB-first Horner): y^B = s^-(N+1) Z with
+    #     Z = prod_{j=N..0} s y^d_j = C1 . phi1(v) . C2,
+    #     phi1(a) = prod over the bits of beta(a), LSB first, of s y^c_bit.
+    Z = sum((power('s', 1) + power('y', d) for d in reversed(front)), [])
+    MZ = evaluate(power('s', -(len(front))) + Z, m)
+    assert MZ == [[1, b_val], [0, 1]], (m, front, MZ)
+    phi1 = lambda word: sum((sum((power('s', 1) + power('y', code[bit]) for bit in beta[a]), [])
+                             for a in word), [])
+    C1 = sum((power('s', 1) + power('y', c1) for _ in range(e)), []) + power('s', 1) + power('y', c0)
+    C2 = power('s', 1) + power('y', c1) + power('s', 1) + power('y', c_cons)
+    assert free_reduce(C1 + phi1(v) + C2) == free_reduce(Z), (v, e, k)
     # (3) sizes
     N = len(front) - 1
     assert N == e + 2 + k * len(v)
@@ -132,7 +149,7 @@ def main():
         length, b_val = check_one(rng)
         worst_ratio = max(worst_ratio, length)
     print(f"checked {trials} random (m, codes, alphabet, e, v): Horner identity in BS(1,m) "
-          f"and pattern form both hold")
+          f"and pattern form both hold; MSB-first Horner identity and one-homomorphism form Z = C1 phi(v) C2 hold")
     # size comparison on a fixed machine-sized example
     m, c = 7, 3
     for l in (4, 16, 64):

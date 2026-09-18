@@ -78,3 +78,21 @@ the Kaplansky zero-divisor conjecture."
    - What remains is the core groups `K_Gamma` over `F_2`, which is Steenbock's
      original question.  The domain-factor case follows from that together with
      a domain-combination theorem over cyclic amalgams.
+6. **Two-layer elements in the core (partial; `rips-segev-core-large-gap-two-layer-elements-are-regular`, obstruction `rips-segev-port-data-cannot-exclude-balanced-divisors`).**
+   Take `beta = u + w b` with `u, w` in `k[<a>]`.  A zero product gives a
+   finite configuration of `<a>`-cosets with in- and out-ports.  Walking along
+   the extreme ports gives a positive relation `b a^{n_1} ... b a^{n_L} = 1`
+   whose exponents all lie on one side of the degree offset
+   `deg_+ w - deg_+ u` (or `deg_- w - deg_- u`).
+   - A small-cancellation count shows that every positive relation has an
+     exponent in the difference set `Delta` of the relator exponents.
+   - So `beta` is regular in `k[K_Gamma]`, and in every generalized
+     Rips--Segev group, when an offset lies outside `[min Delta, max Delta]`.
+   - Port data alone cannot go further.  The graph `Gamma` itself gives a
+     port configuration with offsets `(0,0)`, which covers the witness
+     `{1,a,b,ab}`.  For Steenbock's graphs, its relator cycles give positive
+     relations with all exponents `<= -10` and with all exponents `>= 99900`.
+     So the walk step fails for offsets in `[-10, 99900]`.
+   - What remains is the balanced and intermediate range.  It needs the
+     coefficients themselves, not supports or extreme degrees.  The
+     extremal-coset route of this lane is dead there.

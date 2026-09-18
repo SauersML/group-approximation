@@ -118,3 +118,19 @@ exist in every dimension, and (LOC) fails at exactly one step: `z^2` is not in t
     commuting have linear `phi`, and dislocations make it quadratic. The sharp open sub-question on
     this route is whether the `SL_2(Z)` conjugation relators of a rank-`k` tuple force
     `phi(L) <= C(k) L`.
+- **The `SL_2(Z)` relators do not force linear `phi` (2026-09-17, w3-124, transplanter).** See
+  `sl2-relators-do-not-force-linear-commutator-growth`.
+  - **Import from Teichmueller dynamics.** Square-tiled surfaces (origamis) with Veech group
+    `SL_2(Z)`. The scaled Eierlegende Wollmilchsau, with its affine group, gives permutation tuples of
+    `Z^2 x| SL_2(Z)` of size `24 m^2`. Every relator has rank `<= 24`, and
+    `phi(L) = rank([b^L, c^L] - I) = 12 L^2` for `L <= m`.
+  - **Mechanism.** Dislocations have Burgers vectors, and `SL_2(Z)` moves them. A `4 pi` cone point
+    has monodromy "go to the other sheet", which every affine map preserves.
+  - **Non-split.** `Aff(O) -> SL_2(Z)` has no lift with `s^4 = 1`, because `s^4` is `-1` in `Q_8`.
+    It is repaired by a diagonal `Q_8` quotient with a free 24-point `Aff(O)`-set.
+  - **Dead route.** Bounded-rank control of the unipotent sector through `Z^2 x| SL_2(Z)` relators
+    alone. A proof must use relators outside this subgroup, e.g. `e_31, e_32` in `SL_3(Z)`, which do
+    not normalize `<e_13, e_23>`.
+  - **Next falsifiable step.** Can a rank-`k` tuple of `SL_3(Z)` contain a `4 pi` cone-point
+    configuration for the pair `(e_13, e_23)`? That is, is there a translation surface whose affine
+    structure is compatible with both parabolics `<e_13, e_23> x| SL_2` and `<e_12, e_13> x| SL_2`?

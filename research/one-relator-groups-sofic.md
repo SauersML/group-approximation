@@ -128,6 +128,30 @@ claim [[nonsofic-one-relator-group]].
    BG over a periodic alphabet is trivial on `a`: a descending-prime argument
    rules it out. So a singular extreme needs letters of infinite order, and
    those give up the local finiteness that the coset-action step uses.
+8. **Amenable alphabets at singular extremes.** *Reduction landed; the model
+   case is open, and the `U(m)` way out of Attempt 7 is dead.*
+   - **Reduction.** [[amenable-alphabet-magnus-shift-dictionary-sofic]]: local
+     finiteness was never needed. Any amenable alphabet works, with no
+     exponent hypothesis. `G` is sofic once the Magnus kernel has amenable
+     quotients that separate finitely many piece elements from `F_-`, `F_+`
+     and `1`. Attempt 7 is the special case of a locally finite alphabet
+     obtained by solving nonsingular equations.
+   - **Obstruction.** [[bg-shift-chains-die-in-residually-linear-alphabets]]:
+     an infinite forward chain `x_(j+1)^(-1) x_j x_(j+1) = x_j^2` is trivial in
+     every group that is residually periodic, linear over any field, or
+     solvable, and in every compact group. So the BG dictionary kills `a` over
+     `U(m)`, over every linear alphabet, and over every residually solvable
+     alphabet.
+   - **Rank one.** With `n = 1` the Magnus edges are cyclic, and `G` is sofic
+     iff `B_0` is. BG itself is sofic classically. Singular extremes matter
+     only for `n >= 2`, where BG is the model zero-exponent step.
+   - **Next step.** [[bs12-extends-to-amenable-square-conjugation-chain]]:
+     embed `BS(1,2)` in an amenable group carrying an infinite forward chain.
+     Equivalently, iterate an amenable extension lemma that conjugates an
+     infinite-order element to its square. A solvable length-3 stage is
+     explicit. Any full solution is perfect on the chain and not residually
+     linear. A negative answer kills the shift dictionary at every singular
+     extreme of this type.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

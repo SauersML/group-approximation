@@ -414,6 +414,27 @@ content in that region.
   - **Class killed.** Arguments that give uniform stretch above a threshold
     `q` from inputs that `q = p_c` also satisfies die at item 6 of the
     established claim.
+* **Rate-based continuation and product structure above `p_c` (2026-09-17,
+  w3-123).** The rate step was to choose `n(t)` so the spine density decays
+  fast, and to show that `theta` and local laws match Bernoulli. That is
+  already (H3)/(H4) of `fpbs-sharp-dominating-collapse-over-sparse-spines`.
+  The new node `fpbs-quenched-bk-russo-collapse-operator-gate` pushes the
+  obstruction to product-structure tools. The same family is:
+  * a quenched product measure given its spine environment, so Harris-FKG,
+    BK-Reimer and Russo hold for every environment;
+  * annealed Russo off a countable jump set;
+  * exact annealed independent sprinkling;
+  * BK at bounded range up to `f(t)`.
+
+  It still collapses on graphs with `||T_{p_c}|| < infinity`, for example
+  hyperbolic mapping tori. **Where it dies:** the one product input it lacks
+  is the annealed operator inequality (G). Its entrywise form is
+  `dT <= C T J T` plus jump atoms `m_k T J T`, with `C` integrable and
+  `sum m_k` finite. Theorem 2 there integrates (G) with atoms from
+  `||T_{p_c}||` to a window. So quenched diagrams must average to bounded
+  multiples of `T J T`, uniformly in volume. The node proves only that
+  interval factorization (a) or jump factorization (b) fails. Deciding which
+  one fails is the next step.
 * **Worst-pair connectivity rate, weaker than the sphere-rate kernel
   (2026-09-17, belief breaker).**
   - **Established side.** `fpbs-worst-pair-connectivity-rate-kernel` has an

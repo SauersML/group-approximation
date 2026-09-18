@@ -269,6 +269,22 @@ The August audit and the September correction artifacts carry the arguments.
      groups or branch groups. It is open whether any finitely presented group acts
      faithfully on a tree with (P), a nontrivial finitely generated edge group, and
      not both indices 2.
+   - *The finitary infinite-valence route dies* (heretic lane w3-030,
+     2026-09-17). By `finitely-singular-tree-hosts-have-no-fg-stabilizers`, fix
+     a core `G ≤ Aut(T)` in which only `1` fixes an edge, and a radius `ρ`. Any
+     group of automorphisms that agree with elements of `G` on `ρ`-balls off
+     finitely many singular vertices, and that acts minimally without fixed end
+     with some nontrivial rigid stabilizer, has no finitely generated vertex,
+     edge or rigid stabilizer. This holds in every valence.
+     - *Where it fails.* The singular depth `D` is ultrametric on each
+       stabilizer, so a finitely generated stabilizer subgroup has bounded
+       depth. But every nontrivial deep rigid element has a deep singularity.
+     - *What it kills.* Le Boudec-type local-rule groups, their countable-colour
+       analogues, and the finitary (P)-closures of free products. None of these
+       can host (P) with a nontrivial finitely generated edge group.
+     - *What is left.* A host with that property needs elements that are
+       infinitely singular over every such core, of automaton or branch type,
+       as in `tits-independence-vertex-groups-are-branch-type`.
    - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
      that are not finitely presented, or a positive answer to the finitely
      presented branch-group question. The open first step is whether some
@@ -381,6 +397,54 @@ conjecture's two halves without narrowing either.
       - a nonhyperlinear decidable group.
     - A table-defined separator refutes `local-boone-higman-conjecture` with a
       single finite system.
+
+12. **Exactness as the separating property of Attempt 7** (transplanter lane
+    c-pz3, swarm-0917, 2026-09-18).
+    - *Lemma.* `decidable-residually-finite-non-exact-group-exists`
+      (ESTABLISHED, unreviewed). Osajda's recursive residually finite
+      non-exact group has solvable word problem: a word of length `≤ n` is
+      trivial in `G` iff it is trivial in the finitely presented residually
+      finite stage `G_n` (his conditions (C) and (D)), and McKinsey decides
+      `G_n` uniformly. With `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`
+      this gives a non-exact decidable simple Kazhdan LEF group.
+    - *Result.* `exactness-separates-boone-higman-iff-fp-simple-groups-exact`
+      (ESTABLISHED, unreviewed). (S2) holds for exactness, so exactness
+      disproves the conjecture iff every finitely presented simple group is
+      exact. If the conjecture holds, `fp-simple-nonexact-group` (OPEN) holds.
+    - *Kill.* Invariant: property A. Step: the universal embedding step.
+      Every class of exact hosts dies there, even for residually finite
+      inputs: linear groups, hyperbolic groups, cocompactly cubulated groups,
+      lattices on products of trees, finite asymptotic dimension. Unlike
+      Attempt 11, the decidable side is unconditional, since the witness is
+      sofic and hyperlinear.
+    - *Survivors.* A host class carrying the conjecture must contain
+      non-exact groups. The exactness of `V`, `nV`, `SV_G` and `L^x` is not
+      settled in this graph.
+
+**September 17: one decidable host per complexity bound.**  This attempt
+decomposes the conjecture as follows.
+
+- *(i)* For every recursive `T`, one decidable `U_T` contains every input
+  with word problem in `F(T)`.
+- *(ii)* Each `U_T` embeds in a finitely presented simple group.
+
+It is recorded as `boone-higman-via-complexity-graded-universal-inputs`.
+
+*Dies* at (i), for `T(n) = 2^((n+1)^37)`.  The Birget--Ol'shanskii--Rips--Sapir
+embedding is computable from the acceptor
+(`bors-embedding-is-effective-in-the-machine`).  Feeding it the free-or-abelian
+acceptors indexed by halting gives a computable family of finite presentations
+`H_e`.  Each has Dehn function `≼ n^18`, and `[x_e, y_e] = 1` in `H_e` iff
+`phi_e(0)` halts (`polynomial-dehn-fp-groups-have-nonuniform-word-problem`).
+
+A decidable host of all `H_e` would decide halting by a homomorphism search
+(`no-decidable-group-contains-every-polynomial-dehn-fp-group`).  The same
+uniform Kuznetsov search rules out computing a finitely presented simple
+overgroup from a presentation with polynomial Dehn function, or from an NP
+acceptor with unknown constant
+(`fp-simple-envelopes-not-computable-from-presentations`).
+A constructive proof must consume a total decision procedure of the input, not
+a presentation or a complexity grade.
 
 ## A strictly easier subproblem, unsolved
 

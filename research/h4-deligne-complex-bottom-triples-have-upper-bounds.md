@@ -33,6 +33,44 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   complements carry CAT(0) complexes of groups, then combinatorial Gauss–Bonnet. An `H_4`
   version needs sub-arrangements of the 60-hyperplane `H_4` arrangement with the same
   properties. Not attempted.
-- **Evidence search (not run).** A bounded computer search for a counterexample inside balls of
-  the Garside normal form of `A_{H_4}` would test the claim, and a counterexample would refute
-  the `H_4` case of Conjecture `conj:compareB` of arXiv:2405.12068. Lane rules: MSI only, small jobs.
+- **Finite core check** (w4-042, `experiments/h4-artin-complex-6cycles-2026-09-17/coxcheck.py`).
+  The Coxeter complex `C_W` is the positive apartment `{lift(w)A_T}` of `Δ_Λ`. The projection
+  `π : Δ_Λ → C_W` (quotient by the pure Artin group) is a type-preserving simplicial retraction
+  onto it. So the bottom-triple condition in `C_W` is necessary, and it decides every configuration
+  lying in one apartment `g·C_W`. Exhaustive result for `H_4`: 120 `ŝ_1` vertices, 600 `ŝ_4`
+  vertices, 1200 pairwise-bounded triples, **0** without a common upper bound. So no counterexample
+  lies in a single apartment. The check tells orientations apart:
+  - It passes for `B_3`, `H_3`, `B_4`, `D_4`, `A_3`, `A_4`.
+  - It fails for the reversed orientations `B_3r` (8 of 32), `H_3r` (20 of 140) and `H_4r`
+    (22800 of 152400), and for `A_2`.
+- **Garside ball search** (w4-042, same directory, `garside.py`, `tsearch.c`, `README.md`).
+  - **Model.** Normalize `x_1 = A_X`, `y_1 = A_Y`, `x_2 = aA_X`, `y_2 = abA_Y`, `x_3 = abcA_X`
+    with `X = {s_2,s_3,s_4}` and `Y = {s_1,s_2,s_3}`. A third bound is `uA_Y` with `u ∈ A_X`.
+  - **Tests.** Each adjacency `g ∈ A_Y A_X` is tested in exact Garside normal form after padding
+    by `Δ_Y^{2K}, Δ_X^{2K}`. Positive answers are certificates.
+  - **Balls.** Two kinds are searched. The simple-letter balls `R_T(L)` are products of at most `L`
+    signed simples modulo `A_Z`. The pure balls are products of at most `L` standard pure
+    generators `w s² w^{-1}`; these are the configurations with `π(ω)` a single edge, i.e. Case 1 of
+    `lem:triple` in arXiv:2405.12068.
+  - **Calibration.** On `B_3` and `H_3` (known true) every pairwise-bounded triple gets a certified
+    common upper bound, in both ball types. On `A_3` (not covered by the conjecture) 245 simple-ball
+    and 76 pure-ball triples stay unresolved.
+  - **H_4 results.** No unresolved triple in any ball searched:
+    - `(La,Lb,Lc,Lu) = (1,1,1,1)`: 480 bounded nontrivial triples.
+    - `(2,1,2,1)`: 4520, with identical counts at `K = 3, 4, 6`.
+    - Pure `(2,1,2)` with `u ∈ R_X(1)`: 7934.
+    - `(2,2,2,2)` with `|R_X(2)| = 1810`, run one `a` at a time. Partial results at landing are in
+      `H4_22222.out`: 2 of 36 `a`, 7369 triples, all found, 0 candidates.
+    - Pure `(2,2,2)` with `|PX(2)| = 709`, `u ∈ R_X(1)`. Complete, in `PH4_22212.out`:
+      4305048 words, 164002 bounded nontrivial triples, all found, 0 candidates.
+  - **What it rules out.** No counterexample is a 6-cycle whose words lie in these balls, among
+    those whose adjacencies are certified at the stated padding.
+  - **Structural hint.**
+    - With `b ∈ R_X(1)`, and in all pure runs, every witness was `y_2` or lay in `R_X(1)A_Y`.
+    - With `b ∈ R_X(2)`, witnesses of length 2 are needed (index up to 1802).
+    - So the witness length tracks the length of `b`, which is consistent with a quasi-centre built
+      from the middle letter.
+- **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
+  an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
+  the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
+  is the link-girth angle bound `π(1/2 + 1/3 + 1/m) ≤ π` ⇔ `m ≥ 6`.

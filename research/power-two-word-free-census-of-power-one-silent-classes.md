@@ -26,6 +26,13 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census/phi414.json
   - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface_phi414_m2.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_length5_partial.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census/phi939.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census/phi4010.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface_phi939_phi4010_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lift_lp_perm_m2_open_entries.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lift_word_short_words_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory_r1_4887_m2.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -129,3 +136,26 @@ entries, one per line).
     61, 108, 198, 228, 464, 939, 1632, 1633, 1635, 1744, 2298, 2429, 4010, 4012, 4485 and 4887.
   - The same length-5 search finished with no certificate for 108, 198, 228, 464 and 939, and hit
     the 1200 s timeout on 61 and 1632. The other open entries were not run at length 5.
+- **Addendum: entries 939 and 4010 are certified; 14 LP-negative entries stay open** (2026-09-18).
+  - `balanced-power-boundaries-lift-to-folded-certificates` proves that a legal fatgraph whose
+    boundary circles are powers with balanced root exponents has a finite cover that is a
+    certificate. It also shows that integer word-free points with permutation turn support
+    realise such fatgraphs.
+  - `lift_lp.py --perm` then gives `surfaces_m2_census/phi939.json`: `partial^-` is
+    `aa, aa, AA, AA, bcbc, bcbc, BCBC, BCBC`, with `chi(X) = -24` and genus 13.
+  - It also gives `surfaces_m2_census/phi4010.json`: `partial^-` is `AC, B, ac, b`, with
+    `chi(X) = -4`, genus 3, and `X` disconnected but `S*_f(X)` connected.
+  - Both pass `verify_surface_multi.py` and `validate_certificates.py`
+    (`verify_surface_phi939_phi4010_m2.log`). So ten classes are certified at power two.
+  - The 14 open representatives are 61, 108, 198, 228, 464, 1632, 1633, 1635, 1744, 2298, 2429,
+    4012, 4485 and 4887.
+  - On all 14, the permutation-support MILP (turn counts `<= 60`) has no integer point with
+    `chi <= -1` (`lift_lp_perm_m2_open_entries.log`). This rules out that construction at this
+    bound. It does not rule out certificates.
+  - The per-word MILP of `lift_word.py` is infeasible for 4887 and 4012, with words
+    `a, b, ab, aab, abb` and their inverses, and for 4485 with `b, c, bc, bbc, bcc` and inverses
+    (`lift_word_short_words_m2.log`).
+  - The word-free LP optimum on 4887 is `-1/2`, with uniform turn counts on `aa, ab, ba, bb`
+    and inverses. A memory-1 refinement of the LP (`lp_memory.py`, windows of two turns) gives the same value
+    (`lp_memory_r1_4887_m2.log`, where all seven certificates also project with 0 failures).
+    So neither relaxation separates these entries from certified ones.

@@ -1,0 +1,263 @@
+---
+rg: 2
+id: kazhdan-subgroups-of-cremona-groups-rf-proof
+kind: route
+title: Reduce the generators modulo a large finite residue field, globalize the partial action on P^n(F_q), and project with property (T) onto finite orbits
+target: kazhdan-subgroups-of-cremona-groups-are-residually-finite
+requires: []
+---
+
+Throughout, `x = (x_0, ..., x_n)`. A **tuple** over a domain `A` is
+`f = (f_0, ..., f_n)` with `f_i in A[x]` homogeneous of one common degree
+`deg f`. Composition `f o g = (f_0(g), ..., f_n(g))` is again a tuple. A tuple
+`f` is **dominant** if `P o f = 0` implies `P = 0` for every homogeneous
+`P in A[x]`. Two tuples over a field are **proportional** if
+`f_i g_j = f_j g_i` for all `i, j`. `Bir(P^n_k)` is the group of
+proportionality classes of dominant tuples over `k` that have an inverse class
+under composition. This is the standard description by homogeneous
+representatives.
+
+## Imports
+
+- **(N) Nullstellensatz over `Z`.** A finitely generated `Z`-algebra `A` is a
+  Jacobson ring: its nilradical is the intersection of its maximal ideals. For
+  every maximal ideal `m` of `A`, the field `A/m` is finite. This is the general
+  Nullstellensatz for Jacobson rings applied over `Z` (Eisenbud, *Commutative
+  Algebra*, Chapter 4, the general Nullstellensatz; `Z` is Jacobson and
+  finitely generated algebras over Jacobson rings are Jacobson with finite
+  residue field extensions). The finiteness half is used in the same form in
+  `char-zero-leavitt-congruence-kernel-proof` item 2. Not re-read verbatim on
+  2026-09-17; it is textbook commutative algebra.
+- **(K) Kazhdan pairs.** A discrete group `G` has property (T) iff there are a
+  finite set `Q` and `kappa > 0` such that every unitary representation
+  containing a `(Q, kappa)`-invariant vector, meaning
+  `max_(q in Q) ||q xi - xi|| < kappa ||xi||`, contains a nonzero invariant
+  vector (Bekka--de la Harpe--Valette, *Kazhdan's Property (T)*, Section 1.1,
+  definition of Kazhdan pair and property (T) for discrete groups). Enlarging `Q`
+  keeps the pair Kazhdan. Equivalently, in a representation with no nonzero
+  invariant vector, every `xi` has `max_q ||q xi - xi|| >= kappa ||xi||`.
+
+## 0. Elementary facts
+
+**Lemma 0 (Schwartz--Zippel).** Let `F` be a field, `T ⊆ F` finite, and
+`P in F[y_1..y_m]` nonzero of total degree `e`. Then `P` has at most
+`e |T|^(m-1)` zeros in `T^m`.
+
+*Proof.* Induct on `m`, as in `rational-function-field-crossed-products-rank-condition-proof`
+Lemma 0. Write `P = sum_(j<=a) P_j(y_1..y_(m-1)) y_m^j` with `P_a != 0`. The
+points where `P_a` vanishes number at most `(e-a)|T|^(m-2) · |T|`. At every
+other point `P(y', ·)` is a nonzero polynomial of degree `a`, so it gives at
+most `a |T|^(m-1)` zeros. ∎
+
+**Corollary 0.** If `P in F_q[x_0..x_n]` is nonzero homogeneous of degree `e`,
+its zero set `V(P)` in `Omega = P^n(F_q)` has at most `2e q^(n-1)` points.
+Also `|Omega| >= q^n`.
+
+*Proof.* The affine zeros in `F_q^(n+1) \ {0}` number at most `e q^n`, and
+each projective point accounts for `q - 1 >= q/2` of them. `|Omega| = (q^(n+1)-1)/(q-1) >= q^n`. ∎
+
+**Lemma 1 (dominance).**
+- (a) If `g` is dominant and `f` is a nonzero tuple, then `f o g != 0`.
+- (b) If `f` and `g` are dominant, then `f o g` is dominant.
+- (c) If `h o f = lambda x` with `lambda != 0`, then `h` is dominant.
+
+*Proof.*
+- (a) Some `f_i != 0`, so `f_i o g != 0`.
+- (b) `P o (f o g) = (P o f) o g`, so it is zero only if `P o f = 0`, that is, only if `P = 0`.
+- (c) If `P o h = 0` with `P != 0` homogeneous, then
+  `lambda^(deg P) P = P o (lambda x) = P o h o f = 0`. That contradicts `lambda != 0` in a domain. ∎
+
+**Lemma 2 (identity tuples).** If a tuple `f` over a domain is proportional
+to `x`, then `f = lambda x` for a homogeneous `lambda`. If `f != 0`, then
+`lambda != 0`.
+
+*Proof.* `f_0 x_j = f_j x_0` gives `x_0 | f_0`. Put `lambda = f_0/x_0`. Then
+`f_j x_0 = lambda x_0 x_j`, so `f_j = lambda x_j`. ∎
+
+## 1. Set-up
+
+Let `Gamma <= Bir(P^n_k)` be finitely generated with property (T). By (K),
+choose a finite symmetric `S ∋ 1` that generates `Gamma` and `kappa > 0` such
+that `(S, kappa)` is a Kazhdan pair. Base change embeds `Bir(P^n_k)` in
+`Bir(P^n_(k(t)))`, so we may replace `k` by `k(t)`.
+
+For `s in S` choose a tuple `f_s` over `k` representing `s`. The class of
+`f_(s^(-1)) o f_s` is the identity. The composite is nonzero by Lemma 1(a), so
+by Lemma 2 `f_(s^(-1)) o f_s = lambda_s x` with `lambda_s != 0`. Let `c_s` be a
+nonzero coefficient of `lambda_s`, and put `e = max_s deg lambda_s`.
+
+Fix `g != 1` in `Gamma` and a word `w = s_1 ... s_L` in `S` representing it.
+Put `f_w = f_(s_1) o ... o f_(s_L)`. Because `g != 1`, `f_w` is not
+proportional to `x`. Choose `i_0, j_0` with
+`E = f_(w,i_0) x_(j_0) - f_(w,j_0) x_(i_0) != 0`, and let `c_g` be a nonzero
+coefficient of `E`. Choose `k_0` with `f_(w,k_0) != 0` and let `c'_g` be a
+nonzero coefficient of it. Put `C_g = 2(deg E + deg f_w)`.
+
+Let `R ⊆ k` be the `Z`-subalgebra generated by `t` and all coefficients of all
+`f_s`. It is a finitely generated domain, and it is infinite. All `f_w`, `E`,
+`lambda_s` have coefficients in `R`. Put `c = c_g c'_g prod_s c_s != 0`.
+
+**Lemma 3 (large residue fields).** For every `Q`, there is a ring
+homomorphism `pi : R -> F_q` onto a finite field with `q > Q` and
+`pi(c) != 0`.
+
+*Proof.* `R' = R[1/c]` is a finitely generated `Z`-algebra and an infinite
+domain. Every quotient `R'/m` by a maximal ideal is finite by (N). Suppose all
+of them had at most `Q` elements. Put `M = Q! + 1`. Each such field has order
+`p^a <= Q`, and `p^a - 1` divides `Q!`, so `r^M = r` holds in it for every `r`.
+Then `r^M - r` lies in every maximal ideal. By (N) it is nilpotent, so it is
+zero because `R'` is a domain. All elements of `R'` would then be roots of
+`y^M - y` in `Frac R'`, which has at most `M` roots. That contradicts
+`R'` being infinite. So some `m` has `|R'/m| > Q`. Take `pi : R -> R' -> R'/m`.
+Then `pi(c)` is a unit. ∎
+
+Fix such a `pi`, write `bar f` for reduction of coefficients, and put
+`Omega = P^n(F_q)`, `N = |Omega|`. Reduction is a ring homomorphism, so it
+commutes with composition of tuples.
+- `bar f_(s^(-1)) o bar f_s = bar lambda_s x` with `bar lambda_s != 0`.
+  Since `S` is symmetric, Lemma 1(c) makes every `bar f_s` dominant.
+- `bar E = bar f_(w,i_0) x_(j_0) - bar f_(w,j_0) x_(i_0) != 0` and `bar f_(w,k_0) != 0`.
+- Degrees do not increase.
+
+## 2. The reduction homomorphism
+
+For a word `v = s_1 ... s_m` put `bar f_v = bar f_(s_1) o ... o bar f_(s_m)`.
+It is dominant by Lemma 1(b).
+
+**Lemma 4.**
+- (i) If `v` is trivial in `Gamma`, then `bar f_v = mu x` with `mu != 0`.
+- (ii) If `v, v'` represent the same element, then `bar f_v` and `bar f_(v')`
+  are proportional over `F_q(x)`.
+
+*Proof.*
+- (i) Over `R`, `f_v` represents the identity, so `f_v = mu_v x` by Lemma 2.
+  Hence `bar f_v = bar mu_v x`. This tuple is dominant, so it is nonzero, and
+  `bar mu_v != 0`.
+- (ii) Let `u` be the letterwise inverse word of `v`, so `u v` and `v' u` are
+  trivial. By (i), `bar f_u o bar f_v = nu x` and `bar f_(v') o bar f_u = mu x`
+  with `mu, nu != 0`. Composition of tuples is associative, so
+  `mu(bar f_v) bar f_v = (mu x) o bar f_v = bar f_(v') o (nu x) = nu^(deg bar f_(v')) bar f_(v')`.
+  Here `mu(bar f_v) != 0` because `bar f_v` is dominant. ∎
+
+For `h in Gamma` let `Rep(h)` be the set of nonzero tuples over `F_q` that are
+proportional to `bar f_v` for a word `v` representing `h`. By Lemma 4(ii) this
+does not depend on `v`, and `bar f_v in Rep(h)`.
+
+**Lemma 4'.**
+- (a) Every `f in Rep(h)` is dominant.
+- (b) If `f in Rep(h)` and `f' in Rep(g)`, then `f' o f in Rep(gh)`.
+
+*Proof.*
+- (a) Over `F_q(x)`, `f = r bar f_v` for a rational function `r != 0`:
+  pick `j` with `bar f_(v,j) != 0` and put `r = f_j / bar f_(v,j)`. For
+  homogeneous `P`, `P o f = r^(deg P) (P o bar f_v)`, so `P o f = 0` forces `P = 0`.
+- (b) Write `f = r bar f_v` and `f' = r' bar f_(v')`, with `r' = a/b` and `a, b`
+  nonzero polynomials. Since `f` is dominant, `a(f)` and `b(f)` are nonzero. Then
+  `f' o f = r'(f) r^(deg bar f_(v')) (bar f_(v') o bar f_v) = r'(f) r^(deg) bar f_(v'v)`.
+  This is a nonzero multiple of the dominant tuple `bar f_(v'v)`, and `v'v`
+  represents `gh`. ∎
+
+Let `D_h ⊆ Omega` be the set of points `y` at which some `f in Rep(h)` is
+nonzero. Vanishing at a projective point is well defined for homogeneous
+polynomials. If `f, f' in Rep(h)` are both nonzero at `y`, then `f(y)` and
+`f'(y)` are proportional, because `f_i f'_j - f_j f'_i` vanishes identically.
+So `rho(h) y := [f(y)]` is a well-defined point of `Omega`.
+
+## 3. The partial action
+
+Put `A_h = {y in D_h : rho(h) y in D_(h^(-1))}` and `theta_h = rho(h)|_(A_h)`.
+
+**Lemma 5.**
+- (PA0) `theta_1 = id_Omega`.
+- (PA1) `theta_h` maps `A_h` bijectively onto `A_(h^(-1))`, with inverse `theta_(h^(-1))`.
+- (PA2) If `y in A_h` and `theta_h y in A_g`, then `y in A_(gh)` and
+  `theta_(gh) y = theta_g theta_h y`.
+
+*Proof.* All composites below are in the right `Rep` by Lemma 4'(b).
+- (PA0) The empty word gives `x in Rep(1)`, which is nonzero everywhere.
+- (PA1) Let `y in A_h`, `f in Rep(h)` nonzero at `y`, `z = [f(y)]`, and
+  `f'' in Rep(h^(-1))` nonzero at `z`. Then `f'' o f in Rep(1)` is proportional to
+  `x`, so `f'' o f = nu x` by Lemma 2. Its value at `y` is `f''(f(y)) != 0`, so
+  `nu(y) != 0` and `rho(h^(-1)) z = y`. Since `y in D_h`, `z in A_(h^(-1))` and
+  `theta_(h^(-1)) theta_h = id` on `A_h`. The same argument with `h^(-1)` gives
+  `theta_h theta_(h^(-1)) = id` on `A_(h^(-1))`.
+- (PA2) Let `z = theta_h y` and `u = theta_g z`. Take `f in Rep(h)` nonzero at
+  `y` and `f' in Rep(g)` nonzero at `z`. Then `f' o f in Rep(gh)` is nonzero at
+  `y` with value `u`, so `y in D_(gh)` and `rho(gh) y = u`. By (PA1),
+  `u in A_(g^(-1))` with `theta_(g^(-1)) u = z`, and `z in A_(h^(-1))` with
+  `theta_(h^(-1)) z = y`. Take `F in Rep(g^(-1))` nonzero at `u` and
+  `F' in Rep(h^(-1))` nonzero at `z`. Then `F' o F in Rep((gh)^(-1))` is nonzero
+  at `u`, so `u in D_((gh)^(-1))` and `y in A_(gh)`. ∎
+
+**Lemma 6 (density).** `|Omega \ A_s| <= 2 e q^(n-1)` for `s in S`.
+
+*Proof.* If `bar lambda_s(y) != 0`, then `bar f_(s^(-1))(bar f_s(y)) = bar lambda_s(y) y != 0`.
+So `bar f_s(y) != 0` (the tuples have positive degree, being dominant with
+`n >= 1`), and `y in A_s`. Apply Corollary 0 to `bar lambda_s`. ∎
+
+**Lemma 7 (fixed points).** If `y in A_g` and `theta_g y = y`, then
+`y in V(bar E) ∪ V(bar f_(w,k_0))`. Hence at most `C_g q^(n-1)` such `y` exist.
+
+*Proof.* Some `f in Rep(g)` has `f(y) = beta y` with `beta != 0`. Suppose
+`bar f_w(y) != 0`. Since `f_i bar f_(w,j) = f_j bar f_(w,i)`, `bar f_w(y)` is proportional
+to `f(y)`, and so to `y`. Then `bar E(y) = 0`. Otherwise every component of
+`bar f_w` vanishes at `y`, in particular `bar f_(w,k_0)`. The count follows
+from Corollary 0. ∎
+
+## 4. Globalization
+
+On `Gamma x Omega`, put `(a, y) ~ (b, z)` iff `y in A_(b^(-1)a)` and
+`theta_(b^(-1)a) y = z`. By (PA0)--(PA2) this is an equivalence relation, and
+`Gamma` acts on `X = (Gamma x Omega)/~` by `g[a, y] = [ga, y]`. The relation is
+preserved because `(gb)^(-1) ga = b^(-1) a`. Let `iota(y) = [1, y]`.
+- `iota` is injective, by (PA0).
+- `s iota(y) = [s, y] ∈ iota(Omega)` iff `y ∈ A_s`, and then it equals `iota(theta_s y)`.
+
+So `s iota(Omega) ∩ iota(Omega) = iota(A_(s^(-1)))`, and
+`|s iota(Omega) Δ iota(Omega)| = 2|Omega \ A_s|`. That uses `|A_s| = |A_(s^(-1))|`, from (PA1).
+
+## 5. Kazhdan projection
+
+Let `Gamma` act on `ell^2(X)` by permutations, let `P` be the orthogonal
+projection onto the invariant vectors, and put `v = 1_(iota(Omega))`, so
+`||v||^2 = N`. The invariant subspace and its orthogonal complement are both
+invariant, and `P` commutes with the action. So `u = v - Pv` lies in a
+subrepresentation with no nonzero invariant vector. By (K), `u` is not
+`(S, kappa)`-invariant: some `s in S` has
+`||su - u|| >= kappa ||u||`. Since `su - u = sv - v`, Lemma 6 gives
+
+```text
+||v - Pv||^2 <= kappa^(-2) max_s ||sv - v||^2 <= 4 e q^(n-1) / kappa^2.
+```
+
+An invariant vector in `ell^2(X)` is constant on orbits and square-summable,
+so it vanishes on infinite orbits. Let `X_fin` be the union of the finite
+orbits. On `iota(Omega) \ X_fin` the vector `v - Pv` equals `1`, so
+
+```text
+|iota(Omega) \ X_fin| <= 4 e q^(n-1) / kappa^2.                          (*)
+```
+
+## 6. Conclusion
+
+Suppose `g` lies in every finite-index normal subgroup of `Gamma`. Each finite
+orbit `O ⊆ X` gives a homomorphism `Gamma -> Sym(O)` with finite-index kernel,
+so `g` fixes `X_fin` pointwise. Let `y in Omega` with `iota(y) in X_fin`. Then
+`[g, y] = [1, y]`, so `y in A_g` and `theta_g y = y`. By Lemma 7 there are at
+most `C_g q^(n-1)` such `y`. With (*) and Corollary 0,
+
+```text
+q^n <= N <= C_g q^(n-1) + 4 e q^(n-1)/kappa^2,  i.e.  q <= C_g + 4e/kappa^2.
+```
+
+`C_g`, `e`, `kappa` do not depend on `pi`. Lemma 3 gives `pi` with
+`q > C_g + 4e/kappa^2`, which is a contradiction. So `g != 1` does not lie in
+the finite residual. Since `g` was arbitrary, `Gamma` is residually finite. ∎
+
+## Remarks
+
+- Consistency along *all* trivial words is automatic (Lemma 4). That is what
+  separates these point models from general sofic approximations, and it is
+  exactly what property (T) converts into finite quotients.
+- The route never uses that `Gamma` is finitely presented, or anything about
+  its relators.

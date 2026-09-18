@@ -108,7 +108,15 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   for flows on all of `F` that depend arbitrarily on the negative part `q_g` of the normal form
   (`thompson-f-degree-aware-automaton-flows-cannot-certify`). There a pumped vine plus a fair coin
   spreads the leaf count, and splitting moves its law by `O(1/√N)`. Open: rules that read per-tree
-  sizes, depths or exact shapes of the positive part.
+  sizes, depths or exact shapes of the positive part, and flows on pairs of forests.
+- **Flow rules reading an observation (the observation gate).** `thompson-f-flow-certificate-observation-gate`:
+  a flow rule that reads only an observation `Ψ` of the forest exists iff `Ψ` has positive shadow defect
+  `δ_λ(Ψ)`, by Sion's minimax theorem. So non-amenability is `δ_λ(id_M) > 0`, and every flow kill is a
+  dominated shadow law. Dead observations: constants (Ore property), Schreier graphs with Følner sets,
+  profile plus tree count, and now profile plus tree count plus total caret count (a random right-comb
+  padding over the pumping period). *Invariant:* a dominated shadow law. Dies: every flow reading only
+  coarse or finite-state data. Not covered: unbounded per-tree data and reduced pairs of forests.
+  (swarm-0917, obstruction-miner.)
 - **Bounded cohomology with separable coefficients.** Amenability is equivalent to
   `H^n_b(G; E) = 0` for all dual modules `E`. Dies for separable `E`: by Monod, arXiv:2112.13741,
   `H^n_b(F; E) = 0` for all `n >= 1` and every separable dual `E`. The node
@@ -156,6 +164,25 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     so the surviving class is equivalent to the root. Calibration: `BS(1,2)` and Thompson's `T` have
     commensurated non-normal subgroups, so the collapse uses both the simple commutants and torsion-freeness.
   (swarm-0917-w5-f-nonamenable, obstruction-miner, host-geometry.)
+- **Private pivot orders (triangular doubling certificates) (2026-09-17).** A total order on `M` under
+  which every `m` has two private points in `S m` makes `S` double and gives non-Ore pairs
+  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`). Such an order exists iff no layer
+  `M_D` contains a *stubborn set*: a finite set in which every point has at most one successor whose
+  predecessors in the set are only itself. The minimum of a stubborn set has at most one private point.
+  - *Dies for `S_(3,5)` (`P_(2,2)`):* a 1092-point stubborn set in degree 7
+    (`thompson-f-p22-monomials-admit-no-private-pivot-order`).
+  - *Dies for every generator set `X_m = {x_0..x_m}`, by hand:* take the forests on `D + m + 2` leaves
+    (`D >= m`) with no caret across a cut into two blocks of at most `D + 1` leaves. A product of `z` that
+    joins two roots in the same block keeps every peel inside the set, and a single tree with `D + 2`
+    leaves cannot fit in one block, so that product has at least two predecessors in the set. The one
+    product that crosses the cut has `z` as its only predecessor in the set. At `D = m` this set is
+    exactly the computed core (2, 8, 40, 221, 1288, 7752 points)
+    (`thompson-f-generator-sets-admit-no-private-pivot-order`).
+  - *Survivors:* non-triangular doubling certificates, such as 2-to-1 Hall matchings not induced by an
+    order. Among the pivot orders themselves, only sets with no stubborn set in any layer survive, for
+    example `{x_a x_b x_c : a <= 2, b <= 3, c <= 4}`, where none appears through `D = 10`. Degree-one sets
+    with gaps have cores at `D = |J| − 1` (computed), but the block construction does not cover them.
+  (c-pz0, obstruction-miner, host-geometry.)
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

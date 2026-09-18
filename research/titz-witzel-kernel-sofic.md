@@ -92,6 +92,64 @@ sofic, it would also answer Cornulier's Question 5 positively.
   * Where this dies for now: no branch set meeting all flats sparsely has been
     built.  Branch sets pulled back from product or height coordinates are
     ruled out, heuristically, by irreducibility.  Target stays OPEN.
+- 2026-09-17 (swarm-0917, d-tfs-p2, transplanter): tried to remove the hyperbolic-group
+  prerequisite from the branched-cover route and to kill its contrapositive.  **Refereeing
+  refuted the statement as written**, so the enabling claim is OPEN and none of the gains below
+  are currently available; they are recorded as what the repair would buy.
+  * Attempted `sparse-fully-branched-covers-iff-sofic-simple-residual`.  Let `Y` be a locally
+    CAT(0) 2-complex with an infinite simple finite-index subgroup `K <= pi_1(Y)`.  Then `K` is
+    sofic iff there are sparse branched covers (`beta -> 0`) in which every component contains a
+    branch vertex.  Equivalently, the branched components carry a fixed fraction of the sheets.
+    No soficity of `pi_1(X)` is used.
+    - Run Step 3 of the reduction with the trivial `pi_1(X)`-model.  This gives an almost
+      homomorphism on `p^(-1)(v)`.
+    - For the mark: if a deep point is fixed by every short `k in K`, the developing map is
+      invariant, and it descends to a local homeomorphism `Delta/K -> X \ B` with open and
+      compact image.  So that point lies in an unbranched component.
+    - Simplicity (`infinite-simple-group-permutation-stable-iff-nonsofic`) finishes.
+    - Converse: unbranched components are genuine `G`-sets, on which `K` acts trivially, so a
+      sofic model puts only `O(epsilon n)` sheets in them.
+  * (H) forbids unbranched components, because apartments immerse.  So route
+    `titz-witzel-kernel-sofic-via-flat-hitting-covers` has the single open prerequisite
+    `titz-witzel-flat-hitting-sparse-branched-covers`.  (G) and
+    `titz-witzel-flat-hitting-branched-cover-groups-are-sofic` are redundant.
+  * `nonsofic-hyperbolic-group-from-titz-witzel-flat-hitting-covers` would be invalidated.  Its
+    two prerequisites would be jointly inconsistent: a nonsofic kernel means flat-hitting sparse
+    covers do not exist.  This does not take effect while the enabling claim is OPEN.
+  * Nonsoficity would become equivalent to a rigidity statement: every sparse branched cover of
+    `Y_1^2` is, up to `o(N)` sheets, copies of `Y_1^2` and its genuine double cover.
+  * Where this stops.  Two places now.  (i) The referee gap: Step B imports Step 4 of
+    `sparse-branched-covers-sofic-pi1-reduction-proof`, which silently needs every vertex link of
+    `Y` to be connected (free basis of `pi_1(S_y)`; `Y°` connected so `pi_1(Y°) -> G` is onto;
+    each cone point's link connected and covering `Lk(y)`).  Gluing a square at a corner of
+    `Y_1^2` gives a `Y'` with the same `G` and `K` but a disconnected vertex link, admitting no
+    branched cover at all, so the theorem as stated would settle this target with no argument.
+    The links of `Y_1^2` themselves are connected, so adding the hypothesis is expected to leave
+    the corollary intact, but the repaired statement is not recorded or refereed.  (ii) Even
+    then, no fully branched sparse cover has been built.  Target stays OPEN.
+- 2026-09-17 (d-tw-obs, obstruction-miner, host-geometry): **Cremona hosts are dead.**
+  The live spark "Cremona host for K" proposed embedding `K` in `Bir(P^n)`,
+  `n >= 3`. Cremona groups are sofic (Cornulier), and Cantat--Cornulier kill
+  only dimension 2.
+  * Established `kazhdan-subgroups-of-cremona-groups-are-residually-finite`
+    (route `kazhdan-subgroups-of-cremona-groups-rf-proof`, requires []): over
+    any field and in any dimension, finitely generated Kazhdan subgroups of
+    `Bir(P^n_k)` are residually finite. So neither `Gamma_1^2` nor `K` embeds in
+    any Cremona group.
+  * Invariant: reducing the generators modulo a large finite residue field
+    gives partial actions on `P^n(F_q)` that are consistent along *every*
+    trivial word (the identity principle for rational maps). They have density
+    `1 - O(1/q)`.
+  * Dying step: globalize the partial action and project `1_Omega` onto
+    invariant vectors with property (T). Almost all points lie in finite orbits,
+    where a non-trivial element must move all but `O(q^(n-1))` points. That
+    yields finite quotients, which `K` does not have.
+  * The same argument kills every algebraic host whose reductions are exact
+    partial actions. It is a clean special case of the partial-action rounding
+    above that avoids the refuted re-gluing sentence. A sofic certificate for
+    `K` must come from approximations whose monodromy is inconsistent on a
+    macroscopic set, not from specializing any faithful birational action.
+    Target stays OPEN.
 - 2026-09-17 (d-tw-ref, reframer, symmetric branched covers): turned the
   Galois heuristic above into a theorem and killed a whole construction class.
   * Established `branched-cover-branching-mass-is-quantized-by-deck-group`.

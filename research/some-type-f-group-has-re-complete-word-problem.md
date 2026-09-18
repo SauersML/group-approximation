@@ -46,6 +46,17 @@ Proof: route `some-type-f-group-has-re-complete-word-problem-proof`.
 
 - **The finer invariant suggested above (time complexity of the reduction) is
   dead too** (proposed-established, w3-117). The reduction `w ∘ f ∘ g` above has
+  exponential size. The fix is the type F group
+  `H_M = <G_M, s | [s,t] = [s,x] = 1, s^-1 y s = y^m>`. Its most-significant-first
+  Horner words compress `y^b` with a stable letter that commutes with `t` and `x`.
+  - `H_M` receives every r.e. language by patterns `v -> omega_L(phi(v))`, with ONE
+    free-monoid homomorphism `phi` and four occurrences of `phi(v)`.
+  - So every reducibility containing these patterns (linear-time, polynomial-time,
+    log-space) fails to separate type `F_n` from type `F_{n+1}` hosts at every `n`.
+  - At one occurrence the relation is exactly embedding (Lemma E), so it is
+    Problem 1.1 itself.
+  - A word-problem-reduction obstruction must use 2- or 3-occurrence patterns, or
+    a host invariant.
   exponential size.
   - The fix is the type F group `H_M = <G_M, s | s^-1 y s = y^m>`. Its Horner
     words compress `y^b`, and it receives every r.e. language by linear-size

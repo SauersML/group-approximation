@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/shell-one-singularity-stabilizer-reduction-2026-09-16.md
   - research/artifacts/boone-higman-shell-normal-core-criterion-2026-09-08.md
+  - research/artifacts/shell-tail-structure-brown-calibration-2026-09-18.md
 ---
 
 For every infinite finitely presented group P with decidable word
@@ -106,3 +107,36 @@ two necessary conditions on the pieces of any surviving decomposition:
 
 So the vertex pieces must be groups A(H) with H not virtually <tau>, which are of the same
 nature as A_1.
+
+Tail-structure Brown complex (2026-09-18, dies at the vertex stabilizers). See
+`research/artifacts/shell-tail-structure-brown-calibration-2026-09-18.md`.
+
+Reframing. A_1 is the V-absorption V[Q] of its germ group Q. It is the group of
+homeomorphisms that fix p, are locally V off p, and permute the rows 0^n 1 C
+near p by a representative of a germ in Q.
+
+The attempt lets A_1 act on a complex whose cells are tail row structures. The
+stabilizer of the standard rows on 0^m C is
+
+    S_m = V(C minus 0^m C) x Qtilde_m.
+
+Here Qtilde_m consists of the bijections of N_{>=m} with germ in Q_0 = ker(eta|Q).
+It is an FSym-absorption: 1 -> FSym -> Qtilde_m -> Q_0 -> 1.
+
+- On the shell, Q_0 = ker(eta_R) x ker(eta_R). Brown's criterion with these
+  vertex stabilizers therefore needs ker(eta_R) finitely generated. That is a
+  two-sided Sigma^1 condition, strictly more than the ascending gate.
+- Calibration.
+  - The two-ray germ group Q_2 gives V[Q_2] = Stab_V({p,q}), which is finitely
+    presented (`contracting-srn-rational-stabilizers-are-fp`).
+  - Its tail stabilizers contain Houghton's group FSym(Z) x| Z with index at most 2.
+    That group is not FP_2 over Q (`houghton-h2-is-not-fp2-over-q`).
+  - So S_m is not finitely presented, and the method cannot certify a group that is
+    finitely presented.
+
+The invariant is the FSym-absorption of the index-zero germs. At the permutation
+level it carries Houghton defects that V absorbs. The germ-map complex of
+2026-09-17 has cells that are too large, since they contain the kernel K, which is
+not finitely generated. Exact row structures give cells that are too small. A
+surviving complex must mix finitely many rows by V (a Stein-Farley-type poset of row
+splittings). An obstruction to A_1 FP cannot be read off at the FSym level alone.

@@ -1,0 +1,8 @@
+solutions: [{c0: 0, c1: c6, c2: -2*c6, c3: c6, c4: c6, c5: -c6, c7: 0, c8: 0}]
+C = Matrix([[0, c6, -2*c6], [c6, c6, -c6], [c6, 0, 0]])
+det C = c6**3
+check C X_{-1-k} C^-1 == Y_k: True
+check C Y_{-1-k} C^-1 == X_k^-1: True
+k=4: words |w|<=5 with tr(rev w) != tr(w): 88
+k=5: words |w|<=5 with tr(rev w) != tr(w): 88
+k=6: words |w|<=5 with tr(rev w) != tr(w): 88

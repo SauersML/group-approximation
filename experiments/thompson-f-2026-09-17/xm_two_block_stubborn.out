@@ -1,0 +1,37 @@
+m=1 D=1 N=4 c=2 |Z|=2 every point has exactly 1 private successor
+m=1 D=2 N=5 c=2 |Z|=4 every point has exactly 1 private successor
+m=1 D=2 N=5 c=3 |Z|=4 every point has exactly 1 private successor
+m=1 D=3 N=6 c=2 |Z|=10 every point has exactly 1 private successor
+m=1 D=3 N=6 c=3 |Z|=8 every point has exactly 1 private successor
+m=1 D=3 N=6 c=4 |Z|=10 every point has exactly 1 private successor
+m=2 D=2 N=6 c=3 |Z|=8 every point has exactly 1 private successor
+m=2 D=3 N=7 c=3 |Z|=21 every point has exactly 1 private successor
+m=2 D=3 N=7 c=4 |Z|=21 every point has exactly 1 private successor
+m=2 D=4 N=8 c=3 |Z|=60 every point has exactly 1 private successor
+m=2 D=4 N=8 c=4 |Z|=55 every point has exactly 1 private successor
+m=2 D=4 N=8 c=5 |Z|=60 every point has exactly 1 private successor
+m=3 D=3 N=8 c=4 |Z|=40 every point has exactly 1 private successor
+m=3 D=4 N=9 c=4 |Z|=121 every point has exactly 1 private successor
+m=3 D=4 N=9 c=5 |Z|=121 every point has exactly 1 private successor
+m=3 D=5 N=10 c=4 |Z|=378 every point has exactly 1 private successor
+m=3 D=5 N=10 c=5 |Z|=364 every point has exactly 1 private successor
+m=3 D=5 N=10 c=6 |Z|=378 every point has exactly 1 private successor
+m=4 D=4 N=10 c=5 |Z|=221 every point has exactly 1 private successor
+m=4 D=5 N=11 c=5 |Z|=728 every point has exactly 1 private successor
+m=4 D=5 N=11 c=6 |Z|=728 every point has exactly 1 private successor
+m=4 D=6 N=12 c=5 |Z|=2422 every point has exactly 1 private successor
+m=4 D=6 N=12 c=6 |Z|=2380 every point has exactly 1 private successor
+m=4 D=6 N=12 c=7 |Z|=2422 every point has exactly 1 private successor
+m=5 D=5 N=12 c=6 |Z|=1288 every point has exactly 1 private successor
+m=5 D=6 N=13 c=6 |Z|=4488 every point has exactly 1 private successor
+m=5 D=6 N=13 c=7 |Z|=4488 every point has exactly 1 private successor
+m=5 D=7 N=14 c=6 |Z|=15636 every point has exactly 1 private successor
+m=5 D=7 N=14 c=7 |Z|=15504 every point has exactly 1 private successor
+m=5 D=7 N=14 c=8 |Z|=15636 every point has exactly 1 private successor
+m=1 D=m |Z_m|=2 formula=2 core(M_(m,2m)) equal (2 points)
+m=2 D=m |Z_m|=8 formula=8 core(M_(m,2m)) equal (8 points)
+m=3 D=m |Z_m|=40 formula=40 core(M_(m,2m)) equal (40 points)
+m=4 D=m |Z_m|=221 formula=221 core(M_(m,2m)) equal (221 points)
+m=5 D=m |Z_m|=1288 formula=1288 core(M_(m,2m)) equal (1288 points)
+m=6 D=m |Z_m|=7752 formula=7752 core(M_(m,2m)) equal (7752 points)
+OK

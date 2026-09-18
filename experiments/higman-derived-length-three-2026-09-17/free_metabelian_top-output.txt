@@ -1,0 +1,3 @@
+f(a g) = S f(g), f(c g) = t f(g), f(g) = f(gb) + f(gbc) on 30 random g
+m=1: Phi(z) = t^-m (S^-m - 1)(1+..+t^(m-1)) and Phi(z^(alpha^-i gamma^-j)) = S^(mi) t^(mj) Phi(z), 0<=i,j<=2
+m=2: Phi(z) = t^-m (S^-m - 1)(1+..+t^(m-1)) and Phi(z^(alpha^-i gamma^-j)) = S^(mi) t^(mj) Phi(z), 0<=i,j<=2

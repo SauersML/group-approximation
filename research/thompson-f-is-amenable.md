@@ -98,6 +98,23 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - Dies at the refinement strategy. Generic refinement gains only about 0.04 per 24-fold increase in
     cells, and for `X_1` it stays near 1.2 while vine partitions with 4228 cells reach `103/100`. A
     certificate needs a guessed thin skeleton for `S_(3,5)`.
+- **Common multiples with controlled radius.** (swarm-0917, obstruction-miner.)
+  `ore-radius-function-bounds-folner-radius` localizes Bartholdi's garden-of-Eden automaton
+  (arXiv:1605.09133v2, §2) and solves its `(r-1) × r` matrix, `r = H_n n! + 1`, `n = |B(k)|`, by Ore
+  column elimination. The support of the kernel vector has `|B(k)F| < (1 + ln n)|F|` inside the ball
+  of radius `τ^(r-1)(k)`, where `τ(R) = R + Ω(R)` and `Ω` is the Ore radius function.
+  `thompson-f-ore-radius-function-is-not-quasi-polynomial` combines this with Moore.
+  - *Invariant:* the Ore radius function `Ω_K` of `K[F]` against Moore's tower.
+  - *Where every member dies:* any scheme giving common multiples of radius at most
+    `exp_j((log_j R)^c)` for all pairs supported in `B(R)` dies at the elimination-plus-Bartholdi step.
+    This covers polynomial or quasi-polynomial identities and linear algebra in polynomial degree, for
+    every field. The step produces an `O(log k / k)`-Følner set of size at most `exp_(j+5)(3k+2)`,
+    against Moore's tower of height about `log_C k`.
+  - The pair-level shortcut is false. In `Z^d` the common multiple `t = b`, `u = a` of two elements
+    supported on the simplex has doubling `(d+2)/2`.
+  - Exponential control `Ω(R) <= 2^R` is not excluded, since the factorial elimination depth
+    exceeds the available tower height. Surviving witnesses must use common multiples whose radius
+    is not bounded by any fixed `exp_j((log_j R)^c)`.
 - **Density of Cayley graphs.** Amenability is equivalent to finite subgraphs of density
   arbitrarily close to `2m`. The best known is density `> 3.5` for `{x_0, x_1}` (Guba,
   arXiv:2210.12304, improving Belk--Brown's `3.5`), with sets of size about

@@ -1,0 +1,9 @@
+== w4887
+words ['a', 'b', 'ab', 'aab', 'abb', 'A', 'B', 'BA', 'BAA', 'BBA'] darts 210 polygons 83967 maxval 4 t 2.0
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+== w4485
+words ['b', 'c', 'bc', 'bbc', 'bcc', 'B', 'C', 'CB', 'CBB', 'CCB'] darts 240 polygons 97620 maxval 4 t 2.4
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+== w4012
+words ['a', 'b', 'ab', 'aab', 'abb', 'A', 'B', 'BA', 'BAA', 'BBA'] darts 210 polygons 62881 maxval 4 t 2.1
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)

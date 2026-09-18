@@ -129,6 +129,27 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
     reduction with `o(1)` closure and no unique-game or affine skeleton.
   - Open spark: are the GKOPTW perfect-SDP 2-to-1 gap instances (ICALP 2010)
     rich, or can they be made rich without a merge skeleton?
+* **Manufacture richness by a window-certified transformation of a hard source.**
+  Keep the source labels and add 2-to-1 right vertices whose completeness is
+  certified by bounded source windows. Sources may be arbitrary, including
+  non-affine ones and cosets over nonabelian groups.
+  **Dead (2026-09-17)** -- route `rich-2to1-via-window-certified-enrichment`,
+  killed by `window-certified-richness-is-conserved-modulo-merges`.
+  - Invariant: the component skeleton of the window relations. Every relation
+    splits into forced 2-blocks, which the source derives, and partial
+    bijections, which form a unique game.
+  - Step: `val(W) >= val(Ũ_W) - phi`, with `phi` the forced edge mass. So
+    certified completeness already turns `G -> Ũ_W(G)` into a
+    `Gap-UG(1 - beta - phi, s + phi)` reduction.
+  - Gate: under richness, `phi` is at most the number of distinct forced
+    `j`-block partial pairings times `(2k-2j-1)!!/(2k-1)!!`. So non-merge rich
+    mass `phi` needs about `phi (2k)^j` forced pairings per left vertex.
+  - Coset sources over any finite group: relations are pure. Forced vertices
+    carry central-involution translations of mass at most
+    `c/((2k-1)(2k-3))`, and the rest is a coset unique-game merge. This extends
+    the affine kill above and settles its non-affine gap G3.
+  - Open survivors: forced-pairing families that pass the gate, completeness
+    without source-local certificates, and label re-encoding.
 * **Reframe richness away: treat it as free and isolate completeness (2026-09-17,
   reframing).** **Decomposition, hole stays OPEN.** Tool:
   `orientation-lifts-sandwich-2to1-game-values` (ESTABLISHED).

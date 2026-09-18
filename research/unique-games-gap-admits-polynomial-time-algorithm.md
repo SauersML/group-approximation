@@ -67,3 +67,47 @@ established negation.
   eigenvalues near 1. As an obstruction it forces every UGC reduction to have
   YES outputs of super-logarithmic label-extended threshold rank unless
   `P = NP`.
+* **Refuter biography and the linear-loss kill** (e-ugc-pull-inverter,
+  2026-09-18). This traces what a refuting algorithm `A` would have to do on each
+  hard family, and kills one named class.
+  (a) *The line.* `unique-games-np-hard-above-the-two-c-minus-one-line` argues
+  that `Gap-UG[c, s]` is NP-hard for `s > 2c - 1`; it is OPEN, because its mixing
+  proof has not been refereed, so everything in (a) below is conditional on it.
+  Granting it: since `(1 - eps, eps)` lies below that line for `eps < 1/3`, `A`
+  must decide a point in the open triangle
+  `0 < s < 2c - 1`. Conversely, deciding any single point there already gives
+  this claim; that converse is unconditional, being pure monotonicity. The class
+  that would die: polynomial-time rounders, relaxation-based
+  or not, with alphabet-uniform linear loss `val >= 1 - x => output >= 1 - Cx`
+  and `C < 2`. They die at one fixed alphabet `k(C)`, at the decision step on
+  KMS instances mixed with a satisfiable identity edge, where the completeness
+  error is `x` and the soundness error is `2x`. The invariant is branch
+  multiplicity `2`. Losses growing with `k` (CMM, Galois `O(eps log k)`),
+  constants `>= 2`, and non-linear guarantees survive.
+  (b) *2-to-2 Grassmann instances.* `A` cannot extend relation-generically to
+  fan-out `2`, because `two-to-two-games-theorem` makes
+  `Gap-2to2[1 - eps, eps]` NP-hard. So `A` must use uniqueness itself, not merely
+  bounded fan-out, and every such use breaks when a constraint has two branches.
+  (c) *Rich 2-to-1.* By `sd-rich-and-unique-games-sos-gaps-interconvert`, `A`
+  composed with the noise test solves admissible-design rich 2-to-1 games, while
+  general 2-to-1 games are NP-hard with imperfect completeness. So the
+  interconversion must fail off the admissible designs, consistent with
+  `affine-long-code-test-has-no-uniform-soundness`.
+  (d) *Small-set expanders.* Composed with the polynomial-time reduction of
+  `small-set-expansion-hypothesis-implies-ugc`, `A` decides the SSE gap problem,
+  so `A` also refutes SSEH. On the image of that reduction, and on every UGC
+  reduction's YES outputs, label-extended threshold rank is super-logarithmic
+  (`low-label-threshold-rank-reductions-cannot-prove-ugc`), so `A` cannot be
+  threshold-rank enumeration.
+  (e) *SoS.* The known gaps (KV, short code, noisy cube) are refuted at constant
+  degree (BBHKSZ). If `sos-cannot-refute-unique-games-at-completeness-one-half`
+  were established, mixing would give SoS pseudo-gaps with error ratio `2`, and
+  every SoS rounding with a linear loss constant below `2` would fail without the
+  `P != NP` assumption.
+  What would settle it: an NP-hardness reduction at any single point strictly
+  below the line proves no UGC-refuting `A` exists unless `P = NP`. Affine-view
+  verifiers over DKKMS inputs cannot supply it
+  (`grassmann-composed-2to2-coarsenings-are-satisfiable`). This claim stays OPEN.
+  Note that (a) and (e) rest on
+  `unique-games-np-hard-above-the-two-c-minus-one-line`, which is itself OPEN
+  pending a referee read of its mixing argument; (b), (c) and (d) do not.
