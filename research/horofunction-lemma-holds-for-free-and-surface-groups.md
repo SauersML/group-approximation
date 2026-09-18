@@ -117,3 +117,23 @@ Moves 1 and 2 are exactly where a general proof must work.
   surface group has an SFT compactification with a dense seed orbit.
 - For the Kazhdan (hyperbolic) case, the missing ingredient is a Helly-type halfspace system. Kazhdan groups
   have no walls (FW), so it must be built from horospheres or cone types instead.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS (now also a special case of `hyperbolic-groups-have-sft-horofunction-compactifications`)
+
+This is an internal lane review.
+- **Part 1 (trees).**
+  - Out-degree is `≤ 1` from 1-ball patterns.
+  - A sink gives `d(·,v)`. Otherwise forward paths merge, and `f − f(1) = b_γ`. Correct.
+- **Part 2 (walls).** Every step checks:
+  - **Walls.** The Cayley graph is the chamber graph of the reflection group of the dual Coxeter `4g`-gon, whose angles are
+    `π/(2g)`. The metric is the separating-wall count.
+  - **Non-asymptotic walls.** Each wall has cocompact stabilizer in `Γ_g`: two perpendicular crossing walls give a
+    translation along it. A discrete group has no two hyperbolic axes sharing exactly one endpoint.
+  - **No wall triangles.** By Gauss–Bonnet, tile area is `(4g−4)π ≥ 4π > π`.
+  - **Orientations.** Opposite face edges give a well-defined `o(W)`.
+  - **Helly in the Klein model.** The strip and convexity case analysis for pairs and triples is correct.
+  - **Minimal pointing-away pair.** A separating wall shortens the pair. The right-triangle formula
+    `tan θ = tanh(opp)/sinh(adj)` has `θ` acute, being a non-right angle of a right triangle, and `θ ≥ π/(2g)`, which bounds
+    `d(a_1,b) < arsinh cot(π/(2g))`. The count gives `D ≤ d_c(2M+1)`. Local realizability at `R_0` gives the
+    contradiction.
+- **Minor.** "`σ` crosses at least `D/d_c − 1` walls" is informal but correct up to an additive constant absorbed in `D_0`.
