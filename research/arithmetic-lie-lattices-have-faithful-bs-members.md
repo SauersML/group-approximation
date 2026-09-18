@@ -2,7 +2,7 @@
 rg: 2
 id: arithmetic-lie-lattices-have-faithful-bs-members
 kind: claim
-title: Every arithmetic lattice in a semisimple Lie group has a faithful Hecke member in its Baumslag--Solitar class, so the whole class lies in the permutational Boone--Higman class; this includes closed surface groups
+title: Every irreducible arithmetic lattice in a semisimple Lie group has a faithful Hecke member in its Baumslag--Solitar class, so the whole class lies in the permutational Boone--Higman class; this includes closed surface groups
 distinct_from:
   arithmetic-nsp-lattices-have-faithful-bs-members: that uses the normal subgroup theorem and one commensurator letter, and covers SL_n(Z), n >= 3, and quaternion lattices on two trees; this needs no normal subgroup theorem, covers every arithmetic lattice in a connected semisimple Lie group, including rank one, and uses finitely many commensurator letters.
   free-generalized-bs-groups-have-type-a-overgroups: that is G = F_k, from Bux--Llosa Isenrich--Wu Remark 12.7; this recovers it, since F_k is a non-cocompact arithmetic lattice in PSL_2(R), and adds surface groups, arithmetic hyperbolic manifold groups and higher-rank lattices.
@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `arithmetic-lie-lattices-faithful-bs-proof` (lane proof; referee a
-PASS, `research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
+PASS, `research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`; referee b PASS,
+`research/artifacts/gq-referee-b-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
 no priority claimed).
 
 **Setting.** `L` is a connected semisimple real Lie group with trivial center and
