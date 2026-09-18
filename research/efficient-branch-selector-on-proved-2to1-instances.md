@@ -107,3 +107,14 @@ sees.
   to fail. That means YES labellings of value arbitrarily close to 1 that are
   far from every patchwork. Not a solution. It is a decomposition into two
   prerequisites that cannot both hold.
+* **Planted/NO-coset coupling (2026-09-18).** This attempt is recorded in
+  `locally-read-witnesses-are-sound-on-planted-2to1-inputs`, which is
+  ESTABLISHED. Take any witness map `Lambda` (orientation plus lift labelling,
+  efficient or not) with read sets `S_e`, and any sound right-hand side `b0`.
+  Then `E_t val(Lambda(Ht)) <= eta + mu_(b0)`, where `mu_(b0)` is the weight of
+  the constraints whose read set `b0` locally refutes (`b0|S_e notin
+  Im H_(S_e)`). A YES witness of value `>= 1 - eta'` must therefore read
+  `b0`-refuting parity cycles on `>= 1 - eta' - eta` of the mass, for every
+  sound `b0`. Tree-like reads are capped at `eta + w_cyc`. Need `207b4529` is
+  reduced, not refuted: any class labelling realising it must encode
+  cross-member parity cycles on its class read sets. Not a solution.
