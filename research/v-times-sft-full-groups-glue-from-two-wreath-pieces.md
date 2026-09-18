@@ -79,6 +79,10 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
    - Exactness for all of them is equivalent to exactness at `A^(F_n)`.
    - The smallest necessary test is an image of the full 2-shift over `Z`: is `V` the amalgam of the centralizer
      of a fixed-point-free involution and the stabilizer of a halving it swaps, modulo `[M_0, N_1] = 1`?
+   - In that test the first relation, the entangled braid, holds, and so does every relation inside one
+     symmetric cone partition. Finite shadows with 3 to 5 cones are exact up to a parity `Z/2`, and Thompson
+     splitting kills it
+     (`splitting-kills-the-finite-shadow-parity-of-the-gluing-group`).
 
 **Lesson for general BH.**
 - The gluing half of P2′ is a statement about Thompson-type self-similarity, not about dynamics. If the target
