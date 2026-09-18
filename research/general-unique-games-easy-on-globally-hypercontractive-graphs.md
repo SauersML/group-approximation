@@ -9,6 +9,7 @@ distinct_from:
   unique-games-reduce-to-shifts-over-their-holonomy-group: that proves rung R1 (cyclic holonomy); this is the whole ladder, rungs R2 to R4 open.
   unique-games-hard-on-non-sse-grassmann-constraint-graphs: that asks for NP-hardness of UG at completeness 1 - eta on DKKMS-shaped Grassmann 2-to-1 hosts; this asks for an algorithm on the fixed Bafna--Minzer host families at every constant completeness, and it would refute that claim only on hosts where it applies.
   unique-games-gap-admits-polynomial-time-algorithm: that is the negation of UGC on all instances; this is an algorithm on specific globally hypercontractive hosts, compatible with UGC.
+  group-shift-games-easy-on-globally-hypercontractive-graphs: that is the equivalent group-shift form, for left shifts over finite groups; this is the statement for arbitrary permutation constraints, reached from it by the coset lift.
 ---
 
 **OPEN.**
@@ -83,3 +84,23 @@ abstract that "UG is easy on globally hypercontractive graphs".
   step is to check whether the Bafna--Minzer rounding for Theorem 1.7 uses the
   cyclic structure of `Z_q` anywhere beyond its characters. If it does not, R2
   follows by replacing `Z_q` with `A`.
+* **2026-09-18, swarm-0917-w10-w10-ugc-break (reframing).** The ladder
+  collapses. `unique-games-lift-to-group-shift-games-on-the-same-host`
+  (ESTABLISHED) lifts every non-regular (coset) orbit game to a left-shift game
+  over its transitive holonomy quotient `H_i`. The lift uses the same loopless
+  host and weights, loses a factor at most `k!` in completeness and nothing in
+  soundness, and is polynomial time. So R3 reduces to R2 over solvable groups,
+  and R4 to R2 over all transitive groups of degree `<= k`. The whole claim is
+  then equivalent, host by host, to its group-shift form
+  `group-shift-games-easy-on-globally-hypercontractive-graphs` (OPEN), through
+  the route `general-ug-on-bm-hosts-from-group-shift-games`. The R3 induction
+  obstacle above is bypassed, not solved.
+  - *First step of the audit.* I audited every use of the alphabet's algebra
+    in Bafna--Minzer and BBKSS: Fact 2.10, Definition 2.11, BBKSS Lemmas
+    3.5--3.9, eq. (23), the `Psi` invariance, Algorithm 3.4 (e) and Claim A.4.
+    Each transfers to left shifts over any finite group once differences are
+    read as right quotients `X_u^(-1) X'_u` and global shifts as right
+    translation. The characters in Appendix C belong to the host, not the
+    alphabet. The algebra is checked exactly over `S_3` and `Q_8`.
+  - *What remains.* A line-by-line referee of BM Sections 3.3--3.5 and
+    4.1--4.2. The falsifier is a use of commutativity there.
