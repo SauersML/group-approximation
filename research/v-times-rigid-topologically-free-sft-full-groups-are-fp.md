@@ -35,7 +35,15 @@ same as effectiveness and as essential principality.
     (`v-times-tree-boundary-full-groups-are-f-infinity`).
   - Cocompact type-rotating Ã₂ lattices, with a finite skew product of the chamber boundary, at `F_∞`
     (`a2-lattice-boundary-skew-shifts-are-quantum-rigid`, item 2, conditional on its host theorem).
-  - Both are non-amenable. No instance of P2′ in the free form is known.
+  - End shifts of non-ascending multiple HNN extensions of any group `H` of type `F_n` satisfying the
+    half-tree condition, at `F_n` (`nonascending-hnn-end-shifts-satisfy-e3-prime`, bh-e3prime). This is
+    the first family with infinite unit groups; the host's word problem is that of `H`, up to an
+    exponential change of variables.
+  - All three are non-amenable. No instance of P2′ in the free form is known, and none can come from
+    a finite coding (`free-sft-hosts-admit-no-finite-type-coding`).
+- **Primary form of E3 (bh-e3prime, 2026-09-18).** In finite type this gate is Li's Zappa–Szép
+  theorem. What remains open there is the complexity sub-gate (SS-hard)_k and, for hard simple
+  inputs, the emitter gate (IE) (`finite-type-e3-prime-hosts-carry-complexity-in-units`).
 - **Everything downstream needs no freeness.**
   - `F = A`: `v-times-ample-full-groups-are-generated-by-transpositions` holds for every ample `H`.
   - Simplicity: Nekrashevych's Theorem 4.1 needs a minimal groupoid of germs, and `G_V × (Λ ⋉ X)` is
