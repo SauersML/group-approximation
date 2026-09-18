@@ -119,8 +119,8 @@ theorem nfLevelProd_apply_of_mem (g : X → Equiv.Perm (Cantor X)) (x : X) (y : 
     rw [List.nodup_cons] at hl
     rw [nfLevelProd_cons, Equiv.Perm.mul_apply]
     rcases List.mem_cons.mp hx with e | e
-    · subst e
-      rw [nfLevelProd_apply_of_not_mem g x y l hl.1, localize_apply_prepend]
+    · have hxl : x ∉ l := by rw [e]; exact hl.1
+      rw [nfLevelProd_apply_of_not_mem g x y l hxl, e, localize_apply_prepend]
     · have hxb : x ≠ b := fun e' => hl.1 (by rw [← e']; exact e)
       rw [ih hl.2 e, localize_apply_of_not (nf_not_isStreamPrefix_singleton hxb _)]
 
