@@ -20,7 +20,7 @@ open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral
 variable {R : Type*} [Ring R] {N : ℕ}
 
 /-- `M` fixes the basis vector `e_c` on both sides. -/
-def czTriOff_Fix (c : Fin N) (M : Matrix (Fin N) (Fin N) R) : Prop :=
+abbrev czTriOff_Fix (c : Fin N) (M : Matrix (Fin N) (Fin N) R) : Prop :=
   M *ᵥ Pi.single c 1 = Pi.single c 1 ∧ Pi.single c 1 ᵥ* M = Pi.single c 1
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czTriOff_Fix
