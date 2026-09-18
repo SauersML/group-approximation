@@ -5658,6 +5658,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Forward
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.WeightKernel
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.ConfigBasic
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.ConfigStep
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.LEFBound
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.LEF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
