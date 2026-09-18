@@ -87,7 +87,7 @@ theorem gentorsion_states_eq (h : TreeAut X) (y : envelopeY X 2) :
   by_cases hi : i = 0
   · subst hi
     rw [Equiv.swap_apply_left, if_pos rfl, if_neg (by decide : (1 : Fin 2) ≠ 0), mul_one]
-  · obtain rfl : i = 1 := (by decide : ∀ j : Fin 2, j ≠ 0 → j = 1) i hi
+  · obtain rfl : i = 1 := Fin.eq_one_of_ne_zero i hi
     rw [Equiv.swap_apply_right, if_neg hi, if_pos rfl, one_mul]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_states_eq
