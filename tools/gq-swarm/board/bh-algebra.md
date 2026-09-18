@@ -1,0 +1,3 @@
+# bh-algebra board
+- 09-18: LANDED field-representable-algebras-have-fp-simple-envelopes (+proof) and root Attempt 7 of algebra-boone-higman-conjecture: over ANY field K, every f.g. subalgebra of M_N(F ⊗ K<x>), F ⊇ K any field, embeds in M_n(L_2^{⊗(k+1)}) (Noether normalization reduces to polynomial coefficients). Anan'in extension (commutative, noetherian PI) citation-dependent. Low complexity: benchmark untouched.
+- Transfer algebra-BH ⇒ group-BH: already on main as infinite-simple-input-bh-via-elementary-leavitt-hosts (needs S ⊆ B^x, B fp central simple, Steinberg kernel fng for B ⊗ L). No new transfer found; the wall is the host existence (unit-form algebra BH), exactly as recorded there.

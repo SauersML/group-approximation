@@ -23,7 +23,7 @@ that `F` is on its side.
 * `pinchCut_cut_of_circuit`: for `F = P₀` and `w'` a `FaceSetCircuits` circuit of `P₀`,
   noncrossing, the boundary darts, the lobe condition and `c ∈ side w'` are proved.
 * `pinchCut_ResidualStatement` is the premise block of the target verbatim, (P) included, with the
-  conclusion `pinchFollow_Conclusion ∨ pinchCut_Cut`.  `pinchCut_followResidual_of_statement` is
+  conclusion `pinchFollow_Conclusion ∨ pinchCut_Cut`.  `pinchCut_follow_of_statement` is
   the `_of_` reduction, and `pinchCut_off` carries it to `PocketFourPieceOffStatement`.
 
 **Truth check** (python, scratch `gl-p07-70/`, `m9.py` and `absw_grid.py`).  The cut with
@@ -138,7 +138,7 @@ theorem pinchCut_dart_of_lobe {a b : RegionCandidate D eps X} {K : CellPocketWal
     exact Or.inr (Or.inr ⟨PocketClass.mem_sideFaces_of_mem_pocketClass hCf hp,
       PocketClass.not_mem_left_of_mem_pocketClass hCa hp,
       PocketClass.not_mem_right_of_mem_pocketClass hCb hp,
-      pinchCut_pocketKeep_of_isBoundaryDart ⟨hk, fun h => he.2 (hsub h)⟩⟩)
+      pinchCut_keep_of_boundaryDart ⟨hk, fun h => he.2 (hsub h)⟩⟩)
   · rcases hlobe e he.1 hk he.2 with h | h
     · exact Or.inl ((Embedded.mem_invDarts_iff G₁.darts e).mpr h)
     · exact Or.inr (Or.inl ((Embedded.mem_invDarts_iff G₂.darts e).mpr h))
@@ -162,7 +162,8 @@ theorem pinchCut_follow_of_cut {a b : RegionCandidate D eps X} {K : CellPocketWa
   exact pinchCut_dart_of_lobe hCf hCa hCb hsubF hlobe
     (hbd _ ((Embedded.mem_invDarts_iff w' d).mp hd))
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_follow_of_cut
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_follow_of_cut
 
 /-- **The cut for a circuit of `P₀`.**  For `F = P₀` and `w'` a boundary circuit of `P₀`, only
 `OFF`, the turn condition, `SUB` and the tail are left. -/
@@ -188,10 +189,11 @@ theorem pinchCut_cut_of_circuit {a b : RegionCandidate D eps X} {K : CellPocketW
     Finset.Subset.refl _, fun _ he hne _ => absurd he hne,
     FaceSetCircuits.circuit_isNoncrossingClosedWalk comp,
     fun _ hd => pinchCut_isBoundaryDart_of_mem hd, hoff, hturn,
-    pinchCut_mem_sideFaces_of_boundary (FaceSetCircuits.circuit_nonempty _ _ comp)
+    pinchCut_side_of_boundary (FaceSetCircuits.circuit_nonempty _ _ comp)
       (fun _ hd => pinchCut_isBoundaryDart_of_mem hd), hsub, htail⟩
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_cut_of_circuit
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_cut_of_circuit
 
 /-- **Remaining gap of lane gl-p07-70.**  The premise block of `pinchFollow_ResidualStatement`
 (`PinchFollowStatement.lean:108-144`) verbatim, (P) included.  The conclusion is that of the
@@ -241,7 +243,7 @@ def pinchCut_ResidualStatement : Prop :=
 
 /-- **The `_of_` reduction of lane gl-p07-70.**  A cut gives the second disjunct of
 `pinchFollow_ResidualStatement` by `pinchCut_follow_of_cut`. -/
-theorem pinchCut_followResidual_of_statement (h : pinchCut_ResidualStatement.{u, w, v}) :
+theorem pinchCut_follow_of_statement (h : pinchCut_ResidualStatement.{u, w, v}) :
     pinchFollow_ResidualStatement.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
     hw hout hinner houter C hC hCf hCa hCb hcase hP
@@ -251,12 +253,12 @@ theorem pinchCut_followResidual_of_statement (h : pinchCut_ResidualStatement.{u,
   · exact Or.inr (pinchCut_follow_of_cut hCf hCa hCb hcut)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_followResidual_of_statement
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_follow_of_statement
 
 /-- **`pinchRestDone_ResidualStatement` from the gl-p07-70 statement.** -/
 theorem pinchCut_residual_of_statement (h : pinchCut_ResidualStatement.{u, w, v}) :
     pinchRestDone_ResidualStatement.{u, w, v} :=
-  pinchFollow_residual_of_statement (pinchCut_followResidual_of_statement h)
+  pinchFollow_residual_of_statement (pinchCut_follow_of_statement h)
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_residual_of_statement

@@ -66,7 +66,7 @@ does.
 
 ## Attempts
 
-None yet. Candidate levers:
+Candidate levers recorded when the node was opened:
 - a type (A) or twisted Brin--Thompson actor containing `B(m,n)`: first question,
   does `B(m,n)` have any faithful action with finitely many orbits on pairs;
 - a single finitely presented simple host for the whole directed system of
@@ -74,3 +74,19 @@ None yet. Candidate levers:
   uniformly in `k` and survives the limit);
 - a refutation direction: any property of finitely presented simple groups that
   is inherited by subgroups and fails for infinite bounded-exponent groups.
+
+1. **Attempt 1 (2026-09-18, lane `bh-bbmz-problems`): the actor must be a finitely
+   presented overgroup; no candidate found.** It corrects the first lever above.
+   - `B(m,n)` itself can never be the actor. By FWZ arXiv:2603.24687 Theorem B (as
+     imported in `abstract-btb-pairs-fp-and-relatively-simple-citation`), `SV_G` is
+     finitely presented iff `G ↷ S` has type `[A_2]`. Type `[A_2]` requires `G` to be
+     finitely presented, and `B(m,n)` is not. So the right first question is whether
+     some finitely presented overgroup `P ⊇ B(2,n)` admits a type (A) action, i.e.
+     whether `B(2,n) ∈ B_A`.
+   - Any such `P` fails to be residually finite (Zelmanov, above), is not hyperbolic
+     and is not cubulated. So none of the actors on main qualifies: linear,
+     self-similar, and cube-complex actors are all out.
+   - Clapham's finitely presented overgroups with solvable word problem come with no
+     action.
+   - No candidate `P` was found. Stalled here, with the precise open gate:
+     `B(2,n) ∈ B_A`.

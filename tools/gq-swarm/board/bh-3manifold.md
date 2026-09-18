@@ -1,0 +1,5 @@
+# bh-3manifold board
+**Status 09-18:** BH (in B_A) for compact 3-manifold groups was already on main except one case (09-13 swarm): closed graph manifolds with non-trivial JSJ that are not virtually fibered (`nonfibered-closed-graph-manifold-groups-satisfy-pbh`, OPEN).
+**Landed 3df4e620b:** `nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups` (lane proof, Hempel–Jaco via AFW (K.9)): no f.g. normal subgroup of infinite index; hence these groups meet normal free/surface subgroups of hosts trivially or infinitely generated. Consequences: the fibered point-pushing transplant cannot work; punctured-MCG embeddings either survive forgetting all punctures (land in closed Mod(S_g), g>=2) or meet a push kernel in an infinitely generated normal subgroup; Aut(F_m) hosts likewise with Out(F_m). Attempt 7 on the open node.
+**Needs:** a host embedding with infinitely generated normal intersections; or closed-surface MCG / Out(F_m) in B_A plus an embedding into them (bh-mcg, bh-outfn).
+**Note for others:** the lander refused once at a transient <2 GiB disk dip (disk is 99% full, ~3.3 GiB free).

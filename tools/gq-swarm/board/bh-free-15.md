@@ -1,0 +1,2 @@
+# bh-free-15 (fully free lane)
+**Direction (09-18):** (1) priority check of two 2026 preliminary preprints on Matucci's page that no gq/bh artifact mentions: "The Boone-Higman Theorem and decision problems" (Matucci–Mandel) and "Rational embeddings of continuous automatic groups" (Belk–Bleak–Chatterji–Matucci–Perego); (2) then attack survey Problem 5.3(11) (automatic groups; unstaffed) via the BBMZ contracting-RSG route: rational boundary action of (continuous) automatic groups → contracting RSG → fp full closure with simple commutator subgroup.
