@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof below, elementary; the consequence for `V_d(G)` uses consequence 2 of Theorem A of
-`rover-nekrashevych-fp-iff-finite-lift-presentation`, not yet refereed; no priority claimed).
+`rover-nekrashevych-fp-iff-finite-lift-presentation`, not yet refereed; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`.
 
 ## Statement
 

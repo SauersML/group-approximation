@@ -8,10 +8,7 @@ distinct_from:
   lift-presentability-is-invariant-under-level-regrouping: that compares level-1 and level-m lift conditions for one automaton; this adds states to an automaton, and uses that node to allow any depth.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; relies on Theorem A of
-`rover-nekrashevych-fp-iff-finite-lift-presentation` only through
-`lift-presentability-is-invariant-under-level-regrouping` for depth `k > 1`; not yet refereed; no priority
-claimed).
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-finitary-and-spinal-extensions.md`. The lift-ideal statements are unconditional; Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation` enters only in translating them into finite presentation of `V_d`.
 
 ## Statement
 
@@ -37,7 +34,8 @@ in a finitely presented simple group (`lift-presented-automaton-groups-satisfy-b
 ## Consequences
 
 - Transient states (nontrivial states on no cycle of the section graph) have all their sections at depth
-  `k` = (number of transient states) + 1 in the sub-automaton `S_0` spanned by the nontrivial strongly connected
+  `k` = (number of transient states) in the sub-automaton `S_0` spanned by the nontrivial strongly connected
   components and everything below them. So `⟨S⟩` is lift-presented as soon as `⟨S_0⟩` is: lift-presentability
-  reduces to automata in which every nontrivial state lies on a cycle.
+  reduces to automata in which every nontrivial state lies on a cycle or is reachable from one (such as
+  Grigorchuk's `a`, on no cycle but below `b`).
 - With run compression: `spinal-extensions-of-lift-presented-groups-satisfy-boone-higman`.

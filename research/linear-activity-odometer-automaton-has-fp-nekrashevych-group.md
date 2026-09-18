@@ -8,8 +8,10 @@ distinct_from:
   rover-nekrashevych-group-of-lamplighter-automaton-is-fp: that is another automaton with N = K_∞ (the lamplighter, exponential activity); this is a linear-activity example over an odometer base.
 ---
 
-**ESTABLISHED** (lane proof below via `relator-complexity-descent-gives-free-splitting`; not yet refereed; no
+**ESTABLISHED** (lane proof below via `relator-complexity-descent-gives-free-splitting`; no
 priority claimed; whether Boone–Higman for this group was known by other means was not checked).
+
+Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`.
 
 ## The automaton
 
@@ -50,7 +52,7 @@ if every `a` receives `1` and every `a^{-1}` receives `0`, with no cancellation.
 
 **No special word is a nontrivial relator.** `b` has infinite order (`b^e = (a^e, b^e)` and `a` has infinite
 order). `b` fixes `1^ω` and `a^{±1}` moves it, so `a b^e ≠ 1` and `b^e a^{-1} ≠ 1`; and `a b^e a^{-1} = 1`
-forces `e = 0`. So every nontrivial relator drops in complexity at both sections, and
+forces `e = 0`, which is excluded since `a b^0 a^{-1}` is not reduced. So every nontrivial relator drops in complexity at both sections, and
 `relator-complexity-descent-gives-free-splitting` gives `N = K_∞` and (3).
 
 **(1).** `a` is bounded (one nontrivial section per level), and `b|_{1^k 0} = a`, `b|_{1^k} = b`, so `b` has

@@ -61,8 +61,8 @@ Theorem 1.4 construction retracts only onto the split extension of `H` over `Q`.
      *(Correction, 09-18, bh-free-17: for a rigid `R` it cannot stay finitely generated. By
      `rigid-affine-hosts-are-linear-over-number-fields`, a finitely generated `R^M ⋊ Q` forces `R` to
      be a finitely generated ring, hence algebraic. The ascending union above is not finitely
-     generated.)* Compare:
-     compare `Z[t] ⋊ ⟨t⟩ = Z ≀ Z`, which is not finitely presented, and LISW Remark
+     generated.)* Compare
+     `Z[t] ⋊ ⟨t⟩ = Z ≀ Z`, which is not finitely presented, and LISW Remark
      `rem:loosing-Fn`. Condition (1) of the question then fails.
    - A proof along these lines needs a finitely generated, finiteness-preserving substitute for
      `K_{n,N}` that is invariant under both the digit shift of `τ` and the `H`-action. None
@@ -80,6 +80,11 @@ Theorem 1.4 construction retracts only onto the split extension of `H` over `Q`.
 - **Open: every group of type `FP_2` over some field.** For example, the finitely presented metabelian
   group `Z[t^{±1}, (1+t)^{-1}] ⋊ Z^2` with `t` transcendental. It has infinite torsion-free rank, so
   it is not linear over `Q-bar`.
+- **Every persistent host with finite-rank carries stops before infinite-rank inputs.** By
+  `persistent-hosts-build-the-input-from-its-carries`, the part of the input that centralizes the carry
+  kernel `K` embeds virtually in a finite power of `K`, and the rest acts faithfully on `K`. So carry
+  kernels like LISW's `Z[1/N]^n ⋊ ⟨N⟩` never reach `Z wr Z` or the metabelian example above, whatever
+  the self-similar structure.
 - **Why LISW's own method stops at `Q-bar`.** `rigid-affine-hosts-are-linear-over-number-fields`:
   - if `R ⊆ Z_p` is rigid and `R^n ⋊ Q` is finitely generated, then `Q` is linear over a number
     field;
