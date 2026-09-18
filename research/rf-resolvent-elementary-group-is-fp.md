@@ -36,4 +36,14 @@ every `GL_3(Z[1/P])` with `l ∉ P`.
 
 ## Attempts
 
-None yet (2026-09-17, lane gq-infinite-primes).
+1. **Sub-question 1 fails (2026-09-17, lane gq-infinite-primes).** `R_l -> R̄_l` is not injective: `e x e - e x^q e`
+   (`q != l` prime) is nonzero in `R_l` and zero in `R̄_l`
+   (`resolvent-ring-presentation-is-not-faithful-on-r-bar`). Whether `R̄_l` has some other finite presentation
+   is unknown, and `E_N(R̄_l)` is no longer the natural candidate.
+   - The finitely presented object is `St_N(R_l)`, `N >= 4`, which contains `Z_(l)`
+     (`z-localized-embeds-in-fp-kazhdan-steinberg-group`).
+   - Sub-question 2 moves to the ring `R_l` (`resolvent-presentation-ring-is-residually-finite`: residually
+     finite would give a decidable word problem).
+   - Sub-question 3 becomes: is the kernel of `St_N(R_l) -> E_N(R_l)` detected in finite quotients
+     (`resolvent-steinberg-group-is-residually-finite`)?
+   This claim stays OPEN but is superseded as the main target.
