@@ -6047,6 +6047,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionE
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetActionPiNatural
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFBlockAvg
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductMatrix
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductIdealAction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
