@@ -10,7 +10,12 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `leavitt-scalar-commutators-block-fp-central-quotients-proof`
-(lane proof, not independently reviewed; elementary, no novelty claimed).
+(lane proof, elementary, no novelty claimed; referee PASS from `gq-referee-a`,
+proof-gap lens, report 58d536cf7, and from `gq-referee-b`, citation lens,
+`research/artifacts/gq-referee-b-leavitt-scalar-commutators-block-fp-central-quotients.md`,
+c81257d90). The `E_N(R)` sentence of part 2 rests on
+`leavitt-gl-equals-el-and-perfect-unit-group`, a repository-internal Lean node the
+referees did not check; parts 0, 1 and the other instances do not use it.
 
 **Statement.**
 0. **Group lemma.** Let `H` be a group, and `C_0 ≤ Z(H) ∩ [H,H]` a subgroup that is

@@ -111,6 +111,61 @@ theorem cubeDiagDilate_closure_localSet_le (𝔪 : Ideal B) (h𝔪 : 𝔪.IsPrim
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_closure_localSet_le
 
+/-- Constants `C(h)`, `h ∈ St(N, B)`, lie in `T_𝔪` for every proper ideal `𝔪`. -/
+theorem cubeDiagDilate_C_mem_localSet {𝔪 : Ideal B} (h𝔪 : 𝔪 ≠ ⊤) (h : SteinbergGroup (Fin N) B) :
+    SteinbergGroup.ringMap (Polynomial.C : B →+* Polynomial B) h ∈ cubeDiagDilate_LocalSet 𝔪 :=
+  (cubeDiagDilate_mem_localSet_iff 𝔪 _).mpr ⟨1, (Ideal.ne_top_iff_one 𝔪).mp h𝔪, by
+    rw [cubeDiagDilate_stDiff_C]
+    exact cubeDiagDilate_stDies_one⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_C_mem_localSet
+
+/-- Every element of `St(N, B[t])` that dies after padding lies in `T_𝔪`, `𝔪` proper. -/
+theorem cubeDiagDilate_mem_localSet_of_stDies {𝔪 : Ideal B} (h𝔪 : 𝔪 ≠ ⊤)
+    {g : SteinbergGroup (Fin N) (Polynomial B)} (hg : cubeDiagDilate_StDies g) :
+    g ∈ cubeDiagDilate_LocalSet 𝔪 :=
+  (cubeDiagDilate_mem_localSet_iff 𝔪 g).mpr ⟨1, (Ideal.ne_top_iff_one 𝔪).mp h𝔪,
+    cubeDiagDilate_stDies_mul (cubeDiagDilate_stDies_ringMap (quillenShift B 1) hg)
+      (cubeDiagDilate_stDies_inv (cubeDiagDilate_stDies_ringMap
+        (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) hg))⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_mem_localSet_of_stDies
+
 end LocalSubgroup
+
+section K2Bridge
+
+/-- For `u ∈ K₂(N, R)`, a padding kills `u` iff it kills the underlying Steinberg element. -/
+theorem cubeDiagDilate_K2IndexMap_eq_one_iff {R : Type*} [Ring R] {N M : ℕ} (h : N ≤ M)
+    (u : K2 (Fin N) R) :
+    K2IndexMap (R := R) (Fin.castLEEmb h) u = 1 ↔
+      SteinbergGroup.indexMap (Fin.castLEEmb h) (u : SteinbergGroup (Fin N) R) = 1 :=
+  Subtype.ext_iff
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_K2IndexMap_eq_one_iff
+
+/-- `K₂`-level dying after padding is Steinberg-level dying of the underlying element. -/
+theorem cubeDiagDilate_diesAfterPadding_iff {R : Type*} [Ring R] {N : ℕ} (u : K2 (Fin N) R) :
+    K2DiesAfterPadding u ↔ cubeDiagDilate_StDies (u : SteinbergGroup (Fin N) R) := by
+  constructor
+  · rintro ⟨M, hNM, hM⟩
+    exact ⟨M, hNM, (cubeDiagDilate_K2IndexMap_eq_one_iff hNM u).mp hM⟩
+  · rintro ⟨M, hNM, hM⟩
+    exact ⟨M, hNM, (cubeDiagDilate_K2IndexMap_eq_one_iff hNM u).mpr hM⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_diesAfterPadding_iff
+
+/-- The Quillen difference in `K₂` has the Steinberg-level Quillen difference as underlying
+element. -/
+theorem cubeDiagDilate_coe_quillenDiff {B : Type*} [CommRing B] {N : ℕ}
+    (u : K2 (Fin N) (Polynomial B)) (a : B) :
+    ((quillenDiff u a : K2 (Fin N) (Polynomial (Polynomial B))) :
+        SteinbergGroup (Fin N) (Polynomial (Polynomial B))) =
+      cubeDiagDilate_stDiff (u : SteinbergGroup (Fin N) (Polynomial B)) a :=
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_coe_quillenDiff
+
+end K2Bridge
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

@@ -9,14 +9,21 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `leavitt-resolvent-derived-units-mod-centre-not-fp-proof`
-(lane proof, not independently reviewed; referee requests sent).
+(lane proof; referee PASS from `gq-referee-a`, proof-gap lens, report
+58d536cf7, and from `gq-referee-b`, citation lens,
+`research/artifacts/gq-referee-b-leavitt-scalar-commutators-block-fp-central-quotients.md`,
+c81257d90).
 
 **Statement.** Let `R_L` be the ring of
-`leavitt-resolvent-ring-is-fp-simple-of-char-zero`, `U = R_L^x` and `D = [U, U]`.
+`leavitt-resolvent-ring-is-fp-and-contains-q`, `U = R_L^x` and `D = [U, U]`. Only
+its finite presentation data, `Q ⊆ Z(R_L)` and its Leavitt pair are used, not its
+simplicity.
 Then:
 - `D/C` is not finitely presented for any subgroup `C` with `Q^x·1 ≤ C ≤ Z(D)`.
   In particular `D/Z(D)` is not finitely presented.
-- The same holds for `U` in place of `D`, and for `E_N(R_L)` with `N >= 2`.
+- The same holds for `U` in place of `D`, and for `E_N(R_L)` with `N >= 2`. The
+  `E_N` case additionally rests on `leavitt-gl-equals-el-and-perfect-unit-group`
+  (repository-internal Lean node, not checked by the referees).
 
 So `leavitt-resolvent-derived-units-mod-centre-fp-simple` is false, and the route
 `gl-n-q-bh-via-leavitt-resolvent-units` does not reach

@@ -11,7 +11,7 @@ requires:
   - abc-leavitt-path-k-theory-exact-sequence
 ---
 
-Lane proof, not independently reviewed.
+Lane proof. Referee PASS: `gq-referee-a` (proof-gap lens, report 58d536cf7) and `gq-referee-b` (citation lens, `research/artifacts/gq-referee-b-leavitt-scalar-commutators-block-fp-central-quotients.md`, c81257d90).
 
 **0. Group lemma.**
 - **A finitely generated cover.** Suppose `H/C` is finitely presented, with
