@@ -5779,6 +5779,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSequenc
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTValuation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaGroup
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaSteinberg
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Hsp
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
