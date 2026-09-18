@@ -22,15 +22,17 @@ verbatim and replaces both placement clauses by conditions on the *position* of 
 
 This is "no bubble": the excluded rm-form blocks are exactly those strictly inside `I`, and the
 excluded target cases are those where the kept part of `t2` does not start at the arc start.
-`roseLobeNoBub_place_of_noBub` proves the reduction, through `roseLobeNoBub_place1` and
+`roseLobeNoBub_place_of` proves the reduction, through `roseLobeNoBub_place1` and
 `roseLobeNoBub_place2` (`NoBubSides`, `NoBubLists`); the target placement always uses `k = 0`.
 
 ## LOUD: strength of the residual
 
 `roseLobeNoBub_Statement` is **pointwise STRONGER** than `roseLobePlace_Statement`: for a fixed
-witness `rs, A, B, C`, its conclusion implies Place's (proved), and not conversely (Place also
-accepts an rm bubble whose removed middle is invisible on `I`, e.g. `B = []`, a kp block strictly
-inside `t2` with a later drop `k > 0`, and any infix placement of `I`).  As a closed proposition it
+witness `rs, A, B, C`, its conclusion implies Place's (proved), and not conversely.  On the source
+side the two agree for a nodup cycle; on the target side Place also accepts, with a drop `k > 0`
+and no wrap, an rm block that meets `t2` with `C ≠ []` (for example one covering the start of
+`t2`), and a kp block with a dart of `A` on `t2` (for example strictly inside `t2`), which the
+clause here rejects.  As a closed proposition it
 implies `roseLobePlace_Statement`; **the converse is NOT proved** (it would need the planar core
 below).  So this is NOT a weaker statement.  What it buys is strictly smaller proof content: the
 filter, infix, drop and wrap analysis of both placements is discharged here, and what is left is
@@ -67,3 +69,104 @@ universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
 open P10RoseExtremalTrim
+
+/-- **The lobe step as a positional no-bubble statement** (OPEN, PLAUSIBLE; truth-checked, see the
+module docstring; LOUD: pointwise STRONGER than `roseLobePlace_Statement`, which it implies; the
+converse is not proved).  As `roseLobePlace_Statement`, with both placement clauses replaced by
+conditions on the position of the block `B` relative to the two arcs. -/
+def roseLobeNoBub_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ rs : List X.toCombMap.Dart,
+          ((rs ≠ [] ∧ ∀ r ∈ rs, r ∈ K.boundary.cycle) ∨
+            ∃ r, rs = [r] ∧
+              (∀ x, X.toCombMap.faceOf x = X.outerFace → ¬Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r x) ∧
+              ∃ y ∈ K.boundary.cycle, Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r y ∨
+                Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle)) r (X.toCombMap.alpha y)) ∧
+          ((∀ r ∈ rs, X.toCombMap.faceOf r ∈ K.faces) ∨
+            (cell X K.source).face ∉ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+              X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)) ∧
+          ((∃ r, rs = [r] ∧ X.toCombMap.faceOf r ∉ K.faces) ∨
+            (cell X K.kept).face ∈ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+              X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)) ∧
+          ∃ A B C : List X.toCombMap.Dart, K.boundary.cycle = A ++ B ++ C ∧
+            ((B.filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∧
+                (A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = A ++ C ∧
+                A ++ C ≠ []) ∨
+              (B.filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = B ∧
+                (A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∧
+                B ≠ [])) ∧
+            ((∃ r, rs = [r] ∧ X.toCombMap.faceOf r ∉ K.faces) ∨
+              (((A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                    (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∨
+                  (∃ d ∈ B, d ∉ invDarts X K.sourceArc.darts) ∨
+                  B <+: invDarts X K.sourceArc.darts ∨ B <:+ invDarts X K.sourceArc.darts) ∧
+                ((∀ d ∈ B, d ∉ K.targetArc.darts) ∨
+                  (C = [] ∧ B.filter (movePred X.toCombMap (roseJunctionCore_lobeColour
+                    X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)) = []) ∨
+                  ((A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour
+                      X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∧
+                    ∀ d ∈ A, d ∉ K.targetArc.darts))))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_Statement
+
+/-- **Place from the no-bubble statement**: the positional source clause gives the infix
+placement of the reversed source arc, and the positional target clause gives the prefix placement
+of the target arc with `k = 0`. -/
+theorem roseLobeNoBub_place_of (h : roseLobeNoBub_Statement.{u, w, v}) :
+    roseLobePlace_Statement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hroot, hsw, hkw, A, B, C, hABC, hblk, hpos⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  refine ⟨rs, hroot, hsw, hkw, A, B, C, hABC, hblk, ?_⟩
+  rcases hpos with hlake | ⟨h1, h2⟩
+  · exact Or.inl hlake
+  · exact Or.inr ⟨Or.inl (roseLobeNoBub_place1 K hABC hblk h1),
+      Or.inl (roseLobeNoBub_place2 K hABC hblk h2)⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_place_of
+
+/-- **The block statement from the no-bubble statement.** -/
+theorem roseLobeNoBub_blk_of (h : roseLobeNoBub_Statement.{u, w, v}) :
+    roseLobeBlk_BlockStatement.{u, w, v} :=
+  roseLobePlace_blk_of_place (roseLobeNoBub_place_of h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_blk_of
+
+/-- **The lobe removal from the no-bubble statement.** -/
+theorem roseLobeNoBub_lobeRm_of (h : roseLobeNoBub_Statement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} :=
+  roseLobePlace_lobeRemoval_of_place (roseLobeNoBub_place_of h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_lobeRm_of
+
+/-- **The Greendlinger leaf from the no-bubble statement.** -/
+theorem roseLobeNoBub_green_of
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobeNoBub_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobePlace_relativeGreendlinger_of_place hoff (roseLobeNoBub_place_of h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_green_of
+
+/-- **The outer-pinch step from the no-bubble statement.** -/
+theorem roseLobeNoBub_pinch_of (h : roseLobeNoBub_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobePlace_outerPinchStep_of_place (roseLobeNoBub_place_of h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeNoBub_pinch_of
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
