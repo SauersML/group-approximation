@@ -207,3 +207,29 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
    - *Survivors.* Only rings with lamp-like unit groups: subshift crossed products, Leavitt algebras,
      and the Attempt 7 lamp ring.  In a witness, `psibar^(-1)` must properly compress the subgroup
      `psibar(Mbar)` of `U(R)/Z(R)^x`.
+8. **Bernoulli tensor lamps over Hilbert-hotel Schreier data (2026-09-18,
+   swarm-0917-w13-w13-titz-break, symbolic-dynamics; reduction established,
+   gate open).**  `schreier-hilbert-hotel-data-give-matricial-compression-rings`
+   (established) takes `R = M_2(F_p)^(tensor Gamma/H) x| Gamma`.  It proves
+   that (R1)-(R5) all hold whenever the purely combinatorial data (HH) of
+   `schreier-hilbert-hotel-compression-data-exist` exist.  This is recorded as
+   the route `matricial-compression-ring-via-schreier-hilbert-hotel`.
+   - *Why Attempt 7's death is repaired.*  The lamps are noncommutative simple
+     sites.  So the root `z` is a flip over one finite `Gamma_0`-orbit, and
+     (R5) holds inside a single site `M_2` with no Clifford sign.  `Gamma` is
+     transitive on the sites, so finite generation is automatic.
+   - *Why (R1) holds.*  `R` is simple.  The approximations of the
+     `Gamma`-action by the finite sets `Gamma/H_n` give exact covariant pairs
+     into `M_(2^|Gamma/H_n|)(F_p)`.
+   - *How the rigidity node is evaded.*  The route proves that
+     `Gamma x|_alpha Z` is residually finite, while its action on `X` is not
+     approximable.
+   - *Dead classes for (HH), all recorded in that node:*
+     - normal and finite-index images;
+     - Noetherian and free hosts;
+     - finite stabilizers;
+     - inner twists by base-point stabilizers.
+   - *The known local witness dies.*  The Grigorchuk group with the Lysenok
+     substitution realizes (HH) locally.  Every completion dies, because it
+     would put `G*_sigma` inside a residually finite group.
+   - *Next test.*  `Z wr_(Z[1/2]) BS(1,2)` with `Gamma_0 = Z wr Z`.
