@@ -4,6 +4,7 @@ id: infinite-prime-localizations-embed-in-no-fg-linear-group
 kind: claim
 title: For an infinite set P of primes, Z[1/P] embeds in no finitely generated linear group over any field, so neither do GL_n(Z[1/P]) and GL_n(Q)
 distinct_from:
+  fg-linear-groups-have-roots-at-finitely-many-primes: that (landed concurrently by another lane) is stronger for finitely generated linear groups, bounding primes with a single q-th root; this proves the infinite-divisibility form through a DVR lemma that also compares the non-finitely-generated GL_N(Z[1/P']) (z-localizations-embed-in-gl-n-only-along-inclusion), and in positive characteristic excludes infinite divisibility at even one prime.
   gl-n-q-embeds-in-fp-simple-group: that root's obstruction O1 excludes residually finite overgroups of GL_n(Q), which covers finitely generated linear ones; this excludes finitely generated linear overgroups of GL_n(Z[1/P]) for every infinite P, including the residually finite groups with P missing a prime, where O1 says nothing.
   fg-piecewise-linear-hosts-omit-natural-gl-n-q: that concerns the natural derivative of piecewise linear hosts; this is an abstract statement about any embedding into a finitely generated linear group.
   rational-linear-groups-satisfy-boone-higman: that embeds the finitely generated subgroups of GL_n(Q), whose entries involve finitely many primes; this shows no finitely generated linear group reaches infinitely many primes' divisibility at once.
