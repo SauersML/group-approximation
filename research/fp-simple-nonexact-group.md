@@ -26,3 +26,38 @@ artifacts:
 ## Attempts
 
 1. **Through Boone--Higman (c-pz3, swarm-0917, 2026-09-18).** *Conditional.* This holds if `boone-higman-conjecture` holds. No unconditional witness was found.
+2. **Census of hosts and a second route (swarm-0917-w7-w7-bh-break, 2026-09-18).** *Partial. The claim stays open.*
+
+   Three results:
+
+   - **Class killed.** `haagerup-hosts-carry-no-weak-expander` (established)
+     shows that no finitely generated subgroup of a Haagerup group carries a
+     weakly embedded expander. This rules out any witness that plants an
+     expander-type non-exact group inside a Haagerup host:
+
+     - the groups planted include Sapir's group and the graphical-small-cancellation monsters;
+     - the hosts include `F`, `T`, `V`, the Higman--Thompson groups, and every SFT topological full group.
+
+     The invariant is the proper cocycle. The approach dies at the counting
+     step of the Poincaré inequality. In these hosts only an a-T-menable
+     non-exact subgroup of Arzhantseva--Osajda type survives.
+   - **Census split.** The finitely presented simple hosts fall into three
+     groups.
+
+     - *Exact by the graph.* Lattices on products of trees, groups of finite
+       asymptotic dimension, and CAT(0) cubical groups
+       (`exactness-separates-boone-higman-proof` §3). Kac--Moody lattices,
+       whose buildings have finite asymptotic dimension (Dymara--Schick).
+     - *Haagerup, so no expander-type witness.* The Thompson and SFT family.
+     - *Neither known.* `nV`, `SV_G`, Röver--Nekrashevych groups, and
+       `L^x = L_{F_2}(1,2)^x`. Of these, only `L^x` is known *not* to be
+       Haagerup: it contains the infinite Kazhdan group `EL_3(F_2<x,y>)`
+       (`elementary-group-property-t-over-free-algebras` with
+       `char-two-laurent-linear-groups-satisfy-boone-higman`).
+   - **New route without Boone--Higman.**
+     `fp-simple-nonexact-group-via-free-algebra-linear-groups` reduces this
+     claim to `binary-free-algebra-linear-group-nonexact`, which asks for one
+     finitely generated non-exact subgroup of `GL_n(F_2<x,y>)`. The test case
+     is `EL_3(F_2<x,y>)`. That node also records a false signal: Kazhdan box
+     spaces do not indicate non-exactness, since `SL_3(Z)` is Kazhdan and
+     exact.
