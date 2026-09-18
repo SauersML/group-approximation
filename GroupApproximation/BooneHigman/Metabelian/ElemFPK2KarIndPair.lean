@@ -79,8 +79,8 @@ theorem k2KarInd_stab_pair (hR : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0) (h1
 
 /-- One stabilization killing `y` means `y` dies after padding. -/
 theorem k2KarInd_stDies_of_stab {y : St n R} (h : stab n R y = 1) : cubeDiagDilate_StDies y := by
-  refine ⟨n + 1, Nat.le_succ n, ?_⟩
-  have hemb : (Fin.castLEEmb (Nat.le_succ n) : Fin n ↪ Fin (n + 1)) = Fin.castSuccEmb :=
+  refine ⟨n + 1, Nat.le_add_right n 1, ?_⟩
+  have hemb : (Fin.castLEEmb (Nat.le_add_right n 1) : Fin n ↪ Fin (n + 1)) = Fin.castSuccEmb :=
     Function.Embedding.ext fun _ => Fin.ext rfl
   rw [hemb]
   exact h

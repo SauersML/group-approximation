@@ -71,9 +71,7 @@ theorem higmanVCStepB_pair_isAC {d : ℕ} {x y : List (Fin d)} (h1 : ¬ x <+: y)
   intro u hu v hv huv
   simp only [Finset.mem_insert, Finset.mem_singleton] at hu hv
   rcases hu with rfl | rfl <;> rcases hv with rfl | rfl <;>
-    first
-    | exact absurd rfl huv
-    | assumption
+    first | exact absurd rfl huv | assumption
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCStepB_pair_isAC
 
