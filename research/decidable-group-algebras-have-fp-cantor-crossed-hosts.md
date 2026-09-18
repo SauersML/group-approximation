@@ -242,3 +242,31 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
      The absence of finite asymptotic pairs required by Attempt 9 is also not
      known for these SFTs.
      Artifact `cantor-crossed-host-boundary-products-2026-09-17`.
+11. **Free products with one-ended factors (2026-09-18, calibrator c-pz2, swarm-0917).**
+    *Structure theorem, plus a class kill.* Invariant: coarse connectivity of difference sets across a
+    cut edge of the Bass–Serre tree.
+    - `free-product-fp-hosts-orient-the-bass-serre-tree` (ESTABLISHED, unreviewed). Let
+      `P = Q_1 * Q_2` and let `X` be an infinite minimal subshift with `LC(X, k) ⋊ P` finitely
+      presented.
+      - Every `R`-ball pattern at an edge `h` is undetermined on exactly one side of `h`.
+      - This orients `T` monotonically. Each point has a unique sink sheet, or a ray.
+      - A sink-sheet point is determined by the `R`-neighbourhood of its sheet.
+      - A ray point is determined behind each exit by one `R`-ball.
+      - Sink fibres are closed and nowhere dense. The ray fibre is comeagre. When `Q_i` is infinite,
+        `X_(Q_i) ≠ ∅`.
+    - **Killed class.** Hosts whose sheet decoration does not see which exit carries the ray.
+      - Failing step: two far exits on one sheet split the difference set.
+      - Precise invariant (part 5): two ray points leaving the vertex `Q_1` through `h ≠ h'` must
+        have different `R`-patterns along a `2n`-chain of sheet sites from `h` to `h'`.
+      - This kills `LC(Ends(P), k) ⋊ P` for `Q_1` one-ended and `Q_2` one-ended or cyclic, over
+        every field. That is the natural analogue of the finitely presented boundary Leavitt path
+        algebra over `F_d`.
+      - It also kills free tree extensions of an arbitrary sheet system.
+    - **Refined gap.** The second gap of Attempt 9 now reads as follows. It needs a one-ended
+      torsion-free Farrell–Jones factor `Γ` and a `Γ`-subshift of exit-pointer sheet configurations
+      (part 5), whose sink limits `X_Γ` carry all the freedom and the hardness (part 3a). Everything
+      else is read off `R`-balls.
+      - Over `Γ * Z`, the free-product lane therefore reduces to a pointed version of the one-ended
+        gap. It is not a new source of hardness.
+      - No complexity kill follows. A pointer field (for example sign fields over `Z^2`) satisfies
+        part 5.
