@@ -109,8 +109,12 @@ topological full groups may also be reachable from X. Li's finiteness framework
   problem as a type (A) actor containing `H4`. This node does not solve it.
 - What it adds is a concrete finitely presented simple host, modulo item 4, where a
   proper-power conjugate can have infinite entropy. That makes it a place to look for
-  the `H4` four-cycle outside every finite-entropy obstruction. The generators would
-  have to mix coordinate permutations with infinite orbits and brick maps. A pure
-  element of `2V_tau` has finite entropy on `C × C`, and in `SV_P` a single coordinate
-  label with finitely many infinite orbits is not conjugate to its square (heuristic
-  recorded on `higman-group-satisfies-boone-higman`).
+  the `H4` four-cycle outside every finite-entropy obstruction. Generators inside
+  `P = 2V_tau` itself would mean `H4 ≤ 2V_tau`. That is open, and constrained by the
+  finite-entropy obstructions, because `2V_tau` acts on `C × C` with finite entropy. The
+  new room is elements of `SV_P` outside `P`, which mix coordinate labels with brick
+  maps. A single coordinate label with only finitely many infinite orbits is not
+  conjugate to its square in `SV_P` (heuristic recorded on
+  `higman-group-satisfies-boone-higman`). `s` escapes this: it fixes the second coordinate, and
+  distinct second coordinates give distinct `s`-orbits, so it has infinitely many
+  infinite orbits on `S`.
