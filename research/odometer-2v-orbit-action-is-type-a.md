@@ -5,14 +5,14 @@ kind: claim
 title: The odometer group 2V_tau acts on the orbit of (0^∞,0^∞) with type [A_2], so its twisted Brin–Thompson group is a finitely presented simple group in which BS(1,2) has an infinite-entropy base
 distinct_from:
   odometer-2v-is-fp-simple-and-contains-bs12: that proves 2V_tau is finitely presented, simple and contains BS(1,2) acting on C × C with finite entropy; this is about the permutation action of 2V_tau on one countable orbit, and the twisted Brin–Thompson group built from it.
-  equicontinuous-bs-bases-force-conjugator-entropy: that forces zero-entropy BS(1,2) conjugators to avoid free 2-divisible equicontinuous bases in finite-entropy hosts; this produces a finitely presented simple host (conditional on one gate) whose natural Cantor action has a BS(1,2) with an infinite-entropy base, outside the scope of that obstruction.
+  equicontinuous-bs-bases-force-conjugator-entropy: that forces zero-entropy BS(1,2) conjugators to avoid free 2-divisible equicontinuous bases in finite-entropy hosts; this produces a finitely presented simple host whose natural Cantor action has a BS(1,2) with an infinite-entropy base, outside the scope of that obstruction.
   fp-simple-highly-transitive-groups-satisfy-pbh: that is BFFHZ Theorem C, which embeds every subgroup of a finitely presented simple highly transitive group in some finitely presented simple twisted Brin–Thompson group with no control over the actor or the dynamics; this names an explicit actor, 2V_tau on an explicit orbit, and controls the entropy of the BS(1,2) base.
 artifacts:
   - research/artifacts/gq-bh-bh-testcases-ranking.md
 ---
 
-**OPEN**, with one gate. Items 1–3 are proved below (lane proof, elementary, not
-independently reviewed; no priority claimed). Item 4 is the open gate.
+**ESTABLISHED** (lane proof, elementary, not independently reviewed; no priority claimed).
+Items 2–4 are proved below; item 1 is imported.
 
 ## Setting
 
@@ -34,9 +34,10 @@ independently reviewed; no priority claimed). Item 4 is the open gate.
    on 2-element subsets of `S`.
 3. **Infinite-entropy base.** In the coordinate-permutation action of `2V_tau ≤ SV_(2V_tau)`
    on `C^S`, the element `s` has infinite topological entropy, and `u s u^-1 = s^2`.
-4. **Gate (OPEN).** The stabilizer `Stab_(2V_tau)(p)` is finitely generated.
+4. **Finitely generated stabilizers.** `Stab_(2V_tau)(p)` is finitely generated. Since `S`
+   is one orbit, every point stabilizer is.
 
-If item 4 holds, then `SV_(2V_tau)` is a finitely presented simple group. It contains
+**Consequence.** By the criterion, `SV_(2V_tau)` is a finitely presented simple group. It contains
 `2V_tau`, hence `BS(1,2)`, `Q`, and every group of
 `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q` that lies in `2V_tau`. In its
 natural action on the Cantor set `C^S`, the `BS(1,2)` base `s` has infinite entropy. That
@@ -90,16 +91,36 @@ not increase under factors (textbook, not re-read at source), so `h(s) = ∞`. T
 relation `u s u^-1 = s^2` holds in `2V_tau`, and `2V_tau → SV_(2V_tau)` is a
 homomorphism, so it holds in `SV_(2V_tau)`.
 
-## The gate, item 4
+## Proof of item 4
 
-`Stab_(2V_tau)(p)` contains the elements trivial near `p`, a directed union of copies
-of `2V_tau`-type groups on complements of shrinking bricks around `p`. It also
-contains germ-changing elements at `p`, such as the maps rescaling the cones
-`C(0^k) × C(0^l)` around `p`. The expected mechanism is the usual one for `V`: the
-germ-changing elements conjugate the "trivial near `p`" part into itself ascendingly,
-so finitely many elements generate. This is not proved here. Point stabilizers of
-topological full groups may also be reachable from X. Li's finiteness framework
-(arXiv:2110.04505), but that was not checked.
+Write `Γ = 2V_tau`. By `odometer-2v-is-fp-simple-and-contains-bs12` (its concrete
+description), `Γ` is the group of all homeomorphisms of `X = C × C` that, on the
+rectangles `C(p_i) × C(w_i)` of some finite partition, have the form
+`(p_i x, w_i y) ↦ (p'_i τ^(n_i)(x), w'_i y)`. Put `B_n = C(0^n) × C(0^n)`, a neighbourhood
+basis of `p`.
+
+- **Germs.** Let `g ∈ Γ_p = Stab_Γ(p)`. On the rectangle containing `p` we may take
+  `p_i = 0^a` and `w_i = 0^b`. Then `g(p) = (p'_i τ^(n_i)(0^∞), w'_i 0^∞) = p` forces
+  `w'_i = 0^(b')`, `p'_i = 0^(a')` and `τ^(n_i)(0^∞) = 0^∞`, hence `n_i = 0`, because the
+  odometer has no periodic points. So near `p`, `g(0^a x, 0^b y) = (0^(a') x, 0^(b') y)`.
+  The germ map `g ↦ (a' − a, b' − b)` is a well-defined homomorphism `Γ_p → Z^2`.
+  Refining the rectangle does not change the differences, and composition adds them.
+  Its kernel `K_p` is the set of elements equal to the identity on some `B_n`.
+- **The pieces are copies of `Γ`.** Let `Γ_(n) = {g ∈ Γ : g|_(B_n) = id}`. The
+  complement `U_n = X ∖ B_n` is a finite union of rectangles. Cutting `X` into the same
+  number of rectangles gives a homeomorphism `φ : X → U_n` of the allowed form, with all
+  `n_i = 0`. For `g ∈ Γ`, the map equal to `φ g φ^-1` on `U_n` and to the identity on
+  `B_n` is again piecewise of the allowed form, so it lies in `Γ`. Conversely
+  `φ^-1 h φ ∈ Γ` for `h ∈ Γ_(n)`. So `Γ_(n) ≅ Γ`, which is finitely generated.
+- **A contracting element.** Let `e ∈ 2V` send `B_1` onto `B_2` by
+  `(0x, 0y) ↦ (00x, 00y)`, and `U_1` onto `U_2` by canonical rectangle maps (subdivide
+  to match the counts). Then `e` fixes `p` and `e(B_j) = B_(j+1)` for all `j ≥ 1`.
+- **Ascending union.** If `g ∈ Γ_(n)` with `n ≥ 1`, put `m = n − 1`. For `x ∈ B_1`,
+  `e^m x ∈ B_n`, so `e^-m g e^m x = x`. Hence `e^-m g e^m ∈ Γ_(1)`, and
+  `K_p = ⋃_n Γ_(n) ⊆ <Γ_(1), e>`.
+- **Conclusion.** `Γ_p / K_p` embeds in `Z^2`, so it is generated by the germs of
+  finitely many `g_1, …, g_r ∈ Γ_p`. Then `Γ_p = <Γ_(1), e, g_1, …, g_r>`, and
+  `Γ_(1) ≅ Γ` is finitely generated (indeed finitely presented). ∎
 
 ## What this does and does not give for Higman's group
 
@@ -107,7 +128,7 @@ topological full groups may also be reachable from X. Li's finiteness framework
   some finitely presented simple twisted Brin–Thompson group if and only if `H4` has
   the permutational Boone–Higman property. So an `SV_P` host for `H4` is the same
   problem as a type (A) actor containing `H4`. This node does not solve it.
-- What it adds is a concrete finitely presented simple host, modulo item 4, where a
+- What it adds is a concrete finitely presented simple host where a
   proper-power conjugate can have infinite entropy. That makes it a place to look for
   the `H4` four-cycle outside every finite-entropy obstruction. Generators inside
   `P = 2V_tau` itself would mean `H4 ≤ 2V_tau`. That is open, and constrained by the
