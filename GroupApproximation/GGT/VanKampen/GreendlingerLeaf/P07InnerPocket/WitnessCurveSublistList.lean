@@ -62,7 +62,7 @@ theorem append_cons_inj_of_nodup {x : α} {u u' r r' : List α} (hw : (u ++ x ::
     | cons c' u' =>
       simp only [List.cons_append] at h hw
       obtain ⟨hcc, h2⟩ := List.cons_eq_cons.mp h
-      obtain ⟨hu, hr⟩ := ih (List.nodup_cons.mp hw).2 h2
+      obtain ⟨hu, hr⟩ := ih (u' := u') (List.nodup_cons.mp hw).2 h2
       exact ⟨by rw [hcc, hu], hr⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.append_cons_inj_of_nodup
@@ -105,16 +105,18 @@ theorem first_entry_unique {l z z' : List α} {y y' : α} {u u' : List α}
     | cons c u' =>
       simp only [List.nil_append, List.cons_append] at h
       have hc : y = c := (List.cons_eq_cons.mp h).1
-      exact absurd (hc ▸ hy) (hu' c (by simp))
+      rw [hc] at hy
+      exact absurd hy (hu' c (by simp))
   | cons c u ih =>
     cases u' with
     | nil =>
       simp only [List.nil_append, List.cons_append] at h
       have hc : c = y' := (List.cons_eq_cons.mp h).1
-      exact absurd (hc ▸ hy') (hu c (by simp))
+      rw [← hc] at hy'
+      exact absurd hy' (hu c (by simp))
     | cons c' u' =>
       simp only [List.cons_append] at h
-      exact ih (List.cons_eq_cons.mp h).2 (fun t ht => hu t (by simp [ht]))
+      exact ih (u' := u') (List.cons_eq_cons.mp h).2 (fun t ht => hu t (by simp [ht]))
         (fun t ht => hu' t (by simp [ht]))
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.first_entry_unique
