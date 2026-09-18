@@ -145,8 +145,8 @@ def RelCond (ζ : ℕ → ℂ) (g d S : ℕ) (r : List (ℕ × Bool)) : Prop :=
 /-- Conditions attached to the test word. -/
 def VCond (ζ : ℕ → ℂ) (g d : ℕ) (v : List (ℕ × Bool)) : Prop :=
   WordCond ζ g d v ∧
-    (star (vec ζ d 4) ⬝ᵥ vec ζ d 4 = 1 ∧
-      vec ζ d 5 = (blk ζ d 1 (Encodable.encode v) - 1) *ᵥ vec ζ d 4)
+    (star (colVec ζ d 4) ⬝ᵥ colVec ζ d 4 = 1 ∧
+      colVec ζ d 5 = (blk ζ d 1 (Encodable.encode v) - 1) *ᵥ colVec ζ d 4)
 
 /-- All conditions of the system. -/
 def Solution (ζ : ℕ → ℂ) (z : ((ℕ × List (List (ℕ × Bool))) × List (ℕ × Bool)) × ℕ × ℕ) :
@@ -154,7 +154,7 @@ def Solution (ζ : ℕ → ℂ) (z : ((ℕ × List (List (ℕ × Bool))) × List
   ((∀ i, i < z.1.1.1 + 1 → (blk ζ z.2.2 0 i)ᴴ * blk ζ z.2.2 0 i = 1) ∧
       ((∀ r ∈ z.1.1.2, RelCond ζ (z.1.1.1 + 1) z.2.2 (scale z.2.1) r) ∧
         VCond ζ (z.1.1.1 + 1) z.2.2 z.1.2)) ∧
-    0 ≤ (((4 : ℕ) : ℂ) * (star (vec ζ z.2.2 5) ⬝ᵥ vec ζ z.2.2 5) - 1).re
+    0 ≤ (((4 : ℕ) : ℂ) * (star (colVec ζ z.2.2 5) ⬝ᵥ colVec ζ z.2.2 5) - 1).re
 
 /-! ### Translation -/
 
@@ -206,7 +206,7 @@ theorem vCons_iff (ζ : ℕ → ℂ) (g d : ℕ) (v : List (ℕ × Bool)) :
   refine (List.forall_mem_append (p := fun p => evalC ζ p = 0)).trans
     (and_congr (wordCons_iff ζ g d v) ?_)
   refine (List.forall_mem_cons (p := fun p => evalC ζ p = 0)).trans (and_congr ?_ ?_)
-  · show evalC ζ (xNormPoly d) = 0 ↔ star (vec ζ d 4) ⬝ᵥ vec ζ d 4 = 1
+  · show evalC ζ (xNormPoly d) = 0 ↔ star (colVec ζ d 4) ⬝ᵥ colVec ζ d 4 = 1
     rw [xNormPoly, evalC_diffC, evalC_sumProd_fin, evalC_constC, Nat.cast_one, one_mul,
       sub_eq_zero]
     exact Iff.rfl
@@ -233,7 +233,7 @@ theorem eqs_iff (ζ : ℕ → ℂ) (z : ((ℕ × List (List (ℕ × Bool))) × L
 
 theorem vNonneg_iff (ζ : ℕ → ℂ) (d : ℕ) :
     (∀ p ∈ [vNonneg d], 0 ≤ (evalC ζ p).re) ↔
-      0 ≤ (((4 : ℕ) : ℂ) * (star (vec ζ d 5) ⬝ᵥ vec ζ d 5) - 1).re := by
+      0 ≤ (((4 : ℕ) : ℂ) * (star (colVec ζ d 5) ⬝ᵥ colVec ζ d 5) - 1).re := by
   refine (List.forall_mem_singleton (p := fun p => 0 ≤ (evalC ζ p).re)).trans ?_
   show 0 ≤ (evalC ζ (vNonneg d)).re ↔ _
   rw [vNonneg, evalC_diffC, evalC_sumProd_fin, evalC_constC, Nat.cast_one]

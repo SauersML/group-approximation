@@ -131,7 +131,7 @@ theorem blk_apply (ζ : ℕ → ℂ) (d b e : ℕ) (j k : Fin d) :
     blk ζ d b e j k = ζ (cv b e j k) := rfl
 
 /-- The vector stored in the first column of block `(b, 0)`. -/
-def vec (ζ : ℕ → ℂ) (d b : ℕ) : Fin d → ℂ := fun j => ζ (cv b 0 j 0)
+def colVec (ζ : ℕ → ℂ) (d b : ℕ) : Fin d → ℂ := fun j => ζ (cv b 0 j 0)
 
 /-- Entry `(p, q)` of the Gram product of two blocks. -/
 theorem evalC_sumProd_gram (ζ : ℕ → ℂ) (d b e b' e' : ℕ) (p q : Fin d) :

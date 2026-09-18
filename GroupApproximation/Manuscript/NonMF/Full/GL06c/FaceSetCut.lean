@@ -215,6 +215,8 @@ theorem isChain_closes_cut {A Mid L B : List X.toCombMap.Dart}
     · rw [List.getLast?_append_of_ne_nil _ (invDarts_ne_nil hL), getLast?_invDarts,
         Option.mem_def, Option.map_eq_some_iff] at ha
       obtain ⟨l0, hl0, rfl⟩ := ha
+      show X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha l0)) =
+        X.toCombMap.vertexOf b
       rw [X.toCombMap.alpha_involutive l0]
       exact Eq.trans (Eq.symm (hjL _ hm1 _ (Option.mem_def.mpr hl0))) hE2
   · intro a ha b hb

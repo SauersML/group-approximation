@@ -110,7 +110,8 @@ theorem phase_eq_pi (θ : A →+ ℝ) (e : ℕ → G) {b : Lamp (Multiplicative 
       have hcy' : (QuotientGroup.mk c : G ⧸ K) = QuotientGroup.mk (x.out⁻¹ * x₀.out) := hcy
       have hmem : c⁻¹ * (x.out⁻¹ * x₀.out) ∈ badSet e b x₀ n :=
         Set.mem_image2_of_mem (f := fun (x : G ⧸ H) (c : G) => c⁻¹ * (x.out⁻¹ * x₀.out))
-          (show x ∈ {x : G ⧸ H | b.toFun x ≠ 1 ∧ x ≠ x₀} from ⟨hb, hx⟩) hc
+          (s := {x : G ⧸ H | b.toFun x ≠ 1 ∧ x ≠ x₀}) (t := ball e n n)
+          (show b.toFun x ≠ 1 ∧ x ≠ x₀ from ⟨hb, hx⟩) hc
       exact hK _ hmem (QuotientGroup.eq.mp hcy')
   show ∑ᶠ x : G ⧸ H, θ (Multiplicative.toAdd (b.toFun x)) *
       bump e n K (x.out⁻¹ • (QuotientGroup.mk x₀.out : G ⧸ K)) = Real.pi
