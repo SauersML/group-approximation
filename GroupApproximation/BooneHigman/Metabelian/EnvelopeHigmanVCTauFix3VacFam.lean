@@ -86,11 +86,11 @@ theorem higmanVCTauFix3Vac_single {d : ℕ} (hd : 1 < d) {V W : List (Fin d)}
   have ho := higmanVCTauSplit_other_ne hd
   subst hW
   rcases V with _ | ⟨v0, _ | ⟨v1, _ | ⟨v2, _ | ⟨v3, V⟩⟩⟩⟩
-  · simp only [List.length_nil] at hV <;> omega
-  · simp only [List.length_cons, List.length_nil] at hV <;> omega
-  · simp only [List.length_cons, List.length_nil] at hV <;> omega
+  · simp at hV
+  · simp at hV
+  · simp at hV
   swap
-  · simp only [List.length_cons] at hV <;> omega
+  · simp at hV
   by_cases hx : ¬ m0 :: m1 :: m2 :: r <+: [v0, v1, v2] ∧ ¬ [v0, v1, v2] <+: m0 :: m1 :: m2 :: r
   · left
     unfold higmanVCTauFix3_BothFixed
