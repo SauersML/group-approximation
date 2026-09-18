@@ -1,0 +1,8 @@
+good I2(5) flats 3
+flats 0 1 : walls 23 fibre points 8 non-A_x collisions 2 -> l_x NOT modular
+flats 0 2 : walls 23 fibre points 8 non-A_x collisions 2 -> l_x NOT modular
+flats 1 2 : walls 23 fibre points 8 non-A_x collisions 2 -> l_x NOT modular
+all three: walls 25 fibre points 10 non-A_x collisions 6
+flats 0 1 bad pairs [('q0', 'q1', 'collision normal is a wall of H4: False'), ('q0', 'q1', 'collision normal is a wall of H4: False')]
+flats 0 2 bad pairs [('q0', 'q2', 'collision normal is a wall of H4: False'), ('q0', 'q2', 'collision normal is a wall of H4: False')]
+flats 1 2 bad pairs [('q1', 'q2', 'collision normal is a wall of H4: False'), ('q1', 'q2', 'collision normal is a wall of H4: False')]
