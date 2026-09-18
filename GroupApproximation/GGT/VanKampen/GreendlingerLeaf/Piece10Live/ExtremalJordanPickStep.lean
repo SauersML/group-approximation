@@ -2,14 +2,14 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalJor
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# The descent in the kind changes from a region class with at most two changes
+# The descent in the kind changes from a uniform class with at most two changes
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-33.
 
 **LOUD: clause (b1) of `ExtremalJordanPickRunStatement` (`Piece10Live/ExtremalJordanPickRun`,
 lane gl-p10-32), `ExtremalJordanPickRunDescent K`, is NOT closed outright here.**  It is reduced
-to ONE open Statement, `ExtremalJordanPickStepRegionStatement`, by
-`extremalJordanPickStep_descent`.
+to ONE open Statement, `ExtremalJordanPickStepUniformStatement`, by
+`extremalJordanPickStep_descent` (clause (a) as a hypothesis).
 
 ## LOUD: every one-step local surgery is FALSE
 
@@ -44,29 +44,50 @@ are what break locality.  So no local step is isolated; the Statement below is g
 ## The split
 
 By `extremalJordanPickRun_descent_of_exists_le_two` (lane gl-p10-32, PROVED), (b1) for `K`
-follows from one pool class with at most two changes.  By `extremalJordanPickPool_of_region`
-(lane gl-p10-34, PROVED), a region class (`ExtremalJordanPickPoolRegion`: an outside class off
-the exterior and source faces, or an inside class off a cell of `K.faces` and off every arc dart)
-is a pool class.  So the Statement asks only for a REGION class with at most two changes, given
-that some pool class exists (clause (a), a hypothesis): no arc-end, kept-dart or choice-clause
-combinatorics remains.
+follows from one pool class with at most two changes.  By `extremalJordanPickStep_pool_of_uniform`
+(PROVED here, from `extremalJordan_arcEnd_of_uniform`), a choice class that keeps every dart or
+removes every dart of each arc (`ExtremalJordanPickStepUniform`) is a pool class.  So the
+Statement asks for a UNIFORM choice class with at most two changes, given that some pool class
+exists (clause (a), a hypothesis): the arc-end split points (`ExtremalJordanArcEnd`: `pre`,
+`post` and the side of the split) no longer have to be found.
+
+## LOUD: the region form is FALSE
+
+The stronger form "some region class (`ExtremalJordanPickPoolRegion`, lane gl-p10-34) has at most
+two changes" is FALSE: 24 failures at 6 darts (of 6,489,102 instances), 476 at 7 darts of degree
+at most 3, e.g. vertices `[0,1,0,0,1,1]`, regions `[(0,1),(0,2),(3,2),(0,4),(3,1),(5,2)]`,
+reversed source arc `[3]`, target arc `[5]`, `RS = 4`, `RE = 2`: the only classes with at most two
+changes are inside classes meeting an arc dart.  Those arcs have one dart, so the uniform form
+survives; the Statement uses the weaker uniform form.
 
 ## LOUD: logical strength of the gap
 
-`ExtremalJordanPickStepRegionStatement` is logically STRONGER than (b1) under (a): a region class
-is a pool class, the converse is not claimed, and "at most two changes" is stronger than a
-decrease.  It is strictly smaller in proof content (the pool clauses are discharged by
-`extremalJordanPickPool_of_region`, the descent by `extremalJordanPickRun_descent_of_exists_le_two`).
-It is not an equivalent restatement of (b1).
+Under (a), (b1) is equivalent to "some pool class has at most two changes"
+(`extremalJordanPickRun_descent_of_exists_le_two`,
+`extremalJordanPickRun_exists_le_two_of_descent`).  `ExtremalJordanPickStepUniformStatement` is
+logically STRONGER than that: a uniform choice class is a pool class, and the converse is not
+claimed (an arc met through one end need not be uniform).  It is strictly smaller in proof
+content, since no arc-end split is produced.  It is not an equivalent
+restatement of (b1), and it is not the rejected minimal-count, arc-end-surgery or shape-pool rule
+(it picks nothing; it asks for existence only).
 
 ## Truth check (model)
 
-Exact Lean form, script `gl-p10-33/reg.py` (every vertex degree unless noted): whenever a pool
-class exists, (A) an outside choice class with at most two changes, or (B) an inside choice class
-keeping every arc dart with at most two changes.  See the table in the docstring of
-`ExtremalJordanPickStepRegionStatement`.  Neither disjunct can be dropped.  The 7-dart run of
-lane gl-p10-31 (`gl-p10-31/s7_*.out`, about 216 million instances) found no pool failure and no
-instance whose least pool class has four or more changes.
+Exact Lean form, script `gl-p10-33/uni.py`: whenever a pool class exists, some choice class that
+is uniform on the target arc and on the reversed source arc has at most two changes.
+
+| darts | vertex degree | instances | uniform class with at most two changes |
+|-------|---------------|-----------|----------------------------------------|
+| 3     | any           | 204       | 204                                    |
+| 4     | any           | 7,852     | 7,852                                  |
+| 5     | any           | 220,700   | 220,700                                |
+| 6     | any           | 6,489,102 | 6,489,102                              |
+| 7     | at most 3     | 751,422   | 751,422                                |
+| 8     | at most 3     | N8        | N8U                                    |
+
+Every instance had a pool class.  The 7-dart run of lane gl-p10-31, every degree
+(`gl-p10-31/s7_*.out`, 215,705,028 instances), found no pool failure and no instance whose least
+pool class has four or more changes, so (a) and (b1) themselves hold there.
 
 ## Mathematical infrastructure
 
@@ -102,3 +123,110 @@ theorem extremalJordanPickStep_pool_of_uniform (K : PocketFaceSet D eps X lo hi)
 
 end PickStep
 
+/-- **OPEN (lane gl-p10-33).**  Under the premises of `ExtremalJordanStatement`, if some pool
+class exists (clause (a)), then some uniform choice class has at most two kind changes up to
+removed loops.  LOUD: logically STRONGER than clause (b1) of `ExtremalJordanPickRunStatement`
+under (a) (`extremalJordanPickStep_descent`), strictly smaller in proof content; true in the
+model (see the module docstring). -/
+def ExtremalJordanPickStepUniformStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      (∃ r : X.toCombMap.Dart, ExtremalJordanPickPool K r) →
+        ∃ r : X.toCombMap.Dart, ExtremalJordanPickStepUniform K r ∧
+          ExtremalJordanPickChanges K r ≤ 2
+
+/-- **Clause (a) of `ExtremalJordanPickRunStatement`**, as an interface: under the premises of
+`ExtremalJordanStatement`, some pool class exists.  Lane gl-p10-34 reduces it to
+`ExtremalJordanPickPoolRegionStatement` (`extremalJordanPickPool_exists`). -/
+def ExtremalJordanPickStepPoolStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, ExtremalJordanPickPool K r
+
+section PickStepDescent
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **A pool class with at most two changes** from the uniform statement and clause (a). -/
+theorem extremalJordanPickStep_exists_le_two
+    (hstep : ExtremalJordanPickStepUniformStatement.{u, w, v})
+    (hwrap : hi ≤ (outerDarts X).length) (hlea : X.LeastArea)
+    (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
+    (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk) (hnft : ¬ K.FirstTurns)
+    (hsrc : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length)
+    (hpinch : ¬Unpinched X.toCombMap K.faces) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K)
+    (hex : ∃ r : X.toCombMap.Dart, ExtremalJordanPickPool K r) :
+    ∃ r₀ : X.toCombMap.Dart, ExtremalJordanPickPool K r₀ ∧
+      ExtremalJordanPickChanges K r₀ ≤ 2 := by
+  obtain ⟨r, hr, hle⟩ :=
+    hstep D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hex
+  exact ⟨r, extremalJordanPickStep_pool_of_uniform K hr, hle⟩
+
+/-- **(b1) from the uniform statement**: under the premises of `ExtremalJordanStatement` and
+clause (a), `ExtremalJordanPickRunDescent K` holds. -/
+theorem extremalJordanPickStep_descent
+    (hstep : ExtremalJordanPickStepUniformStatement.{u, w, v})
+    (hwrap : hi ≤ (outerDarts X).length) (hlea : X.LeastArea)
+    (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
+    (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk) (hnft : ¬ K.FirstTurns)
+    (hsrc : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length)
+    (hpinch : ¬Unpinched X.toCombMap K.faces) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K)
+    (hex : ∃ r : X.toCombMap.Dart, ExtremalJordanPickPool K r) :
+    ExtremalJordanPickRunDescent K :=
+  extremalJordanPickRun_descent_of_exists_le_two K
+    (extremalJordanPickStep_exists_le_two hstep hwrap hlea hlabel K hK hnft hsrc htgt hpinch
+      hrose hex)
+
+end PickStepDescent
+
+/-- **The wire, (a) as a hypothesis**: clause (a) and the uniform statement give
+`ExtremalJordanPickRunStatement`. -/
+theorem extremalJordanPickStep_extremalJordanPickRun
+    (ha : ExtremalJordanPickStepPoolStatement.{u, w, v})
+    (hstep : ExtremalJordanPickStepUniformStatement.{u, w, v}) :
+    ExtremalJordanPickRunStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hex := ha D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨hex,
+    extremalJordanPickStep_descent hstep hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hex⟩
+
+/-- **The wire, (a) from the region statement of lane gl-p10-34**:
+`ExtremalJordanPickPoolRegionStatement` and the uniform statement give
+`ExtremalJordanPickRunStatement`. -/
+theorem extremalJordanPickStep_extremalJordanPickRun_of_region
+    (hreg : ExtremalJordanPickPoolRegionStatement.{u, w, v})
+    (hstep : ExtremalJordanPickStepUniformStatement.{u, w, v}) :
+    ExtremalJordanPickRunStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hex := extremalJordanPickPool_exists hreg hwrap hlea hlabel K hK hnft hsrc htgt hpinch
+    hrose
+  exact ⟨hex,
+    extremalJordanPickStep_descent hstep hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hex⟩
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickStepUniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickStep_pool_of_uniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickStepUniformStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickStepPoolStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickStep_exists_le_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickStep_descent
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickStep_extremalJordanPickRun
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickStep_extremalJordanPickRun_of_region
