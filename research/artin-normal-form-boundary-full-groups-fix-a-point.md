@@ -22,7 +22,9 @@ artifacts:
   Belk--Bleak--Chatterji--Matucci--Perego (preliminary 2026, §2.3, Theorem 2.4;
   artifact `gq-bh-bh-free-15-2026-preprints.md`).
 - `∂L ⊆ X^ω` is its normal-form boundary. By their Theorem 2.4, `A` acts
-  continuously and faithfully on `L ∪ ∂L`.
+  continuously on `L ∪ ∂L`. Faithfulness: their printed proof shows only that each
+  generator acts nontrivially, which is all step 7 uses. Full faithfulness is
+  `artin-deligne-boundary-actions-are-topologically-free`.
 - `[[A | ∂L]]` is the topological full group: homeomorphisms of `∂L` that agree
   with an element of `A` on each piece of some finite clopen partition.
 
@@ -67,7 +69,7 @@ Let `p = Δ^{-1}Δ^{-1}Δ^{-1}⋯ ∈ X^ω`.
    since all of `[[A | ∂L]]` fixes `p`. So `N_p` is normal. It is proper because
    `Δ ∉ N_p`, by step 5.
 7. **`N_p` is nontrivial.**
-   - Pick `a ∈ A`, `a ≠ 1`. The action is faithful, so some `x` has `a·x ≠ x`, and
+   - Pick an Artin generator `a`. It acts nontrivially (BBCMP p. 12), so some `x` has `a·x ≠ x`, and
      `x ≠ p`.
    - Choose a clopen `U ∋ x` with `p ∉ U` and `aU ∩ U = ∅`. Then `p ∉ aU`, because
      `a·p = p`.
