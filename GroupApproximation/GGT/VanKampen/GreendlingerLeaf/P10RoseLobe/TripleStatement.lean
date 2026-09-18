@@ -16,8 +16,8 @@ truth check finds every surviving region witnessed by one of six fixed-size shap
 proved as a case lemma with an explicitly named witness (`TripleLake`, `TripleLobe`):
 
 * (lake triple: consecutive, wrapping after the first dart, wrapping after the second) the
-  class of `α a1` meets `α c` in `α a1`, `α a2`, `α a3` only, three cyclically consecutive darts
-  of `c`, and misses the outer face and the source cell: the lake at `a1`;
+  class of `α a1` meets `α c` in `α a1`, `α a2`, `α a3` only, three cyclically consecutive
+  darts of `c`, and misses the outer face and the source cell: the lake at `a1`;
 * (inside triple / quadruple / quintuple) three, four or five consecutive darts `B` of `c` are
   closed under the classes they meet (one, two or more classes: one case), none of which is the
   kept class, suitably placed: the lobe `rs = B` with `B` removed.
