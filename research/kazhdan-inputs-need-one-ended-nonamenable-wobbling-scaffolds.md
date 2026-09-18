@@ -93,7 +93,7 @@ recalled). So `c(ε)N ≤ C·sep_Λ(CN)`, and `sep_Λ(n) = o(n)` bounds `N`.
   - The G2 calibration over `Z²` is unaffected.
 - **F₂ × F₂ passes every test.** It is nonamenable, one-ended, of exponential growth and not virtually
   free. It is also finitely presented and Farrell–Jones, being CAT(0), with Farrell–Jones stable under
-  products (recalled). So it is the smallest scaffold not excluded, and the sharp open test is
+  products (recalled). So it is not excluded, and the sharp open test is
   `infinite-kazhdan-group-in-wobbling-group-of-product-of-trees`.
 - **Kazhdan-type scaffolds.** A torsion-free vertex-regular Ã₂ lattice (Farrell–Jones via CAT(0), Wegner;
   recalled) already hosts infinite Kazhdan groups on free orbits, namely every lattice of its building
