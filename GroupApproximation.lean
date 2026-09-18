@@ -5787,6 +5787,11 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Yao
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Units
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionFiniteTrace
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiMoveTower
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Main
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairQuotient
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairSelection
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairMazur
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairSqrt
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
