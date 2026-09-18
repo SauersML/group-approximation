@@ -121,3 +121,23 @@ with infinite-order generators, and F_2 x F_2 all have deficit 0, with the
 unmatched density on F_2 x F_2 equal to beta_2 = 1. For <S | w^m> the
 proper-power ceiling 1/m equals z exactly. This is a reduction, not a proof:
 no case with open fixed price was reached. The target stays OPEN.
+
+Pass near-minimizers to a compact stability limit (lane b-p-fp4,
+2026-09-17; `fpbs-tight-routes-iff-bernoulli-weakly-treeable`, artifact
+`research/artifacts/fpbs-tight-routes-weakly-treeable-2026-09-17.md`). The
+plan was to code near-minimizing graphings of b into a compact space, take a
+weak* limit, and read tight cycle dimension off an exact minimizer. Such a
+limit is a free action weakly contained in b, with a graphing of cost at most
+C(b). It keeps generation exactly when routes for the generators stay of
+bounded length with labels in a finite set, uniformly in n (condition (T)).
+Theorem A shows that (T) holds for some near-minimizing sequence iff b is
+weakly equivalent to a free treeable action, and then Gamma has fixed price.
+The attempt dies at the generation step on every non-treeable group. By
+Adams--Spatzier these include every infinite Kazhdan group, which are exactly
+the open cases named above, and also F_2 x F_2 and every nonamenable group
+with a cost-one free action. The invariant that kills it is treeability. The
+claim itself is not refuted: condition (9.1) of the cost-cycle artifact is
+about tau_L tails, not route lengths. The reduced-circulation channel of the
+first attempt tolerates divergent routes, and it is the surviving quantitative
+channel. On F_r x Z (non-treeable) its route lengths diverge as Corollary B
+requires, while the reduced mass stays bounded.
