@@ -82,11 +82,13 @@ class of `f y` (in use `f = alpha`), and that class misses `PO`, `PS`: the lake 
 theorem roseLobeChoice_lake_out {s : α → α → Prop} {c : List α} {f : α → α}
     {PO PS : α → Prop} {y : α} (hnd : c.Nodup) (hy : y ∈ c)
     (hlone : ∀ e ∈ c, Relation.EqvGen s (f y) (f e) → e = y)
-    (hO : ∀ x, PO x → ¬Relation.EqvGen s (f y) x) (hS : ∀ x, PS x → ¬Relation.EqvGen s (f y) x)
+    (hO : ∀ x, PO x → ¬Relation.EqvGen s (f y) x)
+    (hS : ∀ x, PS x → ¬Relation.EqvGen s (f y) x)
     (hoth : ∃ e ∈ c, e ≠ y) :
     ∃ y ∈ c, (∀ x, PO x → ¬Relation.EqvGen s (f y) x) ∧
       (∀ x, PS x → ¬Relation.EqvGen s (f y) x) ∧
-      ∃ A B C : List α, roseLobeRegion_Block c (fun d => ¬Relation.EqvGen s (f y) (f d)) A B C := by
+      ∃ A B C : List α,
+        roseLobeRegion_Block c (fun d => ¬Relation.EqvGen s (f y) (f d)) A B C := by
   obtain ⟨A, C, h⟩ := List.append_of_mem hy
   have hc : c = A ++ [y] ++ C := by
     rw [h]

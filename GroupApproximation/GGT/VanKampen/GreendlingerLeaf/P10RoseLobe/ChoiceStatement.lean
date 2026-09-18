@@ -103,7 +103,8 @@ and three exclusions (`hIn`, `hKept`, `hOut`: no singleton region of the three p
 the same conclusion. -/
 def roseLobeChoice_Statement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    X.LeastArea →
     (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
     ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
       K.sourceArc.length < (cellDarts X K.source).length →

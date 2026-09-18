@@ -20,19 +20,20 @@ Lane `bh-met-93j`.
 * **The converse, formalized here** (it was flagged "not formalized" in `VdKOmegaRhoWire`):
   `Injective (stab n R) → vdkOmegaRho_HasFree n R` for `2 ≤ n`
   (`vdkOmegaFree_hasFree_of_stab_injective`).  The choice is explicit and not circular as a
-  construction: `X = Π(P̃) \ St_{n+1}(R)`, `X' = Π⁻(P̃⁻) \ St_{n+1}(R)` (orbit spaces of the two
-  parabolic maps `Π`, `Π⁻`, NOT `St_{n+1}` itself as `Ω`), `Ψ = E'⁻¹ ∘ E` with
-  `E (p, x) = Π p · out x`, and `θ`, `σ` read off from `Ψ` (`VdKOmegaFreeDecomp`).  `MixedOne`
-  is then the Steinberg relation `⁅x_{i,last}(1), x_{last,j}(1)⁆ = x_{ij}(1)` in `St_{n+1}(R)`,
-  carried through `E` (`vdkOmegaFree_commutator_eq`).  Injectivity of `stab` is used, and
-  needed, to make `E` and `E'` bijections.
+  construction: `X = Π(P̃) \ St_{n+1}(R)`, `X' = Π⁻(P̃⁻) \ St_{n+1}(R)` (orbit spaces of
+  the two parabolic maps `Π`, `Π⁻`, NOT `St_{n+1}` itself as `Ω`), `Ψ = E'⁻¹ ∘ E` with
+  `E (p, x) = Π p · out x`, and `θ`, `σ` read off from `Ψ` (`VdKOmegaFreeDecomp`).
+  `MixedOne` is then the Steinberg relation `⁅x_{i,last}(1), x_{last,j}(1)⁆ = x_{ij}(1)` in
+  `St_{n+1}(R)`, carried through `E` (`vdkOmegaFree_commutator_eq`).  Injectivity of `stab`
+  is used, and needed, to make `E` and `E'` bijections.
 * Hence **EQUIVALENT, not progress on vdK**: `vdkOmegaFree_hasFree_iff` (`3 ≤ n`) and
   `vdkOmegaFree_statement_iff : vdkOmegaRho_Statement ↔ vdkParPres_NoHiddenRelStatement`.
-* **The one STRICTLY WEAKER, TRUE, UNCONDITIONAL instance**: `vdkOmegaFree_zmodStatement`, i.e.
+* **The one TRUE, UNCONDITIONAL special case**: `vdkOmegaFree_zmodStatement`, i.e.
   `vdkOmegaRho_HasFree N (ZMod p)` for `p` prime and `5 ≤ N`.  It is not circular:
   injectivity of `stab` over `𝔽_p` comes from the independent `K₂(𝔽_p)` vanishing
-  (`vdkRowExt_K2Stab_injective_zmod`).  It is strictly weaker than `vdkOmegaRho_Statement`,
-  which quantifies over all commutative rings of bounded stable rank.
+  (`vdkRowExt_K2Stab_injective_zmod`).  It is a special case (hence weaker, and not
+  equivalent as far as is known) of `vdkOmegaRho_Statement`, which quantifies over all
+  commutative rings of bounded stable rank; it makes no progress on the general case.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
@@ -51,7 +52,8 @@ theorem vdkOmegaFree_stab_injective_of_hasFree (hn : 3 ≤ n) (h : vdkOmegaRho_H
   vdkOmega_stab_injective_of_hasOmega (vdkOmegaBuild_hasOmega_of_hasOmegaOne hn
     (vdkOmegaSet_hasOmegaOne_of_hasRows (vdkOmegaRho_hasRows_of_hasFree h)))
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_stab_injective_of_hasFree
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_stab_injective_of_hasFree
 
 theorem vdkOmegaFree_Pi_injective (hinj : Function.Injective (stab n R)) :
     Function.Injective (vdkParPres_Pi (n := n) (R := R)) :=

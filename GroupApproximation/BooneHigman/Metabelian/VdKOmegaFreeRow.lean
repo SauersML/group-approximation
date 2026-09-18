@@ -9,9 +9,9 @@ Lane `bh-met-93j`.  Unconditional apart from the displayed hypothesis.
 
 * `vdkOmegaFree_padRow_eq_rowVec`: the two last-row vectors `padRow` (`PaddedCentral`) and
   `rowVec` (`RowColumn`) agree.
-* `vdkOmegaFree_PiMinus_injective`: if `stab : St_n(R) → St_{n+1}(R)` is injective then so is
-  `Π⁻ : R^n ⋊ St_n(R) → St_{n+1}(R)`, `(w, g) ↦ rowVec w · stab g`.  The proof reads the last
-  row: `stab g` fixes `e = (0, …, 0, 1)` and `rowVec w` sends it to `(w, 1)`.
+* `vdkOmegaFree_PiMinus_injective`: if `stab : St_n(R) → St_{n+1}(R)` is injective then so
+  is `Π⁻ : R^n ⋊ St_n(R) → St_{n+1}(R)`, `(w, g) ↦ rowVec w · stab g`.  The proof reads
+  the last row: `stab g` fixes `e = (0, …, 0, 1)` and `rowVec w` sends it to `(w, 1)`.
 * `vdkOmegaFree_mixed_root`: `⁅x_{i,last}(1), x_{last,j}(1)⁆ = stab (x_{ij}(1))`.
 
 Truth check.  `Π⁻(w, g) = 1` means `M = [[g, 0], [w, 1]] = 1` in `E_{n+1}`.  Its last row forces
