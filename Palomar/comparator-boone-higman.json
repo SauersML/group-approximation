@@ -7,8 +7,10 @@
     "BooneHigman.finitely_generated_metabelian_embeds_in_finitely_presented_simple",
     "BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_simple",
     "BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar",
-    "BooneHigman.exists_finitely_presented_infinite_simple",
+    "BooneHigman.kourovka_17_57",
     "BooneHigman.kourovka_17_59",
+    "BooneHigman.kourovka_17_61",
+    "BooneHigman.graph_product_embeds_in_type_a_group",
     "BooneHigman.exists_fp_simple_with_mixed_identities_not_finitely_normally_generated"
   ],
   "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]

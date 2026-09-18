@@ -20,6 +20,15 @@ here are the solution's, which are byte-identical to the challenge's.
 * `IsClassTransposition`: the identity is not a class transposition.
 * `IsResidueClassWiseAffine`: the identity is residue-class-wise affine.
 * `mixedIdentities`: a nontrivial constant is never a mixed identity.
+* `integerReflection`: it sends `0` to `-1`, and it exchanges the nonnegative and the negative
+  integers.
+* `IsSmoothModulus`: `1` is smooth over every `P`; `3` is not smooth over `∅`.
+* `IsClassTranspositionOver`: the identity is not one, and every one is a class transposition,
+  so `CT_P(ℤ) ≤ CT(ℤ)`.
+* `HasTypeAAction` and `EmbedsInTypeAGroup`: the trivial group acts on a point with type (A);
+  `ℝ` embeds in no group with an action of type (A), since such a group is countable.
+* `graphProductRelators` and `GraphProduct`: over the edgeless graph there are no relators,
+  and at an edge the two vertex groups commute in the graph product.
 
 Not yet tested here: that `LeavittResolventRing` is nonzero (it has a faithful module on
 finitely supported functions of infinite words; see the development) and that the Steinberg
@@ -95,5 +104,87 @@ theorem inl_not_mem_mixedIdentities {G : Type} [Group G] (n : ℕ) {g : G} (hg :
   have := h (Monoid.Coprod.lift (MonoidHom.id G) 1) (Monoid.Coprod.lift_comp_inl _ _)
   rw [Monoid.Coprod.lift_apply_inl] at this
   exact hg this
+
+/-- **Positive model.** The reflection sends `0` to `-1`. -/
+theorem integerReflection_zero : integerReflection 0 = -1 :=
+  show -(0 : ℤ) - 1 = -1 by omega
+
+/-- **Positive model.** The reflection exchanges the nonnegative and the negative integers. -/
+theorem nonneg_iff_integerReflection_neg (n : ℤ) : 0 ≤ n ↔ integerReflection n < 0 :=
+  show 0 ≤ n ↔ -n - 1 < 0 by omega
+
+/-- **Positive model.** `1` has no prime factors, so it is smooth over every `P`. -/
+theorem isSmoothModulus_one (P : Finset ℕ) : IsSmoothModulus P 1 := by
+  intro p hp hd
+  have h1 := Int.le_of_dvd one_pos hd
+  have h2 := hp.two_le
+  exfalso
+  omega
+
+/-- **Negative model.** `3` is not smooth over the empty set of odd primes. -/
+theorem not_isSmoothModulus_empty_three : ¬ IsSmoothModulus ∅ 3 := by
+  intro h
+  rcases h 3 Nat.prime_three ⟨1, by norm_num⟩ with h3 | h3
+  · omega
+  · simp at h3
+
+/-- **Negative model.** The identity is not a class transposition over any `P`. -/
+theorem one_not_isClassTranspositionOver (P : Finset ℕ) : ¬ IsClassTranspositionOver P 1 := by
+  rintro ⟨r₁, m₁, r₂, m₂, -, -, -, -, -, -, hdisj, hswap, -⟩
+  have h := (hswap 0).1
+  apply hdisj 0 0
+  simpa using h
+
+/-- Every class transposition over `P` is a class transposition. -/
+theorem isClassTransposition_of_isClassTranspositionOver {P : Finset ℕ} {g : Equiv.Perm ℤ}
+    (h : IsClassTranspositionOver P g) : IsClassTransposition g := by
+  obtain ⟨r₁, m₁, r₂, m₂, -, -, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩ := h
+  exact ⟨r₁, m₁, r₂, m₂, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩
+
+/-- `CT_P(ℤ)` is a subgroup of `CT(ℤ)`, as in Kourovka 17.60. -/
+theorem classTranspositionGroupOver_le (P : Finset ℕ) :
+    classTranspositionGroupOver P ≤ classTranspositionGroup :=
+  Subgroup.closure_mono fun _ hg => isClassTransposition_of_isClassTranspositionOver hg
+
+/-- **Positive model.** The trivial group acts on a point with type (A). -/
+theorem unit_hasTypeAAction : HasTypeAAction Unit := by
+  refine ⟨Unit, inferInstance, ⟨fun _ => Subsingleton.elim _ _⟩, inferInstance,
+    fun s => ?_, inferInstance⟩
+  exact (Group.fg_iff_subgroup_fg _).mp inferInstance
+
+/-- **Positive model.** The trivial group embeds in a group with an action of type (A). -/
+theorem unit_embedsInTypeAGroup : EmbedsInTypeAGroup Unit :=
+  ⟨Unit, inferInstance, unit_hasTypeAAction, MonoidHom.id Unit, Function.injective_id⟩
+
+/-- **Negative model.** `ℝ` embeds in no group with an action of type (A): such a group is
+finitely presented, hence countable. -/
+theorem multiplicative_real_not_embedsInTypeAGroup :
+    ¬ EmbedsInTypeAGroup (Multiplicative ℝ) := by
+  rintro ⟨Γ, _, ⟨S, _, -, hfp, -, -⟩, f, hf⟩
+  haveI := hfp
+  haveI := GroupApproximation.BooneHigman.countable_of_isFinitelyPresented Γ
+  haveI : Countable (Multiplicative ℝ) := hf.countable
+  haveI : Countable ℝ := (Multiplicative.ofAdd (α := ℝ)).injective.countable
+  exact Uncountable.not_countable (α := ℝ) inferInstance
+
+/-- **Negative model.** Over the edgeless graph a graph product has no relators, so it is the
+free product. -/
+theorem graphProductRelators_bot {ι : Type} (G : ι → Type) [∀ i, Group (G i)] :
+    graphProductRelators (⊥ : SimpleGraph ι) G = ∅ := by
+  ext w
+  simp [graphProductRelators]
+
+/-- **Positive model.** At an edge, the two vertex groups commute in the graph product. -/
+theorem graphProduct_commute_of_adj {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type)
+    [∀ i, Group (G i)] {i j : ι} (hij : Γ.Adj i j) (a : G i) (b : G j) :
+    Commute
+      (QuotientGroup.mk' (Subgroup.normalClosure (graphProductRelators Γ G))
+        (Monoid.CoprodI.of (M := G) a) : GraphProduct Γ G)
+      (QuotientGroup.mk' (Subgroup.normalClosure (graphProductRelators Γ G))
+        (Monoid.CoprodI.of (M := G) b)) := by
+  rw [← commutatorElement_eq_one_iff_commute, ← map_commutatorElement,
+    QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
+  apply Subgroup.subset_normalClosure
+  exact ⟨i, j, hij, a, b, rfl⟩
 
 end BooneHigman.ModelTests

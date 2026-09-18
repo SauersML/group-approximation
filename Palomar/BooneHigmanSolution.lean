@@ -3,34 +3,38 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.FreeAlgebra
+import Mathlib.Algebra.Group.Action.Faithful
+import Mathlib.Algebra.Group.Action.Prod
+import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.RingQuot
+import Mathlib.Combinatorics.SimpleGraph.Basic
 import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.Coprod.Basic
+import Mathlib.GroupTheory.CoprodI
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.Finiteness
+import Mathlib.GroupTheory.GroupAction.Defs
 import Mathlib.GroupTheory.PresentedGroup
+import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.BooneHigman.Statement.API
-import GroupApproximation.GroupTheory.HydeLodha.HigmanInfiniteSimple
 
 /-!
 # Proofs for the Boone–Higman megasubmission (work in progress)
 
 This file repeats the challenge's shared block byte for byte.
 
-**Status: skeleton.** One theorem is proved outright:
-`exists_finitely_presented_infinite_simple`, which is the development's theorem
-`GroupApproximation.HydeLodha.higman_infinite_simple` (Hyde–Lodha's `Q₂`).
-Every other selected theorem appears under a name ending `_of` and takes, as a hypothesis,
-the proposition the development still owes:
+**Status: skeleton.** No selected theorem is proved outright yet. Every one appears under a
+name ending `_of` and takes, as a hypothesis, the proposition the development still owes:
 
 * the two metabelian theorems and the linear theorem take the development endpoints
   `GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement` and
   `GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement`;
 * the others take a proposition named here (`ExplicitOvergroupOwed`, `LinearSelfSimilarOwed`,
-  `Kourovka1759Owed`, `MixedIdentitiesOwed`), which is the challenge statement itself until the
-  construction that proves it lands.
+  `Kourovka1757Owed`, `Kourovka1759Owed`, `Kourovka1761Owed`, `GraphProductOwed`,
+  `MixedIdentitiesOwed`), which is the challenge statement itself until the construction that
+  proves it lands.
 
 The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are added, and the
 hypotheses removed, as the development discharges them.
@@ -41,17 +45,21 @@ hypotheses removed, as the development discharges them.
   endpoint hypotheses here.
 * `ExplicitOvergroupOwed` needs finite presentation of Steinberg groups of finitely presented
   rings in rank at least five, the ring `R_L` with a faithful module, and the Leavitt-pair
-  embedding of every `GL_n(ℚ)` into `St_10(R_L)`.
-* `Kourovka1759Owed`: the answer currently rests on the identification of the class
-  transposition groups with full groups of one-vertex higher-rank graphs, and through it on
-  Matui's and Li's groupoid theorems. An elementary proof by products of class transpositions
-  is in progress and is not yet complete.
+  embedding of every `GL_n(ℚ)` into `St_10(R_L)` (`GroupApproximation/SteinbergFP/`).
+* `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
+  homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
+  that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
+* `Kourovka1759Owed`: the elementary proof by products of class transpositions is complete
+  as a written argument; its Lean development is in progress.
+* `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an explicit one-vertex
+  higher-rank graph, simple and of type `F_∞` by Li's theorems.
+* `GraphProductOwed`: graph products reduce to amalgams `X ∗_C (C × K)` over retracts, which a
+  twisted conjugation realizes inside the automorphism groups `Aut_G(G ∗ F_n)` of BFFHZ.
 * `MixedIdentitiesOwed`: the witness is Thompson's group `T`.
 
 **Deferred candidates**, not yet in the configuration: the exceptional spherical Artin groups;
-BFFHZ Question 3.1 (graph products of groups in the permutational class); Kourovka 17.60 and
-17.61; and Zaremsky's Oberwolfach 2018 question on Higman's group in Lodha–Moore and Monod
-groups.
+Kourovka 17.60; and Zaremsky's Oberwolfach 2018 question on Higman's group in Lodha–Moore and
+Monod groups.
 
 The prose of this module was written by Claude (Anthropic), under the user's direction.
 -/
@@ -143,6 +151,58 @@ def mixedIdentities (G : Type) [Group G] (n : ℕ) :
   ⨅ (φ : Monoid.Coprod G (FreeGroup (Fin n)) →* G)
     (_ : φ.comp Monoid.Coprod.inl = MonoidHom.id G), φ.ker
 
+/-- The reflection `n ↦ -n - 1` of `ℤ`, which exchanges the nonnegative and the negative
+integers. -/
+def integerReflection : Equiv.Perm ℤ where
+  toFun n := -n - 1
+  invFun n := -n - 1
+  left_inv n := show -(-n - 1) - 1 = n by omega
+  right_inv n := show -(-n - 1) - 1 = n by omega
+
+/-- `m` has no prime factor outside `P ∪ {2}`. -/
+def IsSmoothModulus (P : Finset ℕ) (m : ℤ) : Prop :=
+  ∀ p : ℕ, p.Prime → (p : ℤ) ∣ m → p = 2 ∨ p ∈ P
+
+/-- `g` is a class transposition (as in `IsClassTransposition`) of two residue classes whose
+moduli have only prime factors in `P ∪ {2}`. -/
+def IsClassTranspositionOver (P : Finset ℕ) (g : Equiv.Perm ℤ) : Prop :=
+  ∃ r₁ m₁ r₂ m₂ : ℤ, IsSmoothModulus P m₁ ∧ IsSmoothModulus P m₂ ∧
+    0 ≤ r₁ ∧ r₁ < m₁ ∧ 0 ≤ r₂ ∧ r₂ < m₂ ∧
+    (∀ t₁ t₂ : ℤ, r₁ + t₁ * m₁ ≠ r₂ + t₂ * m₂) ∧
+    (∀ t : ℤ, g (r₁ + t * m₁) = r₂ + t * m₂ ∧
+      g (r₂ + t * m₂) = r₁ + t * m₁) ∧
+    ∀ n : ℤ, (∀ t : ℤ, n ≠ r₁ + t * m₁) → (∀ t : ℤ, n ≠ r₂ + t * m₂) →
+      g n = n
+
+/-- Kohl's group `CT_P(ℤ)`, generated by the class transpositions over `P`. -/
+def classTranspositionGroupOver (P : Finset ℕ) : Subgroup (Equiv.Perm ℤ) :=
+  Subgroup.closure {g | IsClassTranspositionOver P g}
+
+/-- An action of type (A) of `Γ` (Zaremsky; Belk–Fournier-Facio–Hyde–Zaremsky, §1): a
+faithful action on a set `S` such that `Γ` is finitely presented, every point stabilizer is
+finitely generated, and `Γ` has finitely many orbits on `S × S`. -/
+def HasTypeAAction (Γ : Type) [Group Γ] : Prop :=
+  ∃ (S : Type) (_ : MulAction Γ S), FaithfulSMul Γ S ∧ Group.IsFinitelyPresented Γ ∧
+    (∀ s : S, (MulAction.stabilizer Γ s).FG) ∧
+    Finite (MulAction.orbitRel.Quotient Γ (S × S))
+
+/-- `G` satisfies the permutational Boone–Higman property: it embeds in a group admitting an
+action of type (A). -/
+def EmbedsInTypeAGroup (G : Type) [Group G] : Prop :=
+  ∃ (Γ : Type) (_ : Group Γ), HasTypeAAction Γ ∧ ∃ f : G →* Γ, Function.Injective f
+
+/-- The relators of a graph product: the commutators of elements of adjacent vertex groups. -/
+def graphProductRelators {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)] :
+    Set (Monoid.CoprodI G) :=
+  {w | ∃ i j, Γ.Adj i j ∧ ∃ (a : G i) (b : G j),
+    w = ⁅Monoid.CoprodI.of (M := G) a, Monoid.CoprodI.of (M := G) b⁆}
+
+/-- The graph product of the groups `G i` over the simple graph `Γ`: their free product,
+with `G i` and `G j` made to commute whenever `i` and `j` are adjacent. -/
+abbrev GraphProduct {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)] :
+    Type :=
+  Monoid.CoprodI G ⧸ Subgroup.normalClosure (graphProductRelators Γ G)
+
 -- END SHARED BLOCK
 
 /-- The challenge's metabelian groups are the development's. -/
@@ -214,18 +274,28 @@ theorem finitely_generated_linear_embeds_in_finitely_presented_self_similar_of
         Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f :=
   h
 
-/-- A finitely presented infinite simple group: Hyde–Lodha's `Q₂`, through
-`GroupApproximation.HydeLodha.higman_infinite_simple`, which states the same proposition. -/
-theorem exists_finitely_presented_infinite_simple :
-    ∃ (n : ℕ) (rels : Set (FreeGroup (Fin n))), rels.Finite ∧
-      IsSimpleGroup (PresentedGroup rels) ∧ Infinite (PresentedGroup rels) :=
-  GroupApproximation.HydeLodha.higman_infinite_simple
+/-- The proposition the class-transposition development owes for Kourovka 17.57. -/
+def Kourovka1757Owed : Prop :=
+  (∀ g ∈ classTranspositionGroup,
+    integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
+  (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
+    (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
+    ∀ x : classTranspositionGroup,
+      ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
+  ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
+    integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹
 
-/-- The same statement under its `_of` name; no hypothesis is outstanding. -/
-theorem exists_finitely_presented_infinite_simple_of :
-    ∃ (n : ℕ) (rels : Set (FreeGroup (Fin n))), rels.Finite ∧
-      IsSimpleGroup (PresentedGroup rels) ∧ Infinite (PresentedGroup rels) :=
-  exists_finitely_presented_infinite_simple
+/-- Kourovka 17.57, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_57_of (h : Kourovka1757Owed) :
+    (∀ g ∈ classTranspositionGroup,
+      integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
+    (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
+      (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
+      ∀ x : classTranspositionGroup,
+        ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
+    ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
+      integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹ :=
+  h
 
 /-- The proposition the class-transposition development owes for Kourovka 17.59. -/
 def Kourovka1759Owed : Prop :=
@@ -236,6 +306,29 @@ def Kourovka1759Owed : Prop :=
 theorem kourovka_17_59_of (h : Kourovka1759Owed) :
     (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
       {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
+  h
+
+/-- The proposition the class-transposition development owes for Kourovka 17.61. -/
+def Kourovka1761Owed : Prop :=
+  ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+    Group.IsFinitelyPresented (classTranspositionGroupOver P)
+
+/-- Kourovka 17.61, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_61_of (h : Kourovka1761Owed) :
+    ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+      Group.IsFinitelyPresented (classTranspositionGroupOver P) :=
+  h
+
+/-- The proposition the graph-product development owes for BFFHZ Question 3.1. -/
+def GraphProductOwed : Prop :=
+  ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+    (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G)
+
+/-- BFFHZ Question 3.1, answered positively, from the proposition the graph-product
+development owes. -/
+theorem graph_product_embeds_in_type_a_group_of (h : GraphProductOwed) :
+    ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
+      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) :=
   h
 
 /-- The proposition the mixed-identities development owes for BFFHZ Question 3.3. -/
