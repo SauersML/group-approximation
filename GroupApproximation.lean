@@ -5546,6 +5546,39 @@ import GroupApproximation.Manuscript.NonMF.Full.GL03B.Statement
 import GroupApproximation.Manuscript.NonMF.Full.GL03B.FollowsCase
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.Statement
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Tree
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.CompressionContractive
+import GroupApproximation.Manuscript.NonMF.Full.GL02.GapSpan
+import GroupApproximation.Manuscript.NonMF.Full.GL02.PocketTurns
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RCellEnclosure
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RCellEnclosureWalk
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RCellSpan
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RotationTurns
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RotationTurnsClose
+import GroupApproximation.Manuscript.NonMF.Full.GL02.RotationTurnsWalk
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.Assembly
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.AssemblyClosed
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.CellRotation
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.CellRotationExists
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.ClassDisjoint
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.ClassDisjointPosition
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.GapOffFaceBridge
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.HeadShape
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.HeadShapeBridge
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.HeadShapeDeps
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.HeadShapeSplit
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.TailShape
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.TailShapeDeps
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowHeadSplit
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowHeadSplitAux
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowHeadSplitStatement
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplit
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplitBlock
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplitCore
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.CellHair
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiFullGroup
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiAssembly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Absorb
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Retraction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
