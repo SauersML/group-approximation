@@ -46,7 +46,7 @@ theorem exists_clearing (x : BinaryLeavittAlgebra k) :
           intro h
           obtain rfl := h.eq_of_length (le_antisymm h.length_le hδ)
           exact hbδ (List.prefix_refl _)
-        rw [LeavittFamily.wordT_mul_wordS_of_incomparable _ _ hbδ hδb, mul_zero]
+        rw [(family k).wordT_mul_wordS_of_incomparable _ _ hbδ hδb, mul_zero]
         exact Submodule.zero_mem _
   | zero =>
       refine ⟨0, 0, fun δ _ => ?_⟩
@@ -92,7 +92,7 @@ theorem mul_qvec_of_idempotent {e : BinaryLeavittAlgebra k} (he : IsIdempotentEl
 theorem qvec_mem_fil {e : BinaryLeavittAlgebra k} {m N : ℕ}
     (h : ∀ δ : List (Fin 2), m ≤ δ.length → e * (family k).wordS δ ∈ fil k (N + δ.length))
     (δ : Fin m → Fin 2) : qvec k e m δ ∈ fil k (N + m) := by
-  have hδ := h (List.ofFn δ) (by rw [List.length_ofFn])
+  have hδ := h (List.ofFn δ) (le_of_eq List.length_ofFn.symm)
   rw [List.length_ofFn] at hδ
   exact hδ
 

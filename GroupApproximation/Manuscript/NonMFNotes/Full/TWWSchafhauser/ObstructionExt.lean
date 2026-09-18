@@ -125,7 +125,8 @@ theorem ExtGroup.mk_eq_zero_of_isSplit {x : BusbyCycle S J} (hx : x.IsSplit) :
     ExtGroup.mk x = 0 := by
   show ((FreeAbelianGroup.of x : FreeAbelianGroup (BusbyCycle S J)) : ExtGroup S J) = 0
   rw [QuotientAddGroup.eq_zero_iff]
-  exact AddSubgroup.subset_closure (Or.inl ⟨x, hx, rfl⟩)
+  exact AddSubgroup.subset_closure
+    (show FreeAbelianGroup.of x ∈ extGenerators S J from Or.inl ⟨x, hx, rfl⟩)
 
 /-- Unitarily equivalent cycles have the same class. -/
 theorem ExtGroup.mk_eq_of_isUnitarilyEquivalent {x y : BusbyCycle S J}
@@ -133,7 +134,9 @@ theorem ExtGroup.mk_eq_of_isUnitarilyEquivalent {x y : BusbyCycle S J}
   show ((FreeAbelianGroup.of x : FreeAbelianGroup (BusbyCycle S J)) : ExtGroup S J) =
     ((FreeAbelianGroup.of y : FreeAbelianGroup (BusbyCycle S J)) : ExtGroup S J)
   rw [QuotientAddGroup.eq_iff_sub_mem]
-  exact AddSubgroup.subset_closure (Or.inr (Or.inl ⟨x, y, h, rfl⟩))
+  exact AddSubgroup.subset_closure
+    (show FreeAbelianGroup.of x - FreeAbelianGroup.of y ∈ extGenerators S J from
+      Or.inr (Or.inl ⟨x, y, h, rfl⟩))
 
 /-- The class of a direct sum is the sum of the classes. -/
 theorem ExtGroup.mk_eq_add_of_isDirectSum {z x y : BusbyCycle S J} (h : z.IsDirectSum x y) :
@@ -142,7 +145,9 @@ theorem ExtGroup.mk_eq_add_of_isDirectSum {z x y : BusbyCycle S J} (h : z.IsDire
     ((FreeAbelianGroup.of x : FreeAbelianGroup (BusbyCycle S J)) : ExtGroup S J) +
       ((FreeAbelianGroup.of y : FreeAbelianGroup (BusbyCycle S J)) : ExtGroup S J)
   rw [← QuotientAddGroup.mk_add, QuotientAddGroup.eq_iff_sub_mem]
-  exact AddSubgroup.subset_closure (Or.inr (Or.inr ⟨z, x, y, h, rfl⟩))
+  exact AddSubgroup.subset_closure
+    (show FreeAbelianGroup.of z - (FreeAbelianGroup.of x + FreeAbelianGroup.of y) ∈
+      extGenerators S J from Or.inr (Or.inr ⟨z, x, y, h, rfl⟩))
 
 variable (S J)
 
@@ -197,11 +202,9 @@ theorem ExtGroup.induction_on {P : ExtGroup S J → Prop} (ξ : ExtGroup S J)
     (neg : ∀ x : BusbyCycle S J, P (-ExtGroup.mk x))
     (add : ∀ ξ η : ExtGroup S J, P ξ → P η → P (ξ + η)) : P ξ := by
   obtain ⟨g, rfl⟩ := QuotientAddGroup.mk'_surjective (extRelations S J) ξ
-  induction g using FreeAbelianGroup.induction_on with
-  | zero => exact zero
-  | of x => exact mk x
-  | neg x _ => exact neg x
-  | add g g' hg hg' => exact add _ _ hg hg'
+  exact FreeAbelianGroup.induction_on
+    (motive := fun g => P (QuotientAddGroup.mk' (extRelations S J) g)) g zero
+    (fun x => mk x) (fun x _ => neg x) (fun g g' hg hg' => add _ _ hg hg')
 
 end Cycles
 

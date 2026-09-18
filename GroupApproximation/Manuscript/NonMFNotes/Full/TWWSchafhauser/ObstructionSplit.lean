@@ -10,7 +10,8 @@ theorem (C. Schafhauser, *A new proof of the Tikuisis–White–Winter theorem*,
 759 (2020), §5), in the absorption framework of G. A. Elliott and D. Kucerovsky, *An abstract
 Voiculescu–Brown–Douglas–Fillmore absorption theorem*, Pacific J. Math. 198 (2001).
 
-* `IsAbsorbingBusby`, `IsStronglyAbsorbingBusby`, `IsStablyTrivialBusby`.
+* `IsAbsorbingBusby`, `IsStronglyAbsorbingBusby`, `IsStablyTrivialBusby`,
+  `IsStronglyStablyTrivialBusby`.
 * `exists_lift_conj_of_isAbsorbingBusby_of_isStablyTrivialBusby`: an absorbing extension that is
   stably trivial (in particular one with zero class in `Ext(S, J)`) is unitarily equivalent to a
   trivial one: `Ad u ∘ θ = π ∘ ψ`.
@@ -42,12 +43,34 @@ abbrev IsStronglyAbsorbingBusby (π : E →⋆ₐ[R] Q) (P : BusbyCuntzPair Q) (
     (θ : S →⋆ₐ[R] Q) : Prop :=
   ∀ σ ∈ 𝒯, IsStronglyUnitarilyEquivalentBusby π (P.sumBusby θ (π.comp σ)) θ
 
-/-- `θ` is stably trivial if adding some trivial extension from `𝒯` makes it trivial. This is how
-a vanishing class in `Ext(S, J) = KK¹(S, J)` enters: `[θ] = 0` means `θ ⊕ τ` is split for a
-trivial `τ` (Schafhauser 2020, §5; Blackadar, *K-theory*, §15.6). -/
+/-- `θ` is stably trivial if adding some trivial extension from `𝒯` makes it unitarily equivalent
+to a trivial one. This is how a vanishing class in `Ext(S, J) = KK¹(S, J)` enters: `[θ] = 0` means
+`θ ⊕ π ∘ σ ≃ π ∘ ψ` for trivial extensions (Schafhauser 2020, §5; Blackadar, *K-theory*, §15.6). -/
 abbrev IsStablyTrivialBusby (π : E →⋆ₐ[R] Q) (P : BusbyCuntzPair Q) (𝒯 : Set (S →⋆ₐ[R] E))
     (θ : S →⋆ₐ[R] Q) : Prop :=
-  ∃ σ ∈ 𝒯, IsTrivialBusby π (P.sumBusby θ (π.comp σ))
+  ∃ σ ∈ 𝒯, ∃ ψ : S →⋆ₐ[R] E, IsUnitarilyEquivalentBusby (P.sumBusby θ (π.comp σ)) (π.comp ψ)
+
+/-- The strong form of `IsStablyTrivialBusby`: the implementing unitary lifts to `E`. -/
+abbrev IsStronglyStablyTrivialBusby (π : E →⋆ₐ[R] Q) (P : BusbyCuntzPair Q)
+    (𝒯 : Set (S →⋆ₐ[R] E)) (θ : S →⋆ₐ[R] Q) : Prop :=
+  ∃ σ ∈ 𝒯, ∃ ψ : S →⋆ₐ[R] E,
+    IsStronglyUnitarilyEquivalentBusby π (P.sumBusby θ (π.comp σ)) (π.comp ψ)
+
+theorem IsStronglyStablyTrivialBusby.isStablyTrivialBusby {π : E →⋆ₐ[R] Q}
+    {P : BusbyCuntzPair Q} {𝒯 : Set (S →⋆ₐ[R] E)} {θ : S →⋆ₐ[R] Q}
+    (h : IsStronglyStablyTrivialBusby π P 𝒯 θ) : IsStablyTrivialBusby π P 𝒯 θ := by
+  obtain ⟨σ, hσ, ψ, h⟩ := h
+  exact ⟨σ, hσ, ψ, h.isUnitarilyEquivalentBusby⟩
+
+/-- If `θ ⊕ π ∘ σ` is literally split for some `σ ∈ 𝒯`, then `θ` is (strongly) stably trivial. -/
+theorem IsStronglyStablyTrivialBusby.of_isTrivialBusby_sumBusby {π : E →⋆ₐ[R] Q}
+    {P : BusbyCuntzPair Q} {𝒯 : Set (S →⋆ₐ[R] E)} {θ : S →⋆ₐ[R] Q} {σ : S →⋆ₐ[R] E}
+    (hσ : σ ∈ 𝒯) (ht : IsTrivialBusby π (P.sumBusby θ (π.comp σ))) :
+    IsStronglyStablyTrivialBusby π P 𝒯 θ := by
+  obtain ⟨ψ, hψ⟩ := ht
+  refine ⟨σ, hσ, ψ, 1, one_mem _, fun s => ?_⟩
+  rw [map_one π, one_mul, star_one, mul_one]
+  exact hψ s
 
 theorem IsStronglyAbsorbingBusby.isAbsorbingBusby {π : E →⋆ₐ[R] Q} {P : BusbyCuntzPair Q}
     {𝒯 : Set (S →⋆ₐ[R] E)} {θ : S →⋆ₐ[R] Q} (h : IsStronglyAbsorbingBusby π P 𝒯 θ) :
@@ -55,23 +78,25 @@ theorem IsStronglyAbsorbingBusby.isAbsorbingBusby {π : E →⋆ₐ[R] Q} {P : B
   fun σ hσ => (h σ hσ).isUnitarilyEquivalentBusby
 
 /-- **Absorbing plus stably trivial implies trivial up to unitary equivalence**
-(Elliott–Kucerovsky 2001; Schafhauser 2020, §5). If `θ` absorbs `𝒯` and `θ ⊕ π ∘ σ` is split for
-some `σ ∈ 𝒯`, then `Ad u ∘ θ = π ∘ ψ` for a unital `⋆`-homomorphism `ψ` and a unitary `u`. -/
+(Elliott–Kucerovsky 2001; Schafhauser 2020, §5). If `θ` absorbs `𝒯` and `θ ⊕ π ∘ σ ≃ π ∘ ψ` for
+some `σ ∈ 𝒯`, then `Ad u ∘ θ = π ∘ ψ` for a `⋆`-homomorphism `ψ` and a unitary `u`. -/
 theorem exists_lift_conj_of_isAbsorbingBusby_of_isStablyTrivialBusby {π : E →⋆ₐ[R] Q}
     {P : BusbyCuntzPair Q} {𝒯 : Set (S →⋆ₐ[R] E)} {θ : S →⋆ₐ[R] Q}
     (habs : IsAbsorbingBusby π P 𝒯 θ) (hst : IsStablyTrivialBusby π P 𝒯 θ) :
     ∃ ψ : S →⋆ₐ[R] E, ∃ u ∈ unitary Q, ∀ s, π (ψ s) = u * θ s * star u := by
-  obtain ⟨σ, hσ, ψ, hψ⟩ := hst
-  obtain ⟨u, hu, h⟩ := (habs σ hσ).symm
-  exact ⟨ψ, u, hu, fun s => (hψ s).trans (h s)⟩
+  obtain ⟨σ, hσ, ψ, hst⟩ := hst
+  obtain ⟨u, hu, h⟩ := (habs σ hσ).symm.trans hst
+  exact ⟨ψ, u, hu, fun s => (StarAlgHom.comp_apply π ψ s).symm.trans (h s)⟩
 
-/-- Strong form: if the absorption is implemented by unitaries of `E`, then `θ` is trivial. -/
+/-- Strong form: if absorption and stable triviality are implemented by unitaries of `E`, then
+`θ` is trivial. -/
 theorem isTrivialBusby_of_isStronglyAbsorbingBusby_of_isStablyTrivialBusby {π : E →⋆ₐ[R] Q}
     {P : BusbyCuntzPair Q} {𝒯 : Set (S →⋆ₐ[R] E)} {θ : S →⋆ₐ[R] Q}
-    (habs : IsStronglyAbsorbingBusby π P 𝒯 θ) (hst : IsStablyTrivialBusby π P 𝒯 θ) :
+    (habs : IsStronglyAbsorbingBusby π P 𝒯 θ) (hst : IsStronglyStablyTrivialBusby π P 𝒯 θ) :
     IsTrivialBusby π θ := by
-  obtain ⟨σ, hσ, ht⟩ := hst
-  exact ht.of_isStronglyUnitarilyEquivalentBusby (habs σ hσ)
+  obtain ⟨σ, hσ, ψ, hst⟩ := hst
+  have ht : IsTrivialBusby π (π.comp ψ) := ⟨ψ, fun _ => rfl⟩
+  exact ht.of_isStronglyUnitarilyEquivalentBusby ((habs σ hσ).symm.trans hst).symm
 
 /-- **Traces are preserved** by the lift from absorption: for every tracial functional `τ` on the
 quotient, `τ ∘ π ∘ ψ = τ ∘ θ` (Schafhauser 2020, §5). -/
