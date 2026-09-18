@@ -48,3 +48,24 @@ per coset and to every `G`-stable subfield.
   need `f489b4fe` of `some-field-crossed-product-fails-the-rank-condition`.
 
 ## Attempts
+
+- **2026-09-18, swarm-0917-w10-w10-gs-pull (linear-characteristic, obstruction). Result: a reduction plus a
+  class kill. The node stays OPEN.**
+  - **Reduction.** `coset-field-rank-condition-is-lamp-factorization` shows that the rank condition of `R_p` is
+    equivalent to: no `w I_d`, for nonzero `w in F_p[x_c^(+-1)]` and `r < d`, factors through `T^r`, where
+    `T = F_p[Z wr_(G/Gamma) G]`. So the question is about the lamp group ring. That ring is stably finite by
+    `rf-lamps-preserve-stable-finiteness-for-arbitrary-actions`, but stable finiteness does not control these
+    scalar matrices.
+  - **Kill.** `invariant-background-certificates-miss-difference-units` covers two further certificate types:
+    - the marked-site tensor maps `Phi_r`;
+    - augmentation-adic and Frobenius-lamp quotients.
+
+    Neither type can make the difference unit `w = x_c - x_c'` full. Under `Phi_r`, the image of `w I_d`
+    factors through `M^r` at every `d`, with rank 0. In the quotients the image is nilpotent.
+  - **Dying step.** Off a finite union of wandering site idempotents, these maps fall back to a `G`-invariant
+    background (`lambda = 1`), and there the background cancels `w`. This is the same invariant as the point-model
+    kill at `x_(g Gamma) - x_(gamma g Gamma)`. The kill also occurs for `G = Z`, where the rank condition holds, so
+    it limits these methods and carries no evidence about the answer.
+  - **What a proof now needs.** A rank function on `T` under which every nonzero lamp polynomial is full, with a
+    diffuse invariant background such as iid Haar on `F_p[[t]]^H`. One candidate source is a characteristic-`p` Sylvester
+    rank function on `L^0(Omega, F_p((t))) semidirect G`, which is a dimension theory for a nonsofic orbit relation.
