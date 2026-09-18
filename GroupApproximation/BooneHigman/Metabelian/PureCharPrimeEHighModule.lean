@@ -32,8 +32,10 @@ subgroup lies in `M`, a `p`-group.  Wehrfritz 1975, Thm 1.1, gives a faithful
 `f : M ⋊ Q →* GL_d(K)`.  Take `κ = f ∘ inl` and `ρ = f ∘ inr`; the relation
 `inl (q • m) = inr q * inl m * (inr q)⁻¹` gives the intertwining.
 
-*Why strictly smaller.* The statement has no group theory in it.  The reduction
-`pureCharPrimeEHigh_of_module` (`PureCharPrimeEHigh`) proves the rest:
+*Strength (loud).*  By the *Truth* paragraph the statement is logically equivalent to
+`PureCharPrimeEHighStatement`.  It is smaller in proof content only: it has no group theory in
+it.  The reduction
+`pureCharPrimeEHigh_of_module` (`PureCharPrimeEHighReduce`) proves the rest:
 * the `(ℤ/p^e)[Q]`-module structure on `B` (we reuse `EOneMod φ (p ^ e) hexp`);
 * finite generation (`eOne_finite`);
 * the regular summand `(ℤ/p^e)[Q]`, which forces `ρ q ∉ κ(B)` for `q ≠ 1`;
@@ -44,9 +46,11 @@ Faithfulness of `ρ` is not asked for.
 `R = (ℤ/p^e)[Q]`.  For a coprimary piece `M_i` with prime `𝔭_i ∋ p`, lift a Noether normalisation
 `t` of `R / 𝔭_i`.  The elements of `(ℤ/p^e)[t]` that are nonzero mod `p` act injectively.
 Localising embeds `M_i` in a finite module over `O / p^e`, where `O = ℤ[t]_(p)`, and
-`O / p^e ↪ W_e(F_p(t)^perf)`.  This yields `M ⋊ Q ≤ GL_n(W_e(L))`.  The Greenberg transform of
-`GL_n` over `W_e` is an affine algebraic group over `F_p`, hence linear, and this gives
-`GL_n(W_e(L)) ↪ GL_N(L)`.
+`O / p^e ↪ W_e(F_p(t)^perf)`.  This map is flat, because `O → W(L)` is a local map of DVRs with
+uniformiser `p`, so base change keeps `M_i` embedded.  The group then acts `W_e(L)`-linearly on a
+finite `W_e(L)`-module, a sum of `W_k(L)` for `k ≤ e`.  The Greenberg transform of
+its automorphism group (together with the affine part) is an affine algebraic group over `F_p`,
+hence linear, and this gives a faithful representation over `L`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Coprimary

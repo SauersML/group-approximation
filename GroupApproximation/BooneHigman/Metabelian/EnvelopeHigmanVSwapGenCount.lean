@@ -88,20 +88,26 @@ theorem swapGen_length_eq_of_le [Finite X] [Nontrivial X] {f : Equiv.Perm (Canto
     obtain ⟨w', v', y, hw', hv', hy⟩ :=
       swapGen_exists_source (fun w h => ⟨t w h, ht w h⟩) (prepend u (fun _ => a))
     have hvv : t w' hw' = v' := MapsCone.unique (ht w' hw') hv'
-    have hNv' : N ≤ v'.length := hvv ▸ htl w' hw'
+    have hNv' : N ≤ v'.length := by
+      rw [← hvv]
+      exact htl w' hw'
     refine ⟨⟨w', hw'⟩, Subtype.ext ?_⟩
     show (t w' hw').take N = u
     rw [hvv, swapGen_take_eq_of_prepend_eq hy hNv' hu'.ge, List.take_of_length_le hu'.le]
   have hinj : Function.Injective π := Finite.injective_iff_surjective.mpr hsurj
   have hvt : t w hw = v := MapsCone.unique (ht w hw) hv
-  have hNv : N ≤ v.length := hvt ▸ htl w hw
+  have hNv : N ≤ v.length := by
+    rw [← hvt]
+    exact htl w hw
   by_contra hne
   have hlt : N < v.length := lt_of_le_of_ne hNv (Ne.symm hne)
   obtain ⟨c, hc⟩ := exists_ne (v[N]'hlt)
   obtain ⟨w', v', y, hw', hv', hy⟩ :=
     swapGen_exists_source (fun w h => ⟨t w h, ht w h⟩) (prepend (v.take N) (fun _ => c))
   have hvv' : t w' hw' = v' := MapsCone.unique (ht w' hw') hv'
-  have hNv' : N ≤ v'.length := hvv' ▸ htl w' hw'
+  have hNv' : N ≤ v'.length := by
+    rw [← hvv']
+    exact htl w' hw'
   have hNt : ¬ N < (v.take N).length := by
     rw [List.length_take]
     omega
@@ -113,11 +119,13 @@ theorem swapGen_length_eq_of_le [Finite X] [Nontrivial X] {f : Equiv.Perm (Canto
     show (t w' hw').take N = (t w hw).take N
     rw [hvv', hvt, htake]
   have hww : w' = w := congrArg Subtype.val (hinj h2)
-  subst hww
-  have hvv2 : v' = v := MapsCone.unique hv' hv
-  subst hvv2
+  have hvw' : MapsCone f w' v := by
+    rw [hww]
+    exact hv
+  have hvv2 : v' = v := MapsCone.unique hv' hvw'
+  rw [hvv2] at hy
   have h3 := congrFun hy N
-  rw [prepend_getElem v' y hlt, prepend_of_length_le (v'.take N) (fun _ => c) hNt] at h3
+  rw [prepend_getElem v y hlt, prepend_of_length_le (v.take N) (fun _ => c) hNt] at h3
   exact hc h3.symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_length_eq_of_le

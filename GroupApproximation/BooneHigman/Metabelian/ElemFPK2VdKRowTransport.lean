@@ -90,3 +90,85 @@ theorem vdkRowTransport_eq_of_mul (Ψ : VdKΩ n R X ≃ G) (g : G) (σ : Equiv.P
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowTransport_eq_of_mul
 
+namespace VdKRowGroupData
+
+variable (M : VdKRowGroupData n R G) (Ψ : VdKΩ n R X ≃ G)
+
+/-- The transport of `act s` is `vdkAct X s`. -/
+theorem transport_act (hact : ∀ (s : St n R) (w : VdKΩ n R X), Ψ (vdkAct X s w) = M.act s * Ψ w)
+    (s : St n R) : vdkRowTransport Ψ (M.act s) = vdkAct X s :=
+  vdkRowTransport_eq_of_mul Ψ (M.act s) (vdkAct X s) (hact s)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_act
+
+/-- The transport of `col i a` is `vdkCol X i a`. -/
+theorem transport_col
+    (hcol : ∀ (i : Fin n) (a : R) (w : VdKΩ n R X), Ψ (vdkCol X i a w) = M.col i a * Ψ w)
+    (i : Fin n) (a : R) : vdkRowTransport Ψ (M.col i a) = vdkCol X i a :=
+  vdkRowTransport_eq_of_mul Ψ (M.col i a) (vdkCol X i a) (hcol i a)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_col
+
+theorem transport_row_add (j : Fin n) (a b : R) :
+    vdkRowTransport Ψ (M.row j a) * vdkRowTransport Ψ (M.row j b) =
+      vdkRowTransport Ψ (M.row j (a + b)) := by
+  rw [← map_mul, M.row_add]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_row_add
+
+theorem transport_row_comm (j l : Fin n) (hjl : j ≠ l) (a b : R) :
+    vdkRowTransport Ψ (M.row j a) * vdkRowTransport Ψ (M.row l b) =
+      vdkRowTransport Ψ (M.row l b) * vdkRowTransport Ψ (M.row j a) := by
+  rw [← map_mul, M.row_comm j l hjl a b, map_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_row_comm
+
+theorem transport_row_act_comm
+    (hact : ∀ (s : St n R) (w : VdKΩ n R X), Ψ (vdkAct X s w) = M.act s * Ψ w)
+    (j k l : Fin n) (hkl : k ≠ l) (hjk : j ≠ k) (a b : R) :
+    vdkRowTransport Ψ (M.row j a) * vdkAct X (x k l hkl b) =
+      vdkAct X (x k l hkl b) * vdkRowTransport Ψ (M.row j a) := by
+  rw [← M.transport_act Ψ hact, ← map_mul, M.row_act_comm j k l hkl hjk a b, map_mul]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_row_act_comm
+
+theorem transport_row_act_commutator
+    (hact : ∀ (s : St n R) (w : VdKΩ n R X), Ψ (vdkAct X s w) = M.act s * Ψ w)
+    (j k : Fin n) (hjk : j ≠ k) (a b : R) :
+    ⁅vdkRowTransport Ψ (M.row j a), vdkAct X (x j k hjk b)⁆ =
+      vdkRowTransport Ψ (M.row k (a * b)) := by
+  rw [← M.transport_act Ψ hact, ← map_commutatorElement, M.row_act_commutator j k hjk a b]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_row_act_commutator
+
+theorem transport_col_row_commutator
+    (hact : ∀ (s : St n R) (w : VdKΩ n R X), Ψ (vdkAct X s w) = M.act s * Ψ w)
+    (hcol : ∀ (i : Fin n) (a : R) (w : VdKΩ n R X), Ψ (vdkCol X i a w) = M.col i a * Ψ w)
+    (i k : Fin n) (hik : i ≠ k) (a b : R) :
+    ⁅vdkCol X i a, vdkRowTransport Ψ (M.row k b)⁆ = vdkAct X (x i k hik (a * b)) := by
+  rw [← M.transport_act Ψ hact, ← M.transport_col Ψ hcol, ← map_commutatorElement,
+    M.col_row_commutator i k hik a b]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.transport_col_row_commutator
+
+/-- **Transport**: group-side row data and a bijection `Ψ : VdKΩ n R X ≃ G` that intertwines
+`vdkAct` and `vdkCol` with left multiplication give `VdKRowData n R X`. -/
+def toRowData
+    (hact : ∀ (s : St n R) (w : VdKΩ n R X), Ψ (vdkAct X s w) = M.act s * Ψ w)
+    (hcol : ∀ (i : Fin n) (a : R) (w : VdKΩ n R X), Ψ (vdkCol X i a w) = M.col i a * Ψ w) :
+    VdKRowData n R X where
+  Trow j a := vdkRowTransport Ψ (M.row j a)
+  row_add := M.transport_row_add Ψ
+  row_comm := M.transport_row_comm Ψ
+  row_act_comm := M.transport_row_act_comm Ψ hact
+  row_act_commutator := M.transport_row_act_commutator Ψ hact
+  col_row_commutator := M.transport_col_row_commutator Ψ hact hcol
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowGroupData.toRowData
+
+end VdKRowGroupData
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

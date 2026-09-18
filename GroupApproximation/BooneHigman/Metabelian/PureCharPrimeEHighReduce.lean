@@ -108,7 +108,8 @@ theorem exists_gl_of_eHigh_module_comm (hm : PureCharPrimeEHighModuleStatement) 
       Prod.ext (eOne_smul (φ := φ) (hV := hexp) q (eOneOf (φ := φ) (hV := hexp) b)).symm
         (smul_zero (MonoidAlgebra.of (ZMod (p ^ e)) Q q)).symm
     show κ' (eHighInl φ hexp (φ q b)) = ρ q * κ' (eHighInl φ hexp b) * (ρ q)⁻¹
-    exact (congrArg (fun m => κ' (Multiplicative.ofAdd m)) h2).trans (hequiv q _)
+    exact (congrArg (fun m : EOneMod φ (p ^ e) hexp × MonoidAlgebra (ZMod (p ^ e)) Q =>
+      κ' (Multiplicative.ofAdd m)) h2).trans (hequiv q _)
   have hκi : Function.Injective κ := by
     intro a b hab
     have hab' : κ' (eHighInl φ hexp a) = κ' (eHighInl φ hexp b) := hab
