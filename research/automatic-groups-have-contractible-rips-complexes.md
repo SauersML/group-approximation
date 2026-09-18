@@ -59,6 +59,55 @@ a contractible Rips complex?") without the amenability hypothesis. It implies
   asynchronous combing is refuted. Any proof must use the synchronous fellow
   traveller property at the fixed-scale step, which is where the Rips attempt above
   dies.
+- 2026-09-17 (c-rips): **coarse injectivity with torsion covers every automatic
+  hierarchically hyperbolic group.** This extends the known cases to a class with
+  torsion that is not known to be CAT(0) or Helly. It is established by
+  `coarsely-injective-groups-with-torsion-have-contractible-rips` (route
+  `coarsely-injective-groups-with-torsion-rips-proof`).
+  - The route runs Zaremsky's criterion (`zaremsky-rips-contractibility-criterion`) on
+    the orbit `G x_0` with metric `⌈d⌉`, with `r_t = ⌈t/2 + δ + D⌉` and
+    `t_0 = ⌈4δ + 4D + 2⌉`.
+  - The finite stabilizer is absorbed by `flag-complex-proper-vertex-transitive-action-rips`.
+  - Model check: `D_∞` on `R`, where `t_0 = 4` and `|T_4| = 17`.
+
+  Consequences:
+  - `hierarchically-hyperbolic-groups-have-contractible-rips` (route `hhg-with-torsion-rips-proof`,
+    through `hierarchically-hyperbolic-groups-are-coarsely-injective`). All mapping class
+    groups, torsion included, are now known cases. Mapping class groups are automatic
+    (Mosher; not imported).
+  - `closed-3-manifold-hhg-groups-have-contractible-rips-complexes`, using the imported
+    Hagen–Russell–Sisto–Spriano classification `closed-3-manifold-groups-hhg-classification`.
+  - By ECHLPT Chapter 12 (not imported), closed 3-manifold groups are automatic exactly when
+    no prime factor is Nil or Sol. So among automatic closed oriented 3-manifold groups,
+    only connected sums containing a non-octahedral flat factor remain open. A closure
+    under free products (`rips-type-r-closed-under-finite-edge-group-splittings`) needs
+    the flat factor to be type R, which is not known for non-octahedral crystallographic
+    groups such as the (3,3,3) triangle group.
+
+  Where it stops: coarse injectivity is a host geometry that automatic groups need not
+  have, and none is known for automatic groups in general. The non-octahedral
+  crystallographic groups are automatic but are not HHGs, so they are outside this route.
+  They are virtually abelian, so they are covered at the group level by another route.
+  The hole stays OPEN.
+- 2026-09-17 (c-rips): **correction to the first attempt: additive control is not
+  enough as stated.** Try to contract `P_d` by the homotopy `x ↦ s_x(t)`, clipped at
+  `|x|`, synchronously along combing lines. Adjacent times of two lines need
+  `d(s_g(t), s_h(t-1)) <= d`. Additive fellow travelling gives only
+  `d(s_g(t), s_h(t)) <= d`, and hence `<= d + 1` at mixed times. The `+1` loss is
+  exactly the gap closed by Alonso's contracting condition on combings, so the needed
+  hypothesis is a contracting (non-expanding at scale `d`) combing, not merely an
+  additive fellow-traveller constant.
+- 2026-09-17 (c-rips): **unexecuted reduction, recorded as a spark.** Take a shortlex
+  automatic structure. Its order is a regular ω-type order on `G`, so a Morse-type
+  filtration of `P_d` adds vertices in shortlex order. The descending link of `g` is
+  the full subcomplex on `{h < g : d_S(g,h) <= d}`. Translating `g` to `1` and using
+  the automaton that compares normal forms of `h` and `g`, one might hope this link has
+  only finitely many isomorphism types (as a labelled subcomplex of `B_S(d)`). That is
+  unproved: shortlex order is not left-invariant, so the type at `g` is not obviously
+  determined by a bounded amount of automaton state. If there are finitely many types
+  and each is contractible, `P_d` is contractible, since each step cones off a
+  contractible link. That would split the target into a finite check per structure.
+  It is not carried out here.
 - 2026-09-17 (swarm-0917-w5-z-rips): **the torsion half is not independent; the
   finite-extension torsion counterexamples are dead.** This is established as
   `automatic-finite-vcd-groups-have-few-p-subgroup-classes`, using Brown's
