@@ -13,7 +13,10 @@ artifacts:
 
 **OPEN (2026-09-18, lane gq-k2-q).** For some prime `l` and some `N >= 5`, the finite residual of `St_N(T_p)` is
 finitely normally generated. With the verified facts below, this would give a finitely presented residually finite
-group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`, provided `T_p` is residually finite (open, item 5).
+group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
+- `Z_(l)` survives in `Γ_N(T_p)` unconditionally. `x_12(Z_(l) m_0)` maps injectively to `E_N(T_l)`, which is
+  residually finite (`euler-triangular-ring-is-fp-rf`), and `St_N(T_p)_rf` maps into `St_N(T_l)_rf`.
+- Residual finiteness of `T_p` itself (check C1) would place `St_N(T_p)_rf` inside `K_2(N, T_p)`.
 
 ## The host
 
