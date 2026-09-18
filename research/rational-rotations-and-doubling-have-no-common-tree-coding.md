@@ -69,3 +69,14 @@ design recorded in `research/artifacts/gq-bh-bh-free-16-rational-bs12-register.m
 - Exotic actions of `Q` (as in Belk–Hyde–Matucci's `Q <= T̄`), and hosts whose local maps on the
   register coordinate are not almost-automorphisms (automaton or odometer germs), are not covered.
 - It says nothing about whether `BS(1,2)`, `Q x| <2>` or `Aff(Q)` embed in `nV`.
+
+**Superseded in part (09-18).** For the covering alone, `no-free-q-odd-action-by-v-has-a-doubling-intertwiner`
+(bh-free-30) shows by a Lebesgue-mass argument that the doubling covering is never almost-automorphic for a binary
+tree coding of `D`. The degree-1 companion, where the dilation acts on the register coordinate by a homeomorphism
+in `V`, is `v-element-invariant-measures-live-on-the-periodic-part`.
+
+## Lesson for general BH
+Cut points are arithmetic invariants of a coding. An expanding germ pulls cut points back, so their denominators
+are controlled by the expansion factor. A divisible subgroup rotating those cut points needs every denominator.
+So one scale of self-similarity and unbounded divisibility cannot share one coordinate. Hosts for `Q`-divisible
+dilated inputs must separate the scale of the dilation from the carrier of the roots.
