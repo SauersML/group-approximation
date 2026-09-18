@@ -72,6 +72,8 @@ def p06RoseUncut_Move (K : CellPocketFaceSet D eps X i j) : Prop :=
       IsClosedDartWalk X.toCombMap L ∧
       ∃ x ∈ L, ∃ y ∈ L', X.toCombMap.vertexOf x = X.toCombMap.vertexOf y
 
+#audit_axioms p06RoseUncut_Move
+
 /-- **The cell pocket of a sub-walk**: the face set and cycle of a sub-walk as in
 `p06RoseUncut_Move` give a cell pocket of the same diagram with the given arcs, in walk order,
 with strictly fewer repeated visits. -/
@@ -98,6 +100,8 @@ theorem p06RoseUncut_exists_pocket_of_subwalk (K : CellPocketFaceSet D eps X i j
   · unfold CellPocketFaceSet.repeatedVisits
     exact P10Rose.length_sub_card_lt X.toCombMap.vertexOf hperm hx hy hxy
 
+#audit_axioms p06RoseUncut_exists_pocket_of_subwalk
+
 /-- **The rose step from an in-place sub-walk move**, in the form of `CellRoseStepStatement`: the
 same diagram, the identity O-equivalence, the cells of the move. -/
 theorem p06RoseUncut_exists_step_of_move
@@ -120,10 +124,8 @@ theorem p06RoseUncut_exists_step_of_move
   · rw [h₂]
     exact hlt₂
 
+#audit_axioms p06RoseUncut_exists_step_of_move
+
 end Move
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
-
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_Move
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_exists_pocket_of_subwalk
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_exists_step_of_move
