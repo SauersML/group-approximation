@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.Algebra.Group.End
+import Mathlib.Algebra.Group.Commute.Hom
 import Mathlib.Tactic.Group
 import Mathlib.Data.Fintype.Card
 import GroupApproximation.Meta.AxiomGuard

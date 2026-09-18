@@ -19,7 +19,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 Route: `Submodule.exists_sub_one_mem_and_smul_eq_zero_of_fg_of_le_smul` on `Additive A` with
 `I = (2)` and `N = ⊤`; the resulting `r` is odd, hence nonzero, and `r.natAbs` is an exponent.
-The other lemmas push through `V.subtype` (`Subgroup.map_closure`,
+The other lemmas push through `V.subtype` (`MonoidHom.map_closure`,
 `Subgroup.map_subtype_commutator`) and use `Abelianization.ker_of`.
 -/
 
@@ -58,14 +58,14 @@ theorem gentorsion_transfer {T : Set ↥V} {x : ↥V}
     (hx : (Abelianization.of : ↥V →* Abelianization ↥V) x ∈
       Subgroup.closure ((Abelianization.of : ↥V →* Abelianization ↥V) '' T)) :
     (x : G) ∈ Subgroup.closure (Subtype.val '' T) ⊔ ⁅V, V⁆ := by
-  rw [← Subgroup.map_closure] at hx
+  rw [← MonoidHom.map_closure] at hx
   obtain ⟨y, hy, hyx⟩ := Subgroup.mem_map.mp hx
   have hc : y⁻¹ * x ∈ commutator ↥V := by
     refine (Abelianization.ker_of ↥V).le (MonoidHom.mem_ker.mpr ?_)
     rw [map_mul, map_inv, hyx, inv_mul_cancel]
   have h1 : (y : G) ∈ Subgroup.closure (Subtype.val '' T) := by
     have e := Subgroup.mem_map_of_mem V.subtype hy
-    rw [Subgroup.map_closure] at e
+    rw [MonoidHom.map_closure] at e
     exact e
   have h2 : ((y⁻¹ * x : ↥V) : G) ∈ ⁅V, V⁆ := by
     have e := Subgroup.mem_map_of_mem V.subtype hc

@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Algebra.ZMod
+import Mathlib.Algebra.Field.ZMod
 import Mathlib.RingTheory.NoetherNormalization
 import Mathlib.RingTheory.FiniteType
 import Mathlib.RingTheory.Adjoin.FG
@@ -57,7 +58,7 @@ theorem charPCoordinates_of_finiteDomainAway
   haveI : Algebra.FiniteType (ZMod p) A :=
     (Subalgebra.fg_iff_finiteType A).mp (by
       rw [hA]
-      exact Algebra.fg_adjoin_finset t)
+      exact Subalgebra.fg_adjoin_finset t)
   obtain ⟨s, g, hginj, hgfin⟩ := exists_finite_inj_algHom_of_fg (ZMod p) A
   obtain ⟨f, hf⟩ := h (ZMod p) s A g.toRingHom hginj hgfin
   let ι : ↥A.toSubring →+* ↥A :=

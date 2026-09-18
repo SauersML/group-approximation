@@ -22,7 +22,10 @@ Let `G` be finitely generated with solvable word problem. We may take `G` infini
    - `D(F_B)` is simple (`free-product-boundary-groupoids-carry-the-vertex-group-homology`).
    - It is finitely presented by the open `isolated-vertex-groups-have-fp-stabilizer-engines`. `∎`
 
-**Status.** Open at both steps 2 and 3. Both are forced by the shape of the route.
+**Status. DEAD (2026-09-18).** Step 3 fails unless `B` is a torsion group with finitely many
+elements of prime order (`stabilizer-engines-need-torsion-vertex-groups`), and no infinite finitely
+presented torsion group is known. Historical
+status: open at both steps 2 and 3, both forced by the shape of the route.
 - Step 2 is implied by Boone–Higman, since finitely presented simple groups are isolated.
 - The hypothesis of step 3 is necessary (`free-product-emitter-full-groups-need-isolated-vertex-groups`, `stabilizer-engines-are-fp-only-over-isolated-groups`).
 

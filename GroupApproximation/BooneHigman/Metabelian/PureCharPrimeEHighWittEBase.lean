@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEChain
 import Mathlib.Data.ZMod.Basic
+import Mathlib.Algebra.Field.ZMod
 import Mathlib.RingTheory.Polynomial.Basic
 import Mathlib.RingTheory.MvPolynomial.Basic
 import Mathlib.RingTheory.Localization.FractionRing

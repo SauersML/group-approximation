@@ -152,3 +152,31 @@ These are the (F) criteria used in `f-unit-fields-are-characterized-by-isolated-
   of witnesses, and each reaches `0` within `2d` steps. This is recorded in
   `algebraic-interval-exchange-groups-satisfy-boone-higman`, item 1. A published version of this monotone
   criterion may exist; none was found in the survey, and no priority is claimed.
+
+## Addendum 4 (09-18 afternoon): non-unit Pisot slopes and integral multi-slope groups
+
+Nodes: `pisot-number-slope-stein-groups-are-contracting-rsgs` (+ `-proof`) and
+`integral-slope-stein-v-groups-are-k-graph-full-groups`, with route `stein-group-v23-pbh-via-k-graph-finiteness`.
+
+**Read at source.**
+- SRS survey arXiv:1312.0386 (gq/src/bh-near-actions/neg/):
+  - l. 281–285: (F) is `Fin(β) = Z[1/β] ∩ [0,∞)`, and "property (F) can hold only for Pisot numbers";
+  - l. 287–296: Hollander's criterion, Thm. `srsbeta`, with its proof at l. 355–366;
+  - l. 1651–1655: `D_1^{(0)} = [0,1)`.
+- Molyneux, "Tree pairs for algebraic Bieri–Strebel groups", arXiv:2602.08748v1 (PDF fetched on MSI,
+  gq/src/bh-near-actions/sadic/):
+  - Citation 3.5, from Winstone's thesis, Thm. 1.2.3: for subdivision polynomial `ax² + bx − 1`, `F_β` has
+    tree pairs iff `a ≤ b`. In our notation, `θ = 1/β` has `θ² = bθ + a`, so this is exactly (F).
+  - For `a > b` "not much is known"; Winstone's Thm. 1.2.4 gives elements without tree pairs.
+  - Molyneux says finite presentations of the `F`-type groups exist when `a ≤ b` but does not write them out.
+    Nothing is said about the `V`-type groups or about simplicity.
+- Winstone's thesis (Royal Holloway 2022) could not be fetched: the portal returned an HTML stub on MSI.
+- Li arXiv:2110.04505v2, l. 2172 (`cor:OneVertex`), and the FKPS, Li 2209.08087 and Matui inputs, as recorded in
+  `ct-p-z-is-a-one-vertex-k-graph-full-group`.
+- Matui arXiv:2412.05492 l. 851–856: attributes `F_∞` of integral-slope Stein groups, and their
+  abelianizations, to Stein (1992). Not read; the k-graph proof does not use it.
+- Lawson–Sims–Vdovina arXiv:2010.08960 (TeX on MSI): groups from higher rank graphs. No mention of Stein
+  groups was found.
+
+**Observation.** Kohl's `CT_P(Z)` k-graph has composition `(m,r)(m',r') = (mm', r + m r')`, and Stein's has
+`(mm', r m' + r')`. These are opposite categories with the same edge labels.

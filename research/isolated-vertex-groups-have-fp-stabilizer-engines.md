@@ -11,8 +11,13 @@ distinct_from:
   free-product-emitter-full-groups-need-isolated-vertex-groups: that proves isolation is necessary; this is the open sufficiency, the "corrected engine conjecture" named in the status of boone-higman-via-fp-stabilizer-engines.
 ---
 
-**OPEN** (stated by bh-free-56, 2026-09-18; the corrected engine conjecture of the status of
-`boone-higman-via-fp-stabilizer-engines`, recorded as a node). Notation as in
+**REFUTED** (2026-09-18) by `stabilizer-engines-need-torsion-vertex-groups`.
+Collapsing a deep subgroup `K` of `B` into the edge stabilizer, `B *_K (K × Z/2)`, changes no
+bounded pattern. So a finitely presented engine forces `B` to be a torsion group with finitely many
+elements of prime order. This fails for the isolated groups `F`, `T` and `V`. The statement is kept below as a record.
+
+Originally OPEN (stated by bh-free-56, 2026-09-18; the corrected engine conjecture of the status
+of `boone-higman-via-fp-stabilizer-engines`, recorded as a node). Notation as in
 `free-product-boundary-groupoids-carry-the-vertex-group-homology`, with `k = 2`.
 
 **Claim (isolated engine conjecture).** If `B` is infinite and isolated, then `D(F_B)` is

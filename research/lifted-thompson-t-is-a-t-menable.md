@@ -239,3 +239,37 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
       `O(k^{-1/2-ε})` proves this claim.
     - The intermediate regime, where `c(2^{-k}) → 0` but not square-summably, is decided only by
       non-dyadic or non-geometric `ν`.
+- **2026-09-18 (swarm-0917-w12-w12-nv-follow, cohomology-index): the square-root twist regime is
+  the Euler cup product.** Status stays OPEN.
+  - *Established.* `lifted-thompson-t-root-twist-cost-iff-euler-cup-product`, via its `-proof`
+    route.
+    - (1) *Floor.* A second-order expansion of a zero-exponent word for `z` gives
+      `c(θ) ≥ 2√(2‖θ‖)/m`.
+    - (2) *Kähler lift.* Suppose `e_R ∈ V_T`, where `V_T` is the subspace of classes
+      `Im⟨b(g), π(g)b(h)⟩`, equivalently of cup products `b_1 ∪ b_2` for orthogonal
+      representations of `T`. Then the phased Weyl operators
+      `ρ_t(z^nσ(g)) = e^{−itn} e^{itβ(g)} W(√t b(g), π(g))` on Fock space are genuine
+      representations of `T̄`. They give `c(θ) = O(√‖θ‖)` and a proper cnd function
+      `ψ_0∘p + Σ_k 2^{k/2}(1 − Re⟨Ω, ρ_{π2^{−k}}Ω⟩)`. So this claim follows.
+    - (3) *Converse.* If `c(θ_n) = O(√‖θ_n‖)` along one sequence `θ_n → 0`, an ultralimit of the
+      rescaled cocycles `(π_nξ_n − ξ_n)/√|θ_n|` produces a cocycle of `T` whose area class is a
+      nonzero multiple of `e_R`. So `e_R ∈ V_T`.
+  - *New decomposition.* This claim follows from **(K)**: `e_R ∈ V_T`, a statement about
+    Thompson's `T` alone. (K) is also necessary for the optimal twist rate. (K) can fail on its
+    own, and does fail if the centre has relative (T).
+  - *Guidance.*
+    - Real cocycles give `ω = 0`, so Farley's cocycle by itself contributes nothing. A witness
+      needs two cocycles into one orthogonal representation whose antisymmetric cup product is the
+      Euler cocycle up to a coboundary.
+    - The surface-group analogue holds with trivial coefficients.
+  - *Side observations, sketched only and not written as nodes.*
+    - Twisting Jones-type representations of `T` by a character of the centre reduces to
+      representations of `C(C, Z) ⋊ T`.
+    - Pythagorean-type representations restrict to extractable ones on the centre, so they do not
+      twist.
+    - The barycentric extension of the band-cut witness is subsumed by the dyadic gap.
+    - The naive quotient `ψ(ι_k s)/ψ(r_1)` for Farley's function grows like `4^k`, consistent with
+      the dead end above.
+  - *Open next step.* Decide (K). A positive answer proves this claim. For a negative answer
+    one would look for an obstruction, for instance a bounded-cohomology or rotation-number
+    invariant that vanishes on `V_T` but not on `e_R`.

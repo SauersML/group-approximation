@@ -22,6 +22,8 @@ also generates `M` over `F_p[Q]`, because the `F_p[Q]`-span of `S` is closed und
 
 namespace GroupApproximation.BooneHigman.Metabelian.Coprimary
 
+noncomputable section
+
 section EndRep
 
 variable {p e : ℕ} {Q M : Type*} [CommGroup Q] [AddCommGroup M]
@@ -135,5 +137,7 @@ theorem eHighCoprimaryFp_finite [NeZero (p ^ e)]
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryFp_finite
 
 end Finite
+
+end
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary

@@ -1,112 +1,137 @@
-import GroupApproximation.BooneHigman.Metabelian.ChainWiredFrontierThree
-import GroupApproximation.BooneHigman.Metabelian.ChainWiredFrontierTwo
+import GroupApproximation.BooneHigman.Metabelian.ElemFPBhNagaoWireUncondTop
+import GroupApproximation.BooneHigman.Products.Assembly
 import GroupApproximation.BooneHigman.Products.Hosts
-import GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEWire
-import GroupApproximation.BooneHigman.Metabelian.ElemFPFieldK2BruhatBigCellEndpoint
-import GroupApproximation.BooneHigman.Metabelian.EnvelopeRelatorsNormalFormFinal
-import GroupApproximation.BooneHigman.Metabelian.EnvelopeVPerfect
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Boone–Higman wiring, frontier four
+# Boone–Higman wiring: route A for T1, T2 and T3
 
-This file only composes existing endpoints of the metabelian chain in
-`GroupApproximation/BooneHigman/**`; it adds no new mathematics and uses that chain only
-through its named Statements and endpoint theorems.
+This file only composes endpoints of the metabelian chain in `GroupApproximation/BooneHigman/**`.
+It adds no new mathematics.  It uses the chain through its named Statements and endpoint theorems,
+the same ones `ElemFP.bhNagaoUncond_fpMetabelian_routeA` uses.
 
-Of the ten gap Statements of `Metabelian.Chain.finitelyPresentedMetabelianStatement_of_frontierThree`,
-four are now proved outright on main and are plugged in here:
+Route A has four open inputs, all named Statements of the chain:
 
-* item 1, `Coprimary.eHighWittE_pureCharPrimeEHighModule`;
-* item 5, `ElemFP.FieldK2.bruhatBigCell`;
-* item 9, `Envelope.rnNF_finiteCore`;
-* item 10, `Envelope.genTorsionVPerfect`.
+* `S1 = Absorption.suslinZLocal_BadStatement` (Suslin absorption, the bad-prime local case);
+* `P1 = ∀ p prime, ElemFP.PolyK2NilGapStatementOver (ZMod p) 4` (the char-`p` `K₂` gap pair);
+* `Z1 = ElemFPCharZero.CharZeroK2SplitGapStatement` (the char-`0` `K₂` split gap);
+* `H1 = Envelope.HigmanVCStepBCoreStatement` (the Higman–`V` step-B core).
 
-The two theorems below therefore state
+From them this file states:
 
-* T1, finitely presented metabelian groups embed in finitely presented simple groups, and
-* T3, finitely generated linear groups over any field embed in finitely presented simple groups,
+* T1: finitely presented metabelian groups embed in finitely presented simple groups;
+* T2: finitely generated metabelian groups embed in finitely presented simple groups;
+* T3: finitely generated linear groups over any field embed in finitely presented simple groups.
 
-from exactly the six remaining gap Statements (items 2, 3, 4, 6, 7, 8):
+T1 is `bhNagaoUncond_fpMetabelian_routeA` itself.  T2 and T3 use the linear host and the
+self-similar envelope, built from the same inputs by the same reductions as that theorem's body
+(`linearHost_routeA`, `envelope_routeA`).  The envelope needs only `H1`.  The linear host needs `S1`,
+`P1` and `Z1`.
 
-* `hH : Absorption.SuslinLocalHorrocksStatement` (item 2),
-* `hvdk : ElemFP.VdKRowExtensionStatement` (item 3),
-* `hloc : ElemFP.PolyK2CubeNilLocalStatement` (item 4),
-* `hgen : ElemFPCharZero.CharZeroK2PosStabGenStatement` (item 6),
-* `hcube : ElemFPCharZero.CharZeroK2CubeGapPosStatement` (item 7),
-* `hswap : Envelope.HigmanVSwapSectionStatement` (item 8).
-
-T3 goes through `Products.finitelyGeneratedLinearStatement_of_hosts`, with the linear host from
-`Chain.linearHostStatement_of_frontierTwo` and the self-similar envelope from
-`Chain.fpSelfSimilarEnvelope_of_frontierTwo`, using the same reductions as the frontier-three
-file.  This module is deliberately not imported by the root; the Palomar Solution imports it
-directly.
+This module is deliberately not imported by the root.  The Palomar Solution imports it directly.
 -/
 
 namespace GroupApproximation
 namespace BooneHigmanLinear
 
-/-- **T1 from the six open gaps**: finitely presented metabelian groups embed in finitely
-presented simple groups, given gap Statements 2, 3, 4, 6, 7 and 8 of the metabelian chain (the
-other four are proved and supplied here). -/
-theorem finitelyPresentedMetabelianStatement_of_frontierFour
-    (hH : GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinLocalHorrocksStatement)
-    (hvdk : GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowExtensionStatement)
-    (hloc : GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2CubeNilLocalStatement)
-    (hgen : GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2PosStabGenStatement)
-    (hcube :
-      GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2CubeGapPosStatement)
-    (hswap : GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVSwapSectionStatement) :
-    GroupApproximation.BooneHigman.FinitelyPresentedMetabelianStatement :=
-  GroupApproximation.BooneHigman.Metabelian.Chain.finitelyPresentedMetabelianStatement_of_frontierThree
-    GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_pureCharPrimeEHighModule
-    hH hvdk hloc
-    GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhatBigCell
-    hgen hcube hswap
-    GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_finiteCore
-    GroupApproximation.BooneHigman.Metabelian.Envelope.genTorsionVPerfect
+open GroupApproximation.BooneHigman
 
-#audit_axioms
-  GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_of_frontierFour
+/-- The self-similar envelope from `H1` alone. -/
+theorem envelope_routeA (hH1 : Metabelian.Envelope.HigmanVCStepBCoreStatement) :
+    Products.FPSelfSimilarEnvelopeStatement := by
+  have hA : Metabelian.Envelope.HigmanVCAllAntichainStatement :=
+    Metabelian.Envelope.higmanVCStepB_antichain_of_core hH1
+  have hV : Metabelian.Envelope.HigmanVFinSectionStatement :=
+    Metabelian.Envelope.higmanVFinSection_of_swapSection
+      (Metabelian.Envelope.higmanVCTauDone_swapSection_of_antichain hA)
+  have hcore : Metabelian.Envelope.RNFreeSectionCoreStatement :=
+    Metabelian.Envelope.rnFreeSectionCore_of_normalForm
+      (Metabelian.Envelope.higmanVFP_of_complete
+        (Metabelian.Envelope.higmanVCTauDone_complete_of_antichain hA))
+      (Metabelian.Envelope.rnNormalFormRelators_of_finiteCore Metabelian.Envelope.rnNF_finiteCore)
+  exact Metabelian.Chain.fpSelfSimilarEnvelope_of_frontierTwo hV hcore
+    Metabelian.Envelope.vPerfect_rnFiniteIndex
 
-/-- **T3 from the six open gaps**: every finitely generated subgroup of `GL_n(K)`, for any field
-`K`, embeds in a finitely presented simple group, given gap Statements 2, 3, 4, 6, 7 and 8 of the
-metabelian chain (T3 does not use item 1; items 5, 9 and 10 are proved and supplied here). -/
-theorem finitelyGeneratedLinearStatement_of_frontierFour
-    (hH : GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinLocalHorrocksStatement)
-    (hvdk : GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowExtensionStatement)
-    (hloc : GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2CubeNilLocalStatement)
-    (hgen : GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2PosStabGenStatement)
-    (hcube :
-      GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2CubeGapPosStatement)
-    (hswap : GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVSwapSectionStatement) :
-    GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement :=
-  GroupApproximation.BooneHigman.Products.finitelyGeneratedLinearStatement_of_hosts
-    (GroupApproximation.BooneHigman.Metabelian.Chain.linearHostStatement_of_frontierTwo
-      (GroupApproximation.BooneHigman.Metabelian.Absorption.polynomialSuslin_of_oneVariable
-        (GroupApproximation.BooneHigman.Metabelian.Absorption.suslinOneVariable_of_patching
-          (GroupApproximation.BooneHigman.Metabelian.Absorption.suslinPatching_of_localHorrocks
-            hH)))
-      (GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2StabRangeDiag_of_vdkRowExtension hvdk)
-      (GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2OneVarNil_of_cubeLocal hloc)
-      (GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.fieldK2Vanishing_of_bruhatBigCell
-        GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhatBigCell)
-      (GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroStableK2FG_of_basePos_of_cubeGapPos
-        (GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2BasePos_of_stabGen hgen)
-        hcube))
-    (GroupApproximation.BooneHigman.Metabelian.Chain.fpSelfSimilarEnvelope_of_frontierTwo
-      (GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFinSection_of_swapSection hswap)
-      (GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeSectionCore_of_normalForm
-        (GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_of_finSection
-          (GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFinSection_of_swapSection
-            hswap))
-        (GroupApproximation.BooneHigman.Metabelian.Envelope.rnNormalFormRelators_of_finiteCore
-          GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_finiteCore))
-      (GroupApproximation.BooneHigman.Metabelian.Envelope.rnFiniteIndex_of_vPerfect
-        GroupApproximation.BooneHigman.Metabelian.Envelope.genTorsionVPerfect))
+#audit_axioms GroupApproximation.BooneHigmanLinear.envelope_routeA
 
-#audit_axioms
-  GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_of_frontierFour
+/-- The linear host from `S1`, `P1` and `Z1`. -/
+theorem linearHost_routeA (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+    (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement) :
+    Products.LinearHostStatement := by
+  have hfp : Metabelian.ElemFP.PolynomialFpElementaryFPStatement :=
+    Metabelian.ElemFP.polynomialFpElementaryFP_of_polynomialFpK2Vanishing
+      (Metabelian.ElemFP.polynomialFpK2Vanishing_of_gapOver hP1
+        Metabelian.ElemFP.vdkRowExt_fieldK2Vanishing)
+  have habs := Metabelian.Absorption.elementaryAbsorption_of_localGlobalQuillen
+    (Metabelian.Absorption.suslinLocalGlobalQuillen_of_localHorrocks
+      (Metabelian.Absorption.suslinBase3_localHorrocks Metabelian.Absorption.suslinKill_intCoord
+        (Metabelian.Absorption.suslinZLocal_global_of_bad hS1)))
+  have hcP : Metabelian.Chain.CharPLinearHostStatement :=
+    Metabelian.Chain.charPLinearHostStatement_of_chain
+      Metabelian.CharPCoords.charPPolynomialCoordinates habs.1 hfp
+      Metabelian.Chain.affineExtensionFPStatement_holds
+      Metabelian.CharPHost.TreeHost.charPAffineSelfSimilarStatement_holds
+  have hc0 : Metabelian.Chain.CharZeroLinearHostStatement :=
+    Metabelian.Chain.charZeroLinearHostStatement_of_chainFive
+      Metabelian.CharZeroHost.charZeroPolynomialCoordinates habs.2
+      (Metabelian.Chain.charZeroElementaryFPFive_of_stableK2FG
+        (Metabelian.ElemFPCharZero.charZeroStableK2FG_of_splitGap hZ1))
+      Metabelian.Chain.affineExtensionFPStatement_holds
+      Metabelian.CharZeroHost.charZeroAffineSelfSimilarStatement
+  exact Metabelian.Chain.linearHostStatement_of_charP_charZero hcP hc0
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.linearHost_routeA
+
+/-- The coprimary splitting, with no open input (its high-exponent module input is proved). -/
+theorem coprimarySplitting_routeA : Metabelian.Coprimary.CoprimarySplittingStatement :=
+  Metabelian.Coprimary.coprimarySplitting_of_linearity
+    (Metabelian.Coprimary.pureCharLinearity_of_split
+      (Metabelian.Coprimary.pureCharPrimeSplit_of_eOne_high Metabelian.Coprimary.pureCharPrimeEOne
+        (Metabelian.Coprimary.pureCharPrimeEHigh_of_module
+          Metabelian.Coprimary.eHighWittE_pureCharPrimeEHighModule)))
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.coprimarySplitting_routeA
+
+/-- **T1 (route A).**  Finitely presented metabelian groups embed in finitely presented simple
+groups, given `S1`, `P1`, `Z1` and `H1`. -/
+theorem finitelyPresentedMetabelianStatement_routeA
+    (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+    (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement)
+    (hH1 : Metabelian.Envelope.HigmanVCStepBCoreStatement) :
+    FinitelyPresentedMetabelianStatement :=
+  Metabelian.ElemFP.bhNagaoUncond_fpMetabelian_routeA hS1 hP1 hZ1 hH1
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA
+
+/-- **T2 (route A).**  Finitely generated metabelian groups embed in finitely presented simple
+groups, given `S1`, `P1`, `Z1` and `H1`. -/
+theorem finitelyGeneratedMetabelianStatement_routeA
+    (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+    (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement)
+    (hH1 : Metabelian.Envelope.HigmanVCStepBCoreStatement) :
+    FinitelyGeneratedMetabelianStatement :=
+  Products.finitelyGeneratedMetabelianStatement_of_pieces
+    (Metabelian.Coprimary.metabelianPieces_of_splitting coprimarySplitting_routeA
+      (linearHost_routeA hS1 hP1 hZ1))
+    (envelope_routeA hH1)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA
+
+/-- **T3 (route A).**  Every finitely generated subgroup of `GL_n(K)`, for any field `K`, embeds in
+a finitely presented simple group, given `S1`, `P1`, `Z1` and `H1`. -/
+theorem finitelyGeneratedLinearStatement_routeA
+    (hS1 : Metabelian.Absorption.suslinZLocal_BadStatement)
+    (hP1 : ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4)
+    (hZ1 : Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement)
+    (hH1 : Metabelian.Envelope.HigmanVCStepBCoreStatement) :
+    FinitelyGeneratedLinearStatement :=
+  Products.finitelyGeneratedLinearStatement_of_hosts (linearHost_routeA hS1 hP1 hZ1)
+    (envelope_routeA hH1)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA
 
 end BooneHigmanLinear
 end GroupApproximation

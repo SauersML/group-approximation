@@ -1,6 +1,8 @@
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenAll
 import GroupApproximation.BooneHigman.V.Group
 import Mathlib.Data.Set.Finite.List
+import Mathlib.Algebra.Group.Subgroup.Lattice
+import Mathlib.Algebra.Group.Subgroup.Map
 import Mathlib.SetTheory.Cardinal.NatCard
 import GroupApproximation.Meta.AxiomGuard
 

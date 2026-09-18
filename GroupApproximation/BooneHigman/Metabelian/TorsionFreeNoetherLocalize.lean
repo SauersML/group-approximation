@@ -117,7 +117,7 @@ theorem noether_exists_fd_embedding {A W : Type} [CommRing A] [AddCommGroup W] [
   -- `A` acts on `M` by `K`-linear maps
   obtain ⟨τ, hτ⟩ : ∃ τ : A →* Module.End (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W),
       ∀ (a : A) (m : LocalizedModule S W), τ a m = algebraMap A (Localization S) a • m :=
-    ⟨{ toFun := fun a =>
+    ⟨{  toFun := fun a =>
           { toFun := fun m => algebraMap A (Localization S) a • m
             map_add' := fun m m' => smul_add _ m m'
             map_smul' := fun k m => by

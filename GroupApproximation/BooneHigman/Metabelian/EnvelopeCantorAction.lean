@@ -80,7 +80,8 @@ theorem streamFun_one (x : Cantor X) : streamFun 1 x = x := by
     rw [length_firstWord]
     omega
   rw [List.getD_eq_getElem _ _ hn]
-  simp [firstWord]
+  show (List.ofFn fun i : Fin (n + 1) ↦ x i)[n] = x n
+  rw [List.getElem_ofFn]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun_one
 

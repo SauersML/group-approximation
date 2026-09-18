@@ -96,8 +96,10 @@ noncomputable def carryDigits (i₀ : ι) : List (ι → R) → ι → MvPolynom
   | [], _ => 0
   | α :: w, i => C (α i) + X i₀ * carryDigits i₀ w i
 
+omit [DecidableEq ι] in
 theorem carryDigits_nil (i₀ i : ι) : carryDigits i₀ ([] : List (ι → R)) i = 0 := rfl
 
+omit [DecidableEq ι] in
 theorem carryDigits_cons (i₀ : ι) (α : ι → R) (w : List (ι → R)) (i : ι) :
     carryDigits i₀ (α :: w) i = C (α i) + X i₀ * carryDigits i₀ w i := rfl
 
@@ -122,8 +124,10 @@ def listPoint (u : S) : List (ι → R) → (ι → S) → ι → S
   | [], a => a
   | α :: w, a => shiftPoint α u (listPoint u w a)
 
+omit [DecidableEq ι] in
 theorem listPoint_nil (u : S) (a : ι → S) : listPoint u ([] : List (ι → R)) a = a := rfl
 
+omit [DecidableEq ι] in
 theorem listPoint_cons (u : S) (α : ι → R) (w : List (ι → R)) (a : ι → S) :
     listPoint u (α :: w) a = shiftPoint α u (listPoint u w a) := rfl
 

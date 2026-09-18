@@ -27,6 +27,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+noncomputable section
+
 section Transl
 
 variable (Q : Type*) [CommGroup Q] (X : Type*) [CommGroup X]
@@ -202,6 +204,8 @@ theorem isAddTorsionFree_kkSpace (hG : IsMetabelianGroup Γ)
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.isAddTorsionFree_kkSpace
 
 end Cocycle
+
+end
 
 end Coprimary
 end Metabelian
