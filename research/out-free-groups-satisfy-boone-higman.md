@@ -68,3 +68,13 @@ This is the open part of a named problem.
    - **Next test.** The stabilizer of the conjugacy class of a filling element,
      e.g. a one-boundary surface word: does it have finitely many double
      cosets?
+5. **Surface-word stabilizers fail too** (bh-free-40,
+   `surface-word-stabilizers-have-infinitely-many-double-cosets`; lane proof,
+   cites Dehn–Nielsen–Baer and Mirzakhani's orbit count).
+   - **The result.** For `n = 2g ≥ 4`, the stabilizer of the one-cusp surface
+     word has infinitely many double cosets. So does every subgroup virtually
+     contained in it.
+   - **Why.** Its `Aut`-orbit grows exponentially, via the transvections
+     `a_1 ↦ a_1 c`, while mapping-class-group orbits grow polynomially.
+   - **Where that leaves Attempt 4.** A direct type (A) stabilizer must also
+     avoid this last natural geometric shape.

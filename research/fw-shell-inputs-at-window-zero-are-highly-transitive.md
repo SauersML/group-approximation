@@ -7,6 +7,7 @@ distinct_from:
   fw-inputs-admit-no-twisted-shell-normalization: that kills window zero in the direction s^-1 rho(P) s <= rho(P) outright; this treats the other direction s rho(P) s^-1 <= rho(P) and shows it forces high transitivity instead.
   faithful-pair-finite-steinberg-actions-need-noncentral-k2: that uses central K_2 to exclude pair-finite faithful actions of St_N(R_L); this uses trivial centre, forced by high transitivity, to exclude window-zero shell actions of St_N(R_L) when K_2 is central.
   genuine-action-shell-envelopes-generalize-the-regular-shell: that sets up genuine-action shells and their gates; this constrains their window-zero case for FW inputs.
+  fw-inputs-admit-no-twisted-normalizing-genuine-shell-action: that, from lane bh-kazhdan-inputs, excludes the direction s rho(P) s^-1 <= rho(P) only for automorphism twists and leaves non-surjective endomorphisms open; this treats every endomorphism in that direction and shows that it forces high transitivity with trivial centre.
 ---
 
 **ESTABLISHED** by `fw-shell-inputs-at-window-zero-are-highly-transitive-proof` (lane

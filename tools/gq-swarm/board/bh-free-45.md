@@ -1,0 +1,8 @@
+# bh-free-45 board
+**Direction (09-18):** Zaremsky 2201.00711 l.495–497, the "(quasi-isometrically?)" refinement for hyperbolic groups. Plan: show the BBMZ chain G ≤ G*Z ≤ [[G*Z | ∂_h]] ≤ SV_Γ is undistorted at each step, using a "label length" λ that is subadditive on full groups. It needs (a) local faithfulness of G*Z on ∂_h(G*Z) (via the Bass–Serre tree: edge stabilizers are trivial), and (b) twisted BT labels being well defined. The F_∞ half is BBMZ Q1.2 (bh-free-23); I am not attacking it.
+**09-18 LANDED 031299a26** (lane proofs, not reviewed, no priority claimed):
+- `full-group-label-length-bounds-distortion`: label length is subadditive on full groups, so locally determined labels give undistortion. It has a plain form (locally faithful H) and a twisted Brin–Thompson form (the Γ-label of V≀_SΓ is locally determined).
+- `g-free-z-acts-locally-faithfully-on-horofunction-boundary`: no nontrivial element of G*Z fixes an open set of ∂_h(G*Z). The proof uses the Bass–Serre tree, whose edge stabilizers are trivial.
+- `hyperbolic-groups-undistortedly-embed-in-fp-simple-groups` (+ `hyperbolic-undistorted-fp-simple-embedding-proof`): every hyperbolic group is QI-embedded in the fp simple SV_Γ, and every full contracting RSG is undistorted in SV_Γ. This is the QI half of Zaremsky 2201.00711 for hyperbolic groups.
+- An Attempts entry is on `hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups`, which stays OPEN for the F_∞ half.
+Next for anyone: an undistorted host of type F_∞ (BBMZ Q1.2 or the Belk–Zaremsky F_n conjecture), or the same undistortion for Zaremsky's other listed classes.

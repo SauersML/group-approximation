@@ -6,6 +6,7 @@ title: A finitely presented Stein V-group whose shorter-interval versions are fi
 requires:
   - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
+  quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier on 09-18) already embeds IET(Z+αZ), α quadratic, in a finitely presented simple group, via the substitutive Sturmian coding and contracting rational similarity groups; the Sturmian corollary here is an independent route. What is new here is the type (A) action of the Stein V-group itself, which gives Boone--Higman for ALL subgroups of V(Z[λ],⟨λ⟩,ℓ), for example D(V_λ), F_λ, T_λ when λ has norm +1.
   circle-pl-groups-act-with-type-a-on-breakpoint-orbits: that treats the circle T-versions and needs A/(IP·A) finite for finitely many pair orbits; it leaves the V-versions open because V-point stabilizers are not interval groups. This proves finite generation of those stabilizers (an ascending union of shorter-interval V-groups, closed off by one germ contraction) and gets one pair orbit from interval exchanges, with no finiteness of A/(IP·A).
   norm-minus-one-sturmian-jm-groups-satisfy-boone-higman: that uses the finite-index derived subgroup of a metallic-mean Stein group as a finitely presented simple host, which needs a unit of norm −1; this passes through the twisted Brin--Thompson group instead and covers every real quadratic field.
   stein-derived-groups-need-computable-modules: that is the obstruction for noncomputable breakpoint modules; here the modules are algebraic.
@@ -61,6 +62,12 @@ subgroups. In particular:
 For norm +1 slopes, such as `λ = 2 − √3`, `V^ab` contains `Z`, via `H_1 = H_2(Γ⋊Λ) ⊇ Z`. So `D(V)` has infinite
 index, and its own finite presentation is open (Tanner's question). The twisted Brin--Thompson host does not
 need it.
+
+## Priority
+
+The Sturmian and rotation-IET corollary was landed first by bh-free-03, as
+`quadratic-rotation-iet-groups-satisfy-boone-higman` (09-18). That route goes through contracting RSGs. The type (A) theorem for Stein
+V-groups and its consequence for arbitrary subgroups of `V(Z[λ],⟨λ⟩,ℓ)` are not covered there. No priority is claimed.
 
 ## Not claimed
 

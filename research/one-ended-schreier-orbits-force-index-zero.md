@@ -55,3 +55,12 @@ The window-zero gate of the shell route asks for `s^-1 rho_g s = rho_(phi(g))` n
 - Nothing is claimed for orbits with infinitely many ends, where the germ is genuinely not unique: the complement of a finite set has several infinite components and `sigma` may use a different germ on each. That freedom is what makes the two-ended case of `Z` possible.
 - Nothing here bears on window `N >= 1`, or on finite presentation of `R_rho`, `Q_rho` or `E_rho`.
 - **Expected, not proved.** For an input with property (T), an orbit whose Schreier graph has infinitely many ends should be impossible: the Dunwoody structure tree of such a graph would give an unbounded action of `P` on a tree, while property FA gives a fixed point. With that, item 7 would close the window-zero gate for every reduced input of Boone–Higman, and the genuine-action shell would need window `N >= 1` exactly as the regular shell does.
+
+## Update: both gaps are closed for FW inputs
+
+`fw-inputs-pass-window-zero-only-via-proper-self-embeddings` closes both gaps above for inputs with property FW, and so for every Kazhdan input.
+- **Infinitely many ends.** For FW inputs, every infinite orbit has a one-ended Schreier graph: a set with finite coboundary is a commensurated subset of the orbit, so it is transfixed. No structure tree is needed.
+- **Non-free one-ended orbits.** A germ is not needed. Transfixing the graph of the near-equivariant map in the product gives an index formula directly.
+- **Beyond the automorphism twists treated here.** That node also rules out sign `+1` windows for every injective endomorphism. It leaves only sign `−1` through an injective endomorphism of infinite index, which for simple inputs forces a highly transitive, self-similar action.
+
+For inputs without FW, the non-free one-ended gap of this node stays open.

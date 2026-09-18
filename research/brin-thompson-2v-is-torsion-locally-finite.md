@@ -27,10 +27,16 @@ artifacts:
 - **`V` is torsion locally finite (Röver).** This is Burillo--Cleary--Röver,
   arXiv:1402.3860, Theorem 1.3, read from the arXiv HTML. The artifact re-proves it
   by one-stack pumping and explains why that argument uses exactly one stack.
-- **The only published claim for `nV` has been withdrawn.** arXiv:2209.11982,
-  X. Sheng, withdrawn 2025-04-02 with the comment "a flaw in one of the proofs",
-  asserted "similar obstructions as Thompson's group V on the torsion subgroups" for
-  `nV`.
+- **No valid published proof for `nV`, `n ≥ 2`.**
+  - arXiv:2209.11982 (X. Sheng) asserted "similar obstructions as Thompson's group V on
+    the torsion subgroups" for `nV`. It was withdrawn on 2025-04-02 with the comment "a flaw
+    in one of the proofs".
+  - arXiv:2603.18410v3 (Kojima–Sheng, 23 May 2026, current version) states "nV is torsion
+    locally finite for n ≥ 1" (Theorem 1.1). Its proof rests on a two-generator criterion
+    (`Cor:TwoGenerator`: if `g`, `h`, `gh` are torsion then `⟨g,h⟩` is finite), and that
+    criterion is false already in `V`: see
+    `kojima-sheng-two-generator-torsion-criterion-fails-in-v`, where `g`, `h`, `gh` have order 3
+    and `⟨g,h⟩ ≅ Δ(3,3,3)`. So this claim stays OPEN (lane bh-free-50, 2026-09-18).
 - **Pumping cannot bound torsion in `2V` uniformly.** Elements of `2V` are two-stack
   transformations, and Belk--Bleak (arXiv:1405.0982) prove the torsion problem of
   `2V` undecidable.

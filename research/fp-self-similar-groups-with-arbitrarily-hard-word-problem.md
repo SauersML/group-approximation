@@ -126,3 +126,34 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
      `φ` that send `x_q a^r`, `r != 0`, to nonzero elements. That is how the
      sections of lamplighter-type self-similar actions look. So "no monomial
      transitions" is proved only for `σ ∘ C_0`. General semilinear `φ` are untested.
+5. **Lamp-digit route through the KMS groups (bh-free-25, 2026-09-18).**
+   - **The criterion.** `lamp-digit-modules-give-self-similar-semidirect-products`
+     (lane proof, elementary): if `Q` is self-similar on `T_X` and an `F_p[Q]`-module `M`
+     carries a *self-similar module structure*, then `M ⋊ Q` is self-similar on
+     `T_{X × F_p}`. Such a structure means maps `ρ_x: M → M` with
+     `ρ_{q(x)}(q m) = q|_x ρ_x(m)` and a `Q`-invariant separating functional `λ`.
+   - **What it turns the question into.** The KMS groups `G(M) = T ⋊ Q` are finitely
+     presented. So this claim follows once some hard `G(M)` has a self-similar top
+     together with such a structure on its configuration module (route
+     `hard-self-similar-groups-via-self-similar-kms-modules`, OPEN premise
+     `kms-configuration-modules-carry-self-similar-structures`).
+   - **Already known about the premise.** The one-counter factors of the top are
+     finite-state affine automaton groups on `F_p[[X]]` for odd `p`. The multi-counter
+     factor `B_0` has no scalar affine realization when `K ≥ 2`.
+   - **A companion kill.** `boundary-orbit-wreaths-over-tree-groups-are-not-fp` shows
+     that boundary-orbit wreath products over tree groups, the simplest outputs of the
+     criterion, are never finitely presented. So finite presentation has to come from
+     the KMS relations, not from the wreath shape.
+
+5. **The known PSPACE-hard automaton groups, in finite-commutator form, are not
+   finitely presented** (bh-free-02, 2026-09-18). Wächter--Weiß
+   (arXiv:1906.03424v3, read from the TeX) build PSPACE-complete automaton groups
+   from a Turing-machine checking mode and a conjunction group `R`.
+   - *Finite `R` dies.* For finite `R` acting off the encoding letters, for example
+     `A_5`, the group is locally-finite-by-`Z`. By Bieri--Strebel it is therefore
+     not finitely presented
+     (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+   - *The binary headline group (`R` = Aleshin's `F_3`)* is open. The paper says
+     nothing about finite presentation.
+   - *Design lesson.* A finitely presented PSPACE-hard automaton group cannot read a
+     finite conjunction group off below a virtually cyclic checking group.

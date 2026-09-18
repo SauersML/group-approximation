@@ -28,9 +28,8 @@ is finitely presented.
 
 ## What is known
 
-- **`m = 1`:** `𝒯_1` contains `V ≅ V_{2,4}` (calibration in the proof route).
-  Whether `𝒯_1` itself, which also has orientation-reversing germs, is exactly a
-  Higman–Thompson-type finitely presented group is not checked here.
+- **`m = 1`: settled.** `𝒯_1 ≅ V_{2,4}(⟨σ⟩)`, the Röver–Nekrashevych group of the
+  letter flip, which is finitely presented (`rank-one-rational-projective-full-group-is-flip-v`).
 - **Hypotheses of the standard simplicity and finite-generation theorems** (not
   applied or read at source here):
   - Hausdorff, effective, minimal, purely infinite, with compact open generating
@@ -67,3 +66,48 @@ is finitely presented.
      needed for the one-dimensional part of such arguments.
    - **Status.** Recorded as the precise combinatorial core of the gate. Nothing
      proved.
+2. **Calibration at `m = 1`; the structural break at `m ≥ 2`; a correction**
+   (lane bh-free-54, 2026-09-18).
+   - **`m = 1` holds.** `rank-one-rational-projective-full-group-is-flip-v`
+     proves `𝒯_1 ≅ V_{2,4}(⟨σ⟩)`, which is finitely presented by Nekrashevych's
+     theorem for contracting self-similar groups (recalled, not re-read). The
+     mechanism is that `SL_2(Z) ∩ Mat_2(Z_{≥0})` is the free monoid on `L, R`, so
+     the unimodular subcones form a tree and every germ is a prefix replacement,
+     possibly composed with the flip.
+   - **`m ≥ 2` breaks the tree.** `C_1 = cone(e_0+e_1, e_1, e_2)` and
+     `C_2 = cone(e_0, e_1, e_1+e_2)` are unimodular subcones of `Δ` whose
+     intersection has four extreme rays (`e_1`, `e_0+e_1`, `e_1+e_2`, `e_0+e_1+e_2`).
+     So:
+     - the monoid of nonnegative unimodular matrices is not right-LCM;
+     - no subdivision rule makes the unimodular subcones a tree;
+     - Nekrashevych's `V_d(G)` framework and X. Li's Garside-category finiteness
+       theorem (arXiv:2110.04505) do not apply as stated.
+   - **Correction to Attempt 1.**
+     - Vertices of the poset are clopen **dissections**, which may have
+       T-junctions, not fans.
+     - Directedness is then easier than stated: intersect the pieces, triangulate
+       each rational polyhedral cone, and resolve each simplicial cone
+       unimodularly, one piece at a time. No compatibility across faces is
+       needed.
+     - The Oda-type strong-factorization remark applies only to a fan-based
+       version of the complex.
+   - **The decisive test at `m = 2`.** Call a set of at least two pieces of a
+     dissection *mergeable* if its union is a single unimodular cone.
+     - At `m = 1` every dissection with at least two pieces has a mergeable
+       sibling pair, which is the tree property.
+     - The question is whether, for `m = 2`, there are dissections of `Δ ⊂ R^3`
+       with arbitrarily many pieces and no mergeable set.
+     - If yes, the height function "number of pieces" has local minima at
+       arbitrary height. Brown's criterion then needs a different Morse function
+       or a restricted subcomplex.
+     - If no, and the descending links, which are complexes of disjoint
+       mergeable sets, are simply connected for large height, then `𝒯_2` is
+       finitely presented.
+   - **Candidate restricted subcomplex.** Allow only the finitely many types of
+     elementary moves up to `GL_{m+1}(Z)`: the stellar subdivision of a piece at
+     the sum of the generators of one of its faces. For complete smooth fans,
+     connectivity under such moves and their inverses is the weak factorization
+     theorem of Morelli and Włodarczyk (recalled, not read at source). Extending
+     that to dissections is unchecked.
+   - **Status.** Nothing is proved beyond `m = 1` and the non-LCM obstruction to
+     the tree route.

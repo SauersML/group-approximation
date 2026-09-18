@@ -7,11 +7,14 @@ distinct_from:
   contracting-rsgs-embed-in-fp-simple-groups: that is the BBMZ host theorem; this verifies its hypotheses for one new family of generators, Vershik maps of substitutions.
   hyperbolic-groups-embed-in-contracting-rsgs: that places hyperbolic groups in contracting RSGs through horofunction boundaries; this places the minimal (measure-preserving, amenable-orbit) Vershik map of a substitution in one.
 artifacts:
+  - research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md
   - research/artifacts/gq-bh-bh-free-03-substitution-full-groups.md
 ---
 
+**Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, for the IET node, Sturmian substitutivity), which it did not re-read. Report: `research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md` (98821f68e). It re-derived the germ normal form, the no-stacking induction, the `T^{-1} c T` depth-shift transport, the finite nucleus, the full closure and the IET embedding, and found no gap. This is an internal check, not a referee review. The product and box-exchange nodes were not covered.
+
 **ESTABLISHED** by `stationary-vershik-maps-generate-contracting-rsgs-proof` (lane
-proof, elementary, not independently reviewed).
+proof, elementary; internally checked by `bh-refute`, no referee review).
 
 **Setting.** Let `sigma` be a substitution on a finite alphabet `A` that is primitive,
 has `|sigma(b)| = L_b >= 2` for all `b`, and has letters `l, r` with

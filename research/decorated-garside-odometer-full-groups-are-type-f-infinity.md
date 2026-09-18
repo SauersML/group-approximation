@@ -86,17 +86,18 @@ its relations are homogeneous.
      for every `n`.
    - Example `ex:ZS` (II) gives the same for `F_P`. ∎
 
-## Remarks (lane, not claimed)
+## Remarks (corrected 2026-09-18)
 
-- **Unit space.** By Li's lemma after `lem:SC-->SD` (l. 2290–2296), `∂Ω_D`
-  identifies with `∂Ω_C`, which is homeomorphic to
-  `∂Ω_{C_P} × {0,1}^N × {0,1}^N`. Here `∂Ω_{C_P}` is the Garside boundary of `P`
-  with one binary digit attached to each unit of length.
-- **Minimal and purely infinite.** For every `c ∈ C`, `λ_c` is a bisection from
-  the whole space onto the cylinder `c∂Ω`. Cylinders form a neighbourhood basis,
-  so the groupoid is minimal. Doubling along the second factor gives proper
-  infiniteness of every cylinder, as in `odometer-2v-is-fp-simple-and-contains-bs12`,
-  step D.
-- **Not addressed here.** Effectiveness, Hausdorffness, essential principality,
-  simplicity, and the abelianization of `F_P`. See
-  `garside-odometer-groups-have-simple-finite-index-commutator`.
+- **Unit space.** Li's boundary of a Garside monoid is a single point, because
+  all principal right ideals meet. So `∂Ω_D = ∂Ω_C` is homeomorphic to
+  `({0,1}^N)^3`: the decoration word and the two free factors. The first version
+  of this remark wrongly described `∂Ω_{C_P}` as a Garside boundary with
+  decorations. See `garside-decorated-groupoids-hide-artin-groups-in-isotropy`.
+- **Not effective.** The groupoid is not effective. Its isotropy contains
+  `ker(ℓ : G(P) → Z)` at every point. So `F_P` is an extension of a
+  Brin--Thompson-type full group with an odometer, the image in `Homeo(∂Ω_D)`,
+  by a group of isotropy sections.
+- **What still stands.** The finiteness conclusion (type `F_∞`) is unaffected; it
+  is Li's theorem applied to the checked hypotheses above.
+- **What fails.** As a Boone--Higman host for `G(P)` this group is useless. See
+  the refutation of `garside-odometer-groups-have-simple-finite-index-commutator`.
