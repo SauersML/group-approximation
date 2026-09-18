@@ -5818,6 +5818,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Statement
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFLift
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Independence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiExponents
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Fock
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Defs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
