@@ -6,6 +6,7 @@ title: Some polynomial-time branch selector with global, parity-leaking views or
 distinct_from:
   view-local-branch-selectors-are-gauge-blind: that kills selectors whose views are parity-faithful; this is the surviving global case, and the kill supplies its necessary condition (parity leakage on a 1 - 2 eta' - o(1) fraction of edges).
   unique-games-hard-at-completeness-one-half: that reaches completeness 1/2 obliviously by splitting; this asks for a computed, instance-dependent orientation above 1/2.
+  orientation-lift-selectors-need-vanishing-host-gap: that is a necessary condition on every selector route (YES host gap below X(delta) eta'); this is the existence claim it constrains.
 ---
 
 **OPEN.** This is heretic denial H1.
@@ -83,3 +84,11 @@ a cycle of equations through the window.
     DKKMS shape under P != NP alone: `η' >= c(l)/X(δ)` with `l = l(δ)`.
   - *Where H1 can still live.* Only on reductions whose folded YES host gap
     tends to 0, or through a failure of (P1)–(P5) there.
+* **Spectral host-gap gate (2026-09-18).** **Dead on hosts with gap bounded
+  below; the claim stays OPEN.** By `orientation-lift-selectors-need-vanishing-host-gap`
+  (through `degree-blow-up-extends-spectral-gap-gate-to-irregular-hosts`), the
+  claim implies P = NP unless some YES host has
+  `lambda_2 < X(delta) eta' -> 0`. The rule is independent of the view and of the
+  witness. The Grassmann containment layer has constant gap, so the vanishing gap
+  must come from the outer `U -> V -> U'` smoothing walk or from the 3LIN source.
+  This answers need `6166cb1b` with YES.
