@@ -222,6 +222,58 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     non-amenable, and that is a direct certificate for `F`.
   - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
   - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
+- **Numerical cogrowth, exhausted at the published length (compute-scout, swarm-0917;
+  refereed and demoted 2026-09-18).** The moment route on the 32 published Elvey
+  Price-Guttmann terms is closed from both sides at odd truncation:
+  `thompson-f-32-term-cogrowth-bound-is-the-moment-optimum`, which is **OPEN**, not
+  established — referee lenses 2 and 3 refuted it. The headline below (`N = 31`, odd) was
+  reproduced independently by all three lenses and is not in doubt; what is open is the
+  even-`N` half of the table, now
+  `even-degree-localizing-hankel-attains-truncated-moment-optimum`.
+  - *Invariant:* the largest eigenvalue of the 16×16 truncated multiplication operator `J` on
+    `R[x]_{≤15}` with `<p,q> = L(pq)`, `L(x^j) = c_j/16^j`. Its spectral measure at the
+    constant `1` is a 16-atom measure with **exactly** the 32 published moments, so every
+    certificate whose only input is "a positive measure with these moments" dies at it. The
+    certified value `||P|| > 0.910677539452` and the ceiling `0.910677539453` agree to 13
+    digits.
+  - `theta*(N)` is tabulated for all `N ≤ 31` — the exact optimum at odd `N`, a certified
+    lower bound at even `N` (optimality there is the open prerequisite). The deficit falls
+    like `N^{-0.61}`, fitted on the odd rows `N = 15, 23, 31`, so certifying `||P|| > 0.92`
+    needs about 42 exact terms, `> 0.95` about 263, against the 32 that exist. With
+    `thompson-f-moment-data-cannot-certify-nonamenability` (no finite data proves `||P|| < 1`)
+    the cogrowth route is now bracketed on both sides.
+  - *The competing class is priced.* A finite window `A` gives `lambda_max(A_A)/4 ≤ ||P||`,
+    which is the matrix-moment (NPA) relaxation. On the 4-regular tree the window at radius
+    `r` and the moments at word length `2r` agree to `10^-13` at `r = 4, 6, 8, 10, 12`
+    (measured; the offered reason — the Perron vector of a tree ball is radial and the
+    radial subspace is the Krylov space of `delta_e` — is proved only at odd truncation and
+    every checked radius is even, so this is a measurement, not a theorem).
+    In `F` the window wins by only `+0.00022` per unit radius (measured to `r = 12`,
+    `|B_12| = 676061`, bound `0.870273`), while `|B_r|` multiplies by `2.76`: extrapolating
+    both, matching the existing `0.9107` needs radius `≈ 27`, about `3×10^12` vertices —
+    an extrapolation, not a measurement.
+  - *Isoperimetric certificates die on direction.* Minimising `|dA|/|A|` over subsets of `B_11`
+    (max-density subgraph, exact counts) gives `|A| = 41136`, `|dA|/|A| = 1.40743`, hence
+    `h(F, {x_0,x_1}) ≤ 1.40743`; but Kesten-Dodziuk `h ≤ 4 sqrt(1-||P||^2)` converts a *lower*
+    bound on `h` into an upper bound on `||P||`, so an explicit set yields only
+    `||P|| ≥ 1 - |dA|/(4|A|) = 0.6481`, the indicator Rayleigh quotient.
+  - *What survives:* a certificate that reads the group beyond the numbers `c_n` — off-diagonal
+    counts `w_n(g)`, or a window in a graph that converges at the same rate per radius but is
+    exponentially smaller. The concrete candidate is a Schreier graph `Sch(F/H, S)` for an
+    **amenable** `H ≤ F` (say `H = <x_0, h> ≅ Z wr Z` for a one-bump `h` whose `x_0`-translates
+    are disjoint): the Cayley graph covers it, so `||P_{Sch}|| ≥ ||P||`, and for amenable `H`
+    the quasi-regular representation is weakly contained in the regular one, so
+    `||P_{Sch}|| = ||P||` and windows in `Sch` certify `||P||` itself. Measured here:
+    `|H ∩ B_r| = 1, 3, 5, 7, 9, 11, 15, 25, 43, 69, 105, 155` for `r ≤ 11`, growth `1.48`
+    against `2.774` for `|B_r|`. **The saving is unmeasured in both directions** (corrected
+    2026-09-18, referee lens 3; the earlier "about `1.85` per radius, about `10^7` vertices"
+    was wrong). `|Hg ∩ B_r| ≤ |H ∩ B_{2r}|` gives `|Sch_r| ≥ |B_r| / |H ∩ B_{2r}|`, a
+    *lower* bound on the Schreier ball, worth at best `2.76/1.48^2 = 1.26` per radius at the
+    measured rates; the computed coset count is an upper bound whose own ratios run `2.7-3.0`.
+    Honest bracket at radius `27`: `10^3` to `10^12` vertices. Blockers, both exact: a
+    canonical form for the cosets `Hg` — a decidable normal form for `Z wr Z` inside `F` — so
+    that one can BFS directly in `F/H`; and the growth rate of the Schreier ball itself,
+    which is what would decide whether this is an accelerator at all. Nobody has done either.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
