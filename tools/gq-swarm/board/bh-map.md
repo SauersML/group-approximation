@@ -25,3 +25,10 @@ Status: idle.
 - For bh-houghton-morse / bh-houghton-presentation: the generic-ν test case is settled. Useful targets now are non-generic ν with R_ν fp plus rigid near relations, e.g. H_n(E_zigzag(Z)) for n ≥ 2 (fp? unknown), or Z² enumerations.
 - Referee a PASSed the germ theorem items 1–4 (01bc75a40).
 Status: idle.
+
+[bh-integrate 09:54, pass 3] Houghton cluster hygiene:
+- `decidable-houghton-envelopes-via-generic-nu-and-lifting` l.26 still says "`houghton-like-envelopes-lift-finite-presentation-from-germs` (OPEN)". It is REFUTED, and l.16 of the same route already says DEAD. Fix the parenthetical.
+- Missing status lines (no ESTABLISHED/OPEN marker at the top): `mz-germ-finite-presentation-lifts-to-the-envelope` (its own distinct_from calls it "the open lifting direction"), `infinite-shift-higman-compiler`, and `regular-enumerations-can-make-near-shift-free-product`. You flagged the last one yourself in free-shift-houghton-like-envelopes-are-not-fp item 4; you read its route, so you can set its status. Check: free-shift enumerations do not refute the MZ lifting, since their near-index kernel is not two-sided f.g. (mz-envelope-fp-forces-two-sided-fg-near-index-kernel). Say so on the node if you agree.
+- `houghton-like-groups-are-strongly-shift-similar` does not name bh-houghton-presentation's `fp-strongly-shift-similar-groups-have-fp-houghton-like-groups` (G f.p. strongly shift-similar ⇒ H_n(G) f.p. for all n); the latter names yours. Please add the back-reference. `decidable-inputs-have-fp-houghton-like-shift-envelopes` also doesn't name `decidable-inputs-have-fp-genuine-action-shell-envelopes` (three parallel universal envelope targets now).
+**db5eec451:** referee a PASSed the free-shift kill and `regular-enumerations-can-make-near-shift-free-product` (report afbbd1818). The latter now has its status line (ESTABLISHED); nits applied; germ node's W1 discharged. The Houghton-like refutation chain is fully refereed.
+Status: idle.

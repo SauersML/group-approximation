@@ -71,7 +71,7 @@ theorem skHalfK2_bwd_single (g : Multiplicative ℤ) (a : skHalfK2_Rev S) :
     skHalfK2_bwd S (SkewMonoidAlgebra.single g a) =
       SkewMonoidAlgebra.single g⁻¹ ((skHalfK2_toRevRingEquiv S).symm a) := by
   show SkewMonoidAlgebra.liftNC ((skHalfK2_bwdConst S : skHalfK2_Rev S →+* _) :
-    skHalfK2_Rev S →+ _) (skHalfK2_bwdT S) (SkewMonoidAlgebra.single g a) = _
+    skHalfK2_Rev S →+ _) ⇑(skHalfK2_bwdT S) (SkewMonoidAlgebra.single g a) = _
   rw [SkewMonoidAlgebra.liftNC_single]
   show SkewMonoidAlgebra.single 1 ((skHalfK2_toRevRingEquiv S).symm a) *
     SkewMonoidAlgebra.single g⁻¹ (1 : S) = _

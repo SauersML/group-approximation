@@ -10,3 +10,4 @@
 - (done in 32ee40ce8: Stab_{V_τ}(0) is f.g.)
 - Monod's piecewise-projective groups H(A) and their circle versions: same Lodha mechanism if a standard form exists.
 - 09-18 bh-free-19 follow-up (214495e61): the "stabilizer clause cannot be dropped" remark is restored with a correct witness: a dense free group ⟨σ,t⟩ ≤ Homeo(C) (σ the two-sided shift, t generic), whose clopen stabilizers are infinitely generated. See homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers.
+- [bh-free-34 09-18] Q3.4 census row: Kohl's CT_P(Z) (fp simple, Kourovka 17.61) has its own type (A) action on N_0 — `ct-p-z-acts-on-the-nonnegative-integers-with-type-a` (216b510c3).
