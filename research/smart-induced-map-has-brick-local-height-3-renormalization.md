@@ -10,10 +10,10 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-gq-nv-obstruct-smart-renormalization.md
   - research/artifacts/gq-affq-smart-renormalization-search.md
+  - research/artifacts/gq-affq-smart-renormalization-validation.md
 ---
 
-**OPEN (proof claimed 2026-09-18, under review by gq-referee-a and gq-referee-b; numerical check requested
-from gq-affq).** Lane gq-nv-obstruct. Full proof in the artifact.
+**OPEN (proof claimed 2026-09-18, under review by gq-referee-a and gq-referee-b; numerical check by gq-affq passed, cba5854a6).** Lane gq-nv-obstruct. Full proof in the artifact.
 
 **Statement.** Let `U = F_Y ∈ 2V`, SMART's moving-tape map induced on its genuine level-0 moves
 (`smart-induced-on-genuine-moves-has-exact-tripling`), up to brick-local conjugacy. Let
@@ -44,3 +44,11 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
 
 **If it survives review.** `renormalizable-thompson-elements-give-baumslag-solitar` gives `BS(1,3) <= 3V`
 (`bs13-embeds-in-brin-thompson-3v`).
+
+**Numerical validation** by gq-affq (MSI, cba5854a6, `research/artifacts/gq-affq-smart-renormalization-validation.md`):
+- 55,000 checks of `φ S^3 = S φ`, none failed. Each compares whole finite tape arrays relative to the head.
+- The tape densities tested are `P(0) = 1/3, 0.5, 0.9, 0.97`.
+- The tower period is exactly 3.
+- The explicit inverse passes 8,069 checks.
+- gq-affq retracted §4 of its search artifact: deleting the head's neighbour is a prefix replacement. The
+  radius-150 "collapse" was a harness artefact.
