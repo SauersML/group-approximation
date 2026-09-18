@@ -229,3 +229,16 @@ None recorded before 2026-09-17.
      become infinitely divisible. The register roots give rational hulls of abelian subgroups only: commutators with
      non-commuting elements are localized on the overflow slab, and a dilation coprime to the radices acts on the
      register tower by a carry-from-below transducer (heuristic).
+
+12. **Unions of the chain `GL_n(Z[1/m!])` and tree hosts, 2026-09-17: constraints, one kill (lane
+    gq-union-obstruct).** Summary in `research/artifacts/gq-gq-union-obstruct.md`.
+    - `sl-n-q-lies-in-finite-residual-of-every-overgroup`: every finite-index subgroup of every overgroup
+      contains `SL_n(Q)`, which is the exact form of O1. Finite-quotient certificates of the stages never pass
+      to the union.
+    - `divisible-elements-act-elliptically-on-trees`: in every tree action of every overgroup, the root groups
+      fix a vertex or exactly one end; with residually finite vertex stabilizers they are parabolic.
+    - `gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings`: that parabolic case occurs, faithfully, on one
+      `p`-adic building. O1's tree clause is sharp (rooted trees only), and one prime carries all
+      divisibility.
+    - `no-q-in-tree-product-actions-with-finite-stabilizers`: kill. No `(Q,+)` in any group acting on a product
+      of trees with finite vertex stabilizers.

@@ -6,6 +6,7 @@ title: A group acting on a finite product of trees with finite vertex stabilizer
 distinct_from:
   divisible-elements-act-elliptically-on-trees: that is the one-tree dichotomy (fixed vertex or parabolic at one end); this is its consequence under finite stabilizers, for products of trees, and it excludes a named host class.
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this excludes Burger-Mozes type lattices as hosts.
+  proper-semisimple-cat0-groups-contain-no-gl-2-q: that excludes GL_n(Q), Aff(Q) and U_3(Q) from groups acting properly by semisimple isometries on CAT(0) spaces, by distortion; this excludes (Q,+) itself, by divisibility, and needs only finite vertex stabilizers on a product of trees that need not be locally finite, with no properness.
 ---
 
 **ESTABLISHED** through `no-q-in-tree-product-actions-with-finite-stabilizers-proof`.
@@ -42,19 +43,21 @@ Hence `H` contains none of `GL_n(Q)`, `SL_n(Q)`, `PGL_n(Q)` (`n >= 2`), `Aff(Q)`
 So none of these can be the finitely presented simple host for
 `gl-n-q-embeds-in-fp-simple-group`, nor for its stepping stones.
 
-## Not covered
+## Relation to the distortion obstruction
 
-- **Caprace–Rémy twin building lattices** whose twin buildings are not trees (they
-  act on products of higher-rank buildings). When the twin buildings are trees, as
-  for rank-2 Kac–Moody groups, the lattice is discrete in a product of two tree
-  groups and the statement applies.
-- **Possible extension.** Bridson's semisimplicity theorem for cellular isometries
-  of polyhedral complexes with finitely many shapes (Proc. AMS 127 (1999)) should
-  extend the argument to proper cellular actions on such CAT(0) complexes, via a
-  positive lower bound on hyperbolic translation lengths. This was not checked at
-  the source; it is recorded under `## Attempts`.
+For lattices in products of locally finite trees, the exclusion of `GL_n(Q)`,
+`Aff(Q)` and `U_3(Q)` already follows from
+`proper-semisimple-cat0-groups-contain-no-gl-2-q`, by distortion of
+`BS(1,2) <= GL_2(Q)`. That node also covers Caprace–Rémy lattices through
+Bridson and Haglund. What is new here:
+
+- `(Q,+)` itself, and every group containing it (`Q^n`, divisible nilpotent
+  groups), is excluded. Distortion says nothing about these.
+- Trees need not be locally finite and the action need not be metrically proper.
+  Only finite vertex stabilizers are needed, for example free actions on trees
+  of infinite valence.
 
 ## Attempts
 
-1. Extension to CAT(0) polyhedral complexes with finitely many shapes via Bridson
-   (1999): not yet checked at the source.
+1. Extending the divisibility argument to CAT(0) polyhedral complexes was not
+   pursued. For the groups of the root it is superseded by the distortion node.
