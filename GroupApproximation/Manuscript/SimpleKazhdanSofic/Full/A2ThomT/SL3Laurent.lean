@@ -18,6 +18,7 @@ because it is built from copies of `SL_3(F_p[t,t⁻¹])`.
 * `range_toGL_laurent`: over a field `K`, the image of `SL(3, K[t,t⁻¹])` in `GL` is the
   repository's elementary group `elementaryGroup (Fin 3) (K[t,t⁻¹])`. This is
   `mem_slElementary_three_laurent` (`SL_3 = E_3`) in the `EL_n` form.
+* `mem_elementaryGroup_of_det_eq_one`: a unit matrix with determinant `1` is elementary.
 * `sl3EquivElementary : SL(3, K[t,t⁻¹]) ≃* elementaryGroup (Fin 3) (K[t,t⁻¹])`.
 * `hasKazhdanPropertyT_sl3Laurent p`: `SL(3, F_p[t,t⁻¹])` has property (T). This is the
   Ershov–Jaikin-Zapirain theorem for finitely generated rings as proved in the repository
@@ -73,6 +74,15 @@ theorem range_toGL_laurent :
   intro x hx
   obtain ⟨g, rfl⟩ := MonoidHom.mem_range.1 hx
   exact Subgroup.mem_comap.1 (slElementary_le_comap_toGL (mem_slElementary_three_laurent g))
+
+/-- A unit `3 × 3` matrix over `K[t,t⁻¹]` with determinant `1` lies in the repository's
+`elementaryGroup (Fin 3) (K[t,t⁻¹])`. -/
+theorem mem_elementaryGroup_of_det_eq_one
+    (A : (Matrix (Fin 3) (Fin 3) (LaurentPolynomial K))ˣ)
+    (hA : (A : Matrix (Fin 3) (Fin 3) (LaurentPolynomial K)).det = 1) :
+    A ∈ elementaryGroup (Fin 3) (LaurentPolynomial K) := by
+  rw [← range_toGL_laurent]
+  exact MonoidHom.mem_range.2 ⟨⟨A.1, hA⟩, Units.ext rfl⟩
 
 /-- `SL(3, K[t,t⁻¹])` is isomorphic to the repository's elementary group
 `elementaryGroup (Fin 3) (K[t,t⁻¹])`. -/
