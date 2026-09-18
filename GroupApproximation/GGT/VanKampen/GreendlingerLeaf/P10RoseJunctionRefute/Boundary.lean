@@ -115,7 +115,7 @@ noncomputable def roseJunctionRefute_idxBd (i : Fin 7) :
       (roseJunctionRefute_faceRep i)
     have hd : closedOrbitList roseJunctionRefute_M.facePerm (roseJunctionRefute_faceRep i) =
         roseJunctionRefute_faceDarts i := by
-      fin_cases i <;> decide
+      fin_cases i <;> decide +kernel
     rw [hd] at h
     exact h
 

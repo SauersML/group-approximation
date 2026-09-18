@@ -54,7 +54,7 @@ def roseJunctionRefute_faceRep : Fin 7 → Fin 24 := ![0, 19, 2, 4, 8, 15, 10]
 
 noncomputable def roseJunctionRefute_faceEquiv : roseJunctionRefute_M.Face ≃ Fin 7 :=
   OrbitClassifier.orbitEquiv roseJunctionRefute_M.facePerm roseJunctionRefute_faceClass
-    roseJunctionRefute_faceRep (by decide) (by decide) (by decide)
+    roseJunctionRefute_faceRep (by decide +kernel) (by decide) (by decide +kernel)
 
 def roseJunctionRefute_face (i : Fin 7) : roseJunctionRefute_M.Face :=
   roseJunctionRefute_M.faceOf (roseJunctionRefute_faceRep i)
@@ -85,7 +85,7 @@ def roseJunctionRefute_vRep : Fin 7 → Fin 24 := ![0, 3, 4, 7, 9, 10, 13]
 
 noncomputable def roseJunctionRefute_vertexEquiv : roseJunctionRefute_M.Vertex ≃ Fin 7 :=
   OrbitClassifier.orbitEquiv roseJunctionRefute_M.sigma roseJunctionRefute_vClass
-    roseJunctionRefute_vRep (by decide) (by decide) (by decide)
+    roseJunctionRefute_vRep (by decide +kernel) (by decide) (by decide +kernel)
 
 theorem roseJunctionRefute_vClass_iff (d e : Fin 24) :
     roseJunctionRefute_M.vertexOf d = roseJunctionRefute_M.vertexOf e ↔
