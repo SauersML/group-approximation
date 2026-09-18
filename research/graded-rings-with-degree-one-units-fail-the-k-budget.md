@@ -9,8 +9,8 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the ring gate; this rules out one design shape for it, the ring lamplighter and its graded Baumslag-type cures.
 ---
 
-**ESTABLISHED** through `graded-rings-with-degree-one-units-fail-the-k-budget-proof`. Lane proof, not
-independently reviewed. Elementary given `laurent-rational-symbols-block-fp-elementary-groups`. No priority is claimed.
+**ESTABLISHED** through `graded-rings-with-degree-one-units-fail-the-k-budget-proof`. Refereed:
+gq-referee-a PASS, proof-gap lens (report 223c763b9, W1 and nits applied); one referee. Elementary given `laurent-rational-symbols-block-fp-elementary-groups`. No priority is claimed.
 
 **Statement.** Let `R` be a unital ring with a unital map `Q -> R`, and let `R = ⊕_(k in Z) R_k` be a grading
 (`R_i R_j ⊆ R_(i+j)`) with a unit `u in R_1`.
@@ -25,9 +25,10 @@ independently reviewed. Elementary given `laurent-rational-symbols-block-fp-elem
 ## Consequences
 
 - **The ring lamplighter.** `U_n ⋊_α Z`, with `U_n = ⊗_(k in Z) M_n(Q)` (algebraic tensor product) and `α` the
-  shift, is graded by the power of the implementing unit. It is in the second case: `Q^x -> K_1(U_n)` has kernel
-  `{±1}`. So no `E_N` is finitely presented, whatever relations are added, as long as the grading survives. The
-  same holds for `U_Q ⋊ Z`. This is independent of the infinitely many commutation relations
+  shift, is graded by the power of the implementing unit. It is in the second case: `Q^x -> K_1(U_n)` has finite kernel
+  (`{±1}` for `n` even, `{1}` for `n` odd). So no `E_N(U_n ⋊ Z)` is finitely presented. The same holds for
+  `U_Q ⋊ Z`, with kernel `{±1}`. Adding homogeneous relations keeps the ring under the dichotomy, but it changes
+  `R_0` and can kill rational `K_1` classes, moving the ring to the first case (gq-referee-a, W1). This is independent of the infinitely many commutation relations
   `[A_0, u^k A_0 u^-k] = 0` that also block finite presentation of the ring.
 - **Graded cures are dead.** Suppose extra generators and relations are added, as in Baumslag's embedding of
   `Z/p ≀ Z` into a finitely presented metabelian group: a generator `y` with `y u = u y` and

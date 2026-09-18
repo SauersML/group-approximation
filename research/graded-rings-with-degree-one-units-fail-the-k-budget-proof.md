@@ -10,11 +10,14 @@ requires:
 ---
 
 **Item 1.**
+- **`1 in R_0`.** Write `1 = Σ_k 1_k`. Then `1_0 1_k in R_k` and `Σ_k 1_0 1_k = 1_0 · 1 = 1_0`, so `1_0 1_k = 0` for
+  `k != 0`. Comparing the degree-`k` parts of `1_k = 1 · 1_k = Σ_j 1_j 1_k` gives `1_k = 1_0 1_k` for every `k`.
+  So `1_k = 0` for `k != 0`, and `1 = 1_0 in R_0` (gq-referee-a, N1: this comes first).
 - **Homogeneous inverses.** Let `h in R_d` be a unit and `v = Σ_k v_k` its inverse. Then `h v_k in R_(d+k)`, and
   `Σ_k h v_k = 1 in R_0`. So `h v_(-d) = 1` and `h v_k = 0` for `k != -d`. Multiplying by `h^-1` gives `v_k = 0` for
   `k != -d`. So `h^-1 = v_(-d) in R_(-d)`.
-- **`Q ⊆ R_0`.** Integers lie in `R_0`, since `1 in R_0` (`1 = Σ 1_k` and `1_k = 1 · 1_k` force `1_0 = 1`). For `m >= 1`,
-  `m` is a homogeneous unit of degree `0`, so `1/m = m^-1 in R_0`, and `Q ⊆ R_0`.
+- **`Q ⊆ R_0`.** Integers lie in `R_0`, since `1 in R_0`. For `m >= 1`, `m` is a homogeneous unit of degree `0`,
+  so `1/m = m^-1 in R_0` by the previous step, and `Q ⊆ R_0`.
 - **`R_k = R_0 u^k`.** For `r in R_k`, `r u^-k in R_0`, since `u^-k in R_(-k)`.
 - **`σ`.** `u R_0 u^-1 ⊆ R_0` and `u^-1 R_0 u ⊆ R_0`, so `σ` is an automorphism of `R_0`. `Q` is central in `R`,
   since integers are central and inverses of central units are central, so `σ` fixes `Q`.
@@ -32,9 +35,10 @@ requires:
 **The lamplighter.**
 - `U_n` is the directed union of the unital subalgebras `⊗_(|k| <= m) M_n(Q) ≅ M_(n^(2m+1))(Q)`. `K_1` commutes
   with directed unions, and `det` identifies `K_1(M_r(Q))` with `Q^x`.
-- Under the inclusion `a -> a ⊗ 1_(M_n ⊗ M_n)`, `det` is raised to the power `n^2`. The scalar `λ` has class `λ`
-  at every stage. So `[λ] = 0` in `K_1(U_n)` exactly when `λ^(n^(2j)) = 1` for some `j`, that is `λ = ±1`.
-- For `U_Q = colim M_(n!)(Q)` the same argument, with powers `(n+1)`, gives kernel `{±1}`.
+- The scalar `λ` at stage `m`, in `M_(n^(2m+1))(Q)`, has `det = λ^(n^(2m+1))` (gq-referee-a, N2). The inclusions
+  `a -> a ⊗ 1_(M_n ⊗ M_n)` raise `det` to the power `n^2`, consistently. So `[λ] = 0` in `K_1(U_n)` exactly when
+  `λ^(n^(2m+1)) = 1` for some `m`: `λ = ±1` for `n` even, `λ = 1` for `n` odd. The kernel is finite either way.
+- For `U_Q = colim M_(n!)(Q)`, `λ` has class `λ^(n!)` at stage `n`, so the kernel is `{±1}`.
 - The grading: `U_n ⋊_α Z = U_n[u^±1; α]`, graded by the power of `u`. This is the case `R_0 = U_n`.
 
 **Baumslag-type relations.** Let a presentation have generators of degrees `deg(u) = 1`, `deg(y) = 0`, and
