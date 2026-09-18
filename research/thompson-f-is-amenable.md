@@ -305,3 +305,22 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     prerequisite `thompson-t-dyadic-rotation-cosets-are-not-amenably-transitive` (some finite `S ⊆ F` has no
     dyadic-rotation twist generating an amenable subgroup of `T`). If that fails, Question 5 fails for `T`
     unconditionally.
+- **Cube-complex boundary routes (swarm-0917-w9-w9-f-pull, 2026-09-18, host-geometry, obstruction-miner).**
+  - *Established:* `stein-farley-height-fixes-a-roller-boundary-point`.
+    - The Farley CAT(0) cube complex `X_F`, the space of `F`'s proper cubical action, is graded by height.
+      Every edge raises the height by 1, and upward expansions are directed.
+    - So the upper halfspaces of the expansion hyperplanes form a non-principal ultrafilter `σ_F ∈ ∂X_F`
+      fixed by `F`, whose horofunction is the height. `F` acts simply transitively on each horosphere.
+  - *Invariant:* `σ_F`, the up-orientation of the expansion hyperplanes.
+  - *Class killed, and where it dies:*
+    - Amenability of `F`, or its exactness (property A), via a topologically or Zimmer amenable action on
+      `X̄_F`, `∂X_F`, or any compact `F`-space with an `F`-fixed point, is root-equivalent. The approximately
+      equivariant maps evaluated at `σ_F` are already a Reiter sequence, and quantitatively the support radius
+      is at least `log` of Moore's tower.
+    - For the opposite direction, the Roller-boundary Tits-alternative and Poisson-boundary tools need no finite
+      orbit in `X̄`, and `F` has one.
+  - *Calibration:* `V` acts on its own graded Farley complex with a fixed Roller point and transitive horosphere
+    actions (stabilizers `S_n`), yet contains `F_2`. So the fixed-point data are neutral. Any cube-complex proof
+    must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
+  - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
+    surviving cubical route to exactness, and it is not a route to amenability.
