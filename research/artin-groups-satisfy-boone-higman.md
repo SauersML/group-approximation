@@ -58,6 +58,10 @@ Per the attached artifact:
   block reduction `artin-pbh-reduces-along-folding-separators`. It uses no 3-manifold
   theory, so the secondary-source caveat above no longer matters for this class.
 - **Even graphs** of FC type and more: `even-fc-artin-groups-satisfy-permutational-boone-higman`.
+- **Triangle-free graphs with all labels 3** (2026-09-18, lane proof, not reviewed):
+  `triangle-free-all-3-artin-groups-satisfy-pbh`, e.g. the
+  all-3 four-cycle, which is not virtually cocompactly cubulated. Method: the hub-cone
+  reduction `artin-hub-cones-reduce-pbh-to-coned-cliques`.
 
 ## Attempts
 
@@ -104,3 +108,14 @@ Per the attached artifact:
      (`artin-pbh-reduces-along-folding-separators`). Forests follow at once.
    - *Stops* at 2-connected graphs with no foldable separator, e.g. the all-3 four-cycle
      and the hyperbolic triangles.
+6. **Hub cones** (lane bh-artin, 2026-09-18). *Works* whenever the graph has a hub
+   labelling (a label `k_v ≥ 2` at each vertex dividing every incident label) whose
+   coned maximal cliques are in `B_A`.
+   - Add a vertex `e` joined to each `v` with label `k_v`. `A_Γ` is a standard parabolic
+     subgroup of the cone, and in the cone every vertex star, together with `e`, is a
+     separator onto which both sides fold (the vertex and all its non-neighbours go to
+     `e`). So the cone splits down to coned maximal cliques
+     (`artin-hub-cones-reduce-pbh-to-coned-cliques`).
+   - With `k ≡ 3`, triangle-free all-3 graphs reduce to the Euclidean triangle Ã_2.
+   - *Stops* where no hub labelling exists (a vertex meeting coprime labels), and at
+     complete pieces such as `K_4` with all labels 3 or the hyperbolic triangles.

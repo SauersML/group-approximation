@@ -38,9 +38,8 @@ dimension, so its identity component `D̄°` is nontrivial.
 
 **Step 4 (K = 1).** `L` has trivial center, so `L = L_1 × ... × L_k` with each
 `L_i` simple with trivial center, and `Z_L(L_j) = ∏_(i≠j) L_i`.
-- If `k = 1`, then `K ⊆ Z(L) = 1`.
-- If `k >= 2`, then `K ⊆ G ∩ ∏_(i≠j) L_i`, which is finite because `G` is
-  irreducible. Then `K` is a finite normal subgroup of `G`. Its normalizer in `L` is
+- `K ⊆ G ∩ ∏_(i≠j) L_i`, which is finite: trivially for `k = 1`, and
+  because `G` is irreducible for `k >= 2`. Then `K` is a finite normal subgroup of `G`. Its normalizer in `L` is
   Zariski closed and contains `G`, so it is all of `L`. The connected group `L`
   then centralizes the finite group `K`, and `K ⊆ Z(L) = 1`.
 

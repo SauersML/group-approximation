@@ -44,6 +44,34 @@ spheromorphisms.
    hence in no Higman–Thompson group `V_d`, and in no Röver–Nekrashevych group `V_d(G)`, for any `d` and any
    self-similar `G`. In particular no infinite free Burnside group `B(m,n)` embeds in any of them.
 
+4. **Torsion local finiteness transfers.** For a self-similar `G ≤ Aut(X*)`, `V_d(G)` is torsion locally finite (every
+   finitely generated torsion subgroup is finite) **if and only if** `G` is. So, for example, `V_d(G)` is torsion
+   locally finite for every torsion-free self-similar `G`, and for every self-similar `G` of finite exponent. Röver's
+   group, which contains the Grigorchuk group, is not.
+5. **Torsion subgroups of Röver's group.** Every finitely generated torsion subgroup of `V_2(𝔊)`, with `𝔊` the first
+   Grigorchuk group, is virtually a subgroup of `𝔊^k` for some `k`. In particular it is residually finite and
+   virtually a 2-group.
+
+6. **Graph version.** Items 1–3 hold with the rooted tree replaced by the path space `E^∞` of any finite directed
+   graph `E` with no sinks. Cones are then `[α]` for finite paths `α`, and pieces are `α w ↦ β g(w)`, where `g` is a
+   length-preserving isomorphism between the path trees at the ranges of `α` and `β`, compatible with sections.
+   This covers:
+   - the Higman–Thompson groups `V_{d,r}`;
+   - Matui's topological full groups `V_A` of one-sided irreducible shifts of finite type, where all tails are
+     trivial, so f.g. torsion subgroups are finite;
+   - Nekrashevych groups of self-similar actions on graphs in the Exel–Pardo sense, for 1-graphs only.
+
+   It does **not** cover higher-rank graphs, so gq-affq's 2-graph group `2V_τ` is not covered. It also does not
+   cover groups whose local maps change lengths inside cones, such as general rational similarity groups.
+7. **Characterization of the torsion subgroups.** Let `E` be a finitely generated torsion group and `d >= 2`.
+   - `E` embeds in `𝒩_d` if and only if some finite-index subgroup of `E` embeds in `Aut(X*)`, the automorphism
+     group of the rooted d-ary tree.
+   - `E` embeds in some Röver–Nekrashevych group `V_d(G)` (G self-similar) if and only if some finite-index subgroup
+     of `E` embeds in some self-similar group `G' ≤ Aut(X*)`.
+
+   So the torsion groups reachable by the Röver–Nekrashevych Boone–Higman hosts are exactly the torsion groups that
+   are virtually self-similar.
+
 ## Why it matters here
 
 The positive BH machinery for self-similar inputs lands in Röver–Nekrashevych groups:

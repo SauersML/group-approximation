@@ -135,6 +135,25 @@ simple group contains `Gamma~`.
       markings form a product of trees, and the Kazhdan marking argument does not
       transfer;
     - finite presentation of any `S(M,M')`, or of `E_nu` itself.
+- **Every finite germ extension of `V` (2026-09-18, lane `bh-kazhdan-inputs`):
+  constraints on the center and on the germ regime, no exclusion.**
+  - *The center is singular.* By
+    `kazhdan-subgroups-of-almost-v-have-no-central-v-elements`, no nontrivial
+    element of `ker p` lies in any `H`-conjugate of `V`. The proof descends the
+    action to the orbit space of an attracting basin, where it runs through `V`
+    and then through translation numbers.
+  - *One germ group.* By `deligne-lattice-in-almost-v-sits-in-one-germ-group`, a
+    finite-index subgroup of `Gamma~`, center included, embeds in a single
+    singular germ group, which is finitely presented when Theorem 2.1 certifies
+    the host. This kills the central kernel that the trivial-centre argument of
+    `almost-v-fw-subgroups-act-through-finitely-many-germs` could not handle.
+  - *The Corollary 2.10 regime is dead.* By
+    `normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`, if every
+    singular germ group is virtually the `V`-germ group, or normalizes the
+    `V`-dilation at a periodic point, then every Kazhdan subgroup is finite. So
+    `Gamma~` needs a singular germ group that is aperiodic with infinite germs, or
+    whose germs do not normalize the local dilation. Shell envelopes are of the
+    second kind, and their finite presentation stays open.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone
     structures does not transfer;

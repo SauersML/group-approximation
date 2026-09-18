@@ -9,8 +9,9 @@ distinct_from:
   bs-class-with-faithful-member-lies-in-type-a-class: that turns one faithful member into BS_G ⊆ B_A; this supplies the faithful member.
 ---
 
-**ESTABLISHED** through `arithmetic-lie-lattices-faithful-bs-proof` (lane proof;
-not independently reviewed; no priority claimed).
+**ESTABLISHED** through `arithmetic-lie-lattices-faithful-bs-proof` (lane proof; referee a
+PASS, `research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
+no priority claimed).
 
 **Setting.** `L` is a connected semisimple real Lie group with trivial center and
 no compact factors. `G <= L` is an irreducible lattice. `Comm_L(G)` is its
