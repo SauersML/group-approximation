@@ -4,7 +4,7 @@ id: partial-gauge-core-of-leavitt-realizes-pascal-pimsner-data
 kind: claim
 title: The fixed ring R of the Leavitt algebra L_Q(1,2) under the letter-2 grading has an isometric frame over the Pascal core with K_0-action ×(1−t), matching the non-scalar-index target, but R has a character, so it is not simple
 distinct_from:
-  torsion-k1-modulo-central-scalars-kills-scalar-symbols: that identifies the target Pimsner data (1 − [X] injective with rank-one cokernel spanned by [1_B]); this realizes those data inside a finitely presented ring and finds the obstruction to simplicity.
+  torsion-k1-modulo-central-scalars-kills-scalar-symbols: that identifies the target Pimsner data (1 − [X] injective with rank-one cokernel spanned by [1_B]); this realizes those data in a subring of the finitely presented ring L_Q(1,2) and finds the obstruction to simplicity.
   isometric-shift-frames-over-uhf-bases-fail-the-k-budget: that kills frames of rational index over matricial bases; here the index is the non-scalar class (1 − t)[1_B], so its item 1 does not apply.
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the gate; this is a design attempt for its infinite-rank K_0(B) room.
 artifacts:
@@ -55,6 +55,9 @@ sequence `(P)`, and item 6 is open.
 - The character of item 4 is the boundary point `t = 0` of the Pascal cone, the letter frequency of `2` being `0`.
   The Pascal dimension group has order ideals at the boundary, `(t)` and `(1−t)`. The ideal `(t)` is invariant
   under `A` in both directions, and it cuts out `χ`.
+- Heuristic: `K_0(χ)` is evaluation at `t = 0`, the same functional that carries `[1_R]` in `coker(1 − A)`. In this
+  example, the invariant functional that keeps `[1]` alive is carried by a character. Whether that is forced in general
+  is not known; if it were, it would be the kind of no-go (b) asks for.
 - A simple design needs a core whose dimension group is simple, such as polynomials positive on a closed
   subinterval of `(0,1)`, while `×x` stays implemented by a corner. So the letter frequencies must be kept away from
   the boundary. No finitely presented mechanism for that is known here.
