@@ -101,7 +101,8 @@ theorem higmanVCTauBin_shape_pq {d : ℕ} {p q x t : List (Fin d)}
   · have e1 : (zo ++ [c']).length = zo.length + 1 := higmanVCTauUnif_len1 zo c'
     have e2 : (z ++ [c]).length = z.length + 1 := higmanVCTauUnif_len1 z c
     have e : t = t0 :: t1 := (List.append_inj hy (by omega)).2
-    exact ⟨a, c, c', t0, z, zo, t1, hz, hzo, hzz, haz, hazo, hx, by rw [e], Or.inr ⟨rfl, rfl⟩⟩
+    exact ⟨a, c, c', t0, z, zo, t1, hz, hzo, hzz, haz, hazo, hx,
+      by rw [e], Or.inr ⟨rfl, rfl⟩⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_shape_pq
 

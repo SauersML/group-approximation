@@ -76,7 +76,8 @@ noncomputable def roseJunctionRefute_pFaces : Finset roseJunctionRefute_M.Face :
   ({0, 2, 3, 4, 6} : Finset (Fin 7)).map roseJunctionRefute_faceEquiv.symm.toEmbedding
 
 theorem roseJunctionRefute_faceMem (i : Fin 7) :
-    roseJunctionRefute_face i ∈ roseJunctionRefute_pFaces ↔ roseJunctionRefute_faceIn i = true := by
+    roseJunctionRefute_face i ∈ roseJunctionRefute_pFaces ↔
+      roseJunctionRefute_faceIn i = true := by
   unfold roseJunctionRefute_pFaces
   rw [Finset.mem_map_equiv, Equiv.symm_symm, roseJunctionRefute_faceEquiv_face]
   revert i

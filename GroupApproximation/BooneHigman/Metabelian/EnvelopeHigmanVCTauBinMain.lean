@@ -74,7 +74,7 @@ theorem higmanVCTauBin_good {p q x y x' y' : List (Fin 2)} (hpq : ¬ p <+: q)
           Or.inr (List.prefix_append q t)⟩)) (by omega))
     · -- `PF`
       rw [hy'] at hn hs ⊢
-      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hyp hyq (by omega) with h | h
+      rcases higmanVCTauBin_caseFP (t := r) hpq hqp hp (by omega) hyp hyq (by omega) with h | h
       · exact Or.inl (higmanVCTauClassify_good_xy h)
       · exact Or.inr (Or.inr h)
   · have e1 : (q ++ r).length = q.length + r.length := List.length_append
@@ -95,7 +95,7 @@ theorem higmanVCTauBin_good {p q x y x' y' : List (Fin 2)} (hpq : ¬ p <+: q)
         (fun h => hyx ((List.prefix_append_right_inj q).mpr h))))
     · -- `QF`
       rw [hy'] at hn hs ⊢
-      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hyp hyq (by omega) with h | h
+      rcases higmanVCTauBin_caseFP (t := r) hpq hqp hp (by omega) hyp hyq (by omega) with h | h
       · exact Or.inl (higmanVCTauClassify_good_ab (higmanVCTauClassify_good_xy h))
       · exact Or.inr (Or.inr (higmanVCTauBin_shape_pq h))
   · rw [hx'] at hn hs ⊢
@@ -104,13 +104,13 @@ theorem higmanVCTauBin_good {p q x y x' y' : List (Fin 2)} (hpq : ¬ p <+: q)
     · -- `FP`
       have e2 : (p ++ t).length = p.length + t.length := List.length_append
       have e4 : (q ++ t).length = q.length + t.length := List.length_append
-      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hxp hxq (by omega) with h | h
+      rcases higmanVCTauBin_caseFP (t := t) hpq hqp hp (by omega) hxp hxq (by omega) with h | h
       · exact Or.inl h
       · exact Or.inr (Or.inl h)
     · -- `FQ`
       have e2 : (q ++ t).length = q.length + t.length := List.length_append
       have e4 : (p ++ t).length = p.length + t.length := List.length_append
-      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hxp hxq (by omega) with h | h
+      rcases higmanVCTauBin_caseFP (t := t) hpq hqp hp (by omega) hxp hxq (by omega) with h | h
       · exact Or.inl (higmanVCTauClassify_good_ab h)
       · exact Or.inr (Or.inl (higmanVCTauBin_shape_pq h))
     · -- `FF`
