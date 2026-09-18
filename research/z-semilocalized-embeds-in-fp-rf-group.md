@@ -80,8 +80,8 @@ the inverted scalars survive in `K_2` of the host ring, and they must die in fin
 
 Cofinite divisibility, meaning roots at all but finitely many primes, is the arithmetic core that every tree-type
 host of a divisible input must already contain in a finitely presented residually finite vertex group.
-- Every combinatorial device (letters, valence, self-similar scaling) contributes finitely many primes per finite
-  presentation.
+- Every combinatorial device checked here (HNN letters, tree valence, affine self-similar scaling) contributes
+  finitely many primes per finite presentation.
 - Rings contribute all primes at once, but pay in `K_2`.
 
 So the open question is sharply: can a finitely presented residually finite group invert all but finitely many
