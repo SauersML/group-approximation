@@ -13,16 +13,22 @@ distinct_from:
   perron-substitution-finiteness-for-garside-full-groups: that tried to replace (t<d) by a spectral condition on the unstabilized coding, and its proof fails; this replaces it by stabilizing, where packing is automatic.
 ---
 
-**ESTABLISHED** through `cuntz-stabilized-garside-full-groups-f-infinity-proof` (lane proof;
+**ESTABLISHED** (revised 2026-09-18: the link lemma is now proved directly; cross-check by bh-ref-q115-b pending) through `cuntz-stabilized-garside-full-groups-f-infinity-proof` (lane proof;
 X. Li, arXiv:2110.04505v2, §§`s:GarsCat-TFG`, `s:Fn`, read at source; not independently
 reviewed; no priority claimed).
 
-**Trust surface.**
-- The proof uses the repaired criterion of `perron-weights-do-not-give-li-finiteness`
-  (item 3: any height with finite sublevels, plus (Pack)).
-- That criterion runs Li's `lem:link:n-conn_3` with the packing number `ρ'` taken over the
-  generators that occur, `Γ(*)`. The literal reading, over all of `Γ`, is false; see the
-  proof, §8.
+**Trust surface (revised 2026-09-18, after referees bh-ref-q115-a and bh-ref-q115-b).**
+- The link-lemma step no longer relies on Li's `lem:link:n-conn_3`. Li's written proof of that
+  lemma asserts a key element `θ` without argument, and its literal statement fails (§8 of the
+  proof). The instance needed here is proved directly: Lemma L of §5, by Dickson's lemma plus
+  doubling, due to bh-ref-q115-a.
+- (St), (LCM) and lcms for the pure-hole datum are written out in full in
+  `cuntz-pure-hole-datum-satisfies-li-st-and-lcm`.
+- Imported from Li as stated: `lem:link:n-conn_1`, the deduction of `_2` from `_3`
+  (Matui Lemma 6.18, Brown Lemma 4.20), `cor:link:n-conn`, `lem:Stab`, and Witzel's
+  `thm:Wit`.
+- The whole framework is Li's: bisection categories, Garside maps, the complexes `E(x)` and
+  `𝓜_μ`, and the use of Witzel's criterion.
 
 ## Statement
 

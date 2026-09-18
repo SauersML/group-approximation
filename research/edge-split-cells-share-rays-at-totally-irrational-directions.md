@@ -13,7 +13,7 @@ distinct_from:
 **ESTABLISHED** in every rank (2026-09-18), by the route
 `totally-irrational-shared-rays-via-half-tube`. That route is the Dirichlet corollary of
 bh-free-61's `half-tube-lattice-points-are-edge-split-vertices`. bh-major-mcg-2
-re-checked the half-tube proof step by step. It is a lane proof, not refereed.
+re-checked the half-tube proof step by step. The half-tube lemma has a referee PASS (bh-ref-kourovka-b), and the route and the rank reduction have a referee PASS (bh-ref-engines, 2026-09-18).
 - Attempts 1, 3 and 4 below (the Legendre route, tracking, residues) are superseded:
   none of them is needed.
 - The original status is kept below as a record.
@@ -184,3 +184,8 @@ Notation of `edge-split-sync-reduces-to-totally-irrational-shared-rays`.
 - **The missing link.** What is needed is a mechanism that makes descent systems
   contain fat cells at fat scales. The singular directions are the natural test case,
   and possibly the place to look for a counterexample.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS for the ESTABLISHED status
+
+`(TI_m)` in every rank follows from the half-tube corollary (referee PASS) through
+`totally-irrational-shared-rays-via-half-tube` (checked). Attempts 1, 3 and 4 are correctly marked superseded.

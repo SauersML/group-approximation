@@ -674,3 +674,45 @@ Still open: whether `P22(J)`, `H_mix = U semidirect (EL_2(J) x
 <x_34(1), x_43(S)>)` or `EL_5(J)` is MF. This is the smallest place
 where both Borels of the left Levi meet a non-constant right action.
 The claim stays OPEN.
+- **linear-characteristic, swarm-0917 (swarm-0917-w13-w13-ptm-pull): the
+  right-Levi orientation dichotomy. A T-oriented double parabolic is LEF, so
+  every argument inside it dies.**
+
+  *Proposal.* Test the w9 spark and the `H_mix` spark on the double parabolic. Find the
+  largest subgroups of `P_(2,2)(J)` that still keep the head, and the smallest
+  that still trap it.
+
+  *Result.* `jacobson-t-oriented-double-parabolic-is-lef` (established, route
+  `jacobson-t-oriented-double-parabolic-lef-proof`, script
+  `experiments/jacobson-levi-orientation-2026-09-17/check_orientation.py`).
+  1. Right multiplication by `T` is exact on the evaluation window:
+     `ev_d(XC) = ev_d(X) C^(d)`, where `T` acts as the nilpotent shift `N_d`.
+  2. Hence `M_(2 x l)(J) x| (EL_2(J) x EL_l(F[T]))` is LEF and keeps the head,
+     through two-step models `[[Phi_M(g), ev_d(X)], [0, B^(d)]]`.
+  3. So is `M_(k x l)(J) x| (EL_k(F[S]) x EL_l(F[T]))`, for all `k` and `l`.
+  4. So is the mirror `M_2(J) x| (EL_2(F[S]) x EL_2(J))`.
+  5. The two-step trap needs only `x_34(1), x_43(S)` on the right. So it kills
+     the head in every two-step model of the spark group `H_mix`.
+
+  *Invariant.* The orientation of the right-Levi coefficient ring: `T` keeps
+  the window `span(e_0, ..., e_(d-1))`, and `S` leaves it.
+
+  *Where every member dies.* Consider any argument that uses only relations of
+  one of these groups. This includes transport through the Kazhdan Levis
+  `SL_l(F[T])` or `EL_k(F[S])`, for `k, l >= 3`, and both three-index
+  commutator families across the two Levis. Such an argument would give
+  `pi(x_13(Q)) = 1` in the exact models, where the head is at distance
+  `sqrt 2` from `1`.
+
+  *What is left.* A (T)-free proof on four indices must use a wrong-oriented
+  right root `x_43(S)` together with `x_12(S), x_12(T), x_21(1)`, or the
+  mirror set. It also needs a model of Loewy length at least 3, since two-step
+  models of `H_mix` already die.
+
+  Open spark: is `H_mix` LEF or MF?
+  - Is there a Loewy-length-3 model on which `x_43(S)` acts through the
+    down-shift on a second window?
+  - Or does `H_mix` already contain the pigeonhole witness of
+    `cohn-elementary-group-is-not-lef`?
+
+  The claim stays OPEN.
