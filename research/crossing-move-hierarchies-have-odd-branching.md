@@ -26,7 +26,7 @@ A move is a **crossing** if it starts within `w` cells of one end of its domain 
 of the other end. It is a **return** if it starts and ends within `w` cells of the same end. Here
 `c`, `B` and `w` do not depend on `k`.
 
-**Statement.** Let `k` satisfy `d(k) > 2(c + B + w) + 1`.
+**Statement.** Let `k` satisfy `d(k) > 2(c + B + w) + 2`.
 1. A level-`(k+1)` crossing has an odd number of sub-moves that are crossings. A level-`(k+1)` return has
    an even number.
 2. So if every move is a crossing, every branching number is odd. SMART, whose moves are all crossings
