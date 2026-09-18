@@ -47,16 +47,17 @@ commutator-mode hypothesis. Then:
    group with a homomorphism onto `Z` whose kernel is locally finite is finitely
    presented only if it is virtually cyclic.
 
-Since `G_R` has a PSPACE-complete word problem (Wächter--Weiß, for this `R`),
+`G_R` has a PSPACE-complete word problem. Wächter--Weiß state the theorem for a binary alphabet, but their proof is written for general `Σ ⊇ {■0, ■1}` and any `R` meeting the commutator-mode hypothesis (§"Encoding over Two Letters"). Its two directions use nothing else about `R`: the accepting direction needs a letter moved by the commutator, and the rejecting direction uses Fact `fct:malformedWords`. So
 this finite-commutator form of the known PSPACE-hard automaton groups cannot feed
 Zaremsky's Theorem 1.1 directly.
 
 ## What is left
 
+- **`R` moving the encoding letters**, for example `A_5` on five letters including `■0, ■1`, is not covered. Then `W^*` is not invariant.
 - **The binary headline group** (`R` = Aleshin's `F_3` on `{■0, ■1}`) is not
-  covered. There the `R`-states act on the encoded Turing-machine part too, so the
-  restriction to `{■0, ■1}^*` is not cyclic and the kernel contains free groups.
-  Whether it is finitely presented is open. The paper says nothing about finite
+  covered. There the `R`-states act on `{■0, ■1}` themselves, so the reduction to
+  the check-mark adder in step 1 of the proof does not apply. Whether it is finitely
+  presented is open. The paper says nothing about finite
   presentation.
 - **Finitely presented self-similar overgroups.** Any finitely presented
   self-similar group containing some `G_R` would have a PSPACE-hard word problem
