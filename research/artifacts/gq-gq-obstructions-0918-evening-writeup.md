@@ -17,7 +17,8 @@ arXiv:2306.16356v3, Problem 5.3(5).
 **Status change since the morning summary.** `renormalization-return-times-tend-to-zero-adically` (morning item 24)
 now records 2 referees: gq-referee-b (fba51b1a0) and gq-referee-a (d4e505ddd, note N1 applied). Its calibration
 now reads: for `M°` the returns found up to radius 18 violate item 3's condition, and item 3 applies only if those
-returns converge at all radii, which is OPEN.
+returns converge at all radii, which is OPEN. (**Withdrawn as evidence, 30841be4c:** `M°` has no bounded returns;
+see 3.5.) The lemma itself stands, with both referees.
 
 ## 1. The ring gate
 
@@ -218,6 +219,25 @@ the groups reached; the content is the host and the limit.
   growing depth.
 - If `T^(n_i) y → y`, then `n_i → 0` in `Z_m`.
 
+**3.5 Withdrawal: the binary candidate `M°` (30841be4c; artifact `gq-gq-nv-obstruct-binary-smart-search.md` §3f;
+`bs12-embeds-in-brin-thompson-2v`, Attempts).** The following earlier statements are **withdrawn** and kept here
+only as a record:
+- (Withdrawn.) "Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is mask 21 with 6+6
+  states and 3 symbols: block sizes `29·2^m`, gap 87." In fact `M°`'s maximal `Y`-gap grows by 6 per level from level 5, and 87
+  is its value at level 17. So the example of "exact counts, bounded returns, non-local phase" (§3d/§3e) is gone.
+- (Withdrawn.) The +4 return-offset evidence for `M°` (returns `n ≡ 4 mod 8`, certificates `n = 29·2^m + 4` to
+  radius 18), and the reading "recognizability, not counting".
+
+*The corrected picture* (a lane scan; not a proof).
+- In the complete mirror-symmetric 6+6/3 class, 185,794,560 machines (mask 21), there are 1,541,886 binary-timing
+  candidates. A bounded-junction filter on the zero-overhead `Y` leaves 1,053 at `3.2·10^7` steps.
+- In every one of the 1,053, the head's range inside some `Y`-gap grows by one or two cells per level: a carry sweep
+  hidden under a larger constant gap. That holds even where the phase is locally readable. Example `D3`: returns
+  `≡ 0 mod 2^14` at radius 10.
+- What fails is the bounded return time needed by `brin-thompson-first-return-maps-lie-in-kv`.
+- The class theorem "exact binary one-head hierarchies cannot have bounded junctions" is **not proved**. The scan
+  covers one orbit per machine and finitely many levels.
+
 ## 4. The prime-shift group K_2 (`prime-shift-group-k2-is-finitely-presented`, OPEN)
 
 `K_2 = ⟨GL_2(Z), e = diag(2,1), σ_2⟩ ≤ Sym(Q^2)` is the rank-2 prime-shift group, not the K-group. Here
@@ -312,7 +332,9 @@ graph, not a printed problem.
    - Gate 2 is an enumeration with `R_ν` finitely presented and window `N ≥ 1`.
    - The quotient-germ version is excluded (2.2).
 5. **BS(1,2) in nV (S3).**
-   - The +4 return offset of `U°` at all radii is certified only to radius 18.
+   - Critic pass 3 named the +4 return offset of `U°` as the test case. That evidence is withdrawn (30841be4c, 3.5).
+     The open point is now the class theorem "exact binary one-head hierarchies cannot have bounded junctions".
+     It is not proved, and the complete 6+6/3 scan found no exception.
    - Direct import of the odometer is excluded (3.3).
    - Whether `2V_τ` embeds in some `nV` is not known (3.1).
 6. **Aff(Q) ≤ Aut(V) (S6).** The first test is infinitely divisible elements of `O_2`. Any root-based obstruction

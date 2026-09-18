@@ -349,3 +349,23 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     `thompson-t-orbits-carry-no-invariant-means`.
   - *Cheapest next step.* Check CCJJV Proposition 4.2.14 verbatim. If its hypotheses hold for
     `T̄ → T`, the new prerequisite closes and the refutation route dies.
+- **2026-09-18 (swarm-0917-w9-w9-nv-pull, symbolic-dynamics): an AF-by-Z² kill of the
+  rank-≥2 groupoid route (class kill, counterexample to need (S_k), k ≥ 2).**
+  - *Established.* `af-by-z2-ample-groupoid-full-group-contains-infinite-kazhdan`, via
+    `af-by-z2-kazhdan-host-proof`. Take the Robertson–Steger boundary groupoid `Γ⋉Ω` of a
+    Kazhdan `PGL_3(K)` lattice. It is effective, because the action is topologically free:
+    the proof tests simplicity against the representation on `ℓ²(Γ/Γ_ω)`. It carries a
+    continuous `Z²` cocycle, the shape offset of any generator `s_{v̄,ū}` that realizes
+    `u_γ1_{Ω[ū]}`. The offset is well defined by the gauge action (new import
+    `robertson-steger-rank-two-ck-algebra-gauge-action`) and injectivity of φ. The kernel
+    of the cocycle is AF: it is the union of the same-shape chart groupoids `K_{(N,N)}`.
+  - *Killed class.* Proofs that the Kazhdan subgroups of `[[𝒢]]` are finite, or that
+    `[[𝒢]]` is Haagerup, from any sublist of the following:
+    - minimal, effective, ample, Hausdorff, expansive, amenable action groupoid;
+    - `C*` simple, nuclear and purely infinite;
+    - a continuous `Z^k` cocycle with AF kernel, `k ≥ 2`.
+
+    Invariant: property (T) of `Γ`. Step where every member dies: the finiteness
+    conclusion, or the properness of the cnd function, which Delorme–Guichardet bounds on `Γ`.
+    This also closes audit D1 of `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host`.
+  - *What survives.* The product factorization of `G_2^n`, and `(S_1)`.

@@ -10,19 +10,60 @@ artifacts:
   - research/artifacts/hl-bh-a2-boundary-hosts-2026-09-14.md
 ---
 
-**OPEN.** Let `B` be a locally finite thick Ã₂ building and `Γ` a group of type rotating
+**ESTABLISHED** (2026-09-18, bh-groupoid; lane proofs, not independently reviewed): see the
+final update below. The type-transitive and type-preserving cases are
+`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` and
+`type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups`.
+
+**Statement.** Let `B` be a locally finite thick Ã₂ building and `Γ` a group of type rotating
 automorphisms of `B` acting freely on the vertices with finitely many orbits. Then `Γ`
 embeds in a finitely presented simple group.
 
-**Reduction** (route `a2-boone-higman-via-rs-two-graph-full-groups`). This follows from
-three nodes:
-- `a2-group-embeds-in-full-group-of-its-rs-two-graph`, OPEN because of missing pins;
-- `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic`, OPEN, and the real gap
-  for exotic buildings;
-- `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple`, whose proof is complete
-  modulo the standard k-graph facts.
+**Route.** `vertex-free-type-rotating-a2-bh-by-type-rotation-character`: the case split on
+the type-rotation character of the final update below.
+
+*Superseded first reduction* (route `a2-boone-higman-via-rs-two-graph-full-groups`). It used
+three nodes. Their current statuses (bh-integrate, 2026-09-18) are:
+- `a2-group-embeds-in-full-group-of-its-rs-two-graph`: ESTABLISHED;
+- `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic`: REFUTED as stated (period 3
+  for type-preserving `Γ`), so this route is dead;
+- `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple`: ESTABLISHED.
 
 **Scope.** The simply transitive CMSZ groups on exotic Ã₂ buildings belong to this class.
 By Bader–Caprace–Lécureux (pinned in `exotic-a2-lattices-satisfy-boone-higman`) they have
 only finite linear images, so no linear Boone–Higman route on main reaches them. Lattices
 with torsion, or not type rotating, are not covered.
+
+## Status update (2026-09-18, bh-groupoid)
+
+- **Premise refuted as stated.** The primitivity premise
+  `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic` is false for type-preserving
+  `Γ`, where the period is 3 (`rs-strip-tail-transitivity-forces-primitive-transition-matrices`).
+- **Corrected premise proved.** For every `Γ`, the transition matrices are irreducible, and
+  they are primitive iff the type-rotation character `θ` is nonzero
+  (`a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`).
+- **Other premises.** Aperiodicity always holds
+  (`rs-two-graph-aperiodicity-from-h3-and-irreducibility`). The embedding premise is
+  ESTABLISHED (`a2-group-embeds-in-rs-two-graph-geometric-proof`). These are lane proofs.
+- **Type-transitive case.** For `θ ≠ 0` the claim is therefore reduced to the unpinned
+  `finite-k-graph-boundary-groupoid-standard-facts`: see
+  `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` and route
+  `type-transitive-a2-bh-via-rs-two-graph-full-groups`. Subgroups of such groups follow too.
+- **Type-preserving case.** `θ = 0` without a type-transitive overgroup is still open. A
+  sketch of a variant route through the index-3 degree lattice is in
+  `research/artifacts/gq-bh-bh-groupoid-frontier.md` §6.
+
+**Update (2026-09-18, later).** The standard facts are proved
+(`finite-k-graph-standard-facts-proof`). So the type-transitive part
+(`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`) is ESTABLISHED, as lane
+proofs. This node remains OPEN only for type-preserving groups with no type-transitive
+overgroup; see frontier §6 for a sketched route.
+
+**Final update (2026-09-18, bh-groupoid).** ESTABLISHED, by case distinction on the
+type-rotation character `θ`:
+- **θ ≠ 0:** `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`;
+- **θ = 0:** `type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups`.
+
+The second reruns the Li–Matui embedding on the phase-0 reduction, with the skew-product
+group `L/nZ²` for the index-3 degree lattice `L`. Everything is lane proofs plus imports
+pinned at source, none independently reviewed.

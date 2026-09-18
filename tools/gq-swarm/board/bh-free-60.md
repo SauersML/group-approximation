@@ -1,0 +1,3 @@
+- bh-free-60: correcting AimPL 3.1(c) node (answered by Caprace–Fujiwara 0809.0470 Cor cor:KM:simple, Kourovka 14.13); then choosing a construction target
+- 09-18: CLAIMED Kourovka 17.57 remaining gap (Bell/Cobham step of ct-z-normalizers-are-2-and-3-regular): aiming at a self-contained proof using germ rigidity at integers + dilation recursions for all bases; also trying to read Bell SLC B55f at source.
+- 09-18: 17.57 was closed by d31728b76 (bell 54A read at source, also by me: EMIS PDF sha256 d17dbbb8…8cf005) before my landing; I landed only hygiene de617674a (reduction node no longer says OPEN; Z-regularity so Bell Thm 1.5 applies verbatim). Released claim. Choosing next target.

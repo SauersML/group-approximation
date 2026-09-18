@@ -85,3 +85,18 @@ Each `rk_p Aut H` is finite for a finitely generated abelian `H`. So
   projective, complex.
 
 Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
+
+## Attempts
+
+- **Beyond normalized witnesses, the rank invariant is replaced by rational
+  cohomological dimension** (proposed-established, w11-117, 2026-09-18).
+  - If `Σ ∩ F` is cut out by a compact open subgroup of a group acting with
+    compact open stabilizers on a locally finite CAT(0) complex of dimension
+    `d` (Bruhat–Tits buildings in any characteristic, products of trees,
+    right-angled buildings, cube complexes), then `F/N` acts properly on the
+    fixed set of `N`, so `cd_Q(F/N) ≤ d`.
+  - `U`, `V` and Thompson's `F` contain `Z^n` for all `n`, so they have no
+    such witness. Finite-subgroup ranks are genuinely unbounded from `d = 2`
+    (`Z/2 ≀ Z` on `T_3 × T_3`, `SL_3(F_q[t])`), so the bound of this node has
+    no geometric analogue there.
+  - See `commensurated-cat0-witnesses-force-finite-rational-cd`.

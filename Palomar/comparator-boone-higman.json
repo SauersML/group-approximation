@@ -1,0 +1,15 @@
+{
+  "challenge_module": "Palomar.BooneHigmanChallenge",
+  "solution_module": "Palomar.BooneHigmanSolution",
+  "theorem_names": [
+    "BooneHigman.explicit_fp_overgroup_of_all_gl_n_q",
+    "BooneHigman.finitely_presented_metabelian_embeds_in_finitely_presented_simple",
+    "BooneHigman.finitely_generated_metabelian_embeds_in_finitely_presented_simple",
+    "BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_simple",
+    "BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar",
+    "BooneHigman.exists_finitely_presented_infinite_simple",
+    "BooneHigman.kourovka_17_59",
+    "BooneHigman.exists_fp_simple_with_mixed_identities_not_finitely_normally_generated"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

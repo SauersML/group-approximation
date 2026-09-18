@@ -354,7 +354,8 @@ it to the first case (referee a, W1).
 ## Part III. BS(1,2) in nV (`bs12-embeds-in-brin-thompson-2v`, OPEN)
 
 **24. `renormalization-return-times-tend-to-zero-adically`** (lane proof at `476938cdb`; since then 2 referees, gq-referee-b
-fba51b1a0 and gq-referee-a d4e505ddd; see the evening summary `gq-gq-obstructions-0918-evening-writeup.md`). Let `T` have a height-`m`
+fba51b1a0 and gq-referee-a d4e505ddd; see the evening summary `gq-gq-obstructions-0918-evening-writeup.md`). This
+entry is unaffected by the withdrawal below. Let `T` have a height-`m`
 renormalization `(A, φ)`.
 1. `π(x) = Σ_j digit(S^j x) m^j` is a continuous factor onto `Z_m`, with `π ∘ T = π + 1`.
 2. Under bounded brick depth `D` and bounded address growth `P`, `π mod m^j` is constant on bricks of depth
@@ -365,19 +366,37 @@ renormalization `(A, φ)`.
 *Calibration.* SMART induced on genuine moves passes, with returns `n ≡ 0 mod 729` at radius 6 over `4·10^7`
 steps on MSI.
 
-**The +4 return-offset evidence** (`research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md` §3e). For the
-exact-doubling machine `M°` (mask 21, 52 zero-overhead types):
+**WITHDRAWN (30841be4c, artifact §3f): the +4 return-offset evidence.** The text below is kept as it was recorded,
+from `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md` §3e. It is no longer evidence, for the reason
+given under *Correction* below. For the exact-doubling machine `M°` (mask 21, 52 zero-overhead types):
 - every return found of the first `Y`-configuration has `n ≡ 4 mod 8`;
 - at radii 10 and 14, `n ≡ 4 mod 64`;
 - `rtm_cert` certificates, checked by `rtm_certcheck`, give `n = 29·2^m + 4` for `m = 11, 14, 15, 17`, at radii
   12–18;
 - the other two exact-doubling machines show phase difference 4 in their first `mod 8` conflicts.
 
-If `U°^(n_m) y → y` held at all radii, item 24.3 would exclude a height-2 renormalization of `U°`. The artifact
-records this as certified only up to radius 18, so it is **OPEN**. It reads the failure as one of
-recognizability, not of counting.
+(Withdrawn.) If `U°^(n_m) y → y` held at all radii, item 24.3 would exclude a height-2 renormalization of `U°`.
+The artifact recorded this as certified only up to radius 18. (Withdrawn, 30841be4c.) It read the failure as one
+of recognizability, not of counting.
 
-**Withdrawn.** The phase-conflict counts of §3d are withdrawn: "mod 4: hundreds of conflicts at radius 12" and
+**Correction (30841be4c; artifact §3f; `bs12-embeds-in-brin-thompson-2v`, Attempts).**
+- **`M°` never had bounded gaps.** Its maximal `Y`-gap is `1, 3, 7, 13, 15, 21, 27, …, 87, …, 111` at levels
+  `1, …, 21`, which is `+6` per level from level 5. The "gap 87, bounded" of §3d was its value at level 17.
+  - So the §3d/§3e example of "exact counts, bounded returns, non-local phase" is withdrawn.
+  - With it go the +4 return-offset evidence above and the "recognizability, not counting" reading.
+- **The complete 6+6/3 scan.** It covers all 185,794,560 mirror-symmetric machines with 6+6 states and 3 symbols
+  (mask 21), of which 1,541,886 are binary-timing candidates.
+  - A bounded-junction filter on the zero-overhead `Y` leaves 1,053 at `3.2·10^7` steps.
+  - In each of the 1,053, the head's range inside some `Y`-gap grows by one or two cells per level: a carry sweep
+    hidden under a larger constant gap.
+  - So every exact binary candidate fails bounded junctions.
+  - The phase is often locally readable. Example `D3`: returns `≡ 0 mod 2^14` at radius 10.
+  - What fails is the bounded return time that `brin-thompson-first-return-maps-lie-in-kv` needs, not
+    recognizability.
+- **Not proved.** The class theorem "exact binary one-head hierarchies cannot have bounded junctions" is not
+  established. The scan covers one orbit per machine (the anchored zero tape) and finitely many levels.
+
+**Withdrawn earlier (c3c2266d0, artifact §3e).** The phase-conflict counts of §3d are withdrawn: "mod 4: hundreds of conflicts at radius 12" and
 "mod 8: about 10^6 conflicts at radius 12–15".
 - *The cause* was a hash collision in `rtm_induce`: state and first window cell shared one byte.
 - *After the fix,* `mod 2` and `mod 4` show 0 conflicts at radii 6 and 9, and the remaining `mod 8` conflicts all
@@ -411,3 +430,6 @@ moves.
    and `graded-rings-with-degree-one-units-fail-the-k-budget` (a). Item 12 was checked by b only.
 6. **British spellings in node text.** "centre", in `prime-shift-kn-fp-reduces-to-a-metabelian-quotient` and
    elsewhere, if the American-English rule is meant to cover node text.
+7. **Stale calibration after 30841be4c** (owner gq-nv-obstruct). The Calibration of
+   `renormalization-return-times-tend-to-zero-adically` still cites `M°`'s returns `n ≡ 4 mod 8` (artifact §3e) as
+   violating item 3's condition. §3f withdraws that example, since `M°` has no bounded returns.

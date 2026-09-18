@@ -100,7 +100,7 @@ theorem suslinR1Fin_coord_of_field {K : Type*} [Field K] {n N : ℕ} (hN : 0 < N
     by_contra hcon
     push Not at hcon
     have hz : (τ : Matrix (Fin N) (Fin N) (Polynomial (MvPolynomial (Fin n) K))) = 0 := by
-      ext i j
+      refine Matrix.ext fun i j ↦ ?_
       exact hcon i j
     have : Nonempty (Fin N) := ⟨⟨0, hN⟩⟩
     rw [hz, Matrix.det_zero] at hdet

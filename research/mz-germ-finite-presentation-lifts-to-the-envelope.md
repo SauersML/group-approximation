@@ -8,6 +8,8 @@ distinct_from:
   fp-alt-fin-envelopes-are-unique-solutions-of-their-relators: that characterizes finitely presented envelopes over Alt_fin by uniqueness of relator solutions; this asks for a sufficient criterion stated only through the germ group of E_nu(P).
 ---
 
+**OPEN.** *(Status line added by bh-integrate, 2026-09-18; the node already called itself the open lifting direction. Free-shift enumerations do not refute it: their near-index kernel is not two-sided finitely generated, by `mz-envelope-fp-forces-two-sided-fg-near-index-kernel`.)*
+
 Let `P` be infinite and finitely generated, and `nu : P -> N` a bijection. If `R_nu` is finitely presented and
 `ker eta` is finitely generated, then `E_nu(P)` is finitely presented.
 
@@ -36,3 +38,12 @@ and the action on it, must follow from finitely many relations once the germ gro
   `FSym(N)` whose support is not controlled uniformly in `x`. The `E_2`-part alone reproduces `H_2` and has no room.
   Deferred: a proof must exhibit an input-dependent "three independent directions" condition coming from
   `rho(P)` with `P` infinite. No such condition is formulated here.
+- **Three directions by passing to H_n (bh-map, 2026-09-18).** The "three independent directions" asked for above
+  can be supplied without any input-dependent condition: replace `E_nu(P)` by the Mallery–Zaremsky Houghton-like
+  group `H_n(E_nu(P))`, `n >= 3`, which contains it and is again strongly shift-similar
+  (`houghton-like-groups-are-strongly-shift-similar`). For `n >= 2` its germ group is finitely presented iff `R_nu`
+  is (`houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`), so the two-sided window is no longer
+  needed, and generic enumerations pass. *Correction, same day:* the room does not help. `houghton-like-envelopes-lift-finite-presentation-from-germs` is
+  refuted by `free-shift-houghton-like-envelopes-are-not-fp`: for free-shift enumerations `H_n(E_nu(P))` is not
+  finitely presented for any `n`, although its germ group is for `n >= 2`. The obstruction is local stability of
+  the relations under changing `nu` far out, not a shortage of directions. This claim itself is unchanged.

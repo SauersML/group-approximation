@@ -154,3 +154,28 @@ group.
      to Boone--Higman. So this question is not needed as a half of
      `boone-higman-iff-isolated-hosts-and-local-boone-higman`; it stays open as CGP's own
      question.
+6. **Permanence and new monolith shapes (2026-09-18, lane bh-free-05).** *Partial results, not a
+   solution.*
+   - **Permanence.** `ascending-hnn-of-isolated-groups-embed-in-isolated-groups`. The class of
+     groups embedding in isolated groups is closed under finite products and finite extensions,
+     because `J ≀ S_k` is isolated for every isolated `J`. It contains every ascending HNN
+     extension `I*_α` of an isolated group, for any injective endomorphism `α`. So it contains
+     `S*_α` for every finitely presented simple `S`, MIF or not, surjective or not; the
+     Boone--Higman analogue is on main only in special cases. For the Baumslag--Gersten group
+     this gives a criterion: `BG` embeds in an isolated group iff `C = ncl(a)` embeds in an
+     isolated group whose automorphisms extend the shift `a_n ↦ a_(n+1)`, iff some
+     homomorphism to an isolated group is injective on `C`. Not settled.
+   - **Abelian and central monoliths.** Two shapes, both finitely discriminable, not covered
+     by Attempts 1–5:
+     - (a) `Γ` with an abelian minimal normal `M` and `C_Γ(M) = M`. If `N ∩ M = 1` then
+       `[N, M] = 1`, so `N ⊆ M` and `N = 1`.
+     - (b) Heisenberg hosts `H(V) ⋊ Q`, `p` odd, with `V` a faithful nondegenerate
+       symplectic `F_p Q`-module. The centre `<z>` is contained in every nontrivial normal
+       subgroup, since a noncentral element of `H(V)` has commutator `z^c`, `c ≠ 0`, with
+       some element, and `C_Γ(H(V)) = <z>`.
+   - **Where they stop.** If `M` (or `V`) is a permutation module `F_p[X]`, its augmentation
+     submodule, or a sum of copies, then `Γ` is commensurable with a quotient of
+     `W ≀_X Q` by a finite normal subgroup, with `W` finite abelian. Cornulier's criterion
+     (Attempt 1) then forces finitely many `Q`-orbits on `X × X` and finitely generated
+     stabilizers, a type (A) action. So these shapes add nothing beyond PBH. Non-permutation
+     modules stay open.

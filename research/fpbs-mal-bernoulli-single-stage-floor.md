@@ -9,6 +9,7 @@ distinct_from:
   fpbs-mal-long-generator-packing-growth: that would imply the negation of this claim for the Bernoulli shift.
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
+  - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -123,3 +124,87 @@ swarm-0917-w8-w8-fp-break, finite-models).**
   The cost is taken with extra edges of word length `≤ T`. Lemmas 1 to 3 of
   the artifact transfer any such bound to `W_b`. The missing count is the
   multi-coset analogue of slot sparsity. The claim stays OPEN.
+
+**Chord unfolding: a `b`-length weighted floor for all double cosets
+(September 18, 2026, swarm-0917-w9-w9-fp-break, reframing).** Artifact
+`research/artifacts/fpbs-chord-unfolding-length-floor-2026-09-18.md`.
+Scripts in `experiments/fpbs-chord-unfolding-2026-09-17/`.
+- **Result.** [[fpbs-mal-graphing-b-length-weighted-floor]] is ESTABLISHED,
+  from the w8 floor and [[fpbs-mal-fold-closure-exactness]] (which I
+  re-verified and recorded as its own node). Let `Φ = ⊔ h|_{D_h}` be a
+  graphing with `E_{H_1} ∨ Φ = E_{H_2}` on `β|H_2`, or on any free action
+  weakly contained in Bernoulli. Then
+  `Σ_h |h|_{H_1, b_2} μ(D_h) ≥ 1/80`, where `|h|` is the number of
+  letters `b_2^{±1}` in a shortest expression in
+  `H_1 b_2^{±1} H_1 ⋯ H_1`.
+- **Invariant, and the step where members die.** Each chord unfolds into
+  `|h|` translates of `D_h`, used as `b`-seeds. Fold exactness makes their
+  union a seed set with conull 2-of-3 closure. Every graphing with bounded
+  `b_2`-length `r` dies there, with mass `≥ 1/(80 r)`. This is uniform in:
+  - the number of double cosets;
+  - the `H_1`-letters;
+  - the word length.
+
+  Every stagewise scheme with `Σ 1/r_n = ∞` has infinite mass. This settles
+  the survivor "graphings that mix several double cosets" whenever the
+  `b`-length is bounded. It is stronger than the uniform-in-`T` count asked
+  for above, because only `b`-letters modulo `H_1` on both sides are
+  counted. At `r = 1`, `relC_{≤1} = σ_b` exactly.
+- **Evidence.** Exact double-coset lengths are computed in
+  `coset_b_length.py`: `b^2 = c^{-1} b a` has length 1, `bab` has length 2,
+  `babab` has length 3. In iid chord experiments, labels of length 2 or 3
+  do worse per unit mass than `b`.
+- **What survives.**
+  - Per stage, graphings with average `b_2`-length `≥ 1/(80 ε)` at mass `ε`
+    whose unfolded seeds are heavily shared.
+  - Non-stagewise graphings with deep labels.
+- **Next decomposition, each part able to fail on its own** (artifact §5.5).
+  - (P1) Geodesic bundling: `μ(A) ≤ C · mass(Φ)` for some choice of
+    unfoldings. This would prove this claim with floor `1/(80 C)`.
+  - (P2) Refutation form: a factor-of-iid chord graphing of mass `ε` with
+    `b`-length about `1/ε` and shared seeds. By Theorem B this is the only
+    possible shape of a single-stage counterexample.
+  - (P3) Pushing deep-label graphings into stagewise form at a constant-factor
+    loss.
+
+  The claim stays OPEN.
+
+**Quantifier shift: the floor is a uniform one-step deep-promotion floor
+on `F_2` (September 18, 2026, swarm-0917-w9-w9-fp-follow,
+quantifier-shift).** Artifact
+`research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md`. Script
+`experiments/fpbs-deep-promotion-2026-09-17/core_size.py`.
+- **Result.** [[fpbs-mal-floor-iff-deep-promotion-floor]] is ESTABLISHED,
+  through its route. Let `rho` be the Bernoulli shift of `L = F(a, b)`,
+  `L_j = phi^j(L)` and `S_j = E_{rho|L_j}`. Let `Q_j` be the least cost of a
+  graphing inside `E_rho` that promotes `S_{j+1}` to `S_j`. Then this claim
+  holds iff `inf_j Q_j > 0`, with `Q_0 = r = relC(E_rho; S_1)` and `Q_j`
+  nonincreasing.
+  - The proof telescopes cheap promotions with the stage shift.
+  - It truncates labels to a finite stage.
+  - It transports `(H_m, H_2, H_1)` to `(L, L_{m-2}, L_{m-1})`.
+- **What it changes.**
+  - Chord §3(c) had only "claim implies `r > 0`". Now the claim is
+    equivalent to a statement about one finitely generated group.
+  - A refutation needs no infinite scheme. Cheap one-step promotions at
+    growing depth suffice.
+  - Survivor P3 becomes exactly `inf_j Q_j >= c r`. With
+    `Q_{j+1} = (1 - eps_j) Q_j`, the claim is (D0) `r > 0` together with
+    (D1) `prod (1 - eps_j) > 0`. Here `eps_j` is the saving from the single
+    extra label level `L \ L_1`. The step from `Q_j` to `Q_{j+1}` uses `phi`,
+    which carries the depth-`j` problem inside `L` onto the depth-`(j+1)`
+    problem inside `L_1`.
+- **Where the attack on (D1) died.**
+  - *Coset-hull projection.* Replace each deep edge by one shallow chord per
+    coset hull it crosses. The charge per deep edge is up to `|h|` times the
+    Stallings core size of `L_j`, which grows like `(1 + sqrt 2)^j`:
+    1, 3, 8, 20, 49, 119, 288, 696 (`core_size_out.txt`).
+  - The replacement chords are path-dependent, so the resulting bound
+    `Q_j >= r / M_j` decays.
+  - Compact and character obstructions, and zero-cost splitting moves, give
+    no leverage (artifact §5).
+- **What survives.**
+  - (D1) via a P1-type bundling inequality for crossings of deep edges.
+  - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
+
+  The claim stays OPEN.

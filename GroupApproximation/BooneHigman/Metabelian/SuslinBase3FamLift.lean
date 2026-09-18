@@ -82,10 +82,8 @@ theorem suslinBase3Fam_stab_map_mem {B S : Type*} [CommRing B] [CommRing S] {n :
 theorem suslinBase3Fam_map_comp {R S T ι : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Fintype ι] [DecidableEq ι] (f : S →+* T) (g : R →+* S) (u : (Matrix ι ι R)ˣ) :
     elementaryMatrixUnitMap f (elementaryMatrixUnitMap g u) =
-      elementaryMatrixUnitMap (f.comp g) u := by
-  apply Units.ext
-  ext i j
-  rfl
+      elementaryMatrixUnitMap (f.comp g) u :=
+  Units.ext (Matrix.ext fun _ _ ↦ rfl)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinBase3Fam_map_comp
 
@@ -106,3 +104,8 @@ theorem suslinBase3Fam_powStab_of_slPoly {A : Type*} [CommRing A]
     (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) σ hdet⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinBase3Fam_powStab_of_slPoly
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation

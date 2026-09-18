@@ -199,6 +199,8 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+    "Palomar/comparator-metabelian-boone-higman.json",  # BBMZ 5.3(7), two theorems
+    "Palomar/comparator-boone-higman.json",  # the Boone-Higman megasubmission (WIP)
 )
 
 # The configuration(s) `formalization.yaml` currently describes.  A Palomar
@@ -207,8 +209,13 @@ PALOMAR_PENDING_CONFIGS = (
 # time: its theorems must appear in `status.main_results`, and no theorem of
 # any other configuration may.  To submit another configuration, rewrite the
 # metadata for it and move it here.
+#
+# The metadata may describe a PENDING configuration (a work-in-progress record,
+# by the user's decision of 2026-09-18 for the Boone-Higman megasubmission).
+# Then `status.main_results` must publish nothing at all: a row asserts a
+# proved result, and a pending solution still carries hypotheses.
 PALOMAR_METADATA_CONFIGS = (
-    "Palomar/comparator-surjunctive-nonsofic.json",
+    "Palomar/comparator-boone-higman.json",
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -236,6 +243,10 @@ SURFACE_FILES = (
     "Palomar/comparator-stw-xxii.json",
     "Palomar/BlanchardToeplitzChallenge.lean", "Palomar/BlanchardToeplitzSolution.lean",
     "Palomar/comparator-blanchard-toeplitz.json",
+    "Palomar/MetabelianBooneHigmanChallenge.lean", "Palomar/MetabelianBooneHigmanSolution.lean",
+    "Palomar/comparator-metabelian-boone-higman.json",
+    "Palomar/BooneHigmanChallenge.lean", "Palomar/BooneHigmanSolution.lean",
+    "Palomar/comparator-boone-higman.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -759,8 +770,14 @@ def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
         # false claim in the file the registry reads.  The rows are written in
         # the same change that moves the configuration to `PALOMAR_CONFIGS`.
         if pair.pending:
-            f.note(f"{pair.config_rel} is pending, so its theorems are "
-                   "deliberately absent from status.main_results")
+            if published.get(pair.config_rel):
+                f.add(f"formalization.yaml: status.main_results publishes "
+                      f"{sorted(published[pair.config_rel])[0]} for the pending "
+                      f"{pair.config_rel}; a row asserts a proved result, and a "
+                      "pending solution still carries a hypothesis")
+            else:
+                f.note(f"{pair.config_rel} is pending, so its theorems are "
+                       "deliberately absent from status.main_results")
             continue
         if pair.config_rel not in PALOMAR_METADATA_CONFIGS:
             # The metadata describes another submission; a row for this
@@ -936,19 +953,28 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`blanchard_question_5_4`: the compared signature diverges"),
     ("blanchard comparator permitting a fourth axiom",
      "Palomar/comparator-blanchard-toeplitz.json: permitted_axioms"),
+    # The pending Boone-Higman megasubmission surface.
+    ("boone-higman challenge with a project-local import",
+     "Palomar/BooneHigmanChallenge.lean:1:"),
+    ("boone-higman shared block edited on one side",
+     "Palomar/comparator-boone-higman.json: shared block diverges"),
+    ("boone-higman solution missing an `_of` form",
+     "does not declare `kourovka_17_59_of`"),
+    ("boone-higman comparator permitting a fourth axiom",
+     "Palomar/comparator-boone-higman.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
-    ("surjunctive nonsofic result dropped from the metadata",
-     "SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic is not listed in status.main_results"),
+    ("pending result published in the metadata",
+     "for the pending Palomar/comparator-boone-higman.json"),
     ("foreign result published in the metadata",
-     "but the metadata describes Palomar/comparator-surjunctive-nonsofic.json only"),
+     "but the metadata describes Palomar/comparator-boone-higman.json only"),
 )
 
 YAML_CALIBRATIONS = {
     "nine arXiv classes",
     "original result with a substantive source",
-    "surjunctive nonsofic result dropped from the metadata",
+    "pending result published in the metadata",
     "foreign result published in the metadata",
 }
 
@@ -1114,20 +1140,42 @@ def plant(name: str, root: Path) -> None:
     elif name == "stw-x1 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-stw-x1.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "surjunctive nonsofic result dropped from the metadata":
+    elif name == "boone-higman challenge with a project-local import":
+        path = root / "Palomar" / "BooneHigmanChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.BooneHigman.Statement.Basic\n"
+            + path.read_text())
+    elif name == "boone-higman shared block edited on one side":
+        path = root / "Palomar" / "BooneHigmanSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def mixedIdentities (G : Type) [Group G] (n : ℕ) :",
+            "def mixedIdentities' (G : Type) [Group G] (n : ℕ) :", 1))
+    elif name == "boone-higman solution missing an `_of` form":
+        path = root / "Palomar" / "BooneHigmanSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem kourovka_17_59_of",
+            "theorem kourovka_17_59_renamed", 1))
+    elif name == "boone-higman comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-boone-higman.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "pending result published in the metadata":
         _edit_metadata(root,
-                       "    - declaration: SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic",
-                       "    - declaration: SurjunctiveNonsofic.renamed_and_not_republished")
+                       "  main_results: []\n",
+                       "  main_results:\n"
+                       "    - declaration: BooneHigman.kourovka_17_59\n"
+                       "      file: Palomar/BooneHigmanSolution.lean\n"
+                       "      sorry_count: 0\n"
+                       "      axioms: [propext, Classical.choice, Quot.sound]\n"
+                       "      comparator_config: Palomar/comparator-boone-higman.json\n")
     elif name == "foreign result published in the metadata":
         _edit_metadata(root,
-                       "    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic\n",
+                       "  main_results: []\n",
+                       "  main_results:\n"
                        "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n"
                        "      file: Palomar/Pestov91Solution.lean\n"
                        "      sorry_count: 0\n"
                        "      axioms: [propext, Classical.choice, Quot.sound]\n"
-                       "      comparator_config: Palomar/comparator-pestov91.json\n"
-                       "\n"
-                       "    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic\n")
+                       "      comparator_config: Palomar/comparator-pestov91.json\n")
     elif name == "stw-xxii challenge with a project-local import":
         path = root / "Palomar" / "STWProblemXXIIChallenge.lean"
         path.write_text(

@@ -42,5 +42,44 @@ recursion never stalls.
 
 ## Attempts
 
-None yet. The obstruction analysis is in Attempt 5 of
+The general obstruction analysis is in Attempt 5 of
 `decidable-fp-groups-have-effective-minimal-free-subshifts`.
+
+**Attempt 1 (swarm-0917-w9, host-geometry; a stall certificate and a repair,
+status unchanged).** Recorded in
+`norm-greedy-towers-stall-at-symmetric-dead-end-spots` (ESTABLISHED).
+
+- *Stall certificate (Theorem 1 there).* Let `n ≥ 1` and `p ∈ L_n`. Suppose:
+  - `p` is `s`-symmetric on the read set `Q_y(s) ⊆ B(R_n)` of a test
+    `(s, y)`;
+  - `y` is a right dead end of depth `k`;
+  - `|y| + R(s) + |s| ≤ R_n + min(k, 2n+2)`.
+
+  Then every placement of `p` required by (K) moves the spot to `yc` with
+  `|yc| ≤ R − R(s) − |s|`, where (A) tests it and fails. So `F_n(R) = ∅` for
+  all `R`.
+- *Where the certificate can live.* Such a spot is invisible to level `n − 1`
+  exactly when `|y| > R_n − R(s) − |s|`, so it needs `k ≥ 1`.
+  - Without Cayley dead ends the certificate is vacuous.
+  - With deep two-sided dead ends it is live. Examples: `y` and `y^{-1}` both
+    deep, which makes `Q_y(s) ⊆ B(|y|)`.
+- *The class that dies.* Every norm-tested greedy recursion dies on a level
+  that contains such a pattern. The named invariant is dead-end depth of the
+  generating set. The failing step is (K) followed by (A) at `yc`.
+- *Not proved: a refutation of (G).* That would need, for **all** data
+  `(A, R)`, some level whose maximal family `L_n` contains a certificate.
+  Building one by modifying a `p_0 ∈ L_n` on `Q_y(s)` can break the earlier
+  clauses in two ways.
+  - It can break (C) windows of level `n − 1`.
+  - It can break conjugate tests `(x s x^{-1}, x y)` that read inside
+    `Q_y(s)`. These are tested at level `n − 1` whenever
+    `R(xsx^{-1}) + |xsx^{-1}|` is small.
+
+  At level `1` the question is a finite constraint problem for fixed data.
+  It has not been run.
+- *Repair.* Test every `c` whose read set lies in the ball (A_geo). Tested
+  positions then translate with placed copies (Theorem 3 there), so no member
+  of any level can kill itself. This is (G_geo),
+  `translation-coherent-greedy-margin-towers-never-stall`. It has the
+  complete route `effective-minimal-free-subshifts-via-coherent-greedy-tower`
+  to (M2). Its only remaining failure mode is straddling tests against (K).

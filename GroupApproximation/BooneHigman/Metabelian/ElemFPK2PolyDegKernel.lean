@@ -21,6 +21,7 @@ and `v = 1` by the corpus lemma `FieldTwo.eq_one_of_row_zero_finset`.  Finally `
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 open GroupApproximation.SteinbergGroup
+open scoped Pointwise
 open GroupApproximation.BooneHigman.SteinbergBasic
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (rootSpan act unitVec
   unitVec_apply act_mul act_of_projection_eq_one act_apply_of_rootSpan act_eq_self_of_rootSpan

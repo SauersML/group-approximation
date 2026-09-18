@@ -21,3 +21,20 @@ There is an integer `d` with `δ_(H_4)(x) ≼ x^d`.
   needs a genuine filling of the skew square `λ_ac^m λ_cb^m λ_bd^m λ_da^m`. The
   other steps of the six-ray note need at most four rays, so polynomial `W` for
   `n = 4` would suffice.
+- 2026-09-18 (swarm-0917-w9-w9-z-follow, reframing). This is reduced to `H_3`, so
+  it is no longer an independent hole. Proof in
+  `research/artifacts/zp-houghton-four-rays-via-h3-2026-09-18.md`.
+  - Both `E^c_(a,b)(m)` and `E^d_(a,b)(m)` equal the two-ray word
+    `N = λ_ab^m ρ_b(m)`, of length `<= m^3`, in the letters `λ_ab, λ_ba, τ_b`.
+    This is machine-checked.
+  - So the skew square splits as `(E^c N^(-1))(N (E^d)^(-1))`: one word in the
+    stabilizer `S_d ≅ H_3` of ray `d`, and one in `S_c ≅ H_3`. This gives
+    `W_4(m) <= 2K(2m^3 + δ_(H_3)(2Cm^3))`
+    (`houghton-four-ray-pour-route-change-bounded-by-h3-dehn`, established).
+  - Hence `δ_(H_3) ≼ x^d` implies `δ_(H_4) ≼ x^(6+3d)`
+    (route `houghton-h4-polynomial-dehn-via-h3-ray-stabilizers`). It suffices that
+    the single family `A_3(m) = Area_(H_3)(E^c N^(-1))` is polynomial.
+  - This node stays OPEN because `H_3` is OPEN. A superpolynomial `δ_(H_4)` would
+    force a superpolynomial `δ_(H_3)`.
+  - The trick cannot be pushed down to `H_3`: two-ray stabilizers `FSym ⋊ Z` are
+    not finitely presented.

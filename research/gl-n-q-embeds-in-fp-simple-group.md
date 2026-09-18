@@ -412,3 +412,30 @@ None recorded before 2026-09-17.
       The gates are decidable triviality in `K_2(4,R_L)`, a finitely presented shell germ group, and a computable
       enumeration.
     - Full hypothesis table: `research/artifacts/gq-gq-typea-design-u2-germ-implant.md`.
+22. **Oligomorphic actors in Kropholler's class HF, 2026-09-18 (lane bh-lit): no F∞ twisted Brin–Thompson
+    host from such an actor; type (A) untouched.**
+    - *Source.* Fournier-Facio–Kropholler–Lyman–Zaremsky, *Finiteness properties of stabilisers of
+      oligomorphic actions*, arXiv:2506.02319 (v2 2026-02-27, to appear in Publ. Mat.), Theorem 1.1, as returned
+      by the arXiv HTML page: "Let G be a group in HF acting on an infinite set S. If the action is
+      oligomorphic, then there exists a non-empty finite subset of S whose stabiliser in G is not of type FP∞."
+      Oligomorphic there means finitely many orbits on n-element subsets for every n.
+    - *The class.* HF is "the smallest class of groups that contains finite groups and has the property that
+      if G admits a cell-permuting action on a finite-dimensional contractible CW-complex with stabilisers in
+      HF, then G is in HF". It "includes all groups of finite virtual cohomological dimension, of any
+      cardinality, and all soluble and linear groups of cardinality ≤ ℵ_ω", and it is "subgroup closed,
+      extension closed, and closed under the formation of fundamental groups of graphs of groups".
+      Theorem 1.2 of the same paper: for G in HF acting on an infinite set S, the twisted Brin–Thompson group
+      ˢV_G is not of type FP∞.
+    - *For this root.* GL_n(Q) is countable and linear, so it lies in HF. Since it is not finitely generated,
+      it is never itself a type (A) actor. What the theorem constrains is an actor Γ ⊇ GL_n(Q): if Γ lies in HF,
+      for example because it is linear, soluble, of finite vcd, or assembled from such groups by extensions and
+      graphs of groups, then no oligomorphic action of Γ has all finite-set stabilisers of type FP∞. So no
+      twisted Brin–Thompson host ˢV_Γ built from such Γ is of type F∞ (FWZ arXiv:2603.24687 Theorem B:
+      F∞ iff the action is of type [A_∞]).
+    - *What it does not touch.* Finite presentation needs only type (A) = [A_2]: Γ finitely presented, point
+      stabilisers finitely generated, finitely many orbits on 2-element subsets (Zaremsky arXiv:2405.18354
+      Theorem A). The same paper's Corollary 1.6 gives, for a simple Burger–Mozes group Γ, an ˢV_Γ that is
+      finitely presented but not FP∞. So the obstruction is to the F∞ strengthening only, and the root asks
+      only for finite presentation. It also says nothing about actors outside HF, nor about hosts that are not
+      twisted Brin–Thompson groups.
+    - Survey entry: `research/artifacts/gq-bh-bh-lit-survey.md`, flag F4.

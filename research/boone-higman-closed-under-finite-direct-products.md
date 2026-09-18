@@ -142,3 +142,80 @@ live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
     - The action is never faithful. With `w` from Attempt 4, `x_1 ↦ x_1 w(x_2)` is a
       non-trivial automorphism that acts trivially.
     - *Dies*: at best one more relative actor, behind the gate of Attempt 2.
+12. **Twisted Brin–Thompson envelopes whose actor is `S x T` itself** (lane
+    `bh-testcases`, 2026-09-18). *Dies, with an exact criterion.*
+    - By `product-of-simple-groups-type-a-actions-come-from-factors`, a faithful action of
+      `S x T` with finitely many orbits on pairs and finitely generated stabilizers exists
+      only if one of two things holds:
+      - `S` or `T` has a proper finitely generated subgroup of finite bi-index, which is
+        Attempt 8's intrinsic condition for that factor;
+      - `S ≅ T` with finitely many conjugacy classes
+        (`centerless-fp-finitely-many-conjugacy-classes-gives-pbh`).
+    - The proof runs through Goursat's lemma: a core-free stabilizer with full projections
+      is the graph of an isomorphism, and its double cosets are conjugacy classes.
+    - So coset actions of `S x T` on `S ⊔ T` or on `S x T`, the left-right action, and finite
+      unions of these cannot give a finitely presented envelope unless a factor is already
+      covered. Any product envelope has to enlarge the actor, as in Attempts 2 and 7.
+13. **Status of the known examples** (lane `bh-testcases`, 2026-09-18).
+    - The following are now in `B_A`:
+      - Amir–Lazarovich's finitely presented simple lattices
+        (`tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh`);
+      - Khanh's Leavitt unit group (`binary-leavitt-unit-group-satisfies-pbh`).
+    - So among finitely presented simple groups recorded in this graph, the only ones not
+      known to be in `B_A` are the five Titz Mite–Witzel kernels `Γ̌_i^q`
+      (`titz-witzel-simple-kazhdan-cat0-lattices-exist`; PBH open at
+      `titz-witzel-lattices-satisfy-permutational-boone-higman`).
+    - For every pair of other recorded groups the closure holds. The sharpest open
+      instances are `Γ̌ x Γ̌` (SQ for `Γ̌`) and `Γ̌ x V`.
+    - Even `Γ̌ x Z/2 ∈ 𝓑` is open. Equivalently: does some finitely presented simple group
+      contain `Γ̌` with nontrivial centralizer? It would follow from (SQ) for `Γ̌` and from
+      (FE).
+14. **The Titz Mite–Witzel instances are settled, and every host machine squares itself**
+    (lane `bh-major-product`, 2026-09-18).
+    - **Γ̌ is in `B_A`.** bh-integrate wired `titz-witzel-lattices-pbh-via-euclidean-building-lattices`
+      (de3934873), so `titz-witzel-lattices-satisfy-permutational-boone-higman` is ESTABLISHED
+      (lane proof). It comes from bh-groupoid's `euclidean-building-lattices-lie-in-permutational-bh-class`,
+      also a lane proof. So each `Γ_i^q ∈ B_A`, and the kernels `Γ̌_i^q ≤ Γ_i^q` are in `B_A`
+      because `B_A` is subgroup-closed.
+    - **The three sharpest instances of Attempt 13 hold** (conditional on those lane proofs).
+      `Γ̌ x Γ̌`, `Γ̌ x V` and `Γ̌ x Z/2` are all in `B_A`, by closure of `B_A` under products and
+      finite extensions (`boone-higman-type-a-class-closed-under-finite-extensions`). Hence
+      they lie in `𝓑`. The same holds for any pair of distinct kernels.
+    - **Self-square hosts.** Two new elementary nodes show that every host machine on main
+      contains its own square:
+      - `cuntz-stabilized-full-groups-contain-their-own-squares`: `[[𝒢 x R_2]]` and its
+        commutator subgroup contain their squares, as does any full group with two
+        cone-shift bisections of disjoint range, e.g. `CT_P(Z)`;
+      - `leavitt-pair-unit-hosts-contain-their-own-squares`: units, `GL_n` and `E_n` of any
+        ring with a Leavitt pair contain their squares; on `St_n` the corner square loses
+        exactly one `K_2`.
+
+      Together with `twisted-btb-clopen-action-is-type-a` for `SV_G`, this gives (SQ) for
+      every subgroup of every such host, inside the same host.
+    - **Two recorded groups are not known to be in `B_A`.**
+      - `(L ⊗ L)^×`, finitely presented and simple modulo the Khanh / Ara–Cortiñas imports.
+        (SQ) holds for it by the Leavitt corner map, since `s_i ⊗ 1` is a Leavitt pair.
+      - The twisted integral-affine groups `W`, `W_(P,ℓ)` (bh-universal, lane proof). For
+        these, self-squaring is not checked here.
+
+      - The odd-prime hosts `(L_p ⊗ L_p)^× / F_p^×` are also not covered. There the corner
+        map gives only `(R^× x R^×) / Δ(F_p^×)`, because the scalars need not split off.
+
+      So (SQ) holds for every fp simple group recorded on main, except possibly `W` and the
+      odd-prime Leavitt hosts, subject to these lane proofs and imports.
+    - **Displacement criterion for (SQ)** (elementary, one direction only). Suppose `U`
+      embeds in a finitely presented simple `W'` and some `g ∈ W'` has
+      `[U, gUg^(-1)] = 1`. Then `U x U ≤ W'`, because `U ∩ gUg^(-1)` is central in the
+      simple group `U`, hence trivial.
+      - In every self-square host above, the two squaring copies are conjugate, by the Cuntz
+        cone swap or by the Leavitt unit `s_1 t_2 + s_2 t_1`. So these hosts displace every
+        subgroup they contain.
+      - The converse (SQ ⇒ displacement) is not claimed: in an envelope of `U x U` the two
+        factors need not be conjugate.
+    - *Lesson.* Every construction on main produces self-square hosts: the Cuntz cone
+      shift, the Leavitt corner map, and the Brin–Thompson clopen stabilizer. So product
+      closure is never a separate gate for a constructive route; the master route
+      (`boone-higman-via-leavitt-units-of-rigid-sft-overgroups` and its group-side twin)
+      would prove it with no extra work. A counterexample to (SQ) would have to be a
+      finitely presented simple group that embeds in no self-square finitely presented
+      simple group. None is known.

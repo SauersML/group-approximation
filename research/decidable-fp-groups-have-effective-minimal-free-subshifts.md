@@ -302,3 +302,80 @@ stalling data are known either.
 *Refutation target.* Take data for which one could prove that every
 admissible level eventually contains a dead end. That would kill the greedy
 family, but not (M2), because (G) ⇒ (M2) is one way only.
+
+**Attempt 6 (2026-09-18, bh-free-37, machine-certified labellings plus randomness):
+dies at the local lemma.** Stays OPEN.
+- *Idea.* Configurations are labellings that a word-problem decider certifies as locally
+  consistent. Freeness constraints and "every admissible `r`-pattern recurs within `R_r`"
+  are imposed as bad events, and the local lemma plus compactness should give
+  nonemptiness. Minimality would then hold by definition.
+- *Kill.* `local-lemma-cannot-certify-multiscale-recurrence`: over the uniform product
+  measure, no asymmetric-LLL certificate exists once recurrence events occur at infinitely
+  many scales next to any translation-invariant positive-probability family.
+  - The reason is volume: recurrence of a density-`δ_r` pattern set succeeds at rate
+    `≈ δ_r → 0` per site, while the fixed family costs a fixed amount per site.
+  - This covers the tower subshifts of Attempt 3. So the uniform-measure local lemma does
+    not reach (N) either; Attempt 4 had listed it among the methods that reach (N).
+- *What survives.* The randomness has to be hierarchical, with scale-`r` patches drawn from
+  small libraries inside a deterministic computable skeleton. The decider enters only by
+  computing that skeleton, as in Attempt 2.
+
+**Attempt 7 (2026-09-18, bh-openq-papers): literature pass at source (the synthesis's
+"source check first" for gate M2).** Stays OPEN. Nothing in print closes (M2), but five
+items sharpen it.
+
+1. **ABT at source** (arXiv:1507.03369v3). Main had this as context only.
+   - Theorem (l.106 = l.287): "Every finitely generated group G has a non-empty G-effectively
+     closed strongly aperiodic subshift".
+   - "G-effectively closed" (l.145) means forbidden patterns recognized by a Turing machine
+     with oracle WP(G). With decidable word problem this is effectively closed. This
+     confirms Attempt 1's input.
+2. **Why Attempt 1's minimal-subsystem route has to die.** Barbieri–Carrasco-Vargas,
+   arXiv:2406.12777v2, Theorem `teo:nicarrasco_eff_pi01` (l.674): "Let G be a group that is
+   infinite and has decidable word problem. Then 𝔪_eff(G) equals the class of Π⁰₁ Medvedev
+   degrees."
+   - So effective subshifts on every decidable group include ones with no computable point.
+     A minimal effective free subshift has decidable language and hence a computable point.
+   - So "Zorn inside an effective free subshift" cannot be effective in general. This is a
+     theorem-level version of Attempt 4's class obstruction.
+3. **Decidable language of minimal SFTs.** Carrasco-Vargas's thesis arXiv:2505.14247,
+   `Chapter_Medvedev.tex` l.143: "Let G be a group with decidable word problem. A minimal
+   G-SFT has decidable language". This is the hand argument of the Statement section, in print.
+4. **Known instances beyond Z^d.** See `free-times-z-carries-a-minimal-free-sft`
+   (Aubrun–Bitar–Huriot-Tattegrain arXiv:2204.11492, l.755). `F_n × Z`, the unimodular GBS
+   groups and `BS(1,n)` carry minimal free SFTs, hence satisfy (M2). The Statement section's
+   "Known instances" list gains its first non-amenable one-ended group.
+5. **A deterministic hierarchical skeleton with computable constants, as Attempt 6 asks for.**
+   J. A. Álvarez López, *Limit aperiodic and repetitive colorings of graphs*, arXiv:1807.09256,
+   Theorem `t: finitary` (l.996–1034).
+   - *Setting.* Every connected infinite graph of bounded degree `Δ`, and any `ε_n ↑ ∞`.
+   - *Output.* Colorings `φ^N` by `Δ` colors, built from clusters and finite libraries of
+     rigid colorings, with explicit constants: `δ_n` (freeness radius at scale `ε_n`) and
+     `α_n = 2𝔰_n + 𝔱_n + 3ω_n` (l.3336), the recurrence bound of the central disk
+     `D(p, Σ_{i≤n} r_i)`.
+   - *Groups.* §1.3 (l.633–635) states that, for the Cayley graph with edge labels, "limit
+     aperiodic" and "repetitive" become strongly aperiodic and strongly repetitive. The
+     labelled-graph version is Corollary `c: general graph`, "with a small modification of the
+     proof" (l.723).
+   - *What it supplies.* Attempt 2's Step 1 (central modulus) and Step 3 (freeness) together,
+     for every finitely generated group, with constants computable from `Δ` and `ε`.
+   - *What it does not supply.*
+     - (i) The global modulus: its repetitivity is central, defined from one point `p`
+       (l.980). This is exactly Attempt 2's Step 2 / Attempt 5's dead-end (seam) problem.
+     - (ii) Effectivity of the limit: `φ = lim φ^N` is taken along a subsequence (l.1046).
+       `φ^N` is defined top-down from level `N` (Definition `d. psin`, l.3150), so `φ^N` and
+       `φ^{N+1}` need not agree near `p`. The limit is effective if the level-`n` value at `p`
+       is the same for all `N ≥ n`. Remark `r. psi xxn` (l.3172: the value at a point
+       determines membership in `𝔛_m`, and `p ∈ 𝔛_m` for all `m`) suggests it is, but this
+       was not checked.
+   - *Use.* A lane attacking (M2) by hierarchy can start from this construction. The open part
+     is then only: seam patterns between adjacent level-`n` clusters must occur inside some
+     replicated level-`m` cluster, computably in `n`.
+
+**Lesson for general BH.** Two parts of (M2) are available in print:
+- existence of minimal free subshifts with computable freeness constants and a computable
+  central modulus (Álvarez López), for every finitely generated group;
+- effective strongly aperiodic subshifts (ABT), for every decidable group.
+
+The computability wall is exactly the passage from central to global recurrence. That wall is
+real: effective subshifts on decidable groups attain every Π⁰₁ Medvedev degree.

@@ -175,7 +175,7 @@ theorem eq_one_of_commute_elGen_small
       · exact coeff_one_diag_eq hact hfree D B F hg hp
     · rw [hzero p hξ, hzero i₀ hξ]
   have hscalar : mat g = Matrix.scalar (Fin n) (mat g i₀ i₀) := by
-    ext p q
+    refine Matrix.ext fun p q ↦ ?_
     rw [Matrix.scalar_apply, Matrix.diagonal_apply]
     by_cases hpq : p = q
     · rw [if_pos hpq, hpq, hdiag q]

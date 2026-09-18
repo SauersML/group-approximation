@@ -86,6 +86,7 @@ theorem k2PolyDeg_ev_mem_P {K : Finset I} {m L n : I} (hmL : m ≠ L) (hmn : m �
     ringMap (k2PolyDeg_ev (ZMod p)) g ∈ k2PolyDeg_P p K m L n hmL hmn hLn := by
   have hle : k2PolyDeg_P p K m L n hmL hmn hLn ≤
       (k2PolyDeg_P p K m L n hmL hmn hLn).comap (ringMap (k2PolyDeg_ev (ZMod p))) := by
+    show (k2PolyDeg_torus p m L n hmL hmn hLn).range ⊔ (k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L) ≤ _
     refine sup_le ?_ (sup_le ?_ ?_)
     · intro t ht
       obtain ⟨c, rfl⟩ := MonoidHom.mem_range.mp ht

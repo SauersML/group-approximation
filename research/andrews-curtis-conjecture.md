@@ -162,3 +162,20 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
    - **Next.** Search at cap 25–26 with excursions carrying two AC products ("2-tunnels":
      M1, reduce, M1, reduce), seeded from the 922 tunnel-only classes. These are the only
      part of the component that the capped searches never saw.
+
+8. **Heretic lane, third pass: two AC products per excursion (w7-082, 2026-09-18).**
+   - `ak3-two-tunnel-excursions-above-cap-24`, proposed established by computation. A
+     2-tunnel is one AC product above 24, Whitehead reduction to a minimal pair m with
+     24 < |m| ≤ 26, a second AC product, and reduction again.
+     - The second level depends only on the class of m, so the 61712 in-range tunnels from
+       the 922 seeds need only 4340 runs. The tool `t2m.c` reproduces the 161 states of
+       `grow2t` at cap 16.
+     - Rank 2: 2-tunnels from the tunnel-only states do land outside T_24 (156 new classes
+       in the first round). But the closure is finite: after five rounds it has 263067
+       states, 425 more than T_24. No state is PRIM or THICK, none of the 6614 intermediate
+       classes m is PRIM or THICK, and none of 15.4M second products ends in a primitive
+       entry.
+   - **Next.** 2-tunnels whose first product starts inside S_24: about 34M in-range
+     tunnels, which may collapse by roughly 14 to 1 into classes. Also the rank-3 seeded
+     run, and chains of three or more AC products inside the band (`band.sh`), which keep
+     landing new states.

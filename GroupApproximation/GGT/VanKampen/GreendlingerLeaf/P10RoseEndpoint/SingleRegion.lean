@@ -122,6 +122,11 @@ theorem movePred_regionColour_eq_false {M : CombMap.{v}} {c : List M.Dart} {r y 
 end SubArcMove
 open SubArcMove
 
+-- LOUD: REFUTED (lane gl-p10-48; Python model, not yet in Lean).
+-- `RoseSingleRegionMoveStatement` is FALSE:
+-- it implies `RoseExtremalJunctionStatement`, which fails on the gl-p10-40 G-face model with
+-- the label-1 edges subdivided once (24 darts).  Corrected residual:
+-- `P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement` (`JunctionCore.lean`).
 /-- **A single-region move for the rose step** (OPEN; the innermost remaining rose gap).  Under the
 rose hypotheses, some dart `r` whose region avoids the exterior face and meets a side of a dart of
 the cycle gives, with `z = regionColour r`, the listing clauses of `RoseRegionMoveSubArcStatement`.

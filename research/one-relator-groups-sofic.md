@@ -200,6 +200,21 @@ claim [[nonsofic-one-relator-group]].
      - Open next: an unpeelable model from
        [[no-magnus-envelope-one-relator-groups-sofic]]. Test whether its
        piece meets `G^(omega)` and whether its extreme has a BS-type root.
+   - **All residual length-19 singular-extreme relators closed (w9-073).**
+     No singular backward step was needed.
+     - [[length19-singular-relators-small-cancellation-sofic]]: 14 of the 24
+       (D) relators have a Whitehead-equivalent C'(1/6) form, so they are
+       hyperbolic and virtually special.
+     - [[length19-singular-relators-z-stable-hierarchy-special]] covers all 32
+       (the 24 (D) and the 8 open relators). It uses a two-level Linton
+       hierarchy.
+       - Top level: an immersion check gives `A cap B = <a_1>`. Collins's
+         intersection theorem then makes every `A cap hBh^(-1)` cyclic.
+       - Level one: Stallings pullbacks.
+       - Hyperbolicity: kbmag gives it, so there are no BS subgroups.
+       - Linton Thm 7.1 then gives virtual specialness.
+     - Open next: length 20 and up, where `A cap B` can be exceptional and
+       the top-level Z-stability needs another argument.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal
