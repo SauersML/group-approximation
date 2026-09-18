@@ -16,6 +16,7 @@ artifacts:
   - research/abelianized-cover-df-forces-cofinite-congruence-df.md
   - research/abelianized-cover-mf-radical-is-union-of-local-cover-radicals.md
   - research/local-commutator-cover-derived-series-stops-at-one.md
+  - research/local-commutator-cover-bounded-degree-linear-images-are-abelian.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -293,3 +294,58 @@ claimed.
   group theory.  `(DF)` remains OPEN.  The remaining finite-side question is
   residual finiteness of `Gamma_L` on `[F,F] \ [R,R]` through quotients with
   nonabelian simple sections.
+- **Bounded-degree linear models of the local covers are blind
+  (2026-09-18).**
+  - **Established.**  `local-commutator-cover-bounded-degree-linear-images-are-abelian`.
+    - For each degree `n` there is a threshold `L(n) >= L_1` with the
+      following property.  For `L >= L(n)`, every homomorphism
+      `Gamma_L' -> GL_n(A)`, over every commutative ring `A`, is trivial.
+      So every `n`-dimensional representation of `Gamma_L` has abelian
+      image.
+    - The proof starts with the universal degree-`n` representation of `T`
+      over `O/I_inf`.  Malcev kills it: finitely generated commutative rings
+      are residually finite, and `T` has no finite quotient.  So the
+      `n^2 d` generic-matrix entries `y - delta` lie in `I_inf`.  These
+      finitely many elements already lie in one `I_L`.
+  - **Consequence for finite quotients.**  Every nonabelian finite quotient
+    of `Gamma_L` maps onto a minimal one, `P <= Aut(S) wr Sym(k)`, with:
+    - `P' = S^k` the unique minimal normal subgroup;
+    - `C_P(P') = 1`;
+    - an abelian regular action on the factors;
+    - `m(S) > n`.
+  - **Dead as a class, in both directions.**  None of the following can
+    witness or refute LEF of `E`:
+    - finite quotients of bounded linear degree, such as `SL_k(Z/N)` with
+      `k` bounded, `PSL_2(q)`-families, groups of Lie type of bounded
+      rank, and `Alt(k)` with `k` bounded;
+    - bounded-dimensional unitary or projective models;
+    - fixed-alphabet wreath and cellular-automaton models `A_0 wr_X B` over
+      abelian `B` of any size.
+  - **Dead sub-idea, not written as a node.**  One could try to exclude
+    fixed-alphabet wreath models through periodic points of a `Z^r`
+    subshift of finite type.  That is subsumed, because item 5 of the claim
+    kills them directly.  Unrestricted limits `A_0^(Z^r) x| Z^r` of such
+    models kill `T`, since `T` has no finite quotient, so no aperiodic
+    limit can survive either.
+  - **Dead sub-idea: E' finitely presented, hence not LEF.**  If `T` were
+    finitely presented, then so would be `E`, as an extension of `T` by
+    `Z^r`.  For infinite `G` this contradicts Baumslag--Strebel--Thomson,
+    by which `F/R'` finitely presented forces `F/R` finite.  That theorem
+    is imported from memory, without a verbatim citation.
+  - **Dead sub-idea: stabilizing the chain of relator subgroups.**  Let
+    `A_l = <phi(R cap S_l)>` in a finite quotient `P`.  Each `A_l` is
+    abelian for `l <= L`.  If `A_l` stabilizes, it is normal, so `P` is
+    abelian.  So the chain must strictly increase, which bounds `|P|` below
+    only polynomially in `L`.  This is not a contradiction, because `|P|` is
+    not bounded in terms of `L`.
+
+  **Where it stops.**  The surviving finite witnesses are exactly the
+  quotients whose minimal nonabelian quotients have socle factor `S` with
+  `m(S) -> infinity`.  By the classification of finite simple groups
+  (imported, not verified here), these are alternating groups of unbounded
+  degree or classical groups of unbounded rank.
+
+  Open need: either a nonabelian quotient of `Gamma_L` with `Alt(m)`-socle,
+  `m` growing with `L`, in which a word of `[F,F] \ [R,R]` survives, or an
+  argument that controls permutation-type quotients of unbounded degree.
+  `(DF)` remains OPEN.
