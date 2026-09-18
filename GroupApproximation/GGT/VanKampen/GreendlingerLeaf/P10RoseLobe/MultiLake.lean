@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.MultiLists
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The two-dart lake cases of the region choice
@@ -13,8 +14,9 @@ cyclically adjacent on `c`:
 * `roseLobeMulti_lake_wrap`: the same with `c = [a] ++ M ++ [b]`, `M ≠ []`: the lake at `a`,
   block `B = M` kept, the two ends removed.
 
-In the random truth check (see `MultiStatement`) these two cases discharge `2193` of the `5634`
-residual configurations of `roseLobeChoice_Statement` (lake pair) and `668` (lake wrap).
+In the random truth check (see `MultiStatement`; seeds 0-7, `N = 60`, `maxeps 2`) the lake pair
+applies to `4234` and the lake wrap to `1240` of the `5634` residual configurations of
+`roseLobeChoice_Statement` (the cases overlap).
 
 ## LOUD: strength
 

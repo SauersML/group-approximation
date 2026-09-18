@@ -16,8 +16,9 @@ distinct_from:
   fp-simple-groups-with-arbitrarily-complex-word-problem: that is the complexity consequence of Boone–Higman as an open root; this places it as the unique surviving decision-problem separator and shows Kuznetsov-profile bounds reduce to it.
 ---
 
-**ESTABLISHED** (lane proof, elementary; inputs cited below; not independently
-reviewed). No priority claimed.
+**ESTABLISHED** (lane proof, elementary; inputs cited below). §§1–3: gq-referee-a PASS
+(proof gaps, `research/artifacts/gq-referee-a-bh-separators-must-omit-nested-decidable-hosts.md`,
+90752e2d8), nits N1–N3 applied; citation review by gq-referee-b pending. No priority claimed.
 
 Setting: `P` is a class of groups closed under isomorphism and subgroups. As in
 `hereditary-approximation-disproofs-of-boone-higman`, `P` **separates**
@@ -46,8 +47,10 @@ solvable word problem, can separate.
 
 ## 2. Hereditary decision problems beyond the word problem do not separate
 
-Each class below is closed under subgroups: a decision procedure for a finitely
-generated `S` restricts to its finitely generated subgroups by rewriting generators.
+Each class below is closed under subgroups directly from its definition ("every finitely
+generated subgroup has …"), since a finitely generated subgroup of a subgroup is a finitely
+generated subgroup of the whole group. The property itself does not depend on the finite
+generating set chosen.
 Each fails (S1), witnessed by one finitely presented simple group.
 
 | class `P`: every finitely generated subgroup has … | fails (S1) at | source |
@@ -65,8 +68,9 @@ either: every finitely presented simple group and every input has degree `0`
 
 For recursive `T`, let `P_T` be the class of groups all of whose finitely generated
 subgroups have a word-problem algorithm within `C·T(C·l) + C·l + C` for some finite
-generating set and constant `C`. It is subgroup-closed (rewriting multiplies length by
-a constant), and (S2) holds for every `T` by
+generating set and constant `C`. It is subgroup-closed by the same definitional argument. Changing the
+finite generating set of a subgroup `H` only changes `C`: a word of `H`-length `l` has
+`S`-length at most `C_0·l`, and (S2) holds for every `T` by
 `complexity-bounded-host-classes-are-not-universal`. Hence:
 
 **`P_T` separates Boone–Higman iff every finitely presented simple group meets the bound
@@ -85,8 +89,15 @@ exponential examples (p. 1–2), and the hardest known word problem is coNP-comp
   area at most `N`.
 
 Both are finite, since `x ∈ <<w>>`. Kuznetsov's two searches halt on input `w` of length `n`
-within a recursive function `Φ(n, δ_S(n), ν_S(n))`. Van Kampen diagrams of area `<= δ` have
-diameter `<= n + K·δ`, so conjugators are bounded and the search is finite. So any hereditary
+within `Φ(n, δ_S(n), ν_S(n))` for a recursive `Φ` that may be taken monotone in its last two
+arguments:
+- if `w = 1`, a van Kampen diagram of area `<= δ_S(n)` writes `w` as at most `δ_S(n)` conjugates
+  of relators, with conjugators of length `<= n + K·δ_S(n)` (the diagram-diameter bound, `K` the
+  longest relator length);
+- if `w ≠ 1`, `ν_S(n)` bounds `k`, the `|u_i|` and the area of `x^(-1) Π u_i w^(±1) u_i^(-1)`, a
+  word of length `<= 1 + k(2N + n)`.
+
+Dovetailing both finite searches therefore halts within that bound. So any hereditary
 class defined by bounds `δ_S, ν_S <= F` for a recursive `F` lies inside `P_T` with
 `T(n) = Φ(n, F(n), F(n))`, and it separates only if `P_T` does. A separation through the
 Kuznetsov algorithm is therefore a separation through word-problem complexity.
