@@ -6,7 +6,7 @@ title: Sigma_1-hardness of fp embeddability, and Sigma_3-completeness from the M
 target: fp-embeddability-index-set-is-sigma-3-complete
 requires:
   - boone-higman-is-equality-of-two-sigma-3-index-sets
-  - bh-embeddability-survives-decidable-edge-hnn
+  - mihailova-centralizing-hnn-extensions-embed-in-fp-simple-groups
   - simple-envelope-forces-solvable-word-problem
   - clapham-fp-embedding-preserves-word-problem
 ---

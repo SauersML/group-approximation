@@ -107,3 +107,22 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
        so it is zero. A working design therefore cannot store counters as exponents
        with monomial transitions. It must use genuinely polynomial operators, as KMS's
        `P_i` are, or odometer-style counters whose carries are the sections.
+
+4. **Finite-state candidates are capped at PSPACE; scope of the Cartier kill**
+   (bh-free-02, 2026-09-18).
+   - *The cap.* By `automaton-tail-full-groups-have-conp-relative-word-problem`
+     (item 2), every automaton group has word problem in `PSPACE`. So do its
+     Rover--Nekrashevych and product 2-graph hosts. A finite-state witness can
+     therefore serve this claim only for bounds `T` below `PSPACE`. The claim needs
+     infinitely many states, as the first necessary condition says.
+   - *The intermediate target.* A finitely presented automaton group with `NP`- or
+     `PSPACE`-hard word problem is still open. It would give finitely presented
+     simple groups beyond Birget's coNP. Wächter--Weiß's PSPACE-complete automaton
+     group (STACS 2020; cited, not read) is not known to be finitely presented.
+   - *Scope of the partial kill above.* It assumes `φ = σ ∘ C_0`, which kills every
+     monomial `x_q a^n` with `p ∤ n`. A general semilinear `φ`, with `φ(a^p) = a`,
+     is determined by arbitrary images of the `x_q a^r`, `0 <= r < p`, because the
+     free module is free over `F_p[a^{±p}]` on these. The kill does not cover
+     `φ` that send `x_q a^r`, `r != 0`, to nonzero elements. That is how the
+     sections of lamplighter-type self-similar actions look. So "no monomial
+     transitions" is proved only for `σ ∘ C_0`. General semilinear `φ` are untested.
