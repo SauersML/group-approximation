@@ -123,3 +123,43 @@ theorem suslinR1Int_exists_prime_mem (P : Ideal A) (hP : P.IsPrime) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_exists_prime_mem
 
+/-- **Primewise unit criterion.**  An ideal containing a positive integer `c`, and for every
+prime `p ∣ c` an element coprime to `p`, is the unit ideal. -/
+theorem suslinR1Int_one_mem_of_primewise (L : Ideal A) (c : ℕ) (hc : 0 < c) (hcL : (c : A) ∈ L)
+    (hp : ∀ p : ℕ, p.Prime → p ∣ c → ∃ ℓ ∈ L, IsCoprime ℓ (p : A)) : (1 : A) ∈ L := by
+  by_contra hne
+  have hL : L ≠ ⊤ := fun h => hne ((Ideal.eq_top_iff_one L).1 h)
+  obtain ⟨P, hPmax, hLP⟩ := Ideal.exists_le_maximal L hL
+  obtain ⟨p, hpr, hpc, hpP⟩ := suslinR1Int_exists_prime_mem P hPmax.isPrime c hc (hLP hcL)
+  obtain ⟨ℓ, hℓ, hcop⟩ := hp p hpr hpc
+  obtain ⟨u, v, huv⟩ := hcop
+  have h1 : (1 : A) ∈ P := by
+    rw [← huv]
+    exact P.add_mem (P.mul_mem_left u (hLP hℓ)) (P.mul_mem_left v hpP)
+  exact hPmax.ne_top ((Ideal.eq_top_iff_one P).2 h1)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_one_mem_of_primewise
+
+/-- **Primewise monicity.**  If `I ⊆ A[X]` contains a polynomial whose leading coefficient is a
+positive integer `c`, and for every prime `p ∣ c` a polynomial whose leading coefficient is
+coprime to `p`, then `I` contains a monic polynomial. -/
+theorem suslinR1Int_monic_of_primewise {I : Ideal (Polynomial A)} (c : ℕ) (hc : 0 < c)
+    (h0 : ∃ q ∈ I, q.leadingCoeff = (c : A))
+    (hp : ∀ p : ℕ, p.Prime → p ∣ c → ∃ q ∈ I, IsCoprime q.leadingCoeff (p : A)) :
+    ∃ q ∈ I, q.Monic := by
+  refine suslinR1Int_monic_of_one_mem (suslinR1Int_one_mem_of_primewise _ c hc ?_ ?_)
+  · obtain ⟨q, hq, hlc⟩ := h0
+    rw [← hlc]
+    exact suslinR1Int_lc_mem_leadSup hq
+  · intro p hpr hpc
+    obtain ⟨q, hq, hcop⟩ := hp p hpr hpc
+    exact ⟨q.leadingCoeff, suslinR1Int_lc_mem_leadSup hq, hcop⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_monic_of_primewise
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation
