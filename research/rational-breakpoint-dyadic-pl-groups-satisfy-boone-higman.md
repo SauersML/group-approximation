@@ -18,6 +18,17 @@ not independently reviewed). No priority is claimed.
   `G_Π'` of `periodic-germ-extensions-of-v-are-virtually-simple`, for a suitable `Π`.
 - So it satisfies Boone--Higman. The same holds on `[0,1]`: those groups are the subgroups fixing `0`.
 
+**The breakpoint condition is automatic.** Let `g` be a circle homeomorphism that is piecewise of
+the form `θ ↦ 2^nθ + d`, with `d ∈ Z[1/2]` and finitely many pieces. At a breakpoint `s`, the map
+`h = α_-^{-1}α_+ : θ ↦ 2^cθ + e` is a nontrivial circle map fixing `s`.
+- If `c = 0`, then `h` is a dyadic rotation with a fixed point, hence the identity. That is
+  excluded.
+- So `c ≠ 0`, and `s(2^c - 1) ∈ Z[1/2]` modulo `Z`. Hence `s ∈ Q`.
+
+So `PL_2(Q)` is the whole group of piecewise dyadic-affine homeomorphisms of the circle, and
+**every finitely generated group of piecewise dyadic-affine homeomorphisms of the circle or of
+`[0,1]` embeds in a finitely presented simple group.**
+
 **Belk--Hyde--Matucci's example.** BHM (arXiv:2407.03149v1, §3.4, "Further examples", read at
 source) take the group `G_S` of such maps with breakpoints in `Z[1/2] ∪ S`, where `S` is a
 `T`-invariant set of non-dyadic rationals. They show that `G_S'` is simple and that `G_S/G_S'` is
