@@ -101,3 +101,16 @@ companion proof identifies the global operator-norm limit with the supremum
 over norm-corona representations, whose word kernel is the MF radical.
 The missing step is still a global collapse estimate for a specific
 nontrivial word, not convergence of the vector-context hierarchy.
+
+**Higher Kazhdan projections as a (T) substitute: dead in degree one
+(2026-09-18, swarm-0917-w6-w6-ptm-break).**
+`degree-one-laplacian-gap-forces-kesten-gap-in-every-model` splits the
+degree-one Laplacian of any presentation complex as
+`d_0 d_0^* + d_1^* d_1`.  The two halves have product zero, and
+`sp(d_0 d_0^*) u 0 = sp(Delta_0) u 0`.  So a degree-one gap in any model
+(Hilbert space, corona, tracial, stably finite) is a degree-zero Kesten gap
+in that same model.  A maximal `p_1` exists only for Kazhdan groups, and
+the reduced Li--Nowak--Pooya projections (for example `F_m`) do not
+transport into corona models.  Euler relations in `K_0` reach degree-zero
+corners only through `p_0` or `p_1`.  Degree `>= 2` Laplacians control only
+the upper half of the next lower Laplacian and are not decided.
