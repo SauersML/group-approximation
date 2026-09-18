@@ -37,6 +37,10 @@ cell 0 holding `s+ ≠ 0`, with zeros to the right. Then the first arrival at ce
 
   So with two shapes, branching 5 needs at least 5 symbols. The family generalizes the smallest quintic table.
 
+**Pipeline evidence for m = 5** (artifact §4): SMART's inducing set gives exactly `5^L` induced steps per
+level-`L` crossing, and the induced map has locally readable eigenvalues `-1` (radius 0), `e^{2πi/5}` (radius 1) and
+`e^{2πi/25}` (radius 2), exactly SMART's pattern with 3 replaced by 5.
+
 **What would settle it.** A move lemma for `M_m`, analogous to Callard–Salo's `prop:smart-moves`, giving the
 recursive decomposition of the filled and hollow crossings for general `j`, proved by induction on `L`.
 
