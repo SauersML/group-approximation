@@ -1,0 +1,8 @@
+seed=1 trials_per_host=40
+seed example x(g)^2 x(g+1)^-1 over S3 on Z/2: bijective=False, images=30/36, constant-fibre coefficients (site0,site1)=(2,2) i.e. 2+2t = 2-t, L0 rank=1/2; seed criterion alpha=2-t mod 2 = t is a unit of F_2[Z/2]
+p(x)=x^3 r x r x equals r^s on all of S3: True
+v(x)=x p(x) equals t^a on all of S3: True
+tau_beta = (a, s*beta) on 9288 (host,beta,config) cases: 9288/9288
+tau_lam  = (a*lam, s) on 9288 (host,lam,config) cases: 9288/9288
+S3: {'words': 160, 'fib_ok': 160, 'bij': 66, 'pred_match': 160, 'const_fibres_ok': 66, 'sigma_L0_bij_but_tau_not': 2, 'seed_crit_wrong': 20}
+A4: {'words': 120, 'fib_ok': 120, 'bij': 46, 'pred_match': 120, 'const_fibres_ok': 46, 'sigma_L0_bij_but_tau_not': 7, 'seed_crit_wrong': 34}

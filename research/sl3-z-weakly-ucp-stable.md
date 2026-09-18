@@ -163,3 +163,25 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   `tempered-selected-conjugation-vector-obeys-rcc` remains valid, but deriving
   its hypothesis for a lattice-fixed leak is already the HNN-specific
   no-spherical-leak problem.
+- **Ring-cover instability witnesses are void; the witness class is now
+  "covers with non-Kazhdan fibre square"** (swarm-0917-w8-nh-break, finite-models,
+  2026-09-18). Dead as a disproof route; the class-killing half is
+  `kazhdan-fibre-square-cover-models-round`.
+  - **Idea tested.** A disproof would take a Kazhdan cover `G~ -> SL_3(Z)` and
+    representations of `G~` that are almost trivial on the kernel `N` but have
+    small `N`-fixed mass (`kazhdan-cover-models-round-iff-kernel-fixed-mass-one`).
+    The natural non-central covers are `EL_3(R) -> EL_3(Z)` for finitely
+    generated rings `R ->> Z`, such as `Z[x] -> Z` and `Z⟨x,y⟩ -> Z`. Their kernels
+    are non-abelian, so the abelian-kernel argument does not reach them.
+  - **Where it dies.** The fibre square `P = G~ x_Q G~ ≅ N ⋊ G~` acts on `M_d` by
+    `ξ -> ρ(a) ξ ρ(b)*`. The identity matrix is fixed by the diagonal and moved by
+    `||ρ(m) - 1||_2` by the generators `(m,1)`. If `P` is Kazhdan, the nearby
+    invariant vector has range in `Fix_N`, so `1 - tr E_N <= (L/κ_P)^2 max ||ρ(m)-1||_2^2`.
+    For ring covers `P` is a quotient of `EL_3(R x_Z R)`, which is Kazhdan by
+    Ershov--Jaikin-Zapirain. So every such model rounds strictly, at a rate.
+  - **What survives.** A witness pulled back from a Kazhdan cover needs a fibre
+    square without (T), equivalently `(N ⋊ G~, N)` without relative (T). The central
+    mechanism is the known example, but `SL_3(Z)` has finite `H_2` and so no infinite
+    central Kazhdan cover. Abelianization cannot detect a surviving witness, since
+    `N/[N,G~]` is finite for every Kazhdan cover here. No non-ring, non-central
+    Kazhdan cover of `SL_3(Z)` has been examined.

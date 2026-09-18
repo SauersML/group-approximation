@@ -77,3 +77,19 @@ its own node):
   elements of infinite order, e.g. infinite hyperbolic stages, is never finitely
   presented.
 - Obstruction side: lane z1-11-torsion-block.
+- 2026-09-17, inverter (lane sw-090): covers of known branch torsion groups.
+  A counterexample has a just-infinite torsion quotient; the natural
+  certificate is a surjection onto a known torsion branch group.
+  - `self-similar-spinal-groups-not-fp-torsion-quotients` (proposed established):
+    a section cocycle on the free group climbs from `A * B` to the kernel and
+    lifts infinite order. No self-similar spinal group (Grigorchuk, Gupta-Sidki,
+    torsion GGS, Fabrykowski-Gupta) is a quotient of a finitely presented
+    torsion group. This route is dead for that class. For the first Grigorchuk
+    group and `G_omega` this was known in the stronger form
+    `fp-covers-of-grigorchuk-groups-are-large`; that import does not cover the Gupta-Sidki and GGS cases.
+  - `contracting-torsion-interior-at-finite-radius` (proposed established): for
+    any contracting self-replicating finite-state group `J`, the same holds
+    unless the single truncated presentation `G_rho0(J)` at an explicit radius is
+    torsion. That is the whole remaining question for this class. This is the
+    torsion analogue of Benli-Grigorchuk-de la Harpe Theorem 1.9. Check:
+    `experiments/spinal-section-cocycle-2026-09-17/`.

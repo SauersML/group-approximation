@@ -1,0 +1,7 @@
+group=F R=5 K=2 |B_R|=475 vars=2653 clauses=8319 -> UNSAT  (31.9s)
+group=F R=5 K=3 |B_R|=475 vars=2653 clauses=8319 -> UNSAT  (28.3s)
+group=F R=5 K=4 |B_R|=475 vars=2653 clauses=8319 -> SAT  (28.1s)
+group=F R=6 K=2 |B_R|=1381 vars=9185 clauses=30205 -> UNSAT  (92.0s)
+Terminated
+group=F R=6 K=4 |B_R|=1381 vars=9185 clauses=30205 -> UNSAT  (12.0s)
+group=F R=7 K=2 |B_R|=3957 vars=30809 clauses=105493 -> UNSAT  (22.3s)

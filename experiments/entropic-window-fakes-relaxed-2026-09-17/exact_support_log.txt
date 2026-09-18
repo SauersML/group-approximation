@@ -1,0 +1,23 @@
+== z4
+support 29 D 107 exact phi 85/107 rows per codeword [85, 85, 85]
+rep_z4.json reproduced
+== k2a
+support 29 D 107 exact phi 85/107 rows per codeword [85, 85, 85]
+rep_k2a.json reproduced
+== z5
+support 10 D 10 exact phi 4/5 rows per codeword [8, 8, 8]
+rep_z5.json reproduced
+== dinf
+support 34 D 220 exact phi 52/55 rows per codeword [196, 196, 196, 196]
+rep_dinf.json reproduced
+== z7
+support 110 D 3424 exact phi 1479/1712 rows per codeword [2958, 2958, 2958, 2958]
+1085 atom_dinf_dim1.json
+901 atom_k2a_dim1.json
+898 atom_z4_dim1.json
+273 atom_z5_dim1.json
+3446 atom_z7_dim1.json
+164113 rep_dinf.json
+21705 rep_k2a.json
+21707 rep_z4.json
+482 rep_z5.json

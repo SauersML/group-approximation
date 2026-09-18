@@ -1,0 +1,6 @@
+p=3 ker(Gamma->C_p^3) index 27 [ [ [ 3, 7 ] ], 1 ]
+exit 0
+p=5 ker(Gamma->C_p^3) index 125 [ [ [ 5, 7 ] ], 1 ]
+exit 0
+p=7 ker(Gamma->C_p^3) index 343 [ [ [ 7, 7 ] ], 1 ]
+exit 0

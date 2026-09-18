@@ -65,3 +65,13 @@ Here an action of Gamma on S is of type (A) when:
 - **Necessity.** `complexity-bounded-host-classes-are-not-universal` shows that
   the actors for all inputs cannot share a recursive bound on word-problem
   complexity. Any universal construction must consume the input's algorithm.
+- **Finitary overgroups.** `fp-finitary-permutation-overgroups-are-type-a-actors`
+  shows that every finitely generated `Gamma` with
+  `Alt_fin(X) <= Gamma <= Sym(X)` has faithful highly transitive action with
+  finitely generated point stabilizers, so it is a type (A) actor exactly when
+  it is finitely presented. Route `pbh-via-fp-finitary-overgroups` reduces this
+  conjecture to `decidable-groups-embed-in-fp-finitary-overgroups` (OPEN).
+  Established limits: the input modulo a locally finite normal subgroup must
+  embed in the finitely presented quotient `Gamma/(Gamma ∩ FSym(X))`; split
+  lampshufflers and Houghton translation twists are dead; a full Cantor
+  quotient makes the finitary layer redundant.

@@ -1,0 +1,36 @@
+== 1-2. pump and idempotent measure ==
+leaves mod 2           |Q|=2 j0=0 m=2 |R_V|=2 supp(pi)=2 residual=0.0e+00 pi={(0, 0): 0.5, (1, 1): 0.5}
+depth truncated at 2   |Q|=3 j0=2 m=1 |R_V|=1 supp(pi)=1 residual=0.0e+00 pi={(2, 0): 1.0}
+is a right vine        |Q|=3 j0=1 m=1 |R_V|=2 supp(pi)=1 residual=0.0e+00 pi={(2, 0): 1.0}
+random 2-state         |Q|=2 j0=1 m=1 |R_V|=2 supp(pi)=2 residual=0.0e+00 pi={(0, 0): 0.5, (1, 0): 0.5}
+random 2-state         |Q|=2 j0=1 m=1 |R_V|=2 supp(pi)=2 residual=1.1e-16 pi={(0, 0): 0.618, (1, 0): 0.382}
+random 3-state         |Q|=3 j0=2 m=1 |R_V|=2 supp(pi)=2 residual=0.0e+00 pi={(1, 0): 0.382, (2, 0): 0.618}
+
+== 3. brute force vs predicted product law (N=2, H=2) ==
+leaves mod 2           s=x_1  max |law difference| = 0.00e+00 over 92 atoms
+leaves mod 2           s=x_0  max |law difference| = 0.00e+00 over 92 atoms
+depth truncated at 2   s=x_1  max |law difference| = 0.00e+00 over 9 atoms
+depth truncated at 2   s=x_0  max |law difference| = 0.00e+00 over 9 atoms
+is a right vine        s=x_1  max |law difference| = 0.00e+00 over 9 atoms
+is a right vine        s=x_0  max |law difference| = 0.00e+00 over 9 atoms
+
+== 4. exact TV of Psi-laws, split_s Y (N=n) vs model (N=n+d) ==
+leaves mod 2           s=x_1 H=2: n=4 tv=0.7051 (sqrt(n)tv=1.410, bound 4.62); n=8 tv=0.5552 (sqrt(n)tv=1.570, bound 3.02); n=16 tv=0.4173 (sqrt(n)tv=1.669, bound 2.07); n=32 tv=0.3048 (sqrt(n)tv=1.724, bound 1.44); n=64 tv=0.2192 (sqrt(n)tv=1.754, bound 1.01)
+leaves mod 2           s=x_0x_2 H=3: n=4 tv=0.9959 (sqrt(n)tv=1.992, bound 16.00); n=8 tv=0.9655 (sqrt(n)tv=2.731, bound 9.24); n=16 tv=0.8751 (sqrt(n)tv=3.501, bound 6.05); n=32 tv=0.7289 (sqrt(n)tv=4.123, bound 4.13)
+depth truncated at 2   s=x_1 H=2: n=4 tv=0.9995 (sqrt(n)tv=1.999, bound 9.24); n=8 tv=0.9843 (sqrt(n)tv=2.784, bound 6.05); n=16 tv=0.9142 (sqrt(n)tv=3.657, bound 4.13); n=32 tv=0.7790 (sqrt(n)tv=4.407, bound 2.87); n=64 tv=0.6157 (sqrt(n)tv=4.925, bound 2.02); n=128 tv=0.4627 (sqrt(n)tv=5.235, bound 1.42); n=256 tv=0.3378 (sqrt(n)tv=5.405, bound 1.00); n=512 tv=0.2428 (sqrt(n)tv=5.493, bound 0.71)
+depth truncated at 2   s=x_0x_2 H=3: n=4 tv=1.0000 (sqrt(n)tv=2.000, bound 32.00); n=8 tv=1.0000 (sqrt(n)tv=2.828, bound 18.48); n=16 tv=1.0000 (sqrt(n)tv=4.000, bound 12.09); n=32 tv=0.9995 (sqrt(n)tv=5.654, bound 8.26); n=64 tv=0.9860 (sqrt(n)tv=7.888, bound 5.75); n=128 tv=0.9186 (sqrt(n)tv=10.393, bound 4.03)
+is a right vine        s=x_1 H=2: n=4 tv=0.9995 (sqrt(n)tv=1.999, bound 9.24); n=8 tv=0.9843 (sqrt(n)tv=2.784, bound 6.05); n=16 tv=0.9142 (sqrt(n)tv=3.657, bound 4.13); n=32 tv=0.7790 (sqrt(n)tv=4.407, bound 2.87); n=64 tv=0.6157 (sqrt(n)tv=4.925, bound 2.02); n=128 tv=0.4627 (sqrt(n)tv=5.235, bound 1.42); n=256 tv=0.3378 (sqrt(n)tv=5.405, bound 1.00); n=512 tv=0.2428 (sqrt(n)tv=5.493, bound 0.71)
+is a right vine        s=x_0x_2 H=3: n=4 tv=1.0000 (sqrt(n)tv=2.000, bound 32.00); n=8 tv=1.0000 (sqrt(n)tv=2.828, bound 18.48); n=16 tv=1.0000 (sqrt(n)tv=4.000, bound 12.09); n=32 tv=0.9995 (sqrt(n)tv=5.654, bound 8.26); n=64 tv=0.9860 (sqrt(n)tv=7.888, bound 5.75); n=128 tv=0.9186 (sqrt(n)tv=10.393, bound 4.03)
+random 2-state         s=x_1 H=2: n=4 tv=0.9644 (sqrt(n)tv=1.929, bound 9.24); n=8 tv=0.8764 (sqrt(n)tv=2.479, bound 6.05); n=16 tv=0.7329 (sqrt(n)tv=2.932, bound 4.13); n=32 tv=0.5722 (sqrt(n)tv=3.237, bound 2.87); n=64 tv=0.4271 (sqrt(n)tv=3.417, bound 2.02)
+random 2-state         s=x_0x_2 H=3: n=4 tv=1.0000 (sqrt(n)tv=2.000, bound 32.00); n=8 tv=1.0000 (sqrt(n)tv=2.828, bound 18.48); n=16 tv=0.9973 (sqrt(n)tv=3.989, bound 12.09); n=32 tv=0.9686 (sqrt(n)tv=5.479, bound 8.26)
+random 2-state         s=x_1 H=2: n=4 tv=0.9095 (sqrt(n)tv=1.819, bound 11.55); n=8 tv=0.8066 (sqrt(n)tv=2.282, bound 7.56); n=16 tv=0.6648 (sqrt(n)tv=2.659, bound 5.16); n=32 tv=0.5159 (sqrt(n)tv=2.918, bound 3.59); n=64 tv=0.3840 (sqrt(n)tv=3.072, bound 2.52)
+random 2-state         s=x_0x_2 H=3: n=4 tv=1.0000 (sqrt(n)tv=2.000, bound 40.00); n=8 tv=0.9988 (sqrt(n)tv=2.825, bound 23.09); n=16 tv=0.9852 (sqrt(n)tv=3.941, bound 15.12); n=32 tv=0.9257 (sqrt(n)tv=5.237, bound 10.33)
+random 3-state         s=x_1 H=2: n=4 tv=0.9744 (sqrt(n)tv=1.949, bound 13.86); n=8 tv=0.9116 (sqrt(n)tv=2.578, bound 9.07); n=16 tv=0.7922 (sqrt(n)tv=3.169, bound 6.20); n=32 tv=0.6394 (sqrt(n)tv=3.617, bound 4.31); n=64 tv=0.4877 (sqrt(n)tv=3.901, bound 3.02)
+random 3-state         s=x_0x_2 H=3: n=4 tv=1.0000 (sqrt(n)tv=2.000, bound 48.00); n=8 tv=1.0000 (sqrt(n)tv=2.828, bound 27.71); n=16 tv=0.9986 (sqrt(n)tv=3.994, bound 18.14); n=32 tv=0.9803 (sqrt(n)tv=5.545, bound 12.39)
+
+== 5. control: no coin (always T^0) ==
+leaves mod 2           s=x_1: n=4 tv=0.8383; n=16 tv=0.5368; n=64 tv=0.2908
+depth truncated at 2   s=x_1: n=4 tv=1.0000; n=16 tv=1.0000; n=64 tv=1.0000
+is a right vine        s=x_1: n=4 tv=1.0000; n=16 tv=1.0000; n=64 tv=1.0000
+
+all checks passed

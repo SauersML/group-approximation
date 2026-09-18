@@ -103,5 +103,17 @@ externally reviewed).**
   continuous fields with simple UCT fibres including Kirchberg fibres.  Its
   `T_1` case is equivalent to the simple case (`bk-t1-primitive-spectrum-case`).
 
+**Exhaustion and index-twist obstruction (2026-09-17, lane sw-045; lane proof,
+not externally reviewed).**  `bk-unkilled-classes-diverge-past-index-shifts`:
+suppose a singular class is not killed.  Then along every nested QD exhaustion
+of every essential representation its rank values are eventually monotone and
+tend to infinity, and they are `o(k_n)` when the class is trace-invisible.  A
+Cuntz-pair (KK(A,C)) twist shifts them only by a constant integer.  An
+unkilled class is uniformly positive on a finite window, so almost-invariant
+subspaces converging strongly to `1` also have divergent values, nested or not.
+So exhaustion constructions, index twists and trace realisation cannot kill it.
+Killing subspaces must escape every exhaustion stage at a uniform angle and
+cancel at a scale strictly between `1` and `k_n`.
+
 Lean statement: `NinetyNineProblems.ProblemVIIStatement`
 (`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).

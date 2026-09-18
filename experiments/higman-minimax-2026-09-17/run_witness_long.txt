@@ -1,0 +1,3 @@
+witness before L=12: max def=0.3098277 defects=[np.float64(0.309828), np.float64(0.309192), np.float64(0.309802), np.float64(0.309377)] ||U_i-1||=[np.float64(1.9854), np.float64(1.9887), np.float64(1.9971), np.float64(1.9933)] opp comm=[np.float64(1.981), np.float64(2.0)]
+  it 0: def=0.3094363 active=16 rho=1.17e-02 tau=5.0e-02
+witness after L=12: max def=0.3085799 defects=[np.float64(0.30858), np.float64(0.30858), np.float64(0.30858), np.float64(0.30858)] ||U_i-1||=[np.float64(1.9854), np.float64(1.9887), np.float64(1.9971), np.float64(1.9933)] opp comm=[np.float64(1.981), np.float64(2.0)]

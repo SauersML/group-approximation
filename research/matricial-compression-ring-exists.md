@@ -1,0 +1,172 @@
+---
+rg: 2
+id: matricial-compression-ring-exists
+kind: claim
+title: Some exactly matricial ring carries a compressing automorphism with a unit root whose transported commutators generate the unit ideal
+distinct_from:
+  mf-kazhdan-quotientless-mapping-torus-exact-radical: that is the group existence question (XMF); this is the ring existence question which implies it through xmf-via-matricial-compression-ring-proof, with the Kazhdan kernel EL_4(R).
+  matricial-rings-rigidify-compression-centralizers: that proves the jump in (R4) can never be implemented by a unit of an exactly matricial ring; this asks for the jump to be implemented by an outer automorphism instead.
+  lef-kazhdan-group-without-finite-quotients-exists: that supplies EL_3 over the minimal-subshift ring as an MF Kazhdan group without finite quotients; this asks for a ring automorphism of the kind that makes such a group the exact radical of its mapping torus.
+  locally-residually-finite-targets-kill-compression-defects: that is the group-level rigidity in locally residually finite targets; this is a ring existence question whose ambient skew Laurent ring is forced to be non-matricial.
+artifacts:
+  - research/mf-kazhdan-quotientless-mapping-torus-exact-radical.md
+---
+
+**OPEN.**  There exist
+
+- a finitely generated unital ring `R` with an injective unital ring
+  homomorphism `R -> prod_omega M_(N_n)(k_n)`, where the `k_n` are
+  commutative fields (**R1**: `R` is exactly matricial);
+- a ring automorphism `psi` of `R` (**R2**);
+- a finitely generated unital subring `R_0 <= R` with `psi(R_0) <= R_0`
+  (**R3**);
+- a unit `z` of `R` commuting with every element of `R_0` (**R4**);
+
+such that the two-sided ideal
+
+```text
+I = ( psi(z) p psi(z)^(-1) - p  :  p in R_0 )  <=  R
+```
+
+is all of `R` (**R5**).
+
+**Why it matters.**  By route `xmf-via-matricial-compression-ring-proof`,
+this implies `(XMF)`: with `Q = EL_4(R)`, `Rad_MF(Q semidirectProduct_psi Z) = Q x {0}`,
+and `Q` is Kazhdan, LEF, and has no nontrivial finite quotient.  So this
+ring problem is a sufficient decomposition of the purely extrinsic half of
+`torsion-free-sofic-exact-mf-radical-over-z`.
+
+**Each clause can fail on its own.**
+
+- (R1) alone is satisfied by the minimal-subshift ring `LC(X,F_q) semidirect Z`,
+  by the Weyl algebra, and by residually finite crossed products.
+- (R3)+(R4) are elementary combinatorial clauses.  (R5) excludes every ring
+  with a nonzero quotient in which the image of `psi(z)` centralizes the image
+  of `R_0`.  In particular it excludes every ring with a nonzero commutative
+  quotient, such as a group ring `F[Lambda]` with its augmentation.
+- (R1)+(R3)+(R4)+(R5) are mutually constrained by
+  `matricial-rings-rigidify-compression-centralizers`.  The restriction of
+  `psi` to `R_0 u {z}` is implemented by **no** unit of **any** exactly matricial
+  overring of `R_0 u {z}`.  So the skew Laurent ring `R[t, t^(-1); psi]` is not
+  exactly matricial, and `psi(R_0)` is a proper subring of `R_0`.
+
+## Attempts
+
+1. **Unit-implemented automorphisms (2026-09-17, dead class).**  Suppose `psi`
+   is conjugation by a unit of an exactly matricial ring containing `R`.
+   Examples are an inner automorphism, and `psi` induced by a homeomorphism
+   `S` such that the group `Lambda = <Gamma, S>` acts minimally, topologically
+   freely and residually finitely on `X`, with `R = LC(X,k) semidirect Gamma`
+   and `LC(X,k) semidirect Lambda` exactly matricial by
+   `residually-finite-actions-give-matricial-crossed-products`.  Then (R4)
+   forces `psi(z)` to commute with `R_0`, so `I = 0`.  This dies at (R5) by
+   `matricial-rings-rigidify-compression-centralizers`.
+2. **Finite-order and equal-image compressions (dead).**  If `psi(R_0) = R_0`,
+   then `psi(z)` commutes with `psi(R_0) = R_0`, so `I = 0`.  In particular
+   every `psi` of finite order dies, since `psi^m = id` and
+   `psi(R_0) <= R_0` force `psi(R_0) = R_0`.
+3. **Group rings (dead at R5).**  For `R = F[Lambda]`, the augmentation
+   `F[Lambda] -> F` is a commutative quotient, so `I` lies in the augmentation
+   ideal.  This kills the direct linearization `F_q[ClLamp(X) semidirect T]` of
+   the commuting-lamp witness of `mf-not-closed-under-integer-extensions`.
+4. **Crossed products whose compressed subring contains the whole group ring
+   (dead at R4).**  Let `R = LC(X,k) semidirect Gamma` for a minimal action
+   of an ICC group.  If `R_0` contains every `u_g`, then the commutant of
+   `R_0` consists of `Gamma`-invariant functions, which are scalars.  So `z`
+   is central and `psi(z)` is central.  A surviving `R_0` must see only part of
+   `Gamma`, and its commutant must contain non-scalar units.
+5. **Minimal subshift ring with a subshift automorphism (dead for monomial
+   subrings, open in general).**  Let `R = LC(X,F_q) semidirect Z` for an
+   infinite minimal subshift `(X,T)`, and let `psi` be induced by
+   `S in Aut(X,T)`, so `psi(u_T) = u_T`.  Let `R_0` be generated by
+   `u_T^(+-1)` and finitely many functions.
+   - Then `R_0 = LC(Y) semidirect Z` for the factor `pi : X -> Y` generated by
+     the `T`-translates of those functions.
+   - `psi(R_0) <= R_0` says that `pi S^(-1) = sigma pi` for a `T`-equivariant
+     surjection `sigma : Y -> Y`.  By Attempt 2, this must be non-injective:
+     a non-coalescent minimal factor.
+   - (R4) then fails.  An element `sum g_n u_T^n` commuting with `u_T` has
+     `T`-invariant, hence constant, coefficients.  Commuting with `LC(Y)`
+     forces `T^n` to act trivially on `Y` whenever the coefficient is nonzero.
+     So `z` is a scalar whenever `Y` is infinite.  If `Y` is finite, `sigma`
+     is injective.
+   - A surviving `R_0` must therefore omit `u_T`, or contain non-monomial
+     generators.  In addition, `(T,S)` must not generate a minimal,
+     topologically free, residually finite `Z^2`-action (Attempt 1).  No
+     instance is known.
+6. **Compression hulls inside R (2026-09-17, dead class).**
+   `matricial-rings-rigidify-compression-centralizers`, applied inside `R`
+   itself, gives the following.  Whenever a unit `w` of `R` satisfies
+   `w R_0 w^(-1) <= R_0`, we have `C_R(R_0) <= C_R(w^(-1) R_0 w)`.  Iterating,
+   `z` centralizes the *inverse compression hull* `H(R_0)`: the subring
+   generated by all `w^(-1) R_0' w` over subrings `R_0'` already obtained and
+   units `w` compressing them.  Since `psi(z)` fails to centralize `R_0`
+   exactly when `z` fails to centralize `psi^(-1)(R_0)`, the recipe needs
+
+   ```text
+   psi^(-1)(R_0)  not contained in  C_R(C_R(H(R_0))).
+   ```
+
+   *Dead example.*  Take `R = LC(X,k) semidirect BS(1,6)`,
+   `Gamma = Z[1/6] semidirect <a>` with `a` multiplying by `6`,
+   `R_0 = k[u_b^(+-1)]` for `b = 1 in Z[1/6]`, and `psi` induced by the outer
+   dilation `b -> b^2`.  Here `u_a` compresses `R_0`, so `H(R_0)` contains
+   `u_(b^(1/6))`, hence `u_(b^(1/2)) = u_(b^(1/6))^3`, which is
+   `psi^(-1)(u_b)`.  So (R5) fails.  The same happens for every dilation by an
+   `S`-unit when `Gamma` already contains a dilation whose inverse powers reach
+   the needed roots.  A surviving `psi` must compress `R_0` in a direction
+   that no unit of `R` compresses.
+7. **Twisted Clifford-lamp linearization (2026-09-17, group-rings, dead at
+   R1 for the affine-SL_3 class).**  Notation as in
+   `notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md`: `K =
+   ClLamp(X) semidirect T`, `psi` conjugation by `tau`, `c_x^2 = 1`,
+   `c_x c_y = zeta c_y c_x` for `x != y`.  Take `char k != 2` and
+   `R = k[K]/(zeta + 1)`, `R_0` the image of `Z[Gbar]`, `z = u_(c_o)`.
+   - *Attempt 3 is evaded.*  `R` has no nonzero commutative quotient: there
+     `c_x c_y = -c_y c_x` gives `2 c_x c_y = 0`, and `c_x c_y` is a unit.
+   - *(R2)-(R4) hold.*  `abar(Gbar) <= Gbar` and `[c_o, Gbar] = 1`.
+   - *(R5) holds.*  With `s = v_1` and `v = u_([c_(tau o), v_1])`, the defect is
+     `psi(z) u_s psi(z)^(-1) - u_s = (v - 1) u_s`.  Since `v_1 tau o != tau o`,
+     `v` is the image of `c_(tau o) c_(v_1 tau o)`, whose square is `zeta`, so
+     `v^2 = -1`.  Then `(v - 1)(v + 1) = -2` is a unit, so `v - 1` is a unit
+     and `I = R`.  This is the first candidate in which (R3), (R4) and (R5)
+     hold simultaneously.
+   - *Where it dies: (R1), finite generation.*  Every `psi`-stable subring
+     `R' <= R` containing `z` is not finitely generated.  Proof: a finite
+     generating set has finite supports in `K`, and the subgroup `H'` they
+     generate satisfies `R' <= k[H' <zeta>]/(zeta+1)`.  An element
+     `(lambda, g)` of `H'` has lamp support in `T . F` for a fixed finite `F`,
+     since `(lambda,g)(lambda',g') = (lambda . g lambda', g g')`.  But
+     `psi^n(z) = u_(c_(tau^n o))` lies in `R'` for all `n`, and `tau^n o` has
+     level `n`.  The `T`-orbits are exactly the level fibres, so `T . F` meets
+     only finitely many levels.
+   - *The whole affine-SL_3 class dies the same way.*  Let
+     `Gbar <= K_V <= Z[1/2]^3 semidirect SL_3(Z[1/2])` be `tau`-stable, where
+     `tau` dilates translations by `2`, and put `V' = K_V semidirect <tau>`.
+     Let `X` be any `V'`-set, and let `o` be fixed by `Gbar` with a nonzero
+     lamp defect, meaning some `s in Gbar` moves `tau o`.  **Lemma:** the
+     points `tau^n o` lie in pairwise distinct `K_V`-orbits.  Given the
+     Lemma, the support argument above shows that no `psi`-stable subring of
+     `k[ClLamp(X) semidirect K_V]/(zeta+1)` containing `u_(c_o)` is finitely
+     generated, even when `K_V` is.
+   - *Proof of the Lemma.*
+     - Suppose `tau^n o = k tau^(n') o` with `m = n' - n != 0`.  Then
+       `h = tau^(-n) k tau^(n') = k' tau^m` lies in `H = Stab(o)`, with
+       `k' = (w, A)` in `K_V` and `A in SL_3(Z[1/2])`.
+     - Put `M = H meet Z[1/2]^3`.  It is normal in `H`, hence normalized by
+       `h`.  It is `SL_3(Z)`-invariant and contains `Z^3`.
+     - Every such `M` is `2^(-j) Z^3` or `Z[1/2]^3`.  Indeed, if `M/Z^3`
+       contains an element `2^(-j) y` of order `2^j`, then `y` is unimodular
+       mod `2^j`.  `SL_3(Z) -> SL_3(Z/2^j)` is onto and transitive on
+       unimodular vectors, so `2^(-j) Z^3 <= M`.
+     - If `M = Z[1/2]^3`, then `tau^(-1) Gbar tau = 2^(-1)Z^3 semidirect SL_3(Z)`
+       lies in `H`.  So `Gbar` fixes `tau o`, and the defect vanishes.
+     - If `M = 2^(-j) Z^3`, then `h M h^(-1) = 2^m A M = M`.  So `2^m A` lies in
+       `GL_3(Z)`, and `2^(3m) = +-1`, so `m = 0`, a contradiction.
+   - *What survives.*  The ring `k[K]/(zeta+1)` meets (R2)-(R5), and only
+     finite generation fails.  A surviving lamp linearization needs a
+     nonzero-degree element in the stabilizer of `o`.  By the Lemma, that
+     forces linear parts outside `SL_3(Z[1/2])` with `2^m A in GL_3(Z)`.  If
+     `2^(-m) I` then lies in `K_V`, then `psi^m` on translations is inner.
+     A different root (not a lamp) is the other exit.  Exact matriciality of
+     `k[K]/(zeta+1)` was not checked, because the death at (R1) comes first.

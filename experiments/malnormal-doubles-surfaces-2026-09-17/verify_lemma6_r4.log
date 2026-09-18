@@ -1,0 +1,6 @@
+out_pairs_r4_residual.txt ('aBAAb', 'baBaaaba') CERTIFIED rank(C)=2 inf-index=True malnormal=True | Y rank 4, 1 boundaries | AABAAAbABaBAAbaBAAbbaBaaabaBaabABaab@1 rank1=True brute-bad=0 => closed genus-4 surface in D(F2,C)
+out_pairs_r4_residual.txt ('bbaabAbb', 'aaBabA') CERTIFIED rank(C)=2 inf-index=True malnormal=True | Y rank 4, 3 boundaries | BBBBaBAA@2 rank1=True brute-bad=0; bbaaBabAbbaabA@6 rank1=True brute-bad=0; ABAb@8 rank1=True brute-bad=0 => closed genus-4 surface in D(F2,C)
+out_pairs_r4_residual.txt ('baBAA', 'BBaaBa') CERTIFIED rank(C)=2 inf-index=True malnormal=True | Y rank 4, 3 boundaries | bABBBaaBaaa@3 rank1=True brute-bad=0; bbAbAA@6 rank1=True brute-bad=0; aBAAb@1 rank1=True brute-bad=0 => closed genus-4 surface in D(F2,C)
+out_pairs_r4_residual.txt ('BBABaa', 'AbAbA') CERTIFIED rank(C)=2 inf-index=True malnormal=True | Y rank 4, 3 boundaries | abAbABBAB@4 rank1=True brute-bad=0; abbAAb@3 rank1=True brute-bad=0; aBaaB@7 rank1=True brute-bad=0 => closed genus-4 surface in D(F2,C)
+out_pairs_r4_residual.txt ('ABBBaab', 'ABaBABBa') CERTIFIED rank(C)=2 inf-index=True malnormal=True | Y rank 4, 1 boundaries | BaBABBaBAAbbbbbabABBaabA@10 rank1=True brute-bad=0 => closed genus-4 surface in D(F2,C)
+verified 5 / 5

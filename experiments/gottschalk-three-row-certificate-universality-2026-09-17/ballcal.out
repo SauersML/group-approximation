@@ -1,0 +1,9 @@
+ball sizes |B(r)|, r = 0..4: [1, 5, 17, 53, 147]
+table shape 3 x 147, 441 cells, 272 classes, rook independent: True
+edge relators (eps, m) ~ (1, eps m) present: 167
+relator t^-1 a^2 t = a^3: both sides' suffixes lie in M
+au = aTat and ua = Tata are distinct elements of M
+S_2: 2 homomorphisms, images of au and ua differ in 0
+S_3: 6 homomorphisms, images of au and ua differ in 0
+S_4: 24 homomorphisms, images of au and ua differ in 0
+S_5: 240 homomorphisms, images of au and ua differ in 0

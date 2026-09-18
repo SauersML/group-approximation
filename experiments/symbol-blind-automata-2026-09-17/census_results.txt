@@ -1,0 +1,24 @@
+Z5 [0, 1, 2] rules 8 bijective 1
+Z6 [0, 2, 4] rules 8 bijective 6
+  nonidentity sigma: {(0, 1, 0): 2}
+  nonidentity sigma: {(0, 1, 0): 2, (0, 1, 1): 2}
+  nonidentity sigma: {(0, 0, 1): 4}
+  nonidentity sigma: {(0, 0, 1): 4, (0, 1, 1): 2}
+  nonidentity sigma: {(0, 0, 1): 4, (0, 1, 0): 2, (0, 1, 1): 2}
+Z6 [0, 1, 2] rules 8 bijective 1
+S3 [0, 3, 4] rules 8 bijective 6
+  nonidentity sigma: {(0, 1, 0): 3}
+  nonidentity sigma: {(0, 1, 0): 3, (0, 1, 1): 3}
+  nonidentity sigma: {(0, 0, 1): 4}
+  nonidentity sigma: {(0, 0, 1): 4, (0, 1, 1): 3}
+  nonidentity sigma: {(0, 0, 1): 4, (0, 1, 0): 3, (0, 1, 1): 3}
+S3 [0, 1, 2] rules 8 bijective 1
+Z2xZ3 [0, 1, 2] rules 8 bijective 6
+  nonidentity sigma: {(0, 1, 0): 1}
+  nonidentity sigma: {(0, 1, 0): 1, (0, 1, 1): 1}
+  nonidentity sigma: {(0, 0, 1): 2}
+  nonidentity sigma: {(0, 0, 1): 2, (0, 1, 1): 1}
+  nonidentity sigma: {(0, 0, 1): 2, (0, 1, 0): 1, (0, 1, 1): 1}
+Z7 [0, 1, 2, 3] rules 93312 bijective 1
+Z7 [0, 1, 2, 4] rules 93312 bijective 1
+Z7 [0, 1, 3, 5] rules 93312 bijective 1

@@ -1,0 +1,63 @@
+# Outputs of uniform.cpp (search) and verify.py (independent checker), sw-103, 2026-09-17
+# Build: g++ -O2 -o uniform uniform.cpp.  Search: ./uniform n r 1 K.txt cert.txt.  Check: python3 verify.py n r cert.txt
+
+## Target cases n = 6
+--- n=6 r=6
+search:   n=6 r=6 |Lmax|=4494 |K|=6 D=4408 K=80 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=6 r=6 |Lmax|=4494 D=4408 K=80 linksteps=30536 |K|=6 basis=True ACCEPT 
+sha256(cert-6-6.txt) = b85edbc83f02dbdef916d76ac1d520f53198918a0758489c49b3501460e72a62
+--- n=6 r=7
+search:   n=6 r=7 |Lmax|=9912 |K|=6 D=9782 K=124 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=6 r=7 |Lmax|=9912 D=9782 K=124 linksteps=51132 |K|=6 basis=True ACCEPT 
+sha256(cert-6-7.txt) = 8de01f7ba59f8b73d86d7cf501bf67ce09493ad8c226d3f71bb011677faa5ff5
+--- n=6 r=8
+search:   n=6 r=8 |Lmax|=20040 |K|=6 D=20034 K=0 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=6 r=8 |Lmax|=20040 D=20034 K=0 linksteps=0 |K|=6 basis=True ACCEPT 
+sha256(cert-6-8.txt) = ca57eef4bb4cc9aede9595173200635396ea1405da2ce1959c777300b94a4a53
+--- n=6 r=9
+search:   n=6 r=9 |Lmax|=37758 |K|=6 D=37752 K=0 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=6 r=9 |Lmax|=37758 D=37752 K=0 linksteps=0 |K|=6 basis=True ACCEPT 
+sha256(cert-6-9.txt) = 362a637f0329af98d975eb402e5d061c197966ead4b2502c7b27354c38da634b
+
+## n = 7 (certificates not committed; regenerate deterministically and compare sha256; verifier replayed with checkpoints)
+search:   n=7 r=7 |Lmax|=24319 |K|=7 D=23172 K=1140 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=7 r=7 |Lmax|=24319 D=23172 K=1140 linksteps=1928908 |K|=7 basis=True ACCEPT
+sha256(cert-7-7.txt) = dbe87a0fda3d1fa8c1402adfe11057dc5815452f9b7014663ad799fe275b0fd8
+search:   n=7 r=8 |Lmax|=54272 |K|=7 D=53593 K=672 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=7 r=8 |Lmax|=54272 D=53593 K=672 linksteps=2451984 |K|=7 basis=True ACCEPT
+sha256(cert-7-8.txt) = 11380d666d07d931f636df3e0f807b371ac6b0a5fb0344251495db69e89e84b4
+
+## Second independent checker: verify_fast.cpp (C++, shares no code with uniform.cpp or verify.py)
+# g++ -O2 -o verify_fast verify_fast.cpp && ./verify_fast n r cert.txt
+verify_fast: n=6 r=6 |Lmax|=4494 D=4408 K=80 linksteps=30536 |K|=6 basis=True ACCEPT
+verify_fast: n=6 r=7 ACCEPT   n=6 r=8 ACCEPT   n=6 r=9 ACCEPT
+verify_fast: n=7 r=7 |Lmax|=24319 D=23172 K=1140 linksteps=1928908 |K|=7 basis=True ACCEPT  (166 s)
+verify_fast: n=7 r=8 |Lmax|=54272 D=53593 K=672 linksteps=2451984 |K|=7 basis=True ACCEPT  (453 s)
+verify_fast calibration: n=4 r=3 |K|=14 basis=False REJECT; n=5 r=4 |K|=30 basis=False REJECT; n=5 r=5 ACCEPT
+verify_fast negative controls: (6,6) certificate with a D dominator changed on line 3 -> "REJECT: D not dominated";
+  with a coordinate of the dominator on line 12 changed -> "REJECT: bad D dominator"
+
+## n = 7, r = 9 (staged search; certificate = cert-7-9-a + cert-7-9-b1 + cert-7-9-b2, not committed)
+search a (D only):            n=7 r=9 |Lmax|=112071 |K|=24208 D=87863 K=0 extents: [-3,3] x5 [-2,3] [-0,3]
+search b1 (init a, budget):   n=7 r=9 |Lmax|=24208 |K|=22033 D=0 K=2175  [stopped by time budget]
+search b2 (init b1):          n=7 r=9 |Lmax|=22033 |K|=7 D=20505 K=1521 extents: [-0,1] x7
+sha256(cert-7-9-a.txt)  = 3ae4ec6f37ffe0e28ac12bd10a77ce8281a15358ed55b6920081cd91ee318884
+sha256(cert-7-9-b1.txt) = d7d448fc8bb522ae859da99afe9abe55f4b436b201787bbe450f8021fade86fb
+sha256(cert-7-9-b2.txt) = a16a5ac7cf9080258805764aba8516e20c8a5a8cf0c1ae235808106d5c929770
+sha256(cert-7-9.txt)    = 3ff5e765e2fb07402f8056e995270cf46bb4c16c42103004b47c1f306aa8669c  (concatenation, 581804772 bytes)
+verify_fast (checkpointed): n=7 r=9 |Lmax|=112071 D=108368 K=3696 linksteps=16816670 |K|=7 basis=True ACCEPT
+verify.py: first 49882 D-moves replayed without error, then stopped (too slow for the full replay)
+
+## Known cases (sanity) and calibration at r = n-1 (must NOT certify)
+search:   n=3 r=2 |Lmax|=12 |K|=6 D=5 K=1 extents: [-0,1] [-0,1] [-0,1]
+verifier: n=3 r=2 |Lmax|=12 D=5 K=1 linksteps=3 |K|=6 basis=False     assert final == basis AssertionError 
+search:   n=4 r=3 |Lmax|=64 |K|=14 D=48 K=2 extents: [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=4 r=3 |Lmax|=64 D=48 K=2 linksteps=26 |K|=14 basis=False     assert final == basis AssertionError 
+search:   n=5 r=4 |Lmax|=340 |K|=30 D=297 K=13 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=5 r=4 |Lmax|=340 D=297 K=13 linksteps=584 |K|=30 basis=False     assert final == basis AssertionError 
+search:   n=6 r=5 |Lmax|=1826 |K|=62 D=1725 K=39 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=6 r=5 |Lmax|=1826 D=1725 K=39 linksteps=5523 |K|=62 basis=False     assert final == basis AssertionError 
+search:   n=4 r=4 |Lmax|=160 |K|=4 D=156 K=0 extents: [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=4 r=4 |Lmax|=160 D=156 K=0 linksteps=0 |K|=4 basis=True ACCEPT 
+search:   n=5 r=5 |Lmax|=841 |K|=5 D=836 K=0 extents: [-0,1] [-0,1] [-0,1] [-0,1] [-0,1]
+verifier: n=5 r=5 |Lmax|=841 D=836 K=0 linksteps=0 |K|=5 basis=True ACCEPT 

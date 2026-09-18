@@ -41,3 +41,20 @@ distinct_from:
   rank data realizable in growing dimension over `F_l` for infinitely many `l` is approximately realizable over `C`.
   - This is a group-level analogue of whether the closed cones of normalized subspace-arrangement rank vectors in
     characteristic `l` converge to the characteristic-zero cone as `l -> infinity`.
+- **Representation-theoretic transfer is dead (2026-09-17, lane `sw-069`)**, from
+  `transvection-floor-kills-ambient-rank-transfers`. It bears on the bridge question in its equality direction.
+  - *Statement.* For `n >= 3` and any representation of `SL_n(F_l)` over a field of characteristic `!= l`, a
+    transvection moves at least `1/8` of what any element moves.
+  - *Consequence.* No representation of the ambient `GL_n(F_l)` or `SL_n(F_l)` turns wild `F_l`-models into
+    complex (or other-characteristic) models with defect `o(1)` and separation bounded below. The infinite cyclic
+    group with window `{1, g, g^(-1)}` already fails.
+  - *Exact failing step.* A defect element that is a transvection inside an `SL_3(F_l)` block, next to a separated
+    element of that block. The torus spreads its isotypic mass over all nontrivial root characters, and the two
+    opposite radicals tie that mass to the whole nontrivial part of the module.
+  - *Consistent with tame lifting.* A generated group of order prime to `l` contains no transvection.
+  - *Survives.*
+    - Lifts that depend on the model and are not representations of any group containing such a block.
+    - Rank-approximate representations. A rank-metric uniform stability theorem for `SL_n(F_q)` in characteristic
+      zero would kill these too.
+  - *Status of the decision.* Still open. There is now a class kill on each side: Sylvester certificates for "not in
+    `L_inf`" (`sw-024`), functorial representation transfers for "`L_inf` = complex-linear sofic" (`sw-069`).

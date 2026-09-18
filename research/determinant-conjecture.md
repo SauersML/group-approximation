@@ -40,3 +40,9 @@ A group satisfies the conjecture exactly when every self-adjoint element of
   that every integral group-ring spectrum is a weak limit of eigenvalue
   distributions of symmetric integer matrices. This asks nothing about
   approximating `G` itself. The prerequisite is open for every nonsofic group.
+- **Cubic linearization.** Reduction landed
+  (`weak-determinant-violations-move-to-cubic-operators`): for injective
+  matrices the conjecture over all groups is equivalent to
+  `det(1 + w1 + w2) >= 1` for monomial `w1, w2`, and it follows from Serre
+  just above norm `3/sqrt 2`. Exact cubic models must leave finite groups;
+  the central gadget over `G x Z` does it. Open step: kernels (`DC_wi => DC`).

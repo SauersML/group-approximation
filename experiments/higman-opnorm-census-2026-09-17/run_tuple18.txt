@@ -1,0 +1,4 @@
+L=18 start rand0: max defect=0.4255 defects=[np.float64(0.4194), np.float64(0.4195), np.float64(0.4198), np.float64(0.4255)] ||U_i-1||=[np.float64(2.0), np.float64(1.992), np.float64(1.994), np.float64(1.998)]
+L=18 start rand1: max defect=0.4455 defects=[np.float64(0.4353), np.float64(0.4343), np.float64(0.4352), np.float64(0.4455)] ||U_i-1||=[np.float64(2.0), np.float64(2.0), np.float64(1.985), np.float64(1.997)]
+L=18 start rand2: max defect=0.4250 defects=[np.float64(0.4176), np.float64(0.4184), np.float64(0.4196), np.float64(0.425)] ||U_i-1||=[np.float64(2.0), np.float64(1.995), np.float64(2.0), np.float64(1.991)]
+BEST L=18 max defect 0.4250

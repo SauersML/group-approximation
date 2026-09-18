@@ -1,0 +1,46 @@
+d=2:
+   schwarz_min_eig_e12: -0.250000
+   two_positivity_min_eig: -0.500000
+   cp_lower_bound: 0.250000
+   haar_mc: 0.251591
+   haar_exact: 0.250000
+   algebra_min_haar_distance: scalars=0.707107, masa=0.500000, M_d=0.500000, I_2(x)M_(d/2)=0.707107, M_2(x)I_(d/2)=0.500000
+   bound_sqrt((d-1)/2d): 0.500000
+   mult_defect: 1.000000
+d=3:
+   schwarz_min_eig_e12: -0.250000
+   two_positivity_min_eig: -0.500000
+   cp_lower_bound: 0.288675
+   haar_mc: 0.336730
+   haar_exact: 0.333333
+   algebra_min_haar_distance: scalars=0.745356, masa=0.577350, M_d=0.577350, M_2+M_(d-2)=0.577350
+   bound_sqrt((d-1)/2d): 0.577350
+   mult_defect: 0.816497
+d=4:
+   schwarz_min_eig_e12: -0.250000
+   two_positivity_min_eig: -0.500000
+   cp_lower_bound: 0.306186
+   haar_mc: 0.376146
+   haar_exact: 0.375000
+   algebra_min_haar_distance: scalars=0.750000, masa=0.612372, M_d=0.612372, M_2+M_(d-2)=0.612372, I_2(x)M_(d/2)=0.707107, M_2(x)I_(d/2)=0.707107
+   bound_sqrt((d-1)/2d): 0.612372
+   mult_defect: 1.000000
+d=5:
+   schwarz_min_eig_e12: -0.250000
+   two_positivity_min_eig: -0.500000
+   cp_lower_bound: 0.316228
+   haar_mc: 0.402238
+   haar_exact: 0.400000
+   algebra_min_haar_distance: scalars=0.748331, masa=0.632456, M_d=0.632456, M_2+M_(d-2)=0.632456
+   bound_sqrt((d-1)/2d): 0.632456
+   mult_defect: 0.632456
+d=6:
+   schwarz_min_eig_e12: -0.250000
+   two_positivity_min_eig: -0.500000
+   cp_lower_bound: 0.322749
+   haar_mc: 0.418910
+   haar_exact: 0.416667
+   algebra_min_haar_distance: scalars=0.745356, masa=0.645497, M_d=0.645497, M_2+M_(d-2)=0.645497, I_2(x)M_(d/2)=0.707107, M_2(x)I_(d/2)=0.726483
+   bound_sqrt((d-1)/2d): 0.645497
+   mult_defect: 1.000000
+ALL CHECKS PASSED

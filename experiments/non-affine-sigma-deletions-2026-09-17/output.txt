@@ -1,0 +1,9 @@
+seed 20260917
+A n=4 k=3 m=24: val(Can)=val(Phi)=1.000  completeness(pert)=0.7500  val(V_pert)=0.375  completeness(mix)=0.8750  val(V_mix)=0.500  w_ex(mix)=0.5
+A n=4 k=4 m=30: val(Can)=val(Phi)=1.000  completeness(pert)=0.8750  val(V_pert)=0.300  completeness(mix)=0.9375  val(V_mix)=0.500  w_ex(mix)=0.5
+A n=5 k=3 m=40: val(Can)=val(Phi)=1.000  completeness(pert)=0.7500  val(V_pert)=0.350  completeness(mix)=0.8750  val(V_mix)=0.500  w_ex(mix)=0.5
+A n=5 k=4 m=40: val(Can)=val(Phi)=1.000  completeness(pert)=0.8750  val(V_pert)=0.275  completeness(mix)=0.9375  val(V_mix)=0.500  w_ex(mix)=0.5
+B progress 25 failures so far 0
+B progress 50 failures so far 0
+B 70 random verifiers checked (R,W,D,T,S); brute-force (M) on 65
+failures: 0

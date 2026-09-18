@@ -1,0 +1,6 @@
+# Calibration of one_ended_primitive.py on freely decomposable doubles (DEPTH=2, SHIFT=1); None = not certified
+a baB None 
+a bb None 
+aab b None 
+abAB abaB None 
+AABa aaba certified re-checked

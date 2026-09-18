@@ -66,3 +66,18 @@ extensions.
    - **Why it doesn't transfer.** That route goes through RAAGs. Groups in this
      class are not virtually special, and the closed-surface targets are not
      known to be in `B_A` (`closed-surface-mapping-class-groups-satisfy-boone-higman`).
+7. **Normal-subgroup constraint on hosts** (bh-3manifold, 2026-09-18). *Constraint,
+   not a construction.* By `nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups`
+   (Hempel--Jaco via AFW (K.9)), these groups have no finitely generated normal
+   subgroup of infinite index other than `1`. So they meet every normal free or
+   surface subgroup of a host trivially or in an infinitely generated subgroup.
+   - This is exactly why attempt 3 fails: the fibered transplant meets the Birman
+     point-pushing kernel in the fiber group.
+   - For attempt 6, any embedding of a finite-index subgroup in a punctured-surface
+     mapping class group either survives forgetting every puncture, giving an
+     embedding in some closed `Mod(S_g)` with `g >= 2`, or meets a point-pushing
+     kernel in an infinitely generated normal subgroup. Aut(F_m) hosts give the
+     same dichotomy with `Out(F_m)`.
+   - Remaining gap: a host embedding with infinitely generated normal
+     intersections, or Boone--Higman in `B_A` for closed-surface mapping class
+     groups or `Out(F_m)` together with an embedding into one of them.

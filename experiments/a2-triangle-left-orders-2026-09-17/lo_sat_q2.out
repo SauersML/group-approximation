@@ -1,0 +1,20 @@
+# radius 2
+0 torsion {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.02}
+1 torsion {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.0}
+2 torsion {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.02}
+3 torsion {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.02}
+4 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': True, 'secs': 0.0}
+5 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.0}
+6 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.03}
+7 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.02}
+8 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.0}
+9 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.0}
+10 tf {'confluent': True, 'rules': 98, 'elements': 113, 'clauses': 2912, 'sat': False, 'secs': 0.0}
+# radius 3 (group 4 needs it)
+4 tf {'confluent': True, 'rules': 98, 'elements': 673, 'clauses': 61824, 'sat': False, 'secs': 0.29}
+# calibration
+F2 radius4 {'confluent': True, 'rules': 4, 'elements': 161, 'clauses': 3728, 'sat': True, 'secs': 0.02}
+Z2 radius4 {'confluent': False, 'rules': 24, 'elements': 41, 'clauses': 908, 'sat': True, 'secs': 0.0}
+Klein bottle radius4 {'confluent': False, 'rules': 18, 'elements': 41, 'clauses': 908, 'sat': True, 'secs': 0.0}
+Z/3 radius3 {'confluent': True, 'rules': 4, 'elements': 3, 'clauses': 6, 'sat': False, 'secs': 0.0}
+Promislow-like a^2 b^2 : <a,b | a b^2 a^-1 b^2, b a^2 b^-1 a^2> {'confluent': False, 'rules': 59, 'elements': 147, 'clauses': 9508, 'sat': False, 'secs': 0.02}

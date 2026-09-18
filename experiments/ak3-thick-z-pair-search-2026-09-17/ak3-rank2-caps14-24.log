@@ -1,0 +1,371 @@
+# AK(3) = (xxxYYYY, xyxYXY) in F_2, relator-pair AC moves + Whitehead automorphisms. Goals PRIM (a primitive relator) and THICK (Neuwirth: orientably thickenable, then Lackenby Thm 1.3).
+# Caps 14-22: thzsearch 2 CAP 50000000 xxxYYYY xyxYXY count
+== RANK 2 CAP 14
+RANK 2 CAP 14 NPERM 8 NWA 12
+EXHAUSTED depth 0 states 1 processed 1
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1 undecided 0
+exit 0 time 0s
+== RANK 2 CAP 16
+RANK 2 CAP 16 NPERM 8 NWA 12
+depth 1 states 7
+depth 2 states 15
+depth 3 states 26
+depth 4 states 39
+depth 5 states 57
+depth 6 states 76
+depth 7 states 93
+depth 8 states 114
+depth 9 states 125
+depth 10 states 133
+depth 11 states 140
+depth 12 states 142
+depth 13 states 146
+EXHAUSTED depth 13 states 146 processed 146
+goals PRIM 0 THICK 0 PROJ 0; thick calls 146 undecided 0
+exit 0 time 0s
+== RANK 2 CAP 18
+RANK 2 CAP 18 NPERM 8 NWA 12
+depth 1 states 25
+depth 2 states 60
+depth 3 states 115
+depth 4 states 212
+depth 5 states 328
+depth 6 states 448
+depth 7 states 605
+depth 8 states 735
+depth 9 states 845
+depth 10 states 938
+depth 11 states 991
+depth 12 states 1032
+depth 13 states 1060
+depth 14 states 1076
+depth 15 states 1088
+depth 16 states 1098
+depth 17 states 1105
+depth 18 states 1108
+depth 19 states 1110
+EXHAUSTED depth 19 states 1110 processed 1110
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1110 undecided 0
+exit 0 time 4s
+== RANK 2 CAP 20
+RANK 2 CAP 20 NPERM 8 NWA 12
+depth 1 states 49
+depth 2 states 175
+depth 3 states 438
+depth 4 states 907
+depth 5 states 1593
+depth 6 states 2364
+depth 7 states 3248
+depth 8 states 4065
+depth 9 states 4717
+depth 10 states 5288
+depth 11 states 5768
+depth 12 states 6084
+depth 13 states 6337
+depth 14 states 6519
+depth 15 states 6633
+depth 16 states 6726
+depth 17 states 6774
+depth 18 states 6804
+depth 19 states 6822
+depth 20 states 6839
+depth 21 states 6845
+depth 22 states 6846
+depth 23 states 6851
+depth 24 states 6854
+depth 25 states 6858
+depth 26 states 6860
+depth 27 states 6862
+depth 28 states 6864
+depth 29 states 6865
+depth 30 states 6866
+depth 31 states 6867
+EXHAUSTED depth 31 states 6867 processed 6867
+goals PRIM 0 THICK 0 PROJ 0; thick calls 6867 undecided 0
+exit 0 time 41s
+== RANK 2 CAP 22
+RANK 2 CAP 22 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 585
+depth 3 states 1804
+depth 4 states 4113
+depth 5 states 7874
+depth 6 states 12773
+depth 7 states 17843
+depth 8 states 22773
+depth 9 states 26708
+depth 10 states 30125
+depth 11 states 33038
+depth 12 states 35085
+depth 13 states 36689
+depth 14 states 37970
+depth 15 states 38867
+depth 16 states 39597
+depth 17 states 40096
+depth 18 states 40402
+depth 19 states 40610
+depth 20 states 40737
+depth 21 states 40819
+depth 22 states 40874
+depth 23 states 40920
+depth 24 states 40961
+depth 25 states 41018
+depth 26 states 41067
+depth 27 states 41112
+depth 28 states 41155
+depth 29 states 41185
+depth 30 states 41216
+depth 31 states 41240
+depth 32 states 41251
+depth 33 states 41255
+depth 34 states 41256
+depth 35 states 41257
+EXHAUSTED depth 35 states 41257 processed 41257
+goals PRIM 0 THICK 0 PROJ 0; thick calls 41257 undecided 0
+exit 0 time 437s
+# Cap 24: the direct run exceeds 1200s, so dump the component then check it in 4000-line chunks:
+#   THZ_DUMP=st24r2.txt thzsearch 2 24 50000000 xxxYYYY xyxYXY dump ; split -l 4000 ; thzsearch check 2 < q.NNN
+== RANK 2 CAP 24 dump
+RANK 2 CAP 24 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 1653
+depth 3 states 6987
+depth 4 states 17815
+depth 5 states 36729
+depth 6 states 66549
+depth 7 states 97304
+depth 8 states 129042
+depth 9 states 155267
+depth 10 states 177570
+depth 11 states 196083
+depth 12 states 210237
+depth 13 states 220931
+depth 14 states 229468
+depth 15 states 235622
+depth 16 states 240754
+depth 17 states 244334
+depth 18 states 247078
+depth 19 states 249185
+depth 20 states 251151
+depth 21 states 252819
+depth 22 states 254609
+depth 23 states 256116
+depth 24 states 257506
+depth 25 states 258657
+depth 26 states 259624
+depth 27 states 260335
+depth 28 states 260803
+depth 29 states 261108
+depth 30 states 261311
+depth 31 states 261486
+depth 32 states 261594
+depth 33 states 261654
+depth 34 states 261686
+depth 35 states 261711
+depth 36 states 261718
+depth 37 states 261720
+EXHAUSTED depth 37 states 261720 processed 261720
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1 undecided 0
+dumped 261720 states
+exit 0 time 67s
+261720 /tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/w3082-st24r2.txt
+== check q.000
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.000 done exit 0 time 14s
+== check q.001
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.001 done exit 0 time 17s
+== check q.002
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.002 done exit 0 time 14s
+== check q.003
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.003 done exit 0 time 18s
+== check q.004
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.004 done exit 0 time 17s
+== check q.005
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.005 done exit 0 time 13s
+== check q.006
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.006 done exit 0 time 20s
+== check q.007
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.007 done exit 0 time 29s
+== check q.008
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.008 done exit 0 time 28s
+== check q.009
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.009 done exit 0 time 17s
+== check q.010
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.010 done exit 0 time 15s
+== check q.011
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.011 done exit 0 time 15s
+== check q.012
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.012 done exit 0 time 15s
+== check q.013
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.013 done exit 0 time 16s
+== check q.014
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.014 done exit 0 time 16s
+== check q.015
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.015 done exit 0 time 12s
+== check q.016
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.016 done exit 0 time 17s
+== check q.017
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.017 done exit 0 time 12s
+== check q.018
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.018 done exit 0 time 17s
+== check q.019
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.019 done exit 0 time 16s
+== check q.020
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.020 done exit 0 time 21s
+== check q.021
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.021 done exit 0 time 15s
+== check q.022
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.022 done exit 0 time 19s
+== check q.023
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.023 done exit 0 time 18s
+== check q.024
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.024 done exit 0 time 18s
+== check q.025
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.025 done exit 0 time 15s
+== check q.026
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.026 done exit 0 time 16s
+== check q.027
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.027 done exit 0 time 17s
+== check q.028
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.028 done exit 0 time 17s
+== check q.029
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.029 done exit 0 time 15s
+== check q.030
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.030 done exit 0 time 15s
+== check q.031
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.031 done exit 0 time 15s
+== check q.032
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.032 done exit 0 time 15s
+== check q.033
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.033 done exit 0 time 20s
+== check q.034
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.034 done exit 0 time 16s
+== check q.035
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.035 done exit 0 time 17s
+== check q.036
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.036 done exit 0 time 17s
+== check q.037
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.037 done exit 0 time 16s
+== check q.038
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.038 done exit 0 time 16s
+== check q.039
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.039 done exit 0 time 17s
+== check q.040
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.040 done exit 0 time 21s
+== check q.041
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.041 done exit 0 time 24s
+== check q.042
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.042 done exit 0 time 19s
+== check q.043
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.043 done exit 0 time 18s
+== check q.044
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.044 done exit 0 time 16s
+== check q.045
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.045 done exit 0 time 17s
+== check q.046
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.046 done exit 0 time 15s
+== check q.047
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.047 done exit 0 time 16s
+== check q.048
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.048 done exit 0 time 16s
+== check q.049
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.049 done exit 0 time 16s
+== check q.050
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.050 done exit 0 time 20s
+== check q.051
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.051 done exit 0 time 20s
+== check q.052
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.052 done exit 0 time 23s
+== check q.053
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.053 done exit 0 time 18s
+== check q.054
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.054 done exit 0 time 17s
+== check q.055
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.055 done exit 0 time 19s
+== check q.056
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.056 done exit 0 time 25s
+== check q.057
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.057 done exit 0 time 29s
+== check q.058
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.058 done exit 0 time 32s
+== check q.059
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.059 done exit 0 time 34s
+== check q.060
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.060 done exit 0 time 36s
+== check q.061
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.061 done exit 0 time 42s
+== check q.062
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.062 done exit 0 time 32s
+== check q.063
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.063 done exit 0 time 25s
+== check q.064
+CHECKED 4000 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 4000 undecided 0
+== check q.064 done exit 0 time 27s
+== check q.065
+CHECKED 1720 pairs; goals PRIM 0 THICK 0 PROJ 0; thick calls 1720 undecided 0
+== check q.065 done exit 0 time 12s
+ALLDONE
+# Summary cap 24: component EXHAUSTED, 261720 presentations; 66/66 chunks exit 0; goals PRIM 0 THICK 0; 261720 Neuwirth tests, 0 undecided.

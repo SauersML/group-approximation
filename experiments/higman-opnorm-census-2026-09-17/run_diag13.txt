@@ -1,0 +1,4 @@
+U_0 = primitive 13-th roots, L=12, ||U_0-1||=1.9854
+L=12 start rand0: max defect=0.3879 defects=[np.float64(0.3869), np.float64(0.3866), np.float64(0.3879), np.float64(0.3878)] ||U_i-1||=[np.float64(1.985), np.float64(1.992), np.float64(1.994), np.float64(1.979)]
+L=12 start rand1: max defect=0.3844 defects=[np.float64(0.3839), np.float64(0.382), np.float64(0.3815), np.float64(0.3844)] ||U_i-1||=[np.float64(1.985), np.float64(1.99), np.float64(1.971), np.float64(1.986)]
+BEST L=12 max defect 0.3844

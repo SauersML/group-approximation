@@ -810,7 +810,80 @@ def zeroInputEndpoints : List Name :=
    -- declaration, so nothing in the corpus asked.
    ``NinetyNineProblems.not_problemX1Statement,
    ``NinetyNineProblems.literalFactorizationProperty,
-   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal]
+   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal,
+   -- The `Manuscript/NonMF/Full` sentence endpoints (`non_mf_groups_exist.tex`).
+   -- Each module already carries `#audit_closed_axioms`; listing them here adds
+   -- the literature quarantine below, which reads the statement through its
+   -- named `Prop`.  `thm:amenable-trace` and the remark after it, with the
+   -- countability of `W` and `W₀` displayed:
+   ``GroupApproximation.Full.NM08.manuscriptAmenableNonquasidiagonalTraceCountable,
+   ``GroupApproximation.Full.NM08.manuscriptMFNotClosedUnderIntSemidirectCountable,
+   -- "`W₀` is a direct limit of residually finite groups, so it is MF", with
+   -- Korchagin's Corollary 10 proved rather than assumed:
+   ``GroupApproximation.Full.NM09.manuscriptSentence_korchaginDirectLimit,
+   -- `cor:one-sided-ring-maximal` at every `n ≥ 2`.  The parameterized sentence
+   -- wrapper `manuscriptSentence_elementaryGroupCountableNontrivialNotMF` has a
+   -- leading input and is deliberately not listed.
+   ``GroupApproximation.Full.NM10.printedElementaryGroupNotMFRankTwo,
+   ``GroupApproximation.Full.NM10.printedElementaryGroupNotMF_of_rankTwo,
+   ``GroupApproximation.Full.NM10.printedOneSidedRingMaximalGroupClausesRankTwo,
+   -- `lem:transient-matrices` with the compact-subset sentence of its proof:
+   ``GroupApproximation.Full.NM11.printedCompactOrbitBound,
+   ``GroupApproximation.Full.NM11.printedClopenNhdsOrbitBound,
+   ``GroupApproximation.Full.NM11.printedTransientMatrices_compact_closed,
+   -- The `Manuscript/NonMFNotes/Full` endpoints (`non_mf_group_notes.tex`),
+   -- collected with printed labels in `Full/Root/NonMFNotesFull.lean`.  Only
+   -- binder-free endpoints whose module import closure contains none of the
+   -- literature packages below are listed; the `Gstar`, `VisibleQuotient`,
+   -- `AbelianBoundary`, `TorsionFree`, `CliffordAmenable` and `Arithmetic`
+   -- endpoints import quarantined modules and are deliberately not listed.
+   -- `thm:exact-mf-residual`, the defect computation (partial endpoint):
+   ``GroupApproximation.Full.NN01.exactResidual_state,
+   ``GroupApproximation.Full.NN01.exactResidualDefects,
+   -- `thm:mf-radical-arithmetic` and the radical-word semantics:
+   ``GroupApproximation.Full.NN02.manuscriptMFRadicalArithmetic,
+   ``GroupApproximation.Full.NN02.manuscriptRadicalWordSemantics,
+   ``GroupApproximation.Full.NN02b.manuscriptLiteralMFRadicalArithmetic,
+   ``GroupApproximation.Full.NN02b.manuscriptLiteralRadicalWordSemantics,
+   -- `thm:fixed-radical-membership`, the unconditional clauses:
+   ``GroupApproximation.Full.NN03.notesFixedRadicalMembershipClauses,
+   -- Printed prose sentences (`E₀` kernel, Deligne type, block comparison):
+   ``GroupApproximation.Full.NN12.e0_printed,
+   ``GroupApproximation.Full.NN12.markedGroup_isDeligneType,
+   ``GroupApproximation.Full.NN12.findim_paragraph_printed,
+   ``GroupApproximation.Full.NN12.blockComparison_printed,
+   -- The `Manuscript/SimpleKazhdanSofic/Full` endpoints (`simple_kazhdan_sofic_group.tex`),
+   -- collected with printed labels in `Full/Root/{Main,Proof,Corollaries,Manuscript}.lean`.
+   -- Each is a conjunction of the types of landed `Full.SKxx` endpoints; `manuscript` is the
+   -- conjunction of all of them.
+   ``GroupApproximation.Full.SKRoot.abstract_claims,
+   ``GroupApproximation.Full.SKRoot.intro_ozawa_thom,
+   ``GroupApproximation.Full.SKRoot.thm_main,
+   ``GroupApproximation.Full.SKRoot.thm_main_brown_form,
+   ``GroupApproximation.Full.SKRoot.thm_main_definitions,
+   ``GroupApproximation.Full.SKRoot.thm_general,
+   ``GroupApproximation.Full.SKRoot.general_remark,
+   ``GroupApproximation.Full.SKRoot.tab_props,
+   ``GroupApproximation.Full.SKRoot.proof_ingredients,
+   ``GroupApproximation.Full.SKRoot.fig_models,
+   ``GroupApproximation.Full.SKRoot.eq_elementary,
+   ``GroupApproximation.Full.SKRoot.proof_ring_T,
+   ``GroupApproximation.Full.SKRoot.proof_simplicity,
+   ``GroupApproximation.Full.SKRoot.proof_finite_models,
+   ``GroupApproximation.Full.SKRoot.proof_brown_formulation,
+   ``GroupApproximation.Full.SKRoot.sec_main_proof,
+   ``GroupApproximation.Full.SKRoot.sec_main_sharpness,
+   ``GroupApproximation.Full.SKRoot.sec_main_example,
+   ``GroupApproximation.Full.SKRoot.cor_lef,
+   ``GroupApproximation.Full.SKRoot.cor_host,
+   ``GroupApproximation.Full.SKRoot.sec_lef_route,
+   ``GroupApproximation.Full.SKRoot.lem_nn,
+   ``GroupApproximation.Full.SKRoot.lem_host,
+   ``GroupApproximation.Full.SKRoot.lem_halfline,
+   ``GroupApproximation.Full.SKRoot.cor_wp,
+   ``GroupApproximation.Full.SKRoot.cor_wp_proof,
+   ``GroupApproximation.Full.SKRoot.sec_questions,
+   ``GroupApproximation.Full.SKRoot.manuscript]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool

@@ -1,0 +1,4 @@
+group=F R=5 K=2 |B_R|=2067 vars=13857 clauses=49961 -> UNSAT  (14.7s)
+group=F R=5 K=3 |B_R|=2067 vars=13857 clauses=49961 -> UNSAT  (23.9s)
+group=F R=5 K=4 |B_R|=2067 vars=13857 clauses=49961 -> SAT  (53.8s)
+group=F R=5 K=5 |B_R|=2067 vars=13857 clauses=49961 -> SAT  (167.1s)

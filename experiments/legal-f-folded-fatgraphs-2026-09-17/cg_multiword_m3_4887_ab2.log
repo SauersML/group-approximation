@@ -1,0 +1,30 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 3 words 6 darts 244 maxval 4 gates 4
+phase 1 it 1 obj 20.000000 cols 3000 pairs 1677 min rc -4 LB -142 {2: -2.0, 3: inf, 4: -4.0} added 3000 t 0.3 tm 0.0
+phase 1 it 2 obj 7.333333 cols 5802 pairs 3829 min rc -6.344 LB -209.4 {2: -4.0, 3: inf, 4: -6.3444} added 2802 t 0.7 tm 0.2
+phase 1 it 3 obj 3.575130 cols 7778 pairs 4187 min rc -5.88 LB -186.3 {2: -3.3192, 3: inf, 4: -5.8799} added 1976 t 2.0 tm 1.4
+phase 1 it 4 obj 2.240026 cols 9627 pairs 4311 min rc -6.583 LB -205.9 {2: -2.4409, 3: inf, 4: -6.5831} added 1849 t 4.0 tm 3.2
+phase 1 it 5 obj 1.967650 cols 11354 pairs 4396 min rc -6.832 LB -213.1 {2: -0.2105, 3: inf, 4: -6.8318} added 1727 t 6.4 tm 5.4
+phase 1 it 6 obj 1.784742 cols 13052 pairs 4500 min rc -5.959 LB -185.3 {2: -0.0289, 3: inf, 4: -5.959} added 1698 t 9.1 tm 8.1
+phase 1 it 7 obj 1.572746 cols 14691 pairs 4640 min rc -5.815 LB -180.4 {2: -0.1147, 3: inf, 4: -5.8148} added 1639 t 12.1 tm 11.0
+phase 1 it 8 obj 1.505494 cols 16209 pairs 4752 min rc -5.384 LB -166.7 {2: 0.0, 3: inf, 4: -5.3836} added 1518 t 15.8 tm 14.5
+phase 1 it 9 obj 1.352519 cols 17493 pairs 4814 min rc -4.588 LB -141.7 {2: 0.0, 3: inf, 4: -4.5879} added 1284 t 20.1 tm 18.7
+phase 1 it 10 obj 1.231895 cols 18716 pairs 4892 min rc -3.357 LB -103.2 {2: 0.0, 3: inf, 4: -3.3566} added 1223 t 24.9 tm 23.4
+phase 1 it 11 obj 1.147643 cols 19883 pairs 4992 min rc -3.448 LB -106 {2: 0.0, 3: inf, 4: -3.4477} added 1167 t 29.5 tm 27.9
+phase 1 it 12 obj 0.988747 cols 20927 pairs 5049 min rc -2.945 LB -90.28 {2: -0.0315, 3: inf, 4: -2.9447} added 1044 t 35.0 tm 33.3
+phase 1 it 13 obj 0.925885 cols 22030 pairs 5130 min rc -2.887 LB -88.46 {2: 0.0, 3: inf, 4: -2.887} added 1103 t 41.0 tm 39.2
+phase 1 it 14 obj 0.894507 cols 22893 pairs 5245 min rc -2.582 LB -79.01 {2: 0.0, 3: inf, 4: -2.582} added 863 t 47.3 tm 45.4
+phase 1 it 15 obj 0.830850 cols 23699 pairs 5307 min rc -2.925 LB -89.6 {2: 0.0, 3: inf, 4: -2.9251} added 806 t 53.1 tm 51.1
+phase 1 it 16 obj 0.776538 cols 24402 pairs 5351 min rc -2.524 LB -77.2 {2: 0.0, 3: inf, 4: -2.5244} added 703 t 58.4 tm 56.4
+phase 1 it 17 obj 0.730988 cols 24888 pairs 5396 min rc -2.11 LB -64.4 {2: 0.0, 3: inf, 4: -2.1101} added 486 t 64.4 tm 62.3
+phase 1 it 18 obj 0.639381 cols 25396 pairs 5455 min rc -1.47 LB -44.65 {2: 0.0, 3: inf, 4: -1.4696} added 508 t 71.9 tm 69.6
+phase 1 it 19 obj 0.611011 cols 25929 pairs 5485 min rc -2.322 LB -70.92 {2: 0.0, 3: inf, 4: -2.3221} added 533 t 78.9 tm 76.5
+phase 1 it 20 obj 0.587855 cols 26373 pairs 5516 min rc -1.745 LB -53.14 {2: 0.0, 3: inf, 4: -1.7449} added 444 t 85.6 tm 83.3
+phase 1 it 21 obj 0.553208 cols 26781 pairs 5544 min rc -1.051 LB -31.81 {2: 0.0, 3: inf, 4: -1.0514} added 408 t 91.9 tm 89.5
+phase 1 it 22 obj 0.507910 cols 27088 pairs 5547 min rc -1.306 LB -39.65 {2: 0.0, 3: inf, 4: -1.3056} added 307 t 98.8 tm 96.2
+phase 1 it 23 obj 0.504389 cols 27230 pairs 5566 min rc -0.7083 LB -21.28 {2: 0.0, 3: inf, 4: -0.7083} added 142 t 106.0 tm 103.4
+phase 1 it 24 obj 0.500660 cols 27299 pairs 5573 min rc -0.296 LB -8.601 {2: 0.0, 3: inf, 4: -0.296} added 69 t 113.1 tm 110.4
+phase 1 it 25 obj 0.499423 cols 27341 pairs 5577 min rc -0.1409 LB -3.833 {2: 0.0, 3: inf, 4: -0.1409} added 42 t 120.6 tm 117.8
+phase 1 it 26 obj 0.498224 cols 27366 pairs 5580 min rc -0.0572 LB -1.261 {2: 0.0, 3: inf, 4: -0.0572} added 25 t 126.9 tm 124.1
+phase 1 it 27 obj 0.497854 cols 27367 pairs 5580 min rc -1.436e-09 LB 0.4979 {2: 0.0, 3: inf, 4: -0.0} added 1 t 132.9 tm 130.0
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible

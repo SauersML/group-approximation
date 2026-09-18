@@ -34,9 +34,17 @@ space embeds in a finitely presented simple group.
    (arXiv:2408.05673 TeX l.988--990): "All Leary--Minasyan groups constructed in
    \cite{LeaMin-21} satisfy the Boone--Higman Conjecture. In particular, there
    is a CAT(0) group that is not virtually biautomatic and satisfies the
-   Boone--Higman Conjecture." No node imports this corollary yet.
+   Boone--Higman Conjecture." Now subsumed, in permutational form, by item 5.
 4. **Lattices in products of two trees,** residually finite or not:
    `product-of-two-trees-lattices-satisfy-permutational-boone-higman`.
+5. **Every group acting properly and cocompactly on `E^n × T`** (`T` a locally
+   finite tree), in `B_A`: instance (a) of
+   `cat0-groups-with-a-tree-factor-lie-in-type-a-class` (2026-09-18, lane proof).
+6. **Groups on `Y × T` whose tree-vertex stabilizer `G` has a faithful member of
+   `BS_G`,** in `B_A`: item 2 of the same node. This includes lattices in three
+   trees whose stabilizers of vertices of one factor are commensurable with a
+   definite quaternion lattice over two primes, by
+   `arithmetic-nsp-lattices-have-faithful-bs-members`.
 
 ## Attempts
 
@@ -70,3 +78,17 @@ space embeds in a finitely presented simple group.
    products of trees. Hyperplane orbits give tree actions only when the
    translates are pairwise disjoint, and the dual tree is locally finite only
    when the edge stabilizers have finite index. No general method is known.
+4. **Tree factors in general** (2026-09-18, lane bh-cat0). *Works whenever the
+   fibre group has a faithful Baumslag--Solitar member.*
+   - For `Γ` on `Y × T`, `Γ` lies in `BS_G` for its tree-vertex stabilizer `G`
+     (`cat0-groups-with-a-tree-factor-lie-in-type-a-class`, item 1).
+   - One faithful member of `BS_G` puts all of `BS_G` in `B_A`
+     (`bs-class-with-faithful-member-lies-in-type-a-class`).
+   - Faithful members are now known for `G` virtually `Z^n`, virtually free,
+     `SL_n(Z)`-commensurable (`n >= 3`) and definite-quaternion-commensurable
+     (`arithmetic-nsp-lattices-have-faithful-bs-members`). The last two come from a
+     commensurator element and the normal subgroup theorem.
+   - **Remaining gap for this method:** fibre groups `G` that are not residually
+     finite (Wise, Burger--Mozes, Radu fibres in three trees), and non-arithmetic
+     residually finite `G` with the normal subgroup property but no commensurator
+     element outside a finite extension of `G`.

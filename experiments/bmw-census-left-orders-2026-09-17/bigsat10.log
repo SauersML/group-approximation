@@ -1,0 +1,7 @@
+{"census": "census_40_40.json", "idx": 281, "R": 10, "short": 2, "solver": "Cadical153", "sat": true, "clauses": 9373692, "secs": 152.9}
+{"census": "census_40_40.json", "idx": 281, "R": 10, "short": 2, "solver": "Glucose4", "sat": true, "clauses": 9373692, "secs": 96.6}
+R10s2 281 exit=0
+{"census": "census_40_40.json", "idx": 332, "R": 10, "short": 2, "solver": "Cadical153", "sat": true, "clauses": 9373692, "secs": 97.7}
+{"census": "census_40_40.json", "idx": 332, "R": 10, "short": 2, "solver": "Glucose4", "sat": true, "clauses": 9373692, "secs": 109.2}
+R10s2 332 exit=0
+FIN

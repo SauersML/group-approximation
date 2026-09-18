@@ -1,0 +1,32 @@
+== arcpairs n=4 m=2..14 (array implementation, unpruned-by-construction per m)
+n=4 m=2 leaves=16 hits=0
+n=4 m=4 leaves=0 hits=0
+n=4 m=6 leaves=0 hits=0
+n=4 m=8 leaves=0 hits=0
+n=4 m=10 leaves=0 hits=0
+n=4 m=12 leaves=0 hits=0
+n=4 m=14 leaves=0 hits=0
+== arcfast2 n=4 M=14 noprune
+m=1 leaves=0 hits=0
+m=2 leaves=16 hits=0
+m=3 leaves=30 hits=0
+m=4 leaves=74 hits=0
+m=5 leaves=116 hits=0
+m=6 leaves=178 hits=0
+m=7 leaves=294 hits=0
+m=8 leaves=442 hits=0
+m=9 leaves=530 hits=0
+m=10 leaves=794 hits=0
+m=11 leaves=1038 hits=0
+m=12 leaves=1226 hits=0
+m=13 leaves=1672 hits=0
+m=14 leaves=2074 hits=0
+n=4 M=14 shards=[0,28) of 28 nodes=188786 total_hits=0
+== arcfast2 n=3 M=80 (control: B_3 Burau faithful, expect 0 hits)
+n=3 M=80 shards=[0,4) of 4 nodes=66802 total_hits=0
+== arcfast2 n=6 M=8 printhits (Bigelow n=6 positive control)
+HIT m=8 seq: L0 R1 L2 R3 R0 L1 R2 L3
+HIT m=8 seq: L0 R1 L2 R3 R0 L1 R2 L3
+HIT m=8 seq: L0 R1 L2 R3 R0 L1 R2 L3
+m=8 leaves=294 hits=60
+n=6 M=8 shards=[0,2572) of 2572 nodes=656355 total_hits=60

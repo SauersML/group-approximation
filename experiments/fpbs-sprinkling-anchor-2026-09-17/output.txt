@@ -1,0 +1,17 @@
+$ python3 experiments/fpbs-sprinkling-anchor-2026-09-17/tree_anchor_threshold.py
+k deg  p*(tree anchor)  walk-count 1/||A||  1/(deg-1)  pc(T_2k)=1/(2k-1)  2pL at pc(T_2k)  unconditional
+2   6  0.210854         0.183013            0.200000   0.333333           3.3174           False
+3   8  0.181944         0.154508            0.142857   0.200000           1.2567           False
+4  10  0.164266         0.137146            0.111111   0.142857           0.7233           True
+5  12  0.151797         0.125000            0.090909   0.111111           0.4938           True
+6  14  0.142299         0.115831            0.076923   0.090909           0.3696           True
+7  16  0.134705         0.108565            0.066667   0.076923           0.2929           True
+8  18  0.128426         0.102607            0.058824   0.066667           0.2412           True
+
+F_2 x Z anchors at p = 1/5 <= pc (transfer needs p*||A_added|| < 1/||T_anchor||):
+ empty anchor : p||A_S|| = 1.0928203230275508 vs 1
+ anchor {t}   : p*2sqrt3 = 0.6928203230275509 vs phi_Z = 0.6666666666666667
+ anchor {a}   : p*4      = 0.8 vs phi_Z = 0.6666666666666667
+ anchor {a,t} : p*2      = 0.4 vs phi_Z2 <= 1/chi_lb = 0.4398311048557354 (inconclusive)
+ anchor {a,b} : p*2      = 0.4 vs 1/Lambda_3(p) = 0.4449788301796345 (succeeds at p=1/5)
+ tree-anchor threshold for F_2 x Z: p* = 0.21085385620688327

@@ -39,3 +39,16 @@ distinct_from:
 
 **Artifacts.** Script `experiments/quantum-surjunctivity-2026-09-17/clifford_star_f2.py`, with output
 `experiments/quantum-surjunctivity-2026-09-17/clifford_star_f2-output.txt`.
+
+**Referee (2026-09-17, ref-04): sound.**
+- Checked the route line by line: `W(u)^p = 1` for both parities of `p` (the `i^(ab)` phase for `p = 2`), the
+  commutation form `beta(u, v) = eps(u J v^*)`, vanishing of every coefficient of `M J M^* - J` from `u = g e_k`,
+  `v = e_l`, the realization of `M` through the universal presentation of `M_p`, the right inverse
+  `J M^* J^-1`, the trace-orthogonality argument for "not left invertible implies not onto", and the block
+  computation for `diag(A, B^*)`.
+- Literature: for `G = Z^s` the correspondence between Clifford QCA and symplectic matrices over Laurent polynomials
+  is due to Schlingemann, Vogts and Werner, "On the structure of Clifford quantum cellular automata",
+  arXiv:0804.4447. The classical linear analogue, "`G` is L-surjunctive iff `K[G]` is stably finite", is in
+  Ceccherini-Silberstein and Coornaert, "Cellular Automata and Groups" (Springer, 2010), Chapter 8 on linear
+  cellular automata. The route is a direct transfer of these ideas to
+  arbitrary `G`, and its framing does not claim otherwise.

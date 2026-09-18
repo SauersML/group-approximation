@@ -74,3 +74,21 @@ The route `integral-unit-conjecture-from-rational-proof` derives
   dies at the kernels: it says nothing about units in
   `+-g + (I_A cap I_B cap I_C)`, and every normalized Case A unit already lies
   in `+-1 + (I_A cap I_B cap I_C)`.
+* **Mahler-measure / spectral dichotomy.** The idea was to split units of
+  `Q[P]` by the Mahler measure of the characteristic polynomial of their
+  induced `4 x 4` matrix over `Q[L]`. Either it is zero, so the unit is
+  quasi-unipotent over `L` and should be trivial, or it is positive, with
+  exponential coefficient growth to be ruled out. Nontrivial units fall on
+  both sides. Gardam's complex unit has Mahler measure about `1.41`, while its
+  conjugate `alpha x alpha^-1` has Mahler measure 0. The attack dies at the
+  conjugation `u -> u x u^-1`. That map preserves the characteristic
+  polynomial, spectral radius, Brown measure, Fuglede--Kadison determinant and
+  trace sequence, and the result is still nontrivial. Pushing this through
+  gives an equivalent reformulation over every commutative domain
+  (`promislow-units-iff-axis-quadratic-roots`). `R[P]` has a nontrivial unit
+  iff `v^2 - (x + x^-1) v + 1 = 0` has a root other than `x^(+-1)`. Every such
+  root has exactly the spectral invariants of `x`, so no
+  conjugation-invariant spectral argument can prove the conjecture on `P`.
+  Over `Z` the nontrivial roots lie in `x + (I_A cap I_B cap I_C)` after
+  `v -> x + x^-1 - v`. That is Case A of the definite shadows, where that
+  method is silent.

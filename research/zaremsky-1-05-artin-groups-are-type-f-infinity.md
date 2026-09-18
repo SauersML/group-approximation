@@ -80,3 +80,13 @@ dimension 4 and rank 5 are the first open cases.
   - Brown's criterion on Deligne or Artin complexes needs connectivity at the level of the
     K(π,1) conjecture (`deligne-connectivity-iff-artin-complex-connectivity`).
   - No independent route was found.
+- 2026-09-17, sw-100 (scale-shifter): finiteness length is monotone on induced subgraphs.
+  - The Godelle–Paris retraction lifts to a 1-Lipschitz retraction `A_Γ → A_T` on word
+    metrics, so type `F_n` passes down to standard parabolic subgroups
+    (`artin-type-f-n-passes-to-standard-parabolic-subgroups`). This corrects the scope of the
+    dead attempt "Subgroups, quotients, retractions": finite generation of homotopy modules
+    is lost, but the group-level property is not.
+  - Two-sided reduction: `fl(A_Γ) = min fl(A_X)` over maximal free-of-infinity `X`
+    (`artin-f-n-iff-maximal-free-of-infinity-parabolics-f-n`). A counterexample, if any, has a
+    free-of-infinity minimal one of rank at least 5 whose proper parabolic subgroups are `F_∞`,
+    and failure is upward closed.

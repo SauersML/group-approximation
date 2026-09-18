@@ -1,0 +1,4 @@
+phi0 {'a': 'abb', 'b': 'ca', 'c': 'babb'} m 1 certificate {'charpoly': 't**3 - t**2 - 5*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abcABA
+d^- words ['bc', 'CB'] d^+ words ['cababb', 'BBABAC'] darts 16
+sat iterations 1 time 0.0
+VERIFIED {'valences': [2, 2, 2, 2, 4, 4], 'V': 6, 'E': 8, 'chi': -2, 'components_X': 1, 'unroll': [0, 0, 0, 0, 0, 0]}

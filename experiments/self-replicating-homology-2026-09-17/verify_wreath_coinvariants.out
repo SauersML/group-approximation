@@ -1,0 +1,55 @@
+A_5, d=5, H_+ degrees [1]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 1 (orbit count 1), excess E_1 = 0
+   deg 2: dim coinv = 0 (orbit count 0), excess E_2 = 0
+   deg 3: dim coinv = 0 (orbit count 0), excess E_3 = 0
+   deg 4: dim coinv = 1 (orbit count 1), excess E_4 = 1
+   deg 5: dim coinv = 1 (orbit count 1), excess E_5 = 1
+   linear algebra agrees with orbit count: True
+A_5, d=5, H_+ degrees [2]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 0 (orbit count 0), excess E_1 = 0
+   deg 2: dim coinv = 1 (orbit count 1), excess E_2 = 0
+   deg 3: dim coinv = 0 (orbit count 0), excess E_3 = 0
+   deg 4: dim coinv = 1 (orbit count 1), excess E_4 = 1
+   linear algebra agrees with orbit count: True
+A_5, d=5, H_+ degrees [1, 1]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 2 (orbit count 2), excess E_1 = 0
+   deg 2: dim coinv = 1 (orbit count 1), excess E_2 = 1
+   linear algebra agrees with orbit count: True
+A_4, d=4, H_+ degrees [1, 2]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 1 (orbit count 1), excess E_1 = 0
+   deg 2: dim coinv = 1 (orbit count 1), excess E_2 = 0
+   deg 3: dim coinv = 2 (orbit count 2), excess E_3 = 2
+   linear algebra agrees with orbit count: True
+S_4, d=4, H_+ degrees [1]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 1 (orbit count 1), excess E_1 = 0
+   deg 2: dim coinv = 0 (orbit count 0), excess E_2 = 0
+   deg 3: dim coinv = 0 (orbit count 0), excess E_3 = 0
+   deg 4: dim coinv = 0 (orbit count 0), excess E_4 = 0
+   linear algebra agrees with orbit count: True
+S_4, d=4, H_+ degrees [3]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 0 (orbit count 0), excess E_1 = 0
+   deg 2: dim coinv = 0 (orbit count 0), excess E_2 = 0
+   deg 3: dim coinv = 1 (orbit count 1), excess E_3 = 0
+   deg 4: dim coinv = 0 (orbit count 0), excess E_4 = 0
+   deg 5: dim coinv = 0 (orbit count 0), excess E_5 = 0
+   deg 6: dim coinv = 0 (orbit count 0), excess E_6 = 0
+   deg 7: dim coinv = 0 (orbit count 0), excess E_7 = 0
+   deg 8: dim coinv = 0 (orbit count 0), excess E_8 = 0
+   deg 9: dim coinv = 0 (orbit count 0), excess E_9 = 0
+   deg 10: dim coinv = 0 (orbit count 0), excess E_10 = 0
+   deg 11: dim coinv = 0 (orbit count 0), excess E_11 = 0
+   deg 12: dim coinv = 0 (orbit count 0), excess E_12 = 0
+   linear algebra agrees with orbit count: True
+Z/3, d=3, H_+ degrees [1]:
+   deg 0: dim coinv = 1 (orbit count 1), excess E_0 = 0
+   deg 1: dim coinv = 1 (orbit count 1), excess E_1 = 0
+   deg 2: dim coinv = 1 (orbit count 1), excess E_2 = 1
+   deg 3: dim coinv = 1 (orbit count 1), excess E_3 = 1
+   linear algebra agrees with orbit count: True
+ALL OK

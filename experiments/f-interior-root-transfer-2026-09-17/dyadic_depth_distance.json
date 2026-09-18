@@ -1,0 +1,76 @@
+{
+ "K": 14,
+ "slack": 6,
+ "per_depth": {
+  "1": {
+   "max_dist": 0,
+   "count": 1,
+   "expected_count": 1
+  },
+  "2": {
+   "max_dist": 1,
+   "count": 2,
+   "expected_count": 2
+  },
+  "3": {
+   "max_dist": 3,
+   "count": 4,
+   "expected_count": 4
+  },
+  "4": {
+   "max_dist": 5,
+   "count": 8,
+   "expected_count": 8
+  },
+  "5": {
+   "max_dist": 7,
+   "count": 16,
+   "expected_count": 16
+  },
+  "6": {
+   "max_dist": 9,
+   "count": 32,
+   "expected_count": 32
+  },
+  "7": {
+   "max_dist": 11,
+   "count": 64,
+   "expected_count": 64
+  },
+  "8": {
+   "max_dist": 13,
+   "count": 128,
+   "expected_count": 128
+  },
+  "9": {
+   "max_dist": 15,
+   "count": 256,
+   "expected_count": 256
+  },
+  "10": {
+   "max_dist": 17,
+   "count": 512,
+   "expected_count": 512
+  },
+  "11": {
+   "max_dist": 19,
+   "count": 1024,
+   "expected_count": 1024
+  },
+  "12": {
+   "max_dist": 21,
+   "count": 2048,
+   "expected_count": 2048
+  },
+  "13": {
+   "max_dist": 23,
+   "count": 4096,
+   "expected_count": 4096
+  },
+  "14": {
+   "max_dist": 25,
+   "count": 8192,
+   "expected_count": 8192
+  }
+ }
+}

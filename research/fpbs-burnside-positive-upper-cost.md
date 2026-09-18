@@ -45,3 +45,24 @@ OPEN. Prove c_n>1 for some exponent in the scope of the algebraic inputs. Togeth
   bound above the universal value one is established anywhere, which is why
   `fpbs-burnside-explicit-action-pair` records two costs without asserting
   that they differ.
+* **Push the L2-Betti route to every infinite subgroup** (2026-09-18,
+  swarm-0917-w6-w6-fp-break; family cohomology-index). See
+  `fpbs-burnside-positive-l2-betti-forces-simple-subgroup`.
+  - *Correction to the L2 bullet above.* Because
+    `fpbs-burnside-common-upper-cost` makes `C^*` common to all infinite
+    subgroups, a positive `beta_1(S)` for any infinite `S <= B(m,n)` already
+    gives `c_n >= 1 + beta_1(S) > 1`. "Raises both costs together" is therefore
+    not the obstruction. The route is live exactly when such an `S` exists.
+  - *Proved obstruction.*
+    - `beta_1(B(m,n)) = 0` for `m >= 3`: the normal closure of `x_1` has finite
+      `beta_1` by the common upper cost, and Gaboriau 2002 Theorem 6.8 applies.
+    - Any infinite `H <= B(m,n)` with `beta_1(H) > 0` has every finite-index
+      subgroup of index at most `(c_n-1)/beta_1(H)`, by the index formula and
+      the uniform bound. Its smallest finite-index subgroup `H_0` is an
+      infinite simple group, since finite normal subgroups die by cyclic
+      centralizers and infinite normal subgroups of infinite index die by
+      Theorem 6.8. Also `beta_1(H_0)` lies in `(0, 1-2/n]`.
+  - **Where it stops:** the L2 route to `c_n > 1` is equivalent to exhibiting
+    an infinite simple subgroup of a large odd Burnside group with positive
+    first L2-Betti number. No such subgroup is constructed or excluded here.
+    `B(2,n)` itself is not covered.

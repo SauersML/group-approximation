@@ -1,0 +1,5 @@
+T(2,3) r1=xxYYY LMAX=8: thick=40 merid=446 thick&merid=40 thick&!merid=0 (nontrivial group shown for 0) UNEXPLAINED=[]
+T(3,2) r1=xxxYY LMAX=8: thick=40 merid=446 thick&merid=40 thick&!merid=0 (nontrivial group shown for 0) UNEXPLAINED=[]
+T(3,4) r1=xxxYYYY LMAX=8: thick=14 merid=120 thick&merid=14 thick&!merid=0 (nontrivial group shown for 0) UNEXPLAINED=[]
+T(2,5) r1=xxYYYYY LMAX=8: thick=26 merid=186 thick&merid=14 thick&!merid=12 (nontrivial group shown for 12) UNEXPLAINED=[]
+T(3,5) r1=xxxYYYYY LMAX=8: thick=40 merid=58 thick&merid=16 thick&!merid=24 (nontrivial group shown for 24) UNEXPLAINED=[]

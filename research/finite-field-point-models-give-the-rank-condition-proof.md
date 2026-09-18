@@ -1,0 +1,127 @@
+---
+rg: 2
+id: finite-field-point-models-give-the-rank-condition-proof
+kind: route
+title: Evaluating coefficients at finite-field points along a finite or sofic permutation model turns a one-sided inverse over a skew group ring into a rank count over a finite field
+target: finite-field-point-models-give-the-rank-condition
+requires: []
+---
+
+Notation is as in the claim. Write `A = sum_(h ∈ S_A) a_h u_h` entrywise, with `a_h ∈ M_(d x r)(K)` and
+`B = sum_(h' ∈ S_B) b_(h') u_(h')`. Then `AB = I_d` says, for every `c ∈ G`:
+
+`sum_(hh' = c) a_h σ_h(b_(h')) = δ_(c,e) I_d`   (*)
+
+with `σ_h` applied entrywise.
+
+## 1. Rank certificate (A)
+
+1. **Model.** Let `E` be the set of entries of all `a_h` and `b_(h')`, and `W = {e} ∪ S_A ∪ S_B ∪ S_A S_B`.
+   Take a point model for `E`, `W` and `ε < 1/d`.
+2. **Matrices over `F`.**
+   - For `f ∈ K` let `D_f` be the diagonal `V x V` matrix with `(D_f)_(ww) = e_w(f)` if `f ∈ O_w`, and `0`
+     otherwise.
+   - Let `(P_h)_(v,w) = [v = σ(h)w]` for `h ∈ W`.
+   - Put `Φ(A) = sum_h D_(a_h) P_h`, a `d|V| x r|V|` matrix over `F` (blocks indexed by the matrix entries), and
+     similarly `Φ(B)`.
+3. **Rows at good points.** Fix `v ∈ V_good`, row indices `i`, `j`, and a column point `u`. Then
+   - the `((i,v),(j,u))` entry of `Φ(A)Φ(B)` is
+     `sum_k sum_(h,h') sum_w e_v(a_(h,ik)) [v = σ(h)w] e_w(b_(h',kj)) [w = σ(h')u]`;
+   - only `w = σ(h)^(-1)v` contributes, and `b_(h',kj) ∈ O_w` by (P1). So the entry is
+     `sum_(k,h,h') e_v(a_(h,ik)) e_(σ(h)^(-1)v)(b_(h',kj)) [u = σ(h')^(-1)σ(h)^(-1)v]`;
+   - by (P2), (P3) and multiplicativity of `e_v` on `O_v ⊇ E ∪ σ_W(E)`, this is
+     `sum_(k,h,h') e_v(a_(h,ik) σ_h b_(h',kj)) [u = σ(hh')^(-1)v]`;
+   - grouping by `c = hh'` and using additivity of `e_v`, it is
+     `sum_c e_v( (sum_(hh'=c) a_h σ_h b_(h'))_(ij) ) [u = σ(c)^(-1)v]`;
+   - by (*) and `σ(e)v = v`, it equals `δ_(ij) [u = v]`.
+4. **Count.**
+   - The `d|V_good|` rows `(i,v)`, `v ∈ V_good`, of `Φ(A)Φ(B)` are rows of the identity, so
+     `rank Φ(A)Φ(B) >= d(1-ε)|V|`.
+   - The product factors through `F^(r|V|)`, so its rank is at most `r|V|`.
+   - Hence `r >= d(1-ε) > d - 1`, so `r >= d`.
+5. **Subrings.** If `AB = I_d` over a unital subring `R' ⊆ R`, it also holds in `R`.
+
+## 2. Bernoulli fields over sofic groups (B1)
+
+1. **Finite data.**
+   - Each element of `E` is `a/b` with `a, b ∈ k[x]` in finitely many variables `x_(g,i)`, `g ∈ T_0`,
+     `i ∈ I_0`.
+   - Let `A_0 ⊆ k` be the subring generated over the prime ring by all coefficients of these `a`, `b` and the
+     inverse of one nonzero coefficient `c_b` of each `b`.
+   - `A_0` is a finitely generated domain. Pick a maximal ideal `m`. Then `F_0 = A_0/m` is a finite field
+     (Nullstellensatz over `Z` or `F_p`), and each reduction `b̄` is a nonzero polynomial because `c̄_b` is a unit.
+   - Let `D` bound the degrees of the `b`, and `T = T_0 ∪ W T_0`.
+2. **Sofic model.**
+   - Take `σ: G -> Sym(V)` that is `δ`-multiplicative and `δ`-free on a finite set containing `W`, `T` and
+     their products.
+   - Let `V_1` be the set of `v` with:
+     - (i) `g ↦ σ(g)^(-1)v` injective on `T`;
+     - (ii) `σ(hg)^(-1)v = σ(g)^(-1)σ(h)^(-1)v` for `h ∈ W`, `g ∈ T_0`;
+     - (iii) (P3) for `h, h' ∈ W`.
+   - Soficity gives `|V_1| >= (1-δ')|V|` with `δ' -> 0` as `δ -> 0`. For instance, (ii) fails at `v` only if
+     `σ(h)σ(g) ≠ σ(hg)` at the point `σ(hg)^(-1)v`, and `σ(hg)` is a bijection.
+3. **Points.**
+   - Let `F = F_Q ⊇ F_0` and choose `φ: V x I_0 -> F` uniformly at random.
+   - For `w ∈ V` put `y^w_(g,i) = φ(σ(g)^(-1)w, i)`.
+   - Let `O_w` be the localization of `A_0[x]` at `M_w = {b : b̄(y^w) ≠ 0}`, a subring of `K` because `A_0[x]` is a
+     domain.
+   - Let `e_w(a/b) = ā(y^w)/b̄(y^w)`. Evaluation sends `M_w` to units, so `e_w` is a ring homomorphism.
+4. **Equivariance.**
+   - For `v ∈ V_1`, `h ∈ W` and `f ∈ A_0[x_(g,i) : g ∈ T_0]`, condition (ii) gives
+     `(σ_h f)(y^v) = f(φ(σ(hg)^(-1)v,i)) = f(φ(σ(g)^(-1)σ(h)^(-1)v,i)) = f(y^(σ(h)^(-1)v))`.
+   - So `σ_h b ∈ M_v` iff `b ∈ M_(σ(h)^(-1)v)`, and (P2) holds whenever (P1) does.
+5. **Denominators.**
+   - For `v ∈ V_1` and `h ∈ W`, the coordinates of `y^(σ(h)^(-1)v)` used by `b` are
+     `φ(σ(hg)^(-1)v, i)` for `g ∈ T_0`, `i ∈ I_0`. By (i) they are distinct independent uniform variables.
+   - Schwartz–Zippel gives `P(b̄(y^(σ(h)^(-1)v)) = 0) <= D/Q`.
+   - Let `V_good` be the set of `v ∈ V_1` where all these denominators are nonzero. Then
+     `E|V_1 \ V_good| <= |W| |E| D |V| / Q`.
+   - Choose `δ` and `Q` with `δ' + |W||E|D/Q < ε`, and a `φ` achieving the expectation. This satisfies (P1)–(P3).
+
+## 3. Projective linear substitutions (B2)
+
+1. **Setting.** `K = k(x_1..x_n)` is the degree-0 part of the fraction field of `k[x_0..x_n]`. `h ∈ G` acts by
+   `(σ_h f)(x) = f(M_h^(-1) x)` for a lift `M_h ∈ GL_(n+1)(k)`.
+2. **Finite data.**
+   - Write each `f ∈ E` as `a/b` with `a, b` homogeneous of equal degree, `deg b <= D`.
+   - Let `A_0` be generated by:
+     - the coefficients, and inverses of nonzero coefficients of each `b`;
+     - the entries of `M_h^(±1)` and `det(M_h)^(-1)` for `h ∈ W`;
+     - for `h, h' ∈ W` with `hh' ∈ W`, the scalar `λ` with `M_(hh') = λ M_h M_(h')`, and `λ^(-1)`.
+   - Reduce modulo a maximal ideal to `F_0 = F_q`, as in Section 2.
+3. **Points.**
+   - Let `P` be the set of `t ∈ P^n(F_Q)` lying on no hypersurface `{p = 0}` with `p ∈ F_q[x_0..x_n]` nonzero
+     homogeneous of degree `<= D`.
+   - `PGL_(n+1)(F_q)` maps such hypersurfaces to such hypersurfaces, so `P` is stable under every `M̄_h`.
+   - `P ≠ ∅` for large `Q`. There are at most `q^N` such `p` (`N = sum_(e<=D) binom(e+n,n)`), each vanishing on at
+     most `D Q^n` vectors of `F_Q^(n+1)` by Schwartz–Zippel. And `q^N D Q^n < Q^(n+1) - 1` once
+     `Q >= q^N D + 2`.
+4. **Model.**
+   - Take `V = P`, `σ(h) = M̄_h` acting on `P`, and `V_good = V`.
+   - `O_t` is the set of `a/b` (with `a, b ∈ A_0[x_0..x_n]` homogeneous of equal degree) with `b̄(t) ≠ 0`, and
+     `e_t(a/b) = ā(t̃)/b̄(t̃)` for any lift `t̃`. This is well defined: `ab' = a'b` reduces to `ā b̄' = ā' b̄`.
+   - (P1): denominators of `E` reduce to nonzero forms of degree `<= D`, so they are nonzero on `P`. The
+     denominators of `σ_h E` are `b(M_h^(-1)x)`, and `M̄_h^(-1)t ∈ P`.
+   - (P2): `e_t(σ_h b) = b̄(M̄_h^(-1)t̃) = e_(M̄_h^(-1)t)(b)`.
+   - (P3): `M̄_(hh') = λ̄ M̄_h M̄_(h')` holds projectively.
+5. **Möbius.** `Aut_k(k(x)) = PGL_2(k)`, so every action on `k(x)` by `k`-automorphisms is covered.
+
+## 4. Bi-orderable groups (C), imported
+
+1. **Import.** The Malcev–Neumann construction (Mal'cev 1948, Neumann 1949) runs verbatim for crossed products.
+   See D. S. Passman, *Infinite Crossed Products*, Academic Press 1989.
+   - For `G` with a bi-invariant order and a division ring `D`, the formal sums `sum_g d_g u_g` with well-ordered
+     support, multiplied by the crossed-product rule, form a division ring `D((G))` containing `D*G`.
+   - Neumann's lemma gives finite fibres of products of well-ordered sets, and `(1 - s)^(-1) = sum s^n` for
+     `supp s > e`.
+2. **Count.** A division ring has the rank condition (dimension of vector spaces), and the rank condition passes
+   to unital subrings.
+
+## 5. Calibration check
+
+- For `LC(X,k) ⋊ F_2` with a paradoxical boundary action, a ring homomorphism `LC(X,k) -> F` is evaluation at a
+  point `x_w`.
+- (P2) on the finitely many clopens `U_j` of a paradoxical decomposition says `x_(σ(h)^(-1)v) ∈ U_j` iff
+  `x_v ∈ h U_j` for `v ∈ V_good`.
+- Counting `v` gives an `ε`-invariant finitely additive mass on the `U_j`, contradicting the paradox for small
+  `ε`. So no point model exists there, and the argument does not certify a ring that fails the rank condition.

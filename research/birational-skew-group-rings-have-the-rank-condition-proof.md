@@ -1,0 +1,100 @@
+---
+rg: 2
+id: birational-skew-group-rings-have-the-rank-condition-proof
+kind: route
+title: Compose finite-field points of a finite-type model of the coefficient field with the automorphisms, extend the resulting partial injections to permutations, and bound the bad points by Lang-Weil
+target: birational-skew-group-rings-have-the-rank-condition
+requires:
+  - finite-field-point-models-give-the-rank-condition
+---
+
+Notation and conditions (P1)–(P3) are as in `finite-field-point-models-give-the-rank-condition`. Its part (A) says
+that point models give the rank condition and that the rank condition passes to unital subrings. `P` denotes the
+prime field.
+
+## 1. Point-count lemma (imported)
+
+**Lemma.** Let `A` be a finitely generated domain over `Z`, and `Δ ∈ A` nonzero. Let `k` be the algebraic closure of `P` in `Frac A`, and suppose `A` contains an integral primitive element `θ` of `k`. For every `ε > 0` there is a finite
+field `F` such that `V = Hom(A, F)` is nonempty and `|{v ∈ V : v(Δ) = 0}| <= ε |V|`.
+
+**Sources.** A. Weil and S. Lang, *Number of points of varieties in finite fields*, Amer. J. Math. 76 (1954); EGA
+IV_3, 9.7.7.
+
+**Proof sketch.**
+1. **Constants.** Let `K_0 = Frac A`, let `k` be the algebraic closure of `P` in `K_0`, and `d = tr.deg(K_0/P)`.
+   - `k` is a finite extension of `P`.
+   - `K_0/k` is regular. It is separable because `k` is perfect, and `k` is algebraically closed in `K_0`.
+   - Put `O = Z[θ]` or `F_p[θ]`.
+2. **Good fibres.** The generic fibre of `X = Spec A -> Spec O` is geometrically integral of dimension `d`, and
+   `V(Δ)` has generic fibre dimension at most `d-1`. By EGA IV_3 9.7.7 and generic fibre dimension, the same holds
+   over a dense open of `Spec O`. In characteristic `p`, `Spec O` is one point.
+   - Pick a rational prime `p` such that every `𝔭 ⊇ pO` lies in this open. All but finitely many `p` work.
+3. **Decomposition.** For `F = F_Q` with `Q` a power of `p` and `F ⊇ O/𝔭` for all `𝔭 | p`, the set `Hom(A, F)`
+   splits by the prime `𝔭` and the embedding `ι: O/𝔭 -> F`. There are boundedly many pieces.
+   - Each piece is the set of `F`-points of a geometrically integral variety of dimension `d`, with
+     `Q^d + O(Q^(d-1/2))` points.
+   - Its intersection with `V(Δ)` has `O(Q^(d-1))` points (Lang–Weil).
+4. **Conclusion.** The ratio tends to `0` as `Q -> ∞`.
+
+## 2. Finite type, any group (Theorem 1)
+
+1. **Data.** Let `K` be finitely generated over `P`, with `E ⊆ K` finite, `W ∋ e` finite, and `ε > 0`.
+   - Choose a finitely generated domain `A ⊆ K` with `Frac A = K` that contains an integral primitive element of the
+     algebraic closure of `P` in `K`.
+   - For `h ∈ W` pick nonzero `f_h, f'_h ∈ A` with `σ_h(A) ⊆ A[1/f_h]` and `σ_h^(-1)(A) ⊆ A[1/f'_h]` (clear
+     denominators of images of generators). Take `f_e = f'_e = 1`.
+2. **Points.** Let `V = Hom(A, F)` for a finite field `F` to be chosen.
+   - For `v ∈ V`, `ker v` is prime. Put `O_v = A_(ker v) ⊆ K` and `e_v(a/c) = v(a)/v(c)`.
+3. **Partial maps.**
+   - Let `U_h` be the set of `v` with `v(f_h) ≠ 0` and `e_v(σ_h f'_h) ≠ 0`. Note `σ_h f'_h ∈ A[1/f_h] ⊆ O_v`.
+   - For `v ∈ U_h` define `T_h v = e_v ∘ σ_h|_A ∈ V`.
+   - **Injectivity.** For `a ∈ A` write `σ_h^(-1) a = b/f'^m_h` with `b ∈ A`. Then
+     `e_v(a) = T_h v(b) / T_h v(f'_h)^m`, so `v` is determined by `T_h v`. Hence `T_h` is injective on `U_h`.
+   - **Permutations.** Extend `T_h|_(U_h)` to a permutation `τ_h` of the finite set `V`, and set `σ(h) = τ_h^(-1)`.
+     Take `σ(e) = id`, which is consistent since `T_e = id`.
+4. **Good points.** Write `b = a_b/c_b` with `a_b, c_b ∈ A`. Let `V_good` be the set of `v` with:
+   - (G1) `v ∈ U_h` for all `h ∈ W`;
+   - (G2) `T_h v ∈ U_(h')` for all `h, h' ∈ W`;
+   - (G3) `v(c_b) ≠ 0` and `T_h v(c_b) ≠ 0` for all `b ∈ E`, `h ∈ W`.
+5. **(P1) and (P2).** Let `v ∈ V_good`, so `σ(h)^(-1)v = T_h v`.
+   - `E ⊆ O_(T_h v)` by (G3).
+   - `σ_h b = σ_h a_b / σ_h c_b`, and `e_v(σ_h c_b) = T_h v(c_b) ≠ 0`, so `σ_h b ∈ O_v`.
+   - `e_(T_h v)(b) = e_v(σ_h a_b)/e_v(σ_h c_b) = e_v(σ_h b)`.
+6. **(P3).** Let `h, h' ∈ W` with `hh' ∈ W`, and `a ∈ A`. Write `σ_(h') a = q/f^m_(h')`. Using (G1) for `hh'` and
+   (G2):
+   - `T_(h')(T_h v)(a) = T_h v(q)/T_h v(f_(h'))^m = e_v(σ_h q)/e_v(σ_h f_(h'))^m`;
+   - this equals `e_v(σ_h σ_(h') a) = e_v(σ_(hh') a) = T_(hh') v(a)`;
+   - so `σ(h')^(-1)σ(h)^(-1)v = σ(hh')^(-1)v`.
+7. **Counting.** Each condition in (G1)–(G3) says `v(δ) ≠ 0` for one of finitely many nonzero `δ ∈ A`.
+   - Example: `e_v(σ_h f_(h')) ≠ 0` with `σ_h f_(h') = δ/f^m_h` and `v(f_h) ≠ 0` is `v(δ) ≠ 0`. The other conditions
+     rewrite the same way, and nesting stays inside `A[1/f_h]`.
+   - The `δ` are nonzero because the `σ_h` are injective.
+   - With `Δ` their product, `ker v` prime gives `V_good ⊇ {v : v(Δ) ≠ 0}`.
+   - Section 1 then gives `F` with `|V_good| >= (1-ε)|V|`.
+
+## 3. Rank condition (Theorem 2)
+
+1. **Finite data.** Let `AB = I_d` over `K ⋊ G`. Let `H` be generated by the supports of `A` and `B`, with
+   symmetric generating set `S`, and let `E` be the set of coefficients. Put `k = K^H` and `K_1 = k(H·E)`, which is
+   finitely generated over `k` by hypothesis, say `K_1 = k(t_1..t_m)`.
+2. **Descent to finite type.**
+   - Each `σ_s t_j` (`s ∈ S`) and each `b ∈ E` is a rational expression in the `t` with finitely many coefficients in
+     `k`. Let `k_1 ⊆ k` be the subfield generated over `P` by these coefficients, and `K_2 = k_1(t_1..t_m)`.
+   - `σ_s` fixes `k_1 ⊆ K^H` pointwise and maps each `t_j` into `K_2`, so `σ_s(K_2) ⊆ K_2`.
+   - With `σ_s σ_(s^(-1)) = id`, each `σ_s` restricts to an automorphism, so `K_2` is `H`-stable. It contains `E` and
+     is finitely generated over `P`.
+3. **Conclusion.** `A` and `B` lie in the unital subring `K_2 ⋊ H` and `AB = I_d` there.
+   - By Section 2, `K_2` has point models over `H`.
+   - Part (A) of `finite-field-point-models-give-the-rank-condition` gives `r >= d`.
+4. **Examples.**
+   - If `G` fixes a subfield `k_0` and `K/k_0` is finitely generated, then `K^H(H·E) ⊆ K = K^H(t)`. It is a subfield
+     of a finitely generated extension, hence finitely generated.
+   - If `E` is algebraic over `K^G ⊆ K^H`, each orbit lies among the roots of a minimal polynomial, so `K^H(H·E)` is
+     finite over `K^H`.
+
+## 4. Calibration
+
+- For `LC(X,k) ⋊ F_2` with a paradoxical action, the coefficient ring is not a field and has idempotents.
+- `Hom(LC(X,k), F)` consists of evaluations. The partial maps `T_h` are defined everywhere and are the point action,
+  but the counting in Section 1 has no analogue: there is no dimension count on a Cantor set.
+- The argument uses that `K` is a field of finite type through Lang–Weil, and it certifies nothing there.

@@ -1,0 +1,24 @@
+SL_3(F_2) |G|=168 X=vectors      N=    8 orbits=2 rank(t-1)=    2 ratio=0.3333 (floor 0.1250) ratioU=0.3333 (floor 0.2500) maxy=1.0000 OK
+SL_3(F_2) |G|=168 X=points       N=    7 orbits=1 rank(t-1)=    2 ratio=0.3333 (floor 0.1250) ratioU=0.3333 (floor 0.2500) maxy=1.0000 OK
+SL_3(F_2) |G|=168 X=lines        N=    7 orbits=1 rank(t-1)=    2 ratio=0.3333 (floor 0.1250) ratioU=0.3333 (floor 0.2500) maxy=1.0000 OK
+SL_3(F_2) |G|=168 X=flags        N=   21 orbits=1 rank(t-1)=    8 ratio=0.4000 (floor 0.1250) ratioU=0.4000 (floor 0.2500) maxy=0.9000 OK
+SL_3(F_2) |G|=168 X=vector-pairs N=   64 orbits=5 rank(t-1)=   24 ratio=0.4068 (floor 0.1250) ratioU=0.4068 (floor 0.2500) maxy=0.9153 OK
+SL_3(F_2) |G|=168 X=point-pairs  N=   49 orbits=2 rank(t-1)=   20 ratio=0.4255 (floor 0.1250) ratioU=0.4255 (floor 0.2500) maxy=0.8936 OK
+SL_3(F_3) |G|=5616 X=vectors      N=   27 orbits=2 rank(t-1)=   12 ratio=0.4800 (floor 0.2222) ratioU=0.4800 (floor 0.3333) maxy=0.9600 OK
+SL_3(F_3) |G|=5616 X=points       N=   13 orbits=1 rank(t-1)=    6 ratio=0.5000 (floor 0.2222) ratioU=0.5000 (floor 0.3333) maxy=1.0000 OK
+SL_3(F_3) |G|=5616 X=lines        N=   13 orbits=1 rank(t-1)=    6 ratio=0.5000 (floor 0.2222) ratioU=0.5000 (floor 0.3333) maxy=1.0000 OK
+SL_3(F_3) |G|=5616 X=flags        N=   52 orbits=1 rank(t-1)=   30 ratio=0.5882 (floor 0.2222) ratioU=0.5882 (floor 0.3333) maxy=0.9412 OK
+SL_3(F_3) |G|=5616 X=vector-pairs N=  729 orbits=6 rank(t-1)=  432 ratio=0.5975 (floor 0.2222) ratioU=0.5975 (floor 0.3333) maxy=0.9295 OK
+SL_3(F_3) |G|=5616 X=point-pairs  N=  169 orbits=2 rank(t-1)=  102 ratio=0.6108 (floor 0.2222) ratioU=0.6108 (floor 0.3333) maxy=0.9341 OK
+SL_4(F_2) |G|=20160 X=vectors      N=   16 orbits=2 rank(t-1)=    4 ratio=0.2857 (floor 0.1250) ratioU=0.2857 (floor 0.2500) maxy=1.0000 OK
+SL_4(F_2) |G|=20160 X=points       N=   15 orbits=1 rank(t-1)=    4 ratio=0.2857 (floor 0.1250) ratioU=0.2857 (floor 0.2500) maxy=1.0000 OK
+SL_4(F_2) |G|=20160 X=lines        N=   35 orbits=1 rank(t-1)=   12 ratio=0.3529 (floor 0.1250) ratioU=0.3529 (floor 0.2500) maxy=0.9412 OK
+SL_4(F_2) |G|=20160 X=flags        N=  105 orbits=1 rank(t-1)=   40 ratio=0.3846 (floor 0.1250) ratioU=0.3846 (floor 0.2500) maxy=0.9423 OK
+SL_4(F_2) |G|=20160 X=vector-pairs N=  256 orbits=5 rank(t-1)=   96 ratio=0.3825 (floor 0.1250) ratioU=0.3825 (floor 0.2500) maxy=0.9482 OK
+SL_4(F_2) |G|=20160 X=point-pairs  N=  225 orbits=2 rank(t-1)=   88 ratio=0.3946 (floor 0.1250) ratioU=0.3946 (floor 0.2500) maxy=0.9417 OK
+SL_3(F_4) |G|=60480 X=vectors      N=   64 orbits=2 rank(t-1)=   24 ratio=0.3871 (floor 0.1875) ratioU=0.5806 (floor 0.3750) maxy=0.9677 OK
+SL_3(F_4) |G|=60480 X=points       N=   21 orbits=1 rank(t-1)=    8 ratio=0.4000 (floor 0.1875) ratioU=0.6000 (floor 0.3750) maxy=0.9000 OK
+SL_3(F_4) |G|=60480 X=lines        N=   21 orbits=1 rank(t-1)=    8 ratio=0.4000 (floor 0.1875) ratioU=0.6000 (floor 0.3750) maxy=0.9000 OK
+SL_3(F_4) |G|=60480 X=flags        N=  105 orbits=1 rank(t-1)=   48 ratio=0.4615 (floor 0.1875) ratioU=0.6923 (floor 0.3750) maxy=0.8654 OK
+SL_3(F_4) |G|=60480 X=point-pairs  N=  441 orbits=2 rank(t-1)=  208 ratio=0.4738 (floor 0.1875) ratioU=0.7107 (floor 0.3750) maxy=0.8610 OK
+violations: []

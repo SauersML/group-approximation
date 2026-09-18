@@ -1,0 +1,6 @@
+n=3 q=27 L=18 sorted matcher H: eps=0.2322 r=1.9998
+  start H: eps=0.4009 r=0.3911 defect<= 2.3762
+  start rand0: eps=0.4612 r=0.4469 defect<= 2.7242
+  start rand1: eps=0.9426 r=0.9507 defect<= 5.6797
+  start rand2: eps=0.4523 r=0.4388 defect<= 2.6734
+BEST n=3 L=18 max(eps,r)=0.4009

@@ -154,3 +154,25 @@ point.  The audit artifact traces each.
      (`determinant-conjecture-gives-full-atiyah-base-change`). The route
      `strong-atiyah-torsion-free-via-master-host-determinant` assembles
      `SA(E)`, `Det(E)` and that crux.
+10. **Reach the master host by permanence from proved classes (2026-09-17).**
+    *Dies* at a simple Kazhdan atom, by
+    `strong-atiyah-permanence-closure-omits-simple-kazhdan-groups`.
+    - Let `S` be a finitely presented simple FA group.  No group containing
+      `S` is built, from groups without `S`, by any combination of:
+      - subgroups;
+      - directed colimits;
+      - arbitrary extensions;
+      - graphs of groups;
+      - subdirect products;
+      - marked limits.
+    - The Titz Mite--Witzel simple lattices are such atoms.  They are not
+      amenable, residually finite or locally indicable, so no proved Strong
+      Atiyah class contains them, and `E` contains them.
+    - This closes the central-extension loophole of
+      `atiyah-permanence-closure-kazhdan-subgroups-are-rf`: the Deligne
+      lattice lies in the closure of the residually finite groups under
+      extensions.  It also rules out granting every open permanence theorem
+      at once, and changing the universal host.
+    - Any proof of attempt 7 must prove Strong Atiyah directly for a group
+      containing a torsion-free simple Kazhdan lattice.  The necessary gate is
+      `titz-witzel-simple-lattices-satisfy-strong-atiyah`.

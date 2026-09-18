@@ -1,0 +1,17 @@
+kappa=0.05  p=0.3    t*=0.99862817 |f(t*)-theta|=1.1e-16 rel_width=1.220e-04 p*kappa^2/8=9.375e-05 n0=83 est=16
+kappa=0.05  p=0.1    t*=0.99871624 |f(t*)-theta|=7.8e-16 rel_width=3.381e-05 p*kappa^2/8=3.125e-05 n0=336 est=92
+kappa=0.05  p=0.01   t*=0.99874686 |f(t*)-theta|=1.7e-14 rel_width=3.149e-06 p*kappa^2/8=3.125e-06 n0=4488 est=1842
+kappa=0.05  p=0.001  t*=0.99874969 |f(t*)-theta|=2.1e-13 rel_width=3.127e-07 p*kappa^2/8=3.125e-07 n0=54334 est=27626
+kappa=0.2   p=0.3    t*=0.97809455 |f(t*)-theta|=4.4e-16 rel_width=1.944e-03 p*kappa^2/8=1.500e-03 n0=53 est=16
+kappa=0.2   p=0.1    t*=0.97947047 |f(t*)-theta|=7.8e-16 rel_width=5.403e-04 p*kappa^2/8=5.000e-04 n0=231 est=91
+kappa=0.2   p=0.01   t*=0.97995063 |f(t*)-theta|=9.5e-15 rel_width=5.037e-05 p*kappa^2/8=5.000e-05 n0=3379 est=1834
+kappa=0.2   p=0.001  t*=0.97999510 |f(t*)-theta|=2.6e-15 rel_width=5.004e-06 p*kappa^2/8=5.000e-06 n0=43175 est=27550
+kappa=0.5   p=0.3    t*=0.86458811 |f(t*)-theta|=2.2e-16 rel_width=1.190e-02 p*kappa^2/8=9.375e-03 n0=32 est=14
+kappa=0.5   p=0.1    t*=0.87206191 |f(t*)-theta|=1.2e-15 rel_width=3.358e-03 p*kappa^2/8=3.125e-03 n0=158 est=87
+kappa=0.5   p=0.01   t*=0.87472467 |f(t*)-theta|=1.0e-15 rel_width=3.147e-04 p*kappa^2/8=3.125e-04 n0=2605 est=1789
+kappa=0.5   p=0.001  t*=0.87497264 |f(t*)-theta|=2.6e-14 rel_width=3.127e-05 p*kappa^2/8=3.125e-05 n0=35396 est=27097
+kappa=1.0   p=0.3    t*=0.47781050 |f(t*)-theta|=5.6e-17 rel_width=4.438e-02 p*kappa^2/8=3.750e-02 n0=10 est=7
+kappa=1.0   p=0.1    t*=0.49341763 |f(t*)-theta|=7.8e-16 rel_width=1.316e-02 p*kappa^2/8=1.250e-02 n0=84 est=64
+kappa=1.0   p=0.01   t*=0.49937186 |f(t*)-theta|=9.9e-15 rel_width=1.256e-03 p*kappa^2/8=1.250e-03 n0=1831 est=1565
+kappa=1.0   p=0.001  t*=0.49993747 |f(t*)-theta|=1.1e-13 rel_width=1.251e-04 p*kappa^2/8=1.250e-04 n0=27616 est=24858
+ALL CHECKS PASS

@@ -1,0 +1,6 @@
+toy 4-cycle (shares 1 var): vertices=12 edges=6 conflicts=0
+n=6 m=8: YES with conflict=0  NO with holonomy=226/227  uncertified conflicts=0
+n=8 m=12: YES with conflict=0  NO with holonomy=274/282  uncertified conflicts=0
+n=10 m=16: YES with conflict=0  NO with holonomy=289/295  uncertified conflicts=0
+n=12 m=24: YES with conflict=0  NO with holonomy=299/300  uncertified conflicts=0
+n=20 m=60: YES with conflict=0  NO with holonomy=300/300  uncertified conflicts=0

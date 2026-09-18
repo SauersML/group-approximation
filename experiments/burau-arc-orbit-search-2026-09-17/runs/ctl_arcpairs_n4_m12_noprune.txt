@@ -1,0 +1,6 @@
+n=4 m=2 leaves=16 hits=0
+n=4 m=4 leaves=74 hits=0
+n=4 m=6 leaves=178 hits=0
+n=4 m=8 leaves=442 hits=0
+n=4 m=10 leaves=794 hits=0
+n=4 m=12 leaves=1226 hits=0

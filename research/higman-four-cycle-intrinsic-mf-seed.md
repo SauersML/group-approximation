@@ -149,3 +149,117 @@ freedom to `K=RH`, with one diagonal phase torus, and identifies the
 parity-corrected doubling cocycle of the matched diagonal.  The resulting
 phase optimization is explicit, but no analytic lower bound or vanishing
 construction is currently known; nearby-spectrum mixing is also not covered.
+
+## Attempts
+
+- 2026-09-17, swarm-0917-w4-pull-pt-3 (inverter, numerical microstate
+  census).  Result: `higman-opnorm-defect-profile-has-dim-twelve-witness`.
+  The collapse modulus `(HMF5)` is equivalent to `lim_L m_c(L)>0`, where
+  `m_c(L)` is a monotone profile (padding by `(+)1`).  An explicit tuple in
+  `U(12)` has every generator at distance `>=1.985` from `1` and defect
+  `0.3099`, so any threshold must satisfy `delta(1.98)<=0.31`.  Cycle-spectrum
+  seeds satisfy `def>=2 sin(pi/L)`.  Riemannian descent on Schatten-`2m`
+  surrogates plateaus at `def~0.31` for `L=12,28`.  At `L=36,54` it fails to
+  reach the padded twelve-dimensional value.  The order-four matcher optimum
+  (`q=81`) has actual defect `1.39`.  **Dead as a route:** local descent sees
+  no decay and cannot give a lower bound on `m_c(L)`, so the census neither
+  supports a countermodel nor proves collapse.
+- **Numerical scout of `(SPT7)` and of general matchers (2026-09-17,
+  census-computation).**  Script:
+  `experiments/higman-matcher-2026-09-17/sorted_torus_fourth_return.py`.
+  All numbers come from local optimization. They are upper bounds on the
+  relevant infima, never lower bounds, so this is evidence, not a proof.
+  - *Sorted torus.* I minimized the normalized-HS return
+    `||K^4P-PK^4||_2/sqrt(L)` over `K=RH`, from random starts and
+    quadratic-chirp starts. Best values found:
+    - `n=2`: `0.766`.
+    - `n=3`: `0.579`, operator norm `0.881`. Random starts and the best
+      chirp `theta_a=2pi(3a^2/4+a/3)/L` both reach this value, so it is
+      probably the global minimum.
+    - `n=4`: `1.271`, operator norm about `2`. Here no start, chirp starts
+      included, got below the value for a random unitary.
+
+    The trend does not look like vanishing, but the `n=4` value may be
+    local. The sorted torus does not visibly pay the fourth return.
+  - *General matchers.* I ran Riemannian descent over all of `U(L)` on
+    `lam*||KP-DK||_2^2+||K^4P-PK^4||_2^2`. At `lam=1` the return is almost
+    paid (HS `0.036`--`0.042`, op `0.06`--`0.07` for `n=2,3,4`), but the
+    optimizer gives up the matcher equation instead (`eps` op
+    `0.89, 0.61, 0.52`). At `lam=30` the matcher error falls to op
+    `0.28`/`0.32` and the return climbs back to op `0.47`/`1.23` at
+    `n=3,4`. In dimensions `L<=54`, no matcher came near having both small
+    `eps` and small `r` in operator norm. The trade-off does not visibly
+    improve with `n`.
+  - *Verdict.* No numerical sign of an operator-norm clock countermodel. The
+    refutation lane through `(HOM5)` gets no support at `q<=81`. What remains
+    open is an analytic lower bound on the `eps`/`r` trade-off, or larger-`q`
+    evidence.
+- **2026-09-17, swarm-0917-w5-pull-pt-1 (obstruction-miner, cohomology-index).**
+  Result: `higman-cohomological-countermodel-invariants-vanish` (established).
+  I tried to refute `(HMF3)` with an index-type countermodel, in the style of
+  Voiculescu, Exel--Loring, Dadarlat almost-flat K-theory, delocalized
+  Dadarlat, or the Dadarlat--Glebe obstruction class.
+  - **The lane is empty.**  The cellular boundary of every cycle
+    `H_k(BS(1,m))` is `(1-m)` times a cyclic permutation.  So
+    `H_2 = 0` by Hopf and `H^2(Gamma;V) = 0` for every vector space `V`.
+    For `Hig`, Baumslag--Dyer--Heller give a classifying 2-complex and
+    acyclicity, and the group is torsion-free.
+  - **Where it dies.**  Every member dies at the pairing step: the invariant
+    lives in a zero group, or in the rank summand of `K^0(BHig) = Z`.
+  - **Consequence for countermodels.**  Any operator-norm countermodel to
+    `(HMF3)` is cohomologically invisible.  The surviving refutation lanes
+    are non-index ones (amenable or MF-representable quotients, spectral
+    clocks).
+  - **Scope.**  This is not a proof of `(HMF3)`, since `H^2 = 0` supplies no
+    perturbation theorem.  The success of the same lane on
+    `SL_4(F_q[t^(+-1)])` depended on torsion, which `Hig` lacks.
+- **2026-09-18, swarm-0917-w6-w6-ptm-pull (reframing).**
+  Results: `higman-seam-gate-needs-only-padded-bs-correction` (established,
+  elementary) and `bs1n-rq-padded-opnorm-stability` (established, imported).
+  I also opened the route `higman-collapse-via-trivially-padded-bs-correction`.
+  - **Statement 1 of the gate is not needed.**  Same-dimension correction of
+    approximate `BS(1,2)` pairs is the open Eilers--Shulman--Sorensen question.
+    It can be replaced by correction after block sum with an identity block,
+    `bs12-trivially-padded-opnorm-correction`.  That statement together with the
+    glued exact-cycle collapse `higman-exact-packet-cycles-collapse-opnorm`
+    implies `(HMF5)`.  Conversely, `(HMF5)` implies that collapse.
+  - **Published padded stability does not close it.**  Willett arXiv:2408.13350,
+    Theorem 7.9 and Example 7.11, gives operator-norm `R_q`-stability of
+    `BS(1,n)`.  The auxiliary summand there is an uncontrolled finite-quotient
+    representation.
+  - **Class killed.**  Per-seam padded corrections with uncontrolled
+    auxiliaries die when the auxiliary summands of different seams are glued.
+    Exactly glued auxiliaries are trivial, by a smallest-prime chain on odd
+    orders.  Approximately glued auxiliaries are themselves a collapse input.
+    So such methods reach the gate only through trivially padded instances.
+  - **Bounded-order collapse.**  The quantitative prime chain proves collapse
+    for exact-packet cycles with `o_i o_(i+1) eta < 2`.  It dies on fine clocks
+    with orders `>= eta^(-1/2)`.
+- **Z/4 one-unitary reduction and a minimax census (2026-09-18, d-ptf-higman,
+  compute-scout, census-computation).**  Result:
+  `higman-opnorm-collapse-is-a-one-unitary-z4-problem`.  Scripts:
+  `experiments/higman-minimax-2026-09-17/`.
+  - *Established.* Amplify a tuple into `P=diag(U_0,...,U_3)` and the block
+    shift `S` of order four.  All four relators become the single defect
+    `def_S(P)=||P(SPS^*)P^*-(SPS^*)^2||`, and `m_c(4L)<=m^(4)_c(4L)<=m_c(L)`.
+    So `(HMF5)` is equivalent to `lim_N m^(4)_c(N)>0`.  Every noncollapsing
+    sequence therefore has an amplified form with an exact order-four matcher
+    whose fourth return is exactly `0`.  The `r`-clause of `(HOM5)` belongs
+    to the fixed-clock ansatz only, not to the problem.  A far `P` must also
+    stay `(c-def)/12`-far from `{S}'`.
+  - *Evidence.* The census used smooth-max continuation and a bundle minimax
+    polish of the true operator norm.  Every stored optimum was rechecked as
+    a four-tuple.
+    - The `L=12` witness polishes to `0.308580`.
+    - Haar starts give `0.3144` (`N=16`), `0.3099` (`N=32`) and `0.3033`
+      (`N=64`).
+    - Padding optima by `(+)1` and re-descending gives `0.2849` (`N=48`),
+      `0.2827` (`N=64`) and `0.2806` (`N=80`).  The `N=96` run gives
+      `0.2808`.  Every generator is at distance `>=1.999`.
+    - The optima are rank-33 perturbations of `1`, up to `1e-3`.
+
+    So the recorded `0.31` plateau is not a barrier.  The chain has
+    flattened, and the data fit a positive limit near `0.28` as well as slow
+    decay.
+    Neither proves nor refutes `(HMF3)`.  **Still OPEN.**  What is missing
+    is a lower bound for the one equation `R P R^* ~ P^2`, `R=D^*PD`.

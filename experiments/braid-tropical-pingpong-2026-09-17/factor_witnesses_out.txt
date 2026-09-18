@@ -1,0 +1,5 @@
+a : (q + x)*(x - 1)**2*(q*x + 1)*(q**2*t + x)*(q**2*t*x + 1)/(q**3*t)
+[a,b]=abAB : (-q**4*t**2 + x)**3*(q**2*t**2*x - 1)**2*(q**8*t**2*x - 1)/(q**12*t**6)
+Delta a Delta^-1 == a^-1: True
+Delta_4^2 is scalar: True q**8*t**2
+charpoly Delta_4^2 Delta_3^-2: (-q**2 + x)**3*(-q**5*t**2 + x)**2*(-q**8*t**2 + x)

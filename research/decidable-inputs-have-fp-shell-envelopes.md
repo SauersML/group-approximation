@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/boone-higman-shell-effective-presentation-2026-09-08.md
   - research/artifacts/boone-higman-perfect-shell-route-2026-09-08.md
   - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
+  - research/artifacts/shell-envelope-germ-necessity-2026-09-18.md
 ---
 
 For every infinite finitely presented group P with decidable word
@@ -68,3 +69,33 @@ inputs P_0 x Z without bounding the complexity of the other generators,
 by `route-form-shell-inputs-have-computable-mixed-near-relations`. No
 finite presentation of any S(M,M') for an input that is not virtually
 cyclic has been found.
+
+2026-09-18 (c-shenv, swarm-0917, transplanter, family reframing, germ
+groupoid). The germ tests now bind this claim directly.
+`shell-envelope-fp-forces-fp-germ-group` proves that E_nu finitely
+presented forces Q=<tau,S|W_R> finitely presented, with W_R read off
+from any finite presentation. The proof maps the Schreier complex of
+St(p) into the V germ groupoid with free hat loops. The neighbourhood
+kernel is killed by disjoint-support commutation, not through A_1.
+So a successful enumeration must make F_nu and R_nu finitely presented
+and pass the ascending HNN gate, with window N>=1 by
+`accessible-shell-inputs-admit-no-shift-normalizing-enumeration`.
+The earlier sentence that these tests "have not been shown necessary
+for finite presentation of E_nu alone" is superseded; necessity of A_1
+finite presentation is still unproved. Corollary:
+`a5-arithmetic-shell-envelope-is-not-finitely-presented` refutes the
+perfect benchmark. The square-spiral Z^2 envelope is also not finitely
+presented, by the same argument. Still missing for this hole: any
+enumeration of a non-virtually-cyclic input with R_nu finitely
+presented and the gate passed, and a lift from Q to E_nu.
+
+2026-09-18 (bh-shell-universal). The shell proofs never use regularity of the input
+action. `genuine-action-shell-envelopes-generalize-the-regular-shell` runs the
+construction for any action of the input on N whose nonidentity elements have infinite
+support. The one-ended window obstruction and the virtually cyclic prefix-core cap are
+specific to regular enumerations: `eventually-periodic-genuine-shell-actions-give-fp-envelopes`
+gives finitely presented envelopes for every finitely generated virtually abelian input,
+including one-ended Z^2 (near group Z^2 ⋊ Z, window N = 0). The weaker universal claim
+`decidable-inputs-have-fp-genuine-action-shell-envelopes` (implied by this one) also
+suffices for Boone--Higman. The normal-core method reaches exactly the virtually
+abelian inputs, so it cannot go further.

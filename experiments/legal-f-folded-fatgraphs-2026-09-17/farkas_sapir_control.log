@@ -1,0 +1,4 @@
+phi0 {'a': 'ab', 'b': 'ba', 'c': 'c'} m 2 phi {'a': 'abba', 'b': 'baab', 'c': 'c'} gates abcABC maxval 6 words 1 (all legal primitive zero-homology cyclic words, len<=8, |w|+|f(w)|<=600)
+NOT CERTIFIED ABABabab lp-feasible
+done ABABabab lp-feasible
+stats {('lp-feasible', False): 1} time 0.1

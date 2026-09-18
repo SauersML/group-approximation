@@ -64,3 +64,51 @@ such that `a` dies in `(V * <t>)/<<w>>`.
    - **What a violation needs.** A violation of variable length at most seven with generator
      coefficients lies in the frontier and needs a coset budget above `200000`. Longer words
      or coefficients beyond the generators are untouched.
+4. **Internal roots after endomorphisms (2026-09-17, d-klv).** No violation found. The
+   method is dead as a general mechanism.
+   - **Frontier search.** The certificate is `w^phi(t0) = 1` with `phi` an injective
+     endomorphism of V and `t0 in V`. The search tried the `g+1` and `delta1` endomorphisms
+     on the `90550` frontier words that remain after weight certificates.
+     - `43831` words were processed before the run was stopped.
+     - `1495` roots were verified independently, so these words are certified injective
+       (`experiments/kl-thompson-v-internal-roots-2026-09-17/root_certificates.txt`).
+     - NOROOT is capped and certifies nothing.
+     - Details are in `research/artifacts/kl-thompson-v-internal-roots-2026-09-17.md`,
+       Section 4.
+   - **Class kill.** `higman-thompson-roots-miss-a-kl-word-over-thompson-v`: no homomorphism
+     `V_w -> V_{n,1}` is non-trivial on V for `w = ctataT`, although KL holds for that word.
+     - It imports Matte Bon's classification of homomorphisms `V -> V_{n,1}`
+       (`thompson-v-homomorphisms-into-higman-thompson-are-coded`).
+     - The method dies at Step 3 of its proof. The equivariant coding map keeps
+       `<a,c> ≅ S_3` of orbit type `{1,3}` on the ambient, and
+       `cantor-homeomorphisms-miss-a-unimodular-root`, item 2, then forbids the root.
+     - The gate `thompson-v-endomorphism-breaking-the-s3-orbit-type` is refuted.
+   - **What survives.** Internal roots combined with localization to the coefficient
+     subgroup, and ambients whose homomorphisms from V are not spatial. The frontier is at
+     most `89055` words, and the unprocessed words still need a search.
+5. **Entropy and measure transplant, then a width fence (2026-09-17, d-nhg-p2).**
+   - **Transplant.** Blind. Placing V inside a measure-preserving or entropy-carrying overgroup
+     yields no mechanism for producing roots.
+     - `Aut(X, mu)` contains every countable group, so the embedding adds no structure specific to V,
+       and a root theorem there would be the full conjecture.
+     - The Maharam extension of V's nonsingular Cantor action carries an infinite measure, with no
+       finite trace to transport a Gerstenhaber--Rothaus root.
+     - V has torsion, so no locally indicable host applies.
+     - Each version reduces to hyperlinearity of V or to the full conjecture.
+   - **Necessary condition, established.** `kl-kernel-lies-in-the-compact-unitary-width-radical`,
+     by `kl-kernel-compact-unitary-width-radical-proof`, shows the following. If `a` dies through
+     an identity with `A` old-relator factors, then in **every** dimension `d` and for **every**
+     tuple `U in U(d)^S`, `a(U)` is a product of `A` conjugates of relator images. Its part (B)
+     identifies the resulting radical as the common kernel into quotients of algebraic
+     ultraproducts of unitary groups.
+   - **Decomposition of this claim's consequences.** A violation here forces
+     `thompson-v-has-bounded-compact-unitary-relator-width`, by
+     `thompson-v-bounded-unitary-width-from-kl-violation`. That in turn gives
+     `thompson-v-not-hyperlinear` directly, by `thompson-v-not-hyperlinear-from-bounded-unitary-width`.
+   - **What would kill this claim.** One unitary tuple family in which a relator length is
+     `o(l(a(U)))` for a single invariant length `l`. The length may be unnormalized rank, HS,
+     operator norm or Schatten. Such a family refutes bounded width, and then this claim, by
+     `kl-holds-over-thompson-v-via-unbounded-unitary-width`.
+     - Permutation ratio models reduce to soficity by tensor amplification.
+     - Unitary rank and HS ratio models are the new format.
+     - The existing dead Følner and compression routes do not reach them.

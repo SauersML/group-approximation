@@ -126,3 +126,24 @@ OPEN counterexample-construction target. No such group or chain is constructed. 
   **Where it dies:** this is necessary structure, not an obstruction. Nothing
   read here excludes subspaces with both linear dimension and linear coset
   weight, so no contradiction follows.
+* **Twisted `H^1` certificates through Plancherel weight** (sw-027,
+  2026-09-17). See
+  `fpbs-kazhdan-twisted-certificates-vanishing-weight` and
+  `fpbs-kazhdan-twisted-lift-independence`.
+  - *Setup.* Take an irreducible `F_p[Gamma_n]`-module `M` with kernel `K_M`,
+    quotient `Q`, `e = [End M : F_p]`, and crown count `mu` (so
+    `d(Gamma_n) >= 1 + mu`). Gaschutz plus the surjection onto the
+    `M`-isotypic head give
+    `mu/[Gamma:Gamma_n] <= (d_p(K_M)/[Gamma:K_M]) / w(M)`, where
+    `w(M) = (dim M)^2/(e|Q|)`.
+  - *Consequences.* The Kazhdan Hadamard bound gives
+    `mu/N <= |R| log L/(w log p)`. Theorem B kills bounded-weight crowns on
+    `p`-Frattini closed normal kernel families.
+  - *Twisted Lackenby lift.* It has a weight-free cocycle count
+    `uh - r dim M` over `K_(Gamma_n)`. The independence lemma holds: at least
+    `x0*v0 - r dim M` independent equivariant classes, via a bilinear
+    commutator form on `K`; the bound is attained in the free-group tests.
+  - **Where it stops:** descent compatibility. The next stage needs the
+    shrunk scalar classes to stay non-inflated from the next quotient `Q''`;
+    along deep members every scalar class becomes inflated (`x0'' = 0`). So
+    low-weight crowns (`w(M_n) -> 0`) survive.

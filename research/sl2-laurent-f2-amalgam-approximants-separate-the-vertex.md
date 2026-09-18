@@ -107,3 +107,81 @@ together with the analogous commutation of `u_(t^2)`'s partners at larger
   `lowindex.g` in the lane's experiments directory; it builds the presentation
   with `f_0 = w u_t w`, `f_k = w' u_(t^(k-1)) w'`, and relators
   `w u_(t^(k+1)) w = w' u_(t^(k-1)) w'` for `1 <= k <= n-1`.
+- **SAT census: for n >= 2 the vertex looks codense, not separable (lane
+  swarm-0917-w5-nh-proj-commutant, computation, not a proof).**  `C1,m` is
+  separable only if some finite-index subgroup contains `C1,m` and excludes
+  `w'`.  Equivalently, some finite transitive `Delta`-set has a point `x0`
+  fixed by `C1,m` and moved by `w'`.  We encode that existence problem as SAT
+  (pysat, cadical153).
+  - *Encoding.*  The generators are involution permutations `w, u_(t^j)`
+    (`0 <= j <= m`) and `w'`, with free `w' u_(t^j) w'`-partners for
+    `j >= n+2`.  The relators are those of the presentation above.  The
+    search fixes a BFS-standard numbering, so an UNSAT answer at `k` covers
+    every transitive action on `k` points.
+  - *Encoding check.*  The action of `Delta_(2,3)` on `P^1(F_4)` (`t -> a`
+    with `a^2 = a+1`) satisfies the clauses.  The instance with `w' = w`
+    forced is UNSAT.
+  - *Control, n = 1, m = 2.*  An overgroup excluding `w'` appears at index 4,
+    matching the GAP data above.
+  - *n = 2, m = 3.*  UNSAT for every `k <= 22` (`k = 22` took 144 s).  So no
+    subgroup of index `<= 22` contains `C1,3` and excludes `w'`.
+  - *n = 3, m = 4.*  UNSAT for every `k <= 14`.  This is implied by the
+    `n = 2` result, since `Delta_(2,3) -> Delta_(3,4)` maps `C1,3` into `C1,4`.
+  - *Todd--Coxeter.*  The coset enumeration of `C1,3` in `Delta_(2,3)` does
+    not close within 200000 cosets, consistent with infinite index.
+  - *Which relators matter (n = 2, m = 3, k <= 12).*  Dropping one relator
+    gives these smallest overgroups excluding `w'`:
+
+    | Relator dropped | Smallest index |
+    |---|---|
+    | `(w u_1)^3` | 4 |
+    | `(w' v)^3`, with `v = w u_t w` | 2 |
+    | the rotation `w u_(t^2) w = w' u_1 w'` | 4 |
+    | `[v, w' u_t w']` | 3 |
+    | `[v, w' u_(t^2) w']` | none up to 12 |
+    | any single commutator in `V_3` | none up to 12 |
+
+    So the codensity lives in `<w, u_1, u_t, u_(t^2), w'>`.  Only `C1,2`
+    needs to fix `x0`: releasing `u_(t^3)` stays UNSAT, while releasing any of
+    `w, u_1, u_t, u_(t^2)` gives SAT at `k = 3, 4, 2, 4`.
+  - *Core group.*  Take the group
+    `<w,u,a,w' | (wu)^3, (w'a)^3, [a, s a s^-1]>`, with `s = w'w`, `a = v`,
+    `u = u_1`.  The hypotheses are that `w, u, a` fix `x0`, `u` fixes `w'x0`,
+    and `w'` moves `x0`.
+    - With all three commutators of `u, w a w, w w' u w' w`: UNSAT to 12.
+    - With `{01, 02}` or `{02, 12}`: UNSAT to 12.
+    - With only `{01, 12}`: SAT at 8.
+    - With at most one commutator: SAT at 4 or 5.
+  - *Hand chase.*  Suppose `y = w'x0 != x0`.  Then:
+    - `<w', a>` has orbit `{x0, y, z}` on `x0`, with `w' = (x0 y)` and
+      `a = (y z)` there;
+    - `[a, w' u_t w'] = 1` forces `u_t` to fix `z`;
+    - the rotation makes `u_1` fix `y` and `w u_(t^2) w` fix `x0, y, z`, so
+      `u_1` fixes `z`;
+    - `u_t` swaps `wy` and `wz`, and `w` moves `z`.
+
+    None of these steps uses finiteness, while the claim concerns finite sets
+    only.  So a proof must feed finiteness into a chase along `s`-orbits,
+    since `s u_(t^2) s^-1 = u_1` on the overlap.  We did not find one.
+  - *Obstructions to the obvious proofs.*
+    - The Burger--Mozes density argument needs a locally finite tree with
+      `C1,m` as a vertex stabilizer, but the Bass--Serre tree of `Delta` has
+      infinite valence.
+    - `theta^-1(B0,2)` is not codense in `C1,3`, since it has a quotient onto
+      `S_3`.
+    - Quotients through `L1` collapse normal forms, as noted above.
+  - *Verdict.*  This changes belief: for `n >= 2` the prerequisite very likely
+    fails.  If `C1,m` is codense in `Delta_(n,m)`, the route
+    `function-field-rank-one-vertex-action-via-separable-approximants` dies at
+    this, its only open input, with `Delta_(n,m)` as the directed system.  A
+    replacement system would have to break the rotation relator, as the
+    `n = 1` Coxeter truncation does.
+  - *Artifacts.*  Scripts are in
+    `experiments/laurent-amalgam-vertex-census-2026-09-17/`:
+    - `overgroup_sat.py`, the encoding;
+    - `census_std.py`, the main census;
+    - `check_encoding.py`, the `P^1(F_4)` sanity check;
+    - `drop_std.py` and `drop_relators.py`, the relator drops;
+    - `hyp_std.py`, the hypothesis release;
+    - `core_sat.py`, the core group;
+    - `todd_coxeter.py`, the coset enumeration.

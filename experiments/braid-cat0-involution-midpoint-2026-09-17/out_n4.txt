@@ -1,0 +1,14 @@
+n 4 vertices 12 all-pairs vertex paths done 0.0 s
+isometry group order 16
+min d_X upper bound over period-2 vertices (any): (np.float64(0.33333333333333337), ('{123}', '{23}', True))
+period-2 vertices far from Fix(g): 48 | min upper bound among them: (np.float64(1.0), ('{124}', '{34}', True, 0, 2))
+far period-2 pairs with d_B < pi (not antipodal): 8 | (vertex-path bound/pi, d_B/pi, z, gz, g order-reversing, #fixed vertices of g):
+   (np.float64(1.333333), 0.666667, '{12,34}', '{14,23}', False, 0)
+   (np.float64(1.333333), 0.666667, '{12,34}', '{14,23}', False, 4)
+   (np.float64(1.333333), 0.666667, '{13}', '{24}', False, 0)
+   (np.float64(1.333333), 0.666667, '{13}', '{24}', False, 4)
+   (np.float64(1.333333), 0.666667, '{14,23}', '{12,34}', False, 0)
+   (np.float64(1.333333), 0.666667, '{14,23}', '{12,34}', False, 4)
+   (np.float64(1.333333), 0.666667, '{24}', '{13}', False, 0)
+   (np.float64(1.333333), 0.666667, '{24}', '{13}', False, 4)
+VERDICT: no refutation from vertex paths | 0.0 s

@@ -175,3 +175,168 @@ factors through a finite quotient of `F_m`.
      non-nilpotent finite groups.
    - **Open instance.** `large-odd-exponent-local-restricted-burnside`, routed into
      `non-residually-finite-hyperbolic-group`.
+7. **Entropy-measure transplant: free entropy dimension, killed** (swarm-0917,
+   heretic lane, 2026-09-17). DEAD as a route to this claim, and to every
+   non-hyperlinearity hole.
+   - **The idea.** An exact-order-`N` element has an atomic spectral measure,
+     with mass `1/N` on each root of unity. Exponent laws should therefore
+     make microstate spaces small. The plan was to force `δ_0 < 1` against
+     Jung's floor `δ_0 >= 1` for diffuse embeddable algebras.
+   - **Where it dies.** `free-entropy-dimension-cannot-certify-non-hyperlinearity`.
+     (That node is OPEN: a referee refuted its universal Consequence on 2026-09-17. What
+     survived review is only that the Theorem-3 floor and the `δ*` ceiling never cross.)
+     - For every infinite f.g. group, the published floor is the dimension
+       of the algebraic cocycles (Shlyakhtenko, arXiv:0710.4111, Theorem 3).
+     - The published ceiling is `δ_0 <= δ* = β_1^(2) + 1` (Mineyev--Shlyakhtenko).
+     - The floor never exceeds the ceiling, because
+       `Z^1(Γ; CΓ) ⊂ Z^1(Γ; UΓ)` and Lück dimension is monotone. No
+       hyperlinearity is used.
+     - The exponent law contributes only `c(g) ∈ (1 - E_g) UΓ` for each
+       generator. That bounds the ceiling by `m(1 - 1/N)`, which is still
+       `>= 1`.
+     - So a `δ_0` proof needs a floor larger than `δ*`. That floor is false
+       on every hyperlinear group, and proving it already proves the
+       microstate spaces empty.
+   - **1-bounded entropy (not re-read at source).** Hayes's `h` is `>= 0` on
+     every embeddable algebra, because a nonempty orbit covering has log count
+     `>= 0`. The strong 1-boundedness criteria (Cartan, property (T), sofic
+     with `β_1^(2) = 0`) give only `h <= 0`, so the same range argument
+     applies.
+   - **Heretic audit: three unstated shared assumptions** of the HOT families
+     (linear-characteristic, host-geometry, logic-computability,
+     cohomology-index, stability-approximation), each denied in turn.
+     - **(A1) The obstruction is certified at a finite radius.** Denial: use a
+       genuinely global law such as the full exponent law. It breaks at
+       Attempt 5: each finite ball of `B(m,N)` is a ball of a hyperbolic stage
+       `G_k`, so any certificate reaches `G_k`.
+     - **(A2) The obstruction is computed from the algebra of `Γ`, not from
+       the volume of the model space.** Denial: this is the entropy-measure
+       family. It breaks at the cocycle inclusion above, because the volume
+       invariant is itself sandwiched between two algebraic cocycle
+       dimensions.
+     - **(A3) The trace to be approximated is the regular trace.** Denial:
+       aim at a non-regular character. It breaks at
+       `hyperlinear-radical-is-finitely-witnessed`: if every element survives
+       some approximable character, tensor powers recover the regular trace.
+     - No denial gave a new route.
+8. **Inverter: partial Burnside census at exponent 5** (swarm-0917 w4,
+   2026-09-17). Not solved. If `LRB(2,5)` fails, an infinite LEF, hence
+   hyperlinear, group of exponent 5 exists and refutes this claim at `N = 5`. So
+   the minimal counterexample's biography starts from finite quotients of
+   `Π_R(2,5)` that are not 5-groups, at every radius. Data in
+   `experiments/partial-burnside-census-2026-09-17/results.txt`.
+   - **Radius 2 is rich.** A low-index census finds `A_6`, `A_10`, `A_11`, `A_12`
+     and groups of orders 55, 80, 360, 660, 11520 among images of `Π_2(2,5)` in
+     degree `<= 12`.
+   - **Radius 3 looks empty but is not.** In degree `<= 20`, `Π_3(2,5)` has only
+     5-group images. Yet `partial-burnside-radius-four-virtually-abelian-quotient`
+     (ESTABLISHED, exact certificate over `Z[ζ_5]`) gives an infinite virtually
+     abelian quotient `Q ⊂ Z[ζ_5]^5 ⋊ H5` of `Π_4(2,5)`, with finite quotients
+     containing elements of every prime order `q != 5`. So `R*(2,5) >= 5`, and
+     low-index censuses at a fixed radius are not evidence for `LRB`.
+   - **Two-dimensional models die at once.** Irreducible `SL_2(C)` pairs fail at
+     radius 1. Over `F_p` (`p <= 59`) irreducible pairs reach radius 2 only for
+     `p = 3, 11`, never radius 3.
+   - **Where the abelian-by-5-group obstruction dies.** The law is linear in the
+     cocycle. For `H5` and all 2-generated subgroups of
+     `{sum-zero diagonals} ⋊ C5` on 5-dimensional monomial modules, no
+     non-coboundary solution survives radius 5 (`q = 11, 31, 41, 101`). By
+     clause 3 of `lef-burnside-approximants-are-nonlinear-and-nonsolvable`, every
+     solvable family dies at some radius. The step that fails is uniformity:
+     nothing here bounds the death radius over all modules and all 5-group tops.
+   - **Next.** Radius 5 with larger modules (degree 25 monomial over
+     `C5^2`-tops, or modules of quotients of `R(2,5)` of class `>= 3`), then
+     non-solvable tops.
+9. **Inverter: low-degree trace mass must escape** (swarm-0917 w5, 2026-09-17).
+   Not solved. This picks up the uniformity step where Attempt 8 stopped. Two
+   ESTABLISHED class kills; neither uses a restricted Burnside theorem.
+   - **Approximate side.** `approximate-burnside-models-low-degree-trace-mass-vanishes`.
+     The microstates of an infinite exponent-`N` group put trace mass tending
+     to 0 on irreducible pieces of dimension `<= c`, for every `c`. The same
+     holds for models Hilbert--Schmidt close to block-diagonal with blocks of
+     dimension `<= c`. Invariant: low-degree trace mass. Death step: the weak-*
+     limit of the small pieces lies on `Hom(B(m,N), U(<= c))`, which kills a
+     finite-index `K_c <= F_m` (Jordan and Schur, through clause 2 of
+     `bounded-degree-partial-burnside-reps-factor-through-burnside`).
+     Positive-definiteness on a sum of `s` distinct elements of `K_c` then caps
+     the mass by `1/s`. This strictly contains the bounded-dimension case
+     `bounded-dimension-microstates-bounded-exponent-group-is-finite`.
+   - **Exact side.** `partial-burnside-finite-quotients-low-degree-plancherel-bound`.
+     At the radius `R_c = max_(d <= c) R_0(m,N,d)`, a finite quotient `Q` of
+     `Π_(R_c)(m,N)` has Plancherel mass `<= C(m,N,c)/|Q|` on irreducibles of
+     dimension `<= c`. Every `m`-generated group with an abelian subgroup of index
+     `<= c` that satisfies the law on the `R_c`-ball is finite of exponent `N`.
+     So Attempt 8's missing uniformity over modules holds for tops of bounded
+     order, including every analogue of the `Z[ζ_5]^5 ⋊ H5` quotient at radius
+     `R_125(2,5)`.
+   - **What is left.** A counterexample, or an LEF refutation of `LRB`, needs
+     approximants whose trace or Plancherel mass escapes to irreducibles of
+     unbounded dimension that are not HS-almost reducible into bounded blocks.
+     For census work this means non-solvable tops or 5-group tops of unbounded
+     order with high-dimensional irreducibles. Nothing here bounds `R_c` or
+     `C(m,N,c)`.
+10. **Calibration: split into a finite-group principle and exact trace
+    rounding** (swarm-0917, d-nhg-p4; numbered 10 because Attempts 8 and 9 were
+    posted on the live bus from other worktrees).
+    - **Established decomposition**
+      (`hs-burnside-iff-lrb-and-partial-law-trace-rounding`). For fixed `m, N`:
+
+      ```text
+      HB(m,N)  <=>  LRB(m,N) and S(m,N,R) for all R
+               <=>  there are R, C with LRB(R, C) and S(m,N,R).
+      ```
+
+      `S(m,N,R)` says that every limit trace of an approximate exponent-N model
+      is a limit of traces of genuine finite-dimensional unitary
+      representations of the finitely presented partial Burnside group
+      `Π_R(m,N)`.
+    - **Necessity of `LRB`.** Regular representations of the LEF witnesses of
+      `local-restricted-burnside-iff-lef-burnside-groups-are-finite` form an
+      eventually exact model whose trace is the indicator of the kernel of an
+      infinite group.
+    - **Necessity of `S`.** A limit trace factoring through a finite group is a
+      convex combination of normalized characters of irreducibles that kill
+      every `N`-th power.
+    - **Sufficiency.** Linear images of `Π_R(m,N)` are residually finite by
+      Malcev. At an `LRB` radius their finite quotients are bounded, so the
+      images are uniformly bounded and the trace factors through `R(m,N)`.
+    - **Calibration kill.** At an `LRB` radius, with `B(m,N)` infinite, strict
+      or flexible HS-stability of `Π_R(m,N)` makes `Π_R(m,N)` a finitely
+      presented non-hyperlinear group. So operator-level rounding proofs of `S`
+      at the needed radius are at least as strong as the root.
+    - **New open nodes.** `approximate-exponent-traces-round-to-partial-burnside-reps`
+      (true at radius `1` by spectral rounding; the needed radius exceeds
+      `(q - 5)/4` by Golod--Shafarevich), and the route
+      `non-hyperlinear-group-via-lrb-and-partial-law-rounding`.
+    - **Status.** The target stays OPEN. What was gained: the finite-group
+      content and the analytic content are now separate prerequisites, and a
+      failure of `LRB` does not refute `S`.
+11. **Inverter: the Lie-ring transfer of restricted Burnside is vacuous**
+    (d-bexp, swarm-0917, family group-rings, 2026-09-18). Kills a class of approaches; the
+    target stays OPEN.
+    - **Class.** Pass an approximation to an exact homomorphism
+      `G -> A^x` (for example `R^omega`, `prod_omega M_n(C)`, a rank ultraproduct
+      over `F_p`, or `F[G]`). Filter by powers of ideals containing the
+      augmentation, take the graded Lie object, and run Zelmanov's Engel/PI
+      argument there.
+    - **Established obstruction.**
+      `lie-linearizations-are-blind-to-bounded-exponent-residuals`.
+      - The finite residual `K` is perfect, so `I_K = I_K^2` in every
+        characteristic. `K` lies in every dimension subgroup of every
+        multiplicative filtration in every ambient algebra.
+      - When `N` is invertible (for example over `C`), `I_G = I_G^2`, so the
+        graded object is zero on all of `G`.
+      - Zassenhaus Lie algebras satisfy `L_p(G) = L_p(G/K)`.
+    - **Where it dies.** Finiteness needs the separation step
+      `⋂_j D_j` finite. Since `⋂_j D_j ⊇ K`, this step is equivalent to the
+      target. The invariant is `H_1(K; Z) = 0`; the step is the degree-one layer
+      `g ↦ (phi(g) - 1) + J_2`, a homomorphism that vanishes on `K`.
+    - **Metric variants.**
+      - Hilbert-Schmidt: there is no dimension-free commutator contraction, even
+        for exponent-`N` unitaries (block-embedded `S_3` gives ratio `(n/4)^{1/2}`).
+      - Operator norm: the gap `2 sin(pi/N)` makes neighbourhoods trivial and the
+        packing count dimension-dependent, which is the input of
+        `bounded-dimension-microstates-bounded-exponent-group-is-finite`.
+    - **Consequence.** A proof must see the perfect group `K` beyond abelian
+      layers, through trace values, non-abelian simple quotients, or geometry.
+      It cannot use a linearized Zelmanov argument.

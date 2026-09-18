@@ -1,0 +1,9 @@
+PASS 0: Step 0 coset test (both directions) | 20/20 random elements correctly detected outside J
+PASS 1: Step 1, b - b_reduced in J and b_reduced meets each coset once
+PASS 2: Step 2 identity eps_{t0 x}(bv) = (beta v)(x), and bv never in J | 59 random (b, v) pairs with a transverse t0; 0 landed in J (theorem says 0)
+PASS 3: Step 4 transverse saturation and the no-product-of-binomials corollary | 18 (y,a) pairs, 20 products, none refuted
+PASS 4: Step 5 congruence b v = sum g^a phi^a(b) r_a = sum mu^a phi^a(b) r_a mod J
+PASS 5: supp h^n = supp h and conjugation preserves the bump count
+PASS 6: Step 6 structural facts for V = <g1> x F_c(p,q) | g = g1 g2 has two bumps:True; g^-1 g1 g = g1:True; g fixes the shared endpoint m = 1/2:True; g1 in V is identity near q = 1:True; g^n moves points near q for n != 0:True
+
+ALL PASS

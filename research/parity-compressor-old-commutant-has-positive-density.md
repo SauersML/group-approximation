@@ -197,3 +197,64 @@ part of the remaining hole.
   commutator is fenced by hyperlinear-by-amenable permanence.  Thus the
   first live two-cell must have genuinely nonamenable joint holonomy, or a
   proper-endomorphism cocycle outside every amenable telescope.
+- Obstruction-miner audit (d-parity, swarm-0917): the finite-quotient
+  fences above have a hypothesis gap for the actual Toeplitz embedding, and
+  the class they aimed at is dead for a different reason.
+  `toeplitz-schur-packet-center-dies-in-residually-finite-models` shows that
+  the `e_1`-scaled `Q` and `Z` coordinates of the packet, including its
+  central sign, lie in the finitary subgroup `L=SL_fin(F_2)` of
+  `EL_r(T)`.  `L` is infinite and simple, so it lies in the finite residual.
+  So `EL_r(T)` is not residually finite, the countermodels of
+  `finite-index-covariance-retains-coefficient-residual`,
+  `high-type-irreducibles-retain-finite-packet-mass`,
+  `rf-hnn-telescope-retains-coefficient-residual`,
+  `rf-amenable-two-cell-retains-coefficient`,
+  `finite-normalizer-covariance-density-no-go` and
+  `profinite-free-compressors-retain-coefficient-residual` cannot separate
+  the packet, and every representation factoring through a residually finite
+  group has forbidden mass `q=0`, where `(PCD1)` is vacuous.  The repair is
+  `hyperlinear-base-amenable-cells-retain-coefficients`: the Følner
+  telescope works with one canonical microstate of any hyperlinear base.
+  Hence `toeplitz-amenable-cells-reduce-to-base-hyperlinearity`: every
+  amenable-holonomy or finite-index coefficient cell for this packet either
+  fails (if `EL_r(T)` is hyperlinear, with positive forbidden mass and full
+  residual `z(1-a)`) or is unnecessary (if not, `EL_r(T)` already answers
+  `non-hyperlinear-group`).  The invariant every member hits is
+  hyperlinearity of the base, and each dies at the telescope of one canonical
+  base microstate.  The only unfenced gate is nonamenable joint holonomy of
+  several compressors acting on the finitary head `L`.  There
+  the profinite folding fence has no analogue, and what is needed is joint
+  self-similar canonical microstates (`rho o alpha_i` approximately conjugate
+  to `rho` for all `i` simultaneously).  One compressor alone always has
+  them when the base is hyperlinear.
+- A positive-mass input cannot rule out the congruence exits: tensoring with
+  them keeps the mass.
+  `congruence-exit-tensoring-forces-total-packet-collapse` tensors any
+  tracial representation `pi` with the Toeplitz exits `rho_q`.  Packet mass
+  becomes at least `q/(2|B|)`, while `tau(p_<=K)` drops to at most
+  `N_K K^4/(N_q-1)^2`.  Hence, for every cell design whose relators hold on
+  these exits, the scalar placement form and the zero-energy density form of
+  `(PCD1)` are each *equivalent* to total collapse.  On the
+  finite-dimensional class that means `z` dies in every finite quotient.
+  On the Connes-embeddable class it means every embeddable trace kills `z`,
+  which is strictly stronger than non-hyperlinearity.  No compiler,
+  separator or covariance estimate valid in a tensor-closed class can be
+  weaker than total collapse.  A live cell must fail on every congruence
+  exit, or the target must be restated as collapse.  Positive-energy
+  microstate densities are not covered, because `mu_K` is not defined
+  there.
+- **Parity mark in the monolith closure (swarm-0917-w5-nh-parity-density, 2026-09-17).**
+  `parity-mark-lies-in-jacobson-monolith-closure` (ESTABLISHED) shows that the head swap `c=alpha(e)` is finitary.
+  It then derives:
+  - `J in <<c>>_(H_T)`, and `J` lies in the normal closure of every nontrivial element of `L`.
+  - Every `J`-seeing homomorphism is injective on `Lambda`. So `EL_4(T)` non-hyperlinear implies
+    `parity-compressor-hs-return`, and a `J`-seeing ultraproduct model proves `EL_4(T)` hyperlinear.
+  - Every character has `P_- e_inf=0`, and in every microstate sequence the Kazhdan low density supported on the
+    sector `J=-1` tends to zero.
+
+  So the amplifier cannot place positive density in the `J=-1` corner that the parity twist copies into. This
+  closes the escape "packet centre identified with `J_H`" from the scope of
+  `finitary-sign-sector-has-no-kazhdan-low-density`. It dies at the placement step, for every design that keeps
+  comparable letters and some odd `p` with `alpha(p) in <<L>>`, which includes every Toeplitz head swap
+  `c=s I_4` with `s in F_2+F`. A live design needs an odd element whose compressed image has nontrivial Laurent
+  symbol.

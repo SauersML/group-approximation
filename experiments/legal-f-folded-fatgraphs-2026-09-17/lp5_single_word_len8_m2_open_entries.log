@@ -1,0 +1,60 @@
+# lp5.py single-word scan at power 2 on the 14 open entries.
+# command per entry: nice -n 10 timeout 1200 python3 lp5.py '<phi>' 2 8 150 400 best.json
+# (all legal zero-homology primitive words of length <= 8 with |w| + |f(w)| <= 150 darts; float LP)
+== 4887 {"a": "ab", "b": "bbca", "c": "aab"}
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 phi {'a': 'abbbca', 'b': 'bbcabbcaaabab', 'c': 'ababbbca'} {'charpoly': 't**3 - 3*t**2 - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abaABA maxval 4
+words 200
+stats {'infeasible': 200, 'chi0': 0, 'neg': 0} best None time 12.2
+== 4485 {"a": "abb", "b": "bca", "c": "babb"}
+phi0 {'a': 'abb', 'b': 'bca', 'c': 'babb'} m 2 phi {'a': 'abbbcabca', 'b': 'bcababbabb', 'c': 'bcaabbbcabca'} {'charpoly': 't**3 - 2*t**2 - 4*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abbABA maxval 4
+words 174
+stats {'infeasible': 174, 'chi0': 0, 'neg': 0} best None time 5.9
+== 2298 {"a": "bac", "b": "acab", "c": "bbac"}
+phi0 {'a': 'bac', 'b': 'acab', 'c': 'bbac'} m 2 phi {'a': 'acabbacbbac', 'b': 'bacbbacbacacab', 'c': 'acabacabbacbbac'} {'charpoly': 't**3 - 3*t**2 - 2*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abaCBC maxval 4
+words 200
+stats {'infeasible': 200, 'chi0': 0, 'neg': 0} best None time 34.8
+== 4012 {"a": "ab", "b": "bbac", "c": "abb"}
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 phi {'a': 'abbbac', 'b': 'bbacbbacababb', 'c': 'abbbacbbac'} {'charpoly': 't**3 - 3*t**2 - t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abaCBC maxval 4
+words 200
+stats {'infeasible': 200, 'chi0': 0, 'neg': 0} best None time 14.7
+== 1744 {"a": "bcb", "b": "abbc", "c": "bcbb"}
+phi0 {'a': 'bcb', 'b': 'abbc', 'c': 'bcbb'} m 2 phi {'a': 'abbcbcbbabbc', 'b': 'bcbabbcabbcbcbb', 'c': 'abbcbcbbabbcabbc'} {'charpoly': 't**3 - 3*t**2 - 3*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abaCBC maxval 4
+words 200
+stats {'infeasible': 200, 'chi0': 0, 'neg': 0} best None time 38.5
+== 464 {"a": "aab", "b": "bbc", "c": "bbca"}
+phi0 {'a': 'aab', 'b': 'bbc', 'c': 'bbca'} m 2 phi {'a': 'aabaabbbc', 'b': 'bbcbbcbbca', 'c': 'bbcbbcbbcaaab'} {'charpoly': 't**3 - 5*t**2 + 6*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abbABC maxval 4
+words 324
+stats {'infeasible': 324, 'chi0': 0, 'neg': 0} best None time 20.8
+== 2429 {"a": "abb", "b": "bcaa", "c": "babb"}
+phi0 {'a': 'abb', 'b': 'bcaa', 'c': 'babb'} m 2 phi {'a': 'abbbcaabcaa', 'b': 'bcaababbabbabb', 'c': 'bcaaabbbcaabcaa'} {'charpoly': 't**3 - 2*t**2 - 6*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abbABA maxval 4
+words 174
+stats {'infeasible': 174, 'chi0': 0, 'neg': 0} best None time 36.8
+== 228 {"a": "aab", "b": "aabc", "c": "ccca"}
+phi0 {'a': 'aab', 'b': 'aabc', 'c': 'ccca'} m 2 phi {'a': 'aabaabaabc', 'b': 'aabaabaabcccca', 'c': 'cccacccacccaaab'} {'charpoly': 't**3 - 6*t**2 + 9*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates aacABC maxval 4
+words 324
+stats {'infeasible': 324, 'chi0': 0, 'neg': 0} best None time 71.8
+== 198 {"a": "bbc", "b": "aaab", "c": "bbca"}
+phi0 {'a': 'bbc', 'b': 'aaab', 'c': 'bbca'} m 2 phi {'a': 'aaabaaabbbca', 'b': 'bbcbbcbbcaaab', 'c': 'aaabaaabbbcabbc'} {'charpoly': 't**3 - 2*t**2 - 6*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abaABC maxval 4
+words 324
+stats {'infeasible': 324, 'chi0': 0, 'neg': 0} best None time 76.7
+== 108 {"a": "abb", "b": "bccc", "c": "cabb"}
+phi0 {'a': 'abb', 'b': 'bccc', 'c': 'cabb'} m 2 phi {'a': 'abbbcccbccc', 'b': 'bccccabbcabbcabb', 'c': 'cabbabbbcccbccc'} {'charpoly': 't**3 - 3*t**2 - 3*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates abcCBC maxval 4
+words 324
+stats {'infeasible': 324, 'chi0': 0, 'neg': 0} best None time 86.7
+== 1632 {"a": "bbc", "b": "bbcb", "c": "cacc"}
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'cacc'} m 2 phi {'a': 'bbcbbbcbcacc', 'b': 'bbcbbbcbcaccbbcb', 'c': 'caccbbccacccacc'} {'charpoly': 't**3 - 6*t**2 + 8*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates bbcCBC maxval 4
+words 174
+stats {'infeasible': 174, 'chi0': 0, 'neg': 0} best None time 88.7
+== 1633 {"a": "bbc", "b": "bbcb", "c": "ccac"}
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'ccac'} m 2 phi {'a': 'bbcbbbcbccac', 'b': 'bbcbbbcbccacbbcb', 'c': 'ccacccacbbcccac'} {'charpoly': 't**3 - 6*t**2 + 8*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates bbcCBC maxval 4
+words 174
+stats {'infeasible': 174, 'chi0': 0, 'neg': 0} best None time 91.8
+== 1635 {"a": "bcb", "b": "bbcb", "c": "ccac"}
+phi0 {'a': 'bcb', 'b': 'bbcb', 'c': 'ccac'} m 2 phi {'a': 'bbcbccacbbcb', 'b': 'bbcbbbcbccacbbcb', 'c': 'ccacccacbcbccac'} {'charpoly': 't**3 - 6*t**2 + 8*t + 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates bbcBBC maxval 4
+words 200
+stats {'infeasible': 200, 'chi0': 0, 'neg': 0} best None time 75.2
+== 61 {"a": "bbc", "b": "ccba", "c": "bbcb"}
+phi0 {'a': 'bbc', 'b': 'ccba', 'c': 'bbcb'} m 2 phi {'a': 'ccbaccbabbcb', 'b': 'bbcbbbcbccbabbc', 'c': 'ccbaccbabbcbccba'} {'charpoly': 't**3 - 2*t**2 - 7*t - 1', 'irreducible': True, 'primitive': True, 'automorphism': True} gates cbcABC maxval 4
+words 324
+stats {'infeasible': 324, 'chi0': 0, 'neg': 0} best None time 124.3
+ALLDONE

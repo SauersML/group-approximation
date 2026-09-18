@@ -7,10 +7,15 @@ distinct_from:
   rokhlin-window-transport-is-dominated: that is domination for every group by any proof; this asks for a proof of a fixed local shape, the minimal-window Shannon LP, and only for torsion-free groups.
   minimal-window-shannon-derivations-miss-rokhlin-domination: that shows the local method fails once the group has an element of order 3, 4 or 5; this conjectures that torsion is the only way it fails.
   bernoulli-window-codeword-folner-ratio-bound: that certifies domination with an enlarged window along right Følner sets of <F F^-1>; this asks for no enlargement and no amenability.
+  shannon-window-fakes-on-klein-and-infinite-dihedral-hosts: that extends the torsion fakes to (Z/2)^2, D_inf and order 7; this conjectures their absence without torsion.
 artifacts:
   - research/artifacts/shannon-window-certificates-2026-09-17.md
+  - research/artifacts/shannon-window-fakes-on-involution-hosts-2026-09-17.md
+  - experiments/promislow-shannon-windows-2026-09-17/hw_scan.py
+  - experiments/promislow-shannon-windows-2026-09-17/rs_hw_seed7.txt
   - experiments/shannon-window-certificates-2026-09-17/shannon_lp.py
   - experiments/shannon-window-certificates-2026-09-17/random_scan.py
+  - experiments/shannon-kemperman-2026-09-17/kemperman_census.py
 ---
 **OPEN.** Let `G` be torsion-free and `(k, E, F, psi)` a configuration. Put `X = FE ∪ {1}` and `k log q = 1`.
 Then the linear program of the artifact, Section 2, has value `>= 1`. The program minimises
@@ -51,3 +56,22 @@ So for each finite data set it is one LP.
   `H_3(Z)` samples contain such squares and still certify.
 - **How to refute.** Find a torsion-free pattern with LP `< 1` (`random_scan.py` or `shannon_lp.build` with
   a new group class). A fake alone refutes only this claim, not domination.
+- **Hostile torsion-free host and order-2 torsion (swarm-0917-w3-gs-pull-1, 2026-09-17).** Artifact
+  `research/artifacts/shannon-window-fakes-on-involution-hosts-2026-09-17.md`.
+  - *Promislow / Hantzsche–Wendt group* `P`: torsion-free, not left-orderable, no unique products. In 150 random configurations (`n <= 12`, at least 2 readers), the LP value is exactly 1 (`hw_scan.py`, `rs_hw_seed7.txt`). So the two obvious proof mechanisms, a left order or unique products, are not what makes the evidence hold.
+  - *Dense Z.* `E = {0..m-1}`, `F = {0,...,-(m-1)}` gives LP 1 at `m = 4` (`n = 11`) and `m = 5` (`n = 14`) (`dense_z_large.txt`). The Følner-loss heuristic, that dense windows get harder, does not show up at this size.
+  - *Unique products are not the invariant.* Some fakes are UP pairs: `Z/5` with `E = {0,1,2}`, `F = {0,2,4}` at 0.916667, 2 of 6 in `Z/7`, and all 6 in `Z × Z/3` (`up_census.txt`). A proof cannot go through unique products inside the window.
+  - *Order-2 torsion does kill the method.* There are exact fakes on `(Z/2)^2` (7/9), `D_inf` (7/8) and `Z/7` (5/6); see `shannon-window-fakes-on-klein-and-infinite-dihedral-hosts`. `D_inf` contains `Z` with index 2, and every tested `Z` window certifies. So a proof cannot use only virtual torsion-freeness; it has to use torsion-freeness of the whole group. (Referees flagged that the tested census does not show that `Z` certifies every window.)
+  - *Sharper frontier.* Among groups with torsion, fakes are known in every group except where every finite order is `m` or `2m` with the prime factors of `m` at least 11, and any two distinct involutions have a product of odd order. `Z × Z/2` shows no fake in 418 configurations: 338 exhaustive in the box `[-1,1] × Z/2` with `n <= 11`, and 80 random. A partial `Z/11` shape scan also shows none: 21 of 56 classes (`cps_z11.txt`). So the correct statement might be broader than torsion-free, and `Z × Z/2` is the test case.
+  - *Still open.* No mechanism is known. All hosts are sofic, and `n <= 14`.
+- **Rank-condition prerequisite (swarm-0917-w4-pull-gs-1, 2026-09-17).** `window-shannon-certificates-force-rank-condition` (ESTABLISHED):
+  - a twisted linear profile over any field crossed product `K*N`, restricted to a finite window, is a feasible point of this LP with the same `Phi`;
+  - rank-condition failure passes to finite-index subgroups through `K*H ⊂ M_n(K*N)`;
+  - so this claim implies **(RC-vtf)**: every field crossed product over a group whose finitely generated subgroups are virtually torsion-free has the rank condition. This includes all finitely generated linear groups in characteristic 0;
+  - any witness of `some-field-crossed-product-fails-the-rank-condition` over such a group refutes this claim. Next test cases: `Q(x,y) ⋊ SL_3(Z)`, `F_p(x_g) ⋊ Γ` for Kazhdan lattices;
+  - by `virtually-hughes-free-field-crossed-products-are-stably-finite`, (RC-vtf) can fail only on groups outside the virtual Hughes-free class. Every host in the census is inside that class, so the census never tests this failure mode.
+- **Sumset census (swarm-0917-w4-pull-gs-1).** `experiments/shannon-kemperman-2026-09-17/kemperman_census.py`, over the cyclic census files:
+  - every fake has `|FE| <= |E| + |F| - 1`, and none is above the Kemperman bound that torsion-free groups obey;
+  - fakes at equality occur in `Z/5` and `Z/7`;
+  - the invariant is not hereditary strict saturation: `Z/5`, `E = {0,1,2}`, `F = {0,2,4}` is a fake without a strictly saturated sub-pair;
+  - in `Z × Z/5`, adding a far element to `E` keeps a fake with `|FE| >= |E| + |F|`. So "large sumset forces certification" fails once torsion is present, and a Kemperman-type route would have to use torsion-freeness beyond the sumset size.

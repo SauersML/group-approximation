@@ -59,3 +59,11 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
    with hard word problems carrying such `phi`, with `phi` non-contracting
    (by the first necessary condition). This session did not check the
    solvable KMS groups for virtual endomorphisms of trivial core.
+   - *Partial kill (lane sw-010, 2026-09-17).*
+     `virtually-endomorphic-self-similar-actions-have-finite-image` rules out
+     every `phi` that agrees, on a finite-index subgroup, with an endomorphism of
+     a finite-index normal subgroup. That covers generator substitutions,
+     Frobenius-type scalings of the KMS groups and expanding integer-matrix
+     affine maps; all of them give finite image. A candidate `phi` must be a
+     genuine "division" map that extends to no such endomorphism, such as a
+     Cartier-type digit contraction.

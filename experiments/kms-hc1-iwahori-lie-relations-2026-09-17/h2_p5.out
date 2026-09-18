@@ -1,0 +1,8 @@
+p=5 degree 3: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=9, Lambda3=1)
+p=5 degree 15: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=53, Lambda3=275)
+p=5 degree 30: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=107, Lambda3=1256)
+p=5 degree 45: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=163, Lambda3=2943)
+p=5 degree 60: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=217, Lambda3=5341)
+p=5 degree 75: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=273, Lambda3=8445)
+p=5: degrees <= 80 with H_2 != 0: [(3, 6), (15, 1), (30, 1), (45, 1), (60, 1), (75, 1)]
+elapsed 8s

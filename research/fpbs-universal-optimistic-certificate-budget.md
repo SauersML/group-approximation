@@ -35,3 +35,28 @@ finite-graph LazySP estimate counts all graph vertices, and the bounded
 pseudorandom pilot neither determines infinite-cluster membership nor
 establishes an asymptotic probability. What remains is an actual
 Bernoulli estimate under collapse, valid on every prescribed Cayley graph.
+
+**Equivalence diagnosis (b-t-optcert, swarm-0917, 2026-09-17).**
+Established node: `fpbs-certificate-budget-premise-is-equivalent-to-goal`.
+Artifact: `research/artifacts/fpbs-certificate-budget-premise-equivalence-2026-09-17.md`.
+
+The strong converse `fpbs-bounded-query-connection-strong-converse` has no
+collapse hypothesis. The conclusion of this premise, success rate 0 below
+lambda/k(q,c), is therefore false on every nonamenable Cayley graph, at
+every q in (c,1), for every admissible algorithm. This premise holds for G
+exactly when p_c(G)<p_u(G), so it is the goal restated. The route
+`fpbs-universal-optimistic-certificate-route` adds no decomposition.
+
+The diagnosis applies to every admissible selector, relaxed path objective,
+cap, tube reader and waypoint scheme, and to the weakened conclusions:
+subsequences, conditioning on infinite endpoints, and expected cost.
+
+Dead class: derivations collapse => Psi => cheap certificates in which Psi
+is realized at some existing supercritical triple. Examples of such Psi are
+uniqueness, fixed-supercritical tails, anchored expansion and tube bounds.
+Each dies at the leg Psi => cheap, against the converse exponent eta>0.
+
+Do not spend further work designing search algorithms for this hole. Any
+proof must extract from collapse a property that holds at no supercritical
+parameter of any nonamenable Cayley graph. That property already refutes
+collapse without queries.

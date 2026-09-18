@@ -157,3 +157,14 @@ Property (T) closes the Higson--Kasparov route for both.
     main as unreviewed.
   - Complementary to the module route: it needs a spectral gap with fractional mass, not
     non-exactness.
+- **Expander-cluster gap labels at the Bernoulli coefficient.** Dead (2026-09-17,
+  `delocalized-gapped-bernoulli-kernels-vanish-at-marked-expanders`, established, unreviewed).
+  - The recipe: over a torsion-free expander host, find a gapped `a ∈ M_k(C*_r(F_p wr_G G))` whose kernel is the
+    normalized constants on isolated marked clusters. Its Haar trace would be `Σ_n p^(-|N_n|)`, outside `Z[1/p]`, and
+    item 7 of `bernoulli-bc-splits-into-host-and-cylinder-comparison` would refute assembly for `F_p wr_G G`.
+  - Where it dies: at the gap. Theorem K shows that a gapped operator whose kernel diagonal tends to `0` along the marked
+    expanders has vanishing tree-boundary restriction. Theorem D
+    (`hls-ghost-class-never-lifts-to-the-bernoulli-full-shift`) then makes it invertible at `x_n` for large `n`.
+  - Forced property for any surviving gapped witness: kernels at the marked expanders are eventually zero, or localized
+    with diagonal bounded below and seen by `∂Y ⊆ T_cnd`, where Baum--Connes holds. A Haar-trace defect needs a
+    rank-invisible class instead.

@@ -1,0 +1,12 @@
+p=3: Serre relations (ad e_i)^2 e_j = 0 hold in b^: True
+p=3: dims by height 1..10: [3, 3, 2, 3, 3, 2, 3, 3, 3, 3]
+p=3: heights where the generated subalgebra meets the centre direction: [9]
+p=5: Serre relations (ad e_i)^2 e_j = 0 hold in b^: True
+p=5: dims by height 1..16: [3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3]
+p=5: heights where the generated subalgebra meets the centre direction: [15]
+p=7: Serre relations (ad e_i)^2 e_j = 0 hold in b^: True
+p=7: dims by height 1..22: [3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3]
+p=7: heights where the generated subalgebra meets the centre direction: [21]
+p=11: Serre relations (ad e_i)^2 e_j = 0 hold in b^: True
+p=11: dims by height 1..34: [3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3]
+p=11: heights where the generated subalgebra meets the centre direction: [33]

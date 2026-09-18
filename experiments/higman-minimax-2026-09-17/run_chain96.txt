@@ -1,0 +1,8 @@
+padded N=96 def: 0.28272554371380126
+  pad beta=10: def=0.344798
+  pad beta=30: def=0.303852
+  pad beta=100: def=0.287736
+  pad beta=300: def=0.283040
+  pad beta=1000: def=0.281439
+  pad beta=3000: def=0.280972
+pad N=96: polished def=0.280783 ||P-1||=1.9995

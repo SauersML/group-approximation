@@ -1,0 +1,13 @@
+{"relations": {"r1": 1, "r2": 1, "noncommuting": 1}}
+{"spheres": [1, 4, 12, 36, 108, 314, 906, 2576, 7280, 20352, 56664, 156570]}
+{"r": 1, "ball": 5, "ball_boundary": 12, "h_num": 12, "h_den": 5, "h": 2.400000, "density": 1.600000, "opt_size": 5, "opt_boundary": 12, "dinkelbach_iters": 1, "opt_by_radius": [1, 4]}
+{"r": 2, "ball": 17, "ball_boundary": 36, "h_num": 36, "h_den": 17, "h": 2.117647, "density": 1.882353, "opt_size": 17, "opt_boundary": 36, "dinkelbach_iters": 1, "opt_by_radius": [1, 4, 12]}
+{"r": 3, "ball": 53, "ball_boundary": 108, "h_num": 108, "h_den": 53, "h": 2.037736, "density": 1.962264, "opt_size": 53, "opt_boundary": 108, "dinkelbach_iters": 1, "opt_by_radius": [1, 4, 12, 36]}
+{"r": 4, "ball": 161, "ball_boundary": 324, "h_num": 324, "h_den": 161, "h": 2.012422, "density": 1.987578, "opt_size": 161, "opt_boundary": 324, "dinkelbach_iters": 1, "opt_by_radius": [1, 4, 12, 36, 108]}
+{"r": 5, "ball": 475, "ball_boundary": 932, "h_num": 32, "h_den": 19, "h": 1.684211, "density": 2.315789, "opt_size": 57, "opt_boundary": 96, "dinkelbach_iters": 2, "opt_by_radius": [1, 4, 10, 14, 18, 10]}
+{"r": 6, "ball": 1381, "ball_boundary": 2692, "h_num": 8, "h_den": 5, "h": 1.600000, "density": 2.400000, "opt_size": 155, "opt_boundary": 248, "dinkelbach_iters": 3, "opt_by_radius": [1, 4, 12, 28, 40, 48, 22]}
+{"r": 7, "ball": 3957, "ball_boundary": 7612, "h_num": 339, "h_den": 224, "h": 1.513393, "density": 2.486607, "opt_size": 448, "opt_boundary": 678, "dinkelbach_iters": 4, "opt_by_radius": [1, 4, 12, 32, 71, 113, 141, 74]}
+{"r": 8, "ball": 11237, "ball_boundary": 21508, "h_num": 1248, "h_den": 857, "h": 1.456243, "density": 2.543757, "opt_size": 857, "opt_boundary": 1248, "dinkelbach_iters": 4, "opt_by_radius": [1, 4, 12, 34, 79, 152, 223, 242, 110]}
+{"r": 9, "ball": 31589, "ball_boundary": 59900, "h_num": 1383, "h_den": 982, "h": 1.408350, "density": 2.591650, "opt_size": 1964, "opt_boundary": 2766, "dinkelbach_iters": 5, "opt_by_radius": [1, 4, 12, 36, 88, 186, 347, 487, 529, 274]}
+{"r": 10, "ball": 88253, "ball_boundary": 166756, "h_num": 643, "h_den": 470, "h": 1.368085, "density": 2.631915, "opt_size": 3760, "opt_boundary": 5144, "dinkelbach_iters": 6, "opt_by_radius": [1, 4, 12, 36, 92, 207, 409, 696, 926, 931, 446]}
+{"r": 11, "ball": 244823, "ball_boundary": 459524, "h_num": 4391, "h_den": 3291, "h": 1.334245, "density": 2.665755, "opt_size": 6582, "opt_boundary": 8782, "dinkelbach_iters": 6, "opt_by_radius": [1, 4, 12, 36, 95, 218, 453, 796, 1248, 1545, 1498, 676]}

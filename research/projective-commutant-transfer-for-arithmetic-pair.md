@@ -527,3 +527,127 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   sparse, but cannot kill its correlation with the selected inner vector.
   A completion must add selected-vector incidence or prove that inner
   automorphisms cannot concentrate in these arithmetic heat cutoffs.
+- **The rank-two instance is gated by an explicit `F_2 x F_2` crossed product
+  (2026-09-17, d-projct).**  Established as
+  `f2xf2-crossed-products-ce-make-sl2-centralizer-hnn-hyperlinear`.
+
+  *The construction.*  `SL_2(Z[1/p])` is a lattice in `SL_2(R) x SL_2(Q_p)`, and so is the
+  reducible free lattice `Gamma(3) x Lambda' ≅ F_3 x F_r`.  Their measure-equivalence coupling
+  algebra has two corners:
+  - one corner contains `M_2^(p)` trace-preservingly;
+  - the other is the crossed product of the right action of `Gamma(3) x Lambda'` on the
+    S-arithmetic quotient.
+
+  An explicit partial-isometry transfer plus a moment limit moves Connes embeddability from the
+  second corner to the first.  Induction to `F_2 x F_2` then gives the gate.
+
+  *The gate.*  If every essentially free crossed product of `F_2 x F_2` is Connes-embeddable,
+  then at every prime:
+  - `M_2^(p)` embeds;
+  - `(PRT1)` fails at `(2,p)`;
+  - `H_p` is hyperlinear;
+  - `SL_2(Z[1/p])` is not flexibly HS-stable.
+
+  Contrapositively, a proof of this claim at `n = 2`, by any method, produces an explicit
+  essentially free `F_2 x F_2` action with a non-Connes-embeddable crossed product.  In
+  particular it would settle `f2xf2-admits-nonsofic-action`.
+
+  *Consequences for the lane.*  So the `n = 2` lane is at least as hard as an explicit non-CE
+  crossed product of a Haagerup group.  No Kazhdan mechanism can be the whole proof there.
+  The gate does not reach `n >= 3`: lattices of `SL_n(R)` have (T), and (T) is ME-invariant.
+  So bounty-relevant effort on the approximate outlier sector should concentrate on `n >= 3`,
+  where `sl3-noncorrectable-lambda-sector-has-no-projective-leak` is the residual.
+
+  *Not new.*  A conductor mass-balance LP over the Iwahori transition graph adds nothing.
+  Its content is already the established uniform half-loss, one-third gap and linear repair
+  theorems for pure-dyadic packets; the open sector is exactification of approximate
+  non-congruence representations, which no finite LP on exact packets reaches.
+- **Product-lattice coupling gates add nothing at higher rank
+  (2026-09-17, operator-algebras, inverter).**  Refutation lane, `n >= 3`.
+  Put `H = SL_n(R) x SL_n(Q_p)`, `A = SL_n(Z[1/p])`, `Gamma'' = C' x Lambda''`
+  with `C' <= SL_n(Z)` torsion-free of finite index and `Lambda''` a torsion-free
+  cocompact lattice of `SL_n(Q_p)`.  The proof of
+  `f2xf2-on-dyadic-lattice-quotient-bounds-vertex-action-proof` (essential
+  freeness, lattice duality on `H`, `sofic-free-actions-are-soe-invariant`)
+  uses no rank-one input, so it runs verbatim.  With the Elek--Lippner
+  embedding (`hyperlinear-wreath-model`, verified citation), the conclusions
+  are: CE of `L^infinity(A\H) rtimes Gamma''` gives CE of
+  `M' = L^infinity(SL_n(R)/C' x X) rtimes A`, and soficity of `Gamma'' ~ A\H`
+  gives soficity of `A ~ X`.  Either refutes `(PRT1)` through
+  `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`.  Where
+  every member of this lane dies:
+  (i) *No gain in strength.*  `M = L^infinity(X) rtimes A <= M'`
+  trace-preservingly (the projection onto `X` is `A`-equivariant), and the
+  gate is equivalent to CE of `M'`.  So every coupling gate implies `(SH1)`
+  and is at least as hard.  Its restriction to `C` is again an amplified CE
+  algebra: `C ~ SL_n(R)/C' x K` is a profinite extension of the sofic
+  lattice-space action (`sl3z-lattice-space-action-is-sofic` for `n = 3`).
+  The only non-CE-known ingredient is the same single Hecke unitary as in
+  `sl3-homogeneous-ce-is-common-cocycle-spatialization`.
+  (ii) *Finite-orbit models die.*  A finite `Gamma''`-orbit of `Ah` needs
+  `h Gamma'' h^-1 cap A` to have finite index in `h Gamma'' h^-1`.  That would
+  make it a lattice of `H` inside `A`, of finite index in `A`, and therefore
+  both irreducible and virtually a product.  So there are no finite orbits
+  and `finite-equidistributed-orbits-give-sofic-action` is unavailable.
+  (iii) *The recorded permanence of Paunescu's class dies at property (T).*
+  For `n >= 3` both factors of `Gamma''` are Kazhdan.  An infinite Kazhdan
+  group has FA (Watatani), so it lies in a vertex group of any amalgam over
+  amenable subgroups; free ergodic actions of infinite Kazhdan groups are
+  not treeable (Adams--Spatzier); amenable extensions and finite index keep
+  an infinite Kazhdan subgroup inside the kernel.  So membership
+  `Gamma'' in S` (equivalently `A in S`) cannot come from amenable, free,
+  treeable or amenable-amalgam generators through those operations.  Measure
+  equivalence is the only recorded step not checked here.  At `n = 2` the
+  factors are free, which is why the rank-one gate is the genuinely smaller
+  `F_2 x F_2` question.
+  **Also dead: an N-internal free-Haar implementation of the rank-one
+  gate.**  For `N = L^infinity(SL_2(Z)\(SL_2(R) x K)) rtimes Gamma(3)` and
+  free `Lambda'`, approximate innerness of each `alpha_lambda` on `N` would
+  give CE by tensoring the implementers with free Haar unitaries.  But
+  `Gamma(3) ~ SL_2(Z)\(SL_2(R) x K)` has spectral gap: Kim--Sarnak gives
+  `s <= 7/64` uniformly over congruence covers, so `pi (x) conj(pi)` is
+  weakly contained in `lambda`, and restricting to the nonamenable lattice
+  gives the gap.  The action is therefore strongly ergodic, and free groups
+  are not inner amenable, so `N` is full (Choda).  For a full factor
+  approximately inner means inner (Connes).  An inner `alpha_lambda` fixing
+  `L(Gamma(3))` is implemented by a unitary in `L(Gamma(3))' cap N = C`
+  (icc, mixing action), so `alpha_lambda = id`, which contradicts essential
+  freeness.  The citations are recalled, not verbatim, so this is recorded as
+  an attempt only.  Any embedding of the gate must implement `Lambda'` with
+  unitaries asymptotically outside `N^omega`.
+- **Windows of genuine vertex-orbit-finite A-sets as random-lift sources (2026-09-17).** Dead at
+  every prime, for every stabilizer.
+  - **Where it dies.** By `vertex-orbit-finite-a-sets-are-rooted-trees-or-finite`, a subgroup of
+    `SL_2(Z[1/p])` that meets `SL_2(Z)` in finite index either fixes a tree vertex or has finite
+    index. The proof uses the Cartan decomposition and unipotent contraction, not the congruence
+    subgroup property.
+  - **Finite orbits.** The charts collapse: `C_0`-orbit = `C_1`-orbit = A-orbit.
+  - **Infinite orbits.** The quotient is a rooted tree whose parent edges carry `1/(p+1)` of the
+    child's mass. So any identity coupling of `C_0`- and `C_1`-orbit windows mismatches at least
+    `(p-1)/(p+1)` of the mass.
+  - **Consequence.** Non-congruence stabilizers do not escape the radial-shell firewall.
+  - **What survives for the soficity side of the rank-two fork.** Only couplings whose vertex
+    actions come from different A-sets, or from no A-set.
+- **Stability certificates on the HNN group itself: retraction fence (2026-09-17).** This does not
+  prove PRCC. It kills the idea that the centralizer extension
+  `H = <Gamma, t | [t, S_Lambda] = 1>` could be easier to stabilize than `Gamma` is.
+  - **Retraction.** `r : H -> Gamma` with `t |-> 1` is a retraction. The relators of `H` are those
+    of `Gamma` plus `[t, s]`. For any asymptotic homomorphism `phi_n` of `Gamma`, the map
+    `phi_n o r` has the same relator defect, and the `[t, s]` relators have defect zero.
+  - **Consequence.** If `phi_n o r` is close (strictly, or flexibly with `D_n / d_n -> 1`) to an
+    honest representation `psi_n` of `H`, then `psi_n |_Gamma` corrects `phi_n` in the same sense.
+    So every same-dimension or flexible HS stability property of `H` implies the same property
+    for `Gamma`.
+  - **Where it dies.** Take `n >= 3`. Then `Gamma` is infinite, finitely generated linear
+    (so hyperlinear), and has property (T). By
+    `infinite-hyperlinear-kazhdan-group-is-not-hs-stable` it is not even locally HS-stable, so `H`
+    is not strictly or locally HS-stable either. The Hadwin--Shulman criterion ("strictly stable
+    and non-MAP implies non-hyperlinear") is therefore vacuous for `H`, even though `H` is non-MAP.
+  - **What survives.** Only the flexible version: flexible stability of `H`, plus non-MAP, gives
+    non-hyperlinearity. It is never weaker than flexible stability of `Gamma`, which the graph
+    already uses directly (`sl2-half-stability-excludes-hnn-hyperlinearity`,
+    `non-hyperlinear-from-hnn-over-sln-z`).
+  - **Status.** The route adds no new gate. Any stability-type proof must be restricted to the
+    canonical-character projective sector (the inner-adjoint condition of
+    `sl3-rigidity-stops-before-inner-adjoint-correction`) and cannot be phrased as stability of
+    `H`.

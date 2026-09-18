@@ -1,0 +1,10 @@
+T0 k=0 {'V': 42, 'E': 336, 'F': 672, 'free_after_propagation': 255, 'remaining_relations': 632, 'h1_upper': 2} 0.2s (cross-checked)
+T0 k=1 {'V': 672, 'E': 5376, 'F': 10752, 'free_after_propagation': 3981, 'remaining_relations': 10018, 'h1_upper': 2} 53.0s
+T1 k=0 {'V': 42, 'E': 336, 'F': 672, 'free_after_propagation': 261, 'remaining_relations': 638, 'h1_upper': 2} 0.2s (cross-checked)
+T1 k=1 {'V': 672, 'E': 5376, 'F': 10752, 'free_after_propagation': 4086, 'remaining_relations': 10120, 'h1_upper': 2} 75.1s
+T2 k=0 {'V': 42, 'E': 336, 'F': 672, 'free_after_propagation': 248, 'remaining_relations': 617, 'h1_upper': 2} 0.1s (cross-checked)
+T2 k=1 {'V': 672, 'E': 5376, 'F': 10752, 'free_after_propagation': 3932, 'remaining_relations': 9936, 'h1_upper': 2} 53.9s
+T3 k=0 {'V': 42, 'E': 336, 'F': 672, 'free_after_propagation': 272, 'remaining_relations': 649, 'h1_upper': 2} 0.2s (cross-checked)
+T3 k=1 {'V': 672, 'E': 5376, 'F': 10752, 'free_after_propagation': 4282, 'remaining_relations': 10322, 'h1_upper': 2} 73.9s
+T4 k=0 {'V': 42, 'E': 336, 'F': 672, 'free_after_propagation': 261, 'remaining_relations': 638, 'h1_upper': 2} 0.3s (cross-checked)
+T4 k=1 {'V': 672, 'E': 5376, 'F': 10752, 'free_after_propagation': 4145, 'remaining_relations': 10192, 'h1_upper': 2} 81.5s

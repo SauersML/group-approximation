@@ -1,0 +1,12 @@
+m=1: 4 codes, 1 partitions, 600 vars, 1474 clauses
+m=1 [Cadical153]: UNSAT in 0.0s
+product m = 1 UNSAT 
+m=2: 12 codes, 7 partitions, 3064 vars, 9986 clauses
+m=2 [Cadical153]: SAT in 0.0s
+product m = 2 SAT {(1, 0): ('10', ''), (1, 1): ('11', ''), (1, 2): ('01', ''), (1, 3): ('00', ''), (2, 0): ('', '11'), (2, 1): ('', '10'), (2, 2): ('', '01'), (2, 3): ('', '00')}
+m=1: 4 codes, 1 partitions, 600 vars, 1474 clauses
+m=1 [Cadical153]: UNSAT in 0.0s
+twisted m = 1 UNSAT 
+m=2: 12 codes, 7 partitions, 3064 vars, 9986 clauses
+m=2 [Cadical153]: UNSAT in 0.7s
+twisted m = 2 UNSAT 

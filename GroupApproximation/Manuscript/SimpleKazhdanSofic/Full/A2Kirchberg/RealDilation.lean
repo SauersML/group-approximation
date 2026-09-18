@@ -1,0 +1,236 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.CompletionRep
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.RealForms
+import Mathlib.Analysis.InnerProductSpace.LinearMap
+import Mathlib.LinearAlgebra.Finsupp.LSum
+
+/-!
+# The real dilation of a positive definite matrix function (lane A2Kirchberg)
+
+Fork of the never-wired `GroupApproximation/Analysis/KirchbergRealDilation.lean`
+(the original is untouched), for Kirchberg's Theorem 1.1 (Math. Ann. 299 (1994)),
+cited in table row A2 of `simple_kazhdan_sofic_group.tex` (l.57--60).
+
+Let `X : G → M_Y(ℂ)` be positive definite: `X(g⁻¹) = X(g)ᴴ`, and every block
+matrix `[X(gᵢ⁻¹gⱼ)]` is positive semidefinite.  The kernel form
+`⟪f, f'⟫ = Re ∑_{g,h} ⟪f(g), X(g⁻¹h) f'(h)⟫` on `G →₀ ℂ^Y` is a real
+semi-inner product, and left translation preserves it.  Its completion carries
+an orthogonal representation `σ` of `G` and the vectors `V v = [δ₁ ⊗ v]`
+satisfying `⟪V v, σ(g) V w⟫ = Re ⟪v, X(g) w⟫`.
+
+The Hilbert space lives in the universe of `G`, where the repository's
+property `(T)` quantifies.
+-/
+
+namespace GroupApproximation.Full.A2Kirchberg.RealDilation
+
+open Matrix ComplexConjugate UniformSpace GroupApproximation.Full.A2Kirchberg.RealForms
+
+universe u
+
+variable {G : Type u} [Group G] {Y : Type} [Fintype Y]
+
+/-- **A positive definite matrix function on a group.** -/
+structure IsPositiveDefinite (X : G → Matrix Y Y ℂ) : Prop where
+  conjTranspose : ∀ g : G, (X g)ᴴ = X g⁻¹
+  nonneg : ∀ (m : ℕ) (g : Fin m → G) (w : Fin m → Y → ℂ),
+    0 ≤ (∑ i : Fin m, ∑ j : Fin m, ∑ x : Y, ∑ y : Y,
+      conj (w i x) * X ((g i)⁻¹ * g j) x y * w j y).re
+
+/-! ## The pairing -/
+
+theorem pairing_zero_left (A : Matrix Y Y ℂ) (w : Y → ℂ) : pairing A 0 w = 0 := by
+  simp [pairing]
+
+theorem pairing_zero_right (A : Matrix Y Y ℂ) (v : Y → ℂ) : pairing A v 0 = 0 := by
+  simp [pairing]
+
+theorem pairing_add_left (A : Matrix Y Y ℂ) (v v' w : Y → ℂ) :
+    pairing A (v + v') w = pairing A v w + pairing A v' w := by
+  simp only [pairing, Pi.add_apply, map_add, add_mul, Finset.sum_add_distrib]
+
+theorem pairing_smul_left (A : Matrix Y Y ℂ) (r : ℝ) (v w : Y → ℂ) :
+    pairing A (r • v) w = (r : ℂ) * pairing A v w := by
+  simp only [pairing, Finset.mul_sum, Pi.smul_apply, Complex.real_smul, map_mul,
+    Complex.conj_ofReal]
+  refine Finset.sum_congr rfl fun x _ ↦ Finset.sum_congr rfl fun y _ ↦ ?_
+  ring
+
+theorem conj_pairing (A : Matrix Y Y ℂ) (v w : Y → ℂ) :
+    conj (pairing A v w) = pairing Aᴴ w v := by
+  simp only [pairing, map_sum, map_mul, Complex.conj_conj, Matrix.conjTranspose_apply,
+    Complex.star_def]
+  rw [Finset.sum_comm]
+  refine Finset.sum_congr rfl fun x _ ↦ Finset.sum_congr rfl fun y _ ↦ ?_
+  ring
+
+/-! ## The kernel form -/
+
+variable (X : G → Matrix Y Y ℂ)
+
+/-- The kernel form `∑_{g,h} ⟪f(g), X(g⁻¹h) f'(h)⟫`. -/
+noncomputable def kernelForm (f f' : G →₀ (Y → ℂ)) : ℂ :=
+  f.sum fun g v ↦ f'.sum fun h w ↦ pairing (X (g⁻¹ * h)) v w
+
+theorem kernelForm_add_left (f₁ f₂ f' : G →₀ (Y → ℂ)) :
+    kernelForm X (f₁ + f₂) f' = kernelForm X f₁ f' + kernelForm X f₂ f' := by
+  unfold kernelForm
+  rw [Finsupp.sum_add_index']
+  · intro g
+    simp only [pairing_zero_left, Finsupp.sum_fun_zero]
+  · intro g v v'
+    simp only [pairing_add_left, Finsupp.sum_add]
+
+theorem kernelForm_smul_left (r : ℝ) (f f' : G →₀ (Y → ℂ)) :
+    kernelForm X (r • f) f' = (r : ℂ) * kernelForm X f f' := by
+  unfold kernelForm
+  rw [Finsupp.sum_smul_index']
+  · simp only [pairing_smul_left, Finsupp.mul_sum]
+  · intro g
+    simp only [pairing_zero_left, Finsupp.sum_fun_zero]
+
+theorem kernelForm_symm (hX : IsPositiveDefinite X) (f f' : G →₀ (Y → ℂ)) :
+    kernelForm X f' f = conj (kernelForm X f f') := by
+  unfold kernelForm
+  rw [Finsupp.sum_comm]
+  simp only [Finsupp.sum, map_sum, conj_pairing, hX.conjTranspose, mul_inv_rev, inv_inv]
+
+theorem kernelForm_self_nonneg (hX : IsPositiveDefinite X) (f : G →₀ (Y → ℂ)) :
+    0 ≤ (kernelForm X f f).re := by
+  classical
+  let e : Fin f.support.card ≃ f.support := f.support.equivFin.symm
+  have hsum : ∀ φ : G → ℂ, ∑ g ∈ f.support, φ g = ∑ i : Fin f.support.card, φ (e i) :=
+    fun φ ↦ by
+      rw [← Finset.sum_coe_sort f.support φ]
+      exact (Equiv.sum_comp e (fun g : f.support ↦ φ g)).symm
+  have hform : kernelForm X f f = ∑ i : Fin f.support.card, ∑ j : Fin f.support.card,
+      ∑ x : Y, ∑ y : Y, conj (f (e i) x) * X ((e i : G)⁻¹ * e j) x y * f (e j) y := by
+    simp only [kernelForm, Finsupp.sum, pairing, hsum]
+  rw [hform]
+  exact hX.nonneg f.support.card (fun i ↦ (e i : G)) (fun i ↦ f (e i))
+
+/-- Left translation preserves the kernel form. -/
+theorem kernelForm_translate (g : G) (f f' : G →₀ (Y → ℂ)) :
+    kernelForm X (Finsupp.equivMapDomain (Equiv.mulLeft g) f)
+      (Finsupp.equivMapDomain (Equiv.mulLeft g) f') = kernelForm X f f' := by
+  unfold kernelForm
+  simp only [Finsupp.equivMapDomain_eq_mapDomain, Equiv.coe_mulLeft]
+  rw [Finsupp.sum_mapDomain_index_inj (mul_right_injective g)]
+  refine Finsupp.sum_congr fun a _ ↦ ?_
+  rw [Finsupp.sum_mapDomain_index_inj (mul_right_injective g)]
+  refine Finsupp.sum_congr fun b _ ↦ ?_
+  rw [mul_inv_rev, mul_assoc, inv_mul_cancel_left]
+
+/-! ## The pre-space and its completion -/
+
+variable (hX : IsPositiveDefinite X)
+
+set_option linter.unusedVariables false in
+/-- The pre-space of the dilation: `G →₀ ℂ^Y` with the kernel form. -/
+@[nolint unusedArguments]
+def Pre (X : G → Matrix Y Y ℂ) (hX : IsPositiveDefinite X) : Type u := G →₀ (Y → ℂ)
+
+noncomputable instance : AddCommGroup (Pre X hX) :=
+  inferInstanceAs (AddCommGroup (G →₀ (Y → ℂ)))
+
+noncomputable instance : Module ℝ (Pre X hX) :=
+  inferInstanceAs (Module ℝ (G →₀ (Y → ℂ)))
+
+/-- The identification of the free model with the pre-space. -/
+noncomputable def toPre : (G →₀ (Y → ℂ)) ≃ₗ[ℝ] Pre X hX := LinearEquiv.refl ℝ _
+
+/-- The kernel form as a real semi-inner-product core. -/
+noncomputable abbrev core : PreInnerProductSpace.Core ℝ (Pre X hX) where
+  inner f f' := (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f')).re
+  conj_inner_symm f f' := by
+    show (starRingEnd ℝ) (kernelForm X ((toPre X hX).symm f') ((toPre X hX).symm f)).re
+      = (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f')).re
+    rw [RCLike.conj_to_real, kernelForm_symm X hX, Complex.conj_re]
+  re_inner_nonneg f := by
+    show 0 ≤ RCLike.re (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f)).re
+    rw [RCLike.re_to_real]
+    exact kernelForm_self_nonneg X hX _
+  add_left f₁ f₂ f' := by
+    show (kernelForm X ((toPre X hX).symm (f₁ + f₂)) ((toPre X hX).symm f')).re
+      = (kernelForm X ((toPre X hX).symm f₁) ((toPre X hX).symm f')).re
+        + (kernelForm X ((toPre X hX).symm f₂) ((toPre X hX).symm f')).re
+    rw [map_add, kernelForm_add_left, Complex.add_re]
+  smul_left f f' r := by
+    show (kernelForm X ((toPre X hX).symm (r • f)) ((toPre X hX).symm f')).re
+      = (starRingEnd ℝ) r * (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f')).re
+    rw [RCLike.conj_to_real, map_smul, kernelForm_smul_left, Complex.re_ofReal_mul]
+
+noncomputable instance : SeminormedAddCommGroup (Pre X hX) :=
+  InnerProductSpace.Core.toSeminormedAddCommGroup (c := core X hX)
+
+noncomputable instance : InnerProductSpace ℝ (Pre X hX) :=
+  InnerProductSpace.ofCore (core X hX)
+
+theorem pre_inner_def (f f' : Pre X hX) :
+    inner ℝ f f' = (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f')).re := rfl
+
+/-- **The dilation space**, the Hilbert completion of the pre-space. -/
+abbrev Space := Completion (Pre X hX)
+
+/-- Left translation on the pre-space, as a linear equivalence. -/
+noncomputable def translateLinear (g : G) : Pre X hX ≃ₗ[ℝ] Pre X hX :=
+  (toPre X hX).symm.trans ((Finsupp.domLCongr (Equiv.mulLeft g)).trans (toPre X hX))
+
+theorem translateLinear_apply (g : G) (f : Pre X hX) :
+    (toPre X hX).symm (translateLinear X hX g f)
+      = Finsupp.equivMapDomain (Equiv.mulLeft g) ((toPre X hX).symm f) := rfl
+
+/-- Left translation as a linear isometry equivalence of the pre-space. -/
+noncomputable def translate (g : G) : Pre X hX ≃ₗᵢ[ℝ] Pre X hX :=
+  (translateLinear X hX g).isometryOfInner fun f f' ↦ by
+    rw [pre_inner_def, pre_inner_def, translateLinear_apply, translateLinear_apply,
+      kernelForm_translate]
+
+theorem translate_apply (g : G) (f : Pre X hX) :
+    (toPre X hX).symm (translate X hX g f)
+      = Finsupp.equivMapDomain (Equiv.mulLeft g) ((toPre X hX).symm f) := rfl
+
+/-- The orthogonal representation on the pre-space. -/
+noncomputable def preRep : G →* (Pre X hX ≃ₗᵢ[ℝ] Pre X hX) where
+  toFun := translate X hX
+  map_one' := LinearIsometryEquiv.ext fun f ↦ (toPre X hX).symm.injective <| by
+    ext a x
+    change ((toPre X hX).symm f) (1⁻¹ * a) x = ((toPre X hX).symm f) a x
+    rw [inv_one, one_mul]
+  map_mul' g h := LinearIsometryEquiv.ext fun f ↦ (toPre X hX).symm.injective <| by
+    ext a x
+    change ((toPre X hX).symm f) ((g * h)⁻¹ * a) x = ((toPre X hX).symm f) (h⁻¹ * (g⁻¹ * a)) x
+    rw [mul_inv_rev, mul_assoc]
+
+/-- **The orthogonal representation on the dilation space.** -/
+noncomputable def rep : G →* (Space X hX ≃ₗᵢ[ℝ] Space X hX) :=
+  CompletionRep.completionRep (preRep X hX)
+
+/-- The vector `V v = [δ₁ ⊗ v]`. -/
+noncomputable def vec (v : Y → ℂ) : Space X hX :=
+  ((toPre X hX (Finsupp.single 1 v) : Pre X hX) : Completion (Pre X hX))
+
+theorem rep_vec (g : G) (w : Y → ℂ) :
+    rep X hX g (vec X hX w)
+      = ((toPre X hX (Finsupp.single g w) : Pre X hX) : Completion (Pre X hX)) := by
+  have h : preRep X hX g (toPre X hX (Finsupp.single 1 w)) = toPre X hX (Finsupp.single g w) := by
+    refine (toPre X hX).symm.injective ?_
+    change Finsupp.equivMapDomain (Equiv.mulLeft g) (Finsupp.single 1 w) = Finsupp.single g w
+    simp only [Finsupp.equivMapDomain_single, Equiv.coe_mulLeft, mul_one]
+  rw [rep, vec, CompletionRep.completionRep_coe, h]
+
+/-- **The dilation identity** `⟪V v, σ(g) V w⟫ = Re ⟪v, X(g) w⟫`. -/
+theorem inner_vec_rep_vec (v w : Y → ℂ) (g : G) :
+    inner ℝ (vec X hX v) (rep X hX g (vec X hX w)) = (pairing (X g) v w).re := by
+  rw [rep_vec, vec, UniformSpace.Completion.inner_coe, pre_inner_def]
+  change (kernelForm X (Finsupp.single 1 v) (Finsupp.single g w)).re = _
+  unfold kernelForm
+  rw [Finsupp.sum_single_index, Finsupp.sum_single_index, inv_one, one_mul]
+  · exact pairing_zero_right _ _
+  · simp only [pairing_zero_left, Finsupp.sum_fun_zero]
+
+theorem inner_vec_vec (v w : Y → ℂ) :
+    inner ℝ (vec X hX v) (vec X hX w) = (pairing (X 1) v w).re := by
+  have h := inner_vec_rep_vec X hX v w 1
+  rwa [map_one, LinearIsometryEquiv.coe_one, id_eq] at h
+
+end GroupApproximation.Full.A2Kirchberg.RealDilation

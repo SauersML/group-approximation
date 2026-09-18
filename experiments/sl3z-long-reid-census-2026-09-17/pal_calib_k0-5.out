@@ -1,0 +1,302 @@
+HIT k=0 TOR4 len=8 xxyxxYxx
+HIT k=0 NEG len=10 xxyxxxxYxx
+HIT k=0 TOR6 len=10 xxyxxYYxYY
+HIT k=0 NEG len=26 xxyxxxxxxxyxxxxYxxxxxxxYxx
+HIT k=0 NEG len=26 xxyxxxxxxxYxxxxYxxxxxxxyxx
+HIT k=0 UNI-regular len=24 xxyxxxxxxyXXXXYxxxxxxYxx
+HIT k=0 TOR6 len=6 xxYYxx
+HIT k=0 TOR4 len=8 xxYxxYxx
+HIT k=0 TOR4 len=8 xxYxxyxx
+HIT k=0 NEG len=10 xxYxxxxyxx
+HIT k=0 NEG len=10 xxYxxYYXYY
+HIT k=0 NEG len=12 xxYxxxxxxYxx
+HIT k=0 NEG len=22 xxYxxxxxxxyyxxxxxxxYxx
+HIT k=0 NEG len=24 xxYxxxxxxxyxxyxxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxxyxxxxyxxxxxxxYxx
+HIT k=0 TOR4 len=26 xxYxxxxxxxyxyyxyxxxxxxxYxx
+HIT k=0 NEG len=24 xxYxxxxxxxyXXyxxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxxyXXXXyxxxxxxxYxx
+HIT k=0 TOR3 len=26 xxYxxxxxxxyyXXyyxxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxxYxxxxyxxxxxxxyxx
+HIT k=0 UNI-transvection len=22 xxYxxxxxxyxxYxxxxxxyxx
+HIT k=0 NEG len=24 xxYxxxxxxyxyyxyxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxyxyxxyxyxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxyxyXXyxyxxxxxxYxx
+HIT k=0 UNI-transvection len=20 xxYxxxxxxYYxxxxxxYxx
+HIT k=0 UNI-transvection len=22 xxYxxxxxxYxxYxxxxxxYxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxxYxxxxxxYxxxxxxYxx
+HIT k=0 TOR6 len=26 xxYxxxxxxYxxyyxxYxxxxxxYxx
+HIT k=0 UNI-transvection len=22 xxYxxxxxxYXXYxxxxxxYxx
+HIT k=0 UNI-transvection len=24 xxYxxxxxxYXXXXYxxxxxxYxx
+HIT k=0 UNI-regular len=24 xxYxxxxxxYXXXXyxxxxxxyxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxxYXXXXXXYxxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxxYYxYYxYYxxxxxxYxx
+HIT k=0 NEG len=18 xxYxxxxxyyxxxxxYxx
+HIT k=0 NEG len=26 xxYxxxxxyxxxyyxxxyxxxxxYxx
+HIT k=0 TOR6 len=6 xyxxYx
+HIT k=0 TOR4 len=8 xyxxxxYx
+HIT k=0 TOR3 len=22 xxYxxxxxyxyyxyxxxxxYxx
+HIT k=0 TOR3 len=10 xyxxxxxxYx
+HIT k=0 TOR4 len=26 xxYxxxxxyxyxyyxyxyxxxxxYxx
+HIT k=0 UNI-transvection len=22 xxyxxxxxxYxxyxxxxxxYxx
+HIT k=0 TOR6 len=20 xxYxxxxxyXXyxxxxxYxx
+HIT k=0 UNI-regular len=26 xxYxxxxxyyxxxxxxyyxxxxxYxx
+HIT k=0 TOR4 len=24 xxYxxxxxyyxyyxyyxxxxxYxx
+HIT k=0 UNI-regular len=22 xxyxxxxxyXXXXYxxxxxYxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxyyxyxxyxyyxxxxxYxx
+HIT k=0 UNI-transvection len=24 xxYxxxxxyyXyyXyyxxxxxYxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxyyXyxxyXyyxxxxxYxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxyyXyXXyXyyxxxxxYxx
+HIT k=0 UNI-regular len=22 xxYxxxxxYXXXXyxxxxxyxx
+HIT k=0 TOR6 len=24 xxyxxxxxYxyXXyxYxxxxxyxx
+HIT k=0 UNI-transvection len=24 xxYxxxxxYXYXXYXYxxxxxYxx
+HIT k=0 UNI-transvection len=26 xxYxxxxxYXYYxxYYXYxxxxxYxx
+HIT k=0 UNI-transvection len=24 xxYxxxxyxxYxxyxxYxxxxyxx
+HIT k=0 UNI-transvection len=26 xxYxxxxyxxYxxxxyxxYxxxxyxx
+HIT k=0 UNI-transvection len=24 xxYxxxxyxxYXXyxxYxxxxyxx
+HIT k=0 UNI-transvection len=26 xxYxxxxyxxYXXXXyxxYxxxxyxx
+HIT k=0 UNI-regular len=26 xxyxxxxyxxYxxxxyxxYxxxxYxx
+HIT k=0 UNI-transvection len=22 xxYxxxxyxyxxyxyxxxxYxx
+HIT k=0 UNI-transvection len=24 xxYxxxxyxyyXXyyxyxxxxYxx
+HIT k=1 TOR3 len=26 xxxxxxxxxxxyXXyxxxxxxxxxxx
+HIT k=1 TOR3 len=24 xxxxxxxxxxYxxYxxxxxxxxxx
+HIT k=1 TOR3 len=26 xxxxxxxxxxYXXXXYxxxxxxxxxx
+HIT k=1 TOR3 len=22 xxxxxxxxxyxxYxxxxxxxxx
+HIT k=1 TOR3 len=24 xxxxxxxxxyxxxxYxxxxxxxxx
+HIT k=1 REL len=26 xxxxxxxxxyxxxxxxYxxxxxxxxx
+HIT k=1 TOR3 len=22 xxxxxxxxxyXXYxxxxxxxxx
+HIT k=1 TOR3 len=24 xxxxxxxxxyXXXXYxxxxxxxxx
+HIT k=1 REL len=26 xxxxxxxxxyXXXXXXYxxxxxxxxx
+HIT k=1 TOR3 len=8 xxyxyxyy
+HIT k=1 TOR3 len=12 xxyxxxxxxYxx
+HIT k=1 TOR3 len=16 xxyxxxxxxxxxxyxx
+HIT k=1 TOR3 len=18 xxyxxxxxxxxxxxxYxx
+HIT k=1 TOR3 len=24 xxxxxxxxxyyxxYYxxxxxxxxx
+HIT k=1 TOR3 len=26 xxxxxxxxxyyxxxxYYxxxxxxxxx
+HIT k=1 TOR3 len=24 xxxxxxxxxyyXXYYxxxxxxxxx
+HIT k=1 TOR3 len=26 xxxxxxxxxyyXXXXYYxxxxxxxxx
+HIT k=1 TOR3 len=26 xxxxxxxxxyyyxxYYYxxxxxxxxx
+HIT k=1 TOR3 len=22 xxyxxxxxxxxxxxxxxxxyxx
+HIT k=1 TOR3 len=24 xxyxxxxxxxxxxxxxxxxxxYxx
+HIT k=1 TOR3 len=26 xxyxxxxxxxxxYYxxxxxxxxxyxx
+HIT k=1 TOR3 len=6 xxYXYY
+HIT k=1 REL len=22 xxyxxxxxxYxxYxxxxxxyxx
+HIT k=1 REL len=22 xxyxxxxxxYxxyxxxxxxYxx
+HIT k=1 TOR3 len=26 xxxxxxxxxyyyXXYYYxxxxxxxxx
+HIT k=1 REL len=26 xxxxxxxxxYxxxxxxyxxxxxxxxx
+HIT k=1 REL len=24 xxyxxxxxxYXXXXYxxxxxxyxx
+HIT k=1 REL len=24 xxyxxxxxxYXXXXyxxxxxxYxx
+HIT k=1 REL len=26 xxxxxxxxxYXXXXXXyxxxxxxxxx
+HIT k=1 REL len=22 xxYxxxxxxyxxyxxxxxxYxx
+HIT k=1 REL len=22 xxYxxxxxxyxxYxxxxxxyxx
+HIT k=1 REL len=24 xxYxxxxxxyXXXXyxxxxxxYxx
+HIT k=1 REL len=24 xxYxxxxxxyXXXXYxxxxxxyxx
+HIT k=1 REL len=26 xxxxxxxxYXYXYYXYXYxxxxxxxx
+HIT k=1 REL len=26 xxxxxxxyxxxYXXYxxxyxxxxxxx
+HIT k=1 REL len=26 xxxxxxxyxxxYXXyxxxYxxxxxxx
+HIT k=1 REL len=24 xxyxxxxyxyxxxxyxyxxxxyxx
+HIT k=1 REL len=22 xxyxxxxyxyXXyxyxxxxyxx
+HIT k=1 REL len=24 xxxxxxxyxyxyyxyxyxxxxxxx
+HIT k=1 REL len=26 xxxxxxxyxyXXyyXXyxyxxxxxxx
+HIT k=1 REL len=24 xxYxxxxxYxxYYxxYxxxxxYxx
+HIT k=1 REL len=26 xxyxxxxyXXyxxxxyXXyxxxxyxx
+HIT k=1 REL len=26 xxxxxxxyXXXYXXYXXXyxxxxxxx
+HIT k=1 REL len=26 xxxxxxxyXXXYXXyXXXYxxxxxxx
+HIT k=1 REL len=24 xxyxxxxyXXyXXyXXyxxxxyxx
+HIT k=1 REL len=26 xxxxxxxyXXyxyyxyXXyxxxxxxx
+HIT k=1 REL len=22 xxYxxxxxYXYYXYxxxxxYxx
+HIT k=1 REL len=26 xyxxxxxxxxxYXXYxxxxxxxxxyx
+HIT k=1 REL len=26 xyxxxxxxxxxYXXyxxxxxxxxxYx
+HIT k=1 REL len=24 xyxxxxxxxyxyyxyxxxxxxxyx
+HIT k=1 REL len=26 xyxxxxxxxyXXyyXXyxxxxxxxyx
+HIT k=1 REL len=26 xxxxxxxYxxxyXXyxxxYxxxxxxx
+HIT k=1 REL len=26 xxxxxxxYxxxyXXYxxxyxxxxxxx
+HIT k=1 REL len=22 xyxxxxxxYxxxxYxxxxxxyx
+HIT k=1 REL len=22 xyxxxxxxYxxxxyxxxxxxYx
+HIT k=1 REL len=26 xxxxxxxYXXXyXXyXXXYxxxxxxx
+HIT k=1 REL len=26 xxxxxxxYXXXyXXYXXXyxxxxxxx
+HIT k=1 REL len=20 xyxxxxxxYXXYxxxxxxyx
+HIT k=1 REL len=20 xyxxxxxxYXXyxxxxxxYx
+HIT k=1 REL len=26 xyxxxxxxYXXXXXXXXYxxxxxxyx
+HIT k=2 NEG len=8 xxyxxYxx
+HIT k=2 REL len=10 xxyxxxxYxx
+HIT k=2 NEG len=12 xxyxxxxxxYxx
+HIT k=2 REL len=14 xxyxxxxxxxxYxx
+HIT k=2 NEG len=16 xxyxxxxxxxxxxYxx
+HIT k=2 REL len=18 xxyxxxxxxxxxxxxYxx
+HIT k=2 NEG len=20 xxyxxxxxxxxxxxxxxYxx
+HIT k=2 REL len=22 xxyxxxxxxxxxxxxxxxxYxx
+HIT k=2 NEG len=24 xxyxxxxxxxxxxxxxxxxxxYxx
+HIT k=2 REL len=26 xxyxxxxxxxxxxxxxxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxxyxxYxxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxxyXXYxxxxxxxxYxx
+HIT k=2 REL len=24 xxyxxxxxxxxYYxxxxxxxxyxx
+HIT k=2 NEG len=26 xxyxxxxxxxxYxxYxxxxxxxxyxx
+HIT k=2 NEG len=26 xxyxxxxxxxxYxxyxxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxxYXXYxxxxxxxxyxx
+HIT k=2 NEG len=26 xxyxxxxxxxxYXXyxxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxyxxxxYxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxyXXXXYxxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxxYXXXXyxxxxxxxYxx
+HIT k=2 NEG len=22 xxyxxxxxxyxxyxxxxxxyxx
+HIT k=2 NEG len=22 xxyxxxxxxyxxYxxxxxxYxx
+HIT k=2 REL len=24 xxyxxxxxxyxxxxYxxxxxxYxx
+HIT k=2 NEG len=26 xxyxxxxxxyxxxxxxyxxxxxxyxx
+HIT k=2 REL len=24 xxyxxxxxxyXXXXYxxxxxxYxx
+HIT k=2 REL len=26 xxyxxxxxxyyxxxxYYxxxxxxYxx
+HIT k=2 REL len=26 xxyxxxxxxyyXXXXYYxxxxxxYxx
+HIT k=2 REL len=24 xxyxxxxxxYXXXXyxxxxxxYxx
+HIT k=2 NEG len=26 xxxxxxxxxxxyxxyxxxxxxxxxxx
+HIT k=2 REL len=26 xxxxxxxxxxyxxxxYxxxxxxxxxx
+HIT k=2 REL len=26 xxxxxxxxxxyXXXXYxxxxxxxxxx
+HIT k=2 REL len=26 xxxxxxxxxxYxxxxyxxxxxxxxxx
+HIT k=2 REL len=26 xxxxxxxxxxYXXXXyxxxxxxxxxx
+HIT k=2 REL len=26 xxyxxxxxxYYxxxxyyxxxxxxYxx
+HIT k=2 REL len=22 xxxxxxxxyxxxxYxxxxxxxx
+HIT k=2 REL len=26 xxxxxxxxyxxxxxxxxYxxxxxxxx
+HIT k=2 REL len=26 xxyxxxxxxYYXXXXyyxxxxxxYxx
+HIT k=2 NEG len=8 xxYxxyxx
+HIT k=2 NEG len=8 xyxxxxYx
+HIT k=2 REL len=22 xxxxxxxxyXXXXYxxxxxxxx
+HIT k=2 REL len=10 xxYxxxxyxx
+HIT k=2 REL len=14 xxYxxxxxxxxyxx
+HIT k=2 REL len=18 xxYxxxxxxxxxxxxyxx
+HIT k=2 REL len=22 xxYxxxxxxxxxxxxxxxxyxx
+HIT k=2 REL len=26 xxYxxxxxxxxxxxxxxxxxxxxyxx
+HIT k=2 REL len=24 xxYxxxxxxxxyyxxxxxxxxYxx
+HIT k=2 REL len=26 xxxxxxxxyXXXXXXXXYxxxxxxxx
+HIT k=2 REL len=24 xxYxxxxxxyXXXXYxxxxxxyxx
+HIT k=2 REL len=26 xxYxxxxxxyyxxxxYYxxxxxxyxx
+HIT k=2 REL len=26 xxYxxxxxxyyXXXXYYxxxxxxyxx
+HIT k=2 REL len=24 xxYxxxxxxYxxxxyxxxxxxyxx
+HIT k=2 REL len=20 xxyxxxxyxxxxYxxxxYxx
+HIT k=2 REL len=24 xxyxxxxyxxxxxxxxYxxxxYxx
+HIT k=2 REL len=26 xxyxxxxyxxyxxxxYxxYxxxxYxx
+HIT k=2 REL len=26 xxyxxxxyxxyXXXXYxxYxxxxYxx
+HIT k=2 REL len=26 xxyxxxxyxxYxxxxyxxYxxxxYxx
+HIT k=2 REL len=26 xxyxxxxyxxYXXXXyxxYxxxxYxx
+HIT k=2 REL len=24 xxYxxxxxxYXXXXyxxxxxxyxx
+HIT k=2 REL len=24 xyxxxxxxxxYxxYxxxxxxxxyx
+HIT k=2 TOR4 len=26 xyxxxxxyxYYYxyXXXyxyyyyyxy
+HIT k=3 NEG len=24 xxxxxxxxxxxyyxxxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxxxyXXyxxxxxxxxxxx
+HIT k=3 NEG len=22 xxxxxxxxxxYYxxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxxYxxYxxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxxYXXXXYxxxxxxxxxx
+HIT k=3 UNI-transvection len=26 xxxxxxxxxxYYxxYYxxxxxxxxxx
+HIT k=3 TOR3 len=22 xxxxxxxxxyxxYxxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxxxyxxxxyxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxyxxxxYxxxxxxxxx
+HIT k=3 REL len=26 xxxxxxxxxyxxxxxxYxxxxxxxxx
+HIT k=3 NEG len=22 xxxxxxxxxyXXyxxxxxxxxx
+HIT k=3 TOR3 len=22 xxxxxxxxxyXXYxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxyXXXXYxxxxxxxxx
+HIT k=3 REL len=26 xxxxxxxxxyXXXXXXYxxxxxxxxx
+HIT k=3 UNI-transvection len=26 xxxxxxxxxyXXyyXXyxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxyyxxYYxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxyyxxxxYYxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxyyXXYYxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxyyXXXXYYxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxyyyxxYYYxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxyyyXXYYYxxxxxxxxx
+HIT k=3 NEG len=22 xxxxxxxxxYxxYxxxxxxxxx
+HIT k=3 TOR3 len=22 xxxxxxxxxYxxyxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxYxxxxyxxxxxxxxx
+HIT k=3 REL len=26 xxxxxxxxxYxxxxxxyxxxxxxxxx
+HIT k=3 UNI-transvection len=26 xxxxxxxxxYxxYYxxYxxxxxxxxx
+HIT k=3 TOR3 len=22 xxxxxxxxxYXXyxxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxxxYXXXXYxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxYXXXXyxxxxxxxxx
+HIT k=3 REL len=26 xxxxxxxxxYXXXXXXyxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxYYxxyyxxxxxxxxx
+HIT k=3 TOR3 len=26 xxxxxxxxxYYxxxxyyxxxxxxxxx
+HIT k=3 TOR3 len=24 xxxxxxxxxYYXXyyxxxxxxxxx
+HIT k=3 NEG len=18 xxxxxxxxyyxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxxyxxxxxxyxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxyxxyXXYxxYxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxyxxYXXYxxyxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxxyXXXXXXyxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxyXXyxxyXXyxxxxxxxx
+HIT k=3 UNI-transvection len=24 xxxxxxxxyyxxxxyyxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxxyyxyyxyyxxxxxxxx
+HIT k=3 UNI-transvection len=22 xxxxxxxxyyXXyyxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxyyXXyyXXyyxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxYxxyXXyxxYxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxYxxYxxYxxYxxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxxYxxYXXyxxyxxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxyXXyxxYXXYxxxxxxx
+HIT k=3 NEG len=26 xxxxxxxyXXyxxxxyXXyxxxxxxx
+HIT k=3 NEG len=24 xxxxxxxyXXyXXyXXyxxxxxxx
+HIT k=3 UNI-transvection len=22 xxyxxxxxxyXXyxxxxxxyxx
+HIT k=3 REL len=22 xxyxxxxxxYxxYxxxxxxyxx
+HIT k=3 REL len=22 xxyxxxxxxYxxyxxxxxxYxx
+HIT k=3 UNI-regular len=8 xxYxYXYY
+HIT k=3 REL len=24 xxyxxxxxxYXXXXYxxxxxxyxx
+HIT k=3 REL len=24 xxyxxxxxxYXXXXyxxxxxxYxx
+HIT k=3 REL len=22 xxYxxxxxxyxxyxxxxxxYxx
+HIT k=3 REL len=22 xxYxxxxxxyxxYxxxxxxyxx
+HIT k=3 REL len=24 xxYxxxxxxyXXXXyxxxxxxYxx
+HIT k=3 REL len=24 xxYxxxxxxyXXXXYxxxxxxyxx
+HIT k=3 UNI-transvection len=26 xxYxxxxxxyyyXXyyyxxxxxxYxx
+PALSUMMARY k=4 halfL=13 nphi=7 REL=0(min 1000) TOR3=0(min 1000) TOR4=0(min 1000) TOR6=0(min 1000) NEG=0(min 1000) UNI-regular=0(min 1000) UNI-transvection=0(min 1000) nodes=3188592(min 0)
+HIT k=5 NEG len=6 xyxYXY
+HIT k=5 NEG len=12 xxYXyxxyXYxx
+HIT k=5 NEG len=22 xxYXyxxyXyxxyXyxxyXYxx
+HIT k=5 NEG len=22 xxYXyxyXXXyyXXXyxyXYxx
+HIT k=5 NEG len=22 xxYXyxYxxxYYxxxYxyXYxx
+HIT k=5 NEG len=26 xxYXYxxxxYXyxxyXYxxxxYXYxx
+HIT k=5 NEG len=24 xxYXYxxxxYYXXYYxxxxYXYxx
+HIT k=5 NEG len=22 xyxyyyxyXYXXYXyxyyyxyx
+HIT k=5 NEG len=10 xxYYXXYYxx
+HIT k=5 NEG len=20 xxYYXXYxYXXYxYXXYYxx
+HIT k=5 NEG len=20 xxYYXyXXXyyXXXyXYYxx
+HIT k=5 NEG len=20 xxYYXYxxxYYxxxYXYYxx
+HIT k=5 NEG len=6 xyXYXy
+HIT k=5 NEG len=24 xyxYXYYYXXyxxyXXYYYXYxyx
+HIT k=5 NEG len=22 xyxYXYYYXYXXYXYYYXYxyx
+HIT k=5 NEG len=6 xYXYxy
+HIT k=5 NEG len=26 xYxxYxYxxYXyXXyXYxxYxYxxYx
+HIT k=5 NEG len=20 xYxxYXyxYxxYxyXYxxYx
+HIT k=5 NEG len=26 xYxxYXyxYYxYXXYxYYxyXYxxYx
+HIT k=5 NEG len=10 xyyXXXXyyx
+HIT k=5 UNI-transvection len=22 xyyXXXXyxYXXYxyXXXXyyx
+HIT k=5 UNI-transvection len=20 xyXyxyXXXyyXXXyxyXyx
+HIT k=5 UNI-transvection len=20 xyXyxYxxxYYxxxYxyXyx
+HIT k=5 UNI-transvection len=22 xyXYxxxxYYXXYYxxxxYXyx
+HIT k=5 UNI-transvection len=22 XYYxxxxYXyxxyXYxxxxYYX
+HIT k=5 UNI-transvection len=22 XYxyXXXXyyxxyyXXXXyxYX
+HIT k=5 UNI-transvection len=20 XYxYXyXXXyyXXXyXYxYX
+HIT k=5 UNI-transvection len=20 XYxYXYxxxYYxxxYXYxYX
+HIT k=5 UNI-transvection len=20 yXXXyxyXyxxyXyxyXXXy
+HIT k=5 UNI-transvection len=20 yXXXyXYxYXXYxYXyXXXy
+HIT k=5 UNI-transvection len=20 YxxxYxyXyxxyXyxYxxxY
+HIT k=5 UNI-transvection len=20 YxxxYXYxYXXYxYXYxxxY
+PALSUMMARY k=5 halfL=13 nphi=7 REL=0(min 1000) TOR3=0(min 1000) TOR4=0(min 1000) TOR6=0(min 1000) NEG=92(min 6) UNI-regular=0(min 1000) UNI-transvection=12(min 20) nodes=3188592(min 0)
+PAIR k=5 t=xyyXXXXyxYXXYxyXXXXyyx g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyyXXXXyxYXXYxyXXXXyyx g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyyXXXXyxYXXYxyXXXXyyx g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxyXXXyyXXXyxyXyx g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxyXXXyyXXXyxyXyx g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxyXXXyyXXXyxyXyx g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxYxxxYYxxxYxyXyx g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxYxxxYYxxxYxyXyx g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXyxYxxxYYxxxYxyXyx g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXYxxxxYYXXYYxxxxYXyx g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXYxxxxYYXXYYxxxxYXyx g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=xyXYxxxxYYXXYYxxxxYXyx g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYYxxxxYXyxxyXYxxxxYYX g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYYxxxxYXyxxyXYxxxxYYX g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYYxxxxYXyxxyXYxxxxYYX g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxyXXXXyyxxyyXXXXyxYX g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxyXXXXyyxxyyXXXXyxYX g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxyXXXXyyxxyyXXXXyxYX g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXyXXXyyXXXyXYxYX g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXyXXXyyXXXyXYxYX g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXyXXXyyXXXyXYxYX g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXYxxxYYxxxYXYxYX g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXYxxxYYxxxYXYxYX g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=XYxYXYxxxYYxxxYXYxYX g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+PAIR k=5 t=yXXXyxyXyxxyXyxyXXXy g=xyXyx (t, g t g^-1 commute, independent)
+PAIR k=5 t=yXXXyxyXyxxyXyxyXXXy g=xyXyxyXXXy (t, g t g^-1 commute, independent)
+PAIR k=5 t=yXXXyxyXyxxyXyxyXXXy g=xyXyxYxxxY (t, g t g^-1 commute, independent)
+DONE

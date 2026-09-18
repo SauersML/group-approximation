@@ -119,3 +119,32 @@ so establishing this claim would refute that conjecture too.
   functional, one that sees `tau_p` outside the trivial isotypic component,
   such as the spectral mass of `phi_p` near but not at the trivial
   representation.
+* **Spectral mass near but not at the trivial representation, for Kazhdan
+  groups** (sw-128, `fpbs-kazhdan-spectral-data-realized-by-fiid-collapse`).
+  **Dead, as a class-killing obstruction.** Take any factor-of-iid percolation
+  with at most one infinite cluster, which under collapse includes every
+  Bernoulli `xi_p`. Give each finite cluster a random sign. Then the two-point
+  state is `theta^2 epsilon + sigma` with `sigma` reduced, because the
+  Bernoulli Koopman representation is contained in a multiple of `lambda`.
+  So under collapse the state has no mass near `1` other than the atom. The
+  non-atomic part is isolated by the Kesten gap for every nonamenable group,
+  and property (T) adds nothing to it.
+
+  The profile is also realized. On `p^-1(Sp_2n(Z)) ⊂ Sp_2n(R)~` (Kazhdan) there
+  are FIID sparse spines built from Bernoulli-thinned crosses in central-`Z^2`
+  cosets, linked along whole central lines
+  (`fpbs-central-z2-groups-have-fiid-sparse-spines`, which settles
+  `fpbs-kazhdan-sparse-spines` for these groups). They feed an FIID collapse
+  family equal to Bernoulli through `p_c`, weak-* continuous at `p_c`, that
+  realizes the Kazhdan projection values, the reduced non-atomic part, the
+  walk-sampling measures and Hutchcroft's bound.
+
+  Exact failing steps:
+  * (F1) The non-trivial part does not carry the transition. It is reduced and
+    continuous, and only the continuous atom moves.
+  * (F2) Hutchcroft's bound is compatible with collapse: through
+    Cowling–Haagerup–Howe it makes `s_(p_c)` reduced.
+  * (F3) The only discriminating input is Russo's identity, or more generally
+    independent increments above `p_c`, used by the pivotal-spike theorem. A
+    proof must be quantitative in those increments, not representation
+    theoretic.

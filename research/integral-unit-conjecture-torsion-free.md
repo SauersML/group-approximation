@@ -91,3 +91,22 @@ support (`rational-units-rescale-to-integral-units`).
   The attack dies at the kernels: normalized Case A units lie in
   `+-1 + (I_A cap I_B cap I_C)` and are not constrained further, and a nontrivial
   residue whose three shadows are monomials is not excluded.
+* **The Soelberg group.** On `S = <x, y | (xy)^2(xy^-1)^2, (yx)^2(yx^-1)^2>`,
+  the other torsion-free group carrying a known `F_2`-unit (Gardam, Theorem
+  B), the definite-shadow method yields exactly two shadows, up to
+  automorphisms of `D(Z)`: `rho_1: x -> t, y -> u` and `rho_2: x -> u, y -> t`.
+  - Gardam's unit has the five-term image
+    `1 + t^2 + t^-2 + (t^2 + t^-2) u` under both shadows. So no unit of `Z[S]`
+    or `Z_(2)[S]` reduces to it, nor to its translates, automorphic images or
+    inverse, at any support (`soelberg-gardam-unit-has-no-integral-lift`).
+  - On Gardam's 29-element support pair, the shadows give linear constraints.
+    With a sub-support SAT check and 1100 empty msolve systems, cross-checked
+    over two primes, no nontrivial unit of `Q[S]` or `Z[S]` lives on the pair,
+    whatever its residue. No eighth-root signed-monomial unit, the shape of
+    Gardam's complex unit on `P`, does either
+    (`soelberg-support-pair-has-no-rational-units`).
+
+  The attack dies where it dies on `P`. A Case A unit normalized to
+  `U = 1 mod 2` only has `rho_1(U), rho_2(U) in {+-1}`, which constrains it
+  only on fixed support pairs. A residue whose two shadows are monomials is not
+  excluded.

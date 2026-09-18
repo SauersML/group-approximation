@@ -88,6 +88,42 @@ before its refutation.
   algebras homotopy dominated by a positive case
   (`stw10-homotopy-domination-preserves-amenable-qd`); full group algebras of
   Kazhdan groups (`stw10-kazhdan-full-group-traces-are-qd`).
+- **Rationalization (sw-052, 2026-09-17), `exact-x1-reduces-to-q-stable-algebras`.**
+  `tau` is QD iff `tau ⊗ tau_Q` is QD on `A ⊗ Q`. So the claim is equivalent
+  to its case for separable unital exact `Q`-stable algebras. It holds
+  whenever `A ⊗ Q`, or `A ⊗ C` for some exact `C` with a faithful amenable
+  trace, satisfies the UCT. Hence a counterexample must fail the UCT after
+  every UHF stabilization (empty UCT-support filter). Torsion-only failures of
+  the UCT can never produce one.
+- **Tensor route capped (sw-052), `bootstrap-tensor-stabilization-reaches-only-rational-uct`.**
+  If `A ⊗ C` is UCT for a bootstrap `C` with `K_*(C) ⊗ Q ≠ 0`, then `A ⊗ Q`
+  is UCT. The reason is that `Q` is a KK-retract of `C ⊗ Q`. So no bootstrap
+  `C` extends the rationally UCT positive class. The tensor route survives
+  only for non-bootstrap exact `C`.
+- **Heretic pass (sw-052): three unstated assumptions of the operator-algebra
+  attacks, and their denials.**
+  (H1) *The algebra is fixed.* The models are sought on `A` itself.
+  Denials:
+  - *Enlarge by a cone.* Every amenable `tau ∘ ev_1` on `CA` is QD
+    (`stw10-contractible-algebras-have-qd-amenable-traces`). Descending QD
+    along `ev_1 : CA -> A` is then equivalent to the claim, and for
+    non-exact algebras it fails on `C*(E)`. This breaks: any descent argument
+    must spend exactness exactly at the endpoint `t = 1`.
+  - *Tensor with `Q`.* Theorem 1 of the rationalization node. This gives a
+    new route.
+  (H2) *The obstruction is the UCT of `A`.* Denial: only the rational UCT is
+  used, as above. For non-nuclear exact algebras even the rational UCT is not
+  necessary: the exact tracially AF algebra of Moradi--Amini
+  (arXiv:2606.13924v1, Theorem 5.6) fails it but has QD traces. Heuristic
+  pointer, not proved here: in Schafhauser's framework the residual
+  obstruction is one extension class in `KK^1_nuc(A, J)`, where `J` is the
+  trace-kernel ideal of `Q_ω`, lying in the kernel of the K-theory map; that
+  is a one-codomain phantom question rather than a UCT question.
+  (H3) *Witnesses come from groups.* Denial: if a nonamenable `Γ` sits in `A`
+  as a unital `C*_r(Γ)`, then `A` has no amenable trace. The hypertrace of an
+  amenable trace (Brown--Ozawa 6.2.7) restricts to an invariant mean on
+  `ℓ^∞(Γ)`. So reduced crossed products by nonamenable groups are excluded,
+  and group-built witnesses reduce to amenable-group constructions.
 - Nothing else is recorded.  A counterexample needs a separable exact,
   non-UCT (or at least not known-UCT) algebra with a faithful trace whose GNS
   closure is hyperfinite but which admits no operator-norm multiplicative

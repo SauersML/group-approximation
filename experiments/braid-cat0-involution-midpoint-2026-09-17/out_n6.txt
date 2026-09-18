@@ -1,0 +1,22 @@
+n 6 vertices 130 all-pairs vertex paths done 0.9 s
+isometry group order 24
+min d_X upper bound over period-2 vertices (any): (np.float64(0.26772047280122996), ('{1234}', '{234}', True))
+period-2 vertices far from Fix(g): 452 | min upper bound among them: (np.float64(1.0), ('{12356}', '{45}', True, 0, 11))
+far period-2 pairs with d_B < pi (not antipodal): 16 | (vertex-path bound/pi, d_B/pi, z, gz, g order-reversing, #fixed vertices of g):
+   (np.float64(1.075924), 0.73228, '{12,34,56}', '{16,23,45}', False, 0)
+   (np.float64(1.075924), 0.73228, '{12,36,45}', '{14,23,56}', False, 18)
+   (np.float64(1.075924), 0.73228, '{12,36,45}', '{16,25,34}', False, 18)
+   (np.float64(1.075924), 0.73228, '{13,46}', '{15,24}', False, 18)
+   (np.float64(1.075924), 0.73228, '{13,46}', '{26,35}', False, 18)
+   (np.float64(1.075924), 0.73228, '{135}', '{246}', False, 0)
+   (np.float64(1.075924), 0.73228, '{14,23,56}', '{12,36,45}', False, 18)
+   (np.float64(1.075924), 0.73228, '{14,23,56}', '{16,25,34}', False, 18)
+   (np.float64(1.075924), 0.73228, '{15,24}', '{13,46}', False, 18)
+   (np.float64(1.075924), 0.73228, '{15,24}', '{26,35}', False, 18)
+   (np.float64(1.075924), 0.73228, '{16,23,45}', '{12,34,56}', False, 0)
+   (np.float64(1.075924), 0.73228, '{16,25,34}', '{12,36,45}', False, 18)
+   (np.float64(1.075924), 0.73228, '{16,25,34}', '{14,23,56}', False, 18)
+   (np.float64(1.075924), 0.73228, '{246}', '{135}', False, 0)
+   (np.float64(1.075924), 0.73228, '{26,35}', '{13,46}', False, 18)
+   (np.float64(1.075924), 0.73228, '{26,35}', '{15,24}', False, 18)
+VERDICT: no refutation from vertex paths | 1.0 s

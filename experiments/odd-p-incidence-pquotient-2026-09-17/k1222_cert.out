@@ -1,0 +1,30 @@
+edges [ [ 1, 2 ], [ 1, 3 ], [ 1, 4 ], [ 1, 5 ], [ 1, 6 ], [ 1, 7 ], [ 2, 4 ], 
+  [ 2, 5 ], [ 2, 6 ], [ 2, 7 ], [ 3, 4 ], [ 3, 5 ], [ 3, 6 ], [ 3, 7 ], 
+  [ 4, 6 ], [ 4, 7 ], [ 5, 6 ], [ 5, 7 ] ]
+  |H|=3^109 |Omega1 Z|=3^77
+  |H|=3^33 |Omega1 Z|=3^15
+  |H|=3^19 |Omega1 Z|=3^1
+K1222 p=3: reduced order 3^19, |Z|=3, J nontrivial true, class 3, exponent 9
+  all relators hold on images: true
+  |A|=3^11 abelian true normal true selfcentralizing true index 6561
+  chi(J) = zeta_3^1
+  gen 1 done
+  gen 2 done
+  gen 3 done
+  gen 4 done
+  gen 5 done
+  gen 6 done
+  gen 7 done
+  gen 8 done
+  gen 9 done
+  gen 10 done
+  gen 11 done
+  gen 12 done
+  gen 13 done
+  gen 14 done
+  gen 15 done
+  gen 16 done
+  gen 17 done
+  gen 18 done
+  gen 19 done
+exit 0

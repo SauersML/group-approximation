@@ -1,0 +1,11 @@
+C5               n=5 alpha=2  min=6.1554  need=5.1962 ratio=1.1846
+C7               n=7 alpha=3  min=8.7626  need=6.9282 ratio=1.2648
+antihole C7bar   n=7 alpha=2  min=10.2949  need=8.6603 ratio=1.1888
+antihole C9bar   n=9 alpha=2  min=13.4391  need=12.1244 ratio=1.1084
+wheel W5         n=6 alpha=2  min=10.0167  need=8.6603 ratio=1.1566
+wheel W7         n=8 alpha=3  min=15.0187  need=12.1244 ratio=1.2387
+web C8^2 (a=1)   n=8 alpha=2  min=12.0005  need=10.3923 ratio=1.1548
+web C11^3        n=11 alpha=2  min=18.4790  need=15.5885 ratio=1.1854
+C7^2             n=7 alpha=2  min=10.2950  need=8.6603 ratio=1.1888
+C10^3            n=10 alpha=2  min=16.7471  need=13.8564 ratio=1.2086
+

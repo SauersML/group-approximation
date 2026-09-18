@@ -123,3 +123,108 @@ only through a proof that does not pass through the conjecture.
    because free groups have no nontrivial FA subgroups. Whether a one-relator
    base can contain an infinite non-residually-finite FA subgroup is not
    addressed.
+8. **Tree and self-similar engines over a linear base with cyclic edges.**
+   *Dies* for these engines (2026-09-17). This removes both hypotheses Attempt 7
+   needed, FA and non-residual-finiteness. Take `A = BS(1,2) = <a, b | b a b^-1 = a^2>`,
+   `C_1 = <a>`, `C_2 = <b>`, `phi(a) = b`. The input meets every hypothesis:
+   - `A` is residually finite, linear and one-relator;
+   - `A` embeds in a finitely presented simple group;
+   - both memberships are decidable in the affine representation on `Z[1/2]`.
+
+   Then `A*_phi` is the Baumslag--Gersten group. By
+   `gersten-pairs-lie-in-no-locally-finite-tree-host`, no group acting on a
+   locally finite tree, or factor by factor on finitely many such trees, with
+   torsion kernel contains it. That covers the hosts of Theorem B and of Theorems
+   10.5 and 11.1 of Bux--Llosa Isenrich--Wu, and every automorphism group of a
+   locally finite rooted tree.
+
+   The invariant is the set of primes dividing the orders of an elliptic element
+   on finite balls. The base `<a, b>` is elliptic in every tree action. Since
+   `a` and `b` are conjugate, their invariants agree. The relation
+   `b a b^-1 = a^2` then forces the smallest prime to have a smaller prime in
+   the same set, so `a` must act trivially. Every such engine dies when it places
+   the input in its host.
+
+   The same obstruction excludes every input in which some `a in C_1` of
+   infinite order satisfies `phi(a) a phi(a)^-1 = a^2`. It applies to the
+   Magnus-step permanence and to the one-relator route, which Attempt 7 had left
+   open. Free bases are unaffected, since there `b a b^-1 = a^2` forces `a = 1`.
+   A proof of the claim, even restricted to cyclic edges over residually finite
+   linear bases, must therefore use a type (A) actor or another host in which
+   `a` is not equicontinuous. A parallel attempt recorded on the live bus by
+   agent c-hnn kills type (A) self-actions of `A*_phi` over proper-power cyclic
+   edges, which also covers this input. Together the two leave, for this input, only
+   engines whose host strictly contains `A*_phi` and is not a locally finite
+   tree host.
+9. **Untwist the edge map into a mapping torus (2026-09-17).** *Partial:* this
+   is a decomposition, not a proof. By
+   `extendable-edge-hnn-embeds-in-identity-hnn-of-mapping-torus`, whenever
+   `phi = Phi|_C` for some `Phi in Aut(A')` with `A <= A'`, we have
+   `A*_phi <= (A' ⋊_Phi Z) *_C (C × Z)`, via `t |-> u s`. The claim for such an
+   input then follows from two prerequisites that can fail separately:
+   - **(P1)** the mapping torus `A' ⋊_Phi Z` embeds in a finitely presented
+     simple group;
+   - **(P2)** the identity-edge extension `G *_C (C × Z)` of `G = A' ⋊_Phi Z`
+     embeds in a finitely presented simple group.
+
+   (P1) is established for three kinds of `A'`: free groups, finitely presented
+   simple MIF groups, and `M * F_m` with `M` such a group. That is the mapping-torus
+   case which Attempts 4 and 7 had isolated. (P2) is the case `phi = id` of this
+   claim, and it is open. It is not easier in any known sense: the undecidability
+   witness of `bh-embeddability-forces-decidable-edge-membership` is an identity
+   edge.
+
+   **Clean free-base inputs.** If `C` and `D` are free factors of a free group
+   `F`, then `phi` extends inside `F`. So these inputs reduce to (P2) over
+   free-by-cyclic groups.
+
+   **Where the reduction stops over free overgroups.** Two invariants block any
+   free `F' >= F`: the maximal root exponent and the lower-central depth. They
+   apply to every unbalanced input, and also to balanced inputs such as
+   `t a t^-1 = [a, b]`.
+
+   **Literature check (2026-09-17).** Jankiewicz, arXiv:2503.16722 (abstract, as
+   fetched): "the fundamental group of a geometrically clean graph of finite rank
+   free groups does not need to be virtually compact special". So the route
+   through virtual specialness and `virtually-special-groups-embed-in-brin-thompson-group-2v`
+   cannot cover the clean free-base case in general. This does not exclude
+   embeddings into `2V` by other means.
+
+   **Also recorded.** For the free-base case, embedding `F*_phi` in `F*_psi`,
+   where `psi` extends `phi` to Hall completions `H_1, H_2 <= F` of finite index,
+   is never injective. Its kernel contains `t f t^-1 psi(f)^-1` for
+   `f in (F ∩ H_1) - C`. More generally, for any locally finite tree host in
+   which `F` fixes a vertex `v`, the set of `f in F` fixing `t^-1 v` has finite
+   index in `F`. That only kills maps sending `t` to a stable letter whose vertex
+   group contains `F`. It does not kill tree hosts for free bases; unlike
+   Attempt 8, no invariant was found there.
+10. **Type (A) actions of `A*_phi` itself, sharpened and killed on
+   proper-power data.** *Dies* for that engine on concrete flagship inputs
+   (2026-09-17, calibration family). This attempt sharpens Attempt 5 by
+   `type-a-actors-split-only-over-orbit-finite-edges`. Let `C_1 != A != C_2`, and
+   suppose `K = A*_phi` acts on `X` with finitely generated stabilizers and
+   finitely many orbits of pairs. Then:
+   - every point stabilizer contains a hyperbolic element and acts on the whole
+     Bass--Serre tree with finite quotient;
+   - `A`, `C_1` and `C_2` each have finitely many orbits on `X`.
+
+   So the clause "`D_1` has finitely many orbits" in Attempt 6 is necessary for
+   every type (A) action of a non-ascending HNN extension, not an artifact of
+   that construction. The invariant is `r(c)`, the number of regular orbits of
+   an element `c` generating a finite-index subgroup of a vertex or edge group.
+   It is conjugation invariant, and `r(c^p) = |p| r(c)`. The engine dies at the
+   step where `C_1` must be orbit-finite: whenever `C_1` is finite, or `phi`
+   together with `A` makes such a `c` conjugate to a proper power `c^q`,
+   `|q| != 1`, the set `X` is forced to be finite. By
+   `type-a-actors-have-no-proper-power-cyclic-edge-splittings`, this rules out a
+   type (A) action of the group itself in three cases:
+   - the Baumslag--Gersten group (`A = BS(1,2)`, `<a> -> <b>`), which is one of
+     the claims this node would flip;
+   - `BS(m,n)` with `|m| != |n|` both at least 2, even though these groups
+     satisfy Boone--Higman;
+   - every non-ascending HNN extension over a finite group.
+
+   Engines that build a *larger* actor containing `A*_phi` are not affected. But
+   a proof reaching BG must use an actor in which the restricted action of BG
+   has infinitely many orbits of pairs or an infinitely generated stabilizer. So
+   pair-orbit finiteness can never be inherited by restriction to BG.

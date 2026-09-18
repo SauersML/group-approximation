@@ -1,0 +1,14 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 1 maxval 4 windows 26 types 268 polygons 446704 t 9.4
+lp status 0 Optimization terminated successfully. (HiGHS Status 7: Optimal) min chi (sum c = 1): -0.5 t 105.7
+RESULT NEGATIVE -0.5 window flow: {'aa': np.float64(0.125), 'ab': np.float64(0.125), 'ba': np.float64(0.125), 'bb': np.float64(0.125), 'AA': np.float64(0.125), 'AB': np.float64(0.125), 'BA': np.float64(0.125), 'BB': np.float64(0.125)}
+time 105.7
+surfaces_m2_census/phi3075.json r 1 maxval 4 darts 60 vertices 22 chi -8 nonzero rows 0
+surfaces_m2_census/phi3684.json r 1 maxval 4 darts 104 vertices 48 chi -4 nonzero rows 0
+surfaces_m2_census/phi4011.json r 1 maxval 4 darts 56 vertices 24 chi -4 nonzero rows 0
+surfaces_m2_census/phi4017.json r 1 maxval 4 darts 56 vertices 24 chi -4 nonzero rows 0
+surfaces_m2_census/phi4052.json r 1 maxval 4 darts 40 vertices 16 chi -4 nonzero rows 0
+surfaces_m2_census/phi414.json r 1 maxval 4 darts 116 vertices 50 chi -8 nonzero rows 0
+../../lift/w939.json r 1 maxval 4 darts 224 vertices 88 chi -24 nonzero rows 0
+failures 0
+
+[exited with code 0]

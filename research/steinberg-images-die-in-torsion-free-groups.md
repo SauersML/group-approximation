@@ -106,3 +106,21 @@ sense in which `St_n(R)` is defined, so it does not by itself supply property
 `(T)` for such `EL_3(I)`.
 
 Other Chevalley types are not claimed here.
+
+**Referee check (2026-09-17, ref-02).**  SOUND.  "Rank at least three" in the
+title means `n>=3` for `St_n` (root system `A_(n-1)`, Lie rank at least two);
+the bound is sharp, since `St_2(Z)` maps onto `Z`.  Re-derived (C1)--(C2),
+(P1)--(P6), the inversion `h w h^-1=w^-1` and hence (W8); the one-trivial-Weyl-
+word propagation of Steps 3--4; the `u^2=(1-2e)I_2` computation of (STF2); the
+subring, `I/I^2` and determinant-trick arguments of (STF3); (STF4) against
+the definitions in `GroupApproximation/Sofic/KazhdanCompressionCore.lean`; and
+the normal generation of `H(R)` by its `EL_3` factor.  The sign script passes.
+Every nontrivial `EL_n(R)`, `n>=3`, contains `w_12` with `w_12^2=diag(-1,-1,1,...)`,
+so the conclusion is consistent with all torsion-free lattices and linear
+groups: none contains a nontrivial Steinberg image.  (W8) is classical and
+should be read as such: by Milnor, *Introduction to Algebraic K-Theory*
+(Ann. of Math. Studies 72, 1971), §10, the kernel of `St_n(Z)->SL_n(Z)` has
+order two for `n>=3`; it contains `w_12^4`, so `w_12^8=1` in `St_n(Z)` and,
+by functoriality along `Z->R`, in every `St_n(R)`.  The self-contained
+derivation above avoids this input.  The torsion-generation consequences
+(STF1), (STF4) are elementary and are not claimed as new.

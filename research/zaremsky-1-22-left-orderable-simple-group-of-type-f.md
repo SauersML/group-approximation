@@ -69,3 +69,15 @@ exists answers the question the other way.
     (`finite-cd-groups-have-no-micro-supported-line-action`) gives no information about simple
     candidates.
   - Peer lane z1-22-lo-simple-thompson works the Thompson-like family.
+- (sw-102, 2026-09-17) **Explicit simple tree lattices killed by finite certificates.**
+  Rattaggi's incoherent simple group `Λ` (in `Aut(T_12)×Aut(T_10)`) and his torsion-free simple
+  `Σ_0` (in `Aut(T_12)×Aut(T_8)`) are not left-orderable
+  (`rattaggi-simple-lattices-are-not-left-orderable`, ESTABLISHED, computer-certified). Each has
+  an unsatisfiable sign-choice certificate on the radius-4 parity ball: 301 and 207 product
+  relations, checked by relator rewriting and DPLL. These are two type-F simple witnesses killed
+  without the open Deroin–Hurtado analogue.
+  - Rattaggi's A6 `(6,6)`-kernel `Λ_0`, conjectured simple, is also not left-orderable (412
+    triples at radius 6).
+  - There is no certificate at radius 4 for Wise's `D_0`.
+  - Next step: search larger balls there, or extract a local mechanism from the certificates for
+    a class-wide obstruction.

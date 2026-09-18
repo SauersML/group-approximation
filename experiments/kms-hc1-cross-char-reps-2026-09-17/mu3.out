@@ -1,0 +1,6 @@
+p=3 k=2 |Q_k|=p^3 |Q_k*|=p^9 dimH2(Q_k)=6 gr_k=3 img_k=3 (4ms)
+p=3 k=3 |Q_k|=p^6 |Q_k*|=p^17 dimH2(Q_k)=11 gr_k=2 img_k=9 (4ms)
+p=3 k=4 |Q_k|=p^8 |Q_k*|=p^20 dimH2(Q_k)=12 gr_k=3 img_k=9 (7ms)
+p=3 k=5 |Q_k|=p^11 |Q_k*|=p^23 dimH2(Q_k)=12 gr_k=3 img_k=9 (15ms)
+p=3 k=6 |Q_k|=p^14 |Q_k*|=p^31 dimH2(Q_k)=17 gr_k=8 img_k=9 (19ms)
+p=3 k=7 |Q_k|=p^22 |Q_k*|=p^39 dimH2(Q_k)=17 gr_k=8 img_k=9 (31ms)

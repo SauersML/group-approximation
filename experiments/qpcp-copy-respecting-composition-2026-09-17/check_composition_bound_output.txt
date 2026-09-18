@@ -1,0 +1,19 @@
+n=5 r=2 T=2 k0=2 clauses=12 proofbits=2 terms=6 seed=0: lambda(H)=0.2000 lambda(tensorOR)=0.0833 lambda(H')=0.0000 fake-proof avg=0.0256 bound k0/(rn)=0.2000 OK
+n=5 r=2 T=3 k0=3 clauses=12 proofbits=2 terms=8 seed=0: lambda(H)=0.2000 lambda(tensorOR)=0.1667 lambda(H')=0.0238 fake-proof avg=0.0940 bound k0/(rn)=0.3000 OK
+n=5 r=4 T=2 k0=5 clauses=10 proofbits=3 terms=8 seed=0: lambda(H)=0.2000 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0583 bound k0/(rn)=0.2500 OK
+n=7 r=4 T=2 k0=5 clauses=12 proofbits=3 terms=8 seed=0: lambda(H)=0.1429 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0449 bound k0/(rn)=0.1786 OK
+n=7 r=2 T=2 k0=3 clauses=15 proofbits=3 terms=8 seed=0: lambda(H)=0.1429 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0716 bound k0/(rn)=0.2143 OK
+n=5 r=4 T=3 k0=5 clauses=8 proofbits=2 terms=8 seed=0: lambda(H)=0.2000 lambda(tensorOR)=0.1250 lambda(H')=0.0000 fake-proof avg=0.0255 bound k0/(rn)=0.2500 OK
+n=5 r=2 T=2 k0=2 clauses=12 proofbits=2 terms=6 seed=1: lambda(H)=0.2000 lambda(tensorOR)=0.1667 lambda(H')=0.0000 fake-proof avg=0.0301 bound k0/(rn)=0.2000 OK
+n=5 r=2 T=3 k0=3 clauses=12 proofbits=2 terms=8 seed=1: lambda(H)=0.2000 lambda(tensorOR)=0.1667 lambda(H')=0.0102 fake-proof avg=0.0929 bound k0/(rn)=0.3000 OK
+n=5 r=4 T=2 k0=5 clauses=10 proofbits=3 terms=8 seed=1: lambda(H)=0.2000 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0440 bound k0/(rn)=0.2500 OK
+n=7 r=4 T=2 k0=5 clauses=12 proofbits=3 terms=8 seed=1: lambda(H)=0.1429 lambda(tensorOR)=0.0833 lambda(H')=0.0000 fake-proof avg=0.0312 bound k0/(rn)=0.1786 OK
+n=7 r=2 T=2 k0=3 clauses=15 proofbits=3 terms=8 seed=1: lambda(H)=0.1429 lambda(tensorOR)=0.0667 lambda(H')=0.0114 fake-proof avg=0.0673 bound k0/(rn)=0.2143 OK
+n=5 r=4 T=3 k0=5 clauses=8 proofbits=2 terms=8 seed=1: lambda(H)=0.2000 lambda(tensorOR)=0.2500 lambda(H')=0.0000 fake-proof avg=0.0225 bound k0/(rn)=0.2500 OK
+n=5 r=2 T=2 k0=2 clauses=12 proofbits=2 terms=6 seed=2: lambda(H)=0.2000 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0368 bound k0/(rn)=0.2000 OK
+n=5 r=2 T=3 k0=3 clauses=12 proofbits=2 terms=8 seed=2: lambda(H)=0.2000 lambda(tensorOR)=0.2500 lambda(H')=0.0152 fake-proof avg=0.0818 bound k0/(rn)=0.3000 OK
+n=5 r=4 T=2 k0=5 clauses=10 proofbits=3 terms=8 seed=2: lambda(H)=0.2000 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0471 bound k0/(rn)=0.2500 OK
+n=7 r=4 T=2 k0=5 clauses=12 proofbits=3 terms=8 seed=2: lambda(H)=0.1429 lambda(tensorOR)=0.0000 lambda(H')=0.0000 fake-proof avg=0.0371 bound k0/(rn)=0.1786 OK
+n=7 r=2 T=2 k0=3 clauses=15 proofbits=3 terms=8 seed=2: lambda(H)=0.1429 lambda(tensorOR)=0.1333 lambda(H')=0.0110 fake-proof avg=0.0797 bound k0/(rn)=0.2143 OK
+n=5 r=4 T=3 k0=5 clauses=8 proofbits=2 terms=8 seed=2: lambda(H)=0.2000 lambda(tensorOR)=0.1250 lambda(H')=0.0000 fake-proof avg=0.0116 bound k0/(rn)=0.2500 OK
+ALL OK

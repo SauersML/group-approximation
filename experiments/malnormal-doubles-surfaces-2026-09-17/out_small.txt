@@ -1,0 +1,45 @@
+== calibration ==
+C=F_2: certs with L=2: 0
+C=<abAB>: malnormal True K 1 cert [('rose', 'b', 'a', 0)]
+C=<aa,bb>: malnormal False cert []
+CERT ('abaBa', 'AbbAABB') V 9 K 4 ('theta', 'b', 'AB', 'a', 0)
+NONE ('aBAAb', 'baBaaaba') V 12 K 6
+NONE ('baBBAbab', 'aaBaaaa') V 14 K 5
+NONE ('BBaaBBBA', 'bABBABA') V 12 K 4
+NONE ('bbaabAbb', 'aaBabA') V 12 K 7
+CERT ('bbABBA', 'aaBBAAbb') V 12 K 4 ('theta', 'B', 'b', 'aa', 0)
+NONE ('aBABB', 'AbaaBB') V 8 K 3
+NONE ('AABa', 'aaba') V 5 K 5
+NONE ('baBAA', 'BBaaBa') V 10 K 3
+NONE ('BaBaaaa', 'aBBab') V 10 K 5
+NONE ('BBABABB', 'aaaBBB') V 10 K 4
+NONE ('BAbA', 'ABAAAA') V 8 K 6
+NONE ('BBaaaBBB', 'AABA') V 11 K 4
+NONE ('BBBAbaab', 'aabAb') V 10 K 5
+NONE ('BaBBa', 'ABabb') V 7 K 4
+NONE ('BabaB', 'BABaBA') V 9 K 4
+NONE ('babABaa', 'AbaBBAA') V 12 K 6
+NONE ('BabbaaaB', 'bbaaBBA') V 13 K 5
+NONE ('abAb', 'BababAB') V 8 K 4
+NONE ('Baba', 'BBabaBB') V 9 K 8
+NONE ('bAABaBBa', 'baBBab') V 12 K 6
+NONE ('bAAb', 'AAbaaab') V 9 K 6
+NONE ('abbbbb', 'AbAAA') V 9 K 4
+NONE ('aBAb', 'BBBaa') V 7 K 3
+NONE ('bbAbbbb', 'aBAbabAB') V 13 K 7
+NONE ('bbabA', 'bbaaaa') V 7 K 4
+NONE ('BaBBA', 'BABBAAb') V 8 K 6
+NONE ('BBABaa', 'AbAbA') V 9 K 4
+NONE ('ABBBaab', 'ABaBABBa') V 11 K 5
+NONE ('Babaaba', 'BBaaaBA') V 12 K 5
+CERT ('aaBBBBA', 'AbbabbA') V 11 K 5 ('theta', 'A', 'BB', 'abb', 0)
+NONE ('baBaaaBa', 'aaBAbAA') V 11 K 9
+NONE ('abAb', 'AbaBAB') V 9 K 5
+NONE ('abbbbaBa', 'aBaBA') V 9 K 4
+NONE ('BaBAAb', 'aBaBBB') V 9 K 5
+NONE ('ABBB', 'BAbabb') V 8 K 5
+NONE ('baaBBa', 'abbAb') V 10 K 4
+NONE ('BBBBBaBA', 'BBaa') V 9 K 4
+NONE ('BAABaaa', 'AbAA') V 9 K 7
+CERT ('AAAbbb', 'AAAbba') V 5 K 4 ('theta', 'B', 'a', 'Ab', 0)
+batch 4 8 seed 20260917 : 4 / 40 certified

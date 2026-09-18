@@ -1,0 +1,39 @@
+Garside (Charney) length as a negative-type function on B_n  -- sw-099, 2026-09-17
+
+Question tested: is ell(g) = max(sup g,0) - min(inf g,0) (the word length for the generating set of the
+nontrivial simple braids and their inverses; Charney's bicombing length) conditionally negative definite on B_n?
+A yes for n=4 would give a proper cnd function on B_4, which would settle braid-group-b4-has-the-haagerup-property.
+
+Method: classical Garside normal form (garside.py). Take F = a ball in the simple-generator word metric,
+K_ij = ell(g_i^{-1} g_j), and the top eigenvalue of P K P, where P projects onto sum-zero vectors (negtype.py).
+Then search for the smallest exact integer witness (small_witness.py).
+
+Runs (python3 negtype.py n r):
+  B_2, r=3, |F|=7  : top eigenvalue -3.5e-16  (calibration: B_2 = Z, ell = |.|, cnd)  OK
+  B_3, r=1, |F|=11 : top eigenvalue 0.3429 ; integer witness, sum 0, c^T K c = 1697268 > 0
+  B_3, r=2, |F|=45 : top eigenvalue 2.2143 ; integer witness, sum 0, c^T K c = 26895156 > 0
+
+Exact 7-point witness in B_3 (small_witness.py). Every element has length 1. Elements are written (inf, factors), with
+permutations as images of (0,1,2):
+  c = -2  (0,((0,2,1),))   = sigma_2
+  c = +2  (-1,((2,0,1),))
+  c = -1  (0,((1,0,2),))   = sigma_1
+  c = +2  (-1,((1,2,0),))
+  c = -1  (0,((1,2,0),))
+  c = +2  (1,())           = Delta
+  c = -2  (-1,())          = Delta^{-1}
+  sum c = 0, c^T K c = 2 > 0, with the integer kernel
+ [[0 2 2 1 2 1 2]
+  [2 0 1 2 1 2 1]
+  [2 1 0 2 1 1 2]
+  [1 2 2 0 2 2 1]
+  [2 1 1 2 0 1 2]
+  [1 2 1 2 1 0 2]
+  [2 1 2 1 2 2 0]]
+
+What this rules out: the Charney/Garside length on B_3 is not of negative type, so the ball complex of the
+Garside metric is not a median/CAT(0)-cube/wall metric in the sense of Haagerup kernels. B_3 does have the
+Haagerup property, so failing here kills the idea at calibration: "Garside length is a cnd function on B_n" is false
+already for n=3, and cannot be the proper cnd function B_4 needs. Scope: this concerns the
+metric ell itself (and ell^1 only). It says nothing about sqrt(ell), other Garside structures (the dual/BKL
+structure), or cnd functions merely coarsely equivalent to ell.

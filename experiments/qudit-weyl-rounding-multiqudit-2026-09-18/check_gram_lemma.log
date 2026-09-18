@@ -1,0 +1,9 @@
+min over trials of  sum w delta - ||DCD||_1/4           = 0.001037010503194582
+min over trials of  sum w delta - Frobenius lower bound  = 0.001037010503194582
+d=5: c*(d) = 5.3329   2d/(sqrt3 pi) = 1.8378   difference = 3.4951
+d=7: c*(d) = 6.0978   2d/(sqrt3 pi) = 2.5729   difference = 3.5249
+d=11: c*(d) = 7.6354   2d/(sqrt3 pi) = 4.0431   difference = 3.5923
+d=13: c*(d) = 8.3995   2d/(sqrt3 pi) = 4.7782   difference = 3.6213
+d=31: c*(d) = 15.1662   2d/(sqrt3 pi) = 11.3941   difference = 3.7721
+d=101: c*(d) = 41.0336   2d/(sqrt3 pi) = 37.1228   difference = 3.9108
+d=1009: c*(d) = 374.8505   2d/(sqrt3 pi) = 370.8606   difference = 3.9900

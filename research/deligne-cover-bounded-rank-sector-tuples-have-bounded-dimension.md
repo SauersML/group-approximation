@@ -5,6 +5,7 @@ kind: claim
 title: Unitary sector tuples of a Deligne cover whose relator defects have rank at most k have dimension at most C(k)
 artifacts:
   - research/artifacts/deligne-bounded-rank-rung-anatomy-2026-09-17.md
+  - research/artifacts/deligne-bounded-rank-torsion-spectrum-2026-09-17.md
 distinct_from:
   deligne-sector-truncations-have-bounded-dimension: that bounds the dimension of bounded-boundary truncations of genuine unitary sector representations; this is the rung for all rank-k sector tuples, which that node shows is equivalent to every such tuple being a truncation.
   heisenberg-irrational-center-has-rank-one-sector-tuples: that shows the analogous rung is false for the integer Heisenberg group; this is the rung for the Kazhdan non-residually-finite Deligne covers, where it is open.
@@ -87,3 +88,86 @@ exist in every dimension, and (LOC) fails at exactly one step: `z^2` is not in t
   `z^2 in <<x~_alpha(1)>>` hold. The one quantitative handle not yet computed is the
   **Deligne cost** `(N_g, A_g)` of an identity `z^2 = prod_(i <= N) w_i g^(+-1) w_i^(-1) prod_(j <= A) u_j r_j^(+-1) u_j^(-1)`,
   which enters (LOC) linearly.
+- **D2 repaired at atom level; the real failing step is interlacing (2026-09-17, sw-124, scale-shifter).**
+  Details in `research/artifacts/deligne-bounded-rank-torsion-spectrum-2026-09-17.md`.
+  - **Proposed-established.** A finitely supported integer measure on `T^2` whose defect under the two
+    generators of `SL_2(Z)` is `K` equals a sum of torsion-orbit indicators plus `C_0 K` mass. The
+    proof uses amenable stabilizers of non-torsion points, the Kesten gap, the Selberg (tau) gap, and
+    coarea. So D2's single-generator orbit segments are not almost-invariant under `SL_2(Z)`.
+  - **Dead end.** Rank-`k` tuples do not supply atom-level almost invariance. A generic rank-one
+    perturbation moves all `d` eigenvalues, so rank controls only interlacing. And almost-commuting
+    long-root pairs have no joint spectrum without bounded-rank `Z^2` stability (open).
+  - **Barrier.** (LOC) along `x_alpha(1)^M` sees only exact `M`-torsion multiplicities, which rank
+    perturbations shift by up to `M r`. With an `eps`-rank variant, Dirichlet forces `M ~ N_M^d`, and
+    then the relator area must satisfy `A_M = o(log M)`. This is a heuristic barrier.
+  - **Surviving target.** Monomial-type tuples, where Part I applies directly. For general tuples,
+    unitary bounded-rank stability of `Z^2` is necessary but not sufficient. Even after the long-root
+    pair is made to commute, the `SL_2(Z)` conjugation relations match joint spectra only up to
+    interlacing, so a second, atom-level rigidity input is also needed.
+- **The `Z^2` stability input is false (2026-09-17, sw-124, relaunch).** See
+  `z2-commuting-pairs-are-not-bounded-rank-stable`.
+  - **Counterexample.** A dislocation dipole on the `n x n` torus gives permutation matrices with
+    `rank([A,B]) = 2` that are at rank distance `>= (n-4)/32 ~ sqrt(d)/32` from every commuting pair,
+    over any field.
+  - **Consequence.** The need posted above cannot be met. A joint-spectrum argument for the long-root
+    pair must exclude dislocation-type configurations through the `SL_2(Z)` or `Sp_(2g)(Z)`
+    conjugation relators.
+  - **Invariant.** The obstruction is the growth of `phi(L) = rank(w_L(rho) - I)` for
+    `w_L = [b^L, c^L]`, where `(b, c)` is a commuting root pair normalized by an `SL_2(Z)` in
+    `Sp_(2g)(Z)`, for instance `Z^2 x| SL_2(Z)` inside `SL_3(Z)` inside `Sp_6(Z)`. Pairs near
+    commuting have linear `phi`, and dislocations make it quadratic. The sharp open sub-question on
+    this route is whether the `SL_2(Z)` conjugation relators of a rank-`k` tuple force
+    `phi(L) <= C(k) L`.
+- **The `SL_2(Z)` relators do not force linear `phi` (2026-09-17, w3-124, transplanter).** See
+  `sl2-relators-do-not-force-linear-commutator-growth`.
+  - **Import from Teichmueller dynamics.** Square-tiled surfaces (origamis) with Veech group
+    `SL_2(Z)`. The scaled Eierlegende Wollmilchsau, with its affine group, gives permutation tuples of
+    `Z^2 x| SL_2(Z)` of size `24 m^2`. Every relator has rank `<= 24`, and
+    `phi(L) = rank([b^L, c^L] - I) = 12 L^2` for `L <= m`.
+  - **Mechanism.** Dislocations have Burgers vectors, and `SL_2(Z)` moves them. A `4 pi` cone point
+    has monodromy "go to the other sheet", which every affine map preserves.
+  - **Non-split.** `Aff(O) -> SL_2(Z)` has no lift with `s^4 = 1`, because `s^4` is `-1` in `Q_8`.
+    It is repaired by a diagonal `Q_8` quotient with a free 24-point `Aff(O)`-set.
+  - **Dead route.** Bounded-rank control of the unipotent sector through `Z^2 x| SL_2(Z)` relators
+    alone. A proof must use relators outside this subgroup, e.g. `e_31, e_32` in `SL_3(Z)`, which do
+    not normalize `<e_13, e_23>`.
+  - **Next falsifiable step.** Can a rank-`k` tuple of `SL_3(Z)` contain a `4 pi` cone-point
+    configuration for the pair `(e_13, e_23)`? That is, is there a translation surface whose affine
+    structure is compatible with both parabolics `<e_13, e_23> x| SL_2` and `<e_12, e_13> x| SL_2`?
+- **Higher-rank relators do force linear `phi` once `g >= 5` (2026-09-18, w5-124, transplanter).** See
+  `sln-relators-force-linear-commutator-growth`.
+  - **Import from filling geometry.** The rank defect of a trivial word is at most `k` times its area.
+    Combine the Lubotzky-Mozes-Raghunathan shortcuts with Young's quadratic Dehn function for
+    `SL_n(Z)`, `n >= 5`. A dyadic filling (replace `w_j w_j` by `w_(j+1)` at cost `O(j^2)`) gives
+    `Area([u^L, v^L]) = O(L)`. So `phi(L) <= C_g k L` for commuting `SL_g`-root pairs, and `SL_g(Z)`
+    lifts to `Gamma_n`.
+  - **Answer to the cone-point question.** For `g >= 5` no rank-`k` sector tuple has a
+    Wollmilchsau cone-point or dislocation configuration at scales `L >> k`. The quadratic defect
+    class dies. Conversely, the Wollmilchsau tuples give `Area_P([b^L, c^L]) >= L^2/2` in
+    `Z^2 x| SL_2(Z)`.
+  - **Open.**
+    - `g = 3, 4`: this needs polynomial area for the doubling loops in `SL_3(Z)` or `SL_4(Z)`.
+    - Long-root pairs: this needs a polynomial Dehn function for `Sp_(2g)(Z)`.
+    - Linear `phi` does not give closeness to commuting pairs (see the slit origami). The next
+      step is a sublinear conversion defect `rank(rho(u)^L - rho(W_L(u))) = o(L)`.
+- **The sublinear conversion defect is false; linear order is the near-exact noise floor
+  (2026-09-18, w6-124, transplanter).** See `near-exact-tuples-saturate-linear-conversion-defect`.
+  - **Counterexample.** In the permutation representation of `SL_n(Z)` on `C[F_p^n]`, twist one
+    basis vector by a phase `lambda` in `rho(e_12)`. The result is a rank-`k` tuple at rank distance
+    one from an exact representation, with `k = max_r |r|_u`. Its conversion defect is exactly `L`
+    for the Steinberg word `[e_13^a, e_32^b]`, `ab = L`, and it is `>= L - |W|_u` for every `W = u^L`.
+    Also `phi(L) = 2L`. So the `C_n k L` bounds of `sln-relators-force-linear-commutator-growth` are
+    sharp, and the sublinear step proposed above dies. The spectrum of `rho(u)` itself moves on a
+    whole `p`-cycle, so atom-level rigidity must be stated for a rounded pair, never for `rho(u)`.
+  - **Noise floor.** A tuple at rank distance `r` from an exact representation has
+    `rank(rho(w) - I) <= r |w|` for all trivial `w`. Word-growth invariants detect distance only through
+    superlinear growth. Conversely, distance to commuting pairs is at least
+    `sup_w rank(w - I) / |w|`.
+  - **Correction.** The slit origami does not have linear `phi`: `phi(m) = 2 m^2` for `m <= L/2`.
+    The dislocation dipole is quadratic too. For `g >= 5` both are excluded as root-pair summands
+    beyond scale `O(k)`. No bounded-profile pair far from commuting is known.
+  - **What survives.** A B-invariant question,
+    `z2-bounded-rectangle-profile-forces-near-commuting`: does
+    `rank([b^s, c^t] - I) <= K (s + t)` force rank distance `F(K)` from commuting pairs? For `g >= 5`
+    it would supply the commuting rounding of the root pair. The interlacing step is still needed
+    after that. The first check is the square-tiled (permutation) case.

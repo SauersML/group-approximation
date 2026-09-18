@@ -48,3 +48,67 @@ OPEN research hypothesis Q2 for every nonamenable Cayley graph. Q3 is a stronger
   `||Q_k|| <= C 2^(-(1+eta)k)` with `eta>0` would give summability
   immediately, and holds on trees with `eta=1/2`. It is unproved in general
   and is strictly stronger, so it inherits every obstruction above.
+  **Correction (2026-09-17):** it is not strictly stronger. See the next item.
+* **Equivalence with the critical l2 conjecture (swarm-0917, reframing).**
+  `fpbs-critical-l2-equivalent-to-dyadic-projection-estimate` proves, on every
+  transitive graph with finite critical clusters, Q2 <=> Q3 with `eta=1/2`
+  <=> `||T_{p_c}||_(2->2)<infinity`. The new direction is a ghost-field
+  tree-graph bound: a green vertex in `K_x` gives a third BK arm from the
+  meeting point `z` on an `x`-`y` path, so entrywise
+  `P(x<->y,|K_x|>=n) <= (e/(e-1)) M_(p_c,1/n) (T^2)(x,y)`. With a bounded `T`,
+  the triangle condition holds, `M_h <= C sqrt h` (Barsky-Aizenman, imported by
+  `fpbs-triangle-condition-gives-mean-field-magnetization`), and
+  `||Q_k|| <= C||T||^2 2^(-3k/2)`, the tree exponent. **Where the approach
+  class dies:** every approach to this hole proves Hutchcroft's l2 conjecture
+  `fpbs-nonamenability-bounds-critical-connectivity-operator` on the same
+  graph, and conversely that conjecture closes the hole
+  (`fpbs-dyadic-estimate-from-critical-l2-route`). So the shell decomposition
+  adds no independent failure point to `fpbs-universal-dyadic-route`. As a
+  side result, Q2 and Q3 with `eta=1/2` hold on every graph in the known
+  critical-l2 classes. The hole stays OPEN, exactly as open as the l2
+  conjecture.
+* **Split into a critical exponent half and a spectral half (2026-09-17,
+  swarm-0917-w5-bs-dyadic, decomposition).**
+  `fpbs-critical-l2-iff-volume-tail-and-spectral-spreading` proves the
+  following, graph by graph on transitive graphs:
+  * critical l2, and hence this hole (Q2 and Q3) on nonamenable Cayley
+    graphs, is equivalent to (V) together with (S), where
+    (V) is `P_{p_c}(|K|>=n) <= Cn^(-1/2)`, and
+    (S) is `s(p)=1-iota(T_p) -> 0`, or equivalently
+    `||T_p||_(2->2) = o(chi_p)`;
+  * under (V), (S) follows from a single sequence with `s(p_n)` below an
+    explicit threshold;
+  * `s(p)=1` on every amenable graph;
+  * on a Cayley graph, (S) forces `chi^H_p = o(chi_p)` for every amenable
+    subgroup `H`.
+
+  The proof inserts Hutchcroft's `gamma <= delta-1`
+  (`fpbs-critical-volume-tail-gives-mean-field-susceptibility`) into his l2
+  criterion (`fpbs-hutchcroft-l2-gap-criterion`). This replaces the
+  class-specific susceptibility estimate used for acylindrically hyperbolic
+  groups. The OPEN halves are
+  `fpbs-critical-volume-tail-mean-field-universal` and
+  `fpbs-normalized-two-point-spectral-radius-vanishes-universal`, joined by
+  the route `fpbs-critical-l2-via-volume-tail-and-spectral-spreading`. Each
+  half is necessary for the hole, so a counterexample to either refutes it.
+  All the nonamenability sits in (S). The hole stays OPEN.
+* **Continuity along per-generator weights from a known anchor.** **Dead:**
+  `fpbs-dead-weighted-surface-continuity-l2`.
+  * **Openness is free.** `fpbs-one-edge-sprinkling-l2-lipschitz` splits at the
+    last sprinkled edge and applies BK, giving `T_{p'} <= T_p + T_{p'} R T_p`.
+    So `1/||T||` is Lipschitz in the weight field, with constant `p` on fresh
+    generators.
+  * **Where it dies:** closedness needs a positive floor of `1/||T||` along the
+    path. The floor always implies critical l2 at the endpoint, so it is never a
+    weaker prerequisite (`fpbs-weighted-surface-continuity-reduces-to-uniform-floor`).
+  * **Referee status (2026-09-17):** both claims are back to OPEN. All three
+    referees refuted the "every path" equivalence in item 1: a path through a
+    supercritical point has `inf phi = 0` but still ends at a certified point.
+    The equivalence holds only for monotone paths. The `{a,t}` and `{b,t}`
+    anchors are also untreated. The sprinkling lemma was checked as correct.
+  * **What survives** is a one-step certificate needing an explicit anchor norm.
+    The spherical-function tree anchor certifies `T_{2k} x Z` for `k >= 4`, but
+    `F_2 x Z` only if `p_c(T_4 x Z) < 0.21085`.
+  * **Consequence for this hole:** perturbative weight transport needs
+    quantitative critical norm bounds at anchors, and qualitative theorems give
+    none.

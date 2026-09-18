@@ -1,0 +1,6 @@
+672 {"a": "abb", "b": "caa", "c": "babb"} m=2 SURFACE w=bc chi=-6 independent=True CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -7, 1], "M^k>0 at k": 3, "darts": 48, "V": 18, "E": 24, "chi(X)": -6, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4], "gates": "abcABA", "f-corners": 4, "genus of S*_f(X)": 4}
+939 {"a": "ab", "b": "bca", "c": "caab"} m=2 no-certificate-with-length<=3
+1632 {"a": "bbc", "b": "bbcb", "c": "cacc"} m=2 no-certificate-with-length<=3
+1633 {"a": "bbc", "b": "bbcb", "c": "ccac"} m=2 no-certificate-with-length<=3
+1635 {"a": "bcb", "b": "bbcb", "c": "ccac"} m=2 no-certificate-with-length<=3
+1744 {"a": "bcb", "b": "abbc", "c": "bcbb"} m=2 no-certificate-with-length<=3

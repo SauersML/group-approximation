@@ -1,0 +1,9 @@
+d=3: antiparity 0.7500  harper lambda=2.732051 ratio=0.5774  d/pi-1=-0.0451
+d=5: antiparity 0.2778  harper lambda=2.966448 ratio=0.9351  d/pi-1=0.5915
+d=7: antiparity 0.1750  harper lambda=3.203303 ratio=1.5104  d/pi-1=1.2282
+d=11: antiparity 0.1019  harper lambda=3.468798 ratio=2.7650  d/pi-1=2.5014
+d=13: antiparity 0.0844  harper lambda=3.545372 ratio=3.3992  d/pi-1=3.1380
+d=31: antiparity 0.0334  harper lambda=3.802411 ratio=9.1220  d/pi-1=8.8676
+d=61: antiparity 0.0167  harper lambda=3.898318 ratio=18.6691  d/pi-1=18.4169
+d=101: antiparity 0.0100  harper lambda=3.938273 ratio=31.4006  d/pi-1=31.1493
+d=211: antiparity 0.0048  harper lambda=3.970333 ratio=66.4140  d/pi-1=66.1634

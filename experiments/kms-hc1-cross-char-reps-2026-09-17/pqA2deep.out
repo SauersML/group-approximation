@@ -1,0 +1,6 @@
+A2 p=5 class<=15 |Q|=p^40 time=212ms
+  increments: [ 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2 ]
+  ord w=1 depth of w in p-central series: fail
+A2 p=5 class<=16 |Q|=p^43 time=292ms
+  increments: [ 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3 ]
+  ord w=1 depth of w in p-central series: fail

@@ -1,0 +1,78 @@
+== 5 2 A2 12 21 1,0 1,0 r r
+trial 0: CONVERGED it=10 cond=2.6e+00 |[R,S]|=2.74e-17 |(RS)^p-I|=1.24e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=1313231013 bC=3412403443
+trial 1: CONVERGED it=12 cond=8.2e+00 |[R,S]|=4.88e-17 |(RS)^p-I|=8.92e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=0334232012 bC=3104102030
+trial 3: CONVERGED it=15 cond=3.0e+00 |[R,S]|=5.72e-15 |(RS)^p-I|=1.19e-14 COMMUTING T-args=[np.float64(0.0), np.float64(4.0)] bA=1032241033 bC=2134142114
+trial 4: CONVERGED it=10 cond=2.4e+00 |[R,S]|=6.90e-20 |(RS)^p-I|=6.83e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=4101401210 bC=0143014111
+trial 5: CONVERGED it=11 cond=1.9e+00 |[R,S]|=1.34e-18 |(RS)^p-I|=9.64e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=4201121204 bC=1201341310
+trial 6: CONVERGED it=16 cond=3.1e+00 |[R,S]|=5.09e-19 |(RS)^p-I|=7.88e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=4344301031 bC=4032304440
+trial 7: CONVERGED it=12 cond=4.0e+00 |[R,S]|=4.47e-18 |(RS)^p-I|=9.49e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=1400313311 bC=0120440023
+trial 8: CONVERGED it=14 cond=6.2e+00 |[R,S]|=1.01e-16 |(RS)^p-I|=8.53e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=2430040200 bC=2142213134
+trial 11: CONVERGED it=13 cond=4.4e+00 |[R,S]|=2.15e-22 |(RS)^p-I|=9.72e-15 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=1122033140 bC=0102040043
+STATS {'conv': 9, 'commuting': 9, 'detect': 0, 'noconv': 3}
+== 5 2 A2 12 22 1,2 1,3 r r
+trial 0: CONVERGED it=13 cond=1.1e+00 |[R,S]|=1.81e-17 |(RS)^p-I|=5.54e-15 COMMUTING T-args=[np.float64(1.0), np.float64(3.0)] bA=3130401302 bC=0414140012
+trial 1: CONVERGED it=9 cond=1.1e+00 |[R,S]|=8.11e-17 |(RS)^p-I|=3.86e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=4324142244 bC=0402234212
+trial 2: CONVERGED it=12 cond=1.2e+00 |[R,S]|=3.51e-17 |(RS)^p-I|=4.45e-15 COMMUTING T-args=[np.float64(3.0), np.float64(4.0)] bA=2232412442 bC=0332001033
+trial 3: CONVERGED it=18 cond=1.2e+00 |[R,S]|=6.04e-16 |(RS)^p-I|=3.65e-15 COMMUTING T-args=[np.float64(2.0), np.float64(4.0)] bA=1133341130 bC=0440234410
+trial 4: CONVERGED it=11 cond=1.4e+00 |[R,S]|=2.55e-18 |(RS)^p-I|=5.22e-15 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=1112423142 bC=3333004200
+trial 5: CONVERGED it=21 cond=1.5e+00 |[R,S]|=7.55e-18 |(RS)^p-I|=4.89e-15 COMMUTING T-args=[np.float64(1.0), np.float64(4.0)] bA=3100400333 bC=1100432203
+trial 6: CONVERGED it=13 cond=1.4e+00 |[R,S]|=7.61e-19 |(RS)^p-I|=3.87e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=1443232442 bC=2204401333
+trial 7: CONVERGED it=32 cond=1.4e+00 |[R,S]|=3.87e-18 |(RS)^p-I|=4.94e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0)] bA=2311203130 bC=0023300334
+trial 8: CONVERGED it=13 cond=1.1e+00 |[R,S]|=2.17e-16 |(RS)^p-I|=4.00e-15 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=2113430421 bC=3104303104
+trial 9: CONVERGED it=15 cond=1.0e+00 |[R,S]|=3.86e-18 |(RS)^p-I|=3.67e-15 COMMUTING T-args=[np.float64(1.0), np.float64(4.0)] bA=0032013004 bC=0043211304
+trial 10: CONVERGED it=19 cond=2.3e+00 |[R,S]|=2.32e-18 |(RS)^p-I|=3.51e-15 COMMUTING T-args=[np.float64(1.0), np.float64(4.0)] bA=4011203031 bC=0243122431
+trial 11: CONVERGED it=10 cond=1.6e+00 |[R,S]|=2.33e-18 |(RS)^p-I|=7.20e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=2321340121 bC=4000413441
+STATS {'conv': 12, 'commuting': 12, 'detect': 0, 'noconv': 0}
+== 5 3 A2 12 23 1,1,0 1,4,0 r r
+trial 0: CONVERGED it=31 cond=2.7e+00 |[R,S]|=1.60e-17 |(RS)^p-I|=8.46e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=032310300334211 bC=103323231200201
+trial 1: CONVERGED it=39 cond=4.7e+00 |[R,S]|=2.87e-17 |(RS)^p-I|=1.05e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(4.0)] bA=400331334214120 bC=442003413241430
+trial 2: CONVERGED it=18 cond=2.3e+00 |[R,S]|=3.94e-14 |(RS)^p-I|=6.49e-13 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=424403112213441 bC=221030013112310
+trial 4: CONVERGED it=22 cond=3.2e+00 |[R,S]|=5.63e-15 |(RS)^p-I|=9.30e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(4.0)] bA=432141104342134 bC=224031203430032
+trial 5: CONVERGED it=15 cond=6.5e+00 |[R,S]|=1.68e-16 |(RS)^p-I|=1.02e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(4.0)] bA=403330420400143 bC=313222024040012
+trial 6: CONVERGED it=30 cond=2.0e+00 |[R,S]|=1.61e-16 |(RS)^p-I|=1.28e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=312334412042332 bC=410244434410221
+trial 7: CONVERGED it=45 cond=3.4e+00 |[R,S]|=5.74e-18 |(RS)^p-I|=1.11e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=400343434031003 bC=032132120242314
+trial 8: CONVERGED it=47 cond=2.8e+00 |[R,S]|=4.49e-14 |(RS)^p-I|=1.39e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=321233402400342 bC=221134202430020
+trial 9: CONVERGED it=35 cond=2.0e+00 |[R,S]|=7.17e-18 |(RS)^p-I|=1.23e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(3.0)] bA=213434024233311 bC=110314411042102
+trial 10: CONVERGED it=16 cond=1.6e+00 |[R,S]|=1.45e-17 |(RS)^p-I|=1.05e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=302323242413111 bC=341111230234330
+trial 11: CONVERGED it=32 cond=1.7e+00 |[R,S]|=2.52e-17 |(RS)^p-I|=9.91e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=233042141023020 bC=100211421024310
+STATS {'conv': 11, 'commuting': 11, 'detect': 0, 'noconv': 1}
+== 5 3 A2 12 24 1,2,0 1,3,0 r r
+trial 0: CONVERGED it=24 cond=4.1e+00 |[R,S]|=4.00e-17 |(RS)^p-I|=1.05e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(2.0)] bA=113232022222241 bC=033241332341034
+trial 1: CONVERGED it=65 cond=2.8e+00 |[R,S]|=3.14e-18 |(RS)^p-I|=7.02e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(4.0)] bA=210101320110014 bC=301231431022140
+trial 2: CONVERGED it=25 cond=2.5e+00 |[R,S]|=1.16e-17 |(RS)^p-I|=1.08e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(3.0)] bA=011410010424302 bC=412340414024000
+trial 3: CONVERGED it=35 cond=3.1e+00 |[R,S]|=8.30e-17 |(RS)^p-I|=1.17e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=231011313040340 bC=214331244212243
+trial 4: CONVERGED it=21 cond=7.1e+00 |[R,S]|=7.97e-16 |(RS)^p-I|=1.25e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(4.0)] bA=223041014332022 bC=130243021343124
+trial 5: CONVERGED it=23 cond=1.6e+00 |[R,S]|=2.89e-17 |(RS)^p-I|=1.10e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=433232310023404 bC=201322444230123
+trial 6: CONVERGED it=28 cond=2.6e+00 |[R,S]|=2.34e-18 |(RS)^p-I|=1.24e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(3.0)] bA=401413121023443 bC=323143420212322
+trial 7: CONVERGED it=20 cond=3.4e+00 |[R,S]|=4.34e-17 |(RS)^p-I|=1.16e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=041314243222140 bC=423111422004110
+trial 8: CONVERGED it=20 cond=2.2e+00 |[R,S]|=4.02e-18 |(RS)^p-I|=9.39e-15 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(3.0)] bA=340044404421343 bC=224002110131441
+trial 10: CONVERGED it=26 cond=3.6e+00 |[R,S]|=3.26e-15 |(RS)^p-I|=3.36e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(2.0)] bA=132411224222332 bC=233341233212324
+trial 11: CONVERGED it=62 cond=1.8e+00 |[R,S]|=1.26e-19 |(RS)^p-I|=1.14e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(4.0)] bA=133234000114101 bC=234441420124120
+STATS {'conv': 11, 'commuting': 11, 'detect': 0, 'noconv': 1}
+== 5 3 A2 12 25 1,0,0 2,0,0 r r
+trial 2: CONVERGED it=18 cond=4.4e+00 |[R,S]|=2.03e-13 |(RS)^p-I|=1.79e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=123444222233041 bC=324403112133214
+== 5 4 A2 10 26 1,1,0,0 1,4,0,0 r r
+trial 3: CONVERGED it=17 cond=3.1e+00 |[R,S]|=1.04e-20 |(RS)^p-I|=1.54e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=43211204332002241201 bC=31420240042224433031
+== 5 4 A2 10 27 1,2,3,0 1,1,4,0 r r
+trial 0: CONVERGED it=41 cond=2.1e+00 |[R,S]|=1.60e-16 |(RS)^p-I|=1.04e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=03114021240330401144 bC=12301404011123312342
+trial 2: CONVERGED it=76 cond=4.6e+00 |[R,S]|=4.22e-17 |(RS)^p-I|=1.34e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=11131232213414414122 bC=13122434024444021143
+trial 3: CONVERGED it=28 cond=2.1e+00 |[R,S]|=7.27e-17 |(RS)^p-I|=9.52e-15 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=00414021201131230401 bC=44411212021320142041
+trial 4: CONVERGED it=34 cond=1.8e+00 |[R,S]|=1.07e-16 |(RS)^p-I|=1.24e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(2.0), np.float64(4.0)] bA=20300043224314323243 bC=33443411042333231440
+trial 5: CONVERGED it=147 cond=2.0e+00 |[R,S]|=4.83e-17 |(RS)^p-I|=1.27e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0), np.float64(4.0)] bA=03211301313420334200 bC=04440214010223412313
+trial 7: CONVERGED it=48 cond=2.4e+00 |[R,S]|=4.60e-17 |(RS)^p-I|=1.11e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(2.0), np.float64(4.0)] bA=20331030140411403023 bC=01101231432023022024
+== 5 5 A2 8 28 1,1,0,0,0 1,4,0,0,0 r r
+trial 1: CONVERGED it=24 cond=5.8e+00 |[R,S]|=2.86e-15 |(RS)^p-I|=6.32e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=2042024303042243221410223 bC=3310200041042033433400332
+== 7 3 A2 8 29 1,1,0 1,6,0 r r
+trial 0: CONVERGED it=20 cond=5.3e+00 |[R,S]|=5.01e-17 |(RS)^p-I|=7.17e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0), np.float64(6.0)] bA=604313414060220240010 bC=504560664210552302636
+trial 1: CONVERGED it=19 cond=2.7e+00 |[R,S]|=3.39e-28 |(RS)^p-I|=6.64e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0)] bA=536021303562364133030 bC=461016501650150223153
+trial 2: CONVERGED it=44 cond=3.4e+00 |[R,S]|=3.94e-25 |(RS)^p-I|=8.00e-14 COMMUTING T-args=[np.float64(0.0), np.float64(2.0), np.float64(3.0)] bA=151433623232106152314 bC=523302300325452533065
+trial 3: CONVERGED it=28 cond=5.2e+00 |[R,S]|=5.70e-18 |(RS)^p-I|=9.18e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(3.0)] bA=233465435130240666021 bC=544534534616442021626
+trial 4: CONVERGED it=107 cond=3.4e+00 |[R,S]|=5.48e-18 |(RS)^p-I|=8.61e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(4.0)] bA=304065334621442221403 bC=534006433543012103435
+trial 5: CONVERGED it=87 cond=2.6e+00 |[R,S]|=2.44e-18 |(RS)^p-I|=9.47e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0)] bA=343663505362606515463 bC=045224555212404565211
+trial 6: CONVERGED it=37 cond=2.2e+00 |[R,S]|=2.76e-17 |(RS)^p-I|=9.36e-14 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(5.0)] bA=446205134214213430022 bC=025326644513211563222
+trial 7: CONVERGED it=27 cond=2.3e+00 |[R,S]|=2.80e-16 |(RS)^p-I|=8.31e-14 COMMUTING T-args=[np.float64(0.0), np.float64(3.0), np.float64(4.0)] bA=462501540552632014214 bC=055453021334365326451
+STATS {'conv': 8, 'commuting': 8, 'detect': 0, 'noconv': 0}
+== 7 4 A2 8 30 1,2,0,0 1,3,0,0 r r
+trial 1: CONVERGED it=44 cond=1.2e+01 |[R,S]|=1.30e-18 |(RS)^p-I|=1.43e-13 COMMUTING T-args=[np.float64(0.0), np.float64(4.0)] bA=0330050564602451450426620142 bC=1255534333300266462614601366
+trial 2: CONVERGED it=57 cond=4.1e+00 |[R,S]|=2.09e-25 |(RS)^p-I|=1.11e-13 COMMUTING T-args=[np.float64(0.0), np.float64(3.0), np.float64(4.0)] bA=1423110262213305631654224226 bC=4542406452441443040340532150
+trial 3: CONVERGED it=52 cond=4.0e+00 |[R,S]|=1.02e-26 |(RS)^p-I|=1.19e-13 COMMUTING T-args=[np.float64(0.0), np.float64(1.0), np.float64(4.0)] bA=3160134661234436102665324156 bC=6436203341021220265142114132

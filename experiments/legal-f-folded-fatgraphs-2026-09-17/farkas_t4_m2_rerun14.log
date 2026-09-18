@@ -1,0 +1,16 @@
+phi0 {'a': 'bbc', 'b': 'bbcb', 'c': 'cbba'} m 2 phi {'a': 'bbcbbbcbcbba', 'b': 'bbcbbbcbcbbabbcb', 'c': 'cbbabbcbbbcbbbc'} gates bbcABC maxval 4 words 14 (all legal primitive zero-homology cyclic words, len<=8, |w|+|f(w)|<=600)
+done ABBcbaCb farkas-active-set
+done ABcbCbaB farkas-active-set
+done ABcbaBCb farkas-active-set
+done AcbaCCBc farkas-active-set
+done BBCbCbcc farkas-active-set
+done BBcbCCbc farkas-active-set
+done BBccbCbC farkas-active-set
+done BBccbbCC farkas-active-set
+done BCBcbCbc farkas-active-set
+done BCCbbcBc farkas-active-set
+done BCbCbcBc farkas-active-set
+done BCbbCBcc farkas-active-set
+done BcBcbCbC farkas-active-set
+done BcBcbbCC farkas-active-set
+stats {('farkas-active-set', True): 14} time 418.4

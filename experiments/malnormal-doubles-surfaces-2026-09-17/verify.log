@@ -1,0 +1,9 @@
+C ('abaBa', 'AbbAABB') rank 2 inf-index True malnormal True | theta b AB a folded True | w bbaaBABA cyc-reduced True | closed at [0] rank-1 component at [0] => CERTIFIED
+C ('bbABBA', 'aaBBAAbb') rank 2 inf-index True malnormal True | theta B b aa folded True | w BBaabbAA cyc-reduced True | closed at [0] rank-1 component at [0] => CERTIFIED
+C ('aaBBBBA', 'AbbabbA') rank 2 inf-index True malnormal True | theta A BB abb folded True | w AbbabbaBBBBA cyc-reduced True | closed at [0] rank-1 component at [0] => CERTIFIED
+C ('AAAbbb', 'AAAbba') rank 2 inf-index True malnormal True | theta B a Ab folded True | w BAAbbaBa cyc-reduced True | closed at [0] rank-1 component at [0] => CERTIFIED
+all certified: True
+brute force ('abaBa', 'AbbAABB') w bbaaBABA elements of A in C not in <w> (A-length <= 7 ): 0 | A-words landing in C: 2
+brute force ('bbABBA', 'aaBBAAbb') w BBaabbAA elements of A in C not in <w> (A-length <= 7 ): 0 | A-words landing in C: 2
+brute force ('aaBBBBA', 'AbbabbA') w AbbabbaBBBBA elements of A in C not in <w> (A-length <= 7 ): 0 | A-words landing in C: 2
+brute force ('AAAbbb', 'AAAbba') w BAAbbaBa elements of A in C not in <w> (A-length <= 7 ): 0 | A-words landing in C: 2

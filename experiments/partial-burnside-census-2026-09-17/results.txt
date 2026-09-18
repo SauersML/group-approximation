@@ -1,0 +1,33 @@
+Partial Burnside census, exponent 5, two generators (swarm-0917, 2026-09-17)
+
+1. Low-index census (census.py + lowindex.c), transitive reps up to isomorphism.
+   Pi_2(2,5), degree <= 12:
+     degree 5:  order 5 x6
+     degree 6:  A_6 x4
+     degree 10: order 80 x6; 360 x2; A_10 x6
+     degree 11: order 55 x8; 660 x2; A_11 x8
+     degree 12: order 660 x1; 11520 x4; A_12 x9
+   Pi_3(2,5), degree <= 20: only degree 1 and degree 5 (order 5) reps
+     (4,085,416 search nodes).  A degree <= 26 run did not finish.
+   Validation: Pi_2(2,2) gives degree 2 x3, degree 4 x1; Pi_3(2,3) gives
+     degree 3 x4, degree 9 x5 (orders 9, 27), degree 27 x1 (B(2,3), order 27).
+
+2. Two-dimensional reps (sl2_traces.py 10; psl2_modp.py 60 6).
+   SL_2(C): irreducible pairs with a, b, ab of order 5 in PSL_2 fail at
+     radius 1 (word ab^-1); pairs reaching radius >= 2 are reducible.
+   F_p: irreducible pairs reach radius 2 only for p = 3 (16 triples) and
+     p = 11 (4 triples), never radius 3; none for other p <= 59.
+
+3. Abelian-by-5-group quotients (exponent_cohomology.py, monomial_search.py).
+   P = H5 on F_q^5, all 480 markings, q = 11, 41: solution dims 8,6,6,6,5,5
+     at R = 1..6 against dim B = 5, so non-5-group quotients of Pi_4(2,5),
+     none at R = 5 in this family.
+   P = Z5^2 on characters: dead by R = 3.
+   P = <Y, diag(z^e) Y^k> in {sum-zero diag} x| C5: last alive radius <= 4
+     in every case; summaries identical for q = 11, 31, 101.
+
+4. Exact certificate (h5_char0_certificate.py): over Z[zeta_5],
+   a = (X, (0,0,-z^2,1,0)), b = (Y, 0) satisfy h^5 = 1 on all 160 reduced words
+   of length <= 4; 80 of 324 words of length 5 have h^5 a nonzero translation,
+   e.g. (a^2 b a b^-1)^5 = translation by (0,0,0,5+5z^3,0).
+   verify_h5_quotient.py repeats this over F_11 and F_31.

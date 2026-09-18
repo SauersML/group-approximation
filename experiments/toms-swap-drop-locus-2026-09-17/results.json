@@ -1,0 +1,55 @@
+{
+  "cases": [
+    {
+      "j": 2,
+      "R": 4,
+      "min_eigenvalue_Q_minus_P": -6.045244768918537e-16,
+      "ranks_of_Q_seen": [
+        3,
+        4
+      ],
+      "drop_parameters": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "expected_drop_parameters": [
+        0.125,
+        0.375,
+        0.625,
+        0.875
+      ],
+      "drops_off_hyperplane": 0,
+      "max_abs_rank_aprime_minus_Rs": 0.6166666666666667,
+      "rank_P_at_s0": 4,
+      "rank_P_at_s1": 4,
+      "all_checks_pass": true
+    },
+    {
+      "j": 3,
+      "R": 3,
+      "min_eigenvalue_Q_minus_P": -6.764622477908936e-16,
+      "ranks_of_Q_seen": [
+        2,
+        3
+      ],
+      "drop_parameters": [
+        0.166667,
+        0.5,
+        0.833333
+      ],
+      "expected_drop_parameters": [
+        0.166667,
+        0.5,
+        0.833333
+      ],
+      "drops_off_hyperplane": 0,
+      "max_abs_rank_aprime_minus_Rs": 0.625,
+      "rank_P_at_s0": 3,
+      "rank_P_at_s1": 3,
+      "all_checks_pass": true
+    }
+  ],
+  "all_checks_pass": true
+}

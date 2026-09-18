@@ -1,0 +1,8 @@
+ELL 2 M 3 DEPTH 6 tree states 101 feasible configs 197416
+min-eccentricity histogram {0: 400, 1: 6517, 2: 130003, 3: 60496}
+bad 0
+DONE
+
+real	17m55.592s
+user	21m2.924s
+sys	0m3.311s

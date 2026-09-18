@@ -67,3 +67,81 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   Aizenman--Barsky BK step (orbits are `nu`-null), and the best-versus-worst
   comparison. A kernel satisfying the Harris--FKG distortion bounds has finite
   average and infinite supremum, and on `X_rig` nothing forces a radial profile.
+* **Finite-models transplant via fibre-truncation towers
+  (`research/artifacts/fpbs-fibre-truncation-towers-2026-09-17.md`).** Finite
+  quotients are already killed by the glued giant law, so the tower keeps
+  `Gamma/H` intact and truncates only the fibre: `G_k = Cay(Gamma/H_k)` with
+  `H_k <= H` normal, of finite index in `H`, nested, with trivial intersection.
+  `fpbs-fibre-truncation-towers-add-no-slack` shows, by a lifted exploration
+  coupling, that the finite fibre occupations `chi^(k)(p)` increase to
+  `chi^H_G(p)`. So this claim is equivalent to a bound on `chi^(k)` that is
+  uniform in `k`. `fpbs-fibre-truncation-pu-lower-semicontinuous` shows that
+  `p_u(G) <= liminf p_u(G_k)`. **Where it dies:** a gap theorem on the
+  truncations with `k`-dependent constants transfers only through upper
+  semicontinuity of `p_u`, and the tower gives only lower semicontinuity. For
+  `F_2 x Z`, `p_u(G_k) = 1` while `p_u(G) < 1`. The only datum that transfers is
+  the uniform fibre occupation, which equals this hole. Examples of what dies:
+  Choi--Seo on `Gamma/<z^k>`, hyperbolic `L2` gaps, and `p_u = 1` on
+  infinitely-ended truncations. What survives is a counterexample detector:
+  `p_u(G_k) -> p_c(G)` along a subsequence refutes Benjamini--Schramm for `G`.
+* **Calibration: critical finiteness plus openness, tested on Z^d (2026-09-17,
+  `research/artifacts/fpbs-lattice-critical-relative-finiteness-2026-09-17.md`).**
+  * **World.** `fpbs-lattice-amenable-subgroup-critical-finiteness-no-gap`: on
+    nearest-neighbour `Z^d` with `d >= 11`, along `H = Z^k` with codimension
+    `m >= 3`, three things hold:
+    * the critical fibre profile satisfies
+      `sigma_(p_c)(q) <= C(1+|q|)^(-(m-2))`, so `chi^H_(p_c) < infinity`;
+    * `sigma_(p_c)` is in `l^r` for `r > m/(m-2)` (square summable when `m >= 5`);
+    * `chi^H_p = infinity` for every `p > p_c`.
+  * **What it kills.**
+    * The Section 4.2 prediction holds with `rho(Q) = 1`. It measures
+      transience of the quotient, not nonamenability, so verifying it is no
+      evidence for the gap.
+    * Any route to openness (Section 4.4) that uses only critical finiteness,
+      `l^r` or bubble bounds on the fibre profile, or mean-field two-point
+      exponents dies in W1.
+  * **Where it dies.** At the passage from `p_c` to some `p > p_c`: W1 has all
+    these inputs and no gap. The only separating input in sight is the operator
+    norm of convolution by `sigma_(p_c)` on `l^2(Q)`, which is infinite in W1.
+    This is consistent with the Kesten barrier and the square-root-law
+    equivalence already recorded.
+* **Spectral DT certificates (`research/artifacts/fpbs-spectral-dt-certificate-2026-09-17.md`).**
+  Replace the DT mass `phi_p(S)` by the spectral radius of the boundary measure
+  `nu_{S,p}` acting on the Schreier space `l2(H\Gamma)`.
+  * A value below 1 bounds `E_p|K_o ∩ H|` by a Neumann series, and the condition
+    is open in `p`
+    (`fpbs-quotient-spectral-dt-certificates-are-subgroup-blind`). So the
+    openness death of Attempt 4.4 is bypassed, and the target follows from
+    `fpbs-wq-normal-class-critical-spectral-dt-certificate`, via
+    `fpbs-wq-normal-subcriticality-via-spectral-certificate`.
+  * **Where the relative leverage dies:** Proposition C proves
+    `sp_Gamma(nu) <= sp_{H\Gamma}(nu)` for every subgroup, with equality for
+    amenable `H`. The quotient never helps, and any certificate also gives
+    `||T_p|| < infinity`
+    (`fpbs-spectral-dt-certificate-bounds-connectivity-operator`). This is the
+    Kesten coincidence of "count open walks" (the level `S = {o}`), shown to
+    hold at every level `S`.
+  * The remaining premise is a critical finite-volume L2-type estimate. It
+    holds on the tree with `S = B_3`, and has not been checked on any group of
+    the class.
+* **Is this hole weaker than critical L2? Power improvement plus square-root law
+  (2026-09-17, `research/artifacts/fpbs-fibre-power-improvement-2026-09-17.md`).**
+  * **General tool.** `fpbs-normal-coset-fibre-mass-power-improvement`, for every
+    normal `N` below `p_c(N;G)`:
+    * every coset moment is at most the subgroup moment;
+    * hence `sigma_p(q) <= C_r P_p(o <-> Gamma_q)^(1-1/r)`;
+    * Grimmett's thinning then gives `sigma_p <= C sigma_(p')^s` with
+      `s < log p/log p'`.
+  * **On tree-projected graphs.** `fpbs-tree-projected-pu-l2-iff-square-root-law`
+    shows that `p_{2->2} = p_u` (Question Q of the fibre-mass artifact §5.2) is
+    equivalent to the non-strict square-root law
+    `sum_q P_p(o <-> Gamma_q)^(2+eps) < infinity` below `p_u`. Unconditionally,
+    `p_{2->2} >= sup_(p'<p_u) (p')^(max(r*(p'),2)/2)`.
+  * **Consequence.** Wherever the square-root law holds, this hole is equivalent
+    to critical L2 graph by graph. On tree-projected graphs no weaker target
+    exists unless `fpbs-tree-projected-square-root-fibre-law-below-pu` fails.
+  * **Where it stops.** That law is Hutchcroft--Pan's backscattering
+    `beta* >= 1/2`. With a central kernel, pairs keep their separation exactly.
+    But one child per fibre loses the height spread (`max_h` versus `sum_h`), and
+    rigid decorations give no symmetric separation walk for Kesten's bound. The
+    missing input is a flat pair lemma, recorded in that node.

@@ -145,3 +145,29 @@ input.  That is `torsion-free-countable-non-mf-from-abelianized-cover`.
 - **Deferred:** no attempt at a proof or a counterexample is made here.  A
   counterexample would be as informative as a proof: it would be the first
   quotient-nonclosure witness with abelian kernel.
+- **2026-09-18, swarm-0917-w6-w6-ptm-last2 (cohomology-index / symbolic-dynamics).**
+  Result: `abelianized-cover-twist-vanishes-iff-equivariant-fox-section`
+  (established).
+  - **Target.**  Force the pushed relation-module class of an arbitrary
+    corona model of `E = F/[R,R]` to vanish when the base has full MF
+    radical.  By the splitting argument, vanishing would kill `[E,M]`.
+  - **The exact criterion.**  Take a model `rho` whose `rho(M)` has joint
+    spectrum `X`, a closed `G`-invariant subset of `M^ = Hom(M,T)`.  Its
+    twist vanishes if and only if the dual Fox projection
+    `pi : (T^n)^G -> M^` has a continuous equivariant section over `X`.
+    Equivalently, there are unitaries `f_i in C*(rho(M))` with
+    `rho(r) = prod (g.f_i)^(a_(i,g))`, reading off the Fox derivatives of each
+    relator.  So the analytic part of `(DF)` reduces to the lifting
+    statement `(Sec)` for corona joint spectra.
+  - **Where the attack dies.**  The left regular representation of `E` is
+    faithful, has `X = M^`, and admits no such section whenever `G` has
+    torsion.  The character-degree retraction `C(M^,T) -> M` would turn a
+    section into a splitting `G -> E` of the torsion-free cover.  Hence no
+    argument that uses only the joint-spectrum dynamics, faithfulness and
+    unitary implementation can force vanishing.  A proof must use a property
+    of matrix coronas that `B(l^2 E)` lacks, such as finite-dimensional lifts.
+    Neither `(D)` nor `(DF)` is decided.
+  - **Boundary.**  Fixed points of the spectrum always lift for superperfect
+    bases such as the Leavitt Steinberg group.  Any countermodel to `(Sec)`
+    therefore needs infinite orbits, matching the fixed-point observation in
+    the twist dichotomy.

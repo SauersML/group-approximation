@@ -1,0 +1,3 @@
+relator checks ('', '') ('', '') (empty pairs mean identity)
+F1 normal form ('', 'ba')  F2 normal form ('yx', '')
+defining relators reduce to identity

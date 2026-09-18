@@ -1,0 +1,5 @@
+group hex 24 B 2 antiflags 1065 orbits 74
+POS 4chi 2 V 1 orbits (0,) kernel [] len 8 elems 2
+k 1 {'pos': 1, 'R1': 26, 'nonpos': 21, 'bad': 18, 'R2': 8} best (2, (0,), 1)
+k 2 {'pos': 1, 'R1': 1067, 'nonpos': 81, 'bad': 1330, 'R2': 252, 'triangle': 15, 'K23': 12, 'R3': 17} best (2, (0,), 1)
+k 3 {'pos': 1, 'R1': 19245, 'nonpos': 131, 'bad': 45119, 'R2': 1767, 'triangle': 689, 'K23': 590, 'R3': 57} best (2, (0,), 1)

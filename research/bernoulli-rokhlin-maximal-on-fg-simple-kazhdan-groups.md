@@ -199,3 +199,20 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - **Open:** extending core permutation models to non-core folds
     (`core-permutation-models-extend-to-folding-acts`).
   - Artifact: `research/artifacts/folding-act-certificates-2026-09-17.md`.
+- **Derived-read double counts (swarm-0917-w5-gs-rokhlin-kazhdan, 2026-09-17).** This extends the
+  reading-model obstruction to its listed gaps. The per-site Shannon count may now have:
+  - any probability space;
+  - reads that are arbitrary random variables (linear functionals over `F_q`, nonlinear, hashed, randomized);
+  - non-product ambient measures with independent good sites;
+  - local laws only TV-close to Bernoulli.
+  - **Established** (`derived-read-entropy-certificates-are-soficity`): Lemma A' certificate with a Fannes correction;
+    the pinning Lemma P; Theorem D (certifies everything iff sofic). On hosts containing `U`, every
+    such certificate for configurations with `B_(r_0)` of `EL_D(R)` inside `E ∩ F` proves at most
+    `Phi >= log q - min(eta_1 H(Y)/k, (1/3) log q)`.
+  - **Where it dies:** Lemma P part 1. The unit incidence `g^-1 g = 1` puts `x(1)` among the reads, so
+    the local law pins that read to `Z_i`, and independence of good sites turns this into identity of
+    indices. A tight count then contains a reading model, which dies at reading-model Lemma B step 1.
+  - **Gate left open:** counts that bound `H(Z_V | codes)` globally (codimension of a good subspace)
+    without a per-site chain rule. This is the rank-metric gap, and the only place linear soficity can
+    still enter a double count. Approximately independent good sites are also not treated.
+  - Artifact: `research/artifacts/derived-read-count-certificates-force-soficity-2026-09-17.md`.

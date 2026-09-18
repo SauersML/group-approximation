@@ -183,3 +183,36 @@ not residually finite, such as preimages in Deligne's cover of torsion-free
 subgroups of `Sp_4(Z)`, whose hyperlinearity is open. The proof uses
 Forester--Rourke asphericity and then the Schur criterion. It says nothing at
 non-amenable shapes or over non-central torsion.
+
+**2026-09-17: non-central torsion over locally indicable kernels, and where
+the certificate dies.**
+`kl-regular-roots-lift-through-locally-indicable-kernels` treats the mating
+opposite to Klyachko--Mikheenko: locally indicable kernel, finite quotient.
+Let `H <| G` be locally indicable. Embed `G` in `Map(Gamma, H) ⋊ Gamma` for an
+overgroup `Gamma` of `G/H` that contains a root `tau` of the image `w-`. The
+equation then becomes a square system over `H` whose matrix is the Fox
+derivative `D`. Howie's systems theorem solves the system when `D` has no left
+annihilator.
+
+- **Explicit class.** `w = V g` with `V in H * <t>` and `gcd(m, ord(gH)) = 1`,
+  over any locally indicable-by-`C_d` group. For `d = 6` these groups are
+  locally `p`-indicable for no prime.
+- **Universal root.** The annihilator of `D` is `pi_2` of the relative
+  presentation complex of `<G/H, t | w->`. So asphericity over the quotient
+  lifts the conjecture to every locally indicable extension.
+- **Obstruction.** `kl-amenable-regular-roots-lie-in-the-coefficient-group`:
+  over a finite `F = G/H`, the Fox derivative at a root generating a finite or
+  amenable group other than `F` always has a left annihilator. At every
+  infinite root its l2-kernel has dimension at least `1/|F|`. The proof pushes
+  the Fox formula to `Z[Gamma/F]` and counts dimensions there. So amenable
+  regular roots are units of `Q[F]` at roots in `F`. Anything more has to be a
+  non-zero-divisor of `Z[Gamma]` with a nonzero l2-kernel over a non-amenable
+  `Gamma`. The Atiyah and approximation arguments cannot certify such an
+  element.
+- **Blind words.** `t^m c` with `gcd(m, ord c) > 1` has no regular root. So has
+  `c^2 t^(-1) c^5 t c^5 t^(-1) c` over `C_6`, of degree `-1`, whose universal
+  root group `B_3/<<sigma_1^6>>` is amenable. Degree `±1` over finite groups is therefore
+  not reachable by this method in general.
+- **Dies on simple groups.** Like every kernel/quotient mating, it cannot reach
+  the reduced simple form of a counterexample, because over a simple `G` the
+  kernel is `1` or `G`.

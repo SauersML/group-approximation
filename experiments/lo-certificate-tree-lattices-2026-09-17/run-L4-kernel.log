@@ -1,0 +1,13 @@
+group=f2xf2 L=4 kernel short=2 elements=384 vars=192 clauses=1384 build=0s
+RESULT SAT (no certificate in this ball) solve=0.0s
+group=a6 L=4 kernel short=2 elements=2460 vars=1230 clauses=16576 build=3s
+RESULT SAT (no certificate in this ball) solve=0.1s
+group=wiseD L=4 kernel short=2 elements=5260 vars=2630 clauses=43126 build=9s
+RESULT SAT (no certificate in this ball) solve=0.3s
+group=sigma L=4 kernel short=2 elements=26296 vars=13148 clauses=328312 build=85s
+RESULT UNSAT (not left-orderable) solve=4.1s
+  core 369
+  core 247
+  core 221
+  core 221
+minimal certificate triples: 207 -> certificate-sigma-kernel-L4.txt

@@ -26,3 +26,16 @@ Never write a `requires: []` route into this claim.
 
 **Status.** Answered negatively in the list's own note, from an observation of
 Jim Belk.
+
+## Attempts
+
+1. **Torsion-free strengthening (wave flagship-2026-09-17, lane sw-119).**
+   Belk's torsion argument does not rule out `T × Z` or `T × F` inside `T`.
+   `thompson-t-contains-no-t-times-g` rules out `T × G` for every nontrivial
+   `G`. The proof goes through `thompson-t-copies-of-t-have-trivial-centralizer`:
+   an element of `T` commuting with a copy of `T` either has a fixed point, and
+   then its support must cost infinitely many breakpoints
+   (`thompson-t-centralizers-of-orbit-free-subgroups-act-freely`), or it has
+   nonzero rotation number, and then either a torsion clash or a descent to
+   rotations gives a contradiction. The answer "no" to Problem 2.17 therefore
+   does not depend on torsion at all.

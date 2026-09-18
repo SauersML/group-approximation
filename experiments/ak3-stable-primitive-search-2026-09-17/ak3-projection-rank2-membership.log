@@ -1,0 +1,13 @@
+# Rank-2 component membership of the short projections of the AK(3) rank-3 component (cap 24)
+# step 1: python3 filter_proj.py 18 < (cap-24 section of ak3-proj-caps22-24.log)
+162 projections, 2 outside
+OUTSIDE 16 XXXYxYY XXYYXYxxy
+OUTSIDE 16 XXXXYXY XYYYYXyyy
+# step 2: exact rank-2 membership test, gcc -O3 -o pzsame pzsame.c
+$ ./pzsame 20 5000000 XXXYxYY XXYYXYxxy xxxYYYY xyxYXY
+FOUND target
+$ ./pzsame 20 5000000 XXXXYXY XYYYYXyyy xxxYYYY xyxYXY
+FOUND target
+# rank-2 component sizes of AK(3) under the pzsearch moves (./pzsearch 2 CAP 50000000 ...): the same counts
+# from AK(3) and from both outside projections at caps 20 and 22; cap 24 closed from AK(3) and XXXYxYY XXYYXYxxy
+cap 20: 6867   cap 22: 41257   cap 24: 261720   (no primitive relator at any cap)

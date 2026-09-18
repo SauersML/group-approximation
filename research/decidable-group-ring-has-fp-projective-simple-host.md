@@ -50,3 +50,12 @@ them. No necessity or equivalence to Boone--Higman is claimed.
 5. Projective simplicity already forces L to be a simple ring by
    [[projective-elementary-simplicity-forces-simple-ring]]. This is a
    necessary screen, not a theorem constructing L or proving the converse.
+6. Calibration of the divisibility screen. Any L satisfying clause 3 is simple, and it contains Z, so Q ⊆ Z(L). Every Z-form host is therefore excluded: Leavitt, Steinberg and path algebras over Z or Z[1/m], group rings, and LC(X,Z) ⋊ Γ. Their finitely generated subrings have L/pL ≠ 0 for some prime p.
+   [[finitely-presented-divisible-ring-engine]] shows that this screen is never the binding constraint. Z[H] embeds unitally in the finitely presented Q-algebra Z[H] *_Z D. So in characteristic zero the hole splits into four prerequisites, each of which can fail on its own:
+   - (N1) L f.p. with Q ⊆ Z(L). This is satisfiable.
+   - (N2) L simple.
+   - (N3) Q^× ∩ [L^×, L^×] finitely generated. This is necessary for clause 2, by the Whitehead scalar argument.
+   - (N4) the unstable Steinberg kernel is finitely normally generated.
+7. Class kill for non-IBN hosts. By [[non-ibn-rational-hosts-have-infinite-elementary-centre]], every L with L ≅ L^{1+d} and Q ⊆ Z(L) has (Q^×)^d I_n ⊆ Z(EL_n(L)), so clause 2 fails. This excludes every characteristic-zero host receiving a unital Leavitt map L_Z(1,1+d) -> L, including B ⊗ L_K(1,n) over characteristic-zero fields K.
+   The invariant is the rational scalar group. In characteristic p it is the finite group F_p^×, which is why the char-p Leavitt-tensor hosts do not transplant.
+   Remaining host types are stably finite hosts, and purely infinite hosts with [1] of infinite order in K_0. They must still pass (N3) and (N4). No candidate is constructed here; the hole stays OPEN.

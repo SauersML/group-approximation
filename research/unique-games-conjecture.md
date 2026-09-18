@@ -14,6 +14,10 @@ artifacts:
   - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
   - research/artifacts/ugc-state-of-the-art-2026-09-12.md
   - research/artifacts/ugc-galois-games-2026-09-12.md
+  - experiments/grassmann-can-holonomy-2026-09-17/can_holonomy.py
+  - experiments/grassmann-can-holonomy-2026-09-17/output.txt
+  - experiments/ugc-sqrt-scale-2026-09-17/check_sqrt_scale.py
+  - experiments/ugc-sqrt-scale-2026-09-17/output.txt
 ---
 
 **OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an
@@ -76,6 +80,63 @@ it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
+- **Padding-line decomposition and repetition calibration
+  (swarm-0917-w6-ugc-break, 2026-09-18).**
+  - *Invariant:* `ug-hardness-deficit-ratio-padding-line` gives the deficit
+    ratio `R = (1-s)/(1-c)`, which is unchanged by satisfiable padding. `R > 2`
+    iff `s < 2c - 1`, and that forces `c > 1/2`. The proved point
+    `((1-eps)/2, eps)` has `R < 2`. So the "1/2 wall" is the padding line.
+  - *New failable prerequisite:* `unique-games-np-hard-below-the-padding-line`
+    (OPEN), which needs a single NP-hard point with `R > 2`. It is implied by
+    UGC (route `padding-line-hardness-from-ugc`, `eps = 1/4`, `R = 3`). An
+    algorithm for any gap below the line refutes UGC. The unconditional points
+    recorded here are all at `R <= 2`: 2-to-2 splits give `R -> 2`, and
+    O'Donnell--Wright give `5/4`. The w4 affine-view collapse below also lands
+    at `s >= 2c - 1`.
+  - *Class kill:* a padded proper split of any d-to-d game has `R <= d/(d-1)`,
+    whatever the source hardness. It dies at completeness, because exactly one
+    branch holds per satisfied constraint.
+  - *Calibration:* `parallel-repetition-collapses-threshold-rank-to-spectral-gap`
+    shows that `G^n` has threshold rank 1 or at least `n + 1`. So on repetition
+    pipelines with `n >= r*`, the w5 NO-side kill tests only the base game's
+    spectral gap, and its `eps0^(-1/2)` rank scale is silent. Weak-gap
+    amplification in the style of Rao (ECCC TR08-013, Thm 1.4, UGC restated at
+    `1 - eps^2` versus `1 - eps^(1-delta)`) passes the rank branch
+    automatically.
+  - *Survivors for the milestone:* improper splits, non-split outputs,
+    label re-encoding compositions, and amplification of a weak-gap core.
+
+- **NO-side spectral kill by the degree-2 SDP (swarm-0917-w5, 2026-09-17).**
+  `spectral-gap-no-outputs-cannot-prove-ugc` proves, at every alphabet and
+  without triangle inequalities, the bound
+  `val >= 1 - 768 eps/gamma - 14 eps - 18 r^(2/3) eps^(1/3)` for SDP deficit
+  `eps` and at most `r` constraint-walk eigenvalues above `1 - gamma`.
+  - *Method:* fourth-tensor embedding, projection onto the top eigenspaces, a
+    random grid, and root propagation through the `>1/2` matchings.
+  - *Consequence:* a reduction to `Gap-UG[1 - eps0, delta]` implies `P = NP`
+    whenever its NO outputs have fewer than
+    `(1-delta)^(3/2)/(216 sqrt(2 eps0))` eigenvalues above
+    `1 - 3072 eps0/(1 - delta - 56 eps0)`.
+  - *Combined with the YES-side kill:* with
+    `low-label-threshold-rank-reductions-cannot-prove-ugc`, a UGC reduction
+    needs high threshold rank on both sides.
+  - *Survivors:* long-code and noisy-cube compositions, and SSE graphs with
+    many near-1 eigenvalues.
+  - *Open follow-up:* raise `r` beyond `eps^(-1/2)` in polynomial time. That
+    needs a rounding whose cut cost does not scale with the grid dimension.
+
+- **Door P1 of the affine-view collapse, closed for the DKKMS family
+  (swarm-0917-w4, 2026-09-17).** `grassmann-composed-2to2-coarsenings-are-satisfiable`:
+  on every folded Dinur--Khot--Kindler--Minzer--Safra instance, and for every
+  agreement test on its vertex set, the coarsening `Can` has value 1, satisfied
+  by one gauge labelling. The labelling exists because folding offsets are
+  coboundaries against Lemma 4.1 representatives. So every affine-view unique
+  verifier composed on the 2-to-2 instances has `s >= 2c - 1`. Only these routes
+  survive:
+  - non-affine views (P2, `Can_part`);
+  - outer games whose constraints link two subspaces of one label space;
+  - verifiers without oblivious completeness.
+
 * **Direct affine soundness of the published folded noise test.**
   `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
   source family with vanishing value and folded output labelings with
@@ -126,13 +187,42 @@ it is supplied, and the exponential pairing-support obstruction persists.
   hardness is therefore a proof that `Can` is hard. No Grassmann expansion
   theorem can enter, and crossing the `1/2` wall needs views that are not
   affine in the outer label. Open: is `Can` of hard 2-to-2 instances hard?
+  *Dead end (sw-034, decisive computation):* "restriction coarsenings are
+  trivially satisfiable, so every affine-view verifier over folded 3LIN-derived
+  inputs is capped at `s >= 2c - 1`". The cap would be tight: mixing the split
+  (`c = 1/2`, `s ~ 0`) with trivial exact tests attains `s ~ 2c - 1`. It dies at
+  folding. Without right-hand sides, `Can` has only identity constraints and
+  value 1. With folding `f_u(s + e_u) = f_u(s) + b_u`, a chain of exact triples
+  can shift a point by equation vectors. Around a cycle, `Can` then reads the RHS
+  parity of an equation multiset summing to 0: the Hadamard restriction encoding
+  of an odd 3LIN dependency. For the maximal one-bit restriction verifier
+  (`experiments/grassmann-can-holonomy-2026-09-17/can_holonomy.py`):
+  * no consistent instance has a parity conflict;
+  * almost every inconsistent instance does (1388 of 1404 over n = 6..20);
+  * every conflict is certified as an odd dependency.
+  With one-variable overlaps `Can` is a matching of value 1. This rules out
+  proving the cap from `Can` structure alone. `Can` on these inputs is a genuine
+  Max-2Lin system over the RHS. So the open question is a gap question, whether
+  that Hadamard restriction system is hard at soundness near 0, not a
+  triviality. The toy has label dimension 1, not the KMS parameters.
 * **Bounded-degree views (Reed--Muller, short-code, quadratic encodings).**
   **Candidate class-killing obstruction**: `low-degree-view-unique-verifiers-collapse`
   (OPEN after refereeing on 2026-09-17). Its formal items hold, but the class it
   kills is established only when the permutations `sigma` are affine. A
   non-affine `sigma` (for instance a transposition) makes soft triples of degree
-  about `log_p(1/eps)` even for Grassmann views; that case is
-  `low-degree-view-collapse-survives-non-affine-sigma`.
+  about `log_p(1/eps)` even for Grassmann views. The proposed repair
+  `low-degree-view-collapse-survives-non-affine-sigma` is **refuted** by
+  `non-affine-sigma-deletions-defeat-low-degree-collapse` (2026-09-17). With
+  identity views, swapping two labels per edge keeps completeness `1 - 2^(1-k)` but
+  drops the value from 1 (the coarsening's value) to `o(1)`. With arbitrary `sigma`,
+  affine-view verifiers collapse only to the **deletion coarsening** `Can_del`:
+  roundable triples (equal kernels, forced above completeness `1/p`) with sparse
+  deleted label sets of average density at most `(1-c)/w_r`, and
+  `val(V) >= w_r val(Can_del)`. The deletions are harmless when the homogeneous
+  symmetries of the outer game surject onto the view quotients. They are not harmless
+  for folded, over-determined inputs. So the soft triples of (P2) already occur
+  over degree-1 views, where the degree lives in `sigma`, not in the encoding. Open: is `Can_del` of hard 2-to-2 families sound, with deletions of
+  density `O(eps)` aimed at concentrated labellings?
   The invariant is the algebraic degree `D` of the view differences on the outer
   constraint spaces. A nonzero reduced polynomial of degree `D` is nonzero on a
   `p^-D` fraction of points. So at completeness `1 - eps`, the exact triples
@@ -161,6 +251,26 @@ it is supplied, and the exponential pairing-support obstruction persists.
   Perfect completeness is out in this form
   (`unique-constraints-orient-at-most-half-of-a-fiber`, and UG with perfect
   completeness is in P). So every prerequisite is stated at `1 - eps`.
+* **Real linear equations and the real code (Khot--Moshkovitz candidate, weak
+  UGC) (swarm-0917-w5, 2026-09-17).** This route is independent of 2-to-2. It
+  decomposes into four prerequisites:
+  - (P-a) hardness of random `kCSP(PHLin)` and the `kLin(R)` Lasserre gap;
+  - (P-b) completeness of the real code `interval(<sigma, x>)`;
+  - (P-c) KM Theorem 14, soundness for `(l, gamma)`-list decoding strategies;
+  - (P-d) near-complete folded strategies are list decodable.
+
+  **(P-d) is refuted** by `distorted-periodic-half-spaces-defeat-real-code-junta-decoding`.
+  The distorted codes `interval(sum_i sigma_i phi_a(x_i))`, with
+  `phi_a(t) = t + (a/2pi) sin 2pi t`, are folded and reject all three KM tests
+  within their completeness bounds. Yet they correlate at most `eta` with every
+  junta of `l` real code functions once `n >= n_0(a, l, eta)`.
+  - *Invariant:* the per-coordinate Fourier contraction `lambda_K(a) < 1`.
+  - *Where it dies:* the list-decoding step of Theorem 14.
+
+  This answers KM's Robust Gaussian Isoperimetry question negatively in junta
+  form. What survives is a reparametrization-invariant structure theorem
+  (decode the labels `sigma_i`, not the functions) together with soundness for it:
+  (P-d') and (P-c'), both OPEN.
 * **Refuting the conjecture.** The algorithmic negation is the open claim
   `unique-games-gap-admits-polynomial-time-algorithm`. Its Attempts record the
   algorithmic frontier: `affine-ug-easy-on-certifiably-hypercontractive-graphs`,
@@ -170,3 +280,84 @@ it is supplied, and the exponential pairing-support obstruction persists.
 * **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
   (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
   second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
+* **Sqrt-scale quantifier shift** (swarm-0917, `e-ugc-pull-logic`). The root
+  gap `1-eps` versus `eps` is equivalent to a near-1 versus near-1 gap
+  (`sqrt-scale-unique-games-hardness-is-equivalent-to-ugc`, ESTABLISHED):
+
+  ```text
+  UGC  <=>  for every C there are eta <= 1/C^2 and k with
+            Gap-UG_k[1-eta, 1-C sqrt(eta)] NP-hard.
+  ```
+
+  The forward direction is trivial. The converse uses `floor(eps/eta)` rounds of
+  Dinur--Steurer repetition with `C^2 = 32 ln(1/eps)/eps`. The OPEN premise
+  `sqrt-scale-unique-games-hardness` gives the two-way route
+  `ugc-from-sqrt-scale-unique-games-hardness`.
+  - *Squaring law.* Hardness at ratio `R >= 6` yields
+    `Gap-UG[1-17rho/R^2, 1-(1-1/e)rho]` hardness, so linear deficit ratio
+    `>= R^2/27`. A bounded linear deficit ratio would therefore refute UGC.
+  - *Scale is forced.* `black-box-repetition-needs-sqrt-scale-soundness-gap` is
+    a class kill, via Raz's odd cycle. Every repetition amplifier with product
+    completeness and a universal soundness bound needs
+    `gamma >= c sqrt(eta/eps')`. Sub-sqrt deficits, including linear
+    `1-eta` versus `1-O(eta)` hardness, die at the soundness certification step.
+  - *Alphabet cost.* `sqrt-scale-ug-hardness-costs-alphabet-exp-c-squared`
+    (via CMM): ratio `C` needs `log k >= C^2/4A^2` unless `NP <= RP`.
+  - *Credit.* The equivalence is folklore from Rao, Dinur--Steurer and Raz; the
+    explicit constants, squaring law and pairing with the two sharpness facts
+    are recorded here.
+  - *What falsifies it.* A rounding algorithm reaching `1 - C_0 sqrt(eta)`
+    uniformly in `k` would refute UGC.
+  - *Survivors of the kill.* Instance-aware soundness analyses, and non-repetition
+    amplifiers.
+* **Calibration against the expanding-constraint-graph world (e-ugc-calibrate,
+  swarm-0917, 2026-09-17).** ESTABLISHED:
+  `spectral-gap-ratio-reductions-cannot-prove-ugc`, resting on the new import
+  `unique-games-on-expanding-constraint-graphs-are-easy` (AKKSTV 2008,
+  Theorem 2.4).
+  - **Gate (K1).** The invariant is `λ_2/(1 − opt)` of the emitted unique game.
+    Any reduction whose loop-free regular YES outputs have ratio `>= X(s)` puts
+    its source in P, by AKKSTV rounding. Such a route dies at its YES case.
+  - **Sharpness (K2).** A padded degree-product shift overlay moves any UG
+    hardness to `λ_2 >= eps/4` with completeness `1 − eps` and soundness `eps`.
+    So ratio `Θ(1)` is free under UGC, and the gate is sharp up to `4X(eps)`.
+  - **Expanders are hard at completeness 1/4 (K3).** Applied to
+    `unique-games-hard-at-completeness-one-half`, the overlay gives NP-hardness
+    of `Gap-UG[(1−eps)/4, eps]` on `λ_2 >= 3/8`. The expanding world separates
+    from genuine UG only in the regime `1 − opt > λ_2/X(s)`.
+  - **SSE sources (K4).** SSE YES graphs have `λ_2 <= η/(1−δ)`, so SSE
+    sources are never in this world.
+  - **Obligation, unverified.** For the live noise-test routes (smooth-design,
+    finite-moment and rich 2-to-1 holes), the inner test's emitted unique game
+    must keep `λ_2 <= X(eps)` times its completeness error on YES instances.
+    The noisy-cube inner test is expected to meet this, since its noise
+    eigenvalue gap is `Θ(eps)`, but no computation is recorded.
+  - **Survivors.** Non-regular or looped outputs, ratio below `X(s)`, and every
+    2-to-1, 2-to-2 or rich outer hole, since the gate acts only on the final
+    permutation game.
+  - **Companion calibrations.** Threshold rank
+    (`low-label-threshold-rank-reductions-cannot-prove-ugc`), entanglement
+    (`entanglement-sound-soundness-cannot-prove-ugc`) and the SSE NO side
+    (`sticky-cylinder-gadget-compositions-cannot-prove-sseh`).
+* **Fixed-exponent reductions: a size gate under ETH (class kill, 2026-09-18,
+  wave 6).** `ugc-hardness-reductions-need-epsilon-dependent-size-exponent`
+  (ESTABLISHED as a conditional theorem) imports ABS
+  (`abs-subexponential-unique-games-and-sse-algorithms`).
+  - *What it proves.* Assume ETH. A 3SAT reduction with output size `n^A` has:
+    - `A >= c gamma^(-1/6)` for Gap-UG at completeness `1 - gamma` vs `1/2`;
+    - `A >= c eps^(-1/6)` for every 2-to-1 hardness that the BKM noise test
+      certifies at `eps`. The test has size `|E|^2 m^(6l)`. This covers
+      Gap-Rich at `1 - eta` and at `1`, and the smooth-design and finite-moment
+      holes, so it applies to all four BKM-test routes;
+    - `A >= c/eta` for SSE on regular graphs, repaired to exact measure
+      `delta`.
+  - *Invariant.* The size exponent.
+  - *Where it dies.* At decoding: `exp(k N^(O(eps)))` time on the output
+    is `2^(o(n))`.
+  - *Survivors.* Exponents growing as `eps^(-Omega(1))`, such as parallel
+    repetition whose number of rounds tends to infinity; failure of ETH;
+    irregular SSE outputs; completeness bounded away from 1.
+  - *Consequence.* A route from `two-to-two-games-theorem` must pay the forced
+    blow-up at completeness amplification, from `1/2` to `1 - gamma`.
+  - Where it stops: it constrains the shape of a proof and proves nothing
+    toward the conjecture.

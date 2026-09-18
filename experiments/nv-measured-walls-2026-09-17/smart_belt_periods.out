@@ -1,0 +1,9 @@
+$ python3 experiments/nv-measured-walls-2026-09-17/smart_belt_periods.py 10
+reversible: True
+c = 2*ell | configs | #cycles | max cycle | mean cycle (config-weighted) | log2 lcm
+  2 |       144 |       4 |        36 |         36.0 | 6
+  4 |      2592 |       4 |       648 |        648.0 | 10
+  6 |     34992 |       4 |      8748 |       8748.0 | 14
+  8 |    419904 |       4 |    104976 |     104976.0 | 17
+ 10 |   4723920 |       4 |   1180980 |    1180980.0 | 21
+RTM(18,96) uniform measure: p(+1 cell) = 0.5; E[belt length + 1] = 4.00000

@@ -1,0 +1,9 @@
+T0: lam=[0, 1, 2, 4, 6, 5, 3]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+m=2: 49 codes, 39 partitions, 1144080 vars, 5137188 clauses
+m=2 [Cadical153]: UNSAT in 231.8s
+m=2: 49 codes, 39 partitions, 1144080 vars, 5137188 clauses
+m=2 [Glucose4]: UNSAT in 63.5s
+T1: lam=[0, 1, 2, 5, 4, 6, 3]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+m=2: 49 codes, 39 partitions, 1144080 vars, 5137188 clauses
+m=2 [Cadical153]: UNSAT in 507.9s
+m=2: 49 codes, 39 partitions, 1144080 vars, 5137188 clauses

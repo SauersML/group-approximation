@@ -31,3 +31,120 @@ n = 1.
   - The topological full group of the two-sided full shift sits in 2V through
     the baker's map, but has no infinite Kazhdan subgroup, because its orbits
     are copies of Z.
+- 2026-09-17 (lane swarm-0917-w4-nv-rel-t): the Ã₂ route, and where its natural
+  version dies. Artifact: `research/artifacts/nv-brick-codings-of-two-graphs-2026-09-17.md`.
+  - **Decomposition.** A CMSZ group `Γ_T` has (T). The route is (P2) `Γ_T ↪ [[Λ_T]]`, the
+    node `a2-group-embeds-in-full-group-of-its-rs-two-graph`, followed by (P3)
+    `[[Λ_T]] ↪ mV`.
+  - **Tool (ESTABLISHED).** `brick-coded-two-graph-full-groups-embed-in-brin-thompson`
+    reduces (P3) to a brick coding of the 2-graph: edge codes that are brick partitions
+    and commute on squares.
+  - **Obstruction (ESTABLISHED).** `two-graph-brick-codings-are-rigid-under-rank-two-h1`.
+    - Invariant: `H^1` of the tile square complex, together with the Perron eigenvalue
+      `q^2`.
+    - Kraft plus Perron–Frobenius forces `q^2 = 2^α`, and transport and separation force
+      `m ≤ α`.
+    - So every brick coding dies at Step B1 when `q` is not a power of 2, provided
+      `dim H^1 = 2`.
+  - **Computation (ESTABLISHED, SAT-based).**
+    `cmsz-pg22-rs-two-graphs-admit-no-brick-coding`.
+    - For five explicit presentations over `PG(2,2)`, `dim H^1 = 2`, both colours are
+      primitive and each colour has one transport class.
+    - The forced instance (dimension 2, length 2) is UNSAT with two solvers.
+    - So those `Λ_T` have no brick coding in any dimension.
+  - **q = 3 (ESTABLISHED, no SAT).** `cmsz-pg23-rs-two-graphs-admit-no-brick-coding`.
+    - Two presentations over `PG(2,3)`: row sums 9, primitive with exponent 4.
+    - The Gram rank is 2651 mod p, so `dim H^1 = 2`.
+    - Kraft/Perron would force `9 = 2^α`, so there is no brick coding in any dimension.
+  - **Still open.**
+    1. Block recodings `Λ^{[k]}`, where the question is whether `dim H^1` stays 2.
+    2. Groupoid-level spatial embeddings. These would be killed for `q` not a power of 2
+       if every continuous real cocycle on `G_{Λ_T}` is cohomologous to a multiple of the
+       degree cocycle: the Radon–Nikodym cocycle of pulled-back Lebesgue measure must be
+       integral at the fixed point of a cycle rectangle of degree `(r,s) ≠ 0`, while
+       Perron forces it to be `(r+s) log_2 q^2`.
+    3. Non-spatial embeddings.
+    4. `q = 2^r` with `r ≥ 2`.
+    5. Kazhdan groups not of Ã₂ type.
+- 2026-09-17 (lane swarm-0917-w5-nv-rel-t): a class-kill for spatial realizations, and a
+  reduction of w4's open items 1, 2 and 4 to one OPEN rigidity statement. Artifact:
+  `research/artifacts/nv-bernoulli-conformal-class-kill-2026-09-17.md`.
+  - **Invariant.** The Bernoulli conformal class `p ↦ [D_p∘ι] ∈ H^1(G_Λ; R)`, which is the
+    Radon–Nikodym class of pulled-back Bernoulli measures `μ_p`, `p ∈ (0,1)^n`. It uses
+    the whole family, not only Lebesgue measure.
+  - **Theorem (ESTABLISHED).** `spatial-two-graph-realizations-in-g2n-leave-the-degree-plane`.
+    - Setting: any continuous homomorphism `ι : G_Λ -> G_2^n` that is a homeomorphism on
+      units onto a compact open set, with `ρ(M_1) > 1`.
+    - Conclusion: some letter-count class `[N^ε_i∘ι]` is not in `R d_1 + R d_2`.
+    - Where every member dies:
+      - Perron pinning makes the degree-plane part `-log ρ(M_j)` for all `p`.
+      - Differentiating in `p` (Step 3) kills every letter class.
+      - Lemma 2.1 (canonical bricks, bounded offset transfer) then bounds source fibres,
+        while column sums of `M_1^j` grow.
+    - No Kraft, integrality, SAT, or hypothesis on `q`.
+  - **Brick codings for every q (ESTABLISHED).**
+    `two-graph-brick-codings-die-when-square-complex-h1-has-rank-two`: `dim H^1(K(Λ)) = 2`
+    alone excludes brick codings of `Λ` and of `Λ^{[k]}` when `dim H^1(K(Λ^{[k]})) = 2`.
+    - This re-proves the PG(2,2) result without SAT and the PG(2,3) result without Kraft.
+    - It settles item 4 wherever the level-0 certificate `dim H^1 = 2` holds.
+  - **Computation (ESTABLISHED).** `cmsz-pg22-level-one-block-recodings-admit-no-brick-coding`.
+    - For T0–T4, `dim H^1(K(Λ_T^{[1]})) = 2` (672 vertices, 5376 edges, 10752 squares), so
+      the level-1 block recodings admit no brick coding.
+    - Control: the product of two full 4-shifts gives `26, 98, 386` at `k = 0, 1, 2`.
+    - Scripts: `experiments/nv-conformal-rigidity-2026-09-17/`.
+  - **Decomposition (OPEN).**
+    `robertson-steger-tile-groupoids-have-no-spatial-realization` (route
+    `robertson-steger-no-spatial-realization-via-rigidity`) needs only
+    `robertson-steger-two-graph-groupoids-are-cocycle-rigid`: locally constant cocycles are
+    in the degree plane, in the colimit over all block levels. That one statement kills
+    items 1, 2 and 4 together.
+    - It could fail only through a class appearing at level `k ≥ 2`.
+    - The level-2 computation for T0 (10752 vertices) did not finish in this lane.
+    - This corrects w4's item 2: rigidity is needed only for locally constant cocycles, and
+      the argument works for every `q`, not only for `q` not a power of 2.
+  - **Survivors.**
+    - (3) non-spatial embeddings `Γ_T ↪ mV` that do not come from a groupoid map;
+    - (5) Kazhdan groups not of Ã₂ type;
+    - spatial realizations of `G_{Λ_T}`, until the rigidity claim is settled.
+  - **Subgroup form** (remark, not a node). A finitely generated `K ≤ nV` is finite iff
+    `p ↦ [D_p|_K]` is constant. So an infinite Kazhdan `K` must carry a nonconstant
+    Bernoulli class family.
+  - **Overlap.** Lane `swarm-0917-w5-z-nv-kazhdan-subgroups` reported on the bus
+    "corner independence volume equality kills all brick codings". That concerns brick
+    codings only. The spatial-realization theorem and block-recoding certificate here are
+    separate.
+- 2026-09-17 (lane swarm-0917-w5-z-nv-kazhdan-subgroups): brick codings die at connected
+  corners, for every `q`. Artifact:
+  `research/artifacts/nv-brick-coding-corner-kill-2026-09-17.md`.
+  - **Invariant.** The corner compatibility graph `B_1(a)`. It joins a colour-1 and a
+    colour-2 edge at `a` when they begin a common square.
+  - **Theorem (proof written; route requires only ESTABLISHED rigidity (b)).**
+    `two-graph-brick-codings-die-at-connected-corners`: (R1)–(R3) plus connected `B_1(a)`
+    at every vertex exclude brick codings in every dimension. Every coding dies at one
+    step:
+    - (B2) makes corner codes comparable;
+    - connectivity then gives one first letter per coordinate at each vertex, which
+      contradicts (B1);
+    - so each vertex has an edge with empty code, giving a zero-length cycle against
+      `α_j, β_j > 0`.
+  - **Geometry (proof written, self-contained).**
+    `triangle-presentation-tile-two-graphs-have-affine-corner-graphs`.
+    - For every triangle presentation over every `PG(2,q)`, `B_1(a)` is the incidence graph
+      of `PG(2,q) \ λ(u)` minus the parallel class of `w`, hence connected.
+    - The proof uses (A1)–(A3) and unique filling only.
+  - **Corollary.** `rank-two-h1-tile-two-graphs-admit-no-brick-coding`.
+    - For all `q` (including `q = 2^r`), (H1) + irreducibility + `dim H^1 = 2` + one
+      transport class per colour gives no brick coding.
+    - New SAT-free route `cmsz-pg22-no-brick-coding-by-corners` for the `PG(2,2)` claim.
+  - **Computations** (`experiments/nv-kazhdan-independence-2026-09-17/`).
+    - Only a `1/q` fraction of corner pairs complete (`corners.py`), so "every corner
+      completes" is false.
+    - Compatible `(k,0)/(0,k)` pairs have exactly `q^k` completions (`completions.py`).
+    - `B_k(a)` is connected for `k ≤ 2` at the tested vertices (`compat_graph.py`).
+  - **Still open after this entry.**
+    - (a) Survivor 4 above is now reduced to (R2)/(R3) for `q = 2^r` presentations (none
+      computed).
+    - (b) Survivor 1, block recodings, needs (C1) for `Λ^{[k]}`, that is, connectivity of
+      `B_k(a)` for all `k` (computed only for `k ≤ 2`), and (R2)/(R3) for `Λ^{[k]}`.
+    - (c) Survivors 2, 3 and 5 are untouched. Any surviving embedding of `[[Λ_T]]` into
+      `mV` must send some cylinder to a non-brick.

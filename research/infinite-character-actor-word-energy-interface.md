@@ -197,3 +197,66 @@ do not provide either mechanism.
   interface must therefore exclude hyperlinearity of the base itself; exact
   finite-dimensional invisibility of the marked sector does not weaken that
   requirement.
+- **Use an actor that splits over amenable subgroups (free, virtually free,
+  `BS(m,n)`, free products of amenable groups, amenable actors), with any
+  module.**  `amenable-edge-actor-packets-have-hyperlinear-base` proves
+  `M rtimes pi_1(Gcal) ~= pi_1(Gcal_M)` with vertex groups `M rtimes G_v`
+  and amenable edge groups `M rtimes G_e`, so the base is hyperlinear by
+  amenable-edge Bass--Serre permanence whenever every `M rtimes G_v` is.
+  The interface is then false for every seed and every presentation: the
+  terminal estimate `(ICR2)` would put `J` in the radical, while the D8
+  radical transfer gives an ultraproduct model with `J=-1`.  This kills the
+  class with no hypothesis on characters, soficity or homoclinic structure.
+  Separately, for a permutation module `M <= sum_X F_2` over a hyperlinear
+  actor with a sofic coordinate action, `gkp-connes-embeddable-generalized-wreath-permanence`
+  makes the ambient wreath `F_2 wr_X A`, hence the base, hyperlinear; no
+  controller relation valid in the base can rescue such a packet.  A
+  surviving host needs a nonamenable edge in every splitting of the actor
+  (e.g. property (FA)) and, for permutation modules, a nonsofic coordinate
+  action or a nonhyperlinear actor; the `SL_3(Z[1/2])` and
+  Andre--Guirardel actors pass the first gate and still owe the second.
+- **2026-09-17 (swarm-0917-w5, inverter).  Pass every actor-side gate and
+  expect the action-side gate to follow.**
+  `locally-finite-codense-stabilizer-kazhdan-packet-is-sofic` builds the
+  minimal counterexample to that expectation: `A=EL_3(F_2[t])` (Kazhdan,
+  residually finite), `C=e_12(ker lambda)` for a codimension-one functional
+  `lambda` that kills no nonzero ideal, and the two-point seed at
+  `a=e_12(t)`.  Every finite-index normal subgroup contains `e_12` of a
+  nonzero ideal, so `a in NC` for all such `N`; this gives `(ICA1)` for the
+  permutation and augmentation modules, finite-dimensional invisibility of
+  `J`, the Kazhdan gap `(ISC1)`, and a nonseparable stabilizer.  But `C` is
+  locally finite, so GKP Theorem 2.14 makes the coordinate action sofic, the
+  base `F_2 wr_X A` sofic, and the chart floor refutes `(ISC2)`/`(IWE6)`.
+  The two gates are logically independent; the invariant any proof must use
+  is a property of the stabilizer that fails for locally finite groups (the
+  `SL_3(Z)` and Andre--Guirardel stabilizers survive).
+- **Shift from uniform word defect to entropy of p.m.p. witnesses (scale
+  shift, entropy-measure).**
+  `coset-lamp-seed-radical-is-ce-fixed-algebra-rigidity` changes the level
+  for coset-lamp packets. The quantifier over matrix microstates becomes a
+  quantifier over Connes-embeddable actions. The certificate `J in Rad_hyp`
+  that `(ICR2)` would deliver becomes `F_C <= F_(<C,a>)` in every such action.
+  At that level `zero-entropy-compressors-preserve-fixed-algebra` proves the
+  rigidity for every action in which the compressors have zero entropy on
+  `F_C`. It uses no (T), soficity, freeness or ergodicity, and rests only on
+  the one-sided sigma-algebra `s^-1 F_C <= F_C`. For the Kun--Thom pair every
+  surviving witness therefore has `h(s_0) > 0`. The route dies for this node
+  at its first hypothesis: a strict compressor `t C t^-1 < C` whose group
+  `<C, t, ...>` contains the seed displacement `a`.
+  - A finitely presented coset packet with finitely generated `C` has no
+    finite-index strict compressor. If `[C : tCt^-1] = k > 1`, the `C`-orbit
+    of `t^n C` has stabilizer `t^n C t^-n` of index `k^n`. So the double
+    cosets `C t^n C` are pairwise distinct, contradicting the finite
+    double-coset condition in `wreath-presentation-double-coset-obstruction`.
+  - In the SL3 Hecke host `SL3(Z) < SL3(Z[1/2])` every compressor image
+    `tCt^-1 <= C` is a lattice of the same covolume in `SL3(R)`, hence equal
+    to `C`. So `P_C = N_A(C)` and the entropy floor `H(P | s^-1 F_C)` is
+    identically zero.
+  - Infinite-index strict compressors in a finitely presented coset packet
+    are not ruled out here. Even there, positive-entropy Connes-embeddable
+    witnesses remain as the independent statement (PE) of that node.
+  - More fundamentally, the bridge back fails. Entropy of a witness action
+    bounds no normalized-HS relator defect. Radical membership is only a
+    consequence of `(ISC2)` (`infinite-character-interface-is-marked-radical-certificate`),
+    and no converse is known. So this level can bypass the interface for
+    non-finitely-presented hosts, but it cannot produce `(IWE6)`.

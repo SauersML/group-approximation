@@ -56,3 +56,44 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
    *Not a refutation*: the statement asks only for vanishing `K_1` and `K_2` of
    `B ⊗ L`, and allows non-coherent or non-flat hosts. A proof must obtain the
    `K`-theory without regular coherence, or embed `F_2[G]` non-flatly.
+6. **Nilpotent trace screen (swarm-0917, `leavitt-tensor-k1-sees-traces-of-nilpotent-matrices`).**
+   *Necessary condition proved; the hole stays OPEN.*
+   - *Detector.* A tail-orbit trace on `L` and the logarithmic derivative of the
+     grading give homomorphisms `χ_(φ,m) : K_1(B ⊗ L) -> F_2`. They send
+     `1 + x ⊗ e_1` to `φ(tr x^m)`, for nilpotent `x` over `B` and traces `φ` of `B`.
+   - *Screen on `B`.* `K_1(B ⊗ L) = 0` forces `tr(x^m) ∈ [B,B]` for every
+     nilpotent matrix `x` over `B`.
+   - *Screen on the embedding.* For every `g ∈ G` of `2`-power order,
+     `(g - 1)^m ∈ [B,B]` for all `m >= 1`. So `F_2[G] -> B` must send `g` to
+     `1` in `HH_0(B)`, although `[g] != [1]` in `HH_0(F_2[G])`.
+   - *Class killed.* `K_1(F_2[G] ⊗ L) != 0` whenever `G` has 2-torsion. Every
+     vanishing argument valid for a class containing `F_2[ε]` dies at `1 + ε ⊗ e_1`.
+     That includes coefficient-free swindles and arguments natural in `B`.
+   - *Open.* Whether some simple, or central simple, `F_2`-algebra fails the
+     screen. Semisimple Artinian algebras pass it.
+7. **Fixed-point traces on crossed-product hosts (swarm-0917, `crossed-product-fixed-point-traces-detect-leavitt-k1`, `fp-central-simple-host-with-nonzero-leavitt-k1`).**
+   *Answers the open question of Attempt 6: yes, even a finitely presented
+   central simple host fails the screen. The hole stays OPEN.*
+   - *Example.* Let `Γ = F_2 ⋊ Z/2`, where `σ` acts by `c_2 ↦ c_2^(-1)`, act on `∂F_2`.
+     Then `B = LC(∂F_2, F_2) ⋊ Γ` is finitely presented: it is a `Z/2`-skew
+     extension of the boundary Leavitt path algebra. It is also central simple,
+     since the action is minimal and topologically free, and it contains `F_2[Γ]`.
+     Yet `K_1(B ⊗ L) ≠ 0`. The trace `τ(f u_(kσk^(-1))) = f(k c_1^∞)` takes the
+     value 1 on the square-zero element `1 + u_σ`.
+   - *Class killed.* The K-condition is independent of the other hypotheses on
+     `B` taken together: finite presentation, central simplicity, containing
+     `F_2[G]` (even for hyperbolic, Farrell–Jones `G`), and being a minimal
+     topologically free Cantor crossed product. Any proof must arrange the
+     K-condition by a separate mechanism.
+     - *Invariant.* A `C(g)`-invariant functional `ν` on `LC(Fix g)` with
+       `ν(1) ≠ 0`, for a `2`-element `g`.
+     - *Where it dies.* In the passage from free actions of finite subgroups
+       (`farrell-jones-groups-acting-freely-have-k-trivial-leavitt-hosts`) to
+       merely topologically free actions.
+   - *Consequence for crossed-product hosts.* Every `2`-element `g` of `Γ` must
+     have `ν(1) = 0` for every such functional. In particular, no `2`-element may
+     have a fixed point whose `C(g)`-orbit is finite of odd size.
+   - *Open.* Whether odd-order torsion with fixed points is harmless. Whether a
+     host exists for `G` with `2`-torsion: embedding `F_2[G]` forces
+     `u_g ≡ 1` in `HH_0(B)`, so `2`-elements of `G` must act with no such
+     fixed-point mass.

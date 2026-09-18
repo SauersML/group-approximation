@@ -1,0 +1,20 @@
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 r 2 windows 114 types 1236 maxval 4
+phase 1 it 1 obj 7.000000 cols 3000 pairs 499 min rc -4 LB -35 best -35 {2: -2.0, 3: -3.0, 4: -4.0} added 3000 t 8.1 tm 0.0 
+phase 1 it 2 obj 7.000000 cols 6000 pairs 897 min rc -5 LB -45.5 best -35 {2: -3.0, 3: -4.0, 4: -5.0} added 3000 t 15.0 tm 0.1 
+phase 1 it 3 obj 7.000000 cols 9000 pairs 2005 min rc -5.255 LB -48.18 best -35 {2: -2.9941, 3: -4.3692, 4: -5.2554} added 3000 t 23.6 tm 0.7 
+phase 1 it 4 obj 7.000000 cols 12000 pairs 2781 min rc -5.054 LB -46.06 best -35 {2: -3.0, 3: -4.0, 4: -5.0538} added 3000 t 34.9 tm 2.3 
+phase 1 it 5 obj 6.967742 cols 15000 pairs 3547 min rc -4.782 LB -43.15 best -35 {2: -3.0, 3: -4.2797, 4: -4.7822} added 3000 t 44.8 tm 4.9 
+phase 1 it 6 obj 6.868056 cols 18000 pairs 4268 min rc -4.999 LB -45.23 best -35 {2: -3.0, 3: -4.0, 4: -4.9992} added 3000 t 54.6 tm 8.0 
+phase 1 it 7 obj 6.829064 cols 21000 pairs 5405 min rc -4.99 LB -45.05 best -35 {2: -3.0, 3: -4.0, 4: -4.9896} added 3000 t 68.1 tm 12.9 
+phase 1 it 8 obj 6.727419 cols 24000 pairs 6374 min rc -5 LB -44.95 best -35 {2: -3.0, 3: -4.0, 4: -5.0} added 3000 t 85.2 tm 21.4 
+phase 1 it 9 obj 6.687516 cols 27000 pairs 7198 min rc -5.09 LB -45.81 best -35 {2: -3.0, 3: -4.0, 4: -5.0903} added 3000 t 103.3 tm 30.9 
+phase 1 it 10 obj 6.653023 cols 30000 pairs 8255 min rc -5 LB -44.81 best -35 {2: -3.0, 3: -4.0, 4: -5.0} added 3000 t 124.8 tm 44.2 
+phase 1 it 11 obj 6.618974 cols 33000 pairs 9171 min rc -4.511 LB -39.7 best -35 {2: -3.0, 3: -3.9369, 4: -4.5111} added 3000 t 149.3 tm 58.8 
+phase 1 it 12 obj 6.535437 cols 36000 pairs 9939 min rc -5 LB -44.57 best -35 {2: -3.0, 3: -4.0, 4: -5.0} added 3000 t 172.9 tm 73.8 
+phase 1 it 13 obj 6.471085 cols 39000 pairs 11158 min rc -5 LB -44.44 best -35 {2: -3.0, 3: -3.9688, 4: -5.0} added 3000 t 200.6 tm 92.9 
+phase 1 it 14 obj 6.433804 cols 42000 pairs 12036 min rc -5 LB -44.37 best -35 {2: -3.0, 3: -3.8008, 4: -5.0} added 3000 t 230.7 tm 115.6 
+phase 1 it 15 obj 6.397562 cols 45000 pairs 12927 min rc -5 LB -44.3 best -35 {2: -3.0, 3: -3.8161, 4: -5.0} added 3000 t 267.5 tm 143.1 
+phase 1 it 16 obj 6.377083 cols 48000 pairs 13872 min rc -4.998 LB -44.24 best -35 {2: -3.0, 3: -3.7911, 4: -4.9981} added 3000 t 295.0 tm 164.7 
+phase 1 it 17 obj 6.377083 cols 51000 pairs 14835 min rc -4.723 LB -41.44 best -35 {2: -3.0, 3: -3.694, 4: -4.7234} added 3000 t 323.5 tm 187.7 
+phase 1 it 18 obj 6.334473 cols 54000 pairs 15480 min rc -4.886 LB -43.01 best -35 {2: -3.0, 3: -3.7684, 4: -4.8861} added 3000 t 344.0 tm 204.9 
+Terminated

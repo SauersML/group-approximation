@@ -12,6 +12,9 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
+  - research/artifacts/fpbs-furstenberg-zimmer-cost-tower-2026-09-17.md
+  - research/artifacts/fpbs-perturbative-reuse-removal-fails-2026-09-17.md
+  - research/artifacts/fpbs-graph-perturbative-removal-fails-all-groups-2026-09-17.md
 ---
 
 **OPEN.** For a factor map pi from a free action Y onto a free action X of a finitely generated group, and in particular for the projection a x b -> b onto a Bernoulli action, prove that there are finite routing plans on Y with budget tending to C(Y) whose conditional traffic defect for pi tends to zero. Equivalently, prove that every free extension generated over its base by the orbit name of one binary observable preserves cost; equivalently, that the pushforwards of the unused-edge measures and of the repeated-use measures can be made asymptotically singular while the near-optimal edge budget is preserved.
@@ -155,3 +158,77 @@ defect. Or it can be restricted to a family of factor maps or groups where
 an independent argument applies, which would give a new fixed-price class.
 Either hypothesis can fail without refuting fixed price. No statement of
 either kind is proved here.
+
+Split the extension along its Furstenberg-Zimmer tower (September 17, 2026,
+artifact `fpbs-furstenberg-zimmer-cost-tower-2026-09-17.md`). This is a
+restriction of the second kind, taken twice. Jamneshan's relative dichotomy
+needs no ergodicity and works for any group; it is imported as
+`relative-furstenberg-zimmer-dichotomy`. Start at B_X and climb a countable
+transfinite tower of intermediate free factors. Successor steps are
+relatively compact, limits are generated sigma-algebras, and Y is relatively
+weakly mixing over the top stage. Continuity along increasing factors, (10.1)
+of `fpbs-traffic-variational-cost-identities`, passes the limit stages. So
+`fpbs-compact-weakly-mixing-tower-decomposes-cost-preservation` is
+established: cost preservation along relatively compact extensions (P_c)
+together with cost preservation along relatively weakly mixing extensions
+(P_w) gives this claim, for every group separately. The route
+`fpbs-reuse-removal-from-compact-and-weakly-mixing-steps` records this with
+the two open halves `fpbs-compact-extensions-preserve-cost` and
+`fpbs-relatively-weakly-mixing-extensions-preserve-cost`.
+
+Census of the explicit removal countermodels. The finite-fiber switching
+obstruction on F_2 x C_2, the 2-adic odometer tail, determinantal deletion on
+T_{2r} x C_M, and independent unions on X x {0..M-1} are all relatively
+compact extensions. The column/layer marking law of shared-component-repair
+Section 7 is relatively weakly mixing, but it is a realization obstruction on
+a group of known fixed price, not a budget countermodel. So nothing recorded
+refutes a removal method on P_w. What remains open is still hard. P_w with
+`fpbs-bernoulli-noise-does-not-change-cost` gives C(a) = C(b) for every free
+weakly mixing a, via a x b -> b (artifact Section 4). P_c contains the
+finite-fiber and finite-index questions. Neither half is proved, and each can
+fail without the other failing. This attempt does not close the claim.
+
+Remove the flags from a given plan by edits of vanishing measure (September
+17, 2026; perturbative-removal artifact). This class is dead. The proved
+`fpbs-perturbative-reuse-removal-fails` uses the factor Bernoulli Z x Z/2 onto
+Bernoulli Z, where both costs are one. Its plan D has label +2 on parity 0 and
++3 on parity 1, with B = 1 and J = 1. Every plan with B <= 1+beta and
+J <= delta differs from D in used-edge measure by at least
+(1-2beta-81delta)/65. So no statement "for every source-near-optimal plan
+sequence there are plans at vanishing edit distance with J -> 0" holds, for
+any family containing this factor. Flag deletion, sparse sprinkling, rare
+repairs and local recoding of a given plan all fall in this class. The
+invariant is base-conditional label occupancy, which edits move only in L1.
+The step where each member dies is
+`fpbs-small-defect-reuse-on-high-occupancy-edges`: small J confines reuse
+to copies of occupancy near one or to rare base regions. D has none, and on Z
+each request needs two single-use steps, which exceeds the single-use budget.
+Per-plan removal survives only with macroscopic rebuilds, at distance at least
+a fixed fraction of the budget; the direct plan lies at distance 2.
+This is not a counterexample to the claim. Whether perturbative removal fails
+for every infinite finitely generated group is open.
+
+**Vanishing graph edits, every infinite finitely generated group (September 17, 2026, swarm-0917 w5).**
+Status: dead approach. The obstruction is established as
+`fpbs-graph-perturbative-removal-fails-all-groups`
+(`research/artifacts/fpbs-graph-perturbative-removal-fails-all-groups-2026-09-17.md`).
+It answers the open question above. Let Y = Y_0 x [0,1]^Gamma, pi = pi_0 o pr,
+and let S have |S| > C(Y), which a redundant generator always gives. Measure
+edits in the graph metric d_G = sum_h integral |m_h - m'_h|, with m_h(z) the
+used multiplicity of the edge {z, z h} in either orientation. This metric
+ignores copy ownership, and d_G <= 2d. Relocate a near-optimal base graph
+inside Borel Voronoi cells by uniformly random permutations drawn from the
+noise. This gives plans D_n with B(D_n) -> C(Y) and every occupancy
+E[m_h | pi] <= 1/2. Every plan with B' <= C(Y)+beta and J' <= delta has
+d_G(D_n, D') >= (|S| - C(Y) - beta - (1+8|S|)delta)/(6|S|).
+The invariant is base-conditional edge occupancy. Every member dies at one
+step: by the high-occupancy lemma, all light traffic is at most B' - r' + J'.
+Every request needs one light first step or starts on a heavy occurrence, so
+B' >= |S| - J' - 2|S| eta'. Small defect near budget C therefore forces heavy
+mass about (|S| - C)/(2|S|), and D_n offers none within small d_G.
+Graph-perturbative removal is thus false in every group and in every factor
+family closed under noise extension. Recoding flags or re-owning copies
+cannot help, and any per-plan removal must move a constant fraction of the used
+graph. Untouched: cost preservation itself, macroscopic rebuilds, source plans
+chosen by the statement, factors not split by independent noise, and request
+sets with |S| = C (only wave 4's Z example there).

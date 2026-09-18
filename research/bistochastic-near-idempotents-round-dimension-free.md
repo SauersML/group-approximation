@@ -78,3 +78,14 @@ idempotent ones, is left open in Kitaev, arXiv:2405.02434v2, Section 1.2.
   by `(id+E_D+E_C)/3`, whose idempotence defect is `2/9`. Thus the
   small negative Choi eigenvalues cannot be repaired by a perturbation
   tending to zero in the required norm.
+- **Positivity-only arguments are dead (sw-019, 2026-09-17).** The transpose
+  average `S_d=(id+theta)/2` is unital, positive, trace-preserving,
+  `L^2`-self-adjoint, Kadison and exactly idempotent. It is at distance at
+  least `sqrt((d-1)/(2d))>=1/2` from every `E_A`, by
+  `transpose-average-kills-positivity-only-channel-rounding`. An argument
+  that uses complete positivity only through order properties of single
+  Hermitian elements (spectral cuts, pinched flows, coarea) therefore proves
+  a false statement. Exact 2-positive idempotents are expectations, so the
+  load-bearing hypothesis is the Schwarz or Stinespring step, estimate (4.4)
+  of the artifact. `S_d` breaks it with defect `1` at `epsilon=0`. The
+  2-positive version of this premise is the sharpest weakening still open.

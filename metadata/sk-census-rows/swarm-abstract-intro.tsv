@@ -1,0 +1,20 @@
+2e0bf7506f2a	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_infiniteSimpleKazhdanLimitOfFiniteSimple	sk-abstract-intro: G_X at the Toeplitz subshift, marked limit of finite simple SL groups
+4d5974e8776d	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_gXInfiniteSimpleKazhdanExpanderLimitLEFSoficHyperlinear	sk-abstract-intro: printedSimpleKazhdanSoficMain at n=3, SL indexed by Fin 3 x Fin N
+ea436a85317e	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_lefIffSubgroupOfSimpleKazhdanExpanderLimit	sk-abstract-intro: LEF iff subgroup of an LEF host; gap: host with word problem of the same Turing degree
+11e5734b503c	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_hostContainsRecursivelyPresentedLEF	sk-abstract-intro: printedRecursivelyPresentedLEFHost
+5b6a5a222cdd	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_ozawaFullCStarNoLocalLifting	sk-abstract-intro: full C*-algebra of infinite simple hyperlinear Kazhdan group lacks LLP; historical clauses are credit
+6e81aea57b64	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_kazhdanLEFNotResiduallyFiniteLacksFactorization	sk-abstract-intro: Kazhdan non-RF lacks factorization; FG Kazhdan LEF non-RF witness is G_X; Thom's non-simple group not built
+7fa04e9ea602	attribution		sk-abstract-intro: Pestov-Kwiatkowska credit
+aaf5fe1a98c3	attribution		sk-abstract-intro: Arzhantseva credit
+b727e9e6c738	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_groupsAnswerAllThreeForms	sk-abstract-intro: sofic, hyperlinear, II1 factor, McDuff tensor, unitary embedding; gap: L(G_X) tensor R into R^omega not stated
+0fd8cf7d1eed	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_ringGeneratedByLettersAndShift	sk-abstract-intro: generation, conjugated letters, cylinder products, span of LC(X,F2)
+eaea133373a7	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_cutoffCovarianceIdentitiesUnit	sk-abstract-intro: covariance P D(f) P^-1 = D(f o T^-1), eventual add/mul, phi(1)=I
+150f8a07cf1f	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_cutoffImageGeneratesMatrixRingAndGeneralApplies	sk-abstract-intro: phi_l(S) generates, IsMatricialVia, thm:general conclusions for EL_n(R)
+dea966a4a2a5	structural		sk-abstract-intro: open question; current tex says it remains open
+460d289c5b0f	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_generalLimitsNotFinitelyPresented	sk-abstract-intro: FP LEF => RF, simple infinite not RF, thm:general(b) groups not FP; gap: Caprace-Remy existence
+816d2ed3585b	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_soficFinitelyPresentedExampleNotLEF	sk-abstract-intro: sofic FP simple Kazhdan example is not LEF and is FP sofic Kazhdan non-RF
+04fbb13a461e	structural		sk-abstract-intro: question; absent from current tex
+deed079bd31d	formalized	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_lefGroupsEmbedInLEFHosts	sk-abstract-intro: FG LEF group embeds in an LEF host, which is LEF and sofic; absent from current tex
+2e7c7d9ab149	partial	GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro.manuscriptSentence_flipConjugateSubshiftsIsomorphicGroups	sk-abstract-intro: flip conjugacy => G_X iso G_Y; gap: GPS99/Bezuglyi-Medynets converse for topological full groups; absent from current tex
+2314300dcf63	structural		sk-abstract-intro: question; absent from current tex
+a5870ebea004	attribution		sk-abstract-intro: announced sequel; absent from current tex

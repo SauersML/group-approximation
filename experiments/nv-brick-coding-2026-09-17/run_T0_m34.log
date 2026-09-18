@@ -1,0 +1,4 @@
+m=3: 24 codes, 24 partitions, 386064 vars, 1471764 clauses
+m=3: UNSAT in 35.9s
+m=4: 40 codes, 58 partitions, 895440 vars, 3783444 clauses
+Terminated

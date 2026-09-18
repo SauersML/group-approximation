@@ -1,0 +1,83 @@
+# Rank-(1,3) bowtie search in [1,c]_W, c = s_1 ... s_n (sw-042, 2026-09-17)
+# Run from this directory: nice -n 10 timeout 1200 python3 rank3_bowties.py <group> <H>
+#   certificates: CERT_OUT=cert-<group>.json python3 rank3_bowties.py <group> <H>; python3 verify_bowtie.py cert-<group>.json
+# Group names: 353 = [3,5,3], 5311 = [5,3^{1,1}], 535 = [5,3,5], 53311 = [5,3,3^{1,1}], 5333 = [5,3,3,3], 5335 = [5,3,3,5].
+# 'bounded orbit closed: True' means the Hurwitz orbit restricted to roots of height <= H is closed; it is NOT the full orbit.
+# Only lower bounds on [1,c]_W are used, so a certificate is valid for any H; 0 certificates at a bound proves nothing.
+
+## Hyperbolic groups, first batch, and independent verification of the three certificates
+$ rank3_bowties.py 353 8
+[353] n=4 H=8.0: 443 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 62; atom pairs below >= 2 rank-3 elements: 282 [0.6s]
+  verdicts: {'det chi_c|U2 > 0': 269, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 269, 'det chi_c|U2 <= 0': 13, 'certified: s_a z_U2 not a reflection': 13}
+  CERTIFIED RANK-(1,3) BOWTIES: 13 [9.7s]
+$ rank3_bowties.py 5311 8
+[5311] n=4 H=8.0: 438 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 66; atom pairs below >= 2 rank-3 elements: 292 [0.6s]
+  verdicts: {'det chi_c|U2 > 0': 275, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 275, 'det chi_c|U2 <= 0': 17, 'certified: s_a z_U2 not a reflection': 17}
+  CERTIFIED RANK-(1,3) BOWTIES: 17 [9.4s]
+$ rank3_bowties.py 53311 7
+[53311] n=5 H=7.0: 2590 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 273; atom pairs below >= 2 rank-3 elements: 343 [9.5s]
+  verdicts: {'det chi_c|U2 > 0': 334, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 334, 'det chi_c|U2 <= 0': 9, 'certified: s_a z_U2 not a reflection': 9}
+  CERTIFIED RANK-(1,3) BOWTIES: 9 [27.4s]
+$ rank3_bowties.py 5333 7
+[5333] n=5 H=7.0: 1988 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 158; atom pairs below >= 2 rank-3 elements: 227 [7.0s]
+  verdicts: {'det chi_c|U2 > 0': 227, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 227}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [19.2s]
+$ rank3_bowties.py 5335 7
+[5335] n=5 H=7.0: 2592 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 285; atom pairs below >= 2 rank-3 elements: 387 [9.3s]
+  verdicts: {'det chi_c|U2 > 0': 387, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 387}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [30.8s]
+$ verify_bowtie.py cert-353.json
+[353] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -sqrt(5)/2 - 1/2 ~ -1.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+$ verify_bowtie.py cert-5311.json
+[5311] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -sqrt(5)/2 - 1/2 ~ -1.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+$ verify_bowtie.py cert-53311.json
+[53311] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -sqrt(5)/2 - 1/2 ~ -1.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+
+## Further groups and higher bounds
+$ rank3_bowties.py 535 10
+[535] n=4 H=10.0: 625 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 82; atom pairs below >= 2 rank-3 elements: 376 [0.9s]
+  verdicts: {'det chi_c|U2 > 0': 376, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 376}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [11.5s]
+$ rank3_bowties.py A5 6
+[A5] n=5 H=6.0: 1296 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 50; atom pairs below >= 2 rank-3 elements: 90 [3.7s]
+  verdicts: {'det chi_c|U2 > 0': 90, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 90}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [7.8s]
+$ rank3_bowties.py D5 6
+[D5] n=5 H=6.0: 1868 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 70; atom pairs below >= 2 rank-3 elements: 133 [5.8s]
+  verdicts: {'det chi_c|U2 > 0': 133, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 133}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [11.6s]
+$ rank3_bowties.py 5333 9
+[5333] n=5 H=9.0: 4015 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 280; atom pairs below >= 2 rank-3 elements: 413 [13.2s]
+  verdicts: {'det chi_c|U2 > 0': 413, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 413}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [31.0s]
+$ rank3_bowties.py 5335 9
+[5335] n=5 H=9.0: 5686 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 541; atom pairs below >= 2 rank-3 elements: 713 [17.4s]
+  verdicts: {'det chi_c|U2 > 0': 713, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 713}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [46.9s]
+
+## Negative control: H4 (spherical), CONTROL=1 dumps an uncertified candidate, verifier must reject it (exit 1)
+$ CONTROL=1 CERT_OUT=ctrl-H4.json rank3_bowties.py H4 6; verify_bowtie.py ctrl-H4.json
+[H4] n=4 H=6.0: 188 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 25; atom pairs below >= 2 rank-3 elements: 101 [0.2s]
+  verdicts: {'det chi_c|U2 > 0': 101, 'rank-2 candidate passes (s_a z, s_b z reflections of W)': 101}
+  CERTIFIED RANK-(1,3) BOWTIES: 0 [3.4s]
+  first certificate written to ctrl-H4.json
+[H4] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -1/2 ~ -0.50000000;  det chi_c|span(alpha_a, alpha_b) = 1/4 ~ 0.25000000
+  NOT CERTIFIED: det > 0

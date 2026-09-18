@@ -64,3 +64,59 @@ subgroup.
   Survivors: vector-state atoms (the induced representation from
   `s(NU) x <z>` has invariant vectors), relative-(T) corners, and the matrix
   origin of models.  Artifact: `research/artifacts/deligne-sector-siegel-spectrum-2026-09-17.md`.
+- **Linear-characteristic separation is dead (swarm-0917, transplanter).**
+  This covers determinants, trace-logs, Exel--Loring/Dadarlat winding
+  numbers and K_0/K_1 pairings of words filling `H_2` classes.
+  `deligne-sector-determinants-see-only-dimension-mod-three`
+  proves the following:
+  - **Twisted Dadarlat formula.**  The twisted form of Dadarlat's
+    Theorem 1.1 holds for the order-three mark.
+  - **Only surviving bound.**  Its whole output is
+    `dist(d theta k_r, Z) <= d L_r delta / 4`.
+  - **Exact data.**  The exact determinant data are consistent iff `3 | d`.
+  - **Normalized data.**  The normalized (de la Harpe--Skandalis) value
+    group in the corona is `R`.
+
+  Every member dies at "the determinant constraints are inconsistent":
+  - Unnormalized members die because `U_n tensor I_3` keeps the defect and
+    makes `3 | d_n`.
+  - Normalized members die because `tau(K_0(Q)) = R`.
+
+  A uniform-stability variant also dies:
+  - **The argument.**  Use the trace-log functional to show that an exact
+    `c_theta` representation in a tracial ultraproduct cannot be close to
+    a genuine representation.
+  - **Where it dies.**  `corona-defect-is-not-uniform` removes the uniform
+    input for coronas.  For tracial von Neumann targets, the twisted regular
+    representation is already a uniform `2 pi |theta| ||b||_inf` almost
+    representation, so the stability hypothesis itself is false.
+
+  Survivors are unchanged:
+  - non-multiplicative spectral-multiplicity data;
+  - vector-state and relative-(T) mechanisms;
+  - the matrix origin of models beyond determinants.
+- **Conjugation-eigenvector / random-ensemble certificates are dead
+  (swarm-0917, transplanter, probability-random).**
+  - *Idea.*  In `Ad sigma = sigma tensor conj(sigma)` for a sector model, use
+    the vectors `X_h = sigma(h)` as almost-eigenvectors of the centralizer
+    `C(h)` with a twisted character `beta_h(g)=[s(g),s(h)] in <z>`.  Or read
+    a random-ensemble moment obstruction off an abelian or surface window.
+  - *Where it dies.*  `beta_h` is trivial for every commuting pair.  Commuting
+    elements of `Sp_4(R)` have commuting lifts to the universal cover: the
+    rotation (Guichardet--Wigner) homogeneous quasimorphism is conjugation
+    invariant, additive on commuting pairs and nonzero on the center.  This is
+    already recorded as D3 in
+    `research/artifacts/deligne-bounded-rank-rung-anatomy-2026-09-17.md`.
+    Since `T` is divisible, `c_j|A` is a `T`-coboundary on every abelian
+    subgroup `A`, including anisotropic tori that lie in no parabolic and in
+    no `SL_2 x SL_2`.  So `X_h` carries no character, and the asymptotically
+    orthonormal family `{X_h}` (central-regular trace) only reproduces
+    `Ind_(C(h))^Gamma 1`.
+  - *Surface windows.*  A single surface window with Toledo
+    `T != 0 mod 3` is exactly realizable in `U(3)`: clock and shift give
+    `[A,B]=omega^T I`.  So it sees only `d mod 3`, which is
+    `deligne-sector-determinants-see-only-dimension-mod-three`.
+  - *Invariant.*  The commutator pairing on `Lambda^2 A`.  Every member
+    dies at "the window restriction of `c_j` is nontrivial with a finite-dimensional
+    obstruction".  The only survivors are the multi-surface, relation-level
+    (property (T)) windows, i.e. the matrix origin of models.

@@ -1,0 +1,74 @@
+[
+ {
+  "group": "F",
+  "families": "closed",
+  "n": 3,
+  "ball": 53,
+  "interior": 17,
+  "realizable_families": [
+   75,
+   76,
+   87,
+   88,
+   98,
+   99
+  ],
+  "ramsey": false,
+  "seconds": 0.3
+ },
+ {
+  "group": "F",
+  "families": "closed",
+  "n": 4,
+  "ball": 161,
+  "interior": 53,
+  "realizable_families": [
+   75,
+   76,
+   87,
+   88,
+   98,
+   99
+  ],
+  "ramsey": false,
+  "seconds": 0.6
+ },
+ {
+  "group": "F",
+  "families": "closed",
+  "n": 5,
+  "ball": 475,
+  "interior": 161,
+  "realizable_families": [
+   76,
+   88,
+   98,
+   99
+  ],
+  "ramsey": false,
+  "seconds": 1.8
+ },
+ {
+  "group": "F",
+  "families": "closed",
+  "n": 6,
+  "ball": 1381,
+  "interior": 475,
+  "realizable_families": [
+   88,
+   98
+  ],
+  "ramsey": false,
+  "seconds": 5.2
+ },
+ {
+  "group": "F",
+  "families": "closed",
+  "n": 7,
+  "ball": 3957,
+  "interior": 1381,
+  "realizable_families": [],
+  "ramsey": true,
+  "seconds": 17.7
+ }
+]

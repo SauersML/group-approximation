@@ -1,0 +1,2 @@
+(3,3) {'reducible': 9, 'candidates': 2, 'UNSAT at R6s4': 1, 'UNSAT at R4sNone': 1} max image order 8 reducible but R4 UNSAT [(10, 6, 6)] needed R8s2 []
+(3,4) {'reducible': 64, 'candidates': 34, 'UNSAT at R6s4': 20, 'UNSAT at R4sNone': 13, 'UNSAT at R8s2': 1} max image order 108 reducible but R4 UNSAT [(44, 8, 12), (81, 6, 6), (97, 8, 12)] needed R8s2 [72]

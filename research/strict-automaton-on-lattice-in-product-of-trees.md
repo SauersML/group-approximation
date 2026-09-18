@@ -101,3 +101,11 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
   - Blocker: a sofic quotient in which `delta^4` survives. The vertical tree group is the one candidate on
     record, and its soficity is unknown.
   - Next size: total radius five, where residual elements of length ten enter.
+* **Envelope induction (swarm-0917-w5-gs-decomp-new, 2026-09-17).**
+  - By `measured-controlled-surjunctivity-is-envelope-invariant`, a strict automaton on a cocompact
+    lattice `Gamma` of `Aut(T_p) x Aut(T_q)`, with `p, q >= 3`, induces a strict controlled automaton
+    for `C_2^(*p) x C_2^(*q)` over the Cantor base `L/Gamma`, which carries Haar probability.
+  - So any candidate must also refute `products-of-two-virtually-free-groups-controlled-surjunctive`
+    on that base. The route is `product-tree-lattices-surjunctive-via-envelope-transfer`.
+  - Design consequence: a certificate of strictness has to survive measured Garden-of-Eden arguments
+    over `L/Gamma`, not only sofic quotients of `Gamma`.

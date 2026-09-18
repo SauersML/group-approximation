@@ -145,7 +145,7 @@ theorem topHomologyTransferNonzeroWitness_of_cellular (n : ℕ)
       ∃ z : homologyZMod2 (TopCat.of (RP n)) n,
         (kroneckerMap (TopCat.of (RP n)) n).hom ((cohTransferZMod2 n n).hom cc) z ≠ 0 := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     exact htr (by ext z; simpa using hcon z)
   refine ⟨z, ?_⟩
   -- Transfer–Kronecker adjunction: `⟨cc, tr_* z⟩ = ⟨tr cc, z⟩ ≠ 0`.

@@ -123,3 +123,19 @@ Necessary conditions on a counterexample group are recorded in
   - The negation is `some-group-has-isomorphic-bernoulli-shifts-of-different-entropy`. The live
     constructive target is exact collapse above the Rokhlin supremum
     (`bernoulli-shifts-above-rokhlin-supremum-are-isomorphic`).
+- **Homoclinic cocycle transport (2026-09-17, sw-051).**
+  - Over every group, suppose an isomorphism is continuous in both directions, or has
+    bounded homoclinic propagation in both directions. Then it carries the base to a
+    relabeled base (`bernoulli-full-shift-conjugacies-are-base-relabelings`).
+  - The proof transports the Radon–Nikodym cocycle of the homoclinic relation `Δ`. It
+    proves a Livšic lemma for locally constant potentials by counting pattern occurrences,
+    and pins the constant `H(λ) − H(κ)` at the constant configurations.
+  - So a collapse needs unbounded propagation in some direction.
+  - Dead for measurable isomorphisms at two exact steps:
+    - (i) equal-entropy finitary codes already fail to preserve `Δ`. Over `Z`, Meshalkin's
+      `(1/2, 1/8^4)` versus `u_4` have cocycle ranges `4^Z` and `{1}`.
+    - (ii) when `Δ` is preserved, the transported potential difference is only measurable.
+      Constants have vanishing homoclinic sums, so the cocycle determines `H(λ) − H(κ)` only
+      through evaluation at the null set of fixed points.
+  - The measured relation `(Δ, λ^G)` without `G` is collapse-blind, since
+    `(Δ_λ, λ^G) ≅ (Δ_(λ⊗λ), (λ⊗λ)^G)` by reindexing `G × {0,1} ≅ G`.

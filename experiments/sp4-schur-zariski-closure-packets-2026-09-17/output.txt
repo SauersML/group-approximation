@@ -1,0 +1,31 @@
+PASS A0 quaternion multiplication is associative
+PASS A0 i^2 = -1, j^2 = 3, ij = k
+PASS A0 no nonzero small vectors of reduced norm 0 (division algebra, indefinite)
+PASS A1 found pure mu in the trace dual with unimodular integral form and nrd(mu) > 0
+   mu = ('0', '-1/2', '-1/6', '-1/6')  nrd(mu) = 1/12  Gram = [[0, 1, -1, -1], [-1, 0, 1, -1], [1, -1, 0, 3], [1, 1, -3, 0]]
+PASS A1 form is alternating
+PASS A2 integral symplectic basis found
+PASS A2 P^T G P = J
+PASS A3 nrd(i) = 1
+PASS A3 i acts by an integral matrix preserving J (in Sp_4(Z))
+   i -> [[-1, 1, -1, 1], [4, -3, 1, -6], [4, -2, 1, -4], [-2, 2, -1, 3]]
+PASS A3 nrd(2+j) = 1
+PASS A3 2+j acts by an integral matrix preserving J (in Sp_4(Z))
+   2+j -> [[3, 1, -1, 0], [-2, 1, 0, 2], [-4, 0, 1, 2], [0, 2, -1, 3]]
+PASS A3 nrd(2+k) = 1
+PASS A3 2+k acts by an integral matrix preserving J (in Sp_4(Z))
+   2+k -> [[3, 0, 1, 1], [6, -3, 1, -10], [4, -2, 1, -6], [-2, 2, 0, 7]]
+PASS A4 image of i has order 4
+PASS A4 2+j is hyperbolic (trace 8 > 4 on the 4-dim rep = 2 * trd)
+PASS A4 2+k is hyperbolic (trace 8 > 4 on the 4-dim rep = 2 * trd)
+PASS A5 mu^2 = -nrd(mu) < 0, so the commutant torus SO(2) is R-anisotropic (compact)
+PASS A5 right multiplication by mu is a similitude of f with factor nrd(mu)
+   winding(compact loop of D^1(R)) = 2.000000, winding(block SL_2 loop) = 1.000000
+PASS B1 block SL_2 has winding +-1
+PASS B2 compact loop of the [2,2] packet has winding +-2 (omega + omega type, P4 does not apply)
+PASS C1 induced representation through C^c[S] <= C^c[B] has multiplier exactly c
+PASS C2 induced representation is unitary
+PASS D1 clock-shift realizes every class in Hom(H_2(S), Z/2) on a genus-2 surface group
+PASS D1 clock-shift realizes every class in Hom(H_2(S), Z/3) on a genus-2 surface group
+PASS D1 clock-shift realizes every class in Hom(H_2(S), Z/5) on a genus-2 surface group
+ALL PASS

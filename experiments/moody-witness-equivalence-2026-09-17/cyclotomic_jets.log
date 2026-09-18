@@ -1,0 +1,8 @@
+1. P idempotent: True ; (1+t+t^2)P integral: True ; rho(Delta_3^{2k}) = I + (t^{3k}-1)P for k=1..6: True
+   P = [[t*(t + 1)/(t**2 + t + 1), -t/(t**2 + t + 1), -t**2/(t**2 + t + 1), 0], [-1/(t**2 + t + 1), (t**2 + 1)/(t**2 + t + 1), -t**2/(t**2 + t + 1), 0], [-1/(t**2 + t + 1), -t/(t**2 + t + 1), (t + 1)/(t**2 + t + 1), 0], [0, 0, 0, 0]]
+2. Delta_4^2 = Delta_3^2 A14 A24 A34 (Artin action, all conventions): True
+3. rho(b)=I mod (t-1): True ; rho(Phi0)=I mod (t-1)Q_2: True ; Q_2 = (t - 1)*(t + 1)*(t**2 - t + 1)
+4. X2 = [Delta_3^4, Phi0]: length 216 ; rho != I: True ; = I mod (t-1)Q_2^2: True
+5. Y = [Delta_3^10, Phi0]: length 252 ; rho != I: True ; = I mod (t-1)Q_2 Q_5: True ; Q_5 = (t - 1)*(t**4 + t**3 + t**2 + t + 1)*(t**8 - t**7 + t**5 - t**4 + t**3 - t + 1)
+6. control: Phi0 not = I mod (t+1)^2: True ; not = I mod t^2+t+1: True
+ALL CHECKS PASS: True

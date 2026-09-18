@@ -1,0 +1,13 @@
+t = c/(1+c): True
+(1+c) t = c: True
+(1-t)/sqrt2 = t: True
+(1-t^2)/(1+t^2) = 1/sqrt2: True
+tan(pi/8) = sqrt2-1: True
+Step-4 algebra: True
+energy formula (2): True
+F2 branch 1 (endpoints): True
+F2 branch 2 factorization: True
+F2 branch 2 root at 1/sqrt2: True
+F2 branch 2 slope > 0: True
+(X+Z)/2 tight: True
+RESULT: all exact checks pass

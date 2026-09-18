@@ -2,3 +2,193 @@
 # drop<TAB>lane<TAB>key<TAB>reason -- that lane's row for key is not merged. The row stays in the lane's file and is listed in SK_SENTENCE_CENSUS.md.
 # A drop is not a verdict on the surviving row; grading and audit stay with the lanes and audit-sk-*.
 drop	skf-cite	3606856b9a07	resolved: keeps ct-involution's graded row and drops skf-cite's placeholder `partial` row (no decls; its note names ct-involution as the owner). Requested by ct-involution and confirmed by main 09-14; skf-cite is not running.
+drop	ct-involution	c6bd4bf41f69	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	d31438fef85b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	9a58ee4cb6c1	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	6fdf439f1009	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	16a4a7086323	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	3606856b9a07	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	44b4aa4489ab	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	789a7c930456	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	c402b5701867	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	0e584234f12d	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	9212b6e18210	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	becd7a8e2072	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-involution	bdd19b7d1e1f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-two-ended	a9d39de3a9f7	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-two-ended	770348ecbf71	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-two-ended	b4a4e3abdeda	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ct-two-ended	ce4df433abd6	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	gl-assembly-11	fc84c012b409	sk16: this row says partial; zz-full-sk16 records attribution from the landed Full endpoint (row note)
+drop	ms-compress-4	d96b6930fe6d	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-compress-4	64da45d532f8	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	e4fd510a51c5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	25fefb1e2ac1	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	2e17cbfab2b6	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	cbc0b3980a99	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	d228d6575111	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	db0ff25cc298	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	3d7e4722fef8	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	9a9aa9313dca	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	995620260311	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	1dd960096ceb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	46b4acb4ea4f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	6c900cb94747	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-core-3	b596b717a720	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-2	cbce9a479de2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	b1eef5e651ae	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	3e190ace28f6	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	3331e8dcbf93	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	07a3f6913f1f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	98730cf39196	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	93bcebbc8293	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	ms-intro-3	1cd55586c7f2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	0f378151c024	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	ca70bdd27b0c	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	65cb2a78b690	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	314f2d26a6bd	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	8e2fecfd278a	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	ms-intro-3	62a22eeef657	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	544404c03971	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	30dcdf15b13a	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	9dae19a3e894	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	870306a8de13	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	858f409740bb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	566d31ef6443	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-intro-3	4700f8930d01	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-1	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-1	7d13cf4208bc	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	427203e368c1	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	af3a1cf3d48e	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	ms-traces-3	1c40d21401f6	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	dc73886fdc13	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	25f820cbd165	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	85fe62a789f3	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	60be9d39afa5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-3	7f61e23f0bee	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-expanders	95230f46af22	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-expanders	8bd3ab27271c	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	88ecdc10f78b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	a63ff00e499b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	660dd9b4b09f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	1453f65cbfa2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	6866200f2d46	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	199438e96aee	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	f8766b1da9e1	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	43c53c1a6033	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	b32e72d0cc49	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	48be259e6698	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	f5bd94aeffeb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	9c6c8ee991ac	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-kirchberg	eadacb5ce412	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-llp	7f3b239e5f2a	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-llp	7596c2d69c76	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-llp	c0c91102c8a7	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-mcduff	d57f74d7384e	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-mcduff	6e8db7db6717	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-mcduff	97438886a277	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	oa-mcduff	fc6e6384121b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	fb6f6f03c19a	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	9b414612d181	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	ee8c6f26a1da	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	e1aa5c966b58	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	096f124abe31	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	c78a4854489a	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	472c3d5ac00b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	814c69fe374e	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-action	358e51e6a815	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	3670fa959e0e	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	022271399cfb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	01a45cdd9370	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	9cdf19db0ef4	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	61dddc00d418	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	31715e15544b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	5bd4618a3044	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	452e0cc9a605	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-assembly	6c271814690e	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	79e6fe57addb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	6af812c5b7d3	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	3d1d910e3d9f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	8dce702e17be	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	11a7360569b8	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	4f76927e5215	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	759568036721	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	c9ff6825e69d	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	9f44cd00cd04	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	6d24375846b3	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	6b767019eab2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	f0f7ef8941cf	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	902f025b4bf7	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	bb65ababe757	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-lef-ultra	e18417562d36	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	sk-stepanov	0efbce019168	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-approximants	0ef60d94b97a	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-approximants	f3c0a7f07e87	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-approximants	fecc651a6372	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-approximants	d2348c2e37ec	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-approximants	031aa6399d94	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	89a5cc12fe75	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	a29a0dbb5f07	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	32a9f96774bd	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	fdd05c47986c	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	585c79b57ae3	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	3c8de4b91fec	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	a5b818e4b8c5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-cite	34f8479b8e45	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	2e100de03692	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	96d063dce333	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	2cfda59ab817	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	5a6ac852aa57	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	46368870a699	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	a90478fb4258	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	ac63c30b67dd	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	f759c1db71a3	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	94e633f6ef6d	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	01c951f8d2f2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	e503326bf5e2	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-consequences	581584337a04	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-degrees	5e46951a6be7	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-degrees	ddf15100fbf8	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-degrees	8fd0348904ee	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	skf-degrees	4037fa331dbb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro-rekey	768ac9454e9b	sk16: this row says partial; zz-full-sk16 records open from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	ea436a85317e	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	5b6a5a222cdd	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	6e81aea57b64	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	b727e9e6c738	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	dea966a4a2a5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	816d2ed3585b	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	04fbb13a461e	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	deed079bd31d	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	2e7c7d9ab149	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	2314300dcf63	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-abstract-intro	a5870ebea004	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-boone-higman	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-finite-models-brown	97c23b19a1af	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-finite-models-brown	5b15f5d8faae	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-flip-converse	2e7c7d9ab149	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-fp-simple-kazhdan	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-halfline-a	fb18060da264	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-host	LINE:559@1eefb3bbbf0eafe710276b85dbf87512c6ddc95a	sk16: keyed at 1eefb3bb, whose tex equals 22cdba8c; zz-full-sk16 carries this sentence by its hash
+drop	swarm-hyperbolic-kazhdan-host	fc84c012b409	sk16: this row says partial; zz-full-sk16 records attribution from the landed Full endpoint (row note)
+drop	swarm-leavitt-fp	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-leavitt-k2-endpoints-padded	768ac9454e9b	sk16: this row says partial; zz-full-sk16 records open from the landed Full endpoint (row note)
+drop	swarm-leavitt-k2-endpoints	768ac9454e9b	sk16: this row says partial; zz-full-sk16 records open from the landed Full endpoint (row note)
+drop	swarm-leavitt-k2	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-leavitt-rank4	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	swarm-lef	35ac998d56f1	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-lef	dc9c8bfa9ef7	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-lef	73a7e1f78cbb	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-lef	LINE:447@1eefb3bbbf0eafe710276b85dbf87512c6ddc95a	sk16: keyed at 1eefb3bb, whose tex equals 22cdba8c; zz-full-sk16 carries this sentence by its hash
+drop	swarm-simplicity-steps	503221e301f6	sk16: this row says formalized; zz-full-sk16 records attribution from the landed Full endpoint (row note)
+drop	swarm-skrows-02	10febad97b5c	sk16: this row says provenance; zz-full-sk16 records definition from the landed Full endpoint (row note)
+drop	swarm-skrows-02	4ae0d642c68a	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-03	97c23b19a1af	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-04	97c23b19a1af	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-05	e19e0d3328ad	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-06	af3a1cf3d48e	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-07	5b6a5a222cdd	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-skrows-09	5b15f5d8faae	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-thm-main-a	2d5abd159c20	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-thompson-construction	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16

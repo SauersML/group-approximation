@@ -1,0 +1,5 @@
+n=4 q=81 L=54 sorted matcher H: eps=0.0776 r=1.9999
+  start H: eps=0.3810 r=0.3088 defect<= 2.0693
+  start rand0: eps=0.4264 r=0.3373 defect<= 2.2910
+  start rand1: eps=0.4440 r=0.3462 defect<= 2.3707
+BEST n=4 L=54 max(eps,r)=0.3810

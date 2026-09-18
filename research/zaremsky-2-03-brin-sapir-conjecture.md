@@ -90,3 +90,16 @@ Sapir, with "While we do not settle Conjecture 1". A bounded web search on 2026-
 - Open crux, both sides: two one-bump generators with the same support, and the
   conjectured laminarity of orbitals of subgroups of `F`-free groups. Details in the
   Attempts of the two answer claims.
+- 2026-09-17, lane sw-105 (inverter). Established here (unreviewed):
+  `brin-sapir-is-equivalent-to-equal-support-one-bump-pairs`. The equal-support crux
+  above is not a sub-case: it is the whole conjecture. A counterexample exists iff one
+  exists of the form `⟨x_0, u x_0 v⟩` with `u, v` supported in `[1/8, 3/16]`, and `u`
+  can be fixed to one conjugate of `x_0^{-1}` into that interval. The construction
+  places the generators of an arbitrary `H` in `x_0`-translated blocks along a Sidon
+  set of positions and multiplies them into `x_0^{-1}`. Block width 1 gives only
+  `ℤ ≀ ℤ`; width 2 is already universal. So arguments that see only supports, germs,
+  or one-sided approach of two generators are exhausted.
+- Dead end, same lane. A minimal counterexample under embeddability (Bleak–Brin–Moore
+  Conjecture 3) embeds in its own compactly supported germ kernel. This yields no
+  contradiction: an ascending HNN extension along a PL conjugacy keeps both the EA and
+  the `F`-containment status, and EA-class counting gives no bound.

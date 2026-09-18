@@ -5,7 +5,7 @@ kind: claim
 title: Some countable group has a free p.m.p. action that is hyperlinear but not sofic
 root: true
 distinct_from:
-  hyperlinear-nonsofic-group: that is Pestov's Question 3.4 for groups; this is the same separation for free p.m.p. actions and their orbit equivalence relations, and neither statement is known to imply the other in general
+  hyperlinear-nonsofic-group: that is Pestov's Question 3.4 for groups; this is the same separation for free p.m.p. actions and their orbit equivalence relations; that one implies this one (`hyperlinear-nonsofic-free-action-from-hyperlinear-nonsofic-group`), and the converse is not known
   kun-thom-free-nonsofic-action: that supplies nonsoficity of one free action; this asks for an action that is in addition hyperlinear
   kt-free-action-hyperlinear-iff-wreath-hyperlinear: that is the established equivalence for the specific Kun--Thom action; this is the existence question it feeds
 ---
@@ -45,3 +45,15 @@ where nonsofic examples now exist (`kun-thom-free-nonsofic-action`).
   contains `L(R_H)`, so a hyperlinear host needs a hyperlinear nonsofic seed relation: Pestov's Question 3.4 one
   level up again. No new route; Bernoulli seeds of simple Kazhdan nonsofic groups are dead in any case
   (`simple-kazhdan-bernoulli-relation-hosts-contain-the-group`).
+* **Gaussian distillation (sw-121, 2026-09-17): every Theorem-C separation is a coset-wreath separation.**
+  `hyperlinear-action-distills-to-stabilizer-coset-bernoulli`: a hyperlinear action with a family of sets of
+  common stabilizer `Δ` makes `W_Δ = (⊕_(G/Δ) Z/2) ⋊ G` hyperlinear (products, tensor powers of a vector peaking
+  exactly on `Δ`, central limit, weak-star closure). Consequences: (i) the "non-product invariant measure" escape of
+  the second Attempt is closed, since `theorem-c-separation-iff-infranormal-coset-wreath` shows a hyperlinear action
+  with non-invariant `Γ`-fixed algebra exists iff `W_Δ` is hyperlinear for some `Γ ≤ Δ`, `⟨⟨Γ⟩⟩ ⊄ Δ`, and the
+  minimal such `Δ_hl` is infranormal; (ii) the third Attempt's gap is closed outright:
+  `hyperlinear-nonsofic-free-action-from-hyperlinear-nonsofic-group` shows the Bernoulli shift of any hyperlinear
+  nonsofic group is a free hyperlinear nonsofic action (free-product permanence plus the established tensor-Gaussian
+  equivalence at the trivial pair make `Z/2 ≀ H` hyperlinear), so this root is implied by Pestov's Question 3.4. Live route
+  `hyperlinear-nonsofic-free-action-from-infranormal-coset-wreath`, open at
+  `kt-pair-hyperlinear-floor-below-normal-closure`.

@@ -1,0 +1,10 @@
+PSL R=1 m=2 2s {'cumulative': 0.2939, 'window': 500, 'window_rates': [0.2964, 0.2933, 0.294, 0.2933, 0.2923, 0.294], 'm': 2}
+PSL R=2 m=4 3s {'cumulative': 0.1428, 'window': 500, 'window_rates': [0.1419, 0.1419, 0.1419, 0.1441, 0.144, 0.1429], 'm': 4}
+PSL R=3 m=6 4s {'cumulative': 0.1116, 'window': 500, 'window_rates': [0.1122, 0.1109, 0.1119, 0.1121, 0.1105, 0.112], 'm': 6}
+PSL R=4 m=10 6s {'cumulative': 0.0857, 'window': 500, 'window_rates': [0.0843, 0.0865, 0.0871, 0.0865, 0.0861, 0.084], 'm': 10}
+PSL R=5 m=16 9s {'cumulative': 0.0726, 'window': 500, 'window_rates': [0.072, 0.0743, 0.0718, 0.0716, 0.0711, 0.0747], 'm': 16}
+PSL R=6 m=26 15s {'cumulative': 0.0629, 'window': 500, 'window_rates': [0.0596, 0.0626, 0.0642, 0.0628, 0.0658, 0.0628], 'm': 26}
+PSL R=7 m=42 23s {'cumulative': 0.0542, 'window': 500, 'window_rates': [0.0524, 0.0558, 0.0555, 0.052, 0.0545, 0.0552], 'm': 42}
+PSL R=8 m=68 34s {'cumulative': 0.0508, 'window': 500, 'window_rates': [0.0475, 0.0507, 0.0507, 0.0522, 0.0525, 0.0515], 'm': 68}
+PSL R=9 m=110 68s {'cumulative': 0.0455, 'window': 500, 'window_rates': [0.0459, 0.0465, 0.0442, 0.0455, 0.0463, 0.0446], 'm': 110}
+inexact halvings 0

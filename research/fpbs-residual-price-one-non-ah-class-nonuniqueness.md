@@ -102,3 +102,45 @@ and nonamenable, and their amenable subgroups are all finite
 
   **Where it stops:** splittings over nonamenable subgroups remain, and this
   removes no known member.
+* **Split by normal subgroups with nonamenable quotient (swarm-0917).** Route
+  `fpbs-residual-class-via-percolation-kesten-split` divides the class into two
+  cases.
+  * **(α)** Some infinite normal `N` has nonamenable quotient. These members
+    need only `fpbs-percolation-kesten-normal-gap`,
+    `p_c(G) < p_c(N;G)`, together with the established separation criterion.
+    This covers every known member, the products `T x T'` and
+    `B(m,n) x B(m',n')`, with `N` a factor, and needs no amenable subgroup.
+  * **(β)** Every infinite normal subgroup is co-amenable. These members need
+    `fpbs-normally-coamenable-class-nonuniqueness`.
+
+  Established along the way:
+  * `fpbs-normal-fibre-second-moment-maximal`: below `p_c(N;G)` every fibre
+    carries at most the identity fibre's second moment, for any normal `N`;
+  * `fpbs-relative-threshold-commensurability-invariant`.
+
+  **Where it stops:** both premises are open. In (β), on a single torsion
+  Tarski monster, every infinite subgroup has finite index. So
+  `p_c(I;G) = p_c(G)` for every infinite `I`, and every relative-gap route
+  dies at "choose `I`". A single monster, if it has fixed price one, needs a
+  non-relative argument.
+* **Non-relative: transfer gaps from hyperbolic approximants (swarm-0917, 2026-09-17).**
+  The single torsion members `B(m,N)` are direct limits of non-elementary
+  hyperbolic groups (`free-burnside-is-a-limit-of-hyperbolic-groups`), and
+  every approximant has a strict L2 gap. Established
+  `fpbs-direct-limit-certificates-add-no-slack`:
+  * along any surjective chain, `p_c(H_i)` increases to `p_c(Gamma)`;
+  * spectral DT certificates are monotone along the chain;
+  * `Gamma` has a certificate iff one finite datum `(S, p, n, c)` certifies
+    infinitely many approximants uniformly;
+  * if the limit is amenable, no datum certifies infinitely many.
+
+  The lamplighter truncations calibrate this (recorded, not claimed). They are
+  virtually free groups with `p_c < p_(2->2)`, converging to `Z/2 wr Z` with
+  `p_c = p_u`.
+
+  **Where it dies:** at `i -> infinity`. Per-approximant theorems (Hutchcroft,
+  Choi–Seo, `p_u = 1`) give `i`-dependent data. The uniform datum they would
+  need is literally the certificate on the limit. The only uniform input
+  available for `B(m,N)` is `rho(G_k) <= rho(B(m,N)) < 1`, which certifies only
+  `S = {o}`, above `1/(d rho)`. The spark M3 (artifact Section 7) records the
+  uniform-margin statement that would suffice.

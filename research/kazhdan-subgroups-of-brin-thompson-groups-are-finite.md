@@ -134,3 +134,35 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
     Details in `research/artifacts/kazhdan-nv-measure-criterion-2026-09-17.md`.
   - Any proof of the remaining claim must use nV-structure: `SL_3(Z[1/p])` acts
     minimally on `P^2(Q_p)` with no invariant measure.
+- 2026-09-17 (lane swarm-0917-w4-z-nv-kazhdan-subgroups, calibration, unreviewed):
+  **rank-two word-system structure alone cannot prove this claim.**
+  - Established (unreviewed) `rank-two-prefix-replacement-groups-contain-infinite-kazhdan`.
+    It concerns a lattice `Γ` in `PGL_3(K)` (`K` nonarchimedean, characteristic zero)
+    acting freely and type rotatingly on vertices. Such `Γ`:
+    - is infinite and Kazhdan;
+    - acts faithfully on its Robertson–Steger boundary `Ω`, each element by finitely
+      many cylinder prefix replacements `ᾱ(p) ⇒ ᾱ(p')` of a finite rank-two word system
+      satisfying (H0)–(H3), with `Z²` shape offsets;
+    - has no invariant probability measure and no finite orbit.
+  - The proof reads the prefix replacement property directly off Robertson–Steger's
+    formula `φ(s_{w̄2,w̄1}) = γ1_{Ω(p1)}` and Lemma f2. Faithfulness comes from
+    simplicity of `C(Ω)⋊Γ`, and the absence of measures from pure infiniteness.
+  - **Class killed.** Proofs that use only that `K` is Kazhdan and acts by finitely many
+    prefix replacements over a finite rank-two word system, with `Z²` offsets,
+    irreducibility and pure infiniteness. Each such proof dies at the step "finite
+    orbits" or "invariant measure on a minimal set". So
+    `kazhdan-subgroups-of-nv-act-with-finite-orbits` and
+    `minimal-sets-of-kazhdan-subgroups-of-nv-carry-invariant-measures` cannot be proved
+    that way.
+  - **The invariant that must enter** is the product factorization of nV's word
+    system (`A = A_1 × A_2`, `M_1 = J⊗I`, `M_2 = I⊗J`): prefix replacement in one
+    coordinate leaves the other coordinate's letters untouched. Rank one is below the
+    threshold (SFT full groups have no infinite Kazhdan subgroup).
+  - **Negation route (open).** If a Robertson–Steger rank-two full group, or just `Γ`,
+    embeds in some nV, this claim is false.
+    - The direct coding (an open subgroupoid embedding into `G_2^2` with constant
+      offsets) needs the horizontal coding of consecutive rows to agree.
+    - In Robertson–Steger systems rows are related by the (H1) squares, which act as a
+      finite-state transducer. So that coding is expected to die at this step
+      (heuristic, unproved).
+    - Details in `research/artifacts/rank-two-prefix-replacement-kazhdan-2026-09-17.md`.

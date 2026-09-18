@@ -9,6 +9,8 @@ distinct_from:
   stable-finiteness-failure-refutes-surjunctivity: that turns AB=1 != BA over F_p[G] into a classical strict linear automaton; this turns it into a strict quantum Clifford endomorphism and proves the converse for every Clifford endomorphism, all primes p.
   end-fixing-tree-symmetries-carry-strict-automata: that builds a strict classical automaton on the 3-regular tree with the end-stabilizer symmetry; this builds a strict trace-preserving quantum endomorphism there, showing that trace invariance, locality and a transitive amenable symmetry do not force surjectivity.
   surjunctive-decoder-subgroups-force-surjectivity: that is a classical descent statement about decoder memory; this is a quantum analogue of the Gromov-Weiss theorem with a new splitting lemma, and makes no claim about classical automata.
+  sofic-groups-are-quantum-surjunctive: that establishes the sofic case earlier and independently; part 2 here reproves it through the relative-commutant splitting of part 1, so the new content of this node is the splitting criterion, the tree calibration and the seed closure, not the sofic theorem.
+  clifford-quantum-surjunctivity-iff-stable-finiteness: that establishes the Clifford classification earlier; part 3 here is the same equivalence, recorded only to calibrate the splitting criterion. The monomial extension is monomial-quantum-automata-are-topological-bernoulli-absorptions.
 artifacts:
   - experiments/qca-surjunctivity-2026-09-17/clifford_qca_check.py
   - experiments/qca-surjunctivity-2026-09-17/clifford_qca_check.out

@@ -32,3 +32,29 @@ elementary amenable groups. This is the nonexistence answer to Zaremsky Problem
   follows from "amenable groups of finite cohomological dimension are
   elementary amenable", a question this lane has not seen settled. Outside
   `LH𝔉` there is no tool.
+- **Minimal-counterexample biography: split by virtual cohomological dimension
+  (open, decomposition established).** A counterexample `G` either has a finite-index
+  subgroup of finite cd or does not. This claim is *equivalent* to the conjunction of:
+  - `amenable-f-infinity-groups-have-finite-vcd`;
+  - `amenable-f-infinity-groups-of-finite-cd-are-virtually-soluble`.
+
+  Sufficiency is route `f-infinity-amenable-ea-via-finite-vcd-and-finite-cd-case`.
+  Necessity is the established `f-infinity-amenable-ea-forces-both-vcd-halves`,
+  via KMN type VF and virtual solubility.
+
+  The two halves fail independently, and they sit on different sides of what is known.
+  - **Finite-vcd half.** It alone already proves Thompson's `F` is not amenable
+    (`thompson-f-not-amenable-via-finite-vcd-of-amenable-f-infinity`), using only
+    `F_∞` and `Z^n ≤ F`. Every recorded candidate counterexample attacks this half:
+    Grigorchuk's HNN extension contains a torsion group, and finitely generated
+    branch groups have infinite rational cd (Gandini, arXiv:1106.3022v2, Cor. 4.5,
+    Rem. 4.6). So neither kind has finite vcd.
+  - **Finite-cd half.** It is Kropholler's question restricted to type `F_∞`. There
+    type `FP` is automatic. Degrijse's Theorem B settles `cd 2` when `Z[G]` is a
+    domain.
+
+  **Obstruction recorded (calibration).** A proof of this claim that uses only
+  properties shared by `F` (type `F_∞`, no free subgroups, torsion-free, ascending HNN
+  self-splittings, not in `H𝔉`) dies at `F`. Where the two halves separate:
+  - a proof of the finite-vcd half must use amenability to rule out infinite vcd;
+  - the finite-cd half needs no Thompson input at all.

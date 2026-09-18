@@ -90,3 +90,158 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
   (Drafted conclusion, not established: a proof of this conjecture whose soundness
   conclusion is about the output unique game must use a step that is false for
   entangled strategies.) Open: an explicit clock-and-shift witness for `m > 2`.
+* **Keep the left labels of a proved 2-to-1 instance and add locally complete
+  right vertices until the matchings are rich.** This covers right compression,
+  merging, auxiliary right vertices, and refining Grassmann-shaped instances.
+  **Dead (2026-09-17)** -- route
+  `rich-2to1-via-left-preserving-local-wrappers`, killed by
+  `left-preserving-local-richness-wrappers-are-affine-ug-merges`.
+  - Local completeness over affine intended classes `A_z` makes every constraint
+    at `z` absorb the agreement subgroup `B_z = sum ker dr_(uz)`.
+  - So `z` is either all `F_lin` translations or a right merge of an affine
+    unique-game clique.
+  - Pair-uniformity leaves translations at most `alpha_k ~ 1/k` of the mass.
+  - Hence `val(W(G)) >= (1 - alpha_k) val(U_W(G))`. With certified completeness,
+    `G -> U_W(G)` is already UG hardness.
+  - Open survivors: re-encoded left labels, completeness without local
+    certificates, non-affine intended classes, partial richness.
+* **Run the known rich-producing constructions with perfect completeness, aiming
+  at BKM Conjecture 7, which implies this claim.** The constructions are right
+  merges `Psi(U)`, certified affine-local wrappers and an affine `F_lin`-stage
+  start of the `F_j` chain.
+  **Dead (2026-09-17)** -- route
+  `rich-2to1-perfect-completeness-via-tractable-skeletons` toward the new OPEN
+  node `rich-2to1-perfect-completeness-conjecture`. That node feeds here through
+  `rich-2to1-from-perfect-completeness`. The route is killed by
+  `perfect-completeness-rich-2to1-tractable-skeletons-are-in-p`.
+  - Invariant: the tractable skeleton mass, meaning a sub-instance computable
+    from the reduction's run that is a constant-seed forcing closure, a unique
+    game or an affine system.
+  - Step: completeness. A satisfiable game has satisfiable skeletons, skeleton
+    search is polynomial, and soundness caps the value at `delta` below the
+    skeleton mass.
+  - `Psi_Sigma(U)` is satisfiable iff `U` is, and one seed forces a component.
+    Certified wrappers make `U_W(G)` satisfiable.
+  - The Grassmann skeleton has closure mass `0.0015` at `n = 6`, but Gaussian
+    elimination solves it (brute-force artifact).
+  - The kill is silent at completeness `1 - eps`, so it does not touch this
+    claim's own hardness. It shows that Conjecture 7 needs P1, a re-encoding
+    reduction with `o(1)` closure and no unique-game or affine skeleton.
+  - Open spark: are the GKOPTW perfect-SDP 2-to-1 gap instances (ICALP 2010)
+    rich, or can they be made rich without a merge skeleton?
+* **Manufacture richness by a window-certified transformation of a hard source.**
+  Keep the source labels and add 2-to-1 right vertices whose completeness is
+  certified by bounded source windows. Sources may be arbitrary, including
+  non-affine ones and cosets over nonabelian groups.
+  **Dead (2026-09-17)** -- route `rich-2to1-via-window-certified-enrichment`,
+  killed by `window-certified-richness-is-conserved-modulo-merges`.
+  - Invariant: the component skeleton of the window relations. Every relation
+    splits into forced 2-blocks, which the source derives, and partial
+    bijections, which form a unique game.
+  - Step: `val(W) >= val(Ũ_W) - phi`, with `phi` the forced edge mass. So
+    certified completeness already turns `G -> Ũ_W(G)` into a
+    `Gap-UG(1 - beta - phi, s + phi)` reduction.
+  - Gate: under richness, `phi` is at most the number of distinct forced
+    `j`-block partial pairings times `(2k-2j-1)!!/(2k-1)!!`. So non-merge rich
+    mass `phi` needs about `phi (2k)^j` forced pairings per left vertex.
+  - Coset sources over any finite group: relations are pure. Forced vertices
+    carry central-involution translations of mass at most
+    `c/((2k-1)(2k-3))`, and the rest is a coset unique-game merge. This extends
+    the affine kill above and settles its non-affine gap G3.
+  - Open survivors: forced-pairing families that pass the gate, completeness
+    without source-local certificates, and label re-encoding.
+* **Reframe richness away: treat it as free and isolate completeness (2026-09-17,
+  reframing).** **Decomposition, hole stays OPEN.** Tool:
+  `orientation-lifts-sandwich-2to1-game-values` (ESTABLISHED).
+  - An orientation `o` picks one "upper" element in each kernel pair.
+  - The lift `U_o` is a unique game with right alphabet `[k] x {0,1}`, and every
+    lift has `val(G)/2 <= val(U_o) <= val(G)`.
+  - `Psi(U_o)` is fully rich, with value in `[val(G)/2, 2 val(G)]`.
+  - Conversely, `Psi(U)` carries a canonical orientation recovering `val(U)`.
+
+  Consequences:
+  - Richness is free at the one-half wall: `rich-2to1-hard-at-completeness-one-half`
+    (ESTABLISHED) proves `Gap-Rich-2-to-1[(1-eps)/2, eps]` NP-hard. So the
+    sentence "the whole difficulty is concentrated in supplying richness" is
+    false at completeness one half.
+  - New route `rich-2to1-via-branch-selector-on-proved-2to1-instances` requires
+    `two-to-two-games-theorem`, the sandwich, and the single OPEN hole
+    `efficient-branch-selector-on-proved-2to1-instances`. That hole asks for a
+    polynomial-time orientation of the proved Grassmann 2-to-1 instances with
+    YES lift value `1 - eta'`. Every orientation has the form
+    `s(x_e) xor g_e(s|_(L'))`, so it must predict assignment values on the new
+    direction of each neighbouring subspace.
+  - The same hole feeds `smooth-design-rich-2to1-hardness`, and through it
+    `finite-moment-pairing-2to1-hardness` (route
+    `smooth-design-rich-2to1-via-branch-selector`). So the pairing-law ladder
+    (entropy, `t`-wise uniformity, smoothness, finite moments) adds no
+    prerequisite on this route.
+  - Graded milestone: any constant bias `c > 1/2` gives `Gap-UG[c, eta]` on these
+    instances.
+  - Where it could die: the family is pinned, so the hole can fail while UGC
+    holds. For assignments uniform on the unseen directions, the honest branch
+    bias is 0 for every `g_e` (heuristic warning, no kill).
+* **Close the orientation-lift completeness hole with an efficient branch
+  selector whose completeness witness is the honest encoding.** In the
+  orientation-lift decomposition posted on the live bus, richness and soundness
+  are free and one completeness hole remains: an efficient selector on proved
+  2-to-2 or 2-to-1 instances with lift completeness `1 - eta'`. That
+  decomposition has not landed in this graph. **Dead unless NP in RP
+  (2026-09-18)** -- `efficient-branch-selectors-list-decode-honest-outer-labels`.
+  - Scope: any randomized polynomial-time selector, view-local, parity-leaking
+    or global, on a linearly encoded composition satisfying (B), (E) and (M).
+    The selector must give the honest encoding of some outer labelling of value
+    `>= 1 - eps` a lift value `>= 1/2 + gamma`. Then a decoder finds outer
+    labellings of value `>= (gamma^3 2^(-l-2)/K)^2 - 2 eps`. So when the outer
+    soundness is below half of that, the source is in RP.
+  - Invariant: branch-bit advantage.
+  - Step: guess one seed label. The branch bits then predict `<lambda_a, x>`,
+    Parseval gives a list of `4/gamma^2`, and random list decoding beats the
+    outer soundness.
+  - Tight: under `P = NP` honest selectors reach `val_G(hon(lambda))`, so no
+    unconditional kill exists.
+  - Survivor: completeness witnesses far from every honest encoding, the
+    non-honest heretic H2.
+  - Not established here: that the Khot--Minzer--Safra 2-to-2 instances satisfy
+    (E) and (M). The claim node gives the argument.
+* **Make the honest-witness selector kill apply to the proved DKKMS 2-to-1
+  instances themselves.** **Done for 2-to-1, and ESTABLISHED:**
+  `dkkms-2to1-instances-satisfy-selector-decoding-hypotheses`
+  (swarm-0917-w6-w6-re-pull2-unique-1, 2026-09-17). This answers live need
+  `1cb0e45a` for the 2-to-1 instances, checked against ECCC TR16-198.
+  - Membership, with each hypothesis read off Section 4.2:
+    - (E) holds with `tau = 2^(l-1-2k)`. The new direction is uniform off
+      `L' + H_U`, not off an `(l-1)`-space, so the parent's `2^(l-1-3k)` was
+      wrong.
+    - (M) holds with `K = 1`. Validity conditioning leaves the U-marginal
+      uniform.
+    - (B) holds up to the dirty-tuple mass `eps_out <= k eps_3`, because folding
+      unfolds `a|_R` to `a|_L` on clean tuples.
+    - Folded aggregated constraints embed into the multi-edge game with at least
+      the same lift values.
+  - Outer soundness is Lemma 5.4 of the paper, applied to players who ignore
+    `Q`. Inner soundness and Hypothesis 3.6 are not used.
+  - Corollary, under `NP not in RP`: no polynomial-time selector on these
+    instances lifts an honest encoding `a|_R` of a good 3LIN assignment to value
+    `>= 1/2 + gamma`. The same holds for any lift labelling within mass
+    `gamma/4` of such an encoding.
+  - Survivor: H2 witnesses, far from every honest encoding on the *clean* mass.
+    Different labels on dirty tuples are absorbed by the corollary.
+  - Still unchecked: membership of the KMS 2-to-2 instances.
+* **Orient Grassmann 2-to-1 instances with a view-local branch selector
+  (heretic lane, 2026-09-18).**
+  **Dead** -- route `rich-2to1-via-view-local-branch-selectors`, killed by
+  `view-local-branch-selectors-are-gauge-blind`.
+  - Invariant: the visible parity space `Q_e meet X_(U_e)` of the selector's view.
+  - Step: completeness. Under the value-preserving gauge `I -> (M, b + Mz)`, the
+    branch bit of a transported witness is exactly uniform given the view and
+    the B-label whenever `Q_e meet X_U = H_U`.
+  - Consequences: honest lift value is at most `1/2 + w_bad/2` in expectation,
+    concentrating over equivariant menus of size `exp(o(n/s^2))`. Completeness
+    `1 - eta'` needs parity leakage on `1 - 2 eta' - o(1)` of the edges.
+  - Brute force: all selectors on 480 windows, 0 violations.
+  - Heretic decomposition, all OPEN:
+    - H1 `parity-leaking-branch-selectors-reach-near-perfect-completeness`,
+      which feeds route `ugc-via-parity-leaking-branch-selector`;
+    - H2 `view-local-selectors-beat-one-half-through-non-honest-witnesses`;
+    - H3 `unique-games-hard-on-non-sse-grassmann-constraint-graphs`.

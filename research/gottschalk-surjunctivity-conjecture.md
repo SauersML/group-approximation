@@ -857,9 +857,24 @@ non-surjective ones. As stated it cannot exist.
   groups are QCA-surjunctive, by a dimension count on sofic approximations. Third, for every prime `p`,
   the Clifford sector is equivalent to stable finiteness of `F_p[G]`. A strict trace-preserving example
   exists on the end-stabilizer tree.
-- **What remains open.** No implication between QCA-surjunctivity and classical surjunctivity is known
-  in either direction. A classical strict pair yields only the non-unital `Ad V` of
-  `split-ca-quantization-has-sharp-defect`.
+- **Monomial dictionary (established, relaunch).** `monomial-quantum-automata-are-topological-bernoulli-absorptions`
+  proves an equivalence. On the one side, `(x)_G M_d` carries a strict monomial diagonal-preserving automaton: `Z`s
+  go to diagonal unitaries, and `X`s go to diagonal-times-permutation unitaries. On the other, there is a
+  shift-equivariant homeomorphism `A^G -> A^G x Y` with `|A| = d` and `Y` a nontrivial subshift, a *topological
+  Bernoulli absorption*.
+  - The diagonal part of the automaton is the decoder `sigma = pr_1 Psi`.
+  - Its permutation part is a translation lift `T_e` with `sigma o T_e = sigma + delta_e`.
+  - Every absorption yields a strict pair, so classical surjunctivity implies surjunctivity of the monomial quantum
+    sector over every group.
+  - The Clifford examples `diag(A, B^*)` and the tree rule are monomial.
+  - The known chain is: Kaplansky failure implies absorption, absorption is equivalent to a strict monomial automaton,
+    and either implies non-surjunctivity.
+- **What remains open.** Outside the monomial sector, no implication between QCA-surjunctivity and classical
+  surjunctivity is known. A classical strict pair yields only the non-unital `Ad V` of
+  `split-ca-quantization-has-sharp-defect`, unless its decoder has a translation lift. The sharp question is
+  whether every non-surjunctive group carries a topological Bernoulli absorption. A yes gives the full transfer
+  `strict-automata-yield-strict-quantum-endomorphisms`. A no would separate non-surjunctivity from Kaplansky-type
+  self-absorption.
 
 **Heretic lane: three unstated assumptions (sw-013, 2026-09-17).** The hot families (finite models,
 entropy/measure, group rings, host geometry, quantifier shift) share three assumptions that none of them
@@ -898,6 +913,15 @@ states. Each was denied in turn.
 The most promising continuation is the first solvable non-nilpotent alphabet, `S_3`. There the non-central
 `Z/3` layer is twisted by the sign automaton, and the fibre maps are linear over a twisted crossed product
 of `C(2^G, F_3)` rather than a group ring.
+
+- **Heretic A1, second pass: solvable laws cannot stabilize a non-affine binary rule (sw-013, 2026-09-17).**
+  Stabilizing `tau` with identity ancilla symbols and encoding `tau x id_B` sitewise as a polynomial automaton over
+  a solvable group of order `2|B|` would let the nilpotent and solvable reductions reach arbitrary binary rules.
+  `solvable-ancilla-realizations-of-binary-automata-are-affine` kills this: at the first chief factor whose cosets
+  cross the data fibres, an abelian factor makes every data flip a configuration-independent translation, so
+  `tau` is affine, over every host, ancilla size, encoding and word. Non-affine data always sits above `Sol(Q)`,
+  and over `A_5` with `|B| = 30` every rule is realized. Open escapes: several data tracks, non-identity ancilla
+  dynamics, regrouping, and realization up to reversible-automaton conjugacy.
 
 **Homogeneity denied: invariant random subgroups (a-gs-heretic, 2026-09-17).** This was a heretic lane.
 Artifact `research/artifacts/irs-surjunctivity-heretic-2026-09-17.md`.
@@ -941,3 +965,14 @@ Where it dies so far:
 
 Reach: any argument that uses only root-ball statistics and mass transport should prove the IRS
 strengthening. A witness for `some-free-group-irs-carries-a-strict-design` would kill that whole class.
+
+- **Linear shadow on local observables** (swarm-0917-w7-w7-gs-break, group-rings, 2026-09-18). DEAD as a proof
+  class. By `strict-pair-linear-shadows-exist-over-z`, a strict pair is equivalent to a surjective, non-injective,
+  unital, equivariant algebra endomorphism `τ^*` of the local observables `O`.
+  - Over any group with an element of infinite order, there are `K[G]`-linear maps `L, R` on `O` with `R L = id` and
+    `L R != id`. They are unital, of finite propagation, graded, monomial and trace-preserving, `L` is an `L^2`
+    isometry with `L^* = R`, and both are the identity on one-site observables.
+  - The construction slides the second site of `ψ_1(x_g) ψ_1(x_{g t^n})` from `n` to `n+1`.
+  - So Kaplansky, `K_0`, von Neumann dimension and module-direct-finiteness transfers die at the extension from the
+    finitely generated one-site module to `O`. `O` is an infinite sum of projectives there.
+  - Invariant that must be used: multiplicativity of `τσ` as a pullback.

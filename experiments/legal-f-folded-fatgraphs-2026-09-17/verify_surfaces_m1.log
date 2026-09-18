@@ -1,0 +1,48 @@
+== surfaces_m1/phi1023.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abbABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1024.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcABB", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1026.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcABB", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1027.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abbABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1028.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcABA", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1029.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcAAC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1030.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abaABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1035.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "aacABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1037.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abaABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1038.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcABA", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1041.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "abcAAC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi1042.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -5, 1], "M^k>0 at k": 3, "darts": 16, "V": 6, "E": 8, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 4, 4], "gates": "aacABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi192.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcABA", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi194.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcAAC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi197.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abaABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi202.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "aacABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi206.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abbABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi212.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abaABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi214.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcABB", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi216.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcABA", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi219.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abbABC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi220.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcABB", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi221.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "abcAAC", "f-corners": 4, "genus of S*_f(X)": 2}
+== surfaces_m1/phi226.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 20, "V": 8, "E": 10, "chi(X)": -2, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 4, 4], "gates": "aacABC", "f-corners": 4, "genus of S*_f(X)": 2}

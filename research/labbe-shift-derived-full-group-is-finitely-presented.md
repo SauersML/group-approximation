@@ -117,3 +117,21 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
     `labbe-wang-shift-crossed-product-is-finitely-presented`. With `labbe-shift-is-wall-rigid`, a proof
     of this claim must prove that the idempotent commutator ideal `J_D` vanishes. The converse (ring
     finite presentation implying this claim) is open.
+- **Finite-type expansion complexes: dead as a class (2026-09-18, swarm-0917, c-labbe, obstruction-miner).**
+  - The positive attempts above (Matui `F_∞`, Nekrashevych, Li, Brin `2V`) all die at "compression". The
+    precise invariant is now a theorem: `invariant-measure-forbids-finite-similarity-type-systems`
+    (established).
+  - A `G`-invariant probability of full support on an infinite unit space forbids every finite
+    similarity type system. For a minimal effective ample groupoid, a finite system even forces every
+    group containing `D([[G]])` to be non-amenable.
+  - `Z^2 ~ Omega_U` is minimal and has an invariant measure (`Z^2` is amenable). So every Brown-criterion
+    proof whose expansion pieces fall into finitely many bisection-similarity types dies at the choice
+    of types: bisections preserve measure, and small neighbourhoods need small pieces.
+  - **Gate (not claimed).** A surviving proof needs infinitely many types, with measures accumulating at
+    `0`, a height function with a scale parameter, and descending-link estimates that are uniform in scale.
+    The measure does not obstruct similarity up to reduction isomorphism.
+  - The corner isomorphism `G ≅ G|_A` of `labbe-full-group-embeds-in-its-supertile-corner`, iterated,
+    makes the reductions to the level-`k` cylinders `ω^k([P])` isomorphic to those of the finitely many
+    legal collared patches `P`. This gives a finite reduction-type system, provided the block sides of
+    `ω^k(a)` grow in both directions.
+  - That is the only structural loophole the obstruction leaves open for this route.

@@ -1,0 +1,6 @@
+n=3: 1080 stabilizer states, 63 Paulis
+after random: best ratio 0.7071067812
+after magic families: best ratio 0.7071067812
+after optimization: best ratio 0.7071067812
+best support: [((0, 1, 1), -0.4968), ((0, 3, 2), -0.5542), ((2, 1, 0), 0.5542), ((2, 1, 1), 2.1941)]
+FINAL n=3 max ratio 0.7071067812 (1/sqrt2 = 0.7071067812)

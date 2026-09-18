@@ -40,3 +40,23 @@ of `Gamma_p`. The first concrete parameter to investigate is `p=7`.
 - **Local torsion.** Known finite quotients inject on every local vertex
   group. Thus a local torsion element cannot be substituted for the
   infinite-order word `w_p` as a finite-residual witness.
+- **Regularity gate (obstruction, one invariant for the dead approaches).**
+  `kms-hc1-reflected-root-word-regularity-gate` shows that `R=[B,A]` and
+  `S=[B,C]` have order dividing `p` and commute with `B`. It then proves
+  `w=1` in every image where one of these holds:
+  - `<R,S>` is nilpotent of class `<p`;
+  - `(R,S)` satisfies the `B_2` vertex relators;
+  - the image is nilpotent of class `<=2p-1`;
+  - `a,b,c` go to root elements of a Chevalley group in characteristic `p>=7`.
+
+  The exact failing step in the last case is that the pair `theta=-phi` is
+  forced to break `[b,c,b]=1`. Both earlier dead families are instances of
+  this: positive Kac--Moody images and block matrices with `N^3=0`. Also:
+  - metabelian images and `p`-images with `[A,C]=1` kill `w`;
+  - abelian layers detect `w` only through `N^ab`;
+  - computations: 5-class `<=12` and 7-class `<=14` kill `w`.
+
+  What remains open: a detecting finite image needs `<R,S>` that is neither a
+  `Delta_p`-quotient nor of class `<p`. In a `p`-group this means class
+  `>=2p`, and it would need a reflected `B_2` relator to survive in the pro-`p`
+  completion. Cross-characteristic images are not ruled out.

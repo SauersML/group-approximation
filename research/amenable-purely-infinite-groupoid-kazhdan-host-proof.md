@@ -7,13 +7,21 @@ target: amenable-purely-infinite-groupoid-full-group-hosts-kazhdan
 requires:
   - affine-semidirect-sl3-source-has-property-t
   - commutative-ring-linear-groups-have-property-a
-  - stw40-unital-nuclear-no-trace-iff-exact
   - elek-free-minimal-cantor-actions-with-invariant-measures
-  - thompson-v-has-haagerup-property
   - kazhdan-host-route-imports-have-verbatim-sources
 ---
 
-*Demoted 2026-09-17 (audit): referee lens 1 of two returned refuted=true on citation grounds (Step 1's exact-to-amenable-compact-model import and the Conclusion's (T)-plus-Haagerup finiteness import lack verbatim sources); lens 2 returned refuted=false. The route now requires the OPEN gap claim `kazhdan-host-route-imports-have-verbatim-sources`, so its target derives OPEN. The text below is kept as an attempt.*
+*Demoted 2026-09-17 (audit): referee lens 1 found no verbatim sources for Step 1's
+exact-to-amenable-compact-model import or for the Conclusion's (T)-plus-Haagerup
+finiteness import. Re-refereed 2026-09-17 (ref-03): the gap claim
+`kazhdan-host-route-imports-have-verbatim-sources` now has the citation route
+`kazhdan-host-route-imports-citation` (Higson–Roe quoted from Willett's notes, with a
+full metrizable (R1) upgrade, and Chatterji–Druţu–Haglund Theorem THker). Step 1 now
+feeds property A straight into that import, so the Osajda exactness step and
+`stw40-unital-nuclear-no-trace-iff-exact` are no longer used, and the Conclusion no
+longer goes through `thompson-v-has-haagerup-property`. Minor slips lens 1 flagged are
+fixed below: why `T` is closed, `r` versus `s` in Step 4, and continuity of the product
+system in Step 5.*
 
 Throughout, `Γ = Z^3 ⋊ SL_3(Z)`, `C = {0,1}^N`, and `σ` is the one-sided shift on `C`.
 
@@ -86,21 +94,20 @@ amenable action pulls back along any continuous equivariant map `p: X' → X` (u
   amenable groups are amenable.
 - `Γ` is a countable subgroup of `GL_4(Z)` via `(v, A) ↦ [[A, v],[0, 1]]`, so it has
   property A by `commutative-ring-linear-groups-have-property-a` (`R = Z`).
-- For finitely generated groups, property A is exactness. Verbatim from D. Osajda,
-  *Residually finite non-exact groups*, GAFA 28 (2018), arXiv:1703.03791, l.119–120, as
-  recorded in `residually-finite-non-exact-groups-exist-citation`: "A finitely generated
-  group is \emph{non-exact} if its reduced $C^{\ast}$--algebra is non-exact. Equivalently,
-  it has no Guoliang Yu's property A".
-- `Γ` is exact and nonamenable, so `stw40-unital-nuclear-no-trace-iff-exact`
-  ((1) ⇒ (2)) gives a compact metrizable `Y` with a topologically amenable `Γ`-action.
+- `Γ` is countable with property A, so item 1 of
+  `kazhdan-host-route-imports-have-verbatim-sources` gives a compact metrizable `Y` with a
+  continuous `Γ`-action and continuous `ν_n: Y → Prob(Γ)` such that
+  `sup_y ||γν_n(y) − ν_n(γy)||_1 → 0` for each `γ`. That is the (R1) witness of Step 0.
 
 ## Step 2. A totally disconnected amenable model
 
 Every compact metrizable `Y` is a continuous image `π: T → Y` of a closed subset `T` of a
 product `∏_k [n_k]` of finite sets. Choose finite covers `𝒰_k` of `Y` by closed sets of
 diameter `≤ 2^{-k}`. Let `T` be the set of sequences `(U_1, U_2, …)` with `U_k ∈ 𝒰_k` and
-`U_1 ∩ … ∩ U_k ≠ ∅` for all `k`. `T` is closed by compactness. Put
-`π(U_•) = ` the unique point of `∩_k U_k`. `π` is surjective, and continuous because
+`U_1 ∩ … ∩ U_k ≠ ∅` for all `k`. `T` is closed, since each condition involves only
+finitely many coordinates. Put `π(U_•) = ` the unique point of `∩_k U_k`, which is
+nonempty by compactness (finite intersection property) and a singleton because the
+diameters tend to `0`. `π` is surjective, and continuous because
 sequences agreeing up to `k` map within `2^{1-k}`.
 
 Let `X' = {c ∈ T^Γ : π(c_γ) = γ·π(c_e) for all γ ∈ Γ}` with `(δ·c)_γ = c_{γδ}`.
@@ -150,7 +157,7 @@ space.
   - Hence `int G_2' = C`.
 - **Topologically amenable.** Put `m_N^x = (1/N) Σ_{0 ≤ j < N} δ_{(x, j, σ^j x)}`.
   - `(x, j, σ^j x) ∈ G_2` (take `k = j`, `l = 0`), and `x ↦ (x, j, σ^j x)` is continuous
-    (on `C_μ` with `|μ| = j` it is the inverse of `s` on `U_{μ,∅}`). So `x ↦ m_N^x` is
+    (on `C_μ` with `|μ| = j` it is the inverse of `r` restricted to `U_{μ,∅}`). So `x ↦ m_N^x` is
     continuous.
   - Let `g = (μz, a − b, νz) ∈ U_{μ,ν}` with `a = |μ|`, `b = |ν|`. Then `g·m_N^{νz}` is
     the average of `δ_{(μz, a−b+j, σ^j νz)}` over `j < N`, and `σ^j(νz) = σ^{j−b} z` for
@@ -169,7 +176,12 @@ space.
 
 1. **Amenable.** Put `m_n^{(u,x)} = m_n^u ⊗ m_n^x`. For `(h, g)` in `K_1 × K_2`,
    `||(h,g)·(μ⊗ν) − μ'⊗ν'||_1 ≤ ||h·μ − μ'||_1 + ||g·ν − ν'||_1`. Every compact set lies
-   in a product of compacts, so (A) follows from Steps 3 and 4.
+   in a product of compacts, so (A) follows from Steps 3 and 4. The product system is
+   continuous. For `f = f_1 ⊗ f_2` with `f_i` compactly supported, the integral is the
+   product of two continuous functions. A general `f ∈ C_c(𝒢)` is a uniform limit of
+   finite sums of such products, with supports in a fixed compact set (Stone–Weierstrass
+   on a compact open product neighbourhood). Integrals against probability measures
+   converge uniformly.
 2. **Minimal.** The orbit of `(u, x)` is `Γu × G_2(x)`, a product of dense sets.
 3. **Essentially principal.** `𝒢' = H' × G_2'`. An open subset of `𝒢'` around `(h, g)`
    contains a basic `O × P` with `O ⊆ H'` and `P ⊆ G_2'` open. So `O ⊆ int H' = M` and
@@ -192,7 +204,8 @@ space.
 
 `[[𝒢]]` contains the infinite property (T) group `Γ`. The Haagerup property passes to
 subgroups, and a countable group with property (T) and the Haagerup property is finite
-(Cherix–Cowling–Jolissaint–Julg–Valette, as recorded in `thompson-v-has-haagerup-property`).
+(item 2 of `kazhdan-host-route-imports-have-verbatim-sources`, via Chatterji–Druţu–Haglund
+Theorem THker).
 So `[[𝒢]]` is not a-T-menable and has an infinite Kazhdan subgroup. ∎
 
 ## Application to `nV`

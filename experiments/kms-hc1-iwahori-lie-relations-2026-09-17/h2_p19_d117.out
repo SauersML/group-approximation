@@ -1,0 +1,5 @@
+p=19 degree 3: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=9, Lambda3=1)
+p=19 degree 57: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=207, Lambda3=4804)
+p=19 degree 114: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=415, Lambda3=19834)
+p=19: degrees <= 117 with H_2 != 0: [(3, 6), (57, 1), (114, 1)]
+exit 0 elapsed 102s

@@ -1,0 +1,5 @@
+p=13 degree 3: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=9, Lambda3=1)
+p=13 degree 39: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=141, Lambda3=2183)
+p=13 degree 78: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=283, Lambda3=9152)
+p=13: degrees <= 80 with H_2 != 0: [(3, 6), (39, 1), (78, 1)]
+elapsed 8s

@@ -93,3 +93,23 @@ This claim is the question. It is established only through an answer route
      a cloning system whose clones multiply to elements of very large order in
      short words would answer Q1 no. Which bound arXiv:2601.13058 proves is
      being checked.
+- 2026-09-17 (sw-101), resolution proposed: **Q1 no and Q2 no**. The obstruction
+  comes from *undecidability*, not from period growth.
+  - Construction: the claim `finite-cloning-groups-realize-every-lamplighter-over-thompson-f`,
+    with complete proof in the route `finite-cloning-lamplighter-realization-proof`.
+    For any `H ≤ F`, take `G_n = (Z/2)^{D_n}` with `D_n = ⊔_{j≤n} Trees_j/H`, and let the
+    cloning maps push functions forward along caret attachment. This is a properly graded
+    pure cloning system on finite groups, and `T(G_*)` contains a lamp `t` with
+    `C_F(t) = H`.
+  - Witness: take `H = ⟨x_0^i y x_0^{-i} : i ∈ S⟩` with `S` non-recursive. Then the words
+    `[t, x_0^i y x_0^{-i}]` encode `S`, so the word problem of the finitely generated group
+    `T(G_*)` is unsolvable. Hence `T(G_*)` is not coCF and does not embed in `V`.
+  - Routes: `finite-cloning-group-with-undecidable-lamp-stabilizer` and
+    `finite-cloning-undecidable-lamp-stabilizer-not-in-v`. These close
+    `zaremsky-2-16-by-not-cocf`.
+  - Not an artefact of non-computable input: `computable-finite-cloning-group-not-cocf-not-in-v`
+    takes `S` recursive but not decidable in time polynomial in `i`. The cloning data are
+    then computable and `⟨x_0, x_1, t⟩` has solvable word problem, yet it is not coCF and not
+    in `V`, because coCF word problems are decidable in polynomial time (CYK). So any
+    positive answer must restrict the class of cloning systems by a complexity condition.
+  - The construction does not bear on Lehnert's conjecture. It awaits a referee.

@@ -52,3 +52,14 @@ claim.
   on the full root intersection. This excludes that seed rather than
   every representation of dimension 165; the general lower bound
   remains 147 and the unrestricted gap is still open.
+- `jacobson-boundary-amalgam-gap-is-a-reduced-mf-gate` sets up a regular
+  representation firewall. The pair `lambda pi|F, lambda pi|J` in
+  `C*_r(Lambda)` has exact mixed words, a faithful trace, stable
+  finiteness and full support profiles, yet `||lambda pi(w_Q)-1||=2`.
+  This kills every argument that does not depend on the dimension:
+  relator algebra, averaging and polar correction, trace and rank
+  identities, the Toeplitz finiteness mechanism, and support-profile
+  exclusions. Each dies at the step where the head becomes trivial. By
+  the exact C*-gate, `gamma_Xi>0` would force `C*_r(Lambda)` to be
+  non-MF, so a proof must use a matricial property that `C*_r(Lambda)`
+  does not have. The sign of the gap is still open.

@@ -1,0 +1,26 @@
+# thzsearch 3 CAP 50000000 xxxYYYY xyxYXY   (caps 14-22; AK(3) pair in F_3; goals PRIM/THICK/PROJ)
+== RANK 3 CAP 14
+RANK 3 CAP 14 NPERM 48 NWA 90
+EXHAUSTED depth 0 states 1 processed 1
+goals PRIM 0 THICK 0 PROJ 0; thick calls 2 undecided 0
+exit 0 time 0s
+== RANK 3 CAP 16
+RANK 3 CAP 16 NPERM 48 NWA 90
+EXHAUSTED depth 13 states 146 processed 146
+goals PRIM 0 THICK 0 PROJ 0; thick calls 292 undecided 0
+exit 0 time 0s
+== RANK 3 CAP 18
+RANK 3 CAP 18 NPERM 48 NWA 90
+EXHAUSTED depth 19 states 1110 processed 1110
+goals PRIM 0 THICK 0 PROJ 0; thick calls 2220 undecided 0
+exit 0 time 3s
+== RANK 3 CAP 20
+RANK 3 CAP 20 NPERM 48 NWA 90
+EXHAUSTED depth 31 states 6875 processed 6875
+goals PRIM 0 THICK 0 PROJ 0; thick calls 13758 undecided 0
+exit 0 time 30s
+== RANK 3 CAP 22
+RANK 3 CAP 22 NPERM 48 NWA 90
+EXHAUSTED depth 35 states 42161 processed 42161
+goals PRIM 0 THICK 0 PROJ 0; thick calls 84442 undecided 0
+exit 0 time 334s

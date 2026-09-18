@@ -25,12 +25,17 @@ finite-dimensional operator solution.
 | K_4 | (3,3) | dies | dies (3^3, stable) | |
 | K_5 | (4,3) | dies | dies (3^6, stable) | |
 | Petersen | (3,5) | dies (3^11) | dies (3^23); class 4 dies (3^39) | |
-| K_{4,4} | (4,4) | dies (3^21) | dies (3^57); class 4 dies (3^128); class 5 dies (3^308) | J has order 3 in Gamma (Slofstra-Zhang) |
+| K_{4,4} | (4,4) | dies (3^21) | dies (3^57); class 4 dies (3^128); class 5 dies (3^308); class 6 dies (3^652, `run_k44_highclass.g`) | J has order 3 in Gamma (Slofstra-Zhang) |
+| **K_{1,2,2,2}** | (5,3) | dies (3^32) | **survives** (3^109), `run_k1222.g` | reduced to order 3^19; see below |
 | **Heawood** | (3,6) | dies (3^22) | **survives** (3^79) | reduced to order 3^17, class 3, exponent 9 |
 | **Moebius-Kantor** | (3,6) | dies (3^29) | **survives** (3^126) | |
 | **Pappus** | (3,6) | dies (3^37) | **survives** (3^188) | |
 | **Desargues** | (3,6) | dies (3^46) | **survives** (3^267) | |
 | **Tutte 8-cage** | (3,8) | dies (3^106) | **survives** (3^987) | |
+
+Correction: the rows for K_{3,3}, K_4, K_5 and Petersen are trivial at odd p.  These graphs
+are planar or projective-planar, so they have a planar cover of fold 1 or 2.
+Slofstra-Zhang Lemma 3.10 then gives `J^2=1`, hence `J=1` in `Gamma_p` for odd `p`.
 
 Every class `<= 2` death is forced by the Lazard argument
 (`research/lcs-phase-dies-in-every-nilpotent-quotient-of-class-below-p.md`).
@@ -71,3 +76,46 @@ Deletion and contraction induce surjections of solution groups that fix `J`
   respectively.  That rules out only finite-dimensional solutions whose
   image is a 3-group of that class.  It says nothing about higher class or
   non-nilpotent images.
+
+## K_{1,2,2,2} and planar covers: `run_k1222.g`, `run_k1222_cert.g`, `monomial_fast.g`
+
+Claim: `research/k1222-planar-cover-fold-divisible-by-six.md`.
+
+- The class-3 3-quotient of `Gamma_3(K_{1,2,2,2},delta_apex)` has order
+  `3^109`, and `J` survives in it.
+- `reduce.g` cuts it down to `3^19` (centre `<J>`, class 3, exponent 9).  All
+  relators are re-verified on the images.
+- There is a self-centralizing abelian normal subgroup of order `3^11`.
+  Inducing a character gives a monomial representation of dimension `6561`,
+  stored in `k1222_p3_monomial.json.gz`.
+- `python3 verify_monomial.py k1222_p3_monomial.json k1222 3` prints `OK`
+  (`k1222_verify.out`).  Changing one phase makes it fail.
+- Consequence (Slofstra-Zhang Lemma 3.10): every planar cover of K_{1,2,2,2}
+  has fold divisible by 3, and by Archdeacon-Richter by 6.
+
+Other moduli for K_{1,2,2,2} (`run_k1222_p5.g`, `run_k1222_m4.g`,
+`run_k1222_m9.g`; outputs `k1222_p5.out`, `k1222_m4.out`, `k1222_m9.out`):
+
+| m | quotient prime | result | timeout |
+|---|---|---|---|
+| 5 | 5 | J = 1 at class <= 4 (5^384), as the Lazard bound forces | class 5 hit 1200 s |
+| 4 | 2 | order(J) = 2, not 4, through class 4 (2^473) | class 5 hit 1200 s |
+| 9 | 3 | order(J) = 3, not 9, through class 4 (3^493) | class 5 hit 1200 s |
+
+## K_{4,4} through non-nilpotent quotients: `run_sylow_k44.g`
+
+`J` survives in a finite quotient `Q` of `Gamma` if and only if, for some
+finite quotient `h: Gamma -> T` killing `J`, `J` survives in a finite
+3-quotient of `h^{-1}(Syl_3(T))`.
+
+- Forward direction: take `T = Q/<J>`.
+- Backward direction: take the core of the kernel.
+
+Explicit epimorphisms onto `A_4` and `A_5` kill `J`.  They send two disjoint
+4-cycles of `K_{4,4}` to `g, g^-1` and `h, h^-1`, and every other edge to 1.
+For both, `J` dies in the 3-quotients of the Sylow preimage (`sylow_k44.out`):
+
+| T | index of U | class <= 1 | class <= 2 | class <= 3 | class <= 4 |
+|---|---|---|---|---|---|
+| A_4 | 4 | 3^10 | 3^25 | 3^68 | 3^155 |
+| A_5 | 20 | 3^16 | 3^68 | 3^357 | not run |

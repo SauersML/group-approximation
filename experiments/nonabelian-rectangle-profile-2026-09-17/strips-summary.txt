@@ -1,0 +1,27 @@
+strips-summary.txt -- torus-dipole-covers-rank-distance-linear-in-profile (Z/2 dipoles, exact rho)
+Run with SURGERY_DIR pointing at experiments/rectangle-profile-dipoles-2026-09-17 if needed.
+
+== strips.py 4 12 (exhaustive HNF tori, all g; min(path cut, best two-cut strip with greedy Steiner cancel))
+CASES 952 WORST dist/rho 1.500 WORST strip/lambda1 (|g|>lambda1) 3.500
+== strips.py 13 16
+CASES 1281 WORST dist/rho 1.667 WORST strip/lambda1 (|g|>lambda1) 3.500
+   (2233 cases in total, worst dist/rho 1.667)
+
+== strips_thin.py 1 (margin-2l variant of the cuts, D >= 7l; earlier bound 12 lambda_1 + 5 asserted)
+CASES 270 WORST dist/rho 3.500  changed/lambda1 7.000  pathcut |g|/rho 9.500
+
+== strips_band.py exh 4 20  (the exact construction of the proof; every structural assertion passes)
+CASES 4342 STRIP 1242 WORST dist/rho 4.500  strip changed/lambda1 3.333
+   worst three dist/rho lines:
+3 6 2 10 lam1=3 D=3 l=1 strip dist<=11 changed=8 rho=3.000 ratio=3.667
+9 2 5 16 lam1=5 D=9 l=4 strip dist<=11 changed=10 rho=2.667 ratio=4.125
+15 1 6 11 lam1=5 D=7 l=3 strip dist<=9 changed=14 rho=2.000 ratio=4.500
+== strips_band.py thin 1
+CASES 270 STRIP 210 WORST dist/rho 4.375  strip changed/lambda1 3.000
+== strips_band.py thin 2
+CASES 270 STRIP 199 WORST dist/rho 4.375  strip changed/lambda1 3.000
+
+Asserted in strips_band.py on every strip case: redirects <= 2 lambda_1; supp kappa1 in R u {0,g};
+charged vertices in the seam zone; band has lambda_1 vertices and is connected; every charged vertex
+in or adjacent to the band; changed sites <= 6 lambda_1; final pair commutes; D <= 2l path cases
+satisfy |g|_1 <= sqrt2 (D/|v|_2 + |w|_2/2).  Worst observed strip changed/lambda_1 = 3.333 (bound 6).

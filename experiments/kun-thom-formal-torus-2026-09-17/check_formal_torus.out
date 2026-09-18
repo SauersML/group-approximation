@@ -1,0 +1,10 @@
+PASS 1. iota o alpha_A = sigma_A o iota  (d=3, p=3, mod 3^6, u^4; 25 samples)
+PASS 1'. negative control: alpha_(A^T) does not intertwine with sigma_A
+PASS 2. sigma_A sigma_B = sigma_AB on u_1..u_3 (10 samples)
+PASS 3. phi_n is a homomorphism on H and lands in I + M_r((p,u)) (4 samples)
+PASS 4. e_12(p (x_1-1)^n) in K is killed by phi_n but not by phi_(n+1)
+PASS 5. (I+X)^3 != I mod u^4 for X in M_3((u)) with p-primitive lowest part (p=3)
+PASS 5. (I+X)^2 != I mod u^4 for X in M_3((u)) with p-primitive lowest part (p=2)
+PASS 6. p=2: -I in K and in I + M_r((2,u)), of order 2 (method must and does fail)
+PASS 7. nonnegative A compress Z[x]; A = I - E_12 sends x_2 -> x_1^-1 x_2
+ALL PASS

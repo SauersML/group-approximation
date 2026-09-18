@@ -466,3 +466,66 @@ excluded by the regular-trace firewall.
   Reynolds dichotomy cannot be removed by bounded-area presentation
   telescoping.  The remaining positive use of that dichotomy must exploit
   its source-compressed discrepancy or a new paid-subcorner incidence.
+
+- **Inverter pass: search for a minimal countermodel to `(SNA1)-(SNA2)`.**
+  (swarm-0917-w5-pull-pt-3, role inverter, family minimal-counterexample.)
+  This family is closed on this node by logic alone, before any matrices
+  are chosen.
+
+  1. *Finite data cannot refute it.*  The seam quantifies over microstate
+     sequences with `o(1)` and `o_2(1)` errors.  Every finite family of
+     finite-dimensional models is consistent with every such assertion.
+     So a finite census, however large, carries no refuting content.  A
+     refutation must be an infinite sequence with ordinary Steinberg defects
+     tending to `0` and the mark active on a positive-density core.  The
+     mark is an involution, so the core gives `||z(U_n)-1|| >= 1`.  The
+     ultraproduct of such a sequence is a norm-corona representation of
+     `Delta` that does not kill `z`.  In other words, it already refutes
+     `Rad_MF(Delta)=Delta`, the conclusion of
+     `property-t-free-leavitt-full-mf-radical`.  So every counterexample to
+     this seam is a counterexample to the goal endpoint itself, and cannot
+     come more cheaply.
+
+  2. *Even the modulus is not a discriminant.*  Suppose `Rad_MF(Delta)=Delta`
+     holds by any proof, for example a Kazhdan one.  Compactness, as in
+     `uniform-obstruction-from-corona-invisibility`, gives a finite word
+     list `W` and `epsilon_0>0` such that no tuple with
+     `Def_W(U)<epsilon_0` has `||z(U)-1||>=1`.  Take `P=F` and `gamma=1`.
+     Every contraction difference in `(SNA2)` has norm at most `2`, and
+     `2 <= (2/epsilon_0) Def_W(U)` on every tuple where the mark is active.
+     So `(SNA1)-(SNA2)` then hold with a *linear* dimension-free modulus in
+     a fixed finite word list.  The requirement that the errors be charged
+     to finitely many ordinary word defects therefore does not separate the
+     seam from the goal.  All of the seam's content lies in its derivation:
+     the proof must not import the goal, or Property T, and must consume the
+     actual native occurrences.
+
+  3. *Consequence for negative work here.*  A valid negative result on this
+     node can only be a fence in a *non-microstate* model: tracial, regular
+     or exact-packet models where relators vanish but the conclusion fails.
+     That is exactly the form of the existing fences (regular-trace
+     firewall, `exact-whitehead-selector-gauge-attachment-collapses-packet`,
+     `spectator-dressed-gram-does-not-share-selector-gauges`).  Inverter
+     dispatch with minimal-counterexample aimed at an honest microstate is
+     structurally dead on this seam and on every seam of the same shape
+     ("in every positive-density active-core microstate of `Delta`, ...").
+     Examples are `binary-leavitt-two-shared-gauge-selector-compiler` and
+     the native cross-Gram leaves.
+
+  4. *Unverified spark: the Kazhdan side for the Steinberg cover.*  The
+     established T-mediated collapse, `binary-leavitt-all-ranks-full-mf-radical`,
+     concerns `EL_n(R)` and not `Delta`.  Consider lifting the rank-twelve
+     identity `d=[tau c tau^-1, ell]=e_02(q)` of
+     `rank-twelve-leavitt-simple-non-mf-proof` to `St_12(R)`.  The lifted
+     conjugate `tau x_34(1) tau^-1` equals `x_01(q)x_34(1)` only up to a
+     central `K_2(12,R)` factor.  That factor cancels in the commutator with
+     `ell=x_12(1)`, so `d=x_02(q)` holds exactly in `St_12(R)`.  Then
+     `St_12<=St_20` and heredity `Rad_MF(H)<=Rad_MF(E)` would put the
+     conjugate mark `z=x_13(q)` in `Rad_MF(Delta)`.  This needs two things:
+     the one-sided transport hypothesis of `kazhdan-asymptotic-commutant-transport`,
+     and Property T for the source `St_3(R)`
+     (`ershov-jaikin-kassabov-steinberg-property-t-citation`).  The gap is
+     that `tau` normalizes the `St_3(R)` image only up to `K_2(12,R)`, and
+     that was not checked.  If it closes, this seam is a true statement
+     with no T-free countermodel anywhere, and the remaining question is
+     purely one of proof provenance.

@@ -1,0 +1,4 @@
+OK: k1222, p=3: exact operator solution in dimension 6561; J = zeta_3^1 (primitive 3-th root of unity); sum b = 1 != 0 mod 3, so no classical solution exists.
+exit 0
+negative control (one phase changed):
+AssertionError: X_0, X_1 do not commute

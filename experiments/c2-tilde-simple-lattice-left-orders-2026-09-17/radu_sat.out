@@ -1,0 +1,9 @@
+{'group': 'radu', 'kernel': 'K1', 'radius': 4, 'ball': 244, 'K_elements': 96, 'clauses': 1920, 'sat': True}
+{'group': 'radu', 'kernel': 'K1', 'radius': 6, 'ball': 1540, 'K_elements': 576, 'clauses': 38784, 'sat': False}
+{'group': 'radu', 'kernel': 'K1', 'radius': 8, 'ball': 8452, 'K_elements': 3072, 'clauses': 669696, 'sat': False}
+{'group': 'radu', 'kernel': 'K2', 'radius': 4, 'ball': 244, 'K_elements': 68, 'clauses': 868, 'sat': True}
+{'group': 'radu', 'kernel': 'K2', 'radius': 6, 'ball': 1540, 'K_elements': 420, 'clauses': 20328, 'sat': False}
+{'group': 'radu', 'kernel': 'K2', 'radius': 8, 'ball': 8452, 'K_elements': 2244, 'clauses': 363048, 'sat': False}
+{'group': 'prod', 'kernel': 'K1', 'radius': 4, 'ball': 244, 'K_elements': 96, 'clauses': 1920, 'sat': True}
+{'group': 'prod', 'kernel': 'K1', 'radius': 6, 'ball': 1540, 'K_elements': 576, 'clauses': 38784, 'sat': True}
+{'group': 'prod', 'kernel': 'K1', 'radius': 8, 'ball': 8452, 'K_elements': 3072, 'clauses': 669696, 'sat': True}

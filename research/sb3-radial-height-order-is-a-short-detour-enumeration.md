@@ -37,3 +37,15 @@ Take the generating set { x_i y_j^{-1} : i ≠ j, x, y ∈ {a, b} }. Order the v
     within 6 steps through strictly earlier vertices. So L = 12.
   - The proof route is held back until z-verify-topology reviews the artifact (soundness argument §2 and
     script §5), so that the Problem 1.3 root does not compile as established before a PASS.
+- 2026-09-17, referee review PASS (swarm-0917-w6-w6-z-last1):
+  `research/artifacts/zp-sb3-short-detour-review-2026-09-17.md`.
+  - The soundness of the finite reduction was re-derived (review §3): coverage, abstract paths are real,
+    earlier-marking is sound, and E(v) is exact. No gap was found.
+  - The published script, re-run verbatim, gives bad 0 on 197416 configurations.
+  - An independent re-implementation, written from the statement with interval heights, reproduces the
+    197416 count. Over all e_0 ∈ E(v), the maximum least eccentricity is 3 and bad is 0. So L = 6, which
+    covers the stated L = 10; the published 6-step bound alone gave only L = 12.
+  - Real-vertex censuses with no abstraction (all 14908 vertices with |x_i| ≤ 3, and 4000 random vertices
+    with |x_i| ≤ 10) find no failure.
+  - Scripts and logs: `experiments/sb3-short-detour-review-2026-09-17/`.
+  - Route: `sb3-radial-height-order-census-proof`.

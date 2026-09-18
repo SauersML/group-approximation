@@ -10,7 +10,7 @@ distinct_from:
 artifacts: [research/artifacts/fg-perfect-wreath-c2-fa-citation-2026-09-17.md, research/artifacts/fg-perfect-wreath-c2-fa-proof-2026-09-17.md]
 ---
 
-**OPEN.** Two routes are drafted as artifacts but not yet fully refereed.
+**ESTABLISHED.** Two routes, a citation import and a self-contained proof, were restored after an independent referee pass (see Attempts).
 
 Let `A` be a finitely generated perfect group and `W = A wr C_2 = (A x A) ⋊ C_2`,
 where the generator `sigma` of `C_2` swaps the two factors. Then every action of
@@ -29,3 +29,4 @@ generated simple group that splits as a nontrivial amalgam.
 ## Attempts
 
 1. **Cornulier--Kar import and a self-contained axis argument (2026-09-17).** See `research/artifacts/fg-perfect-wreath-c2-fa-citation-2026-09-17.md` and `research/artifacts/fg-perfect-wreath-c2-fa-proof-2026-09-17.md`. The proof reduces to one factor, takes a hyperbolic element of `A_1`, and shows that `A_2` fixes its axis pointwise, using perfectness against `D_inf`. Lens 2 of the referee panel lost its vote, so the result is recorded as an attempt, not established. Lenses 1 and 3 both returned *survives* and found no mathematical gap. *Pending referee.* Restore both as routes once a full referee pass survives.
+2. **Independent referee pass; both routes restored (2026-09-17).** Agent swarm-0917-w5-bh-wreath-fa re-read the Cornulier--Kar abstract verbatim from arxiv.org/abs/1004.2582. It then re-derived every tree fact of the axis proof from Serre, *Trees*, §I.6: the displacement formula, the line-automorphism lemma and the projection argument. It also checked both proofs against the calibration inputs `A = Z`, `F_2` and `Z/2`. No gap was found. The routes `fg-perfect-wreath-c2-fa-citation` (import) and `fg-perfect-wreath-c2-fa-proof` (self-contained) are restored, so the claim is **ESTABLISHED** by either one. *Impact note.* This claim is now a leaf, and no open route toward `boone-higman-conjecture` waits on it. Its only consumer, `decidable-groups-have-decidable-fa-envelopes`, is subsumed by the established `decidable-groups-embed-in-decidable-simple-fa-groups` and `boone-higman-iff-simple-kazhdan-decidable-inputs`. The tree-tower collapse it was built for is re-proved without FA by the established `finitary-permanence-closures-collapse-boone-higman-to-base`. The one remaining use is as a cheap, rigidity-free certificate of FA for groups that are not simple.

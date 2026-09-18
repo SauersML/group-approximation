@@ -70,3 +70,14 @@ whether this homomorphism is injective for `n = 4`.
   A_{34}`: `burau-kernel-avoids-short-point-pushing-braids`, established by
   machine computation with exact re-checking and controls.
 - Neither answer route is complete.
+- **Obstruction: evaluation-point repairs of the parity step die (sw-095, 2026-09-17).** Replacing
+  parity by "no Moody cancellation at a fixed point `t_0 ∈ C^×`" cannot certify faithfulness on
+  `Brun_4`, at any `t_0`. For `t_0/|t_0|` of odd or infinite order the clean counts see only
+  `𝕄(1)` and are blind to all of `[P_n, P_n]`. For order `2^a r` they are blind to an explicit
+  nontrivial Brunnian braid `Ψ_{Φ_{2^a}}`, with conjugate powers and five-strand pushes allowed.
+  Fixed finite jets of `𝕄` at roots of unity are blind too:
+  `brunnian-4-braids-meet-cyclotomic-burau-congruence-kernels`,
+  `clean-moody-counts-are-blind-at-every-evaluation-point` (artifact
+  `research/artifacts/burau-cyclotomic-blindness-2026-09-17.md`). Surviving classes: evaluation
+  points that depend on the braid with unbounded 2-power order, and invariants that are not
+  cyclotomic residues of `𝕄` (full no-cancellation, extreme exponents, weighted counts).

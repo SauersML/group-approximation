@@ -84,3 +84,10 @@ out, so MathSciNet and later arXiv listings were not checked.
   complex of `nV`, which is not CAT(0); relative-(T) subgroups as the
   obstruction side; amenable actions without finite orbits as a route to
   "no (T)".
+- 2026-09-17 (sw-106, random cone characters): the relative-(T) input of
+  `brin-thompson-2v-not-a-t-menable-via-cantor-integer-maps` is false.
+  `(C(C,Z) ⋊ V, C(C,Z))` has no relative (T), and every relatively rigid
+  subset of `C(C,Z)` has bounded depth. See
+  `cantor-integer-maps-pair-lacks-relative-property-t`. The route now needs
+  `(C(C,Z) ⋊ V, Z·1_{[0]})` relatively (T), which is equivalent to relative (T)
+  of the centre `Z·1_C`, or rigid sets outside `C(C,Z)`.

@@ -1,0 +1,7 @@
+F2 S3 both U {'z': 4, 'cls': 4, 't': 2.0, 'x0': 1, 'v0': 2.0, 'r': 0, 'd': 2, 'bound_t': 2.0, 'ok': True, 'tight': True}
+F2 S3 U=x (sign) {'z': 2, 'cls': 0, 't': 0.0, 'x0': 0, 'v0': 2.0, 'r': 0, 'd': 2, 'bound_t': 0.0, 'ok': True, 'tight': True}
+F2 S3 U=y {'z': 2, 'cls': 4, 't': 2.0, 'x0': 1, 'v0': 2.0, 'r': 0, 'd': 2, 'bound_t': 2.0, 'ok': True, 'tight': True}
+F3 S3 {'z': 12, 'cls': 16, 't': 8.0, 'x0': 2, 'v0': 4.0, 'r': 0, 'd': 2, 'bound_t': 8.0, 'ok': True, 'tight': True}
+S2 h=2 all U {'z': 6, 'cls': 12, 't': 6.0, 'x0': 3, 'v0': 2.0, 'r': 1, 'd': 2, 'bound_t': 4.0, 'ok': True, 'tight': False}
+S2 h=2 U=sign(a) {'z': 1, 'cls': 2, 't': 1.0, 'x0': 0, 'v0': 2.0, 'r': 1, 'd': 2, 'bound_t': -2.0, 'ok': True, 'tight': False}
+S2 h=3 all U {'z': 10, 'cls': 16, 't': 8.0, 'x0': 3, 'v0': 3.0, 'r': 1, 'd': 2, 'bound_t': 7.0, 'ok': True, 'tight': False}

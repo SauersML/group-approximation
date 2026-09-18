@@ -1,0 +1,62 @@
+== 4010 {"a": "ab", "b": "babc", "c": "abb"}
+polygons 13426 t 0.1
+MILP sum c 6 chi -4.0 turns {('a', 'c'): 1, ('b', 'b'): 1, ('c', 'a'): 1, ('A', 'C'): 1, ('B', 'B'): 1, ('C', 'A'): 1} vertices 28 t 1.3
+permutation support: True
+could not connect
+rc 4010 3
+== 4887 {"a": "ab", "b": "bbca", "c": "aab"}
+polygons 10260 t 0.1
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 4887 2
+== 4485 {"a": "abb", "b": "bca", "c": "babb"}
+polygons 7192 t 0.1
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 4485 2
+== 2298 {"a": "bac", "b": "acab", "c": "bbac"}
+polygons 18849 t 0.3
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 2298 2
+== 4012 {"a": "ab", "b": "bbac", "c": "abb"}
+polygons 17162 t 0.3
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 4012 2
+== 1744 {"a": "bcb", "b": "abbc", "c": "bcbb"}
+polygons 40318 t 0.4
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 1744 2
+== 464 {"a": "aab", "b": "bbc", "c": "bbca"}
+polygons 19443 t 0.2
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 464 2
+== 2429 {"a": "abb", "b": "bcaa", "c": "babb"}
+polygons 31735 t 0.4
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 2429 2
+== 228 {"a": "aab", "b": "aabc", "c": "ccca"}
+polygons 38909 t 0.5
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 228 2
+== 198 {"a": "bbc", "b": "aaab", "c": "bbca"}
+polygons 50752 t 0.5
+MILP: no integer solution 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 198 2
+== 108 {"a": "abb", "b": "bccc", "c": "cabb"}
+polygons 54345 t 0.6
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 108 2
+== 1632 {"a": "bbc", "b": "bbcb", "c": "cacc"}
+polygons 58153 t 0.6
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 1632 2
+== 1633 {"a": "bbc", "b": "bbcb", "c": "ccac"}
+polygons 60897 t 0.6
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 1633 2
+== 1635 {"a": "bcb", "b": "bbcb", "c": "ccac"}
+polygons 70434 t 0.9
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 1635 2
+== 61 {"a": "bbc", "b": "ccba", "c": "bbcb"}
+polygons 86857 t 1.0
+MILP: no integer solution None 2 The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)
+rc 61 2

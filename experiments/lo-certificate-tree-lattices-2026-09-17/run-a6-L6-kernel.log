@@ -1,0 +1,9 @@
+group=a6 L=6 kernel short=2 elements=84960 vars=42480 clauses=781372 build=163s
+RESULT UNSAT (not left-orderable) solve=11.5s
+  core 702
+  core 478
+  core 462
+  core 451
+  core 451
+minimal certificate triples: 412 -> certificate-a6-kernel-L6.txt
+EXIT 0

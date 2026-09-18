@@ -1,0 +1,198 @@
+{
+ "small_k2_R3": {
+  "params": {
+   "k": 2,
+   "R": 3,
+   "L": 13,
+   "n": 13,
+   "m": 6,
+   "shifts": [
+    1,
+    3,
+    4
+   ]
+  },
+  "basic": {
+   "full_rectangle": true,
+   "L_rows_injective": true,
+   "R_cols_injective": true,
+   "value_xor_is_o": true,
+   "pointer_sets_equal_and_disjoint_from_values": true
+  },
+  "Q_classes": [
+   true,
+   0
+  ],
+  "Q_bruteforce": {
+   "violations": 0,
+   "instances_checked": 65826
+  },
+  "coherent_3shift_triples": 0,
+  "delta_sizes": [
+   14
+  ],
+  "holonomy": {
+   "tau_equals_R_W1_W2": true,
+   "word_length": 13,
+   "word_fixes_s1": true,
+   "pointers_in_domain": 13,
+   "pointers_moved": 13,
+   "pointer_displacement": 6,
+   "gcd_L_3m_plus_2": 1
+  },
+  "negative_control_one_shift": {
+   "basic": {
+    "full_rectangle": true,
+    "L_rows_injective": true,
+    "R_cols_injective": true,
+    "value_xor_is_o": true,
+    "pointer_sets_equal_and_disjoint_from_values": true
+   },
+   "Q_violations": 4836,
+   "instances_checked": 80802
+  }
+ },
+ "k4": {
+  "params": {
+   "k": 4,
+   "t": 2,
+   "R": 12,
+   "L": 61,
+   "n": 157,
+   "m": 78
+  },
+  "shifts": [
+   1,
+   3,
+   4,
+   5,
+   7,
+   9,
+   11,
+   12,
+   13,
+   15,
+   16,
+   17
+  ],
+  "basic": {
+   "full_rectangle": true,
+   "L_rows_injective": true,
+   "R_cols_injective": true,
+   "value_xor_is_o": true,
+   "pointer_sets_equal_and_disjoint_from_values": true
+  },
+  "Q_classes": {
+   "holds": true,
+   "bad_memberships": 0,
+   "distinct_nonempty_classes": 180
+  },
+  "coherent_3shift_triples": 0,
+  "delta_sizes": [
+   62
+  ],
+  "holonomy": {
+   "tau_equals_R_W1_W2": true,
+   "word_length": 157,
+   "word_fixes_s1": true,
+   "pointers_in_domain": 61,
+   "pointers_moved": 61,
+   "pointer_displacement": 8,
+   "gcd_L_3m_plus_2": 1
+  },
+  "phi": {
+   "H_psi_bits": 3,
+   "residual_bound_bits": 0.12670540809631348,
+   "Phi_upper": 0.7816763520240784
+  },
+  "monte_carlo": {
+   "trials": 3000,
+   "decoding_errors": 0,
+   "j_mismatches": 0,
+   "mean_uncovered": 0.12566666666666668,
+   "expected_uncovered": 0.12670540809631348
+  }
+ },
+ "k8": {
+  "params": {
+   "k": 8,
+   "t": 3,
+   "R": 34,
+   "L": 157,
+   "n": 1193,
+   "m": 596
+  },
+  "shifts": [
+   1,
+   3,
+   4,
+   5,
+   7,
+   9,
+   11,
+   12,
+   13,
+   15,
+   16,
+   17,
+   19,
+   20,
+   21,
+   23,
+   25,
+   27,
+   28,
+   29,
+   31,
+   33,
+   35,
+   36,
+   37,
+   39,
+   41,
+   43,
+   44,
+   45,
+   47,
+   48,
+   49,
+   51
+  ],
+  "basic": {
+   "full_rectangle": true,
+   "L_rows_injective": true,
+   "R_cols_injective": true,
+   "value_xor_is_o": true,
+   "pointer_sets_equal_and_disjoint_from_values": true
+  },
+  "Q_classes": {
+   "holds": true,
+   "bad_memberships": 0,
+   "distinct_nonempty_classes": 1258
+  },
+  "delta_sizes": [
+   158
+  ],
+  "holonomy": {
+   "tau_equals_R_W1_W2": true,
+   "word_length": 1193,
+   "word_fixes_s1": true,
+   "pointers_in_domain": 157,
+   "pointers_moved": 157,
+   "pointer_displacement": 94,
+   "gcd_L_3m_plus_2": 1
+  },
+  "phi": {
+   "H_psi_bits": 4,
+   "residual_bound_bits": 0.0853815018558092,
+   "Phi_upper": 0.5106726877319762
+  },
+  "monte_carlo": {
+   "trials": 300,
+   "decoding_errors": 0,
+   "j_mismatches": 0,
+   "mean_uncovered": 0.1,
+   "expected_uncovered": 0.0853815018558092
+  }
+ }
+}

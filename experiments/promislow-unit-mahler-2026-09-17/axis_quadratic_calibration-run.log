@@ -1,0 +1,8 @@
+psi relators trivial: True True
+psi(x)==y: True  psi(y)==z: True  psi(z) in {x, X}: True (=X)
+psi onto (a = psi(b) psi(a)^-1): True
+v_x = alpha x alpha^-1: quadratic == 0: True | trivial: False | |supp| = 112 | |supp mod 2| = 79 | |coeff| values [1, 2, 3, 4, 5, 6, 7]
+v_y = alpha y alpha^-1: quadratic == 0: True | trivial: False | |supp| = 92 | |supp mod 2| = 51 | |coeff| values [1, 2, 3, 4, 6, 7]
+v_z = alpha z alpha^-1: quadratic == 0: True | trivial: False | |supp| = 106 | |supp mod 2| = 85 | |coeff| values [1, 2, 3, 4, 5]
+alpha: max log|lam| = 2.0818, m ~ 1.4243;  v_x: max log|lam| = 7.62e-13, m ~ 9.98e-14
+DONE

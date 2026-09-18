@@ -1,0 +1,57 @@
+{"J": [0, 1], "first_core": {"D": 1, "L": 3, "core": 2}, "searched_to_D": 1}
+{"J": [0, 2], "first_core": {"D": 1, "L": 4, "core": 2}, "searched_to_D": 1}
+{"J": [1, 2], "first_core": {"D": 1, "L": 4, "core": 2}, "searched_to_D": 1}
+{"J": [0, 1, 2], "first_core": {"D": 2, "L": 5, "core": 8}, "searched_to_D": 2}
+{"J": [0, 3], "first_core": {"D": 1, "L": 5, "core": 2}, "searched_to_D": 1}
+{"J": [1, 3], "first_core": {"D": 1, "L": 5, "core": 2}, "searched_to_D": 1}
+{"J": [2, 3], "first_core": {"D": 1, "L": 5, "core": 2}, "searched_to_D": 1}
+{"J": [0, 1, 3], "first_core": {"D": 2, "L": 6, "core": 8}, "searched_to_D": 2}
+{"J": [0, 2, 3], "first_core": {"D": 2, "L": 6, "core": 8}, "searched_to_D": 2}
+{"J": [1, 2, 3], "first_core": {"D": 2, "L": 6, "core": 8}, "searched_to_D": 2}
+{"J": [0, 1, 2, 3], "first_core": {"D": 3, "L": 7, "core": 40}, "searched_to_D": 3}
+{"J": [0, 4], "first_core": {"D": 1, "L": 6, "core": 2}, "searched_to_D": 1}
+{"J": [1, 4], "first_core": {"D": 1, "L": 6, "core": 2}, "searched_to_D": 1}
+{"J": [2, 4], "first_core": {"D": 1, "L": 6, "core": 2}, "searched_to_D": 1}
+{"J": [3, 4], "first_core": {"D": 1, "L": 6, "core": 2}, "searched_to_D": 1}
+{"J": [0, 1, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [0, 2, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [0, 3, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [1, 2, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [1, 3, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [2, 3, 4], "first_core": {"D": 2, "L": 7, "core": 8}, "searched_to_D": 2}
+{"J": [0, 1, 2, 4], "first_core": {"D": 3, "L": 8, "core": 40}, "searched_to_D": 3}
+{"J": [0, 1, 3, 4], "first_core": {"D": 3, "L": 8, "core": 52}, "searched_to_D": 3}
+{"J": [0, 2, 3, 4], "first_core": {"D": 3, "L": 8, "core": 40}, "searched_to_D": 3}
+{"J": [1, 2, 3, 4], "first_core": {"D": 3, "L": 8, "core": 40}, "searched_to_D": 3}
+{"J": [0, 1, 2, 3, 4], "first_core": {"D": 4, "L": 9, "core": 221}, "searched_to_D": 4}
+{"J": [0, 5], "first_core": {"D": 1, "L": 7, "core": 2}, "searched_to_D": 1}
+{"J": [1, 5], "first_core": {"D": 1, "L": 7, "core": 2}, "searched_to_D": 1}
+{"J": [2, 5], "first_core": {"D": 1, "L": 7, "core": 2}, "searched_to_D": 1}
+{"J": [3, 5], "first_core": {"D": 1, "L": 7, "core": 2}, "searched_to_D": 1}
+{"J": [4, 5], "first_core": {"D": 1, "L": 7, "core": 2}, "searched_to_D": 1}
+{"J": [0, 1, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [0, 2, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [0, 3, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [0, 4, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [1, 2, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [1, 3, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [1, 4, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [2, 3, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [2, 4, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [3, 4, 5], "first_core": {"D": 2, "L": 8, "core": 8}, "searched_to_D": 2}
+{"J": [0, 1, 2, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [0, 1, 3, 5], "first_core": {"D": 3, "L": 9, "core": 52}, "searched_to_D": 3}
+{"J": [0, 1, 4, 5], "first_core": {"D": 3, "L": 9, "core": 36}, "searched_to_D": 3}
+{"J": [0, 2, 3, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [0, 2, 4, 5], "first_core": {"D": 3, "L": 9, "core": 52}, "searched_to_D": 3}
+{"J": [0, 3, 4, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [1, 2, 3, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [1, 2, 4, 5], "first_core": {"D": 3, "L": 9, "core": 52}, "searched_to_D": 3}
+{"J": [1, 3, 4, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [2, 3, 4, 5], "first_core": {"D": 3, "L": 9, "core": 40}, "searched_to_D": 3}
+{"J": [0, 1, 2, 3, 5], "first_core": {"D": 4, "L": 10, "core": 221}, "searched_to_D": 4}
+{"J": [0, 1, 2, 4, 5], "first_core": {"D": 4, "L": 10, "core": 320}, "searched_to_D": 4}
+{"J": [0, 1, 3, 4, 5], "first_core": {"D": 4, "L": 10, "core": 320}, "searched_to_D": 4}
+{"J": [0, 2, 3, 4, 5], "first_core": {"D": 4, "L": 10, "core": 221}, "searched_to_D": 4}
+{"J": [1, 2, 3, 4, 5], "first_core": {"D": 4, "L": 10, "core": 221}, "searched_to_D": 4}
+{"J": [0, 1, 2, 3, 4, 5], "first_core": {"D": 5, "L": 11, "core": 1288}, "searched_to_D": 5}

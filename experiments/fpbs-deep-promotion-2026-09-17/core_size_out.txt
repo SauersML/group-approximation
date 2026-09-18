@@ -1,0 +1,8 @@
+j=0 |phi^j(b)|=1 core_vertices=1 edges=2 rank=2
+j=1 |phi^j(b)|=4 core_vertices=3 edges=4 rank=2
+j=2 |phi^j(b)|=11 core_vertices=8 edges=9 rank=2
+j=3 |phi^j(b)|=28 core_vertices=20 edges=21 rank=2
+j=4 |phi^j(b)|=69 core_vertices=49 edges=50 rank=2
+j=5 |phi^j(b)|=168 core_vertices=119 edges=120 rank=2
+j=6 |phi^j(b)|=407 core_vertices=288 edges=289 rank=2
+j=7 |phi^j(b)|=984 core_vertices=696 edges=697 rank=2

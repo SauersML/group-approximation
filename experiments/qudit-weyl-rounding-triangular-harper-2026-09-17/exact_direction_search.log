@@ -1,0 +1,6 @@
+/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w3-078/experiments/qudit-weyl-rounding-triangular-harper-2026-09-17/exact_direction_search.py:20: RuntimeWarning: invalid value encountered in scalar divide
+  return (lam - s)/(W - lam)
+d=13: triangle c=4.1193; best over 400 random weightings of [(0, 1), (1, 0), (1, 1), (1, -1), (1, 2), (2, 1)]: c=4.1193 weights=[1, 1, 1, 0, 0, 0]
+/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w3-078/experiments/qudit-weyl-rounding-triangular-harper-2026-09-17/exact_direction_search.py:20: RuntimeWarning: invalid value encountered in scalar divide
+  return (lam - s)/(W - lam)
+d=31: triangle c=10.7307; best over 300 random weightings of [(0, 1), (1, 0), (1, 1), (1, -1), (1, 2), (2, 1)]: c=10.7307 weights=[1, 1, 1, 0, 0, 0]

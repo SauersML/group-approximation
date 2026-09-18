@@ -49,3 +49,29 @@ question. Together with `amenable-finite-cd-domain-groups-are-virtually-solvable
   - No approach specific to finite cohomological dimension was found. Section 7 of the artifact
     records a filter on candidates (micro-supported actions), but it bears on the root, not on this
     claim.
+- **2026-09-17 (lane `sw-112`, inverter): integral traces turn the zero-divisor half into a
+  finiteness statement.**
+  - `amenable-principal-fp-group-algebras-are-domains` (established): for torsion-free amenable
+    `G`, `Q[G]` is a domain iff every principal left ideal `Q[G]a` is of type `FP`; with finite cd,
+    `FP_∞` suffices, so left coherence of `Q[G]` suffices. Shape of a
+    counterexample: a zero divisor `a` has `ann_l(a)` of `L²`-dimension `1 - dim NG a ∈ (0,1)`,
+    and Baum--Connes (Higson--Kasparov) forbids such a module to have a finite resolution by
+    finitely generated projectives. So `Q[G]a` is not of type `FP_∞`.
+  - In dimension at most 2 this is an equivalence:
+    `amenable-cd-two-solvable-iff-coherent-rational-group-algebra` (established) shows `G` solvable
+    iff `Q[G]` left coherent iff `Z[G]` a domain. The open ring form is
+    `amenable-cd-two-rational-group-algebras-are-coherent`.
+  - Where it stops. In dimension `n >= 3` the criterion (principal ideals of type `FP_∞`) is
+    equivalent to this claim, not strictly weaker; full coherence of `Q[G]` is sufficient but
+    probably false for some solvable groups of finite cd, since it forces all finitely generated
+    subgroups to be `FP_2` over `Q`.
+- **2026-09-17 (lane `sw-112`, relaunch): the dimension-2 case needs only one homology group.**
+  - `amenable-fp-iff-affiliated-top-homology-vanishes` (established) replaces the domain hypothesis
+    in Degrijse's Theorem A with exact vanishing of `L²`-homology over the affiliated algebra
+    `U(G)`. For amenable `G` of cd `n` and type `FP_{n-1}`, `G` is of type `FP` iff
+    `H_{n-1}(G; U(G)) = 0`. The other degrees vanish automatically, by regularity of `U(G)` and
+    dimension-flatness.
+  - In dimension 2 this claim, for finitely generated `G`, is equivalent to `H_1(G; U(G)) = 0`,
+    equivalently to type `FP_2`. Equivalently again: finitely many relators have a Fox Jacobian of
+    von Neumann rank `d - 1`. So a counterexample is an amenable group of cd 2 where the increasing
+    Fox ranks never attain their supremum `d - 1`.

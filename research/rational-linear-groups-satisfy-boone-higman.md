@@ -21,7 +21,11 @@ Boone--Higman conjecture.
 The paper deduces this from its Theorem 1.1
 (`fp-self-similar-groups-embed-in-fp-simple-groups`) through self-similar
 affine groups `R^n x| GL_n(R)` over suitable rings (its Example 4.7). It settles
-item (5) of Problem 5.3 in the Belk--Bleak--Matucci--Zaremsky survey.
+the finitely generated subgroups of `GL_n(Q)`. Item (5) of Problem 5.3 in the
+Belk--Bleak--Matucci--Zaremsky survey asks for `GL_n(Q)` itself, which is not
+finitely generated. Version v3 of the survey cites this paper and still says "it
+remains an open question whether GL_n(Q) embeds into a finitely presented simple
+group" (p. 7). That question is `gl-n-q-embeds-in-fp-simple-group`.
 
 The wording is quoted from the source text recorded in the linked artifact. It is
 not reproved here.

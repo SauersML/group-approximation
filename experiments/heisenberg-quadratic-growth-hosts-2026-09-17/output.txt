@@ -1,0 +1,3 @@
+exact |c^N| (N, length): [(1, 4), (4, 8), (9, 12), (16, 16)] ; checked N < 17 ; max |c^N|/sqrt(N) = 4.619
+X_L growth, L = 4096 (r, |B(r)|, |B|/r^2, |B|/r^3): [(8, 381, 6.0, 0.74), (16, 2981, 11.6, 0.73), (32, 23709, 23.2, 0.72), (64, 189413, 46.2, 0.72)]
+nontrivial words of length <= 6 all act nontrivially on some X_L, L < 30: 5196

@@ -1,0 +1,24 @@
+# Thickenable Z-pairs with a non-separable relator (counterexamples to unconditional Theorem A')
+# thzsearch.c check mode (Neuwirth test thick2.c), primitive test off:
+$ printf 'XY XXXXYYYZZZ\nX XXXXYXZXzYZ\n' | thzsearch check 3 noprim
+GOAL THICK XY XXXXYYYZZZ g=0
+GOAL THICK X XXXXYXZXzYZ g=0
+CHECKED 2 pairs; goals PRIM 0 THICK 2 PROJ 0; thick calls 2 undecided 0
+# independent brute force over all rotation systems:
+$ python3 neuwirth_bruteforce.py XY XXXXYYYZZZ
+['XY', 'XXXXYYYZZZ'] True
+$ python3 neuwirth_bruteforce.py X XXXXYXZXzYZ
+['X', 'XXXXYXZXzYZ'] True
+# Whitehead minimal sets (a separable word has a minimal representative missing a generator):
+$ python3 whitehead_minimal_set.py XXXXYYYZZZ
+minimal length 10 XXXXYYYZZZ
+minimal set size 9 missing a generator: 0 []
+$ python3 whitehead_minimal_set.py XXXXYXZXzYZ
+minimal length 7 YZXzYxZ
+minimal set size 160 missing a generator: 0 []
+$ python3 whitehead_minimal_set.py xxxYYYY
+minimal length 7 xxxYYYY
+minimal set size 1 missing a generator: 1 ['XXXyyyy']
+$ python3 whitehead_minimal_set.py xyxYXY
+minimal length 5 xyxYY
+minimal set size 4 missing a generator: 4 ['XXYYY', 'XYYXy', 'XYXyy', 'XXyyy']

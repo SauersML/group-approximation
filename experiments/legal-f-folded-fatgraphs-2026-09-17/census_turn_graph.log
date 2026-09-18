@@ -1,0 +1,3 @@
+automorphisms in census: 6420
+1044 killed: min gates <= 1 example: ({'a': 'bbc', 'b': 'bbcb', 'c': 'bbba'}, 'bbbABC', None)
+5376 survives example: ({'a': 'bbc', 'b': 'bbcb', 'c': 'cbba'}, 'bbcABC', ('c', 'B', 'b', 'C'))

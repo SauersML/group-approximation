@@ -1,0 +1,14 @@
+# python3 paperfold_f2.py 10
+s=0: collision levels l (l+1 shown) = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512, 640, 768, 1024]
+s=0: partial S_s up to level 1023 = 1.307617
+s=1: collision levels l (l+1 shown) = [2, 6, 10, 14, 18, 22, 30, 38, 46, 62, 78, 94, 126, 158, 190, 254, 318, 382, 510, 638, 766, 1022]
+s=1: partial S_s up to level 1022 = 1.307617
+s=2: collision levels l (l+1 shown) = [4, 8, 12, 16, 20, 28, 36, 44, 60, 76, 92, 124, 156, 188, 252, 316, 380, 508, 636, 764, 1020]
+s=2: partial S_s up to level 1021 = 1.057617
+s=3: collision levels l (l+1 shown) = [2, 6, 10, 14, 18, 26, 34, 42, 58, 74, 90, 122, 154, 186, 250, 314, 378, 506, 634, 762, 1018]
+s=3: partial S_s up to level 1020 = 1.057617
+# python3 paperfold_f2.py 12 | grep partial
+s=0: partial S_s up to level 4095 = 1.311279
+s=1: partial S_s up to level 4094 = 1.311279
+s=2: partial S_s up to level 4093 = 1.061279
+s=3: partial S_s up to level 4092 = 1.061279

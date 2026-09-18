@@ -3,6 +3,8 @@ rg: 2
 id: some-type-fm-level-has-no-complete-word-problem
 kind: claim
 title: "For some finite m >= 3, no group of type F_m has an r.e.-complete word problem"
+refuted_by:
+  - some-type-f-group-has-re-complete-word-problem
 ---
 
 There is a finite `m >= 3` such that the word problem of every group of type
@@ -28,3 +30,12 @@ the sharp form of the word-problem obstruction strategy.
 - **An `F_∞` analogue** ("no group of type `F_∞` has an r.e.-complete word
   problem") would give only `some-finitely-presented-group-embeds-in-no-f-infinity-group`.
   It is not recorded as a node.
+- **Refuted (sw-117, 2026-09-17).** The Aanderaa--Cohen--Boone group `G_M` of the
+  machine-checked Novikov--Boone chain is of type `F`
+  (`boone-final-group-is-of-type-f`: the associated subgroup of the last stable
+  letter is free on `t, r_1, ..., r_n`, then Scott--Wall), and the chain's machine
+  runs the universal partial recursive function on a fixed input, whose halting
+  set is m-complete by s-m-n. So `K <=_m WP(G_M)` and `G_M` has r.e.-complete
+  word problem: `some-type-f-group-has-re-complete-word-problem`. The claim fails
+  at every level, and the premise of `no-type-fn-plus-1-host-via-word-problem-degree`
+  is false.

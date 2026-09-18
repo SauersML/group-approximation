@@ -1,0 +1,13 @@
+k=1 s=1: gadgets found = 0 (lemma predicts 0)
+k=1 s=2: gadgets found = 0 (lemma predicts 0)
+k=1 s=3: gadgets found = 0 (lemma predicts 0)
+k=1 s=4: gadgets found = 0 (lemma predicts 0)
+k=2 s=1: gadgets found = 0 (lemma predicts 0)
+k=2 s=2: gadgets found = 0 (lemma predicts 0)
+k=2 s=3: gadgets found = 0 (lemma predicts 0)
+k=2 s=4: gadgets found = 0 (lemma predicts 0)
+k=3 s=1: gadgets found = 0 (lemma predicts 0)
+k=3 s=2: gadgets found = 0 (lemma predicts 0)
+k=3 s=3: gadgets found = 0 (lemma predicts 0)
+k=3 s=4: gadgets found = 0 (lemma predicts 0)
+no scalar gadget, as the lemma predicts

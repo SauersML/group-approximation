@@ -1,0 +1,18 @@
+type1 1 ['r1']
+type1 2 ['r1']
+type1 3 ['r1']
+type1 4 ['r1']
+type1 5 ['r1']
+type2 2 ['r2']
+type2 3 ['r2']
+type2 4 ['r2']
+type2 5 ['r2']
+type2 6 ['r2']
+F2 exponent sums 0 0
+H1 of window groups N_[0,j]:
+2 Matrix([[1, 0, 0], [0, 4, 0]]) (2, 3)
+3 Matrix([[1, 1, 4, 4]]) (4, 4)
+4 Matrix([[1, 1, 1, 4, 4]]) (6, 5)
+5 Matrix([[1, 1, 1, 1, 4, 4]]) (8, 6)
+6 Matrix([[1, 1, 1, 1, 1, 4, 4]]) (10, 7)
+7 Matrix([[1, 1, 1, 1, 1, 1, 4, 4]]) (12, 8)

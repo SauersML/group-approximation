@@ -5,11 +5,14 @@ kind: claim
 title: The normal-generator envelope can be chosen so that the simple core has finitely many double cosets
 distinct_from:
   finite-infranormal-subgroup-is-normal: that concerns finite subgroups and their normalizers; this concerns finiteness of a DOUBLE COSET SPACE of an infinite, non-normal subgroup, where neither the subgroup nor its index is finite.
-  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. Neither implies the other by any argument found in this audit, and they feed different routes into the same target.
+  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. The two are not the same statement. Correction 2026-09-17: this one implies that one for the same envelope, by bi-index-core-makes-normals-core-class-unions and by normally-generating-core-bi-index-bounds-normal-height. No converse is known.
+  kazhdan-boone-higman-conjecture: that asks for finitely presented simple Kazhdan hosts; this asks for a finite bi-index core in a Kazhdan envelope. By ck-finite-bi-index-hole-is-kazhdan-boone-higman they are equivalent when the core is free, and this one implies that one in every reading.
+  ring-elementary-bh-hosts-are-kazhdan: that is an established permanence lemma making ring-host Boone--Higman hosts Kazhdan; this is the open envelope statement, whose free-core reading those hosts would supply.
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
+  - research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md
 ---
 
 The embedding of `chatterji-kassabov-normal-generator-embedding` can be
@@ -86,3 +89,84 @@ tools.
    be the image of the covering kernel. If that kernel were solvable or
    locally finite, no proper quotient could repair the canonical coset
    action. These kernel properties are not established for the construction.
+7. **Inverter biography: what a finite bi-index envelope is forced to be.**
+   *Result: the hole collapses onto Kazhdan Boone--Higman.* By
+   `bi-index-core-makes-normals-core-class-unions`, if
+   `n, n' in N` lie in one double coset `SgS` with `N` proper normal, then
+   `n' = a n b` forces `ab in N ∩ S = 1`. So `N` is a union of at most
+   `r = |S\Gamma/S|` core classes and is finitely normally generated.
+   Hence `Gamma` has Max-n, every proper quotient is finitely presented and
+   Kazhdan with bi-index at most `r`, and `Gamma/M` is a finitely presented
+   simple Kazhdan group containing `G`. By
+   `ck-finite-bi-index-hole-is-kazhdan-boone-higman` the free-core reading
+   of this hole is **equivalent** to `kazhdan-boone-higman-conjecture`. The
+   reading without (T) is Boone--Higman itself. Every reading implies the
+   conclusion of `ck-envelope-has-a-finitely-normally-generated-maximal-kernel`
+   for the envelope it produces. The twisted Brin--Thompson step is idle.
+   *Classes killed*, at clause 2 of the lemma:
+   - envelopes with an infinite central subgroup, for example a marked cover
+     with an infinite central covering kernel;
+   - covers of `EL_n(U)` for a ring `U` without ACC on proper two-sided
+     ideals;
+   - fp envelopes with a non-finitely-presented proper quotient.
+   In Attempt 6 the covering kernel of a finite bi-index cover must be
+   finitely normally generated, so the elementary image would be finitely
+   presented. Open side question: ACC for the two-sided ideals of the
+   universal sandwich ring. See
+   `research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md`.
+8. **Price the Kazhdan surcharge along every recorded host route
+   (2026-09-17, swarm-0917 w5).** *Result: along the linear routes the
+   surcharge is zero. The free-core hole costs exactly one Boone--Higman ring
+   premise.* All three ring-host routes to Boone--Higman produce hosts that
+   are quotients of, or isomorphic to, `EL_n(R)` with `n >= 3` and `R`
+   finitely generated:
+   - `(B ⊗ L)^x ≅ E_3(B ⊗ L)`;
+   - `E_n(B ⊗ L)`;
+   - `PEL_4(L)`.
+   Ershov--Jaikin-Zapirain and quotient permanence of (T) make these hosts
+   Kazhdan (established: `ring-elementary-bh-hosts-are-kazhdan`). This gives
+   the new routes `kazhdan-boone-higman-via-central-simple-leavitt-tensor-host`,
+   `kazhdan-boone-higman-via-elementary-leavitt-hosts` and
+   `kazhdan-boone-higman-via-projective-ring-host`. Each has the same open
+   premise as its Boone--Higman counterpart. Composed with
+   `ck-finite-bi-index-hole-via-kazhdan-boone-higman`, each is a route to the
+   free-core reading of this hole.
+   *Where the surcharge is real:* only on Thompson-like hosts (twisted
+   Brin--Thompson, Rover--Nekrashevych, shell or full groups), which are
+   expected to be a-T-menable. So no dynamical host route to Boone--Higman
+   can be upgraded to this hole without new (T) input.
+   *Contrapositive:* a refutation of this hole in its free-core reading
+   refutes all three ring premises at once:
+   - `decidable-group-algebras-have-fp-central-simple-hosts`;
+   - `simple-inputs-have-fp-elementary-leavitt-tensor-hosts`;
+   - `decidable-group-ring-has-fp-projective-simple-host`.
+   *Untouched:* the fixed-core reading, where the core is the
+   Boone--Higman--Thompson envelope. A ring host `T` gives `S = Gamma = T`,
+   not the prescribed core. The hole stays OPEN. See
+   `research/artifacts/ring-hosts-are-kazhdan-2026-09-17.md`.
+9. **Any universal-sandwich envelope, any marking, any core.** *Killed as a
+   class* by [[sandwich-ring-envelopes-have-infinite-core-bi-index]] (c-ckbi,
+   2026-09-17), adopting bus spark 0e1cd89b. The invariant is the normal
+   height. By [[normally-generating-core-bi-index-bounds-normal-height]], if
+   `N ∩ S = 1` for all proper normal `N` and `|S \ Gamma / S| = r`, then
+   `N |-> NS` is strictly monotone along chains, by the modular law, into the
+   intermediate subgroups. So every chain of proper normal subgroups has at
+   most `r` members. Every envelope mapping onto `EL_n(R)` with `R` of infinite
+   ideal length therefore has infinite core bi-index. `U` qualifies because
+   `U/lU != 0` for every prime `l`, which gives the congruence chain
+   `C(l_1 ... l_k U)`. This covers every marked cover from
+   [[ck-steinberg-marked-cover]] and `EL_4(U)` itself, whatever core is used.
+   It also corrects Attempt 2: finite bi-index does imply finite normal
+   height, finitely normally generated proper normals, a finitely presented
+   simple Kazhdan quotient containing `S`, and finite center. Survivors must
+   avoid all ring quotients of infinite ideal length. Not covered are
+   quotients where the covering kernel `K` has `KN = Gamma`, and the original
+   CK subring `L`.
+10. **Sandwich rings over other coefficient rings.** *Killed as well* (bh-higman-classic, 2026-09-18).
+    Attempt 9's ring input, `U/lU != 0`, fails for `Q[T]` coefficients, where every prime is a unit.
+    [[ck-sandwich-ring-has-infinite-ascending-ideal-chains]] gives a coefficient-free replacement: the
+    sealed monomials `w_j = p q p^j q` generate monomial ideals `I_A`, with `w_j in I_A` iff `j in A`, so
+    `U_k` has an infinite strictly ascending chain of proper two-sided ideals for every nonzero
+    commutative `k`. Item (B) of [[sandwich-ring-envelopes-have-infinite-core-bi-index]] then kills every
+    envelope mapping onto `EL_n(U_k)`, `n >= 2`, for every `k`. The original CK subring `L` and
+    quotients with `KN = Gamma` remain uncovered, as in Attempt 9.

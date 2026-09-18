@@ -302,3 +302,52 @@ vocabulary rather than its content.
   groups when `p < 1 - 1/r`. The open step is to control, for Kazhdan groups,
   condensation with coins constant on hyperfinite subrelations. By part (C)
   that modified scheme never leaves `W_b`.
+
+* **Relocate the finitely generated case to one point of shift space
+  (heretic lane, symbolic dynamics, 2026-09-17).**
+  - `fpbs-finite-alphabet-models-suffice-for-fixed-price` shows that testing
+    free ergodic finite-alphabet shift measures is enough.
+  - `fpbs-fixed-price-iff-cost-lsc-at-bernoulli` uses Seward's approximate
+    Bernoulli models to show that fixed price for a finitely generated group
+    is equivalent to lower semicontinuity of cost at `lambda^G` along free
+    ergodic shift measures. Counterexamples then take a race normal form
+    against `fpbs-clopen-certificate-cost-transfer`.
+  - `fpbs-window-local-cost-lower-bounds-fail-at-bernoulli` kills every
+    window-local lower bound: measures that are iid and free on arbitrarily
+    large balls, ergodic, aperiodic, with cost 1, converge to `lambda^G`. For
+    `F_r` the jump is at least `r-1`.
+  - The open statement is `fpbs-cost-lsc-at-bernoulli-shift-measures`, which
+    is a restatement and not a weakening. Its route is
+    `fpbs-bernoulli-lower-bound-from-cost-lsc`.
+  - The finite-alphabet reduction, the semicontinuity equivalence, the
+    certificate transfer and the window-local kill are OPEN, with their proofs
+    kept as attempt artifacts: the referee vote of lens 1 was lost, while lenses 2 and 3
+    returned *survives* (2026-09-17).
+
+  **Where it stops:** freeness of the approximating models has to enter
+  globally, and no invariant known here detects it at `lambda^G`.
+
+* **Heretic audit: deny "cheap graphings are local structures on the Cayley host", and run the only nonlocal
+  criterion (Bevilacqua--Bowen, arXiv:2510.05459, Theorem 8.1) on hyperbolic groups.**
+  - **Shared unstated assumptions.** The hot families (finite models, entropy, host geometry, cohomology, quantifier
+    shift) share three assumptions that nobody states:
+    - (U1) cheap graphings come from bounded-range local structures on the Cayley host;
+    - (U2) comparison happens inside the pmp actions of one group, through the independent joining with Bernoulli;
+    - (U3) lower bounds are linear (`beta_1`-type) and constructive.
+  - **Denying U1 and U2.** Denying U1 and U2 leads to infinite-measure actions and their Poisson suspensions. There,
+    Bevilacqua--Bowen prove max-cost at most 1 from any amenable, partially doubly recurrent imp action with
+    non-atomic infinite components (the group must be exact).
+  - **What was proved.** `fpbs-hyperbolic-bb-criterion-obstruction` (ESTABLISHED, written proof) shows that for
+    every nonelementary hyperbolic group such an action has three properties:
+    - it has no boundary-pair map;
+    - its Zimmer boundary map is a Dirac mass at a point `xi(x)`;
+    - its return sets go infinitely deep toward `xi(x)` and have infinitely many other radial directions.
+  - **What this kills.** Geodesic currents, horospheres, horofunction spaces, all their finite-measure extensions,
+    every action with a coarse equivariant height, and Maharam extensions of measure classes with coarsely
+    monotone Radon--Nikodym cocycles (Patterson--Sullivan type) are killed uniformly. **Failing step:** an equivariant finite
+    "midpoint" set in `G` makes the crossing part of the diagonal action dissipative.
+  - **Where it stops.** It is open whether a "deep spreading" amenable action exists for any Kazhdan hyperbolic
+    group. If none exists, the Bevilacqua--Bowen route is dead for all hyperbolic groups, which is the class where
+    fixed price is most in doubt.
+  - **Denying U3.** This gives nothing new: the only nonlinear lower bound available is still Gaboriau's
+    `beta_1^(2)`, and it is already action-independent.

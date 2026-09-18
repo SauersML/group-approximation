@@ -129,3 +129,39 @@ groups would refute it (`random-complex-cheeger-capped-by-triangle-count`).
     one fixed torsion-free Kazhdan hyperbolic group having a nonsofic hyperbolic
     quotient. Such a quotient can then be taken Kazhdan, finite-quotient-free,
     and injective on any prescribed ball.
+- **Move the certificate from groups to malnormal coset actions: reduction
+  established (2026-09-17).**
+  - By `malnormal-coset-action-soficity-from-hyperbolic-fillings`, let `G` be
+    hyperbolic and `H <= G` almost malnormal, quasiconvex and residually
+    finite. If `G ↷ G/H` is not a sofic action, some finite Dehn filling
+    `G/<<N>>` with `N ⊴ H` of finite index is a nonsofic hyperbolic group.
+  - The filling is injective on any ball, and the double `G *_H G` detects
+    coset membership after filling. So the flagship is equivalent to a
+    nonsofic almost malnormal quasiconvex coset action of a hyperbolic
+    group. The group `G` may be sofic or linear.
+  - This escapes the compression/commuting kill above: the object is an
+    action, not a group, and an almost malnormal stabilizer has no
+    compressing or commuting partner.
+  - Certificates must use a non-separable `H`, hence a host that is not
+    virtually special.
+  - First test: `Lambda ↷ Lambda/E(g)` for a cocompact `Sp(n,1)` lattice
+    `Lambda`. That is an amenable stabilizer in a Kazhdan linear host.
+- **Is there a nonsoficity certificate that survives in the hyperbolic class?
+  Yes, and it is complete (2026-09-17, lane sw-038).**
+  - `sofically-trivial-iff-positive-permutation-cheeger`: a finitely
+    presented group has no nontrivial sofic quotient iff its permutation
+    Cheeger constant `h(S|R)` is positive, iff it is strictly (or flexibly)
+    permutation stable with no finite quotients. The rate is linear.
+  - `hyperbolic-soficity-reduces-to-sofically-trivial-quotients`: make the
+    sofic radical of `G * T` surject onto an Olshanskii quotient. Then a
+    nonsofic hyperbolic group exists iff some nontrivial hyperbolic group is
+    sofically trivial, iff some hyperbolic presentation has `h > 0`, iff the
+    Kazhdan host `T` has sofically trivial hyperbolic quotients injective on
+    every ball.
+  - So the flagship is exactly the existence of one strictly stable,
+    finite-quotient-free hyperbolic group. The refutation side is the sofic
+    Kapovich--Wise statement: every nontrivial hyperbolic quotient of `T` has
+    a nontrivial sofic quotient, i.e. fixed-point-free almost-actions of
+    arbitrarily small defect.
+  - What remains open is the same statement in both directions. No attempt
+    here decides whether any hyperbolic presentation has `h > 0`.

@@ -1,0 +1,7 @@
+tp_q2.json T0 {'vertices': 42, 'all_B1_connected': True, 'degrees': [('1', 2), ('2', 2)], 'max_common_neighbours': 1}
+tp_q2.json T1 {'vertices': 42, 'all_B1_connected': True, 'degrees': [('1', 2), ('2', 2)], 'max_common_neighbours': 1}
+tp_q2.json T2 {'vertices': 42, 'all_B1_connected': True, 'degrees': [('1', 2), ('2', 2)], 'max_common_neighbours': 1}
+tp_q2.json T3 {'vertices': 42, 'all_B1_connected': True, 'degrees': [('1', 2), ('2', 2)], 'max_common_neighbours': 1}
+tp_q2.json T4 {'vertices': 42, 'all_B1_connected': True, 'degrees': [('1', 2), ('2', 2)], 'max_common_neighbours': 1}
+tp_q3.json T0 {'vertices': 156, 'all_B1_connected': True, 'degrees': [('1', 3), ('2', 3)], 'max_common_neighbours': 1}
+tp_q3.json T1 {'vertices': 156, 'all_B1_connected': True, 'degrees': [('1', 3), ('2', 3)], 'max_common_neighbours': 1}

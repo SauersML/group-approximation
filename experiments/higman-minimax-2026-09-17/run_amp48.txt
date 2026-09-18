@@ -1,0 +1,8 @@
+amplified witness def: 0.30982771869931197
+  amp beta=10: def=0.365368
+  amp beta=30: def=0.324134
+  amp beta=100: def=0.308296
+  amp beta=300: def=0.303686
+  amp beta=1000: def=0.302103
+  amp beta=3000: def=0.301638
+amp N=48: polished def=0.301445 ||P-1||=1.9944

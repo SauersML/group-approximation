@@ -1,0 +1,4 @@
+p=0.055 cap=5000 trials=200 frac_cap=0.065 mean=347.3
+p=0.06 cap=5000 trials=200 frac_cap=0.215 mean=1082.9
+p=0.0671 cap=5000 trials=200 frac_cap=0.420 mean=2102.9
+p=0.0711 cap=5000 trials=200 frac_cap=0.500 mean=2502.1

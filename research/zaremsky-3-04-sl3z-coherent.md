@@ -57,3 +57,15 @@ infinite-index) subgroup.
   fibration onto `Z`, or a virtually RFRS subgroup of cohomological dimension
   two with positive second L²-Betti number. See `sl3z-is-incoherent`.
 - 2026-09-13 (z3-04-sl3z-coherent): coherence side; see `sl3z-is-coherent`.
+- 2026-09-17 (sw-097, inverter): two obstructions to incoherence witnesses.
+  `sl3r-simply-connected-domain-subgroups-are-coherent` shows that a
+  subgroup acting properly on a simply connected open subset of the plane,
+  the dual plane, the flag manifold or `R^3 \ 0` is coherent. So convex or
+  Vinberg certificates of faithfulness cannot produce a witness.
+  `sl3z-racg-witnesses-are-antiflag-configurations` puts any faithful
+  right-angled Coxeter witness in anti-flag normal form and proves rules
+  R1–R5, which exclude grid, `Q_4` and Clebsch witnesses even over `R`.
+  Every induced square of a witness graph comes from a rigid shared-centre or
+  shared-axis pattern, and girth-5 witnesses have distinct centres and axes.
+  Bounded searches found no configuration with positive Euler characteristic
+  satisfying the rules.

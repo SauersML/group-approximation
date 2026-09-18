@@ -124,3 +124,40 @@ number, and `T` may be much larger than `N`.
    Deferred, and it is a different problem rather than a repair of this one:
    what remains is finite presentation of the acting group, which is where
    `boone-higman-via-bffhz-action-image` is already stuck.
+7. **Take `T` from a standard host class: residually finite or linear,
+   Thompson-type Cantor groups, interval `F`-groups, or groups with undistorted
+   elements.**  *Dies* for the whole class at clause 6, with clause 3 used for
+   the first member. Recorded as
+   `class-finite-normal-subgroups-are-invisible-to-standard-hosts`, which is
+   OPEN with an elementary route drafted (referee votes lost, pending referee). Its master principle is that every
+   `T`-invariant function on `N` takes finitely many values, and each host
+   class supplies an invariant that is unbounded on `N`:
+   - *Residually finite `T`* (every finitely generated linear group). The
+     residual depth `min{k : x not in N_k}`, where `N_k` is the intersection of
+     the subgroups of index `<= k`, is characteristic because `N` is finitely
+     generated. It forces `[N : R(N)] < infinity`, so `N` is finite, and
+     clause 5 then makes `T` finite.
+   - *`T` acting with (CP)*, for example containing standard `V` on Cantor
+     space: `nV`, and finitely presented full Cantor groups containing `V`.
+     If `N` acts nontrivially, the double-commutator trick puts
+     `[Rist(U), Rist(U)]` inside the image of `N`, and there the element order
+     takes every value `k >= 2`.
+   - *`T` containing standard `F` on `(0,1)`*. Same step; the number of
+     components of the open support is unbounded.
+   - *Undistorted elements*. The stable translation length is a homogeneous
+     class function, so it vanishes on `N`, and every element of `N` is torsion
+     or distorted in `T`.
+
+   None of these uses faithfulness, so passing to quotients or non-faithful
+   actions does not evade them. Finite generation of `N` is sharp for the first
+   member: in `C(C, F_2) x| V` the base has three ambient classes and is
+   residually finite.
+   The finite stages of Attempt 1 are non-elementary relatively hyperbolic.
+   Remark (not pinned verbatim): Osin's theorem on loxodromics then gives them
+   no infinite normal `N` with finitely many classes, so the relaxation to a
+   proper `N` does not rescue them either.
+   What survives is a single existence gate, carried as
+   `some-fp-group-has-centralizer-free-class-finite-normal-subgroup` (OPEN).
+   The data at any infinite input implies it, and so does
+   `some-infinite-fp-torsion-free-group-has-finitely-many-classes`, so a
+   refutation of the gate refutes both.

@@ -1,0 +1,14 @@
+R=2 k=1 q=0.3: P brute 0.4008849870 formula 0.4008849870; count brute 1.26862524 formula 1.26862524
+R=2 k=1 q=0.55: P brute 0.7957784540 formula 0.7957784540; count brute 0.86529978 formula 0.86529978
+R=2 k=1 q=0.8: P brute 0.9816657920 formula 0.9816657920; count brute 0.22932266 formula 0.22932266
+R=2 k=2 q=0.3: P brute 0.3923545770 formula 0.3923545770; count brute 1.53043030 formula 1.53043030
+R=2 k=2 q=0.55: P brute 0.8230872212 formula 0.8230872212; count brute 0.81653494 formula 0.81653494
+R=2 k=2 q=0.8: P brute 0.9875128320 formula 0.9875128320; count brute 0.16743816 formula 0.16743816
+R=3 k=1 q=0.3: P brute 0.3321184980 formula 0.3321184980; count brute 1.27059646 formula 1.27059646
+R=3 k=1 q=0.55: P brute 0.7384441669 formula 0.7384441669; count brute 1.15467840 formula 1.15467840
+R=3 k=1 q=0.8: P brute 0.9780556055 formula 0.9780556055; count brute 0.28811121 formula 0.28811121
+# This run was stopped by a 3000 s wall-clock timeout before its last case.
+# The last case, from an earlier identical run of the same script (the
+# unrestricted loop, stopped after this line):
+R=3 k=2 q=0.3: P brute 0.1816366774 formula 0.1816366774; count brute 2.57360633 formula 2.57360633
+# All 10 printed cases agree to every printed digit.

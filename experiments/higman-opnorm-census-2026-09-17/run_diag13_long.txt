@@ -1,0 +1,8 @@
+U_0 = primitive 13-th roots, L=12, ||U_0-1||=1.9854
+L=12 start rand0: max defect=0.3303 defects=[np.float64(0.3296), np.float64(0.3298), np.float64(0.3303), np.float64(0.3294)] ||U_i-1||=[np.float64(1.985), np.float64(1.995), np.float64(1.986), np.float64(1.988)]
+L=12 start rand1: max defect=0.3553 defects=[np.float64(0.3545), np.float64(0.3543), np.float64(0.3553), np.float64(0.3553)] ||U_i-1||=[np.float64(1.985), np.float64(1.989), np.float64(1.993), np.float64(1.984)]
+L=12 start rand2: max defect=0.3292 defects=[np.float64(0.3285), np.float64(0.3292), np.float64(0.3283), np.float64(0.3283)] ||U_i-1||=[np.float64(1.985), np.float64(1.999), np.float64(1.979), np.float64(1.973)]
+L=12 start rand3: max defect=0.3215 defects=[np.float64(0.3215), np.float64(0.3204), np.float64(0.3201), np.float64(0.3201)] ||U_i-1||=[np.float64(1.985), np.float64(1.999), np.float64(1.994), np.float64(1.989)]
+L=12 start rand4: max defect=0.3098 defects=[np.float64(0.3098), np.float64(0.3092), np.float64(0.3098), np.float64(0.3094)] ||U_i-1||=[np.float64(1.985), np.float64(1.989), np.float64(1.997), np.float64(1.993)]
+L=12 start rand5: max defect=0.3105 defects=[np.float64(0.3105), np.float64(0.3099), np.float64(0.3102), np.float64(0.3102)] ||U_i-1||=[np.float64(1.985), np.float64(1.992), np.float64(1.997), np.float64(1.992)]
+BEST L=12 max defect 0.3098

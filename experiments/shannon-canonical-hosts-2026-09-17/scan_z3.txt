@@ -1,0 +1,7 @@
+z3 E={0,1,2} F={0,1} n=5 LP=0.833333
+  host=ONE-REL-TOR gens=2 rels=['e0^-1.f1^-1.e0^-1.f1^-1.e0^-1.f1^-1'] cert=(e0^-1.f1^-1)^3
+z3 E={0,1,2} F={0,2} n=5 LP=0.833333
+  host=ONE-REL-TOR gens=2 rels=['f2.e2.f2.e2.f2.e2'] cert=(f2.e2)^3
+z3 E={0,1,2} F={1,2} n=5 LP=0.833333
+  host=ONE-REL-TOR gens=2 rels=['e2^-1.f2^-1.e2^-1.f2^-1.e2^-1.f2^-1'] cert=(e2^-1.f2^-1)^3
+SUMMARY z3: 3 fakes; host classes {'ONE-REL-TOR': 3}

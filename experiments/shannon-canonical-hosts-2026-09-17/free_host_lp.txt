@@ -1,0 +1,6 @@
+FREEHOST z3: 6 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([0, 1], [0, 1], ['0', '0.3.0'], ["0'", '3'], 5)
+FREEHOST k2: 12 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([(0, 0), (0, 1)], [(0, 0), (1, 0)], ['0', '1'], ["0'", '3'], 6)
+FREEHOST z4: 34 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([0, 1], [1, 2, 3], ['0', '1'], ["1'.0.1'.0.1'", "1'.0.1'", "1'"], 7)
+FREEHOST z5: 188 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([0, 1], [2, 3, 4], ['0', '1'], ["1'.0.1'.0.1'", "1'.0.1'", "1'"], 7)
+FREEHOST s3: 177 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([(0, 1, 2), (0, 2, 1)], [(0, 1, 2), (1, 0, 2), (2, 0, 1)], ['0', '1'], ["0'", '3', '4'], 9)
+FREEHOST z6: 303 free-host patterns solved on the free host; fakes 0; min LP 1.000000 at ([0, 4, 5], [2, 3, 5], ['0', "2.0'.2", '2'], ["2'.0.2'", "2'.0.2'.0.2'", "2'.0.2'.0.2'.0.2'.0.2'"], 9)

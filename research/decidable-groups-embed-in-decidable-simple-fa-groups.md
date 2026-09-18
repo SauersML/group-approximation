@@ -9,9 +9,11 @@ distinct_from:
   lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts: that gives decidable simple Kazhdan, hence FA, hosts for LEF inputs only; this asks for FA, a weaker rigidity, but for every decidable input.
   countable-group-embeds-in-fg-simple-kazhdan-group: that gives simple Kazhdan envelopes with no control of the word problem; this asks for word problem control and only property FA.
   boone-higman-conjecture: that asks for a finitely presented simple envelope, which may split as an amalgam, as Burger--Mozes lattices do; this asks for a computably presented simple envelope that does not split, and neither statement is known to imply the other.
+  fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree: that gives every finitely generated input a simple Kazhdan host of the same word problem degree; this is its FA and decidable consequence, the form consumed by the permanence collapse and by boone-higman-from-simple-fa-inputs.
+artifacts: [research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md]
 ---
 
-**OPEN.**
+**ESTABLISHED** through `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof` (Attempt 6).
 
 Let `G` be a finitely generated group with solvable word problem. Then `G`
 embeds in a finitely generated simple group `S` with solvable word problem in
@@ -75,3 +77,13 @@ tree steps with infinitary steps could do real work in a permanence reduction.
 5. **From finitely presented simple envelopes.** Boone--Higman would give a
    finitely presented simple envelope. Those can split (Burger--Mozes
    lattices), so the conjecture does not obviously imply this claim. *Open.*
+6. **Kazhdan lamplighter host without LEF (2026-09-17).** *Settles the claim* through
+   `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`. The refutation of Attempt 2 is at its first
+   sentence: the lamplighter host `EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` does not need a LEF overgroup. LEF is used there only to prove that the host is
+   LEF; minimality, topological freeness, ring and Steinberg simplicity, Ershov--Jaikin-Zapirain (T) and the word
+   problem reduction need only `Δ` infinite and finitely generated. The derived-subgroup overgroup is still needed
+   (the first version replaced it by `γ ↦ diag(u_γ, u_γ^(-1), 1)`, which is not a homomorphism for non-abelian `G`;
+   referee ref-01), but the half-line overgroup `Δ = C(G)` has `WP(Δ) ≡_T WP(G)` with no LEF hypothesis, and
+   `γ ↦ diag(u_(δ_0(γ)),1,1)` embeds `G ≤ [Δ,Δ]`. See
+   `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` and
+   `research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md`.

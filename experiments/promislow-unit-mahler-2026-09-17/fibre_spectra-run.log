@@ -1,0 +1,9 @@
+zeta_8^1: |U_alpha U_beta - 1|max = 1.75e-14 | alpha: max log|lam| = 2.0818, m ~ 1.4104 | beta: max log|lam| = 2.0818, m ~ 1.4104
+zeta_8^3: |U_alpha U_beta - 1|max = 1.27e-14 | alpha: max log|lam| = 2.0818, m ~ 1.4104 | beta: max log|lam| = 2.0818, m ~ 1.4104
+zeta_8^5: |U_alpha U_beta - 1|max = 1.77e-14 | alpha: max log|lam| = 2.0818, m ~ 1.4104 | beta: max log|lam| = 2.0818, m ~ 1.4104
+zeta_8^7: |U_alpha U_beta - 1|max = 1.82e-14 | alpha: max log|lam| = 2.0818, m ~ 1.4104 | beta: max log|lam| = 2.0818, m ~ 1.4104
+trivial unit a: max log|lam| = 6.66e-16, m ~ 1.71e-16
+trivial unit b: max log|lam| = 6.66e-16, m ~ 1.98e-16
+trivial unit x: max log|lam| = 2.22e-16, m ~ 4.26e-17
+trivial unit xyZ: max log|lam| = 2.22e-16, m ~ 5.46e-17
+trivial unit a x z: max log|lam| = 6.66e-16, m ~ 2.35e-16

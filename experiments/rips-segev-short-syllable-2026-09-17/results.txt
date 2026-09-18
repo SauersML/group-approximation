@@ -1,0 +1,3 @@
+seed 1 {'groups': 41, 'betas': 882, 'betas_with_kernel': 660, 'vectors': 9229, 'lemma_fail': 0, 'walk_fail': 0, 'empty_V': 342}
+seed 2 {'groups': 41, 'betas': 925, 'betas_with_kernel': 722, 'vectors': 10603, 'lemma_fail': 0, 'walk_fail': 0, 'empty_V': 352}
+seed 3 {'groups': 42, 'betas': 964, 'betas_with_kernel': 725, 'vectors': 10561, 'lemma_fail': 0, 'walk_fail': 0, 'empty_V': 518}

@@ -105,6 +105,19 @@ group contains it.
   has exponent vector zero at every periodic point. But the pumping step of
   the Röver--Nekrashevych obstruction fails there, so `nV` stays open.
 
+- **Odometer-extended Brin--Thompson hosts (constrained 2026-09-18).**
+  `bg-in-isometric-brick-hosts-needs-unbounded-exponents` covers every
+  group of brick maps of `C^n` with isometric sections: `nV`, the finitely presented simple
+  `2V_τ` of `odometer-2v-is-fp-simple-and-contains-bs12`, and the affine `2V_{G_N}` hosts.
+  - In any such host, a nontrivial image of `a` has zero periodic exponents, unbounded
+    exponent sums (bounded sums would make `a` equicontinuous, hence trivial) and zero
+    entropy, and so does the image of `b`.
+  - So the `BS(1,2) = ⟨s, u⟩` inside `2V_τ` never extends to `BG`: `s = τ × id` has
+    `δ_s ≡ 0`, and the baker conjugator `u` has entropy at least `log 2`.
+  - What is left in these hosts is the renormalization regime of
+    `bs12-embeds-in-brin-thompson-2v`, with a zero-entropy conjugator that is itself
+    conjugate to the base. *Open.*
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),

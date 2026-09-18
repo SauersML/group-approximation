@@ -373,6 +373,265 @@ content in that region.
   increments (BK, Russo, sprinkling, differential inequalities), mixing,
   uniform finite energy, or FIID/cost structure. The last is useless on this
   fixed-price-one class.
+* **Mixing, uniform finite energy and FKG (2026-09-17).** This asks whether
+  the three remaining soft properties force a window. **Where it dies:**
+  `fpbs-fiid-uniform-finite-energy-fkg-collapse-family`. Every Cayley graph in
+  the same class carries a collapse family with all of these properties at
+  once:
+  * it is FIID, hence mixing of all orders;
+  * every edge has conditional probability in `[t, t+(1-t)q]`;
+  * it is Harris–FKG and contains `xi_t`.
+
+  The spine consists of iid thin planar sticks at infinitely many scales,
+  thinned by independent edge marks. The sticks are glued across scales by
+  Harris and across cosets by recurrence along the central direction.
+  Uniqueness comes from indistinguishability with marks. Of the four
+  ingredients listed above, only independent increments of the product law
+  above `p_c` remain: BK/Reimer, Russo, and upper-bound differential
+  inequalities.
+* **Intrinsic-radius kernels: BK in the radius, not in the parameter
+  (2026-09-17).** Route `fpbs-universal-intrinsic-l2-rate-route`.
+  - **Established part** (`fpbs-intrinsic-l2-rate-closed-zero-set`). Define
+    `T^(R)_t(u,v) = P_t(d_omega(u,v) <= R)`. By BK,
+    `T^(R+R') <= T^(R) T^(R')` entrywise. So the rates
+    `Lambda(t) = inf_R R^(-1) log ||T^(R)_t||_(2->2)` and
+    `lambda_1(t) = inf_R R^(-1) log E_t|B^int_R|` are infima of continuous
+    functions. They are therefore upper semicontinuous and right-continuous.
+    Sharpness puts `[0,p_c)` in their zero sets, and the zero sets are closed,
+    so both rates vanish on `[0,p_c]` on every nonamenable Cayley graph, with
+    no critical `l2` input. A linear chemical stretch constant `K` at `t`
+    gives `Lambda(t) >= log(gr)/(2K)`. So the stretch constant diverges at
+    `p_c+` universally.
+  - **Open side.** A chain of sufficient conditions, each stated only for
+    `t > p_u`: (UCS) `fpbs-uniform-chemical-stretch-above-pu` implies (IL2)
+    `fpbs-intrinsic-l2-rate-bounded-below-above-pu`, which implies (IL1)
+    `fpbs-intrinsic-growth-rate-positive-at-pu`, which implies `p_c < p_u`.
+    (UCS) and (IL2) can fail on graphs that have a window.
+  - **Where it stops.** (UCS) needs linear chemical distance in the uniqueness
+    phase, which is not available on general nonamenable graphs (there is no
+    Antal--Pisztora renormalization). It also needs a merge-scale estimate at
+    `p_u+`.
+  - **Class killed.** Arguments that give uniform stretch above a threshold
+    `q` from inputs that `q = p_c` also satisfies die at item 6 of the
+    established claim.
+* **Rate-based continuation and product structure above `p_c` (2026-09-17,
+  w3-123).** The rate step was to choose `n(t)` so the spine density decays
+  fast, and to show that `theta` and local laws match Bernoulli. That is
+  already (H3)/(H4) of `fpbs-sharp-dominating-collapse-over-sparse-spines`.
+  The new node `fpbs-quenched-bk-russo-collapse-operator-gate` pushes the
+  obstruction to product-structure tools. The same family is:
+  * a quenched product measure given its spine environment, so Harris-FKG,
+    BK-Reimer and Russo hold for every environment;
+  * annealed Russo off a countable jump set;
+  * exact annealed independent sprinkling;
+  * BK at bounded range up to `f(t)`.
+
+  It still collapses on graphs with `||T_{p_c}|| < infinity`, for example
+  hyperbolic mapping tori. **Where it dies:** the one product input it lacks
+  is the annealed operator inequality (G). Its entrywise form is
+  `dT <= C T J T` plus jump atoms `m_k T J T`, with `C` integrable and
+  `sum m_k` finite. Theorem 2 there integrates (G) with atoms from
+  `||T_{p_c}||` to a window. So quenched diagrams must average to bounded
+  multiples of `T J T`, uniformly in volume. The node proves only that
+  interval factorization (a) or jump factorization (b) fails. Deciding which
+  one fails is the next step.
+* **Worst-pair connectivity rate, weaker than the sphere-rate kernel
+  (2026-09-17, belief breaker).**
+  - **Established side.** `fpbs-worst-pair-connectivity-rate-kernel` has an
+    import-free proof using Harris-FKG and Fekete. The rate
+    `gamma(p) = lim -(1/n) log min_(v in B_n) tau_p(o,v)` exists and is
+    nonincreasing and left-continuous. Uniqueness forces `gamma = 0`, and
+    `g(p) >= log gr - gamma(p)`. Hence
+    `(EG) => (G) => (K') [g(p) < log gr] => (K) [gamma(p) > 0] => p_c < p_u`,
+    each at one `p > p_c`.
+  - **Belief change.** The two last-missing sphere-rate holes (G) and (EG) are
+    strictly stronger than needed. On `T_d`, (K') and (K) hold on all of
+    `(p_c,1)`, while (G) holds only on `(p_c,1/sqrt(d-1))`. So an obstruction
+    to (G) near `p_c` does not threaten the sphere route. The route
+    `fpbs-bs-via-worst-pair-connectivity-rate` dominates
+    `fpbs-bs-via-sphere-two-point-rate`.
+  - **Where it stops.** The OPEN kernel is
+    `fpbs-worst-pair-connectivity-rate-positive-above-pc-universal`.
+    - Hutchcroft's bound `kappa_(p_c)(n) <= gr^(-n)` gives
+      `gamma(p_c) >= log gr` (recalled, not load-bearing). So a collapse must be
+      a jump of `gamma` of size at least `log gr` at `p_c+`.
+    - Finite-radius certificates bound the supermultiplicative `kappa` only
+      from above.
+    - The missing inputs are expected extrinsic growth of infinite clusters
+      strictly below `gr`, and a subexponential finite-cluster susceptibility,
+      at one `p > p_c`.
+* **Continuous spine activation (2026-09-18, w5-123).** This settles the
+  (a)/(b) question left by `fpbs-quenched-bk-russo-collapse-operator-gate`.
+  `fpbs-continuous-activation-collapse-family` gives a collapse family, with
+  the same (S1)-(S4) and (H1)-(H5), in which spine edges switch on one at a
+  time, at continuously distributed times. The spines are interpolated
+  through invariant geodesic forests with product-of-uniform levels.
+  - Every quenched jump is a single edge of weight at most `1`.
+  - Every local annealed probability, and every `T^Lambda`, is absolutely
+    continuous in `t`, so there are no annealed jump atoms.
+  - Collapse families do not need infinite total jump weight. However, the
+    quenched density must exceed `p_u` somewhere just above `p_c`
+    (Proposition 3 there).
+
+  **Where it dies:** (G) still fails, now in its density term alone. The
+  ratio `dT^Lambda/dr : T^Lambda J T^Lambda` is integrable for each fixed
+  `Lambda`, but not uniformly in `Lambda` (non-equicontinuity in volume). So
+  the jump estimate (b) is not load-bearing. Next: split the density into the
+  off-spine Russo part and the activation part, and decide whether the Russo
+  part alone factorizes against `T J T`.
+* **Annealed pivotal factorization and the reduced gate (2026-09-18,
+  w6-123).** `fpbs-annealed-pivotal-factorization-off-spine-bridges`: in any
+  quenched product over a label-independent environment, the off-spine Russo
+  part satisfies `R <= T J beta + beta J T <= 2 T J T` uniformly in `Lambda`,
+  up to pivotals that bridge two pieces of `Z ∩ Lambda`. The reason is that
+  off bridges one separated cluster avoids the spine, so it is a pure Bernoulli
+  cluster and annealing factorizes. In spine-augmented volumes `Lambda ∪ Z_t`
+  there are no bridges, since the spine is connected. There
+  `D^R <= 2 (t-s) X J X`, and the activation part is at most the explicit
+  kernel `beta_s (S_t - S_s) beta_s`, with `S` the spine two-point function.
+  `fpbs-spine-increment-activation-gate` reruns the Bihari gate over this
+  exhaustion, with an atomless right-endpoint measure. So (G) reduces to the
+  single fully annealed inequality (AG*): `beta (S_t - S_s) beta <= kappa_A X J X`.
+  Every collapse family over a connected spine grown from `∅` violates it,
+  the continuous-activation family included.
+
+  **Where it dies:** the Russo part is not the obstruction. The whole failure
+  is the Bernoulli-sandwiched spine increment. Heuristically this is
+  `∫ dS/S = infinity`, because `S_{p_c} = 0`. Next: prove the log law
+  `kappa_A((s,t]) >= c log(m(t)/m(s))`, and identify an invariant input that
+  forces (AG*).
+* **The log law for volume-uniform activation gates (2026-09-18, w7-123).**
+  `fpbs-volume-uniform-activation-gate-log-law`: test the activation gate on
+  two far-apart edges `{u,w}`, `{v,w'}`. There `D^A(u,v) >= s^2 ΔPsi` and
+  `X J X(u,v) <= 4 mu Psi(t)`, where `Psi` is the probability that the spine
+  meets both edges. A spine vertex at distance `4` gives `Psi(y) >= m(y)/d^4`.
+  Chaining intervals on which `m` grows by the factor `4 d^4` gives
+  `kappa_A((s,t]) >= c log(m(t)/m(s)) - c'` for any gate holding over all
+  two-edge volumes. This covers (AG), (AG*) and the full gate. It holds for
+  every connected invariant spine with continuous density, with no collapse
+  or critical-L2 input.
+
+  **Where it dies:** every volume-uniform activation input dies at the birth
+  of any spine (`kappa_A = infinity` near `s*`), whether or not the family
+  collapses. So the failure is not evidence about uniqueness. A correct input
+  must be exhaustion-specific. Open: the log law along a fixed exhaustion,
+  where `X J X` carries unbounded spine-routed mass.
+* **The exhaustion norm law (2026-09-18, w8-123).**
+  `fpbs-exhaustion-activation-gate-norm-law`: run Theorem 1 of the reduced
+  gate in one exhaustion volume `W` at a time. The spine forces
+  `||X^W_t|| >= m(t)^2 |W|` (it is connected). First/last-spine-vertex BK
+  gives `||X^W_s|| <= B + B^2 m(s)|W|`, with `B = ||T^Bern_{t_1}||` finite
+  below `p_{2->2}`. So each volume charges a fixed mass `c_0` to the
+  density window `[1/|W|, sqrt(A/|W|)]`. Summing over volume scales gives
+  `kappa_A = infinity` at every spine birth, along every exhaustion. The rate
+  is log-log in general and log under decorrelation.
+
+  **Where it dies:** the exhaustion form of (AG), and of (AG*) and the full
+  gate, fails for every connected invariant spine born from `∅` when
+  `p_c < p_{2->2}`, whether or not the family collapses. A sparse exhaustion
+  lowers the rate but not the divergence. Activation gates of the form
+  `D^A <= kappa X J X` are therefore dead as a separator of uniqueness.
+  Surviving: inputs not bounded by the norm of `X J X`, and the Br route
+  (`Br <= C T J T` over plain volumes).
+* **The Br route on path volumes (2026-09-18, w9-123).**
+  `fpbs-percolation-spine-path-bridge-ratio-criterion`. On a chordless
+  path, for any environment, `Br/TJT = gamma_n/(r D_n)`. Here `gamma_n` is
+  the `r^N`-tilted interior-gap density and `D_n = TJT/(n T)` measures the
+  exponential-scale decorrelation of spine coverage.
+
+  For the Z^2 percolation spine, a three-edge bypass deletion with FKG gives
+  `c theta/D_n <= Br/TJT <= 1/(r D_n)`. So on paths the Br route is exactly
+  `inf_n D_n > 0`.
+
+  Importance-sampled Monte Carlo (supercritical `p' in [0.52, 0.85]`,
+  critical proxies down to `theta ≈ 0.45`, and two-route rectangles) gives
+  the following:
+  * `Br/TJT <= 0.5` throughout;
+  * the ratio is bounded in `n` for each fixed spine;
+  * as the spine thins, `gamma` stays flat, while `D_n` drops below its
+    geometric value and carries all of the growth (effective exponent
+    about `0.8` in `1/theta`).
+
+  The second route adds nothing. The heuristic prediction is
+  `sup_n Br/TJT ≍ theta^{-48/53}`.
+
+  **Where it stands:** there is no bridge-driven failure at bounded density.
+  Near spine birth, `C(r)` must diverge, at least like `theta/D_n`. The open
+  input is the attachment quasi-multiplicativity
+  `g(n) <= C theta^{-1} g(k) g(n-k)` of the tilted cluster.
+* **Folded paths kill the plain-volume Br route (2026-09-18, w11-123).**
+  `fpbs-hairpin-paths-break-uniform-bridge-ratio`. Every environment has
+  `n D_n >= 2`, so `Br/TJT <= (n-2)/(2r)`: linear order is the worst case.
+
+  That order is attained. Take the column environment: all vertical edges,
+  plus each horizontal edge whose three stacked iid Bernoulli(q) labels are
+  not all 0. It is a connected, `Z^2`-invariant, range-1 monotone factor of
+  iid with `theta = 1`. On a hairpin path with two arms two rows apart, it has
+  closed forms: `Br/TJT >= c(r,q) n` and `K_n >= kappa^{n/2-1}` with
+  `kappa > 1`. A straight path in the same environment has
+  `D_n = lambda + 1/lambda` and `K = 1`.
+
+  **Where it dies:**
+  * `Br <= C(r) TJT` uniformly over plain volumes;
+  * any geometry-free bound `K <= C/theta` on multi-run patterns;
+  * lower bounds on `D_n` that use only FKG and supermultiplicativity.
+
+  **What survives:**
+  * Strict reduction (Theorem 3): for finite-range monotone environments,
+    the fold width `w_R` of the path gives `Br/TJT <= 1/(r lambda_min^{2w})`
+    and `K <= pi_+^{-2w}`. So geodesic paths are safe.
+  * Box exhaustions.
+  * For the percolation spine, Monte Carlo shows the same fold excess at a
+    small rate, about 0.0024 per column at `p' = 0.55` (Conjecture 5, open).
+    The next step is the multi-run `K` bound for the spine on geodesic paths,
+    with spine decorrelation in place of finite range.
+* **Untilting the path bridge ratio (2026-09-18, w10-123).**
+  `fpbs-path-bridge-ratio-untilted-coverage-decorrelation`. Expand `r^N`
+  over covered subsets `S`. The bridge mass and the gap-split part of `TJT`
+  then carry the same weights, so for every environment and every `r`,
+  `Br/TJT <= K`. Here `K` is the untilted ratio
+  `max P(S ⊆ Z) / (P(S^- ⊆ Z) P(S^+ ⊆ Z))`, taken over patterns split at one
+  missing edge. Also `D_n >= (1-2/n)/K`.
+
+  For Bernoulli spines on any graph and any target, a last-exit union bound
+  with FKG gives `K <= 2/theta` on patterns with one run on each side. This
+  yields the requested one-arm quasi-multiplicativity
+  `g(n) <= 2 theta^{-1} g(k) g(n-k)` for **every** `k`, and
+  `limsup_{r->0} Br/TJT <= 2/theta` uniformly in `n`.
+
+  **Where it stands:** the open kernel is `K <= C/theta` on multi-run
+  patterns, where runs on one side can reach the target through the other
+  side. The computation (`n = 16, 64`, `theta` from `0.89`
+  down to `0.48`) gives `K` growing like `1/theta`, with `K theta` between
+  `0.64` and `0.93` for every pattern. Even with `C(r) ~ 1/theta(r)`, the Br
+  route closes the Russo-plus-bridge part of (G) only when
+  `∫ dr/theta(r) < infinity` at the spine birth. That holds for a spine born
+  with exponent `< 1` (the Z^2 percolation spine has `5/36`), and fails, with
+  a log divergence, for linear birth.
+* **Multi-run decorrelation for the planar spine by dual circuits
+  (2026-09-18, w12-123).**
+  `fpbs-planar-spine-multirun-decorrelation-by-dual-circuits`. In `Z^2`, a
+  declared-open run misses infinity exactly when a dual-open circuit
+  surrounds it. Cut the dual edges at the Euclidean bisector of the two
+  sides of the split. The half-plane events are then independent and do not
+  see the other side's pattern. Harris returns to the one-sided events at
+  the cost of circuits that leave the half-plane, and such a circuit around
+  `x` must reach distance `delta(x)/2`. For every `p' > 1/2`, every chordless
+  path and every pattern, this gives
+  `K_n <= prod_x max(theta, 1 - psi(delta(x)/2))^{-1}`, with `psi` the
+  exponentially decaying dual circuit tail.
+
+  On geodesic paths, `K_n <= C(p')` uniformly in `n`, in the split and in the
+  pattern. So `Br/TJT <= C(p')` and `inf_n D_n > 0` for all `r`: the path
+  form of the Br route is proved at every fixed supercritical density. This
+  is the percolation analogue of the fold-width Theorem 3, with the dual
+  decay scale in place of the finite range. On hairpins the bound is
+  exponential in the fold, the same order as Conjecture 5.
+
+  **Where it stands:** `C(p')` is of order `theta^{-c xi}`, not `C/theta`,
+  because Harris charges each vertex near the cut separately. The birth
+  scaling that the gate integral needs, and non-planar graphs, remain open.
+  The next step is an outermost-exiting-circuit decomposition near the cut.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.

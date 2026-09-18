@@ -1,0 +1,4 @@
+group=F R=4 K=1 |B_R|=541 vars=2877 clauses=9565 -> UNSAT  (2.4s)
+group=F R=4 K=2 |B_R|=541 vars=2877 clauses=9565 -> SAT  (2.6s)
+group=F R=4 K=3 |B_R|=541 vars=2877 clauses=9565 -> SAT  (4.1s)
+group=F R=4 K=4 |B_R|=541 vars=2877 clauses=9565 -> SAT  (9.1s)

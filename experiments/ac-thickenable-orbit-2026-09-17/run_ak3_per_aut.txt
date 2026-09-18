@@ -1,0 +1,4 @@
+(xyxYXY,xxxYYYY) LMAX=9 per=True aut=True target=thick: EXHAUSTED, 357 states, 3.0s
+(xyxYXY,xxxYYYY) LMAX=10 per=True aut=True target=thick: EXHAUSTED, 817 states, 7.3s
+(xyxYXY,xxxYYYY) LMAX=11 per=True aut=True target=thick: EXHAUSTED, 3748 states, 64.7s
+(xyxYXY,xxxYYYY) LMAX=12 per=True aut=True target=thick: EXHAUSTED, 7391 states, 153.2s

@@ -52,3 +52,44 @@ A bound `<= C H(y_1)` for one constant `C` gives `rho_q(G) >= log q / C`. On a h
     groups by counting.
 
   Artifact `research/artifacts/pointer-gated-linear-witness-direct-finiteness-2026-09-17.md`.
+- **Quadrangle closure is not enough (swarm-0917-w5-pull2-gottschalk-1, 2026-09-17).** This is
+  `quadrangle-closed-patterns-do-not-force-domination`. It answers the open question of
+  `quadrangle-closure-kills-shared-pointer-parity-gadgets` negatively.
+  - **The gadget.** An abstract pattern with (L), (R) and (Q) has `Phi = (t + 1 + k(1-1/k)^R)/k -> 0`
+    (`0.7817` at `k = 4`).
+    - Each gadget has three codewords that rotate one pointer cycle `Z/L` by `a, a, -2a`. The rotation is
+      open, so there is no coherent 3-shift and the mod-3 invariant does not apply.
+    - The value table follows a Hamiltonian cycle `x -> x + c_rho` of `Z/n`, and `o` is the only site read
+      once.
+    - All translation types `±a_rho, ±2a_rho` and value differences `±c_rho` are distinct, which makes the
+      classes disjoint or equal.
+  - **What fails.** Only holonomy. The class word `(tau sigma)^m sigma` fixes a value position and
+    translates every pointer by `-(3m+2)a`. In a group, `g^L = g^(3m+2) = 1` forces `g = 1`.
+  - **Where it dies.** Any proof of this claim through finite incidence axioms of the pattern alone ((L),
+    (R), (Q), counting over the pattern) is killed. A proof must use class words of unbounded length, such as
+    (H): a class word with a fixed point is the identity on its domain.
+  - **Still open.** Do (L)+(R)+(Q)+(H) force domination?
+  - Artifact `research/artifacts/quadrangle-closed-pattern-firewall-2026-09-17.md`. Check
+    `experiments/quadrangle-firewall-2026-09-17/verify_rotation_gadget.py`: brute-force (Q), 0 violations;
+    decoding, 0 errors.
+- **Holonomy kills gadget-local decoders (swarm-0917-w6b-w6b-re-pull2-gottschalk-2, 2026-09-17).**
+  This is `holonomy-quadrangle-patterns-have-unique-local-decoders`, ESTABLISHED. It partly answers the
+  "still open" question above.
+  - **Theorem A.** On every (L)(R)(Q)(H) pattern with a split `E = U ⊔ V`, every site has a linear local
+    decoder in at most one gadget, and that decoder is unique.
+    - (H) gives a global potential `φ: C -> Π ≤ Sym(U)` on each value component.
+    - (Q) makes the value relations `D_g` global.
+    - The decoder pushes forward to a unit of `F_q[Π]`.
+    - Two gadgets must then read `o` in the same intrinsic columns with different rows, which violates (R).
+  - **Consequence.** Every gadget-local amplification firewall, including every (H)-respecting repair of
+    the rotation gadget, has `Phi >= log q`.
+  - **Where it dies.**
+    - **Invariant:** unit-ness of `s_ρ ∈ F_q[Π]`.
+    - **Step:** the reader-column collision against (R).
+  - **Still open, narrowed.** Do (L)(R)(Q)(H) force domination? A split gated linear witness must now use
+    **mixed-pointer decoders**, meaning rows with different pointer sets that cancel across gadgets. This is
+    the same survivor as the group-level `coset-local-decoders-force-gated-domination`.
+  - Artifact `research/artifacts/holonomy-quadrangle-local-decoder-uniqueness-2026-09-17.md`. Check
+    `experiments/holonomy-local-decoders-2026-09-17/check_local_decoders.py`:
+    - all 62 (L)(R)(Q) rotation-family members with multi-gadget decoders fail (H);
+    - 0 violations on 600 random patterns.

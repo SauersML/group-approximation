@@ -158,3 +158,15 @@ normalizes `C_U(sigma(Gamma))`.
   - Not covered: pieces of sublinear dimension in perturbed models, and whether some
     other size on the (possibly commutative) relative commutant forbids strict
     compression. This claim stays OPEN in both directions.
+- **Matrix-unit models of Laurent pairs: normalization holds exactly (2026-09-17, lane
+  `sw-071`, inverter).**
+  - [[matrix-unit-rank-models-normalize-laurent-commutants]]: take a
+    characteristic-two model `sigma` of any group normalizing `Delta = EL_3(R)`, where
+    `R` is a localization of `R_+`. If `sigma|Delta` satisfies `N_23 N_12 = 0`, then
+    `C(sigma EL_3(R_+)) = C(sigma Delta)`. The proof inverts corner units of the
+    extracted ring homomorphism, with no rounding and no property (T).
+  - So for the Theorem E pair and the Bowen--Chapman pair over `F_2`, a
+    normalization failure needs `rk(N_23 N_12) >= cn` on the Laurent vertex. Honest
+    modules, degree truncations and Fourier boxes cannot host it.
+  - Not covered: models violating the identity, such as regular modules of finite
+    quotients, and the non-Laurent Leavitt pair. This row stays OPEN.

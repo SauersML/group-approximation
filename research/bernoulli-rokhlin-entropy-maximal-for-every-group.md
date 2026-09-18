@@ -187,3 +187,32 @@ finiteness conjecture over finite fields.
   `L(Z_q wr U)` Connes-embeddable, the multinomial bound, and a `log q` lower bound. These are four prerequisites that
   can fail separately, and the last two pull against each other. Artifact
   `research/artifacts/stability-approximation-transplant-to-bernoulli-rokhlin-2026-09-17.md`.
+- **Shared-pointer gadgets in groups: dead on every host (swarm-0917-w4-pull-gs-2, 2026-09-17).** This kills the
+  firewall's Section 8 lead (a partial XOR, or a large stabilizer `K` with a unit `sigma`) for split gated diagonal
+  codes. It holds on every group, including hosts whose group ring is not directly finite, such as Leavitt units.
+  - Codewords sharing one pointer set lie in one coset of a finite stabilizer. A decoder that uses only codewords of
+    one gadget therefore lives in `F_q[cK]`.
+  - Projecting `σ(T c) = 1` onto the `F_q[K]` component of the free module makes `T` a two-sided unit.
+  - So every gadget decodes through the same codewords, `supp T^{-1}`, and the coupon-collector amplification of
+    Theorem A vanishes. We get `P(d_i = 1) <= P(i ∈ I_{J_1})` without global direct finiteness.
+  - Invariant: unit-ness of the value functional. The step where it dies is the coset projection.
+  - Survivors need a non-unit left-invertible `T_i`. Both `T_i` and each decoder must generate, after translation, a
+    subgroup whose algebra is not directly finite, and decoders must mix codewords with different pointer sets.
+  - See [[coset-local-decoders-force-gated-domination]] and
+    `research/artifacts/coset-local-decoders-gated-domination-2026-09-17.md`.
+- **Inverter via minimal counterexample: Bernoulli-field point models (swarm-0917-w5-pull-gs-2, 2026-09-17).
+  Gives a decomposition, not a proof.**
+  - [[bernoulli-field-rank-failure-gives-rokhlin-deficit]] (ESTABLISHED, unreviewed) says: if some skew group ring
+    `K_0 ⋊ G` over an invariant subfield of `k(x_{g,i})` (shift action) has `AB = I_d` with `r < d`, then
+    `h^Rok_G((F_q^{m+d})^G) < (m+d) log q` for large `q`, so not INF(G).
+  - Mechanism: evaluate the variables at iid finite-field points. The matrices become equivariant local codes that
+    are exact off a defect set of density `<= C/q` (Schwartz–Zippel). Site labels `(ω(1), (Bξ)(1), ξ(1) on defects)`
+    generate, at cost `(m+r) log q + o(log q)`.
+  - Decomposition of this claim: INF(G) ⇒ every Bernoulli-field skew ring over `G` is stably finite ⇒ KAP(G).
+    - Inverting at the tester host: a Bernoulli-field rank-condition witness over `U = L_(F_2)(1,2)^×` refutes this
+      claim.
+    - Positive side: any proof must establish random-coefficient direct finiteness of `F_p(x_g) ⋊ G` in every
+      characteristic `p`.
+  - Where it dies as a counterexample search: no rank-condition failure over any Bernoulli field is known. The
+    method needs a trivial cocycle (the ternary summand `S_-` is twisted, so it is not covered) and a Bernoulli
+    point measure.

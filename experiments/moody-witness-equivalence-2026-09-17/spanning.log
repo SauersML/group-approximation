@@ -1,0 +1,4 @@
+n = 3 : (a)-(d) full rank 4 in all 80 variants: True
+n = 4 : (a)-(d) full rank 5 in all 80 variants: True
+n = 5 : (a)-(d) full rank 6 in all 80 variants: True
+ALL SPANNING CHECKS PASS: True

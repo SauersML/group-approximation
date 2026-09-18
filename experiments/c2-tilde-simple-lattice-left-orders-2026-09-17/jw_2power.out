@@ -1,0 +1,10 @@
+# [G:K] = 4  K^ab = [ 0, 3 ]
+# index 2^1: normal subgroups of K with 2-group quotient: 1
+#   K/N cyclic: true  [G:N] = 8
+#   stabiliser of point 1 equals N: true
+# index 2^2: normal subgroups of K with 2-group quotient: 1
+#   K/N cyclic: true  [G:N] = 16
+#   stabiliser of point 1 equals N: true
+# index 2^3: normal subgroups of K with 2-group quotient: 1
+#   K/N cyclic: true  [G:N] = 32
+#   stabiliser of point 1 equals N: true

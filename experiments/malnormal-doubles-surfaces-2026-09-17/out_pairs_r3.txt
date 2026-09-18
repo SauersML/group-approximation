@@ -1,0 +1,41 @@
+CERT 1 ('abaBa', 'AbbAABB') V 9 K 4 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['A', 'B', 'bb', 'aa'], [('AbbAABB', 0), ('aBaab', 2)])
+NONE 2 ('aBAAb', 'baBaaaba') V 12 K 6
+NONE 3 ('baBBAbab', 'aaBaaaa') V 14 K 5
+NONE 4 ('BBaaBBBA', 'bABBABA') V 12 K 4
+NONE 5 ('bbaabAbb', 'aaBabA') V 12 K 7
+CERT 6 ('bbABBA', 'aaBBAAbb') V 12 K 4 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['BB', 'AA', 'aa', 'BB'], [('BBaabbAA', 0), ('bbAABBaa', 8)])
+CERT 7 ('aBABB', 'AbaaBB') V 8 K 3 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['B', 'aa', 'AA', 'a', 'B'], [('BAAABaa', 1), ('baaabAA', 5)])
+CERT 8 ('AABa', 'aaba') V 5 K 5 Y genus,boundaries (0, 4) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['BA', 'AAABA', 'b', 'baaa'], [('BAAAABAB', 1), ('ab', 2), ('abaaabbaaa', 3), ('AAAB', 4)])
+NONE 9 ('baBAA', 'BBaaBa') V 10 K 3
+CERT 10 ('BaBaaaa', 'aBBab') V 10 K 5 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['a', 'b', 'B', 'b', 'a'], [('aBBab', 0), ('AbbAB', 1)])
+CERT 11 ('BBABABB', 'aaaBBB') V 10 K 4 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['b', 'BB', 'A', 'aa'], [('bbbAAA', 0), ('BBBaaa', 9)])
+CERT 12 ('BAbA', 'ABAAAA') V 8 K 6 Y genus,boundaries (0, 4) (4, ((0, 0), (0, 1), (1, 2), (1, 2), (2, 3), (3, 3)), ['bABA', 'A', 'AAAB', 'baaa', 'a', 'abaB'], [('bABAAAAABAAABa', 1), ('abaB', 2), ('baaabaaaaabaBA', 2), ('bABA', 2)])
+CERT 13 ('BBaaaBBB', 'AABA') V 11 K 4 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['bbb', 'aa', 'A', 'BB'], [('bbbAAAbb', 0), ('BBBaaaBB', 7)])
+CERT 14 ('BBBAbaab', 'aabAb') V 10 K 5 Y genus,boundaries (1, 2) (4, ((0, 1), (0, 1), (0, 2), (1, 3), (2, 3), (2, 3)), ['B', 'a', 'ba', 'BA', 'a', 'BAAB'], [('BAbaabaabAB', 2), ('baBAABAABab', 2)])
+CERT 15 ('BaBBa', 'ABabb') V 7 K 4 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['a', 'b', 'B', 'bb', 'a'], [('aBBBab', 1), ('AbbbAB', 6)])
+CERT 16 ('BabaB', 'BABaBA') V 9 K 4 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['BAB', 'A', 'a', 'b'], [('BABaBA', 0), ('babAba', 1)])
+CERT 17 ('babABaa', 'AbaBBAA') V 12 K 6 Y genus,boundaries (0, 4) (3, ((0, 1), (0, 1), (0, 2), (0, 2), (1, 2)), ['BAAba', 'ab', 'AAAbaB', 'b', 'bABaba'], [('BAAbabABabaB', 9), ('ABaabab', 3), ('BAAAAbaBABAbaB', 9), ('bABaaab', 9)])
+CERT 18 ('BabbaaaB', 'bbaaBBA') V 13 K 5 Y genus,boundaries (0, 4) (4, ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)), ['aa', 'A', 'BBAbb', 'BBabb', 'a', 'A'], [('aaaBBabb', 4), ('AAABBAbb', 7), ('aBBAbba', 9), ('BBabbAA', 8)])
+NONE 19 ('abAb', 'BababAB') V 8 K 4
+CERT 20 ('Baba', 'BBabaBB') V 9 K 8 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['a', 'B', 'b', 'A', 'BBabaBB'], [('abaBBabaBBB', 1), ('ABAbbABAbbb', 7)])
+CERT 21 ('bAABaBBa', 'baBBab') V 12 K 6 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['a', 'bb', 'BB', 'A'], [('aBBabb', 1), ('AbbABB', 11)])
+CERT 22 ('bAAb', 'AAbaaab') V 9 K 6 Y genus,boundaries (0, 4) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['bAAb', 'aa', 'A', 'BaaB'], [('bAAbaaa', 3), ('BaaB', 0), ('AAABaaB', 3), ('bAAb', 0)])
+CERT 23 ('abbbbb', 'AbAAA') V 9 K 4 Y genus,boundaries (0, 4) (4, ((0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)), ['A', 'b', 'aaa', 'BBBB', 'b', 'A'], [('AbAAA', 0), ('abbbbb', 0), ('Baaaa', 7), ('BBBBAB', 5)])
+CERT 24 ('aBAb', 'BBBaa') V 7 K 3 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['BB', 'b', 'a', 'A'], [('BBBaa', 0), ('bbbAA', 5)])
+CERT 25 ('bbAbbbb', 'aBAbabAB') V 13 K 7 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['b', 'Aba', 'aBA', 'b'], [('baBABabA', 0), ('BAbabABa', 7)])
+CERT 26 ('bbabA', 'bbaaaa') V 7 K 4 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['b', 'B', 'aa', 'AA'], [('bbaaaa', 0), ('BBAAAA', 2)])
+CERT 27 ('BaBBA', 'BABBAAb') V 8 K 6 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['aa', 'B', 'b', 'A'], [('aabba', 1), ('AABBA', 2)])
+NONE 28 ('BBABaa', 'AbAbA') V 9 K 4
+NONE 29 ('ABBBaab', 'ABaBABBa') V 11 K 5
+CERT 30 ('Babaaba', 'BBaaaBA') V 12 K 5 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['A', 'b', 'B', 'a', 'ABA'], [('ABAABAb', 0), ('abaabaB', 1)])
+CERT 31 ('aaBBBBA', 'AbbabbA') V 11 K 5 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['aBB', 'BBA', 'A', 'BB', 'Abb'], [('aBBABBaabbbbABBABBa', 0), ('bbAbb', 4)])
+CERT 32 ('baBaaaBa', 'aaBAbAA') V 11 K 9 Y genus,boundaries (1, 2) (4, ((0, 1), (0, 1), (0, 2), (1, 3), (2, 3), (2, 3)), ['b', 'AbA', 'aaB', 'AAb', 'aa', 'AbA'], [('baBaaaBaaaBabAA', 0), ('BAbAAAbAAAbABaa', 9)])
+CERT 33 ('abAb', 'AbaBAB') V 9 K 5 Y genus,boundaries (1, 2) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['BaB', 'aBA', 'Aba', 'B'], [('BaBAbabABa', 0), ('bAbaBABabA', 3)])
+CERT 34 ('abbbbaBa', 'aBaBA') V 9 K 4 Y genus,boundaries (1, 2) (2, ((0, 1), (0, 1), (0, 1), (0, 1)), ['AbA', 'bb', 'B', 'aBa'], [('AbABBBAbA', 0), ('aBabbbaBa', 0)])
+CERT 35 ('BaBAAb', 'aBaBBB') V 9 K 5 Y genus,boundaries (0, 4) (4, ((0, 1), (0, 1), (0, 2), (1, 3), (2, 3), (2, 3)), ['a', 'B', 'b', 'BaB', 'A', 'b'], [('aBaBBB', 0), ('AB', 3), ('bbAbAb', 8), ('ab', 2)])
+CERT 36 ('ABBB', 'BAbabb') V 8 K 5 Y genus,boundaries (0, 4) (4, ((0, 0), (0, 1), (1, 2), (1, 2), (2, 3), (3, 3)), ['BBBA', 'ba', 'b', 'B', 'AB', 'abbb'], [('BBBAbabbAB', 2), ('abbb', 1), ('BBABabbbba', 0), ('BBBA', 1)])
+CERT 37 ('baaBBa', 'abbAb') V 10 K 4 Y genus,boundaries (1, 2) (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2)), ['aa', 'bbA', 'BBa', 'A', 'bb'], [('aaBBaabbAbb', 1), ('AAbbAABBaBB', 6)])
+CERT 38 ('BBBBBaBA', 'BBaa') V 9 K 4 Y genus,boundaries (1, 2) (4, ((0, 1), (0, 1), (0, 2), (1, 3), (2, 3), (2, 3)), ['AA', 'b', 'BBa', 'Abb', 'B', 'aa'], [('AABBBaBAAAbb', 0), ('aabAbbbaaBBa', 8)])
+CERT 39 ('BAABaaa', 'AbAA') V 9 K 7 Y genus,boundaries (0, 4) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['aabAAAb', 'AAB', 'baa', 'BaaaBAA'], [('aabAAAbAABAAB', 4), ('BaaaBAA', 3), ('baabaaBaaaBAA', 4), ('aabAAAb', 3)])
+CERT 40 ('AAAbbb', 'AAAbba') V 5 K 4 Y genus,boundaries (0, 4) (2, ((0, 0), (0, 1), (0, 1), (1, 1)), ['Ab', 'b', 'a', 'aaBB'], [('AbbA', 2), ('Ba', 0), ('BaaaBB', 4), ('bbAA', 3)])
+batch rank 3 lengths 4 8 seed 20260917 skip 0 : 32 / 40 certified

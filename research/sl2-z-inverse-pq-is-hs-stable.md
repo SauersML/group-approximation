@@ -5,6 +5,8 @@ kind: claim
 title: SL2(Z[1/pq]) is Hilbert--Schmidt stable
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
+refuted_by:
+  - sl2-z-inverse-pq-is-not-strictly-hs-stable
 distinct_from:
   dv-s-arithmetic-hs-stable-nonhyperlinear-extension: that consumes stability of a lattice such as SL2(Z[1/p]) through a central extension; this asks for stability of the three-place lattice SL2(Z[1/pq]), consumed through the Pauli lamplighter over its subgroup SL2(Z[1/p]) with no central extension.
 ---
@@ -54,3 +56,32 @@ it lacks (T) it is not excluded by
   `stable-group-with-codense-kazhdan-subgroup` such a family could be
   taken with traces tending to the canonical trace, so it would also
   refute the weaker microstate-stability.
+- **2026-09-17, swarm-0917-w6-w6-nh-last2: REFUTED (same-dimension notion).**
+  The second attempt above stops one step short.  (T;FD) does give a
+  uniform modulus, but it points the other way.
+  - *The tuple.*  Take the Steinberg representation `St_l` of `SL_2(F_l)`,
+    `l` a prime not dividing `pq`, pulled back along the surjection
+    `SL_2(Z[1/pq]) -> SL_2(F_l)`.  Compress it to the orthocomplement of one
+    unit vector and replace each generator by the unitary polar part.  The
+    relator defect is `O(l^(-1/2))`.
+  - *The invariant.*  For any exact `rho` of dimension `l - 1`, consider the
+    finite-dimensional representation `X -> St_l(g) X rho(g)^(-1)` on
+    `Hom(C^(l-1), C^l)`.  Its (T;FD) Kazhdan constant is inherited from the
+    co-dense `SL_2(Z[1/p])`.
+  - *Where every same-dimension repair dies.*  An invariant vector of that
+    representation is an intertwiner.  Its image is an `St_l`-invariant
+    subspace of dimension `<= l - 1 < l`, so it is `0`.  Hence the
+    compression isometry `iota` is not almost invariant: its displacement is
+    at least `kappa`, while exact repair within `delta` would make it at
+    most `m(2/sqrt(l-1) + delta)`.
+  - See `tfd-unbounded-irreps-group-is-not-strictly-hs-stable` (general
+    (T;FD) theorem) and `sl2-z-inverse-pq-is-not-strictly-hs-stable`.
+  - *What survives.*  The consumers
+    `hnn-over-codense-kazhdan-subgroup-not-hyperlinear` and the HNN route
+    only need flexible stability, which these tuples do not contradict: one
+    extra dimension repairs them.  That hole is now
+    `sl2-z-inverse-pq-is-flexibly-hs-stable`, with route
+    `non-hyperlinear-from-hnn-over-sl2-pq-flexible-stability`.
+  - *Same obstruction elsewhere.*  It applies verbatim to `SL_2(Z[1/p])` and
+    to every (T;FD) group with unbounded finite-dimensional irreducibles.
+    Every strict-reading stability hypothesis on such a group is false.

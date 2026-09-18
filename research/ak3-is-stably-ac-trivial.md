@@ -40,3 +40,11 @@ Verbatim pins are in the artifact.
    waits on `balanced-trivial-presentations-one-stabilization-ac-trivial`.
    By `shehper-z-conjecture-iff-one-stabilization-ac`, the rank-3 case of that
    premise is exactly Shehper et al.'s Conjecture `conj:general_Z` on 3 generators.
+3. **Primitive-relator and projection certificates in rank 3 (sw-081, 2026-09-17).**
+   `one-stabilization-ac-trivial-from-primitive-relator` gives checkable certificates. Under
+   relator-pair AC moves and automorphisms of F(x, y, z), reach either a pair with a primitive
+   relator, or a pair whose rank-2 projection (delete a generator with exponent-sum minor ±1)
+   has total length ≤ 12. The exhaustive search `ak3-no-short-primitive-relator-certificate`
+   finds neither through pairs of total length ≤ 24. Every projection of length ≤ 16 found
+   there lies in the rank-2 AC-plus-automorphism class of AK(3), so at these lengths the extra
+   generator gives nothing new.

@@ -95,6 +95,46 @@ discussion after Question 1.10; source-verified 2026-08-21).
   from tensor-norm generalities: the Kirchberg characterization
   `LLP <=> (x)_max B(l^2) = (x)_min B(l^2)` has never been verified or
   refuted directly for any lattice.
+- **Literature gate and Klingen Theorem C reframing (2026-09-17, d-sp2g).**
+
+  *Gate.*  No published theorem refutes the LLP for `Sp_4(Z)`.
+  Ioana--Spaas--Wiersma (arXiv:2006.01874, e-print TeX line 341) prove
+  only the LP failure: "Since $C^*(\text{SL}_3(\mathbb Z))$ and
+  $C^*(\text{Sp}_4(\mathbb Z))$ do not have the \text{LP} by (i) and
+  (ii)...".  Pisier (arXiv:2304.01667) writes: "It remains an open
+  question whether all discrete groups with property (T) fail the LP
+  or even the LLP."  The Kirchberg-type obstruction (LLP + (T) +
+  hyperlinear gives residually finite) does not bite, because `Sp_4(Z)`
+  is residually finite.  `g >= 3` stays refuted via `SL_3(Z)`.
+
+  *Reframing.*  Rerun Theorem C on the Klingen subgroup
+  `Gamma = H_omega x| Sigma`, not on `Sp_4(Z)`.  A success would refute
+  this claim at `g = 2` by subgroup permanence.
+  - New, ESTABLISHED: `klingen-heisenberg-pair-has-relative-property-t`,
+    that `(H_omega x| Sigma, H_omega)` has relative (T).  NPSgen forces
+    `z^2` to act trivially on almost invariant vectors, and Burger
+    finishes.  This closes the "unchecked sketch" of the 09-16 note.
+  - New, ESTABLISHED: `theorem-c-on-klingen-subgroups-needs-non-free-radical-action`.
+    - The radical cannot act essentially freely (ISW line 287: `H^2 = 0`
+      for free amenable actions).  So Bernoulli/Jiang supply is dead
+      there.
+    - When a power of the center acts trivially, the commutator
+      1-cocycle `c(g,z^j)c(z^j,g)^*` is a coboundary by relative (T).
+      So `c_n|Lambda` untwists to a class inflated from the virtually
+      abelian `Lambda/<z^j>`.  This kills the solenoid / `T^2`
+      `E^{1,1} = H^1(Z^2, L^0)` candidate.
+
+  *Where it stops.*  Two supply cases remain, both OPEN:
+  - (S1) classes inflated from `Lambda/N` outside the inflation kernel
+    `T * e_N`;
+  - (S2) the center acts freely, but the radical does not (stabilizers
+    abelian).
+
+  Connes embeddability of the twisted crossed products is expected to be
+  easy here (amenable radical; the virtually free Levi untwists cocycle
+  actions; amalgamated free products over an injective base).  That
+  needs a verbatim Brown--Dykema--Jung import and is not recorded as
+  established.
 
 ## Parabolic audit
 
@@ -160,3 +200,49 @@ ergodic p.m.p. action) marks the same frontier from the other side.
   no `SL_3(Z)`-invariant symplectic form exists on `Z^4`.  Hence
   `SL_3(Z)` does not embed in `Sp_4(Z)`, and the ISW subgroup fence does
   not reach `g = 2`.
+
+- **Theorem C on the parabolics: toll gone, radical data dead (2026-09-17,
+  swarm-0917-w4-nh-sp2g-llp).**
+  `amenable-by-virtually-free-twisted-crossed-products-are-ce` proves that
+  every `L^infty(X) x|_{sigma,c} P` with `P` amenable-by-virtually-free is
+  Connes embeddable (averaging over the kernel, then Brown--Dykema--Jung
+  Cor. 4.5).  So on `P_S` and `P_K` the ISW Theorem C moreover clause is
+  automatic, and Theorem C data there would refute this node through subgroup
+  permanence alone.
+  `sp4-parabolic-radical-theorem-c-data-dies` proves that such data never lives
+  on a subgroup `Lambda` of either radical, for any action.  The stabilizer
+  field splits into three cases: free (CFW), central `mZ` (the commutator with
+  the central element is a 1-cocycle on `P`, and relative (T) trivializes it),
+  and finite index (Shapiro, then finitely many Levi-invariant characters of
+  `H_2`).  What survives on parabolics is only the torsion-Levi residue:
+  `Lambda` with finite nontrivial Levi image of order `d <= 12` and `d`-torsion
+  classes killed by restriction to `Lambda cap R`.  This node stays OPEN.
+
+- **Theorem C on the parabolics: torsion-Levi residue empty (2026-09-17,
+  swarm-0917-w5-nh-sp2g-llp).**  `sp4-parabolic-theorem-c-data-dies-for-every-lambda`
+  closes the residue above.  ISW Theorem C data `(P, Lambda, sigma, c_n)` does
+  not exist for any finite-index `P <= P_S` or `P <= P_K`, any `Lambda <= P`
+  with `(P, Lambda)` relative (T), and any action.  The new input is a
+  Levi-coset counting lemma.
+  - When the radical stabilizer is trivial or central, the full `P`-stabilizer
+    cannot contain an element whose Levi image acts nontrivially on `V`: its
+    `R`-conjugates index infinitely many a.e. disjoint fixed sets of equal
+    measure.  So the isotropy lies in `Z_R . {+-I_4}`, which is central.
+    Commutator 1-cocycles, relative (T) and CFW on `Lambda/W` then kill every
+    class.
+  - For finite orbits the restriction kernel to `Lambda_1 cap R` is finite (the
+    Levi image is finite).  Compactness of `B^2` makes coboundaries open, and
+    pointwise convergence finishes.
+
+  So Theorem C through a parabolic is dead as a class, and the Connes-embeddability
+  toll removed on parabolics buys nothing.  The only Theorem C mouth left is
+  `sp4-isw-theorem-c-embeddable-twist-data-exists`: `Lambda` whose relative (T)
+  in `Sp_4(Z)` is not relative (T) inside any containing parabolic, e.g.
+  `Lambda = Gamma`.  There the toll is not free.  Separately recorded, not
+  written as a node: the finite-dimensional block corona
+  `C^*(Gamma)/(+)_pi M_{d_pi}` of any infinite hyperlinear Kazhdan group has the
+  hyperlinear, non-amenable trace `tau_lambda` (Kazhdan HS argument plus Fell
+  isolation), so it fails the LLP.  But the block extension is min-inexact by
+  Wassermann's Kazhdan-projection element (as in
+  `kazhdan-fd-block-representation-algebras-are-not-exact`), so this failure
+  never descends to `C^*(Gamma)`.  This node stays OPEN.

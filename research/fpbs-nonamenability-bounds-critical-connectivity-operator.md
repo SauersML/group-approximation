@@ -104,3 +104,53 @@ gap has to be computed.
   - One-ended graphs have no block tree.
   - Transitive graphs with a cut vertex need a spectral bound, not proved here,
     for a matrix indexed by orbits of pairs (block, vertex).
+* **Baire category on the compact space of marked groups (2026-09-17,
+  finite-models reframing).** Restrict to Cayley graphs, and let `X_{k,eta}`
+  be the compact space of `k`-marked groups with spectral radius at most
+  `1-eta`. `fpbs-l2-gap-baire-dichotomy` removes every open set contained in a
+  closed uniform class `U_{M,delta}`, iterates, and obtains a kernel
+  `K_{k,eta}`. The gap holds on all of `X_{k,eta}` if and only if `K_{k,eta}`
+  is empty. If `K_{k,eta}` is nonempty, failures are comeager in it.
+  `fpbs-high-girth-uniform-l2-patch` uses Benjamini–Nachmias–Peres and
+  Nachmias–Peres path counting to certify `M = 1+3/eta^2` and
+  `delta = eta/(4(2k-1))` on the clopen set of girth at least `L(eta)`. So the
+  kernel lies on finitely many relator cylinders `{w = e}`, `|w| < L(eta)`.
+  The uniform conjecture `fpbs-uniform-l2-gap-marked-groups` then splits into
+  the finitely many independently falsifiable pieces
+  `fpbs-uniform-l2-gap-short-relator-cylinders`. See
+  `research/artifacts/fpbs-l2-baire-kernel-2026-09-17.md`.
+
+  **Where it dies:** Theorems 2.1–2.2 there are equivalences, and they do not
+  decide whether the kernel is empty. The only certificate supplied is girth,
+  which excludes every marking with a short relation, such as `Gamma x Z`,
+  surface groups and any group with torsion generators of small order.
+  Both claims are OPEN as of 2026-09-17: referee lenses 1 and 3 refuted the
+  dichotomy claim as written, because its sentence that a failure "is never
+  isolated in the marked-group topology" does not follow (an isolated marked
+  group outside `C_2` would be a singleton kernel). The proofs are kept as
+  attempt artifacts.
+* **Produce the Schur weight invariantly (2026-09-17, obstruction).**
+  `fpbs-invariant-schur-weights-cannot-certify-critical-l2` proves the
+  following on every Cayley graph.
+  - The normalized Schur supersolutions `W_C(p)` of `T_p` form a compact
+    `Gamma`-space, compact by the Harnack bound `h(u)/h(v) <= C p^(-d(u,v))`.
+  - `||T_p|| = inf{C : W_C(p) nonempty}`, so this node is equivalent to: some
+    `W_C(p_c)` is nonempty.
+  - An invariant probability measure on `W_C(p)` forces `chi_p <= C`, by mass
+    transport and `r + 1/r >= 2`.
+
+  **Where it dies:** at `p_c`, `chi = infinity`, so no `W_C(p_c)` carries an
+  invariant measure, and every critical Schur weight has a non-coamenable
+  stabilizer. This kills in one step:
+  - constant weights, and weights that are factors of iid labels or of any
+    invariant random object;
+  - averages of weights over an invariant law;
+  - weights read off an amenable quotient.
+
+  **What survives:** a certificate must be boundary-type, a point of a compact
+  `Gamma`-space without invariant measure. Both known non-perturbative
+  certificates are of this type: `Delta^(1/2)`, fixed by a nonunimodular
+  subgroup, and the free-product Busemann weight, fixed by an end stabilizer.
+  Any general attack by Schur test has to construct such a boundary action for
+  an arbitrary nonamenable group, with the Schur inequality at `p_c`. This node
+  stays OPEN.

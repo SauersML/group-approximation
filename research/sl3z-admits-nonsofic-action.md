@@ -97,3 +97,16 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
     co-induced ones), and `Bernoulli × τ` with `τ` essentially free. No cocycle superrigidity theorem for these is
     imported, and no containment construction is recorded. Dies at: the same point, with product seeds narrowed to
     essentially free `τ`.
+* **Full-group Kun--Thom pairs (sw-088, 2026-09-17).** The first bullet is stuck because no infranormal non-normal
+  Kazhdan pair is recorded inside `SL_3(Z)`. So move the pair from the group into the full group `[R_a]` of a free
+  action, where it acts by piecewise `SL_3(Z)` elements and need not be free, linear or ergodic.
+  * `full-group-kazhdan-pairs-have-invariant-fixed-algebras` holds modulo Theorem 4.1: Theorem C holds for every
+    Kazhdan infranormal pair `Γ ≤ H ≤ [R_a]` of a sofic free action. The proof uses swap permutations on a doubled
+    space, which lie outside the embedded crossed product.
+  * This gives the one-direction reduction `sl3z-nonsofic-from-full-group-kun-thom-violation` to the open
+    measurable statement `kun-thom-violation-inside-free-sl3z-orbit-relation`.
+  * **Dead seeds.** Finite `Γ`-orbits die unconditionally. Constant cocycles die, since they give back the first
+    bullet. Untwistable cocycles with an ergodic infinite torsion abelian subgroup die, which kills generalized
+    Bernoulli seeds of the Theorem E groups via Popa superrigidity (sketch).
+  * **What survives.** Non-constant cocycles `H × X → SL_3(Z)` of non-malleable Kazhdan-pair actions; cohomologous
+    but non-constant cocycles are a recorded gap. No candidate is recorded.

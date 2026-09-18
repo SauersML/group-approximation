@@ -1,0 +1,6 @@
+out_pairs_r4_residual.txt ('aBAAb', 'baBaaaba') rank(A) 4 rounds (vertices of H_k, |W(H_k)|) [(14, 8), (14, 8)] => undecided
+out_pairs_r4_residual.txt ('bbaabAbb', 'aaBabA') rank(A) 4 rounds (vertices of H_k, |W(H_k)|) [(1, 88)] => ONE-ENDED
+out_pairs_r4_residual.txt ('baBAA', 'BBaaBa') rank(A) 4 rounds (vertices of H_k, |W(H_k)|) [(1, 104)] => ONE-ENDED
+out_pairs_r4_residual.txt ('BBABaa', 'AbAbA') rank(A) 4 rounds (vertices of H_k, |W(H_k)|) [(1, 138)] => ONE-ENDED
+out_pairs_r4_residual.txt ('ABBBaab', 'ABaBABBa') rank(A) 4 rounds (vertices of H_k, |W(H_k)|) [(1, 94)] => ONE-ENDED
+one-ended certified for 4 / 5 distinct C

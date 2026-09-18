@@ -93,3 +93,19 @@ homomorphism. That is `kt-centralizer-normalization-hs`.
   - A support for it must use (T) of `G`, both sides of the conjugation
     bimodule, and finite matrix stages, with no genuine representations.
   - Artifact §1, §2 TS4, §3.
+- **Packing-profile transcription of the Hamming proof (d-nhg-p5, 2026-09-17, entropy-measure).**
+  Dies at the strict-increase step (`wold-multiplicity-blinds-commutant-packing-sizes`).
+  - Method: measure the approximate-commutant microstates of `Gamma` and `u Gamma u^-1` by
+    2-norm packing counts at a scale `f(d_n)`. Then argue that a nonzero Wold shift `D` makes the
+    `B`-count exceed the `A`-count.
+  - The counts agree exactly (WH3).
+  - At `f = d^2`, every trace-preserving model has identically zero profiles (WH2). The proof
+    bounds the averaging operator by `Tr Phi^2 / d^2 -> 2/|W|`.
+  - At every other scale, `T_n = Ad sigma_n(u)^-1` averages `K` asymptotically orthogonal
+    conjugates of the shift microstates into the commutant microstates. That gives
+    `h_A(delta/(sqrt 2 K)) >= K h_D(delta)` (WH1). So the shift is invisible unless `A` already
+    has a covering profile of order `1/t`, where orthogonal counting gives no contradiction.
+  - Under (T) the shift microstates do contain every bounded element of `D` (WH4). So this is a
+    fence on the counting, not on the microstate sets.
+  - Escapes: exact per-stage counts (the exactification attempts), and sizes that are not packing
+    counts, for example the spectral multiplicities of `Phi`.
