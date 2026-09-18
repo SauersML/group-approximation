@@ -1,0 +1,182 @@
+{
+ "S": "x0x1x2",
+ "K": 3,
+ "word_length_orbits": 2,
+ "word_length_pairs": 3,
+ "counts": {
+  "no-finite-orbit": 506,
+  "contains-F": 6,
+  "virtually-abelian": 0,
+  "unresolved": 0
+ },
+ "detail": [
+  {
+   "twists": [
+    "0",
+    "0",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       0,
+       1
+      ]
+     ],
+     [
+      [
+       1,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "0",
+     "1"
+    ]
+   }
+  },
+  {
+   "twists": [
+    "1/8",
+    "0",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       0,
+       1
+      ]
+     ],
+     [
+      [
+       2,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "3/4",
+     "9/8"
+    ]
+   }
+  },
+  {
+   "twists": [
+    "1/8",
+    "1/8",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       0,
+       1
+      ]
+     ],
+     [
+      [
+       1,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "3/4",
+     "7/4"
+    ]
+   }
+  },
+  {
+   "twists": [
+    "1/4",
+    "0",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       0,
+       1
+      ]
+     ],
+     [
+      [
+       1,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "1/2",
+     "5/4"
+    ]
+   }
+  },
+  {
+   "twists": [
+    "1/2",
+    "0",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       1,
+       1
+      ]
+     ],
+     [
+      [
+       2,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "1/2",
+     "1"
+    ]
+   }
+  },
+  {
+   "twists": [
+    "5/8",
+    "0",
+    "0"
+   ],
+   "class": "contains-F",
+   "cert": {
+    "pair": [
+     [
+      [
+       1,
+       1
+      ]
+     ],
+     [
+      [
+       2,
+       1
+      ]
+     ]
+    ],
+    "orbital": [
+     "1/2",
+     "1"
+    ]
+   }
+  }
+ ]
+}

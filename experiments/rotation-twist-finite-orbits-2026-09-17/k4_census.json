@@ -1,0 +1,208 @@
+{
+ "K": 4,
+ "word_length": 3,
+ "period_bound": 200,
+ "pairs": 256,
+ "pairs_not_excluded": [
+  {
+   "a": "0",
+   "b": "0",
+   "max_invariant": [
+    [
+     "0",
+     "0"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "0"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/16",
+   "b": "0",
+   "max_invariant": [
+    [
+     "1/16",
+     "1/16"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "1/16"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/16",
+   "b": "1/16",
+   "max_invariant": [
+    [
+     "7/8",
+     "7/8"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "7/8"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/8",
+   "b": "0",
+   "max_invariant": [
+    [
+     "1/8",
+     "1/8"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "1/8"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/8",
+   "b": "1/8",
+   "max_invariant": [
+    [
+     "3/4",
+     "3/4"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "3/4"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "3/16",
+   "b": "0",
+   "max_invariant": [
+    [
+     "3/16",
+     "3/16"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "3/16"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "3/16",
+   "b": "1/8",
+   "max_invariant": [
+    [
+     "5/8",
+     "5/8"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "5/8"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "3/16",
+   "b": "9/16",
+   "max_invariant": [
+    [
+     "3/16",
+     "3/16"
+    ],
+    [
+     "5/8",
+     "5/8"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "3/16",
+     "5/8"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/4",
+   "b": "0",
+   "max_invariant": [
+    [
+     "1/4",
+     "1/2"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "1/4"
+    ],
+    [
+     "1/2"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "1/2",
+   "b": "0",
+   "max_invariant": [
+    [
+     "0",
+     "0"
+    ],
+    [
+     "1/4",
+     "1/4"
+    ],
+    [
+     "1/2",
+     "1/2"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "0",
+     "1/4",
+     "1/2"
+    ]
+   ],
+   "words_used": 52
+  },
+  {
+   "a": "5/8",
+   "b": "0",
+   "max_invariant": [
+    [
+     "0",
+     "0"
+    ],
+    [
+     "3/8",
+     "3/8"
+    ]
+   ],
+   "certified_finite_orbits": [
+    [
+     "0",
+     "3/8"
+    ]
+   ],
+   "words_used": 52
+  }
+ ],
+ "note": "every pair not listed has no finite orbit, hence generates a nonamenable subgroup of T"
+}
