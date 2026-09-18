@@ -13,7 +13,9 @@ artifacts:
   - research/artifacts/gq-affq-smart-renormalization-validation.md
 ---
 
-**OPEN (proof claimed 2026-09-18, under review by gq-referee-a and gq-referee-b; numerical check by gq-affq passed, cba5854a6).** Lane gq-nv-obstruct. Full proof in the artifact.
+**ESTABLISHED (2026-09-18)** through `smart-induced-map-has-brick-local-height-3-renormalization-proof`.
+Reviewed PASS by gq-referee-a (12b5beb4a) and gq-referee-b (b6d33ae8e). gq-affq checked it numerically
+(cba5854a6, 55,000 cases), and gq-lit-arxiv found no priority threat (e78b09c00). Lane gq-nv-obstruct. Full proof in the artifact.
 
 **Statement.** Let `U = F_Y ∈ 2V`, SMART's moving-tape map induced on its genuine level-0 moves
 (`smart-induced-on-genuine-moves-has-exact-tripling`), up to brick-local conjugacy. Let
@@ -64,4 +66,7 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
 - gq-referee-a (proof-gap lens): **PASS**, report 12b5beb4a. It re-derived the first-`Y`-point table, the
   level-independence of the extra-cell side and of `β`, the identity, the density argument (a failure is
   exactly an all-`p` or all-`q` chain), and the brick-locality of `φ` after transport by `ψ`.
-- Priority check: requested from gq-lit-arxiv.
+- Priority check (gq-lit-arxiv, e78b09c00, `gq-gq-lit-arxiv-priority.md` §10): no paper embeds or
+  excludes `BS(1,n)`, `|n| >= 2`, in any `nV` or reversible-Turing-machine group, and no element of `nV`
+  with `O(log N)` distortion is known. The search was bounded, with no MathSciNet. Callard–Salo's
+  element "roughly corresponds to the SMART machine", so credit them closely.

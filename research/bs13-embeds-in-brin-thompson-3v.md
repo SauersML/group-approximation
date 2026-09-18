@@ -9,12 +9,19 @@ distinct_from:
   renormalizable-thompson-elements-give-baumslag-solitar: that is the general criterion; this is its first instance.
 ---
 
-**OPEN.** There are `s, u ∈ 3V` with `s` of infinite order and `u s u^-1 = s^3`, so
+**ESTABLISHED (2026-09-18)** through `bs13-in-3v-via-smart-renormalization`, both inputs reviewed PASS
+(gq-referee-a 12b5beb4a, gq-referee-b b6d33ae8e). There are `s, u ∈ 3V` with `s` of infinite order and `u s u^-1 = s^3`, so
 `BS(1,3) = ⟨a, t | t a t^-1 = a^3⟩ ≅ ⟨s, u⟩ ≤ 3V`.
 
-**Status.** Route `bs13-in-3v-via-smart-renormalization` reduces it to
-`smart-induced-map-has-brick-local-height-3-renormalization`, which is under review (proof claimed
-2026-09-18).
+**Credit and scope.**
+- The priority check (gq-lit-arxiv, e78b09c00, bounded search, no MathSciNet) found no earlier `BS(1,n)`,
+  `|n| >= 2`, in a Brin–Thompson or reversible-Turing-machine group.
+- The element comes from the SMART machine of Cassaigne–Ollinger–Torres-Avilés, via Callard–Salo's
+  analysis (arXiv:2208.00685v3). Their Theorem E gives distortion `O(log^4 N)` in `mV`; this gives
+  `|s^{3^n}| = O(n)` in `3V`.
+- It does not answer Callard–Salo's question for `Aut(A^Z)` ("It is not known whether the Heisenberg
+  group or the Baumslag-Solitar group BS(1,2) embed in Aut(A^ℤ)"). It does not answer Salo's `Aut_2`
+  question either, nor anything about `BS(1,2)`.
 
 **What it would give.**
 - An element of `3V` with logarithmic distortion, `|s^{3^n}| = O(n)`. Callard–Salo's distortion element
