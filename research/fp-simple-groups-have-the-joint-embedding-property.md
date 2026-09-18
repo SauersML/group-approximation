@@ -116,3 +116,15 @@ embed in one finitely presented simple group.
        onto all generators of `M_2`. That is the amalgam trick of
        `leavitt-cantor-module-fp-via-thompson-amalgam`.
      - **(G3) the unit group is finitely presented.** This is the conditional import.
+6. **The census closes** (lane `bh-major-product`, 2026-09-18, lane proofs, not reviewed).
+   - `(L_p ⊗ L_p)^×` is in `B_A` for every `p`: `leavitt-tensor-unit-groups-lie-in-the-permutational-class`,
+     which passes gates G1–G3 of Attempt 5.
+   - The odd-prime simple quotients `R_d^× / F_p^×` are in `B_A`:
+     `projective-leavitt-tensor-units-lie-in-the-permutational-class`, through
+     `u ↦ u ⊗ (u^*)^(-1)` into degree `2d`.
+   - `W` and every `W_(P,ℓ)` are in `B_A`: `twisted-integral-affine-groups-lie-in-the-permutational-class`.
+   - So JE holds for every pair of finitely presented simple groups recorded on main,
+     conditional on the lane proofs and imports on those nodes: BFFHZ Corollary F, or the
+     product closure of `B_A`, gives the common host. The open statement is untouched. A
+     counterexample would need a finitely presented simple group outside `B_A`, and none is
+     known.

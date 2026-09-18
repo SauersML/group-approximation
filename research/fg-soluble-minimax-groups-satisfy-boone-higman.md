@@ -99,6 +99,35 @@ Either:
      on `Q_p × F_S`, and by continuous affine maps on the compact group `S_p × R/Z` (solenoid
      times circle). Both are in the node above. Neither is known to sit in a type (A) actor.
 
+3. Lane `bh-solvable`, 2026-09-18 (after restart). The centre is placed at infinity, and the
+   Abels quotient becomes a germ group.
+   - **Positive (`abels-quotient-product-form-model-with-one-singular-point`, lane proof).**
+     - `Γ_p = A_p/C` acts faithfully on the one-point compactification of
+       `Q_p^2 × Q_p/Z_p`. The action is the coset model `Â/K`, with
+       `K = {k_12 = k_34 = 0, k_14 ∈ Z_p}`.
+     - Off the fixed point `∞`, every element is a product of two independent `p`-adic
+       affine maps and a constant move in the discrete fiber.
+     - The germ map at `∞` is injective. So the finitely presented group `Γ_p` is its own
+       germ group there.
+     - Hall's `B/C` acts through the first coordinate alone.
+     - The linear model's shear `g_23` becomes the bilinear cocycle `x_1x_2` in the fiber.
+       So the first option of the Lesson below (a host with ends) is realized in product form,
+       and the sheared-circle option is not needed.
+   - **Obstruction (same node).** Groups whose nontrivial normal subgroups all contain torsion
+     embed in the spiral group `C(C_2, Z) ⋊ V` only through `V`. So `B/C` and `Γ_p` lie in no
+     rational germ group of a finite germ extension of `V` in the Corollary 2.10 regime.
+   - **What is left: two explicit gates.**
+     - (a) A base built from two `p`-adic odometer Thompson groups, with a dense orbit of
+       points modelled on that neighbourhood of `∞`, whose `SingFix` groups are finitely
+       presented.
+     - (b) Finite presentation of `Alt_fin(Ω) ⋊ Γ_p` on the dense orbit
+       `Ω = Z[1/p]^2 × Q_p/Z_p`. The point stabilizer is `Z[1/p]^3 ⋊ Z^2`, which is finitely
+       generated. The lampshuffler obstruction needs a free action, so it does not apply.
+     - Gate (b) gives Boone–Higman for `B/C` and `Γ_p` directly, by
+       `fp-finitary-permutation-overgroups-are-type-a-actors`. Gate (a) gives a finitely presented
+       host, whose simplicity or type (A) is then checked as usual (Belk–Hyde–Matucci Theorem 1.3,
+       or `fp-cantor-groups-containing-v-type-a-iff-clopen-stabilizer-fg`).
+
 ## Lesson for general BH
 
 In a soluble minimax group, failure of residual finiteness comes from an infinite Chernikov

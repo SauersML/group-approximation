@@ -155,3 +155,22 @@ one crux (w8-bh-follow).**
 - **Source note.** Barbieri–Sablik's `Z^2 ⋊ H` simulation is cited above as context.
   The self-simulation paper of Barbieri–Sablik–Salo, arXiv:2104.05141, read at source,
   uses no hierarchy at all, only paradoxical grids.
+
+**Attempt 4 (2026-09-18, bh-g1-simulation): the free case is proved; the crux is bypassed.**
+- **Result.** `free-effective-minimal-subshifts-lift-to-minimal-sfts-times-z2` proves this
+  statement for **free** `Y`, with all of `Λ` acting freely. It is a design-level lane proof,
+  through `keyed-diversification-slots-give-plane-constant-minimal-lifts`.
+- **New ingredient: keyed diversification slots.** A level-`K` slot shows `i(τ)`, where `τ` is
+  the plane's own table on `F_K` and `i` ranges over maps from tables to admissible window
+  contents.
+  - Freeness of `Y` makes the tables of `λF` pairwise distinct for large `K`.
+  - So every floating tuple on a finite window of planes appears in some slot. There is no need
+    to make the tuples `Y`-patterns, which is what
+    `plane-coupled-floating-tuples-are-jointly-diversifiable` asked.
+  - The kill "plane-independent slots die" applied to slots whose content depends on the slot
+    alone. Keyed slots are also placed plane-independently; only their content is keyed.
+- **Attempt 2's alignment worry is void.** DR's minimal-version standard alignment (their Claims
+  1–3, read at source) is not needed. The input and the hierarchy sit in commuting factors, so
+  (input, grid phase) never couple.
+- **Still OPEN: non-free `Y`.** Planes identified by a stabilizer carry equal tables at every
+  level, so no key separates their floating content. The P1 routes do not need this case.
