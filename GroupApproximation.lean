@@ -5831,6 +5831,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Progress
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDefs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.RelSix
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.KTwoVanish
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFModelLift
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
