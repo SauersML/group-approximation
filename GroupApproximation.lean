@@ -5676,6 +5676,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StableFunctor
 import GroupApproximation.Manuscript.NonMF.Full.GL03C.FourthJunction
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCPBasics
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Statement
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.RotationHoms
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
