@@ -5837,6 +5837,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.MatrixCorner
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridRounding
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridLDL
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridApproximation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiDecompose
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
