@@ -107,3 +107,31 @@ independently of Gottschalk's conjecture.
     - *Consequence.* The sofic extension must use locality of `tau_sigma` at the
       defects, not only a fibre bound.
   - The node stays OPEN for general `G`.
+- 2026-09-18 (swarm-0917-w11-w11-gs-follow) [group-rings]: C2 holds whenever `<supp D>` is
+  residually-(locally indicable amenable) (RLA), at every `d`
+  (`residually-li-amenable-groups-are-torus-surjunctive`, ESTABLISHED, unreviewed; artifact
+  `research/artifacts/residually-li-amenable-torus-2026-09-18.md`).
+  - **Criterion (Theorem 1).** Suppose `Q[H]` embeds in a division ring `E` inverting every
+    matrix whose augmentation is invertible. Call this (AD_E). Then the constants
+    `epsilon(D) in GL_d(Z)` already force `D` regular. No dynamics is used beyond the
+    periodic-point lemma at `N = G`.
+  - **Hosts.** Jaikin-Zapirain (Selecta 2021, imported as
+    `residually-li-amenable-hughes-free-rings-are-universal`) proves `D_{Q[H]}` Cohn-universal
+    for RLA `H`. A specialization to `epsilon` plus Gaussian elimination gives (AD_E).
+    Free-by-(LI amenable) groups are RLA, so every `BS(m,n)` is.
+  - **Belief change.** The w10 first open instance, `d = 2` over `BS(2,3)`, is closed at every
+    `d`. `BS(2,3)` is finitely presented, non-Hopfian, not LEF and not amenable.
+  - **Decomposition for torsion-free hosts.** C2 on a locally indicable `H` follows from (AD):
+    Cohn specialization `D_{Q[H]} ~> Q` along `epsilon`, equivalently
+    `rk_epsilon <= rk_{D_{Q[H]}}` on all matrices. (AD) is a pure ring statement, independent
+    of soficity. It is open beyond RLA, since universality of `D_{Q[G]}` is published only for
+    RLA and a few other classes. Thompson's `F`: every proper quotient is abelian, so `F` is
+    RLA iff amenable. Hence `F` amenable implies C2 over `F`.
+  - **Where it dies.**
+    - (AD_E) forces `H` torsion-free: `N_K` for a finite `K` has `epsilon = |K|` and is a
+      zero divisor. So hosts with torsion (non-LEF, non-RPP) are untouched.
+    - RLA groups are sofic, so this adds nothing to Gottschalk itself, only to the torus lane.
+  - **Import concern (flagged, not edited).**
+    `flat-weak-bass-holds-exactly-for-locally-indicable-groups` item 1(ii) cites JZ21
+    universality for every locally indicable `G`. The JZ21 abstract claims it only for RLA
+    groups, so the dependent items are supported only on that class.
