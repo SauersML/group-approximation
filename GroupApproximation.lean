@@ -5605,6 +5605,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemDefs
 import GroupApproximation.Manuscript.NonMF.Full.GL06e.Statements
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Builders
 import GroupApproximation.Manuscript.NonMF.Full.GL06g.Exit
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.CoefficientSlice
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
