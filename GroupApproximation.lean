@@ -5882,6 +5882,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffros
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiSimplicity
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Lift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTCliffordSystem
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.Endpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
