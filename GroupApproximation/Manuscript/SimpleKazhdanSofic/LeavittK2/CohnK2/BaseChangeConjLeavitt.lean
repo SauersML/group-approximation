@@ -67,7 +67,7 @@ theorem leavittBaseChangeConj_of_cohnConj (hC : CohnBaseChangeConjStatement) :
       (algebraMap (ZMod 2) (CohnTwo (ZMod 2))) =
       algebraMap (ZMod 2) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) :=
     RingHom.ext fun a => (CohnTwo.toLeavitt (ZMod 2)).commutes a
-  have h := congrArg (ringMap (CohnTwo.toLeavitt (ZMod 2)).toRingHom) hy
+  have h := congrArg (ringMap (I := Fin N) (CohnTwo.toLeavitt (ZMod 2)).toRingHom) hy
   rw [GroupApproximation.BooneHigman.SteinbergBasic.ringMap_ringMap, hcomp, map_mul, map_mul,
     map_inv, ← CohnTwo.indexMap_castLE_ringMap, hk'k, CohnTwo.indexMap_castLE_castLE] at h
   exact ⟨N, (Nat.le_add_right n 2).trans hN, y,
@@ -85,7 +85,8 @@ theorem leavittK2_of_leavittConj (hC : LeavittBaseChangeConjStatement)
       (algebraMap (ZMod 2) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
     RingHom.injective _
   have hc : indexMap (Fin.castLEEmb (Nat.le_add_right N 1)) (indexMap (Fin.castLEEmb hN) k) ∈
-      Subgroup.center (St (N + 1) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
+      Subgroup.center
+        (St (N + 1) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
     map_stab_K2_le_center (R := GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))
       (n := N) (Subgroup.mem_map_of_mem
         (stab N (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))
@@ -111,7 +112,8 @@ theorem leavittK2_of_leavittConj (hC : LeavittBaseChangeConjStatement)
       (algebraMap (ZMod 2) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))
       (projection (indexMap (Fin.castLEEmb (Nat.le_add_right N 1)) y)) =
       elementaryGroupMap
-        (algebraMap (ZMod 2) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) 1 := by
+        (algebraMap (ZMod 2) (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))
+        1 := by
     rw [hK, map_one]
   have hy2 : indexMap (Fin.castLEEmb (Nat.le_add_right N 1)) y ∈ K2 (Fin (N + 1)) (ZMod 2) := by
     rw [mem_K2_iff]

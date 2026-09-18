@@ -62,11 +62,12 @@ theorem exists_shrink_list [Finite X] (x : X) (L : List X) (hnd : L.Nodup) (hx :
       have n1 : ¬ IsStreamPrefix [y] p := fun hq =>
         Set.disjoint_left.mp (disjoint_cone (not_prefix_cons_of_ne hxy [z] [])
           (not_prefix_cons_of_ne hxy.symm [] [z])) hp hq
+      have n2a : ¬ [x, z] <+: [x, y] := fun e =>
+        hzy (List.cons_prefix_cons.mp (List.cons_prefix_cons.mp e).2).1
+      have n2b : ¬ [x, y] <+: [x, z] := fun e =>
+        hzy (List.cons_prefix_cons.mp (List.cons_prefix_cons.mp e).2).1.symm
       have n2 : ¬ IsStreamPrefix [x, y] p := fun hq =>
-        Set.disjoint_left.mp (disjoint_cone
-          (fun e => hzy (List.cons_prefix_cons.mp (List.cons_prefix_cons.mp e).2).1)
-          (fun e => hzy (List.cons_prefix_cons.mp (List.cons_prefix_cons.mp e).2).1.symm))
-          hp hq
+        Set.disjoint_left.mp (disjoint_cone n2a n2b) hp hq
       show h (coneSwap [y] [x, y] h1 h2 p) = p
       rw [coneSwap_apply, coneSwapFun_of_not n1 n2]
       exact hfix z hzL p hp
