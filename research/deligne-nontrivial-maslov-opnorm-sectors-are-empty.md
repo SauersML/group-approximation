@@ -151,3 +151,29 @@ operator-norm asymptotic representations.
     `sp4-deligne-rigid-infinite-index-subgroup-exists`. If it fails, the gate
     cannot be localized to any infinite-index subgroup.
 
+- **2026-09-18, swarm-0917-w9-w9-deligne-follow (stability-approximation): a
+  real untwisting on `Mod(S_2)`, and a new two-prerequisite route.**
+  - Established: `mod-s2-real-untwisting-identifies-deligne-norm-parameters`.
+    - `H^2(Mod(S_2);R) = 0` and `H^1 = 0`, so `b o pi = df` for a unique real
+      `f`. Also `f|_Torelli = r * (separating-twist count)`, with `r = a/10`
+      and `3 not | a`; this is read off the mod-three splitting and
+      `deligne-triple-cover-fd-central-invisibility`.
+    - Consequently `theta` lies in `P_op` iff `-r theta` lies in `Z_op`, the
+      closed group of scalars that a separating twist can approach under
+      point-norm asymptotic homomorphisms of `Mod(S_2)`.
+    - So this gate holds iff no point-norm asymptotic homomorphism of
+      `Mod(S_2)` sends `t_s` to `omega^(+-1) I`. Also `P_op = R/Z` iff
+      `Z_op = R/Z`.
+    - Invariant: after untwisting, the Maslov class, and with it the Dadarlat
+      windings that make `Sp_4(Z)` unstable, is gone, since
+      `H_2(Mod(S_2);Q) = 0`. Only one scalar remains.
+  - New route `deligne-opnorm-sectors-empty-via-mod-s2-matricial-stability`
+    requires two OPEN claims, each able to fail independently:
+    - (A) `mod-s2-is-point-norm-matricially-stable`, where the known
+      cohomological obstruction vanishes;
+    - (B_op) `mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap`.
+      It is *necessary* for this gate, is implied by the HS gap node, and is a
+      purely spectral statement about honest representations.
+  - Under (A), the gate is equivalent to (B_op). This meets the w6-last2
+    calibration, since the route uses operator-norm liftability. Neither
+    prerequisite was proved here, so the gate stays OPEN.
