@@ -21,3 +21,19 @@ There is `n >= 3` such that `δ_(H_n)(x) ≼ x^2` fails.
   arXiv:1403.0026, Theorem 4.1). So an exponential mechanism is unlikely, but
   a polynomial gap such as `x^3` is not excluded. No lower bound beyond `x^2`
   is known.
+- 2026-09-18 (swarm-0917-w13-w13-z-last1, cohomology-index): class kill,
+  recorded as `houghton-cohomological-dehn-lower-bounds-cap-at-quadratic`
+  (direct proof `houghton-cohomological-dehn-lower-bounds-cap-proof`).
+  - Killed: every cocycle certificate whose module has `H^1(FSym; V) = 0`,
+    which covers trivial and finite-dimensional coefficients. Also killed:
+    every central-extension distortion bound and abelian-subgroup
+    distortion. None of them gives more than `x^2`.
+  - Where it dies: `H^2(FSym; V) = 0` always. Once `H^1` vanishes, inflation
+    from `Z^(n-1)` is onto, so the certificate is a Euclidean area pairing
+    plus a linear boundary term.
+  - What survives: modules with `lim^1_i V^(Sym({1..n}x{1..i})) != 0`, for
+    example `ℓ^∞(G)` (the LP dual of real filling). Non-abelian corridor or
+    HNN arguments, counting on `FSym`, and asymptotic-cone arguments also
+    survive.
+  - Do not retry Gersten-style real 2-cocycles, finite-dimensional twisted
+    cocycles or central-extension arguments.
