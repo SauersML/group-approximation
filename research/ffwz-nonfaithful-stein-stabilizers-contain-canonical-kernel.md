@@ -62,3 +62,11 @@ Found by grep of 2026-09-18; the list may be incomplete.
   `fixed-actor-orbit-quotients-are-finitely-many` should be checked.
 
 These are the owners' to re-grade. This node does not edit them.
+
+## Lesson for general BH
+
+A stabilizer computation does not survive passing to an action through a quotient. The
+kernel sits in every stabilizer. The relative-simplicity route
+(`boone-higman-implies-relative-permutational-bh` followed by finite presentation of the
+abstract `SV_G`) currently rests on this unproven step, so any removal-of-kernel strategy
+built on it inherits the gap until non-faithful finite presentation is re-proved.
