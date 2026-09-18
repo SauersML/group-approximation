@@ -57,8 +57,9 @@ The stronger form "some region class (`ExtremalJordanPickPoolRegion`, lane gl-p1
 two changes" is FALSE: 24 failures at 6 darts (of 6,489,102 instances), 476 at 7 and 4,800 at 8
 darts of degree at most 3, e.g. vertices `[0,1,0,0,1,1]`, regions
 `[(0,1),(0,2),(3,2),(0,4),(3,1),(5,2)]`, reversed source arc `[3]`, target arc `[5]`, `RS = 4`,
-`RE = 2`: the only classes with at most two changes are inside classes meeting an arc dart.  Those arcs have one dart, so the uniform form
-survives; the Statement uses the weaker uniform form.
+`RE = 2`: the only classes with at most two changes are inside classes meeting an arc dart.
+Those arcs have one dart, so the uniform form survives; the Statement uses the weaker uniform
+form.
 
 ## LOUD: logical strength of the gap
 
