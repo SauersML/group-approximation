@@ -15,8 +15,10 @@ group `Q` as `TorsionFreeJoint.PrintedTorsionFreeTheoremWithRegularAlgebra`.
   `Q` with the seven printed clauses of `thm:torsion-free`; its binder is Osin's
   Lemma 4.4 at least-area diagrams,
   `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0,0,0}`,
-  whose closer `GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea`
-  is owned by the Greendlinger lanes.
+  which is still open: the Greendlinger lanes prove it only as
+  `GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`,
+  over `P07InnerPocket.PocketFourPieceOffStatement` and
+  `P10RoseExtremalTrim.RoseExtremalJunctionStatement`.
 * Unpack `IsTwoGenerated Q` into `g₁ g₂`, install the finitely presented and
   acylindrically hyperbolic clauses as instances, and apply
   `TorsionFreeJoint.regularAlgebraClauses` to the torsion-free clause and the

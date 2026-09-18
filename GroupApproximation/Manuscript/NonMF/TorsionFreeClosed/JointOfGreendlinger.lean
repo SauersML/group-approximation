@@ -24,10 +24,12 @@ least-area Greendlinger leaf
 (`TorsionFreeJoint.printedTorsionFreeTheoremWithRegularAlgebra_of_greendlinger`).  The endpoints
 below apply that reduction, and for the introduction's sentence the unconditional weakening
 `introReducedAlgebraNotMF_of_joint`.  Their single binder is
-`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`, whose closer
-`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` (in
-`GreendlingerLeaf/Assembly.lean`) is not importable yet; once it is, each endpoint closes by
-applying it.
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`.  That leaf is
+still open: `GreendlingerLeaf/Assembly.lean` proves it only as
+`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`, over the two open
+Statements `GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement` and
+`GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement`.  There is no binder-free
+closer.
 -/
 
 namespace GroupApproximation

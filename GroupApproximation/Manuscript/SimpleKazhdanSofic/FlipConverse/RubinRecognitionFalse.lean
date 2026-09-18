@@ -123,3 +123,50 @@ theorem rubinRigidSubgroup_inf_conj_ne_bot {T : X ≃ₜ X} (hT : IsMinimalHomeo
 
 end RecognitionFalseTop
 
+section RecognitionFalseSystem
+
+variable {Y : Type} [TopologicalSpace Y] [CompactSpace Y] [T2Space Y]
+  [TotallyDisconnectedSpace Y] [PerfectSpace Y] [Nonempty Y] [TopologicalSpace.MetrizableSpace Y]
+
+/-- A rigid polar that overlaps its centraliser refutes recognition. -/
+theorem not_rigidPolarRecognition_of_overlap {S : Y ≃ₜ Y} (hS : IsMinimalHomeo S)
+    {P : Subgroup (topologicalFullGroup S)} (hPol : IsRigidPolar P)
+    {p q : topologicalFullGroup S} (hp : p ∈ P)
+    (hq : q ∈ Subgroup.centralizer (P : Set (topologicalFullGroup S)))
+    (hpq : ¬ Disjoint (movedSet (p : Y ≃ₜ Y)) (movedSet (q : Y ≃ₜ Y))) :
+    ¬ RigidPolarRecognitionStatement :=
+  fun h => hpq (rigidPolarSupportSeparation_of_rigidPolarRecognition h Y S hS P hPol p hp q hq)
+
+/-- Formal refutation of recognition from the configuration of the module docstring: mutually
+centralising `P, Q` with trivial meet, containing rigid stabilisers of open sets that meet all
+their translates, and with overlapping elements. -/
+theorem not_rigidPolarRecognition_of_centralizer_eq_of_persistent {S : Y ≃ₜ Y}
+    (hS : IsMinimalHomeo S) {P Q : Subgroup (topologicalFullGroup S)} {A V : Set Y}
+    (hQ : Subgroup.centralizer (P : Set (topologicalFullGroup S)) = Q)
+    (hP : Subgroup.centralizer (Q : Set (topologicalFullGroup S)) = P)
+    (hPQ : P ⊓ Q = ⊥) (hA : IsOpen A) (hV : IsOpen V)
+    (hAP : rubinRigidSubgroup S A ≤ P) (hVQ : rubinRigidSubgroup S V ≤ Q)
+    (hAg : ∀ g : topologicalFullGroup S, (A ∩ ((g : Y ≃ₜ Y)⁻¹ : Y ≃ₜ Y) ⁻¹' A).Nonempty)
+    (hVg : ∀ g : topologicalFullGroup S, (V ∩ ((g : Y ≃ₜ Y)⁻¹ : Y ≃ₜ Y) ⁻¹' V).Nonempty)
+    {p q : topologicalFullGroup S} (hp : p ∈ P) (hq : q ∈ Q)
+    (hpq : ¬ Disjoint (movedSet (p : Y ≃ₜ Y)) (movedSet (q : Y ≃ₜ Y))) :
+    ¬ RigidPolarRecognitionStatement := by
+  have hPol : IsRigidPolar P :=
+    isRigidPolar_of_centralizer_eq_of_persistent hQ hP hPQ hAP hVQ
+      (fun g => rubinRigidSubgroup_inf_conj_ne_bot hS hA g (hAg g))
+      (fun g => rubinRigidSubgroup_inf_conj_ne_bot hS hV g (hVg g))
+  have hq' : q ∈ Subgroup.centralizer (P : Set (topologicalFullGroup S)) := by
+    rw [hQ]
+    exact hq
+  exact not_rigidPolarRecognition_of_overlap hS hPol hp hq' hpq
+
+end RecognitionFalseSystem
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinConjSubgroup_mono
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.inf_rubinConjSubgroup_ne_bot_of_le
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.isRigidPolar_of_centralizer_eq_of_persistent
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinRigidSubgroup_inf_conj_ne_bot
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.not_rigidPolarRecognition_of_overlap
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.not_rigidPolarRecognition_of_centralizer_eq_of_persistent

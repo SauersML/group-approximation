@@ -31,28 +31,25 @@ Osin's Lemma 4.4 at least-area diagrams, the Greendlinger waist of Hull's Theore
 Corollary 7.4.  `FournierFacioRows` bundles the five forms the two rows cite, and
 `fournierFacioRows_of_greendlinger` is its reduction.
 
-## Closer that a later landing plugs in
+## The leaf is still open
 
-The leaf is closed, without binders and universe-polymorphically, by
+There is no binder-free closer of the leaf.  The honest leaf endpoint is
 
-  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea`
+  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
 
-in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`, not imported here because its
-`Piece01..Piece10` proofs have not landed.  Once it builds, the closed endpoints are
-
-```
-theorem manuscriptSentence_hullCommonQuotient : TheoremC.HullCommonQuotientStatement :=
-  manuscriptSentence_hullCommonQuotient_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
-```
-
-and likewise for `manuscriptSentence_fournierFacioQuotient`,
-`manuscriptSentence_fournierFacioParagraph`, `theoremC_configuration`, `theoremC_literatureInputs`
-and `fournierFacioRows`, each audited with `#audit_closed_axioms`.
+in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`, over the two open Statements
+`GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement` and
+`GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement`.
+`TorsionFreeClosed/FournierFacioClosed.lean` applies it, giving
+`manuscriptSentence_hullCommonQuotient_of_residuals` and likewise
+`manuscriptSentence_fournierFacioQuotient_of_residuals`,
+`manuscriptSentence_fournierFacioParagraph_of_residuals`, `theoremC_configuration_of_residuals`,
+`theoremC_literatureInputs_of_residuals` and `fournierFacioRows_of_residuals`.
 
 ## Manuscript status
 
-Every theorem here takes `hgreendlinger`, so the two rows stay `partial` until the closer lands.
+Every theorem here takes `hgreendlinger`, so the two rows stay `partial` until both residual
+Statements are proved.
 -/
 
 namespace GroupApproximation

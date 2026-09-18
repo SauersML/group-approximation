@@ -12,9 +12,11 @@ import GroupApproximation.Meta.AxiomGuard
 ## Route
 
 Lane nm-torsionfree-05.  Each endpoint takes the single binder `hgreendlinger`, the least-area
-Greendlinger leaf `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (whose
-closer `GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` in
-`GreendlingerLeaf/Assembly.lean` is not importable yet), and applies the matching
+Greendlinger leaf `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (still open:
+`GreendlingerLeaf/Assembly.lean` proves it only as
+`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`, over the open Statements
+`P07InnerPocket.PocketFourPieceOffStatement` and `P10RoseExtremalTrim.RoseExtremalJunctionStatement`),
+and applies the matching
 `TorsionFreeGreendlingerLeaf.printedRegularNonMFAlgebra*_of_greendlinger` reduction.
 
 The predicates `TorsionFreePrinted.PrintedRegularNonMFAlgebra` (and its Osin / limit-set forms)

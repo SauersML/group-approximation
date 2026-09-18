@@ -57,11 +57,13 @@ theorem leavittK2Used_of_rankFour (h4 : LeavittK2UsedRankFourStatement) :
         (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))).map
         (LeavittFP.refineHom (GroupApproximation.BinaryLeavitt.family (ZMod 2)) (3 : Fin 4)) :=
     le_of_eq LeavittFP.binaryLeavitt_K2_five_eq_map_four.symm
-  obtain ⟨w, hw, rfl⟩ := Subgroup.mem_map.mp (hle hk)
+  obtain ⟨w, hw, hwk⟩ := Subgroup.mem_map.mp (hle hk)
   obtain ⟨N, hN, hwN⟩ := h4 w hw
-  exact ⟨N + 1, Nat.add_le_add_right hN 1,
-    usedRankFour_pad_refine_eq_one (GroupApproximation.BinaryLeavitt.family (ZMod 2))
-      (3 : Fin 4) hN hwN⟩
+  refine ⟨N + 1, Nat.add_le_add_right hN 1, ?_⟩
+  have e := usedRankFour_pad_refine_eq_one (GroupApproximation.BinaryLeavitt.family (ZMod 2))
+    (3 : Fin 4) hN hwN
+  rw [hwk] at e
+  exact e
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.leavittK2Used_of_rankFour
 

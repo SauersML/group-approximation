@@ -10,8 +10,10 @@ import GroupApproximation.Meta.AxiomGuard
 # The Greendlinger leaf over its honest open residuals
 
 Osin, arXiv:math/0411039v3, §9 and Appendix, Lemmas 9.4, 9.7 and 4.4, at least-area diagrams.
-Lane gl-assembly-13.  `GreendlingerLeaf/Assembly.lean` cites missing names (`Piece06.proof`,
-`P07LakeExclusion.proof`, `P10Rose.rose`).  This module is the leaf endpoint
+Lane gl-assembly-13.  `GreendlingerLeaf/Assembly.lean` used to cite missing names
+(`Piece06.proof`, `Piece10.proof`, and earlier `P07LakeExclusion.proof`, `P10Rose.rose`); since
+gl-asm-14 it imports this module and re-exports the endpoint below as
+`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`.  This module is the leaf endpoint
 `RelativeGreendlingerQuasiGeodesicLeastAreaStatement` over exactly the Statements that are still
 open on the live routes.  Every closed piece is supplied by its closed term, and every import
 resolves with no missing name.

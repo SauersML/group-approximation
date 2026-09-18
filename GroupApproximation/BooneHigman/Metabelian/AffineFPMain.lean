@@ -12,8 +12,8 @@ generating `R`, the presented group `PresAff I R S` is isomorphic to `R^I ⋊ E_
 
 * `piMap`: `PresAff I R S →* R^I ⋊ E_I(R)` (the relators hold in the model);
 * `psi`: the inverse, built with `SemidirectProduct.lift` from `zHom` and `compat`;
-* `isFinitelyPresented_affineElementary`: if `E_I(R)` is finitely presented, so is
-  `R^I ⋊ E_I(R)`; `isFinitelyPresented_affineElementary_fin` is the case `I = Fin n`, `n ≥ 4`.
+* `isFinitelyPresented_affine`: if `E_I(R)` is finitely presented, so is
+  `R^I ⋊ E_I(R)`; `isFinitelyPresented_affine_fin` is the case `I = Fin n`, `n ≥ 4`.
 -/
 
 namespace GroupApproximation
@@ -44,7 +44,7 @@ theorem liftFree_inl (g : elementaryGroup I R) :
 theorem liftFree_inr_of (k : I) :
     liftFree I R (Monoid.Coprod.inr (FreeGroup.of k)) =
       SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R)) :=
-  (Monoid.Coprod.lift_apply_inr _ _ _).trans FreeGroup.lift_apply_of
+  by rw [liftFree, Monoid.Coprod.lift_apply_inr, FreeGroup.lift_apply_of]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.liftFree_inr_of
 
@@ -118,7 +118,7 @@ theorem psi_inr (g : elementaryGroup I R) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.psi_inr
 
 theorem psi_comp_piMap : (psi h1 hcl hI).comp (piMap S) = MonoidHom.id (PresAff I R S) := by
-  refine QuotientGroup.monoidHom_ext (Monoid.Coprod.hom_ext ?_ ?_)
+  refine QuotientGroup.monoidHom_ext _ (Monoid.Coprod.hom_ext ?_ ?_)
   · refine MonoidHom.ext fun g => ?_
     exact (congrArg (psi h1 hcl hI) ((pi_mk S (Monoid.Coprod.inl g)).trans
       (liftFree_inl g))).trans (psi_inr h1 hcl hI g)
@@ -135,8 +135,9 @@ theorem piMap_comp_psi :
   refine SemidirectProduct.hom_ext ?_ ?_
   · refine vec_hom_ext fun i r => ?_
     obtain ⟨k, hki, -, -⟩ := exists_ne_three hI i i i
-    change piMap S (psi h1 hcl hI (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r)))) =
-      SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r))
+    change piMap S (psi h1 hcl hI
+        (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r)))) =
+      (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r)) : AffineElementary I R)
     rw [psi_inl, AffineRel.zHom_single, AffineRel.yi_eq _ i k hki.symm r,
       map_commutatorElement, pi_xP, pi_τP]
     exact model_commutator i k hki.symm r
@@ -149,7 +150,7 @@ end Psi
 
 /-- **Lane bh-met-05.** For a finitely generated commutative ring `R` and `|I| ≥ 4`, if the
 elementary group `E_I(R)` is finitely presented then so is `R^I ⋊ E_I(R)`. -/
-theorem isFinitelyPresented_affineElementary [Algebra.FiniteType ℤ R]
+theorem isFinitelyPresented_affine [Algebra.FiniteType ℤ R]
     (hI : 4 ≤ Fintype.card I) [Group.IsFinitelyPresented (elementaryGroup I R)] :
     Group.IsFinitelyPresented (AffineElementary I R) := by
   obtain ⟨S, hS, h1, hcl⟩ := exists_finite_ring_generators R
@@ -157,15 +158,15 @@ theorem isFinitelyPresented_affineElementary [Algebra.FiniteType ℤ R]
   exact Group.IsFinitelyPresented.equiv (MonoidHom.toMulEquiv (piMap S) (psi h1 hcl hI)
     (psi_comp_piMap h1 hcl hI) (piMap_comp_psi h1 hcl hI))
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_affineElementary
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_affine
 
 /-- The case `I = Fin n`: `Group.IsFinitelyPresented (E_n R) → FP (R^n ⋊ E_n(R))`, `n ≥ 4`. -/
-theorem isFinitelyPresented_affineElementary_fin (n : ℕ) (hn : 4 ≤ n) (A : Type*) [CommRing A]
+theorem isFinitelyPresented_affine_fin (n : ℕ) (hn : 4 ≤ n) (A : Type*) [CommRing A]
     [Algebra.FiniteType ℤ A] (hE : Group.IsFinitelyPresented (elementaryGroup (Fin n) A)) :
     Group.IsFinitelyPresented (AffineElementary (Fin n) A) :=
-  isFinitelyPresented_affineElementary (by rw [Fintype.card_fin]; exact hn)
+  isFinitelyPresented_affine (by rw [Fintype.card_fin]; exact hn)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_affineElementary_fin
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_affine_fin
 
 end AffineFP
 end Metabelian

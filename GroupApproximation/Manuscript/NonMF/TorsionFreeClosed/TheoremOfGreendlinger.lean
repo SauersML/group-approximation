@@ -20,13 +20,12 @@ and tex 2182 (proof of `thm:torsion-free`):
 
 Lane nm-torsionfree-04.  Every wall of the torsion-free section is closed in the corpus
 except `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (Osin's Lemma
-4.4 at least-area diagrams), whose closer
-`GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` lives in
-`GreendlingerLeaf/Assembly.lean`, which is not importable yet.  So each endpoint below
+4.4 at least-area diagrams), which is still open: `GreendlingerLeaf/Assembly.lean` proves it
+only as `GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`,
+over the two open Statements `GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement` and
+`GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement`.  So each endpoint below
 takes that one leaf as its single binder `hgreendlinger` and applies the corresponding
-`TorsionFreeGreendlingerLeaf.*_of_greendlinger` reduction.  Once the assembly lands,
-each endpoint closes by applying it to
-`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}`.
+`TorsionFreeGreendlingerLeaf.*_of_greendlinger` reduction.  There is no binder-free closer.
 -/
 
 namespace GroupApproximation
