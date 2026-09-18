@@ -113,6 +113,11 @@ over such a ray there is exactly one point.
 
 ## Remarks
 
+- **The totally irrational case is now closed.** At a totally irrational ray, the
+  half-tube lemma (`half-tube-lattice-points-are-edge-split-vertices`) gives the shared
+  vertex that part 5 asks for. So `(Sync_2)` holds; see
+  `unimodular-cells-synchronize-under-edge-splits-proof`, which also extends parts 2–5 to
+  every rank.
 - The hand witnesses of `edge-split-descendants-are-not-factor-closed` fit the
   vertex lemma: those witnesses share no ray with the cell they lie in.
 - The bounded search recorded in `unimodular-cells-synchronize-under-edge-splits`

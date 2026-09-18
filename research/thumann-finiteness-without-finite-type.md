@@ -75,9 +75,10 @@ Everything is Thumann's proof of Theorem `41762` (l.2664), except one estimate.
    - `𝒰/𝒢` is contractible. The subsection "A contractible complex" (l.3196–3623) uses only the
      cancellative calculus of fractions.
    - The degree filtration is cocompact and has `F_n` stabilizers, by (Cc)_n and (St)_n.
-   - So `Γ` is `F_n` once the pairs `((𝒰/𝒢)_k, (𝒰/𝒢)_{k−1})` are `(n − 1)`-connected for large `k`
-     (Thm `46200`, l.2689, and its `F_n` form). By the Morse method (Thm `34332`, l.1211), it
-     suffices that the descending link `lk↓(𝒦)` is `(n − 2)`-connected for all objects `𝒦` of
+   - So `Γ` is `F_n` once the pairs `((𝒰/𝒢)_k, (𝒰/𝒢)_{k−1})` are `n`-connected for large `k`.
+     Then `(𝒰/𝒢)_k` is `(n − 1)`-connected and cocompact (Thm `46200`, l.2689, and its `F_n` form).
+     Attaching along an `(n − 1)`-connected descending link gives an `n`-connected pair (Lemma
+     `76169`, l.1027). So it suffices that `lk↓(𝒦)` is `(n − 1)`-connected for all objects `𝒦` of
      large degree.
 2. **Whole link = corona.** `lk↓(𝒦) ≃ Corona(𝒦)`, the full subcategory of elementary arrows out of
    `𝒦`. This is Prop. `29625` with Lemma `90173` (l.4529–4600). It uses only the defining property
@@ -112,8 +113,10 @@ Everything is Thumann's proof of Theorem `41762` (l.2664), except one estimate.
      - hence `𝔩 ≥ N − n D_n`, so `ν_d(𝔩) ≥ n` once `N` is large;
      - then `conn ≥ 𝔫 + ν_d(𝔩) ≥ n + 1`, a contradiction.
    - So every descending link in the build-up is `(n − 2)`-connected for large `N`.
-     - By Thm `34332`, `Corona(𝒦)` then has the homotopy groups of `Core(𝒦)` up to degree `n − 2`.
-     - So `Corona(𝒦)` is `(n − 2)`-connected for large `N`, hence so is `lk↓(𝒦)`, by step 2.
+     - By Lemma `76169` each attachment is an `(n − 1)`-connected pair, so the pair
+       `(Corona(𝒦), Core(𝒦))` is `(n − 1)`-connected.
+     - `Core(𝒦)` is highly connected, so `Corona(𝒦)` is `(n − 1)`-connected for large `N`, and so
+       is `lk↓(𝒦)`, by step 2.
    - For `n = ∞`, run this for every `n`.
 6. **Variant.** Steps 2–5 use only (VE) and the three standing assumptions. Step 1 uses exactly
    (Cc)_n and (St)_n. `∎`

@@ -79,3 +79,11 @@ and a closed carrier must lie inside it. Finiteness (now automatic after Cuntz
 stabilization) and rank were never the obstruction for cubulated groups. Parallelism of
 tails to walls is. The next host design must stratify the boundary by the walls a tail
 runs along, since those strata are Roller boundaries of hyperplanes, one dimension down.
+
+## Attempts
+
+1. **(bh-major-cube-b, 09-18) The obstruction is repaired by flags.**
+   `flagged-pointed-cube-category-resynchronizes-cubulated-actions` lets states also forbid
+   walls the future will not cross. The mismatch `Max(o,gz) Δ g Max(o,z)` found here then
+   becomes one flag move on each side, and every point resynchronizes, `Z² * Z` included.
+   This node's theorem remains true for the unflagged coding.

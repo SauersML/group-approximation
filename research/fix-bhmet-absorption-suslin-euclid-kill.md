@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-absorption-suslin-euclid-kill
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill: Type mismatch"
 ---
 
@@ -15,6 +16,8 @@ Source changed on main since that build: no.
 error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:108:12: Type mismatch
 error: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:109:12: Type mismatch
 ```
+
+**Kind.** proof error (classification merged from the parallel node `fix-bh-met-absorption-suslin-euclid-kill`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

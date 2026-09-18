@@ -21,6 +21,9 @@ BFFHZ point to groups that are not MIF (arXiv:2503.21882v2, l.246). Once `V_τ` 
 finitely presented, `T_{xz}` and `V_{xz}` are finitely presented simple groups, and the
 claim answers Question 3.4 positively for them without MIF.
 
-**Status.** OPEN in Cairn: the one route waits only on
-`irrational-slope-t-tau-and-v-tau-are-finitely-presented`, whose type `F_∞` statement
-Burillo--Nucinkis--Reeves assert with proof deferred to Stein's methods.
+**Status.** ESTABLISHED (2026-09-18, lane `bh-near-actions`; lane proofs, not reviewed). The route
+`irrational-slope-v-tau-pbh-via-orbit-action` is complete: its input
+`irrational-slope-t-tau-and-v-tau-are-finitely-presented` is now ESTABLISHED, through
+`irrational-slope-t-tau-and-v-tau-fp-via-simplex-and-pisot-coding`. Independently,
+`stein-v-groups-act-with-type-a-on-breakpoints` (quadratic instance, metallic slopes) gives the same type (A)
+action. `T_{xz}` and `V_{xz}` are finitely presented simple groups, so the Question 3.4 remark applies to them.
