@@ -47,7 +47,15 @@ Exact linear Lean forms (`ExtremalJordanPickChanges` as `c'.zip (c'.rotate 1)`),
 instance of the model of lanes gl-p10-17/21/27/30 (pocket walk, base point, arcs, source and
 exterior regions), every choice class:
 
-TRUTHCHECK
+* 6 darts, every vertex degree: 6,489,102 instances, no failure of either clause (the pool is
+  never empty; every class of least measure has one of the two shapes).
+* 8 darts, vertex degree at most 3: 5,024,192 instances, no failure; 9,214,800 least-measure
+  pool classes checked, and 5,934,504 pool classes have neither shape (so the pick clause is not
+  vacuous: the rule really has to choose).
+* Sanity: every class of measure at most `2` is a loop-run class, on every instance above.
+* 7 darts, every vertex degree (`pick5.py 7 7 4 i`, files `s7_i.out`): run started, result
+  PENDING when this file was written.  The same model at 7 darts confirms
+  `ExtremalJordanRerouteStatement` (lane gl-p10-30), but not yet this pick rule.
 
 * In every instance checked, the least measure is `0` or `2`: the picked class has at most one
   removed run of non-loop darts, so it is already a loop-run class (the pinned alternative is
