@@ -40,7 +40,7 @@ theorem powersStormer_exists_dilation {Yd : Matrix n n ℂ} (hY : Ydᴴ = Yd)
     have h0 := (hp.conjTranspose_mul_mul_same V).diag_nonneg (i := i)
     have h1 : (Vᴴ * (1 - Yd * Yd) * V) i i = ((1 - f i * f i : ℝ) : ℂ) := by
       rw [e]
-      simp [Matrix.diagonal_mul_diagonal]
+      simp
     rw [h1, Complex.zero_le_real] at h0
     linarith
   have hstar : (star fun i ↦ ((Real.sqrt (1 - f i * f i) : ℝ) : ℂ))
