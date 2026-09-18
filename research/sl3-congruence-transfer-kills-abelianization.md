@@ -8,9 +8,11 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
   - research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md
+  - research/artifacts/gq-referee-a-sl3-congruence-transfer-kills-abelianization.md
 ---
 
-**ESTABLISHED** by `sl3-congruence-transfer-kills-abelianization-proof` (lane proof; referee
+**ESTABLISHED** by `sl3-congruence-transfer-kills-abelianization-proof` (lane proof; referees
+gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-sl3-congruence-transfer-kills-abelianization.md`, and
 gq-referee-b PASS, citation lens and every proof step, `research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md`). Its one external input is Lee–Szczarba, quoted below.
 
 ## Input (Lee–Szczarba)
@@ -27,7 +29,7 @@ to [Γ_d(n),Γ_d(n)] for d≥2 and n≥3".
 
 **What is used.** `θ_d(I + dA) = A mod d` is a homomorphism `Γ_d -> M_n(Z/d)` with kernel `Γ_(d^2)`,
 by `(I+dA)(I+dB) = I + d(A+B) + d^2 AB`. Its image lies in the trace-zero matrices `sl_n(Z/d)`, since
-`det(I + dA) ≡ 1 + d·tr(A) mod d^2`. So `[Γ_d, Γ_d] = Γ_(d^2)` (quoted), and `θ_d` induces `Γ_d^ab ≅ sl_n(Z/d)` by comparing orders with
+`det(I + dA) ≡ 1 + d·tr(A) mod d^2`. It is onto `sl_n(Z/d)`, which is the quoted "epimorphism" (referee remark). So `[Γ_d, Γ_d] = Γ_(d^2)` (quoted), and `θ_d` induces `Γ_d^ab ≅ sl_n(Z/d)` by comparing orders with
 the quoted `d^(n²-1)`.
 
 ## Statement

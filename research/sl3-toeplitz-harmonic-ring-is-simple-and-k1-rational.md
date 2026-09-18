@@ -10,10 +10,14 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
   - research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md
+  - research/artifacts/gq-referee-a-sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational.md
 ---
 
-**ESTABLISHED** by `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational-proof` (lane proof; gq-referee-b
-checked the citations and part 6, parts 1–5 not yet reviewed). Trust surfaces:
+**ESTABLISHED** by `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational-proof` (lane proof; gq-referee-a
+PASS on all parts, proof-gap lens, `research/artifacts/gq-referee-a-sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational.md`;
+gq-referee-b checked the citations and part 6). Unreviewed dependencies:
+`matricial-divisibility-kills-rational-k2-symbols` and `q-algebra-elementary-quotients-contain-gl-n-q` (the
+latter has a gq-referee-b PASS). Trust surfaces:
 - T2: Fuglede–Kadison from a secondary source;
 - T3: Loday's product `K_1(A) ⊗ K_1(B) -> K_2(A ⊗ B)`, `[a] ⊗ [b] ↦ {a⊗1, 1⊗b}`, for noncommutative
   rings (Loday 1976), not read. gq-referee-b confirmed from Weibel Ch. IV only naturality, bilinearity,
