@@ -3,6 +3,7 @@ rg: 2
 id: resolvent-ring-has-path-normal-form
 kind: claim
 artifacts:
+  - research/artifacts/gq-referee-c-resolvent-presentation-ring-is-residually-finite.md
   - research/artifacts/gq-referee-a-resolvent-ring-normal-form-and-rf.md
 title: The eight-relator resolvent ring R_l is a skew Laurent ring D plus an ideal with an explicit path basis [a|k_1..k_s|b] over Z_(l) and cyclic l-groups
 distinct_from:
@@ -12,7 +13,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `resolvent-ring-has-path-normal-form-proof`. Lane proof; proof-gap
-review PASS by gq-referee-a (report in `artifacts`). It uses no Diamond Lemma: an explicit ring is built and the
+review PASS by gq-referee-a and re-derivation PASS by gq-referee-c (reports in `artifacts`). It uses no Diamond Lemma: an explicit ring is built and the
 universal properties are compared.
 
 **Notation.**

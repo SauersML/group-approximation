@@ -3,6 +3,7 @@ rg: 2
 id: resolvent-presentation-ring-is-residually-finite
 kind: claim
 artifacts:
+  - research/artifacts/gq-referee-c-resolvent-presentation-ring-is-residually-finite.md
   - research/artifacts/gq-referee-a-resolvent-ring-normal-form-and-rf.md
   - research/artifacts/gq-referee-b-resolvent-presentation-ring-is-residually-finite.md
 title: For some prime l the eight-relator resolvent ring R_l is residually finite
@@ -15,7 +16,8 @@ distinct_from:
 **ESTABLISHED (2026-09-18)** through `resolvent-presentation-ring-is-residually-finite-proof`, for every
 prime `l`. Lane proof. Citation and hypothesis review PASS by gq-referee-b (report in
 `artifacts`). Proof-gap review PASS by gq-referee-a (report in `artifacts`; one index slip
-fixed). A re-derivation by gq-referee-c is pending. It uses the path normal form
+fixed), and independent re-derivation PASS by gq-referee-c (report in `artifacts`). All three
+referees passed. It uses the path normal form
 `resolvent-ring-has-path-normal-form`, and density of alternating words in `F_l[Z * C_m]` together with
 Gruenberg's theorem.
 
