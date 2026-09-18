@@ -101,3 +101,31 @@ for those literal words.  Even after that lift is verified, a growing
 coordinate may realize deeper child trees, so a valid obstruction must still
 turn the recursive split into one fixed same-reservoir rank or operator-norm
 return.
+
+**Dead (2026-09-18, entropy-measure transplant, swarm-0917-w8-w8-ptm-pull).**
+The attempt was to import a measure or entropy invariant of the parabolic
+dual action on `(hat N, Haar)`, such as a Rokhlin or sofic entropy, a
+Bernoulli fixed-point measure, or a clopen compression, and use it as the
+missing non-tracial input.  It dies before any computation, in three places.
+1. *Measure data.*  Haar on `hat N` is the restriction of the regular
+   character (see the statement above).  So every invariant of the pmp dual
+   action of the parabolic, entropy included, is realized by the GNS model
+   of the regular character.  Haar invariance also rules out the only
+   measure-level compression: an automorphism `g` cannot map a nonempty
+   clopen `D` of `hat N` onto a proper clopen subset of `D`, since the
+   difference would be a nonempty clopen set of Haar measure `0`.
+2. *The operator-norm substitute through stable finiteness.*  Every trace
+   `tau` on a unital C*-algebra `A` vanishes on the closed ideal generated
+   by `e-f`, whenever `e` and `f` are projections in `M_n(A)` with
+   `e ~ f <= e`.  This is because `tau(e-f)=0` and
+   `tau(x(e-f)x*) <= ||x||^2 tau(e-f)`.  So proper isometries in matrices
+   over `C*(Delta)` never separate MF characters from other characters, and
+   the finiteness of the corona `prod M_d / sum M_d` constrains no trace.
+   This is the group-level form of item 4 of
+   `jacobson-boundary-amalgam-gap-is-a-reduced-mf-gate`.
+3. *Routing.*  `leavitt-mf-survivor-yields-jacobson-regular-character`
+   (commit 2a267fd54) now reduces the Leavitt MF-radical lane to the regular
+   character of `EL_5(J)`.  A measure-theoretic proof of `(HRP1)` would
+   therefore have to beat the same Kazhdan-free fence at
+   `jacobson-regular-character-not-mf-without-property-t`, where it is
+   stated in its cleanest form.

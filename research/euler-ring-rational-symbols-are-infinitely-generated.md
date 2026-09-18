@@ -9,10 +9,14 @@ distinct_from:
   infinitely-generated-symbols-block-fp-elementary-groups: that is the general lemma; this supplies the infinitely generated symbols for D and every ring retracting onto it.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-euler-ring-rational-symbols-are-infinitely-generated.md
+  - research/artifacts/gq-referee-b-euler-ring-rational-symbols-are-infinitely-generated.md
 ---
 
-**ESTABLISHED (2026-09-18)** through `euler-ring-rational-symbols-are-infinitely-generated-proof`. Lane proof (gq-k2-q),
-not independently reviewed. Inputs:
+**ESTABLISHED (2026-09-18)** through `euler-ring-rational-symbols-are-infinitely-generated-proof`. Lane proof (gq-k2-q).
+*Reviewed:* PASS by `gq-referee-a` (`research/artifacts/gq-referee-a-euler-ring-rational-symbols-are-infinitely-generated.md`)
+and by `gq-referee-b` (`research/artifacts/gq-referee-b-euler-ring-rational-symbols-are-infinitely-generated.md`).
+Inputs:
 - `abc-twisted-laurent-k-theory-fibration`, Ara–Brustenga–Cortiñas Theorem 3.6 and Lemma 7.2, read at the source
   there;
 - `infinitely-generated-symbols-block-fp-elementary-groups`;
