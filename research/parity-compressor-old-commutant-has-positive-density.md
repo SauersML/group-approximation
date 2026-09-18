@@ -197,6 +197,36 @@ part of the remaining hole.
   commutator is fenced by hyperlinear-by-amenable permanence.  Thus the
   first live two-cell must have genuinely nonamenable joint holonomy, or a
   proper-endomorphism cocycle outside every amenable telescope.
+- Obstruction-miner audit (d-parity, swarm-0917): the finite-quotient
+  fences above have a hypothesis gap for the actual Toeplitz embedding, and
+  the class they aimed at is dead for a different reason.
+  `toeplitz-schur-packet-center-dies-in-residually-finite-models` shows that
+  the `e_1`-scaled `Q` and `Z` coordinates of the packet, including its
+  central sign, lie in the finitary subgroup `L=SL_fin(F_2)` of
+  `EL_r(T)`.  `L` is infinite and simple, so it lies in the finite residual.
+  So `EL_r(T)` is not residually finite, the countermodels of
+  `finite-index-covariance-retains-coefficient-residual`,
+  `high-type-irreducibles-retain-finite-packet-mass`,
+  `rf-hnn-telescope-retains-coefficient-residual`,
+  `rf-amenable-two-cell-retains-coefficient`,
+  `finite-normalizer-covariance-density-no-go` and
+  `profinite-free-compressors-retain-coefficient-residual` cannot separate
+  the packet, and every representation factoring through a residually finite
+  group has forbidden mass `q=0`, where `(PCD1)` is vacuous.  The repair is
+  `hyperlinear-base-amenable-cells-retain-coefficients`: the Følner
+  telescope works with one canonical microstate of any hyperlinear base.
+  Hence `toeplitz-amenable-cells-reduce-to-base-hyperlinearity`: every
+  amenable-holonomy or finite-index coefficient cell for this packet either
+  fails (if `EL_r(T)` is hyperlinear, with positive forbidden mass and full
+  residual `z(1-a)`) or is unnecessary (if not, `EL_r(T)` already answers
+  `non-hyperlinear-group`).  The invariant every member hits is
+  hyperlinearity of the base, and each dies at the telescope of one canonical
+  base microstate.  The only unfenced gate is nonamenable joint holonomy of
+  several compressors acting on the finitary head `L`.  There
+  the profinite folding fence has no analogue, and what is needed is joint
+  self-similar canonical microstates (`rho o alpha_i` approximately conjugate
+  to `rho` for all `i` simultaneously).  One compressor alone always has
+  them when the base is hyperlinear.
 - A positive-mass input cannot rule out the congruence exits: tensoring with
   them keeps the mass.
   `congruence-exit-tensoring-forces-total-packet-collapse` tensors any
