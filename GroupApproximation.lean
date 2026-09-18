@@ -5972,6 +5972,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRMu
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHomotopyZero
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.Units
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Assembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeWitness
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
