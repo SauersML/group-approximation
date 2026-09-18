@@ -5784,6 +5784,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.StageEstima
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.KTwoFour
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.StepSim
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.YaoGeneration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Units
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
