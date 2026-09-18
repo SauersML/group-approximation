@@ -98,3 +98,63 @@ theorem czStabGen_surjStabLength_of_off (j : Fin n) {y : St (n + 1) R}
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_surjStabLength_of_off
 
 end General
+
+/-- **Residual (`K₂`-free).**  For `m > 0`, `n ≥ 4` and `k ≠ i`, the matrix of the Tri word
+`Y_{e_i α + e_k δ} X_{e_i ζ + e_k η} Y_{e_i β} X_{e_i γ}` is the matrix of some
+`H X Y X Y H` word all of whose factors avoid a single index `j ∉ {i, k}`. -/
+def CZStabGenTriOffStatement : Prop :=
+  ∀ m n : ℕ, 0 < m → 4 ≤ n → ∀ i k : Fin n, k ≠ i →
+    ∀ α δ ζ η β γ : Localization.Away (m : ℤ), ∃ j : Fin n, j ≠ i ∧ j ≠ k ∧
+      ∃ (g₁ g₂ : St n (Localization.Away (m : ℤ)))
+        (v w c w' : Fin n → Localization.Away (m : ℤ)),
+        g₁ ∈ czStabGen_off (Localization.Away (m : ℤ)) j ∧
+        g₂ ∈ czStabGen_off (Localization.Away (m : ℤ)) j ∧
+        v j = 0 ∧ w j = 0 ∧ c j = 0 ∧ w' j = 0 ∧
+        projection (stab n (Localization.Away (m : ℤ)) g₁ * padCol v * padRow w *
+            padCol c * padRow w' * stab n (Localization.Away (m : ℤ)) g₂) =
+          projection (padRow (Pi.single i α + Pi.single k δ) *
+            padCol (Pi.single i ζ + Pi.single k η) * padRow (Pi.single i β) *
+            padCol (Pi.single i γ))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CZStabGenTriOffStatement
+
+/-- The rank-two collapse gap follows from the `K₂`-free residual. -/
+theorem czStabGen_tri_of_triOff (h : CZStabGenTriOffStatement) :
+    SurjStabCollapseTriStatement := by
+  intro m n hm hn i k hki α δ ζ η β γ
+  obtain ⟨j, hji, hjk, g₁, g₂, v, w, c, w', hg₁, hg₂, hv, hw, hc, hw', hproj⟩ :=
+    h m n hm hn i k hki α δ ζ η β γ
+  have h2 : ∀ a b : Localization.Away (m : ℤ),
+      (Pi.single i a + Pi.single k b : Fin n → Localization.Away (m : ℤ)) j = 0 := by
+    intro a b
+    rw [Pi.add_apply, Pi.single_eq_of_ne hji, Pi.single_eq_of_ne hjk, add_zero]
+  have h1 : ∀ a : Localization.Away (m : ℤ),
+      (Pi.single i a : Fin n → Localization.Away (m : ℤ)) j = 0 :=
+    fun a => Pi.single_eq_of_ne hji a
+  refine czStabGen_surjStabLength_of_off j ?_ g₁ g₂ v w c w' hg₁ hg₂ hv hw hc hw' hproj
+  exact mul_mem (mul_mem (mul_mem (czStabGen_padRow_mem_off (h2 α δ))
+    (czStabGen_padCol_mem_off (h2 ζ η))) (czStabGen_padRow_mem_off (h1 β)))
+    (czStabGen_padCol_mem_off (h1 γ))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_tri_of_triOff
+
+/-- Surjective `K₂` stability over `ℤ[1/m]`, `n ≥ 4`, from the `K₂`-free residual. -/
+theorem czStabGen_k2SurjStab_of_triOff (h : CZStabGenTriOffStatement) :
+    ∀ m n : ℕ, 0 < m → 4 ≤ n → K2 (Fin (n + 1)) (Localization.Away (m : ℤ)) ≤
+      (K2 (Fin n) (Localization.Away (m : ℤ))).map (stab n (Localization.Away (m : ℤ))) :=
+  surjStabCollapse_k2SurjStab_of_tri (czStabGen_tri_of_triOff h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_k2SurjStab_of_triOff
+
+/-- **Endpoint (gap `hgen`).**  `CharZeroK2PosStabGenStatement` from the rank-four finite
+normal generation input together with the `K₂`-free residual. -/
+theorem czStabGen_posStabGen_of_rankFour_triOff (h4 : CZK2FngRankFourStatement)
+    (htri : CZStabGenTriOffStatement) : CharZeroK2PosStabGenStatement :=
+  charZeroK2PosStabGen_of_fngSurj
+    (czK2Fng_stabGenFNGSurj_of_rankFour h4 (czStabGen_k2SurjStab_of_triOff htri))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_posStabGen_of_rankFour_triOff
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
