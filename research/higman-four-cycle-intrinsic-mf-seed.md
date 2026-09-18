@@ -235,3 +235,31 @@ construction is currently known; nearby-spectrum mixing is also not covered.
   - **Bounded-order collapse.**  The quantitative prime chain proves collapse
     for exact-packet cycles with `o_i o_(i+1) eta < 2`.  It dies on fine clocks
     with orders `>= eta^(-1/2)`.
+- **Z/4 one-unitary reduction and a minimax census (2026-09-18, d-ptf-higman,
+  compute-scout, census-computation).**  Result:
+  `higman-opnorm-collapse-is-a-one-unitary-z4-problem`.  Scripts:
+  `experiments/higman-minimax-2026-09-17/`.
+  - *Established.* Amplify a tuple into `P=diag(U_0,...,U_3)` and the block
+    shift `S` of order four.  All four relators become the single defect
+    `def_S(P)=||P(SPS^*)P^*-(SPS^*)^2||`, and `m_c(4L)<=m^(4)_c(4L)<=m_c(L)`.
+    So `(HMF5)` is equivalent to `lim_N m^(4)_c(N)>0`.  Every noncollapsing
+    sequence therefore has an amplified form with an exact order-four matcher
+    whose fourth return is exactly `0`.  The `r`-clause of `(HOM5)` belongs
+    to the fixed-clock ansatz only, not to the problem.  A far `P` must also
+    stay `(c-def)/12`-far from `{S}'`.
+  - *Evidence.* The census used smooth-max continuation and a bundle minimax
+    polish of the true operator norm.  Every stored optimum was rechecked as
+    a four-tuple.
+    - The `L=12` witness polishes to `0.308580`.
+    - Haar starts give `0.3144` (`N=16`), `0.3099` (`N=32`) and `0.3033`
+      (`N=64`).
+    - Padding optima by `(+)1` and re-descending gives `0.2849` (`N=48`),
+      `0.2827` (`N=64`) and `0.2806` (`N=80`).  The `N=96` run gives
+      `0.2808`.  Every generator is at distance `>=1.999`.
+    - The optima are rank-33 perturbations of `1`, up to `1e-3`.
+
+    So the recorded `0.31` plateau is not a barrier.  The chain has
+    flattened, and the data fit a positive limit near `0.28` as well as slow
+    decay.
+    Neither proves nor refutes `(HMF3)`.  **Still OPEN.**  What is missing
+    is a lower bound for the one equation `R P R^* ~ P^2`, `R=D^*PD`.
