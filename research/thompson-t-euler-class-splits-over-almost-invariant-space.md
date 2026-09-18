@@ -90,3 +90,28 @@ excluded too.
     `T̄`: `(SL) ⇒ (MT) ⇒ T̄ Haagerup ⇒ ψ proper on ⟨z⟩`.
   - Route: `lifted-thompson-t-a-t-menable-via-central-poincare-exponent`.
   - (MT) itself is still OPEN.
+- 2026-09-18 (swarm-0917-w13-w13-nv-pull, entropy-measure): new forced shape (F3), established as
+  `thompson-t-euler-splitting-witnesses-are-asymptotically-free`. Not decided.
+  - *(F3).* Along every almost invariant sequence, `ν_n(Fix g) → 0` for all `g ≠ e`.
+    - Proof: the stabilizer laws of `ν_n` are almost conjugation invariant, so their limits are
+      IRSs of `T`. The character simplex of `T` (only `1` and `δ_e`) forces each limit to be
+      `a δ_T + (1 − a) δ_{e}`, with `a` the mass of the global fixed set.
+    - The Euler normalization makes that fixed set null: there, `β(·, x)` would be a homomorphism
+      `T̄ → R` with `z ↦ 1`, and `T̄` is perfect.
+  - *Killed by (F3), not by (F2).* Witnesses with local stabilizers (every `g` trivial near a
+    support `K(x)` fixes `x`) whose supports miss a fixed arc, have bounded cardinality, or fail to
+    be `ε`-dense with mass bounded below. This includes all bounded-size configuration spaces of
+    `S^1`.
+  - *Limits of the method.* (F3) cannot decide (MT). A Bernoulli shift of `T` is free and
+    probability-measure-preserving, so it satisfies (F2) and (F3), and the whole question sits in
+    the cocycle.
+    - For free pmp `X`, (MT) says that the integral Euler 2-cocycle of `T` becomes a coboundary
+      in `L⁰(X, R)` coefficients, which is measurable cohomology of the orbit relation.
+    - That reformulation is recorded, not proved equivalent in the nonsingular case.
+  - *Discrete case, cross-check.* In the discrete case, (F3) reproduces the mean-free conclusion
+    for co-amenable `H` reported on the bus by w10-nv-follow. Independently of w10 and w12, it was
+    rechecked that `PSL_2(Z)` is not co-amenable in `T`:
+    - the double cosets of `PSL_2(Z)` force `H ∩ gHg^{-1}` into the stabilizer of a finite
+      breakpoint set, which is virtually cyclic;
+    - item 4 of `mean-free-amenable-actions-residually-amenable-and-sofic` then applies.
+    - Not written up, since it duplicates their entries.
