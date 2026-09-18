@@ -42,7 +42,9 @@ Lane proof (gq-deep-adelic-1), not independently reviewed. Notation as in the ta
 - **The determinant.** As in step 3(b) of `matrix-corner-laurent-rings-block-fp-elementary-groups-proof`,
   `ψ(X) = Δ_N(X)^N` defines a homomorphism `K_1(R_T) -> R_(>0)` with `ψ([λ]) = |λ|`. So the kernel of
   `Q^x -> K_1(R_T)` lies in `{±1}`.
-- **Scalars.** If `λ I_N ∈ E_N(R_T)`, then `|λ|^N = ψ(λ I_N) = 1`.
+- **Scalars.** `ψ` is trivial on `E_N(R_T)` for every `N`: for `N >= 3` because `E_N` is perfect, and
+  for every `N` because each `e_ij(r)` is unipotent, so `Δ_N(e_ij(r)) = 1` (referee remark). If
+  `λ I_N ∈ E_N(R_T)`, then `|λ|^N = ψ(λ I_N) = 1`.
 - **The rest.** Use parts 2 and 4 of `q-algebra-elementary-quotients-contain-gl-n-q`, with the centre
   `Q` from part 2.
 
@@ -68,7 +70,9 @@ surjects onto `Z`.
    - With the level-`d^2` matrix units of part 4, `R_T ≅ M_(n_(d^2))(S')` with `S' = χ_(C') R_T χ_(C')`.
    - Under this isomorphism `v` is a monomial matrix. On the sub-blocks outside `C` its entries are
      `1_(S')`. On the sub-blocks of `C` it maps `sC'` to `γsC' = t_s C'` with entry
-     `χ_(C') u_(h_s)`, where `h_s = t_s^(-1) γ s ∈ Γ(d^2)`.
+     `χ_(C') u_(h_s)`, where `h_s = t_s^(-1) γ s ∈ Γ(d^2)`. With representatives of the form `st'` for the
+     level-`d^2` matrix units, the entries become `χ_(C') u_(t'^(-1) h_s t')`; conjugation by
+     `t' ∈ Γ(d)` normalizes `Γ(d^2)` and preserves the vanishing of the transfer below (referee remark).
 2. **K_1 of a monomial matrix.** Its class is the class of its permutation part plus the sum of the
    classes of its entries. A permutation matrix over `S'` has the class of `diag(sgn, 1, ..., 1)`, i.e.
    `ε·[1_(S')]` with `ε = sgn ∈ K_1(Z)`. Under the Morita isomorphism `K_1(S') ≅ K_1(R_T)` this is

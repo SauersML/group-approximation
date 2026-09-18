@@ -9,10 +9,12 @@ distinct_from:
   integral-form-algebras-have-no-fg-subring-containing-q: that excludes locally constant coefficients; the harmonic function here is continuous and not locally constant.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
+  - research/artifacts/gq-referee-a-harmonic-elimination-puts-q-in-odometer-crossed-products.md
 ---
 
-**ESTABLISHED** by `harmonic-elimination-puts-q-in-odometer-crossed-products-proof` (lane proof, not
-independently reviewed; elementary).
+**ESTABLISHED** by `harmonic-elimination-puts-q-in-odometer-crossed-products-proof` (lane proof; referee
+gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-harmonic-elimination-puts-q-in-odometer-crossed-products.md`;
+elementary).
 
 ## Setting
 
