@@ -170,3 +170,24 @@ dies for the whole fixed-position class whenever `Lambda = <P>` is nonamenable. 
 - The class already fails at a presentation of `F_3`.
 
 Artifact: `research/artifacts/fpbs/docs/fixed-position-cutting-spectral-obstruction.md`.
+
+**2026-09-18 (swarm-0917-w7-w7-fp-pull, transplanter, logic-computability): read Morse height as a coarse modulus
+and ask whether bounded-height certificates can reach the ceiling.** This dies, for every nonamenable group, at the
+routing tail inequality.
+
+- *Dictionary.* A removed edge of recovery height `H` over relators of length at most `k` has its endpoints joined in
+  `Phi'` by a path of length at most `(k-1)^H`. So a bounded-height matching retains a coarsely equivalent subgraphing,
+  which is the Morse form of the CGdlS coarse modulus.
+- *Where it dies.* `fpbs-quantitative-routing-tail-bound` then gives
+  `2 nu(E_M^{>H}) >= h - d (|S| - 1 - mu(M)) |B_G((k-1)^H)|` on every free action.
+- *Consequences when `beta_1 = 0`, which includes Kazhdan groups:*
+  - bounded-height matchings have deficit at least `h / (d |B_G((k-1)^H)|)`;
+  - near-optimal families over a fixed list keep mass `h/2` above every fixed height;
+  - depth-one witnesses over `P_L` need `L >= log_d(h / (d eta))`.
+- *What is ruled out.* Finite certificates of fixed `(k, H)` cannot succeed, and any proof of this node must build
+  matchings with non-tight heights.
+- *What is not ruled out.* This is not an obstruction to the node itself. `F_2 x Z` meets the inequality through
+  geometric-stopping heights.
+- *Status.* The node stays OPEN.
+
+Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, written deduction).
