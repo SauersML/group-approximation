@@ -182,6 +182,24 @@ claim [[nonsofic-one-relator-group]].
      such quotients, not a weaker target. The open test is (AA_G) at the
      doubly singular rank-two model `W_0 = a_2^(-1) u a_2 u^(-2)`,
      `u = [a_0,a_1]`.
+   - **The rank-two model is closed; roots need infinite order (w7-073).**
+     [[rank-two-bs-model-roots-need-infinite-order-witnesses]] shows the
+     following.
+     - `G_2` is an ascending HNN extension of `F_3`, hence residually finite
+       (Borisov--Sapir) and sofic. It is also peelable, so it does not test
+       the open case.
+     - Its finite quotients (e.g. `S_3`) keep `u` and `b_1`.
+     - A root lemma: when `a_n^(-1) c a_n = c^k` with `|k| >= 2`, the root
+       `r = a_n c a_n^(-1)` is never separated from `F_-` by a finite,
+       periodic or virtually polycyclic witness. At `G_2`, metabelian
+       witnesses fail too.
+     - Kaloujnine--Krasner induction makes solvable (AA) equivalent to
+       solvable (AA_G).
+     - An explicit `GL_3(Z[1/2])`-by-`Z` wreath quotient keeps `u` and `b_1`
+       and separates the root.
+     - Open next: an unpeelable model from
+       [[no-magnus-envelope-one-relator-groups-sofic]]. Test whether its
+       piece meets `G^(omega)` and whether its extreme has a BS-type root.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

@@ -1,0 +1,11 @@
+relator: TTAttATAtaTaTatAtATataTAtATata length 30
+
+stable letter t: exponent sum 0; letters x_-2..x_0
+ rewritten: x0^-1 x2^-1 x1^-1 x2^1 x1^1 x0^1 x1^-1 x2^-1 x1^1 x2^1 x1^-1 x2^-1 x1^1 x2^1
+  extreme x0: occurrences 2, exponents [-1, 1], exponent sum 0
+  extreme x2: occurrences 6, exponents [-1, 1, -1, 1, -1, 1], exponent sum 0
+
+stable letter a: exponent sum 0; letters x_-3..x_0
+ rewritten: x3^-1 x3^-1 x2^1 x2^1 x1^-1 x0^1 x1^-1 x2^-1 x3^1 x2^1 x1^-1 x2^1 x3^-1 x2^1 x1^-1 x2^1
+  extreme x0: occurrences 1, exponents [1], exponent sum 1
+  extreme x3: occurrences 4, exponents [-1, -1, 1, -1], exponent sum -2
