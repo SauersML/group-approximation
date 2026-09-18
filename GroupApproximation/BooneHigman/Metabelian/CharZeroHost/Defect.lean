@@ -32,7 +32,8 @@ def natVec (e : Fin n → ℕ) : Fin n → MvPolynomial (Fin k) A :=
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.natVec
 
 /-- The defect vector `g e + b - e`. -/
-def Zv (x : Aff n (MvPolynomial (Fin k) A)) (e : Fin n → ℕ) : Fin n → MvPolynomial (Fin k) A :=
+def Zv (x : Aff n (MvPolynomial (Fin k) A)) (e : Fin n → ℕ) :
+    Fin n → MvPolynomial (Fin k) A :=
   mat x *ᵥ natVec e + vec x - natVec e
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Zv

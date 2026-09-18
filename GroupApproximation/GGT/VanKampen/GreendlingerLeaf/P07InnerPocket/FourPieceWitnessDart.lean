@@ -112,9 +112,9 @@ theorem pocketKeep_alpha_of_boundary {a b : RegionCandidate D eps X}
         (PocketClass.pocketKeep a b K) c hk hfk
       rw [X.toCombMap.alpha_involutive d] at hgk
       exact hgP (mem_block_iff.mpr (Or.inl hgk))
-    · exact absurd (mem_witnessFaces_iff.mpr ⟨⟨hgs, hgcut⟩, Relation.ReflTransGen.tail hreach
+    · exact (hd (mem_witnessFaces_iff.mpr ⟨⟨hgs, hgcut⟩, Relation.ReflTransGen.tail hreach
         ⟨⟨hfs, hfcut⟩, ⟨hgs, hgcut⟩,
-          Or.inl ⟨X.toCombMap.alpha d, rfl, by rw [X.toCombMap.alpha_involutive d]⟩⟩⟩) hd
+          Or.inl ⟨X.toCombMap.alpha d, rfl, by rw [X.toCombMap.alpha_involutive d]⟩⟩⟩)).elim
   · have hB : X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ sideFaces X.toCombMap K.walk ∧
         X.toCombMap.faceOf (X.toCombMap.alpha (X.toCombMap.alpha d)) ∉
           sideFaces X.toCombMap K.walk := by

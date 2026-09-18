@@ -27,7 +27,7 @@ variable {I R P : Type*} [CommRing R] [Group P] {S : Set R}
   {x : ∀ i j : I, i ≠ j → R → P} {τ : I → P}
 
 /-- Step F3: translations in different coordinates commute. -/
-theorem yi_commute (hR : AffineRel S x τ) (i j : I) (hij : i ≠ j) (r s : R) :
+theorem yi_commute (hR : AffineRel S x τ) (i j : I) (_hij : i ≠ j) (r s : R) :
     Commute (hR.yi i r) (hR.yi j s) := by
   obtain ⟨k, hki, hkj, -⟩ := hR.four i j j
   obtain ⟨k', hk'i, hk'j, hk'k⟩ := hR.four i j k

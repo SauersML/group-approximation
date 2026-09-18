@@ -17,8 +17,8 @@ Route.
 * `weylUnit_val_eq_swap`: in characteristic two, `w_{uv} = 1 - E_uu - E_vv + E_uv - E_vu`
   (`ElementaryWeyl.weylUnit_val`) is Mathlib's `PEquiv.toMatrix_swap` form of the permutation
   matrix of `swap(u, v)`, since `-E_vu = E_vu`.
-* `swapLast_eq_frameTau`, `swapMid_eq_frameHSwap`: lane 06's `projection_weyl` and lane 06's
-  `swapMid_eq` identify the two swaps with Weyl units; `Units.ext` finishes.
+* `swapLast_eq_frameTau`, `swapMid_eq_frameHSwap`: `EdgeTriangleLift.projection_weyl` and
+  `EdgeTriangleLift.swapMid_eq` identify the two swaps with Weyl units; `Units.ext` finishes.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownBridge
@@ -40,9 +40,11 @@ theorem weylUnit_val_eq_swap {ι S : Type*} [Fintype ι] [DecidableEq ι] [Ring 
       (Equiv.swap u v).toPEquiv.toMatrix := by
   have hn : -Matrix.single v u (1 : S) = Matrix.single v u 1 := by
     rw [Matrix.single_neg, WeylCalc.neg_self_of_two_eq_zero h2]
-  rw [ElementaryWeyl.weylUnit_val, PEquiv.toMatrix_swap, pequiv_single_toMatrix,
-    pequiv_single_toMatrix, pequiv_single_toMatrix, pequiv_single_toMatrix,
-    sub_eq_add_neg _ (Matrix.single v u (1 : S)), hn]
+  have hs := PEquiv.toMatrix_swap (α := S) u v
+  rw [pequiv_single_toMatrix, pequiv_single_toMatrix, pequiv_single_toMatrix,
+    pequiv_single_toMatrix] at hs
+  rw [ElementaryWeyl.weylUnit_val, sub_eq_add_neg _ (Matrix.single v u (1 : S)), hn]
+  exact hs.symm
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownBridge.weylUnit_val_eq_swap
 
@@ -58,8 +60,10 @@ theorem swapLast_eq_frameTau : swapLast = frameTau BinL (1 + 1) := by
 /-- Lane 14's `swapMid` is lane 07's `h` for `GL₄(L)`. -/
 theorem swapMid_eq_frameHSwap : swapMid = frameHSwap BinL 1 := by
   have hw : swapMid = ElementaryWeyl.weylUnit (S := BinL) (2 : Fin 4) 1 midIdx_ne := by
-    rw [EdgeTriangleLift.swapMid_eq, ElementaryWeyl.weylUnit,
+    have hm := EdgeTriangleLift.swapMid_eq
+    rw [ElementaryWeyl.weylUnit,
       WeylCalc.neg_self_of_two_eq_zero EdgeTriangleLift.two_eq_zero_binL]
+    exact hm
   rw [hw]
   exact Units.ext (weylUnit_val_eq_swap EdgeTriangleLift.two_eq_zero_binL 2 1 midIdx_ne)
 

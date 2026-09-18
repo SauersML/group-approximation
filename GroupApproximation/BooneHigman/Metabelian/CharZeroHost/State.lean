@@ -49,7 +49,8 @@ def letter (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) : Letter p 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.letter
 
 /-- The vector `g e + b - c`, whose entries have zero digits. -/
-def z (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) : Fin n → MvPolynomial (Fin k) A :=
+def z (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) :
+    Fin n → MvPolynomial (Fin k) A :=
   mat x *ᵥ castVec ℓ.1 + vec x - castVec (outDigit D x ℓ)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.z
