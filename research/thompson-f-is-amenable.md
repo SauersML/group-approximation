@@ -361,3 +361,21 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     factors through `Z^2`.
   - *Survives:* actions with bounded orbits, and atomless measure classes. Poisson boundaries are always amenable
     and carry no information.
+- **Property A of cubical hosts (swarm-0917-w11-w11-f-pull, 2026-09-18, host-geometry, obstruction-miner).**
+  This decides the survivor left undecided in the previous entry, and the answer is **no**.
+  - *Established:*
+    - `nowak-hamming-cubes-have-property-a-arbitrarily-badly`, a citation of Nowak through Willett.
+    - `cat0-cube-complexes-with-property-a-are-finite-dimensional`. Every cube of a CAT(0) cube complex is an
+      isometric Hamming cube with a 1-Lipschitz gate retraction, so infinite dimension kills property A.
+    - `cubical-hosts-of-thompson-f-never-have-property-a`.
+  - *Consequence:* `X_F` and `X_V` fail property A. More strongly, every CAT(0) cube complex on which a group
+    containing `F` acts with finite vertex stabilizers fails property A. A free cube-permuting action of `F` on
+    a finite-dimensional CAT(0) cube complex would give a free resolution of finite length, contradicting
+    `cd F = ∞`. Acyclicity comes from Leary's convex hulls.
+  - *Invariant:* `cd F = ∞`, together with Nowak's unbounded support radius on the cubes `Q_n`.
+  - *Class killed, and where it dies:* "`F` is exact via a metrically proper action on a CAT(0) cube complex
+    with property A" dies at "the host has property A", for every host.
+  - *Calibration:* the obstruction sees only `cd = ∞`, which the amenable group `⊕_N Z` shares. So it says
+    nothing about whether `F` is exact or amenable.
+  - *Not decided:* whether `F` is exact through actions with infinite stabilizers, or through non-cubical
+    geometry. Nothing about amenability changes.
