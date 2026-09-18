@@ -12,8 +12,10 @@ artifacts:
 
 **ESTABLISHED** through `out-v-contains-the-root-problem-for-the-full-2-shift-proof`, by citation plus a short
 argument. Refereed: gq-referee-a PASS, proof-gap lens (report 0da548b9b, W1 and N1
-applied); one referee so far. The inputs were read in TeX at source, except Boyle--Lind--Rudolph
-and Boyle 2008, which were read through Salo. See the artifact. No priority is claimed.
+applied); gq-referee-b PASS, citation lens (report 97242cc3b, W1 and W2 applied). The inputs were read in TeX
+at source. Boyle 2008 (preprint, math.umd.edu) was read by gq-referee-b: §22 pins residual finiteness, Ryan's centre
+theorem and the inert kernel of the dimension representation, but the root problem was not located there, so it is
+cited in Salo's wording ("roots of infinitely many orders"). Boyle--Lind--Rudolph was not reached. See the artifact. No priority is claimed.
 
 **Notation.** `O_2 ≅ Out(V)` is the group of non-initial bi-synchronizing core transducers over `{0,1}` (BCMNO).
 `L_2 = O_2 ∩ SL_2` is its *Lipschitz part*: the elements in which every circuit outputs a word of the same length
@@ -33,10 +35,12 @@ as its input. `σ` is the shift of `X_2^Z = {0,1}^Z`, and `Aut = Aut(X_2^Z, σ)`
 4. **Calibration.**
    - Suppose an argument shows that no nontrivial element of `O_2` has roots of infinitely many orders. Then it
      answers negatively the open problem whether `Aut` has elements of infinite order with roots of infinitely many
-     orders (Boyle 2008, as quoted by Salo 2023), for the full 2-shift. It also shows `Z[1/2] ∉ G`, where `G` is
-     the class of groups embedding in the automorphism group of the `Z`-full shift. Salo records that question as open.
+     orders, for the full 2-shift. Salo 2023 records this as open and attributes it to Boyle 2008. It also shows that
+     `Z[1/2]` does not embed in `Aut(X_2^Z)`. Salo records the embedding question as open for the class `G` of groups
+     embedding in the automorphism group of some full shift. Transferring to `G` would need all full shifts to embed in
+     `Aut(X_2^Z)`, presumably Kim--Roush 1990 (not read), so only the 2-shift form is claimed.
    - An argument showing only that no nontrivial element of `O_2` is divisible by every integer would still decide
-     the "all orders" case of that problem for the full 2-shift.
+     the "all orders" case of that problem for the full 2-shift. Neither source states that case separately.
    - So an obstruction to `Aff(Q) <= Aut(V)` through roots must either settle these cases or use the coherence of
      the roots, as a copy of `Q` requires. Residual finiteness gives the coherent case on `L_2` (item 2), but not on
      `O_2`.
