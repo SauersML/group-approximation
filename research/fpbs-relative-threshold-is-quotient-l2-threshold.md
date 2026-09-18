@@ -171,3 +171,31 @@ graphs of type (ii) in C1, or through premise (beta).
   operator is bounded is part 5 of the sandwich. It preserves boundedness but
   cannot create it.
 
+* **C4 via Schreier Folner cuts (2026-09-18, dead; swarm-0917-w13-w13-bs-break).**
+  - *Idea.* Prove C4, `p_c(N;G) = p_c(M;G)` for `M/N` amenable, by running the
+    trifurcation count of `fpbs-co-amenable-subgroup-relative-threshold-is-pc-proof`
+    relative to `N` at a level `p in (p_c(M;G), p_c(N;G))`.
+  - *What survives.* The established node
+    `fpbs-relative-threshold-continuous-at-co-amenability` gives
+    `p_c(N;G) <= min{ p_tri(h(Gamma/M)), p_u(M;G) }`. Here `p_tri(h)` is the
+    infimum of the `p` with `delta(p) > p h`. It also proves that
+    `h(Gamma/N) = h(Gamma/M)`. Together with part 2 of the sandwich, this gives
+    a two-sided bound with both ends unchanged under amenable extension:
+
+    ```text
+    p^Q(M) <= p_c(M;G) <= p_c(N;G) <= min{ p_tri(h(Gamma/M)), p_u(M;G) } .
+    ```
+
+    So C4 holds whenever `p_c(M;G)` equals either end. A C4 counterexample
+    must have:
+    - `p_c(N;G) < p_u(M;G)`;
+    - `delta(p) <= p h(Gamma/M)` for every `p in (p_c(G), p_c(N;G))`.
+  - *Where it dies.* Step 4 of the trifurcation count needs an `N`-invariant
+    cut with finitely many `N`-orbits and expected open boundary below
+    `delta |W/N|`. The best ratio available is `p h(Gamma/N) = p h(Gamma/M)`,
+    so Step 4 yields only `delta <= p h`. Cutting inside one `M`-coset along a
+    Folner set of `M/N` pays `p |S \ M|` per vertex. Branches leaving `M`
+    re-enter at far `N`-cosets, so Step 5 (sprinkling onto one coset) has
+    nothing to act on. The invariant is `h(Gamma/M) > 0`. The method is as
+    blind to amenable extensions as `p^Q` is, so it cannot decide C4.
+
