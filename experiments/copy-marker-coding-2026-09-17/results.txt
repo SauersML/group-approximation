@@ -1,0 +1,20 @@
+Copy-marker coded pair (alpha_A, beta_A) on F_2 x F_2; min over nu in P(B_n x B_n) of TV(alpha nu, beta nu).
+Source: coded_pair_lp.py (n <= 3 all sets, n = 4 for {e,a,b} and B_1), coded_pair_lp_sym.py (B_1, n = 5).
+
+{e,a}      n=0..3  0.500000 0.166667 0.100000 0.071429      (= 1/(4n+2))
+{e,a,b}    n=0..4  0.666667 0.333333 0.222222 0.166667 0.133333   (= 2/(3(n+1)))
+{a,b}      n=0..3  1.000000 0.500000 0.333333 0.250000      (= 1/(n+1))
+B_1        n=0..5  0.800000 0.450000 0.322078 0.267666 0.239190 0.223033
+{a,A,b,B}  n=0..3  1.000000 0.562500 0.402597 0.334582
+Optimal nu for B_1 at n=3 puts Z on odd lengths only (parity split of g = e from g != e).
+
+Projection under (x,w) -> w x^{-1}: min over mu in P(B_n) of TV((1/K) sum g mu g^-1, (1/K) sum g mu).
+Source: conjugation_projection_lp.py (n <= 8), conjugation_projection_sym.py (n = 9, 10).
+B_1      n=0..10 0.800000 0.400000 0.266667 0.246154 0.237241 0.222609 0.210989 0.201695 0.195686 0.191214 0.187828
+{e,a,b}  n=0..8  0.666667 0.400000 0.222222 0.208333 0.156863 0.138643 0.116959 0.104575 0.091978
+
+Infinite-window certificate (projection_certificate.py, verify_certificate.py, certificate_p2.json):
+p=1: delta = 0 (types too coarse).  p=2 (L=7): LP delta = 0.0736842 (= 7/95 to float precision).
+Rounded phi (denominator 10^6): exact min drift on covering list = 368419/5000000 = 0.0736838;
+float min drift over every reduced word of length <= 12 = 0.0736838.
+Control A = {e,a,b} (symmetry group reduced to the a<->b swap): delta = 0 for p = 1, 2, as it must be.

@@ -133,3 +133,25 @@ route is dead.
     one is selector or marker coding, already killed above, so SFC has no known proof. A proof of SFG would need a
     pair `(α, β)`-uniform construction whose cost is visibly smaller than that of joint invariance under both
     generators. Neither was found.
+- **2026-09-18 (swarm-0917-w11-w11-f-follow, reframing).** A coupling that no single coloring detects, tested in
+  the free group. RGAP₂ itself stays OPEN.
+  - *The coding (new node `thompson-f-copy-marker-coding-balances-without-reiter`, established).* Pack all of `A`
+    into one pair of measures on `G×G`: `α_A` = the law of `(g, g)` and `β_A` = the law of `(e, g)`. Reiter measures
+    balance it at the same window, and `F×F ≤ F` is undistorted. It escapes the marker pigeonhole
+    `c_{g′}⁻¹c_g ∈ XX⁻¹`, because the two markers differ only in the first coordinate. A posterior identity shows
+    what balance forces: `Y` must be stationary under each posterior `π_w(g) ∝ μ_Z(g⁻¹w)`.
+  - *Killed class.* Copy-marker coding over arbitrary finite sets. For `A = {e, a, b}` in `F_2`, two independent
+    Cesàro averages balance the pair at rate `4/(3N)`, although `F_2` has no `{a, b}`-Reiter measure. The dying
+    step is a posterior splitting along the segment `[δ_e, (δ_a+δ_b)/2]`, whose realising `μ_Z` needs invariance
+    only under `b⁻¹a`.
+  - *Survives for symmetric balls.* For `A = B_1` in `F_2`, `TV(α_Aν, β_Aν) ≥ 368419/5000000 > 0.0736` for every
+    `ν`. The proof pushes the pair to conjugation-versus-translation averages and uses a finite-type test function,
+    checked in exact arithmetic on a covering list of 5089 words.
+  - *What remains.* The quantitative transfer is the new OPEN node
+    `copy-marker-pair-balance-forces-reiter-for-symmetric-sets` (CMR): balance at window `n` gives a Reiter measure
+    at an elementary window. Its F-case would bound `CR` by the balance radius of one fixed pair. For one pair,
+    minimax (the imbalance is bilinear in `ν` and the test function) makes `∀φ ∃ν` equal to `∃ν ∀φ` at the same
+    window. So this is the kind of coupling the previous entry asks for. The comparison lands on the fine radius
+    `R̃` at precision about `η`, however, not on `R`. It therefore meets RGAP₂ only through an amplification step,
+    and it meets ¬AMP directly. The naive extraction is circular:
+    picking a `w` with `π_w ≈ u_A` needs `μ_Z` to be nearly `A`-invariant near `w`.
