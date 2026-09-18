@@ -1,0 +1,19 @@
+Part 1: certificate
+  J(1/2, 21/50) = -0.00793200072235 (must be < 0)
+  floor x - z   = 0.08 = 2/25
+  J(1/2+1e-04, 21/50+1e-04) = -0.007944234
+  J(1/2+1e-04, 21/50-1e-04) = -0.0068209372
+  J(1/2-1e-04, 21/50+1e-04) = -0.0090445335
+  J(1/2-1e-04, 21/50-1e-04) = -0.0079197367
+  J < -0.006 at the corners of the box |dx|,|dz| <= 1e-4: ok
+Part 2: exact finite-n log first moment, m = ceil(n/2), f = ceil(21n/50)
+  n=10000  log P-bound = -87.037477
+  n=100000  log P-bound = -803.21986
+  n=1000000  log P-bound = -7944.3231
+Part 3: optimum of the simple bound
+  best floor 0.081876 at x = 0.540
+Part 3b: hypergeometric (sharp) first moment, comparison only
+  x=0.50  z0=0.41828  floor=0.08172
+  x=0.54  z0=0.45775  floor=0.08225
+Part 4: slot bound of the 1/80 node, E(1/8, 4/5):
+  E = -0.0098334423  floor (1-eta)alpha/2 = 0.0125
