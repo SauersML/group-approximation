@@ -234,3 +234,23 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
   - GAP computes the level-3 group of order 1632586752 and runs out of memory at level 4.
   - This is consistent with the index-3 non-congruence obstruction above. Level-transitivity stays open
     and needs a non-self-replicating argument.
+- (w7-107, 2026-09-18) **Klein-power chains: `50_30` #470 and the transposed-letter patterns without a
+  SAT solver (`bmw-census-klein-power-chain-certificates`).**
+  - **Certificate.** A cycle may now mix inverting steps (K) with power steps (R): `x_i = r^e` and
+    `x_{i+1} = r^f` with `1 ≤ |e| < |f|`, which force `|x_i| ≤ |x_{i+1}|` in any left order. These are
+    checked by `verify_klein2.py`, which handles transposed letters, and re-checked by `crosscheck2.py`.
+  - **#470.** Let `u = v0v1` and `t = h0h1h0`. The chain is
+    `v2uv2 → (v2uv2)² → t h2h4 t → v0v2 u v2v0 → (v0v2 u v2v0)² → t h3h2 t → v2uv2`. It has two (R)
+    steps and four (K) steps, and all words have length at most 8. The four (K) identities are checked
+    by hand in §4 of the proof. It is a Promislow-type configuration: `t h2h4 t` inverts `x²` but not
+    `x`.
+  - **Transposed patterns.** At pure length 6, 167 of the 681 candidate classes of the sixteen
+    patterns `31_*`, `41_*`, `42_*`, `50_31`, `51_*` and `52_*` are certified. So are the reducible
+    Promislow-type classes `41_40` #1174 and `41_41` #486, #541.
+  - **No pure inverting pair.** `31_30` #26 and `31_31` #12 have none up to length 8.
+  - **Structure.** Every Klein pair `a b a^{-1} = b^{-1}` in `Γ^+` is `Γ`-conjugate to a pair of one
+    pure `v`-word and one pure `h`-word. The proof uses the two tree actions: `b` is hyperbolic on
+    exactly one tree, and `a` reflects its axis. So pure scans of growing length, together with
+    conjugation, find every Klein chain.
+  - **Not attempted.** Irreducibility of #332 by a route other than self-replication. It does not affect
+    orderability of the three classes, which the pure four-term chains already settle.
