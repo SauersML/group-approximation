@@ -100,3 +100,22 @@ same diagonal, tensor and conjugate argument as (U2).
   - *Where uniformity dies.* Corestriction by tensor induction to `Sp_4(Z)` sees only `n(alpha + m(h))`, where
     `n` is the index and `m(h)` the mean of `h`. That is non-uniform in `n` and empty when `3 | n`, like the (E4)
     floor. A proof must use classes of `H^2(Gamma';R)` that are not restricted from `Gamma`.
+- **2026-09-18, swarm-0917-w10-w10-deligne-follow: a uniform Deligne-only
+  floor dies at Gamma(3).** Result:
+  `sp4-mess-classes-are-non-profinite-off-the-maslov-line` (ESTABLISHED).
+  - *Idea.* For a Torelli-abelian finite-image model at level `Gamma'`, the
+    multiplier is `(alpha/r) res b + sum_D h_D v_D`, where `v_D` are the
+    pushouts of the Torelli extension along Mess orbit counts. The multiplier
+    must be profinite. Hope: modulo profinite classes only the Maslov line
+    survives, with Deligne's kernel `(1/2)Z`. Then `alpha/r` would be pinned
+    to `(1/2)Z + O(|h|)`, uniformly in `Gamma'`, which would give (B) on this
+    class.
+  - *Where it dies.* On normal `Gamma'`, the conjugation symmetry of the
+    orbits, together with `sum_D v_D = -(10/a) res b`, forces `m | 20/a`, where
+    `m` is the number of orbits, whenever some `v_D/m` has a Maslov
+    coordinate. At `Gamma(3)`, `m = 45`, so `iota(v_D/45)` is non-profinite
+    and off the Maslov line. The same holds at every deeper normal level,
+    with `h = 1/m -> 0`.
+  - *Invariant.* The quotient `H^2(Gamma'; Q/Z) / (beta(Q) + H^2_fin)` is
+    nonzero. Any proof of (B) must control all of it.
+  - *By-product.* `a | 20`.
