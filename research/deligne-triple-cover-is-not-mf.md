@@ -95,3 +95,28 @@ subgroup.
   - non-multiplicative spectral-multiplicity data;
   - vector-state and relative-(T) mechanisms;
   - the matrix origin of models beyond determinants.
+- **Conjugation-eigenvector / random-ensemble certificates are dead
+  (swarm-0917, transplanter, probability-random).**
+  - *Idea.*  In `Ad sigma = sigma tensor conj(sigma)` for a sector model, use
+    the vectors `X_h = sigma(h)` as almost-eigenvectors of the centralizer
+    `C(h)` with a twisted character `beta_h(g)=[s(g),s(h)] in <z>`.  Or read
+    a random-ensemble moment obstruction off an abelian or surface window.
+  - *Where it dies.*  `beta_h` is trivial for every commuting pair.  Commuting
+    elements of `Sp_4(R)` have commuting lifts to the universal cover: the
+    rotation (Guichardet--Wigner) homogeneous quasimorphism is conjugation
+    invariant, additive on commuting pairs and nonzero on the center.  This is
+    already recorded as D3 in
+    `research/artifacts/deligne-bounded-rank-rung-anatomy-2026-09-17.md`.
+    Since `T` is divisible, `c_j|A` is a `T`-coboundary on every abelian
+    subgroup `A`, including anisotropic tori that lie in no parabolic and in
+    no `SL_2 x SL_2`.  So `X_h` carries no character, and the asymptotically
+    orthonormal family `{X_h}` (central-regular trace) only reproduces
+    `Ind_(C(h))^Gamma 1`.
+  - *Surface windows.*  A single surface window with Toledo
+    `T != 0 mod 3` is exactly realizable in `U(3)`: clock and shift give
+    `[A,B]=omega^T I`.  So it sees only `d mod 3`, which is
+    `deligne-sector-determinants-see-only-dimension-mod-three`.
+  - *Invariant.*  The commutator pairing on `Lambda^2 A`.  Every member
+    dies at "the window restriction of `c_j` is nontrivial with a finite-dimensional
+    obstruction".  The only survivors are the multi-surface, relation-level
+    (property (T)) windows, i.e. the matrix origin of models.

@@ -103,6 +103,26 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   are equivalent to `p_c<p_u`, so (IS) is at least as strong as the
   separation itself on the whole (T) class, and it cannot be reached through a
   weaker intermediate kernel there.
+* **Logic-computability transplant: certify (IS) from finite-ball data
+  (swarm-0917-w6).** In the space of marked groups, `lambda(G,q)` is a
+  supremum of ball-local continuous functions `a_(n,R)^(1/n)`. So
+  `{lambda <= r}` is closed (Pi^0_1), and the hope is a Sigma^0_1 (open)
+  certificate for `lambda(q) < 1` or for nonuniqueness. **Where it dies:** at the
+  transfer to an amenable approximant
+  (`fpbs-pu-open-certificates-pinned-at-pc`).
+  - The derived-series quotients `S_k = F_2/F_2^(k)` converge to `F_2` with
+    `p_u(S_k) = p_c(S_k) -> 1/3`, while `p_u(F_2) = 1`. For `q in (1/3,1)`,
+    `lambda(S_k,q) = 1` for large `k` but `lambda(F_2,q) < 1`.
+  - By relative Burton–Keane and Easo–Hutchcroft locality, every open certificate
+    that is sound near `G` certifies only `p <= p_c(G)` whenever `G` is a limit of
+    amenable groups. That includes `F_2`, surface groups and `G x Z^2` for every
+    residually finite `G`.
+  - So any proof of (IS), or of `lambda(q) < 1` at some `q > p_c`, on these
+    graphs must consume a hypothesis that is not a marked-group neighbourhood,
+    such as `rho <= r < 1` used quantitatively, or infinite-information operator
+    data.
+  - (IS) stays OPEN; this is a class kill for ball-local certificates, not a
+    counterexample.
 * **l^q two-point Hölder transplant (swarm-0917-w5).** Hölder against the heat
   kernel and interpolation between l^1 and l^2 give `a_n(p) <= rho^(2n/q)`
   with constant 1 whenever `tau_p(o,.)` is in l^q with `q >= 2`

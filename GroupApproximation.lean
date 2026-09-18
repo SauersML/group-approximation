@@ -5531,6 +5531,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Multiplier
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Consequences
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SubgroupRegularModels
 import GroupApproximation.Manuscript.NonMF.Full.GL03C.PocketListing
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistencePrinted.Assembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
