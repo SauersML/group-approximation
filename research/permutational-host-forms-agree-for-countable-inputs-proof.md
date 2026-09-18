@@ -31,6 +31,15 @@ copied with `H` arbitrary.
   set `Ω` of proper nonempty clopen subsets of `C^S`, with `Alt_fin(Ω) ≤ P`. The
   inputs are `twisted-btb-clopen-action-is-type-a` (items 3 and 4) and
   `finitary-symmetric-extensions-of-oligomorphic-actions-are-fp`.
+- That finite presentation also needs the stabilizer of every two-element
+  subset `{U, W}` of `Ω` to be finitely generated. This is Step 3 of
+  `pbh-finitary-alternating-hosts-proof`:
+  - `Stab(U) ∩ Stab(W)` is the finite product of the groups `D(A)`, one for
+    each nonempty Boolean atom `A` of `U` and `W`;
+  - each `D(A)` is isomorphic to `SV`;
+  - the setwise stabilizer contains this product with index at most 2.
+
+  The step uses only the action of `SV` on `Ω`, not `H`.
 - So `H ≤ SV ≤ P` witnesses 2. No step refers to generators of `H`.
 
 **(1 ⇒ 3).** With `H ≤ Γ_0 ≤ SV` as above:
