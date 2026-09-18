@@ -127,6 +127,7 @@ theorem k2PolyNF_orbit_act {K : Finset I} {L : I}
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_orbit_act
 
+omit [Fact p.Prime] in
 /-- If `g e_L = w`, then `g⁻¹ w = e_L`. -/
 theorem k2PolyNF_act_inv {L : I} {g : SteinbergGroup I (Polynomial (ZMod p))}
     {w : I → Polynomial (ZMod p)} (hw : act g (unitVec L) = w) : act g⁻¹ w = unitVec L := by

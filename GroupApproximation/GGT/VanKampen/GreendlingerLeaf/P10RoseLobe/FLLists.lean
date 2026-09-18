@@ -130,7 +130,7 @@ theorem roseLobeFL_exists_arc_of_prefix_drop {α : Type v} {cyc : List α} (a : 
       omega
   · have hl0 : l = [] := List.eq_nil_of_length_eq_zero (by omega)
     refine ⟨⟨a.start, 0, Nat.zero_le _⟩, ?_, ?_, ?_⟩
-    · rw [hl0]
+    · subst hl0
       exact List.take_zero
     · show a.start.1 ≤ a.start.1
       omega
