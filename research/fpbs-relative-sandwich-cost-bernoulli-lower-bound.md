@@ -61,3 +61,25 @@ statement?
   but a treeable `E` with `E_{a|⟨F⟩} ⊆ E ⊆ E_a` has no generating free action
   to which Gaboriau's fixed price applies. So the test needs a direct cost
   computation for intermediate treeable relations, which was not attempted.
+
+**Fiber trick / virtual rank drop (September 17, 2026, w11-fp-break,
+census-computation).**
+- Tried: build free actions of `F_2` with small sandwich cost as products
+  `b × F_2/N`, with `KN = F_2`, and look for a drop in the least rank of
+  subgroups between `K∩N` and `N`.
+- Proved (`fpbs-sandwich-cost-fiber-formula`): an exact fiber formula,
+  `p_K(b × Δ/N) = 1 + (p^N_{K∩N}(b|N) − 1)/d`. So RBL predicts
+  finite-index multiplicativity of Bernoulli sandwich cost minus one, given
+  the reverse inequality.
+- Where it dies: Theorem 4(iii) of the artifact. `K ∩ M' = K ∩ N` for every
+  `K∩N ≤ M' ≤ N`. So by strong inertness, the trivial double coset alone
+  forces `rk M' ≥ 1 + d`. Every virtually group-generated sandwich
+  therefore costs `≥ 2`, which equals `C(E_a)`, in every free action.
+  Invariant: reduced rank. A census found no drop in `F_2` (confirming the
+  theorem) or in `F_3` with `rmin(K) = 3`.
+- Reduction: the `F_2` slice of RBL follows from
+  `fpbs-free-group-sandwich-cost-is-two` (every sandwich costs `≥ 2`). That
+  is a measured Hanna Neumann statement. Its naive measured form is false
+  (artifact §5 example). Equivariant copies inside `E_a` are identities
+  (artifact Lemma 5). So a counterexample needs a twisted, non-group
+  sandwich.
