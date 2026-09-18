@@ -8,13 +8,19 @@ distinct_from:
   fg-metabelian-groups-have-roots-at-finitely-many-primes: that excludes finitely generated metabelian hosts; mapping tori of free groups are a different class, finitely presented and residually finite, and in general not metabelian.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-ascending-hnn-extensions-of-free-groups-contain-no-z-localized.md
+  - research/artifacts/gq-referee-b-ascending-hnn-extensions-of-free-groups-contain-no-z-localized.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `ascending-hnn-free-no-z-localized-proof`. Lane proof
-(gq-k2-q), not independently reviewed. Inputs:
-- part 1 of `free-group-mapping-tori-contain-no-z-localized` (refereed PASS, gq-referee-a);
-- Stallings graphs of finitely generated subgroups of free groups (textbook);
-- uniqueness of roots in free groups (textbook).
+(gq-k2-q). *Reviewed:* PASS by `gq-referee-a`
+(`research/artifacts/gq-referee-a-ascending-hnn-extensions-of-free-groups-contain-no-z-localized.md`) and by
+`gq-referee-b` (`research/artifacts/gq-referee-b-ascending-hnn-extensions-of-free-groups-contain-no-z-localized.md`).
+Nits applied. Inputs:
+- part 1 of `free-group-mapping-tori-contain-no-z-localized` (refereed PASS by gq-referee-a and gq-referee-b);
+- Stallings graphs: Kapovich–Myasnikov, arXiv:math/0202285v1, Definition 2.3, Lemma 2.9 and Proposition 3.8, read at
+  the source by gq-referee-b;
+- uniqueness of roots in free groups, from Nielsen–Schreier.
 
 No novelty is claimed.
 
@@ -36,6 +42,10 @@ Let `F` be free of finite rank and `φ : F -> F` injective, and let `G_φ = ⟨F
   for free-by-cyclic groups.
 - **Calibration.** For `BS(1,m)` (`F = Z`, `φ(a) = a^m`), `V_φ = m`, and the root primes are exactly the primes
   dividing `m`.
-- **Generalization.** The only property of `F` used, besides the tree reduction, is that finitely generated
-  subgroups meet each maximal cyclic subgroup with bounded index. The same argument applies to ascending HNN
-  extensions of any group `F` with unique roots, cyclic centralizers and that bounded-index property.
+- **Generalization.** The argument uses three properties of `F`:
+  - `F` is finitely generated;
+  - `F` is torsion-free with cyclic centralizers, which gives unique roots and excludes `Z[1/P]` from conjugates
+    of `F` in the tree reduction;
+  - the single subgroup `φ(F)` meets each cyclic subgroup `⟨s⟩` with index bounded independently of `s`.
+
+  So it applies to ascending HNN extensions of any such `F`.
