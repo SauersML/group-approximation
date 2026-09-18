@@ -136,7 +136,8 @@ theorem gfaceWindEight_step {M : CombMap.{v}} {C : List M.Dart} {F : Finset M.Fa
     (hpos : ∀ f, 0 ≤ g f) {p A q : List M.Dart} (hseg : c = p ++ A ++ q)
     (h : (IsSimpleClosedWalk M A ∧ gfaceWindEight_Clean M A (p ++ q)) ∨
       (IsSimpleClosedWalk M (q ++ p) ∧ gfaceWindEight_Clean M (q ++ p) A)) :
-    ∃ t : List M.Dart × (M.Face → ℤ), gfaceWind_Step M o (c, g) t ∧ ∀ f, 0 ≤ t.2 f := by
+    ∃ t : List M.Dart × (M.Face → ℤ),
+      gfaceWind_Step M o (c, g) t ∧ ∀ f, 0 ≤ t.2 f := by
   obtain ⟨hfil, -, hcob, hog⟩ := hinv
   have hsub : ∀ x ∈ c, x ∈ C := by
     intro x hx
