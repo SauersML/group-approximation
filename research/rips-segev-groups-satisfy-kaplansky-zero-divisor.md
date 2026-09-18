@@ -183,3 +183,32 @@ the Kaplansky zero-divisor conjecture."
    - The support method stops at some `S` with `|S| <= q(gamma) + 1 <= 25`
      (12 if `gamma = 42`).  A shortest relator cycle gives a chain there, so
      the coefficients must enter beyond it.
+12. **Support-method threshold is exactly q(gamma) (proposed established; `rips-segev-support-method-threshold-is-exactly-q-gamma`).**
+   - In an `(N_S, N_J)`-chain of length `q(gamma)` the hop lines are
+     pairwise distinct.  A repeated hop line closes the segment between the
+     two hops into a cycle of free-product length `<= 2(q - 1) < gamma`.
+     No girth or looplessness hypothesis on `Phi` is used.
+   - So `|L_S| < q(gamma)` gives regularity, and for Steenbock's graphs every
+     `beta in k[a^S <b>]` with `|S| <= q(gamma)` is regular.  The previous
+     silent support has `|S| = q(gamma) + 1`, so the `12..q(gamma)` gap is
+     closed.
+   - `gamma` depends on `Phi`: `g <= gamma <= 2g`.  `gamma = 42` is realized
+     by the Cayley graph of a finite quotient of `<x | (x_4 x_1)^{21}>`
+     (Newman spelling theorem, Wise residual finiteness).  For that `Phi`,
+     12-point supports sit exactly at the threshold.
+13. **One-copy configurations carry no zero divisors (proposed established; `rips-segev-one-copy-configurations-carry-no-zero-divisors`).**
+   - This is the coefficient contradiction on the `Gamma`-local configuration,
+     for every support, including the silent 12-point `S`.
+   - Suppose `alpha (u(a) + w(a) b) = 0` with `alpha, w != 0`.  Then
+     `alpha u` and `alpha w` cannot both lie in one translate of `g(V(Gamma))`.
+   - Proof.  Exact encoding (the witness node's Lemma 1, extended to
+     `a`-corrections) gives line ports `P_i = f_i u` in `In_i` and
+     `Q_i = f_i w` in `Out_i`, matched along `b`-edges.
+     `P_i Q_j = P_j Q_i` and row separation force
+     `supp P_i = supp Q_i ⊆ {0, C_i}`.  The `x_1`/`x_2` edges leaving `0`
+     and `C` then hit ports `I_1`/`I_2`, which is absurd.
+   - This answers the port-data obstruction: the balanced configuration
+     `Gamma` has no coefficients.  A control with all lines in one row does
+     have solutions, so row separation is essential.
+   - Next: relations spread over two or more translates of `g(V)` glued
+     along pieces, which is van Kampen-type coset configurations.
