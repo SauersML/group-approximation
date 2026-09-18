@@ -281,3 +281,49 @@ instead of `4`) changes no conclusion.
   higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
   pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
   OPEN.
+
+**Amenable symbol image and Borel amalgams (operator-algebras, swarm-0917
+w13).** Established
+[[amenable-symbol-subgroups-keep-the-jacobson-head]] (route
+`amenable-symbol-subgroups-keep-the-jacobson-head-proof`). It kills a
+class of attempts and does not decide HC.
+
+The symbol kernel of `GL_n(J) -> GL_n(F_2[z,z^-1])` is `1 + M_n(I)`.
+It consists of finitary matrices, so it is locally finite. Hence every
+subgroup of `EL_n(J)` with amenable symbol image is amenable, and by
+[[amenable-implies-operator-mf]] it is MF, with every nontrivial
+involution, the head included, at norm distance 2.
+
+The w12 bus certificate group is
+`H0 = M_2(J) semidirect (<diag(wK,1), x_12(1)> x <x_34(1), x_43(S)>)`.
+Its symbol image lies in `M_2 semidirect (upper Borel x D_inf)`, so
+`H0` is amenable. The P22 conjugation pigeonhole runs inside `H0`, so
+`H0` has no finite quotient keeping the head, yet it is MF keeping the
+head. This answers the w12 spark: the pigeonhole has no MF shadow.
+
+Schafhauser, arXiv:2306.02498, Theorem 1.3 (verbatim): "If G and H are
+amenable groups with a common normal (necessarily amenable) subgroup N,
+then G *_N H is MF." Applied to the upper and lower Borel preimages
+`B_5^+` and `B_5^-`, glued along the symbol kernel `N_5` (which
+contains the head), it gives an MF group that keeps the head and
+surjects onto `EL_5(J)`. The analogous amalgam over
+`U semidirect (N_2 x N_2)` surjects onto `P22(J)`.
+
+*Invariant and step where every member dies.* The invariant is the
+symbol image. Any argument whose relations all hold in one subgroup
+with amenable symbol image dies at the conclusion
+`pi(x_13(Q)) = 1`. So does any argument that uses the two Borel
+preimages only as separately given groups glued along the symbol
+kernel. Both statements are at the EL level, and the St_5 lift was not
+checked.
+
+This covers every rank or conjugation pigeonhole on a certificate with
+triangular symbol, which includes the w6 and w12 certificates. A kill
+must use a relation in `ker(B_5^+ *_{N_5} B_5^- -> EL_5(J))`, a
+Borel-mixing relation such as the Steinberg `[x_ij, x_jk]` with `j`
+larger than both `i` and `k`, or the Weyl relations.
+
+Still open: whether `P22(J)`, `H_mix = U semidirect (EL_2(J) x
+<x_34(1), x_43(S)>)` or `EL_5(J)` is MF. This is the smallest place
+where both Borels of the left Levi meet a non-constant right action.
+The claim stays OPEN.
