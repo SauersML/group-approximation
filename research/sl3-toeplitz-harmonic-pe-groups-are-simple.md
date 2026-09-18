@@ -36,6 +36,13 @@ presented simple group. If this holds for infinitely many `N`, then `R_T` satisf
 
 ## Position
 
+**Update (2026-09-18).** `E_N(R_T)` is not finitely presented for any `N >= 3`
+(`bounded-harmonic-rings-are-not-finitely-presented`, which refutes
+`sl3-toeplitz-harmonic-elementary-groups-are-fp`). So `PE_N(R_T)` is simple but not finitely presented,
+and `R_T` is not a host. The simplicity argument (local annihilation plus the Lean criterion) applies
+unchanged to any finitely presented replacement that contains the clopen indicators.
+
+
 This settles items (1) and (2) of the coordinator's group-side list for `R_T`. The simplicity of
 `PE_N(R_T)` is no longer open. The only open condition on the group side is finite presentation of
 `E_N(R_T)` (`sl3-toeplitz-harmonic-elementary-groups-are-fp`). Its known necessary conditions are the

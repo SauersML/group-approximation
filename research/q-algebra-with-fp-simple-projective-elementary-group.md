@@ -174,3 +174,16 @@ Let `N >= 3` be one of the ranks.
    (`sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`: letter-cylinder corners and general units),
    and then finite presentation and simplicity of `PE_N(R_T)`. See
    `research/artifacts/gq-deep-adelic-1-sl3-remnant.md`.
+8. **The SL_3(Z) Toeplitz harmonic ring `R_T`, closed (2026-09-18).**
+   - **Group side, done.** `PE_N(R_T)` is simple for `N >= 3`, with centre of order at most 2
+     (`sl3-toeplitz-harmonic-pe-groups-are-simple`, referees b and c PASS).
+   - **Finite presentation fails.** `E_N(R_T)` is not finitely presented for any `N >= 3`, and neither
+     is `R_T` (`bounded-harmonic-rings-are-not-finitely-presented`, lane `gq-steinberg-q`, under
+     review). Truncating the harmonic function keeps any finitely many relations but loses the large
+     primes. So `sl3-toeplitz-harmonic-elementary-groups-are-fp` is refuted, and the route
+     `q-algebra-host-via-sl3-toeplitz-harmonic-ring` does not reach this claim.
+   - **Lesson for the search.** A host must get `Q` from finitely many relations. That is the
+     resolvent mechanism of `R_L` (`A(N+1) = 1` with a raising isometry), not a harmonic function
+     over a crossed product. But the resolvent rings on main carry Leavitt or Cuntz–Toeplitz
+     families, which the scalar obstructions kill or tax. What is still missing is a finitely
+     presented resolvent mechanism with matricial divisibility and `[1]` of infinite order.
