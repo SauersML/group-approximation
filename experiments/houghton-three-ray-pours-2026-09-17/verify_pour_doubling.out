@@ -1,0 +1,26 @@
+(1) Delta(l) = l^2 for l in lac, lcb, lca, lbc: True
+(2) lab  DH = lab lab tb    PSI = ta lab
+(2) lba  DH = lba lba ta    PSI = lba ta
+(2) ta  DH = lab ta lab ta tb lba ta lba    PSI = lab ta lba
+(2) tb  DH = lba tb lba ta tb lab tb lab    PSI = tb
+(3) lac lcb = lab: True
+(4) N_m = E^c_(a,b)(m) as elements, N_m two-ray, for 1 <= m <= 40 : True
+    |N_2| = 3
+    |N_4| = 14
+    |N_8| = 72
+    |N_16| = 376
+    |N_32| = 1968
+    |N_64| = 10304
+    |N_128| = 53952
+    |N_256| = 282496
+    |N_512| = 1479168
+    |N_1024| = 7745024
+    |N_2048| = 40553472
+    |N_4096| = 212340736
+    max |N_m| over 2^11 <= m <= 2^12: 209020094002
+(5) Delta(uv) = Delta(u)Delta(v) on 200 random pairs: True
+(7) lam_ba^k lam_ac^k lam_cb^k = reversal of (b,1..k), k < 25: True
+(6) in H_4: same DH, PSI words work with d special; N_m = E^c(m) = E^d(m) for 1 <= m <= 40 : True
+ALL OK
+
+[exited with code 0]
