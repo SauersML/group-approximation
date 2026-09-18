@@ -396,3 +396,19 @@ None recorded before 2026-09-17.
       primes into finitely many orbits, and then `|u(1/m!)| >= π(m)/s`.
     - One end per factor kills nothing by itself: `SL_2(Q)` realizes it with residually finite vertex groups. Hosts must
       mix the primes, as the prime shift of item 18 does. See `research/artifacts/gq-gq-union-obstruct.md` §7.
+
+21. **Germ implant U2, 2026-09-18 (lane gq-typeA-design; critic pass 3, U2).** It is dead as stated, and it
+    reduces to one explicit shell input.
+    - *The idea.* Build a finite germ extension of `V` whose germ group at one point is a quotient of a finitely
+      presented group containing `GL_n(Q)`, such as `St_N(R_L)`. The hope was that the `K_2` or scalar relations
+      sit in the locally trivial part, since Belk--Hyde--Matucci Theorem 2.1 asks only for finitely presented
+      `SingFix` groups.
+    - *Where it dies.* Hypothesis (2) of that theorem at `({p},{p})` forces the germ group to be finitely
+      presented (`bhm-singfix-condition-forces-fp-germ-groups`). The theorem was read at source, from the arXiv
+      LaTeX. The locally trivial part `RStab_V(p)` is simple, so it contributes one relator.
+    - *What survives.* Use `P = St_4(R_L)` itself as the shell input. For every enumeration its envelope is simple
+      and contains every `GL_n(Q)`, and only finite presentation is open
+      (`steinberg-resolvent-shell-envelope-is-finitely-presented`, route `gl-n-q-bh-via-steinberg-shell-envelope`).
+      The gates are decidable triviality in `K_2(4,R_L)`, a finitely presented shell germ group, and a computable
+      enumeration.
+    - Full hypothesis table: `research/artifacts/gq-gq-typea-design-u2-germ-implant.md`.
