@@ -78,3 +78,18 @@ This is the open part of a named problem.
      `a_1 ↦ a_1 c`, while mapping-class-group orbits grow polynomially.
    - **Where that leaves Attempt 4.** A direct type (A) stabilizer must also
      avoid this last natural geometric shape.
+6. **All geometric and all virtually cyclic stabilizers fail** (bh-free-40; lane
+   proofs, cited inputs listed on each node).
+   - **Surfaces.** `nonorientable-surface-word-stabilizers-infinite-double-cosets`
+     covers the one-cusp nonorientable word `a_1²⋯a_n²` for every `n ≥ 3`, odd `n`
+     included. Every surface peripheral-structure stabilizer is then excluded.
+     With two or more boundary components, a boundary class is primitive and the
+     free-factor exclusion applies.
+   - **Virtually cyclic.** `virtually-cyclic-out-free-subgroups-have-infinite-double-cosets`
+     uses the general escaping lemma
+     `escaping-invariant-sets-force-infinitely-many-double-cosets` on `FF_n`.
+     So stabilizers of attracting laminations of fully irreducibles, which are
+     virtually cyclic by BFH (cited), are excluded too.
+   - **What remains.** A type (A) point stabilizer, if any exists, is a large,
+     finitely generated, non-geometric, non-commensurated subgroup containing
+     fully irreducibles.
