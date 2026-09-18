@@ -62,8 +62,8 @@ def brownDatum {G V : Type*} [Group G] [MulAction G V] {X : OrderedTwoComplex V}
   base := v0
   base_mem := Set.mem_singleton v0
   connected y hy := by
-    rw [Set.mem_singleton_iff] at hy
-    subst hy
+    have hy' : y = v0 := Set.mem_singleton_iff.mp hy
+    subst hy'
     exact Relation.ReflTransGen.refl
 
 /-- A Brown generator for the fundamental domain `{v0}` moves `v0` near `v0`. -/

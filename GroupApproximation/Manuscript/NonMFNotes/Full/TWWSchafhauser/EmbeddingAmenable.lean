@@ -100,11 +100,6 @@ theorem tailSeq_smul (c : ℂ) (a : A) :
   change M.map (n + N) (c • a) = c • M.map (n + N) a
   exact map_smul (M.map (n + N)) c a
 
-theorem tailSeq_one : tailSeq M N 1 = 1 := by
-  refine lp.ext (funext fun n => ?_)
-  change M.map (n + N) 1 = 1
-  exact M.map_one (n + N)
-
 theorem tailSeq_star (a : A) :
     tailSeq M N (star a) = star (tailSeq M N a) := by
   refine lp.ext (funext fun n => ?_)
@@ -150,6 +145,13 @@ theorem tendsto_hsNorm_tailSeq_mul (a b : A) :
 section Quotient
 
 variable [∀ n, Nonempty (tailSpace M N n)] (l : Filter ℕ)
+
+/-- The lift is unital.  The unit of `ℓ∞(M_{k(n+N)})` needs nonempty models, since
+`‖1‖ = 1` fails for the empty matrix algebra. -/
+theorem tailSeq_one : tailSeq M N 1 = 1 := by
+  refine lp.ext (funext fun n => ?_)
+  change M.map (n + N) 1 = 1
+  exact M.map_one (n + N)
 
 /-- The lift followed by the quotient map onto the tracial matrix quotient. -/
 def tailQuotientLinear : A →ₗ[ℂ] TracialUltraproduct.TracialMatrixQuotient (tailSpace M N) l where

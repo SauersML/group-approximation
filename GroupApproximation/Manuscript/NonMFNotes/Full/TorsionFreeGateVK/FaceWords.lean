@@ -66,8 +66,8 @@ theorem eq_of_next_opp_eq (o : M.Dart) (hout : FreeGroup.IsReduced (M.wordFrom o
     obtain ⟨m, hmlt, hm⟩ : ∃ m, m < M.flen o ∧ M.next^[m] o = M.opp d :=
       ⟨m0 % M.flen o, Nat.mod_lt _ (M.flen_pos o),
         (Function.iterate_mod_minimalPeriod_eq (f := M.next) (x := o) (n := m0)).trans hm0⟩
-    have hsucc : M.next^[m + 1] o = d := by
-      rw [Function.iterate_succ_apply', hm, hd]
+    have hsucc : M.next^[m + 1] o = d :=
+      (Function.iterate_succ_apply' M.next m o).trans (by rw [hm, hd])
     by_cases hlast : m + 1 = M.flen o
     · rw [← hsucc, hlast, M.iterate_flen]
     · exfalso

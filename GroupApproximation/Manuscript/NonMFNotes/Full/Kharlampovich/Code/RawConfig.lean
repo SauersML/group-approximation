@@ -163,10 +163,10 @@ theorem rawEval_configCode (l : List (List (ℕ × Bool))) (s : Fin (N + 1)) (p 
 theorem primrec_initGlasses (K : ℕ) (n : Fin K) :
     Primrec fun p : ℕ × ℕ ↦ Minsky.initGlasses K p.1 p.2 n := by
   by_cases h0 : n.val = 0
-  · exact Primrec.fst.of_eq fun p ↦ by simp only [Minsky.initGlasses, if_pos h0]
+  · exact Primrec.fst.of_eq fun _ ↦ by simp only [Minsky.initGlasses, if_pos h0]
   · by_cases h1 : n.val = 1
-    · exact Primrec.snd.of_eq fun p ↦ by simp only [Minsky.initGlasses, if_neg h0, if_pos h1]
-    · exact (Primrec.const 0).of_eq fun p ↦ by
+    · exact Primrec.snd.of_eq fun _ ↦ by simp only [Minsky.initGlasses, if_neg h0, if_pos h1]
+    · exact (Primrec.const 0).of_eq fun _ ↦ by
         simp only [Minsky.initGlasses, if_neg h0, if_neg h1]
 
 theorem primrec_rawGlassFold (n : Fin K) :
@@ -201,7 +201,7 @@ theorem primrec_rawConfig (s : Fin (N + 1)) :
 theorem primrec_configCode (s : Fin (N + 1)) : Primrec (configCode K N s) := by
   show Primrec fun p : ℕ × ℕ ↦
     rawConfig K N (Minsky.initGlasses K p.1 p.2) s ++ rawInv (rawConfig K N (fun _ ↦ 0) 0)
-  exact Primrec.list_append.comp (primrec_rawConfig s) (Primrec.const _)
+  exact Primrec.list_append.comp (primrec_rawConfig (K := K) s) (Primrec.const _)
 
 end KMS
 

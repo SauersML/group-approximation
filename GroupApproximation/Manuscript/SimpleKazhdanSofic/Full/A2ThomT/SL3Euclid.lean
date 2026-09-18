@@ -192,17 +192,16 @@ theorem sl3_eq_one (g : Matrix.SpecialLinearGroup (Fin 3) R)
     (h10 : g.1 1 0 = 0) (h11 : g.1 1 1 = 1) (h12 : g.1 1 2 = 0)
     (h20 : g.1 2 0 = 0) (h21 : g.1 2 1 = 0) (h22 : g.1 2 2 = 1) : g = 1 := by
   refine Subtype.ext (Matrix.ext fun a b ↦ ?_)
-  rw [Matrix.SpecialLinearGroup.coe_one]
   rcases fin3_cases a with rfl | rfl | rfl <;> rcases fin3_cases b with rfl | rfl | rfl
-  · rw [h00, Matrix.one_apply_eq]
-  · rw [h01, Matrix.one_apply_ne fin3_01]
-  · rw [h02, Matrix.one_apply_ne fin3_02]
-  · rw [h10, Matrix.one_apply_ne fin3_10]
-  · rw [h11, Matrix.one_apply_eq]
-  · rw [h12, Matrix.one_apply_ne fin3_12]
-  · rw [h20, Matrix.one_apply_ne fin3_20]
-  · rw [h21, Matrix.one_apply_ne fin3_21]
-  · rw [h22, Matrix.one_apply_eq]
+  · rw [h00]; exact (Matrix.one_apply_eq (0 : Fin 3)).symm
+  · rw [h01]; exact (Matrix.one_apply_ne fin3_01).symm
+  · rw [h02]; exact (Matrix.one_apply_ne fin3_02).symm
+  · rw [h10]; exact (Matrix.one_apply_ne fin3_10).symm
+  · rw [h11]; exact (Matrix.one_apply_eq (1 : Fin 3)).symm
+  · rw [h12]; exact (Matrix.one_apply_ne fin3_12).symm
+  · rw [h20]; exact (Matrix.one_apply_ne fin3_20).symm
+  · rw [h21]; exact (Matrix.one_apply_ne fin3_21).symm
+  · rw [h22]; exact (Matrix.one_apply_eq (2 : Fin 3)).symm
 
 /-- The first row and column of `g` are those of the identity matrix. -/
 structure FirstHook (g : Matrix.SpecialLinearGroup (Fin 3) R) : Prop where

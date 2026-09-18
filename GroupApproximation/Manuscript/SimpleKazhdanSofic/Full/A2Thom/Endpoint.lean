@@ -37,9 +37,8 @@ theorem thomGroup_fg (p : ℕ) [Fact p.Prime] : Group.FG (ThomGroup (ZMod p)) :=
 
 /-- tex l.57–59 ("not residually finite"): Thom's group is not residually finite. -/
 theorem not_isResiduallyFinite_thomGroup (p : ℕ) [Fact p.Prime] :
-    ¬ IsResiduallyFinite (ThomGroup (ZMod p)) := by
-  haveI : Nontrivial (ZMod p) := ZMod.nontrivial_iff.2 (Fact.out : p.Prime).one_lt.ne'
-  exact not_isResiduallyFinite_thomGroup_of_fg (ZMod p) (thomGroup_fg p)
+    ¬ IsResiduallyFinite (ThomGroup (ZMod p)) :=
+  not_isResiduallyFinite_thomGroup_of_fg (ZMod p) (thomGroup_fg p)
 
 /-- tex l.57–59, all four properties of Thom's group together (Thom, GGD 4 (2010), §2.1). -/
 theorem thomGroup_endpoint (p : ℕ) [Fact p.Prime] :
