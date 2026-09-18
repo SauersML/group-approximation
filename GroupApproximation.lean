@@ -6038,6 +6038,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.UnitalModelUnitizati
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.UnitalModelFormal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalStabMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTDecay
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.FieldK2
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
