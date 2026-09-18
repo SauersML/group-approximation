@@ -44,7 +44,7 @@ theorem wd_last (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     (hn : w.length - 1 < w.length) (h0 : 0 < w.length) :
     (ordRing hw hM).facePerm (wd hw hM (w.length - 1) hn) = wd hw hM 0 h0 :=
   ordRing_ext hw hM ((ordRing_facePerm_val_of_getElem hw hM _ _ hn rfl).trans
-    (getElem_idx_congr w (by rw [Nat.sub_add_cancel h0, Nat.mod_self])
+    (getElem_idx_congr w (by rw [Nat.sub_add_cancel (by omega : 1 ≤ w.length), Nat.mod_self])
       (Nat.mod_lt _ (by omega)) h0))
 
 /-- Walking `s` steps along the walk darts in the ring map. -/
@@ -124,7 +124,7 @@ theorem lake_orbit (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     have h1 : (((ordRing hw hM).facePerm ^ (i + 1)) (lakeStart hw hM x₀)).1.1 =
         (((walkMap M w).facePerm ^ (i + 1)) x₀).1 := by
       rw [pow_succ', Perm.mul_apply, pow_succ', Perm.mul_apply]
-      exact hstep.trans (congrArg Subtype.val (congrArg (walkMap M w).facePerm hy))
+      exact hstep.trans (congrArg Subtype.val (congrArg (fun z => (walkMap M w).facePerm z) hy))
     refine ⟨h1, ?_⟩
     rw [← h1, pow_succ', Perm.mul_apply]
     exact alpha_mem_facePerm hw hM _ hXa
