@@ -78,7 +78,7 @@ theorem p06RoseUncut_move_of_cellFilterMove {K : CellPocketFaceSet D eps X i j} 
     K.boundary.cycle.filter (fun d => !p d), hij, hout, hkept, hperm, hmem, rfl, K.firstArc_pos,
     K.secondArc_pos, hfirst, hsecond, hs₁, hs₂, hwalk', x, hx', y, hy', hxy⟩
 
-#audit_axioms p06RoseUncut_move_of_cellFilterMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_move_of_cellFilterMove
 
 /-- **No in-place sub-walk move leaves no in-place filter move**, for a cell pocket between
 distinct cells with proper arcs. -/
@@ -88,7 +88,7 @@ theorem p06RoseUncut_not_cellFilterMove_of_not_move {K : CellPocketFaceSet D eps
     ¬ CellFilterMove K := fun hf =>
   hmove (p06RoseUncut_move_of_cellFilterMove hij hfirst hsecond hf)
 
-#audit_axioms p06RoseUncut_not_cellFilterMove_of_not_move
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_not_cellFilterMove_of_not_move
 
 end Filter
 

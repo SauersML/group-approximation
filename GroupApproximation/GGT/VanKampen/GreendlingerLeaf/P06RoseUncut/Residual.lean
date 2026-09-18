@@ -99,7 +99,7 @@ def p06RoseUncut_NoMoveStatement : Prop :=
             K'.secondArc.length < (cellDarts X' j').length ∧
             K'.repeatedVisits < K.repeatedVisits
 
-#audit_axioms p06RoseUncut_NoMoveStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_NoMoveStatement
 
 /-- **The uncut rose step from the residual**: by cases on an in-place sub-walk move. -/
 theorem p06RoseUncut_cellRoseUncut_of_noMove (h : p06RoseUncut_NoMoveStatement.{u, w, v}) :
@@ -109,13 +109,13 @@ theorem p06RoseUncut_cellRoseUncut_of_noMove (h : p06RoseUncut_NoMoveStatement.{
   · exact p06RoseUncut_exists_step_of_move hlabel K hmove
   · exact h D eps X i j hij hlea hlabel K hK hnft hfirst hsecond hpinch hrose hcut hmove
 
-#audit_axioms p06RoseUncut_cellRoseUncut_of_noMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_cellRoseUncut_of_noMove
 
 /-- **The rose step from the residual**, through `cellRoseStep_of_uncut`. -/
 theorem p06RoseUncut_cellRoseStep_of_noMove (h : p06RoseUncut_NoMoveStatement.{u, w, v}) :
     CellRoseStepStatement.{u, w, v} :=
   cellRoseStep_of_uncut (p06RoseUncut_cellRoseUncut_of_noMove h)
 
-#audit_axioms p06RoseUncut_cellRoseStep_of_noMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_cellRoseStep_of_noMove
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06

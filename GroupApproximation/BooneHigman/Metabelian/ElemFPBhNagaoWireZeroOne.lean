@@ -79,10 +79,70 @@ theorem bhNagaoWire_map_down_comp_up (A : Type*) [CommRing A] :
 
 /-- `t ↦ 0` commutes with `up` on coefficients. -/
 theorem bhNagaoWire_eval_comp_map_up (A : Type*) [CommRing A] :
-    (Polynomial.evalRingHom 0 : Polynomial (MvPolynomial (Fin 1) A) →+* MvPolynomial (Fin 1) A).comp
+    (Polynomial.evalRingHom 0 :
+        Polynomial (MvPolynomial (Fin 1) A) →+* MvPolynomial (Fin 1) A).comp
         (Polynomial.mapRingHom (bhNagaoWire_up A)) =
-      (bhNagaoWire_up A).comp
-        (Polynomial.evalRingHom 0 : Polynomial (MvPolynomial (Fin 0) A) →+* MvPolynomial (Fin 0) A) :=
-  RingHom.ext fun q ↦ Polynomial.eval_zero_map (bhNagaoWire_up A) q
+      (bhNagaoWire_up A).comp (Polynomial.evalRingHom 0 :
+        Polynomial (MvPolynomial (Fin 0) A) →+* MvPolynomial (Fin 0) A) := by
+  refine RingHom.ext fun q ↦ ?_
+  simp only [RingHom.comp_apply]
+  exact Polynomial.eval_zero_map (bhNagaoWire_up A) q
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoWire_eval_comp_map_up
+
+/-- **The `k = 0` instance of OneVarNil follows from the `k = 1` instance**, over any `A`.
+Apply `bhNagaoWire_nil_of_retract` with `ι = map up`, `ρ = map down`, `c = up`. -/
+theorem bhNagaoWire_oneVarNilZero_of_one (A : Type*) [CommRing A]
+    (h₁ : ∀ N : ℕ, 1 + 5 ≤ N → ∀ v : K2n N (Polynomial (MvPolynomial (Fin 1) A)),
+      K2Map (Polynomial.evalRingHom 0 :
+          Polynomial (MvPolynomial (Fin 1) A) →+* MvPolynomial (Fin 1) A) v = 1 →
+        ∃ M : ℕ, ∃ hNM : N ≤ M,
+          K2IndexMap (R := Polynomial (MvPolynomial (Fin 1) A)) (Fin.castLEEmb hNM) v = 1)
+    (N : ℕ) (hN : 0 + 5 ≤ N) (u : K2n N (Polynomial (MvPolynomial (Fin 0) A)))
+    (hu : K2Map (Polynomial.evalRingHom 0 :
+        Polynomial (MvPolynomial (Fin 0) A) →+* MvPolynomial (Fin 0) A) u = 1) :
+    ∃ M : ℕ, ∃ hNM : N ≤ M,
+      K2IndexMap (R := Polynomial (MvPolynomial (Fin 0) A)) (Fin.castLEEmb hNM) u = 1 :=
+  bhNagaoWire_nil_of_retract (Polynomial.mapRingHom (bhNagaoWire_up A))
+    (Polynomial.mapRingHom (bhNagaoWire_down A)) (bhNagaoWire_map_down_comp_up A)
+    (Polynomial.evalRingHom 0) (Polynomial.evalRingHom 0) (bhNagaoWire_up A)
+    (bhNagaoWire_eval_comp_map_up A) (fun v hv ↦ h₁ (N + 1) (by omega) v hv) u hu
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoWire_oneVarNilZero_of_one
+
+/-- `PolyK2OneVarNilStatementOver A` restricted to `k ≥ 1`.  LOUD: EQUIVALENT to
+`PolyK2OneVarNilStatementOver A` (`bhNagaoWire_oneVarNilPos_iff`).  It is recorded only to
+witness that the Nagao-covered instance `k = 0` carries no independent content; it is NOT
+proposed as a residual. -/
+def bhNagaoWire_OneVarNilPosStatementOver (A : Type*) [CommRing A] : Prop :=
+  ∀ k N : ℕ, 0 < k → k + 5 ≤ N →
+    ∀ u : K2n N (Polynomial (MvPolynomial (Fin k) A)),
+      K2Map (Polynomial.evalRingHom 0 :
+          Polynomial (MvPolynomial (Fin k) A) →+* MvPolynomial (Fin k) A) u = 1 →
+        ∃ M : ℕ, ∃ hNM : N ≤ M,
+          K2IndexMap (R := Polynomial (MvPolynomial (Fin k) A)) (Fin.castLEEmb hNM) u = 1
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoWire_OneVarNilPosStatementOver
+
+/-- The `k ≥ 1` instances of OneVarNil give all of OneVarNil (the `k = 0` instance by
+`bhNagaoWire_oneVarNilZero_of_one`). -/
+theorem bhNagaoWire_oneVarNilOver_of_pos (A : Type*) [CommRing A]
+    (h : bhNagaoWire_OneVarNilPosStatementOver A) : PolyK2OneVarNilStatementOver A := by
+  intro k N hN u hu
+  rcases Nat.eq_zero_or_pos k with rfl | hk
+  · exact bhNagaoWire_oneVarNilZero_of_one A (fun N' hN' v hv ↦ h 1 N' one_pos hN' v hv)
+      N hN u hu
+  · exact h k N hk hN u hu
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoWire_oneVarNilOver_of_pos
+
+/-- **LOUD (strength)**: OneVarNil for `k ≥ 1` is equivalent to OneVarNil.  So removing the
+Nagao-covered instance `k = 0` from the OneVarNil conjunct of `P1` changes nothing. -/
+theorem bhNagaoWire_oneVarNilPos_iff (A : Type*) [CommRing A] :
+    bhNagaoWire_OneVarNilPosStatementOver A ↔ PolyK2OneVarNilStatementOver A :=
+  ⟨bhNagaoWire_oneVarNilOver_of_pos A, fun h k N _ hN u hu ↦ h k N hN u hu⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoWire_oneVarNilPos_iff
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
