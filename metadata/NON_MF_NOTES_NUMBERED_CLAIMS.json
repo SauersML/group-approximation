@@ -983,17 +983,22 @@
       "environment": "theorem",
       "title": "",
       "statement_sha256": "0db1a30bb905f8d2632e715ea78f7880af8adb1e1609875eb3ae447dbdcb811c",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:notes-spectral-motion"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "character separation for torsion-free abelian groups and the printed telescope-window approximation"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFNotes/Full/AbelianBoundary/Boundary",
+          "declaration": "GroupApproximation.Full.NN06.notesAbelianBoundary",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:faithfultrace",

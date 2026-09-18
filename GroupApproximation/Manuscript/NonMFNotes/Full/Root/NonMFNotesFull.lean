@@ -1,6 +1,7 @@
 import GroupApproximation.Computability.BooneWordProblemUndecidable
 import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Computability.WordProblemRE
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Boundary
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Torsion
 import GroupApproximation.Manuscript.NonMFNotes.Full.AdianRabin.Unconditional
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.AdianRabinOutput
@@ -79,12 +80,11 @@ Status is recorded honestly in the docstrings.  An entry marked PARTIAL proves
 less than the printed claim, and the docstring names the missing clause and
 the lane that is working on it.  No clause is supplied as a hypothesis.
 
-Every numbered claim has at least one entry.  Four are PARTIAL:
+Every numbered claim has at least one entry.  Three are PARTIAL:
 * `thm:fixed-radical-membership`: only the retraction clauses and the
   conditional shape;
 * `thm:exact-mf-residual`: only the equivalence with
   `IsOperatorMF TerminalAmalgam`;
-* `thm:notes-abelian-boundary`: only "MF implies torsion-free";
 * `thm:torsionfree`: only the routed step.
 
 The four data declarations of the manifest (`LiteralBlockNormalForm.markedGroupEquivModel`,
@@ -524,13 +524,13 @@ alias notes_cor_notes_a5_gstar_mf := GroupApproximation.Full.NN05.gstar_isOperat
 
 /-! ## `thm:notes-abelian-boundary` (tex l.2078) -/
 
-/-- `thm:notes-abelian-boundary` (`non_mf_group_notes.tex` l.2078): PARTIAL: MF implies
-torsion-free; the converse (slow-bump corona) is in progress (NN06). Alias of
-`GroupApproximation.Full.NN06.isAddTorsionFree_of_isOperatorMF`. -/
-alias notes_thm_notes_abelian_boundary_torsionFree := GroupApproximation.Full.NN06.isAddTorsionFree_of_isOperatorMF
+/-- `thm:notes-abelian-boundary` (`non_mf_group_notes.tex` l.2078): the printed theorem, both
+directions. Alias of `GroupApproximation.Full.NN06.notesAbelianBoundary`. -/
+alias notes_thm_notes_abelian_boundary := GroupApproximation.Full.NN06.notesAbelianBoundary
 
-/-- `thm:notes-abelian-boundary` (`non_mf_group_notes.tex` l.2078): PARTIAL: torsion prevents
-MF. Alias of `GroupApproximation.Full.NN06.not_isOperatorMF_of_not_isAddTorsionFree`. -/
+/-- `thm:notes-abelian-boundary` (`non_mf_group_notes.tex` l.2078): the torsion direction:
+torsion prevents MF. Alias of
+`GroupApproximation.Full.NN06.not_isOperatorMF_of_not_isAddTorsionFree`. -/
 alias notes_thm_notes_abelian_boundary_torsion := GroupApproximation.Full.NN06.not_isOperatorMF_of_not_isAddTorsionFree
 
 
