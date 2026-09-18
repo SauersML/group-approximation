@@ -5486,6 +5486,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Core
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Transfer
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Endpoint
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Main
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.ThomGroup
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
