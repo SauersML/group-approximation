@@ -43,8 +43,9 @@ That is: each edge-loop is filled by `L`-cells and base loops *modulo loops lowe
   For `h = e₃ − e₁` (elementary-divisor spread of the `p`-local lattice), `a₀₁, a₁₂, a₂₀`
   lie in `SL_3(ℤ_(p))`, so they preserve `h`.  The script `$SP/bh-met-93z/fill_check.py`
   finds many vertices with no `h`-descending letter.  It also checks the telescoping
-  identity behind `czK2FngRank3Fill_telescope` on every closed word of length `≤ 6` at `y₀`
-  (`p = 2, 3`, `m = 1, 5`).
+  identity behind `czK2FngRank3Fill_telescope` on every closed word at `y₀` of length `≤ 6`
+  for `p = 2` and `≤ 4` for `p = 3` (`m = 1, 5`).  It is a sanity check only; the identity
+  is proved here in general.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
