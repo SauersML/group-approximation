@@ -104,3 +104,14 @@ checked.
     - Deciding this needs SMART's global substitution. That is the plan of lane gq-nv-obstruct above,
       which reads it from the e-print source. Coarsening that deletes a zero next to the head is the
       candidate `e_0^{-1}` to test there.
+- 2026-09-17 (lane gq-nv-obstruct, second pass). **YES claimed, under review.** This pass used the
+  Callard–Salo e-print source. `smart-level-zero-return-map-factors-onto-3-adic-odometer` (OPEN until
+  gq-referee-a and gq-referee-b PASS) and route `odometer-factor-via-smart-level-zero-return-map`.
+  - SMART's moves nest by the constant-length-3 substitution `b→bdp, d→dbq, p→bqp, q→dpq`, plus 2 special
+    configurations per move. Those give `f(k+1) = 3f(k)+4`.
+  - The level-0 configurations form a clopen set `Y`, and inducing on `Y` makes every level-`k` move exactly
+    `2·3^k` long.
+  - The position within the level-`k` move is read off `k+2` cells, via the two unmodified cells of
+    `fig:bottom-up-analysis-smart`. So `F_Y` factors onto `Z/2 × Z_3`, and by
+    `brin-thompson-first-return-maps-lie-in-kv` it is conjugate to an element of `2V`.
+  - Proof: `research/artifacts/gq-gq-nv-obstruct-smart-odometer.md`.
