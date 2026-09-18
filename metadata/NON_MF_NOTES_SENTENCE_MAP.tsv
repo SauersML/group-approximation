@@ -104,7 +104,7 @@ d6a1252d4f5f	ledger	SF.10 SF.11	nontrivial residual element and non-MF quotient
 2c78300d53c3	ledger	CO.20	self-adjoint lift for the rank-normalized construction
 2df0df601dc3	ledger	NK.02	universal two-norm triviality of the conjugation defect subgroup
 2e1f5398f8df	ledger	CO.21	the exact one-cocycle conclusion
-da07291ce938	formalized	GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable	Adian--Rabin applied to that Markov property
+da07291ce938	formalized	GroupApproximation.Full.NN13AR.operatorMF_recognition_undecidable	Adian--Rabin applied to that Markov property, instantiated at Boone's undecidable word problem (no hypothesis)
 2ea2e3c52fc6	ledger	CO.20	the rank-normalized coordinate Hilbert spaces
 2f6b14b17a1a	ledger	RA.04 RA.05	the surviving residual element obstructs an MF embedding
 2fc5a602326e	ledger	NK.07	normality makes both corner projections commute with the image
