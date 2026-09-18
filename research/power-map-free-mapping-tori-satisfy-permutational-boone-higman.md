@@ -62,3 +62,7 @@ solvable word problem and embeds in a finitely presented simple group.
   free letter. The two sit together in
   `Aut_B(B * F_2)`, which lies in `B_A` by
   `pbh-passes-to-relative-free-group-automorphisms`.
+
+## Update (bh-free-05, 2026-09-18)
+
+General injective endomorphisms are now covered by `ascending-hnn-of-free-groups-satisfy-boone-higman` (b6bb206cf, lane proof, not reviewed). Every ascending HNN extension F*_φ of a finitely generated free group embeds in a member of BS_{F_2}, through M. Hall's theorem on F * Z, and so it satisfies BH and lies in `B_A` by BLIW §12.5. In particular the test case `φ(x) = x y`, `φ(y) = y x` named above is settled. This node's power-map argument is an independent, more explicit route for its own family.

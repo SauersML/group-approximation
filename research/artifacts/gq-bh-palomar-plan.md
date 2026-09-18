@@ -67,8 +67,7 @@ megasubmission for all BH results, in addition to new breakthrough discoveries".
 
 "Lit" means bh-lit's survey (d7b638fef), flag F1. That flag marks results the repo calls
 ESTABLISHED while the literature still lists them open. "Verify" means an adversarial check
-is running (bh-verify-metabelian, bh-verify-linear, bh-verify-artin). Per
-[[lean-only-after-solving]], formalize a Tier A item only after its verify lane reports
+is running (bh-verify-metabelian, bh-verify-linear, bh-verify-artin). Following the standing rule "Lean only after solving", formalize a Tier A item only after its verify lane reports
 "chain holds".
 
 | Tier | Result (node) | Named problem | Lit | Verify | Lean distance |
