@@ -18,7 +18,7 @@ from ideal and quotient to the middle term (Mayer–Vietoris induction over cell
 * `SixTermExact.bijective₀` … `bijective₅`: the five lemma for a ladder of six-term sequences,
   at each position;
 * `SixTermExact.bijective_one_four`: bijectivity at positions `0, 2, 3, 5` gives it at `1, 4`;
-* `SixTermExact.dual`: for divisible `D`, `Hom(-, D)` sends a six-term exact sequence to a
+* `CommutativeLadder.dual`: for divisible `D`, `Hom(-, D)` sends a six-term exact sequence to a
   six-term exact sequence (`IsDivisibleGroup.exists_descend`).
 -/
 

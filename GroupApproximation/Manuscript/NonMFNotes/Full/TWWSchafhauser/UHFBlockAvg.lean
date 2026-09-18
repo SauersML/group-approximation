@@ -59,10 +59,10 @@ theorem uhf_star_dotProduct_self {α : Type*} [Fintype α] (v : α → ℂ) :
     simp only [Complex.star_def, Complex.mul_re, Complex.conj_re, Complex.conj_im]
     nlinarith [mul_self_nonneg (v i).re, mul_self_nonneg (v i).im]
 
-variable {m n : ℕ} (h : m ≤ n)
-
-theorem uhfBlockDim_cast_ne_zero : (uhfBlockDim m n : ℂ) ≠ 0 :=
+theorem uhfBlockDim_cast_ne_zero {m n : ℕ} (h : m ≤ n) : (uhfBlockDim m n : ℂ) ≠ 0 :=
   Nat.cast_ne_zero.2 (uhfBlockDim_pos h).ne'
+
+variable {m n : ℕ} (h : m ≤ n)
 
 /-! ## The block average -/
 
@@ -165,8 +165,11 @@ theorem uhfAvg_trace (x : Matrix (Fin n.factorial) (Fin n.factorial) ℂ) :
 /-- **The block average preserves the normalized trace.** -/
 theorem normTrace_uhfAvg (x : Matrix (Fin n.factorial) (Fin n.factorial) ℂ) :
     normTrace (uhfLevel m) (uhfAvg h x) = normTrace (uhfLevel n) x := by
-  rw [normTrace, normTrace, card_uhfLevel, card_uhfLevel, uhfAvg_trace,
-    ← factorial_mul_uhfBlockDim h, Nat.cast_mul]
+  have hc : ((n.factorial : ℕ) : ℂ) = (m.factorial : ℂ) * (uhfBlockDim m n : ℂ) := by
+    rw [← Nat.cast_mul, factorial_mul_uhfBlockDim h]
+  show Matrix.trace (uhfAvg h x) / (Fintype.card (uhfLevel m) : ℂ) =
+    Matrix.trace x / (Fintype.card (uhfLevel n) : ℂ)
+  rw [card_uhfLevel, card_uhfLevel, uhfAvg_trace, hc]
   ring
 
 /-- Each entry of the block average is bounded by the operator norm. -/
