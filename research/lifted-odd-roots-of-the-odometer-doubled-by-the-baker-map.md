@@ -14,6 +14,8 @@ distinct_from:
   odometer-generators-carry-no-nonsolvable-baumslag-solitar: that forbids BS(m,n) with m or n odd on the odometer generator itself; here the doubling conjugation is u r u^{-1} = r^2, a BS(1,2) relation on the odd root r, which that node does not exclude.
 ---
 
+**REFUTED** (full target) by `no-free-q-odd-action-by-v-has-a-doubling-intertwiner`: no single doubling element serves all odd q, so there is no Q ⋊ ⟨2⟩ in 2V_τ with 1 ↦ s. Each single q holds (`odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators`). The original text follows as the record.
+
 **OPEN.** Lane bh-free-30 (09-18), a construction target outside the ring and prime-shift frames of the GL_n(Q) campaign. It is the n = 1 affine step: Q ⋊ ⟨2⟩ ≤ Aff(Q) ≤ GL_2(Q).
 
 ## Setting
