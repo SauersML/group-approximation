@@ -265,8 +265,11 @@ not independently reviewed; item 3 OPEN). Let `l` be odd.
 
 ## 6. Out(V) (`out-v-contains-the-root-problem-for-the-full-2-shift`)
 
-1 referee: gq-referee-a PASS (0da548b9b, W1 and N1 applied). Inputs were read at the source in TeX, except
-Boyle–Lind–Rudolph and Boyle 2008, which were read through Salo.
+2 referees: gq-referee-a PASS (0da548b9b, W1 and N1 applied) and gq-referee-b PASS (97242cc3b, W1 and W2
+applied); node text as of `0e4673070`. Inputs were read at the source in TeX.
+- gq-referee-b read Boyle 2008, whose §22 pins residual finiteness, Ryan's center theorem and the inert kernel.
+  The root problem was not located there, so it is cited in Salo's wording.
+- Boyle–Lind–Rudolph was not reached.
 1. The Lipschitz part `L_2` of `O_2 ≅ Out(V)` is the inert group: `Aut(X_2^Z, σ) ≅ ⟨σ⟩ × L_2`, with
    `L_2 ≅ ker(dim)`.
 2. `L_2` is residually finite, so it contains no `(Q,+)`. A copy of `Q` in `Out(V)` must use transducers that
@@ -274,9 +277,12 @@ Boyle–Lind–Rudolph and Boyle 2008, which were read through Salo.
 3. **Transfer of roots.** An element of `Aut` of infinite order, with roots of every order in an infinite set `I`,
    has image in `L_2 ⊂ O_2` with the same property. Also, `Z[1/2] ≤ Aut` if and only if `Z[1/2] ≤ L_2`.
 4. **Calibration against Boyle's root problem.** Suppose an argument shows that no nontrivial element of `O_2` has
-   roots of infinitely many orders. Then it answers negatively the open question (Boyle 2008, as quoted by Salo
-   2023) whether `Aut` of the full 2-shift has elements of infinite order with such roots.
-   - It also shows `Z[1/2] ∉ G`, where `G` is the class of groups embedding in `Aut` of the `Z`-full shift.
+   roots of infinitely many orders. Then it answers negatively, for the full 2-shift, the question whether `Aut`
+   has elements of infinite order with such roots. Salo 2023 records that question as open and attributes it to
+   Boyle 2008.
+   - It also shows that `Z[1/2]` does not embed in `Aut(X_2^Z)`.
+   - Only the 2-shift form is claimed. Salo records the embedding question as open for the class `G` of groups
+     embedding in `Aut` of some full shift, and the transfer to `G` would need an unread input (Kim–Roush 1990).
    - An obstruction to `Aff(Q) ≤ Aut(V)` through roots must therefore settle such cases, or use the coherence of
      the roots.
 
