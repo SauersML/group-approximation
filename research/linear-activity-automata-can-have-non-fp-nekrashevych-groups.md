@@ -8,8 +8,8 @@ distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that records that bounded (contracting) automata give finitely presented V_d(G); this shows the next activity class, linear, already fails.
 ---
 
-**ESTABLISHED** (lane proof below, from `loop-retraction-forces-fp-eventual-section-groups`; not yet refereed;
-no priority claimed).
+**ESTABLISHED** (lane proof below, from `loop-retraction-forces-fp-eventual-section-groups`; no priority
+claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## The automaton
 
@@ -48,8 +48,9 @@ Let `G = ⟨S⟩ <= Aut({0,1,2}^*)`.
 
 ## Scope
 
-- This concerns this action only. Whether `G` satisfies Boone–Higman is not decided here: it may have another
-  finite-state action meeting the hypothesis of `lift-presented-automaton-groups-satisfy-boone-higman`.
+- This concerns this action only. `G` itself satisfies Boone–Higman: compressing the letter `2`
+  (`commonly-fixed-letters-compress-to-faithful-actions`) gives a bounded action of `G` on four letters
+  (`spine-grigorchuk-automaton-group-has-a-bounded-action`).
 - So finite presentation of `V_d(G)` holds for bounded activity (Nekrashevych FP2) and fails already at
   linear activity. Any polynomial-activity approach to `automaton-groups-satisfy-boone-higman` through
   Nekrashevych groups must allow changing the action.

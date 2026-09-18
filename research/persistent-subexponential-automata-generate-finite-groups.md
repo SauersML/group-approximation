@@ -8,7 +8,7 @@ distinct_from:
   linear-activity-automata-can-have-non-fp-nekrashevych-groups: that is a linear-activity failure of finite presentation using only a commonly fixed letter, not full persistence.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; not yet refereed; no priority claimed).
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## Statement
 
@@ -31,8 +31,8 @@ Example 7.2 (the persistent Grigorchuk action on `T_3`) must, and does.
 2. **The spine and the order.** For nontrivial `s`, `θ(s) = s|_i ≠ 1` (`θ` is a permutation fixing `1`), so
    `s` returns to itself along `i^m`, `m` its `θ`-period: its spine walk, beginning with the letter `i`. Order
    the `θ`-orbits of nontrivial states by `O ≻ O'` if some state of `O` has a nontrivial section in `O'` at a
-   letter `y ≠ i`. A chain `O_0 ≻ O_1 ≻ … ≻ O_k = O_0` (`k >= 1`) gives, at a state `u_0 in O_0`, a closed walk
-   beginning with a letter `y ≠ i` (non-`i` edges between orbits, spine edges inside them), hence a
+   letter `y ≠ i`. A chain `O_0 ≻ O_1 ≻ … ≻ O_k = O_0` (`k >= 1`) gives, at the state `u_0 in O_0` that owns the non-`i`
+   edge into `O_1`, a closed walk beginning with that letter `y ≠ i` (non-`i` edges between orbits, spine edges inside them), hence a
    first-return walk different from the spine walk, contradicting (1). So `≻` is acyclic; let `h(O)` be the
    length of the longest descending chain from `O`, and `G_h = ⟨states in orbits of height <= h⟩`.
 3. **Section endomorphism.** All states fix `i`, so `g|_i` is a homomorphism `θ̂: G -> G` extending `θ`; it
