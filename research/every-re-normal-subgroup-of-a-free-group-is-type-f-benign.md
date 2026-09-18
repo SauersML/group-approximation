@@ -109,3 +109,20 @@ of type `F` benign subgroups.
   - What remains for (d) is non-normalized witnesses only, or `F_m` variants
     with torsion in `Λ`.
   - See `type-f-weyl-groups-have-bounded-elementary-abelian-ranks`.
+- **Commensurated witnesses: the Browder kill does not extend, but linear
+  and tree witnesses die** (proposed-established, w10-117, 2026-09-18).
+  - Every finite `Q ≤ F/N` is `E_Q/Σ_Q`, where `Σ_Q` is the `Q`-core of any
+    witness `Σ`. It is finite index in `Σ` when `F` commensurates `Σ`.
+    Browder bounds the part of `Q` acting trivially on `H_*(Σ_Q)` by
+    `2 cd Σ`.
+  - Obstruction: the constant `c_p(Σ)` does not survive. The amalgams
+    `F_r *_M F_2` are torsion-free type `F` commensurated witnesses with the
+    fixed `Σ = F_2` and `F/N = (Z/p)^r`.
+  - Kill: if `Σ ∩ F` is cut out by a compact open subgroup under a
+    `p`-adic linear representation (S-arithmetic congruence witnesses), or
+    is a vertex stabilizer in a locally finite tree, then finite subgroups
+    of `F/N` have bounded ranks. So `U`, `V` and `Z/2 ≀ Z` have no such
+    witness, with or without torsion in `Λ`.
+  - Surviving shape: commensurated witnesses whose relative Schlichting
+    completion is non-linear and not a tree.
+  - See `commensurated-witnesses-survive-browder-but-die-when-linear`.
