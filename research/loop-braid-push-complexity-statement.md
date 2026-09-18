@@ -3,6 +3,8 @@ rg: 2
 id: loop-braid-push-complexity-statement
 kind: claim
 title: "Push complexity statement CX(N): for free count N ≥ 11, X_n(F∪{v,w}) carries a complexity lowered by pair-twist pushes whose mutual links contain the K-neighbours, with zero set in lk([(v,w)])"
+refuted_by:
+  - loop-braid-pair-twist-push-complexity-fails
 distinct_from:
   loop-braid-forbidden-ring-coning-statement: that asks for connectivity of the coned-off subcomplex Y and reduces via a nerve to multiple intersections of links; this is a combinatorial statement about one base vertex and pairwise pair-twist pushes, with no connectivity content, and implies the target directly without passing through Y
   loop-braid-descending-links-are-increasingly-connected: that is the target (connectivity of X_n); this is a purely combinatorial complexity statement that implies it via BFMWZ Lemma 3.9 and the pair-twist mutual link
@@ -46,3 +48,19 @@ are `N = 11, 12` with 2-spheres.
       `pT P_σ`.
   - **Also open.** Whether `lk(b_0)` is a full subcomplex of `X_n(F)`, which a complexity with zero
     set exactly `V(lk b_0) ∩ V(X^0)` would need.
+- 2026-09-18 (swarm-0917-w11-w11-z-last1): **refuted** by
+  `loop-braid-pair-twist-push-complexity-fails`, with artifact
+  `zp-loop-braid-cx-antisymmetric-clasp-obstruction-2026-09-18.md`.
+  - **The invariant.** Antisymmetrize the clasp proxy:
+    `φ_ab = χ_{z,u} − χ_{u,z} = Σ ±(e_ij − e_ji)` over `i ∈ {a,b}`, `j ∈ {v,w}`.
+    It vanishes on `P_{(a,b)}`, on `P_{(v,w)}`, and on every pair twist. Pair twists add
+    `e_cd + e_dc`, which an antisymmetric form kills.
+  - **Why CX fails.** `Φ(p[(a,b)]) = φ_ab(p)` is therefore a push-invariant vertex function, and it
+    is 0 on `lk(b_0)`. The vertex `A_av[(a,b)]` has Φ = 1. (CX0) forces `c > 0` there, and (CX1) on
+    `K = {that vertex}` then gives an infinite descent. So CX fails for every `N ≥ 4`.
+  - **Sphere form.** The suspension `{[(a,b)], A_av[(a,b)]} * J` (J a cross-polytope in Q) cannot
+    be pushed into the star of any type-`{v,w}` vertex, so choosing the base per sphere does not
+    help either.
+  - **What survives.** The route `loop-braid-desc-links-connected-via-bfmwz-push` dies as stated.
+    A repair needs a Φ-changing push, such as `A_av` or `A_va`, with a controlled mutual link, or
+    the multi-base coning of `loop-braid-forbidden-ring-coning-statement`.
