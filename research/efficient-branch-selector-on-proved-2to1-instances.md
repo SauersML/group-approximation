@@ -91,3 +91,19 @@ sees.
   (`rich-2to1-hard-at-completeness-one-half`). By item (1) of the sandwich it
   cannot exceed the floor on instances whose YES branches are balanced. Not a
   solution.
+* **High-advantage decoding (2026-09-18).** This attempt is recorded in
+  `high-advantage-selector-witnesses-decode-good-outer-labellings`, which is
+  ESTABLISHED. At lift value near 1, Markov gives a uniform list-decoding rate
+  `2^(-l)/192` at all but `O(xi + zeta + d)` of the target mass. So any outer
+  labelling of value `>= 15/16` with a near-honest witness decodes.
+  - Corollary A: on DKKMS instances, a polynomial-time orientation whose YES
+    lift witnesses are `1/64`-close to a locally honest patchwork of dirt
+    `<= 1/64` gives `NP in RP`.
+  - Corollary B: this claim together with
+    `dkkms-grassmann-2to1-test-is-locally-99-percent-rigid` (OPEN) gives
+    `NP in RP`.
+
+  Under `NP not in RP`, this claim therefore requires the local rigidity node
+  to fail. That means YES labellings of value arbitrarily close to 1 that are
+  far from every patchwork. Not a solution. It is a decomposition into two
+  prerequisites that cannot both hold.
