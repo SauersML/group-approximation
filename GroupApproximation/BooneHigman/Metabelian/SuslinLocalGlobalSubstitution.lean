@@ -101,7 +101,8 @@ theorem suslinLocalGlobalTranslate_X (b : A) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalGlobalTranslate_X
 
 theorem suslinLocalGlobalRestrict_C (p : Polynomial A) :
-    suslinLocalGlobalRestrict (Polynomial.C p) = Polynomial.C (Polynomial.constantCoeff p) := by
+    suslinLocalGlobalRestrict (A := A) (Polynomial.C p) =
+      Polynomial.C (Polynomial.constantCoeff p) := by
   rw [suslinLocalGlobalRestrict, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C,
     RingHom.comp_apply]
 

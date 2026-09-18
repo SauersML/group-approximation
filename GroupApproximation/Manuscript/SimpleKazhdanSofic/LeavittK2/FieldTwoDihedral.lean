@@ -108,20 +108,20 @@ theorem inj_three : Inj 3 := by
   rcases hD with rfl | rfl | rfl | rfl | rfl | rfl
   · rfl
   · have e := congrFun (hg (unitVec 1)) 0
-    simp only [dA, act_mul, act_x_apply] at e
-    exact absurd e (by decide)
+    simp only [dA, act_mul, act_x_apply] at e <;>
+      exact absurd e (by decide)
   · have e := congrFun (hg (unitVec 0)) 1
-    simp only [dB, act_mul, act_x_apply] at e
-    exact absurd e (by decide)
+    simp only [dB, act_mul, act_x_apply] at e <;>
+      exact absurd e (by decide)
   · have e := congrFun (hg (unitVec 0)) 1
-    simp only [dA, dB, act_mul, act_x_apply] at e
-    exact absurd e (by decide)
+    simp only [dA, dB, act_mul, act_x_apply] at e <;>
+      exact absurd e (by decide)
   · have e := congrFun (hg (unitVec 1)) 0
-    simp only [dA, dB, act_mul, act_x_apply] at e
-    exact absurd e (by decide)
+    simp only [dA, dB, act_mul, act_x_apply] at e <;>
+      exact absurd e (by decide)
   · have e := congrFun (hg (unitVec 1)) 0
-    simp only [dA, dB, act_mul, act_x_apply] at e
-    exact absurd e (by decide)
+    simp only [dA, dB, act_mul, act_x_apply] at e <;>
+      exact absurd e (by decide)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.inj_three
 

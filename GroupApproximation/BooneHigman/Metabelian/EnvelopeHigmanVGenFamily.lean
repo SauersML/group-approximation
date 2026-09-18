@@ -67,8 +67,8 @@ theorem vgenShortSwaps_mem {v w : List X} (hv : v.length ≤ 3) (hw : w.length �
   have hmem : (v, w) ∈ vgenShortPairs X :=
     Set.mk_mem_prod (s := {l : List X | l.length ≤ 3}) (t := {l : List X | l.length ≤ 3}) hv hw
   refine ⟨vgenShortEquiv X ⟨(v, w), hmem⟩, ?_⟩
-  rw [← vgenSwapOrOne_eq h1 h2]
   simp only [vgenShortSwaps, Equiv.symm_apply_apply]
+  exact vgenSwapOrOne_eq h1 h2
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_mem
 

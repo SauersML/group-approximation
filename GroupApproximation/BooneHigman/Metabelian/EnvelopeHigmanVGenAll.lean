@@ -25,10 +25,15 @@ theorem vgen_step {n : ℕ} (hn : 3 ≤ n)
   obtain ⟨q, z, rfl, hq⟩ := vgen_split_last (le_antisymm hw hge)
   by_cases hpq : p = q
   · rw [← hpq]
-    obtain ⟨u, hu, hup, hpu⟩ := vgen_exists_avoid1 (List.ne_nil_of_length_pos (by omega) : p ≠ [])
-    exact vgen_shorten_both x z hpu hup (ih p u (by omega) (by omega))
-      (ih (u ++ [x]) (u ++ [z]) (by simp only [List.length_append, List.length_singleton, hu]; omega)
-        (by simp only [List.length_append, List.length_singleton, hu]; omega))
+    have hp0 : p ≠ [] := List.ne_nil_of_length_pos (by omega)
+    obtain ⟨u, hu, hup, hpu⟩ := vgen_exists_avoid1 hp0
+    have hux : (u ++ [x]).length ≤ n := by
+      simp only [List.length_append, List.length_singleton, hu]
+      omega
+    have huz : (u ++ [z]).length ≤ n := by
+      simp only [List.length_append, List.length_singleton, hu]
+      omega
+    exact vgen_shorten_both x z hpu hup (ih p u (by omega) (by omega)) (ih (u ++ [x]) (u ++ [z]) hux huz)
   · intro hvw hwv
     have hpw : ¬ p <+: q ++ [z] := by
       intro h

@@ -1,4 +1,5 @@
 import Mathlib.Algebra.CharP.Defs
+import Mathlib.LinearAlgebra.Basis.VectorSpace
 import Mathlib.LinearAlgebra.Dimension.Free
 import Mathlib.LinearAlgebra.FreeModule.StrongRankCondition
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
