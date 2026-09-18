@@ -1,3 +1,4 @@
+import Mathlib.Data.List.Rotate
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalJordanPickStep
 import GroupApproximation.Meta.AxiomGuard
 
@@ -9,7 +10,9 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-36.
 **LOUD: the target `ExtremalJordanPickStepUniformStatement` (`Piece10Live/ExtremalJordanPickStep`,
 lane gl-p10-33) is NOT closed outright here.**  It is reduced to ONE open Statement,
 `ExtremalJordanPickUniformStatement`, by `extremalJordanPickUniform_step_of_loopFree`.  The
-Statement is the target with one more hypothesis, so it is logically STRICTLY WEAKER.
+Statement is the target with one more hypothesis, so the target implies it.  **LOUD: with the
+proved loop-only case the two are logically EQUIVALENT; the Statement is only strictly smaller
+in proof content** (the loop-only instances, most of the model, are closed here).
 
 ## Proof route
 
@@ -84,11 +87,12 @@ uniform form cannot be narrowed to region classes and one-dart arcs.
 ## LOUD: logical strength of the gap
 
 `ExtremalJordanPickUniformStatement` is the target with the extra hypothesis "no uniform choice
-class is loop-only".  So it is implied by the target, and logically STRICTLY WEAKER: the model
-instances with a loop-only uniform choice class satisfy the target and fall outside the
-Statement.  They are most instances (table below), so the Statement is also strictly smaller in
-proof content.  It is not an equivalent restatement, and it is none of the refuted forms: no
-pick rule, no local surgery, no region form and no descent relation.
+class is loop-only".  So the target implies it.  **LOUD: it is NOT logically strictly weaker.**
+With `extremalJordanPickUniform_step_of_loopFree` it implies the target, so the two are
+logically EQUIVALENT.  What it gains is proof content: the model instances with a loop-only
+uniform choice class are closed here and fall outside the Statement.  They are most instances
+(table below).  It is a case split with one case proved, not a pure restatement, and it is none
+of the refuted forms: no pick rule, no local surgery, no region form and no descent relation.
 
 ## Truth check (model)
 
@@ -212,3 +216,140 @@ theorem extremalJordanPickUniform_of_region (K : PocketFaceSet D eps X lo hi)
       have h₁ := (extremalJordanPickPool_mem_faces_iff K hrx).mp hr
       rw [P10Rose.FilterMove.faceOf_alpha_of_mem_invSourceArc K hx] at h₁
       exact K.source_not_mem h₁
+
+/-- **A one-dart arc class**: `e` is the only dart of one arc, its class keeps every dart of
+the other arc, and it avoids a cell of `K.faces`. -/
+def ExtremalJordanPickUniformArcClass (K : PocketFaceSet D eps X lo hi)
+    (e : X.toCombMap.Dart) : Prop :=
+  ((K.targetArc.darts = [e] ∧
+      ∀ x ∈ invDarts X K.sourceArc.darts, P10ExtremalResidual.keptPred K e x = true) ∨
+    (invDarts X K.sourceArc.darts = [e] ∧
+      ∀ x ∈ K.targetArc.darts, P10ExtremalResidual.keptPred K e x = true)) ∧
+  ∃ kept : Fin X.rCellCount, (cell X kept).face ∈ K.faces ∧
+    ∀ x, X.toCombMap.faceOf x = (cell X kept).face → ¬Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) e x
+
+/-- **A one-dart arc class is a uniform choice class**: it lies inside `K.faces`, so it avoids
+the exterior and source faces, and it removes its own arc `[e]`. -/
+theorem extremalJordanPickUniform_of_arcClass (K : PocketFaceSet D eps X lo hi)
+    {e : X.toCombMap.Dart} (h : ExtremalJordanPickUniformArcClass K e) :
+    ExtremalJordanPickStepUniform K e := by
+  obtain ⟨harc, hkept⟩ := h
+  have he : e ∈ K.boundary.cycle := by
+    rcases harc with ⟨ht, -⟩ | ⟨hs, -⟩
+    · exact extremalJordanPickPool_mem_cycle_of_target K
+        (by rw [ht]; exact List.mem_singleton_self e)
+    · exact extremalJordanPickPool_mem_cycle_of_invSource K
+        (by rw [hs]; exact List.mem_singleton_self e)
+  have hr := extremalJordanPickPool_face_mem_of_cycle K he
+  have hout : ∀ x, X.toCombMap.faceOf x ∉ K.faces → ¬Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) e x :=
+    fun x hx hex => hx ((extremalJordanPickPool_mem_faces_iff K hex).mp hr)
+  have hchoice : ExtremalClassChoice K e :=
+    ⟨Or.inr fun x hx => hout x (by rw [hx]; exact K.outerFace_not_mem),
+      Or.inr fun x hx => hout x (by rw [hx]; exact K.source_not_mem), hkept⟩
+  rcases harc with ⟨ht, hS⟩ | ⟨hs, hT⟩
+  · refine ⟨hchoice, Or.inr fun x hx => ?_, Or.inl hS⟩
+    rw [ht, List.mem_singleton] at hx
+    rw [hx]
+    exact extremalJordanPickUniform_self_removed K e
+  · refine ⟨hchoice, Or.inl hT, Or.inr fun x hx => ?_⟩
+    rw [hs, List.mem_singleton] at hx
+    rw [hx]
+    exact extremalJordanPickUniform_self_removed K e
+
+/-- **A monogon class is loop-only**: its only removed walk dart `e` is a loop. -/
+theorem extremalJordanPickUniform_loops_of_monogon (K : PocketFaceSet D eps X lo hi)
+    {e : X.toCombMap.Dart}
+    (hloop : X.toCombMap.vertexOf e = X.toCombMap.vertexOf (X.toCombMap.alpha e))
+    (honly : ∀ x ∈ K.boundary.cycle, P10ExtremalResidual.keptPred K e x = false → x = e) :
+    ExtremalJordanPickUniformLoops K e := by
+  intro x hx hk
+  rw [honly x hx hk]
+  exact hloop
+
+/-- **A monogon class is a one-dart arc class**: its only removed walk dart is the dart of the
+one-dart arc, so it keeps the other arc, which is disjoint on the walk. -/
+theorem extremalJordanPickUniform_arcClass_of_monogon (K : PocketFaceSet D eps X lo hi)
+    {e : X.toCombMap.Dart}
+    (harc : K.targetArc.darts = [e] ∨ invDarts X K.sourceArc.darts = [e])
+    (hkept : ∃ kept : Fin X.rCellCount, (cell X kept).face ∈ K.faces ∧
+      ∀ x, X.toCombMap.faceOf x = (cell X kept).face → ¬Relation.EqvGen
+        (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) e x)
+    (honly : ∀ x ∈ K.boundary.cycle, P10ExtremalResidual.keptPred K e x = false → x = e) :
+    ExtremalJordanPickUniformArcClass K e := by
+  refine ⟨?_, hkept⟩
+  rcases harc with ht | hs
+  · have he : e ∈ K.targetArc.darts := by
+      rw [ht]
+      exact List.mem_singleton_self e
+    refine Or.inl ⟨ht, fun x hx => ?_⟩
+    cases hk : P10ExtremalResidual.keptPred K e x with
+    | true => rfl
+    | false =>
+        exact absurd (honly x (extremalJordanPickPool_mem_cycle_of_invSource K hx) hk)
+          (extremalJordanPickUniform_ne_of_mem K hx he)
+  · have he : e ∈ invDarts X K.sourceArc.darts := by
+      rw [hs]
+      exact List.mem_singleton_self e
+    refine Or.inr ⟨hs, fun x hx => ?_⟩
+    cases hk : P10ExtremalResidual.keptPred K e x with
+    | true => rfl
+    | false =>
+        exact absurd (honly x (extremalJordanPickPool_mem_cycle_of_target K hx) hk)
+          (extremalJordanPickUniform_ne_of_mem K he hx).symm
+
+end PickUniform
+
+/-- **OPEN (lane gl-p10-36).**  `ExtremalJordanPickStepUniformStatement` when no uniform choice
+class is loop-only: under the premises of `ExtremalJordanStatement` and a pool class, if no
+uniform choice class removes only loops, then some uniform choice class has at most two kind
+changes up to removed loops.  LOUD: implied by the target and, with the proved loop-only case
+(`extremalJordanPickUniform_step_of_loopFree`), logically EQUIVALENT to it; strictly smaller in
+proof content (the loop-only instances are closed); true in the model (see the module
+docstring). -/
+def ExtremalJordanPickUniformStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      (∃ r : X.toCombMap.Dart, ExtremalJordanPickPool K r) →
+      (¬∃ r : X.toCombMap.Dart, ExtremalJordanPickStepUniform K r ∧
+        ExtremalJordanPickUniformLoops K r) →
+        ∃ r : X.toCombMap.Dart, ExtremalJordanPickStepUniform K r ∧
+          ExtremalJordanPickChanges K r ≤ 2
+
+/-- **The uniform step statement from its loop-free case**: a loop-only uniform choice class
+has no kind change, so it is the witness; otherwise the loop-free case gives one. -/
+theorem extremalJordanPickUniform_step_of_loopFree
+    (h : ExtremalJordanPickUniformStatement.{u, w, v}) :
+    ExtremalJordanPickStepUniformStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hex
+  by_cases hl : ∃ r : X.toCombMap.Dart, ExtremalJordanPickStepUniform K r ∧
+      ExtremalJordanPickUniformLoops K r
+  · obtain ⟨r, hr, hloops⟩ := hl
+    refine ⟨r, hr, ?_⟩
+    rw [extremalJordanPickUniform_changes_of_loops K hloops]
+    exact Nat.zero_le 2
+  · exact h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hex hl
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_self_removed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_ne_of_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickUniformLoops
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_walk_kept
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_changes_eq_zero
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_changes_of_loops
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_of_region
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickUniformArcClass
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_of_arcClass
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_loops_of_monogon
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_arcClass_of_monogon
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickUniformStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickUniform_step_of_loopFree

@@ -100,4 +100,30 @@ theorem czStabGen_weyl_conj_row (c L : I) (hcL : c ≠ L) {q : I} (hLq : L ≠ q
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_weyl_conj_row
 
+/-- `w x_{p,L}(a) w⁻¹ = x_{p,c}(a)` for `p ∉ {c, L}`. -/
+theorem czStabGen_weyl_conj_col (c L : I) (hcL : c ≠ L) {p : I} (hpL : p ≠ L)
+    (hpc : p ≠ c) (a : R) :
+    czStabGen_weyl c L hcL * x p L hpL a * (czStabGen_weyl c L hcL)⁻¹ = x p c hpc a := by
+  have s1 : x c L hcL 1 * x p L hpL a * (x c L hcL 1)⁻¹ = x p L hpL a := by
+    rw [(x_commute_of_ne c L p L hcL hpL hpL.symm hcL.symm 1 a).eq, mul_inv_cancel_right]
+  have s2 : x L c hcL.symm (-1) * x p L hpL a * (x L c hcL.symm (-1))⁻¹ =
+      x p c hpc a * x p L hpL a := by
+    rw [czStabGen_conj_right (x_commutator p L c hpL hcL.symm hpc a (-1)), ← x_neg,
+      mul_neg_one, neg_neg]
+  have e1 : x c L hcL 1 * x p c hpc a * (x c L hcL 1)⁻¹ =
+      (x p L hpL (a * 1))⁻¹ * x p c hpc a :=
+    czStabGen_conj_right (x_commutator p c L hpc hcL hpL a 1)
+  have e3 : x p c hpc a * x p L hpL a = x p L hpL a * x p c hpc a :=
+    (x_commute_of_ne p c p L hpc hpL hpc.symm hpL.symm a a).eq
+  have s3 : x c L hcL 1 * (x p c hpc a * x p L hpL a) * (x c L hcL 1)⁻¹ = x p c hpc a := by
+    calc x c L hcL 1 * (x p c hpc a * x p L hpL a) * (x c L hcL 1)⁻¹
+        = (x c L hcL 1 * x p c hpc a * (x c L hcL 1)⁻¹) *
+            (x c L hcL 1 * x p L hpL a * (x c L hcL 1)⁻¹) := by group
+      _ = (x p L hpL (a * 1))⁻¹ * x p c hpc a * x p L hpL a := by rw [e1, s1]
+      _ = (x p L hpL (a * 1))⁻¹ * (x p L hpL a * x p c hpc a) := by rw [mul_assoc, e3]
+      _ = x p c hpc a := by rw [mul_one, inv_mul_cancel_left]
+  rw [czStabGen_weyl_conj, s1, s2, s3]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_weyl_conj_col
+
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

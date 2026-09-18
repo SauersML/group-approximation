@@ -62,9 +62,9 @@ only, and all outside classes are counted, with no reference to the exterior or 
    first exactly when its corner is a single rotation step.
 3. Detaching every first passage merges the two inside faces at it and keeps the outside faces.
    Euler's formula for the detached map gives the identity above.
-4. `¬ K.FirstTurns` gives a vertex with `n_v ≥ 1`, hence `n_v ≥ 3`.  With at most two outside classes
-   this gives `#linked ≥ 3`, except for one vertex with `n_v = 3` and exactly two outside classes.
-   Parity rules that case out: the number of outside classes is then 1 or 3.
+4. `¬ K.FirstTurns` gives a vertex with `n_v ≥ 1`, hence `n_v ≥ 3`.  With at most two outside
+   classes this gives `#linked ≥ 3`, except for one vertex with `n_v = 3` and exactly two outside
+   classes.  Parity rules that case out: the number of outside classes is then 1 or 3.
 
 ## Mathematical infrastructure
 
