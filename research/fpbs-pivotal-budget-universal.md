@@ -78,6 +78,31 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   * *The direct budget transplant.* `E_p[N|E]` is ball-local, but PB begins
     at `p_c(G) <= liminf p_c(G_k)`. The approximants would need the budget
     below their own critical points.
+* **Symbolic-dynamics / pressure transplant: chemically truncated rates
+  (b-p-bs1, 2026-09-17).**
+  * *Idea.* Treat `lambda(p)` as a pressure and approximate the non-local
+    potential `1_{e<->X_n}` by finite-range potentials. Pressures of
+    finite-range potentials vary continuously.
+  * *Where the pressure form dies.* Finite-range approximants of the
+    connection event increase to it from below. Fekete gives only
+    `lambda = sup`, so the approximation yields lower semicontinuity of
+    `lambda`, not the right-continuity at `p_c` that (IS) needs.
+  * *What survives (ESTABLISHED).* The natural finite-range approximants
+    are the chemically truncated events `{d_omega(e,X_n) <= Ln}`.
+    - Every open pivotal edge lies on one fixed certificate path, so PB holds
+      on these events with `C=L` for free.
+    - Their rates `lambda_L` are log-Lipschitz, with
+      `lambda_L(p) <= rho (p/p_c)^L`, and `sup_L lambda_L = lambda`
+      (`fpbs-truncated-walk-rate-log-lipschitz`).
+    - (IS) is *equivalent* to rate saturation by slopes `L(epsilon)=o(1/epsilon)`
+      (`fpbs-integrated-sensitivity-iff-subscale-chemical-saturation`).
+    - Under collapse, walk connections at `p_c+epsilon` have chemical slope
+      at least `p_c log(1/rho)/epsilon` (Corollary 3 of
+      `research/artifacts/fpbs/docs/truncated-russo-lipschitz-2026-09-17.md`).
+  * *Consequence for PB.* Any PB argument that bounds pivotal counts by
+    certificate length proves a statement that is true on a collapse graph.
+    PB is load-bearing only through the comparison of truncated and
+    untruncated rates at sub-mean-field slope. PB itself stays OPEN.
 * **Sum over walk lengths first (reframing, swarm-0917).**
   * *The kernel.* Summing (1.1) over `n<=R` gives
     `d/dp log A_R = E^tilt[N]/p`, where `A_R = sum_(n<=R) a_(n,R)` increases
