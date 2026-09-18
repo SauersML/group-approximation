@@ -92,3 +92,28 @@ sofic, it would also answer Cornulier's Question 5 positively.
   * Where this dies for now: no branch set meeting all flats sparsely has been
     built.  Branch sets pulled back from product or height coordinates are
     ruled out, heuristically, by irreducibility.  Target stays OPEN.
+- 2026-09-17 (d-tw-ref, reframer, symmetric branched covers): turned the
+  Galois heuristic above into a theorem and killed a whole construction class.
+  * Established `branched-cover-branching-mass-is-quantized-by-deck-group`.
+    For a connected branched cover `X -> Y` of degree `N` with deck group `D`,
+    `beta(X)` is an integer multiple of `|D|/N`, and `beta(X) >= |D|/N`
+    whenever `X` branches anywhere.  Galois covers have integer `beta`.
+  * Since the finite residual has index 2, every sparse sequence for `Y_1^2`
+    of degree `> 2` has `|D_n|/N_n <= beta_n -> 0`.
+  * What dies, whatever (H) or (G) say: Galois covers, Cayley-complex models of
+    finite quotients of `pi_1(Y minus vertices)`, coset covers `H` with
+    boundedly many conjugates (`D = N_F(H)/H`), and any equivariant
+    construction with boundedly many deck orbits on sheets.
+  * The invariant is the deck-invariant local degree plus the free action on
+    sheets.  The dying step is the first branch vertex, which costs `|D|`
+    sheets.
+  * Considered and not pursued, because already covered:
+    - exhausting `R_K` by treeable or other non-(T) subrelations dies by
+      `kazhdan-relations-coamenable-subrelations-locally-kazhdan`;
+    - the centralizer form is `kazhdan-ergodic-sofic-centralizer-forces-lef`.
+  * Not proved (heuristic only): with support in an unbranched CAT(0) ball,
+    a twisting surgery on several copies of a cover cannot create a single
+    branch vertex.  The punctured ball is homotopy equivalent to the link,
+    and pushing loops to the boundary needs geodesic extension.  Branch
+    points would have to be planted in cancelling groups.
+  * No positive construction is proposed.  Target stays OPEN.
