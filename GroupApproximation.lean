@@ -5876,6 +5876,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaMap
 import GroupApproximation.Manuscript.NonMF.Full.GL06h2.QuasiGeodesicWord
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiGeneration
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparableCounter
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalZero
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
