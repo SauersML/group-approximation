@@ -414,6 +414,31 @@ content in that region.
   - **Class killed.** Arguments that give uniform stretch above a threshold
     `q` from inputs that `q = p_c` also satisfies die at item 6 of the
     established claim.
+* **Worst-pair connectivity rate, weaker than the sphere-rate kernel
+  (2026-09-17, belief breaker).**
+  - **Established side.** `fpbs-worst-pair-connectivity-rate-kernel` has an
+    import-free proof using Harris-FKG and Fekete. The rate
+    `gamma(p) = lim -(1/n) log min_(v in B_n) tau_p(o,v)` exists and is
+    nonincreasing and left-continuous. Uniqueness forces `gamma = 0`, and
+    `g(p) >= log gr - gamma(p)`. Hence
+    `(EG) => (G) => (K') [g(p) < log gr] => (K) [gamma(p) > 0] => p_c < p_u`,
+    each at one `p > p_c`.
+  - **Belief change.** The two last-missing sphere-rate holes (G) and (EG) are
+    strictly stronger than needed. On `T_d`, (K') and (K) hold on all of
+    `(p_c,1)`, while (G) holds only on `(p_c,1/sqrt(d-1))`. So an obstruction
+    to (G) near `p_c` does not threaten the sphere route. The route
+    `fpbs-bs-via-worst-pair-connectivity-rate` dominates
+    `fpbs-bs-via-sphere-two-point-rate`.
+  - **Where it stops.** The OPEN kernel is
+    `fpbs-worst-pair-connectivity-rate-positive-above-pc-universal`.
+    - Hutchcroft's bound `kappa_(p_c)(n) <= gr^(-n)` gives
+      `gamma(p_c) >= log gr` (recalled, not load-bearing). So a collapse must be
+      a jump of `gamma` of size at least `log gr` at `p_c+`.
+    - Finite-radius certificates bound the supermultiplicative `kappa` only
+      from above.
+    - The missing inputs are expected extrinsic growth of infinite clusters
+      strictly below `gr`, and a subexponential finite-cluster susceptibility,
+      at one `p > p_c`.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
