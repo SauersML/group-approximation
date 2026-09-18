@@ -115,7 +115,7 @@ theorem powersStormer_le_of_sq_le {ε η c : ℝ} (hε : 0 < ε) (hη : η ≤ �
   by_contra hlt
   have hlt' : ε / 4 < c := not_le.mp hlt
   have h3 : 0 < (c - ε / 4) * (c + ε / 4) := mul_pos (by linarith) (by linarith)
-  nlinarith
+  nlinarith [hc]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_le_of_sq_le
 
