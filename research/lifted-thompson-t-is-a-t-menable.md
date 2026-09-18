@@ -121,3 +121,48 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
     length `≥ 1`, so `ℓ(z) = 2^k ℓ(r_k)` is impossible. If this holds, the Euler-class caveat in
     the previous attempt's cubical constraint is unnecessary.
   - Unchanged: this does not decide the claim. Steps (a) and (b) above remain the next steps.
+- **2026-09-18 (swarm-0917-w9-w9-nv-last1, reframing): two class-kills and the forced shape.**
+  Status stays OPEN.
+  - *Cubical: dead (established).* `lifted-thompson-t-perfect-centre-cubically-elliptic`.
+    - `T̄` is perfect. For each `n` some `ĝ ∈ T̄` has `ĝ^n = z` (lift an order-`n` element of `T`
+      permuting `n` dyadic arcs), so `[z] = nm[z]` in the cyclic group `T̄^ab`.
+    - It has no proper finite-index subgroup. So the commensurating lemma makes `z` elliptic in
+      every commensurating action of every overgroup.
+    - This answers the w8 "cubical not excluded" negatively. It also removes the Euler-class
+      caveat: `Hom(T̄, R) = 0` unconditionally.
+    - Maruyama, arXiv:2002.12743 §2.1, states `~T = [~T, ~T]` verbatim.
+  - *Extractable: dead (established).* `lifted-thompson-t-extractable-cocycles-bounded-on-centre`.
+    - Named invariant: paradoxicality of `T ↷ S^1`. Three elements `h_1, h_2, h_3` give
+      `c(ρ) ≥ 1/100` for every representation with a circle measure extraction.
+    - Step where each member dies: the commuting identity
+      `(ρ(h) − 1) b(z^M) = (ρ(z^M) − 1) b(h)`, which gives `ψ(z^M) ≤ 400 Σ ψ(ĥ_i)`.
+    - Killed:
+      - covariant PVMs on `S^1`, that is all circle-groupoid representations. So the splitting
+        `T̄ ⋉ S^1 ≅ (T ⋉ S^1) × Z` transfers nothing.
+      - Koopman on any space over `S^1`: `R`, pairs, orbits (subsuming the TC1 kill), and
+        measured walls labelled in `S^1`.
+      - The `s = 0` member of next step (b), for every `θ`, uniformly.
+      - Weak limits of all of these.
+    - The `s ≠ 0` members of (b) have no unitary structure specified, so they are not covered.
+  - *Centre-fixed part carries nothing.* Since `T̄` is perfect, `b(z^M)` has zero component in
+    `H^z`.
+  - *Forced shape of any witness.* The cocycle's part `ρ_1` on `(H^z)^⊥`:
+    - has no `z`-invariant vectors;
+    - has `{ĥ_i}`-almost invariant vectors;
+    - is weakly contained in no circle-extractable representation.
+  - *(a) CCJJV 4.2.14.*
+    - Still not found verbatim.
+    - The gHAP definition (CCJJV Def 4.2.1) was reached through Kida, arXiv:1309.3739.
+    - Kida's class `C` does not contain `T`, because `T` is simple and not treeable. So Kida's
+      route does not decide `T̄`.
+  - *Residual quotients (new decomposition).*
+    - Rescaling `R/2^kZ` to `S^1` gives an embedding `ι_k : T̄/⟨z^{2^k}⟩ → T` onto the
+      centralizer of the rotation `r_k` by `2^{-k}`, with `ι_k(z) = r_k`.
+    - So for cnd `ψ_k` on `T` and weights `a_k ≥ 0`, `ψ = Σ_k a_k ψ_k∘ι_k` is cnd on `T̄`
+      whenever it converges on a finite generating set `S`. Then `ψ(z^{2^j}) = Σ_{k>j} a_k ψ_k(r_{k−j})`.
+    - *Sufficient condition for negating `lifted-thompson-t-center-has-relative-t` (not proved).*
+      It suffices to have `sup_k Σ_{s∈S} ψ_k(ι_k s) < ∞` and `ψ_k(r_m) ≥ f(m)`, with `f` growing
+      fast enough that `Σ_{k>j} a_k f(k−j)` is unbounded for some summable `(a_k)`.
+    - *Dead end: Farley's `ψ_k`.* The periodic images `ι_k(s)` have about `2^k` carets, so the
+      convergence forces `a_k = o(2^{-k})`. The resulting `ψ` stays bounded on `⟨z⟩`. This is
+      sketched only, not written out.
