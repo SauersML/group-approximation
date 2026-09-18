@@ -9,14 +9,14 @@ This file links the widened statements of `PinchAbsPinchCorrStatement.lean` to
 `GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected` and its pinched form
 (`GL03BPinch/Statement.lean`).
 
-* `pinchAbsPinchCorr_pinchPart_of_pinchedCorrected`: the pinched corrected statement gives the
+* `pinchAbsPinchCorr_pinch_ofPCorr`: the pinched corrected statement gives the
   corrected pinched half.  Drop `hcase` and `hP`, pack `G₁`, `G₂` into the existentials, and take
   the right disjunct.
-* `pinchAbsPinchCorr_pinchPart_of_corrected`: the same, through
+* `pinchAbsPinchCorr_pinch_ofCorr`: the same, through
   `innerPocketEnclosedTwoArcPinchedCorrected_of_corrected`.
-* `pinchAbsPinchCorr_off_of_corrected`: the corrected statement gives the widened four-piece
+* `pinchAbsPinchCorr_off_ofCorr`: the corrected statement gives the widened four-piece
   reading (right disjunct).
-* `pinchAbsPinchCorr_corrected_of_off`: **the consumer absorbs the widening.**  The widened
+* `pinchAbsPinchCorr_consumer`: **the consumer absorbs the widening.**  The widened
   four-piece reading gives `InnerPocketEnclosedTwoArcCorrected`.  On the left disjunct, rerun the
   proof of `innerPocketEnclosed_of_pieces` (`Assembly.lean`) with `pocketSideBound` and
   `enclosedNormalForm`, and land in the corrected first disjunct.  On the right disjunct the
@@ -37,7 +37,7 @@ universe u w v
 open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
 
 /-- **The corrected pinched half from the pinched corrected enclosed inner pocket.** -/
-theorem pinchAbsPinchCorr_pinchPart_of_pinchedCorrected
+theorem pinchAbsPinchCorr_pinch_ofPCorr
     (h : GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcPinchedCorrected.{u, w, v}) :
     pinchAbsPinchCorr_PinchPart.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
@@ -46,20 +46,20 @@ theorem pinchAbsPinchCorr_pinchPart_of_pinchedCorrected
     hout hinner houter hfo C hC hCf hCa hCb)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_pinchedCorrected
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinch_ofPCorr
 
 /-- **The corrected pinched half from the corrected enclosed inner pocket.** -/
-theorem pinchAbsPinchCorr_pinchPart_of_corrected
+theorem pinchAbsPinchCorr_pinch_ofCorr
     (h : GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected.{u, w, v}) :
     pinchAbsPinchCorr_PinchPart.{u, w, v} :=
-  pinchAbsPinchCorr_pinchPart_of_pinchedCorrected
+  pinchAbsPinchCorr_pinch_ofPCorr
     (GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcPinchedCorrected_of_corrected h)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_corrected
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinch_ofCorr
 
 /-- **The widened four-piece reading from the corrected enclosed inner pocket.** -/
-theorem pinchAbsPinchCorr_off_of_corrected
+theorem pinchAbsPinchCorr_off_ofCorr
     (h : GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected.{u, w, v}) :
     pinchAbsPinchCorr_OffStatement.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond h₁ h₂ hw hoff
@@ -68,11 +68,11 @@ theorem pinchAbsPinchCorr_off_of_corrected
     houter C hC hCf hCa hCb)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_off_of_corrected
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_off_ofCorr
 
 /-- **The consumer absorbs the widening**: the widened four-piece reading gives the corrected
 enclosed inner pocket.  The left branch is the proof of `innerPocketEnclosed_of_pieces`. -/
-theorem pinchAbsPinchCorr_corrected_of_off (h : pinchAbsPinchCorr_OffStatement.{u, w, v}) :
+theorem pinchAbsPinchCorr_consumer (h : pinchAbsPinchCorr_OffStatement.{u, w, v}) :
     GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond h₁ h₂ hw hoff
     hinner houter C hC hCf hCa hCb
@@ -113,6 +113,6 @@ theorem pinchAbsPinchCorr_corrected_of_off (h : pinchAbsPinchCorr_OffStatement.{
   · exact hc
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_corrected_of_off
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_consumer
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

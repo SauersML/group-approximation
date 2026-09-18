@@ -10,7 +10,7 @@ import GroupApproximation.Meta.AxiomGuard
 `pinchAbsFol_PinchPart` (`PinchAbsFolParts.lean`) is FALSE on the GL03BPinch model (gl-p07-78).
 This file states its widenings.
 
-* `pinchAbsPinchCorr_PinchPartAllCells`: the lane's literal target.  The premises are those of
+* `pinchAbsPinchCorr_PinchAll`: the lane's literal target.  The premises are those of
   `pinchAbsFol_PinchPart`, and the conclusion adds the all-cells disjunct
   `pinchAbsPinchCorr_AllCells eps X`: an enclosed face set holding every relator cell, with walk
   length at most `2ε`.
@@ -36,7 +36,7 @@ This file states its widenings.
   same way.
 
 **LOUD: logical strength.**  Each statement here is strictly weaker than the false statement it
-widens (`pinchAbsPinchCorr_pinchPart_of_pinchPart`, `pinchAbsPinchCorr_off_of_off`).
+widens (`pinchAbsPinchCorr_pinch_ofOld`, `pinchAbsPinchCorr_off_of_off`).
 `pinchAbsPinchCorr_OffStatement` is EQUIVALENT to `GL03BPinch.InnerPocketEnclosedTwoArcCorrected`
 (both directions are in `PinchAbsPinchCorrBridge.lean`).
 `pinchAbsPinchCorr_PinchPart` is implied by `InnerPocketEnclosedTwoArcPinchedCorrected`.  Its
@@ -61,19 +61,19 @@ def pinchAbsPinchCorr_AllCells {G : Type u} [Group G] {Lambda : Type w}
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_AllCells
 
 /-- The all-cells disjunct gives the corrected conclusion. -/
-theorem pinchAbsPinchCorr_twoArc_of_allCells {G : Type u} [Group G] {Lambda : Type w}
+theorem pinchAbsPinchCorr_twoArcAll {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))} {eps : ℕ} {X : DiscDiagram.{u, w, v} W}
     (h : pinchAbsPinchCorr_AllCells eps X) :
     GroupApproximation.Full.GL03BPinch.TwoArcConclusion eps X :=
   Or.inr h
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_twoArc_of_allCells
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_twoArcAll
 
 /-- **The lane's literal target: FALSE** (see the module docstring).  These are the premises of
 `pinchAbsFol_PinchPart`, and the conclusion adds the all-cells disjunct only.  It is kept only to
 record the refutation, and nothing downstream uses it. -/
-def pinchAbsPinchCorr_PinchPartAllCells : Prop :=
+def pinchAbsPinchCorr_PinchAll : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
     {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
@@ -116,7 +116,7 @@ def pinchAbsPinchCorr_PinchPartAllCells : Prop :=
             pinchAbsPinchCorr_AllCells eps X
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_PinchPartAllCells
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_PinchAll
 
 /-- **The pinched half, corrected (true given `InnerPocketEnclosedTwoArcPinchedCorrected`).**
 These are the premises of `pinchAbsFol_PinchPart`, and the conclusion adds the whole corrected
@@ -210,20 +210,20 @@ def pinchAbsPinchCorr_OffStatement : Prop :=
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_OffStatement
 
 /-- The literal all-cells widening implies the corrected widening. -/
-theorem pinchAbsPinchCorr_pinchPart_of_allCells (h : pinchAbsPinchCorr_PinchPartAllCells.{u, w, v}) :
+theorem pinchAbsPinchCorr_pinch_ofAll (h : pinchAbsPinchCorr_PinchAll.{u, w, v}) :
     pinchAbsPinchCorr_PinchPart.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
     hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
   rcases h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hfo hout
     hinner houter C hC hCf hCa hCb hcase hP with hc | hc
   · exact Or.inl hc
-  · exact Or.inr (pinchAbsPinchCorr_twoArc_of_allCells hc)
+  · exact Or.inr (pinchAbsPinchCorr_twoArcAll hc)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_allCells
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinch_ofAll
 
 /-- The old (false) pinched half implies the corrected one, which is therefore weaker. -/
-theorem pinchAbsPinchCorr_pinchPart_of_pinchPart (h : pinchAbsFol_PinchPart.{u, w, v}) :
+theorem pinchAbsPinchCorr_pinch_ofOld (h : pinchAbsFol_PinchPart.{u, w, v}) :
     pinchAbsPinchCorr_PinchPart.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
     hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
@@ -231,7 +231,7 @@ theorem pinchAbsPinchCorr_pinchPart_of_pinchPart (h : pinchAbsFol_PinchPart.{u, 
     hout hinner houter C hC hCf hCa hCb hcase hP)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_pinchPart
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinch_ofOld
 
 /-- The old (false) four-piece reading implies the widened one. -/
 theorem pinchAbsPinchCorr_off_of_off (h : PocketFourPieceOffStatement.{u, w, v}) :
