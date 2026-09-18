@@ -56,7 +56,7 @@ theorem pinchAbsTouch_dual_iff {F : Finset X.toCombMap.Face}
     g ∈ sideFaces X.toCombMap (pinchLobe_walk F comp) ↔
       h ∈ sideFaces X.toCombMap (pinchLobe_walk F comp) := by
   induction hc with
-  | rel g' h' hgh =>
+  | rel _ _ hgh =>
       obtain ⟨hg, hh, d, rfl, rfl⟩ := hgh
       exact mem_sideFaces_iff_of_not_walkKeep _ (pinchAbsTouch_not_keep hg hh)
   | refl _ => exact Iff.rfl

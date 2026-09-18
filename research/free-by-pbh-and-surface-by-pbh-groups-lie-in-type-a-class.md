@@ -113,8 +113,14 @@ The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
 - More generally, any centerless linear group with finite outer automorphism group
   qualifies. This includes torsion-free lattices in simple Lie groups not locally
   isomorphic to `PSL_2(R)` (strong rigidity; rigidity inputs not re-read here).
-- For one-ended hyperbolic `Γ`, item 6 needs `Γ` itself in `B_A`, known here only when `Γ` is
-  linear, e.g. cubulated (virtually special).
+- **Hyperbolic kernels.** Every hyperbolic group is in `B_A`
+  (`hyperbolic-groups-lie-in-the-permutational-class`, referees a and b PASS). So item 6
+  applies to every hyperbolic `Γ` with trivial center (e.g. torsion-free non-elementary) and
+  finite `Out(Γ)`. By Paulin's theorem with the Rips--Bestvina--Feighn theory of actions on
+  R-trees (inputs not re-read here), `Out(Γ)` is finite when `Γ` is one-ended and does not split
+  over a virtually cyclic subgroup. So every extension of a group in `B_A` by such a `Γ` is in
+  `B_A`. When `Out(Γ)` is infinite, item 6 still covers extensions whose outer action has
+  finite image.
 
 ## Scope
 
@@ -126,3 +132,14 @@ The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
 - The open 3-manifold case `nonfibered-closed-graph-manifold-groups-satisfy-pbh` is not
   reached. By `nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups`, those
   groups have no free or surface normal subgroup to use as `Γ`.
+- **Infinite outer image (not treated).** In general item 1 embeds `H` in `Â x Q`, where
+  `Â <= Aut(Γ)` is the extension of the outer image `Q̄` by `Inn(Γ)`. So the question is
+  `Â ∈ B_A`.
+  - For `Q̄ = <φ>` infinite cyclic, `Â` is a mapping torus `Γ ⋊_φ Z`.
+  - For one-ended hyperbolic `Γ`, a finite power of `φ` preserves the cyclic JSJ splitting
+    and is built from Dehn twists and mapping classes of its quadratically hanging pieces
+    (Levitt; not re-read here).
+  - When some quadratically hanging piece carries a pseudo-Anosov, `Γ ⋊ Z` is a graph of
+    (surface-with-boundary)-by-`Z` groups over `Z^2` edge groups. That is the same shape
+    as the graph manifold groups of `nonfibered-closed-graph-manifold-groups-satisfy-pbh`.
+    So this case is expected to be as hard as the open 3-manifold case.

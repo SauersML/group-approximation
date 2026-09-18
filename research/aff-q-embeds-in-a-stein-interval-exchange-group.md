@@ -14,5 +14,9 @@ distinct_from:
   hyperbolic periodic point.
 - **Why the natural action is excluded.** The natural affine action needs slopes at every prime, so a finitely generated
   slope group rules it out (root obstruction H3).
-- **What decides it.** The attractor statement recorded in that node. If it holds, this claim is false. A counterexample to
+- **Attractor statement: false** (see that node): Boshernitzan-type maps in T_{2,3} have irrational rotation number. So the claim is not killed that way. The old note read: a counterexample to
   it (an infinite-order Stein element without hyperbolic periodic points) is the first thing a construction needs.
+- **Sharpened necessary condition (2026-09-18).** Every nontrivial translation of the copy, and every dilation base,
+  has clopen periodic sets and acts rotation-like (without periodic points) on the rest. The known rotation-like Stein
+  element, Boshernitzan's φ, has no roots of order ≥ 2 in any rational-slope PL group. So the next test is whether some
+  minimal element of a Stein group V(1; Z[1/M], ⟨p|M⟩) is infinitely divisible there.

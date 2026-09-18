@@ -53,6 +53,11 @@ hyperbolic theorem.
   `rel-hyperbolic-bh-permanence-implies-free-product-closure`: this statement implies
   that the Boone--Higman class is closed under free products, hence joint
   embedding for finitely presented simple groups and `U * Z ∈ 𝓑`. Those are OPEN.
+- **At least as hard as finite-edge amalgams.**
+  `rel-hyperbolic-permanence-implies-finite-edge-amalgams`: this statement implies
+  closure of the Boone--Higman class under amalgams and HNN extensions over finite
+  subgroups. Its B_A form implies the open conjugacy step of
+  `free-permutational-products-preserve-pbh`.
 - **Finitely presented simple peripherals suffice.**
   `rel-hyperbolic-groups-embed-with-fp-simple-peripherals`: it is enough to prove
   the statement when every `P_i` is a finitely presented simple group (and then
@@ -106,6 +111,15 @@ hyperbolic group by amalgamating along centralizers (for example general Dehn-fi
 preimages), peripherals in the Boone--Higman class but not the permutational one, and
 hyperbolic groups with torsion (where `C_H(h)` can be a proper subgroup of `E(h)`). The
 torsion case is now settled by `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`.
+
+**Attempt 3 (bh-relhyp, 2026-09-18): graphs of groups over good edges.**
+`pbh-graphs-of-groups-over-realized-good-edges` puts a finite graph of groups in `B_A` once
+its vertex groups embed in one `B_A`-group in which each edge identification is a
+conjugation and each edge image is good. For relatively hyperbolic inputs this covers
+acylindrical graphs of groups whose edge maps are realized in this way (Dahmani, Theorem
+0.1(1), gives the relative hyperbolicity). A general relatively hyperbolic group is not a
+graph of groups over its peripheral structure, so the claim stays OPEN. What is missing
+is a way to build, from `G` alone, an ambient `B_A`-group in which `G` is visible.
 
 ## Scope
 

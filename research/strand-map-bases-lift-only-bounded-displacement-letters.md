@@ -36,6 +36,20 @@ eventual strand maps (for example `K = H_n(E_2)`, `n >= 2`). Then every `lambda_
 displacement. By `regular-enumeration-displacement-bounds-growth`, `P` has linear growth, so `P` is virtually
 cyclic (a finitely generated group of linear growth is virtually cyclic).
 
+**Corollary 2 (one letter already decides).** If `P` is not virtually cyclic, then over a strand-map base no letter
+`rho^(k)_g` with `g` of infinite order has a certificate, whatever `nu` is.
+
+*Proof.* By the statement, for `m >= M` we have `lambda_g(m) = m + delta(m)` with `delta` `a`-periodic.
+- Far out, `lambda_g` maps each residue class `r` mod `a` by translation into the class `tau(r) = r + delta(r)`.
+  Translations preserve density and `lambda_g` is a bijection, so `tau` is a permutation of `Z/a`.
+- Let `M' = M + max|delta|`, and suppose some orbit `O` of `lambda_g` lies in `[M', ∞)`. The residues of its
+  points then follow `tau` forward and `tau^-1` backward, around one `tau`-cycle of some length `p`. Along it,
+  `m_(i+p) = m_i + Δ` for a fixed `Δ`.
+- If `Δ = 0`, the orbit is finite. But `g` has infinite order and the action is free, so there are no finite
+  orbits. If `Δ ≠ 0`, the orbit goes below `M'` in one direction. So every orbit meets `[1, M')`, and there are
+  finitely many orbits.
+- The orbits of `lambda_g` are the cosets `<g>h`. So `[P : <g>] < ∞`. ∎
+
 **Proof.**
 1. *Every `c ∈ C` sends `E_k` to itself.* Suppose `c` sends `E_k` to a strand `S ≠ E_k` by `m -> m + a'`. For all
    but finitely many `x ∈ E_k`, the point `lambda_g^-1(x)` is far out on `E_k`, `c` sends it to

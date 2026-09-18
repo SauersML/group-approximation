@@ -65,6 +65,12 @@ So the transverse space must be blown up at all of Q/Z, as X′ is.
 
 𝒯 must use infinitely many distinct split ratios. With finitely many rational ratios, every cut point lies in a finite union of translates of Z[1/N], so not every point of Q/Z is a cone boundary. The dyadic tree makes D a local similarity but not R_{1/3}; mixed-radix odd trees do the reverse.
 
-## Open
+## The canonical route is dead (by `rational-rotations-and-doubling-have-no-common-tree-coding`)
 
-Does such a 𝒯 exist? A yes gives Q ⋊ ⟨2⟩, hence the rational affine line group ⟨Q, ×2⟩, inside the F_∞ simple group 2V_τ. That is the wild copy asked for in `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`.
+A local 𝒯-similarity, as defined in §2 (piecewise induced by isomorphisms of cone subtrees), is exactly a `T`-almost-automorphic map in the sense of bh-free-16's theorem, applied to the binary tree coding 𝒯 of X′ = D. The theorem's own calibration says binary almost-automorphisms are exactly the pieces of Thompson's V. So the two notions coincide; neither is weaker.
+
+The theorem says:
+- if the doubling branches (d = 2) are almost-automorphic, then R_{1/p} is almost-automorphic for only finitely many primes p;
+- but §2 needs every odd p.
+
+So no such 𝒯 exists, and the hypothesis of the §2 theorem is never satisfied. Any embedding Q ⋊ ⟨2⟩ ≤ 2V_τ with 1 ↦ s therefore needs, by §1, a free action ρ of Q_odd/Z on C by elements of V, and a g ∈ V with σ∘g∘ρ(a) = ρ(2a)∘σ∘g, such that (C, ρ, σ∘g) is **not** topologically conjugate to (X′, rotations, doubling). §3 excludes one more natural candidate. Whether an exotic pair exists is OPEN.
