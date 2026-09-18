@@ -5825,6 +5825,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUn
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.ChainsLowDegree
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.OpsAlg
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.PolyOps
+import GroupApproximation.Manuscript.NonMF.Full.GL06h1.DoublingLabels
+import GroupApproximation.Manuscript.NonMF.Full.GL06h1.SubdiagramLabels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
