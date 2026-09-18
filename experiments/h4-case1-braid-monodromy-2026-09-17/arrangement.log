@@ -1,0 +1,23 @@
+H4: |W|=60 |A_x|=15 |A_y|=6 |A_z|=3, A2 flats V: 9
+V0: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V1: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V2: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V3: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V4: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V5: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V6: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V7: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+V8: rank(fibre normals)=4  collisions among p1..p3 on A_z: True  p4-collisions on A_x minus A_z: True  C_V reflection-closed: False
+     order near x*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)   order near y*: ['p4', 'p1', 'p2', 'p3'] (all < 0: True)
+walls of A_x minus A_z used as p4-collision walls (index: multiplicity): {0: 2, 1: 2, 2: 3, 3: 3, 5: 2, 6: 3, 7: 3, 8: 1, 9: 1, 39: 1, 40: 3, 41: 3}  covered 12 of 12
+H3: |W|=15 |A_x|=5 |A_y|=3 |A_z|=1, A2 flats V: 2
+V0: rank(fibre normals)=3  collision walls in A_z: 1  in A_x minus A_z: 2
+V1: rank(fibre normals)=3  collision walls in A_z: 1  in A_x minus A_z: 2

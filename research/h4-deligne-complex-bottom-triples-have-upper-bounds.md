@@ -80,6 +80,18 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     modular. Its `π_1` is `F_4 ⋊ P_X`. In it `[N, F] ≠ 1`, and the relation becomes a nontrivial
     point-pushing identity.
   - Open: turning that identity into a centre (the Gauss–Bonnet step).
+- **Single-edge case: braid monodromy of the fibred shadows** (w6-042,
+  `h4-a2-fibred-shadows-are-a4-pure-braid-retractions`).
+  - Every `ℓ_x`-fibred shadow embeds the hexagon relation in a pure braid group `P_{k+1}`.
+  - For each of the 9 `A_2` flats, the monodromy `P_X → P_4` kills 9 of the 15 meridians and sends the other 6
+    to the `A_ij`.
+  - The shadow is the retraction `P ↠ P_5` onto an `A_4` braid sub-arrangement, with `F ↦ ⟨A25,A35,A45⟩` and
+    `N ↦ ⟨A12,A13,A14⟩`.
+  - Consequence: the point-pushing identity in one `A_2` shadow is exactly the `A_4` single-edge hexagon
+    relation, so it cannot force a label-5 centre. The `A_2` augmentations are dead as `H_4` analogues of
+    Huang's arrangement I.
+  - What remains among single fibred flats is the three `I_2(5)` flats: 6 fibre points, a `P_7` shadow, and
+    collision arrangement `χ = (t−1)(t−4)(t−5)`.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
