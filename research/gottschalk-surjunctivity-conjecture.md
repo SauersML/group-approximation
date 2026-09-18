@@ -965,3 +965,14 @@ Where it dies so far:
 
 Reach: any argument that uses only root-ball statistics and mass transport should prove the IRS
 strengthening. A witness for `some-free-group-irs-carries-a-strict-design` would kill that whole class.
+
+- **Linear shadow on local observables** (swarm-0917-w7-w7-gs-break, group-rings, 2026-09-18). DEAD as a proof
+  class. By `strict-pair-linear-shadows-exist-over-z`, a strict pair is equivalent to a surjective, non-injective,
+  unital, equivariant algebra endomorphism `τ^*` of the local observables `O`.
+  - Over any group with an element of infinite order, there are `K[G]`-linear maps `L, R` on `O` with `R L = id` and
+    `L R != id`. They are unital, of finite propagation, graded, monomial and trace-preserving, `L` is an `L^2`
+    isometry with `L^* = R`, and both are the identity on one-site observables.
+  - The construction slides the second site of `ψ_1(x_g) ψ_1(x_{g t^n})` from `n` to `n+1`.
+  - So Kaplansky, `K_0`, von Neumann dimension and module-direct-finiteness transfers die at the extension from the
+    finitely generated one-site module to `O`. `O` is an infinite sum of projectives there.
+  - Invariant that must be used: multiplicativity of `τσ` as a pullback.
