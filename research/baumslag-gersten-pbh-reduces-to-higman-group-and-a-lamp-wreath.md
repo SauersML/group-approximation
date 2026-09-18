@@ -58,6 +58,16 @@ For `BG` the first input is exactly Higman's group. So the two flagship torsion-
 are not independent: `H_4` plus a wreath closure settles `BG`. Work on one feeds the other, and the
 remaining novelty sits in the wreath closure over the cyclic edge `⟨a_0⟩`.
 
+**General form.** The proof uses nothing about `BG` except `τ C_1 τ^-1 = φ(C_1) = C_2`. So for any
+HNN extension `G = A*_φ` and any `n`, the cyclic quotient `G/⟨⟨t^n⟩⟩` is a conjugating overgroup
+as soon as `A` survives in it. That quotient is `P_n ⋊ C_n`, where `P_n` is the polygon of `n`
+copies of `A` glued cyclically along `φ`. Then `G ≤ Γ *_(C_1)(C_1 × Z)` for every `Γ ∈ B_A`
+containing it.
+
+For Magnus steps of one-relator groups, `A` should survive in `P_n` for large `n` by Gersten--Stallings
+curvature, since Magnus intersections are small. That was not checked here. So one-relator
+permanence reduces to polygon-of-groups permanence plus identity-edge permanence.
+
 ## Proof
 
 Put `A = ⟨a_0, a_1⟩ ≅ BS(1,2)` (Higman; cited in `baumslag-gersten-group-maps-onto-higman-groups`),
