@@ -63,7 +63,8 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 open GroupApproximation.BooneHigman.SteinbergBasic
 
-/-- `ev_{t=0} ∘ ψ ∘ π_0 = ev_{t=0} ∘ ψ`, where `ψ : R[s_0..s_k] ≅ R[s_1..s_k][t]` sends `s_0 ↦ t`. -/
+/-- `ev_{t=0} ∘ ψ ∘ π_0 = ev_{t=0} ∘ ψ`, where `ψ : R[s_0..s_k] ≅ R[s_1..s_k][t]` sends
+`s_0 ↦ t`. -/
 theorem evalZero_finSuccEquiv_comp_cubeKill_zero {R : Type*} [CommRing R] (k : ℕ) :
     ((Polynomial.evalRingHom 0 :
           Polynomial (MvPolynomial (Fin k) R) →+* MvPolynomial (Fin k) R).comp

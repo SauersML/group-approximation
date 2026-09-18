@@ -105,7 +105,7 @@ theorem twist_finite {k Q N D : Type} [CommRing k] [CommGroup Q] [Group.FG Q] [A
       (fun q => hof q) (fun x x' hx hx' y hy => ?_) (fun c x hx y hy => ?_)
     · rw [add_smul]
       exact W.add_mem (hx y hy) (hx' y hy)
-    · rw [Algebra.smul_def, mul_smul, ← hk c, map_pow]
+    · rw [Algebra.smul_def c x, mul_smul, ← hk c, map_pow]
       exact hpow _ _ (hx y hy)
   have htop : ∀ y : N, y ∈ W := by
     intro y
