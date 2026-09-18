@@ -91,3 +91,39 @@ theorem eHighETwo_of_infinite (h : eHighMixed_InfiniteStatement) : EHighETwoStat
   exact h p hp 2 le_rfl Q hfg M hfin P k hM hpP hk hne hinf
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighETwo_of_infinite
+
+/-- **Residual gap (e = 2, unit-group form).**  Under the hypotheses of `EHighETwoStatement`,
+`M` embeds `Q`-equivariantly into the unit group of a finite-dimensional commutative algebra
+`B` over a field `K` of characteristic `p`, with `Q` acting by `K`-algebra automorphisms.
+**LOUD: it is interderivable with `EHighETwoStatement` (only equivalent, not strictly weaker).**
+The gain is proof content: the linearization `eHighETwo_exists_gl_of_units` is discharged. -/
+def EHighETwoUnitsStatement : Prop :=
+  ∀ p : ℕ, p.Prime → ∀ (Q : Type) [CommGroup Q], Group.FG Q →
+    ∀ (M : Type) [AddCommGroup M] [Module (MonoidAlgebra (ZMod (p ^ 2)) Q) M],
+      Module.Finite (MonoidAlgebra (ZMod (p ^ 2)) Q) M →
+      ∀ (P : Ideal (MonoidAlgebra (ZMod (p ^ 2)) Q)) (k : ℕ),
+        Primary.IsCoprimaryWith (MonoidAlgebra (ZMod (p ^ 2)) Q) M P k →
+        ((p : ℕ) : MonoidAlgebra (ZMod (p ^ 2)) Q) ∈ P →
+        2 ≤ k → (∃ m : M, p • m ≠ 0) → Infinite M →
+      ∃ (K : Type) (_ : Field K) (B : Type) (_ : CommRing B) (_ : Algebra K B),
+        Module.Finite K B ∧ ringChar K = p ∧
+          ∃ (θ : Multiplicative M →* B) (σ : Q →* (B ≃ₐ[K] B)), Function.Injective θ ∧
+            ∀ (q : Q) (m : M),
+              θ (Multiplicative.ofAdd (MonoidAlgebra.of (ZMod (p ^ 2)) Q q • m)) =
+                σ q (θ (Multiplicative.ofAdd m))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.EHighETwoUnitsStatement
+
+/-- **Endpoint (reduction).**  The `e = 2` infinite mixed case follows from the unit-group
+residual, by the linearization `eHighETwo_exists_gl_of_units`. -/
+theorem eHighETwo_of_units (h : EHighETwoUnitsStatement) : EHighETwoStatement := by
+  intro p hp Q _ hfg M _ _ hfin P k hM hpP hk hne hinf
+  obtain ⟨K, hK, B, hB, hA, hBfin, hchar, θ, σ, hθ, hequiv⟩ :=
+    h p hp Q hfg M hfin P k hM hpP hk hne hinf
+  obtain ⟨d, κ, ρ, hκ, hrel⟩ := eHighETwo_exists_gl_of_units
+    (fun (q : Q) (m : M) => MonoidAlgebra.of (ZMod (p ^ 2)) Q q • m) θ hθ σ hequiv
+  exact ⟨K, hK, d, κ, ρ, hchar, hκ, hrel⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighETwo_of_units
+
+end GroupApproximation.BooneHigman.Metabelian.Coprimary
