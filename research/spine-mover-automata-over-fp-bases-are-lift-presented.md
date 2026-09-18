@@ -82,6 +82,6 @@ So `N = M`. ∎
 
 - The theorem does not need `P` to have subexponential activity. The base is absorbed through its own lift
   ideal, and descent is used only on the spine and mover letters.
-- Whether `M(P)` is lift-presented only if `P` is finitely presented is not settled here. A retraction as in
-  `loop-retraction-forces-fp-eventual-section-groups` would need a letter fixed by every state, and `n`
-  moves `2`.
+- **Converse (settled).** `M(P)` is lift-presented only if `P` is finitely presented: the letters `2, 3` form a
+  closed stable family and the germ group at `2^ω` is `⟨ŝ_p⟩ ≅ P`, so the necessity half of
+  `nekrashevych-fp-iff-cycle-germ-groups-fp` applies. So `M(P)` is lift-presented **iff** `P` is fp.

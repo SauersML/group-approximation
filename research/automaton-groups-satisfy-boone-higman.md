@@ -47,7 +47,8 @@ Tools on main for finding a good action or certifying one:
   its cycling relators (words following their states' cycles forever) lie in a finitely generated lift ideal;
   `linear-activity-odometer-automaton-has-fp-nekrashevych-group` is a non-contracting instance.
 
-So for subexponential activity the open case is sharp: cycling relators along a periodic ray whose letter some
+For subexponential activity the criterion is now local and exact: `nekrashevych-fp-iff-cycle-germ-groups-fp`
+(`V_d(G)` fp iff the germ groups at the cycle rays are fp; they embed in (lower-degree group) `≀` finite). So for subexponential activity the open case is sharp: cycling relators along a periodic ray whose letter some
 recurrent state moves, so that compression does not apply, and which are not finitely generated. Transient
 states never matter: `lift-presentable-groups-closed-under-products-and-wreaths` (LP-embeddable groups are
 closed under finite direct products and finite extensions, and an automaton group is LP-embeddable iff the
