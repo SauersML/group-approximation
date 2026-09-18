@@ -245,3 +245,44 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
       which feeds route `ugc-via-parity-leaking-branch-selector`;
     - H2 `view-local-selectors-beat-one-half-through-non-honest-witnesses`;
     - H3 `unique-games-hard-on-non-sse-grassmann-constraint-graphs`.
+* **Look for an honest branch selector in the 2-to-2 presentation instead, where
+  an orientation is a matching and the right labels carry a spare bit
+  (calibrator lane, 2026-09-18).** **Still open; the membership gap is NOT
+  closed.** `kms-2to2-instances-are-padded-dkkms-selector-lecs` was landed
+  ESTABLISHED and returned to **OPEN** the same day after all three referee
+  lenses refuted its citation step; the route was demoted to
+  `research/artifacts/kms-2to2-padding-attempt-2026-09-18.md`. The rest of live
+  need `1cb0e45a` -- the part
+  `dkkms-2to1-instances-satisfy-selector-decoding-hypotheses` left open with
+  "the KMS 2-to-2 instances ... are not treated" -- is **still unanswered**.
+  - What was claimed: that ECCC TR18-006 constructs no game, so the proved
+    2-to-2 instances must be the DKKMS folded Grassmann game `G_folded` of ECCC
+    TR16-198 Section 4.2, presented in KMS Definition 1.3 shape by padding
+    `Sigma_B = {0,1}^(l-1)` with one free bit; and that (E) `tau = 2^(l-1-2k)`,
+    (M) `K = 1` and (B) then transport, because neither (E) nor (M) mentions a
+    label.
+  - **Why it failed.** The elimination of TR18-006's cited sources skips `[12]`,
+    which the quoted abstract line "as proposed in [12, 3]" names: `[12]` is
+    Khot--Minzer--Safra, *On Independent Sets, 2-to-2 Games and Grassmann
+    Graphs*, ECCC TR16-124 / STOC 2017, a reduction from `Gap3Lin` to a
+    Transitive 2-to-2 Game (its Definition 1.4, Theorem 1.8). So a second,
+    natively 2-to-2 instance family exists -- one already single-alphabet, with
+    two `l`-spaces meeting in an `(l-1)`-space, needing no padding at all, which
+    is why neither paper writes the "missing" map. That family has a different
+    edge law, `1`-to-`1` constraints inside cliques, a transitivity requirement
+    and a `V ⊆ U` subsampling, so the padding argument's per-vertex-injection
+    invariance does not reach it and (E), (M) must be recomputed there. `K` is
+    load-bearing, since `c0 = p^2/K^2 - 2 eps`.
+  - **What survives.** A theorem about the self-constructed padded bipartite
+    game `G_pad` alone: the padding is a genuine linear 2-to-2 presentation of
+    `G_folded` landing in KMS Definition 1.3, with `OPT` unchanged, and the
+    artifact
+    `experiments/kms-2to2-padding-2026-09-18/check_kms_2to2_padding.py` is green
+    on all four structural checks (2.7 million aggregate triples, 107520 padded
+    edges, 13762560 clean (B) cases with a non-vacuous dirty control, `OPT` and
+    the best honest lift value unmoved). But in `G_pad` the padded bit occurs in
+    no constraint, so its 2-to-2 structure is inert and "the 2-to-2 shape buys a
+    selector nothing" is read off a degenerate game.
+  - **To revive.** Read ECCC TR16-124 for the actual instance family behind
+    Theorem 1.4 of TR18-006, and redo (E) and (M) for the A--A presentation.
+  - Survivor, unchanged: H2, a witness far from every `hon_c(a)`.
