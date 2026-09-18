@@ -173,3 +173,16 @@ same diagonal, tensor and conjugate argument as (U2).
     implied by this node and necessary for the flagship. `d_inf = 0` would refute the flagship.
   - *Consistent with* the Jones/TL_6 calibration by swarm-0917-w11-w11-deligne-break, where the gap is
     `2 sin(pi/15)` on the whole unitary arc.
+- **2026-09-18, swarm-0917-w12-w12-deligne-break (cohomology-index): Maslov line established, the central class
+  killed, and the Torelli-abelian class reduced.** See `mod-s2-torelli-characters-have-a-metaplectic-maslov-line`.
+  - *Maslov line.* Push commutator lifts through the real untwisting. This gives `F(K cap [H,H]) = 5 m Z` for every
+    `H = pi^-1(Gamma')`, where `m` in `{1,2}` is the order of `z` in `H_1(Gamma~')`. It also pins `r = +-1/5`.
+  - *Class kill.* If `rho(t_s)` is central in `rho(M)`, then `rho(t_s)^10 = I`. So the distance to `omega^(+-1)` is at
+    least `2 sin(pi/30)`, and this is sharp. Every member dies where `alpha F` must vanish on `K cap [H,H]`.
+  - *Census explained.* The census values `1/15` and `1/30` are exactly `1/(15m)`.
+  - *Reduction.* Torelli-abelian monomial models can beat `2 sin(pi/(15m))` only through a small positive torsion
+    character, since no real character is positive on all separating twists (transfer). The matching lower bound is
+    filed OPEN as `mod-s2-maslov-line-is-optimal-for-torelli-characters`. A failure of it along a family would refute
+    this claim.
+  - *Where it stops.* Representations where `rho(t_s)` is not central and that are not Torelli-abelian monomial are
+    untouched. This includes every representation with nonabelian Torelli image.
