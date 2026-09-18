@@ -10,14 +10,16 @@ distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this is the tool behind pp-circle-and-lift-hosts-miss-gl-n-q, which rules out one-dimensional piecewise-projective and PL hosts.
 artifacts:
   - research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md
+  - research/artifacts/gq-referee-b-pp-circle-and-lift-hosts-miss-gl-n-q.md
 ---
 
 **ESTABLISHED** through `pp-circle-divisible-subgroups-act-freely-proof`.
 This is a lane proof. The argument is elementary and no priority is claimed.
 Referee gq-referee-a gave the proof a PASS under its proof-gap lens; the report is
 `research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md`.
-Citation fidelity (Lodha, Calegari, Ghys--Sergiescu, Belk--Hyde--Matucci) is still
-to be checked by gq-referee-b.
+Referee gq-referee-b gave the citations a PASS; the report is
+`research/artifacts/gq-referee-b-pp-circle-and-lift-hosts-miss-gl-n-q.md`. It checked
+Ghys--Sergiescu through Calegari's abstract, not the 1987 paper.
 
 ## Setting
 

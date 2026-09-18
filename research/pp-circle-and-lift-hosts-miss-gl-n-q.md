@@ -10,13 +10,15 @@ distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that is the open problem; this closes one family of candidate hosts. Obstruction O4 there closes the subgroups of VA by distortion, while the hosts here may contain BS(1,2), so O4 does not reach them.
 artifacts:
   - research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md
+  - research/artifacts/gq-referee-b-pp-circle-and-lift-hosts-miss-gl-n-q.md
 ---
 
 **ESTABLISHED** through `pp-circle-and-lift-hosts-miss-gl-n-q-proof`. This is
 a lane proof. Referee gq-referee-a gave it a PASS under its proof-gap lens; the
 report is `research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md`.
-Citation fidelity (Lodha, Calegari, Ghys--Sergiescu, Belk--Hyde--Matucci) is still
-to be checked by gq-referee-b.
+Referee gq-referee-b gave the citations a PASS; the report is
+`research/artifacts/gq-referee-b-pp-circle-and-lift-hosts-miss-gl-n-q.md`. It checked
+Ghys--Sergiescu through Calegari's abstract, not the 1987 paper.
 
 ## Statement
 
@@ -61,6 +63,10 @@ these groups. Examples:
   golden-ratio groups.
 - Every group whose pieces lie in one fixed `PSL_2(Z[1/N])` or
   `Aff(Z[1/N])`, even if it is not finitely generated.
+
+The descriptions of these hosts are standard; the primary sources were not re-read.
+The extra generator of Lodha's `S` has pieces in `PSL_2(R)` (integer matrices of
+determinant 2), not in `PSL_2(Z)`; case (P) allows this.
 
 ## Sharpness
 
