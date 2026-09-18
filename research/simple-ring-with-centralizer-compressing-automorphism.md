@@ -63,3 +63,30 @@ would refute the open mapping-torus form (EKL1) of
    case, if `w` has finite order `m`, then `m` is odd because
    `sigma(w) = w^2` has the same order.  So `w = (w^2)^{(m+1)/2}` commutes
    with `z`.  Hence `w` must have infinite order.
+3. **Finite spatial classes and dilations die on subshift rings (2026-09-18,
+   class kill, symbolic-dynamics).**  Two nodes are established.
+   - `virtually-inner-ring-automorphisms-fail-centralizer-compression`:
+     if `sigma^m = Ad(v)` on `S` for some `m >= 1`, with `v` a unit of any
+     matricially embeddable overring, then `z` commuting with `R` commutes
+     with every `sigma^{-j}(R)`.  This generalizes Attempt 1 from `m = 1` to
+     any power.
+   - `subshift-diagonal-automorphisms-need-infinite-spatial-class`: on
+     `S = LC(X,F_q) semidirectProduct Z` over an infinite minimal subshift,
+     a diagonal-preserving `sigma` has a spatial homeomorphism `phi_sigma`
+     normalizing `[[T]]`.  If `phi_sigma^r in [[T]]`, then
+     `sigma^(e r (q-1))` is inner, so (G2) fails.  This covers inner, gauge,
+     Frobenius and `Aut(X,T)`-induced automorphisms of finite order modulo
+     `<T>`, and flips.  Moreover `phi_sigma T phi_sigma^{-1} = T^k` with
+     `|k| >= 2` is impossible, by word complexity, so the squaring candidate
+     `u -> c u^2` does not exist.
+   - *Invariant:* the class of `phi_sigma` in `N[[T]]/[[T]]`.  *Dying step:*
+     once that class has finite order, the equality `V A V^{-1} = A` in one
+     exact model.
+   - *Survivors on these rings:* either `phi_sigma` of infinite order modulo
+     `[[T]]`, which needs a subshift carrying such homeomorphisms, or `sigma`
+     mapping `D` to a Cartan subalgebra not conjugate to `D`.  The second
+     option is tied to the open
+     `subshift-crossed-product-algebraic-cartans-are-conjugate`.
+   - Not done: whether `LC(X) semidirectProduct <T, psi>` is LEF for a
+     commuting `psi` of infinite order modulo `<T>`.  That would kill the
+     first survivor by the same model argument.
