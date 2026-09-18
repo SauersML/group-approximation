@@ -166,3 +166,18 @@ fixed finitely presented torsion-free group `U`.
     Cohn inner rank over the coproduct does not supply
     (`fsp-q-hf-reduces-to-hyperbolic-kernel-pairs`). Higman's group is perfect,
     so this applies only to its locally indicable subgroups.
+  - **q:HF, hyperbolic kernels via vertex-injective maps (w6-059).** Let `𝓗`
+    be the hereditarily Hughes-free-embeddable groups. A graph of groups lies
+    in `𝓗` exactly when it maps to an `𝓗` group injectively on vertex groups.
+    The kernel of such a map is free, and Hughes' extension lemma builds
+    `D_{k*G}`. FSP Lemma 7.6 then identifies `D_{k*G}` with the coproduct field.
+    This settles q:HF and the subgroup-field compatibility for every pair,
+    hyperbolic kernels included, in every characteristic. It applies to free
+    products, folds and retract trees
+    (`vertex-injective-quotients-give-hughes-free-division-rings`).
+    - **Baumslag–Gersten.** `BG` is non-residually-finite, one-relator and of
+      primitivity rank 2. It lies in `𝓗`, so its Lewin–Lewin ring is
+      Hughes-free in characteristic `p`. This is a first instance of FSP's open
+      case (`baumslag-gersten-group-is-hughes-free-embeddable`).
+    - **What stays open.** Magnus HNN extensions whose shift is not induced by
+      a retraction.

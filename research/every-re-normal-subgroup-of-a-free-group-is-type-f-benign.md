@@ -22,6 +22,11 @@ items 1 and 3).
   `G` is a section `D/(D ∩ Σ)` of a type `F` group, with `Σ` of type `F`.
 - It is equivalent to: every such `G` has a type `F` Mikhailova triple
   `(H, S, phi)` with `WP(G) = phi^{-1}(S)`.
+- It is equivalent to: the torsion-free, finitely generated, recursively
+  presented double `F(B) *_{N_U} F(B)` embeds in a group of type `F`
+  (`type-f-benignness-is-embedding-of-the-double`). Its `F_m` version is
+  implied by `E_m`, the universal form of Zaremsky 1.1. Conversely, a
+  counterexample to its `F_{n+1}` version answers Zaremsky 1.1 negatively.
 
 **Why it matters for Zaremsky 1.1.** It implies that every such `WP(G)` reduces
 to the word problem of a type `F` group by the inverse-respecting

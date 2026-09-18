@@ -112,3 +112,23 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
       This would force depth `N`.
     - Window extraction. Show that a general deep approximant has window boxes,
       starting from the drop sets of the single-node bound.
+- **N sibling nodes add up to depth N, while N <= j (w6-113, 2026-09-18).**
+  - *Result.* `toms-sibling-cube-swap-drops-add-to-depth-n`. Take a box of windows over
+    `N` nodes, with a common bundle `G` and the `2N` transported lines on the facets, and
+    rank at most `rank G + N`. The target then drops to `rank G` at an interior point,
+    provided the dimensions admit distinct exponents `m_k <= j_(nu(k))`. For Toms's twists
+    and equal `j` this means `N <= j`.
+  - *Invariant.* `ch_(m_1)(W) y_1^(m_2) ... y_(N-1)^(m_N)` in the top column of the
+    Mayer–Vietoris spectral sequence of the width-`N` band. Over the cross-polytope its
+    chamber sum is `prod (alpha^(m_k) - beta^(m_k))` times the alternant `det[u_nu^(m_k)]`.
+    For `N = 3` it is non-zero once `j >= 3`. Odd exponents settle `alpha = -beta` when
+    `j_(i) >= 2i - 1`.
+  - *Limit.* Every top-column class vanishes on the box once `N > j`. At the bottom level
+    there are `K/2` siblings, all with `j_n = 2 d_n^2`. So this invariant forces depth at
+    most `2 d_n^2` from them, not `K/2`.
+  - *Next.* Two routes remain for the firewall's `K/2`.
+    - Use nodes of several levels, since `j` quadruples per level, and check how a
+      higher-level window drop is weighted in the trace count.
+    - For `N > j`, look for an invariant outside the top column, or build a staggered
+      filling. For `(N, j) = (2, 1)` every obstruction is torsion.
+    - Window extraction is still open.

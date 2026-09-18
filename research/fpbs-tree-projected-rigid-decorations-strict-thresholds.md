@@ -111,6 +111,39 @@ established claims:
 
   `m = 3..14` needs exact pattern counts in place of the uniform bound, together with
   vertical moves in both orientations.
+* **Bidirectional vertical runs and rigid collision counts (2026-09-18).**
+  `fpbs-tree-projected-bidirectional-slot-second-moment` lets each slot start with a
+  vertical run of `-1`, `0` or `+1` steps. Up- and down-moving trails then share
+  vertical edges. Two further refinements are used:
+  * the nonzero-offset capacity subtracts an exact `h' = 0` count, valid for all
+    decorations;
+  * for rigid decorations, a determined variable `y = a x + gamma` with a single free
+    `x` confines `x` to at most `m - 1` values, so its inequality tree gains
+    `m -> m-1`.
+
+  Exact Collatz–Wielandt certificates give:
+  * `v = 2`, all heights: `m = 13, 14`;
+  * `v = 2`, rigid decorations: `m = 12`.
+
+  So `v = 2` with uniform multiplicity is closed for every decoration at `m >= 13`, and
+  for every rigid decoration at `m >= 12`. Bidirectional runs also repair the
+  first-moment obstruction above: `3W(p*) = 1.063` at `m = 3`.
+  **Where it stops:**
+  * Heights-uniformly, `rho(p*) = 1.0025` at `m = 11` (with `K = 2` and runs `-2..2`),
+    and every variant tried fails at `m <= 11`. The loss is in the `0 -> 0` entry and
+    in the nonzero capacity of the generic class (`0.3545` uniform against `0.3333`
+    exact).
+  * The ensemble itself is not the obstruction at `m = 6..11`: exact per-decoration
+    transfers on a rigid near-AP family pass at `p*` from `m = 6` (float).
+  * For `S_rig` the ensemble is dead. With one excursion per slot, the exact pair
+    transfer has `rho(p*) = 1.0143` (runs `{-1,0,1}`), and it is still `1.0083` with
+    runs `-3..3` (float). So no second moment over these trails reaches `S_rig`.
+
+  Next steps:
+  * `m = 6..11`: couple the collision gains in the generic row pointwise in `h` to the
+    `h' = 0` mass, or replace the uniform count by exact per-height-pattern counts
+    (finitely many patterns of `D - D` coincidences for each `m`).
+  * `m <= 5` and `S_rig`: two or more excursions per slot together with exact counts.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts

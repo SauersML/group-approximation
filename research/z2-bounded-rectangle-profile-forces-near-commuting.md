@@ -69,3 +69,26 @@ non-permutation unitary construction.
   - **General unitaries.** Beyond permutations there is no singular set. The profile controls
     `rank([b^s,c^t] - I)` only, which gives interlacing and not atoms: the same barrier as the rung's
     D2 attempt. The permutation case is the first step to settle.
+- **GL2(Z) change of generators plus band surgery (2026-09-18, w7-124, transplanter). Settles the abelian
+  class; the non-abelian thin case is open.**
+  - **Proved** (`torus-abelian-covers-rectangle-profile-near-commute`). Take any regular abelian cover
+    of a square-tiled torus, with any number of squares. Rectangle profile `K` gives distance
+    `exp(O(K log K))`. For dipole covers (for example the slit origami) the bound is `3072 K^4`.
+  - **How the diagonal gap closes.**
+    - Rewrite the pair in the basis `(v, u)`, where `v` is the primitive shortest lattice direction:
+      `B = b^(v1) c^(v2)` and `C = b^(u1) c^(u2)`.
+    - The short diagonal becomes the generator `B`. Cut and reglue `C` along the rows of `B`
+      (the band surgery).
+    - Back-substitute `b'' = B^(u2) C''^(-v2)` and `c'' = B^(-u1) C''^(v1)`. The cost is
+      `6 |A| n lambda_1^4`, where the charge count `|A| n <= 4K` comes from Stokes.
+    - When `lambda_1` is large, hierarchical clustering of the charges shows that the profile forbids
+      non-neutral clusters.
+  - **Computation.**
+    - Exhaustive for Z/2 dipole covers with `N <= 40` (exact profile).
+    - For `N <= 22`, the explicit commuting pairs are within `2.5 K` in every case.
+    - General loops beat rectangles by at most `1.25x`.
+    - Result: no counterexample. In range, the distance is linear.
+  - **Where it stops.** General origamis are covers with non-abelian fibre. In the thin case, the row
+    monodromies of `B^k` at the two ends of a band are conjugate rather than equal. Regluing needs a
+    conjugating fibre bijection, whose rank cost is not yet bounded by `K`. Bounding that cost is
+    the next step.

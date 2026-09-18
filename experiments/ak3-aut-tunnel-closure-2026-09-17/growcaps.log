@@ -1,0 +1,18 @@
+== grow 2 20 AK(3) from scratch
+RANK 2 CAP 20 base 0 seeds 1 (already known 0) new after seeding 1
+EXHAUSTED new states 6955 processed 6955 tunnels 11082356 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 6955 undecided 0
+exit 0 time 33s
+== grow 2 21 AK(3) from scratch
+RANK 2 CAP 21 base 0 seeds 1 (already known 0) new after seeding 1
+processed 20000 new states, total new 21363
+EXHAUSTED new states 23515 processed 23515 tunnels 41226133 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 23515 undecided 0
+exit 0 time 132s
+== grow 2 22 AK(3) from scratch
+RANK 2 CAP 22 base 0 seeds 1 (already known 0) new after seeding 1
+processed 20000 new states, total new 27223
+processed 40000 new states, total new 40485
+EXHAUSTED new states 41531 processed 41531 tunnels 75833783 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 41531 undecided 0
+exit 0 time 300s

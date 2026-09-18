@@ -114,3 +114,22 @@ the Kaplansky zero-divisor conjecture."
      still settle `{1,a,b,ab}` completely, but none is known.
    - Next: decide whether a finite saturated set exists, by a van Kampen
      argument at the top pair of a maximal `a`-run.
+8. **Witness support settled; short-span two-layer elements (proposed established; `rips-segev-short-syllable-two-layer-elements-are-regular`).**
+   - If `alpha (u(x) + w(x) y) = 0` with `u, w` independent of span `d`, then
+     every point of `supp(alpha u) ∪ supp(alpha w)` has a `y^{±1}`-neighbour
+     and an `x^n`-neighbour with `1 <= |n| <= d`.  An isolated point would
+     make `u` and `w` proportional.
+   - Alternating the two steps closes a relation `prod x^{n_k} y^{±1} = 1`.
+     Small cancellation forbids `prod a^{n_k} b^{e_k} = 1` with every
+     `|n_k|` below the least gap `m_Gamma` between distinguished positions of
+     a line (`m_Gamma >= 10` for Steenbock's graphs).
+   - So for `m_Gamma >= 2` every nonzero element supported on `{1,a,b,ab}` is a
+     non-zero-divisor in `k[K]` and `k[G(Gamma)]`, and so is all of
+     `k[<b>] + a k[<b>]`.  Also `u(a) + w(a) b` is regular when the reduced span
+     is `< m_Gamma`, including the balanced box of attempt 6.  This bypasses
+     the saturated-set question of attempt 7 without deciding it.
+   - For Steenbock's graphs `K` has no nontrivial left-orderable quotient.
+     The two positive relations of opposite sign kill every sign choice.
+   - Next: a three-layer neighbour lemma for `u + w b + z b^2`.  Lemma 5 of
+     the route already allows arbitrary `b`-exponents.  Two-layer elements
+     with span `>= m_Gamma` and balanced offsets also remain.
