@@ -93,3 +93,18 @@ finite set.
     (where `F` acts non-linearly), or transport by something finer than letter-counting path comparison. By the
     Chabauty remark there, the endpoint zones are the only recurrent localizations, so no recurrence input is left
     for this step.
+- **Group-ring transplant to the lamplighter decouples (2026-09-18, swarm-0917-w6-w6-f-pull; dead end, no
+  file).** Let `L = Z^{(D)} ⋊ F` and `K[L] = K[t_x^{±1} : x ∈ D] * F`. `L` is locally indicable, so by the
+  Kielak/Tamari criterion `K[L]` is Ore iff `L` is amenable. With `thompson-f-amenable-iff-dyadic-action-extensively-amenable`,
+  that is iff `F` is amenable. The hope was that Ore pairs in `K[L]` are easier to settle than pairs in `K[F]`. They are not.
+  - *Lamp-free pairs are the root problem.* `K[L] = ⊕_c K[F] t^c` is a free left `K[F]`-module, and
+    `a(Σ_c u_c t^c) = Σ_c (a u_c) t^c`. So for `a, b ∈ K[F]`, `aK[L] ∩ bK[L] ≠ 0` iff `aK[F] ∩ bK[F] ≠ 0`,
+    coordinate by coordinate, and Guba's `P_(d,m)` reappear unchanged.
+  - *Lamp binomials are trivially Ore.* For `b = Σ_g β_g g` (coefficients may contain lamps), put
+    `Y = {g⁻¹x : g ∈ supp b}` and `v = ∏_{y∈Y}(1−t_y)`. Then `b v = Σ_g β_g ∏_y(1−t_{gy}) g` has the left factor
+    `1−t_x` in every term. These pairs therefore carry no information about `F`.
+  - *Product witnesses.* Product-measure EA witnesses on `(Z/2)^{(D)}` have energy at least the capacity of
+    their support, so they die by transience (`f-dyadic-action-is-not-recurrent`).
+  - *Where it dies.* Every pair that is not trivially Ore reduces to a `K[F]` pair. The transplant adds no
+    leverage beyond the root Ore route (`thompson-f-amenable-iff-group-ring-is-ore`) or its obstructions
+    (`thompson-f-ore-obstructions-must-see-finite-support`).

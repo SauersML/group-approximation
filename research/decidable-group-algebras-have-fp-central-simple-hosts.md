@@ -56,3 +56,18 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
    *Not a refutation*: the statement asks only for vanishing `K_1` and `K_2` of
    `B ⊗ L`, and allows non-coherent or non-flat hosts. A proof must obtain the
    `K`-theory without regular coherence, or embed `F_2[G]` non-flatly.
+6. **Nilpotent trace screen (swarm-0917, `leavitt-tensor-k1-sees-traces-of-nilpotent-matrices`).**
+   *Necessary condition proved; the hole stays OPEN.*
+   - *Detector.* A tail-orbit trace on `L` and the logarithmic derivative of the
+     grading give homomorphisms `χ_(φ,m) : K_1(B ⊗ L) -> F_2`. They send
+     `1 + x ⊗ e_1` to `φ(tr x^m)`, for nilpotent `x` over `B` and traces `φ` of `B`.
+   - *Screen on `B`.* `K_1(B ⊗ L) = 0` forces `tr(x^m) ∈ [B,B]` for every
+     nilpotent matrix `x` over `B`.
+   - *Screen on the embedding.* For every `g ∈ G` of `2`-power order,
+     `(g - 1)^m ∈ [B,B]` for all `m >= 1`. So `F_2[G] -> B` must send `g` to
+     `1` in `HH_0(B)`, although `[g] != [1]` in `HH_0(F_2[G])`.
+   - *Class killed.* `K_1(F_2[G] ⊗ L) != 0` whenever `G` has 2-torsion. Every
+     vanishing argument valid for a class containing `F_2[ε]` dies at `1 + ε ⊗ e_1`.
+     That includes coefficient-free swindles and arguments natural in `B`.
+   - *Open.* Whether some simple, or central simple, `F_2`-algebra fails the
+     screen. Semisimple Artinian algebras pass it.

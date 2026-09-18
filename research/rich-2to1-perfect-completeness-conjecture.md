@@ -101,3 +101,26 @@ completeness. The survivors are listed in that node.
     orthogonal maps, which is the heuristic reason for richness, and the frames
     themselves are a perfect SDP solution. A finite rich discretisation and its
     integral value are **open**, and nothing here is established.
+* **Rotated-frame universe: soundness reduced to one stability bound
+  (2026-09-17).**
+  - By `rotated-frame-value-reduces-to-partition-stability`
+    (ESTABLISHED), the continuum game `U_(n,d)` is rich. Its frames are a perfect
+    basic-SDP solution. Every strategy satisfies
+    `val^4 <= 4 Stab_T(rho_A)`, where `rho_A` is the `S_2n`-average of the left
+    strategy and `T` resamples pair differences for a uniform pairing.
+  - The proof squares the right-vertex plurality and realises the second
+    neighbour as a relabelled resampling of the first. `T` has a huge invariant
+    algebra (functions of the frame sum `s`), but balance makes it contribute
+    exactly `1/(2n)`.
+  - Remaining premise, OPEN:
+    `pair-resampling-walk-balanced-partitions-are-unstable`.
+  - Obstruction recorded there: no uniform Ornstein--Uhlenbeck domination, since
+    degree-`k` eigenvalues have a floor `1/((2n-1)(2n-3))`.
+  - Conditional result (Gaussian model): `lambda_k <= 2^(-k/2) + O(n^(-2))`
+    implies stability `<= (2n)^(-0.1716) + O(n^(-2))`.
+  - Numerics: `lambda_k ~ 2^(-ceil(k/2))` for `k <= 4`, `n <= 6`. The linear
+    strategy's stability decays about like `n^(-0.38)` over `n <= 1024`.
+  - Survivors:
+    - prove (H1)/(H2) by transplanting global hypercontractivity from the
+      multi-slice or `S_n`;
+    - then discretise to a finite rich instance.

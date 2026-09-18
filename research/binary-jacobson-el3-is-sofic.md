@@ -89,3 +89,12 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
      LEF nor LEA.
   2. Decide whether `ker q` is the normal closure in `U` of the Toeplitz commutators.
   3. Look for an obstruction in the map `ℓ : K_Λ -> L`, not in the kernel as a group.
+* **Compression-criterion route to "not sofic" (swarm-0917-w6-w6-ptl-pull, 2026-09-18). Dead as a class.**
+  - `compression-criterion-inert-on-modular-linear-extensions`: in every subgroup of `GL_n(J_F)`, the commuting factor
+    of a compression triple over a group with torsion abelianization is finite. So the expander-matching criterion
+    (both versions, and the kernel-checked `CompressionSetup` form) cannot certify any nonsofic subgroup of `E`.
+  - Dies where the non-LEF witness is needed. Zariski rigidity makes the factor central in the symbol image. The
+    eigenspace determinant makes it torsion in characteristic 2. The locally finite kernel lifts finiteness.
+  - Survivor: `DD(sofic)` with a defect in `GL_n(J_F, I)` and a Kazhdan compressor hull. The corner compressor
+    `u = [[S,Q],[0,T]]` has a nontrivial defect, but its hull has infinite abelianization (top-block determinant
+    `x^m`). Next: a Fredholm-index homomorphism on compressor hulls that is nonzero on strict compressors.
