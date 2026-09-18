@@ -54,8 +54,8 @@ of the graded node.
 - **(d)**
   - `R` is a finitely generated free `A`-module, so restriction of scalars sends finitely generated projective
     `R`-modules to finitely generated projective `A`-modules. `R_A ≅ A^m` gives `[1_R] -> m[1_A]`.
-  - `R ⊗_A P = ⊕_(k < m) x^k A ⊗_A P`. Here `x^k A` is `A` with its left action twisted by `σ^k`, so its class is
-    `σ^k_*[P]`.
+  - `R ⊗_A P = ⊕_(k < m) x^k A ⊗_A P`. With `x a = σ(a) x`, `x^k A` is `A` with its left action twisted by `σ^(-k)`, so its
+    class is `σ^(-k)_*[P]`. The sum over `0 <= k < m` is the same either way, since `σ^m_* = 1` (gq-referee-a, N2).
   - **`Q ⊆ A`.** For an integer `n >= 1`, multiplication by `n` is bijective on `R = ⊕ A x^k`, so it is bijective on
     `A`, and `1 = n c` for some `c in A`.
   - `Q^x -> K_1(R)` factors through `K_1(A)`, which gives the kernel inclusion.
