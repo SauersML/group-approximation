@@ -240,3 +240,21 @@ for Ã₂ lattices or for lattices in 2-dimensional buildings.
   groups, which are covered here.
 
 No priority is claimed. A MathSciNet-level check was not available.
+
+## Pointers (2026-09-18, later)
+
+- **Permutational upgrade.** `a2-lattices-satisfy-permutational-boone-higman` (bh-lattices,
+  b36cd68bd) puts every such lattice in `B_A`. So finite products and finite-index overgroups
+  are covered too. An independent derivation is `a2-lattices-lie-in-permutational-bh-class`.
+- **General form.** `euclidean-building-lattices-lie-in-permutational-bh-class` covers all
+  types and dimensions. It shows that Step 4 (irreducibility and primitivity) and the phase
+  bookkeeping of Step 5.1 are not needed for `B_A`.
+  - Complete reducibility is automatic.
+  - Effectiveness follows from Ciobotaru–Le Bars topological freeness (arXiv:2601.13092).
+
+## Lesson for general BH
+
+The torsion obstacle dissolves once the coding object is allowed to have finite unit groups.
+Li's `thm:deg` accepts them, and the finite-extension lemma (R1) is a general permanence
+property of purely infinite minimal full groups. What remains dynamical is only topological
+freeness of the boundary action.

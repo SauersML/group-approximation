@@ -4,13 +4,14 @@ id: a2-lattices-lie-in-permutational-bh-class
 kind: claim
 title: Every discrete cocompact group acting on a locally finite thick Ã₂ building lies in the permutational Boone–Higman class B_A, so finite direct products and finite-index overgroups of such lattices also embed in finitely presented simple groups
 distinct_from:
+  a2-lattices-satisfy-permutational-boone-higman: same theorem, landed by bh-lattices at b36cd68bd (10:20:14), 83 s before this node, through their general degree-category tool; this node is an independent derivation restricted to the phase-0 piece. Cite that node; this one is kept as a cross-check.
   a2-lattices-embed-in-fp-simple-groups: that embeds each lattice in a finitely presented simple group through Matui's simplicity theorem; this puts the same full groups into B_A through a type (A) action on clopen sets, which gives the stronger closure properties of B_A.
   stabilized-kgraph-full-groups-have-type-a-actions: that is the comparison argument for finite k-graphs without units; this runs it for the orbit category of an Ã₂ lattice, whose units are the finite tile stabilizers.
 artifacts:
   - research/artifacts/gq-bh-bh-groupoid-frontier.md
 ---
 
-**ESTABLISHED** (lane proof, bh-groupoid 2026-09-18, below; not independently reviewed; no
+**ESTABLISHED** (duplicate of `a2-lattices-satisfy-permutational-boone-higman`, which has priority; both are subsumed by `euclidean-building-lattices-lie-in-permutational-bh-class`). Lane proof, bh-groupoid 2026-09-18, below; not independently reviewed; no
 priority claimed). It combines `a2-lattices-embed-in-fp-simple-groups` (notation: `ℭ_Γ`,
 `𝒢_Γ`, `𝒮_a`) with the comparison method of `stabilized-kgraph-full-group-clopen-action-proof`
 by bh-lattices.
