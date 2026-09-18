@@ -23,7 +23,7 @@ The decomposition may have `n = 0` pieces, which happens exactly when `G` is abe
 family of quotients would be indexed.  So the piece `pieceSubgroup ⊤ = G'` is prepended
 (`consTop`): `G ⧸ G'` is abelian, of characteristic `0` in the sense of `IsPureCharacteristic`.
 
-Main declaration: `exists_pureCharacteristic_splitting`.
+Main declaration: `exists_pureCharacteristic_split`.
 -/
 
 namespace GroupApproximation
@@ -65,7 +65,7 @@ theorem isPureCharacteristic_top :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.isPureCharacteristic_top
 
 /-- The piece of a coprimary component has pure characteristic. -/
-theorem exists_isPureCharacteristic_of_coprimary
+theorem exists_pure_of_coprimary
     (T : Submodule (MonoidAlgebra ℤ (Abelianization G)) (DerivedModule G))
     {P : Ideal (MonoidAlgebra ℤ (Abelianization G))} {e : ℕ}
     (hT : Primary.IsCoprimaryWith (MonoidAlgebra ℤ (Abelianization G)) (DerivedModule G ⧸ T) P e) :
@@ -79,10 +79,10 @@ theorem exists_isPureCharacteristic_of_coprimary
   · exact ⟨p, isPureCharacteristic_prime T hp fun y =>
       (Submodule.Quotient.mk_eq_zero T).mp ((map_zsmul T.mkQ _ y).trans (hq _))⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_isPureCharacteristic_of_coprimary
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_pure_of_coprimary
 
 /-- Every piece of `consTop S` has pure characteristic. -/
-theorem exists_isPureCharacteristic_consTop {n : ℕ}
+theorem exists_pure_consTop {n : ℕ}
     (S : Fin n → Submodule (MonoidAlgebra ℤ (Abelianization G)) (DerivedModule G))
     {P : Fin n → Ideal (MonoidAlgebra ℤ (Abelianization G))} {e : Fin n → ℕ}
     (hP : ∀ j, Primary.IsCoprimaryWith (MonoidAlgebra ℤ (Abelianization G))
@@ -94,15 +94,15 @@ theorem exists_isPureCharacteristic_consTop {n : ℕ}
     exact ⟨0, isPureCharacteristic_top⟩
   | succ j =>
     rw [consTop_succ]
-    exact exists_isPureCharacteristic_of_coprimary (S j) (hP j)
+    exact exists_pure_of_coprimary (S j) (hP j)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_isPureCharacteristic_consTop
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_pure_consTop
 
 variable (G) in
 /-- **Coprimary splitting, group-theoretic part.** A finitely generated metabelian group has
 finitely many normal subgroups `N_i ≤ G'`, meeting trivially, with every `G ⧸ N_i` of pure
 characteristic. -/
-theorem exists_pureCharacteristic_splitting [Group.FG G] (hG : IsMetabelianGroup G) :
+theorem exists_pureCharacteristic_split [Group.FG G] (hG : IsMetabelianGroup G) :
     ∃ (n : ℕ) (N : Fin n → Subgroup G) (_ : ∀ i, (N i).Normal),
       (∀ g : G, (∀ i, g ∈ N i) → g = 1) ∧
         ∀ i, N i ≤ commutator G ∧ ∃ c : ℕ, IsPureCharacteristic (G ⧸ N i) c := by
@@ -112,14 +112,14 @@ theorem exists_pureCharacteristic_splitting [Group.FG G] (hG : IsMetabelianGroup
   obtain ⟨n, S, P, e, hS, -, hP⟩ :=
     Primary.exists_coprimary_decomposition (MonoidAlgebra ℤ (Abelianization G)) (DerivedModule G)
   refine ⟨n + 1, fun i => pieceSubgroup (consTop S i), fun i => pieceSubgroup_normal _,
-    fun g hg => ?_, fun i => ⟨pieceSubgroup_le _, exists_isPureCharacteristic_consTop S hP i⟩⟩
+    fun g hg => ?_, fun i => ⟨pieceSubgroup_le _, exists_pure_consTop S hP i⟩⟩
   have hA : g ∈ commutator G := pieceSubgroup_le (consTop S 0) (hg 0)
   refine eq_one_of_forall_mem_piece hG S hS hA fun j => ?_
   have h : g ∈ pieceSubgroup (consTop S j.succ) := hg j.succ
   rw [consTop_succ] at h
   exact h
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_pureCharacteristic_splitting
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_pureCharacteristic_split
 
 end Coprimary
 end Metabelian

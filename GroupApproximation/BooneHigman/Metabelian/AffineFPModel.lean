@@ -109,7 +109,8 @@ theorem closure_single_eq_top :
   have e : ∏ i, Multiplicative.ofAdd (Pi.single i (Multiplicative.toAdd v i) : I → R) = v := by
     rw [← ofAdd_sum, Finset.univ_sum_single, ofAdd_toAdd]
   rw [← e]
-  exact Subgroup.prod_mem _ fun i _ => Subgroup.subset_closure ⟨(i, Multiplicative.toAdd v i), rfl⟩
+  exact Subgroup.prod_mem _ fun i _ =>
+    Subgroup.subset_closure ⟨(i, Multiplicative.toAdd v i), rfl⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.closure_single_eq_top
 
@@ -141,3 +142,44 @@ theorem model_c1 (i j : I) (h : i ≠ j) (ε : R) (k : I) (hk : k ≠ j) :
   exact mul_inv_eq_iff_eq_mul.mp e
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c1
+
+theorem model_c2 (i j : I) (h : i ≠ j) :
+    (SemidirectProduct.inr (elementaryRoot i j h 1) : AffineElementary I R) *
+      SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single j (1 : R) : I → R)) *
+      (SemidirectProduct.inr (elementaryRoot i j h 1))⁻¹ =
+    SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single j (1 : R) : I → R)) *
+      SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i (1 : R) : I → R)) := by
+  rw [model_conj_single, Pi.single_eq_same, mul_one]
+  exact map_mul (SemidirectProduct.inl (φ := affAction I R))
+    (Multiplicative.ofAdd (Pi.single j (1 : R) : I → R))
+    (Multiplicative.ofAdd (Pi.single i (1 : R) : I → R))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c2
+
+theorem model_c3 (k l : I) :
+    Commute
+      (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R)) :
+        AffineElementary I R)
+      (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single l (1 : R) : I → R))) :=
+  (Commute.all _ _).map (SemidirectProduct.inl (φ := affAction I R))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c3
+
+/-- The commutator of a root element with a basis translation is a translation. -/
+theorem model_commutator (i k : I) (h : i ≠ k) (r : R) :
+    ⁅(SemidirectProduct.inr (elementaryRoot i k h r) : AffineElementary I R),
+      SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R))⁆ =
+    SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r : I → R)) := by
+  rw [commutatorElement_def, model_conj_single, Pi.single_eq_same, mul_one]
+  refine mul_inv_eq_iff_eq_mul.mpr ?_
+  exact (congrArg (SemidirectProduct.inl (φ := affAction I R))
+    (mul_comm (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R))
+      (Multiplicative.ofAdd (Pi.single i r : I → R)))).trans
+    (map_mul (SemidirectProduct.inl (φ := affAction I R)) _ _)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_commutator
+
+end AffineFP
+end Metabelian
+end BooneHigman
+end GroupApproximation
