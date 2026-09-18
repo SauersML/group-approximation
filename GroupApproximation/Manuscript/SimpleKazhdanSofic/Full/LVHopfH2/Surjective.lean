@@ -100,8 +100,8 @@ theorem hopfPushDiv_add_rc (hf : Function.Surjective f) {z : HopfExt f}
   apply Subtype.ext
   show z * (hopfExtSec hf (hopfExtProj f z))⁻¹ *
     (hopfExtSec hf 1 * hopfExtSec hf 1 * (hopfExtSec hf (1 * 1))⁻¹) = z
-  rw [MonoidHom.mem_ker.mp hz, mul_one (1 : G)]
-  simp only [mul_assoc, inv_mul_cancel_left, mul_inv_cancel, mul_one]
+  rw [MonoidHom.mem_ker.mp hz, mul_one (1 : G), mul_inv_cancel_right (hopfExtSec hf 1)
+    (hopfExtSec hf 1), inv_mul_cancel_right z (hopfExtSec hf 1)]
 
 /-- The additive form `x ↦ tK (div x) + tC [p x]` of the homomorphism `E → T`. -/
 noncomputable def hopfPushA (hf : Function.Surjective f) (x : HopfExt f) : HopfPush hf :=
@@ -125,7 +125,8 @@ noncomputable def hopfPushTheta (hf : Function.Surjective f) :
 /-- `θ` kills `[E,E]`, the target being abelian. -/
 theorem hopfPushA_of_mem_commutator (hf : Function.Surjective f) {z : HopfExt f}
     (hz : z ∈ commutator (HopfExt f)) : hopfPushA hf z = 0 := by
-  have h : hopfPushTheta hf z = 1 := Abelianization.commutator_subset_ker (hopfPushTheta hf) hz
+  have h : hopfPushTheta hf z = 1 :=
+    MonoidHom.mem_ker.mp (Abelianization.commutator_subset_ker (hopfPushTheta hf) hz)
   exact congrArg Multiplicative.toAdd h
 
 /-- On `K`, `θ` is `tK`. -/

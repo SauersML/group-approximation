@@ -42,13 +42,14 @@ open Classical in
 def potCount (w : Y) : ℝ :=
   ∑ k ∈ Finset.range L, if w ∈ A k then (1 : ℝ) else 0
 
+open Classical in
 theorem potCount_zero (w : Y) : potCount A 0 w = 0 :=
-  Finset.sum_range_zero _
+  Finset.sum_range_zero fun k => if w ∈ A k then (1 : ℝ) else 0
 
 open Classical in
 theorem potCount_succ (w : Y) :
     potCount A (L + 1) w = potCount A L w + if w ∈ A L then (1 : ℝ) else 0 :=
-  Finset.sum_range_succ _ L
+  Finset.sum_range_succ (fun k => if w ∈ A k then (1 : ℝ) else 0) L
 
 open Classical in
 /-- Moving every layer into the next one loses at most one layer. -/
@@ -79,7 +80,7 @@ theorem potCount_eq_of_forall (w : Y) (h : ∀ k, k < L → w ∈ A k) : potCoun
   | zero => exact (potCount_zero A w).trans Nat.cast_zero.symm
   | succ L ih =>
     rw [potCount_succ, ih (fun k hk => h k (Nat.lt_trans hk (Nat.lt_add_one L))),
-      if_pos (h L (Nat.lt_add_one L)), Nat.cast_succ]
+      if_pos (h L (Nat.lt_add_one L)), Nat.cast_add_one]
 
 theorem exists_mem_of_potCount_ne_zero (w : Y) (h : potCount A L w ≠ 0) :
     ∃ k, k < L ∧ w ∈ A k := by
@@ -191,7 +192,7 @@ theorem wordEval_mem_dblBall {S : Finset G} (l : List (Bool × G)) (hl : ∀ p, 
     wordEval G (fun b g => inDouble G Γ b g) l ∈ dblBall G Γ S l.length := by
   induction l with
   | nil =>
-    rw [wordEval_nil, dblBall_zero]
+    rw [wordEval_nil, List.length_nil, dblBall_zero]
     exact Finset.mem_singleton_self 1
   | cons p l ih =>
     rw [wordEval_cons, List.length_cons]

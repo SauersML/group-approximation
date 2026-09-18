@@ -61,8 +61,10 @@ def ix (k : ℕ) : Fin (mm.size ^ 2 + 1) :=
 
 /-- The value of an index in range (input for `thm:fixed-radical-membership`,
 `non_mf_group_notes.tex`). -/
-theorem val_ix {k : ℕ} (h : k ≤ mm.size ^ 2) : (ix mm k).val = k :=
-  Nat.mod_eq_of_lt (by omega)
+theorem val_ix {k : ℕ} (h : k ≤ mm.size ^ 2) : (ix mm k).val = k := by
+  have hk : k < mm.size ^ 2 + 1 := by omega
+  show k % (mm.size ^ 2 + 1) = k
+  exact Nat.mod_eq_of_lt hk
 
 /-- The modulus is at most its square (input for
 `thm:fixed-radical-membership`, `non_mf_group_notes.tex`). -/

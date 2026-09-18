@@ -148,6 +148,7 @@ open Classical in
 def sqBlock {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ) : Matrix (Fin d) (Fin d) ℂ :=
   if h : ∃ B : Matrix (Fin d) (Fin d) ℂ, 1 = Mᴴ * M + Bᴴ * B then h.choose else 0
 
+open Classical in
 theorem sqBlock_spec {d : ℕ} (M : Matrix (Fin d) (Fin d) ℂ)
     (h : ∃ B : Matrix (Fin d) (Fin d) ℂ, 1 = Mᴴ * M + Bᴴ * B) :
     1 = Mᴴ * M + (sqBlock M)ᴴ * sqBlock M := by
@@ -245,8 +246,8 @@ theorem solution_of_literalD (z : ((ℕ × List (List (ℕ × Bool))) × List (�
   · refine ⟨wordCond_sol z.1.1 z.2.1 U x _ z.1.2, ?_, ?_⟩
     · rw [colVec_sol4 z.1.1 z.2.1 U x _]
       exact hx
-    · rw [colVec_sol4 z.1.1 z.2.1 U x _, colVec_sol5 z.1.1 z.2.1 U x _, blk_blockAssign]
-      exact congrArg (fun W => (W - 1) *ᵥ x) (sol1 z.1.1 z.2.1 U x _ z.1.2).symm
+    · rw [colVec_sol4 z.1.1 z.2.1 U x _, colVec_sol5 z.1.1 z.2.1 U x _, blk_blockAssign,
+        sol1 z.1.1 z.2.1 U x _ z.1.2]
   · rw [colVec_sol5 z.1.1 z.2.1 U x _]
     exact hnn
 

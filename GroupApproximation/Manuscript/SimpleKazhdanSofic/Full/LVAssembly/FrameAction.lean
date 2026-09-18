@@ -121,7 +121,8 @@ of `M`. -/
 theorem smul_single_eq {g M : GLFour}
     (hg : ∀ r j, (g : Matrix (Fin 4) (Fin 4) BinL) r j =
       (M : Matrix (Fin 4) (Fin 4) BinL) r (Fin.revPerm j))
-    {c : Fin 4} {u : Fin 4 → BinL} (hu : ∀ r, (M : Matrix (Fin 4) (Fin 4) BinL) r (Fin.revPerm c) = u r) :
+    {c : Fin 4} {u : Fin 4 → BinL}
+    (hu : ∀ r, (M : Matrix (Fin 4) (Fin 4) BinL) r (Fin.revPerm c) = u r) :
     (g : Matrix (Fin 4) (Fin 4) BinL) *ᵥ Pi.single c 1 = u :=
   funext fun r => by
     rw [mulVec_single_apply, hg r c]
@@ -146,8 +147,8 @@ theorem frame_edge_transitive : ∀ a b : FrameVertex BinL, (frameComplexFour Bi
 /-- `1 + E_{ij}(a)` applied to a vector. -/
 theorem elementaryUnit_mulVec (i j : Fin 4) (hij : i ≠ j) (a : BinL) (v : Fin 4 → BinL) :
     (GroupApproximation.elementaryUnit i j hij a : Matrix (Fin 4) (Fin 4) BinL) *ᵥ v =
-      v + (a * v j) • Pi.single i 1 := by
-  show (1 + Matrix.single i j a) *ᵥ v = v + (a * v j) • Pi.single i 1
+      v + (a * v j) • (Pi.single i 1 : Fin 4 → BinL) := by
+  show (1 + Matrix.single i j a) *ᵥ v = v + (a * v j) • (Pi.single i 1 : Fin 4 → BinL)
   rw [Matrix.add_mulVec, Matrix.one_mulVec, Matrix.single_mulVec_eq]
 
 /-- `1 + E_{ij}` fixes `e_c` for `j ≠ c`. -/
