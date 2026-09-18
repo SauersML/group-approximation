@@ -133,4 +133,44 @@ theorem eHighMixed_permRep_injective (K : Type*) [Field K] (M : Type*) [Finite M
 
 end Matrices
 
+section Finite
+
+/-- **Finite modules, over any field.**  A finite abelian group `M` with a `Q`-action through
+`f : Q →* R` embeds into `GL_{|M|}(K)` by a faithful `κ`, and the action is conjugation by `ρ`. -/
+theorem eHighMixed_exists_gl_of_finite (K : Type*) [Field K] {Q R : Type*} [Group Q] [Monoid R]
+    (f : Q →* R) (M : Type*) [AddCommGroup M] [DistribMulAction R M] [Finite M] :
+    ∃ (d : ℕ) (κ : Multiplicative M →* Matrix.GeneralLinearGroup (Fin d) K)
+      (ρ : Q →* Matrix.GeneralLinearGroup (Fin d) K), Function.Injective κ ∧
+        ∀ (q : Q) (m : M), κ (Multiplicative.ofAdd (f q • m)) =
+          ρ q * κ (Multiplicative.ofAdd m) * (ρ q)⁻¹ := by
+  refine ⟨Nat.card M, (eHighMixed_permRep K M).comp (eHighMixed_transPerm M),
+    (eHighMixed_permRep K M).comp (eHighMixed_actPerm M f), fun a b hab => ?_, fun q m => ?_⟩
+  · have h' : eHighMixed_permRep K M (eHighMixed_transPerm M a) =
+        eHighMixed_permRep K M (eHighMixed_transPerm M b) := hab
+    exact eHighMixed_transPerm_injective M (eHighMixed_permRep_injective K M h')
+  · have h := congrArg (eHighMixed_permRep K M) (eHighMixed_transPerm_conj M f q m)
+    rw [map_mul, map_mul, map_inv] at h
+    exact h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighMixed_exists_gl_of_finite
+
+/-- **Finite modules, in characteristic `p`.**  The same with `K = ZMod p`, so `ringChar K = p`.
+This is the form of the conclusion of `EHighCoprimaryMixedStatement`. -/
+theorem eHighMixed_exists_gl_of_finite_charP {p : ℕ} (hp : p.Prime) {Q R : Type*} [Group Q]
+    [Monoid R] (f : Q →* R) (M : Type) [AddCommGroup M] [DistribMulAction R M] [Finite M] :
+    ∃ (K : Type) (_ : Field K) (d : ℕ)
+      (κ : Multiplicative M →* Matrix.GeneralLinearGroup (Fin d) K)
+      (ρ : Q →* Matrix.GeneralLinearGroup (Fin d) K),
+      ringChar K = p ∧ Function.Injective κ ∧
+        ∀ (q : Q) (m : M), κ (Multiplicative.ofAdd (f q • m)) =
+          ρ q * κ (Multiplicative.ofAdd m) * (ρ q)⁻¹ := by
+  haveI : Fact p.Prime := ⟨hp⟩
+  obtain ⟨d, κ, ρ, hκ, hrel⟩ := eHighMixed_exists_gl_of_finite (ZMod p) f M
+  exact ⟨ZMod p, inferInstance, d, κ, ρ, ZMod.ringChar_zmod_n p, hκ, hrel⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighMixed_exists_gl_of_finite_charP
+
+end Finite
+
 end GroupApproximation.BooneHigman.Metabelian.Coprimary

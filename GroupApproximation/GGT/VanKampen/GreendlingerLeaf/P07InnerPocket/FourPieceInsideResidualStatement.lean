@@ -43,7 +43,8 @@ are S1a, S1b of lane 26.
 * The same two clauses for `G₂/j`.
 
 Endpoints (`FourPieceInsideResidualProof.lean`):
-* `fourPieceInsideResidual_of_step`: the new statement gives `FourPieceInsideCloseResidualStatement`;
+* `fourPieceInsideResidual_of_step`: the new statement gives
+  `FourPieceInsideCloseResidualStatement`;
 * `fourPieceInsideResidual_inside_of_step`: it gives `PocketFourPieceInsideStatement`;
 * `fourPieceInsideResidual_step_of_arcCloseStep`: lane 26's gap gives the new statement.
 

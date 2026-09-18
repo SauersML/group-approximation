@@ -21,8 +21,9 @@ conjecture*, arXiv:2306.16356v3.
   GL_n(Q)."
 - p. 7, after Corollary 3.5: "it remains an open question whether GL_n(Q)
   embeds into a finitely presented simple group."
-- Problem 2.7, the related question of Bridson and de la Harpe (Kourovka
-  notebook, Problem 14.10): "For n >= 2, find an explicit and natural example
+- Problem 2.7, the related question that the survey attributes to Bridson and
+  de la Harpe; it is Kourovka notebook Problem 14.10(c), credited there to
+  P. de la Harpe alone and still open in the 21st issue (arXiv:1401.0300v46): "For n >= 2, find an explicit and natural example
   of a finitely presented group that contains GL_n(Q)." The survey says this
   part of their question "remains open".
 
