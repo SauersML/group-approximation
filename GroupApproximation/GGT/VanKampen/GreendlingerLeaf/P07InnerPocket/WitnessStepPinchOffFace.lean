@@ -113,3 +113,87 @@ theorem witnessStepPinchOff_touch {g y : X.toCombMap.Dart}
   rw [X.toCombMap.vertexOf_sigma, hv]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchOff_touch
+
+/-- **The lobe face of a pinch is not open.**  It touches the witness face `faceOf y` at the
+vertex of `y`, so if it were open, one more step would put it in `F`. -/
+theorem witnessStepPinchOff_not_open {a b : RegionCandidate D eps X}
+    {K : CellPocketWalk D eps X i j} {c : X.toCombMap.Face} {ow : List X.toCombMap.Dart}
+    (E : EnclosedFaceSetSucc X (witnessFaces a b K c) ow)
+    (hnb : ∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K c)
+    {n : ℕ} {s t : List X.toCombMap.Dart} {x y g : X.toCombMap.Dart}
+    (hr : (invDarts X ow).rotate n = s ++ x :: y :: t)
+    (hv : X.toCombMap.vertexOf g = X.toCombMap.vertexOf (X.toCombMap.alpha x))
+    (hαF : X.toCombMap.faceOf (X.toCombMap.alpha g) ∉ witnessFaces a b K c) :
+    ¬ IsOpenFace a b K c (X.toCombMap.faceOf (X.toCombMap.alpha g)) := by
+  intro hopen
+  have hy' : y ∈ (invDarts X ow).rotate n := by
+    rw [hr]
+    simp
+  have hyF : X.toCombMap.faceOf y ∈ witnessFaces a b K c := by
+    have h := hnb _ (witnessStepCorner_alpha_mem_of_mem_invDarts (List.mem_rotate.mp hy'))
+    rwa [X.toCombMap.alpha_involutive y] at h
+  obtain ⟨hyo, hyr⟩ := mem_witnessFaces_iff.mp hyF
+  have hvy : X.toCombMap.vertexOf g = X.toCombMap.vertexOf y :=
+    hv.trans (witnessStepSkip_vertexOf_of_rotate E hr)
+  have hstep : Step a b K c (X.toCombMap.faceOf y) (X.toCombMap.faceOf (X.toCombMap.alpha g)) :=
+    ⟨hyo, hopen, witnessStepPinchOff_touch hvy⟩
+  exact hαF (mem_witnessFaces_iff.mpr ⟨hopen, Relation.ReflTransGen.tail hyr hstep⟩)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchOff_not_open
+
+/-- **On a cell arc, the lobe face of a pinch is in the cut.**  `α g` is a dart of `K.walk`, so
+the lobe face is a side face of `K.walk`, and it is not open. -/
+theorem witnessStepPinchOff_mem_cut {a b : RegionCandidate D eps X}
+    {K : CellPocketWalk D eps X i j} {c : X.toCombMap.Face}
+    {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cellDarts X j)}
+    (hG₁ : K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (hG₂ : K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {g : X.toCombMap.Dart} (hcell : g ∈ G₁.darts ∨ g ∈ G₂.darts)
+    (hopen : ¬ IsOpenFace a b K c (X.toCombMap.faceOf (X.toCombMap.alpha g))) :
+    X.toCombMap.faceOf (X.toCombMap.alpha g) ∈ cut a b K c := by
+  have hwalk : X.toCombMap.alpha g ∈ K.walk := by
+    rcases hcell with hg | hg
+    · apply PocketClass.mem_walk_of_mem_invDarts_firstArc K
+      apply witnessStepCorner_mem_invDarts_of_alpha_mem
+      rw [X.toCombMap.alpha_involutive g, hG₁]
+      exact List.mem_append_left _ (List.mem_append_right _ hg)
+    · apply PocketClass.mem_walk_of_mem_invDarts_secondArc K
+      apply witnessStepCorner_mem_invDarts_of_alpha_mem
+      rw [X.toCombMap.alpha_involutive g, hG₂]
+      exact List.mem_append_left _ (List.mem_append_right _ hg)
+  have hside : X.toCombMap.faceOf (X.toCombMap.alpha g) ∈ sideFaces X.toCombMap K.walk :=
+    (mem_sideFaces_iff X.toCombMap K.walk (X.toCombMap.alpha g)).mpr
+      ⟨X.toCombMap.alpha g, hwalk, Relation.EqvGen.refl _⟩
+  by_contra hc
+  exact hopen ⟨hside, hc⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchOff_mem_cut
+
+/-- **Every pinch is an off-lobe pinch**, given the face facts of the premises. -/
+theorem witnessStepPinchOff_at_of_pinchAt {a b : RegionCandidate D eps X}
+    {K : CellPocketWalk D eps X i j} {c : X.toCombMap.Face}
+    {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cellDarts X j)}
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X (witnessFaces a b K c) ow)
+    (hnb : ∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K c)
+    (hFa : ∀ f ∈ witnessFaces a b K c, f ∉ a.1) (hFb : ∀ f ∈ witnessFaces a b K c, f ∉ b.1)
+    (hFi : (cell X i).face ∉ witnessFaces a b K c) (hFj : (cell X j).face ∉ witnessFaces a b K c)
+    (hG₁ : K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (hG₂ : K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {n : ℕ} {s t : List X.toCombMap.Dart} {x y : X.toCombMap.Dart}
+    (hr : (invDarts X ow).rotate n = s ++ x :: y :: t)
+    (hp : WitnessStepPinchAt a b G₁ G₂ ow x y) :
+    WitnessStepPinchOffAt a b K c G₁ G₂ ow x y := by
+  obtain ⟨g, hnext, hg, hv⟩ := hp
+  have hgF := witnessStepPinchOff_faceOf_not_mem hFa hFb hFi hFj
+    (witnessStepPinchOff_mem_pieces hnext)
+  have hαF := witnessStepPinchOff_alpha_faceOf_not_mem E hg hgF
+  have hopen := witnessStepPinchOff_not_open E hnb hr hv hαF
+  exact ⟨g, hnext, hg, hv, hopen, fun hcell => witnessStepPinchOff_mem_cut hG₁ hG₂ hcell hopen⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchOff_at_of_pinchAt
+
+end PinchOffFace
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
