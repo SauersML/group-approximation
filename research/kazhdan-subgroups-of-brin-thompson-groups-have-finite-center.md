@@ -42,3 +42,20 @@ not have a fixed point, so the lemma alone doesn't decide the claim. Combining i
 with `kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures` (a
 counterexample `K` has a closed invariant set `Z_K` carrying no `K`-invariant
 measure) is the natural next step.
+
+## Attempts
+
+- 2026-09-18 (lane bh-free-38). **Periodic points of central elements.**
+  `kazhdan-central-elements-of-2v-have-slope-free-periodic-points`
+  (ESTABLISHED, lane proof) settles part of the question. For `z ∈ Z(K)` with `K`
+  Kazhdan or FW:
+  - The slope of `z^m` at its fixed points is `K`-invariant.
+  - The corresponding fixed set is locally a point times a cube, and `K` acts on
+    it through a lower-dimensional Brin–Thompson group.
+  - Farley, plus the germ character, then rule out any nonzero slope.
+  - So in 2V a counterexample to this claim needs an infinite-order central `z`
+    whose periodic points all have slope zero, such as a minimal element like the
+    SMART moving-tape map, or an element with no periodic points.
+  - The drift lemma above then constrains such `z`, but doesn't decide the claim.
+    No literature result on nilpotent or Heisenberg subgroups of nV (n ≥ 2) was
+    found by a bounded arXiv search.
