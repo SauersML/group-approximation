@@ -1,0 +1,245 @@
+{
+ "K": 4,
+ "word_length": 4,
+ "results": [
+  {
+   "status": "contains-F",
+   "orbital": [
+    "0",
+    "1"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "right end only",
+   "stabilizer_words": 160,
+   "a": "0",
+   "b": "0",
+   "orbit": [
+    "0"
+   ]
+  },
+  {
+   "status": "criterion-not-met",
+   "orbitals": [
+    [
+     "1/16",
+     "17/16"
+    ]
+   ],
+   "stabilizer_words": 160,
+   "a": "1/16",
+   "b": "0",
+   "orbit": [
+    "1/16"
+   ]
+  },
+  {
+   "status": "criterion-not-met",
+   "orbitals": [
+    [
+     "7/8",
+     "15/8"
+    ]
+   ],
+   "stabilizer_words": 160,
+   "a": "1/16",
+   "b": "1/16",
+   "orbit": [
+    "7/8"
+   ]
+  },
+  {
+   "status": "criterion-not-met",
+   "orbitals": [
+    [
+     "1/8",
+     "9/8"
+    ]
+   ],
+   "stabilizer_words": 160,
+   "a": "1/8",
+   "b": "0",
+   "orbit": [
+    "1/8"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "3/4",
+    "7/4"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "left end only",
+   "stabilizer_words": 160,
+   "a": "1/8",
+   "b": "1/8",
+   "orbit": [
+    "3/4"
+   ]
+  },
+  {
+   "status": "criterion-not-met",
+   "orbitals": [
+    [
+     "3/16",
+     "19/16"
+    ]
+   ],
+   "stabilizer_words": 160,
+   "a": "3/16",
+   "b": "0",
+   "orbit": [
+    "3/16"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "5/8",
+    "13/8"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "right end only",
+   "stabilizer_words": 160,
+   "a": "3/16",
+   "b": "1/8",
+   "orbit": [
+    "5/8"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "3/16",
+    "5/8"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "right end only",
+   "stabilizer_words": 84,
+   "a": "3/16",
+   "b": "9/16",
+   "orbit": [
+    "3/16",
+    "5/8"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "1/2",
+    "5/4"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "left end only",
+   "stabilizer_words": 160,
+   "a": "1/4",
+   "b": "0",
+   "orbit": [
+    "1/4"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "1/2",
+    "5/4"
+   ],
+   "witness_word": [
+    [
+     1,
+     1
+    ]
+   ],
+   "approaches": "left end only",
+   "stabilizer_words": 160,
+   "a": "1/4",
+   "b": "0",
+   "orbit": [
+    "1/2"
+   ]
+  },
+  {
+   "status": "criterion-not-met",
+   "orbitals": [
+    [
+     "0",
+     "1/4"
+    ],
+    [
+     "1/4",
+     "1/2"
+    ],
+    [
+     "1/2",
+     "1"
+    ]
+   ],
+   "stabilizer_words": 48,
+   "a": "1/2",
+   "b": "0",
+   "orbit": [
+    "0",
+    "1/4",
+    "1/2"
+   ]
+  },
+  {
+   "status": "contains-F",
+   "orbital": [
+    "0",
+    "3/8"
+   ],
+   "witness_word": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     -1
+    ]
+   ],
+   "approaches": "right end only",
+   "stabilizer_words": 84,
+   "a": "5/8",
+   "b": "0",
+   "orbit": [
+    "0",
+    "3/8"
+   ]
+  }
+ ]
+}
