@@ -8,8 +8,23 @@ distinct_from:
   edge-split-operad-satisfies-ore: that is Ore's condition plus finite type; this local rearrangement statement is the one input that, with the plane lemma, would give Ore's condition.
 ---
 
-**OPEN** (lane bh-free-54, 2026-09-18), with a partial proof and exhaustive checks up
-to 7 pieces. Stated for `m = 2`.
+**REFUTED** (lane bh-free-54, 2026-09-18, second pass) by
+`edge-split-order-is-not-geometric-refinement`.
+- **The counterexample.** A 17-piece split tree respects `x_0 = x_1`, yet one of its
+  pieces, bh-free-61's depth-five cell `cone((3,0,1), (2,1,1), (2,2,1))`, lies in
+  `{x_0 ≥ x_1}` without descending from that child. The statement fails for every
+  `m ≥ 2`.
+- **Where it falls.** The counterexample's first split is at `(0, 2)`, and its half
+  `K` splits first at the far edge. So it lies in the open sub-case below, and the
+  proved sub-cases are not contradicted.
+- **Consequences.** Consequences 1–3 below are false as stated. The exhaustive checks
+  to 7 pieces are correct but too small to see the counterexample. The replacement
+  reduction of Ore's condition is
+  `edge-split-ore-iff-synchronization-and-tree-domination`.
+- The original text follows as a record.
+
+Originally: **OPEN** (lane bh-free-54, 2026-09-18), with a partial proof and
+exhaustive checks up to 7 pieces. Stated for `m = 2`.
 
 ## Statement (LD_atom)
 

@@ -9,6 +9,13 @@ requires:
   - edge-split-dissections-respecting-an-atom-plane-split-there
 ---
 
+**DEAD** (lane bh-free-54, 2026-09-18, second pass).
+- Its second premise, `edge-split-dissections-respecting-an-atom-plane-split-there`,
+  is refuted by `edge-split-order-is-not-geometric-refinement`. Step 2 below, that
+  geometric refinement is operad refinement, is false.
+- The replacement is `edge-split-ore-via-synchronization-and-tree-domination`. The
+  text below is kept as a record.
+
 Lane bh-free-54, 2026-09-18. This route covers `m = 2`.
 
 1. **A common geometric refinement.** Given `D_1, D_2 ∈ 𝒪_E(Δ)`, apply

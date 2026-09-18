@@ -72,3 +72,22 @@ back the one-layer moves. Only a new category does, as graph recodings do for SF
 So the design problem for higher-rank BH hosts is a **thin-cycle-free category
 presenting the right groupoid**. That is a concrete, decidable target, and the next thing
 to search for on non-product cube complexes.
+
+## Attempts
+
+1. **(bh-major-cube-b, 09-18) (Pack) depends on the datum `(𝔛, Γ)`, not only on the
+   category.**
+   - **What item 3 covers.** It is stated for the cone datum, where `Γ` consists of the
+     full expansions that (St) forces. It also holds for Li's maximal datum
+     (`lem:maxXG:allCOND`):
+     - there every one-layer move has a hole-free piece, so the cone types form a
+       hitting set;
+     - "split off the loop child", `X(a;∅) → (X(a;{a→a}), X(a;∅))`, is a thin growth
+       cycle.
+   - **Γ(\*) versus Γ.** Li's `ρ'` must be read over `Γ(*)`. Generators whose targets
+       never occur can inflate `ρ'` without changing `E(x)`; see §8 of
+     `cuntz-stabilized-garside-full-groups-f-infinity-proof`.
+   - **The way out.** It is a new category plus a careful datum. In `𝔠 × O_2`, the
+     pure-hole datum has a Cuntz doubling move at every type, so (Pack) holds, while
+     Li's maximal datum on the same category has thin cycles among types with Cuntz holes
+     (`cuntz-stabilized-garside-full-groups-are-f-infinity`).
