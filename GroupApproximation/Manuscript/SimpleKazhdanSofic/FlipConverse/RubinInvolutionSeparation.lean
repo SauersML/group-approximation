@@ -115,3 +115,62 @@ theorem rubinTransport_rigid_le_closure_involutionImageSupport (hT : IsMinimalHo
   rwa [compl_compl] at hc
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinTransport_rigid_le_closure_involutionImageSupport
+omit [CompactSpace Y] [TotallyDisconnectedSpace Y] [PerfectSpace Y] in
+/-- Lower bound from separation: `F_{closure O} ≤ Φ F_V` for closed `V`, provided the images of
+involutions supported in `V` and in `Vᶜ` have disjoint moved sets. -/
+theorem rubinRigid_closure_involutionImageSupport_le_rubinTransport (hT : IsMinimalHomeo T)
+    (Φ : topologicalFullGroup T ≃* topologicalFullGroup S) {V : Set X} (hV : IsClosed V)
+    (hsep : ∀ f k : topologicalFullGroup T, f * f = 1 → k * k = 1 →
+      SupportedIn (f : X ≃ₜ X) V → SupportedIn (k : X ≃ₜ X) Vᶜ →
+        Disjoint (movedSet ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y))
+          (movedSet ((Φ k : topologicalFullGroup S) : Y ≃ₜ Y))) :
+    rubinRigidSubgroup S (closure (rubinInvolutionImageSupport Φ V)) ≤
+      rubinTransport Φ (rubinRigidSubgroup T V) := by
+  intro p hp
+  have hq : SupportedIn (p : Y ≃ₜ Y) (closure (rubinInvolutionImageSupport Φ V)) :=
+    mem_rubinRigidSubgroup.1 hp
+  rw [mem_rubinTransport]
+  refine mem_rubinRigidSubgroup.2 ?_
+  have hc : SupportedIn ((Φ.symm p : topologicalFullGroup T) : X ≃ₜ X) Vᶜᶜ := by
+    refine supportedIn_compl_of_forall_involution_commute hT hV.isOpen_compl
+      fun τ hτ hτ2 hτV => ?_
+    have hsub : SupportedIn ((Φ (⟨τ, hτ⟩ : topologicalFullGroup T) : topologicalFullGroup S) :
+        Y ≃ₜ Y) (closure (rubinInvolutionImageSupport Φ V))ᶜ := by
+      refine supportedIn_iff_movedSet_subset.2 fun y hy => Set.mem_compl fun hyc => ?_
+      obtain ⟨z, hz1, hz2⟩ := mem_closure_iff.1 hyc _ (isOpen_movedSet_of_t2Space _) hy
+      obtain ⟨f, hf⟩ := mem_rubinInvolutionImageSupport.1 hz2
+      exact Set.disjoint_left.1
+        (hsep f.1 ⟨τ, hτ⟩ f.2.1 (Subtype.ext hτ2) f.2.2 hτV) hf hz1
+    have h1 : (p : Y ≃ₜ Y) *
+          ((Φ (⟨τ, hτ⟩ : topologicalFullGroup T) : topologicalFullGroup S) : Y ≃ₜ Y) =
+        ((Φ (⟨τ, hτ⟩ : topologicalFullGroup T) : topologicalFullGroup S) : Y ≃ₜ Y) *
+          (p : Y ≃ₜ Y) :=
+      hq.commute_of_compl hsub
+    have h2 : Φ (Φ.symm p * (⟨τ, hτ⟩ : topologicalFullGroup T)) =
+        Φ ((⟨τ, hτ⟩ : topologicalFullGroup T) * Φ.symm p) := by
+      rw [map_mul, map_mul, MulEquiv.apply_symm_apply]
+      exact Subtype.ext h1
+    exact congrArg Subtype.val (Φ.injective h2)
+  rwa [compl_compl] at hc
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinRigid_closure_involutionImageSupport_le_rubinTransport
+
+/-- Open transport of `F_V` for clopen `V`, from involution separation. -/
+theorem rubinTransport_rigid_eq_of_involutionSeparation (hT : IsMinimalHomeo T)
+    (hS : IsMinimalHomeo S) (Φ : topologicalFullGroup T ≃* topologicalFullGroup S) {V : Set X}
+    (hV : IsClopen V)
+    (hsep : ∀ f k : topologicalFullGroup T, f * f = 1 → k * k = 1 →
+      SupportedIn (f : X ≃ₜ X) V → SupportedIn (k : X ≃ₜ X) Vᶜ →
+        Disjoint (movedSet ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y))
+          (movedSet ((Φ k : topologicalFullGroup S) : Y ≃ₜ Y))) :
+    rubinTransport Φ (rubinRigidSubgroup T V) =
+      rubinRigidSubgroup S (interior (closure (rubinInvolutionImageSupport Φ V))) := by
+  rw [rubinRigidSubgroup_interior (T := S)]
+  exact le_antisymm (rubinTransport_rigid_le_closure_involutionImageSupport hT hS Φ hV.isOpen)
+    (rubinRigid_closure_involutionImageSupport_le_rubinTransport hT Φ hV.isClosed hsep)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinTransport_rigid_eq_of_involutionSeparation
+
+end RubinInvolutionSeparation
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
