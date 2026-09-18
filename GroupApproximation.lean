@@ -5574,6 +5574,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowHeadSplit
 import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplit
 import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplitBlock
 import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowTailSplitCore
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.CellHair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
