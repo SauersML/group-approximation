@@ -2,7 +2,7 @@
 rg: 2
 id: surface-group-atoms-wall-cells-proof
 kind: route
-title: Counting separating walls turns distance profiles on B_n into side vectors for the walls in 𝒲_n; small walls near every ideal point give branching, and a cell that is a half-plane has a unique tile on the near side of every wall entering it
+title: Counting separating walls turns distance profiles on B_n into side vectors for the walls in 𝒲_n; small walls near every ideal point give branching, and every wall of the arrangement is crossed by another wall of it at the corner of its nearest tile
 target: surface-group-atoms-are-wall-arrangement-cells
 requires:
   - hyperbolic-groups-embed-in-contracting-rsgs
@@ -59,20 +59,18 @@ arXiv:2309.06224v3.
 - **Conclusion.** The rest of item 3 is BBMZ `thrm:BBM`, `prop:hyp_similarities` and
   `thrm:contracting`, with the reformulation lemma.
 
-**4. Half-plane cells are gated.**
-- **The far side.** Let `n ≥ 1` and let `R = H` be a cell equal to a half-plane bounded by
-  `W ∈ 𝒲_n`. The cell containing `1` is the tile `1` itself, which is bounded because all walls
-  around it lie in `𝒲_1`. So `1 ∉ H`, and `H` is the far side of `W`. Since `W ∈ 𝒲_n`, there is some
-  `y ∈ H ∩ B_n`.
-- **Near-side tiles.** Every wall `W'` entering `H` is not in `𝒲_n`, because `H` is a cell. So `W'`
-  separates `1` from no point of `B_n`, and every `y ∈ H ∩ B_n` lies on `1`'s side of `W'`.
-- **Uniqueness.** Let `G_0` be the set of tiles of `H` that lie on `1`'s side of every wall entering
-  `H`. The walls separating `1` from a tile of `G_0` are the walls that miss `int H` but separate
-  `1` from `H`, and this set is the same for every tile of `G_0`. So any two tiles of `G_0` are
-  separated by no wall, and `G_0` is a single tile `t_0`. Hence `H ∩ B_n = {t_0}`.
-- **Gate formula.** For a tile `x ⊆ H`, every wall separating `t_0` from `x` enters `H` (by
-  convexity). A wall entering `H` separates `1` from `x` exactly when it separates `t_0` from `x`.
-  So `|x| = |t_0| + d(t_0,x)`.
-- **`t_0` is adjacent to `W`.** Since `t_0 ≠ 1`, some neighbour of `t_0` is closer to `1`. The wall
-  between them separates `1` from `t_0`, so it does not enter `H` and bounds `t_0`. That wall is
-  `W`. So `t_0` is adjacent to `W`, and by the gate formula `D(W) = |t_0|`. ∎
+**4. No cell is a half-plane.**
+- **Setup.** Let `n ≥ 1` and `W ∈ 𝒲_n`. Let `t_0` be a tile on the far side of `W` with
+  `|t_0| = D(W) ≤ n`. A geodesic from `1` to `t_0` crosses `W`, and by minimality it does so on its
+  last edge. So `t_0` is adjacent across an edge `e ⊆ W` to a near-side tile `t_0'` with
+  `|t_0'| = |t_0| − 1`.
+- **The crossing wall.** Let `v` be an endpoint of `e`, and let `e'` be the other side of `t_0'`
+  at `v`, lying on the wall `U`. The angle of `t_0'` at `v` is `π/2g < π`, so `U ≠ W`. Both pass
+  through `v`, so `U` crosses `W`.
+- **`U ∈ 𝒲_n`.** Let `u` be the tile across `e'` from `t_0'`, so `|u| ≤ |t_0'| + 1 = |t_0| ≤ n`.
+  If `t_0'` is on `1`'s side of `U`, then `u` is not, and `U` separates `1` from `u ∈ B_n`.
+  Otherwise `U` separates `1` from `t_0' ∈ B_n`. Either way `U ∈ 𝒲_n`.
+- **Conclusion.** `U` meets both sides of `W`. So neither half-plane of `W` is a cell of `𝒲_n`. ∎
+
+(Correction, 2026-09-18: this replaces a gate lemma for half-plane cells, which is vacuous by the
+argument above.)
