@@ -9,6 +9,7 @@ distinct_from:
   fpbs-mal-long-generator-packing-growth: that would imply the negation of this claim for the Bernoulli shift.
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
+  - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -165,5 +166,45 @@ Scripts in `experiments/fpbs-chord-unfolding-2026-09-17/`.
     possible shape of a single-stage counterexample.
   - (P3) Pushing deep-label graphings into stagewise form at a constant-factor
     loss.
+
+  The claim stays OPEN.
+
+**Quantifier shift: the floor is a uniform one-step deep-promotion floor
+on `F_2` (September 18, 2026, swarm-0917-w9-w9-fp-follow,
+quantifier-shift).** Artifact
+`research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md`. Script
+`experiments/fpbs-deep-promotion-2026-09-17/core_size.py`.
+- **Result.** [[fpbs-mal-floor-iff-deep-promotion-floor]] is ESTABLISHED,
+  through its route. Let `rho` be the Bernoulli shift of `L = F(a, b)`,
+  `L_j = phi^j(L)` and `S_j = E_{rho|L_j}`. Let `Q_j` be the least cost of a
+  graphing inside `E_rho` that promotes `S_{j+1}` to `S_j`. Then this claim
+  holds iff `inf_j Q_j > 0`, with `Q_0 = r = relC(E_rho; S_1)` and `Q_j`
+  nonincreasing.
+  - The proof telescopes cheap promotions with the stage shift.
+  - It truncates labels to a finite stage.
+  - It transports `(H_m, H_2, H_1)` to `(L, L_{m-2}, L_{m-1})`.
+- **What it changes.**
+  - Chord §3(c) had only "claim implies `r > 0`". Now the claim is
+    equivalent to a statement about one finitely generated group.
+  - A refutation needs no infinite scheme. Cheap one-step promotions at
+    growing depth suffice.
+  - Survivor P3 becomes exactly `inf_j Q_j >= c r`. With
+    `Q_{j+1} = (1 - eps_j) Q_j`, the claim is (D0) `r > 0` together with
+    (D1) `prod (1 - eps_j) > 0`. Here `eps_j` is the saving from the single
+    extra label level `L \ L_1`. The step from `Q_j` to `Q_{j+1}` uses `phi`,
+    which carries the depth-`j` problem inside `L` onto the depth-`(j+1)`
+    problem inside `L_1`.
+- **Where the attack on (D1) died.**
+  - *Coset-hull projection.* Replace each deep edge by one shallow chord per
+    coset hull it crosses. The charge per deep edge is up to `|h|` times the
+    Stallings core size of `L_j`, which grows like `(1 + sqrt 2)^j`:
+    1, 3, 8, 20, 49, 119, 288, 696 (`core_size_out.txt`).
+  - The replacement chords are path-dependent, so the resulting bound
+    `Q_j >= r / M_j` decays.
+  - Compact and character obstructions, and zero-cost splitting moves, give
+    no leverage (artifact §5).
+- **What survives.**
+  - (D1) via a P1-type bundling inequality for crossings of deep edges.
+  - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
 
   The claim stays OPEN.
