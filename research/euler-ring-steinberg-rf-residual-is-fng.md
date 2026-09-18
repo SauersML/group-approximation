@@ -83,3 +83,14 @@ finite quotient. If so, and `K_2(N, D)` is central, this claim fails.
        show `ind(c_q) = 0`.
    - *Open boundary.* `r = l` for `F_(r,N)`, where `K_2(Z[u]/(l,u)^l)` should be `Z/l` on `u^(l−1) du`. More
      generally, `K_2` of wild crossed products `Ā ⋊ Z/m` with `l | m`.
+5. **The boundary layer `r = l` (2026-09-18, lane gq-k2-q).** Not decided. See
+   `euler-symbols-survive-in-the-boundary-folding-base`.
+   - *The commutative base detects `c_q`.* `C_l = Z[u]/(l,u)^l -> O_K/𝔭^l`, `u ↦ ζ_l − 1`, has
+     `K_2(O_K/𝔭^l) = Z/l`, and `c_q ↦ ζ^(-q)`. So `c_q ≠ 0` in `K_2(C_l)` whenever `l ∤ q`. This is the first
+     layer where that happens: `r <= l − 1` kills.
+   - *The crossed-product half.* `F_(l,N)` maps onto the finite wild crossed product `G_l = (O_K/𝔭^l) ⋊ Z/l`,
+     `τ(π) = π + l`. The orbit norm is blind there.
+     - For `l = 3`, `G_3` has order 81, with Heisenberg units and `K_1 = {±1} × (Z/3)^2`.
+     - The open question is whether `{ζ, −2} = Φ_(−2)([ζ])` survives in `K_2(G_3)`.
+     - If it survives, `T_l` stays alive at `l = 3`, with detection `q mod 3`.
+   - *Not treated:* `r > l`, where `C_r` is no longer `Z[u]/(l,u)^r` and no longer maps onto `O_K/𝔭^r`.
