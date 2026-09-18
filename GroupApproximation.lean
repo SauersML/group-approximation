@@ -5860,6 +5860,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonStep
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCPLimit
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Reduced
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.TreeOps
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
