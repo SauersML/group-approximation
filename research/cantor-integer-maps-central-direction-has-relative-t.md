@@ -118,3 +118,25 @@ any cocycle carried by finitely atomic, bounded-phase-variation or `F`-regular c
       `thompson-v-has-a-fixed-point-free-amenable-action`, and it would make `V` sofic.
   - *Not ruled out.* Non-induced witnesses; induction of higher-dimensional representations from a
     co-amenable `H ⊇ nA`, which is the original problem again; and a proper co-amenable subgroup of `V`.
+- **2026-09-18 (swarm-0917-w8-w8-nv-break, probability-random): exactly invariant witnesses die, and
+  the exact mechanism cannot be upgraded (class-kill on both sides).**
+  - Established `cantor-invariant-vectors-are-rigid-for-cantor-integer-maps`.
+    - *Class.* Every exactly `V`-invariant spectral law on `Â`. Equivalently, every cnd `ψ(f,v) = N(f)` with
+      `N` `V`-invariant: compound Poisson or Lévy exponents, Haar measures of invariant closed subgroups and
+      cosets, and mixtures.
+    - *Invariant.* The de Finetti directing measure `ρ` of cone phases along admissible disjoint clopen
+      sequences.
+    - *Where every member dies.* Merging two terms keeps the tail, so `ρ * ρ = ρ` and `ρ = Haar(H)`. Hence
+      `Φ(1_U) = μ{χ = 0}`, and so `sup_n N(n·1_C) ≤ 2N(1_{[0]})`.
+    - This kills the jump-type survivor listed above, in its exactly invariant form. A parallel,
+      not-yet-landed result by swarm-0917-w8-w8-nv-pull (`cantor-central-v-elliptic-witnesses-die`) proves
+      the cnd corollary by Cesàro averaging.
+  - *Obstruction on the proof side.* The exact output is `‖ξ − P_Aξ‖² = ½‖π(1_U)ξ − ξ‖²` on `V`-fixed
+    vectors. That is rigidity for the whole pair `(G, A)`, and its almost-invariant form is false by
+    `cantor-integer-maps-pair-lacks-relative-property-t`. So every approximate-exchangeability proof of
+    this claim dies at the step concluding that the directing measure is near `δ_1`. This covers finite
+    de Finetti and stability of idempotents. A proof must use an input that separates `z` from `A`, for
+    example spectral mass on nontrivial `H` with `χ(1_C) = 1`.
+  - *Not ruled out.* Witnesses whose `V`-defect is bounded away from exactness at every scale; that is,
+    the refutation side still needs almost invariant vectors with no `V`-fixed vectors in their
+    `A`-spectral neighbourhood.
