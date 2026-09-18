@@ -44,3 +44,20 @@ defeats every enumeration and every `n >= 2`. By the germ theorem, such an invar
 germ group for generic enumerations. It would have to see the finitary part `FSym`. The free-shift kill
 (`free-shift-houghton-like-envelopes-are-not-fp`) does exactly this, through the conjugation action of `rho` on
 transpositions.
+
+## Attempts
+
+- **Lifting criterion and its two natural bases (bh-free-47, 2026-09-18).**
+  - *The criterion.* `fsym-extensions-lift-fp-via-pair-transitive-stable-subgroups` replaces the refuted lifting
+    claim with a sufficient condition. Take a finitely presented base `K ⊇ FSym(X)` and letters `y_i`. Each `y_i`
+    must conjugate into `<K, y_<i>` some finitely generated subgroup with finitely many orbits on pairs. Given a
+    finitely presented `R_nu` (`n >= 2`), a witness reduces to such a certificate.
+  - *Strand-map base.* It dies. `strand-map-bases-lift-only-bounded-displacement-letters` shows that over
+    `H_n(E_2)`, or any base of eventual strand maps, a `rho_g` with `g` of infinite order is certified only if
+    `[P : <g>] < ∞`. So only virtually cyclic inputs are reached.
+  - *Lampshuffler base.* It also dies, for one-ended `P`. The base is `FSym(X)` together with the regular copies
+    on all strands. `lampshuffler-bases-lift-no-shift-for-one-ended-inputs` shows every certified letter has near
+    index zero, so no certificate exists.
+  - *What survives.* A witness through the criterion needs one of: iterated certificates whose `C_i` use
+    earlier letters outside both bases (for example window conjugates `s^-j lambda_g s^j`), a third kind of base,
+    or an input with more than one end.
