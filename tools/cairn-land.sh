@@ -19,7 +19,11 @@
 # nothing. Conflicting edits fail that request with exit 4. One push lands the batch. A
 # rejected push whose new main commits touch nothing the check reads (research,
 # notes, tools, bin, or a deletion or rename anywhere) is replayed onto the new
-# main and pushed again at once, with no check. Any other rejected push resets to
+# main and pushed again at once, with no check. So is one whose new main commits
+# touch neither tools, bin, any landed path, nor delete or rename anything: the
+# passing requests are re-committed on the new main without a check (at most 30
+# times), keeping main's FRONTIER.md for the next check to refresh, because a
+# check on a busy main loses the race every time. Any other rejected push resets to
 # the new origin/main and rebuilds only the requests that passed (one check), so
 # the generated research/FRONTIER.md never conflicts and a busy main cannot
 # livelock it. It never force-pushes. A waiter whose request was landed by another holder prints that
@@ -84,7 +88,7 @@ flock 9
 [ -f "$req/code" ] && finish_own
 
 wt="$(mktemp -d)"; rmdir "$wt"
-cleanup() { git -C "$root" worktree remove --force "$wt" >/dev/null 2>&1 || true; rm -rf "$wt" "$wt.check.log" "$wt.frontier"; }
+cleanup() { git -C "$root" worktree remove --force "$wt" >/dev/null 2>&1 || true; rm -rf "$wt" "$wt.check.log" "$wt.frontier" "$wt.changed"; }
 trap cleanup EXIT
 
 # Pending requests, oldest first; our own is always included.
@@ -194,7 +198,21 @@ outside_graph() {  # true if main moved from $1 to $2 without touching anything 
     [ -z "$(git -C "$root" diff --name-only --diff-filter=DR "$1" "$2")" ]
 }
 
-landed="" good=() live=() base="" rebuild=1 checks=0
+disjoint_graph() {  # true if main moved from $1 to $2 without touching the checker, a landed path, or deleting anything
+  local r p
+  git -C "$root" diff --quiet "$1" "$2" -- tools bin || return 1
+  [ -z "$(git -C "$root" diff --name-only --diff-filter=DR "$1" "$2")" ] || return 1
+  git -C "$root" diff --name-only "$1" "$2" >"$wt.changed"
+  for r in "${good[@]}"; do
+    [ -f "$r/sha" ] || continue
+    while IFS= read -r p; do
+      awk -v p="${p%/}" '$0 == p || index($0, p "/") == 1 { hit = 1 } END { exit !hit }' "$wt.changed" && return 1
+    done <"$r/paths"
+  done
+  return 0
+}
+
+landed="" good=() live=() base="" rebuild=1 checks=0 replays=0
 for r in "${batch[@]}"; do rm -f "$r/sha" "$r/out.pending" "$r/code.pending"; done
 for attempt in $(seq 1 200); do
   if [ "$rebuild" = 1 ]; then
@@ -243,6 +261,23 @@ for attempt in $(seq 1 200); do
     [ "$(git -C "$wt" rev-list --count "$new..HEAD")" = "${#shas[@]}" ]; then
     echo "push rejected (attempt $attempt); main moved outside the graph, replaying on the new $remote/main" >&2
     base="$new" rebuild=0
+  elif [ "$replays" -lt 30 ] && disjoint_graph "$base" "$new"; then
+    # Main moved in other research files only. A fresh check would lose the race
+    # again on a busy main, so re-commit the passing requests on the new main
+    # without one; its FRONTIER.md is kept and the next check refreshes it.
+    git -C "$wt" rebase --abort >/dev/null 2>&1 || true
+    echo "push rejected (attempt $attempt); main moved in disjoint research, re-committing on the new $remote/main" >&2
+    replays=$((replays + 1))
+    git -C "$wt" reset -q --hard "$new"; git -C "$wt" clean -qfd
+    base="$new" rebuild=0 again=()
+    for r in "${good[@]}"; do [ -f "$r/sha" ] && again+=("$r"); done
+    for r in "${again[@]}"; do
+      rm -f "$r/sha"
+      copy_in "$r" || { rebuild=1; break; }
+      commit_req "$r"
+    done
+    n=0; for r in "${good[@]}"; do [ -f "$r/sha" ] && n=$((n + 1)); done
+    [ "$rebuild" = 0 ] && [ "$n" = 0 ] && { landed="none"; break; }
   else
     git -C "$wt" rebase --abort >/dev/null 2>&1 || true
     echo "push rejected (attempt $attempt); rebuilding the passing requests on the new $remote/main" >&2
