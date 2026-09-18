@@ -129,7 +129,7 @@ theorem val_inv_of_eq_twoDiag_mul {b m : Matˣ} {k : Fin 4 → ℤ}
 
 theorem IsGridPoint.mem_borel {b : Matˣ} (hb : IsGridPoint b) : b ∈ borel := by
   obtain ⟨k, m, ⟨-, hm1, hm2, -⟩, h⟩ := hb
-  refine mem_borel.mpr ⟨?_, ?_⟩
+  refine NN09b.mem_borel.mpr ⟨?_, ?_⟩
   · rw [h]
     exact isUpperTri_mul (isUpperTri_twoDiag k) hm1
   · rw [val_inv_of_eq_twoDiag_mul h]
