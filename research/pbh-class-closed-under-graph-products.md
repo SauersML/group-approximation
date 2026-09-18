@@ -12,11 +12,19 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-bh-bh-free-11-graph-product-verification.md
   - research/artifacts/ideas-bh-round2-2026-09-14.md
+  - research/artifacts/gq-bh-bh-free-10-verify-graph-products.md
 ---
 
-**ESTABLISHED** through `pbh-graph-product-closure-proof`. Not externally reviewed; adversarially re-checked step by step on 2026-09-18 by lane bh-free-11 (all steps and imports hold; `research/artifacts/gq-bh-bh-free-11-graph-product-verification.md`). Priority search is partial: FFWZ arXiv:2603.24687 (extracted text on
-MSI) never mentions graph products, no node here treats them, and an arXiv API
-query of 2026-09-14 returned no entries.
+**ESTABLISHED** through `pbh-graph-product-closure-proof`. Re-verified end to
+end on 2026-09-18 by lane bh-free-10 (`gq-bh-bh-free-10-verify-graph-products`):
+every step of the route checks. BFFHZ Theorem C, Theorem E, the proof of
+Corollary F, and Question 3.1 were re-read in the arXiv:2503.21882v2 TeX source,
+and they match what the route uses. A second, independent step-by-step re-check on 2026-09-18 by lane bh-free-11
+(`gq-bh-bh-free-11-graph-product-verification`) also found no gap. Both are internal
+verifications, not an external review. Priority search is partial: FFWZ arXiv:2603.24687 (extracted
+text on MSI) never mentions graph products, no node here treats them, and arXiv
+API queries of 2026-09-14 and 2026-09-18 ("graph product" AND "Boone") returned
+no entries.
 
 Write `B_A` for the class of groups that embed in a group admitting an action of
 type (A) (`boone-higman-type-a-class-closed-under-finite-extensions`); in the
