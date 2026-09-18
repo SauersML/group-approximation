@@ -126,8 +126,12 @@ theorem gfaceWindTen_nest {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart
     {o : M.Face} (hoW : o ∉ sideFaces M W) (hoL : o ∉ sideFaces M L) :
     sideFaces M L ⊆ sideFaces M W := by
   intro F hF
-  obtain ⟨z, rfl⟩ : ∃ z, M.faceOf z = F := Quotient.exists_rep F
-  obtain ⟨zo, rfl⟩ : ∃ zo, M.faceOf zo = o := Quotient.exists_rep o
+  obtain ⟨z, hz⟩ := Quotient.exists_rep F
+  have hz' : M.faceOf z = F := hz
+  subst hz'
+  obtain ⟨zo, hzo⟩ := Quotient.exists_rep o
+  have hzo' : M.faceOf zo = o := hzo
+  subst hzo'
   by_contra hFW
   have hW' := hW.reverseAlpha
   have hside := gfaceWindTen_outside hM hW
@@ -150,6 +154,8 @@ theorem gfaceWindTen_nest {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart
   have hzzoL := gfaceWindTen_transfer hLW' hzzo hzW'
   obtain ⟨d, hd, hdz⟩ := (mem_sideFaces_iff M L z).mp hF
   exact hoL ((mem_sideFaces_iff M L zo).mpr ⟨d, hd, .trans _ _ _ hdz hzzoL⟩)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_nest
 
 /-- **Strict side nesting.**  Under the hypotheses of `gfaceWindTen_nest`, if `L` is a simple
 closed walk with a dart off `W`, its side has fewer faces than the side of `W`. -/
