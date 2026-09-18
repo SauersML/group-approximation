@@ -91,3 +91,67 @@ theorem higmanVCLeafExp_letter_mem_H {d : ℕ} {C : Finset (List (Fin d))} {u v 
     congrArg (higmanVCCommon_mk d) (higmanVCAll_iota_of _ _)⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_letter_mem_H
+
+/-- **Truth check.**  For `d ≥ 2`, the letter `(c, v)` on the expanded leaf `c` and a second
+leaf `v` of `C` is not in `H_{C'}` for the single-leaf expansion `C'` of `C` at `c`. -/
+theorem higmanVCLeafExp_letter_not_mem {d : ℕ} (hd : 1 < d) {C : Finset (List (Fin d))}
+    {c v : List (Fin d)} (hC : higmanVCTreeNFWitPivot_IsAC C) (hc : c ∈ C) (hv : v ∈ C)
+    (hvc : v ≠ c) :
+    higmanVCCommon_mk d (FreeGroup.of (c, v)) ∉
+      higmanVCTreeNFWitPivot_H d (higmanVCLeafExp_expand C c) := by
+  haveI : Nontrivial (Fin d) := Fin.nontrivial_iff_two_le.mpr (by omega)
+  have h1 : ¬ c <+: v := hC c hc v hv (Ne.symm hvc)
+  have h2 : ¬ v <+: c := hC v hv c hc hvc
+  have hC' := higmanVCLeafExp_expand_isAC hC hc
+  have hv' := higmanVCLeafExp_mem_expand_of_ne hv hvc
+  have key : ∀ w : ↥(higmanVCLeafExp_expand C c),
+      MapsCone (coneSwap c v h1 h2) v w.1 → False := by
+    intro w hw
+    have hw2 := w.2
+    rw [MapsCone.unique hw (mapsCone_coneSwap_right h1 h2)] at hw2
+    exact higmanVCLeafExp_not_mem_expand C c hw2
+  intro hmem
+  obtain ⟨r, hr⟩ := higmanVCTreeNFWitPivot_mem_H.mp hmem
+  have hE : higmanVC_evalAll d (higmanVCAll_iota (higmanVCLeafExp_expand C c) r) =
+      higmanVC_evalAll d (FreeGroup.of (c, v)) := congrArg (higmanVCTreeNF_E d) hr
+  rw [higmanVC_evalAll_of, vgenSwapOrOne_eq h1 h2] at hE
+  have hm := higmanVCAll_mapsCone_word (C := higmanVCLeafExp_expand C c) hC' r ⟨v, hv'⟩
+  rw [hE] at hm
+  exact key _ hm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_letter_not_mem
+
+/-- **The literal single-leaf lemma is false:** `H_C ≰ H_{C'}` as soon as `d ≥ 2` and `C` has
+a leaf `v` other than the expanded leaf `c`. -/
+theorem higmanVCLeafExp_not_le {d : ℕ} (hd : 1 < d) {C : Finset (List (Fin d))}
+    {c v : List (Fin d)} (hC : higmanVCTreeNFWitPivot_IsAC C) (hc : c ∈ C) (hv : v ∈ C)
+    (hvc : v ≠ c) :
+    ¬ higmanVCTreeNFWitPivot_H d C ≤ higmanVCTreeNFWitPivot_H d (higmanVCLeafExp_expand C c) :=
+  fun hle => higmanVCLeafExp_letter_not_mem hd hC hc hv hvc
+    (hle (higmanVCLeafExp_letter_mem_H hc hv))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_not_le
+
+/-- A concrete counterexample: `C = {0, 1, …, d-1}` (depth one), expanded at the leaf `0`. -/
+theorem higmanVCLeafExp_single_leaf_false (d : ℕ) (hd : 1 < d) :
+    ∃ C : Finset (List (Fin d)), ∃ c ∈ C, higmanVCTreeNFWitPivot_IsAC C ∧
+      ¬ higmanVCTreeNFWitPivot_H d C ≤
+        higmanVCTreeNFWitPivot_H d (higmanVCLeafExp_expand C c) := by
+  have h0 : 0 < d := by omega
+  have hroot : higmanVCTreeNFWitPivot_IsAC ({[]} : Finset (List (Fin d))) := by
+    intro u hu v hv huv _
+    rw [Finset.mem_singleton] at hu hv
+    exact huv (hu.trans hv.symm)
+  have hC := higmanVCLeafExp_expand_isAC hroot (Finset.mem_singleton_self [])
+  have hc := higmanVCLeafExp_child_mem ({[]} : Finset (List (Fin d))) [] ⟨0, h0⟩
+  have hv := higmanVCLeafExp_child_mem ({[]} : Finset (List (Fin d))) [] ⟨1, hd⟩
+  have hvc : [] ++ [(⟨1, hd⟩ : Fin d)] ≠ [] ++ [⟨0, h0⟩] := by
+    intro h
+    rw [List.nil_append, List.nil_append] at h
+    have h' : (1 : ℕ) = 0 := congrArg Fin.val (List.singleton_inj.mp h)
+    exact Nat.one_ne_zero h'
+  exact ⟨_, _, hc, hC, higmanVCLeafExp_not_le hd hC hc hv hvc⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_single_leaf_false
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
