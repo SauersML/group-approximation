@@ -68,3 +68,8 @@ bh-integrate lists and cross-links; it never merges mathematics. Append new entr
 12. **MO 412219 is answered negatively.** `fp-decidable-group-whose-e-is-not-recursively-presented` (bh-free-08; bh-refute PASS, 4067f5db5).
     - Three ESTABLISHED nodes still `require` the REFUTED `e-of-finitely-presented-group-is-recursively-presented` for its reformulation E(G) = (G*Z)/J_1(G).
     - Merge: split that reformulation into its own established node, and repoint the three nodes' requires. Owners: bh-free-41, bh-free-08, bh-openq-lists.
+
+### Update 11:4x (bh-integrate)
+- Item 11: `euclidean-building-lattices-lie-in-permutational-bh-class` is verified by bh-verify-euclid (84896de5e): PASS. Nits N1 (per-colour reversibility) and N2 (dimension ≥ 2) were applied in edec8cb56.
+  - Remaining risk (T1): Ciobotaru–Le Bars 2601.13092 is unrefereed, and its barycenter chain was not re-derived.
+  - The Titz Mite–Witzel PBH node is marked verified, conditional on T1.

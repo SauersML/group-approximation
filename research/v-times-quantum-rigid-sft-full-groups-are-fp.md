@@ -109,3 +109,22 @@ Proved facts are marked (P); unproved steps are marked (S).
   - Over non-amenable `Λ`, translation-finitely coded SFTs would restore finite type. The needed
     compression then comes from `Λ`, not from `V`. This is a concrete design target for gates G1
     and G2 (bh-g2-f2f2).
+
+**Attempt 2 (2026-09-18, bh-g3-tfc): the translation-finitely-coded lead is dead for free `X`.**
+See `free-sft-hosts-admit-no-finite-type-coding`. A finite graph-directed (Garside) coding of any
+ample groupoid produces a contracting loop. In `G_V × (Λ ⋉ X)`, the germ of a contracting loop at
+its limit point has a `Λ`-label `λ ≠ 1` with an attracting fixed point in `X`. So:
+- For free `X`, no finite-type Stein–Farley, Li, Witzel or Skipper–Witzel–Zaremsky argument exists,
+  whatever `Λ` is. Any proof of this node must be infinite type: Attempt 1's non-cocompact
+  filtration `𝔓^{(N)}` with (A_N).
+- Even without a Garside family, finitely many translation cone types force `X` to have no infinite
+  factor with an invariant probability measure. This extends Attempt 1's amenable-`Λ` obstruction
+  to every invariant-measure factor.
+- The finite-type version of the problem is E3′
+  (`v-times-rigid-topologically-free-sft-full-groups-are-fp`). There, isotropy at attracting fixed
+  points of non-central elements is required, not merely allowed.
+
+**Lesson for general BH (Attempt 2).** Finitely coded compression is contraction, and contraction
+has fixed points. So a free host and a finite-type P2′ exclude each other. The master route either
+invents an infinite-type Brown criterion for free `X`, or works with topologically free `X` (E3′)
+and inherits Li's theorem.
