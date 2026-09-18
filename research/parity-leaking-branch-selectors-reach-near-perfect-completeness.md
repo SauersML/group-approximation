@@ -92,3 +92,14 @@ a cycle of equations through the window.
   witness. The Grassmann containment layer has constant gap, so the vanishing gap
   must come from the outer `U -> V -> U'` smoothing walk or from the 3LIN source.
   This answers need `6166cb1b` with YES.
+* **Spectral gate on DKKMS hosts with `l` free (2026-09-18).** **Dead as a
+  kill; the claim stays OPEN.** By `folded-dkkms-host-gap-vanishes-as-l-grows`
+  (Theorem F), the folded DKKMS host has `lambda_2 <= 2(beta + 6 * 2^(-l))` for
+  `l >= 6`. DKKMS soundness (Hypothesis 3.6, Lemmas 3.17, 3.20 and 5.3) needs
+  only `l >= l_0(delta)`, so `l` may grow with `eta'`. The conditional kill
+  "`eta' >= c(l)/X(delta)` with `l = l(delta)`" in the bullet above therefore
+  does not follow. Gate (G) is vacuous on DKKMS once
+  `l >= log2(24/(X(delta) eta'))`, at every completeness, including the
+  constant-bias cell `(1/2, 1 - 10^(-5))`. On DKKMS this node stays killed
+  only by the rigidity route (`near-perfect-selectors-on-rigid-dkkms-instances-put-np-in-rp`).
+  Spectral methods cannot touch the constant-bias cell.
