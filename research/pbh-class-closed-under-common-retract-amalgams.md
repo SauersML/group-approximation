@@ -55,3 +55,5 @@ a finitely presented simple group and, if finitely generated, has solvable word 
   covered.
 - In general amalgams the word problem involves membership in `C` (BFFHZ, as quoted
   in `pbh-class-closed-under-graph-products`).
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS (Steps 0--4 re-derived; Steps 5--6 checked). The claim rests on BFFHZ Theorems C, (i) ⟹ (iv), and E, as quoted on their import nodes. I did not re-read them. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.
