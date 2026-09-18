@@ -61,3 +61,12 @@ artifacts:
      is `EL_3(F_2<x,y>)`. That node also records a false signal: Kazhdan box
      spaces do not indicate non-exactness, since `SL_3(Z)` is Kazhdan and
      exact.
+3. **Stronger conditional witness (bh-refute, 2026-09-18).** *Conditional; sharpens Attempt 1.*
+   `decidable-group-with-coarsely-embedded-expanders-exists` gives a decidable finitely generated group
+   `M` whose Cayley graph contains the LPS expanders isometrically. So under `boone-higman-conjecture`
+   some finitely presented simple group coarsely contains an expander. It therefore fails coarse
+   embeddability into Hilbert space and the Baum–Connes conjecture with coefficients, not just
+   property A (`coarse-embeddability-separates-boone-higman` item 2,
+   `baum-connes-with-coefficients-separates-boone-higman`). An unconditional witness of that strength
+   would kill the exactness, coarse-embedding and BCC refutation routes at once. The Haagerup kill of
+   Attempt 2 is exactly the obstruction for planting `M`.
