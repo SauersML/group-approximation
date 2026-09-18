@@ -121,3 +121,61 @@ theorem witnessStepGenus_face_lift (N : CombMap.{u}) [DecidableEq N.Dart] (x y u
   rw [Equiv.swap_apply_of_ne_of_ne h1 h2]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepGenus_face_lift
+
+/-- A chain of reachability steps reaches every entry from its head. -/
+theorem witnessStepGenus_eqvGen_of_isChain {β : Type*} {S : β → β → Prop} :
+    ∀ (L : List β) (a : β), List.IsChain (Relation.EqvGen S) (a :: L) →
+      ∀ e ∈ a :: L, Relation.EqvGen S a e
+  | [], a, _, e, he => by
+    rw [List.mem_singleton.mp he]
+    exact Relation.EqvGen.refl _
+  | b :: L, a, hc, e, he => by
+    rw [List.isChain_cons_cons] at hc
+    rcases List.mem_cons.mp he with hea | heb
+    · rw [hea]
+      exact Relation.EqvGen.refl _
+    · exact Relation.EqvGen.trans _ _ _ hc.1 (witnessStepGenus_eqvGen_of_isChain L b hc.2 e heb)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepGenus_eqvGen_of_isChain
+
+/-- Consecutive entries not starting at the last entry `p` are related; then every
+entry reaches `p`. -/
+theorem witnessStepGenus_eqvGen_to_last {β : Type*} (S : β → β → Prop) (p : β) :
+    ∀ L : List β, (L ++ [p]).Nodup →
+      (∀ u v e e', L ++ [p] = u ++ e :: e' :: v → e ≠ p → Relation.EqvGen S e e') →
+      ∀ e ∈ L ++ [p], Relation.EqvGen S e p
+  | [], _, _, e, he => by
+    rw [List.nil_append, List.mem_singleton] at he
+    rw [he]
+    exact Relation.EqvGen.refl _
+  | a :: L, hnd, hstep, e, he => by
+    rw [List.cons_append] at hnd he
+    obtain ⟨hanot, hnd'⟩ := List.nodup_cons.mp hnd
+    have hstep' : ∀ u v e e', L ++ [p] = u ++ e :: e' :: v → e ≠ p →
+        Relation.EqvGen S e e' := by
+      intro u v e e' h hne
+      exact hstep (a :: u) v e e' (by rw [List.cons_append, h, List.cons_append]) hne
+    have ih := witnessStepGenus_eqvGen_to_last S p L hnd' hstep'
+    rcases List.mem_cons.mp he with hea | hel
+    · rw [hea]
+      obtain ⟨b, r, hbr⟩ := List.exists_cons_of_ne_nil (l := L ++ [p]) (by simp)
+      have hap : a ≠ p := fun h =>
+        hanot (by rw [h]; exact List.mem_append.mpr (Or.inr (List.mem_singleton.mpr rfl)))
+      have hab : Relation.EqvGen S a b :=
+        hstep [] r a b (by rw [List.cons_append, hbr, List.nil_append]) hap
+      have hb : b ∈ L ++ [p] := by
+        rw [hbr]
+        exact List.mem_cons.mpr (Or.inl rfl)
+      exact Relation.EqvGen.trans _ _ _ hab (ih b hb)
+    · exact ih e hel
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepGenus_eqvGen_to_last
+
+/-- **Successor step.**  `y` is the first dart of the vertex run after the reverse of
+`x` which is kept, that is, lies in `l` or has its reverse in `l`. -/
+def WitnessStepGenusSucc (N : CombMap.{u}) (l : List N.Dart) (x y : N.Dart) : Prop :=
+  ∃ m : ℕ, 0 < m ∧ (N.sigma ^ m) (N.alpha x) = y ∧
+    ∀ k : ℕ, 0 < k → k < m → (N.sigma ^ k) (N.alpha x) ∉ l ∧
+      N.alpha ((N.sigma ^ k) (N.alpha x)) ∉ l
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessStepGenusSucc
