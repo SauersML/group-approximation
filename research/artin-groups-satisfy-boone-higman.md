@@ -53,6 +53,15 @@ Per the attached artifact:
     that quotation (see the artifact, §5.5).
 - **Stated open** (BFFHZ, survey Remark 5.4): the exceptional spherical types,
   and the Euclidean types other than Ã_n and the triangle cases.
+- **Forest defining graphs, now in the permutational form** (2026-09-18, lane proof,
+  not reviewed): `forest-artin-groups-satisfy-permutational-boone-higman`, by the
+  block reduction `artin-pbh-reduces-along-folding-separators`. It uses no 3-manifold
+  theory, so the secondary-source caveat above no longer matters for this class.
+- **Even graphs** of FC type and more: `even-fc-artin-groups-satisfy-permutational-boone-higman`.
+- **Triangle-free graphs with all labels 3** (2026-09-18, lane proof, not reviewed):
+  `triangle-free-all-3-artin-groups-satisfy-pbh`, e.g. the
+  all-3 four-cycle, which is not virtually cocompactly cubulated. Method: the hub-cone
+  reduction `artin-hub-cones-reduce-pbh-to-coned-cliques`.
 
 ## Attempts
 
@@ -89,3 +98,24 @@ Per the attached artifact:
 4. **Decidable-edge HNN permanence.** The Jankiewicz splittings over finite-rank
    free groups reduce the admissibly oriented 2-dimensional Artin groups to
    `bh-embeddability-survives-decidable-edge-hnn`, which is open.
+5. **Folding retractions and cut vertices** (lane bh-artin, 2026-09-18). *Works* for
+   every graph whose separations fold on both sides.
+   - Sending generators outside a parabolic `Λ` to generators of `Λ` or to `1`, edge by
+     edge compatibly (`artin-ordinary-foldings-are-retractions`), gives homomorphic
+     retractions even across odd edges; the length map onto `<v>` is one for every `v`.
+   - With common-retract amalgams this reduces the permutational form to the blocks of
+     `Γ` and, further, to pieces without foldable separators
+     (`artin-pbh-reduces-along-folding-separators`). Forests follow at once.
+   - *Stops* at 2-connected graphs with no foldable separator, e.g. the all-3 four-cycle
+     and the hyperbolic triangles.
+6. **Hub cones** (lane bh-artin, 2026-09-18). *Works* whenever the graph has a hub
+   labelling (a label `k_v ≥ 2` at each vertex dividing every incident label) whose
+   coned maximal cliques are in `B_A`.
+   - Add a vertex `e` joined to each `v` with label `k_v`. `A_Γ` is a standard parabolic
+     subgroup of the cone, and in the cone every vertex star, together with `e`, is a
+     separator onto which both sides fold (the vertex and all its non-neighbours go to
+     `e`). So the cone splits down to coned maximal cliques
+     (`artin-hub-cones-reduce-pbh-to-coned-cliques`).
+   - With `k ≡ 3`, triangle-free all-3 graphs reduce to the Euclidean triangle Ã_2.
+   - *Stops* where no hub labelling exists (a vertex meeting coprime labels), and at
+     complete pieces such as `K_4` with all labels 3 or the hyperbolic triangles.

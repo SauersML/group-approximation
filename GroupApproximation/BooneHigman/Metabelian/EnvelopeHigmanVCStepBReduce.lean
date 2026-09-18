@@ -48,12 +48,14 @@ theorem higmanVCStepB_closed_of_core (hK : HigmanVCStepBCoreStatement) {d : ℕ}
     higmanVCPivotAC_H_le_refine hxyAC (L + 1 + N)
       (higmanVCLeafExp_letter_mem_H (Finset.mem_insert_self x {y})
         (Finset.mem_insert_of_mem (Finset.mem_singleton_self y)))
-  have hP := higmanVCPivotAC_conj_mem (B := L + 1) hd hN hR
-    (fun _ hc => higmanVCPivotAC_refine_length hc) hℓ
   obtain ⟨D, hDdef⟩ : ∃ D : Finset (List (Fin d)),
       D = higmanVCPivotAC_push d (L + 1) g (higmanVCPivotAC_refine {x, y} (L + 1 + N)) :=
     ⟨_, rfl⟩
-  rw [← hDdef] at hP
+  have hP : higmanVCCommon_mk d g * higmanVCCommon_mk d (FreeGroup.of (x, y)) *
+      (higmanVCCommon_mk d g)⁻¹ ∈ higmanVCTreeNFWitPivot_H d D := by
+    rw [hDdef]
+    exact higmanVCPivotAC_conj_mem (B := L + 1) hd hN hR
+      (fun _ hc => higmanVCPivotAC_refine_length hc) hℓ
   have hD : higmanVCTreeNFWitPivot_IsAC D := by
     rw [hDdef]
     exact higmanVCPivotAC_push_isAC hd g hR

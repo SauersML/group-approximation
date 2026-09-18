@@ -119,10 +119,10 @@ theorem k2PolyNagaoWeyl_coprime_act {K : Finset I} {m L : I} (hmL : m ≠ L)
     rw [act_x_apply, act_x_apply]
     rcases hi with hi | hi <;> rcases hj with hj | hj
     · exact absurd (hi.trans hj.symm) hij
-    · rw [if_neg (fun h => hmL (h.trans hi)), if_pos hi.symm, hj, add_zero]
+    · rw [if_neg (fun h : m = i => hmL (h.trans hi)), if_pos hi.symm, hj, add_zero]
       exact k2PolyNagaoWeyl_isCoprime_of_comb hv (x1 := 1) (y1 := 0) (x2 := -a) (y2 := 1)
         (by ring) (by ring)
-    · rw [if_pos hi.symm, if_neg (fun h => hmL (h.trans hi).symm), hj, add_zero]
+    · rw [if_pos hi.symm, if_neg (fun h : L = i => hmL (h.trans hi).symm), hj, add_zero]
       exact k2PolyNagaoWeyl_isCoprime_of_comb hv (x1 := 1) (y1 := -a) (x2 := 0) (y2 := 1)
         (by ring) (by ring)
     · exact absurd (hi.trans hj.symm) hij

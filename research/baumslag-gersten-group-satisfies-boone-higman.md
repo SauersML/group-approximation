@@ -105,6 +105,53 @@ group contains it.
   has exponent vector zero at every periodic point. But the pumping step of
   the Röver--Nekrashevych obstruction fails there, so `nV` stays open.
 
+- **Odometer-extended Brin--Thompson hosts (constrained 2026-09-18).**
+  `bg-in-isometric-brick-hosts-needs-unbounded-exponents` covers every
+  group of brick maps of `C^n` with isometric sections: `nV`, the finitely presented simple
+  `2V_τ` of `odometer-2v-is-fp-simple-and-contains-bs12`, and the affine `2V_{G_N}` hosts.
+  - In any such host, a nontrivial image of `a` has zero periodic exponents, unbounded
+    exponent sums (bounded sums would make `a` equicontinuous, hence trivial) and zero
+    entropy, and so does the image of `b`.
+  - So the `BS(1,2) = ⟨s, u⟩` inside `2V_τ` never extends to `BG`: `s = τ × id` has
+    `δ_s ≡ 0`, and the baker conjugator `u` has entropy at least `log 2`.
+  - What is left in these hosts is the renormalization regime of
+    `bs12-embeds-in-brin-thompson-2v`, with a zero-entropy conjugator that is itself
+    conjugate to the base. *Open.*
+
+- **Free-product mapping tori, the relative-holomorph engine (dies, 2026-09-18).**
+  This is the engine that put the Druţu--Sapir group, the power-map mapping tori and the
+  ascending HNN extensions of `pbh-class-closed-under-relative-holomorphs` (T) in `B_A`.
+  It cannot produce `BG` unless `M × Z` already contains it. Lane argument, elementary:
+  - **Setting.** `Q = M * F` with `F` free and `M ≠ 1`, and `β ∈ Aut(Q)` with `β(M)`
+    conjugate to `M`. Suppose `ψ : BG → Q ⋊_β Z` is injective. Write `N = ⟨⟨a⟩⟩ ⊴ BG`,
+    `a_i = t^i a t^{-i}`, and `s = ψ(t)`.
+  - **Step 1.** `ψ(a) ~ ψ(a)^2` forces `χ(ψ(a)) = 0` for `χ : Q ⋊ Z → Z`, so every `ψ(a_i)`
+    lies in `Q`. The element `ψ(a_{i+1}) ∈ Q` conjugates `ψ(a_i)` to its square, so
+    `ψ(a_i)` is elliptic on the Bass--Serre tree `T` of `Q`, whose edge stabilizers are
+    trivial.
+  - **Step 2.** A nontrivial elliptic element of `T` fixes exactly one vertex, and
+    `Fix(ψ(a_i)^2) = Fix(ψ(a_i))`. So `ψ(a_{i+1})` fixes the vertex `v_i` of `ψ(a_i)`, and
+    all `ψ(a_i)` fix one vertex `v`. Hence `ψ(N) ≤ Stab(v)`, a conjugate of `M`.
+  - **Step 3.** Conjugation by `s` maps `Stab(v)` to another conjugate of `M`, which still
+    contains `ψ(N)`, so it is `Stab(v)` again. Let `θ` be its restriction. Then
+    `n t^j ↦ (ψ(n), j)` embeds `BG = N ⋊ ⟨t⟩` in `Stab(v) ⋊_θ Z ≅ M ⋊_θ Z`.
+  - **Step 4.** When `β|_M` is conjugation by an element of `Q`, as in (T), `θ` is
+    conjugation by an element of `Q` that normalizes `Stab(v)`. That element lies in
+    `Stab(v)`, so `θ` is inner and `BG ≤ M × Z`. Every (T)-group `J*_β` lies in
+    `Q ⋊_β Z`.
+  - This refines part B5 of `bg-cycle-triviality-is-closed-under-the-pbh-calculus`, which
+    is the corresponding statement for BG-cycle triviality, from `𝒫`-membership to
+    embeddings.
+- **Twisted Brin--Thompson hosts over `𝒫` actors (open, 2026-09-18).** There is no
+  reduction to `bs12-embeds-in-brin-thompson-2v` through a global twist.
+  - In Zaremsky's definition (arXiv:2405.18354v2, TeX Definition "Twisted Brin--Thompson
+    group"), each dyadic brick is moved by a twist homeomorphism with its own `γ_i ∈ G`.
+    So `SV_G` has no homomorphism onto `G`, only a locally constant twist cocycle.
+  - The tempting argument "`G ∈ 𝒫` kills the `G`-part of `a`, so `⟨a, b⟩ ≤ nV`" needs
+    such a homomorphism, and fails.
+  - The cocycle is multiplicative only on stabilizers of points. A `BG` image with a
+    common fixed point of `a` and `t` does push forward to a `BG` image in `G`.
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),

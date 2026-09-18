@@ -66,3 +66,59 @@ extensions.
    - **Why it doesn't transfer.** That route goes through RAAGs. Groups in this
      class are not virtually special, and the closed-surface targets are not
      known to be in `B_A` (`closed-surface-mapping-class-groups-satisfy-boone-higman`).
+7. **Normal-subgroup constraint on hosts** (bh-3manifold, 2026-09-18). *Constraint,
+   not a construction.* By `nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups`
+   (Hempel--Jaco via AFW (K.9)), these groups have no finitely generated normal
+   subgroup of infinite index other than `1`. So they meet every normal free or
+   surface subgroup of a host trivially or in an infinitely generated subgroup.
+   - This is exactly why attempt 3 fails: the fibered transplant meets the Birman
+     point-pushing kernel in the fiber group.
+   - For attempt 6, any embedding of a finite-index subgroup in a punctured-surface
+     mapping class group either survives forgetting every puncture, giving an
+     embedding in some closed `Mod(S_g)` with `g >= 2`, or meets a point-pushing
+     kernel in an infinitely generated normal subgroup. Aut(F_m) hosts give the
+     same dichotomy with `Out(F_m)`.
+   - Remaining gap: a host embedding with infinitely generated normal
+     intersections, or Boone--Higman in `B_A` for closed-surface mapping class
+     groups or `Out(F_m)` together with an embedding into one of them.
+8. **Common-retract amalgams over the JSJ splitting** (bh-3manifold, 2026-09-18).
+   *Dies* for every closed graph manifold. `pbh-class-closed-under-common-retract-amalgams`
+   part 2 puts finite trees of `B_A` groups with retract edge groups in `B_A`.
+   - **Cycles.** If the JSJ graph has a cycle, no finite cover has a tree as JSJ graph:
+     the map `pi_1(N) -> pi_1(graph)` restricts nontrivially to every finite-index
+     subgroup and factors through the quotient graph of its tree action. A cycle needs
+     an HNN extension identifying two different edge subgroups, which that node's Scope
+     excludes.
+   - **Leaves.** If the JSJ graph is a tree, a leaf piece `M_v` has one boundary torus
+     `E = <c, t>`. Some `c^m t^n != 1` lies in `[G_v, G_v]`: the image of `E` in
+     `H_1(M_v; Q)` has rank one (the boundary curve is a product of commutators and
+     cone-point classes, which are rationally multiples of the fiber). A retraction of
+     any overgroup `G'_v >= G_v` onto an abelian subgroup containing `E` kills
+     `[G'_v, G'_v]`, which contains `c^m t^n`. So the leaf edge group is a retract of no
+     overgroup of the leaf vertex group.
+   - **Nonabelian amalgamating subgroups.** Enlarging the leaf edge group to a
+     nonabelian `C` with `C ∩ G_v = E` also fails for the product-form enlargements
+     `G'_v = G_v x D`, `C = {(chi(d), d)}` (which need an endomorphism of `G_v` through
+     `D` with fixed subgroup exactly `E`, e.g. a pseudo-Anosov of the leaf base): on the
+     neighbor's side `chi` must send the image of `F_v` into the centralizer of a
+     non-fiber element of the neighbor's edge torus, which is abelian, so it kills the
+     boundary word `c` it must preserve. Other enlargements are untested.
+9. **Local product hosts** (bh-3manifold, 2026-09-18). *Dies* for a whole design class.
+   By `fiber-detecting-block-characters-force-npc-graph-manifolds` (Svetlov's charge and
+   Theorem III, read at source), in every finite cover some block has nonzero charge: its
+   fiber is, rationally and modulo commutators of the block, a combination of the
+   neighbors' fibers. So no embedding can send each block into a subgroup with a character
+   that sees its own fiber and kills its neighbors' fibers, e.g. `K_v x A_v` with the fiber
+   in the abelian factor, or twist realizations in a mapping class group with each fiber a
+   twist about curves disjoint from the rest of the block's support. Designs must instead
+   produce such a rational fiber relation, e.g. through chain or lantern relations. Untested.
+10. **Twist realizations of charged two-leaf examples** (bh-3manifold, 2026-09-18).
+    *Reduced, not constructed.* `two-leaf-graph-manifold-twist-realizations`:
+    - For two leaf blocks, fibering is parallelism of the two boundary words in the JSJ
+      torus, and (reading Svetlov) non-virtual-fibering is `β_v β_w ∉ (0, 1]`.
+    - If the torus goes to a two-curve twist group `<T_x, T_y>` of `Mod^+(S)`, each fiber
+      is a power of one twist. Point pushing on both sides lands exactly on the fibered case.
+    - What remains is a single design problem: a leaf block with `ρ(F_w) <= Stab^+(x)` free
+      of rank `2h'`, whose relator product is `T_x^{m'} T_y^{n'}` with boundary slope ratio
+      `m'/n' ∉ [-1, 0)` (pushing gives `-1`), plus injectivity of the amalgam. A solution
+      with `S` punctured would put that example in `B_A`.
