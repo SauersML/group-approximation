@@ -90,3 +90,39 @@ latter.
     small seams.  This matches the `sqrt(2)` basin of
     `one-small-higman-generator-collapses-the-four-cycle`.
   - Neither hole is closed here.
+- **Second route and gate classification (2026-09-18, swarm-0917-w12-w12-ptm-last1).**
+  - `torsion-free-seeds-need-kernel-descent-or-trace-corner` (established)
+    builds two radical-like assignments, `Rad_MF intersect Phi` and
+    `Rad_MF intersect T`.
+    - `Phi` is the largest subgroup with no finite and no torsion-free
+      quotient; `T` is the kernel of the universal torsion-free quotient.
+    - Both satisfy functoriality, saturation, extension, colimit and amalgam
+      closure, radical-kernel descent, and the Leavitt input.
+    - The first also satisfies finite-index trace; the second also satisfies
+      every torsion-conclusion corner rule.
+    - Both vanish on torsion-free groups.
+  - So a torsion-free seed is reached only in two ways:
+    - (i) by descent across a kernel not known to lie in the radical, which is
+      the abelianized-cover hole;
+    - (ii) by a torsion corner followed by finite-index trace.
+  - The same node kills every cover of `St_20(L)` whose kernel `N` has `Out(N)`
+    residually finite, for example `Z^k`, `F_n` or surface groups.  Such a
+    cover contains `St_20(L)` by the universal coefficient theorem, because
+    `St_20(L)` is superperfect.
+  - Gate (ii) is now a route.
+    - `virtually-torsion-free-infinite-mf-radical-gives-seed` (established)
+      shows the seed is *equivalent* to a f.g. recursively presented,
+      virtually torsion-free `H` whose MF radical is not contained in its
+      finite radical `W(H)`.
+    - `property-t-free-seed-via-virtual-torsion-corner` reduces the seed to
+      one host-construction hole, `virtually-torsion-free-host-no-ce-augmentation-corner`.
+    - That route is independent of both the Leavitt collapse and the
+      abelianized-cover hole.
+    - A solution with `B = A(B_loop)` also closes
+      `nonhyperlinear-bloop-finite-augmentation-corner`.
+  - Hosts are constrained.
+    - `St_20(L)` is never usable, since it has no finite-index subgroups.
+    - Residually finite hosts are MF, so they are excluded.
+    - Candidates are finite extensions of non-residually-finite lattices in
+      products of trees.
+  - The seed stays OPEN.
