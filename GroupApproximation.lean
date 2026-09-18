@@ -5893,6 +5893,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Bridge
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtRing
 import GroupApproximation.Manuscript.NonMF.Full.GL06h2.ShortConjugate
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFBlockIndex
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Closure
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
