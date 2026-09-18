@@ -10,10 +10,13 @@ distinct_from:
   gl-n-q-fixes-a-vertex-in-free-splittings: that is the fixed-point lemma; this is its application to the BFFHZ constructions.
 artifacts:
   - research/artifacts/gq-gq-typeA-bffhz-transfer.md
+  - research/artifacts/gq-referee-c-bffhz-closures-cannot-create-gl-n-q.md
 ---
 
 **ESTABLISHED** through `bffhz-closures-cannot-create-gl-n-q-proof`.
-Lane-proved, not independently reviewed. No priority is claimed.
+Lane-proved. Independent re-derivation by referee C: PASS
+(`research/artifacts/gq-referee-c-bffhz-closures-cannot-create-gl-n-q.md`); its
+four wording fixes are applied below. No second referee. No priority is claimed.
 
 Let `M` be a finitely presented simple MIF group, `m >= 1`, and let `H` be one
 of `GL_n(Q)`, `SL_n(Q)` (`n >= 2`), `Aff(Q)`, `U_3(Q)`, `(Q,+)`. Write `H'` for
@@ -26,8 +29,10 @@ for `(Q,+)` take `H' := H`.
 2. **Mapping tori and ascending HNN extensions over `M * F_m`** (the
    construction of `mif-free-product-automorphism-ascending-hnn-is-pbh`). Let
    `β ∈ Aut(M * F_m)`, `J <= M * F_m` with `β(J) ⊆ J`. If `H <= J *_β`, then
-   `H'` lies in a conjugate of `M`. In particular `M` contains `SL_n(Q)` when
-   `H ∈ {GL_n(Q), SL_n(Q)}`, and `(Q,+)` in the other three cases.
+   `H'` lies in the kernel `L` of the exponent map `J *_β -> Z`, and the image
+   of `H'` under the embedding `L ↪ M * F_m` lies in a conjugate of `M`. In
+   particular `M` contains a copy of `SL_n(Q)` when `H ∈ {GL_n(Q), SL_n(Q)}`,
+   and of `(Q,+)` in the other three cases.
 3. **The BFFHZ actor itself.** Let `K_M` be the kernel of the natural map
    `Aut_M(M * F_m) -> Aut(F_m)` induced on `(M * F_m)/<<M>> ≅ F_m`. Every
    subgroup of `Aut_M(M * F_m)` isomorphic to `GL_n(Q)` or `SL_n(Q)` has its `SL_n(Q)`
@@ -48,15 +53,18 @@ groups. For GL_n(Q), the BFFHZ neighbourhood leaves three entry points:
   divisibility, as `Z[1/2] <= BS(1,2)` does;
 - outer extensions (`outer-extensions-of-fp-simple-mif-groups-satisfy-pbh`
   (S)). There, `GL_n(Q) <= Aut(S)` meets `Inn(S)` either in a subgroup that
-  contains `SL_n(Q)`, which is circular, or in scalars. In the scalar case
-  `PSL_n(Q)` must embed in a finitely presented subgroup of `Out(S)`, which is a
-  Problem 2.7-type input.
+  contains `SL_n(Q)`, which is circular, or in scalars. In the scalar case the
+  image of `SL_n(Q)` in `Out(S)`, which is `SL_n(Q)` or `PSL_n(Q)` (for even `n`
+  the scalar `-I` need not be inner), must lie in a finitely presented subgroup
+  of `Out(S)`. That is a Problem 2.7-type input.
 
 ## Attempts
 
 - **Open question left by item 3.** If `M` contains no `(Q,+)`, can `K_M`
-  contain one? For `m = 1`, `K_M = {x -> g x h}`, which is `≅ M × M^op` and so
-  contains none. For `m = 2`, the transvections of one letter by
+  contain one? For `m = 1`, IF `K_M` consists only of the maps `x -> g x h`
+  (`g, h ∈ M`), then `K_M` is a copy of `M × M` and contains `(Q,+)` only if `M`
+  does, since two nonzero subgroups of `Q` meet nontrivially. That description of
+  `K_M` is neither proved nor cited here. For `m = 2`, the transvections of one letter by
   `<<M>> ∩ <M, y>` give a free product of copies of `M`, and by
   `gl-n-q-fixes-a-vertex-in-free-splittings` that also contains none.
   - The general case is not proved. A likely route: relative train tracks

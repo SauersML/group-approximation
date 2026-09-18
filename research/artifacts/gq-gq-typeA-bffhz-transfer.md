@@ -47,8 +47,8 @@ Non-trivial part, landed as `bffhz-closures-cannot-create-gl-n-q` with the lemma
 
 ## 3. Where the method could still reach GL_n(Q)
 
-1. **The M-Torelli kernel `K_M`.** Open question: with `M` Q-free, can `K_M` contain `(Q,+)`? For `m = 1` it cannot
-   (`K_M ≅ M × M^op`). The single-letter transvection subgroups for `m = 2` are free products of copies of `M`, so
+1. **The M-Torelli kernel `K_M`.** Open question: with `M` Q-free, can `K_M` contain `(Q,+)`? For `m = 1` it cannot IF `K_M` is
+   `{x -> gxh}` (a copy of `M × M`); that description is not proved or cited. The single-letter transvection subgroups for `m = 2` are free products of copies of `M`, so
    they cannot either. The general case would need relative train tracks and polynomial growth.
 2. **HNN extensions over nontrivial edge groups** (`stable-permutation-hnn-of-type-a-actor-is-type-a` (b)). This is
    the only closure in the neighbourhood that can create divisibility, as `BS(1,2) ⊇ Z[1/2]` shows.
@@ -60,8 +60,8 @@ Non-trivial part, landed as `bffhz-closures-cannot-create-gl-n-q` with the lemma
 3. **Outer extensions** (`outer-extensions-of-fp-simple-mif-groups-satisfy-pbh` (S)).
    - `GL_n(Q) <= Aut(S)` meets `Inn(S)` in a normal subgroup of `GL_n(Q)`. That subgroup either contains `SL_n(Q)`,
      which is circular, or is scalar.
-   - In the scalar case `PSL_n(Q)` embeds in a finitely presented subgroup `P <= Out(S)`. So this route needs a
-     finitely presented `P ⊇ PSL_n(Q)` (Problem 2.7-type) that acts by outer automorphisms on a finitely presented
+   - In the scalar case the image of `SL_n(Q)` (that is, `SL_n(Q)` or `PSL_n(Q)`) lies in a finitely presented
+     subgroup `P <= Out(S)`. So this route needs a finitely presented `P` containing `SL_n(Q)` or `PSL_n(Q)` (Problem 2.7-type) that acts by outer automorphisms on a finitely presented
      simple MIF group.
    - One realization: `P` normalizes a type (A) actor `Γ <= Sym(X)`, since then it normalizes `SV_Γ`.
 

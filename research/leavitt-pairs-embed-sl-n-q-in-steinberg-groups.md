@@ -11,8 +11,25 @@ distinct_from:
   leavitt-unit-groups-over-every-field-are-simple-mod-scalars: that is about unit groups of L_k(1,2); this is about Steinberg groups of any ring containing a Leavitt pair and Q.
 ---
 
-**OPEN (proof claimed by lane `gq-steinberg-q`, under review by `gq-referee-a` and
-`gq-referee-b`).**
+**ESTABLISHED (2026-09-17)** through `leavitt-pairs-embed-sl-n-q-in-steinberg-groups-proof`.
+The proof (lane `gq-steinberg-q`) is Attempt 1 below. Three independent referee reports
+PASS it:
+- `research/artifacts/gq-referee-a-leavitt-pairs-embed-sl-n-q-in-steinberg-groups.md`
+  (proof gaps);
+- `research/artifacts/gq-referee-b-leavitt-pairs-embed-sl-n-q-in-steinberg-groups.md`
+  (citations and hypotheses);
+- `research/artifacts/gq-referee-c-leavitt-pairs-embed-sl-n-q-in-steinberg-groups.md`
+  (re-derivation).
+
+**Priority and credit** (`research/artifacts/gq-gq-lit-arxiv-priority.md` §7). No source
+kills the unstable image of `K_2(N,Q)` at an explicit finite rank for an arbitrary
+`S ⊇ Q`. Related work:
+- stable vanishing: Ara–Brustenga–Cortiñas, arXiv:0903.0056;
+- the doubling trick is the usual K-triviality argument for properly infinite rings;
+- Khanh, arXiv:2609.08428v1, Thm 5.4: `St_r(L_(F_2)(1,2)) -> GL_r` is an isomorphism for
+  `r >= 3`. His Lemma 5.2 is the room lemma (a) below.
+What is new here is the explicit rank bound for every ring containing `Q` and a Leavitt
+pair.
 
 **Statement.** Let `S` be a unital ring with a unital subring `Q ⊆ S` and elements
 `x_1, x_2, y_1, y_2` with `y_i x_j = δ_ij` and `x_1 y_1 + x_2 y_2 = 1`. Let `N >= 3`

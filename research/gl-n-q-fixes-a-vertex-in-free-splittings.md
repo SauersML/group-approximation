@@ -9,8 +9,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `gl-n-q-fixes-a-vertex-in-free-splittings-proof`.
-Lane-proved, not independently reviewed. The argument is elementary Bass--Serre
-theory; no priority is claimed.
+Lane-proved. Independent re-derivation by referee C: PASS
+(`research/artifacts/gq-referee-c-bffhz-closures-cannot-create-gl-n-q.md`). The
+argument is elementary Bass--Serre theory; no priority is claimed.
 
 ## Statement
 

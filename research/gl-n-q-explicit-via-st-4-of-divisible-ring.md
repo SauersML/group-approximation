@@ -22,7 +22,11 @@ Let `D` be the ring of `finitely-presented-divisible-ring-engine`, with 6 genera
    `g -> diag(g, det(g)^(-1), 1, ..., 1)` for `4m >= n+1`.
 3. **Explicit and natural.** `Γ` is the Steinberg group of a named ring given by an explicit
    finite presentation. It is one group for all `n`, and it is not produced by running an
-   embedding algorithm on a presentation of `GL_n(Q)`.
+   embedding algorithm on a presentation of `GL_n(Q)`. The mere existence of a finitely
+   presented group containing every `GL_n(Q)` is classical (Higman), and Mikaelian
+   (arXiv:2507.04347) announces explicit overgroups for each `n`. So the claim is only
+   that this construction is explicit, uniform in `n`, and plausibly natural; experts
+   decide naturality.
 
 Compared with `gl-n-q-explicit-via-steinberg-group-of-resolvent-ring`: that route uses
 `St_(6n+7)(R_L)`, a group that depends on `n`, and a citation-free swindle. This one uses

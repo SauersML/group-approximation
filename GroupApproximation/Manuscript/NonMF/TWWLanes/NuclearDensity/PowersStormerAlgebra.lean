@@ -55,7 +55,8 @@ theorem powersStormer_re_trace_gram_commutator_le {Yd D X : Matrix n n ℂ} (hY 
 /-- `re tr([Yd + iD, X] G) ≤ |tr([Yd, X] G)| + (|tr(D X G)| + |tr(X D G)|)`. -/
 theorem powersStormer_re_trace_commutator_mul_le (Yd D X G : Matrix n n ℂ) :
     (trace (((Yd + Complex.I • D) * X - X * (Yd + Complex.I • D)) * G)).re
-      ≤ ‖trace ((Yd * X - X * Yd) * G)‖ + (‖trace (D * X * G)‖ + ‖trace (X * D * G)‖) := by
+      ≤ ‖trace ((Yd * X - X * Yd) * G)‖
+        + (‖trace (D * X * G)‖ + ‖trace (X * D * G)‖) := by
   have e : trace (((Yd + Complex.I • D) * X - X * (Yd + Complex.I • D)) * G)
       = trace ((Yd * X - X * Yd) * G)
         + Complex.I * (trace (D * X * G) - trace (X * D * G)) := by
@@ -134,7 +135,7 @@ theorem powersStormer_diag_mul_diag {T h : Matrix n n ℂ} (hTh : T * T = h) :
 theorem powersStormer_trace_diag_mul_diag (P Q h : Matrix n n ℂ) :
     trace (fromBlocks P 0 0 Q * fromBlocks h 0 0 h) = trace (P * h) + trace (Q * h) := by
   rw [fromBlocks_multiply, powersStormer_trace_fromBlocks]
-  simp only [mul_zero, zero_mul, add_zero, zero_add]
+  simp only [mul_zero, add_zero, zero_add]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_trace_diag_mul_diag
 
