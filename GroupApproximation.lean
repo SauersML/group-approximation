@@ -5894,6 +5894,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMF.Full.GL06h2.ShortConjugate
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFBlockIndex
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Closure
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterFolner
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterState
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacter
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
