@@ -223,3 +223,40 @@ PVMs `P_(i,.)` and `P_(j,.)` in `P_z C[Delta] P_z` with
 `P_(i,a)P_(j,b)=0` on the losing pairs of `G_loop` between `i` and `j`, and
 with no common homogeneous grading.  The death step above only concerns
 supports, so it gives no obstruction to such a packet.
+
+### Kleene diagonal against fixed-host corner models (swarm-0917 d-ptf-bcs, inverter, 2026-09-17)
+
+*Approach tried.*  Derive `LNC3` from the value profile of `B_loop` alone:
+tracial, no Connes-embeddable trace, no matrix model, and a Mastel--Slofstra
+conversion of a synchronous game with `omega_co = 1` and `omega_q <= 1/2`.
+The hope was that the simple nonsofic host `R^x` is a universal no-CE host.
+
+*Where it dies* (`fixed-decidable-host-corner-models-miss-a-separated-bcs`,
+claimed; returned to OPEN at landing because its referee votes were lost, proof
+kept as an attempt artifact).
+
+- **Semidecidability.**  For a fixed host with decidable word problem, "B has
+  a corner model into `P_z C[Delta] P_z`" is `Sigma^0_1`, uniformly in `B`.
+  Enumerate finite supports, compute the multiplication table, and decide the
+  coefficient equations by Tarski.
+- **Diagonal.**  A Kleene fixed point `M_dag` computes its own Lin coRE game
+  and its Mastel--Slofstra BCS `B_dag`. It searches for a corner model of
+  `B_dag` in `R^x` and for finite-dimensional strategies of value `> 1/2`, and
+  halts on either.
+- **Death step.**  If `M_dag` halts, then `omega_co <= 1/2`. But a corner model
+  gives a tracial state, hence value 1, and the second search contradicts
+  `<= 1/2` directly. So `M_dag` does not halt, and `B_dag` has exactly the
+  value profile of `B_loop` with no corner model in `R^x`.
+
+So every value-only or compiler-uniform construction of `LNC3` is false.
+
+*What survives.*
+
+- `LNC3` is a `Sigma^0_1` sentence. If true, it has a finite certificate
+  (support plus algebraic coefficients); a no answer is `Pi^0_1`.
+- A proof has to use features of the specific loop source that `B_dag` lacks,
+  for example the syntactic form of Lin's Bell-separation compiler on a
+  trivial loop.
+- Combined with the monomial death step above, a successful diagram needs
+  inhomogeneous three-answer packets whose existence is not implied by any
+  game value.
