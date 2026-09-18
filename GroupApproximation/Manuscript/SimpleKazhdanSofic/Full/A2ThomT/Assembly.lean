@@ -24,10 +24,13 @@ namespace GroupApproximation.Full.A2ThomT
 Lemma 2.1; tex l.57–59, table row A2). -/
 theorem hasKazhdanPropertyT_thomG0 (p : ℕ) [Fact p.Prime] :
     HasKazhdanPropertyT.{0, 0} ↥(Full.A2Endpoint.thomG0 (LaurentPolynomial (ZMod p))) := by
-  obtain ⟨Q, ε, hQ⟩ := isRelativeKazhdanPair_relT.{0} p
+  have hrel : HasRelativePropertyT.{0, 0} (RelTPair p)
+      (SemidirectProductKazhdan.normalCopy (relTAction p)) := by
+    obtain ⟨Q, ε, hQ⟩ := isRelativeKazhdanPair_relT.{0} p
+    exact ⟨Q, ε, hQ⟩
   exact hasKazhdanPropertyT_of_relative_of_surjective
     (thomBlockHom (LaurentPolynomial (ZMod p))) thomBlockHom_surjective
-    (hasRelativePropertyT_thomG0_ker (relTAction p) (relTAction_apply p) ⟨Q, ε, hQ⟩)
+    (hasRelativePropertyT_thomG0_ker (relTAction p) (relTAction_apply p) hrel)
     (hasKazhdanPropertyT_sl3Laurent p)
 
 #audit_axioms hasKazhdanPropertyT_thomG0

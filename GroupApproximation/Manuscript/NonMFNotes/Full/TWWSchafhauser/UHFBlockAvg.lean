@@ -73,7 +73,8 @@ def uhfAvg (x : Matrix (Fin n.factorial) (Fin n.factorial) ℂ) :
   (uhfBlockDim m n : ℂ)⁻¹ • ∑ r, (uhfBlockIso h r)ᴴ * x * uhfBlockIso h r
 
 theorem uhfAvg_def (x : Matrix (Fin n.factorial) (Fin n.factorial) ℂ) :
-    uhfAvg h x = (uhfBlockDim m n : ℂ)⁻¹ • ∑ r, (uhfBlockIso h r)ᴴ * x * uhfBlockIso h r :=
+    uhfAvg h x =
+      (uhfBlockDim m n : ℂ)⁻¹ • ∑ r, (uhfBlockIso h r)ᴴ * x * uhfBlockIso h r :=
   rfl
 
 /-- The entries of the block average. -/
@@ -179,11 +180,82 @@ theorem norm_uhfAvg_apply_le (x : Matrix (Fin n.factorial) (Fin n.factorial) ℂ
   rw [uhfAvg_apply, norm_mul, norm_inv, Complex.norm_natCast]
   calc (uhfBlockDim m n : ℝ)⁻¹ * ‖∑ r, x (uhfBlockIndex h p r) (uhfBlockIndex h q r)‖
       ≤ (uhfBlockDim m n : ℝ)⁻¹ * ∑ _r : Fin (uhfBlockDim m n), ‖x‖ :=
-        mul_le_mul_of_nonneg_left ((norm_sum_le _ _).trans (Finset.sum_le_sum fun r _ ↦
+        mul_le_mul_of_nonneg_left ((norm_sum_le _ _).trans (Finset.sum_le_sum fun _ _ ↦
           OperatorNormCertificate.norm_entry_le_opNorm x _ _)) (inv_nonneg.2 hd.le)
     _ = ‖x‖ := by
         rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, ← mul_assoc,
           inv_mul_cancel₀ hd.ne', one_mul]
+
+/-! ## Complete positivity -/
+
+/-- `W_r⋆ (A⋆ B) W_r = (A W_r)⋆ (B W_r)`. -/
+theorem uhfBlockIso_conjTranspose_star_mul_mul (r : Fin (uhfBlockDim m n))
+    (A B : Matrix (Fin n.factorial) (Fin n.factorial) ℂ) :
+    (uhfBlockIso h r)ᴴ * (star A * B) * uhfBlockIso h r =
+      (A * uhfBlockIso h r)ᴴ * (B * uhfBlockIso h r) := by
+  rw [Matrix.conjTranspose_mul, Matrix.star_eq_conjTranspose]
+  simp only [Matrix.mul_assoc]
+
+/-- **Every form of the block average is a sum of squares**:
+`∑_{i,j} w̄_i Φ(c_i⋆ c_j) w_j = d⁻¹ ∑_r ⟨v_r, v_r⟩`
+with `v_r = ∑_i c_i W_r w_i`. -/
+theorem uhfAvg_form {k : ℕ} (c : Fin k → Matrix (Fin n.factorial) (Fin n.factorial) ℂ)
+    (w : Fin k → Fin m.factorial → ℂ) :
+    (∑ i : Fin k, ∑ j : Fin k, ∑ x : Fin m.factorial, ∑ y : Fin m.factorial,
+      (starRingEnd ℂ) (w i x) * uhfAvg h (star (c i) * c j) x y * w j y) =
+      (uhfBlockDim m n : ℂ)⁻¹ * ∑ r, star (∑ i, (c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ
+        (∑ i, (c i * uhfBlockIso h r) *ᵥ w i) := by
+  have hij : ∀ i j, (∑ x : Fin m.factorial, ∑ y : Fin m.factorial,
+      (starRingEnd ℂ) (w i x) * uhfAvg h (star (c i) * c j) x y * w j y) =
+      (uhfBlockDim m n : ℂ)⁻¹ * ∑ r, star ((c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ
+        ((c j * uhfBlockIso h r) *ᵥ w j) := fun i j ↦ by
+    rw [uhf_form_eq_dotProduct (w i) (uhfAvg h (star (c i) * c j)) (w j),
+      uhfAvg_def h (star (c i) * c j), Matrix.smul_mulVec, Matrix.sum_mulVec,
+      dotProduct_smul, dotProduct_sum, smul_eq_mul]
+    congr 1
+    refine Finset.sum_congr rfl fun r _ ↦ ?_
+    rw [uhfBlockIso_conjTranspose_star_mul_mul h r (c i) (c j)]
+    exact uhf_dotProduct_conjTranspose_mul (c i * uhfBlockIso h r) (c j * uhfBlockIso h r)
+      (w i) (w j)
+  calc (∑ i : Fin k, ∑ j : Fin k, ∑ x : Fin m.factorial, ∑ y : Fin m.factorial,
+      (starRingEnd ℂ) (w i x) * uhfAvg h (star (c i) * c j) x y * w j y)
+      = ∑ i : Fin k, ∑ j : Fin k, (uhfBlockDim m n : ℂ)⁻¹ *
+          ∑ r, star ((c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ
+            ((c j * uhfBlockIso h r) *ᵥ w j) :=
+        Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ hij i j
+    _ = (uhfBlockDim m n : ℂ)⁻¹ * ∑ i : Fin k, ∑ j : Fin k,
+          ∑ r, star ((c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ
+            ((c j * uhfBlockIso h r) *ᵥ w j) := by
+        rw [Finset.mul_sum]
+        refine Finset.sum_congr rfl fun i _ ↦ ?_
+        rw [Finset.mul_sum]
+    _ = (uhfBlockDim m n : ℂ)⁻¹ * ∑ r, ∑ i : Fin k, ∑ j : Fin k,
+          star ((c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ ((c j * uhfBlockIso h r) *ᵥ w j) := by
+        congr 1
+        exact Eq.trans (Finset.sum_congr rfl fun _ _ ↦ Finset.sum_comm) Finset.sum_comm
+    _ = (uhfBlockDim m n : ℂ)⁻¹ * ∑ r, star (∑ i, (c i * uhfBlockIso h r) *ᵥ w i) ⬝ᵥ
+          (∑ i, (c i * uhfBlockIso h r) *ᵥ w i) := by
+        congr 1
+        refine Finset.sum_congr rfl fun r _ ↦ ?_
+        rw [star_sum, sum_dotProduct]
+        refine Finset.sum_congr rfl fun i _ ↦ ?_
+        rw [dotProduct_sum]
+
+/-- **The block average is completely positive**, in the form sense. -/
+theorem uhfAvg_form_nonneg {k : ℕ} (c : Fin k → Matrix (Fin n.factorial) (Fin n.factorial) ℂ)
+    (w : Fin k → Fin m.factorial → ℂ) :
+    (∑ i : Fin k, ∑ j : Fin k, ∑ x : Fin m.factorial, ∑ y : Fin m.factorial,
+      (starRingEnd ℂ) (w i x) * uhfAvg h (star (c i) * c j) x y * w j y).im = 0 ∧
+    0 ≤ (∑ i : Fin k, ∑ j : Fin k, ∑ x : Fin m.factorial, ∑ y : Fin m.factorial,
+      (starRingEnd ℂ) (w i x) * uhfAvg h (star (c i) * c j) x y * w j y).re := by
+  have hd : (uhfBlockDim m n : ℂ)⁻¹ = (((uhfBlockDim m n : ℝ))⁻¹ : ℝ) := by
+    rw [Complex.ofReal_inv, Complex.ofReal_natCast]
+  rw [uhfAvg_form h c w, hd, Complex.im_ofReal_mul, Complex.re_ofReal_mul]
+  refine ⟨mul_eq_zero_of_right _ ?_, mul_nonneg (inv_nonneg.2 (Nat.cast_nonneg _)) ?_⟩
+  · rw [Complex.im_sum]
+    exact Finset.sum_eq_zero fun _ _ ↦ (uhf_star_dotProduct_self _).1
+  · rw [Complex.re_sum]
+    exact Finset.sum_nonneg fun _ _ ↦ (uhf_star_dotProduct_self _).2
 
 end
 

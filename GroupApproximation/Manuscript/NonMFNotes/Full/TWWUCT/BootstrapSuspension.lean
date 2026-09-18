@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureBasic
 import Mathlib.Analysis.CStarAlgebra.ContinuousMap
+import Mathlib.Topology.ContinuousMap.SecondCountableSpace
 
 /-!
 # The suspension `C₀(ℝ, A)` of a separable non-unital C⋆-algebra

@@ -107,7 +107,11 @@ theorem BusbyCycle.exists_compact_opNorm_sub_sub_le (x : BusbyCycle A J) (b b' :
     Adjointable.IsCompactOp.sub hK (x.compactEq_lift_sub b b'), ?_⟩
   obtain ⟨C, hC, hCb⟩ := x.bounded (b - b')
   obtain ⟨D, hD, hDb⟩ := hK.isBounded
-  refine le_trans (stdOp_opNorm_le_of_toFun_eq (T := Adjointable.sub (x.lift (b - b')) K)
+  refine le_trans (stdOp_opNorm_le_of_toFun_eq
+    (T := Adjointable.sub (x.lift (b - b')) K)
+    (T' := Adjointable.sub (Adjointable.sub (x.lift b) (x.lift b'))
+      (Adjointable.sub K
+        (Adjointable.sub (x.lift (b - b')) (Adjointable.sub (x.lift b) (x.lift b')))))
     (fun v => ?_) ⟨C + D, add_nonneg hC hD, hCb.sub hDb⟩) h
   show (x.lift (b - b')).toFun v - K.toFun v =
     ((x.lift b).toFun v - (x.lift b').toFun v) -

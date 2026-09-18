@@ -148,7 +148,7 @@ def NearestCellPocketStatement : Prop :=
     (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W),
     Delta.LeastArea → (∀ d, (symmetricLabelAlphabet D).IsLetter (Delta.label d)) →
       (∀ word ∈ W, 1 < word.length) → 2 ≤ Delta.rCellCount →
-        Nonempty (NearestCellPocket.{u, w, v} D eps Delta)
+        Nonempty (NearestCellPocket D eps Delta)
 
 section Assembly
 
@@ -159,7 +159,7 @@ namespace NearestCellPocket
 
 /-- The four parts are `(λ, c)`-quasi-geodesic: the geodesic ones for `λ ≤ 1`, `c ≥ 0`, the
 cell arc under `C(ε, μ, λ, c, ρ)`. -/
-theorem quasi (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
+theorem quasi (N : NearestCellPocket D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
     (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda1 : lambda ≤ 1)
     (hc : 0 ≤ c) :
     ∀ part ∈ [N.outerPart, N.slitIn, invDarts N.copy N.arc.darts, N.slitOut],
@@ -176,14 +176,14 @@ theorem quasi (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lamb
 
 /-- **The four sections `g s₁ t s₂`** of the pocket (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121). -/
-noncomputable def sections (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
+noncomputable def sections (N : NearestCellPocket D eps Delta) {rho : ℕ}
     {mu lambda c : ℝ} (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hlambda1 : lambda ≤ 1) (hc : 0 ≤ c) :
     SectionCuts D lambda c N.pocket.diagram.boundaryWord :=
   N.pocket.fourSectionCuts D lambda c N.outerPart N.slitIn (invDarts N.copy N.arc.darts)
     N.slitOut N.decomposition (N.quasi hcondition hlambda1 hc)
 
-theorem sections_count (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
+theorem sections_count (N : NearestCellPocket D eps Delta) {rho : ℕ}
     {mu lambda c : ℝ} (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hlambda1 : lambda ≤ 1) (hc : 0 ≤ c) :
     (N.sections hcondition hlambda1 hc).count = 4 :=
@@ -191,7 +191,7 @@ theorem sections_count (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
     N.slitOut N.decomposition (N.quasi hcondition hlambda1 hc)
 
 /-- The cut values of the four sections are the cumulative lengths of the four parts. -/
-theorem sections_cut (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
+theorem sections_cut (N : NearestCellPocket D eps Delta) {rho : ℕ}
     {mu lambda c : ℝ} (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hlambda1 : lambda ≤ 1) (hc : 0 ≤ c)
     (k : Fin ((N.sections hcondition hlambda1 hc).count + 1)) :
@@ -200,13 +200,13 @@ theorem sections_cut (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
   partsCut_map_label N.copy.label
     [N.outerPart, N.slitIn, invDarts N.copy N.arc.darts, N.slitOut] k
 
-theorem invDarts_arc_length (N : NearestCellPocket.{u, w, v} D eps Delta) :
+theorem invDarts_arc_length (N : NearestCellPocket D eps Delta) :
     (invDarts N.copy N.arc.darts).length = N.arc.length := by
   rw [invDarts, List.length_map, List.length_reverse, CyclicArc.darts_length]
 
 /-- **The pocket cut is least area, with fewer cells** (Osin, proof of Lemma 9.7(b);
 `thm:hull`, non_mf_groups_exist.tex ~2121): it has the inner cell and misses `Π`. -/
-theorem leastAreaCut (N : NearestCellPocket.{u, w, v} D eps Delta) (hlea : Delta.LeastArea) :
+theorem leastAreaCut (N : NearestCellPocket D eps Delta) (hlea : Delta.LeastArea) :
     N.pocket.diagram.LeastArea ∧ 0 < N.pocket.diagram.rCellCount ∧
       N.pocket.diagram.rCellCount < Delta.rCellCount := by
   obtain ⟨hleast, hpos, hlt⟩ := N.pocket.diagram_leastAreaCut (N.equiv.leastArea hlea)
@@ -216,7 +216,7 @@ theorem leastAreaCut (N : NearestCellPocket.{u, w, v} D eps Delta) (hlea : Delta
 
 /-- **Section `0` is short** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121): it is the collar `g`, no longer than `∂Δ`. -/
-theorem side_short (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
+theorem side_short (N : NearestCellPocket D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
     (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda1 : lambda ≤ 1)
     (hc : 0 ≤ c) (hboundary : Delta.boundaryWord.length ≤ eps + eps) :
     ∀ j : Fin (N.sections hcondition hlambda1 hc).count, (j : ℕ) = 0 →
@@ -230,7 +230,7 @@ theorem side_short (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu
 
 /-- **Sections `1` and `3` are near** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121): they are the slit sides, near windows by minimality. -/
-theorem near (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
+theorem near (N : NearestCellPocket D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
     (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda1 : lambda ≤ 1)
     (hc : 0 ≤ c) :
     ∀ j : Fin (N.sections hcondition hlambda1 hc).count, ((j : ℕ) = 1 ∨ (j : ℕ) = 3) →
@@ -255,7 +255,7 @@ theorem near (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lambd
 non_mf_groups_exist.tex ~2121): a region to the arc of `Π` glues back, by
 `pocketCellTransport`, into a region between two distinct cells of an O-equivalent copy of
 `Δ`, with the same degree. -/
-theorem transport (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
+theorem transport (N : NearestCellPocket D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
     (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda1 : lambda ≤ 1)
     (hc : 0 ≤ c) :
     ∀ j : Fin (N.sections hcondition hlambda1 hc).count, (j : ℕ) = 2 →
@@ -279,7 +279,7 @@ theorem transport (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ} {mu 
 
 /-- **The nearest-cell cut from the slit pocket** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121). -/
-noncomputable def toNearestCellCut (N : NearestCellPocket.{u, w, v} D eps Delta) {rho : ℕ}
+noncomputable def toNearestCellCut (N : NearestCellPocket D eps Delta) {rho : ℕ}
     {mu lambda c : ℝ} (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hlambda1 : lambda ≤ 1) (hc : 0 ≤ c) (hlea : Delta.LeastArea)
     (hboundary : Delta.boundaryWord.length ≤ eps + eps) :

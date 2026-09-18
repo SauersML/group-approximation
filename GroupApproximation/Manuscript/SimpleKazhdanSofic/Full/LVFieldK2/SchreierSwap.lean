@@ -87,7 +87,7 @@ theorem step_case3b (hN : 3 ≤ N) {p q : Fin N} {A : Finset (Fin N)} (hp : p �
   have hXX : X q j h * X j q hjq = w q j h * X q j h := by
     rw [w, mul_assoc (X q j h * X j q h.symm) (X q j h) (X q j h), X_mul_self, mul_one]
   have hsv : act (X q j h) v = act (w q j h * y₀ * w q j h) (e j) := by
-    rw [← hyv, hyy, ← act_mul, ← mul_assoc, hXX]
+    rw [← hyv, hyy, ← act_mul, ← mul_assoc (X q j h) (X j q hjq) y₀, hXX]
     simp only [act_mul]
     rw [act_w_e q j h, act_X_eq_self q j h hu]
   have hsvj : act (X q j h) v j = 1 := by
@@ -119,7 +119,8 @@ theorem step_case3b (hN : 3 ≤ N) {p q : Fin N} {A : Finset (Fin N)} (hp : p �
       _ = (wq p j)⁻¹ * w q j h * c * (w q j h * w q j h) * X q j h * wq p q := by
           rw [hce, w_mul_self, w_inv]
           group
-      _ = _ := by group
+      _ = ((wq p j)⁻¹ * (w q j h * c * w q j h) * wq p j) *
+            ((wq p j)⁻¹ * w q j h * X q j h * wq p q) := by group
   rw [he]
   exact (Hp p A).mul_mem (conj_H hN hp hj _ hWc) (swap_ratio_mem hN hp hq hj h)
 

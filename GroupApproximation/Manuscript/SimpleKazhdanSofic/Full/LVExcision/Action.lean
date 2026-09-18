@@ -73,7 +73,8 @@ theorem xphi_zero (hIA : ∀ a ∈ I, a ∈ A) (k l : Fin N) (hkl : k ≠ l) {E 
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii; Suslin–Wodzicki 1992, Thm A.) -/
 theorem xphi_neg (hIA : ∀ a ∈ I, a ∈ A) (k l : Fin N) (hkl : k ≠ l) {E : R} (hE : E ∈ I)
     (r : R) : xphi hIA k l hkl hE (-r) = (xphi hIA k l hkl hE r)⁻¹ := by
-  have h : (⟨phi E (-r), hIA _ (phi_mem hE (-r))⟩ : A) = -⟨phi E r, hIA _ (phi_mem hE r)⟩ :=
+  have h : (⟨phi E (-r), hIA _ (phi_mem hE (-r))⟩ : A) =
+      -(⟨phi E r, hIA _ (phi_mem hE r)⟩ : A) :=
     Subtype.ext (phi_neg E r)
   unfold xphi
   rw [h, x_neg]

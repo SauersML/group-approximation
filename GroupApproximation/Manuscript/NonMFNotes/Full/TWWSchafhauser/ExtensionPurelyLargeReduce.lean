@@ -112,7 +112,7 @@ theorem exists_separable_purelyLarge_range {P : StarSubalgebra ℂ B → Prop}
   refine ⟨D, ?_, hD, hPD, hPL⟩
   rintro _ ⟨x, rfl⟩
   have hx : σ x ∈ closure (σ '' c) :=
-    map_mem_closure hσ (hdense x) fun y hy => Set.mem_image_of_mem σ hy
+    map_mem_closure hσ (hdense x) (Set.mapsTo_image σ c)
   exact closure_minimal hcD hD.1 hx
 
 /-- The trivial property is separably inheritable. -/

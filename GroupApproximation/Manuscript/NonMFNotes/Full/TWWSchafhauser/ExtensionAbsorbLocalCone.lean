@@ -133,9 +133,9 @@ theorem isLocallyCompressible_zero {ℓ : S → StdBdd J} :
     IsLocallyCompressible ℓ (fun _ => (0 : StdBdd J)) := by
   intro G C _ ε hε
   refine ⟨0, isStdCompact_zero, fun s _ => ?_, fun c _ => ?_⟩
-  · rw [mul_zero, sub_zero, norm_zero]
+  · simp only [mul_zero, sub_zero, norm_zero]
     exact hε.le
-  · rw [mul_zero, norm_zero]
+  · simp only [mul_zero, norm_zero]
     exact hε.le
 
 /-- **Sums of compressible maps are compressible** (Elliott--Kucerovsky 2001, proof of Lemma 7):
@@ -289,7 +289,7 @@ theorem IsLocallyCompressible.of_compact_perturb [One S] {ℓ ℓ' φ : S → St
   classical
   intro G C hC ε hε
   have hA : 0 < ‖φ 1‖ + 3 := by linarith [norm_nonneg (φ 1)]
-  set δ : ℝ := min 1 (ε / (‖φ 1‖ + 3)) with hδdef
+  set δ : ℝ := min 1 (ε / (‖φ 1‖ + 3))
   have hδ0 : 0 < δ := lt_min one_pos (div_pos hε hA)
   have hδ1 : δ ≤ 1 := min_le_left _ _
   have hδε : δ * (‖φ 1‖ + 3) ≤ ε :=

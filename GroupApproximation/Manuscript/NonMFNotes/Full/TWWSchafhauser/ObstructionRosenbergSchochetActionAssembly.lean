@@ -162,8 +162,8 @@ theorem pullClass_mk (f : F.obj A →⋆ₙₐ[ℂ] F.obj B) :
 theorem exists_pullClass_eq (x : TWWKK.HomotopyClass (F.obj A) (F.obj B)) :
     ∃ f : F.obj A →⋆ₙₐ[ℂ] F.obj B,
       x = TWWKK.HomotopyClass.mk f ∧ D.pullClass x = ExtSS.comap f := by
-  obtain ⟨f, rfl⟩ := Quot.exists_rep x
-  exact ⟨f, rfl, rfl⟩
+  induction x using TWWKK.HomotopyClass.ind with
+  | mk f => exact ⟨f, rfl, rfl⟩
 
 theorem pullClass_comp (y : TWWKK.HomotopyClass (F.obj B) (F.obj C))
     (x : TWWKK.HomotopyClass (F.obj A) (F.obj B)) :

@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.Full.GL05c.Diagram
+import Mathlib.Tactic.IntervalCases
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -42,7 +43,7 @@ theorem isBoundaryDart_iff (d : Fin 16) :
     Surgery.MapCollapse.IsBoundaryDart diagram.toCombMap pocketFaces d ↔
       d ∈ ([8, 12, 10, 0, 2, 6, 4] : List diagram.toCombMap.Dart) := by
   change M.faceOf d ∈ pocketFaces ∧ M.faceOf (M.alpha d) ∉ pocketFaces ↔ _
-  rw [mem_pocketFaces, mem_pocketFaces]
+  rw [mem_pocketFaces d, mem_pocketFaces (M.alpha d)]
   fin_cases d <;> decide
 
 /-- The boundary cycle `t_1⁻¹ s_2 t_2 = [8,12,10] [0] [2,6,4]`. -/
@@ -61,11 +62,9 @@ noncomputable def srcArc : Embedded.CyclicArc (Embedded.cellDarts diagram sIndex
   length := 3
   length_le := by rw [cellDarts_sIndex]; decide
 
-theorem srcArc_darts : srcArc.darts = [11, 13, 9] := by
-  change ((Embedded.cellDarts diagram sIndex).drop 2 ++
-    (Embedded.cellDarts diagram sIndex).take 2).take 3 = _
-  rw [cellDarts_sIndex]
-  rfl
+theorem srcArc_darts : srcArc.darts = [11, 13, 9] :=
+  (congrArg (fun l : List diagram.toCombMap.Dart => (l.drop 2 ++ l.take 2).take 3)
+    cellDarts_sIndex).trans rfl
 
 /-- The arc `t_2 = [2,6,4]` of the exterior boundary. -/
 noncomputable def tgtArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
@@ -73,10 +72,9 @@ noncomputable def tgtArc : Embedded.CyclicArc (Embedded.outerDarts diagram) wher
   length := 3
   length_le := by rw [outerDarts_eq]; decide
 
-theorem tgtArc_darts : tgtArc.darts = [2, 6, 4] := by
-  change ((Embedded.outerDarts diagram).drop 1 ++ (Embedded.outerDarts diagram).take 1).take 3 = _
-  rw [outerDarts_eq]
-  rfl
+theorem tgtArc_darts : tgtArc.darts = [2, 6, 4] :=
+  (congrArg (fun l : List diagram.toCombMap.Dart => (l.drop 1 ++ l.take 1).take 3)
+    outerDarts_eq).trans rfl
 
 /-! ## The pocket -/
 
@@ -189,3 +187,111 @@ theorem not_rotationBetween_of_first {N : CombMap} {x y z : N.Dart} {a₀ : ℕ}
   rcases Nat.lt_or_ge a a₀ with hlt | hge
   · exact hz a ha hlt hza
   · exact hb a₀ ha₀ hge h
+
+/-! ## The three crossing passages at `w` -/
+
+/-- Rotating from `α 10 = 11` meets `α 0 = 1` before `0`. -/
+theorem rb_10_pos :
+    RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 10) 0 (diagram.toCombMap.alpha 0) :=
+  ⟨3, by decide, by decide, fun b hb0 hba => by interval_cases b <;> decide⟩
+
+/-- Rotating from `α 10 = 11` meets `0` before `2`. -/
+theorem rb_10_neg :
+    ¬ RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 10) 0 2 :=
+  not_rotationBetween_of_first (a₀ := 4) (by decide) (by decide)
+    (fun b hb0 hb => by interval_cases b <;> decide)
+
+/-- Rotating from `α 0 = 1` meets `α 4 = 5` before `2`. -/
+theorem rb_0_pos :
+    RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 0) 2 (diagram.toCombMap.alpha 4) :=
+  ⟨2, by decide, by decide, fun b hb0 hba => by interval_cases b <;> decide⟩
+
+/-- Rotating from `α 0 = 1` meets `2` before `8`. -/
+theorem rb_0_neg :
+    ¬ RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 0) 2 8 :=
+  not_rotationBetween_of_first (a₀ := 3) (by decide) (by decide)
+    (fun b hb0 hb => by interval_cases b <;> decide)
+
+/-- Rotating from `α 4 = 5` meets `α 10 = 11` before `8`. -/
+theorem rb_4_pos :
+    RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 4) 8 (diagram.toCombMap.alpha 10) :=
+  ⟨3, by decide, by decide, fun b hb0 hba => by interval_cases b <;> decide⟩
+
+/-- Rotating from `α 4 = 5` meets `8` before `0`. -/
+theorem rb_4_neg :
+    ¬ RotationBetween diagram.toCombMap (diagram.toCombMap.alpha 4) 8 0 :=
+  not_rotationBetween_of_first (a₀ := 4) (by decide) (by decide)
+    (fun b hb0 hb => by interval_cases b <;> decide)
+
+/-! ## The hypotheses of `GL05c.ExtremalEndBlockStatement` -/
+
+/-- **The boundary cycle is a closed walk.** -/
+theorem closedWalk : pocketK.ClosedWalk := by
+  refine ⟨?_, vertexOf_eq (by decide)⟩
+  show List.IsChain _ ([8, 12, 10, 0, 2, 6, 4] : List diagram.toCombMap.Dart)
+  exact .cons_cons (vertexOf_eq (by decide)) (.cons_cons (vertexOf_eq (by decide))
+    (.cons_cons (vertexOf_eq (by decide)) (.cons_cons (vertexOf_eq (by decide))
+      (.cons_cons (vertexOf_eq (by decide)) (.cons_cons (vertexOf_eq (by decide))
+        (.singleton _))))))
+
+/-- **`t_1` is a proper arc of `S`.** -/
+theorem srcArc_length :
+    pocketK.sourceArc.length < (Embedded.cellDarts diagram pocketK.source).length := by
+  change 3 < (Embedded.cellDarts diagram sIndex).length
+  rw [cellDarts_sIndex]
+  decide
+
+/-- **`t_2` is a proper arc of the exterior boundary.** -/
+theorem tgtArc_length : pocketK.targetArc.length < (Embedded.outerDarts diagram).length := by
+  change 3 < (Embedded.outerDarts diagram).length
+  rw [outerDarts_eq]
+  decide
+
+/-- **The pocket is not in first-turn order**: from `α 0 = 1`, the first dart of the walk met at
+`w` is `5 = α 4`, not `α 10 = 11`. -/
+theorem not_firstTurns : ¬ GL05c.FirstTurns pocketK := by
+  rintro ⟨hchain, -⟩
+  change List.IsChain _ ([8, 12, 10, 0, 2, 6, 4] : List diagram.toCombMap.Dart) at hchain
+  obtain ⟨k, hk0, hk, havoid⟩ := (List.isChain_cons_cons.mp
+    (List.isChain_cons_cons.mp (List.isChain_cons_cons.mp hchain).2).2).1
+  rcases Nat.lt_or_ge 1 k with h1 | h1
+  · exact havoid 1 Nat.one_pos h1 (Or.inl (by decide))
+  · obtain rfl : k = 1 := Nat.le_antisymm h1 hk0
+    exact absurd hk (by decide)
+
+/-- **The face set is pinched**: the boundary darts `8` and `0` both start at `w`. -/
+theorem not_unpinched : ¬ GL05c.Unpinched diagram.toCombMap pocketK.faces := by
+  intro h
+  have h80 := h 8 0 ((isBoundaryDart_iff _).mpr (by decide))
+    ((isBoundaryDart_iff _).mpr (by decide)) (vertexOf_eq (by decide))
+  exact absurd h80 (by decide)
+
+/-- **Every non-first turn is crossed.**  The turns at `8`, `12`, `2` and `6` are one rotation
+step.  The passages at `w` after `10`, `0` and `4` cross pairwise. -/
+theorem allNonFirstTurnsCrossed : GL05c.AllNonFirstTurnsCrossed pocketK := by
+  intro d₀ hd₀ hnf
+  rcases mem_cycle_cases d₀ hd₀ with rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact (hnf (firstTurn_one (by rw [next_8]; decide))).elim
+  · exact (hnf (firstTurn_one (by rw [next_12]; decide))).elim
+  · refine ⟨0, by decide, by decide,
+      (CombMap.vertexOf_eq_iff _ _ _).mp (vertexOf_eq (by decide)), ?_⟩
+    rw [next_10, next_0]
+    exact not_iff_of_pos_neg rb_10_pos rb_10_neg
+  · refine ⟨4, by decide, by decide,
+      (CombMap.vertexOf_eq_iff _ _ _).mp (vertexOf_eq (by decide)), ?_⟩
+    rw [next_0, next_4]
+    exact not_iff_of_pos_neg rb_0_pos rb_0_neg
+  · exact (hnf (firstTurn_one (by rw [next_2]; decide))).elim
+  · exact (hnf (firstTurn_one (by rw [next_6]; decide))).elim
+  · refine ⟨10, by decide, by decide,
+      (CombMap.vertexOf_eq_iff _ _ _).mp (vertexOf_eq (by decide)), ?_⟩
+    rw [next_4, next_10]
+    exact not_iff_of_pos_neg rb_4_pos rb_4_neg
+
+end GroupApproximation.Full.GL05c.Model
+
+#audit_axioms GroupApproximation.Full.GL05c.Model.pocketK
+#audit_axioms GroupApproximation.Full.GL05c.Model.closedWalk
+#audit_axioms GroupApproximation.Full.GL05c.Model.not_firstTurns
+#audit_axioms GroupApproximation.Full.GL05c.Model.not_unpinched
+#audit_axioms GroupApproximation.Full.GL05c.Model.allNonFirstTurnsCrossed

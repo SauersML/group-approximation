@@ -67,6 +67,11 @@ theorem consBoolEquiv_apply (j : ℕ) (b : Bool) (f : Fin j → Bool) :
     consBoolEquiv j (b, f) = Fin.cons b f :=
   rfl
 
+theorem ofFn_cons_bool (j : ℕ) (b : Bool) (f : Fin j → Bool) :
+    List.ofFn (Fin.cons b f : Fin (j + 1) → Bool) = b :: List.ofFn f := by
+  rw [List.ofFn_succ, Fin.cons_zero]
+  simp only [Fin.cons_succ]
+
 /-- If `G (b :: μ) = x_b G(μ) y_b`, then `∑_{|μ|=j+1} G μ = ∑_b x_b (∑_{|μ|=j} G μ) y_b`. -/
 theorem wsum_succ (G : List Bool → CohnTwoF2)
     (hG : ∀ (b : Bool) (μ : List Bool), G (b :: μ) = cx b * G μ * cy b) (j : ℕ) :
@@ -79,7 +84,7 @@ theorem wsum_succ (G : List Bool → CohnTwoF2)
     intro b
     rw [wsum, Finset.mul_sum, Finset.sum_mul]
     refine Finset.sum_congr rfl fun f _ => ?_
-    rw [consBoolEquiv_apply, List.ofFn_cons, hG]
+    rw [consBoolEquiv_apply, ofFn_cons_bool, hG]
   rw [h1, Fintype.sum_prod_type, Fintype.sum_bool, h2, h2]
 
 /-! ### The diagonal and the decomposition of `1` -/
@@ -114,7 +119,7 @@ theorem total_eq_one : ∀ n : ℕ, ∑ j : Fin n, wsum j.val diagU + wsum n dia
       · exact Finset.sum_congr rfl fun j _ => wsum_succ diagU diagU_cons j.val
     rw [hsplit, wsum_succ diagV diagV_cons n, Finset.sum_add_distrib, add_assoc cohnP,
       add_add_add_comm, key true, key false, cohnP_def, sub_sub,
-      add_comm (cx true * cy true), sub_add_cancel]
+      add_comm (cx true * cy true) (cx false * cy false), sub_add_cancel]
 
 /-! ### The matrix units of the `n`-th stage -/
 
