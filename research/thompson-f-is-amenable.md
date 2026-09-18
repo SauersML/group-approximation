@@ -324,3 +324,20 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
   - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
     surviving cubical route to exactness, and it is not a route to amenability.
+- **Germ-groupoid recurrence criterion, all hosts (swarm-0917-w13-w13-f-last1, 2026-09-18, reframing).**
+  - *Established (conditional on the unrefereed abelian-factor theorem):*
+    `thompson-f-recurrent-germ-criteria-return-f-as-an-input`.
+    - Let `G ⊇ F_0 ≅ F` be a finitely generated group of homeomorphisms of any space `X`, and `H` any groupoid of
+      germs, with every singular orbit recurrent (JNdlS condition (3)).
+    - Then `F_0′` fixes every singular orbit pointwise, because recurrent `F`-sets factor through `F/F′`.
+    - By simplicity of `F′`, either some germ group `𝒢_v` contains `F_0′ ⊇ F`, or `F_0′ ≤ G ∩ [[H]]`.
+  - *Class killed:* JNdlS Theorem 3.1, and hence Theorem 1.1, applied to any host containing `F`. This is the
+    "germ-groupoid variants" gap left by the recurrence kill above.
+  - *Invariant:* "contains a copy of `F`".
+  - *Dies at:* input (1) (`[[H]]` amenable) or input (4) (germ groups amenable). Each is at least as hard as
+    this root.
+  - *Corollary:* if neither `G ∩ [[H]]` nor any germ group contains `F`, then some singular orbit is
+    transient.
+  - *Calibration:* `F ↷ [0,1]` with `H` the locally affine germs satisfies (1), (2) and (4), and (3) fails as
+    predicted.
+  - *Survivor:* extensive amenability without recurrence (JMMS), which for `F ↷ D` is this root.
