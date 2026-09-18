@@ -128,3 +128,72 @@ theorem lake_orbit (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     refine ⟨h1, ?_⟩
     rw [← h1, pow_succ', Perm.mul_apply]
     exact alpha_mem_facePerm hw hM _ hXa
+
+/-- The inner reclosing is planar when it keeps the Euler characteristic. -/
+theorem ordInner_planar (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (hinner : (reclosedMap M (sideFaces M w) (hw.innerCycle hM)).eulerCharacteristic =
+      M.eulerCharacteristic) :
+    (ordInner hw hM).IsPlanar :=
+  ⟨reclosedMap_connected M _ _ hM.1, hinner.trans hM.2⟩
+
+/-- Every walk dart of the ring map is joined to the first one. -/
+theorem eqvGen_wd (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar) (h0 : 0 < w.length)
+    (t : ℕ) (ht : t < w.length) :
+    Relation.EqvGen (ordRing hw hM).Adjacent (wd hw hM 0 h0) (wd hw hM t ht) := by
+  have hp : ((ordRing hw hM).facePerm ^ t) (wd hw hM 0 h0) = wd hw hM t ht :=
+    (ordRing_facePerm_pow_wd hw hM 0 t h0 (by omega)).trans
+      (ordRing_ext hw hM (getElem_idx_congr w (Nat.zero_add t) (by omega) ht))
+  have hs : (ordRing hw hM).facePerm.SameCycle (wd hw hM 0 h0)
+      (((ordRing hw hM).facePerm ^ t) (wd hw hM 0 h0)) :=
+    Perm.sameCycle_pow_right.mpr (Perm.SameCycle.refl _ _)
+  rw [hp] at hs
+  exact CombMap.eqvGen_of_sameCycle_facePerm _ hs
+
+/-- The ring map is connected. -/
+theorem ordRing_connected (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar) :
+    (ordRing hw hM).IsConnected := by
+  have h0 : 0 < w.length := List.length_pos_iff.mpr hw.ne_nil
+  have hW : ∀ d : (ordRing hw hM).Dart, d.1.1 ∈ w →
+      Relation.EqvGen (ordRing hw hM).Adjacent (wd hw hM 0 h0) d := by
+    intro d hd
+    obtain ⟨t, ht, hteq⟩ := List.getElem_of_mem hd
+    have hdt : wd hw hM t ht = d := ordRing_ext hw hM hteq
+    subst hdt
+    exact eqvGen_wd hw hM h0 t ht
+  have hall : ∀ d : (ordRing hw hM).Dart,
+      Relation.EqvGen (ordRing hw hM).Adjacent (wd hw hM 0 h0) d := by
+    intro d
+    have hk : d.1.1 ∈ w ∨ M.alpha d.1.1 ∈ w := d.2
+    rcases hk with hd | hd
+    · exact hW d hd
+    · have hA := hW ((ordRing hw hM).alpha d) hd
+      have hadj : (ordRing hw hM).Adjacent ((ordRing hw hM).alpha d) d :=
+        Or.inl ((ordRing hw hM).alpha_involutive d)
+      exact Relation.EqvGen.trans _ _ _ hA (Relation.EqvGen.rel _ _ hadj)
+  exact fun d e => Relation.EqvGen.trans _ _ _ (Relation.EqvGen.symm _ _ (hall d)) (hall e)
+
+/-- **The ring map is planar** when the inner reclosing keeps the Euler characteristic.
+(Osin, proof of Lemma 9.7(b); `thm:hull`.) -/
+theorem ordRing_planar (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (hinner : (reclosedMap M (sideFaces M w) (hw.innerCycle hM)).eulerCharacteristic =
+      M.eulerCharacteristic) :
+    (ordRing hw hM).IsPlanar :=
+  (CombMap.PredicateRestriction.isRestriction (ordInner hw hM) (fun d => walkKeep M w d.1)
+    (ordInner_keep_alpha hw hM)).planar (ordInner_planar hw hM hinner)
+    (ordRing_connected hw hM) (wd hw hM 0 (List.length_pos_iff.mpr hw.ne_nil))
+
+end GroupApproximation.Full.GL03BPinchOrder
+
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.getElem_idx_congr
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.wd_succ
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.wd_last
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ordRing_facePerm_pow_wd
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.exists_wd_facePerm_eq
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.alpha_mem_facePerm
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.lakeStart
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.lakeStart_val
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.lake_orbit
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ordInner_planar
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.eqvGen_wd
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ordRing_connected
+#audit_axioms GroupApproximation.Full.GL03BPinchOrder.ordRing_planar
