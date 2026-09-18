@@ -100,3 +100,20 @@ design the dangerous pairs are cross-layer.
 - **The classifying invariant for G2 designs** is the coarse position of each layer's modification
   sets: they must be pairwise inseparable. Over `Z^d`, that means no antipodal half-space freedoms
   anywhere.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS for items 1–3; the audit is design analysis, as labelled
+
+- **Item 1.**
+  - `x = (y, λ·z)`, `x_1 = (y', λ·z)` and `x_2 = (y, λ·z')` lie in the fibre product.
+  - With `(λ·x)(h) = x(λ^{-1}h)`, `Δ(λz, λz') = λΔ(z,z')`.
+  - Separability gives distance `> 2D`, and the far-modification lemma applies. I re-read that
+    lemma: it builds the combined point from locality alone, so it needs neither finite
+    difference sets nor minimality.
+- **Item 2.** Correct. The converse is a statement about open half-spaces, not about the
+  difference sets themselves.
+- **Item 3.** Correct, as the far-modification lemma itself.
+- **Recovery of the Ledrappier-mirror kill.** Correct, with
+  `(y, y') = (y_+, 0)` and `(z, z') = (z_−, 0)`. The antipodal wall theorem is not needed.
+- **Audit.** Only the input-layer statement is claimed as checked. Slabs `S × Λ₁` and `Λ₁ × S'`
+  always intersect, so cross-copy modifications are never separable. The rest is correctly
+  presented as risk analysis.

@@ -123,3 +123,112 @@ the blueprints of Gao–Jackson–Seward; context only). What is new here is:
 - the four-symbol bottom-up encoding;
 - lemma (E), which makes the language decidable;
 - lemma (G), which lets one computable point exhibit the whole language.
+
+## Referee (bh-g1-universal-point, 2026-09-18): lemma (E)
+
+Reviewed independently, without reading other referees' boards.
+
+**Verdict: PLAUSIBLE, not yet a proof.**
+- No counterexample was found, and the lemma looks true after repair. The decidability of `L(X)` and the route
+  to (D) survive.
+- The written proof has three gaps. Each is repairable. Until they are repaired, steps 5–6 and the target
+  inherit the gap.
+
+**G1. The windows do not fit in `N`.**
+- Reading `ID_J` and the nearest-marker assignments at level `J` needs radius about `π_J + D_J`, which is
+  `≈ 16r_J + π_{J−1}`. That exceeds the margin `10r_J` of `N = B(ρ + 10r_J)`, even for markers near `F`.
+- So condition (1) never checks `(A_J)`, `(D_J)` or the Voronoi data of the level-`J` structure that (i)
+  then freezes on `B(ρ + 6r_J)`. Frozen, unchecked structure can be invalid, for example two frozen level-`J`
+  markers with equal IDs whose (D_J) window leaves `N`.
+- **Fix:** take `N = B(ρ + 6r_J + 2π_J + 2D_J)`. Any computable radius keeps the check finite.
+
+**G2. Freeze (i) freezes too much.**
+- It freezes the level-`J` promote flags on `B(ρ + 6r_J)`, i.e. it freezes `M_{J+1}` there. But condition (1)
+  checks nothing at level `J+1`.
+- A valid `q` may promote two level-`J` markers at distance `< r_{J+1}` inside the frozen ball, and the greedy
+  step cannot then repair `(A_{J+1})`.
+- **Fix:** freeze a level-`j` flag only when its flag-cell lies in `F`. The bits are tree-structured:
+  - each cell's bit feeds exactly one field of one data string, the top of its relay chain;
+  - a flag-cell lies within `Σ_{i<j} r_i/2 ≤ r_{j−1}` of its marker.
+  
+  So unfrozen flags can be re-chosen by flipping one cell each, and nothing else changes.
+
+**G3. Condition (2) is not defined by `p`.**
+- The role of a bit of `F` above level `J` (flag, relay, ID bit or padding) depends on the parse outside `F`.
+  That parse is chosen by the extension, not read from `p`.
+- **Fix:** make (2) vacuous by the following chain-top argument.
+  - *Flags.* For `j > J`, `r_j > 4ρ + π_{j−1} > 2ρ + 2r_{j−1}`. So at most one level-`j` marker has its
+    flag chain meeting `F`.
+  - *Chain tops.* The same holds for the level-`(j−1)` markers whose relay chains meet `F`. So at most one
+    ID bit is fixed per level `> J`, and no two forced IDs can collide.
+  - *Placement.* A chain top with relay bit 1 must be a data child of its parent. The extension places that
+    parent within `r_j/2` and chooses the child's index:
+    - `0`: the chain continues as a promotion;
+    - `1`: the chain continues as a relay;
+    - `≥ 2`: the chain terminates as one fixed ID bit.
+  - All other level-`j` markers are placed at distance about `2r_j` from `F`, so their storage misses `F`.
+  - This argument should replace the sentence "Greedy covers `F` … separated because `r_j > 4ρ`".
+
+**Checked and fine.**
+- Freeness (step 2).
+- The palette count.
+- The claim that data children are robust. The index-`< ℓ_j` children are the `ℓ_j` shortlex-nearest ones and
+  lie within `r_j/2`, so no new marker can steal them or shift their indices. This is stronger than the Voronoi
+  remark in (E) and should be stated in its place.
+- The freedom of data bits of new markers. Their data children and relay chains lie outside `F` once
+  new promotions stay outside `B(ρ + 6r_J)`.
+- Padding. A frozen relay bit 1 can only sit at a chain top, which G3 handles.
+
+**Recommendation.** Keep the target, and change its status to "lemma (E) repaired pending". A focused write-up
+of G1–G3, of about 40 lines, closes it.
+
+## Referee (bh-ref-e1-a, 2026-09-18): NOT ESTABLISHED as written; Lemma (E) has four gaps (repairable in principle)
+
+The freeness step 2 and the greedy nonemptiness step 3 are correct. Lemma (E) has four gaps:
+
+1. **(E1) Condition 2 is not a defined test.** "p's visible level-> J data is consistent"
+   is not stated as a finite check. The node must list exactly which level-`> J`
+   constraints are tested against the bits of `F`.
+
+2. **(E2) Markers are separated in `F`, but storage is not.**
+   - For `j ≥ J`, `F` holds at most one level-`j` marker.
+   - Storage is another matter. The index-`< ℓ_j` children of a level-`j` marker lie within
+     `r_j/2` of it, and each stored bit lies within `3 Σ_{i<j} r_i` of its child.
+   - So the storage regions of two adjacent level-`j` markers, which are `≥ r_j` apart, can
+     both meet a ball of radius `ρ ≪ r_j`.
+   - The stated parameters impose only a ball-growth condition. Under them, for `j > J`, even the
+     flag-storage cells of two distinct level-`j` markers can lie in `F`. The choice of `J`
+     excludes this only at `j = J`.
+   - *Repair:* require superadditive radii, for example `r_j ≥ 11 Σ_{i<j} r_i + j`.
+     - Then flag storages of distinct level-`j` markers are more than `2ρ` apart.
+     - ID storage can still meet `F` for two neighbours, but only one ID bit per marker per
+       level, which the palette absorbs.
+
+3. **(E3) The (⇐) direction freezes too much.**
+   - It freezes the whole level-`≤ J` structure of `q` on `B(ρ + 6r_J)`, including the
+     level-`J` promote flags, which define `M_{J+1}` there.
+   - Condition 1 checks only level-`≤ J` conditions. So an admissible `q` can promote two
+     level-`J` markers at distance `< r_{J+1}`. Then `(A_{J+1})` fails, and the frozen
+     extension does not exist.
+   - So the (⇐) argument fails for such a `q`. The "iff" may still hold, because `p` cannot force
+     two such flags (by the choice of `J`) and a good `q` may exist, but that needs proof.
+     *Repair:* either check `(A_{J+1})` and `(B_{J+1})` inside `N` in condition 1, or freeze
+     only the data that `p` forces.
+
+4. **(E4) Voronoi stability is argued with `≥` where `>` is needed, and only up to level `J`.**
+   - A new marker at distance exactly `3r_J` ties with a `q`-parent. Ties are broken by
+     shortlex order and can reassign a child.
+   - At levels `> J` the parse is chosen entirely by the greedy procedure. The argument that
+     it can always be chosen compatibly with the frozen bits of `F` is not written: the
+     forced flags and partial IDs of the few markers whose storage meets `F`.
+   - This is plausible given (E2)'s repair, but it is the heart of the lemma.
+
+**Consequences.**
+- Lemma (G) and step 6 (computable points) depend on (E), so they are not established.
+- So `decidable-groups-carry-flexible-free-subshifts`, and the universal-point route built on
+  it, remain OPEN.
+- Neither is needed for gate E1. `decidable-groups-times-z-have-decidable-free-subshifts`
+  (74597e3ce7, PASS) supplies (D) on `Λ_1 x Z` directly, and that route alone suffices.
+
+**Credit.** Nested markers with locally distinct identifiers follow the Gao–Jackson–Seward
+blueprint technique.

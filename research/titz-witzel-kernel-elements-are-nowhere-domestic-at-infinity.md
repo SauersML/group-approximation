@@ -7,7 +7,12 @@ distinct_from:
   titz-witzel-kernels-are-mif: that asks mixed-identity-freeness of the kernels; this is a rank-two replacement for topological freeness on the chambers at infinity, one of the inputs of the ping-pong route to it.
 ---
 
-**OPEN.** Let `Γ̌ = Γ̌_i^q` act on the exotic `C̃₂` building `X = X_i^q`, as in
+**ESTABLISHED (literature import, 2026-09-18)** through
+`titz-witzel-nowhere-domestic-via-open-dense-opposite-geometry`: Le Bars–Leibtag–Vigdorovich,
+arXiv:2609.17129, Theorem `thm:gq-open-dense-opposite-geometry`, whose proof was read line by line
+(unrefereed preprint; all credit theirs). *(Previously OPEN.)*
+
+Let `Γ̌ = Γ̌_i^q` act on the exotic `C̃₂` building `X = X_i^q`, as in
 `titz-witzel-simple-kazhdan-cat0-lattices-exist`. For every `g ∈ Γ̌ ∖ {1}`,
 the closed set
 
@@ -81,3 +86,13 @@ has empty interior in the cone topology.
    `Ã₂` the condition is exactly topological freeness on the vertex spaces at infinity.
    So the crux is only the polygon-specific local domesticity phenomenon of
    quadrangles.
+
+**Settled (2026-09-18).** Le Bars–Leibtag–Vigdorovich prove the general statement for every
+type-preserving hyperbolic isometry of a thick locally finite `C̃₂` building. The local
+domesticity phenomenon of quadrangles is handled by a girth-8 argument: an open set of lines sent
+to concurrent lines consists of lines through fixed points. Then comes an analysis of
+`Fix_∂X(g) = ∂Min(g)`.
+
+**Byproduct.** `Fix_𝓕(g) ⊆ N(g)`, so `Γ̌` acts topologically freely on the chambers at infinity.
+That is the only dynamical input of `euclidean-building-lattices-lie-in-permutational-bh-class`,
+so for `Γ̌` it no longer needs the Ciobotaru–Le Bars barycenter chain.

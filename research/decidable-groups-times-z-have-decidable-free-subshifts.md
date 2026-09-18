@@ -168,3 +168,61 @@ cleverness at any one scale.
   flexible, greedily completable constraint on its own rows.
 - So the "effectivity core" of gate E1, a free subshift with decidable language, holds for
   `A x Z` for every decidable `A`, and is no longer open on the route.
+
+## Referee (bh-ref-e1-a, 2026-09-18): PASS
+
+**Scope.** The whole node, with the Step 3 finite search and its greedy completion checked
+line by line.
+
+**Checked.**
+- **Ruler.**
+  - The level-`ℓ` positions form a coset of `2^ℓ Z`.
+  - `X_T` (the rows `T_ω`, with a free value at the one infinite position) is closed: take a
+    limit of `ω_i` in `Z_2`. It is also shift-invariant.
+  - The recognition induction is correct. At stage `j` the half `ω + 2^j + 2^{j+1}Z` is
+    constant. The half `ω + 2^{j+1}Z` contains positions of levels `j+2` and `j+3`, which
+    have opposite parities, inside any `2^{j+3}` consecutive integers.
+  - The infinite position always lies in the non-constant half, so its free value never
+    misleads the recognition.
+  - Aperiodicity follows, since a shift by `p` sends `T_ω` to `T_{ω+p}`.
+- **Freeness.**
+  - `n = 0` by aperiodicity.
+  - Then `M_k = sM_k`. Some `c ∈ M_k` has `|c| < r_k`, and
+    `d(c, sc) ≤ 2|c| + |s| ≤ 2r_k − 2 + k < E_k`, with equal colours. This contradicts rule 3.
+  - The rules are invariant under the left action because `d` is left-invariant.
+  - The argument also covers points with an infinite-level row, since every finite level
+    occurs for every `ω`.
+- **Step 1.** A window of length `2N+1 < 2^{K+2}` holds at most one position of level
+  `≥ K+3`. Its level is free through the higher bits of `ω`, and `ω = n*` makes its row
+  unconstrained.
+- **Step 2.** Only levels `≤ K+2` are revealed. Each level belongs to exactly one `k`,
+  through the bijection `ℓ ↔ (k,j)`.
+- **Step 3 (the requested check): the claim holds.**
+  - *Necessity.* `N = M_k ∩ B(m + r_k)` satisfies (a)–(c). The covering marker of any
+    `a ∈ B(m)` lies in `B(m + r_k − 1)`.
+  - *Sufficiency, markers.* The shortlex scan of `A ∖ (B(m) ∪ N)` tests against all markers
+    present, so it keeps `r_k`-separation. Maximality holds case by case:
+    - `B(m)` is covered by (b);
+    - points of `N` and added points are markers;
+    - a skipped point had a marker within `< r_k` when it was skipped.
+
+    So `M ∩ B(m) = N ∩ B(m)`. The look-ahead is exactly the one annulus
+    `B(m + r_k) ∖ B(m)`, and `p` does not constrain markers there.
+  - *Sufficiency, colours.* New markers lie outside `B(m)`, so no revealed bit constrains
+    them. Each has at most `|B(E_k)| − 1 < P_k ≤ 2^{J_k}` marker neighbours, so the greedy
+    choice always succeeds. Properness on `N` is (c).
+  - *Levels are independent*, and the unrevealed ones are filled as in the nonemptiness
+    proof.
+  - The reduction of an arbitrary finite pattern to a window `B(m) x [−N, N]` is the
+    standard finite search.
+
+**Nit.** The bijection `ℓ ↔ (k,j)` should range over `k ≥ 1`, since freeness uses
+`k = |s| ≥ 1`. A level `k = 0` would be harmless.
+
+**Scope of the result.** This is premise (D) for `A x Z`. There is no minimality; that is
+supplied downstream. I searched no literature for a prior statement of exactly this.
+
+**Credit.** Freeness through covering nets with proper colourings is the
+Kechris–Solecki–Todorcevic / Gao–Jackson–Seward technique. Toeplitz storage is standard in
+symbolic dynamics. The observation that separate rows make every level greedily completable,
+and hence the language decidable, is this node's.
