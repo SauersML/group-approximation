@@ -5,13 +5,22 @@ kind: claim
 title: Some finitely presented simple group contains a finitely generated residually finite group that is not effectively residually finite, for example one of Rauzy's lamplighter amalgams L(A)
 requires:
   - pbh-coset-wreaths-iff-identity-edge-hnns
+  - nv-machines-realize-linear-time-lamp-centralizers
+  - linear-time-rauzy-sets-exist
 distinct_from:
-  effective-residual-finiteness-separator-for-boone-higman: that is the separator theorem whose open side this is; this is the existence statement that Boone–Higman forces.
+  effective-residual-finiteness-separator-for-boone-higman: that is the separator theorem; this is the existence statement that refutes its separating hypothesis (S1_eff), so P_eff does not separate Boone–Higman.
   rf-decidable-groups-embed-in-decidable-fg-branch-groups: that asks for a residually finite branch host of Rauzy's groups with solvable word problem; this asks for a simple host, which is never residually finite, so the two questions are independent.
-  fp-simple-group-with-kazhdan-subgroup-of-non-residual-centre: that is the Kazhdan central-residual monster; this is the effectivity monster. Both are predicted by Boone–Higman and neither is known.
+  fp-simple-group-with-kazhdan-subgroup-of-non-residual-centre: that is the Kazhdan central-residual monster; this is the effectivity monster. Both are predicted by Boone–Higman; this one is now established, that one is still open.
 ---
 
-**OPEN.** Boone–Higman implies it: embed Rauzy's `L(A)` (arXiv:2002.02540, Theorem 2).
+**ESTABLISHED (2026-09-18)** by `nv-machines-realize-linear-time-lamp-centralizers` with the lamp set of `linear-time-rauzy-sets-exist` (lane proofs, bh-invent-11, not reviewed; no priority claimed). Boone–Higman predicted it: embed Rauzy's `L(A)` (arXiv:2002.02540, Theorem 2).
+
+## Resolution
+
+- **The lamp set.** `linear-time-rauzy-sets-exist` gives a symmetric set `A` that is closed but not effectively closed, and whose complement is decided in linear time from the unary input.
+- **The embedding.** In a Brin–Thompson group `nV`, a clocked reversible stack machine `a` and a spare-bit detector `g` give `C_L(g) = U_A` for the lamplighter `L = ⟨a^C, ε⟩`.
+- **Why that suffices.** `nV ∈ B_A`, so condition (e) below holds, and the Dyson group `L(A)` lies in `B_A`. It embeds in a finitely presented simple group, is residually finite with solvable word problem, and is not effectively residually finite.
+- **What made it work.** This is route 4 below, the reversible-machine element. The one new ingredient is that `g` detects a *clopen set*, not a point. The orbit of a cylinder runs every branch of its unread tail at once, so the commutation of `g` with the lamps is an ∃-computation. The constraints in items 2–3 below still hold. They explain why no fixed geometric placement works.
 
 **Statement.** Some finitely presented simple group `S` has a finitely generated residually finite subgroup `H` that is not effectively residually finite. Equivalently, `H`'s depth function exceeds every recursive function (Rauzy §3, for `H = L(A)`).
 

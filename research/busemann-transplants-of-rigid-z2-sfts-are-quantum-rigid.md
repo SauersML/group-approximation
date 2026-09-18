@@ -14,6 +14,14 @@ distinct_from:
 `busemann-transplants-give-free-sfts-on-building-lattices`; quantum families (Q1–Q3) as in
 `fp-v-times-subshift-full-groups-force-quantum-rigidity`.
 
+**Update (bh-invent-04, 2026-09-18).** Settled for buildings that are products of trees, with `Γ` acting
+simply transitively on all vertices and irreducible lattices included: (C) and the Statement hold there,
+by `tree-product-busemann-transplants-preserve-quantum-rigidity`. **Also settled for Ã2** (CMSZ-type
+lattices), under the hypotheses of the Statement, and unconditionally with the rigid skew product `P` as
+skeleton, by `a2-busemann-transplants-preserve-quantum-rigidity`. There (C) comes from cylinder
+transport: sector cylinders at the tile site are forward-determined by projective-plane uniqueness.
+Other building types stay open, pending the Determination Lemma of `a2-busemann-transplant-rigidity-proof`.
+
 ## Statement
 
 Assume (H_Ω), that `X_Ω^K` is `D_Ω`-quantum rigid over `k`, and that `Y` is `D_Y`-quantum rigid over `k`

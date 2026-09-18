@@ -3,6 +3,8 @@ rg: 2
 id: fp-relatively-simple-pairs-embed-with-fng-kernels
 kind: claim
 title: Every finitely presented relatively simple pair embeds in a finitely presented relatively simple pair whose largest normal subgroup is finitely normally generated
+refuted_by:
+  - fp-relatively-simple-pair-with-unsolvable-simple-quotient
 distinct_from:
   a2-pairs-embed-in-a2-pairs-with-fng-kernels: that is the first part of FFWZ Question 5.9, removing the kernel of a type [A_2] action inside another action; this is the second part, removing the largest normal subgroup of a finitely presented relatively simple group inside another such group, with no action required.
   fp-quotient-iff-kernel-finitely-normally-generated: that is the general equivalence between finite presentation of a quotient and finite normal generation of its kernel; this asks for an enlargement in which the largest normal subgroup becomes finitely normally generated.
@@ -14,7 +16,11 @@ artifacts:
   - research/artifacts/bh-simple-products-embed-2026-09-12.md
 ---
 
-**OPEN.** This is the second part of Fournier-Facio--Wu--Zaremsky,
+**REFUTED** (2026-09-18, lane proof, not reviewed) by
+`fp-relatively-simple-pair-with-unsolvable-simple-quotient`. The answer to the second part of
+Question 5.9 is no.
+
+This is the second part of Fournier-Facio--Wu--Zaremsky,
 arXiv:2603.24687v2, Question 5.9, read from the PDF text on MSI (lines 1344–1346):
 
 > "Does every finitely presented relatively simple (G,N) sharply embed in a

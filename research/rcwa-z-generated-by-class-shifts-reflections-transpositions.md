@@ -106,3 +106,43 @@ shifts and reflections have `P'`-smooth moduli. The element `h'` is piecewise ca
   - The class-wise order-preserving subgroup is `⟨CT(Z), class shifts⟩`.
 - **In the hosts.** In `rcwa-groups-satisfy-boone-higman`, the class shift `ν_{r(m)}` is the
   odometer twist `σ` on the box `B(r, m)` of the host `H_P`.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS for the deduction; the result is as strong as one generation theorem
+
+Internal referee lane, not an external review.
+
+**Checked.**
+- **The source.** Read on 2026-09-18 at docs.gap-system.org/pkg/rcwa/doc/chap2.html. The quoted
+  sentence matches, and so do the three definitions (for the class reflection the manual adds "where it
+  is understood that 0 ≤ r < m") and the caveat on `FactorizationIntoCSCRCT`.
+- **Steps 1–5, recomputed.**
+  - `ρ` fixes each `r_i(m)` setwise, so `gρ` is affine on every class, with slope `−σ_i > 0` for
+    `i ∈ D`.
+  - Under `h`, the image of `r_i(m)` is an arithmetic progression with integer difference
+    `n_i = σ_i m`, which is the class `s_i(n_i)`. These classes partition `Z`.
+  - `κ` has commuting factors.
+  - `h'(r_i + tm) = s_i + t n_i`, together with `0 ≤ r_i < m` and `0 ≤ s_i < n_i`, gives
+    `h'(N_0) = N_0`.
+  - `ς ν ς = ν^{-1}`, as computed.
+- **Composition convention.** The node composes right to left and GAP left to right. The generating
+  set is closed under inverses up to that identity, so the existence statement does not depend on the
+  convention.
+- **The refinement.** `n_i = a_i m / c_i` has its primes among those of `a_i m`.
+
+**Gaps and corrections.**
+1. **The only non-elementary step is `h' ∈ CT(Z)`.** `h'` maps the box partition `{r_i(m)}` canonically
+   onto the box partition `{s_i(n_i)}`, so it is piecewise canonical. The node
+   `piecewise-canonical-permutations-are-transposition-products` (0e0c97d15) then gives `h' ∈ CT(Z)`
+   directly, with `P'`-smooth moduli for the refinement. That node landed after this one, is
+   elementary, and is an unreviewed lane proof.
+   - So the first Remark is out of date. Via that node the whole proof is elementary: it needs neither
+     Matui's simplicity theorem nor the k-graph identification nor steps 1–3 of the 17.59 node.
+   - Whether its tree rewriting gives a terminating algorithm (the missing termination of
+     `FactorizationIntoCSCRCT`) was not checked here.
+2. **Status.** The claim holds if either route to `h' ∈ CT(Z)` holds:
+   - the k-graph route, through the 17.59 node and item 3 of `ct-p-z-is-a-one-vertex-k-graph-full-group`
+     (bh-free-43 full-group check PASS, as recorded in `research/artifacts/gq-bh-results-summary.md`);
+   - the elementary route above.
+
+   Neither route has been externally refereed.
+3. **Priority.** Not searched. Only the manual was read.

@@ -52,8 +52,9 @@ Indeed a residually finite free minimal subshift `X` is never of finite type.
 What this node adds beyond main:
 - `[[φ]]` itself is LEF, by Ma's Theorem 5.5.
 - The argument does not need `X` to be a subshift: it covers, e.g., free `Z^N`-odometers.
-  - For non-expansive actions it is not checked here whether `D([[φ]])` is even finitely generated. The finite
-    generation theorem on main, `minimal-z2-subshift-derived-full-groups-are-fg-simple`, is for subshifts.
+  - For non-expansive actions `D([[φ]])` is not even finitely generated
+    (`free-action-fg-alternating-full-groups-force-expansivity`), so there the non-finite-presentation conclusion needs no
+    LEF argument. What this node adds for them is that `[[φ]]` itself is LEF.
 
 ## Lesson for general BH
 

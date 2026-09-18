@@ -63,3 +63,18 @@ is a unit multiple of a curve symmetry and nothing contracts.
 No novelty is claimed. The sources checked (the abstract and Proposition A of
 Dantas--Santos--Sidki, Theorem C and Section 7 of Kochloukova--Sidki) state no
 such result for `B`.
+
+**Prior literature (added 2026-09-18, bh-openq-lists).** The statement is in print.
+- Kochloukova–de Sousa Luiz, *Non self-similar metabelian groups*, arXiv:2509.05798 (September 2025),
+  Section "Examples", item 2, treat this group as `A ⋊ Q` with `A = Z[x^{±1}, 1/(x+1)]` and `Q = Z^2` acting by `x`
+  and `x+1`, check conditions 1–4 of their Main Theorem, and conclude that `B` is not self-similar.
+- Their "self-similar" means state-closed on a regular rooted tree, intransitive actions included (their
+  Section 2, after Dantas–Santos–Sidki). So it is the statement above.
+- Their Main Theorem covers every finitely presented `A ⋊ Z^s` (`s ≥ 2`) with `A` a cyclic, `Z`-torsion-free
+  domain of Krull dimension 2 such that each `A/pA` is an infinite domain and no nontrivial element of `Q` is
+  algebraic over `Q`.
+- The lane proof above is independent of theirs, and priority belongs to them. Until now this node did not cite
+  it.
+- Their introduction says the example came from Dantas's question, which is now Kourovka 21.41. They conjecture
+  that no finitely presented self-similar metabelian group contains `Z wr Z`. See
+  `torsion-free-fp-metabelian-self-similar-group-contains-z-wr-z`.

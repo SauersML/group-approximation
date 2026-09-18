@@ -65,3 +65,7 @@ presented?"** This answers it positively for `Γ = Z[β]`, `Λ = ⟨β⟩`, with
   `pisot-interval-exchange-groups-satisfy-boone-higman`, via derived subgroups. So they are explicit hosts
   there, without twisted Brin--Thompson groups.
 - **`F_∞`.** Not claimed; BBMZ prove finite presentation only.
+- **Commensurable slopes.** (F) for the slope itself is not needed. It is enough that `β^b = c^a` with `β ∈ Z[c]` and `c`
+  an (F) unit. The route codes by the `a`-block recoding of the `c`-shift; see
+  `pisot-stein-groups-with-commensurable-f-unit-slopes-are-fp`. Example: `β = θ + 1 = θ³`. Its β-shift is not of finite
+  type, yet `V(Z[θ],⟨θ+1⟩,ℓ)` is a finitely presented simple group.
