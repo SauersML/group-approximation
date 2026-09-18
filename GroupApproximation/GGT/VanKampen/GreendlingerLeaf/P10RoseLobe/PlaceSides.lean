@@ -125,6 +125,95 @@ theorem roseLobePlace_lake_outer (K : PocketFaceSet D eps X lo hi)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_lake_outer
 
+/-- **The source placement, when nothing on the inner side is coloured**: across the reversed
+source arc lies the source cell, which is not flipped in, so no dart of the arc is removed. -/
+theorem roseLobePlace_place1_of_side (K : PocketFaceSet D eps X lo hi)
+    {keep : X.toCombMap.Dart → Prop} {z : X.toCombMap.Dart → Bool}
+    (hz : ∀ x y, CombMap.FaceClassStep X.toCombMap keep x y → z x = z y)
+    (hin : ∀ d, X.toCombMap.faceOf d ∈ K.faces → z d = false)
+    (hsrc : (cell X K.source).face ∉ flipFaces X.toCombMap K.faces z) :
+    (invDarts X K.sourceArc.darts).filter (movePred X.toCombMap z) <:+:
+      invDarts X K.sourceArc.darts := by
+  refine roseLobePlace_infix_of_eq (List.filter_eq_self.mpr fun d hd => ?_)
+  have hdc : d ∈ K.boundary.cycle := by
+    rw [K.decomposition]
+    exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hd))
+  have hf := P10Rose.FilterMove.faceOf_alpha_of_mem_invSourceArc K hd
+  refine (movePred_eq_true_iff _ _ _).mpr ⟨hin d ((K.boundary.cycle_mem_iff d).mp hdc).1, ?_⟩
+  by_contra hne
+  apply hsrc
+  rw [← hf, P10Rose.FilterMove.mem_flipFaces_iff hz]
+  refine ⟨fun h => ?_, fun h => absurd h hne⟩
+  rw [hf] at h
+  exact absurd h K.source_not_mem
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_place1_of_side
+
+/-- **The target placement, when neither the inner side nor the exterior face is coloured**: no
+dart of the target arc is removed, so the filtered arc is the arc itself (`k = 0`). -/
+theorem roseLobePlace_place2_of_side (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart → Bool}
+    (hin : ∀ d, X.toCombMap.faceOf d ∈ K.faces → z d = false)
+    (hout : ∀ d, X.toCombMap.faceOf d = X.outerFace → z d = false) :
+    ∃ k, K.targetArc.start.1 + k ≤ (outerDarts X).length ∧
+      K.targetArc.darts.filter (movePred X.toCombMap z) <+: K.targetArc.darts.drop k := by
+  have hf : K.targetArc.darts.filter (movePred X.toCombMap z) = K.targetArc.darts := by
+    refine List.filter_eq_self.mpr fun d hd => ?_
+    have hdc : d ∈ K.boundary.cycle := by
+      rw [K.decomposition]
+      exact List.mem_append_right _ hd
+    exact (movePred_eq_true_iff _ _ _).mpr ⟨hin d ((K.boundary.cycle_mem_iff d).mp hdc).1,
+      hout _ (P10Rose.FilterMove.faceOf_alpha_of_mem_targetArc K hd)⟩
+  refine ⟨0, ?_, [], ?_⟩
+  · have := K.targetArc.start.isLt
+    omega
+  · rw [List.append_nil, List.drop_zero, hf]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_place2_of_side
+
+/-- **The source placement of a non-bubble block**: if the cycle is `A ++ B ++ C` with a
+contiguous removed block and some dart of `B` is off the reversed source arc, the filtered arc is
+an infix of the arc. -/
+theorem roseLobePlace_place1_of_esc (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart → Bool} {A B C : List X.toCombMap.Dart}
+    (hABC : K.boundary.cycle = A ++ B ++ C)
+    (hblk : (B.filter (movePred X.toCombMap z) = [] ∧
+        (A ++ C).filter (movePred X.toCombMap z) = A ++ C ∧ A ++ C ≠ []) ∨
+      (B.filter (movePred X.toCombMap z) = B ∧
+        (A ++ C).filter (movePred X.toCombMap z) = [] ∧ B ≠ []))
+    (hesc : ∃ d ∈ B, d ∉ invDarts X K.sourceArc.darts) :
+    (invDarts X K.sourceArc.darts).filter (movePred X.toCombMap z) <:+:
+      invDarts X K.sourceArc.darts := by
+  have h : K.firstSide ++ invDarts X K.sourceArc.darts ++
+      (K.secondSide ++ K.targetArc.darts) = A ++ B ++ C := by
+    rw [← List.append_assoc, ← K.decomposition, hABC]
+  exact roseLobePlace_filter_block h hblk hesc
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_place1_of_esc
+
+/-- **The target placement of a non-bubble block**: if moreover the target arc does not wrap
+around the end of `outerDarts X`, the filtered arc is a prefix of a drop of the arc. -/
+theorem roseLobePlace_place2_of_esc (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart → Bool} {A B C : List X.toCombMap.Dart}
+    (hABC : K.boundary.cycle = A ++ B ++ C)
+    (hblk : (B.filter (movePred X.toCombMap z) = [] ∧
+        (A ++ C).filter (movePred X.toCombMap z) = A ++ C ∧ A ++ C ≠ []) ∨
+      (B.filter (movePred X.toCombMap z) = B ∧
+        (A ++ C).filter (movePred X.toCombMap z) = [] ∧ B ≠ []))
+    (hnw : K.targetArc.start.1 + K.targetArc.length ≤ (outerDarts X).length)
+    (hesc : ∃ d ∈ B, d ∉ K.targetArc.darts) :
+    ∃ k, K.targetArc.start.1 + k ≤ (outerDarts X).length ∧
+      K.targetArc.darts.filter (movePred X.toCombMap z) <+: K.targetArc.darts.drop k := by
+  have h : K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide ++ K.targetArc.darts ++
+      [] = A ++ B ++ C := by
+    rw [List.append_nil, ← K.decomposition, hABC]
+  obtain ⟨k, hk, hpre⟩ := roseLobePlace_prefix_drop (roseLobePlace_filter_block h hblk hesc)
+  refine ⟨k, ?_, hpre⟩
+  have hl := K.targetArc.darts_length
+  omega
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_place2_of_esc
+
 end Pocket
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
