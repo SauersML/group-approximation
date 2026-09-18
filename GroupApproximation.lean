@@ -5690,6 +5690,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Mac
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.BorelSolvable
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridCoarse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerPerm
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InducedMat
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.FiniteIndex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
