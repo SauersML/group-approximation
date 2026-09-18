@@ -56,6 +56,25 @@ free multiplicity algebra by a relation outside the finite Heisenberg tables.
   resulting martingale produces a limiting tracial sector, but the terminal
   Leavitt trace-floor theorem needs four contractions on actual matrix
   corners with uniformly positive relative dimension.
+- **Shift the premise scale (d-ptf-heis, 2026-09-18, quantifier-shift).**  The
+  idea was to weaken the premise so the decoder becomes a proper
+  decomposition step: normalized Schatten-`p`, a `delta_e` trace profile,
+  operator norm, the full-support operator-norm class, or exact
+  representations.  It dies at `(CHD3)`, which is dimension-free and holds
+  at every output scale.  By
+  `heisenberg-decoder-premise-scale-lattice-is-two-valued` (claimed; OPEN
+  after landing because its referee votes were lost, proof kept as an attempt
+  artifact), the decoder
+  restricted to any premise class `Pi` is equivalent to "`Pi` is empty".  The
+  lattice gives only three statements.  Exact representations of `H` give a
+  vacuous one.  Operator norm and full-support operator norm give
+  `Rad_MF(G)=G`, which for `Delta` is the goal verbatim; this is exactly the
+  class the full-support-HS-decoder route consumes.  Every normalized
+  Schatten scale, and the `delta_e` profile, gives `Rad_hyp(G)=G`
+  (nonhyperlinearity for `H`).  So no scale makes this node strictly between
+  the route's hypotheses and its conclusion.  Any replacement must change the
+  output to an inhabitable finite-matrix payment inequality, not the premise
+  scale.
 
 The remaining theorem is a positive-density gluing result, not another trace
 inequality: compatible finite Heisenberg branching data must yield nested
