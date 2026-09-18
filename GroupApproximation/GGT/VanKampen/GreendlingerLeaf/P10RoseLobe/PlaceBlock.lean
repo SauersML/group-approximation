@@ -116,3 +116,74 @@ def roseLobePlace_Statement : Prop :=
                   ∃ d ∈ B, d ∉ K.targetArc.darts))))
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_Statement
+
+/-- **The block statement from the cheaper alternatives.**  An inner lobe never flips the source
+cell in, a lake never flips the kept cell out and removes no dart of either arc, and a
+contiguous removed block with a dart off an arc filters that arc to an infix. -/
+theorem roseLobePlace_blk_of_place (h : roseLobePlace_Statement.{u, w, v}) :
+    roseLobeBlk_BlockStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hroot, hsw, hkw, A, B, C, hABC, hblk, hpos⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hs := roseLobePlace_src_of K hsw
+  refine ⟨rs, hroot, hs, roseLobePlace_kept_of K hkw, ?_, ?_, A, B, C, hABC, hblk⟩
+  · rcases hpos with ⟨r, hrs, hr⟩ | ⟨h1, -⟩
+    · exact roseLobePlace_place1_of_side K
+        (roseJunctionCore_lobeColour_step X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)
+        (fun d hd => roseLobePlace_lake_eq_false K.boundary.cycle_mem_iff hrs hr hd) hs
+    · rcases h1 with h1 | h1
+      · exact h1
+      · exact roseLobePlace_place1_of_esc K hABC hblk h1
+  · rcases hpos with ⟨r, hrs, hr⟩ | ⟨-, h2⟩
+    · exact roseLobePlace_place2_of_side K
+        (fun d hd => roseLobePlace_lake_eq_false K.boundary.cycle_mem_iff hrs hr hd)
+        (fun d hd => roseLobePlace_lake_outer K hrs hr hroot hd)
+    · rcases h2 with h2 | ⟨hnw, h2⟩
+      · exact h2
+      · exact roseLobePlace_place2_of_esc K hABC hblk hnw h2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_blk_of_place
+
+/-- **The converse**: the block statement gives the residual with every alternative taken on the
+old side, so the two are equivalent as closed propositions. -/
+theorem roseLobePlace_place_of_blk (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    roseLobePlace_Statement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hroot, hs, hk, hb, hcc, A, B, C, hABC, hblk⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨rs, hroot, Or.inr hs, Or.inr hk, A, B, C, hABC, hblk,
+    Or.inr ⟨Or.inl hb, Or.inl hcc⟩⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_place_of_blk
+
+/-- **The filtered lobe listing from the residual.** -/
+theorem roseLobePlace_filterListing_of_place (h : roseLobePlace_Statement.{u, w, v}) :
+    roseLobe_FilterListingStatement.{u, w, v} :=
+  roseLobeBlk_filterListing_of_weak (roseLobePlace_blk_of_place h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_filterListing_of_place
+
+/-- **The lobe removal from the residual.** -/
+theorem roseLobePlace_lobeRemoval_of_place (h : roseLobePlace_Statement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} :=
+  roseLobeBlk_lobeRemoval_of_weak (roseLobePlace_blk_of_place h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_lobeRemoval_of_place
+
+/-- **The Greendlinger leaf from the residual.** -/
+theorem roseLobePlace_relativeGreendlinger_of_place
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobePlace_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobeBlk_relativeGreendlinger_of_weak hoff (roseLobePlace_blk_of_place h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_relativeGreendlinger_of_place
+
+/-- **The outer-pinch step from the residual.** -/
+theorem roseLobePlace_outerPinchStep_of_place (h : roseLobePlace_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobeBlk_outerPinchStep_of_weak (roseLobePlace_blk_of_place h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobePlace_outerPinchStep_of_place
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
