@@ -93,3 +93,29 @@ would also do, through `leavitt-tensor-elementary-host-criterion` applied to
      [This step reuses the char-0 machinery verbatim once (b) is in hand.]
    So the whole gate reduces to regular supercoherence of the explicit commutative-plus-indicators ring
    `B⁺_2`, with no remaining `K`-theory.
+6. **Crossed-product form and the exact tradeoff** (2026-09-18, lane `bh-algebra`).
+   - `R_2` has `4 = 2^2` letters. By `leavitt-tensors-of-2-power-completions-are-z-crossed-products`,
+     `R_2 ⊗ L = (R_(2,0) ⊗ L) ⋊_(Ad U) Z`. So `K(R_2 ⊗ L)` is the Bass--Heller--Swan cofibre of
+     `1 − Ad U_*` on `K(R_(2,0) ⊗ L)`, plus the twisted Nil terms of `C = R_(2,0) ⊗ L`. Farrell--Jones
+     for `Z` is automatic. What remains is `K(C) = 0` and Nil vanishing, by
+     `regular-coherent-laurent-coefficients-kill-twisted-nil-terms`, once `C` and its Laurent
+     extensions are regular coherent.
+   - **Without point indicators the coefficient algebra is good.** For the presented base
+     `B = S^(−1) F_2[t, P]`, `L ⊗ B` is a central localization of `L[t, P]`, and `L[t, P]` is regular
+     supercoherent by Ara--Cortiñas Lemma 6.1 (polynomial extensions of `L`). So `L ⊗ B` is regular
+     supercoherent, and `K(L ⊗ B) = 0`. But the core `colim M_(4^n)(B)` is taken along the non-flat
+     reset `P ↦ 1`, so its coherence does not follow.
+   - **With point indicators the colimit is good but the coefficients are not known to be.** Over
+     `B⁺_2` every letter is flat (Attempt 4), so the core is a flat colimit. But regular coherence of
+     `L ⊗ B⁺_2`, a Leavitt algebra over a non-noetherian fibre product of `B` with `⊕_u F_2(t)`, is not
+     known. Its central localizations are `L_(F_2(t))(1,2)` or `L ⊗ B_q`, both regular supercoherent, but
+     coherence of `L ⊗ B⁺_2` is not local.
+   - **So the gate is exactly the reset tradeoff:** flatness of the reset needs point indicators, and
+     point indicators cost the noetherian localization that makes `L ⊗ B` coherent. A proof needs a
+     local-to-global coherence statement for `L ⊗ B⁺_2`, or a reset-free design that still makes
+     every monic polynomial a value (the design in `char-p-rational-function-field-in-fp-simple-algebra`
+     uses the reset essentially: without it only powers of `t` get inverted).
+   - *Lesson for general BH.* In register (resolvent) hosts the reset letter is where both the
+     field of constants and the `K`-theory difficulty come from. Every register host has this tradeoff,
+     in characteristic zero too, where `register-completion-pimsner-from-supercoherence` pays with point
+     indicators.
