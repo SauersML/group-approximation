@@ -199,3 +199,23 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
        the powers `b_k^r` stay torsion-free in positive degree.
    - *What RF needs.* Enough finite representations to separate the `Z[p]`-module of words modulo the positional
      relations, together with residual finiteness of the commutative image `A_p[x^(±1); σ]`. Neither is done.
+7. **The non-commutative part of `B` is exactly its `Z`-torsion (2026-09-18, lane gq-k2-q).** This is a lane proof. The
+   inputs are textbook commutative algebra: complete intersections are Cohen–Macaulay, and so have no embedded
+   primes.
+   - *Rationally the lamps commute.* In `B ⊗ Q`, `(k−j) l [b_j, b_k] = 0` gives `[b_j, b_k] = 0`. So the lamp
+     subring of `B ⊗ Q` is a quotient of `S = Q[u, p, b_k : k ∈ Z]/(b_k π_k − p)`.
+   - *`S` is a domain, and `S ≅ A_p ⊗ Q`.*
+     - For a finite set of `k`, `S_K = Q[u, (b_k)_(k ∈ K)]/(b_k π_k − b_j π_j)` is a complete intersection of
+       dimension 2.
+     - Over `π_k ≠ 0` for all `k`, it is the irreducible surface `b_k = p/π_k`.
+     - Over `u = −1−kl`, the other `π_j = (j−k)l` are units of `Q`, so the fibre is the line `E_k` in `b_k`, of
+       dimension 1, and it lies in the closure of that surface.
+     - Hence `S_K` is irreducible, and it is generically reduced with no embedded primes, so it is a domain. So is
+       the colimit `S`.
+     - `S -> A_p ⊗ Q`, `b_k ↦ t/π_k`, is onto, between domains of the same dimension, so it is injective.
+   - *Consequence.* `B ⊗ Q ≅ (A_p ⊗ Q)[x^(±1); σ]`.
+     - The kernel of `B -> A_p[x^(±1); σ]` is exactly the `Z`-torsion of `B`, which contains the lamp commutators.
+     - `A_p[x^(±1); σ] ⊆ D[t]` is residually finite: `D` is (`euler-triangular-ring-is-fp-rf`), and evaluating `t`
+       at integers separates polynomials over the torsion-free `D`.
+     - So **`B` is residually finite if and only if its `Z`-torsion is separated by finite quotients.** C1 shows
+       this for the commutators themselves. The general torsion element is still open.
