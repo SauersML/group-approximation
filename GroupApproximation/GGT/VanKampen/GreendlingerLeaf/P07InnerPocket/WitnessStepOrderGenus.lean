@@ -104,3 +104,60 @@ theorem witnessStepOrder_before_map_iff {α β : Type*} (f : α → β) {P : Lis
   · exact hfwd c d
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepOrder_before_map_iff
+/-- **Lane gl-p07-63: the Order statement from the Reclosed statement.**  The rotation `n` of
+`witnessStepOrder_rotate_sublist` makes `(invDarts X outerWalk).rotate n` a sublist of
+`invDarts X B.cycle`, which carries the order of the curve; `r = |ow| - n % |ow|`. -/
+theorem witnessStepOrder_order_of_reclosed (h : witnessStepBridge_ReclosedStatement.{u, w, v}) :
+    witnessStepReclose_OrderStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst
+    hsecond G₁ hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  obtain ⟨O, B, hwalk, hsub, hcompat⟩ :=
+    h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
+      hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  obtain ⟨n, hn⟩ := witnessStepOrder_rotate_sublist E O B hwalk hsub
+  refine ⟨outerWalk.length - n % outerWalk.length, fun c hc d hd => ?_⟩
+  rw [← witnessStepOrder_invDarts_rotate X outerWalk n]
+  have hc' : c ∈ (invDarts X outerWalk).rotate n := List.mem_rotate.mpr hc
+  have hd' : d ∈ (invDarts X outerWalk).rotate n := List.mem_rotate.mpr hd
+  exact (hcompat c hc d hd).trans
+    (witnessStepOrder_before_sublist_iff (Embedded.invDarts_nodup B.cycle_nodup) hn hc' hd')
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepOrder_order_of_reclosed
+
+/-- **Lane gl-p07-63: the Order statement from the Bridge statement.**  Apply the step lemma to
+the planar model with `ι = id` and curve `Γ`: a rotation of `l'` is a sublist of `Γ`.  Push it
+through `ι` (injective on the duplicate-free `l'.map ι`). -/
+theorem witnessStepOrder_order_of_bridge (h : WitnessStepGenusBridgeStatement.{u, w, v}) :
+    witnessStepReclose_OrderStatement.{u, w, v} := by
+  classical
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst
+    hsecond G₁ hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  obtain ⟨N, ι, l', Γ, hN, hmap, hsucc, hΓ, hsub, hcompat⟩ :=
+    h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
+      hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  have hl : (invDarts X outerWalk).Nodup := Embedded.invDarts_nodup E.nodup
+  have hl' : l'.Nodup := List.Nodup.of_map ι (by rw [hmap]; exact hl)
+  have hsteps := witnessStepGenus_stepNext_of_model N hN (id : N.Dart → N.Dart) Γ hl' hsucc
+    hΓ hsub (fun _ _ _ _ => Iff.rfl) hsub
+  rw [List.map_id] at hsteps
+  obtain ⟨n, hn⟩ :=
+    WitnessCurveSublistList.exists_rotate_sublist_of_steps hΓ.nodup hl' hsub hsteps
+  refine ⟨outerWalk.length - n % outerWalk.length, fun c hc d hd => ?_⟩
+  rw [← hmap] at hc hd
+  obtain ⟨c', hc', rfl⟩ := List.mem_map.mp hc
+  obtain ⟨d', hd', rfl⟩ := List.mem_map.mp hd
+  rw [← witnessStepOrder_invDarts_rotate X outerWalk n, ← hmap, ← List.map_rotate]
+  have hc'' : c' ∈ l'.rotate n := List.mem_rotate.mpr hc'
+  have hd'' : d' ∈ l'.rotate n := List.mem_rotate.mpr hd'
+  have hP : ((l'.rotate n).map ι).Nodup := by
+    rw [List.map_rotate, hmap]
+    exact List.nodup_rotate.mpr hl
+  exact (hcompat c' hc' d' hd').trans
+    ((witnessStepOrder_before_sublist_iff hΓ.nodup hn hc'' hd'').trans
+      (witnessStepOrder_before_map_iff ι hP hc'' hd'').symm)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepOrder_order_of_bridge
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
