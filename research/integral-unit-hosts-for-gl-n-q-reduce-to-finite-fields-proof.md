@@ -8,7 +8,11 @@ requires:
   - abc-leavitt-path-k-theory-exact-sequence
 ---
 
-Lane proof, not independently reviewed. Notation as in the target: `A` is unital
+Lane proof. Referee PASS from `gq-referee-a` (proof-gap lens, report 597b02ae2); the
+perfectness step of case (b) was added at its request. The ABC Corollary 7.7 input of
+part 4 was checked at source by `gq-referee-b` in
+`research/artifacts/gq-referee-b-leavitt-scalar-commutators-block-fp-central-quotients.md`
+(c81257d90); no separate citation review of this node was done. Notation as in the target: `A` is unital
 with a `Z`-basis `B`, and `A_K = A ⊗_Z K`. Only part 4 uses the cited K-theory.
 
 **0. Integral structure.** Products of elements of `B` are `Z`-combinations of `B`.
@@ -43,7 +47,9 @@ the `ρ_𝔪` embeds `GL_m(A_D)`, and so `S`, in `∏_𝔪 GL_m(A ⊗ D/𝔪)`.
     kernel `Z_P = P ∩ K^x·1`, which consists of central scalars.
 - **Perfectness.** `PSL_n(Q)` and `SL_n(Q)` are perfect, because `|Q| > 3`.
   `PSL_n(Q)` is also simple and has trivial centre. So `P' = [P,P]` maps onto
-  `P_0`, and in case (a) `P' = P`.
+  `P_0`, and in case (a) `P' = P`. In case (b), `P'` is itself perfect: since
+  `π(P') = P_0 = π(P)` and `Z_P = ker π` is central, `P = P' Z_P`, so
+  `[P,P] = [P' Z_P, P' Z_P] = [P',P']`, that is, `P' = [P',P']`.
 - **Some reduction has central kernel.** Take `D` and `ρ_𝔪` from part 1 and put
   `N_𝔪 = ker(ρ_𝔪|P')`. The image `π(N_𝔪)` is normal in the simple group `P_0`,
   so it is `1` or `P_0`.
