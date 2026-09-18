@@ -152,6 +152,21 @@ claim [[nonsofic-one-relator-group]].
      explicit. Any full solution is perfect on the chain and not residually
      linear. A negative answer kills the shift dictionary at every singular
      extreme of this type.
+   - **Model case settled positively (w5-073).**
+     [[bs12-extends-to-amenable-square-conjugation-chain]] is proved by an
+     induced-module tower. The prepend step is
+     `Phi(K,c) = Ind_(<c>)^K(Q_(1/2)) rtimes K`. It is functorial, and its
+     direct limit from `Z` is locally solvable and carries the forward
+     chain. Moreover, [[baumslag-gersten-elementary-amenable-quotient-keeps-a]]:
+     `BG` maps to an elementary amenable group with `a` of infinite order. So
+     (AA) holds for `BG`, and the singular forward step is passable. The
+     mechanism never solves the singular equation. It solves the linear
+     backward equation universally, and the limit converts prepending into
+     forward growth.
+   - **Open next.** For `n >= 2`, the same functor needs the backward
+     equation in `a_0` to linearize over an abelian normal layer. It also
+     needs a seed group embedding in its own `Phi`-image, and separation of
+     `B_0` from the rank-`n` subgroups `F_-` and `F_+`.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal
