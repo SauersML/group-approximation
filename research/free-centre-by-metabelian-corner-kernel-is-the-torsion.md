@@ -11,7 +11,10 @@ distinct_from:
 **ESTABLISHED** (lane proof, inline; not independently reviewed). The one outside input
 is `gupta-torsion-element-survives-modulo-gamma-seven`, used only in Step 4.
 
-**Priority.** No novelty is claimed.
+**Priority.** No novelty is claimed. Linearity of every `C_n` is N. D. Gupta–Wehrfritz, Arch. Math.
+27 (1976), Remark 3, p. 454, read at source by bh-verify-cbm. The same page credits C. K. Gupta
+with torsion elementary abelian of rank `C(n,4)`, so `d = 2` below. See
+`free-centre-by-metabelian-groups-are-linear`.
 - C. K. Gupta (J. Austral. Math. Soc. 16, 1973; abstract) represents `C_n/H_n` by 3x3
   matrices for `n >= 4`, with `H_n` finite elementary abelian.
 - Kuz'min (1977) identifies the torsion with `H_4(F/F') ⊗ Z/2` (per Kovács–Stöhr and a
