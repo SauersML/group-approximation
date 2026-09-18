@@ -42,6 +42,7 @@ def k2PolyNagaoJRes_Low (p : ℕ) [Fact p.Prime] (K : Finset I) (m L : I) (hmL :
 
 variable {p : ℕ} [Fact p.Prime]
 
+omit [Fact p.Prime] in
 /-- A root `x_ik(c)` with `i ∈ {m, L, j}` keeps the support `{m, L, j}`. -/
 theorem k2PolyNagaoJRes_Sj_x {m L j i k : I} (hik : i ≠ k) (hi : i = m ∨ i = L ∨ i = j)
     (c : Polynomial (ZMod p)) {v : I → Polynomial (ZMod p)}
@@ -60,6 +61,7 @@ theorem k2PolyNagaoJRes_Sj_x {m L j i k : I} (hik : i ≠ k) (hi : i = m ∨ i =
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_Sj_x
 
+omit [Fact p.Prime] in
 /-- `ω = w_mj(1)` keeps the support `{m, L, j}`. -/
 theorem k2PolyNagaoJRes_Sj_om {m L j : I} (hmj : m ≠ j) {v : I → Polynomial (ZMod p)}
     (hS : k2PolyNagaoJRes_Sj m L j v) :

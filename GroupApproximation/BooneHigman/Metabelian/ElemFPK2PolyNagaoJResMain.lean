@@ -49,7 +49,7 @@ theorem k2PolyNagaoJRes_step {K : Finset I} {m L j : I} (hmL : m ≠ L) (hmK : m
   have hLj : L ≠ j := hjL.symm
   obtain ⟨q1, hq1⟩ : ∃ q : Polynomial (ZMod p), q = -(v m / v j) + 1 := ⟨_, rfl⟩
   obtain ⟨q2, hq2⟩ : ∃ q : Polynomial (ZMod p), q = -(v L / v j) + -1 := ⟨_, rfl⟩
-  have hg1 := k2PolyNagaoJRed_x_mem_Qm hmj q1 (Finset.mem_insert_of_mem hmK) hj
+  have hg1 := k2PolyNagaoJRed_x_mem_Qm (L := L) hmj q1 (Finset.mem_insert_of_mem hmK) hj
   have hg2 := k2PolyNagaoJRed_x_mem_Qm hLj q2 (Finset.mem_insert_self L K) hj
   have hv1 := k2PolyNF_orbit_act (k2PolyEuclid_x_mem_G (K := K) hmj q1
     (Finset.mem_insert_of_mem hmK) (Finset.mem_insert_of_mem hjK)) hv
