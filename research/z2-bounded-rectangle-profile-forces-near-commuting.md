@@ -123,3 +123,28 @@ non-permutation unitary construction.
     - several charges, where the merged clusters are not neutral; a cost of `O(|A|(n lambda_1 + n^2))` looks
       plausible for the thin case;
     - non-abelian fibres, where band cancellation needs the ordered product of the charges to be trivial.
+- **w9-124, 2026-09-18 — non-abelian band cancellation, settled both ways. Landed: F(K) <= 36 K on regular
+  two-charge covers with any finite fibre group.**
+  - **Obstruction** (`nonabelian-band-rungs-absorb-ordered-charge-product`, Theorem 2). The ordered product of
+    the charges in a band piece is a commutator of the piece's holonomies. No change supported in a disk can make
+    it trivial: a flat connection that agrees off `S` has trivial boundary holonomy on the filled lift of every
+    inessential component of `S`. So fewer than `lambda_1` changes can cancel charges only in disk clusters
+    whose product is 1, and a single charge costs at least `lambda_1`.
+  - **Theorem** (same node, Theorem 1, the rung lemma). If every charge lies in an essential band of `m`
+    faces, changing only its `m` rungs makes the connection flat, for every fibre group.
+    - *Proof idea.* The complement of the band is a flat annulus. A flat model with the same core holonomy exists
+      on the whole torus, and a gauge on the annulus matches the two.
+    - *Cost.* Compared with the abelian tree it costs one extra edge per band. With `m = lambda_1` it is optimal.
+  - **Two-charge theorem** (`nonabelian-two-charge-torus-covers-rank-distance-linear`). `dist <= 36 rho` for regular
+    `F`-covers with at most two charged faces and arbitrary charges. The ingredients:
+    - box counting on free fibres gives `rho >= |F| ceil(m_0/2)/2`, plus a separate bound for short
+      dipoles that are not neutral;
+    - a push along a shortest path;
+    - the abelian strip cut, with rung-closed bands.
+  - **Computation.** `rungs.py` ran on 6900 covers with fibres `S_3`, `Q_8` and `A_4`. Tree-only closing fails on
+    3641 of the 5056 bands, and the rung lemma closes all of them. The worst ratio is `dist/rho_lower = 7.10`.
+  - **Open.** Two steps remain:
+    - *several charges*: neutrality is no longer needed inside a piece, but a lower bound
+      `rho >~ |F| n lambda_1` for `n` non-neutral clusters is still missing;
+    - *non-free fibres and general permutation pairs*: a charge may move only a few points, so the box count
+      `|F|/2` per box fails. This is the step that separates the regular-cover results from the full statement.

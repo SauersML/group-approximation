@@ -80,3 +80,40 @@ counterexample needs integral group-ring elements whose finite kernel densities 
     Rosset kernels fail (`BS(1,2)` shows why). Or an NFS `K`, where every finite-index subgroup has
     finite abelianization and there are no infinite EA quotients. The second case contains every
     possible counterexample of intermediate growth.
+- **2026-09-18 (lane `w12-112`): the NFS and intermediate-growth case. The Euler-characteristic
+  route is equivalent to the target, and it reduces to one weak-Bass inequality. Three
+  obstructions, and the H_FD route is circular.** See
+  `amenable-cd-two-bass-defect-equals-euler-characteristic` (proposed ESTABLISHED) and the route
+  `amenable-cd-two-rank-gap-via-l2-finite-weak-bass`.
+  - *Identity.* For an infinite, finitely generated amenable `G` of cd at most 2, the relation
+    module `P` has `dim_U(U ⊗ P) = n − 1` and `rank_Q(Q ⊗ P) = n − b_1 + b_2`. So its Bass defect
+    is `χ_Q(G) = 1 − b_1 + b_2`.
+  - *Reduction, both directions.* The target holds iff `b_1 = 1 + b_2` for all such `G`, iff
+    `χ_Q <= 0`, iff every relation module satisfies the weak Bass inequality.
+  - *The counterexample `K`.* In `K`, the defect `1 + b_2(K)` sits entirely in the core `P'` with
+    no finitely generated summand. In the NFS case it is the same on every finite-index subgroup.
+  - *One-direction reduction.* The target follows from the open statement
+    `l2-finite-projectives-over-amenable-groups-satisfy-weak-bass`: rational rank is at most
+    `L²`-dimension for countably generated projectives of finite `L²`-dimension over torsion-free
+    amenable groups. That is a statement about projective modules with no group theory in it.
+  - *Obstructions (the brief's growth, Euler-characteristic and L2 route).*
+    - (A) Finite truncations. The Hantzsche–Wendt group `HW` is torsion-free, virtually `Z³` and
+      has `b_1 = 0`. Its Fox matrices satisfy `rank ε(J) = n > n − 1 >= rank_U(J)`. So no
+      termwise rank comparison on finitely many relators can work.
+    - (B) Flatness. The colimit of `B = J^*J` over `HW` is a countably generated flat module with
+      defect 1 that is not projective. This kills Lazard–Govorov, Følner-truncation and
+      f.g.-submodule arguments.
+    - (C) `L²` and Følner or growth data. The `U`-dimension profile `(n − 1, n, 1)` is the same as
+      for `Z²`, and Degrijse's `χ = χ^(2)` step is literally `D(P) = 0`. So the growth of the
+      cellular chain complex together with `L²`-Betti vanishing yields exactly the identity, and
+      no bound on `b_2`.
+  - *H_FD.* This is a reformulation, not a reduction. By Shalom, an amenable group with H_FD is
+    virtually indicable. By `subexp-amenable-cd-two-kropholler-iff-no-intermediate-growth`,
+    virtually indicable NFS cd-2 groups are `Z²` or `Kb`, and these have H_FD. So among NFS cd-2
+    groups, having H_FD is the same as not being a counterexample. Every known proof of H_FD
+    (polycyclic, Shalom; virtually nilpotent, Ozawa) goes through a solvable or finite-dimensional
+    structure that `K` lacks.
+  - *Next step.* Prove the weak-Bass inequality for countably generated projectives of finite
+    `L²`-dimension. The first case to try is groups of subexponential growth. It needs a trace on
+    idempotents of column-finite matrices that extends Hattori–Stallings and uses `E² = E`
+    globally, since items A and B rule out approximation by finite corners and by flat colimits.
