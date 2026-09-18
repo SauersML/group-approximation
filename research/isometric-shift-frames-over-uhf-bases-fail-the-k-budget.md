@@ -9,8 +9,8 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the ring gate; this closes its isometric-shift designs over one-type matricial bases.
 ---
 
-**ESTABLISHED** through `isometric-shift-frames-over-uhf-bases-fail-the-k-budget-proof`. Lane proof, not
-independently reviewed. Elementary, given `rational-k1-detection-forces-infinite-order-unit-class` and
+**ESTABLISHED** through `isometric-shift-frames-over-uhf-bases-fail-the-k-budget-proof`. Refereed:
+gq-referee-a PASS, proof-gap lens (report cec484d63, nits applied); one referee. Elementary, given `rational-k1-detection-forces-infinite-order-unit-class` and
 `graded-rings-with-degree-one-units-fail-the-k-budget`. No priority is claimed.
 
 **Setting.** `R` is a unital ring and `B ⊆ R` a unital subring with `Q ⊆ B`. An *isometric frame of size `k` over
