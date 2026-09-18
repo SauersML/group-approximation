@@ -9,7 +9,8 @@ import GroupApproximation.Meta.AxiomGuard
   `c = FaceSetCircuits.circuit X.toCombMap (pinchLobe_out X.toCombMap F) comp` itself.
 * `pinchAbsTouchJump_Statement`: the residual.  Its premises are those of lane gl-p07-77's
   `pinchAbsTouchArc_Statement`, verbatim.  The conclusion is `pinchAbsTouchJump_Free` for `G₁` and
-  for `G₂` along `c`, with `H` the complement of `pinchAbs_set a b K G₁ G₂ C.face` and `Kw = K.walk`.
+  for `G₂` along `c`, with `H` the complement of `pinchAbs_set a b K G₁ G₂ C.face` and
+  `Kw = K.walk`.
 * `pinchAbsTouchJump_arc_of_statement`: the residual gives `pinchAbsTouchArc_Statement`, by
   `pinchAbsTouchJump_run_of_free`, with `hw` and `pinchLobe_mem_walk_one`/`_two`.
 * `pinchAbsTouchJump_followPart_of`: with lane gl-p07-76's `pinchAbsTouchNI_NIStatement`, it gives
@@ -40,8 +41,17 @@ cell's two loops at the pinch vertex, and which side of them the absorbed set li
 
 ## Truth check
 
-Python, scratch `gl-p07-83/jump_check.py`.  It checks `Free` directly, and checks that every
-`Run` hypothesis pair has the wedge.  See the lane report for the counts.
+No separate script (the chain was parked first).  Since `Free` and `Run` are equivalent under the
+premises (above), lane gl-p07-77's `gl-p07-77/arc_check.py` results carry over: `Run` holds on
+103 models and on grids 71, 72 and 73.
+
+## Chain status (LOUD: PARKED)
+
+Lane gl-p07-81 found that the top target of this chain,
+`P07LakeExclusion.InnerPocketEnclosedTwoArcStatement` (through `PocketFourPieceOffStatement`), is
+**false** on the GL03BPinch model.  Its corrected version is proved separately as
+`GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected`.  The reductions here are
+proved, but the chain they serve is parked.
 
 ## Manuscript status
 
