@@ -98,3 +98,39 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
   - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at precision 1/2. A minimax over coarse `B_M`-invariance
     needs about `|B_M|` test functions, which means Towsner compositions of height about `5^M`. Nothing
     F-specific was found that either separates `R` from `CR` or collapses them.
+- **2026-09-18 (swarm-0917-w9-w9-f-break, quantifier-shift).** Calibration of RGAP₁ at small windows, plus one
+  class kill. It stays OPEN. Established (unreviewed): `small-window-ramsey-and-coarse-reiter-radii-of-f-and-f2`.
+  - *Exact duals.* Minimax turns both radii into finite linear certificates.
+    - `R(m) > n` iff there are one set `E ⊆ B_n` and a probability `λ` on `B_m²` with
+      `Σλ(a,b)(1_E(ax) − 1_E(bx)) > 1/2` on `I_n`.
+    - `CR(M) > r` iff there is a probability on pairs `(g, D)` with `Σμ(1_D(gx) − 1_D(x)) > 1/2` on `B_r`.
+    - The push-forward `(a,b) ↦ (b^{-1}a, b^{-1}E)` is the sandwich inequality `R(m) ≤ CR(2m) + m`. A Ramsey
+      certificate is exactly a coarse certificate supported on one translate family of one set.
+  - *Free calibration.* In `F_2`:
+    - `R(1) = 3`, imported from the census.
+    - `CR(M) = ∞` for all `M`, by a forest count and coarea.
+    - `R(2) = ∞`, from the explicit witness "first letter `b^{±1}`" with a six-pair `λ` of exact value 5/6.
+  - *Thompson data.* In `F`:
+    - `R(1) = 3`.
+    - `CR(1) = 5`. The exact coarse Reiter values at the unit ball are
+      `54/53, 162/161, 56/65, 102/125, 92/119, 334/449` for `r = 3..8`. They equal the free value `1 + 1/|B_r|`
+      exactly while `B_r(F)` has the free size, and fall below 1 at `r = 5`, where `|B_5| = 475 < 485`.
+    - `CR(2) ≥ 7`, with exact `v_2(4) = 3134/2387`, `v_2(5) = 5441/4299` and `v_2(6) = 2207/1795`.
+    - `R(2) ≥ 9`, from MILP-found sets of exact value `3/5` at `n = 7` and `7/12` at `n = 8`, rechecked
+      independently. The transplanted free cones die at `n = 7`, and the search stalls at `29/60` at `n = 9`.
+  - *Class kill (window-preserving decoupling).*
+    - Class: arguments that bound a coarse certificate's radius by a Ramsey radius at the same window, of the
+      form `CR(M) ≤ f(M, R(g(M)))` with `g(1) ≤ 1`, and valid in every finitely generated group. This includes
+      every argument that assembles the sets `D` of a paradoxical or coarse certificate at window `M` into a
+      single Ramsey witness at window `M`.
+    - `F_2` is a counterexample: `R_{F_2}(1) = 3`, but `CR_{F_2}(1) = ∞`, and ping-pong paradoxicality holds at
+      window 1.
+    - Invariant: the Ramsey test sees `E` only through the convex hull of its picture vectors
+      `{X_E(x) : x ∈ I_n}`, a marginal of one set.
+    - Dying step: merging the several sets `D` of a coarse certificate into one `E` without enlarging the window.
+      In `F_2` this costs exactly one window step (`R(2) = ∞`), so the window shift in the sandwich is necessary,
+      not an artefact.
+    - Consequence: any proof of AMP must be `F`-specific, or must shift windows as the sandwich does.
+  - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at comparable windows, which is again the quantifier
+    exchange. At windows 1 and 2, `F` sits between free-like and amenable-like: `R(1) = 3 < CR(1) = 5 ≤ R(2) − 4`.
+    Radii this small cannot decide RGAP₁, and no belief moves in either direction.
