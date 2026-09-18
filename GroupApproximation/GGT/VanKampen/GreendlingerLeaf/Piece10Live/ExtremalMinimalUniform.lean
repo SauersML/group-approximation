@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalClass
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalClassChoice
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalMinimalLists
 import GroupApproximation.Meta.AxiomGuard
 

@@ -41,9 +41,7 @@ theorem vdkRowParInj_padCol_eq_colVec (v : Fin n → R) : padCol v = colVec v :=
   induction v using Pi.single_induction with
   | zero => rw [padCol_zero, colVec_zero]
   | add f g hf hg => rw [padCol_add, colVec_add, hf, hg]
-  | single p a =>
-    rw [padCol_single, vdkRow_colVec_single]
-    rfl
+  | single p a => exact (padCol_single p a).trans (vdkRow_colVec_single p a).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowParInj_padCol_eq_colVec
 

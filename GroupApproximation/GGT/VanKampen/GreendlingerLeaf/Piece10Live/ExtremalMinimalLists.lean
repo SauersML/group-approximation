@@ -1,19 +1,14 @@
 import Mathlib.Data.List.Nodup
-import Mathlib.Data.Nat.Find
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Extremal minimal: list segments and least elements
+# Extremal minimal: a duplicate-free list segment between two of its members
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-16c.
 
-Two generic lemmas behind `Piece10Live/ExtremalMinimal`.
-
-* `extremalMinimal_mem_segment_of_nodup`: if a duplicate-free list `F ++ S ++ R` is written as
-  `A ++ d :: (B ++ e :: C)` with `d` and `e` in the middle block `S`, then every member of the
-  gap `B` lies in `S`.
-* `extremalMinimal_exists_least`: a nonempty predicate on a type has a member of least
-  natural-number measure (well-founded minimality, through `Nat.find`).
+The list lemma behind `Piece10Live/ExtremalMinimalUniform`: if a duplicate-free list
+`F ++ S ++ R` is written as `A ++ d :: (B ++ e :: C)` with `d` and `e` in the middle block `S`,
+then every member of the gap `B` lies in `S` (`extremalMinimal_mem_segment_of_nodup`).
 
 ## Proof route
 
@@ -27,9 +22,6 @@ split again.  If `e` falls into `R`, contradiction as before; otherwise `bs = (d
 `A = F ++ as` and the auxiliary lemma applies, or `F = A ++ bs` with `bs` a prefix of `d :: ...`:
 for `bs = []` the auxiliary lemma applies with `P = []`, and for `bs = b :: _` the dart `d = b`
 lies in `F` and in `S`, contradicting `nodup_append`.
-
-`extremalMinimal_exists_least`: `Nat.find` on `fun n => ∃ a, P a ∧ μ a = n`; `Nat.find_spec`
-gives the witness and `Nat.find_min'` its minimality.
 
 ## Manuscript status
 
@@ -93,24 +85,7 @@ theorem extremalMinimal_mem_segment_of_nodup {F S R A B C : List α} {d e : α}
 
 end Lists
 
-section Least
-
-/-- **Well-founded minimality**: a satisfiable predicate has a member of least measure. -/
-theorem extremalMinimal_exists_least {β : Type _} (P : β → Prop) (μ : β → ℕ)
-    (h : ∃ a, P a) : ∃ a, P a ∧ ∀ b, P b → μ a ≤ μ b := by
-  classical
-  have hex : ∃ n, ∃ a, P a ∧ μ a = n := by
-    obtain ⟨a, ha⟩ := h
-    exact ⟨μ a, a, ha, rfl⟩
-  obtain ⟨a, ha, hμ⟩ := Nat.find_spec hex
-  refine ⟨a, ha, fun b hb => ?_⟩
-  rw [hμ]
-  exact Nat.find_min' hex ⟨b, hb, rfl⟩
-
-end Least
-
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalMinimal_mem_segment_of_nodup_aux
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalMinimal_mem_segment_of_nodup
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalMinimal_exists_least
