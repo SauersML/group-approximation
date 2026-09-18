@@ -104,3 +104,52 @@ requires:
   and since `h` is an isomorphism (Part 2) the image of `c_q` in `K_2(M_m(O_K/𝔭^n))` is trivial.
 - *The commutative part still sees `c_q`.* `ρ_m(A)` is diagonal, and reading the `0`-th entry is a ring map
   `ρ_m(A) -> O_K/𝔭^n`. It sends `c_q` to `{ζ, ζ+ql}`, which has value `ζ^(-q) != 1`. ∎
+
+**Part 4 (`F_(r,N)`, `l` odd, `r <= l − 1`).**
+- *The commutative part.* Write `C_r` for the image of `A` in `F_(r,N)`. It consists of the diagonal operators
+  `f_j ↦ g(lj) f_j`, for `g ∈ Z[u]`, since the `π_k` are already units in the finite local image of `Z[u]`.
+  - `g(lj) ≡ 0 mod l^r` for all `j` if and only if `g ∈ (l,u)^r`, provided `r <= l`.
+  - Proof: `(l,u)^r` clearly acts by `0`. Conversely, write `g(lt) = Σ_i c_i l^i t^i = Σ_k d_k binom(t,k)`, with
+    `d_k = k! Σ_(i>=k) S(i,k) c_i l^i` (Stirling numbers). Vanishing at all integers forces every `d_k ≡ 0 mod l^r`.
+    For `k <= r − 1`, `k!` is a unit, and descending induction on `k` gives `c_k l^k ≡ 0 mod l^r`.
+  - So `C_r = Z[u]/(l,u)^r`, a local ring with maximal ideal `𝔪 = (l,u)` and `𝔪^r = 0`.
+- *Coordinates.*
+  - Since `k!` is a unit for `k <= r − 1 < l`, truncated `exp` and `log` identify `(𝔪, +)` with `1 + 𝔪`.
+  - `C_r^x = μ_(l−1)·(1 + 𝔪)`.
+  - Put `β(a, b) = {e^a, e^b}` for `a, b ∈ 𝔪`. By (S1)–(S3), `β` is `Z`-bilinear and alternating.
+  - Symbols involving `μ_(l−1)` vanish. Those between two roots of unity come from `K_2(N, Z/l^r) = 0` (Dennis–Stein,
+    pp. 255–256). Those between a root of unity and `1 + 𝔪` vanish by coprime orders.
+  - By (St) the symbols generate. So `K_2(N, C_r) = 0` once `β = 0`.
+- *The Steinberg relations.*
+  - Let `t ∈ Z/l^r` with `t` and `1 − t` units, and put `t' = t/(1−t)`. Write `s = ω_s e^(λ(s))` for integer
+    units `s`.
+  - For `a ∈ 𝔪`, `1 − te^a = (1−t) e^(w(a))`, where `w(a) = log(1 − t'(e^a − 1)) = Σ_(k>=1) w_k(t) a^k`. The
+    coefficients `w_k(t)` are `l`-integral polynomials in `t'`, and `w_1 = −t'`.
+  - (S4) for `x = te^a` gives `R(t,a): β(λ(t), w(a)) + β(a, λ(1−t)) + β(a, w(a)) = 0`. Here
+    `β(λ(t), λ(1−t)) = 0` because it is a symbol of integer units.
+- *Homogeneous parts.* Replace `a` by `ca` for `c = 1, …, r`. `R(t, ca)` is a polynomial in `c` of degree `<= r`
+  with no constant term, and the Vandermonde matrix of `1, …, r` is invertible mod `l`. So each homogeneous part
+  vanishes.
+  - *Degree 1:* `β(a, μ(t)) = 0`, where `μ(t) = λ(1−t) + t'λ(t)`.
+    - `μ(t)/l ≡ −(L(1−t) + t'L(t)) ≡ P(t)/(1−t) mod l` (Part 1).
+    - Choosing `t` with `P(t) != 0` gives `β(a, l) = 0`. So `β(n, ·) = 0` for every integer `n ∈ lZ`.
+  - *Degree `k + 1`, for `2 <= k <= r − 1`:* the part `β(λ(t), w_(k+1)a^(k+1))` vanishes by degree 1. What remains
+    is `w_k(t) β(a, a^k) = 0`.
+    - `k!·w_k` is a polynomial in `t'` of degree `k`, with top coefficient `−(k−1)! ≠ 0 mod l` and a root at
+      `t' = 0`.
+    - It has at most `k − 1 <= l − 3` roots among the `l − 2` admissible values `t' ∉ {0, −1}`. So some `t` makes
+      `w_k(t)` a unit, and `β(a, a^k) = 0` for all `a ∈ 𝔪`.
+- *Polarization.* `β(a + sb, (a + sb)^k) = 0` for `s = 0, …, k+1`, and `k + 2 <= l`. Taking the coefficient of `s`
+  gives `β(b, a^k) = −k β(a, a^(k−1) b)`, for all `a, b ∈ 𝔪` and `k >= 1`.
+  - With `a = u` and `b = u`: `(k+1) β(u, u^k) = 0`. Since `k + 1 <= r <= l − 1`, `β(u, u^k) = 0`.
+  - With `a = u` and `b = u^j`: `β(u^j, u^k) = −k β(u, u^(j+k−1)) = 0`.
+- *Conclusion.*
+  - `𝔪` is spanned over `Z` by the `l^i u^j`, and `β(l^i u^j, l^(i') u^(j'))` is `l^(i+i') β(u^j, u^(j'))` or a
+    `β(lZ, ·)`. So `β = 0`.
+  - Hence `K_2(N, C_r) = 0`, and `c_q ↦ 1` in `K_2(N, F_(r,N))`, for every `q` and every `N` that is a multiple of
+    `l^(r−1)`. ∎
+- *The boundary `r = l`.* This argument fails there for two reasons:
+  - degrees `1` and `l` cannot be separated by scaling;
+  - `(k+1)β(u, u^k) = 0` is empty for `k = l − 1`.
+
+  The expected survivor is the class of `u^(l−1) du`. Part 4 does not decide `r >= l`.
