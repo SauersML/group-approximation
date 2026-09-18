@@ -4,6 +4,29 @@ Evidence, not proof. Cleared by the coordinator as a bounded MSI search: single 
 10 minutes, about 16 minutes of compute in total, nothing left running. Target node:
 `prime-shift-group-k2-is-finitely-presented`, Attempt 3.
 
+## CORRECTION (added the same day): the searched words could never produce a hit
+
+Found while tabulating the near misses. Every generator `σ_2^j M σ_2^-j` with `M in GL_2(Z)` preserves the
+content `c(w)`, the positive generator of `Z w_1 + Z w_2`. The reason: `c(σ_2 w) = σ(c(w))` and
+`c(M w) = c(w)`. So every searched word lies in the content-preserving subgroup `C`.
+- **Test 1 is vacuous.** Suppose `V_1 = L V_2` with `V_1, V_2 in C`. Then `L in C` is linear. A linear map
+  preserving content sends primitive vectors to primitive vectors, so it lies in `GL_2(Z)` and
+  `|det L| = 1`. If `p` divides `det L`, some primitive `w` has `L w in p Z^2`.
+- **Test 2 is vacuous.** Suppose `V = L r V'` with `V, V' in C`. Then `L r in C`. That forces `L` to be
+  integral with primitive columns. But `r(1,1) = (168,-10)` has content 2, so `L r(1,1)` has content at
+  least 2.
+- **So "0 hits" is a theorem, not evidence.** The runs above say nothing about whether `r in N`. The
+  calibration found hits only because it added `e`, which is not in `C`.
+- **The correct search space.** `N = <σ_2^j SL_2(Q) σ_2^-j, D : j in Z>` (Attempt 5 of the node). Its
+  generators include `σ_2^j x_12(q) σ_2^-j` for rational `q`, which do not preserve content. A meaningful
+  search must use them, for example `q in {±1/2, ±2, ±1/3, ±3}`. That is not run here.
+- **Tabulation (run `tab`, 55 s).** On the extra lines `(1,1)`, `(1,2)`, `(2,1)`, `(1,3)`, `(3,1)`, `(2,3)`,
+  `(1,-2)`, all 185 near misses (length <= 5, `|j| <= 1`):
+  - preserve content, with ratio exactly 1, as they must;
+  - keep none of those lines.
+
+  `r` keeps none of them either. It changes content by 2 on `(1,1)` and `(1,3)`, and by 1 on the other five.
+
 ## Question
 
 Is the three-line fixer `r` of Attempt 3, equivalently `e = diag(2,1)`, in `N = <<GL_2(Z)>>` in
@@ -73,7 +96,10 @@ None agrees with `r` on more than those three probes; the best is 3 of 10. The s
 `s-1X s0x`, the element `X^-1 ∘ (σ_2^-1 X σ_2)`: the word applies its letters left to right. Both factors fix
 the `x`-axis; on the `y`-axis, `(0,y) -> (y,y) -> (0,y)`.
 
-## Reading
+## Reading (superseded by the correction above)
+
+The paragraph below is kept as first written. By the correction, both tests are vacuous on this word class,
+so the result carries no evidence either way.
 
 Across these words the answer is "no relation": no `σ_2^(±1)`-, `σ_2^(±2)`- or wide-shear word of length
 <= 5, and length-6 words partially, is a linear map of `|det| != 1`, and no pair of such words differs by one.
@@ -557,4 +583,36 @@ for t in range(int(sys.argv[3]) if len(sys.argv) > 3 else 60):
         print('MISMATCH at', v, lhs, rhs)
         break
 print('mismatches:', bad)
+```
+
+### tab.out
+
+```text
+k(1,1) = (Fraction(2, 1), Fraction(1, 1))  r on probes: [('1', '0'), ('0', '1'), ('168', '-10'), ('1', '-1'), ('-29', '200'), ('701', '-2402'), ('-2097', '18958'), ('-346', '201'), ('-32', '95'), ('4216', '2118')]
+generators: 14  wide = False  J = 1  MAXLEN = 5  RLEN = 1
+level 1 new elements 14 time 0.4 overflow 0
+level 2 new elements 158 time 0.4 overflow 0
+level 3 new elements 1646 time 1.0 overflow 0
+level 4 new elements 16789 time 6.0 overflow 36
+level 5 new elements 167723 time 54.9 overflow 2170
+ball size 186331 overflow 2170 stopped_early False
+linear-collision hits (|det L| != 1): 0
+near misses (fix both axes and (1,-1)): 185
+r-translated words checked 14 overflow 1 matches 0
+TABULATION over 185 near misses (words in N_0 fixing both axes and (1,-1))
+  line (1, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, 2) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (2, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, 3) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (3, 1) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (2, 3) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  line (1, -2) : evaluated 185 kept 0 content ratio 1: 185 scalars when kept: {}
+  r on (1, 1) -> ('168', '-10') line kept False scalar None content ratio 2
+  r on (1, 2) -> ('701', '-2402') line kept False scalar None content ratio 1
+  r on (2, 1) -> ('-29', '200') line kept False scalar None content ratio 1
+  r on (1, 3) -> ('1436', '678') line kept False scalar None content ratio 2
+  r on (3, 1) -> ('6135', '-5567') line kept False scalar None content ratio 1
+  r on (2, 3) -> ('3715', '-2682') line kept False scalar None content ratio 1
+  r on (1, -2) -> ('-49', '-46') line kept False scalar None content ratio 1
+total time 55.1
 ```

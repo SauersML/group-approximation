@@ -133,3 +133,33 @@ Notation as in `gl-n-q-lies-in-prime-shift-permutation-group`.
   - *Near misses.* Thousands of words fix both axes and `(1,-1)`. None agrees with `r` on any other probe.
   - *Reading.* Consistent with `I_2 = 1`, and hence with `K_2` not finitely presented. It says nothing
     about longer words, `|j| >= 3`, or conjugators other than powers of `σ_2`. Stopped at the budget.
+  - **Correction (Attempt 5): this search was structurally blind.** Every searched word preserves content,
+    so both tests are vacuous by a two-line argument. The "no hit" above carries no evidence.
+- **Attempt 5 (2026-09-18, gq-ring-fp-simple): the near misses point to content, which N does not preserve.
+  No separating invariant.**
+  - **Generators of N (rigorous).** `N = <σ_2^j SL_2(Q) σ_2^-j, D : j in Z>`, where `D = diag(-1,1)`.
+    - `⊇`: `N` is normal and contains `SL_2(Q)` and `D`.
+    - `⊆`: the right side contains `GL_2(Z)`, and `σ_2` permutes its generators.
+    - `diag(q,1)` normalizes each `σ_2^j SL_2(Q) σ_2^-j`, because `σ_2^-j diag(q,1) σ_2^j = diag(σ^-j q, 1)`.
+    - `GL_2(Q) = <SL_2(Q), diag(q,1)>`, so the right side is normal in `K_2 = <GL_2(Q), σ_2>`.
+  - **Content (rigorous).** The subgroup `N_0 = <σ_2^j GL_2(Z) σ_2^-j>` preserves the content `c(w)`, since
+    `c(σ_2 w) = σ(c(w))`. So does every word of Attempt 4.
+    - `r` does not: `c(r(1,1)) = c(168,-10) = 2`. Hence `r ∉ N_0`.
+    - Both tests of Attempt 4 were therefore vacuous. A content-preserving linear map lies in `GL_2(Z)`, and
+      `L r` is never content-preserving. The artifact records the correction.
+  - **Tabulation (one MSI run, 55 s).** On the lines `(1,1)`, `(1,2)`, `(2,1)`, `(1,3)`, `(3,1)`, `(2,3)`, `(1,-2)`:
+    - all 185 near misses keep content with ratio 1 and keep no line;
+    - `r` keeps no line and doubles content on `(1,1)` and `(1,3)`.
+
+    So the only visible invariant of the near misses is content.
+  - **Why content cannot separate.** `SL_2(Q) ⊆ N` changes content. For example
+    `x_21(1/2)(1,0) = (1, 1/2)` has content `1/2`. So "`N ∩ Fix(ℓ_x, ℓ_y, ℓ_-)` preserves content" is not
+    implied by anything known, and is probably false: commutators of rational shears with elements of `N_0`
+    that fix the lines are natural candidates to violate it. They were not checked.
+  - **What a separating invariant must satisfy.** It must be invariant under every `σ_2^j SL_2(Q) σ_2^-j`.
+    `SL_2(Q)` is transitive on nonzero vectors, and has only the determinant as an invariant of vector pairs.
+    Pair determinants fail by Attempt 1, and content fails as shown. So such an invariant must use
+    `σ`-twisted structure that no single `SL_2(Q)` sees.
+  - **Status.** No conjecture of the requested form survives. The informative search would use the
+    generators `σ_2^j x_12(q) σ_2^-j` with rational `q`; it was not run, since no budget was granted for it.
+    Stalled.
