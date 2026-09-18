@@ -596,3 +596,25 @@ unitary representation of the carrier.
 
 Next step: the extension problem. Extend one sofic Pauli wall model of `V_T`
 to an HS-almost representation of `G`. The claim stays OPEN.
+
+- **The extension problem over Hamming carriers (lane w8-121,
+  2026-09-18).** Result: `hamming-enemies-escape-finite-hull-pair-loeb-scales`.
+  - *Part A.* The Pauli wall model does not extend over permutation carriers.
+    In a sofic representation of `Pi_T`, the lamp at `t x_0` lies in
+    `C(sigma(Lambda)) \ C(sigma(Gamma))`. Kun--Thom 4.1 would force `sigma(t)`
+    to normalize `C(sigma(Gamma))`, so no sofic representation of `G` restricts
+    to it.
+  - *Part B.* Kun--Thom Theorem C, applied to the tensor-square action
+    `phi_n × phi_n` on pairs `Y_n × Y_n`, proves the following for every sofic
+    model of `G`. A flat element of the `Gamma`-commutant (entries
+    `O(|Y_n|^-1/2)`, which includes Fourier-spread elements off the monomial
+    core) commutes with `sigma(E)`. So does every element dominated at its
+    own density by an asymptotically `G`-invariant pair set.
+  - *Part C.* Every enemy of a sofic model keeps mass at least `delta/2` off
+    every such pair scale. It is an infinite-hull wall at an intermediate
+    scale.
+  - *Still open.* Carriers that are genuinely non-permutation: irreducible
+    representations of `A_m`, with `m` unbounded, that are not corners of
+    bounded-arity permutation modules, and non-monomial HS extensions. Also
+    open is a version of Theorem C for infinite-measure (Poisson-type) sofic
+    actions, which would kill infinite-hull walls.
