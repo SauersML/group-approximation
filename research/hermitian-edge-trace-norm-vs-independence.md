@@ -1,0 +1,76 @@
+---
+rg: 2
+id: hermitian-edge-trace-norm-vs-independence
+kind: claim
+title: A Hermitian matrix supported on the edges of a graph, with entries of modulus at least 1, has weighted trace norm at least sqrt3 (W - alpha_w)
+artifacts:
+  - experiments/qudit-weyl-rounding-multiqudit-2026-09-18/README.md
+distinct_from:
+  qudit-weyl-rounding-one-qudit-constant-is-2d-over-sqrt3-pi: that proves the Weyl-specific one-qudit case (complete multipartite graphs coming from lines of F_d^2) with Turán's theorem; this is the general matrix inequality for every graph and every complex phase pattern.
+---
+
+**OPEN (conjecture; tight at the triangle; numerics).** Let `G` be a finite graph on `[N]`, let
+`w in R_{>=0}^N`, and put `W = sum w_i`, `alpha_w = max` of `w(I)` over independent sets `I` of `G`,
+and `D = diag(sqrt w)`. Let `C` be a Hermitian matrix with `C_ii = 0`, `C_ij = 0` for non-edges, and
+`|C_ij| >= 1` for edges. The conjecture is
+
+```text
+(**)     || D C D ||_1  >=  sqrt3 ( W - alpha_w(G) ) .
+```
+
+**Equivalent form (STAB membership).** `||DCD||_1 = min { sum_i w_i Q_ii : Q >= C, Q >= -C }`. So
+(**) for all `w` says the following. For every such `C` and every Hermitian `Q` with `Q +- C >= 0`,
+the vector `y_i = (1 - Q_ii/sqrt3)_+` lies in the stable-set polytope `STAB(G)`. Equivalently,
+there is a random independent set `I` with `Pr(i in I) >= y_i`.
+
+**Why it matters.** By `qudit-weyl-rounding-constant-2d-over-sqrt3-pi-via-trace-norm`, (**) implies
+that the Weyl stabilizer rounding constant on any number of prime-`d` qudits is at most
+`2d/(sqrt3 pi) + 4 + O(1/d)`. With `qudit-weyl-rounding-constant-triangular-harper-bound`, it would
+settle `c_d = 2d/(sqrt3 pi) + O(1)`.
+
+**Known cases.**
+- **Triangle, all weights (tight).** `tr DCD = 0`, so `||DCD||_1 >= sqrt2 ||DCD||_F
+  >= 2 (w_1w_2 + w_1w_3 + w_2w_3)^(1/2)`. Take `w_3` maximal and `a = w_1 <= b = w_2`. Then
+  `4(ab + (a+b)w_3) - 3(a+b)^2 >= 4(2ab + b^2) - 3(a+b)^2 = (b-a)(b+3a) >= 0`, which is (**).
+  Equality holds at `w = (1,1,1)/3`, `|C_ij| = 1`, flux `arg(C_12 C_23 C_31) = pi/2`. The
+  eigenvalues are then `+-sqrt3, 0`.
+- **Bipartite graphs.** The `2x2` minors of `Q + C >= 0` and `Q - C >= 0` give
+  `Q_ii Q_jj >= max |Q_ij +- C_ij|^2 >= |C_ij|^2 >= 1` on every edge. So if `y_i, y_j > 0` then
+  `y_i + y_j <= 2 - 2/sqrt3 < 1`. Edge constraints cut out STAB for bipartite graphs. More generally,
+  for perfect graphs (**) reduces to the clique facets.
+- **Disjoint unions.** Both sides are additive.
+- **Weyl one-qudit case.** Here `G` is complete multipartite and `C` is the commutator matrix of Lemma L
+  in `qudit-weyl-rounding-one-qudit-constant-is-2d-over-sqrt3-pi-proof`. This case is proved there,
+  with constant `sqrt3 (1 - O(1/d))`, by Frobenius plus Turán.
+
+**Numerics** (`experiments/qudit-weyl-rounding-multiqudit-2026-09-18/`).
+- `complex_star.py`: local minimization over phases, moduli `>= 1` and weights, on random graphs
+  with `N = 5, 6` and `p = 0.5, 0.7`, and on `K_3, K_4, K_5`. The minimum ratio
+  `||DCD||_1 / (sqrt3 (W - alpha_w))` was never below `1`. It equals `1.000000` whenever the search
+  reaches a triangle with weights `1/3`.
+- `clique_uniform.py`: for `K_m` with uniform weights, the minimum of `||C||_1/(sqrt3 (m-1))` is
+  `1.000, 1.053, 1.045, 1.072, 1.093, 1.093` for `m = 3, ..., 8`.
+- `graph_relaxed.py` (purely imaginary `C = i Omega`, the semiclassical Weyl regime, by an SDP in `Q`
+  alternating with an LP in `w`): the minimum ratio is `sqrt3` to solver tolerance for
+  `N = 6, 7` and `p = 0.4, 0.6, 0.8`, again at a triangle.
+- Odd cycles with uniform weights: `min ||C||_1 = 6.155, 8.763, 11.343, 13.910` for
+  `C_5, C_7, C_9, C_11`, against the required `5.196, 6.928, 8.660, 10.392`.
+
+## Attempts
+
+1. *Frobenius only* (as in the one-qudit proof and the triangle case). `tr C = 0` gives
+   `||C||_1 >= sqrt2 ||C||_F >= sqrt(2m(m-1))` on `K_m`. This proves (**) for `K_m` with uniform
+   weights only for `m <= 3`. It dies at `m = 4`, because `sqrt24 = 4.90 < 3 sqrt3 = 5.20`. On one qudit,
+   Weyl structure rescues it: Lemma T forces many pairs with `|1 - omega^t| >= 2 sin(2pi/d)`. In general
+   `C` has no such structure, so a genuine trace-norm (non-Frobenius) argument is needed for large
+   cliques.
+2. *Edge minors only.* `Q_ii Q_jj >= 1` on edges gives `y_i + y_j <= 2 - 2/sqrt3 = 0.845`. On `C_5`
+   this allows `sum y` up to `5 x 0.4226 = 2.11 > 2 = alpha`. So it dies at the first odd cycle. The
+   odd-cycle facets need the full `5x5` condition, which holds with room to spare (numerics above).
+   A proof must use principal submatrices of size at least `3` (triangles) and odd-cycle structure
+   together.
+3. *Deferred*: a rounding proof via the Gram vectors of `Q + C` and `Q - C`. These are vectors
+   `a_i, b_i` with `|a_i| = |b_i| = sqrt(Q_ii)`, equal inner products on non-edges, and
+   `|<a_i,a_j> - <b_i,b_j>| >= 2` on edges. It would produce the random independent set directly.
+   This mirrors the quantum rounding (measure a commuting set), which is how the one-qudit case is
+   proved.
