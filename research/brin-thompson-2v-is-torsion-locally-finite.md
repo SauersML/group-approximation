@@ -6,6 +6,8 @@ title: Every finitely generated periodic subgroup of the Brin–Thompson group 2
 distinct_from:
   some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup: that is the open existence question for f.p. simple hosts of infinite bounded-exponent groups; this decides it for the one host where the known argument for V breaks, in either direction.
   circle-and-tree-product-periodic-subgroups-are-finite: that settles circle groups and tree-product lattices; this is the open two-stack case.
+  brin-thompson-groups-contain-infinite-periodic-groups: that asks for an infinite f.g. periodic subgroup of some nV, n >= 2 (bh-free-01); this is the barrier form at n = 2, so this claim implies the negation of that one at n = 2 only. New work on constructions goes there; barrier work goes here.
+  full-shift-topological-full-groups-are-torsion-locally-finite: that settles the read-only head subgroup [[Σ^Z]] <= 2V; this is the whole of 2V.
 artifacts:
   - research/artifacts/gq-bh-bh-free-06-one-stack-pumping.md
 ---
@@ -25,10 +27,16 @@ artifacts:
 - **`V` is torsion locally finite (Röver).** This is Burillo--Cleary--Röver,
   arXiv:1402.3860, Theorem 1.3, read from the arXiv HTML. The artifact re-proves it
   by one-stack pumping and explains why that argument uses exactly one stack.
-- **The only published claim for `nV` has been withdrawn.** arXiv:2209.11982,
-  X. Sheng, withdrawn 2025-04-02 with the comment "a flaw in one of the proofs",
-  asserted "similar obstructions as Thompson's group V on the torsion subgroups" for
-  `nV`.
+- **No valid published proof for `nV`, `n ≥ 2`.**
+  - arXiv:2209.11982 (X. Sheng) asserted "similar obstructions as Thompson's group V on
+    the torsion subgroups" for `nV`. It was withdrawn on 2025-04-02 with the comment "a flaw
+    in one of the proofs".
+  - arXiv:2603.18410v3 (Kojima–Sheng, 23 May 2026, current version) states "nV is torsion
+    locally finite for n ≥ 1" (Theorem 1.1). Its proof rests on a two-generator criterion
+    (`Cor:TwoGenerator`: if `g`, `h`, `gh` are torsion then `⟨g,h⟩` is finite), and that
+    criterion is false already in `V`: see
+    `kojima-sheng-two-generator-torsion-criterion-fails-in-v`, where `g`, `h`, `gh` have order 3
+    and `⟨g,h⟩ ≅ Δ(3,3,3)`. So this claim stays OPEN (lane bh-free-50, 2026-09-18).
 - **Pumping cannot bound torsion in `2V` uniformly.** Elements of `2V` are two-stack
   transformations, and Belk--Bleak (arXiv:1405.0982) prove the torsion problem of
   `2V` undecidable.
@@ -64,3 +72,27 @@ artifacts:
    - The pumping fails for `RTM` because the tape, and with it `Γ_x`, changes along
      a path. No torsion-local-finiteness argument for `RTM` is known here, and no
      infinite torsion subgroup was constructed.
+   - **The oblivious writing machines are torsion locally finite too.** For `OB`
+     (head movement independent of the tape, arbitrary local writing),
+     Barbieri–Kari–Salo (arXiv:1603.08715, Proposition 3) give an average-movement
+     homomorphism `α : OB -> Z^d` with kernel `LP`, which is locally finite. A
+     torsion subgroup of `OB` maps to a torsion subgroup of `Z^d`, so it lies in
+     `LP` and is locally finite. So one stack (`V`), a read-only moving head
+     (`RFA`) and oblivious writing (`OB`) are each torsion locally finite. A
+     counterexample in `2V` must couple tape-dependent movement with writing, as in
+     the elementary machines `EL = <RFA, LP>`, whose torsion problem is
+     undecidable (arXiv:2303.17270, Theorem 1.2).
+3. **Why the cycle-and-drift argument does not extend to two stacks (2026-09-18, lane
+   `bh-free-06`).** *Obstacle located; no proof and no counterexample.*
+   - The argument in `full-shift-topological-full-groups-are-torsion-locally-finite`
+     needs a fixed labelled graph `Γ_x` on `Z` whose edges are read off the unchanging
+     input. A writing element moves input from one stack to the other and changes it,
+     so the orbit graph of a configuration is no longer a local function of one fixed
+     tape. The Ramsey step then has no fixed partition to be homogeneous for.
+   - For **bounded exponent**, a witness inside `RTM(Z,2,1)` would be an infinite
+     f.g. LEF group of bounded exponent, since `RTM` is LEF (arXiv:1603.08715,
+     Theorem 6). Zelmanov's theorem gives finiteness for residually finite groups
+     only. Its Lie-ring method uses the power law on elements of unbounded length, so
+     a LEF approximation, which enforces the law only on short words, does not
+     obviously suffice. Whether every f.g. LEF group of bounded exponent is finite is
+     not settled here.

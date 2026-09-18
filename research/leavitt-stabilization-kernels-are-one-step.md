@@ -8,8 +8,8 @@ distinct_from:
   st-n-leavitt-resolvent-word-problem-reduces-to-k2: that reduces gate 1 to injective stability (i); this makes (i) the injectivity of a single map St_N(R_L) -> St_(N+1)(R_L).
 ---
 
-**ESTABLISHED** through `leavitt-stabilization-kernels-are-one-step-proof`. Lane proof, not independently reviewed.
-It is elementary given the refinement isomorphism of `leavitt-refinement-identifies-unstable-k2-levels`, item 1
+**ESTABLISHED** through `leavitt-stabilization-kernels-are-one-step-proof`. Refereed: gq-referee-a PASS, proof-gap lens (report
+4ba142c64, N3 applied); one referee. It is elementary given the refinement isomorphism of `leavitt-refinement-identifies-unstable-k2-levels`, item 1
 (Voronetsky, read at source by gq-referee-b). No priority is claimed.
 
 **Setting.** `R` is a unital ring with a Leavitt pair `e, f` (`e*e = f*f = 1`, `e*f = f*e = 0`, `ee* + ff* = 1`), and
@@ -24,7 +24,8 @@ isomorphism: it fixes `X_ij(a)` for `i, j < N`, and it sends `X_iN(a) -> X_iN(ae
    `U_N = ker(K_2(N,R) -> K_2(R)) = ker(j_N)`, and it lies in `K_2(N, R)`.
 3. **Stabilization is a twisted refinement.** `j_N = D_N ∘ Σ^(e)`. Here `Σ^(g)`, for an isometry `g` (`g*g = 1`), is the
    endomorphism of `St_N(R)` that fixes `X_ij(a)` for `i, j < N` and sends `X_iN(a) -> X_iN(a g*)` and
-   `X_Nj(a) -> X_Nj(g a)`. The `Σ^(g)` compose as `Σ^(g) Σ^(h) = Σ^(gh)`, and `Σ^(u)` is an automorphism for a unit `u`.
+   `X_Nj(a) -> X_Nj(g a)`. The `Σ^(g)` compose as `Σ^(g) Σ^(h) = Σ^(gh)`, and `Σ^(u)` is an automorphism for a unitary `u` (`u*u = uu* = 1`); `Σ^(g)` is defined only for
+   isometries, with `(gh)* := h* g*` (gq-referee-a, N3).
    Hence `U_N = ker Σ^(e) = ker Σ^(f)`. The second equality uses `f = W e` with the unitary `W = ef* + fe*`.
 4. **For `R_L`.** Condition (i) of `st-n-leavitt-resolvent-word-problem-reduces-to-k2` is equivalent to injectivity of
    the single map `j_N` at any one `N >= 3`. Equivalently, it is injectivity of the isometric twist `Σ^(s_1)` of the last

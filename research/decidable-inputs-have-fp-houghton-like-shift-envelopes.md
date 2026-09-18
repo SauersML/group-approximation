@@ -18,16 +18,20 @@ finitely presented.
 It is enough for Boone--Higman: `boone-higman-via-houghton-like-shift-envelopes`.
 
 **What is known.**
-- **Germ level: settled positively.** By `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`, for
-  `n >= 2` the germ group `H_n(E_nu(P))/FSym` is finitely presented iff `R_nu` is. Generic enumerations give
-  `R_nu ≅ P * Z`, so they pass for every infinite finitely presented `P`.
-- **Necessary.** `R_nu` is finitely presented (same node, item 4). So every enumeration with a
+- **Germ level.** By `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`, for
+  `n >= 2` the germ group `H_n(E_nu(P))/FSym` is finitely presented iff `R_nu` is. Free-shift enumerations give
+  `R_nu ≅ P * Z`, so they pass the germ gate for every infinite finitely presented `P`.
+- **But free-shift enumerations fail (bh-map, same day).** By `free-shift-houghton-like-envelopes-are-not-fp`,
+  `H_n(E_nu(P))` is not finitely presented for any `n` when `P * <s> -> R_nu` is injective. So a witness `nu`
+  must carry near relations. Item 3 there gives a sharper necessary condition: finitely many relations of
+  `H_n(E_nu(P))` must determine `nu` up to right translation.
+- **Necessary.** `R_nu` is finitely presented (`houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group` item 4). So every enumeration with a
   non-finitely-presented near shift group is excluded. That includes the square spiral enumeration of `Z^2`
   (`square-spiral-z2-near-shift-group-is-not-finitely-presented`), which fails here as it fails every other
   permutation or shell route.
-- **Remaining gap.** Lifting from germs to `H_n(E_nu(P))`. This is
-  `houghton-like-envelopes-lift-finite-presentation-from-germs` for `G = E_nu(P)`. Route
-  `decidable-houghton-envelopes-via-generic-nu-and-lifting` records the reduction.
+- **Remaining gap.** Find an enumeration with finitely presented `R_nu` whose near relations make
+  `H_n(E_nu(P))` finitely presented. The generic-enumeration route
+  `decidable-houghton-envelopes-via-generic-nu-and-lifting` is dead: its lifting requirement is refuted.
 - **Calibration, `P = Z`.**
   - The zigzag enumeration makes `E_nu(Z) = H_1(E_nu(Z))` finitely presented, as an index-12 subgroup of `E_4`
     (`zigzag-cyclic-shift-envelope-is-finitely-presented`).
@@ -37,5 +41,6 @@ It is enough for Boone--Higman: `boone-higman-via-houghton-like-shift-envelopes`
 
 **How this can fail.** It is a statement about all pairs `(nu, n)`. A refutation needs an invariant of `P` that
 defeats every enumeration and every `n >= 2`. By the germ theorem, such an invariant can no longer live on the
-germ group for generic enumerations. It would have to see the finitary part `FSym`, for example through the
-extension class of `1 -> FSym -> H_n(G) -> Q_n -> 1`.
+germ group for generic enumerations. It would have to see the finitary part `FSym`. The free-shift kill
+(`free-shift-houghton-like-envelopes-are-not-fp`) does exactly this, through the conjugation action of `rho` on
+transpositions.

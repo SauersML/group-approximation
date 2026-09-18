@@ -97,3 +97,17 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
    - *Still open:* scalings that move `H`; non-ascending extensions over two proper
      edges whose isomorphism is not the restriction of an automorphism.
    - Notes: `research/artifacts/gq-bh-bh-free-02-complexity-root-notes.md`.
+6. **Piecewise prefix-and-automaton hosts are capped** (bh-free-02, 2026-09-18).
+   `automaton-tail-full-groups-have-conp-relative-word-problem` covers every
+   finitely generated group of homeomorphisms that act piecewise by prefix
+   replacement followed by elements of automaton groups `H_i` on the tails. This
+   includes `nV`, Rover--Nekrashevych groups of automaton groups, and the product
+   2-graph hosts `2V_τ` and `2V_H`. Each such group has word problem in
+   `coNP^{WP(H_i)}`, and hence in `PSPACE`.
+   - *Dies as a family* for this root: the family shares the bound `PSPACE`.
+   - *Calibration.* The new hosts `2V_τ` and `2V_{G_N}` are coNP-complete, exactly
+     Birget's level. Zaremsky's exponential-Dehn hosts have word problem in `coNP`.
+   - *Beating coNP needs a finitely presented automaton group with word problem
+     outside `P`,* for example `NP`- or `PSPACE`-hard. It then passes up through
+     Zaremsky's Theorem 1.1. Beating every recursive bound needs infinite-state
+     coefficient groups.
