@@ -20,8 +20,10 @@ elements of `G` without singular points; (3) for `g ∈ G` and `q ∈ sing(g)` t
 **Step 2: onto.** Let `g ∈ Stab_G(p)`.
 - If `p ∈ sing(g)`, condition (3) gives `h ∈ G` with `sing(h) = {p}` and `h = g` on a
   neighbourhood of `p`. Then `h(p) = g(p) = p`, so `h ∈ S_p` and `(h)_p = (g)_p`.
-- If `p ∉ sing(g)`, then `g` agrees near `p` with some `v ∈ V`. So `v(p) = p`, and
-  `sing(v) = ∅` gives `v ∈ S_p` with `(v)_p = (g)_p`.
+- If `p ∉ sing(g)`, then by the definition of `sing(g)` (the points near which `g`
+  agrees with no element of `V`), `g` agrees near `p` with some `v ∈ V`. So
+  `v(p) = p`, and `sing(v) = ∅` gives `v ∈ S_p` with `(v)_p = (g)_p`.
+- Neither case uses fullness of `G` or `V`.
 
 **Step 3: the kernel.**
 - Let `g ∈ S_p` with trivial germ at `p`, i.e. `g` is the identity near `p`. It agrees
@@ -42,8 +44,11 @@ elements of `G` without singular points; (3) for `g ∈ G` and `q ∈ sing(g)` t
 - If `v ∈ K_p`, then `v` is the identity on some open neighbourhood of `p`, hence on a
   cone `W ∈ 𝒲` around `p`. Then `v(W) = W`, so `v` preserves `C − W` and lies in
   `V[C − W]`. Conversely every `V[C − W]`, `W ∈ 𝒲`, lies in `K_p`.
-- So `K_p = ⋃_{W ∈ 𝒲} V[C − W]` is a directed union of simple groups, hence simple. It
-  is nontrivial, because `V[C − W] ≠ 1`.
+- So `K_p = ⋃_{W ∈ 𝒲} V[C − W]` is a directed union of simple groups. It is nontrivial,
+  because `V[C − W] ≠ 1`.
+- A directed union of simple groups is simple. Let `N ⊴ K_p` with `1 ≠ x ∈ N`, and let
+  `y ∈ K_p`. Some single `V[C − W]` contains both `x` and `y`. There `N ∩ V[C − W]` is a
+  nontrivial normal subgroup of a simple group, hence all of it, so `y ∈ N`.
 
 **Step 5: items 2 and 3.**
 - `K_p` is normal in `S_p` as a kernel. For `1 ≠ k ∈ K_p`, the normal closure of `k` in
