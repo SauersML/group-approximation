@@ -60,11 +60,11 @@ theorem layerVec_conj_apply (c : Y → ℕ) (k : ℕ) (M : Matrix Y Y ℂ) (p q 
       = if (p.2 : ℕ) = k ∧ (q.2 : ℕ) = k then M p.1 q.1 else 0 := by
   have hL : ∀ z : Y, (layerVec c k)ᴴ p z = if z = p.1 ∧ (p.2 : ℕ) = k then 1 else 0 :=
     fun z ↦ by
-      rw [conjTranspose_apply]
-      simp only [layerVec, of_apply]
+      rw [Matrix.conjTranspose_apply]
+      simp only [layerVec, Matrix.of_apply]
       split_ifs <;> simp
-  simp only [mul_apply, hL]
-  simp only [layerVec, of_apply]
+  simp only [Matrix.mul_apply, hL]
+  simp only [layerVec, Matrix.of_apply]
   by_cases hp : (p.2 : ℕ) = k <;> by_cases hq : (q.2 : ℕ) = k <;>
     simp [hp, hq, ite_mul, mul_ite, Finset.sum_ite_eq, Finset.sum_ite_eq']
 
@@ -90,7 +90,7 @@ theorem layerModel_eq_iff (c : Y → ℕ) (p q : layerModel Y c) :
 /-- The layered model is unital. -/
 theorem layer_one (c : Y → ℕ) : layer c (1 : Matrix Y Y ℂ) = 1 := by
   ext p q
-  rw [layer_apply, one_apply, one_apply]
+  rw [layer_apply, Matrix.one_apply, Matrix.one_apply]
   by_cases h : p = q
   · subst h
     simp
@@ -133,11 +133,11 @@ def layerLinear (c : Y → ℕ) :
   toFun := layer c
   map_add' M N := by
     ext p q
-    simp only [layer_apply, add_apply]
+    simp only [layer_apply, Matrix.add_apply]
     split_ifs <;> simp
   map_smul' a M := by
     ext p q
-    simp only [layer_apply, smul_apply, RingHom.id_apply]
+    simp only [layer_apply, Matrix.smul_apply, RingHom.id_apply]
     split_ifs <;> simp
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.layerLinear

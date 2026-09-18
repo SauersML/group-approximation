@@ -3,7 +3,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Assembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Fournier-Facio's `G₀` as Hull's Corollary 7.4 common quotient, over the two open Greendlinger residuals
+# Fournier-Facio's `G₀` as Hull's Corollary 7.4 quotient, over the open Greendlinger residuals
 
 `non_mf_groups_exist.tex`, lines 2160–2170:
 
@@ -31,7 +31,8 @@ theorem to
 residuals
 
 * `hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0}`;
-* `hjunction : GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}`.
+* `hjunction :
+  GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}`.
 
 An earlier version stated these endpoints binder-free, citing a leaf closer
 `GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` that did not build (it cited the
@@ -120,9 +121,15 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullCommonQuotient_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_fournierFacioQuotient_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_fournierFacioParagraph_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.theoremC_configuration_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.theoremC_literatureInputs_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.fournierFacioRows_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullCommonQuotient_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_fournierFacioQuotient_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_fournierFacioParagraph_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.theoremC_configuration_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.theoremC_literatureInputs_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.fournierFacioRows_of_residuals

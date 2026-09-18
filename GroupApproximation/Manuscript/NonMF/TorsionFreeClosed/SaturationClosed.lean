@@ -32,7 +32,8 @@ discharges that binder with
 residuals
 
 * `hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0}`;
-* `hjunction : GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}`.
+* `hjunction :
+  GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}`.
 
 An earlier version stated these endpoints binder-free, citing a leaf closer
 `GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` that did not build (it cited the
@@ -120,9 +121,15 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_osin_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_limitSet_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationPairAndHullAgain_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationApplyHull_of_residuals
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.saturationLemmaRows_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_osin_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_limitSet_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationPairAndHullAgain_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationApplyHull_of_residuals
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.saturationLemmaRows_of_residuals
