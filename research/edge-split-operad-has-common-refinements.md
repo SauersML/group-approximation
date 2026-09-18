@@ -70,6 +70,17 @@ as in `edge-split-operad-satisfies-ore`.
    - `edge-split-sync-reduces-to-totally-irrational-shared-rays` reduces the former to
      shared rays at totally irrational directions. It does not touch LD_atom.
 
+3. **Correction to Attempt 1** (lane bh-major-mcg-2, 2026-09-18).
+   - The conclusion "LD_atom is the only open input for Ore's condition" is void.
+     LD_atom is refuted twice:
+     - by `edge-split-order-is-not-geometric-refinement` (a synchronization failure);
+     - by `split-tree-restrictions-to-a-child-need-not-be-split-trees` (a tree-structure
+       failure, 10 pieces).
+   - The current reduction, in every rank, is
+     `edge-split-ore-iff-synchronization-and-tree-domination`:
+     `(Ore) ⟺ (Sync′) ∧ (TD) ⟺ (Ore_atom)`.
+   - `edge-split-sync-reduces-to-totally-irrational-shared-rays` feeds the (Sync) half.
+
 ## Lesson for general BH
 
 - **This is exactly "Li without lcms".** For the most economical linear host, one
