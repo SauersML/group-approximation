@@ -74,3 +74,10 @@ topological full group of a minimal subshift").
      and all its finite skew-product lifts have no such colouring (the zero-insertion attractor is approached
      from all depth classes).
    - Open input: `some-nv-element-has-a-graded-height-3-renormalization`. Handed to bh-free-50.
+3. **Attempt 3 (2026-09-18, bh-free-50): the SMART host is closed for valuation-labelled targets.**
+   - `smart-level-zero-return-map-has-free-divergence`:
+     - SMART's level-0 return map, and every finite skew product of it, has no factor onto `T_3`.
+     - It has no factor onto the Schreier subshift of the ternary fragmentation of Attempt 1 either.
+     - Any almost 1-1 subshift factor over its odometer is singular only over two orbits.
+   - The open input stays `some-nv-element-has-a-graded-height-3-renormalization`, and a witness needs a
+     graded-rigid machine.
