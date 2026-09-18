@@ -45,11 +45,11 @@ theorem czK2FngFour_ker_subgroupOf_closure {G W : Type*} [Group G] [Group W] (f 
     obtain ⟨c, hc, hcy⟩ := Subgroup.mem_map.mp hy'
     exact ⟨⟨c, hc⟩, Subtype.ext hcy⟩
   have hfgW : Group.FG (Subgroup.closure (f '' T)) := Group.fg_of_surjective hg
-  haveI hcW : IsMulCommutative (Subgroup.closure (f '' T)) := by
+  haveI : IsMulCommutative (Subgroup.closure (f '' T)) := by
     apply Subgroup.isMulCommutative_closure
     rintro _ ⟨x, hx, rfl⟩ _ ⟨y, hy, rfl⟩
     exact hcomm x hx y hy
-  haveI hfp : Group.IsFinitelyPresented (Subgroup.closure (f '' T)) :=
+  haveI : Group.IsFinitelyPresented (Subgroup.closure (f '' T)) :=
     @GroupApproximation.FGAbelianFinitePresentation.isFinitelyPresented_of_commGroup
       (Subgroup.closure (f '' T))
       { (inferInstance : Group (Subgroup.closure (f '' T))) with
