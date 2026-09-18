@@ -6,8 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf P07, lane gl-p07-77: the arc clauses from the residual predicate
 
 Let `ow` be the outside walk of an `EnclosedFaceSetSucc` and `A₀` an arc of a relator cell.
-`pinchAbsTouchArc_arc_of_run` proves the two arc clauses of `pinchCut_Tail` for `A₀` from
-`pinchAbsTouchArc_Run X.toCombMap A₀.darts ow`:
+`pinchAbsTouchArc_run_arc` and `pinchAbsTouchArc_run_all` prove the two arc clauses of
+`pinchCut_Tail` for `A₀` from `pinchAbsTouchArc_Run X.toCombMap A₀.darts ow`:
 * (i) a run `U` of `invDarts X ow` inside `invDarts X A₀` that stops before the end is the
   reverse of an arc;
 * (ii) if `invDarts X ow` lies inside `invDarts X A₀`, some rotation of `ow` is an arc.
@@ -50,11 +50,11 @@ theorem pinchAbsTouchArc_run_arc {i : Fin X.rCellCount} {F : Finset X.toCombMap.
     ∃ A : CyclicArc (cellDarts X i), U = invDarts X A.darts := by
   have h0 : List.IsRotated (invDarts X ow) ((invDarts X ow).rotate m) := ⟨m, rfl⟩
   have hrot : List.IsRotated (invDarts X (invDarts X ow))
-      (invDarts X ((invDarts X ow).rotate m)) := h0.reverse.map X.toCombMap.alpha
+      (invDarts X ((invDarts X ow).rotate m)) := h0.reverse.map ⇑X.toCombMap.alpha
   rw [pinchAbsTouchArc_invInv, hmUV, pinchAbsTouchArc_invAppend] at hrot
   obtain ⟨m', hm'⟩ := hrot
   have hmemA : ∀ x ∈ invDarts X U, x ∈ A₀.darts := fun x hx =>
-    (pinchAbsTouchArc_mem_inv X _ _).mp
+    (pinchAbsTouchArc_alpha_mem_inv X _ _).mp
       (hU _ ((pinchAbsTouchArc_mem_inv X _ _).mp hx))
   obtain ⟨e, heV, heA⟩ := hV
   have hoff : ∃ d ∈ ow, d ∉ A₀.darts := by

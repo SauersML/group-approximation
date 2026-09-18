@@ -146,9 +146,11 @@ theorem roseLobeOsinPiece_merge_ne_one {G : Type u} [Group G] {Lambda : Type w}
     show _ = RelLetter.listVal (HullSC.RelWord.revInv (X.faceWord X.outerFace))
     rw [HullSC.RelWord.listVal_revInv]
     rfl
-  have hle := hlea (m := X.rCellCount - 2) (by
+  have hprod' : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W)
+      (X.rCellCount - 2) X.boundaryValue := by
     rw [← hcard, ← hbv]
-    exact hprod.inv)
+    exact hprod.inv
+  have hle := hlea hprod'
   have h1 := i.isLt
   have h2 := j.isLt
   have h3 : (i : ℕ) ≠ j := fun h => hij (Fin.ext h)
