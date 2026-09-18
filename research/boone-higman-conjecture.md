@@ -398,6 +398,31 @@ conjecture's two halves without narrowing either.
     - A table-defined separator refutes `local-boone-higman-conjecture` with a
       single finite system.
 
+**September 17: one decidable host per complexity bound.**  This attempt
+decomposes the conjecture as follows.
+
+- *(i)* For every recursive `T`, one decidable `U_T` contains every input
+  with word problem in `F(T)`.
+- *(ii)* Each `U_T` embeds in a finitely presented simple group.
+
+It is recorded as `boone-higman-via-complexity-graded-universal-inputs`.
+
+*Dies* at (i), for `T(n) = 2^((n+1)^37)`.  The Birget--Ol'shanskii--Rips--Sapir
+embedding is computable from the acceptor
+(`bors-embedding-is-effective-in-the-machine`).  Feeding it the free-or-abelian
+acceptors indexed by halting gives a computable family of finite presentations
+`H_e`.  Each has Dehn function `≼ n^18`, and `[x_e, y_e] = 1` in `H_e` iff
+`phi_e(0)` halts (`polynomial-dehn-fp-groups-have-nonuniform-word-problem`).
+
+A decidable host of all `H_e` would decide halting by a homomorphism search
+(`no-decidable-group-contains-every-polynomial-dehn-fp-group`).  The same
+uniform Kuznetsov search rules out computing a finitely presented simple
+overgroup from a presentation with polynomial Dehn function, or from an NP
+acceptor with unknown constant
+(`fp-simple-envelopes-not-computable-from-presentations`).
+A constructive proof must consume a total decision procedure of the input, not
+a presentation or a complexity grade.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively
