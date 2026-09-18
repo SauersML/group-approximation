@@ -1,0 +1,222 @@
+{
+ "n": 2,
+ "spheres": 3000,
+ "time_s": 137.9,
+ "per_depth": [
+  [
+   0,
+   5
+  ],
+  [
+   1,
+   10
+  ],
+  [
+   2,
+   16
+  ],
+  [
+   3,
+   26
+  ],
+  [
+   4,
+   42
+  ],
+  [
+   5,
+   68
+  ],
+  [
+   6,
+   110
+  ],
+  [
+   7,
+   178
+  ],
+  [
+   8,
+   288
+  ],
+  [
+   9,
+   466
+  ],
+  [
+   10,
+   754
+  ],
+  [
+   11,
+   1220
+  ],
+  [
+   12,
+   1974
+  ],
+  [
+   13,
+   3000
+  ]
+ ],
+ "total_rank": 9,
+ "piece_rank": 6,
+ "dim_coords": 17,
+ "piece_fan_dim_after_matching": 11,
+ "checks": {},
+ "skipped": {},
+ "n_classes": 15,
+ "max_class_rank": 3,
+ "classes_rank_eq_expected": 15,
+ "top_classes": [
+  {
+   "size": 1379,
+   "support": 6,
+   "rank": 3,
+   "expected_dim": 3
+  },
+  {
+   "size": 960,
+   "support": 6,
+   "rank": 3,
+   "expected_dim": 3
+  },
+  {
+   "size": 585,
+   "support": 6,
+   "rank": 3,
+   "expected_dim": 3
+  },
+  {
+   "size": 13,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 12,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 12,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 11,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 11,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 11,
+   "support": 4,
+   "rank": 2,
+   "expected_dim": 2
+  },
+  {
+   "size": 1,
+   "support": 1,
+   "rank": 1,
+   "expected_dim": 1
+  },
+  {
+   "size": 1,
+   "support": 2,
+   "rank": 1,
+   "expected_dim": 1
+  },
+  {
+   "size": 1,
+   "support": 1,
+   "rank": 1,
+   "expected_dim": 1
+  },
+  {
+   "size": 1,
+   "support": 2,
+   "rank": 1,
+   "expected_dim": 1
+  },
+  {
+   "size": 1,
+   "support": 1,
+   "rank": 1,
+   "expected_dim": 1
+  },
+  {
+   "size": 1,
+   "support": 2,
+   "rank": 1,
+   "expected_dim": 1
+  }
+ ],
+ "class_growth_by_depth": [
+  [
+   0,
+   2
+  ],
+  [
+   1,
+   5
+  ],
+  [
+   2,
+   9
+  ],
+  [
+   3,
+   12
+  ],
+  [
+   4,
+   14
+  ],
+  [
+   5,
+   15
+  ],
+  [
+   6,
+   15
+  ],
+  [
+   7,
+   15
+  ],
+  [
+   8,
+   15
+  ],
+  [
+   9,
+   15
+  ],
+  [
+   10,
+   15
+  ],
+  [
+   11,
+   15
+  ],
+  [
+   12,
+   15
+  ],
+  [
+   13,
+   15
+  ]
+ ]
+}

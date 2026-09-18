@@ -1,0 +1,10 @@
+[   2.2s] probe ok singular-cmd=0 :: PROBE 3 | P1 OK | P2 NO | 
+[   4.4s] ledk2 v=(2, 1) |W|=6 vars=24 rels=430 q3=120 deg=4 ok 2.1s GB 166  certified 16/16  undecided 0
+[   6.9s] ledk2 v=(1, 2) |W|=6 vars=24 rels=430 q3=120 deg=4 ok 2.1s GB 166  certified 16/16  undecided 0
+[   9.3s] ledk2 v=(2, -1) |W|=6 vars=24 rels=430 q3=120 deg=4 ok 2.2s GB 166  certified 16/16  undecided 0
+[  11.2s] ledk2 v=(1, -2) |W|=6 vars=24 rels=430 q3=120 deg=4 ok 1.7s GB 166  certified 16/16  undecided 0
+[  42.0s] ledk2v v=(0, 3) |W|=14 vars=56 rels=1366 q3=376 deg=4 ok 30.1s GB 1208  certified 16/16  undecided 0
+[ 212.3s] labbe3 v=(2, 1) |W|=6 vars=114 rels=8971 q3=2106 deg=3 TIMEOUT 170.2s GB ?  certified 0/361  undecided 0
+[ 382.5s] labbe3 v=(1, 2) |W|=6 vars=114 rels=8938 q3=2073 deg=3 TIMEOUT 170.2s GB ?  certified 0/361  undecided 0
+[ 382.5s] done
+driver rc=0
