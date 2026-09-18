@@ -55,13 +55,19 @@ since `1/λ` is a unit with property (F). So every subgroup of `V(Z[λ],⟨λ⟩
 For these slopes this adds little to that node: `D(V)` is itself a finitely presented simple group of finite
 index there.
 
-**Norm +1 slopes, such as `λ = 2 − √3`: OPEN.**
-- No finite presentation of `V(Z[λ],⟨λ⟩,ℓ)` is known to this lane. Cleary covers only norm −1 F-versions, and the
+**Norm +1 slopes, such as `λ = 2 − √3`: finite presentation OPEN; Boone--Higman for all subgroups ESTABLISHED
+(09-18) by another route.**
+- `algebraic-interval-exchange-groups-satisfy-boone-higman` puts `V(Z[λ],⟨λ⟩,ℓ)` inside the flip group `G^±_β`,
+  `β = λ^{−1}`, which is a finitely presented contracting RSG on a negative-base coding
+  (`negative-base-pisot-stein-groups-are-contracting-rsgs`). So every subgroup embeds in a finitely presented
+  simple group, and the type (A) theorem here is not needed for that.
+- No finite presentation of `V(Z[λ],⟨λ⟩,ℓ)` itself is known to this lane. `V` is not an RSG in the flip coding,
+  since the canonical similarities there have slopes `(−β)^n`. Cleary covers only norm −1 F-versions, and the
   RSG route needs (F), which fails for norm +1 quadratic units (Akiyama, Proposition 1).
-- If (F1) and (F2) were proved for them, the theorem here would give Boone--Higman for all subgroups, with
-  `D(V)` of infinite index.
-- The earlier corollary "every real quadratic field" is **withdrawn** for norm +1 fields.
-- For those fields the Sturmian groups `IET(Z+αZ)` remain covered by bh-free-03's substitutive route
+- If (F1) and (F2) were proved for them, the theorem here would add a type (A) action, with `D(V)` of infinite
+  index.
+- The earlier corollary "every real quadratic field" does not follow from this theorem, which needs (F1). It
+  holds by the negative-base route instead. The Sturmian case was first covered by bh-free-03's substitutive route
   (`quadratic-rotation-iet-groups-satisfy-boone-higman`).
 
 ## Priority
