@@ -68,7 +68,7 @@ theorem k2KarInd_stab_pair (hR : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0) (h1
     (h : padMat (g * x i j hij b * g⁻¹ * x k l hkl c) = 1) :
     stab n R (g * x i j hij b * g⁻¹ * x k l hkl c) = 1 := by
   rw [map_mul (stab n R) (g * x i j hij b * g⁻¹), k2KarInd_stab_conj_x, stab_x]
-  rcases k2KarInd_vec_dichotomy hR hkl (k2KarInd_row_ne_zero h10 g j)
+  rcases k2KarInd_vec_dichotomy hR (k2KarInd_row_ne_zero h10 g j)
       (k2KarInd_pair_entries g i j hij b k l hkl c h) with ⟨hV, hc⟩ | ⟨hV, hW, hvw⟩
   · rw [hV, padCol_zero, commutatorElement_one_left, one_mul, hc, x_zero]
   · rw [hV, hW, padCol_single, padRow_single,

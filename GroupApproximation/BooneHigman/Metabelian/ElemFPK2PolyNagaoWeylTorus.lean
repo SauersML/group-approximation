@@ -24,6 +24,8 @@ section Field
 
 variable {F : Type*} [Field F] (i j k : I) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
 
+include hik hjk
+
 /-- Over a field, `w(1) w(u) w(1)⁻¹ = w(u⁻¹)`. -/
 theorem k2PolyNagaoWeyl_field_w_conj_w (u : Fˣ) :
     w i j hij (1 : Fˣ) * w i j hij u * (w i j hij (1 : Fˣ))⁻¹ = w i j hij u⁻¹ := by
