@@ -105,3 +105,99 @@ def k2PolyNagaoJRed_Statement : Prop :=
   ∀ (p : ℕ) [Fact p.Prime], k2PolyNagaoJRed_ResAt p
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_Statement
+/-- **The `J`-reduction at `p`.**  The residual at `p` and the torus interface at `p` give the
+check of `σ` at `x_mL(1)` (`k2PolyNagaoJRed_check_all`). -/
+theorem k2PolyNagaoJRed_check_of_at {p : ℕ} [Fact p.Prime] (hR : k2PolyNagaoJRed_ResAt p)
+    (hT : k2PolyNagaoJRed_TorusAt p) {I : Type} [Fintype I] [DecidableEq I] (K : Finset I)
+    (m L : I) (hmL : m ≠ L) (hLK : L ∉ K) (hmK : m ∈ K) (him : ∃ i ∈ K, i ≠ m)
+    (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hconst : ∀ g ∈ (ringMap (I := I) (Polynomial.C : ZMod p →+* Polynomial (ZMod p))).range,
+      g ∈ K2 I (Polynomial (ZMod p)) → g = 1)
+    (hSK : ∀ s ∈ k2PolyDeg_S p K, s ∈ K2 I (Polynomial (ZMod p)) → s = 1)
+    (hJ : k2PolyNagaoWide_Stab p (K.erase m) m) :
+    k2PolyEuclid_Check p K L (k2PolyNagaoWide_sigma p K m L hmL)
+      (x m L hmL (1 : Polynomial (ZMod p))) :=
+  k2PolyNagaoJRed_check_all hmL hmK hLK hthird hJ
+    (fun w hw hS => hT K m L hmL hLK hmK him hthird hconst hSK hJ w hw hS)
+    (fun w hw j hj h0 h1 h2 h3 =>
+      hR K m L hmL hLK hmK him hthird hconst hSK hJ w hw j hj h0 h1 h2 h3)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_check_of_at
+
+/-- The residual and the torus interface give `k2PolyNagaoWide_Statement`. -/
+theorem k2PolyNagaoJRed_wide_of_statement (hR : k2PolyNagaoJRed_Statement)
+    (hT : k2PolyNagaoJRed_TorusIface) : k2PolyNagaoWide_Statement := by
+  intro p _ I _ _ K m L hmL hLK hmK him hthird hconst hSK hJ
+  exact k2PolyNagaoJRed_check_of_at (hR p) (hT p) K m L hmL hLK hmK him hthird hconst hSK hJ
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_wide_of_statement
+
+/-- **The endpoint of lane `bh-met-94a`**: the residual and the torus interface give the
+residual `k2PolyNagaoRoot_Statement` of lane 93v. -/
+theorem k2PolyNagaoJRed_root_of_statement (hR : k2PolyNagaoJRed_Statement)
+    (hT : k2PolyNagaoJRed_TorusIface) : k2PolyNagaoRoot_Statement :=
+  k2PolyNagaoRoot_statement_of_wide (k2PolyNagaoJRed_wide_of_statement hR hT)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_root_of_statement
+
+/-- **The torus interface at `p = 2` is PROVED**: over `F_2` every supported orbit vector is in
+the easy class of lane 93v, where the check is `k2PolyNagaoRoot_check_supp`. -/
+theorem k2PolyNagaoJRed_torusAt_two : k2PolyNagaoJRed_TorusAt 2 := by
+  intro I _ _ K m L hmL hLK hmK _ hthird hconst _ hJ v hv hS
+  have hE := k2PolyNagaoRoot_easy_of_units k2PolyNagaoRoot_units_two hmL hmK hLK hv hS
+  exact k2PolyNagaoRoot_check_supp hmL hmK hLK hthird hconst hJ hv hE.1 hE.2.1 hE.2.2
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_torusAt_two
+
+/-- **For `p = 2` the residual at `2` alone gives the check of `σ` at `x_mL(1)`.** -/
+theorem k2PolyNagaoJRed_check_two (hR : k2PolyNagaoJRed_ResAt 2) {I : Type} [Fintype I]
+    [DecidableEq I] (K : Finset I) (m L : I) (hmL : m ≠ L) (hLK : L ∉ K) (hmK : m ∈ K)
+    (him : ∃ i ∈ K, i ≠ m) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hconst : ∀ g ∈ (ringMap (I := I) (Polynomial.C : ZMod 2 →+* Polynomial (ZMod 2))).range,
+      g ∈ K2 I (Polynomial (ZMod 2)) → g = 1)
+    (hSK : ∀ s ∈ k2PolyDeg_S 2 K, s ∈ K2 I (Polynomial (ZMod 2)) → s = 1)
+    (hJ : k2PolyNagaoWide_Stab 2 (K.erase m) m) :
+    k2PolyEuclid_Check 2 K L (k2PolyNagaoWide_sigma 2 K m L hmL)
+      (x m L hmL (1 : Polynomial (ZMod 2))) :=
+  k2PolyNagaoJRed_check_of_at hR k2PolyNagaoJRed_torusAt_two K m L hmL hLK hmK him hthird
+    hconst hSK hJ
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_check_two
+
+/-- `TorusIface` needs only the odd primes (`p = 2` is `k2PolyNagaoJRed_torusAt_two`). -/
+theorem k2PolyNagaoJRed_torusIface_of_odd
+    (h : ∀ (p : ℕ) [Fact p.Prime], p ≠ 2 → k2PolyNagaoJRed_TorusAt p) :
+    k2PolyNagaoJRed_TorusIface := by
+  intro p _
+  by_cases hp : p = 2
+  · subst hp
+    exact k2PolyNagaoJRed_torusAt_two
+  · exact h p hp
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_torusIface_of_odd
+
+/-- The residual and the torus interface give `K₂(N, F_p[X]) = ⊥` for `N ≥ 5`. -/
+theorem k2PolyNagaoJRed_K2_bot_of_statement (hR : k2PolyNagaoJRed_Statement)
+    (hT : k2PolyNagaoJRed_TorusIface) {p : ℕ} (hp : p.Prime) {N : ℕ} (hN : 5 ≤ N) :
+    K2n N (Polynomial (ZMod p)) = ⊥ :=
+  k2PolyNagaoWide_K2_bot_of_statement (k2PolyNagaoJRed_wide_of_statement hR hT) hp hN
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_K2_bot_of_statement
+
+/-- The converse (LOUD: so the residual is logically EQUIVALENT to the wide statement). -/
+theorem k2PolyNagaoJRed_statement_of_wide (hW : k2PolyNagaoWide_Statement) :
+    k2PolyNagaoJRed_Statement := by
+  intro p _ I _ _ K m L hmL hLK hmK him hthird hconst hSK hJ v hv _ _ _ _ _ _
+  exact hW p K m L hmL hLK hmK him hthird hconst hSK hJ v hv
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_statement_of_wide
+
+/-- The torus interface is a restriction of the wide statement. -/
+theorem k2PolyNagaoJRed_torusIface_of_wide (hW : k2PolyNagaoWide_Statement) :
+    k2PolyNagaoJRed_TorusIface := by
+  intro p _ I _ _ K m L hmL hLK hmK him hthird hconst hSK hJ v hv _
+  exact hW p K m L hmL hLK hmK him hthird hconst hSK hJ v hv
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_torusIface_of_wide
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
