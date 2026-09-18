@@ -31,7 +31,9 @@ Since `c ∈ M`, some `c^m`, `m >= 1`, lies in `K <= G`. This is a contradiction
 
 **Instance 1.** Let `L = PGL_n(R)` and `G <= SL_n(Z)` torsion-free of finite index.
 `G` meets the finite center trivially, so it maps injectively to `L` as a lattice.
-- (N): `higher-rank-lattice-normal-subgroups-central-or-finite-index`, for
+- (N): `higher-rank-lattice-normal-subgroups-central-or-finite-index` (its general
+  statement; its "form used" paragraph treats `Sp_2n` only). `SL_n(Z)` is an
+  irreducible lattice in the simple group `SL_n(R)` of real rank `n-1 >= 2`. For
   `SL_n(R)` of real rank `n-1 >= 2`. A central normal subgroup of the torsion-free
   `G` is trivial.
 - (C): a finite-index `N <= G` contains `x_ij(k)` for some `k >= 1` and all
@@ -43,7 +45,10 @@ Since `c ∈ M`, some `c^m`, `m >= 1`, lies in `K <= G`. This is a contradiction
   `A ∈ SL_n(Z)`, then comparing entries gives `λ^{-1} ∈ Z` and `λ^n = r^m`. That
   forces `|λ| <= 1` and `r^m <= 1`, which is false for `m >= 1`.
 
-**Instance 2.** `Λ` is a cocompact lattice in `L = PGL_2(Q_p) × PGL_2(Q_q)`: `D` is
+**Instance 2.** `Λ` is a cocompact lattice in `L = PGL_2(Q_p) × PGL_2(Q_q)`
+(cocompactness of definite quaternion S-arithmetic groups: the compactness criterion
+for Q-anisotropic groups; not pinned at source). `G` is then a cocompact lattice in
+the open subgroup `G_1 × G_2` of `L`, as the Bader--Shalom node requires: `D` is
 definite, so the archimedean factor is compact. The diagonal map
 `PD^×(Q) → PGL_2(Q_p)` is injective.
 - (N): `bader-shalom-normal-subgroup-theorem` with `n = 2` and `G_i` the closures of
@@ -51,7 +56,8 @@ definite, so the archimedean factor is compact. The diagonal map
   - Each `G_i` is non-discrete: a vertex stabilizer of `G` in the other tree is
     infinite and projects injectively into a compact vertex stabilizer.
   - Each `G_i` contains `PSL_2(Q_p)` (resp. `PSL_2(Q_q)`). By strong approximation
-    for `SL_1(D)` with respect to `{q}`, `SL_1(O[1/pq])` is dense in
+    for `SL_1(D)` with respect to `S = {∞, q}` (Rapinchuk, arXiv:1207.4425, Thm 2.3,
+    p. 12; `SL_1(D)(R)` is compact, so `∞` may be added to `S`), `SL_1(O[1/pq])` is dense in
     `SL_1(D)(Q_p) = SL_2(Q_p)`. The part of it lying in `G` has finite index, so its
     closure has finite index in a closed group mapping onto `PSL_2(Q_p)`, and
     `PSL_2(Q_p)` is simple, hence has no proper finite-index subgroup.
@@ -74,7 +80,8 @@ definite, so the archimedean factor is compact. The diagonal map
 
 **Trust surface.** Cited and not re-read:
 - the normal subgroup theorems, through the two nodes named above;
-- strong approximation for `SL_1(D)` (Kneser, Platonov);
+- strong approximation for `SL_1(D)`, pinned by referee b to Rapinchuk arXiv:1207.4425
+  Thm 2.3;
 - cocompactness of definite quaternion S-arithmetic groups;
 - Britton's lemma;
 - the fact that a discrete subgroup containing a lattice contains it with finite index.

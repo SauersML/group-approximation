@@ -3,3 +3,12 @@
 **OPEN:** automaton-groups-satisfy-boone-higman; route automaton-groups-bh-via-lift-presented-overgroups needs automaton-groups-embed-in-lift-presented-automaton-groups.
 **Needs:** review by gq-referee-a (proof gaps: §1 regrouping, §3 cone conjugacy count mod (md−1)) and gq-referee-b (citations: Zaremsky (R) hypotheses; Vorobets–Vorobets freeness of Aleshin group).
 **Sparks:** change the ACTION of a non-lift-presented automaton group (add states whose sections kill relators after finitely many splittings); test on SWZ 1712.05361 Ex. 7.2.
+**Direction (free mode, 09-18):** non-contracting automaton groups — which actions make V_d(G) f.p.; obstructions vs action changes.
+**Landed 62c134509:** referee-a PASS + N2 on lift-presented node. **Landed 70ac9f576:** referee-b C1/C2/W1–W3 applied; NEW
+- loop-retraction-forces-fp-eventual-section-groups (+proof): all states fix a letter x & V_d(G) f.p. ⇒ G_∞ = ⟨σ^p(S)⟩ f.p. (σ = section at x). Generalizes SWZ's F_2 persistent case.
+- linear-activity-automata-can-have-non-fp-nekrashevych-groups: Grigorchuk a,b,c,d on {0,1,2} + spine ŝ_γ = (γ,1,ŝ_γ): linear activity, G_∞ ≅ Grig ⇒ V_3(G) not f.p. (But G itself embeds in (Γ≀C_2)×Γ, contracting, so G is BH via another action.)
+- persistent-subexponential-automata-generate-finite-groups: twisted-persistent + subexponential activity ⇒ finite; so persistent failures need exponential activity.
+**Needs:** referee a/b reviews (requested).
+**Sparks:** germ implant at the spine point (Grig germ group → f.p. Lysenok HNN overgroup) as a host for loop germs; bireversible non-free automaton groups via Glasner–Mozes square complexes (G_A ≤ pr_v(Γ) = Γ/Λ_h).
+**Landed ef03b7c34:** commonly-fixed-letters-compress-to-faithful-actions (+proof): run compression — if all states fix x, the same states act faithfully on ((X∖x)×{0..p+q−1})^* via (y,c) ↦ (σ^c(s)(y),c), section σ^c(s)|_y. Kills the spine obstruction; persistent letters just delete. spine-grigorchuk-automaton-group-has-a-bounded-action: the linear example compresses to a bounded 4-letter action ⇒ V_4 f.p. Referee-a PASS recorded on loop-retraction / linear / persistent-finite.
+**Open question now:** an automaton group failing lift-presentation for EVERY finite-state action must have an obstruction surviving compression — none known.

@@ -22,3 +22,5 @@ every finitely generated group of interval exchanges with lengths and translatio
 
 No priority is claimed. The artifact's priority notes apply, and the IET literature
 was not searched.
+
+**Printed questions.** None located. A grep of the Kourovka Notebook, 21st edition TeX, for interval exchange, full group, amenable and Cantor found nothing, and so did the bh-lit list of the BBMZ survey and the BBMZ-hyperbolic questions (`gq-bh-bh-lit-survey.md`). The consequence for amenable simple groups does not settle the open question of whether a finitely presented infinite simple amenable group exists, because the host is a twisted Brin–Thompson group, which is not amenable.
