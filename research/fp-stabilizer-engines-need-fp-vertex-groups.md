@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-emitter-b, 2026-09-18; elementary given the parent nodes;
-not reviewed).
+one referee PASS, bh-ref-engines 2026-09-18, see Referee section).
 
 **Notation.** As in `free-product-boundary-groupoids-carry-the-vertex-group-homology`:
 - `k >= 2`, `B` is a finitely generated infinite group, and `D = Z/k * B`;
@@ -69,3 +69,12 @@ It can only be a place where an already finitely presented, decidable group is m
 The emitter gate (IE) is therefore a problem about finitely presented germ groups, and the
 two necessary conditions (finite presentation and decidability) are exactly those of the
 Boone–Higman conjecture for the vertex group.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- Step 1 holds: `F_B/D(F_B)` is finitely generated abelian, and extensions preserve `F_n`.
+- Step 2 holds: `D` is locally faithful everywhere, since three ends in any open set force an
+  element fixing that set to fix an edge, and edge stabilizers are trivial.
+- Step 3 holds: `B` is a retract of `Z/k * B`.
+- Now subsumed by the isolation and collapse theorems (`free-product-emitter-full-groups-need-isolated-vertex-groups`,
+  `stabilizer-engines-need-torsion-vertex-groups`), which the collapse node itself uses.

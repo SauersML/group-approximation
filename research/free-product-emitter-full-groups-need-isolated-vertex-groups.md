@@ -17,7 +17,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; elementary apart from the imports;
-not reviewed). No priority is claimed.
+one referee PASS, bh-ref-engines 2026-09-18, see Referee section). No priority is claimed.
 - MathOverflow 339541 had 0 answers on 2026-09-18 (StackExchange API, see the referee
   section of `reid-higman-thompson-variant-d-zero-abelianization`).
 - A web search for later work of the question's author found Garrido–Reid,
@@ -243,3 +243,28 @@ the half-trees of `Σ`, and `ι(β)` is the same combination of the half-trees `
   Cornulier–Guyot–Pitsch Question 4.
 - **Test for every host.** Perturb each germ group in the space of marked groups. If
   bounded configurations persist, that germ group must be isolated.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked this node with its two parallel proofs (`stabilizer-engines-are-fp-only-over-isolated-groups`,
+`stabilizer-engines-need-finitely-discriminable-vertex-groups`) and with the collapse node.
+- **Step 1 counts correctly.** Here the ball size is compared with the number `r` of `Σ`-edges at a
+  vertex, which is the right quantity (the collapse node's lemma miscounts this; see its Referee
+  section). Local injectivity at `A`- and `B`-vertices gives an isometric embedding of `S`.
+  The atom criterion (empty iff a single `A`-vertex with all `k` edges chosen) is correct in `T`
+  and `T'`.
+- **Step 2 holds.** Realized words: partition relations are emptiness statements, and
+  `ι(δ)·h(ιε) = h(ι(δε))`.
+- **Step 3 holds.** For (a), the marked maps `B → B̃_ρ → B` fixing generators give `B ≅ B̃_ρ`. For
+  (b), the kernel of `ψ` is nontrivial normal, so it contains `D(F)` by Matui monolithicity (a
+  simple `D(F)` with trivial centralizer). Then `x` and `b̄_0` would commute in the faithful free
+  product `D'`, which is a contradiction. The `D(F)` reduction uses `F_ab` finitely generated
+  (parent, item 3).
+- **Corollaries** (Reid's group, the engine conjecture at `B = Z`) hold. Item 2 of "What this decides"
+  (the first open test is an isolated group such as `V, T, H_3`) is now superseded by
+  `stabilizer-engines-need-torsion-vertex-groups`: `F_V`, `F_T`, `F_F` and every engine over a group
+  with an element of infinite order are infinitely presented. So in item 3, the "corrected engine
+  conjecture", and hence the BH ⇔ CGP Question 4 equivalence through engines, is refuted for
+  every known infinite isolated group.
+- **Credit.** Cornulier–Guyot–Pitsch (read at source here) for isolation and its Question 4;
+  Brown for `H_2`.
