@@ -1,0 +1,26 @@
+|1|_{K,b} = 0
+|a|_{K,b} = 0
+|baBB|_{K,b} = 0
+|bbAB|_{K,b} = 0
+|b|_{K,b} = 1
+|B|_{K,b} = 1
+|bb|_{K,b} = 1
+|BB|_{K,b} = 1
+|bab|_{K,b} = 2
+|bAb|_{K,b} = 2
+|baab|_{K,b} = 2
+|bAAb|_{K,b} = 2
+|babab|_{K,b} = 3
+|bbb|_{K,b} = 2
+|bbab|_{K,b} = 2
+|bBa|_{K,b} = 0
+|babAb|_{K,b} = 2
+|bAbab|_{K,b} = 3
+word length 1 b-length histogram {0: 2, 1: 2}
+word length 2 b-length histogram {0: 2, 1: 10}
+word length 3 b-length histogram {0: 2, 1: 26, 2: 8}
+word length 4 b-length histogram {0: 4, 1: 50, 2: 54}
+word length 5 b-length histogram {0: 10, 1: 90, 2: 200, 3: 24}
+word length 6 b-length histogram {0: 20, 1: 174, 2: 552, 3: 226}
+word length 7 b-length histogram {0: 34, 1: 358, 2: 1330, 3: 1130, 4: 64}
+word length 8 b-length histogram {0: 52, 1: 730, 2: 3048, 3: 4120, 4: 798}

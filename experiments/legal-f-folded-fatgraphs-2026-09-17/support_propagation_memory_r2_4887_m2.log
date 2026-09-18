@@ -1,0 +1,17 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows 114 types 1164 maxval 4
+ac it 1 windows 100 types 1022 slots 175118
+ac it 2 windows 96 types 986 slots 109042
+ac it 3 windows 96 types 986 slots 89918
+ac it 4 windows 96 types 986 slots 83410
+ac it 5 windows 96 types 986 slots 79340
+ac it 6 windows 96 types 986 slots 75638
+ac it 7 windows 96 types 986 slots 73582
+ac it 8 windows 96 types 986 slots 72248
+ac it 9 windows 96 types 986 slots 71714
+ac it 10 windows 96 types 986 slots 71334
+ac it 11 windows 96 types 986 slots 71220
+ac it 12 windows 96 types 986 slots 71106
+ac it 13 windows 96 types 986 slots 71068
+ac it 14 windows 96 types 986 slots 71068
+surviving windows ['aaa', 'aab', 'aac', 'aaB', 'aba', 'abb', 'abc', 'abA', 'abC', 'aca', 'acb', 'acB', 'aBa', 'aBc', 'aBA', 'aBB', 'aBC', 'baa', 'bab', 'bac', 'baB', 'bba', 'bbb', 'bbc', 'bbA', 'bbC', 'bca', 'bcb', 'bcB', 'bAb', 'bAA', 'bAB', 'bAC', 'bCb', 'bCA', 'bCB', 'caa', 'cab', 'cac', 'caB', 'cba', 'cbb', 'cbc', 'cbA', 'cBa', 'cBA', 'cBB', 'Aba', 'Abb', 'Abc', 'AbA', 'AbC', 'AAb', 'AAA', 'AAB', 'AAC', 'ABa', 'ABc', 'ABA', 'ABB', 'ABC', 'ACb', 'ACA', 'ACB', 'Baa', 'Bab', 'Bac', 'BaB', 'Bca', 'Bcb', 'BcB', 'BAb', 'BAA', 'BAB', 'BAC', 'BBa', 'BBc', 'BBA', 'BBB', 'BBC', 'BCb', 'BCA', 'BCB', 'Cba', 'Cbb', 'Cbc', 'CbA', 'CAb', 'CAA', 'CAB', 'CAC', 'CBa', 'CBc', 'CBA', 'CBB', 'CBC']
+RESULT survives 96

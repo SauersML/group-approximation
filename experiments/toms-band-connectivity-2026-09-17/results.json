@@ -1,0 +1,309 @@
+{
+ "description": "E_2 of the eigenvalue-gap cover of the band space X_(g,N) (band_e2.py) and the regime table (filling_table.py). D = N^2+2N-2; expected first nonzero total degree D+1. Runs with primes=null are over Z (Smith normal form); the N=4 run uses ranks over F_p for the listed primes.",
+ "band_e2": {
+  "N1_stable_Z": {
+   "N": 1,
+   "g": null,
+   "Dmax": 4,
+   "primes": null,
+   "D": 1,
+   "first_nonzero_total_degree": 2,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 1,
+     "free": 1,
+     "torsion": []
+    },
+    "0,2": {
+     "dim_E1": 1,
+     "free": 1,
+     "torsion": []
+    },
+    "0,4": {
+     "dim_E1": 2,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N2_stable_Z": {
+   "N": 2,
+   "g": null,
+   "Dmax": 11,
+   "primes": null,
+   "D": 6,
+   "first_nonzero_total_degree": 7,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 2,
+     "free": 1,
+     "torsion": []
+    },
+    "1,6": {
+     "dim_E1": 7,
+     "free": 1,
+     "torsion": []
+    },
+    "1,8": {
+     "dim_E1": 12,
+     "free": 2,
+     "torsion": []
+    },
+    "1,10": {
+     "dim_E1": 19,
+     "free": 5,
+     "torsion": []
+    }
+   }
+  },
+  "N3_stable_Z": {
+   "N": 3,
+   "g": null,
+   "Dmax": 17,
+   "primes": null,
+   "D": 13,
+   "first_nonzero_total_degree": 14,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 3,
+     "free": 1,
+     "torsion": []
+    },
+    "2,12": {
+     "dim_E1": 75,
+     "free": 1,
+     "torsion": []
+    },
+    "2,14": {
+     "dim_E1": 120,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N2_g0_Z": {
+   "N": 2,
+   "g": 0,
+   "Dmax": 9,
+   "primes": null,
+   "D": 6,
+   "first_nonzero_total_degree": 7,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 2,
+     "free": 1,
+     "torsion": []
+    },
+    "1,6": {
+     "dim_E1": 4,
+     "free": 1,
+     "torsion": []
+    },
+    "1,8": {
+     "dim_E1": 5,
+     "free": 1,
+     "torsion": []
+    }
+   }
+  },
+  "N2_g1_Z": {
+   "N": 2,
+   "g": 1,
+   "Dmax": 9,
+   "primes": null,
+   "D": 6,
+   "first_nonzero_total_degree": 7,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 2,
+     "free": 1,
+     "torsion": []
+    },
+    "1,6": {
+     "dim_E1": 6,
+     "free": 1,
+     "torsion": []
+    },
+    "1,8": {
+     "dim_E1": 9,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N2_g2_Z": {
+   "N": 2,
+   "g": 2,
+   "Dmax": 9,
+   "primes": null,
+   "D": 6,
+   "first_nonzero_total_degree": 7,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 2,
+     "free": 1,
+     "torsion": []
+    },
+    "1,6": {
+     "dim_E1": 7,
+     "free": 1,
+     "torsion": []
+    },
+    "1,8": {
+     "dim_E1": 11,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N3_g0_Z": {
+   "N": 3,
+   "g": 0,
+   "Dmax": 16,
+   "primes": null,
+   "D": 13,
+   "first_nonzero_total_degree": 14,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 3,
+     "free": 1,
+     "torsion": []
+    },
+    "2,12": {
+     "dim_E1": 28,
+     "free": 1,
+     "torsion": []
+    },
+    "2,14": {
+     "dim_E1": 36,
+     "free": 1,
+     "torsion": []
+    }
+   }
+  },
+  "N3_g1_Z": {
+   "N": 3,
+   "g": 1,
+   "Dmax": 16,
+   "primes": null,
+   "D": 13,
+   "first_nonzero_total_degree": 14,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 3,
+     "free": 1,
+     "torsion": []
+    },
+    "2,12": {
+     "dim_E1": 50,
+     "free": 1,
+     "torsion": []
+    },
+    "2,14": {
+     "dim_E1": 70,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N3_g2_Z": {
+   "N": 3,
+   "g": 2,
+   "Dmax": 16,
+   "primes": null,
+   "D": 13,
+   "first_nonzero_total_degree": 14,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 3,
+     "free": 1,
+     "torsion": []
+    },
+    "2,12": {
+     "dim_E1": 64,
+     "free": 1,
+     "torsion": []
+    },
+    "2,14": {
+     "dim_E1": 95,
+     "free": 2,
+     "torsion": []
+    }
+   }
+  },
+  "N4_stable_modp": {
+   "N": 4,
+   "g": null,
+   "Dmax": 23,
+   "primes": [
+    2,
+    3,
+    5,
+    7,
+    11,
+    13,
+    1000000007
+   ],
+   "D": 22,
+   "first_nonzero_total_degree": 23,
+   "nonzero_E2": {
+    "0,0": {
+     "dim_E1": 4,
+     "free": 1,
+     "torsion": []
+    },
+    "3,20": {
+     "dim_E1": 1185,
+     "free": 1,
+     "torsion": []
+    }
+   }
+  }
+ },
+ "filling_table": {
+  "checks": {
+   "overlap_free": true,
+   "D+2_agreement": 37,
+   "alternant_vs_hall": 791
+  },
+  "equal_dims_table (N = 1..19; F forced, . fill, ? open)": {
+   "1": "F..................",
+   "2": "FF.................",
+   "3": "FFF?...............",
+   "4": "FFFF??.............",
+   "5": "FFFFF???...........",
+   "6": "FFFFFF????.........",
+   "7": "FFFFFFF?????.......",
+   "8": "FFFFFFFF??????....."
+  },
+  "toms_bottom_level": {
+   "1": {
+    "j_n": 2,
+    "forced_up_to_N": 2,
+    "open_N": [
+     3,
+     2
+    ],
+    "fill_from_N": 3
+   },
+   "2": {
+    "j_n": 8,
+    "forced_up_to_N": 8,
+    "open_N": [
+     9,
+     14
+    ],
+    "fill_from_N": 15
+   },
+   "3": {
+    "j_n": 18,
+    "forced_up_to_N": 18,
+    "open_N": [
+     19,
+     34
+    ],
+    "fill_from_N": 35
+   }
+  }
+ }
+}

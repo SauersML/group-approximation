@@ -1,0 +1,103 @@
+Verbatim excerpts from P. Ara, M. Brustenga, G. Cortinas, K-theory of Leavitt path algebras,
+Munster J. Math. 2 (2009) 5-33, arXiv:0903.0056. Fetched 2026-09-18 from https://arxiv.org/html/0903.0056 .
+Math is shown as the TeX annotation of the HTML; tags stripped. Nothing else is altered.
+
+== H'-unital (Section 2) ==
+[33]. The latter notion depends on a functorial complex $C^{\mathrm{bar}}(A)$ , the bar complex of $A$ ; we have $C_{n}^{\mathrm{bar}}(A)=A^{\otimes n+1}$ . The ring $A$ is called $H$ -unital if for all abelian groups $V$ , the complex $C^{\mathrm{bar}}(A)\otimes V$ is acyclic. If $A$ is flat as a $\mathbb{Z}$ -module, then $C^{\mathrm{bar}}(A)$ is a complex of flat $\mathbb{Z}$ -modules and $H_{*}(C^{\mathrm{bar}}(A))=\mathrm{Tor}_{*}^{\tilde{A}}(\mathbb{Z},A)$ . Hence $H^{\prime}$ -unitality is the same as $H$ -unitality for rings which are flat as $\mathbb{Z}$ -modules. Unital rings
+are both $H$ and $H^{\prime}$ -unital. Because $C^{\mathrm{bar}}$ commutes with filtering colimits, the class of $H$ -unital rings is closed under such colimits. Similarly, there is also a functorial complex which computes $\mathrm{Tor}^{\tilde{A}}(\mathbb{Z},A)$ and which commutes with filtering colimits ([7, 6.4.3]); hence also the class of $H^{\prime}$ -unital rings is closed under filtering colimits. If $A$ is $H$ or $H^{\prime}$ -unital then the same
+
+== L_0, P(n,i), t_+, phi, (5.8), (5.9), e_0prime and 1-N^t (Section 5) ==
+idempotents; we have
+ $\sum_{\beta\in E_{1}}q_{\beta}=1,\qquad q_{\alpha}q_{\beta}=\delta_{\alpha,\beta}q_{\beta}$ 
+(5.7)
+The ring $L$ is equipped with an involution and a $\mathbb{Z}$ -grading.
+The involution $x\mapsto x^{*}$ sends $\alpha\mapsto\alpha^{*}$ and
+ $\alpha^{*}\mapsto\alpha$ . The grading is determined by $|\alpha|=1$ ,
+ $|\alpha^{*}|=-1$ . By [4, proof of Theorem 5.3], we have
+ $L_{0}=\bigcup_{n=0}^{\infty}L_{0,n}$ , where $L_{0,n}$ is the linear
+span of all the elements of the form $\gamma\nu^{*}$ , where $\gamma$ 
+and $\nu$ are paths with $r(\gamma)=r(\nu)$ and $|\gamma|=|\nu|=n$ . For each $i$ in $E^{0}$ , and each $n\in\mathbb{Z}^{+}$ , let us denote by
+ $P(n,i)$ the set of paths $\gamma$ in $E$ such that $|\gamma|=n$ 
+and $r(\gamma)=i$ . The ring $L_{0,0}$ is isomorphic to $\prod_{i\in E^{0}}k$ . In general the ring $L_{0,n}$ is isomorphic to
+ $\big[\prod_{m=0}^{n-1}\big(\prod_{i\in{\rm Sink}(E)}M_{|P(m,i)|}(\mathbb{Z})\big)\big]\times\big[\prod_{i\in E_{0}}M_{|P(n,i)|}(\mathbb{Z})\big].$ 
+The
+transition homomorphism $L_{0,n}\to L_{0,n+1}$ is the identity on
+the factors $\prod_{i\in{\rm Sink}(E)}M_{|P(m,i)|}(\mathbb{Z})$ , for $0\leq m\leq n-1$ , and also on the factor $\prod_{i\in{\rm Sink}(E)}M_{|P(n,i)|}(\mathbb{Z})$ 
+of the last term of the displayed formula. The transition
+homomorphism
+ $\prod_{i\in E_{0}\setminus{\rm Sink}(E)}M_{|P(n,i)|}(\mathbb{Z})\to\prod_{i\in E_{0}}M_{|P(n+1,i)|}(\mathbb{Z})$ 
+is a block diagonal map induced by the
+following identification in $L(E)_{0}$ : A matrix unit in a factor
+ $M_{|P(n,i)|}(\mathbb{Z})$ , where $i\in E_{0}\setminus{\rm Sink}(E)$ , is a monomial
+of the form $\gamma\nu^{*}$ , where $\gamma$ and $\nu$ are paths of
+length $n$ with $r(\gamma)=r(\nu)=i$ . Since $i$ is not a sink, we
+can enlarge the paths $\gamma$ and $\nu$ using the edges that $i$ 
+emits, obtaining paths of length $n+1$ , and relation
+(5.5) in the definition of $L(E)$ gives
+ $\gamma\nu^{*}=\sum_{\{\alpha\in E_{1}\mid s(\alpha)=i\}}(\gamma\alpha)(\nu\alpha)^{*}.$ 
+Assume $E$ has no sources. For each $i\in E_{0}$ , choose an arrow
+ $\alpha_{i}$ such that $r(\alpha_{i})=i$ . Consider the elements
+ $t_{+}=\sum_{i\in E_{0}}\alpha_{i},\qquad t_{-}=t_{+}^{*}$ 
+One checks that $t_{-}t_{+}=1$ . Thus, since $|t_{\pm}|=\pm 1$ , the endomorphism
+ $\phi:L\to L,\qquad\phi(x)=t_{+}xt_{-}$ 
+is homogeneous of degree $0$ with respect to the $\mathbb{Z}$ -grading. In particular it restricts to an endomorphism of $L_{0}$ .
+By [3, Lemma 2.4], we have
+ $L=L_{0}[t_{+},t_{-},\phi].$ 
+(5.8)
+For a unital ring $A$ , we may define the Leavitt path $A$ -algebra
+ $L_{A}(E)$ in the same way as before, with the proviso that elements
+of $A$ commute with the generators $p_{i}$ , $\alpha$ , $\alpha^{*}$ .
+Observe that
+ $L_{A}(E)=L_{\mathbb{Z}}(E)\otimes A.$ 
+(5.9)
+If $A$ is a not necessarily unital ring, we take (5.9) as the definition of $L_{A}(E)$ .
+We may think of $L_{\mathbb{Z}}(E)$ as the most basic Leavitt path ring.
+Let $e_{0}^{\prime}=|{\rm Sink}(E)|$ . We assume that $E_{0}$ is ordered so that the
+first $e_{0}^{\prime}$ elements of $E_{0}$ correspond to its sinks. Accordingly,
+the first $e_{0}^{\prime}$ rows of the matrix $N^{\prime}_{E}$ are $0$ . Let $N_{E}$ be the
+matrix obtained by deleting these $e_{0}^{\prime}$ rows. The matrix that
+enters the computation of the $K$ -theory of the Leavitt path algebra
+is
+ $\begin{pmatrix}0\\
+1_{e_{0}-e_{0}^{\prime}}\end{pmatrix}-N_{E}^{t}\colon\mathbb{Z}^{e_{0}-e_{0}^{\prime}}\longrightarrow\mathbb{Z}^{e_{0}}.$ 
+By a slight abuse of notation, we will write $1-N_{E}^{t}$ for this
+matrix. Note that $1-N_{E}^{t}\in M_{e_{0}\times(e_{0}-e_{0}^{\prime})}(\mathbb{Z})$ . Of
+course $N_{E}=N_{E}^{\prime}$ in case $E$ has no sinks, where $N_{E}^{\prime}$ is
+introduced in Section 4.
+
+== Theorem 5.10 ==
+Theorem 5.10.
+Let $A$ be an $H^{\prime}$ -unital ring, $E$ a finite quiver, $M=M_{E}$ and $N=N_{E}$ . Assume the quiver $E$ has no sources.
+We have
+ $\displaystyle K(L_{A}(E))\cong$ 
+ $\displaystyle NK(L_{0}\otimes A,\phi\otimes 1)_{+}\oplus NK(L_{0}\otimes A,\phi\otimes 1)_{-}$ 
+ $\displaystyle\oplus\cofi(K(A)^{e_{0}-e_{0}^{\prime}}\overset{1-N^{t}}{\longrightarrow}K(A)^{e_{0}}).$ 
+
+== Section 8 opening, comparison with Weibel [32] ==
+8 Homotopy algebraic $K$ -theory of the Leavitt algebra
+Homotopy algebraic $K$ -theory, introduced by C. Weibel in [32], is a particularly well-behaved variant of algebraic $K$ -theory:
+it is polynomial homotopy invariant, excisive, Morita invariant, and preserves filtering colimits. There is a comparison map
+ $K_{*}(A)\to KH_{*}(A).$ 
+(8.1)
+It is proved in [32] that if $A$ is unital and $K_{n}(A)\to K_{n}(A[t_{1},\dots,t_{p}])$ is an isomorphism for all $p\geq 1$ (i.e. $A$ 
+is $K_{n}$ -regular) then (8.1) is an isomorphism for
+ $*\leq n$ . In particular if $A$ is unital and $K$ -regular, that
+is, if it is $K_{n}$ -regular for all $n$ ,
+then (8.1) is an isomorphism for all $*\in\mathbb{Z}$ . Further, we have:
+Lemma 8.2.
+
+== Theorem 8.6 and proof ==
+Theorem 8.6.
+Let $A$ be a ring, and $E$ a row-finite quiver. Then
+ $KH(L_{A}(E))\cong\cofi(KH(A)^{(E_{0}\setminus{\rm Sink}(E))}\overset{1-N_{E}^{t}}{\longrightarrow}KH(A)^{(E_{0})}).$ 
+Proof.
+The case when $E$ is finite and has no sources follows from Theorem 8.4 using
+the argument of the proof of Theorem 5.10. The case for arbitrary finite $E$ follows as in the proof of Theorem 6.3, substituting Lemma 8.5 for 2.7. The general
+case follows from the finite case by the same argument as in 6.3.
+∎
+
+== Bibliography lines mentioning Weibel ==
+Homotopy algebraic $K$ -theory, introduced by C. Weibel in [32], is a particularly well-behaved variant of algebraic $K$ -theory:
+G. Cortiñas, C. Haesemeyer, M. Schlichting, C. Weibel.
+C. Weibel. The K-book: An introduction to algebraic $K$ -theory.
+C. Weibel. Homotopy Algebraic $K$ -theory. Contemporary Math. 83 (1989)

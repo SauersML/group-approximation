@@ -48,7 +48,7 @@ theorem finite_ambientMap_mul (hb : b.IsMetricallyProper) {F F' : ℝ × H →�
   have hg' : ε < ‖b.ambientMap g F * F'‖ := hg
   show ∃ ξ : H, ‖ξ‖ ≤ max R R' ∧ ‖b.act g⁻¹ ξ‖ ≤ max R R'
   by_contra hno
-  push_neg at hno
+  push Not at hno
   refine absurd hg' (not_lt.2 ?_)
   rw [BoundedContinuousFunction.norm_le hε.le]
   rintro ⟨t, y⟩

@@ -1,0 +1,8 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 mask acAC types 1164 dead types 1036 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 76 max R 131881.0
+z'_norm 789054.0 (/D = 0.789054) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499998266048.0, 4: -1.0}
+FARKAS VERIFIED
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 r 2 mask acAC types 1236 dead types 1092 windows 16 D 1000000 key y
+shift: darts with R_d > 0: 76 max R 223669.0
+z'_norm 510161.0 (/D = 0.510161) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -499998175960.0, 4: -1.0}
+FARKAS VERIFIED

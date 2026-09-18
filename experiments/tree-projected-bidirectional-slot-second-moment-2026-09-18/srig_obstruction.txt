@@ -1,0 +1,4 @@
+S_rig c=1 R=0,1 m 3  m*p_crit 0.28280  m*p* 0.26702  at p*: rho_up 1.06908 rho_low 1.06907  fail
+S_rig c=1 R=-1,0,1 m 3  m*p_crit 0.27029  m*p* 0.26702  at p*: rho_up 1.01429 rho_low 1.01429  fail
+S_rig c=1 R=-2,-1,0,1,2 m 3  m*p_crit 0.26896  m*p* 0.26702  at p*: rho_up 1.00847 rho_low 1.00847  fail
+S_rig c=1 R=-3,-2,-1,0,1,2,3 m 3  m*p_crit 0.26893  m*p* 0.26702  at p*: rho_up 1.00831 rho_low 1.00831  fail

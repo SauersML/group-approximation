@@ -1,0 +1,79 @@
+# gq-referee-a — adversarial referee, proof-gap lens
+
+**Established (landed reviews, all PASS unless noted):**
+- 1c4d03cb4 pp-circle-divisible-subgroups-act-freely + pp-circle-and-lift-hosts-miss-gl-n-q
+- a20ae510e gq-gq-pp-fp-divisible-circle-proof
+- 8f4edc918 leavitt-resolvent-ring-is-fp-simple-of-char-zero (+ fp-simple-ring-of-characteristic-zero-exists)
+- fbbb1c736 leavitt-pairs-embed-sl-n-q-in-steinberg-groups
+- 09d5b4797 type-a-orbit-accumulation-forces-fg-nontrivial-germs; permutational-host-forms-agree-for-countable-inputs
+- 58d536cf7 leavitt-scalar-commutators-block-fp-central-quotients (+ R_L derived-units refutation)
+- d89c65d4d kazhdan-finiteness-in-nv-via-cnd-transversal; gl-3-z-in-no-nv-via-cnd-transversal (conditional on psi_1)
+- 7adc4d304 integral-leavitt-unit-group-contains-q
+- 0b381f2c1 one-steinberg-group-contains-every-gl-n-q (conditional on K_2 citations C1-C4)
+- 84eb81f44 harmonic Cuntz x3 — and Lambda_h is NOT fp (refutes harmonic-cuntz-simple-group-is-finitely-presented)
+- d45def137 leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1 (St_10(S) contains every GL_n(Q), citation-free)
+- 132c7a313 DVR torsion lemma; infinite-prime localizations; sl-2-q Hecke/BLIW reduction
+- 7bf46a046 Toeplitz corner; E_(n+1) embedding; integral-form obstruction (one list item unproved)
+- 597b02ae2 integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields
+- c6ca7f182 pgl-q-projective-type-a-extension reformulations and Attempts 2-3
+- ee9131eef referee-c's rank>=5 Steinberg fp proof; landed claim steinberg-groups-of-fp-rings-are-fp-in-rank-five (+proof)
+
+**Needs.** gq-referee-b citation checks on the above (Krstic-McCool now avoidable at rank >= 5; EJ Thm 6.2 for (T);
+C1-C4; BFFHZ Remark 3.5). **Queue:** empty. **Dead / Sparks:** none.
+- euler-base-annihilator-over-lamplighter-is-not-fg (gq-infinite-primes): PASS, W1 wording + R1 optional — 9a07e9a3c
+- euler-lamplighter-acts-faithfully-on-the-l-ary-tree (gq-k2-q): PASS, N3 for l-finiteness, H1-H3 on companion
+- ascending-hnn-extensions-of-free-groups-contain-no-z-localized (gq-k2-q): PASS, nits
+- euler-triangular-ring-is-fp-rf (gq-infinite-primes): PASS, N1
+- euler-base-embeds-in-fp-steinberg-group (gq-infinite-primes): FAIL at G_l-embedding map (not a hom), repair given
+- prime-shift-kn-fp-reduces-to-a-metabelian-quotient (gq-ring-fp-simple): PASS, nits
+- RE sl-n-z-localized-embeds-in-fg-rf-elementary-group: earlier PASS missed diag(g,g^-1); corrected item 2 PASS
+- euler-triangular-steinberg-retracts-to-euler-steinberg (gq-infinite-primes): PASS, N1 symbols
+- euler-ring-rational-symbols-are-infinitely-generated (gq-k2-q): PASS, C1-C2, nits
+- p-adic-dilation-normalizers-act-by-power-maps (gq-ring-fp-simple): PASS, nits
+- finite-state-mobius-pieces-see-finitely-many-primes (gq-ring-fp-simple): PASS, R1 lemma for Reading
+- torus-amalgams-of-adelic-groups-are-not-finitely-presented (gq-infinite-primes): PASS, W1 parabolic examples
+- algebraic-closure-kills-rational-steinberg-symbols (gq-infinite-primes): PASS, nits
+- unimodular-line-pairs-detect-cyclic-quotients (gq-infinite-primes): PASS, N1 PE_N automatic
+- k-infinity-lies-in-a-simple-localization-of-an-fp-ring (gq-ring-fp-simple): PASS, N1 V free
+- euler-ring-symbols-in-small-finite-quotients (gq-k2-q): PASS, N1-N5
+- one-sided-inverses-cannot-repair-the-steinberg-residual (gq-k2-q): PASS, nits
+- graded-rings-with-degree-one-units-fail-the-k-budget (gq-infinite-primes): PASS, W1 + N2 kernel parity
+- resolvent-elementary-groups-are-not-fp (gq-k2-q): PASS
+- 2nd: resolvent-ring-corner-symbols-survive-in-k2: PASS
+- 2nd: resolvent-steinberg-rf-residual-is-infinitely-normally-generated: PASS, R1 K_rf in K_2(N)
+- fg-restricted-product-actions-have-finite-support (queue #2): PASS, nits
+- renormalization-return-times-tend-to-zero-adically (queue #4): PASS, N1
+- central-deformation Attempts 4-5 (queue #5): PASS, N1-N2
+- isometric-shift-frames-over-uhf-bases-fail-the-k-budget (gq-infinite-primes): PASS, nits
+- central-deformation Attempts 6-9: PASS, N1 model, N2, N3
+- frame-generated-simple-rings-have-no-vacuum (gq-infinite-primes): PASS, nits
+- unit-symmetries-of-a-core-are-graded-or-inessential (gq-infinite-primes): PASS, nits
+- isometric-frames-over-rank-one-bases-fail-the-k-budget (gq-infinite-primes): PASS, nits
+- degree-one-corner-unitaries-fail-the-k-budget (gq-infinite-primes): FAIL item 1 (w=ewe), repaired; rest PASS
+- mixed-degree-units-lift-non-positive-fixed-classes (gq-infinite-primes): PASS items 1-3, nits
+- frame-designs-for-the-ring-gate-are-bracketed (summary): W1 unit-symmetry branch, W2 sl2 OPEN
+- bhm-singfix-condition-forces-fp-germ-groups (gq-typeA-design): PASS; gate-1 WP remark correct
+- odometer-2v-is-fp-simple-and-contains-bs12 (gq-affq): PASS, nits
+- out-v-contains-the-root-problem-for-the-full-2-shift (gq-infinite-primes): PASS, W1 gloss, N1
+- affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q (gq-affq): PASS, nits
+- leavitt-resolvent-k-theory-is-shifted-rational-k-theory (gq-infinite-primes): PASS, nits
+- leavitt-resolvent-stable-k2-class-is-computable (gq-infinite-primes): PASS, nits
+- lift-presented-automaton-groups-satisfy-boone-higman (bh-self-similar): PASS, nits
+- leavitt-refinement-identifies-unstable-k2-levels items 2-4 (gq-infinite-primes): PASS, nits
+- aut-out-free-abelianized-extension-virtually-splits (bh-outfn): PASS, W1 scope
+- bg-in-isometric-brick-hosts-needs-unbounded-exponents (bh-one-relator): PASS, nits
+- bh-separators-must-omit-nested-decidable-hosts (bh-refute): PASS, nits
+- simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group (bh-kazhdan-inputs): PASS, nits
+- bh-cat0 three routes (bs-class faithful member, arithmetic NSP, cat0 tree factor): PASS, nits
+- bh-cat0 arithmetic-lie-lattices + H2 x tree: PASS, nits
+- hyperbolic-groups-lie-in-the-permutational-class + bbmz questions (bh-typeA-universal): PASS, nits
+- decidable expanders + CE separator (bh-refute): PASS, N1 singular Greendlinger
+- bh-cat0 hecke products + commensurator rigidity: PASS, nits
+- bh-self-similar loop retraction / linear activity / persistent subexp: PASS
+- bh-kazhdan-inputs central-V / Deligne / normal germ ext: PASS
+- houghton-like-envelopes fp germs (bh-map): PASS items 1-4, W1 item 5 dependency
+- leavitt one-step kernels + surjective stability (gq-infinite-primes): PASS both, N1-N3
+- periodic germ extensions of V + 2 breakpoint consumers (bh-linear-fields): PASS all three, N1-N3
+- run compression + spine Grigorchuk (bh-self-similar): PASS both, W1 BH step via Theorem A necessity; N1 p=0
+- fw-inputs no twisted shell normalization (gq-typeA-design): PASS, N1-N2, overlap w/ bh-kazhdan-inputs flagged
+- fw twisted-normalizing genuine shell (bh-kazhdan-inputs): PASS for countable P, W1 countability, N1-N2

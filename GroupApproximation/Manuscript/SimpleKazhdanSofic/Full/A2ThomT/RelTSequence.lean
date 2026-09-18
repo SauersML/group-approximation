@@ -126,7 +126,7 @@ theorem cover {f g : ℕ → ℂ} (h : ∃ n, f n ≠ 1 ∨ g n ≠ 1) :
         ∃ k, (f k ≠ 1 ∨ g k ≠ 1) ∧ ∀ n < k, f n = 1 ∧ g n = 1 := by
       refine ⟨Nat.find h, Nat.find_spec h, fun n hn ↦ ?_⟩
       have hnot := Nat.find_min h hn
-      push_neg at hnot
+      push Not at hnot
       exact hnot
     have hup : ∀ u : ℕ → ℂ, (∀ n < k, u n = 1) → u k = 1 → ∀ n ≤ k, u n = 1 := by
       intro u hlt hkk n hn

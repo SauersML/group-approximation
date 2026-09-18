@@ -566,3 +566,127 @@ is a root or torus only if (CCR) already holds everywhere.
 
 The claim stays OPEN. None of this touches the approximate microstate
 formulation or its dependence on `t`.
+
+**2026-09-18, w7-121 (obstruction-miner): enemies must break a fixed finite
+HNN relator set invisibly to the trace.** The wave step asked whether the
+enemies seen in metric ultraproducts of finite groups survive passage to
+unitary matrix models. The new node
+`compressor-enemies-need-trace-invisible-hnn-defects` (ESTABLISHED, proposed;
+its Corollary 3(e) cites Gluck) answers this for every passage through a
+unitary representation of the carrier.
+
+- **Theorem 1.** Fix one finite set `F`: Shalom's Kazhdan relators of `Gamma`
+  together with the compression relators of `t`. If representatives of `sigma`
+  satisfy `F` exactly, the model has (CCR) and no enemy. Every other relation of
+  `G` may hold only approximately, and the trace is arbitrary.
+- **Theorem 2.** In a transported model `rho_n ∘ phi_n` with an enemy, some
+  relator in `F` has a defect with `rho_n(z) != 1` and `Re tr rho_n(z) -> 1`.
+- **Killed classes.** Each of the following carries no enemy:
+  - regular transports;
+  - fixed-point-ratio permutation transports, including `GL`/`AGL` acting on
+    vectors;
+  - tensor-permutation transports;
+  - Weil/Clifford transports;
+  - bounded products of Lie-type or sporadic simple groups with **any**
+    representation.
+- **Survivors.** Hamming-type carriers survive: alternating groups of
+  unbounded degree, unboundedly many factors, and abelian or solvable pieces.
+  On them the `V_T`-part of the model is a non-liftable almost representation
+  with `Ad sigma(e) != 0`.
+
+Next step: the extension problem. Extend one sofic Pauli wall model of `V_T`
+to an HS-almost representation of `G`. The claim stays OPEN.
+
+- **The extension problem over Hamming carriers (lane w8-121,
+  2026-09-18).** Result: `hamming-enemies-escape-finite-hull-pair-loeb-scales`.
+  - *Part A.* The Pauli wall model does not extend over permutation carriers.
+    In a sofic representation of `Pi_T`, the lamp at `t x_0` lies in
+    `C(sigma(Lambda)) \ C(sigma(Gamma))`. Kun--Thom 4.1 would force `sigma(t)`
+    to normalize `C(sigma(Gamma))`, so no sofic representation of `G` restricts
+    to it.
+  - *Part B.* Kun--Thom Theorem C, applied to the tensor-square action
+    `phi_n × phi_n` on pairs `Y_n × Y_n`, proves the following for every sofic
+    model of `G`. A flat element of the `Gamma`-commutant (entries
+    `O(|Y_n|^-1/2)`, which includes Fourier-spread elements off the monomial
+    core) commutes with `sigma(E)`. So does every element dominated at its
+    own density by an asymptotically `G`-invariant pair set.
+  - *Part C.* Every enemy of a sofic model keeps mass at least `delta/2` off
+    every such pair scale. It is an infinite-hull wall at an intermediate
+    scale.
+  - *Still open.* Carriers that are genuinely non-permutation: irreducible
+    representations of `A_m`, with `m` unbounded, that are not corners of
+    bounded-arity permutation modules, and non-monomial HS extensions. Also
+    open is a version of Theorem C for infinite-measure (Poisson-type) sofic
+    actions, which would kill infinite-hull walls.
+
+- **The infinite-measure Theorem C, tested (lane w9-121, 2026-09-18).**
+  Result: `gaussian-theorem-c-for-ad-sigma-is-equivalent-to-ccr`.
+  - *Transfer.* An enemy of any trace-faithful `sigma` (an element of
+    `sigma(Gamma)' ∩ M` not fixed by `sigma(N)`, `N ⊇ E`) gives a Gaussian
+    action of `G`, the suspension of the enemy's cyclic part of `Ad sigma`, in
+    which `L^∞^Gamma` is not `G`-invariant. By Theorem C, that action is not
+    sofic and is not a factor of a sofic action. No soficity of `sigma` is
+    needed, so this covers `A_m` and all other non-permutation carriers.
+  - *Equivalence.* Theorem C's conclusion for all Gaussian suspensions of
+    `Ad sigma^(⊗j)` holds if and only if no tensor power `sigma^(⊗k)` has an
+    enemy. The proof uses Wiener chaos, `L^2`-fixed vectors of `Ad` as
+    closures of relative commutants, and tensor ultraproducts. Sofic and
+    trace-faithful classes are closed under tensor powers. So the
+    Poisson-type Theorem C for sofic models is *equivalent* to
+    `kt-sofic-models-normalize-vn-commutants`, not a lever toward it.
+  - *Exact missing input.* Soficity (a Păunescu model) of Gaussian
+    suspensions of conjugation representations would suffice. Corollary D is
+    the coset case of the transfer.
+  - *Flexible target.* An enemy must make some compressor have positive
+    entropy on a `Gamma`-fixed Gaussian factor
+    (`zero-entropy-compressors-preserve-fixed-algebra`).
+
+Next step: decide whether the Gaussian suspension of `Ad sigma`, for a sofic
+`sigma` of `G`, admits a Păunescu model. The natural row-Poisson model sees
+only pair scales. The claim stays OPEN.
+
+- **Gaussian of a sofic representation, tested (lane w10-121, 2026-09-18).**
+  Result: `planted-lifts-defeat-hilbert-level-gaussian-soficity`
+  (obstruction).
+  - *Planting.* Change any lift on `o(|Y_n|)` points. This leaves `sigma`,
+    `M` and `Ad sigma` unchanged, but puts `ℓ^2(G/Gamma)` equivariantly into
+    the Hilbert ultraproduct of the pair spaces. Its Gaussian is
+    `N(0,1)^(G/Gamma)`, which fails Theorem C.
+  - *What dies.* Every proof of "Gaussian of `Ad sigma` is sofic" that uses
+    only asymptotic equivariance of the lifted vectors, including
+    Gaussian-of-sofic-representation and Hayes-type Gaussian microstates, is
+    refuted at every sofic `sigma`.
+  - *Enemy side.* The compressor dynamics with positive entropy on a
+    `Gamma`-fixed Gaussian factor exists at every `sigma`. It is always
+    orthogonal to `L^2(M)`, because planted vectors are orthogonal to
+    marginally uniformly integrable (MUI) ones. Positive-density planting is
+    forbidden by Theorem C. So planting gives no enemy in either regime.
+  - *Reformulation.* The Gaussian of `K` is sofic iff `K` is weakly contained
+    in a sofic Koopman representation. Theorem C holds for such
+    representations. Flat vectors pass.
+
+Next step: (MUI-C). Are `Gamma`-invariant, non-flat MUI vectors of the
+canonical equivariant part `N`-invariant? Or, more strongly: are the cyclic
+representations `K_x` with `x ∈ sigma(Gamma)' ∩ M` weakly contained in sofic
+Koopman representations? The claim stays OPEN.
+
+- **(MUI-C) tested against its measure shadow (lane w11-121, 2026-09-18).**
+  Result: `mui-commutant-reduces-to-internal-joining-invariance`
+  (reduction + obstruction).
+  - *Reduction.* Entrywise positive parts commute with the pair permutations,
+    so (MUI-C) is equivalent to (MUI-J): MUI pair probability measures
+    `lambda_n` on `Y_n × Y_n` that are internally (total-variation)
+    `Gamma`-invariant are internally `N`-invariant.
+  - *What dies.* The standard-part shadow of (MUI-J) is false. On the exact
+    Bernoulli models `Y_n = {0,1}^(Q_n)` over finite quotients (coordinatewise
+    genuine, where (MUI-C) holds for all of `H`), the relative product of the
+    Loeb space over the Bernoulli coordinates indexed by `Gamma` is a
+    `Gamma`-invariant, non-`N`-invariant self-joining with marginals `mu`.
+    So "Theorem C for joinings / factors / Koopman intertwiners" is false,
+    and any proof of (MUI-C) through the Loeb joining `st(|xi|^2)` dies. That
+    joining has no internally invariant lift.
+
+Next step: (MUI-J) itself. Run a Kun-type expander decomposition of
+`(W_n, lambda_n, psi_n(Gamma))` and compare it with its `psi_n(t)`-conjugate,
+using UI marginals to make the Hamming defects of the lift cost `o(1)`
+`lambda_n`-mass. The claim stays OPEN.

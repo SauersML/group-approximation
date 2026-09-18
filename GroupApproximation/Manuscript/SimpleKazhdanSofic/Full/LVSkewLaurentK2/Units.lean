@@ -153,7 +153,7 @@ theorem units_mem_elementaryGroup_of_subrings {ι S : Type*} [Fintype ι] [Decid
     Matrix.of fun k l => ⟨((g⁻¹ : (Matrix ι ι S)ˣ) : Matrix ι ι S) k l, (hmem k l).2⟩
   have hinj : Function.Injective (T.subtype.mapMatrix : Matrix ι ι T →+* Matrix ι ι S) := by
     intro M N hMN
-    ext k l
+    refine Matrix.ext fun k l ↦ ?_
     exact T.subtype_injective (congrArg (fun Z : Matrix ι ι S => Z k l) hMN)
   have hG : T.subtype.mapMatrix G = (g : Matrix ι ι S) := by
     ext k l

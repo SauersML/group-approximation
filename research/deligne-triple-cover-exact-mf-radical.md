@@ -75,3 +75,32 @@ z in Rad_MF(E_3).                                      (DER2)
     through compression. Any proof of `(DER2)` must use operator-norm data
     that no source-side commutator identity encodes, or pass through an
     overgroup with an extension theorem.
+- **2026-09-18, swarm-0917-w8-w8-deligne-break (operator-algebras): the full-circle alternative is killed by non-MF of
+  Deligne's lattice; new split.** See `deligne-lattice-non-mf-forces-finite-parameter-group` (ESTABLISHED).
+  - *One direction outright.* One irrational norm-parameter, glued to the residually finite base, gives an injective
+    corona model of `Gamma~ = E_infinity`. So "`Gamma~` is not MF" implies `P_op = (1/m)Z/Z`.
+  - *Radical dichotomy.* On the finite branch, `Rad_MF(Gamma~)` is `{1}` or exactly `<z^m>`.
+  - *Arc constraint.* On the finite branch, a corona model with `Theta(z)^m != 1` must put a nondegenerate arc of
+    `sp(Theta(z))` through a point off `mu_m`, with no commutant corner localizing there. So models with finite or
+    totally disconnected central spectrum never separate `z^m`.
+  - *Conditional converse.* Under the single instance `(CPE*)` of `commutant-projection-extraction` at
+    `(Gamma~, z^m)`: `Gamma~` is MF iff `P_op = R/Z` iff every `E_q` is MF.
+  - *New split.* Route `deligne-triple-cover-via-deligne-lattice-non-mf` needs two prerequisites, each of which can
+    fail on its own:
+    - `deligne-universal-cover-lattice-is-not-mf` (OPEN), a statement about one torsion-free-up-to-finite-index
+      Kazhdan lattice, which is equivalent to the same statement for `Gamma~(3)`;
+    - `deligne-finite-parameter-group-has-period-prime-to-three`.
+    Under `(CPE*)`, the flagship implies the first prerequisite.
+  - *Not pursued.* Virtual descent to kill the prime three duplicates the DEAD result of swarm-0917-w8-w8-deligne-last1
+    on the period claim. The divisibility set `{+-1, +-2}` preserves `(1/6)Z`.
+- **2026-09-18, swarm-0917-w9-w9-deligne-break (operator-algebras): reduced-algebra routes die, in both directions, at
+  "`C*_r(Sp_4(Z))` is MF".** See `deligne-twisted-reduced-mf-iff-group-mf-and-sp4-reduced-mf` (ESTABLISHED).
+  - *Theorem.* For rational `theta`, `C*_r(Gamma, c_theta)` is MF iff `theta in P_op` and `C*_r(Gamma)` is MF.
+    Likewise `C*_r(E_q)` is MF iff `E_q` is MF and `C*_r(Gamma)` is MF. Invariant: Fell absorption,
+    `Theta ⊗ lambda_tau ~ 1 ⊗ lambda_(c tau)`, combined with exact-MF tensor permanence and `A^op ≅ C*_r(Gamma, c^-1)`.
+  - *Class killed.* Any refutation by reduced-norm-faithful `1/3`-models (strong convergence, or an MF embedding of
+    `C*_r(E_3)`) also makes `Sp_4(Z)` an infinite Kazhdan group with MF reduced algebra, which is the open root
+    `infinite-kazhdan-group-with-mf-reduced-cstar`. Any proof through non-MF of `C*_r(Gamma, c_(1/3))` is valid only
+    alongside that same open statement.
+  - *New split.* flagship `<=` [`C*_r(Sp_4 Z, c_(1/3))` not MF] and [`C*_r(Sp_4 Z)` MF]. Each prerequisite can fail
+    on its own. Surviving routes must use non-tempered finite-dimensional structure.

@@ -1,0 +1,149 @@
+terms [9000, 13904, 8180, 9000]
+### 1. graded reference J+Z5 (initial forms of the nine relators plus (XY-YX)^5 per edge)
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3087 5043 8061 12726 19764  total 52981
+H(5,5,5)=1905
+### 2. lowest forms of all torus-eigencomponents of the relators (LOWONLY)
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3087 5043 8061 12726 19764  total 52981
+H(5,5,5)=1905
+### 3. group mode: all relators with all tails, eigen-coordinates; hidden = lead normal for J+Z5
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3087 5043 8061 12726 19761  total 52978
+H(5,5,5)=1902
+jumps (sdeg->leaddeg:count): 7->15:3 8->12:1 11->15:3
+hidden #64 lead cacabcabcabcabb md (5,5,5) type 2 from overlap cabbb|bbbbb k=3 (#10,#8) sdeg 7 nterms 1237
+hidden #69 lead cbcabcabcabcaba md (5,5,5) type 2 from overlap cbab|bababababa k=3 (#6,#33) sdeg 11 nterms 1457
+hidden #71 lead cacabcabbcacabb md (5,5,5) type 2 from overlap cacacacaca|cacacab k=6 (#35,#21) sdeg 11 nterms 1133
+test 0: 9000 terms -> normal form 0 terms; hidden uses:
+test 1: 13904 terms -> normal form 0 terms; hidden uses: #64*1 #69*4 #71*4
+test 2: 8180 terms -> normal form 0 terms; hidden uses: #69*1
+test 3: 9000 terms -> normal form 0 terms; hidden uses:
+### 4. K, C1, C2, K' and the three hidden elements, reduced modulo J+Z5; linear relations
+test 0: 9000 terms -> normal form 1133 terms; 
+test 1: 13904 terms -> normal form 1487 terms; 
+test 2: 8180 terms -> normal form 1471 terms; 
+test 3: 9000 terms -> normal form 1133 terms; 
+test 4: 1237 terms -> normal form 1237 terms; 
+test 5: 1457 terms -> normal form 1457 terms; 
+test 6: 1133 terms -> normal form 1133 terms; 
+K = 1*h3
+C1 = 1*h1 + 4*h2 + 2*h3
+C2 = 1*h2 + 1*h3
+Kp = 1*h3
+### 5. provenance chain of the hidden elements (basis elements 0-35)
+#0 baa 3 2 1 0 type=0 rel=[a,b,a]{210} sdeg=3 nterms=8
+#1 bba 3 1 2 0 type=0 rel=[a,b,b]{120} sdeg=3 nterms=8
+#2 cbb 3 0 2 1 type=0 rel=[b,c,b]{021} sdeg=3 nterms=8
+#3 ccb 3 0 1 2 type=0 rel=[b,c,c]{012} sdeg=3 nterms=8
+#4 caa 3 2 0 1 type=0 rel=[a,c,a]{201} sdeg=3 nterms=8
+#5 cca 3 1 0 2 type=0 rel=[a,c,c]{102} sdeg=3 nterms=8
+#6 cbab 4 1 2 1 type=1 A1=cbb A2=bba k=2 sdeg=4 nterms=190
+#7 aaaaa 5 5 0 0 type=0 rel=a^5 sdeg=5 nterms=1
+#8 bbbbb 5 0 5 0 type=0 rel=b^5 sdeg=5 nterms=1
+#9 ccccc 5 0 0 5 type=0 rel=c^5 sdeg=5 nterms=1
+#10 cabbb 5 1 3 1 type=1 A1=cbb A2=bba k=1 sdeg=5 nterms=401
+#11 cbaca 5 2 1 2 type=1 A1=ccb A2=baa k=1 sdeg=5 nterms=319
+#12 cbcba 5 1 2 2 type=1 A1=ccb A2=bba k=1 sdeg=5 nterms=308
+#13 cababa 6 3 2 1 type=1 A1=cbab A2=baa k=1 sdeg=6 nterms=524
+#14 cababb 6 2 3 1 type=1 A1=cabbb A2=bba k=2 sdeg=6 nterms=574
+#15 cbcabb 6 1 3 2 type=1 A1=cca A2=cabbb k=2 sdeg=6 nterms=558
+#16 cacaba 6 3 1 2 type=1 A1=cbaca A2=caa k=2 sdeg=6 nterms=600
+#17 cbcaca 6 2 1 3 type=1 A1=ccb A2=cbaca k=2 sdeg=6 nterms=384
+#18 cbcbca 6 1 2 3 type=1 A1=ccb A2=cbcba k=2 sdeg=6 nterms=524
+#19 cbcacba 7 2 2 3 type=1 A1=cbcba A2=cbaca k=3 sdeg=7 nterms=893
+#20 cbcabab 7 2 3 2 type=1 A1=cca A2=cababb k=2 sdeg=7 nterms=906
+#21 cacacab 7 3 1 3 type=1 A1=cca A2=cacaba k=2 sdeg=7 nterms=851
+#22 cabcabab 8 3 3 2 type=1 A1=cbcabb A2=baa k=1 sdeg=8 nterms=247
+#23 cbcabaca 8 3 2 3 type=1 A1=cbcaca A2=cacaba k=4 sdeg=8 nterms=234
+#24 cbcabcba 8 2 3 3 type=1 A1=cbcacba A2=cbab k=3 sdeg=8 nterms=265
+#25 cabacabab 9 4 3 2 type=1 A1=cbaca A2=cababa k=2 sdeg=9 nterms=431
+#26 cacabcaba 9 4 2 3 type=1 A1=cbaca A2=cacaba k=2 sdeg=9 nterms=395
+#27 cbcabcabb 9 2 4 3 type=1 A1=cbcaca A2=cabbb k=2 sdeg=9 nterms=385
+#28 cbcabcaca 9 3 2 4 type=1 A1=cbcacba A2=cbaca k=3 sdeg=9 nterms=368
+#29 cbcacbcab 9 2 3 4 type=1 A1=cbcbca A2=cbcacba k=4 sdeg=9 nterms=426
+#30 cacabbcab 9 3 3 3 type=1 A1=cacacab A2=cabbb k=3 sdeg=9 nterms=340
+#31 cabbcabab 9 3 4 2 type=1 A1=cabcabab A2=cababb k=5 sdeg=9 nterms=402
+#32 cbcabacba 9 3 3 3 type=1 A1=cbcabcba A2=baa k=2 sdeg=9 nterms=393
+#33 bababababa 10 5 5 0 type=0 rel=[a,b,a]{110} sdeg=10 nterms=2
+#34 cbcbcbcbcb 10 0 5 5 type=0 rel=[b,c,b]{011} sdeg=10 nterms=2
+#35 cacacacaca 10 5 0 5 type=0 rel=[a,c,a]{101} sdeg=10 nterms=2
+### 6. edge-selective tails (cap 3 = initial form only; Z5 added), degree 15
+Tab=15 Tbc=3 Tac=3
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19014  total 51865
+H(5,5,5)=1873
+test 0: 9000 terms -> normal form 1210 terms; 
+test 1: 13904 terms -> normal form 1394 terms; 
+test 2: 8180 terms -> normal form 1416 terms; 
+test 3: 9000 terms -> normal form 1210 terms; 
+Tab=3 Tbc=15 Tac=3
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19014  total 51865
+H(5,5,5)=1873
+test 0: 9000 terms -> normal form 1200 terms; 
+test 1: 13904 terms -> normal form 1382 terms; 
+test 2: 8180 terms -> normal form 1373 terms; 
+test 3: 9000 terms -> normal form 1200 terms; 
+Tab=3 Tbc=3 Tac=15
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19014  total 51865
+H(5,5,5)=1873
+test 0: 9000 terms -> normal form 1328 terms; 
+test 1: 13904 terms -> normal form 1499 terms; 
+test 2: 8180 terms -> normal form 1500 terms; 
+test 3: 9000 terms -> normal form 1328 terms; 
+Tab=15 Tbc=15 Tac=3
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19013  total 51864
+H(5,5,5)=1872
+test 0: 9000 terms -> normal form 1170 terms; 
+test 1: 13904 terms -> normal form 1296 terms; 
+test 2: 8180 terms -> normal form 1322 terms; 
+test 3: 9000 terms -> normal form 1170 terms; 
+Tab=15 Tbc=3 Tac=15
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19013  total 51864
+H(5,5,5)=1872
+test 0: 9000 terms -> normal form 1200 terms; 
+test 1: 13904 terms -> normal form 1375 terms; 
+test 2: 8180 terms -> normal form 1200 terms; 
+test 3: 9000 terms -> normal form 1200 terms; 
+Tab=3 Tbc=15 Tac=15
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3083 5023 7979 12466 19013  total 51864
+H(5,5,5)=1872
+test 0: 9000 terms -> normal form 1366 terms; 
+test 1: 13904 terms -> normal form 1366 terms; 
+test 2: 8180 terms -> normal form 1383 terms; 
+test 3: 9000 terms -> normal form 1366 terms; 
+Tab=13 Tbc=13 Tac=13
+hilb by degree: 1 3 9 21 48 96 189 348 630 1092 1863 3087 5043 8061 12726 19761  total 52978
+H(5,5,5)=1902
+test 0: 9000 terms -> normal form 0 terms; 
+test 1: 13904 terms -> normal form 0 terms; 
+test 2: 8180 terms -> normal form 0 terms; 
+test 3: 9000 terms -> normal form 0 terms; 
+### 7. single-edge tails at degree 11: the vertex obstructions
+Tab=11 Tbc=3 Tac=3
+jumps (sdeg->leaddeg:count): 7->11:4
+hidden #37 lead bababacacab md (5,4,2) type 2 from overlap cbcabb|cabbb k=4 (#15,#10) sdeg 7 nterms 38
+hidden #38 lead bbbcabacaba md (4,5,2) type 2 from overlap cacaba|baa k=2 (#16,#0) sdeg 7 nterms 78
+hidden #40 lead cabcabbcbcb md (2,5,4) type 2 from overlap ccb|cbcaca k=2 (#3,#17) sdeg 7 nterms 106
+hidden #41 lead cabcabacaca md (5,2,4) type 2 from overlap ccb|cbcbca k=2 (#3,#18) sdeg 7 nterms 98
+Tab=3 Tbc=11 Tac=3
+jumps (sdeg->leaddeg:count): 7->11:4
+hidden #37 lead cacabcbcbcb md (2,4,5) type 2 from overlap cabbb|bba k=1 (#10,#1) sdeg 7 nterms 33
+hidden #38 lead cacacbcabca md (4,2,5) type 2 from overlap cababa|baa k=2 (#13,#0) sdeg 7 nterms 99
+hidden #39 lead bbbcabacaba md (4,5,2) type 2 from overlap cacaba|baa k=2 (#16,#0) sdeg 7 nterms 78
+hidden #41 lead cabcabbcbcb md (2,5,4) type 2 from overlap ccb|cbcaca k=2 (#3,#17) sdeg 7 nterms 106
+Tab=3 Tbc=3 Tac=11
+jumps (sdeg->leaddeg:count): 7->11:4
+hidden #37 lead cacabcbcbcb md (2,4,5) type 2 from overlap cabbb|bba k=1 (#10,#1) sdeg 7 nterms 33
+hidden #38 lead cacacbcabca md (4,2,5) type 2 from overlap cababa|baa k=2 (#13,#0) sdeg 7 nterms 99
+hidden #39 lead bababacacab md (5,4,2) type 2 from overlap cbcabb|cabbb k=4 (#15,#10) sdeg 7 nterms 38
+hidden #41 lead cabcabacaca md (5,2,4) type 2 from overlap ccb|cbcbca k=2 (#3,#18) sdeg 7 nterms 98
+Tab=11 Tbc=11 Tac=3
+jumps (sdeg->leaddeg:count): 7->11:4
+hidden #37 lead cacabcbcbcb md (2,4,5) type 2 from overlap cabbb|bba k=1 (#10,#1) sdeg 7 nterms 33
+hidden #38 lead cacacbcabca md (4,2,5) type 2 from overlap cababa|baa k=2 (#13,#0) sdeg 7 nterms 99
+hidden #39 lead bababacacab md (5,4,2) type 2 from overlap cbcabb|cabbb k=4 (#15,#10) sdeg 7 nterms 38
+hidden #41 lead cabcabacaca md (5,2,4) type 2 from overlap ccb|cbcbca k=2 (#3,#18) sdeg 7 nterms 98
+Tab=11 Tbc=11 Tac=11
+jumps (sdeg->leaddeg:count):
+### 8. calibration p=3 (outside the claim): group vs J+Z3
+hilb by degree: 1 3 9 18 39 72 141 252 468 828 1506 2664 4794 8487  total 19282
+H(3,3,3)=162
+hilb by degree: 1 3 9 18 39 72 141 252 468 828 1506 2661 4782 8442  total 19222
+H(3,3,3)=162

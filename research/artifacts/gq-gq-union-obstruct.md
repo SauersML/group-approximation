@@ -77,3 +77,58 @@ A finitely presented `H ⊇ GL_n(Q)` built from tree-like data must
 - **S3.** Is there a *uniform* statement for the chain: an f.g. `H ⊇ GL_n(Q)` in which `|e_12(1/m)|_H` grows slower
   than `log m`? Every such `H` has `|e_12(1/m^k)|_H <= 2k |diag(m,1,...)|_H + |e_12(1)|_H`, but the dilations
   `diag(p,1,...)` over all primes `p` need not have bounded length.
+
+## 7. The adelic median graph `X = ∏'_p T_p` (2026-09-18, with gq-sl2q; critic pass 2, item 1)
+
+Split with gq-sl2q. They took the construction side and landed the automorphism group and the orbit count
+(`adelic-median-graph-automorphisms-are-restricted-products`, `cocompact-fg-stabilizer-actions-force-finite-generation`,
+and the permanence schema (P) inside `sl2-q-in-permutational-boone-higman-class`). The obstruction side follows.
+
+**Q1. Does `divisible-elements-act-elliptically-on-trees` force the root group into one end in each factor?** Yes
+(`sl-2-q-root-group-is-parabolic-in-every-prime-factor`):
+- `U = u(Q)` fixes no vertex of any `T_p` and exactly one end `ξ_p = [Q_p e_1]` of each;
+- in `∏_p (T_p ∪ ∂T_p)` it fixes exactly `ξ = (ξ_p)_p`, whose every coordinate is at infinity;
+- `Stab(ξ) = B(Q)`, and the joint Busemann map `B(Q) -> ⊕_p Z` has image `2 ⊕_p Z` and kernel `±U`. The divisible
+  group is the joint kernel of infinitely many independent Busemann characters.
+
+**Q2. Does that kill the permanence theorem?** Not by itself. `SL_2(Q)` realizes this configuration with residually
+finite vertex groups `SL_2(Z)`, so no contradiction arises from ends alone. What kills a class of hosts is finite
+generation (`fg-restricted-product-actions-have-finite-support`):
+- a finitely generated group of *coordinatewise* bijections of any restricted product of pointed sets fixes the
+  base coordinate outside a finite set `S`;
+- so no finitely generated coordinatewise host, meaning any thickening `Ω_p ⊇ T_p^0`, arbitrary bijections,
+  BLIW-style per-factor rigid permutations, or finite products of per-prime hosts, contains the natural
+  `SL_2(Q)`, `GL_n(Q)` or `Aff(Q)`;
+- a finitely generated *monomial* host (factor-permuting) must put all prime factors into finitely many orbits of
+  its factor permutation. The prime shift `σ` of `gl-n-q-lies-in-prime-shift-permutation-group` merges primes in the
+  same spirit, on `Q^n` rather than on `X`.
+
+The schema (P) itself is a membership statement, and neither result refutes it. They show that (P) cannot be
+proved by building a host that acts coordinatewise on `X` or on a thickening. They also show that `SL_2(Q)`'s
+instance of (P) needs a prime-mixing actor, which is gq-sl2q's construction side.
+
+**Q3. Which MT-C invariant along `u(1/m!)` must an fp host satisfy?** Two lower bounds on word length, both forced
+by the complex-of-groups geometry. Here `Ω(m!) = Σ_(p≤m) v_p(m!) >= m - 1`, which is `~ m log log m`.
+- **Depth.** If the host `H = <F>` acts isometrically on a space containing `X^0` equivariantly, then
+  `|u(1/m!)|_F >= 2 Ω(m!)/C`, since `u(1/m!)` displaces `o` by exactly `2 Ω(m!)`. The fixed vertex `x_m` of `U_m`
+  nearest to `o` is `[Z e_1 ⊕ m! Z e_2]`. The `x_m` lie on one geodesic ray, with `U ∩ Stab(x_m) = U_m`, and step
+  `m` has length `Ω(m)` in the prime directions of `m`.
+- **Prime support.** For a monomial host, `|u(1/m!)|_F >= π(m)/s`, where `s` is the largest support of a
+  generator.
+
+The depth bound applies only to hosts acting on a space that contains `X` equivariantly, and the prime-support
+bound only to monomial hosts. The prime-shift groups `K_n` are neither, so these are calibration tests, not kills
+of `K_n`. For comparison, the natural word for `u(1/m!)` in `K_2` (conjugate `u(1)` by the product of prime
+dilations, each written as a `σ`-conjugate of `diag(2,1)`) has length `O(Σ_(p≤m) (m/p)(1 + index of p))`, which
+exceeds both bounds anyway.
+
+**A route to refuting (P), not taken.** If `G` lies in `B_A`, it lies in one fp group `S` with solvable word problem
+(`SV_Γ`). Then the finitely presented groups embeddable in `G` have uniformly solvable word problems. Given a
+presentation `Π` and a word `w`, search for a homomorphism `Π -> S` with `w -> ≠ 1` (checkable in `S`) in parallel
+with a derivation of `w = 1`. This is the Boone–Rogers argument quoted in the survey arXiv:2306.16356v3, §4
+footnote. So (P) fails if some group acting on `X` has every vertex stabilizer in `B_A`, while its finitely
+presented subgroups admit no uniform word-problem algorithm. Every automorphism of `X` is coordinatewise, and
+finitely generated subgroups act on finite products `∏_(p∈S) T_p`. So such a group needs infinitely many vertex
+orbits, with finitely presented pieces of non-uniform complexity spread over infinitely many prime directions.
+No such example is known to this lane. The needed input, a non-uniform family of fp groups each lying in `B_A`,
+is not on main.

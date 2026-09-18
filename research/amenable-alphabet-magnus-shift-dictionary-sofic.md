@@ -73,3 +73,13 @@ Equivalently, (AA) asks for configurations `x : Z -> Q`,
 * (AA) forces `B_0` to be residually amenable relative to `F_-`, `F_+`. So a
   piece that is not residually amenable, such as one containing a nonsofic
   seed, is out of reach, as for every quotient-based method.
+
+## Attempts
+
+1. **(AA) at the model singular extreme (w5-073, 2026-09-18).** *Holds.*
+   [[baumslag-gersten-elementary-amenable-quotient-keeps-a]] gives a
+   bi-infinite configuration of the `BG` Magnus kernel over an elementary
+   amenable alphabet that is faithful on `B_0 = BS(1,2)`. It is built by an
+   induced-module prepend tower and its shift endomorphism. So the
+   exponent-free dictionary is not vacuous at singular extremes. The open
+   work for `n >= 2` is separation of `B_0` from `F_-` and `F_+`.

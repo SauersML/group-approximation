@@ -1,0 +1,43 @@
+# cg_multiword.CG(phi^2, gates, W, maxval 4).run(3000, 1100) on entry 4012, phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'}, m 2, W = a b ab aab abb and inverses; then the phase-1 dual of every dart, per circle
+val infeasible phase1 obj 1.3921568627450955
+normalisation dual 1.3921568627450973
+a - a sum -0.7336
+    a:-0.734
+a + CABBBA sum 2.1258
+    Cf:1 A:0.321 B:-0.415 B:0.11 B:0.11 A:1
+b - b sum 0.5192
+    b:0.519
+b + BBABACABBCABB sum 0.8729
+    Bf:0.135 B:0.197 A:0.746 B:-0.374 A:0.966 C:-0.457 A:-0.968 B:-0.374 B:0.11 C:0.629 A:0.526 B:-0.374 B:0.11
+ab - ab sum 0.0466
+    a:0.793 b:-0.746
+ab + BBABACABBCABBCABBBA sum 1.3456
+    Bf:0.365 B:0.356 A:0.579 B:-0.517 A:0.677 C:-0.489 A:-0.676 B:-0.374 B:0.11 C:0.718 A:-0.76 B:-0.545 B:0.619 Cf:1 A:-0.423 B:-0.374 B:0.11 B:0.029 A:0.94
+aab - aab sum -1.8453
+    a:-0.365 a:-0.734 b:-0.746
+aab + BBABACABBCABBCABBBACABBBA sum 3.2375
+    Bf:0.204 B:0.399 A:1 B:-0.624 A:0.321 C:-0.739 A:-0.423 B:-0.374 B:0.026 C:-0.029 A:0.355 B:0.271 B:-0.514 Cf:0.247 A:0.358 B:-0.458 B:0.194 B:0.029 A:0.94 Cf:0.928 A:0.614 B:-0.729 B:0.465 B:-0.224 A:1
+abb - abb sum -0.0318
+    a:0.624 b:-0.997 b:0.341
+abb + BBABACABBCABBBBABACABBCABBCABBBA sum 1.4239
+    Bf:0.254 B:0.157 A:0.747 B:-0.375 A:0.966 C:-0.425 A:-1 B:-0.374 B:0.055 C:0.743 A:0.408 B:-0.374 B:0.084 Bf:0.22 B:-0.1 A:0.96 B:-0.215 A:0.746 C:-0.593 A:-0.984 B:-0.39 B:0.11 C:0.635 A:0.409 B:-0.515 B:0.362 Cf:-0.697 A:-0.116 B:-0.545 B:0.135 B:0.135 A:1
+A - A sum -0.482
+    A:-0.482
+A + abbbac sum 1.8742
+    af:1 b:-0.069 b:-0.026 b:-0.362 a:0.363 c:0.968
+B - B sum 0.6573
+    B:0.657
+B + bbacbbacababb sum 0.7349
+    bf:-0.029 b:-0.11 a:0.374 c:1 b:-0.154 b:-0.11 a:0.374 c:0.173 a:-0.748 b:-0.327 a:-0.271 b:0.397 b:0.167
+BA - BA sum 0.3064
+    B:-0.399 A:0.706
+BA + abbbacbbacbbacababb sum 1.0858
+    af:0.772 b:0.483 b:-0.237 b:-0.055 a:0.374 c:0.31 bf:0.482 b:-0.11 a:0.374 c:0.423 b:-0.891 b:-0.084 a:0.374 c:-0.057 a:-0.827 b:-0.321 a:-0.271 b:-0.013 b:0.361
+BAA - BAA sum -1.2527
+    B:-0.571 A:0.319 A:-1
+BAA + abbbacabbbacbbacbbacababb sum 2.6449
+    af:0.68 b:0.338 b:-0.455 b:-0.055 a:0.399 c:0.647 af:0.924 b:0.406 b:-0.219 b:-0.197 a:0.374 c:0.51 bf:0.335 b:-1 a:0.545 c:0.342 b:-0.299 b:-0.221 a:0.375 c:0.287 a:-0.612 b:-0.66 a:-0.4 b:0.24 b:0.361
+BBA - BBA sum 0.3839
+    B:0.633 B:0.157 A:-0.406
+BBA + abbbacbbacbbacababbbbacbbacababb sum 1.0083
+    af:0.729 b:0.457 b:-0.157 b:-0.135 a:0.374 c:-0.494 bf:1 b:-0.465 a:0.374 c:-0.334 b:0.274 b:-0.157 a:0.374 c:0.19 a:-0.613 b:-0.606 a:-0.462 b:0.235 b:0.366 bf:-0.135 b:-0.22 a:0.374 c:0.483 b:0.362 b:-0.135 a:0.399 c:-0.552 a:0.034 b:-0.579 a:-0.169 b:-0.027 b:0.224

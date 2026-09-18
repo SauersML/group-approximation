@@ -152,6 +152,69 @@ claim [[nonsofic-one-relator-group]].
      explicit. Any full solution is perfect on the chain and not residually
      linear. A negative answer kills the shift dictionary at every singular
      extreme of this type.
+   - **Model case settled positively (w5-073).**
+     [[bs12-extends-to-amenable-square-conjugation-chain]] is proved by an
+     induced-module tower. The prepend step is
+     `Phi(K,c) = Ind_(<c>)^K(Q_(1/2)) rtimes K`. It is functorial, and its
+     direct limit from `Z` is locally solvable and carries the forward
+     chain. Moreover, [[baumslag-gersten-elementary-amenable-quotient-keeps-a]]:
+     `BG` maps to an elementary amenable group with `a` of infinite order. So
+     (AA) holds for `BG`, and the singular forward step is passable. The
+     mechanism never solves the singular equation. It solves the linear
+     backward equation universally, and the limit converts prepending into
+     forward growth.
+   - **Open next.** For `n >= 2`, the same functor needs the backward
+     equation in `a_0` to linearize over an abelian normal layer. It also
+     needs a seed group embedding in its own `Phi`-image, and separation of
+     `B_0` from the rank-`n` subgroups `F_-` and `F_+`.
+   - **Towers reduce to amenable quotients of `G` (w6-073).**
+     [[magnus-prepend-towers-are-amenable-quotients-of-the-group]]: the
+     relative one-relator product `P(K) = (K * <X>)/<<W_0(X,c)>>` is the
+     universal prepend step. It is functorial by a pushout
+     (`P(L) = L *_K P(K)`) whenever the relative Freiheitssatz holds, e.g.
+     over locally indicable `K`; the Freiheitssatz fails over `Z/6` at a
+     singular extreme. But the literal `P`-tower from a free seed rebuilds
+     `G` itself: its limit is the forward Magnus half `N_+` and its
+     ascending HNN extension is `G`. Every prepend-limit-HNN tower is a
+     homomorphism of `G`, so an amenable tower witnesses (AA) iff
+     **(AA_G)**: `G` has amenable quotients separating finite subsets of
+     `B_0` from `F_-`, `F_+` and `1`. The tower is a construction method for
+     such quotients, not a weaker target. The open test is (AA_G) at the
+     doubly singular rank-two model `W_0 = a_2^(-1) u a_2 u^(-2)`,
+     `u = [a_0,a_1]`.
+   - **The rank-two model is closed; roots need infinite order (w7-073).**
+     [[rank-two-bs-model-roots-need-infinite-order-witnesses]] shows the
+     following.
+     - `G_2` is an ascending HNN extension of `F_3`, hence residually finite
+       (Borisov--Sapir) and sofic. It is also peelable, so it does not test
+       the open case.
+     - Its finite quotients (e.g. `S_3`) keep `u` and `b_1`.
+     - A root lemma: when `a_n^(-1) c a_n = c^k` with `|k| >= 2`, the root
+       `r = a_n c a_n^(-1)` is never separated from `F_-` by a finite,
+       periodic or virtually polycyclic witness. At `G_2`, metabelian
+       witnesses fail too.
+     - Kaloujnine--Krasner induction makes solvable (AA) equivalent to
+       solvable (AA_G).
+     - An explicit `GL_3(Z[1/2])`-by-`Z` wreath quotient keeps `u` and `b_1`
+       and separates the root.
+     - Open next: an unpeelable model from
+       [[no-magnus-envelope-one-relator-groups-sofic]]. Test whether its
+       piece meets `G^(omega)` and whether its extreme has a BS-type root.
+   - **All residual length-19 singular-extreme relators closed (w9-073).**
+     No singular backward step was needed.
+     - [[length19-singular-relators-small-cancellation-sofic]]: 14 of the 24
+       (D) relators have a Whitehead-equivalent C'(1/6) form, so they are
+       hyperbolic and virtually special.
+     - [[length19-singular-relators-z-stable-hierarchy-special]] covers all 32
+       (the 24 (D) and the 8 open relators). It uses a two-level Linton
+       hierarchy.
+       - Top level: an immersion check gives `A cap B = <a_1>`. Collins's
+         intersection theorem then makes every `A cap hBh^(-1)` cyclic.
+       - Level one: Stallings pullbacks.
+       - Hyperbolicity: kbmag gives it, so there are no BS subgroups.
+       - Linton Thm 7.1 then gives virtual specialness.
+     - Open next: length 20 and up, where `A cap B` can be exceptional and
+       the top-level Z-stability needs another argument.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

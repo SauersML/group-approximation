@@ -44,5 +44,7 @@ Zaremsky Problem 2.19(a)
     sharp crux shared with Problem 2.7.
 - 2026-09-13, same lane: properties of nV that pass to subgroups but do not
   obstruct hyperbolic groups are solvable word problem, torsion local finiteness
-  (Kojima–Sheng, arXiv:2603.18410, unrefereed) and abelian germ groups of point
-  stabilizers.
+  (claimed by Kojima–Sheng, arXiv:2603.18410, for all `n`; for `n >= 2` the proof is
+  invalid, `kojima-sheng-two-generator-torsion-criterion-fails-in-v` (a22c90a4a), so
+  this property is itself open, `brin-thompson-2v-is-torsion-locally-finite`, `brin-thompson-groups-contain-infinite-periodic-groups`) and
+  abelian germ groups of point stabilizers.

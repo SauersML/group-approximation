@@ -61,3 +61,12 @@ For a subgroup `H<=GL_r(R)` let its **entry ring** `D(H)` be the
 
 DERIVATION
 kt-hyperlinear-floor-is-root-invisible-laurent-overgroup-proof
+
+## Attempts
+
+* **Alternative 3 is empty (w6-121).** A root-invisible Laurent overgroup `H` is
+  `SL_d(N)`-compressed, lies between `Γ = SL_r(R_+)` and `E`, and meets `U_12(R)` in `U_12(R_+)`,
+  so `H = Γ` by `kt-compressor-stable-kernel-overgroups-are-polynomial`, contradicting
+  `D(H) = R`. The trichotomy is a dichotomy `K_Γ ∈ {Γ, E}`; model by model the saturation is
+  `Γ` or contains `E` (`kt-gamma-saturation-is-gamma-or-contains-e`). The weak and strong
+  targets of the Decomposition paragraph coincide.

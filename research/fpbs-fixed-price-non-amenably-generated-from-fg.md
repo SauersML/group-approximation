@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
   - research/artifacts/fpbs-sandwich-cost-quantifier-shift-2026-09-17.md
+  - research/artifacts/fpbs-malnormal-exhaustion-calibration-2026-09-17.md
   - research/artifacts/fpbs-extension-certificates-carry-no-cost-information-2026-09-17.md
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-relative-fixed-price-decomposition-2026-09-17.md
@@ -236,6 +237,39 @@ subgroups (September 17, 2026).** Artifact
   - Whether H, or the flagship, implies RBL.
   - Any case of RBL beyond finite or amenable `Delta`. The natural first case
     is `F_2` with `F` generating a free subgroup of rank 2 and infinite index.
+**Calibration: malnormal exhaustion is blind to cost (September 17, 2026,
+b-p-fp3, calibrator).** Artifact
+`research/artifacts/fpbs-malnormal-exhaustion-calibration-2026-09-17.md`.
+Node `fpbs-malnormal-exhaustion-blind-to-cost` (ESTABLISHED).
+- **World W1.** `W1 = ker(F_2 -> Z)` shares every lattice and extension
+  feature used for `Gamma_mal`:
+  - it is locally free;
+  - every finitely generated subgroup lies in a malnormal stage, so it has no
+    chain, no finitely generated wq-normal anchor and the same finite-contact
+    hypothesis;
+  - it is normal in a finitely generated group with quotient `Z`, with a
+    shift;
+  - under H its finitely generated subgroups give nothing new.
+
+  Yet every free action of `W1` has cost infinity.
+- **What is killed.** Every method for `Gamma_mal` whose group-specific inputs
+  are only these features, together with H, is dead as one class. Such a
+  method would refute H via `W1`. The dying step is any step that turns
+  malnormal exhaustion into an upper bound on cost. The invariant it misses is
+  `c*`.
+- **World W2.** `W2 = Gamma_inf` (T5) has `c* = 2` and fixed price 2, but its
+  stages are not malnormal.
+- **Separating datum.** For `H_n <= H_m` of rank 2 with `<H_n, t> = H_m`, the
+  map `H_n * <t> -> H_m` has nontrivial kernel. Every nontrivial kernel element
+  has at least 3 `t`-letters, by malnormality, and 3 is attained by
+  `t a t^{-2} b_{m-1}^{-1}` with `t = b_m`. In `W1`, at free-factor stage
+  pairs of rank one more, the corresponding map is injective, so there are no
+  detours and the floor is 1.
+- **Consequence.** A proof must consume these forced relations. Among the
+  recorded families only detour packing (for example the open long-generator
+  packing growth) and the `L^2`/Fox computation do, and the latter gives only
+  lower bounds. Calibration test for new proposals: return infinite cost on
+  `W1`, and do not rely on a chain as in `W2`. The claim stays OPEN.
 
 **Extension certificates are circular for finite cost (September 17, 2026,
 swarm-0917-w4-fp-nonamenably-gen, inverter).** Artifact

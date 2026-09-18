@@ -1,0 +1,51 @@
+MMCERT AAtATatatAATTattaTT W0=XXYxyZZxz stable=x R=[Y0 y1 Z1 Z1 z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATatatATTattaaTT W0=XXYxyZxzz stable=x R=[Y0 y1 Z1 z2 z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATatataTTattAATT W0=XXYxyzxZZ stable=x R=[Y0 y1 z1 Z2 Z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATatataaTTattATT W0=XXYxyzzxZ stable=x R=[Y0 y1 z1 z1 Z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATattAATTatataTT W0=XXYxZZxyz stable=x R=[Y0 Z1 Z1 y2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattAATTatataTT W0=XXYxZZxyz stable=y R=[X1 X1 x0 Z0 Z0 x0 z1] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATattAATTattaTaT W0=XXYxZZxzy stable=x R=[Y0 Z1 Z1 z2 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattAATTattaTaT W0=XXYxZZxzy stable=y R=[X1 X1 x0 Z0 Z0 x0 z0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtATattATTatataaTT W0=XXYxZxyzz stable=x R=[Y0 Z1 y2 z2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattATTatataaTT W0=XXYxZxyzz stable=y R=[X1 X1 x0 Z0 x0 z1 z1] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATattATTattaaTaT W0=XXYxZxzzy stable=x R=[Y0 Z1 z2 z2 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattATTattaaTaT W0=XXYxZxzzy stable=y R=[X1 X1 x0 Z0 x0 z0 z0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtATattaTTatatAATT W0=XXYxzxyZZ stable=x R=[Y0 z1 y2 Z2 Z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattaTTatatAATT W0=XXYxzxyZZ stable=y R=[X1 X1 x0 z0 x0 Z1 Z1] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATattaTTattAATaT W0=XXYxzxZZy stable=x R=[Y0 z1 Z2 Z2 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattaTTattAATaT W0=XXYxzxZZy stable=y R=[X1 X1 x0 z0 x0 Z0 Z0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtATattaaTTatatATT W0=XXYxzzxyZ stable=x R=[Y0 z1 z1 y2 Z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattaaTTatatATT W0=XXYxzzxyZ stable=y R=[X1 X1 x0 z0 z0 x0 Z1] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtATattaaTTattATaT W0=XXYxzzxZy stable=x R=[Y0 z1 z1 Z2 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtATattaaTTattATaT W0=XXYxzzxZy stable=y R=[X1 X1 x0 z0 z0 x0 Z0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtAtAATTattaTTataT W0=XXYZZxzxy stable=x R=[Y0 Z0 Z0 z1 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtAtAATTattaTTataT W0=XXYZZxzxy stable=y R=[X1 X1 Z0 Z0 x0 z0 x0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtAtATTattaaTTataT W0=XXYZxzzxy stable=x R=[Y0 Z0 z1 z1 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtAtATTattaaTTataT W0=XXYZxzzxy stable=y R=[X1 X1 Z0 x0 z0 z0 x0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtAtATatATTattaaTT W0=XXYZyZxzz stable=y R=[X1 X1 Z0 Z1 x1 z1 z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtAtaTTattAATTataT W0=XXYzxZZxy stable=x R=[Y0 z0 Z1 Z1 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtAtaTTattAATTataT W0=XXYzxZZxy stable=y R=[X1 X1 z0 x0 Z0 Z0 x0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtAtaTTattaTatAATT W0=XXYzxzyZZ stable=y R=[X1 X1 z0 x0 z0 Z1 Z1] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtAtaTatAATTattaTT W0=XXYzyZZxz stable=y R=[X1 X1 z0 Z1 Z1 x1 z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtAtaTataTTattAATT W0=XXYzyzxZZ stable=y R=[X1 X1 z0 z1 x1 Z1 Z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtAtaaTTattATTataT W0=XXYzzxZxy stable=x R=[Y0 z0 z0 Z1 y2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtAtaaTTattATTataT W0=XXYzzxZxy stable=y R=[X1 X1 z0 z0 x0 Z0 x0] -> VERTEX-NONFREE(whmin len 7)
+MMCERT AAtaTatAtATTattaaTT W0=XXyxYZxzz stable=x R=[y0 Y1 Z1 z2 z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtaTatAtaTTattAATT W0=XXyxYzxZZ stable=x R=[y0 Y1 z1 Z2 Z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtaTatAtaaTTattATT W0=XXyxYzzxZ stable=x R=[y0 Y1 z1 z1 Z2] sZ=(2, 2) |V|=0 H=0 t=0 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtaTattAATTatAtaTT W0=XXyxZZxYz stable=x R=[y0 Z1 Z1 Y2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtaTattAATTatAtaTT W0=XXyxZZxYz stable=y R=[X0 X0 x1 Z1 Z1 x1 z0] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtaTattATTatAtaaTT W0=XXyxZxYzz stable=x R=[y0 Z1 Y2 z2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtaTattATTatAtaaTT W0=XXyxZxYzz stable=y R=[X0 X0 x1 Z1 x1 z0 z0] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtaTattaaTTatAtATT W0=XXyxzzxYZ stable=x R=[y0 z1 z1 Y2 Z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAtaTattaaTTatAtATT W0=XXyxzzxYZ stable=y R=[X0 X0 x1 z1 z1 x1 Z0] sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtatATAtATTattaaTT W0=XXyZYZxzz stable=y R=[X0 X0 Z1 Z0 x0 z0 z0] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAtataTAtaTTattAATT W0=XXyzYzxZZ stable=y R=[X0 X0 z1 z0 x0 Z0 Z0] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAttAATTatATatataTT W0=XXZZxYxyz stable=x R=[Z0 Z0 Y1 y2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAttAATTatATatataTT W0=XXZZxYxyz stable=y R=[X1 X1 Z1 Z1 x1 x0 z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAttAATTatAtaTataTT W0=XXZZxYzyz stable=y R=[X1 X1 Z1 Z1 x1 z0 z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAttATATataTattaaTT W0=XXZYxyxzz stable=x R=[Z0 Y0 y1 z2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAttATATataTattaaTT W0=XXZYxyxzz stable=y R=[X1 X1 Z1 x0 x1 z1 z1] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+MMCERT AAttATaTatATattaaTT W0=XXZyxYxzz stable=x R=[Z0 y0 Y1 z2 z2] -> EDGE-RANK-3(not covered by rank-two inertness)
+MMCERT AAttATaTatATattaaTT W0=XXZyxYxzz stable=y R=[X0 X0 Z0 x1 x0 z0 z0] sZ=(1, 1) |V|=2 H=0 t=1 hloops=0 tloops=0 cycle=False -> PASS
+SENTINEL_DONE

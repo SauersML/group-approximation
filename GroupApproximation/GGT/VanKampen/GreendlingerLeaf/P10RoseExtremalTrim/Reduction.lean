@@ -73,6 +73,11 @@ universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
 
+-- LOUD: REFUTED (lane gl-p10-48; Python model, not yet in Lean).
+-- `RoseExtremalJunctionStatement` is FALSE:
+-- it fails on the gl-p10-40 G-face model with
+-- the label-1 edges subdivided once (24 darts).  Corrected residual:
+-- `P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement` (`JunctionCore.lean`).
 /-- **An extremal-region witness with walk sides and three junctions** (OPEN, PLAUSIBLE; the
 isolated planarity core of the rose step).  `P10RoseExtremal.RoseExtremalRegionStatement` with the
 walk clause of the listing replaced by: `s₁`, `s₂` are walks and the junctions `s₁ | t₁⁻¹`,

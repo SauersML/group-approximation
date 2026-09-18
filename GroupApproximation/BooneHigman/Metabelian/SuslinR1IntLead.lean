@@ -1,0 +1,165 @@
+import Mathlib.RingTheory.Polynomial.Basic
+import Mathlib.Algebra.Polynomial.Degree.Lemmas
+import Mathlib.RingTheory.Ideal.Maximal
+import Mathlib.RingTheory.Coprime.Basic
+import Mathlib.Data.Nat.Prime.Basic
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# R1 over `ℤ[1/m]`: the leading-coefficient ideal and primewise monicity
+
+Lane `bh-met-90w`.  Pure commutative algebra, no matrices.  For an ideal `I ⊆ A[X]`,
+`suslinR1Int_leadIdeal I D` is the ideal of degree-`D` coefficients of members of `I` of
+degree `≤ D`; these increase with `D` (multiply by `X`), so their union
+`suslinR1Int_leadSup I` is an ideal, and it contains the leading coefficient of every
+member of `I`.  If `1` lies in it, `I` contains a MONIC polynomial.
+
+`suslinR1Int_monic_of_primewise`: if `I` contains a polynomial with leading coefficient a
+positive integer `c`, and for every prime `p ∣ c` a polynomial whose leading coefficient is
+coprime to `p`, then `I` contains a monic polynomial.  (A maximal ideal containing the
+leading-coefficient ideal would contain `c`, hence some prime `p ∣ c`.)
+-/
+
+namespace GroupApproximation
+namespace BooneHigman
+namespace Metabelian
+namespace Absorption
+
+variable {A : Type*} [CommRing A]
+
+/-- The degree-`D` coefficients of the members of `I` of degree at most `D`. -/
+def suslinR1Int_leadIdeal (I : Ideal (Polynomial A)) (D : ℕ) : Ideal A where
+  carrier := {ℓ | ∃ q ∈ I, q.natDegree ≤ D ∧ q.coeff D = ℓ}
+  add_mem' := by
+    rintro _ _ ⟨q₁, h₁, d₁, rfl⟩ ⟨q₂, h₂, d₂, rfl⟩
+    exact ⟨q₁ + q₂, I.add_mem h₁ h₂, Polynomial.natDegree_add_le_of_degree_le d₁ d₂,
+      Polynomial.coeff_add q₁ q₂ D⟩
+  zero_mem' := ⟨0, I.zero_mem, by simp, by simp⟩
+  smul_mem' := by
+    rintro a _ ⟨q, hq, hd, rfl⟩
+    exact ⟨Polynomial.C a * q, I.mul_mem_left _ hq,
+      (Polynomial.natDegree_C_mul_le a q).trans hd,
+      (Polynomial.coeff_C_mul q).trans (smul_eq_mul a _).symm⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_leadIdeal
+
+theorem suslinR1Int_mem_leadIdeal {I : Ideal (Polynomial A)} {D : ℕ} {ℓ : A} :
+    ℓ ∈ suslinR1Int_leadIdeal I D ↔ ∃ q ∈ I, q.natDegree ≤ D ∧ q.coeff D = ℓ :=
+  Iff.rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_mem_leadIdeal
+
+/-- The coefficient ideals increase with the degree bound (multiply by a power of `X`). -/
+theorem suslinR1Int_leadIdeal_mono (I : Ideal (Polynomial A)) :
+    Monotone (suslinR1Int_leadIdeal I) := by
+  intro D E hDE ℓ hℓ
+  obtain ⟨q, hq, hd, rfl⟩ := suslinR1Int_mem_leadIdeal.1 hℓ
+  obtain ⟨e, rfl⟩ := Nat.exists_eq_add_of_le hDE
+  refine suslinR1Int_mem_leadIdeal.2
+    ⟨Polynomial.X ^ e * q, I.mul_mem_left _ hq, ?_, Polynomial.coeff_X_pow_mul q e D⟩
+  have h1 := Polynomial.natDegree_mul_le (p := (Polynomial.X ^ e : Polynomial A)) (q := q)
+  have h2 := Polynomial.natDegree_X_pow_le (R := A) e
+  omega
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_leadIdeal_mono
+
+/-- The leading-coefficient ideal of `I`. -/
+def suslinR1Int_leadSup (I : Ideal (Polynomial A)) : Ideal A :=
+  ⨆ D : ℕ, suslinR1Int_leadIdeal I D
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_leadSup
+
+theorem suslinR1Int_mem_leadSup {I : Ideal (Polynomial A)} {ℓ : A} :
+    ℓ ∈ suslinR1Int_leadSup I ↔ ∃ D, ℓ ∈ suslinR1Int_leadIdeal I D := by
+  unfold suslinR1Int_leadSup
+  exact Submodule.mem_iSup_of_directed _ (suslinR1Int_leadIdeal_mono I).directed_le
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_mem_leadSup
+
+theorem suslinR1Int_lc_mem_leadSup {I : Ideal (Polynomial A)} {q : Polynomial A}
+    (hq : q ∈ I) : q.leadingCoeff ∈ suslinR1Int_leadSup I :=
+  suslinR1Int_mem_leadSup.2 ⟨q.natDegree, suslinR1Int_mem_leadIdeal.2
+    ⟨q, hq, le_rfl, Polynomial.coeff_natDegree⟩⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_lc_mem_leadSup
+
+/-- If `1` is a leading coefficient in the ideal sense, `I` contains a monic polynomial. -/
+theorem suslinR1Int_monic_of_one_mem {I : Ideal (Polynomial A)}
+    (h : (1 : A) ∈ suslinR1Int_leadSup I) : ∃ q ∈ I, q.Monic := by
+  obtain ⟨D, hD⟩ := suslinR1Int_mem_leadSup.1 h
+  obtain ⟨q, hq, hd, h1⟩ := suslinR1Int_mem_leadIdeal.1 hD
+  exact ⟨q, hq, Polynomial.monic_of_natDegree_le_of_coeff_eq_one D hd h1⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_monic_of_one_mem
+
+/-- A prime ideal containing a positive integer `n` contains a prime divisor of `n`. -/
+theorem suslinR1Int_exists_prime_mem (P : Ideal A) (hP : P.IsPrime) :
+    ∀ n : ℕ, 0 < n → (n : A) ∈ P → ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ (p : A) ∈ P := by
+  intro n
+  induction n using Nat.strong_induction_on with
+  | h n ih =>
+    intro hn hmem
+    by_cases h1 : n = 1
+    · subst h1
+      rw [Nat.cast_one] at hmem
+      exact absurd ((Ideal.eq_top_iff_one P).2 hmem) hP.ne_top
+    · have hpr := Nat.minFac_prime h1
+      obtain ⟨k, hk⟩ := Nat.minFac_dvd n
+      have hmem' : (n.minFac : A) * (k : A) ∈ P := by
+        rw [← Nat.cast_mul, ← hk]
+        exact hmem
+      rcases hP.mem_or_mem hmem' with hp | hkP
+      · exact ⟨n.minFac, hpr, Nat.minFac_dvd n, hp⟩
+      · have hkpos : 0 < k := Nat.pos_of_ne_zero (by
+          rintro rfl
+          rw [mul_zero] at hk
+          omega)
+        have hlt : k < n := calc
+          k < 2 * k := by omega
+          _ ≤ n.minFac * k := Nat.mul_le_mul_right k hpr.two_le
+          _ = n := hk.symm
+        obtain ⟨p, hp, hpk, hpP⟩ := ih k hlt hkpos hkP
+        exact ⟨p, hp, hpk.trans (Dvd.intro_left n.minFac hk.symm), hpP⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_exists_prime_mem
+
+/-- **Primewise unit criterion.**  An ideal containing a positive integer `c`, and for every
+prime `p ∣ c` an element coprime to `p`, is the unit ideal. -/
+theorem suslinR1Int_one_mem_of_primewise (L : Ideal A) (c : ℕ) (hc : 0 < c) (hcL : (c : A) ∈ L)
+    (hp : ∀ p : ℕ, p.Prime → p ∣ c → ∃ ℓ ∈ L, IsCoprime ℓ (p : A)) : (1 : A) ∈ L := by
+  by_contra hne
+  have hL : L ≠ ⊤ := fun h => hne ((Ideal.eq_top_iff_one L).1 h)
+  obtain ⟨P, hPmax, hLP⟩ := Ideal.exists_le_maximal L hL
+  obtain ⟨p, hpr, hpc, hpP⟩ := suslinR1Int_exists_prime_mem P hPmax.isPrime c hc (hLP hcL)
+  obtain ⟨ℓ, hℓ, hcop⟩ := hp p hpr hpc
+  obtain ⟨u, v, huv⟩ := hcop
+  have h1 : (1 : A) ∈ P := by
+    rw [← huv]
+    exact P.add_mem (P.mul_mem_left u (hLP hℓ)) (P.mul_mem_left v hpP)
+  exact hPmax.ne_top ((Ideal.eq_top_iff_one P).2 h1)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_one_mem_of_primewise
+
+/-- **Primewise monicity.**  If `I ⊆ A[X]` contains a polynomial whose leading coefficient is a
+positive integer `c`, and for every prime `p ∣ c` a polynomial whose leading coefficient is
+coprime to `p`, then `I` contains a monic polynomial. -/
+theorem suslinR1Int_monic_of_primewise {I : Ideal (Polynomial A)} (c : ℕ) (hc : 0 < c)
+    (h0 : ∃ q ∈ I, q.leadingCoeff = (c : A))
+    (hp : ∀ p : ℕ, p.Prime → p ∣ c → ∃ q ∈ I, IsCoprime q.leadingCoeff (p : A)) :
+    ∃ q ∈ I, q.Monic := by
+  refine suslinR1Int_monic_of_one_mem (suslinR1Int_one_mem_of_primewise _ c hc ?_ ?_)
+  · obtain ⟨q, hq, hlc⟩ := h0
+    rw [← hlc]
+    exact suslinR1Int_lc_mem_leadSup hq
+  · intro p hpr hpc
+    obtain ⟨q, hq, hcop⟩ := hp p hpr hpc
+    exact ⟨q.leadingCoeff, suslinR1Int_lc_mem_leadSup hq, hcop⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_monic_of_primewise
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation

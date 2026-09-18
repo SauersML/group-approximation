@@ -7,6 +7,8 @@ distinct_from:
   v-times-shift-alternating-group-is-of-type-fp2: that asks for type FP_2 of one group, V times the full two-sided Z-shift, whose Z-action is neither free nor minimal and which is not simple; this asks for finite presentation of the simple groups built from minimal free SFTs over arbitrary finitely presented groups.
   labbe-shift-derived-full-group-is-finitely-presented: that asks for finite presentation of the derived full group of one Z^2 SFT without the V factor; this multiplies by the groupoid of V, which kills the index map and makes the full group equal its alternating group.
   fp-alternating-full-groups-of-free-subshifts-force-sft: that is a necessary condition (finite type) for finite presentation without the V factor; this is the sufficiency assertion with the V factor, restricted to minimal free SFTs over finitely presented groups.
+refuted_by:
+  - v-times-golden-silver-wang-product-full-group-is-not-fp
 ---
 
 **OPEN.** Premise (P2) of route
@@ -118,3 +120,52 @@ the connected-difference necessary condition (worker bh-break, need 65f52e90).
   or an exactly matricial crossed product (`matricial-aperiodic-sft-rings-are-not-quantum-rigid`).
 - *Not attempted.* The converse: whether quantum rigidity of `X` makes `F(T)` finitely presented. It
   would reduce P2 to rigidity plus finite type.
+
+**Attempt (2026-09-18, swarm-0917-w7-w7-bh-follow): bypass P2 on the ring side.** *P2 not settled;
+it is removed from one route to Boone--Higman.*
+- *The lemma.* `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products`: over any finitely
+  presented `Λ`, a quantum rigid SFT has a finitely presented crossed product `LC(X, F_2) ⋊ Λ`. The
+  proof is the universal algebra with the relators of `Λ` added, acting on itself by left
+  multiplication.
+- *Consequence.* With the necessity theorem of the previous attempt, P1 ∧ P2 gives
+  `decidable-groups-lie-in-fp-free-minimal-crossed-products` (E).
+- *The bypass.* Route `boone-higman-via-leavitt-units-of-rigid-sft-overgroups` has
+  `G <= Λ <= B^x <= (B ⊗ L)^x`, with `B` central simple
+  (`free-minimal-cantor-crossed-products-are-central-simple`). It needs (E), the K-theory premise
+  `free-action-leavitt-tensor-hosts-have-trivial-k1-k2`, and the Khanh transfer. Neither P2 nor the
+  unattempted converse above is on it.
+- *What this says about P2.* For Boone--Higman, P2 matters only through the quantum rigidity of one
+  shift. Group-side finite presentation of `A(T)` is needed only on the V-times route.
+
+**Attempt (2026-09-18, swarm-0917-w8-w8-z-pull): split difference sets in a product of two
+metallic mean Wang shifts.** *P2 refuted, pending review.*
+- *Torsion case closed.* `minimal-sfts-have-no-finite-asymptotic-pairs`: over every infinite
+  finitely generated group, minimal SFTs have no finite asymptotic pairs. The proof flips a pair
+  independently at a separated syndetic set of occurrences, avoids one pattern by the local lemma,
+  and contradicts minimality. So the finite-pair branch of the previous attempts is dead
+  everywhere, torsion included. Only split infinite difference sets were left.
+- *The counterexample.* `metallic-wang-shift-product-is-minimal-with-split-differences`. Take
+  `X = Ω_1 × Ω_2`, the product of Labbé's golden and silver metallic mean Wang shifts over `Z^2`.
+  - `X` is a minimal free SFT. The factors are almost one-to-one extensions of the rotations by
+    `β_1` and `β_2`, and `1, β_1, β_2` are independent over `Q`.
+  - Each `Ω_n` has a pair differing exactly in a two-row band. Approach the horizontal partition
+    line `y = 0` from both sides at an `x ∉ Q(β_n)`.
+  - Shifting the second factor's band `m + 2` rows up gives a difference set with two parts at
+    distance `> m`.
+- *The kill.* `v-times-golden-silver-wang-product-full-group-is-not-fp`. With
+  `fp-v-times-subshift-full-groups-force-connected-differences`, part 1, `A(T) = F(T)` is not
+  finitely presented for `(Z^2, Ω_1 × Ω_2)`. This is the kill named in Attempt 2 ("a minimal free
+  SFT whose difference sets split into two far parts"). It holds already over `Z^2`, with no need
+  for non-amenable groups.
+- *What survives, to be split off as a new claim.* An existential or restricted P2, for example:
+  - "some minimal free SFT over `Z^2`, such as one Labbé shift, has `A(T)` finitely presented";
+  - "SFTs with coarsely connected difference sets have `A(T)` finitely presented".
+  Coarse connectivity is now a necessary hypothesis. Minimality, freeness, finite type, zero
+  entropy and no finite asymptotic pairs do not imply it.
+- *Routes affected.* `boone-higman-via-v-times-aperiodic-sft-full-groups` and every route citing
+  P2 for an arbitrary SFT produced by P1 lose this premise. They need P1 to output coarsely
+  connected (wall rigid) shifts and a restricted P2. The ring-side bypass of the previous attempt
+  does not use P2.
+- *Also shown.* By part 1 of `fp-crossed-products-force-connected-differences`, the same `X` is not
+  quantum rigid, over any field. This is not a counterexample to
+  `free-minimal-z2-sft-is-quantum-rigid`, which is existential.

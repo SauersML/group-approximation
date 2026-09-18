@@ -1,0 +1,53 @@
+1. odd n: D_inf x D_inf quotient of H4(n)
+   n= 3: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n= 5: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n= 7: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n= 9: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=11: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=13: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=15: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=17: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=19: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=21: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=23: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=25: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=27: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=29: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=31: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=33: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=35: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=37: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   n=39: relations True, ac nontrivial translation (A infinite, virtually Z) True, a^2=c^2=1 so A_2=1 True, [a,c]=(ac)^(+-2) True
+   control n=2: relations False (expected False: the involution model needs n odd)
+   control n=4: relations False (expected False: the involution model needs n odd)
+   control n=6: relations False (expected False: the involution model needs n odd)
+2. abelian quotient (Z/(n-1))^4
+   n= 2: relations True, A = (Z/1)^2 nontrivial False
+   n= 3: relations True, A = (Z/2)^2 nontrivial True
+   n= 4: relations True, A = (Z/3)^2 nontrivial True
+   n= 5: relations True, A = (Z/4)^2 nontrivial True
+   n= 6: relations True, A = (Z/5)^2 nontrivial True
+   n= 7: relations True, A = (Z/6)^2 nontrivial True
+   n= 8: relations True, A = (Z/7)^2 nontrivial True
+   n= 9: relations True, A = (Z/8)^2 nontrivial True
+   n=10: relations True, A = (Z/9)^2 nontrivial True
+   n=11: relations True, A = (Z/10)^2 nontrivial True
+   n=12: relations True, A = (Z/11)^2 nontrivial True
+   n=13: relations True, A = (Z/12)^2 nontrivial True
+   n=14: relations True, A = (Z/13)^2 nontrivial True
+   n=15: relations True, A = (Z/14)^2 nontrivial True
+   n=16: relations True, A = (Z/15)^2 nontrivial True
+   n=17: relations True, A = (Z/16)^2 nontrivial True
+   n=18: relations True, A = (Z/17)^2 nontrivial True
+   n=19: relations True, A = (Z/18)^2 nontrivial True
+3. torsion propagation x_i^E = 1 => x_(i+1)^(n^E-1) = 1 (dihedral model, E = 2)
+   n= 3: n^E - 1 = 8 is even, b^(n^E-1) = 1: True
+   n= 5: n^E - 1 = 24 is even, b^(n^E-1) = 1: True
+   n= 7: n^E - 1 = 48 is even, b^(n^E-1) = 1: True
+   n= 9: n^E - 1 = 80 is even, b^(n^E-1) = 1: True
+   n=11: n^E - 1 = 120 is even, b^(n^E-1) = 1: True
+   n=13: n^E - 1 = 168 is even, b^(n^E-1) = 1: True
+   n=15: n^E - 1 = 224 is even, b^(n^E-1) = 1: True
+   n=17: n^E - 1 = 288 is even, b^(n^E-1) = 1: True
+   n=19: n^E - 1 = 360 is even, b^(n^E-1) = 1: True
+ALL CHECKS PASSED

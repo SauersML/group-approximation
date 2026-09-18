@@ -53,3 +53,25 @@ unique-games point has deficit ratio `R(c, s) = (1-s)/(1-c) > 2`.
   floor of `lambda`. Survivors: improper constraints whose branches coincide
   on a large set of labels, non-split outputs, and label re-encoding
   compositions.
+* **Amplify the proved UG point black-box: gadgets, code composition, walk
+  powering, tensor powers.** **Dead for twin-splitting maps and pure tensor
+  powers (2026-09-18).** See `twin-mixture-caps-deficit-ratio-of-local-amplifiers`,
+  swarm-0917-w7-w7-ugc-follow.
+  - *Invariant:* mass faithfulness on twins. The YES instance `M = aS + bH`,
+    a satisfiable twin mixed with a NO instance, has value exactly `c`. It is
+    split by the map exactly as the NO instance `(a+b)H` is.
+  - *Step:* completeness on `M`, where `c' <= lambda + (1 - lambda) s'`. So
+    `R' <= (1 - s_H)/(1 - c) <= 1/(1 - c)`, and tensor powers give
+    `R' <= R/(1 - v0)`.
+  - From the 2-to-2 point `((1-eps)/2, eps)` every such map, and every chain
+    of them with paddings, stays at `R' <= 2/(1 + eps) < 2`. This covers the
+    label re-encoding survivor above whenever the composition is applied to a
+    unique game as a black box.
+  - Survivors:
+    - non-black-box maps, correct only on a reduction image that is not
+      closed under twin mixtures, such as the KMS instances;
+    - cross-component maps such as expanderization or global re-pairing;
+    - label-sensitive mass (distortion `D` gives only `R' <= 1 + D(R_H - 1)`);
+    - randomized maps;
+    - a gadget applied after a tensor power;
+    - direct reductions from 3LIN or label cover with non-split outputs.

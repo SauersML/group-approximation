@@ -1,0 +1,7 @@
+S: order 120, SL(2,5)
+action image: size 60 on 5 points
+|E| = 2985984000000  = 120^6: true  perfect: true
+|K| = 64  |Z0| = 16  |E/K| = 60^6: true  K normal: true  Z0 normal: true
+K invariants: [ 2, 2, 2, 2, 2, 2 
+ ]  [Ew,K] = Z0: true  so K/Z0 is central in Ew/Z0, elementary abelian of orde\
+r 4

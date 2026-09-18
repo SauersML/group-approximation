@@ -1,0 +1,49 @@
+SC AAtATatatAATTattaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTattaTTAAtATatat,TAAtATatatAATTattaT,tAATTattaTTAAtATata
+SC AAtATatatATTattaaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAttaTATAtaTaatt,TAAtATatatATTattaaT,tATTattaaTTAAtATata
+SC AAtATatataTTattAATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtATatataTTatt,TAAtATatataTTattAAT,taTTattAATTAAtATata
+SC AAtATatataaTTattATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATATAtaTaattaTTAtt,TAAtATatataaTTattAT,taaTTattATTAAtATata
+SC AAtATattAATTatataTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTTAAtATatt,TAAtATattAATTatataT,taTTAAtATattAATTata
+SC AAtATattAATTattaTaT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaTAAtATatt,TAtaTaatAtATTAttaaT,tAtATTAttaaTTAtaTaa
+SC AAtATattAATaTattaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTTAAtATatt,TAAtATattAATaTattaT,ttAATaTattaTTAAtATa
+SC AAtATattATTatataaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTTAtaTaatt,TAAtATattATTatataaT,taaTTAAtATattATTata
+SC AAtATattATTattaaTaT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTTAtaTaatAt,TAtaTaatAtAATTAttaT,tAtAATTAttaTTAtaTaa
+SC AAtATattATaTattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTTAtaTaatt,TAAtATattATaTattaaT,ttAATTAtAtaTTAtaTaa
+SC AAtATattaTTatatAATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATattaTTatat,TAAtATattaTTatatAAT,tAATTAAtATattaTTata
+SC AAtATattaTTattAATaT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATattaTTatt,TAtaTaatAtaaTTAttAT,tAtaaTTAttATTAtaTaa
+SC AAtATattaTaTattAATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATattaTaTatt,TAAtATattaTaTattAAT,ttAATTAAtATattaTaTa
+SC AAtATattaaTTatatATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaattaTATAtt,TAAtATattaaTTatatAT,tATTAAtATattaaTTata
+SC AAtATattaaTTattATaT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatAtaTTAtt,TAtaTaatAtaTTAttAAT,tAtaTTAttAATTAtaTaa
+SC AAtATattaaTaTattATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaattaTTAtAt,TAAtATattaaTaTattAT,ttATTAAtATattaaTaTa
+SC AAtAtAATTataTattaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTataTattaTTAAtAt,TAAtAtAATTataTattaT,taTattaTTAAtAtAATTa
+SC AAtAtAATTattaTTataT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTTataTAAtAt,TAttATTAttaaTaTaatA,aTaTaatATAttATTAtta
+SC AAtAtATTataTattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAttaTaTaatt,TAAtAtATTataTattaaT,taTattaaTTAAtAtATTa
+SC AAtAtATTattaaTTataT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaTaatATAtt,TAttAATTAttaTaTaatA,aTTataTAAtAtATTatta
+SC AAtAtATatATTattaaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAttaTAtaTaTaatt,TAAtAtATatATTattaaT,tATTattaaTTAAtAtATa
+SC AAtAtaTTataTattAATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtAtaTTataTatt,TAAtAtaTTataTattAAT,taTattAATTAAtAtaTTa
+SC AAtAtaTTattAATTataT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAtaTTatt,TAttATaTaatATAttaaT,tATAttaaTTAttATaTaa
+SC AAtAtaTTattAATataTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtAtaTTatt,TAAtAtaTTattAATataT,taTTAAtAtaTTattAATa
+SC AAtAtaTTattaTatAATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTTattaTat,TAAtAtaTTattaTatAAT,tAATTAAtAtaTTattaTa
+SC AAtAtaTatAATTattaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTattaTTAAtAtaTat,TAAtAtaTatAATTattaT,tAATTattaTTAAtAtaTa
+SC AAtAtaTataTTattAATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtAtaTataTTatt,TAAtAtaTataTTattAAT,taTTattAATTAAtAtaTa
+SC AAtAtaaTTataTattATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTaattaTTAtATAtt,TAAtAtaaTTataTattAT,taTattATTAAtAtaaTTa
+SC AAtAtaaTTattATTataT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAttaTTAtt,TAttAATaTaatATAttaT,tATAttaTTAttAATaTaa
+SC AAtAtaaTTattATatATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTaattaTAtaTTAtt,TAAtAtaaTTattATatAT,tATTAAtAtaaTTattATa
+SC AAtaTatAtATTattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaTAtATaatt,TAAtaTatAtATTattaaT,tAtATTattaaTTAAtaTa
+SC AAtaTatAtaTTattAATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaTatAtaTTatt,TAAtaTatAtaTTattAAT,tAtaTTattAATTAAtaTa
+SC AAtaTatAtaaTTattATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAtATaattaTTAtt,TAAtaTatAtaaTTattAT,tAtaaTTattATTAAtaTa
+SC AAtaTattAATTatAtaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTTAAtaTatt,TAAtaTattAATTatAtaT,tAtaTTAAtaTattAATTa
+SC AAtaTattATTatAtaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAttaTTAtATaatt,TAAtaTattATTatAtaaT,tAtaaTTAAtaTattATTa
+SC AAtaTattATATattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTTAtATaatt,TAAtaTattATATattaaT,taTTAtATaattAATTAta
+SC AAtaTattaTATattAATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaTattaTATatt,TAAtaTattaTATattAAT,tATTAtATaattaaTTAta
+SC AAtaTattaaTTatAtATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaattaTaTAtt,TAAtaTattaaTTatAtAT,tAtATTAAtaTattaaTTa
+SC AAtaTattaaTATattATT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaattaTTAtat,TAAtaTattaaTATattAT,tAATTAtATaattaTTAta
+SC AAtatAATTatATattaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTatATattaTTAAtat,TAAtatAATTatATattaT,tAATTatATattaTTAAta
+SC AAtatATTatATattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTAttaTATaatt,TAAtatATTatATattaaT,tATTatATattaaTTAAta
+SC AAtatATAtATTattaaTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAttaTataTATaatt,TAAtatATAtATTattaaT,tATAtATTattaaTTAAta
+SC AAtataTTatATattAATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtataTTatATatt,TAAtataTTatATattAAT,tATattAATTAAtataTTa
+SC AAtataTAtaTTattAATT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtataTAtaTTatt,TAAtataTAtaTTattAAT,tATATaattaaTTAttATa
+SC AAttAATTatATatataTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTatATatataTTAAtt,TAAttAATTatATatataT,tATatataTTAAttAATTa
+SC AAttAATTatAtaTataTT len=19 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTatAtaTataTTAAtt,TAAttAATTatAtaTataT,tAtaTataTTAAttAATTa
+SC AAttATATataTattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtataTTaatt,TAAttATATataTattaaT,taTTaattAATTAtATAta
+SC AAttATaTatATattaaTT len=19 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTAtAtaTTaatt,TAAttATaTatATattaaT,tATattaaTTAAttATaTa
+SENTINEL_DONE

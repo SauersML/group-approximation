@@ -6,6 +6,7 @@ title: Bernoulli cost minimizers have tight finite-cycle dimension
 artifacts:
   - research/artifacts/fpbs/docs/cost-cycle-structure.md
   - research/artifacts/fpbs/docs/cycle-tail-hodge-gap-dictionary.md
+  - research/artifacts/fpbs/docs/cost-betti-rank-gradient-calibration-2026-09-17.md
 distinct_from:
   fpbs-graphing-cost-betti-cycle-dimension-identity: that proves the identity and a conditional equivalence; this asserts the unproved existence of compact near-minimizing sequences for all finitely generated groups
 ---
@@ -126,6 +127,26 @@ beta_1^(2)=0 groups the hard remaining class is hyperbolic Kazhdan groups.
 the literal Section 8 shape, cannot exist there, by Popa--Vaes Theorem 1.4
 together with standard facts. It leaves the one-sided q-normal case open at
 single-point boundary fields.
+Calibrate against finite quotients (b-p-fp5, 2026-09-17). Nothing is proved
+toward the claim, but the claim is shown to be strictly heavier than it
+looks. `fpbs-cycle-tails-force-rank-gradient-equals-l2-betti` derives three
+consequences for every residually finite Gamma, from this claim together with
+the established cost identity and short-cycle bound, Abert-Weiss, Gaboriau,
+Abert-Nikolov Theorem 1 and Ershov-Luck Theorem 1.6:
+- rank gradient = beta_1^(2) along every Farber chain;
+- mod-p gradient = beta_1^(2) along every normal p-chain with trivial
+  intersection;
+- for finitely presented Gamma, sublinear torsion rank of H_1 along every
+  normal chain with trivial intersection.
+So any proof must answer Ershov-Luck Questions 1.10 and 1.14 (K = F_p)
+positively for every such group. The paper calls 1.14 open for finitely
+presented G and K = F_p. The independent failure point is recorded as the
+counterexample hole `fpbs-farber-chain-rank-gradient-exceeds-l2-betti`: one
+Farber chain with RG > beta_1^(2) in any residually finite group kills this
+claim without refuting Fixed Price. The hole is not restricted to Kazhdan
+groups. Finite computation cannot certify it, because both sides are bounded
+above by the same finite-level data. Details are in
+`research/artifacts/fpbs/docs/cost-betti-rank-gradient-calibration-2026-09-17.md`.
 
 Replace tail control by well-founded Borel Morse matchings
 (swarm-0917-w4-fp-cycle-tail; `fpbs-bernoulli-morse-collapse-criterion`).

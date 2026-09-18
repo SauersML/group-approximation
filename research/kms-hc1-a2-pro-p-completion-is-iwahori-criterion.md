@@ -116,3 +116,98 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    `<=59` (`p=5`), `<=62` (`p=7`) and `<=65` (`p=11`). Open: prove `D_p={3}+3pN` for all `p>=5`, and that each
    Kassel direction dies in `Gamma^`. See
    `kms-hc1-a2-iwahori-towers-deviate-only-at-kassel-degrees`.
+2. **Integral Lie homology, all primes at once.** The Chevalley `Z`-form
+   `L_Z` of `L_p` is generated in degree 1, so `H_2(L_p)=H_2(L_Z)(x)F_p`.
+   Exact Smith normal forms through degree 90 give
+   `H_2(L_Z) = Z^6 + sum_n Z/n (at n delta) + sum_n (Z/3)^6 + (Z/2)^3`.
+   Hence `D_p={3}+3pN` through degree 90 for every `p>=5`, and condition 3
+   holds for `k<=min(3p,91)` for every `p>=5`: p-images of class `<=90`
+   kill `w_p` for all `p>=31`, with no group computation. The `(Z/3)^6`
+   family is the `p=3` failure at class 6. Open 1 becomes one statement over
+   `Z` (the p-torsion of `H_2(L_Z)`, or of the Serre-presented `A~2` Lie
+   ring, is `Z/n` at `n delta` away from 6). Open 2 (Kassel directions die
+   in `Gamma^`) is untouched. See `kms-hc1-iwahori-integral-h2-serre-plus-hc1`.
+3. **Explicit 2-cocycles, all degrees; group-level Kassel classes.** Open 1
+   is proved. For every `p>=5`, `H_2(L_p)` is the six Serre relations plus one
+   Kassel class at each `n delta` with `p | n`, in all degrees. The dual
+   cocycles of weight `-(nu + m delta)` with `m>=4` are killed type by type.
+   By the root-system count, `Q(nu)` is in `{0,1,3,4}`:
+   - at `nu=0` the Cartan triples force an affine profile with slope `B`
+     and `nB=0`;
+   - at `Q=3,4` they force 0;
+   - at `nu` a root they gauge the Cartan part away, and triples of root
+     vectors kill the boundary term.
+
+   The weights with `m<=3` have degree `<=13` and fall in the exact table.
+   Consequences:
+   - `H_2(L_Z)(x)Z[1/6] = Z[1/6]^6 + sum_n Z[1/6]/n`, so Serre plus
+     `HC_1` of the Iwahori order, by the Kassel cocycle and Kostant's
+     Laplacian;
+   - condition 3 holds for `k<=3p` for every `p>=5`;
+   - `r(I_1)<=9` is equivalent to Open 2 alone.
+
+   Open 2 was attempted at group level through Dennis--Stein symbols and
+   relative `K_2`, and is blocked. The relative group is
+   `K_2(F_p[t]/t^n,(t))=0` (Hesselholt--Madsen), so the Kassel `HC_1` class
+   has no `K_2` counterpart in the Steinberg group of the Iwahori order. But
+   transporting that to `Gamma^` needs the Steinberg relations in `Gamma^`,
+   and those are what is to be proved. Separately, `U_+` is not finitely
+   presented (Behr), so no finite set of group relations suffices, and the
+   argument must use the pro-p topology. This remains heuristic support for
+   Open 2, not a proof. See `kms-hc1-iwahori-h2-serre-plus-kassel-all-degrees`.
+4. **Restricted (Zassenhaus / group-algebra) initial forms.** This route is
+   obstructed in every Kassel degree. The degree-`p` relations `a^[p]=0`
+   are exactly what the ordinary Lie computations of Attempts 1–3 do not
+   see, so one might hope they kill the Kassel class. They do not. For every
+   `p>=5` and `m>=1`, the Kassel extension `N` of `L_p/(height>3mp)` has a
+   restricted structure, by Jacobson's criterion. The key facts are:
+   - `(ad e)^3=0` for root vectors;
+   - the factor `pk` kills `omega(h t^{pk}, .)`.
+
+   In `N`, `a^[p]=b^[p]=c^[p]=0` and the Serre relations hold. So both
+   initial-form models `FreeRes/(a^[p],...,Serre)` and
+   `FreeLie_{F_p[pi]}/(pi a,...,Serre)` exceed `L_p` by at least one
+   dimension at every `3mp`. If the criterion holds, some element of the
+   relator subgroup `R` has an initial form in degree `3mp` outside the ideal
+   of the nine initial forms. So no argument that uses the relators only
+   through their associated graded can prove the criterion. This covers
+   restricted-Lie cohomology, Gröbner/Anick resolutions of
+   `F_p<X>/(X^p, Serre)` and Golod–Shafarevich counts. The graded form of
+   the central-extension statement "splits over the three vertex groups
+   implies trivial" is false: `N` splits over each vertex subalgebra. What is
+   left is group-level input with no graded shadow. In `F_p<<X>>`,
+   `a^p-1=X_a^p` is homogeneous, so that input is the degree->=4 tails of
+   the six Heisenberg commutator relators. Those tails are nonzero even at
+   one vertex. For `p=5`, no edge-compatible isomorphism
+   `F_5[U] -> u(heis)` exists (exhaustive search, `heis_formal.py`). See
+   `kms-hc1-kassel-classes-survive-restricted-initial-forms`.
+   The direct `p=13` tower was run in chained pq runs (`pqchain.sh`,
+   `p13chain.out`). It reached class 37, of order `13^99`, which equals
+   `|I_1/P_38|`. Class 38 timed out under machine load, so the deciding
+   degree `3p=39` is still not computed.
+
+5. **Hidden degree-15 relation, eigen-coordinates (`p=5`).** Put
+   `Y_i = log(1+X_i)`. The torus `(F_p^*)^3` then acts on `F_p<<Y>>` and
+   preserves `I`, so `I` is graded by multidegree modulo `p-1` (proved for
+   every odd `p`). An exact standard basis through degree 15 gives the
+   following.
+   - The graded model must include the three vertex relations
+     `(XY-YX)^5`, which appear at degree 10.
+   - The model with them, `J+Z`, agrees with `u(L_5)` through degree 14. It
+     exceeds `u(L_5)` by exactly 3 at degree 15, all in multidegree
+     `(5,5,5)`.
+   - That 3-dimensional space is spanned by the Kassel lift `K` and the two
+     restricted Cartan relations.
+   - `K` is killed by a single first-order tail step: the S-pair of
+     `[c,a]^5` with a degree-7 word glued from all three edges, which jumps
+     from degree 11 to degree 15.
+   - With tails on any proper subset of the edges, `K` survives. At degree
+     11 the single-edge tail obstructions cancel only around the whole
+     triangle.
+
+   This is an exact computation for `p=5` and gives the mechanism, not a
+   proof for general `p`. See
+   `kms-hc1-kassel-relation-is-a-first-order-triangle-s-pair`.
+   left is group-level input with no graded shadow, namely the
+   non-homogeneous tails of `(1+X)^p` and of the Heisenberg commutators. See
+   `kms-hc1-kassel-classes-survive-restricted-initial-forms`.

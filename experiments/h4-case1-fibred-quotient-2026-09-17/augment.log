@@ -1,0 +1,7 @@
+      2 H3 type A2 |B| 8 fibre pts 3 l_x modular True collision walls outside A_z 2
+      2 H3 type I2(5) |B| 10 fibre pts 5 l_x modular False collision walls outside A_z 3
+      2 H3 type I2(5) |B| 10 fibre pts 5 l_x modular True collision walls outside A_z 4
+      9 H4 type A2 |B| 19 fibre pts 4 l_x modular True collision walls outside A_z 3
+      6 H4 type I2(5) |B| 21 fibre pts 6 l_x modular False collision walls outside A_z 3
+      6 H4 type I2(5) |B| 21 fibre pts 6 l_x modular False collision walls outside A_z 6
+      3 H4 type I2(5) |B| 21 fibre pts 6 l_x modular True collision walls outside A_z 7

@@ -1,0 +1,4 @@
+{"census": "census_40_40.json", "idx": 256, "R": 8, "short": 4, "solver": "Cadical153", "sat": false, "clauses": 5756592, "secs": 171.1}
+{"census": "census_40_40.json", "idx": 256, "R": 8, "short": 4, "solver": "Glucose4", "sat": false, "clauses": 5756592, "secs": 175.9}
+R8s4 256 exit=0
+FIN

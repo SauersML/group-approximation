@@ -1,0 +1,2 @@
+a=0.1456574 b=-0.1237973 c=-5.2944657  p_s(6)=-0.79358  p_s(7)=0.97617  vertex 0.4250
+RESULT: p(k) > 0 for all integers k >= 7, i.e. the facet inequality holds on C_n-bar for all odd n >= 15

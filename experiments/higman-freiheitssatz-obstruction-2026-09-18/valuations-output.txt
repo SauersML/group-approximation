@@ -1,0 +1,19 @@
+e= 3 t= 3(mod 64) lam mod 64= 3 lam mod 8=3 v2(3-lam)=inf e_c(S_e) mod 2^e has v2=inf orbit bound ok=True
+e= 4 t=11(mod 64) lam mod 64=11 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=inf orbit bound ok=True
+e= 5 t=11(mod 64) lam mod 64=27 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e= 6 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e= 7 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e= 8 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e= 9 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=10 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=11 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=12 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=20 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=30 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=40 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=50 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=60 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=70 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+e=80 t=43(mod 64) lam mod 64=59 lam mod 8=3 v2(3-lam)=3 e_c(S_e) mod 2^e has v2=4 orbit bound ok=True
+v2(3^(16w)-1) = 6 for all odd w < 2000: True
+ALL CHECKS PASS: True

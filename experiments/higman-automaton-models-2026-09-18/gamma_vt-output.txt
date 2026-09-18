@@ -1,0 +1,47 @@
+Syntax warning: Unbound global variable in gamma_vt.g:11
+  P:=EpimorphismPGroup(G,2,e);; g:=List(GeneratorsOfGroup(G),x->Image(P,x));;
+                                                                      ^
+Syntax warning: Unbound global variable in gamma_vt.g:13
+    List([1..4],i->Log(Size(Group(g[i],g[1+(i mod 4)])),2)),"  (2e=",2*e,")\n"\
+);
+                                  ^
+Syntax warning: Unbound global variable in gamma_vt.g:13
+    List([1..4],i->Log(Size(Group(g[i],g[1+(i mod 4)])),2)),"  (2e=",2*e,")\n"\
+);
+                                       ^
+Gamma_2 class 2 log2|P|=10 log2|vertex groups|=[ 4, 4, 4, 4 ]  (2e=4)
+Gamma_3 class 3 log2|P|=20 log2|vertex groups|=[ 6, 6, 6, 6 ]  (2e=6)
+Gamma_4 class 4 log2|P|=36 log2|vertex groups|=[ 8, 8, 8, 8 ]  (2e=8)
+Gamma_5 class 5 log2|P|=64 log2|vertex groups|=[ 10, 10, 10, 10 ]  (2e=10)
+Gamma_2/[a,c]^2 class 2 log2|P|=10 log2ord=[ 2, 2, 2, 2 ] log2|<a,c>|=
+5 log2|<a,b>|=4
+Gamma_2/[a,c]^2 class 3 log2|P|=15 log2ord=[ 2, 2, 2, 2 ] log2|<a,c>|=
+7 log2|<a,b>|=4
+Gamma_2/[a,c]^2 class 4 log2|P|=22 log2ord=[ 2, 2, 2, 2 ] log2|<a,c>|=
+10 log2|<a,b>|=4
+Gamma_2/[a,c]^2 class 5 log2|P|=33 log2ord=[ 2, 2, 2, 2 ] log2|<a,c>|=
+14 log2|<a,b>|=4
+Gamma_3/[a,c]^2 class 3 log2|P|=19 log2ord=[ 3, 3, 3, 3 ] log2|<a,c>|=
+9 log2|<a,b>|=6
+Gamma_3/[a,c]^2 class 4 log2|P|=28 log2ord=[ 3, 3, 3, 3 ] log2|<a,c>|=
+12 log2|<a,b>|=6
+Gamma_3/[a,c]^2 class 5 log2|P|=44 log2ord=[ 3, 3, 3, 3 ] log2|<a,c>|=
+18 log2|<a,b>|=6
+Gamma_3/[a,c]^2 class 6 log2|P|=69 log2ord=[ 3, 3, 3, 3 ] log2|<a,c>|=
+27 log2|<a,b>|=6
+Gamma_4/[a,c]^2 class 4 log2|P|=32 log2ord=[ 4, 4, 4, 4 ] log2|<a,c>|=
+14 log2|<a,b>|=8
+Gamma_4/[a,c]^2 class 5 log2|P|=50 log2ord=[ 4, 4, 4, 4 ] log2|<a,c>|=
+20 log2|<a,b>|=8
+Gamma_4/[a,c]^2 class 6 log2|P|=78 log2ord=[ 4, 4, 4, 4 ] log2|<a,c>|=
+29 log2|<a,b>|=8
+Gamma_4/[a,c]^2 class 7 log2|P|=128 log2ord=[ 4, 4, 4, 4 ] log2|<a,c>|=
+45 log2|<a,b>|=8
+Gamma_5/[a,c]^2 class 5 log2|P|=52 log2ord=[ 4, 5, 4, 5 ] log2|<a,c>|=
+20 log2|<a,b>|=9
+Gamma_5/[a,c]^2 class 6 log2|P|=82 log2ord=[ 4, 5, 4, 5 ] log2|<a,c>|=
+29 log2|<a,b>|=9
+Gamma_5/[a,c]^2 class 7 log2|P|=137 log2ord=[ 5, 5, 5, 5 ] log2|<a,c>|=
+47 log2|<a,b>|=10
+Gamma_5/[a,c]^2 class 8 log2|P|=224 log2ord=[ 5, 5, 5, 5 ] log2|<a,c>|=
+70 log2|<a,b>|=10

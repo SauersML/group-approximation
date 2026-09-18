@@ -10,8 +10,10 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-13)** through
-`positive-char-polynomial-affine-groups-are-self-similar-proof`. Not independently
-reviewed.
+`positive-char-polynomial-affine-groups-are-self-similar-proof`. ~~Not independently
+reviewed.~~ *Reviewed:* PASS in `research/artifacts/review-metabelian-bh-2026-09-13.md`
+(item 2, 2026-09-13). Status line updated 2026-09-18 by lane `bh-linear-fields`; the
+mathematics is unchanged.
 
 **Setting.**
 - Let `p` be a prime, `k >= 1`, `R = F_p[s_1, ..., s_k]` and `n >= 1`.

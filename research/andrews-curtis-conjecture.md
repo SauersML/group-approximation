@@ -135,3 +135,47 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
    - **What is left.** A certificate must change both relators beyond conjugation, and in
      this move graph it must pass through total length above 22.
      - Endpoints with no separable relator are the only ones Theorem A′ does not constrain.
+
+7. **Heretic lane, second pass: thickenable pairs versus a meet-in-the-middle (w6-082, 2026-09-18).**
+   - *Theorem.* `thickenable-z-pairs-lie-in-the-move-class-of-a-basis-pair`, proposed
+     established. It cites Scharlemann–Thompson and uses a disc-slide lemma.
+     - Every orientably thickenable Z-pair in F_3 is reached from the basis pair by moves
+       (P1)–(P2).
+     - So the THICK and PRIM endpoints of Attempt 6 have the same reach. A bidirectional
+       search with thickenable Z-pairs as the far side adds nothing below the cap, and a
+       meeting with AK(3) needs cap ≥ 25.
+   - *Tunnels.* `ak3-aut-tunnel-closed-exhaustion`, proposed established by computation.
+     - A tunnel is one AC product of any length, followed by Whitehead reduction back
+       under the cap.
+     - Rank 2, cap 24: the AK(3) component closed under capped moves and tunnels is
+       finite. It has 262642 classes, which is S_24 plus 922. It contains no PRIM or THICK
+       state. Over 534.6M tunnels, none ends in an entry of length 1.
+     - Rank 3, cap 24: finite with 281927 classes, which is S_24 plus 1714. It contains
+       no PRIM, THICK or PROJ state, and none of 810.9M tunnels ends in an entry of length 1.
+     - Two AC products per excursion ("2-tunnels") add states: 161 against 150 at cap 16,
+       still with no goal.
+     - Corollary (Whitehead peak reduction): a path from AK(3) to (x, y) by (M1) moves and
+       automorphisms needs an excursion above length 24 that contains two AC products, or
+       one that starts with an automorphism.
+     - The capped move graph is directed. One tunnel endpoint reaches all of S_24, but
+       S_24 does not reach it.
+   - **Next.** Search at cap 25–26 with excursions carrying two AC products ("2-tunnels":
+     M1, reduce, M1, reduce), seeded from the 922 tunnel-only classes. These are the only
+     part of the component that the capped searches never saw.
+
+8. **Heretic lane, third pass: two AC products per excursion (w7-082, 2026-09-18).**
+   - `ak3-two-tunnel-excursions-above-cap-24`, proposed established by computation. A
+     2-tunnel is one AC product above 24, Whitehead reduction to a minimal pair m with
+     24 < |m| ≤ 26, a second AC product, and reduction again.
+     - The second level depends only on the class of m, so the 61712 in-range tunnels from
+       the 922 seeds need only 4340 runs. The tool `t2m.c` reproduces the 161 states of
+       `grow2t` at cap 16.
+     - Rank 2: 2-tunnels from the tunnel-only states do land outside T_24 (156 new classes
+       in the first round). But the closure is finite: after five rounds it has 263067
+       states, 425 more than T_24. No state is PRIM or THICK, none of the 6614 intermediate
+       classes m is PRIM or THICK, and none of 15.4M second products ends in a primitive
+       entry.
+   - **Next.** 2-tunnels whose first product starts inside S_24: about 34M in-range
+     tunnels, which may collapse by roughly 14 to 1 into classes. Also the rank-3 seeded
+     run, and chains of three or more AC products inside the band (`band.sh`), which keep
+     landing new states.

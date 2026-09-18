@@ -1,0 +1,21 @@
+{
+ "description": "Split (token) model of N ideal two-wall overlap windows; min depth d such that a staggered target of depth d exists. gaps = lower-semicontinuous wall regions present.",
+ "token_sat.py (N=2, depth 1, one-hot encoding)": {
+  "gaps=False,O=1,t=1": "UNSAT", "gaps=False,O=1,t=2": "UNSAT", "gaps=False,O=1,t=3": "UNSAT",
+  "gaps=False,O=2,t=1": "UNSAT", "gaps=False,O=2,t=2": "UNSAT", "gaps=False,O=2,t=3": "UNSAT",
+  "gaps=True,O=1,t=1": "SAT", "gaps=True,O=1,t=2": "SAT", "gaps=True,O=1,t=3": "SAT",
+  "gaps=True,O=2,t=1": "SAT", "gaps=True,O=2,t=2": "SAT", "gaps=True,O=2,t=3": "SAT"
+ },
+ "token_depth.py (N, d, t, gaps)": [
+  {"N": 1, "d": 0, "t": 1, "gaps": true, "result": "UNSAT"},
+  {"N": 1, "d": 1, "t": 1, "gaps": true, "result": "SAT"},
+  {"N": 2, "d": 0, "t": 1, "gaps": true, "result": "UNSAT"},
+  {"N": 2, "d": 1, "t": 1, "gaps": true, "result": "SAT"},
+  {"N": 2, "d": 1, "t": 1, "gaps": false, "result": "UNSAT"},
+  {"N": 2, "d": 1, "t": 2, "gaps": false, "result": "UNSAT"},
+  {"N": 3, "d": 1, "t": 1, "gaps": true, "result": "UNSAT", "clauses": 679590, "secs": 5.1},
+  {"N": 3, "d": 2, "t": 1, "gaps": true, "result": "SAT", "clauses": 651090, "secs": 0.25},
+  {"N": 3, "d": 1, "t": 2, "gaps": true, "result": "not decided within 1200 s / 2 GB"}
+ ],
+ "min_depth": {"1": 1, "2": 1, "3": 2}
+}

@@ -2,7 +2,7 @@
 rg: 2
 id: window-certified-richness-is-conserved-modulo-merges
 kind: claim
-title: A left-preserving 2-to-1 wrapper whose constraints are certified by source windows splits each window relation into forced 2-blocks and partial bijections, so its value is floored by a derived unique game up to the forced mass, the forced mass is capped by the entropy of the source's forced pairings, and over coset sources on any finite group the rich mass is a merge
+title: A left-preserving 2-to-1 wrapper whose constraints are certified by source windows that use every left label splits each window relation into forced 2-blocks and partial bijections, so its value is floored by a derived unique game up to the forced mass, the forced mass is capped by the entropy of the source's forced pairings, and over coset sources on any finite group the rich mass is a merge; windows that omit left labels, dummy padding among them, are outside the class
 invalidates:
   - rich-2to1-via-window-certified-enrichment
 distinct_from:
@@ -15,6 +15,7 @@ distinct_from:
   derived-unique-game-lower-bounds-the-noise-test: that lower-bounds the long-code noise test, which re-encodes labels; this covers wrappers that keep the labels and is silent on re-encoding.
 artifacts:
   - experiments/rich-2to1-window-components-2026-09-17/check_window_components.py
+  - experiments/rich-2to1-kill-scope-audit-2026-09-17/check_full_hypothesis_is_loadbearing.py
 ---
 
 **ESTABLISHED.** Fix `k >= 2`.
@@ -205,7 +206,11 @@ game drawn from type-(D) vertices. So a certified coset wrapper proves at most
   * Edge conjugation leaves the analytic object unchanged.
   * Unique gadgets cannot create 2-blocks.
   * Padding sits at the random-guessing floor.
-  For label-keeping, window-certified wrappers, (2) and (3) make this exact.
+  For label-keeping, window-certified wrappers *that satisfy (Full)*, (2) and
+  (3) make this exact. Padding is **not** among them: its windows never mention
+  the dummy labels, so (Full) fails and it sits in survivor (S4) below. Its
+  random-guessing floor stays informal here. See the 2026-09-18 audit under
+  `## Attempts`.
 
 **Survivors.** Not covered:
 
@@ -218,7 +223,95 @@ game drawn from type-(D) vertices. So a certified coset wrapper proves at most
   instance, not window by window.
 * **(S3)** Label re-encoding, such as long codes or composition. Here `Sigma_u`
   is not a source alphabet.
+* **(S4) Alphabet-restricting windows.** `A_z` does not project onto `Sigma_u`,
+  so (Full) fails. Padding, core-plus-dummy alphabets and any wrapper whose
+  window pins a variable to a proper subset live here. They can be fully rich
+  with `phi_W = 0` and are not floored by the derived unique game: at the
+  witness class `A_z = {(0,0),(1,1)}` the pointwise chain of (2) fails by
+  `1 - 1/(k-1)`. Whether they can be *hard* is a separate question, on which
+  this theorem is silent.
 
 This neither proves nor refutes UGC or the Rich 2-to-1 Conjecture.
 
 DERIVATION window-certified-richness-conservation-proof
+
+## Attempts
+
+* **2026-09-18, e2-w2-audit-ugc2 (calibration): adversarial scope audit of the
+  class kill. Verdict: survives as a theorem, but the class it kills is smaller
+  than the prose claimed, so the title is narrowed.** Three lenses were run:
+  proof gaps, imports, calibration.
+
+  * **Artifact re-run.** `check_window_components.py` reproduces every printed
+    number of the claim exactly: 60 feasible full windows with 8 mixed pair
+    relations; Part C tight at `1/3` on `Z_4` and `1/15` on `Z_6`;
+    `1/105 <= 0.0286` on `D_4` and `Q_8`; `7/105 <= 0.2` on `Z_2^3`; `0` on
+    `S_3`. Runtime 1.1 s, `ALL CHECKS PASS`.
+  * **Proof lens: (1) to (4) hold as written.** Checked line by line. The
+    component lemma, `val_W >= val_D` (via `sum_m p_m^2 <= max_m p_m`),
+    `val_D >= val_U`, the completeness count, the disjointness of the events
+    `F_(uz) = t`, the `(2k-2j-1)!!/(2k-1)!!` count, Goursat with `|N| = |N'|`,
+    the central-involution case analysis, and the Markov step on
+    `Q(P) = sum_b C(n_b, 2)` are all correct.
+  * **Scope defect found: the hypothesis (Full) is load-bearing, and the
+    "Covered" paragraph over-reaches.** "Covered" asserts *any* label-keeping
+    transformation with a window-local completeness proof, and the paragraph on
+    earlier dead attempts says (2) and (3) "make this exact" for **padding**.
+    Dummy padding (`dummy-padding-cannot-beat-the-random-guessing-floor`: "a
+    hard core of alphabet size `K` is hidden inside a much larger randomly
+    matched dummy alphabet") is exactly a wrapper whose windows never mention
+    the dummy labels, so its `A_z` does not project onto `Sigma_u` and (Full)
+    fails. The theorem does not cover it.
+  * **Where the proof dies without (Full).** In (2), the step "Suppose `Ũ`
+    accepts but `U` rejects. Then `L_(u_0)` is outside `X_(u_0 u)`, so
+    `R_(u_0 u)` has a `(2,2)` component, and so `F_(u_0 z)` is nonempty" is
+    false: a label omitted by `A_z` is isolated or sits in a `(1,2)` component,
+    which puts nothing in `F_(u_0 z)`. The artifact
+    `check_full_hypothesis_is_loadbearing.py` enumerates every window on
+    `Sigma = [4]` admitting an SLC-feasible 2-to-1 pair: all 834 (Full) windows
+    keep the implication, and 532 of the 2644 non-(Full) ones break it.
+  * **The entropy count (3) cannot be repaired to cover them.** The quantity the
+    argument needs is `phi'_W = Pr[X_(u_0 u) != Sigma_(u_0)]`, not
+    `phi_W = Pr[F_(u_0 z) != empty]`. At the witness window
+    `A_z = {(0,0),(1,1)}` over `Sigma = [2k]` every forced partial pairing is
+    empty, so `N_j(u) = 0` for all `j >= 1` and (3) returns `phi_W <= 0`, while
+    `phi'_W = 1`. A window that *omits* labels pays no pairing entropy, so the
+    gate in (3) prices nothing on this subclass.
+  * **Quantitative counterexample to the pointwise chain of (2).** Source:
+    variables `u_1, ..., u_d` with alphabet `[2k]`, one window per right vertex
+    certifying "all `u_i` equal and in `{0,1}`". (SLC) holds, completeness is
+    certified with `beta = 0`, `phi_W = 0`, and every left vertex is **fully
+    rich**: (SLC) only fixes the names of the `0`- and `1`-fibres, so all
+    `(2k-1)!!` pairings occur and the wrapper can make them uniform (verified by
+    enumeration up to `k = 5`). At the dummy labelling `L = 2`:
+
+    ```text
+    k   d   val_W(L)   val_D(L) = val_U(L)   val_Ut(L) - phi_W
+    2   8    0.7578          0.1250                1.0000
+    3   8    0.5713          0.1250                1.0000
+    4   8    0.4769          0.1250                1.0000
+    ```
+
+    with `lim_(d -> inf) val_W(L) = 1/(k-1)` for `k >= 3` (and `2/3` at
+    `k = 2`). So `val_W >= val_Ũ - phi_W` fails by `1 - 1/(k-1) -> 1`, and
+    `val_U >= val_Ũ - phi_W` fails by a factor `d`. The mechanism is that
+    alphabet restriction **decouples** the neighbours: (SLC) over a proper
+    subclass constrains only the fibres the window names, leaving each
+    neighbour's remaining fibre naming free and independent.
+  * **Calibration lens: no false kill.** The identity wrapper is (Full), forces
+    every pairing, and (3) then needs `N_k(u)` of order `(2k-1)!!` -- exactly
+    full richness, so the gate is calibrated. The BKM right merge of a unique
+    game (`sd-rich-and-unique-games-sos-gaps-interconvert`) is the type-(D) case
+    and is consistent. The proved 2-to-2 Grassmann reductions re-encode labels
+    and sit in survivor (S3), so the theorem does not contradict them.
+  * **Narrowing applied.** The title now says "windows that use every left
+    label" and names the exclusion. Add to the Survivors list:
+    * **(S4) Alphabet-restricting windows.** `A_z` does not project onto
+      `Sigma_u`. Padding, core-plus-dummy alphabets and any wrapper whose
+      window pins a variable to a proper subset live here. They can be fully
+      rich with `phi_W = 0` and are not floored by the derived unique game.
+      Whether they can be *hard* is a separate question -- the random-guessing
+      floor of `dummy-padding-cannot-beat-the-random-guessing-floor` still
+      applies informally -- but this theorem does not make that exact.
+  * Everything else in the claim stands, at the stated hypotheses. Status kept
+    **ESTABLISHED** for the narrowed statement.

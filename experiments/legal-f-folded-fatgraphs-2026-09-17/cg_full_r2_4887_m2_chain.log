@@ -1,0 +1,237 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 22
+seed polygons (k<=3) 1507428 on surviving slots 293545 t 442
+seed pruning: master obj 1.688961 kept 12738 of 293545 t 1057
+phase 1 it 1 obj 1.688961 cols 18738 pairs 11719 min rc -7.736 LB -59 best -59 {2: -3.0827, 3: -5.9429, 4: -7.7362} added 6000 t 24.8 tm 13.4 
+phase 1 it 2 obj 1.556211 cols 24738 pairs 12830 min rc -7.189 LB -54.36 best -54.36 {2: -3.7247, 3: -5.9672, 4: -7.1893} added 6000 t 57.9 tm 35.7 
+phase 1 it 3 obj 1.359608 cols 30738 pairs 14448 min rc -6.566 LB -49.06 best -49.06 {2: -3.5401, 3: -4.9246, 4: -6.5656} added 6000 t 97.9 tm 66.1 
+time limit
+RESULT ('timeout', -49.06312248072059)
+window flow {'aaa': 0.025183, 'aab': 0.004233, 'aac': 0.016041, 'aaB': 0.000958, 'aba': 0.072307, 'abb': 0.045941, 'abA': 0.001949, 'abC': 0.002612, 'aca': 0.028711, 'acb': 0.00459, 'acB': 0.00034, 'aBA': 0.007906, 'aBB': 0.000958, 'aBC': 0.000418, 'baa': 0.006101, 'bab': 0.101617, 'bac': 0.002224, 'bba': 0.022548, 'bbb': 0.039031, 'bbc': 0.017267, 'bbA': 0.011305, 'bca': 0.014733, 'bcb': 0.000106, 'bcB': 0.002428, 'bAA': 0.008281, 'bAC': 0.013797, 'bCA': 0.001287, 'bCB': 0.001325, 'caa': 0.01257, 'cab': 0.010683, 'cac': 0.015376, 'caB': 0.008325, 'cba': 0.001421, 'cbb': 0.002612, 'cbA': 0.000662, 'cBA': 0.002768, 'Aba': 0.010462, 'Abb': 0.000418, 'AbA': 0.008162, 'AAA': 0.018546, 'AAB': 0.005896, 'AAC': 0.041533, 'ABA': 0.041497, 'ABB': 0.022945, 'ACb': 0.006738, 'ACA': 0.023785, 'ACB': 0.032166, 'Baa': 0.003471, 'Bab': 0.001714, 'Bca': 0.003509, 'BAb': 0.01088, 'BAA': 0.033611, 'BAB': 0.058545, 'BAC': 0.001344, 'BBa': 0.005185, 'BBA': 0.038043, 'BBB': 0.068099, 'BCB': 0.000418, 'Cba': 0.00459, 'Cbb': 0.002148, 'CAA': 0.005537, 'CAC': 0.008232, 'CBc': 0.000418, 'CBA': 0.014166, 'CBB': 0.019325}
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 87, in <module>
+    
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 77, in main
+    json.dump({"phi0": phi0, "power": m, "r": r, "val": str(val),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 77, in <listcomp>
+    json.dump({"phi0": phi0, "power": m, "r": r, "val": str(val),
+                              ^^^^^^^^
+IndexError: index 56134 is out of bounds for axis 0 with size 52898
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+seed polygons (k<=3) 1507428 on surviving slots 293545 t 394
+seed pruning: master obj 1.688961 kept 12738 of 293545 t 997
+phase 1 it 1 obj 1.688961 cols 18738 pairs 11719 min rc -7.736 LB -59 best -59 {2: -3.0827, 3: -5.9429, 4: -7.7362} added 6000 t 11.8 tm 7.0 
+phase 1 it 2 obj 1.556211 cols 24738 pairs 12830 min rc -7.189 LB -54.36 best -54.36 {2: -3.7247, 3: -5.9672, 4: -7.1893} added 6000 t 28.0 tm 19.0 
+phase 1 it 3 obj 1.359608 cols 30738 pairs 14448 min rc -6.566 LB -49.06 best -49.06 {2: -3.5401, 3: -4.9246, 4: -6.5656} added 6000 t 50.1 tm 36.1 
+phase 1 it 4 obj 1.107349 cols 36738 pairs 15878 min rc -6.209 LB -45.79 best -18.79 {2: -4.0, 3: -4.8496, 4: -6.2086} added 6000 t 101.6 tm 57.7  dartLB -18.79
+phase 1 it 5 obj 0.947652 cols 42738 pairs 17083 min rc -5.632 LB -41.14 best -18.79 {2: -3.8295, 3: -4.8647, 4: -5.6318} added 6000 t 143.8 tm 94.2 
+time limit
+RESULT ('timeout', -18.7882673127246)
+window flow {'aaa': 0.001917, 'aab': 0.002327, 'aac': 0.016594, 'aaB': 0.009984, 'aba': 0.030206, 'abb': 0.045634, 'abc': 0.000408, 'abC': 0.000459, 'aca': 0.055896, 'acb': 0.008266, 'acB': 0.00115, 'aBa': 0.000354, 'aBc': 0.004503, 'aBA': 0.010929, 'aBB': 0.00668, 'aBC': 0.001833, 'baa': 0.001429, 'bab': 0.066337, 'bac': 0.012276, 'baB': 0.002767, 'bba': 0.032637, 'bbb': 0.041924, 'bbc': 0.011957, 'bbA': 0.010319, 'bca': 0.009592, 'bcb': 0.001833, 'bcB': 0.002928, 'bAA': 0.002739, 'bAC': 0.019555, 'bCA': 5.1e-05, 'bCB': 0.000408, 'caa': 0.026378, 'cab': 0.005646, 'cac': 0.028904, 'caB': 0.010119, 'cba': 0.000535, 'cbb': 0.002292, 'cbc': 0.005823, 'cbA': 0.001506, 'cBa': 0.001241, 'cBB': 0.003666, 'Aba': 0.013123, 'Abb': 0.005212, 'AbA': 0.005902, 'AAb': 0.002758, 'AAA': 0.012318, 'AAC': 0.029759, 'ABa': 0.001339, 'ABA': 0.0358, 'ABB': 0.019342, 'ABC': 0.001775, 'ACb': 0.010611, 'ACA': 0.022877, 'ACB': 0.036323, 'Baa': 0.001098, 'Bac': 0.007539, 'BaB': 0.001429, 'Bca': 0.005558, 'Bcb': 5.6e-05, 'BcB': 0.000828, 'BAb': 0.013641, 'BAA': 0.021778, 'BAB': 0.057846, 'BAC': 0.008081, 'BBa': 0.005703, 'BBc': 0.001078, 'BBA': 0.038037, 'BBB': 0.034227, 'BBC': 0.003765, 'BCb': 0.001775, 'BCA': 0.005992, 'BCB': 0.008321, 'Cba': 0.006385, 'Cbb': 0.001775, 'Cbc': 0.003267, 'CbA': 0.004567, 'CAb': 0.004235, 'CAA': 0.007999, 'CAB': 0.000411, 'CAC': 0.012417, 'CBc': 0.00086, 'CBA': 0.01658, 'CBB': 0.018896, 'CBC': 0.008715}
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 90, in <module>
+    init = keep
+^^^^^^
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 80, in main
+    if "--seeds-only" in sys.argv:
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w6-074/work/cg_full.py", line 80, in <listcomp>
+    if "--seeds-only" in sys.argv:
+                      ^^^^^^^^
+IndexError: index 73404 is out of bounds for axis 0 with size 70994
+=== run 0 from pruned seed
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 12738 columns, kept 12738
+phase 1 it 1 obj 1.688961 cols 18738 pairs 11719 min rc -7.736 LB -59 best -59 {2: -3.0827, 3: -5.9429, 4: -7.7362} added 6000 t 17.0 tm 9.6 
+phase 1 it 2 obj 1.556211 cols 24738 pairs 12830 min rc -7.189 LB -54.36 best -54.36 {2: -3.7247, 3: -5.9672, 4: -7.1893} added 6000 t 40.0 tm 25.2 
+phase 1 it 3 obj 1.359608 cols 30738 pairs 14448 min rc -6.566 LB -49.06 best -49.06 {2: -3.5401, 3: -4.9246, 4: -6.5656} added 6000 t 65.9 tm 45.6 
+phase 1 it 4 obj 1.107349 cols 36738 pairs 15878 min rc -6.209 LB -45.79 best -18.79 {2: -4.0, 3: -4.8496, 4: -6.2086} added 6000 t 137.3 tm 73.0  dartLB -18.79
+phase 1 it 5 obj 0.947652 cols 42738 pairs 17083 min rc -5.632 LB -41.14 best -18.79 {2: -3.8295, 3: -4.8647, 4: -5.6318} added 6000 t 179.0 tm 109.2 
+phase 1 it 6 obj 0.824277 cols 48738 pairs 18310 min rc -4.78 LB -34.61 best -18.79 {2: -3.4886, 3: -3.7741, 4: -4.7802} added 6000 t 233.1 tm 157.8 
+phase 1 it 7 obj 0.733559 cols 54738 pairs 19586 min rc -5.152 LB -37.22 best -18.79 {2: -3.2752, 3: -3.2052, 4: -5.1523} added 6000 t 306.1 tm 224.7 
+phase 1 it 8 obj 0.630116 cols 60738 pairs 21139 min rc -4.02 LB -28.77 best -11.74 {2: -2.6544, 3: -3.1681, 4: -4.0198} added 6000 t 411.9 tm 290.3  dartLB -11.74
+phase 1 it 9 obj 0.514502 cols 66738 pairs 22503 min rc -4.246 LB -30.3 best -11.74 {2: -3.3162, 3: -2.9921, 4: -4.2457} added 6000 t 506.0 tm 378.5 
+phase 1 it 10 obj 0.411936 cols 72738 pairs 23565 min rc -3.79 LB -26.9 best -11.74 {2: -2.7785, 3: -2.8055, 4: -3.7896} added 6000 t 617.2 tm 483.4 
+phase 1 it 11 obj 0.357483 cols 78738 pairs 24588 min rc -3.883 LB -27.52 best -11.74 {2: -2.6161, 3: -2.3169, 4: -3.8833} added 6000 t 755.7 tm 615.2 
+phase 1 it 12 obj 0.311129 cols 84738 pairs 25722 min rc -3.19 LB -22.52 best -8.639 {2: -2.2188, 3: -2.2687, 4: -3.1904} added 6000 t 952.0 tm 767.5  dartLB -8.639
+phase 1 it 13 obj 0.282833 cols 90738 pairs 26533 min rc -3.8 LB -26.85 best -8.639 {2: -2.4962, 3: -2.1375, 4: -3.7996} added 6000 t 1118.3 tm 928.1 
+time limit
+RESULT ('timeout', -8.63859615510137)
+window flow {'aaa': 0.000533, 'aab': 0.001038, 'aac': 0.009682, 'aaB': 0.000288, 'aba': 0.0372, 'abb': 0.043891, 'abc': 0.003203, 'abA': 0.002571, 'abC': 0.002003, 'aca': 0.058821, 'acb': 0.006883, 'acB': 0.002442, 'aBa': 0.000288, 'aBA': 0.011671, 'aBB': 0.00866, 'baa': 0.00511, 'bab': 0.076898, 'bac': 0.003768, 'baB': 0.006127, 'bba': 0.047662, 'bbb': 0.04093, 'bbc': 0.008016, 'bbA': 0.003677, 'bbC': 0.001982, 'bca': 0.016368, 'bcb': 0.000188, 'bcB': 0.00015, 'bAB': 0.00035, 'bAC': 0.006605, 'bCb': 4.5e-05, 'bCA': 0.002208, 'bCB': 0.001919, 'caa': 0.005777, 'cab': 0.009999, 'cac': 0.048527, 'caB': 0.014204, 'cba': 0.000175, 'cbb': 0.003605, 'cbc': 0.003415, 'cbA': 0.000121, 'cBA': 0.001973, 'cBB': 0.001028, 'Aba': 0.004617, 'Abb': 0.011374, 'AbA': 0.000482, 'AbC': 0.000188, 'AAb': 0.000538, 'AAB': 0.001119, 'AAC': 0.020985, 'ABa': 0.000472, 'ABc': 0.000851, 'ABA': 0.032448, 'ABB': 0.038193, 'ABC': 0.002984, 'ACb': 0.003517, 'ACA': 0.044014, 'ACB': 0.027391, 'Baa': 0.000122, 'Bab': 0.000933, 'Bac': 0.006169, 'Bca': 0.003317, 'Bcb': 0.000391, 'BcB': 0.000409, 'BAb': 0.008058, 'BAA': 0.015042, 'BAB': 0.070401, 'BAC': 0.014009, 'BBa': 0.006318, 'BBc': 0.000143, 'BBA': 0.047252, 'BBB': 0.039154, 'BBC': 0.000556, 'BCb': 0.003328, 'BCA': 0.005843, 'BCB': 0.000557, 'Cba': 0.002249, 'Cbb': 0.002467, 'Cbc': 0.002072, 'CbA': 0.000103, 'CAb': 0.008065, 'CAA': 0.007601, 'CAB': 0.003076, 'CAC': 0.033323, 'CBc': 0.003124, 'CBA': 0.014166, 'CBB': 0.006387, 'CBC': 0.00619}
+=== run 1
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 90738 columns, kept 13935
+phase 1 it 1 obj 0.276909 cols 19935 pairs 13331 min rc -6.338 LB -44.96 best -44.96 {2: -3.1436, 3: -4.435, 4: -6.3378} added 6000 t 25.4 tm 18.4 
+phase 1 it 2 obj 0.275156 cols 25935 pairs 14907 min rc -4.896 LB -34.67 best -34.67 {2: -2.761, 3: -3.9157, 4: -4.8965} added 6000 t 56.7 tm 44.8 
+phase 1 it 3 obj 0.272733 cols 31935 pairs 16551 min rc -3.745 LB -26.45 best -26.45 {2: -2.8838, 3: -2.9478, 4: -3.7447} added 6000 t 95.7 tm 79.2 
+phase 1 it 4 obj 0.270044 cols 37935 pairs 18348 min rc -3.978 LB -28.12 best -10.02 {2: -2.5392, 3: -2.3962, 4: -3.9783} added 6000 t 170.8 tm 126.1  dartLB -10.02
+phase 1 it 5 obj 0.261408 cols 43935 pairs 19702 min rc -3.196 LB -22.53 best -10.02 {2: -2.8041, 3: -2.3201, 4: -3.1957} added 6000 t 236.7 tm 187.1 
+phase 1 it 6 obj 0.254114 cols 49935 pairs 21083 min rc -2.691 LB -18.92 best -10.02 {2: -2.1689, 3: -1.9253, 4: -2.6905} added 6000 t 321.4 tm 266.8 
+phase 1 it 7 obj 0.243946 cols 55935 pairs 22590 min rc -3.41 LB -24.04 best -10.02 {2: -2.1886, 3: -2.15, 4: -3.4101} added 6000 t 412.7 tm 352.8 
+phase 1 it 8 obj 0.232493 cols 61935 pairs 23918 min rc -2.903 LB -20.42 best -7.879 {2: -2.2552, 3: -1.7103, 4: -2.9028} added 6000 t 550.1 tm 464.1  dartLB -7.879
+phase 1 it 9 obj 0.224778 cols 67935 pairs 25176 min rc -2.346 LB -16.46 best -7.879 {2: -2.0909, 3: -1.4506, 4: -2.3456} added 6000 t 660.0 tm 570.7 
+phase 1 it 10 obj 0.217109 cols 73935 pairs 26051 min rc -2.572 LB -18.07 best -7.879 {2: -1.7497, 3: -1.8981, 4: -2.572} added 6000 t 777.9 tm 684.1 
+phase 1 it 11 obj 0.210400 cols 79935 pairs 26792 min rc -2.209 LB -15.49 best -7.879 {2: -1.6752, 3: -1.7035, 4: -2.2091} added 6000 t 918.9 tm 821.4 
+phase 1 it 12 obj 0.203405 cols 85935 pairs 27704 min rc -2.194 LB -15.38 best -5.602 {2: -1.5745, 3: -1.4903, 4: -2.1939} added 6000 t 1077.6 tm 957.0  dartLB -5.602
+CHAIN DONE
+=== run 1
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 90738 columns, kept 13935
+phase 1 it 1 obj 0.276909 cols 19935 pairs 13331 min rc -6.338 LB -44.96 best -44.96 {2: -3.1436, 3: -4.435, 4: -6.3378} added 6000 t 20.4 tm 14.8 
+phase 1 it 2 obj 0.275156 cols 25935 pairs 15129 min rc -3.884 LB -27.45 best -27.45 {2: -2.5875, 3: -2.968, 4: -3.8844} added 6000 t 48.1 tm 37.3 
+phase 1 it 3 obj 0.273161 cols 31935 pairs 17370 min rc -2.858 LB -20.13 best -20.13 {2: -2.5343, 3: -2.1807, 4: -2.8584} added 6000 t 85.5 tm 71.0 
+phase 1 it 4 obj 0.266030 cols 37935 pairs 19527 min rc -2.954 LB -20.8 best -10.41 {2: -2.1103, 3: -1.902, 4: -2.9541} added 6000 t 155.4 tm 114.0  dartLB -10.41
+phase 1 it 5 obj 0.257768 cols 43931 pairs 21292 min rc -2.511 LB -17.64 best -10.41 {2: -1.7752, 3: -1.6775, 4: -2.5109} added 5996 t 220.3 tm 175.4 
+phase 1 it 6 obj 0.245775 cols 49921 pairs 22768 min rc -2.573 LB -18.07 best -10.41 {2: -1.6988, 3: -1.9044, 4: -2.5726} added 5990 t 284.2 tm 235.9 
+phase 1 it 7 obj 0.234120 cols 55838 pairs 24122 min rc -1.744 LB -12.16 best -10.41 {2: -1.6176, 3: -1.4966, 4: -1.7437} added 5917 t 360.4 tm 308.0 
+phase 1 it 8 obj 0.223380 cols 61631 pairs 25264 min rc -1.918 LB -13.4 best -7.462 {2: -1.3419, 3: -1.2297, 4: -1.9183} added 5793 t 478.1 tm 400.4  dartLB -7.462
+phase 1 it 9 obj 0.210508 cols 67232 pairs 26146 min rc -1.757 LB -12.26 best -7.462 {2: -1.1794, 3: -1.0823, 4: -1.7572} added 5601 t 574.5 tm 493.1 
+phase 1 it 10 obj 0.199135 cols 72412 pairs 26837 min rc -1.728 LB -12.04 best -7.462 {2: -1.1763, 3: -1.0772, 4: -1.7278} added 5180 t 657.7 tm 573.8 
+phase 1 it 11 obj 0.191720 cols 77327 pairs 27390 min rc -1.923 LB -13.43 best -7.462 {2: -1.0844, 3: -1.5887, 4: -1.9233} added 4915 t 748.0 tm 660.5 
+phase 1 it 12 obj 0.186645 cols 81731 pairs 27904 min rc -1.278 LB -8.854 best -5.044 {2: -1.1003, 3: -0.9642, 4: -1.2782} added 4404 t 876.1 tm 770.9  dartLB -5.044
+phase 1 it 13 obj 0.181598 cols 85828 pairs 28203 min rc -1.698 LB -11.83 best -5.044 {2: -0.9196, 3: -0.9269, 4: -1.6976} added 4097 t 991.5 tm 882.5 
+time limit
+RESULT ('timeout', -5.044331873579092)
+window flow {'aaa': 0.000161, 'aab': 0.001422, 'aac': 0.017997, 'aba': 0.029815, 'abb': 0.055161, 'abc': 0.008081, 'abA': 0.000796, 'abC': 0.000774, 'aca': 0.064887, 'acb': 0.002084, 'acB': 0.001199, 'aBa': 3.3e-05, 'aBA': 0.001607, 'aBB': 0.00932, 'baa': 0.011811, 'bab': 0.082638, 'bac': 0.000365, 'baB': 0.001342, 'bba': 0.059196, 'bbb': 0.053527, 'bbA': 0.004287, 'bca': 0.008365, 'bcB': 0.001345, 'bAB': 0.001933, 'bAC': 0.003149, 'bCA': 0.000663, 'bCB': 0.000112, 'caa': 0.007593, 'cab': 0.010209, 'cac': 0.045879, 'caB': 0.009619, 'cbb': 0.000666, 'cbc': 0.001418, 'cBA': 0.002333, 'cBB': 0.000212, 'Aba': 0.007145, 'Abb': 0.007656, 'AAB': 0.001813, 'AAC': 0.01302, 'ABa': 0.001043, 'ABA': 0.036207, 'ABB': 0.051072, 'ABC': 1.7e-05, 'ACb': 0.000212, 'ACA': 0.054238, 'ACB': 0.020914, 'Baa': 1.5e-05, 'Bab': 0.000212, 'Bac': 0.003928, 'Bca': 4.9e-05, 'BAb': 0.008578, 'BAA': 0.012436, 'BAB': 0.079703, 'BAC': 0.016111, 'BBa': 0.003078, 'BBA': 0.060123, 'BBB': 0.042582, 'BCA': 0.001693, 'BCB': 0.000227, 'Cbc': 0.000212, 'CAb': 0.006223, 'CAA': 0.002398, 'CAB': 0.00489, 'CAC': 0.043083, 'CBc': 4.9e-05, 'CBA': 0.016557, 'CBB': 0.002598, 'CBC': 0.00192}
+=== run 2
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 85828 columns, kept 13712
+phase 1 it 1 obj 0.180618 cols 19712 pairs 12733 min rc -7.558 LB -53.41 best -53.41 {2: -3.3072, 3: -5.1147, 4: -7.5581} added 6000 t 18.2 tm 13.7 
+phase 1 it 2 obj 0.180618 cols 25712 pairs 14379 min rc -4.674 LB -32.96 best -32.96 {2: -3.0557, 3: -3.1058, 4: -4.6742} added 6000 t 35.6 tm 28.9 
+phase 1 it 3 obj 0.180203 cols 31712 pairs 16553 min rc -3.286 LB -23.12 best -23.12 {2: -2.1129, 3: -2.2482, 4: -3.2857} added 6000 t 60.7 tm 51.9 
+phase 1 it 4 obj 0.179825 cols 37712 pairs 18879 min rc -2.425 LB -17.01 best -9.489 {2: -1.9287, 3: -1.84, 4: -2.4251} added 6000 t 114.1 tm 87.7  dartLB -9.489
+phase 1 it 5 obj 0.179691 cols 43712 pairs 20738 min rc -2.021 LB -14.15 best -9.489 {2: -1.6567, 3: -1.7225, 4: -2.0208} added 6000 t 157.1 tm 128.6 
+phase 1 it 6 obj 0.179551 cols 49711 pairs 22285 min rc -1.742 LB -12.17 best -9.489 {2: -1.6525, 3: -1.2695, 4: -1.742} added 5999 t 217.1 tm 185.9 
+phase 1 it 7 obj 0.178788 cols 55679 pairs 23565 min rc -1.84 LB -12.86 best -9.489 {2: -1.7174, 3: -0.993, 4: -1.84} added 5968 t 285.9 tm 252.2 
+phase 1 it 8 obj 0.177371 cols 61610 pairs 24544 min rc -1.584 LB -11.05 best -6.426 {2: -1.3329, 3: -1.3636, 4: -1.5839} added 5931 t 373.3 tm 325.0  dartLB -6.426
+phase 1 it 9 obj 0.175577 cols 67404 pairs 25474 min rc -1.567 LB -10.93 best -6.426 {2: -1.4667, 3: -1.5673, 4: -1.561} added 5794 t 454.1 tm 403.4 
+phase 1 it 10 obj 0.175014 cols 72868 pairs 26103 min rc -1.551 LB -10.81 best -6.426 {2: -1.5505, 3: -0.9752, 4: -1.2224} added 5464 t 556.3 tm 501.8 
+phase 1 it 11 obj 0.174032 cols 77967 pairs 26686 min rc -1.489 LB -10.37 best -6.426 {2: -1.4887, 3: -0.9394, 4: -1.0687} added 5099 t 688.5 tm 631.2 
+phase 1 it 12 obj 0.172518 cols 82584 pairs 27137 min rc -1.221 LB -8.478 best -4.57 {2: -1.1139, 3: -0.9525, 4: -1.221} added 4617 t 877.2 tm 790.6  dartLB -4.57
+phase 1 it 13 obj 0.170796 cols 86622 pairs 27520 min rc -1.019 LB -7.05 best -4.57 {2: -1.0194, 3: -0.6919, 4: -0.9864} added 4038 t 1047.5 tm 956.7 
+time limit
+RESULT ('timeout', -4.5703485237465795)
+window flow {'aab': 0.002954, 'aac': 0.015745, 'aba': 0.03003, 'abb': 0.055013, 'abc': 0.011161, 'abC': 0.003856, 'aca': 0.063548, 'acb': 0.001673, 'acB': 0.001848, 'aBB': 0.005065, 'baa': 0.009461, 'bab': 0.084455, 'baB': 0.002357, 'bba': 0.063373, 'bbb': 0.050311, 'bbA': 0.00218, 'bca': 0.010091, 'bcB': 0.001842, 'bAC': 0.00218, 'bCA': 0.002812, 'bCB': 0.001044, 'caa': 0.009238, 'cab': 0.01265, 'cac': 0.049043, 'caB': 0.002708, 'cbb': 0.000901, 'cbc': 0.000772, 'cBA': 0.00369, 'Aba': 0.00287, 'Abb': 0.009639, 'AAB': 0.004818, 'AAC': 0.013729, 'ABa': 0.000737, 'ABA': 0.028199, 'ABB': 0.056847, 'ACA': 0.055102, 'ACB': 0.018951, 'Bac': 0.002281, 'BAb': 0.005069, 'BAA': 0.015523, 'BAB': 0.079871, 'BAC': 0.011789, 'BBa': 0.001544, 'BBA': 0.061471, 'BBB': 0.051462, 'BCB': 0.001094, 'CAb': 0.00744, 'CAA': 0.003024, 'CAB': 0.001094, 'CAC': 0.046355, 'CBA': 0.018891, 'CBB': 0.001103, 'CBC': 0.001094}
+=== run 3
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 86622 columns, kept 14271
+phase 1 it 1 obj 0.167858 cols 20271 pairs 13080 min rc -7.652 LB -54.04 best -54.04 {2: -3.7697, 3: -5.5176, 4: -7.652} added 6000 t 24.3 tm 18.5 
+phase 1 it 2 obj 0.167858 cols 26271 pairs 14413 min rc -4.56 LB -32.14 best -32.14 {2: -2.648, 3: -3.3149, 4: -4.5602} added 6000 t 61.2 tm 51.9 
+phase 1 it 3 obj 0.167857 cols 32271 pairs 16281 min rc -3.407 LB -23.97 best -23.97 {2: -2.3044, 3: -2.9972, 4: -3.4075} added 6000 t 111.8 tm 97.8 
+phase 1 it 4 obj 0.167857 cols 38271 pairs 18649 min rc -2.481 LB -17.41 best -9.793 {2: -2.0184, 3: -1.8563, 4: -2.4807} added 6000 t 201.2 tm 159.0  dartLB -9.793
+phase 1 it 5 obj 0.167840 cols 44271 pairs 20784 min rc -2.547 LB -17.88 best -9.793 {2: -1.925, 3: -1.2777, 4: -2.5475} added 6000 t 279.7 tm 232.5 
+phase 1 it 6 obj 0.167840 cols 50266 pairs 22325 min rc -1.8 LB -12.58 best -9.793 {2: -1.5649, 3: -1.4326, 4: -1.7995} added 5995 t 376.1 tm 321.9 
+phase 1 it 7 obj 0.167747 cols 56249 pairs 23658 min rc -1.704 LB -11.9 best -9.793 {2: -1.7038, 3: -1.2316, 4: -1.5271} added 5983 t 516.6 tm 455.5 
+phase 1 it 8 obj 0.167190 cols 62124 pairs 24798 min rc -1.755 LB -12.26 best -6.628 {2: -1.4047, 3: -1.1853, 4: -1.7545} added 5875 t 718.0 tm 608.3  dartLB -6.628
+phase 1 it 9 obj 0.166813 cols 67729 pairs 25551 min rc -1.25 LB -8.685 best -6.628 {2: -1.2141, 3: -1.1831, 4: -1.2497} added 5605 t 905.2 tm 787.5 
+time limit
+RESULT ('timeout', -6.627538771309931)
+window flow {'aab': 0.004125, 'aac': 0.015926, 'aba': 0.023266, 'abb': 0.059426, 'abc': 0.012715, 'abC': 0.004185, 'aca': 0.063757, 'acb': 0.000654, 'acB': 0.002904, 'aBa': 0.000274, 'aBB': 0.001742, 'baa': 0.007395, 'bab': 0.083033, 'baB': 0.001249, 'bba': 0.067741, 'bbb': 0.053308, 'bbA': 3.1e-05, 'bca': 0.012602, 'bcB': 0.000767, 'bAC': 3.1e-05, 'bCA': 0.002006, 'bCB': 0.002179, 'caa': 0.012657, 'cab': 0.012434, 'cac': 0.050501, 'caB': 0.000767, 'cbc': 0.000654, 'cBA': 0.003671, 'Aba': 0.000669, 'Abb': 0.008346, 'AAB': 0.003724, 'AAC': 0.014762, 'ABA': 0.025782, 'ABB': 0.060073, 'ACA': 0.054984, 'ACB': 0.020635, 'Bac': 0.000888, 'BAb': 0.005535, 'BAA': 0.014207, 'BAB': 0.081252, 'BAC': 0.012309, 'BBa': 0.000614, 'BBA': 0.062388, 'BBB': 0.052268, 'BCA': 0.000165, 'BCB': 0.000714, 'CAb': 0.00348, 'CAA': 0.004279, 'CAB': 0.00088, 'CAC': 0.048517, 'CBA': 0.021462, 'CBB': 0.001187, 'CBC': 0.00088}
+=== run 4
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 67729 columns, kept 14982
+phase 1 it 1 obj 0.166463 cols 20982 pairs 13477 min rc -6.746 LB -47.62 best -47.62 {2: -3.2544, 3: -5.0476, 4: -6.7462} added 6000 t 41.7 tm 29.7 
+phase 1 it 2 obj 0.166463 cols 26982 pairs 15086 min rc -4.346 LB -30.62 best -30.62 {2: -2.9556, 3: -3.2813, 4: -4.3465} added 6000 t 98.5 tm 78.6 
+phase 1 it 3 obj 0.166463 cols 32982 pairs 16937 min rc -2.953 LB -20.75 best -20.75 {2: -2.4039, 3: -2.3157, 4: -2.9529} added 6000 t 176.0 tm 146.1 
+phase 1 it 4 obj 0.166463 cols 38982 pairs 19418 min rc -2.079 LB -14.56 best -9.326 {2: -2.0515, 3: -1.9885, 4: -2.0791} added 6000 t 310.0 tm 230.2  dartLB -9.326
+phase 1 it 5 obj 0.166463 cols 44982 pairs 21549 min rc -2.023 LB -14.16 best -9.326 {2: -1.9029, 3: -1.5827, 4: -2.0229} added 6000 t 427.3 tm 339.7 
+phase 1 it 6 obj 0.166449 cols 50971 pairs 22936 min rc -1.689 LB -11.79 best -9.326 {2: -1.6043, 3: -1.3988, 4: -1.6886} added 5989 t 560.6 tm 465.3 
+phase 1 it 7 obj 0.166449 cols 56871 pairs 24195 min rc -1.602 LB -11.18 best -9.326 {2: -1.2709, 3: -1.0132, 4: -1.6019} added 5900 t 711.1 tm 609.8 
+phase 1 it 8 obj 0.166428 cols 62530 pairs 25074 min rc -1.619 LB -11.3 best -5.93 {2: -1.4552, 3: -1.2876, 4: -1.6194} added 5659 t 905.2 tm 760.0  dartLB -5.93
+time limit
+RESULT ('timeout', -5.929592621590983)
+window flow {'aab': 0.004152, 'aac': 0.015556, 'aba': 0.024335, 'abb': 0.059033, 'abc': 0.012761, 'abC': 0.004152, 'aca': 0.063808, 'acb': 0.00078, 'acB': 0.002435, 'aBA': 0.000138, 'aBB': 0.002081, 'baa': 0.006999, 'bab': 0.083764, 'baB': 0.001237, 'bba': 0.067172, 'bbb': 0.052813, 'bbA': 0.000264, 'bca': 0.012559, 'bcB': 0.000983, 'bAC': 0.000264, 'bCA': 0.001936, 'bCB': 0.002216, 'caa': 0.012709, 'cab': 0.012365, 'cac': 0.05031, 'caB': 0.000983, 'cbc': 0.00078, 'cBA': 0.003418, 'Aba': 0.000492, 'Abb': 0.008403, 'AAB': 0.00434, 'AAC': 0.014154, 'ABA': 0.026397, 'ABB': 0.059643, 'ACA': 0.055736, 'ACB': 0.020066, 'Bac': 0.001157, 'BAb': 0.005112, 'BAA': 0.013944, 'BAB': 0.081227, 'BAC': 0.012519, 'BBa': 0.001157, 'BBA': 0.061729, 'BBB': 0.052749, 'BCB': 0.000611, 'CAb': 0.003784, 'CAA': 0.00455, 'CAB': 0.000473, 'CAC': 0.048865, 'CBA': 0.021119, 'CBB': 0.001162, 'CBC': 0.000611}
+=== run 5
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 62530 columns, kept 14438
+phase 1 it 1 obj 0.165676 cols 20438 pairs 13062 min rc -7.722 LB -54.53 best -54.53 {2: -3.7297, 3: -5.8935, 4: -7.7221} added 6000 t 33.8 tm 24.9 
+phase 1 it 2 obj 0.165676 cols 26438 pairs 14829 min rc -4.407 LB -31.05 best -31.05 {2: -2.8642, 3: -3.2912, 4: -4.4072} added 6000 t 81.4 tm 65.9 
+phase 1 it 3 obj 0.165676 cols 32438 pairs 16726 min rc -3.288 LB -23.12 best -23.12 {2: -2.2982, 3: -2.348, 4: -3.2881} added 6000 t 144.9 tm 121.6 
+phase 1 it 4 obj 0.165586 cols 38438 pairs 18920 min rc -2.425 LB -17.01 best -8.925 {2: -2.0567, 3: -2.0148, 4: -2.4253} added 6000 t 273.2 tm 199.4  dartLB -8.925
+phase 1 it 5 obj 0.165586 cols 44438 pairs 21019 min rc -2.179 LB -15.27 best -8.925 {2: -1.7182, 3: -1.7594, 4: -2.1791} added 6000 t 381.6 tm 301.1 
+phase 1 it 6 obj 0.165586 cols 50433 pairs 22359 min rc -1.757 LB -12.28 best -8.925 {2: -1.6032, 3: -1.4304, 4: -1.7568} added 5995 t 509.7 tm 422.8 
+phase 1 it 7 obj 0.165585 cols 56379 pairs 23816 min rc -1.638 LB -11.44 best -8.925 {2: -1.638, 3: -1.5715, 4: -1.6303} added 5946 t 651.0 tm 558.3 
+phase 1 it 8 obj 0.165236 cols 62075 pairs 24835 min rc -1.703 LB -11.89 best -6.187 {2: -1.7025, 3: -1.1316, 4: -1.4278} added 5696 t 833.4 tm 706.4  dartLB -6.187
+phase 1 it 9 obj 0.164955 cols 67471 pairs 25572 min rc -1.594 LB -11.13 best -6.187 {2: -1.5944, 3: -0.9975, 4: -1.2523} added 5396 t 1003.4 tm 869.2 
+time limit
+RESULT ('timeout', -6.187146537953995)
+window flow {'aab': 0.003825, 'aac': 0.015706, 'aba': 0.02385, 'abb': 0.059087, 'abc': 0.013138, 'abC': 0.004126, 'aca': 0.062993, 'acb': 0.001625, 'acB': 0.00283, 'aBB': 0.001813, 'baa': 0.007287, 'bab': 0.084134, 'baB': 0.000961, 'bba': 0.066788, 'bbb': 0.052615, 'bca': 0.013185, 'bcB': 0.000639, 'bCA': 0.001334, 'bCB': 0.002793, 'caa': 0.012244, 'cab': 0.012242, 'cac': 0.05084, 'caB': 0.000852, 'cba': 0.000607, 'cbb': 0.000332, 'cbc': 0.000686, 'cBA': 0.003469, 'Aba': 0.001137, 'Abb': 0.007369, 'AAB': 0.003942, 'AAC': 0.014528, 'ABA': 0.024065, 'ABB': 0.06113, 'ACA': 0.056873, 'ACB': 0.019949, 'Bac': 0.000902, 'BAb': 0.004949, 'BAA': 0.01301, 'BAB': 0.080929, 'BAC': 0.013104, 'BBa': 0.000902, 'BBA': 0.062639, 'BBB': 0.052976, 'BCA': 0.000324, 'CAb': 0.003557, 'CAA': 0.00546, 'CAB': 0.000324, 'CAC': 0.04919, 'CBA': 0.02182, 'CBB': 0.000598, 'CBC': 0.000324}
+=== run 6
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 67471 columns, kept 14371
+phase 1 it 1 obj 0.164603 cols 20371 pairs 13191 min rc -7.923 LB -55.95 best -55.95 {2: -3.5022, 3: -4.9467, 4: -7.9233} added 6000 t 27.7 tm 20.7 
+phase 1 it 2 obj 0.164603 cols 26371 pairs 14562 min rc -5.111 LB -36.04 best -36.04 {2: -2.7404, 3: -3.2614, 4: -5.1114} added 6000 t 67.7 tm 55.7 
+phase 1 it 3 obj 0.164603 cols 32371 pairs 16638 min rc -3.319 LB -23.34 best -23.34 {2: -2.4127, 3: -2.3192, 4: -3.3193} added 6000 t 126.7 tm 109.6 
+phase 1 it 4 obj 0.164603 cols 38371 pairs 18758 min rc -2.404 LB -16.86 best -9.713 {2: -1.8984, 3: -1.6277, 4: -2.4042} added 6000 t 242.9 tm 184.3  dartLB -9.713
+phase 1 it 5 obj 0.164603 cols 44371 pairs 20795 min rc -2.118 LB -14.84 best -9.713 {2: -1.7533, 3: -1.681, 4: -2.1179} added 6000 t 338.8 tm 273.2 
+phase 1 it 6 obj 0.164603 cols 50361 pairs 22460 min rc -1.794 LB -12.54 best -9.713 {2: -1.793, 3: -1.2607, 4: -1.7943} added 5990 t 459.5 tm 387.0 
+phase 1 it 7 obj 0.164548 cols 56308 pairs 23953 min rc -1.628 LB -11.37 best -9.713 {2: -1.628, 3: -1.2253, 4: -1.4861} added 5947 t 606.7 tm 527.5 
+phase 1 it 8 obj 0.164377 cols 62086 pairs 24941 min rc -1.769 LB -12.37 best -6.42 {2: -1.7693, 3: -1.4782, 4: -1.652} added 5778 t 781.3 tm 665.9  dartLB -6.42
+phase 1 it 9 obj 0.164312 cols 67480 pairs 25701 min rc -1.512 LB -10.54 best -6.42 {2: -1.3795, 3: -1.0398, 4: -1.512} added 5394 t 954.5 tm 831.1 
+time limit
+RESULT ('timeout', -6.419972352750308)
+window flow {'aab': 0.003132, 'aac': 0.016638, 'aba': 0.024003, 'abb': 0.060465, 'abc': 0.013433, 'abC': 0.003678, 'aca': 0.062408, 'acb': 0.001193, 'acB': 0.003137, 'aBB': 0.001141, 'baa': 0.00715, 'bab': 0.084641, 'baB': 0.000629, 'bba': 0.067072, 'bbb': 0.051002, 'bbA': 0.000566, 'bca': 0.013904, 'bcB': 0.000461, 'bAC': 0.000566, 'bCA': 0.001426, 'bCB': 0.002251, 'caa': 0.012621, 'cab': 0.013807, 'cac': 0.049372, 'caB': 0.000512, 'cba': 0.000261, 'cbc': 0.000932, 'cBA': 0.003598, 'Aba': 0.001083, 'Abb': 0.007173, 'AAB': 0.003979, 'AAC': 0.013655, 'ABA': 0.024541, 'ABB': 0.061523, 'ACA': 0.056565, 'ACB': 0.020709, 'Bac': 0.000727, 'BAb': 0.00417, 'BAA': 0.01323, 'BAB': 0.081933, 'BAC': 0.013703, 'BBa': 0.000727, 'BBA': 0.062793, 'BBB': 0.052235, 'BCB': 0.000151, 'CAb': 0.004086, 'CAA': 0.004404, 'CAB': 0.000151, 'CAC': 0.049349, 'CBA': 0.022105, 'CBB': 0.000855, 'CBC': 0.000151}
+=== run 7
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 67480 columns, kept 14394
+phase 1 it 1 obj 0.164256 cols 20394 pairs 13005 min rc -7.665 LB -54.12 best -54.12 {2: -3.9563, 3: -5.3222, 4: -7.6647} added 6000 t 36.3 tm 26.9 
+phase 1 it 2 obj 0.164256 cols 26394 pairs 14748 min rc -4.286 LB -30.19 best -30.19 {2: -2.6962, 3: -3.3295, 4: -4.2861} added 6000 t 90.4 tm 73.6 
+phase 1 it 3 obj 0.164256 cols 32394 pairs 16952 min rc -3.198 LB -22.48 best -22.48 {2: -2.4095, 3: -2.6592, 4: -3.1979} added 6000 t 154.5 tm 132.2 
+phase 1 it 4 obj 0.164256 cols 38394 pairs 19214 min rc -2.614 LB -18.35 best -9.187 {2: -1.9964, 3: -2.1077, 4: -2.6139} added 6000 t 258.2 tm 200.2  dartLB -9.187
+phase 1 it 5 obj 0.164256 cols 44394 pairs 21016 min rc -2.191 LB -15.36 best -9.187 {2: -1.7766, 3: -1.8003, 4: -2.1914} added 6000 t 346.1 tm 282.6 
+phase 1 it 6 obj 0.164256 cols 50389 pairs 22620 min rc -1.924 LB -13.46 best -9.187 {2: -1.682, 3: -1.4142, 4: -1.9238} added 5995 t 443.4 tm 374.6 
+phase 1 it 7 obj 0.164256 cols 56351 pairs 23974 min rc -2.02 LB -14.14 best -9.187 {2: -1.6783, 3: -1.4283, 4: -2.0198} added 5962 t 556.8 tm 484.3 
+phase 1 it 8 obj 0.164244 cols 62136 pairs 24848 min rc -1.647 LB -11.5 best -6.234 {2: -1.2331, 3: -1.113, 4: -1.6474} added 5785 t 720.9 tm 616.7  dartLB -6.234
+phase 1 it 9 obj 0.164189 cols 67631 pairs 25563 min rc -1.541 LB -10.75 best -6.234 {2: -1.541, 3: -1.1972, 4: -1.3961} added 5495 t 871.9 tm 762.2 
+phase 1 it 10 obj 0.164050 cols 73001 pairs 26085 min rc -1.534 LB -10.7 best -6.234 {2: -1.2182, 3: -0.9817, 4: -1.5338} added 5370 t 1042.4 tm 926.4 
+time limit
+RESULT ('timeout', -6.234191832211909)
+window flow {'aab': 0.003273, 'aac': 0.016845, 'aba': 0.022593, 'abb': 0.061317, 'abc': 0.0136, 'abC': 0.003665, 'aca': 0.062325, 'acb': 0.00118, 'acB': 0.003468, 'aBB': 0.00075, 'baa': 0.007573, 'bab': 0.084443, 'baB': 0.000256, 'bba': 0.068382, 'bbb': 0.0506, 'bbA': 0.000452, 'bca': 0.013604, 'bcB': 0.00049, 'bAC': 0.000452, 'bCA': 0.001207, 'bCB': 0.002458, 'caa': 0.012544, 'cab': 0.013459, 'cac': 0.049432, 'caB': 0.000494, 'cba': 0.000242, 'cbb': 0.000443, 'cbc': 0.000494, 'cBA': 0.003958, 'Aba': 0.001054, 'Abb': 0.007075, 'AAB': 0.00393, 'AAC': 0.013577, 'ABA': 0.024265, 'ABB': 0.062102, 'ACA': 0.05663, 'ACB': 0.020382, 'Bac': 0.000697, 'BAb': 0.004022, 'BAA': 0.013254, 'BAB': 0.082433, 'BAC': 0.013505, 'BBa': 0.000697, 'BBA': 0.062662, 'BBB': 0.05226, 'BCA': 5e-06, 'BCB': 0.000385, 'CAb': 0.004107, 'CAA': 0.004253, 'CAB': 5e-06, 'CAC': 0.049477, 'CBA': 0.022329, 'CBB': 0.000506, 'CBC': 0.00039}
+=== run 8
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 73001 columns, kept 14826
+phase 1 it 1 obj 0.163655 cols 20826 pairs 13052 min rc -7.629 LB -53.87 best -53.87 {2: -3.476, 3: -5.1947, 4: -7.6292} added 6000 t 37.8 tm 28.0 
+phase 1 it 2 obj 0.163655 cols 26826 pairs 14823 min rc -4.503 LB -31.72 best -31.72 {2: -3.0499, 3: -3.6417, 4: -4.5025} added 6000 t 92.2 tm 73.5 
+phase 1 it 3 obj 0.163655 cols 32826 pairs 16987 min rc -2.992 LB -21.02 best -21.02 {2: -2.7217, 3: -2.741, 4: -2.9918} added 6000 t 159.3 tm 133.5 
+phase 1 it 4 obj 0.163648 cols 38826 pairs 19086 min rc -2.456 LB -17.23 best -9.449 {2: -1.9343, 3: -2.0413, 4: -2.456} added 6000 t 282.6 tm 212.8  dartLB -9.449
+phase 1 it 5 obj 0.163643 cols 44826 pairs 21103 min rc -1.994 LB -13.96 best -9.449 {2: -1.7615, 3: -1.4958, 4: -1.994} added 6000 t 383.5 tm 306.5 
+phase 1 it 6 obj 0.163643 cols 50814 pairs 22672 min rc -1.647 LB -11.5 best -9.449 {2: -1.638, 3: -1.2931, 4: -1.6468} added 5988 t 505.5 tm 420.8 
+phase 1 it 7 obj 0.163635 cols 56704 pairs 23967 min rc -1.663 LB -11.61 best -9.449 {2: -1.4998, 3: -1.2157, 4: -1.6625} added 5890 t 637.2 tm 547.3 
+phase 1 it 8 obj 0.163365 cols 62450 pairs 24800 min rc -2.076 LB -14.54 best -6.579 {2: -1.0928, 3: -1.233, 4: -2.0757} added 5746 t 830.7 tm 690.9  dartLB -6.579
+phase 1 it 9 obj 0.163263 cols 67980 pairs 25457 min rc -1.486 LB -10.36 best -6.579 {2: -1.0202, 3: -1.0572, 4: -1.4864} added 5530 t 996.1 tm 850.1 
+time limit
+RESULT ('timeout', -6.578828185491127)
+window flow {'aab': 0.003317, 'aac': 0.01585, 'aba': 0.023592, 'abb': 0.061148, 'abc': 0.01411, 'abC': 0.003629, 'aca': 0.062219, 'acb': 0.000624, 'acB': 0.003482, 'aBB': 0.000659, 'baa': 0.006221, 'bab': 0.085388, 'baB': 0.000556, 'bba': 0.067863, 'bbb': 0.050919, 'bbA': 0.000571, 'bca': 0.014319, 'bcb': 0.000242, 'bcB': 0.000103, 'bAC': 0.000571, 'bCA': 0.001255, 'bCB': 0.002373, 'caa': 0.012946, 'cab': 0.013774, 'cac': 0.049716, 'caB': 0.000103, 'cbb': 0.000312, 'cbc': 0.000554, 'cBA': 0.003585, 'Aba': 0.000709, 'Abb': 0.006974, 'AAB': 0.004347, 'AAC': 0.013059, 'ABA': 0.024426, 'ABB': 0.062137, 'ACA': 0.057058, 'ACB': 0.01992, 'Bac': 0.000759, 'BAb': 0.00378, 'BAA': 0.012911, 'BAB': 0.082215, 'BAC': 0.013122, 'BBa': 0.000759, 'BBA': 0.062241, 'BBB': 0.054212, 'BCA': 0.000312, 'BCB': 7e-05, 'CAb': 0.003904, 'CAA': 0.004495, 'CAC': 0.050227, 'CBA': 0.021776, 'CBB': 0.000205, 'CBC': 0.000382}
+=== run 9
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 67980 columns, kept 14660
+phase 1 it 1 obj 0.163263 cols 20660 pairs 13328 min rc -7.253 LB -51.2 best -51.2 {2: -3.2078, 3: -5.3286, 4: -7.2528} added 6000 t 35.2 tm 26.4 
+phase 1 it 2 obj 0.163263 cols 26660 pairs 14561 min rc -4.806 LB -33.87 best -33.87 {2: -2.6231, 3: -3.6032, 4: -4.8062} added 6000 t 85.5 tm 69.3 
+phase 1 it 3 obj 0.163263 cols 32660 pairs 16361 min rc -3.811 LB -26.82 best -26.82 {2: -2.2114, 3: -2.8007, 4: -3.8108} added 6000 t 147.0 tm 125.6 
+phase 1 it 4 obj 0.163263 cols 38660 pairs 18735 min rc -2.293 LB -16.08 best -9.262 {2: -1.9933, 3: -1.6424, 4: -2.2933} added 6000 t 254.2 tm 190.2  dartLB -9.262
+phase 1 it 5 obj 0.163263 cols 44660 pairs 20764 min rc -2.195 LB -15.38 best -9.262 {2: -2.1946, 3: -1.3432, 4: -2.0352} added 6000 t 341.6 tm 272.5 
+phase 1 it 6 obj 0.163260 cols 50654 pairs 22398 min rc -1.831 LB -12.8 best -9.262 {2: -1.4979, 3: -1.2941, 4: -1.8308} added 5994 t 429.0 tm 355.5 
+phase 1 it 7 obj 0.163260 cols 56637 pairs 23631 min rc -1.842 LB -12.88 best -9.262 {2: -1.5333, 3: -1.29, 4: -1.842} added 5983 t 527.6 tm 448.6 
+phase 1 it 8 obj 0.163260 cols 62441 pairs 24790 min rc -1.613 LB -11.26 best -6.031 {2: -1.4094, 3: -1.3045, 4: -1.6133} added 5804 t 680.6 tm 568.8  dartLB -6.031
+phase 1 it 9 obj 0.163176 cols 68159 pairs 25476 min rc -1.699 LB -11.87 best -6.031 {2: -1.2071, 3: -1.2253, 4: -1.6986} added 5718 t 819.4 tm 703.1 
+phase 1 it 10 obj 0.163104 cols 73322 pairs 26231 min rc -1.294 LB -9.002 best -6.031 {2: -0.9278, 3: -1.0339, 4: -1.2943} added 5163 t 961.5 tm 841.7 
+time limit
+RESULT ('timeout', -6.030694200768753)
+window flow {'aab': 0.00271, 'aac': 0.016102, 'aba': 0.024471, 'abb': 0.060605, 'abc': 0.014775, 'abC': 0.003412, 'aca': 0.061476, 'acb': 0.00092, 'acB': 0.003498, 'aBB': 0.000627, 'baa': 0.006285, 'bab': 0.085926, 'baB': 0.000524, 'bba': 0.067058, 'bbb': 0.051051, 'bbA': 0.000507, 'bca': 0.014908, 'bcb': 0.000213, 'bAC': 0.000507, 'bCA': 0.001017, 'bCB': 0.002395, 'caa': 0.012527, 'cab': 0.014626, 'cac': 0.049128, 'caB': 0.000103, 'cbb': 0.000787, 'cbc': 0.000346, 'cBA': 0.003498, 'Aba': 0.001207, 'Abb': 0.006172, 'AAB': 0.004549, 'AAC': 0.012606, 'ABA': 0.024542, 'ABB': 0.062383, 'ACA': 0.057433, 'ACB': 0.019704, 'Bac': 0.000664, 'BAb': 0.003226, 'BAA': 0.013147, 'BAB': 0.082377, 'BAC': 0.013486, 'BBa': 0.000664, 'BBA': 0.062767, 'BBB': 0.053595, 'BCA': 0.000249, 'BCB': 0.000216, 'CAb': 0.004154, 'CAA': 0.004007, 'CAC': 0.050538, 'CBA': 0.021428, 'CBB': 0.000421, 'CBC': 0.000465}
+=== run 10
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows alive 96 slots 71068 t 0
+loaded 73322 columns, kept 14394
+phase 1 it 1 obj 0.162924 cols 20394 pairs 13473 min rc -7.578 LB -53.5 best -53.5 {2: -3.7526, 3: -5.0341, 4: -7.5781} added 6000 t 21.3 tm 16.1 
+phase 1 it 2 obj 0.162924 cols 26394 pairs 14840 min rc -4.967 LB -35.01 best -35.01 {2: -2.7202, 3: -3.5158, 4: -4.9667} added 6000 t 58.5 tm 48.8 
+phase 1 it 3 obj 0.162924 cols 32394 pairs 16730 min rc -3.474 LB -24.44 best -24.44 {2: -2.2592, 3: -2.5255, 4: -3.4741} added 6000 t 107.6 tm 93.5 
+phase 1 it 4 obj 0.162924 cols 38394 pairs 19077 min rc -2.468 LB -17.31 best -9.752 {2: -1.9572, 3: -2.4679, 4: -2.3351} added 6000 t 187.7 tm 148.7  dartLB -9.752
+phase 1 it 5 obj 0.162924 cols 44394 pairs 20908 min rc -2.272 LB -15.92 best -9.752 {2: -1.7639, 3: -1.7902, 4: -2.2718} added 6000 t 259.6 tm 215.8 
+phase 1 it 6 obj 0.162924 cols 50371 pairs 22729 min rc -1.81 LB -12.65 best -9.752 {2: -1.4876, 3: -1.3346, 4: -1.8096} added 5977 t 343.7 tm 295.2 
+phase 1 it 7 obj 0.162924 cols 56280 pairs 23979 min rc -1.804 LB -12.61 best -9.752 {2: -1.7048, 3: -1.6364, 4: -1.8042} added 5909 t 442.5 tm 389.6 
+phase 1 it 8 obj 0.162924 cols 61895 pairs 24972 min rc -1.688 LB -11.79 best -6.238 {2: -1.6882, 3: -1.2219, 4: -1.5442} added 5615 t 579.5 tm 498.4  dartLB -6.238
+phase 1 it 9 obj 0.162761 cols 67203 pairs 25706 min rc -1.537 LB -10.72 best -6.238 {2: -1.143, 3: -1.2251, 4: -1.5372} added 5308 t 708.1 tm 623.0 
+phase 1 it 10 obj 0.162535 cols 72125 pairs 26263 min rc -1.511 LB -10.54 best -6.238 {2: -1.0522, 3: -0.885, 4: -1.5111} added 4922 t 851.7 tm 761.4 
+phase 1 it 11 obj 0.162222 cols 76863 pairs 26718 min rc -1.291 LB -8.979 best -6.238 {2: -0.878, 3: -0.9931, 4: -1.291} added 4738 t 1009.6 tm 914.1 
+time limit
+RESULT ('timeout', -6.237549196466583)
+window flow {'aab': 0.002457, 'aac': 0.015666, 'aba': 0.026191, 'abb': 0.060528, 'abc': 0.014635, 'abC': 0.00377, 'aca': 0.061716, 'acb': 0.000649, 'acB': 0.002687, 'aBB': 0.001029, 'baa': 0.005915, 'bab': 0.086874, 'baB': 0.001029, 'bba': 0.067627, 'bbb': 0.04984, 'bca': 0.015226, 'bcB': 5.8e-05, 'bCA': 0.001452, 'bCB': 0.002317, 'caa': 0.012208, 'cab': 0.015793, 'cac': 0.048941, 'cbc': 0.000649, 'cBA': 0.002745, 'Abb': 0.007098, 'AAB': 0.005449, 'AAC': 0.013067, 'ABA': 0.025054, 'ABB': 0.06215, 'ACA': 0.05725, 'ACB': 0.019258, 'Bac': 0.000445, 'BAb': 0.003796, 'BAA': 0.012741, 'BAB': 0.081755, 'BAC': 0.013758, 'BBa': 0.000445, 'BBA': 0.062818, 'BBB': 0.054521, 'BCA': 5.8e-05, 'CAb': 0.003302, 'CAA': 0.005775, 'CAC': 0.049683, 'CBA': 0.021432, 'CBB': 8.5e-05, 'CBC': 5.8e-05}

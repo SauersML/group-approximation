@@ -111,6 +111,102 @@ sees.
   far from every patchwork. Not a solution. It is a decomposition into two
   prerequisites that cannot both hold.
 
+* **Planted/NO-coset coupling (2026-09-18).** This attempt is recorded in
+  `locally-read-witnesses-are-sound-on-planted-2to1-inputs`, which is
+  ESTABLISHED. Take any witness map `Lambda` (orientation plus lift labelling,
+  efficient or not) with read sets `S_e`, and any sound right-hand side `b0`.
+  Then `E_t val(Lambda(Ht)) <= eta + mu_(b0)`, where `mu_(b0)` is the weight of
+  the constraints whose read set `b0` locally refutes (`b0|S_e notin
+  Im H_(S_e)`). A YES witness of value `>= 1 - eta'` must therefore read
+  `b0`-refuting parity cycles on `>= 1 - eta' - eta` of the mass, for every
+  sound `b0`. Tree-like reads are capped at `eta + w_cyc`. Need `207b4529` is
+  reduced, not refuted: any class labelling realising it must encode
+  cross-member parity cycles on its class read sets. Not a solution.
+* **Regime closure (2026-09-17).** This attempt is recorded in
+  `dkkms-certified-parameters-lie-in-the-selector-kill-regime`, which is
+  ESTABLISHED. The inequalities that the DKKMS Lemma 5.3 soundness proof
+  imposes on its own parameter point are:
+  - smooth-advice mass `sqrt(beta sqrt k) <= alpha(l)/2`, with
+    `alpha(l) = delta1 2^(-l^2-2)`;
+  - outer margin `eps_k < delta alpha(l)/4`;
+  - soundness `delta >= 2^(1-l)`.
+
+  Together these force the Theorem S regime (R)+(A) at every certified point
+  with soundness below `1/16`, for every advice dimension `q`. Corollary S1 of
+  Theorem S therefore holds with no parameter window: this claim implies
+  `NP in RP`, with `R_eta` read as the DKKMS TR16-198 family as defined above.
+  The claim stays OPEN, and is conditionally refuted under `NP not in RP`.
+  Two things survive:
+  - lift completeness in `(1/2, 1 - 10^(-5))`;
+  - other instance families, including the TR16-124 A-A Grassmann reduction if
+    that is what the 2-to-2 theorem actually uses.
+
+  Not a solution.
+
+* **Building the selector from parities of the right-hand sides
+  (2026-09-18).** **Mechanism found and checked; the kill is not yet
+  established.** Recorded in
+  `bounded-rank-parity-selectors-pay-representation-weight`, which was posted
+  ESTABLISHED and demoted to **OPEN** the same day by referee audit: Lemma 3
+  ("`W_(ef) > N`") is false for *collapsing* pairs, since its proof never
+  excludes `T = empty`, and the Corollary's hypothesis ("all pairs have
+  `W_(ef), g_(ef) > W`") is then met by no B-vertex at all — every constraint has
+  `2^k - 1` collapsing same-window partners — so `rho = 1` and the Corollary,
+  the only place the "tends to `1/2`" conclusion is delivered, reads vacuous.
+  The repair looks like one clause ("`W_(ef) = 0` or `W_(ef) > N`", and `rho`
+  over non-collapsing pairs only, collapse already being priced by `kappa`) and
+  leaves the numeric bound unchanged, but it has not been made or re-refereed.
+  Read the rest of this entry as the *shape* of the attempt, not as a settled
+  kill. `view-local-branch-selectors-are-gauge-blind` leaves *parity
+  leaking or global* selectors alive, so the natural next attempt is to let the
+  selector read arbitrary parities `<c, b>` of the right-hand sides. The
+  arithmetic is exact and encouraging at first: if `M^T c = x_e + y + h` with
+  `y in L'` and `h in H_(U_e)`, then
+
+  ```text
+  o_e(tau) := <c, b> xor tau(y) xor h_(U_e)(h)
+  ```
+
+  predicts the honest branch bit `<t, x_e>` **perfectly**, except that it is off
+  by the parity `<c, Viol(t)>` of the violated equations it combines. That is
+  where it dies. The gauge of the blindness kill cannot randomise `Viol`, but
+  the planted ensemble `b = M t + v` can, and then the bias of the prediction is
+  exactly `(1 - 2 eta)^(|c|)`. Two consequences:
+
+  - **Short representations do not exist.** On a locally sparse source, a set
+    `T` of equations summing into `x_e + x_f + L' + H_(U_e) + H_(U_f)` has all
+    its degree-one variables inside `vars(U_e) union vars(U_f)`, which
+    unique-neighbour expansion forbids for `|T| > 6k` and local isolation
+    forbids for `|T| <= 6k`; the artifact finds none with `|T| <= 3` at
+    `n = 400` (at 95% of windows).
+  - **So the price should be paid in full** — this is the part the audit
+    stopped. The intended conclusion is that every selector whose per-edge bit
+    function factors through at most `R` arbitrary parities of `b`, beyond its
+    window's own offsets, has honest lift value at most
+    `1/2 + k eta + (1/2) sqrt(1/D + kappa + rho + 2^(2R+1)(1-2eta)^W)`, tending
+    to `1/2` on DKKMS-shape neighbourhoods (in the limit order `k`, then
+    `eta ~ delta/k`, then `n`; the order stated in the node does not work). The
+    bound would be on the lift value, not on the agreement rate `hon_t(o)`; the
+    second moment over each B-vertex needs the *pair* invariant, the
+    representation weight of `x_e + x_f`. As posted, `rho = 1` identically and
+    the bound is vacuous. It is also an *average* over the planted ensemble, not
+    a per-instance statement — harmless here, since one bad YES instance
+    suffices, but the node's per-instance phrasing overstates it.
+
+  Two concrete global selectors were measured on small Grassmann instances:
+  Gaussian elimination on the whole system (`0.510`) and solving the window plus
+  the seed label (`0.524`), against an oracle control at `1.000`.
+
+  Survivors after this attempt: everything, pending the Lemma 3 / Corollary
+  repair. If that repair goes through, the survivors would be rank above
+  `eta W(n)`, which is decoding and not leaking, and is exactly the regime of
+  `efficient-branch-selectors-list-decode-honest-outer-labels` under
+  `NP not in RP`; and non-honest witnesses, which no kill on this node reaches
+  at any rank. Note also that the bounded-rank class does **not** subsume
+  `view-local-branch-selectors-are-gauge-blind`, whose faithful views may have
+  rank `Theta(m)`: the two kills are incomparable, so neither closes the other's
+  survivors.
+
 * **Obstruction mining on the rigidity branch (2026-09-18, agent
   `e2-w2-ugc-selector-kill`, family stability-approximation, signature "seed
   BLR recovers one global linear label"). Refuted in part at the wave's referee

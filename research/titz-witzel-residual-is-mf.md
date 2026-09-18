@@ -7,6 +7,11 @@ distinct_from:
   titz-witzel-exact-kazhdan-mf-radical-over-z: that needs a residual K that is not MF, since Rad_MF(K x Z) is K or trivial according as K is not MF or MF; this asserts the MF alternative for some residual, which would make that residual hyperlinear.
   simple-kazhdan-groups-have-full-mf-radical: that was the general non-MF assertion for infinite simple Kazhdan groups, now refuted by an LEF group; this is the MF question for the finitely presented residuals, where LEF is impossible and the question is open.
   kazhdan-mf-hyperlinear-fragment: that proves simple Kazhdan MF groups are hyperlinear; this is the premise that fragment would need for a finitely presented group.
+artifacts:
+  - experiments/tw-mf-norm-census-2026-09-17/norm_census.py
+  - experiments/tw-mf-norm-census-2026-09-17/verify_witnesses.py
+  - experiments/tw-mf-norm-census-2026-09-17/census_run1_output.txt
+  - experiments/tw-mf-norm-census-2026-09-17/verify_witnesses_output.txt
 ---
 
 **OPEN.** Some Titz Mite--Witzel residual `K` embeds in the unitary group of
@@ -58,3 +63,36 @@ all five residuals, `titz-witzel-exact-kazhdan-mf-radical-over-z` holds.
       `C*(K)` fails the LP: Ioana--Spaas--Wiersma Corollary E needs only `H^2(K;R) != 0`.
   - **Where it stops.** Every known construction of finite-dimensional almost flat bundles
     realizing a degree-two class uses finite covers of large injectivity radius. `K` has none.
+- **Operator-norm defect census, `k <= 16` (2026-09-18, heuristic only).** Dead as a way to
+  tell MF from non-MF.
+  - **Setup.** Use the two-generator presentation `(TW2G2)` of `barGamma` (relators `c^2`,
+    `r0`, `r1`, `r2` of lengths 18, 84, 108, 104, rebuilt from the free-word-check artifact).
+    Here `e = V diag(+-1) V^*` is an exact involution and `u = diag(e^(i theta))` has one frozen
+    eigenvalue at `theta_0`. That gives `||u^8 - 1||_op >= |e^(8i theta_0) - 1| =: c`, and `u^8`
+    separates, since `K` is simple and `K` MF iff `barGamma` MF. We minimise the maximum
+    operator-norm relator defect `delta_c(k)` by batched Riemannian CG on `U(k) x T^(k-1)`,
+    using a smoothed maximum `(1/2q) log sum tr(H^q)` with `q = 1, 4, 16, 64`. Gradients are
+    checked by finite differences.
+  - **Certified upper bounds (explicit double-precision tuples).** An independent
+    letter-by-letter recheck is in `verify_witnesses_output.txt`, with involution and unitarity
+    errors `<= 1e-13`.
+
+    | `c` | `k = 1` | `k = 2` | `k = 3..16` |
+    |---|---|---|---|
+    | 2 | 2.000 | 1.2355 | 1.2355 (padded) |
+    | 1.414 | 1.848 | 1.444 | 1.362 (`k = 3`), 1.272 (`k = 4..12`), 1.128 (`k = 16`) |
+    | 0.765 | 1.191 | 0.650 | 0.6291 to 0.6293 |
+
+    At `c = 0.765`, three relators equalise near 0.625, 0.627 and 0.629, and this recurs from
+    independent random starts at every `k` from 3 to 16.
+  - **What it shows.** `delta_c(k)` is non-increasing in `k`: pad with the exact trivial
+    representation `(1,1)` or the sign representation `(-1,-1)` of `barGamma`. In dimensions up to
+    16, local search never beats a 2- or 3-dimensional witness padded this way, and no decay in
+    `k` is visible. The ratio `delta/c` stays around 0.6 to 0.8.
+  - **Where it dies.** The optimiser is not global: the `k = 2`, `c = 2` value was 1.4139 in one
+    run and 1.2355 in a wider run. There is no lower-bound mechanism: Tarski-type certificates
+    are out of reach at `k >= 3`, and Kazhdan gives no operator-norm stability. By the
+    gap-localisation node, any MF witness must separate `u^8` on the gapped complement of an
+    almost-invariant projection, and nothing suggests that happens at `k <= 16`. So a plateau at
+    small `k` is compatible with both alternatives and changes no belief. Upgrading this needs a
+    structured ansatz with dimension growing in a controlled way, not a denser search.
