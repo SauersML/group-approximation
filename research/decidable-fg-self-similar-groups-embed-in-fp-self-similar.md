@@ -107,9 +107,6 @@ whatever happens to the first half.
      (`automaton-tail-full-groups-have-conp-relative-word-problem`). That rules out
      `V_d(S)` for contracting `S`.
    - *Status.* Untried.
-
-## Attempts
-
 - 2026-09-18 (bh-self-similar): what this claim is now needed for, and one route that is closed.
   - **Use.** By `separated-automata-reduce-bh-to-fp-overgroups-of-the-base`, its automaton-group case for bounded
     bases, `bounded-automaton-groups-embed-in-fp-automaton-groups`, would make every separated linear-activity
