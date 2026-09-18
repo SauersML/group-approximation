@@ -46,3 +46,18 @@ beyond what the nodes below state. No priority claimed.
   generating set of `P`?
 - Does finite presentation of `A/J` force a finitely presented germ group? Attempt 1's fibre model
   does not apply, because `f_g` is nonzero there.
+
+## Update (second pass, same day)
+
+- **`A/J` is central simple, for every shell envelope.** See
+  `shell-germ-essential-algebras-are-central-simple`. Simplicity is the CEPSS remark after
+  `thm:simple` (l.838–849 of the e-print, now read on MSI), via Nekrashevych's Proposition 4.1;
+  a direct proof is included. The centre computation is new here.
+- **`J` is generated at `p`.** See `shell-germ-singular-ideal-is-generated-at-the-singular-point`.
+  `J = A J_p A`, where `J_p` is the annihilator in `K[Q]` of the shell module at infinity, and
+  `J` is finitely generated iff `J_p` is. So it holds whenever `K[Q]` is Noetherian.
+- **One explicit shell.** For the zigzag shell of `Z`
+  (`zigzag-shell-singular-ideal-is-finitely-generated`), `J` is finitely generated, but not by
+  the four-germ elements `f_(g,h)`.
+- Still open: finite generation of `J_p` for infinite simple `P`, and finite presentation of
+  `A/J` for any shell.
