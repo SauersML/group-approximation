@@ -104,16 +104,20 @@ theorem toAdj_isBoundedBy {f : E.carrier →L[ℂ] E.carrier} (hf : f ∈ adjSub
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.toAdj_isBoundedBy
 
+/-- An adjointable operator, read as a linear map. -/
+def linOf (S : Adjointable E E) : E.carrier →ₗ[ℂ] E.carrier where
+  toFun := S.toFun
+  map_add' := S.map_add
+  map_smul' := fun c x => by
+    rw [RingHom.id_apply]
+    exact S.map_smul c x
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.linOf
+
 /-- A bounded adjointable operator, read as a continuous linear map. -/
 noncomputable def clmOf (S : Adjointable E E) {C : ℝ} (hC : S.IsBoundedBy C) :
     E.carrier →L[ℂ] E.carrier :=
-  LinearMap.mkContinuous
-    { toFun := S.toFun
-      map_add' := S.map_add
-      map_smul' := fun c x => by
-        rw [RingHom.id_apply]
-        exact S.map_smul c x }
-    C hC
+  (linOf S).mkContinuous C hC
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.clmOf
 
@@ -163,7 +167,8 @@ theorem adjCLM_mem {f : E.carrier →L[ℂ] E.carrier} (hf : f ∈ adjSub E) :
 
 theorem adjCLM_norm_le {f : E.carrier →L[ℂ] E.carrier} (hf : f ∈ adjSub E) :
     ‖adjCLM hf‖ ≤ ‖f‖ :=
-  LinearMap.mkContinuous_norm_le _ (norm_nonneg f) _
+  ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg f)
+    (fun y => (toAdj_isBoundedBy hf).adjoint (norm_nonneg f) y)
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.adjCLM_norm_le
 

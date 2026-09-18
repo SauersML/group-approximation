@@ -38,7 +38,7 @@ noncomputable def quotSpanEquivAdjoinRoot {R : Type*} [CommRing R] (q : R[X]) :
   (Ideal.quotEquivOfEq (show Ideal.span {q} = RingHom.ker (AdjoinRoot.mk q) from
     Ideal.ext fun x => by
       rw [RingHom.mem_ker, AdjoinRoot.mk_eq_zero, Ideal.mem_span_singleton])).trans
-    (RingHom.quotientKerEquivOfSurjective (AdjoinRoot.mk_surjective q))
+    (RingHom.quotientKerEquivOfSurjective (AdjoinRoot.mk_surjective (g := q)))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPCoords.quotSpanEquivAdjoinRoot
 

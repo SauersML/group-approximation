@@ -72,7 +72,7 @@ theorem span_polyRelators_le_ker :
   rintro z (rfl | ⟨⟨i, j⟩, rfl⟩)
   · change (p : FreeAlgebra ℤ (Fin k)) ∈ TwoSidedIdeal.ker (polyQuotientMap p k)
     rw [TwoSidedIdeal.mem_ker, map_natCast]
-    exact CharP.cast_eq_zero p
+    exact CharP.cast_eq_zero (MvPolynomial (Fin k) (ZMod p)) p
   · change FreeAlgebra.ι ℤ i * FreeAlgebra.ι ℤ j - FreeAlgebra.ι ℤ j * FreeAlgebra.ι ℤ i ∈
       TwoSidedIdeal.ker (polyQuotientMap p k)
     rw [TwoSidedIdeal.mem_ker, map_sub, map_mul, map_mul, polyQuotientMap_ι, polyQuotientMap_ι]
