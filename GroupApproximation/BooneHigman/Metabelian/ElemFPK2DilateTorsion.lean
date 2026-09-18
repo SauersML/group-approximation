@@ -68,6 +68,7 @@ section DilateMatrix
 
 variable {n R T : Type*} [Fintype n] [DecidableEq n] [Ring R] [Ring T]
 
+omit [Fintype n] in
 theorem k2Dilate_map_one_apply (φ : R →+* T) (i j : n) :
     φ ((1 : Matrix n n R) i j) = (1 : Matrix n n T) i j := by
   by_cases hij : i = j
