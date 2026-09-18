@@ -25834,6 +25834,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · fpbs-worst-pair-connectivity-rate-positive-above-pc-universal [OPEN] On every nonamenable Cayley graph some p above p_c has a point in every large ball connected to the centre with exponentially small probability
 - 2026-09-18 · property-t-free-jacobson-head-collapse [OPEN] Prove the Jacobson head collapse without property T or Kazhdan transport
 - 2026-09-18 · corona-fixed-projection-membership-is-finite-markov-gap-proof [COMPLETE] Diagonalize almost-invariant vectors orthogonal to Fix(L) across coordinates into one exactly invariant vector that the lift of P_L kills
 - 2026-09-18 · corona-fixed-projection-membership-is-finite-markov-gap [ESTABLISHED] The fixed-vector projection of any subgroup lies in the adjoint corona only when one finite Markov element of the subgroup has an isolated eigenvalue at 1, so no non-group element of the corona can supply a transport projection
@@ -25841,7 +25842,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · amenable-fixed-projection-not-in-adjoint-corona-proof [COMPLETE] Embed the conjugation representation on l^2 of an infinite L-class into the ultraproduct, push Folner sets forward to get almost-invariant vectors orthogonal to Fix(L), and contradict the saturation gap
 - 2026-09-18 · loop-braid-free-count-five-not-simply-connected-proof [COMPLETE] Extra 3-torsion in the abelianized stabilizer colimit over the suspension domain Σ OM(K_5) obstructs simple connectivity
 - 2026-09-18 · loop-braid-free-count-five-not-simply-connected [ESTABLISHED] At free count 5 the forbidden-ring subcomplexes X_n(F) of L_n(LB_*) are not simply connected for n = 7, 8, 9; the coning subcomplex Y at free count 7 is not simply connected
-- 2026-09-18 · loop-braid-forbidden-ring-coning-statement [OPEN] Coning statement: for free count N ≥ 11, the q∈{0,3} subcomplex Y_n(F;v,w) of the loop braid descending link is ⌊(N−5)/3⌋-connected
 
 ## Active claims
 
