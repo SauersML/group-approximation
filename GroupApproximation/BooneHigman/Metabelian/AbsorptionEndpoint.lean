@@ -20,13 +20,12 @@ over the two families of rings.  It is strictly smaller in proof content than th
 statements (these additionally need the homomorphism, its injectivity and its determinant, all
 proved here).  **Truth check.**  This is Suslin's theorem
 (A. A. Suslin, *On the structure of the special linear group over polynomial rings*, 1977):
-for a Noetherian ring `A` of Krull dimension `d` with `K_1` homotopy invariance (e.g. `A` regular)
-and `SL_n(A) = E_n(A)`, one has `SL_n(A[x_1, ..., x_k]) = E_n(A[x_1, ..., x_k])` for
-`n ≥ max(3, d + 2)`.  Here `A = F_p` (`d = 0`) or `A = ℤ[1/m]` (`d ≤ 1`, a Euclidean domain, so
-`SL_n(A) = E_n(A)`), and `n ≥ 3` suffices; for `m = 0` the ring `ℤ[1/0]` is the zero ring and the
-statement is trivial.  The bound `N ≥ 3` is needed: `SL_2(F_p[s_0, s_1]) ≠ E_2` (Cohn).  The
-hypothesis that `p` is prime is also needed (non-reduced coefficient rings break homotopy
-invariance of `K_1`).
+for a regular Noetherian ring `A` of Krull dimension `d` and `n ≥ max(3, d + 2)`, the map
+`SL_n(A[x_1, ..., x_k]) / E_n(A[x_1, ..., x_k]) → SL_n(A) / E_n(A)` is bijective.  Here `A = F_p`
+(`d = 0`, a field) or `A = ℤ[1/m]` (`d ≤ 1`, a Euclidean domain), so `SL_n(A) = E_n(A)` and
+`n ≥ 3` suffices; the cases `k = 0` are Gaussian elimination, and for `m = 0` the ring `ℤ[1/0]` is
+the zero ring and the statement is trivial.  The bound `N ≥ 3` cannot be dropped:
+`SL_2(F_p[s_0, s_1]) ≠ E_2` (Cohn's matrix `[[1 + s_0 s_1, s_0²], [-s_1², 1 - s_0 s_1]]`).
 -/
 
 namespace GroupApproximation

@@ -82,7 +82,8 @@ theorem blockUnits_one :
 /-- The upper-left block of `diag(u, v)` determines `u`. -/
 theorem blockUnits_left_eq {u u' : (Matrix m m R)ˣ} {v v' : (Matrix n n R)ˣ}
     (h : blockUnits u v = blockUnits u' v') : u = u' := by
-  have hv := congrArg (fun z : (Matrix (m ⊕ n) (m ⊕ n) R)ˣ ↦ (z : Matrix (m ⊕ n) (m ⊕ n) R)) h
+  have hv :=
+    congrArg (fun z : (Matrix (m ⊕ n) (m ⊕ n) R)ˣ ↦ (z : Matrix (m ⊕ n) (m ⊕ n) R)) h
   change Matrix.fromBlocks (u : Matrix m m R) 0 0 (v : Matrix n n R) =
     Matrix.fromBlocks (u' : Matrix m m R) 0 0 (v' : Matrix n n R) at hv
   exact Units.ext (Matrix.fromBlocks_inj.mp hv).1
@@ -90,7 +91,8 @@ theorem blockUnits_left_eq {u u' : (Matrix m m R)ˣ} {v v' : (Matrix n n R)ˣ}
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.blockUnits_left_eq
 
 theorem blockUnits_det (u : (Matrix m m R)ˣ) (v : (Matrix n n R)ˣ) :
-    Matrix.det ((blockUnits u v : (Matrix (m ⊕ n) (m ⊕ n) R)ˣ) : Matrix (m ⊕ n) (m ⊕ n) R) =
+    Matrix.det
+        ((blockUnits u v : (Matrix (m ⊕ n) (m ⊕ n) R)ˣ) : Matrix (m ⊕ n) (m ⊕ n) R) =
       Matrix.det (u : Matrix m m R) * Matrix.det (v : Matrix n n R) := by
   change Matrix.det (Matrix.fromBlocks (u : Matrix m m R) 0 0 (v : Matrix n n R)) = _
   exact Matrix.det_fromBlocks_zero₂₁ _ _ _
@@ -134,7 +136,8 @@ section FinBlocks
 variable {R : Type*} [CommRing R]
 
 /-- `(Fin M ⊕ Fin M) ⊕ Fin (N - 2M) ≃ Fin N` for `2M ≤ N`. -/
-def absorptionIndexEquiv (M N : ℕ) (h : 2 * M ≤ N) : (Fin M ⊕ Fin M) ⊕ Fin (N - 2 * M) ≃ Fin N :=
+def absorptionIndexEquiv (M N : ℕ) (h : 2 * M ≤ N) :
+    (Fin M ⊕ Fin M) ⊕ Fin (N - 2 * M) ≃ Fin N :=
   (Equiv.sumCongr finSumFinEquiv (Equiv.refl (Fin (N - 2 * M)))).trans
     (finSumFinEquiv.trans (finCongr (show M + M + (N - 2 * M) = N by omega)))
 
@@ -162,7 +165,7 @@ noncomputable def absorptionUnits (M N : ℕ) (h : 2 * M ≤ N) :
         elementaryReindexUnitEquiv (R := R) (absorptionIndexEquiv M N h)
           (blockUnits (blockUnits g' (invTransposeHom g'))
             (1 : (Matrix (Fin (N - 2 * M)) (Fin (N - 2 * M)) R)ˣ))
-    rw [map_mul invTransposeHom g g', blockUnits_mul, blockUnits_mul_one, map_mul]
+    rw [map_mul (invTransposeHom (R := R) (m := Fin M)) g g', blockUnits_mul, blockUnits_mul_one, map_mul]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.absorptionUnits
 

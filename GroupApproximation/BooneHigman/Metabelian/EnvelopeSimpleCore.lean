@@ -88,7 +88,7 @@ theorem commutatorElement_mul_left_eq (x y z : M) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutatorElement_mul_left_eq
 
-theorem commutatorElement_list_prod_right_mem {G N : Subgroup M} (a : M) (l : List M)
+theorem commutator_listProd_right_mem {G N : Subgroup M} (a : M) (l : List M)
     (h : ∀ b ∈ l, b ∈ G ∧ ⁅a, b⁆ ∈ conjCore G N) : ⁅a, l.prod⁆ ∈ conjCore G N := by
   induction l with
   | nil =>
@@ -100,9 +100,9 @@ theorem commutatorElement_list_prod_right_mem {G N : Subgroup M} (a : M) (l : Li
     exact (conjCore G N).mul_mem hb.2
       (conj_mem_conjCore (ih fun c hc => h c (List.mem_cons_of_mem b hc)) hb.1)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutatorElement_list_prod_right_mem
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_listProd_right_mem
 
-theorem commutatorElement_list_prod_mem {G N : Subgroup M} (Small : M → M → Prop)
+theorem commutator_listProd_mem {G N : Subgroup M} (Small : M → M → Prop)
     (hbase : ∀ a ∈ G, ∀ b ∈ G, Small a b → ⁅a, b⁆ ∈ conjCore G N) (l₂ : List M)
     (hl₂ : ∀ b ∈ l₂, b ∈ G) (l₁ : List M) (hl₁ : ∀ a ∈ l₁, a ∈ G)
     (hs : ∀ a ∈ l₁, ∀ b ∈ l₂, Small a b) : ⁅l₁.prod, l₂.prod⁆ ∈ conjCore G N := by
@@ -116,10 +116,10 @@ theorem commutatorElement_list_prod_mem {G N : Subgroup M} (Small : M → M → 
     refine (conjCore G N).mul_mem (conj_mem_conjCore ?_ ha) ?_
     · exact ih (fun c hc => hl₁ c (List.mem_cons_of_mem a hc))
         (fun c hc => hs c (List.mem_cons_of_mem a hc))
-    · exact commutatorElement_list_prod_right_mem a l₂ fun b hb =>
+    · exact commutator_listProd_right_mem a l₂ fun b hb =>
         ⟨hl₂ b hb, hbase a ha b (hl₂ b hb) (hs a List.mem_cons_self b hb)⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutatorElement_list_prod_mem
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_listProd_mem
 
 /-- **Fragmentation.**  Pairwise small fragments whose commutators have all `G`-conjugates in
 `N` force `⁅G, G⁆ ≤ N`. -/
@@ -132,7 +132,7 @@ theorem commutator_le_of_fragments (G N : Subgroup M) (Small : M → M → Prop)
   intro g₁ hg₁ g₂ hg₂
   obtain ⟨l₁, l₂, hl₁, hl₂, hp₁, hp₂, hs⟩ := hfrag g₁ hg₁ g₂ hg₂
   rw [← hp₁, ← hp₂]
-  exact mem_of_mem_conjCore (commutatorElement_list_prod_mem Small
+  exact mem_of_mem_conjCore (commutator_listProd_mem (G := G) (N := N) Small
     (fun a ha b hb hab => mem_conjCore.mpr (hbase a ha b hb hab)) l₂ hl₂ l₁ hl₁ hs)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_le_of_fragments

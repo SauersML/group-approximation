@@ -275,6 +275,11 @@ theorem exists_twoGenerated_commutator_embedding (Γ : Type) [Group Γ] [Countab
       (MonoidHom.inl Γ (Multiplicative ℤ) γ)⟩
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.exists_twoGenerated_commutator_embedding
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.commutator_fPermZ_tPermZ
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.level_difference_zeroZ
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.word_aPermZ_bPermZ
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.levelZeroHom_injective
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.embeddingΔ_mem_commutator
 
 end NeumannNeumann
 end SimpleHosts

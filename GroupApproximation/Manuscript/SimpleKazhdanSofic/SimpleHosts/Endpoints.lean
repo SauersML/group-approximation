@@ -74,7 +74,7 @@ instance fpFactorCountable (i : FPIndex) : Countable (FPFactor i) :=
   (PresentedGroup.mk_surjective _).countable
 
 instance fpUniversalCountable : Countable FPUniversal :=
-  Con.mk'_surjective.countable
+  (Con.mk'_surjective (c := conGen (Monoid.CoprodI.Rel FPFactor))).countable
 
 /-- Every finitely presented group embeds in `FPUniversal`. -/
 theorem exists_embedding_fpUniversal (H : Type) [Group H] [Group.IsFinitelyPresented H] :

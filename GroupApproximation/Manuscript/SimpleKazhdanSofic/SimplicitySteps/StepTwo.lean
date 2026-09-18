@@ -53,6 +53,9 @@ theorem epsilonEntry_eq_epsilon {V : Set Z} (hV : IsClopen V) (a b : Λ) :
         (ClopenGroupCrossedProduct.unitHom Λ Z (ZMod 2)) hV a b :=
   rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimplicitySteps.three_le_towerDim
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimplicitySteps.epsilonEntry_eq_epsilon
+
 end SimplicitySteps
 end SimpleKazhdanSofic
 end GroupApproximation
