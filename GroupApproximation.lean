@@ -5984,6 +5984,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAmbientAction
 import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideTransport
 import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideRotation
 import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSteps
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVK2Route.Core
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
