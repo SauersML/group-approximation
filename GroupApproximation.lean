@@ -5911,6 +5911,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Dich
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKVanishing
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.KZero
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Intro
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.ChainOps
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
