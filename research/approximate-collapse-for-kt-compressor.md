@@ -618,3 +618,29 @@ to an HS-almost representation of `G`. The claim stays OPEN.
     bounded-arity permutation modules, and non-monomial HS extensions. Also
     open is a version of Theorem C for infinite-measure (Poisson-type) sofic
     actions, which would kill infinite-hull walls.
+
+- **The infinite-measure Theorem C, tested (lane w9-121, 2026-09-18).**
+  Result: `gaussian-theorem-c-for-ad-sigma-is-equivalent-to-ccr`.
+  - *Transfer.* An enemy of any trace-faithful `sigma` (an element of
+    `sigma(Gamma)' ∩ M` not fixed by `sigma(N)`, `N ⊇ E`) gives a Gaussian
+    action of `G`, the suspension of the enemy's cyclic part of `Ad sigma`, in
+    which `L^∞^Gamma` is not `G`-invariant. By Theorem C, that action is not
+    sofic and is not a factor of a sofic action. No soficity of `sigma` is
+    needed, so this covers `A_m` and all other non-permutation carriers.
+  - *Equivalence.* Theorem C's conclusion for all Gaussian suspensions of
+    `Ad sigma^(⊗j)` holds if and only if no tensor power `sigma^(⊗k)` has an
+    enemy. The proof uses Wiener chaos, `L^2`-fixed vectors of `Ad` as
+    closures of relative commutants, and tensor ultraproducts. Sofic and
+    trace-faithful classes are closed under tensor powers. So the
+    Poisson-type Theorem C for sofic models is *equivalent* to
+    `kt-sofic-models-normalize-vn-commutants`, not a lever toward it.
+  - *Exact missing input.* Soficity (a Păunescu model) of Gaussian
+    suspensions of conjugation representations would suffice. Corollary D is
+    the coset case of the transfer.
+  - *Flexible target.* An enemy must make some compressor have positive
+    entropy on a `Gamma`-fixed Gaussian factor
+    (`zero-entropy-compressors-preserve-fixed-algebra`).
+
+Next step: decide whether the Gaussian suspension of `Ad sigma`, for a sofic
+`sigma` of `G`, admits a Păunescu model. The natural row-Poisson model sees
+only pair scales. The claim stays OPEN.
