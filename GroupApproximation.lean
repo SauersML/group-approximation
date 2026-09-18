@@ -5955,6 +5955,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabEntry
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.Decide
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineMap
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensor
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseCorners
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseComplement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
