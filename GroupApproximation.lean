@@ -5863,6 +5863,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Reduced
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.TreeOps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductBasic
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ConjElim
+import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Statement
+import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Assembly
+import GroupApproximation.Manuscript.NonMF.Full.GL06h3.OneCell
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
