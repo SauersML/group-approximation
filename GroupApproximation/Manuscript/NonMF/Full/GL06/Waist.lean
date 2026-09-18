@@ -71,12 +71,46 @@ universe u w v
 open GroupApproximation.GGT
 open GroupApproximation.GGT.VanKampen
 
+section NonRose
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.Surgery.MapCollapse
+
+/-- **The outer-pinch step outside the rose configuration** (Osin, §9, proof of Lemma 9.7(b);
+infrastructure for `thm:hull`).  `PocketOuterPinchStepSectionStatement` under the extra hypothesis
+that some non-first turn of the boundary cycle is crossed by no other passage, i.e.
+`¬ Full.GL06f.AllNonFirstTurnsCrossed K`.  This is the statement shape of the foreign
+`P10ChordLift.NonRoseStepStatement`, over the compiling `Full.GL06f` rose predicate. -/
+def NonRoseStepStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, GroupApproximation.Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+              ∀ (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+                (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+                ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+                  K.sourceArc.length < (cellDarts X K.source).length →
+                  K.targetArc.length < (outerDarts X).length →
+                  ¬Unpinched X.toCombMap K.faces →
+                  ¬ GroupApproximation.Full.GL06f.AllNonFirstTurnsCrossed K →
+                    ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+                      Nonempty (OEquivalentDiscDiagram X X') ∧
+                        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                        K'.ClosedWalk ∧ K'.sourceArc.length < (cellDarts X' K'.source).length ∧
+                        K'.targetArc.length < (outerDarts X').length ∧
+                        K'.repeatedVisits < K.repeatedVisits
+
+end NonRose
+
 /-- **Residual 10 from its rose case and its non-rose case** (Osin, §9, proof of Lemma 9.7(b);
 `thm:hull`).  Both cases have the same hypotheses up to the rose predicate; the thresholds are the
 larger of the two. -/
 theorem outerPinchStep_of_cases
-    (hnon : GroupApproximation.Full.GL06d.NonRoseStepStatement.{u, w, v})
-    (hrose : GreendlingerLeaf.P10ChordLift.RoseStepStatement.{u, w, v}) :
+    (hnon : NonRoseStepStatement.{u, w, v})
+    (hrose : GroupApproximation.Full.GL06f.RoseStepStatement.{u, w, v}) :
     PocketOuterPinchStepSectionStatement.{u, w, v} := by
   intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨e₁, he₁⟩ := hnon D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
@@ -86,7 +120,7 @@ theorem outerPinchStep_of_cases
   obtain ⟨r₂, -, hR₂⟩ := he₂ eps (le_of_max_le_right heps)
   refine ⟨max r₁ r₂, lt_max_of_lt_left hr₁, fun rho hrho W hW X lo hi hlea hlabel K hclosed
     hfirst hsource htarget hpinched => ?_⟩
-  rcases Classical.em (GreendlingerLeaf.P10ChordLift.AllNonFirstTurnsCrossed K) with hall | hall
+  rcases Classical.em (GroupApproximation.Full.GL06f.AllNonFirstTurnsCrossed K) with hall | hall
   · exact hR₂ rho (le_of_max_le_right hrho) W hW X lo hi hlea hlabel K hclosed hfirst hsource
       htarget hpinched hall
   · exact hR₁ rho (le_of_max_le_left hrho) W hW X lo hi hlea hlabel K hclosed hfirst hsource
@@ -125,5 +159,6 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
 
 end GroupApproximation.Full.GL06
 
+#audit_axioms GroupApproximation.Full.GL06.NonRoseStepStatement
 #audit_axioms GroupApproximation.Full.GL06.outerPinchStep_of_cases
 #audit_axioms GroupApproximation.Full.GL06.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals

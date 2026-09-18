@@ -7,7 +7,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06b.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
 import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
-import GroupApproximation.Manuscript.NonMF.Full.GL06f.Bridge
+import GroupApproximation.Manuscript.NonMF.Full.GL06f.Reduction
 import GroupApproximation.Manuscript.NonMF.Full.GL03B.FollowsCase
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL03D.Endpoint
@@ -37,7 +37,9 @@ remaining binders come from sibling lanes. Names marked PROVISIONAL are not land
   `Full.GL03B.innerPocketEnclosedTwoArcLocal_of_pinched` of PROVISIONAL
   `Full.GL03BPinch.innerPocketEnclosedTwoArcPinched`.
 * `hstep` (residual 10): `Full.GL06.outerPinchStep_of_cases` of
-  * PROVISIONAL `Full.GL06d.nonRoseStep`, and
+  * PROVISIONAL `Full.GL06d.nonRoseStep`, whose type must be definitionally
+    `Full.GL06.NonRoseStepStatement` (over `Full.GL06f.AllNonFirstTurnsCrossed`, not the
+    non-compiling `P10ChordLift` predicate), and
   * PROVISIONAL `Full.GL06f.rose_of_regionMoveSubArc` applied to PROVISIONAL
     `Full.GL03D.roseRegionMoveSubArc : Full.GL06f.RoseRegionMoveSubArcStatement`.
 

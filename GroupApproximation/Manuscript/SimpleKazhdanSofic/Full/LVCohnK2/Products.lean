@@ -169,3 +169,122 @@ theorem x_inl_commute_x_inr (hI : ∀ i j : I, ∃ m : I, m ≠ i ∧ m ≠ j)
     · subst hil
       exact commute_inl_inr_adjacent' i j k hij hkl hjk a b
     · exact x_commute_of_ne i j k l hij hkl hjk (fun e => hil e.symm) _ _
+
+/-- The images of `St_I(R)` and `St_I(S)` in `St_I(R × S)` commute, provided every pair of indices
+misses a third index.  (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem inl_commute_inr (hI : ∀ i j : I, ∃ m : I, m ≠ i ∧ m ≠ j)
+    (g : SteinbergGroup I R) (h : SteinbergGroup I S) :
+    Commute (nonUnitalMap (inlHom R S) g) (nonUnitalMap (inrHom R S) h) := by
+  have hgen : ∀ (i j : I) (hij : i ≠ j) (a : R) (h' : SteinbergGroup I S),
+      Commute (x i j hij ((a, 0) : R × S)) (nonUnitalMap (inrHom R S) h') := by
+    intro i j hij a h'
+    have hmem : h' ∈ (Subgroup.centralizer {x i j hij ((a, 0) : R × S)}).comap
+        (nonUnitalMap (I := I) (inrHom R S)) := by
+      refine PresentedGroup.generated_by (relations (I := I) (R := S)) _ ?_ h'
+      rintro ⟨k, l, hkl, b⟩
+      rw [Subgroup.mem_comap, Subgroup.mem_centralizer_iff]
+      intro y hy
+      rw [Set.mem_singleton_iff] at hy
+      subst hy
+      change x i j hij ((a, 0) : R × S) * nonUnitalMap (inrHom R S) (x k l hkl b) =
+        nonUnitalMap (inrHom R S) (x k l hkl b) * x i j hij ((a, 0) : R × S)
+      rw [nonUnitalMap_x]
+      exact x_inl_commute_x_inr hI i j hij a k l hkl b
+    exact Subgroup.mem_centralizer_iff.mp (Subgroup.mem_comap.mp hmem) _ (Set.mem_singleton _)
+  have hmem : g ∈ (Subgroup.centralizer {nonUnitalMap (inrHom R S) h}).comap
+      (nonUnitalMap (I := I) (inlHom R S)) := by
+    refine PresentedGroup.generated_by (relations (I := I) (R := R)) _ ?_ g
+    rintro ⟨i, j, hij, a⟩
+    rw [Subgroup.mem_comap, Subgroup.mem_centralizer_iff]
+    intro y hy
+    rw [Set.mem_singleton_iff] at hy
+    subst hy
+    change nonUnitalMap (inrHom R S) h * nonUnitalMap (inlHom R S) (x i j hij a) =
+      nonUnitalMap (inlHom R S) (x i j hij a) * nonUnitalMap (inrHom R S) h
+    rw [nonUnitalMap_x]
+    exact (hgen i j hij a h).symm
+  exact (Subgroup.mem_centralizer_iff.mp (Subgroup.mem_comap.mp hmem) _
+    (Set.mem_singleton _)).symm
+
+/-- The elements `g ∈ St_I(R × S)` with `g = inl_* (fst_* g) · inr_* (snd_* g)`; a subgroup when
+every pair of indices misses a third index.  (`simple_kazhdan_sofic_group.tex` l.733-735,
+leaf T1b.iii.) -/
+def prodDecompSubgroup (hI : ∀ i j : I, ∃ m : I, m ≠ i ∧ m ≠ j) :
+    Subgroup (SteinbergGroup I (R × S)) where
+  carrier := {g | g = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g) *
+    nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) g)}
+  one_mem' := by
+    change (1 : SteinbergGroup I (R × S)) =
+      nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) 1) *
+        nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) 1)
+    simp only [map_one, mul_one]
+  mul_mem' := by
+    intro g h hg hh
+    change g = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) g) at hg
+    change h = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) h) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) h) at hh
+    change g * h = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) (g * h)) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) (g * h))
+    have key := (inl_commute_inr hI (ringMap (RingHom.fst R S) h)
+      (ringMap (RingHom.snd R S) g)).mul_mul_mul_comm
+      (nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g))
+      (nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) h))
+    simp only [map_mul]
+    rw [key, ← hg, ← hh]
+  inv_mem' := by
+    intro g hg
+    change g = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) g) at hg
+    change g⁻¹ = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g⁻¹) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) g⁻¹)
+    simp only [map_inv]
+    rw [(inl_commute_inr hI (ringMap (RingHom.fst R S) g)
+      (ringMap (RingHom.snd R S) g)).inv_inv.eq, ← mul_inv_rev, ← hg]
+
+/-- Every `g ∈ St_I(R × S)` equals `inl_* (fst_* g) · inr_* (snd_* g)`, provided every pair of
+indices misses a third index.  (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem eq_inl_mul_inr (hI : ∀ i j : I, ∃ m : I, m ≠ i ∧ m ≠ j)
+    (g : SteinbergGroup I (R × S)) :
+    g = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) g) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) g) := by
+  have hg : g ∈ prodDecompSubgroup hI := by
+    refine PresentedGroup.generated_by (relations (I := I) (R := R × S)) _ ?_ g
+    rintro ⟨i, j, hij, p⟩
+    change x i j hij p = nonUnitalMap (inlHom R S) (ringMap (RingHom.fst R S) (x i j hij p)) *
+      nonUnitalMap (inrHom R S) (ringMap (RingHom.snd R S) (x i j hij p))
+    rw [ringMap_x, ringMap_x, nonUnitalMap_x, nonUnitalMap_x, x_mul]
+    exact congrArg (x i j hij) (Prod.ext (add_zero p.1).symm (zero_add p.2).symm)
+  exact hg
+
+end Product
+
+/-- **Products.**  Stable `K₂(R) = 0` and stable `K₂(S) = 0` give stable `K₂(R × S) = 0`: after
+padding to rank `≥ 3`, `k ∈ K₂(n, R × S)` splits as `inl_* (fst_* k) · inr_* (snd_* k)`, and both
+factors die after further padding.  (Ara–Brustenga–Cortiñas 2009, additivity of `K`-theory for
+the finite stages `B_k` in Sec. 5; `simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem stableK2Trivial_prod {R S : Type*} [Ring R] [Ring S] (hR : LVH2GL3.StableK2Trivial R)
+    (hS : LVH2GL3.StableK2Trivial S) : LVH2GL3.StableK2Trivial (R × S) := by
+  intro n k hk
+  have hk₁ : projection (ringMap (I := Fin n) (RingHom.fst R S) k) = 1 := by
+    rw [projection_ringMap, hk, map_one]
+  have hk₂ : projection (ringMap (I := Fin n) (RingHom.snd R S) k) = 1 := by
+    rw [projection_ringMap, hk, map_one]
+  obtain ⟨N₁, h₁, hN₁⟩ := hR n (ringMap (I := Fin n) (RingHom.fst R S) k) hk₁
+  obtain ⟨N₂, h₂, hN₂⟩ := hS n (ringMap (I := Fin n) (RingHom.snd R S) k) hk₂
+  have hnM : n ≤ N₁ + N₂ + 3 := by omega
+  have h1M : N₁ ≤ N₁ + N₂ + 3 := by omega
+  have h2M : N₂ ≤ N₁ + N₂ + 3 := by omega
+  have h3M : 3 ≤ N₁ + N₂ + 3 := by omega
+  refine ⟨N₁ + N₂ + 3, hnM, ?_⟩
+  have hfst : ringMap (RingHom.fst R S) (indexMap (Fin.castLEEmb hnM) k) = 1 := by
+    rw [← LVStableK2.indexMap_ringMap,
+      ← LVH2GL3.indexMap_castLEEmb_castLEEmb h₁ h1M (ringMap (RingHom.fst R S) k), hN₁, map_one]
+  have hsnd : ringMap (RingHom.snd R S) (indexMap (Fin.castLEEmb hnM) k) = 1 := by
+    rw [← LVStableK2.indexMap_ringMap,
+      ← LVH2GL3.indexMap_castLEEmb_castLEEmb h₂ h2M (ringMap (RingHom.snd R S) k), hN₂, map_one]
+  rw [eq_inl_mul_inr (fun i j => exists_ne_ne_fin h3M i j) (indexMap (Fin.castLEEmb hnM) k),
+    hfst, hsnd]
+  simp only [map_one, mul_one]
+
+end GroupApproximation.Full.LVCohnK2

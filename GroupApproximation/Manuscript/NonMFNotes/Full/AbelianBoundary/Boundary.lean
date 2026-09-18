@@ -48,9 +48,11 @@ theorem exists_corona_ne_one [IsAddTorsionFree A] {w : AbelianLamp A} (hw : w �
       ∃ rho : AbelianLamp A →* NormMatrixCoronaUnitary X, rho w ≠ 1 := by
   by_cases hr : w.right = 1
   · have hl : w.left ≠ 1 := fun hl =>
-      hw (SemidirectProduct.ext (hl.trans one_left.symm) (hr.trans one_right.symm))
-    have hwl : w = inl w.left :=
-      SemidirectProduct.ext (left_inl w.left).symm (hr.trans (right_inl w.left).symm)
+      hw (SemidirectProduct.ext (hl.trans SemidirectProduct.one_left.symm)
+        (hr.trans SemidirectProduct.one_right.symm))
+    have hwl : w = SemidirectProduct.inl w.left :=
+      SemidirectProduct.ext (SemidirectProduct.left_inl w.left).symm
+        (hr.trans (SemidirectProduct.right_inl w.left).symm)
     obtain ⟨e, he, hsurj⟩ := exists_enum_gamma
     obtain ⟨X, hX, rho, hrho⟩ := exists_corona_separating gstar_residuallyFinite e he hsurj hl
     exact ⟨X, hX, rho, fun h => hrho ((congrArg rho hwl).symm.trans h)⟩

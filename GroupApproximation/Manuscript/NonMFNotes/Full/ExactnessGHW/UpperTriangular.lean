@@ -144,13 +144,15 @@ theorem isIntegral_pow_smul_twoDiag (E : ℕ) (d : Fin 4 → ℤ) (hd : ∀ l, 0
   · subst hij
     obtain ⟨n, hn⟩ := Int.eq_ofNat_of_zero_le (hd i)
     have hval : ((2 : ℚ) ^ E • twoDiag d) i i = (2 : ℚ) ^ n := by
-      rw [Matrix.smul_apply, twoDiag, Matrix.diagonal_apply_eq, smul_eq_mul, ← zpow_natCast,
-        ← zpow_add₀ (two_ne_zero : (2 : ℚ) ≠ 0), hn]
+      rw [Matrix.smul_apply, twoDiag, Matrix.diagonal_apply_eq]
+      show (2 : ℚ) ^ E * (2 : ℚ) ^ d i = (2 : ℚ) ^ n
+      rw [← zpow_natCast, ← zpow_add₀ (two_ne_zero : (2 : ℚ) ≠ 0), hn]
       exact zpow_natCast (2 : ℚ) n
     rw [hval]
     exact ⟨2 ^ n, by norm_num⟩
   · have hval : ((2 : ℚ) ^ E • twoDiag d) i j = 0 := by
-      rw [Matrix.smul_apply, twoDiag, Matrix.diagonal_apply_ne _ hij, smul_zero]
+      rw [Matrix.smul_apply, twoDiag, Matrix.diagonal_apply_ne _ hij]
+      exact mul_zero _
     rw [hval]
     exact ⟨0, by norm_num⟩
 
