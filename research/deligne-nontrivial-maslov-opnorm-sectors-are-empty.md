@@ -177,3 +177,28 @@ operator-norm asymptotic representations.
   - Under (A), the gate is equivalent to (B_op). This meets the w6-last2
     calibration, since the route uses operator-norm liftability. Neither
     prerequisite was proved here, so the gate stays OPEN.
+
+- **2026-09-18, swarm-0917-w13-w13-deligne-pull (transplanter): calibration of the bus need "near-identity
+  honest `Mod(S_2)` representations have zero Torelli winding" (need N). Nothing is established here.**
+  N matters because, if true, it would refute (A) `mod-s2-is-point-norm-matricially-stable`. Stability would
+  lift `Sp_4(Z)` quasi-representations with nonzero Dadarlat winding to honest `M`-representations with
+  `t_s ~ 1` and nonzero winding.
+  - *Reduction (elementary).* `M^ab = Z/10` and `t_s -> 2`, so `det rho(t_s)` lies in `mu_5`. If
+    `||rho(t_s) - 1|| < eta_0 < 1`, the principal `w(rho) = Tr log rho(t_s)/(2 pi i)` lies in `(1/5)Z` and is
+    continuous. So `w` is constant on each connected component of `{rho : ||rho(t_s) - 1|| < eta_0}` in
+    `Hom(M, U(d))`. N is equivalent to: every such component contains a representation with `w = 0`.
+  - *Classes where N holds.*
+    - Monomial and Torelli-character representations: transfer gives winding sum `0` for real characters.
+    - Jones rectangular `(3,3)` family: `rho(t_s)` has eigenvalues `zeta^2 q^(24/5)` (multiplicity 1) and
+      `zeta^2 q^(-6/5)` (multiplicity 4). The `q`-exponents sum to zero, so `w` is identically `0` on the
+      branch through `zeta^2 = 1`. Its near-scalar values lie only in `mu_5`, never at `omega`, which is
+      consistent with (B_op).
+    - Clock-shift and Heisenberg representations induced from a finite-index `H >= Torelli`: `H/Torelli`
+      is a finite-index subgroup of the Kazhdan group `Sp_4(Z)`, so it has finite abelianization. A
+      nilpotent quotient of `H` therefore sees `Torelli` through a finite-index image of an abelian
+      quotient, and these representations reduce to the character class above.
+  - *Survivor.* A counterexample to N, and so the only honest threat to (A) through windings, must have
+    nonabelian, non-virtually-nilpotent Torelli image. It must also lie in a component of the near-identity
+    locus that avoids every representation factoring through a finite or Jones-type quotient. No such
+    representation is known.
+  - *Status.* The Kazhdan reduction is recorded as a sketch, not as a claim. The gate stays OPEN.
