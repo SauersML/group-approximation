@@ -35,7 +35,7 @@ That conjugator is a single word identity in `St_3(L)`.  It implies the target
 
 ## Route analysis
 
-* Route (a), Eilenberg swindle.  Write `s₀, s₁, t₀, t₁` for the Leavitt generators.  The corner
+* Route (a), Eilenberg swindle (paper sketch, not formalized here).  Write `s₀, s₁, t₀, t₁` for the Leavitt generators.  The corner
   endomorphisms `T_i : x_{jl}(a) ↦ x_{jl}(s_i a t_i)` of `St_3(L)` induce `X ↦ X ⊕ 1` and
   `X ↦ 1 ⊕ X` through `L³ ≅ L⁶`.  The entrywise ring map `σ(a) = s₀ a t₀ + s₁ a t₁` induces
   `X ↦ X ⊕ X`.  Modulo `C₃`, uniqueness of lifts out of the perfect group `St_3(L)` gives
@@ -43,9 +43,10 @@ That conjugator is a single word identity in `St_3(L)`.  It implies the target
   `σ = T₀²` and `T₀² = T₀`.  These identities say `σ_* = 2 T₀_*` and `T₀_* = T₀_*²`.  They are
   consistent with a nonzero `K₂` and do not force `N₃ / C₃ = 0`: no identity `σ ≡ T₀` or
   `σ ≡ id` comes for free.  The vanishing of `K_*(L)` comes from the Ara–Brustenga–Cortiñas
-  localization sequence, using `K₁(𝔽₂) = K₂(𝔽₂) = 0`, not from a swindle.  In `GL_3(L)`, `σ` is
-  not inner, so no `g ∈ St_3(L)` realizes `σ` on `N₃` by conjugation.  Route (a) therefore does
-  not close the target.  It is the reason the gap is phrased as an explicit conjugation
+  localization sequence, using `K₁(𝔽₂) = K₂(𝔽₂) = 0`, not from a swindle.  Conjugation in
+  `St_3(L)` induces an inner automorphism of `GL_3(L)`, while `σ` is an entrywise ring
+  endomorphism (not surjective onto `L`), so conjugation cannot realize `σ` directly.  Route (a)
+  therefore does not close the target.  It is the reason the gap is phrased as an explicit conjugation
   certificate.
 * Route (b), `K₂(3, L) = ⊥` directly.  This is Khanh's Thm 5.4 as cited in
   `EndpointInterfaces`.  It is research-level (an unstable Brown/Bruhat analysis in rank 3) and
@@ -56,7 +57,7 @@ That conjugator is a single word identity in `St_3(L)`.  It implies the target
 * The target is TRUE (lane 30: Khanh Thm 2.2 via `K2_three_le_commutator_of_superperfect`).
 * The gap is TRUE provided `K₂(3, L) = ⊥` (Khanh Thm 5.4, cited in
   `EndpointInterfaces.BinaryLeavittStabKernelThreeTrivialStatement`'s module docstring), with
-  `S = ∅`.
+  `S = K₂(3, L) = ⊥` and `g = 1`.
 
 LOUD: the gap is logically STRONGER than the target, not weaker.  Its truth rests on
 `K₂(3, L) = ⊥`, a stronger literature claim than the target's source (Thm 2.2).  If `N₃` is
@@ -130,7 +131,7 @@ contains the normal closure of `S`. -/
 theorem binaryLeavittKernelThreeCoinvariant_of_swindle
     (h : BinaryLeavittKernelThreeSwindleStatement) :
     BinaryLeavittKernelThreeCoinvariantStatement := by
-  obtain ⟨S, hS, hgen, hconj⟩ := h
+  obtain ⟨_, hS, hgen, hconj⟩ := h
   unfold BinaryLeavittKernelThreeCoinvariantStatement
   refine hgen.trans (Subgroup.normalClosure_le_normal ?_)
   intro k hk
@@ -186,7 +187,7 @@ theorem binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
     (hc : K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) ≤
       Subgroup.center (St 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))) :
     K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) = ⊥ := by
-  obtain ⟨S, hS, hgen, hconj⟩ := h
+  obtain ⟨_, hS, hgen, hconj⟩ := h
   refine le_bot_iff.mp (hgen.trans (Subgroup.normalClosure_le_normal ?_))
   intro k hk
   obtain ⟨g, hg⟩ := hconj k hk
