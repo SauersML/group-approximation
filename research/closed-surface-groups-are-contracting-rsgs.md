@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `closed-surface-groups-contracting-rsg-via-bowen-series` (lane `bh-partials`, 2026-09-18; lane
-proof, **not reviewed**; referee requested for the points marked (★) in the route).
+proof). **Referee PASS** (bh-ref-q11, 2026-09-18), with four repairs recorded in the route's Referee section, none changing the result.
 - Steps 1–4 rest on sources read at source: Katok–Ugarcovici arXiv:1610.00167, and Bowen–Series 1979, Lemmas 2.3–2.4.
 - **Priority.** None claimed. A web search on 2026-09-18 found no answer to Question 1.1 for surface groups after BBMZ
   arXiv:2309.06224.
