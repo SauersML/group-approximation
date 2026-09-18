@@ -5656,6 +5656,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Tra
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Words
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Forward
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.WeightKernel
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.ConfigBasic
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.ConfigStep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
