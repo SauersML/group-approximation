@@ -229,8 +229,8 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      - On `M`, `y π_0 y^(-1) = h(π_0)`, with `h(a) = (a^(-1) + (a+l)^(-1))^(-1) = a(a+l)/(2a+l)`. The inverses of
        `2π_k + l` exist on `M`, because `b_k + b_(k+1)` is a conjugate of an invertible operator.
      - Conjugating `x u x^(-1) = u + l` by `y` gives `h(π_1) = h(π_0) + l`.
-     - Since `h(a+l) − h(a) = 2l(a+l)^2/((2a+l)(2a+3l))`, this forces `(2π_0^2 + 4lπ_0 + l^2)·M = 0`.
-     - On `m_0`, where `π_0 = 1`, the integer `2 + 4l + l^2` kills `m_0`. So `M` has no `Z_(l)`.
+     - Since `h(a+l) − h(a) = 2l(a+l)^2/((2a+l)(2a+3l))`, this forces `l(2π_0^2 + 4lπ_0 + l^2)·M = 0`.
+     - On `m_0`, where `π_0 = 1`, the integer `l(2 + 4l + l^2)` kills `m_0`. So `M` has no `Z_(l)`.
    - *Multiplicative letter, `y b y^(-1) = b·x b x^(-1)`.*
      - On `M`, `y π_0 y^(-1) = π_0 π_1`. Commuting with `x` forces `π_1 π_2 = π_0 π_1 + l`, that is,
        `l(2π_1 − 1)·M = 0`.
