@@ -42,7 +42,8 @@ arcs; kept arc darts; cycle darts inside / outside the class; whether it meets t
 darts inside it; equality with the source or exterior face).  291 orders survive every
 configuration with at most 5 darts, NONE survives the 8468 configurations with 6 darts (with
 `Fin ∩ Out = ∅`).  In particular "least number of removed darts" fails (703 of 9010 at 6 darts,
-lane gl-p10-16).  So the extremal class is not a minimiser of any such count, and a proof by
+lane gl-p10-16), and the best orders at 5 darts fail at 6: "fewest removed arc darts, then fewest
+cycle darts inside" in 33 configurations, the reverse order in 39.  So the extremal class is not a minimiser of any such count, and a proof by
 well-founded minimality needs a genuinely planar order (nesting of regions), which the corpus
 does not provide on face classes of `walkKeep`.
 

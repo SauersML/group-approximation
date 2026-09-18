@@ -23,7 +23,8 @@ variable {X : Type*} [Finite X] {v w : List X}
 /-- Over a duplicate-free list, the chain carries `cone (v ++ [y])` onto `cone (w ++ [y])` and
 back, for every `y` in the list. -/
 theorem vPerfectChain_maps (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) : ∀ (L : List X), L.Nodup →
-    ∀ y ∈ L, MapsCone (vPerfectChain hvw hwv L : Equiv.Perm (Cantor X)) (v ++ [y]) (w ++ [y]) ∧
+    ∀ y ∈ L,
+      MapsCone (vPerfectChain hvw hwv L : Equiv.Perm (Cantor X)) (v ++ [y]) (w ++ [y]) ∧
       MapsCone (vPerfectChain hvw hwv L : Equiv.Perm (Cantor X)) (w ++ [y]) (v ++ [y])
   | [], _, _, hy => absurd hy List.not_mem_nil
   | y0 :: L, hnd, y, hy => by
