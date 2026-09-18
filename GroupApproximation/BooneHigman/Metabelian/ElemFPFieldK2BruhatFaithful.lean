@@ -21,7 +21,7 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2
 open GroupApproximation.SteinbergGroup
 open GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl (h)
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (rootSpan act unitVec
-  unitVec_apply act_mul act_apply_of_rootSpan act_eq_self_of_rootSpan
+  unitVec_apply act_mul rootSpan_induction act_apply_of_rootSpan act_eq_self_of_rootSpan
   eq_one_of_col_fix_finset eq_one_of_row_zero_finset)
 
 /-- **Faithfulness on root spans.**  Assume the big Bruhat cell statement and `|I| ≥ 3`.  An
@@ -70,11 +70,13 @@ theorem bruhat_eq_one_of_act (hstat : BruhatBigCellStatement) (p : ℕ) [Fact p.
       have hu1 : u = 1 := by
         refine eq_one_of_col_fix_finset L K hLK u hu ?_
         have e := hfix (unitVec L)
-        rw [act_mul, act_mul,
+        have hvL : act v (unitVec (R := ZMod p) L) = unitVec L :=
           act_eq_self_of_rootSpan (p := fun i j => i = L ∧ j ∈ K)
-            (fun _ j hp => bruhat_unitVec_eq_zero hLK j hp.2) hv,
+            (fun _ j hp => bruhat_unitVec_eq_zero hLK j hp.2) hv
+        have hsL : act s (unitVec (R := ZMod p) L) = unitVec L :=
           act_eq_self_of_rootSpan (p := fun i j => i ∈ K ∧ j ∈ K)
-            (fun _ j hp => bruhat_unitVec_eq_zero hLK j hp.2) hs] at e
+            (fun _ j hp => bruhat_unitVec_eq_zero hLK j hp.2) hs
+        rw [act_mul, act_mul, hvL, hsL] at e
         exact e
       subst hu1
       rw [one_mul] at hfix

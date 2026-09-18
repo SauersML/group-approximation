@@ -21,8 +21,8 @@ Lane `bh-met-55`.  Fix a finite index type `I` with `|I| ≥ 3` and a prime `p`.
 `F_p^I`, then `g = 1`.  The proof is Finset induction on `K`.
 
 * For `K = ∅` or `K = {L}` the span has no generating roots.
-* Otherwise pick `m ∈ K`.  Then `(g e_L)_L = 1 ≠ 0`, so `g = u s v h_mL(c)`.  Now `h_mL(c) e_L = c⁻¹ e_L`,
-  and `v` and `s` fix every vector vanishing on `K`.  Also `u` does not change coordinate `L`.
+* Otherwise pick `m ∈ K`.  Then `(g e_L)_L = 1 ≠ 0`, so `g = u s v h_mL(c)`.
+  Now `h_mL(c) e_L = c⁻¹ e_L`, and `v` and `s` fix every vector vanishing on `K`.  Also `u` does not change coordinate `L`.
   Hence `1 = (g e_L)_L = c⁻¹` and `c = 1`.
 * Then `u e_L = e_L`, so `u = 1` (`eq_one_of_col_fix_finset`).  Also `(v e_k)_L = (g e_k)_L = 0`
   for `k ≠ L`, so `v = 1` (`eq_one_of_row_zero_finset`).  Now `g = s ∈ G_K` acts trivially,
@@ -82,7 +82,8 @@ theorem bruhat_rootSpan_singleton_eq_one {p : ℕ} {I : Type} [Fintype I] [Decid
     (fun g₁ g₂ _ _ h1 h2 => show g₁ * g₂ = 1 by
       rw [show g₁ = 1 from h1, show g₂ = 1 from h2, mul_one]) hg
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhat_rootSpan_singleton_eq_one
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhat_rootSpan_singleton_eq_one
 
 /-- Coordinates of `e_L` inside `K` vanish when `L ∉ K`. -/
 theorem bruhat_unitVec_eq_zero {p : ℕ} {I : Type} [Fintype I] [DecidableEq I] {K : Finset I}

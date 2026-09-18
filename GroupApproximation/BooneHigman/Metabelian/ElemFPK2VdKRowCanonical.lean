@@ -96,3 +96,52 @@ theorem vdkRowPar_mul (v : Fin n → R) (g : St n R) (v' : Fin n → R) (g' : St
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowPar_mul
 
+/-- Inverses in the image of the parabolic map. -/
+theorem vdkRowPar_inv (v : Fin n → R) (g : St n R) :
+    vdkRowPar (-(projectionMatrix g⁻¹ *ᵥ v), g⁻¹) = (vdkRowPar (v, g))⁻¹ :=
+  eq_inv_of_mul_eq_one_left (by rw [vdkRowPar_mul, neg_add_cancel, inv_mul_cancel, vdkRowPar_one])
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowPar_inv
+
+variable (n R) in
+/-- The image `P̃` of the parabolic map, a subgroup of `St_{n+1}(R)`. -/
+def vdkRowParSubgroup : Subgroup (St (n + 1) R) where
+  carrier := Set.range (vdkRowPar (n := n) (R := R))
+  mul_mem' := by
+    rintro _ _ ⟨⟨v, g⟩, rfl⟩ ⟨⟨v', g'⟩, rfl⟩
+    exact ⟨(v + projectionMatrix g *ᵥ v', g * g'), (vdkRowPar_mul v g v' g').symm⟩
+  one_mem' := ⟨((0 : Fin n → R), (1 : St n R)), vdkRowPar_one⟩
+  inv_mem' := by
+    rintro _ ⟨⟨v, g⟩, rfl⟩
+    exact ⟨(-(projectionMatrix g⁻¹ *ᵥ v), g⁻¹), vdkRowPar_inv v g⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowParSubgroup
+
+theorem mem_vdkRowParSubgroup (h : St (n + 1) R) :
+    h ∈ vdkRowParSubgroup n R ↔ ∃ p : (Fin n → R) × St n R, vdkRowPar p = h :=
+  Iff.rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.mem_vdkRowParSubgroup
+
+/-- Left multiplication by `stab s` on the parameters is `vdkAct`. -/
+theorem vdkRowPar_stab (s : St n R) (v : Fin n → R) (g : St n R) :
+    vdkRowPar (projectionMatrix s *ᵥ v, s * g) = stab n R s * vdkRowPar (v, g) := by
+  rw [vdkRowPar_apply, vdkRowPar_apply, ← stab_conj_colVec, map_mul]
+  simp only [mul_assoc, inv_mul_cancel_left]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowPar_stab
+
+theorem vdkRow_colVec_single (i : Fin n) (a : R) :
+    colVec (Pi.single i a : Fin n → R) = colRoot i a :=
+  colVec_update_zero i a
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRow_colVec_single
+
+/-- Left multiplication by `x_{i,last}(a)` on the parameters is `vdkCol`. -/
+theorem vdkRowPar_col (i : Fin n) (a : R) (v : Fin n → R) (g : St n R) :
+    vdkRowPar (v + Pi.single i a, g) = colRoot i a * vdkRowPar (v, g) := by
+  rw [vdkRowPar_apply, vdkRowPar_apply, add_comm, colVec_add, vdkRow_colVec_single, mul_assoc]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowPar_col
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
