@@ -358,3 +358,4 @@
 35280917960	2026-09-17T22:15:37Z	GroupApproximation/Manuscript/SimpleKazhdanSofic/ThompsonConstruction/Endpoints.lean	embedsInFGSimpleSolvable_of_hasSolvableWordProblem
 35290692358	2026-09-18T00:20:20Z	GroupApproximation/Manuscript/NonMF/RelatedKunThom/Endpoint.lean	manuscriptSentence_kunThomRigidityThompsonVContradiction
 35309909235	2026-09-18T05:18:23Z	GroupApproximation/Sofic/FiniteNormalAverageCorner.lean	norm_subgroupEigenbasisMicrostate_mul_defect_eq
+35331203362	2026-09-18T09:46:47Z	GroupApproximation/Sofic/FiniteNormalAverageCorner.lean	norm_normTrace_sub_le_sqrt_hsDistSq
