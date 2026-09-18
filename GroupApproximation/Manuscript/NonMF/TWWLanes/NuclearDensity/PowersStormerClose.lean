@@ -93,7 +93,7 @@ theorem powersStormer_contraction_bound {y h T : Matrix m m ℂ} {η : ℝ}
   -- Step 5, continued: the two Cauchy--Schwarz terms.
   obtain ⟨cs1, cs2⟩ := powersStormer_norm_trace_sq_pair hTs hDs hG1 hG2
   have htr' : (trace (T' * T')).re = 2 := by
-    rw [hsq, powersStormer_trace_fromBlocks, htr, Complex.add_re, Complex.one_re]
+    rw [hsq, powersStormer_trace_fromBlocks, htr]
     norm_num
   have hDDh : (trace (D * D * (T' * T'))).re ≤ 2 * η := by
     rw [hDD, hYd, powersStormer_one_sub_doubling_sq, hsq, powersStormer_trace_diag_mul_diag,
@@ -106,3 +106,41 @@ theorem powersStormer_contraction_bound {y h T : Matrix m m ℂ} {η : ℝ}
   linarith
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_contraction_bound
+
+/-- If `0 ≤ c` and `c² ≤ 4η` with `η ≤ ε²/64`, then `c ≤ ε/4`. -/
+theorem powersStormer_le_of_sq_le {ε η c : ℝ} (hε : 0 < ε) (hη : η ≤ ε ^ 2 / 64)
+    (hc : 0 ≤ c) (hc2 : c ^ 2 ≤ 4 * η) : c ≤ ε / 4 := by
+  by_contra hlt
+  have hlt' : ε / 4 < c := not_le.mp hlt
+  have h3 : 0 < (c - ε / 4) * (c + ε / 4) := mul_pos (by linarith) (by linarith)
+  nlinarith
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_le_of_sq_le
+
+/-- **`ContractionSqrtCommutatorStatement` holds**, with `η = min(ε/4, ε²/64)`. -/
+theorem powersStormer_contractionSqrtCommutator : ContractionSqrtCommutatorStatement := by
+  intro ε hε
+  refine ⟨min (ε / 4) (ε ^ 2 / 64),
+    lt_min (div_pos hε (by norm_num)) (div_pos (pow_pos hε 2) (by norm_num)), ?_⟩
+  intro Y y h T hy hT hTh htr hcomm h1 h2
+  rw [Matrix.star_eq_conjTranspose] at h1 h2
+  have hQ : (1 - yᴴ * y).PosSemidef :=
+    one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one Y y hy
+  have hP : (1 - y * yᴴ).PosSemidef := by
+    have h0 := one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one Y yᴴ
+      ((l2_opNorm_conjTranspose y).trans_le hy)
+    rwa [conjTranspose_conjTranspose] at h0
+  obtain ⟨a, b, ha, hb, ha2, hb2, hbound⟩ :=
+    powersStormer_contraction_bound hQ hP hT hTh htr hcomm h1 h2
+  have hη1 : min (ε / 4) (ε ^ 2 / 64) ≤ ε / 4 := min_le_left _ _
+  have hη2 : min (ε / 4) (ε ^ 2 / 64) ≤ ε ^ 2 / 64 := min_le_right _ _
+  have hA := powersStormer_le_of_sq_le hε hη2 ha ha2
+  have hB := powersStormer_le_of_sq_le hε hη2 hb hb2
+  linarith
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_contractionSqrtCommutator
+
+end
+
+end Manuscript.NonMF.TWWLanes.NuclearDensity
+end GroupApproximation

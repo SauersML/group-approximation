@@ -330,3 +330,19 @@ None recorded before 2026-09-17.
       conjugation by `diag(1,l)` extends to finite-index subgroups (`sl-2-z-localized-has-fp-hecke-overgroup`).
     - *Beyond n = 2.* A higher-dimensional BLIW theorem for locally finite buildings would carry this to
       `SL_m(Q)`.
+
+17. **n = 2 in finite germ extensions of `V`, 2026-09-17 (lane gq-va-gl2): partial obstruction.**
+    - *VA:* dead by O4 (Burillo–Felipe). The `BS(1,n)`-in-`VA` test this lane started with is subsumed.
+    - *Arbitrary finite germ extensions:* no obstruction by themselves. `GL_2(Q)`, inside a 2-generated group,
+      embeds in a finitely generated shell extension `E_nu`
+      (`shell-cantor-embeddings-are-finite-germ-extensions`), so only finite presentation is at stake there.
+    - *Established:* `regular-germ-extension-attractors-are-undistorted` (8fc27465a).
+      - The singularity count, in any finite germ extension, and the depth-gain Lipschitz constant, in the
+        regular regime ((E) + (H3) + (T): the Belk–Hyde–Matucci Corollary 2.10 regime plus `V`-orbit
+        preservation), are length functions.
+      - They grow linearly along wandering non-`V` singular germs and along attracting or repelling points.
+      - So in any embedding of `Aff(Q)`, `SL_2(Q)`, `GL_2(Q)` or `U_3(Q)`, the divisible line avoids both
+        dynamics.
+    - *Open:* `regular-germ-extensions-have-no-bs-relations`. The remaining type, with an explicit
+      depth-gain-zero infinite-order germ that neither length function sees, would close `n = 2` for the
+      whole regime.

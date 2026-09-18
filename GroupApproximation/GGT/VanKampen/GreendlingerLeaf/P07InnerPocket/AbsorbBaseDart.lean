@@ -16,8 +16,8 @@ candidate used here is the **lake-filled witness**
 1. `absorbBase_outer_not_mem`: `o ∉ F₀`, because `F₀ ⊆ sideFaces K.walk` and `o ∉ sideFaces K.walk`.
 2. `absorbBase_witness_subset`, `absorbBase_mem_faces`: `F₀ ⊆ F₁` (`subset_absorbed`), so `c ∈ F₁`.
 3. `absorbBase_dart_clause`: the third disjunct of the dart clause, for every bridge-free enclosed
-   successor walk `ow` of `F₁`.  Take `d ∈ ow`.  By `mem_iff`, `faceOf d ∉ F₁`, and by the bridge-free
-   hypothesis `faceOf (α d) ∈ F₁`.  So `α d` is a boundary dart of `F₁`.  By
+   successor walk `ow` of `F₁`.  Take `d ∈ ow`.  By `mem_iff`, `faceOf d ∉ F₁`, and by the
+   bridge-free hypothesis `faceOf (α d) ∈ F₁`.  So `α d` is a boundary dart of `F₁`.  By
    `isBoundaryDart_absorbed_iff`, `α d` is then a boundary dart of `F₀`, so `faceOf (α d) ∈ F₀` and
    `faceOf d ∉ F₀`.  Finish with `pocketKeep_alpha_of_boundary`,
    `not_mem_left/right_of_mem_witnessFaces` and `witnessFaces_subset_sideFaces`.
@@ -124,8 +124,8 @@ theorem absorbBase_dart_clause {a b : RegionCandidate D eps X}
 
 /-- **The lake-filled case**: the lake-filled witness stays inside the pocket and has a bridge-free
 enclosed successor walk satisfying the four noninterleave clauses. -/
-abbrev AbsorbBaseCase (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j) (G₁ : CyclicArc (cellDarts X i))
-    (G₂ : CyclicArc (cellDarts X j)) (c : X.toCombMap.Face) : Prop :=
+abbrev AbsorbBaseCase (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j)
+    (G₁ : CyclicArc (cellDarts X i)) (G₂ : CyclicArc (cellDarts X j)) (c : X.toCombMap.Face) : Prop :=
   absorbBaseFaces a b K c ⊆ sideFaces X.toCombMap K.walk ∧
     ∃ ow : List X.toCombMap.Dart, EnclosedFaceSetSucc X (absorbBaseFaces a b K c) ow ∧
       (∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ absorbBaseFaces a b K c) ∧

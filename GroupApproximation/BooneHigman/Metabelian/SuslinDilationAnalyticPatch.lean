@@ -180,7 +180,8 @@ theorem suslinDilAn_dilation (hN : 2 < N)
       (elementaryMatrixUnitMap (ι := Fin N) (suslinDilAnDilate (s ^ k₀)) σ) =
         elementaryMatrixUnitMap (ι := Fin N) (Polynomial.mapRingHom φ)
           (V * (elementaryMatrixUnitMap (ι := Fin N)
-            ((Polynomial.C : B →+* Polynomial B).comp (Polynomial.constantCoeff (R := B))) V)⁻¹) := by
+            ((Polynomial.C : B →+* Polynomial B).comp
+              (Polynomial.constantCoeff (R := B))) V)⁻¹) := by
     rw [map_mul, map_inv, hκV, inv_one, mul_one, hVU]
   have hU0 : elementaryMatrixUnitMap (ι := Fin N) (Polynomial.constantCoeff (R := B))
       (elementaryMatrixUnitMap (ι := Fin N) (suslinDilAnDilate (s ^ k₀)) σ) = 1 := by

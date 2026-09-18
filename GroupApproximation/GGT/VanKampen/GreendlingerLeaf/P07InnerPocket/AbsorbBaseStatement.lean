@@ -25,8 +25,8 @@ lake-filled witness works.
 **Why Base is not proved outright.**  The premise `hno` rules out the witness walk itself.  What
 remains open for the lake-filled witness `F₁` is:
 1. `F₁ ⊆ sideFaces K.walk`.  A lake of `F₀` can contain faces outside the pocket, such as `Π_j`
-   inside a `G₁`-loop, or a component of `sideOutside K.walk` that is fenced off by `F₀`.  Ruling this
-   out needs the outer Euler hypothesis (connectivity of `sideOutside`), and the corpus has no
+   inside a `G₁`-loop, or a component of `sideOutside K.walk` that is fenced off by `F₀`.  Ruling
+   this out needs the outer Euler hypothesis (connectivity of `sideOutside`), and the corpus has no
    lemma turning that into dual connectivity.
 2. An enclosed successor walk for `F₁`.  `exists_enclosedFaceSetSucc_of_connected` needs
    connectivity of the keep map of `F₁`, and this is not available.
@@ -35,9 +35,10 @@ remains open for the lake-filled witness `F₁` is:
 
 ## Truth check (paper, small models of `NoPlanarDegenStepStatement.lean`)
 
-* M8: the witness `P'` has a lake inside the pocket, so `hno` holds.  Filling it gives
-  `F₁ = P' ∪ lake ⊆ sideFaces K.walk`.  The walk around `F₁` is `Ḡ₁ B̄ Ḡ₂`, which is bridge-free and
-  satisfies N.  The case holds and Base is proved.
+* M8 (empty-arc island): the witness is an annulus around the island `a.1`, so there is no walk
+  and `hno` holds.  Filling the island gives `F₁ = P' ∪ a.1 ⊆ sideFaces K.walk`, which is the
+  branch-1 face set of lane 28.  Its walk `Ḡ₁ · B̄ · Ḡ₂` is bridge-free and satisfies N.  The case
+  holds and Base is proved.
 * M9-with-hole: `F₁` is enclosed, but its walk interleaves `G₁` with the rest, so N fails.  The case
   fails and Base must come from elsewhere.  This matches the note "lake-filled witness alone fails
   clause 3".
