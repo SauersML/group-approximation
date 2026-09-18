@@ -22,8 +22,9 @@ artifacts:
   (§4–§5) are true as stated. But random tapes have short zero blocks, so those tests are blind to sweeps.
 - **The SMART pipeline does not transfer to `M_m` as stated.** `SMART_m` (bh-free-18) has no such sweep: its hollow
   state on 0 writes `y_1` and turns filled.
-- A bounded-return inducing set for `M_m` would have to sample inside the sweeps, and then `N_Y(L)` picks up terms
-  in the sweep lengths. Whether some recoding avoids this is open.
+- Settled negatively for **every** bounded-return inducing set by `ballistic-machine-runs-give-periodic-points`:
+  the ballistic rules `F_j → (0, F, pass)` and `H0 → (2j, H, pass)` give domain-wall periodic points, so no inducing
+  of `M_m` is a renormalization base.
 
 **ESTABLISHED** through `bs1m-embeds-in-3v-for-every-odd-m-via-smart-m`: this is the statement of
 `bs-1-m-embeds-in-brin-thompson-3v-for-odd-m`, proved by lane bh-free-18 (cbf8ec85c) with the machines
