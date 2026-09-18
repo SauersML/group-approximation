@@ -1,0 +1,1882 @@
+$ python3 verify_klein.py ../bmw-census-left-orders-2026-09-17/census_40_40.json chains_census_40_40.json --trace
+  v|h032130 inverts v03|h:
+    h0 h3 h2 h1 h3 h0 v0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = h0 h3 h2 h1 h3 v0 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = h0 h3 h2 h1 v1 h3 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = h0 h3 h2 v1 h1 h3 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = h0 h3 v2 h2 h1 h3 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = h0 v3 h3 h2 h1 h3 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 h3 h2 h1 h3 h0 v3 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 h3 h2 h1 h3 v3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 h3 h2 h1 v2 h3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 h3 h2 v2 h1 h3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 h3 v1 h2 h1 h3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 h0 v0 h3 h2 h1 h3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 v0 h0 h3 h2 h1 h3 h0 h0 h3 h1 h2 h3 h0 v0 v3
+    = v3 v0 h0 h3 h2 h1 h3 h3 h1 h2 h3 h0 v0 v3
+    = v3 v0 h0 h3 h2 h1 h1 h2 h3 h0 v0 v3
+    = v3 v0 h0 h3 h2 h2 h3 h0 v0 v3
+    = v3 v0 h0 h3 h3 h0 v0 v3
+    = v3 v0 h0 h0 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h032130:
+    v1 v2 h0 h3 h2 h1 h3 h0 v2 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 h0 h3 h2 h1 h3 v2 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 h0 h3 h2 h1 v3 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 h0 h3 h2 v3 h2 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 h0 h3 v3 h1 h2 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 h0 v2 h3 h1 h2 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 v2 v2 h0 h3 h1 h2 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 h0 h3 h1 h2 h3 h0 v1 h0 h3 h2 h1 h3 h0
+    = v1 h0 h3 h1 h2 h3 v1 h0 h0 h3 h2 h1 h3 h0
+    = v1 h0 h3 h1 h2 v0 h3 h0 h0 h3 h2 h1 h3 h0
+    = v1 h0 h3 h1 v0 h2 h3 h0 h0 h3 h2 h1 h3 h0
+    = v1 h0 h3 v0 h1 h2 h3 h0 h0 h3 h2 h1 h3 h0
+    = v1 h0 v1 h3 h1 h2 h3 h0 h0 h3 h2 h1 h3 h0
+    = v1 v1 h0 h3 h1 h2 h3 h0 h0 h3 h2 h1 h3 h0
+    = h0 h3 h1 h2 h3 h0 h0 h3 h2 h1 h3 h0
+    = h0 h3 h1 h2 h3 h3 h2 h1 h3 h0
+    = h0 h3 h1 h2 h2 h1 h3 h0
+    = h0 h3 h1 h1 h3 h0
+    = h0 h3 h3 h0
+    = h0 h0
+    = 1
+  v|h0210 inverts v12|h:
+    h0 h2 h1 h0 v1 v2 h0 h1 h2 h0 v1 v2
+    = h0 h2 h1 v1 h0 v2 h0 h1 h2 h0 v1 v2
+    = h0 h2 v1 h1 h0 v2 h0 h1 h2 h0 v1 v2
+    = h0 v2 h2 h1 h0 v2 h0 h1 h2 h0 v1 v2
+    = v2 h0 h2 h1 h0 v2 h0 h1 h2 h0 v1 v2
+    = v2 h0 h2 h1 v2 h0 h0 h1 h2 h0 v1 v2
+    = v2 h0 h2 v2 h1 h0 h0 h1 h2 h0 v1 v2
+    = v2 h0 v1 h2 h1 h0 h0 h1 h2 h0 v1 v2
+    = v2 v1 h0 h2 h1 h0 h0 h1 h2 h0 v1 v2
+    = v2 v1 h0 h2 h1 h1 h2 h0 v1 v2
+    = v2 v1 h0 h2 h2 h0 v1 v2
+    = v2 v1 h0 h0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+  v03|h inverts v|h0210:
+    v0 v3 h0 h2 h1 h0 v3 v0 h0 h2 h1 h0
+    = v0 v3 h0 h2 h1 v3 h0 v0 h0 h2 h1 h0
+    = v0 v3 h0 h2 v3 h2 h0 v0 h0 h2 h1 h0
+    = v0 v3 h0 v3 h1 h2 h0 v0 h0 h2 h1 h0
+    = v0 v3 v3 h0 h1 h2 h0 v0 h0 h2 h1 h0
+    = v0 h0 h1 h2 h0 v0 h0 h2 h1 h0
+    = v0 h0 h1 h2 v0 h0 h0 h2 h1 h0
+    = v0 h0 h1 v0 h2 h0 h0 h2 h1 h0
+    = v0 h0 v0 h1 h2 h0 h0 h2 h1 h0
+    = v0 v0 h0 h1 h2 h0 h0 h2 h1 h0
+    = h0 h1 h2 h0 h0 h2 h1 h0
+    = h0 h1 h2 h2 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+class 31 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v3023|h inverts v|h20:
+    v3 v0 v2 v3 h2 h0 v3 v2 v0 v3 h2 h0
+    = v3 v0 v2 v3 h2 v3 h1 v2 v0 v3 h2 h0
+    = v3 v0 v2 v3 v3 h2 h1 v2 v0 v3 h2 h0
+    = v3 v0 v2 h2 h1 v2 v0 v3 h2 h0
+    = v3 v0 v2 h2 v2 h2 v0 v3 h2 h0
+    = v3 v0 v2 v2 h1 h2 v0 v3 h2 h0
+    = v3 v0 h1 h2 v0 v3 h2 h0
+    = v3 v0 h1 v0 h2 v3 h2 h0
+    = v3 v0 v0 h1 h2 v3 h2 h0
+    = v3 h1 h2 v3 h2 h0
+    = v3 h1 v3 h2 h2 h0
+    = v3 v3 h0 h2 h2 h0
+    = h0 h2 h2 h0
+    = h0 h0
+    = 1
+  v|h31 inverts v3023|h:
+    h3 h1 v3 v0 v2 v3 h1 h3 v3 v0 v2 v3
+    = h3 v3 h0 v0 v2 v3 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 v0 v2 v3 h1 h3 v3 v0 v2 v3
+    = v3 h3 v0 h0 v2 v3 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 v2 v3 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 v2 h0 v3 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 v3 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 v3 h1 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 v3 v0 v2 v3
+    = v3 v2 v0 v0 v2 v3
+    = v3 v2 v2 v3
+    = v3 v3
+    = 1
+  v1021|h inverts v|h31:
+    v1 v0 v2 v1 h3 h1 v1 v2 v0 v1 h3 h1
+    = v1 v0 v2 v1 h3 v1 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 v1 v1 h2 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 h2 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 h2 v2 h2 v0 v1 h3 h1
+    = v1 v0 v2 v2 h1 h2 v0 v1 h3 h1
+    = v1 v0 h1 h2 v0 v1 h3 h1
+    = v1 v0 h1 v0 h2 v1 h3 h1
+    = v1 v0 v0 h1 h2 v1 h3 h1
+    = v1 h1 h2 v1 h3 h1
+    = v1 h1 v1 h3 h3 h1
+    = v1 v1 h1 h3 h3 h1
+    = h1 h3 h3 h1
+    = h1 h1
+    = 1
+  v|h20 inverts v1021|h:
+    h2 h0 v1 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = h2 v1 h0 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 h3 h0 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 h3 v0 h0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 h3 h0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 h3 v2 h0 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 h3 h0 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 h3 v1 h0 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 h2 h0 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 h2 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 v1 v0 v2 v1
+    = v1 v2 v0 v0 v2 v1
+    = v1 v2 v2 v1
+    = v1 v1
+    = 1
+class 175 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v120321|h inverts v|h30:
+    v1 v2 v0 v3 v2 v1 h3 h0 v1 v2 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v2 v1 h3 v1 h0 v2 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v2 v1 v1 h2 h0 v2 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v2 h2 h0 v2 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v2 h2 v2 h0 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v2 v2 h1 h0 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 h1 h0 v3 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 h1 v3 h1 v0 v2 v1 h3 h0
+    = v1 v2 v0 v3 v3 h0 h1 v0 v2 v1 h3 h0
+    = v1 v2 v0 h0 h1 v0 v2 v1 h3 h0
+    = v1 v2 v0 h0 v0 h1 v2 v1 h3 h0
+    = v1 v2 v0 v0 h0 h1 v2 v1 h3 h0
+    = v1 v2 h0 h1 v2 v1 h3 h0
+    = v1 v2 h0 v2 h2 v1 h3 h0
+    = v1 v2 v2 h0 h2 v1 h3 h0
+    = v1 h0 h2 v1 h3 h0
+    = v1 h0 v1 h3 h3 h0
+    = v1 v1 h0 h3 h3 h0
+    = h0 h3 h3 h0
+    = h0 h0
+    = 1
+  v|h21 inverts v120321|h:
+    h2 h1 v1 v2 v0 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = h2 v1 h1 v2 v0 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 h3 h1 v2 v0 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 h3 v2 h2 v0 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 h3 h2 v0 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 h3 v0 h2 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 h3 h2 v3 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 h3 v3 h2 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 h3 h2 v2 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 h3 v2 h1 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 h3 h1 v1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 h3 v1 h1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 v1 h2 h1 h1 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 v1 h2 h2 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 v1 v1 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v2 v2 v0 v3 v2 v1
+    = v1 v2 v3 v0 v0 v3 v2 v1
+    = v1 v2 v3 v3 v2 v1
+    = v1 v2 v2 v1
+    = v1 v1
+    = 1
+  v03203203|h inverts v|h21:
+    v0 v3 v2 v0 v3 v2 v0 v3 h2 h1 v3 v0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v0 v3 h2 v3 h0 v0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v0 v3 v3 h2 h0 v0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v0 h2 h0 v0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v0 h2 v0 h0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v0 v0 h2 h0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 h2 h0 v2 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 h2 v2 h0 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v2 v2 h1 h0 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 h1 h0 v3 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 h1 v3 h1 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v3 v3 h0 h1 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 h0 h1 v0 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 h0 v0 h1 v2 v3 v0 h2 h1
+    = v0 v3 v2 v0 v0 h0 h1 v2 v3 v0 h2 h1
+    = v0 v3 v2 h0 h1 v2 v3 v0 h2 h1
+    = v0 v3 v2 h0 v2 h2 v3 v0 h2 h1
+    = v0 v3 v2 v2 h0 h2 v3 v0 h2 h1
+    = v0 v3 h0 h2 v3 v0 h2 h1
+    = v0 v3 h0 v3 h2 v0 h2 h1
+    = v0 v3 v3 h1 h2 v0 h2 h1
+    = v0 h1 h2 v0 h2 h1
+    = v0 h1 v0 h2 h2 h1
+    = v0 v0 h1 h2 h2 h1
+    = h1 h2 h2 h1
+    = h1 h1
+    = 1
+  v|h30 inverts v03203203|h:
+    h3 h0 v0 v3 v2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = h3 v0 h0 v3 v2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 h3 h0 v3 v2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 h3 v3 h1 v2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 h3 h1 v2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 h3 v2 h2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 h3 h2 v0 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 h3 v0 h2 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 h3 h2 v3 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 h3 v3 h2 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 h3 h2 v2 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 h3 v2 h1 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 h3 h1 v0 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 h3 v0 h1 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 h3 h1 v3 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 h3 v3 h0 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 v0 h3 h0 h0 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 v0 h3 h3 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 v0 v0 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v3 v3 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v2 v2 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v0 v0 v3 v2 v0 v3
+    = v3 v0 v2 v3 v3 v2 v0 v3
+    = v3 v0 v2 v2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+class 176 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v130231|h inverts v|h20:
+    v1 v3 v0 v2 v3 v1 h2 h0 v1 v3 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v3 v1 h2 v1 h0 v3 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v3 v1 v1 h3 h0 v3 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v3 h3 h0 v3 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v3 h3 v3 h1 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v3 v3 h2 h1 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 h2 h1 v2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 h2 v2 h2 v0 v3 v1 h2 h0
+    = v1 v3 v0 v2 v2 h1 h2 v0 v3 v1 h2 h0
+    = v1 v3 v0 h1 h2 v0 v3 v1 h2 h0
+    = v1 v3 v0 h1 v0 h2 v3 v1 h2 h0
+    = v1 v3 v0 v0 h1 h2 v3 v1 h2 h0
+    = v1 v3 h1 h2 v3 v1 h2 h0
+    = v1 v3 h1 v3 h3 v1 h2 h0
+    = v1 v3 v3 h0 h3 v1 h2 h0
+    = v1 h0 h3 v1 h2 h0
+    = v1 h0 v1 h2 h2 h0
+    = v1 v1 h0 h2 h2 h0
+    = h0 h2 h2 h0
+    = h0 h0
+    = 1
+  v|h31 inverts v130231|h:
+    h3 h1 v1 v3 v0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = h3 v1 h1 v3 v0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 h2 h1 v3 v0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 h2 v3 h0 v0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 h3 h0 v0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 h3 v0 h0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 h3 h0 v2 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 h3 v2 h0 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 h3 h0 v3 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 h3 v3 h1 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 h2 h1 v1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 h2 v1 h1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 v1 h3 h1 h1 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 v1 h3 h3 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 v1 v1 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v3 v3 v0 v2 v3 v1
+    = v1 v3 v2 v0 v0 v2 v3 v1
+    = v1 v3 v2 v2 v3 v1
+    = v1 v3 v3 v1
+    = v1 v1
+    = 1
+  v1021|h inverts v|h31:
+    v1 v0 v2 v1 h3 h1 v1 v2 v0 v1 h3 h1
+    = v1 v0 v2 v1 h3 v1 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 v1 v1 h2 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 h2 h1 v2 v0 v1 h3 h1
+    = v1 v0 v2 h2 v2 h2 v0 v1 h3 h1
+    = v1 v0 v2 v2 h1 h2 v0 v1 h3 h1
+    = v1 v0 h1 h2 v0 v1 h3 h1
+    = v1 v0 h1 v0 h2 v1 h3 h1
+    = v1 v0 v0 h1 h2 v1 h3 h1
+    = v1 h1 h2 v1 h3 h1
+    = v1 h1 v1 h3 h3 h1
+    = v1 v1 h1 h3 h3 h1
+    = h1 h3 h3 h1
+    = h1 h1
+    = 1
+  v|h20 inverts v1021|h:
+    h2 h0 v1 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = h2 v1 h0 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 h3 h0 v0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 h3 v0 h0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 h3 h0 v2 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 h3 v2 h0 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 h3 h0 v1 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 h3 v1 h0 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 h2 h0 h0 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 h2 h2 v1 v0 v2 v1
+    = v1 v2 v0 v1 v1 v0 v2 v1
+    = v1 v2 v0 v0 v2 v1
+    = v1 v2 v2 v1
+    = v1 v1
+    = 1
+class 177 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v0130|h inverts v|h10:
+    v0 v1 v3 v0 h1 h0 v0 v3 v1 v0 h1 h0
+    = v0 v1 v3 v0 h1 v0 h0 v3 v1 v0 h1 h0
+    = v0 v1 v3 v0 v0 h1 h0 v3 v1 v0 h1 h0
+    = v0 v1 v3 h1 h0 v3 v1 v0 h1 h0
+    = v0 v1 v3 h1 v3 h1 v1 v0 h1 h0
+    = v0 v1 v3 v3 h0 h1 v1 v0 h1 h0
+    = v0 v1 h0 h1 v1 v0 h1 h0
+    = v0 v1 h0 v1 h1 v0 h1 h0
+    = v0 v1 v1 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h232032 inverts v0130|h:
+    h2 h3 h2 h0 h3 h2 v0 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = h2 h3 h2 h0 h3 v1 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = h2 h3 h2 h0 v3 h3 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = h2 h3 h2 v3 h1 h3 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = h2 h3 v3 h2 h1 h3 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = h2 v1 h3 h2 h1 h3 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 h3 h2 h1 h3 h2 v1 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 h3 h2 h1 h3 v0 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 h3 h2 h1 v0 h3 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 h3 h2 v0 h1 h3 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 h3 v1 h2 h1 h3 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 h2 v3 h3 h2 h1 h3 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 h3 h2 h1 h3 h2 v3 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 h3 h2 h1 h3 v3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 h3 h2 h1 v1 h3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 h3 h2 v1 h1 h3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 h3 v0 h2 h1 h3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 h2 v0 h3 h2 h1 h3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 h3 h2 h1 h3 h2 v0 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 h3 h2 h1 h3 v1 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 h3 h2 h1 v3 h3 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 h3 h2 v3 h0 h3 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 h3 v3 h2 h0 h3 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 h2 v1 h3 h2 h0 h3 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h3 h2 h0 h3 h2 h2 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h3 h2 h0 h3 h3 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h3 h2 h0 h0 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h3 h2 h2 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h3 h3 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 h2 h2 v0 v1 v3 v0
+    = v0 v3 v1 v0 v0 v1 v3 v0
+    = v0 v3 v1 v1 v3 v0
+    = v0 v3 v3 v0
+    = v0 v0
+    = 1
+  v2012|h inverts v|h232032:
+    v2 v0 v1 v2 h2 h3 h2 h0 h3 h2 v2 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 h2 h3 h2 h0 h3 v2 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 h2 h3 h2 h0 v2 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 h2 h3 h2 v2 h0 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 h2 h3 v2 h1 h0 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 h2 v2 h3 h1 h0 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v2 v2 h1 h3 h1 h0 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 h3 h1 h0 h3 h1 v1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 h3 h1 h0 h3 v1 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 h3 h1 h0 v3 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 h3 h1 v3 h1 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 h3 v3 h0 h1 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 h1 v1 h3 h0 h1 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v1 v1 h1 h3 h0 h1 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 h3 h0 h1 h3 h1 v0 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 h3 h0 h1 h3 v0 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 h3 h0 h1 v0 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 h3 h0 v0 h1 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 h3 v0 h0 h1 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 h1 v0 h3 h0 h1 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 v0 v0 h1 h3 h0 h1 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 h1 h3 h0 h1 h3 h1 v2 h2 h3 h2 h0 h3 h2
+    = v2 h1 h3 h0 h1 h3 v2 h2 h2 h3 h2 h0 h3 h2
+    = v2 h1 h3 h0 h1 v2 h3 h2 h2 h3 h2 h0 h3 h2
+    = v2 h1 h3 h0 v2 h2 h3 h2 h2 h3 h2 h0 h3 h2
+    = v2 h1 h3 v2 h0 h2 h3 h2 h2 h3 h2 h0 h3 h2
+    = v2 h1 v2 h3 h0 h2 h3 h2 h2 h3 h2 h0 h3 h2
+    = v2 v2 h2 h3 h0 h2 h3 h2 h2 h3 h2 h0 h3 h2
+    = h2 h3 h0 h2 h3 h2 h2 h3 h2 h0 h3 h2
+    = h2 h3 h0 h2 h3 h3 h2 h0 h3 h2
+    = h2 h3 h0 h2 h2 h0 h3 h2
+    = h2 h3 h0 h0 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v2012|h:
+    h1 h0 v2 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = h1 v2 h0 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 h2 h0 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 h2 v0 h0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 h2 h0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 h2 v1 h0 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 h2 h0 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 h2 v2 h0 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 h1 h0 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 h1 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 v2 v0 v1 v2
+    = v2 v1 v0 v0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 193 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v230132|h inverts v|h30:
+    v2 v3 v0 v1 v3 v2 h3 h0 v2 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v2 h3 v2 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v2 v2 h3 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 h3 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 h3 v3 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v3 h2 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 h2 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 h2 v1 h2 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v1 h1 h2 v0 v3 v2 h3 h0
+    = v2 v3 v0 h1 h2 v0 v3 v2 h3 h0
+    = v2 v3 v0 h1 v0 h2 v3 v2 h3 h0
+    = v2 v3 v0 v0 h1 h2 v3 v2 h3 h0
+    = v2 v3 h1 h2 v3 v2 h3 h0
+    = v2 v3 h1 v3 h3 v2 h3 h0
+    = v2 v3 v3 h0 h3 v2 h3 h0
+    = v2 h0 h3 v2 h3 h0
+    = v2 h0 v2 h3 h3 h0
+    = v2 v2 h0 h3 h3 h0
+    = h0 h3 h3 h0
+    = h0 h0
+    = 1
+  v|h21 inverts v230132|h:
+    h2 h1 v2 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = h2 v2 h2 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 h1 h2 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 h1 v3 h3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 h0 h3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 h0 v1 h3 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h0 h3 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h0 v0 h3 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h0 h3 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h0 v3 h2 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h1 h2 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h1 v2 h1 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h2 h1 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h2 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v0 v1 v3 v2
+    = v2 v3 v1 v1 v3 v2
+    = v2 v3 v3 v2
+    = v2 v2
+    = 1
+  v01|h inverts v|h21:
+    v0 v1 h2 h1 v1 v0 h2 h1
+    = v0 v1 h2 v1 h2 v0 h2 h1
+    = v0 v1 v1 h1 h2 v0 h2 h1
+    = v0 h1 h2 v0 h2 h1
+    = v0 h1 v0 h2 h2 h1
+    = v0 v0 h1 h2 h2 h1
+    = h1 h2 h2 h1
+    = h1 h1
+    = 1
+  v|h30 inverts v01|h:
+    h3 h0 v0 v1 h0 h3 v0 v1
+    = h3 v0 h0 v1 h0 h3 v0 v1
+    = v1 h3 h0 v1 h0 h3 v0 v1
+    = v1 h3 v1 h0 h0 h3 v0 v1
+    = v1 v0 h3 h0 h0 h3 v0 v1
+    = v1 v0 h3 h3 v0 v1
+    = v1 v0 v0 v1
+    = v1 v1
+    = 1
+class 205 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v230132|h inverts v|h10:
+    v2 v3 v0 v1 v3 v2 h1 h0 v2 v3 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v3 v2 h1 v2 h0 v3 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v3 v2 v2 h3 h0 v3 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v3 h3 h0 v3 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v3 h3 v3 h1 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v3 v3 h2 h1 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 h2 h1 v1 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 h2 v1 h2 v0 v3 v2 h1 h0
+    = v2 v3 v0 v1 v1 h1 h2 v0 v3 v2 h1 h0
+    = v2 v3 v0 h1 h2 v0 v3 v2 h1 h0
+    = v2 v3 v0 h1 v0 h2 v3 v2 h1 h0
+    = v2 v3 v0 v0 h1 h2 v3 v2 h1 h0
+    = v2 v3 h1 h2 v3 v2 h1 h0
+    = v2 v3 h1 v3 h3 v2 h1 h0
+    = v2 v3 v3 h0 h3 v2 h1 h0
+    = v2 h0 h3 v2 h1 h0
+    = v2 h0 v2 h1 h1 h0
+    = v2 v2 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h32 inverts v230132|h:
+    h3 h2 v2 v3 v0 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = h3 v2 h2 v3 v0 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 h1 h2 v3 v0 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 h1 v3 h3 v0 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 h0 h3 v0 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 h0 v1 h3 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h0 h3 v1 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h0 v0 h3 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h0 h3 v3 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h0 v3 h2 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h1 h2 v2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h1 v2 h2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h3 h2 h2 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h3 h3 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v0 v1 v3 v2
+    = v2 v3 v1 v1 v3 v2
+    = v2 v3 v3 v2
+    = v2 v2
+    = 1
+  v2012|h inverts v|h32:
+    v2 v0 v1 v2 h3 h2 v2 v1 v0 v2 h3 h2
+    = v2 v0 v1 v2 h3 v2 h2 v1 v0 v2 h3 h2
+    = v2 v0 v1 v2 v2 h1 h2 v1 v0 v2 h3 h2
+    = v2 v0 v1 h1 h2 v1 v0 v2 h3 h2
+    = v2 v0 v1 h1 v1 h1 v0 v2 h3 h2
+    = v2 v0 v1 v1 h2 h1 v0 v2 h3 h2
+    = v2 v0 h2 h1 v0 v2 h3 h2
+    = v2 v0 h2 v0 h1 v2 h3 h2
+    = v2 v0 v0 h2 h1 v2 h3 h2
+    = v2 h2 h1 v2 h3 h2
+    = v2 h2 v2 h3 h3 h2
+    = v2 v2 h2 h3 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v2012|h:
+    h1 h0 v2 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = h1 v2 h0 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 h3 h0 v0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 h3 v0 h0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 h3 h0 v1 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 h3 v1 h0 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 h3 h0 v2 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 h3 v2 h0 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 h1 h0 h0 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 h1 h1 v2 v0 v1 v2
+    = v2 v1 v0 v2 v2 v0 v1 v2
+    = v2 v1 v0 v0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 220 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h32 inverts v03|h:
+    h3 h2 v0 v3 h2 h3 v0 v3
+    = h3 v0 h2 v3 h2 h3 v0 v3
+    = v3 h3 h2 v3 h2 h3 v0 v3
+    = v3 h3 v3 h2 h2 h3 v0 v3
+    = v3 v0 h3 h2 h2 h3 v0 v3
+    = v3 v0 h3 h3 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h32:
+    v1 v2 h3 h2 v2 v1 h3 h2
+    = v1 v2 h3 v2 h3 v1 h3 h2
+    = v1 v2 v2 h2 h3 v1 h3 h2
+    = v1 h2 h3 v1 h3 h2
+    = v1 h2 v1 h3 h3 h2
+    = v1 v1 h2 h3 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 232 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v02|h inverts v|h2102:
+    v0 v2 h2 h1 h0 h2 v2 v0 h2 h1 h0 h2
+    = v0 v2 h2 h1 h0 v3 h2 v0 h2 h1 h0 h2
+    = v0 v2 h2 h1 v3 h1 h2 v0 h2 h1 h0 h2
+    = v0 v2 h2 v3 h0 h1 h2 v0 h2 h1 h0 h2
+    = v0 v2 v2 h2 h0 h1 h2 v0 h2 h1 h0 h2
+    = v0 h2 h0 h1 h2 v0 h2 h1 h0 h2
+    = v0 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v0 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v0 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v0 v0 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h321023 inverts v02|h:
+    h3 h2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = h3 h2 h1 h0 h2 v3 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = h3 h2 h1 h0 v2 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = h3 h2 h1 v2 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = h3 h2 v1 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = h3 v1 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 h2 h1 h0 h2 v1 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 h2 h1 h0 v1 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 h2 h1 v1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 h2 v2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 h3 v3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 h2 h0 h1 h2 h3 v0 v2
+    = v2 v0 h3 h2 h1 h0 h0 h1 h2 h3 v0 v2
+    = v2 v0 h3 h2 h1 h1 h2 h3 v0 v2
+    = v2 v0 h3 h2 h2 h3 v0 v2
+    = v2 v0 h3 h3 v0 v2
+    = v2 v0 v0 v2
+    = v2 v2
+    = 1
+  v13|h inverts v|h321023:
+    v1 v3 h3 h2 h1 h0 h2 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h2 h1 h0 h2 v0 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h2 h1 h0 v0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h2 h1 v0 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h2 v0 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 v0 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v3 h3 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 h2 v2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 v3 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 v3 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 v3 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 v2 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 v1 h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h1 h0 h2 h3
+    = h3 h2 h0 h0 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h2102 inverts v13|h:
+    h2 h1 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3
+    = h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v1 v3
+    = h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v1 v3
+    = h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3
+    = v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3
+    = v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v1 v3
+    = v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v1 v3
+    = v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v1 v3
+    = v3 v1 h2 h1 h0 h2 h2 h0 h1 h2 v1 v3
+    = v3 v1 h2 h1 h0 h0 h1 h2 v1 v3
+    = v3 v1 h2 h1 h1 h2 v1 v3
+    = v3 v1 h2 h2 v1 v3
+    = v3 v1 v1 v3
+    = v3 v3
+    = 1
+class 233 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h3103 inverts v03|h:
+    h3 h1 h0 h3 v0 v3 h3 h0 h1 h3 v0 v3
+    = h3 h1 h0 v1 h3 v3 h3 h0 h1 h3 v0 v3
+    = h3 h1 v1 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = h3 v2 h1 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 h0 v2 h3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 v2 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 h3 v1 h1 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h0 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h1 h3 v0 v3
+    = v3 v0 h3 h3 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h3103:
+    v1 v2 h3 h1 h0 h3 v2 v1 h3 h1 h0 h3
+    = v1 v2 h3 h1 h0 v3 h3 v1 h3 h1 h0 h3
+    = v1 v2 h3 h1 v3 h1 h3 v1 h3 h1 h0 h3
+    = v1 v2 h3 v3 h0 h1 h3 v1 h3 h1 h0 h3
+    = v1 v2 v2 h3 h0 h1 h3 v1 h3 h1 h0 h3
+    = v1 h3 h0 h1 h3 v1 h3 h1 h0 h3
+    = v1 h3 h0 h1 v0 h3 h3 h1 h0 h3
+    = v1 h3 h0 v0 h1 h3 h3 h1 h0 h3
+    = v1 h3 v0 h0 h1 h3 h3 h1 h0 h3
+    = v1 v1 h3 h0 h1 h3 h3 h1 h0 h3
+    = h3 h0 h1 h3 h3 h1 h0 h3
+    = h3 h0 h1 h1 h0 h3
+    = h3 h0 h0 h3
+    = h3 h3
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 253 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h3103 inverts v03|h:
+    h3 h1 h0 h3 v0 v3 h3 h0 h1 h3 v0 v3
+    = h3 h1 h0 v2 h3 v3 h3 h0 h1 h3 v0 v3
+    = h3 h1 v2 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = h3 v1 h1 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 h0 h3 v3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 h0 v1 h3 h3 h0 h1 h3 v0 v3
+    = v3 h3 h1 v1 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 h3 v2 h1 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h0 h3 h3 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h0 h0 h1 h3 v0 v3
+    = v3 v0 h3 h1 h1 h3 v0 v3
+    = v3 v0 h3 h3 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h3103:
+    v1 v2 h3 h1 h0 h3 v2 v1 h3 h1 h0 h3
+    = v1 v2 h3 h1 h0 v0 h3 v1 h3 h1 h0 h3
+    = v1 v2 h3 h1 v0 h0 h3 v1 h3 h1 h0 h3
+    = v1 v2 h3 v0 h1 h0 h3 v1 h3 h1 h0 h3
+    = v1 v2 v2 h3 h1 h0 h3 v1 h3 h1 h0 h3
+    = v1 h3 h1 h0 h3 v1 h3 h1 h0 h3
+    = v1 h3 h1 h0 v3 h3 h3 h1 h0 h3
+    = v1 h3 h1 v3 h1 h3 h3 h1 h0 h3
+    = v1 h3 v3 h0 h1 h3 h3 h1 h0 h3
+    = v1 v1 h3 h0 h1 h3 h3 h1 h0 h3
+    = h3 h0 h1 h3 h3 h1 h0 h3
+    = h3 h0 h1 h1 h0 h3
+    = h3 h0 h0 h3
+    = h3 h3
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 255 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v02|h inverts v|h321023:
+    v0 v2 h3 h2 h1 h0 h2 h3 v2 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 h3 h2 h1 h0 h2 v1 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 h3 h2 h1 h0 v0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 h3 h2 h1 v0 h0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 h3 h2 v0 h1 h0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 h3 v1 h2 h1 h0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 v2 v2 h3 h2 h1 h0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 h3 h2 h1 h0 h2 h3 v0 h3 h2 h1 h0 h2 h3
+    = v0 h3 h2 h1 h0 h2 v3 h3 h3 h2 h1 h0 h2 h3
+    = v0 h3 h2 h1 h0 v3 h2 h3 h3 h2 h1 h0 h2 h3
+    = v0 h3 h2 h1 v3 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v0 h3 h2 v3 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v0 h3 v3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v0 v0 h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h1 h0 h2 h3
+    = h3 h2 h0 h0 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h2102 inverts v02|h:
+    h2 h1 h0 h2 v0 v2 h2 h0 h1 h2 v0 v2
+    = h2 h1 h0 v1 h2 v2 h2 h0 h1 h2 v0 v2
+    = h2 h1 v1 h0 h2 v2 h2 h0 h1 h2 v0 v2
+    = h2 v2 h1 h0 h2 v2 h2 h0 h1 h2 v0 v2
+    = v2 h2 h1 h0 h2 v2 h2 h0 h1 h2 v0 v2
+    = v2 h2 h1 h0 v2 h2 h2 h0 h1 h2 v0 v2
+    = v2 h2 h1 v2 h0 h2 h2 h0 h1 h2 v0 v2
+    = v2 h2 v1 h1 h0 h2 h2 h0 h1 h2 v0 v2
+    = v2 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v2
+    = v2 v0 h2 h1 h0 h0 h1 h2 v0 v2
+    = v2 v0 h2 h1 h1 h2 v0 v2
+    = v2 v0 h2 h2 v0 v2
+    = v2 v0 v0 v2
+    = v2 v2
+    = 1
+  v13|h inverts v|h2102:
+    v1 v3 h2 h1 h0 h2 v3 v1 h2 h1 h0 h2
+    = v1 v3 h2 h1 h0 v3 h2 v1 h2 h1 h0 h2
+    = v1 v3 h2 h1 v3 h1 h2 v1 h2 h1 h0 h2
+    = v1 v3 h2 v3 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 v3 v3 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h321023 inverts v13|h:
+    h3 h2 h1 h0 h2 h3 v1 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = h3 h2 h1 h0 h2 v2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = h3 h2 h1 h0 v2 h2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = h3 h2 h1 v2 h0 h2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = h3 h2 v1 h1 h0 h2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = h3 v0 h2 h1 h0 h2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 h2 h1 h0 h2 h3 v3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 h2 h1 h0 h2 v0 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 h2 h1 h0 v1 h2 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 h2 h1 v1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 h2 v2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 h3 v2 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 v1 h3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v1 v3
+    = v3 v1 h3 h2 h1 h0 h2 h2 h0 h1 h2 h3 v1 v3
+    = v3 v1 h3 h2 h1 h0 h0 h1 h2 h3 v1 v3
+    = v3 v1 h3 h2 h1 h1 h2 h3 v1 v3
+    = v3 v1 h3 h2 h2 h3 v1 v3
+    = v3 v1 h3 h3 v1 v3
+    = v3 v1 v1 v3
+    = v3 v3
+    = 1
+class 256 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h2102 inverts v03|h:
+    h2 h1 h0 h2 v0 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h1 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h2102:
+    v1 v2 h2 h1 h0 h2 v2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 h0 v3 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 v3 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 v3 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 v2 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 261 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h2102 inverts v03|h:
+    h2 h1 h0 h2 v0 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h1 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h2102:
+    v1 v2 h2 h1 h0 h2 v2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 h0 v3 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 v3 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 v3 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 v2 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 262 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h2102 inverts v03|h:
+    h2 h1 h0 h2 v0 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h1 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h2102:
+    v1 v2 h2 h1 h0 h2 v2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 h0 v3 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 v3 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 v3 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 v2 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 263 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h2102 inverts v03|h:
+    h2 h1 h0 h2 v0 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h1 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h2102:
+    v1 v2 h2 h1 h0 h2 v2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 h0 v3 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 v3 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 h2 v3 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 v2 v2 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 h2 v1 h2 h1 h0 h2
+    = v1 h2 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h2 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h2 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 264 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h2102 inverts v03|h:
+    h2 h1 h0 h2 v0 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 h0 v1 h3 v3 h2 h0 h1 h2 v0 v3
+    = h2 h1 v1 h0 h3 v3 h2 h0 h1 h2 v0 v3
+    = h2 v2 h1 h0 h3 v3 h2 h0 h1 h2 v0 v3
+    = v3 h3 h1 h0 h3 v3 h2 h0 h1 h2 v0 v3
+    = v3 h3 h1 h0 v2 h2 h2 h0 h1 h2 v0 v3
+    = v3 h3 h1 v2 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 h3 v1 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h2 h2 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h0 h0 h1 h2 v0 v3
+    = v3 v0 h2 h1 h1 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h2102:
+    v1 v2 h2 h1 h0 h2 v2 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 h0 v3 h3 v1 h2 h1 h0 h2
+    = v1 v2 h2 h1 v3 h1 h3 v1 h2 h1 h0 h2
+    = v1 v2 h2 v3 h0 h1 h3 v1 h2 h1 h0 h2
+    = v1 v2 v2 h3 h0 h1 h3 v1 h2 h1 h0 h2
+    = v1 h3 h0 h1 h3 v1 h2 h1 h0 h2
+    = v1 h3 h0 h1 v0 h2 h2 h1 h0 h2
+    = v1 h3 h0 v0 h1 h2 h2 h1 h0 h2
+    = v1 h3 v0 h0 h1 h2 h2 h1 h0 h2
+    = v1 v1 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h1 h0 v2 h0 h1 v1 v2
+    = v2 h1 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 272 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v030230|h inverts v|h20:
+    v0 v3 v0 v2 v3 v0 h2 h0 v0 v3 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v3 v0 h2 v0 h0 v3 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v3 v0 v0 h2 h0 v3 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v3 h2 h0 v3 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v3 h2 v3 h1 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v3 v3 h2 h1 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 h2 h1 v2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 h2 v1 h2 v0 v3 v0 h2 h0
+    = v0 v3 v0 v2 v2 h1 h2 v0 v3 v0 h2 h0
+    = v0 v3 v0 h1 h2 v0 v3 v0 h2 h0
+    = v0 v3 v0 h1 v0 h2 v3 v0 h2 h0
+    = v0 v3 v0 v0 h1 h2 v3 v0 h2 h0
+    = v0 v3 h1 h2 v3 v0 h2 h0
+    = v0 v3 h1 v3 h2 v0 h2 h0
+    = v0 v3 v3 h0 h2 v0 h2 h0
+    = v0 h0 h2 v0 h2 h0
+    = v0 h0 v0 h2 h2 h0
+    = v0 v0 h0 h2 h2 h0
+    = h0 h2 h2 h0
+    = h0 h0
+    = 1
+  v|h132131 inverts v030230|h:
+    h1 h3 h2 h1 h3 h1 v0 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = h1 h3 h2 h1 h3 v0 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = h1 h3 h2 h1 v1 h3 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = h1 h3 h2 v2 h2 h3 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = h1 h3 v1 h1 h2 h3 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = h1 v0 h3 h1 h2 h3 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h1 h2 h3 h1 v3 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h1 h2 h3 v3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h1 h2 v3 h3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h1 v3 h2 h3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 v3 h0 h2 h3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 h1 v3 h3 h0 h2 h3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h0 h2 h3 h0 v0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h0 h2 h3 v0 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h0 h2 v1 h3 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h0 v2 h1 h3 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 v2 h0 h1 h3 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 v2 h3 h0 h1 h3 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h0 h1 h3 h0 v2 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h0 h1 h3 v2 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h0 h1 v2 h3 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h0 v1 h2 h3 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 v1 h0 h2 h3 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 v0 h3 h0 h2 h3 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h0 h2 h3 h0 v3 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h0 h2 h3 v3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h0 h2 v3 h3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h0 v3 h2 h3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 v3 h1 h2 h3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 v3 h3 h1 h2 h3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h1 h2 h3 h1 v0 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h1 h2 h3 v0 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h1 h2 v1 h3 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h1 v2 h1 h3 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 v1 h2 h1 h3 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 v0 h3 h2 h1 h3 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h3 h2 h1 h3 h1 h1 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h3 h2 h1 h3 h3 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h3 h2 h1 h1 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h3 h2 h2 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h3 h3 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h1 h1 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v0 v2 v3 v0
+    = v0 v3 v2 v2 v3 v0
+    = v0 v3 v3 v0
+    = v0 v0
+    = 1
+  v0120|h inverts v|h132131:
+    v0 v1 v2 v0 h1 h3 h2 h1 h3 h1 v0 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 h1 h3 h2 h1 h3 v0 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 h1 h3 h2 h1 v1 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 h1 h3 h2 v2 h2 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 h1 h3 v1 h1 h2 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 h1 v0 h3 h1 h2 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v0 v0 h1 h3 h1 h2 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 h3 h1 h2 h3 h1 v2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 h3 h1 h2 h3 v1 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 h3 h1 h2 v0 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 h3 h1 v0 h2 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 h3 v0 h1 h2 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 h1 v1 h3 h1 h2 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v2 v2 h2 h3 h1 h2 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 h3 h1 h2 h3 h2 v1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 h3 h1 h2 h3 v2 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 h3 h1 h2 v2 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 h3 h1 v1 h1 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 h3 v2 h2 h1 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 h2 v2 h3 h2 h1 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 v1 v1 h1 h3 h2 h1 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 h1 h3 h2 h1 h3 h1 v0 h1 h3 h2 h1 h3 h1
+    = v0 h1 h3 h2 h1 h3 v0 h1 h1 h3 h2 h1 h3 h1
+    = v0 h1 h3 h2 h1 v1 h3 h1 h1 h3 h2 h1 h3 h1
+    = v0 h1 h3 h2 v2 h2 h3 h1 h1 h3 h2 h1 h3 h1
+    = v0 h1 h3 v1 h1 h2 h3 h1 h1 h3 h2 h1 h3 h1
+    = v0 h1 v0 h3 h1 h2 h3 h1 h1 h3 h2 h1 h3 h1
+    = v0 v0 h1 h3 h1 h2 h3 h1 h1 h3 h2 h1 h3 h1
+    = h1 h3 h1 h2 h3 h1 h1 h3 h2 h1 h3 h1
+    = h1 h3 h1 h2 h3 h3 h2 h1 h3 h1
+    = h1 h3 h1 h2 h2 h1 h3 h1
+    = h1 h3 h1 h1 h3 h1
+    = h1 h3 h3 h1
+    = h1 h1
+    = 1
+  v|h20 inverts v0120|h:
+    h2 h0 v0 v1 v2 v0 h0 h2 v0 v1 v2 v0
+    = h2 v0 h0 v1 v2 v0 h0 h2 v0 v1 v2 v0
+    = v0 h2 h0 v1 v2 v0 h0 h2 v0 v1 v2 v0
+    = v0 h2 v1 h0 v2 v0 h0 h2 v0 v1 v2 v0
+    = v0 v2 h1 h0 v2 v0 h0 h2 v0 v1 v2 v0
+    = v0 v2 h1 v2 h0 v0 h0 h2 v0 v1 v2 v0
+    = v0 v2 v1 h2 h0 v0 h0 h2 v0 v1 v2 v0
+    = v0 v2 v1 h2 v0 h0 h0 h2 v0 v1 v2 v0
+    = v0 v2 v1 v0 h2 h0 h0 h2 v0 v1 v2 v0
+    = v0 v2 v1 v0 h2 h2 v0 v1 v2 v0
+    = v0 v2 v1 v0 v0 v1 v2 v0
+    = v0 v2 v1 v1 v2 v0
+    = v0 v2 v2 v0
+    = v0 v0
+    = 1
+class 281 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h231032 inverts v03|h:
+    h2 h3 h1 h0 h3 h2 v0 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 h0 h3 v0 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 h0 v1 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 v1 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 v2 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 v3 h3 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 h3 v3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 v2 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 v2 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 v1 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 v0 h3 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h3 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h3 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h231032:
+    v1 v2 h2 h3 h1 h0 h3 h2 v2 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 h0 h3 v1 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 h0 v0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 v0 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 v0 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 v1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 v2 h1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 h3 v2 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 v3 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 v3 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 v3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 v2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 v1 h2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h3 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h1 h0 h3 h2
+    = h2 h3 h0 h0 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h2 h0 v2 h0 h1 v1 v2
+    = v2 h2 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 282 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v03|h inverts v|h10:
+    v0 v3 h1 h0 v3 v0 h1 h0
+    = v0 v3 h1 v3 h1 v0 h1 h0
+    = v0 v3 v3 h0 h1 v0 h1 h0
+    = v0 h0 h1 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h231032 inverts v03|h:
+    h2 h3 h1 h0 h3 h2 v0 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 h0 h3 v3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 h0 v2 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 h1 v2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 h3 v1 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = h2 v0 h3 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 h3 h2 v3 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 h3 v0 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 h0 v1 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 h2 v1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 h3 v2 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 h2 v3 h3 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h3 h2 h2 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h3 h3 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h0 h0 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h1 h1 h3 h2 v0 v3
+    = v3 v0 h2 h3 h3 h2 v0 v3
+    = v3 v0 h2 h2 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h231032:
+    v1 v2 h2 h3 h1 h0 h3 h2 v2 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 h0 h3 v1 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 h0 v0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 h1 v0 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 h3 v0 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 h2 v1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 v2 v2 h1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 h3 h1 v1 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 h3 v2 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 h0 v3 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 h1 v3 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 h3 v3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 h1 v2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = v1 v1 h2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h3 h2 h2 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h3 h3 h1 h0 h3 h2
+    = h2 h3 h0 h1 h1 h0 h3 h2
+    = h2 h3 h0 h0 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v12|h:
+    h1 h0 v1 v2 h0 h1 v1 v2
+    = h1 v1 h0 v2 h0 h1 v1 v2
+    = v2 h2 h0 v2 h0 h1 v1 v2
+    = v2 h2 v2 h0 h0 h1 v1 v2
+    = v2 v1 h1 h0 h0 h1 v1 v2
+    = v2 v1 h1 h1 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 290 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v0202|h inverts v|h2102:
+    v0 v2 v0 v2 h2 h1 h0 h2 v2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 h1 h0 v3 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 h1 v3 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 v3 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 v2 h2 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 h1 v0 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 v0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 v0 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v0 h1 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 h2 v1 h1 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 v1 h2 h1 v0 h2 h1 h0 h2
+    = v0 v2 h1 v1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 v2 v2 h1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 h1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 h1 h0 h2 v0 h2 h2 h1 h0 h2
+    = v0 h1 h0 v0 h1 h2 h2 h1 h0 h2
+    = v0 h1 v0 h0 h1 h2 h2 h1 h0 h2
+    = v0 v0 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h321023 inverts v0202|h:
+    h3 h2 h1 h0 h2 h3 v0 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 h0 h2 v1 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 h0 v1 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 v1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 v2 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 v3 h2 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 h2 v3 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 v2 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 v2 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 v1 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 v1 h2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 v1 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 v1 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 v1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 v2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 v3 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 h2 v3 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 v2 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 v2 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 v1 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 v1 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h2 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 v0 v2 v0 v2
+    = v2 v0 v2 v2 v0 v2
+    = v2 v0 v0 v2
+    = v2 v2
+    = 1
+  v1313|h inverts v|h321023:
+    v1 v3 v1 v3 h3 h2 h1 h0 h2 h3 v3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 h0 h2 v2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 h0 v3 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 v3 h1 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 v3 h0 h1 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 v2 h2 h0 h1 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 v3 h3 h2 h0 h1 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h2 h0 h1 h2 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h2 h0 h1 h2 v0 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h2 h0 h1 v0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h2 h0 v0 h2 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h2 v0 h0 h2 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 v0 h1 h0 h2 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v1 h3 h1 h0 h2 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h0 h2 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h0 h2 h1 v2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h0 h2 v1 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h0 v1 h2 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 v1 h0 h2 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 v2 h1 h0 h2 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v3 h3 h1 h0 h2 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h1 h0 h2 h1 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h1 h0 h2 h1 v0 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h1 h0 h2 v0 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h1 h0 v0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h1 v0 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 v0 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 v1 h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h1 h0 h2 h3
+    = h3 h2 h0 h0 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h2102 inverts v1313|h:
+    h2 h1 h0 h2 v1 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 h1 h0 v1 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 h1 v1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 v2 h1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 h0 v2 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 v2 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 v1 h1 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h0 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 v1 v3 v1 v3
+    = v3 v1 v3 v3 v1 v3
+    = v3 v1 v1 v3
+    = v3 v3
+    = 1
+class 318 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v0202|h inverts v|h2102:
+    v0 v2 v0 v2 h2 h1 h0 h2 v2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 h1 h0 v3 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 h1 v3 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 h2 v3 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v2 v2 h2 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 h1 h2 v0 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 h1 v0 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 h0 v0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 h2 v0 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 v0 v0 h1 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 h2 h1 v2 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 h2 v1 h1 v0 h2 h1 h0 h2
+    = v0 v2 h1 h0 v1 h2 h1 v0 h2 h1 h0 h2
+    = v0 v2 h1 v1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 v2 v2 h1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 h1 h0 h2 h1 v0 h2 h1 h0 h2
+    = v0 h1 h0 h2 v0 h2 h2 h1 h0 h2
+    = v0 h1 h0 v0 h1 h2 h2 h1 h0 h2
+    = v0 h1 v0 h0 h1 h2 h2 h1 h0 h2
+    = v0 v0 h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h2 h2 h1 h0 h2
+    = h2 h0 h1 h1 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h321023 inverts v0202|h:
+    h3 h2 h1 h0 h2 h3 v0 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 h0 h2 v3 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 h0 v2 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 h1 v2 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 h2 v1 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = h3 v1 h2 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 h2 h3 v2 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 h2 v1 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 h0 v1 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 h1 v1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 h2 v2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 h3 v3 h2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 h3 v0 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 h2 v3 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 h0 v2 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 h1 v2 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 h2 v1 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 h3 v1 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 h2 h3 v2 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 h2 v1 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 h0 v1 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 h1 v1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 h2 v2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 h3 v3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h2 h3 h3 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h2 h2 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h0 h0 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h1 h1 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h2 h2 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 h3 h3 v0 v2 v0 v2
+    = v2 v0 v2 v0 v0 v2 v0 v2
+    = v2 v0 v2 v2 v0 v2
+    = v2 v0 v0 v2
+    = v2 v2
+    = 1
+  v1313|h inverts v|h321023:
+    v1 v3 v1 v3 h3 h2 h1 h0 h2 h3 v3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 h0 h2 v0 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 h0 v0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 h1 v0 h0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 h2 v0 h2 h0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 h3 v0 h1 h2 h0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v3 v3 h3 h1 h2 h0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h1 h2 h0 h1 h3 v1 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h1 h2 h0 h1 v2 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h1 h2 h0 v1 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h1 h2 v1 h0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 h1 v1 h2 h0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 h3 v2 h1 h2 h0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v1 v1 h3 h1 h2 h0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h2 h0 h1 h3 v3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h2 h0 h1 v0 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h2 h0 v0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 h2 v0 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 h1 v0 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 h3 v0 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 v3 v3 h3 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 h2 h3 v1 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 h2 v2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 h0 v3 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 h1 v3 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 h2 v3 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 h3 v2 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = v1 v1 h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h3 h3 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h2 h2 h1 h0 h2 h3
+    = h3 h2 h0 h1 h1 h0 h2 h3
+    = h3 h2 h0 h0 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h2102 inverts v1313|h:
+    h2 h1 h0 h2 v1 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 h1 h0 v1 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 h1 v1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = h2 v2 h1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 h0 h2 v3 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 h0 v2 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 h1 v2 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 h2 v1 h1 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 h0 h2 v1 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 h0 v1 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 h1 v1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 h2 v2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 h0 h2 v3 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 h0 v2 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 h1 v2 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 h2 v1 h1 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h0 h2 h2 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h0 h0 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h1 h1 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 h2 h2 v1 v3 v1 v3
+    = v3 v1 v3 v1 v1 v3 v1 v3
+    = v3 v1 v3 v3 v1 v3
+    = v3 v1 v1 v3
+    = v3 v3
+    = 1
+class 320 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v030230|h inverts v|h10:
+    v0 v3 v0 v2 v3 v0 h1 h0 v0 v3 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v3 v0 h1 v0 h0 v3 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v3 v0 v0 h2 h0 v3 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v3 h2 h0 v3 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v3 h2 v3 h1 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v3 v3 h2 h1 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 h2 h1 v2 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 h2 v1 h1 v0 v3 v0 h1 h0
+    = v0 v3 v0 v2 v2 h2 h1 v0 v3 v0 h1 h0
+    = v0 v3 v0 h2 h1 v0 v3 v0 h1 h0
+    = v0 v3 v0 h2 v0 h2 v3 v0 h1 h0
+    = v0 v3 v0 v0 h1 h2 v3 v0 h1 h0
+    = v0 v3 h1 h2 v3 v0 h1 h0
+    = v0 v3 h1 v3 h2 v0 h1 h0
+    = v0 v3 v3 h0 h2 v0 h1 h0
+    = v0 h0 h2 v0 h1 h0
+    = v0 h0 v0 h1 h1 h0
+    = v0 v0 h0 h1 h1 h0
+    = h0 h1 h1 h0
+    = h0 h0
+    = 1
+  v|h232132 inverts v030230|h:
+    h2 h3 h2 h1 h3 h2 v0 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = h2 h3 h2 h1 h3 v0 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = h2 h3 h2 h1 v1 h3 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = h2 h3 h2 v2 h1 h3 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = h2 h3 v1 h2 h1 h3 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = h2 v0 h3 h2 h1 h3 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h2 h1 h3 h1 v3 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h2 h1 h3 v3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h2 h1 v3 h3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 h2 v3 h0 h3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 h3 v3 h2 h0 h3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 h1 v3 h3 h2 h0 h3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h2 h0 h3 h0 v0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h2 h0 h3 v0 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h2 h0 v1 h3 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 h2 v1 h0 h3 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 h3 v2 h2 h0 h3 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 h0 v2 h3 h2 h0 h3 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h2 h0 h3 h0 v2 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h2 h0 h3 v2 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h2 h0 v2 h3 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 h2 v2 h0 h3 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 h3 v1 h2 h0 h3 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 h0 v0 h3 h2 h0 h3 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h2 h0 h3 h0 v3 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h2 h0 h3 v3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h2 h0 v3 h3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 h2 v3 h1 h3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 h3 v3 h2 h1 h3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 h0 v3 h3 h2 h1 h3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h2 h1 h3 h1 v0 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h2 h1 h3 v0 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h2 h1 v1 h3 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 h2 v2 h1 h3 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 h3 v1 h2 h1 h3 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 h1 v0 h3 h2 h1 h3 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h3 h2 h1 h3 h2 h2 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h3 h2 h1 h3 h3 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h3 h2 h1 h1 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h3 h2 h2 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h3 h3 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 h2 h2 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v0 v0 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v3 v3 v0 v2 v3 v0
+    = v0 v3 v2 v0 v0 v2 v3 v0
+    = v0 v3 v2 v2 v3 v0
+    = v0 v3 v3 v0
+    = v0 v0
+    = 1
+  v0120|h inverts v|h232132:
+    v0 v1 v2 v0 h2 h3 h2 h1 h3 h2 v0 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 h2 h3 h2 h1 h3 v0 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 h2 h3 h2 h1 v1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 h2 h3 h2 v2 h1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 h2 h3 v1 h2 h1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 h2 v0 h3 h2 h1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v0 v0 h1 h3 h2 h1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 h3 h2 h1 h3 h1 v2 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 h3 h2 h1 h3 v1 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 h3 h2 h1 v0 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 h3 h2 v0 h2 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 h3 v0 h1 h2 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 h1 v1 h3 h1 h2 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v2 v2 h1 h3 h1 h2 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 h3 h1 h2 h3 h1 v1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 h3 h1 h2 h3 v2 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 h3 h1 h2 v2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 h3 h1 v1 h2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 h3 v2 h1 h2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 h1 v2 h3 h1 h2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 v1 v1 h1 h3 h1 h2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 h1 h3 h1 h2 h3 h1 v0 h2 h3 h2 h1 h3 h2
+    = v0 h1 h3 h1 h2 h3 v0 h2 h2 h3 h2 h1 h3 h2
+    = v0 h1 h3 h1 h2 v1 h3 h2 h2 h3 h2 h1 h3 h2
+    = v0 h1 h3 h1 v2 h2 h3 h2 h2 h3 h2 h1 h3 h2
+    = v0 h1 h3 v1 h1 h2 h3 h2 h2 h3 h2 h1 h3 h2
+    = v0 h1 v0 h3 h1 h2 h3 h2 h2 h3 h2 h1 h3 h2
+    = v0 v0 h2 h3 h1 h2 h3 h2 h2 h3 h2 h1 h3 h2
+    = h2 h3 h1 h2 h3 h2 h2 h3 h2 h1 h3 h2
+    = h2 h3 h1 h2 h3 h3 h2 h1 h3 h2
+    = h2 h3 h1 h2 h2 h1 h3 h2
+    = h2 h3 h1 h1 h3 h2
+    = h2 h3 h3 h2
+    = h2 h2
+    = 1
+  v|h10 inverts v0120|h:
+    h1 h0 v0 v1 v2 v0 h0 h1 v0 v1 v2 v0
+    = h1 v0 h0 v1 v2 v0 h0 h1 v0 v1 v2 v0
+    = v0 h2 h0 v1 v2 v0 h0 h1 v0 v1 v2 v0
+    = v0 h2 v1 h0 v2 v0 h0 h1 v0 v1 v2 v0
+    = v0 v2 h2 h0 v2 v0 h0 h1 v0 v1 v2 v0
+    = v0 v2 h2 v2 h0 v0 h0 h1 v0 v1 v2 v0
+    = v0 v2 v1 h2 h0 v0 h0 h1 v0 v1 v2 v0
+    = v0 v2 v1 h2 v0 h0 h0 h1 v0 v1 v2 v0
+    = v0 v2 v1 v0 h1 h0 h0 h1 v0 v1 v2 v0
+    = v0 v2 v1 v0 h1 h1 v0 v1 v2 v0
+    = v0 v2 v1 v0 v0 v1 v2 v0
+    = v0 v2 v1 v1 v2 v0
+    = v0 v2 v2 v0
+    = v0 v0
+    = 1
+class 332 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v230132|h inverts v|h30:
+    v2 v3 v0 v1 v3 v2 h3 h0 v2 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v2 h3 v2 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v2 v2 h3 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 h3 h0 v3 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 h3 v3 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v3 v3 h2 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 h2 h1 v1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 h2 v2 h1 v0 v3 v2 h3 h0
+    = v2 v3 v0 v1 v1 h2 h1 v0 v3 v2 h3 h0
+    = v2 v3 v0 h2 h1 v0 v3 v2 h3 h0
+    = v2 v3 v0 h2 v0 h2 v3 v2 h3 h0
+    = v2 v3 v0 v0 h1 h2 v3 v2 h3 h0
+    = v2 v3 h1 h2 v3 v2 h3 h0
+    = v2 v3 h1 v3 h3 v2 h3 h0
+    = v2 v3 v3 h0 h3 v2 h3 h0
+    = v2 h0 h3 v2 h3 h0
+    = v2 h0 v2 h3 h3 h0
+    = v2 v2 h0 h3 h3 h0
+    = h0 h3 h3 h0
+    = h0 h0
+    = 1
+  v|h21 inverts v230132|h:
+    h2 h1 v2 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = h2 v1 h1 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 h2 h1 v3 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 h2 v3 h0 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 h3 h0 v0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 h3 v0 h0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h3 h0 v1 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 h3 v1 h0 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h3 h0 v3 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 h3 v3 h1 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h2 h1 v2 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 h2 v1 h1 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h2 h1 h1 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 h2 h2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v2 v2 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v3 v3 v0 v1 v3 v2
+    = v2 v3 v1 v0 v0 v1 v3 v2
+    = v2 v3 v1 v1 v3 v2
+    = v2 v3 v3 v2
+    = v2 v2
+    = 1
+  v01|h inverts v|h21:
+    v0 v1 h2 h1 v1 v0 h2 h1
+    = v0 v1 h2 v2 h1 v0 h2 h1
+    = v0 v1 v1 h2 h1 v0 h2 h1
+    = v0 h2 h1 v0 h2 h1
+    = v0 h2 v0 h2 h2 h1
+    = v0 v0 h1 h2 h2 h1
+    = h1 h2 h2 h1
+    = h1 h1
+    = 1
+  v|h30 inverts v01|h:
+    h3 h0 v0 v1 h0 h3 v0 v1
+    = h3 v0 h0 v1 h0 h3 v0 v1
+    = v1 h3 h0 v1 h0 h3 v0 v1
+    = v1 h3 v1 h0 h0 h3 v0 v1
+    = v1 v0 h3 h0 h0 h3 v0 v1
+    = v1 v0 h3 h3 v0 v1
+    = v1 v0 v0 v1
+    = v1 v1
+    = 1
+class 338 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v2012|h inverts v|h20:
+    v2 v0 v1 v2 h2 h0 v2 v1 v0 v2 h2 h0
+    = v2 v0 v1 v2 h2 v2 h1 v1 v0 v2 h2 h0
+    = v2 v0 v1 v2 v2 h3 h1 v1 v0 v2 h2 h0
+    = v2 v0 v1 h3 h1 v1 v0 v2 h2 h0
+    = v2 v0 v1 h3 v3 h1 v0 v2 h2 h0
+    = v2 v0 v1 v1 h3 h1 v0 v2 h2 h0
+    = v2 v0 h3 h1 v0 v2 h2 h0
+    = v2 v0 h3 v0 h3 v2 h2 h0
+    = v2 v0 v0 h1 h3 v2 h2 h0
+    = v2 h1 h3 v2 h2 h0
+    = v2 h1 v2 h2 h2 h0
+    = v2 v2 h0 h2 h2 h0
+    = h0 h2 h2 h0
+    = h0 h0
+    = 1
+  v|h31 inverts v2012|h:
+    h3 h1 v2 v0 v1 v2 h1 h3 v2 v0 v1 v2
+    = h3 v2 h0 v0 v1 v2 h1 h3 v2 v0 v1 v2
+    = v2 h2 h0 v0 v1 v2 h1 h3 v2 v0 v1 v2
+    = v2 h2 v0 h0 v1 v2 h1 h3 v2 v0 v1 v2
+    = v2 v1 h2 h0 v1 v2 h1 h3 v2 v0 v1 v2
+    = v2 v1 h2 v1 h0 v2 h1 h3 v2 v0 v1 v2
+    = v2 v1 v0 h2 h0 v2 h1 h3 v2 v0 v1 v2
+    = v2 v1 v0 h2 v2 h1 h1 h3 v2 v0 v1 v2
+    = v2 v1 v0 v2 h3 h1 h1 h3 v2 v0 v1 v2
+    = v2 v1 v0 v2 h3 h3 v2 v0 v1 v2
+    = v2 v1 v0 v2 v2 v0 v1 v2
+    = v2 v1 v0 v0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+  v01|h inverts v|h31:
+    v0 v1 h3 h1 v1 v0 h3 h1
+    = v0 v1 h3 v3 h1 v0 h3 h1
+    = v0 v1 v1 h3 h1 v0 h3 h1
+    = v0 h3 h1 v0 h3 h1
+    = v0 h3 v0 h3 h3 h1
+    = v0 v0 h1 h3 h3 h1
+    = h1 h3 h3 h1
+    = h1 h1
+    = 1
+  v|h20 inverts v01|h:
+    h2 h0 v0 v1 h0 h2 v0 v1
+    = h2 v0 h0 v1 h0 h2 v0 v1
+    = v1 h2 h0 v1 h0 h2 v0 v1
+    = v1 h2 v1 h0 h0 h2 v0 v1
+    = v1 v0 h2 h0 h0 h2 v0 v1
+    = v1 v0 h2 h2 v0 v1
+    = v1 v0 v0 v1
+    = v1 v1
+    = 1
+class 552 Klein chain of length 4 verified: Gamma^+ is not left-orderable

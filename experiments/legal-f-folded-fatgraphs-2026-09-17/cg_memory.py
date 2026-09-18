@@ -156,8 +156,19 @@ class CGM:
     def solve_master(self):
         t = time.time()
         self.h.run()
-        self.tmaster = getattr(self, "tmaster", 0.0) + time.time() - t
         st = self.h.getModelStatus()
+        if st != self.hs.HighsModelStatus.kOptimal and SOLVER == "ipm":
+            # IPM numerical trouble (status unknown): re-solve this master with crossover, then with simplex
+            self.h.setOptionValue("run_crossover", "on")
+            self.h.run()
+            st = self.h.getModelStatus()
+            if st != self.hs.HighsModelStatus.kOptimal:
+                self.h.setOptionValue("solver", "simplex")
+                self.h.run()
+                st = self.h.getModelStatus()
+                self.h.setOptionValue("solver", "ipm")
+            self.h.setOptionValue("run_crossover", "off")
+        self.tmaster = getattr(self, "tmaster", 0.0) + time.time() - t
         s = self.h.getSolution()
         class R: pass
         res = R()

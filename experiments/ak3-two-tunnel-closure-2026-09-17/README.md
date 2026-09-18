@@ -66,3 +66,15 @@ See `research/ak3-two-tunnel-excursions-above-cap-24.md`.
   - No goal was found in any grown state, no m is PRIM or THICK, and no endpoint has an
     entry of length 1.
   - The closure has 263067 states.
+- `rank3-seeded.log` covers rank 3 at C2 = 26 (`CHUNK=800 loop.sh 3 26 s24r3.txt empty.txt
+  new1714r3.txt r3r 1`, 16 mode-B chunks, all exit 0).
+  - The five rounds add 224, 131, 53, 17 and 0 states, exactly as in rank 2. The landings
+    (5814 products, 156/81/38/8/0 classes) are the rank-2 ones.
+  - Round 1 has 8148 classes against 4340 in rank 2, and 10422 in all. That is 32.9M (M1)
+    products.
+  - No PRIM, THICK or PROJ goal was found: 30588 Neuwirth calls, 0 undecided.
+  - The closure has 282352 states.
+- `band-rank2.log` covers k-tunnels in the band (24, 26] in rank 2, starting from the 14299
+  next-level classes.
+  - Three complete rounds add 124, 188 and 110 states, with no goal.
+  - The frontier grows (21534, 34117, 50829), and the run was stopped during round 4.
