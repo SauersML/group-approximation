@@ -125,4 +125,72 @@ theorem vdkOmega_genVal_comm (hαβ : vdkOmega_Agree α β) (i j k l : Fin (n + 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_genVal_comm
 
+/-- The commutator relation for adjacent roots.  The one input beyond the two parabolics is
+`vdkOmega_Mixed`, used in the case `(c, last, c)`. -/
+theorem vdkOmega_genVal_adj (hαβ : vdkOmega_Agree α β) (hmix : vdkOmega_Mixed α β)
+    (i j k : Fin (n + 1)) (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (a b : R) :
+    ⁅vdkOmega_genVal α β i j a, vdkOmega_genVal α β j k b⁆ =
+      vdkOmega_genVal α β i k (a * b) := by
+  rcases Fin.eq_castSucc_or_eq_last i with ⟨i, rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last j with ⟨j, rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last k with ⟨k, rfl⟩ | rfl
+  · -- `ccc`
+    have h1 : i ≠ j := ne_of_apply_ne Fin.castSucc hij
+    have h2 : j ≠ k := ne_of_apply_ne Fin.castSucc hjk
+    have h3 : i ≠ k := ne_of_apply_ne Fin.castSucc hik
+    simp only [vdkOmega_genVal_cc, vdkOmega_sv_of_ne α i j h1, vdkOmega_sv_of_ne α j k h2,
+      vdkOmega_sv_of_ne α i k h3]
+    rw [vdkOmega_inr_commutator, x_commutator i j k h1 h2 h3 a b]
+  · -- `ccL`
+    have h1 : i ≠ j := ne_of_apply_ne Fin.castSucc hij
+    simp only [vdkOmega_genVal_cc, vdkOmega_genVal_cL, vdkOmega_sv_of_ne α i j h1]
+    exact vdkOmega_sv_cv_adj α i j h1 a b
+  · -- `cLc`: the mixed relation
+    have h3 : i ≠ k := ne_of_apply_ne Fin.castSucc hik
+    simp only [vdkOmega_genVal_cL, vdkOmega_genVal_Lc, vdkOmega_genVal_cc,
+      vdkOmega_sv_of_ne α i k h3]
+    exact hmix i k h3 a b
+  · exact absurd rfl hjk
+  · -- `Lcc`
+    have h2 : j ≠ k := ne_of_apply_ne Fin.castSucc hjk
+    simp only [vdkOmega_genVal_Lc, vdkOmega_genVal_cc, vdkOmega_sv_of_ne α j k h2]
+    exact vdkOmega_rv_sv_adj α β hαβ j k h2 a b
+  · exact absurd rfl hik
+  · exact absurd rfl hij
+  · exact absurd rfl hij
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_genVal_adj
+
+/-- **The amalgam `LastRootAction`.**  Two permutation actions of the parabolic `P̃` and the
+opposite parabolic `P̃⁻` on one set `Ω`, glued by `vdkOmega_Agree` and `vdkOmega_Mixed`, extend
+to an action of `St_{n+1}(R)` whose restriction to `St_n(R)` is `α ∘ inr`. -/
+def vdkOmega_lastRootAction {Ω : Type*} (α : vdkParPres_Tilde n R →* Equiv.Perm Ω)
+    (β : vdkOmega_TildeMinus n R →* Equiv.Perm Ω) (hαβ : vdkOmega_Agree α β)
+    (hmix : vdkOmega_Mixed α β) : LastRootAction n R Ω where
+  act := α.comp vdkParPres_inr
+  T i j _ a := vdkOmega_genVal α β i j a
+  compat i j hij _ a := by
+    change vdkOmega_genVal α β i.castSucc j.castSucc a = α (vdkParPres_inr (x i j hij a))
+    rw [vdkOmega_genVal_cc, vdkOmega_sv_of_ne α i j hij]
+  add i j hij a b _ := vdkOmega_genVal_add α β i j hij a b
+  commute i j k l hij hkl hjk hli a b _ :=
+    vdkOmega_genVal_comm α β hαβ i j k l hij hkl hjk hli a b
+  adjacent i j k hij hjk hik a b _ := vdkOmega_genVal_adj α β hαβ hmix i j k hij hjk hik a b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_lastRootAction
+
+/-- **Reduction.**  Glued parabolic actions, with `St_n(R)` acting freely at one point `ω₀`, make
+`stab : St_n(R) → St_{n+1}(R)` injective. -/
+theorem vdkOmega_stab_injective_of_omega {Ω : Type*}
+    (α : vdkParPres_Tilde n R →* Equiv.Perm Ω) (β : vdkOmega_TildeMinus n R →* Equiv.Perm Ω)
+    (hαβ : vdkOmega_Agree α β) (hmix : vdkOmega_Mixed α β) (ω₀ : Ω)
+    (hfree : ∀ g : St n R, α (vdkParPres_inr g) ω₀ = ω₀ → g = 1) :
+    Function.Injective (stab n R) := by
+  refine (injective_iff_map_eq_one (stab n R)).mpr fun g hg ↦ hfree g ?_
+  have h := (vdkOmega_lastRootAction α β hαβ hmix).act_eq_one_of_stab_eq_one hg
+  change α (vdkParPres_inr g) = 1 at h
+  rw [h, Equiv.Perm.one_apply]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmega_stab_injective_of_omega
+
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
