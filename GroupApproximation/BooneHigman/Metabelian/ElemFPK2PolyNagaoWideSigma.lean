@@ -53,7 +53,8 @@ noncomputable def k2PolyNagaoWide_qsel (K : Finset I) (m L : I) (v : I → Polyn
 /-- **The section.**  `σ(v) = q_v · σ₀(r_v)`. -/
 noncomputable def k2PolyNagaoWide_sigma (K : Finset I) (m L : I) (hmL : m ≠ L)
     (v : I → Polynomial (ZMod p)) : SteinbergGroup I (Polynomial (ZMod p)) :=
-  k2PolyNagaoWide_qsel p K m L v * k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v)
+  k2PolyNagaoWide_qsel p K m L v *
+    k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L v)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_sigma
 
@@ -82,7 +83,7 @@ theorem k2PolyNagaoWide_rep_spec {K : Finset I} {m L : I} (hmK : m ∈ K)
     {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) :
     k2PolyNagaoWide_repSet p K m L v (k2PolyNagaoWide_rep p K m L v) := by
   obtain ⟨q, hq, r, hr, e⟩ := k2PolyNagaoWide_rep_exists hmK hv
-  exact Classical.epsilon_spec ⟨r, hr, q, hq, e⟩
+  exact Classical.epsilon_spec (p := k2PolyNagaoWide_repSet p K m L v) ⟨r, hr, q, hq, e⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_rep_spec
 
@@ -91,7 +92,9 @@ theorem k2PolyNagaoWide_qsel_spec {K : Finset I} {m L : I} (hmK : m ∈ K)
     {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) :
     k2PolyNagaoWide_qsel p K m L v ∈ k2PolyNF_Q p K L ∧
       act (k2PolyNagaoWide_qsel p K m L v) (k2PolyNagaoWide_rep p K m L v) = v :=
-  Classical.epsilon_spec (k2PolyNagaoWide_rep_spec hmK hv).2
+  Classical.epsilon_spec
+    (p := fun q => q ∈ k2PolyNF_Q p K L ∧ act q (k2PolyNagaoWide_rep p K m L v) = v)
+    (k2PolyNagaoWide_rep_spec hmK hv).2
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_qsel_spec
 
