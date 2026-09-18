@@ -156,10 +156,10 @@ theorem gfaceWindClause_choice (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedW
     · have hB := hch2.left_of_append.left_of_append.right_of_append
       have h1 : (invDarts X K.sourceArc.darts).filter
           (extremalGFaceProve_bd X.toCombMap (gfaceWind_faces g)) =
-          ((K.sourceArc.darts.filter fun d => extremalGFaceProve_bd X.toCombMap
-            (gfaceWind_faces g) (X.toCombMap.alpha d)).reverse).map X.toCombMap.alpha := by
+          ((K.sourceArc.darts.filter (extremalGFaceProve_bd X.toCombMap
+            (gfaceWind_faces g) ∘ X.toCombMap.alpha)).reverse).map X.toCombMap.alpha := by
         unfold invDarts
-        rw [List.filter_map, List.filter_reverse] <;> rfl
+        rw [List.filter_map, List.filter_reverse]
       rw [h1, List.isChain_map, List.isChain_reverse] at hB
       exact gfaceWindClause_block hs hB
     · exact hs
