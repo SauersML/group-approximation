@@ -72,3 +72,32 @@ dominates `Lambda` and vanishes below `p_c` by sharpness. It says nothing about
 `||T_(p_c)||`. Item 5 turns any uniform lower bound on `Lambda` just above `p_u`
 into `p_c < p_u`. That lower bound is the OPEN claim
 `fpbs-intrinsic-l2-rate-bounded-below-above-pu`.
+
+## Attempts
+
+1. **Proof gap at `p_c`, and its repair (2026-09-17, swarm-0917 w6).**
+   - **Gap.** Step 2 of `fpbs-intrinsic-l2-rate-closed-zero-set-proof` says
+     the zero set `{Lambda <= 0}` "is closed by upper semicontinuity". Step 3
+     uses this to conclude `lambda_1(p_c) = 0`. An upper semicontinuous
+     function has closed superlevel sets, not closed sublevel sets. The
+     continuous nondecreasing functions
+     `g_R(t) = min(1, max(1/R, 1 + R(t - p_c)))` have
+     `inf_R g_R = 1_[p_c,1]`, whose zero set `[0,p_c)` is not closed. So that
+     route did not prove the closedness in item 2, item 3 at `p_c` and `p_c+`,
+     or item 6. In item 5 it proves only `q >= p_c`, not `q > p_c`.
+   - **What that route does prove.** Items 1 and 4, right-continuity and
+     monotonicity in item 2, and vanishing on `[0,p_c)` and on
+     `[0,p_(2->2))`.
+   - **Repair.** `fpbs-intrinsic-rates-log-lipschitz-in-parameter` (ESTABLISHED,
+     using only the parts listed above) thins a shortest open path of length at
+     most `R`. This gives `T^(R)_q <= (q/t)^R T^(R)_t` entrywise, hence
+     `Lambda(q) <= Lambda(t) + log(q/t)` and the same for `lambda_1`. So both
+     rates are continuous and `lambda_1(t) <= log(t/p_c)`, which is equality on
+     trees. Every statement of this claim follows, with explicit rates:
+     `K_*(t) >= log(gr)/(2 log(t/p_c))`.
+   - **Where it stops.** This settles the critical side quantitatively. The
+     open side, (UCS) => (IL2) => (IL1) at `p_u`, is untouched.
+   - **Proof file.** The fix belongs in
+     `fpbs-intrinsic-l2-rate-closed-zero-set-proof`. Either inline Step 1 of the
+     repair route in its Step 3, or cite the repair node in prose. Adding the
+     repair node to that route's `requires` would create a cycle.
