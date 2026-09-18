@@ -5770,6 +5770,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.TwistedExt
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Main
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.Refinement
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.GoodSector
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionTraceKernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
