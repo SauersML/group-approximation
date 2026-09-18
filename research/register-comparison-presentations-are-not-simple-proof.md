@@ -44,7 +44,9 @@ only on `𝒫` and defined wherever the resolvents involved are nonzero, such th
 in number. So exactly one cell `C_f` contains a nonempty Zariski-open set. Written in
 disjunctive normal form, a dense constructible set has a term with no equations, and two
 disjoint cells cannot both contain opens (referee a). Take `P_f ∈ Z[Y_ρ]` to be the product
-of that term's inequations, times the resolvents of `f`. Then `{P_f ≠ 0} ⊆ C_f` holds as
+of ALL nonzero polynomials occurring in the Boolean description of `f`'s cells, resolvents
+included (referee b, W1). Then `{P_f ≠ 0}` is the atom where every such polynomial is
+nonzero. That atom lies in the equation-free term, hence in `C_f`. Then `{P_f ≠ 0} ⊆ C_f` holds as
 a formula, so it holds over every field `K ⊇ Q`, in particular over `Q(δ)`, where the
 `δ`-values of `M_k` live.
 Write `g_f = a/b` for the rational function on `C_f`.
@@ -111,5 +113,5 @@ Take the presentation of `capacity-chain-resolvent-ring-has-rational-k0`, with o
     finitely many `k` are affected.
 
 So the capacity-chain presentation stays non-simple after adding any finitely many
-commutative relations true in its concrete model, and any finitely many resolvents
+relations from `ℬ` true in its concrete model, and any finitely many resolvents
 nonzero there.
