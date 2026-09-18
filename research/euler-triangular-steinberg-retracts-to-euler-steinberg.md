@@ -8,8 +8,8 @@ distinct_from:
   steinberg-rf-forces-ring-rf: that says finite quotients of St_N(R) factor through St_N of finite quotient rings; this compares the finite quotients of St_N(T_l) with those of its retract St_N(D).
 ---
 
-**ESTABLISHED** through `euler-triangular-steinberg-retracts-to-euler-steinberg-proof`. Lane proof, not
-independently reviewed. Elementary; no unread citation.
+**ESTABLISHED** through `euler-triangular-steinberg-retracts-to-euler-steinberg-proof`. Refereed:
+gq-referee-a PASS, proof-gap lens (report 06a8c773a); one referee. Elementary; no unread citation.
 
 **Notation.**
 - `D` is the Euler ring (the skew Laurent ring of `resolvent-ring-has-path-normal-form`).

@@ -38,4 +38,11 @@ requires:
 - *Conclusion.* If `St_N(T_l)_rf` is finitely normally generated, `Λ_T` is finitely presented. So `Λ_D` is,
   and hence `St_N(D)_rf` is finitely normally generated in the finitely presented group `St_N(D)`.
 
-**4.** The symbols `{π_0, π_q}` are Steinberg symbols of commuting units of `D`, so they lie in `St_N(D)`. ∎
+**4.** The symbols `{π_0, π_q}` are Steinberg symbols of commuting units of `D`, so they lie in `St_N(D)`.
+As symbols of `T_l` they are taken of the units `U = ι(u) + (1 - e)`, and `St(ι)` of a `D`-symbol uses the
+non-units `ι(u^(±1))`. The two agree (gq-referee-a, report 06a8c773a, note N1):
+- `D × Z` is the unital subring of diagonal matrices `[[d,0],[0,k]]` of `T_l`, and `U = (u,1)`.
+- For `N >= 3`, `St_N(D × Z) = St_N(D) × St_N(Z)`. The key commutation is that `x_12((a,0))` commutes with
+  `x_21((0,b)) = [x_23((0,b)), x_31((0,1))]`.
+- So `w_12((u,1)) = (w_12(u), w_12(1))`, and `{U, V}_(T_l) = ({u,v}_D, {1,1}_Z) = St(ι)({u,v}_D)`, since
+  `{1,1}_Z = 1` and `St(ι)` is the inclusion of the first factor. ∎
