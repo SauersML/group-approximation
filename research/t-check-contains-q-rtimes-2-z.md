@@ -49,3 +49,23 @@ Source: spark (1) of lane gq-obstruction-miner, 2026-09-17; not a printed questi
        item 4 of the structure theorem forbids.
    - Neither step is proved yet: `u` need not be uniformly expanding, and the transfer
      function may have infinitely many breakpoints.
+3. **Minimal and point-fibre cases killed (same lane, 2026-09-17).**
+   `q-x2-z-in-t-check-blows-up-the-doubling-fixed-point` completes item 2 whenever
+   the fibre `h^-1(0)` is a point.
+   - Multiplier rigidity holds on the line, with no circle action of `D` needed.
+     It gives: every invariant measure has exponent `a`, then uniform expansion of
+     `u^N`, then `a = 1`.
+   - Uniform expansion leaves no wandering intervals, so `h` is a homeomorphism.
+   - Then the absolutely continuous invariant measure is the measure of maximal
+     entropy, with a BV density in `2^(c+Z)`. So `h` is PL somewhere, contradicting
+     nowhere-affineness.
+   - So every copy blows up the fixed point of the doubling to an interval `P`, and
+     every rational to an interval `F_s`.
+   - **Open case.** `u` permutes the `F_s` like `×2` on `Q`, with `u^k` a
+     homeomorphism of each `F_s` of odd denominator. Off the `F_s`, a closed set `K'`
+     carries the doubling dynamics.
+   - Here the item-4 contradiction disappears. `h` is constant on the dense open set
+     `⋃ F_s`, so it is affine nowhere automatically.
+   - A kill must use the PL-dyadic structure of the `q_s` on the `F_s`. Two facts are
+     available. `log_2(|F_(s+u)|/|F_s|) in Z` for all but finitely many `s mod 1`.
+     And the endpoints of all `F_s` lie in `(2^a-1)^-1 (2^a'-1)^-1 Z[1/2]`.
