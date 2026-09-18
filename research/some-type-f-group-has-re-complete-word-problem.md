@@ -70,3 +70,19 @@ Proof: route `some-type-f-group-has-re-complete-word-problem-proof`.
     use a host invariant.
 
   See `type-f-group-receives-re-languages-by-pattern-reductions`.
+
+- **Two-occurrence window: type F Mikhailova triples are type F benign relation
+  subgroups** (proposed-established, w5-117, 2026-09-18).
+  - For `G_M` itself the triple `(G_M, 1, id)` is trivial. The real question
+    is universal.
+  - `WP(G) = phi^{-1}(S)`, with `H` and `S` of type `F_m`, holds iff the
+    relation subgroup `N ⊴ F` is `F_m`-benign: `Σ ∩ F = N` for a type `F_m`
+    subgroup `Σ` of a type `F_m` group `Λ ⊇ F`. `phi` can always be taken
+    inverse-respecting.
+  - The universal version reduces to the one relation subgroup `N_U` of
+    Higman's universal group.
+  - The Boone tower gives the type `F` base case: `<t, r_i> ∩ B = T_M`.
+  - The open step is a type `F` join or normal-closure lemma
+    (`every-re-normal-subgroup-of-a-free-group-is-type-f-benign`).
+
+  See `two-occurrence-realizability-is-type-f-benignness`.
