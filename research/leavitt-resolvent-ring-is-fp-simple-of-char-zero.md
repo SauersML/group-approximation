@@ -2,7 +2,7 @@
 rg: 2
 id: leavitt-resolvent-ring-is-fp-simple-of-char-zero
 kind: claim
-title: The binary Leavitt ring with a number operator and its resolvent is a finitely presented simple ring of characteristic zero containing Q
+title: The binary Leavitt ring with a number operator and its resolvent is simple, of characteristic zero, contains Q, and is finitely presented as a ring (over Z)
 distinct_from:
   q-embeds-in-a-corner-of-a-fp-toeplitz-ring: that is the Toeplitz version, which contains Q but is not simple (its vacuum idempotent is minimal); this glues the vacuum to a Leavitt isometry, so the ring is purely infinite and simple.
   fp-simple-ring-of-characteristic-zero-exists: that is the existence question; this is the explicit ring that answers it.
@@ -30,6 +30,16 @@ presented and simple, but of characteristic `p`. Bokut (Algebra i Logika 15, 197
 finitely generated simple envelopes. Belyaev (Algebra i Logika 17, 1978) gives finitely
 presented envelopes that are not simple. The construction may be folklore among
 algebraic Cuntz--Pimsner rings (Carlsen--Ortega).
+
+**Known and credit.** Finitely presented simple *algebras over a field* of characteristic
+zero are classical: the Weyl algebra `A_1(Q)`, the Leavitt algebras `L_Q(1,n)`, and
+Nekrashevych algebras are finitely presented over `Q` and simple. The point here is finite
+presentation *as a ring*, that is, as a `Z`-algebra, which forces all of `Q` to be generated
+by finitely many elements. This is the characteristic-zero case of the algebra form of
+Boone--Higman (`algebra-boone-higman-conjecture`, with finite presentation over `Z`) for
+these inputs. No printed source asks this question, so it is not an answer to an open
+problem. A bounded search (web and arXiv; no MathSciNet, zbMATH or Dniester Notebook;
+`gq-gq-lit-arxiv-priority.md` §§6, 9) found no prior construction.
 
 **Statement.** Let
 
