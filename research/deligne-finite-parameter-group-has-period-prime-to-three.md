@@ -51,3 +51,23 @@ arithmetic half of that split, and it involves no winding estimate.
       model must eventually be divisible by `3`, or tend to infinity.
     - Property (T) of `E_infinity` gives a uniform spectral gap for representations with `zeta != 1`, but it yields
       no contradiction with a `1/3`-model.
+- **2026-09-18, swarm-0917-w8-w8-deligne-follow (stability-approximation): the tensor-cube reduction dies at
+  matricial instability of `Gamma`, and the hole stays OPEN.** Let `U : E_infinity -> U(Q)` be a `1/3`-model,
+  with lifts `U_n` in dimension `d`. Put `V = U (x) U (x) U`.
+  - *The cube is untwisted.* Since `c_(1/3)^3 = c_1 = 1`, `V` is an honest hom `Gamma -> U(Q')` with defect at most
+    `3 eps`, where `Q' = prod M_(d^3) / (+)`.
+  - *Virtual triviality of the cube is impossible (short proof).* Suppose `V|Lambda = 1` in `Q'` for some finite-index
+    `Lambda`. An eigenvalue argument (`a_i a_j a_l ~ 1` for all `i, j, l` forces `a_i ~ a_j` and `a_i^3 ~ 1`) makes
+    `U_n(g) ~ lambda_n(g) I` with `lambda_n(g)` near `mu_3`. A diagonal subsequence then gives an exact
+    `lambda : Lambda -> mu_3` with `delta lambda = omega^b` on `Lambda`. So `E_3` is virtually `Lambda x C_3`, which
+    is residually finite, contradicting Deligne. The same holds if `V` is only `Q'`-close to a hom with finite image.
+  - *Consequence.* Suppose every honest hom `Gamma -> U(Q)` were `Q`-close to one with finite image, or merely every
+    tensor cube. Then `1/3 not in P_op`, which is the whole flagship and not just this hole.
+  - *Where it dies.* That stability fails. By `dadarlat-linear-groups-have-nonzero-h2-windings`, `Gamma` has
+    asymptotic homs with nonzero `H_2` windings, and these are far from all honest representations. The cube carries
+    no extra constraint that would rule this out. Its winding on a relator `r` is `kappa_r(V) = d^2 (3j - k d)` for
+    some integer `j`: eigenvalues of the relator word are `omega^k e^(i psi_a)`, `det = 1`, and
+    `kappa_r(V) = 3 d^2 sum(psi)/(2 pi)`. After `U -> U (+) U (+) U` gives `3 | d`, this congruence allows
+    `kappa_r(V) = 0`.
+  - *Class killed.* Arguments that pass through the untwisted cube (or `U (x) U-bar`) and use only its winding or
+    congruence data. What survives is stability restricted to cubes, which is as hard as the flagship.
