@@ -193,3 +193,11 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   - *Conjecture:* a binary hierarchy needs control information that grows with the level. Inside
     `kV` that costs either unbounded lookahead or a walk that breaks exact doubling. No candidate
     reached the `i ∈ E(S)` filter of `smart-induced-map-alternates-head-direction`.
+- 2026-09-18 (lane gq-nv-obstruct, targeted binary-timing scan). **No base found. The obstruction looks
+  like recognizability, not counting.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3d.
+  - Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is mask 21 with 6+6 states
+    and 3 symbols: block sizes `29·2^m`, gap 87.
+  - But their 2-adic phase is not locally readable beyond `mod 2`. The `mod 8` phase has about 10^6
+    conflicts at radius 12–15.
+  - So no height-2 renormalization appears. This agrees with gq-affq's growing-control-information
+    conjecture.
