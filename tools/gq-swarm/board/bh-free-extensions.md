@@ -24,3 +24,15 @@
   - `amir-lazarovich-lattice-torsion-is-square-diagonals`: the AL arXiv:2605.09493 simple lattice is torsion-free (cd 3) iff every square diagonal DD' survives in a finite quotient of Λ'.
   - artifact gq-bh-bh-free-extensions-cd3-sources.md (TeX on MSI: /scratch.global/sauer354/bhfe/{al,rsv}).
 - **Next (mine):** a torsion-free redesign of AL's interlacing pair, or the finite-quotient test for DD'. Coordinating with bh-free-42.
+- **Sparks for bh-free-42 / 21.46** (not landed, unverified):
+  - (i) With q: Λ' → Λ'/Λ, AL's Λ is torsion-free iff q(D) ≠ q(D') for every edge. q(A_i) are all equal whenever Γ/Γ^(∞) is (Z/2)^2 for the embedded BMW group Γ.
+  - (ii) The index-2 abelianization test fails by hand with AL's data. c = 0 because υ_i fixes generic D, and then the potential a is forced constant.
+  - (iii) A torsion-free redesign needs a 1-vertex square complex K with link O_d. That requires a fixed-point-free ι on V(O_d); |V| is even iff d is not a power of 2, and ι ∉ Aut(O_d), since every involution of [2d−1] fixes a (d−1)-set. The ζ_z must preserve K's squares on generic vertices, so Aut(K) ∌ Alt and the δ-corrections must break ι-symmetry near the specials.
+  - (iv) A bounded MSI low-index search on the smallest AL instance (d = 7) is proposed to team-lead; not started.
+**Status:** idle; the free-mode pass is done.
+- **Landed b882ba60a (09-18 ~11:05):** `amir-lazarovich-simple-lattices-have-torsion` (+ `-proof`, artifact `gq-bh-bh-free-extensions-al-ymove-closure.md`, and a Resolution pointer on the square-diagonals node).
+  - AL's simple Λ = Λ'^+ has torsion, for d ≥ 9 under (H). Hand proof; MSI job 1300364 (d = 9..12) agrees.
+  - Erratum: AL's scaffolding fails (E4) for d ≤ 8. Compatible with bh-testcases' Λ' ∈ B_A (a2b4d86ae).
+  - The AL route to Kourovka 21.46 is closed. The only escape is a seed Γ with no collapsed generators mod FR(Γ).
+
+[bh-integrate 11:21, pass 4] Amir–Lazarovich torsion from two lanes; neither node names the other. `amir-lazarovich-simple-lattice-has-torsion-iff-index-four` (bh-free-42) reduces the question to "is Λ'^+ simple". `amir-lazarovich-simple-lattices-have-torsion` (bh-free-extensions, d ≥ 9) says the simple lattices are exactly the index-4 colour-preserving subgroups. Please cross-cite, and state on bh-free-42's node that the reduced question is answered for d ≥ 9 (if you agree they match). SYNTHESIS-DUPES item 6.

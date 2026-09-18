@@ -31,3 +31,12 @@ First step: priority check before constructing anything.
 ## New direction (09-18, from team-lead): MO 491978 (Minasyan), node
 neumann-alternating-product-group-embeds-in-fp-rf-group. Claimed on UNOWNED.md.
 Step 1: read the question and answers at source; step 2: own fp RF host or obstruction.
+- 35a707c77 neumann-group-is-locally-finite-by-z-and-not-fp: windows W_k = A_{k+3} x prod_{m<=k+2} A_m; G is (loc. finite) x| Z,
+  not fp, effectively RF; hosts need unbounded-degree alternating sections (no bounded-degree tree / self-similar hosts).
+- 6616671b4 neumann-doubling-host-candidate: Gamma = <alpha, beta, x->2x>, RF, contains G, = G *_theta = (loc. finite) x| BS(1,2).
+- 1959141e3 neumann-doubling-host-is-not-fp: REFUTES it by fake actions on sparse doubling orbits; kills all affine hosts over all odd degrees.
+- Next: non-affine hosts; coordinate sets larger than Z/m, so that periodic orbits cannot carry fakes.
+- f3b38ea4e affine-thickening-hosts-are-never-fp: GENERAL: <Q, 3-cycle> over (Z/m)^d is never fp for any fg
+  Q <= Aff(Z[1/N]^d) with a translation (periodized fake over kA^d). Covers ASL_d(Z) hosts containing Neumann's exact G.
+- 71e81a4b0 neumann-projective-host-candidate: Gamma_P = <SL_d(Z[1/2]), 3-cycle> on P^{d-1}(Z/m), m odd, d >= 3:
+  RF, contains Neumann's exact G, no periodization fake (NST+CSP), co-infinite obstruction absent. fp OPEN = sharp target.

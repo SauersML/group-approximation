@@ -23,7 +23,9 @@ Let `G_0` be finitely generated with solvable word problem.
 3. `P <= E_nu(P)` (`mallery-zaremsky-shift-similar-envelope`), and `E_nu(P) <= H` by Observation 5.1
    (`houghton-like-groups-are-strongly-shift-similar` item 1). So `G_0 <= H`.
 4. `H` is strongly shift-similar in some representation (item 2 there), and it is finitely presented. By
-   `fp-strongly-shift-similar-admits-type-a-action`, it has a type (A) action.
+   `fp-strongly-shift-similar-admits-type-a-action`, it has a type (A) action. Referee b checked that the
+   Mallery--Zaremsky representation meets the hypothesis of Zaremsky 2405.18354 Prop. 5.3: it is infinite, contains
+   `FSym`, and its maps `psi_j` are onto by MZ Lemma 3.19 (PASS, 25b091cb0).
 5. By `type-a-action-gives-boone-higman-for-subgroups`, `G_0` embeds in a finitely presented simple group. ∎
 
 **Relation to the other permutation route.** `boone-higman-via-infinite-shift-compiler` is the case `n = 1`, where
