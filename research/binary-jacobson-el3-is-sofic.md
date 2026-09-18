@@ -129,3 +129,24 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - **Next.** Build sofic approximations of `Γ_n ↷ F_2((1/x))^n` that are not periodic-point models of either half,
     for example through lattice duality with `G_∞ x G_0 / Γ_n`. Alternatively, show that the relation is not sofic,
     which would give a non-sofic restricted free action of a residually finite linear group.
+* **The Haar relation is Kazhdan, so halves-gluing dies (swarm-0917-w11-w11-nh-follow, 2026-09-18). Class-kill; the
+  claim stays OPEN.**
+  - Result: `jacobson-haar-relation-is-kazhdan-and-unsplittable` (ESTABLISHED, unreviewed).
+  - `EL_n(J)` is Kazhdan for `n >= 3` (EJK). Its Haar action is ergodic, since the `D_fin`-translations are dense in
+    `D`. So `R_E ≅ R_Γ|_D` has relation property (T) (AD05 Thm 5.18, AD11 Cor 9.4).
+  - Hence `R_E` is not treeable and not Haagerup, and it has no co-amenable Haagerup subrelation.
+  - New general lemma: an ergodic Kazhdan relation is not a nontrivial amalgam over any **ergodic** subrelation. The
+    proof uses the Bass--Serre tree cnd function, which is bounded on a piece by AD05 5.22. The ergodic edge relation
+    spreads the bound, and nontriviality gives degrees `>= 2`, hence unbounded trees.
+  - Both halves `R_±` contain the ergodic tail relation `R_tail`. So `R_Γ|_D = R_+ *_(R_+∩R_-) R_-` only if one half
+    is already everything.
+  - **Invariant.** Relation property (T) of the Haar relation.
+  - **Step where every member dies.** Producing the input of a permanence theorem, for (a) Elek--Lippner (treeing),
+    (b) amalgam permanence over a hyperfinite or amenable edge that contains the tails, or (c) Følner ascent from a
+    co-amenable Haagerup subrelation.
+  - **Survivors.**
+    - Amalgams or HNN extensions over non-ergodic edges.
+    - Direct sofic models of `R_E` compatible with (T), for example finite models that are expanders in the
+      relation sense.
+    - The degenerate case where `R_+` or `R_-` alone is `R_Γ|_D`.
+    - `n = 2`.
