@@ -1,0 +1,5 @@
+trials 150 drops 0
+key: (rk K, rmin K, d, mrk - forced, mrk - (1+d), complete)
+(3, 3, 2, 0, 2, True) 67
+(3, 3, 3, 0, 3, False) 20
+(3, 3, 3, 0, 3, True) 63
