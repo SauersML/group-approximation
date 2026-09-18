@@ -51,7 +51,8 @@ theorem symbolGeneration_of_bruhatBigCell (hstat : BruhatBigCellStatement) (n₀
   rw [fieldK2_bot_of_bruhatBigCell hstat p N hN3]
   exact bot_le
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.symbolGeneration_of_bruhatBigCell
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.symbolGeneration_of_bruhatBigCell
 
 /-- **Target of lane `bh-met-55`**: `SymbolGenerationStatement 5`, from the big Bruhat cell
 statement. -/
@@ -59,13 +60,15 @@ theorem symbolGeneration_five_of_bruhatBigCell (hstat : BruhatBigCellStatement) 
     SymbolGenerationStatement 5 :=
   symbolGeneration_of_bruhatBigCell hstat 5 (by omega)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.symbolGeneration_five_of_bruhatBigCell
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.symbolGeneration_five_of_bruhatBigCell
 
 /-- **Bridge** to the field case of `ElemFPK2Split`. -/
 theorem fieldK2Vanishing_of_bruhatBigCell (hstat : BruhatBigCellStatement) :
     FieldK2VanishingStatement :=
   fieldK2Vanishing_of_symbolGen (symbolGeneration_five_of_bruhatBigCell hstat)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.fieldK2Vanishing_of_bruhatBigCell
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.fieldK2Vanishing_of_bruhatBigCell
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2

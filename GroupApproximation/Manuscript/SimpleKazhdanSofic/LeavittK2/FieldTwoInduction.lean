@@ -43,7 +43,7 @@ theorem act_indexMap_castSucc {N : ℕ} {R : Type*} [Ring R] (t : SteinbergGroup
     show act (indexMap Fin.castSuccEmb (g * k)) v m.castSucc =
       act (g * k) (fun m => v m.castSucc) m
     rw [map_mul, act_mul, act_mul, hg,
-      show (fun m => act (indexMap Fin.castSuccEmb k) v m.castSucc) =
+      show (fun m : Fin N => act (indexMap Fin.castSuccEmb k) v m.castSucc) =
         act k (fun m => v m.castSucc) from funext (hk v)]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.act_indexMap_castSucc
