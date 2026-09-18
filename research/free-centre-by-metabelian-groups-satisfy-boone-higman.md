@@ -8,9 +8,12 @@ distinct_from:
   free-solvable-groups-satisfy-permutational-boone-higman: that is F/F^(d); this is F/[F'',F], a central quotient between F/F''' and F/F''.
 ---
 
-**OPEN for r >= 3; rank 2 settled** by `free-centre-by-metabelian-group-of-rank-two-satisfies-pbh` (lane proof, 2026-09-18).
+**ESTABLISHED (2026-09-18)** through `free-centre-by-metabelian-bh-via-linearity` (lane proofs, not
+independently reviewed): every `C_r` is linear over `Q(x_1..x_r)`
+(`free-centre-by-metabelian-groups-are-linear`), so it lies in `B_A` through the
+characteristic-zero linear node.
 
-**OPEN.** For every finite `r >= 2`, the free centre-by-metabelian group
+**Statement.** For every finite `r >= 2`, the free centre-by-metabelian group
 `C_r = F_r/[F_r'', F_r]` lies in `B_A`. Then all its subgroups embed in finitely
 presented simple groups.
 
@@ -56,5 +59,15 @@ presented simple groups.
      abstract level).
    - Rank 3 and residual finiteness for `r >= 4` remain open. Classical priority: C. K. Gupta
      (1969, 1973) gives faithful 3x3 representations in this family; not read.
+   - **Superseded the same day, by the following attempt.** Rank 3 and `r >= 4` are both settled.
+6. **Torsion survives modulo γ_7 (bh-free-28, 2026-09-18).** *Settles every r.*
+   - The corner representation `ρ_r` (size `2r+1`) has kernel exactly the torsion `T_r`:
+     0 for `r <= 3`, and `(Z/d)^C(r,4)` for `r >= 4`
+     (`free-centre-by-metabelian-corner-kernel-is-the-torsion`).
+   - Gupta–Levin 1986, Lemma 4.4, keeps Gupta's torsion element out of `γ_7`
+     (`gupta-torsion-element-survives-modulo-gamma-seven`). So
+     `C_r ↪ ρ_r(C_r) × C_r/γ_7(C_r)` is linear
+     (`free-centre-by-metabelian-groups-are-linear`).
+   - `C_r` is also residually nilpotent.
 
 _Orphan sweep (2026-09-14): this node cited `research/artifacts/bh-solvable-general-2026-09-13.md`, which its lane never wrote to the repository and which could not be recovered from the lane transcript._

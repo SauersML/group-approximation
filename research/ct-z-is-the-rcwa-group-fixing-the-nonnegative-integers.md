@@ -59,3 +59,8 @@ argument has four steps.
 - **Union.** `CT(Z) = ⋃_{P finite} CT_P(Z)` is a directed union of simple groups of
   type `F_∞` (by the parent node). So `CT(Z)` is locally `F_∞` and simple, which
   recovers Kohl's theorem.
+- **Elementary route.** Step 4 can cite `piecewise-canonical-permutations-are-transposition-products`
+  instead of the k-graph node: steps 1–3 show that `g` is piecewise canonical, and that node
+  proves every piecewise-canonical permutation is a product of class transpositions by
+  elementary arithmetic. With it, the identification `CT(Z) = RCWA^+(Z)` uses no Matui or Li
+  input; only the simplicity and `F_∞` consequences in **Union** still do.

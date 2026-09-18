@@ -97,6 +97,31 @@ factor centralizes the whole second factor, while centralizers in `Γ_1` are cyc
 The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
 `(π_1 S_g x π_1 S_h)`-by-(any group in `B_A`).
 
+6. **Virtually inner extensions.** Let `1 -> Γ -> H -> Q -> 1` with `Γ` of trivial center and in
+   `B_A`, `Q` in `B_A`, and suppose the outer action `Q -> Out(Γ)` has finite image. Then `H` is
+   in `B_A`. In particular this holds for every extension when `Out(Γ)` is finite.
+
+*Proof.* Let `Ã <= Aut(Γ)` be the preimage of that finite image. By item 1, `H` embeds in
+`Ã x Q`. `Ã` contains `Inn(Γ) ≅ Γ` with finite index, so it is in `B_A` by part 2 of
+`boone-higman-type-a-class-closed-under-finite-extensions`, and `Ã x Q` is in `B_A` by part 1.
+
+*Instances.*
+- `Γ = pi_1(M)` for a finite-volume hyperbolic 3-manifold `M`. It is centerless, linear
+  (so in `B_A` by `char-zero-linear-groups-satisfy-permutational-boone-higman`), and
+  `Out(Γ)` is finite by Mostow--Prasad rigidity. So every `pi_1(M)`-by-`B_A` group is in
+  `B_A`, e.g. extensions by `Z^m`, surface groups or `Aut(F_n)`.
+- More generally, any centerless linear group with finite outer automorphism group
+  qualifies. This includes torsion-free lattices in simple Lie groups not locally
+  isomorphic to `PSL_2(R)` (strong rigidity; rigidity inputs not re-read here).
+- **Hyperbolic kernels.** Every hyperbolic group is in `B_A`
+  (`hyperbolic-groups-lie-in-the-permutational-class`, referees a and b PASS). So item 6
+  applies to every hyperbolic `Γ` with trivial center (e.g. torsion-free non-elementary) and
+  finite `Out(Γ)`. By Paulin's theorem with the Rips--Bestvina--Feighn theory of actions on
+  R-trees (inputs not re-read here), `Out(Γ)` is finite when `Γ` is one-ended and does not split
+  over a virtually cyclic subgroup. So every extension of a group in `B_A` by such a `Γ` is in
+  `B_A`. When `Out(Γ)` is infinite, item 6 still covers extensions whose outer action has
+  finite image.
+
 ## Scope
 
 - The kernel must be finitely generated, free or a closed surface group of genus at

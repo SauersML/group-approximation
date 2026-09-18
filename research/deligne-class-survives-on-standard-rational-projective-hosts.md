@@ -56,7 +56,8 @@ Suppose `[ε]` dies on `Γ ⋉ Y`, with locally constant `k`. Composing with `π
 
 ## Reading
 
-Over representation spheres, the lift needs `ρ` whose generic stabilizers carry no
-Hermitian block. Direct sums `k·std` with `k ≥ 2n` have trivial generic stabilizer,
-so this obstruction does not fire for them
-(`deligne-class-dies-on-some-rational-projective-host`).
+**Superseded (2026-09-18).** An earlier version of this paragraph said that direct sums
+`k·std` with `k ≥ 2n` escape this obstruction. That is wrong. Lower-dimensional orbits lying in no
+rational hyperplane suffice, and
+`deligne-class-survives-on-every-linear-rational-projective-host` shows that the class survives for
+every homomorphism `Sp_{2n}(Z) → GL_N(Z)`, `n ≥ 2`.

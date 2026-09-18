@@ -71,3 +71,13 @@ The full target also needs ONE u' working for all odd q at once.
   - ONE g ∈ V with gρ(a)g^{-1} = Ψ_{f_a}(ρ(2a)) for all a ∈ L, so that C ≅ C^{×2} ⊔ C^{×2} as L-spaces via a V-map;
   - a cocycle k: Q_odd × C → Z lifting ρ, with k_1 = 1 and the e-conditions for one j.
   The per-level solutions don't glue. Along a tower q_1 | q_2 the canonical g's move different letters to the front, so the open problem is to design a "self-similar" free L-action.
+
+## Attempt 3 (bh-free-30): uniform problem reduced; the odd-odometer shape is ruled out
+
+See `q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding` for proofs.
+- **The ansatz is general.** The centralizer of s is fibered, (x + k(y), gy) with g ∈ V, so the Attempt 2 sketch is now proved.
+- **A canonical model.** Q ⋊ ⟨2⟩ acts on the Cantorized 2-adic solenoid Z_2 × X′, where X′ is the circle blown up at Q/Z. In this action T_1 = s and M is the baker map; the cocycle and the e-conditions are solved with j = 0 and k_a = ⌊ỹ + a⌋.
+- **What remains.** Q ⋊ ⟨2⟩ ≤ 2V_τ follows from one binary tree 𝒯 on X′ under which the odd rotations and doubling are local similarities.
+- **Ruled out.** On the odd mixed-radix odometer L-space (circle blown up at Q_odd/Z), no continuous σ′ satisfies σ′R_a = R_{2a}σ′. So that shape cannot work.
+- **A necessary condition.** 𝒯 needs infinitely many split ratios.
+- **Update, Attempt 3b.** bh-free-16's `rational-rotations-and-doubling-have-no-common-tree-coding` rules out the tree 𝒯 needed above: a local 𝒯-similarity is exactly an almost-automorphism, and doubling forces only finitely many primes among the rotations that are almost-automorphic. So the canonical solenoid route is dead. What survives is the case of exotic free Q_odd/Z-actions (C, ρ, σ∘g) that are not conjugate to the rational rotations of the Cantorized circle.
