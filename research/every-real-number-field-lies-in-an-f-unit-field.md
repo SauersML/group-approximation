@@ -3,13 +3,19 @@ rg: 2
 id: every-real-number-field-lies-in-an-f-unit-field
 kind: claim
 title: Every real algebraic number field is contained in Q(β) for some algebraic unit β > 1 with property (F); if so, every interval exchange group with algebraic parameters satisfies Boone--Higman
+refuted_by:
+  - f-unit-fields-are-characterized-by-isolated-sign-units
 distinct_from:
   pisot-interval-exchange-groups-satisfy-boone-higman: that proves Boone--Higman for interval exchange groups over Q(β) with β a unit with (F); this asks whether those fields exhaust all real number fields, up to inclusion, which would remove the field restriction.
 artifacts:
   - research/artifacts/gq-bh-bh-near-actions-stein-slopes-reading.md
 ---
 
-**OPEN.** A number-theoretic question with a Boone--Higman payoff.
+**REFUTED** by `f-unit-fields-are-characterized-by-isolated-sign-units` (09-18). `Q(√3)` lies in no (F)-unit field: every
+unit of `Q(√3)` has norm +1, so none has an isolated sign, which the refuting node shows is necessary. The
+surviving question is which fields with complex places satisfy the argument condition of item 3 there.
+
+Original question (kept for the record):
 
 **Question.** For every real number field `K`, is there an algebraic unit `β > 1` with property (F) — every
 element of `Z[β] ∩ [0,1)` has a finite greedy β-expansion — such that `K ⊆ Q(β)`?
