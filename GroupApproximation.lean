@@ -6097,6 +6097,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionX
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbIsometryFixCore
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbDiagonalChoice
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparableKOneApprox
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Inputs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
