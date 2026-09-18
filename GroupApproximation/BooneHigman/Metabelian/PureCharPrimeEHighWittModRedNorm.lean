@@ -71,7 +71,7 @@ theorem eHighWittModRed_normalization (p : ℕ) [Fact p.Prime] (Q : Type) [CommG
     have h2 : g (eHighWittCoeff_red p (Fin d) a) = 0 := (RingHom.congr_fun key a).symm.trans h1
     have h3 : eHighWittCoeff_red p (Fin d) a = 0 := hg (h2.trans (map_zero g).symm)
     have ha' : eHighWittCoeff_red p (Fin d) a ∈ nonZeroDivisors (MvPolynomial (Fin d) (ZMod p)) :=
-      ha
+      Submonoid.mem_comap.mp ha
     rw [h3] at ha'
     exact zero_notMem_nonZeroDivisors ha'
   · rw [key]

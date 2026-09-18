@@ -154,7 +154,7 @@ theorem higmanVCTree_defect_of_ker_le
       (higmanVC_evalAll d).ker ≤ Subgroup.normalClosure (higmanVC_rels d fun _ => True)) :
     HigmanVCTreeDefectStatement := by
   intro d hd r hr _
-  refine ⟨[], fun p hp => absurd hp List.not_mem_nil, ?_⟩
+  refine ⟨[], fun _ hp => absurd hp List.not_mem_nil, ?_⟩
   rw [List.map_nil, List.prod_nil, inv_one, mul_one]
   exact h d hd hr
 

@@ -29,8 +29,9 @@ theorem higmanVCTree_getElem?_len {X : Type*} (p q : List X) :
 /-- The letter of `p ++ [b, c] ++ t` at position `|p| + 1` is `c`. -/
 theorem higmanVCTree_getElem?_succ {X : Type*} (p t : List X) (b c : X) :
     (p ++ [b, c] ++ t)[p.length + 1]? = some c := by
-  rw [List.append_assoc, List.getElem?_append_right (by omega : p.length ≤ p.length + 1)]
-  simp
+  rw [List.append_assoc, List.getElem?_append_right (by omega : p.length ≤ p.length + 1),
+    Nat.add_sub_cancel_left]
+  rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTree_getElem?_succ
 

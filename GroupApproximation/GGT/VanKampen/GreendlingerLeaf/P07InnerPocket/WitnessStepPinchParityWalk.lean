@@ -91,7 +91,8 @@ What the reduction discharges:
 
 ## What is left: no entry step into `pre`
 
-At an off-lobe pinch with `y` before `x`, no consecutive `(x', y')` of `l` has `x' ∉ pre`, `y' ∈ pre`.
+At an off-lobe pinch with `y` before `x`, no consecutive `(x', y')` of `l` has `x' ∉ pre` and
+`y' ∈ pre`.
 Paper route: `α y'` is a loop-A dart of `Γ` on `ow`, and `α x'` is not on the `pre` part of
 loop A.  The walk turn at the vertex `u` of `y'` is an F-free sector.  So `u` is a common vertex of
 loop A and the rest of `Γ`, and at `u` the walk leaves loop A.  Ruling this out is the Jordan
@@ -159,7 +160,7 @@ theorem witnessStepPinchParity_entry {β : Type*} {S L : List β} {e b : β}
 /-- The second entry of a rotation window is a member of the list. -/
 theorem witnessStepPinchParity_mem_of_rotate {β : Type*} {L s t : List β} {n : ℕ} {x y : β}
     (h : L.rotate n = s ++ x :: y :: t) : y ∈ L :=
-  List.mem_rotate.mp (by rw [h]; simp)
+  (List.mem_rotate (n := n)).mp (by rw [h]; simp)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchParity_mem_of_rotate
 
