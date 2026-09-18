@@ -6089,6 +6089,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Primre
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecPoly
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecFormula
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Swap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeFormal
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
