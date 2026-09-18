@@ -88,7 +88,7 @@ test set. -/
 theorem isModelled_top_of_isQuasidiagonalTrace {G : Type} [Group G]
     (hqd : Quasidiagonal.IsQuasidiagonalTrace
       (fun T : ReducedGroupCStar G ↦ canonicalFaithfulTracialState G T)) :
-    TWW.IsModelled (⊤ : Subgroup G) := by
+    Full.TWW.IsModelled (⊤ : Subgroup G) := by
   obtain ⟨M⟩ := hqd
   intro F _ ε hε
   have hE1 : ∀ᶠ n in atTop, ∀ g ∈ F, ∀ k ∈ F,
