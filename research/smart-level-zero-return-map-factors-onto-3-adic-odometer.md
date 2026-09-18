@@ -7,8 +7,10 @@ distinct_from:
   some-brin-thompson-element-factors-onto-an-odometer: that is the existence question for some element of some kV; this is a specific witness in 2V with m = 3.
   three-v-contains-aperiodic-rationals: that encodes the SMART map itself in 2V and uses only its minimality; this induces it on a clopen set and exhibits continuous eigenvalues of every order 2·3^k.
   renormalizable-thompson-elements-are-odometer-codes: that derives an odometer factor from a brick-local renormalization; this gets the factor directly from SMART's move hierarchy, with no renormalization claimed.
+  smart-induced-on-genuine-moves-has-exact-tripling: that is gq-affq's exact count of 3^k induced steps per level-k move, with Y = one configuration per level-0 move; this proves the phase is a local function, hence the odometer factor (Y there gives Z_3; the two-configuration Y here gives Z/2 x Z_3).
 artifacts:
   - research/artifacts/gq-gq-nv-obstruct-smart-odometer.md
+  - research/artifacts/gq-gq-nv-obstruct-smart-simulation.md
 ---
 
 **OPEN (proof claimed 2026-09-17, under review by gq-referee-a and gq-referee-b).**
@@ -40,3 +42,12 @@ YES (route `odometer-factor-via-smart-level-zero-return-map`). So the necessary
 test of `renormalizable-thompson-elements-are-odometer-codes` does not kill the
 renormalization route to `bs12-embeds-in-brin-thompson-2v`. What remains is a
 brick-local height-3 renormalization of `U`, which is not claimed here.
+
+**Computation (MSI, `research/artifacts/gq-gq-nv-obstruct-smart-simulation.md`).**
+Seven Z-tape runs of `3^11` steps each: all-zero tapes, uniform random tapes and
+a sparse random tape. They use gq-affq's one-configuration-per-move `Y`.
+- Return gaps are at most 6.
+- The `Y`-letter word desubstitutes under `b→bdp, d→dbq, p→bqp, q→dpq` with
+  exactly one offset at each of 8 levels.
+- The state and radius-`(k+2)` window determine the level-`k` phase with 0
+  conflicts pooled over all runs, for `k = 1..7`.
