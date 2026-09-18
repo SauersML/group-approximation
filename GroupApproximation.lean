@@ -5772,6 +5772,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06d.Refinement
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.GoodSector
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionTraceKernel
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitTrace
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Extend
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
