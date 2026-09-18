@@ -5807,6 +5807,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFCP
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHF
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.WordVec
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.Stab
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
