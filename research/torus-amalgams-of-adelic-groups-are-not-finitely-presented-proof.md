@@ -37,7 +37,9 @@ restriction of `C -> B`. Let `φ : L -> Γ *_C B` be induced by the inclusions.
 - For finite `S`, `E_S = G_S *_C B` with `G_S = Γ_S *_(C_S) C`. For `S ⊆ S'` the inclusions
   `Γ_S ⊆ Γ_(S')`, `C_S ⊆ C_(S')` and the identities of `C` and `B` induce `E_S -> E_(S')`. The maps
   `Γ_S ⊆ Γ` and `C ⊆ Γ` induce `G_S -> Γ`, and then `E_S -> Γ *_C B`. `L -> E_S` is induced by
-  `Γ(Z) ⊆ Γ_S` and the identity of `B`. All these maps commute.
+  `Γ(Z) ⊆ Γ_S` and the identity of `B`. It is well defined: `c in C(Z)` lies in `C_S`, where `G_S` identifies it
+  with `c in C`, and `E_S` identifies that with its image in `B`, which is where the `B`-route sends it.
+  The same check covers `G_S -> G_(S')` and `G_S -> Γ`. All these maps commute.
 - By (DC), `colim_S G_S = (∪_S Γ_S) *_(∪_S C_S) C = Γ *_C C = Γ`, and `colim_S E_S = Γ *_C B`. Here
   `∪_S Γ_S = Γ` since every matrix over `Q` has entries in some `Z[1/S]`.
 - So `ker φ` is the increasing union of the kernels `ker(L -> E_S)`, by (DC).
@@ -95,7 +97,7 @@ quotient"), with `<s>` replaced by `H`.
 - For `m in N_n(Q)`, `σ_(h,n) m σ_(h,n)^-1` applies `σ_h` to the diagonal entries of `m`, because `σ_h` is
   multiplicative with `σ_h(0) = 0` and commutes with coordinate permutations and signs
   (`gl-n-q-lies-in-prime-shift-permutation-group`, item 2, for `H = Z`). And `h -> σ_(h,n)` is a
-  homomorphism. So the two maps of item 5 agree on `N_n(Q)` and define `Π_n^H -> K_n^H`, onto by
+  homomorphism, because `H` acts on `P` on the left, so `σ_(hh') = σ_h σ_(h')`. So the two maps of item 5 agree on `N_n(Q)` and define `Π_n^H -> K_n^H`, onto by
   definition of `K_n^H`.
 - If `K` is finitely presented and `Π_n^H -> K` were injective, `Π_n^H` would be finitely presented,
   against item 3.
@@ -107,6 +109,7 @@ quotient"), with `<s>` replaced by `H`.
 **Item 6.** Conjugating `d_p^-1 x_21(1) d_p = x_21(1)^p` by `f` gives `d_q^-1 v d_q = v^p`. If
 `v = x_21(t)`, then `x_21(qt) = x_21(pt)`, so `t = 0`.
 
-**Scope.** Items 1--3 use only (NF), (FP) and (DC). No action of the amalgam is used, so the conclusion
+**Scope.** Baumslag: "Wreath products of finitely presented groups", Math. Z. 75 (1961), 22--28 (title
+per gq-referee-b). Items 1--3 use only (NF), (FP) and (DC). No action of the amalgam is used, so the conclusion
 holds for every finitely generated `B` and every embedding of `C`. The argument needs infinitely many
 primes: for `Γ = SL_n(Z[1/p])` the filtration is finite and nothing follows.
