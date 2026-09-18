@@ -54,7 +54,7 @@ The path normal form makes this nearly mechanical.
 Both PDFs were downloaded on MSI through institutional access and read page by page. Local copies are in the
 session scratchpad `gq/src/k2/`, and MSI copies are in `/projects/standard/hsiehph/sauer354/gq-k2/`.
 
-- **Dennis–Stein, *The functor K_2: a survey of computations and problems*.** LNM 342 (1973), pp. 243–280,
+- **Dennis–Stein, *The functor K_2: a survey of computations and problems*.** LNM 342 (1973), pp. 243–303 (the downloaded chapter, 63 pages, includes the part-title page 241),
   doi:10.1007/BFb0073728.
   - §12, pp. 254–255: `K_2(W_m(F_q)) = 1` if `p` is odd or `m = 1`, and `= Z/2Z` if `p = 2` and `m >= 2`. The
     general formula is their [27, Theorem 4.3], for quotients `A/P^m` of discrete valuation rings.
