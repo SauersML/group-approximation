@@ -59,3 +59,33 @@ certificate must use labels outside every fixed stage, with mass tending to 0.
   certificate, not `relC`.
 - **What a proof would need.** Something that sees label length: the
   unbounded labels a small-mass generating graphing must carry.
+
+**Sprinkle then absorb, attacked from the relC = 0 side (September 17–18,
+2026, swarm-0917-w7-w7-fp-last1, host-geometry).**
+- **Shape tested.** A cheap proof of the negation: pay a sparse block-factor
+  sprinkle `Theta_B` of `b_2` over `E_{H_1}`, at mass `epsilon`, then absorb
+  for free by infinite-contact steps. This is the one shape that
+  `fpbs-malnormal-measured-absorption-cap` lists as not excluded.
+- **Where it dies.** At the first absorption step. By
+  [[fpbs-mal-sprinkle-then-absorb-inert]] (route
+  `fpbs-mal-sprinkle-then-absorb-inert-proof`, artifact
+  `research/artifacts/fpbs-mal-sprinkle-then-absorb-inert-2026-09-17.md`):
+  - If `epsilon^{1/|W|^2} < 1/A`, the cluster graph of `E_{H_1} v Theta_B` is
+    a.s. fine. This follows from `M(k) <= A^k` of
+    [[fpbs-malnormal-coset-cycles-linear-perimeter]].
+  - Hence every infinite-contact step with a bounded number of closed-edge
+    crossings adds nothing.
+  - Labels outside `H_2` are excluded by the cap's Theorem A.
+  - If `epsilon^{1/|W|^2} <= 1/(4 A^2)`, the resulting relation misses
+    `(x, b_2 x)` on mass `> 1/2`.
+- **Invariant.** Almost-sure Bowditch fineness of the cluster graph.
+- **What survives.**
+  - kappa-escaping contact classes, where the crossing count tends to
+    infinity along the class;
+  - growing windows;
+  - long-generator payments, with constants unbounded in `m`;
+  - countably many payments;
+  - certificates not built as chains.
+- **Next decomposition that can fail.** Show that no `phi` has a non-null set
+  of kappa-escaping infinite contact classes joining distinct clusters of a
+  sparse block sprinkle. This does not decide the claim, which stays OPEN.
