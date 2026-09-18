@@ -57,6 +57,10 @@ and Example `ex:ZS` (III), `D` is of type `F_n` when:
   Euclidean buildings of any type (`euclidean-building-lattices-lie-in-permutational-bh-class`,
   bh-groupoid). There strong connectivity of the pieces comes from complete
   reducibility by counting, not from irreducibility of the transition matrices.
+- **Reducible Euclidean buildings.** All cocompact lattices on finite products of thick
+  Euclidean buildings and trees, irreducible lattices included
+  (`reducible-euclidean-building-lattices-lie-in-type-a-class`), with effectiveness
+  from Lemma H (`automorphisms-fixing-open-boundary-sets-fix-large-balls`).
 
 **Limits.**
 - **Complexity.** With finite unit groups, every subgroup of `F(𝒢)` has word problem
