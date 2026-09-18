@@ -90,3 +90,27 @@ would refute the open mapping-torus form (EKL1) of
    - Not done: whether `LC(X) semidirectProduct <T, psi>` is LEF for a
      commuting `psi` of infinite order modulo `<T>`.  That would kill the
      first survivor by the same model argument.
+4. **Commuting-automorphism survivor reduced to Z^2 residual finiteness (2026-09-18, decomposition and class
+   kill, symbolic-dynamics).**  This answers the "Not done" item of Attempt 3.
+   - `commuting-subshift-automorphisms-die-when-space-time-is-rf` (ESTABLISHED) concerns `ψ ∈ Aut(X,T)` and
+     its space-time subshift `Y_ψ`.
+     - It shows that `Y_ψ` is Kerr–Nowak residually finite iff condition `(*)` holds for a block code `F` of
+       `ψ`.  Condition `(*)`: for every `M`, some periodic `y` has every iterate `F^j(y)`, `j ≥ 0`, `M`-legal.
+     - In that case `σ` fails (G2) whenever `σ^m = Ad(w) σ_ψ^k`.
+     - The reason is that `σ_ψ = Ad(u_(0,1))` inside `LC(X,F_q) ⋊ Z^2`, which is matricial by
+       `window-lef-subshifts-give-matricial-crossed-products`.
+     - Products `X_1 × X_2` with `ψ = T_1 × id` satisfy `(*)`.  So some automorphisms of infinite spatial class
+       modulo `[[T]]` also die.
+   - *Invariant:* residual finiteness of the `Z^2`-action `⟨T,ψ⟩`.  *Dying step:* as in Attempt 1, now inside
+     the `Z^2` crossed product.
+   - *Exact frontier of this kill.*  It reaches every commuting `ψ` iff every free minimal `Z^2`-subshift with a
+     rational direction that is both expansive and minimal is residually finite.
+     - Minimal subsystems of aperiodic SFTs are never residually finite.
+     - So the open `aperiodic-sft-minimal-subsystem-with-expansive-minimal-direction` would produce survivors
+       that escape all permutation models.
+   - `minimal-z2-directions-forbid-eigenvalues-vanishing-on-them` (ESTABLISHED lemma) shows that a minimal
+     direction kills no continuous eigenvalue.  This excludes Robinson, square substitutions and Jeandel–Rao
+     as sources.  What is left is coprime rectangular hierarchies and cubic toral codings.
+   - Still open for such survivors: whether they satisfy (G2) at all.  Also open is whether non-permutation
+     matricial models exist; this is the quantum gap of
+     `labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`.
