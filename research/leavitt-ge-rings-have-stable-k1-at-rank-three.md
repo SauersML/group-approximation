@@ -29,8 +29,10 @@ elementary matrices and invertible diagonal matrices.
 
 ## (GE) for `R_L`
 
-Khanh (arXiv:2609.08428, Lemma `lem:elementary-generation`, read in TeX) attributes GE to Menal--Moncasi (1984,
-Theorem 2.2 and the remark after Corollary 2.3, not read at source). He states that it applies "to a simple ring in
+GE is pinned by gq-referee-b (report 740389fd9) in Ara--Goodearl--Pardo, math/0111066v1. Theorem 1.6 (p. 5): a
+simple ring is purely infinite if and only if it is not a division ring and every `a != 0` has `x a y = 1`. Theorem
+2.4 (p. 8; 2.3 in print): "By [23, Remark after 2.3], R is a GE-ring", with [23] Menal--Moncasi (not read). Nothing in
+AGP §§1--2 assumes regularity. Khanh (arXiv:2609.08428, Lemma `lem:elementary-generation`) cites the same source. He states that it applies "to a simple ring in
 which each nonzero `x` admits `y, z` with `yxz = 1`, and requires no regularity assumption". `R_L` is simple
 (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`), and item 4 supplies the compression. So (GE) holds for `R_L`,
 and with it item 3 and input (S1) of the frame-complex route.
