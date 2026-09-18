@@ -11,6 +11,8 @@ artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
   - research/artifacts/gq-referee-a-central-deformation-attempts-4-5.md
   - research/artifacts/gq-referee-b-central-deformation-euler-host-attempt-4.md
+  - research/artifacts/gq-referee-a-central-deformation-attempts-6-9.md
+  - research/artifacts/gq-referee-b-central-deformation-euler-host-attempts-5-9.md
 ---
 
 **OPEN (2026-09-18, lane gq-k2-q).** For some prime `l` and some `N >= 5`, the finite residual of `St_N(T_p)` is
@@ -67,7 +69,7 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
   than its image in `A_p[x^(±1); σ]`.
 - **(C2) `K_2`.** `K_2(B) ⊕ K_2(Z)` is a direct summand of `K_2(T_p)`, by the retractions of
   `euler-ring-rational-symbols-are-infinitely-generated`, Part 3. Equality is the triangular theorem of
-  Berrick–Keating, not read at source.
+  Berrick–Keating, with no hypotheses on `M` (pinned by gq-referee-b via Xi, arXiv:1107.5380, Lemma 4.1).
   - The question is whether `K_2(N, T_p)` contains an infinitely generated family dying in every finite quotient.
   - The `D`-symbols are absent. The residue invariants `I_p` must be re-derived, since the lines `π_k = 0` are not
     divisors of `Spec A_p`.
@@ -138,9 +140,10 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
    - *Remaining route.* The `p`-localization sequence, with the `E_k`-residue invariant of Attempt 2 lifted to the
      skew-Laurent level.
 4. **(C2, skew-Laurent level) The Euler symbols are invisible from `T_p`: a `t`-homotopy (2026-09-18, lane gq-k2-q).**
-   *Reviewed:* PASS by `gq-referee-a` (Attempts 4–5) and `gq-referee-b` (Attempt 4); reports in `artifacts`.
+   *Reviewed:* PASS by `gq-referee-a` (Attempts 4–9) and `gq-referee-b` (Attempts 4–9); reports in `artifacts`, nits applied.
    This supersedes the residue argument of Attempt 2, which it contains. Inputs:
-   - Quillen's homotopy invariance `K_2(R[t]) ≅ K_2(R)` for left regular noetherian `R`, applied to `D`.
+   - Quillen's homotopy invariance `K_2(R[t]) ≅ K_2(R)` for left regular noetherian `R`, applied to `D` (Weibel,
+     *The K-book*, V.6.3, pinned by gq-referee-b; it also gives `NK_2(D) = 0` and `K_i(Z[u]) = K_i(Z)`).
      `D = A[x^(±1); σ]` is noetherian of global dimension at most 3, since `A` is regular of dimension 2.
      Textbook, not re-read.
    - `abc-twisted-laurent-k-theory-fibration`, applied to `Z[u]`.
@@ -201,8 +204,10 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      - `w = b_k b_j b_k` with `i = 1`, `i' = 3` gives `p [b_j, b_k] = 0`. So each lamp commutator is killed by `p`,
        by `(k−j) l`, and on the left by `π_j` and `π_k`. It vanishes where `p` is a unit, which is consistent with
        Attempt 4.
-     - Modulo `p`, a word is killed by `l·(k_i − k_(i'))` for each pair of positions. In the fibre `B/(p)`, only
-       the powers `b_k^r` stay torsion-free in positive degree.
+     - Modulo `p`, a word is killed by `l·(k_i − k_(i'))` for each pair of positions. In the fibre `B/(p)`, the powers
+       `b_k^r` stay torsion-free in positive degree. Model (gq-referee-a): `u` acts by `−1−jl` on `⊕_j Z[β] e_j`,
+       `x e_j = e_(j+1)`, and `b` acts by `β` on `e_0` and by `0` elsewhere. All relations hold with `p = 0`, and
+       `b_k^r` acts as `β^r` on `e_k`.
    - *What RF needs.* Enough finite representations to separate the `Z[p]`-module of words modulo the positional
      relations, together with residual finiteness of the commutative image `A_p[x^(±1); σ]`. Neither is done.
 7. **The non-commutative part of `B` is exactly its `Z`-torsion (2026-09-18, lane gq-k2-q).** This is a lane proof. The
@@ -218,14 +223,18 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
        dimension 1, and it lies in the closure of that surface.
      - Hence `S_K` is irreducible, and it is generically reduced with no embedded primes, so it is a domain. So is
        the colimit `S`.
-     - `S -> A_p ⊗ Q`, `b_k ↦ t/π_k`, is onto, between domains of the same dimension, so it is injective.
+     - For each finite `K`, `S_K -> A_K ⊗ Q`, `b_k ↦ t/π_k`, is a surjection of finitely generated 2-dimensional
+       domains, so its kernel is `0`. Taking the colimit, `S -> A_p ⊗ Q` is injective. Over `Q` two lines
+       `π_j = 0` and `π_k = 0` never meet, so the domain claim holds for every `K`.
    - *Consequence.* `B ⊗ Q ≅ (A_p ⊗ Q)[x^(±1); σ]`.
      - The kernel of `B -> A_p[x^(±1); σ]` is exactly the `Z`-torsion of `B`, which contains the lamp commutators.
      - `A_p[x^(±1); σ] ⊆ D[t]` is residually finite: `D` is (`euler-triangular-ring-is-fp-rf`), and evaluating `t`
        at integers separates polynomials over the torsion-free `D`.
      - So **`B` is residually finite if and only if its `Z`-torsion is separated by finite quotients.** C1 shows
        this for the commutators themselves. The general torsion element is still open.
-8. **A Baumslag letter cannot remove the torsion (2026-09-18, lane gq-k2-q).** Design verdict: fails. Proof below;
+8. **A Baumslag letter cannot remove the torsion (2026-09-18, lane gq-k2-q).** Design verdict: fails. Proved for the
+   two tested letter forms, additive and multiplicative, and for `s_0 = t/π_0`. The general statement, that no
+   Baumslag-type letter works, is heuristic. Proof below;
    lane proof, elementary.
    - *The idea.* This is modelled on `k-infinity-lies-in-a-simple-localization-of-an-fp-ring`. Adjoin a unit `y` with
      `xy = yx` and a doubling relation on the lamp `b`, to force all `[b_j, b_k] = 0` from finitely many relations.
@@ -258,12 +267,14 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
        a unit.
    - *The `p`-nilpotent quotients* are quotients of `B/(p^n) × Z`, since `p = 1` on `M` kills `M/p^n M`.
    - *A sufficient condition for vanishing.* The grading gives `τ : B -> B[t]`, `b_d ↦ b_d t^d`, with `ev_1 τ = id`
-     and `ev_0 τ = (B -> B_0)`. If `NK_2(B) = 0`, then `K_2(B, B_+) = 0`, the stable `K_2(T_p)` is finite, and only
+     and `ev_0 τ = (B -> B_0)`. If `NK_2(B) = 0`, then `K_2(B, B_+) = 0`, the stable `K_2(T_p)` is finite (with the triangular splitting of (C2)), and only
      unstable and centrality issues remain.
    - *The question (b) becomes.* Is `NK_2(B)`, or at least the part of `K_2(B, B_+)` that dies in every finite
      quotient of every `B/(p^n)`, finitely generated?
-     - Candidate detectors in characteristic `l` exist: `K_2(F[X,Y]/(X^2, XY, Y^2)) = K_2(F) ⊕ F^+`, generated by
-       `{1+X, 1+uY}` (Dennis–Stein, p. 255). The free lamps of C1 map onto such rings.
+     - Candidate detectors in characteristic `l` exist: for a finite or perfect field `F`,
+       `K_2(F[X,Y]/(X^2, XY, Y^2)) = K_2(F) ⊕ F^+`, generated by `{1+X, 1+uY}` (Dennis–Stein, p. 255).
+     - With `x` present, a commutative target forces `b_k = b_(k+1)`. So only the lamp subring maps onto such rings.
+       `B` itself maps to `M_n` of them, through the block shift of C1 and Morita invariance.
      - Heuristic, not claimed: by Farrell-type non-finiteness, `K_2(B, B_+)` is either `0` or not finitely
        generated. So the route needs it to be `0` or detected.
 10. **Detection versus vanishing on the `p`-nilpotent side (2026-09-18, lane gq-k2-q).** Final attempt under the
