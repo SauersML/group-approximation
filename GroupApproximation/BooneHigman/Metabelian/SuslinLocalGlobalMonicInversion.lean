@@ -68,7 +68,7 @@ theorem suslinLG_monicInversion_of_local {A : Type u} [CommRing A] {N : ℕ}
         (algebraMap (Polynomial A) (Localization.Away f)) σ ∈
       elementaryGroup (Fin N) (Localization.Away f)) :
     σ ∈ elementaryGroup (Fin N) (Polynomial A) := by
-  refine suslinLG_localGlobal hN σ h0 fun 𝔪 h𝔪 ↦ ?_
+  refine suslinLG_localGlobal hN σ h0 fun 𝔪 _ ↦ ?_
   have hfm : (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪)) f).Monic := by
     rw [Polynomial.coe_mapRingHom]
     exact hf.map _
