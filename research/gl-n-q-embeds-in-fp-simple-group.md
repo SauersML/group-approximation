@@ -117,3 +117,19 @@ None recorded before 2026-09-17.
 
    Surviving shape: copies whose divisible elements are not globally in `L`, as in
    `Q <= T̄` and `Q <= 2V`.
+
+4. **Non-Thompson hosts (lattice-type groups acting on CAT(0) complexes), 2026-09-17:
+   dead for every n >= 2.** `proper-semisimple-cat0-groups-contain-no-gl-2-q`: a group
+   acting properly by semisimple isometries on a CAT(0) space has no distorted
+   cyclic subgroup, and `BS(1,2) <= GL_2(Q)`. This excludes:
+   - proper cellular actions on complexes with finitely many shapes (Bridson);
+   - proper actions on CAT(0) cube complexes of any dimension (Haglund);
+   - so both non-Thompson families of finitely presented simple groups in the
+     survey (§4.1): the Burger--Mozes groups and the Caprace--Rémy twin building
+     lattices.
+
+   The host must be dynamical, of Thompson type or of a kind not yet built. See
+   `research/artifacts/gq-heretic-assumptions.md` for the three shared assumptions
+   of the current routes and what survives each denial. The survivor of the
+   central-root denial is the configuration of `Aff(Q)`: an element conjugate to
+   its `p`-th power for every prime `p`, through commuting conjugators.
