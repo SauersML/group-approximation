@@ -100,3 +100,7 @@ in `B_A`, and `Q ⋊_β Z` embeds in it.
   `gMg^-1`. Hence the edge map is, up to conjugation by `g`, the restriction of
   an automorphism of `M`. Partial isomorphisms that extend to no automorphism of
   any finitely presented simple MIF overgroup are out of reach of this construction.
+
+## Update (bh-free-05, 2026-09-18)
+
+Related: `ascending-hnn-of-free-groups-satisfy-boone-higman` (b6bb206cf, lane proof) covers ascending HNN extensions of finitely generated free groups along arbitrary injective endomorphisms, not only those induced by automorphisms. It uses a different mechanism, BLIW's BS_{F_2} theorem after a Hall extension. The two results overlap only on free bases, since this node needs a finitely presented simple MIF factor M.
