@@ -5616,6 +5616,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.FoldA
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.TranslationForm
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.BlockMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Encoding
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Separation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
