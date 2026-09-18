@@ -85,7 +85,7 @@ def chainStep : Bool × List MvP × List MvP × MvP × List (ℤ × ℤ) →
 
 /-- `n` steps of the parametric chain. -/
 def chainIter (n : ℕ) (t : List (List Atom × St)) : List (List Atom × St) :=
-  (fun s => tbind s chainStep)^[n] t
+  (fun s : List (List Atom × St) => tbind s chainStep)^[n] t
 
 /-- The value `changes(-∞) - changes(+∞)` of a chain state. -/
 def leafVal (st : Bool × List MvP × List MvP × MvP × List (ℤ × ℤ)) : ℤ :=

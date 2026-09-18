@@ -142,29 +142,24 @@ theorem evalC_sumProd_gram (ζ : ℕ → ℂ) (d b e b' e' : ℕ) (p q : Fin d) 
 theorem grid_iff {ζ : ℕ → ℂ} {d : ℕ} (F : ℕ → ℕ → CPoly) (A B : Matrix (Fin d) (Fin d) ℂ)
     (hF : ∀ j k : Fin d, evalC ζ (F j k) = A j k - B j k) :
     (∀ p ∈ grid d F, evalC ζ p = 0) ↔ A = B := by
-  rw [forall_mem_grid]
-  constructor
-  · intro h
-    ext j k
+  refine (forall_mem_grid d F (fun p => evalC ζ p = 0)).trans ⟨fun h => ?_, fun h j hj k hk => ?_⟩
+  · ext j k
     have hjk : evalC ζ (F j k) = 0 := h j j.2 k k.2
     rw [hF] at hjk
     exact sub_eq_zero.mp hjk
-  · intro h j hj k hk
-    exact (hF ⟨j, hj⟩ ⟨k, hk⟩).trans (by rw [h, sub_self])
+  · exact (hF ⟨j, hj⟩ ⟨k, hk⟩).trans (by rw [h, sub_self])
 
 /-- A family of equations indexed by `range d` is a vector identity. -/
 theorem range_iff {ζ : ℕ → ℂ} {d : ℕ} (F : ℕ → CPoly) (x y : Fin d → ℂ)
     (hF : ∀ j : Fin d, evalC ζ (F j) = x j - y j) :
     (∀ p ∈ (List.range d).map F, evalC ζ p = 0) ↔ x = y := by
-  rw [List.forall_mem_map]
-  constructor
-  · intro h
-    funext j
+  refine (List.forall_mem_map (P := fun p => evalC ζ p = 0)).trans
+    ⟨fun h => ?_, fun h j hj => ?_⟩
+  · funext j
     have hj : evalC ζ (F j) = 0 := h j (List.mem_range.mpr j.2)
     rw [hF] at hj
     exact sub_eq_zero.mp hj
-  · intro h j hj
-    exact (hF ⟨j, List.mem_range.mp hj⟩).trans (by rw [h, sub_self])
+  · exact (hF ⟨j, List.mem_range.mp hj⟩).trans (by rw [h, sub_self])
 
 end
 
