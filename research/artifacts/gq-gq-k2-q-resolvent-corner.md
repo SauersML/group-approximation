@@ -48,3 +48,22 @@ The path normal form makes this nearly mechanical.
   the corner ring `Z_(l)` by a ring with finitely generated symbol group that still inverts all primes but one.
   Any such corner ring inverts every prime but `l`, so it contains `Z_(l)`. The symbols `{q, g_q}` must therefore die
   in the corner ring or in the ambient ring, and by the previous bullet not through `K_0` divisibility.
+
+## 4. Source reads for the finite-residual node (2026-09-18)
+
+Both PDFs were downloaded on MSI through institutional access and read page by page. Local copies are in the
+session scratchpad `gq/src/k2/`, and MSI copies are in `/projects/standard/hsiehph/sauer354/gq-k2/`.
+
+- **Dennis–Stein, *The functor K_2: a survey of computations and problems*.** LNM 342 (1973), pp. 243–280,
+  doi:10.1007/BFb0073728.
+  - §12, pp. 254–255: `K_2(W_m(F_q)) = 1` if `p` is odd or `m = 1`, and `= Z/2Z` if `p = 2` and `m >= 2`. The
+    general formula is their [27, Theorem 4.3], for quotients `A/P^m` of discrete valuation rings.
+  - §12, p. 254: for `A` a DVR or a quotient of one, `K_2(A)` and `K_2(n, A)` for `n >= 3` are presented by
+    symbols subject to (S1)–(S7) [27, Theorems 2.3, 2.5].
+  - §4, pp. 246–247: `K_2(Z_S) ≅ {±1} ⊕ ⊔_(p∈S) (Z/pZ)^*` for `Z_S = Z[1/S]`. With `S` the primes other than
+    `l`, this is `K_2(Z_(l))`, which confirms input (K-c) of `resolvent-steinberg-rf-residual-is-finitely-normally-generated`.
+  - §1, p. 245: `K_2(R)` is the centre of `St(R)` [69, §5], for any ring.
+- **van der Kallen, *Injective stability for K_2*.** LNM 551 (1976), pp. 77–154, doi:10.1007/BFb0079997.
+  - Theorem 1, p. 77, is quoted verbatim in the node. It assumes a commutative ring with noetherian maximal
+    spectrum of dimension `d`, and needs `n >= d + 2`.
+  - Our use is `R = Z/l^r`, with `d = 0` and `N = n + 1 >= 3`. The noncommutative `R_l` is never fed to it.
