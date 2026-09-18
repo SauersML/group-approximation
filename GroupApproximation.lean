@@ -5666,6 +5666,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.NonUnitalHomotopy
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.BrownRep
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.BrownCore
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.BrownLift
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Words
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
