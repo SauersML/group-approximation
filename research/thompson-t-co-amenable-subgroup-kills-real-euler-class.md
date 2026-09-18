@@ -105,3 +105,25 @@ This excludes `F` and all point and finite-set stabilizers.
     `T/H = A_1 ∪ ... ∪ A_l ∪ Fix(p_1) ∪ ... ∪ Fix(p_k)` with the `g_jA_j, h_jA_j` pairwise
     disjoint (Elek--Szabó Theorem 3, via item 1). A paradoxical decomposition modulo finitely
     many fixed sets is enough.
+- 2026-09-18 (swarm-0917-w11-w11-nv-break): bounded-cohomology constraint on every witness. This
+  node stays OPEN.
+  - *Result.* See `thompson-t-co-amenable-subgroups-see-all-bounded-euler-powers`, ESTABLISHED
+    by route `thompson-t-co-amenable-bounded-euler-powers-proof`. For every co-amenable `H ≤ T`,
+    `(e_b|_H)^n ≠ 0` for all `n`.
+    - The proof is a transfer through the invariant mean, together with `H^*_b(T) = R[e_b]`.
+  - *(D3') New forced shape.* A witness `H` makes `φ = rot − u` a homogeneous quasimorphism on
+    `H` with `[δφ] = −e_b|_H` and all cup powers nonzero. So `H` must avoid all of the following:
+    - boundedly acyclic groups, including `F` and `F^k`;
+    - groups with a finite-index subgroup fixing a point, which reproves (D1);
+    - every action conjugate or semi-conjugate into an action of a Lie group locally isomorphic
+      to `SL_2(R)`, by Hartnick–Ott `H^4_cb = 0`. This strictly contains the wave-10 exclusion
+      (D3) of `PSL_2(Z)`, and also excludes all Fuchsian and Schottky subgroups of `T`;
+    - free groups whose class is `Δ`-decomposable or Brooks (Amontova–Bucher).
+  - *Reduction.* A free co-amenable `H ≤ T` automatically has `e_R|_H = 0`. Such an `H` would
+    exist only if some class in `H²_b(F_r)` had all cup powers nonzero, which is open (Hofmann
+    2024).
+    - So the free route to this node goes through the cup-product problem for free groups.
+    - A proof that such cup powers always vanish would force every witness to be non-free, and to
+      avoid every `SL_2(R)`-type action.
+  - *Calibration.* `T̄` acting through `T` has `e_R = 0` and all `e_b^n ≠ 0`. So (A) alone cannot
+    refute this node.
