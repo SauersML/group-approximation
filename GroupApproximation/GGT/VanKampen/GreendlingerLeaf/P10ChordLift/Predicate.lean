@@ -38,6 +38,8 @@ universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides
 
+open scoped Classical
+
 section Vocabulary
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}

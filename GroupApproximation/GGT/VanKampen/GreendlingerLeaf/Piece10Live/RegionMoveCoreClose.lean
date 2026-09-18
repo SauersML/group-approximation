@@ -12,14 +12,14 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` wi
 
 `RoseExtremalCoreStatement` is already reduced by proved `_of_` theorems to statements owned by the
 sibling lanes:
-* Core ← Contiguity ← ContigResidual ← `RoseExtremalBlockStatement` ← `RoseExtremalBlockCoreStatement`
-  (gl-p10-18).
+* Core ← Contiguity ← ContigResidual ← `RoseExtremalBlockStatement` ←
+  `RoseExtremalBlockCoreStatement` (gl-p10-18).
 * The no-wrap chain ends at `RoseExtremalBlockNoWrapCoreStatement` (gl-p10-18), then
   `RoseExtremalRegionStatement` ← `RoseExtremalClassStatement` ← `ExtremalMinimalUniformStatement`
   (gl-p10-17).
 
-Every other open `*Statement` of `Piece10Live` on the path to the Greendlinger leaf reduces to these.
-So this lane does not re-reduce Core through any of those chains.  It works on the premise block of
+Every other open `*Statement` of `Piece10Live` on the path to the Greendlinger leaf reduces to
+these.  So this lane does not re-reduce Core through any of those chains.  It works on the premise block of
 Core instead, and records the combinatorial content of the rose premises.
 
 ## Route
