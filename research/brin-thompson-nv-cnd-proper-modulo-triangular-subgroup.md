@@ -45,3 +45,21 @@ wall counts.
     many left cosets of `V^n`. Such a subset would also refute the Haagerup property of `nV`.
   So this half is no easier than finiteness of Kazhdan subgroups. Constructing `ψ_1` needs a
   non-cubical cocycle that is unbounded but polylogarithmic on the Callard–Salo element; not attempted.
+- **2026-09-18 (swarm-0917-w7-w7-nv-pull): witnesses carried by finite clopen cuts (die;
+  class-kill).**
+  - R1 implies Problem B(Z), which implies a `C_0` witness for `C(C,Z) ⋊ V ≤ 2V` with no
+    `1_C`-invariant vectors. Established `clopen-extractable-spectra-carry-no-almost-invariant-vectors`
+    to constrain where that witness's spectral law can live.
+  - Suppose the `C(C,Z)`-spectrum lies on a `V`-invariant character set with an equivariant Borel map
+    to probabilities on proper clopens. Then the spectral part has norm at most `1032ε`, where `ε` is
+    the defect under `h_1, h_2, h_3`.
+  - This kills "random finite cut, Haar below" witnesses: every law absolutely continuous to a
+    countable sum of Haar extensions over nontrivial finite clopen algebras.
+  - **Invariant:** the maximal-pure leaf partition.
+  - **Where every member dies:**
+    - Shallow clopens have mass at most `46ε`.
+    - On deep clopens, leaf-uniform Lebesgue averaging commutes with the three moves.
+    - The averaged probability on `C` is then paradoxical.
+  - **Surviving:** characters whose natural cut is infinite (random open or nowhere-dense closed
+    sets with infinitely many leaves). There no normalizable equivariant leaf weighting exists.
+  - A positive R1 must place its witnesses there.
