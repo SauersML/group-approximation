@@ -114,3 +114,30 @@ open part is finite presentation. One concrete route is
      - a finitely presented metabelian extension of the `Z ≀ Z`-action;
      - finitely many module relations;
      - a residual-finiteness proof that does not use finite exponent (the paper's Theorem 4.17 does).
+5. **A characteristic-0 KMS variant: calibration (2026-09-18, lane gq-infinite-primes).**
+   - *Known limit of the general question.* The unrestricted residually finite Higman embedding (every finitely
+     generated residually finite group with solvable word problem embeds in a finitely presented residually
+     finite group) is false: E. Rauzy, *Obstruction to a Higman embedding theorem for residually finite groups
+     with solvable word problem*, arXiv:2002.02540v2 (17 Mar 2021), Theorem 1
+     (`rf-higman-embedding-for-decidable-groups-fails`). His counterexample is not effectively residually finite,
+     while `G_l` is.
+   - *The naive variant is inconsistent.* Relations G1–G8 with only the base exponent law dropped still force
+     `x_(uA_i)^p = 1` (`kms-configuration-letters-inherit-exponent-p`). The exponent law on the A-letters,
+     transported by G5 a), kills torsion-freeness.
+   - *The fully characteristic-0 variant.* Dropping the A-letter exponent too gives what artifact
+     `gq-gq-infinite-primes-kms-reading.md` §4 analyses, without proof. Residual finiteness would plausibly
+     survive, with finitely generated abelian quotients of `T` in place of finite ones. But the base would be free
+     abelian, so the group would contain no `Z_(l)`. The crux moves to ingredient (2): a module relation with a
+     non-unit scalar, such as the Euler relation of `G_l`. With that relation, ingredient (3) is hard again.
+6. **Ingredient (2) for the Euler base: the freest extension fails (2026-09-18, lane gq-infinite-primes).**
+   `euler-base-annihilator-over-lamplighter-is-not-fg`:
+   - Over the ring `D` the Euler base `M = Z_(l)[y^(±1)]` needs one left relation and one two-sided relation
+     (the Euler element `r = xβx^(-1) - β - l`).
+   - Over `Z[Z≀Z]` its annihilator is not finitely generated. So finitely many of the shifted Euler relations
+     `r x^k f_0 = 0` never suffice.
+   - The induced module over any overgroup `Q ⊇ Z≀Z`, Baumslag's finitely presented metabelian group
+     included, is not finitely presented.
+   - At the generator, the Euler relation is a BR-conjoint relation (KMS Lemma 4.1 form, pair `(β_(-1), β)`,
+     polynomial `t - l`). But BR propagates along the lamps, not along `x`.
+   - Open: a finitely presented base that is a proper quotient of the induced module and still contains `M`.
+     Deliverable (a), an explicit finite presentation, is not achieved.

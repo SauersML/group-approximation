@@ -5,11 +5,12 @@ kind: claim
 title: Uniform clique inequality - a Hermitian matrix with zero diagonal and all off-diagonal moduli at least 1 has trace norm at least sqrt3 (m-1)
 artifacts:
   - experiments/hermitian-edge-trace-norm-2026-09-18/README.md
+  - experiments/hermitian-edge-trace-norm-clique-energy-2026-09-18/README.md
 distinct_from:
   hermitian-edge-trace-norm-vs-independence: that is (**) for every graph and weight; this is the single case G = K_m, w = 1, which by the facet reduction is equivalent to (**) for all h-perfect graphs (all perfect graphs) and is the only open case there.
 ---
 
-**OPEN (conjecture; true for m <= 3; numerics for m <= 10).** For every `m >= 2` and every Hermitian
+**OPEN only for m = 4 and m = 5 (proved for m <= 3 and, by `hermitian-edge-trace-norm-clique-inequality-large-m`, for every m >= 6; numerics for m <= 10).** For every `m >= 2` and every Hermitian
 `m x m` matrix `C` with `C_ii = 0` and `|C_ij| >= 1` for all `i != j`,
 
 ```text
@@ -19,7 +20,7 @@ distinct_from:
 **Why it matters.** By `hermitian-edge-trace-norm-k4-free-h-perfect` (Theorem C), (UCI) for all `m`
 is equivalent to (**) for all perfect graphs and all h-perfect graphs, and it is one of the two
 holes of `hermitian-edge-trace-norm-via-stab-facets`. (UCI) with `m <= 3` is what gives the proved
-class (K4-free h-perfect graphs). `K_4` is the smallest open instance.
+class (K4-free h-perfect graphs). `K_4` is the smallest open instance, and `K_4`, `K_5` are the only ones.
 
 **Equivalent forms.**
 - *Dual.* (UCI) iff `sum_i Q_ii >= sqrt3 (m-1)` whenever `Q +- C >= 0`. With `A = (Q+C)/2`,
@@ -28,6 +29,26 @@ class (K4-free h-perfect graphs). `K_4` is the smallest open instance.
   `|<a_i,a_j> - <b_i,b_j>| >= 1` for all `i != j`.
 - *Weighted.* By the facet reduction, (UCI) for all `s <= m` is equivalent to (**) for `K_m` with
   every weight `w`.
+
+**Status after w6-078 (2026-09-18).** `hermitian-edge-trace-norm-clique-inequality-large-m` proves (UCI)
+for all `m >= 6`. The proof is a rank-one reduction, averaging, and a computer-verified Yudin-type LP
+certificate on the complex sphere. What is left:
+
+- *Rank-one reduction (proved there, Step 1).* Put `A = C_+`, `B = C_-` with common diagonal `d`.
+  Einollahzadeh's lemma and the Schur product `conj(A) o B` give unit vectors with Gram matrix `G` such
+  that `d_i d_j |1 - G_ij|^2 >= 1` for `i != j`. Also, `K = sqrt d sqrt d^T - X(conj(A) o B)X` is
+  admissible, has one positive eigenvalue, and `||K||_1 <= ||C||_1`. So it suffices to treat matrices
+  with exactly one positive eigenvalue, which explains the numerics below.
+- *The open core, `(M_m)` for `m = 4, 5`.* (UCI) for size `m` follows from
+  `2 nu_f(r) >= (sqrt3/2)(m-1)`, where `r_ij = 1/|1 - G_ij|` for unit vectors with Gram matrix `G`, and
+  `nu_f` is the maximum `r`-weight of a fractional perfect matching of `K_m`.
+  - For `m = 4` this reads: *among the three perfect matchings of 4 unit vectors, one has
+    `r_ij + r_kl >= 3 sqrt3/4`.*
+  - The numerical minima of `2 nu_f` are `1 + sqrt3` (`m = 4`) and `(5 + sqrt5)/2` (`m = 5`), exactly
+    half the minima of `||C||_1`. So nothing is lost.
+- *Obstruction.* Any bound through `sum d >= E(G)/(m-1)`, with `E = sum_{i != j} r_ij`, fails at
+  `m = 4, 5`. The 4th and 5th roots of unity give `E = 2 + 4 sqrt2 = 7.657` and `E = 13.764`,
+  below the needed `(sqrt3/2)(m-1)^2 = 7.794` and `13.856`. So `m = 4, 5` need the matching (non-averaged) structure.
 
 **Known.** `m = 2`: `||C||_1 = 2|C_12|`. `m = 3`: `tr C = 0` gives `||C||_1 >= sqrt2 ||C||_F >= 2 sqrt3`,
 tight at flux `pi/2`. Frobenius alone gives `sqrt(2m(m-1))`, which is below `sqrt3 (m-1)` for `m >= 4`.

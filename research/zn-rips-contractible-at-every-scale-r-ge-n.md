@@ -16,16 +16,20 @@ This claim asks for the sharp threshold.
 
 Status on main, by dimension:
 - `n ≤ 6`: every `r ≥ n`. This is Gupta–Sarkar–Shukla together with `z6-rips-contractible-at-scales-6-to-9`.
-- `n = 7`: every `r ≥ n` except `r = 11, 13, 15, 17`. The sources are:
+- `n = 7`: every `r ≥ n`. The sources are:
   - `z7-rips-contractible-at-scales-7-and-8`;
   - `z7-rips-contractible-at-scale-9`;
   - `z7-rips-contractible-at-scale-10`;
+  - `z7-rips-contractible-at-scales-11-13-15-17`;
   - `z7-rips-contractible-at-scales-12-14-16-and-18-to-54`;
   - `z7-rips-contractible-at-scales-20-to-54-even-and-36-to-54`;
   - Zaremsky's bound `r ≥ 55`.
 - `n = 8`: every `r ≥ 37` and every even `r ≥ 20`. The sources are
   `z8-rips-contractible-at-scales-20-to-36-even-and-37-to-70` and `z8-rips-contractible-at-even-scales-38-to-70`,
   with the published bound `r ≥ 71`. Open: `8 ≤ r ≤ 19` and odd `21 ≤ r ≤ 35`.
+  At `r = 8`, the lifted reduction of `z7-rips-contractible-at-scale-10-proof` admits no domination-only
+  certificate (`z8-rips-lifted-domination-certificates-fail-at-scale-8`), so that scale needs link collapses or a
+  new move.
 - General `n`, sufficient criteria on the partitions of `r`: `zn-rips-sphere-balanced-dominator-criterion` and
   `zn-rips-slack-sphere-criterion`.
 
@@ -46,3 +50,15 @@ Status on main, by dimension:
   - Point-level certificates grow quickly: `|Lmax_7|` is 216,952 at `r = 10` and 397,727 at `r = 11`, and far larger
     at `(7,17)` and at `n = 8`. The remaining scales need either staged runs or a partition-level version of the lifted
     moves.
+- **w5-103, layered orbits and self-blocking sets.**
+  - *n = 7 closed.* Orbit-level (D) certificates, with Lemmas O and P of
+    `z7-rips-contractible-at-scales-11-13-15-17-proof`, close `r = 11, 13, 15, 17`.
+  - *Orbit moves fail at n = 8.* At `(8, 8)` orbit moves stall. A hybrid that falls back to point moves on the
+    deferred orbits also stalls after 62,442 verified moves, with 70,422 points left
+    (`experiments/zn-rips-lifted-domination-core-2026-09-18/`).
+  - *Obstruction.* Every (D)-only certificate fails at `(8, 8)`. A 16,114-point self-blocking set blocks every
+    (D) move into it, whatever the order (`z8-rips-lifted-domination-certificates-fail-at-scale-8`). The same test
+    finds self-blocking sets at `(6, 6)`, `(7, 7)`, `(7, 8)` and `(7, 9)`, all of them closed on main by other means,
+    but none at `(6, 7)`–`(6, 9)`.
+  - *Next.* Link-collapse (K) certificates at `(8, 8)`, aimed at the self-blocking set, and a scan at `(8, r ≥ 9)`
+    for the scales where the greatest self-blocking set is `{e_8}`.
