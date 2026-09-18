@@ -85,7 +85,8 @@ theorem firstHit_wd (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     FirstHit (ordRing hw hM).facePerm S (wd hw hM t ht) (wd hw hM m hm) := by
   refine ⟨m - t, by omega, ?_, fun s hs0 hsm => ?_⟩
   · exact (ordRing_facePerm_pow_wd hw hM t (m - t) ht (by omega)).trans
-      (ordRing_ext hw hM (getElem_idx_congr w (by omega) (by omega) hm))
+      (ordRing_ext hw hM (getElem_idx_congr w (i := t + (m - t)) (j := m) (by omega)
+        (by omega) hm))
   · rw [ordRing_facePerm_pow_wd hw hM t s ht (by omega)]
     exact hskip (t + s) (by omega) (by omega) (by omega)
 

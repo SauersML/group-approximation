@@ -20,7 +20,7 @@ not unital, but `x₀ y₀ = x_{[0]} y_{[0]}` lies in `C₀`.  Therefore `(p, q)
 
 namespace GroupApproximation.Full.LVCohnHomog
 
-open LVCohnRelK1 SteinbergGroup
+open LVCohnRelK1
 
 noncomputable section
 
@@ -78,7 +78,7 @@ theorem skCohnHo_admissible_succ {p q : ℕ} {a : CohnTwoF2}
   unfold LVCohnGraded.skCohnGr_Admissible at ha ⊢
   have e : cx false ^ (p + 1) * a * cy false ^ (q + 1) =
       cx false * (cx false ^ p * a * cy false ^ q) * cy false := by
-    rw [pow_succ', pow_succ]
+    rw [pow_succ' (cx false) p, pow_succ (cy false) q]
     simp only [mul_assoc]
   rw [e]
   exact skCohnHo_conj_mem_degreeZero ha
@@ -103,7 +103,8 @@ theorem skCohnHo_gradedSt_le_shift {n : ℕ} (m : Fin n → ℕ) (k : ℕ) :
     LVCohnGraded.skCohnGr_gradedSt m ≤ LVCohnGraded.skCohnGr_gradedSt (fun i => m i + k) := by
   rw [LVCohnGraded.skCohnGr_gradedSt, Subgroup.closure_le]
   rintro g ⟨i, j, hij, a, ha, rfl⟩
-  exact LVCohnGraded.skCohnGr_x_mem_gradedSt _ hij (skCohnHo_admissible_add_const ha k)
+  exact LVCohnGraded.skCohnGr_x_mem_gradedSt (fun i => m i + k) hij
+    (skCohnHo_admissible_add_const ha k)
 
 #audit_axioms GroupApproximation.Full.LVCohnHomog.skCohnHo_gradedSt_le_shift
 
