@@ -77,3 +77,14 @@ A finitely presented simple host must come from a new source. Candidates:
   - aperiodicity from (H3) (`rs-two-graph-aperiodicity-from-h3-and-irreducibility`).
 - **Not covered.** Lattices with torsion, and groups that are type preserving with no
   type-transitive overgroup, stay open here.
+
+**Update (2026-09-18, later).** `finite-k-graph-boundary-groupoid-standard-facts` is now
+proved (`finite-k-graph-standard-facts-proof`, lane proof). So
+`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` is ESTABLISHED (lane
+proofs, unreviewed).
+- **Covered.** Every exotic Ã₂ lattice acting freely and with finitely many orbits on
+  vertices by type rotating automorphisms that are not all type preserving embeds in a
+  finitely presented simple group of type `F_∞`. This includes the vertex-regular lattices
+  of the 65 exotic CMSZ buildings of order 3, and all their subgroups.
+- **Still open.** This node stays OPEN for exotic lattices with torsion, and for groups that
+  are type preserving with no type-transitive overgroup.
