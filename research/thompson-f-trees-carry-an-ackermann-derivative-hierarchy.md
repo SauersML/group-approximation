@@ -1,0 +1,86 @@
+---
+rg: 2
+id: thompson-f-trees-carry-an-ackermann-derivative-hierarchy
+kind: claim
+title: "For every k the tree F-set carries a derivative with thin bad set and Ackermann-k contraction"
+distinct_from:
+  marginal-derivative-amplification-is-sharp-at-log-height: that proves amplification of any derivative datum is exactly logarithmic in height, and that Moore's datum has exponential contraction; this asks for data on the same F-set with contraction at every level of the Ackermann hierarchy.
+  thompson-f-folner-function-exceeds-every-tower: that is Moore's tower bound, which uses one derivative with exponential contraction; this is the structural input needed to go beyond towers.
+---
+
+**OPEN.**
+
+**Setting.**
+- `𝒯` is the set of finite rooted binary trees, carrying Moore's partial right action of `F`
+  (arXiv:0905.1118v7, Section 4).
+- `Γ = {x0^±1, x1^±1}`, and `|T|` is the number of leaves.
+- The Ackermann levels are `Ack_1(m) = 2m` and `Ack_{k+1}(m) = Ack_k^{(m)}(1)`. So
+  `Ack_2(m) = 2^m`, `Ack_3(m) = exp_m(1)`, and every primitive recursive function is eventually
+  dominated by some `Ack_k`.
+
+**Statement `H_k`.** There are a map `∂_k : 𝒯 → 𝒯`, a set `A_k ⊆ 𝒯`, and a constant `c_k` such
+that:
+1. `(∂_k, A_k)` is a derivative datum in the sense of
+   `marginal-derivative-amplification-is-sharp-at-log-height`. That is, for `T ∈ A_k` and
+   `γ ∈ Γ`, `T·γ` is defined iff `∂_k(T)·γ` is defined, and then `∂_k(T·γ) = ∂_k(T)·γ`.
+2. `𝒯 ∖ A_k` is `c_k`-thin: `μ(𝒯∖A_k) ≤ c_k·bd(μ)` for all finitely supported `μ ≥ 0`. For
+   example, it may be marginal in Moore's sense.
+3. `|T| ≥ Ack_k(|∂_k T|)` for every `T ∈ A_k`.
+
+The claim is: `H_k` holds for every `k`. Since `H_{k+1}` implies `H_k`, it is equivalent to ask
+for infinitely many `k`.
+
+**Known levels.**
+- `H_{k+1} ⇒ H_k` because `Ack_{k+1} ≥ Ack_k` pointwise.
+- Moore's derivative satisfies item 3 with `φ(m) = ⌊2^{m−2}⌋ + 1`. That is `Ack_2` up to a
+  bounded shift of the argument, and it is what produces his tower.
+- Any datum with `|T| ≥ Ack_k(|∂T| − O(1))` would serve equally well in the route
+  `thompson-f-ackermann-folner-via-tree-derivative-hierarchy`.
+
+**Why it matters.**
+- *If true.* Combined with the amplification theorem and Moore's Lemmas 3.15 and 4.2, `H_k`
+  gives `Føl_F(N) ≥ (Ack_{k+1}(⌊log_{q_k}(1 + 8N/C)⌋) − 2)/3`. So `H_k` for all `k` makes
+  `Føl_F` dominate every primitive recursive function: this is
+  `thompson-f-folner-function-dominates-every-ackermann-level`.
+- *Level 3 alone* gives `Føl_F(N) ≥ Ack_4(Ω(log N))`. That is far beyond every tower of height
+  `O(log N)`, which is where Moore's method provably stops.
+- *If false for some `k`.* Then no tree derivative of this kind can push lower bounds past
+  `Ack_k`. Every derivative argument on `𝒯` then stays inside the primitive recursive range.
+
+**Refutation test.** `H_k` fails for large `k` if, for small `ε`, some weighted `ε`-Følner
+measure on `𝒯` is supported on trees of size at most `g(1/ε)`, with `g` primitive recursive.
+By Theorem A of `marginal-derivative-amplification-is-sharp-at-log-height`, `H_k` forces a tree
+of size `≥ Ack_{k+1}(⌊log_{q_k}(1 + 8/ε)⌋)` in every such support.
+
+**Scope.** Unconditional in both directions: no amenability assumption is made. If `𝒯` itself is
+thin, then `H_k` holds vacuously with `A_k = ∅`. That case also forces `F` to be non-amenable, by
+Moore's Lemma 4.2.
+
+## Attempts
+
+- **Super-doubling version of Moore's derivative (swarm-0917-w12-w12-f-pull, 2026-09-18).**
+  - *Idea:* replace "`2|T/u| ≤ |T/v|` for consecutive interior `u <_lex v`" in Moore's
+    Definition 5.1, condition 2, by "`φ(|T/u|) ≤ |T/v|`" with `φ` exponential. Then
+    `|T| ≥ φ^{(|∂T|−2)}`, which is `Ack_3`-contraction.
+  - *Dies at:* the bad-set marginality, Lemma 5.10 (`𝓔*` is marginal). The only inequality
+    that forces the ratio is
+    `2|(T·c)/01| = 2|T/001| < |T/01| + |T/10| = |(T·c)/10|`, for `c = x0x1^{-1}`.
+    - It comes from merging two consecutive subtrees, each larger than `|T/001|`.
+    - An element merging `r` consecutive subtrees gives factor `r`.
+    - A marginal decomposition uses finitely many elements, so it forces at most a fixed factor
+      `λ`. That gives `φ(m) = λ^m`-type contraction, which is still `Ack_2`.
+  - *Invariant:* additivity of leaf count under the merge moves. Each fixed group element
+    regroups boundedly many subtrees.
+  - Status: heuristic, not a proof of non-marginality.
+- **Height-monotone derivative (same agent).**
+  - *Idea:* impose that the Moore height `h_∂(T/u)` strictly increases along interior elements.
+    Then `|T| ≥ Σ_i φ^{(i)}(4)`, which is `Ack_3`-contraction.
+  - *Dies at:* the analogue of Lemma 5.7 (`𝓔` is marginal). Moore uses strict growth under
+    regrouping, `|(T·a)/01| = |T/0011| + |T/01| + |T/100| > |T/01|`.
+  - For heights, merging subtrees of equal height can keep the height. So the tie set
+    `{h(T/001) = h(T/01)}` is not marginalized by `a`, `b` or `x0`.
+  - Status: dies at that step. Whether the tie set is thin is untested.
+- **Surviving direction.** A weight `w` on subtrees that is strictly superadditive under the
+  regrouping moves, `w(T/u ∪ T/v) > w(T/u) + w(T/v)` quantitatively, and grows like
+  `Ack_{k−1}` of the leaf count. Leaf count is additive and fails. The parenthesised-word length
+  in `F`'s normal form is untested.
