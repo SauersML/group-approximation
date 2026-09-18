@@ -91,3 +91,17 @@ distinct_from:
      example locally `∞`-transitive closures) force a faithful factor, hence `B_A`.
    - **Exact gap.** Irreducible three-tree lattices with such an `N_ij`. Existence
      unknown.
+7. **Boundary k-graphs (bh-lattices, 2026-09-18).** *Works for every virtually
+   torsion-free lattice, any number of factors.*
+   `virtually-torsion-free-tree-lattices-satisfy-pbh`, in three steps:
+   - **Embedding.** A torsion-free lattice embeds in the topological full group of
+     the `N`-th power of its cube k-graph. A phase coordinate `(Z/N)^k` absorbs the
+     Busemann lag, and `N` is chosen so that every vertex has two loops of every
+     colour. That group is `F_∞` by Li's higher-rank-graph theorem
+     (`torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`).
+   - **Type (A).** Stabilizing by the Cuntz groupoid kills `H_0`. With Matui's
+     comparison theorem, the clopen action is then of type (A)
+     (`stabilized-kgraph-full-groups-have-type-a-actions`).
+   - **Remaining gap.** Only lattices with no torsion-free subgroup of finite
+     index. For three trees, they must also be irreducible with a discrete normal
+     subgroup in a factor closure (Attempt 6).
