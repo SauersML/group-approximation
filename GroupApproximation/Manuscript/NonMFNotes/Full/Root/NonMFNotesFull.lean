@@ -11,12 +11,15 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.Defects
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.ExactResidual
 import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.BlockCliffordPropertyA
 import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.FreeProductPropertyA
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.AmenablePropertyA
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Presented
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Realization
 import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Bridge
 import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Retraction
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.A5Relation
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.Approximation
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathStar
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.SolvableAmenable
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Classification
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.BlockComparison
@@ -365,6 +368,11 @@ objects, not input binders). Alias of
 `GroupApproximation.Full.NN03.notesFixedRadicalMembership_of_mfFactor`. -/
 alias notes_thm_fixed_radical_membership_of_mfFactor := GroupApproximation.Full.NN03.notesFixedRadicalMembership_of_mfFactor
 
+/-- `thm:fixed-radical-membership` (`non_mf_group_notes.tex` l.1370): the proof step "it is
+amenable": every solvable group is amenable (Kharlampovich's group itself is lane NN03b).
+Alias of `GroupApproximation.Full.Kharlampovich.isAmenable_of_isSolvable`. -/
+alias notes_thm_fixed_radical_membership_solvable_amenable := GroupApproximation.Full.Kharlampovich.isAmenable_of_isSolvable
+
 
 /-! ## `thm:fixed-radical-computer` (tex l.1403) -/
 
@@ -655,6 +663,18 @@ alias notes_rem_ff_realization_datum := GroupApproximation.Full.NN08.remFFRealiz
 group. Alias of `GroupApproximation.RealizationFromUniversalGroup.realization`. -/
 alias notes_rem_ff_realization_universal := GroupApproximation.RealizationFromUniversalGroup.realization
 
+/-- `rem:ff-realization` (`non_mf_group_notes.tex` l.2818): the Clifford coset representation
+gives w != 1 in E(P,alpha,a). Alias of `GroupApproximation.Full.NN08.ePα_mark_ne_one`. -/
+alias notes_rem_ff_realization_mark_ne_one := GroupApproximation.Full.NN08.ePα_mark_ne_one
+
+/-- `rem:ff-realization` (`non_mf_group_notes.tex` l.2818): E(P,alpha,a) has torsion. Alias of
+`GroupApproximation.Full.NN08.ePα_has_torsion`. -/
+alias notes_rem_ff_realization_torsion := GroupApproximation.Full.NN08.ePα_has_torsion
+
+/-- `rem:ff-realization` (`non_mf_group_notes.tex` l.2818): E(P,alpha,a) is not MF when P has
+property (T). Alias of `GroupApproximation.Full.NN08.ePα_not_isOperatorMF`. -/
+alias notes_rem_ff_realization_not_mf := GroupApproximation.Full.NN08.ePα_not_isOperatorMF
+
 
 /-! ## `prose:Esofic` (tex l.439) -/
 
@@ -713,5 +733,10 @@ alias notes_prose_free_product_propertyA := GroupApproximation.Full.NN09.hasProp
 /-- `prose:exactness` (`non_mf_group_notes.tex` l.2487): the block Clifford group has property
 A. Alias of `GroupApproximation.Full.NN09.hasPropertyA_blockClifford`. -/
 alias notes_prose_block_clifford_propertyA := GroupApproximation.Full.NN09.hasPropertyA_blockClifford
+
+/-- `prose:exactness` (`non_mf_group_notes.tex` l.2487): amenable groups have property A
+(Folner weights), a step toward the GHW exactness paragraph (lanes NN09b, NN09c). Alias of
+`GroupApproximation.Full.NN09b.hasPropertyA_of_isAmenable`. -/
+alias notes_prose_amenable_propertyA := GroupApproximation.Full.NN09b.hasPropertyA_of_isAmenable
 
 end GroupApproximation.Full.NNRoot
