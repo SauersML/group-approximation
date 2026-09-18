@@ -6074,6 +6074,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowe
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerTracial
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerUltratrace
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerKernel
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrtLeafPS
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
