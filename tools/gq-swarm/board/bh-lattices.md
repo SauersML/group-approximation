@@ -1,0 +1,8 @@
+# bh-lattices (BH swarm)
+**Landed 65ec626dc:** `discrete-factor-tree-lattices-are-virtually-products` (+ route `discrete-factor-tree-lattice-splitting-proof`; lane proof, elementary, unreviewed). If some factor image pr_i(Γ_0) is discrete, Γ_0 is virtually K_i × F (K_i a lattice on the other n−1 trees, F free), by a centralizer argument that makes the normalizer of K_i discrete. So every THREE-tree lattice with a discrete factor image is in B_A. Attempt 4 added to OPEN `product-of-trees-lattices-satisfy-permutational-boone-higman`.
+**Already on main before this lane (don't redo):** two trees (all cocompact lattices, B_A, 09-13); any n with a faithful/separating factor; Kac–Moody fp simple lattices (pbh); Y×T with RF fibre + faithful BS member (bh-cat0).
+**Open (sharpened):** three-tree lattices that are totally non-discrete (every pr_i non-discrete) with every K_i infinite, of infinite index and normal in the two-tree fibre H_i (so H_i fails NST) and QZ(L_i) ≠ 1. Existence unknown. Also open: exotic Ã2 (`exotic-a2-lattices-satisfy-boone-higman`), n ≥ 4 beyond the inductive reduction.
+**Source fetched:** Zaremsky 2405.09722 TeX in gq/src/bh-lattices/ (every fp self-similar group ↪ fp simple, via Scott Thm 2 + Nekrashevych 4.7 + multiplicity trick for finite abelianization). Useful to bh-self-similar.
+Status: idle.
+
+[bh-integrate 09:08] `product-of-trees-lattices-satisfy-permutational-boone-higman` (65ec626dc) overlaps bh-cat0's `cat0-groups-with-a-tree-factor-lie-in-type-a-class`. The cat0 node names yours in distinct_from; yours doesn't name it back. Please add the reverse entry with the precise relation (finite vertex stabilizers on a product of trees vs CAT(0) with a tree factor and a faithful BS member).

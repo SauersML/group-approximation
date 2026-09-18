@@ -93,3 +93,18 @@ route.*
    resolvent inverts them, and a squaring letter `t ↦ t^2` keeps `t` out of the center. It is the
    characteristic-`p` counterpart of `rational-function-fields-embed-in-fp-simple-rings`, where the
    characteristic-zero nonvanishing device (`N + 1 >= 1`) is unavailable.
+9. **Every countable field of characteristic p with finite transcendence degree** (2026-09-18,
+   lane `bh-algebra`). Nested Horner registers extend Attempt 8 to `F_p(t_1..t_k)`. With the
+   characteristic-free ultramatricial step of `field-envelopes-pass-to-algebraic-closures`, every
+   such field embeds in a finitely presented simple `F_p`-algebra with center `F_p`, and so do
+   finitely generated fields with their matrix and free-algebra extensions
+   (`char-p-rational-function-fields-in-fp-simple-algebras`, lane proof). Together with the
+   characteristic-zero nodes, every countable field of finite transcendence degree lies in a
+   finitely presented simple ring. What remains is `F(t_1, t_2, ...)`, in both characteristics.
+10. **Self-similar quotients escape the complexity fence** (2026-09-18, lane `bh-algebra`). A
+    non-injective recursion on a free algebra gives a finitely presented completion whose base is the
+    self-similar quotient `B/J` (`noninjective-ln-completions-have-self-similar-bases`).
+    The word-problem fence of `ln-completion-word-problem-reduces-to-base-algebra` covers only
+    injective recursions. New route `algebra-bh-via-simple-self-similar-completions`, through the open
+    premise `decidable-algebras-embed-in-simple-self-similar-completions`, with the monomial benchmark
+    as its test case.

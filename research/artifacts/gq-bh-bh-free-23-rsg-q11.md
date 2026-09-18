@@ -46,3 +46,29 @@ bi-synchronizing transducer of infinite order in `Out(V) ≅ O_2`.
   unbounded. So BBMZ's finiteness theorem does not apply to `[[G]]`. Finite presentation of
   `[[G]]` is then exactly the open content of Q1.4 for this family.
 - **What was not decided:** I checked neither finite presentation of `[[G]]` nor an obstruction.
+
+## Update (second landing): every free product
+`free-products-of-hyperbolic-groups-are-contracting-rsgs` (+ proof
+`hyperbolic-free-product-contracting-rsg-proof`) covers `A * B` for any two nontrivial
+hyperbolic groups, not both of order 2.
+- **The universal type** is the shadow `Sh(q)`, the atom of `q` at level `|q|`, for `q = y b`
+  just past a syllable change. It depends only on the radius-1 geometry of `Cay(B)` at `b`.
+- **Calibration:** for `B = Z` the shadow is BBMZ's `C(w)`, and for a finite factor with clique
+  generators it is the branch `D^A_q`.
+- **Consequence:** Q1.1 now holds for every freely decomposable non-elementary hyperbolic group,
+  and for its products with finite groups.
+- **What remains:** freely indecomposable groups, i.e. one-ended groups and splittings only
+  over nontrivial finite groups, and non-split finite radicals.
+
+## Update (third landing): finite-index overgroups
+- `contracting-rsgs-closed-under-finite-index-overgroups` (+ proof): the induced action on one
+  labelled copy of `E` per coset. Each element acts on each copy by an element of `H`, so the
+  nucleus stays inside `Nuc_H`, and `g = t_j h t_i^{-1}` supplies the RSG moves.
+- `virtually-free-product-hyperbolic-groups-are-contracting-rsgs` (+ proof): every
+  non-elementary virtually free group is a contracting RSG, including `SL_2(Z)` and `GL_2(Z)`.
+  So is every virtually torsion-free hyperbolic group with infinitely many ends.
+- **Q1.1 now reduces to the one-ended case**, apart from hypothetical infinitely-ended
+  hyperbolic groups that are not virtually torsion-free.
+- **One-ended attempt** (Attempt 2 on the Q1.1 node): Bowen–Series-type Markov codings satisfy
+  the RSG condition automatically, since `g_β^{-1} g_α` is the canonical similarity. Rationality,
+  the finite nucleus and irreducibility remain unverified.

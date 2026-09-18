@@ -7,9 +7,13 @@ requires:
   - ct-p-z-is-a-one-vertex-k-graph-full-group
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
+  - research/artifacts/gq-bh-bh-free-11-ct-p-z-second-proof.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority is claimed.
+**ESTABLISHED** (lane proof, not reviewed). No priority is claimed. For finite `P`, an
+independent second proof with a different, one-germ invariant (continuous eigenvalues of
+the rotation a single isotropy germ induces on its stable core) is in
+`research/artifacts/gq-bh-bh-free-11-ct-p-z-second-proof.md`.
 
 Inputs:
 - Matui arXiv:1210.5800, read at source: Theorem `spatial`, Proposition `tfg=F`, and the
