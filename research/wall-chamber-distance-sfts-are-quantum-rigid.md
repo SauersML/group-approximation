@@ -138,3 +138,49 @@ So `Γ_g ∈ 𝒞`. These are the first **one-ended** members of `𝒞` beyond p
 can never contain them. For (★𝒞) the required mechanism is **rigidity without walls**. Its sharpest test is the
 horofunction boundary of a hyperbolic Kazhdan group (uniform `Sp(n,1)` lattices, Żuk groups). There, lanes appear,
 and nothing plays the role of a wall.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS for the theorem and instances (A), (B); corollaries conditional on tree-gluing
+
+This is an internal lane review, line by line.
+- **Step 1.**
+  - *Endpoints.* `P^+P′^− = P^−P′^+ = 0` holds because the disagreeing two-site pattern lies in `B_1 ⊆ B_D`, and summing (Q3) over
+    completions uses (Q2) inside the ball. With (Q1) this gives `P^+ = P^+P′^+ = P′^+`.
+  - *Faces.* The same argument applies to dual edges in a face of diameter `≤ r_0 ≤ D`. Opposite orientations are non-occurring,
+    because every `R`-ball pattern of `Y_R` is some `d(·,q)+c`, and (W1) orients all dual edges alike.
+  - *One projection per wall.* By (W1) connectivity there is one `O_W` per wall.
+  - *Letters.* `E_a(v) = Π_e P_e^(a_e)` is exact: the letters at `v` are orthogonal and the tuple determines the letter. So rigidity
+    holds iff all the `O_W` commute. Correct.
+- **Step 2.** Dual edges within `r_0` give sites within `r_0+1 ≤ 2D`, and (Q2) applies. Correct.
+- **Step 3.** This is the key step, and I checked each part.
+  - *No wall separating neighbours.* If `U` separates `V_i` from `V_(i+1)`, then `U ⊆ V_(i+1)^−`, so `U` also separates `V_i` from
+    `W_2 ⊆ V_(i+1)^+`. Every wall separating `V_i` from `U` also separates `V_i` from `V_(i+1)`, and `U` itself does not separate
+    `V_i` from `U`. So the count is strictly smaller, contradicting the minimal choice. Correct.
+  - *Termination.* The separating sets strictly decrease and are finite by (W4). The last pair is disjoint and unseparated, so (W3)
+    applies. Correct.
+  - *Pointing away is locally forbidden.* `V_i^− ∩ V_(i+1)^+ = ∅` by nesting, so no vertex `q` realizes the pattern. Both walls have
+    dual edges in one `R`-ball by (W3) and `R ≥ 2r_0+2`, and (Q3) gives `Õ_i^− Õ_(i+1)^+ = 0`. Correct.
+  - *Monotone chain.* Step 2 commutation gives `Õ_i^− = Õ_i^− Õ_(i+1)^− = Õ_(i+1)^− Õ_i^−`, i.e. `Õ_i^− ≤ Õ_(i+1)^−`. The order
+    `PQ = QP = P` is transitive with no extra commutation (`PR = PQR = PQ = P`, `RP = RQP = QP = P`), and `P ≤ Q` implies that `P`
+    and `Q` commute.
+  - *All wall projections commute.* Crossing pairs are covered by (W2) and Step 2, unseparated disjoint pairs by (W3) and Step 2,
+    and separated pairs by Step 3. Correct.
+- **Instance (A), median.**
+  - The axioms are standard (Sageev; carriers `H × [0,1]`; the carrier distance equals the number of separating hyperplanes, so
+    unseparated disjoint hyperplanes have carriers sharing a vertex). So `r_0 = 2` works.
+  - RACGs with standard generators have median Cayley graphs (the Davis cube complex). Correct.
+  - (C1) and (C2) also follow from `roller-compactifications-of-cube-complexes-are-sfts` (PASS, f2a29310d1).
+- **Instance (B), surfaces.**
+  - (W3) follows from steps (ii)–(iii) of the surface node. Step (i) is replaced by the hypothesis: a wall crossing the common
+    perpendicular `σ` and missing both lines separates them.
+  - None of these steps uses orientation.
+  - (W4) holds because separating walls cross the compact `σ`, and distinct walls are non-asymptotic. Correct.
+- **Precisions** (no gap):
+  - The Setting should require `𝒲` to be `Γ`-invariant. It is used implicitly for the SFT and the FW corollary, and it holds in both
+    instances.
+  - In Step 3, "nested" uses that non-crossing walls have one empty quadrant, so that `V_(i+1)^+ ⊆` the far side of `U`. That holds
+    in both instances.
+- **Corollaries.**
+  - `Γ*Z` and minimality rest on `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`, which I did not review.
+  - "Special groups lie in a finitely presented member of `𝒞`" needs Haglund–Wise for compact special cube complexes (recalled).
+  - The FW exclusion is correct: `d` is the wall metric, so an FW subgroup has bounded orbits, and a free action on a locally finite
+    graph then forces it to be finite.
