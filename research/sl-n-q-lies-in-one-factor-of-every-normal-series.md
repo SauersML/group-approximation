@@ -2,8 +2,9 @@
 rg: 2
 id: sl-n-q-lies-in-one-factor-of-every-normal-series
 kind: claim
-title: SL_n(Q) cannot be split across a normal series, so no group whose normal series has abelian or Q-free factors contains GL_n(Q), SL_n(Q), PGL_n(Q) or PSL_n(Q)
+title: In every normal series of a group containing SL_n(Q), a single factor carries a perfect image of SL_n(Q) with all its root groups
 distinct_from:
+  extension-product-closures-cannot-create-sl-n-q: that shows the class of groups receiving only trivial maps from SL_n(Q) contains every abelian and every Q-free group and is closed under extensions, which already implies the "no layered host" consequence below; this localizes SL_n(Q) in one factor of an arbitrary normal series of an arbitrary overgroup, with a self-contained proof.
   lifts-add-no-unipotent-divisibility: that fixes the three-term shape Q-free, central, Q-free, and also covers the solvable groups Aff(Q), B_2(Q) and U_3(Q); this allows any finite normal series whose factors are abelian or Q-free, including abelian kernels that contain Q, but only for the quasi-simple type SL_n(Q)/C.
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this constrains the shape of every host.
   gl-n-q-embeddings-detected-by-nontrivial-homomorphisms: that says a homomorphism from these inputs is injective once one named element survives; this uses the same root-element normality to force SL_n(Q) into a single factor of any normal series of any overgroup.
@@ -32,6 +33,11 @@ normal in `E`. Let `t` be the least index with `H <= S_t`. Then:
 So the factor `S_t/S_(t-1)` is nonabelian and contains `(Q,+)`.
 
 ## Consequences
+
+The first consequence also follows from the earlier
+`extension-product-closures-cannot-create-sl-n-q`: its class contains the abelian
+and the Q-free groups and is closed under extensions. The new content here is the
+localization in items 1 and 2, and a proof that cites no simplicity theorem.
 
 - **No layered host.** Suppose some finite series of normal subgroups of `E` has
   every factor abelian or Q-free. Then `E` contains none of `GL_n(Q)`, `SL_n(Q)`,

@@ -47,7 +47,9 @@ centralizer: the "closure under the extension problem" comes for free.
 - Let E ⊇ SL_n(Q)/C, and take any finite series of normal subgroups of E. The first term containing SL_n(Q)/C
   gives a factor that is nonabelian and contains (Q,+). This factor holds a nontrivial perfect image of SL_n(Q),
   with every root group embedded.
-- Hence no group whose factors are all abelian or Q-free contains GL_n(Q), SL_n(Q), PGL_n(Q) or PSL_n(Q).
+- Hence no group whose factors are all abelian or Q-free contains GL_n(Q), SL_n(Q), PGL_n(Q) or PSL_n(Q). This
+  consequence also follows from the earlier `extension-product-closures-cannot-create-sl-n-q`, whose class contains the
+  abelian and Q-free groups and is closed under extensions. The new content is the localization of the factor.
 - The proof is self-contained: a normal subgroup containing one root element is everything, using Lagrange's
   four squares for n = 2.
 
