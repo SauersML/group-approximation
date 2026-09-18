@@ -5901,6 +5901,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductOperat
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Formula
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Evals
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Holds
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetComap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
