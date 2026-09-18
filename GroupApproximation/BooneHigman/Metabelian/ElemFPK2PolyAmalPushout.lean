@@ -149,3 +149,44 @@ theorem k2PolyAmal_word_prod (A P : Subgroup E) {a g s : E} (ha : a ∈ A) (haP 
     Monoid.PushoutI.ofCoprodI_of]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_word_prod
+
+/-- **Pushout obstruction.**  If `a ∈ A \ P`, `g ∈ P \ A`, `s ∈ P` and `a g a⁻¹ = s` inside
+`G`, then no `Φ : G → A *_{A ⊓ P} P` restricts to the two canonical maps. -/
+theorem k2PolyAmal_no_extension (A P G : Subgroup E) {a g s : E} (ha : a ∈ A) (haP : a ∉ P)
+    (hg : g ∈ P) (hgA : g ∉ A) (hs : s ∈ P) (hrel : a * g * a⁻¹ = s) (haG : a ∈ G)
+    (hgG : g ∈ G) (hsG : s ∈ G) (Φ : ↥G →* Monoid.PushoutI (k2PolyAmal_incl A P))
+    (hΦ₁ : ∀ (z : E) (h₁ : z ∈ A) (h : z ∈ G),
+      Φ ⟨z, h⟩ = Monoid.PushoutI.of (φ := k2PolyAmal_incl A P) true ⟨z, h₁⟩)
+    (hΦ₂ : ∀ (z : E) (h₂ : z ∈ P) (h : z ∈ G),
+      Φ ⟨z, h⟩ = Monoid.PushoutI.of (φ := k2PolyAmal_incl A P) false ⟨z, h₂⟩) : False := by
+  have hsA : s ∉ A := fun h => hgA (by
+    have e : g = a⁻¹ * s * a := by rw [← hrel]; group
+    rw [e]
+    exact A.mul_mem (A.mul_mem (A.inv_mem ha) h) ha)
+  have h1 : (⟨a, haG⟩ : ↥G) * ((⟨g, hgG⟩ : ↥G) * ((⟨a⁻¹, G.inv_mem haG⟩ : ↥G) *
+      (⟨s⁻¹, G.inv_mem hsG⟩ : ↥G))) = 1 := by
+    refine Subtype.ext ?_
+    show a * (g * (a⁻¹ * s⁻¹)) = 1
+    rw [← hrel]
+    group
+  have hw1 : Monoid.PushoutI.ofCoprodI (φ := k2PolyAmal_incl A P)
+      (k2PolyAmal_word A P ha haP hg hgA hs hsA).prod = 1 := by
+    rw [k2PolyAmal_word_prod, ← hΦ₁ a ha haG, ← hΦ₂ g hg hgG,
+      ← hΦ₁ a⁻¹ (A.inv_mem ha) (G.inv_mem haG), ← hΦ₂ s⁻¹ (P.inv_mem hs) (G.inv_mem hsG),
+      ← map_mul, ← map_mul, ← map_mul, h1, map_one]
+  have hmem : Monoid.PushoutI.ofCoprodI (φ := k2PolyAmal_incl A P)
+      (k2PolyAmal_word A P ha haP hg hgA hs hsA).prod ∈
+        (Monoid.PushoutI.base (k2PolyAmal_incl A P)).range := by
+    rw [hw1]
+    exact Subgroup.one_mem _
+  have he := (k2PolyAmal_word_reduced A P ha haP hg hgA hs hsA).eq_empty_of_mem_range
+    (k2PolyAmal_incl_injective A P) hmem
+  have hl := congrArg Monoid.CoprodI.Word.toList he
+  rw [k2PolyAmal_word_toList] at hl
+  exact List.cons_ne_nil _ _ hl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_no_extension
+
+end PushoutObstruction
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
