@@ -30,3 +30,24 @@ Here `PPSL` is the group of piecewise `PSL_2(R)` homeomorphisms of `R`.
   would reopen.
 - A weaker target suffices for the Higman-group application: an embedding into some
   group of piecewise real-analytic homeomorphisms of the circle.
+
+## Attempts
+
+**Attempt 1 (bh-garrido-kodama, 2026-09-18): the natural codings are excluded; the abstract question stays OPEN.**
+- **Source.** Kodama asked this question earlier too: arXiv:2204.08230v2, l.167, where it is
+  phrased as whether `G_0(n)` is a subgroup of Monod's `H`. Definitions are at l.818–880.
+- **Result.** `n-adic-lodha-moore-groups-have-no-analytic-tree-coding` (lane proof). For `n ≥ 3`,
+  no analytic tree coding of `C_n` makes `y_((n−1)0)` piecewise analytic. That rules out every
+  digit recoding into Lodha–Moore's coding, every n-ary Farey or Stern–Brocot coding, and every PL
+  coding.
+- **Mechanism.** `analytic-codings-make-contracting-recursions-analytic`. The contracting rule
+  `y(00ζ) = 0y(ζ)` moves every breakpoint of `y` to `ψ(0^∞)`. The finitary rule `y(0kζ) = kζ`
+  then forces `y = g_0^(−1)` on one side of that point, and the contracting rule forces `g_0 = id`
+  there.
+- **What a positive answer needs.** A piecewise-projective action of `G_0(n)` in which the cone
+  structure of `F(n)` is not coded analytically. For example, the prefix maps of `F(n)` would have to
+  act by non-analytic cone maps, or the action would not factor through `C_n` at all. I found no
+  candidate.
+- **The Higman application.** Extending `higman-group-embeds-in-no-lodha-moore-or-monod-group` to
+  `G_0(n)` therefore needs a direct argument, not a transfer through `H`. The weaker target of a
+  piecewise-analytic circle action is excluded along the same natural route.
