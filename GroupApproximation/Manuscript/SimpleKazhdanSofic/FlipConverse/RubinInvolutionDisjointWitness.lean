@@ -78,3 +78,89 @@ theorem rubinInvDisj_caseFix [CompactSpace X] [T2Space X] [TotallyDisconnectedSp
     exact ⟨rfl, rfl⟩
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_caseFix
+
+/-- If `P * P = 1` and `h` commutes with `P h P`, then `h (P h P)` commutes with `P`. -/
+theorem rubinInvDisj_conj_commute {G : Type*} [Group G] {P h : G} (hPP : P * P = 1)
+    (hq : h * (P * h * P) = P * h * P * h) : h * (P * h * P) * P = P * (h * (P * h * P)) := by
+  have hPP' : ∀ y, P * (P * y) = y := fun y => by rw [← mul_assoc, hPP, one_mul]
+  conv_rhs => rw [hq]
+  simp only [mul_assoc, hPP, hPP', mul_one]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_conj_commute
+
+/-- Case `f x ≠ k x` for commuting involutions: the witness `h (P h P)` with `P = f k`. -/
+theorem rubinInvDisj_caseMove [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]
+    [PerfectSpace X] {T : X ≃ₜ X} (hT : IsMinimalHomeo T) {f k : X ≃ₜ X}
+    (hf : f ∈ topologicalFullGroup T) (hk : k ∈ topologicalFullGroup T)
+    (hff : ∀ z, f (f z) = z) (hkk : ∀ z, k (k z) = z) (hfk : f * k = k * f) {x : X}
+    (hxf : x ∈ movedSet f) (hxk : x ∈ movedSet k) (hne : f x ≠ k x) :
+    ∃ g ∈ topologicalFullGroup T, g * (f * k) = (f * k) * g ∧
+      f * (g * f * g⁻¹) ≠ (g * f * g⁻¹) * f := by
+  have hfx : f x ≠ x := hxf
+  have hkx : k x ≠ x := hxk
+  have hkf : ∀ w, k (f w) = f (k w) := fun w => (DFunLike.congr_fun hfk w).symm
+  have hPx : f (k x) ≠ x := fun e => hne (calc
+    f x = f (f (k x)) := by rw [e]
+    _ = k x := hff _)
+  have hPfx : f (k x) ≠ f x := fun e => hkx (f.injective e)
+  obtain ⟨A1, B1, hA1, hB1, hxA1, hB1x, hAB1⟩ := t2_separation hfx.symm
+  obtain ⟨A2, B2, hA2, hB2, hxA2, hB2x, hAB2⟩ := t2_separation hPx.symm
+  obtain ⟨A3, B3, hA3, hB3, hA3x, hB3x, hAB3⟩ := t2_separation hPfx.symm
+  obtain ⟨W, hWo, hxW, hW⟩ : ∃ W : Set X, IsOpen W ∧ x ∈ W ∧ ∀ w ∈ W,
+      w ∈ A1 ∧ w ∈ A2 ∧ f w ∈ B1 ∧ f w ∈ A3 ∧ f (k w) ∈ B2 ∧ f (k w) ∈ B3 :=
+    ⟨_, ((hA1.inter hA2).inter ((hB1.preimage f.continuous).inter
+        (hA3.preimage f.continuous))).inter
+        ((hB2.preimage (f * k).continuous).inter (hB3.preimage (f * k).continuous)),
+      ⟨⟨⟨hxA1, hxA2⟩, hB1x, hA3x⟩, hB2x, hB3x⟩,
+      fun w hw => ⟨hw.1.1.1, hw.1.1.2, hw.1.2.1, hw.1.2.2, hw.2.1, hw.2.2⟩⟩
+  obtain ⟨h, hh, hhW, hhx⟩ := rubinInvDisj_exists_supportedIn_sq_ne hT hWo hxW
+  have hfW : ∀ w ∈ W, f w ∉ W := fun w hw hv =>
+    Set.disjoint_left.1 hAB1 (hW _ hv).1 (hW _ hw).2.2.1
+  have hPw : ∀ w ∈ W, f (k w) ∉ W := fun w hw hv =>
+    Set.disjoint_left.1 hAB2 (hW _ hv).2.1 (hW _ hw).2.2.2.2.1
+  have hPfw : ∀ w ∈ W, f (k (f w)) ∉ W := fun w hw hv => by
+    have h1 := (hW _ hv).2.2.2.1
+    rw [hff, hkf] at h1
+    exact Set.disjoint_left.1 hAB3 h1 (hW _ hw).2.2.2.2.2
+  have hPPw : ∀ w, f (k (f (k w))) = w := fun w => by rw [hkf, hff, hkk]
+  have hPP : f * k * (f * k) = 1 := Homeomorph.ext hPPw
+  have hq : ∀ w ∈ W, (f * k * h * (f * k)) w = w ∧
+      (f * k * h * (f * k)) (f w) = f w := fun w hw => by
+    refine ⟨?_, ?_⟩
+    · show f (k (h (f (k w)))) = w
+      rw [hhW _ (hPw w hw), hPPw]
+    · show f (k (h (f (k (f w))))) = f w
+      rw [hhW _ (hPfw w hw), hPPw]
+  have hqW : SupportedIn (f * k * h * (f * k)) Wᶜ := fun z hz =>
+    (hq z (Set.notMem_compl_iff.1 hz)).1
+  have hcomm : h * (f * k * h * (f * k)) = f * k * h * (f * k) * h :=
+    SupportedIn.commute_of_compl hhW hqW
+  have hP : f * k ∈ topologicalFullGroup T := Subgroup.mul_mem _ hf hk
+  exact ⟨h * (f * k * h * (f * k)),
+    Subgroup.mul_mem _ hh (Subgroup.mul_mem _ (Subgroup.mul_mem _ hP hh) hP),
+    rubinInvDisj_conj_commute hPP hcomm,
+    rubinInvDisj_not_commute_of_local hff hxW hhW hhx hfW hq⟩
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_caseMove
+
+/-- The converse direction: commuting involutions of `[[T]]` satisfying the centraliser
+condition (with `g` ranging over `[[T]]`) have disjoint moved sets. -/
+theorem rubinInvDisj_disjoint_of_formula [CompactSpace X] [T2Space X]
+    [TotallyDisconnectedSpace X] [PerfectSpace X] {T : X ≃ₜ X} (hT : IsMinimalHomeo T)
+    {f k : X ≃ₜ X} (hf : f ∈ topologicalFullGroup T) (hk : k ∈ topologicalFullGroup T)
+    (hff : f * f = 1) (hkk : k * k = 1) (hfk : f * k = k * f)
+    (hform : ∀ g ∈ topologicalFullGroup T, g * (f * k) = (f * k) * g →
+      f * (g * f * g⁻¹) = (g * f * g⁻¹) * f) :
+    Disjoint (movedSet f) (movedSet k) := by
+  have hff' : ∀ z, f (f z) = z := fun z => DFunLike.congr_fun hff z
+  have hkk' : ∀ z, k (k z) = z := fun z => DFunLike.congr_fun hkk z
+  refine Set.disjoint_left.2 fun x hxf hxk => ?_
+  by_cases hne : f x = k x
+  · obtain ⟨g, hg, hgc, hgn⟩ := rubinInvDisj_caseFix hT hf hk hff' hxf hne
+    exact hgn (hform g hg hgc)
+  · obtain ⟨g, hg, hgc, hgn⟩ := rubinInvDisj_caseMove hT hf hk hff' hkk' hfk hxf hxk hne
+    exact hgn (hform g hg hgc)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_disjoint_of_formula
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse

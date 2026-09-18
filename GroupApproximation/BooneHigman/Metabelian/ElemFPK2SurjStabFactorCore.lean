@@ -67,7 +67,8 @@ theorem surjStabFactor_conj_rowSum_single (w : Fin n → R) (i : Fin n) (hw : w 
     · have hij : i ≠ j := fun h => hji h.symm
       refine ⟨g * (x i j hij (a * w j))⁻¹, fun k hk b' => ?_, ?_⟩
       · rw [map_mul (stab n R) g, map_inv (stab n R)]
-        exact (hg k hk b').mul_left (surjStabFactor_commute_row i j k hij hk (a * w j) b').inv_left
+        exact (hg k hk b').mul_left
+          (surjStabFactor_commute_row i j k hij hk (a * w j) b').inv_left
       · calc _ = padRow (Pi.single j (w j)) *
               (padRow (∑ l ∈ s, Pi.single l (w l)) * padCol (Pi.single i a) *
                 (padRow (∑ l ∈ s, Pi.single l (w l)))⁻¹) * (padRow (Pi.single j (w j)))⁻¹ := by
@@ -96,3 +97,35 @@ theorem surjStabFactor_conj_row_padCol_single (w : Fin n → R) (i : Fin n) (hw 
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabFactor_conj_row_padCol_single
+
+/-- Disjoint supports: `padRow w · padCol c · padRow w⁻¹ ∈ P` when `c i = 0 ∨ w i = 0`. -/
+theorem surjStabFactor_conj_row_padCol_mem (w c : Fin n → R) (h : ∀ i, c i = 0 ∨ w i = 0) :
+    SurjStabFactorInPar (padRow w * padCol c * (padRow w)⁻¹) := by
+  have key : ∀ s : Finset (Fin n),
+      SurjStabFactorInPar (padRow w * padCol (∑ i ∈ s, Pi.single i (c i)) * (padRow w)⁻¹) := by
+    intro s
+    induction s using Finset.induction_on with
+    | empty =>
+      rw [Finset.sum_empty, padCol_zero, mul_one, mul_inv_cancel]
+      exact surjStabFactor_inPar_one
+    | insert i s hi ih =>
+      rw [Finset.sum_insert hi, padCol_add]
+      have e : padRow w * (padCol (Pi.single i (c i)) * padCol (∑ l ∈ s, Pi.single l (c l))) *
+          (padRow w)⁻¹ = padRow w * padCol (Pi.single i (c i)) * (padRow w)⁻¹ *
+            (padRow w * padCol (∑ l ∈ s, Pi.single l (c l)) * (padRow w)⁻¹) := by
+        simp only [mul_assoc, inv_mul_cancel_left]
+      rw [e]
+      refine surjStabFactor_inPar_mul ?_ ih
+      rcases h i with hc | hw
+      · rw [hc, Pi.single_zero, padCol_zero, mul_one, mul_inv_cancel]
+        exact surjStabFactor_inPar_one
+      · obtain ⟨g, hg⟩ := surjStabFactor_conj_row_padCol_single w i hw (c i)
+        rw [hg]
+        exact surjStabFactor_inPar_of g (Pi.single i (c i))
+  have hk := key Finset.univ
+  rwa [Finset.univ_sum_single c] at hk
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabFactor_conj_row_padCol_mem
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

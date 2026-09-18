@@ -82,7 +82,8 @@ theorem rubinInvDisj_formula_of_disjoint {f k : X ≃ₜ X}
     · right
       have hky : k y = y := by
         by_contra hky
-        exact Set.disjoint_left.1 hd hy hky
+        exact Set.disjoint_left.1 hd (show y ∈ movedSet f from hy)
+          (show y ∈ movedSet k from hky)
       rw [hky]
   refine rubinInvDisj_commute_of_orbit (P := f * k) haP' ?_ ha ?_
   · intro y
@@ -99,3 +100,52 @@ theorem rubinInvDisj_formula_of_disjoint {f k : X ≃ₜ X}
       rw [h, hg', e]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_formula_of_disjoint
+
+/-- A pointwise witness of `[f, g f g⁻¹] ≠ 1` for an involution `f`: evaluate at `u = g a`. -/
+theorem rubinInvDisj_not_commute_of_points {f g : X ≃ₜ X} (hff : ∀ z, f (f z) = z) {u a : X}
+    (hga : g a = u) (hgfa : g (f a) = f a) (hgfu : g (f u) = f u) (hgu : g u ≠ a) :
+    f * (g * f * g⁻¹) ≠ (g * f * g⁻¹) * f := by
+  intro h
+  have h1 : f (g (f (g.symm u))) = g (f (g.symm (f u))) := DFunLike.congr_fun h u
+  have h2 : g.symm u = a := by rw [← hga, Homeomorph.symm_apply_apply]
+  have h3 : g.symm (f u) = f u := by
+    apply g.injective
+    rw [Homeomorph.apply_symm_apply, hgfu]
+  rw [h2, hgfa, hff, h3, hff] at h1
+  exact hgu h1.symm
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_not_commute_of_points
+
+/-- The local witness: `h` supported in `W` with `h (h x) ≠ x`, `f W ∩ W = ∅`, and `q` fixing
+`W` and `f W` pointwise.  Then `g = h q` does not make `f` commute with `g f g⁻¹`. -/
+theorem rubinInvDisj_not_commute_of_local {f h q : X ≃ₜ X} (hff : ∀ z, f (f z) = z)
+    {W : Set X} {x : X} (hxW : x ∈ W) (hh : SupportedIn h W) (hhx : h (h x) ≠ x)
+    (hfW : ∀ w ∈ W, f w ∉ W) (hq : ∀ w ∈ W, q w = w ∧ q (f w) = f w) :
+    f * ((h * q) * f * (h * q)⁻¹) ≠ ((h * q) * f * (h * q)⁻¹) * f := by
+  have ha : h.symm x ∈ W := by
+    by_contra ha
+    have e : x = h.symm x := (Homeomorph.apply_symm_apply h x).symm.trans (hh _ ha)
+    have e2 : h x = x := (congrArg h e).trans (Homeomorph.apply_symm_apply h x)
+    exact hhx (by rw [e2, e2])
+  have hq1 : q (h.symm x) = h.symm x := (hq _ ha).1
+  have hq2 : q (f (h.symm x)) = f (h.symm x) := (hq _ ha).2
+  have hq3 : q x = x := (hq _ hxW).1
+  have hq4 : q (f x) = f x := (hq _ hxW).2
+  have hfa : h (f (h.symm x)) = f (h.symm x) := hh _ (hfW _ ha)
+  have hfx : h (f x) = f x := hh _ (hfW _ hxW)
+  refine rubinInvDisj_not_commute_of_points hff (u := x) (a := h.symm x) ?_ ?_ ?_ ?_
+  · show h (q (h.symm x)) = x
+    rw [hq1, Homeomorph.apply_symm_apply]
+  · show h (q (f (h.symm x))) = f (h.symm x)
+    rw [hq2, hfa]
+  · show h (q (f x)) = f x
+    rw [hq4, hfx]
+  · show h (q x) ≠ h.symm x
+    rw [hq3]
+    intro e
+    apply hhx
+    rw [e, Homeomorph.apply_symm_apply]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinInvDisj_not_commute_of_local
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse

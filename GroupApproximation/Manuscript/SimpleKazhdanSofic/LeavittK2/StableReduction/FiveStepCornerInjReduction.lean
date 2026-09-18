@@ -66,7 +66,8 @@ theorem fiveStepCornerInj_fix_transfer {m : ℕ} (p q : Fin m)
           (indexMap (Equiv.swap p q).toEmbedding w)) := by rw [hinv w]
     _ = indexMap (Equiv.swap p q).toEmbedding
           (fiveStepCornerHom L p (indexMap (Equiv.swap p q).toEmbedding w)) :=
-        fiveStepCornerInj_cornerHom_indexMap L _ p q (Equiv.swap_apply_left p q) _
+        fiveStepCornerInj_cornerHom_indexMap L (Equiv.swap p q).toEmbedding p q
+          (Equiv.swap_apply_left p q) _
     _ = indexMap (Equiv.swap p q).toEmbedding (indexMap (Equiv.swap p q).toEmbedding w) := by
         rw [hfix _ hu]
     _ = w := hinv w
@@ -138,8 +139,10 @@ theorem fiveStepCornerInjRankFourFix_of_binaryLeavittSteinbergRankFourInjective
     (h : LeavittFP.BinaryLeavittSteinbergRankFourInjectiveStatement) :
     FiveStepCornerInjRankFourFixStatement := by
   intro v hv
-  rw [LeavittFP.BinaryLeavittSteinbergRankFourInjectiveStatement] at h
-  rw [h] at hv
+  have hbot :
+      BooneHigman.SteinbergBasic.K2 (Fin 4) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) = ⊥ :=
+    h
+  rw [hbot] at hv
   rw [Subgroup.mem_bot.mp hv, map_one]
 
 #audit_axioms
