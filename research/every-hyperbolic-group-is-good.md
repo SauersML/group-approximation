@@ -132,3 +132,22 @@ as a named problem in the literature.
     orbits". This is equivalent to `torsion-free-hyperbolic-mod-p-classes-die-virtually`, not a reduction
     of it.
   - Artifact: `research/artifacts/primitive-shift-goodness-dictionary-2026-09-18.md`.
+
+- **Goal relevance (2026-09-17, swarm-0917-w13-titz-pull, reframing). This node is inert for
+  `torsion-free-sofic-exact-mf-radical-over-z`.** Neither a proof nor a disproof here can move the goal
+  through the Titz--Witzel region. So the dispatcher's bounty on this node, which comes from that cone, is
+  illusory.
+  - *Result.* `fully-ramified-covers-cannot-create-titz-witzel-soficity` (ESTABLISHED) shows the following.
+    Let `X' -> X_0` be any fully ramified tower over `Y_1^2`, for instance `Lambda \ D` for a torsion-free
+    or normal finite-index `Lambda` in a complex of groups over `X_0`, and let it satisfy the flat-hitting
+    condition (H). Then `beta(X') >= beta(X_0) + (1 - phi(X_0)) / [G : K]`. So sparse flat-hitting output
+    forces the base to satisfy item 3 of `sparse-fully-branched-covers-iff-sofic-with-connected-links`,
+    which is already equivalent to `titz-witzel-kernel-sofic`.
+  - *Invariant.* The branched-sheet fraction `phi(X_0)` of the base.
+  - *Step where every member dies.* Hitting an unbranched base component costs a whole fibre.
+  - *Consequence.* Goodness, (V2), residual finiteness and cubulation of hyperbolic groups enter the cone
+    only at the torsion-free or normal finite-index step, so they can never be the source of soficity of
+    `K`. The flat-hitting node needs a partially ramified construction, and goodness is irrelevant to that.
+  - Separately, `sp21-finite-congruence-kernel-forbids-p-goodness` already records CSP => non-good. There
+    is no cheap route to a negative answer through arithmetic lattices of hyperbolic type, since uniform
+    lattices in `Sp(n,1)` are hyperbolic and CSP for them is itself open.
