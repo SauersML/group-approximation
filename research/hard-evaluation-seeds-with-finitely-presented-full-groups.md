@@ -48,3 +48,17 @@ such that three conditions hold.
      computation zones that run arbitrarily far away. Every agent is pinned by an ordered
      `L…L H R…R` field, the design rule for (S3).
    - **Status.** Not constructed. (S3) and conditions (2) and (3) are untested for this shape.
+2. **Condition 3 is free; split full groups die (w14-bh-last1, 2026-09-18).**
+   `seed-stabilizer-gate-is-free-and-split-seed-full-groups-die`.
+   - *Condition 3 is implied by condition 2.* `F ⊇ FSym(O)` acts faithfully on the countably
+     infinite `O`, so `fp-finitary-permutation-overgroups-are-type-a-actors` makes every
+     `Stab_F(o)` finitely generated as soon as `F` is finitely generated. This claim is exactly
+     conditions 1 and 2.
+   - *Condition 2 is not a boundary property.* If `F = FSym(O)·Γ`, which always holds when `∂` is
+     one point, then `F` is the lampshuffler `FSym(Γ) ⋊ Γ`, which is not `FP_2` for virtually
+     indicable `Γ`. The seed `…0001000…` over `Z` has `F = H_2` and `F_∂ = Z`. So finite
+     presentation of the boundary full group is necessary but not sufficient.
+   - *What a witness needs.* Over `Z^2` or any virtually indicable `Γ`, the full group must be
+     non-split: some element must follow different elements of `Γ` near different parts of `∂`.
+     The extension `1 → FSym(O) → F → F_∂ → 1` is a gate of its own. No invariant detecting it
+     is known beyond the split case.
