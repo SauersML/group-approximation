@@ -5981,6 +5981,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Transversal
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientCore
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAmbientAction
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideTransport
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideRotation
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSteps
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
