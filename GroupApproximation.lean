@@ -5713,6 +5713,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Commutator
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Ideal
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Words
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Relations
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Taq
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
