@@ -78,6 +78,78 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   * *The direct budget transplant.* `E_p[N|E]` is ball-local, but PB begins
     at `p_c(G) <= liminf p_c(G_k)`. The approximants would need the budget
     below their own critical points.
+* **Transplant stability data of the Bernoulli action (stability-approximation,
+  swarm-0917).**
+  * *The dictionary.* The budget is a derivative in `p`. For an increasing
+    event `E`, Russo's formula gives
+    `E_p[N_piv 1_E] = sum_e P_p(e open, e pivotal) = p · d/dp P_p(E)`, so
+    `E_p[N_piv | E] = p · d/dp log P_p(E)`. The hope was to bound this through
+    stability data of the Bernoulli action: its Koopman representation, the
+    spectral radius `rho`, Kazhdan constants, strong ergodicity, and membership
+    in the class weakly contained in Bernoulli.
+  * *Where it dies (invariant: the Koopman representation; step: the passage
+    from `p_c` to `p_c+eps`).*
+    - For every `p in (0,1)`, `L^2_0` of the edge shift decomposes into
+      quasi-regular representations over finite edge sets. These have finite
+      stabilizers, so the representation is contained in `infinity · lambda`
+      independently of `p`.
+    - Every datum above is therefore the same at `p_c`, at `p_u` and at `1/2`.
+      The only `p`-dependence left is in observables such as `log P_p(E)`,
+      whose `p`-derivative is the pivotal count itself, which is circular.
+  * *What such data can reach.*
+    `fpbs-fiid-soft-collapse-iff-fiid-sparse-spines` (Corollary E) shows that
+    arguments using Bernoulli facts at `p <= p_c`, the soft axioms (S1)--(S4)
+    and properties shared by factors of Bernoulli shifts fail on every group
+    with factor-of-iid sparse spines. There they cannot give `p_c < p_u`, let
+    alone the budget. On a class of groups they must prove
+    `fpbs-no-fiid-sparse-spines-on-nonamenable-groups`, which by Corollary D
+    already implies `p_c < p_u` there
+    (`fpbs-benjamini-schramm-via-no-fiid-sparse-spines`).
+  * *Why the known soft obstruction does not cover this.* The sheet spines of
+    `fpbs-soft-collapse-iff-invariant-sparse-spines` are not weakly contained
+    in Bernoulli (Proposition F of the new node). So this transplant was not
+    already killed. What remains of it is exactly the no-FIID-spines hole,
+    which contradicts the open claim `fpbs-kazhdan-sparse-spines`.
+  * *Referee audit (2026-09-17).* Three lenses reviewed the supporting node
+    `fpbs-fiid-soft-collapse-iff-fiid-sparse-spines`; lenses 1 and 3 refuted
+    parts of it, so it is set back to OPEN. Lens 1: the "not strongly ergodic"
+    half of Proposition F, bullet 2, fails for atomic height laws (sheets over
+    `rZ + j` with iid connectors are strongly ergodic). Non-weak-containment
+    survives, and the Theorem B height sets are atomless, so the bullet above
+    is unaffected. Lens 3: the hole
+    `fpbs-no-fiid-sparse-spines-on-nonamenable-groups` is false on `F_2 x Z^2`
+    (fibrewise supercritical `Z^2` giants joined by iid `F_2`-edges give FIID
+    sparse spines). So on groups with a normal `Z^2` factor, Corollary E rules
+    out Bernoulli-weakly-contained soft arguments outright, and "what remains
+    is the no-FIID-spines hole" holds only where that hole is not already
+    false. All lenses found the Russo identity and the `p`-independence of the
+    Koopman representation sound, so the dead-end verdict on this transplant
+    stands and the target stays OPEN.
+* **Symbolic-dynamics / pressure transplant: chemically truncated rates
+  (b-p-bs1, 2026-09-17).**
+  * *Idea.* Treat `lambda(p)` as a pressure and approximate the non-local
+    potential `1_{e<->X_n}` by finite-range potentials. Pressures of
+    finite-range potentials vary continuously.
+  * *Where the pressure form dies.* Finite-range approximants of the
+    connection event increase to it from below. Fekete gives only
+    `lambda = sup`, so the approximation yields lower semicontinuity of
+    `lambda`, not the right-continuity at `p_c` that (IS) needs.
+  * *What survives (ESTABLISHED).* The natural finite-range approximants
+    are the chemically truncated events `{d_omega(e,X_n) <= Ln}`.
+    - Every open pivotal edge lies on one fixed certificate path, so PB holds
+      on these events with `C=L` for free.
+    - Their rates `lambda_L` are log-Lipschitz, with
+      `lambda_L(p) <= rho (p/p_c)^L`, and `sup_L lambda_L = lambda`
+      (`fpbs-truncated-walk-rate-log-lipschitz`).
+    - (IS) is *equivalent* to rate saturation by slopes `L(epsilon)=o(1/epsilon)`
+      (`fpbs-integrated-sensitivity-iff-subscale-chemical-saturation`).
+    - Under collapse, walk connections at `p_c+epsilon` have chemical slope
+      at least `p_c log(1/rho)/epsilon` (Corollary 3 of
+      `research/artifacts/fpbs/docs/truncated-russo-lipschitz-2026-09-17.md`).
+  * *Consequence for PB.* Any PB argument that bounds pivotal counts by
+    certificate length proves a statement that is true on a collapse graph.
+    PB is load-bearing only through the comparison of truncated and
+    untruncated rates at sub-mean-field slope. PB itself stays OPEN.
 * **Sum over walk lengths first (reframing, swarm-0917).**
   * *The kernel.* Summing (1.1) over `n<=R` gives
     `d/dp log A_R = E^tilt[N]/p`, where `A_R = sum_(n<=R) a_(n,R)` increases
@@ -249,3 +321,49 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
 
     The maximiser moves toward `p_c` (`1.8e-4` at `n=140`).
   * *Verdict.* The target stays open. Any proof must enter through the gate.
+* **Calibrate against amenable worlds (transplanter/calibration, b-p-bs3, swarm-0917).**
+  * *Sandwich (rigorous, from established nodes).*
+    - `fpbs-l2-gap-gives-bounded-pivotal-counts` gives `p_c<p_(2->2)` ⇒ PB.
+    - `fpbs-pivotal-budget-implies-nonuniqueness` gives PB ⇒ `p_c<p_u`.
+    - Hence a graph where PB fails has `p_c=p_(2->2)` and refutes Hutchcroft's
+      critical-l2 conjecture (`fpbs-nonamenability-bounds-critical-connectivity-operator`).
+    - PB is therefore no easier to *disprove* than that conjecture. By
+      `fpbs-tree-walk-pivotal-count-bounded-below-l2-threshold`, it must be
+      *proved* with genuinely linear counts.
+  * *Where nonamenability enters (rigorous).* Integrating (1.1) gives
+    `int_c^p E_q[N_(n,R)|E_(n,R)] dq/q = log(a_(n,R)(p)/a_(n,R)(c))`.
+    - On any transitive graph with uniqueness at `p`, the right side lies
+      between `log(theta(p)^2/a_n(c)) - o_R(1)` and `log(1/a_(n,R)(c))`.
+    - The only nonamenable input is Schramm's `a_n(c)<=rho^n`. It makes the
+      integrated count at least `n log(1/rho) + 2 log theta(p)` under collapse.
+    - Nothing in the hypothesis PB refers to `rho`. PB is a pivotal statement
+      that could hold on amenable graphs, where `rho=1` and the theorem is
+      silent.
+    - Quantitatively, if PB holds with `(C,p0)` and `p0>p_u`, then
+      `C >= log(1/rho)/log(p_u/p_c)`, because nonuniqueness is an interval
+      ending at `p_u`. So as `rho -> 1`, the budget constant must blow up
+      unless `p_u/p_c -> 1` at a comparable rate.
+  * *Amenable calibration (heuristic only, not a result).*
+    - On `Z^d` with `d>=11`, the lace-expansion two-point bound `|x|^(2-d)`
+      gives `a_n(p_c) ≍ n^(-(d-2)/2)`. The integrated count is then `O(log n)`.
+    - On `Z^2` at `p_c=1/2`, the four-arm exponent suggests `E[N|E]` is of
+      order `min(|X_n|, L(p))^(3/4) <= n^(3/8)`.
+    - Both suggest PB holds, far from saturated, on amenable graphs with
+      `p_c=p_u`.
+  * *Consequences for method choice.*
+    - A disproof of PB must use a mechanism that does not operate on these
+      amenable worlds. The only precise obstruction on record,
+      `fpbs-hierarchical-pivotal-amplification`, is of that nontransitive,
+      multiscale type.
+    - A proof of PB may be amenability-blind, but it must then be sharp to
+      within the linear order that trees show is necessary above
+      `p_(2->2)`.
+  * *Where it dies.*
+    - No amenable transitive graph with `p_c<1` has a *rigorous* PB. The
+      `Z^2` and `Z^d` numbers rest on unproved uniform-in-`R`
+      near-critical pivotal bounds.
+    - The heuristic therefore kills no class of approaches. It only
+      calibrates that the budget, as stated, does not detect amenability.
+    - The one rigorous price, `C >= log(1/rho)/log(p_u/p_c)`, is the
+      contrapositive of the conditional theorem and adds no new constraint.
+    - No new node was filed.

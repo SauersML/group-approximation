@@ -67,6 +67,23 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   Aizenman--Barsky BK step (orbits are `nu`-null), and the best-versus-worst
   comparison. A kernel satisfying the Harris--FKG distortion bounds has finite
   average and infinite supremum, and on `X_rig` nothing forces a radial profile.
+* **Finite-models transplant via fibre-truncation towers
+  (`research/artifacts/fpbs-fibre-truncation-towers-2026-09-17.md`).** Finite
+  quotients are already killed by the glued giant law, so the tower keeps
+  `Gamma/H` intact and truncates only the fibre: `G_k = Cay(Gamma/H_k)` with
+  `H_k <= H` normal, of finite index in `H`, nested, with trivial intersection.
+  `fpbs-fibre-truncation-towers-add-no-slack` shows, by a lifted exploration
+  coupling, that the finite fibre occupations `chi^(k)(p)` increase to
+  `chi^H_G(p)`. So this claim is equivalent to a bound on `chi^(k)` that is
+  uniform in `k`. `fpbs-fibre-truncation-pu-lower-semicontinuous` shows that
+  `p_u(G) <= liminf p_u(G_k)`. **Where it dies:** a gap theorem on the
+  truncations with `k`-dependent constants transfers only through upper
+  semicontinuity of `p_u`, and the tower gives only lower semicontinuity. For
+  `F_2 x Z`, `p_u(G_k) = 1` while `p_u(G) < 1`. The only datum that transfers is
+  the uniform fibre occupation, which equals this hole. Examples of what dies:
+  Choi--Seo on `Gamma/<z^k>`, hyperbolic `L2` gaps, and `p_u = 1` on
+  infinitely-ended truncations. What survives is a counterexample detector:
+  `p_u(G_k) -> p_c(G)` along a subsequence refutes Benjamini--Schramm for `G`.
 * **Calibration: critical finiteness plus openness, tested on Z^d (2026-09-17,
   `research/artifacts/fpbs-lattice-critical-relative-finiteness-2026-09-17.md`).**
   * **World.** `fpbs-lattice-amenable-subgroup-critical-finiteness-no-gap`: on
