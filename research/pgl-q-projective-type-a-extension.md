@@ -55,12 +55,15 @@ By route `gl-n-q-type-a-via-projective-extension`, the claim gives
 ## Attempts
 
 1. **Natural local hosts: dead.** Suppose `Γ` acts on `RP^(m-1)` (or on
-   `P^(m-1)(Q_p)`, or on an adelic model) extending the natural action, and each
-   element is piecewise projective with finitely many pieces, or is so outside a
-   closed nowhere dense set. Then `Γ` finitely generated forces
-   `Γ ∩ PGL_m(Q) ≤ PGL_m(Z[1/N])` for some `N`
-   (`germ-extensions-omit-standard-gl-n-q`, identity principle). So no such `Γ`
-   contains `PGL_m(Q)`.
+   `P^(m-1)(Q_p)`, or on an adelic model) extending the natural action. Suppose
+   also that `Γ` is finitely generated with each generator piecewise projective
+   with finitely many pieces. More generally, suppose each element of `Γ`
+   agrees, outside a closed nowhere dense set, locally with elements of one such
+   finitely generated group `B` (for example, `Γ` a finite germ extension of
+   `B`). Then `Γ ∩ PGL_m(Q)` lies in a finitely generated linear group. When
+   the pieces are rational it lies in the image of `GL_m(Z[1/N])` for one `N`
+   (`germ-extensions-omit-standard-gl-n-q`, items 2–3 and Corollaries (b)–(c)).
+   So no such `Γ` contains `PGL_m(Q)`.
 2. **Near actions on `P^(m-1)(Q)`: dead** (hand proof, this lane). Suppose every
    `γ ∈ Γ ≤ Sym(P^(m-1)(Q))` agrees with some `h_γ ∈ PGL_m(Q)` outside a finite
    set. This covers `FSym ⋊ PGL_m(Q)` and Houghton-type extensions of the
