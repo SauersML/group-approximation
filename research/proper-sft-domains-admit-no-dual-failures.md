@@ -61,3 +61,17 @@ kind would refute the claim on that group.
   post-surjective, non-pre-injective maps onto full shifts, but they are not strongly irreducible. The open
   question is whether a strongly irreducible SFT, for instance a strongly irreducible factor or cover of an
   arrow SFT, can keep the post-surjective map. That question was not attacked.
+- **2026-09-18, swarm-0917-w8-w8-gs-break [group-rings]: linear sector settled. The claim stays OPEN.** See
+  `linear-proper-domain-duality-is-stable-finiteness` (ESTABLISHED, elementary).
+  - **Result.** For group subshifts over `F_q^k` with linear automata, the claim holds for `G` exactly when
+    `F_q[G]` is stably finite.
+  - **One direction.** Under stable finiteness, post-surjectivity at the point `0` alone forces the domain to
+    be the whole full shift. So no proper linear domain works. Neither strong irreducibility nor finite type
+    is used.
+  - **Other direction.** A one-sided inverse `NM = I ≠ MN` gives a counterexample. The domain is
+    `X = (A^G)MN`, which is a proper strongly irreducible SFT. The map `x ↦ xM²` on it is strongly
+    post-surjective and not pre-injective.
+  - **Consequences.**
+    - The claim, for all groups, implies Kaplansky stable finiteness over every finite field directly.
+    - On every group with stably finite modular group algebras, which includes all sofic groups, any
+      counterexample must be nonlinear. Linear kill-tests are dead there.
