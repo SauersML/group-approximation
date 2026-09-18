@@ -126,10 +126,10 @@ theorem witnessStepGenus_face_lift (N : CombMap.{u}) [DecidableEq N.Dart] (x y u
 theorem witnessStepGenus_eqvGen_of_isChain {β : Type*} {S : β → β → Prop} :
     ∀ (L : List β) (a : β), List.IsChain (Relation.EqvGen S) (a :: L) →
       ∀ e ∈ a :: L, Relation.EqvGen S a e
-  | [], a, _, e, he => by
+  | [], _, _, _, he => by
     rw [List.mem_singleton.mp he]
     exact Relation.EqvGen.refl _
-  | b :: L, a, hc, e, he => by
+  | b :: L, _, hc, e, he => by
     rw [List.isChain_cons_cons] at hc
     rcases List.mem_cons.mp he with hea | heb
     · rw [hea]
@@ -144,7 +144,7 @@ theorem witnessStepGenus_eqvGen_to_last {β : Type*} (S : β → β → Prop) (p
     ∀ L : List β, (L ++ [p]).Nodup →
       (∀ u v e e', L ++ [p] = u ++ e :: e' :: v → e ≠ p → Relation.EqvGen S e e') →
       ∀ e ∈ L ++ [p], Relation.EqvGen S e p
-  | [], _, _, e, he => by
+  | [], _, _, _, he => by
     rw [List.nil_append, List.mem_singleton] at he
     rw [he]
     exact Relation.EqvGen.refl _
