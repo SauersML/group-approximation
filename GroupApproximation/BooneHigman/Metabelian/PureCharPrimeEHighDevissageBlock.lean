@@ -6,7 +6,9 @@ import GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# High exponent: block-diagonal assembly of conjugation representations (lane bh-met-67)
+# High exponent: block-diagonal assembly of conjugation representations
+
+Lanes bh-met-67, bh-met-67c.
 
 The multiplicative analogue of `exists_linearization_of_field_pieces`
 (`TorsionFreeCoprimaryBlock`).  Let `G`, `Q` be groups and `act : Q → G → G`.  Suppose that for
@@ -17,10 +19,11 @@ and that the fields `K_j` embed in a common field `L`.  Then there are one injec
 
 Route.  Push every piece into `L` (`GeneralLinearGroup.map`).  Act block-diagonally on
 `V = ∏_j L^{d_j}` (`blockEnd`, which works for any monoid, so also for `G`).  Choose a basis of
-`V` (`exists_gl_of_end_conj`).
+`V` (`eHighDevissage_exists_gl_of_end_conj`).
 
-* `exists_gl_of_end_conj`: endomorphism data on a finite-dimensional space gives matrices.
-* `exists_gl_of_field_pieces`: the block-diagonal assembly.
+* `eHighDevissage_exists_gl_of_end_conj`: endomorphism data on a finite-dimensional space
+  gives matrices.
+* `eHighDevissage_exists_gl_of_field_pieces`: the block-diagonal assembly.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Coprimary
@@ -29,8 +32,8 @@ open Matrix
 
 /-- Conjugation data by endomorphisms of a finite-dimensional space gives conjugation data by
 invertible matrices.  The relation is stated without inverses: `κ (act q g) * ρ q = ρ q * κ g`. -/
-theorem exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G] [Field L] [AddCommGroup V]
-    [Module L V] [Module.Finite L V] (act : Q → G → G) (κ : G →* Module.End L V)
+theorem eHighDevissage_exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G] [Field L]
+    [AddCommGroup V] [Module L V] [Module.Finite L V] (act : Q → G → G) (κ : G →* Module.End L V)
     (ρ : Q →* Module.End L V) (hinj : ∀ g, κ g = 1 → g = 1)
     (hequiv : ∀ q g, κ (act q g) * ρ q = ρ q * κ g) :
     ∃ (d : ℕ) (κ' : G →* GeneralLinearGroup (Fin d) L) (ρ' : Q →* GeneralLinearGroup (Fin d) L),
@@ -49,13 +52,13 @@ theorem exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G] [Field L] [Ad
     show e (κ (act q g)) * e (ρ q) = e (ρ q) * e (κ g)
     rw [← map_mul, ← map_mul, hequiv]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_gl_of_end_conj
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighDevissage_exists_gl_of_end_conj
 
 /-- **Block-diagonal assembly.**  Finitely many conjugation representations over fields `K j`
 that embed in `L` and jointly detect `1` combine into one faithful conjugation representation
 over `L`. -/
-theorem exists_gl_of_field_pieces {Q G J L : Type} [Group Q] [Group G] [Fintype J] [Field L]
-    (act : Q → G → G) (K : J → Type) [∀ j, Field (K j)] (f : ∀ j, K j →+* L) (d : J → ℕ)
+theorem eHighDevissage_exists_gl_of_field_pieces {Q G J L : Type} [Group Q] [Group G]
+    [Fintype J] [Field L] (act : Q → G → G) (K : J → Type) [∀ j, Field (K j)] (f : ∀ j, K j →+* L) (d : J → ℕ)
     (κ : ∀ j, G →* GeneralLinearGroup (Fin (d j)) (K j))
     (ρ : ∀ j, Q →* GeneralLinearGroup (Fin (d j)) (K j))
     (hdet : ∀ g, (∀ j, κ j g = 1) → g = 1)
@@ -76,8 +79,8 @@ theorem exists_gl_of_field_pieces {Q G J L : Type} [Group Q] [Group G] [Fintype 
           (GeneralLinearGroup.map (f j) (ρ j q))⁻¹
       rw [hequiv, map_mul, map_mul, map_inv]
     exact eq_mul_inv_iff_mul_eq.mp h8
-  refine exists_gl_of_end_conj act (blockEnd κL) (blockEnd ρL) (fun g hg => hdet g fun j => ?_)
-    (fun q g => LinearMap.ext fun v => funext fun j => ?_)
+  refine eHighDevissage_exists_gl_of_end_conj act (blockEnd κL) (blockEnd ρL)
+    (fun g hg => hdet g fun j => ?_) (fun q g => LinearMap.ext fun v => funext fun j => ?_)
   · have h4 : ∀ w : Fin (d j) → L,
         (κL j g : Matrix (Fin (d j)) (Fin (d j)) L) *ᵥ w = w := by
       intro w
@@ -103,6 +106,6 @@ theorem exists_gl_of_field_pieces {Q G J L : Type} [Group Q] [Group G] [Fintype 
         ((κL j g : Matrix (Fin (d j)) (Fin (d j)) L) *ᵥ v j)
     rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← Units.val_mul, ← Units.val_mul, hL]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_gl_of_field_pieces
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighDevissage_exists_gl_of_field_pieces
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary
