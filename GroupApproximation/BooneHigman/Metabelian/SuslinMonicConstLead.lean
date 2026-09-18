@@ -93,7 +93,7 @@ theorem suslinMonic_monic_of_constLead (h : suslinMonic_ConstLeadStatement) :
     exact hfJ
   obtain ⟨φ, q, hq, hqm⟩ :=
     h m k hm (J.comap ψ.symm) (suslinMonic_comap_symm_avoid ψ hJ) ⟨ψ f, hψf, a, ha, hlc⟩
-  refine ⟨ψ.trans φ, ψ.symm q, hq, ?_⟩
+  refine ⟨ψ.trans φ, ψ.symm q, Ideal.mem_comap.1 hq, ?_⟩
   rw [RingEquiv.trans_apply, RingEquiv.apply_symm_apply]
   exact hqm
 
