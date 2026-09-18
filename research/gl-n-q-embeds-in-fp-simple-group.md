@@ -81,3 +81,55 @@ None recorded before 2026-09-17.
    `GL_n(Q)`, `SL_n(Q)`, `PSL_n(Q)`, `Aff(Q)`, `U_3(Q)`. The unipotent `(Q,+)`
    meets the centre trivially, so the lift cannot absorb its divisibility, and
    it must already embed in the base group. Independent of O4.
+
+2. **Gluing affine hosts along the chain `GL_n(Z[1/m!])`, 2026-09-17: the natural
+   gluing is dead.** `fg-piecewise-linear-hosts-omit-natural-gl-n-q` (via
+   `fg-groups-have-fg-derivative-images`): in a finitely generated group whose
+   generators have finitely many linear parts, every derivative has entries in a
+   finitely generated ring, which never contains `Q`. So no finitely generated
+   union of the following carries the chain with its natural action, where the
+   origin is fixed and the derivative is `g`:
+   - Scott's `Sc(n)`;
+   - Zaremsky's affine hosts on `Z_p^n`;
+   - adelic V-type groups on `A_f^n ∪ {∞}` or on `⊔_p Q_p^n`.
+
+   In any such host, divisible subgroups and `SL_n(Q)` have trivial derivative
+   at every fixed point. What survives is the Belk--Hyde--Matucci shape:
+   divisibility through torsion plus a central extension, acting without fixed
+   points.
+
+3. **Adelic Cantor models, and any commutative-linear pieces, 2026-09-17: dead for
+   the linear copy.** `piecewise-commutative-linear-hosts-miss-linear-gl-n-q`
+   (lane gq-solenoid). Its setting:
+   - `L` is topologically free and linear over a commutative ring;
+   - every generator agrees locally with one of finitely many elements of `L`,
+     off a closed nowhere dense set.
+
+   Every element of such a finitely generated group that agrees with some
+   `l ∈ L` on an open set has `l` in the finitely generated piece group, which is
+   residually finite (Mal'cev). So `GL_n(Q)` acting through `L` never fits. No
+   fixed point is needed.
+   - It covers the adelic models `A_f^n ∪ {∞}` and `∏_p P^n(Q_p)`, and the adelic
+     prefix group on `Ẑ`: all are non-finitely-generated. See
+     `research/artifacts/gq-gq-solenoid-adelic-models.md`.
+   - `germ-extensions-omit-standard-gl-n-q` extends it to groups that are locally
+     in such a base off a nowhere dense set, which covers finite germ extensions.
+
+   Surviving shape: copies whose divisible elements are not globally in `L`, as in
+   `Q <= T̄` and `Q <= 2V`.
+
+4. **Non-Thompson hosts (lattice-type groups acting on CAT(0) complexes), 2026-09-17:
+   dead for every n >= 2.** `proper-semisimple-cat0-groups-contain-no-gl-2-q`: a group
+   acting properly by semisimple isometries on a CAT(0) space has no distorted
+   cyclic subgroup, and `BS(1,2) <= GL_2(Q)`. This excludes:
+   - proper cellular actions on complexes with finitely many shapes (Bridson);
+   - proper actions on CAT(0) cube complexes of any dimension (Haglund);
+   - so both non-Thompson families of finitely presented simple groups in the
+     survey (§4.1): the Burger--Mozes groups and the Caprace--Rémy twin building
+     lattices.
+
+   The host must be dynamical, of Thompson type or of a kind not yet built. See
+   `research/artifacts/gq-heretic-assumptions.md` for the three shared assumptions
+   of the current routes and what survives each denial. The survivor of the
+   central-root denial is the configuration of `Aff(Q)`: an element conjugate to
+   its `p`-th power for every prime `p`, through commuting conjugators.

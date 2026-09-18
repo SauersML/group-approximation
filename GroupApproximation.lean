@@ -6084,6 +6084,12 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionE
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Closure
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Transfer
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Canonical
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientSolvable
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecWords
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecPoly
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecFormula
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Swap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeFormal
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
