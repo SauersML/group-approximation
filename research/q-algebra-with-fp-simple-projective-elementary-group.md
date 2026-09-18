@@ -145,3 +145,16 @@ Let `N >= 3` be one of the ranks.
      detected in `K_1` up to a finitely generated kernel, and finitely generated rational symbols
      in `K_2`. `U_Q = colim M_(n!)(Q)` has it but is not finitely generated. See
      `research/artifacts/gq-deep-adelic-1-k-budget.md`.
+6. **UHF-type groupoid models (2026-09-17, lane gq-deep-adelic-1).** The coordinator's target was a UHF-like host
+   built from an odometer-type minimal action. Class verdict in
+   `research/artifacts/gq-deep-adelic-1-uhf-class-verdict.md`:
+   - **AF groupoids fail at Q.** `af-groupoid-rings-have-no-fg-subring-containing-q`: for the tail groupoid of
+     any Bratteli diagram, no finitely generated ring of compactly supported functions contains `Q`, whatever
+     the coefficients. The reason is `fg-q-rings-have-no-matrix-representations`.
+   - **Z-actions and virtually indicable groups fail at condition 4.**
+     `matrix-corner-laurent-rings-block-fp-elementary-groups`: a crossed-product ring over an odometer factor
+     whose chain contains an indicable finite-index subgroup is `M_k` of a skew Laurent ring with a tracial
+     base. So no `E_N` is finitely presented. Perfection of the acting group does not help.
+   - **Remnant.** Acting groups with finite abelianization along the whole chain, e.g. `SL_n(Z)`, `n >= 3`.
+     Open risks: non-divisible cylinder corners, and torsion index units whose symbols factor through
+     `Q^x ⊗ Z/d`.
