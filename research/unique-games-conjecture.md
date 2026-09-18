@@ -278,6 +278,35 @@ it is supplied, and the exponential pairing-support obstruction persists.
 * **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
   (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
   second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
+* **Calibration against the expanding-constraint-graph world (e-ugc-calibrate,
+  swarm-0917, 2026-09-17).** ESTABLISHED:
+  `spectral-gap-ratio-reductions-cannot-prove-ugc`, resting on the new import
+  `unique-games-on-expanding-constraint-graphs-are-easy` (AKKSTV 2008,
+  Theorem 2.4).
+  - **Gate (K1).** The invariant is `λ_2/(1 − opt)` of the emitted unique game.
+    Any reduction whose loop-free regular YES outputs have ratio `>= X(s)` puts
+    its source in P, by AKKSTV rounding. Such a route dies at its YES case.
+  - **Sharpness (K2).** A padded degree-product shift overlay moves any UG
+    hardness to `λ_2 >= eps/4` with completeness `1 − eps` and soundness `eps`.
+    So ratio `Θ(1)` is free under UGC, and the gate is sharp up to `4X(eps)`.
+  - **Expanders are hard at completeness 1/4 (K3).** Applied to
+    `unique-games-hard-at-completeness-one-half`, the overlay gives NP-hardness
+    of `Gap-UG[(1−eps)/4, eps]` on `λ_2 >= 3/8`. The expanding world separates
+    from genuine UG only in the regime `1 − opt > λ_2/X(s)`.
+  - **SSE sources (K4).** SSE YES graphs have `λ_2 <= η/(1−δ)`, so SSE
+    sources are never in this world.
+  - **Obligation, unverified.** For the live noise-test routes (smooth-design,
+    finite-moment and rich 2-to-1 holes), the inner test's emitted unique game
+    must keep `λ_2 <= X(eps)` times its completeness error on YES instances.
+    The noisy-cube inner test is expected to meet this, since its noise
+    eigenvalue gap is `Θ(eps)`, but no computation is recorded.
+  - **Survivors.** Non-regular or looped outputs, ratio below `X(s)`, and every
+    2-to-1, 2-to-2 or rich outer hole, since the gate acts only on the final
+    permutation game.
+  - **Companion calibrations.** Threshold rank
+    (`low-label-threshold-rank-reductions-cannot-prove-ugc`), entanglement
+    (`entanglement-sound-soundness-cannot-prove-ugc`) and the SSE NO side
+    (`sticky-cylinder-gadget-compositions-cannot-prove-sseh`).
 * **Fixed-exponent reductions: a size gate under ETH (class kill, 2026-09-18,
   wave 6).** `ugc-hardness-reductions-need-epsilon-dependent-size-exponent`
   (ESTABLISHED as a conditional theorem) imports ABS

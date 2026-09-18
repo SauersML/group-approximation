@@ -121,3 +121,18 @@ checked.
   `odometer-factor-via-smart-level-zero-return-map` makes this claim true with `k = 2`, `m = 3`.
   The renormalization route to `BS(1,3)` still needs a brick-local height-3 renormalization of that
   witness, which is not claimed.
+
+- 2026-09-18 (lane gq-affq). **The remaining renormalization step is not a tape deletion.**
+  MSI search and a structural argument, `research/artifacts/gq-affq-smart-renormalization-search.md`.
+  A brick-local height-3 renormalization `φ` of the induced witness `U` (which by the entry above
+  exists and factors onto `Z/2 × Z_3`) cannot be a bounded-radius deletion of a tape cell:
+  - a deletion re-indexes an entire tail, so it is not a bounded prefix change, hence not
+    brick-local in `2V` (the same defect that keeps the binary odometer out of `V`);
+  - a constraint search confirms it: a radius-2 deletion rule intertwines `φ S^3 = S φ` within
+    equality radius 40 (validation 3524/3524) but every rule collapses at equality radius 150,
+    because deleting a `0` inside a level-`k` zero-block is invisible only up to the block
+    boundary, and `k` is unbounded.
+  So a height-3 renormalization must be a bounded prefix operation on the odometer coordinate
+  (`smart-level-zero-return-map-factors-onto-3-adic-odometer`), consuming one `3`-adic digit as
+  the roots `s_n^{n+1} = s_{n-1}` do in `rationals-embed-in-brin-thompson-group-2v-proof`, not an
+  edit of SMART's tape. That coordinate is lane gq-nv-obstruct's.
