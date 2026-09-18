@@ -13,8 +13,23 @@ distinct_from:
   fp-strongly-shift-similar-admits-type-a-action: that is Zaremsky's type (A) theorem; this is about finiteness properties of the Houghton-like groups built from G.
 ---
 
-**ESTABLISHED** (lane proof, below; imports are Brown's criterion and the standard extension property; not
-independently reviewed; no priority claimed; no literature search for later work on Question 5.13 was made).
+**ESTABLISHED** (lane proof, below; not independently reviewed; no priority claimed). The imports were read at
+source (see `finitary-mixing-preserves-type-f-m` and step 3).
+
+**Priority search** (bounded, 2026-09-18).
+- *Calibration.* The planted positive is arXiv:2405.18354 (Zaremsky, *Finite presentability of twisted
+  Brin–Thompson groups*), which cites the source.
+- *Semantic Scholar.* Citations of arXiv:2202.00822 and of DOI 10.4171/JCA/106: 2 papers, 2405.18354 (planted
+  positive, found) and 2309.16613 (Tarocchi, conjugacy in rearrangement groups). The first uses shift-similar
+  groups for type (A) actions. The second is about conjugacy. Neither addresses Question 5.13.
+- *OpenAlex.* Reports 0 citations, so it is blind (it misses the planted positive) and is not relied on.
+- *arXiv API metadata searches.* "Houghton-like" gives only the source. "shift-similar" gives only the source
+  among mathematics papers.
+- *Web searches.* Three queries found no later work on finiteness properties of `H_n(G)`. They did find the
+  related but distinct Cox–Kropholler–Martino arXiv:2508.07816, on subgroups of `H_n` mapping onto `Z^(n-1)`,
+  which does not concern `H_n(G)`.
+- *Blind spots.* Full-text citation indexes (Google Scholar, zbMATH citations) were not reachable (zbMATH 403 or
+  404). Papers that do not cite the source are not covered.
 
 **Statement.** Let `G <= Sym(N)` be strongly shift-similar (Mallery--Zaremsky arXiv:2202.00822, Definition 3.17)
 and of type `F_m`, with `1 <= m <= infinity`. Then `H_n(G)` is of type `F_m` for every `n >= 1`.
@@ -23,9 +38,16 @@ and of type `F_m`, with `1 <= m <= infinity`. Then `H_n(G)` is of type `F_m` for
 presented and `n >= 3`, then is `H_n(G)` finitely presented? If `G` is of type `F_m` and `n >= m+1`, then is
 `H_n(G)` of type `F_m`? If `G` is strongly shift-similar, then do these results hold for all `n`?"
 - The third sentence is answered **yes**, for both finiteness properties.
-- The first two sentences are answered yes for strongly shift-similar `G`. They stay open for shift-similar `G`
-  that are not strongly shift-similar. There `n >= m+1` cannot be dropped: `G = 1` is of type `F_infinity`, and
-  `H_n(1) = H_n` is of type `F_(n-1)` and not `F_n` (Brown, recalled in the source).
+- The first two sentences are answered yes for strongly shift-similar `G`, and also for finite `G`:
+  - finite shift-similar groups are the `S_k` (source Lemma 3.6);
+  - then `H_n(G) = H_n` (Observation 5.2), which is of type `F_(n-1)` (Brown, recalled in the source);
+  - so `n >= m+1` gives `F_m`, and `n >= 3` gives finite presentation.
+  - Here `n >= m+1` cannot be dropped: `G = 1` is of type `F_infinity`, while `H_n` is not of type `F_n`.
+- **The remaining case** is infinite, finitely generated, not strongly shift-similar `G`. Such `G` exist without
+  finite generation (`infinite-shift-similar-groups-need-not-be-strongly-shift-similar`, answering the source's
+  Question 3.18 as printed). No finitely generated one is known
+  (`fg-infinite-shift-similar-groups-are-strongly-shift-similar`, OPEN). If that node is true, Question 5.13
+  is answered positively in full.
 
 **Proof.** Write `X = [n] x N`, `H = H_n(G)`, and `G_k` for the copy of `G` on ray `k` (Observation 5.1).
 1. `B = (G_1 x ... x G_n) · FSym(X)` is of type `F_m`. By `finitary-mixing-preserves-type-f-m` item 3, each
@@ -33,7 +55,12 @@ presented and `n >= 3`, then is `H_n(G)` finitely presented? If `G` is of type `
 2. `B` is normal in `H` with `H/B ≅ Z^(n-1)`. This is step 2 of `fp-strongly-shift-similar-groups-have-fp-houghton-like-groups`,
    which reads it off from the germ isomorphism `H/FSym(X) ≅ Q_n(Ĝ)`.
 3. `Z^(n-1)` is of type `F_infinity`. An extension of a group of type `F_m` by a group of type `F_m` is of type
-   `F_m` (standard; e.g. Geoghegan, *Topological Methods in Group Theory*, Theorem 7.2.21, quoted from memory). ∎
+   `F_m`. Source: Geoghegan, *Topological Methods in Group Theory*, Section 7.2, Exercise 1, read at source (PDF
+   hash in `finitary-mixing-preserves-type-f-m`): "Let `N ↣ G ↠ Q` be a short exact sequence of groups. Prove that
+   if `N` has type `F_n` and `Q` has type `F_n` then `G` has type `F_n`. Hint: see Theorem 7.1.10." The text after
+   Theorem 7.2.21 also asserts it. (Correction: an earlier version cited "Theorem 7.2.21" from memory. That theorem
+   is the quotient statement, "If `G` has type `F_n` and `N` has type `F_(n−1)` then `Q` has type `F_n`".) The
+   exercise is a standard consequence of the Borel construction (Theorem 7.1.10). ∎
 
 **Corollaries.**
 - **Bootstrapping from one level.** Let `G` be any shift-similar group with `H_k(G)` of type `F_m` for some `k`.
