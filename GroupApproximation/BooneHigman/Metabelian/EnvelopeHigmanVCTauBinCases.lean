@@ -69,4 +69,45 @@ theorem higmanVCTauBin_casePQ {p q r t : List (Fin 2)} (hpq : ¬ p <+: q) (hqp :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_casePQ
 
+/-- **Case `PP`** over `Fin 2`. -/
+theorem higmanVCTauBin_casePP {p q r t : List (Fin 2)} (hpq : ¬ p <+: q) (hqp : ¬ q <+: p)
+    (hp : p.length ≤ 3) (hq : q.length ≤ 3) (hk : p.length = q.length) (hrt : ¬ r <+: t)
+    (htr : ¬ t <+: r) :
+    higmanVCTauClassify_Good 2 p q (p ++ r) (p ++ t) (q ++ r) (q ++ t) hpq hqp := by
+  obtain ⟨a, p', rfl⟩ := List.exists_cons_of_ne_nil (higmanVCTauClassify_ne_nil hpq)
+  obtain ⟨b, q', rfl⟩ := List.exists_cons_of_ne_nil (higmanVCTauClassify_ne_nil hqp)
+  have ep : (a :: p').length = p'.length + 1 := rfl
+  by_cases hab : a = b
+  · have hp2 : 2 ≤ (a :: p').length := by
+      rcases p' with _ | ⟨a1, p''⟩
+      · exact absurd (List.cons_prefix_cons.mpr ⟨hab, List.nil_prefix⟩) hpq
+      · have e : (a :: a1 :: p'').length = p''.length + 1 + 1 := rfl
+        omega
+    obtain ⟨c, hc⟩ := higmanVCTauBin_flip a
+    exact Or.inl (higmanVCTauClassify_pp1 hpq hqp hp hq hp2
+      (higmanVCTauUnif_inc_cons hc [] p')
+      (higmanVCTauUnif_inc_cons (fun h => hc (h.trans hab.symm)) [] q'))
+  by_cases hp3 : (a :: p').length = 3
+  · obtain ⟨a1, a2, p'', rfl⟩ := higmanVCTauClassify_two (by omega : 2 ≤ p'.length)
+    obtain ⟨a1', ha1⟩ := higmanVCTauBin_flip a1
+    have e : [a, a1'].length = 2 := rfl
+    exact Or.inl (higmanVCTauBin_ppB (C := [a, a1']) hpq hqp hp hq (by omega)
+      (higmanVCTauClassify_inc_cons2 a (higmanVCTauUnif_inc_cons ha1 [] (a2 :: p'')))
+      (higmanVCTauUnif_inc_cons hab [a1'] q'))
+  rcases r with _ | ⟨r0, r'⟩
+  · exact absurd List.nil_prefix hrt
+  rcases t with _ | ⟨t0, t'⟩
+  · exact absurd List.nil_prefix htr
+  rw [higmanVCTauClassify_cons_eq (a :: p') r0 r', higmanVCTauClassify_cons_eq (a :: p') t0 t']
+  rcases p' with _ | ⟨a1, p''⟩
+  · exact Or.inl (higmanVCTauBin_ppC (P := b :: q') hk (by omega) hk.symm
+      (higmanVCTauUnif_inc_cons (Ne.symm hab) q' []))
+  · obtain ⟨a1', ha1⟩ := higmanVCTauBin_flip a1
+    have e : [a, a1'].length = 2 := rfl
+    have e' : (a :: a1 :: p'').length = p''.length + 1 + 1 := rfl
+    exact Or.inl (higmanVCTauBin_ppC (P := [a, a1']) hk (by omega) (by omega)
+      (higmanVCTauClassify_inc_cons2 a (higmanVCTauUnif_inc_cons ha1 [] p'')))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_casePP
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
