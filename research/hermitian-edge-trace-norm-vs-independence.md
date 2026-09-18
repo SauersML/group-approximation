@@ -74,3 +74,14 @@ settle `c_d = 2d/(sqrt3 pi) + O(1)`.
    `|<a_i,a_j> - <b_i,b_j>| >= 2` on edges. It would produce the random independent set directly.
    This mirrors the quantum rounding (measure a commuting set), which is how the one-qudit case is
    proved.
+4. *Facet reduction plus exact odd cycles (w6-078, 2026-09-18) - partial success.* Restricting the dual
+   certificate `Q` to the support of `y_+` reduces (**) to single facet weights on induced subgraphs
+   (`hermitian-edge-trace-norm-via-stab-facets`, both directions). Odd holes are solved exactly:
+   `min ||C||_1 = 2 cot(pi/(2n)) >= sqrt3 (n+1)/2` on `C_n` (gauge to one flux, shift-average the
+   moduli by convexity, concavity of `sum |cos|` between breakpoints). With chord splitting this proves
+   (**) for all h-perfect graphs with `omega <= 3`, including all t-perfect graphs
+   (`hermitian-edge-trace-norm-k4-free-h-perfect`), and shows that (**) on perfect/h-perfect graphs is
+   equivalent to the uniform clique inequality `hermitian-edge-trace-norm-clique-inequality`. The
+   remaining holes are that inequality (`K_4` is the first open case; numerical minima `2 + 2 sqrt3`,
+   `5 + sqrt5` at `m = 4, 5`) and the non-clique, non-hole facets
+   (`hermitian-edge-trace-norm-other-stab-facets`).

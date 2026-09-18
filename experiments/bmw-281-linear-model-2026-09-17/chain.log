@@ -1,0 +1,11 @@
+N=4 [|K_N|, [|G_k| on level N-k, transitive?] k=1..N-1] = 
+[ 236196, [ 2916, true ], [ 108, true ], [ 6, true ] ]
+N=5 [|K_N|, [|G_k| on level N-k, transitive?] k=1..N-1] = 
+[ 6377292, [ 78732, true ], [ 972, true ], [ 108, true ], [ 6, true ] ]
+N=6 [|K_N|, [|G_k| on level N-k, transitive?] k=1..N-1] = 
+[ 172186884, [ 2125764, true ], [ 26244, true ], [ 972, true ], 
+  [ 108, true ], [ 6, true ] ]
+N=7 [|K_N|, [|G_k| on level N-k, transitive?] k=1..N-1] = 
+[ 4649045868, [ 57395628, true ], [ 708588, true ], [ 8748, true ], 
+  [ 972, true ], [ 108, true ], [ 6, true ] ]
+Reading file "run_chain.g" has been aborted.

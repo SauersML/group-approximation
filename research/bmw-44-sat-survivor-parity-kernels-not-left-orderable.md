@@ -140,3 +140,16 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
 - (w3-107, 2026-09-18) **Left-orderability, not attempted beyond SAT.** A left order on `Γ^+` would
   need an argument like Rolfsen–Zhu's for free-by-free groups or a Bergman-type construction. Neither
   was tried. Extracting a consistent order from a radius-10 model is not a proof.
+- (w4-107, 2026-09-18) **`#281` is irreducible (ESTABLISHED, `bmw-40-40-281-is-irreducible`).**
+  - The planned Gupta–Sidki step is false. `L_2` is not self-replicating at `0`: modulo level 5,
+    `φ_0(Stab_{L_2}(0))` has index 3 in `L_2`, and generators 4, 6 and 7 lie outside it
+    (`experiments/bmw-281-linear-model-2026-09-17/l2test.log`). The whole section chain
+    `G_{k+1} = φ_0(Stab_{G_k}(0))` strictly decreases (`chain.log`: `|G_k|` on level `m` is
+    `4·3^{max(3m−2−k, 2m−1)}`).
+  - Instead, `K` is linear. An explicit contracting coordinate system `Φ : X^ω → F_3[[s]]` conjugates
+    `a_0, a_1, a_2, τ` to `σ`, `−σ`, `−z` and `T(z) = (u−z)/(1−suz)`, where `σ : s ↦ −s` and
+    `u = 1/(1−s)`. The proof is twelve rational-function identities, checked exactly by
+    `mobius281.py`.
+  - `τa_2` becomes `z ↦ (z+u)/(suz+1)`, of infinite order. So `K` is infinite and not torsion, and
+    `Γ` is irreducible. The earlier Gupta–Sidki torsion reading is wrong.
+  - For `#281`, this claim is now exactly: `Γ^+` is not left-orderable.
