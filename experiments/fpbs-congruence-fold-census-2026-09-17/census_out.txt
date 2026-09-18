@@ -1,0 +1,48 @@
+== sl2 3 (trials=12)
+n=24 best_s=7 ratio=0.29167 verified_closure=24
+== sl2 5 (trials=12)
+n=120 best_s=17 ratio=0.14167 verified_closure=120
+== sl2 7 (trials=12)
+n=336 best_s=43 ratio=0.12798 verified_closure=336
+== sl2 9 (trials=12)
+n=648 best_s=77 ratio=0.11883 verified_closure=648
+== sl2 11 (trials=12)
+n=1320 best_s=155 ratio=0.11742 verified_closure=1320
+== sl2 13 (trials=12)
+n=2184 best_s=238 ratio=0.10897 verified_closure=2184
+== sl2 17 (trials=12)
+n=4896 best_s=501 ratio=0.10233 verified_closure=4896
+== sl2 19 (trials=12)
+n=6840 best_s=759 ratio=0.11096 verified_closure=6840
+== sl2 25 (trials=12)
+n=15000 best_s=1639 ratio=0.10927 verified_closure=15000
+== sl2 27 (trials=12)
+n=17496 best_s=1910 ratio=0.10917 verified_closure=17496
+== rand 500 1 (trials=12)
+n=500 best_s=55 ratio=0.11000 verified_closure=500
+== rand 2000 1 (trials=12)
+n=2000 best_s=215 ratio=0.10750 verified_closure=2000
+== rand 5000 1 (trials=12)
+n=5000 best_s=543 ratio=0.10860 verified_closure=5000
+== rand 10000 1 (trials=12)
+n=10000 best_s=1088 ratio=0.10880 verified_closure=10000
+== cyc 1000 7 (trials=12)
+n=1000 best_s=7 ratio=0.00700 verified_closure=1000
+== cyc 10000 7 (trials=12)
+n=10000 best_s=7 ratio=0.00070 verified_closure=10000
+== prod 7 50 (trials=12)
+n=16800 best_s=339 ratio=0.02018 verified_closure=16800
+== prod 13 20 (trials=12)
+n=43680 best_s=2277 ratio=0.05213 verified_closure=43680
+== sl2 23 (trials=3)
+n=12144 best_s=1383 ratio=0.11388 verified_closure=12144
+== sl2 29 (trials=3)
+n=24360 best_s=2695 ratio=0.11063 verified_closure=24360
+== sl2 49 (trials=3)
+n=115248 best_s=13319 ratio=0.11557 verified_closure=115248
+== sl2 81 (trials=3)
+n=472392 best_s=54338 ratio=0.11503 verified_closure=472392
+== rand 50000 2 (trials=3)
+n=50000 best_s=5758 ratio=0.11516 verified_closure=50000
+== rand 200000 2 (trials=3)
+n=200000 best_s=23058 ratio=0.11529 verified_closure=200000

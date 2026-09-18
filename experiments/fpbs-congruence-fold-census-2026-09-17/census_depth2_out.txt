@@ -1,0 +1,11 @@
+== sl2d 25 4 (trials=6 prune=1)
+n=15000 best_s=1638 ratio=0.10920 verified_closure=15000
+== sl2d 25 5 (trials=6 prune=1)
+n=15000 best_s=1205 ratio=0.08033 verified_closure=15000
+== sl2d 25 6 (trials=6 prune=1)
+n=500 best_s=48 ratio=0.09600 verified_closure=500
+== sl2d 25 7 (trials=6 prune=1)
+n=500 best_s=51 ratio=0.10200 verified_closure=500
+== sl2d 25 8 (trials=6 prune=1)
+n=500 best_s=48 ratio=0.09600 verified_closure=500
+== sl2d 49 0 (trials=6 prune=1)  [stopped by hand: pruning at n = 115248 too slow]

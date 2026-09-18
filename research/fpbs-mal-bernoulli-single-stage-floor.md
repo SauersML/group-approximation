@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/fpbs-promotion-cost-weak-containment-2026-09-18.md
   - research/artifacts/fpbs-mal-mapping-torus-2026-09-18.md
   - experiments/mal-mapping-torus-2026-09-17/twisted_double_coset.py
+  - research/artifacts/fpbs-congruence-fold-census-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -303,5 +304,39 @@ swarm-0917-w10-w10-fp-follow, minimal-counterexample).** Artifact
     Their cheap graphings are as uncontrolled as the target's witnesses.
   - Mixed traces.
   - P3 and D1 (deep labels).
+**Profinite witnesses: exact finite-level fold density and a congruence
+census (September 18, 2026, swarm-0917-w11-w11-fp-last1,
+census-computation).** Artifact
+`research/artifacts/fpbs-congruence-fold-census-2026-09-18.md`. Experiments
+`experiments/fpbs-congruence-fold-census-2026-09-17/`.
+- **Result.** [[fpbs-mal-profinite-fold-density-is-finite-percolation]] is
+  ESTABLISHED, through its route.
+  - For a profinite action `X = lim Q_n` of `L`,
+    `sigma_b(X) = inf_n r(Q_n)/|Q_n|`, where `r` is the least 2-of-3
+    percolating set of the finite triple hypergraph. No tree is needed, unlike
+    Proposition F of w10.
+  - `Q_j(X) <= sigma_b(X∘phi^j)` for every free `X`.
+  - Every nonzero character tower and every regular dihedral tower
+    (`a -> r`, `b -> s`) percolates with `O(1)` seeds, at every depth. So such
+    witnesses have `Q_j = 0` for all `j`.
+- **What it changes.**
+  - The single-label part of W-prof is now a finite, computable invariant.
+  - A class of floor witnesses is dead at every depth.
+- **Census.** The upper bounds are certified by re-closing each seed set.
+  - Sanov congruence towers, 3-, 5- and 7-adic and primes 5 to 29: plateau near
+    .11, for example `sigma_b(3-adic) <= 1910/17496`.
+  - Random Schreier graphs: .108 to .115.
+  - Odometer and dihedral towers: `O(1/N)`.
+  - Depths `j <= 8` at level 25: between .080 and .110, with no collapse
+    (`census_depth2_out.txt`).
+  - Mod `p`, the depth generators fall into the Borel subgroup for
+    `p = 3, 5, 7, 11, 29, ...` (`borel_absorption_out.txt`). The density does
+    not collapse there either (.096 to .167 on the levels computed).
+- **Where it stops.**
+  - The census gives only upper bounds on `sigma_b`, and `sigma_b` is itself
+    only an upper bound for `Q_j`.
+  - A lower bound on `Q_j(a_j)`, as w10 Corollary 2 needs, is untouched.
+  - Surviving conjecture: `sigma_b(X) > 0` iff the profinite `X` is strongly
+    ergodic.
 
   The claim stays OPEN.
