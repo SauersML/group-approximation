@@ -31,7 +31,10 @@ case that matters for Kazhdan inputs.
 2. **The chamber stratum.** For the `N` of `a2-lattice-boundary-skew-shifts-are-quantum-rigid`, the
    chamber stratum of `∂Y_Γ^(N)` contains a phase coding of `Ω × (Z/N)²` whose minimal pieces are
    phase translates of the rigid `P` (lag conventions not re-checked).
-3. **Necessity of the phase.** Without the phase, rigidity of `Y_Γ` would imply the open
+3. **Exact reduction.** The seeds are locally forced, so the claim is equivalent to rigidity of the
+   seedless boundary `∂Y_Γ^(N)`. That boundary has no isolated points, so Cantor–Bendixson stops
+   there (`a2-seed-rigidity-reduces-to-its-perfect-boundary`).
+4. **Necessity of the phase.** Without the phase, rigidity of `Y_Γ` would imply the open
    `euclidean-building-boundary-shifts-are-quantum-rigid`, because `X_Ω ⊆ Y_Γ` and subshifts inherit
    rigidity.
 
