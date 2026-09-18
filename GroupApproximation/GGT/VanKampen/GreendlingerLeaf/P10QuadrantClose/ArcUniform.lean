@@ -40,8 +40,7 @@ theorem p10QC_filter_infix_of_uniform {α : Type u} (l : List α) (P : α → Bo
     (h : (∀ x ∈ l, P x = true) ∨ ∀ x ∈ l, P x = false) : l.filter P <:+: l := by
   rcases h with h | h
   · have h1 : l.filter P = l := List.filter_eq_self.mpr h
-    rw [h1]
-    exact List.infix_refl l
+    exact (congrArg (fun x => x <:+: l) h1).mpr (List.infix_refl l)
   · have h0 : l.filter P = [] := List.filter_eq_nil_iff.mpr fun x hx => by
       rw [h x hx]
       exact Bool.false_ne_true
@@ -56,8 +55,7 @@ theorem p10QC_filter_prefix_of_uniform {α : Type u} (l : List α) (P : α → B
     (h : (∀ x ∈ l, P x = true) ∨ ∀ x ∈ l, P x = false) : l.filter P <+: l := by
   rcases h with h | h
   · have h1 : l.filter P = l := List.filter_eq_self.mpr h
-    rw [h1]
-    exact List.prefix_refl l
+    exact (congrArg (fun x => x <+: l) h1).mpr (List.prefix_refl l)
   · have h0 : l.filter P = [] := List.filter_eq_nil_iff.mpr fun x hx => by
       rw [h x hx]
       exact Bool.false_ne_true
