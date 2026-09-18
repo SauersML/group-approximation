@@ -13,10 +13,8 @@ Map-level facts for the winding choice of `F'` (`Piece10Live/GFaceWind`).  A fac
 * `gfaceWind_ind_cob`: the indicator of a face set is cobounded by its boundary darts.
 * `gfaceWind_wind_cob`: the winding function of a simple closed walk (the indicator of its side,
   normalised to vanish at a base face) is cobounded by the walk.
-* `gfaceWind_lind_split`: the dart indicator of a disjoint union.
-* `gfaceWind_bd_iff`: for a `0/1`-valued face function cobounded by `c`, the boundary darts of
-  its support are the darts of `c`.
-* `gfaceWind_filter_sub`: filtering by a sub-walk.
+
+The list-level facts are `Piece10Live/GFaceWindList`.
 
 ## Truth check
 
