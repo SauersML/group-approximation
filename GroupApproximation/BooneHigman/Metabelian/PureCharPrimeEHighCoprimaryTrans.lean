@@ -154,11 +154,14 @@ theorem eHighCoprimary_exists_gl_of_additive (act : Q → M → M) (ι : M →+ 
       rw [hequiv]
       exact eHighCoprimaryTrans_mul_diag _ _
     refine eq_mul_inv_of_mul_eq (Units.ext ?_)
-    exact (map_mul (eHighCoprimaryReindex K d) _ _).symm.trans
-      ((congrArg (eHighCoprimaryReindex K d) h).trans
-        (map_mul (eHighCoprimaryReindex K d) _ _))
+    show eHighCoprimaryReindex K d (eHighCoprimaryTransHom ι (Multiplicative.ofAdd (act q m))) *
+        eHighCoprimaryReindex K d (eHighCoprimaryDiagHom ρ q) =
+      eHighCoprimaryReindex K d (eHighCoprimaryDiagHom ρ q) *
+        eHighCoprimaryReindex K d (eHighCoprimaryTransHom ι (Multiplicative.ofAdd m))
+    rw [← map_mul, ← map_mul, h]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_exists_gl_of_additive
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_exists_gl_of_additive
 
 end Trans
 

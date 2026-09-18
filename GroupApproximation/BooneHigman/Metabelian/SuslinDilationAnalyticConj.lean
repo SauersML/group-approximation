@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.ElementaryGroup
 import Mathlib.Algebra.Group.Subgroup.Pointwise
+import Mathlib.Tactic.Group
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

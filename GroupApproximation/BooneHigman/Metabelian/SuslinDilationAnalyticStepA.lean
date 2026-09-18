@@ -1,5 +1,7 @@
 import GroupApproximation.BooneHigman.Metabelian.SuslinDilationAnalyticConj
 import GroupApproximation.BooneHigman.Metabelian.SuslinDilationAnalyticPoly
+import Mathlib.Tactic.Group
+import Mathlib.Tactic.LinearCombination
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -79,7 +81,9 @@ theorem suslinDilAn_estimate_unit (hsurj : ∀ c : S, ∃ (t : ℕ) (a : B), c *
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_estimate_unit
 
 theorem suslinDilAn_estimate_one : SuslinDilationAnalyticEstimate φ s N 1 := fun _ ↦
-  ⟨0, fun _ _ ↦ by simpa only [map_one, inv_one, mul_one] using one_mem _⟩
+  ⟨0, fun _ _ ↦ by
+    simp only [map_one, inv_one, mul_one]
+    exact one_mem _⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_estimate_one
 

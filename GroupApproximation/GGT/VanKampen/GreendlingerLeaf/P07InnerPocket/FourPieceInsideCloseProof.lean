@@ -37,14 +37,30 @@ theorem fourPieceInsideClose_noInterleave_congr {α : Type*} {A B : α → Prop}
 /-- **The `b`-class with the primed label.** -/
 theorem fourPieceInsideClose_iff_b {p1 p2 pb : Prop} :
     (p1 ∨ (¬ p2 ∧ (pb ∧ ¬ p1 ∧ ¬ p2))) ↔ (p1 ∨ (¬ p2 ∧ pb)) := by
-  tauto
+  constructor
+  · rintro (h | ⟨h2, hb, _, _⟩)
+    · exact Or.inl h
+    · exact Or.inr ⟨h2, hb⟩
+  · rintro (h | ⟨h2, hb⟩)
+    · exact Or.inl h
+    · by_cases h1 : p1
+      · exact Or.inl h1
+      · exact Or.inr ⟨h2, hb, h1, h2⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.fourPieceInsideClose_iff_b
 
 /-- **The `a`-class with the primed label.** -/
 theorem fourPieceInsideClose_iff_a {p1 p2 pb : Prop} :
     (p1 ∨ (¬ p2 ∧ ¬ (pb ∧ ¬ p1 ∧ ¬ p2))) ↔ (p1 ∨ (¬ p2 ∧ ¬ pb)) := by
-  tauto
+  constructor
+  · rintro (h | ⟨h2, hn⟩)
+    · exact Or.inl h
+    · by_cases h1 : p1
+      · exact Or.inl h1
+      · exact Or.inr ⟨h2, fun hb => hn ⟨hb, h1, h2⟩⟩
+  · rintro (h | ⟨h2, hn⟩)
+    · exact Or.inl h
+    · exact Or.inr ⟨h2, fun hb => hn hb.1⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.fourPieceInsideClose_iff_a
 

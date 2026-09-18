@@ -38,7 +38,8 @@ theorem surjStabGauss_int_step (s : R) (w0 : Fin n → ℤ) (i j : Fin n) (hij :
   by_cases hk : k = j
   · subst hk
     simp only [Pi.add_apply, Pi.single_eq_same, Int.cast_add, Int.cast_mul, mul_add, mul_assoc]
-  · simp only [Pi.add_apply, Pi.single_eq_of_ne hk, add_zero]
+  · rw [Pi.add_apply, Pi.single_eq_of_ne hk, add_zero, Pi.add_apply, Pi.single_eq_of_ne hk,
+      add_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabGauss_int_step
 
@@ -69,7 +70,8 @@ theorem surjStabGauss_int_reach (hn : 0 < n) (s : R) (N : ℕ) :
     by_cases hex : ∃ i j : Fin n, i ≠ j ∧ w0 i ≠ 0 ∧ (w0 i).natAbs ≤ (w0 j).natAbs
     · obtain ⟨i, j, hij, hi, hle⟩ := hex
       have hj1 : (w0 + Pi.single j (w0 i * -(w0 j / w0 i))) j = w0 j % w0 i := by
-        rw [Pi.add_apply, Pi.single_eq_same, Int.emod_def, mul_neg, ← sub_eq_add_neg]
+        rw [Pi.add_apply, Pi.single_eq_same, Int.emod_def]
+        ring
       have hlt : (w0 j % w0 i).natAbs < (w0 j).natAbs := by
         have h0 := Int.natAbs_lt_natAbs_of_nonneg_of_lt (Int.emod_nonneg (w0 j) hi)
           (Int.emod_lt_abs (w0 j) hi)
@@ -81,7 +83,7 @@ theorem surjStabGauss_int_reach (hn : 0 < n) (s : R) (N : ℕ) :
         by_cases hk : k = j
         · rw [hk, hj1]
           exact hlt.le
-        · rw [Pi.add_apply, Pi.single_eq_of_ne hk, add_zero]
+        · exact le_of_eq (by rw [Pi.add_apply, Pi.single_eq_of_ne hk, add_zero])
       obtain ⟨i', β, hr⟩ := ih _ (lt_of_lt_of_eq hsum hN)
         (w0 + Pi.single j (w0 i * -(w0 j / w0 i))) rfl
       exact ⟨i', β, surjStabGauss_reach_trans (surjStabGauss_int_step s w0 i j hij _) hr⟩

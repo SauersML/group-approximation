@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Polynomial.Div
+import Mathlib.Tactic.Ring
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

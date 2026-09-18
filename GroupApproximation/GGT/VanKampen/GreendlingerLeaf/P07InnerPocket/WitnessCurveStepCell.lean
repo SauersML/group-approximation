@@ -92,8 +92,8 @@ theorem witnessStep_step_of_cellTurn₂ {a b : RegionCandidate D eps X}
     have hC : ∃ u z : List X.toCombMap.Dart, FourBlock.cellG2Word G₁ G₂ = u ++ x :: y :: z := by
       unfold FourBlock.cellG2Word
       exact witnessStep_filter_adj hbar
-        (List.mem_filter.mpr ⟨hx2, @decide_eq_true _ _ ⟨hx1, hx2⟩⟩)
-        (List.mem_filter.mpr ⟨hy2, @decide_eq_true _ _ ⟨hy1, hy2⟩⟩)
+        (List.mem_filter.mpr ⟨hx2, @decide_eq_true _ (_) ⟨hx1, hx2⟩⟩)
+        (List.mem_filter.mpr ⟨hy2, @decide_eq_true _ (_) ⟨hy1, hy2⟩⟩)
     obtain ⟨u', z', huz⟩ := hC
     refine ⟨invDarts X G₁.darts ++ FourBlock.sideAWord a b G₁ G₂ ++ u', [],
       z' ++ FourBlock.sideBWord b G₁ G₂, ?_⟩

@@ -83,3 +83,15 @@ Let `N >= 3` be one of the ranks.
    generation) and 3, if Quillen's `K_1` computation and Bass's theorem apply as
    recalled. This is recorded only as calibration; it is not finitely generated. A
    finitely generated ring with the same `K_1` behaviour is the open core.
+3. **The Leavitt resolvent ring `R_L`** (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`,
+   a lane proof under review) is finitely presented and simple, contains `Q`, and
+   satisfies `R_L ≅ M_2(R_L)`. So it is a candidate for the single-rank form above.
+   - Condition 1 holds if that node stands.
+   - Condition 3 is undecided: is `Λ_N(R_L)` finitely generated? This is the first
+     test. Whitehead's lemma gives
+     `λI_(2N) ≡ diag(λ^2 I_N, I_N) mod E_(2N)(R_L)`. So the question is whether
+     `R_L` has a `K_1`-type invariant that sees `λ^2`.
+   - The unit-group target `leavitt-resolvent-derived-units-mod-centre-fp-simple`
+     meets the same test. If `D = [R_L^x, R_L^x]` is perfect or finitely generated,
+     then `D/Z(D)` finitely presented forces `Q^x ∩ D` finitely generated. The
+     argument is that of `rational-scalars-obstruct-fp-elementary-hosts`, part 4.
