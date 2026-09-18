@@ -67,3 +67,9 @@ identity detects any break of orientation, anywhere and at any scale.
   that satisfies `E` and cannot act on a circle or a Cantor set extending `T`.
 - **The dynamical evidence points to a yes for Question 3.2 at `T`.** A proof would still
   have to go from this finite basis to finite normal generation of the actor kernel.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review. Every step of `thompson-t-identities-one-word-basis-proof`
+was checked; the details are on that route. There are no gaps. The scope statements under "What is not
+claimed" are accurate.

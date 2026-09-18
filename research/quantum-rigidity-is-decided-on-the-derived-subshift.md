@@ -97,3 +97,30 @@ and acts as the point evaluation.
   - structure at isolated points (forced defects, where the computation of a seed starts) is free.
 
   Minimality and rigidity must be paid for on the perfect kernel. The word problem is paid for at the origin.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review. I checked the route
+`quantum-rigidity-derived-subshift-proof` line by line.
+
+- **Lemma F** (the induction along `F_j`).
+  - The expansion of `Q` over the free sites of `kB_ρ` is valid by commutation, since the diameter is
+    at most `2ρ ≤ 2D'`.
+  - The `(Q3)` pruning at scale `ρ` is justified by monotonicity.
+  - The absorption `E_c(h)T_β = T_β` for surviving `β` is exactly the forcing condition.
+- **Lemma A.** `P_x` is central, so two isolating patterns give `P = PP' = P'P = P'`.
+- **Lemma P**, by compactness.
+- **Part 2.**
+  - The certificate `[E_a(q), E_b(q')] ∈ I` holds because the universal algebra is a `D`-family for
+    `Y'`. That uses that rigidity allows any `W_0`.
+  - `Φ` and `Z` are finite, and `D_1` does not depend on `(q, q')`.
+  - The key step is `P_β(w) = P_β(w)P_(x̂)`, because `wg_xB_(ρ_x) ⊆ wB_(D')`. It kills the `(Q3)`
+    relators at `Φ` on `(1 − S)W_0`, and `(1 − S)W_0` is invariant.
+- **Corollary C** (the gluing over `Z`). It needs `ρ = R ≥ m`, and that holds.
+- **Scope.** Local forcing is read against the language `L_ρ(Y)`, not against local admissibility. The
+  rule-based notion used in `seed-evaluation-is-bounded-by-the-forcing-radius` is stronger: it implies
+  this one, but not conversely.
+
+The companion node in the same commit, `seeded-recursively-presented-groups-have-solvable-word-problem`,
+was read through part 3. Its `Π^0_1`-singleton search, the termination argument by König's lemma, and
+the word-problem criterion are correct. PASS as far as read; part 4 was not checked.

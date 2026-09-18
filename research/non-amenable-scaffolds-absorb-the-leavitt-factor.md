@@ -23,9 +23,11 @@ The C*-analogue, proper infiniteness of `C(βP) ⋊_r P` iff `P` is non-amenable
 - that `EL_3(F_2[t])` and `EL_3(F_2[t, t^(-1)])` are infinite Kazhdan groups (lattices in higher-rank groups
   over local fields; also Ershov–Jaikin-Zapirain).
 
-**Literature (recalled, not re-read; priority).** Ara–Li–Lledó–Wu (*Amenability of coarse spaces and
-K-algebras*, Bull. Math. Sci. 2018) prove the uniform-Roe form of Theorem 1: the algebraic uniform Roe algebra
-`ℓ^∞(P, k) ⋊ P` of a bounded-geometry space over a field is properly infinite iff the space is non-amenable.
+**Literature (read at source 09-18; priority).** Ara–Li–Lledó–Wu, arXiv:1607.00328 (*Amenability of coarse
+spaces and K-algebras*, Bull. Math. Sci. 2018), Theorem 6.3: for a locally finite extended metric space `X`, `X`
+is amenable iff its translation algebra `K_u(X)` is not properly infinite, iff it contains no unital
+`L_K(1,n)`. Their proof of (4) ⇒ (1) is the partial-translation construction of Theorem 1(a) below, and
+their (1) ⇒ (4) implies Theorem 1(b) through orbit representations.
 Theorem 1 refines it. The paradoxical decomposition is read from a finite-alphabet SFT, so it already lives
 in `LC(Z, k) ⋊ P` for every nonempty closed invariant `Z ⊆ X_par × Y`. That is what Track B needs.
 

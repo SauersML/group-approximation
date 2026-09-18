@@ -79,6 +79,9 @@ the identity.
 - **Right lcms.** Two one-step morphisms with a common multiple have cube walls that are
   pairwise crossing walls adjacent to `w`. Two disjoint walls adjacent to `w` have disjoint
   far halfspaces, so no vertex lies beyond both. So the lcm is again one step.
+- **Full write-up.** The complete verification for referees, using Dehornoy's mcm criterion, an explicit
+  normal form and the norm, is `flagged-pointed-cube-garside-verification`. The two bullets below are
+  the original sketch.
 - **Heads.** The `𝔖⁺`-left-divisors of `a` form a finite set closed under lcm, so `a` has a
   head: the first Niblo–Reeves cube, labelled by every wall that is adjacent there, not
   crossed later, and in `τ` if still adjacent at `u`. Iterating heads gives normal forms
@@ -102,10 +105,19 @@ hereditary sets `D` of morphisms `o → (z,σ)`.
   - So the gate vertex `p'` next to `J` lies in `I(o,ω)` and is adjacent to `J`.
   - Then `(p', Max(o,p') ∪ {J}) ∈ D_ω ⊆ D'` forbids `ω'` from crossing `J`, a
     contradiction.
-- **These are all the maximal points.** So the maximal characters are exactly the `D_ω`.
+- **The maximal points (corrected after bh-ref-q115-b).** A maximal `D` is either principal
+  or not. A principal maximal `D = ↓x` needs `x` to have no proper extension, which forces the
+  full label `adj(z)`, so `D` is an isolated sink point. A non-principal maximal `D` refines
+  `D_{ω_D}` with `ω_D` in the Roller boundary, so `D = D_{ω_D}`. The earlier version of this
+  step missed the sinks.
 - **Topology.** `ω ↦ D_ω` is continuous and injective, because membership of `(z,σ)` is a
   finite set of halfspace conditions. It is defined on the compact space `∂_R X`, so it is
-  a homeomorphism onto a closed set. That set is `∂Ω` ∩ base cone.
+  a homeomorphism onto a closed set. That set is `X_∞ = ∂Ω ∩ Ω_∞` intersected with the base
+  cone.
+- **Sinks.** The sinks accumulate only at points `D_ω`, which are limits of `↓(z_n, adj z_n)`
+  along rays. So `∂Ω = X_∞ ⊔ {sinks}`, with `X_∞` closed.
+- **Invariance.** Prefixing and un-prefixing preserve maximal infinite characters, so `X_∞`
+  is invariant. All of §3 takes place on `X_∞`, and there `𝒢⁺` means `I_l ⋉ X_∞`.
 - **Other cones.** The cone of `[(w,σ)]` is treated the same way inside `Q(w,σ)`.
 
 ## 3. Every element is a bisection (item 3)

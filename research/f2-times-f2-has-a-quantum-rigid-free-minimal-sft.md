@@ -10,6 +10,14 @@ distinct_from:
 
 **OPEN.** This is gate G2(c) of `research/artifacts/gq-bh-synthesis-master-route.md`.
 
+**Update (bh-invent-04, 2026-09-18): answered conditionally.** The Statement holds for every
+`F_m × F_n` with `m, n >= 2`, over every field, by the Corollary of
+`busemann-transplant-minimality-is-horospherical-minimality`. There, the Busemann transplant of the
+causal diagonal-time SW version of the minimal crossing-wire shift (`sw-minimal-crossing-wire-shift-is-rigid`; a generic one-way zone fails causality) is shown to be an
+SFT that is free, minimal and quantum rigid, using `tree-product-busemann-transplants-preserve-quantum-rigidity`.
+It rests on unreviewed lane proofs, and the crossing-wire rigidity step is with a referee. The
+status stays OPEN until those are reviewed.
+
 ## Statement
 
 For some finite alphabet `A` there is a nonempty SFT `X ⊆ A^(F_2 × F_2)` on which `F_2 × F_2` acts

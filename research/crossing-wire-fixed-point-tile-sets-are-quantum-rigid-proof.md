@@ -104,3 +104,9 @@ QED
 - **The colour-product set.** It is all crossings, with rows crossing columns but never rows, and it is not
   rigid. Here (L3) is used in full: every pair of inputs meets.
 - **Field independence.** The proof uses only idempotents, sums and finite central decompositions.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+Steps 1–5 are correct as written, given (L0)–(L4). See the Referee section of the target for the layout caveat:
+DRS assume non-crossing wires and a window-encoded zone, so (L3)–(L4) are a benign, coordinate-determined
+modification that the fixed-point step tolerates.

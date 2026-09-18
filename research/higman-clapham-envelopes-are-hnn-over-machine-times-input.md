@@ -134,3 +134,37 @@ quotient map `F → G`.
 - So CAP is decided at the envelope by asking whether local rules can write the graph of the
   input's quotient map. A seed that can do so carries the input's word problem in its language,
   which is the carrier principle made concrete.
+
+## Referee (bh-ref-ffwz, 2026-09-18): §§1–3 PASS; §4 correctly marked unverified
+
+- **§1, Theorem 1: PASS.**
+  - The subgroup `⟨F, t^{-1}Ft⟩ = F *_N F'` follows from Britton: a pinch needs `f ∈ L ∩ F = N`.
+  - `π` is well defined on the amalgam, since both copies of `N` map to 1.
+  - `φ` is an isomorphism onto the graph `M_1`.
+  - The finite presentation is correct even though `B = H × G` is not finitely presented.
+    Conjugating `t^{-1} r(a) t = r(a)` by `s` gives `r(a) r(ā) = r(a)`, using that each
+    `ā_i` commutes with `H`. So every relator `r(ā)`, `r ∈ N`, is derived, and the finite
+    presentation defines `P`.
+  - `G ≤ B ≤ P` by the HNN normal form.
+  - This is Higman's final step (Proc. R. Soc. A 262 (1961)), in the form of Lyndon–Schupp,
+    *Combinatorial Group Theory*, Ch. IV §7. It should be credited as classical; the node's
+    contribution is the explicit shape and the bookkeeping.
+- **§2, Theorem 2 and Corollary 3: PASS.**
+  - Britton reduction in `H` and `P` needs exactly the listed memberships and `φ`, `φ^{-1}`.
+  - `π(h)` is computed by searching for a word for `h` in `a_i, t^{-1}a_i t`. The search
+    terminates because membership is already known and `H` has solvable word problem.
+  - Corollary 3 is a legitimate application of the combination theorem:
+    - (H1)–(H3) for `H` (vertex `K`) and for `P` (vertex `B`) are supplied by Theorem 2;
+    - vertex groups are finitely generated;
+    - (D) for `B` comes from the product rule.
+  - The word-problem half is Clapham's theorem (Proc. LMS 17 (1967)), recorded in
+    `clapham-fp-embedding-preserves-word-problem`.
+- **§3: PASS.** A direct factor of a vertex group is elliptic. The (FA) lemma is Serre's;
+  Kazhdan implies (FA) by Watatani (1982).
+- **§4.** The node rightly states (DB) and (D)(K) as unverified premises.
+  - Aanderaa–Cohen modular machines are recalled, not read at source. Their exact form
+    (HNN extensions of `Z²` along lattice subgroups) should be checked against Aanderaa–Cohen
+    (1980) or Lyndon–Schupp IV.7 before §4 is upgraded.
+  - (DB) is exactly the gap between "benign" and "decidably benign". It is the right thing to
+    isolate.
+- **§5.** This is interpretation, with no claims to check.

@@ -48,3 +48,15 @@ presented and the action is of type (A). So the fp clause of type (A), the one B
 for, reduces to stabilizers of 3-element sets. Constructions that make finite-set stabilizers into
 products of copies of one known `F_∞` group, as circle and interval groups do, certify finiteness for
 free. This is the finiteness engine behind `circle-pl-groups-inherit-finiteness-from-interval-groups`.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** It is a clean application of Brown's criterion, as lane bh-near-actions says.
+- **The complex.** The `n`-skeleton of the full simplex is `(n−1)`-connected. The barycentric
+  subdivision makes the action rigid, since the sets in a chain have distinct sizes.
+- **Orbits.** Finitely many orbits of cells in every dimension follow from (O) for `k ≤ n + 1`.
+- **Stabilizers.** Chain stabilizers have finite index in `G_{σ_p}`, so they are `F_n` ⊆ `F_{n−p}`.
+- **Type (A).** Ordered pairs come from 2-subset orbits and point orbits. (St) at `k = 1` already
+  gives finitely generated point stabilizers.
+- **Priority.** No novelty is claimed. This is the standard "Brown on a complex of finite subsets"
+  argument, in the spirit of Brown and Stein.

@@ -10,7 +10,8 @@ How the runs were made:
 - Validation runs: single-core, seconds each.
 - Two brute-force passes (the E scan of §3 and a first criterion scan): 16 processes each, run directly on a shared
   node. That broke the MSI rules, and both were stopped.
-- Everything after them: one SLURM job at a time.
+- Everything after them: one SLURM job at a time, including the two SAT jobs 1327013 and 1327358 (4 cores, at
+  most 30 minutes each).
 
 ## 1. What the machine is
 
@@ -99,26 +100,91 @@ That is the ballistic-machine lesson (`ballistic-machine-runs-give-periodic-poin
 
 In SMART_m this is paid for by completeness. On every tape, every level-0 move has an infinite chain of parent
 moves, and every nonzero letter can serve as a move boundary. The binary design lacks exactly this: its §4 lists
-the parentless patterns. The searches so far find no fill that supplies the missing parents on `b`-blocks, but they are not complete
-(§6).
+the parentless patterns. §6 shows that no fill supplies the missing parents.
 
-## 6. Status of the complete search, and the next step
+## 6. Complete decision: no fill works (SLURM job 1327013)
 
-- **Not decided.** No fill passing the criterion was found among the 500,000 chronological nodes and the 57,000
-  backjumping nodes. Every dead leaf in both searches was a `T` failure.
-- The learned nogoods stay large: the search depth stays at 8–13 of the 15 free entries. So no small set of free
-  rules is contradictory by itself. If an obstruction exists, it is spread over many rules, not local to a few.
-- **Caveat.** Returns were capped at 40 steps (hierarchical gaps are 12). A fill with longer junk returns would be
-  missed.
-- **Next step.** Decide the fill problem with an indexed nogood store (watched facts) or a SAT encoding of the
-  local certificate. If no fill exists, change the fixed rules instead: add a letter that marks `b`-runs, so that
-  a `b`-block becomes the boundary of a legitimate parent move.
+**The encoding.** The search is a lazy SAT encoding, run as a counterexample-guided loop (`bh_sat.py`).
+- *Variables:* the 15 free positions, each an output, all different for each neighbour value.
+- *Clauses:* nogoods. A nogood is the set of free-rule facts `(neighbour, input, output)` that one failing
+  certificate computation consulted. That computation is deterministic given those facts, so it fails for **every**
+  fill containing them.
+- *Search:* one DFS over the fill tree:
+  - every assignment is checked against the clauses indexed by its fact;
+  - clauses added later are rechecked against the prefix whenever a level resumes, which gives backjumping;
+  - the certificate runs only at full fills that survive;
+  - each failure adds the subset-minimal nogoods of **all** failing configurations of the first failing check.
+- The search is complete.
 
-**Lesson for general BH.** The binary wall for `BS(1,2)` in Brin–Thompson hosts is **not** in the hierarchy. A
-reversible one-head machine with radius-1 reads realizes an exact binary hierarchy on hierarchical tapes: exact
-doubling, bounded gaps, and a radius-1 renormalization `φ U² = U φ`, with no growing control information. That is evidence against the hierarchical form of the conjecture in
-`research/artifacts/gq-affq-binary-two-head-design.md`: numerical over 15 levels, plus the hand recursion of the
-design; not a proof. What
-remains is *completeness*: a height-`m` renormalization forbids periodic points, so every background the machine can
-write, including its own counter letters, must restart a hierarchy. For renormalization witnesses (BS, dilation
-groups, `Aff(Q)` stepping stones), design the junk first. The hierarchy is the cheap part.
+**Calibrations (same job).**
+1. *Planted negative:* the check `P` with the uncorrected `A` of §2. Verdict UNSAT on the first leaf, with an empty
+   nogood, as it must be: that failure does not depend on the fill.
+2. *Hierarchical tapes:* the check is the tower and `φ U² = U φ` at every `A`-point of the zero-tape orbits (3,000
+   steps from each of 8 states), with the DFS value order reversed so that the default fill comes last. Verdict SAT on
+   the first leaf. These orbits consult **no** free rule at all: the hierarchy runs entirely on the 10 fixed rules.
+3. *Soundness:* random completions of 10 learned nogoods. All 10 fail again.
+
+**Result.** Verdict **UNSAT** for the full criterion (R, T, C2, P, P⁻¹, I, with returns capped at 40).
+- 188 fills were evaluated and 376 nogoods learned, eliminating all 1,728,000 fills in 287 s.
+- Nogood sizes: 10 of size 1, 38 of size 2, 78 of size 3, 130 of size 4, 96 of size 5, 24 of size 6.
+- The smallest nogoods are single facts: with a nonzero right neighbour, `S→` reading `b` must not continue as `X←`.
+  The fixed rule covers only a `0` there, the case "an `R_R` ended at its home in an S-parent". This looks like
+  pattern 2 of the design's §4 (an `R` whose home has a nonzero cell beyond it), but that was read off by hand, not
+  checked.
+- **Correction.** An earlier draft of this section inferred "no small set of free rules is contradictory" from
+  search depths of 8–13. That was wrong: depth is not nogood size, and single facts are already fatal.
+
+**Scope.** The result holds for this rule format:
+- 3 letters, radius-1 reads;
+- the 10 fixed rules per neighbour value;
+- `Y`, `A` and `φ` as in §1;
+- returns of at most 40 steps. Hierarchical gaps are 12. A fill whose junk returns are longer than 40 steps is not
+  excluded.
+
+Within that scope, the fixed rules must change: completing them is impossible.
+
+## 7. A fourth letter as a marker (SLURM job 1327358): undecided
+
+**The machine.** The fixed rules stay, and a fourth letter `c` counts as nonzero. Every rule that reads `c`, or whose
+neighbour is `c`, is free (`bh4_sat.py`). Each neighbour value now has 10 free inputs mapping bijectively onto 10
+free outputs, 5 of which write `c`, giving `(10!)^4 ≈ 1.7·10^26` fills. This is the most general marker the rule
+format allows. For example, "write `c` on a `b`-run" is one fill.
+
+**Seeding.** Every 3-letter nogood transfers unchanged: its failing tape contains no `c`, and it consults the same
+rules. So the search starts from the 376 clauses of §6, which job 1327358 recomputed and matched exactly.
+Consequence: a working marker must be written by one of the old free inputs, on the old junk.
+
+**Calibrations (same job).**
+- planted: UNSAT at once;
+- zero-tape orbits: SAT on the first leaf;
+- soundness: random completions of 6 transferred and 8 learned nogoods all fail again.
+
+**Result: TIMEOUT after 1,150 s, so undecided.**
+- 3,464 fills were evaluated and 8,499 nogoods learned; no fill passed.
+- The learned nogoods are large: most have 8–11 facts, out of 40 variables. So in this search the failures on
+  marker junk are spread over many rules, not concentrated in a few.
+- Deciding this space needs a stronger solver (a real CDCL encoding of the local certificate) or a hand-designed
+  marker, not more of this loop.
+
+**Lesson for general BH.** The binary wall for `BS(1,2)` in Brin–Thompson hosts is not the hierarchy. It is
+*completeness*, and completeness can now be decided.
+
+What works:
+- A reversible one-head machine with radius-1 reads runs an exact binary hierarchy on its fixed rules alone. The
+  zero-tape orbits consult no free rule.
+- On those orbits it has exact doubling, gap 12 and `φ U² = U φ`, checked over 15 levels.
+- That is evidence against the growing-control-information conjecture of
+  `research/artifacts/gq-affq-binary-two-head-design.md`. It is numerical, not a proof.
+
+What fails:
+- A height-`m` renormalization forbids periodic points. So every background the machine can write, including its own
+  counter letters, must restart a hierarchy.
+- A lazy SAT encoding of the local certificate proves that no completion of this rule table does that (§6).
+
+The transferable method:
+- freeze the hierarchy rules and leave the junk rules free;
+- decide the junk by learning clauses from the rule facts each failing computation consulted;
+- carry the clauses over unchanged to every alphabet extension (§7).
+
+For renormalization witnesses (BS, dilation groups, `Aff(Q)` stepping stones), design the junk first. The hierarchy
+is the cheap part.
