@@ -9,14 +9,13 @@ distinct_from:
   lift-presented-automaton-groups-satisfy-boone-higman: that consumes one lift-presented action; this produces new finite-state actions to feed it.
 ---
 
-**ESTABLISHED** by `commonly-fixed-letters-compress-to-faithful-actions-proof` (lane proof, elementary; not yet
-refereed; no priority claimed).
+**ESTABLISHED** by `commonly-fixed-letters-compress-to-faithful-actions-proof` (lane proof, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-commonly-fixed-letters-compress-and-spine-grigorchuk.md`.
 
 ## Setting
 
 `G = ⟨S⟩ <= Aut(X^*)`, `S` finite and closed under sections and inverses. Suppose a letter `x` is fixed by every
-state. Then `σ(g) = g|_x` is an endomorphism of `G` (all elements fix `x`). Choose `p >= 0` with `σ^p`
-idempotent on `S` and let `q >= 1` be the order of the permutation `σ` induces on `σ^p(S)`. For `b >= 0` let
+state. Then `σ(g) = g|_x` is an endomorphism of `G` (all elements fix `x`). Choose `p >= 0` and `q >= 1` with `σ^p = σ^{p+q}` on
+`S` (they exist because `S` is finite). For `b >= 0` let
 `[b] = b` if `b < p + q`, and otherwise `[b]` is the unique `c in {p, …, p+q-1}` with `c ≡ b (mod q)`; then
 `σ^b = σ^{[b]}` on `G`. Put `Y = X ∖ {x}` and `A = Y × {0, 1, …, p+q-1}`.
 
@@ -43,6 +42,7 @@ by reading a point `x^{b_0} y_0 x^{b_1} y_1 …` of `X^ω` (with infinitely many
    appear; they correspond to rays `(x^c y)^ω` of the old action, and compression can be repeated at them.
 3. **Example.** `spine-grigorchuk-automaton-group-has-a-bounded-action`: the linear-activity automaton of
    `linear-activity-automata-can-have-non-fp-nekrashevych-groups`, whose `V_3` is not finitely presented,
-   compresses to a bounded automaton on 4 letters, so its group has a finitely presented `V_4` and satisfies
-   Boone–Higman by `lift-presented-automaton-groups-satisfy-boone-higman`.
+   compresses to a bounded, contracting automaton on 4 letters, so its group has a finitely presented `V_4`
+   (Nekrashevych FP2). Boone–Higman for it follows unconditionally from that contracting action or from
+   `G <= (Γ ≀ C_2) × Γ` (see that node).
 4. If `|A| = 1` (so `d = 2` and `p + q = 1`), faithfulness forces `G = 1`.

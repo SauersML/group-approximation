@@ -13,7 +13,10 @@ distinct_from:
 **ESTABLISHED** by `bbmz-oligomorphic-twisted-questions-proof` (lane proof, elementary, assembling
 landed nodes). Referee a (proof gaps): PASS in
 `research/artifacts/gq-referee-a-hyperbolic-groups-lie-in-the-permutational-class.md` (2bdad9399),
-nit N2 applied. No priority claimed; Zaremsky's text, where type (A)
+nit N2 applied. Referee b (citations): PASS,
+`research/artifacts/gq-referee-b-hyperbolic-groups-lie-in-the-permutational-class.md` (9ec4a1a7c):
+numbering and wording of Questions 1.5 and 1.6 checked verbatim.
+No priority claimed; Zaremsky's text, where type (A)
 was introduced after these questions were posed, was not re-read for a remark to the same effect.
 
 ## The questions
@@ -24,6 +27,9 @@ arXiv:2309.06224v3, §1.3 (TeX, read on MSI):
   finitely presented oligomorphic group with finitely generated stabilizers of finite subsets?"
 - **Question 1.6.** "Does every finitely presented simple group embed in a finitely presented
   (simple) twisted Brin--Thompson group?"
+
+A related oligomorphic question is BBMZ Question 1.3, for finitely presented subgroups of the
+rational group `R_{Γ,E}`; it is not treated here.
 
 Here a group of permutations of `S` is *oligomorphic* when it has finitely many orbits on `S^n`
 for every `n` (Cameron), and the twisted Brin--Thompson group `SV_G` is defined by BBMZ for a group
@@ -45,7 +51,10 @@ for every `n` (Cameron), and the twisted Brin--Thompson group `SV_G` is defined 
 4. **Question 1.6, abstract reading.** If non-faithful actions are allowed, the answer is yes:
    by FFWZ Theorem C every finitely presented simple group sharply embeds in the pair
    `(G, ker(G ↷ S))` of a type [A_2] action, hence embeds in the finitely presented abstract
-   twisted Brin--Thompson group `SV_G`. That group is not simple when the action has a kernel
+   twisted Brin--Thompson group `SV_G`. **Caveat (2026-09-18):** finite presentation of the
+   abstract `SV_G` for a non-faithful `[A_2]` action is FFWZ Theorem B(ii), whose published
+   proof has a gap (`ffwz-nonfaithful-stein-stabilizers-contain-canonical-kernel`); only the
+   sharp embedding in the pair `(G, ker)` is secure. That group is not simple when the action has a kernel
    (it is relatively simple over `SK_G`), so the parenthetical "(simple)" of Question 1.6 is not
    met.
 5. **The gap between the readings** is, for each finitely presented simple group, removal of the

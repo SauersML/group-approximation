@@ -57,7 +57,9 @@ listed there (BFFHZ Theorem C and their text around Question 3.4).
 **Step 4 (items 4 and 5).** A finitely presented simple group satisfies Boone--Higman trivially, so
 FFWZ Theorem C (`boone-higman-implies-relative-permutational-bh`) gives a type [A_2] action
 `G ↷ S` with `S_0` sharply embedded in `(G, K)`, `K` the kernel.
-`abstract-btb-pairs-fp-and-relatively-simple` makes the abstract `SV_G` finitely presented and
+`abstract-btb-pairs-fp-and-relatively-simple` makes the abstract `SV_G` finitely presented (for a
+non-faithful action this rests on FFWZ Theorem B(ii), whose proof has a gap:
+`ffwz-nonfaithful-stein-stabilizers-contain-canonical-kernel`) and
 relatively simple over `SK_G`, and embeds `G`. When `K ≠ 1`, the proper normal subgroup `SK_G` contains `λ(K) ≠ 1`, so `SV_G`
 is not simple. Item 5 is `a2-kernel-removal-iff-image-satisfies-pbh`
 applied to this action.

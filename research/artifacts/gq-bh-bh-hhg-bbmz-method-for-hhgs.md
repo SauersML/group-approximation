@@ -194,3 +194,31 @@ self-similarity.**
   (`bliw-locally-finite-tree-actions-embed-in-fp-simple-groups`,
   `cat0-groups-with-a-tree-factor-lie-in-type-a-class`) already applies. The
   non-residually-finite fibres left open there remain out of reach.
+
+## 8. BBCMP Question 1.16 (2026-09-18, third pass)
+
+**Source.** BBCMP preliminary PDF, `gq/src/bbcmp/`. Pages 1–16 were read as rendered
+pages.
+- Question 1.16 is on p. 7, and is quoted verbatim in
+  `mapping-class-groups-are-continuous-automatic`.
+- Definitions are on pp. 3–4.
+- The continuity criterion is Proposition 2.1 (p. 8).
+- The Garside sequential left action is in the proof of Theorem 2.4, case (1)
+  (pp. 11–12).
+- Groupoids are Theorem 2.12 (p. 15).
+- The commensurability part of Proposition 1.4 is stated on p. 4, but its proof is not in
+  pp. 1–16.
+
+**Landed.**
+- `artin-groups-mod-central-garside-power-are-continuous-automatic` (+ `-proof`):
+  - `A/⟨Δ^c⟩` for a central Garside power, with normal forms the positive Deligne forms
+    that have fewer than `c` leading `Δ`s;
+  - continuity follows from the sequential left action once one checks that left
+    multiplication moves the infimum by at most one.
+- `low-complexity-mapping-class-groups-are-continuous-automatic` (+ `-proof`):
+  `S_{0,n}`, `S_{1,0}`, `S_{1,1}`, `S_{2,0}`.
+
+**The pattern in all BBCMP examples.** The left action of a generator is a letter-to-letter
+transducer read from the front: Garside carries, normal cube paths, Baumslag–Solitar
+forms. A continuous automatic structure for `Mod(S_g)`, `g ≥ 3`, needs normal forms with
+this property. Candidates are recorded in the node's Attempts.

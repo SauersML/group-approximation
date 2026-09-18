@@ -49,3 +49,4 @@ Owners, please qualify these as regular-shell statements, or say why the genuine
   P highly transitive on finitely many cofinite orbits (self-similar stabilizer), Z(P)=1, no finite normal subgroups.
   => window 0 dead both ways for FW inputs with centre; E_N(R_L) never passes; St_N(R_L) needs non-central K_2.
 **Next:** windows N >= 1 for FW inputs (does transfixing extend?); non-FW inputs containing GL_n(Q).
+**349d1d32b:** referee-a PASS on fw-inputs-admit-no-twisted-shell-normalization (07944799c), nits applied; cross-ref to bh-kazhdan-inputs parallel node (their items 1-2 subsume my m=1; my HT lemma covers their open m<0 endomorphism case).

@@ -14,8 +14,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, short; inputs cited). gq-referee-a PASS (proof gaps,
-`research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5); citation review
-by gq-referee-b pending. No priority claimed.
+`research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5); gq-referee-b PASS
+(citations, `research/artifacts/gq-referee-b-decidable-expanders-and-ce-separator.md`, a145cf14f). No priority claimed.
 
 `CE` is the class of countable groups that coarsely embed into Hilbert space, using any proper
 left-invariant metric. It is closed under isomorphism and subgroups, since the inclusion of a

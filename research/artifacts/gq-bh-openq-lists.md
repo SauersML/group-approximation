@@ -14,7 +14,7 @@ Wording is quoted from the source. "Main" means origin/main at the time of landi
 | # | Question (source) | Node | Status | Tractability |
 |---|---|---|---|---|
 | A1 | Zaremsky, OWR Report 26/2018, p. 1624, **Question 110**: "Does the Higman group ⟨a,b,c,d \| b^a=b², c^b=c², d^c=d², a^d=a²⟩ embed into the Lodha–Moore groups? Or at least into Monod's H(**R**)?" | `higman-group-embeds-in-no-lodha-moore-or-monod-group` | ESTABLISHED (corollary; lane proof, not reviewed). **Answer: no** | settled by a node already on main |
-| A2 | AimPL *Groups of dynamical origin*, Problem 3.1(c): "Is there a finitely presented simple group with commutator width greater or equal to 2?" | `fp-simple-group-with-commutator-width-at-least-two` | OPEN | medium |
+| A2 | AimPL *Groups of dynamical origin*, Problem 3.1(c): "Is there a finitely presented simple group with commutator width greater or equal to 2?" | `fp-simple-group-with-commutator-width-at-least-two` | ANSWERED in the literature: Caprace--Fujiwara, arXiv:0809.0470, Cor. 1.4 (Kac--Moody groups over finite fields; infinite commutator width; also Kourovka 14.13). Corrected 09-18 by bh-free-19 | — |
 | A3 | MathOverflow 491978 (A. Minasyan, 2025; update 08 July 2026): does B. H. Neumann's 2-generated group G ≤ ∏ A_{2n+1}, which contains ⊕ A_{2n+1}, embed in a finitely presented residually finite group? | `neumann-alternating-product-group-embeds-in-fp-rf-group` | OPEN | medium |
 | A4 | MathOverflow 412219 (2021): "If G is finitely presented, does this imply that E(G) is recursively presented?", with E(G) = ⟨constant maps, id⟩ ≤ G^G | `e-of-finitely-presented-group-is-recursively-presented` | OPEN, with a lane-proved reformulation E(G) ≅ (G∗Z)/J_1(G) | medium–high |
 
@@ -82,3 +82,117 @@ actions. No MathSciNet search was made.
 - **St Andrews 2014 Thompson-family problem list:** not located.
 - **Oberwolfach:** reports were searched through publications.mfo.de. Only 26/2018 had a Thompson-family problem session among the hits; other reports were not searched exhaustively.
 - **Other lists:** the GAGTA and Groups St Andrews problem sessions, Kapovich's list and Bridson's list were not found online in a form reachable from MSI.
+
+## E. Second pass (09-18, after the coordinator's follow-up)
+
+**Correction.** A2 (AimPL 3.1(c)) was answered in the literature before the AIM list:
+Caprace–Fujiwara, arXiv:0809.0470, Cor. `cor:KM:simple`, which also answers Kourovka
+14.13. bh-free-19 corrected the node and the table at 6aa871f6e and 412254bb1; this lane
+confirmed it from the TeX (l.262–295). The lesson for this lane: check the literature
+before landing an OPEN node for a printed question.
+
+**Lists reached in this pass.**
+- **St Andrews 2014 Thompson-family list.** OWR 26/2018 [113] identifies it: Y. Lodha,
+  *Broad themes and open problems surrounding Thompson's groups*, collected at the
+  "Workshop on the extended family of R. Thompson groups" (organized by Bleak, Burillo and
+  Sergiescu), St Andrews, 2014. The text itself was not found. It is not on the
+  St Andrews CIRCA pages archived at web.archive.org, and web search from MSI returned
+  nothing.
+- **M. Sapir, *Some group theory problems*** (IJAC 17 (2007) 1189–1214; arXiv:0704.2899,
+  TeX read on MSI; OWR [116]). Problem 1 asks to "find finitely presented monsters of
+  types (1)–(7) or prove that they do not exist". Types (2), (3) and (4) are the Burnside
+  and Tarski monsters, the setting of BBMZ 5.3(6) (`free-burnside-groups-satisfy-boone-higman`).
+  The other problems (asymptotic cones, diagram groups, amenability of F, percolation) have
+  no Boone–Higman content. No node.
+- **Bridson–Vogtmann, *Automorphism groups of free groups, surface groups and free
+  abelian groups*** (Farb's *Problems on mapping class groups*; arXiv:math/0507612, TeX
+  read). Question 20 asks: "For which values of m does Out(F_n) embed in Out(F_m)?" Two
+  further pointers: an embedding of a finite-index subgroup of `Out(F_n)` into some
+  `Aut(F_m)` would give BH for `Out(F_n)`, by BFFHZ Theorem A and finite-index closure of
+  B_A; and Bogopolski–Puga's embeddings `Out(F_n) ↪ Out(F_m)`, recalled not re-read, go
+  through characteristic subgroups. Question 15 asks whether `Out(F_3)` is linear. These
+  are pointers for bh-outfn (`out-free-groups-virtually-embed-in-aut-free-groups`).
+- **AIM 2010, *The geometry of Out(F_n)*** (ed. Mangahas;
+  https://aimath.org/WWN/outerauto/outerauto.pdf, read). Problem 4.1 asks, for closed
+  `S`: "what is Hom(MCG(S), Out(F_n))? What about injective homomorphisms?" A virtual
+  embedding of closed `Mod(S_g)` into some `Aut(F_m)` would give BH for BBMZ 5.3(2), the
+  closed case. This is a pointer for bh-mcg. Problems 3.1–3.6 (property (T), largeness)
+  have no BH content.
+- **Farb, *Some problems on mapping class groups and moduli space*** (arXiv:math/0606432,
+  TeX read). There are no embedding questions into simple or finitely presented groups.
+  - Problem 15 asks for a sub-quadratic word problem algorithm for `Mod_g`.
+  - Problem 65 asks whether some finite-index subgroup of `Mod_g` acts faithfully on
+    `S^1`. A yes would be relevant to Thompson-type hosts, since T acts on the circle.
+- **Kapovich-area list: AimPL *Boundaries of groups*** (http://aimpl.org/groupbdy,
+  5 sections, read). It asks about Morse and CAT(0) boundaries, with no BH content. No
+  personal problem list of Kapovich was found online.
+- **Bridson's own list** (*Problems concerning hyperbolic polyhedra and non-positively
+  curved complexes*): not found online. The Bridson questions in OWR and AIM lists are
+  covered above.
+- **GAGTA and Groups St Andrews problem sessions:** no published problem-session lists
+  were found. The Groups St Andrews proceedings volumes are not freely online.
+
+**Solving pass.** The most tractable question found is MathOverflow 412219 (the E(G)
+question). The finitely generated version is now answered negatively:
+`fg-decidable-group-whose-e-is-not-recursively-presented` builds a 3-generator group Γ,
+recursively presented with solvable word problem, whose `J_1(Γ)` is not r.e. So `E(Γ)` is
+not recursively presented, and it embeds in no finitely presented group. The finitely
+presented case stays OPEN; the exact gap is Attempt 2 on
+`e-of-finitely-presented-group-is-recursively-presented`.
+
+## F. Third pass: printed questions in 2024–2026 arXiv papers (09-18)
+
+**Method.**
+- The arXiv API (math.GR) was queried for Thompson, topological full group,
+  self-similar, Houghton, "finitely presented simple", Boone–Higman, Nekrashevych and
+  Brin–Thompson. That gave 158 papers from 2024–2026.
+- Papers already read by bh-openq-papers were dropped. TeX for the remaining 58 was
+  fetched on MSI (`gqsrc/bh-openq/hunt2/`).
+- Question, problem and conjecture environments were extracted, together with sentences
+  containing "open", "we do not know", "natural to ask" and similar.
+
+| # | Question (source, TeX line) | Node | Status |
+|---|---|---|---|
+| F1 | Tarocchi arXiv:2310.14660v3 l.1605 (also thesis 2412.02339 l.5583): "Is $[G_3, G_3]$ simple?" | `dendrite-rearrangement-group-g3-has-simple-commutator-subgroup` | **ANSWERED yes** (lane proof, this pass) |
+| F2 | Tarocchi 2310.14660v3 l.1081–1085: dendrite rearrangement groups "Are they finitely presented? Are they $F_\infty$?" | `dendrite-rearrangement-groups-are-finitely-presented` | OPEN |
+| F3 | Hill–Kwak–Udall–West arXiv:2508.21264 l.297: "whether the Boone--Higman conjecture for the graph Houghton group is true … whether the Boone--Higman conjecture holds for all Houghton-type groups" | `graph-houghton-groups-satisfy-boone-higman` | OPEN. The preprints review had screened this paper as low relevance, missing the BH question |
+| F4 | Bodart–D'Angeli–Perego–Rodaro arXiv:2608.02111 sec7 l.134: "Does any (weakly) branch group embed in Thompson's $V$?" | `finitely-generated-weakly-branch-group-embeds-in-thompson-v` | OPEN for f.g. groups. The literal reading is answered yes by the finitary automorphism group (lane remark on the node) |
+| F5 | Kodama arXiv:2602.04839 l.869: "it is not known whether $G_0(n)$ is a subgroup of $\PPSL$ or not" | `n-adic-lodha-moore-groups-embed-in-piecewise-projective-group` | OPEN. It bears on the Higman-group obstruction |
+| F6 | Garrido–Reid arXiv:2501.00908 l.3035: "Let $G$ be a minimal piecewise full group of homeomorphisms of the Cantor space. Is $\Der(G)$ simple?" | `minimal-piecewise-full-group-derived-subgroup-is-simple` | OPEN |
+
+**Recorded, no node.**
+- **Hill–Kwak–Udall–West 2508.21264, l.299:** "in the two ended case is there a
+  finitely presented dense subgroup?" of mapping class groups of graphs and surfaces.
+- **Bodart–D'Angeli–Perego–Rodaro 2608.02111:** whether all Schreier graphs of a f.g.
+  branch group have finitely many ends (l.151), which would give a negative F4. Also
+  solvable subgroups of V and polynomial-growth graphs (l.134, l.191, l.194). Lehnert's
+  conjecture is already on main.
+- **Perego–Tarocchi 2412.04138, l.2699:** "Is $E_{\mathcal{D}_3}\mathbb{G}$ finitely
+  presented? Is it $F_\infty$?" (eventually self-similar groups).
+- **Tarocchi thesis 2412.02339, l.5312 and l.5863:** density and conjugacy questions.
+- **Garrido–Reid 2501.00908:** the remaining questions are about t.d.l.c.
+  compact generation, branch groups and local isomorphism classes.
+- **Surface groups in V:** restated in 2608.16530 l.143, citing Bleak–Matucci–Neunhöffer Question 7. Already on
+  main as `closed-hyperbolic-surface-groups-embed-in-thompson-v`.
+- **Other 2024–2026 questions** with no Boone–Higman content:
+  - the maximal-subgroup problem for the Higman–Thompson groups F_n (2607.04038, Problem `prob:minimal-maximal`);
+  - co-Hopficity of pure surface Houghton groups (2403.04941);
+  - (2,3)-generation of V_n (2411.09069);
+  - pseudocentre questions (2511.21175);
+  - Stein-group problems (2412.05492);
+  - mixed identities of oligomorphic groups (2606.24741, Conjecture 1 of
+    Bodirsky et al., which that paper settles in part);
+  - CSS* groups (2507.18821);
+  - spread of vigorous groups (2607.21754);
+  - asymptotically conformal MCG (2609.08849).
+
+**Solving pass.** F1 was the most tractable, and it is now answered.
+- Tarocchi's own reduction leaves `G'/N` cyclic, generated by the image of the
+  3-cycle `c = τ_2τ_3`.
+- Conjugating by `g = τ_2 ρ_12 ∈ G'` gives `g c g^{-1} = c^{-1} Y`. The error term
+  `Y = ρ_22 ρ_12` is a commutator of two elements of one rigid stabilizer, namely
+  `[τ_2 σ, ρ_12 σ]` with `σ = ρ_312`.
+- So `c ≡ c^{-1}` modulo `N`, and `c ∈ N`.
+
+**Posted for bh-free-08** (owner of the finitely presented case of MO 412219): the
+E(G) insights are on its board.

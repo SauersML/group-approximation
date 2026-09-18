@@ -2,6 +2,8 @@
 rg: 2
 id: pbh-closed-under-permutational-wreaths-with-infinite-stabilizers
 kind: claim
+refuted_by:
+  - pbh-wreath-closure-fails-over-undecidable-stabilizers
 title: The permutational Boone--Higman class is closed under restricted permutational wreath products over arbitrary countable G-sets
 distinct_from:
   permutational-boone-higman-closed-under-wreath-products: that is the established case of G-sets with finite point stabilizers, through free orbits of the relative automorphism actor; this asks for arbitrary countable G-sets, where lamps sit over infinite stabilizers.
@@ -9,8 +11,16 @@ artifacts:
   - research/artifacts/solve-bh-free-solvable-2026-09-13.md
 ---
 
-**OPEN.** For all groups `A` and `G` in `B_A` and every countable `G`-set `X`, the
+**REFUTED as stated** (2026-09-18) by `pbh-wreath-closure-fails-over-undecidable-stabilizers`.
+For all groups `A` and `G` in `B_A` and every countable `G`-set `X`, the
 restricted permutational wreath product `A wr_X G = A^(X) ⋊ G` lies in `B_A`.
+
+**Why it fails.** The word problem of `A wr_(G/C) G` decides membership in `C`, since
+`δ_(gC) δ_C = 1` iff `g ∈ C`. Mihailova's subgroup `C <= F_2 × F_2` has undecidable
+membership, so `Z/2 wr_(G/C) G` with `G = F_2 × F_2` is a finitely generated group with
+unsolvable word problem, and is not in `B_A`. The corrected statement, with point
+stabilizers of decidable membership, is `pbh-closed-under-decidable-permutational-wreaths`
+(OPEN). Its test cases include both test cases listed below.
 
 **Source.** This is the remaining part of the wreath-product clause of Zaremsky's
 Question 5.7 (arXiv:2405.18354, TeX l.534--536, quoted in

@@ -2,10 +2,11 @@
 rg: 2
 id: stein-v-groups-act-with-type-a-on-breakpoints
 kind: claim
-title: A finitely presented Stein V-group whose shorter-interval versions are finitely generated acts with type (A) on its breakpoint set, so all its subgroups satisfy Boone--Higman; for quadratic unit slopes this covers every Sturmian Juschenko--Monod group with a real quadratic angle
+title: A finitely presented Stein V-group whose shorter-interval versions are finitely generated acts with type (A) on its breakpoint set, so all its subgroups satisfy Boone--Higman; its quadratic (norm −1) instance is subsumed by the Pisot RSG route; norm +1 slopes are open (corrected 09-18)
 requires:
   - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
+  quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier on 09-18) already embeds IET(Z+αZ), α quadratic, in a finitely presented simple group, via the substitutive Sturmian coding and contracting rational similarity groups; the Sturmian corollary here is an independent route. What is new here is the type (A) action of the Stein V-group itself, which gives Boone--Higman for ALL subgroups of V(Z[λ],⟨λ⟩,ℓ), for example D(V_λ), F_λ, T_λ when λ has norm +1.
   circle-pl-groups-act-with-type-a-on-breakpoint-orbits: that treats the circle T-versions and needs A/(IP·A) finite for finitely many pair orbits; it leaves the V-versions open because V-point stabilizers are not interval groups. This proves finite generation of those stabilizers (an ascending union of shorter-interval V-groups, closed off by one germ contraction) and gets one pair orbit from interval exchanges, with no finiteness of A/(IP·A).
   norm-minus-one-sturmian-jm-groups-satisfy-boone-higman: that uses the finite-index derived subgroup of a metallic-mean Stein group as a finitely presented simple host, which needs a unit of norm −1; this passes through the twisted Brin--Thompson group instead and covers every real quadratic field.
   stein-derived-groups-need-computable-modules: that is the obstruction for noncomputable breakpoint modules; here the modules are algebraic.
@@ -14,8 +15,14 @@ artifacts:
 ---
 
 **ESTABLISHED** (route `stein-v-groups-act-with-type-a-on-breakpoints-proof`; lane proof, elementary, not
-reviewed; no priority claimed). The quadratic instance also rests on input (C) below, which is cited and not
-read at source.
+reviewed; no priority claimed).
+
+**CORRECTION (09-18, Cleary read at source).** The earlier quadratic instance cited "(C) Cleary: `V(Z[λ],⟨λ⟩,ℓ)`
+is `F_∞` for quadratic λ" via Matui's Remark. Cleary 1995 (RMJM 25, 935–955) and Cleary 2000 (Illinois J. Math. 44,
+453–464) were read at source (gq/src/bh-near-actions/cleary/). They prove finite presentation and `FP_∞` only for
+the F-versions `F(1, Z[λ], ⟨λ⟩)`, and only for `λ` with `1 = nλ + λ²` (Cleary 1995, p. 954: metallic means, norm
+−1). Matui's paraphrase overstates this. The quadratic instance below is corrected accordingly: norm −1 slopes are
+covered, with (F1) now from `pisot-unit-slope-stein-groups-are-finitely-presented`; norm +1 slopes are **open**.
 
 ## Setting
 
@@ -39,28 +46,29 @@ Then the action of `V(Γ,Λ,ℓ)` on `X` is of type (A):
 Hence every subgroup of `V(Γ,Λ,ℓ)` has solvable word problem and embeds in the finitely presented simple
 twisted Brin--Thompson group `SV_{V(Γ,Λ,ℓ)}` (`type-a-action-gives-boone-higman-for-subgroups`).
 
-## Quadratic instance
+## Quadratic instance (corrected)
 
-Let `λ ∈ (0,1)` be a quadratic unit, of either norm, `Γ = Z[λ]` and `Λ = ⟨λ⟩`. (F1) and (F2) hold by:
+Let `λ ∈ (0,1)` with `λ² + mλ − 1 = 0`, `m ≥ 1`: the metallic means, which are the quadratic units of norm −1 in
+`(0,1)`. Put `Γ = Z[λ]` and `Λ = ⟨λ⟩`. Then (F1) and (F2) hold by `pisot-unit-slope-stein-groups-are-finitely-presented`,
+since `1/λ` is a unit with property (F). So every subgroup of `V(Z[λ],⟨λ⟩,ℓ)` satisfies Boone--Higman.
 
-- **(C)** Cleary (RMJM 1995; Illinois J. Math. 2000): `V(Z[λ],⟨λ⟩,ℓ)` is of type `F_∞` for quadratic
-  algebraic integers `λ`. This is read via Matui, arXiv:2412.05492, Remark on Stein's groups, l. 859. The
-  primary source was not obtained.
+For these slopes this adds little to that node: `D(V)` is itself a finitely presented simple group of finite
+index there.
 
-So every subgroup of `V(Z[λ],⟨λ⟩,ℓ)` satisfies Boone--Higman: `D(V)`, `F_λ`, `T_λ`, `IE(Z[λ])` and their
-subgroups. In particular:
+**Norm +1 slopes, such as `λ = 2 − √3`: OPEN.**
+- No finite presentation of `V(Z[λ],⟨λ⟩,ℓ)` is known to this lane. Cleary covers only norm −1 F-versions, and the
+  RSG route needs (F), which fails for norm +1 quadratic units (Akiyama, Proposition 1).
+- If (F1) and (F2) were proved for them, the theorem here would give Boone--Higman for all subgroups, with
+  `D(V)` of infinite index.
+- The earlier corollary "every real quadratic field" is **withdrawn** for norm +1 fields.
+- For those fields the Sturmian groups `IET(Z+αZ)` remain covered by bh-free-03's substitutive route
+  (`quadratic-rotation-iet-groups-satisfy-boone-higman`).
 
-- **Corollary.** For every real quadratic field `K` and every irrational `α ∈ K`, the Juschenko--Monod group
-  of the Sturmian subshift of angle `α`, `G_α' ≅ IE(Z+Zα)'`, embeds in a finitely presented simple group.
-  - Proof: `K` has a unit of infinite order, and replacing it by `±u^{±1}` gives `λ ∈ (0,1)`.
-  - `Z[λ]` spans `K`, so `N(Z+Zα) ⊆ Z[λ]` for some `N`.
-  - Rescaling by `N` puts `IE(Z+Zα)` into `V(Z[λ],⟨λ⟩,N)`, as in step 4 of
-    `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman-proof`.
-  - This removes the norm −1 restriction of that node, for example for `Q(√3)`, `Q(√6)`, `Q(√7)`.
+## Priority
 
-For norm +1 slopes, such as `λ = 2 − √3`, `V^ab` contains `Z`, via `H_1 = H_2(Γ⋊Λ) ⊇ Z`. So `D(V)` has infinite
-index, and its own finite presentation is open (Tanner's question). The twisted Brin--Thompson host does not
-need it.
+The Sturmian and rotation-IET corollary was landed first by bh-free-03, as
+`quadratic-rotation-iet-groups-satisfy-boone-higman` (09-18). That route goes through contracting RSGs. The type (A) theorem for Stein
+V-groups and its consequence for arbitrary subgroups of `V(Z[λ],⟨λ⟩,ℓ)` are not covered there. No priority is claimed.
 
 ## Not claimed
 

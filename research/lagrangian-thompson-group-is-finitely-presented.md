@@ -68,3 +68,23 @@ would be needed (scope of the containment node).
      with arithmetic vertex stabilizers in place of finite ones.
    - This is the step that would make `V_Λ^τ` a Thompson group, and it is the open
      core.
+4. **Simplicity and containment for a variant (2026-09-18, lane `bh-free-55`;
+   established there).**
+   - In `deligne-lattice-in-fg-simple-lagrangian-brin-thompson-group`, the odometer
+     groupoid `O_τ` is replaced by the Cuntz groupoid `G_2`.
+     - The center then acts through any infinite-order element of `V`.
+     - For even `n`, a factor `F_3^{2n} ∖ {0}` carries the central involution.
+     - `Y_Λ` is replaced by the unimodular Cantorization of
+       `unimodular-maslov-cantorization-is-minimal-expansive`.
+   - For that host, and every `n ≥ 2`, the commutator subgroup is simple and finitely
+     generated and contains `Γ̃`. So only finite presentation is left, in
+     `lagrangian-brin-thompson-group-is-finitely-presented`.
+   - For `V_Λ^τ` itself, the same proof gives two things:
+     - minimality, local contraction and topological freeness of `Y_Λ` (item 8 of the
+       Cantorization node);
+     - `Γ̃ ≤ D(V_Λ^τ)`, by the diagonal trick: `Γ̃^{ab}` is finite by (T), and the
+       Cuntz part of `O_τ` makes `m` disjoint copies.
+   - Hence `D(V_Λ^τ)` is simple, provided `O_τ` is minimal, effective and purely
+     infinite. This proviso is not rechecked here.
+   - Finite generation of `D(V_Λ^τ)` would need expansivity of `Y_Λ`. That is not
+     known; it is known for `Y_u`.

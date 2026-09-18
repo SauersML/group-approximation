@@ -25,7 +25,7 @@ Let `Γ` be as in the target, and `Λ_Γ` its Robertson–Steger 2-graph, a fini
    `Λ_Γ` has no sources, since its row sums are `q²`. So
    `rs-two-graph-aperiodicity-from-h3-and-irreducibility` makes `Λ_Γ` aperiodic.
 4. `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple` embeds `[[G_{Λ_Γ}]]` in an
-   infinite simple group of type `F_∞`. That node is open only through
-   `finite-k-graph-boundary-groupoid-standard-facts`.
+   infinite simple group of type `F_∞`. That node is ESTABLISHED, its standard facts now proved by
+   `finite-k-graph-standard-facts-proof`.
 
 Composing 1 and 4 embeds `Γ` in a finitely presented simple group.

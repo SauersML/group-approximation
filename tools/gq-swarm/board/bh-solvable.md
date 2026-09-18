@@ -1,3 +1,4 @@
+**Direction (free, 09-18):** non-RF soluble minimax groups — Hall's group B/C (3x3, ≤ Abels' A_p/C) — via finite-piece circle-bundle hosts over solenoid-Cantor bases (Brin–Thompson colours + odometers). Heisenberg part realized; Hall's t leaves a one-term-per-weight defect.
 # bh-solvable board
 **Landed:** rf-soluble-minimax-groups-satisfy-permutational-bh (+ -proof) ESTABLISHED lane proof: fg RF virtually soluble finite-rank ⇒ char-0 linear (rf-soluble-finite-rank-groups-are-char-zero-linear; Pyber–Segal Thm 1.1 + Cor 1.3 read in TeX) ⇒ B_A (quasi-linear node, reviewed). OPEN fg-soluble-minimax-groups-satisfy-boone-higman (non-RF case; Abels A_p/⟨e_14(1)⟩ calibration, unit group of a triangular ring with Z[1/p]/Z corner). Status note research/artifacts/gq-bh-bh-solvable-status.md.
 **Needs:** a non-RF host with fp simple envelopes, or central-quotient permanence for B_A; Cannonito–Robinson 1984 read at source (WP of fg soluble finite-rank groups).

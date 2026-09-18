@@ -34,6 +34,18 @@ hyperbolic theorem.
   arXiv:2503.21882 (abstract), prove that the permutational Boone--Higman property
   is closed under free products. That settles the case `G = P_1 * ... * P_m` with
   all `P_i` in the permutational class.
+- **Cusp extensions.** `cusp-extensions-of-torsion-free-hyperbolic-groups-satisfy-pbh`:
+  for torsion-free hyperbolic `H`, `h ≠ 1` and finitely generated `P` in the permutational
+  class, `H *_{E(h)} (E(h) × P)` (hyperbolic relative to `E(h) × P`) embeds in a finitely
+  presented simple group. This is the first case here that is neither hyperbolic, nor
+  linear, nor a free product.
+- **Cusp extensions, general.** `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`:
+  for any finitely generated relatively hyperbolic `G ∈ B_A` (torsion allowed, for
+  example any hyperbolic group), adding finitely many cusps `E(g_i) × K_i` along
+  pairwise non-commensurable loxodromic elements, with `K_i ∈ B_A`, stays in `B_A`, and
+  the result is hyperbolic relative to the old and new peripheral subgroups. The key
+  input is `pbh-coset-condition-passes-to-finite-index-overgroups`: `E(g)` contains the
+  centralizer `C(g)` with finite index.
 
 ## Consequences and reductions (landed)
 
@@ -41,6 +53,11 @@ hyperbolic theorem.
   `rel-hyperbolic-bh-permanence-implies-free-product-closure`: this statement implies
   that the Boone--Higman class is closed under free products, hence joint
   embedding for finitely presented simple groups and `U * Z ∈ 𝓑`. Those are OPEN.
+- **At least as hard as finite-edge amalgams.**
+  `rel-hyperbolic-permanence-implies-finite-edge-amalgams`: this statement implies
+  closure of the Boone--Higman class under amalgams and HNN extensions over finite
+  subgroups. Its B_A form implies the open conjugacy step of
+  `free-permutational-products-preserve-pbh`.
 - **Finitely presented simple peripherals suffice.**
   `rel-hyperbolic-groups-embed-with-fp-simple-peripherals`: it is enough to prove
   the statement when every `P_i` is a finitely presented simple group (and then
@@ -83,6 +100,46 @@ constructed.**
   (RB) for `G = S * T` with `S, T` finitely presented simple would already prove
   free-product closure of the Boone--Higman class. So (RB) is a genuinely new
   input, not a formality.
+
+**Attempt 2 (bh-relhyp, 2026-09-18): amalgams over centralizers. Partial success.**
+Instead of a germ extension, work algebraically inside relative holomorphs.
+`centralizer-amalgams-embed-in-relative-holomorphs` puts `G *_{C_G(F)} (C_G(F) × P)` in
+`(G * Z) ⋊ Aut_G(G * Z)` for any group `G`; with `pbh-class-closed-under-relative-holomorphs`
+this gives `pbh-class-closed-under-centralizer-amalgams`, and hence the cusp extensions
+above. What remains for this claim: peripheral structures that are not obtained from a
+hyperbolic group by amalgamating along centralizers (for example general Dehn-filling
+preimages), peripherals in the Boone--Higman class but not the permutational one, and
+hyperbolic groups with torsion (where `C_H(h)` can be a proper subgroup of `E(h)`). The
+torsion case is now settled by `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`.
+
+**Attempt 3 (bh-relhyp, 2026-09-18): graphs of groups over good edges.**
+`pbh-graphs-of-groups-over-realized-good-edges` puts a finite graph of groups in `B_A` once
+its vertex groups embed in one `B_A`-group in which each edge identification is a
+conjugation and each edge image is good. For relatively hyperbolic inputs this covers
+acylindrical graphs of groups whose edge maps are realized in this way (Dahmani, Theorem
+0.1(1), gives the relative hyperbolicity). A general relatively hyperbolic group is not a
+graph of groups over its peripheral structure, so the claim stays OPEN. What is missing
+is a way to build, from `G` alone, an ambient `B_A`-group in which `G` is visible.
+
+**Attempt 4 (bh-relhyp, 2026-09-18): Dehn filling. Not constructed.** Let `P` be residually
+finite, and let `N ⊴ P` have finite index and avoid the finite set in
+`relatively-hyperbolic-dehn-filling`. Then `Ḡ = G/<<N>>` is hyperbolic relative to the
+finite group `P̄ = P/N`, so `Ḡ` is hyperbolic and lies in `B_A`. The group
+`W = Ḡ *_{P̄} (P̄ × P)` is a free permutational product over a finite stabilizer, so it
+lies in `B_A` (`free-permutational-products-preserve-pbh`).
+
+If `G` embedded in `W` by `p ↦ (p̄, p)` on `P`, extended over the other generators, then
+the B_A form of this claim would follow for residually finite peripherals. With the
+naive extension `x ↦ x̄` the map is not a homomorphism. Take
+`G = Z^2 *_{a = w} F(y, z)`, with `Z^2 = <a, b>` and `w = y z y^(-1) z`. The relator
+`a = w` would force the lamp `a_{ω_0}` to be trivial. Correcting the images of `y` and
+`z` by elements of the kernel `*_{Ḡ/P̄} P` leads to an equation in that free product,
+and no solution was found.
+
+The map cannot be a splitting in general. For `G = Z^2 * Z` and `N = (kZ)^2`, the group
+`G` is torsion-free while `Ḡ` has torsion, so `G` is a non-split extension of `Ḡ`
+(although this `G` does embed in `W`). The example `G` above is in `B_A` anyway, by
+`pbh-graphs-of-groups-over-realized-good-edges` with `D = F_2 × Z`.
 
 ## Scope
 

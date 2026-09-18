@@ -48,5 +48,54 @@ fixed finitely generated subgroup of `G`.
 residually finite, so not LEF. In every finite quotient `a` has order prime to 6, so
 `t a t^{-1}` lies in `⟨a⟩` and `[t a t^{-1}, a]` dies, while it is nontrivial in `BS(2,3)`
 (Britton's lemma: `a ∉ ⟨a^2⟩`). So an isolated quotient near `BS(2,3)` must be infinite and
-keep this commutator. Whether `BS(2,3)` is itself finitely discriminable (which would make it
-isolated) is not checked here.
+keep this commutator. `BS(2,3)` is not itself finitely discriminable, so not isolated: its derived series is a strictly
+decreasing chain of nontrivial normal subgroups with trivial intersection
+(`baumslag-solitar-groups-are-free-by-metabelian`), and such a chain eventually avoids any finite set.
+
+## Attempts
+
+1. **`BS(2,3)` is a pivot (lane bh-free-27, 2026-09-18).**
+   `residual-solvability-reduces-cgp-question-1-to-question-3`: `BS(2,3)` is free-by-metabelian
+   (`baumslag-solitar-groups-are-free-by-metabelian`), hence the limit of its solvable quotients, and
+   the class of limits of isolated groups is closed. So a positive answer to Question 3 already gives
+   Question 1 at every Baumslag--Solitar group, and a proof that `BS(2,3)` is not such a limit would
+   answer Questions 1 and 3 negatively together.
+2. **Two construction mechanisms, neither yet applied to `BS(2,3)`.**
+   - `fp-groups-with-max-n-are-limits-of-isolated-groups`: works when some maximal normal subgroup
+     avoiding each finite set is finitely normally generated. `BS(2,3)` fails max-n (its non-Hopfian
+     surjection `a ↦ a^2, t ↦ t` has strictly increasing iterated kernels), so this needs the finer
+     per-`F` form, which is unchecked.
+   - `finitary-perturbations-give-isolated-quotients`: isolated quotients as
+     finite-index subgroups of `FSym(S) ⋊ P`, for a finitely presented quotient `P` close to the input
+     with a highly transitive action. Its rigidity half shows that faithful actions of the torsion-free
+     `BS(2,3)` are useless, so a proper quotient `P` with a type (A)-like action is required. None is
+     known.
+3. **Thompson-type hosts are excluded at `BS(2,3)`.** `coprime-baumslag-solitar-images-in-va-are-metabelian`:
+   every image of `BS(2,3)` in `VA` (so in `F`, `T`, `V`, `T̄`) is cyclic-by-cyclic, so the
+   commutator `[tat^{-1}, a]` dies there. The isolated finitely presented subgroups of `V` with a
+   locally moving simple subgroup therefore never approximate `BS(2,3)`. More generally, in any
+   quotient of `BS(2,3)` in which `a` has finite order that commutator dies, so every isolated quotient
+   near `BS(2,3)` keeps `a` of infinite order and is not a subgroup of `VA`.
+4. **Structure of every isolated group near `BS(2,3)` (lane bh-free-27, 2026-09-18).**
+   `bs-quotients-keeping-a-commutator-have-a-commensurated-core`. In any quotient `Q` keeping
+   `c = [tat^{-1}, a]`:
+   - the kernel is free;
+   - the image `A = ⟨α⟩` of `⟨a⟩` is infinite cyclic, commensurated and core-free;
+   - `⟨⟨α⟩⟩` is the kernel of a modular character `Q ↠ Z`, and each of its elements centralizes a power
+     of `α`.
+
+   If `Q` is isolated:
+   - its minimal normal subgroups lie in `⟨⟨α⟩⟩`;
+   - one meeting `A` must be `Q^(2)`, with `Q/Q^(2) ≅ Z/d ⋊ Z`, and it is perfect once an element of
+     `G^(3) − {1}` survives;
+   - with a finitary monolith `Alt_fin(S)`, `α` is locally periodic on `S` and
+     `Q/(Q ∩ FSym(S))` is a finitely presented *proper* quotient of `BS(2,3)` in which `a` has infinite
+     order.
+
+   `bs-quotients-keeping-a-commutator-need-distortion` shows that `α` is distorted. That excludes:
+   - torsion-by-(hyperbolic, CAT(0), `VA`, char-`p` linear) hosts;
+   - torsion-by-PL hosts (Stein--Thompson, Houghton, `FSym ⋊ V`).
+
+   Remaining lead: the rigid permutation groups of Bux--Llosa Isenrich--Wu, specifically the
+   constant-exponent subgroup `RP^Δ` (Remark 1 of the structure node). It has every forced feature
+   with `α = a`, `τ = t`. Its finite presentability and a BS-generating pair near `(a, t)` are open.

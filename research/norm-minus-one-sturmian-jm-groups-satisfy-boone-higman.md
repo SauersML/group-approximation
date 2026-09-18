@@ -4,6 +4,7 @@ id: norm-minus-one-sturmian-jm-groups-satisfy-boone-higman
 kind: claim
 title: If the real quadratic field of an irrational angle α has a unit of norm −1, the Juschenko--Monod group of the Sturmian subshift of α embeds in the finitely presented simple derived subgroup of a metallic-mean Stein group
 distinct_from:
+  quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier) embeds IET(Z+αZ) for every quadratic α via contracting RSGs, which already covers the Sturmian groups here; this node adds that for norm −1 fields the host can be taken to be the finite-index derived Stein group D(V(Z[ε_m],⟨ε_m⟩,N)) itself.
   stein-derived-groups-need-computable-modules: that is the computability obstruction for Stein groups with noncomputable breakpoint modules; this is the positive embedding for quadratic angles, through Stein groups whose derived subgroup has finite index.
   computable-grigorchuk-groups-satisfy-boone-higman: that embeds computable Grigorchuk groups in finitely presented simple groups; this does it for derived full groups of quadratic Sturmian subshifts, which are amenable, simple and not finitely presented.
   fp-simple-groups-have-no-interval-exchange-action: that forbids finitely presented infinite simple groups from ACTING by interval exchanges; here the interval exchange group is a subgroup of the finitely presented simple host, which acts with nontrivial slopes.
@@ -13,9 +14,10 @@ artifacts:
 
 **ESTABLISHED** (route `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman-proof`; lane
 proof, not reviewed). It rests on three cited inputs, none re-proved here:
-- (C) type `F_∞` of `V(Z[ε],⟨ε⟩,ℓ)` for quadratic `ε`: Cleary, RMJM 25 (1995) and Illinois J. Math. 44
-  (2000). This is read via Matui, arXiv:2412.05492, Remark on Stein's groups; Cleary's papers themselves were
-  not obtained. Burillo--Nucinkis--Reeves (arXiv:2006.02401) state the golden case and say it follows by
+- (C) finite presentation of `V(Z[ε],⟨ε⟩,ℓ)` for the metallic `ε`. **Corrected 09-18:** Cleary (RMJM 1995; Illinois
+  J. Math. 2000), now read at source, proves only the F-versions. The V-versions are finitely presented by
+  `pisot-unit-slope-stein-groups-are-finitely-presented`, since `1/ε` is a unit with (F), so (C) no longer rests on
+  Cleary or Matui's paraphrase. Burillo--Nucinkis--Reeves (arXiv:2006.02401) state the golden case and say it follows by
   Stein's methods, without writing it out.
 - (L) the groupoid homology `H_0 = Γ/(1−ε)Γ` and `H_k ≅ H_{k+1}(Γ ⋊ Λ)` for `k ≥ 1` (Li), and the AH exact
   sequence for `V(Γ,Λ,ℓ)` (Li, Corollary E), both as stated by Tanner, arXiv:2312.07375.

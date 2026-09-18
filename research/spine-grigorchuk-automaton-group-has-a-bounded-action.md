@@ -8,16 +8,16 @@ distinct_from:
   commonly-fixed-letters-compress-to-faithful-actions: that is the general construction; this is its first application.
 ---
 
-**ESTABLISHED** (lane proof below; not yet refereed; no priority claimed).
+**ESTABLISHED** (lane proof below; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-commonly-fixed-letters-compress-and-spine-grigorchuk.md`.
 
 ## Statement
 
 Let `G = ⟨a,b,c,d,ŝ_a,ŝ_b,ŝ_c,ŝ_d⟩ <= Aut({0,1,2}^*)` be the group of
 `linear-activity-automata-can-have-non-fp-nekrashevych-groups` (Grigorchuk generators with trivial sections at
 `2`, and `ŝ_γ = (γ, 1, ŝ_γ)`). Then `G` has a faithful action on `A^*`, `A = {0,1} × {0,1}` (four letters), by a
-bounded automaton with the same eight nontrivial states. That action is contracting. So `V_4(G)` is finitely
-presented, and `G` embeds in a finitely presented simple group
-(`lift-presented-automaton-groups-satisfy-boone-higman`, consequence 1).
+bounded automaton with the same eight nontrivial states. That action is contracting, so `V_4(G)` is finitely
+presented (Nekrashevych FP2). `G` embeds in a finitely presented simple group, unconditionally, by the route in
+the Conclusion.
 
 ## Proof
 
@@ -36,8 +36,13 @@ presented, and `G` embeds in a finitely presented simple group
   sections of `g` at level `1 + k` lie in the sections of a `Γ`-element of length `<= |g|` at level `k`, which are
   in Grigorchuk's nucleus `{1,a,b,c,d}` for `k` large. Hence `G` is contracting on `A^*` with that nucleus.
 - **Conclusion.** Nekrashevych's FP2 (`rover-nekrashevych-finite-presentation-criteria`) makes `V_4(G)` finitely
-  presented, so the relator kernel is a finitely generated lift ideal, and the lift-presented theorem gives the
-  finitely presented simple commutator host.
+  presented. Boone–Higman for `G`, unconditionally: every element preserves the second coordinate of `A`, and
+  the sections at `(1,1)` are trivial, so `G` embeds in `(Γ ≀ C_2) × Γ` (the `(·,0)` cones carrying `Γ`
+  with the swap, the `(0,1)` cone carrying `Γ`). That group lies in Röver's group `V Γ` (two cones for
+  `Γ ≀ C_2` with a `V`-swap, a third for `Γ`), which is finitely presented and simple (Röver). Alternatively,
+  via the necessity half of Theorem A (`rover-nekrashevych-fp-iff-finite-lift-presentation`, not yet refereed),
+  the relator kernel is a finitely generated lift ideal and `lift-presented-automaton-groups-satisfy-boone-higman`
+  gives the commutator host `[V_{4m}(G),V_{4m}(G)]`.
 
 ## Remark
 
