@@ -1,0 +1,61 @@
+# nice -n 10 timeout 1200 python3 check_realizations.py --only Z2,Z4,Z2xZ2,Z6,S3,Z8,Z4xZ2,Z2^3,D4,Q8
+Z2: |Q|=2 |Pol_2(Q)|=8 (complete) prefilter=8 realizations=16
+   realized truth tables f(00,01,10,11): [(0, 0, 0, 0), (0, 0, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0), (1, 1, 0, 0), (1, 1, 1, 1)]
+   realized rules reading a1 (non-sitewise): [(0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0)]
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z4: |Q|=4 |Pol_2(Q)|=64 (complete) prefilter=20 realizations=24
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z2xZ2: |Q|=4 |Pol_2(Q)|=16 (complete) prefilter=8 realizations=24
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z6: |Q|=6 |Pol_2(Q)|=216 (complete) prefilter=40 realizations=164
+   realized truth tables f(00,01,10,11): [(0, 0, 0, 0), (0, 0, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0), (1, 1, 0, 0), (1, 1, 1, 1)]
+   realized rules reading a1 (non-sitewise): [(0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0)]
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+S3: |Q|=6 |Pol_2(Q)|=4251528 (complete) prefilter=2440 realizations=240
+   realized truth tables f(00,01,10,11): [(0, 0, 0, 0), (0, 0, 1, 1), (0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0), (1, 1, 0, 0), (1, 1, 1, 1)]
+   realized rules reading a1 (non-sitewise): [(0, 1, 0, 1), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 0)]
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z8: |Q|=8 |Pol_2(Q)|=512 (complete) prefilter=68 realizations=1760
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z4xZ2: |Q|=8 |Pol_2(Q)|=128 (complete) prefilter=36 realizations=1824
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Z2^3: |Q|=8 |Pol_2(Q)|=32 (complete) prefilter=16 realizations=1792
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+D4: |Q|=8 |Pol_2(Q)|=4096 (complete) prefilter=368 realizations=1888
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+Q8: |Q|=8 |Pol_2(Q)|=4096 (complete) prefilter=368 realizations=1888
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+TOTAL non-affine realized rules over all groups: 0
+EXIT 0 after 449s
+# nice -n 10 timeout 1200 python3 check_realizations.py --only A4 --cap 2000000
+A4: |Q|=12 |Pol_2(Q)|=3284136 (CAPPED, incomplete) prefilter=33576 realizations=672384
+   realized truth tables f(00,01,10,11): [(0, 0, 1, 1), (1, 1, 0, 0)]
+   realized rules reading a1 (non-sitewise): []
+   non-affine realized: none
+   pipeline control (AND pushed through psi detected): True
+TOTAL non-affine realized rules over all groups: 0
+EXIT 0 after 236s
