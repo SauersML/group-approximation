@@ -124,7 +124,7 @@ theorem surjStab_padCol_mulVec_one (v u : Fin n → R) :
   | zero => rw [padCol_zero, map_one, Matrix.one_mulVec, add_zero]
   | add f g hf hg =>
     rw [padCol_add, map_mul padMat (padCol f) (padCol g), ← Matrix.mulVec_mulVec, hg u,
-      hf (u + g), show u + g + f = u + (f + g) by abel]
+      hf (u + g), add_assoc, add_comm g f]
   | single p a =>
     rw [padCol_single, padMat_x]
     simp only [Matrix.add_mulVec, Matrix.one_mulVec, single_mulVec_eq_pi, surjStabVec_last,
