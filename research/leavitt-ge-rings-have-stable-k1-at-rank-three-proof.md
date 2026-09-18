@@ -47,7 +47,7 @@ requires:
   - For `g in B⁺`, `g v = v g(k)`, since `g s_1^k = s_1^k g(N+k)` and `g(N+k) s_2 = s_2 g(k)`. So `v* Y v = Y(k)`.
   - `v* t_a g v = g(k) (s_(aw))* s_w` and `v* s_b h v = h(k) (s_w)* s_(bw)`. These vanish unless one of `w`, `aw` (respectively
     `w`, `bw`) is a prefix of the other.
-  - `aw` is longer, so only "`w` prefix of `aw`" is possible. That forces a letter `2` of `w` into a block of `1`s: if
-    `a = 1^j` with `j <= k`, compare position `k + 1`; otherwise the first `2` of the copy of `w` inside `aw` falls in the block
-    `1^m` of `w`, because `1 <= |a| <= m`. So these terms are `0`.
+  - `aw` is longer, so only "`w` prefix of `aw`" is possible. The first `2` of the copy of `w` inside `aw` is at position
+    `|a| + k + 1`, which lies in `[k + 2, k + m + 1]`, the block `1^m` of `w`, because `1 <= |a| <= m`. So these terms are
+    `0`; no case split is needed (gq-referee-a, N6).
   - Hence `v* z_0 v = Y(k) =: c`, a nonzero rational, and `y = c^-1 t_w t_(α_0)`, `z = s_(β_0) s_w` give `y x z = 1`.
