@@ -89,3 +89,81 @@ theorem higmanVCLeafExp_tree_mem {d : ℕ} {T : Finset (List (Fin d))}
     · exact h e (higmanVCLeafExp_mem_expand_of_ne he hec)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_tree_mem
+
+/-- `H_C ≤ K` as soon as `K` contains every letter `(x, y)` with `x ≠ y` in `C`. -/
+theorem higmanVCLeafExp_H_le_of_letter {d : ℕ} {C : Finset (List (Fin d))}
+    {K : Subgroup (higmanVCCommon_Q d)}
+    (hK : ∀ x ∈ C, ∀ y ∈ C, x ≠ y → higmanVCCommon_mk d (FreeGroup.of (x, y)) ∈ K) :
+    higmanVCTreeNFWitPivot_H d C ≤ K := by
+  intro h hh
+  obtain ⟨r, rfl⟩ := higmanVCTreeNFWitPivot_mem_H.mp hh
+  clear hh
+  induction r using FreeGroup.induction_on with
+  | C1 =>
+    rw [map_one, map_one]
+    exact Subgroup.one_mem _
+  | of p =>
+    obtain ⟨⟨x, hx⟩, ⟨y, hy⟩⟩ := p
+    rw [higmanVCAll_iota_of]
+    show higmanVCCommon_mk d (FreeGroup.of (x, y)) ∈ _
+    by_cases hxy : x = y
+    · subst hxy
+      rw [higmanVCCommon_mk_comparable (x := x) (y := x) fun h => h.1 (List.prefix_refl x)]
+      exact Subgroup.one_mem _
+    · exact hK x hx y hy hxy
+  | inv_of _ ih =>
+    rw [map_inv, map_inv]
+    exact Subgroup.inv_mem _ ih
+  | mul g₁ g₂ ih₁ ih₂ =>
+    rw [map_mul, map_mul]
+    exact Subgroup.mul_mem _ ih₁ ih₂
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_H_le_of_letter
+
+/-- The pattern refinement `C ⋆ T = {c ++ e | c ∈ C, e ∈ T}`. -/
+def higmanVCLeafExp_star {d : ℕ} (C T : Finset (List (Fin d))) : Finset (List (Fin d)) :=
+  C.biUnion fun c => T.image fun e => c ++ e
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_star
+
+theorem higmanVCLeafExp_mem_star {d : ℕ} {C T : Finset (List (Fin d))} {x : List (Fin d)} :
+    x ∈ higmanVCLeafExp_star C T ↔ ∃ c ∈ C, ∃ e ∈ T, c ++ e = x := by
+  simp only [higmanVCLeafExp_star, Finset.mem_biUnion, Finset.mem_image]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_mem_star
+
+/-- The pattern refinement of an antichain by an antichain is an antichain. -/
+theorem higmanVCLeafExp_star_isAC {d : ℕ} {C T : Finset (List (Fin d))}
+    (hC : higmanVCTreeNFWitPivot_IsAC C) (hT : higmanVCTreeNFWitPivot_IsAC T) :
+    higmanVCTreeNFWitPivot_IsAC (higmanVCLeafExp_star C T) := by
+  intro u hu v hv huv hpre
+  obtain ⟨c, hc, e, he, rfl⟩ := higmanVCLeafExp_mem_star.mp hu
+  obtain ⟨c', hc', e', he', rfl⟩ := higmanVCLeafExp_mem_star.mp hv
+  by_cases hcc : c = c'
+  · rw [← hcc] at hpre
+    have h1 : e <+: e' := (List.prefix_append_right_inj c).mp hpre
+    by_cases hee : e = e'
+    · exact huv (by rw [hee, hcc])
+    · exact hT e he e' he' hee h1
+  · have h1 : c <+: c' ++ e' := (List.prefix_append c e).trans hpre
+    have h2 : c' <+: c' ++ e' := List.prefix_append c' e'
+    rcases List.prefix_or_prefix_of_prefix h1 h2 with h | h
+    · exact hC c hc c' hc' hcc h
+    · exact hC c' hc' c hc (Ne.symm hcc) h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_star_isAC
+
+/-- **Monotonicity under arbitrary finite pattern refinement.**  `H_C ≤ H_{C ⋆ T}` for an
+antichain `C` and any tree `T`. -/
+theorem higmanVCLeafExp_H_le_star {d : ℕ} {C T : Finset (List (Fin d))}
+    (hC : higmanVCTreeNFWitPivot_IsAC C) (hT : higmanVCLeafExp_IsTree T) :
+    higmanVCTreeNFWitPivot_H d C ≤ higmanVCTreeNFWitPivot_H d (higmanVCLeafExp_star C T) :=
+  higmanVCLeafExp_H_le_of_letter fun x hx y hy hxy =>
+    higmanVCLeafExp_tree_mem hT x y (hC x hx y hy hxy) (hC y hy x hx (Ne.symm hxy))
+      fun e he => higmanVCLeafExp_letter_mem_H
+        (higmanVCLeafExp_mem_star.mpr ⟨x, hx, e, he, rfl⟩)
+        (higmanVCLeafExp_mem_star.mpr ⟨y, hy, e, he, rfl⟩)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCLeafExp_H_le_star
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
