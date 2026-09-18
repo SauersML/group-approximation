@@ -40,3 +40,28 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
   **Where it dies:** arXiv:1605.05301v1, thm:pcconnectivitydecay, bounds only
   the infimum `kappa_{p_c}(n)`, not typical `tau_{p_c}(o,x)`. It would also
   still leave openness through `p_c`. See Section 7 of the artifact.
+* **Operator-algebra transplant: Fourier algebra and noncommutative L^r
+  (swarm-0917-w7).**
+  - *Proved* (`fpbs-two-point-fourier-algebra-criterion`, established):
+    - `tau_p` is in `A(Gamma)` iff the cluster form
+      `f -> E sum_C |f(C)|^2` is closable in `l^2`;
+    - `A`-membership gives `a_n <= rho^n` with constant one, and
+      nonuniqueness if `p > p_c`;
+    - `tau^fin_p` is always in `A`, `tau_(p_c)` is in `A`, and
+      `dist_B(tau_p, A) <= theta(p) -> 0`.
+  - *Where it dies for [Q]:* at the step from `B`-norm information at `p_c` to
+    `l^q` summability above it.
+    - `l^q` is neither `B`-closed nor `B`-open.
+    - `A`-membership carries no summability exponent: `A(Gamma)^+` contains
+      functions in no `l^q` whenever `Gamma` has an element of infinite order.
+    - The collapse witness `f_p` of `fpbs-two-point-state-axioms-admit-collapse`
+      satisfies `f_(p_c)` in `A` and `dist_B(f_p, A) <= theta^2 -> 0`, yet it is
+      in no `l^q` for `p > p_c`.
+    - Noncommutative Hausdorff–Young (`T_p` in `L^r(L Gamma)` with `r < 2`
+      gives `tau` in `l^(r')`) needs the same unavailable critical input.
+  - *What it gives instead:* an incomparable sibling hole [A],
+    `fpbs-two-point-in-fourier-algebra-near-pc-universal`. It also implies (IS)
+    and BS (route
+    `fpbs-integrated-sensitivity-via-fourier-algebra-two-point`).
+  - *Calibration:* on trees both holes hold, and `p_A = p_2` lies strictly
+    below `p_q` and `p_u`.
