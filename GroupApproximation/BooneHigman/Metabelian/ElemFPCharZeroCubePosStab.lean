@@ -132,3 +132,42 @@ theorem czCubePos_eq_one_of_cube {R : Type*} [CommRing R] {k N : ℕ}
   exact key k u hu (fun i hi ↦ absurd i.isLt (Nat.not_lt.mpr hi)) hs
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubePos_eq_one_of_cube
+
+section Over
+
+variable (A : Type*) [CommRing A]
+
+/-- **Injective stability on the cube part over `A`**, at rank `k + 4`, `k ≥ 1`: an element of
+`K₂(k + 4, A[s_1..s_k])` killed by **every** `s_i ↦ 0` whose stabilization is trivial is
+trivial.  LOUD: logically equivalent to `PolyK2StabRangeDiagStatementOver A 4`, strictly smaller
+in proof content (see the module docstring). -/
+def CZCubePosStabOverStatement : Prop :=
+  ∀ k : ℕ, 0 < k →
+    ∀ u : K2n (k + 4) (MvPolynomial (Fin k) A),
+      (∀ i : Fin k, K2Map (cubeKill A i) u = 1) →
+        K2Stab (k + 4) (MvPolynomial (Fin k) A) u = 1 → u = 1
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CZCubePosStabOverStatement
+
+/-- **The cube part gives the diagonal half over `A`** (cube decomposition at fixed rank). -/
+theorem czCubePos_stabRangeDiagOver_of_cubeStab (h : CZCubePosStabOverStatement A) :
+    PolyK2StabRangeDiagStatementOver A 4 :=
+  fun k hk u hu hs ↦ czCubePos_eq_one_of_cube (fun v hv hvs ↦ h k hk v hv hvs) u hu hs
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubePos_stabRangeDiagOver_of_cubeStab
+
+/-- Conversely, the diagonal half gives the cube part: `cc = cc ∘ π_0`, so an element killed by
+`π_0` is killed by `cc`. -/
+theorem czCubePos_cubeStab_of_stabRangeDiagOver (h : PolyK2StabRangeDiagStatementOver A 4) :
+    CZCubePosStabOverStatement A :=
+  fun k hk u hu hs ↦ h k hk u (by
+    rw [← constantCoeff_comp_cubeKill (R := A) (⟨0, hk⟩ : Fin k), ← K2Map_K2Map, hu ⟨0, hk⟩,
+      map_one]) hs
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubePos_cubeStab_of_stabRangeDiagOver
+
+end Over
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

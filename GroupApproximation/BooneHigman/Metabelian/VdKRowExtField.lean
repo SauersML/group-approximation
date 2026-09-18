@@ -42,8 +42,8 @@ theorem vdkRowExt_fieldK2Vanishing : FieldK2VanishingStatement :=
 theorem vdkRowExt_K2Stab_injective_zmod {p : ℕ} (hp : p.Prime) {N : ℕ} (hN : 5 ≤ N) :
     Function.Injective (K2Stab N (ZMod p)) := by
   intro a b _
-  rw [eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N hN) a,
-    eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N hN) b]
+  exact (eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N hN) a).trans
+    (eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N hN) b).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowExt_K2Stab_injective_zmod
 
