@@ -95,3 +95,47 @@ theorem k2PolyNagaoSigma_tau_conj {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK 
     exact k2PolyNagaoSigma_x_mem_Q hmL hmK f
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_tau_conj
+
+/-- **The `x_Lm` family.**  The coset check of every `x_Lm(f)`, `f ∈ F_p[X]`, against `σ`. -/
+theorem k2PolyNagaoSigma_check_Lm {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hthird : ∃ n, m ≠ n ∧ L ≠ n) (f : Polynomial (ZMod p)) :
+    k2PolyEuclid_Check p K L (k2PolyNagaoSigma_sigma p m L hmL) (x L m hmL.symm f) := by
+  intro v _
+  have e1 : act (x L m hmL.symm f) v m = v m := by
+    rw [act_x_apply, if_neg hmL, add_zero]
+  have e2 : act (x L m hmL.symm f) v L = v L + f * v m := by
+    rw [act_x_apply, if_pos rfl]
+  rw [k2PolyNagaoSigma_sigma, k2PolyNagaoSigma_sigma, e1, e2]
+  by_cases ha : v m = 0
+  · rw [ha, mul_zero, add_zero, k2PolyNagaoSigma_pair_zero]
+    exact k2PolyNagaoSigma_tau_conj hmL hmK hthird (v L) f
+  have e : ∀ A B C D : SteinbergGroup I (Polynomial (ZMod p)),
+      (A * B * C * D)⁻¹ * A * (B * C * D) = 1 := fun A B C D => by group
+  rw [k2PolyNagaoSigma_pair_of_ne p m L hmL ha, k2PolyNagaoSigma_pair_of_ne p m L hmL ha,
+    k2PolyNagaoSigma_mod_add, k2PolyNagaoSigma_div_add ha, add_comm (v L / v m) f, ← x_mul, e]
+  exact Subgroup.one_mem _
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_check_Lm
+
+/-- **The easy half of the Weyl check.**  If `deg v m < deg v L` then `σ(W' v) = W' σ(v)`, so
+the check element of `W' = w_mL(-1)` at `v` is `1`. -/
+theorem k2PolyNagaoSigma_check_W_lt {K : Finset I} {m L : I} (hmL : m ≠ L)
+    (v : I → Polynomial (ZMod p)) (hd : (v m).degree < (v L).degree) :
+    (k2PolyNagaoSigma_sigma p m L hmL (act (w m L hmL (-1 : (Polynomial (ZMod p))ˣ)) v))⁻¹ *
+        w m L hmL (-1 : (Polynomial (ZMod p))ˣ) * k2PolyNagaoSigma_sigma p m L hmL v ∈
+      k2PolyNF_Q p K L := by
+  obtain ⟨e1, e2⟩ := k2PolyNagaoSigma_act_W hmL v
+  have hb : -(v L) ≠ 0 := neg_ne_zero.2 (Polynomial.ne_zero_of_degree_gt hd)
+  have hdeg : (v m).degree < (-(v L)).degree := by
+    rw [Polynomial.degree_neg]
+    exact hd
+  have e : ∀ A B : SteinbergGroup I (Polynomial (ZMod p)), (A * B)⁻¹ * A * B = 1 :=
+    fun A B => by group
+  rw [k2PolyNagaoSigma_sigma, k2PolyNagaoSigma_sigma, e1, e2,
+    k2PolyNagaoSigma_pair_of_ne p m L hmL hb (v m), (Polynomial.div_eq_zero_iff hb).2 hdeg,
+    (Polynomial.mod_eq_self_iff hb).2 hdeg, neg_neg, x_zero, one_mul, e]
+  exact Subgroup.one_mem _
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoSigma_check_W_lt
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
