@@ -11,7 +11,8 @@ step) a second index `i ∈ K`, `i ≠ m`.  Assume the constant roots `x_im(1)`,
 lemmas assume all of the family `x_Lm(·)`):
 
 * `x_mL(f) = W x_Lm(-f) W⁻¹` with `W = x_mL(1) x_Lm(-1) x_mL(1)` (`k2PolyNagao_good_mL`);
-* `x_iL(f) = ⁅x_im(1), x_mL(f)⁆`, `x_im(f) = ⁅x_iL(f), x_Lm(1)⁆`, `x_Li(f) = ⁅x_Lm(f), x_mi(1)⁆`;
+* `x_iL(f) = ⁅x_im(1), x_mL(f)⁆`, `x_im(f) = ⁅x_iL(f), x_Lm(1)⁆`,
+  `x_Li(f) = ⁅x_Lm(f), x_mi(1)⁆`;
 * **degree step** `x_Lm(X^(a+1)) = ⁅x_Li(X^a), x_im(X)⁆` (`k2PolyNagao_good_step`).
 
 So when `|K| ≥ 2`, the goodness of `x_Lm(X)` and of the constants gives `x_Lm(X^k)` for all
