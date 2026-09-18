@@ -65,3 +65,15 @@ C1-C4; BFFHZ Remark 3.5). **Queue:** empty. **Dead / Sparks:** none.
 - bh-separators-must-omit-nested-decidable-hosts (bh-refute): PASS, nits
 - simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group (bh-kazhdan-inputs): PASS, nits
 - bh-cat0 three routes (bs-class faithful member, arithmetic NSP, cat0 tree factor): PASS, nits
+- bh-cat0 arithmetic-lie-lattices + H2 x tree: PASS, nits
+- hyperbolic-groups-lie-in-the-permutational-class + bbmz questions (bh-typeA-universal): PASS, nits
+- decidable expanders + CE separator (bh-refute): PASS, N1 singular Greendlinger
+- bh-cat0 hecke products + commensurator rigidity: PASS, nits
+- bh-self-similar loop retraction / linear activity / persistent subexp: PASS
+- bh-kazhdan-inputs central-V / Deligne / normal germ ext: PASS
+- houghton-like-envelopes fp germs (bh-map): PASS items 1-4, W1 item 5 dependency
+- leavitt one-step kernels + surjective stability (gq-infinite-primes): PASS both, N1-N3
+- periodic germ extensions of V + 2 breakpoint consumers (bh-linear-fields): PASS all three, N1-N3
+- run compression + spine Grigorchuk (bh-self-similar): PASS both, W1 BH step via Theorem A necessity; N1 p=0
+- fw-inputs no twisted shell normalization (gq-typeA-design): PASS, N1-N2, overlap w/ bh-kazhdan-inputs flagged
+- fw twisted-normalizing genuine shell (bh-kazhdan-inputs): PASS for countable P, W1 countability, N1-N2

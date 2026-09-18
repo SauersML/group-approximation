@@ -107,3 +107,64 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
        so it is zero. A working design therefore cannot store counters as exponents
        with monomial transitions. It must use genuinely polynomial operators, as KMS's
        `P_i` are, or odometer-style counters whose carries are the sections.
+
+4. **Finite-state candidates are capped at PSPACE; scope of the Cartier kill**
+   (bh-free-02, 2026-09-18).
+   - *The cap.* By `automaton-tail-full-groups-have-conp-relative-word-problem`
+     (item 2), every automaton group has word problem in `PSPACE`. So do its
+     Rover--Nekrashevych and product 2-graph hosts. A finite-state witness can
+     therefore serve this claim only for bounds `T` below `PSPACE`. The claim needs
+     infinitely many states, as the first necessary condition says.
+   - *The intermediate target.* A finitely presented automaton group with `NP`- or
+     `PSPACE`-hard word problem is still open. It would give finitely presented
+     simple groups beyond Birget's coNP. Wächter--Weiß's PSPACE-complete automaton
+     group (STACS 2020; cited, not read) is not known to be finitely presented.
+   - *Scope of the partial kill above.* It assumes `φ = σ ∘ C_0`, which kills every
+     monomial `x_q a^n` with `p ∤ n`. A general semilinear `φ`, with `φ(a^p) = a`,
+     is determined by arbitrary images of the `x_q a^r`, `0 <= r < p`, because the
+     free module is free over `F_p[a^{±p}]` on these. The kill does not cover
+     `φ` that send `x_q a^r`, `r != 0`, to nonzero elements. That is how the
+     sections of lamplighter-type self-similar actions look. So "no monomial
+     transitions" is proved only for `σ ∘ C_0`. General semilinear `φ` are untested.
+5. **Lamp-digit route through the KMS groups (bh-free-25, 2026-09-18).**
+   - **The criterion.** `lamp-digit-modules-give-self-similar-semidirect-products`
+     (lane proof, elementary): if `Q` is self-similar on `T_X` and an `F_p[Q]`-module `M`
+     carries a *self-similar module structure*, then `M ⋊ Q` is self-similar on
+     `T_{X × F_p}`. Such a structure means maps `ρ_x: M → M` with
+     `ρ_{q(x)}(q m) = q|_x ρ_x(m)` and a `Q`-invariant separating functional `λ`.
+   - **What it turns the question into.** The KMS groups `G(M) = T ⋊ Q` are finitely
+     presented. So this claim follows once some hard `G(M)` has a self-similar top
+     together with such a structure on its configuration module (route
+     `hard-self-similar-groups-via-self-similar-kms-modules`, OPEN premise
+     `kms-configuration-modules-carry-self-similar-structures`).
+   - **Already known about the premise.** The one-counter factors of the top are
+     finite-state affine automaton groups on `F_p[[X]]` for odd `p`. The multi-counter
+     factor `B_0` has no scalar affine realization when `K ≥ 2`.
+   - **A companion kill.** `boundary-orbit-wreaths-over-tree-groups-are-not-fp` shows
+     that boundary-orbit wreath products over tree groups, the simplest outputs of the
+     criterion, are never finitely presented. So finite presentation has to come from
+     the KMS relations, not from the wreath shape.
+
+5. **The known PSPACE-hard automaton groups, in finite-commutator form, are not
+   finitely presented** (bh-free-02, 2026-09-18). Wächter--Weiß
+   (arXiv:1906.03424v3, read from the TeX) build PSPACE-complete automaton groups
+   from a Turing-machine checking mode and a conjunction group `R`.
+   - *Finite `R` dies.* For finite `R` acting off the encoding letters, for example
+     `A_5`, the group is locally-finite-by-`Z`. By Bieri--Strebel it is therefore
+     not finitely presented
+     (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+   - *The binary headline group (`R` = Aleshin's `F_3`)* is open. The paper says
+     nothing about finite presentation.
+   - *Design lesson.* A finitely presented PSPACE-hard automaton group cannot read a
+     finite conjunction group off below a virtually cyclic checking group.
+   - **Verdict (bh-free-25, later on 09-18): dead in both shapes.**
+     - *Lamp-digit shape.* `kms-configuration-modules-have-trivial-coinvariants`: G5a and
+       G5b give `T = I_Q·T`, so every invariant `λ` vanishes and the premise is false.
+     - *Affine shape, any block size.* Scalar, 2×2 and larger matrices over `F_p[[X]]`
+       all fall to `affine-self-similar-groups-are-function-field-linear`:
+       a finitely generated self-similar group of affine maps of `F_p[[X]]^d` is linear
+       over a finite separable extension of `F_p(X)`, by a Jacobian argument on the
+       section equations. So its word problem is polynomial time, and no hard group
+       embeds in it.
+     - *What is left.* Sections whose linear parts differ from the parent (non-Toeplitz
+       causal linear maps), or nonlinear transducers.

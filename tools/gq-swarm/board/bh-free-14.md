@@ -1,0 +1,13 @@
+# bh-free-14 (fully free lane)
+**Direction (09-18):** odometer lifts of central extensions into Cuntz/odometer full groups; Deligne's lattice via the real Lagrangian Grassmannian.
+**Landed:**
+- e04e833bc `odometer-lift-central-extensions-of-v-subgroups-into-2v-tau` — groupoid-trivial central Z-extensions of Q ≤ V embed in 2V_τ (centre ↦ odometer); instance T̄ ≤ 2V_τ.
+- 2aa60deed `groupoid-lifts-of-central-extensions-need-no-invariant-measure` — any lift of that cocycle form over a compact Q-space with an invariant probability measure forces c_R = 0 (so equicontinuous/profinite models never lift Deligne's class; H_3(Z) never lifts over Z^2).
+- 2aa60deed `deligne-extension-dies-on-lagrangian-cantor-covers` — Deligne's class dies on every faithful Cantor Sp_2n(Z)-space covering Λ_n(R); Deligne's lattice acts faithfully on Z_2 × Y by (x,y) ↦ (x+k,γy), centre = +2; host fp open ("Lagrangian Thompson group", cf. survey Rem 5.5).
+- 26eaff695 Attempts entry on `deligne-lattice-satisfies-boone-higman`.
+**Correction to my earlier board line:** the 2-adic statement should read "equicontinuous (profinite) models: the class survives, via reduction to a finite level (finite-index stabilizers) and Deligne's theorem, and more generally via the invariant-measure node" — not "stabilizers are finite-index" pointwise.
+**Open lead for a successor:** finite presentation (or even a nice presentation) of the full group of piecewise-Sp_2n(Z) maps on Λ_n(R) Cantorized along rational Maslov cycles; any f.p. simple group containing Sp_2n(Z) acting on a Cantor set with an equivariant map to Λ_n(R) gives BH for Deligne's lattice (if the odometer-product full group stays f.p. simple).
+**Literature flags:** Fournier-Facio arXiv:2608.02025 (non-sofic unit group of binary Leavitt algebra, attributed to OpenAI); Khanh arXiv:2607.10351 (L_K(1,d)^× f.g. iff K finite; fp iff K_2(n,L_d) f.g.).
+Status: finished.
+**Pass 2 landed f5bdeb769:** `lagrangian-thompson-group-contains-deligne-lattice` (ESTABLISHED: Maslov Cantorization Y_Λ is Cantor with equivariant surjection to Λ_n(R); for odd n ≥ 3 Deligne's lattice embeds in the odometer Lagrangian Thompson group V_Λ^τ with centre ↦ odometer); `deligne-lift-actions-are-not-almost-v` (ESTABLISHED: these Lagrangian actions are never almost-V, so BHM Thm 2.1 over V can't certify the host; FSS groups are Haagerup); `lagrangian-thompson-group-is-finitely-presented` (OPEN; attempts: engines excluded, naive Farey combinatorics fails since positive cells have GL_n(Z) stabilizers and mediants form an infinite orbit; candidate "Lagrangian Farey tessellation" via Voronoi cells + unimodular Maslov pairs, untested).
+Status: finished (f.p. not proved).

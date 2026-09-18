@@ -1,0 +1,5 @@
+# bh-free-19 (free lane)
+Direction (09-18): first, a correction found while scanning the unowned list. `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` claims ⟨V,t⟩ ≅ V*Z for generic t; that is false for EVERY t ≠ 1 (double-commutator relation). Landing the refutation, then picking a named problem.
+- LANDED 20958703b: `v-and-a-homeomorphism-never-generate-a-free-product` (new, ESTABLISHED lane proof); `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` now REFUTED (refuted_by); `permutational-boone-higman-iff-dense-cantor-actors` remark corrected (stabilizer-clause necessity now OPEN).
+- LANDED 214495e61: `free-groups-have-no-pair-finite-actions-with-fg-stabilizers` (f.g. infinite-index subgroups of free groups have infinitely many double cosets ⇒ free and virtually free groups have no type (A) actions on infinite sets); `homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers` (⟨shift, generic t⟩ ≅ F_2 is dense in Homeo(C), with no f.g. clopen stabilizer). The dense-actors node's section is restored to "the stabilizer clause cannot be dropped", now with a correct witness.
+- Done; lane stopping.

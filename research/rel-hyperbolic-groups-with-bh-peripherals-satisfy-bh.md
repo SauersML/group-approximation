@@ -34,6 +34,18 @@ hyperbolic theorem.
   arXiv:2503.21882 (abstract), prove that the permutational Boone--Higman property
   is closed under free products. That settles the case `G = P_1 * ... * P_m` with
   all `P_i` in the permutational class.
+- **Cusp extensions.** `cusp-extensions-of-torsion-free-hyperbolic-groups-satisfy-pbh`:
+  for torsion-free hyperbolic `H`, `h ≠ 1` and finitely generated `P` in the permutational
+  class, `H *_{E(h)} (E(h) × P)` (hyperbolic relative to `E(h) × P`) embeds in a finitely
+  presented simple group. This is the first case here that is neither hyperbolic, nor
+  linear, nor a free product.
+- **Cusp extensions, general.** `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`:
+  for any finitely generated relatively hyperbolic `G ∈ B_A` (torsion allowed, for
+  example any hyperbolic group), adding finitely many cusps `E(g_i) × K_i` along
+  pairwise non-commensurable loxodromic elements, with `K_i ∈ B_A`, stays in `B_A`, and
+  the result is hyperbolic relative to the old and new peripheral subgroups. The key
+  input is `pbh-coset-condition-passes-to-finite-index-overgroups`: `E(g)` contains the
+  centralizer `C(g)` with finite index.
 
 ## Consequences and reductions (landed)
 
@@ -83,6 +95,17 @@ constructed.**
   (RB) for `G = S * T` with `S, T` finitely presented simple would already prove
   free-product closure of the Boone--Higman class. So (RB) is a genuinely new
   input, not a formality.
+
+**Attempt 2 (bh-relhyp, 2026-09-18): amalgams over centralizers. Partial success.**
+Instead of a germ extension, work algebraically inside relative holomorphs.
+`centralizer-amalgams-embed-in-relative-holomorphs` puts `G *_{C_G(F)} (C_G(F) × P)` in
+`(G * Z) ⋊ Aut_G(G * Z)` for any group `G`; with `pbh-class-closed-under-relative-holomorphs`
+this gives `pbh-class-closed-under-centralizer-amalgams`, and hence the cusp extensions
+above. What remains for this claim: peripheral structures that are not obtained from a
+hyperbolic group by amalgamating along centralizers (for example general Dehn-filling
+preimages), peripherals in the Boone--Higman class but not the permutational one, and
+hyperbolic groups with torsion (where `C_H(h)` can be a proper subgroup of `E(h)`). The
+torsion case is now settled by `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`.
 
 ## Scope
 

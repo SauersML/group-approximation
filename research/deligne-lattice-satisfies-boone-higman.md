@@ -173,6 +173,23 @@ simple group contains `Gamma~`.
     because the class is nonzero in `H^2(Γ; R)`.
   - *Circles are excluded.* Higher-rank lattices act on `S^1` with finite image, so
     no one-dimensional model of `T̄` type exists.
+- **Steinberg hosts over Leavitt rings by base change (2026-09-18, lane `bh-free-09`):
+  dead.**
+  - *Identification.* For `g >= 4`, `Gamma~_g ≅ StSp_2g(Z)` is the universal central
+    extension of `Sp_2g(Z)`, with centre `H_2(Sp_2g(Z)) = Z`. This combines Funar--Pitsch
+    and Lavrenov at source, as recorded in
+    `deligne-lattice-is-universal-central-extension-for-g-ge-4`. So the lattice lifts
+    injectively to `S~` whenever `Sp_2g(Z) -> S` is injective on `H_2`.
+  - *Swindle.* By `leavitt-swindle-kills-deligne-center-in-ring-induced-hosts`, base
+    change from `Z` into any ring with an involution-compatible Leavitt pair, `R_L`
+    included, is zero on `H_2(Sp_2g(Z))` in rank `>= 6g`. So every lift to a central
+    extension kills the centre.
+    - Linear base change kills `2Z` for every ring, and all of `Z` once there is a
+      Leavitt pair.
+    - So `StSp_2g(Z) -> StSp(R_L)` does not put the lattice on the GL_n(Q) instance
+      `steinberg-resolvent-shell-envelope-is-finitely-presented`.
+    - A Steinberg host over a Leavitt ring must carry the centre as a genuine unit, as in
+      the generic algebra-host gates.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone
     structures does not transfer;

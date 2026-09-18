@@ -42,3 +42,11 @@ nearby groups need not be quotients of `G`, and neither reduction applies.
 finitely generated solvable groups with a central quasicyclic subgroup `Z(p^∞)` (P. Hall's
 centre-by-metabelian constructions), which are not residually finite because a divisible central
 subgroup dies in every finite quotient.
+
+## Attempts
+
+1. **Question 3 already implies Question 1 on residually solvable groups (lane bh-free-27,
+   2026-09-18).** `residual-solvability-reduces-cgp-question-1-to-question-3`. The sharpest test groups
+   for a negative answer are the derived quotients `BS(m,n)/BS(m,n)^(k)` of a non-residually-finite
+   Baumslag--Solitar group (for example `BS(2,3)`), which are finitely generated, solvable and not LEF
+   for all large `k`. If `BS(2,3)` is not a limit of isolated groups, one of them is a counterexample.

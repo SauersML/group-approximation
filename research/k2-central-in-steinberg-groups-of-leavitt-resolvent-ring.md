@@ -8,7 +8,9 @@ distinct_from:
   faithful-pair-finite-steinberg-actions-need-noncentral-k2: that is the implication this hypothesis feeds; this is the hypothesis.
 ---
 
-**OPEN.** Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-and-contains-q`
+**ESTABLISHED** through `k2-central-in-steinberg-groups-via-k2-stability`, which cites item 3 of
+`leavitt-resolvent-k2-stability-holds` (lane gq-infinite-primes). That is a lane proof, not independently
+reviewed. Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-and-contains-q`
 and let `N >= 5`. Then `K_2(N,R_L) = ker(St_N(R_L) -> E_N(R_L))` is contained in
 the centre of `St_N(R_L)`.
 
@@ -42,4 +44,6 @@ gives `steinberg-leavitt-resolvent-groups-have-no-type-a-action`.
 
 ## Attempts
 
-None.
+- **2026-09-18 (lane gq-infinite-primes): proved, subject to review.** `leavitt-resolvent-k2-stability-holds`,
+  item 3. For every `N >= 3`, `K_2(N, R_L) = j(K_2(N-1, R_L))` is central (by padded centrality and the refinement
+  isomorphisms), and `K_2(N, R_L) ≅ Q^x`.

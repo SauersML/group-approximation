@@ -32,7 +32,8 @@ Let `G_0` be finitely generated with solvable word problem.
 gate is just "R_nu finitely presented", and generic enumerations pass it
 (`houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`).
 
-So along this route, Boone--Higman is reduced to one lifting statement: finite presentation passes from the germ
-group of `H_3(E_nu(P))` to `H_3(E_nu(P))` for a generic `nu`
-(`houghton-like-envelopes-lift-finite-presentation-from-germs`). No input-dependent window, near relation or
-enumeration design is left.
+*Correction, same day.* The first version said this route reduced Boone--Higman to one lifting statement for
+generic `nu`. That lifting is false (`free-shift-houghton-like-envelopes-are-not-fp`): for free-shift enumerations
+no `H_n(E_nu(P))` is finitely presented. So this route still needs an enumeration with near relations, which pin
+`nu` down at infinity (item 3 there). This is the same kind of design problem as the other permutation and shell
+routes. What this route still saves is the window conditions at the germ level.

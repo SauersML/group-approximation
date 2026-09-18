@@ -8,11 +8,14 @@ distinct_from:
   stationary-vershik-maps-generate-contracting-rsgs: that is the RSG verification for the Vershik map; this is the resulting embedding statement for the topological full group of the subshift.
   amenable-full-group-forces-invariant-measure: that constrains amenable full groups; nothing here is about amenability of the host, which is a twisted Brin--Thompson group.
 artifacts:
+  - research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md
   - research/artifacts/gq-bh-bh-free-03-substitution-full-groups.md
 ---
 
+**Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, for the IET node, Sturmian substitutivity), which it did not re-read. Report: `research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md` (98821f68e). It re-derived the germ normal form, the no-stacking induction, the `T^{-1} c T` depth-shift transport, the finite nucleus, the full closure and the IET embedding, and found no gap. This is an internal check, not a referee review. The product and box-exchange nodes were not covered.
+
 **ESTABLISHED** by `substitution-subshift-full-groups-satisfy-boone-higman-proof`
-(lane proof, not independently reviewed). No priority is claimed; see the artifact,
+(lane proof; internally checked by `bh-refute`, no referee review). No priority is claimed; see the artifact,
 §4.
 
 **Statement.** Let `tau` be a primitive aperiodic substitution and `(X_tau, S)` its

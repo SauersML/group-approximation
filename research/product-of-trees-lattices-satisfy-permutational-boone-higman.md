@@ -91,3 +91,54 @@ distinct_from:
      example locally `∞`-transitive closures) force a faithful factor, hence `B_A`.
    - **Exact gap.** Irreducible three-tree lattices with such an `N_ij`. Existence
      unknown.
+7. **Boundary k-graphs (bh-lattices, 2026-09-18).** *Works for every virtually
+   torsion-free lattice, any number of factors.*
+   `virtually-torsion-free-tree-lattices-satisfy-pbh`, in three steps:
+   - **Embedding.** A torsion-free lattice embeds in the topological full group of
+     the `N`-th power of its cube k-graph. A phase coordinate `(Z/N)^k` absorbs the
+     Busemann lag, and `N` is chosen so that every vertex has two loops of every
+     colour. That group is `F_∞` by Li's higher-rank-graph theorem
+     (`torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`).
+   - **Type (A).** After stabilizing by the Cuntz groupoid, refining cylinder
+     decompositions makes any two nonempty clopen sets in a strongly connected
+     piece equivalent, so the clopen action is of type (A)
+     (`stabilized-kgraph-full-groups-have-type-a-actions`).
+   - **Remaining gap.** Only lattices with no torsion-free subgroup of finite
+     index. For three trees, they must also be irreducible with a discrete normal
+     subgroup in a factor closure (Attempt 6).
+8. **Torsion allowed (bh-lattices, 2026-09-18).** *Works for faithful lattices
+   on thick leafless trees.* `cocompact-tree-product-lattices-lie-in-type-a-class`:
+   the cube stabilizers become a finite germ groupoid acting self-similarly on a
+   transported cube k-graph, and Li's Zappa--Sz\'ep Example (III) replaces his
+   plain k-graph theorem. The power, phase and stabilization steps are unchanged.
+   - **What is left of this claim.** Its setting allows an action on `X` with a
+     finite kernel, and trees with leaves or with two ends. Lines split off as
+     discrete factors (`discrete-factor-tree-lattices-are-virtually-products`), and
+     pruning leaves does not change the action on the boundary. But a finite normal
+     subgroup acting trivially on `X` acts trivially on `∏ ∂T_i`, so it does not embed
+     in the full group. The remaining case is exactly a nontrivial finite kernel that
+     survives in no finite-index subgroup of `Gamma`.
+9. **Finite kernels (bh-lattices, 2026-09-18).** *Works unless the kernel has a
+   centre that survives in every finite-index subgroup.*
+   - **Reduction.** Replace each `T_i` by its minimal `pr_i(Gamma_0)`-subtree (leafless,
+     and it has the same boundary). The kernel `Z` of `Gamma_0` on this pruned product
+     lies in a vertex stabilizer, so it is finite and normal. Its centralizer
+     `C = C_(Gamma_0)(Z)` has finite index, and the kernel of `C` on the pruned product
+     is `Z ∩ C`, the centre `A = Z(Z)`, which is central in `C`.
+   - **When it works.** Suppose some finite-index `C' ≤ C` meets `A` trivially. This
+     holds if `Z` is centreless, if `Gamma` is virtually torsion-free (`A` is torsion),
+     if `Gamma` is residually finite, or if the extension `A -> C -> C/A` virtually
+     splits. Then `C'` acts faithfully on the pruned product. Line factors split off as
+     discrete factors (`discrete-factor-tree-lattices-are-virtually-products`), leaving
+     a faithful lattice on thick leafless trees times a virtually free group. So `C'`,
+     and hence `Gamma`, lies in `B_A` by `cocompact-tree-product-lattices-lie-in-type-a-class`.
+   - **Exact remaining case.** Finite central extensions `1 -> A -> C -> C/A -> 1` of a
+     faithful lattice whose class survives on every finite-index subgroup. A
+     candidate: a nontrivial perfect central extension of a finitely presented simple
+     Burger--Mozes lattice, whose Schur multiplier is not computed here. This is an
+     instance of closure of Boone--Higman under finite central extensions, which is
+     not settled on main. The germ-groupoid construction still embeds `C` in the
+     full group of global bisections of a non-effective groupoid, of type `F_∞` by
+     Li's Example (III), with condition (F) holding because the stabilizers are
+     honest. But `A` acts trivially on the unit space there, so the type (A) clopen
+     action is not faithful.
