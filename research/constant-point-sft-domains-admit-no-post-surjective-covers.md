@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/constant-point-domain-count-2026-09-17.md
   - research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md
+  - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -60,3 +61,35 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What would move this claim.* Either a de-colouring theorem for sections of cover pairs with base-independent
     decoder over the colouring shift, or the Rokhlin hub. Artifact
     `research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md`.
+- **Symmetric-locus localization (swarm-0917-w9-w9-gs-last1, 2026-09-18; reframing). Sharpens the de-colouring
+  question. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cover-pair-sections-localize-to-the-symmetric-locus`. A cover pair has
+    a section iff some seed `ξ : A^G → X` (continuous, equivariant) is exact at `1` on
+    `Sym_E = ∪_{e ∈ E \ {1}} Fix(e)`. Off `Sym_E` the non-exact set is compact and `E`-free, so a finite clopen
+    greedy colouring schedules Lemma-2 lifts continuously. Artifact
+    `research/artifacts/symmetric-locus-seeds-2026-09-18.md`.
+  - *Kills the interface-buffer obstruction.* The third bullet of "Where the converse dies" is not an
+    obstruction, over any `G`. Theorem S has no lifted/unlifted interface: every non-exact site is lifted.
+  - *What is left.* The converse (Gottschalk ⇒ this claim) now asks only for one seed exact on the finitely many
+    closed sets `Fix(e)`. On `Fix(e)` this is an `⟨e⟩`-coset lift: lift at all `e^j` at once by an `e`-invariant
+    patch, where Lemma 2 fails because `e ∈ E`. At constants it is the first bullet (a constant `b^G ∈ X` with
+    `F(b^G) = a^G`). A counterexample to this claim at a surjunctive `G` must be a cover pair in which this coset
+    lift is impossible for some `e ∈ E \ {1}`.
+- **Fixed-point deficiency and free-monoid calibration (swarm-0917-w9-w9-gs-follow, 2026-09-18; calibration).
+  This is a class kill plus a calibration. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `cover-pair-sections-force-fixed-point-surjectivity`. A section forces
+    `F(X ∩ Fix(H)) = Fix(H)` for every `H`, so the constant map `φ` must be a permutation of `A`.
+  - *Class kill.* On a pair with constant deficiency `D = A \ φ(C_X) ≠ ∅`, every section, seed, de-colouring or
+    `⟨e⟩`-coset-lift construction dies at a constant target `a^G` with `a ∈ D`.
+    - Products, shears, restrictions, composites and recodings cannot repair `D`, since deficiency pulls back along
+      morphisms of pairs.
+    - The pairs the route feeds in, `(X_R, σ)`, have the section `τ`, so `D_H = ∅`. The fragment of this claim that
+      the route uses is therefore equivalent to Gottschalk, and the deficient fragment is off-route.
+  - *Calibration.* The free monoid `{a,b}*` is surjunctive and residually finite. It carries a constant-point cover
+    pair `X = {x(wb) = 0}` with `F(x)(w) = x(wa)`, which is SI, not pre-injective, and has `D = {1}`.
+    - So the monoid analogues of this claim, of PSD, of the finite-orbit exclusion and of `Gottschalk ⇒ this claim`
+      are all false.
+    - Any proof of this claim, or of needs 36774ad3 and 06d50d0e, must use invertibility of translations.
+  - *What is left.* The group question: does any (non-sofic) group carry a cover pair with `D ≠ ∅`? If one does, it
+    refutes this claim. If none does, this claim is equivalent to its fixed-point-surjective fragment. Artifact
+    `research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md`.

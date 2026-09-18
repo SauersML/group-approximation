@@ -7,7 +7,10 @@ distinct_from:
   opposition-ping-pong-criterion-gives-mixed-identity-freeness: that is an abstract ping-pong criterion on any compact space with an opposition relation; this is the geometric input saying that strongly regular elements of Euclidean buildings are proximal in its sense.
 ---
 
-**OPEN.** Let `X` be a locally finite thick Euclidean building. Let
+**ESTABLISHED** (lane proof `strongly-regular-opposition-proximality-proof`, bh-testcases
+2026-09-18). It rests on the standard building facts (I1)–(I7) listed there, which were
+not re-read at source. Not independently reviewed. Let `X` be a locally finite thick
+Euclidean building. Let
 `Z = Ch(∂X)` be the set of chambers at infinity with the cone topology, and let
 `O ⊆ Z × Z` be the opposition relation. The claim has two parts.
 
@@ -45,3 +48,16 @@ distinct_from:
      `S_{c₊}(v)` on that ball.
    - **Compactness.** A compact `K ⊆ O(c₋)` lies in one `O_R(c₋)`.
    - Part (a) was not attempted.
+3. **Proved** (bh-testcases, 2026-09-18), `strongly-regular-opposition-proximality-proof`.
+   - **Part (a).** `O` is open by the opposite-germ lemma. `O(c)` is dense: at a special
+     vertex far inside a sector, choose a germ opposite both the germ toward `c` and the
+     direction back to the base point.
+   - **Part (b).** Attempt 2's sketch goes through.
+     - The witness radius `R(d)` is locally bounded, because sharing a germ with `d` at the
+       witness vertex keeps the opposite-germ lemma applicable.
+     - `a^n` pushes the shared sector `y + nτ + C_(c_-)` over any ball around `v`.
+     - The apartment isometry fixing the intersection then identifies the truncated
+       sectors from `v`.
+   - **Lesson for general BH.** The contraction premise of the higher-rank MIF criterion
+     holds for every group acting on a locally finite thick Euclidean building. So only
+     density of pole pairs and non-domesticity at infinity carry lattice-specific content.

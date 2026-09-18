@@ -160,7 +160,7 @@ theorem hMatEval_apply (s : ι → Δ) (M : HMat ι) (i j : Fin 3) : hMatEval s 
 
 /-- **The matrix product of tables is the matrix product.** -/
 theorem hMatEval_hMatMul (s : ι → Δ) (M N : HMat ι) : hMatEval s (hMatMul M N) = hMatEval s M * hMatEval s N := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   simp only [hMatEval_apply, Matrix.mul_apply, Fin.sum_univ_three, hMatMul, hTabEval_append, hTabEval_hTabMul]
 
 theorem hTabEval_unit (s : ι → Δ) : hTabEval s ([([], [])] : HTable ι) = 1 := by
@@ -170,7 +170,7 @@ theorem hTabEval_unit (s : ι → Δ) : hTabEval s ([([], [])] : HTable ι) = 1 
   rw [wordValue_nil, hCyl, map_one, SkewMonoidAlgebra.single_one_one]
 
 theorem hMatEval_hMatOne (s : ι → Δ) : hMatEval s (hMatOne : HMat ι) = 1 := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   rw [hMatEval_apply, hMatOne, Matrix.one_apply]
   by_cases h : i = j
   · rw [if_pos h, if_pos h, hTabEval_unit]

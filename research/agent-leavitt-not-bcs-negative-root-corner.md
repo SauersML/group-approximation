@@ -339,3 +339,128 @@ across the `V_+/V_-` wall. A hyperlinear approximation of `EL_20(J)` has to be *
     * virtual splitting over an odd-torsion-free congruence subgroup `Gamma`, which would reduce this hole to CE of the genuine crossed product `L x| Gamma`;
     * the von Neumann cocycle `omega` in `R x|_(alpha,omega) Q`.
   * Next falsifiable step: decide whether the sequence splits over a congruence subgroup of `SL_20(A)`. A mod-2 index of lifted involutions (the parity of `ker(u~+1)/im(u~+1)`) is the natural candidate obstruction.
+
+### Virtual splitting dies: image-layer index of unipotent lifts (swarm-0917-w9-w9-nh-last1, cohomology-index, 2026-09-18)
+
+*Approach tried.*  Take the recorded next step above: decide whether `1 -> L -> EL_n(J) -> SL_n(A) -> 1`
+splits over a finite-index (for example congruence) subgroup `Gamma`, which would reduce the Toeplitz survivor
+class to CE of a genuine semidirect product `L x| Gamma`. The mod-2 invariant `ker(u~+1)/im(u~+1)` proposed above
+turns out to be useless (its relative dimension against any finite-rank perturbation is always even, `2[ker t' : ker t]`),
+but the integer index of a commuting element on the image layer `im(u~+1)` is not.
+
+*Result* (`jacobson-symbol-sequence-does-not-virtually-split`, established; route
+`jacobson-symbol-sequence-does-not-virtually-split-proof` from `jacobson-symbol-sequence-does-not-split`).
+- For `a != 0` and `k != 0`, no lift of `x_12(a)` commutes with any lift of `h^k`, `h = diag(z,z,z^(-2),1,...)`.
+  If `u~ h~ = h~ u~`, then `h~` maps `t V = (u~+1)V` bijectively onto itself (index `0`); `tV` is commensurable
+  with the first coordinate `V_+`, where the Toeplitz lift of `h^k` is `S^k` (index `-k`); the subspace-relative
+  index is invariant under commensurable change and finite-rank perturbation.
+- Every finite-index `Gamma` contains some `x_12(a)`, `a != 0`, and some `h^k`, `k != 0`. So **the sequence splits
+  over no finite-index subgroup**, for every `n >= 3`, without the congruence subgroup property and without any
+  finite-order lift.
+
+*What this kills.*  Every virtual-semidirect reduction of `EL_20(J)` hyperlinearity: permanence theorems for split
+amenable-by-residually-finite extensions applied to a finite-index subgroup, and approximations pulled back along a
+section of any finite-index subgroup.
+
+*Where it stops (hole stays OPEN).*  The index lives on the defining representation. It does not decide whether
+the von Neumann cocycle `omega` of `L(E) = R x|_(alpha,omega) Q` is a coboundary in `U(R)` (a Popa-type
+untwisting uses unitaries of `R`, which are not finite-rank perturbations), and it does not exclude semidirect
+decompositions of `pi^(-1)(Gamma)` along normal subgroups other than `L`. The remaining decision points are the
+Popa vanishing-cohomology test for the corner action and wall-rigid approximations of `P`, both recorded above.
+
+### Gapped finite-group models kill the head: a class-kill for the refutation side (swarm-0917-w9-w9-ptm-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+*Approach tried.* Refute this hole the cheapest way, by exhibiting the `EL_20(J)` decision point, a trace with
+`tau(z) != 1`, as a limit of finite models. The models are the ones every Toeplitz construction so far produces:
+- window, periodic and bilateral truncations;
+- configuration, Haar and permutation-module models;
+- Weil representations;
+- rank transfers through the ambient finite linear group.
+
+All of these have the form `pi(g) = c(g) rho(phi(g))`. Here `phi` is an arbitrary map into `GL_d(F_2)`, or into
+some finite quasi-simple classical group, `rho` is a representation of that group, and `c` is an arbitrary scalar
+one-cochain.
+
+*Where it dies* (`jacobson-head-dies-in-gapped-finite-group-models`, established; route
+`jacobson-head-dies-in-gapped-finite-group-models-proof`).
+- **Rigidity invariant.** For every representation, every noncentral `D`, every scalar `lambda` and every `y`, the
+  target family satisfies `||rho(y)-1||_2 <= C ||rho(D)-lambda||_2`.
+  - `C = 8 sqrt 2` for `GL_d(F_2)`, `d >= 5`, via two commutator steps down to a transvection and the transvection floor.
+  - `C < 37.3` for all quasi-simple classical groups, via Larsen-Shalev-Tiep.
+- **Death step.**
+  - If a defect on the fixed finite set `F_1` is noncentral, `rho` is globally `C·def`-trivial.
+  - Otherwise `phi` mod center is a homomorphism of the finitely presented `St_4(J)` into a finite group. It kills
+    `x_12(Q)` by the pigeonhole Steinberg chain, and the commutator `z = [x_12(Q), x_23(1)]` absorbs the central values.
+  - Either way, `||pi(z)-1||_2 <= (7+8C) def_{F_1}(pi)`, so every limit trace has `tau(z) = 1`, factoring through the
+    symbol quotient.
+- The same bound holds in `Delta = St_20(R)`, via `J -> R`, `S -> s_2`, `T -> t_2`.
+
+*Hole stays OPEN.* Nothing here proves `LNC3` or non-hyperlinearity of `EL_20(J)`. The refutation branch survives only
+through:
+- targets without a uniform character-ratio gap (alternating or symmetric groups of unbounded degree, or unboundedly
+  long products);
+- unitary models that are not scalar multiples of a finite-group representation image.
+
+A proof of this hole in the positive direction would need exactly the missing case: control of `z` in
+alternating-constituent models, compare `fp-simple-finite-group-models-reduce-to-alternating-constituents`.
+
+### Wall-asymmetric traces of P are inert (swarm-0917-w9-w9-nh-pull, symbolic-dynamics / calibrator, 2026-09-18)
+
+*Approach tried.* Take up step (i) of the mirror-head swap entry: build head-seeing traces of `P` from traces of `P`
+that distinguish the two walls, combined with the LEF ambient traces by products, tensor powers, direct sums and
+mixtures.
+
+*Result* (`jacobson-mirror-exact-trace-part-is-multiplicative`, established). The whole class dies.
+- **The mirror-exact part.** For a trace `tau` of `P`, let `tau^flat(g) = lim_j avg_(F_j) tau(y g)`, with `F_j`
+  finite subgroups increasing to `L_-`. This is `tau` cut down by the central projection onto the `L_-`-invariant
+  vectors, and it factors through `E`.
+  - For extremal `tau` it equals `tau` or `0`.
+  - `E` is hyperlinear iff some CE trace of `P` has `tau^flat` nonconstant on `L_+` (via Theorem JH).
+- **The death step.** `GL_fin(V_-)` has no nontrivial finite-dimensional unitary representation. Hilbert--Schmidt
+  intertwiners then give `(H_1 (x) H_2)^(L_-) = H_1^(L_-) (x) H_2^(L_-)`, so `(tau_1 tau_2)^flat = tau_1^flat tau_2^flat`.
+- **The inert class.** `N = {tau : tau^flat constant on L_+}` is closed under products, mixtures and conjugation. It
+  contains:
+  - every trace with no `L_-`-invariant vectors;
+  - the wall-asymmetric rank traces `psi_a (x) psi_b` extended by zero, with `b >= 1`, which separate `w` from `w'`;
+  - every restriction of a trace of `H_bi`, or of any overgroup containing the finitary site permutations. This part
+    is list-free and holds on all of `L_+`, not only at the head.
+- **Invariant.** `tau -> tau^flat|_(L_+)`.
+
+*Calibration.* Step (i), "distinguish the two walls", is necessary but not sufficient, and it does not decompose the
+hole.
+- A wall-asymmetric trace with no mirror-exact mass kills the flat part of every product it enters.
+- What is needed is CE mass on the mirror-exact face (traces equal to `1` on `L_-`) that charges the head. That is
+  the hole itself, by (MX2).
+
+*Where it stops (hole stays OPEN).* Pointwise limits are the only operation left open.
+- `m(tau) = tau^flat(1)` is only upper semicontinuous, so a limit of inert traces could gain mirror-exact mass.
+- If the extreme characters of `GL(infinity,2)` are exactly `2^(-k rank(g-1))` (Skudlarek's list, **not imported**;
+  the graph has only GKV's countability statement), then `m` and `flat` are weak*-continuous and `N` is closed.
+- **Next falsifiable step.**
+  - Import Skudlarek's classification verbatim. That closes `N` under limits. The positive side must then produce a
+    CE trace of `P` outside the closed, convex, product-closed set `N` by a mechanism that is not a limit of inherited
+    traces.
+  - Or exhibit a sequence of CE traces in `N` whose limit charges the head on the mirror-exact face.
+
+**Template concentration for the head (swarm-0917-w9-w9-nh-follow, 2026-09-18, family finite-models).** Landed as
+`jacobson-head-concentrates-on-template-constituents` (established, unreviewed). It closes the "unbounded products"
+survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
+- *Statement.* Take any finite-group model `c·ρ∘φ` of a group receiving `St_4(J)`, with any finite `G`, any `ρ` and
+  any scalar cochain `c`. Then `‖π(z) - 1‖_2 <= K def + 2 sqrt(p_T)`, where `p_T` is the weight of template
+  constituents of `ρ|G^(L)`: those in which every `St_4(J)`-relator has character ratio `> θ` and some relator is not
+  a scalar. This holds for every `L`, `θ < 1`.
+- *Death step.* Push the generators into `G^(L)` by commutator words. Their zero exponent sums cancel `c`. Then split
+  constituent by constituent:
+  - if every relator is scalar, `St_4(J)` has a finite projective image, which kills `x_12(Q)`, so the head is exactly `1`;
+  - if some relator is `θ`-far from scalar, that costs `sqrt(2(1-θ))` of defect.
+- *Kills.* Every model through `∏ GL_{N_i}(q_i)`, with any number of factors, ranks and fields (including `q > 2`),
+  through their bounded-derived-length extensions, or through quotients of products of quasi-simple classical and
+  abelian groups. This includes tensor products and direct sums of truncation models at unboundedly many levels.
+- *Where it stops (hole stays OPEN).* A finite-group certificate of `EL_20(J)` that sees the head needs
+  `liminf p_T >= (1 - Re τ(z))/2` at every depth. Its mass must sit on non-gapped constituents of subgroups, such as
+  alternating deleted permutation modules. Unitary models that are not scalar multiples of finite-group representation
+  images are untouched.
+- **Next falsifiable step.** Decide whether the template constituents of `G^(L)`, taken for all `L` at once, can be
+  forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
+  into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
+  test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.

@@ -27,13 +27,14 @@ section PullRelRing
 variable {A : Type*} [CommRing A]
 
 /-- The projection `P → A`. -/
-def k2PullRel_fst (s : A) : k2DilateSt_pullback s →+* A :=
+noncomputable def k2PullRel_fst (s : A) : k2DilateSt_pullback s →+* A :=
   (RingHom.fst A (Polynomial (Localization.Away s))).comp (k2DilateSt_pullback s).subtype
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PullRel_fst
 
 /-- The projection `P → L[X]`. -/
-def k2PullRel_snd (s : A) : k2DilateSt_pullback s →+* Polynomial (Localization.Away s) :=
+noncomputable def k2PullRel_snd (s : A) :
+    k2DilateSt_pullback s →+* Polynomial (Localization.Away s) :=
   (RingHom.snd A (Polynomial (Localization.Away s))).comp (k2DilateSt_pullback s).subtype
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PullRel_snd

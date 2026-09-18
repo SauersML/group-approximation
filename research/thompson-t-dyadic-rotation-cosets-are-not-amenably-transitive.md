@@ -55,3 +55,31 @@ escapes only if it generates a group that is, up to a finite or abelian quotient
     Again no commuting pair and no finite pair. So small twists do not escape through the abelian or finite
     branch of the structure lemma. The only possible escape left for `{x_0, x_1}` goes through point-fixing
     subgroups, whose amenability is `F`-level. This is evidence, not proof.
+- **2026-09-18 (swarm-0917-w9-w9-f-follow, host-geometry follow-through).** Status stays OPEN. Three results,
+  code and data in `experiments/rotation-twist-finite-orbits-2026-09-17/`.
+  - **`{x_0, x_1}` is not a witness, unconditionally** (`thompson-generators-x0-x1-have-an-amenable-rotation-twist`,
+    ESTABLISHED, hand proof). `A = x_0ρ_{1/2}` has order 3 and cyclically permutes the arcs `[1/2,1]`,
+    `[0,1/4]`, `[1/4,1/2]`. `B = x_1` is supported in `(1/2,1)`. So `⟨A, B⟩ ≅ Z ≀ Z/3`, which is virtually
+    `Z³`. This corrects the w8 conclusion above: the escape is virtually abelian, with the finite orbit
+    `{0, 1/4, 1/2}`. The w8 test missed it because it checked only whether `A` and `B` commute or generate a
+    finite group, and here they do neither. The general mechanism is a torsion arc permutation together with
+    elements supported in one of its arcs, which gives a wreath product. Every witness must defeat it.
+  - **No finite orbit implies nonamenable, unconditionally**
+    (`fg-amenable-subgroups-of-thompson-t-have-finite-orbits`, ESTABLISHED). Let `H ≤ T` be finitely
+    generated and amenable, and suppose each generator has a periodic point. Then the image of the rotation
+    number on `H` is finite. The invariant measure then yields a finite orbit, from its atoms of maximal mass
+    or from the support of a nonatomic measure. This sharpens the structure lemma above: the escape through
+    the "abelian quotient" case is gone. It also makes the census decisive on most twists. For `{x_0, x_1}`
+    at `2^{-5}` (1024 pairs):
+    - 1001 have no finite orbit;
+    - 22 contain `F` (Brin Theorem 1, certified on pairs of words);
+    - only `(1/2, 0)` is virtually abelian.
+  - **For `{x_0, x_1, x_2}` the route looks circular**
+    (`thompson-t-twists-of-x0-x1-x2-with-a-finite-orbit-contain-f`, OPEN). At `2^{-4}`, all 4096 twists fall
+    into two classes: 4085 have no finite orbit and 11 contain `F`. None is virtually abelian and none is
+    unresolved. So small twists of `{x_0, x_1, x_2}` are consistent with that set being a witness exactly
+    when `F` is nonamenable. The node proves a reduction: if every twist of this set that has a finite orbit
+    contains `F`, then this claim is equivalent to `thompson-f-is-not-amenable`. So the route
+    `thompson-f-not-amenable-via-rotation-cosets-of-thompson-t` would give no leverage. The last escape for
+    a would-be witness is a twist with a finite orbit that contains no `F`. Its point stabilizer is an
+    `F`-free subgroup of `PL_o(I)`, and deciding its amenability is exactly the Brin–Sapir question.

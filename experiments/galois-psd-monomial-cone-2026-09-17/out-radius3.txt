@@ -1,0 +1,19 @@
+predicted finite set N_pred: 6   nonnegative members: 6
+radius 1 ball size 54
+radius 2 ball size 1464
+radius 3 ball size 33438
+nonnegative elements in ball: 6
+all inside predicted set: True
+   [[-1.0, 0.0, 0.0], [0.0, 0.0, -1.0], [0.0, -1.0, 0.0]]
+   [[0.0, -1.0, 0.0], [-1.0, 0.0, 0.0], [0.0, 0.0, -1.0]]
+   [[0.0, 0.0, -1.0], [0.0, -1.0, 0.0], [-1.0, 0.0, 0.0]]
+   [[0.0, 0.0, 1.0], [1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
+   [[0.0, 1.0, 0.0], [0.0, 0.0, 1.0], [1.0, 0.0, 0.0]]
+   [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+det(Sym^2 g) == 1 on 200 samples: True
+n=2 omega=1.000: normalised (v_+, v_-) coefficient of E_11 = (8.67e-04, +1.000000)
+n=2 omega=1.414: normalised (v_+, v_-) coefficient of E_11 = (8.67e-04, -1.000000)
+n=5 omega=1.000: normalised (v_+, v_-) coefficient of E_11 = (2.21e-08, +1.000000)
+n=5 omega=1.414: normalised (v_+, v_-) coefficient of E_11 = (2.21e-08, -1.000000)
+n=10 omega=1.000: normalised (v_+, v_-) coefficient of E_11 = (4.89e-16, +1.000000)
+n=10 omega=1.414: normalised (v_+, v_-) coefficient of E_11 = (4.89e-16, -1.000000)

@@ -27,9 +27,12 @@ subgroup of the Brin–Thompson group `mV`.
   so this is not an obstruction.
 - `mV` contains the infinite Kazhdan group `SL_3(Z)`, so `mV` fails the Haagerup
   property (Problem 2.7). See `some-brin-thompson-group-has-an-infinite-kazhdan-subgroup`.
-- Torsion is no obstruction. `mV` is torsion locally finite (Kojima–Sheng,
-  arXiv:2603.18410, Theorem 1.1), and the torsion subgroups of `GL_n(Z)` are
-  finite.
+- Torsion is no obstruction: every finite subgroup of `GL_n(Z)` embeds in `V ≤ mV`,
+  and `GL_n(Z)` has no infinite torsion subgroups. (Correction, 2026-09-18, lane
+  bh-free-50: this line earlier cited "mV is torsion locally finite" from Kojima–Sheng,
+  arXiv:2603.18410, Theorem 1.1, as a fact. Its proof rests on a false two-generator
+  criterion, see `kojima-sheng-two-generator-torsion-criterion-fails-in-v`, so that
+  statement is open for `m ≥ 2`. Nothing here used it.)
 
 ## Attempts
 

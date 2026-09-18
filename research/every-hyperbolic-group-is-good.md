@@ -33,3 +33,18 @@ as a named problem in the literature.
   group that is not good does not contradict residual finiteness. Non-goodness of a
   hyperbolic group decides neither root. What a counterexample to Gromov's question
   must fail is the specific surjectivity onto Chern–Quillen classes.
+- **Entropy-measure transplant (swarm-0917-w9).** The idea was to replace finite quotients by a measurable
+  object, lifts of p.m.p. actions across finite extensions, and to construct those lifts by ergodic methods.
+  - `kazhdan-degree-two-goodness-iff-profinite-measurable-lifts` (ESTABLISHED, via Ioana's profinite cocycle
+    superrigidity) shows the dictionary is exact in degree two for residually finite Kazhdan groups.
+    - A lift of any free ergodic profinite action across a finite extension already forces virtual splitting.
+    - Degree-two surjectivity of inflation for every finite-index `N` and finite `A` is equivalent to
+      measurable lifts of `N ~> N̂`.
+  - So in degree two the transplant gains nothing, exactly on the hyperbolic Kazhdan groups where the cubical
+    route dies. Every measurable lift over a profinite action is a finite-quotient construction in disguise.
+  - Lifts over Bernoulli-type or treeable actions do not help either. They carry no information about goodness:
+    they force actual splitting (`central-bernoulli-lifts-force-splitting`) or always exist
+    (`treeable-free-actions-lift-across-finite-normal-extensions`).
+  - It dies at degree `>= 3`. Ioana's theorem controls 1-cocycles into groups, which reach degree two through
+    extensions. No rigidity is known for measurable `q`-cochains with `q >= 3`. So the high-degree half used by
+    `torsion-free-hyperbolic-mod-p-classes-die-virtually` has no measurable reformulation.

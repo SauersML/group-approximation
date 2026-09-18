@@ -202,3 +202,55 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     - or find an invariant compatible with `ρ`.
     For `#193` and `332H`, the analogous duality has three independent `D`-letters generating
     `C_2^3` and the `S_3` relation `(τc)^3 = 1`, so it needs its own parity lemma.
+- (w6-107c, 2026-09-18) **Hand proof, no SAT (`bmw-40-40-193-281-332-klein-chain-proof`).** For all
+  three classes `Γ^+` contains four elements, each a two-letter word or a letter conjugate of one, with
+  `x_{i+1} x_i x_{i+1}^{-1} = x_i^{-1}` cyclically.
+  - In a left order, `a b a^{-1} = b^{-1}` forces `|b| < |a|`. So the cycle gives
+    `|x_1| < |x_2| < |x_3| < |x_4| < |x_1|`.
+  - For #281 and #332 the cycle is `h0h2, v3v0v2v3, h3h1h2h3, v1v2`.
+  - For #193 it is `h0h1, v0v3, h3h0h2h3, v2v0v1v2`.
+  - The dichotomy is thus proved by hand, independently of the DRUP certificate.
+  - **Remaining open for these classes:** irreducibility of #332 and #193 (the dual-orbit parity of
+    `bmw-40-40-332-irreducible-if-dual-orbit-parity`). It no longer matters for orderability.
+- (w6-107c, 2026-09-18) **The Klein-chain method covers the census
+  (`bmw-census-sat-free-klein-chain-certificates`).**
+  - **Scan.** `kpure.py` searches the pure-word inverting graph of every census class that is not
+    certified reducible: 2 classes of `30_30`, 27 of `40_30`, 190 of `50_30` and 301 of `40_40`.
+    Words have length at most 6, or at most 8 for the `50_30` #470 and `40_40` #176 reruns.
+  - **Result.** 33 classes get a four-element cycle, with a SAT-free rewriting check
+    (`verify_census_X.log`). They include all five `40_40` classes that stay satisfiable through
+    `R8s2` (#176, #193, #256, #281 and #332) and the `50_30` survivor #258.
+  - **No cycle found.** `50_30` #470 has no cycle up to length 8 (366952 inverting pairs, acyclic).
+    Patterns with transposed letters (`pA` or `pB` > 0) are not handled.
+- (w6-107c, 2026-09-18) **Level-transitivity of `⟨B⟩` (for #332 irreducibility): bounded search, nothing
+  found.**
+  - **Setting.** The stabilizer of `0` in `⟨B⟩` has Schreier generators
+    `b1'b0, b1'b2, b1³, b2b1, b0b1, b1b2b1', b1b0b1'`. Its section group at `0` contains `b1'b0`,
+    `b1'b2` and `b0b1` exactly, by word identities checked with the automaton word problem.
+  - **No letter.** No letter `b_i`, and none of the other four generators, was found in that section
+    group. The test compared level-4 permutations over a ball of 2·10⁵ elements.
+  - **No self-replicating subgroup.** There is no 2-generated self-replicating subgroup `⟨x, y⟩`
+    transitive on level 1 with `|x|, |y| ≤ 3` and stabilizer words of length `≤ 5`.
+  - GAP computes the level-3 group of order 1632586752 and runs out of memory at level 4.
+  - This is consistent with the index-3 non-congruence obstruction above. Level-transitivity stays open
+    and needs a non-self-replicating argument.
+- (w7-107, 2026-09-18) **Klein-power chains: `50_30` #470 and the transposed-letter patterns without a
+  SAT solver (`bmw-census-klein-power-chain-certificates`).**
+  - **Certificate.** A cycle may now mix inverting steps (K) with power steps (R): `x_i = r^e` and
+    `x_{i+1} = r^f` with `1 ≤ |e| < |f|`, which force `|x_i| ≤ |x_{i+1}|` in any left order. These are
+    checked by `verify_klein2.py`, which handles transposed letters, and re-checked by `crosscheck2.py`.
+  - **#470.** Let `u = v0v1` and `t = h0h1h0`. The chain is
+    `v2uv2 → (v2uv2)² → t h2h4 t → v0v2 u v2v0 → (v0v2 u v2v0)² → t h3h2 t → v2uv2`. It has two (R)
+    steps and four (K) steps, and all words have length at most 8. The four (K) identities are checked
+    by hand in §4 of the proof. It is a Promislow-type configuration: `t h2h4 t` inverts `x²` but not
+    `x`.
+  - **Transposed patterns.** At pure length 6, 167 of the 681 candidate classes of the sixteen
+    patterns `31_*`, `41_*`, `42_*`, `50_31`, `51_*` and `52_*` are certified. So are the reducible
+    Promislow-type classes `41_40` #1174 and `41_41` #486, #541.
+  - **No pure inverting pair.** `31_30` #26 and `31_31` #12 have none up to length 8.
+  - **Structure.** Every Klein pair `a b a^{-1} = b^{-1}` in `Γ^+` is `Γ`-conjugate to a pair of one
+    pure `v`-word and one pure `h`-word. The proof uses the two tree actions: `b` is hyperbolic on
+    exactly one tree, and `a` reflects its axis. So pure scans of growing length, together with
+    conjugation, find every Klein chain.
+  - **Not attempted.** Irreducibility of #332 by a route other than self-replication. It does not affect
+    orderability of the three classes, which the pure four-term chains already settle.

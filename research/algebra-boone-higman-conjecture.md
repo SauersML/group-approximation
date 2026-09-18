@@ -45,8 +45,15 @@ route.*
    this to them for rings of characteristic `p`. Belyaev (1976--78) gives a
    Higman embedding for associative algebras, and Bokut gives finitely generated
    simple envelopes. Neither theorem provides finite presentation and simplicity
-   at once. *Dies*: all three were read from secondary sources only
+   at once. *Dies.* This was first recorded from secondary sources
    (`research/artifacts/boone-higman-frontier-2026-09-12.md` §4).
+   *Update, 2026-09-18 (bh-free-53):* Bokut 1976 (Algebra i Logika 15:2) and Bokut's survey
+   "Embedding of rings" (Russian Math. Surveys 42:4, 1987, §5.1 and §5.5) have now been read at
+   source. They give simple envelopes that are finitely generated, and Belyaev's finitely
+   presented envelopes, and no theorem combining the two. EMN is still unread, blocked by the
+   publisher. See `research/artifacts/gq-bh-bh-free-53-algebra-bh-literature-at-source.md`.
+   For group algebras there is a canonical central simple candidate that is only finitely
+   generated (`group-algebras-embed-in-shell-essential-algebras`).
 2. **Maximal-ideal quotient.** Embed in a finitely presented `P`, then pass to
    `P/M` for a maximal ideal `M` missing the input. *Dies*: `P/M` is finitely
    presented only if `M` is finitely generated as an ideal. That is the ring
@@ -77,3 +84,34 @@ route.*
    `M_n(L_2^{⊗(k+1)})` (`polynomially-representable-algebras-have-fp-simple-envelopes`).
    All covered inputs share one exponential time bound, so the monomial complexity
    benchmark stays untouched.
+7. **All representable inputs, over every field** (2026-09-18, lane `bh-algebra`). *New class, low
+   complexity.* Every finitely generated subalgebra of `M_N(F ⊗ K<x_1..x_m>)`, `F` any field
+   extension of `K`, embeds in some `M_n(L_2^{⊗(k+1)})`
+   (`field-representable-algebras-have-fp-simple-envelopes`, lane proof). Noether normalization
+   reduces field coefficients to polynomial ones, and Attempt 6 finishes. With Anan'in's
+   representability theorem (cited, unread) this covers every finitely generated commutative
+   algebra and every finitely generated right noetherian PI algebra. The complexity benchmark is
+   still untouched, since the hosts are those of Attempt 6.
+8. **A transcendental field in characteristic p** (2026-09-18, lane `bh-algebra`). *Not a
+   finitely generated input.* For every prime `p`, the whole field `F_p(t)`, and every
+   `F_p(t)<x_1..x_m>`, embeds in one explicit finitely presented simple `F_p`-algebra `R_p` with
+   center `F_p` (`char-p-rational-function-field-in-fp-simple-algebra`, lane proof).
+   The construction: Horner registers realize every monic polynomial as a vacuum value, one
+   resolvent inverts them, and a squaring letter `t ↦ t^2` keeps `t` out of the center. It is the
+   characteristic-`p` counterpart of `rational-function-fields-embed-in-fp-simple-rings`, where the
+   characteristic-zero nonvanishing device (`N + 1 >= 1`) is unavailable.
+9. **Every countable field of characteristic p with finite transcendence degree** (2026-09-18,
+   lane `bh-algebra`). Nested Horner registers extend Attempt 8 to `F_p(t_1..t_k)`. With the
+   characteristic-free ultramatricial step of `field-envelopes-pass-to-algebraic-closures`, every
+   such field embeds in a finitely presented simple `F_p`-algebra with center `F_p`, and so do
+   finitely generated fields with their matrix and free-algebra extensions
+   (`char-p-rational-function-fields-in-fp-simple-algebras`, lane proof). Together with the
+   characteristic-zero nodes, every countable field of finite transcendence degree lies in a
+   finitely presented simple ring. What remains is `F(t_1, t_2, ...)`, in both characteristics.
+10. **Self-similar quotients escape the complexity fence** (2026-09-18, lane `bh-algebra`). A
+    non-injective recursion on a free algebra gives a finitely presented completion whose base is the
+    self-similar quotient `B/J` (`noninjective-ln-completions-have-self-similar-bases`).
+    The word-problem fence of `ln-completion-word-problem-reduces-to-base-algebra` covers only
+    injective recursions. New route `algebra-bh-via-simple-self-similar-completions`, through the open
+    premise `decidable-algebras-embed-in-simple-self-similar-completions`, with the monomial benchmark
+    as its test case.

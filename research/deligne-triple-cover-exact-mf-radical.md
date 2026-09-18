@@ -93,3 +93,14 @@ z in Rad_MF(E_3).                                      (DER2)
     Under `(CPE*)`, the flagship implies the first prerequisite.
   - *Not pursued.* Virtual descent to kill the prime three duplicates the DEAD result of swarm-0917-w8-w8-deligne-last1
     on the period claim. The divisibility set `{+-1, +-2}` preserves `(1/6)Z`.
+- **2026-09-18, swarm-0917-w9-w9-deligne-break (operator-algebras): reduced-algebra routes die, in both directions, at
+  "`C*_r(Sp_4(Z))` is MF".** See `deligne-twisted-reduced-mf-iff-group-mf-and-sp4-reduced-mf` (ESTABLISHED).
+  - *Theorem.* For rational `theta`, `C*_r(Gamma, c_theta)` is MF iff `theta in P_op` and `C*_r(Gamma)` is MF.
+    Likewise `C*_r(E_q)` is MF iff `E_q` is MF and `C*_r(Gamma)` is MF. Invariant: Fell absorption,
+    `Theta ⊗ lambda_tau ~ 1 ⊗ lambda_(c tau)`, combined with exact-MF tensor permanence and `A^op ≅ C*_r(Gamma, c^-1)`.
+  - *Class killed.* Any refutation by reduced-norm-faithful `1/3`-models (strong convergence, or an MF embedding of
+    `C*_r(E_3)`) also makes `Sp_4(Z)` an infinite Kazhdan group with MF reduced algebra, which is the open root
+    `infinite-kazhdan-group-with-mf-reduced-cstar`. Any proof through non-MF of `C*_r(Gamma, c_(1/3))` is valid only
+    alongside that same open statement.
+  - *New split.* flagship `<=` [`C*_r(Sp_4 Z, c_(1/3))` not MF] and [`C*_r(Sp_4 Z)` MF]. Each prerequisite can fail
+    on its own. Surviving routes must use non-tempered finite-dimensional structure.

@@ -212,3 +212,52 @@ the Kaplansky zero-divisor conjecture."
      have solutions, so row separation is essential.
    - Next: relations spread over two or more translates of `g(V)` glued
      along pieces, which is van Kampen-type coset configurations.
+14. **Two-copy configurations carry no zero divisors (proposed established; `rips-segev-two-copy-configurations-carry-no-zero-divisors`).**
+   - Suppose `alpha (u(a) + w(a) b) = 0` with `alpha, w != 0`.  Then
+     `alpha u` and `alpha w` cannot both lie in the union of two translates
+     of `g(V(Gamma))`, over any field, in `k[K]` and in `k[G]`.
+   - Gluing lemma.  Between two links of two copies the van Kampen diagram
+     has no faces, since each face would have boundary `< 8 < gamma`.  So two
+     copies meet in one `b`-bridge only, or in at most three `<a>`-cosets
+     that are pairwise joined by shared `b`-runs (rigidity plus
+     `girth(Phi) > 12`).
+   - Ports.  On clean cosets the one-copy port constraints hold verbatim.
+     Two clean active lines in one copy have dirty, distinct flanking lines
+     meeting the same other copy, which the gluing lemma forbids.  So at most
+     `2 + 3` cosets are active.
+   - Their port graph closes a positive relation `b a^{n_0} ... b a^{n_{L-1}}`
+     with `L <= 5`, which is too short to hold in `K`.
+   - Exhaustive `F_2`/`F_3` port searches on two-copy models with separated
+     rows found no solution for any gluing.  A single-row control does have
+     solutions.
+   - Three copies reduce to one gap, *mixed flanks*: the two flanking lines of
+     a clean line are dirty through different copies.  Excluding them leaves
+     `<= 12` active cosets, and `24 < 5 gamma/8 - 1` still closes the proof.
+     For `N >= 4` copies the count exceeds 12.  Since the copies cover `K`,
+     the `N`-copy theorem for all `N` is the whole `b`-degree-one case.
+   - Next: a mixed-flank lemma for three copies, then a Greendlinger-type
+     bound on the number of copies a short port cycle can cross, for general `N`.
+15. **Three-copy configurations carry no zero divisors (proposed established; `rips-segev-three-copy-configurations-carry-no-zero-divisors`).**
+   - *Rank-one lemma.*  Suppose two active cosets have port supports whose
+     difference sets meet only in `0`.  Then `P_T Q_T' = P_T' Q_T` holds
+     coefficientwise, so `P_T` is a scalar multiple of `Q_T` and `u = c w`.
+     Then `(alpha w)(c + b) = 0`, which is impossible.  This holds over any
+     field and in any group.
+   - So two clean active cosets on different lines are contradictory,
+     whatever the number of copies.  Each copy has at most one clean active
+     coset, and the mixed-flank lemma of item 14 is not needed.
+   - Three copies then have at most `3 + 9` active cosets.  Their port cycle
+     is a positive relation of length `<= 24 < 5 gamma/8 - 1`, which is
+     impossible.  This settles three copies, in `k[K]` and in `k[G]`.
+   - For `N` copies it holds whenever `3N^2 - N <= 5 gamma/8 - 1`.
+   - *Shell lemma (toward `N >= 4`).*  Every port cycle has a Greendlinger
+     shell in some copy `C_M`.  The shell arc crosses 11 distinct active
+     cosets on distinct lines of `C_M`, and at most one of them is pure (rank
+     one again).  Each impure one links `C_M` to another covering copy, at
+     most 3 per copy.  So at least 4 covering copies differ from `C_M`.
+   - For `N = 4` this forces every shell copy outside the covering, with all
+     11 arc cosets dirty.  For girth `g` it covers `N` up to about `5g/48`,
+     linear in the girth.
+   - Next: an extremal-copy lemma (some copy of a minimal covering meets the
+     others in `<= 3` links) and a rank-one removal of that copy, which would
+     give induction on `N`.  Counting alone cannot handle every `N`.

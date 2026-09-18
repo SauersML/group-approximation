@@ -1,0 +1,76 @@
+---
+rg: 2
+id: central-extension-untwisting-over-boundaries
+kind: claim
+title: A finite central extension can be realized over a boundary action with the kernel acting freely only if its class dies on every point stabilizer, and stabilizing by the Cuntz groupoid cannot remove this obstruction
+distinct_from:
+  cocompact-tree-product-lattices-lie-in-type-a-class: that handles faithful lattices; this isolates what blocks the finite central kernels left in Attempt 9 of product-of-trees-lattices-satisfy-permutational-boone-higman.
+  stabilized-kgraph-full-groups-have-type-a-actions: that uses the Cuntz groupoid to make clopen sets comparable; this shows the same stabilization does not trivialize groupoid twists.
+---
+
+**ESTABLISHED** (lane proof, elementary; not independently reviewed). This is
+negative guidance for the finite-kernel case. It does not decide that case.
+
+**Setting.** A group `C̄` acts on a compact totally disconnected space `Y`.
+`1 -> A -> C -> C̄ -> 1` is a central extension with `A` finite abelian and class
+`ω ∈ H²(C̄; A)`. `C` acts on `Y` through `C̄`, so `A` acts trivially.
+
+1. **Untwisting criterion.** `C` acts on `Y x A` by
+   `γ̃(y, a) = (γ̄y, a + κ(γ̃, y))`, with `κ` continuous and `κ(z, y) = z` for
+   `z ∈ A`, if and only if `ω` maps to `0` in `H²(C̄; C(Y, A))` under the constants
+   `A -> C(Y, A)`. In that case `A` acts freely, and the action is faithful when `C̄`
+   acts faithfully on `Y`.
+2. **Stabilizer obstruction.** If such a `κ` exists, then `κ(·, y)` restricted to
+   `Stab_C(y)` is a homomorphism to `A` that is the identity on `A`. So `ω` restricts
+   to `0` on `Stab_(C̄)(y)` for every `y ∈ Y`.
+3. **The Cuntz groupoid does not help.** Let `𝒢` be an étale groupoid and `𝒦` any
+   ample groupoid with a unit `t_0` (for example the Cuntz groupoid `O_2`). The maps
+   `g ↦ (g, t_0)` and `(g, k) ↦ g` make the continuous cohomology `H^*(𝒢; A)` a
+   retract of `H^*(𝒢 x 𝒦; A)`. So a twist of `𝒢` by `A` pulled back to `𝒢 x O_2` is
+   trivial only if it was already trivial.
+   - **Pitfall.** Matui's homology of `𝒢 x O_2` vanishes (Künneth, and
+     `H_*(O_2) = 0`), but that does not imply vanishing of the continuous cohomology
+     that classifies twists. The dual of `C_c(W, Z)` consists of finitely additive
+     `A`-valued measures on the compact open subsets of `W`, not continuous `A`-valued
+     functions, so no universal coefficient theorem links the two.
+4. **Tree products.** Let `C̄` be a faithful cocompact lattice on a product of trees
+   and `Y = ∂X`. Suppose `Z² = <g, h> ≤ C̄` stabilizes a periodic flat
+   `F = L_1 x L_2`. Then `Z²` fixes the boundary points of `F`, and item 2 forces
+   `ω|_(Z²) = 0`, that is, lifts of `g` and `h` commute in `C`. With the phase
+   coordinate of `tree-lattice-kgraph-power-phase-proof` (`Y = ∂X x (Z/N)^k`), the
+   stabilizer of a phase point is the sublattice of `Z²` with lags `≡ 0 mod N`. The
+   condition becomes `ω = 0` on each such sublattice. For flats whose translation
+   lengths are all divisible by `N`, that is the full `Z²`.
+5. **Test case.** Let `Λ` be a finitely presented simple Burger--Mozes lattice on
+   `T_(2m) x T_(2n)` acting simply transitively on vertices, with quotient the
+   one-vertex square complex `K` (`m + n` loops, `mn` squares).
+   - `H_1(Λ) = 0` and `χ(K) = (m-1)(n-1)`, so `H_2(Λ; Z) = H_2(K)` is free of rank
+     `(m-1)(n-1) - 1`.
+   - `H²(Λ; A) = Hom(H_2(K), A)`, and `ω` gives a perfect extension exactly when it
+     is onto. So nontrivial perfect finite central extensions `Λ̃` exist as soon as
+     `(m-1)(n-1) >= 2`.
+   - By item 4, the boundary route reaches `Λ̃` only if `ω` vanishes on the torus
+     class of every periodic flat whose lags are `≡ 0 mod N`. Whether some `ω ≠ 0`
+     does so, and whether that suffices, is not decided here.
+
+**Remark: why Cantor boundaries are rigid here, and circles are not.**
+- **Cantor boundaries.** Let `Ỹ -> Y` be any `C`-equivariant map from a compact
+  space with a free `A`-action commuting with `C` and `Ỹ/A ≅ Y`. Then it is a
+  principal `A`-bundle over a zero-dimensional space, hence trivial. So `Ỹ ≅ Y x A`,
+  and the action is a skew product as in item 1. Every finite A-cover of a Cantor
+  boundary is therefore subject to items 1–2, whatever groupoid it is later coded
+  by.
+- **Circles.** On a circle, nontrivial finite covers exist. Thompson's group `T` has
+  central extensions by `Z/2^k` that act faithfully on the `2^k`-fold covering
+  circle by dyadic piecewise linear maps. By the same token they lie in `T`
+  (standard; not re-derived here).
+So a positive answer for finite central extensions of Burger--Mozes lattices would
+need either a class that vanishes in `H²(Λ; C(Y, A))` for some Cantor `Λ`-space `Y`
+with a finitely presented full group, or a host that is not built over a Cantor
+action of `Λ`.
+
+**Lesson for general BH.** Hosts built from a Cantor action of `C̄` cannot see
+central extensions that are twisted at stabilizers. Unlike on the circle, finite
+covers of Cantor spaces are products. So closure of BH under finite central
+extensions, if true, needs either actions of `C` itself not factoring through `C̄`,
+or connected, circle-like boundary pieces.

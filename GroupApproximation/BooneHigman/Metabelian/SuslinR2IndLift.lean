@@ -93,7 +93,7 @@ theorem suslinR2Ind_lift_matrix {S : Type*} [CommRing S] (f : R →+* S)
     ⟨fun i j ↦ X * ((q i j).divX.comp (C s * X)) + C ((1 : Matrix ι ι R) i j),
       fun _ _ ↦ rfl⟩
   refine ⟨P, ?_, fun i j ↦ ?_⟩
-  · ext i j
+  · refine Matrix.ext fun i j ↦ ?_
     change (P i j).map f = ((σ : Matrix ι ι S[X]) i j).comp (C (f s) * X)
     rw [hP]
     refine suslinR2Ind_lift_poly f (q i j) ((σ : Matrix ι ι S[X]) i j) s _ (hq i j) ?_
@@ -106,7 +106,7 @@ theorem suslinR2Ind_lift_matrix {S : Type*} [CommRing S] (f : R →+* S)
 theorem suslinR2Ind_mapMatrix_injective {S : Type*} [CommRing S] {f : R →+* S}
     (hf : Function.Injective f) (M N : Matrix ι ι R[X])
     (h : (mapRingHom f).mapMatrix M = (mapRingHom f).mapMatrix N) : M = N := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   exact Polynomial.map_injective f hf (congrFun (congrFun h i) j)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mapMatrix_injective

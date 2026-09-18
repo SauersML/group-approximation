@@ -19,6 +19,14 @@ source for the Steinberg import.
 **Statement.** Let `m >= 1`, `k >= 0`, `A = Z[1/m]`, `R = A[t_1,...,t_k]` and
 `n >= k+4`. Then `E_n(R)` is finitely presented.
 
+**Trust note (2026-09-18, lane `bh-linear-fields`).** The route imports finite
+presentation of `St_n` from Krstić–McCool Theorem 3
+(`steinberg-finite-presentation-and-kazhdan-theorem`), whose primary text is unread.
+For `n >= 5` the same conclusion is the refereed, self-contained
+`steinberg-groups-of-fp-rings-are-fp-in-rank-five`. Here `n >= k+4`, so it applies
+whenever `k >= 1`. For `k = 0` the consumers fall back on Zaremsky's rational theorem
+(`rational-linear-groups-satisfy-boone-higman`) or take `n >= 5`.
+
 **Special case.** `E_5(Z[t])` is finitely presented, with
 `K_2(5, Z[t]) = K_2(Z) = Z/2`.
 
