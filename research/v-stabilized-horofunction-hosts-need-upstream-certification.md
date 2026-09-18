@@ -118,3 +118,29 @@ at the same place as BBMZ's attempt at `F_∞`.
 The algebraic route goes through the vertical gluing `V(L) ∗ (LC(X,V) ⋊ L)` over the full group `L`. It needs
 one new relation family, X-local labels against conditioned swaps, and a Boolean power over a full group, where
 fullness should supply the room in `X` that P2′a lacks over `Λ`.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): items 1 and 3 PASS; item 2 PASS for trees but unproved for horofunctions; item 4 is a route
+
+**Verdict** (the main statement is OPEN, as the node says).
+- **Item 1: PASS.** I checked the literature status against the BBMZ TeX
+  (`gq/src/bh-free-03/bbmz2-2309.06224.tex`):
+  - Theorem A (full contracting RSGs are finitely presented);
+  - `[[G | ∂_h G]]` is a full contracting RSG when `G` has a proper `Z` free factor;
+  - the `F_∞` Question;
+  - the sentence that their topological attempt "was unsuccessful".
+
+  All are quoted correctly. The remark that the `G_V`-stabilized group is not an RSG in the synchronous
+  product coding is plausible, and it is scoped to that coding.
+- **Item 2: trees PASS; the horofunction half is a gap.**
+  - (UC) for half-trees is correct: rays are unique, so `∂H(e') ⊆ ∂H(e)`.
+  - For ball-pattern tiles of `K_h`, the node shows only that the squeeze and 1-Lipschitz bounds pin
+    `f'(g)` to an interval of length `2d(g,w)`. That shows the squeeze argument cannot certify (UC).
+    It does not show that split pieces fail to be translates.
+  - For the stronger sentence ("the split pieces are intersections …, not translates of tiles"),
+    exhibit `f, f' ∈ ∂_h Γ` with equal gradients on an arbitrarily deep window `W` along a descent
+    from `g` and different gradients on `B_k(g)`. Webster–Winchester non-merging suggests such a pair,
+    but it is not written. Until then, read item 2 as "the squeeze does not certify (UC)".
+- **Item 3: PASS as a consequence** of the cited `F_∞` and one-scale nodes, with no filling radius
+  claimed.
+- **Item 4** is correctly labelled a route. Its gaps are named precisely: (i) finite presentation of
+  `B = LC(X, V) ⋊ L`, and (ii) the `X`-local label relations `[μ|_{[u]}, (u u')^{[Q]}] = 1`.

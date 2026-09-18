@@ -72,6 +72,10 @@ difference set splits into two far-apart *infinite* pieces.
 
 ## 4. Open: rigidity of ∂_h beyond trees
 
+**Update (same day): SETTLED.** `hyperbolic-groups-lie-in-the-rigid-compactification-class` proves rigidity
+for every hyperbolic group, with Gromov-product drop chains and window transport. Surface groups are also
+covered by walls (`wall-chamber-distance-sfts-are-quantum-rigid`). The analysis below is kept as a record.
+
 Three routes fail as they stand.
 - **Tree chain.** The monotone chain `1 − A_i ≤ B_i ≤ 1 − A_(i+1)` needs the letter at an endpoint to be
   determined once the centre is known to lie beyond a junction. In a non-tree hyperbolic graph it is not:

@@ -163,3 +163,31 @@ decides torsion in `CT(Z)`, and then `2V ⊄ CT(Z)` by Theorem 1 of
 - **For BH host design.** Count the hyperbolic directions of the pieces, not the primes in the
   moduli. Uniform computation needs at least two, and the finite-information parts of an
   arithmetic host are free.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS (items 1–6); Conjecture 7 is open, as stated
+
+**Verdict: PASS.** Lane bh-kourovka-2174a's reduction is correct, and Proposition 4 is a nice
+observation.
+- **Theorem 1.**
+  - The factor is well defined, because isometric slopes are `p`-units and the pieces read `x_p`
+    mod `p^{k_p}`.
+  - Same order when `H ≠ ∅`: a rational affine map fixing an open set is the identity.
+  - The `H = ∅` case: every slope is 1. `g^N` translates each class mod `L = M_I` by a multiple of
+    `L`, and sign preservation (`n ≥ 0 ⇔ g(n) ≥ 0`, true for every class transposition) forces 0.
+  - Correct, including injectivity and the equality of orders.
+- **Theorem 2.** Slopes are powers of 2, so the pieces are binary prefix replacements on `M_I` Cantor
+  copies. `V_{2,r} ≅ V` (Higman), and `V` has solvable torsion. Correct.
+- **Lemma 3.** Both certificates are correct: nested strict compression, and germ slope `U^N ≠ 1`.
+  So is the semi-decidability (the candidate fixed point is `B/(1−U)`).
+- **Proposition 4.** The pieces are canonical, and so are the three full expanding branches on `Z_2`
+  (forward) and on `Z_3` (backward). Each coordinate evolves autonomously, and the two are
+  independent, so the itinerary map is a homeomorphism onto `{A,B,C}^Z`. Correct.
+- **Proposition 5.**
+  - (1) The only `Z_2` periodic points of `ψ̂` are `a = −2/3` and `r = −1/3`, because orbits other
+    than `r` converge to `a` (north–south node). The fibre fixed points `−2/3` and `−1/3` are not in
+    `Z_3`. Compression holds with `6(12) → 30(48)`.
+  - (2) Complete, periodic, not uniformly periodic 2-RCMs exist (Kari–Ollinger Example 1, or
+    Theorems 3 and 4). Density turns `ĝ^k(W) ⊆ W` into equality.
+  - Correct.
+- **Dependency.** Membership of `α` uses `piecewise-canonical-permutations-are-transposition-products`,
+  a lane proof I did not re-referee.

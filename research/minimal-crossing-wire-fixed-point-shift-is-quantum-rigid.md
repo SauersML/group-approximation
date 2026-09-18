@@ -191,3 +191,55 @@ The explicit layout is `research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout
 
 **Verdict:** PASS, with R1–R3 discharged at source, conditional only on the box fix, which I posted to
 bh-g2-fixedpoint-a.
+
+## Referee (bh-ref-e1-a, 2026-09-18, second independent referee): PASS at design level, with one layout repair (R1)
+
+I reached this verdict before reading the other referee section on this node. I checked the
+proof node, the layout artifact, bh-free-09's routing check (514e2f77c) and DR arXiv:1802.01461
+(TeX source read at source: §2.4, §3.1 (p1)–(p4), §3.2).
+
+**1. Slots are frame-forced scalars in every quantum family: holds.**
+- On each summand of the central coordinate PVM `C`, a frame face has one allowed tile, because
+  slots sit away from wires and the zone (DR §3.2; (p1)). So its four edges, including the eight
+  outer slot edges, are scalars.
+- The inner edges then follow by face rules:
+  - `v_b`: `→q'` holds only in tile (d), which is forced by BL's bottom. `←q'` holds only in
+    (e), which is forced by BR's bottom. `none` is the complement.
+  - `h_l` and `h_r`: each is the top of its tile, a function of the other three edges (L4).
+  - `v_t`: forced in the same way as `v_b`.
+  - Wire, crossing and fan-out slots: every inner edge copies one outer edge.
+- So `C` commutes with the inner edges and is central, and slots act as blanks in Steps 2–5.
+- I checked each uniqueness step against the zone table.
+
+**2. bh-free-09's routing condition: holds.** DR adds four components.
+- The program field (i) and the rank field (ii) are fixed per level by coordinates: `τ_k` hard-codes `k`.
+- The (p4) three-zone roles depend only on the row in the father, and `N_k = 3^(C^k)` keeps the cyclic
+  roles consistent across fathers.
+- Slots are coordinate-forced.
+- Every macro-colour bit, constant zones included, is wired and fully crossed by (M1).
+
+**3. Minimality: holds.** DR's §3.2 has three cases: skeleton, wire and zone. This node adds
+crossing and fan-out windows with slots.
+- DR's (p3) is used only in a weaker form: a 2×2 window with no CROSS, FAN or TURN-junction
+  tile reads at most one wire.
+- That weaker form holds inside and below the box, where the spacing is 2. A window touching row
+  `r_q'` and column `c_q` contains their intersection cell, and V tiles have blank sides.
+
+**R1 (required repair, layout §2).**
+- The layout says "left-side bits sit one row above the right-side bits (top one column right of
+  bottom)". But adjacent macrotiles share side edges: `F1`'s right bit at row `R_q` meets `F2`'s
+  left-margin edge at that row, which is then blank. So the offset admits no tiling in which two
+  macrotiles are side by side.
+- Put the bits on opposite sides at the same rows and columns, as DRS do. Private routing does not
+  need the offset, since opposite margins are `Θ(N)` apart. Nothing else changes.
+
+**Conditions.**
+- DR's fixed-point step for this modified layout is recalled, not re-derived. That step covers
+  the crossings, the head-edge zone and the slot frames, all coordinate-fixed roles checkable in
+  `poly(log N_k)`.
+- The layout artifact tabulates the fixed-zoom version. It cites DR for the rank field, the (p4)
+  encoding and the 12-tile frames, and does not tabulate them.
+- The rigidity kernel is 4f793f5c3c (PASS by bh-ref-engines).
+
+**Credit.** Durand–Romashchenko (minimality mechanism, diversification slots, (p1)–(p4));
+Durand–Romashchenko–Shen (fixed-point tilings); bh-g2-fixedpoint-a (crossings with rigidity).
