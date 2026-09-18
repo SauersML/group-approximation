@@ -156,13 +156,18 @@ a check at an admissible parameter point; what carries the regime claim is the
 analytic Lemma 2, not this table. (Recorded after referee lenses 2 and 3 both
 flagged the extrapolation, 2026-09-18.)
 
-**Reading.** At a typical A-vertex the test effectively asks one question:
-"does the A-label vanish on *this* hyperplane?" The complementary coordinate,
-which is exactly the branch bit of
-`orientation-lifts-sandwich-2to1-game-values` item (5), is asked about with
-vanishing weight.
+**Reading.** At a typical A-vertex most of the seed weight sits on one
+hyperplane, so the test mostly asks one question there: "does the A-label vanish
+on *this* hyperplane?" The complementary coordinate, which is exactly the branch
+bit of `orientation-lifts-sandwich-2to1-game-values` item (5), carries the
+residual weight `1 - E_L max_R w(R|L)`, which is `0.52` at `k = 2` and `0.16` at
+`k = 8` for `l = 3`, `beta = 1/2`. That residual is small, not zero, and the
+difference matters: it is enough for two constraints at one A-vertex to span `L`,
+which is why the `O(1)`-cost route of the remark after Lemma 1 is not excluded
+here. (Narrowed 2026-09-18; the section previously read "asked about with
+vanishing weight".)
 
-## 3. Consequence: rigidity, if true, is a statement about folding
+## 3. Consequence: rigidity, if true, may be a statement about folding
 
 **Proposition 4 (conditional refutation of Grassmann-layer rigidity).** Suppose
 that for a `1 - delta` fraction of the A-mass the conditional seed law puts
