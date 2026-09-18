@@ -127,3 +127,31 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    `Z` (the p-torsion of `H_2(L_Z)`, or of the Serre-presented `A~2` Lie
    ring, is `Z/n` at `n delta` away from 6). Open 2 (Kassel directions die
    in `Gamma^`) is untouched. See `kms-hc1-iwahori-integral-h2-serre-plus-hc1`.
+3. **Explicit 2-cocycles, all degrees; group-level Kassel classes.** Open 1
+   is proved. For every `p>=5`, `H_2(L_p)` is the six Serre relations plus one
+   Kassel class at each `n delta` with `p | n`, in all degrees. The dual
+   cocycles of weight `-(nu + m delta)` with `m>=4` are killed type by type.
+   By the root-system count, `Q(nu)` is in `{0,1,3,4}`:
+   - at `nu=0` the Cartan triples force an affine profile with slope `B`
+     and `nB=0`;
+   - at `Q=3,4` they force 0;
+   - at `nu` a root they gauge the Cartan part away, and triples of root
+     vectors kill the boundary term.
+
+   The weights with `m<=3` have degree `<=13` and fall in the exact table.
+   Consequences:
+   - `H_2(L_Z)(x)Z[1/6] = Z[1/6]^6 + sum_n Z[1/6]/n`, so Serre plus
+     `HC_1` of the Iwahori order, by the Kassel cocycle and Kostant's
+     Laplacian;
+   - condition 3 holds for `k<=3p` for every `p>=5`;
+   - `r(I_1)<=9` is equivalent to Open 2 alone.
+
+   Open 2 was attempted at group level through Dennis--Stein symbols and
+   relative `K_2`, and is blocked. The relative group is
+   `K_2(F_p[t]/t^n,(t))=0` (Hesselholt--Madsen), so the Kassel `HC_1` class
+   has no `K_2` counterpart in the Steinberg group of the Iwahori order. But
+   transporting that to `Gamma^` needs the Steinberg relations in `Gamma^`,
+   and those are what is to be proved. Separately, `U_+` is not finitely
+   presented (Behr), so no finite set of group relations suffices, and the
+   argument must use the pro-p topology. This remains heuristic support for
+   Open 2, not a proof. See `kms-hc1-iwahori-h2-serre-plus-kassel-all-degrees`.
