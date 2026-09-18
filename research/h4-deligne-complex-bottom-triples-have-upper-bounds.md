@@ -134,6 +134,21 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     - What is left is lifting. In an `I_2(5)` shadow: is some centre in `Ω(x_1∪x_2∪x_3)` a spider whose
       restriction to the cluster `C` is `Δ_C^{2j}y_0`, and does it lift to an `H_4`-adjacent vertex? That is
       form (R).
+- **Single-edge case: (L_V) is dead, image-layer centres always exist** (w9-042,
+  `h4-i25-shadow-hexagons-have-image-layer-centres`).
+  - **Ejection-arc lemma (proved).** Every `I_2(5)` shadow hexagon `ρ_V(H)` has a centre `hA_{Y''}` with
+    `h ∈ G_V`. Equivalently, `⋂_i ρ_V(p_iP_XP_Y) ≠ ∅`.
+    - If the cluster point `p_c` lies in the `d_1`-region `Ω`, every twist class `D^j` is realised.
+    - Otherwise the arc ejecting `p_c` to `d_0` is unique in the forgotten 4-point disc. It is shared by every
+      pair region that ejects `p_c`, and in `B_4` a 3-leg spider has exactly one disjoint such arc. This pins
+      the class of *every* centre to `f(h) ∈ D^m P_{123}`, with one `m` common to those pairs.
+  - So the last single-flat certificate, (L_V), never holds. The lifting step (b) is equivalent to Case 1:
+    `ρ_V(⋂p_iP_XP_Y) ⊆ ⋂ρ_V(p_iP_XP_Y)`, and the gap is `ker ρ_V`.
+  - **Two flats are not fibred.** For every pair of the three `I_2(5)` flats, `ℓ_x` is not modular in
+    `ℬ_V ∪ ℬ_{V'}` (23 walls, 8 fibre points). The new cluster points of the two flats collide on 2 hyperplanes
+    that are not `H_4` walls (`twoflat.py`). So there is no braid picture with two rigid clusters. A multi-flat
+    joint certificate has to be computed in the non-fibre-type group `π_1M(ℬ_V ∪ ℬ_{V'})`, or in a
+    non-fibred shadow.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

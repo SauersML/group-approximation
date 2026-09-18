@@ -12,8 +12,8 @@ Let `Ψ : (N ⋊[φ] G) × X ≃ (N' ⋊[φ'] G) × X'` commute with left multip
 * `σ (u, x) = (Ψ (inl u, x)).1.right` (`vdkOmegaFree_sigma`),
 * `θ (u, x) = dec (Ψ (inl u, x))` (`vdkOmegaFree_theta`, a bijection `N × X ≃ N' × X'`).
 
-Then `vdkOmegaRho_equiv φ φ' θ σ = Ψ` (`vdkOmegaFree_equiv_eq`).  This is the converse direction
-that `VdKOmegaRhoCoord` states but does not formalize.
+Then `vdkOmegaRho_equiv φ φ' θ σ = Ψ` (`vdkOmegaFree_equiv_eq`).  This is the converse
+direction that `VdKOmegaRhoCoord` states but does not formalize.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
