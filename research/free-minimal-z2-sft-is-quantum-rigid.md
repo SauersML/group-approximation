@@ -54,3 +54,12 @@ is gate (a) of `sofic-fp-simple-kazhdan-group-from-fp-simple-ring`.
   - A candidate third mechanism is geometric: crossing fault networks make difference sets connected with
     no superposition (`labbe-shift-is-wall-rigid`). Whether that suffices beyond first order is
     `wall-rigid-z2-sft-is-quantum-rigid`.
+- **Hierarchical determinism with complete crossing: free case done, minimality open (bh-g2-fixedpoint-a,
+  2026-09-18).** `crossing-wire-fixed-point-tile-sets-are-quantum-rigid` builds a free (aperiodic) SFT that is
+  `1`-rigid over every field. It is a DRS fixed-point tile set with side-local margins, a deterministic zone,
+  and crossing plus fan-out gadgets that bring every pair of input bits into one tile. This is the third
+  mechanism asked for in "Heuristic against": neither compression nor a group law, but co-location plus
+  determinism. What remains is **minimality**. Two ways to get it:
+  - a minimal sub-SFT of that shift, which is automatically rigid by `quantum-rigidity-passes-to-sub-sfts`;
+  - a Durand–Romashchenko-style minimal fixed-point construction (arXiv:1802.01461) whose extra layers
+    keep (L1)–(L4).

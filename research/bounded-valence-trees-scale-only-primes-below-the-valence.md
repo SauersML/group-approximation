@@ -9,6 +9,7 @@ distinct_from:
   divisible-elements-act-elliptically-on-trees: that shows, for any tree, that an element with roots of infinitely many orders is elliptic and that (Q,+) fixes a vertex or exactly one end; this adds the prime budget of a bounded-valence tree, so primes above the valence cannot be scaled at an end at all and their roots lie in one vertex stabilizer.
   gl-n-q-fixes-a-vertex-in-free-splittings: that is the trivial-edge-stabilizer case, where the valence is infinite and all divisibility sits at a vertex; this is the finite-valence case with arbitrary edge stabilizers, where all but finitely many primes' worth of divisibility sits at a vertex.
   no-q-in-tree-product-actions-with-finite-stabilizers: that needs finite vertex stabilizers; this allows any vertex stabilizers in which each element of infinite order has roots of only finitely many prime orders, e.g. hyperbolic, CAT(0), finitely generated abelian or Thompson-type stabilizers.
+  z-localized-fixes-a-vertex-or-end-of-every-tree: that shows a divisible subgroup lies in a vertex group or in an ascending union of edge groups along a ray; this bounds that ascending union, whose steps have index at most the valence, so it can supply divisibility only by primes up to the valence.
   gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings: that exhibits PGL_2(Q) on T_(p+1), with the prime p scaled at an end and the other primes inside Z_(p); this shows that pattern is forced, since a tree of valence p+1 can scale no prime above p+1.
 ---
 

@@ -95,7 +95,9 @@ not re-read, and not used).
 
 The word problem here is easy, so this is a calibration, not a complexity gain. A gain needs an `H`
 whose word problem exceeds every finite-state bound and which admits the structure above. That is gate
-(SS-hard) of `finite-type-e3-prime-hosts-carry-complexity-in-units`; no such `H` is known to this lane.
+(SS-hard) of `finite-type-e3-prime-hosts-carry-complexity-in-units`, still open. By
+`faithful-finite-index-hnn-upgrades-to-half-tree-free`, a faithful finite-index HNN structure on a hard
+`H` suffices, after a direct factor `Z`.
 
 ## Lesson for general BH
 

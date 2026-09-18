@@ -123,6 +123,11 @@ Either:
      - (b) Finite presentation of `Alt_fin(Ω) ⋊ Γ_p` on the dense orbit
        `Ω = Z[1/p]^2 × Q_p/Z_p`. The point stabilizer is `Z[1/p]^3 ⋊ Z^2`, which is finitely
        generated. The lampshuffler obstruction needs a free action, so it does not apply.
+       Its generalization `levelled-actions-make-finitary-extensions-not-fp2` (every virtual character
+       must be nonzero on point stabilizers) is passed too, because the stabilizer contains the
+       torus. The better candidate is `Ω' = Γ_p/T`, whose point and two-point stabilizers are
+       finitely generated. What remains is deriving the pair-of-transposition relations from
+       finitely many of them.
      - Gate (b) gives Boone–Higman for `B/C` and `Γ_p` directly, by
        `fp-finitary-permutation-overgroups-are-type-a-actors`. Gate (a) gives a finitely presented
        host, whose simplicity or type (A) is then checked as usual (Belk–Hyde–Matucci Theorem 1.3,

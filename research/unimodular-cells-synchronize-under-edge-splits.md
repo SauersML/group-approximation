@@ -9,8 +9,14 @@ distinct_from:
   rational-projective-full-groups-are-finitely-presented: that is the finiteness gate; this is one precise combinatorial input to it, equivalent to directedness of the edge-split expansion poset.
 ---
 
-**OPEN** (lane bh-free-61, 2026-09-18). Trivial for `m = 1`. For `m ≥ 2`,
-checked by hand on the two witnesses of `edge-split-descendants-are-not-factor-closed`.
+**ESTABLISHED for every `m`** (lane bh-free-61, 2026-09-18). Lane proof, elementary,
+not independently reviewed: `unimodular-cells-synchronize-under-edge-splits-proof`.
+- At points on no rational hyperplane, the half-tube lemma
+  (`half-tube-lattice-points-are-edge-split-vertices`) gives the two descent systems a
+  shared vertex, and the link at that vertex is one rank lower.
+- Other points reduce to lower rank through their rational hull.
+- Attempts 1–3 below are kept as the record. Attempt 4 explains why a pointwise
+  entry-sum potential could not have worked.
 
 ## Statement
 
@@ -131,3 +137,28 @@ Serret-type statement about a free-choice multidimensional continued fraction.
    - **Reading.** Consistent with `(Sync_2)`, and not a proof.
      `rank-two-synchronization-off-totally-irrational-rays` proves
      `(Sync_2)` at every direction except the totally irrational ones.
+4. **Pointwise potentials fail; a shared vertex succeeds** (lane bh-free-61,
+   2026-09-18; MSI runs of seconds, single core).
+   - **Pointwise round lemma, tested and false.** The natural pointwise form of Attempt
+     1's split lemma: for a stuck `X`, every point of `cone(X)` lies in a leaf of one full
+     braid cut (Attempt 2's Euclid rule for some pair `(a, b)`) whose least reachable
+     entry sum is below that of `X`.
+     - Among the 1369 stuck `3×3` matrices of entry sum at most 26: 1217 have a pair that
+       works at every point, and 85 need different pairs at different points.
+     - The remaining 67 have an open set of points that is bad for all three pairs. The
+       smallest is `[[0,1,5],[1,1,1],[4,3,0]]` (entry sum 16). The ray `(96,35,63)` is
+       interior to one bad leaf of each pair.
+     - So no one-round entry-sum induction exists. The global game still wins all of
+       these, so this is not evidence against `(Sync_2)`.
+   - **Reformulation.** At a generic point `ζ`, local synchronization for cells `c, C` is
+     equivalent to a shared vertex of the two descent systems around `ζ` (part 5 of
+     `rank-two-synchronization-off-totally-irrational-rays` for `m = 2`, and Step 2 of the
+     proof route in general).
+     - `w` is such a vertex for `C` exactly when a *joint subtractive game* on the
+       coordinates of `w` and `ζ` can be won.
+     - Exact game searches show that the winners fill a neighbourhood of the ray of
+       width of order `1/|w|`.
+   - **Resolution.** The half-tube lemma proves that every lattice point within
+     sup-distance `1/2` of the ray, in the cell's coordinates, wins. Dirichlet then gives
+     a point in both cells' tubes. See `half-tube-lattice-points-are-edge-split-vertices`
+     and the proof route.
