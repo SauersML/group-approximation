@@ -2,7 +2,7 @@
 rg: 2
 id: leavitt-square-units-have-conp-parity-p-complete-word-problem
 kind: claim
-title: The word problem of the finitely presented simple group (L ⊗ L)^x is coNP^⊕P-complete, so it is not in coNP unless the polynomial hierarchy collapses
+title: The word problem of (L ⊗ L)^x is coNP^⊕P-complete (an explicit f.g. subgroup unconditionally; the group is finitely presented and simple conditional on the Khanh and Ara--Cortiñas imports), so it is outside PH unless PH collapses
 distinct_from:
   fp-simple-groups-with-arbitrarily-complex-word-problem: that asks for finitely presented simple groups beyond every recursive time bound; this pins one finitely presented simple group at the class coNP^⊕P, strictly above the coNP-complete Brin--Thompson groups unless the polynomial hierarchy collapses, and it does not give unbounded complexity.
   leavitt-tensor-unit-word-problem-reduces-to-base: that is an exponential-time upper bound for word problems of units of B ⊗ L; this is a matching lower and upper bound, coNP^⊕P-completeness, for (L ⊗ L)^x.
@@ -11,8 +11,13 @@ requires:
   - leavitt-square-unit-group-is-fp-simple-and-acyclic
 ---
 
-**ESTABLISHED** (route `leavitt-square-units-wp-complexity-proof`; lane proof by bh-free-26,
-elementary, not independently reviewed). No priority is claimed. A bounded arXiv search
+**ESTABLISHED for items 1 and 2** (unconditional: an explicit finitely generated group of units of
+`L ⊗ L` with `coNP^⊕P`-complete word problem). **Item 3 is conditional**, like its host node
+`leavitt-square-unit-group-is-fp-simple-and-acyclic`, on the imported criteria of Khanh
+(arXiv:2609.08428v1) and Ara--Cortiñas (arXiv:1108.0352v3). Route
+`leavitt-square-units-wp-complexity-proof`; lane proof by bh-free-26, elementary. Cross-checked
+by bh-free-02 (math PASS, e0faf3f03, artifact
+`gq-bh-bh-free-02-crosscheck-leavitt-square-units-wp.md`); not independently refereed. No priority is claimed. A bounded arXiv search
 (2026-09-18) found no complexity result for word problems of Leavitt or Cuntz unit groups;
 Birget's papers treat Thompson groups and their monoids.
 
@@ -33,9 +38,9 @@ polynomial-time and `|x|, |y|` polynomial in `|w|`.
    `⊕P`-hard.
 2. **Upper bound (unconditional).** Every finitely generated subgroup of `A^x` has word problem
    in `coNP^⊕P`.
-3. **The host.** `H` is finitely presented and simple by
-   `leavitt-square-unit-group-is-fp-simple-and-acyclic` (conditional there on imported criteria
-   of Khanh and Ara--Cortiñas). Since `Γ ≤ H`, **the word problem of the finitely presented
+3. **The host (conditional).** `H` is finitely presented and simple by
+   `leavitt-square-unit-group-is-fp-simple-and-acyclic`, conditional there on imported criteria
+   of Khanh and Ara--Cortiñas. Since `Γ ≤ H`, **the word problem of the finitely presented
    simple group `H` is `coNP^⊕P`-complete**, for every finite generating set.
 4. **Consequence.** `WP(H)` is not in the polynomial hierarchy unless PH collapses. If
    `WP(H) ∈ Σ_j^p`, then `⊕P ⊆ Σ_j^p`. Toda's theorem (`PH ⊆ BPP^⊕P`) with the relativized
@@ -76,11 +81,24 @@ provably escapes coNP modulo a standard hypothesis. It does not settle the root,
 - The same argument works in `L^(⊗d)`, `d >= 2`, with the same class. In `L` itself, gates
   at depth `r` cost `2^r` and the proof does not apply; the complexity of `WP(L^x)` is not
   decided here.
-- **Every prime.** Over `F_p`, parities become counts mod `p`. The finitely presented simple
-  group `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem
+- **Every prime.** Over `F_p`, parities become counts mod `p`. The (conditionally) finitely
+  presented simple group `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem
   (`leavitt-square-units-mod-p-complete-word-problem`, with a
   characteristic-free slot unit).
 - **Ceiling.** More tensor factors, other `L(1,n)` factors and matrices stay in `∀·Mod_pP`.
   Over `Z[1/M]` the bound is `C_=P`, and an integral group attains it. `PSPACE`-hardness is
   excluded for all of these hosts unless `PSPACE ⊆ ∀·Mod_pP` or `PSPACE = PP`
   (`leavitt-tensor-unit-word-problems-have-one-counting-quantifier`).
+
+## Lesson for general BH
+
+Linear superposition is a real resource beyond homeomorphism hosts. Piecewise
+prefix-replacement hosts are capped at coNP relative to their germ groups
+(`automaton-tail-full-groups-have-conp-relative-word-problem`). Units of a Leavitt tensor
+algebra are linear combinations of prefix maps, and they reach `∀·⊕P`.
+
+Judge a candidate host class by what its elements compute in polynomial word length. Two
+features decide it:
+- the number of independent scrolling directions: one Cantor factor makes gates at depth `r`
+  cost `2^r`, and two factors give polynomial circuits;
+- whether elements may superpose branches.

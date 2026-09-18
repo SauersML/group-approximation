@@ -80,3 +80,15 @@ Consequences for interval exchange groups: `pisot-interval-exchange-groups-satis
 - Web searches for Stein, irrational-slope or interval-exchange groups combined with RSGs, finitely presented
   simple hosts, tribonacci or Arnoux--Yoccoz found no prior statement.
 - No priority is claimed. A fuller literature check is left to bh-lit.
+
+## Lesson for general BH (added 09-18 per INSIGHT FIRST)
+
+A finite nucleus can come from arithmetic compactness rather than from geometry.
+- After renormalization, the local actions of piecewise-affine maps with algebraic data are
+  (state, bounded slope defect, offset).
+- The offsets range over a lattice intersected with a bounded region, because the algebraic data is Pisot.
+
+So "the group is defined over a Pisot ring" is a sufficient finiteness principle for full-group Boone--Higman hosts,
+and it yields finite presentation of the host as a by-product. Computability of the data is necessary
+(`stein-derived-groups-need-computable-modules`). The only other constraint is the orientation parity discussed in
+`flip-codings-remove-the-sign-obstruction-for-iet-groups`.

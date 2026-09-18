@@ -33,6 +33,13 @@ correspond under `ω_e α_e^(-1)`, for instance because both act freely on `Y`. 
 `π_1(𝒢) ∈ B_A`. So `π_1(𝒢)` embeds in a finitely presented simple group, and it has
 solvable word problem when it is finitely generated.
 
+**Padded form.** It is enough that the *padded* type sets `Σ^+ = Σ ∪ {whole group}`
+correspond. Compose every `ι_v` with the padding `π_U` of
+`finite-subgroups-of-full-cantor-groups-conjugacy-criterion`, Part 4. This adds the
+whole-group stratum to every edge group at once. In particular it suffices that every
+point stabilizer of every edge group, under both embeddings, is trivial or the whole edge
+group. That holds for edge groups of prime order.
+
 ## Examples
 
 - **Thompson's `T`.** Every finite subgroup of `T ≤ V` acts freely on the Cantor set. So
@@ -46,13 +53,17 @@ solvable word problem when it is finitely generated.
   infinite and simple. So finite-quotient arguments do not reach them, and neither does
   the retract closure.
 - **Subgroups of `V`.** The same holds for any finite graph of subgroups of `V` whose edge
-  groups act freely on the Cantor set, or more generally have matching type sets.
+  groups have matching padded type sets. For example:
+  - edge groups of prime order, with arbitrary edge maps;
+  - `⟨V, t | t c_1 t^(-1) = c_2⟩` for a free involution `c_1` and an involution `c_2`
+    with a fixed cone. Their padded type sets are both `{1, Z/2}`.
 
 ## Scope
 
-- **Non-free edges.** For `D = V`, an involution with a fixed cone and a free involution are
-  not conjugate. Whether `⟨V, t | t c_1 t^(-1) = c_2⟩` lies in `B_A` for such a pair is
-  OPEN. This is the first test case of `pbh-closed-under-finite-edge-graphs-of-groups`.
+- **Intermediate strata.** Padding only adds the whole-group stratum. Edge groups whose
+  intermediate strata differ under the two embeddings are not covered. An example is a
+  Klein four-group of `V` acting freely, versus one with a cone stabilized exactly by one
+  involution. This is the test case of `pbh-closed-under-finite-edge-graphs-of-groups`.
 - **One host.** All vertex groups must embed in the same full host `D`.
 
 ## Lesson for general BH

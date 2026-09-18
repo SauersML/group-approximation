@@ -9,7 +9,9 @@ distinct_from:
   baumslag-gersten-splits-over-bs12-edges: that isolates the height-two tower K as the input of the stable-permutation route; this excludes the odometer as the middle element a_1 of any copy of K in these hosts.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not yet refereed; no novelty claimed).
+**ESTABLISHED** (lane proof, elementary; no novelty claimed). Reviewed: gq-referee-a PASS
+(`research/artifacts/gq-referee-a-equicontinuous-square-conjugators-are-trivial-in-brick-hosts.md`,
+9d96cb601; nits N1–N3 applied).
 
 ## Setting
 
@@ -59,7 +61,8 @@ Let `g ∈ 𝔅_n`.
   Then `m* ≥ 1`.
 - *Bound the reading length.* The reading-length recursion of that proof,
   `ℓ^j_(i+1) ≤ max(ℓ^j_i, L − S^j_i)` with `ℓ^j_0 = 0`, gives `ℓ := ℓ^j_(m*)(x) ≤ L + E' − 1`,
-  because `−S^j_i(x) ≤ E' − 1` for `i < m*`. On its reading brick, `g^(m*)` acts by one prefix
+  because `−S^j_i(x) ≤ E' − 1` for `i < m*`. Here `ℓ` may be any length at least the least reading
+  length, and the recursion bound is such a length. On its reading brick, `g^(m*)` acts by one prefix
   replacement with an isometric section. The coordinate-`j` image prefix has length
   `ℓ − E' ≥ 0`. So `E' ≤ ℓ ≤ L + E' − 1`.
 - *Contradiction.* Let `y` equal `x` except in coordinate `j`, where it agrees with `x_j` on exactly
@@ -84,8 +87,9 @@ Let `g ∈ 𝔅_n`.
   pro-2.
 
 **Item 3.**
-- *A return time.* `cl⟨f⟩` is a compact group (Arzelà–Ascoli), so `f^(m_i) → id` uniformly along
-  some `m_i → ∞`. Then `g^(k^(m_i)) = f^(m_i) g f^(-m_i) → g` uniformly, so
+- *A return time.* `{f^m}` and `{f^-m}` are equicontinuous, so by Arzelà–Ascoli `cl⟨f⟩` is a
+  compact group of homeomorphisms in the uniform topology. In a compact monothetic group, `id` is a
+  limit of `f^m` with `m → +∞`. So `f^(m_i) → id` uniformly along some `m_i → +∞`. Then `g^(k^(m_i)) = f^(m_i) g f^(-m_i) → g` uniformly, so
   `g^(M_i) → id` uniformly with `M_i = k^(m_i) − 1`, which is odd and nonzero.
 - *The subgroups `P_N`.* Let `P_N = {m : g^m maps every level-N brick onto itself}`. This is the set
   of `m` with `g^m` uniformly `2^(-N)`-close to `id`, a subgroup `d_N Z`. It contains `M_i` for
@@ -95,6 +99,23 @@ Let `g ∈ 𝔅_n`.
   preserves level-`N` bricks, send points of one level-`N'` brick into one level-`N` brick. So
   `{g^m}` is equicontinuous.
 - *Odd closure.* The uniform topology on `⟨g⟩` has neighbourhood basis `g^(P_N)`. So `cl⟨g⟩` is the
-  completion `lim Z/d_N` (or finite), and every `d_N` is odd, so it has no 2-part.
-- *Conclusion.* By item 2, `cl⟨g^J⟩` is a closed subgroup of `cl⟨g⟩`, hence of odd order, and it is
+  completion `lim Z/d_N` (or finite). Its open subgroups of odd index form a basis, so it and all its
+  closed subgroups are pro-odd.
+- *Conclusion.* By item 2, `cl⟨g^J⟩` is a closed subgroup of `cl⟨g⟩`, hence pro-odd, and it is
   pro-2. So it is trivial, `g^J = id`, and `g` has finite order. `∎`
+
+## Lesson for general BH
+
+**Prime compatibility.** Suppose a relation `x ~ x^k` with `p | k` holds inside a compact
+(equicontinuous) regime. Then it forces the closure of `⟨x⟩` to be `p`-free. Host local groups that
+are pro-`p`, such as isometries of the binary tree, which are pro-2, can absorb only relations whose
+powers are prime to `p`.
+
+This gives a quick test for any candidate host of a proper-power input: compare the prime support
+of the input's power relations with the pro-structure of the host's section groups. When they
+collide, the conjugators must leave the compact regime. They must have unbounded exponent cocycles
+or non-isometric local maps.
+
+For `BS(1,m)` with `m` odd the test passes, which is why `BS(1,3)` fits naturally (the parity
+example `M_3`). For `m = 2` it fails, which is why every `BS(1,2)`, tower or Baumslag--Gersten
+design in these hosts needs expanding conjugators.

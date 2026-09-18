@@ -42,3 +42,14 @@ over a finite field `F_q`.
   finitely generated groups on finite-dimensional nonpositively curved complexes are elliptic) would be needed.
 - Item 1 needs no finite presentation, simplicity or Kazhdan hypothesis. Item 2's rank-4 example rests on the recalled
   Lannér classification; the rank-3 example needs no such input.
+
+## Lesson for general BH
+
+The only finitely presented simple groups outside the Thompson/Röver–Nekrashevych world, the Caprace–Rémy
+Kac–Moody lattices, fail the Burnside test whenever their buildings are hyperbolic or 2-dimensional. The mechanism
+is the same equicontinuity principle, now through Haettel–Osajda local-to-global ellipticity. So if Boone–Higman is
+true, its hosts for bounded-exponent inputs must be either:
+- Kac–Moody lattices with `Z^2 ≤ W` and a spherical triple, where Haettel–Osajda's conjecture would also kill them; or
+- Cantor-dynamical groups with asynchronous or higher-rank local actions.
+
+That is a sharp, testable dichotomy for the refutation side.

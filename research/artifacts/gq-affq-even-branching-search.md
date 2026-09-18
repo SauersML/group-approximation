@@ -58,3 +58,42 @@ So every table with a detected cycle is excluded for every height and every boun
 test is not needed for them. Undefined pairs in partial tables are a separate issue. A useful search needs
 **aperiodic** reversible machines, as SMART and `SMART_m` are (Kari–Ollinger aperiodicity). Periodic points are
 semi-decidable, so they make a cheap first filter.
+
+## Runs 2–3: non-mirror 2×4 and 2×5, randomized DFS (restarts with a node cap)
+
+Run 1, a plain DFS on 2×4 for 260 s, reported nothing. That is a coverage failure, not a negative result: the
+depth-first order stayed inside one early subtree. Randomized restarts found:
+- **2×4, 150 s:** 67 even tables, 23 with `b = 2` and **44 with `b = 4`**;
+- **2×5, 150 s:** 4 even tables.
+
+After deduplication there are 71 tables, filtered as follows:
+
+| b | periodic points found (dead for every height) | undefined on random tapes (partial tables) | clean |
+|---|---|---|---|
+| 2 | 18 | 8 | 0 |
+| 4 | 9 | 15 | 21 |
+
+- *A clean `b = 4` table:* `F0>F0 F1>H1f F2>H2f F3>H3f H0>F1f H1>H2f H2>H0 H3>H0f K0>H3 K1>F2f K2>F3f K3>F1f L0>H1f
+  L1>F2f L2>F3f L3>F0`. Its first-arrival times are `1, 15, 65, 271, 1089, 4367, …`, i.e.
+  `T(L+1) = 4T(L) + (5, 11, 5, 11, …)`, an exact quadrupling with a period-2 correction.
+- *Why it is not yet a `BS(1,4)` witness.* Its rules include **sweeps**, e.g. `F0>F0`: left-moving over 0 without
+  change. So a single step type occurs in unbounded runs. A bounded-return `Y` must contain the sweep type, and then
+  `N_Y(L)` picks up the sweep lengths.
+- *Search result.* The exact-quadrupling search (`ysubsets.c` with `B = 4`) returned nothing for all 21 clean
+  tables. This is **inconclusive**: with 4 symbols these tables probably exceed the 20-type cap of the subset
+  search, and then it does not run.
+- The MSI budget for this lane is spent; the pipeline is ready.
+
+## Lesson for general BH
+
+**Timing is cheap; recurrence is the real gate.** `BS(1,m)` in a full-group host means an element with
+self-similar time: a bounded, local conjugacy from `T^m` on one tower level to `T`. Exact `m`-fold timings, odd and
+even, turn out to be abundant among small reversible machines. What separates the witnesses (SMART, `SMART_m`)
+from the rest is global:
+- **aperiodicity**: no finite pattern traps the head, since a periodic point kills every odometer factor (`Z_m` is
+  torsion-free);
+- **bounded glue**: the hierarchy is fed through bounded return steps, with no unbounded sweeps.
+
+The parity lemma forces returns for even `m`. In every class searched, returns came with trapped patterns (the
+Jacobsthal `b = 2` machines) or with sweeps (`b = 4`). For any host search the order of tests is: aperiodicity
+first, then bounded glue, then timing.

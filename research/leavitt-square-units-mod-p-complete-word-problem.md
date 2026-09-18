@@ -2,7 +2,7 @@
 rg: 2
 id: leavitt-square-units-mod-p-complete-word-problem
 kind: claim
-title: For every prime p the finitely presented simple group (L_(F_p)(1,2) ⊗ L_(F_p)(1,2))^x / F_p^x has word problem complete for ∀·Mod_pP
+title: For every prime p, (L_(F_p)(1,2) ⊗ L_(F_p)(1,2))^x / F_p^x has word problem complete for ∀·Mod_pP (hardness and upper bound unconditional; finite presentation and simplicity conditional on the Khanh imports)
 distinct_from:
   leavitt-square-units-have-conp-parity-p-complete-word-problem: that is the case p = 2, proved there with a characteristic-two slot unit; this is every prime p, with a characteristic-free slot unit and the projective quotient needed when p is odd.
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that supplies finite presentation and simplicity of the hosts; this is the complexity of their word problems.
@@ -13,8 +13,10 @@ requires:
   - leavitt-square-units-wp-complexity-proof
 ---
 
-**ESTABLISHED** (route `prime-field-leavitt-square-units-mod-p-proof`; lane proof by bh-free-26,
-elementary, not independently reviewed). No priority is claimed.
+**ESTABLISHED for items 2 and 3** (unconditional). **Items 1 and 4 are conditional**, like
+`prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`, on the imported criteria of Khanh
+(arXiv:2609.08428v1). Route `prime-field-leavitt-square-units-mod-p-proof`; lane proof by
+bh-free-26, elementary, not independently reviewed. No priority is claimed.
 
 ## Statement
 
@@ -66,3 +68,15 @@ conjunctions (Beigel--Gill, TCS 103, 1992).
   `τ = s_0 + s_1` is realized by the transvection `1 + a_1 a_0^*` (`(1 + a_1 a_0^*) a_0 = τ`).
 - More tensor factors or other Leavitt algebras over `F_p` give nothing harder
   (`leavitt-tensor-unit-word-problems-have-one-counting-quantifier`).
+
+## Lesson for general BH
+
+The counting modulus of a linear host is its characteristic, and the slot construction is
+characteristic-free: the transvection `1 + a_1 a_0^*` turns the Leavitt isometry `s_0` into the
+superposition `s_0 + s_1`. So one construction gives infinitely many finitely presented simple
+groups `P_p`, whose word problems are complete for classes that are pairwise incomparable
+relative to oracles.
+
+A universal Boone--Higman envelope must contain every `P_p`. A finite-depth linear host of one
+characteristic `p` cannot contain `P_q` for `q ≠ p` unless `Mod_qP ⊆ ∀·Mod_pP`. So
+universality forces either mixed characteristic or non-linear hosts.

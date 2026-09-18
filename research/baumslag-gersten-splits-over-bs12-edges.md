@@ -10,7 +10,9 @@ distinct_from:
   baumslag-gersten-group-satisfies-boone-higman: that is the open problem; this is a reduction of its permutational form, not a solution.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not yet refereed; no priority claimed). Items 1–3 are
+**ESTABLISHED** (lane proof, elementary; no priority claimed). Reviewed: gq-referee-a PASS
+(`research/artifacts/gq-referee-a-baumslag-gersten-splits-over-bs12-edges.md`, b0507adb6; nits
+N1–N3 applied). Items 1–3 are
 proved below. The criterion in item 2 is conditional, and its hypotheses are open.
 
 Write `BG = ⟨a, t | b a b^-1 = a^2⟩`, `b = t a t^-1`, and `a_i = t^i a t^-i`.
@@ -40,7 +42,8 @@ Write `BG = ⟨a, t | b a b^-1 = a^2⟩`, `b = t a t^-1`, and `a_i = t^i a t^-i`
 ## What is left
 
 Only (R1) with this `a_2`, and (R4).
-- **`a_2` is not in `2V_τ`.** It would be a homeomorphism of `C × C` conjugating `u` to `u^2`, and
+- **No admissible `a_2` is the restriction of an element of `2V_τ`.** If `a_2 = h|_(S')` with
+  `h ∈ 2V_τ`, then `h u h^-1 = u^2` on the dense set `S'`, hence on `C × C`. But
   `h(u) = log 2 ≠ h(u^2)`. So the actor must be larger than `2V_τ`, or different from it, and must
   act on `W` by permutations that are not homeomorphisms of `C × C`.
 - **(R1) is a tower problem, not a BG problem.** `K` contains no stable letter. The obstructions
@@ -94,9 +97,25 @@ gives `⟨K, t⟩ = K*_ψ ≅ BG ≤ Γ*_ψ`. `B_A` is closed under subgroups.
     Lengthen prefixes by `c_i` in the first coordinate and by the period `01` in the second, then
     match the complements. This leaves at most three orbits of 2-subsets.
   - Faithfulness: `S'` is dense in `C × C`.
-  - Stabilizers: at `p' = (0^∞, (01)^∞)`, germs `(0^a x, w y) ↦ (0^(a') x, w' y)`, with `w, w'` prefixes
-    of `(01)^∞` of equal parity, give a homomorphism `Stab(p') → Z^2`,
-    `g ↦ (a' − a, (|w'| − |w|)/2)`. Its kernel is the union of the `Γ_(n)` fixing
-    `B_n = C(0^n) × C((01)^n)` pointwise. Each `Γ_(n) ≅ 2V_τ` by the complement argument. The element
-    `e ∈ 2V` that maps `(0x, 01y) ↦ (00x, 0101y)` on `B_1` and `U_1 → U_2` canonically has
-    `e(B_j) = B_(j+1)`. So `Stab(p') = ⟨Γ_(1), e, g_1, g_2⟩` is finitely generated. `∎`
+  - Stabilizers, at `p' = (0^∞, (01)^∞)`.
+    - *Germs.* Near `p'`, an element of `Stab(p')` acts as `(0^a x, w y) ↦ (0^(a') x, w' y)`,
+      with `w, w'` prefixes of `(01)^∞` of equal parity. No odometer power occurs: a piece
+      `(p x, w y) ↦ (p' τ^n x, w' y)` fixing `p'` needs `τ^n(0^∞) = 0^∞`, and `τ` has no periodic
+      points, so `n = 0`.
+    - *Germ homomorphism.* `g ↦ (a' − a, (|w'| − |w|)/2)` is a homomorphism `Stab(p') → Z^2`. Its
+      kernel is the union of the `Γ_(n)` fixing `B_n = C(0^n) × C((01)^n)` pointwise. Each
+      `Γ_(n) ≅ 2V_τ` by the complement argument.
+    - *Contraction.* The element `e ∈ 2V` that maps `(0x, 01y) ↦ (00x, 0101y)` on `B_1`, and
+      `U_1 → U_2` canonically, has `e(B_j) = B_(j+1)`.
+    - *Germ generators.* Let `g_1, g_2 ∈ Stab(p')` have germs `(0x, y) ↦ (00x, y)` and
+      `(x, 01y) ↦ (x, 0101y)` at `p'`, extended canonically off a small brick.
+    - So `Stab(p') = ⟨Γ_(1), e, g_1, g_2⟩` is finitely generated. `∎`
+
+## Lesson for general BH
+
+The orbit-finite-edge clause of HNN permanence belongs to the chosen splitting. Refactoring through
+the double fattens the edge to a whole vertex group. The general form is
+`hnn-extensions-split-over-their-vertex-group-via-the-double`. For `BG` the remaining difficulty is
+a symmetric actor for the double `K`, where the two copies of `BS(1,2)` must act alike. That
+symmetry is exactly what the entropy and equicontinuity invariants forbid in finite-entropy brick
+hosts, so the host must be a genuine permutation actor.

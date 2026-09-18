@@ -1,0 +1,91 @@
+---
+rg: 2
+id: fp-simple-groups-have-residually-finite-torsion
+kind: claim
+title: (RT) In every finitely presented simple group, every finitely generated torsion subgroup is residually finite; this uniform torsion separator refutes Boone–Higman if true, and holds on every finitely presented simple family where it has been checked
+distinct_from:
+  some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup: that is the bounded-exponent separator P_n for a single exponent n; (RT) implies P_n for every n at once (Zelmanov), and it also covers unbounded-exponent torsion. So (RT) is the stronger, uniform statement, and it is the one the host-class proofs on main actually establish.
+  brin-thompson-2v-is-torsion-locally-finite: that is the question for the single host 2V, in its strongest (locally finite) form; this is the claim for all finitely presented simple groups, in the residually finite form that the Röver–Nekrashevych hosts force.
+  bh-separators-must-omit-nested-decidable-hosts: that classifies decision-problem separators and shows which die; (RT) is a hereditary group-theoretic separator, not a decision problem, so it is outside those tables.
+artifacts:
+  - research/artifacts/gq-bh-bh-lit-survey.md
+---
+
+**OPEN**, stated in the refutation direction. Define
+
+> **(RT)** Every finitely generated torsion subgroup of `S` is residually finite.
+
+The claim is that (RT) holds for every finitely presented simple group `S`.
+
+## Why it is a separator for Boone–Higman
+
+- **Subgroup-closed.** (RT) passes to subgroups.
+- **Fails on a decidable input.** `B(2,665)` is infinite, finitely generated, of exponent 665 and has solvable word
+  problem (Novikov–Adian, as recorded in `free-burnside-groups-satisfy-boone-higman`). By Zelmanov
+  (`restricted-burnside-finiteness`) it is not residually finite. So `B(2,665)` violates (RT).
+- **Consequence.** If this claim holds, `boone-higman-conjecture` is false. Conversely, Boone–Higman forces some
+  finitely presented simple group to contain a non-residually-finite finitely generated torsion group.
+- **Relation to the bounded-exponent separator.** (RT) implies, for every `n`, that f.g. subgroups of exponent `n`
+  are finite, i.e. the separator `P_n` of `some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup`. So this
+  claim implies the negation of that node for every `n`. It is stronger, but it is the natural uniform form.
+- **Where it sits in the separator picture.** By `hereditary-approximation-disproofs-of-boone-higman` and
+  `bh-separators-must-omit-nested-decidable-hosts`, a separator must use finite presentation and simplicity together.
+  (RT) does: finitely presented non-simple groups can violate it. Examples:
+  - Clapham's finitely presented overgroups of `B(2,n)`;
+  - Ol'shanskii–Sapir's finitely presented torsion-by-cyclic groups, as noted in the bounded-exponent node.
+
+## Families where (RT) is proved (all on main)
+
+| finitely presented simple family | form proved | node |
+|---|---|---|
+| `V`, all `V_{d,r}` | f.g. torsion is finite | `almost-automorphism-torsion-subgroups-are-rf` item 2 (Röver for `V`) |
+| every Röver–Nekrashevych `V_d(G)`, any self-similar `G` (finitely presented simple commutator subgroups for many `G`); Matui's one-sided SFT full groups and Exel–Pardo 1-graph groups, with all their subgroups | f.g. torsion is residually finite (virtually in `G^k`) | `almost-automorphism-torsion-subgroups-are-rf` items 1, 2, 6 |
+| `T`, `T_{n,r}`, finitely presented simple circle groups | f.g. torsion is finite | `circle-and-tree-product-periodic-subgroups-are-finite` (a) |
+| Burger–Mozes, Wise and other lattices in products of trees | f.g. torsion is finite | `circle-and-tree-product-periodic-subgroups-are-finite` (b) |
+| Caprace–Rémy Kac–Moody lattices with 2-dimensional buildings, e.g. `Λ_(2,4,6)(q)` | torsion locally finite | `two-dim-cat0-product-groups-are-torsion-locally-finite` |
+| Caprace–Rémy Kac–Moody lattices with word-hyperbolic Weyl group | torsion locally finite | `hyperbolic-kac-moody-lattices-are-torsion-locally-finite` |
+
+Every row is proved by the same **equicontinuity principle**. A finitely generated torsion group is forced to have
+a bounded orbit, or bounded depth change, on the host's natural space:
+- pumping for synchronous tree dynamics;
+- Serre, Norin–Osajda–Przytycki or Haettel–Osajda fixed-point theorems for trees, 2-complexes and hyperbolic
+  buildings.
+
+The group then lies in a profinite or finite stabilizer.
+
+## Where (RT) is open
+
+These are exactly the finitely presented simple families where the principle breaks:
+1. **Brin–Thompson `nV`, `n >= 2`.** The depth cocycle becomes a vector. Owned elsewhere:
+   `brin-thompson-2v-is-torsion-locally-finite` and `brin-thompson-groups-contain-infinite-periodic-groups`. The
+   full-shift part of `2V` satisfies (RT) (`full-shift-topological-full-groups-are-torsion-locally-finite`).
+2. **Contracting-RSG hosts of hyperbolic groups (BBMZ).** Their local maps change length:
+   `contracting-rsg-torsion-subgroups-are-residually-finite`.
+3. **Twisted Brin–Thompson groups `SV_Γ`.** Here (RT) for `SV_Γ` is at least as hard as (RT) for `Γ` together with
+   `nV`.
+4. **Kac–Moody lattices with `Z^2 ≤ W` and a spherical triple of generators.** This would follow from
+   Haettel–Osajda's conjecture (locally elliptic actions of f.g. groups on finite-dimensional nonpositively curved
+   complexes are elliptic) for Davis buildings.
+5. **Derived full groups of minimal free `Z^N`-SFTs, if any is finitely presented** (Labbé's `Ω_U`). They sit
+   inside the sofic, and for `N = 1` LEF, world, and LEF torsion need not be residually finite: Nekrashevych's simple
+   periodic groups are LEF. So (RT) there is a genuinely new question.
+
+## Lesson for general BH
+
+The Burnside test turns Boone–Higman into a statement about **host dynamics**: a universal host must make some
+finitely generated torsion group act non-equicontinuously, with no bounded orbit on any structure that has profinite
+stabilizers. Every host family built from synchronous tree dynamics or low-dimensional nonpositive curvature fails
+this. The live host mechanisms are:
+- vector-valued depth (nV, higher-rank graphs);
+- length-changing (asynchronous) local maps;
+- higher-rank buildings;
+- aperiodic-SFT full groups.
+
+A proof of (RT) for any one of these families removes it as a possible universal host. Conversely, an infinite
+non-residually-finite torsion subgroup in any finitely presented simple group would be the first evidence that
+Boone–Higman survives its Burnside test.
+
+## Attempts
+
+1. **bh-free-12, 2026-09-18.** Stated the claim and collected the census above from the landed host theorems. No new
+   family decided.

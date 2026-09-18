@@ -109,3 +109,13 @@ stabilizers, whose intersection is trivial.
   mind.
 - **General form.** The proof of (2) shows that `A ≀_{Λ\Γ} Γ` is not residually finite
   whenever `A ≠ 1`, `Λ` has infinite index, and `Λ` is dense in the profinite topology of `Γ`.
+
+## Lesson for general BH
+
+The mechanism is general: `abelian-lamp-wreaths-are-rf-iff-stabilizers-are-closed` shows that
+`A ≀_{G/K} G` is residually finite exactly when `K` is profinitely closed. Here `PSL_2(Z)` is
+profinitely dense in `PSL_2(Z[1/n])`, by an elementary argument, so every residually finite
+host class is excluded at once, including self-similar and automaton groups and Zaremsky's
+self-similar route. The positive Boone–Higman result (`lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a`)
+succeeds with a non-residually-finite clopen-stabilizer host. That is the design principle for
+coset inputs over non-LERF groups.

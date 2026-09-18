@@ -24,3 +24,9 @@ finite-index overgroups, finite direct products and subgroups
 - products of Ã₂ lattices with lattices on products of trees
   (`cocompact-tree-product-lattices-lie-in-type-a-class`) are in `B_A`;
 - every group containing such a product with finite index is in `B_A`.
+
+**Lesson for general BH.** Once a simple host is a full group of a finitely coded
+groupoid, upgrading to the permutational class costs nothing beyond strong
+connectivity of the coding: the stabilized comparison lemma turns the same host
+into a type (A) actor. So PBH, and with it closure under finite-index overgroups
+and products, comes free with every coded host.

@@ -6,6 +6,7 @@ title: A Z^N-subshift is a residually finite action (Kerr–Nowak) if and only i
 distinct_from:
   rf-free-minimal-zn-actions-have-non-fp-derived-full-groups: that uses residual finiteness to get LEF and non-finite-presentation; this characterizes residual finiteness for subshifts and shows where it fails.
   free-minimal-zn-derived-full-groups-are-never-fp: that is Matui's question; this identifies the actions for which the LEF route to it is unavailable.
+  periodic-approximable-subshifts-host-no-fp-simple-group: that defines periodic approximations (PA) pointwise with a stabilizer-avoidance clause and uses them against fp simple subgroups; for free subshifts PA is equivalent to the model-family condition here (and so to Kerr–Nowak residual finiteness), since legal windows of large radius force the stabilizer clause.
 artifacts:
   - research/artifacts/gq-bh-openq-papers-list.md
 ---
@@ -38,3 +39,10 @@ For free minimal `Z^N` actions, `rf-free-minimal-zn-actions-have-non-fp-derived-
 finite case. By item 2 the remaining case contains every minimal subsystem of every weakly aperiodic `Z^N`-SFT. That is
 exactly where finite presentation of `D([[φ]])` is not blocked by LEF. It matches the heuristic that a *finitely
 presented* full group needs "finite type" data, as for Matui's one-sided shifts of finite type.
+
+## Lesson for general BH
+
+Kerr–Nowak residual finiteness of a subshift, periodic approximability, and "the SFT neighbourhoods have periodic
+points near X" are one condition. It is the dynamical shadow of residual finiteness of the full group. So a
+finitely presented simple subgroup of a subshift full group needs a *non-residually-finite* subshift. Aperiodic
+SFTs are forced, which puts every such host inside the domino-problem world.

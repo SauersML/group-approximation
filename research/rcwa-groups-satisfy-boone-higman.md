@@ -12,8 +12,9 @@ distinct_from:
   baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman: that is Boone-Higman for two named families via their own hosts; this is Boone-Higman for the class of finitely generated RCWA groups.
 ---
 
-**ESTABLISHED** by `rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof`. This is a
-lane proof and has not been reviewed.
+**ESTABLISHED** by `rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof`. Lane proof,
+reviewed by gq-referee-a (proof-gap lens): PASS with three nits, all applied
+(`research/artifacts/gq-referee-a-rcwa-groups-satisfy-boone-higman.md`). No citation-lens review yet.
 - **Case `P = ∅`.** It needs only the refereed node `odometer-2v-is-fp-simple-and-contains-bs12`
   (both referees PASS).
 - **General `P`.** It uses the same two theorems that node uses, Li arXiv:2110.04505v2
@@ -32,6 +33,9 @@ filtering), and grep of main. MathSciNet was not searched.
 - **Prime data.** For a finite set `P` of odd primes, put `P' = P ∪ {2}`. `RCWA_P(Z)` is the
   subgroup of those `g` for which `m` and all `a`, `c` can be taken `P'`-smooth. Every `g` has
   finitely many data, so `RCWA(Z) = ⋃_P RCWA_P(Z)`, a directed union over finite `P`.
+  `RCWA_P(Z)` is a subgroup (referee N1): a composite `gh` is affine on the classes of a
+  modulus dividing `m_h m_g c`, and the inverse of a piece `r(m) → s(am/c)` has modulus
+  `am/c`, so all data stay `P'`-smooth.
 - **Hosts.** `H_P` is the topological full group of the groupoid of the self-similar action of
   `Z` by translation (the mixed-radix odometer) on the one-vertex `(|P'|+1)`-graph
   `Λ_P × F_2^+`, acting on `Ẑ_P × C`.
@@ -68,6 +72,15 @@ The embedding is the composite of two maps.
   - Pieces with nonzero shift `c`, the "flux" across `0` that `CT_P(Z)` forbids, need the
     odometer.
   - Decreasing pieces need the sign doubling.
-- **Other rings.** Only `Z` is treated. Kohl's `RCWA(R)` for other rings `R` is not.
-- **PBH.** Whether `H_P` has a type (A) action, which would give the permutational form, is
-  not addressed.
+- **Other rings.** Kohl's other rings (number rings of class number one, `F_q[t]`, `Z_(π)`) are
+  treated in `rcwa-groups-over-pids-satisfy-boone-higman`.
+- **PBH.** `H_P` is highly transitive, so these groups satisfy the permutational conjecture:
+  `rcwa-groups-satisfy-permutational-boone-higman`.
+
+## Lesson for general BH
+
+The finiteness of a host can be paid for by a small unit group. Here the only infinite
+group the finiteness theorem sees is the odometer's `Z`. The "flux" that keeps
+translations out of `CT_P(Z)` becomes one self-similar generator, and Li's theorem transfers
+`F_∞` from `Z` to the whole full group. The general form of this principle, and what it
+reduces BH to, is recorded in `pbh-via-degree-monoid-boundary-full-groups`.

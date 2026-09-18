@@ -87,3 +87,13 @@ of `F`. ∎
 - Whether finite presentation plus density in `Homeo(C)` forces finitely generated
   clopen stabilizers is therefore open again (see the updated remark in
   `permutational-boone-higman-iff-dense-cantor-actors`); the claimed witness is gone.
+
+## Lesson for general BH
+
+A locally moving group satisfies a mixed identity with every element of its ambient homeomorphism
+group, namely `[[x,a],b] = [a^{-1},b]` with `a, b` supported where `x` displaces. So a
+Thompson-like host cannot be enlarged to a free product inside its own space. Closure of `B_A`
+under free products (BFFHZ) has to go through abstract envelopes (`SV` of the free product), not
+through adding generic dynamical elements. The same identity is why these groups are never MIF.
+Any closure step that asks for "independence" inside one fixed locally moving action is dead on
+arrival.

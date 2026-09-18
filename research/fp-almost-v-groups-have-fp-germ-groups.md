@@ -7,6 +7,7 @@ distinct_from:
   shell-envelope-fp-forces-fp-germ-group: that proves the same implication for shell envelopes E_nu at their one singular orbit; this proves it for every finitely presented group of Cantor homeomorphisms that contains V and has finite V-singular sets, at every point.
   bhm-singfix-condition-forces-fp-germ-groups: that shows the hypothesis of Belk--Hyde--Matucci Theorem 2.1 forces finitely presented singular germ groups, and says nothing about finite presentation proved by other means; this shows finite presentation itself forces them, by any proof.
   shell-fp-stabilizer-forces-fp-germ-group: that derives a finitely presented germ group from a finitely presented one-point stabilizer; this needs only the whole group finitely presented.
+  fp-germ-extensions-of-locally-moving-bases-have-fp-germ-groups: that generalizes this to every finitely generated locally moving base with finitely presented germ groups (V_(d,r), nV, F, T); this is the case B = V.
 ---
 
 **ESTABLISHED** by `fp-almost-v-groups-fp-germ-groups-proof` (lane proof, elementary; gq-referee-a PASS,
