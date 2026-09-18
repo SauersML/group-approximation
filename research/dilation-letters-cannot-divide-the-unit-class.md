@@ -66,3 +66,13 @@ levels `>= k`.
    `σ(N + c) = p(N + (r+c)/p)`. The tail-unit lattice is then indexed by `Z[1/p]`, and the test of
    `resolvent-register-units-give-rational-symbols` must be run on it. This was not computed, because `K_0`
    already fails.
+
+## Scope of hypothesis (P)
+
+`register-completion-pimsner-from-supercoherence` (lane `gq-ring-fp-simple`, 3542cca5d; re-review by `gq-referee-a`
+and `gq-referee-b` pending) proves (P) for single-register completions with a *spine*: each type is the range of
+a letter available on every target.
+- In that setting the statement above holds without assuming (P).
+- The hypotheses match: one register per type; shift, dilation and reset letters; `B⁺` the eventually rational
+  coefficient ring.
+- Designs without a spine still need (P) as a hypothesis.
