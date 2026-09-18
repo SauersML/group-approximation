@@ -93,8 +93,7 @@ theorem k2KarTri_rankOneAt_two (hs : s ≠ 0) : k2KarTri_RankOneAt s 2 := by
   rcases l with _ | ⟨z, _ | ⟨w, _ | ⟨u, l⟩⟩⟩
   · refine ⟨0, 0, ?_, ?_⟩
     · rw [List.prod_nil, map_one, padCol_zero, commutatorElement_one_left]
-    · rw [List.prod_nil, Matrix.vecMulVec_zero, add_zero]
-      exact map_one padMat
+    · rw [List.prod_nil, map_one, Matrix.vecMulVec_zero, add_zero]
   · obtain ⟨g, i, j, hij, b, _, rfl⟩ := hl z (by simp)
     rw [List.prod_cons, List.prod_nil, mul_one]
     exact ⟨_, _, k2KarInd_stab_conj_x g i j hij b, k2KarTri_padMat_conj g i j hij b⟩
@@ -121,3 +120,46 @@ theorem k2KarTri_boundedAt_three (hs : s ≠ 0) : k2KarRel_BoundedAt s 3 :=
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_boundedAt_three
 
 end KarTriStatement
+
+section KarTriEndpoint
+
+/-- **`k2KarRel_PosBoundedStatement 3` holds.** -/
+theorem k2KarTri_posBounded_three : k2KarRel_PosBoundedStatement 3 :=
+  fun _ hp _ _ _ h0 _ ↦ by
+    haveI := Fact.mk hp
+    exact k2KarTri_boundedAt_three (Polynomial.C_ne_zero.2 h0)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_posBounded_three
+
+/-- `RankOneAt` over the rings of `k2Karoubi_PosStatement`. -/
+def k2KarTri_PosRankOneStatement (m : ℕ) : Prop :=
+  ∀ p : ℕ, p.Prime → ∀ k : ℕ, 1 ≤ k → ∀ s₀ : MvPolynomial (Fin k) (ZMod p),
+    s₀ ≠ 0 → ¬ IsUnit s₀ →
+      k2KarTri_RankOneAt (Polynomial.C s₀ : Polynomial (MvPolynomial (Fin k) (ZMod p))) m
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_PosRankOneStatement
+
+/-- **Residual**: `R1` for products of four relative conjugates. -/
+def k2KarTri_QuadStatement : Prop :=
+  k2KarRel_PosBoundedStatement 4
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_QuadStatement
+
+/-- `R1` implies the residual (LOUD: strict weakness is NOT proved). -/
+theorem k2KarTri_quad_of_pos (h : k2Karoubi_PosStatement) : k2KarTri_QuadStatement :=
+  k2KarRel_posBounded_of_pos h 4
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_quad_of_pos
+
+/-- The rank-one statement at `m = 3` implies the residual. -/
+theorem k2KarTri_quad_of_rankOne (h : k2KarTri_PosRankOneStatement 3) :
+    k2KarTri_QuadStatement :=
+  fun p hp k hk s₀ h0 hu ↦ by
+    haveI := Fact.mk hp
+    exact k2KarTri_boundedAt_succ_of_rankOne (Polynomial.C_ne_zero.2 h0) (h p hp k hk s₀ h0 hu)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarTri_quad_of_rankOne
+
+end KarTriEndpoint
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
