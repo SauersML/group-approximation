@@ -11,7 +11,7 @@ distinct_from:
   hermitian-edge-trace-norm-vs-independence: that is (**) for every graph and weight; this is the single case G = K_m, w = 1, which by the facet reduction is equivalent to (**) for all h-perfect graphs (all perfect graphs) and is the only open case there.
 ---
 
-**OPEN only for m = 5.** It is proved for `m <= 3`, for `m = 4` by `hermitian-edge-trace-norm-clique-inequality-k4` (computer-assisted flux-torus branch-and-bound), and for every `m >= 6` by `hermitian-edge-trace-norm-clique-inequality-large-m`. Numerics cover `m <= 10`. For every `m >= 2` and every Hermitian
+**ESTABLISHED (computer-assisted for `m = 4, 5` and `m >= 6`; unreviewed, not Lean-verified; route `hermitian-edge-trace-norm-clique-inequality-by-size`).** It is proved for `m <= 3`, for `m = 4` by `hermitian-edge-trace-norm-clique-inequality-k4` and for `m = 5` by `hermitian-edge-trace-norm-clique-inequality-k5` (computer-assisted flux-torus branch-and-bound), and for every `m >= 6` by `hermitian-edge-trace-norm-clique-inequality-large-m`. Numerics cover `m <= 10`. For every `m >= 2` and every Hermitian
 `m x m` matrix `C` with `C_ii = 0` and `|C_ij| >= 1` for all `i != j`,
 
 ```text
@@ -88,3 +88,11 @@ All optima have unit moduli, and (up to sign, `C -> -C`) one eigenvalue of one s
 `C_ij = sqrt(d_i d_j) (<u_i,u_j> - 1)` with unit vectors `u_i`, and (UCI) in this regime reads
 `d_i d_j |1 - <u_i,u_j>|^2 >= 1 => sum d_i >= (sqrt3/2)(m-1)`. The ratio seems to increase slowly
 with `m`; a weak-limit heuristic suggests `min ||C||_1 ~ 2m`.
+
+## Attempts
+
+- 2026-09-18 (w7-078): **`m = 5` finished, so (UCI) holds for every `m`.** The remaining nine
+  symmetry slices of `hermitian-edge-trace-norm-clique-inequality-k5` (`3, 4, 5, 8, 9, 10, 13, 14, 15`) all
+  print `ALL CLOSED` (`k5_partial_runs.log`). The new route `hermitian-edge-trace-norm-clique-inequality-k5-proof`
+  closes `K_5`, and with it the route `hermitian-edge-trace-norm-clique-inequality-by-size` is complete.
+  The status paragraphs above describe the state before this entry.
