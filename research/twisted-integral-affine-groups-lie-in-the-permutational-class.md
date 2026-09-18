@@ -59,8 +59,8 @@ Let `μ` be Haar probability measure on `X`. The **class** of a clopen `U` is th
 - Match cylinders by `a_(Z') ∘ a_Z^(-1)`. This is affine on `T ∪ T'`, with diagonal
   `ℓ`-power linear part and translation in `Z[1/ℓ]`, so it is allowed.
 
-**(b) Allowed pieces are `W`-local.** Let `p : P → P'` be an allowed piece and `x ∈ P`.
-- Choose a cylinder `Z ∋ x` with `Z ⊊ P`. Then `p(Z) ⊊ P' ⊆ X`, and `p(Z)` has class 1.
+**(b) Allowed pieces are `W`-local.** Let `p : Π → Π'` be an allowed piece and `x ∈ Π`.
+- Choose a cylinder `Z ∋ x` with `Z ⊊ Π`. Then `p(Z) ⊊ Π' ⊆ X`, and `p(Z)` has class 1.
 - So `X ∖ Z` and `X ∖ p(Z)` are nonempty clopen sets of class 0. By (a) they are joined by
   an allowed-piecewise map.
 - Gluing it to `p|_Z` gives a piecewise-allowed homeomorphism of `X`. By definition that is
@@ -82,6 +82,12 @@ So every allowed-piecewise map between clopen sets agrees near each point with a
 - Then `g ↦ f g f^(-1) ⊔ id_(X∖U)` and `k ↦ f^(-1) k f` are inverse isomorphisms between
   `W_(P,ℓ)` and `D(U)`, by fullness. This is the argument of
   `fp-clopen-transitive-full-cantor-group-type-a-proof`.
+
+**(d′) Classes are invariant** (added after the referee). Let `g ∈ W_(P,ℓ)` and let `U` be
+clopen.
+- Refine `U` into cylinders `Z_1, …, Z_m`, each inside one piece of `g`.
+- Each `g(Z_i)` has measure `ℓ^(a_i) μ(Z_i)`, which is again `≡ 1` modulo `ℓ − 1`.
+- So `g(U)` has class `m`, the class of `U`, and `W_(P,ℓ)` acts on `Ω_ℓ`.
 
 **(e) The action on `Ω_ℓ`.** `Ω_ℓ` is countable, and nonempty since it contains the cosets of
 `x_d` modulo `ℓ`.
@@ -119,3 +125,31 @@ It is the Higman–Thompson `V_(ℓ,r)` trick in `B_A` form. With
 `projective-leavitt-tensor-units-lie-in-the-permutational-class`, it shows that on both host
 machines of the graph, full groups and Leavitt-tensor unit groups, PBH is exactly finite
 presentation of the host.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS given finite presentation of `W_(P,ℓ)`
+
+Internal referee lane, not an external review. The definition of `W_(P,ℓ)` was read in
+`twisted-s-integral-affine-groups-are-fp-and-virtually-simple`:
+- it is the group of all homeomorphisms of `X` that are piecewise affine over `Z[1/ℓP]` on cosets of
+  open subgroups, up to coordinate permutations from `F`;
+- so it is full by definition, which justifies (b) and (c).
+
+**Checked.**
+- **The allowed maps.** `a_Z` is allowed, with `M = ℓ^k I` and `b = c`. The composites
+  `a_(Z') ∘ a_Z^(-1)` are affine on `T ∪ T'`, with a diagonal `ℓ`-power linear part.
+  `|det M|_ℓ ∈ ℓ^Z` and `ℓ ≡ 1 (mod ℓ−1)`, so every class of a cylinder is 1.
+- **The count adjustment in (a).**
+- **Stabilizers.** They are `D(U_1) × … × D(U_ℓ)`, using (d).
+- **The pair-orbit record.** At most `ℓ^(ℓ²)` orbits.
+- **Faithfulness.** The `ℓ − 2` singleton cylinders plus one remainder of class `≡ 1` give `ℓ`
+  pieces of class 1. For `ℓ = 2` the remainder is `X ∖ Z`.
+
+**Gaps.**
+1. **Class invariance** is used but not stated: the action on `Ω_ℓ` needs `W_(P,ℓ)` to preserve
+   classes. It does, because each piece scales `μ` by a power of `ℓ` (refine `U` into cylinders
+   inside pieces).
+2. **Notation.** In (b), `P` names a piece and also the set of primes.
+3. **Status.** Everything rests on item 1 of `twisted-s-integral-affine-groups-are-fp-and-virtually-simple`
+   (`W_(P,ℓ)` finitely presented). That item is an unreviewed, load-bearing lane proof, marked
+   "referee review requested". Until it passes, the (SQ) and (JE) conclusions for `W` and `W_(P,ℓ)` are
+   conditional on it.

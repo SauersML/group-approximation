@@ -306,3 +306,13 @@ every RF host. So routes to BBMZ 5.3(12) must not factor through an fp RF overgr
 fp metabelian groups with a module of Krull dimension at least 2 do not serve as their own self-similar hosts, in
 every case checked. BH hosts for both classes must forget the defining structure (module or tree) rather than
 extend it.
+
+**H4 (09-18, after pass 5): Kourovka 21.140 (Witzel–Zaremsky).** This is Zaremsky Problem 2.8, and main's
+root is `zaremsky-2-08-infinite-dim-torsion-free-f-infinity-without-f`, which now carries the Kourovka number.
+- New ESTABLISHED lemma `thompson-f-free-groups-closed-under-extensions-and-unions`: groups without `F` are
+  closed under subgroups, extensions and directed unions. So every ascending HNN extension of a residually
+  finite group omits `F`.
+- New route `basilica-hnn-fp-infinity-answers-kourovka-21-140`: the Basilica HNN extension `B~` is fp,
+  torsion-free, of infinite cd and `F`-free. So 21.140 has answer **no** as soon as `B~` is `FP_∞`
+  (`basilica-hnn-extension-is-fp-infinity`, OPEN).
+- The earlier route from `B~` also needed "`F` is not amenable"; that premise is gone.

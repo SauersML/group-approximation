@@ -167,3 +167,43 @@ conjugate of a vertex group. Induct down the hierarchy. ∎
 - **What remains of E1's effectivity gate** is (D) for (FA) groups: a free subshift with decidable
   language on a group that acts on no tree. That is where a new idea must enter, for instance a
   flexible constraint system with computable look-ahead.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS, with two nits
+
+Checked by hand.
+- **Closedness and invariance of all three layers.**
+- **The (O) dichotomy.** On any path the orientation points toward a single vertex, so
+  out-rays merge. At most one sink exists, and with no sink there is one end.
+- **Compactness for (K)** after normalizing `β(u_0) = 0`.
+- **Freeness.**
+  - Elliptic `g`: the shift by `a_0^{-1}` fixes `y_h`.
+  - Hyperbolic `g`: `g` fixes the end `ξ` of its axis, heights along the axis cover `Z`,
+    and `σ(n ± τ) = σ(n)` contradicts aperiodicity of Thue–Morse.
+- **Decidable language, per layer.** Vertex pieces reduce to `L(Y_v)` coset by coset, using
+  (H1) and (H2). The tree case check extends to a genuine point.
+
+Nits:
+1. **Coset consistency.** The language check should say explicitly that two named coordinates
+   in the same coset `hG_e` (or `hG_v`) must carry equal orientation (or colour) symbols.
+   Deciding that uses (H2).
+2. **Case (b) is redundant.** When the target lies beyond `w`, the orientation and relative
+   heights on `T_F` coincide with a root orientation at `w`, and root orientations always
+   exist. So the "check that such an edge exists" clause can be dropped. It is harmless.
+
+**Corollaries.**
+- 1–3 check out: free products; GBS groups by Britton; `F *_{F'} F''` over finite-index
+  subgroups, including the Burger–Mozes simple groups (Burger–Mozes, Publ. IHÉS 92 (2000)).
+- The (FA) lemma is Serre's.
+- Kazhdan implies (FA) by Watatani, Math. Japon. 27 (1982).
+
+**Related work, for credit and overlap checks. Not re-read for this review.**
+- Gao–Jackson–Seward: every countable group has a free subshift.
+- Aubrun–Barbieri–Thomassé: effectively closed strongly aperiodic subshifts on decidable
+  groups.
+- Aubrun–Kari, and Esnay–Moutot: aperiodic SFTs on Baumslag–Solitar groups, using heights on
+  the Bass–Serre tree.
+- D. B. Cohen: transfer of strong aperiodicity along ends and trees.
+
+The "Busemann height read through an aperiodic word" device is close in spirit to these
+Baumslag–Solitar constructions. The new content here is the decidable-language bookkeeping
+at infinite emitters.

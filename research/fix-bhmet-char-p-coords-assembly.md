@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-char-p-coords-assembly
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly: Unknown constant Algebra.fg_adjoin_finset"
 ---
 
@@ -16,6 +17,8 @@ error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:60:12:
 error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:33: failed to synthesize instance of type class
 error: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:61:9: Tactic `rcases` failed: `x✝ : ?m.175` is not an inductive datatype
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-char-p-coords-assembly`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.
