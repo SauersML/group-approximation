@@ -50,7 +50,7 @@ Each item lists the supplementary data on (left, right, bottom, top); unlisted e
   - a TURN sits at the intersection of two of the wire's own private lines, which no other wire uses;
   - the only other thing inside a margin is that side's own bit wires.
 
-**The crossing box `[X_0, X_0 + 2K] × [Y_0, Y_0 + 2K]`.** Wire `q` enters at the bottom in column
+**The crossing box `[X_0, X_0 + 2K + 1] × [Y_0, Y_0 + 2K]`.** (Widened by one column after bh-free-35 (f757d5cbc) found that the END column coincided with the last wire column `c_K = X_0 + 2K`.) Wire `q` enters at the bottom in column
 `c_q = X_0 + 2q`, going up, and leaves at the top towards the zone. Put `r_q = Y_0 + 2q`.
 
 | cell | role |
@@ -58,8 +58,8 @@ Each item lists the supplementary data on (left, right, bottom, top); unlisted e
 | `(c_q, r_q)` | FAN: a copy of bit `q` starts to the right along row `r_q` |
 | `(c_q, r_(q'))` with `q' < q` | CROSS: horizontal bit `q'`, vertical bit `q` |
 | `(c_(q'), r_q)` with `q' < q` | V (the row copy of `q` starts at `c_q`, to the right) |
-| `(x, r_q)` with `c_q < x < X_0 + 2K`, `x` not a column | H |
-| `(X_0 + 2K, r_q)` | END |
+| `(x, r_q)` with `c_q < x < X_0 + 2K + 1`, `x` not a column | H |
+| `(X_0 + 2K + 1, r_q)` | END |
 | other box cells | BLANK |
 
 So every pair `q' < q` meets in the CROSS tile at `(c_q, r_(q'))`. That is (L3).

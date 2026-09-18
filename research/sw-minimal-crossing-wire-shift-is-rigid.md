@@ -8,12 +8,14 @@ requires:
   - sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices
 artifacts:
   - research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md
+  - research/artifacts/gq-bh-g2-fixedpoint-a-diagonal-time-layout.md
 distinct_from:
   minimal-crossing-wire-fixed-point-shift-is-quantum-rigid: that uses a two-way head zone with inputs on all four sides; this computes the top and right colours from the left and bottom ones, so the shift is SW-deterministic.
   sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices: that states an SW Layout Lemma with a generic one-way CA zone; the causality lemma here shows that such a zone cannot write top bits to the left of bottom bits it reads, and gives a rule shape that avoids this.
 ---
 
-**Part 1 ESTABLISHED; parts 2–3 CONDITIONAL on the diagonal-time layout** (designed here, not verified line by
+**Part 1 ESTABLISHED; parts 2–3 CONDITIONAL on the diagonal-time layout**, written out at tile level in
+`research/artifacts/gq-bh-g2-fixedpoint-a-diagonal-time-layout.md` (designed here, not verified line by
 line). Lane bh-g2-fixedpoint-a, 2026-09-18, not reviewed; no priority claimed.
 
 ## 1. Causality lemma (established)
