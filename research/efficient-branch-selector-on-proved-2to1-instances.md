@@ -11,8 +11,11 @@ distinct_from:
   unique-constraints-orient-at-most-half-of-a-fiber: that caps local unique gadgets at completeness one half; this asks for a globally computed orientation on a doubled right alphabet, where item (1) of the sandwich proves the random-bit floor one half and nothing caps it.
   linear-view-unique-verifiers-collapse-to-quotient-coarsening: that kills affine-view verifiers with oblivious completeness; an orientation lift has no honest right label that is a view of one outer label, since its right bit depends on the edge, so it lies outside that theorem's hypotheses.
   grassmann-composed-2to2-coarsenings-are-satisfiable: that evaluates the branch-blind coarsening on these instances; a selector must read exactly the branch information that coarsening discards.
+  grassmann-restriction-test-is-99-percent-rigid: that is a structure theorem for the plain Grassmann restriction test and mentions no reduction, no orientation and no complexity assumption; this asks for a polynomial-time orientation of one fixed instance family, and that structure theorem bears on it only through a transfer to the smoothed DKKMS game which its six-flag proof does not survive.
+  dkkms-smoothing-leaves-the-branch-coordinate-untested: that is a weight computation on the DKKMS edge law, showing which hyperplanes of an A-space carry seed mass and obstructing one named proof strategy for the rigidity node; this is the completeness question for an orientation, and the weight computation only says where its remaining freedom lives.
 artifacts:
   - experiments/orientation-lift-2026-09-17/check_orientation_lift.py
+  - experiments/grassmann-99-rigidity-2026-09-18/seed_spread_dkkms.py
 ---
 
 **OPEN.**
@@ -107,3 +110,67 @@ sees.
   to fail. That means YES labellings of value arbitrarily close to 1 that are
   far from every patchwork. Not a solution. It is a decomposition into two
   prerequisites that cannot both hold.
+
+* **Obstruction mining on the rigidity branch (2026-09-18, agent
+  `e2-w2-ugc-selector-kill`, family stability-approximation, signature "seed
+  BLR recovers one global linear label"). Refuted in part at the wave's referee
+  stage; both nodes land OPEN.** Attacked the hole from the opposite sign: try
+  to *prove* the rigidity node `dkkms-grassmann-2to1-test-is-locally-99-percent-rigid`
+  and so refute this claim under `NP not in RP`, via Corollary B of
+  `high-advantage-selector-witnesses-decode-good-outer-labellings`. **This hole
+  survives** — all three referee lenses agreed, and the reason is simple: what
+  the lane proved is the *plain*-test statement
+  `grassmann-restriction-test-is-99-percent-rigid`, which is a different node
+  from the DKKMS rigidity node Corollary B needs. That node stays OPEN, so
+  Corollary B never fires. Two nodes were written; both are now OPEN with their
+  proofs kept as attempt artifacts.
+
+  1. `grassmann-restriction-test-is-99-percent-rigid` (OPEN; **no referee found
+     an error**, demoted because the lane's referee stage refuted its companion).
+     For the plain linear Grassmann restriction test, value `1 - eta` forces a
+     single global linear functional on all but `800 eta` of the `l`-spaces,
+     with an absolute constant. The proof is a six-flag gadget: from a seed
+     `Q`, a hyperplane `P < Q` and two directions `x,y`, the `l`-space
+     `N = P + <x,y>` shares the hyperplane `P + <u>` with `Q + <u>` for each
+     `u in {x, y, x+y}`, and `sigma_N` is linear, so the seed prediction
+     function `F_Q(x) = sigma_(Q+<x>)(x)` is an approximate homomorphism with
+     defect `6 eta`. BLR gives one linear `A_Q` per seed, and the down-up walk
+     on `Gr(X,l-1)`, whose non-trivial eigenvalues are at most `1/2` in
+     modulus, glues them into one `A`. No step pays a `2^l`, so the `2^l` loss
+     that the rigidity node feared from zoom structures does not occur. All
+     three lenses audited it line by line and it held; the final budget is
+     `784.4 eta` against the claimed `800 eta`.
+  2. `dkkms-smoothing-leaves-the-branch-coordinate-untested` (OPEN;
+     **refuted at Corollary 3** by lens 2, the same step named by lens 1). Its
+     correct content: seeds of `G_multi` are `(V'', R)` with `R <= X_(V'')` for
+     a smoothed tuple, and a fresh smoothing contains a prescribed uniform
+     direction with probability exactly `(1 - 3 beta / 4)^k`, so the six-flag
+     gadget — whose three auxiliary flags sit at `N != L` — transfers only with
+     `eta` replaced by `eta (1 - 3 beta / 4)^(-k)`, vacuous at every admissible
+     parameter point. An exact computation of the conditional seed law is
+     consistent: `E_L max_R w(R|L)` at `l = 3`, where uniform spread is `1/7`,
+     rises from `0.478` at `k = 2` to `0.840` at `k = 8` for `beta = 1/2`, and
+     the dominant hyperplane is the generating seed for `0.90` of the A-mass
+     there (`experiments/grassmann-99-rigidity-2026-09-18/seed_spread_dkkms.py`).
+     Its **overclaim**, which was refuted: that *every* proof importing a 99
+     percent Grassmann agreement theorem must pay that factor. Lemma 1 is about
+     one constraint; two constraints at the *same* A-vertex have distinct
+     hyperplane seeds `R1, R2` with `R1 + R2 = L`, so they pin the A-label at
+     every direction at `O(1)` cost, and lens 2's measurement of the
+     same-A-vertex quantity (`0.29 ... 0.13` for `k = 2..8`, against
+     `(1 - 3 beta / 4)^k = 0.39 ... 0.023`) decays far more slowly than the
+     asserted rate.
+
+  **What this leaves for this claim.** Proposition 4 of the second node is
+  *conditional* on folding-compatibility of the dominant seed germ
+  `L |-> D(L)`, which is posted as an open sub-statement and is not settled. If
+  it held, `G_multi` would have a labelling of value `1 - o(1)` that is
+  `1 - 2^(1-l)`-far from every locally honest patchwork, and the **constant**
+  orientation `g_e := 1` with right bits `0` would lift it with the same value
+  — so that much of this hole would be a combinatorial question about folding
+  classes with no algorithmic content. That is a conditional reading, not a
+  result. It is **not** recorded that the Grassmann-import lane is dead: only
+  the six-flag member of it is blocked, and whether some other Grassmann
+  agreement argument transfers to `G_multi` is open. The attempt artifacts are
+  `research/artifacts/grassmann-restriction-99-percent-rigidity-proof-2026-09-18.md`
+  and `research/artifacts/dkkms-branch-coordinate-untested-proof-2026-09-18.md`.
