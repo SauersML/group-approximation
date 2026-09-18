@@ -5526,6 +5526,11 @@ import GroupApproximation.Manuscript.NonMF.Full.NM16.BKUnitalized
 import GroupApproximation.Manuscript.NonMF.Full.NM16.BKConverse
 import GroupApproximation.Manuscript.NonMF.Full.NM16.BKSentence
 import GroupApproximation.Manuscript.NonMF.Full.GL05b.RegionArcs
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Basic
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Multiplier
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Consequences
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SubgroupRegularModels
+import GroupApproximation.Manuscript.NonMF.Full.GL03C.PocketListing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
