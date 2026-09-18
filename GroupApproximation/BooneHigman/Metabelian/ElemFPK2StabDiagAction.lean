@@ -14,8 +14,8 @@ stability (the method of van der Kallen's proof).  It works over an arbitrary ri
   * `add`, `commute`, `adjacent`: the Steinberg relators hold for `T` whenever some index in the
     relator is the last one.
 * `LastRootAction.T_add`, `T_commute`, `T_adjacent`: the relators then hold for *all* indices.
-  If no index is last, every root comes from `St_n(R)` along `castSucc`.  Rewrite with `compat`, pull
-  `act` out (`map_mul`, `map_commutatorElement`) and use the relation in `St_n(R)`.
+  If no index is last, every root comes from `St_n(R)` along `castSucc`.  Rewrite with `compat`,
+  pull `act` out (`map_mul`, `map_commutatorElement`) and use the relation in `St_n(R)`.
 * `LastRootAction.lift`: `T` descends to a homomorphism `St_{n+1}(R) →* Perm Ω`
   (`PresentedGroup.toGroup`), and `lift_comp_stab` gives `lift ∘ stab = act`.
 * `eq_one_of_K2Stab_of_lastRootAction`: if `act` separates a point `ω₀` on a class `P` of elements

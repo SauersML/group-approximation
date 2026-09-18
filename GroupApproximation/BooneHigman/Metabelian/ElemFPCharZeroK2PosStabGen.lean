@@ -100,7 +100,8 @@ theorem k2_fg_of_le_normalClosure_stab {s : Set (St n R)} (hsfin : s.Finite)
   (Group.fg_iff_subgroup_fg _).mpr
     ((Subgroup.fg_iff _).mpr ⟨_, closure_stab_image_eq_K2 hsK hle, hsfin.image _⟩)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_fg_of_le_normalClosure_stab
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_fg_of_le_normalClosure_stab
 
 /-- Finite generation of `K₂(n, R)` and surjective stability give a finite `s ⊆ K₂(n, R)` whose
 stabilization normally generates `K₂(n+1, R)`. -/
@@ -154,7 +155,8 @@ theorem charZeroK2PosStabGen_of_fg_of_surj
     CharZeroK2PosStabGenStatement := fun m n hm h4n ↦
   exists_finite_normalClosure_stab_of_fg_of_le_map (hfg m n hm h4n) (hsurj m n hm h4n)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2PosStabGen_of_fg_of_surj
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2PosStabGen_of_fg_of_surj
 
 /-- The gap gives `CharZeroK2BaseFGStatement` (all `m`, `N ≥ 5`). -/
 theorem charZeroK2BaseFG_of_stabGen (h : CharZeroK2PosStabGenStatement) :
