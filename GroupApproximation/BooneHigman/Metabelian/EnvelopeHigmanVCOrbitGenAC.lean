@@ -80,3 +80,65 @@ theorem higmanVCOrbitGen_mem_C_b {d : ℕ} {a b : List (Fin d)} {x : Fin d} {e u
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_C_b
 
+theorem higmanVCOrbitGen_mem_a1 {d : ℕ} (a b : List (Fin d)) (x i : Fin d) :
+    a ++ [x] ++ [i] ∈ higmanVCOrbitGen_C a b x :=
+  higmanVCOrbitGen_mem_C_a (higmanVCLeafExp_child_mem _ _ i) (by simp)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_a1
+
+theorem higmanVCOrbitGen_mem_a0 {d : ℕ} (a b : List (Fin d)) {x j : Fin d} (hj : j ≠ x) :
+    a ++ [j] ∈ higmanVCOrbitGen_C a b x :=
+  higmanVCOrbitGen_mem_C_a (higmanVCLeafExp_mem_expand_of_ne (higmanVCLeafExp_child_mem _ [] j)
+    fun h => hj (by simpa using h)) (by simp)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_a0
+
+theorem higmanVCOrbitGen_mem_b2 {d : ℕ} (a b : List (Fin d)) (x i : Fin d) :
+    b ++ [x] ++ [x] ++ [i] ∈ higmanVCOrbitGen_C a b x :=
+  higmanVCOrbitGen_mem_C_b (higmanVCLeafExp_child_mem _ _ i) (by simp)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_b2
+
+theorem higmanVCOrbitGen_mem_b1 {d : ℕ} (a b : List (Fin d)) {x j : Fin d} (hj : j ≠ x) :
+    b ++ [x] ++ [j] ∈ higmanVCOrbitGen_C a b x :=
+  higmanVCOrbitGen_mem_C_b (higmanVCLeafExp_mem_expand_of_ne (higmanVCLeafExp_child_mem _ _ j)
+    fun h => hj (by simpa using h)) (by simp)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_b1
+
+theorem higmanVCOrbitGen_mem_b0 {d : ℕ} (a b : List (Fin d)) {x j : Fin d} (hj : j ≠ x) :
+    b ++ [j] ∈ higmanVCOrbitGen_C a b x := by
+  have h1 : ([] ++ [j] : List (Fin d)) ≠ [] ++ [x] := fun h => hj (by simpa using h)
+  have h2 : ([] ++ [j] : List (Fin d)) ≠ [] ++ [x] ++ [x] := by
+    intro h
+    have hl := congrArg List.length h
+    simp at hl
+  exact higmanVCOrbitGen_mem_C_b (higmanVCLeafExp_mem_expand_of_ne
+    (higmanVCLeafExp_mem_expand_of_ne (higmanVCLeafExp_child_mem _ [] j) h1) h2) (by simp)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_mem_b0
+
+/-- A product of split letters lies in any subgroup containing each factor. -/
+theorem higmanVCOrbitGen_split_mem {d : ℕ} {K : Subgroup (higmanVCCommon_Q d)}
+    (v w : List (Fin d)) (l : List (Fin d))
+    (h : ∀ j ∈ l, higmanVCCommon_mk d (FreeGroup.of (v ++ [j], w ++ [j])) ∈ K) :
+    higmanVCCommon_mk d ((l.map fun j => FreeGroup.of (v ++ [j], w ++ [j])).prod) ∈ K := by
+  rw [map_list_prod, List.map_map]
+  refine Subgroup.list_prod_mem _ fun q hq => ?_
+  obtain ⟨j, hj, rfl⟩ := List.mem_map.mp hq
+  exact h j hj
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_split_mem
+
+/-- Peeling the head letter `x` of `List.finRange d` off the split of `m(v, w)`. -/
+theorem higmanVCOrbitGen_split_head {d : ℕ} {x : Fin d} {tl : List (Fin d)}
+    (hfr : List.finRange d = x :: tl) {v w : List (Fin d)} (h1 : ¬ v <+: w) (h2 : ¬ w <+: v) :
+    higmanVCCommon_mk d (FreeGroup.of (v, w)) =
+      higmanVCCommon_mk d (FreeGroup.of (v ++ [x], w ++ [x])) *
+        higmanVCCommon_mk d ((tl.map fun j => FreeGroup.of (v ++ [j], w ++ [j])).prod) := by
+  rw [higmanVCCommon_mk_split h1 h2, higmanVC_splitAll, hfr, List.map_cons, List.prod_cons,
+    map_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_split_head
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

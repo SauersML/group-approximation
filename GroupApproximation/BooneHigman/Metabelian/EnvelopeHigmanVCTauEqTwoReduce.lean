@@ -84,7 +84,8 @@ theorem higmanVCTauEqTwo_d2Residual_of_decomp (h : higmanVCTauEqTwo_DecompStatem
   · exact higmanVCTauEqTwo_aba hd1 hB hSh hpq hqp hp hq hxy hyx hxy' hyx' hD
   · exact higmanVCTauEqTwo_sas hd1 hB hSh hpq hqp hp hq hxy hyx hxy' hyx' hD
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauEqTwo_d2Residual_of_decomp
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauEqTwo_d2Residual_of_decomp
 
 /-- **`τ` from the decomposition statement.** -/
 theorem higmanVCTauEqTwo_tau_of_decomp (h : higmanVCTauEqTwo_DecompStatement) :

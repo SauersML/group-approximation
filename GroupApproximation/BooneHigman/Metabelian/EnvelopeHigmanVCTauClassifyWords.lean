@@ -38,6 +38,12 @@ theorem higmanVCTauClassify_ne_nil {u w : List X} (h : ¬ u <+: w) : u ≠ [] :=
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_ne_nil
 
+/-- A word incomparable with something has positive length. -/
+theorem higmanVCTauClassify_len_pos {u w : List X} (h : ¬ u <+: w) : 0 < u.length :=
+  List.length_pos_iff.mpr (higmanVCTauClassify_ne_nil h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_len_pos
+
 /-- With three letters, some one-letter word is incomparable with two nonempty words. -/
 theorem higmanVCTauClassify_letter {d : ℕ} (hd : 3 ≤ d) {p q : List (Fin d)} (hp : p ≠ [])
     (hq : q ≠ []) : ∃ c : Fin d, higmanVCTauUnif_Inc [c] p ∧ higmanVCTauUnif_Inc [c] q := by
