@@ -24,12 +24,14 @@ contains `Γ_0`, hence `H`. Let `Ω` be the proper nonempty clopen subsets of th
   item 2).
 - *Finite-set stabilizers.* Let `F ⊆ Ω` be finite, and `P ≤ Stab_D(F)` the pointwise stabilizer;
   it has finite index, as `Stab_D(F)` acts on `F` through a finite group. The atoms
-  `A_1, ..., A_m` of `F` partition `C^S` into nonempty clopen sets, and `g ∈ P` exactly when `g`
-  preserves every atom. Since `D` is full (`permutational-boone-higman-iff-full-cantor-hosts`,
+  `A_1, ..., A_m` of `F` partition `C^S` into nonempty clopen sets, and `P` is exactly the subgroup preserving every atom (a
+  permutation preserving each `U ∈ F` preserves each Boolean combination, and conversely each
+  `U` is a union of atoms). Since `D` is full (`permutational-boone-higman-iff-full-cantor-hosts`,
   proof Step 1), such `g` is the product of its restrictions, each extended by the identity, so
   `P = D(A_1) × ... × D(A_m)`, where `D(X)` is the subgroup supported in `X`. Since `D` is clopen
   transitive (same proof, Step 2), Step 3 of `fp-clopen-transitive-full-cantor-group-type-a-proof`
-  gives `D(X) ≅ D` for every nonempty clopen `X`. So `P ≅ D^m` is finitely presented, and so is
+  gives `D(X) ≅ D` for every nonempty clopen `X`; it applies to each `A_i`
+  because the atoms are nonempty clopen sets. So `P ≅ D^m` is finitely presented, and so is
   its finite-index overgroup `Stab_D(F)`.
 
 **Step 2 (item 2).** *Question 1.5 ⇒ PBH.* Let `H` be finitely generated with solvable word

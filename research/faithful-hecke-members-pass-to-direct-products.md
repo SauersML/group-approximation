@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `faithful-hecke-members-products-proof` (lane proof,
-elementary; not independently reviewed; no priority claimed).
+elementary; referee a PASS,
+`research/artifacts/gq-referee-a-hecke-products-and-commensurator-rigidity.md`;
+no priority claimed).
 
 **Definition.** *Hecke data* on a group `G` is a finite family of injective
 homomorphisms `φ_j : A_j → G` (`1 <= j <= r`), where `A_j` and `φ_j(A_j)` have finite

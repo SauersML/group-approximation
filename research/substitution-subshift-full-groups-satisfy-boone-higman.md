@@ -36,3 +36,5 @@ DHS Theorem 1. For a general minimal subshift the Vershik map is not rational: i
 local actions at the all-maximal cones of level `k` depend on the tail of the
 diagram from level `k`. So BH for the full groups of all minimal subshifts (for
 example all linearly recurrent ones, or all with decidable language) stays OPEN.
+
+**Printed questions.** None located. A grep of the Kourovka Notebook, 21st edition TeX, for interval exchange, full group, amenable and Cantor found nothing, and so did the bh-lit list of the BBMZ survey and the BBMZ-hyperbolic questions (`gq-bh-bh-lit-survey.md`). The consequence for amenable simple groups does not settle the open question of whether a finitely presented infinite simple amenable group exists, because the host is a twisted Brin–Thompson group, which is not amenable.

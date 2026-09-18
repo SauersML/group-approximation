@@ -91,3 +91,38 @@ the standard-facts pins are the whole remaining gap for explicit exotic lattices
   For these, no finite-presentation theorem is on main.
 - Rule slip: one stray `python3 --version` ran locally, inside a copy command. It was a
   no-op and its output was not used.
+
+## 5. Update (2026-09-18, after the approved MSI check)
+
+**Explicit CMSZ instances certified.** `cmsz-rs-two-graphs-of-orders-two-and-three-are-primitive`
+covers all five `PG(2,2)` presentations in `tp_q2.json` and both `PG(2,3)` presentations in
+`tp_q3.json`.
+- `M_1` and `M_2` are primitive, with exponent 4 or 5.
+- The edge rule was matched to Robertson–Steger §7 and reconstructed independently.
+- The check is calibrated. The certificate is in
+  `research/artifacts/gq-bh-bh-groupoid-cmsz-primitivity-certificate.md`.
+
+**Aperiodicity comes for free.** `rs-two-graph-aperiodicity-from-h3-and-irreducibility`:
+(H3) together with irreducibility of each colour gives Kumjian–Pask (A), by Robertson–Sims'
+finite-path criterion (arXiv:math/0602120, Lemma `lem:equiv aperiodicity`, read at source).
+
+**Correction: `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic` is false as
+stated.**
+- Type-preserving groups give period 3, and every torsion-free cocompact lattice in
+  `SL_3(Q_p)` is a counterexample.
+- The corrected form (primitive iff the type-rotation character is onto) is proved for
+  `PGL_3(K)` lattices, `K` of characteristic zero, through RS's Howe–Moore argument.
+- The exotic case reduces to a phase-sensitive ergodicity of singular half-strips
+  (`rs-strip-tail-transitivity-forces-primitive-transition-matrices`).
+- BCL's Theorem `ergodic` is phase-free, so it should give irreducibility but not
+  primitivity.
+
+**Consequence for the named route.** Each of the seven explicit `Γ_T` embeds in a finitely
+presented simple group, conditional only on `finite-k-graph-boundary-groupoid-standard-facts`.
+- The q = 2 buildings are not listed as exotic in BCL's review.
+- Whether the two q = 3 ones are among CMSZ's 65 exotic order-3 buildings is not
+  determined.
+- Two things would close every CMSZ lattice of order 3, including all 65 exotic buildings:
+  1. an exhaustive enumeration of `PG(2,3)` triangle presentations, with the same check;
+  2. the phase-sensitive ergodicity above, which would close every type-transitive
+     vertex-free group.

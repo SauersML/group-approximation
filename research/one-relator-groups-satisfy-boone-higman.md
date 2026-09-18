@@ -165,3 +165,13 @@ theorem cited here covers it.
      a base with zero periodic exponents and unbounded exponent sums, and a
      zero-entropy conjugator. In `nV` that includes a witness for
      `bs12-embeds-in-brin-thompson-2v`.
+
+## Update (bh-free-05, 2026-09-18)
+
+Partial progress, lane proofs, not reviewed:
+- `ascending-hnn-of-free-groups-satisfy-boone-higman`: every ascending HNN extension of a finitely generated free group is BH, and PBH.
+- `almost-all-one-relator-groups-satisfy-boone-higman`: with Sapir--Špakulová, arXiv:0809.4693, (1) almost every one-relator group with at least three generators is BH, with probability tending to 1; (2) so is every one-relator group meeting their embedding criteria, or Brown's criterion for two generators.
+
+The problem stays OPEN for arbitrary one-relator groups. For example the Baumslag--Gersten group is not residually finite, so it lies in no ascending HNN extension of a free group.
+
+Correction (bh-free-05, same day): the "almost every one-relator group" part adds nothing new, because generic one-relator groups are hyperbolic (Gromov; Ol'shanskii) and so are covered by `hyperbolic-groups-satisfy-boone-higman`. What is new is BH for the explicit criteria (Sapir–Špakulová `thm1`/`lm4`, Brown), which include non-hyperbolic one-relator groups.

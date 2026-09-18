@@ -23,13 +23,14 @@ requires:
 
 **Item 1.**
 - On a generator `X_iN(a)` with `a in R ee*`: `Σ^(e)` gives `X_iN(a e*)`, and `Σ^(u)` gives `X_iN(a u*)`. Now
-  `a = a ee*`, so `a u* = a ee* u* = a (u e e*)* = a (e e e*)* = a e e* e* = a e*`.
+  `a = a ee*`, so `a u* = a (ee* u*)`. Directly, `ee* u* = ee* (e e* e* + v*) = e e* e* + ee* v*`, and
+  `ee* v* = ee* (f e f* + f f f* e*) = 0` since `e* f = 0`. So `a u* = a e e* e* = a e*` (gq-referee-a, N1).
 - On `X_Nj(b)` with `b in ee* R`: `Σ^(u)` gives `X_Nj(u b) = X_Nj(u ee* b) = X_Nj(e e e* b) = X_Nj(e b)`, which is `Σ^(e)`.
 - Both fix the `X_ij(a)` with `i, j < N`. So `Σ^(e)` and `Σ^(u)` agree on the generators of `H_(ee*)`, hence on
   `H_(ee*)`.
 - `Σ^(u)` is an automorphism with inverse `Σ^(u*)` (`leavitt-stabilization-kernels-are-one-step`, item 3). So
   `ker Σ^(e) ∩ H_(ee*) = 1`.
-- For `f`, use the unitary `W = ef* + fe*`. `Σ^(W)(H_(ee*)) = H_(W ee* W*) = H_(ff*)`, since `W e = f`. `U_N = ker j_N` is
+- For `f`, use the unitary `W = ef* + fe*`. `Σ^(W)(H_(ee*)) = H_(W ee* W*)`, and directly `W ee* W* = (ef* + fe*) ee* (fe* + ef*) = f e* e e* e f* = f f*`. `U_N = ker j_N` is
   `Σ^(W)`-invariant, because `j_N ∘ Σ^(W)` equals the automorphism of `St_(N+1)(R)` for `diag(1, ..., 1, W, 1)`
   composed with `j_N`. So `U_N ∩ H_(ff*) = Σ^(W)(U_N ∩ H_(ee*)) = 1`.
 

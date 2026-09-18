@@ -31,8 +31,9 @@ from the old residual (proved here), it implies letter-closure of `S` and Higman
 The progress is in proof content only: fewer, more normalised instances.
 
 Truth check (python, `SP/bh-met-93r/split_check.py`, assuming `Q ≅ V_d` and Claim F):
-sampled `C` complete, `D` complete and strictly deeper, non-symmetric, `P` an involution;
-see the lane report for the counts.
+sampled `C` complete, `D` complete and strictly deeper, non-symmetric, `P` an involution,
+both product orders; the one-antichain case is not filtered out (over-sampling).
+d = 2: 200 instances, 400 of 400 products in `E(S)`, 0 refuted.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope

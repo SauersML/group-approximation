@@ -50,7 +50,8 @@ in `C`.
   subgroups. `P` is normal and of finite index in `C`.
 - It is infinite, since `ρ(V_(x_0)) ≅ V_(x_0)` is infinite: a torsion-free
   nontrivial group.
-- Put `P_x = (ρ|_(V_x))^{-1}(P)`. It is a nontrivial normal subgroup of `V_x`.
+- Put `P_x = (ρ|_(V_x))^{-1}(P)`. It is a normal subgroup of finite index in the
+  infinite group `V_x`, hence nontrivial.
 
 **Step 5 (compatibility).**
 - **Inside the edge groups.** `P ⊆ ρ(α_e E_e)` and `ρ|_(V_(o(e)))` is injective, so
@@ -71,7 +72,10 @@ in `C`.
 
 **Instances.**
 - **Mostow--Prasad.** For `n >= 3`, an isomorphism between lattices in `PO(n,1)^0`
-  is conjugation by an isometry. The same holds in `PU(n,1)`, `n >= 2`.
+  is conjugation by an isometry, possibly orientation-reversing. So work in
+  `Isom(H^n) = PO(n,1)`. Margulis discreteness of the commensurator in `PO(n,1)^0`
+  passes to this finite extension. The same holds in `PU(n,1)`, `n >= 2`, with
+  `Isom(CH^n)`.
 - **Uniqueness.** The isometry is unique, because the centralizer of a lattice is
   trivial. So `Comm(G) ≅ Comm_(Isom)(G)`.
 - **Margulis.** For non-arithmetic `G`, the commensurator is discrete. A discrete

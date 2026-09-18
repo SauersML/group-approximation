@@ -4,6 +4,7 @@ id: commensurator-rigid-groups-have-no-faithful-bs-members
 kind: claim
 title: If a group maps injectively onto a finite-index subgroup of its abstract commensurator, no generalized Baumslag--Solitar group over it acts faithfully on its Bass--Serre tree
 distinct_from:
+  commensurator-rigid-groups-lack-faithful-bs-members: that (bh-cat0, 8462f018b) assumes G finitely generated and torsion-free and excludes only members whose vertex groups are torsion-free; this needs neither hypothesis (injectivity of G -> Comm(G) is exactly VZ(G) = 1) and excludes every member of BS_G, torsion in vertex groups included. So this statement is strictly stronger and closes the torsion case that node leaves open; for non-arithmetic lattices in PO(n,1), n >= 3, faithful members of BS_G exist exactly when G is arithmetic, with no torsion-free qualifier.
   bs-class-with-faithful-member-lies-in-type-a-class: that turns one faithful member of BS_G into B_A for the whole class; this shows that for commensurator-rigid G no faithful member exists, so that route and Bux--Llosa Isenrich--Wu Theorem C never apply to G or to any group commensurable with it.
   arithmetic-nsp-lattices-have-faithful-bs-members: that produces faithful members from a commensurator element with no power in the lattice, so from a large commensurator; this is the complementary statement, that a commensurator which is virtually the group itself leaves no faithful member.
   bliw-locally-finite-tree-actions-embed-in-fp-simple-groups: that imports Theorem C with the authors' remark that residual finiteness is the only obstruction they know; this is a second obstruction, commensurator rigidity, which residually finite groups can have.
@@ -51,6 +52,8 @@ trivially on the tree.
    (`arithmetic-nsp-lattices-have-faithful-bs-members`). `Z^n` has commensurator
    `GL_n(Q)`, again not virtually `Z^n`, and faithful members exist (BLIW
    Theorem 12.1). So the theorem is consistent with every known faithful member.
+
+**Relation to `commensurator-rigid-groups-lack-faithful-bs-members`.** That node proves the torsion-free-vertex case for finitely generated torsion-free `G`. Injectivity of `G -> Comm(G)` is equivalent to `VZ(G) = 1`, and step 4 of the route handles torsion in vertex groups by showing `N` has finite stabilizers, so its gap ("members with torsion in their vertex groups are not excluded") is closed: for its non-arithmetic lattice instances no member of `BS_G` at all acts faithfully.
 
 **Scope.** The theorem says nothing about Theorem B (faithful cocompact actions on
 locally finite trees by overgroups in which `G` is not a vertex group), nor about

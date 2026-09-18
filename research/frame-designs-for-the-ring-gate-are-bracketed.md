@@ -84,7 +84,9 @@ A frame design escapes items 1--8 only if it is one of:
 - **(h)** noncommutative register relations of `sl_2` type, where only a heuristic no-go exists;
 - **(i)** (bh-ck-kernel) any design in the `K_1` branch of items 2--7 with `ker(Q^x -> K_1(R))` not finitely generated
   but `Λ_N(R)` finitely generated for some `N >= 3`. That is, rational scalars die in stable `K_1` but stay
-  non-elementary at rank `N`, which needs `K_1`-instability at rank `N`.
+  non-elementary at rank `N`, which needs `K_1`-instability at rank `N`. It is empty for designs containing a Leavitt
+  `(1, d)`-tuple (`leavitt-tuples-make-the-scalar-clauses-agree`). So it concerns the index-`1` and fractional-index
+  designs.
 
 Designs that are not frame-generated are outside this bracket. That includes stably finite IBN rings with
 `Q̄ ⊆ R` (gq-critic pass 3, U1).

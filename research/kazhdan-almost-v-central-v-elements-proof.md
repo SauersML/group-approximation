@@ -46,7 +46,8 @@ prefix of `a`. If `u' = u`, points near `a` are fixed, not attracted. If `|u'| <
    open. Put `D = N \ w'(N) = cone(u) \ cone(ue)`, which is clopen and compact. For
    `x in B \ {a}`, the set `{n in Z : w'^n x in N}` is nonempty and upward closed. It is
    bounded below, since otherwise `x` lies in every `w'^k(N)`, so `x = a`. Its minimum `n_0`
-   gives `w'^(n_0) x in D`. So `B \ {a}` is the disjoint union of the sets `w'^n(D)`, and
+   gives `w'^(n_0) x in D`. So `B \ {a}` is the disjoint union of the sets `w'^n(D)` (it is
+   nonempty because `C` has no isolated points), and
    `π(x) =` the unique point of `w'^Z x` in `D` is continuous.
 3. **The action descends.** Each `γ in Λ_1` fixes `a` and commutes with `w'`, so it
    preserves `B \ {a}` and `w'`-orbits. Put `ψ(γ) = π ∘ γ|_D : D -> D`. It is a

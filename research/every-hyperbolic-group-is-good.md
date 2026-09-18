@@ -48,3 +48,35 @@ as a named problem in the literature.
   - It dies at degree `>= 3`. Ioana's theorem controls 1-cocycles into groups, which reach degree two through
     extensions. No rigidity is known for measurable `q`-cochains with `q >= 3`. So the high-degree half used by
     `torsion-free-hyperbolic-mod-p-classes-die-virtually` has no measurable reformulation.
+- **Operator-algebras transplant (swarm-0917-w10).** The idea was to replace
+  finite quotients by operator-algebraic rigidity:
+  - Kazhdan projections;
+  - Popa spectral gap and `w`-rigidity;
+  - finite-dimensional or twisted representations;
+  - `L²` invariants.
+
+  It dies at the step "conclude that the class restricts to zero on a
+  finite-index subgroup". The obstruction is
+  `titz-witzel-kernel-powers-have-noneffaceable-mod-p-classes`
+  (ESTABLISHED). For the simple Titz Mite–Witzel kernel `K` and `m >= 1`:
+  - `K^m` is torsion-free, of type `F`, CAT(0) and Kazhdan;
+  - its profinite completion is trivial;
+  - `H^(2m)(K^m;F_p) ≠ 0`.
+
+  So every input shared by `K^m` fails in every even degree. In degree two,
+  effacing a central class `x` is equivalent, by Malcev, to the twisted
+  C*-algebra `C*(G, χ∘c)`, for a cocycle `c` of `x`, having a finite-dimensional representation. Rigidity
+  that holds for `K` cannot produce one.
+
+  There is also a degree-three heuristic, whose citation was not verified.
+  - `H^3(G;T)` classes are the obstructions of `G`-kernels on the hyperfinite
+    II_1 factor (Jones for finite groups; Sutherland). Effacement then reads as
+    liftability after passing to a finite-index subgroup.
+  - Nothing operator-algebraic is known to encode degree `>= 4`.
+
+  What survives are inputs false on `K`: residual finiteness (the route's
+  Lemma B), and hyperbolicity or its avatar, bi-exactness. `K^m` is not
+  bi-exact for `m >= 2`. Whether `K` is bi-exact is the open test. The odd
+  degrees, including degree 3 for the input
+  `torsion-free-hyperbolic-mod-p-classes-die-virtually`, are untouched, because
+  the odd cohomology of `K^m` vanishes.

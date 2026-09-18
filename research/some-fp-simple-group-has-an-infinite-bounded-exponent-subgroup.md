@@ -99,3 +99,10 @@ the first non-decision-problem candidate for a counterexample to Boone--Higman.
      concrete candidates there.
    - The withdrawn arXiv:2209.11982 was the only published claim about torsion in
      `nV`.
+3. **The read-only head subgroup of `2V` is excluded (2026-09-18, lane
+   `bh-free-06`).** `full-shift-topological-full-groups-are-torsion-locally-finite`
+   shows that `[[Σ^Z]] ≤ 2V` has no infinite finitely generated torsion subgroup of
+   any exponent. For bounded exponent this also follows from residual finiteness of
+   `[[Σ^Z]]` together with Zelmanov. A witness inside `2V` must use writing
+   machines, for example `RTM(Z,2,1)`. `RTM(Z,2,1)` is LEF (arXiv:1603.08715,
+   Theorem 6), and Zelmanov does not apply directly to LEF groups.

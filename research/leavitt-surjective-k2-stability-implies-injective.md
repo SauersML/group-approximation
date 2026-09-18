@@ -8,8 +8,8 @@ distinct_from:
   leavitt-resolvent-stable-k2-class-is-computable: that splits K_2(N,R_L) = U_N ⋊ Q^x; this identifies the Q^x factor with K_2(N,R_L) ∩ H_(ee*).
 ---
 
-**ESTABLISHED** through `leavitt-surjective-k2-stability-implies-injective-proof`. Lane proof, not independently
-reviewed. Elementary given `leavitt-stabilization-kernels-are-one-step`. No priority is claimed.
+**ESTABLISHED** through `leavitt-surjective-k2-stability-implies-injective-proof`. Refereed: gq-referee-a PASS, proof-gap lens
+(report 4ba142c64, N1 and N2 applied); one referee. Elementary given `leavitt-stabilization-kernels-are-one-step`. No priority is claimed.
 
 **Setting.** `R` is a unital ring with a Leavitt pair `e, f`, and `N >= 3`. `Σ^(g)` and `D_N` are as in
 `leavitt-stabilization-kernels-are-one-step`, where `j_N = D_N ∘ Σ^(e)` and `U_N = ker j_N = ker Σ^(e)`.
@@ -23,7 +23,8 @@ reviewed. Elementary given `leavitt-stabilization-kernels-are-one-step`. No prio
    `U_N ∩ H_(ee*) = 1`. The same holds for `H_(ff*)`, with the roles of `e` and `f` exchanged.
 2. **Surjective stability implies injective stability.** If `j_N` maps `K_2(N, R)` onto `K_2(N+1, R)`, then
    `Σ^(e)(K_2(N,R)) = K_2(N,R)`. So `K_2(N,R) ⊆ Σ^(e)(St_N(R)) ⊆ H_(ee*)`, and `U_N = 1`.
-3. **For `R_L`** (`e = s_1`, `f = s_2`). Let `S = {{λ, N+1}_N : λ in Q^x}` be the symbol section of
+3. **For `R_L`** (`e = s_1`, `f = s_2`). Let `S = {{λ, N+1}_N : λ in Q^x}` be the symbol section (here `N` in `N+1` is the number operator of `R_L`, and the
+   subscript `N` is the matrix size; gq-referee-a, N2) of
    `leavitt-resolvent-stable-k2-class-is-computable`. Then:
    - `Σ^(e)(K_2(N, R_L)) = S` and `K_2(N, R_L) ∩ H_(ee*) = S`;
    - the following are equivalent: (i) `U_N = 1`; surjective stability `j_N(K_2(N)) = K_2(N+1)`; and

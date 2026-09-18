@@ -118,6 +118,15 @@ No claims of the lane's own. No priority judgments beyond what the sources say.
     Brothier–Seelig 2512.18943; Bruce–Li–Takeishi 2512.14324.
   - All are cited on main.
 
+## 2b. Priority watch for Problem 2.7 / Kourovka 14.10(c)
+
+- Mikaelian, arXiv:2507.04347v8 (updated 2026-06-03): its section on explicit embedding of
+  GL(n, Q) still only ANNOUNCES an explicit (2-generator) f.p. overgroup of GL(n,Q), citing
+  "Explicit embeddings of GL(n,Q) into finitely presented groups, in preparation". The arXiv author
+  listing (checked 2026-09-18) shows no such paper yet. Main already records this announcement
+  in `gl-n-q-explicit-natural-fp-overgroup` and cites v8, so nothing changes. Re-check the author
+  listing before any external claim about Problem 2.7.
+
 ## 3. Screened, low relevance (not in main; no action)
 
 - Aramayona–Domat–Leininger 2609.08849: surface Houghton groups are finite index in asymptotically

@@ -37,9 +37,9 @@ Define `DEC_fp` and `EMB_fp` the same way for finite presentations.
 4. **Under Boone–Higman,** `EMB` and `EMB_fp` are `Σ_3`-complete.
 5. **Unconditional hardness of `EMB` reduces to one test family.** Suppose every
    `G_U` with `U ⊆ N_{≥1}` cofinite embeds in a finitely presented simple group.
-   This is `circulant-graph-wreath-products-satisfy-boone-higman`, OPEN. Then the
-   same reduction gives `COF ≤_m EMB`, so `EMB` is `Σ_3`-complete with no
-   hypothesis.
+   This is `circulant-graph-wreath-products-satisfy-boone-higman`, now ESTABLISHED (lane proof). So the
+   same reduction gives `COF ≤_m EMB`, and `EMB` is `Σ_3`-complete with no
+   hypothesis: `embedding-in-fp-simple-groups-is-sigma-3-complete`.
 
 **Reading.**
 - A disproof of Boone–Higman must exhibit a gap between two `Σ_3`-complete-type

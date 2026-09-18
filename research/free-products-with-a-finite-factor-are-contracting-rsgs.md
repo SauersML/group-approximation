@@ -12,7 +12,9 @@ artifacts:
 ---
 
 **ESTABLISHED** by `free-product-finite-factor-contracting-rsg-proof` (lane `bh-free-23`,
-lane proof, not independently reviewed). No priority is claimed: the argument is the finite-factor
+lane proof, not independently reviewed). No priority is claimed. It is the special case of
+`free-products-of-hyperbolic-groups-are-contracting-rsgs` with a finite factor, kept for its
+shorter clique proof: the argument is the finite-factor
 analogue of Belk--Bleak--Matucci--Zaremsky's treatment of `G * Z`
 (arXiv:2309.06224v3, `thrm:FreeProductBoundary`), read at source.
 

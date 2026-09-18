@@ -78,10 +78,12 @@ theorem roseLobeTriple_lobe_run {s : α → α → Prop} {c I T A C : List α} {
 the lobe `rs = [a1, a2, a3, a4]` with the removed block `B = [a1, a2, a3, a4]`. -/
 theorem roseLobeTriple_lobe_quad {s : α → α → Prop} {c I T A C : List α} {kp : α → Prop}
     {a1 a2 a3 a4 x : α} (hnd : c.Nodup) (hc : c = A ++ [a1, a2, a3, a4] ++ C)
-    (hlone : ∀ e ∈ c, ∀ r ∈ [a1, a2, a3, a4], Relation.EqvGen s r e → e ∈ [a1, a2, a3, a4])
+    (hlone : ∀ e ∈ c, ∀ r ∈ [a1, a2, a3, a4], Relation.EqvGen s r e →
+      e ∈ [a1, a2, a3, a4])
     (hx : kp x) (hax : ∀ r ∈ [a1, a2, a3, a4], ¬Relation.EqvGen s r x)
     (hy : ∃ y ∈ c, Relation.EqvGen s y x)
-    (hI : (∃ d ∈ [a1, a2, a3, a4], d ∉ I) ∨ [a1, a2, a3, a4] <+: I ∨ [a1, a2, a3, a4] <:+ I)
+    (hI : (∃ d ∈ [a1, a2, a3, a4], d ∉ I) ∨ [a1, a2, a3, a4] <+: I ∨
+      [a1, a2, a3, a4] <:+ I)
     (hT : (∀ d ∈ [a1, a2, a3, a4], d ∉ T) ∨ C = []) :
     ∃ rs : List α, rs ≠ [] ∧ (∀ r ∈ rs, r ∈ c) ∧
       (∃ x, kp x ∧ ∀ r ∈ rs, ¬Relation.EqvGen s r x) ∧

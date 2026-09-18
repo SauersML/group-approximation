@@ -24,7 +24,13 @@ finitely generated virtually special group.
      `integral-linear-one-host-via-elementary-shift-group`.
   2. Zaremsky Problem 2.19(c), `every-gl-n-z-embeds-in-some-brin-thompson-group`: then
      every `GL_n(Z)` lies in `U = DV_F`: route `every-integral-linear-group-in-one-host-via-nv`.
-  3. Boone–Higman itself, via `common-decidable-hosts-iff-uniform-word-problem`: the
+  3. Boone–Higman for the explicit finitely presented group `E(Z; D) ⋊ F`
+     (`finitary-steinberg-extensions-by-oligomorphic-actions-are-fp`): route
+     `integral-linear-one-host-via-fp-elementary-thompson-group`.
+  4. Finite presentation of the derived subgroup of the twisted integral-affine full
+     group (`twisted-integral-affine-full-group-is-finitely-presented`): route
+     `integral-linear-one-host-via-twisted-integral-affine-full-group`.
+  5. Boone–Higman itself, via `common-decidable-hosts-iff-uniform-word-problem`: the
      standard finite presentations of the `GL_n(Z)` form a c.e. class with uniformly
      solvable word problem (matrix multiplication).
 - **Why neither known method applies.** `Σ` is not linear and not residually finite, so

@@ -14,8 +14,9 @@ artifacts:
 ---
 
 **ESTABLISHED** by `hyperbolic-groups-in-b-a-proof` (lane proof: a read-off from a literature
-proof plus landed closure nodes; not independently reviewed). No priority claimed; see
-"Priority" below.
+proof plus landed closure nodes). Referee a (proof gaps): PASS,
+`research/artifacts/gq-referee-a-hyperbolic-groups-lie-in-the-permutational-class.md` (2bdad9399),
+nit N1 applied. Citation review pending. No priority claimed; see "Priority" below.
 
 Write `B_A` for the class of groups that embed in a group admitting an action of type (A)
 (faithful, finitely presented acting group, finitely generated point stabilizers, finitely
@@ -34,10 +35,14 @@ many orbits of two-element subsets), as in
    - every subgroup of a full contracting RSG.
 3. **Products.** By the closure properties of `B_A` on main, every group built from groups in
    `B_A` by finite direct products, free products, graph products over finite graphs,
-   subgroups and finite-index overgroups satisfies the Boone--Higman conjecture. In particular:
+   restricted wreath products over sets with finite point stabilizers, subgroups and
+   finite-index overgroups satisfies the Boone--Higman conjecture. In particular:
    - every finite direct product `H_1 × ... × H_k` of hyperbolic groups embeds in a finitely
      presented simple group;
    - every graph product of hyperbolic groups over a finite graph does too;
+   - every restricted wreath product `H_1 wr H_2` of hyperbolic groups, and more generally
+     `A wr_X H` with `A` hyperbolic and `H` hyperbolic acting on `X` with finite point
+     stabilizers, does too (`permutational-boone-higman-closed-under-wreath-products`);
    - so do mixed products with other members of `B_A`, for example `H × Aut(F_n)`,
      `H × GL_m(Z)`, `H × A` for `A` a spherical Artin group, or `H × Z^m`.
 

@@ -33,6 +33,9 @@ group. Actions failing it:
 - already at linear activity: `linear-activity-automata-can-have-non-fp-nekrashevych-groups`, via the
   obstruction `loop-retraction-forces-fp-eventual-section-groups` (a letter fixed by every state forces its
   eventual section group to be finitely presented).
+- These obstructions are to the action only: run compression
+  (`commonly-fixed-letters-compress-to-faithful-actions`) deletes a commonly fixed letter, keeping the group and
+  the states, and repairs the linear-activity example (`spine-grigorchuk-automaton-group-has-a-bounded-action`).
 
 The same group may still be covered through another action (Grigorchuk's group on `T_2`). No automaton group
 is known that fails the hypothesis for every finite-state action. The route

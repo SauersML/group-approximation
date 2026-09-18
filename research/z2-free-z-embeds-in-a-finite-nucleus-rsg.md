@@ -76,3 +76,16 @@ linear over `Z`. This node is about the reach of the BBMZ method, not about
 1. **bh-hhg, 2026-09-18.** Items 2 and 3 above. No construction and no proof of
    non-embedding. The stall is item 4: there is no revealing-pair theory for
    finite-nucleus RSGs.
+2. **bh-hhg, 2026-09-18 (second pass).** One more piece of the Bleak--Salazar-Díaz
+   mechanism now holds in every finite-nucleus RSG:
+   `rsg-z2-locally-trivial-along-rational-attraction`. If `a^{n_k} x → ω`, with
+   `a ∈ A ≅ Z^2` and `ω` a rational point with finite `A`-orbit, then some `1 ≠ g ∈ A`
+   is the identity near `x`.
+   - Their proof (arXiv:0911.0979, §4.2, read from the TeX on MSI) is an algorithm that
+     repeatedly modifies the third generator `γ` using the important points `I(α)`,
+     `I(β)` of revealing pairs.
+   - The missing inputs for RSGs are two:
+     1. a theorem that wandering points accumulate at rational periodic points;
+     2. a normal form for elements of a finite-nucleus RSG that supports the same
+        support-reduction steps.
+   - Still OPEN, with no candidate construction.
