@@ -72,3 +72,23 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
 - **(C3) Finite quotients.** In a finite quotient, the Fitting decomposition of the central `p` splits the ring
   into a part where `p` is a unit and `π_k` is invertible (Euler type), and a part where `p` is nilpotent. The images
   of `K_2(N, T_p)` in the Euler-type parts are where a `c_q`-type obstruction could reappear.
+
+## Attempts
+
+1. **(C1) The lamps do not commute, even in finite quotients (2026-09-18, lane gq-k2-q).**
+   - *Structure.* `B = B_0[x^(±1); σ]`, where `B_0` is the coproduct over `Z[u, p]`, with `p` central, of the
+     commutative algebras `Z[u,p][b_k]/(π_k b_k − p)`, for `k ∈ Z`. The relations of `B` are exactly the
+     `x`-conjugates of these.
+   - *A finite quotient with `[b_0, b_1] != 0`.* Let `V = ⊕_(i ∈ Z/n) F_l^2`.
+     - `u` acts by `−1`, so every `π_k ≡ 0` and `p` acts by `0`.
+     - `x` shifts the blocks.
+     - `b_k` acts on block `i` by a matrix `β_(k+i)`, where `(β_m)` is `n`-periodic.
+     - All relations hold, since `u` is scalar and `π_k = 0`.
+     - With `β_0, β_1` not commuting, `[b_0, b_1] != 0` in `End(V)`.
+
+     So `B` is not its commutative image `A_p[x^(±1); σ]`, and `π_0`, which kills `[b_0, b_1]`, is a zero-divisor.
+   - *Commutation is not finitely presentable this way.* Suppose we add `[b_0, b_j] = 0` for `|j| <= J`. Take
+     `n >= 2J + 3`, `β_0 = E_11`, `β_(J+1) = E_12`, and `β_m = 1` otherwise. This satisfies the added relations but
+     has `[b_0, b_(J+1)] != 0`. The characteristic-`l` fibre `p = 0` behaves like a free lamplighter.
+   - *Consequence.* Any finitely presented variant of this host has non-commuting lamps in its finite quotients.
+     Whether that helps (no symbols) or hurts (large `K_2` from the coproduct) is check C2.
