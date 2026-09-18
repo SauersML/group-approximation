@@ -5918,6 +5918,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h3.NearestCell
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.ExactnessEstimates
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.ExactnessAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.ExactnessCorollary
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetLimOne
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
