@@ -61,5 +61,7 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
   - Items 1–3 are met with `k = 2`, `m = 3`.
   - Its wording fixes W1–W3 are applied: infinite order is cited from the aperiodicity of `F`, the lemma's
     two senses of `content` are separated, and the distortion and priority claims are toned down.
-- gq-referee-a (proof-gap lens): pending.
+- gq-referee-a (proof-gap lens): **PASS**, report 12b5beb4a. It re-derived the first-`Y`-point table, the
+  level-independence of the extra-cell side and of `β`, the identity, the density argument (a failure is
+  exactly an all-`p` or all-`q` chain), and the brick-locality of `φ` after transport by `ψ`.
 - Priority check: requested from gq-lit-arxiv.
