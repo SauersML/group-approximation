@@ -63,7 +63,7 @@ theorem higSw_lift_append {d : ℕ} (c c' : List (Fin d)) :
 theorem higSw_lift_nil (d : ℕ) : higSw_lift ([] : List (Fin d)) = MonoidHom.id _ := by
   refine FreeGroup.ext_hom _ _ fun p => ?_
   obtain ⟨x, y⟩ := p
-  rw [higSw_lift_of, MonoidHom.id_apply, List.nil_append, List.nil_append]
+  simp only [higSw_lift_of, MonoidHom.id_apply, List.nil_append]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_lift_nil
 
