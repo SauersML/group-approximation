@@ -27,8 +27,9 @@ a nonzero idempotent `E`, an element `N`, and, for infinitely many indices `m`, 
 and `λ_m = m − 1`:
 - `R_L` (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`): `E = 1`,
   `x_m = s_1^(m−1) s_2`, `y_m = t_2 t_1^(m−1)`;
-- `R_T` (`q-embeds-in-a-corner-of-a-fp-toeplitz-ring`), in its concrete model, which is a
-  `Q`-algebra: `E = 1 − ST`, `x_m = S^(m−1) E`, `y_m = E T^(m−1)`. Here `E` is not full;
+- `R_Toep`, the Toeplitz resolvent ring of `q-embeds-in-a-corner-of-a-fp-toeplitz-ring`, in
+  its concrete model, which is a `Q`-algebra. It is not the SL_3 Toeplitz harmonic ring
+  `R_T` on main, which is tracial and gets `Q` by harmonic elimination, not from a vacuum: `E = 1 − ST`, `x_m = S^(m−1) E`, `y_m = E T^(m−1)`. Here `E` is not full;
   it generates the finitary ideal;
 - `R_k` (`rational-function-fields-embed-in-fp-simple-rings`): `E = 1`, with the words
   `n^(m−1) v` in place of `1^(m−1) 2`.
