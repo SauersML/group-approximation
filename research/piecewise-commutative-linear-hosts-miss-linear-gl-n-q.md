@@ -7,6 +7,7 @@ distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that asks for an embedding of GL_n(Q) in a finitely presented simple group; this excludes, for the natural linear copies only, every finitely generated host built from commutative-linear pieces.
   rational-linear-groups-satisfy-boone-higman: that embeds each finitely generated subgroup of GL_n(Q); this shows that the globally linear elements of a finitely generated piecewise host form such a finitely generated linear group, never all of GL_n(Q).
   germ-extensions-omit-standard-gl-n-q: that extends part (a) to every group that is locally in a finitely generated finitely-piecewise base off a nowhere dense set, which includes all finite germ extensions; this is the base case, together with the commutative-ring residual finiteness that turns (a) into the exclusion of GL_n(Q) and of every group with a divisible subgroup.
+  fg-piecewise-linear-hosts-omit-natural-gl-n-q: that bounds the linear parts of affine pieces and uses a fixed point where the derivative is g; this needs no fixed point or derivative, and covers any topologically free group linear over a commutative ring (projective, adelic, wreath) through rigidity of germs.
 artifacts:
   - research/artifacts/gq-gq-solenoid-adelic-models.md
 ---
