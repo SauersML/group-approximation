@@ -8,6 +8,7 @@ distinct_from:
   fpbs-two-point-some-lq-above-pc-universal: that is a finite l^q norm of tau for some q; this is a linear functional of tau weighted by a Koopman matrix coefficient, and it fails on every amenable Cayley graph for a structural reason (item 6 of the tilt claim) rather than through the l^q norm
   fpbs-hyperbolic-nonunimodular-critical-l2-gap: that is the strict gap p_c < p_(2->2) on two classes; this kernel sits below the l2 gap (it follows from p_c < p_(2->2) whenever a boundary with pi_nu weakly contained in the regular representation and positive Radon-Nikodym growth exists) and is asked on every nonamenable Cayley graph
   fpbs-boundary-tilted-susceptibility-kernel: that proves the framework, the implication to (K), the tree values and the amenable kill; this is the open universal statement the framework reduces to
+  fpbs-stationary-boundary-half-tilt-dies-on-amenable-lamplighter: that kills stationary boundary inputs for [BT] on an amenable lamplighter and proves the ceiling p^nu_t <= exp(-h/2); this is the open universal statement
 ---
 
 **OPEN ([BT]).** Let `G = Cay(Gamma,S)` be a Cayley graph of a finitely
@@ -68,3 +69,25 @@ just above `p_c`.
    - *What survives.* A transfer that also uses stationarity or harmonicity of
      `nu`, or a fibre-uniform estimate that fails for the Cauchy law, is not
      killed.
+
+2. **Stationary boundaries (2026-09-18, swarm-0917-w10-w10-bs-last1; OPEN).**
+   Established node:
+   `fpbs-stationary-boundary-half-tilt-dies-on-amenable-lamplighter`.
+   - *Kill.* On the amenable group `(Z/2 wr Z) x Z`, the limiting-lamp law of
+     a drifted switch-walk-switch walk has all of the following:
+     - it is `mu`-stationary, quasi-invariant, and the hitting law of the walk;
+     - `Delta` is the Doob density;
+     - `I(X_n;Phi)` grows linearly;
+     - `nu(h_nu >= (log 2)/12) > 0`.
+
+     Yet `p^nu_t = p_c`. So the survivor "stationarity or harmonicity of `nu`"
+     from attempt 1 is removed. The class it removes is the Cauchy inputs plus
+     stationarity, hitting law, linear information and the Doob density.
+   - *Ceiling.* On every Cayley graph, `nu(h_nu >= h) > 0` implies
+     `p^nu_t <= exp(-h/2)`, from `kappa_p(n) >= p^n`. This is sharp on `T_d`. So
+     a witness of [BT] needs `h^*(nu) < 2 log(1/p_c)`. For stationary `nu`, the
+     ceiling is bounded through `limsup I(X_n;Phi)/(L n)`.
+   - *What survives.* A proof must use nonamenability of `Gamma` itself, for
+     example `rho < 1` together with `pi_nu ≺ lambda` and a spectral gap
+     estimate. Stationarity for a *symmetric* `mu` is not covered: on
+     `Z/2 wr Z^3` the unfrozen window is not an interval.
