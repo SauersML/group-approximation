@@ -100,3 +100,82 @@ theorem lobeRm86_filter_eq_self {M : CombMap.{v}} {faces : Finset M.Face} {c : L
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_filter_eq_self
 
 end Lists
+
+section Case
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **The source-arc lobe case** at the pocket `K`: the lobe rooted at every dart of the reversed
+source arc `t₁⁻¹` colours no other dart of the boundary cycle, leaves a dart of the kept cell
+uncoloured, and `s₁ ++ (s₂ ++ t₂)` is nonempty. -/
+abbrev lobeRm86_SrcLobe (K : PocketFaceSet D eps X lo hi) : Prop :=
+  invDarts X K.sourceArc.darts ≠ [] ∧
+    (∀ d ∈ K.firstSide ++ (K.secondSide ++ K.targetArc.darts),
+      roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+        (invDarts X K.sourceArc.darts) d = false) ∧
+    (∃ x, X.toCombMap.faceOf x = (cell X K.kept).face ∧
+      roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+        (invDarts X K.sourceArc.darts) x = false) ∧
+    K.firstSide ++ (K.secondSide ++ K.targetArc.darts) ≠ []
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_SrcLobe
+
+/-- **The source-arc lobe is a contiguous removed block**: in the source-arc lobe case the
+conclusion of `roseLobeBlk_BlockStatement` holds at `K`, with `A = s₁`, `B = t₁⁻¹` and
+`C = s₂ ++ t₂`. -/
+theorem lobeRm86_blkAt_of_src (K : PocketFaceSet D eps X lo hi) (h : lobeRm86_SrcLobe K) :
+    roseLobeOsin_BlkAt K := by
+  obtain ⟨hne, hrest, ⟨x, hx, hzx⟩, hACne⟩ := h
+  have hrs : ∀ r ∈ invDarts X K.sourceArc.darts, r ∈ K.boundary.cycle := by
+    intro r hr
+    rw [K.decomposition]
+    exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hr))
+  have hmem : ∀ d ∈ K.firstSide ++ (K.secondSide ++ K.targetArc.darts),
+      d ∈ K.boundary.cycle := by
+    intro d hd
+    rw [K.decomposition]
+    rcases List.mem_append.mp hd with hd | hd
+    · exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hd))
+    · rcases List.mem_append.mp hd with hd | hd
+      · exact List.mem_append_left _ (List.mem_append_right _ hd)
+      · exact List.mem_append_right _ hd
+  have hkx : X.toCombMap.faceOf x ∈ K.faces := by
+    rw [hx]
+    exact K.kept_mem
+  have hkept := roseJunctionCore_mem_flipFaces (c := K.boundary.cycle)
+    (invDarts X K.sourceArc.darts) hkx hzx
+  rw [hx] at hkept
+  have htgtf := lobeRm86_filter_eq_self K.boundary.cycle_mem_iff hrs (l := K.targetArc.darts)
+    (fun d hd => hmem d (List.mem_append_right _ (List.mem_append_right _ hd)))
+    (fun d hd => hrest d (List.mem_append_right _ (List.mem_append_right _ hd)))
+  refine ⟨invDarts X K.sourceArc.darts, Or.inl ⟨hne, hrs⟩,
+    roseJunctionCore_not_mem_flipFaces K.boundary.cycle_mem_iff hrs K.source_not_mem, hkept,
+    ?_, ⟨0, ?_, ?_⟩, K.firstSide, invDarts X K.sourceArc.darts,
+    K.secondSide ++ K.targetArc.darts, ?_,
+    Or.inl ⟨lobeRm86_filter_roots_eq_nil _ _, ?_, hACne⟩⟩
+  · rw [lobeRm86_filter_roots_eq_nil]
+    exact List.nil_infix
+  · have hlt := K.targetArc.start.2
+    omega
+  · exact ⟨[], by rw [htgtf, List.drop_zero, List.append_nil]⟩
+  · rw [K.decomposition]
+    simp only [List.append_assoc]
+  · exact lobeRm86_filter_eq_self K.boundary.cycle_mem_iff hrs hmem hrest
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_blkAt_of_src
+
+/-- **The lobe removal in the source-arc lobe case**, at one pocket: `lobeRm86_blkAt_of_src`
+followed by the proved pointwise chain Blk to the filtered listing to the lobe removal. -/
+theorem lobeRm86_lobeAt_of_src (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hsrc : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length) (h : lobeRm86_SrcLobe K) :
+    roseLobeOsin_LobeAt K :=
+  roseLobeOsin_lobeAt_of K hsrc htgt (roseLobeOsin_filterAt_of K hK (lobeRm86_blkAt_of_src K h))
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_lobeAt_of_src
+
+end Case

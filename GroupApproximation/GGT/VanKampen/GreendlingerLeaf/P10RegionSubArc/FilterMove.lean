@@ -136,3 +136,80 @@ theorem subArc_goal_of_filterMove (K : PocketFaceSet D eps X lo hi)
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc.subArc_goal_of_filterMove
+
+/-- A dart of `B` is a dart of `A ++ B ++ C`. -/
+theorem subArc_mem_of_mem_B {α : Type*} {c A B C : List α} (hc : c = A ++ B ++ C) {d : α}
+    (hd : d ∈ B) : d ∈ c := by
+  rw [hc]
+  exact List.mem_append_left C (List.mem_append_right A hd)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc.subArc_mem_of_mem_B
+
+/-- A dart of `A ++ C` is a dart of `A ++ B ++ C`. -/
+theorem subArc_mem_of_mem_AC {α : Type*} {c A B C : List α} (hc : c = A ++ B ++ C) {d : α}
+    (hd : d ∈ A ++ C) : d ∈ c := by
+  rw [hc]
+  rcases List.mem_append.mp hd with hd | hd
+  · exact List.mem_append_left C (List.mem_append_left B hd)
+  · exact List.mem_append_right (A ++ B) hd
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc.subArc_mem_of_mem_AC
+
+/-- A nonempty list that a filter empties has an element the filter removes. -/
+theorem subArc_exists_false_of_nil {α : Type*} {p : α → Bool} {L : List α} (hL : L ≠ [])
+    (h : L.filter p = []) : ∃ y ∈ L, p y = false := by
+  obtain ⟨y, hy⟩ := List.exists_mem_of_ne_nil L hL
+  exact ⟨y, hy, Bool.eq_false_iff.mpr (List.filter_eq_nil_iff.mp h y hy)⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc.subArc_exists_false_of_nil
+
+/-- **The closed removed block gives the in-order case.**  With the colour clauses and the two
+arc placements, if `c = A ++ B ++ C` where the move removes all of the closed walk `B` and keeps
+all of `A ++ C ≠ []`, or keeps all of the closed walk `B` and removes all of `A ++ C ≠ []`, then
+`z` is an in-order filter move: the kept walk closes up by excising `B`
+(`P10RoseLobe.roseLobeFL_isClosedDartWalk_filter_of_block`). -/
+theorem subArc_filterMove_of_block (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    {z : X.toCombMap.Dart → Bool}
+    (hz : ∀ x y, CombMap.FaceClassStep X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle) x y → z x = z y)
+    (hind : ∀ d ∈ K.boundary.cycle, z d = false ∨ z (X.toCombMap.alpha d) = false)
+    (hout : X.outerFace ∉ flipFaces X.toCombMap K.faces z)
+    (hsource : (cell X K.source).face ∉ flipFaces X.toCombMap K.faces z)
+    {kept : Fin X.rCellCount} (hkept : (cell X kept).face ∈ flipFaces X.toCombMap K.faces z)
+    {A B C : List X.toCombMap.Dart} (hc : K.boundary.cycle = A ++ B ++ C)
+    (hblk : (B.filter (movePred X.toCombMap z) = [] ∧
+        (A ++ C).filter (movePred X.toCombMap z) = A ++ C ∧ A ++ C ≠ [] ∧
+        IsClosedDartWalk X.toCombMap B) ∨
+      (B.filter (movePred X.toCombMap z) = B ∧
+        (A ++ C).filter (movePred X.toCombMap z) = [] ∧ A ++ C ≠ [] ∧
+        IsClosedDartWalk X.toCombMap B))
+    (ht₁ : ∃ t₁ : CyclicArc (cellDarts X K.source),
+      (invDarts X K.sourceArc.darts).filter (movePred X.toCombMap z) = invDarts X t₁.darts)
+    (ht₂ : ∃ t₂ : CyclicArc (outerDarts X),
+      K.targetArc.darts.filter (movePred X.toCombMap z) = t₂.darts ∧
+      K.targetArc.start.1 ≤ t₂.start.1 ∧
+      t₂.start.1 + t₂.length ≤ K.targetArc.start.1 + K.targetArc.length) :
+    subArc_FilterMove K z := by
+  have hw : IsClosedDartWalk X.toCombMap K.boundary.cycle :=
+    ⟨K.boundary.cycle_nonempty, hK.1, hK.2⟩
+  have hwalk := P10RoseLobe.roseLobeFL_isClosedDartWalk_filter_of_block
+    (p := movePred X.toCombMap z) hw hc
+    (hblk.imp (fun h => ⟨h.1, h.2.1, h.2.2.1, Or.inr h.2.2.2⟩)
+      (fun h => ⟨h.1, h.2.1, h.2.2.2⟩))
+  have hy : ∃ y ∈ K.boundary.cycle, movePred X.toCombMap z y = false := by
+    rcases hblk with ⟨hB, -, -, hBw⟩ | ⟨-, hAC, hne, -⟩
+    · obtain ⟨hBne, -, -⟩ := hBw
+      obtain ⟨y, hy, hpy⟩ := subArc_exists_false_of_nil hBne hB
+      exact ⟨y, subArc_mem_of_mem_B hc hy, hpy⟩
+    · obtain ⟨y, hy, hpy⟩ := subArc_exists_false_of_nil hne hAC
+      exact ⟨y, subArc_mem_of_mem_AC hc hy, hpy⟩
+  unfold subArc_FilterMove
+  exact ⟨hz, hind, hout, hy, hsource, ⟨kept, hkept⟩, ht₁, ht₂, hwalk⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc.subArc_filterMove_of_block
+
+end Pocket
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionSubArc

@@ -12,8 +12,8 @@ second conjunct of `P1 = PolyK2NilGapStatementOver (ZMod p) 4`.  Write
 
 ## The residual
 
-`stabDiagFp_MapsStatementOver p`: for `k ≥ 0` and `N ≥ k + 5`, an element `u ∈ K₂(N, R_{k+1})`
-with `K2Stab N u = 1` is trivial, provided `K2Map φ u = 1` for **every** ring map
+`stabDiagFp_MapsStatementOver p`: for `k ≥ 0` and `N ≥ k + 5`, an element
+`u ∈ K₂(N, R_{k+1})` with `K2Stab N u = 1` is trivial, provided `K2Map φ u = 1` for **every** ring map
 `φ : R_{k+1} →+* R_k`.  Unlike `stabDiagFp_SpecStatementOver`, the maps need not be augmented,
 and `cc u = 1` is not assumed.
 
@@ -98,3 +98,87 @@ theorem stabDiagFp_inj_of_maps (p : ℕ) (hp : p.Prime) (h : stabDiagFp_MapsStat
       (fun φ ↦ ih N (by omega) (by omega) (K2Map φ u) (stabDiagFp_K2Stab_K2Map_eq_one φ hu)) hu
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_inj_of_maps
+
+/-- **Endpoint**: the residual at `p` gives `PolyK2StabRangeDiagStatementOver (ZMod p) 4`. -/
+theorem stabDiagFp_stabRangeDiagOver_of_maps (p : ℕ) (hp : p.Prime)
+    (h : stabDiagFp_MapsStatementOver p) : PolyK2StabRangeDiagStatementOver (ZMod p) 4 :=
+  fun k hk u _ hu ↦ stabDiagFp_inj_of_maps p hp h k (k + 4) le_rfl (by omega) u hu
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_stabRangeDiagOver_of_maps
+
+/-- **Endpoint at `P1`'s parameters**: the one-variable nil part and the residual at `p` give
+the leaf `PolyK2NilGapStatementOver (ZMod p) 4`. -/
+theorem stabDiagFp_nilGapOver_of_maps (p : ℕ) (hp : p.Prime)
+    (hnil : PolyK2OneVarNilStatementOver (ZMod p)) (h : stabDiagFp_MapsStatementOver p) :
+    PolyK2NilGapStatementOver (ZMod p) 4 :=
+  ⟨hnil, stabDiagFp_stabRangeDiagOver_of_maps p hp h⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_nilGapOver_of_maps
+
+/-- **Char-`p` endpoint**: the residual at every prime gives `PolyK2StabRangeDiagStatement`. -/
+theorem stabDiagFp_polyK2StabRangeDiag_of_maps
+    (h : ∀ p : ℕ, p.Prime → stabDiagFp_MapsStatementOver p) :
+    PolyK2StabRangeDiagStatement :=
+  polyK2StabRangeDiag_iff_forall_over.mpr fun p hp ↦
+    stabDiagFp_stabRangeDiagOver_of_maps p hp (h p hp)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_polyK2StabRangeDiag_of_maps
+
+/-- **Full injective stability**: the residual at every prime gives
+`PolyK2InjectiveStabilityStatement`. -/
+theorem stabDiagFp_polyK2InjectiveStability_of_maps
+    (h : ∀ p : ℕ, p.Prime → stabDiagFp_MapsStatementOver p) :
+    PolyK2InjectiveStabilityStatement := fun p hp k N hkN h5 ↦
+  (injective_iff_map_eq_one _).mpr fun u hu ↦ stabDiagFp_inj_of_maps p hp (h p hp) k N hkN h5 u hu
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_polyK2InjectiveStability_of_maps
+
+/-- **Strength versus the Spec residual**: each instance of `stabDiagFp_SpecStatementOver` gives
+the corresponding instance here, which has more hypotheses on `u`. -/
+theorem stabDiagFp_maps_of_spec (p : ℕ) (h : stabDiagFp_SpecStatementOver (ZMod p) 4) :
+    stabDiagFp_MapsStatementOver p :=
+  fun k N hN u hφ hu ↦ h k N (by omega) u (fun φ _ ↦ hφ φ) hu
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_maps_of_spec
+
+/-- **Relation to lane `bh-met-80`**: `K2InjStabSpecializationStatement` gives the residual.  A
+map `ψ : R_{k+1} → R_j` with `j ≤ k` is killed because `rename (Fin.castLE) ∘ ψ` is a map to
+`R_k`, and `killCompl` is a left inverse of `rename`. -/
+theorem stabDiagFp_maps_of_specialization (h : K2InjStabSpecializationStatement) (p : ℕ)
+    (hp : p.Prime) : stabDiagFp_MapsStatementOver p := by
+  intro k N hN u hφ hu
+  refine h p hp (k + 1) N (by omega) (by omega) u (fun j hj ψ ↦ ?_) hu
+  have hjk : j ≤ k := by omega
+  have hid : (MvPolynomial.killCompl (R := ZMod p) (Fin.castLE_injective hjk)).toRingHom.comp
+      (MvPolynomial.rename (R := ZMod p) (Fin.castLE hjk)).toRingHom = RingHom.id _ :=
+    RingHom.ext fun x ↦ MvPolynomial.killCompl_rename_app (Fin.castLE_injective hjk) x
+  refine (K2Map_K2Map_of_comp_eq_id _ _ hid (K2Map ψ u)).symm.trans ?_
+  rw [K2Map_K2Map (MvPolynomial.rename (R := ZMod p) (Fin.castLE hjk)).toRingHom ψ u, hφ,
+    map_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_maps_of_specialization
+
+/-- **Truth check (the converse)**: the target at `p` gives the residual at `p`.  Over `F_p` at
+rank `N ≥ 5`, `K₂(N, F_p) = 0`, so `cc u = 1` holds for free; then use injective stability on
+`ker ev₀` at `k + 1` variables and rank `N ≥ (k + 1) + 4` (`polyK2NilStabilityOver_of_diag`). -/
+theorem stabDiagFp_maps_of_stabRangeDiagOver (p : ℕ) (hp : p.Prime)
+    (h : PolyK2StabRangeDiagStatementOver (ZMod p) 4) : stabDiagFp_MapsStatementOver p := by
+  intro k N hN u _ hu
+  exact polyK2NilStabilityOver_of_diag (ZMod p) 4 h (k + 1) N (by omega) (by omega) u
+    (eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N (by omega)) _) hu
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_maps_of_stabRangeDiagOver
+
+/-- **LOUD (strength)**: at each prime the residual is equivalent to the target. -/
+theorem stabDiagFp_maps_iff_stabRangeDiagOver (p : ℕ) (hp : p.Prime) :
+    stabDiagFp_MapsStatementOver p ↔ PolyK2StabRangeDiagStatementOver (ZMod p) 4 :=
+  ⟨stabDiagFp_stabRangeDiagOver_of_maps p hp, stabDiagFp_maps_of_stabRangeDiagOver p hp⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagFp_maps_iff_stabRangeDiagOver
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
