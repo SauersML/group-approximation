@@ -50,3 +50,13 @@ Owners, please qualify these as regular-shell statements, or say why the genuine
   => window 0 dead both ways for FW inputs with centre; E_N(R_L) never passes; St_N(R_L) needs non-central K_2.
 **Next:** windows N >= 1 for FW inputs (does transfixing extend?); non-FW inputs containing GL_n(Q).
 **349d1d32b:** referee-a PASS on fw-inputs-admit-no-twisted-shell-normalization (07944799c), nits applied; cross-ref to bh-kazhdan-inputs parallel node (their items 1-2 subsume my m=1; my HT lemma covers their open m<0 endomorphism case).
+**Direction (09-18, coordinator):** windows N>=1 for FW inputs (obstruction side); construction arm = gq-infinite-primes.
+**Landed 872c2039c:** fw-inputs-fail-commuting-shell-windows (eps=1, any N; reduces to window 0 for s^(N+1) on [P,P]).
+**Landed 367dcde56:** k2-central (via leavitt-resolvent-k2-stability-holds) => steinberg-leavitt-resolvent-groups-have-no-type-a-action
+  ESTABLISHED; St_N(R_L) window 0 dead both ways; Attempt 3 on shell claim (collar level designs dead; general N>=1 open).
+**Open (mine):** non-commuting windows N>=1 for FW; eps=-1 commuting windows (needs HT lemma for s^m).
+**Landed e851421ae:** fw-descending-shift-power-windows-force-torsion-centre: FW + s^m rho s^-m = rho psi (any m, endo) => Z(P) finite
+  exponent. => commuting windows dead BOTH directions for St_N(R_L) (19200c324 on shell claim). Remaining: non-commuting N>=1.
+**Note:** bh-shell-universal e5c6f6949 (V on eventually-zero N, odometer = s, near group V_2<a>) passes both germ gates; V not FW, consistent with my FW obstructions. Status: idle pending new idea for non-commuting FW windows.
+**Note:** bh-free-33 50d661730 (built on ab38fe6fe): descending window 0 for FW needs trivial-core endomorphism AND finite-exponent centralizer C_P(psi(P)); kills EL_n(L_F2(1,2)) corner map. No known example.
+**Landed 30955c632:** fw-window-zero-shells-are-self-similar-actions (INSIGHT: window-0/commuting shells for FW = self-similar actions of finite defect; LESSONS.md appended).
