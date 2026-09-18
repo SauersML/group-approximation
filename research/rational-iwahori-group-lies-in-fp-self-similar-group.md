@@ -82,3 +82,16 @@ The first two constraints are from
    Even that needs a finitely generated self-similar overgroup of `Γ_p` first.
    None is known; the non-finite-state element rules out taking the
    self-similar closure of finitely many finite-state maps.
+3. **The resolvent ring gives no tree-compatible host (2026-09-17, lane
+   gq-rn-varying-degree).** `rf-resolvent-ring-has-z-localized-corner` gives
+   finitely generated residually finite groups, such as `E_N(R̄_p)`, that
+   contain `Z_(p)` and `SL_n(Z_(p))` as abstract subgroups.
+   - The corner `eR̄_pe` acts on the line `Z/p^r f_0` of each `M_r`. Through
+     this action, matrix groups over the corner act on `Z_p` by Möbius maps with
+     coefficients in `Z_p`, so the acting group lies in `PGL_2(Q_p)`.
+   - The image of a finitely generated group in `PGL_2(Q_p)` is a finitely
+     generated linear group. It cannot contain the translations by `Z_(p)`
+     (`fg-linear-groups-have-roots-at-finitely-many-primes`).
+   - So this action cannot supply `Λ`; this is items (c) and (d) of
+     `iwahori-overgroups-not-automaton-linear-or-metabelian`. A usable
+     action of such a group on `T_p` would have to be non-linear.

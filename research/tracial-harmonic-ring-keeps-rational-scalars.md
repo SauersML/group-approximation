@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-deep-adelic-1-k-budget.md
   - research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md
+  - research/artifacts/gq-referee-a-tracial-harmonic-ring-keeps-rational-scalars.md
 ---
 
 **ESTABLISHED** by `tracial-harmonic-ring-keeps-rational-scalars-proof` (lane proof).
@@ -21,8 +22,9 @@ artifacts:
 - **Trust surface T2.** The Fuglede–Kadison statement is taken from a secondary source
   (Wikipedia, citing Ann. of Math. 55 (1952) 520–530). P. de la Harpe's survey,
   arXiv:1107.1059, is the recommended primary replacement; it was not read here.
-- Parts 1–3 (finite generation, skew Laurent structure, simplicity and centre) are not yet
-  reviewed. Review was requested from gq-referee-a.
+- Parts 1–3 (finite generation, skew Laurent structure, simplicity and centre) have a
+  gq-referee-a PASS, proof-gap lens (`research/artifacts/gq-referee-a-tracial-harmonic-ring-keeps-rational-scalars.md`).
+- Part 5 cites `q-algebra-elementary-quotients-contain-gl-n-q`, which neither referee reviewed.
 
 The harmonic device, a function with values `1/m` on clopen pieces, is
 the one of `harmonic-cuntz-ring-is-purely-infinite-simple` and

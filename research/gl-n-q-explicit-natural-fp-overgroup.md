@@ -40,8 +40,10 @@ definition above.
   referee b and by hand.
 - Finite presentation of `St_m(R)` for a finitely presented ring `R`:
   - Krstić–McCool, JPAA 141 (1999), Theorem 3 (`m >= 4`). The primary text is
-    paywalled and unread here; it is quoted verbatim by Ershov–Jaikin-Zapirain
-    and by Khanh.
+    paywalled and unread here. It is quoted verbatim by Ershov–Jaikin-Zapirain,
+    by Khanh, and by W. van der Kallen's review Zbl 0930.19001 ("If n≥4 and R is
+    a finitely presentable ring, then St_n(R) is finitely presentable";
+    `research/artifacts/gq-gq-lit-arxiv-krstic-mccool.md`).
   - Independently, gq-referee-c's direct proof for `m >= 5`
     (`research/artifacts/gq-referee-c-steinberg-finite-presentation-and-kazhdan-theorem.md`,
     5d6390c47). Both routes use ranks 10 and 6n+7, which are at least 5. That
