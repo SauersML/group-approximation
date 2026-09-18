@@ -58,7 +58,9 @@ theorem suslinAwaySize_spec (m : ℕ) (z : Localization.Away (m : ℤ)) :
     ∃ (i : ℕ) (c : ℤ), z * algebraMap ℤ (Localization.Away (m : ℤ)) (m : ℤ) ^ i =
       algebraMap ℤ (Localization.Away (m : ℤ)) c ∧ c.natAbs = suslinAwaySize m z := by
   obtain ⟨i, c, h⟩ := IsLocalization.Away.surj (m : ℤ) z
-  exact Nat.sInf_mem ⟨c.natAbs, i, c, h, rfl⟩
+  exact Nat.sInf_mem (s := {n : ℕ | ∃ (i : ℕ) (c : ℤ),
+    z * algebraMap ℤ (Localization.Away (m : ℤ)) (m : ℤ) ^ i =
+      algebraMap ℤ (Localization.Away (m : ℤ)) c ∧ c.natAbs = n}) ⟨c.natAbs, i, c, h, rfl⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinAwaySize_spec
 

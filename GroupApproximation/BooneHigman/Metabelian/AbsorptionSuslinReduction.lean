@@ -15,8 +15,8 @@ The reduction `polynomialSuslin_of_oneVariable` is an induction on `k`:
 
 * `k = 0`: `F_p` is a field (`specialLinearInElementary_of_field`) and `ℤ[1/m]` has a
   well-founded division (`specialLinearInElementary_away`, every `m`, including `m = 0`);
-* `k = 1` in characteristic `p`: `F_p[X]` is Euclidean (`specialLinearInElementary_zmodPolynomial`),
-  so the one-variable step is only assumed for `k ≥ 1`;
+* `k = 1` in characteristic `p`: `F_p[X]` is Euclidean
+  (`specialLinearInElementary_zmodPolynomial`), so the one-variable step is only assumed for `k ≥ 1`;
 * `k → k + 1`: the one-variable step applied to the induction hypothesis, transported along
   `MvPolynomial.finSuccEquiv` (`specialLinearInElementary_of_ringEquiv`).
 

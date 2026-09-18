@@ -59,8 +59,8 @@ theorem suslin_exists_kill_entry (hR : HasWellFoundedDivision R) (S : Finset ι)
       ∀ c : ι, c ≠ t → c ≠ j → (M : Matrix ι ι R) t c = (A : Matrix ι ι R) t c := by
   obtain ⟨rel, hwf, hdiv⟩ := hR
   have hjt : j ≠ t := Ne.symm htj
-  suffices H : ∀ s : R, ∀ A : (Matrix ι ι R)ˣ, ClearedOn S A → (A : Matrix ι ι R) t j = s →
-      ∃ M : (Matrix ι ι R)ˣ, Reaches A M ∧ ClearedOn S M ∧ (M : Matrix ι ι R) t j = 0 ∧
+  suffices H : ∀ s : R, ∀ A : (Matrix ι ι R)ˣ, ClearedOn S A →
+      (A : Matrix ι ι R) t j = s → ∃ M : (Matrix ι ι R)ˣ, Reaches A M ∧ ClearedOn S M ∧ (M : Matrix ι ι R) t j = 0 ∧
         ∀ c : ι, c ≠ t → c ≠ j → (M : Matrix ι ι R) t c = (A : Matrix ι ι R) t c from
     H _ A hA rfl
   intro s
@@ -132,7 +132,8 @@ theorem suslin_exists_diag_one (hR : HasWellFoundedDivision R) (A : (Matrix ι �
     by_cases hcS : c ∈ S
     · rw [hMc.col hcS t, if_neg (Ne.symm hct)]
     · exact hMrow c (Finset.mem_univ c) hct hcS
-  have hgw : (M : Matrix ι ι R) t t * ((M⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) t t = 1 := by
+  have hgw :
+      (M : Matrix ι ι R) t t * ((M⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) t t = 1 := by
     have hv := congrFun (congrFun M.mul_inv t) t
     rw [Matrix.mul_apply, Matrix.one_apply_eq,
       Finset.sum_eq_single t
