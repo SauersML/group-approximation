@@ -25,8 +25,8 @@ open Polynomial
 theorem suslinMonicLocal_good_X {R : Type*} [CommRing R] (g : R[X])
     (hu : IsUnit (g.coeff 0)) : suslinMonicLocal_Good (X : R[X]) g := by
   obtain ⟨s, hs⟩ := X_dvd_sub_C (p := g)
-  exact suslinMonicLocal_good_of_col_right (-s)
-    (suslinMonicLocal_good_of_isUnit_right X (hu.map C)) (by linear_combination -hs)
+  exact suslinMonicLocal_colRight (-s)
+    (suslinMonicLocal_good_unitRight X (hu.map C)) (by linear_combination -hs)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_X
 
@@ -63,7 +63,7 @@ theorem suslinMonicLocal_caseA {R : Type*} [CommRing R] [Nontrivial R] {n : ℕ}
     hIH (-f₂) g (by rw [leadingCoeff_neg]; exact hlc₂.neg) (by rw [natDegree_neg]; omega)
   have hGX : suslinMonicLocal_Good (X * f₂) g :=
     suslinMonicLocal_good_mul_left (suslinMonicLocal_good_X g ⟨w, hw⟩) hG₂
-  refine suslinMonicLocal_good_of_col_left (f' := f + g * C t) (C t) ?_ rfl
+  refine suslinMonicLocal_colLeft (f' := f + g * C t) (C t) ?_ rfl
   rw [hf₂]
   exact hGX
 

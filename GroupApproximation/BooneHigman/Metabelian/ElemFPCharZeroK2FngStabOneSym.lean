@@ -181,3 +181,52 @@ theorem czK2FngStabOne_sym_mem_K2 : czK2FngStabOne_sym ∈ K2 (Fin 3) R₁ := by
   rw [czK2FngStabOne_sym, czK2FngStabOne_padMat_F, h1, map_one, map_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sym_mem_K2
+
+/-- The symbol word only uses `e₁₂, e₂₁`, so it is stabilised from `St_2(ℤ[1/1])`. -/
+theorem czK2FngStabOne_sym_mem_range_stab : czK2FngStabOne_sym ∈ (stab 2 R₁).range := by
+  have h0 : czK2FngStabOne_gen 0 ∈ (stab 2 R₁).range :=
+    MonoidHom.mem_range.mpr
+      ⟨x 0 1 (by decide) 1, (stab_x (n := 2) (R := R₁) 0 1 (by decide) 1).trans rfl⟩
+  have h2 : (czK2FngStabOne_gen 2)⁻¹ ∈ (stab 2 R₁).range :=
+    inv_mem (MonoidHom.mem_range.mpr
+      ⟨x 1 0 (by decide) 1, (stab_x (n := 2) (R := R₁) 1 0 (by decide) 1).trans rfl⟩)
+  show czK2FngStabOne_F (FreeGroup.mk
+    [(0, true), (2, false), (0, true), (0, true), (2, false), (0, true),
+     (0, true), (2, false), (0, true), (0, true), (2, false), (0, true)]) ∈ _
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact mul_mem h0 (mul_mem h2 (mul_mem h0 (mul_mem h0 (mul_mem h2 (mul_mem h0
+    (mul_mem h0 (mul_mem h2 (mul_mem h0 (mul_mem h0 (mul_mem h2 h0))))))))))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sym_mem_range_stab
+
+/-- **`K₂(3, ℤ[1/1]) ≤ ⟪sym⟫`**, from the proved completeness of `P13`. -/
+theorem czK2FngStabOne_k2_le_normalClosure :
+    K2 (Fin 3) R₁ ≤ Subgroup.normalClosure {czK2FngStabOne_sym} := by
+  intro k hk
+  obtain ⟨w, rfl⟩ := MonoidHom.mem_range.mp (czK2FngStabOne_F_surjective k)
+  have h1 : czK2FngStabOne_phi
+      (LiteralP13MatrixModel.toSL3 (LiteralP13Presentation.p13Word w)) = 1 := by
+    rw [← czK2FngStabOne_padMat_F, padMat_of_mem_K2 hk]
+  have h2 := czK2FngStabOne_phi_injective (h1.trans (map_one czK2FngStabOne_phi).symm)
+  have h3 := P13DescentMaster.toSL3_injective
+    (h2.trans (map_one LiteralP13MatrixModel.toSL3).symm)
+  have h4 : Subgroup.normalClosure
+      (LiteralP13Presentation.p13Relators : Set (FreeGroup (Fin 6))) ≤
+      (Subgroup.normalClosure {czK2FngStabOne_sym}).comap czK2FngStabOne_F := by
+    refine Subgroup.normalClosure_le_normal fun r hr => ?_
+    obtain ⟨i, rfl⟩ :=
+      (LiteralP13Presentation.mem_p13Relators_iff r).mp (Finset.mem_coe.mp hr)
+    rw [Subgroup.mem_comap]
+    by_cases hi : i = 12
+    · subst hi
+      exact Subgroup.subset_normalClosure (Set.mem_singleton czK2FngStabOne_sym)
+    · rw [czK2FngStabOne_F_relator i hi]
+      exact one_mem _
+  exact h4 (PresentedGroup.mk_eq_one_iff.mp h3)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_k2_le_normalClosure
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
