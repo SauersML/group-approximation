@@ -160,3 +160,22 @@ is finitely presented.
        finite-presentation gates are the same gate.
      - The next test is `SL_3(Z) ≤ 𝒯_2` alone: find a finite-type suboperad of `𝒪_2`
        whose operad group contains it.
+4. **Cofinality proved; descent not inherited; synchronization isolated** (lane
+   bh-free-61, 2026-09-18).
+   - **Cofinality.** `edge-splits-cut-every-rational-hyperplane`: a Euclid-type
+     potential shows that iterated edge splits cut out every rational hyperplane.
+     So the edge-split suboperad is cofinal in `𝒪_m`, and edge-split cells form a
+     basis of `Ŝ_m`.
+   - **Not factor-closed.** `edge-split-descendants-are-not-factor-closed`: for
+     `m = 2`, `cone([[3,2,2],[0,1,2],[1,1,1]])` descends from `Δ` and lies in the
+     child `{x_1 ≤ x_0}` without descending from it. Any two children of `Δ`
+     still meet in at most two common descendants.
+   - **The Serret gate for the edge-split suboperad.**
+     `unimodular-cells-synchronize-under-edge-splits` states it as `(Sync_m)`.
+     - It is equivalent to directedness of dissections ordered by descent.
+     - It follows from a finite matrix game: left row reductions against right
+       edge splits.
+     - A won game for every unimodular `X` would place all of `𝒯_m` in the
+       operad group of the finitely generated edge-split suboperad. That is the
+       finite-type suboperad Attempt 3 asks for.
+     - Proposed route: a split-lemma induction on the least reachable entry sum.
