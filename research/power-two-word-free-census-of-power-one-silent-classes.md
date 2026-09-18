@@ -49,6 +49,16 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory_r2_4012_m2.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory.py
   - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory_selftest_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask_sweep.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask_sweep_r2_m2_4887_4012.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_4887_ac_noprop.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_4012_ac_noprop.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_rho.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_rho_r2_m2_mask_ac.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_4887_mask_ac.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_4012_mask_ac.json
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -223,3 +233,29 @@ entries, one per line).
       that the entry has no power-two certificate at all.
   - Status of the 14 open entries: unchanged. The multiword infeasibilities rule out only the listed word sets,
     at float tier.
+
+- **2026-09-18, addendum (w6-074): on 4887 and 4012, no power-two certificate has all its boundary words in a rank-two free factor spanned by two of the letters. Exact.**
+  - Take the memory-2 word-free LP of `lp_memory.py` and keep only the window columns whose three letters lie in one
+    two-letter alphabet `{x, y}^{+-1}`. A legal `f^2`-folded fatgraph whose `partial^-` words are all words in `x, y`
+    projects to a feasible point of this restricted LP. So infeasibility of the restricted LP rules out every such
+    certificate, for any word lengths and any multiplicities.
+  - `{a, b}` and `{b, c}`: support propagation restricted to the mask (`sp_mask.py`, exact boolean arc consistency)
+    kills every window, on both entries (`sp_mask_sweep_r2_m2_4887_4012.log`).
+  - `{a, c}`: propagation leaves 8 of the 16 windows alive (`aaa, aac, aca, caa` and inverses on 4887; `aac, aca, caa, cac`
+    and inverses on 4012), with a zero-homology circulation. So there is no combinatorial obstruction there.
+    - `cg_masked.py --noprop` (column generation on the masked LP with exact min-plus pricing restricted to live darts)
+      reaches a positive phase-1 Lagrangian bound on both entries (`cg_masked_r2_*_ac_noprop.log`).
+    - `farkas_rho.py` turns its dual into an exact integer Farkas vector by a dart shift.
+      1. Round `D y` with `D = 10^6`.
+      2. Subtract `R_d = ceil(max charge of a k-gon through d / k)` from each dart. This is an exact max-plus maximum,
+         so every polygon charge becomes `<= 0`.
+      3. Set `z_norm` to the least window slack. Types that carry no masked window get dual `-10^12`, and pair slots
+         into them get `-+ 5*10^11`. All values stay below `2^53`, so the float64 integer arithmetic is exact.
+    - It then re-checks the vector with `verify_farkas_memory.max_polygon_charge`. Both entries give `FARKAS VERIFIED`,
+      with `z_norm / D = 0.789` on 4887 and `0.510` on 4012 (`farkas_rho_r2_m2_mask_ac.log`).
+    - The integer certificates are in `farkas_r2_m2_{4887,4012}_mask_ac.json`, and `python3 farkas_rho.py <cert>`
+      re-verifies them.
+  - Consequence: at power two, any certificate for 4887 or 4012 has `partial^-` words that together use all three letters
+    `a, b, c`. This contains, and makes exact, the `{a, b}` word-set infeasibilities listed above.
+  - Still undecided: the full `r = 2` LP, where all 114 windows are allowed. `farkas_rho.py` without `--mask` certifies it
+    from any dual whose shifted value is positive, so the remaining step is a converged phase-1 dual.

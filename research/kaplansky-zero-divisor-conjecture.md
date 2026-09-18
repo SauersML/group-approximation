@@ -181,3 +181,17 @@ fixed finitely presented torsion-free group `U`.
       case (`baumslag-gersten-group-is-hughes-free-embeddable`).
     - **What stays open.** Magnus HNN extensions whose shift is not induced by
       a retraction.
+    - **Edge-injective quotients.** Injectivity on edge groups suffices when
+      the vertex groups already lie in `𝓗`: the kernel then acts with trivial
+      edge stabilizers. This puts in `𝓗` every cyclic-edge HNN with a map to
+      `Z` nonzero on both edges (so all `BS(p,q)`, and every span-one Magnus
+      HNN over a base in `𝓗`), root adjunctions, and Magnus root towers. An
+      example is `<a,b | a^2 b a b a^2 b^-2>`, of primitivity rank 2, whose
+      Magnus edge groups are rank-2 non-retracts. A certifier shows that
+      every torsion-free two-generator one-relator group with relator length
+      at most 10 lies in `𝓗`; 8 relators of length 11 stay open. Higman's
+      group `G_1 *_{F_2} G_2` shows that `𝓗` is not closed under amalgamation
+      along `F_2`, so the edge hypothesis cannot be dropped
+      (`edge-injective-quotients-give-hughes-free-division-rings`). Still
+      open: rank-2 Magnus HNNs in which both extreme letters occur in two or
+      more syllables.
