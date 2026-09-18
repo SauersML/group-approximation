@@ -38,3 +38,16 @@ counterexample needs integral group-ring elements whose finite kernel densities 
   every input except integrality and has thin idempotents. So a proof needs an input not implied
   by "one zero divisor exists", and every known such input (coherence, one finite annihilator,
   elementary amenability of the support) is equivalent to this claim.
+- **2026-09-18 (lane `w10-112`): a non-circular input, local indicability. Reduction, both
+  directions.** See `amenable-cd-two-kropholler-iff-locally-indicable`. The
+  Jaikin-Zapirain–López-Álvarez theorem (Strong Atiyah for locally indicable groups, via their
+  Proposition 6.5 with trivial kernel) makes `Q[G]` a domain for every amenable LI group. So this
+  claim holds, with `c = 1`, for every locally indicable `G`. It is equivalent to the purely
+  group-theoretic statement **(Q_ab)**: no finitely generated amenable group of cd 2 has finite
+  abelianization. Equivalently, every amenable group of cd at most 2 is left-orderable (Witte
+  Morris). A counterexample contains one with finite abelianization. Such a one has Serre's
+  property FA except through an index-2 amalgam, and its LI residual carries the whole zero-divisor
+  obstruction. Obstruction for the Linnell-class route: an amenable group lies in Linnell's class
+  `C` iff it is elementary amenable, so placing the Remark R subgroup in `C` is the target itself.
+  What remains open: (Q_ab). The finite-index step is where it stalls, because passing strong
+  Atiyah to finite extensions is open, so virtual `b_1 > 0` would not suffice.
