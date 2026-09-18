@@ -9,8 +9,8 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the ring gate; this shows that every ring meeting its items 3 and 4 fails the type (A) test on lines.
 ---
 
-**ESTABLISHED** through `unimodular-line-pairs-detect-cyclic-quotients-proof`. Lane proof, not independently
-reviewed. Elementary; no citation is needed except in the optional remark on purely infinite rings.
+**ESTABLISHED** through `unimodular-line-pairs-detect-cyclic-quotients-proof`. Refereed: gq-referee-a PASS,
+proof-gap lens (report 4652928f8, N1 applied); one referee. Elementary; no citation is needed except in the optional remark on purely infinite rings.
 
 **Setting.** `R` is a unital ring and `N >= 2`. Vectors are columns and `R^N` is a right `R`-module. A *line* is a
 submodule `vR` with `v` unimodular, meaning `wv = 1` for some row `w`. Let `Ω_N(R)` be the set of lines and
@@ -32,7 +32,7 @@ submodule `vR` with `v` unimodular, meaning `wv = 1` for some row `w`. Let `Ω_N
    distinct. So item 3 applies.
    - This covers every ring meeting items 3 and 4 of `fp-simple-resolvent-ring-with-divisible-unit-class`, and every
      ring that contains `U_Q = colim M_(n!)(Q)` unitally and has `[1]` of infinite order.
-   - For such `R`, `E_N(R)`, and `PE_N(R)` when it acts on lines, is not of type (A) on `Ω_N^0` for any `N >= 2`,
+   - For such `R`, `E_N(R)` and `PE_N(R)` are not of type (A) on `Ω_N^0` for any `N >= 2`,
      whatever its stabilizers are.
 
 ## Calibration

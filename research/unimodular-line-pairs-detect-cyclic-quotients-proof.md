@@ -30,5 +30,6 @@ separated by the classes of item 1. A subgroup of `GL_N(R)` has at least as many
   infinite order, `n = m`.
 - If `U_Q ⊆ R` unitally, then `M_(n!)(Q) ⊆ R` unitally, and its matrix units give `R ≅ M_(n!)(R')` with
   `R' = f_11 R f_11`.
-- `PE_N(R)`: if the centre of `E_N(R)` acts trivially on `Ω_N(R)`, as central scalar matrices do (`z v R = v z R`),
-  then `PE_N(R)` acts with the same orbits as `E_N(R)`.
+- `PE_N(R)` (gq-referee-a, N1). An element `g` of `Z(E_N(R))` commutes with every `e_ij(r)`, hence with every
+  matrix unit `E_ij`, so `g = cI` with `c in Z(R)^x`. Then `cI · vR = v c R = vR`. So `Z(E_N(R))` fixes every line,
+  and `PE_N(R)` acts on `Ω_N(R)` with the same orbits as `E_N(R)`.
