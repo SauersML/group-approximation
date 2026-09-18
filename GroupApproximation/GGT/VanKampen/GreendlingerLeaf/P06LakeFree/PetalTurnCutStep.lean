@@ -62,7 +62,7 @@ theorem petalTurnInv_cut {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X.toC
     have ha' : a ∈ (u ++ y :: B).getLast? := by
       rw [getLast?_append_cons]
       exact ha
-    exact (hj₂ a ha' y' rfl).trans hv.symm
+    exact (hj₂ a ha' y' (Option.mem_def.mpr rfl)).trans hv.symm
   -- the rest `u ++ y' :: v`
   have hch₂ : (u ++ y' :: v).IsChain fun d e =>
       X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e := by
@@ -70,7 +70,7 @@ theorem petalTurnInv_cut {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X.toC
     intro x hx z hz
     have hz' : some y' = some z := hz
     rw [← Option.some.inj hz']
-    exact (hj₁ x hx y rfl).trans hv
+    exact (hj₁ x hx y (Option.mem_def.mpr rfl)).trans hv
   have hcl₂ : ∀ a ∈ (u ++ y' :: v).getLast?, ∀ b ∈ (u ++ y' :: v).head?,
       X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b := by
     intro a ha b hb
@@ -82,7 +82,7 @@ theorem petalTurnInv_cut {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X.toC
     | nil =>
       have hb' : some y' = some b := hb
       rw [← Option.some.inj hb']
-      exact (hI.closes a ha' y rfl).trans hv
+      exact (hI.closes a ha' y (Option.mem_def.mpr rfl)).trans hv
     | cons c us => exact hI.closes a ha' b hb
   have hsub₁ : invDarts X (y :: B) <+ T :=
     ((List.sublist_append_right (invDarts X (y' :: v)) (invDarts X (y :: B))).trans
