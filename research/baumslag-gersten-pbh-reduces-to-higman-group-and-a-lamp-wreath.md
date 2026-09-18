@@ -33,6 +33,19 @@ It needs decidable membership in `⟨a_0⟩ ≤ Γ`, which must be checked for t
 So such a `Γ` needs at least a quotient of the tower `K` with `BS(1,2)` intact. `H_n ⋊ C_n` is the
 standard such quotient.
 
+## What the wreath input cannot come from
+
+The established lamp-wreath closure (`bh-type-a-class-closed-under-permutational-lamp-wreaths`)
+needs `Γ ↷ Γ/⟨a_0⟩` to be of type (A). That forces finitely many orbits of the point stabilizer
+`⟨a_0⟩` on `Γ/⟨a_0⟩`. Since `a_0 ~ a_0^2` in `Γ`, the regular-orbit invariant of
+`type-a-actors-have-no-proper-power-cyclic-edge-splittings` then makes `Γ/⟨a_0⟩` finite, which is
+absurd. The finite-stabilizer closure (`permutational-boone-higman-closed-under-wreath-products`)
+does not apply either.
+
+So item 2 needs the open decidable case, `pbh-closed-under-decidable-permutational-wreaths`, over a
+proper-power cyclic stabilizer. Coset spaces of proper-power cyclic subgroups are never type (A)
+spaces. Any proof of that case must put the wreath in an actor that does not act on `Γ/⟨a_0⟩`.
+
 ## Lesson for general BH
 
 HNN permanence splits into two independent inputs.
