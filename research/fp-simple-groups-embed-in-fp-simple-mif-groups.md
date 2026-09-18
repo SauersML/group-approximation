@@ -241,3 +241,23 @@ explicit hinge between the two conjectures.
         group whose image `SV_(G/K)` is simple and highly transitive.
       - By `a2-kernel-removal-iff-image-satisfies-pbh`, it holds iff `G/K ∈ B_A`.
     - **Status.** Reformulation only; no such `H` was found.
+12. **The kernel is never the obstruction; the double-coset clause is (2026-09-18, lane
+    `bh-invent-10`).** `free-product-hom-orbits-of-relative-automorphisms-are-faithful`
+    (ESTABLISHED lane proof, not independently reviewed) shows that for every group `S ≠ 1`
+    and `n ≥ 2`, `Aut_S(S * F_n)` acts faithfully on the orbit of `(t, 1, ..., 1)` in
+    `Hom_S(S * F_n, S * ⟨t⟩)`. The argument substitutes `t` for `x_1`, which is an
+    isomorphism onto `(S * ⟨t⟩) * F_(n-1)`, and uses that free products are MIF
+    (Hull–Osin).
+    - **For Attempt 11.** Take `T` to be this orbit. Then `H = Stab(φ_0)` has trivial core,
+      so it meets the core condition for every finitely presented simple `S` at once.
+    - **What fails.** The double-coset clause fails in the strongest way: every normal
+      closure `⟨⟨t^j⟩⟩` is a pair invariant.
+    - **Verdict for precomposition routes.** The image group of the orbit must be:
+      - finitely presented (Attempt 8);
+      - with finitely many normal subgroups (Attempt 8);
+      - with no identity with constants in `S` vanishing on the orbit.
+      Free products meet the first and third clauses for every `S`, so the mixed identities
+      of `S` (Attempts 1, 2, 10) are an artifact of the target `S`, not an obstruction.
+    - **What remains.** A finitely presented, almost simple overgroup of `S` in which `S`'s
+      identities die. That has to come from a combinatorial scaffold, which is Attempt 9's
+      route.

@@ -44,8 +44,8 @@ theorem higSw_conj_letter {d : ℕ} {c c' : List (Fin d)} (hcc : ¬ c <+: c') (h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_conj_letter
 
-/-- **Conjugating prefixes.**  For incomparable `c`, `c'`, `(c, c') φ_c(q) (c, c')⁻¹ = φ_{c'}(q)`
-for every `q ∈ Q`. -/
+/-- **Conjugating prefixes.**  For incomparable `c`, `c'`,
+`(c, c') φ_c(q) (c, c')⁻¹ = φ_{c'}(q)` for every `q ∈ Q`. -/
 theorem higSw_conj_phi {d : ℕ} {c c' : List (Fin d)} (hcc : ¬ c <+: c') (hcc' : ¬ c' <+: c)
     (q : higmanVCCommon_Q d) :
     higmanVCCommon_mk d (FreeGroup.of (c, c')) * higSw_phi d c q *
@@ -60,11 +60,11 @@ theorem higSw_conj_phi {d : ℕ} {c c' : List (Fin d)} (hcc : ¬ c <+: c') (hcc'
   | inv_of p ih =>
     simp only [map_inv]
     rw [← ih]
-    group
+    simp only [mul_inv_rev, inv_inv, mul_assoc]
   | mul g₁ g₂ ih₁ ih₂ =>
     simp only [map_mul]
     rw [← ih₁, ← ih₂]
-    group
+    simp only [mul_assoc, inv_mul_cancel_left]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_conj_phi
 
@@ -85,3 +85,35 @@ theorem higSw_not_prefix_cons {d : ℕ} {a b : Fin d} (h : a ≠ b) (l l' : List
   fun h' => h (List.cons_prefix_cons.mp h').1
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_not_prefix_cons
+
+/-- **Independence of the prefix.**  For `1 < d`, `z ∈ Z` and nonempty `c`, `c'`,
+`φ_c z = φ_{c'} z`. -/
+theorem higSw_phi_ker_indep {d : ℕ} (hd : 1 < d) {c c' : List (Fin d)} (hc : c ≠ [])
+    (hc' : c' ≠ []) {z : higmanVCCommon_Q d} (hz : z ∈ (higmanVCTreeNF_E d).ker) :
+    higSw_phi d c z = higSw_phi d c' z := by
+  obtain ⟨a, l, rfl⟩ := List.exists_cons_of_ne_nil hc
+  obtain ⟨a', l', rfl⟩ := List.exists_cons_of_ne_nil hc'
+  by_cases haa : a = a'
+  · have : Nontrivial (Fin d) := Fin.nontrivial_iff_two_le.mpr hd
+    obtain ⟨b, hb⟩ := exists_ne a
+    have hb' : b ≠ a' := fun h => hb (h.trans haa.symm)
+    exact (higSw_phi_ker_indep_incomp hd (higSw_not_prefix_cons hb.symm l [])
+      (higSw_not_prefix_cons hb [] l) hz).trans
+      (higSw_phi_ker_indep_incomp hd (higSw_not_prefix_cons hb' [] l')
+        (higSw_not_prefix_cons hb'.symm l' []) hz)
+  · exact higSw_phi_ker_indep_incomp hd (higSw_not_prefix_cons haa l l')
+      (higSw_not_prefix_cons (Ne.symm haa) l' l) hz
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_phi_ker_indep
+
+/-- **Fixedness.**  For `1 < d`, `z ∈ Z` and nonempty `c`, `c'`, the element `w = φ_c z` is
+fixed by `φ_{c'}`. -/
+theorem higSw_phi_ker_fixed {d : ℕ} (hd : 1 < d) {c c' : List (Fin d)} (hc : c ≠ [])
+    (hc' : c' ≠ []) {z : higmanVCCommon_Q d} (hz : z ∈ (higmanVCTreeNF_E d).ker) :
+    higSw_phi d c' (higSw_phi d c z) = higSw_phi d c z := by
+  rw [higSw_phi_append]
+  exact higSw_phi_ker_indep hd (List.append_ne_nil_of_left_ne_nil hc' c) hc hz
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_phi_ker_fixed
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

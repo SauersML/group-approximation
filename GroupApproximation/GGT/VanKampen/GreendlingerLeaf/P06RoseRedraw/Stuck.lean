@@ -77,8 +77,8 @@ theorem p06RoseRedraw_step_notStuck
     by_cases hgood : GoodTurnCorners X d₀ (K.boundary.cycle.next d₀ hd₀)
     · exact exists_step_of_goodCorners hlabel K hK hij hfirst hsecond hd₀ rfl hnf
         (huncross_of_not_turnCrossed hnc) hgood
-    · exact exists_step_of_badCorners MonogonCorner.badCornerRefinement hlabel K hK hij hfirst
-        hsecond hd₀ rfl hnf (huncross_of_not_turnCrossed hnc) hgood
+    · exact exists_step_of_badCorners MonogonCorner.badCornerRefinement.{u, w, v} hlabel K hK
+        hij hfirst hsecond hd₀ rfl hnf (huncross_of_not_turnCrossed hnc) hgood
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseRedraw_step_notStuck
 
@@ -106,7 +106,7 @@ theorem p06RoseRedraw_step_notAll
         K'.secondArc.length < (cellDarts X' j').length ∧
         K'.repeatedVisits < K.repeatedVisits := by
   by_contra hno
-  refine h fun i₂ j₂ K₂ hij₂ hK₂ hfirst₂ hsecond₂ hle => ?_
+  refine h fun _ _ K₂ hij₂ hK₂ hfirst₂ hsecond₂ hle => ?_
   by_contra hbad
   obtain ⟨X', i', j', K', hO, hl, hne, hK', h₁, h₂, hlt⟩ :=
     p06RoseRedraw_step_notStuck hlabel K₂ hK₂ hij₂ hfirst₂ hsecond₂ hbad

@@ -8,7 +8,7 @@ distinct_from:
   basilica-hnn-extension-is-fp-amenable-non-ea: that imports finite presentation and amenability of the Bartholdi–Virág extension; this shows it is not residually finite, so it lies in no self-similar group.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; no priority claimed. Non-residual finiteness of Grigorchuk's extension
+**ESTABLISHED** (lane proof below, elementary; no priority claimed. Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-and-spine-hosts-branch-substitutions.md`. Non-residual finiteness of Grigorchuk's extension
 is due to Sapir–Wise, J. Pure Appl. Algebra 166 (2002), and Grigorchuk; the uniform argument here was not found
 in the sources read.)
 
@@ -19,6 +19,8 @@ Let `G <= Aut(X^*)` be self-similar and transitive on `X`. For `x in X` and `h i
 `G` is weakly branch over `L` at the first level. Let `H` be any group containing `G` and an element `t` with
 
     t^{-1} G t ⊆ St_G(1).
+
+(For extensions written `t g t^{-1} = σ(g)`, as in `Γ̃` and `B̃`, apply this to `t^{-1}`.)
 
 Then every homomorphism `φ` from `H` to a finite group kills `ι_x([L,L]) ≠ 1` for every `x`. So `H` is not
 residually finite, and it embeds in no self-similar group and in no group acting faithfully on a locally finite
@@ -42,7 +44,7 @@ rooted tree.
 Let `Q` be finite, `φ: H -> Q`, and `K = G ∩ ker φ`.
 - **`K` is not in the level stabilizer.** `φ(t)^{-1} φ(G) φ(t) = φ(t^{-1}Gt) ⊆ φ(G)`. Conjugation is injective
   and `φ(G)` is finite, so this is an equality, and `G = (t^{-1}Gt) K ⊆ St_G(1) K`. Since `G ≠ St_G(1)`, `K`
-  contains some `k` with `k(x) = y ≠ x`.
+  contains some `k` moving a letter; let `x` be a letter it moves and `y = k(x) ≠ x`.
 - **One rigid copy becomes abelian.** For `ℓ in L`, `k ι_x(ℓ) k^{-1} = ι_y(k|_x ℓ k|_x^{-1})`, and `φ(k) = 1`.
   So `φ(ι_x(ℓ)) = φ(ι_y(m))` for an element `ι_y(m)` supported on `yX^*`. That element commutes with
   `ι_x(L)`, so `φ(ι_x(L))` is abelian.
