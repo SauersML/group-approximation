@@ -129,6 +129,61 @@ theorem witnessStepCurve_closed_chain {M : CombMap.{u}} {Γ B G₂ A G₁ : List
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepCurve_closed_chain
 
+open scoped Classical in
+/-- **The doubled bounce chain.**  Four `Hop'`-chains through the blocks of
+`Γ = B ++ G₂ ++ A ++ G₁`, joined at four bounce darts, make `Γ ++ Γ` a `Rel` chain. -/
+theorem witnessStepCurve_double_chain {M : CombMap.{u}} {Γ B G₂ A G₁ : List M.Dart}
+    {z₁ z₂ z₃ z₄ : M.Dart} (hΓ : Γ = B ++ G₂ ++ A ++ G₁)
+    (hSb : (M.alpha z₁ :: (B ++ [M.alpha z₂])).IsChain
+      (fun p q => witnessStepCurve_Hop M Γ (M.alpha p) q))
+    (hS2 : (z₂ :: (G₂ ++ [z₃])).IsChain (fun p q => witnessStepCurve_Hop M Γ (M.alpha p) q))
+    (hSa : (M.alpha z₃ :: (A ++ [M.alpha z₄])).IsChain
+      (fun p q => witnessStepCurve_Hop M Γ (M.alpha p) q))
+    (hS1 : (z₄ :: (G₁ ++ [z₁])).IsChain (fun p q => witnessStepCurve_Hop M Γ (M.alpha p) q))
+    (h₁ : z₁ ∉ Γ ∧ M.alpha z₁ ∉ Γ) (h₂ : z₂ ∉ Γ ∧ M.alpha z₂ ∉ Γ)
+    (h₃ : z₃ ∉ Γ ∧ M.alpha z₃ ∉ Γ) (h₄ : z₄ ∉ Γ ∧ M.alpha z₄ ∉ Γ) :
+    (Γ ++ Γ).IsChain (witnessStepCurve_Rel M Γ) := by
+  have hB : ∀ d ∈ B, d ∈ Γ := fun d hd => by
+    rw [hΓ]
+    exact witnessStepCurve_mem_four (Or.inl hd)
+  have hG₂ : ∀ d ∈ G₂, d ∈ Γ := fun d hd => by
+    rw [hΓ]
+    exact witnessStepCurve_mem_four (Or.inr (Or.inl hd))
+  have hA : ∀ d ∈ A, d ∈ Γ := fun d hd => by
+    rw [hΓ]
+    exact witnessStepCurve_mem_four (Or.inr (Or.inr (Or.inl hd)))
+  have hG₁ : ∀ d ∈ G₁, d ∈ Γ := fun d hd => by
+    rw [hΓ]
+    exact witnessStepCurve_mem_four (Or.inr (Or.inr (Or.inr hd)))
+  have h₂' : M.alpha z₂ ∉ Γ ∧ M.alpha (M.alpha z₂) ∉ Γ := by
+    rw [M.alpha_involutive z₂]
+    exact ⟨h₂.2, h₂.1⟩
+  have h₄' : M.alpha z₄ ∉ Γ ∧ M.alpha (M.alpha z₄) ∉ Γ := by
+    rw [M.alpha_involutive z₄]
+    exact ⟨h₄.2, h₄.1⟩
+  have hd := witnessStepCurve_chain_double
+    (witnessStepCurve_closed_chain hB hG₂ hA hG₁ hSb hS2 hSa hS1 h₁.1 h₂.2 h₃.1 h₄.2)
+  have hP := witnessStepCurve_forall_double (P := fun y => y ∈ Γ ∨ (y ∉ Γ ∧ M.alpha y ∉ Γ))
+    (Or.inr h₁) (witnessStepCurve_forall_seven (B := B) (G₂ := G₂) (A := A) (G₁ := G₁)
+      (fun d hd => Or.inl (hB d hd)) (Or.inr h₂') (fun d hd => Or.inl (hG₂ d hd))
+      (Or.inr h₃) (fun d hd => Or.inl (hA d hd)) (Or.inr h₄') (fun d hd => Or.inl (hG₁ d hd)))
+  have hf := witnessStepCurve_chain_filter (fun e => decide (e ∈ Γ))
+    (fun y => y ∉ Γ ∧ M.alpha y ∉ Γ)
+    (fun _ _ _ r₁ r₂ hq => witnessStepCurve_rel_trans r₁ r₂ hq.1 hq.2) _ hd
+    (fun y hy hp => (hP y hy).resolve_left (of_decide_eq_false hp))
+  have hL := witnessStepCurve_filter_four (fun e => decide (e ∈ Γ))
+    (B := B) (G₂ := G₂) (A := A) (G₁ := G₁)
+    (fun d hd => @decide_eq_true _ (_) (hB d hd)) (fun h => h₂.2 (of_decide_eq_true h))
+    (fun d hd => @decide_eq_true _ (_) (hG₂ d hd)) (fun h => h₃.1 (of_decide_eq_true h))
+    (fun d hd => @decide_eq_true _ (_) (hA d hd)) (fun h => h₄.2 (of_decide_eq_true h))
+    (fun d hd => @decide_eq_true _ (_) (hG₁ d hd))
+  have he := witnessStepCurve_filter_double (fun e => decide (e ∈ Γ))
+    (fun h => h₁.1 (of_decide_eq_true h)) (hL.trans hΓ.symm)
+  rw [he] at hf
+  exact hf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepCurve_double_chain
+
 end FourPieceWitness
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
