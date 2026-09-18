@@ -10,7 +10,9 @@ distinct_from:
   odometer-2v-is-fp-simple-and-contains-bs12: that puts BS(1,2) = <s,u> in 2V_tau; this shows that copy is not the <a,b> of any image of BG.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not yet refereed; no novelty claimed).
+**ESTABLISHED** (lane proof, elementary; no novelty claimed). Reviewed: gq-referee-a PASS,
+proof-gap lens (`research/artifacts/gq-referee-a-bg-in-isometric-brick-hosts-needs-unbounded-exponents.md`,
+5d3e18e0b; nits N1 and N2 applied below). Citation review by gq-referee-b pending.
 
 ## Setting
 
@@ -68,8 +70,11 @@ together, so length differences add.
   `(u_j w_j) ↦ (v_j η_j(w_j))`, `η_j` isometries. If `g^m` sends such a brick onto
   `Π C(p_j)` with `|p_j| = |u_j| + S^j_m(x) < L`, extend `u_j` by the next `L − |p_j|` digits
   of `x_j`. An isometry maps a cone of the extra length onto a cone of the same length, so
-  the image brick then lies in one table brick of `g`. Hence
-  `ℓ^j_{m+1}(x) ≤ max(ℓ^j_m(x), L − S^j_m(x))`, and `ℓ^j_m(x) ≤ L + K` for all `m ≥ 0`.
+  the image brick then has every prefix length `≥ L`. A brick all of whose prefixes `p_j`
+  have length `≥ L` lies in one table brick of `g`, because the table prefixes (of length
+  `≤ L`) containing a point of it are prefixes of the `p_j`. Hence
+  `ℓ^j_{m+1}(x) ≤ max(ℓ^j_m(x), L − S^j_m(x))`. Starting from `ℓ^j_0 = 0`, induction gives
+  `ℓ^j_m(x) ≤ L + K` for all `m ≥ 0`.
   The same holds for `g^{-1}`, since `S_m(g^{-1}, x) = −S_m(g, g^{-m} x)`.
 - *Equicontinuity.* Put `N = L + K`. Every `g^m`, `m ∈ Z`, acts on every level-`N` brick as
   `(u_j w_j) ↦ (v_j η_j(w_j))` with `|v_j| ≥ N − K`. If `x, y` lie in one level-`N` brick with
@@ -80,8 +85,9 @@ together, so length differences add.
   through `φ`. By `baumslag-gersten-equicontinuous-generator-acts-trivially`, `a` acts
   trivially, so `g = id`. That contradicts the hypothesis.
 
-**Item 3.** If `d(x, y) < 2^{-L(f)+1}`, then `x, y` lie in one table brick of `f`, and their
-common prefix lengths drop by at most `L(f)`. Otherwise `d(x,y) ≥ 2^{-L(f)+1}`. So `f` is
+**Item 3.** If `d(x, y) < 2^{-L(f)+1}`, then `x, y` lie in one table brick `Π C(u_j) → Π C(v_j)`
+of `f`, and their common prefix lengths change by `|v_j| − |u_j| ≥ −|u_j| ≥ −L(f)`. Otherwise
+`d(x,y) ≥ 2^{-L(f)+1}`, and `d(fx, fy) ≤ diam(C^n) = 1 ≤ 2^{L(f)-1} d(x,y)`. So `f` is
 `2^{L(f)}`-Lipschitz. `(C^n, d)` has upper box dimension `n` (it needs `2^{nk}` balls of
 radius `2^{-k}`). The textbook bound `h(f) ≤ dim_B · max(0, log Lip(f))` gives
 `h(f) ≤ n L(f) log 2 < ∞`. Now `φ(b) g φ(b)^{-1} = g^2` gives `h(g) = h(g^2) = 2h(g)`, so
