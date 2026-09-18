@@ -5609,6 +5609,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.CoefficientS
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.GenIndex
 import GroupApproximation.Manuscript.NonMFNotes.Full.AdianRabin.Unconditional
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Norm
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.RelatorsFinite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
