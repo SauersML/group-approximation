@@ -44,17 +44,20 @@ theorem higmanVC_complete_of_parts {d : ℕ} (hd : 0 < d)
     (FreeGroup.lift (vgenShortSwaps (Fin d))).ker ≤
       Subgroup.normalClosure (higmanVFPRelators d) := by
   intro r hr
-  have h1 : higmanVC_iota d r ∈ (higmanVC_evalAll d).ker := by
-    rw [MonoidHom.mem_ker, ← MonoidHom.comp_apply, higmanVC_evalAll_comp_iota]
-    exact MonoidHom.mem_ker.mp hr
-  have h2 : Subgroup.normalClosure (higmanVC_rels d fun _ => True) ≤ (higmanVC_psi d τ).ker :=
-    Subgroup.normalClosure_le_normal fun t ht => by
-      by_cases hs : t ∈ higmanVC_rels d (fun l => l.length ≤ 3)
-      · exact MonoidHom.mem_ker.mpr (higmanVC_psi_short τ hd hs)
-      · exact MonoidHom.mem_ker.mpr (hB t ht hs)
-  have h3 : higmanVC_mk d r = 1 := by
-    rw [← higmanVC_psi_comp_iota d τ, MonoidHom.comp_apply]
-    exact MonoidHom.mem_ker.mp (h2 (hA h1))
+  have h1 : higmanVC_iota d r ∈ (higmanVC_evalAll d).ker :=
+    MonoidHom.mem_ker.mpr
+      ((MonoidHom.comp_apply (higmanVC_evalAll d) (higmanVC_iota d) r).symm.trans
+        ((DFunLike.congr_fun (higmanVC_evalAll_comp_iota d) r).trans (MonoidHom.mem_ker.mp hr)))
+  have h2 : Subgroup.normalClosure (higmanVC_rels d fun _ => True) ≤ (higmanVC_psi d τ).ker := by
+    refine Subgroup.normalClosure_le_normal ?_
+    intro t ht
+    by_cases hs : t ∈ higmanVC_rels d (fun l => l.length ≤ 3)
+    · exact MonoidHom.mem_ker.mpr (higmanVC_psi_short τ hd hs)
+    · exact MonoidHom.mem_ker.mpr (hB t ht hs)
+  have h3 : higmanVC_mk d r = 1 :=
+    (DFunLike.congr_fun (higmanVC_psi_comp_iota d τ) r).symm.trans
+      ((MonoidHom.comp_apply (higmanVC_psi d τ) (higmanVC_iota d) r).trans
+        (MonoidHom.mem_ker.mp (h2 (hA h1))))
   exact higmanVC_mem_of_mk h3
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_complete_of_parts
