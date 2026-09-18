@@ -10,10 +10,13 @@ distinct_from:
   fg-piecewise-linear-hosts-omit-natural-gl-n-q: that bounds the linear parts of affine pieces and uses a fixed point where the derivative is g; this needs no fixed point or derivative, and covers any topologically free group linear over a commutative ring (projective, adelic, wreath) through rigidity of germs.
 artifacts:
   - research/artifacts/gq-gq-solenoid-adelic-models.md
+  - research/artifacts/gq-referee-b-piecewise-commutative-linear-hosts-miss-linear-gl-n-q.md
 ---
 
 **ESTABLISHED** through `piecewise-commutative-linear-hosts-miss-linear-gl-n-q-proof`.
-This is a lane proof; it has not been independently reviewed.
+This is a lane proof. It has one independent review: PASS by gq-referee-b
+(citation and hypothesis lens), with wording amendments W1–W3, all applied below;
+see `research/artifacts/gq-referee-b-piecewise-commutative-linear-hosts-miss-linear-gl-n-q.md`.
 
 ## Setting
 
@@ -63,21 +66,40 @@ In each instance `L` is linear over a commutative ring and topologically free on
 3. **Adelic prefix maps.** `X = Ẑ ⊆ Y = A_f`, with pieces
    `z ↦ b + (N'/N)(z − a)` from `a + NẐ` onto `b + N'Ẑ`, and `L = Aff_1(Q)`.
 4. **Real projective.** `X = Y = RP^{n-1}` with `L = PGL_n(R) ≤ GL_{n^2}(R)`.
-   - This covers Thompson's `T` in its piecewise-`PSL_2(Z)` form.
-   - It covers every group of piecewise-projective homeomorphisms with finitely
-     many pieces per element: Monod's groups `H(A)`, Thurston's PIP groups, and
-     groups of Lodha–Moore type.
+   - This covers Thompson's `T`, which is isomorphic to the group of PIP
+     homeomorphisms of the circle `RP^1` (survey Remark 5.5).
+   - It covers every group of piecewise-projective homeomorphisms of `RP^{n-1}`
+     with finitely many pieces per element: Monod's groups `H(A)` and groups of
+     Lodha–Moore type.
    - So no finitely generated such group contains the natural `PSL_2(Q)` or
      `PGL_n(Q)`.
+   - **Sphere of rays.** Thurston's PIP groups of the spheres `S^{6g-7}` (survey
+     Remark 5.5) do not live on `RP^{n-1}`. They act on the sphere of rays
+     `Y = X = (R^m \ 0)/R_{>0}`, with `L = GL_m(R)/R_{>0} ≅ SL^±_m(R)`, the matrices
+     of determinant `±1`. This `L` is linear and topologically free on the rays,
+     so the lemma covers these groups too. It excludes the natural
+     `SL^±_m(Q)`, and so `SL_m(Q)`, in any finitely generated such group.
 5. **d-adic prefix maps.** `X = Z_d^n ⊆ Y = Z_d[1/d]^n` with
    `Z_d = lim Z/d^k Z = ∏_{p|d} Z_p` and `L = Aff_n(Z_d[1/d])`. This covers the
    Higman–Thompson groups `V_d`, Scott's groups `Sc(n)` (`d = 2`), and
    Röver–Nekrashevych groups `V_d(G)` of self-similar affine groups `G`.
    - Brin–Thompson `nV` uses `L = Aff_1(Q_2) ≀ S_n ≤ GL_{2n}(Q_2)` on
      `X = Z_2^n`.
-   - Here the lemma says only that the globally affine elements of `nV` form a
-     residually finite group. It does not exclude Kojima–Sheng's `Q ≤ 2V`, whose
-     elements are not globally affine.
+
+**Only part (a) has content in instances 3 and 5.** There the stabilizer of `X`
+in `L` has no nontrivial divisible subgroup:
+- in instance 3 it is `Z ⋊ {±1}`;
+- in instance 5 it is `Aff_n(Z_d)` (resp. `Aff_1(Z_2) ≀ S_n` for `nV`), which is
+  profinite (resp. profinite-by-finite), hence residually finite, so it has no
+  nontrivial divisible subgroup by step 4 of the proof.
+
+So the hypothesis `ρ(g)(X) = X` of (b) never holds for a divisible `G`, and (b)
+excludes nothing there; no linear `GL_n(Q)` acts on `X` in the first place. What
+the lemma does say for `V_d`, `Sc(n)`, `V_d(G)`, `nV` and the prefix group on
+`Ẑ` is (a) plus the first sentence of (b): in a finitely generated such group,
+the globally-`L` elements form a finitely generated, residually finite group. So
+every divisible subgroup, such as Kojima–Sheng's `Q ≤ 2V`, consists of elements
+that are not globally in `L`.
 
 ## Scope
 
