@@ -64,6 +64,7 @@ first, and every non-first passage crossed.
 | ≤ 6   | 9,010               | 274                    | 1,267                  |
 | ≤ 7   | 178,196             | 1,275                  | 8,274                  |
 | ≤ 8   | 36,394 (degree ≤ 4) | 2,834                  | 11,809                 |
+| ≤ 8   | 116,345 (degree ≤ 5)| 4,392                  | 25,536                 |
 
 The naive parity `#O ≡ 1 + excess` fails: 79,453 instances at ≤ 7 darts break it.  So the cycle
 count `c_x` is needed.

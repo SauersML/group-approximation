@@ -97,7 +97,8 @@ theorem higmanVCTauDeep_hopD_case {d : ℕ} (hd : 1 < d) {n : ℕ}
           (higmanVC_psi d (higmanVCTau_tau d) (FreeGroup.of (p0 ++ [a], q0 ++ [a]))) := by
     intro b _ hba
     obtain ⟨hbx, hby, hLb⟩ := hsib b hba
-    have e1 := higmanVCTauDeep_leg hd hB hS _ _ (higmanVFP_len_succ hp0 b)
+    have e1 := higmanVCTauDeep_leg hd hB hS (higmanVFP_ext_incomp h0 h0' b b)
+      (higmanVFP_ext_incomp h0' h0 b b) (higmanVFP_len_succ hp0 b)
       (higmanVFP_len_succ hq0 b) hbx hby hxy hyx hxy hyx hLb
     have e2 := higmanVCTauDeep_sibling hd h0 h0' hp0 hq0 hba
     unfold higmanVCTauShort_conjEq at e1 e2
