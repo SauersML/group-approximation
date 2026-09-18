@@ -90,3 +90,97 @@ theorem gfaceWindThirteen_wrap_wrap {C : List M.Dart} {g : M.Face → ℤ}
   exact Relation.TransGen.tail (Relation.TransGen.single s₁) s₂
 
 end Steps
+
+section Lobes
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **An explicit two-lobe witness with nested wraps**: one of the four shapes of
+`gfaceWindTwelve_Lobes K`, or the shape `WW` (module docstring) with simple closed wrapping
+stretches, and the passing clauses at the explicit resulting state. -/
+def gfaceWindThirteen_Lobes (K : PocketFaceSet D eps X lo hi) : Prop :=
+  gfaceWindTwelve_Lobes K ∨
+    ∃ z₁ y₁ m y₂ z₂ : List X.toCombMap.Dart,
+      K.boundary.cycle = z₁ ++ y₁ ++ m ++ y₂ ++ z₂ ∧
+      IsSimpleClosedWalk X.toCombMap (z₂ ++ z₁) ∧ IsSimpleClosedWalk X.toCombMap (y₂ ++ y₁) ∧
+      gfaceWindTwelve_Good K m (fun f =>
+        gfaceWind_ind K.faces f - gfaceWind_wind X.toCombMap X.outerFace (z₂ ++ z₁) f -
+          gfaceWind_wind X.toCombMap X.outerFace (y₂ ++ y₁) f)
+
+/-- **The arc-keeping winding choice from an explicit witness with nested wraps.** -/
+theorem gfaceWindThirteen_arcs_of_lobes (K : PocketFaceSet D eps X lo hi)
+    (h : gfaceWindThirteen_Lobes K) : gfaceWindNine_Arcs K := by
+  rcases h with h | ⟨z₁, y₁, m, y₂, z₂, hC, hZ, hY, hg⟩
+  · exact gfaceWindTwelve_arcs_of_lobes K h
+  · exact gfaceWindTwelve_arcs_of_reach K
+      (gfaceWindThirteen_wrap_wrap z₁ y₁ m y₂ z₂ hC hZ hY) hg
+
+/-- **A two-lobe witness is a witness with nested wraps.** -/
+theorem gfaceWindThirteen_lobes_of_twelve (K : PocketFaceSet D eps X lo hi)
+    (h : gfaceWindTwelve_Lobes K) : gfaceWindThirteen_Lobes K :=
+  Or.inl h
+
+end Lobes
+
+/-- **The explicit statement with nested wraps** (OPEN; logically WEAKER than
+`gfaceWindTwelve_Statement`, and STRONGER than `gfaceWindNine_Statement`; see the module
+docstring).  Under the premises of `gfaceWindSix_Statement`, an explicit witness with nested
+wraps exists. -/
+def gfaceWindThirteen_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K → ¬ gfaceChoose_Loop K →
+        gfaceWindThirteen_Lobes K
+
+/-- **The statement with nested wraps from the two-lobe statement**: the residual is no
+stronger than `gfaceWindTwelve_Statement`. -/
+theorem gfaceWindThirteen_of_twelve (h : gfaceWindTwelve_Statement.{u, w, v}) :
+    gfaceWindThirteen_Statement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL
+  exact gfaceWindThirteen_lobes_of_twelve K
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL)
+
+/-- **`gfaceWindNine_Statement` from the statement with nested wraps.** -/
+theorem gfaceWindThirteen_nine_of_statement (h : gfaceWindThirteen_Statement.{u, w, v}) :
+    gfaceWindNine_Statement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL
+  exact gfaceWindThirteen_arcs_of_lobes K
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL)
+
+/-- **`gfaceWindSix_Statement` from the statement with nested wraps.** -/
+theorem gfaceWindThirteen_six_of_statement (h : gfaceWindThirteen_Statement.{u, w, v}) :
+    gfaceWindSix_Statement.{u, w, v} :=
+  gfaceWindNine_six_of_statement (gfaceWindThirteen_nine_of_statement h)
+
+/-- **The face-set flip statement from the statement with nested wraps.** -/
+theorem gfaceWindThirteen_extremal (h : gfaceWindThirteen_Statement.{u, w, v}) :
+    extremalGFaceProve_Statement.{u, w, v} :=
+  gfaceWindNine_extremal (gfaceWindThirteen_nine_of_statement h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_wrap_wrap
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_Lobes
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_arcs_of_lobes
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_lobes_of_twelve
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_Statement
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_of_twelve
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_nine_of_statement
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_six_of_statement
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_extremal

@@ -67,3 +67,48 @@ def pinchAbsSub_OutsideStatement : Prop :=
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsSub_OutsideStatement
+
+/-- **Clauses (a) and (c).**  The premise block of `pinchAbs_ResidualStatement` verbatim,
+with the conclusion `pinchFollow_Conclusion ∨ pinchAbsSub_TouchTail`. -/
+def pinchAbsSub_TouchTailStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+        ¬ (0 < (a.cellArcList i).length ∧ 0 < (a.cellArcList j).length ∧
+            0 < (b.cellArcList i).length ∧ 0 < (b.cellArcList j).length ∧
+            (∀ d ∈ G₁.darts, PocketRun.PinchFreeAt X.toCombMap d) ∧
+            (∀ d ∈ G₂.darts, PocketRun.PinchFreeAt X.toCombMap d) ∧
+            ∃ outerWalk : List X.toCombMap.Dart,
+              EnclosedFaceSetSucc X (FourPieceWitness.witnessFaces a b K C.face) outerWalk ∧
+                ∀ d ∈ outerWalk, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈
+                  FourPieceWitness.witnessFaces a b K C.face) →
+        (∀ outerWalk : List X.toCombMap.Dart,
+          EnclosedFaceSetSucc X (FourPieceWitness.witnessFaces a b K C.face) outerWalk →
+          (∀ d ∈ outerWalk, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈
+            FourPieceWitness.witnessFaces a b K C.face) →
+          ((0 < (a.cellArcList i).length ∧ 0 < (a.cellArcList j).length ∧
+              0 < (b.cellArcList i).length ∧ 0 < (b.cellArcList j).length) ∨
+            PinchCase.WalkDegenCaseNoninterleave b G₁ G₂ outerWalk) →
+          ¬ FourPieceWitness.AbsorbFaceSetStepGood G₁ G₂ outerWalk ∧
+            ∃ (p : ℕ) (hp : p < outerWalk.length),
+              (outerWalk[p] ∈ G₁.darts ∨ outerWalk[p] ∈ G₂.darts) ∧
+              ¬ PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+          pinchFollow_Conclusion a b K G₁ G₂ C.face ∨ pinchAbsSub_TouchTail a b K G₁ G₂ C.face
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsSub_TouchTailStatement
