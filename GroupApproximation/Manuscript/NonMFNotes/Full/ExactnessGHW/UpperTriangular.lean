@@ -2,6 +2,8 @@ import GroupApproximation.Monsters.ExplicitLinearModel
 import Mathlib.Algebra.Order.Field.Power
 import Mathlib.Algebra.Order.Field.Rat
 import Mathlib.Data.Matrix.Mul
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.NormNum
 
 /-!
 # Upper-triangular matrices and the dyadic grid
@@ -101,9 +103,10 @@ theorem twoDiag_mul (a b : Fin 4 → ℤ) : twoDiag a * twoDiag b = twoDiag (a +
     (funext fun i ↦ (zpow_add₀ (two_ne_zero : (2 : ℚ) ≠ 0) (a i) (b i)).symm)
 
 theorem twoDiag_zero : twoDiag 0 = 1 := by
-  show Matrix.diagonal (fun i ↦ (2 : ℚ) ^ (0 : Fin 4 → ℤ) i) = 1
-  exact (congrArg Matrix.diagonal (funext fun _ ↦ zpow_zero (2 : ℚ))).trans
-    Matrix.diagonal_one
+  have h : (fun i : Fin 4 ↦ (2 : ℚ) ^ (0 : Fin 4 → ℤ) i) = fun _ ↦ 1 :=
+    funext fun _ ↦ zpow_zero (2 : ℚ)
+  show Matrix.diagonal (fun i : Fin 4 ↦ (2 : ℚ) ^ (0 : Fin 4 → ℤ) i) = 1
+  rw [h, Matrix.diagonal_one]
 
 theorem twoDiag_mul_twoDiag_neg (k : Fin 4 → ℤ) : twoDiag k * twoDiag (-k) = 1 := by
   rw [twoDiag_mul, add_neg_cancel, twoDiag_zero]
@@ -189,7 +192,10 @@ theorem isIntegral_pow_smul_gridQuotient {b b' : Matˣ} (hb : IsGridPoint b)
     have h1 : -k' l + k l ≤ (E : ℤ) := hle'
     show 0 ≤ (E : ℤ) + (-k l + k' l)
     linarith
-  rw [val_gridQuotient h h', ← Matrix.smul_mul, ← Matrix.mul_smul]
+  have hsmul : (2 : ℚ) ^ E • (((m⁻¹ : Matˣ) : Mat) * twoDiag (-k + k') * (m' : Mat)) =
+      ((m⁻¹ : Matˣ) : Mat) * ((2 : ℚ) ^ E • twoDiag (-k + k')) * (m' : Mat) := by
+    simp only [Matrix.smul_mul, Matrix.mul_smul]
+  rw [val_gridQuotient h h', hsmul]
   exact isIntegral_mul (isIntegral_mul hm.1.2 (isIntegral_pow_smul_twoDiag E _ hd)) hm'.1.1
 
 end GroupApproximation.Full.NN09b
