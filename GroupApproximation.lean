@@ -6018,6 +6018,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.Action
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeHomotopyBasic
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalSixTermExt
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalSixTermStd
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.Endpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
