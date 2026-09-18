@@ -45,7 +45,7 @@ def matMul (M N : Mat A) (i j : Fin 3) : Table A :=
 
 theorem matEval_matMul [DecidableEq A] (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1)
     (M N : Mat A) : matEval T (matMul M N) = matEval T M * matEval T N := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   simp only [matEval_apply, Matrix.mul_apply, Fin.sum_univ_three, matMul, eval_append,
     eval_tableMul T hT]
 
@@ -73,7 +73,7 @@ def matOne (i j : Fin 3) : Table A :=
   if i = j then [(0, [])] else []
 
 theorem matEval_matOne (T : ↥X ≃ₜ ↥X) : matEval T (matOne : Mat A) = 1 := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   rw [matEval_apply, matOne, Matrix.one_apply]
   by_cases h : i = j
   · rw [if_pos h, if_pos h, eval_unitTable]
