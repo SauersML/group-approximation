@@ -29,7 +29,7 @@ lemma `diag(f, f⁻¹, 1) ∈ E₃(R⟨X⟩)`, hence `diag(τ, 1) ∈ SL₃(R[X]
 Sanity checks: (i) the stabilization is essential: the rank-`2` analogue (`τ ∈ E₂(R[X])`) is
 FALSE, since Cohn's `[[1 + yX, X²],[-y², 1 - yX]] ∉ E₂(k[y][X])`, and multiplying it by the
 elementary Weyl element `[[0,1],[-1,0]]` on the right moves the monic entry `X²` to `(0,0)`
-(its constant term is `[[0,1],[-1,0]] ∈ E₂(k[y])`); after stabilization it is in `E₃`, as the
+(as `-X²`; its constant term lies in `E₂(k[y])`); after stabilization it is in `E₃`, as the
 Statement predicts (Suslin: `SL₃(k[y, X]) = E₃`); (ii) the constant-term hypothesis is
 necessary: evaluating the conclusion at `X = 0` gives back `diag(τ(0), 1) ∈ E₃(R)`.
 
