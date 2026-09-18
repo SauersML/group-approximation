@@ -32,8 +32,8 @@ subdiagram that is not minimal is such a descent.  This module proves the two sh
   fold `x x⁻¹` on a simple boundary).  Let `P` be a pocket region whose cycles follow their
   boundaries and which holds a relator cell.  Let `g` be a letter word of length at most `ε + ε`
   with the value of the side of `P`, and suppose a relator cell lies outside `P` or
-  `|g| < |∂Δ|`.  The side value is not `1`: otherwise the pocket diagram, which has least area and
-  a cell, would bound the trivial product with zero cells.  So `g ≠ []`.  The collar
+  `|g| < |∂Δ|`.  The side value is not `1`: otherwise the pocket diagram, which has least area
+  and a cell, would bound the trivial product with zero cells.  So `g ≠ []`.  The collar
   (`GeodesicCollar.StripStep.geodesicCollarStatement_holds`, with `rest = []`) gives an
   O-equivalent `Δ''` with a pocket `P''` whose side reads `g`.  `Y = P''.diagram` has boundary
   `g`, least area (`OEquivalentDiscDiagram.leastArea`, `diagram_leastArea`), letters
@@ -195,3 +195,55 @@ theorem gl06h6_descends_of_collarShortcut (D : RelGenSet G Lambda) {eps : ℕ}
       exact hlt
 
 #audit_axioms GroupApproximation.Full.GL06h6.gl06h6_descends_of_collarShortcut
+
+/-- **A simple closed walk gives a collar shortcut** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121): the pocket of the walk, when the exterior is on its far side and
+its near side holds a relator cell. -/
+theorem gl06h6_collarShortcut_of_simpleWalk (D : RelGenSet G Lambda) {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {walk : List Delta.toCombMap.Dart}
+    (hw : IsSimpleClosedWalk Delta.toCombMap walk)
+    (hout : Delta.outerFace ∉ SimpleClosedWalkSides.sideFaces Delta.toCombMap walk)
+    {i : Fin Delta.rCellCount}
+    (hi : (Embedded.cell Delta i).face ∈ SimpleClosedWalkSides.sideFaces Delta.toCombMap walk)
+    {g : List (RelLetter G Lambda)} (hg : ∀ x ∈ g, (symmetricLabelAlphabet D).IsLetter x)
+    (hval : RelLetter.listVal g = RelLetter.listVal (Embedded.dartWord Delta walk))
+    (hglen : g.length ≤ eps + eps)
+    (hcase : (∃ j : Fin Delta.rCellCount,
+        (Embedded.cell Delta j).face ∉ SimpleClosedWalkSides.sideFaces Delta.toCombMap walk) ∨
+      g.length < Delta.boundaryWord.length) :
+    gl06h6_CollarShortcut D eps Delta := by
+  have hfol := PocketRegion.ofSimpleClosedWalk_followsBoundary hw hout
+  refine ⟨PocketRegion.ofSimpleClosedWalk hw hout, hfol.1, hfol.2, ⟨i, ?_⟩, g, hg, ?_, hglen,
+    ?_⟩
+  · rw [PocketRegion.ofSimpleClosedWalk_faces]
+    exact hi
+  · rw [PocketRegion.ofSimpleClosedWalk_invDarts_outer]
+    exact hval
+  · rw [PocketRegion.ofSimpleClosedWalk_faces]
+    exact hcase
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_collarShortcut_of_simpleWalk
+
+/-- **Any shortcut descends** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121). -/
+def gl06h6_Shortcut (D : RelGenSet G Lambda) (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W) :
+    Prop :=
+  gl06h6_EnclosedShortcut eps Delta ∨ gl06h6_CollarShortcut D eps Delta
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_Shortcut
+
+/-- **A shortcut descends** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121). -/
+theorem gl06h6_descends_of_shortcut (D : RelGenSet G Lambda) {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} (hlea : Delta.LeastArea)
+    (hletters : ∀ d, (symmetricLabelAlphabet D).IsLetter (Delta.label d))
+    (h : gl06h6_Shortcut D eps Delta) : gl06h6_Descends D eps Delta := by
+  rcases h with h | h
+  · exact gl06h6_descends_of_enclosedShortcut D hlea hletters h
+  · exact gl06h6_descends_of_collarShortcut D hlea hletters h
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_descends_of_shortcut
+
+end Shortcut
+
+end GroupApproximation.Full.GL06h6
