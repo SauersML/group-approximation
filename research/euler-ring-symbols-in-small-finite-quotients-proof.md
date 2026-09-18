@@ -23,8 +23,8 @@ requires:
   `t = [m/e − 1/(p−1)]` clamped to `[0, r]`, where `p^r = |μ_(p^∞)|` of the completion. Source: p. 254, read at the
   source. It is stated for stable `K_2`; for these local rings `K_2(N, ·) ≅ K_2` when `N >= 3` (p. 256,
   §14(iii)).
-- (M) Morita invariance: `K_2(M_m(R)) ≅ K_2(R)`, and the diagonal inclusion `R^m -> M_m(R)` induces the sum map.
-  Textbook.
+- (M) Morita invariance: `K_2(M_m(R)) ≅ K_2(R)` (Weibel, *The K-book*, III Corollary 5.6.1, pinned by
+  gq-referee-b), and the diagonal inclusion `R^m -> M_m(R)` induces the sum map.
 - (AH) Artin–Hasse: in `K = Q_l(ζ)`, `(ζ, β)_l = ζ^(Tr(log β)/l)` for `β ∈ U^(1)`, up to a sign convention.
   Textbook, not re-read.
 - (Lv) Level bounds for `K = Q_l(ζ)`, where `e = l − 1` and `el/(l−1) = l`. Textbook, not re-read.
