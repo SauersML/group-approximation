@@ -49,8 +49,9 @@ No priority is claimed beyond that.
 
 ## Not covered
 
-- **Quadratic fields whose units all have norm +1**, such as `Q(√3)`. There `H_2(Γ⋊Λ) ⊇ Z`, so `V^ab` is
-  infinite and the derived subgroup has infinite index. Whether it is still finitely presented is Tanner's
-  question in this case.
+- **Quadratic fields whose units all have norm +1**, such as `Q(√3)`. For them `H_2(Γ⋊Λ) ⊇ Z`, so the derived
+  subgroup has infinite index and its own finite presentation is open (Tanner's question). The Juschenko--Monod
+  groups of these fields are nevertheless covered by `stein-v-groups-act-with-type-a-on-breakpoints` (09-18),
+  with a twisted Brin--Thompson host.
 - **Cubic and higher angles.**
 - **Computable transcendental angles:** `transcendental-slope-thompson-groups-satisfy-boone-higman`.
