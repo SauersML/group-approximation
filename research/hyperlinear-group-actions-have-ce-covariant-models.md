@@ -49,5 +49,16 @@ equivariant fields of subgroups `S`, would all have to be non-CE. This is indepe
   (`hyperlinear-nonsofic-via-ce-covariant-models`). Every route that proves `W` or the Kun--Thom double
   nonhyperlinear refutes Q1. The sofic analogue fails at this `G` (`kun-thom-free-nonsofic-action`).
   Q1 also implies `f2xf2-crossed-products-are-connes-embeddable`.
+- **Q1 forces closure under solvable and finite kernels, and so excludes whole NH lanes
+  (swarm-0917 w12, 2026-09-18).** See `ce-covariant-models-force-solvable-kernel-closure`.
+  - Kaloujnine--Krasner puts every abelian-by-`Lambda` group inside `C ⋊ Lambda` for a countable
+    abelian `C ≤ A^Lambda`, and `L(C ⋊ Lambda) = L^infinity(Ĉ) ⋊ Lambda`.
+  - So Q1 makes every solvable-by-hyperlinear group hyperlinear, and every finite-by-hyperlinear
+    group too. In particular every central extension of a hyperlinear group is hyperlinear.
+  - Hence each of the following refutes Q1: a non-hyperlinear Kun--Thom wreath or Mihailova coset
+    wreath, an `SL_3` module witness, an algebraic envelope with a hyperlinear actor, or a Schur/`Z/p`
+    central-extension witness.
+  - Q1 is at least as strong as the open problem of central-extension permanence for hyperlinearity.
+  - Q2's used consequence, a non-CE crossed product, is already equivalent to NH under Q1.
 - **Not attempted.** No mechanism is known that promotes microstates for `Gamma` to microstates for a covariant pair
   when the action is non-free and far from amenable. This is where a proof would have to start.
