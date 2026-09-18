@@ -61,8 +61,7 @@ theorem suslinCongVac_core {S : Type*} [CommRing S] [IsDomain S] [IsGCDMonoid S]
       have h5 : a' * (c * b' + α) = 0 := by linear_combination h2 - b' * hc
       have h6 : c * b' + α = 0 := (mul_eq_zero.mp h5).resolve_left ha0
       refine ⟨gcd α β, c, a', b', ha, hb, ?_, ?_⟩
-      · rw [hc]
-        ring
+      · linear_combination hc
       · linear_combination -h6
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_core
@@ -81,6 +80,7 @@ theorem suslinCongVac_rankOne_of_trace {S : Type*} [CommRing S] [IsDomain S] [Is
   · have e00 : M 0 0 = 1 + g * r₀ := by linear_combination hα
     have e11 : M 1 1 = 1 + h * r₁ := by linear_combination htr + hδ
     refine Matrix.ext fun i j ↦ ?_
+    rw [Matrix.add_apply, Matrix.vecMulVec_apply]
     fin_cases i <;> fin_cases j <;> simp [e00, e11, hβ, hγ]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_rankOne_of_trace

@@ -79,8 +79,7 @@ theorem suslinCongVac_mem_of_trace_adj21 {A S : Type*} [CommRing A] [CommRing S]
     (suslinCongVac_mem_of_trace _ ?_ ?_)
   · rw [suslinCongVac_det_mul_elem, hdet]
   · rw [suslinCongVac_val_mul_elem, Matrix.add_apply, Matrix.add_apply,
-      Matrix.mul_single_apply_same,
-      Matrix.mul_single_apply_of_ne (1 : Fin 2) (0 : Fin 2) (1 : Fin 2) (1 : Fin 2) hne]
+      Matrix.mul_single_apply_same, Matrix.mul_single_apply_of_ne _ _ _ _ _ hne]
     linear_combination htr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_mem_of_trace_adj21
@@ -97,8 +96,7 @@ theorem suslinCongVac_mem_of_trace_adj12 {A S : Type*} [CommRing A] [CommRing S]
     (suslinCongVac_mem_of_trace _ ?_ ?_)
   · rw [suslinCongVac_det_mul_elem, hdet]
   · rw [suslinCongVac_val_mul_elem, Matrix.add_apply, Matrix.add_apply,
-      Matrix.mul_single_apply_of_ne (0 : Fin 2) (1 : Fin 2) (0 : Fin 2) (0 : Fin 2) hne,
-      Matrix.mul_single_apply_same]
+      Matrix.mul_single_apply_of_ne _ _ _ _ _ hne, Matrix.mul_single_apply_same]
     linear_combination htr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_mem_of_trace_adj12
