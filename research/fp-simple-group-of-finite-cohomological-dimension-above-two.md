@@ -44,6 +44,29 @@ the torsion of Λ' dies in the finite quotient Λ'/Λ.
     covers both sources AL cite for their seeds.
 - **Size.** Every AL instance with AL's `υ`'s has `d >= 9`, since scaffolding axiom (E4) forces it,
   so `|V(O_d)| >= 24310` (artifact `gq-bh-bh-free-42-al-scaffolding-reading.md`, §B).
+- **Structural constraints on every NST route (bh-kourovka-2146, 09-18).**
+  - `commensurated-subgroups-of-virtually-simple-groups-are-rf`: in a virtually simple group, every
+    commensurated subgroup of infinite index is residually finite. So in a virtually simple lattice in
+    a product of locally finite complexes, every slice and every subgroup with a bounded orbit on some
+    factor is residually finite.
+  - **Three trees.** No non-residually-finite 2-dimensional witness can be imported into a slice or a
+    hyperplane stabilizer, as Radu does for two trees with `Γ_{4,4}`. The witness must be unbounded on
+    all three trees.
+  - **Linear factors.** By Malcev, a factor that is a Lie group or a linear algebraic group (`ℍ^n`,
+    Bruhat–Tits buildings) cannot occur.
+  - **T × X.** It keeps an import channel through the hyperplane stabilizers `T × H`, which are not
+    commensurated.
+  - **Commensurability.** Every group abstractly commensurable with an AL lattice with `Λ = Λ'^+` has
+    torsion. A torsion-free answer needs a new commensurability class.
+- **The torsion-free AL route, restated (`kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices`).**
+  - Torsion-free lattices in `Aut(T) × Aut(X_{O_d})` with boundary-2-transitive tree closure are
+    amalgams `W_1 *_A W_2` of two torsion-free uniform lattices of `Aut(X_{O_d})` (Davis lattices) along a
+    common finite-index subgroup.
+  - Every such amalgam is finitely presented of cd 3. A simple one answers 21.46: this is Neumann's
+    `F_m *_{F_k} F_n` problem one dimension up.
+  - Its sub-amalgam on any hyperplane is a free amalgam, a lattice in a product of two trees. So
+    non-residual finiteness can be imported from a Burger–Mozes-type amalgam on one hyperplane.
+  - AL's lattice is the instance with torsion: `W_L *_A (A ⋊ ⟨z⟩)`.
 
 ## What is left
 
@@ -56,7 +79,16 @@ the torsion of Λ' dies in the finite quotient Λ'/Λ.
   - a construction on `T × X` that is torsion-free from the start;
   - a torsion-free seed, where Radu embeds his torsion-free `Γ_{4,4}` into larger (d_1,d_2)-groups.
 
-  bh-free-extensions records a parity constraint for one-vertex square complexes with link `O_d`.
+  bh-free-extensions records a parity constraint for one-vertex square complexes with link `O_d`:
+  `|V|` is even iff `d` is not a power of 2. Counting corners also gives `4 | |E(O_d)|`, so
+  `s_2(d) >= 2` and `v_2(d) + s_2(d) >= 4`, with admissible `d = 12, 14, 15, 20, …`
+  (`kourovka-21-46-reduces-to-simple-amalgams-of-davis-lattices` item 6(b)).
+
+  The torsion-free form of (b) is now one gate, **EXT**: extend a non-residually-finite free amalgam
+  `F_a *_{F_e} F_b` on a hyperplane `H_0 ≅ T_d` to two commensurable Davis lattices `W_1 ⊇ F_a`,
+  `W_2 ⊇ F_b` with `W_1 ∩ W_2 ∩ Stab(H_0) = F_e`. This is a relative Leighton theorem for one hyperplane.
+  It must be combined with AL's local conditions (N1) for density in `U(Alt_{2d-1})` and (N2) for a
+  boundary-2-transitive tree closure.
 - **(c) Three or more trees.** Such a lattice needs a non-residually-finite irreducible lattice with
   NST-type local actions. The smallest case is excluded by Radu, arXiv:1712.01091, Main Theorem on
   three trees (l.321), whose proof is a GAP computation over his (6,6)-group census. On
@@ -66,6 +98,11 @@ the torsion of Λ' dies in the finite quotient Λ'/Λ.
   - torsion-free stabilizers `Γ(v_1, v_3)` and `Γ(v_2, v_3)`.
 
   That last hypothesis is exactly the torsion-free regime that 21.46 needs.
+
+  More structurally (`commensurated-subgroups-of-virtually-simple-groups-are-rf` item 6), in any
+  virtually simple 3-tree lattice all three 2-dimensional sub-data are residually finite. So
+  non-residual finiteness must be certified intrinsically in three dimensions, which makes (c) harder
+  than the `T × X` route.
 
 ## Lesson for general BH
 
