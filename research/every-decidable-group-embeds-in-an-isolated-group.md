@@ -179,3 +179,25 @@ group.
      (Attempt 1) then forces finitely many `Q`-orbits on `X × X` and finitely generated
      stabilizers, a type (A) action. So these shapes add nothing beyond PBH. Non-permutation
      modules stay open.
+7. **Soluble arithmetic hosts (2026-09-18, lane bh-free-60).** *A class answered, not a
+   solution.*
+   - **Literature.** The question was re-read in the CGP PDF (v2, p. 12), with the same
+     wording as above. Web searches on 2026-09-18 found no later answer. Rauzy,
+     arXiv:2111.01179, discusses isolated groups computably; its abstract says they form an
+     open, not computably open, set, and does not address this question.
+   - **Established.** `hall-type-prufer-quotients-embed-in-isolated-abels-groups`. Every
+     finitely generated subgroup of a central quotient `A_{n,p}/C` of the Hall–Abels
+     triangular groups embeds in an isolated group. In particular Hall's
+     non-residually-finite group `A_3/Z` lies in the isolated group `A_4/Z` (CGP Prop. 5.7).
+     - This is a direct consequence of CGP §5.4, credited there.
+     - It answers the question on inputs that are not residually finite, which the
+       quasi-linear case does not reach.
+     - Boone–Higman for these inputs is OPEN (`fg-soluble-minimax-groups-satisfy-boone-higman`).
+     - It realizes branch (iii) of Attempt 5, an isolated host that is not locally moving.
+   - **Obstruction side.** Stabilizer-engine hosts need isolated torsion vertex groups
+     (`free-product-emitter-full-groups-need-isolated-vertex-groups`,
+     `stabilizer-engines-need-torsion-vertex-groups`), so they cannot bootstrap this
+     question.
+   - **Open next step.** For a finitely generated soluble minimax `G`, find a homomorphism
+     to an isolated group that is injective on the Chernikov radical `τ(G)`. Abels-type
+     groups with Prüfer centres are the natural targets.

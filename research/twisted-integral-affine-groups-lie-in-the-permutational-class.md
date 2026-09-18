@@ -119,3 +119,31 @@ It is the Higman–Thompson `V_(ℓ,r)` trick in `B_A` form. With
 `projective-leavitt-tensor-units-lie-in-the-permutational-class`, it shows that on both host
 machines of the graph, full groups and Leavitt-tensor unit groups, PBH is exactly finite
 presentation of the host.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS given finite presentation of `W_(P,ℓ)`
+
+Internal referee lane, not an external review. The definition of `W_(P,ℓ)` was read in
+`twisted-s-integral-affine-groups-are-fp-and-virtually-simple`:
+- it is the group of all homeomorphisms of `X` that are piecewise affine over `Z[1/ℓP]` on cosets of
+  open subgroups, up to coordinate permutations from `F`;
+- so it is full by definition, which justifies (b) and (c).
+
+**Checked.**
+- **The allowed maps.** `a_Z` is allowed, with `M = ℓ^k I` and `b = c`. The composites
+  `a_(Z') ∘ a_Z^(-1)` are affine on `T ∪ T'`, with a diagonal `ℓ`-power linear part.
+  `|det M|_ℓ ∈ ℓ^Z` and `ℓ ≡ 1 (mod ℓ−1)`, so every class of a cylinder is 1.
+- **The count adjustment in (a).**
+- **Stabilizers.** They are `D(U_1) × … × D(U_ℓ)`, using (d).
+- **The pair-orbit record.** At most `ℓ^(ℓ²)` orbits.
+- **Faithfulness.** The `ℓ − 2` singleton cylinders plus one remainder of class `≡ 1` give `ℓ`
+  pieces of class 1. For `ℓ = 2` the remainder is `X ∖ Z`.
+
+**Gaps.**
+1. **Class invariance** is used but not stated: the action on `Ω_ℓ` needs `W_(P,ℓ)` to preserve
+   classes. It does, because each piece scales `μ` by a power of `ℓ` (refine `U` into cylinders
+   inside pieces).
+2. **Notation.** In (b), `P` names a piece and also the set of primes.
+3. **Status.** Everything rests on item 1 of `twisted-s-integral-affine-groups-are-fp-and-virtually-simple`
+   (`W_(P,ℓ)` finitely presented). That item is an unreviewed, load-bearing lane proof, marked
+   "referee review requested". Until it passes, the (SQ) and (JE) conclusions for `W` and `W_(P,ℓ)` are
+   conditional on it.
