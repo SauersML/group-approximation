@@ -41,4 +41,88 @@ def higmanVCTauBin_Hop (p q x y : List (Fin 2)) : Prop :=
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_Hop
 
+/-- **Every binary instance outside the hop families has a flexible square or is `Shape`.** -/
+theorem higmanVCTauBin_good {p q x y x' y' : List (Fin 2)} (hpq : ¬ p <+: q)
+    (hqp : ¬ q <+: p) (hp : p.length ≤ 3) (hq : q.length ≤ 3)
+    (hn : x.length + y.length = x'.length + y'.length)
+    (hs : ¬ (x.length ≤ 3 ∧ y.length ≤ 3 ∧ x'.length ≤ 3 ∧ y'.length ≤ 3))
+    (hH : ¬ higmanVCTauBin_Hop p q x y)
+    (hmx : MapsCone (coneSwap p q hpq hqp) x x') (hmy : MapsCone (coneSwap p q hpq hqp) y y')
+    (hxy : ¬ x <+: y) (hyx : ¬ y <+: x) :
+    higmanVCTauClassify_Good 2 p q x y x' y' hpq hqp ∨ higmanVCTauUnif_Shape 2 p q x y ∨
+      higmanVCTauUnif_Shape 2 p q y x := by
+  have hd1 : 1 < 2 := by omega
+  have lp := higmanVCTauClassify_len_pos hpq
+  have lq := higmanVCTauClassify_len_pos hqp
+  rcases higmanVCTauClassify_tri hd1 hmx with
+    ⟨r, rfl, rfl⟩ | ⟨r, rfl, rfl⟩ | ⟨hxp, hxq, hx'⟩
+  · have e1 : (p ++ r).length = p.length + r.length := List.length_append
+    have e3 : (q ++ r).length = q.length + r.length := List.length_append
+    rcases higmanVCTauClassify_tri hd1 hmy with
+      ⟨t, rfl, rfl⟩ | ⟨t, rfl, rfl⟩ | ⟨hyp, hyq, hy'⟩
+    · -- `PP`
+      have e2 : (p ++ t).length = p.length + t.length := List.length_append
+      have e4 : (q ++ t).length = q.length + t.length := List.length_append
+      exact Or.inl (higmanVCTauBin_casePP hpq hqp hp hq (by omega)
+        (fun h => hxy ((List.prefix_append_right_inj p).mpr h))
+        (fun h => hyx ((List.prefix_append_right_inj p).mpr h)))
+    · -- `PQ`
+      have e2 : (q ++ t).length = q.length + t.length := List.length_append
+      have e4 : (p ++ t).length = p.length + t.length := List.length_append
+      exact Or.inl (higmanVCTauBin_casePQ hpq hqp hp hq
+        (fun h3 => hH (Or.inl ⟨h3, Or.inl (List.prefix_append p r),
+          Or.inr (List.prefix_append q t)⟩)) (by omega))
+    · -- `PF`
+      rw [hy'] at hn hs ⊢
+      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hyp hyq (by omega) with h | h
+      · exact Or.inl (higmanVCTauClassify_good_xy h)
+      · exact Or.inr (Or.inr h)
+  · have e1 : (q ++ r).length = q.length + r.length := List.length_append
+    have e3 : (p ++ r).length = p.length + r.length := List.length_append
+    rcases higmanVCTauClassify_tri hd1 hmy with
+      ⟨t, rfl, rfl⟩ | ⟨t, rfl, rfl⟩ | ⟨hyp, hyq, hy'⟩
+    · -- `QP`
+      have e2 : (p ++ t).length = p.length + t.length := List.length_append
+      have e4 : (q ++ t).length = q.length + t.length := List.length_append
+      exact Or.inl (higmanVCTauClassify_good_xy (higmanVCTauBin_casePQ hpq hqp hp hq
+        (fun h3 => hH (Or.inl ⟨h3, Or.inr (List.prefix_append q r),
+          Or.inl (List.prefix_append p t)⟩)) (by omega)))
+    · -- `QQ`
+      have e2 : (q ++ t).length = q.length + t.length := List.length_append
+      have e4 : (p ++ t).length = p.length + t.length := List.length_append
+      exact Or.inl (higmanVCTauClassify_good_ab (higmanVCTauBin_casePP hpq hqp hp hq
+        (by omega) (fun h => hxy ((List.prefix_append_right_inj q).mpr h))
+        (fun h => hyx ((List.prefix_append_right_inj q).mpr h))))
+    · -- `QF`
+      rw [hy'] at hn hs ⊢
+      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hyp hyq (by omega) with h | h
+      · exact Or.inl (higmanVCTauClassify_good_ab (higmanVCTauClassify_good_xy h))
+      · exact Or.inr (Or.inr (higmanVCTauBin_shape_pq h))
+  · rw [hx'] at hn hs ⊢
+    rcases higmanVCTauClassify_tri hd1 hmy with
+      ⟨t, rfl, rfl⟩ | ⟨t, rfl, rfl⟩ | ⟨hyp, hyq, hy'⟩
+    · -- `FP`
+      have e2 : (p ++ t).length = p.length + t.length := List.length_append
+      have e4 : (q ++ t).length = q.length + t.length := List.length_append
+      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hxp hxq (by omega) with h | h
+      · exact Or.inl h
+      · exact Or.inr (Or.inl h)
+    · -- `FQ`
+      have e2 : (q ++ t).length = q.length + t.length := List.length_append
+      have e4 : (p ++ t).length = p.length + t.length := List.length_append
+      rcases higmanVCTauBin_caseFP hpq hqp hp (by omega) hxp hxq (by omega) with h | h
+      · exact Or.inl (higmanVCTauClassify_good_ab h)
+      · exact Or.inr (Or.inl (higmanVCTauBin_shape_pq h))
+    · -- `FF`
+      rw [hy'] at hn hs ⊢
+      by_cases h33 : p.length = 3 ∧ q.length = 3
+      · exact (hH (Or.inr ⟨h33.1, h33.2, hxp, hxq, hyp, hyq⟩)).elim
+      have h2 : p.length ≤ 2 ∨ q.length ≤ 2 := by omega
+      by_cases hx3 : 3 ≤ x.length
+      · exact Or.inl (higmanVCTauBin_caseFF hpq hqp hp hq h2 hxp hxq hyp hyq hyx hx3)
+      · exact Or.inl (higmanVCTauClassify_good_xy
+          (higmanVCTauBin_caseFF hpq hqp hp hq h2 hyp hyq hxp hxq hxy (by omega)))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_good
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
