@@ -114,3 +114,24 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      - So every `∂_(π_k)(w) = 1`. ∎
    - *Not covered.* The skew-Laurent level, meaning the image of `K_2(A_p[x^(±1); σ]) -> K_2(D)`, where `I_p` lives
      only on the `K_2(A)_σ` summand. And the non-commutative `B` itself.
+3. **(C2) The cheap sufficient condition, `K_2(N, T_p)` finitely generated and central (2026-09-18, lane gq-k2-q).**
+   Not established.
+   - *Facts proved (elementary).*
+     - **Grading.** All relations of `B` are homogeneous for the `b`-degree (`deg u = deg x = 0`, `deg b = 1`).
+       So `B = ⊕_(d>=0) B_d`, with `B_0 = Z[u][x^(±1); σ]`, a domain.
+     - **Units.** The degree-0 part of a unit is a unit of `B_0`, hence `±x^k`. So `B^x = {±x^k}·(B^x ∩ (1 + B_+))`.
+       The units of the commutative image are exactly `±x^k` (Attempt 2 setting).
+     - **The lamp commutators are torsion.** From `b_k u = p − (1+kl) b_k` and `[b_j, u] = 0`, expanding `b_k u b_j`
+       both ways gives `p(b_j − b_k) = (k−j) l b_k b_j`. Swapping `j` and `k` gives `(k−j) l [b_j, b_k] = 0`.
+       So the non-commutation of C1 lives in the torsion of `B`, and is visible only in characteristic dividing
+       `(k−j) l`.
+   - *Why it does not close.*
+     - The Dennis–Stein generation theorem (St) is for commutative rings. No available result generates `K_2(N, B)`
+       by symbols for this non-commutative `B`.
+     - Listing Dennis–Stein pairs is therefore not a computation of `K_2(N, T_p)`.
+       - Among commuting pairs with `1 + ab ∈ {±x^k}`, the ones in `Z[x^(±1)]` give only `K_2(Z[x^(±1)])`, which is
+         finite.
+       - Pairs with `ab = 0`, such as `⟨p, n⟩` with `pn = 0`, give Swan's elements, which are not controlled.
+     - Centrality of `K_2(N, ·)` also needs a stable-range bound, and none is known for `B`.
+   - *Remaining route.* The `p`-localization sequence, with the `E_k`-residue invariant of Attempt 2 lifted to the
+     skew-Laurent level.
