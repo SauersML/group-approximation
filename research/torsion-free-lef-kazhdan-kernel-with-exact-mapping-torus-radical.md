@@ -10,7 +10,8 @@ distinct_from:
   torsion-free-lef-kazhdan-non-rf-seed: that seed is torsion-free, LEF and Kazhdan but has finite quotients, so its mapping-torus radicals stay inside its centre.
   torsion-free-sofic-extrinsic-kazhdan-defect-kernel: that asks for a sofic kernel with an extrinsic compression defect; this asks for a LEF kernel and a bare radical equation, with soficity automatic.
 artifacts:
-  - research/permanence-closure-radical-witnesses-have-lef-kernels.md
+  - research/quotient-permuting-and-ambient-inner-mapping-tori-are-lef.md
+  - research/char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless.md
 ---
 
 **OPEN.** There exist a nontrivial finitely generated group `K` and `φ ∈ Aut(K)` such that
@@ -53,3 +54,35 @@ Kazhdan, since they eventually become quotients of one finitely presented Kazhda
 sequence of almost-representations of `G` in the norm corona can be faithful on `K`. A natural first test
 case is (L1)-(L2) for a torsion-free alternating limit with `φ` induced by an automorphism of the mother
 group that permutes the quotient sequence.
+
+## Attempts
+
+**Attempt 1 (swarm-0917 w12-titz-follow): the first test case and standard automorphisms. Dead for
+these classes; the claim stays OPEN.**
+
+- **The suggested test case is dead.** By (B) of `quotient-permuting-and-ambient-inner-mapping-tori-are-lef`,
+  an automorphism of a finitely generated mother `M` that permutes a sequence of finite quotients has
+  finite orbits. This is because `M` has only finitely many normal subgroups with a given finite
+  quotient. Intersecting over the orbits gives an invariant finite quotient family converging to `K`,
+  so `G` is a marked limit of finite groups `(M/L_i) ⋊ Z/c_i`. `G` is LEF, and (LK3) fails. The
+  "shift" `N_(n+1) = α(N_n)` needed at the wrap cannot occur. So (L2) cannot be reached by choosing the
+  mother automorphism, for any `K`, torsion-free or not.
+- **Ambient virtual innerness is dead.** By (C), if a power of `φ` is inner in a LEF group containing
+  `K`, then `G` is LEF. For elementary kernels `EL_n(R)` over rings with integral or finite-field
+  periodic models, this kills:
+  - conjugation by diagonal units;
+  - `EL_n(σ)` for every ring automorphism `σ` with an inner power, including those induced by
+    `ψ ∈ Aut(X,T)` with `ψ^r ∈ <T>`, and the finite-spatial-class automorphisms of
+    `subshift-diagonal-automorphisms-need-infinite-spatial-class`.
+- **Characteristic-zero base for (L1).** `char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless`
+  shows that `Q_0 = EL_3(LC(X,Z) ⋊ Z)` is LEF, Kazhdan and quotientless, with root elements of infinite
+  order. It still has 2-torsion, so it does not give (L1). Relation covers over it evade (RE) at root
+  elements. They still die at the permutation-module envelope, by
+  `relation-cover-sofic-envelope-forces-trivial-kernel` item 2.
+- **Tried and unresolved.** A characteristic-zero analogue of (RE) at the sign element, via the lift
+  `W = e_12(j) e_21(-j) e_12(j)` with `j ∈ J` and `j + a = 1` for a congruence ideal `J`. Whether
+  `W^4 ∈ R_sat` is open.
+- **What is left for (L2).** An automorphism with no power inner in any LEF overgroup of `K`, and with
+  no invariant approximating family in any mother presentation. For elementary kernels, this means a
+  nonstandard automorphism, or `EL_n(σ)` with `σ` of infinite order modulo inner automorphisms, e.g.
+  induced by `ψ ∈ Aut(X,T)` of infinite order modulo `<T>`.

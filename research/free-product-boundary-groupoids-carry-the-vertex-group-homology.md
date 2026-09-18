@@ -196,9 +196,13 @@ Fix `k >= 2` and a countably infinite group `B`. Put `A = Z/k` and `D = A * B`.
     `B`-vertex is an infinite emitter, so that hypothesis fails.
   - So a BH host built on infinite emitters must prove finite presentation by an argument
     that sees the word problem of the isotropy.
-- **Open.** For which `B` (at least: finitely presented, perfect, solvable word problem)
-  is `D(F)` finitely presented? Already `B = Z` is open
-  (`reid-higman-thompson-variant-d-zero-abelianization`).
+- **Necessary condition (added 2026-09-18).** If `F` or `D(F)` is finitely presented, then
+  `B` is *isolated*: finitely presented, and every nontrivial normal subgroup meets a fixed
+  finite set. This is `free-product-emitter-full-groups-need-isolated-vertex-groups`.
+  - So `B = Z` (Reid's group) fails, and so does every infinite residually finite or
+    hyperbolic `B`.
+  - It remains open whether some infinite isolated `B`, for example a finitely presented
+    simple group, gives a finitely presented `D(F)`.
 
 ## Referee (bh-ref-misc, 2026-09-18): PASS
 
