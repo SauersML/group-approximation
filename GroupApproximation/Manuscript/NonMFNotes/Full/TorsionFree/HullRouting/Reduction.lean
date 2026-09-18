@@ -117,7 +117,7 @@ theorem routedQuotient_of_hullTower {G : Type} [Group G] (hG : IsPowerTorsionFre
 
 end GroupApproximation.Full.NN07d
 
-#audit_closed_axioms GroupApproximation.Full.NN07d.suitable_of_infinite_normal
-#audit_closed_axioms GroupApproximation.Full.NN07d.exists_fin_generating_family
-#audit_closed_axioms GroupApproximation.Full.NN07d.exists_routingParameters
-#audit_closed_axioms GroupApproximation.Full.NN07d.routedQuotient_of_hullTower
+#audit_axioms GroupApproximation.Full.NN07d.suitable_of_infinite_normal
+#audit_axioms GroupApproximation.Full.NN07d.exists_fin_generating_family
+#audit_axioms GroupApproximation.Full.NN07d.exists_routingParameters
+#audit_axioms GroupApproximation.Full.NN07d.routedQuotient_of_hullTower

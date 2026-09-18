@@ -43,7 +43,7 @@ normalizing cyclic extensions in an amenable ambient group
 
 namespace GroupApproximation.Full.TWW
 
-open Matrix
+open scoped Matrix
 open scoped Matrix.Norms.L2Operator
 
 variable {G : Type} [Group G]
@@ -107,7 +107,7 @@ theorem regularMat_of_mem (K : Subgroup G) [Finite K] {g : G} (hg : g ∈ K) :
           Matrix (subgroupModel K) (subgroupModel K) ℂ) := by
   rw [regularMat, dif_pos hg]
 
-theorem regularMat_of_not_mem (K : Subgroup G) [Finite K] {g : G} (hg : g ∉ K) :
+theorem regularMat_of_notMem (K : Subgroup G) [Finite K] {g : G} (hg : g ∉ K) :
     regularMat K g = 0 := by
   rw [regularMat, dif_neg hg]
 
@@ -118,7 +118,7 @@ theorem norm_regularMat_le_one (K : Subgroup G) [Finite K] (g : G) :
     exact NegativeCornerModel.norm_le_one_of_mem_unitaryGroup
       (Manuscript.MFRecognition.Sentences.finiteGroupRegularHom (subgroupModel K)
         ((⟨g, hg⟩ : K) : subgroupModel K)).2
-  · rw [regularMat_of_not_mem K hg, norm_zero]
+  · rw [regularMat_of_notMem K hg, norm_zero]
     exact zero_le_one
 
 theorem regularMat_mul (K : Subgroup G) [Finite K] {g h : G} (hg : g ∈ K)
@@ -202,7 +202,7 @@ theorem isModelled_of_isLocallyFiniteGroup {L : Subgroup G}
   refine isModelled_of_forall_exists_finite fun F hF => ?_
   obtain ⟨K', hK'fin, hK'⟩ := h (F.subtype fun g => g ∈ L)
   refine ⟨K'.map L.subtype,
-    Finite.of_equiv K' (K'.equivMapOfInjective L.subtype Subtype.val_injective).toEquiv,
+    Finite.of_equiv K' (K'.equivMapOfInjective L.subtype L.subtype_injective).toEquiv,
     fun g hg => ?_⟩
   exact Subgroup.mem_map_of_mem L.subtype (hK' ⟨g, hF g hg⟩ (Finset.mem_subtype.mpr hg))
 

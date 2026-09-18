@@ -1,5 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.HeadShapeDeps
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.WindowHeadSplit
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.WindowHeadSplit
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -29,7 +29,7 @@ universe u w v
 /-- **The head split interface** (lane gl-p04-04): `HeadShape.WindowHeadSplitStatement` holds. -/
 theorem statement : HeadShape.WindowHeadSplitStatement.{u, w, v} := by
   intro _ _ _ _ _ _ _ _ _ _ _ _ Q k i x y hi hxy hy hng hne
-  exact Piece04.WindowShape.WindowHeadSplit.split Q k i x y hi hxy hy hng hne
+  exact WindowHeadSplit.split Q k i x y hi hxy hy hng hne
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.WindowShape.WindowHeadSplit.statement
 

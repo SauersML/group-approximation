@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.GapOffFace
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.ClassDisjoint
+import GroupApproximation.Manuscript.NonMF.Full.GL02.WindowShape.ClassDisjoint
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -26,15 +26,15 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.WindowS
 universe u w v
 
 /-- **The lane `gl-p04-10` Statement holds** (closed). -/
-theorem gapOffFaceStatement : Piece04.WindowShape.ClassDisjoint.GapOffFaceStatement.{u, w, v} := by
+theorem gapOffFaceStatement : ClassDisjoint.GapOffFaceStatement.{u, w, v} := by
   intro G _ Lambda W D lambda c eps Delta cuts S P Q k i j hi hj
   exact Piece04.WindowShape.GapOffFace.faceOf_gap_ne Q k i j hi hj
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.WindowShape.GapOffFace.gapOffFaceStatement
 
 /-- **Class darts of distinct cell classes are disjoint** (lane `gl-p04-11`, now unconditional). -/
-theorem classDisjointStatement : Piece04.WindowShape.ClassDisjoint.ClassDisjointStatement.{u, w, v} :=
-  Piece04.WindowShape.ClassDisjoint.disjoint_of_gapOffFace gapOffFaceStatement
+theorem classDisjointStatement : ClassDisjoint.ClassDisjointStatement.{u, w, v} :=
+  ClassDisjoint.disjoint_of_gapOffFace gapOffFaceStatement
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.WindowShape.GapOffFace.classDisjointStatement
 

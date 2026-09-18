@@ -87,7 +87,8 @@ theorem commutator_ker_le_comap (f : F →* G) (g : F' →* G') (φ : F →* F')
 /-- The induced map `F ⧸ [F, ker f] → F' ⧸ [F', ker g]`. -/
 def hopfQuotientMap (f : F →* G) (g : F' →* G') (φ : F →* F') (hker : f.ker ≤ g.ker.comap φ) :
     F ⧸ ⁅(⊤ : Subgroup F), f.ker⁆ →* F' ⧸ ⁅(⊤ : Subgroup F'), g.ker⁆ :=
-  QuotientGroup.map _ _ φ (commutator_ker_le_comap f g φ hker)
+  QuotientGroup.map ⁅(⊤ : Subgroup F), f.ker⁆ ⁅(⊤ : Subgroup F'), g.ker⁆ φ
+    (commutator_ker_le_comap f g φ hker)
 
 theorem hopfQuotientMap_mk' (f : F →* G) (g : F' →* G') (φ : F →* F')
     (hker : f.ker ≤ g.ker.comap φ) (x : F) :

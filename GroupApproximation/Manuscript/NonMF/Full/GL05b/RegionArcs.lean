@@ -14,8 +14,8 @@ Let `K` be a pocket face set with boundary cycle `c`, and let `z = regionColour 
 that is `true` exactly on the face class of `r` for `FaceClassStep (walkKeep c)`.  The move keeps a
 dart `d` when `movePred z d = true`, that is when neither side of `d` is coloured.
 
-* `faceOf_mem_iff_of_walkEqvGen`: the walls of a face class are exactly the boundary darts, so a face
-  class lies entirely inside or entirely outside `K.faces`.
+* `faceOf_mem_iff_of_walkEqvGen`: the walls of a face class are exactly the boundary darts, so a
+  face class lies entirely inside or entirely outside `K.faces`.
 * Arc facts: every dart of `t_2` (`K.targetArc.darts`) and of `t_1⁻¹`
   (`invDarts X K.sourceArc.darts`) lies on `c`, with the exterior face, respectively the source
   cell, across it.

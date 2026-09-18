@@ -5,9 +5,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Supe
 # Trivial Hopf multiplier and perfect central extensions (lane LVHopf, leaf T1b.iv)
 
 `simple_kazhdan_sofic_group.tex`, `sec:questions`, l.733-735.  The repository reaches this sentence
-through `K₂(4, L_{𝔽₂}(1,2)) = ⊥` (Khanh arXiv:2609.08428, Thm 5.1).  That proof uses the binder `hsp`
-(`LeavittK2.EndpointInterfaces.BinaryLeavittUnitsSuperperfectStatement`): every perfect central
-extension of `Lˣ` is injective.  This file proves the Hopf-formula form of that step.
+through `K₂(4, L_{𝔽₂}(1,2)) = ⊥` (Khanh arXiv:2609.08428, Thm 5.1).  That proof uses the binder
+`hsp` (`LeavittK2.EndpointInterfaces.BinaryLeavittUnitsSuperperfectStatement`): every perfect
+central extension of `Lˣ` is injective.  This file proves the Hopf-formula form of that step.
 
 * `commutator_le_map_of_lift`: if `φ : F → E` lifts `f : F ↠ G` through a central extension
   `p : E ↠ G`, then `[E, E] ≤ φ [F, F]`.
@@ -16,7 +16,8 @@ extension of `Lˣ` is injective.  This file proves the Hopf-formula form of that
   `G` is injective.  **A perfect central extension of a superperfect group is an isomorphism.**
 * `perfectCentralExtension_injective_of_lift_id`: the leaf in exactly the form of
   `$FK/status/LVAssembly.md`, with the presentation `FreeGroup.lift id : FreeGroup G ↠ G`.
-* `isSuperperfect_of_hopfMultiplierTrivial`: `HopfMultiplierTrivial G → LVSuperperfect.IsSuperperfect G`.
+* `isSuperperfect_of_hopfMultiplierTrivial`:
+  `HopfMultiplierTrivial G → LVSuperperfect.IsSuperperfect G`.
 * `binaryLeavittUnits_superperfect_of_hopfMultiplierTrivial`: the literal body of `hsp` from
   `HopfMultiplierTrivial Lˣ`.
 * Converse for perfect `G`: `hopfCover f = [F,F]/[F,R]` is a perfect central extension of `G`
@@ -74,7 +75,7 @@ theorem injective_of_perfect_central_of_lift (f : F →* G) (hf : Function.Surje
     rw [Subgroup.map_commutator]
     exact Subgroup.commutator_mono le_top
       (Subgroup.map_le_iff_le_comap.mpr (ker_le_comap_ker_of_comp_eq f p φ hφ))
-  rw [← MonoidHom.ker_eq_bot_iff, Subgroup.eq_bot_iff_forall]
+  rw [← MonoidHom.ker_eq_bot_iff p, Subgroup.eq_bot_iff_forall]
   intro k hk
   have hk' : k ∈ commutator E := by
     rw [hE]
@@ -128,12 +129,14 @@ theorem isSuperperfect_of_hopfMultiplierTrivial {G : Type u} [Group G]
 multiplier, then the body of `LeavittK2.EndpointInterfaces.BinaryLeavittUnitsSuperperfectStatement`
 holds.  (`simple_kazhdan_sofic_group.tex` l.733-735.) -/
 theorem binaryLeavittUnits_superperfect_of_hopfMultiplierTrivial
-    (h : HopfMultiplierTrivial ((GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ)) :
+    (h : HopfMultiplierTrivial
+      ((GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ)) :
     ∀ (E : Type) [Group E]
       (P : GroupApproximation.CentralExtension E
         ((GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ)),
       commutator E = ⊤ → Function.Injective P.projection :=
-  LVSuperperfect.isSuperperfect_binaryLeavittUnits_iff.mp (isSuperperfect_of_hopfMultiplierTrivial h)
+  LVSuperperfect.isSuperperfect_binaryLeavittUnits_iff.mp
+    (isSuperperfect_of_hopfMultiplierTrivial h)
 
 section Cover
 
@@ -217,7 +220,8 @@ theorem hopfCover_le_commutator (f : F →* G) (hf : Function.Surjective f)
     obtain ⟨y, hy, hyr⟩ := hdec a
     obtain ⟨z, hz, hzr⟩ := hdec b
     have key := commutatorElement_mul_mul_of_mem_center
-      (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆ y) (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆ z)
+      (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆ y)
+      (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆ z)
       _ _ (mk'_mem_center_of_mem f.ker hyr) (mk'_mem_center_of_mem f.ker hzr)
     rw [← map_mul (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆) y (y⁻¹ * a),
       ← map_mul (QuotientGroup.mk' ⁅(⊤ : Subgroup F), f.ker⁆) z (z⁻¹ * b),
