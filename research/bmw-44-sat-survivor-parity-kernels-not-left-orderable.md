@@ -153,6 +153,23 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
   - `τa_2` becomes `z ↦ (z+u)/(suz+1)`, of infinite order. So `K` is infinite and not torsion, and
     `Γ` is irreducible. The earlier Gupta–Sidki torsion reading is wrong.
   - For `#281`, this claim is now exactly: `Γ^+` is not left-orderable.
+- (w5-107b, 2026-09-18) **Resolved for all three classes, unconditionally (ESTABLISHED via
+  `bmw-44-sat-survivor-dichotomy-via-unconditional-certificates`).** `Γ^+` is not left-orderable for
+  `#193`, `#281` and `#332` (`bmw-40-40-193-281-332-parity-kernels-not-left-orderable`), so the dichotomy holds
+  without deciding reducibility. The "SAT persists" section above is superseded by this result.
+  - **Witness.** Take the subgroup `M = ⟨x, y, f x^{-1} f, g y^{-1} g⟩` with `x = v_i v_j` and `y = h_k h_l`:
+    `(x, y, f, g) = (v0v1, h0h1, v3, h3)` for `#281` and `#332`, and `(v1v3, h1h2, v2, h3)` for `#193`.
+    Take the positive-cone instance on the ball of radius 4 in these four generators, with short factor 2 (3169
+    elements). It is UNSAT, with a deletion-minimal core of 333 elements and 420 relations (`cert_<c>.json` in
+    `experiments/bmw-44-survivor-left-orders-2026-09-17/`).
+  - **Check.** `verify_cert.py` uses only the census squares. It checks confluence and unique normal forms,
+    then every relation, then UNSAT with three solvers and a self-checked DRUP proof.
+  - **Why the letter balls stayed SAT.** The certificate elements have up to 14 letters, and many relations
+    have both factors 6 or 8 letters long.
+  - **Calibration.** The product class `#0` gives 0 UNSAT among the same 144 subgroup shapes.
+  - **How it was found.** The kernel `N = ker(Γ^+ → Z²) = A ⋈ B` gave a first UNSAT on `N_1`, and the core was
+    then shrunk to four generators.
+  - **Not duplicated.** This is independent of the Möbius model and of the relative-convexity route of w4-107.
 - (w5-107, 2026-09-18) **Exact self-replication certificates for `#332` and `#193` are blocked; #332 is reduced to an orbit property of a dual transducer.**
   - **Obstruction (ESTABLISHED, `bmw-332-193-self-similar-certificates-need-new-relation`).**
     - For `K(332V)`, `K(332H)`, `K(193V)` and `K(193H)`, `K` is a quotient of a virtually free amalgam
