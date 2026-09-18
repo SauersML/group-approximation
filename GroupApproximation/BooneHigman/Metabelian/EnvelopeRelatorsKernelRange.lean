@@ -23,12 +23,12 @@ open Trees
 
 noncomputable section
 
-variable {X : Type*} [Finite X]
+variable {X : Type*}
 
 /-- The splitting relator, read in the quotient. -/
-theorem rnKer_rfL_split [Nontrivial X] (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H))
-    [N.Normal] (hH : IsSelfSimilar H) (x₀ : X) (hsplit : nfSplitRelators H x₀ ⊆ N)
-    {l : List X} (hl : l.Nodup) (hall : ∀ x, x ∈ l) (h : ↥H) :
+theorem rnKer_rfL_split [Finite X] [Nontrivial X] (H : Subgroup (TreeAut X))
+    (N : Subgroup (RNFree X H)) [N.Normal] (hH : IsSelfSimilar H) (x₀ : X)
+    (hsplit : nfSplitRelators H x₀ ⊆ N) {l : List X} (hl : l.Nodup) (hall : ∀ x, x ∈ l) (h : ↥H) :
     rfL H N h = rfV H N (rcoreShift [x₀] (TreeAut.rootPerm (h : TreeAut X))) *
       (l.map fun x => rfConjL H N (rcoreE x₀ [x₀, x]) (rcoreSt H hH h x)).prod := by
   have hrel : (nfL H h)⁻¹ * nfV H (rcoreShift [x₀] (TreeAut.rootPerm (h : TreeAut X))) *
@@ -56,7 +56,7 @@ theorem rnKer_state_rcoreSt (H : Subgroup (TreeAut X)) (hH : IsSelfSimilar H) (h
 
 /-- If all states of `h` at depth `n` are trivial, every conjugated local copy of `h` lies in
 the image of `V_X`. -/
-theorem rnKer_rfConjL_mem_range [Nontrivial X] (H : Subgroup (TreeAut X))
+theorem rnKer_rfConjL_mem_range [Finite X] [Nontrivial X] (H : Subgroup (TreeAut X))
     (N : Subgroup (RNFree X H)) [N.Normal] (hH : IsSelfSimilar H) (x₀ : X)
     (hsplit : nfSplitRelators H x₀ ⊆ N) (n : ℕ) :
     ∀ h : ↥H, (∀ t : List X, t.length = n → TreeAut.state (h : TreeAut X) t = 1) →
