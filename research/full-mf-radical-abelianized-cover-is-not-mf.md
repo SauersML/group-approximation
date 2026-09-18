@@ -17,6 +17,7 @@ artifacts:
   - research/abelianized-cover-mf-radical-is-union-of-local-cover-radicals.md
   - research/local-commutator-cover-derived-series-stops-at-one.md
   - research/local-commutator-cover-bounded-degree-linear-images-are-abelian.md
+  - research/one-ended-root-killable-lamp-covers-have-torsion.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -381,3 +382,32 @@ claimed.
   **Residual.**  Isolated fixed points that are not liftable give
   projective corona models of `G` with cocycle class `chi|H_2(G)`.  These
   are not decided.
+- **Induced-lamp covers and root-untwisting: a class kill (2026-09-18,
+  cohomology-index).**
+  `one-ended-root-killable-lamp-covers-have-torsion` (ESTABLISHED) tests an
+  alternative to `(DF)`.  Take a lamp cover `Gamma` of `G` with kernel
+  `P = (+) Z[G/C_i]` (`C_i` finite cyclic) whose lamps are `t_i^{|C_i|}`.
+  - **Root-untwisting (A).**  Suppose the class `c` dies once `|C_i|`-th
+    roots of the lamps are adjoined (`D_* c = 0`).  Then every corona model
+    in which each lamp has non-full spectrum has abelian image.  The model's
+    principal roots form an equivariant root map `P -> U(C*(rho(P)))`, the
+    model extends to the split root pushout, and full radical kills `G`.
+    This localizes the untwisting dichotomy to spectral gaps.
+  - **Obstruction (B).**  If `G` is one-ended, a torsion class in
+    `H^2(G;P)` restricts to zero on every prime-order subgroup, so the cover
+    has torsion.  The step where every such argument dies is Lemma B1:
+    `H^1(G; F[G/H]) -> H^1(H; F)` is zero, because an almost-invariant
+    quasi-character is constant off a finite set on a one-ended graph.
+    `St_20(L_(F_2)(1,2))` is one-ended, and root-killable lamp covers of it
+    always have torsion.  So route (a) cannot be replaced by a
+    "torsion-free induced-lamp cover plus gapped-lamp untwisting" route.
+  - **(C) for `E` itself.**  Over a one-ended base, `xi` has nonzero image
+    in `H^2(G; M (x) S)` for every nonzero ring `S`, including `Q`.  So no
+    algebraic root extension of `M` splits `E`.  Any injective model of `E`
+    must carry lamps, meaning elements of `M`, whose spectra make principal
+    roots non-equivariant, typically full-circle spectra ("odd winding").
+    The pushed class can only die analytically.
+  Net effect: DF itself is unchanged and stays OPEN.  The class "untwist by
+  algebraic roots of torsion lifts" is dead on every one-ended base with
+  torsion.  Surviving directions must use full-spectrum lamps or the
+  infinite-order part of `xi`.
