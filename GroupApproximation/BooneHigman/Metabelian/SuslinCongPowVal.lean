@@ -14,6 +14,7 @@ Lane `bh-met-92r`.  Indices: `1 = inl 0`, `2 = inl 1`, `3 = inr ()`.
 -/
 
 set_option linter.unusedSimpArgs false
+set_option linter.unreachableTactic false
 
 namespace GroupApproximation
 namespace BooneHigman

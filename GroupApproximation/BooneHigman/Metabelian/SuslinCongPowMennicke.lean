@@ -19,6 +19,7 @@ two sides is `(a d₁ - b₁ c₁ - 1)` times an explicit matrix.
 -/
 
 set_option linter.unusedSimpArgs false
+set_option linter.unreachableTactic false
 
 namespace GroupApproximation
 namespace BooneHigman

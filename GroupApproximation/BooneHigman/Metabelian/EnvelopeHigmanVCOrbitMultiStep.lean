@@ -23,8 +23,8 @@ on `H_C ≤ ⟨m(x, y) : x, y ∈ C⟩` (left multiplication by letters):
 `higmanVCOrbitMulti_all_of_multi : W⁷ → W⁗` and `higmanVCOrbitMulti_stem_of_multi : W⁷ → W⁶`.
 
 LOUD, on strength.  `W⁷` is **equivalent to `W⁗` / `W⁶` as a Prop**, and all of them are
-Higman-strength.  The converse holds too: `W⁗` gives `m(x₀, y₀) h t ∈ S` outright by the
-class split, since the step's conclusion is again an `h'' t` with `h'' ∈ H_C`.  So `W⁷` is
+Higman-strength.  The converse `higmanVCOrbitMulti_multi_of_all : W⁗ → W⁷` is proved too:
+the step's conclusion is again an `h'' t` with `h'' ∈ H_C`.  So `W⁷` is
 **NOT strictly weaker**.  It is strictly smaller in PROOF CONTENT:
 * only ONE letter per length pair and per antichain (the Statement picks it);
 * the IH `h t ∈ S` is handed over;
@@ -159,5 +159,25 @@ theorem higmanVCOrbitMulti_gap_of_multi (hM : HigmanVCOrbitMultiStatement) :
   higmanVCOrbitStem_gap_of_stem (higmanVCOrbitMulti_stem_of_multi hM)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_gap_of_multi
+
+/-- The converse `W⁗ → W⁷` (take `x₀ = x`, `y₀ = y` and discharge the two classes), recorded
+to make the Prop-equivalence explicit. -/
+theorem higmanVCOrbitMulti_multi_of_all (hA : HigmanVCOrbitAllStatement) :
+    HigmanVCOrbitMultiStatement := by
+  intro d hd N
+  obtain ⟨n, hn, a, b, ha, hb, hab, hba, hcl⟩ := hA d hd N
+  have hlen : b.length = a.length + 1 := by rw [ha, hb]
+  refine ⟨n, hn, a, b, ha, hb, hab, hba, ?_⟩
+  intro C hC hL hW x y _
+  refine ⟨x, y, rfl, rfl, ?_⟩
+  intro h hh _
+  have hh' := Subgroup.mul_mem _ (higmanVCLeafExp_letter_mem_H x.2 y.2) hh
+  by_cases hX : higmanVCOrbitGap_Mix d a b (higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) * h)
+  · exact higmanVCOrbitGap_mix_mem_S hab hba hX
+  by_cases hY : higmanVCOrbitAll_FamCls d a b (higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) * h)
+  · exact higmanVCOrbitAll_famCls_mem_S hab hba hlen hY
+  exact hcl C hC hL hW _ hh' hX hY
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitMulti_multi_of_all
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope

@@ -15,6 +15,8 @@ Lane `bh-met-92r`.  Helper module for the rank-3 Mennicke-product identity
   (`σ` in coordinates `(2, 3)`) and `suslinCongPow_e₂` (`σ` in coordinates `(1, 3)`).
 -/
 
+set_option linter.unreachableTactic false
+
 namespace GroupApproximation
 namespace BooneHigman
 namespace Metabelian
