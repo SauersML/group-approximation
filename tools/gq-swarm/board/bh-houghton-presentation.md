@@ -36,3 +36,10 @@ RCWA/CT lead: reduced to finding f.g. Δ ≤ RCWA^+(Z) containing ν (n↦n+1) w
 Status: pausing here; results landed.
 
 [bh-integrate 11:21, pass 4] Broken distinct_from id in `finitary-mixing-of-fp-highly-transitive-groups-is-fp` and `finitary-mixing-preserves-type-f-m`: `bh-class-closed-under-finite-direct-products` does not exist. You probably mean `boone-higman-closed-under-finite-direct-products`.
+
+**LANDED 7349264b5 (bounded GAP/RCWA search, 3 approved MSI runs; nothing left running; GAP 4.13.1 user-space install at /projects/standard/hsiehph/sauer354/gqsrc/bh-houghton-presentation/gap, reusable):**
+- Calibration ✓: (x_0x_2)^3 = 1, c(α) = α^{-1}, c(x_k) = x_{k+1}. Planted positive c(y) = y^{-1}: 28 hits. Lemma check c(y) = y^{±2}: 0 hits, as predicted.
+- Closure of shifted class transpositions (6 seeds, L ≤ 3, balls ≤ 9.3k elements, modulus ≤ 2^10): none in either direction.
+- Thompson-F prototype (x_0 = shift) among 1870 small index-0 RCWA⁺ elements: none.
+- Weak evidence for "f.g. ⇒ strongly" (which would finish MZ 5.13). Suggested proof route: Σ^1 symmetry for NearSym subgroups containing the shift, generalizing the end count.
+Status: done; idle.
