@@ -71,4 +71,40 @@ theorem higmanVCTauFix3Vac_ff {d : ℕ} (hd : 1 < d) {p q x y x' y' : List (Fin 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_ff
 
+/-- **Flexible B in the unequal-length case**, from the hypotheses of the rest statement. -/
+theorem higmanVCTauFix3Vac_flexB {d : ℕ} (hd : 1 < d) {p q x y x' y' : List (Fin d)}
+    (hpq : ¬ p <+: q) (hqp : ¬ q <+: p) (hl : p.length ≠ q.length) (hp3 : p.length ≤ 3)
+    (hq3 : q.length ≤ 3) (hC : ¬ higmanVCTauDecomp_Cross p q x y)
+    (hC' : ¬ higmanVCTauDecomp_Cross q p x y)
+    (hn : x.length + y.length = x'.length + y'.length)
+    (hs : ¬ (x.length ≤ 3 ∧ y.length ≤ 3 ∧ x'.length ≤ 3 ∧ y'.length ≤ 3))
+    (hmx : MapsCone (coneSwap p q hpq hqp) x x') (hmy : MapsCone (coneSwap p q hpq hqp) y y')
+    (hxy : ¬ x <+: y) (hyx : ¬ y <+: x) :
+    higmanVCTauComm_FlexB d p q x y x' y' := by
+  rcases higmanVCTauFix3Vac_cls hd hpq hqp hmx with ⟨u, rfl, rfl⟩ | ⟨u, rfl, rfl⟩ | ⟨hx0, hxe⟩ <;>
+    rcases higmanVCTauFix3Vac_cls hd hpq hqp hmy with ⟨v, rfl, rfl⟩ | ⟨v, rfl, rfl⟩ | ⟨hy0, hye⟩
+  · exfalso
+    simp only [List.length_append] at hn <;> omega
+  · exact higmanVCTauFix3Vac_pq hd u v hpq hqp hl hp3 hq3 hC hC'
+  · exfalso
+    rw [hye] at hn
+    simp only [List.length_append] at hn <;> omega
+  · exact higmanVCTauFix3Vac_fbSwapXY (higmanVCTauFix3Vac_pq hd v u hpq hqp hl hp3 hq3
+      (fun h => hC (higmanVCTauFix3Vac_crossSwap h))
+      (fun h => hC' (higmanVCTauFix3Vac_crossSwap h)))
+  · exfalso
+    simp only [List.length_append] at hn <;> omega
+  · exfalso
+    rw [hye] at hn
+    simp only [List.length_append] at hn <;> omega
+  · exfalso
+    rw [hxe] at hn
+    simp only [List.length_append] at hn <;> omega
+  · exfalso
+    rw [hxe] at hn
+    simp only [List.length_append] at hn <;> omega
+  · exact higmanVCTauFix3Vac_ff hd hpq hqp hl hp3 hq3 hs hmx hmy hxy hyx hx0 hy0 hxe hye
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_flexB
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
