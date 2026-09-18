@@ -81,8 +81,9 @@ theorem p10FM_exists_filterMove (h : p10FM_QuadrantMoveStatement.{v})
     exact hT2
   obtain ⟨t₂, ht₂, hst, hend⟩ :=
     P10RoseLobe.roseLobeFL_exists_arc_of_prefix_drop K.targetArc hstart hT2'
-  refine ⟨p10FM_z X.toCombMap K.faces B p q, p10FM_z_step X.toCombMap K.faces hB hc p q,
-    p10FM_z_indep X.toCombMap K.faces hc p q,
+  refine ⟨p10FM_z X.toCombMap K.faces B p q, ?_⟩
+  unfold P10RegionSubArc.subArc_FilterMove
+  exact ⟨p10FM_z_step X.toCombMap K.faces hB hc p q, p10FM_z_indep X.toCombMap K.faces hc p q,
     p10FM_not_mem_flip X.toCombMap hB hc K.outerFace_not_mem ho, hy,
     p10FM_not_mem_flip X.toCombMap hB hc K.source_not_mem hs,
     ⟨K.kept, p10FM_mem_flip X.toCombMap hB hc K.kept_mem hk⟩, ⟨t₁, ht₁⟩,

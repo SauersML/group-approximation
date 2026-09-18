@@ -31,7 +31,7 @@ theorem reverse_map_sublist_of_pos {α β : Type*} (g : α → β) {L : List α}
     have ha := a.2
     have hb := b.2
     have hab' : a.1 < b.1 := hab
-    show q (L.length - 1 - b.1) < q (L.length - 1 - a.1)
+    show q (L.length - 1 - a.1) < q (L.length - 1 - b.1)
     exact hmono _ _ (by omega) (by omega)
   refine List.sublist_iff_exists_fin_orderEmbedding_get_eq.mpr
     ⟨OrderEmbedding.ofStrictMono f hf, fun ix => ?_⟩
