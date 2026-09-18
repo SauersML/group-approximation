@@ -77,3 +77,41 @@ by bisections of a higher-rank category. The general mechanism is "finite local
 state for composability ⇒ finite-object category ⇒ Li finiteness conditions". It
 turns Boone--Higman for any group with such a geodesic structure into a finite
 combinatorial check on one category.
+
+## Attempt 1 (bh-free-36, 09-18): which of Li's gates survive with a degree map
+
+Read at source in arXiv:2110.04505v2: Theorem `thm:deg` (TeX l.2055--2063), the
+degree-map setting with (UFP*) (l.1835--1840), condition (`t < d`) (l.1611), and its
+sufficient Lemma `lem:deg--t<d` (l.2093).
+- **Theorem `thm:deg` needs only (F) and (`t < d`).** Its hypotheses are: `P` right
+  Noetherian with conditional lcms, a finite Garside family `S_P` with `(S_P^{≤L})^♯`
+  closed under left divisors, and a degree map `d: C → P` with (UFP*). Conditions
+  (St) and (LCM) of `intro:Gars` are derived by Li inside this setting.
+- **Special cube complexes, including the RAAG calibration.** Type the hyperplanes
+  through a local isometry to a Salvetti complex. Then `d: C_X → A_Γ^+` (forget signs
+  and states) has (UFP*), because prefixes of a reduced signed trace are the lifts of
+  prefixes of its unsigned image. `A_Γ^+` is right Noetherian with conditional lcms.
+  The nonempty cliques form a finite Garside family (Cartier--Foata normal form), and
+  products of at most `L` cliques are the traces of height at most `L`, closed under
+  left divisors. `C_X` is cancellative, so (F) holds. **So the RAAG calibration
+  reduces to (`t < d`) alone**, together with the choice of the closed invariant
+  subspace (`∂Ω`, or the closure of `R`).
+- **Why (`t < d`) is not automatic here.** Li's sufficient lemma uses left
+  reversibility of `P` (any two elements have a common right multiple). That makes
+  `∂Ω(v; e) = ∅` for `e ≠ ∅`, so only the expansions `γ(s)` of full cylinders need a
+  repeated piece. `A_Γ^+` is not left reversible unless `Γ` is complete. So the
+  expansions `γ(e, s)` with `e ≠ ∅` (cylinders minus the cylinders of some cliques)
+  must be shown to contain two pieces equal to `X(v; e)`, possibly after replacing
+  `S` by a power.
+- **Non-special complexes.** A degree map with (UFP*) to a trace monoid exists exactly
+  when some `G`-invariant colouring of hyperplanes makes every heap `H(y, z)` a trace
+  heap: same colour never crosses, and adjacent colours are reordered only when the
+  hyperplanes cross. This holds for products of trees (to `N^k`) and for special
+  complexes, and fails when a hyperplane orbit crosses itself. Otherwise conditions
+  (St) (l.1219) and (LCM) (l.1328) of `intro:Gars` must be checked directly.
+
+**Lesson for general BH.** Over a well-behaved degree monoid, finite presentation
+of the boundary full group comes down to one multiplicity condition, (`t < d`):
+every basic clopen piece must reappear at least twice in its own expansion. This is
+the precise combinatorial form of "self-similar with branching at least 2" that a
+general Boone--Higman host needs.
