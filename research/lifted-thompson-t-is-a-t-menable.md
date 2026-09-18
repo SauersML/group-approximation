@@ -4,7 +4,7 @@ id: lifted-thompson-t-is-a-t-menable
 kind: claim
 title: "The lift T-bar of Thompson's T to the real line (the central extension of T by Z with the Euler class) has the Haagerup property"
 distinct_from:
-  thompson-v-has-haagerup-property: that is Farley's theorem for V, and so for T ≤ V; this asks it for the central extension T-bar of T by Z, which is not a subgroup of V in any known way
+  thompson-v-has-haagerup-property: that is Farley's theorem for V, and so for T ≤ V; this asks it for the central extension T-bar of T by Z, which is not a subgroup of V at all (it contains Z[1/2], excluded from V by Higman; see lifted-thompson-t-escapes-haagerup-permanence-closure)
   cantor-integer-maps-by-v-have-haagerup-property: that is Brothier's Problem B for Γ = Z, for the group C(C,Z) ⋊ V; this is its one-dimensional subcase for the subgroup T-bar ≤ C(C,Z) ⋊ T, which it implies but is not known to imply it
   lifted-thompson-t-center-has-relative-t: that is the refuting statement (relative (T) for the centre); this claim implies its negation
 artifacts: []
@@ -273,3 +273,32 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
   - *Open next step.* Decide (K). A positive answer proves this claim. For a negative answer
     one would look for an obstruction, for instance a bounded-cohomology or rotation-number
     invariant that vanishes on `V_T` but not on `e_R`.
+- **2026-09-18 (swarm-0917-w13-w13-nv-break, calibration): the permanence-closure class dies.**
+  - *Class-kill (established).* `lifted-thompson-t-escapes-haagerup-permanence-closure`.
+    - Named invariant, three facts:
+      - every normal subgroup of `T̄` is `⟨z^j⟩` or `T̄` (from simplicity of `T`);
+      - `T̄` has no finite quotients;
+      - the central `z` has roots of every order.
+    - Death step: the first permanence operation pulls `T̄` back into one of its inputs:
+      - finite product: into a factor;
+      - restricted wreath `Γ ≀_X G`: into `Γ` or `G`, and always into `G` when `Γ` is abelian;
+      - finite-edge graph of groups: into a vertex group;
+      - extension with amenable quotient: into the kernel;
+      - directed union or finite-index overgroup: into a member.
+      By induction `T̄` then reaches a building block, where it dies:
+      - amenable blocks, since `T̄` is nonamenable;
+      - blocks with a proper commensurating action (cubical, Farley), since `z` is elliptic;
+      - amenable-by-(residually finite or linear) blocks, since `T̄` has no residually finite
+        image.
+    - Killed: every proof of this claim, or of `nV` Haagerup through `T̄`, by embedding into a
+      permanence construction. This includes Brothier-type `K ≀_{Q_2} V` hosts, amalgams over
+      finite groups, and linear, Lie or residually finite hosts with amenable kernels.
+  - *Sharpness.* The two operations left out are exactly the escapes:
+    - central extensions, since `T̄` is one over `T`;
+    - countable unrestricted products, since `T̄ ↪ ∏_k T` through the maps `ι_k` of
+      `lifted-thompson-t-quotients-are-rotation-centralizers`.
+    So a proof must build a new cnd function that is proper on `⟨z⟩`, at the Euler class or in a
+    residual limit of `T`-representations.
+  - *Correction.* `T̄ ⊇ Z[1/2]`, so by Higman (verbatim in
+    `hall-quotient-avoids-v-circle-groups-and-periodic-ends`) `T̄` is not a subgroup of `V` at
+    all. The frontmatter wording is updated to match.
