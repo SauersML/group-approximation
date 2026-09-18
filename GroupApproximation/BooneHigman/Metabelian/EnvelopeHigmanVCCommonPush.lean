@@ -111,3 +111,76 @@ theorem higmanVCCommon_push_one (d : ℕ) : HigmanVCCommonPush d 1 0 := by
   · rw [inv_one, mul_one, one_mul]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_one
+
+/-- The conjugation relator, as a membership. -/
+theorem higmanVCCommon_conj_mem {d : ℕ} {p q x y x' y' : List (Fin d)} (hpq : ¬ p <+: q)
+    (hqp : ¬ q <+: p) (hmx : MapsCone (coneSwap p q hpq hqp) x x')
+    (hmy : MapsCone (coneSwap p q hpq hqp) y y') (hxy : ¬ x <+: y) (hyx : ¬ y <+: x)
+    (hxy' : ¬ x' <+: y') (hyx' : ¬ y' <+: x') :
+    FreeGroup.of (p, q) * FreeGroup.of (x, y) * (FreeGroup.of (p, q))⁻¹ *
+      (FreeGroup.of (x', y'))⁻¹ ∈ higmanVC_rels d fun _ => True := by
+  rw [higmanVC_rels, Set.mem_setOf_eq]
+  exact Or.inr (Or.inr (Or.inl ⟨p, q, x, y, x', y', trivial, trivial, trivial, trivial, trivial,
+    trivial, hpq, hqp, hmx, hmy, hxy, hyx, hxy', hyx', rfl⟩))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_conj_mem
+
+/-- **Push for a letter** `(u, v)`, at threshold `max |u| |v|`. -/
+theorem higmanVCCommon_push_of {d : ℕ} (hd : 1 < d) (u v : List (Fin d)) :
+    HigmanVCCommonPush d (FreeGroup.of (u, v)) (max u.length v.length) := by
+  intro x y hx hy hxy hyx
+  by_cases h : ¬ u <+: v ∧ ¬ v <+: u
+  · have e : higmanVCCommon_perm d (FreeGroup.of (u, v)) = coneSwap u v h.1 h.2 :=
+      (higmanVCCommon_perm_of u v).trans (congrArg Subtype.val (vgenSwapOrOne_eq h.1 h.2))
+    have hD : HasDepth (higmanVCCommon_perm d (FreeGroup.of (u, v)))
+        (max u.length v.length) := by
+      rw [e]
+      exact coneSwap_hasDepth h.1 h.2
+    obtain ⟨x', hx', hlx⟩ := higmanVCCommon_hasDepth_len hD hx
+    obtain ⟨y', hy', hly⟩ := higmanVCCommon_hasDepth_len hD hy
+    refine ⟨x', y', hx', hy', hlx, hly, ?_⟩
+    have hmx : MapsCone (coneSwap u v h.1 h.2) x x' := by
+      rw [← e]
+      exact hx'
+    have hmy : MapsCone (coneSwap u v h.1 h.2) y y' := by
+      rw [← e]
+      exact hy'
+    have hr := higmanVCCommon_mk_rel (higmanVCCommon_conj_mem h.1 h.2 hmx hmy hxy hyx
+      (higmanVCCommon_incomp_image (by omega) hx' hy' hxy hyx)
+      (higmanVCCommon_incomp_image (by omega) hy' hx' hyx hxy))
+    rw [map_mul, map_mul, map_mul, map_inv, map_inv] at hr
+    rw [map_mul, map_mul, map_inv]
+    exact mul_inv_eq_one.mp hr
+  · have e : higmanVCCommon_perm d (FreeGroup.of (u, v)) = 1 :=
+      (higmanVCCommon_perm_of u v).trans (congrArg Subtype.val (higmanVFP_swapOrOne_of_not h))
+    refine ⟨x, y, ?_, ?_, Nat.le_add_right _ _, Nat.le_add_right _ _, ?_⟩
+    · rw [e]
+      exact mapsCone_one x
+    · rw [e]
+      exact mapsCone_one y
+    · rw [map_mul, map_mul, map_inv, higmanVCCommon_mk_comparable h, inv_one, mul_one, one_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_of
+
+/-- The push property only depends on the permutation and on the class modulo the relators. -/
+theorem higmanVCCommon_push_congr {d N : ℕ} {g g' : FreeGroup (List (Fin d) × List (Fin d))}
+    (h : HigmanVCCommonPush d g N) (hp : higmanVCCommon_perm d g = higmanVCCommon_perm d g')
+    (hm : higmanVCCommon_mk d g = higmanVCCommon_mk d g') : HigmanVCCommonPush d g' N := by
+  intro x y hx hy hxy hyx
+  obtain ⟨x', y', h1, h2, h3, h4, h5⟩ := h x y hx hy hxy hyx
+  refine ⟨x', y', ?_, ?_, h3, h4, ?_⟩
+  · rw [← hp]
+    exact h1
+  · rw [← hp]
+    exact h2
+  · rw [← h5, map_mul, map_mul, map_inv, map_mul, map_mul, map_inv, hm]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_congr
+
+/-- **Push for the inverse of a letter**, at the threshold of the letter. -/
+theorem higmanVCCommon_push_inv_of {d : ℕ} (hd : 1 < d) (u v : List (Fin d)) :
+    HigmanVCCommonPush d (FreeGroup.of (u, v))⁻¹ (max u.length v.length) :=
+  higmanVCCommon_push_congr (higmanVCCommon_push_of hd u v) (higmanVCCommon_perm_inv_of u v).symm
+    (higmanVCCommon_mk_inv_of u v).symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_inv_of
