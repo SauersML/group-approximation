@@ -26,6 +26,10 @@ Let `G` be a group acting on a set `X`. Call a homomorphism `φ: G → Z` onto, 
 2. **Stabilizer law.** Let `G` be finitely generated. If `FSym(X) ⋊ G` or `Alt_fin(X) ⋊ G` is of type
    `FP_2` over `Q`, then for every finite-index `G_1 ≤ G` and every `x ∈ X`, the image of
    `Stab_(G_1)(x)` spans `H_1(G_1; Q)`.
+3. **Nilpotent inputs.** If `G` is finitely generated and virtually nilpotent and `X` has an infinite
+   `G`-orbit, then `FSym(X) ⋊ G` and `Alt_fin(X) ⋊ G` are not of type `FP_2` over `Q`. This holds for
+   every action, free or not, so for such `G` it extends the lampshuffler theorem from free
+   actions to all actions with an infinite orbit.
 
 ## Proof
 
@@ -55,6 +59,14 @@ Let `G` be a group acting on a set `X`. Call a homomorphism `φ: G → Z` onto, 
    - `G_1` is finitely generated, so its image in `Q` is cyclic. After rescaling, it gives `φ` onto
      `Z` with `φ(Stab_(G_1)(x)) = 0`.
    - Then `(φ, G_1x)` is a levelled pair, and item 1 applies. ∎
+5. **Nilpotent inputs.**
+   - Take `G_1 ≤ G` torsion-free nilpotent of finite index. An infinite `G`-orbit contains an
+     infinite `G_1`-orbit, since it splits into finitely many `G_1`-orbits. So some
+     `Stab_(G_1)(x)` has infinite index in `G_1`.
+   - In a finitely generated nilpotent group, a subgroup whose image spans `H_1(G_1; Q)` has finite
+     index. (Standard, via Mal'cev completions: a Lie subalgebra of a nilpotent Lie algebra that
+     surjects onto its abelianization is everything.)
+   - So `Stab_(G_1)(x)` does not span, and item 2 gives the claim. ∎
 
 ## Examples and calibrations
 
