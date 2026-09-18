@@ -160,7 +160,7 @@ theorem pow_dvd_evalN_Zv (N : ℕ) : ∀ x : Aff n (MvPolynomial (Fin k) A),
     (∀ w, act D x w = w) → ∀ (s : Fin k → ℕ) (e : Fin n → ℕ) (j : Fin n),
       (p : A) ^ N ∣ evalN s (Zv x e j) := by
   induction N with
-  | zero => intro x _ s e j; rw [pow_zero]; exact one_dvd _
+  | zero => intro _ _ _ _ _; rw [pow_zero]; exact one_dvd _
   | succ N ih =>
     intro x hx s e j
     obtain ⟨hl, hs⟩ := fix_cons D hx (digL p e s)

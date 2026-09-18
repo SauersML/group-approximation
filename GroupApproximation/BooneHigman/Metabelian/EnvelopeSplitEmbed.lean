@@ -2,11 +2,11 @@ import GroupApproximation.BooneHigman.Metabelian.EnvelopeReduction
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Zaremsky's envelope: the regrouped construction and four Röver–Nekrashevych facts
+# Zaremsky's envelope: the regrouped copy of a self-similar group
 
 `RoverNekrashevychEnvelopeStatement` (`EnvelopeReduction.lean`) asks for *some* alphabet `Y` and
-*some* `K ≤ Aut(T_Y)` with `H ↪ K`.  This module fixes the construction and splits the
-statement into four independent facts about one concrete group.
+*some* `K ≤ Aut(T_Y)` with `H ↪ K`.  This module fixes the construction; `EnvelopeSplit.lean`
+splits the statement into four independent facts about one concrete group.
 
 * `envelopeY X m = Fin m × X`, and `envelopeEmbed m : Aut(T_X) →* Aut(T_Y)`: `g` acts on the
   `X`-coordinates of a word over `Y` and leaves the `Fin m`-coordinates alone
@@ -15,16 +15,11 @@ statement into four independent facts about one concrete group.
   `envelopeK m H = H.map (envelopeEmbed m)` is self-similar when `H` is
   (`isSelfSimilar_envelopeK`), and `envelopeHom m H : H ≃ K` (`envelopeHom_injective`,
   `envelopeHom_surjective`, `isFinitelyPresented_envelopeK`).
-* With `m = 2` and `V = roverNekrashevych (envelopeY X 2) (envelopeK 2 H)`:
-  `RNFinitelyPresentedStatement` (`V` finitely presented), `RNCommutatorFiniteIndexStatement`
-  (`[V, V]` of finite index), `RNCommutatorSimpleStatement` (`[V, V]` simple) and
-  `RNWreathEmbedStatement` (`[V, V] ≀ (V ⧸ [V, V]) ↪ [V, V]`, allowed to assume finite index).
-* `rnEnvelope_of_four`: the four facts give `RoverNekrashevychEnvelopeStatement`.
 
-*Truth.*  `|Y| = 2|X|` is even, so `V_Y` is perfect (Higman), the abelianisation `A` of `V`
-satisfies `A = 2A` and is finitely generated, hence finite; `[V, V]` is simple (Nekrashevych);
-`V` is finitely presented (Zaremsky, arXiv:2405.09722, Section 3); Proposition 2.5 embeds
-`[V, V] ≀ F` in `[V, V]` for finite `F`.
+Route: words over `Y` are zipped pairs of a `Fin m`-word and an `X`-word
+(`map_fst_embedFun`, `map_snd_embedFun`); the tree-map property follows from
+`TreeAut.smul_append` and `List.zip_append`; injectivity evaluates at `zip (replicate n 0) w`;
+the state formula is `TreeAut.smul_cons` on both sides.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
@@ -71,7 +66,7 @@ theorem embedFun_embedFun (g h : TreeAut X) (w : List (envelopeY X m)) :
 
 theorem embedFun_one (w : List (envelopeY X m)) : embedFun (1 : TreeAut X) w = w := by
   rw [embedFun, one_smul]
-  exact (List.zip_of_prod rfl rfl).symm
+  exact (List.zip_of_prod (xs := w) rfl rfl).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.embedFun_one
 
@@ -172,3 +167,5 @@ theorem isFinitelyPresented_envelopeK [NeZero m] {H : Subgroup (TreeAut X)}
     (MulEquiv.ofBijective (envelopeHom m H) ⟨envelopeHom_injective H, envelopeHom_surjective H⟩)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.isFinitelyPresented_envelopeK
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
