@@ -56,4 +56,38 @@ operator-norm asymptotic representations.
   Examples are the rank of the eigenspaces relative to `d_n`, or an
   interaction between eigenspaces that no infinite-dimensional representation
   reproduces.
+- **2026-09-17, swarm-0917-w6-w6-deligne-last2: a missing edge. This gate is
+  implied by the tracial defect gap, and hence by non-hyperlinearity of `E_3`
+  and by fibre LLP.** Before this entry every live path to
+  `deligne-triple-cover-exact-mf-radical` ran through this node and no route
+  entered it. Two routes are now recorded.
+  - `deligne-opnorm-sectors-empty-from-hs-defect-gap`: point-norm models
+    are normalized-HS models, since `||.||_2<=||.||_op` and relator defects
+    telescope through pair defects. So
+    `maslov-mod3-projective-defect-gap` implies this gate. By the established
+    `deligne-sector-gap-is-exactly-nonhyperlinearity`, non-hyperlinearity of
+    `E_3` therefore already gives `Rad_MF(E_3)=C_3`.
+  - `maslov-hs-gap-from-odd-fibre-llp-by-compression`: LLP of
+    `C^*(Sp_4(Z);alpha)` gives ucp coordinate lifts on the Kazhdan generator
+    system. Stinespring turns these into rank-`d_n` corners of exact
+    `1/3`-projective representations, with
+    `||[P,pi(s)]||_HS/sqrt(rank P) <= 2 sqrt(eta_n) -> 0`. This contradicts
+    `deligne-sep8-moving-parameter-compression-gap`, so the defect gap
+    holds.
+  `bin/cairn impact sp4-mod3-twisted-fibres-have-llp` now flips seven claims:
+  this gate, the exact radical, `deligne-triple-cover-is-not-mf`, the HS gap,
+  stable non-hyperlinearity and `non-hyperlinear-group`.
+  **Calibration for this lane.** Any refutation step that survives replacing
+  operator-norm defects by normalized-HS defects proves that `E_3` is
+  non-hyperlinear, which is the flagship. A proof of this gate that is
+  genuinely easier must use a feature that normalized-HS limits lose:
+  - spectral or K-theoretic data of the norm corona (determinants are
+    already killed down to `d mod 3` by
+    `deligne-sector-determinants-see-only-dimension-mod-three`);
+  - liftability that holds only for the quotient
+    `prod M_(d_n)/(+) M_(d_n)`.
+  Liftability for all *homomorphisms* into that quotient is equivalent to
+  this gate by vacuity. The open op-specific weakening of the fibre-LLP
+  hypothesis is local liftability of all *ucp maps* into that single
+  quotient. The gate stays OPEN.
 
