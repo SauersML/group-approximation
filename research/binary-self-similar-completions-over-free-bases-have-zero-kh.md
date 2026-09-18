@@ -51,5 +51,12 @@ The general case is the same computation, with `1 - d` in place of `-1`. `∎`
   has an annihilator (`J ≠ 0`), and no regularity argument applies.
 - **Tension with the input.** So the recursions that can carry complex inputs (non-injective ones,
   which escape the complexity fence) are exactly those where the nil terms are uncontrolled.
-- **Arity matters.** Only `d = 2` gives `KH = 0` over every field. For `d >= 3`, `1 - d` kills
-  `KH_0 = Z` only up to the cokernel `Z/(d-1)`.
+- **Arity matters only for the bare host.** Only `d = 2` gives `KH(O_ψ) = 0`. For `d >= 3`, the
+  cokernel `Z/(d-1)` of `1 - d` on `KH_0 = Z` survives. The group transfer uses
+  `O_ψ ⊗ L_2`, and `KH(A ⊗ L_2) = 0` for every `A`
+  (`abc-leavitt-kh-vanishing-and-nil-splitting-citation`). There the arity is irrelevant
+  (bh-algebra).
+- **Where the nil terms live.** `O_ψ(K<X>) ≅ O_ψ̄(B/J)` with `ψ̄` injective
+  (`noninjective-ln-completions-have-self-similar-bases`). So the nil terms are those of the
+  self-similar quotient `B/J`, not of the free base. For lossless monomial recursions, `B/J` is
+  a monomial algebra, and the gate is twisted-nil vanishing over monomial algebras (bh-algebra).

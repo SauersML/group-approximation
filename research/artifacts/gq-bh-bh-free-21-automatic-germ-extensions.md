@@ -176,3 +176,69 @@ replacements. Assign to each clopen set the sum of the end states of its cylinde
   actions, such as `Z^2 * Z`. The next natural targets are `Z^2 *_Z Z^2`-type amalgams and
   graph manifold pieces. Their Seifert parts `F × Z` contain `F_2 × Z`, which is in `V`; the
   difficulty is the gluing.
+
+## 7. Third landing: what the germ machine over V can and cannot do (insight first)
+
+**7.1 The classification** (`rational-germ-groups-of-germ-extensions-of-v-embed-in-2v`).
+- At a rational point, Belk--Hyde--Matucci's normal germ condition over `V` forces the germ
+  group to commute with the period shift.
+- It is then a group of spirals `(φ, c) ∈ W = C(C_2, Z) ⋊ V`, acting as
+  `(a, n) -> (φ a, n + c(a))`.
+- `W` embeds in `2V` via `(a, y) -> (φ a, z^(c(a)) y)`.
+- **Lesson.** Finite germ extensions of `V` are "V plus finitely many Brin--Thompson-local
+  germs". They reach `Z^2 * Z`, which is outside `V`. They cannot supply germ groups outside `2V`.
+  A universal compiler must take its base or its germ groups from the input.
+
+**7.2 The period shift is a product of two commutators in W.**
+- **Commutators.** In `W`, `[(v,0), (1,f)] = (1, f∘v^(-1) - f)`. Choose `v_1, v_2 ∈ V` with
+  `v_1[11] = [0] ∪ [11]` and `v_2[01] = [1] ∪ [01]` (proper clopen sets, so such elements exist).
+- **The identity.** With `f_1 = 1_[11]` and `f_2 = 1_[01]`:
+  `(1, 1) = [(v_1,0), (1,f_1)] · [(v_2,0), (1,f_2)]`, since
+  `1_[0] + 1_[1] = 1`.
+- **So H_1(W) = 0.** The coinvariants `C(C_2,Z)_V` vanish: every proper nonempty clopen set has
+  one class `e`, and `[C_2] = 2e = 3e`.
+- **Lesson.**
+  - Svetlov's charge obstruction (`fiber-detecting-block-characters-force-npc-graph-manifolds`)
+    kills exactly the hosts in which each block has a character that sees its own fiber.
+  - In spiral germ groups no character sees the shift at all. So a fiber placed as the shift
+    at a singular point can be a product of commutators, which is what a charged, non-NPC block
+    needs.
+  - So germ extensions are not excluded by charge.
+
+**7.3 Centralizer lemma** (elementary, for any finite germ extension `Γ` of `V`).
+- **Statement.** Let `gh = hg` in `Γ`, and let `x ∈ sing(g)` with `x, g x ∉ sing(h)`. Then
+  `h x ∈ sing(g)`.
+- **Proof.** The germ of `g = h g h^(-1)` at `h x` is
+  `germ_(g x)(h) · germ_x(g) · germ_x(h)^(-1)`, and the outer two factors are V-germs.
+- **The fiber carry.** For a Seifert fiber `t_v`, the whole block `G_v` centralizes `t_v`. So
+  `sing(t_v)` is finite and almost `G_v`-invariant.
+  - Product normal forms violate this: `t_v` is singular along a whole boundary.
+  - So do "C-last" amalgam normal forms, where a fiber carry passes through every letter of its
+    block.
+  - The fiber-first normal form `h^q u` on `F × <h>` respects it. There `h` is regular, and
+    each `F`-letter is singular only at `h^(±∞)`, with germ `F × Z ⊃ <h>` and quotient `F`.
+
+**7.4 Amalgams Z^2 *_Z Z^2 are nothing new.**
+- The amalgamated generator `u` is central in both factors, hence in `G`.
+- `G/<u>` is a free product of two groups of the form `Z × (finite cyclic)`, so it is virtually
+  free.
+- A central extension of a free group by `Z` splits. So `G` is virtually `F × Z`, which lies in
+  `V`, and `G ∈ B_A` by finite-extension closure.
+
+**7.5 Graph manifolds: the local question, and a warning about 2V.**
+- **Taken over.** bh-3manifold handed the two-leaf test case to this lane (its board, 09-18).
+- **The design.** Realize `E = <z_1, z_2>` by coordinate flows `z × 1`, `1 × z` in `2V`, with `z`
+  north-south. Then:
+  - block `v` is `F_v × <z_2>`, with `F_v ≤ V` on coordinate 1 and boundary word `z_1`;
+  - block `w` needs a free `F_w ≤ C_2V(t_w)` with `t_w = z_1^p z_2^q` and boundary word
+    `z_1^r z_2^s`, where `ps - qr = ±1`.
+- **The warning.** Continuity at the fixed lines `{0^∞} × C_2` and `C_2 × {0^∞}` forces the
+  spiral part of `C_2V(E)` to be a product `W × W`, that is, a local product host (sketch, not
+  landed). So the needed `F_w` must use centralizers of a *single* diagonal flow.
+- **The open local question.** Does `C_2V(z_1^p z_2^q)` contain a free subgroup of rank `2h'`
+  whose surface word equals `z_1^r z_2^s`, for a non-virtually-fibered choice of the gluing
+  matrix?
+  - If no, for all `p, q, r, s`, that points to "non-NPC graph manifold groups avoid 2V-type
+    hosts". By 7.1, the germ machine over `V` would then fail for them too, and the base must
+    change.
+  - If yes, the injectivity of the amalgam is the remaining step.
