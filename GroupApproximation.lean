@@ -5492,6 +5492,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.Setup
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCentral.Stabilization
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCentral.Vectors
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCentral.Central
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Bump
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
