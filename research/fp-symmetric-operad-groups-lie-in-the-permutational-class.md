@@ -92,12 +92,20 @@ it implies for Boone--Higman.
   - So the conjecture is a *finiteness criterion for full Cantor groups presented by a move
     system*, not a route beyond PBH.
   - Its constructive value is in producing actors from carriers that are not actors themselves.
-    `bounded-refinement-operads-reduce-to-their-carriers` shows where that can happen at all.
+    There are two channels:
+    - through the transformations, where
+      `bounded-refinement-operads-reduce-to-their-carriers` shows this needs unbounded refinement;
+    - through the dynamics, where the host is the carrier's full group
+      (`symmetric-ore-operads-containing-their-carrier-are-full-groups`).
 
-**Planar and braided operads.**
-- A planar operad group acts on `∂X` inside the boundary image of its symmetrization (adjoin all
-  permutations), which is full by 2. So its subgroups lie in `B_A` whenever the symmetrized group
-  is finitely presented, boundary-faithful and clopen transitive.
+**Planar and braided operads** (corrected after the referee's gap 1).
+- Suppose the symmetrization (adjoin all permutations) of a planar operad satisfies the
+  cancellative calculus of fractions. This is an assumption; it was not shown.
+  - Then the boundary image of the planar group lies in the boundary image of the symmetrized
+    group, which is full by 2.
+  - So the subgroups of the planar boundary image, and the subgroups of `Γ` meeting the boundary
+    kernel trivially, lie in `B_A` whenever the symmetrized group is finitely presented,
+    boundary-faithful and clopen transitive.
 - A braided operad group with a symmetric quotient maps onto the symmetric operad group, with the
   pure-braid labels in the kernel. So a simple braided operad group is isomorphic to its
   symmetric image, which is covered by (a).
