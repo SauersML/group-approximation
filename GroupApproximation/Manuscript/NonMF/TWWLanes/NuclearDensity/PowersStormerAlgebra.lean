@@ -74,3 +74,71 @@ theorem powersStormer_trace_conjTranspose_mul (Z X : Matrix n n ℂ) :
   rw [← trace_conjTranspose, conjTranspose_mul, conjTranspose_conjTranspose, trace_mul_comm]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_trace_conjTranspose_mul
+
+/-- **Two Cauchy--Schwarz estimates.** For Hermitian `T`, `D` and unitary `G`:
+`|tr(D T² G)|² ≤ tr(T²) tr(D² T²)` and `|tr(T² D G)|² ≤ tr(D² T²) tr(T²)`. -/
+theorem powersStormer_norm_trace_sq_pair {T D G : Matrix n n ℂ} (hT : Tᴴ = T) (hD : Dᴴ = D)
+    (hG1 : Gᴴ * G = 1) (hG2 : G * Gᴴ = 1) :
+    ‖trace (D * (T * T) * G)‖ ^ 2 ≤ (trace (T * T)).re * (trace (D * D * (T * T))).re ∧
+      ‖trace (T * T * D * G)‖ ^ 2 ≤ (trace (D * D * (T * T))).re * (trace (T * T)).re := by
+  have e1 : trace (D * (T * T) * G) = trace ((Gᴴ * T)ᴴ * (D * T)) := by
+    rw [conjTranspose_mul, conjTranspose_conjTranspose, hT, trace_mul_comm (T * G) (D * T)]
+    simp only [mul_assoc]
+  have e2 : trace (T * T * D * G) = trace ((D * T)ᴴ * (G * T)) := by
+    rw [conjTranspose_mul, hT, hD, trace_mul_comm (T * D) (G * T),
+      trace_mul_comm (T * T * D) G]
+    simp only [mul_assoc]
+  have gA : trace ((Gᴴ * T)ᴴ * (Gᴴ * T)) = trace (T * T) := by
+    rw [conjTranspose_mul, conjTranspose_conjTranspose, hT, mul_assoc, ← mul_assoc G Gᴴ T, hG2,
+      one_mul]
+  have gB : trace ((D * T)ᴴ * (D * T)) = trace (D * D * (T * T)) := by
+    rw [conjTranspose_mul, hT, hD]
+    simp only [mul_assoc]
+    rw [trace_mul_comm T]
+    simp only [mul_assoc]
+  have gC : trace ((G * T)ᴴ * (G * T)) = trace (T * T) := by
+    rw [conjTranspose_mul, hT, mul_assoc, ← mul_assoc Gᴴ G T, hG1, one_mul]
+  have hA := powersStormer_norm_trace_sq_le (Gᴴ * T) (D * T)
+  have hB := powersStormer_norm_trace_sq_le (D * T) (G * T)
+  rw [← e1, gA, gB] at hA
+  rw [← e2, gB, gC] at hB
+  exact ⟨hA, hB⟩
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_norm_trace_sq_pair
+
+/-- The Hermitian doubling `[[0, y], [yᴴ, 0]]` is Hermitian. -/
+theorem powersStormer_doubling_conjTranspose (y : Matrix n n ℂ) :
+    (fromBlocks 0 y yᴴ 0)ᴴ = fromBlocks 0 y yᴴ 0 := by
+  rw [fromBlocks_conjTranspose, conjTranspose_zero, conjTranspose_conjTranspose]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_doubling_conjTranspose
+
+/-- `1 − Yd² = diag(1 − yyᴴ, 1 − yᴴy)` for the Hermitian doubling `Yd`. -/
+theorem powersStormer_one_sub_doubling_sq (y : Matrix n n ℂ) :
+    1 - fromBlocks 0 y yᴴ 0 * fromBlocks 0 y yᴴ 0
+      = fromBlocks (1 - y * yᴴ) 0 0 (1 - yᴴ * y) := by
+  rw [fromBlocks_multiply, ← fromBlocks_one, powersStormer_fromBlocks_sub]
+  simp only [zero_mul, mul_zero, add_zero, zero_add, sub_zero]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_one_sub_doubling_sq
+
+/-- `diag(T, T)² = diag(h, h)` when `T² = h`. -/
+theorem powersStormer_diag_mul_diag {T h : Matrix n n ℂ} (hTh : T * T = h) :
+    fromBlocks T 0 0 T * fromBlocks T 0 0 T = fromBlocks h 0 0 h := by
+  rw [fromBlocks_multiply]
+  simp only [mul_zero, zero_mul, add_zero, zero_add, hTh]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_diag_mul_diag
+
+/-- `tr(diag(P, Q) diag(h, h)) = tr(P h) + tr(Q h)`. -/
+theorem powersStormer_trace_diag_mul_diag (P Q h : Matrix n n ℂ) :
+    trace (fromBlocks P 0 0 Q * fromBlocks h 0 0 h) = trace (P * h) + trace (Q * h) := by
+  rw [fromBlocks_multiply, powersStormer_trace_fromBlocks]
+  simp only [mul_zero, zero_mul, add_zero, zero_add]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.powersStormer_trace_diag_mul_diag
+
+end
+
+end Manuscript.NonMF.TWWLanes.NuclearDensity
+end GroupApproximation
