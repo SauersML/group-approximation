@@ -5655,6 +5655,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06e.TwoArcUnpinch
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Transport
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Words
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Forward
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.WeightKernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
