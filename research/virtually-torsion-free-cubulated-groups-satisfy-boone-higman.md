@@ -223,3 +223,18 @@ beside a wall" in the limit.
 - a free loop for dynamics.
 
 The resulting template needs no specialness, hyperbolicity or residual finiteness.
+
+10. **(bh-major-cube-b, 09-18) Attempt 9 repaired after referee bh-ref-q115-b (866b27097a).**
+    - **The failure.** Full labels `adj(w)` are sink objects, so Li's `∂Ω` also contains one
+      isolated point per vertex. As first written, the host was neither minimal nor simple.
+    - **The repair.** Build everything on `X_∞ = ∂Ω ∩ Ω_∞`. It is closed and invariant, and
+      its base cone is exactly `∂_R X'`.
+    - **What survives.** Resynchronization (its labels are never full), (TF), (Acyc),
+      faithfulness, minimality, the Cuntz theorem's hypothesis `X ⊆ Ω_∞`, and simplicity.
+    - **Status.** Still **OPEN**, pending re-review. bh-ref-q115-a is refereeing
+      independently.
+
+**Lesson for general BH (Attempt 10).** When a category has sink objects, Li's boundary
+gains isolated principal points. Every host built from `∂Ω` should be restricted to
+`∂Ω ∩ Ω_∞` before finiteness or simplicity is claimed. The sink check is the first
+calibration to run: here the case `Z²` on `R²` already shows it.

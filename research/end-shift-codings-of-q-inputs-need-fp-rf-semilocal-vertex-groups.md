@@ -10,11 +10,24 @@ requires:
 distinct_from:
   free-group-boundary-shifts-are-quantum-rigid: that codes the end shift over a group whose Cayley graph is the tree (finite stabilizers); this codes it over any finitely generated group acting cocompactly on a locally finite tree with finitely generated vertex stabilizers, which is what an input containing (Q,+) needs, since its vertex stabilizers are necessarily infinite.
   z-localized-embeds-in-fp-rf-group: that is the OPEN question whether some Z_(l) lies in a finitely presented residually finite group, needed by three gq host routes; this shows the boundary route to (★′) for every input containing (Q,+) needs the weaker semilocal form, so a refutation of the semilocal form kills four routes.
+  locally-finite-tree-end-shifts-are-quantum-rigid-sfts: that node (bh-star-a, f2bfa4b84, landed the same hour) proves part 1 here and also quantum rigidity; this adds the vertex-group consequences for inputs containing (Q,+), parts 2 and 5.
+  baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman: that imports Bux–Llosa Isenrich–Wu, whose Theorem A embeds every faithful cocompact locally-finite-tree group with finitely presented edge stabilizers in a finitely presented simple group; part 5 here shows every such host of an input containing (Q,+) needs (SL).
   gl-n-q-bh-via-track-a-over-st-10-times-free-group: that route gets minimality from (M2) for St_10(R_L) plus minimal product simulation; this is the boundary alternative, where the end shift is minimal and topologically free at once, and it shows St_10(R_L) can never be the acting group there.
 ---
 
 **ESTABLISHED** (lane bh-gln-tracka, 2026-09-18; elementary Bass–Serre theory and symbolic dynamics, lane proof, not
 reviewed; no priority claimed).
+
+**Correction (same day, lane bh-gln-tracka).**
+- Part 1 duplicates item 1 of `locally-finite-tree-end-shifts-are-quantum-rigid-sfts` (bh-star-a, f2bfa4b84), landed
+  the same hour. That node also proves quantum rigidity of `X_T`.
+- The "boundary alternative" below is subsumed by Bux–Llosa Isenrich–Wu. Their Theorem A
+  (`thm:main-actions-on-trees`, read at source in `$GQ/src/bh-free-05/bliw-2408.05673v2.tex`) embeds every group
+  acting faithfully and cocompactly on a locally finite tree with finitely presented edge stabilizers in a finitely
+  presented simple group. Every `Λ` of part 2 is such a group. So wherever the end-shift route to (★′) applies, BH
+  for its subgroups already follows directly, with no rigidity or E3′ step.
+- The lasting content is therefore part 5, an obstruction to the whole BLIW method: every BLIW host of an input
+  containing `(Q,+)` needs (SL). Parts 2–4 are its special cases.
 
 ## Setting
 
@@ -42,6 +55,17 @@ reviewed; no priority claimed).
    `GL_n(Q)`, `SL_n(Q)`, `PGL_n(Q)` (`n >= 2`), `Aff(Q)` or `U_3(Q)`.
 4. **Not `St_10(R_L)`.** No `Λ` as in 2 contains `St_10(R_L)`, or any infinite group with property (FA) and no
    nontrivial finite quotient.
+5. **BLIW hosts.** Let `Λ` act faithfully and cocompactly on a locally finite tree with finitely presented edge
+   stabilizers (the hypotheses of BLIW Theorem A), and let `Λ` contain `A_0` as in 2. Then some vertex stabilizer is
+   a finitely presented residually finite group containing `Z_(S)`, `S` the primes `≤ d`. So the BLIW method applied
+   to `GL_n(Q)`, `Aff(Q)`, `U_3(Q)` or `(Q,+)` presupposes (SL) below, whatever the tree.
+6. **Splittings cannot create (SL).** Let `Λ = π_1(𝕐)` for a finite graph of groups with all edge groups of finite
+   index in the adjacent vertex groups, and suppose `Λ` is residually finite and contains `Z_(S)` for a finite set
+   `S`. Then some vertex group, which is residually finite and is finitely presented if `Λ` is and the edge groups
+   are finitely generated, contains `Z_(S')` with `S' = S ∪ {primes ≤ d}`. So an (SL) witness built as such a
+   graph of groups already has one among its vertex groups. Only splittings with edge groups of infinite index,
+   where `Z_(S)` can be an ascending union of edge groups along a ray (`z-localized-fixes-a-vertex-or-end-of-every-tree`),
+   can produce new divisibility.
 
 ## Proof
 
@@ -97,6 +121,15 @@ So every `Λ_v` is finitely presented.
 
 **3.** `(Q,+)` is `ℓ`-divisible for every `ℓ`. The groups listed contain `(Q,+)` as a root group, as the
 translations, or as the centre.
+
+**5.** Faithfulness on `T` embeds each vertex stabilizer in the profinite group `Aut(T)_v`, so each is residually
+finite. Each is a finite-index overgroup of a finitely presented edge stabilizer, hence finitely presented. The copy
+of `Z_(S)` comes from `bounded-valence-trees-scale-only-primes-below-the-valence`, part 4, as in part 2.
+
+**6.** The Bass–Serre tree has valence at most `d`. Apply that node, part 4, to `A_0 = Z_(S)`, which is `ℓ`-divisible
+for every prime `ℓ ∉ S`, in particular for every `ℓ > d` outside `S`. Some `Z_(S) ∩ Λ_v` is nonzero and divisible by
+every prime outside `S'`, so it contains a copy of `Z_(S')`. Vertex groups are subgroups of `Λ`, so they are
+residually finite. Finite presentation is as in part 2.
 
 **4.** `St_10(R_L)` is Kazhdan, hence has (FA), so it fixes a vertex `v` and lies in `Λ_v`. `Λ_v` is residually
 finite by part 2, so `St_10(R_L)` would be residually finite. But `St_10(R_L)` is infinite with no nontrivial finite

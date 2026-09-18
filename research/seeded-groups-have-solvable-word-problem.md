@@ -10,7 +10,7 @@ distinct_from:
   seeds-never-survive-marked-approximation: that rules out seed configurations on nearby proper quotients; this rules them out on every proper quotient, using word windows, and turns that into an algorithm.
   decidable-groups-embed-in-rigid-sft-compactification-groups: that is the open (SEED) gate; this shows its fp members have decidable word problem even without the rigidity clause.
 ---
-**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; not reviewed). **No
+**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; one referee PASS, bh-ref-engines 2026-09-18). **No
 priority:** the argument is Jeandel's (arXiv:1501.06831, `cor:final`: a recursively presented
 group with a normally aperiodic effectively closed subshift has decidable word problem; read at
 source by bh-g1-simulation, see `research/artifacts/gq-bh-bh-g1-simulation.md`). The only change
@@ -75,8 +75,9 @@ together with `x(u) ≠ a` is unsatisfiable. This is r.e., and exactly one `a` p
   - The algorithm's running time is governed by the **seed-collapse function**
     `κ(n) = max over |w| ≤ n with w ≠ 1 of the least size of a contradiction for Γ_w`,
     together with the time to enumerate `N_w`.
-  - CAP says the word problems of all fp seeded groups lie in one class. That is a uniform
-    bound on `κ`, and nothing here gives one.
+  - CAP says the word problems of all fp seeded groups lie in one class. A uniform computable
+    bound on `κ` over the class implies CAP (`seed-collapse-is-bounded-by-forcing-radius-and-dehn`);
+    the converse fails, and nothing here gives such a bound.
   - ¬CAP needs fp seeded groups whose seed contradictions must be arbitrarily large, that
     is, seeds that code hard inputs. That is (SEED) for hard inputs itself.
 
@@ -87,5 +88,23 @@ together with `x(u) ≠ a` is unsatisfiable. This is r.e., and exactly one `a` p
 - **What it gives.** Finitely presented plus a seed implies solvable word problem, with no
   rigidity and no density. Seeds play for (SEED) the role that finite discriminability plays
   for isolated groups: they consume exactly the decidability Clapham supplies.
-- **What is left for CAP.** CAP is now purely a statement about the size of the seed's
-  contradiction certificates, the seed-collapse function `κ`.
+- **What is left for CAP.** A uniform bound on the size of the seed's contradiction
+  certificates (the seed-collapse function `κ`) would give CAP.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- *Pullback.* For `w ≠ 1` in `Γ`, a `p`-configuration over `Γ_w` pulls back along `π` to a point of
+  `[p] ∩ Y(Γ)`. Its `U`-patterns are preserved because `π(gū) = π(g)π(ū)`. It is fixed by the nontrivial normal
+  subgroup `ker π`. This is correct.
+- *Semi-decision.* Emptiness of `[p] ∩ Y(Γ_w)` is expressed as an r.e. family of finitary constraints on
+  `A^F`: coset-constancy for `N_w`, the forbidden `U`-patterns, and `x|_U = p`. Compactness turns emptiness into
+  a finite unsatisfiable subfamily. This is correct.
+- *Computing `y_*`.* The same system with `x(u) ≠ a` is correct.
+- *Seeds satisfy the hypothesis.* Any normal subgroup fixing `y_*` lies in `Stab(y_*) = 1`.
+
+The argument is a verbatim adaptation of Jeandel's (arXiv:1501.06831; recursively presented + normally aperiodic
+effectively closed subshift ⇒ decidable word problem), weakened to one cylinder, and the node credits it so. Also
+credit the prior "strongly aperiodic SFT on an fp group ⇒ solvable word problem" line (Jeandel; cf. Cohen's work on
+strongly aperiodic subshifts). Part 1 subsumes part 1 of `seeds-never-survive-marked-approximation`: every proper
+quotient is covered, not only nearby ones. The b970e40ae0 edit (a uniform bound on `κ` ⇒ CAP) is consistent with
+the proof.

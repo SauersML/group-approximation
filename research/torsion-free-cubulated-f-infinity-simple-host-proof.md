@@ -14,7 +14,9 @@ requires:
   - matui-groupoid-homology-kunneth-and-full-shift-vanishing
 ---
 
-**Proof claimed, not independently reviewed.** Notation is that of the target.
+**Proof claimed, REPAIRED 2026-09-18 (sink characters, 866b27097a), not independently reviewed.**
+Notation is that of the target. Throughout, `𝒢⁺ = I_l ⋉ X_∞` with `X_∞ = ∂Ω(C⁺) ∩ Ω_∞`,
+basic open sets are those of `X_∞`, and every point is a Roller point.
 - A proper cocompact action on a CAT(0) cube complex forces local finiteness and finite
   dimension.
 - The tree of copies `T` has as vertices the copies of `X` in `X'`, and as edges the

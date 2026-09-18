@@ -91,6 +91,10 @@ Let `k ≥ 2δ + 4` and let `f` be k-locally genuine.
 
 ## Consequences for (HL)
 
+**Update (same day).** (HL) is proved in `hyperbolic-groups-have-sft-horofunction-compactifications`,
+by propagating one local target upstream, with no merging. Merging itself fails in some hyperbolic
+Cayley graphs (Webster–Winchester). The reduction below is kept as a record.
+
 - **Where the seedless points lie.** Let `Φ_0` be the integral CP horofunctions modulo constants, and
   `∂_h` the horofunction boundary (limits of normalized `d(·,g_n)`). Then:
   - `Y_R ∖ (seed orbit) ⊆ Φ_0` (Theorem (4));
@@ -126,3 +130,24 @@ What is left is a statement purely about the horofunction boundary: whether ever
 horofunction is a limit of distance functions. It lives in a bounded tube around one ray. So SFT
 compactifications of hyperbolic, including Kazhdan hyperbolic, groups hinge on one tube lemma, not on the
 input. The hard inputs `H_Γ` are not hyperbolic, so this remains calibration for (★𝒞).
+
+## Referee (bh-ref-hl, 2026-09-18): PASS for parts (0)–(3); part (4) not needed downstream
+
+This is an internal lane review.
+- **(0).** Edgewise 1-Lipschitz follows from `k ≥ 1`. At a non-sink the first step toward the local target lies in `B_1 ⊆ B_k`. A
+  local minimum forces target `= g`. Correct.
+- **(1).**
+  - `d(a,q) = d(a',q)` follows from the equal levels.
+  - While both paths are in `B_k(a)`, they are initial segments of geodesics to `q`. The `a'`-path stays in the ball for
+    `s ≤ k − E`.
+  - `(a|a')_q ≥ d(a,q) − E/2` and δ-thinness give `≤ δ` for `E/2 ≤ s ≤ k−E`.
+  - Restarting every `k−δ` steps needs `k − δ ≥ δ/2`, which holds.
+  - The bound `max(4,2δ) ≤ 2δ+4` holds throughout. Correct.
+- **(2).**
+  - The sink-matching argument is correct: at level `f(p')`, `α` passes within `2δ+4 ≤ k` of `p'`, where `p'` is the only
+    point at that level in `B_k(p')`.
+  - Mixed finite/infinite pairs are excluded by the same argument, and infinite pairs fellow-travel. Correct.
+- **(3).** Every descending path is a geodesic to `p` of length `f(x) − f(p)`. Correct.
+- **(4).** Distance-likeness is correct. I checked the convexity sketch less carefully; it is not used by
+  `hyperbolic-groups-have-sft-horofunction-compactifications`, which needs only (0)–(3).
+- **Minor.** Same integrability remark as the downstream node: `k` must cover relator loops.

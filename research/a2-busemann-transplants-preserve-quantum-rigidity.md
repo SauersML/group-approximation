@@ -61,7 +61,10 @@ lane proofs it cites. Quantum families (Q1–Q3) are as in
    skeleton marginal commutes with every marginal at every site. Here `D_s` is the rigidity scale of
    `X_s`, and `R_0 = max_W |w|`.
 4. **Rigidity.** If `Y` is `D_Y`-quantum rigid over `k`, then `Y^Γ` is `D`-quantum rigid over `k` for
-   every `D >= max(D_s, K + R_0, (3μ + 1) D_Y)`, with `μ = max_i |Me_i|`. Conversely, if `Y^Γ` is rigid then so is `Y`, by
+   every `D >= max(D_s, K + R_0, κ + D_Y)`, with `μ = max_i |Me_i|` and `κ` the offset bound of
+   Step 6 of the proof (`κ <= 3μ D_Y` when `M(N^2) ⊆ C̄`, e.g. for NE-deterministic `Y` with `M` as in the
+   Setting's example). Distances on `Γ` are taken in the word metric of `{γ ≠ 1 : d(o, γo) <= 4}` (proof, metric
+   convention). Conversely, if `Y^Γ` is rigid then so is `Y`, by
    `path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is`.
 
 ## Corollaries
@@ -142,6 +145,13 @@ induction (Step 4) and the Determination Lemma (Step 2) in full.
      `(3μ+1)D_Y` accordingly.
 
    The theorem is unaffected.
+
+**Both gaps fixed by the referee (09-18).** In the proof node:
+- the metric convention with `S_4` is now in the header, with the proof that `d_Γ <= d_Δ`;
+- Step 6 now uses `z_* = z_p − N_0 u_*` and the offset bound `κ`.
+
+Theorem item 4 above now states the threshold as `κ + D_Y`. That is at most the original
+`(3μ + 1) D_Y` when `M(N²) ⊆ C̄`.
 
 **Conditional on unrefereed lane proofs:**
 - `a2-lattice-boundary-skew-shifts-are-quantum-rigid` and

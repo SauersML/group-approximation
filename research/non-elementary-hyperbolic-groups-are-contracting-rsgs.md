@@ -160,3 +160,12 @@ remains:
      - a finite nucleus, via a bounded level defect under generators. This is the same shape of lemma as step 3 of
        `pisot-stein-groups-are-contracting-rsgs-proof`.
    - **Lesson.** The irreducible core belongs to the coding, not to the group. Question 1.1 is now a contraction question.
+7. **2026-09-18 (lane `bh-partials`), the closed-surface case is settled (lane proof, not reviewed).**
+   - `closed-surface-groups-are-contracting-rsgs` is now ESTABLISHED through its Bowen–Series route.
+   - **Step 4.** `Γ` acts on the Cantorized circle. This follows from Bowen–Series Lemma 2.4, read at source: orbit
+     equivalence except the pairs `(Q_i, g_{i−1}Q_i)`, which lie in `Π`.
+   - **Step 5.** The nucleus is finite. Itineraries are directed geodesic tile rays. The level of a cut point equals the
+     time its ray enters the carrier of its wall. Fellow travelling then matches the level defect to the Busemann shift.
+   - **Coverage.** This covers every closed hyperbolic surface group and every cocompact Fuchsian group.
+   - **What remains of Question 1.1.** One-ended groups without a Bowen–Series-type coding (3-manifold groups, Kazhdan
+     groups), and infinitely-ended groups that are not virtually torsion-free.
