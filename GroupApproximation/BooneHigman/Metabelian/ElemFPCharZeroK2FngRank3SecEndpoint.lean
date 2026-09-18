@@ -95,3 +95,53 @@ theorem czK2FngRank3Sec_cyclic_of_sectionProp {R S : Type*} [CommRing R] [CommRi
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Sec_cyclic_of_sectionProp
+
+/-- **The residual (lane `bh-met-93x`).**  For `m > 0` and `p` prime with `p ∤ m`, there are a
+finite `s ⊆ K₂(3, ℤ[1/(mp)])` and a section on `E_3(ℤ[1/(mp)])/E_3(ℤ[1/m])` with `σ(Γ) ∈ Q`
+such that `x₀₁(1)`, `x₁₂(1)`, `x₂₀(1)` and `x₀₁(1/(mp))` pass the check.  It is logically
+equivalent to `czK2FngGtOneRank3_CosetStatement` and strictly smaller in proof content (see
+the module docstring). -/
+def czK2FngRank3Sec_ResidualStatement : Prop :=
+  ∀ m p : ℕ, 0 < m → p.Prime → ¬ p ∣ m →
+    ∃ s : Set (SteinbergGroup (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ))), s.Finite ∧
+      s ⊆ K2 (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ)) ∧
+      czK2FngRank3Sec_CyclicSectionProp (czK2FngGtOneRank3_locMap m p) s
+        (IsLocalization.Away.invSelf ((m * p : ℕ) : ℤ) :
+          Localization.Away ((m * p : ℕ) : ℤ))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Sec_ResidualStatement
+
+/-- **The residual gives the coset statement of lane `bh-met-93s`.** -/
+theorem czK2FngRank3Sec_coset_of_residual (h : czK2FngRank3Sec_ResidualStatement) :
+    czK2FngGtOneRank3_CosetStatement := by
+  intro m p hm hp
+  by_cases hpm : p ∣ m
+  · exact czK2FngRank3Sec_coset_of_dvd m p hpm
+  · obtain ⟨s, hsfin, hsK, hσ⟩ := h m p hm hp hpm
+    exact ⟨s, hsfin, hsK, czK2FngRank3Sec_sectionProp_of_cyclic _ s _ hσ⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Sec_coset_of_residual
+
+/-- **The residual gives the target** `czK2FngGtOne_RankThreeStatement`: `K₂(3, ℤ[1/m])` is
+finitely normally generated for every `m > 1`. -/
+theorem czK2FngRank3Sec_rankThree_of_residual (h : czK2FngRank3Sec_ResidualStatement) :
+    czK2FngGtOne_RankThreeStatement :=
+  czK2FngGtOneRank3_rankThree_of_coset (czK2FngRank3Sec_coset_of_residual h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Sec_rankThree_of_residual
+
+/-- **Converse (LOUD: the residual is formally implied by the coset statement, hence
+equivalent to it).** -/
+theorem czK2FngRank3Sec_residual_of_coset (h : czK2FngGtOneRank3_CosetStatement) :
+    czK2FngRank3Sec_ResidualStatement := by
+  intro m p hm hp _
+  obtain ⟨s, hsfin, hsK, hσ⟩ := h m p hm hp
+  exact ⟨s, hsfin, hsK, czK2FngRank3Sec_cyclic_of_sectionProp _ s _ hσ⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Sec_residual_of_coset
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
