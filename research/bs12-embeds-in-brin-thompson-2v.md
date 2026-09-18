@@ -194,9 +194,11 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
     `kV` that costs either unbounded lookahead or a walk that breaks exact doubling. No candidate
     reached the `i ∈ E(S)` filter of `smart-induced-map-alternates-head-direction`.
 - 2026-09-18 (lane gq-nv-obstruct, targeted binary-timing scan). **No base found. The obstruction looks
-  like recognizability, not counting.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3d.
-  - Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is mask 21 with 6+6 states
-    and 3 symbols: block sizes `29·2^m`, gap 87.
+  like recognizability, not counting.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3d. (**That reading
+  is withdrawn:** see the complete-scan entry below.)
+  - (**Withdrawn, §3f.**) Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is
+    mask 21 with 6+6 states and 3 symbols: block sizes `29·2^m`, gap 87. In fact its maximal gap grows by
+    6 per level, and 87 is its value at level 17.
   - **Corrected (§3e):** the earlier conflict counts came from a hash bug. `mod 2` and `mod 4` are
     consistent at radius 9. The obstruction is in the return times: the first configuration `y` of the
     orbit returns with `n = 29·2^m + 4 ≡ 4 mod 8` (certified to radius 18). By
@@ -214,3 +216,13 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
       brick-locally conjugate to `τ × id^{k-1}`.
     - A witness must therefore have the odometer only as a factor, as SMART's `U` has `Z_3` for `BS(1,3)`: the
       binary-hierarchy problem of lane gq-nv-obstruct.
+- 2026-09-18 (lane gq-nv-obstruct, the complete 6+6/3 scan). **No base in the class. Every exact binary `Y`
+  comes with a linear walk.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3f.
+  - All 185,794,560 mirror-symmetric machines with 6+6 states and 3 symbols (mask 21) were scanned. Of these,
+    1,541,886 have binary frontier timing, and 1,467,416 have a nonempty zero-overhead `Y`.
+  - A filter on the growth of the maximal `Y`-gap leaves 1,053 of them at 3.2·10^7 steps.
+  - In every one of the 1,053, the head range inside some `Y`-gap grows by one or two cells per level. That
+    is a carry sweep hidden under a larger constant gap, so none survives.
+  - The phase is often local on these machines; one has returns `≡ 0 mod 2^14` at radius 10. So what fails
+    is the bounded return time needed by `brin-thompson-first-return-maps-lie-in-kv`, not recognizability.
+  - Not a proof: one orbit per machine, finitely many levels.
