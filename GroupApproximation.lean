@@ -5709,6 +5709,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Reduction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Intertwine
 import GroupApproximation.Manuscript.NonMF.Full.GL06.Waist
 import GroupApproximation.Manuscript.NonMF.Full.GL06.BinderFive
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Commutator
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
