@@ -47,10 +47,10 @@ or Route B, which is the first of these together with one of the other three:
 `CellPocketInnerTwoArcLongStatement`
 `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFillOutsideStatement`
 
-Route A has more inputs than the one above.  `GL06h4.gl06h4Nearest_shortPocketStatement`,
+Route A can also start from `GL06h4.gl06h4Nearest_shortPocketStatement`,
 `GL06h4.NearestCellPocketStatement`, `GL06h3.ShortBoundaryRefutedBelowSectionStatement`,
-`GL06h3.NearestCellCutSectionStatement` and `GL06h5.gl06h5_descentPocketStatement` each imply
-it (`NMWire2.Copy`), so it is the one listed.
+`GL06h3.NearestCellCutSectionStatement` or `GL06h5.gl06h5_descentPocketStatement`
+(`NMWire2.Copy`).  Each of these implies the all-cells refutation, so only that one is listed.
 
 The draft route `GL06g.proof_of_innerPocketEnclosed` would have derived the all-cells refutation
 from the corrected pocket.  It is not used: it still has an unresolved gap
@@ -133,3 +133,116 @@ theorem nmWire2_minimalLeaves_iff : nmWire2_MinimalLeaves ↔ NMWire.nmWire_Mini
     exact And.intro hcore hshort
 
 #audit_axioms GroupApproximation.Full.NMWire2.nmWire2_minimalLeaves_iff
+
+/-- **The zero-parameter torsion-free endpoints from the leaf census after the discharge.** -/
+theorem nmWire2_torsionFreeEndpoints_of_leafCensus (h : nmWire2_LeafCensus) :
+    GroupApproximation.Full.TorsionFreeEndpoints.TorsionFreeEndpoints :=
+  NMWire.nmWire_torsionFreeEndpoints_of_leafCensus (nmWire2_leafCensus_iff.mp h)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_torsionFreeEndpoints_of_leafCensus
+
+/-- **The zero-parameter torsion-free endpoints from the minimal leaf set after the
+discharge.** -/
+theorem nmWire2_torsionFreeEndpoints_of_minimalLeaves (h : nmWire2_MinimalLeaves) :
+    GroupApproximation.Full.TorsionFreeEndpoints.TorsionFreeEndpoints :=
+  NMWire.nmWire_torsionFreeEndpoints_of_minimalLeaves (nmWire2_minimalLeaves_iff.mp h)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_torsionFreeEndpoints_of_minimalLeaves
+
+/-- **The residual binder 5 alternatives.**  Route A is the all-cells refutation alone.  Route B
+is the uncut rose statement (Piece06) together with a P07 leaf. -/
+def nmWire2_CopyResiduals : Prop :=
+  GroupApproximation.Full.GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0} ∨
+    (GreendlingerLeaf.Piece06.CellRoseUncutStatement.{0, 0, 0} ∧
+      (GreendlingerLeaf.P07LakeExclusion.AllCellsShortLoopStatement.{0, 0, 0} ∨
+        GreendlingerLeaf.P07LakeExclusion.CellPocketInnerTwoArcLongStatement.{0, 0, 0} ∨
+        GreendlingerLeaf.P07LakeExclusion.LakeFillOutsideStatement.{0, 0, 0}))
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_CopyResiduals
+
+/-- Every binder 5 alternative of `nmWire2_CopyLeaves` gives a residual binder 5 alternative.
+The short nearest pocket and the nearest cell pocket both imply the all-cells refutation
+(`GL06h4`). -/
+theorem nmWire2_copyResiduals_of_copyLeaves (h : nmWire2_CopyLeaves) : nmWire2_CopyResiduals := by
+  rcases h with (hshort | hnear) | hB
+  · exact Or.inl (GroupApproximation.Full.GL06h4.gl06h4Nearest_allCellsShort_of_shortPocket hshort)
+  · exact Or.inl (GroupApproximation.Full.GL06h4.gl06h4Nearest_allCellsShort_of_shortPocket
+      (GroupApproximation.Full.GL06h4.gl06h4Nearest_shortPocket_of_nearestCellPocket hnear))
+  · exact Or.inr hB
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_copyResiduals_of_copyLeaves
+
+/-- **Binder 5 from any residual binder 5 alternative.** -/
+theorem nmWire2_copy_of_copyResiduals (h : nmWire2_CopyResiduals) :
+    OsinMultipleEdgePocketRegionCopyBelowSectionStatement.{0, 0, 0} := by
+  rcases h with hall | ⟨h06, h07⟩
+  · exact nmWire2_copy_of_allCells hall
+  · exact NMWire.nmWire_copy_of_cellRoseUncut_proper h06 (NMWire.nmWire_proper_of_p07Leaf h07)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_copy_of_copyResiduals
+
+/-- **The residual census**: a residual 10 alternative and a residual binder 5 alternative. -/
+def nmWire2_ResidualCensus : Prop :=
+  NMWire.nmWire_StepLeaves ∧ nmWire2_CopyResiduals
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_ResidualCensus
+
+/-- The leaf census gives the residual census. -/
+theorem nmWire2_residualCensus_of_leafCensus (h : nmWire2_LeafCensus) :
+    nmWire2_ResidualCensus := by
+  obtain ⟨hstep, hcopy⟩ := h
+  exact And.intro hstep (nmWire2_copyResiduals_of_copyLeaves hcopy)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_residualCensus_of_leafCensus
+
+/-- **Osin's Lemma 4.4 at least-area diagrams, at universes `0, 0, 0`, from the residual
+census.** -/
+theorem nmWire2_greendlinger_of_residualCensus (h : nmWire2_ResidualCensus) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0} := by
+  obtain ⟨hstep, hcopy⟩ := h
+  exact NMWire.nmWire_greendlinger_of_copy_step (nmWire2_copy_of_copyResiduals hcopy)
+    (NMWire.nmWire_step_of_stepLeaves hstep)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_greendlinger_of_residualCensus
+
+/-- **The zero-parameter torsion-free endpoints from the residual census.**  This is the top NM
+endpoint after the discharge. -/
+theorem nmWire2_torsionFreeEndpoints_of_residualCensus (h : nmWire2_ResidualCensus) :
+    GroupApproximation.Full.TorsionFreeEndpoints.TorsionFreeEndpoints :=
+  GroupApproximation.Full.TorsionFreeEndpoints.torsionFreeEndpoints_of_greendlinger
+    (nmWire2_greendlinger_of_residualCensus h)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_torsionFreeEndpoints_of_residualCensus
+
+/-- **The minimal residual set**: the kept-walk core and the all-cells refutation. -/
+def nmWire2_MinimalResiduals : Prop :=
+  GroupApproximation.Full.GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0} ∧
+    GroupApproximation.Full.GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0}
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_MinimalResiduals
+
+/-- The minimal residual set is an instance of the residual census. -/
+theorem nmWire2_residualCensus_of_minimalResiduals (h : nmWire2_MinimalResiduals) :
+    nmWire2_ResidualCensus := by
+  obtain ⟨hcore, hall⟩ := h
+  exact And.intro (Or.inr (Or.inr hcore)) (Or.inl hall)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_residualCensus_of_minimalResiduals
+
+/-- The minimal leaf set after the discharge gives the minimal residual set. -/
+theorem nmWire2_minimalResiduals_of_minimalLeaves (h : nmWire2_MinimalLeaves) :
+    nmWire2_MinimalResiduals := by
+  obtain ⟨hcore, hshort⟩ := h
+  exact And.intro hcore
+    (GroupApproximation.Full.GL06h4.gl06h4Nearest_allCellsShort_of_shortPocket hshort)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_minimalResiduals_of_minimalLeaves
+
+/-- **The zero-parameter torsion-free endpoints from the minimal residual set.** -/
+theorem nmWire2_torsionFreeEndpoints_of_minimalResiduals (h : nmWire2_MinimalResiduals) :
+    GroupApproximation.Full.TorsionFreeEndpoints.TorsionFreeEndpoints :=
+  nmWire2_torsionFreeEndpoints_of_residualCensus (nmWire2_residualCensus_of_minimalResiduals h)
+
+#audit_axioms GroupApproximation.Full.NMWire2.nmWire2_torsionFreeEndpoints_of_minimalResiduals
+
+end GroupApproximation.Full.NMWire2
