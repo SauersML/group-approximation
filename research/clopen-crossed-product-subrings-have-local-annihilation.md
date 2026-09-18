@@ -8,11 +8,13 @@ distinct_from:
   local-annihilation-makes-projective-el-simple: that is the criterion that consumes local annihilation; this supplies it for crossed-product-type subrings.
 artifacts:
   - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md
+  - research/artifacts/gq-referee-c-sl3-toeplitz-harmonic-pe-groups-are-simple.md
 ---
 
 **ESTABLISHED** by `clopen-crossed-product-subrings-have-local-annihilation-proof` (elementary: the
-Steinberg-algebra argument with the coefficient functions allowed to be arbitrary). Referee
-`gq-referee-b` PASS (`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md`).
+Steinberg-algebra argument with the coefficient functions allowed to be arbitrary). Referees
+`gq-referee-b` and `gq-referee-c` PASS (reports `gq-referee-b-` and
+`gq-referee-c-sl3-toeplitz-harmonic-pe-groups-are-simple.md` in `research/artifacts/`; C re-derived Steps 1–3).
 The additive-span form proved here is stronger than the Lean predicate `LocalAnnihilation`.
 
 ## Statement

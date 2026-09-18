@@ -9,10 +9,12 @@ distinct_from:
   ample-steinberg-el-simple-mod-centre-without-hausdorff: that is for Steinberg algebras, whose coefficients are locally constant; this is for R_T, whose harmonic coefficient is not locally constant.
 artifacts:
   - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md
+  - research/artifacts/gq-referee-c-sl3-toeplitz-harmonic-pe-groups-are-simple.md
 ---
 
-**ESTABLISHED** by `sl3-toeplitz-harmonic-pe-groups-are-simple-proof`. Referee `gq-referee-b` PASS
-(`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md`), which checked the Lean
+**ESTABLISHED** by `sl3-toeplitz-harmonic-pe-groups-are-simple-proof`. Referees `gq-referee-b` and `gq-referee-c` PASS
+(`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md`,
+`research/artifacts/gq-referee-c-sl3-toeplitz-harmonic-pe-groups-are-simple.md`). Both checked the Lean
 signature against `R_T`. The claim is conditional on parts 1–3 of
 `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`, which have one referee pass (`gq-referee-a`).
 
