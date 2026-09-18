@@ -71,3 +71,10 @@ presented simple group, which is the survey's Problem 5.3(13) for this type. For
 2. **Surviving shape.** A fibration, or an injective map into a free-by-`B_A` group,
    that uses the lifts `v_k` and not only their orbifold images. In orbifold terms:
    treat the two cone points asymmetrically.
+3. **Every single-object fibre fails** (lane analysis, 2026-09-18). Consider fibrations whose fibre is the position of one object, with the others in the base: a cone point (as for B̃_n and B(e,e,n)), a strand, or the homogenized puncture (as in Li--Roushon's scaling).
+   - A cone point as fibre coordinate: a strand on the *other* cone point makes a branch point fall into the puncture "cone points distinct".
+   - A strand as fibre coordinate: another strand on a cone point merges its two lifted punctures `v_j, 1/v_j`.
+   - The puncture as fibre coordinate: the count of punctures `±w_j` drops when a strand reaches a cone point.
+   - Any of these could be repaired only by removing a divisor from the total space, which gives a quotient, not a subgroup.
+   - More generally, a fibre through a point of `{strand k at c_1} ∩ {strand j at c_2}` must be smooth there, which forces it to be transverse to both divisors. By the invariance lemma the map must then genuinely use the lifts `v_k` (or `y_k`), not only orbifold positions.
+4. **The filled space is a bundle, but only as a quotient.** In the double cover `E'` (coordinates `u_k^2 = x_k − c_1`, `z_k^2 = x_k − c_2`), allowing `c_1 = c_2` gives a genuine bundle `E'_fill -> C × M(D_n^lin)` with fibre a `(Z/2)^n`-cover of `C` branched at `n` points. So `π_1(E'_fill) ∈ B_A`. But `E' = E'_fill − {c_1 = c_2}`, so `π_1(E') -> π_1(E'_fill)` is only a surjection. Its kernel contains the normal closure of the twist of the two cone points about each other.

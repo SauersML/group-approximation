@@ -11,6 +11,11 @@ distinct_from:
 **ESTABLISHED** through `three-tree-lattice-kernel-commutation-proof` (lane
 proof, elementary; not independently reviewed; no priority claimed).
 
+**Superseded in its own setting.** `cocompact-tree-product-lattices-lie-in-type-a-class`
+puts every faithful cocompact lattice on thick leafless trees in `B_A`, so the
+hypothesis "not in `B_A`" below never holds here. The structural items remain true,
+but they now say something only about lattices with a finite kernel on `X`.
+
 **Setting.** `Γ <= Aut(X)` is a cocompact lattice on `X = T_1 x T_2 x T_3`, each
 `T_i` locally finite, leafless and with more than two ends; `Γ_0` preserves the
 factors, `K_i` is the kernel on `T_i`, `N_ij = K_i ∩ K_j`, and `Ḡ_k` is the
