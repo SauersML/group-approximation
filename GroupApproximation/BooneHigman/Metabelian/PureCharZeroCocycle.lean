@@ -116,6 +116,8 @@ variable (Γ) in
 /-- The cocycle space `Additive (Γᵃᵇ → (Γ')ᵃᵇ)`, a `ℤ[Γᵃᵇ]`-module by translation. -/
 abbrev KKSpace : Type _ := Additive (Abelianization Γ → Abelianization (commutator Γ))
 
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.KKSpace
+
 /-- The Kaloujnine–Krasner cocycle `c_g`. -/
 noncomputable def kkCocycle (g : Γ) : KKSpace Γ :=
   Additive.ofMul fun x => Abelianization.of (kkElt g x)
