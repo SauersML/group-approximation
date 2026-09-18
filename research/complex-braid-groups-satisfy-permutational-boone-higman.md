@@ -48,3 +48,45 @@ proof (arXiv:math/0610777v4, Introduction, p. 2, read).
 - **Possible reduction (cited, not used).** `G_33` is a parabolic subgroup of `G_34`,
   and braid groups of parabolic subgroups embed in `B(W)` (BMR). If so,
   `B(G_33) ≤ B(G_34)`, and it suffices to treat `G_24`, `G_27`, `G_29`, `G_34`.
+
+## Attempts
+
+1. **G_24: pencil fibrations of the Klein complement** (lane analysis, 2026-09-18).
+
+   Setup: `U = P^2 − A`, with `A` Klein's 21 lines (21 quadruple and 28 triple points,
+   no double points). Its Poincaré polynomial is `(1+9t)(1+11t)` (coexponents
+   `1, 9, 11`), so `χ(U) = 80`. A fibration `U -> P^1 − k points` by the members of a
+   pencil, with fibre of genus `g` minus `s` points, needs `(k−2)(2g+s−2) = 80`, hence
+   `k >= 3`. By blowing up base points, every map from a rational surface to `P^1` is
+   such a pencil.
+
+   - **Projection from a point: impossible.** There is no modular point. From a
+     quadruple point, the 4 lines through it carry only 28 of the other 48 multiple
+     points. A point off `A` lies on no line of `A`.
+   - **Hesse-type, all lines vertical: needs k = 3 and a 3-multinet.** Lines in
+     different special members meet only at base points, and a base point lies on a
+     line of every special member.
+     - So `k <= 3` at triple points.
+     - For `k = 4` every triple point is monochromatic. The graph on the 21 lines, with
+       an edge whenever two lines share a triple point, is connected: it is 8-regular
+       and vertex-transitive under `PSL_2(7)`, so its components have size at least 9
+       and divide 21. So all lines would be in one member, a contradiction.
+     - For `k = 3` the lines must carry a 3-(multi)net structure, as in
+       Falk--Yuzvinsky. An honest `(3,7)`-net needs 49 triple points, and `A` has 28.
+       Weighted multinets are not excluded here. Then `2g + s = 82`, and the pencil
+       must have no other singular members.
+   - **Mixed vertical and horizontal lines: not excluded.**
+     - Every multiple point must lie on a vertical line: a multiple point whose lines
+       are all horizontal would be a base point missed by the special members.
+     - Two vertical lines from different special members meet only at base points.
+     - Horizontal lines must meet the general member transversally.
+   - **Other routes.**
+     - Kummer and Hirzebruch covers branched along `A` (ball quotients) and the
+       Lyashko--Looijenga projection only give quotients of `π_1(U)`.
+     - `G_24` is not a regular centralizer: its degrees `4, 6, 14` have `gcd 2`, and
+       every real group has degree 2. It is not a parabolic subgroup of a
+       known-good group.
+
+   *Stalled.* The sharpest open point is whether the Klein arrangement supports a
+   weighted 3-multinet whose pencil is otherwise smooth. By the same count, `G_27`
+   (Valentiner, 45 lines) needs the analogous structure.
