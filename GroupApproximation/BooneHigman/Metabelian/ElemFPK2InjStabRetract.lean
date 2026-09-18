@@ -49,7 +49,7 @@ theorem k2InjStab_injective_of_retract {R S : Type*} [Ring R] [Ring S] {n : ℕ}
         (map_one (K2Map (I := Fin (n + 1)) f)))
   have hv1 : K2Map f u = 1 := h (hv.trans (map_one (K2Stab n S)).symm)
   calc u = K2Map g (K2Map f u) := (K2Map_K2Map_of_comp_eq_id g f hgf u).symm
-    _ = K2Map g 1 := by rw [hv1]
+    _ = K2Map (I := Fin n) g 1 := by rw [hv1]
     _ = 1 := map_one (K2Map (I := Fin n) g)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2InjStab_injective_of_retract

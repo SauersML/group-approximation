@@ -92,3 +92,96 @@ theorem fiveStepCentralLeavitt_commute_lower_opp {R : Type*} [Ring R] (L : Leavi
 
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavitt_commute_lower_opp
+
+/-- **Every lower-corner root commutes with the corner root**: `x_{pq}(s₀ t₀)` commutes with
+`x_{ij}(s₁ a t₁)` for all `i ≠ j`, for `n ≥ 3`. -/
+theorem fiveStepCentralLeavitt_commute_lower {R : Type*} [Ring R] (L : LeavittFamily R)
+    {n : ℕ} (hn : 3 ≤ n) {p q : Fin n} (hpq : p ≠ q) (i j : Fin n) (hij : i ≠ j) (a : R) :
+    Commute (x p q hpq (L.s0 * L.t0)) (x i j hij (L.s1 * a * L.t1)) := by
+  by_cases hi : i = q
+  · subst hi
+    by_cases hj : j = p
+    · subst hj
+      exact fiveStepCentralLeavitt_commute_lower_opp L hn hpq hij a
+    · exact fiveStepCentralLeavitt_commute_of_mul_eq_zero hpq hij (fun e => hj e.symm)
+        (fiveStepCentralLeavitt_p0_mul_lower L a)
+  · by_cases hj : j = p
+    · subst hj
+      exact (fiveStepCentralLeavitt_commute_of_mul_eq_zero hij hpq hi
+        (fiveStepCentralLeavitt_lower_mul_p0 L a)).symm
+    · exact x_commute_of_ne p q i j hpq hij (fun e => hi e.symm) hj _ _
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavitt_commute_lower
+
+/-- The lower corner on a Steinberg generator: `x_{ij}(a) ↦ x_{ij}(s₁ a t₁)`. -/
+def fiveStepCentralLeavittLowerGen {R : Type*} [Ring R] (L : LeavittFamily R) {n : ℕ}
+    (g : SteinbergGenerator (Fin n) R) : SteinbergGroup (Fin n) R :=
+  x g.row g.column g.row_ne_column (L.s1 * g.coefficient * L.t1)
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavittLowerGen
+
+theorem fiveStepCentralLeavittLowerGen_kills_relations {R : Type*} [Ring R]
+    (L : LeavittFamily R) {n : ℕ} (w : FreeGroup (SteinbergGenerator (Fin n) R))
+    (hw : w ∈ SteinbergGroup.relations (I := Fin n) (R := R)) :
+    FreeGroup.lift (fiveStepCentralLeavittLowerGen L) w = 1 := by
+  change SteinbergGroup.IsRelation w at hw
+  cases hw with
+  | add i j hij a b =>
+      simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
+      change x i j hij (L.s1 * a * L.t1) * x i j hij (L.s1 * b * L.t1) *
+        (x i j hij (L.s1 * (a + b) * L.t1))⁻¹ = 1
+      rw [x_mul, show L.s1 * a * L.t1 + L.s1 * b * L.t1 = L.s1 * (a + b) * L.t1 by
+        rw [mul_add, add_mul], mul_inv_cancel]
+  | commute i j k l hij hkl hjk hli a b =>
+      simp only [map_commutatorElement, FreeGroup.lift_apply_of]
+      change ⁅x i j hij (L.s1 * a * L.t1), x k l hkl (L.s1 * b * L.t1)⁆ = 1
+      exact (x_commute_of_ne i j k l hij hkl hjk hli _ _).commutator_eq
+  | adjacent i j k hij hjk hik a b =>
+      simp only [map_mul, map_inv, map_commutatorElement, FreeGroup.lift_apply_of]
+      change ⁅x i j hij (L.s1 * a * L.t1), x j k hjk (L.s1 * b * L.t1)⁆ *
+        (x i k hik (L.s1 * (a * b) * L.t1))⁻¹ = 1
+      rw [x_commutator i j k hij hjk hik, fiveStepCentralLeavitt_lower_mul L a b, mul_inv_cancel]
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavittLowerGen_kills_relations
+
+/-- **The lower corner homomorphism** `ψ₁ : St_n(R) → St_n(R)`, `x_{ij}(a) ↦ x_{ij}(s₁ a t₁)`. -/
+def fiveStepCentralLeavittLowerHom {R : Type*} [Ring R] (L : LeavittFamily R) {n : ℕ} :
+    SteinbergGroup (Fin n) R →* SteinbergGroup (Fin n) R :=
+  PresentedGroup.toGroup (f := fiveStepCentralLeavittLowerGen L)
+    (fiveStepCentralLeavittLowerGen_kills_relations L)
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavittLowerHom
+
+theorem fiveStepCentralLeavittLowerHom_x {R : Type*} [Ring R] (L : LeavittFamily R) {n : ℕ}
+    (i j : Fin n) (hij : i ≠ j) (a : R) :
+    fiveStepCentralLeavittLowerHom L (x i j hij a) = x i j hij (L.s1 * a * L.t1) := by
+  exact PresentedGroup.toGroup.of _
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavittLowerHom_x
+
+/-- **The image of `ψ₁` centralizes the corner root**, unconditionally, for `n ≥ 3`: every
+`ψ₁(g)` commutes with `x_{pq}(s₀ t₀)`. -/
+theorem fiveStepCentralLeavitt_commute_lowerHom {R : Type*} [Ring R] (L : LeavittFamily R)
+    {n : ℕ} (hn : 3 ≤ n) {p q : Fin n} (hpq : p ≠ q) (g : SteinbergGroup (Fin n) R) :
+    Commute (x p q hpq (L.s0 * L.t0)) (fiveStepCentralLeavittLowerHom L g) := by
+  have hg : g ∈ (Subgroup.centralizer {x p q hpq (L.s0 * L.t0)}).comap
+      (fiveStepCentralLeavittLowerHom L) := by
+    refine PresentedGroup.generated_by _ _ ?_ g
+    rintro ⟨i, j, hij, a⟩
+    rw [Subgroup.mem_comap, Subgroup.mem_centralizer_singleton_iff]
+    change fiveStepCentralLeavittLowerHom L (x i j hij a) * x p q hpq (L.s0 * L.t0) =
+      x p q hpq (L.s0 * L.t0) * fiveStepCentralLeavittLowerHom L (x i j hij a)
+    rw [fiveStepCentralLeavittLowerHom_x]
+    exact (fiveStepCentralLeavitt_commute_lower L hn hpq i j hij a).eq.symm
+  rw [Subgroup.mem_comap, Subgroup.mem_centralizer_singleton_iff] at hg
+  exact hg.symm
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentralLeavitt_commute_lowerHom
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
