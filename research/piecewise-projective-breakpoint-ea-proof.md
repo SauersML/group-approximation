@@ -1,0 +1,143 @@
+---
+rg: 2
+id: piecewise-projective-breakpoint-ea-proof
+kind: route
+title: Run the Juschenko--Nekrashevych--de la Salle germ theorem with extensive amenability on the singular orbits only, and check its hypotheses for Monod's H as Juschenko--Matte Bon--Monod--de la Salle do
+target: piecewise-projective-groups-amenable-iff-breakpoint-action-ea
+requires:
+  - affine-lamplighter-amenable-iff-extensively-amenable
+---
+
+## Imported statements (verbatim)
+
+**JNS.** K. Juschenko, V. Nekrashevych, M. de la Salle, *Extensions of amenable groups by recurrent
+groupoids*, arXiv:1305.2637, TeX `amenable.tex`, fetched 2026-09-18.
+- l.416–432 (Theorem `th:amenhomeo`): "Let $G$ be a finitely generated group of homeomorphisms of a
+  topological space $\X$, and $\Gr$ be its groupoid of germs. Let $\Hr$ be a groupoid of germs of
+  homeomorphisms of $\X$. Suppose that the following conditions hold. (1) The group $[[\Hr]]$ is amenable.
+  (2) For every generator $g$ of $G$ the set of points $x\in\X$ such that $(g, x)\notin\Hr$ is finite. We
+  say that $x\in\X$ is \emph{singular} if there exists $g\in G$ such that $(g, x)\notin\Hr$. (3) For every
+  singular point $x\in\X$ the orbital Schreier graph $\Gamma(x, G)$ is recurrent. (4) The isotropy groups
+  $\Gr_x$ are amenable. Then the group $G$ is amenable."
+- l.437–439: "Let $\Sigma$ be the set of points $x\in\X$ such that there exists $g\in S$ such that
+  $(g, x)\notin\Hr$. Let $V$ be the union of the $G$-orbits of the elements of $\Sigma$."
+- l.445 (Lemma `lem:singular`): "The set $V$ contains all singular points of $\X$."
+- l.523–529: "By Lemma~\ref{duality} and Theorem~\ref{prop=equiv_sobolev} there exists a $G$-invariant
+  mean on $\mathcal{P}_f(V)$ giving full weight to the collection of sets containing a given point $p\in
+  V$. Note that since the mean is $G$-invariant, finitely additive, and the action of $G$ on $V$ is
+  transitive, the mean gives full weight to the collection of sets containing any given finite subset of
+  $V$. In particular, it gives full weight to the collection of sets containing $\Sigma$."
+- l.607–612: "Suppose that it is not amenable. It follows from Lemma~\ref{lem:recurrentamenablesubgroup}
+  that for every $v\in V$ the action of every subgroup of $G$ on the orbit of $v$ has an invariant mean.
+  Consequently, by Proposition~\ref{pr:amenableactionandstabilizer}, the stabilizer $G_{\phi, v}$ of $v$
+  in $G_\phi$ is non-amenable."
+
+**JMMdlS.** K. Juschenko, N. Matte Bon, N. Monod, M. de la Salle, *Extensive amenability and an
+application to interval exchanges*, arXiv:1503.04977, TeX `extAmen2.tex`, fetched 2026-09-18.
+- l.91: "The action of a group $G$ on a set $X$ is \emph{extensively amenable} if there is a $G$-invariant
+  mean on $\Pf(X)$ giving full weight to the collection of subsets that contain any given element of
+  $\Pf(X)$."
+- l.241: "Every action of an amenable group is extensively amenable, and every extensively amenable action
+  on a nonempty set is amenable."
+- l.262–264 (Lemma `lemma=JSbis`): "The following are equivalent: (i) The action of $G$ on $X$ is
+  extensively amenable. (ii) For every finitely generated subgroup $H$ of $G$ and every $H$-orbit $Y
+  \subset X$, the action of $H$ on $Y$ is extensively amenable."
+- l.282–284: "We say that a group action $G\acts X$ is \emph{hereditarily amenable} if for every subgroup
+  $H$ of $G$ the action of $H$ on every $H$-orbit is amenable. [...] Extensively amenable actions are
+  hereditarily amenable."
+- l.771 (Lemma `lemma:Frankenstein_hereditarily_amenable`): "$H \acts \R$ is hereditarily amenable."
+- l.815: "In fact, condition~(iii) in the original statement in~\cite{JNS} was that the action is
+  recurrent, but this is used in the proof only through Theorem~\ref{T: recurrent}."
+- l.818 (proof of Theorem `thm:Frankenstein`): "Condition~(ii) is satisfied since $\mathcal G_x\simeq
+  \operatorname{Aff}(\R)\times\operatorname{Aff}(\R)$. [...] Since projective homeomorphisms are analytic,
+  it is easy to see that the germ of $h$ in at any two points $x,y\in \R$ is represented by the same
+  element of $\operatorname{PSL}_2(\R)$. Therefore $h\in \operatorname{PSL}(2, \R)$ and $h$ stabilizes
+  $\R$ globally. This shows that $[[\mathcal H]]=\operatorname{Aff}(\R)$ is amenable."
+- JNS l.205–208 (Proposition `pr:amenableactionandstabilizer`): "If the action is amenable and for every
+  $x\in X$ the stabilizer $G_x$ of $x$ in $G$ is an amenable group, then the group $G$ is amenable."
+- JNS l.306–313 (Lemma `duality`) and l.327–331 (Theorem `prop=equiv_sobolev`) are the only places where
+  recurrence produces the mean used at l.523; l.428 and l.608 are the only other occurrences of
+  "recurren" in the statement and proof of Theorem `th:amenhomeo` (l.414–612, checked by search).
+
+## Step 0. The JNS data for a subgroup of H
+
+Take `X = R`, and let `𝓗` be the groupoid of germs `(γ, x)` with `γ ∈ PSL_2(R)`, `x ∈ R` and
+`γ(x) ∈ R`. For `f ∈ H`, `(f, x) ∈ 𝓗` iff `x ∉ sing(f)`. Let `G ≤ H` be generated by a finite symmetric
+set `S`.
+- **JNS (2).** `sing(s)` is finite for each `s ∈ S` (it lies in the finite set of piece endpoints).
+- **JNS (1).** `[[𝓗]] = Aff(R)` is amenable (JMMdlS l.818). In particular an element of `H` with no
+  singular point is affine.
+- **JNS (4).** Let `g ∈ G` fix `x`. By analyticity, each one-sided germ of `g` at `x` is the germ of a
+  unique element of `Stab_{PSL_2(R)}(x)`, and this stabilizer is conjugate to
+  `Stab(∞) = {t ↦ αt + β : α > 0}`. So `𝒢_x` embeds in a product of two solvable groups and is amenable
+  (JMMdlS l.818: `𝒢_x ≃ Aff(R) × Aff(R)`).
+
+## Step 1. The breakpoint set is the JNS set V
+
+Let `Σ = ⋃_{s ∈ S} sing(s)` and `V = G·Σ`. The JNS singular points are exactly `B(G)`.
+- `B(G) ⊆ V`. This is JNS Lemma `lem:singular` (l.445).
+- `V ⊆ B(G)`. Let `x ∈ sing(s)` and `h ∈ G`. We have `(s h^{-1}, hx) = (s, x)(h^{-1}, hx)`.
+  - If `(h^{-1}, hx) ∉ 𝓗`, then `hx ∈ sing(h^{-1})`.
+  - Otherwise `(s h^{-1}, hx) ∉ 𝓗`, since `𝓗` is a groupoid and `(s, x) ∉ 𝓗`. So `hx ∈ sing(s h^{-1})`.
+- The same two cases, with `s` replaced by any `g ∈ G`, show that `B(G)` is `G`-invariant for any
+  `G ≤ H`, finitely generated or not.
+
+Since `Σ` is finite, `V = B(G)` is a union of finitely many `G`-orbits `V_1, …, V_k`. This proves item 1.
+
+## Step 2. Localized JNS theorem
+
+**Theorem′.** Keep JNS hypotheses (1), (2), (4), and replace (3) by
+(3′) *the action `G ↷ V` is extensively amenable*. Then `G` is amenable.
+
+Proof: the JNS proof of Theorem `th:amenhomeo` (l.434–612), with exactly two changes.
+
+**(a) The mean at l.523–529, one orbit (`k = 1`).** This is the case used for `F` and `G_0`. (3′) gives a
+`G`-invariant mean on `P_f(V)` that gives full weight to the sets containing `Σ`. That is the only output of
+l.523–529 used afterwards (l.531–586). So the proof of the Proposition runs verbatim.
+
+**(a′) Several orbits (`k ≥ 2`).** JNS reduce to a transitive action by a diagonal-product remark
+(l.500–504). We do not use that remark, since (3′) already gives a mean on all of `P_f(V)`.
+- Take the Følner family `𝓕` of sets containing `Σ` from this mean, by Theorem `th:amenabcriteria`.
+- Split `𝓕` by the `G`-invariant type `(|B ∩ V_1|, …, |B ∩ V_k|)`, and keep one `ε`-invariant type class,
+  with sizes `(N_1, …, N_k)`. This is pigeonhole on the boundary, as JNS do for cardinality at l.535–537.
+- In each orbit choose a base point `x_i ∈ A ∩ V_i`, with its own finite set `R_i ⊂ 𝒢_{x_i}` and Følner set
+  `F_i` satisfying `|γF_i Δ F_i| ≤ ε|F_i|/N` for `γ ∈ R_i`, where `N = Σ N_i`.
+- For `v ∈ B`, let `φ(v)` range over the copy of `F_{i(v)}`. Then `|𝓕̂_B| = ∏_i |F_i|^{N_i}` is constant on
+  the class.
+- The counting of l.539–586 is unchanged, with per-point loss `|γ_v F_{i(v)} \ F_{i(v)}| / |F_{i(v)}| ≤ ε/N`.
+
+**(b) Hereditary amenability at l.608.** JNS need that, for every `v ∈ V`, every subgroup `L ≤ G` acts on
+`L·v` with an invariant mean. This follows from (3′) and JMMdlS l.284, since `L·v ⊆ V` is an `L`-orbit. The
+induction at l.609–612 uses it only for subgroups of `G` (`G_φ`, `G_{φ,v}`, …) and points of
+`supp φ ⊆ V`.
+
+Nothing else in l.434–612 uses (3). The only other occurrence of "recurren" is the statement (l.428), and
+the mean at l.523 comes from `duality` and `prop=equiv_sobolev`. This matches JMMdlS l.815. ∎
+
+## Step 3. Items 2 and 3
+
+**Item 2, "only if".** This is JMMdlS l.241.
+
+**Item 2, "if", for finitely generated `G`.** By Steps 0–1, JNS (1), (2), (4) hold with `V = B(G)`, and
+(3′) is the hypothesis. Theorem′ applies.
+
+**Item 2, "if", for arbitrary `G`.** Let `L ≤ G` be finitely generated.
+- `G ↷ B(G)` satisfies JSbis (ii). Every finitely generated subgroup of `L` is one of `G`, so `L ↷ B(G)`
+  satisfies (ii), and hence (i).
+- `B(L) ⊆ B(G)` is `L`-invariant. Push the mean forward along `B ↦ B ∩ B(L)`. This map is `L`-equivariant,
+  and the preimage of `{B' ⊇ E}` is `{B ⊇ E}` for `E ⊆ B(L)`. So `L ↷ B(L)` is extensively amenable.
+- Hence `L` is amenable by the finitely generated case. If `B(L) = ∅`, then `L ≤ Aff(R)` by Step 0.
+
+`G` is the directed union of its finitely generated subgroups, so `G` is amenable.
+
+**Item 3.** Subgroups of `G` are subgroups of `H`, and their orbits are orbits in `R`. Apply JMMdlS l.771. ∎
+
+## Scope and honesty
+
+- JMMdlS prove the global version: `G` is amenable iff `G ↷ R` is extensively amenable. Their l.765 adds
+  that some finitely generated `L ≤ H` and some `L`-orbit are hereditarily amenable but not extensively
+  amenable, without naming them.
+- New here: the localization to `B(G)`. It names a witness, `(G_0, Q)`, in
+  `lodha-moore-breakpoint-orbit-is-hereditarily-amenable-not-ea`.
+- The several-orbit case (a′) is a routine rewrite of the JNS counting. The one-orbit case, which is all
+  that the calibrator uses, is JNS verbatim apart from the source of the mean.

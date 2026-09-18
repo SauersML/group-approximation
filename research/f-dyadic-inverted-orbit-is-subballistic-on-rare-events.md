@@ -136,3 +136,20 @@ itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
   the confinement time `n(ε)` or the lower-bound profile. Explicit times of bounded tower height die there, and so
   do profiles `exp(−n/g(n))` with `log g/log* n → ∞`, including stretched exponentials. The hole itself needs only
   a vanishing rate, and item 2 allows rates `C^{−2 log* n}`, so nothing here decides it.
+
+- 2026-09-18, swarm-0917-w13-w13-f-pull (family host-geometry, calibration): class kill by a piecewise projective
+  calibrator; the hole stays OPEN. Results: `piecewise-projective-groups-amenable-iff-breakpoint-action-ea`
+  (JNS with recurrence replaced by extensive amenability on the singular orbits only) and
+  `lodha-moore-breakpoint-orbit-is-hereditarily-amenable-not-ea`.
+  - In Thurston's model `F = ⟨a, b⟩ ≤ H`, the breakpoint set is `B(F) = F·0 = Q` (Euclidean descent, checked in
+    `experiments/lodha-moore-ea-calibrator-2026-09-17/orbit_of_zero.py`). The Lodha–Moore group
+    `G_0 = ⟨a, b, c⟩ ⊇ F` has the same breakpoint set and orbit `Q`.
+  - `G_0 ↷ Q` is transitive and hereditarily amenable but not extensively amenable. So for its inverted orbit,
+    `P(|O_n| < εn) ≤ e^{−εn}` for some `ε > 0` and all large `n`: this is the exact negation of this hole, on the
+    same set `Q` where `F` acts. For `F ↷ Q`, EA is equivalent to this hole.
+  - Invariant: JNS inputs (1), (2), (4), hereditary amenability, finite presentation, no free subgroups, rational
+    breakpoints, and translation germs. All are shared by `F ↷ Q` and `G_0 ↷ Q`. Dying step: any upgrade
+    "hereditarily amenable plus this germ data ⇒ confinement". This corrects the remark in
+    `pl-ea-calibrators-are-nonamenable-interval-groups` that finite presentability cannot currently be tested.
+  - Survivors: `PSL_2(Z)` integrality (`c` has determinant 2), `C^1` regularity (killed as well if Lodha–Moore's
+    unproved remark that `⟨t+1/2, b⟩` is nonamenable holds), and the specific relations of `F`.
