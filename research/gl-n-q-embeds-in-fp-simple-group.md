@@ -363,3 +363,10 @@ None recorded before 2026-09-17.
       - *Slot formats with placeholders:* the translations `+1/p` lose uniform rewrite depth.
       - *Shifted formats:* compactness allows only finitely many primes.
       - *One register per prime with a shared overflow:* the actor must already contain `Aff^+(Q)`.
+    - *Follow-up, 2026-09-18.* `prime-shift-hnn-groups-are-not-finitely-presented`: the HNN groups `Π_n` are
+      not finitely presented (`<<x_12(1)>>` has quotient `Z/2 × (Z ≀ Z)`). So `A_1` or `K_n` can be finitely
+      presented only through a hidden relation putting some dilation `m_r`, `r != 1`, in the normal closure of the
+      unipotents. If `Π_1 -> A_1` is injective, `A_1` has no finitary permutations and `A_1^ab = Z/2 × Z^2`.
+      `prime-shift-dilation-normalizers-are-nowhere-continuous`: every permutation shifting the primes on the dilation
+      group is `c·σ` on each half-line and discontinuous everywhere (real on `Q^x`, all `p`-adic), so no tame
+      version of `σ` exists. The open question is whether `Π_1 -> A_1` is injective.
