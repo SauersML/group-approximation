@@ -175,3 +175,35 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
        bound. So the Attempt 6 prerequisite now reads: minimal, topologically free SFTs with
        finitely presented crossed products, *without finite asymptotic pairs*, and with no uniform
        recursive bound on their ball languages.
+10. **Boundary products (c-cantor, 2026-09-17). Reframing; the rank-model gate
+   is lifted, the target stays OPEN.** This item follows the landed Attempt 6.
+   - **Closure.** `cantor-crossed-hosts-are-closed-under-boundary-products`
+     (ESTABLISHED, unreviewed) says that valid hosts are closed under
+     `(P, X) ↦ (P × F_d, X × ∂F_d)`, with algebra `B ⊗ L_∂`. Valid means:
+     `P` torsion-free with FJCw; `B` finitely presented, simple, centre `k`.
+     - The new host contains `B` unitally.
+     - It has no unital rank model.
+   - **The linear-soficity gate.** The gate of Attempts 2 and 3 is a property
+     of amenable hosts only. It does not follow from the target.
+   - **Hard SFTs.** `minimal-z2-sfts-have-no-uniform-language-time-bound`
+     (ESTABLISHED, unreviewed, Durand–Romashchenko import plus a Sturmian
+     diagonalization) answers the language part of Attempt 6 for `Z^2`, and so
+     for `Z^2 × F_d`. The SFTs it produces are not known to be free or quantum
+     rigid.
+   - **Decomposition.** Route
+     `cantor-crossed-hosts-via-boundary-products-of-z2-sft-hosts` reduces the
+     target to the OPEN
+     `decidable-algebras-embed-in-z2-sft-boundary-product-hosts`.
+     Its prerequisites can fail separately:
+     - (Q) a quantum rigid free minimal `Z^2`-SFT over `F_2`;
+     - (H) unbounded language complexity among them;
+     - (E) the embedding `F_2[G] -> B_Ω ⊗ L_∂`.
+   - **Group-level weakening.** The OPEN
+     `decidable-groups-embed-in-cantor-crossed-leavitt-tensor-units`, with
+     route `boone-higman-via-units-of-cantor-crossed-leavitt-tensors`, asks only
+     for `G -> (B ⊗ L)^x`, and already gives Boone–Higman.
+   - **Where it stops.** No free, minimal, quantum rigid, hard `Z^2`-SFT was
+     produced, and no embedding (E) was attempted for a non-linear-sofic group.
+     The absence of finite asymptotic pairs required by Attempt 9 is also not
+     known for these SFTs.
+     Artifact `cantor-crossed-host-boundary-products-2026-09-17`.
