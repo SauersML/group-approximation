@@ -42,3 +42,11 @@ node is.
 
 **Consequence.** By Theorem 5(b) of `hermitian-edge-trace-norm-k4-free-h-perfect-proof`, (**) then
 holds for every h-perfect graph, including every perfect graph.
+
+## Attempts
+
+- 2026-09-18 (w7-078): **the `m = 5` piece is now ESTABLISHED.** All 16 slices of
+  `hermitian-edge-trace-norm-clique-inequality-k5` print `ALL CLOSED`, via the new route
+  `hermitian-edge-trace-norm-clique-inequality-k5-proof`. Every required claim of this route is therefore
+  ESTABLISHED, and so is its target. The consequence for h-perfect graphs is recorded in
+  `hermitian-edge-trace-norm-h-perfect`.

@@ -7,6 +7,7 @@ distinct_from:
   commuting-subshift-automorphisms-die-when-space-time-is-rf: that proves the permutation-model kill of commuting-automorphism survivors fails exactly at non-RF space-time subshifts; this asks for the concrete source of such subshifts.
   minimal-z2-directions-forbid-eigenvalues-vanishing-on-them: that excludes square-hierarchical and quadratic-toral candidates; this is the existence question for the candidates it leaves.
   labbe-tiles-admit-periodic-quantum-tilings-at-every-scale: that asks whether a non-RF Z^2 shift still has matricial models; this asks for a non-RF Z^2 shift whose rows form a minimal Z-subshift carrying the vertical shift as an automorphism.
+  kari-culik-minimal-subsystem-has-no-expansive-direction: that kills one candidate, the Kari--Culik SFT with Siefken's minimal subsystem, at expansiveness for every direction; this is the existence question itself.
 ---
 
 **OPEN.**
@@ -56,3 +57,28 @@ distinct_from:
      horizontal supertile seam.  Mozes' decorations along a seam are chosen once per seam line, so the
      diagonal strip, which crosses each seam, should see them.  Neither (i) nor (ii) is checked against Mozes'
      actual tile set.
+
+2. **Kari--Culik tiles with Siefken's minimal subsystem (2026-09-18, class kill, symbolic-dynamics).**
+   - *Candidate.*
+     - `Σ` is the 13-tile Kari--Culik SFT, which has no periodic points.
+     - `Y' = KC` is Siefken's minimal subsystem of tilings with generalized Sturmian rows, imported in
+       `siefken-kari-culik-basic-construction-and-row-rigidity`.
+     - It escapes both constraints above.  Its circle eigenvalue `θ = (0, log 2/log 6)` vanishes only on
+       the horizontal axis, so it passes the eigenvalue tests along every diagonal `v = (a,b)` with `ab ≠ 0`.
+     - A density experiment on the invariant real-phase family finds no minimality obstruction for
+       `(1,1), (1,2), (2,1), (3,1)`: `experiments/kari-culik-diagonal-2026-09-17/seam_orbit_density.py`.
+   - *Kill (ESTABLISHED).*  `kari-culik-minimal-subsystem-has-no-expansive-direction` shows that `KC` has
+     no expansive direction of any slope.
+     - Proof: `kari-culik-ray-pair-proof`.
+     - The invariant is the *phase-zero ray*.  The row multipliers `×2` and `/3` fix phase `0`, and a
+       `×2` row has the two preimage phases `0` and `1/2`.
+     - Setting every phase to `0` above a `×2` row and to a dyadic phase below it, then comparing the floor
+       coding with a limit of left-perturbed codings, gives two points of `KC`.  They differ only on
+       `{0,1} × [j_0 - 1, ∞)`.
+     - Siefken's Theorem 10 (injectivity of the bottom-label map on irrational rows) forces agreement
+       everywhere else.
+   - *New constraint on the question.*
+     - `Y'` must have no two distinct points whose difference set lies within bounded distance of a
+       half-line.  Such a pair defeats every expansive direction.
+     - For Attempt 1 this sharpens step (ii): a Mozes seam carrying independent decorations on two
+       half-lines would be such a pair.

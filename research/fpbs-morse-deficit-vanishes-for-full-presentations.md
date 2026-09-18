@@ -208,3 +208,26 @@ Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, 
   - `m >= 2` cell types.
   - Growing word lists `P_L`. This is where the node lives.
 - *Status.* The node stays OPEN.
+
+### 2026-09-18 — swarm-0917-w9-w9-fp-pull (transplanter, calibration): letter-share cap for all matchings, and a barrier for balanced ones
+
+- *Approach.* Run the w8 height-sublevel and Kesten argument on arbitrary matchings over arbitrary lists. Heights
+  are global across letters, and the argument is taken one pair (cell type `r`, letter `s`) at a time.
+- *Result (negative, ESTABLISHED).* `fpbs-letter-saturated-morse-matchings-die-on-bernoulli`, Theorem A. On
+  Bernoulli, every Morse matching has letter share `mu(r -> s) <= 1 - (k_rs - 1)(1 - rho_rs)/(6 k_rs^2)`. This holds
+  whatever the other letters, other types and positions do. The w8 theorem is the case `m = 1` with one letter.
+- *Barrier (ESTABLISHED, about the method).* Proposition D. For balanced shares, the full per-letter inequality
+  system is satisfied at zero deficit by a lockstep profile `u_j^s = lambda^j/|T|`. The system consists of sublevel
+  almost-invariance plus the gap, the thick-level count, and the Cheeger height tail. The profile works for every
+  `lambda >= (k - 1)/(k - 1 + k|T|)` (sharp), and with `lambda -> 1`.
+- *Where it dies.* Lemma 1'. The straddling mass of letter `s` at level `j` is bounded only by `delta` plus the
+  other letters' removed mass above `j`, which is the same size as what it must control.
+- *Changes belief.*
+  - Over `P_L` the cap is vacuous. The per-type share needed is `z/m_L -> 0`, and even letter-pure matchings escape
+    once `m_L > z/(1 - max c)`. So no per-(type, letter) spectral bound can refute this node.
+  - At a fixed list, the remaining regime is: unsaturated (Theorem A), height-non-tight
+    (`fpbs-near-optimal-morse-matchings-have-non-tight-heights`), and jointly balanced across letters beyond what
+    `Sigma` sees. The sharp test is `m({abaBabcdcDcd}) = 0?`
+- *Not ruled out.* Balanced multi-letter matchings at any list. An attack on them needs the joint law of per-cell
+  height vectors, not per-letter marginals.
+- *Status.* The node stays OPEN.

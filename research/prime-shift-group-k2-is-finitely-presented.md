@@ -163,3 +163,21 @@ Notation as in `gl-n-q-lies-in-prime-shift-permutation-group`.
   - **Status.** No conjecture of the requested form survives. The informative search would use the
     generators `σ_2^j x_12(q) σ_2^-j` with rational `q`; it was not run, since no budget was granted for it.
     Stalled.
+- **Attempt 6 (2026-09-18, gq-ring-fp-simple): a rational-shear search with a blindness pre-check. No
+  relation found.** This is evidence, not proof; details in the artifact
+  `gq-ring-fp-simple-k2-hidden-relation-search.md`, second round.
+  - *Generators.* `σ_2^j x_12(q) σ_2^-j`, `σ_2^j x_21(q) σ_2^-j`, `W` and `D`, all in `N` by Attempt 5:
+    - `|j| <= 1`, `q ∈ {±1, ±2, ±1/2}` or `{±1, ±2, ±1/2, ±3, ±1/3}`;
+    - `|j| <= 2`, `q ∈ {±1, ±2, ±1/2}`.
+
+    Length 3 is complete in each case, and length 4 is covered partially, with 0.44 to 0.52 million
+    elements per run.
+  - *Pre-check.* The generators preserve `p`-content for `p` outside a finite set `S ∋ 2`, and preserve
+    `Z[1/S]^2`. `r` preserves both, since it changes content only at 2.
+    - Full content and pair determinants are not invariants of the searched group.
+    - `r` violates no invariant known from Attempts 1–5, so neither test is blind.
+  - *Calibration inside the searched group.* The planted target `X(-1) ∘ σ_2^-1 X(1) σ_2` is found 39 times
+    out of 39, with `|det L| = 1`. Between 902 and 3,884 words are linear of determinant `±1` other than `±I`,
+    per run.
+  - *Result.* No linear relation with `|det L| != 1`, and no `r`-translated match. This is bounded evidence,
+    consistent with `2 ∉ I_2`; membership of `r` in `N` is open.

@@ -48,7 +48,8 @@ theorem suslinR2Ind_common_denom {R S κ : Type*} [CommRing R] [CommRing S] [Alg
     ← Finset.prod_erase_mul _ _ (Finset.mem_univ k), map_mul, C_mul, mul_assoc]
   congr 1
   ext n
-  rw [coeff_smul, coeff_C_mul, Algebra.smul_def]
+  rw [coeff_C_mul]
+  exact (coeff_smul (c k) (g k) n).trans (Algebra.smul_def (c k) ((g k).coeff n))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_common_denom
 
@@ -67,6 +68,7 @@ theorem suslinR2Ind_coeff_zero (σ : (Matrix ι ι R[X])ˣ)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_coeff_zero
 
+omit [Fintype ι] in
 /-- A ring map preserves the entries of the identity matrix. -/
 theorem suslinR2Ind_one_apply_map {S : Type*} [CommRing S] (f : R →+* S) (i j : ι) :
     (1 : Matrix ι ι S) i j = f ((1 : Matrix ι ι R) i j) := by
@@ -91,7 +93,7 @@ theorem suslinR2Ind_lift_matrix {S : Type*} [CommRing S] (f : R →+* S)
     ⟨fun i j ↦ X * ((q i j).divX.comp (C s * X)) + C ((1 : Matrix ι ι R) i j),
       fun _ _ ↦ rfl⟩
   refine ⟨P, ?_, fun i j ↦ ?_⟩
-  · ext i j
+  · refine Matrix.ext fun i j ↦ ?_
     change (P i j).map f = ((σ : Matrix ι ι S[X]) i j).comp (C (f s) * X)
     rw [hP]
     refine suslinR2Ind_lift_poly f (q i j) ((σ : Matrix ι ι S[X]) i j) s _ (hq i j) ?_
@@ -104,7 +106,7 @@ theorem suslinR2Ind_lift_matrix {S : Type*} [CommRing S] (f : R →+* S)
 theorem suslinR2Ind_mapMatrix_injective {S : Type*} [CommRing S] {f : R →+* S}
     (hf : Function.Injective f) (M N : Matrix ι ι R[X])
     (h : (mapRingHom f).mapMatrix M = (mapRingHom f).mapMatrix N) : M = N := by
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   exact Polynomial.map_injective f hf (congrFun (congrFun h i) j)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mapMatrix_injective

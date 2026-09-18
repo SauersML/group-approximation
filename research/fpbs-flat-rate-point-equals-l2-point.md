@@ -3,6 +3,8 @@ rg: 2
 id: fpbs-flat-rate-point-equals-l2-point
 kind: claim
 title: On every nonamenable Cayley graph the walk connectivity rate stops being flat exactly at the l2 threshold of the two-point function
+refuted_by:
+  - fpbs-flat-rate-point-exceeds-l2-point-on-free-products
 distinct_from:
   fpbs-two-point-lq-threshold-gap-universal: that asks for l^q summability slightly above p_c; this asks whether the flat-rate point p_* equals the l2 point p_2 at every p, a statement about the whole parameter range that says nothing about p_c
   fpbs-lq-two-point-bounds-walk-rate: that proves the inequality p_2 <= p_*; this is the reverse inequality
@@ -92,3 +94,35 @@ thinning bound `tau_{p^g} >= tau_p^g`.
   general positive definite functions this is false: one operator norm does
   not detect weak containment. So a proof must use percolation input, such as
   monotonicity in `p`, thinning, or BK. This computation uses none of these.
+* **Refuted on free products with two block types**
+  (swarm-0917-w9-w9-bs-break, 2026-09-18;
+  `fpbs-flat-rate-point-exceeds-l2-point-on-free-products`, full proof in
+  `research/artifacts/fpbs-free-product-flat-rate-2026-09-18.md`).
+
+  The route has two steps.
+
+  - On any transitive graph, `sum_n a_n z^n = sum_x G_z(o,x) tau_p(o,x)`.
+    So `p_*` is the threshold for this Green pairing to be finite for every
+    `z < 1/rho`.
+  - On `(Z/2)^{*k} * (Z/3)^{*m}`, both kernels factor over normal-form
+    letters, so `p_*` is the root of `Phi(a(R)p, 2F(R)q(p)) = 1`. Here
+    `Phi` is the reduced-word sum criterion. `p_2` is the root of
+    `Phi(p^2, 2q^2) = 1`.
+
+  In log-weight coordinates the finiteness region is convex, by
+  Cauchy–Schwarz. Its boundary is analytic and not affine unless
+  `(k,m) = (1,1)`. The Green point `A` lies in its closure, and the l2 point
+  `B` lies on its boundary. So the midpoint, which is the `p_*` test at
+  `p_2`, is interior unless `A = B`.
+
+  An exact rational certificate gives `A != B` for `(2,1)`, `(3,1)`, `(1,2)`,
+  `(2,2)` and `(4,1)`. So `p_* > p_2` on all five. On `Z/2 * Z/2 * Z/3`
+  the floating-point values are `p_2 = 0.5736456` and `p_* = 0.5737271`.
+
+  **Where it dies:** the claim holds only in one-type geometry, as on `T_d`,
+  and on `PSL_2(Z)`, where the boundary is affine. The radial evidence above
+  is exactly that case.
+
+  The consequence is that the flat-rate hole [F], `p_c < p_*`, is strictly
+  weaker than `p_c < p_2` as a graph property. So the flat-rate routes do not
+  collapse to the l2 route.

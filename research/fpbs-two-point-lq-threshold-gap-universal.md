@@ -81,3 +81,60 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     Thinning is an equality on trees, so no monotone parameter coupling can
     improve the exponent. New information is needed at `p_c + 0`.
     See Section 5 of `lq-threshold-power-monotonicity-2026-09-17.md`.
+* **Infinite-cluster reduction and intersection moments (swarm-0917-w9,
+  reframing).**
+  - *Proved* (`fpbs-lq-two-point-infinite-cluster-reduction`, established; it
+    uses Hermon–Hutchcroft through `fpbs-supercritical-finite-susceptibility`):
+    - `sum_x (tau^fin_p)^q <= chi^fin(p) < infinity` for every `p > p_c` and
+      every `q >= 1`. So every `p_q`, `q_0` and [Q] itself depend only on
+      `tau^inf`.
+    - `Z^inf_k` is the expected intersection of `k` independent infinite
+      clusters of `o`.
+    - `Z_q(p) < infinity` at one `p` gives `gamma(p) >= log(gr)/q` (kernel
+      (K)), infinite-cluster ball growth at most `(1-1/q) log gr`, and
+      nonuniqueness.
+  - *New hole:* [Q_fin], `fpbs-two-point-some-lq-above-pc-universal`, which is
+    `q_0 < infinity`. It gives the chain
+    `[Q] => [Q_fin] => (K) => p_c < p_u`, with routes
+    `fpbs-some-lq-from-lq-threshold-gap` and
+    `fpbs-worst-pair-kernel-via-some-lq-two-point`.
+  - *Consequence for methods:*
+    - The collapse families H2/H5 have Bernoulli `tau^fin` and `theta` but
+      `q_0 = infinity`.
+    - So no argument from finite-cluster observables, `theta` or local laws
+      proves [Q] or [Q_fin].
+  - *Where Russo–BK with the pivotal split dies* (Section 5 of
+    `lq-infinite-cluster-reduction-2026-09-18.md`):
+    - The finite-side pivotal terms are at most `C chi^fin(p) Z_q(p)`.
+    - Closing by Gronwall then needs `int chi^fin dp < infinity` at `p_c+`,
+      which fails on `T_d`. Replacing it by an `l^r` bound is circular.
+    - The pivotal term with both sides infinite is left uncontrolled.
+* **Local-limit / compactness transplant (swarm-0917-w10, logic-computability,
+  obstruction).** The approach proves [Q] on a dense or generating set of
+  marked groups and passes to limits, or else certifies it from ball data.
+  - *Where it dies:* the gap `p_q - p_c` is not lower semicontinuous in the
+    marked-group topology. Take `S_k = F_2/F_2^(k)`, which converges to
+    `F_2 = T_4`. Each `S_k` is amenable, so `p_u = p_c` there. Since
+    `Z_q(p) < infinity` forces `tau_p -> 0` and hence nonuniqueness, we get
+    `p_c <= p_q <= p_u`, so `p_q(S_k) = p_c(S_k)`. By Easo–Hutchcroft
+    (`fpbs-easo-hutchcroft-pc-locality`), `p_c(S_k) -> 1/3`. But
+    `p_q(T_4) = 3^(-1/q) > 1/3`. So the gap is 0 along the sequence and
+    positive at the limit, and `{p_q > p_c}` is not open.
+  - This is `fpbs-pu-open-certificates-pinned-at-pc` specialised to `p_q`.
+    Every ball-local certificate of `Z_q(p_c + delta) < infinity` must fail at
+    `F_2`. Only a closed hypothesis can gate it, such as `rho <= r < 1`.
+  - *What survives:* on `K_r = {rho <= r}`, which is compact, the set
+    `U^q_(delta,C) = {Z_q(G, p_c(G)+delta) <= C}` is closed. The reasons are
+    that `Z_q` is lower semicontinuous in `G` (Fatou over ball-restricted
+    connection events), left-continuous in `p`, and `p_c` is continuous.
+    So [Q] restricted to `K_r` is `F_sigma`.
+  - Since `p_(2->2) <= p_2` (item 3 of `fpbs-lq-threshold-power-monotonicity`)
+    and `p_2 <= p_q` for `q >= 2` (because `tau <= 1`), every failure of [Q]
+    is also a failure of the l2 gap. Every [Q] failure in `X_(k,eta)`
+    therefore lies in the derived kernel of `fpbs-l2-gap-baire-dichotomy`,
+    and the Baire dichotomy there transfers verbatim with `Z_q` in place of
+    `||T||`.
+  - *Net:* this gives no new certificate and no counterexample. A
+    compactness proof of [Q] needs a uniform `Z_q` bound on an open subset of
+    every closed `Y ⊆ K_r`, which is exactly as hard as the l2 kernel
+    problem.

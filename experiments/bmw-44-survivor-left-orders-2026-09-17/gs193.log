@@ -1,0 +1,2 @@
+UNSAT 193 v1 v3 f=v2 | h1 h2 g=h3 ball 3169 349 s
+class 193 R 4 short 2 done; UNSAT instances: 1 421 s

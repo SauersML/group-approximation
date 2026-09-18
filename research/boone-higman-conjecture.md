@@ -507,6 +507,57 @@ conjecture's two halves without narrowing either.
       locally-finite-by-`Z` and residually finite, but their envelope is an
       unrestricted wreath product, so the `B_A` wreath closure does not
       reach them.
+14. **Random-walk invariants as the separating property of Attempt 7**
+    (transplanter lane w9-bh-pull, probability-random, swarm-0917,
+    2026-09-18).
+    - *Separators.* For a family `𝓗` of tested subgroups containing the
+      lamplighter `W = Z/2 wr Z^3` (for instance all finitely generated
+      amenable subgroups), consider:
+      - `Ent_U` (every admissible walk has `H(μ^n) ≼ U`);
+      - `Drift_U` (every admissible walk has `E|X_n| ≼ U`);
+      - `Liou_∀` and `Liou_∃` (every, respectively some, admissible walk is
+        Liouville).
+    - *Kill.* `random-walk-separators-of-boone-higman` (ESTABLISHED,
+      unreviewed, elementary) shows that none of them separates, for any `U`.
+      - Invariant: the position of `U` relative to the linear ceiling `n`.
+        Every walk has `H(μ^n) <= n log|supp μ|` and `E|X_n| <= n max|x|`.
+      - At or above the ceiling, the class is everything, and (S2) fails.
+      - Below it, (S1) fails at one finitely presented simple host `S_W ⊇ W`.
+        Here `W ∈ B_A` by the wreath closure. The switch-walk-switch measure on
+        `W` has entropy `>= (log 2)γ(n+1)` and drift `>= γ(n+1)/2`, obtained by
+        counting fair lamps on the range of the transient base walk. No
+        admissible walk on `W` is Liouville: the limiting lamp configuration
+        would be a `W`-fixed configuration, and the lamp flip moves every
+        configuration.
+      - The random-walk tools that exist in the graph for Thompson's group `F`
+        (Kaimanovich) do not give this kill, because `F` is not known to be
+        amenable.
+    - *Survivor: return probabilities.* The ceiling for
+      `-log μ^(2n)(e)` is still linear, but the route (item 6) proves
+      `-log p_(2n) <= log F_H(r) + 4Ln/r`. So `-log p_(2n) = o(n)` on every
+      amenable group, and no amenable group in `B_A` reaches the ceiling. The
+      dichotomy therefore breaks at its second case.
+      - `Ret_φ` for sublinear `φ` is killed at (S1) exactly where some amenable
+        `B_A` group beats `φ`.
+      - It is open in the band between the return exponents reached inside
+        `B_A` and `o(n)`.
+      - Context only, not imported: Pittet--Saloff-Coste give
+        `-log p_(2n) ≍ n^(d/(d+2))` for `Z/2 wr Z^d`, and Erschler treats
+        iterated wreath products. With these, the band would sit above every
+        power `n^(1-ε)` and above the iterated-wreath rates.
+      - A return-probability disproof needs the same two ingredients as a
+        Følner disproof above towers: a decidable group with return exponent
+        in the band, and a proof that every finitely presented simple group
+        stays below it.
+    - *Side remark (quotient towers).* Let `Γ` be finitely presented and
+      `N_1 ≤ N_2 ≤ ...` normal subgroups with `Γ / ∪N_i` finitely presented.
+      Then `∪N_i` is finitely normally generated
+      (`fp-quotient-iff-kernel-finitely-normally-generated`), so it equals
+      some `N_k`. Hence any construction of a finitely presented simple host
+      as the limit of an increasing quotient tower of a finitely presented
+      group, whose finite stages are never simple, cannot produce a finitely
+      presented limit. Random or small-cancellation quotient towers are
+      examples. The host must already appear at a finite stage.
 
 **September 17: one decidable host per complexity bound.**  This attempt
 decomposes the conjecture as follows.

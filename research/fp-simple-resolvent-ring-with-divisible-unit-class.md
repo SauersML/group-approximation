@@ -224,3 +224,16 @@ This is the coordinator's design target of 2026-09-18.
       with a spine, with every `δ_n` in `B⁺`. The present result does not need it. (P) enters only the reading that
       rational `K_1` detection forces `det(1 - φ_*) = 0`, and item 7(a) of the new node gives that part
       unconditionally.
+14. **Non-positive fixed classes and the combined bracket, 2026-09-18 (lane `gq-infinite-primes`).**
+    - `mixed-degree-units-lift-non-positive-fixed-classes`. For a multi-type matricial base, graded, with `A`
+      invertible:
+      - the core is ultramatricial;
+      - a corner isometry `t_+` exists when `A^-1[1_B] <= [1_B]`, and makes `R = R_0[t_+, t_-; α]`;
+      - every fixed class `v`, positive or not, is `[dom w_+] - [ran w_-]` for a unit `U = w_+ + w_- + w_0` of `R` with
+        pieces of degree `1, -1, 0`.
+      So the forced `K_2` classes are candidates `{λ, U}`: Steinberg symbols of commuting units of `R`. They are
+      infinitely generated if (CSL) holds, that is the corner skew Laurent sequence with `NK = 0`, `K_*(Q)`-linear,
+      with the index formula. For `A = [[2,1],[2,3]]` this holds with `ε(2,2)`, `ε(0,1)` as domains. The
+      non-positive case is therefore not a loophole unless (CSL) fails.
+    - `frame-designs-for-the-ring-gate-are-bracketed` states the whole exclusion as one list. For each case it names
+      the node and its hypotheses, and it lists what remains as (a)--(f).

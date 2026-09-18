@@ -228,3 +228,19 @@ presentation coordinates.
     sees only the diagonal.  These towers stay governed by
     `deligne-class-finite-action-norms-vanish`.
   - The claim stays OPEN.
+- **2026-09-18, swarm-0917-w9-w9-deligne-pull: the reframing transplant (auxiliary-radical transfer) dies at centrality and amenable flexibility.**
+  - Idea: prove non-hyperlinearity of `E_3` by importing a computed hyperlinear (or MF) radical of an auxiliary
+    group `H` along a homomorphism `f : H -> E_3`, since `z in Rad_HL(E_3)` iff `E_3` is not hyperlinear.
+  - `deligne-auxiliary-radical-transfer-needs-rigid-image` (ESTABLISHED) shows, for every subgroup-closed class
+    containing the countable residually finite groups:
+    - (R1) `f(Rad_P H) <= C_3` is central, so it factors through the coinvariants `N/[N,H]`.  It is trivial when
+      the radical is perfect or contains a relative elementary subgroup `EL_n(R,I)`, `n >= 3`.
+    - (R2) A nontrivial transfer forces `p f(H)` to be Deligne-rigid, and `Q_H` to surject onto it.
+    - (R3) If the maximal `P`-quotient is amenable or satisfies a law, the transfer is trivial.  This covers full
+      radicals and the `K_1` extreme.
+    - (R4) Homomorphisms out of `E_3` only give upper bounds on `Rad_P(E_3)`.
+  - Every computed radical in the ring, groupoid and paradox lanes therefore maps trivially to `E_3`.
+  - Survivor: an auxiliary group with central coinvariants whose maximal quotient maps onto a Deligne-rigid
+    subgroup.  If `sp4-deligne-rigid-infinite-index-subgroup-exists` fails, that is the gap on a finite-index
+    subgroup of `E_3`, which is circular.
+  - The claim stays OPEN.

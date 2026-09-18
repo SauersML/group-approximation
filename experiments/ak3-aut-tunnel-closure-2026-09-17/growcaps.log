@@ -16,3 +16,35 @@ processed 40000 new states, total new 40485
 EXHAUSTED new states 41531 processed 41531 tunnels 75833783 tunnel-PRIM 0
 goals PRIM 0 THICK 0 PROJ 0; thick calls 41531 undecided 0
 exit 0 time 300s
+== grow 2 23 AK(3) from scratch
+RANK 2 CAP 23 base 0 seeds 1 (already known 0) new after seeding 1
+processed 20000 new states, total new 44469
+processed 40000 new states, total new 70286
+processed 60000 new states, total new 86898
+processed 80000 new states, total new 100105
+processed 100000 new states, total new 114134
+processed 120000 new states, total new 127504
+EXHAUSTED new states 139897 processed 139897 tunnels 276692109 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 139897 undecided 0
+exit 0 time 859s
+== grow 3 20 AK(3) from scratch
+RANK 3 CAP 20 base 0 seeds 1 (already known 0) new after seeding 1
+EXHAUSTED new states 6963 processed 6963 tunnels 15690667 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 13934 undecided 0
+exit 0 time 107s
+== grow 3 21 AK(3) from scratch
+RANK 3 CAP 21 base 0 seeds 1 (already known 0) new after seeding 1
+processed 20000 new states, total new 21493
+EXHAUSTED new states 23785 processed 23785 tunnels 58978506 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 47622 undecided 0
+exit 0 time 471s
+== grow 3 22 AK(3) from scratch
+RANK 3 CAP 22 base 0 seeds 1 (already known 0) new after seeding 1
+processed 20000 new states, total new 27381
+processed 40000 new states, total new 40847
+EXHAUSTED new states 42435 processed 42435 tunnels 109516633 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 84990 undecided 0
+exit 0 time 952s
+== grow 3 23 AK(3) from scratch
+RANK 3 CAP 23 base 0 seeds 1 (already known 0) new after seeding 1
+exit 124 time 1200s

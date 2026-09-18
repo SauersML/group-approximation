@@ -175,6 +175,39 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    `F_p<X>/(X^p, Serre)` and Golod–Shafarevich counts. The graded form of
    the central-extension statement "splits over the three vertex groups
    implies trivial" is false: `N` splits over each vertex subalgebra. What is
+   left is group-level input with no graded shadow. In `F_p<<X>>`,
+   `a^p-1=X_a^p` is homogeneous, so that input is the degree->=4 tails of
+   the six Heisenberg commutator relators. Those tails are nonzero even at
+   one vertex. For `p=5`, no edge-compatible isomorphism
+   `F_5[U] -> u(heis)` exists (exhaustive search, `heis_formal.py`). See
+   `kms-hc1-kassel-classes-survive-restricted-initial-forms`.
+   The direct `p=13` tower was run in chained pq runs (`pqchain.sh`,
+   `p13chain.out`). It reached class 37, of order `13^99`, which equals
+   `|I_1/P_38|`. Class 38 timed out under machine load, so the deciding
+   degree `3p=39` is still not computed.
+
+5. **Hidden degree-15 relation, eigen-coordinates (`p=5`).** Put
+   `Y_i = log(1+X_i)`. The torus `(F_p^*)^3` then acts on `F_p<<Y>>` and
+   preserves `I`, so `I` is graded by multidegree modulo `p-1` (proved for
+   every odd `p`). An exact standard basis through degree 15 gives the
+   following.
+   - The graded model must include the three vertex relations
+     `(XY-YX)^5`, which appear at degree 10.
+   - The model with them, `J+Z`, agrees with `u(L_5)` through degree 14. It
+     exceeds `u(L_5)` by exactly 3 at degree 15, all in multidegree
+     `(5,5,5)`.
+   - That 3-dimensional space is spanned by the Kassel lift `K` and the two
+     restricted Cartan relations.
+   - `K` is killed by a single first-order tail step: the S-pair of
+     `[c,a]^5` with a degree-7 word glued from all three edges, which jumps
+     from degree 11 to degree 15.
+   - With tails on any proper subset of the edges, `K` survives. At degree
+     11 the single-edge tail obstructions cancel only around the whole
+     triangle.
+
+   This is an exact computation for `p=5` and gives the mechanism, not a
+   proof for general `p`. See
+   `kms-hc1-kassel-relation-is-a-first-order-triangle-s-pair`.
    left is group-level input with no graded shadow, namely the
    non-homogeneous tails of `(1+X)^p` and of the Heisenberg commutators. See
    `kms-hc1-kassel-classes-survive-restricted-initial-forms`.

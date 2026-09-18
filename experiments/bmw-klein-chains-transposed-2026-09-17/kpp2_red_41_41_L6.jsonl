@@ -1,0 +1,4 @@
+{"class": 480, "L": 6, "pure": true, "powers": true, "pairs": 3369, "cycle": null}
+{"class": 484, "L": 6, "pure": true, "powers": true, "pairs": 5287, "cycle": null}
+{"class": 486, "L": 6, "pure": true, "powers": true, "pairs": 5064, "cycle": ["v|h0000", "v31|h", "v0303|h", "v|h02", "v|h0202", "v00|h", "v1111|h", "v|h03", "v|h3131", "v02|h", "v2121|h", "v|h00"]}
+{"class": 541, "L": 6, "pure": true, "powers": true, "pairs": 4522, "cycle": ["v|h0000", "v00|h", "v1111|h", "v|h0321", "v|h023231", "v232111|h", "v|h00"]}

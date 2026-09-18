@@ -1,0 +1,9 @@
+j 1 states 648 nonempty lengths 1..12: 000101010101
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w5-107/work/parreg2.py", line 72, in <module>
+    I=minimize(inter([I,pre(b,I)]))
+               ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w5-107/work/parreg2.py", line 41, in inter
+    if r not in seen: seen.add(r); todo.append(r)
+                                   ^^^^^^^^^^^^^^
+MemoryError

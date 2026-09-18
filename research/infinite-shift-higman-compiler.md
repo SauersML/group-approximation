@@ -13,6 +13,8 @@ artifacts:
   - research/artifacts/boone-higman-finite-ray-compiler-boundary-2026-09-08.md
 ---
 
+**OPEN.** *(Status line added by bh-integrate, 2026-09-18. The claim has no status line; its only route, `infinite-shift-compiler-via-two-sided-germ-gate`, needs the OPEN `mz-germ-finite-presentation-lifts-to-the-envelope`.)*
+
 Let `P` be an **infinite** finitely presented group with decidable word
 problem.  Then a bijection
 
@@ -101,3 +103,9 @@ Proposition 3.27, Theorem 3.28, and Example 3.31 (p. 194).  Source checked
     `H_2` has index 2 in `E_2` and has a finitely presented germ group.
 
   The claim itself stays OPEN.
+- **Houghton-like alternative (bh-map, 2026-09-18).** For Boone--Higman the target can be replaced by finite
+  presentation of `H_n(E_nu(P))` for some `n >= 2` (`decidable-inputs-have-fp-houghton-like-shift-envelopes`,
+  route `boone-higman-via-houghton-like-shift-envelopes`). There the germ gate is only "`R_nu` finitely presented",
+  which free-shift enumerations meet (`houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`). But
+  those enumerations fail for every `n` (`free-shift-houghton-like-envelopes-are-not-fp`), so the Houghton-like
+  route also needs near relations. This claim is the case `n = 1` and is not affected.

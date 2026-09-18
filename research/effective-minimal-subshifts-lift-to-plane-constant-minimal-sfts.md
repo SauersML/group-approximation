@@ -91,3 +91,67 @@ constant along planes with `T` constant along `Λ_0`.
   `Λ_0`-SFT, which is (P1) for `Λ_0` itself.
 - So the `Y`-layer must be verified by computation in the planes, not by local
   rules. This is exactly the simulation that (M1) asks for.
+
+**Attempt 2 (2026-09-18): transcribe DR Theorem 7 plane-constantly. Reduced to
+one crux (w8-bh-follow).**
+- *Class kill, established:* `injective-plane-lift-codings-force-finite-type`.
+  - If `x` is determined by `Φ(x)` together with any `Λ_0`-invariant
+    `Z^2`-factor, then `Y` is an SFT.
+  - This kills Attempt 1 in full generality, and with it every
+    unique-completion design: a `Λ_0`-constant hierarchy plus deterministic
+    zone contents.
+  - So every solution needs a floating locus, as DR's almost 1-1 structure
+    has.
+- *Reading pressure (the first named risk) dissolves (sketch).* Do not let
+  plane `μ` be read by all the planes `μf^{-1}`.
+  - Plane `λ` stores its own table `f ↦ y(λf)`, for `f` in `F_k`, in a
+    per-plane shifted layout: Barbieri--Sablik's per-coset layers for `x` and
+    `f_s(x)`.
+  - Tables of `λ` and `λs` are tied by cell-wise twin checks, with entry `1`
+    equal to the letter layer.
+  - Each cell is compared with `2|S|` neighbours only. The radius of `F_k` may
+    grow as slowly as needed, since every forbidden pattern of `Y` is
+    eventually checked.
+- *DR Lemma 2 coupling disappears.* The `y`-data is constant along planes, so
+  the translations divisible by `q` that DR need for the embedded sequence are
+  not needed.
+- *Finite-chain recurrence (sketch).* Let `J` be the top level at which a
+  block's father chain is still `Y`-active, with the chain finite. The block's
+  content is fixed by its chain positions up to level `J+1` (DR Lemma 1 /
+  Corollary 2, conditions (1)--(2)) and the `Y`-pattern it reads.
+  - Choose `z'` with the same chain positions, by minimality of the
+    `H`-track.
+  - Choose a plane `μ` carrying the same `Y`-pattern, by minimality of `Y`.
+  - Then the pair `(μ, z')` reproduces the block. `H` is `Λ_0`-constant, so
+    the two choices are independent.
+- *Dies at joint diversification: the crux, now*
+  `plane-coupled-floating-tuples-are-jointly-diversifiable`.
+  - On infinite active chains, the carried symbols form a tuple indexed by
+    planes.
+  - DR case 2 (diversification slots with uniquely defined memory) covers a
+    single floating letter. At a fixed `Z^2`-position, the slots have the same
+    schedule in every plane, so they produce only constant tuples.
+  - In Barbieri--Sablik-type Toeplitz layouts, the `B_∞` symbols are
+    constrained only by edge relations. They then range over an SFT, and
+    minimality would force `Y` to be of finite type.
+  - Exact failing step: DR's Theorem 7 proof, case 2 (computation zone), when
+    the zone's father chain is infinite. The claim that "every pattern of
+    that zone appears in a slot" has no plane-coherent analogue.
+
+**Attempt 3 (2026-09-18, bh-g1-simulation): coupled hierarchies.**
+- **Functional couplings die.** Suppose the planes are coupled by sliding block codes,
+  `x(λs,·) = α(s)(x(λ,·))`, of an almost automorphic `Z^2`-layer such as Labbé's shift.
+  Then no infinite simple input can act freely, by part 3 of
+  `simple-subgroups-act-trivially-on-equicontinuous-factors`.
+- **Both deterministic options are closed.** That result closes coupling by functions;
+  `injective-plane-lift-codings-force-finite-type` closes the other deterministic
+  option. So the coupling must be relational, a joining that is not a graph, which is
+  exactly what the crux `plane-coupled-floating-tuples-are-jointly-diversifiable` asks
+  to control.
+- **A non-amenable replacement for this premise.** It has no plane structure and no
+  hierarchy requirement: `nonamenable-products-have-minimal-sft-extensions-of-free-inputs`,
+  the minimal case of Barbieri–Sablik–Salo self-simulation. Its own crux, a phase field
+  on unanchored grids, is the same diversification problem.
+- **Source note.** Barbieri–Sablik's `Z^2 ⋊ H` simulation is cited above as context.
+  The self-simulation paper of Barbieri–Sablik–Salo, arXiv:2104.05141, read at source,
+  uses no hierarchy at all, only paradoxical grids.

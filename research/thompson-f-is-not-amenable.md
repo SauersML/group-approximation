@@ -222,6 +222,43 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     non-amenable, and that is a direct certificate for `F`.
   - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
   - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
+- **Co-amenable hosts: every circle embedding, and line hosts with non-integral end germs
+  (swarm-0917-w9-z-pull).** This extends the heretic's bullet to two whole classes of hosts.
+  - *Circle hosts, any embedding.* Established as
+    `thompson-f-co-amenable-circle-hosts-reduce-to-line-hosts`, via the imported
+    `margulis-circle-weak-tits-alternative`.
+    - Every `F`-subgroup preserves a probability on `S^1` (Margulis), and Eymard lifts it to
+      any host in which `F` is co-amenable.
+    - The host's rotation homomorphism then kills every minimal circle host, including `T`
+      under every embedding `F ↪ T`, whatever witnesses the host's non-amenability, free
+      subgroups included. Minimal circle hosts would force a finite-index abelian subgroup
+      of `F`.
+    - The remaining circle hosts reduce to a line host `Q ≤ Homeo_+(R)` containing `F'`
+      co-amenably in an arbitrary embedding, or to a gap host over a Cantor support.
+    - Invariant: the Margulis measure. Dies at: Eymard's transfer.
+  - *Line hosts with non-integral end germs.* Established as
+    `thompson-f-co-amenable-hosts-have-integral-end-germs`.
+    - Let `G ≤ Homeo(R)` preserve null sets, contain Thurston's `F`, and have one element
+      that is affine but not an integer translation near `+∞` or `−∞`. Then no subgroup of
+      `F` is co-amenable in `G`.
+    - Mechanism:
+      - Farey germs show that `F` realizes all of `PSL_2(Z)` off `Q`;
+      - `a` drags the end germ `s` to a global map;
+      - a Shimizu iteration makes `⟨PSL_2(Z), s⟩` dense;
+      - Carrière–Ghys and the transfer lemma finish the proof, with a countable reduction for
+        uncountable hosts.
+    - This covers `⟨t + 1/2, b⟩`, left open above, and makes Lodha–Moore l.136–138 rigorous.
+      It also covers `⟨F, 2t⟩`, Monod's `H`, and `H(A)` for every `A ≠ Z` containing `F`.
+    - Inside `H`: a co-amenable host of `F` has only integer-translation germs at `±∞`.
+    - Invariant: the end-germ homomorphisms `∂_±`. Dies at: density of
+      `⟨PSL_2(Z), ∂_±g⟩`.
+  - *Surviving host classes.*
+    - Line hosts in which `F'` sits by a non-Thurston embedding.
+    - Subgroups of `H` whose non-`PSL_2(Z)` pieces are all interior. The method only
+      realizes `λγ` with `γx ∈ I` there, not `λ`; `G_0` is killed separately by explicit
+      words.
+    - Gap hosts, where co-amenability of `H ∩ K` does not descend to `K` (Monod–Popa).
+    - Cantor hosts such as `nV`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

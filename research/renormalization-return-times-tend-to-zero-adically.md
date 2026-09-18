@@ -38,6 +38,10 @@ is proved.
 - Its phase `mod 3^j` is read at radius `j + 2`, which is item 2 with `b = 1`.
 - On MSI, the returns of its first genuine configuration (radius 6, `4·10^7` steps) have `n ≡ 0 mod 729`,
   as item 3 requires.
-- For the binary-timing machine `M°`, the returns found up to radius 18 violate item 3's condition:
-  `n ≡ 4 mod 8`. Item 3 applies only if these returns converge at all radii, which is OPEN. See
-  `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md` §3e.
+- (**Withdrawn, 30841be4c.**) For the binary-timing machine `M°`, the returns found up to radius 18 violate
+  item 3's condition: `n ≡ 4 mod 8`. Item 3 applies only if these returns converge at all radii, which is
+  OPEN. See `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md` §3e.
+  - The example is withdrawn in §3f of the same artifact: `M°`'s maximal `Y`-gap grows by 6 per level. So
+    its induced map does not have the bounded returns that `brin-thompson-first-return-maps-lie-in-kv`
+    needs, and `M°` is not a candidate for this test at all.
+  - The SMART calibration above and the statement are unaffected.
