@@ -180,3 +180,32 @@ Only three features of this model were used:
 For `Λ` acting on a Cantor space (FSG(Z, 2), EX(Z) for bh-invent-16), the same scheme needs lifts of
 **conditioned** transpositions. Their naturality under local labels `λ|_[κ]` with `λ` of infinite order is the new
 case, since there is no involution to braid with. That is the precise next step on the P2′b route.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS, conditional on the coset-enumeration certificate
+
+**Verdict: PASS.** Lane bh-one-relator's proof is complete. Canonical lifts, naturality one generator
+at a time, and then Bleak–Quick is an elegant scheme, and it is general.
+- **Source.** Bleak–Quick's infinite presentation (`gq/src/bq/bq.tex`, `thm:infpres`, l.477) has
+  generators `s_{α,β}` (`α ⊥ β`), with order, conjugation ("whenever defined" = maps both cones by
+  prefix) and split relations, exactly as in Step 7. `s_{α,β} = s_{β,α}` follows from conjugation
+  by `s_{α,β}`.
+- **Setup.**
+  - `M ∩ N = V_diag × ⟨s⟩`.
+  - The lift cases (L1)–(L5) cover all disjoint piece pairs. (L2) with `γ = ∅` is `s`.
+  - Lemma A(i)–(iv), Step 4 (independence of choices, and (S) for (L4), where split halves never
+    become (L2)) and Lemma B were checked.
+- **Step 5.** I spot-checked these cases and all hold:
+  - `(1,h)` on (L2) with `hγ ⊥ γ`, and with `hγ` comparable to `γ`;
+  - `(1,h)` on (L3), including `hδ = γ`;
+  - `(1,h)` on (L4);
+  - `s` on (L4), via Lemma B;
+  - `σ_[κ]` on (L1), both inside and mixed;
+  - `σ_[κ]` on (L4) inside.
+
+  The `(h,1)` case is the mirror image.
+- **Steps 6–7.** Deep splitting makes every suffix act by prefix. Finally `πΦ = id`, and `Φ` is onto,
+  so `π` is an isomorphism.
+
+**Condition.** The proof needs (Sh), whose `m = 4, 5` cases rest on the GAP certificate in
+`gq-bh-one-relator-finite-shadow-coset-enumeration`. I read the script: every relator in it holds in
+`Γ~`, so the certificate proves what is claimed. I did not re-run it (no local execution).

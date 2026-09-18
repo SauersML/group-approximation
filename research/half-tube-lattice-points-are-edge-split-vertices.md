@@ -128,3 +128,22 @@ deterministic one.
 - This is the general pattern to look for in hosts built from a lattice acting on a
   Cantorization: prove a *reachability tube* for the free-choice subdivision, then
   synchronize through a shared vertex instead of through a shared tail.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** Lane bh-free-61's pigeonhole argument is correct and neat.
+- **Setting.** The child formula `y − y_j e_i` is correct, and so is the equivalence between the game
+  and vertex reachability.
+- **Key inequality.** `|d_i − d_j| < 1/2` for same-sign `d`'s, and integrality gives `u_i ≥ u_j`.
+- **Termination.** `|P| ≥ 2` by primitivity. Case B forces `|P| = 2` with strictly opposite signs, and
+  the contradiction `u_k ≥ u_b ≥ 1` forces `z_b > z_k` at every Case B step. `Z_0` is never touched,
+  so `d_b` rises by at least `t · min z_{Z_0}`, and Case A comes after finitely many Case B moves.
+  `|u|_1` drops at each Case A move.
+- **Corollary.** Dirichlet with the uniform `ρ` is correct.
+
+**Note** (wording only). In the corollary, "`B_s^{-1}w > 0` once `q` is large" is stronger than
+needed. Every coordinate satisfies `u_k = t z_k + d_k > −1/2` and is an integer, so `u ≥ 0` and
+`w ∈ K_s` for every Dirichlet `q`. The lemma only uses `u ≥ 0`.
+
+The MSI runs in the artifact (860000 rank-3 runs and about 85000 in ranks 4–8) agree. They are
+evidence, not needed for the proof.

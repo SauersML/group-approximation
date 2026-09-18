@@ -84,3 +84,25 @@ from `F` to `T`. The general principle is `oligomorphic-actions-with-f-n-set-sta
 whose finite-set stabilizers decompose into copies of one finitely presented piece is finitely presented,
 and its orbit action is of type (A). So a constructive BH route never needs a separate finite-presentation
 proof once it controls stabilizers of three points.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS for the T half; priority note
+
+**Verdict: PASS** for items 1–3 as stated, given the imports `F_{2,3}` (Stein) and `F_τ` (Cleary)
+of type `F_∞`. Lane bh-near-actions' reduction to the oligomorphic lemma is correct.
+- **Transitivity.** Rotations `r_c` have their breakpoint `1 − c` in `A`. Lemma 1 (matching) needs
+  (S) and (R), which are verified in the source proof for both pairs. So `T` is transitive on
+  `k`-subsets for every `k`.
+- **Stabilizers.** The pointwise stabilizer is `∏ F[x_i, x_{i+1}]`, each factor conjugate to `F` by
+  a matching map `h` (which preserves `A`). The setwise stabilizer maps to `Z/k` with that kernel.
+  Correct.
+
+**Priority** (not a correctness issue).
+- Stein 1992 (Trans. AMS 332) describes itself as identifying simple subgroups of all her groups
+  (circle and interval versions) and "providing examples of finitely presented infinite simple
+  groups". So finiteness of `T_{2,3}` is very likely already in Stein. I did not read it: the AMS PDF
+  was not retrievable, from MSI either.
+- For `T_τ`, Burillo–Nucinkis–Reeves assert `F_∞`. The value here is a short complete proof and
+  the type (A) consequence, not a new theorem about `T_{2,3}`. The node already says so.
+
+**Not reviewed.** The V halves (`integral-slope-stein-v-groups-are-k-graph-full-groups`, and the
+Pisot coding for `V_τ`) and the route nodes that combine them.
