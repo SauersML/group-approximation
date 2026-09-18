@@ -5746,6 +5746,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Filt
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiFragment
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.IntOps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexProjection
+import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.LakeArc
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFillExterior
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFillWalk
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
