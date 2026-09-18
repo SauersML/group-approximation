@@ -137,3 +137,21 @@ one crux (w8-bh-follow).**
   - Exact failing step: DR's Theorem 7 proof, case 2 (computation zone), when
     the zone's father chain is infinite. The claim that "every pattern of
     that zone appears in a slot" has no plane-coherent analogue.
+
+**Attempt 3 (2026-09-18, bh-g1-simulation): coupled hierarchies.**
+- **Functional couplings die.** Suppose the planes are coupled by sliding block codes,
+  `x(λs,·) = α(s)(x(λ,·))`, of an almost automorphic `Z^2`-layer such as Labbé's shift.
+  Then no infinite simple input can act freely, by part 3 of
+  `simple-subgroups-act-trivially-on-equicontinuous-factors`.
+- **Both deterministic options are closed.** That result closes coupling by functions;
+  `injective-plane-lift-codings-force-finite-type` closes the other deterministic
+  option. So the coupling must be relational, a joining that is not a graph, which is
+  exactly what the crux `plane-coupled-floating-tuples-are-jointly-diversifiable` asks
+  to control.
+- **A non-amenable replacement for this premise.** It has no plane structure and no
+  hierarchy requirement: `nonamenable-products-have-minimal-sft-extensions-of-free-inputs`,
+  the minimal case of Barbieri–Sablik–Salo self-simulation. Its own crux, a phase field
+  on unanchored grids, is the same diversification problem.
+- **Source note.** Barbieri–Sablik's `Z^2 ⋊ H` simulation is cited above as context.
+  The self-simulation paper of Barbieri–Sablik–Salo, arXiv:2104.05141, read at source,
+  uses no hierarchy at all, only paradoxical grids.
