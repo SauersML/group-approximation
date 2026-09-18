@@ -43,18 +43,35 @@ theorem endBlockModel_cls_facePerm : ∀ x : Fin 16,
   decide
 
 /-- An edge step across an edge off the cycle keeps the class index. -/
-theorem endBlockModel_cls_alpha : ∀ x : Fin 16,
-    ¬(x ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16)) ∨
-      Model.mapAlpha x ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16))) →
-    endBlockModel_cls (Model.mapAlpha x) = endBlockModel_cls x := by
+theorem endBlockModel_cls_alpha : ∀ x : Model.diagram.toCombMap.Dart,
+    ¬(x ∈ Model.pocketK.boundary.cycle ∨
+      Model.diagram.toCombMap.alpha x ∈ Model.pocketK.boundary.cycle) →
+    endBlockModel_cls (Model.diagram.toCombMap.alpha x) = endBlockModel_cls x := by
+  decide
+
+/-- A class index below `5` is the face index, and the index `5` covers the faces `S` and `O`. -/
+theorem endBlockModel_cls_face : ∀ x : Fin 16,
+    (endBlockModel_cls x = 5 ∧ (Model.faceClass x = 5 ∨ Model.faceClass x = 6)) ∨
+      (endBlockModel_cls x ≠ 5 ∧ Model.faceClass x = (endBlockModel_cls x).castSucc) := by
   decide
 
 /-- Equal class indices come from the same face, or from the faces `S` and `O`. -/
-theorem endBlockModel_cls_cases : ∀ x y : Fin 16, endBlockModel_cls x = endBlockModel_cls y →
+theorem endBlockModel_cls_cases (x y : Fin 16) (h : endBlockModel_cls x = endBlockModel_cls y) :
     Model.faceClass x = Model.faceClass y ∨
       (Model.faceClass x = 5 ∧ Model.faceClass y = 6) ∨
       (Model.faceClass x = 6 ∧ Model.faceClass y = 5) := by
-  decide
+  rcases endBlockModel_cls_face x with ⟨hx5, hx | hx⟩ | ⟨hx5, hx⟩
+  · rcases endBlockModel_cls_face y with ⟨-, hy | hy⟩ | ⟨hy5, -⟩
+    · exact Or.inl (hx.trans hy.symm)
+    · exact Or.inr (Or.inl ⟨hx, hy⟩)
+    · exact absurd (h.symm.trans hx5) hy5
+  · rcases endBlockModel_cls_face y with ⟨-, hy | hy⟩ | ⟨hy5, -⟩
+    · exact Or.inr (Or.inr ⟨hx, hy⟩)
+    · exact Or.inl (hx.trans hy.symm)
+    · exact absurd (h.symm.trans hx5) hy5
+  · rcases endBlockModel_cls_face y with ⟨hy5, -⟩ | ⟨-, hy⟩
+    · exact absurd (h.trans hy5) hx5
+    · exact Or.inl (by rw [hx, hy, h])
 
 /-- **One step of a face-class chain keeps the class index.** -/
 theorem endBlockModel_cls_step {x y : Model.diagram.toCombMap.Dart}
@@ -63,9 +80,7 @@ theorem endBlockModel_cls_step {x y : Model.diagram.toCombMap.Dart}
     endBlockModel_cls x = endBlockModel_cls y := by
   rcases h with rfl | ⟨hk, rfl⟩
   · exact (endBlockModel_cls_facePerm x).symm
-  · have hk' : ¬(x ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16)) ∨
-        Model.mapAlpha x ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16))) := hk
-    exact (endBlockModel_cls_alpha x hk').symm
+  · exact (endBlockModel_cls_alpha x hk).symm
 
 /-- **A face-class chain keeps the class index.** -/
 theorem endBlockModel_cls_of_eqvGen {x y : Model.diagram.toCombMap.Dart}
@@ -91,8 +106,8 @@ theorem endBlockModel_eqvGen_of_faceClass {x y : Model.diagram.toCombMap.Dart}
 /-- The loop `e = {14,15}` is not an edge of the boundary cycle. -/
 theorem endBlockModel_not_walkKeep_14 :
     ¬walkKeep Model.diagram.toCombMap Model.pocketK.boundary.cycle 14 := by
-  have h : ¬((14 : Fin 16) ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16)) ∨
-      Model.mapAlpha 14 ∈ ([8, 12, 10, 0, 2, 6, 4] : List (Fin 16))) := by
+  have h : ¬((14 : Model.diagram.toCombMap.Dart) ∈ Model.pocketK.boundary.cycle ∨
+      Model.diagram.toCombMap.alpha 14 ∈ Model.pocketK.boundary.cycle) := by
     decide
   exact h
 
@@ -145,6 +160,7 @@ end GroupApproximation.Full.GL05c
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_facePerm
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_alpha
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_face
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_cases
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_step
 #audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_of_eqvGen

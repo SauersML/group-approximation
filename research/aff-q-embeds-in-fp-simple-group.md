@@ -89,3 +89,12 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
    divisibility by the other primes from the local translations. The route needs that
    local group, or the part used by `Aff(Q)`, inside a finitely presented
    self-similar group. Nothing about it is recorded here as established.
+5. **A 2-transitive permutation group through Aff(Q) (lane gq-deep-typeA-2,
+   `gl-n-q-lies-in-prime-shift-permutation-group`).**
+   - *The group.* Let `σ` be the automorphism of `Q^x` that shifts a `Z`-indexing
+     of the primes. Then `A_1 = ⟨x+1, 2x, -x, σ⟩ <= Sym(Q)` contains `Aff(Q)` and
+     is 2-transitive on `Q`.
+   - *What it reduces to.* `A_1 ↷ Q` is of type (A) iff `A_1` is finitely
+     presented and `Stab_{A_1}(0)` is finitely generated. Both are open.
+   - *Why the earlier obstructions miss it.* `σ` is continuous for no real or
+     `p`-adic topology, so H3 does not apply.
