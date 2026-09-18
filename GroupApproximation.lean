@@ -5710,6 +5710,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Intertwine
 import GroupApproximation.Manuscript.NonMF.Full.GL06.Waist
 import GroupApproximation.Manuscript.NonMF.Full.GL06.BinderFive
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Commutator
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Ideal
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
