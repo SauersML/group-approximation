@@ -52,3 +52,19 @@ negative guidance for the finite-kernel case. It does not decide that case.
    - By item 4, the boundary route reaches `Λ̃` only if `ω` vanishes on the torus
      class of every periodic flat whose lags are `≡ 0 mod N`. Whether some `ω ≠ 0`
      does so, and whether that suffices, is not decided here.
+
+**Remark: why Cantor boundaries are rigid here, and circles are not.**
+- **Cantor boundaries.** Let `Ỹ -> Y` be any `C`-equivariant map from a compact
+  space with a free `A`-action commuting with `C` and `Ỹ/A ≅ Y`. Then it is a
+  principal `A`-bundle over a zero-dimensional space, hence trivial. So `Ỹ ≅ Y x A`,
+  and the action is a skew product as in item 1. Every finite A-cover of a Cantor
+  boundary is therefore subject to items 1–2, whatever groupoid it is later coded
+  by.
+- **Circles.** On a circle, nontrivial finite covers exist. Thompson's group `T` has
+  central extensions by `Z/2^k` that act faithfully on the `2^k`-fold covering
+  circle by dyadic piecewise linear maps. By the same token they lie in `T`
+  (standard; not re-derived here).
+So a positive answer for finite central extensions of Burger--Mozes lattices would
+need either a class that vanishes in `H²(Λ; C(Y, A))` for some Cantor `Λ`-space `Y`
+with a finitely presented full group, or a host that is not built over a Cantor
+action of `Λ`.
