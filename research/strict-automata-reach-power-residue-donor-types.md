@@ -40,3 +40,19 @@ rest count other than by a common factor, while keeping (D2).
   donor only of output sites whose bit is active, and those donate to themselves. With priority to `τ`, an input
   with active bit sits at a site whose `τ`-output may be active, and then its own relay is spent on the `τ`-donor.
   So "active in either layer" is not a donor-covering split in general.
+- **Letter-level moves on the transition digraph** (swarm-0917-w11-w11-gs-last1, 2026-09-17). By item 5 of
+  `transition-digraph-capacity-lifts-give-nonsurjunctive-sizes`, this claim is equivalent to: some strict automaton
+  has `g(τ)` a power of two. The whole letter-level class of moves is dead, by
+  `block-permutation-transitions-force-divisible-classes` (established).
+  - The moves in the class: products with arbitrary injective automata, letter permutations on both sides, far
+    translations, capacity lifts, overgroup induction.
+  - Invariant. A `k`-block permutation inside `R(τ)`. It forces `k` to divide every class, since it is the line
+    digraph of a `k`-regular multigraph. Every strict automaton on `k` letters has a far translate with complete
+    `R`, hence block size `k`. The moves multiply or keep block sizes.
+  - Result. From strict automata with non-binary-power sizes, every strict product of the class has `g` with an odd
+    factor.
+  - Untranslated products. The constant permutation balances periodic classes, so
+    `v_ℓ g(τ × σ) >= max(v_ℓ g(τ), v_ℓ g(σ))` as well.
+  - What survives: cancellation moves that shrink `R`. These are near compositions with bijective automata (a near
+    translation undoes a far one, so `g` is not a recoding invariant), powers, finite-index restriction, strict
+    upset restriction, and non-product rules.
