@@ -190,6 +190,24 @@ simple group contains `Gamma~`.
       `steinberg-resolvent-shell-envelope-is-finitely-presented`.
     - A Steinberg host over a Leavitt ring must carry the centre as a genuine unit, as in
       the generic algebra-host gates.
+- **Lagrangian Brin--Thompson host (2026-09-18, lane `bh-free-55`): reduced to finite
+  presentation of one group.**
+  - *Host.* `2V_Λ(n) = [[𝒢_n × G_2]]`. Here `𝒢_n` is `Sp_{2n}(Z)` acting on the
+    unimodular Maslov Cantorization `Y_u` of
+    `unimodular-maslov-cantorization-is-minimal-expansive`, times `F_3^{2n} ∖ {0}` when
+    `n` is even.
+  - *Established.* By `deligne-lattice-in-fg-simple-lagrangian-brin-thompson-group`,
+    for every `n ≥ 2`, the case `n = 2` included:
+    - `D(2V_Λ(n))` is simple and finitely generated and has solvable word problem;
+    - `Gamma~` embeds in `D(2V_Λ(n))`;
+    - the centre `ker p` acts through `V` only.
+  - *Calibration.* At `n = 1` the host is `2V`, which is finitely presented, and the
+    lattice is `B_3`.
+  - *Open.* Finite presentation of `D(2V_Λ(n))`:
+    `lagrangian-brin-thompson-group-is-finitely-presented`, via the route
+    `deligne-lattice-bh-via-lagrangian-brin-thompson-group`.
+  - *First test.* The dissection question on the unimodular triangle, recorded
+    there.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone
     structures does not transfer;

@@ -38,7 +38,13 @@ which is the rank-`r` case of `free-centre-by-metabelian-groups-satisfy-boone-hi
   - `Q` embeds in `GL_|Q|(Q) ⊆ GL_|Q|(K)` by its regular representation.
   - Block-diagonally, `C_r` embeds in `GL_(3+|Q|)(K)`. ∎
 
-## What is open
+## Resolved (2026-09-18)
+
+All three conditions hold for every `r`: `free-centre-by-metabelian-groups-are-linear`. The
+finite quotient in (3) comes from the nilpotent quotient `C_r/γ_7(C_r)`, by Gupta–Levin 1986,
+Lemma 4.4. The notes below are the state before that.
+
+## What was open
 
 - Residual finiteness of `C_r` for `r >= 4`. Gupta and Wehrfritz (1976) and Gupta and
   Levin (1976) studied residual and separating properties of these groups, per a web

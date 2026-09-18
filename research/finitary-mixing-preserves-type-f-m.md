@@ -10,8 +10,10 @@ distinct_from:
   bh-class-closed-under-finite-direct-products: that is about embedding products into fp simple groups; this is a finiteness-property statement for one explicit overgroup of a product of permutation groups.
 ---
 
-**ESTABLISHED** (lane proof, below; the only imports are Brown's criterion and the fact that type `F_m` passes
-to finite-index subgroups and overgroups; not independently reviewed; no priority claimed, no literature search made).
+**ESTABLISHED** (lane proof, below; not independently reviewed; no priority claimed). The only imports are
+Geoghegan's rigid form of Brown's criterion and finite-index invariance of type `F_m`. Both were read at source on
+2026-09-18. A bounded priority search (see `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups`) found
+no earlier proof.
 
 **The class.** For `1 <= m <= infinity`, let `𝔐_m` be the class of pairs `(Y, A)` with `Y` infinite,
 `FSym(Y) <= A <= Sym(Y)`, and `Fix_A(F)` (pointwise stabilizer) of type `F_m` for every finite `F ⊂ Y`,
@@ -25,11 +27,19 @@ including `F = ∅`.
 3. **Membership.** If `G <= Sym(N)` is strongly shift-similar and of type `F_m`, then `(N, G) ∈ 𝔐_m`.
 
 **Imports.**
-- (B) **Brown's criterion** (K. S. Brown, *Finiteness properties of groups*, JPAA 44 (1987), Proposition 1.1;
-  quoted from memory, not re-read at source). If `Γ` acts cellularly on an `(m-1)`-connected CW complex, with every
-  `p`-cell stabilizer of type `F_(m-p)`, and with finitely many orbits of cells in the `m`-skeleton, then `Γ` is of
-  type `F_m`. We use a simplicial complex with a rigid action.
-- (F) Type `F_m` passes to finite-index subgroups and to finite-index overgroups.
+**Source.** R. Geoghegan, *Topological Methods in Group Theory*, GTM 243, Springer 2008, Chapter 7. The chapter PDF
+was fetched on MSI via institutional access, with SHA-256
+`d878192da46df2c5d6737f66bb63332308a11be34af56124f7d40977a919e56a`. It was converted to text with ghostscript
+`txtwrite` and read there. Quotes are verbatim up to extraction spacing.
+- (B) **Theorem 7.3.1**: "For `n ≥ 1`, let `Y` be an `(n−1)`-connected rigid `G`-CW complex having finite
+  `n`-skeleton mod `G`. If the stabilizer of each `i`-cell has type `F_(n−i)` for all `i ≤ n − 1`, then `G` is of
+  type `F_n`." The book's Source Notes attribute Brown's criterion to Brown's paper (K. S. Brown, *Finiteness
+  properties of groups*, JPAA 44 (1987)). That paper's Proposition 1.1 could not be read: ScienceDirect returned a
+  bot wall from MSI. So the rigid form is cited from Geoghegan, and the proof below arranges rigidity by barycentric
+  subdivision. For `m = infinity`, apply (B) for each finite `m` and use Proposition 7.2.2 (`F_infinity` iff `F_n`
+  for all `n`).
+- (F) **Corollary 7.2.4**: "Let `H ≤ G` and let `[G : H] < ∞`. For `0 ≤ n ≤ ∞`, `G` has type `F_n` iff `H` has type
+  `F_n`."
 
 **Proof of 3.** `FSym(N) <= G`, and `Fix_G(F) ≅ G` for finite `F`
 (`strongly-shift-similar-point-stabilizers-are-copies-of-the-group`, items 1 and 3).

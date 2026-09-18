@@ -142,3 +142,15 @@ distinct_from:
      Li's Example (III), with condition (F) holding because the stabilizers are
      honest. But `A` acts trivially on the unit space there, so the type (A) clopen
      action is not faithful.
+10. **Untwisting over the boundary (bh-lattices, 2026-09-18).** *Obstructed in
+    general.* `central-extension-untwisting-over-boundaries`:
+    - **Criterion.** The finite central kernel `A` of Attempt 9 can be made to act
+      freely on `∂X x A` over the lattice's boundary action iff the extension class
+      dies in `H²(C̄; C(∂X, A))`.
+    - **Obstruction.** That requires the class to vanish on every point stabilizer,
+      in particular on the torus of every periodic flat, up to the phase sublattice.
+    - **No cure by stabilization.** Taking a product with the Cuntz groupoid cannot
+      untwist, since cohomology is a retract.
+    - **Test case.** Perfect central extensions of Burger--Mozes simple lattices exist
+      when `(m-1)(n-1) >= 2` (`H_2` free of rank `(m-1)(n-1) - 1`). They are reached
+      only if the class kills the relevant flat tori. Still open.
