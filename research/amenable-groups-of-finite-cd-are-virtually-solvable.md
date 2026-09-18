@@ -129,3 +129,21 @@ finite cd would answer this question negatively; see
       nonzero, the coinvariant route needs amenability of `N` in an essential way.
     - The `Out(N)` form also asks whether a centreless amenable cd-2 `N` can carry an infinite
       finitely generated torsion group of outer automorphisms at all.
+- 2026-09-18 (lane w7-112, inverter, family minimal-counterexample): moved the dimension-2 obstruction from
+  `H_1(G; U)` to the top syzygy, using the vanishing of `H_2(G; U)` that amenability gives. Not resolved.
+  - **Landed, free top syzygies are finitely generated.** `amenable-free-top-syzygy-forces-type-fp`:
+    for `cd G = n` and `b_n^(2)(G) = 0`, a free top syzygy over a finite free `(n−1)`-truncated
+    resolution has rank at most `rank F_{n-1}`, so `G` is of type `FL`. An `n`-dimensional `K(G,1)`
+    with finite `(n−1)`-skeleton is finite.
+  - **Class killed.** A two-dimensional counterexample has no aspherical presentation on finitely many
+    generators and no aspherical 2-complex with finite 1-skeleton. Its second syzygy is a non-free,
+    `L²`-small projective with free summands of rank at most `d − 2`. This kills small-cancellation,
+    graphical small-cancellation, Rips / Ollivier–Wise and cocompact-1-skeleton CAT(0) constructions.
+    The Ollivier–Wise group over the Grigorchuk group has `b_2^(2) = ∞`.
+  - **Strict reduction, both directions.** Dimension 2 is equivalent to
+    `amenable-cd-two-groups-have-aspherical-presentations`, a Bass-type "big syzygies are free"
+    statement (route `amenable-cd-two-coherence-via-aspherical-presentations`).
+  - **Next.** Prove freeness of countably generated `L²`-small syzygies over `Z[G]` for amenable `G`,
+    for example via Bass's uniformly-big criterion applied to `P ⊗ F_p[G]` or to Følner truncations.
+    Alternatively, show that a counterexample has geometric dimension 3, which would make it an
+    Eilenberg–Ganea counterexample.
