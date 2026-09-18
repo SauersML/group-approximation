@@ -9,11 +9,14 @@ distinct_from:
   leavitt-resolvent-frame-complex-route-to-injective-stability: that is the route; this carries it out, including the sign step.
 ---
 
-**ESTABLISHED** through `leavitt-resolvent-k2-stability-holds-proof`. Lane proof, not independently reviewed.
+**ESTABLISHED** through `leavitt-resolvent-k2-stability-holds-proof`. Refereed: gq-referee-b PASS, citation and scope lens (report 740389fd9, W1--W4 applied); proof-gap
+review by gq-referee-a pending.
 - The group-theoretic core is Khanh's Steinberg comparison argument (arXiv:2609.08428, proof of Theorem
   `thm:raw-criterion`, read in TeX), run for `E_n(R_L)` and modulo a central subgroup.
-- Khanh's Borel-construction presentation after Brown is used as he states it; Brown was not read at source.
-- Menal--Moncasi GE enters through `leavitt-ge-rings-have-stable-k1-at-rank-three`, read through Khanh.
+- Khanh's Borel-construction presentation is used as he verifies it directly through the path groupoid
+  (khanh.tex l. 458--460); Brown is not needed.
+- GE enters through `leavitt-ge-rings-have-stable-k1-at-rank-three`, pinned in Ara--Goodearl--Pardo
+  (math/0111066v1, Theorems 1.6 and 2.4), which cite Menal--Moncasi (not read).
 - No priority is claimed.
 
 **Statement.** Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`.

@@ -7,6 +7,7 @@ distinct_from:
   crossing-move-hierarchies-have-odd-branching: that proves branching numbers of all-crossing hierarchies are odd; this constructs a machine for each odd branching number.
   smart-induced-map-has-brick-local-height-3-renormalization: that is the m = 3 case for SMART itself, including the renormalization; this supplies the machines for m = 5, 7, 9, ..., without the renormalization.
   bs13-embeds-in-brin-thompson-3v: that is BS(1,3); this is the first step toward BS(1,m) for every odd m.
+  odd-smart-machines-have-exact-m-fold-moves: that is lane bh-free-18's proved family SMART_m, which has the same timing f_m(k) = (2m^{k+1} - (m+1))/(m-1); this is a different table M_m, whose filled state turns hollow after marking (F0 -> H) where SMART_m stays filled (b_1 reads 0 -> d_2). At m = 3, SMART_3 is SMART, while M_3 is a different six-rule table with the same timing. A relation by time reversal or relabeling was not checked.
 artifacts:
   - research/artifacts/gq-affq-odd-branching-machines.md
 ---
@@ -43,6 +44,10 @@ level-`L` crossing, and the induced map has locally readable eigenvalues `-1` (r
 
 **What would settle it.** A move lemma for `M_m`, analogous to Callard–Salo's `prop:smart-moves`, giving the
 recursive decomposition of the filled and hollow crossings for general `j`, proved by induction on `L`.
+
+**Status relative to SMART_m.** `BS(1,m) ≤ 3V` for odd `m` is proved by bh-free-18 with `SMART_m`
+(`bs-1-m-embeds-in-brin-thompson-3v-for-odd-m`). This node is now only about the second family `M_m`. Its value
+is an independent test of the pipeline (artifact §4–§5), and a second, structurally different witness per `m`.
 
 **Why it matters.** With that lemma, SMART's pipeline would transfer:
 - induce on the genuine level-0 moves (`smart-induced-on-genuine-moves-has-exact-tripling`);

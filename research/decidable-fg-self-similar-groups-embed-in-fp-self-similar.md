@@ -88,3 +88,18 @@ whatever happens to the first half.
    self-similar, so it proves Boone--Higman for `S` and not this claim.
    Extracting a finitely presented self-similar subgroup of `V_d(S)` containing
    `S` is not attempted.
+
+3. **A hard test input** (bh-free-02, 2026-09-18). The Wächter--Weiß automaton groups
+   (arXiv:1906.03424v3) have PSPACE-complete word problem. For a finite conjunction
+   group `R`, such as `A_5`, the group `G_R` is locally-finite-by-`Z` and not finitely
+   presented (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+   - *Why it matters.* Any finitely presented self-similar overgroup of `G_R` would
+     have PSPACE-hard word problem. Through
+     `fp-self-similar-groups-embed-in-fp-simple-groups` it would give a finitely
+     presented simple group beyond Birget's coNP.
+   - *Hosts excluded, unless PSPACE = coNP.* The overgroup cannot lie in a
+     piecewise prefix-and-automaton host over coefficient groups with
+     polynomial-time word problem
+     (`automaton-tail-full-groups-have-conp-relative-word-problem`). That rules out
+     `V_d(S)` for contracting `S`.
+   - *Status.* Untried.

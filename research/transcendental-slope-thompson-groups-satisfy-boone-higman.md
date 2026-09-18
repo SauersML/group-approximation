@@ -41,3 +41,17 @@ Transcendental angles are not covered by `norm-minus-one-sturmian-jm-groups-sati
 
 A host must therefore break the piecewise-linear structure, for example with germs or near actions at the
 transcendental breakpoints, while keeping the order on `Z[t^{±1}]` computable.
+
+## Why the Pisot RSG route does not reach this case (09-18)
+
+`pisot-stein-groups-are-contracting-rsgs` codes `[0,1)` by the β-shift. It gets a finite nucleus from Pisot
+lattice finiteness:
+- the offsets of local actions lie in `Z[β]`;
+- all their conjugates are bounded;
+- such a set is finite.
+
+For transcendental `λ` there are no conjugates, and no β-shift coding makes the translations by `Z[λ^{±1}]`
+act with finitely many local actions. For any coding by a fixed SFT with finitely many states, the offsets
+`d ∈ Z[λ^{±1}] ∩ [0,1)` arising at deep cones would have to form a finite set closed under the renormalization
+`d ↦ λ^{-1}d − (digit)`. That forces `λ` to be algebraic. So a host for this case must be something other than
+a contracting RSG over such a coding. This is a heuristic remark, not a proof.

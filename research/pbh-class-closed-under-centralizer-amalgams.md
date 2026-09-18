@@ -8,6 +8,7 @@ distinct_from:
   aut-free-groups-satisfy-permutational-boone-higman: that imports closure under free products (BFFHZ Corollary F); this is closure under amalgamation along a centralizer, with the new factor commuting with that centralizer.
   bh-class-decidable-amalgams-from-free-products-and-hnn: that derives amalgam permanence of the full Boone--Higman class from two open premises; this is unconditional for the permutational class, for the special edge groups that are centralizers of finite sets.
   pbh-class-closed-under-graph-products: that is closure under graph products, where whole vertex groups commute; here only the centralizer commutes with the new factor.
+  pbh-coset-wreaths-iff-identity-edge-hnns: that (bh-free-10, landed minutes later) proves a general equivalence whose case (e)2, with L = G and m in F, contains this statement; this is the same special case with an explicit normal-form construction in the relative holomorph of G * Z.
 ---
 
 **ESTABLISHED** by `pbh-centralizer-amalgam-closure-proof` and, independently of the

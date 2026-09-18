@@ -59,3 +59,26 @@ directly.
    (Jategaonkar, Roseblade; not read), but Wehrfritz's faithful-representation theorem
    for them is over *division rings* (QJM 35 (1984); title only via Crossref). So
    quasi-linearity over fields is not available on main, and no node covers them.
+
+## 5. Later landings (free mode)
+
+- **Hall's group `B/C`** is the minimal non-residually-finite soluble minimax case. It embeds
+  in Abels' `A_p/C`. Attempt 2 on `fg-soluble-minimax-groups-satisfy-boone-higman` records
+  the circle-bundle analysis:
+  - the Heisenberg part `H(Z[1/p])/Z` acts faithfully by finite-piece maps over
+    solenoid Cantor bases, with an explicit inductive gauge;
+  - Hall's scaling element `t` leaves a one-digit-pair-per-weight defect, which is the
+    open point.
+- **Quasi-linearity fails beyond metabelian.** `q-difference-lamplighter-is-not-quasi-linear`
+  proves a lemma: a commutator acting by a power map `v ↦ v^m`, `|m| >= 2`, on a
+  torsion-free abelian normal subgroup rules out linearity over finite products of fields.
+  The example is the `q`-difference lamplighter
+  `K_q = Z[1/q][x^±1] ⋊ ⟨x·, f(x) ↦ f(qx)⟩`. It is 3-generated, residually finite,
+  abelian-by-`H_3(Z)`, has solvable word problem, and is not quasi-linear.
+- **So "fg abelian-by-polycyclic" is not a quasi-linear class.** Item 3 of §4 is
+  confirmed by an explicit example.
+- **`q-difference-lamplighter-satisfies-boone-higman` (OPEN).**
+  - Reduction: `K_q = K_0 ⋊_T Z` with `K_0` metabelian, and a type-(A) actor stays of
+    type (A) when a normalizing permutation is adjoined.
+  - Obstruction for the naive self-similar host: restriction of scalars fails by a norm
+    computation.
