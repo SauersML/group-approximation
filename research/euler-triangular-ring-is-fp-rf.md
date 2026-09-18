@@ -7,10 +7,12 @@ distinct_from:
   resolvent-presentation-ring-is-residually-finite: that ring R_l carries Z_(l) as a corner ring e R_l e, whose K_2 contains the infinitely generated tame symbols of K_2(Z_(l)); here Z_(l) sits only in the square-zero bimodule corner, so it contributes no units and no corner ring.
   euler-base-annihilator-over-lamplighter-is-not-fg: that shows the Euler base is not finitely presented over any group ring of an overgroup of Z≀Z; this presents it inside a finitely presented ring instead.
   z-localized-embeds-in-fg-rf-soluble-group: that is the group G_l = M ⋊ (Z≀Z); here G_l sits inside the unit group of T_l as the matrices [[h, m],[0, 1]].
+artifacts:
+  - research/artifacts/gq-referee-a-euler-triangular-ring-is-fp-rf.md
 ---
 
-**ESTABLISHED** through `euler-triangular-ring-is-fp-rf-proof`. Lane proof, not independently
-reviewed. It uses no unread citation.
+**ESTABLISHED** through `euler-triangular-ring-is-fp-rf-proof`. Lane proof; proof-gap review
+PASS by gq-referee-a (report in `artifacts`). It uses no unread citation.
 
 **Notation.**
 - `D = A[x^(±1); σ]` is the Euler ring of `resolvent-ring-has-path-normal-form`, with
@@ -40,3 +42,6 @@ reviewed. It uses no unread citation.
    `T_l -> [[End(M_(r,N)), M_(r,N)],[0, Z/l^r]]` onto finite rings separate the points of `T_l`.
 3. **The corner.** The additive group of the corner `e T_l (1-e) ≅ M` contains `Z_(l) f_0`.
 4. **Units.** `G_l ≅ {[[h, n],[0,1]] : h in <x, 1+u>, n in M} <= T_l^×`, with `1 + u` acting as `β`.
+   This uses that `D` acts faithfully on `M`: `d = Σ_a x^a f_a` acts by `f_j -> Σ_a f_a(lj) f_(j-a)`,
+   and a nonzero rational function has finitely many zeros (the case "δ != 0" of
+   `resolvent-presentation-ring-is-residually-finite-proof`). Note N1 of gq-referee-a.

@@ -157,3 +157,14 @@ open part is finite presentation. One concrete route is
      - Heuristically, stable `K_2(T_l) = K_2(D) ⊕ K_2(Z)` is finite. Three inputs are unread: triangular
        K-theory, the twisted Laurent theorem, and stability.
    - This is the most promising live route to the bottleneck.
+8. **The triangular route after gq-k2-q (2026-09-18, lane gq-infinite-primes).**
+   - gq-k2-q (29881297a) showed that the Euler ring `D` has infinite-rank `K_2`, via the symbols
+     `{π_0, π_q}`. So `K_2(N, T_l)` is not finitely generated, and neither `E_N(T_l)` nor `E_N(D)` is finitely
+     presented.
+   - `St_N(D)` is a retract of `St_N(T_l)` (`euler-triangular-steinberg-retracts-to-euler-steinberg`). So the
+     triangular route needs `euler-ring-steinberg-rf-residual-is-fng`: whether infinitely many independent
+     `{π_0, π_q}` die in every finite quotient. That question is NOT decided. The partial analysis and the
+     smallest test ring are in that node's Attempts.
+   - **Design constraint.** `Z_(l)` in the base comes from the lamps `π_k` acting invertibly. Finite
+     presentation needs that invertibility as ring relations, which makes the `π_k` units and creates the
+     symbols. This lane has no concrete way to decouple the two.

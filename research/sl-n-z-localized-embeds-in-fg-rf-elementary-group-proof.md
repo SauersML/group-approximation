@@ -24,18 +24,22 @@ homomorphically. It is injective because `θ` is and `Θ(A) e = θ(A)`.
 - Elementary row operations move a unit into position `(1,1)` and make it 1. They
   then clear the first row and column.
 - Induction on `n` reduces `g` to a diagonal matrix of determinant 1. By Whitehead's
-  lemma (item 2 below, for `1 x 1` blocks) it lies in `E_n(Z_(l))`.
+  lemma (below, for `1 x 1` blocks) it lies in `E_n(Z_(l))`.
 
 `Θ(e_ij(c)) = I + θ(c) E_ij = e_ij(θ(c))`, so `Θ(SL_n(Z_(l))) ⊆ E_n(R)`.
 
-**2. Whitehead's lemma.** For any unital ring `S` and `a in GL_n(S)`,
+**Whitehead's lemma (used above).** For any unital ring `S` and `a in GL_n(S)`,
 
     diag(a, a^-1) = [[1,a],[0,1]] [[1,0],[-a^-1,1]] [[1,a],[0,1]] [[0,-1],[1,0]]
 
 in `2 x 2` blocks. Each factor lies in `E_(2n)(S)`: block unipotents are products of
 elementary matrices, and `[[0,-1],[1,0]] = [[1,-1],[0,1]] [[1,0],[1,1]] [[1,-1],[0,1]]`
-in blocks. Apply this with `a = Θ(g)`. The map `g -> diag(Θ(g), Θ(g)^(-1))` is an
-injective homomorphism, since its first block is `Θ`.
+in blocks. This is a statement about each element, not a homomorphism: `g -> diag(g, g^(-1))`
+is multiplicative only on commuting pairs.
+
+**2. GL_n(Z_(l)) inside E_(n+1).** The map `g -> diag(g, det(g)^(-1))` is an injective homomorphism
+`GL_n(Z_(l)) -> SL_(n+1)(Z_(l))`, since `det` is multiplicative and `Z_(l)` is commutative. By the
+paragraph above, `SL_(n+1)(Z_(l)) = E_(n+1)(Z_(l))`, and `Θ` maps it injectively into `E_(n+1)(R)`.
 
 **3. Finite generation.** Let `N >= 3` and let `Σ` be the five generators of `R`
 together with `1`. By `e_ij(r) e_ij(s) = e_ij(r+s)`, and by
