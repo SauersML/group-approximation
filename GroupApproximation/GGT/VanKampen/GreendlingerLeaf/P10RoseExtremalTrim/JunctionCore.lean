@@ -213,3 +213,103 @@ def roseJunctionCore_LobeRemovalStatement : Prop :=
               s₁.length ≤ eps ∧ s₂.length ≤ eps ∧ lo ≤ t₂.start.1 ∧
               t₂.start.1 + t₂.length ≤ hi ∧
               t₁.length < (cellDarts X source).length ∧ t₂.length < (outerDarts X).length
+
+/-- **The sub-arc region move from the removal of a lobe**: flip the lobe.  For roots on the cycle
+the region clauses hold by the lobe API; for one extremal region as in
+`regionMoveSubArc_of_singleRegionMove`. -/
+theorem roseJunctionCore_regionMoveSubArc_of_lobeRemoval
+    (h : roseJunctionCore_LobeRemovalStatement.{u, w, v}) :
+    P10Rose.RoseRegionMoveSubArcStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hcase, source, kept, hsource, hkept, t₁, t₂, s₁, s₂, hperm, hwalk,
+    hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hc := K.boundary.cycle_mem_iff
+  rcases hcase with ⟨hne, hrs⟩ | ⟨r, rfl, hrout, y, hy, hry⟩
+  · obtain ⟨r, hr⟩ : ∃ r, r ∈ rs := by
+      cases rs with
+      | nil => exact absurd rfl hne
+      | cons a l => exact ⟨a, by simp⟩
+    exact ⟨roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs,
+      roseJunctionCore_lobeColour_step X.toCombMap _ rs,
+      fun d hd => Or.inr (roseJunctionCore_lobeColour_alpha_eq_false hc hrs hd),
+      roseJunctionCore_not_mem_flipFaces hc hrs K.outerFace_not_mem,
+      ⟨r, hrs r hr, roseJunctionCore_movePred_root X.toCombMap _ hr⟩, source, kept, hsource,
+      hkept, t₁, t₂, s₁, s₂, hperm, hwalk, hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩
+  · rw [roseJunctionCore_lobeColour_singleton] at hsource hkept hperm
+    have hz := P10Rose.SubArcMove.regionColour_step X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle) r
+    exact ⟨P10Rose.SubArcMove.regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r,
+      hz, P10Rose.SubArcMove.regionColour_indep hc r,
+      not_mem_flipFaces hz K.outerFace_not_mem
+        (fun x hx => P10Rose.SubArcMove.regionColour_eq_false X.toCombMap _ (hrout x hx)),
+      ⟨y, hy, P10Rose.SubArcMove.movePred_regionColour_eq_false hry⟩, source, kept, hsource,
+      hkept, t₁, t₂, s₁, s₂, hperm, hwalk, hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩
+
+/-- **The removal of a lobe from a single-region move** (truth certificate: the residual is
+implied by the old target; take the one root `r`). -/
+theorem roseJunctionCore_lobeRemoval_of_singleRegionMove
+    (h : P10Rose.RoseSingleRegionMoveStatement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hrout, hry, source, kept, hsource, hkept, t₁, t₂, s₁, s₂, hperm, hwalk,
+    hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  rw [← roseJunctionCore_lobeColour_singleton] at hsource hkept hperm
+  exact ⟨[r], Or.inr ⟨r, rfl, hrout, hry⟩, source, kept, hsource, hkept, t₁, t₂, s₁, s₂, hperm,
+    hwalk, hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩
+
+/-- **The removal of a lobe from the (FALSE) junction witness**: the residual is weaker. -/
+theorem roseJunctionCore_lobeRemoval_of_junction (h : RoseExtremalJunctionStatement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} :=
+  roseJunctionCore_lobeRemoval_of_singleRegionMove (singleRegionMove_of_junction h)
+
+/-- **The rose step from the removal of a lobe.** -/
+theorem roseJunctionCore_rose_of_lobeRemoval
+    (h : roseJunctionCore_LobeRemovalStatement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} :=
+  P10Rose.rose_of_regionMoveSubArc (roseJunctionCore_regionMoveSubArc_of_lobeRemoval h)
+
+/-- **The Greendlinger leaf from the removal of a lobe**: the route of
+`AssemblyResidual.relativeGreendlinger_of_residuals` with its FALSE binder `hjunction` replaced by
+the lobe-removal residual. -/
+theorem roseJunctionCore_relativeGreendlinger_of_lobeRemoval
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (hlobe : roseJunctionCore_LobeRemovalStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  P06Bypass.relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow
+    Piece01.proof.{u, w, v} Piece04.proof.{u, w, v}
+    (P06Bypass.refutedBelowSection_of_innerPocketEnclosed
+      (P07InnerPocket.innerPocketEnclosed_of_fourPieceOff hoff))
+    (Piece10.proof_of_regionMoveSubArc (roseJunctionCore_regionMoveSubArc_of_lobeRemoval hlobe))
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+universe u w v
+
+/-- **The outer-pinch step from the removal of a lobe.** -/
+theorem roseJunctionCore_proof_of_lobeRemoval
+    (h : P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  proof_of_regionMoveSubArc
+    (P10RoseExtremalTrim.roseJunctionCore_regionMoveSubArc_of_lobeRemoval h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_eq_true_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_eq_false
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_singleton
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_eq_false_of_not_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeColour_alpha_eq_false
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_not_mem_flipFaces
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_mem_flipFaces
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_movePred_root
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_regionMoveSubArc_of_lobeRemoval
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeRemoval_of_singleRegionMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_lobeRemoval_of_junction
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_rose_of_lobeRemoval
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.roseJunctionCore_relativeGreendlinger_of_lobeRemoval
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.roseJunctionCore_proof_of_lobeRemoval

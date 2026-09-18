@@ -66,7 +66,8 @@ theorem suslinCongLoc_stab_mem_rankOne {S : Type*} [CommRing S]
   have hyx' : Sum.elim y (0 : Unit → S) ⬝ᵥ Sum.elim x (0 : Unit → S) = 0 := by
     rw [sumElim_dotProduct_sumElim, hyx]
     simp
-  obtain ⟨u, hu, hval⟩ := suslinNormal_inE_of_dot_zero (ι := Fin 2 ⊕ Unit) (A := S) hyk hyx'
+  obtain ⟨u, hu, hval⟩ := suslinNormal_inE_of_dot_zero (ι := Fin 2 ⊕ Unit) (A := S)
+    (x := Sum.elim x (0 : Unit → S)) (y := Sum.elim y (0 : Unit → S)) (k := Sum.inr ()) hyk hyx'
   have heq : u = stabilizeUnit (R := S) (κ := Unit) σ :=
     Units.ext (hval.trans (suslinCongLoc_stab_val_rankOne σ x y hσ).symm)
   rw [← heq]
@@ -97,6 +98,7 @@ theorem suslinCongLoc_gen_le {A S : Type*} [CommRing A] [CommRing S]
     suslinNormal_elementaryGroup_normal suslinCongLoc_three
   haveI : ((elementaryGroup (Fin 2 ⊕ Unit) S).comap
       (stabilizeUnit (R := S) (κ := Unit))).Normal := hE.comap _
+  rw [SuslinCongLocGen]
   refine Subgroup.normalClosure_le_normal ?_
   rintro σ ((hσ | ⟨x, y, hyx, hσ⟩) | ⟨ψ, τ, hτ, rfl⟩)
   · have hσ' : σ ∈ elementaryGroup (Fin 2) S := hσ
