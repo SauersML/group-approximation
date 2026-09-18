@@ -44,7 +44,7 @@ theorem eHighWitt_polySpace_comp {N : Type} {w : σ → ℕ} {co : N → σ → 
     intro x
     funext o
     cases o with
-    | none => exact aeval_X _ _
+    | none => exact aeval_X (eHighWitt_hpt (co x)) none
     | some v => exact (hΦx v x).symm
   have hP' : IsWeightedHomogeneous (eHighWitt_hwt w) P d :=
     (mem_weightedHomogeneousSubmodule L _ _ _).mp hP
@@ -104,7 +104,8 @@ theorem eHighWitt_exists_polyFun_of_weightPoly [Fintype σ] {N Q : Type} [AddCom
     fun q _ hf => eHighWitt_polySpace_comp (hact q) d hf,
     fun _ hm => eHighWitt_polySpace_sep w co d hwd fun h => hm (hco h)⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWitt_exists_polyFun_of_weightPoly
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWitt_exists_polyFun_of_weightPoly
 
 end
 

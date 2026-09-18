@@ -134,6 +134,7 @@ theorem eHighArtinHassePolyFun_of_wittEmbed (h : EHighArtinHasseWittEmbedStateme
     (fun (q : Q) (m : M) => MonoidAlgebra.of (ZMod (p ^ 2)) Q q • m) act hcompat
     V hfd htrans hactV hsep⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHassePolyFun_of_wittEmbed
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHassePolyFun_of_wittEmbed
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary
