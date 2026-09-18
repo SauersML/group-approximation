@@ -78,6 +78,53 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   * *The direct budget transplant.* `E_p[N|E]` is ball-local, but PB begins
     at `p_c(G) <= liminf p_c(G_k)`. The approximants would need the budget
     below their own critical points.
+* **Transplant stability data of the Bernoulli action (stability-approximation,
+  swarm-0917).**
+  * *The dictionary.* The budget is a derivative in `p`. For an increasing
+    event `E`, Russo's formula gives
+    `E_p[N_piv 1_E] = sum_e P_p(e open, e pivotal) = p · d/dp P_p(E)`, so
+    `E_p[N_piv | E] = p · d/dp log P_p(E)`. The hope was to bound this through
+    stability data of the Bernoulli action: its Koopman representation, the
+    spectral radius `rho`, Kazhdan constants, strong ergodicity, and membership
+    in the class weakly contained in Bernoulli.
+  * *Where it dies (invariant: the Koopman representation; step: the passage
+    from `p_c` to `p_c+eps`).*
+    - For every `p in (0,1)`, `L^2_0` of the edge shift decomposes into
+      quasi-regular representations over finite edge sets. These have finite
+      stabilizers, so the representation is contained in `infinity · lambda`
+      independently of `p`.
+    - Every datum above is therefore the same at `p_c`, at `p_u` and at `1/2`.
+      The only `p`-dependence left is in observables such as `log P_p(E)`,
+      whose `p`-derivative is the pivotal count itself, which is circular.
+  * *What such data can reach.*
+    `fpbs-fiid-soft-collapse-iff-fiid-sparse-spines` (Corollary E) shows that
+    arguments using Bernoulli facts at `p <= p_c`, the soft axioms (S1)--(S4)
+    and properties shared by factors of Bernoulli shifts fail on every group
+    with factor-of-iid sparse spines. There they cannot give `p_c < p_u`, let
+    alone the budget. On a class of groups they must prove
+    `fpbs-no-fiid-sparse-spines-on-nonamenable-groups`, which by Corollary D
+    already implies `p_c < p_u` there
+    (`fpbs-benjamini-schramm-via-no-fiid-sparse-spines`).
+  * *Why the known soft obstruction does not cover this.* The sheet spines of
+    `fpbs-soft-collapse-iff-invariant-sparse-spines` are not weakly contained
+    in Bernoulli (Proposition F of the new node). So this transplant was not
+    already killed. What remains of it is exactly the no-FIID-spines hole,
+    which contradicts the open claim `fpbs-kazhdan-sparse-spines`.
+  * *Referee audit (2026-09-17).* Three lenses reviewed the supporting node
+    `fpbs-fiid-soft-collapse-iff-fiid-sparse-spines`; lenses 1 and 3 refuted
+    parts of it, so it is set back to OPEN. Lens 1: the "not strongly ergodic"
+    half of Proposition F, bullet 2, fails for atomic height laws (sheets over
+    `rZ + j` with iid connectors are strongly ergodic). Non-weak-containment
+    survives, and the Theorem B height sets are atomless, so the bullet above
+    is unaffected. Lens 3: the hole
+    `fpbs-no-fiid-sparse-spines-on-nonamenable-groups` is false on `F_2 x Z^2`
+    (fibrewise supercritical `Z^2` giants joined by iid `F_2`-edges give FIID
+    sparse spines). So on groups with a normal `Z^2` factor, Corollary E rules
+    out Bernoulli-weakly-contained soft arguments outright, and "what remains
+    is the no-FIID-spines hole" holds only where that hole is not already
+    false. All lenses found the Russo identity and the `p`-independence of the
+    Koopman representation sound, so the dead-end verdict on this transplant
+    stands and the target stays OPEN.
 * **Symbolic-dynamics / pressure transplant: chemically truncated rates
   (b-p-bs1, 2026-09-17).**
   * *Idea.* Treat `lambda(p)` as a pressure and approximate the non-local
