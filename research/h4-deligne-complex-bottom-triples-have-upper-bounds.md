@@ -70,6 +70,16 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     - With `b ∈ R_X(2)`, witnesses of length 2 are needed (index up to 1802).
     - So the witness length tracks the length of `b`, which is consistent with a quasi-centre built
       from the middle letter.
+- **Single-edge case: normal form and fibred quotient** (w5-042,
+  `h4-case1-pure-normal-form-and-fibred-obstruction`). Case 1 (hexagon projecting to one edge) is equivalent
+  to tuples `α_i ∈ F = ker(ρ_X|P_Y) ≅ F_3` and `β_i ∈ N = ker(ρ_Y|P_X)` with `∏α_i = ∏β_i = 1` and
+  `α_1β_1α_2β_2α_3β_3 = 1`.
+  - Any sub-arrangement of `𝒜_x ∪ 𝒜_y` is blind to the last relation, because `[N, F] = 1` in its `π_1`. So an
+    `H_4` auxiliary arrangement must use other walls.
+  - Adding the third wall of an `A_2` flat `w ∩ w'` gives a 19-wall arrangement in which `ℓ_x` is still
+    modular. Its `π_1` is `F_4 ⋊ P_X`. In it `[N, F] ≠ 1`, and the relation becomes a nontrivial
+    point-pushing identity.
+  - Open: turning that identity into a centre (the Gauss–Bonnet step).
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
