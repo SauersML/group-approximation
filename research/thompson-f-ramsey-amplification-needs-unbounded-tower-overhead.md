@@ -134,3 +134,21 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
   - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at comparable windows, which is again the quantifier
     exchange. At windows 1 and 2, `F` sits between free-like and amenable-like: `R(1) = 3 < CR(1) = 5 ≤ R(2) − 4`.
     Radii this small cannot decide RGAP₁, and no belief moves in either direction.
+- **2026-09-18 (swarm-0917-w12-w12-f-break, quantifier-shift).** Claimed **REFUTED** by
+  `thompson-f-coarse-reiter-radius-is-one-ramsey-call-away` (not yet independently reviewed). That node proves
+  `CR(M) ≤ A·R(A·6^{556M²}) + A·M²`, so CRE(E) holds for some `E`, and AMP(E+3) follows by Corollary 1 of the sandwich.
+  - *Route.* First apply minimax: a certificate against `CR_{3/2}(M) ≤ n'` is one function `f_g` per `g ∈ B_M`,
+    so `K ≤ 5^M` functions whatever `n'` is. Then code: one set in `(F ≀ Z) × Z ≤ F`, where the wreath coordinates
+    sit on `x_0^k([1/8,1/4])`, the shift is `x_0` rescaled to `[0,1/2]`, and the threshold coordinate is `x_1`. Test
+    measures shift the certificate across a window of `16K` coordinates. One Ramsey call at `m = O(5^M M)` then
+    balances `Σ p_i(g_iν̄(f_i) − ν̄(f_i))` for the single averaged marginal `ν̄`, up to `1/2 + 1/8 + 1/8`. Finally,
+    smoothing at threshold 3/2 recovers `CR`.
+  - *Invariant that fails.* The belief behind ¬AMP was that a coded coloring controls only per-coloring conditional
+    marginals (the w9 selector kill). The shift reads every `f_i` on every coordinate, which forces one common
+    marginal. Minimax means a reply is needed only per certificate, not per coloring.
+  - *Relation to the class kills.* The w9 `F_2` kill is respected: the proof is `F`-specific, since it uses the
+    self-wreath embedding with linear coordinate distortion (the restriction lemma for tree pairs), and it moves the
+    window from `M` to about `5^M M`.
+  - *Consequences.* RGAP₁ and RGAP₂ are false. The routes `thompson-f-amenable-via-costly-ramsey-amplification` and
+    `thompson-f-costly-amplification-via-double-ramsey-reiter-gap` are dead. Via Proposition D, `R_F` is
+    non-elementary with no hypothesis.
