@@ -152,3 +152,29 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     cube hypotheses. The first step is the trace weight of a higher-level window drop.
     The first open single-level case is `(N, j) = (4, 3)`, where `d = 28` and the
     groups `pi_23` (`= Z`) to `pi_27` of the band space enter.
+- **Ancestor twists force depth K/2 from the bottom siblings (w8-113, 2026-09-18).**
+  - *Result.* `toms-ancestor-twisted-cubes-force-depth-k-over-2`. Put the facet lines on
+    the nodes' factors and the ancestors' factors together. In Toms's tower the block of
+    `nu` is twisted by the lines of its ancestors, so the lines have
+    `c_1 = alpha u_nu + A_nu` and `beta u_nu + A_nu`. The top-column value becomes
+    `det[(alpha u + A)^k - (beta u + A)^k]`. Its `(1,...,1)` part is
+    `± N! (alpha - beta)^N prod u_nu V(A)`, where `V(A)` is the Vandermonde of the path
+    twists. `V(A)` is non-zero when `j_rho >= a_rho b_rho` at every ancestor. Its leading
+    monomial is `prod u_rho^(a_rho b_rho)`. Toms has `j_rho = 2 · 4^l d_n^2` against
+    `a_rho b_rho = 4^(l-1)`.
+  - *Consequences.* Every window box of the `K/2` bottom siblings, extended over the
+    ancestor factors, has a common drop of depth `K/2`. That is trace `1/(2 d_n)` in `A`
+    and `beta_n/(2 r_n)` in `B`, the firewall's jump. The wide-cube fillings of
+    `toms-wide-sibling-cubes-fill-without-common-drop` exist on each ancestor slice but
+    never extend over the ancestor directions. The `(4, 3)` case is forced once the
+    ancestors are included, which the script confirms.
+  - *Weighting and the Hall route.* A one-rank drop at a node of any level is one
+    stage-`M` rank, so higher levels carry no extra weight. Cubes of nodes at several
+    levels whose lines come from the nodes' own factors satisfy Hall only for
+    `N = O((d_n K)^(2/3)) = o(K)`. So the brief's multi-level route could not reach `K/2`.
+    Ancestors enter as cohomological room, not as cube directions.
+  - *Next.* Window-box extraction. The ideal `a_n = floor(d_n F)` gives the node block of
+    `psi(a_n)` a deficiency of `1` off the jump points and `2` at them. So `a_M` has room
+    `2` per node at a transit point, while Theorem 1 needs room `1`. Find, inside the chain
+    `psi(a_n) <~ a_(M') <~ a_M`, a target with room one per node on a box. Then
+    `eps_M >= 1/(2 d_n)` follows.
