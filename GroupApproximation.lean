@@ -6060,6 +6060,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTDecayGen
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.RegionArcs
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.RegionCut
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbLocalState
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
