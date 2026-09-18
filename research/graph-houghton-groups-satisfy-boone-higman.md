@@ -47,3 +47,20 @@ TeX l.297:
    (`relative-automorphism-action-is-highly-transitive`). Adapt it to the
    compactly supported part, which is a direct limit of relative automorphism groups of
    free groups, extended by the loop shifts `h_i`.
+
+## Attempts
+
+**Attempt 1 (bh-graph-houghton, 09-18): route 3 carried out, reduced to one finiteness gate.** Route
+`graph-houghton-bh-via-eventually-rigid-g-automorphisms` (lane proofs, not reviewed):
+- **The embedding.** PB_r embeds in the group P_G(r) of eventually rigid G-automorphisms of G * F(X), using a lift
+  based at the end e_1 (`graph-houghton-groups-embed-in-eventually-rigid-g-automorphisms`). The surface and
+  braided Houghton groups embed the same way, modulo cited faithfulness.
+- **The action.** For G finitely generated, infinite, simple and MIF, P_G(r) acts on the finitely supported
+  homomorphisms to G. The action is faithful and highly transitive, with finitely generated stabilizers
+  (`eventually-rigid-g-automorphism-groups-act-with-type-a-except-fp`).
+- **What is left.** Only finite presentation of P_G(r), recorded as the OPEN node
+  `eventually-rigid-g-automorphism-groups-are-finitely-presented`. A G-relative Armstrong–Forrest–Vogtmann presentation
+  with bounded-support relators would suffice (lane sketch there).
+
+Lesson for general BH: BFFHZ's Hom_G action localizes to asymptotically rigid actors. For every Houghton-type
+Aut-group, only finiteness is left; the transitivity side is inherited from finite rank.
