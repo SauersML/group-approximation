@@ -110,14 +110,16 @@ theorem suslinLocalCase_analytic_of_family (h : SuslinLocalCaseFamilyStatement) 
   ⟨fun p _ k N hk hA hN ↦ suslinDilAn_locallyElementary_of_localCase (h.1 p k N hk hA hN),
     fun m k N hA hN ↦ suslinDilAn_locallyElementary_of_localCase (h.2 m k N hA hN)⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_analytic_of_family
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_analytic_of_family
 
 /-- The family Statement gives the generated Statement. -/
 theorem suslinLocalCase_generated_of_family (h : SuslinLocalCaseFamilyStatement) :
     SuslinDilationGeneratedStatement :=
   suslinDilationGenerated_of_analytic (suslinLocalCase_analytic_of_family h)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_generated_of_family
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_generated_of_family
 
 /-- The converse: the family Statement is equivalent to the localized Statement. -/
 theorem suslinLocalCase_family_of_analytic (h : SuslinDilationAnalyticStatement) :
@@ -125,7 +127,8 @@ theorem suslinLocalCase_family_of_analytic (h : SuslinDilationAnalyticStatement)
   ⟨fun p _ k N hk hA hN ↦ suslinLocalCase_of_locallyElementary (h.1 p k N hk hA hN),
     fun m k N hA hN ↦ suslinLocalCase_of_locallyElementary (h.2 m k N hA hN)⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_family_of_analytic
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalCase_family_of_analytic
 
 end Absorption
 end Metabelian
