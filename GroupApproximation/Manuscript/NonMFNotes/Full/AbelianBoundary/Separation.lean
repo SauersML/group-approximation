@@ -73,10 +73,11 @@ def badSet (e : ℕ → G) (b : Lamp (Multiplicative A) (G ⧸ H)) (x₀ : G ⧸
     {x : G ⧸ H | b.toFun x ≠ 1 ∧ x ≠ x₀} (ball e n n)
 
 theorem badSet_finite (e : ℕ → G) (b : Lamp (Multiplicative A) (G ⧸ H)) (x₀ : G ⧸ H)
-    (n : ℕ) : (badSet e b x₀ n).Finite :=
-  Set.Finite.image2 _
-    ((b.2 : {x : G ⧸ H | (b : G ⧸ H → Multiplicative A) x ≠ 1}.Finite).subset
-      fun _ hx => hx.1)
+    (n : ℕ) : (badSet e b x₀ n).Finite := by
+  have hsupp : {x : G ⧸ H | b.toFun x ≠ 1 ∧ x ≠ x₀}.Finite :=
+    (b.2 : {x : G ⧸ H | (b : G ⧸ H → Multiplicative A) x ≠ 1}.Finite).subset
+      fun _ hx => hx.1
+  exact Set.Finite.image2 (fun (x : G ⧸ H) (c : G) => c⁻¹ * (x.out⁻¹ * x₀.out)) hsupp
     (ball_finite e n n)
 
 theorem one_notMem_badSet (e : ℕ → G) (he : ∀ j, e j ∈ H)
@@ -104,7 +105,8 @@ theorem phase_eq_pi (θ : A →+ ℝ) (e : ℕ → G) {b : Lamp (Multiplicative 
     intro x hx
     by_cases hb : b.toFun x = 1
     · rw [hb, toAdd_one, map_zero, zero_mul]
-    · refine mul_eq_zero_of_right _ (bump_eq_zero e fun c hc hcy => ?_)
+    · refine mul_eq_zero_of_right _ (bump_eq_zero (n := n) (K := K)
+        (y := x.out⁻¹ • (QuotientGroup.mk x₀.out : G ⧸ K)) e fun c hc hcy => ?_)
       have hcy' : (QuotientGroup.mk c : G ⧸ K) = QuotientGroup.mk (x.out⁻¹ * x₀.out) := hcy
       have hmem : c⁻¹ * (x.out⁻¹ * x₀.out) ∈ badSet e b x₀ n :=
         Set.mem_image2_of_mem (f := fun (x : G ⧸ H) (c : G) => c⁻¹ * (x.out⁻¹ * x₀.out))
@@ -175,8 +177,7 @@ theorem exists_corona_separating [IsAddTorsionFree A] (hG : IsResiduallyFinite G
   obtain ⟨θ, hθ⟩ := exists_hom_real_eq_pi ha₀
   obtain ⟨N, hN, hNS⟩ := exists_avoiding_family hG e he b x₀
   refine ⟨quotModels N, quotModels_card_pos N, coronaHom θ e N hsurj, ?_⟩
-  rw [coronaHom_inl]
-  exact coronaLamp_ne_one θ e N hθ hNS
+  exact fun h => coronaLamp_ne_one θ e N hθ hNS ((coronaHom_inl θ e N hsurj b).symm.trans h)
 
 end
 

@@ -36,10 +36,10 @@ theorem scale_eq (n : ℕ) : scale n = 2 ^ (n + 10) := by
   induction n with
   | zero => rfl
   | succ n ih =>
-    have h : scale (n + 1) = 2 * scale n :=
-      Function.iterate_succ_apply' (fun x : ℕ => 2 * x) n 1024
-    rw [h, ih]
-    ring
+    calc scale (n + 1) = 2 * scale n :=
+          Function.iterate_succ_apply' (fun x : ℕ => 2 * x) n 1024
+      _ = 2 * 2 ^ (n + 10) := by rw [ih]
+      _ = 2 ^ (n + 1 + 10) := by ring
 
 /-! ### Syntax -/
 
@@ -196,8 +196,7 @@ theorem relatorCons_iff (ζ : ℕ → ℂ) (g d S : ℕ) (r : List (ℕ × Bool)
   · exact grid_iff _ _ _ fun j k => by
       rw [evalC_diffC, evalC_varC, litC_false, evalC_diffC, evalC_scaledVarC, litC_false,
         evalC_constC, Nat.cast_mul, kdelta_cast, Matrix.smul_apply, Matrix.sub_apply,
-        smul_eq_mul, blk_apply, blk_apply]
-      ring
+        smul_eq_mul, blk_apply, blk_apply, mul_sub]
   · exact grid_iff _ _ _ fun j k => by
       rw [evalC_diffC, evalC_constC, kdelta_cast, evalC_append, evalC_sumProd_gram,
         evalC_sumProd_gram, Matrix.add_apply]
