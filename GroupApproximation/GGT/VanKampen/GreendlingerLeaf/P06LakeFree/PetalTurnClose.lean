@@ -92,7 +92,8 @@ theorem petalTurnInv_initial {X : DiscDiagram.{u, w, v} W} {T t₁ t₂ : List X
     PetalTurnInv X T t₁ t₂ x₀ (invDarts X T) := by
   have hTT : invDarts X (invDarts X T) = T := Petal.petal_invDarts_invDarts X T
   have hne : invDarts X T ≠ [] := fun h =>
-    hw.ne_nil (List.reverse_eq_nil_iff.mp (List.map_eq_nil_iff.mp h))
+    hw.ne_nil (List.reverse_eq_nil_iff.mp
+      (List.map_eq_nil_iff.mp (show T.reverse.map X.toCombMap.alpha = [] from h)))
   have hc : T.IsChain fun a b =>
       X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha b)) =
         X.toCombMap.vertexOf (X.toCombMap.alpha a) :=

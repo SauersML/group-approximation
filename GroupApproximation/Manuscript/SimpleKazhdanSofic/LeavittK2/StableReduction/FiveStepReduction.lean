@@ -102,3 +102,83 @@ theorem fiveStep_cornerInjective_of_k2StabInjective {n : ℕ} (r : Fin n)
 
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStep_cornerInjective_of_k2StabInjective
+
+/-! ### The binary Leavitt algebra `L_{𝔽₂}(1,2)` at rank five -/
+
+/-- **Centrality of `K₂(5, L)`** in `St_5(L)`, for `L = L_{𝔽₂}(1,2)`.
+
+*Why it is true.*  `K₂(5, L) = ⊥` (Khanh, arXiv:2609.08428, Thm 5.4); see
+`binaryLeavittK2FiveCentral_of_binaryLeavittSteinbergInjective`.  Not proved in Lean.  It is
+implied by the step (`binaryLeavittK2FiveCentral_of_fiveStep`). -/
+def BinaryLeavittK2FiveCentralStatement : Prop :=
+  BooneHigman.SteinbergBasic.K2 (Fin 5) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) ≤
+    Subgroup.center (SteinbergGroup (Fin 5) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittK2FiveCentralStatement
+
+/-- **Injectivity of the corner endomorphism** `σ_{last 4}` of `St_5(L)`, for
+`L = L_{𝔽₂}(1,2)`.
+
+*Why it is true.*  `ker σ ≤ K₂(5, L) = ⊥` (Khanh, arXiv:2609.08428, Thm 5.4); see
+`binaryLeavittFiveCornerInjective_of_binaryLeavittSteinbergInjective`.  Not proved in Lean.  It
+is implied by the step (`binaryLeavittFiveCornerInjective_of_fiveStep`). -/
+def BinaryLeavittFiveCornerInjectiveStatement : Prop :=
+  ∀ w : SteinbergGroup (Fin 5) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)),
+    fiveStepCornerHom (BinaryLeavitt.family (ZMod 2)) (Fin.last 4) w = 1 → w = 1
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittFiveCornerInjectiveStatement
+
+/-- **The step from centrality and corner injectivity.**  LOUD: the converse is also proved
+(`binaryLeavittK2FiveCentral_of_fiveStep`, `binaryLeavittFiveCornerInjective_of_fiveStep`), so
+the conjunction is equivalent to the step. -/
+theorem binaryLeavittK2FiveStep_of_central_of_cornerInjective
+    (hC : BinaryLeavittK2FiveCentralStatement) (hσ : BinaryLeavittFiveCornerInjectiveStatement) :
+    BinaryLeavittK2FiveStepStatement :=
+  fiveStep_k2StabInjective_of_central_of_cornerInjective (BinaryLeavitt.family (ZMod 2))
+    (by omega) (Fin.last 4) ⟨0, by omega⟩
+    (fun e => by
+      have h1 : (0 : ℕ) = 4 := congrArg Fin.val e
+      omega) hC hσ
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_central_of_cornerInjective
+
+/-- The step gives centrality of `K₂(5, L)`. -/
+theorem binaryLeavittK2FiveCentral_of_fiveStep (hS : BinaryLeavittK2FiveStepStatement) :
+    BinaryLeavittK2FiveCentralStatement :=
+  fiveStability_K2_le_center_of_k2StabInjective hS
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveCentral_of_fiveStep
+
+/-- The step gives injectivity of the corner endomorphism. -/
+theorem binaryLeavittFiveCornerInjective_of_fiveStep (hS : BinaryLeavittK2FiveStepStatement) :
+    BinaryLeavittFiveCornerInjectiveStatement :=
+  fiveStep_cornerInjective_of_k2StabInjective (BinaryLeavitt.family (ZMod 2)) (Fin.last 4) hS
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittFiveCornerInjective_of_fiveStep
+
+/-- **Truth check** for centrality: `K₂(5, L) = ⊥` gives it. -/
+theorem binaryLeavittK2FiveCentral_of_binaryLeavittSteinbergInjective
+    (h : LeavittFP.BinaryLeavittSteinbergInjectiveStatement) :
+    BinaryLeavittK2FiveCentralStatement :=
+  binaryLeavittK2FiveCentral_of_fiveStep
+    (binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective h)
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveCentral_of_binaryLeavittSteinbergInjective
+
+/-- **Truth check** for corner injectivity: `K₂(5, L) = ⊥` gives it. -/
+theorem binaryLeavittFiveCornerInjective_of_binaryLeavittSteinbergInjective
+    (h : LeavittFP.BinaryLeavittSteinbergInjectiveStatement) :
+    BinaryLeavittFiveCornerInjectiveStatement :=
+  binaryLeavittFiveCornerInjective_of_fiveStep
+    (binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective h)
+
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittFiveCornerInjective_of_binaryLeavittSteinbergInjective
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
