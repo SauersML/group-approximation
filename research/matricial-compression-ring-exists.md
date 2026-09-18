@@ -185,3 +185,25 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
    - *What survives.* Rings without finite-dimensional representations, such as the infinite simple rings of
      `simple-ring-with-centralizer-compressing-automorphism`. (R2)-(R5) pass to `ψ`-stable quotients, so a
      `ψ`-stable maximal ideal would reduce any witness to a simple ring. (R1) may not survive that step.
+8. **Unit-centralizer chains (2026-09-18, swarm-0917-w11-w11-titz-break, group-rings, dead class).**
+   `compression-gates-need-strict-unit-centralizer-chains` (ESTABLISHED, elementary, no approximation
+   hypothesis) sharpens Attempt 2 into a chain condition.
+   - *Result.* Put `M = U(R) cap C_R(R_0)`.  Then `psi(R_0) <= R_0` gives `M <= psi(M)`.  (R4)+(R5)
+     need `M < psi(M)`, hence a strictly ascending `Z`-indexed chain `psi^n(M)` in `U(R)/Z(R)^x`.
+     The same holds for (G2) of `simple-ring-with-centralizer-compressing-automorphism`.
+   - *Class killed.* Every ring whose unit group is Noetherian modulo the centre, for every `psi`,
+     every `R_0` and every `z`.  This covers:
+     - rings with only central units (commutative rings, Weyl, free and enveloping algebras);
+     - twisted group rings with trivial units over polycyclic-by-finite groups, including every
+       quantum torus and every twisted ring of a torsion-free nilpotent group.
+     Also killed: every unit-generated `R_0` when `U(R)` has ACC on centralizers (linear or
+     torsion-free hyperbolic `U(R)`).
+   - *Why this is a new kill.* Integral quantum tori with `q^g - 1` inverted are finitely generated
+     and exactly matricial (clock and shift at `q -> e^(2 pi i/n)`), have no commutative quotient
+     (Attempt 3 is silent), and carry graded automorphisms of infinite order modulo inner ones.  So
+     the virtually-inner kill applies only if some matricially embeddable overring implements a
+     power of `psi`, which is unverified.  They die here at the step `M <= psi(M)` implies `M = psi(M)`.
+   - *Invariant.* The unit centralizer `M` in the subgroup lattice of `U(R)/Z(R)^x`.
+   - *Survivors.* Only rings with lamp-like unit groups: subshift crossed products, Leavitt algebras,
+     and the Attempt 7 lamp ring.  In a witness, `psibar^(-1)` must properly compress the subgroup
+     `psibar(Mbar)` of `U(R)/Z(R)^x`.
