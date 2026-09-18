@@ -41,3 +41,12 @@ gates of the genuine-action shell. It would be the first input that is not virtu
   `commuting-translations-sharing-an-inflow-ray-are-not-realizable` applies to the commuting pair
   `a_(d_0) a_(c')^-1`, `a_(d_1) a_(c')^-1` in `P`, and to all finite-index subgroups. So a positive
   candidate must have no two commuting index-zero elements that drain a common ray into different rays.
+
+## Attempts
+
+1. (bh-shell-universal, 09-18) **Answered in substance.** Take `R = B = V_(2,1)(<a>)`, `t = a`, with its
+   faithful near action on `N`. `B` is of type `F_infinity`, and `P = ker chi` is finitely generated
+   (`odometer-prefix-groups-have-fg-index-kernels`), not virtually abelian (it contains `V`), and
+   near-faithful. The realizability clause is unnecessary by `shell-envelopes-depend-only-on-the-near-image`.
+   It is also met literally by the subgroup `V`, which acts genuinely
+   (`thompson-v-binary-shell-action-passes-both-germ-gates`). Every input obtained this way lies in `B`.

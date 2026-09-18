@@ -82,3 +82,11 @@ directly.
     type (A) when a normalizing permutation is adjoined.
   - Obstruction for the naive self-similar host: restriction of scalars fails by a norm
     computation.
+- **Soluble groups of type `FP_∞`** (`fp-infinity-soluble-groups-satisfy-permutational-bh`,
+  read at source: Kropholler, BLMS 25 (1993), Theorems B and C).
+  - For every soluble `FP_∞` group `G`, the quotient `G/T` by Kropholler's locally finite
+    normal subgroup `T` is in `B_A`.
+  - `G` itself is in `B_A` whenever `T` is finite. That covers torsion-free `G`, metanilpotent
+    `G`, and every constructible-by-finite soluble group.
+  - Whether `T` can be infinite is Kropholler's open problem. A negative answer would put
+    every soluble `FP_∞` group in `B_A`.

@@ -37,9 +37,10 @@ polynomial-time and `|x|, |y|` polynomial in `|w|`.
    `leavitt-square-unit-group-is-fp-simple-and-acyclic` (conditional there on imported criteria
    of Khanh and Ara--Cortiñas). Since `Γ ≤ H`, **the word problem of the finitely presented
    simple group `H` is `coNP^⊕P`-complete**, for every finite generating set.
-4. **Consequence.** If `WP(H)` were in coNP, then `⊕P ⊆ coNP`, and Toda's theorem
-   (`PH ⊆ BPP^⊕P`) with the relativized Sipser--Gács--Lautemann theorem gives
-   `PH ⊆ BPP^NP ⊆ Σ_3^p`, a collapse of the polynomial hierarchy. Also `PH ⊆ BPP^(WP(H))`.
+4. **Consequence.** `WP(H)` is not in the polynomial hierarchy unless PH collapses. If
+   `WP(H) ∈ Σ_j^p`, then `⊕P ⊆ Σ_j^p`. Toda's theorem (`PH ⊆ BPP^⊕P`) with the relativized
+   Sipser--Gács--Lautemann theorem then gives `PH ⊆ BPP^(Σ_j^p) ⊆ Σ_(j+2)^p`. The case
+   `j = 1` with coNP is the collapse `PH ⊆ Σ_3^p`. Also `PH ⊆ BPP^(WP(H))`.
 
 ## Why it matters
 
@@ -72,8 +73,14 @@ provably escapes coNP modulo a standard hypothesis. It does not settle the root,
 
 ## Scope
 
-- The same argument works in `L^(⊗d)`, `d >= 2`. In `L` itself, gates at depth `r` cost `2^r`
-  and the proof does not apply; the complexity of `WP(L^x)` is not decided here.
-- Over `F_p`, parities become counts mod `p` (`coNP^(Mod_p P)` for finitely generated subgroups
-  of `(L_(F_p)(1,2)^(⊗2))^x`). Finite presentation and simplicity of those hosts are not
-  claimed.
+- The same argument works in `L^(⊗d)`, `d >= 2`, with the same class. In `L` itself, gates
+  at depth `r` cost `2^r` and the proof does not apply; the complexity of `WP(L^x)` is not
+  decided here.
+- **Every prime.** Over `F_p`, parities become counts mod `p`. The finitely presented simple
+  group `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem
+  (`leavitt-square-units-mod-p-complete-word-problem`, with a
+  characteristic-free slot unit).
+- **Ceiling.** More tensor factors, other `L(1,n)` factors and matrices stay in `∀·Mod_pP`.
+  Over `Z[1/M]` the bound is `C_=P`, and an integral group attains it. `PSPACE`-hardness is
+  excluded for all of these hosts unless `PSPACE ⊆ ∀·Mod_pP` or `PSPACE = PP`
+  (`leavitt-tensor-unit-word-problems-have-one-counting-quantifier`).

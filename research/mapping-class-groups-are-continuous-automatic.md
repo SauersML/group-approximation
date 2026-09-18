@@ -49,8 +49,11 @@ for closed surfaces of genus at least three
   braid groups modulo their center
   (`artin-groups-mod-central-garside-power-are-continuous-automatic`) and uses BBCMP's
   commensurability invariance as printed.
-- **Open for** every other finite-type surface. The first open cases are `S_{1,2}` and
-  `S_{2,1}`. All surfaces of genus at least three are open, closed or punctured.
+- **`S_{1,2}`, conditionally.** Settled modulo one recalled Birman--Hilden identification
+  with `S_{0,5}`: `twice-punctured-torus-mcg-is-continuous-automatic`.
+- **Open for** every other finite-type surface. `S_{2,1}` is the first case with no
+  hyperelliptic shortcut, since `ι` is not central in `Mod(S_{2,1})`. All surfaces of genus
+  at least three are open, closed or punctured.
 
 ## Attempts
 
@@ -86,3 +89,24 @@ for closed surfaces of genus at least three
    - Neither is known to this lane. The second is where fellow-travelling results for
      splitting sequences, such as Masur--Minsky and Hamenstädt, give only coarse
      agreement, while continuity needs exact prefix agreement.
+3. **bh-hhg, 2026-09-18 (fourth pass).**
+   - **A test for candidates.** `continuity-of-automatic-structures-is-decidable`:
+     continuity of a given automatic structure is the same as bounded lookahead of each
+     left multiplier map, and it is decidable from the multiplier automata. This is the
+     first test to run on Mosher's structure. Lane bh-free-51 is running its thinness and
+     germ-rate tests on that structure, and those tests presuppose continuity.
+   - **`S_{2,1}`.** The Birman exact sequence
+     `1 → π_1(S_2) → Mod(S_{2,1}) → Mod(S_2) → 1` has a continuous automatic quotient (the
+     low-complexity node). Closure of continuous automaticity under extensions, even with a
+     hyperbolic kernel, is not known, and BBCMP list no such closure property. So
+     `S_{2,1}` stays open. It is the natural first test case for the general methods.
+   - **Genus-one calibration for the splitting idea, recalled.**
+     - For `SL_2(Z)` the maximal-splitting normal forms are Farey paths, i.e. continued
+       fractions.
+     - Left multiplication by a fixed integer matrix acts on continued fraction expansions
+       by a finite-state left-to-right transducer with bounded lookahead (Raney 1973,
+       recalled, not read). So Attempt 2 is consistent in genus one.
+     - The higher-genus analogue of continued fractions is Rauzy--Veech induction, or
+       train-track maximal splitting. The precise missing theorem is a **Raney-type
+       theorem for Rauzy--Veech codings**: `Mod(S)` acts on them by finite-state transducers
+       with bounded lookahead.

@@ -37,7 +37,7 @@ is finitely generated (B2), and `G' <= Γ <= [[G' | ∂_h G']]`. So the plain fo
 **Step 3. `Γ <= SV_Γ` is undistorted.** `Γ` acts faithfully on `S` (B3), and `SV_Γ` is finitely generated
 (B3). So the twisted Brin–Thompson form of `full-group-label-length-bounds-distortion` gives
 `|γ|_Γ <= C' |γ|_{SV_Γ}`. This is item 2 of the target for an arbitrary full contracting RSG. For `K = SV_Γ` it is Belk–Zaremsky,
-arXiv:2001.04579, Theorem 1.2, which gives a quasi-retraction; either proof suffices.
+arXiv:2001.04579, Theorem 2 (`thm:quasi-retracts`), which gives a quasi-retraction; either proof suffices.
 
 **Conclusion.** Composing the three steps, `|g|_G <= C'' |g|_{SV_Γ}` for `g ∈ G`. The reverse inequality
 `|g|_{SV_Γ} <= C''' |g|_G` holds for any homomorphism between finitely generated groups. So

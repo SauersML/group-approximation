@@ -12,7 +12,7 @@ requires:
 - By item 4 of `leavitt-ge-rings-have-stable-k1-at-rank-three`, each `a_i != 0` has `t_(η_i') a_i x_i' = 1`, with `η_i'` a
   word and `x_i' in R_L`. There `y = c^-1 t_w t_(α_0)`, and the rational `c^-1` is central, so it is absorbed into `x_i'`.
 - Put `c_(ij) = t_(η_i') a_i x_j'`, and let `D` bound the word lengths in normal forms of all `c_(ij)`.
-- Choose `M_1, ..., M_q` with `|M_i - M_j| > D` for `i != j`. Put `θ_j = s_1^(M_j) s_2` and `x = Σ_j x_j' θ_j`.
+- Choose `M_1, ..., M_q` with `M_i >= D` for every `i` and `|M_i - M_j| > D` for `i != j` (gq-referee-a, N4). Put `θ_j = s_1^(M_j) s_2` and `x = Σ_j x_j' θ_j`.
 - Then `t_(θ_i) t_(η_i') a_i x = Σ_j t_(θ_i) c_(ij) θ_j`, and `c_(ii) = 1`, so the `j = i` term is `t_(θ_i) θ_i = 1`.
 - **Cross terms.** For `j != i`, write `c_(ij) = Σ s_α g t_β` with `|α|, |β| <= D` and `g in B⁺`.
   - `t_1^(M_i) s_α` is `0` unless `α = 1^(|α|)`. Likewise `t_β s_1^(M_j)` is `0` unless `β = 1^(|β|)`.

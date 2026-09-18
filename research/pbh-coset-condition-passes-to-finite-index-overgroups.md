@@ -6,6 +6,7 @@ title: If C satisfies the coset-wreath condition in G, so does every subgroup co
 distinct_from:
   pbh-coset-wreaths-iff-identity-edge-hnns: that proves the equivalence of conditions (a)--(e) and lists finite subgroups, centralizers, retracts, fixed subgroups and finite intersections as cases; this adds closure under finite-index overgroups and finite set-stabilizers, which none of those cases gives.
   free-group-coset-wreaths-satisfy-pbh: that is the normal-virtual-retract criterion (passing down to a finite-index normal subgroup of G); this passes up from C to finite-index overgroups of C inside G.
+  pbh-coset-wreath-subgroups-closure-properties: that (landed a minute later by another lane) contains this item 2 as its part 1, with parts on finite-index subgroups of G and preimages; this adds the finite set-stabilizer form (item 1).
 ---
 
 **ESTABLISHED** by `pbh-coset-condition-finite-index-overgroups-proof` (lane proof,

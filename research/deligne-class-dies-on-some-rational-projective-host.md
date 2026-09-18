@@ -27,14 +27,14 @@ finiteness claim as for closed mapping class groups
 1. **Standard representation: dead.** See
    `deligne-class-survives-on-standard-rational-projective-hosts`. The same holds for
    the 5-dimensional representation of `Sp_4`.
-2. **`k·std`, `k ≥ 2n`: the measure obstruction does not fire (lane remark).**
-   - A generic `k`-tuple spans `R^{2n}`, so its ray stabilizer in `Sp_{2n}(R)` is
-     trivial.
-   - The strata of `Ŝ` are indexed by rational subspaces `U`, with a generic centre in
-     `U` and a generic normal ray. For each such stratum, the generic stabilizer is
-     unipotent: a reductive group acting trivially on `U` and on `R^N/U` is trivial.
-     So no stratum carries a Hermitian block.
-   - This is necessary-condition evidence only; the stratum analysis is a sketch.
+2. **`k·std`: dead, and so is every linear embedding (corrected 2026-09-18).**
+   - An earlier lane remark here said that the measure obstruction does not fire for `k·std`,
+     `k ≥ 2n`, because generic stabilizers are trivial. That is wrong: Lebesgue-generic points
+     are not needed.
+   - The orbit of `[v ⊗ a]`, with `a` having `Q`-independent coordinates, lies in no rational
+     hyperplane and has a symplectic block in its stabilizer.
+   - In general, `deligne-class-survives-on-every-linear-rational-projective-host` shows that no
+     homomorphism `Sp_{2n}(Z) → GL_N(Z)` works, so the embedding `j` must be genuinely piecewise.
 3. **Gram–Schmidt does not extend.** Symplectic Gram–Schmidt on the first `2n`
    vectors of a tuple gives an `Sp_{2n}(R)`-equivariant, scale-invariant map to
    `Λ_n(R)`. It is continuous off the real quadric where the successive pairings

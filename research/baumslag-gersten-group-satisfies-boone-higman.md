@@ -210,6 +210,17 @@ group contains it.
     open (for `n = 4` it is the `H4` test case). Designs that dodge the constraint must realize `a` or `b` by
     elements that are not global twists.
 
+- **Stable permutation over `BS(1,2)` edges (reduction, 2026-09-18).**
+  `baumslag-gersten-splits-over-bs12-edges`: `BG ≅ K*_ψ` with `K = ⟨a_0, a_1, a_2⟩` the height-two
+  tower and edges `B_0 = ⟨a_0, a_1⟩ → B_1 = ⟨a_1, a_2⟩`.
+  - Unlike the cyclic splitting, the edge `B_0` can be orbit-finite. On
+    `W = ±1/3 + Z[1/2]`, an orbit on which `2V_τ` acts with type (A), `B_0` is transitive.
+  - Any bijection `π` with `π(r + 1) = 2π(r)` realizes the edge map.
+  - So `BG ∈ B_A` follows from two things: a type (A) actor containing `K` with
+    `a_2 = π a_1 π^-1`, and faithfulness of `Γ*_ψ` on `W`.
+  - `a_2 ∉ 2V_τ`, by entropy. The actor `Γ*_ψ ⊋ BG` is consistent with the global-twist
+    constraint above: it contains `BG` itself, not only a quotient.
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),
