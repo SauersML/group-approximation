@@ -67,3 +67,21 @@ of the boundary groupoid with the k-graph groupoid [Li21a].
     WP.
   - So the obstruction is the tension between "finite data" and "hard WP". Recorded
     for whoever takes 7.19.
+- **17.58 via a Grigorchuk group (the coordinator's suggestion: code the binary tree by 2-adic boxes).**
+  - *Dies twice.*
+  - First, the natural coding uses only 2-power slopes, and
+    `periodic-k-graph-subgroups-with-ray-cocycle-are-finite` makes every f.g. periodic subgroup with
+    slopes in `2^Z`, or in any `γ^Z`, finite.
+  - Second, the standard action has germ group `(Z/2)^2` at the orbit of `1^∞`. The germ groups of
+    `CT(Z)` at points of `Ẑ` are torsion-free subgroups of `Q_{>0}`, so every torsion element of `CT(Z)`
+    is the identity near each of its fixed points.
+  - So a copy of a Grigorchuk group in `CT(Z)` would have to be a non-standard action with trivial
+    fixed-point germs, and with slopes of rank `≥ 2` or on a mixed-sign ray such as `(3/2)^Z`.
+
+**Lesson for general BH (from the CT(Z) cluster).**
+- Arithmetic piecewise-affine groups are k-graph full groups: residues are cylinders and moduli are
+  degrees.
+- So their finiteness, simplicity, automorphisms and torsion are read off from the degree lattice.
+- One base or one ray is tame: `V`, `Out(V)` infinite, and torsion locally finite.
+- Two independent bases carry both the rigidity (`Out = C_2`) and the open complexity (periodic
+  subgroups, undecidable torsion).

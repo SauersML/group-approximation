@@ -78,3 +78,11 @@ the open question in Amir–Lazarovich (AL), arXiv:2605.09493, §Discussion (art
 - It does not decide it. Deciding it requires AL's explicit interlacing data (their §"Construction of
   a lattice containing a BMW"), or a torsion-free redesign of the interlacing pair with fixed-point-free
   generator pairings.
+
+## Resolution (09-18)
+
+Decided negatively for AL's explicit scaffolding with `d >= 9`, under the hypothesis (H)
+that two seed generators `a_j ≠ a_k` collapse in `Γ/FR(Γ)`. See
+`amir-lazarovich-simple-lattices-have-torsion`: every finite quotient of `Λ'` factors
+through the parity map. So `Λ = Λ'^+` contains every `DD'`, and `Λ` has torsion. That node
+also records that AL's explicit scaffolding violates their (E4) for `d <= 8`.
