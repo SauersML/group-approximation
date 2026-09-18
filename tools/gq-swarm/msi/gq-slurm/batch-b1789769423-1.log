@@ -1,0 +1,716 @@
+ℹ [1375/1401] Replayed GroupApproximation.GroupTheory.HydeLodha.HigmanEpstein
+info: GroupApproximation/GroupTheory/HydeLodha/HigmanEpstein.lean:366:14: 'GroupApproximation.HydeLodha.commutator_le_of_normal_commutator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GroupTheory/HydeLodha/HigmanEpstein.lean:367:14: 'GroupApproximation.HydeLodha.isSimpleGroup_commutator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GroupTheory/HydeLodha/HigmanEpstein.lean:368:14: 'GroupApproximation.HydeLodha.commutator_le_of_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1379/1408] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenConj
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_mapsCone_coneSwap_fix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:49:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_inv' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_conj_coneSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1380/1408] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenWords
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:27:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_exists_avoid1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_exists_avoid2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_left' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_right' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_swap' depends on axioms: [propext]
+ℹ [1384/1424] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenStep
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:28:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.VGenSwapIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_both' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1385/1424] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenInduct
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_split_last' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1386/1424] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenCount
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:32:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_getElem_eq' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_exists_source' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_take_eq_of_prepend_eq' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_source_eq_of_prefix' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_length_eq_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:149:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_inv_ge' depends on axioms: [propext, Quot.sound]
+ℹ [1390/1431] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenAll
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_swapIn_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1391/1431] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenLeaf
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:23:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_not_prefix' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:33:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_fix_same_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_leaf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1393/1431] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenMove
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenMove.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_move_incomparable' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenMove.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_move' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1402/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVFPSwapRel (147s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:37:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_coneSwap_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_ne_letter' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:50:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_ext_incomp' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPSplitSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:64:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPSplitSwap_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_prepend_head' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPSplitSwap_fixLeft' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSwapRel.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPSplitSwap_fixRight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1403/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily (147s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:29:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenSwapOrOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenSwapOrOne_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortPairs' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortPairs_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:94:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1404/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction (169s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_eq_take' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:41:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_streamFun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:99:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:119:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_length_prepend' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1405/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll (147s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_coneSwap_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:170:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_closure_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1406/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCAllPerm (170s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_t_inv' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_t_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_t_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:64:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_swap_self_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_swap_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_supp_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mem_of_supp' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_ext' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_step_away' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:165:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_step_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:189:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:207:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_permSection_finset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:220:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_permSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:245:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_section_word' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllPerm.lean:260:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_lift_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1407/1431] Built GroupApproximation.BooneHigman.Join.HigmanVCalibCore (170s)
+info: GroupApproximation/BooneHigman/Join/HigmanVCalibCore.lean:55:14: 'GroupApproximation.BooneHigman.Join.mapsCone_coneSwap_fix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Join/HigmanVCalibCore.lean:72:14: 'GroupApproximation.BooneHigman.Join.calib_alg' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Join/HigmanVCalibCore.lean:149:14: 'GroupApproximation.BooneHigman.Join.calib_of_relators' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1408/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVPresentSection (158s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentSection.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentSection.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_section_of_fp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1409/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeRN (49s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:37:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.localize_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:46:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnGenerators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.roverNekrashevych' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanThompsonV_le_rn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.localize_mem_roverNekrashevych' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom_mem_roverNekrashevych' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeRN.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnEmbedding_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1410/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVFPSplit (50s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplit.lean:36:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_splitProd_fix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplit.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_splitProd_fixLeft' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplit.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_splitProd_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplit.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_splitProd_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplit.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_splitProd_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1411/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeFPFree (50s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.RNFree' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeToPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeToPerm_inl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeToPerm_inr_inl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeToPerm_inr_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:89:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeToPerm_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:116:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.mem_range_of_mem_rnGenerators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.roverNekrashevych_le_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:130:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeHom_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:138:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeGenerators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPFree.lean:159:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.closure_rnFreeGenerators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1412/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeFPStatement (58s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPStatement.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.RNFinitelyPresentedStatement'' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1413/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeFPSection (68s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPSection.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.RNFreeSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFPSection.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFinitelyPresented_of_freeSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1414/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVStatement (64s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVStatement.lean:37:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVStatement.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.RNFreeSectionCoreStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVStatement.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeSection_of_higmanV_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1415/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVAlphabet (62s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:37:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorCongr' depends on axioms: [Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorCongr_apply' depends on axioms: [Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorCongr_symm' depends on axioms: [Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorCongr_apply_symm_apply' depends on axioms: [Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.prepend_map' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.permCongr_mem_higmanThompsonV' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:104:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCongr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVFinFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVAlphabet.lean:119:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_of_fin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1416/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSection (57s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSection.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVFinSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSection.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFinFP_of_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSection.lean:80:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_of_finSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSection.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeSection_of_finSection_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1417/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenReduce (58s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenReduce.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVSwapSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenReduce.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFinSection_of_swapSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1418/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenReduce (61s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.SwapGenSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVSwapSection_of_swapGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_of_higmanVSwapSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.SwapGenShortSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:89:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_shortSwaps_closure_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:96:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGenShort_of_swapGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenReduce.lean:103:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFinSection_of_swapGenShort' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1419/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVPresentReduce (64s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:40:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_swapGen_of_finFP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGenShortSection_of_higmanVFinFP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_swapSection_of_finFP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:66:2: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_finFP_of_swapGenShortSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVPresent_finFP_of_higmanVFP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVPresentReduce.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGenShortSection_of_higmanVFP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1420/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVFPBall (64s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_ball_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPBound' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPRelators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_relators_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_relators_subset_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:82:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_normalClosure_le_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:92:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVFPShortCompleteStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:100:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_ker_eq_of_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:116:2: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapGenShortSection_of_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:123:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_finFP_of_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPBall.lean:129:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_of_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1421/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVFPLetters (68s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:28:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_pairMem' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPLetter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_lift_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:50:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_norm_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_norm_mul4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_mem_relators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:76:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapOrOne_of_not' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapOrOne_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:96:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapOrOne_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapOrOne_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:117:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_comparable_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:129:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_sq_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:142:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_symm_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:160:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_conj_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPLetters.lean:174:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_comm_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1422/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVFPSplitRel (59s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:22:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_len_le3' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:30:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_len_succ' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:45:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_norm_prod_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_coe_map_list_prod' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFPSplitWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_lift_splitLetter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_lift_splitWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:103:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_norm_splitWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVFPSplitRel.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_split_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1423/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCompleteAll (50s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:29:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_evalAll' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:36:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_evalAll_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_splitAll' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_evalAll_splitAll' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_rels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:93:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_rels_subset_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_iota' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteAll.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_evalAll_comp_iota' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1424/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCompleteShort (57s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:24:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_Q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:31:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_mk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_mk_rel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_mem_of_mk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psiGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi_of_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:87:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_short_fst' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_short_snd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:105:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_letter_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteShort.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi_comp_iota' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1425/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCAllAntichain (57s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:31:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_incomp' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:45:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_eq_of_prepend' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_iota' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_iota_of' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mapsCone_gen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mapsCone_word' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_pi_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:144:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:164:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:175:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mapsCone_coneSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:206:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:221:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mk_iota' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllAntichain.lean:235:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_antichain_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1426/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCompleteBase (47s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteBase.lean:27:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi_splitAll' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteBase.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_len_le2' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteBase.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_psi_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1427/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCompleteReduce (49s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteReduce.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_complete_of_parts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteReduce.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCTransferStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteReduce.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_complete_of_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCompleteReduce.lean:94:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_finFP_of_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1428/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCAllReduce (55s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:38:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCAllAntichainStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_ker_le_of_antichain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_antichain_of_ker_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:82:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_transfer_of_antichain_of_tau' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:92:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_complete_of_antichain_of_tau' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCAllReduce.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_finFP_of_antichain_of_tau' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1429/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCCommonSplit (60s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:28:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_Q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_eq_one_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:49:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_rel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_comparable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:78:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_inv_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:92:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_deep' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_deep_zero' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_deep_succ' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:133:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_mk_deep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:160:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_commute_deep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonSplit.lean:174:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_commute_of_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1430/1431] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCCommonPush (86s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:26:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_perm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:31:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_perm_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:37:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_perm_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_perm_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_perm_inv_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:76:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_incomp_image' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_hasDepth_len' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCCommonPush' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:113:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:126:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_conj_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:178:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_congr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:186:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_inv_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:211:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCCommonPush.lean:230:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1431/1431] Building GroupApproximation.BooneHigman.Join.HigmanVCalibration (392ms)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/nonsofic_existence/GroupApproximation/BooneHigman/Join/HigmanVCalibration.lean -o /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Join/HigmanVCalibration.olean -i /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Join/HigmanVCalibration.ilean -c /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Join/HigmanVCalibration.c --setup /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Join/HigmanVCalibration.setup.json --json
+info: stderr:
+no such file or directory (error code: 4294967294)
+  file: /projects/standard/hsiehph/sauer354/nonsofic_existence/GroupApproximation/BooneHigman/Join/HigmanVCalibration.lean
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.BooneHigman.Join.HigmanVCalibration
+error: build failed
