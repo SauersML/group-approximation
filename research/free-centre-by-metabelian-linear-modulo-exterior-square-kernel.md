@@ -76,3 +76,29 @@ Take `rho = ⊕_(j,k) rho_(jk)`, block-diagonally in `GL_(3n^2)(R)`.
 vector. `M` is pure in `R^3` (the quotient is the augmentation ideal, torsion-free), so
 `Λ²_Z M -> Λ²_Z R^3` is injective. Only the coinvariant step can create kernel:
 `K_3` is the image in `F''/[F'', F]` of `ker((Λ²_Z M)_G -> (Λ²_Z R^3)_G)`.
+
+## Size of K_n (lane proof, standard homological algebra)
+
+`K_n` is a finitely generated abelian group of rank at most `C(n,3) + C(n,4)`; `K_3` is
+cyclic. Proof, with `G = Z^n` and `I ⊂ R` the augmentation ideal:
+1. `Λ²_Z R^k`, with the diagonal action, is a free `Z[G]`-module: `G` acts freely on the
+   unordered pairs of distinct basis vectors `m f_i`, because `G` is torsion-free. So
+   `H_k(G; Λ²R^n) = 0` for `k >= 1`.
+2. The commutator map `(Λ²_Z M)_G -> F''/[F'', F]` is onto, and `K_n` is the image of
+   `Ker := ker((Λ²M)_G -> (Λ²R^n)_G)`. By item 1, `Ker ≅ H_1(G; Λ²R^n/Λ²M)`.
+3. `M` is pure in `R^n` (the quotient `I` is torsion-free). So there are exact sequences
+   `0 -> Λ²M -> Λ²R^n -> Λ²R^n/Λ²M -> 0` and `0 -> M ⊗ I -> Λ²R^n/Λ²M -> Λ²I -> 0`,
+   with diagonal actions.
+4. `H_1(G; M ⊗_Z I) ≅ Tor_1^(ZG)(M, I) ≅ Tor_2^(ZG)(M, Z) = H_2(G; M) ≅ H_4(G; Z) = Λ^4 Z^n`.
+   This uses dimension shifting along `0 -> M -> R^n -> I -> 0` and `0 -> I -> R -> Z -> 0`,
+   with `M` twisted by inversion, which changes nothing here.
+5. `0 -> Λ²I -> Λ²R -> I -> 0` (`r ∧ s ↦ ε(r)s − ε(s)r`) is exact, with `Λ²R` free. So
+   `H_1(G; Λ²I) ≅ H_2(G; I) ≅ H_3(G; Z) = Λ^3 Z^n`.
+6. So `Ker` is an extension of a subgroup of `Λ^3 Z^n` by a quotient of `Λ^4 Z^n`. For
+   `n = 2` both vanish, which recovers `K_2 = 0`. For `n = 3`, `Ker ↪ Z`, so `K_3` is cyclic. ∎
+
+**Reading.** The `Λ^4` part is the natural home for Gupta's 2-torsion. Whether its rank `C(n,4)`
+matches the rank of Gupta's `H_n` was not checked (the paper was not read). The
+`Λ^3` part is a single class for `n = 3`. So `C_3` is linear, via this construction, iff
+that one class dies in `F''/[F'', F]`. A Hall–Witt-type identity is the natural candidate
+to kill it. **Not decided here.**

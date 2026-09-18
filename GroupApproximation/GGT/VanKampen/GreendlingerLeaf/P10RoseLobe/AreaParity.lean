@@ -34,10 +34,10 @@ theorem roseLobeArea_parity {G : Type u} [Group G] {R : Set G} (φ : G →* ℤ�
   induction h with
   | one => rw [map_one, pow_zero]
   | base hr => rw [hR _ hr, pow_one]
-  | inv h ih => rw [map_inv, ih, Int.units_inv_eq_self]
-  | conj c h ih =>
+  | inv _ ih => rw [map_inv, ih, Int.units_inv_eq_self]
+  | conj c _ ih =>
       rw [map_mul, map_mul, map_inv, ih, mul_comm (φ c), mul_assoc, mul_inv_cancel, mul_one]
-  | @mul m n a b ha hb iha ihb => rw [map_mul, iha, ihb, pow_add]
+  | mul _ _ iha ihb => rw [map_mul, iha, ihb, pow_add]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeArea_parity
 
