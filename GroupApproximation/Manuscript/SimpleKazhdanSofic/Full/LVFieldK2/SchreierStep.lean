@@ -4,8 +4,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Transvers
 # Schreier generators for the orbit of `e_p`: the easy cases
 
 Let `t = y · wq p q` be a representative for `v` and `s = x_{ij}(1)` with `i, j ∈ A`. We find
-a representative `t'` for `s v` with `t'⁻¹ s t ∈ Hp p A` in three cases: `i, j ≠ q`, `j = q`, and
-`i = q` with `v_j = 0`. The last case, `i = q` with `v_j = 1`, is in `SchreierSwap`. These
+a representative `t'` for `s v` with `t'⁻¹ s t ∈ Hp p A` in three cases: `i, j ≠ q`, `j = q`,
+and `i = q` with `v_j = 0`. The last case, `i = q` with `v_j = 1`, is in `SchreierSwap`. These
 Schreier generators come from Steinberg's proof of `K₂(𝔽₂) = 0` (Steinberg 1962; Milnor,
 *Introduction to algebraic K-theory*, §9-10), towards `simple_kazhdan_sofic_group.tex`
 l.733-735 (leaf T1b.iii).
