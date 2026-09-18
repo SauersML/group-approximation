@@ -14,8 +14,8 @@ from Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  This file states t
 Under the premise block of the target, some rotation `r` of `l = invDarts X outerWalk` satisfies
 `r <+ w` or `r.reverse <+ w`, where
 `w = invDarts G₁ ++ sideAWord a b G₁ G₂ ++ cellG2Word G₁ G₂ ++ sideBWord b G₁ G₂`
-(`FourBlockCurve.lean`).  So `w` is the inverse pocket curve `Ḡ₁ · Ā · Ḡ₂ · B̄`, with every entry kept
-only in the block of its priority class.
+(`FourBlockCurve.lean`).  So `w` is the inverse pocket curve `Ḡ₁ · Ā · Ḡ₂ · B̄`, with every entry
+kept only in the block of its priority class.
 
 ## Truth check
 
