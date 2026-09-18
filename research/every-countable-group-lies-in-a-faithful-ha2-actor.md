@@ -62,3 +62,24 @@ problem restriction.
   partition is trivial. Leary's perfect kernels (`G_L({0}) → G_L(S)`) are
   normal in Leary's groups, not in any known type (A) actor; that is where this
   attempt stands.
+- **2026-09-18 (swarm-0917-w10-w10-z-last1, reframing): orbit-finite affine
+  actors; inner case killed by element orders.**
+  - Established: an FP_2 group `S ⋊ W` with `W ≤ Aut(S)` finitely generated and
+    finitely many `W`-orbits on `S` acts faithfully on `S` with type `[HA_2]`.
+    The action is transitive with stabilizer `W`, and pair orbits are `W`-orbits.
+    The inner case `Γ × Γ ↷ Γ` needs only `Γ` FP_2, centreless and
+    conjugacy-finite (`orbit-finite-fp2-affine-actors-are-faithful-ha2-actors`).
+  - New route `faithful-ha2-actor-via-orbit-finite-fp2-affine-actors`: its one
+    open prerequisite is
+    `every-countable-group-embeds-in-an-orbit-finite-fp2-affine-actor`.
+  - Class-kill: two-sided translation actors `Γ × Γ` of conjugacy-finite groups
+    have finitely many element orders, so they miss `Q/Z`, `⊕ Z/n` and `V`,
+    whatever finiteness is assumed of `Γ`
+    (`conjugacy-finite-actors-have-finitely-many-element-orders`).
+  - In the affine case the orders must come from `W`. The first open test is
+    `Q/Z`: is there an FP_2 group `W ⊇ Q/Z` with an infinite, orbit-finite,
+    finitely generated module `S` such that `S ⋊ W` is FP_2?
+  - Torsion-free inputs of type FP reduce to
+    `torsion-free-fp-groups-embed-in-fp2-conjugacy-finite-groups`, an FP_2 form of
+    Osin's theorem. That claim also feeds the first part of Problem 1.20 through
+    `uncountably-many-ha2-actors-via-conjugacy-finite-fp2-groups`.
