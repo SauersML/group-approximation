@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `rational-function-fields-embed-in-fp-simple-rings-proof`
-(lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-rational-function-fields-embed-in-fp-simple-rings.md`, 69a3cc64f) and `gq-referee-b` (citations and hypotheses, `gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4; its report covers all four ring-envelope claims)). No priority is claimed beyond a bounded search.
+(lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-rational-function-fields-embed-in-fp-simple-rings.md`, 69a3cc64f); `gq-referee-c` also checked the application of the completion criterion to `R_k` (`gq-referee-c-leavitt-nekrashevych-completion-simplicity-criterion.md`, 282b018d4) and `gq-referee-b` (citations and hypotheses, `gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4; its report covers all four ring-envelope claims)). No priority is claimed beyond a bounded search.
 
 **Known and credit.** Finitely presented simple *algebras over a field* of characteristic
 zero are classical: the Weyl algebra `A_1(Q)`, the Leavitt algebras `L_Q(1,n)`, and
