@@ -36,7 +36,8 @@ theorem powersStormer_re_trace_gram_nonneg (Z : Matrix n n ℂ) :
 /-- **Cauchy--Schwarz for the Hilbert--Schmidt pairing.** -/
 theorem powersStormer_norm_trace_sq_le (A B : Matrix n n ℂ) :
     ‖trace (Aᴴ * B)‖ ^ 2 ≤ (trace (Aᴴ * A)).re * (trace (Bᴴ * B)).re := by
-  have hsum : trace (Aᴴ * B) = ∑ i, ∑ j, star (A j i) * B j i := rfl
+  have hsum : trace (Aᴴ * B) = ∑ i, ∑ j, star (A j i) * B j i := by
+    simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.conjTranspose_apply]
   rw [hsum, ConnesTrick.re_trace_conjTranspose_mul_self A,
     ConnesTrick.re_trace_conjTranspose_mul_self B]
   calc ‖∑ i, ∑ j, star (A j i) * B j i‖ ^ 2
@@ -44,9 +45,9 @@ theorem powersStormer_norm_trace_sq_le (A B : Matrix n n ℂ) :
         refine pow_le_pow_left₀ (norm_nonneg _) ?_ 2
         refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun i _ ↦ ?_)
         refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun j _ ↦ ?_)
-        rw [norm_mul, norm_star]
+        exact le_of_eq (by rw [norm_mul, norm_star])
     _ = (∑ p : n × n, ‖A p.2 p.1‖ * ‖B p.2 p.1‖) ^ 2 := by
-        rw [Fintype.sum_prod_type]
+        simp only [Fintype.sum_prod_type]
     _ ≤ (∑ p : n × n, ‖A p.2 p.1‖ ^ 2) * ∑ p : n × n, ‖B p.2 p.1‖ ^ 2 :=
         Finset.sum_mul_sq_le_sq_mul_sq _ _ _
     _ = (∑ i, ∑ j, Complex.normSq (A i j)) * ∑ i, ∑ j, Complex.normSq (B i j) := by

@@ -52,7 +52,7 @@ theorem noether_exists_fd_embedding {A W : Type} [CommRing A] [AddCommGroup W] [
   obtain ⟨φ, hφ⟩ : ∃ φ : FractionRing (MvPolynomial ι ℤ) →+* Localization S, ∀ d,
       φ (algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ)) d) =
         algebraMap A (Localization S) (g d) :=
-    ⟨IsLocalization.map (M := nonZeroDivisors (MvPolynomial ι ℤ)) (Localization S) g
+    ⟨IsLocalization.map (M := nonZeroDivisors (MvPolynomial ι ℤ)) (T := S) (Localization S) g
       (fun d hd => hgS d hd),
       fun d => IsLocalization.map_eq _ d⟩
   letI : Algebra (FractionRing (MvPolynomial ι ℤ)) (Localization S) := φ.toAlgebra

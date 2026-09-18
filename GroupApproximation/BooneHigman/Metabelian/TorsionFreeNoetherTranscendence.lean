@@ -39,7 +39,7 @@ theorem noether_exists_transcendence_lift {A : Type} [CommRing A] (P : Ideal A)
     apply hP n h0
     rw [← Ideal.Quotient.eq_zero_iff_mem, map_intCast, ← eq_intCast (algebraMap ℤ (A ⧸ P)) n]
     exact hn
-  haveI : FaithfulSMul ℤ (A ⧸ P) := (faithfulSMul_iff_algebraMap_injective ℤ (A ⧸ P)).2 hinjZ
+  haveI := (faithfulSMul_iff_algebraMap_injective ℤ (A ⧸ P)).2 hinjZ
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis ℤ (A ⧸ P)
   choose xt hxt using fun i : s => Ideal.Quotient.mk_surjective (i : A ⧸ P)
   obtain ⟨g, hg⟩ : ∃ g : MvPolynomial s ℤ →+* A, ∀ d : MvPolynomial s ℤ,
