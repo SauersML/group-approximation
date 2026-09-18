@@ -61,6 +61,8 @@ theorem gfaceWindTen_class_step {M : CombMap.{v}} {w : List M.Dart}
   exact faceClass_run M (walkKeep M w) a m
     (fun k hk0 hkm hkeep => havoid k hk0 hkm ⟨⟨_, hkeep⟩, rfl⟩) m hm le_rfl
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_step
+
 /-- **All darts of a simple closed walk lie in the face class of its first dart.** -/
 theorem gfaceWindTen_class_head {M : CombMap.{v}} {w : List M.Dart}
     (hw : IsSimpleClosedWalk M w) :
@@ -73,6 +75,8 @@ theorem gfaceWindTen_class_head {M : CombMap.{v}} {w : List M.Dart}
   · intro _
     exact .refl _
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_head
+
 /-- **The side of the reversed walk is the other side.** -/
 theorem gfaceWindTen_outside {M : CombMap.{v}} (hM : M.IsPlanar) {w : List M.Dart}
     (hw : IsSimpleClosedWalk M w) :
@@ -81,6 +85,8 @@ theorem gfaceWindTen_outside {M : CombMap.{v}} (hM : M.IsPlanar) {w : List M.Dar
     rw [mem_sideOutside_iff, Classical.not_not]
     exact (mem_sideFaces_iff M w _).mpr ⟨_, List.head_mem hw.ne_nil, .refl _⟩
   exact sideFaces_boundaryCycle_eq (M.connected_of_planar hM) (hw.outerCycle hM) hf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_outside
 
 /-- **A face-class chain on the side of `w` crosses no edge of `L`** when every dart of `L` has
 its face off the side of `w`. -/
@@ -109,6 +115,8 @@ theorem gfaceWindTen_transfer {M : CombMap.{v}} {w L : List M.Dart}
   | trans x₁ x₂ x₃ h₁₂ _ ih₁ ih₂ =>
       intro hx
       exact .trans _ _ _ (ih₁ hx) (ih₂ ((mem_sideFaces_iff_of_eqvGen w h₁₂).mp hx))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_transfer
 
 /-- **Side nesting.**  In a planar map, if every dart of `L` has its face on the side of the simple
 closed walk `W`, and the face `o` is off both sides, then the side of `L` lies in the side of
