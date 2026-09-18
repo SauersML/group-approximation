@@ -152,3 +152,12 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
    - *Still open:* hard parameters in non-PL families (piecewise projective, germs), where the
      same deformation argument should apply but is not written out. Notes:
      `research/artifacts/gq-bh-bh-free-32-order-rigidity.md`.
+9. **Transcendental-slope Thompson groups as inputs** (bh-free-19, 2026-09-18; lane proof, not
+   reviewed). Route `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`.
+   - *Established half.* `transcendental-slope-thompson-groups-have-hard-word-problems`. The Sturmian
+     detector `[u', ρ^n w' ρ^{-n}] = 1 ⟺ ⌊(n+1)λ⌋ = ⌊nλ⌋` lives inside `D(V_λ)`, which contains no
+     dyadic `F`. With a Liouville `λ` that carries hard digits, this makes the 2-generated simple
+     group `D(V_λ)` beat any given recursive `T`.
+   - *Open half.* `transcendental-slope-thompson-groups-satisfy-boone-higman`. Attempt 8 excludes PL
+     hosts carrying `λ`. So a host must compute `λ`'s digits by other means, and this route shows the
+     open half is at least as strong as this root.
