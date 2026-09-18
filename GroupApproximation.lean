@@ -5932,6 +5932,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPur
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetTransfer
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtCorona
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.BKROps
+import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Wired
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
