@@ -50,3 +50,78 @@ theorem exists_finset_pow_cover {Q : Type} [CommGroup Q] [Group.FG Q] {n : ℕ} 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_finset_pow_cover
 
+/-- **Finiteness of a Frobenius-twisted module.**  If a finitely generated `k[Q]`-module `N`
+(with `Q` finitely generated commutative and `c ^ n = c` on `k`) carries a `D`-module structure
+through a surjection `π : k[Q] → D` with `π r • y = r ^ n • y`, then `N` is finite over `D`. -/
+theorem twist_finite {k Q N D : Type} [CommRing k] [CommGroup Q] [Group.FG Q] [AddCommGroup N]
+    [Module (MonoidAlgebra k Q) N] [Module.Finite (MonoidAlgebra k Q) N] [CommRing D]
+    [Module D N] (π : MonoidAlgebra k Q →+* D) (hπ : Function.Surjective π) {n : ℕ} (hn : 0 < n)
+    (hk : ∀ c : k, c ^ n = c)
+    (hsmul : ∀ (r : MonoidAlgebra k Q) (y : N), π r • y = r ^ n • y) :
+    Module.Finite D N := by
+  classical
+  obtain ⟨s, hs⟩ := exists_finset_pow_cover (Q := Q) hn
+  obtain ⟨G, hG⟩ := (Module.Finite.fg_top : (⊤ : Submodule (MonoidAlgebra k Q) N).FG)
+  obtain ⟨X, hX⟩ : ∃ X : Finset N,
+      X = Finset.image₂ (fun q g => MonoidAlgebra.of k Q q • g) s G := ⟨_, rfl⟩
+  obtain ⟨W, hW⟩ : ∃ W : Submodule D N, W = Submodule.span D (X : Set N) := ⟨_, rfl⟩
+  have hpow : ∀ (r : MonoidAlgebra k Q) (y : N), y ∈ W → r ^ n • y ∈ W := fun r y hy => by
+    rw [← hsmul]
+    exact W.smul_mem _ hy
+  have hcomm : ∀ (q : Q) (a : D) (y : N),
+      MonoidAlgebra.of k Q q • a • y = a • MonoidAlgebra.of k Q q • y := by
+    intro q a y
+    obtain ⟨r, rfl⟩ := hπ a
+    rw [hsmul, hsmul, smul_smul, smul_smul, mul_comm (MonoidAlgebra.of k Q q)]
+  have hgen : ∀ (q : Q) (g : N), g ∈ G → MonoidAlgebra.of k Q q • g ∈ W := by
+    intro q g hg
+    obtain ⟨q₀, hq₀, u, rfl⟩ := hs q
+    rw [map_mul (MonoidAlgebra.of k Q), map_pow (MonoidAlgebra.of k Q),
+      mul_comm (MonoidAlgebra.of k Q q₀), mul_smul]
+    refine hpow _ _ ?_
+    rw [hW]
+    exact Submodule.subset_span (Finset.mem_coe.mpr (Finset.mem_image₂_of_mem hq₀ hg))
+  have hof : ∀ (q : Q) (y : N), y ∈ W → MonoidAlgebra.of k Q q • y ∈ W := by
+    intro q y hy
+    rw [hW] at hy ⊢
+    induction hy using Submodule.span_induction with
+    | mem x hx =>
+      rw [Finset.mem_coe, hX, Finset.mem_image₂] at hx
+      obtain ⟨q₀, _, g, hg, rfl⟩ := hx
+      rw [smul_smul, ← map_mul (MonoidAlgebra.of k Q), ← hW]
+      exact hgen _ g hg
+    | zero =>
+      rw [smul_zero]
+      exact Submodule.zero_mem _
+    | add x x' _ _ hx hx' =>
+      rw [smul_add]
+      exact Submodule.add_mem _ hx hx'
+    | smul a x _ hx =>
+      rw [hcomm]
+      exact Submodule.smul_mem _ a hx
+  have hR : ∀ (r : MonoidAlgebra k Q) (y : N), y ∈ W → r • y ∈ W := by
+    intro r
+    refine MonoidAlgebra.induction_on (p := fun r => ∀ y : N, y ∈ W → r • y ∈ W) r
+      (fun q => hof q) (fun x x' hx hx' y hy => ?_) (fun c x hx y hy => ?_)
+    · rw [add_smul]
+      exact W.add_mem (hx y hy) (hx' y hy)
+    · rw [Algebra.smul_def, mul_smul, ← hk c, map_pow]
+      exact hpow _ _ (hx y hy)
+  have htop : ∀ y : N, y ∈ W := by
+    intro y
+    have hy : y ∈ (⊤ : Submodule (MonoidAlgebra k Q) N) := Submodule.mem_top
+    rw [← hG] at hy
+    induction hy using Submodule.span_induction with
+    | mem x hx =>
+      simpa only [map_one, one_smul] using hgen 1 x (Finset.mem_coe.mp hx)
+    | zero => exact W.zero_mem
+    | add x x' _ _ hx hx' => exact W.add_mem hx hx'
+    | smul r x _ hx => exact hR r x hx
+  exact ⟨⟨X, by rw [← hW]; exact eq_top_iff.mpr fun y _ => htop y⟩⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.twist_finite
+
+end Coprimary
+end Metabelian
+end BooneHigman
+end GroupApproximation
