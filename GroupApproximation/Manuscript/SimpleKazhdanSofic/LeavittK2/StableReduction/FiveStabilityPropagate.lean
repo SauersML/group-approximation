@@ -52,7 +52,8 @@ theorem fiveStability_indexMap_swap_injective {n N : ℕ} (h : n ≤ N) :
   exact ha.symm.trans
     ((congrArg (indexMap (R := R) (usedRankFourSwap h).symm.toEmbedding) hab).trans hb)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_indexMap_swap_injective
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_indexMap_swap_injective
 
 include L in
 /-- **Stable injectivity climbs one rank.**  For `n ≥ 4` with a spare index `k ≠ r`, if every
@@ -100,7 +101,8 @@ theorem binaryLeavittK2FiveStability_propagate (hT : BinaryLeavittK2FiveStabilit
         have h1 : (1 : ℕ) = 0 := congrArg Fin.val e
         omega) ih
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_propagate
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_propagate
 
 /-- The target gives injective stability at every rank `m ≥ 5`. -/
 theorem k2StabInjective_of_binaryLeavittK2FiveStability
@@ -111,7 +113,8 @@ theorem k2StabInjective_of_binaryLeavittK2FiveStability
   exact binaryLeavittK2FiveStability_propagate hT m hm k
     ((BooneHigman.SteinbergBasic.mem_K2_iff k).mpr hk) (m + 1) (Nat.le_succ m) hpad
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.k2StabInjective_of_binaryLeavittK2FiveStability
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.k2StabInjective_of_binaryLeavittK2FiveStability
 
 /-- Injective stability at every rank `m ≥ 5` gives the target (telescoping). -/
 theorem binaryLeavittK2FiveStability_of_k2StabInjective
@@ -122,6 +125,7 @@ theorem binaryLeavittK2FiveStability_of_k2StabInjective
   exact Full.LVH2GL3.eq_one_of_indexMap_eq_one hT
     ((BooneHigman.SteinbergBasic.mem_K2_iff k).mp hk) N h hN
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_of_k2StabInjective
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_of_k2StabInjective
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

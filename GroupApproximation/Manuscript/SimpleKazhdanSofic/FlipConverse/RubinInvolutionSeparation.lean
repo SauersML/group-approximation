@@ -115,6 +115,7 @@ theorem rubinTransport_rigid_le_closure_involutionImageSupport (hT : IsMinimalHo
   rwa [compl_compl] at hc
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinTransport_rigid_le_closure_involutionImageSupport
+
 omit [CompactSpace Y] [TotallyDisconnectedSpace Y] [PerfectSpace Y] in
 /-- Lower bound from separation: `F_{closure O} ≤ Φ F_V` for closed `V`, provided the images of
 involutions supported in `V` and in `Vᶜ` have disjoint moved sets. -/

@@ -95,6 +95,7 @@ theorem fiveStability_K2_le_center_of_k2StabInjective {m : ℕ}
     hS _ ((BooneHigman.SteinbergBasic.mem_K2_iff _).mp hc) hpc
   exact mul_inv_eq_iff_eq_mul.mp (mul_inv_eq_one.mp hc1)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_K2_le_center_of_k2StabInjective
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_K2_le_center_of_k2StabInjective
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

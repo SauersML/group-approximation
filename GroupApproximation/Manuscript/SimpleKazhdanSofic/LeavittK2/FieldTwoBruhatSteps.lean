@@ -66,7 +66,7 @@ theorem col_mul_weyl_mem (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) 
     rw [x_zero, one_mul]
     exact weyl_mul_conj hj u'
   · refine ⟨x L j hj.symm 1 * (weyl j L hj * u' * (weyl j L hj)⁻¹),
-      Subgroup.mul_mem _ (x_mem_rootSpan hj.symm (1 : ZMod 2) hj) hC, ?_⟩
+      Subgroup.mul_mem _ (x_mem_rootSpan (p := fun _ k => k ≠ L) hj.symm (1 : ZMod 2) hj) hC, ?_⟩
     rw [mul_assoc, weyl_mul_conj hj u', ← mul_assoc, col_mul_weyl hthird hj, mul_assoc]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.col_mul_weyl_mem

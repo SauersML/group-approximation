@@ -44,8 +44,9 @@ For `N ≥ 7` (any ring `R ≠ 0`) there is **no** homomorphism `ρ : St_N(R) �
 * Hence `ρ(St_N)` lies in the abelian group `⟨ρ y⟩`, and perfectness of `St_N` forces `ρ = 1`.
   That contradicts `ρ ∘ pad = c_g`.
 The same holds if `ρ ∘ pad = c_g` only modulo the centre of `St_5`, since `ρ(pad St_5)` then
-still covers `St_5` up to central factors, so `ρ y` is still central.  Since any stable argument needs arbitrarily large `N`, the retraction route is dead.  The
-route internal to `L` that works is the refinement descent above.
+still covers `St_5` up to central factors, so `ρ y` is still central.  Since any stable argument
+needs arbitrarily large `N`, the retraction route is dead.  The route internal to `L` that works
+is the refinement descent above.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
@@ -60,7 +61,8 @@ injective.
 def BinaryLeavittK2FiveStepStatement : Prop :=
   Full.LVH2GL3.K2StabInjective (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) 5
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittK2FiveStepStatement
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittK2FiveStepStatement
 
 /-- **Stability from rank five from the single step `K₂(5) → K₂(6)`.**  The step makes `K₂(5)`
 central.  Centrality climbs to every rank `m ≥ 5`, so a death in `St_N(L)` descends to `St_6(L)`,
@@ -101,7 +103,8 @@ theorem binaryLeavittK2FiveStability_of_step (hS : BinaryLeavittK2FiveStepStatem
   · obtain ⟨M, rfl⟩ : ∃ M, N = M + 1 := ⟨N - 1, by omega⟩
     exact hS k ((BooneHigman.SteinbergBasic.mem_K2_iff k).mp hk) (hdesc M (by omega) k hk1)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_of_step
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStability_of_step
 
 /-- The converse: the target gives the step.  This records that the step is logically equivalent
 to the target and smaller only in proof content (two fixed ranks instead of all `N`). -/
@@ -109,7 +112,8 @@ theorem binaryLeavittK2FiveStep_of_fiveStability (hT : BinaryLeavittK2FiveStabil
     BinaryLeavittK2FiveStepStatement :=
   k2StabInjective_of_binaryLeavittK2FiveStability hT 5 (Nat.le_refl 5)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_fiveStability
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_fiveStability
 
 /-- **Truth check.**  `K₂(5, L) = ⊥` gives the step trivially. -/
 theorem binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective
@@ -119,6 +123,7 @@ theorem binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective
       ⊥ := h
   exact Full.LVH2GL3.k2StabInjective_of_ker_eq_bot h5
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_binaryLeavittSteinbergInjective
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

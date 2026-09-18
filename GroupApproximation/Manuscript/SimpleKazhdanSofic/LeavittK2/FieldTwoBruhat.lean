@@ -27,7 +27,8 @@ theorem bru_row_mul_swp (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) {
     (hLb : L ≠ b) (hj : j ≠ L) {s p : SteinbergGroup I (ZMod 2)} (hs : s ∈ levSpan L)
     (hp : p ∈ parSpan L) : Bru L (x L b hLb (1 : ZMod 2) * (s * weyl j L hj * p)) := by
   have ht : s⁻¹ * x L b hLb (1 : ZMod 2) * s ∈ rowSpan L := by
-    have h := lev_conj_row (Subgroup.inv_mem _ hs) (x_mem_rootSpan hLb (1 : ZMod 2) rfl)
+    have h := lev_conj_row (Subgroup.inv_mem _ hs)
+      (x_mem_rootSpan (p := fun i _ => i = L) hLb (1 : ZMod 2) rfl)
     rwa [inv_inv] at h
   obtain ⟨d, v', hv', e⟩ := row_split hj ht
   have hC := weyl_conj_rowExcept hthird hj hv'
@@ -45,10 +46,12 @@ theorem bru_row_mul_swp (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) {
     exact Or.inr ⟨j, hj, s, hs, weyl j L hj * v' * (weyl j L hj)⁻¹ * p,
       Subgroup.mul_mem _ hC hp, rfl⟩
   · rw [row_mul_weyl hthird hj]
-    refine Or.inl ⟨s * x j L hj 1 * s⁻¹, lev_conj_col hs (x_mem_rootSpan hj (1 : ZMod 2) rfl),
+    refine Or.inl ⟨s * x j L hj 1 * s⁻¹,
+      lev_conj_col hs (x_mem_rootSpan (p := fun _ k => k = L) hj (1 : ZMod 2) rfl),
       s * x L j hj.symm 1 * (weyl j L hj * v' * (weyl j L hj)⁻¹ * p), ?_, by group⟩
     exact Subgroup.mul_mem _
-      (Subgroup.mul_mem _ (lev_le_par hs) (x_mem_rootSpan hj.symm (1 : ZMod 2) hj))
+      (Subgroup.mul_mem _ (lev_le_par hs)
+        (x_mem_rootSpan (p := fun _ k => k ≠ L) hj.symm (1 : ZMod 2) hj))
       (Subgroup.mul_mem _ hC hp)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.bru_row_mul_swp
@@ -59,7 +62,7 @@ theorem bru_row_mul_up (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) {L
   obtain ⟨d, u', hu', rfl⟩ := col_split hLb.symm hu
   have hN : u'⁻¹ * x L b hLb (1 : ZMod 2) * u' ∈ parSpan L := by
     have h := colExcept_conj_colAt hLb.symm (Subgroup.inv_mem _ hu')
-      (x_mem_rootSpan hLb (1 : ZMod 2) rfl)
+      (x_mem_rootSpan (p := fun _ l => l = b) hLb (1 : ZMod 2) rfl)
     rw [inv_inv] at h
     exact rootSpan_mono (p := fun _ l => l = b)
       (fun _ l _ (hl : l = b) => by rw [hl]; exact hLb.symm) h
@@ -74,7 +77,8 @@ theorem bru_row_mul_up (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) {L
         s₁ = weyl b L hLb.symm * u' * (weyl b L hLb.symm)⁻¹ :=
       ⟨_, weyl_conj_colExcept hthird hLb.symm hu', rfl⟩
     have hu₁ : s₁⁻¹ * x b L hLb.symm (1 : ZMod 2) * s₁ ∈ colSpan L := by
-      have h := lev_conj_col (Subgroup.inv_mem _ hs₁) (x_mem_rootSpan hLb.symm (1 : ZMod 2) rfl)
+      have h := lev_conj_col (Subgroup.inv_mem _ hs₁)
+        (x_mem_rootSpan (p := fun _ k => k = L) hLb.symm (1 : ZMod 2) rfl)
       rwa [inv_inv] at h
     obtain ⟨p', hp', e⟩ := col_mul_weyl_mem hthird hLb.symm hu₁
     refine Or.inr ⟨b, hLb.symm, s₁, hs₁, p' * p, Subgroup.mul_mem _ hp' hp, ?_⟩

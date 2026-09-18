@@ -43,14 +43,8 @@ theorem sum_layerModel_eq {M : Type*} [AddCommMonoid M] (c : Y → ℕ) (f : Y �
 
 /-- The layered model has `∑ᵢ cᵢ` points. -/
 theorem card_layerModel (c : Y → ℕ) : Fintype.card (layerModel Y c) = ∑ i, c i := by
-  first
-    | (show Fintype.card (Σ i : Y, Fin (c i)) = _
-       simp only [Fintype.card_sigma, Fintype.card_fin]
-       done)
-    | (have h := sum_layerModel_eq (M := ℕ) c (fun _ _ ↦ 1)
-       simp only [Finset.sum_const, Finset.card_range, smul_eq_mul, mul_one,
-         Finset.card_univ] at h
-       exact h)
+  show Fintype.card (Σ i : Y, Fin (c i)) = _
+  simp only [Fintype.card_sigma, Fintype.card_fin]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.card_layerModel
 
