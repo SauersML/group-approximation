@@ -55,7 +55,7 @@ theorem kkAffMat_one : kkAffMat ρ ι 1 = 1 := by
   rw [kkAffMat, ← Matrix.fromBlocks_one]
   refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, rfl, rfl⟩
   · exact congrArg Units.val (map_one ρ)
-  · ext i j
+  · ext i _
     show ι (Multiplicative.toAdd (1 : GroupRing.Affine ℤ Q W).left) i = 0
     exact congrFun (map_zero ι) i
 

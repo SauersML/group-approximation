@@ -17,10 +17,10 @@ Lane `bh-met-37`, generic module.  Over an arbitrary commutative base ring `A`:
   `PolyK2NilGapStatementOver A d` gives `PolyK2NilPosStatementOver A d`.  Take `u ∈ K₂(N, A[σ])`,
   `N ≥ k + d`, with `ev₀ u = 1`.  The nil part gives some rank `M` where `u` dies.  Stability on
   `ker ev₀` at every rank `m ≥ N ≥ k + d` telescopes back to `u = 1`.
-* `polyK2StabRangeDiagOver_of_nilPos`, `polyK2OneVarNilOver_of_nilPos`, `polyK2NilGapOver_of_nilPos`:
-  the converses at `d = 4`.  So at `d = 4` the pair is not logically stronger than the vanishing
-  statement.  What the pair removes is the proof content: the induction on the number of
-  variables, the passage to all ranks and the telescoping.
+* `polyK2StabRangeDiagOver_of_nilPos`, `polyK2OneVarNilOver_of_nilPos`,
+  `polyK2NilGapOver_of_nilPos`: the converses at `d = 4`.  So at `d = 4` the pair is not
+  logically stronger than the vanishing statement.  What the pair removes is the proof content:
+  the induction on the number of variables, the passage to all ranks and the telescoping.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
@@ -65,7 +65,8 @@ theorem eq_one_of_K2IndexMap_eq_one_of_nilStab (cc : R →+* Z) {n : ℕ}
     · rw [K2Stab_eq_K2IndexMap_castLEEmb, K2IndexMap_castLEEmb_castLEEmb]
       exact hM
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2IndexMap_eq_one_of_nilStab
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2IndexMap_eq_one_of_nilStab
 
 end Telescope
 

@@ -14,7 +14,7 @@ the exponent.  This file only *states* the two residual gaps; the reduction
 **Truth check.**  Both statements are true (Wehrfritz, *Infinite linear groups*, 1973, and
 Wehrfritz 1975, *Faithful representations of finitely generated metabelian groups*, Thm 1.1):
 
-* `PureCharPrimeEOneEmbeddingStatement` (exponent `p`, stated module-theoretically).  Let
+* `PureCharPrimeEOneStatement` (exponent `p`, stated module-theoretically).  Let
   `R = F_p[Q]` with `Q` f.g. abelian, so `R` is Noetherian (Hall), and `M` a f.g. `R`-module.
   A primary decomposition gives `M ↪ ⊕ M ⧸ S_i` with `M_i = M ⧸ S_i` coprimary for a prime `𝔭_i`
   (`Primary.exists_coprimary_decomposition`).  **Caution:** a coprimary module is *not* in
@@ -44,7 +44,7 @@ namespace GroupApproximation.BooneHigman.Metabelian.Coprimary
 /-- **Residual gap (exponent `p`).**  For a f.g. abelian group `Q` and a finitely generated
 `F_p[Q]`-module `M`, there is an additive embedding `ι : M ↪ K^d` into a vector space over a
 field of characteristic `p`, intertwining the `Q`-action with a linear representation `ρ`. -/
-def PureCharPrimeEOneEmbeddingStatement : Prop :=
+def PureCharPrimeEOneStatement : Prop :=
   ∀ p : ℕ, p.Prime → ∀ (Q : Type) [Group Q], (∀ a b : Q, a * b = b * a) → Group.FG Q →
     ∀ (M : Type) [AddCommGroup M] [Module (MonoidAlgebra (ZMod p) Q) M],
       Module.Finite (MonoidAlgebra (ZMod p) Q) M →
@@ -52,9 +52,9 @@ def PureCharPrimeEOneEmbeddingStatement : Prop :=
         (ρ : Q →* Matrix.GeneralLinearGroup (Fin d) K),
         ringChar K = p ∧ Function.Injective ι ∧
           ∀ (q : Q) (m : M), ι (MonoidAlgebra.of (ZMod p) Q q • m) =
-            (ρ q : Matrix (Fin d) (Fin d) K) *ᵥ ι m
+            Matrix.mulVec (ρ q : Matrix (Fin d) (Fin d) K) (ι m)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.PureCharPrimeEOneEmbeddingStatement
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.PureCharPrimeEOneStatement
 
 /-- **Residual gap (exact exponent `p ^ e`, `e ≥ 2`).**  A finitely generated split extension
 `B ⋊ Q` of an abelian group `B` of exact exponent `p ^ e` (`e ≥ 2`) by an abelian group `Q` embeds

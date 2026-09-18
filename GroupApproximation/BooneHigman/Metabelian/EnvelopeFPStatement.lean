@@ -11,9 +11,9 @@ finitely presented (Nekrashevych 2018 for contracting `H`; Skipper–Witzel–Za
 Zaremsky, arXiv:2405.09722, Section 3, for finitely presented self-similar `H`).
 
 This is the finite-presentation conjunct of `RoverNekrashevychEnvelopeStatement`
-(`EnvelopeReduction.lean`).  The sibling module `EnvelopeSplit.lean` (lane bh-met-11), which
-was to define `RNFinitelyPresentedStatement`, is not on disk, so the statement is recorded here
-under the primed name `RNFinitelyPresentedStatement'`.
+(`EnvelopeReduction.lean`).  It is recorded here under the primed name
+`RNFinitelyPresentedStatement'`, which is the form consumed by `EnvelopeFPSection.lean`
+and `ChainWiredEnvelope.lean`.
 
 *Truth.*  The special case `H = ⊥` (self-similar by `isSelfSimilar_bot`, finite hence finitely
 presented) is Higman's theorem that `V_{d,1}` is finitely presented, `d = |X| ≥ 2`.  In

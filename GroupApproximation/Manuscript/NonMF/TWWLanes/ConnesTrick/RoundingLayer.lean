@@ -104,7 +104,8 @@ theorem layer_mul_apply (c : Y → ℕ) (X W : Matrix Y Y ℂ) (p q : layerModel
   · rw [if_neg h]
     refine Finset.sum_eq_zero fun k _ ↦ Finset.sum_eq_zero fun n _ ↦ ?_
     by_cases hn : (p.2 : ℕ) = n
-    · rw [if_neg (fun h' ↦ h (hn.trans h')), mul_zero]
+    · have hq : ¬ (n = (q.2 : ℕ)) := fun h' ↦ h (hn.trans h')
+      rw [if_neg hq, mul_zero]
     · rw [if_neg hn, zero_mul]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.layer_mul_apply
@@ -123,7 +124,8 @@ theorem layer_defect_apply (c : Y → ℕ) (V X W : Matrix Y Y ℂ) (p q : layer
   simp only [Matrix.sub_apply]
   rw [layer_mul_apply, layer_apply]
   by_cases h : (p.2 : ℕ) = (q.2 : ℕ)
-  · rw [if_pos h, if_pos h, if_pos h, Matrix.mul_apply, layerTail]
+  · rw [if_pos h, if_pos h, if_pos h]
+    simp only [Matrix.sub_apply, Matrix.mul_apply, layerTail]
     have e : ∀ k, X p.1 k * W k q.1
         = (if (p.2 : ℕ) < c k then X p.1 k * W k q.1 else 0)
           + (if c k ≤ (p.2 : ℕ) then X p.1 k * W k q.1 else 0) := fun k ↦ by

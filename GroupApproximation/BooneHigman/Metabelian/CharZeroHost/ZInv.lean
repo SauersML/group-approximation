@@ -36,7 +36,7 @@ theorem isDomain_away {m : ℕ} (hm : m ≠ 0) : IsDomain (Localization.Away (m 
 theorem charZero_away {m : ℕ} (hm : m ≠ 0) : CharZero (Localization.Away (m : ℤ)) :=
   charZero_of_injective_algebraMap
     (IsLocalization.injective (Localization.Away (m : ℤ))
-      (powers_le_nonZeroDivisors_of_noZeroDivisors (Nat.cast_ne_zero.2 hm)))
+      (powers_le_nonZeroDivisors_of_noZeroDivisors (Nat.cast_ne_zero.2 hm : (m : ℤ) ≠ 0)))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.charZero_away
 

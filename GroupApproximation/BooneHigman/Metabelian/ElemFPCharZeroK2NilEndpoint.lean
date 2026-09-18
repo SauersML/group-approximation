@@ -39,7 +39,7 @@ at some finite rank.  No rank bound is involved, so the bound `N ≥ k + 5` is h
 
 *(ii) Diagonal stability at `N = k + 4`.*  **Loud flag: this is an edge case, with no margin.**
 `S` has Krull dimension `k + 1` (and so does its maximal spectrum).  Bass's theorem gives
-`sr(S) ≤ k + 2`, and this is not better in general: `sr(ℤ[t]) = 3`.  Injective stability for `K₂`
+`sr(S) ≤ k + 2`, and no better bound is used here.  Injective stability for `K₂`
 (van der Kallen 1977; Suslin–Tulenbaev 1976) says `K₂(n, R) → K₂(n + 1, R)` is injective for
 `n ≥ sr(R) + 2`.  At `n = k + 4 = sr + 2` this is exactly the boundary case.  Dennis's older bound
 `n ≥ dim Max(R) + 3 = k + 4` also lands on the boundary.  Both theorems cover the boundary, so the
