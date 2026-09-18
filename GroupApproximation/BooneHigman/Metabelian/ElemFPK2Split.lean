@@ -19,14 +19,14 @@ three independent inputs, stated here in the `SteinbergBasic` model.
   image of some `v ∈ K₂(M, F_p)` under `MvPolynomial.C`.  Truth: stable `K₂` is the filtered
   colimit of the unstable `K₂(n, -)`, and Quillen's homotopy invariance for the regular ring
   `F_p` gives stable `K₂(R_k) = K₂(F_p)` via `C`.  The injective half is free: `C` has the
-  retraction `constantCoeff` (`ElemFPK2Homotopy.K2Map_C_injective`).
+  retraction `constantCoeff` (`K2Map_C_injective`, module `ElemFPK2Homotopy`).
 * `FieldK2VanishingStatement`: `K2 (Fin N) (ZMod p) = ⊥` for `N ≥ 5` (lane `bh-met-15`).
   Truth: Matsumoto (`K₂(n, F) = K₂(F)` for `n ≥ 3`) and Steinberg (`K₂(F_q) = 0`).
 
 `polynomialFpK2Vanishing_of_split` proves the target from the three.  Take `u ∈ K₂(N, R_k)`.
 Homotopy gives `M ≥ N` and `v` with `pad u = C v`.  The field case makes `v = 1`, so `pad u = 1`.
-Injective stability from rank `N` telescopes (`GroupApproximation.Full.LVH2GL3.
-eq_one_of_indexMap_eq_one`), which gives `u = 1`.
+Injective stability from rank `N` telescopes (`Full.LVH2GL3.eq_one_of_indexMap_eq_one`), which
+gives `u = 1`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
