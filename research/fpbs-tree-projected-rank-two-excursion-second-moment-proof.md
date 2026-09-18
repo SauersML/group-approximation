@@ -248,3 +248,35 @@ for `m_hi >= 2`. Then `p* = 2/(lam + sqrt(lam^2 - 4(d-1))) >= 1/lam`.
 * *Item 3.* `p_c <= 7/(25 m_lo)` by Part A, and `p_u >= 1/(v + 2 sqrt(3) m_hi)`.
 
 So `p_c < p_u` in every listed case. ∎
+
+## 7. First-moment obstruction at small multiplicity (`firstmoment.py`)
+
+Let class `X` consist of the trails with `N` tree steps along a reduced word
+`t_1 ... t_N`. In each of the `N+1` slots (before the first step, between steps, after
+the last step), such a trail makes an arbitrary finite sequence of depth-one excursions
+`(w,z) -> (we, z+u) -> (w, z+u-u')` with `e` any of the 4 letters and `u != u'` in `D_e`.
+It uses no vertical steps.
+
+A trail in `X` is determined by its edge sequence, and `P(open) = p^(#edges)`. Drop the
+reduction constraint on excursion letters and the distinct-edge constraint: this only
+over-counts. One excursion has weight at most `4 m (m-1) p^2 = q`, so a slot contributes
+at most `sum_k q^k = (1-q)^(-1)` when `q < 1`. Hence
+
+```text
+E Z_N <= 4 * 3^(N-1) (m p)^N (1-q)^(-(N+1)),
+```
+
+which tends to `0` as `N -> infinity` whenever `3mp < 1 - q`, i.e.
+`f(p) := 4m(m-1)p^2 + 3mp - 1 < 0`. Then `P(Z_N > 0) <= E Z_N -> 0`, so Paley–Zygmund
+over `X` gives `lim P(Z_N > 0) = 0` and cannot prove percolation.
+
+For `m = 3` and `v = 2`, `f` is increasing on `p > 0`. `firstmoment.py` checks exactly
+that `f(p_up) < 0`, where `p_up = 0.089008...` is a rational upper bound for
+`p*(3,2)`. So `f(p) < 0` for all `p <= p*(3,2)`, and the first-moment root is
+`0.089669 > p*`. This holds for **every** decoration with `m_a = m_b = 3` and `v = 2`,
+`S_rig` included.
+
+Allowing a vertical step `(1, +-1)` in the slots changes `q` to `q + 2p`. The root
+becomes `0.0777 < p*`, so the obstruction disappears. For `m >= 4` the root of `f` is
+already below `p*` (`0.0659 < 0.0680` at `m = 4`), so class `X` is not excluded there. At
+those `m` the loss is in the counting bound of section 3, not in the ensemble. ∎
