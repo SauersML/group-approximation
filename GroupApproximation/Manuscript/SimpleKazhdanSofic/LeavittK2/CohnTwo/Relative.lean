@@ -97,7 +97,8 @@ theorem indexMap_castLE_ringMap (f : R →+* S) {n m : ℕ} (h : n ≤ m)
     apply PresentedGroup.ext
     rintro ⟨i, j, hij, a⟩
     change GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h)
-        (GroupApproximation.SteinbergGroup.ringMap f (GroupApproximation.SteinbergGroup.x i j hij a)) =
+        (GroupApproximation.SteinbergGroup.ringMap f
+          (GroupApproximation.SteinbergGroup.x i j hij a)) =
       GroupApproximation.SteinbergGroup.ringMap f
         (GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h)
           (GroupApproximation.SteinbergGroup.x i j hij a))
@@ -123,7 +124,8 @@ theorem indexMap_castLE_castLE {n m N : ℕ} (h : n ≤ m) (h' : m ≤ N)
         (GroupApproximation.SteinbergGroup.x i j hij a)
     exact (congrArg (GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h'))
         (GroupApproximation.SteinbergGroup.indexMap_x (Fin.castLEEmb h) i j hij a)).trans
-      ((GroupApproximation.SteinbergGroup.indexMap_x (Fin.castLEEmb h') _ _ _ a).trans
+      ((GroupApproximation.SteinbergGroup.indexMap_x (Fin.castLEEmb h') (Fin.castLEEmb h i)
+          (Fin.castLEEmb h j) ((Fin.castLEEmb h).injective.ne hij) a).trans
         (GroupApproximation.SteinbergGroup.indexMap_x (Fin.castLEEmb (h.trans h')) i j hij a).symm)
   exact DFunLike.congr_fun hcomp t
 

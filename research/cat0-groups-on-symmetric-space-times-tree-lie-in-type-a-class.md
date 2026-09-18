@@ -11,7 +11,8 @@ distinct_from:
 
 **ESTABLISHED** through `cat0-symmetric-space-tree-type-a-proof` (lane proof;
 referee a PASS,
-`research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`;
+`research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`; referee b PASS,
+`research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
 no priority claimed).
 
 **Statement.** Let `X` be an irreducible Riemannian symmetric space of noncompact
