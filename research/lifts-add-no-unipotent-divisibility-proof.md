@@ -7,7 +7,7 @@ target: lifts-add-no-unipotent-divisibility
 requires: []
 ---
 
-Direct proof. Not independently reviewed. Write `Q-free` for "contains no
+Direct proof. Referee PASS (gq-referee-b; see the claim). Write `Q-free` for "contains no
 subgroup isomorphic to `(Q,+)`". Subgroups of Q-free groups are Q-free.
 
 ## Step 1. Transfer lemma

@@ -6,10 +6,13 @@ title: A central or covering lift of a group without (Q,+) contains none of GL_n
 distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this rules out one family of routes to it, the T-bar-style lifts, and says where their divisibility would have to come from.
   q-free-lifts-reach-only-lattice-affine-q-groups: that allows every finite normal series with Q-free or central factors and excludes Aff(Q), B_2(Q) and the linear groups there, but not U_3(Q); this fixes the three-step shape Q-free, central, Q-free, which also excludes U_3(Q).
+artifacts:
+  - research/artifacts/gq-referee-b-lifts-add-no-unipotent-divisibility.md
 ---
 
-**ESTABLISHED** through `lifts-add-no-unipotent-divisibility-proof`. Not
-independently reviewed. The argument is elementary and no priority is claimed.
+**ESTABLISHED** through `lifts-add-no-unipotent-divisibility-proof`. Referee
+PASS with no amendments (gq-referee-b, citation and hypothesis lens:
+`research/artifacts/gq-referee-b-lifts-add-no-unipotent-divisibility.md`). The argument is elementary and no priority is claimed.
 
 ## Statement
 

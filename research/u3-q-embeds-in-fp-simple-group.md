@@ -71,7 +71,11 @@ part (C): `U_3(Q)` has the normal series
 `lifts-add-no-unipotent-divisibility` excludes `U_3(Q)` only in its fixed
 three-step shape. Towers of two lifts over groups without `(Q,+)` stay open for
 `U_3(Q)`. Part (A) of that node excludes them for `Aff(Q)`, `B_2(Q)` and
-`GL_n(Q)` through the dilation.
+`GL_n(Q)` through the dilation. One realization of such a tower is dead:
+Attempt 4 (`u3-q-not-in-q-free-cantor-wreaths`) excludes Cantor wreaths
+`LC(C,H) x| Gamma` with `Gamma` Q-free, including `H = U(Z,Z,Q)`. A host must
+break that node's hypothesis (H2), with rational central elements that are
+commutators of unbounded denominators in a fibre, or must mix coordinates.
 
 ## Brin–Thompson hosts
 

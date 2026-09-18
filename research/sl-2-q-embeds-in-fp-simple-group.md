@@ -4,6 +4,7 @@ id: sl-2-q-embeds-in-fp-simple-group
 kind: claim
 title: SL_2(Q) embeds in a finitely presented simple group
 distinct_from:
+  sl2-q-embeds-in-fp-simple-group: that is the same statement under the id landed first by lane gq-sl2q (90fb10146); the routes sl2-q-duplicate-ids-agree and sl-2-q-duplicate-ids-agree make the two ids equivalent, so a proof under either establishes both. This id carries the Hecke/Bux--Llosa Isenrich--Wu route.
   psl2-q-embeds-in-fp-simple-group: that is the simple quotient PSL_2(Q) = SL_2(Q)/{±I}, which is not a subgroup of SL_2(Q); this is SL_2(Q) itself, with its centre, which the Mobius device of pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori cannot reach.
   gl-n-q-embeds-in-fp-simple-group: that root is GL_n(Q) for every n >= 2 and implies this; this is the rank-one stepping stone, which is not known to imply the root.
   sl-odd-q-simple-inputs-for-gl-n-q-root: that reduces the root to the simple groups SL_m(Q) with m odd; SL_2(Q) is not simple and does not contain GL_n(Q) for any n >= 2.

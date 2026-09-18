@@ -94,3 +94,144 @@ theorem extremalJordan_arcEnd_of_uniform (K : PocketFaceSet D eps X lo hi)
   rcases hl with hall | hnone
   · exact Or.inl ⟨hall, fun _ hx => absurd hx List.not_mem_nil⟩
   · exact Or.inr ⟨hnone, fun _ hx => absurd hx List.not_mem_nil⟩
+
+/-- **No removed run between two darts of a middle block met through one end** of the
+boundary cycle. -/
+theorem extremalJordan_not_both_of_arcEnd (K : PocketFaceSet D eps X lo hi)
+    (r : X.toCombMap.Dart) {F S R : List X.toCombMap.Dart}
+    (hdec : K.boundary.cycle = F ++ S ++ R) (hS : ExtremalJordanArcEnd K r S)
+    (A : List X.toCombMap.Dart) (d : X.toCombMap.Dart) (B : List X.toCombMap.Dart)
+    (e : X.toCombMap.Dart) (C : List X.toCombMap.Dart)
+    (hc : K.boundary.cycle = A ++ d :: (B ++ e :: C))
+    (hd : P10ExtremalResidual.keptPred K r d = true)
+    (he : P10ExtremalResidual.keptPred K r e = true)
+    (hB : ∀ x ∈ B, P10ExtremalResidual.keptPred K r x = false) (hne : B ≠ []) :
+    ¬(d ∈ S ∧ e ∈ S) := by
+  intro hde
+  obtain ⟨b, hb⟩ := List.exists_mem_of_ne_nil B hne
+  have hnd : (F ++ S ++ R).Nodup := by
+    rw [← hdec]
+    exact K.boundary.cycle_nodup
+  have hbS : b ∈ S :=
+    extremalMinimal_mem_segment_of_nodup hnd (hdec.symm.trans hc) hde.1 hde.2 b hb
+  obtain ⟨pre, post, hsplit, hcase⟩ := hS
+  have hcyc : K.boundary.cycle = (F ++ pre) ++ (post ++ R) := by
+    rw [hdec, hsplit]
+    simp only [List.append_assoc]
+  have hnd' : ((F ++ pre) ++ (post ++ R)).Nodup := by
+    rw [← hcyc]
+    exact K.boundary.cycle_nodup
+  have hmem : ∀ x ∈ S, x ∈ pre ∨ x ∈ post := by
+    intro x hx
+    rw [hsplit] at hx
+    exact List.mem_append.mp hx
+  rcases hcase with ⟨hpre, hpost⟩ | ⟨hpre, hpost⟩
+  · -- `pre` kept, `post` removed: `b ∈ post` comes before `e ∈ pre` in the cycle.
+    have hbpost : b ∈ post := by
+      rcases hmem b hbS with h | h
+      · have hbad : true = false := (hpre b h).symm.trans (hB b hb)
+        exact absurd hbad (by decide)
+      · exact h
+    have hepre : e ∈ pre := by
+      rcases hmem e hde.2 with h | h
+      · exact h
+      · have hbad : true = false := he.symm.trans (hpost e h)
+        exact absurd hbad (by decide)
+    have horder : K.boundary.cycle = (A ++ d :: B) ++ e :: C := by
+      rw [hc]
+      simp only [List.append_assoc, List.cons_append]
+    exact extremalJordan_false_of_order hnd' (hcyc.symm.trans horder)
+      (List.mem_append_right F hepre) (List.mem_append_left R hbpost)
+      (List.mem_append_right A (List.mem_cons_of_mem d hb)) List.mem_cons_self
+  · -- `pre` removed, `post` kept: `d ∈ post` comes before `b ∈ pre` in the cycle.
+    have hbpre : b ∈ pre := by
+      rcases hmem b hbS with h | h
+      · exact h
+      · have hbad : true = false := (hpost b h).symm.trans (hB b hb)
+        exact absurd hbad (by decide)
+    have hdpost : d ∈ post := by
+      rcases hmem d hde.1 with h | h
+      · have hbad : true = false := hd.symm.trans (hpre d h)
+        exact absurd hbad (by decide)
+      · exact h
+    have horder : K.boundary.cycle = (A ++ [d]) ++ (B ++ e :: C) := by
+      rw [hc]
+      simp only [List.append_assoc, List.cons_append, List.nil_append]
+    exact extremalJordan_false_of_order hnd' (hcyc.symm.trans horder)
+      (List.mem_append_right F hbpre) (List.mem_append_left R hdpost)
+      (List.mem_append_right A List.mem_cons_self) (List.mem_append_left (e :: C) hb)
+
+/-- **The class stretches from linked runs and arcs met through one end.** -/
+theorem extremalJordan_classStretches_of_arcEnd (K : PocketFaceSet D eps X lo hi)
+    (r : X.toCombMap.Dart) (hlink : ExtremalMinimalLinkedRuns K r)
+    (htgt : ExtremalJordanArcEnd K r K.targetArc.darts)
+    (hsrc : ExtremalJordanArcEnd K r (invDarts X K.sourceArc.darts)) :
+    ExtremalClassStretches K r := by
+  intro A d B e C hc hd he hB hne
+  have hdecT : K.boundary.cycle =
+      (K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide) ++ K.targetArc.darts ++ [] :=
+    K.decomposition.trans (List.append_nil _).symm
+  have hdecS : K.boundary.cycle =
+      K.firstSide ++ invDarts X K.sourceArc.darts ++ (K.secondSide ++ K.targetArc.darts) := by
+    rw [K.decomposition]
+    simp only [List.append_assoc]
+  exact ⟨hlink A d B e C hc hd he hB hne,
+    extremalJordan_not_both_of_arcEnd K r hdecT htgt A d B e C hc hd he hB hne,
+    extremalJordan_not_both_of_arcEnd K r hdecS hsrc A d B e C hc hd he hB hne⟩
+
+end ArcEnd
+
+/-- **OPEN (lane gl-p10-17).**  Existence of a class with the choice property, linked runs, and
+each of the two arcs met through one end.  Strictly between `ExtremalMinimalUniformStatement`
+and `RoseExtremalClassStatement` in the finite model (see the module docstring). -/
+def ExtremalJordanStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, ExtremalClassChoice K r ∧ ExtremalMinimalLinkedRuns K r ∧
+          ExtremalJordanArcEnd K r K.targetArc.darts ∧
+          ExtremalJordanArcEnd K r (invDarts X K.sourceArc.darts)
+
+/-- **The old uniform-arc gap implies the new one.** -/
+theorem extremalJordan_of_extremalMinimalUniform
+    (h : ExtremalMinimalUniformStatement.{u, w, v}) :
+    ExtremalJordanStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hchoice, hlink, extremalJordan_arcEnd_of_uniform K r _ hT,
+    extremalJordan_arcEnd_of_uniform K r _ hS⟩
+
+/-- **The new gap implies the rose extremal class target.** -/
+theorem roseExtremalClass_of_extremalJordan
+    (h : ExtremalJordanStatement.{u, w, v}) :
+    RoseExtremalClassStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hchoice, extremalJordan_classStretches_of_arcEnd K r hlink hT hS⟩
+
+/-- **Chain consequence**: the relative Greendlinger statement from the four-piece-off
+statement and the new gap. -/
+theorem extremalJordan_relativeGreendlinger
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : ExtremalJordanStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlinger_of_extremalClass hoff (roseExtremalClass_of_extremalJordan h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanArcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_arcEnd_of_uniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_not_both_of_arcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_classStretches_of_arcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_of_extremalMinimalUniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.roseExtremalClass_of_extremalJordan
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_relativeGreendlinger
