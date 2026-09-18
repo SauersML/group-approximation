@@ -133,3 +133,20 @@ None recorded before 2026-09-17.
    of the current routes and what survives each denial. The survivor of the
    central-root denial is the configuration of `Aff(Q)`: an element conjugate to
    its `p`-th power for every prime `p`, through commuting conjugators.
+
+5. **BN-pair, Curtis--Tits and local Steinberg amalgams, 2026-09-17: no reduction.**
+   `sl-q-local-amalgam-gluing-is-the-whole-problem` (lane gq-borel-q):
+   - `SL_m(Q)` is the colimit of its subgroups `SL_I(Q)`, `|I| <= 4`;
+   - so a compatible family of homomorphisms of the pieces into one group *is* a
+     homomorphism of `SL_m(Q)`, and for odd `m` an embedding.
+
+   Gluing separately built hosts of `SL_3(Q)`-sized pieces is therefore the whole
+   problem. In any host every Curtis--Tits vertex angle is `π/2`, so curvature
+   criteria never apply. The rank-2 parabolic amalgam already contains `GL_3(Q)`
+   Levi factors, and `P_1 *_B P_2` is not `GL_3(Q)`. Embeddability is not closed
+   under amalgams in general (`bh-embeddability-forces-decidable-edge-membership`).
+   - What survives: `gl-n-q-root-needs-only-nontrivial-psl-maps`. `PSL_n(Q)` is
+     simple (`SL_m(Q)` for odd `m`), so a nontrivial homomorphism into an
+     embeddable group suffices for infinitely many `n`; open form
+     `psl-n-q-maps-nontrivially-to-fp-simple-groups`.
+   - Borel side: `borel-two-q-is-units-times-aff-q` (`B_2(Q) = Q^x x Aff(Q)`).
