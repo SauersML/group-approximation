@@ -7,10 +7,11 @@ import GroupApproximation.Meta.AxiomGuard
 
 At a **lower-level** instance of `HigmanVCTauCommResidualStatement`
 (`|x'| + |y'| < |x| + |y| = n`) the conjugator `s = (p, q)` is itself a node of the descent
-graph of `A = (x, y)` (`EnvelopeHigmanVCTauTightEdge`), and the goal says that this node is good.  The canonical
-descent pair `t` of `A` and its reverse are good (definition of `τ`), and goodness spreads along
-square edges using only instances below level `n`.  `higmanVCTauTight_Chain` asks for a path
-`root — bridge — s` of at most two links; `higmanVCTauTight_chain_case` proves the instance.
+graph of `A = (x, y)` (`EnvelopeHigmanVCTauTightEdge`), and the goal says that this node is
+good.  The canonical descent pair `t` of `A` and its reverse are good (definition of `τ`),
+and goodness spreads along square edges using only instances below level `n`.
+`higmanVCTauTight_Chain` asks for a path `root — bridge — s` of at most two links;
+`higmanVCTauTight_chain_case` proves the instance.
 
 `HigmanVCTauTightStatement` is `HigmanVCTauCommResidualStatement` with the extra hypothesis
 that a lower-level instance has no such chain.
