@@ -9,8 +9,8 @@ distinct_from:
   leavitt-resolvent-frame-complex-route-to-injective-stability: that is the route; this carries it out, including the sign step.
 ---
 
-**ESTABLISHED** through `leavitt-resolvent-k2-stability-holds-proof`. Refereed: gq-referee-b PASS, citation and scope lens (report 740389fd9, W1--W4 applied); proof-gap
-review by gq-referee-a pending.
+**ESTABLISHED** through `leavitt-resolvent-k2-stability-holds-proof`. Refereed: gq-referee-b PASS, citation and scope lens (report 740389fd9, W1--W4 applied); gq-referee-a PASS, proof-gap
+lens (report b8e762b33, nits applied).
 - The group-theoretic core is Khanh's Steinberg comparison argument (arXiv:2609.08428, proof of Theorem
   `thm:raw-criterion`, read in TeX), run for `E_n(R_L)` and modulo a central subgroup.
 - Khanh's Borel-construction presentation is used as he verifies it directly through the path groupoid

@@ -131,3 +131,38 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
      every `Γ_t`) reduces to deriving pure one-sided expansions of `ι_u(h^n)` from the finitely many
      relations. Equivalently, it reduces to a normal form that never has to multiply pieces. A
      Stein–Farley complex whose cells are layered normal forms is the natural next tool.
+4. **Homology and the rank-two structure (bh-higman-classic, 2026-09-18).** *The homological branch is
+   closed; the finiteness branch stays open.*
+   - **No homological obstruction.** By [[v-normalizer-full-closures-are-integrally-acyclic]], proved
+     from Matui (arXiv:0909.1624) and X. Li (arXiv:2209.08087), both read at source, `[[Γ_t]]` is
+     integrally acyclic and perfect for every `t ∈ N(V)`. So no homology group separates it from `V`.
+     A negative answer in this family needs a non-homological invariant.
+   - **Rank-two Deaconu–Renault picture (Lipschitz `t`; heuristic, not claimed).**
+     - Let `t` correspond to a two-sided shift automorphism `F` with window `[−m, a]`. The one-sided
+       block code `τ = σ^m F` has window `[0, m + a]` and commutes exactly with the shift `σ`.
+     - Its germs are germs of elements of `V t`, so the germ groupoid of `Γ_t` should be the
+       Deaconu–Renault groupoid of the commuting pair `(σ, τ)`.
+     - Checked by hand only for a window-`[−1, 1]` marker involution: there `τ` is a 2-to-1 local
+       homeomorphism whose sheets are the cones `C_0, C_1`.
+   - **Why X. Li's `F_∞` theorem for finite `k`-graphs does not apply directly.**
+     - A 2-graph needs one family of inverse branches of `στ` that factors both as (red then blue) and
+       as (blue then red).
+     - In the example, the red-then-blue branches `e_r ∘ β_w` have cone images `C_{rw}`. The
+       blue-then-red branches `β_{w'} ∘ e_{r'}` have images `{x_1 = w', τ(x)_1 = r'}`, which depend on
+       `x_3` and are not cones.
+     - So the natural branch choice has no unique factorization. Whether a different choice of `τ`'s
+       sheets satisfies the factorization equation is open.
+   - **Remaining routes.** Li's general Garside-category criterion (arXiv:2110.04505) for the category
+     of composite branches of `(σ, τ)`, or a Stein–Farley complex of layered normal forms (Attempt 3).
+     Either would answer Question 1.4 positively for the Lipschitz part `L_2` of the family.
+   - **What Li's criterion needs, read at source.** Li's TeX (local copy
+     `$GQ/src/kep/li-garside-II-2110.04505v2.tex`, §`s:Gars-deg`, l. 1835) defines a degree map as a
+     functor `d : C → P` with `d^{-1}(1) = C^*` satisfying the unique factorization property (UFP*): a
+     morphism of degree `pq` factors as `ab` with `d(a) = p`, `d(b) = q`, uniquely up to a unit.
+     - With trivial units, the branch category above violates (UFP*) at degree `(1,1)`, by the example
+       above.
+     - Allowing `V` as units does not help. Li's route to adjoining units is a Zappa–Szép product with a
+       self-similar action (Corollary `intro:ZS`), and `V` has no self-similar action on finite words:
+       `g·p` is not a word when `g(C_p)` is not a cone.
+     - So Li's framework needs a genuinely new branch system for `(σ, τ)` satisfying (UFP*), or it does
+       not apply to this family.

@@ -6,6 +6,8 @@ title: The twisted integral-affine Brin-Thompson group W on Z_2^D is finitely pr
 distinct_from:
   one-fp-simple-group-contains-every-brin-thompson-subgroup: that is DV_F, where only prefix replacements and coordinate permutations are allowed; this adds integral linear maps on finitely many coordinates, which DV_F is not known to contain.
   fp-self-similar-groups-embed-in-fp-simple-groups: that is Zaremsky's theorem for one self-similar group on one tree; this contains every GL_n(Z) at once, over infinitely many coordinates twisted by F.
+artifacts:
+  - research/artifacts/gq-bh-bh-verify-W-report.md
 ---
 
 **ESTABLISHED** (lane proof, not reviewed; **load-bearing, referee review requested**).

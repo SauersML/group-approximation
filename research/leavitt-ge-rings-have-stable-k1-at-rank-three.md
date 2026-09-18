@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED.** Item 3 uses the Menal--Moncasi theorem, read only through Khanh's account, and item 4. Proof in
-`leavitt-ge-rings-have-stable-k1-at-rank-three-proof`. Lane proof, not independently reviewed. No priority is claimed.
+`leavitt-ge-rings-have-stable-k1-at-rank-three-proof`. Refereed: gq-referee-a PASS, proof-gap lens (report b8e762b33); gq-referee-b PASS, citation lens (report 740389fd9). No priority is claimed.
 
 **Setting.** `R` is a unital ring. It has **(GE)** if for every `n >= 2`, each matrix in `GL_n(R)` is a product of
 elementary matrices and invertible diagonal matrices.

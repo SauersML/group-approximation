@@ -46,7 +46,13 @@ are test cases of this claim:
   finitely generated stabilizer in a free top group is covered by
   `free-group-coset-wreaths-satisfy-pbh`;
 - `Z wr_X PSL_2(Z[1/2])` over `X = PSL_2(Z)\PSL_2(Z[1/2])`
-  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`).
+  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`). **Settled in `B_A` (2026-09-18,
+  lane bh-openq-papers):** `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` and
+  `wreaths-over-clopen-stabilizer-cosets-lie-in-b-a` realize the coset space through
+  clopen stabilizers. With the criterion of `free-permutational-products-preserve-pbh`,
+  this also puts the double `PSL_2(Z[1/2]) *_(PSL_2(Z)) PSL_2(Z[1/2])` and its
+  centralizing HNN extensions in `B_A` (`double-of-psl2-z-half-along-psl2-z-lies-in-b-a`).
+  The self-similar form of the question stays open.
 
 ## Reductions
 

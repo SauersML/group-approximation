@@ -28,3 +28,24 @@ The two difficulties are:
   forbidden words have none. Erasing branches must refuse any word with an unfinished closed block,
   and every closed block, including junk ones, must finish in finite time;
 - **aperiodicity:** it has to be checked for non-diagonal recursions.
+
+## Attempts
+
+1. **Reduction to a lossless transducer** (2026-09-18, lane `bh-algebra`). By
+   `lossless-monomial-recursions-give-simple-completions`, the benchmark `A_X` embeds in a finitely
+   presented simple completion as soon as there is a lossless row-monomial recursion `ψ` on a free
+   algebra with a peel state whose *dying words* are exactly the words over `{x, y}` with a factor
+   `x y^n x`, `n ∈ X`, and for which every surviving word erases along some branch. So the premise, for
+   monomial inputs, reduces to a transducer-design problem.
+2. **Substitution dynamics, not a finite automaton** (same lane). A level of `ψ` rewrites each output
+   letter again, so from a single word the process runs as a branching substitution (an L-system on `d`
+   branches). "Dying at level `N`" can need `N` far larger than the word length. So this is *not* bounded
+   by `ln-completion-word-problem-reduces-to-base-algebra`: that node's level bound `N <= 2l` holds only
+   for injective `ψ`, where no word dies late. For non-injective `ψ` the time-to-die carries the
+   complexity, which is why the fence does not fence this premise.
+3. **The crux.** A row-monomial recursion is a *fixed finite* object (finitely many word entries). Its
+   dying set is the language killed by iterating one finite substitution with branching. Whether every
+   decidable `X` is reachable this way, or only a restricted class (a branching-D0L analogue), is open. A
+   proof of the premise for all `X` needs either that reachability, or a base that grows with `X` (still
+   free, so that the fence stays inapplicable), or non-lossless recursions where cancellation adds power.
+   No obstruction is known: the fence is inapplicable, and the substitution dynamics is Turing-shaped.

@@ -28,3 +28,8 @@ Fix a recursive `T`.
 
 Combined with `arbitrarily-complex-fp-simple-via-hard-self-similar-groups`, this would
 give finitely presented simple groups beyond every recursive bound.
+
+**Dead (09-18, bh-free-25).** Its premise is refuted by
+`kms-configuration-modules-have-trivial-coinvariants`: `T = I_Q·T`, so step 1 never
+applies. The affine alternative, with the top mixing lamps and positions, is excluded for
+hard machines by `affine-self-similar-groups-are-function-field-linear`.

@@ -95,3 +95,13 @@ This is the one configuration the FW nodes leave open: `s rho_g s^-1 = rho_(psi(
 So this twist admits no near-faithful realization. The lesson is that the shift relation turns a twist into centralizer equations in `NearSym(N)`, whose solutions are eventually periodic unless the twist feeds in genuinely new letters.
 
 **Status.** OPEN, both for Kazhdan inputs and as a construction problem in general. Wanted: a finitely generated `G ≤ Sym(N)` with no nontrivial finitary elements and `G^+ ⊊ G`, not virtually abelian; and, for Boone–Higman's reduced inputs, one with property (T). The first would already be the first non-virtually-abelian genuine window-zero witness. No mechanism is known for either.
+
+## Fifth pass: calibration on the input Z
+
+Landed `cyclic-input-window-zero-needs-an-automorphism-twist` with its proof route. For `P = Z`, the twists `a ↦ a^k` with `|k| >= 2` are impossible in both directions, so window zero needs an automorphism twist and the action is eventually periodic.
+
+**How.** Along the shift ray, some quantity at each point moves monotonically, while each value of it is taken by infinitely many points.
+- On cycles the quantity is the cycle length. The blocks of cycles of one length cannot be left once entered.
+- On lines it is the line coordinate, which the shift scales by `k`. This forces infinitely many lines, via the count of ends.
+
+**Lesson for the Kazhdan case.** Non-surjective twists die by counting whenever orbits carry sizes or coordinates. The residual FW configuration is highly transitive, so neither is available there, which is why the counting method cannot reach it.

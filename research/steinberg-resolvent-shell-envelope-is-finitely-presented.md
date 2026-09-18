@@ -221,8 +221,11 @@ admissible `P`:
        infinite finitely generated FW inputs.
      - So the positive shape `W = P^(N+1)` suggested in `fp-window-group-makes-shell-germ-group-fp`
        is closed for `St_N(R_L)`, `Sp_2n(Z)` and `SL_n(Z)`.
-     - With `ε = -1`, the argument only reduces to descending window zero for `s^(N+1)`. That is
-       not closed, because the high-transitivity lemma is proved for `s`, not for `s^m`.
+     - With `ε = -1`, the argument reduces to descending window zero for `s^(N+1)` on `[P,P]`.
+       `fw-descending-shift-power-windows-force-torsion-centre` (e851421ae) closes that case
+       whenever `Z([P,P])` has infinite exponent. For `St_N(R_L)` it does, since the centre
+       contains `Q^x`, so **commuting windows fail in both directions for every admissible
+       `P`**.
    - *Level designs with fixed collars are dead at every width.* This is a lane remark, not a
      node.
      - The design: `ρ(P)` preserves finite levels, `s` is the breadth-first successor, and

@@ -49,8 +49,17 @@ for closed surfaces of genus at least three
   braid groups modulo their center
   (`artin-groups-mod-central-garside-power-are-continuous-automatic`) and uses BBCMP's
   commensurability invariance as printed.
-- **Open for** every other finite-type surface. The first open cases are `S_{1,2}` and
-  `S_{2,1}`. All surfaces of genus at least three are open, closed or punctured.
+- **`S_{1,2}`, conditionally.** Settled modulo one recalled Birman--Hilden identification
+  with `S_{0,5}`: `twice-punctured-torus-mcg-is-continuous-automatic`.
+- **Asynchronous version, once-punctured surfaces.** Every `Mod(S_{g,1})` is continuous
+  asynchronous automatic, hence embeds in the rational group:
+  `once-punctured-mcgs-are-continuous-asynchronous-automatic`. This uses Mosher's suffix
+  uniqueness for `𝓛_0`, and it includes `S_{2,1}`.
+- **Open, synchronous (as asked).** Everything not settled above:
+  - `S_{2,1}` and every once-punctured surface of genus at least two. `S_{2,1}` has no
+    hyperelliptic shortcut, since `ι` is not central in `Mod(S_{2,1})`.
+  - Every closed surface of genus at least three.
+  - Every surface with two or more punctures beyond the low-complexity list.
 
 ## Attempts
 
@@ -86,3 +95,38 @@ for closed surfaces of genus at least three
    - Neither is known to this lane. The second is where fellow-travelling results for
      splitting sequences, such as Masur--Minsky and Hamenstädt, give only coarse
      agreement, while continuity needs exact prefix agreement.
+3. **bh-hhg, 2026-09-18 (fourth pass).**
+   - **A test for candidates.** `continuity-of-automatic-structures-is-decidable`:
+     continuity of a given automatic structure is the same as bounded lookahead of each
+     left multiplier map, and it is decidable from the multiplier automata. This is the
+     first test to run on Mosher's structure. Lane bh-free-51 is running its thinness and
+     germ-rate tests on that structure, and those tests presuppose continuity.
+   - **`S_{2,1}`.** The Birman exact sequence
+     `1 → π_1(S_2) → Mod(S_{2,1}) → Mod(S_2) → 1` has a continuous automatic quotient (the
+     low-complexity node). Closure of continuous automaticity under extensions, even with a
+     hyperbolic kernel, is not known, and BBCMP list no such closure property. So
+     `S_{2,1}` stays open. It is the natural first test case for the general methods.
+   - **Genus-one calibration for the splitting idea, recalled.**
+     - For `SL_2(Z)` the maximal-splitting normal forms are Farey paths, i.e. continued
+       fractions.
+     - Left multiplication by a fixed integer matrix acts on continued fraction expansions
+       by a finite-state left-to-right transducer with bounded lookahead (Raney 1973,
+       recalled, not read). So Attempt 2 is consistent in genus one.
+     - The higher-genus analogue of continued fractions is Rauzy--Veech induction, or
+       train-track maximal splitting. The precise missing theorem is a **Raney-type
+       theorem for Rauzy--Veech codings**: `Mod(S)` acts on them by finite-state transducers
+       with bounded lookahead.
+4. **bh-hhg, 2026-09-18 (fifth pass): Mosher's structure is continuous after inversion,
+   asynchronously.**
+   - **Conventions.** BBCMP use left multiplication and Mosher right, so the right object
+     is the inverted language. Its prefix continuity is suffix-continuity of Mosher's
+     forms under right multiplication.
+   - **The input.** Suffix-continuity follows from the suffix uniqueness property Mosher
+     states for `𝓛_0` (`mosher-suffix-uniqueness-gives-continuous-inverse-normal-forms`).
+     This settles the asynchronous version for all once-punctured surfaces, `S_{2,1}`
+     included, and supersedes the "`S_{2,1}` stays open" of Attempt 3 for that version.
+   - **Missing for the synchronous question.**
+     1. Suffix uniqueness for Mosher's synchronous `𝓛_1` (Dehn twist factorization).
+     2. Any structure at all for closed surfaces.
+   - **For lane bh-free-51.** Run thinness and germ-rate tests on Mosher's structure
+     on the inverted language, whose boundary action exists.

@@ -68,3 +68,16 @@ embed in one finitely presented simple group.
      Question 5.9 (`fp-relatively-simple-pairs-embed-with-fng-kernels`), or finite
      presentation of each `A_i/K_i`. When `A_i/K_i` is finitely presented, its
      faithful action is of type (A) and `S ∈ B_A` already. *Stops* at that gate.
+4. **Correction to Attempt 2, and the one remaining source** (lane `bh-testcases`,
+   2026-09-18).
+   - Attempt 2 says no finitely presented simple group outside `B_A` is known. That is
+     true only of the sources BFFHZ list, together with Lodha's group.
+   - The five Titz Mite–Witzel kernels `Γ̌_i^q` (`titz-witzel-simple-kazhdan-cat0-lattices-exist`)
+     are finitely presented, simple and Kazhdan. Their membership in `B_A` is open
+     (`titz-witzel-lattices-satisfy-permutational-boone-higman`, routed through
+     `titz-witzel-kernels-are-mif`).
+   - The later sources are now covered: Amir–Lazarovich's lattices
+     (`tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh`) and Khanh's Leavitt
+     unit group (`binary-leavitt-unit-group-satisfies-pbh`).
+   - So the sharpest known test of (JE) is a common finitely presented simple overgroup of
+     `Γ̌` and `V`, or of two distinct kernels `Γ̌_i^q`, `Γ̌_j^q'`.
