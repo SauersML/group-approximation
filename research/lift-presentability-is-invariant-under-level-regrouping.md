@@ -11,7 +11,7 @@ distinct_from:
 
 **ESTABLISHED** by `lift-presentability-is-invariant-under-level-regrouping-proof` (lane proof, elementary; it
 uses Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation` in both directions, which is not yet
-refereed; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-finitary-and-spinal-extensions.md`.
+refereed; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-finitary-and-spinal-extensions.md`. Referee b (citations, priority) PASS: `research/artifacts/gq-referee-b-run-compression-cycling-relators-odometer-regrouping.md`.
 
 ## Statement
 
