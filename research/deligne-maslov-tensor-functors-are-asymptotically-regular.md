@@ -6,7 +6,6 @@ title: Every tensor functor of a one-third Maslov model is asymptotically regula
 distinct_from:
   deligne-maslov-sector-traces-are-central-regular: that classifies the traces on the twisted fibre A_omega; this applies it to point-norm models and to every tensor functor built from them, and turns it into a pointwise distance bound that kills every bounded-level (finite-image) comparison argument, including the tensor-cube reduction.
   deligne-parameter-group-is-a-virtual-invariant: that kills virtual descent through the divisibility set {1,2}; this kills the stability-comparison class through the trace, at a non-central element of a kernel, and says nothing about divisibility.
-  deligne-parameter-tori-corestrict-only-through-maslov-line: that kills tensor induction from finite-index multiplier tori; this is about tensor powers of a fixed model and their distance to honest representations.
   sp4-quasirep-windings-budget-and-saturation: that constrains windings on one relator; this constrains traces at every non-central element and uses no relator.
   deligne-nontrivial-maslov-opnorm-sectors-are-empty: that is the open emptiness statement; this is a structural necessary condition any hypothetical model satisfies, and does not decide emptiness.
 ---
