@@ -105,3 +105,31 @@ route is dead.
   - *Data.* Eigenvalue certificates to radius 9 for `F` and radius 8 for `F_2`: `h(1..5) = 0, 1, 1, 2, 2` in both,
     and `h_F(6) = 3`. These are loose at small windows (`CR_F(1) = 5`, from the LP node) and matter only
     asymptotically.
+- **2026-09-18 (swarm-0917-w11-w11-f-last1, reframing).** The second composition in RGAP₂ is identified and split
+  off as a hypothesis of its own. RGAP₂ itself stays OPEN.
+  - *Established (new node `thompson-f-ramsey-radii-in-the-elementary-degree-order`).* The node works in the preorder
+    `φ ≼ χ` iff `φ ≤ exp_E ∘ χ ∘ exp_E` for some `E`. Put `ψ(t) = R̃(t, 1/t)` and `ψ_l(t) = R̃(t, 1/t, l)`.
+    - One Reiter witness balances every family of test functions at once, so `R̃(m, ε, l) ≤ F(m, ε)` for every `l`.
+    - With (b) and (c) of the sandwich, `ψ_l ≈ CR` for every `l ≥ 2`, and `R ≼ ψ ≼ CR ≼ ψ∘ψ`.
+    - AMP ⇔ `ψ ≼ R`.
+    - With SFC := `CR ≼ ψ` and SFG its negation, RGAP₁ ⇔ ¬AMP ∨ SFG, and RGAP₁ ∧ SFC ⇒ ¬AMP.
+  - *What it does to this node.* The double composition of `R` in RGAP₂ is exactly the cost of a second test
+    function: `CR ≈ ψ_2` but only `CR ≼ ψ_1∘ψ_1`. RGAP₂ can be traded for RGAP₁ plus SFC, a statement that never
+    mentions `R`. SFC holds wherever `CR` is elementary, and fails only under SFG, which itself implies amenability.
+  - *New route structure for the root (new nodes).* RGAP₁ is now a claim node,
+    `thompson-f-ramsey-radius-single-gap-below-reiter-radius`, with the direct route
+    `thompson-f-amenable-via-single-ramsey-reiter-gap`. It has two routes, one per disjunct:
+    `thompson-f-single-ramsey-reiter-gap-via-costly-amplification` (¬AMP) and
+    `thompson-f-single-ramsey-reiter-gap-via-second-test-function-gap` (SFG, new open claim
+    `thompson-f-second-test-function-costs-more-than-any-tower`). So for the root, RGAP₂ is not needed: RGAP₁ is
+    weaker than ¬AMP and suffices. RGAP₂ remains relevant only as a route to ¬AMP itself.
+  - *Not new, recorded to avoid repetition.*
+    - Single-pair halving `PR_{c(c/2)^{k−1}}(m) ≤ PR_c^{∘k}(m)` is a composition-per-halving scheme like Towsner's.
+      It gives nothing below a tower.
+    - The Bhattacharyya bridge from an ℓ¹ pair balance to an ℓ² return gives only `⟨λ(τ)η, η⟩ ≳ 1/k` at the second
+      step, far below the `1/2` that RRET needs.
+  - *Remaining shape.* A refutation of RGAP₁ (CRE) kills ¬AMP, SFG and RGAP₂ at once. A proof of the root
+    along this family needs either ¬AMP, a precision gap, or SFG, a multiplicity gap. Encoding two test functions as
+    one is selector or marker coding, already killed above, so SFC has no known proof. A proof of SFG would need a
+    pair `(α, β)`-uniform construction whose cost is visibly smaller than that of joint invariance under both
+    generators. Neither was found.
