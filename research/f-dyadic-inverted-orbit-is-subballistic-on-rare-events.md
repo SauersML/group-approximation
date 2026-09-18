@@ -39,6 +39,23 @@ itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
 
 ## Attempts
 
+- **Calibration against PL worlds (2026-09-17, e-f-calibrate, swarm-0917, family calibration).** Result:
+  `pl-ea-calibrators-are-nonamenable-interval-groups` (ESTABLISHED).
+  - For every countable PL interval or circle group `G` with breakpoints, `G` is amenable iff `G ↷ B(G)` is
+    extensively amenable. The proof uses real-valued breakpoint lamps.
+  - Every orbit action of a subgroup of `PL_+([0,1])` is amenable, through the germ group at the infimum of the
+    orbit.
+  - A PL circle group has an amenable orbit action only if its rotation number is a homomorphism whose kernel
+    fixes a point.
+  - Consequence for this hole:
+    - `T` (and any PL circle world with a free subgroup) fails confinement already because its orbit action is
+      nonamenable. It is not a meaningful counter-calibration for the large-deviation question here.
+    - A PL world that is amenable but not EA on breakpoints exists iff `PL_+([0,1])` has a nonamenable subgroup.
+    - A confinement proof built only from properties shared by all breakpoint actions of `PL_+([0,1])` groups
+      would prove all of them amenable. It must use an input specific to `F` (dyadic arithmetic, finite
+      presentation, specific generators), and no PL world can currently test such an input.
+  - This claim stays **OPEN**.
+
 - 2026-09-17 (e-f-scale, swarm-0917, scale-shifter): **quantifier shift, decomposition, class kill,
   numerics.** Established node: `f-dyadic-rare-confinement-rate-at-most-cogrowth-exponent`. This claim stays
   OPEN.
