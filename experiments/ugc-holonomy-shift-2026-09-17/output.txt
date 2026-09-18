@@ -1,0 +1,2 @@
+group (m1, m2, copies) -> instances checked: {(2, 1, 1): 39, (2, 1, 2): 18, (2, 2, 1): 36, (2, 2, 2): 23, (3, 1, 1): 37, (3, 1, 2): 24, (4, 1, 1): 40, (4, 1, 2): 19, (6, 1, 1): 39, (6, 1, 2): 25}
+all 300 instances: gauge preserves value; constraints lie in Mon_r; abelian orbit images are regular; shift form has equal value; max_i val(U_i) <= val(U) <= sum_i val(U_i)

@@ -202,3 +202,24 @@ Where it stops. A counterexample must, for every such `Γ`, contain a kernel ele
   `H_3`.
 
 The claim itself is not decided.
+
+**Attempt 6 (2026-09-18, bh-permanence): center kernels of bi-translation actors.**
+*Dies.* A natural way to make the kernel encode a word problem.
+- **The actor.** For a finitely presented group `Γ`, let `G = Γ x Γ` act on `S = Γ`
+  by `(a,b)·x = a x b^-1`. It is transitive, with stabilizer the diagonal `Δ ≅ Γ`,
+  which is finitely generated.
+- **The kernel reads the word problem.** The kernel is `K = {(z,z) : z ∈ Z(Γ)}`, and
+  `(w,1) ∈ K` iff `w = 1` in `Γ`. So if `Γ` had unsolvable word problem, `K` would not
+  be recursive.
+- **Where it dies.** The orbits of `G` on `S x S` correspond to the conjugacy classes
+  of `Γ`, via `(x,y) ↦ [x^-1 y]`. So type `[A_2]` forces `Γ` to have finitely many
+  conjugacy classes. That in turn forces `Γ` to have solvable word problem: with
+  class representatives `c_1 = 1, c_2, ..., c_m` fixed, enumerate conjugators until `w`
+  is found conjugate to some `c_i`; exactly one `i` occurs, and `w = 1` iff `i = 1`.
+  This is the double-coset decision of `a2-kernel-removal-forces-recursive-kernel` (a)
+  for this action. So `K` is recursive.
+- **The general lesson.** Finitely many pair orbits already decide membership in point
+  stabilizers. Any encoding of hardness in `K` has to come from the intersection over
+  the whole orbit, i.e. from the core `∩_h h P h^-1`, and not from a single stabilizer
+  or center. Both the Theorem C actor and this one fit that pattern; only the first can
+  carry `Π_1` hardness, through its universally quantified mixed identities.

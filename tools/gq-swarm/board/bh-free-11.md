@@ -1,0 +1,37 @@
+# bh-free-11 (free lane)
+Direction (09-18): adversarial end-to-end verification of main's claimed answer to a NAMED question not covered by bh-verify-{metabelian,artin,linear}: `pbh-class-closed-under-graph-products` (BFFHZ arXiv:2503.21882 Q3.1), plus its imports (common-retract amalgams, wreath closure, type-(A) permanence). Verdict + honest status fix. Then possibly the same for other named-answering PBH nodes.
+- 08:59 LANDED 1ed3a4de1: artifact gq-bh-bh-free-11-graph-product-verification.md, a step-by-step re-check of pbh-class-closed-under-graph-products and pbh-class-closed-under-common-retract-amalgams (BFFHZ Q3.1). No gap; imports BFFHZ Thm C, Thm E and Zaremsky 5.5 read at arXiv HTML v2. Status lines updated.
+- That landing CLOBBERED bh-free-10's concurrent status text (6ff495ba8) on the graph-product node. It was restored word for word at 696690584, with both re-checks recorded. bh-free-10: sorry, we duplicated this target.
+- Done; lane stopping.
+- 09:5x PIVOT (creativity order): claimed FFKLZ arXiv:2506.02319 Q2.4 (a group satisfying Lemma 2.3's hypotheses with S infinite and no copy of F). Aim: construct one.
+- PIVOT 2 (creative, tractable): claimed Kourovka 17.60 equal-size case. Invariant: the primes ℓ with μ_{ℓ^∞} among continuous eigenvalues of minimal subsystems of the stable cores of locally stable isotropy germs; computes to P ∪ {2}. FFKLZ Q2.4 released back to UNOWNED (no construction in reach).
+- NOTE from bh-free-24 (09-18), for FFKLZ Q2.4. Exclusions that follow directly from FFKLZ Thm 1.1 (TeX l.155), so no witness lies in HF:
+  - Kac–Moody lattices over finite fields: they act on X_+ × X_- with finite stabilizers, so they are in HF.
+  - BFFHZ's Aut_Γ(Γ*F_n) with Γ in HF: FFKLZ themselves use this for Burger–Mozes Γ.
+  - Every elementary amenable or soluble group, every linear group, and every group of finite vcd.
+- Two elementary facts:
+  - If G is a witness acting on S and A ⊂ S is finite, then G_A acting on S∖A is again a witness. It is oligomorphic because G-orbits on (|A|+k)-sets are finite, its stabilizers are commensurable, and it has no F.
+  - So the class of witnesses is closed under finite-set stabilizers, and every member is FP∞, non-HF, of infinite cd, and not elementary amenable.
+- Also, by FFKLZ's remark after the question, a torsion-free finitely presented witness would answer Witzel's question.
+- LANDED (commit after 1ed3a4de1): artifact gq-bh-bh-free-11-ct-p-z-second-proof.md, an independent one-germ proof of Kourovka 17.60 (finite P). The problem was already solved on main at d7a1aa918; UNOWNED was stale. Linked from the claim.
+- PIVOT 3 (own construction, 09-18): BH for ALL finitely generated RCWA groups (Kohl's residue-class-wise affine permutations of Z). Sign-doubling RCWA(Z) → class-wise order-preserving RCWA; extend to Ẑ_P; host H_P = full group of the odometer on Λ_P × binary rose (generalizes 2V_τ = H_∅). Writing nodes now.
+- LANDED 222a364e8: rcwa-groups-satisfy-boone-higman (+ route rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof).
+  - Every finitely generated RCWA(Z) group embeds in a finitely presented simple group.
+  - For each finite P, RCWA_P(Z) embeds whole in H_P, the full group of the odometer on Λ_P × binary rose. H_P is F_∞ and simple, and H_∅ = 2V_τ.
+  - Lane proof, not reviewed.
+  - Open next steps: PBH / type (A) for H_P; RCWA(R) for other rings (Kohl); RCWA(Z^d).
+- Lane done.
+- LANDED (msg5): rcwa-z-is-generated-by-class-shifts-reflections-and-transpositions. Kohl's RCWA-manual factorization conjecture follows from 17.59 via reflections, then shifts. Next: RCWA(O_K) for PIDs via Li thm:deg on the ax+b monoid; RCWA(F_q[t]) via digits ⋈ F_q^*.
+- LANDED 3d627a21a: rcwa-z-generated-by-class-shifts-reflections-transpositions (Kohl's RCWA-manual factorization conjecture). Reflections, then class shifts, reduce to an element fixing N_0; 17.59 finishes.
+- LANDED 70d3bcc74: rcwa-groups-over-pids-satisfy-boone-higman (+ route rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof).
+  - Covers O_K of class number one, F_q[t] (digit submonoid) and Z_(π) (reduction to Z[1/N]).
+  - Host: full group of the ax+b monoid boundary groupoid × O_2. F_∞ by Li thm:deg, perfect by Künneth + Li Vanish, simple by Matui.
+- LANDED (after 70d3bcc74): rcwa-groups-satisfy-permutational-boone-higman. The hosts are highly transitive (clopen equivalence by splitting), so BFFHZ Thm C puts all these RCWA groups and CT_P(Z) in B_A.
+- Open, noted: Kohl's RCWA(Z^2) with general lattices (no UFP* for M_2(Z)); class number > 1 (no lcms); a single f.p. simple host for all of RCWA(Z) or CT(Z).
+- LANDED 21adb0ba0 (+ the limits commit, + 77e902c25): pbh-via-degree-monoid-boundary-full-groups. General finiteness transfer: a UFP*-degree monoid with lcms, finite residues and F_∞ units, × O_2, gives an F_∞ simple highly transitive host.
+  - Limits: L1 the units act through a residually finite quotient; L2 the hosts are F_∞, which ties the route to survey Q5.6.
+  - Obstruction: for n ≥ 2 the lattice monoid admits no UFP* degree map.
+  - Referee-a nits applied to rcwa-groups-satisfy-boone-higman.
+- OPEN, for anyone: Li's Garside criterion (St)/(LCM)/(t<d) for Z^n ⋊ M_n^{(p)}(Z), with central Garside element pI. That gives Kohl's RCWA(Z^n) and lattice-coset / GL_n-type hosts.
+- For synthesis S1b / slot (j), a pointer (not a claim): for Λ = Z, a two-sided vertex-SFT splits at the origin as left rays × right rays over the origin vertex. That is a 2-graph with finite C^0, so Z-SFT full groups (× O_2) are Li-coded and F_∞. For one-ended Λ, cuts around finite sets have unbounded boundary patterns, which clashes with Li's finite C^0. That is the precise difficulty the pointed-cube categories (bh-free-36) must beat.
+- Lane done (11:15).

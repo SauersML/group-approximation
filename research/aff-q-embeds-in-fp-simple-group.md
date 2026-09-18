@@ -130,3 +130,20 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      aperiodic machine-type base carries brick-local renormalizations of heights `2` and `3`. If
      so, the dilations for different primes cannot all come from renormalizing one `s = T × id`,
      and the `nV` route to `Aff(Q)` needs another mechanism for combining primes.
+8. **Katsura–Exel–Pardo host for the Baumslag–Solitar gate (2026-09-18, gq-affq; critic's U3).**
+   - `odometer-2v-is-fp-simple-and-contains-bs12`: `2V_τ = ⟨2V, τ × id⟩` is the full group of the Katsura
+     odometer triple `A=(2)`, `B=(1)` acting self-similarly on the product 2-graph. It is `F_∞` (Li, Example
+     ex:ZS (III)) and simple (Matui, Theorem simple2, after a perfectness count), and it contains `BS(1,2)`,
+     `(Q,+)` and `2V`.
+   - The odometer is renormalizable natively (`0w ↦ w` is a groupoid bisection), and the baker map of `2V` makes
+     the conjugacy global.
+   - *Not reached:* `Q ⋊ ⟨2⟩`. The conjugator `u` squares `s` and `u^{-1}su` is the first root in the tower `Q_τ`,
+     but `u` is not shown to normalize `Q_τ`. Nor is it known whether `2V_τ` embeds in any `nV`.
+9. **`Q ⋊ ⟨2⟩` in Katsura–Exel–Pardo 2V-hosts: every finite prime set, not all (2026-09-18, gq-affq).**
+   - `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`: `Z[1/2N] ⋊ ⟨2⟩` (not finitely generated) lies in the
+     simple group `2V_{G_N}`, `G_N = Z[1/N] ⋊ ⟨p | N⟩`. For `N = 3` the host is `F_∞`, and it contains
+     `Z[1/6] ⋊ ⟨2⟩`, `BS(1,2)`, `BS(1,3)` and `2V ⊇ Q`.
+   - The natural `Q ⋊ ⟨2⟩` lies in no `2V_H` with `H ≤ Aff(Q)` finitely generated, by bounded denominators (the
+     mechanism of `finite-state-mobius-pieces-see-finitely-many-primes`).
+   - Torus amalgams, adelic finite support and p-adic power maps are escaped or not triggered (claim node).
+   - *Open:* wild copies, and non-affine coefficient groups containing `Z_(2)`.

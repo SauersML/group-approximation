@@ -1,0 +1,17 @@
+M_11 order 7920 ; alpha, beta in M_11: True
+(1) [a@1, a@2] = 1: True  (expected True)
+(1) q^-1 c q = c for q in Stab(1,2): True  (expected True)
+(1) [c@1, a@2] = 1: True  (expected True)
+(1) a^11 = 1: False  (expected False)
+(1) c^11 = 1: False  (expected False)
+(1) b^55 = 1: True  (expected True)
+(1) b^11 = 1: False  (expected False)
+(1) [b, c] = 1: False  (expected False)
+(2) mass identities and length bound hold on all 111110 words of length <= 5
+(3) 72094 stable (word, point) pairs up to length 7; max |e_a| = 1
+(4) trivial reduced words of length <= 6: 12; with (e_a, e_c) != (0,0): 0
+done
+
+real	2m15.172s
+user	0m26.108s
+sys	0m0.043s

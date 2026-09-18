@@ -53,9 +53,9 @@ exterior regions), every choice class:
   pool classes checked, and 5,934,504 pool classes have neither shape (so the pick clause is not
   vacuous: the rule really has to choose).
 * Sanity: every class of measure at most `2` is a loop-run class, on every instance above.
-* 7 darts, every vertex degree (`pick5.py 7 7 4 i`, files `s7_i.out`): run started, result
-  PENDING when this file was written.  The same model at 7 darts confirms
-  `ExtremalJordanRerouteStatement` (lane gl-p10-30), but not yet this pick rule.
+* 7 darts, every vertex degree (`pick5.py 7 7 4 i`, files `s7_i.out`): 215,705,028 instances,
+  no failure; 1,179,867,668 least-measure pool classes checked, and 8,710,464 pool classes have
+  neither shape.
 
 * In every instance checked, the least measure is `0` or `2`: the picked class has at most one
   removed run of non-loop darts, so it is already a loop-run class (the pinned alternative is

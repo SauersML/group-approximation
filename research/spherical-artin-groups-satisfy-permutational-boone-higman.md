@@ -50,3 +50,5 @@ that reduction stays as a second proof of the same statement.
 import. Whatever novelty there is sits with
 `char-zero-linear-groups-satisfy-boone-higman`, and no priority is claimed beyond
 that root's.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. This one-line composition checks and is carried entirely by `char-zero-linear-groups-satisfy-permutational-boone-higman`. Two status lines disagree: that node's line says it is not independently reviewed, while `research/artifacts/review-pbh-charzero-spherical-2026-09-13.md` gives it PASS. Both reviews are internal. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.

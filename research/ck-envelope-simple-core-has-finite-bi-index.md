@@ -111,8 +111,10 @@ tools.
    - fp envelopes with a non-finitely-presented proper quotient.
    In Attempt 6 the covering kernel of a finite bi-index cover must be
    finitely normally generated, so the elementary image would be finitely
-   presented. Open side question: ACC for the two-sided ideals of the
-   universal sandwich ring. See
+   presented. Side question, ACC for the two-sided ideals of the universal sandwich ring:
+   answered negatively by `ck-sandwich-ring-has-infinite-ascending-ideal-chains` (2a42fc561;
+   see Attempt 10), which gives infinite strictly ascending chains over every nonzero
+   commutative coefficient ring. *(Updated by bh-integrate, 2026-09-18.)* See
    `research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md`.
 8. **Price the Kazhdan surcharge along every recorded host route
    (2026-09-17, swarm-0917 w5).** *Result: along the linear routes the
@@ -162,3 +164,11 @@ tools.
    avoid all ring quotients of infinite ideal length. Not covered are
    quotients where the covering kernel `K` has `KN = Gamma`, and the original
    CK subring `L`.
+10. **Sandwich rings over other coefficient rings.** *Killed as well* (bh-higman-classic, 2026-09-18).
+    Attempt 9's ring input, `U/lU != 0`, fails for `Q[T]` coefficients, where every prime is a unit.
+    [[ck-sandwich-ring-has-infinite-ascending-ideal-chains]] gives a coefficient-free replacement: the
+    sealed monomials `w_j = p q p^j q` generate monomial ideals `I_A`, with `w_j in I_A` iff `j in A`, so
+    `U_k` has an infinite strictly ascending chain of proper two-sided ideals for every nonzero
+    commutative `k`. Item (B) of [[sandwich-ring-envelopes-have-infinite-core-bi-index]] then kills every
+    envelope mapping onto `EL_n(U_k)`, `n >= 2`, for every `k`. The original CK subring `L` and
+    quotients with `KN = Gamma` remain uncovered, as in Attempt 9.

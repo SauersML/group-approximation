@@ -15,6 +15,12 @@ artifacts:
   - experiments/ak3-aut-tunnel-closure-2026-09-17/growcaps.log
   - experiments/ak3-aut-tunnel-closure-2026-09-17/tr2.log
   - experiments/ak3-aut-tunnel-closure-2026-09-17/tr3.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/sweep3.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/resweep.sh
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/newcanon3.txt
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow3.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow2t.c
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow2t.log
 ---
 
 States, moves, tunnels, T_C and S_C are as in the target. All tools share the move
@@ -63,8 +69,45 @@ capped count 6875 of `thzsearch` at cap 20 in rank 3.
 
 - Rank 2, caps 13–22: `tbfs` and `grow` from scratch (`tr2.log`, `growcaps.log`).
 - Rank 3, caps 13–21: `tbfs` (`tr3.log`).
+- Rank 2 cap 23, and rank 3 caps 20–22: `grow` from scratch (`growcaps.log`). Rank 3 cap 23
+  hit the time limit, so it is not claimed.
 
-All runs are EXHAUSTED with no goal and no PRIM tunnel endpoint.
+All completed runs are EXHAUSTED with no goal and no PRIM tunnel endpoint.
+
+## Step 4′: rank 3, cap 24
+
+This repeats Steps 1–3 in F_3.
+
+- **S_24.** `thzsearch 3 24 … dump` gives 280213 states, and the earlier search found no
+  goal on them (`ak3-rank3-cap24.log`).
+- **Sweep.** `sweep.sh 3 s24r3.txt 280213 30000` covers states 0–240000 and 270000–280213.
+  Chunk 240000–270000 hit the time limit and was rerun as two halves by `resweep.sh`. Every
+  logged chunk exits 0 (`sweep3.log`), and the states covered are 0–280213 with no gap.
+- **Sweep totals.** 20,159,284 capped products, with 0 closure violations. 805,596,332
+  tunnels, with 0 PRIM endpoints. 16420 new endpoint pairs, in 1397 canonical classes
+  (`newcanon3.txt`).
+- **Growth.** `grow 3 24 s24r3.txt newcanon3.txt out` ends EXHAUSTED (`grow3.log`):
+  - 1714 new states;
+  - 5,284,987 tunnels, of which 0 are PRIM;
+  - goals PRIM 0, THICK 0 and PROJ 0, with 3428 Neuwirth tests and 0 undecided.
+- **Conclusion.** T_24 = S_24 ∪ new, with 281927 states, as in Step 3.
+
+## Step 4″: 2-tunnels at cap 16
+
+`grow2t RANK CAP C2` is `grow` with the tunnel step extended. When a tunnel's reduced
+endpoint m has CAP < |m| ≤ C2, every (M1) product from m is formed. Products within the
+cap land directly; the others are Whitehead-reduced and land if within the cap. The tool
+reports PRIM at both levels.
+
+Checks (`grow2t.log`):
+- With C2 = CAP it reproduces `grow` at cap 18: 1144 states and 1,551,143 tunnels.
+- On AK(2) at cap 11 it finds PRIM.
+
+For AK(3) in rank 2:
+- At cap 16, both C2 = 24 and C2 = 30 end EXHAUSTED with 161 states, no goal and no PRIM
+  endpoint. The C2 = 30 run formed 382,022,530 2-tunnels.
+- At cap 14 with C2 = 40 the closure is {AK(3)}.
+- Cap 18 with C2 = 24 hit the time limit and is not claimed.
 
 ## Step 5: the path corollary
 
@@ -102,6 +145,10 @@ in (B). Every move below the cap is a capped (M1) move or, by (A), a composite o
 (M2) moves. By induction along the path, every state of length at most 24 on it lies in
 T_24. The endpoint (x, y) has an entry of length 1 and is PRIM, but T_24 contains no PRIM
 state. This is a contradiction, so the corollary holds. ∎
+
+In F_3 the argument is the same word for word. It uses Aut(F_3), the 90 moves of type 2,
+and Step 4′. For a target goal state of length at most 24, the contradiction comes from
+the fact that the rank-3 T_24 contains no PRIM, THICK or PROJ state.
 
 ## What is not covered
 

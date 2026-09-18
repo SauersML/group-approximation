@@ -1,0 +1,93 @@
+Verbatim excerpts (LaTeX source) from J. F. Davis, F. Quinn, H. Reich, Algebraic K-theory over the
+infinite dihedral group: a controlled topology approach, J. Topology (accepted per arXiv comments),
+arXiv:1002.3702, e-print source dqr.tex fetched 2026-09-18 from https://arxiv.org/e-print/1002.3702 .
+Line numbers refer to dqr.tex.
+
+== lines 425-445: equivariant homology, families 1 < fin < fbc < vc < all, FJ conjecture ==
+$$
+H^G_n(X; \bfK_R) = \pi_n(\map_G(-,X)_+ \wedge_{\Or G} \bfK_R(-)),
+$$
+see \cite[section 4 and 7]{DL98} for basic properties.  Note that $\map_G(G/H,X) = X^H$ is the fixed point functor and that the ``coefficients'' of the homology theory are given by $H^G_n(G/H; \bfK_R) \cong K_n(RH)$.
+
+A {\em family $\ff$ of subgroups of $G$} is a nonempty set of subgroups closed under subgroups and conjugation. For example,  the families
+$$
+1 \subset \fin \subset \fbc \subset \vc \subset \all
+$$
+consist of the trivial subgroup, the finite subgroups, the extensions
+of finite by cyclic subgroups (groups that surject onto a cyclic group with finite kernel), the virtually cyclic subgroups (groups that have
+a cyclic subgroup of finite index), and all
+subgroups.  
+
+For a family $\ff$, $E_{\ff}G$  is the classifying space for $G$-actions with isotropy in $\ff$.  
+It is characterized up to $G$-homotopy equivalence as a $G$-CW-complex with $E_{\ff}G^H$  
+contractible for subgroups $H \in \ff$ and $E_{\ff}G^H= \emptyset$ for subgroups $H \not \in \ff$.    
+The Farrell-Jones isomorphism conjecture for algebraic $K$-theory \cite{FJ-isom} states that for every group $G$ and every ring $R$, the map
+$$
+H_n^G ( E_{\vc} G ; \bfK_{R}) \to H_n^G ( \pt ; \bfK_{R} ) =K_n( RG ).
+$$
+
+== lines 461-471: Theorem thm-main ==
+\begin{theorem} \label{thm-main}
+Let $p \colon \g \to D_\infty$ be a surjective group homomorphism.
+For every ring $R$ and every $n \in \IZ$ the map
+\[
+H_n^{\g} ( E_{p^{\ast} \fbc}\g ; \bfK_{R}) \to H_n^{\g} ( \pt ; \bfK_{R} ) = K_n( R\g )
+\]
+is an isomorphism.
+\end{theorem}
+
+\noindent
+There is also a version of this theorem with coefficients, compare Remark~\ref{rem-coeff}.  Note that for the infinite dihedral group all finite-by-cyclic subgroups are cyclic, and that if $\ker p$ is finite, then $p^*\fbc = \fbc$.
+
+== lines 482-497: transitivity principle and Corollary cor-reduce-fj ==
+$$
+H_n^H(E_{\ff \cap H}H; \bfK_R) \to H_n^H(\pt; \bfK_R)
+$$
+is an isomorphism, then the relative assembly map
+$$
+H_n^G(E_{\ff}G; \bfK_R) \to H_n^G(E_{\gggg}G; \bfK_R)
+$$
+is an isomorphism. Here $f \cap H = \{ K \; | \; K \in \ff, \; K \subset H \}$. As an immediate consequence of the transitivity principle and the classification trichotomy for virtually cyclic groups we obtain the following corollary of Theorem \ref{thm-main}.
+
+\begin{corollary} \label{cor-reduce-fj}
+For any group $G$ and ring $R$,
+$$
+H_n^G ( E_{\fbc} G ; \bfK_{R}) \to H_n^G (E_{\vc} G; \bfK_{R} )
+$$
+is an isomorphism.
+\end{corollary}
+
+== lines 563-577: Remark rem-coeff ==
+\begin{remark} \label{rem-coeff}
+In \cite{Bartels-Reich(coefficients)} the Farrell-Jones conjecture for $G$ with
+coefficients in an additive category $\cala$ with $G$-action is developed.
+This version with coefficients specializes to the Farrell-Jones conjecture
+and also implies the fibered Farrell-Jones conjecture, i.e.;
+the conjecture that for every surjective group homomorphism $p \colon \g \to G$ the map
+\begin{eqnarray} \label{eq-fj-fibred}
+H_n^{\g} ( E_{p^{\ast}\vc} \g ; \bfK_{R}) \to H_n^{\g} ( \pt ; \bfK_{R} ) =K_n( R\g )
+\end{eqnarray}
+is an isomorphism. Theorem~\ref{thm-main} holds also with coefficients, i.e; with
+$\bfK_R$ replaced by $\bfK_{\cala}$ and $K_n ( R\g )$ replaced by $K_n ( \cala \ast_{\g} \pt )$.
+Since the transitivity principle  is a fact about
+equivariant homology theories, Corollary~\ref{cor-reduce-fj} also holds with coefficients
+and therefore in the  fibered case, too.
+\end{remark}
+
+== lines 598-612: coefficient version ==
+The version of Theorem~\ref{thm-main} with coefficients in an additive category, mentioned in Remark~\ref{rem-coeff}, follows
+from Theorem \ref{thm-main-coeff-version} below by the inheritance properties proven in \cite[Corollary 4.3]{Bartels-Reich(coefficients)}.
+Theorem~\ref{thm-main} itself then follows by specializing to the case where the additive category $\cala$ is
+$R_{\oplus}$, i.e.; the category of finitely generated free $R$-modules equipped with the trivial $\Gamma$-action, compare \cite[Example 2.4]{Bartels-Reich(coefficients)}.
+
+
+\begin{theorem} \label{thm-main-coeff-version}
+Let $\cyc$ denote the family of cyclic subgroups of the infinite dihedral group $D_\infty$.
+For every additive category $\cala$ with $D_\infty$-action and all $n \in \IZ$ the assembly map
+\[
+H_n^{D_\infty} ( E_{\cyc}D_\infty ; \bfK_{\cala}) \to H_n^{D_\infty} ( \pt ; \bfK_{\cala} ) =  K_n ( \cala \ast_{D_\infty} \pt )
+\]
+is an isomorphism.
+\end{theorem}
+Note that every subgroup of $D_{\infty}$  is either cyclic or infinite dihedral.
+

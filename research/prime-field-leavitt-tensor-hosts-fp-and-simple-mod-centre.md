@@ -16,6 +16,13 @@ artifacts:
 arXiv:2609.08428v1).** Let `p` be a prime, `L_p = L_(F_p)(1,2)`, `B` a simple
 unital `F_p`-algebra, and `R = B ⊗ L_p`.
 
+**Source audit (bh-free-26, 2026-09-18).** Every hypothesis of the imported Khanh and
+Ara--Cortiñas statements was checked against the source texts for `B = L_p`, for every prime
+`p`, including the odd-`p` modifications. The audit is
+`khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts`. The condition above now means
+only trust in those theorems (Khanh is an unrefereed preprint) and in the unreviewed repository
+steps listed there.
+
 1. If `K_i(R) = 0` for `1 <= i <= N`, then `H_n(GL_r(R); Z) = 0` for
    `1 <= n <= N` and every `r`.
 2. If `K_1(R) = K_2(R) = 0`, then `GL_m(R) = E_m(R)` for `m >= 2` and

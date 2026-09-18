@@ -70,6 +70,11 @@ universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
 
+-- LOUD: REFUTED (lane gl-p10-48; Python model, not yet in Lean).
+-- `RegionMoveCoreCloseStatement` is FALSE:
+-- it implies `RoseExtremalJunctionStatement`, which fails on the gl-p10-40 G-face model with
+-- the label-1 edges subdivided once (24 darts).  Corrected residual:
+-- `P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement` (`JunctionCore.lean`).
 /-- **The extremal-region core at a loose crossing** (OPEN, PLAUSIBLE): `RoseExtremalCoreStatement`
 with the extra premise `RegionMoveCoreCloseLooseCross K`, which `regionMoveCoreClose_looseCross`
 derives from the rose premises. -/

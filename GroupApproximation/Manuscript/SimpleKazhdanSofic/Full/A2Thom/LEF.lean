@@ -218,7 +218,7 @@ theorem isTextbookLEF_thomGroup (K : Type) [CommRing K] [Nontrivial K] [Finite K
         (Multiplicative.ofAdd (Polynomial.toLaurent r)) = out y := by
       apply Subtype.ext
       apply Subtype.ext
-      ext i j
+      refine Matrix.ext fun i j ↦ ?_
       have hij : cycEval K m ((out x * thomCentral (LaurentPolynomial K)
           (Multiplicative.ofAdd (Polynomial.toLaurent r))).1.1 i j) =
             cycEval K m ((out y).1.1 i j) :=

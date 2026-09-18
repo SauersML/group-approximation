@@ -23,3 +23,9 @@ orbits, so `Λ_Γ` is a finite 2-graph.
    `[[G_{Λ_Γ}]]` in an infinite simple group of type `F_∞`.
 
 Composing, `Γ` embeds in a finitely presented simple group.
+
+**Note (2026-09-18, bh-groupoid).** Premise 2 is refuted as stated: type-preserving `Γ` gives
+period 3 (`rs-strip-tail-transitivity-forces-primitive-transition-matrices`). So this route
+fires only for type-transitive `Γ`. That case is carried by the corrected route
+`type-transitive-a2-bh-via-rs-two-graph-full-groups`, whose premises 1–3 are ESTABLISHED
+(lane proofs).

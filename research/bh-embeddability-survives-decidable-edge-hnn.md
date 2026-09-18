@@ -228,3 +228,69 @@ only through a proof that does not pass through the conjecture.
    a proof reaching BG must use an actor in which the restricted action of BG
    has infinitely many orbits of pairs or an infinitely generated stabilizer. So
    pair-orbit finiteness can never be inherited by restriction to BG.
+
+## Attempt (bh-free-05, 2026-09-18): Hall-type hosts for free bases
+
+- **Setting.** Take `G = F*_{φ : A -> B}` with `F` finitely generated free and `A, B`
+  finitely generated. With `Y = F * <b>`, M. Hall plus equal-index adjustment extends `φ` to
+  `Φ = φ * α : C_1 = A * R -> C_2 = B * L` between finite-index subgroups of `Y`, for any
+  choice of `α`. Then `H = Y*_Φ ∈ BS_{F_2}`, which satisfies BH by BLIW §12.5.
+- **The ascending case.** `A = F` is `ascending-hnn-of-free-groups-satisfy-boone-higman`: the
+  map `G -> H` is injective even though the subgroup criterion fails.
+- **A necessary condition in general.** Put `Ā = F ∩ C_1` and `B̄ = F ∩ C_2`. The words
+  `y x y'`, with `y, y'` in `tFt^-1`, show that injectivity requires
+  `B̄ ∩ Φ(Ā) = B`. So no element of `Ā \ A` may be sent into `F`.
+- **One-sided case.** It holds automatically when `A` has finite index in `F`, since then
+  `C_1` can be chosen with `Ā = A`. So the one-sided case, `A` of finite index and `B`
+  arbitrary, passes this first test. Full injectivity there is OPEN.
+- **Two-sided case.** When both `A` and `B` have infinite index, the condition constrains the
+  choice of `α`. Whether a generic `α` gives an injective map is OPEN.
+
+- **Refinement (bh-free-05).** `domain-exact-hnn-hosts-have-multivalley-kernels`: in the one-sided case every kernel element of the Hall-host map is hyperbolic on `T_G`, with at least two height-maxima per period. That is the precise remaining gap there. Also checked: with `F` elliptic in a `BS_{F_2}` host, the forced subgroup `P' *_D tF_1t^-1` must be free. That imposes nothing, because M. Hall lets one choose `P'` with `D` a free factor, so it is not an obstruction.
+
+## Attempt (bh-free-10, 2026-09-18): identity edges in the permutational class
+
+*Settles (P2) of Attempt 9 over finite edges; reduces it over infinite ones.* By
+`free-permutational-products-preserve-pbh` (lane proof, not reviewed):
+- **Finite edges.** For `A ∈ B_A` and a finite `C <= A`, the identity-edge extension
+  `A *_C (C × Z)` lies in `B_A`. So does `A *_C (C × K)` for every `K ∈ B_A`. No
+  retraction `A -> C` is needed. An HNN extension `A*_phi` over finite edges lies in
+  `B_A` as soon as `phi` is conjugation inside some `B_A`-overgroup of `A`; this is the
+  same `t -> u s` untwisting as Attempt 9.
+- **Infinite edges.** For any `C <= A`, `A *_C (C × Z)` lies in `B_A` if the
+  lamplighter `Z/2 wr_(A/C) A` does. That is an instance of the open
+  `pbh-closed-under-decidable-permutational-wreaths`, whose decidability hypothesis is
+  exactly this claim's decidable membership. The version over arbitrary coset spaces
+  is refuted by `pbh-wreath-closure-fails-over-undecidable-stabilizers`, through the
+  same Mihailova mechanism as `bh-embeddability-forces-decidable-edge-membership`.
+- **Mechanism.** In `Aut_M(M * F(x, y))`, the factors `w K w^(-1)` go to transvections
+  by `g_w K g_w^(-1)`, with `g_w = y δ_(wC) y` built from a lamp `δ_(wC)`. The base `A`
+  acts by twisted conjugations. The lamp's centralizer in `A` is exactly `C`, which is
+  what makes the copies free.
+
+## Attempt (bh-one-relator, 2026-09-18): fatten the edge to the vertex group
+
+*Reduction, not a proof.* By `hnn-extensions-split-over-their-vertex-group-via-the-double`,
+`A*_phi` is also the HNN extension of the double `D = A *_(C_2) tAt^-1` along the whole vertex
+group, `A -> tAt^-1`.
+
+- **What it removes.** In the stable-permutation engine (Attempt 6), clause 2 asked for enlarged
+  edges `D_i` with finitely many orbits that meet `A` exactly in `C_i`. With the fat splitting,
+  `D_1 = A` itself, and clause 2 only asks that `A` be orbit-finite. This is automatic whenever
+  `A` acts transitively.
+  - The orbit-finiteness necessity of Attempt 10 (`type-a-actors-split-only-over-orbit-finite-edges`)
+    then constrains the fat edge `A`, not the thin `C_1`.
+  - So proper-power or infinite-index edges are no longer obstructions in themselves.
+- **What remains.**
+  - (i) An actor containing the twisted double `D` in which `A` and `tAt^-1` act
+    permutation-isomorphically through `c_t`. That is a symmetric-amalgam permanence problem.
+  - (ii) Faithfulness of `Gamma*_(c_t)` on the actor's set (clause 3).
+- **Where (i) is hard.** For the Baumslag--Gersten input (Attempt 8), `D` is the height-two tower
+  `K` (`baumslag-gersten-splits-over-bs12-edges`), which is not residually finite
+  (`height-two-bs-tower-is-not-residually-finite`). In any finite-entropy brick host its middle
+  generator must have unbounded exponent sums
+  (`equicontinuous-square-conjugators-are-trivial-in-brick-hosts`).
+
+**Lesson.** Thin-edge obstructions are artifacts of the presentation. The real cost of HNN
+permanence is a symmetry condition on the double, which permutation actors can in principle meet
+and finite-entropy Cantor hosts cannot.

@@ -6,10 +6,13 @@ title: In a finitely generated metabelian group an element of infinite order in 
 distinct_from:
   fg-linear-groups-have-roots-at-finitely-many-primes: that is the same root statement for finitely generated linear groups over fields; this is for finitely generated metabelian groups, which need not be linear.
   infinite-prime-localizations-embed-in-no-fg-linear-group: that excludes Z[1/P] from finitely generated linear groups; this excludes it from finitely generated metabelian groups.
+artifacts:
+  - research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md
 ---
 
 **ESTABLISHED** through `fg-metabelian-groups-have-roots-at-finitely-many-primes-proof`.
-Lane proof, not independently reviewed. Folklore-type (generic freeness); no
+Lane proof. *Reviewed:* PASS by `gq-referee-a`, including the addendum
+(`research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md`, §3). Folklore-type (generic freeness); no
 priority is claimed.
 
 ## Statement

@@ -6,6 +6,8 @@ title: The finite twisted Kazhdan cone of the Theorem E pair, twisted by evaluat
 distinct_from:
   twisted-diagonal-cones-need-a-profinitely-invisible-core: that proves every twisted cone with a visible twist is nonsofic and reduces the rest to this group; this is the one remaining soficity question, for a single explicit group.
   kt-pair-group-double-is-nonsofic: that is the untwisted double G *_Gamma G; this group is an amalgam of G with a finite extension F x| Gamma of Gamma, in which no element outside Gamma centralises Gamma or any finite-index level of it.
+refuted_by:
+  - block-subpairs-make-twisted-kazhdan-cones-nonsofic
 ---
 
 **OPEN.**  Let `Gamma = EL_r(F_q[x_1..x_d]) ≤ G = EL_r(F_q[x^(±1)]) x| SL_d(Z)` (`r, d ≥ 3`) be the
@@ -55,3 +57,21 @@ are relative groups `EL_r(R, I) x| Stab(I)` over ideals `I` of `R = F_q[x^(±1)]
 closure of the torus at the origin.  An example is `I = (x_1 + x_2)`: every element of `I ∩ R_+` vanishes at
 `0`, so `ev_0` is trivial on `EL_r(R_+, I ∩ R_+)`.  The open point is whether any such relative pair is
 Kazhdan and infranormal, and also meets `Gamma` inside `ker ev_0`.
+
+## Attempts
+
+- **w7-111, 2026-09-18: block Kun-Thom subpairs (refutation for `r ≥ 5`, and for `r = 4` with `q ∉ {2,3,5}`).**
+  - *Result.*  [[block-subpairs-make-twisted-kazhdan-cones-nonsofic]] shows that `T` is **nonsofic** for every
+    `r ≥ 5` and every `q`, and for `r = 4` with `q ∉ {2, 3, 5}`.  The statement "`T` is sofic" for all `r, d ≥ 3`
+    is therefore false, and this node is refuted.
+  - *Mechanism.*  This uses an infinite-index subpair, not a relative (ideal) subpair.  For a 3-element block
+    `S`, `G_S = EL_S(R) x| SL_d(Z)` is a subgroup of `G` with `G_S ∩ Gamma = Gamma_S = EL_S(R_+)`, by Suslin's
+    theorem.  The pair is the Theorem E pair with parameters `(3, d)`, so its double is nonsofic.  The image of
+    `e_45(1)` in `PSL_r(F_q)`, or of `diag(a,a,a,a^-3)` when `r = 4`, centralises `ev_0(Gamma_S)`.  The
+    normal-form argument then embeds `G_S *_(Gamma_S) G_S` in `T`, via `b ↦ b` and `b ↦ h b h^-1`.
+  - *Residue.*  The block method is empty for `r = 3`, and for `r = 4` with `q ∈ {2, 3, 5}`: there
+    `C_F(ev_0(Gamma_S)) = 1` for every block.  The rank-three group
+    `T_3 = (PSL_3(F_q) x EL_3(R_+)) *_(Gamma_(ev_0)) G` is the open case, now
+    [[rank-three-finite-twisted-kazhdan-cone-is-sofic]].
+  - *Relative subpairs.*  The relative-group question in the last section above is not needed for
+    `r ≥ 5`.  For `r = 3` it remains one of the two ways to attack `T_3`.
