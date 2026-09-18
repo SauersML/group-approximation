@@ -77,3 +77,15 @@ where envelopes behave) is two-sidedness of the index character in `Σ^1`. Finit
 `n >= m+1` are Meinert counts. So the whole `Σ`-toolkit (Brown, Renz, Meinert, Bieri–Geoghegan) applies to envelope
 design. When searching for new envelopes, test the index character first: a one-sided index character forces
 Houghton-type thresholds, and a two-sided one removes them.
+
+**Calibration: the index character need not be two-sided.** Take `Δ = < s̄, rho̅_0 >`, with `rho_0 = ∏_i (2^i, 2^i+1)`
+from `infinite-shift-similar-groups-need-not-be-strongly-shift-similar`. It is finitely generated and contains the
+shift.
+- `ker(η|_Δ)` is the normal closure `< c^k(rho̅_0) : k ∈ Z >`, i.e. the germs of the sparse involutions
+  `(2^i - k, 2^i - k + 1)` for all `k ∈ Z`.
+- It is not finitely generated. Words in the `k` with `|k| <= K` preserve the windows `[2^m - K, 2^m + K + 1]` and
+  fix `2^m - K - 1` for large `m`, while `c^(K+1)(rho̅_0)` moves it.
+- So `[η]` and `[-η]` are not both in `Σ^1(Δ)` (Renz, `m = 1`).
+- Hence "always two-sided" is false. The open statement `fg-infinite-shift-similar-groups-are-strongly-shift-similar`
+  is the weaker claim "never exactly one-sided", i.e. `[η] ∈ Σ^1(Δ) ⟺ [-η] ∈ Σ^1(Δ)`. Whether this particular `Δ`
+  is one-sided is itself an instance of the open question, so it is not settled here.
