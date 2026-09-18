@@ -140,6 +140,17 @@ def skCohnGr_gradedSt {n : ℕ} (m : Fin n → ℕ) :
 
 #audit_axioms GroupApproximation.Full.LVCohnGraded.skCohnGr_gradedSt
 
+/-- Admissible generators lie in the graded subgroup.  (`simple_kazhdan_sofic_group.tex`
+l.733-735, leaf T1b.iii.) -/
+theorem skCohnGr_x_mem_gradedSt {n : ℕ} (m : Fin n → ℕ) {i j : Fin n} (hij : i ≠ j)
+    {a : LVCohnRelK1.CohnTwoF2} (ha : skCohnGr_Admissible (m i) (m j) a) :
+    x i j hij a ∈ skCohnGr_gradedSt m := by
+  unfold skCohnGr_gradedSt
+  apply Subgroup.subset_closure
+  exact ⟨i, j, hij, a, ha, rfl⟩
+
+#audit_axioms GroupApproximation.Full.LVCohnGraded.skCohnGr_x_mem_gradedSt
+
 /-- The left diagonal `i ↦ x₀^{m i}` of a potential.  (`simple_kazhdan_sofic_group.tex`
 l.733-735, leaf T1b.iii.) -/
 def skCohnGr_sigma {n : ℕ} (m : Fin n → ℕ) (i : Fin n) : LVCohnRelK1.CohnTwoF2 :=
@@ -173,7 +184,7 @@ theorem skCohnGr_cornerMap_mem_range {n : ℕ} (m : Fin n → ℕ)
         (LVCornerShift.cornerMap (skCohnGr_sigma m) (skCohnGr_tau m)
           (skCohnGr_tau_mul_sigma m)) := by
     rw [skCohnGr_gradedSt, Subgroup.closure_le]
-    rintro g ⟨i, j, hij, a, ha, rfl⟩
+    rintro g' ⟨i, j, hij, a, ha, rfl⟩
     rw [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.mem_range]
     refine ⟨x i j hij ⟨LVCohnRelK1.cx false ^ m i * a * LVCohnRelK1.cy false ^ m j, ha⟩, ?_⟩
     rw [ringMap_x, LVCornerShift.cornerMap_x]
@@ -187,14 +198,14 @@ theorem skCohnGr_cornerMap_mem_range {n : ℕ} (m : Fin n → ℕ)
 theorem skCohnGr_ringMap_mem_gradedSt_zero {n : ℕ}
     (y : SteinbergGroup (Fin n) LVCohnDegZero.cohnDegreeZero) :
     ringMap LVCohnDegZero.cohnDegreeZero.subtype y ∈ skCohnGr_gradedSt (fun _ : Fin n => 0) := by
-  refine PresentedGroup.generated_by _ ((skCohnGr_gradedSt (fun _ : Fin n => 0)).comap
-    (ringMap LVCohnDegZero.cohnDegreeZero.subtype)) ?_ y
+  suffices h : y ∈ (skCohnGr_gradedSt (fun _ : Fin n => 0)).comap
+      (ringMap LVCohnDegZero.cohnDegreeZero.subtype) from Subgroup.mem_comap.mp h
+  refine PresentedGroup.generated_by _ _ ?_ y
   rintro ⟨i, j, hij, a⟩
   rw [Subgroup.mem_comap]
   change ringMap LVCohnDegZero.cohnDegreeZero.subtype (x i j hij a) ∈ _
   rw [ringMap_x]
-  exact Subgroup.subset_closure
-    ⟨i, j, hij, (a : LVCohnRelK1.CohnTwoF2), (skCohnGr_admissible_zero_iff _).mpr a.2, rfl⟩
+  exact skCohnGr_x_mem_gradedSt _ hij ((skCohnGr_admissible_zero_iff _).mpr a.2)
 
 #audit_axioms GroupApproximation.Full.LVCohnGraded.skCohnGr_ringMap_mem_gradedSt_zero
 
