@@ -5645,6 +5645,9 @@ import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockPlacement
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.UpperTriangular
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.CompressMatrix
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Products
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.FormPositivity
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.ModelLift
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Factorization
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
