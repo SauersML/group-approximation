@@ -31,6 +31,10 @@ By `psl2-q-fp-simple-via-rational-iwahori-rn-host`, this implies
     finitely generated subgroup of `PGL_2(Q_p)` cannot contain all of `PGL_2(Q)`
     acting by Möbius maps.
   - So `Λ` must contain tree automorphisms of `T_p` that are not Möbius maps.
+- **Not linear over any field.** `Γ_p` contains the translations by `Z_(p)`, in
+  which 1 has `q`-th roots for every prime `q ≠ p`. By
+  `fg-linear-groups-have-roots-at-finitely-many-primes`, no finitely generated
+  linear group over a field contains this. So `Λ` is not linear.
 - **Not residually-finite-blocked.** `Γ_p` is residually finite, since it lies in
   `Aut(T_p)`. It contains `Z_(p)` but no nontrivial divisible subgroup, so
   obstruction O1 of the root says nothing about `Λ`. The `p`-divisibility of
