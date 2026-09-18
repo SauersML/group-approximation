@@ -107,9 +107,30 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
 - **Ramsey reformulation.** J. T. Moore, *Amenability and Ramsey theory*, Fund.
   Math. 220 (2013) 263–280, reformulates amenability as a structural Ramsey
   statement that "constitutes a considerable weakening of the Følner criterion"
-  (abstract). Neither the precise statement for `F` nor the status of Moore's
-  nonassociative Hindman program (arXiv:1209.2063) has been read into this graph.
-  Dies here for lack of a verified statement, not for a mathematical reason.
+  (abstract).
+  - *2026-09-17 (swarm-0917-w6b-w6b-f-break, logic-computability).* The statement is now read in:
+    `moore-ramsey-criterion-for-amenability` (ESTABLISHED by citation). It gives Theorem 1.3 and Towsner's bound
+    `Føl_S(k) ≤ 5^{R^{2p}(1)}` for `(3/4)^p < 1/(4k)`.
+  - *Quantitative transfer.* `thompson-f-ramsey-function-iterates-reach-towers` (ESTABLISHED, unreviewed).
+    - `R^{j_n}(1) ≥ exp_{n−1}(0)/log₂5` with `j_n = O(n)`.
+    - So no bound `R(m) ≤ exp_q((log_q m)^d)` holds. That kills every quasi-polynomial "moderate rate" in Moore's
+      Section 7 hope.
+    - The known inference cannot exclude an elementary `R_F`, because `exp_r` satisfies all its constraints.
+  - *Fork.* If AMP(D) holds for some `D`, then `R_F` is not elementary. The Ramsey route is then pinned to the
+    Følner tower like every other route.
+    - The surviving branch is the OPEN claim `thompson-f-ramsey-amplification-needs-unbounded-tower-overhead`
+      (¬AMP). It is necessary for an elementary `R_F`, and it implies the root through the route
+      `thompson-f-amenable-via-costly-ramsey-amplification`.
+    - *Invariant:* `log* R^j(1)`, which grows linearly in `j`.
+    - *Where every member dies:* the nested-Ramsey recursion (3⇒4) of Moore's Theorem 2.1. It composes `R`
+      `Θ(log 1/ε)` times, so any transfer through nested Ramsey sets loses exactly one iteration level.
+  - *Nonassociative Hindman program.* `free-magma-carries-an-idempotent-finitely-additive-measure` (OPEN), wired to
+    the root by the route `thompson-f-amenable-via-idempotent-magma-measure`.
+    - The existence proof in arXiv:1209.2063 is withdrawn, with an error in Lemma 4.13.
+    - Theorem 3.3 (an idempotent measure gives an invariant mean) re-checks.
+    - Dead classes: ultrafilters, killed by a parity homomorphism, and finite-quotient obstructions to existence,
+      killed by Brouwer on the simplex.
+  - Dies: at AMP for the moderate-rate route, and at Lemma 4.13 for the idempotent-measure route.
 - **Strong amenability.** `thompson-f-is-not-strongly-amenable`: `F` has a
   proximal action without fixed points, so no argument through strong
   amenability can work.
