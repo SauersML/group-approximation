@@ -43,4 +43,17 @@ is the compact group of finitely additive `T`-valued measures on clopen sets.
 - **No distortion to exploit.** Every infinite-order element of `G` is undistorted
   (artifact §3(c), using undistortion of cyclic subgroups of `V`, recalled). So the
   Callard–Salo argument does not even rule out a proper cubical action of `G`.
+- **Measure-character and support screen (c-nvhaag, 2026-09-17, ESTABLISHED as
+  `cantor-integer-relative-t-witnesses-avoid-measure-characters`).** Any `V`-almost-invariant sequence on
+  `Â ∖ {0}` is asymptotically null on four kinds of set:
+  - every measure character `f ↦ ∫ f dσ mod 1`. This is a Lusin–Souslin equivariant probability section plus
+    halving. It covers all atomic characters, with no bound on the number of atoms, which strengthens §3(g),
+    and all Lebesgue densities;
+  - every `N_U`, the characters vanishing on `C(U,Z)`;
+  - every `Fix(g)` with `g ≠ e`;
+  - every countable orbit set with amenable stabilizers.
+
+  So witnesses against relative (T) must be wild, spread-out and essentially free. **Where the screen dies.**
+  Haar measure on `Â` is exactly invariant and survives every screen. A proof of relative (T) must therefore
+  use `μ_k → δ_0`, and invariance-type obstructions alone cannot finish.
 - Not settled.
