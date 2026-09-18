@@ -72,7 +72,7 @@ def euclideanCoordinateStarAlgHom (n : ℕ) :
       = algebraMap ℂ _ z
     rw [Algebra.algebraMap_eq_smul_one z, Algebra.algebraMap_eq_smul_one z]
     show euclideanize (X n) (z • (1 : ModelBoundedSequence X) n) = z • 1
-    rw [map_smul, euclideanize_one]
+    rw [map_smul, modelSeq_one_apply, euclideanize_one]
   map_star' a := by
     show euclideanize (X n) ((star a) n) = star (euclideanize (X n) (a n))
     rw [modelSeq_star_apply, euclideanize_star]
