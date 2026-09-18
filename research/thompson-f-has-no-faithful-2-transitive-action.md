@@ -62,3 +62,23 @@ so this says the transitivity degree of `F` is 1.
       components.
   - Also found: twisted models defeat the T1-type antisymmetric tests of
     `thompson-f-admits-a-faithful-2-transitive-action`.
+- 2026-09-18 (swarm-0917-w7-w7-z-break, minimal-counterexample: disagreement
+  sets of pairs). **Partial; the node stays open.**
+  - Proved `thompson-f-two-transitive-disagreement-sets-are-self-similar`
+    (unreviewed). For `ω ≠ ω'`, let `D(ω,ω')` be the set of `x` at which no
+    element that is the identity near `x` sends `ω` to `ω'`. Then:
+    - all these sets form one `F`-orbit of compact subsets of `(0,1)`;
+    - their extreme points are `ξ` and `η`;
+    - disjoint `D(ω,ω')`, `D(ω,ω'')` force `D(ω',ω'') = D(ω,ω') ⊔ D(ω,ω'')`;
+    - splicing at a gap realizes every clopen piece as a disagreement set, so
+      every nonempty clopen piece of `D_0` is an `F`-translate of `D_0`;
+    - an `F_U^c` element beside `D_0` makes `D_0` disconnected.
+  - So `D_0` is perfect, with infinitely many components, none relatively open.
+  - Kills every model in which some pair has a disagreement set with finitely
+    many components. This covers the finite-difference and finite-interval-union
+    models of the 2026-09-17 entry, kind 1 and kind 2 together, with no affine
+    reduction.
+  - Split of what is left, route
+    `thompson-f-no-two-transitive-via-disagreement-set-type`:
+    - `thompson-f-two-transitive-disagreement-sets-are-not-cantor` (OPEN);
+    - `thompson-f-two-transitive-disagreement-sets-have-no-interior` (OPEN).

@@ -2,7 +2,7 @@
 rg: 2
 id: char-zero-representable-rings-embed-in-fp-simple-rings
 kind: claim
-title: Every ring embeddable in M_D(C ⊗ Q<x_1..x_m>), C a finitely generated commutative Q-algebra or field of characteristic zero, embeds in a finitely presented simple ring
+title: Every ring embeddable in M_D(C ⊗ Q<x_1..x_m>), C a finitely generated commutative Q-algebra or field of characteristic zero, embeds in a simple ring finitely presented as a ring (over Z)
 distinct_from:
   polynomially-representable-algebras-have-fp-simple-envelopes: that is the field-K version for subalgebras of M_n(K<x> ⊗ K[t]), with finite presentation over K; this is finite presentation over Z, and C may be any finitely generated commutative Q-algebra (localizations, finite extensions, nilpotents), because the host contains Q(t_1..t_k).
   rational-function-fields-embed-in-fp-simple-rings: that is the construction of the host R_k; this is its consequence for representable rings.
@@ -11,8 +11,18 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `char-zero-representable-rings-embed-in-fp-simple-rings-proof`
-(lane proof, not independently reviewed; referee requests sent). No priority is claimed
+(lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-char-zero-representable-rings-embed-in-fp-simple-rings.md`, 69a3cc64f) and `gq-referee-b` (`gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4)). No priority is claimed
 beyond a bounded search.
+
+**Known and credit.** Finitely presented simple *algebras over a field* of characteristic
+zero are classical: the Weyl algebra `A_1(Q)`, the Leavitt algebras `L_Q(1,n)`, and
+Nekrashevych algebras are finitely presented over `Q` and simple. The point here is finite
+presentation *as a ring*, that is, as a `Z`-algebra, which forces all of `Q` to be generated
+by finitely many elements. This is the characteristic-zero case of the algebra form of
+Boone--Higman (`algebra-boone-higman-conjecture`, with finite presentation over `Z`) for
+these inputs. No printed source asks this question, so it is not an answer to an open
+problem. A bounded search (web and arXiv; no MathSciNet, zbMATH or Dniester Notebook;
+`gq-gq-lit-arxiv-priority.md` §§6, 9) found no prior construction.
 
 **Statement.** Let `C` be a commutative `Q`-algebra that embeds unitally in
 `M_e(Q(t_1..t_k))` for some `e` and `k`. By the proof, §2, every finitely generated

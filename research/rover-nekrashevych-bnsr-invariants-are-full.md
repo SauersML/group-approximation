@@ -45,3 +45,15 @@ odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ
   `Σ^2(V_2(Basilica))` is the first test where item 2 could fail. The stabilizer route gives nothing there, because
   `Basilica^n` is not finitely presented. A proof would need a different complex, such as the nucleus-based
   presentation of Nekrashevych.
+- **2026-09-18 (swarm-0917-w7-w7-z-last1): Item 2 in full, for every `d >= 2`, every self-similar `G` and every `m`
+  with `Γ` of type `F_m`: ESTABLISHED** via route `rover-nekrashevych-bnsr-full-via-type-one-partitions`
+  (unreviewed). Item 1 is taken from `rover-nekrashevych-characters-are-sum-invariant`.
+  - The complex is the order complex of the partitions of `C` into type-1 clopen sets (cone count `≡ 1 mod d−1`) with
+    between `m+1` and `(m+1)d−1` blocks. `Γ` acts on it cocompactly.
+  - Cell stabilizers are virtually `Γ^n` with `n >= m+1`, by the new node
+    `rover-nekrashevych-type-one-clopen-stabilizers-are-copies`. They are products of copies of `Γ`, not of `G`, so the
+    finiteness of `G` never enters and the Basilica obstruction above does not arise.
+  - Descending links are rank-selected `1 mod k` partition lattices, by the new node
+    `one-mod-k-partition-posets-are-highly-connected` (Björner–Wachs, imported verbatim from Wachs's notes).
+  - Characters live on every factor, so `characters-living-on-m-plus-one-factors-lie-in-sigma-m` and Meinert's
+    criterion close the argument.

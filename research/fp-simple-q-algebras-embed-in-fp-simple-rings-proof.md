@@ -46,10 +46,11 @@ Let `S = Q<a_1..a_r | f_1..f_l>`, with `f_j ∈ Q<a>` and `S` simple.
   field.
 
 ## 3. The equivalence
-- **Rings to `Q`-algebras.** Let `A ⊆ R` with `R` a finitely presented simple ring, and
-  put `e = 1_A`.
-  - `Q·e ⊆ R`, so `R` has characteristic `0`, by
-    `fp-simple-ring-of-characteristic-zero-exists`, equivalence (c) ⇒ (a). The centre of
+- **Rings to `Q`-algebras.** Let `A ⊆ R` with `R` a finitely presented simple ring and
+  `A ≠ 0` (the case `A = 0` is trivial). Pick a nonzero `a ∈ A`.
+  - `R` has characteristic `0`: if `p·1_R = 0` for a prime `p`, then
+    `a = p·((1/p)a) = (p·1_R)((1/p)a) = 0`, where `(1/p)a ∈ A` is taken in the
+    `Q`-algebra `A`. The centre of
     the simple unital ring `R` is then a field containing `Q`, so `R` is a `Q`-algebra.
   - The two `Q`-structures on `A` agree: `R` is torsion-free, and both `(1/m)a` are the
     unique `x` with `m x = a`.

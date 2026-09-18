@@ -9,8 +9,7 @@ distinct_from:
   fp-simple-ring-of-characteristic-zero-exists: that is the existence of one such ring; this is a transfer principle for all Q-algebras.
 ---
 
-**ESTABLISHED** through `fp-simple-q-algebras-embed-in-fp-simple-rings-proof` (lane proof,
-not independently reviewed).
+**ESTABLISHED** through `fp-simple-q-algebras-embed-in-fp-simple-rings-proof` (lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-fp-simple-q-algebras-embed-in-fp-simple-rings.md`, 69a3cc64f) and `gq-referee-b` (`gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4)).
 
 **Statement.**
 1. The centre of the ring `R_L` of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`

@@ -260,3 +260,41 @@ So every value-only or compiler-uniform construction of `LNC3` is false.
 - Combined with the monomial death step above, a successful diagram needs
   inhomogeneous three-answer packets whose existence is not implied by any
   game value.
+
+### Full character classification of EL_20(J) (swarm-0917-w7-w7-nh-last1, decomposition, 2026-09-18)
+
+*Approach tried.*  Attack the `EL_20(J)` decision point above by classifying all characters of
+`E=EL_n(J)`, not only the CE ones. The aim was either to find an explicitly embeddable character that is
+nontrivial on `L`, or to cut the problem down to a single test object.
+
+*Result* (`jacobson-el-characters-are-symbol-or-finitary-extensions`, established, via the imported
+`dlv-locally-inner-inducing-character-classification`).
+
+- `L=GL_fin` is a locally inner subgroup of `E`. For `g` in `E` and finitely generated `F <= L`, conjugation
+  by `g` on `F` is implemented by an element of `L`, built from a modular-law complement. `L` is also
+  inducing in `E`. The proof uses the DLV rank decay (Prop. 8.5) and the generalised Bekka lemma (Lemma
+  5.10), together with `rank([g,x]-1) >= k` for suitable finitary involutions `x` when `g` is off `L`.
+- So by DLV Theorem 6.4 every character is either a symbol character `sigma o p` or a zero extension
+  `e psi` with `psi` a nontrivial character of `L ~= GL(infinity,2)`. The second family is countable by
+  Thoma--Skudlarek.
+- **Traces.**  For every trace, the limit `lambda_tau = lim tau(w)` over high-rank `w` in `L` exists, and
+  `|tau(g)| <= lambda_tau` for every `g` off `L`.
+
+*What this kills.*  Every "partially faithful" model fails, meaning a trace that stays asymptotically
+regular on high-rank finitary elements but keeps weight on a symbol-nontrivial element such as `x_12(S)`.
+By `(B2)`, such a trace vanishes off `L`. So a hyperlinear model seeing `z` gives no information beyond a
+CE zero extension. The IRS, rank and Haar fixed-point candidates above are among the countably many
+functions `e psi`. The `phi_k` are `e(2^(-k rank))`.
+
+*Where it stops (hole stays OPEN).*  Three statements are equivalent: `EL_20(J)` is hyperlinear, some
+`e psi` is CE, and `e delta^L_e = delta_e` is CE. For `psi != 1`, `pi_psi(L)''` is the hyperfinite
+`II_1` factor `R`. The GNS algebra of `e psi` is a cocycle crossed product `R ⋊ EL_20(F_2[x,x^(-1)])`.
+So the hole is exactly Connes embeddability of one such cocycle crossed product. That is the setting of
+`finitary-extension-ce-iff-action-lifts-to-normalizer`, and a lift of the cocycle action to the normalizer
+of `R^omega` is the remaining step. Popa (arXiv:1802.09964, abstract) shows that, for free actions, CE of
+`R ⋊ Gamma` is equivalent to vanishing cohomology of the induced cocycle action on `R' ∩ R^omega`. He also
+shows that many groups lack that vanishing-cohomology property. So no general "amenable kernel" argument
+can close this, and a proof has to use the specific Laurent-symbol action. Next falsifiable step: decide
+whether the Thoma--Skudlarek action of `EL_20(F_2[x,x^(-1)])` on `R` has vanishing cohomology (in Popa's sense) in
+`R' ∩ R^omega`. Alternatively, find a sofic approximation of the orbit relation that is compatible with
+the corner filtration.

@@ -17,9 +17,11 @@ distinct_from:
 2026-09-18).
 
 **What it would give.**
-- An element of `3V` with logarithmic distortion, `|s^{3^n}| = O(n)`. The Callard–Salo element has
-  `O(log^4 N)`.
+- An element of `3V` with logarithmic distortion, `|s^{3^n}| = O(n)`. Callard–Salo's distortion element
+  of `mV` (a different construction) has `|f^N| = O(log^4 N)`.
+- As far as a bounded search shows, it would be the first `BS(1,n)` with `|n| >= 2` in a Brin–Thompson
+  group. `BS(m,±m)` already lies in `V`. A priority check is requested from gq-lit-arxiv.
 - The Baumslag–Solitar gate of `rational-stepping-stones-in-nv-need-bs12-or-heisenberg` is passable
   for the prime 3. The gate for 2, which `GL_2(Q)` and `Aff(Q)` need, stays open.
-- It contradicts the Baumslag–Solitar exclusions of Sheng arXiv:2209.11982 for `nV`, which were
-  withdrawn in v2.
+- It is consistent with the withdrawal of Sheng arXiv:2209.11982 (v2, "a flaw in one of the proofs"),
+  whose abstract excluded some Baumslag–Solitar groups from `SV` and `SV_G`.
