@@ -83,7 +83,7 @@ theorem orthSum_comm (u u' : D →⋆ₙₐ[ℂ] E) (h : NOrth u u') :
   NonUnitalStarAlgHom.ext fun d => add_comm (u d) (u' d)
 
 theorem comp_orthSum (y : E →⋆ₙₐ[ℂ] E') (u u' : D →⋆ₙₐ[ℂ] E) (h : NOrth u u') :
-    y.comp (orthSum u u' h) = orthSum (y.comp u) (y.comp u') (h.comp_left y) :=
+    y.comp (orthSum u u' h) = orthSum (y.comp u) (y.comp u') (NOrth.comp_left y h) :=
   NonUnitalStarAlgHom.ext fun d => map_add y (u d) (u' d)
 
 theorem orthSum_comp (u u' : D →⋆ₙₐ[ℂ] E) (h : NOrth u u') (z : D' →⋆ₙₐ[ℂ] D) :

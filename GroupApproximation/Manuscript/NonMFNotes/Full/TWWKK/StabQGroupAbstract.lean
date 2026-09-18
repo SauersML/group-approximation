@@ -119,7 +119,7 @@ theorem addClass_assoc (x y z : HomotopyClass D E) :
       | mk k =>
         show HomotopyClass.mk (S.sum (S.sum f g) k) = HomotopyClass.mk (S.sum f (S.sum g k))
         have hab : NOrth (S.ι₁.comp (S.ι₁.comp f)) (S.ι₁.comp (S.ι₂.comp g)) :=
-          (S.sum_orth f g).comp_left S.ι₁
+          NOrth.comp_left S.ι₁ (S.sum_orth f g)
         have hac : NOrth (S.ι₁.comp (S.ι₁.comp f)) (S.ι₂.comp k) := S.sum_orth _ _
         have hbc : NOrth (S.ι₁.comp (S.ι₂.comp g)) (S.ι₂.comp k) := S.sum_orth _ _
         have e₁ : S.sum (S.sum f g) k =

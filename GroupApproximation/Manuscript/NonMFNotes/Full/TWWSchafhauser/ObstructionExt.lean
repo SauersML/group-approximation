@@ -90,7 +90,7 @@ def BusbyCycle.IsUnitarilyEquivalent (x y : BusbyCycle S J) : Prop :=
 /-- `z` is the **direct sum** of `x` and `y`: under a unitary `H_J ⊕ H_J ≅ H_J`, the diagonal
 `x ⊕ y` agrees with `z` modulo compacts. -/
 def BusbyCycle.IsDirectSum (z x y : BusbyCycle S J) : Prop :=
-  ∃ U : Adjointable (prod (standardModule ℕ J) (standardModule ℕ J)) (standardModule ℕ J),
+  ∃ U : Adjointable (HilbertModule.prod (standardModule ℕ J) (standardModule ℕ J)) (standardModule ℕ J),
     Adjointable.IsUnitaryAdj U ∧
     ∀ a : S, CompactEq J
       (Adjointable.comp U (Adjointable.comp (Adjointable.prodMap (x.lift a) (y.lift a))

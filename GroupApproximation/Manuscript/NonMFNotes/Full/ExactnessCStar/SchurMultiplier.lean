@@ -68,7 +68,6 @@ theorem schurColumn_single (W : PropertyAWitness G R ε) (x s : G) :
   · rw [hts, Pi.single_eq_same, Pi.single_eq_same, mul_one]
   · rw [Pi.single_eq_of_ne hts, Pi.single_eq_of_ne hts, mul_zero]
 
-omit [Group G] in
 theorem apply_eq_inner_single (f : GroupHilbert G) (s : G) :
     f s = ⟪(lp.single 2 s (1 : ℂ) : GroupHilbert G), f⟫_ℂ := by
   rw [lp.inner_single_left, RCLike.inner_apply', map_one, one_mul]
