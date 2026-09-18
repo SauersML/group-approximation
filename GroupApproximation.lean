@@ -5762,6 +5762,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFInterface
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurDilation
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurMultiplier
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Phases
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosFiniteDim
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
