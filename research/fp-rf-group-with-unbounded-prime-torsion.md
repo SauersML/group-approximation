@@ -113,3 +113,26 @@ whether such a group is already known is open here.
    - *Lattices in products of trees* act properly and cocompactly on a CAT(0)
      space (attempt 3).
    - *S-arithmetic groups over function fields* are linear (attempt 1).
+9. **Steinberg groups over a finitely presented residually finite ring with
+   every additive order (2026-09-17, swarm-0917-w6-w6-z-last2).** *Reduced to one
+   open hole; not dead.*
+   - **The ring.** Let `R_count = Z<u,x,e | xu-ux-x, ue, eu>` and
+     `r_n = e x^n e`. Since `x^n u = (u+n) x^n`, we get `n r_n = 0`.
+     `counting-ring-is-residually-finite-with-every-additive-order` proves that
+     `r_n` has order exactly `n` and that `R_count` is residually finite. The
+     proof uses a tensor-ring normal form and block shift representations, and
+     it avoids the Noetherian obstruction to unbounded torsion.
+   - **The group.** `counting-ring-steinberg-group-has-every-torsion-order` uses
+     Krstić--McCool and Ershov--Jaikin-Zapirain. It shows that `St_m(R_count)`,
+     for `m >= 4`, is finitely presented with (T). Its finite residual lies in
+     `K_2(m, R_count)`, and its largest residually finite quotient contains
+     `x_12(r_n)` of order `n` for every `n`.
+   - **The route.** `unbounded-prime-torsion-via-counting-ring-steinberg` needs
+     only `counting-steinberg-residual-finitely-normally-generated`.
+     That claim has two independent sufficient mechanisms: residual finiteness
+     of `St_m(R_count)`, or finite presentability of `E_m(R_count)`.
+   - **Why this avoids attempts 1--8.** The group is not linear over a field. It
+     has (T), so it is not amenable-by-anything-small. It is not virtually
+     residually-`p`. The torsion comes from the additive torsion of a
+     non-Noetherian ring, not from finite vertex groups or a product of finite
+     groups.
