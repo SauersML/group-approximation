@@ -62,9 +62,9 @@ theorem higmanVCOrbitAll_mem_child {d : ℕ} :
 theorem higmanVCOrbitAll_mem_sib {d : ℕ} :
     ∀ (p q : List (Fin d)) (y j : Fin d), q ++ [y] <+: p → j ≠ y →
       q ++ [j] ∈ higmanVCOrbitAll_pathSet p
-  | [], q, y, j, hq, _ => by
-    have hl := hq.length_le
-    simp only [List.length_append, List.length_singleton, List.length_nil] at hl
+  | [], q, y, _j, hq, _ => by
+    have hl : (q ++ [y]).length ≤ ([] : List (Fin d)).length := hq.length_le
+    rw [List.length_append, List.length_singleton, List.length_nil] at hl
     omega
   | z :: p, [], y, j, hq, hj => by
     rw [List.nil_append] at hq
