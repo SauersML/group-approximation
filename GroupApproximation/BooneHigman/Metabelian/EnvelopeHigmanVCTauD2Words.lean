@@ -240,3 +240,91 @@ def higmanVCTauD2_ChainMO (d : ℕ) (p q m o m' o' : List (Fin d)) : Prop :=
     higmanVCTauTight_Link d (m.length + o.length) P1 Q1 X1 Y1 p q m' o'
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_ChainMO
+
+/-- Packaging a bridge: the root swap `(P Q)` and the bridge swap `(P₁ Q₁)` with their
+images. -/
+theorem higmanVCTauD2_mkBridge {d : ℕ}
+    {P Q m o u v m' o' X0 Y0 P1 Q1 X1 Y1 P2 Q2 X2 Y2 u1 v1 E1 E2 : List (Fin d)}
+    (hPQ : ¬ P <+: Q) (hQP : ¬ Q <+: P) (hP : P.length ≤ 3) (hQ : Q.length ≤ 3)
+    (t1 : MapsCone (coneSwap P Q hPQ hQP) m X0) (t2 : MapsCone (coneSwap P Q hPQ hQP) o Y0)
+    (ht : X0.length + Y0.length < m.length + o.length)
+    (hW1 : ¬ P1 <+: Q1) (hW2 : ¬ Q1 <+: P1) (hP1 : P1.length ≤ 3) (hQ1 : Q1.length ≤ 3)
+    (w1 : MapsCone (coneSwap P1 Q1 hW1 hW2) m X1) (w2 : MapsCone (coneSwap P1 Q1 hW1 hW2) o Y1)
+    (hw : X1.length + Y1.length < m.length + o.length)
+    (w3 : MapsCone (coneSwap P1 Q1 hW1 hW2) P P2) (w4 : MapsCone (coneSwap P1 Q1 hW1 hW2) Q Q2)
+    (hP2 : P2.length ≤ 3) (hQ2 : Q2.length ≤ 3)
+    (w5 : MapsCone (coneSwap P1 Q1 hW1 hW2) X0 X2)
+    (w6 : MapsCone (coneSwap P1 Q1 hW1 hW2) Y0 Y2)
+    (hw2 : X2.length + Y2.length < m.length + o.length)
+    (w7 : MapsCone (coneSwap P1 Q1 hW1 hW2) u u1) (w8 : MapsCone (coneSwap P1 Q1 hW1 hW2) v v1)
+    (hu1 : u1.length ≤ 3) (hv1 : v1.length ≤ 3)
+    (w9 : MapsCone (coneSwap P1 Q1 hW1 hW2) m' E1)
+    (w10 : MapsCone (coneSwap P1 Q1 hW1 hW2) o' E2)
+    (hE : E1.length + E2.length < m.length + o.length) :
+    higmanVCTauD2_Good d P Q m o u v m' o' := by
+  unfold higmanVCTauD2_Good
+  exact Or.inl ⟨X0, Y0, P1, Q1, X1, Y1,
+    higmanVCTauBridge_mkNode (higmanVCTauBridge_mkStep hPQ hQP hP hQ t1 t2) ht,
+    higmanVCTauBridge_mkNode (higmanVCTauBridge_mkStep hW1 hW2 hP1 hQ1 w1 w2) hw,
+    higmanVCTauBridge_mkEdge (higmanVCTauBridge_mkStep hW1 hW2 hP1 hQ1 w3 w4) hP2 hQ2
+      (higmanVCTauBridge_mkStep hW1 hW2 hP1 hQ1 w5 w6) hw2,
+    higmanVCTauBridge_mkEdge (higmanVCTauBridge_mkStep hW1 hW2 hP1 hQ1 w7 w8) hu1 hv1
+      (higmanVCTauBridge_mkStep hW1 hW2 hP1 hQ1 w9 w10) hE⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_mkBridge
+
+/-- Packaging a direct edge from the root swap `(P Q)` into `(u, v)`. -/
+theorem higmanVCTauD2_mkDirect {d : ℕ} {P Q m o u v m' o' X0 Y0 u1 v1 E1 E2 : List (Fin d)}
+    (hPQ : ¬ P <+: Q) (hQP : ¬ Q <+: P) (hP : P.length ≤ 3) (hQ : Q.length ≤ 3)
+    (t1 : MapsCone (coneSwap P Q hPQ hQP) m X0) (t2 : MapsCone (coneSwap P Q hPQ hQP) o Y0)
+    (ht : X0.length + Y0.length < m.length + o.length)
+    (t3 : MapsCone (coneSwap P Q hPQ hQP) u u1) (t4 : MapsCone (coneSwap P Q hPQ hQP) v v1)
+    (hu1 : u1.length ≤ 3) (hv1 : v1.length ≤ 3)
+    (t5 : MapsCone (coneSwap P Q hPQ hQP) m' E1) (t6 : MapsCone (coneSwap P Q hPQ hQP) o' E2)
+    (hE : E1.length + E2.length < m.length + o.length) :
+    higmanVCTauD2_Good d P Q m o u v m' o' := by
+  unfold higmanVCTauD2_Good
+  exact Or.inr (Or.inl ⟨X0, Y0,
+    higmanVCTauBridge_mkNode (higmanVCTauBridge_mkStep hPQ hQP hP hQ t1 t2) ht,
+    higmanVCTauBridge_mkEdge (higmanVCTauBridge_mkStep hPQ hQP hP hQ t3 t4) hu1 hv1
+      (higmanVCTauBridge_mkStep hPQ hQP hP hQ t5 t6) hE⟩)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_mkDirect
+
+/-- A good position gives the chain in main/other form. -/
+theorem higmanVCTauD2_chainMO_of_good {d : ℕ} {p q m o m' o' u v P Q : List (Fin d)}
+    (hP : higmanVCTau_descP m o = P) (hQ : m.take 3 = Q)
+    (huv : (u = p ∧ v = q) ∨ (u = q ∧ v = p))
+    (hs : higmanVCTauTight_Node d m o p q m' o')
+    (hG : higmanVCTauD2_Good d P Q m o u v m' o') : higmanVCTauD2_ChainMO d p q m o m' o' := by
+  subst hP
+  subst hQ
+  have hE : ∀ {P1 Q1 : List (Fin d)},
+      higmanVCTauTight_Edge d (m.length + o.length) P1 Q1 u v m' o' →
+      higmanVCTauTight_Edge d (m.length + o.length) P1 Q1 p q m' o' := by
+    intro P1 Q1 h
+    rcases huv with ⟨e1, e2⟩ | ⟨e1, e2⟩
+    · rw [e1, e2] at h
+      exact h
+    · rw [e1, e2] at h
+      exact higmanVCTauD2_edge_pswap h
+  unfold higmanVCTauD2_ChainMO higmanVCTauTight_Link
+  unfold higmanVCTauD2_Good at hG
+  rcases hG with ⟨X0, Y0, P1, Q1, X1, Y1, h0, h1, hE0, hE1⟩ | ⟨X0, Y0, h0, hE1⟩ | ⟨hu, hv⟩
+  · exact ⟨higmanVCTau_descP m o, m.take 3, X0, Y0, P1, Q1, X1, Y1, Or.inl ⟨rfl, rfl⟩, h0, h1,
+      Or.inr (Or.inr hE0), Or.inr (Or.inl (hE hE1))⟩
+  · exact ⟨higmanVCTau_descP m o, m.take 3, X0, Y0, higmanVCTau_descP m o, m.take 3, X0, Y0,
+      Or.inl ⟨rfl, rfl⟩, h0, h0, Or.inl ⟨rfl, rfl, rfl, rfl⟩, Or.inr (Or.inl (hE hE1))⟩
+  · rcases huv with ⟨e1, e2⟩ | ⟨e1, e2⟩
+    · rw [e1] at hu
+      rw [e2] at hv
+      exact ⟨p, q, m', o', p, q, m', o', Or.inl ⟨hu, hv⟩, hs, hs, Or.inl ⟨rfl, rfl, rfl, rfl⟩,
+        Or.inl ⟨rfl, rfl, rfl, rfl⟩⟩
+    · rw [e1] at hu
+      rw [e2] at hv
+      exact ⟨p, q, m', o', p, q, m', o', Or.inr ⟨hv, hu⟩, hs, hs, Or.inl ⟨rfl, rfl, rfl, rfl⟩,
+        Or.inl ⟨rfl, rfl, rfl, rfl⟩⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_chainMO_of_good
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
