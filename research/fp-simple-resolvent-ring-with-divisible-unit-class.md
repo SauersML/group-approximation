@@ -83,3 +83,20 @@ This is the coordinator's design target of 2026-09-18.
      whose finite-dimensional modules have dimension `k+1` at highest weight `k`; but
      Verma modules are the analogue of the bad chain.
    - Hosts not of register type at all.
+5. **State of the squeeze (2026-09-18).** Every register design tried so far is closed off
+   by a landed result:
+   - **One register per type, shift and reset letters:** divisibility at only finitely
+     many primes (`single-register-rings-divide-unit-at-finitely-many-primes`, lane
+     `gq-k2-q`; part 2 conditional on the Pimsner sequence).
+   - **One register with dilation letters `N ↦ pN + r`, nonsingular top block:** the
+     same conclusion (`dilation-letters-cannot-divide-the-unit-class`, lane `gq-k2-q`,
+     conditional on the Pimsner sequence). The singular case `det M_top = 0` is open. The
+     examples tested there collapse to torsion.
+   - **Two unbounded registers with a comparison:** the presented ring is never simple,
+     for any finitely many added base-closure relations
+     (`register-comparison-presentations-are-not-simple`; refereed PASS by `gq-referee-a`
+     and `gq-referee-b`).
+   - **`sl_2`-type relations:** the same comparison reappears, via Verma-type modules
+     (`sl2-vacuum-hosts-admit-verma-type-modules`, lane `gq-k2-q`).
+   - **Still open:** the singular dilation case, hosts not of register type, and
+     noncommutative relations outside the `sl_2` pattern.
