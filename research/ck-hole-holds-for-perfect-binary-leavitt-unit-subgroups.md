@@ -7,7 +7,7 @@ requires: [square-module-ring-hosts-are-sandwich-ring-quotients, binary-leavitt-
 distinct_from:
   square-module-ring-hosts-are-sandwich-ring-quotients: that is the general recipe turning a square-module ring host into a witness; this instantiates it at the one host on main that is known to qualify, and adds a K_2 transfer lemma for clause (b).
   ck-sandwich-ring-has-fp-projective-simple-quotient: that is the OPEN hole for an arbitrary simple core S; this proves it for every perfect S inside L_(F_2)(1,2)^x, which gives no new Boone--Higman case.
-  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that is the OPEN existential kernel claim; this exhibits clean markings for which it is true, so the existential form is neither refuted nor vacuous.
+  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that is the OPEN existential kernel claim; this realizes its existential reading inside the CK Steinberg-cover framework for every perfect S <= L_(F_2)(1,2)^x; by that node's Attempt 11 the existential reading is Boone--Higman for S again, and the specific Clapham marking is untouched.
 ---
 
 **ESTABLISHED** (lane proof, elementary, not reviewed; no priority claimed).
@@ -39,11 +39,14 @@ finitely normally generated maximal proper normal subgroup (regime R4 of
 **What it does and does not give.** Every finitely generated `G <= G_L` runs through
 [[boone-higman-via-ck-maximal-kernel]] end to end with this marking (take the simple
 core to be `G_L` itself, which contains `G × Z`). That is no new Boone--Higman case,
-since `G_L` is already a finitely presented simple overgroup. The point is structural:
-the open kernel claim is **true for some clean markings**, so its existential form is
-consistent, and the route's full content is exactly the square-module host problem of
-[[square-module-ring-hosts-are-sandwich-ring-quotients]] (up to the directly finite gap
-recorded there).
+since `G_L` is already a finitely presented simple overgroup. By Attempt 11 of
+[[ck-envelope-has-a-finitely-normally-generated-maximal-kernel]], the existential reading
+of the hole ("some envelope of `S` has an fng maximal kernel") is Boone--Higman for `S`
+again; this instance is of exactly that kind. What it adds is only that the witness can
+be taken to be a CK marked Steinberg cover (a property-(T) cover of `EL_4` of a sandwich
+ring), not just the fp simple overgroup with `M = 1`. It says nothing about the
+specific-object version, the Clapham marking of the route, which is where the content of
+the hole lies.
 
 ## 2. Clause (b) contains the stable K_2 budget
 
