@@ -5954,6 +5954,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Stabilize
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabEntry
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.Decide
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineMap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensor
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
