@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnital
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHalfExactUnit
 import Mathlib.Algebra.Exact.Basic
 
 /-!
@@ -17,7 +17,8 @@ For the non-unital extension one uses the unitized extension (RLL §8.3 and §9.
 This file provides that extension and the reduction of exactness at `K_*(J)`:
 
 * `unitIncl ι : J →⋆ₙₐ[ℂ] A⁺` is the inclusion `j ↦ ι j`;
-* `unitIncl_injective`, `unitIncl_exact`: the unitized sequence is again an extension;
+* `unitIncl_injective`, `unitIncl_exact`: the unitized sequence is again an extension
+  (using `snd_starMap` of `KTheoryNonUnitalHalfExactUnit`, lane `TWWSch3d3-1C`);
 * `starLift_unitIncl`: the unital lift of `unitIncl ι` is `Unitization.starMap ι`;
 * `KZeroN.incl_comp_map`: the non-unital `K₀(ι)` followed by `K₀(A) ⊆ K₀(A⁺)` is the
   unital-picture map `K₀(J⁺) → K₀(A⁺)` restricted to `K₀(J)`;
@@ -57,12 +58,6 @@ theorem fst_starMap (π : A →⋆ₙₐ[ℂ] B) (x : Unitization ℂ A) :
     (Unitization.starMap π x).fst = x.fst := by
   show ((Unitization.inl x.fst : Unitization ℂ B) + (π x.snd : Unitization ℂ B)).fst = x.fst
   rw [Unitization.fst_add, Unitization.fst_inl, Unitization.fst_inr, add_zero]
-
-/-- The non-unital part of `π⁺ x` is `π` of the non-unital part of `x`. -/
-theorem snd_starMap (π : A →⋆ₙₐ[ℂ] B) (x : Unitization ℂ A) :
-    (Unitization.starMap π x).snd = π x.snd := by
-  show ((Unitization.inl x.fst : Unitization ℂ B) + (π x.snd : Unitization ℂ B)).snd = π x.snd
-  rw [Unitization.snd_add, Unitization.snd_inl, Unitization.snd_inr, zero_add]
 
 /-- **The unitized sequence `J → A⁺ → B⁺` is exact in the middle** (RLL §9.1). -/
 theorem unitIncl_exact {ι : J →⋆ₙₐ[ℂ] A} {π : A →⋆ₙₐ[ℂ] B}

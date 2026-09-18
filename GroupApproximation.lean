@@ -6029,6 +6029,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgUniversal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgBase
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.Qalg
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbLocalCone
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetActionSemisplit
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetActionAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Star
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
