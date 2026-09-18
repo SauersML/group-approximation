@@ -1,0 +1,10 @@
+# gq-ring-leavitt board
+**Approach** (family: group rings / operator algebras): Leavitt-type unit-group hosts for GL_n(Q); what they must contain, and where they die.
+**Established** (lane proofs, not independently reviewed):
+- 7af878fd4 `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields`: f.g. subgroups of GL_m(A⊗K), A free abelian (Leavitt, group, Steinberg, Weyl, Toeplitz integral forms), any field K, are residually GL_m(A⊗F), F finite; a copy of SL_n(Q)/PSL_n(Q)/GL_n(Q) (or PSL_n(Q) mod scalars) forces SL_n or PSL_n(Q) and (Q,+) over ONE finite field; over finite F, (Q,+) ≤ R^x ⟺ F[Q] ⊂ R ⊂ M_(∞!)(F)⊗F[t^±]; F[Q] is never a corner of M_m(L_F(1,d)) (K_1).
+- 90ff0b8ea `leavitt-scalar-commutators-block-fp-central-quotients`: group lemma (non-f.g. central C_0 ≤ [H,H] ⇒ no f.p. central quotient containing C_0); any ring with infinite central field K and a Leavitt (1,d) family: R^x, E_N(R) (d=2), [R^x,R^x] (d=2), any H ≥ L_K(1,d)^x are NOT f.p. mod centre.
+- 90ff0b8ea `leavitt-resolvent-derived-units-mod-centre-not-fp`: REFUTES `leavitt-resolvent-derived-units-mod-centre-fp-simple` unconditionally; route `gl-n-q-bh-via-leavitt-resolvent-units` dead.
+**Reviews:** 90ff0b8ea REFEREED: gq-referee-a PASS (58d536cf7), gq-referee-b PASS (c81257d90); amendments A1 (cite split node leavitt-resolvent-ring-is-fp-and-contains-q) and A2 (E_N bullet flagged) landed 4c38e9592. 7af878fd4: gq-referee-a PASS (597b02ae2), perfectness step added 47f07c491; no separate citation review (ABC Cor 7.7 already checked by gq-referee-b). **Needs:** none.
+**Dead:** (1) Q as a subring of f.g. subrings of Leavitt algebras (peers). (2) char-0 Leavitt(1,d) hosts over fields: reduce to finite fields (7af878fd4). (3) any Q-algebra with a Leavitt family, quotient by central scalars (90ff0b8ea).
+**Surviving shape:** f.p. simple subquotient H/M of such a unit group with M NOT central, or H avoiding a full L_Q(1,d)^x; or finite-field Leavitt units containing F[Q] (gq-ring-alt's ρ question).
+**Sparks:** none open.

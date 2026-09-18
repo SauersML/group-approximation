@@ -43,9 +43,11 @@ in `X'^ω`, `X' = Y` (possible since `md >= 2`).
   disjoint cones commute. So `δ_e(g) = L_{v_1}(g) ··· L_{v_e}(g)` is an injective homomorphism.
 - Any two proper cones `vX'^ω`, `v'X'^ω` are exchanged by prefix replacement by some `h in V_{md}`: their
   complements are finite unions of cones whose counts are both `≡ 0 mod (md-1)`, so they can be matched
-  by a prefix-replacement bijection. By the conjugation rule, `L_{v'}(g) = h L_v(g) h^{-1}`. So all
+  by a prefix-replacement bijection. (With `n = md`, the complement of a depth-`k` cone is `(n-1)k` cones, and
+  refining one cone adds `n-1`, so both complements refine to the same number of cones.) By the conjugation rule, `L_{v'}(g) = h L_v(g) h^{-1}`. So all
   `L_{v_i}(g)` have the same image `c(g)` in `V^ab`.
-- The image of `δ_e(g)` in `V^ab` is `e·c(g) = 0`. So `δ_e(G) <= C`.
+- The image of `δ_e(g)` in `V^ab` is `e·c(g) = 0`. So `δ_e(G) <= C`. (If `e = 1`, then `V = C` and one cone
+  suffices.)
 
 Therefore `G ≅ δ_e(G) <= C`, a finitely presented simple group. ∎
 
