@@ -111,3 +111,33 @@ So `M` violates `E`. Taking `g ∈ V` order-breaking and `M = V` gives the `h` n
   along the binary-expansion map `C → S^1`. This gives an injective homomorphism
   `Homeo_cyc(C) → Homeo_+(S^1)` extending the standard `T`, and part (C) applies to the
   image. ∎
+
+## Referee (bh-ref-misc, 2026-09-18): PASS, squeeze step included
+
+Internal referee lane, not an external review.
+
+- **Step 1.** Suppose none of `s_12(x)`, `s_21(x)`, `s_33(x)` is trivial. Then there are
+  `p_1 ∈ A_1`, `p_2 ∈ A_2`, `p_3 ∈ A_3` with `x p_2 ∈ A_1`, `x p_1 ∈ A_2` and `x p_3 ∈ A_3`, which
+  reverses a positive triple. So for order-preserving `x` one of them is trivial, and then either
+  the inner or the outer commutator of `E(x)` vanishes.
+- **Step 2.**
+  - `h(A_1) ⊆ t(E_1) ⊆ int A_2`, `h(A_2) ⊆ int A_1` and `h(A_3) ⊆ int A_3`.
+  - The three identities `s_12(h) = [a, β_1]`, `c s_21(h) c^{-1} = [a², β_2]` and
+    `d s_33(h) d^{-1} = [a³, β_3]` follow from `c a_2 c^{-1} = a²` and `d a_3 d^{-1} = a³`.
+  - The free adjustments are independent: `u_2` and `u_3` commute with `b_2 ⊆ A_1`, and so on, and
+    `c T_(A_2) c^{-1} = T_(A_1)`.
+  - `β_i` is compact in `int A_1` because `h(A_j)` is, not because of `supp a`. So (S) applies even
+    though elements of `T_A` need not have compact support in `int A`.
+- **Step 3 (squeeze).**
+  - **Level 1.** An order-preserving map has no periodic points in its support, so
+    `r, ar, a²r, a³r` are distinct and `O_1, …, a³O_1` are disjoint.
+  - **Level 2.** `aO_1`, `O_1` and `a²O_1` are pairwise disjoint, so
+    `[X_1, X_2] = [β_1'^{-1}, β_2'^{-1}]`. Since `β_1'^{-1}(O_2) ∩ O_2 = ∅`, (D) gives `Y ≠ 1`.
+  - **Level 3.** `γ_3` does not change `Y`. `a³O_3 ∩ O_1 = ∅`, so on `O_3` the map `X_3` equals
+    `β_3'^{-1}`. `Y` preserves `O_1` and moves `z' ∈ supp β_3'` into `O_1 ∖ O_3`, which lies outside
+    `supp X_3`, so `[Y, X_3] ≠ 1`.
+- **Step 4.** A cyclic-order-preserving homeomorphism of `C` preserves the gap pairs, so
+  `Homeo_cyc(C) → Homeo_+(S^1)` is an injective homomorphism that is the identity on `T`. So it
+  preserves `J_k(−; T)`.
+- **Inputs.** Part (C) of `circle-overgroups-of-thompson-t-satisfy-all-its-mixed-identities` was not
+  re-checked here.
