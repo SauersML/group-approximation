@@ -5705,6 +5705,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.WellFormed.Deci
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Compress
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupCocycle
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupProper
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Reduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
