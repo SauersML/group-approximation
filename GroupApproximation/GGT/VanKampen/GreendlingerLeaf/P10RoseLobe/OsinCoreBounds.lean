@@ -93,3 +93,79 @@ theorem roseLobeOsinCore_cell_qg {G : Type u} [Group G] {Lambda : Type w}
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_cell_qg
+
+/-- **The cell bounds of Osin's condition on a diagram `X`**: `W` is closed under formal
+inversion and rotation; every relator cell has at least `ρ` darts (long); every arc of `k`
+darts of a relator cell has value of norm at least `λ k - c` (qg); every `ε`-piece is shorter
+than `μ` times its word (pieces). -/
+def roseLobeOsinCore_CellBounds {G : Type u} [Group G] {Lambda : Type w}
+    (D : RelGenSet G Lambda) (W : Set (List (RelLetter G Lambda)))
+    (X : DiscDiagram.{u, w, v} W) (eps : ℕ) (mu lambda c : ℝ) (rho : ℕ) : Prop :=
+  (∀ word ∈ W, HullSC.RelWord.revInv word ∈ W) ∧ (∀ word ∈ W, ∀ n : ℕ, word.rotate n ∈ W) ∧
+    (∀ i : Fin X.rCellCount, rho ≤ (cellDarts X i).length) ∧
+    (∀ (i : Fin X.rCellCount) (n k : ℕ), k ≤ (cellDarts X i).length →
+      lambda * (k : ℝ) - c ≤ (WordMetric.wordNorm D.alphabet.carrier
+        (RelLetter.listVal (((dartWord X (cellDarts X i)).rotate n).take k)) : ℝ)) ∧
+    ∀ first word : List (RelLetter G Lambda), HullSC.RelWord.IsPiece D W eps first word →
+      (first.length : ℝ) < mu * word.length
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_CellBounds
+
+/-- `OsinCCondition` gives the cell bounds on every diagram over `W`. -/
+theorem roseLobeOsinCore_cellBounds_of {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {W : Set (List (RelLetter G Lambda))} {eps : ℕ}
+    {mu lambda c : ℝ} {rho : ℕ} (hC : OsinCCondition D W eps mu lambda c rho)
+    (X : DiscDiagram.{u, w, v} W) : roseLobeOsinCore_CellBounds D W X eps mu lambda c rho :=
+  ⟨hC.inv_mem, hC.rotate_mem, roseLobeOsin_rho_le_cell hC X, roseLobeOsinCore_cell_qg hC X,
+    hC.pieces_small⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_cellBounds_of
+
+/-- **A value-one arc of a relator cell is short**: `λ k ≤ c`. -/
+theorem roseLobeOsinCore_mul_le_of_value_one {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {W : Set (List (RelLetter G Lambda))} {eps : ℕ}
+    {mu lambda c : ℝ} {rho : ℕ} {X : DiscDiagram.{u, w, v} W}
+    (hB : roseLobeOsinCore_CellBounds D W X eps mu lambda c rho) (i : Fin X.rCellCount)
+    (n k : ℕ) (hk : k ≤ (cellDarts X i).length)
+    (h1 : RelLetter.listVal (((dartWord X (cellDarts X i)).rotate n).take k) = 1) :
+    lambda * (k : ℝ) ≤ c := by
+  obtain ⟨-, -, -, hqg, -⟩ := hB
+  have h := hqg i n k hk
+  rw [h1, WordMetric.wordNorm_one, Nat.cast_zero] at h
+  linarith
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_mul_le_of_value_one
+
+/-- A dart followed by its reverse spells a word of value `1`. -/
+theorem roseLobeOsinCore_listVal_backtrack {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} (X : DiscDiagram.{u, w, v} W)
+    (d : X.toCombMap.Dart) :
+    RelLetter.listVal [X.label d, X.label (X.toCombMap.alpha d)] = 1 := by
+  rw [roseLobeOsinCore_listVal_cons, roseLobeOsinCore_listVal_cons, RelLetter.listVal_nil,
+    mul_one, X.label_alpha, HullSC.RelWord.val_inv, mul_inv_cancel]
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_listVal_backtrack
+
+/-- **A spike of a relator cell forces `2 λ ≤ c`.**  The spike is two consecutive darts `d`,
+`α d` of the cell boundary, read here as the first two letters of a rotation of the cell word.
+This is the configuration that the qg clause excludes in the truth check. -/
+theorem roseLobeOsinCore_two_mul_le_of_spike {G : Type u} [Group G] {Lambda : Type w}
+    {D : RelGenSet G Lambda} {W : Set (List (RelLetter G Lambda))} {eps : ℕ}
+    {mu lambda c : ℝ} {rho : ℕ} {X : DiscDiagram.{u, w, v} W}
+    (hB : roseLobeOsinCore_CellBounds D W X eps mu lambda c rho) (i : Fin X.rCellCount)
+    (n : ℕ) (d : X.toCombMap.Dart) (hk : 2 ≤ (cellDarts X i).length)
+    (hs : ((dartWord X (cellDarts X i)).rotate n).take 2 =
+      [X.label d, X.label (X.toCombMap.alpha d)]) :
+    lambda * 2 ≤ c := by
+  have h := roseLobeOsinCore_mul_le_of_value_one hB i n 2 hk
+    (by rw [hs]; exact roseLobeOsinCore_listVal_backtrack X d)
+  exact_mod_cast h
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinCore_two_mul_le_of_spike
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
