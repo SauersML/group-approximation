@@ -45,24 +45,24 @@ def gfaceWindClause_Gap (R : α → α → Prop) (t : List α) : Prop :=
 theorem gfaceWindClause_gap_tail {R : α → α → Prop} {x : α} {t : List α}
     (h : gfaceWindClause_Gap R (x :: t)) : gfaceWindClause_Gap R t := by
   intro pre z post a b ht hz
-  exact h (x :: pre) z post a b (by rw [ht, List.cons_append]) hz
+  exact h (x :: pre) z post a b (by subst ht; rfl) hz
 
 /-- **The first entry passing a filter.** -/
 theorem gfaceWindClause_first {P : α → Bool} :
     ∀ {t : List α}, t.filter P ≠ [] →
       ∃ (z : List α) (b : α) (post : List α), t = z ++ b :: post ∧
         (∀ a ∈ z, P a = false) ∧ P b = true
-  | [], h => absurd rfl h
+  | [], h => (h rfl).elim
   | x :: t, h => by
     cases hx : P x
     · have hx' : ¬ P x = true := by simp [hx]
       rw [List.filter_cons_of_neg hx'] at h
       obtain ⟨z, b, post, ht, hz, hb⟩ := gfaceWindClause_first h
-      refine ⟨x :: z, b, post, by rw [ht, List.cons_append], fun a ha => ?_, hb⟩
+      refine ⟨x :: z, b, post, by subst ht; rfl, fun a ha => ?_, hb⟩
       rcases List.mem_cons.mp ha with rfl | ha
       · exact hx
       · exact hz a ha
-    · exact ⟨[], x, t, rfl, fun a ha => absurd ha List.not_mem_nil, hx⟩
+    · exact ⟨[], x, t, rfl, fun a ha => by simp at ha, hx⟩
 
 /-- **A chain filter starting at the head is a prefix block.** -/
 theorem gfaceWindClause_head {R : α → α → Prop} {P : α → Bool} :
@@ -81,7 +81,7 @@ theorem gfaceWindClause_head {R : α → α → Prop} {P : α → Bool} :
           rw [List.filter_append, hz0, List.filter_cons_of_pos hb, List.nil_append]
         rw [List.filter_cons_of_pos hx, List.filter_cons_of_neg hy', ht, hfz,
           List.isChain_cons_cons] at hc
-        exact hg [] (y :: z) post x b (by rw [ht, List.nil_append, List.cons_append])
+        exact hg [] (y :: z) post x b (by subst ht; rfl)
           (List.cons_ne_nil y z) hc.1
       refine ⟨[x], y :: t, rfl, ?_⟩
       rw [List.filter_cons_of_pos hx, List.filter_cons_of_neg hy', hnil]
@@ -104,7 +104,7 @@ theorem gfaceWindClause_block {R : α → α → Prop} {P : α → Bool} :
     · have hx' : ¬ P x = true := by simp [hx]
       rw [List.filter_cons_of_neg hx'] at hc
       obtain ⟨pre, mid, post, h1, h2⟩ := gfaceWindClause_block (gfaceWindClause_gap_tail hg) hc
-      refine ⟨x :: pre, mid, post, by rw [h1, List.cons_append, List.cons_append], ?_⟩
+      refine ⟨x :: pre, mid, post, by subst h1; rfl, ?_⟩
       rw [List.filter_cons_of_neg hx', h2]
     · obtain ⟨mid, post, h1, h2⟩ := gfaceWindClause_head hx hg hc
       exact ⟨[], mid, post, by rw [h1, List.nil_append], h2⟩
