@@ -5718,6 +5718,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06h.AllCells
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerCommutator
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Euclid
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.LaurentWidth
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Laurent
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

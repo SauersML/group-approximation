@@ -275,3 +275,39 @@ factors through a finite quotient of `F_m`.
      For census work this means non-solvable tops or 5-group tops of unbounded
      order with high-dimensional irreducibles. Nothing here bounds `R_c` or
      `C(m,N,c)`.
+10. **Calibration: split into a finite-group principle and exact trace
+    rounding** (swarm-0917, d-nhg-p4; numbered 10 because Attempts 8 and 9 were
+    posted on the live bus from other worktrees).
+    - **Established decomposition**
+      (`hs-burnside-iff-lrb-and-partial-law-trace-rounding`). For fixed `m, N`:
+
+      ```text
+      HB(m,N)  <=>  LRB(m,N) and S(m,N,R) for all R
+               <=>  there are R, C with LRB(R, C) and S(m,N,R).
+      ```
+
+      `S(m,N,R)` says that every limit trace of an approximate exponent-N model
+      is a limit of traces of genuine finite-dimensional unitary
+      representations of the finitely presented partial Burnside group
+      `Π_R(m,N)`.
+    - **Necessity of `LRB`.** Regular representations of the LEF witnesses of
+      `local-restricted-burnside-iff-lef-burnside-groups-are-finite` form an
+      eventually exact model whose trace is the indicator of the kernel of an
+      infinite group.
+    - **Necessity of `S`.** A limit trace factoring through a finite group is a
+      convex combination of normalized characters of irreducibles that kill
+      every `N`-th power.
+    - **Sufficiency.** Linear images of `Π_R(m,N)` are residually finite by
+      Malcev. At an `LRB` radius their finite quotients are bounded, so the
+      images are uniformly bounded and the trace factors through `R(m,N)`.
+    - **Calibration kill.** At an `LRB` radius, with `B(m,N)` infinite, strict
+      or flexible HS-stability of `Π_R(m,N)` makes `Π_R(m,N)` a finitely
+      presented non-hyperlinear group. So operator-level rounding proofs of `S`
+      at the needed radius are at least as strong as the root.
+    - **New open nodes.** `approximate-exponent-traces-round-to-partial-burnside-reps`
+      (true at radius `1` by spectral rounding; the needed radius exceeds
+      `(q - 5)/4` by Golod--Shafarevich), and the route
+      `non-hyperlinear-group-via-lrb-and-partial-law-rounding`.
+    - **Status.** The target stays OPEN. What was gained: the finite-group
+      content and the analytic content are now separate prerequisites, and a
+      failure of `LRB` does not refute `S`.
