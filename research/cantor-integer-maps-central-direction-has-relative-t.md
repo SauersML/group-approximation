@@ -118,3 +118,62 @@ any cocycle carried by finitely atomic, bounded-phase-variation or `F`-regular c
       `thompson-v-has-a-fixed-point-free-amenable-action`, and it would make `V` sofic.
   - *Not ruled out.* Non-induced witnesses; induction of higher-dimensional representations from a
     co-amenable `H ⊇ nA`, which is the original problem again; and a proper co-amenable subgroup of `V`.
+- **2026-09-18 (e2-w2-nv-relative-t, heretic): sparse (rarely active) witness laws (die;
+  class-kill at `1/2`, not `3/4`), and one tool left behind. Refereed 2026-09-18: refuted as
+  stated, `cantor-central-witnesses-have-active-cone-phases` returned to OPEN.**
+  - **What is actually proved.** For every unitary representation, every unit vector with defect
+    `ε` and every `M ∈ Z`, `|1 − Φ(M·1_C)| ≤ 4(1 − Re Φ(M·1_{[0]})) + 40Lε`. Averaging in `M` and
+    applying Wiener's theorem on `T`,
+    `μ{χ[C] = 0} ≥ 4·μ{χ[U] = 0} − 3 − 40Lε − 16|h|_S ε` for a proper clopen `U` and `h ∈ V` with
+    `h[0] = U`. So in any witness the phase of a fixed cone of depth `o(1/ε)` is nonzero with
+    probability at least `1/4 − o(1)`. The uniform-in-`U` form with a single absolute constant,
+    which the node's title asserted, is **not** proved: the error grows with the depth of `U`.
+    That gap is now `cantor-cone-phase-atom-comparison-is-depth-uniform`, required by the route.
+  - **The class-kill is real but the threshold was wrong, and the mechanism credited was wrong.**
+    Referees derived, from the same two imports and nothing else, the strictly stronger
+    `μ{χ[C] = 0} ≥ 2·μ{χ[U] = 0} − 1 − O(ε)`: finite additivity gives
+    `χ[C] = χ[[0]] + χ[[1]]`, so `{χ[[0]]=0} ∩ {χ[[1]]=0} ⊆ {χ[C]=0}`; inclusion–exclusion gives
+    `μ{χ[C]=0} ≥ μ{χ[[0]]=0} + μ{χ[[1]]=0} − 1`; and transport along the single first-letter swap
+    `b` gives `μ{χ[[1]]=0} ≥ μ{χ[[0]]=0} − 4|b|_S ε`. No Möbius identity, no Cauchy–Schwarz, no
+    Wiener theorem. `2p − 1 ≥ 4p − 3` for every `p ≤ 1`. So:
+    - the class killed is `p = μ{χ[U] = 0} > 1/2`, not `p > 3/4`;
+    - the activity a witness must have is `μ{χ[U] ≠ 0} ≥ 1/2 − O(ε)`, not `1/4 − o(1)`;
+    - every member of the killed class dies at the **two-piece** identity, not at the three-piece
+      Möbius identity;
+    - "the constant `4` is sharp and the calibration is exact" is **false**. The cone-product
+      family of `cantor-integer-maps-pair-lacks-relative-property-t` sits at `(1,1)` as
+      `p_incl → 0`, and `p_C = c·p_U − (c−1)` passes through `(1,1)` for every `c`, so it
+      calibrates nothing; and `c = 2` beats `c = 4` outright.
+  - **What survives.** The *pointwise* inequality is not subsumed — for small `1 − Re u_M` it
+    beats the two-piece triangle bound `2√(2(1 − Re u_M))`. Corollary 3, near-positivity of the
+    cone-phase transform `|Im Φ(M·1_U)| ≤ 4(1 − Re Φ(M·1_U)) + O(ε)` with no `V`-ellipticity
+    hypothesis, is untouched. The mechanism genuinely uses the non-unimodularity of `V`
+    (transitivity on proper clopen sets of *different* Bernoulli measure), six times, and fails
+    for level-preserving tree automorphisms — so it is not a soft argument.
+  - **Invariant:** `p = μ{χ[U] = 0}`, the atom at `0` of the cone-phase law, equivalently the
+    Cesàro limit of `Re Φ(M·1_U)`. It is the same for every proper clopen `U` up to `O(|h|_Sε)`,
+    not up to an absolute `O(ε)`. It is read by the elementary two-piece argument as well, so the
+    novelty of the invariant was overstated.
+  - **No hypotheses:** no independence, no moment condition, no exact invariance, no equivariant
+    extraction. The bound therefore also holds on scale-incoherent characters.
+  - **Not ruled out (corrected frontier):** diffuse witnesses with `p ≤ 1/2` — the band
+    `(1/2, 3/4]` that this entry originally advertised as surviving is already dead, so no lane
+    should be pointed at it. In particular compound Poisson laws whose Lévy measure gives
+    infinite mass to `{χ[U] ≠ 0}` (there `p = 0` and both inequalities are vacuous). These are
+    the canonical `e^{−tN}` survivors of the Gaussian kill.
+  - **Tool left behind (adoptable).** *Ruler partitions.* For `n ≥ 2`,
+    `P_n = {[1], [01], …, [0^{n−2}1], [0^{n−1}]}` is a partition of `C` into `n` cones such that
+    every permutation of the parts is realized by an element of `V` with `n` pieces, so `n`-fold
+    exchangeability of the phases costs invariance defect `poly(n)·ε` instead of the `2^n·ε` of
+    the depth-`n` dyadic partition, while the parts still sum to `1_C`. This removes the cost
+    obstruction to approximate de Finetti arguments on this node.
+  - **Where the ruler route dies anyway (recorded dead end).** De Finetti plus the merge relation
+    makes the directing measure idempotent, hence `Haar(H)`, and `Re Φ(1_U) ≥ 1 − ε²/2` forces
+    `H = {0}` with probability near `1`; the conclusion needed is "`χ[P] = 0` for every
+    `P ∈ P_n`", which with `Σ_P χ[P] = χ[C]` would give the atom. That last step fails for a
+    reason that is not quantitative slack: an approximate argument concludes only that each
+    `χ[P]` is *small*, while the negation of this claim asks only that `χ[C]` be *nonzero*, not
+    large, and a sum of `n` small nonzero phases is still nonzero. So the blocker for approximate
+    de Finetti proofs here is not the cost of exchangeability but the exactness of the event
+    `{χ[C] = 0}`; a proof must pass through an exact-vanishing device such as a Cesàro average in
+    the frequency, or a paradoxical decomposition.
