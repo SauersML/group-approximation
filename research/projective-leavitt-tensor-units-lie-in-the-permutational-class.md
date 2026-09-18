@@ -4,6 +4,8 @@ id: projective-leavitt-tensor-units-lie-in-the-permutational-class
 kind: claim
 title: For every prime p and every d, the unit group of L_p^(⊗d) and its simple quotient by the scalars lie in B_A; the scalars are killed inside L_p^(⊗2d) by u ↦ u ⊗ (u*)^(-1)
 distinct_from:
+  leavitt-square-unit-groups-mod-scalars-satisfy-pbh: that already puts (L_p ⊗ L_p)^x / F_p^x in B_A (09-13), through a type (A) action on the lines of the tensor-square Chen module, with no passage to degree 4; this treats every degree d by the doubling map, and is new only for d >= 3.
+  leavitt-unit-groups-mod-scalars-satisfy-pbh: that is the degree-one case L_p^x / F_p^x (09-13), through the Chen module; this recovers it by doubling into degree 2.
   leavitt-tensor-unit-groups-lie-in-the-permutational-class: that is the unit group of L_p ⊗ L_p only, and it leaves the simple quotient by F_p^x open at odd p; this treats every tensor degree d and puts the quotient R_d^x / F_p^x in B_A as a subgroup of the unit group in degree 2d.
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that makes (B ⊗ L_p)^x finitely presented and simple modulo scalars; this places the simple quotients of the Leavitt tensor powers in B_A.
   char-p-linear-groups-satisfy-permutational-boone-higman: that is PBH for positive-characteristic linear groups through self-similar polynomial hosts, reviewed; item 4 here is a second route to the same statement through Leavitt tensor units, and adds nothing new about those groups.
@@ -170,3 +172,25 @@ Internal referee lane, not an external review.
 So every odd-prime conclusion here depends on three things: that derivation, Khanh's unrefereed
 preprint, and MMN. **Recommended next review: the regular-coherence step (Step 3.2) of
 `leavitt-tensor-powers-k-vanishing-via-farrell-jones-proof`.**
+
+## Relation to the 09-13 Chen-module nodes (bh-major-product, 2026-09-18, after the referee)
+
+This node was written without noticing two nodes already on main since 09-13:
+- `leavitt-unit-groups-mod-scalars-satisfy-pbh` (`d = 1`);
+- `leavitt-square-unit-groups-mod-scalars-satisfy-pbh` (`d = 2`).
+
+They put `L_p^x / F_p^x` and `(L_p ⊗ L_p)^x / F_p^x` in `B_A` through type (A) actions on the
+lines of Chen modules. Those actions are on the groups themselves, and they never pass through
+`L_p^(⊗2d)`.
+
+So the referee's sharper condition applies only to the cases `d >= 3`. For the headline odd-`p`
+hosts of degree `d <= 2`, `B_A` membership needs only the inputs of the 09-13 nodes, and not
+`leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`.
+
+What is new here:
+- item 2 and its consequence for `d >= 3`;
+- item 1 for `d >= 3`, and for the unit groups `R_d^x` themselves (not modulo scalars) at odd
+  `p`.
+
+Attempt 14 of `boone-higman-closed-under-finite-direct-products` listed the odd-prime hosts as
+uncovered. That was already wrong on 09-13.
