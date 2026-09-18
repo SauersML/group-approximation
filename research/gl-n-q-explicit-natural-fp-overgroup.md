@@ -149,3 +149,31 @@ overgroup.
        homeomorphism groups, by Rubin), starting with whether `(Q,+) <= Aut(V)`;
      - finitely generated commensurators of branch or self-replicating groups
        containing `GL_n(Q)`.
+4. **Steinberg groups over a finitely presented ring containing Q (lane `gq-steinberg-q`, 2026-09-17).**
+   Routes `gl-n-q-explicit-via-steinberg-group-of-resolvent-ring` and `gl-n-q-all-n-in-st-10-of-resolvent-ring`.
+   Every requirement of the first route (`Γ_n = St_(6n+7)(R_L)`) is established.
+   - **The group.** `Γ = St_10(R_L)`, the rank-10 Steinberg group of the six-generator, nine-relator Leavitt
+     resolvent ring `R_L` (`leavitt-resolvent-ring-is-fp-and-contains-q`).
+   - **Why it is finitely presented.** Krstić–McCool Theorem 3 (`steinberg-finite-presentation-and-kazhdan-theorem`).
+     The presentation is Krstić–McCool's presentation of `St_10(Z⟨6⟩)` plus nine relator words
+     (`st-n-of-ring-quotient-adds-one-relator-per-ideal-generator`).
+   - **Why it contains GL_n(Q).** A Leavitt pair kills every Tate symbol at a finite rank
+     (`leavitt-pairs-embed-sl-n-q-in-steinberg-groups`, three referee PASS reports: `SL_N(Q) ≤ St_(6N+1)`).
+     The sharpening `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1`, under review, puts all `GL_n(Q)` in
+     the one group `St_10(R_L)`.
+   - **Further properties.** `Γ` has property (T). It is not simple.
+   - **Naturality, compared with Mikaelian's announcement.** Mikaelian (arXiv:2507.04347v8 §1.4) announces an
+     explicit, even 2-generator, finitely presented `Γ_n ⊇ GL_n(Q)`. It comes from running his explicit Higman
+     algorithm on a recursive presentation of `GL_n(Q)`: a tower of HNN extensions and amalgams, with generators
+     and relators encoding that presentation. The same algorithm applies to any recursively presented group, so
+     the host carries no structure specific to `GL_n(Q)`, and the embedding is only defined through the
+     encoding. Here, by contrast:
+     - the host is a matrix-type group over a named ring, and the embedding is the obvious matrix inclusion
+       `GL_n(Q) ⊆ SL_(n+1)(Q) = E_(n+1)(Q) -> St(R_L)`;
+     - nothing is encoded, and the only input is the ring `R_L`: a Leavitt algebra with a number operator `N`
+       (`N s_1 = s_1(N+1)`, `N s_2 = 0`) and its resolvent `A = (N+1)^(-1)`;
+     - the same construction serves every `n` at once, and the finitely presented group is a Kazhdan group.
+
+     This fits the reading of "natural" recorded above. Whether the ring counts as natural is a matter of taste.
+     `R_L` is the Leavitt–Nekrashevych completion of the resolvent algebra `Q[N][(N+c)^(-1)]` along
+     `f -> diag(f(N+1), f(0))`.
