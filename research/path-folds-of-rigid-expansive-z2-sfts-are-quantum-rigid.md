@@ -14,7 +14,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `path-fold-rigidity-transfer-proof` (lane proof by bh-g2-abh, 2026-09-18). The
-proof is elementary and algebraic, has not been independently reviewed, and claims no priority. The
+proof is elementary and algebraic, has one adversarial referee PASS (see Referee), and claims no priority. The
 statement was posed OPEN by bh-g2-fixedpoint-b the same day, and its missing centrality step (C) is proved
 there.
 
@@ -40,6 +40,9 @@ Two steps of the proof are of independent use.
    - Over `Z^2`, quantum rigidity is equivalent to finite presentation of `LC(X, k) ⋊ Z^2`
      (`sft-crossed-product-fp-iff-quantum-rigid`). So it is invariant under conjugacy and under
      `GL_2(Z)`, and the condition is rigidity of `X_0` itself. That is open.
+   - `X_0` is the Jeandel–Rao minimal subshift, which is Kakutani equivalent to Labbé's 19-tile shift
+     `Ω_U`. So by `jeandel-rao-minimal-subshift-is-quantum-rigid-iff-labbe-shift-is`, the condition is
+     exactly `J_2(Ω_U) = 0`: Labbé's scale-2 question.
 3. **Payoff.** Let `X` be any `Z^2` SFT with an expansive rational direction (after recoding) that is
    quantum rigid, minimal and free. Then `Z` is a quantum rigid, minimal, free SFT over the one-ended,
    non-amenable, torsion-free, finitely presented group `F_n × Z`. Minimality and freeness are ABHT's.
@@ -82,3 +85,36 @@ Two steps of the proof are of independent use.
 
 DERIVATION
 path-fold-rigidity-transfer-proof
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked `path-fold-rigidity-transfer-proof` line by line against the (Q1)–(Q3) definitions of
+`fp-v-times-subshift-full-groups-force-quantum-rigidity` and the Steps 1–3 it cites from
+`free-group-boundary-shift-rigidity-proof`, which I also checked.
+
+- **Step 1.** `P_s(gt) = P_s(g)` holds by one ball sum and adjacency. The flow marginals form a
+  `D`-family for the end shift, and there `D >= 1` suffices. `ρ`, the map from locally constant
+  functions on the end space to operators, is well defined: finite edge-consistent patterns on a
+  subtree extend to ends.
+- **Step 2.** (F2) at `g'` gives `h(g') = h(g) − 1`. The killed pattern lies in the `D`-ball about
+  `g t^i`, since `R + 1 <= D`, and the summation identity `QΦ = QT_b` is exact.
+- **Step 3, the commutation-transport induction.** It is correct as written.
+  - The base `k <= 1` uses the `t`-invariance of `Q`.
+  - In the step, `Q ⊑ Q_(k+1)` and Step 2 on the edge `(h_k, h_(k+1))` give `QT_b = QΦ` and
+    `T_bQ = ΦQ`.
+  - `QΦ = ΦQ` follows from the hypothesis for all `t`-offsets at once.
+  - The `g`-side argument and `Q = I − P_s(g)` together make every `P_s(g)` commute with every
+    letter.
+- **Step 4.** `A ⊑` the arrows toward `q` on both halves. `A` is central, so it distributes over
+  `Φ`, and the downward induction closes. The parity argument supports the height form.
+- **Step 5.**
+  - The section `σ` is a bi-infinite geodesic with `h(σ(j)) = j`: the backward step is against the
+    flow and never backtracks.
+  - (Q2) uses `ℓ^1 <= 2·sup`.
+  - In (Q3), `e <= e'`, the partial pattern lies in a `D`-ball because `2D_X <= D`, and a
+    realization would put `α` into `x'`.
+- **Step 6.** Summing Step 4 over `u` gives `T_a(v t^i) = Σ_j [h(v)=j] F_a(i,j)`.
+
+**Not re-checked:** (F1) and (F2) from ABHT §5; the down direction
+`path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is`, used in Corollary 1; and the
+"other slice groups" remark.

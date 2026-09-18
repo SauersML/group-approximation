@@ -15,7 +15,7 @@ distinct_from:
 ---
 
 **OPEN.** Posed by lane bh-star-b, 2026-09-18, as the adversarial form of (★′). No claim is made
-either way; the evidence is below.
+either way; the evidence is below. Partial results are in the section "Progress" at the end.
 
 ## Statement
 
@@ -106,6 +106,27 @@ The master route inherits an analytic constraint that no combinatorial gate show
 So after (IE), the decisive adversarial question for (★′) is this one. Settling it either way changes
 the ranking: true confines the master route to exact inputs and promotes the `V`-less engines and Track B; false
 gives the first non-amenable rigid dynamics.
+
+## Progress (bh-star-b, 2026-09-18, later)
+
+- **(RA) holds over free groups.** Over `F_n` (`n >= 2`), every quantum-rigid subshift without
+  isolated points factors continuously and equivariantly onto `∂F_n`, so its action is topologically
+  amenable. Minimality and topological freeness are not needed.
+  - Over `Λ_0 × F_n`, an invariant probability measure lives on points determined by one thick slab.
+  - The mechanism: in a rigid subshift, the free branches of nested slabs converge to an equivariant
+    end, and `∂F_n` carries no invariant measure.
+  - Source: `rigid-subshifts-over-free-factors-are-tight-almost-everywhere`.
+- **Test (T1) is answered: the Mozes-type candidates are not rigid.** Two families fail:
+  - the covering-map SFT of a complete square complex, which is `Γ\Aut(T_1 × T_2)`;
+  - its algebraic homogeneous subshifts `Γ\(PGL_2(Q_p) × PGL_2(Q_l))`.
+
+  Both are measure-preserving over a reducible lattice. The reason is that compact stabilizers of slab
+  states rotate every branch at once (`tree-lattice-homogeneous-subshifts-are-not-quantum-rigid`).
+- **What is left of (RA)** splits into three parts:
+  - over `Λ_0 × F_n`: *tight* spacetimes, determined by one slab and carrying an invariant measure, or
+    non-amenable actions with no invariant measure;
+  - over groups with no free direct factor (for example one-ended Kazhdan `Λ_0`): open;
+  - (T2), rigid subshifts over non-exact groups: open.
 
 ## Attempts
 

@@ -83,6 +83,8 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
      symmetric cone partition. Finite shadows with 3 to 5 cones are exact up to a parity `Z/2`, and Thompson
      splitting kills it
      (`splitting-kills-the-finite-shadow-parity-of-the-gluing-group`).
+   - The whole test is exact: `V_(2,2)` is that amalgam modulo `[M_0, N_1] = 1`
+     (`two-point-gluing-presentation-of-v-is-exact`, via natural canonical lifts and Bleak–Quick).
 
 **Lesson for general BH.**
 - The gluing half of P2′ is a statement about Thompson-type self-similarity, not about dynamics. If the target

@@ -105,6 +105,10 @@ is the faithful piece-permutation action, so the image maps isomorphically. `∎
 
 ## What is left for exactness of the two-point model
 
+**Update (same day): done.** `two-point-gluing-presentation-of-v-is-exact` proves `K = 1` for this model. It uses canonical lifts
+of all transpositions, including cross lifts between comparable cones; their naturality under the generators of
+`M` and `N`; and Bleak–Quick. The two gaps listed below are closed there.
+
 All relations inside symmetric partitions now hold. Exactness (`K = 1`) would follow from a presentation of
 `V_(2,2)` whose relations each live in one piece-permutation group, plus split relations. Bleak–Quick's
 transposition presentation is of this form (arXiv:1511.02123, Theorem 1.1: order, conjugacy and split
