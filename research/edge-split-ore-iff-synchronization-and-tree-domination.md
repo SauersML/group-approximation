@@ -107,9 +107,10 @@ the siblings along one descent path.
 
 - **The gate.** For each `m`, the Ore half of `edge-split-operad-satisfies-ore` is
   exactly (Sync_m) plus (TD).
-  - (Sync_m) is bh-free-61's pointwise, Serret-type statement. It is proved for
-    `m = 2` off totally irrational rays
-    (`rank-two-synchronization-off-totally-irrational-rays`).
+  - (Sync_m) is bh-free-61's pointwise, Serret-type statement. It is now proved for every
+    `m` (lane proof, `unimodular-cells-synchronize-under-edge-splits-proof`, via
+    `half-tube-lattice-points-are-edge-split-vertices`). So for each `m` the Ore half is
+    exactly (TD).
   - (TD) is combinatorial; see `edge-split-descendant-dissections-are-tree-dominated`.
 - **No Matui.** With saturation, `Mod(S_g) ≤ 𝒯_m = G_E` directly, and the
   derived-full-group step of `closed-mcg-bh-via-edge-split-operad` is no longer needed.

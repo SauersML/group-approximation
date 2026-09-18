@@ -32,6 +32,13 @@ statement, Out(F_n) satisfies Boone–Higman.
    `w^∞` of the surface word `w` with infinite orbit under the stabilizer of `[w]`. This is
    the Euler class of the capping extension (item 6 of the parent).
 4. **Rank two.** It holds, since `Out(F_2) = GL_2(Z)` is virtually free.
+5. **Quotient-blind** (`boundary-pushout-of-aut-out-free-splits-mod-every-quotient`).
+   Modulo every nontrivial normal subgroup of the kernel `M`, the pushed extension splits
+   over the finite-index `Γ_n`. So no nilpotent, solvable or other quotient invariant can
+   refute (PR). A refutation must use germs or fixed points.
+6. **Shape of a solution** (same node). A solution that is not already a virtual section has
+   only infinite orbits. Every point stabilizer lifts homomorphically to `Aut(F_n)`
+   through germs; at periodic points it lifts into `Aut(F_n, w)`.
 
 ## Reformulation for attacks
 

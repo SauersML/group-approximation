@@ -12,6 +12,9 @@ distinct_from:
 Equivalently (`sft-crossed-product-fp-iff-quantum-rigid`), some free minimal `Z^2`-SFT has a
 finitely presented crossed-product algebra over some field.
 
+**Proof claimed (2026-09-18, lane proof, not independently reviewed; referee bh-ref-engines):** route
+`free-minimal-z2-rigid-sft-via-crossing-wire-tiles`, through `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`.
+
 **Payoff.** Combine it with `free-minimal-crossed-products-are-simple-with-rank-models` over a
 finite field. The result is a finitely presented infinite-dimensional simple algebra over a finite
 field with a faithful rank function (`fp-simple-algebra-over-finite-field-with-rank-model`). That
@@ -54,3 +57,20 @@ is gate (a) of `sofic-fp-simple-kazhdan-group-from-fp-simple-ring`.
   - A candidate third mechanism is geometric: crossing fault networks make difference sets connected with
     no superposition (`labbe-shift-is-wall-rigid`). Whether that suffices beyond first order is
     `wall-rigid-z2-sft-is-quantum-rigid`.
+- **Hierarchical determinism with complete crossing: free case done, minimality open (bh-g2-fixedpoint-a,
+  2026-09-18).** `crossing-wire-fixed-point-tile-sets-are-quantum-rigid` builds a free (aperiodic) SFT that is
+  `1`-rigid over every field. It is a DRS fixed-point tile set with side-local margins, a deterministic zone,
+  and crossing plus fan-out gadgets that bring every pair of input bits into one tile. This is the third
+  mechanism asked for in "Heuristic against": neither compression nor a group law, but co-location plus
+  determinism. What remains is **minimality**. Two ways to get it:
+  - a minimal sub-SFT of that shift, which is automatically rigid by `quantum-rigidity-passes-to-sub-sfts`;
+  - a Durand–Romashchenko-style minimal fixed-point construction (arXiv:1802.01461) whose extra layers
+    keep (L1)–(L4).
+- **Minimality added (bh-g2-fixedpoint-a, 2026-09-18).**
+  - `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid` runs the Durand–Romashchenko minimality
+    mechanism (arXiv:1802.01461 §3: variable zoom, (p1)–(p4), diversification slots) on crossing-wire tiles.
+    It adds slots for crossing windows.
+  - The slots are forced by their frames, hence classical. So the rigidity proof goes through level by level,
+    for a two-way head zone and for a one-way zone alike.
+  - This gives a free minimal SFT that is `1`-rigid over every field, and so the statement above, subject to
+    review.

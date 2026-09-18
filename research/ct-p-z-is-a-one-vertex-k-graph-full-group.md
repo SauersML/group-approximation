@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). It rests on four cited theorems, all read
+**ESTABLISHED** (lane proof by bh-kourovka; referee PASS on 2026-09-18, conditional on the cited published theorems; see Referee). It rests on four cited theorems, all read
 at source (TeX in the swarm scratchpad `gq/src/kep/` and `gq/src/kourovka/`), plus
 two standard facts about k-graph groupoids that were not re-read (marked below).
 No priority is claimed. An arXiv search (class transpositions, CT(Z)) found no paper
@@ -132,3 +132,68 @@ item 3.
 - Li's Cor. `intro:WordProblem` also gives `CT_P(Z)` a decidable word problem. That is
   classical here in any case, since each element is an explicit piecewise-affine
   permutation.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS, conditional on the cited theorems
+
+**Verdict: PASS.** Lane bh-kourovka's argument is correct. The route to 17.61 is clean: identify
+`CT_P(Z)` with a k-graph full group, then apply Li's `F_∞` theorem. The two reading checks raised by
+bh-pal-kourovka61 both come out in the node's favor. The result depends on published theorems,
+all confirmed in the sources in `gq/src/kep/` and `gq/src/kourovka/`: Li 2110.04505v2
+(`cor:OneVertex`), Li 2209.08087 (`cor:AHConj`), Matui 1210.5800 (`pim`, `simple2`) and
+Farsi–Kumjian–Pask–Sims 1808.07807 (`thm:H computation`). The quoted statements match the sources.
+
+**Check 1: `Y = X` in `cor:OneVertex` is right, with `𝔢_P = ∅`.**
+- Li defines `X(e; 𝔣) = {χ ∈ X : χ(e) = 1, χ(f) = 0 for f ∈ 𝔣}` and writes `a` for `a𝔠`
+  (§ "Groupoids arising from left cancellative small categories" and l.880–930).
+- `cor:OneVertex` (l.2171) takes `Y = X(1_{P̂}; 𝕕^{-1}(𝔢_P))` for any subset `𝔢_P ⊆ S_P`, and
+  `∅ ⊆ S_P` is allowed.
+- With `𝔢_P = ∅` we get `Y = X(1) = X`, since the category has one object, so every character has
+  `χ(𝔠) = 1`.
+- The alternative `𝔢_P = {0}` has `𝕕^{-1}(0) = {1}`, so `Y = X(1; {1}) = ∅`, which gives the
+  trivial group. That is not what is wanted.
+- Li himself confirms it: for `X = ∂Ω`, `∂Ω(𝔳; 𝔢) = ∅` unless `𝔢 = ∅`, in which case it is
+  `∂Ω(𝔳)` (the corollary at l.2082).
+- The other hypotheses of `cor:OneVertex` hold:
+  - finitely many edges in each degree;
+  - `#𝕕^{-1}(ε_p) = p ≥ 2`, with the minimum 2 at colour 2;
+  - trivial units, so condition (F) and the `F_∞` isotropy hypothesis are automatic.
+
+**Check 2: `I_l ⋉ ∂Ω = G_Λ` holds.**
+- **Source.** Li 2209.08087, `sss:HigherRankGraphGPD` (l.873–875), states it: k-graph groupoids
+  "can be identified with boundary groupoids arising from left regular representations of higher
+  rank graphs".
+- **Direct check for `Λ_P`, needing only that `∂Ω = Λ^∞` for row-finite k-graphs without sources.**
+  1. `Λ_P` is singly aligned: two boxes meet in the single box of lcm modulus, by the Chinese
+     remainder theorem, or not at all. So every nonzero element of `I_l` is some `λμ^{-1}`, acting on
+     `Λ^∞ = Ẑ` as the canonical box map `κ : B(μ) → B(λ)`.
+  2. The action of `λμ^{-1}` on finite paths `(m, r) ⊆ B(μ)` is also determined by `κ`: the image has
+     modulus `m · m_λ/m_μ` and residue `κ(r)`.
+  3. So two elements of `I_l` whose actions agree on a box agree on the corresponding principal
+     ideal. Li's germ relation is therefore equality of germs of homeomorphisms, and `I_l ⋉ ∂Ω` is
+     effective.
+  4. `G_Λ` is effective too (the node's "Effective" paragraph). Both groupoids are the germ groupoid
+     of the pseudogroup of finite unions of canonical box maps, so they are isomorphic, and their
+     topological full groups are one group `F`.
+- The FKPS homology input (step 3) is stated for the same Kumjian–Pask groupoid, so the chain is
+  consistent.
+
+**Other steps.**
+- Step 1 (inclusion), step 2 (normality) and the effective, minimal and purely infinite
+  verifications are correct.
+- Step 3: `N_2 = 1` forces `gcd = 1`, and FKPS's hypotheses hold (row-finite, one vertex, at least
+  two edges of each colour).
+- Step 4: Li 2209.08087 l.734 records that the AH exact sequence applies to all purely infinite
+  minimal groupoids. Also `H_0(G; Z/2) = H_0(G) ⊗ Z/2 = 0`.
+- Step 5: matches Matui's `simple2`, under Matui's standing assumptions (essentially principal,
+  étale, Cantor unit space).
+- Restriction to the dense orbit `Z ⊆ Ẑ` is injective, and canonical box maps preserve `Z`.
+
+**Notes.**
+1. **Only two inputs.** For 17.61 itself, simplicity and perfectness (steps 3–5) are not needed.
+   The elementary node `piecewise-canonical-permutations-are-transposition-products` gives
+   `CT_P(Z) = PC = F` directly (item 3). So 17.61 rests only on Li's `cor:OneVertex` plus the
+   standard `∂Ω = Λ^∞`.
+2. **Lean.** As bh-pal-kourovka61 notes, this route is not available in Lean, since Mathlib has
+   none of it. The Lean target stays an explicit presentation.
+3. **Priority** (searched 2026-09-18). arXiv:2607.17477 treats Kourovka 21.8 only, among the
+   class-transposition problems. 17.61 is unmarked in arXiv:1401.0300v46.
