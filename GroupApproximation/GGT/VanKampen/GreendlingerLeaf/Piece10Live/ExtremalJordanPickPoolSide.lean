@@ -106,12 +106,13 @@ theorem extremalJordanPickPool_of_outside (K : PocketFaceSet D eps X lo hi)
   refine ⟨⟨Or.inr hO, Or.inr hS, K.kept, K.kept_mem, fun x hx => hin x ?_⟩, ?_, ?_⟩
   · rw [hx]
     exact K.kept_mem
-  · refine extremalJordan_arcEnd_of_uniform K r _ (Or.inl fun x hx => ?_)
+  · refine extremalJordan_arcEnd_of_uniform K r K.targetArc.darts (Or.inl fun x hx => ?_)
     exact extremalJordanPickPool_kept K r x
       (hin x (extremalJordanPickPool_face_mem_of_cycle K
         (extremalJordanPickPool_mem_cycle_of_target K hx)))
       (hO _ (P10Rose.FilterMove.faceOf_alpha_of_mem_targetArc K hx))
-  · refine extremalJordan_arcEnd_of_uniform K r _ (Or.inl fun x hx => ?_)
+  · refine extremalJordan_arcEnd_of_uniform K r (invDarts X K.sourceArc.darts)
+      (Or.inl fun x hx => ?_)
     exact extremalJordanPickPool_kept K r x
       (hin x (extremalJordanPickPool_face_mem_of_cycle K
         (extremalJordanPickPool_mem_cycle_of_invSource K hx)))
@@ -134,11 +135,12 @@ theorem extremalJordanPickPool_of_inside (K : PocketFaceSet D eps X lo hi)
     exact K.outerFace_not_mem
   · rw [hx]
     exact K.source_not_mem
-  · refine extremalJordan_arcEnd_of_uniform K r _ (Or.inl fun x hx => ?_)
+  · refine extremalJordan_arcEnd_of_uniform K r K.targetArc.darts (Or.inl fun x hx => ?_)
     refine extremalJordanPickPool_kept K r x (harc x (List.mem_append_left _ hx)) (hout _ ?_)
     rw [P10Rose.FilterMove.faceOf_alpha_of_mem_targetArc K hx]
     exact K.outerFace_not_mem
-  · refine extremalJordan_arcEnd_of_uniform K r _ (Or.inl fun x hx => ?_)
+  · refine extremalJordan_arcEnd_of_uniform K r (invDarts X K.sourceArc.darts)
+      (Or.inl fun x hx => ?_)
     refine extremalJordanPickPool_kept K r x (harc x (List.mem_append_right _ hx)) (hout _ ?_)
     rw [P10Rose.FilterMove.faceOf_alpha_of_mem_invSourceArc K hx]
     exact K.source_not_mem
