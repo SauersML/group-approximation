@@ -80,12 +80,12 @@ theorem nfCommRelators_subset_ker (H : Subgroup (TreeAut X)) (x₀ : X) :
   rintro r ⟨h, f, hf, rfl⟩
   have hsupp : HydeLodha.SupportedIn (f : Equiv.Perm (Cantor X)) (cone [x₀])ᶜ := by
     intro z hz
-    obtain ⟨y, rfl⟩ := mem_cone_iff.mp (not_not.mp hz)
+    obtain ⟨y, rfl⟩ := mem_cone_iff.mp (Set.notMem_compl_iff.mp hz)
     exact hf y
   have hc : Commute (localize [x₀] (cantorHom (h : TreeAut X))) (f : Equiv.Perm (Cantor X)) :=
     HydeLodha.commute_of_supportedIn (localize_supportedIn [x₀] _) hsupp disjoint_compl_right
-  rw [nf_mem_ker_iff, map_mul, map_mul, map_mul, map_inv, map_inv, nf_toPerm_V, nf_toPerm_L,
-    hc.eq, mul_inv_cancel_right, mul_inv_cancel]
+  rw [SetLike.mem_coe, nf_mem_ker_iff, map_mul, map_mul, map_mul, map_inv, map_inv, nf_toPerm_V,
+    nf_toPerm_L, hc.eq, mul_inv_cancel_right, mul_inv_cancel]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.nfCommRelators_subset_ker
 
@@ -102,7 +102,7 @@ def nfDisjRelators (H : Subgroup (TreeAut X)) (x₀ : X) : Set (RNFree X H) :=
 theorem nfDisjRelators_subset_ker (H : Subgroup (TreeAut X)) (x₀ : X) :
     nfDisjRelators H x₀ ⊆ (rnFreeHom H x₀).ker := by
   rintro r ⟨h, k, e, w, he, hxw, hwx, rfl⟩
-  rw [nf_mem_ker_iff]
+  rw [SetLike.mem_coe, nf_mem_ker_iff]
   simp only [map_mul, map_inv, nf_toPerm_V, nf_toPerm_L]
   rw [he.conj_localize, (commute_localize hxw hwx _ _).eq, mul_inv_cancel_right,
     mul_inv_cancel]

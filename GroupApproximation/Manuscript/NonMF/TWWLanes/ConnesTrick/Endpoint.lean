@@ -120,7 +120,8 @@ theorem nuclearAmenableTraceSeparable_of_layerRounding_of_nuclearDensity
   NuclearAmenable.nuclearAmenableTraceSeparable_of_connesTrick_of_nuclearDensity
     (connesTrickStatement_of_layerRounding h) h12
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.nuclearAmenableTraceSeparable_of_layerRounding_of_nuclearDensity
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.ConnesTrick.nuclearAmenableTraceSeparable_of_layerRounding_of_nuclearDensity
 
 end
 

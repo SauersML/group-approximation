@@ -32,6 +32,16 @@ def EOneMod (_φ : Q →* MulAut B) (p : ℕ) (_hV : ∀ b : B, b ^ p = 1) : Typ
 
 variable {φ : Q →* MulAut B} {p : ℕ} {hV : ∀ b : B, b ^ p = 1}
 
+/-- The element of `EOneMod` corresponding to `b : B`. -/
+def eOneOf (b : B) : EOneMod φ p hV := Additive.ofMul b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOneOf
+
+/-- The element of `B` corresponding to `x : EOneMod`. -/
+def eOneTo (x : EOneMod φ p hV) : B := Additive.toMul x
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOneTo
+
 instance instAddCommGroupEOneMod : AddCommGroup (EOneMod φ p hV) :=
   inferInstanceAs (AddCommGroup (Additive B))
 
@@ -43,14 +53,14 @@ theorem eOneMod_nsmul (x : EOneMod φ p hV) : p • x = 0 := by
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOneMod_nsmul
 
-instance instModuleZModEOneMod : Module (ZMod p) (EOneMod φ p hV) :=
+noncomputable instance instModuleZModEOneMod : Module (ZMod p) (EOneMod φ p hV) :=
   AddCommGroup.zmodModule eOneMod_nsmul
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.instModuleZModEOneMod
 
 /-- `φ q` as an additive endomorphism of `EOneMod`. -/
 def eOneAddHom (q : Q) : EOneMod φ p hV →+ EOneMod φ p hV where
-  toFun x := (Additive.ofMul (φ q (Additive.toMul x)) : Additive B)
+  toFun x := eOneOf (φ q (eOneTo x))
   map_zero' := by
     show (Additive.ofMul (φ q 1) : Additive B) = Additive.ofMul 1
     rw [map_one]
@@ -62,15 +72,15 @@ def eOneAddHom (q : Q) : EOneMod φ p hV →+ EOneMod φ p hV where
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOneAddHom
 
 /-- The `F_p`-linear representation of `Q` on `EOneMod` induced by `φ`. -/
-def eOneRep : Representation (ZMod p) Q (EOneMod φ p hV) where
+noncomputable def eOneRep : Representation (ZMod p) Q (EOneMod φ p hV) where
   toFun q := (eOneAddHom (φ := φ) (p := p) (hV := hV) q).toZModLinearMap p
   map_one' := LinearMap.ext fun x => by
-    show (Additive.ofMul (φ 1 (Additive.toMul x)) : Additive B) = x
-    rw [map_one, MulAut.one_apply, ofMul_toMul]
+    show (Additive.ofMul (φ 1 (Additive.toMul x)) : Additive B) = Additive.ofMul (Additive.toMul x)
+    rw [map_one, MulAut.one_apply]
   map_mul' q r := LinearMap.ext fun x => by
     show (Additive.ofMul (φ (q * r) (Additive.toMul x)) : Additive B) =
-      Additive.ofMul (φ q (Additive.toMul (Additive.ofMul (φ r (Additive.toMul x)))))
-    rw [map_mul, MulAut.mul_apply, toMul_ofMul]
+      Additive.ofMul (φ q (φ r (Additive.toMul x)))
+    rw [map_mul, MulAut.mul_apply]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOneRep
 
@@ -81,8 +91,7 @@ noncomputable instance instModuleEOneMod :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.instModuleEOneMod
 
 theorem eOne_smul (q : Q) (x : EOneMod φ p hV) :
-    MonoidAlgebra.of (ZMod p) Q q • x =
-      (Additive.ofMul (φ q (Additive.toMul x)) : Additive B) := by
+    MonoidAlgebra.of (ZMod p) Q q • x = eOneOf (φ q (eOneTo x)) := by
   show (eOneRep (φ := φ) (p := p) (hV := hV)).asAlgebraHom (MonoidAlgebra.of (ZMod p) Q q) x = _
   rw [Representation.asAlgebraHom_of]
   rfl
@@ -90,8 +99,7 @@ theorem eOne_smul (q : Q) (x : EOneMod φ p hV) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOne_smul
 
 theorem eOne_mem_span_smul (N : Submodule (MonoidAlgebra (ZMod p) Q) (EOneMod φ p hV))
-    (q : Q) (b : B) (hb : (Additive.ofMul b : EOneMod φ p hV) ∈ N) :
-    (Additive.ofMul (φ q b) : EOneMod φ p hV) ∈ N := by
+    (q : Q) (b : B) (hb : eOneOf b ∈ N) : eOneOf (φ q b) ∈ N := by
   have h := N.smul_mem (MonoidAlgebra.of (ZMod p) Q q) hb
   rw [eOne_smul] at h
   exact h
@@ -102,34 +110,36 @@ theorem eOne_finite (hfg : Group.FG (B ⋊[φ] Q)) :
     Module.Finite (MonoidAlgebra (ZMod p) Q) (EOneMod φ p hV) := by
   obtain ⟨T, hT⟩ := hfg.out
   let S : Set (EOneMod φ p hV) :=
-    (fun x : B ⋊[φ] Q => (Additive.ofMul x.left : EOneMod φ p hV)) '' (T : Set (B ⋊[φ] Q))
+    (fun x : B ⋊[φ] Q => eOneOf (φ := φ) (hV := hV) x.left) '' (T : Set (B ⋊[φ] Q))
   let N : Submodule (MonoidAlgebra (ZMod p) Q) (EOneMod φ p hV) := Submodule.span _ S
   let G0 : Subgroup (B ⋊[φ] Q) :=
-    { carrier := {x | (Additive.ofMul x.left : EOneMod φ p hV) ∈ N}
-      one_mem' := show (Additive.ofMul (1 : B) : EOneMod φ p hV) ∈ N from N.zero_mem
+    { carrier := {x | eOneOf (φ := φ) (hV := hV) x.left ∈ N}
+      one_mem' := show eOneOf (φ := φ) (hV := hV) (1 : B) ∈ N from N.zero_mem
       mul_mem' := by
         intro a b ha hb
-        have ha' : (Additive.ofMul a.left : EOneMod φ p hV) ∈ N := ha
-        have hb' : (Additive.ofMul (φ a.right b.left) : EOneMod φ p hV) ∈ N :=
+        have ha' : eOneOf (φ := φ) (hV := hV) a.left ∈ N := ha
+        have hb' : eOneOf (φ := φ) (hV := hV) (φ a.right b.left) ∈ N :=
           eOne_mem_span_smul N a.right b.left hb
         exact N.add_mem ha' hb'
       inv_mem' := by
         intro a ha
-        have ha' : (Additive.ofMul a.left⁻¹ : EOneMod φ p hV) ∈ N := N.neg_mem ha
+        have ha0 : eOneOf (φ := φ) (hV := hV) a.left ∈ N := ha
+        have ha' : eOneOf (φ := φ) (hV := hV) a.left⁻¹ ∈ N := N.neg_mem ha0
         exact eOne_mem_span_smul N a.right⁻¹ a.left⁻¹ ha' }
   have hle : Subgroup.closure (T : Set (B ⋊[φ] Q)) ≤ G0 := by
     rw [Subgroup.closure_le]
     intro x hx
-    show (Additive.ofMul x.left : EOneMod φ p hV) ∈ N
+    show eOneOf (φ := φ) (hV := hV) x.left ∈ N
     exact Submodule.subset_span ⟨x, hx, rfl⟩
-  have htop : ∀ b : B, (Additive.ofMul b : EOneMod φ p hV) ∈ N := by
+  have htop : ∀ b : B, eOneOf (φ := φ) (hV := hV) b ∈ N := by
     intro b
-    have hmem : (SemidirectProduct.inl b : B ⋊[φ] Q) ∈ Subgroup.closure (T : Set (B ⋊[φ] Q)) := by
+    have hmem : (SemidirectProduct.inl b : B ⋊[φ] Q) ∈
+        Subgroup.closure (T : Set (B ⋊[φ] Q)) := by
       rw [hT]
       exact Subgroup.mem_top _
     exact hle hmem
   refine ⟨Submodule.fg_def.mpr ⟨S, T.finite_toSet.image _, ?_⟩⟩
-  exact eq_top_iff.mpr fun x _ => htop (Additive.toMul x)
+  exact eq_top_iff.mpr fun x _ => htop (eOneTo x)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eOne_finite
 

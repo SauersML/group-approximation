@@ -102,8 +102,8 @@ theorem rigidPolarOpenTransport_of_rigidPolarBasisOpenTransport
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rigidPolarOpenTransport_of_rigidPolarBasisOpenTransport
 
 /-- The printed converse for topological full groups, reduced to the basis statement.  It routes
-through `RigidPolarOpenTransportStatement` and `SupportDisjointnessTransportStatement`, never through
-Recognition. -/
+through `RigidPolarOpenTransportStatement` and `SupportDisjointnessTransportStatement`, never
+through Recognition. -/
 theorem manuscriptSentence_flipConjugateConverse_of_rigidPolarBasisOpenTransport
     (h : RigidPolarBasisOpenTransportStatement) {X Y : Type} [TopologicalSpace X]
     [TopologicalSpace Y] [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]

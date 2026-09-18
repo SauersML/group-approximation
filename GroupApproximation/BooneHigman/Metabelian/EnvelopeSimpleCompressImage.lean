@@ -11,7 +11,8 @@ Route: `ConeInImage f` says that the image under `f` of every cone contains a co
 for elements of some depth (`coneInImage_of_hasDepth`), for tree automorphisms
 (`coneInImage_cantorHom`), is preserved by `localize` and by products, so by closure induction
 on `ConeInImage g ∧ ConeInImage g⁻¹` it holds on `V_X(H)` (`coneInImage_rn_and_inv`).
-If `S` misses `cone c` and `cone c' ⊆ f '' cone c`, then `f '' S` misses `cone c'` (`missesCone_image_rn`).  Self-similarity is not used.
+If `S` misses `cone c` and `cone c' ⊆ f '' cone c`, then `f '' S` misses `cone c'`
+(`missesCone_image_rn`).  Self-similarity is not used.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope

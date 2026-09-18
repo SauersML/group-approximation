@@ -58,7 +58,7 @@ def nfSplitRelators (H : Subgroup (TreeAut X)) (x₀ : X) : Set (RNFree X H) :=
 theorem nfSplitRelators_subset_ker (H : Subgroup (TreeAut X)) (x₀ : X) :
     nfSplitRelators H x₀ ⊆ (rnFreeHom H x₀).ker := by
   rintro r ⟨h, a, c, k, l, hl, hall, hk, hc, ha, rfl⟩
-  rw [nf_mem_ker_iff, map_mul, map_mul, map_inv, nf_toPerm_V, nf_toPerm_L, ha,
+  rw [SetLike.mem_coe, nf_mem_ker_iff, map_mul, map_mul, map_inv, nf_toPerm_V, nf_toPerm_L, ha,
     nf_prod_conj_eq H x₀ h c k l [x₀] hk hc, mul_assoc, ← map_mul,
     ← nf_wreath (h : TreeAut X) l hl hall, inv_mul_cancel]
 
@@ -80,7 +80,7 @@ def nfRootRelators (H : Subgroup (TreeAut X)) (x₀ : X) : Set (RNFree X H) :=
 theorem nfRootRelators_subset_ker (H : Subgroup (TreeAut X)) (x₀ : X) :
     nfRootRelators H x₀ ⊆ (rnFreeHom H x₀).ker := by
   rintro r ⟨h, a, c, k, l, hl, hall, hk, hc, ha, rfl⟩
-  rw [nf_mem_ker_iff, map_mul, map_mul, map_inv, nf_toPerm_V, nf_toPerm_H, ha,
+  rw [SetLike.mem_coe, nf_mem_ker_iff, map_mul, map_mul, map_inv, nf_toPerm_V, nf_toPerm_H, ha,
     nf_prod_conj_eq H x₀ h c k l [] hk hc, localize_nil, mul_assoc,
     ← nf_wreath (h : TreeAut X) l hl hall, inv_mul_cancel]
 
