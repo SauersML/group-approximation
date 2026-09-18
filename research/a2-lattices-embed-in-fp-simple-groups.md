@@ -27,7 +27,8 @@ Examples:
   infinite family (Corollary `cor:ExistenceExotic`);
 - Barré's lattice;
 - every CMSZ group;
-- every lattice in `PGL_3(D)`.
+- every cocompact lattice in `PGL_3(D)`, for `D` a division algebra over a local field
+  (non-uniform lattices are not covered).
 
 ## Step 0. Reductions
 
