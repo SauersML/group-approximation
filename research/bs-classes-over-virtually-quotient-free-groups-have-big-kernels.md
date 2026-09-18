@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `bs-quotient-free-big-kernel-proof` (lane proof,
-elementary; not independently reviewed; no priority claimed).
+elementary; referee b PASS on citations and scope,
+`research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
+proof-gap review pending; no priority claimed).
 
 **Notation.** `R(V)` is the finite residual of a group `V`: the intersection of all
 finite-index subgroups.
