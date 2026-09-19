@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
   - research/artifacts/pointed-pre-injective-sections-2026-09-18.md
   - research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md
+  - research/artifacts/erasable-pattern-avoiding-cover-pairs-2026-09-19.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -200,3 +201,27 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
     model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
     argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.
+- **Dual failures give CP pairs (swarm-0917-w19-w19-gs-pull, 2026-09-19; symbolic-dynamics). This is a new
+  implication plus a class obstruction for the converse. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `dual-failures-give-constant-point-cover-pairs` (Theorem D).
+    - Any post-surjective, non-pre-injective `F : A^G → A^G` restricts to a counterexample to this claim at `G`.
+      The domain is `X_{w'}`, the configurations avoiding one non-constant pattern, and it contains every
+      constant.
+    - `w' = u' ∪ c` pads the collision pattern `u'` of an asymptotic pair with a random context `c`. The context is
+      chosen so that swapping `u' → u` at an occurrence of `w'` preserves `F` and creates no new occurrence.
+    - Lifts in `A^G` (Doucha–Gismatullin) contain finitely many occurrences, and swapping them out one at a time
+      terminates.
+  - *Consequences.*
+    - This claim at `G` implies dual surjunctivity at `G`. So this claim over all groups implies
+      `every-group-is-dual-surjunctive`, by the new route `dual-surjunctivity-via-constant-point-domains`.
+    - This strengthens `CP ⇒ NPE`. The single hub now feeds both Gottschalk and its dual.
+    - Over a surjunctive `G` the pair collides at every constant, so `Gottschalk(G) ∧ ¬DualSurj(G) ⇒ ¬CP_col(G)`.
+  - *Class obstruction (needs 36774ad3 and 06d50d0e).*
+    - Invariant: the Theorem D pair, which exists at every group with a dual failure.
+    - Dying step: every proof of `Gottschalk(G) ⇒` this claim at `G` must dispose of it. So it proves
+      `surjunctive-groups-are-dual-surjunctive` at `G`, which is OPEN.
+    - PRUNE and the coset lift are therefore at least as hard as "surjunctive ⇒ dual surjunctive". The Theorem D
+      pairs are not in general deficient, so the deficiency kill does not already cover them.
+  - *Spark.* If `c` can be chosen so that `X_{w'}` is strongly irreducible, then
+    `PSD(G) ∧ Gottschalk(G) ⇒ DualSurj(G)` as well. This is unchecked.
+  - Artifact: `research/artifacts/erasable-pattern-avoiding-cover-pairs-2026-09-19.md`.
