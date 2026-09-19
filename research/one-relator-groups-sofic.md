@@ -215,6 +215,26 @@ claim [[nonsofic-one-relator-group]].
        - Linton Thm 7.1 then gives virtual specialness.
      - Open next: length 20 and up, where `A cap B` can be exceptional and
        the top-level Z-stability needs another argument.
+   - **Length-21 singular-extreme slice closed, exceptional top level included
+     (2026-09-18, w10-073).** Length 20 is empty, since the parity forces
+     `|w|` odd.
+     - [[magnus-windows-are-linton-one-relator-towers]]: the iterated Magnus
+       windows form a Linton one-relator hierarchy that ends at a primitive
+       relator (free group), so Linton Thm 7.1 applies to two-level towers.
+     - [[length21-singular-relators-z-stable-hierarchy-special]]: the census
+       has 660 one-level and 20 two-level relators with census certificates,
+       and 821 open two-level relators. There are none with `n >= 3`, by a
+       length bound checked by a second enumerator.
+       - Top level: 713 have cyclic `A cap B` (Collins, `sZ = 2`). The other
+         108 have a rank-two, exceptional `A cap B`. Stallings pullbacks in
+         the free Magnus subgroup give `sZ = 3` for these.
+       - Level one: Stallings pullbacks.
+       - Hyperbolicity: kbmag for 815 relators and `C'(1/6)` for 6.
+       - All 821 are virtually special.
+     - Open next: length 23, the first length with three-level relators
+       (96 `n = 3` candidates). This needs a three-step tower with `sZ` at
+       the middle level, and perhaps hyperbolicity certificates that do not
+       use kbmag.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

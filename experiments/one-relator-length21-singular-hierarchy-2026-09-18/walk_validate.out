@@ -1,0 +1,9 @@
+# gen_walk21.py validation against the brute-force gen_singular21.py (same canonical SEQ sets)
+brute g19n2e9.out 52 walk w19n2.seq 52 equal True
+brute gen21n1.out 660 walk w21n1.seq 660 equal True
+brute gen21n2.out 841 walk w21n2.seq 841 equal True
+len 21 n=3: walks 1939 candidates 0
+len 21 n=4: walks 3729 candidates 0
+len 21 n=5: walks 3929 candidates 0
+len 21 n=6: walks 3021 candidates 0
+len 23 n=3: walks 4669 candidates 96
