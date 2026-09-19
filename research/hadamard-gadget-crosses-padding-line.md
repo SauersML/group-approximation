@@ -2,11 +2,12 @@
 rg: 2
 id: hadamard-gadget-crosses-padding-line
 kind: claim
-title: Some Had_k -> Max-2Lin(2) gadget has deletion ratio s/c > 2 (equivalently R*(k) > 2); necessarily k >= 6, s/c < 5/2, and the soundness must be true soundness, not Wiman's relaxation
+title: Some Had_k -> Max-2Lin(2) gadget has deletion ratio s/c > 2 (equivalently R*(k) > 2); necessarily k >= 7 (hadamard-gadget-ratio-below-two-at-k6), s/c < 5/2, and the soundness must be true soundness, not Wiman's relaxation
 distinct_from:
   hadamard-gadget-deletion-ratio-window: that proves R*(k) < 2 for k <= 5 and R*(k) <= 5/2 - 2^(1-k); this is the open statement that the window reaches above 2 for some larger k.
   unique-games-np-hard-below-the-padding-line: that is the milestone for any unique-games point; this is one sufficient gadget-level statement, feeding it through padding-line-hardness-from-hadamard-gadget.
   ug-hardness-deficit-ratio-padding-line: that is the invariant R > 2 iff s < 2c - 1 for unique-games points; this is a statement about gadgets, not instances.
+  hadamard-gadget-ratio-below-two-at-k6: that proves R*(6) < 2 exactly (delta_6 < 16/47); this is the open statement for some k, now necessarily k >= 7.
 ---
 
 **OPEN.** For some `k >= 2` there is a `(c, s)`-gadget reducing Max-`Had_k`
@@ -77,3 +78,24 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
     `hadamard-gadget-k4-true-soundness-beats-wiman`.
   * **What this does not decide.** Nothing here moves `k >= 6`, since the
     `k = 5` census, with `2^31` variables, is out of reach for this code.
+* **Exact delta_6 kills k = 6.** Done 2026-09-19 by
+  swarm-0917-w17-w17-ugc-last1. `hadamard-gadget-ratio-below-two-at-k6` is
+  ESTABLISHED. The constraint "`k >= 6`" above now reads **`k >= 7`**.
+  * **Method.** An affine-class split of the RM(1,6) spectrum into two
+    RM(1,5) halves: `max|W| = max_{i'} (|A_{i'}| + |B_{i'}|)`. `F` is summed
+    exactly over the 48 AGL(5) classes of cosets of the first half, with a
+    Gray code over all `2^32` patterns of the second half.
+  * **Validation.** The code reproduces the exact `delta_4`, `delta'_4`,
+    `delta_5` and `delta'_5`.
+  * **Result.** `delta_6 = 194052011567061629/2^59 = 0.3366266 < 16/47`, so
+    `R*(6) <= 1.9888406 < 2`. A parity identity,
+    `E max|W'| = E max|W|`, gives `R*'(6) <= 1.9812 < 2`.
+  * **The decoder adversary is now exhausted.** Its bound is `2.1117` at
+    `k = 7` (Monte Carlo). A witness at `k = 7` must therefore beat every
+    adversary built on nearest-codeword decoding with a uniform threshold.
+  * **What would decide k = 7.**
+    * A refuting adversary must exploit the decoded margin, for example list
+      decoding or a margin-dependent threshold.
+    * A crossing proof must certify a true soundness above `2c`, which
+      Martinsson Proposition 49(c) forbids for relaxed soundness.
+    * Neither was attempted here.

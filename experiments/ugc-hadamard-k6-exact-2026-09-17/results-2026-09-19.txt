@@ -1,0 +1,34 @@
+Exact delta_6 (mean normalized distance of a uniform word to RM(1,6)) by the
+affine-class split of rm1_six_exact.c.  Run 2026-09-19, gcc -O3 -mavx2 -mbmi2,
+4 threads.  Pure integer arithmetic (uint64 per job, unsigned __int128 totals).
+
+Validation (k5_validation.log): the same code with n = 4 and n = 3 reproduces
+every exact value already recorded in hadamard-gadget-deletion-ratio-window,
+which were computed by the independent info-set Gray-code enumeration of
+experiments/ugc-hadamard-gadget-window-2026-09-17/rm1_mean_distance.c:
+  k=4 full:      delta = 1961/8192                  (match)
+  k=4 punctured: delta' = 341/1536                  (match)
+  k=5 full:      T = 1798461280 = 2 * 899230640     (match: old sum over 2^26 coset reps)
+                 delta = 78015813/268435456         (match)
+  k=5 punctured: delta' = 2381339/8388608           (match)
+  orbit counts: AGL(3) on RM(1,3) cosets: 3; AGL(4) on RM(1,4) cosets: 8 (known values)
+
+k = 6 (k6_full_run.log):
+  AGL(5) orbits on the 2^26 cosets of RM(1,5): 48 (the known Berlekamp-Welch count),
+  orbit sizes sum to 2^26 exactly.
+  T = sum_orbits |orbit| * sum_{f1} max_{i'} (|A_i'| + |B_i'|) = 6027415333417607360
+  D = 2^26 * 2^32 = 288230376151711744
+  E max_i |W_i| = T/D = 20.911797756684...      (Monte Carlo 2026-09-18: 20.9110 +- 0.0007)
+  delta_6 = 194052011567061629 / 2^59 = 0.336626580026...
+  kill threshold 1/(3 - 4/64) = 16/47 = 0.340425531915...;   16/47 - delta_6 = 0.0037990 > 0
+  decoder bound  R*(6) <= 1 + delta_6 * 47/16
+               = 18343816580506672371 / 2^63 = 1.988840578826...  < 2
+               (2 - bound = 102927493202879245 / 2^63 = 0.011159...)
+
+Punctured (Had'_6), from the parity identity E max|W'| = E max|W| (proof in
+hadamard-gadget-ratio-below-two-at-k6-proof; checked here at k = 3, 4, 5 where
+the two programs give equal E):
+  delta'_6 = 1/2 - E/(2*63) = 27078344562813019 / 81064793292668928 = 0.334033351...
+  R*'(6) <= 1 + delta'_6 * 47/16 = 1.981222969...  < 2
+
+Run time on a shared, heavily loaded 4-core host: about 25 minutes wall.
