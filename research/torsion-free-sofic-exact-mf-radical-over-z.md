@@ -28,6 +28,7 @@ artifacts:
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
   - research/finite-outer-order-radical-witnesses-cross-alekseev-thom.md
+  - research/ollivier-wise-z-torus-kernel-not-finitely-presented.md
   - research/automorphic-sofic-kazhdan-kernel-with-full-mf-radical.md
   - research/titz-witzel-smallest-kernel-not-mf.md
   - research/torsion-free-sofic-quotientless-kazhdan-group-exists.md
@@ -244,3 +245,27 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     `[R, LR]`, so that the number of relation scales up to `T` is at least `log_L T`. This is the
     self-similar or branch-type regime, not a sparse limit. Any lacunary or monster construction
     of an (IO) kernel must first be shown to have bounded gaps.
+- **2026-09-19, swarm-0917-w16-w16-titz-break (breaker, heuristic falsified).  Status: OPEN.**
+  - New ESTABLISHED claim `ollivier-wise-z-torus-kernel-not-finitely-presented`, with route
+    `-proof`. It uses the Ollivier--Wise import, Brown's cohomology facts and Stallings--Swan.
+  - *Heuristic falsified.* w15 recorded above that the surviving (IO) regime is "self-similar or
+    branch-type", and that no Kazhdan group with a finite invariant presentation that is not
+    finitely presented is known. Both are false.
+    - The Ollivier--Wise Rips construction over `Q = Z` gives a finitely presented, torsion-free,
+      hyperbolic `G = N ⋊_φ Z` with `cd G ≤ 2`.
+    - Its kernel `N = <x,y>` is Kazhdan, not FP_2, and `[φ]` has infinite outer order.
+    - So `N` has a finite two-sided automorphic presentation. Its bounded gaps are forced by the
+      w15 lemma, and it is hyperbolic-subgroup-like rather than branch.
+  - *Dimension-jump lemma, a class kill.* If `cd G ≤ 2`, `G/N ≅ Z` and `N` is nontrivial Kazhdan,
+    then `N` is not FP_2.
+    - The invariant is `cd`. The death step is `H^{n+1}(G; ZG) ⊇ H^1(Z; Z[t^±]⊗H^n(N;ZN)) ≠ 0`,
+      which forces `cd N ≤ 1`, so `N` is free.
+    - Consequence: every witness with `cd G ≤ 2` (one-relator, `C'(1/6)`, `Gr'(1/6)`, aspherical
+      2-complex) lies in (IO). The (AT) branch, which would answer Alekseev--Thom 6.1, needs
+      `cd G ≥ 3`.
+  - *What is left.* (P2)/(L3)/(FAP1) are no longer the hard part of (IO). For a Rips torus the
+    remaining obligations are exactly three: `G` sofic, `N` without finite quotients (`G` not
+    residually finite), and `N ⊆ Rad_MF(G)` (`G` not MF).
+    - All three are open problems about torsion-free hyperbolic groups. So on this route the goal
+      lives inside "a sofic, non-residually-finite, non-MF torsion-free hyperbolic group with a
+      Kazhdan Rips kernel over `Z`".
