@@ -1,0 +1,9 @@
+F-ball 187 N-ball 13273 3 s
+hashed 1023 s
+progress {'pairs': 185, 'trivial_k': 1684045, 'tuples': 72, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1024 s
+progress {'pairs': 2035, 'trivial_k': 5200983, 'tuples': 37436, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1058 s
+progress {'pairs': 4070, 'trivial_k': 7083514, 'tuples': 84916, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1096 s
+progress {'pairs': 6105, 'trivial_k': 7186925, 'tuples': 97532, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1122 s
+progress {'pairs': 8140, 'trivial_k': 9036400, 'tuples': 118586, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1154 s
+progress {'pairs': 10175, 'trivial_k': 9156363, 'tuples': 134352, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 1181 s
+exit 124

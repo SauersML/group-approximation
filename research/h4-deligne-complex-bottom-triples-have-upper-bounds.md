@@ -190,6 +190,23 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     vertex-free tuple.
   - **Next.** Find an action of `ker ρ_X` on a tree (or a CAT(0) complex) whose vertex stabilisers are the
     `γFγ^{-1}`. Serre's lemma then gives Case 1 in full.
+- **Case 1 Helly is a commutator double-coset problem** (w13-042,
+  `h4-case1-helly-is-a-commutator-double-coset-problem`; proved, searches are evidence).
+  - **Rigidity.** Applying `ρ_Y` shows that conjugation by `γ ∈ N` fixes every element of `P_Y` that it keeps in
+    `P_Y`. Hence `F ∩ γFγ^{-1} = C_F(γ)`.
+  - **Exact pure bounds.** The pure bounds of a Case 1 tuple are exactly the `γA_Y` with
+    `γ ∈ C_N(α_1) ∩ β_1C_N(α_2)`. So (H) holds iff `β_1 ∈ C_N(α_1)C_N(α_2)`.
+  - **Commutator form.** With `a = α_1^{-1}`, `b = α_2`, `u = β_3` and `v = β_3β_1`:
+    - `(*)` says `[u, a] = [v, b] =: k`;
+    - the pure bounds are the `w ∈ N` with `[w, a] = [w, b] = k`;
+    - the three hexagon vertices are `w = 1, u, v`.
+  - **Diagonal pairs.** For `α_1 = α_2`, (H) and VC are equivalent. This closes the two diagonal pairs that `vsearch3`
+    could not finish.
+  - **Search.** An exact hash-class search over `N`-elements of length ≤ 3 (12 letters) and all `F`-pairs of length
+    ≤ 2 found no VC-failure.
+  - **Next.** Case 1 is now equivalent to `(H″)`: for `a ≠ b` in `F` and `u, v ∈ N`, `[u, a] = [v, b]` implies
+    `u^{-1}v ∈ C_N(a)C_N(b)`. It needs an invariant of `⟨N, F⟩` finer than `(ρ_X, ρ_Y)`, e.g. a tree for `⟨N, F⟩` whose
+    edge groups at `F` are the `C_F(n)`.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
