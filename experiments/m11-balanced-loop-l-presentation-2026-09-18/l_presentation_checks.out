@@ -1,0 +1,54 @@
+== 1. letter sections
+weight-preserving (letter, point, section): [('b', 0, 'b'), ('B', 0, 'B'), ('C', 3, 'C'), ('C', 4, 'ba'), ('C', 5, 'c'), ('c', 3, 'c'), ('c', 4, 'AB'), ('c', 5, 'C')]
+C/c at 4 gives b-letter (C-count drops); b/B only preserve at 0; C/c only at 3,4,5
+== 2. orders
+b^k = 1 for k < 200: [55, 110, 165]
+C^k = 1 for 0<k<=60: []
+== 3. sigma words
+single-point perm commutators [b,b^g]: found 896 points [1, 2]
+example: z=1, section perm index 1465, weight 4
+distinct iota_0 generators from commutators: 2
+iota_0 generator pool size: 14
+iota_0(M_11): all 7920 elements reached; max weight 34
+== 4. C identities
+pi_1 = aaaeaaea  pi = aaeaae (a = alpha, e = beta)
+[C,pi_1] = C@5 (C^-1)@6 : True
+C = pi^-1[C,pi_1]pi (b alpha)@4 : True
+sigma(a): weight 18, tokens 36, exact iota_0 check: True
+sigma(e): weight 20, tokens 38, exact iota_0 check: True
+sigma(b): weight 39, tokens 74, exact iota_0 check: True
+sigma(C): weight 10079, tokens 19174
+sigma(C) exact iota_0 check: True
+== 5. weight descent of the exactness proof
+b^55                       weight    55  descent nodes      1  height   0
+R2(b)                      weight     0  descent nodes      1  height   0
+R2(C)                      weight 20216  descent nodes      3  height   1
+[C,pi_1]C@6c@5             weight 20160  descent nodes      3  height   1
+[iota_1(b),iota_3(C)]      weight 20236  descent nodes      1  height   0
+[sigma(b),h]               weight    78  descent nodes      1  height   0
+C2 sec0(sigma(C)) C^-1     weight    60  descent nodes      1  height   0
+sigma(R2(b))               weight     0  descent nodes      1  height   0
+conj R2(C) #0              weight 20226  descent nodes      3  height   1
+conj R2(C) #1              weight 20226  descent nodes      3  height   1
+conj R2(C) #2              weight 20230  descent nodes      3  height   1
+conj R2(C) #3              weight 20230  descent nodes      3  height   1
+all descent trees finite, leaves = weight-0 relators or b^{55j}
+== 5b. torsion relators u^n (n = order of u)
+u=.B.b         order   11  weight(u^n)    22  descent nodes      1  height   0
+u=.b.c         order   55  weight(u^n)   110  descent nodes      1  height   0
+u=.b.c         order   55  weight(u^n)   110  descent nodes      1  height   0
+u=.B.          order  275  weight(u^n)   275  descent nodes      6  height   1
+u=.b.B         order   44  weight(u^n)    88  descent nodes     12  height   1
+u=.b.c         order   55  weight(u^n)   110  descent nodes     12  height   1
+u=.b.B         order   20  weight(u^n)    40  descent nodes      6  height   1
+u=.b.B         order   32  weight(u^n)    64  descent nodes      1  height   0
+u=.b           order  220  weight(u^n)   220  descent nodes      2  height   1
+u=.b.B         order   20  weight(u^n)    40  descent nodes      6  height   1
+u=.b.          order  220  weight(u^n)   220  descent nodes      2  height   1
+u=.C.B.        order   55  weight(u^n)   110  descent nodes     12  height   1
+all descent trees finite, leaves = weight-0 relators or b^{55j}
+== 6. Q_0 = section closure of the base relators (raw words, free reduction only)
+Stab(1) generators: ['aaaee', 'aaeee']
+base relators (nonempty): 34  max length 318956
+|Q_0 minus R1| = 48  max length 318956  total letters 1805338
+every element of Q_0 is trivial in R°: True
