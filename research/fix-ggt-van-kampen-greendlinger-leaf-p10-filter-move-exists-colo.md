@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10FilterMoveExist
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P10FilterMoveExists/Colour.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job direct-b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** 838fc69e67: Fix the Decidable instance in the quadrant colourings decide lemma. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
