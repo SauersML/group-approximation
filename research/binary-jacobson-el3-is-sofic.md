@@ -194,3 +194,15 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
     from `1`.
   - **Consequence.** A non-soficity proof for `E` must use relations outside every contraction-trap certificate,
     such as relations inside `A` or property (T). The trap certifies non-LEF and nothing more.
+* **S-arithmetic lattice duality (swarm-0917-w15-w15-nh-last1, 2026-09-19). The class is dead; the target stays
+  OPEN.** Recorded in `jacobson-haar-lattice-duals-are-class-bijective-extensions`.
+  - **Setup.** `Γ_n` is a lattice in `G = G_∞ x G_0`, with `G_v = K_v^n x| SL_n(K_v)`, and `K_∞^n = G/H` for
+    `H = SL_n(K_∞) x G_0`.
+  - **Transfer (D2).** For every lattice `Δ ≤ H`, soficity or CE of `Δ ↷ Γ\G` gives soficity or hyperlinearity of
+    `EL_n(J)`.
+  - **Death (D3).** `R_Δ` is SOE to a skew product `S_Δ` of `R_Γ|_D` by the non-atomic fibre `H/Δ`, and
+    `S_Δ -> R_Γ|_D` is a class-bijective factor map. Approximations only descend along such a map, so the dual problem
+    is at least as hard as the original. The fibre-free dual `K_0^n x| SL_n(A) ↷ (K_∞ x K_0)^n / A^n` returns
+    `R_Γ|_D` exactly, and `Γ` has no finite orbits on that solenoid.
+  - **Survivor (D4).** Soficity of `Δ_std ↷ Γ\G` that uses its product splitting and its fibre. Both factors are
+    Kazhdan.
