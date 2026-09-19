@@ -95,3 +95,20 @@ The statement does not depend on the presentation or on `a`.
      - arguments that use the joint structure of the words, since realizability of the data by words of `V` is not claimed;
      - Schur-functor replicas (`Lambda^k`, `Sym^k`) and compressions;
      - model-dependent lengths.
+6. **Unitarily invariant norms through exterior-power replicas** (2026-09-19, swarm-0917-w19-w19-nh-last1,
+   operator-algebras). Dead as a class whenever the relator Ky Fan mass vanishes; the node stays OPEN.
+   - `exterior-replica-converts-kyfan-witnesses-to-opnorm` (ESTABLISHED) proves two reductions.
+     - A ratio witness in any unitarily invariant norm of `g - I` yields a Ky Fan-`k` ratio witness, with loss `|R_0|`, by
+       Abel summation of the dual vector. The norm may depend on the dimension and the witness, and includes every
+       Schatten norm.
+     - The exterior replica `Lambda^1 (+) ... (+) Lambda^j` then turns it into an operator-norm ratio witness with ratio
+       `<= pi rho / min(A, 1)`. Here `rho` is the relator Ky Fan mass and `A` the Ky Fan length of `a(U)`.
+   - So "Schur-functor replicas" from Attempt 5 do strictly more than tensor powers. They convert Ky Fan data that no
+     classical length sees at the identity (worked data: op, HS, rank ratios `k^(1/2)`, `sqrt 2`, `k^2`) into MF data.
+   - **Invariant.** The relator Ky Fan mass `rho = max_r KF_k(r(U))`.
+   - **Death step.** One exterior replica, then the op amplification of Attempt 4. For `V`, "mass-ratio -> 0" is equivalent
+     to `V` MF.
+   - What survives: witnesses with relator Ky Fan mass bounded below at every usable index. These force
+     `KF_k(a(U)) -> infinity`, and they include all finite realizations of the Schatten-`p` data of Attempt 5, whose
+     relators have an eigenvalue `-1`. Non-norm lengths also survive, as do joint word structure and higher Schur functors
+     with non-exterior weights.
