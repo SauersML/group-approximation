@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9.2, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.3, 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5.
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5 and v9.3 adds §0.6.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -114,7 +114,8 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   group, RP_{F_2} of the Cayley tree. It is the first non-split test of the seed form of HARD-(A), and it passes
   the finiteness half of gate 1.
   - HARD-(A) is not thereby given: T0 carries no hard seed.
-  - Finite generation of the seed stabilizer is still pending.
+  - The seed stabilizer is finitely generated and the action is type (A) (ebea21f0d4, bh-invent-03). So gate 1
+    lacks only a hard seed.
 - **Complexity caps** (508b190dbb). "Finite type ⇒ finite-state" holds for Farley–Hughes hosts, but only narrowly.
   "Forced self-similar" is false (Farley–Hughes Ex. 4.35). So the cap does not rule out a hard seed with a finitely
   presented full group.
@@ -134,11 +135,34 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   - Algebraic rows carry rigid free commutants but are never minimal. So the test T1 is an invariant free minimal
     subset of Ledrappier² (54ed6d2fe, in review).
 
+### 0.6 v9.3 additions (summarized from referee verdicts, not re-refereed)
+
+- **Gate 1, the hard seed.**
+  - The hard-seed form through Farley–Hughes is **dead for nested certificates**: FH certificates have prefix-chart
+    coordinates (`farley-hughes-certificates-have-prefix-chart-coordinates`, 4c81e934b2; reviewed at dda7d68b92).
+  - **Correction:** the capped class is "separating finite quotients whose composition factors have order ≤ d!",
+    not "bounded composition factors". The latter would be wrong, since F₂ ≤ Aut T₂.
+  - Still open: non-nested certificates, non-FH finiteness engines, and the word problem of H_τ.
+  - New lane: bh-gate1-abstract.
+- **(RA_free), test T2.** It needs a residually finite non-exact group with commuting local left and right
+  multiplication (`pointer-encodings-give-non-linear-two-sided-locality`, 40ec7a08de; referee 54a06008fb, items
+  1, 3, 4 PASS, padding repaired). Pointer encodings give non-linear two-sided locality for F wr Z. New lane:
+  bh-ra-t2.
+- **BBMZ Q1.2.** New lane bh-q12-kazhdan works on persistence for the Z^r extension toward Kazhdan hyperbolic
+  groups.
+- **Kourovka (named, off-route; prior-solution check pending with bh-ref-q11).**
+  - **21.73:** the conjugacy problem in CT(Z) is undecidable (`ct-z-conjugacy-problem-is-undecidable`,
+    a95cb1edf). PASS, with the Morita input read at source and discharged (e361044922).
+  - **21.74(b),(c):** the finite-cycle problems in CT(Z) are undecidable
+    (`ct-z-finite-cycle-problems-are-undecidable`, 71b76e027). PASS, conditional on Kari–Ollinger Theorems 3
+    and 6, which are published.
+  - bh-free-58's hand-off for 21.73/21.74, 20.44, 19.45/19.46 and 21.140 is ce7ab8f74.
+
 ## 1. Gate ranking v9
 
 | Rank | Gate | Lanes |
 |---|---|---|
-| 1 | **HARD-(A), seed form:** a hierarchical seed checking one hard sequence at every level, with `[[Γ ⋉ Y]]` fp (Farley–Hughes engine; the first test T0 is F_∞, refereed, db0daa1547) and a fg seed stabilizer (pending for T0) | bh-invent-11, bh-invent-03, bh-invent-14, bh-invent-15 |
+| 1 | **HARD-(A), seed form:** a hierarchical seed checking one hard sequence at every level, with `[[Γ ⋉ Y]]` fp (T0 is F_∞ with fg seed stabilizer and type (A): db0daa1547, ebea21f0d4). Only a hard seed is missing; FH nested certificates are dead (4c81e934b2), so non-nested certificates or a non-FH engine | bh-invent-11, bh-invent-03, bh-invent-14, bh-invent-15 |
 | 2 | **PBH-universality:** relators written into the permutation structure; ports are translations crossing every splitting (c6514e7e6, dd87ce431, e3897e787) | bh-ra-counter, bh-invent-02, bh-typeA-universal |
 | 3 | **Rigid seeds for non-hyperbolic Kazhdan inputs:** the Ã₂ seed boundary is classified as chambers plus panel-tree pointers (7d0b8309d); relatively hyperbolic overgroups with H_Γ parabolic | bh-g2-buildings, bh-free-09, bh-emitter-b, bh-invent-13 |
 | 4 | **(RA_free) and (RA′)** ((RA) in topologically free form is refuted), split by fibres: finite fibres, non-existence; infinite fibres, join-cap coherence (932c4670b, cf68fcdd7, 8fa6f7ccd) | bh-ra-proof, bh-star-b, bh-invent-16, bh-ra-counter |
