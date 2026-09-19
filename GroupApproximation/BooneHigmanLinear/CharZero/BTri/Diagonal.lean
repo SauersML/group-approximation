@@ -32,6 +32,7 @@ variable {I R : Type*} [Fintype I] [DecidableEq I] [CommRing R]
 def dgCoeff (d : I → Rˣ) (i j : I) (a : R) : R :=
   (d i : R) * a * ((d j)⁻¹ : Rˣ)
 
+omit [Fintype I] [DecidableEq I] in
 theorem dgCoeff_add (d : I → Rˣ) (i j : I) (a b : R) :
     dgCoeff d i j a + dgCoeff d i j b = dgCoeff d i j (a + b) := by
   unfold dgCoeff
@@ -39,6 +40,7 @@ theorem dgCoeff_add (d : I → Rˣ) (i j : I) (a b : R) :
 
 #audit_axioms dgCoeff_add
 
+omit [Fintype I] [DecidableEq I] in
 theorem dgCoeff_mul (d : I → Rˣ) (i j k : I) (a b : R) :
     dgCoeff d i j a * dgCoeff d j k b = dgCoeff d i k (a * b) := by
   unfold dgCoeff
@@ -52,11 +54,13 @@ theorem dgCoeff_mul (d : I → Rˣ) (i j k : I) (a b : R) :
 
 #audit_axioms dgCoeff_mul
 
+omit [Fintype I] [DecidableEq I] in
 theorem dgCoeff_one (i j : I) (a : R) : dgCoeff (1 : I → Rˣ) i j a = a := by
   simp [dgCoeff]
 
 #audit_axioms dgCoeff_one
 
+omit [Fintype I] [DecidableEq I] in
 theorem dgCoeff_dgCoeff (d e : I → Rˣ) (i j : I) (a : R) :
     dgCoeff d i j (dgCoeff e i j a) = dgCoeff (d * e) i j a := by
   simp only [dgCoeff, Pi.mul_apply, Units.val_mul, mul_inv_rev]
@@ -143,7 +147,7 @@ theorem dgUnit_conj (d : I → Rˣ) (i j : I) (hij : i ≠ j) (a : R) :
       Matrix.diagonal (fun k => (((d k)⁻¹ : Rˣ) : R)) = 1 + Matrix.single i j (dgCoeff d i j a)
   ext k l
   rw [Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.add_apply, Matrix.add_apply,
-    Matrix.one_apply, Matrix.one_apply, Matrix.single_apply, Matrix.single_apply]
+    Matrix.one_apply, Matrix.single_apply, Matrix.single_apply]
   by_cases hkl : k = l
   · have hk : ¬(i = k ∧ j = l) := fun h => hij (h.1.trans (hkl.trans h.2.symm))
     simp only [if_pos hkl, if_neg hk, add_zero, mul_one]
