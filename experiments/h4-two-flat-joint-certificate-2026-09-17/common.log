@@ -1,0 +1,32 @@
+V0: walls of V ['o13', 'o14', 'o56', 'p1', 'x0']
+    fibre walls ['o13', 'o14', 'o56', 'p1', 'p2', 'p3']
+    collision walls ['x0', 'x1', 'x11', 'x2', 'x3', 'x4', 'x5', 'z0', 'z1', 'z2']
+    |C'_V| = 16
+V1: walls of V ['o12', 'o14', 'o37', 'p2', 'x1']
+    fibre walls ['o12', 'o14', 'o37', 'p1', 'p2', 'p3']
+    collision walls ['x0', 'x1', 'x10', 'x2', 'x3', 'x4', 'x6', 'z0', 'z1', 'z2']
+    |C'_V| = 16
+V2: walls of V ['o14', 'o15', 'o36', 'p3', 'x4']
+    fibre walls ['o14', 'o15', 'o36', 'p1', 'p2', 'p3']
+    collision walls ['x0', 'x1', 'x10', 'x11', 'x4', 'x5', 'x6', 'z0', 'z1', 'z2']
+    |C'_V| = 16
+C_0(V0,V1) = ['o14', 'p1', 'p2', 'p3', 'x0', 'x1', 'x2', 'x3', 'x4', 'z0', 'z1', 'z2']  (12 walls; inside A_x u A_y: False)
+    only in V0: ['o13', 'o56', 'x11', 'x5'] ; only in V1: ['o12', 'o37', 'x10', 'x6']
+C_0(V0,V2) = ['o14', 'p1', 'p2', 'p3', 'x0', 'x1', 'x11', 'x4', 'x5', 'z0', 'z1', 'z2']  (12 walls; inside A_x u A_y: False)
+    only in V0: ['o13', 'o56', 'x2', 'x3'] ; only in V2: ['o15', 'o36', 'x10', 'x6']
+C_0(V1,V2) = ['o14', 'p1', 'p2', 'p3', 'x0', 'x1', 'x10', 'x4', 'x6', 'z0', 'z1', 'z2']  (12 walls; inside A_x u A_y: False)
+    only in V1: ['o12', 'o37', 'x2', 'x3'] ; only in V2: ['o15', 'o36', 'x11', 'x5']
+C_0(all) = ['o14', 'p1', 'p2', 'p3', 'x0', 'x1', 'x4', 'z0', 'z1', 'z2'] (10 walls)
+
+V0 q o13  x  V1 q o12 : collide on z0 (A_x)
+V0 q o13  x  V1 q o37 : collide on NON-WALL
+V0 q o56  x  V1 q o12 : collide on NON-WALL
+V0 q o56  x  V1 q o37 : collide on z0 (A_x)
+V0 q o13  x  V2 q o15 : collide on z1 (A_x)
+V0 q o13  x  V2 q o36 : collide on NON-WALL
+V0 q o56  x  V2 q o15 : collide on NON-WALL
+V0 q o56  x  V2 q o36 : collide on z1 (A_x)
+V1 q o12  x  V2 q o15 : collide on z2 (A_x)
+V1 q o12  x  V2 q o36 : collide on NON-WALL
+V1 q o37  x  V2 q o15 : collide on NON-WALL
+V1 q o37  x  V2 q o36 : collide on z2 (A_x)

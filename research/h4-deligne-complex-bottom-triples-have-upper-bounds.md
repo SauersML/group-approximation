@@ -149,6 +149,22 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     that are not `H_4` walls (`twoflat.py`). So there is no braid picture with two rigid clusters. A multi-flat
     joint certificate has to be computed in the non-fibre-type group `π_1M(ℬ_V ∪ ℬ_{V'})`, or in a
     non-fibred shadow.
+- **Two-flat joint centres reduce to one pencil loop** (w10-042,
+  `h4-i25-two-flat-joint-centres-reduce-to-pencil-loops`, established).
+  - *Centre criterion.* In a fibred shadow `F_k ⋊ B`, `c ∈ B` is a centre iff `α_1` and `β_1α_2β_1^{-1}`
+    lie in `cF_Yc^{-1}`.
+  - *Reduction.* A joint centre `g ∈ P_XP_Y` for `(V_a,V_b)` exists iff the two single-flat solution sets
+    meet in `B_{ab} = π_1M(base_a ∩ base_b) = P_4 ×_{P_3} Π_{ab}`. Here `Π_{ab} = π_1(ℂ² ∖ 5` concurrent
+    lines`) ≅ ℤ × F_4`.
+  - *What is new.* `P_4` is the `A_4` core, which is already an `A_2` shadow. So the only new condition is
+    that the loop of `p_{b+1}` around the rigid cluster `C_a` matches the loop of `p_{a+1}` around `C_b`.
+    Both lie in the same 5-line pencil: `x2, x3` for `(V_0,V_1)`.
+  - *Correction to w9.* Fibred two-cluster shadows do exist: 6 of them, each with two 3-point clusters and
+    a double collision wall.
+  - *Machine check.* In all 180 length-1 tuples, `p_c` is never ejected, so no class is
+    pinned and the tuples give no candidate.
+  - *Next.* Search for tuples in which both flats eject their cluster point, and compare their
+    `Π_{ab}`-classes.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
