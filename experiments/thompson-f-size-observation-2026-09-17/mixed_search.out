@@ -1,0 +1,5 @@
+m=1 d=2 |S|=5 carets<=3 levels=SI weights=[1, 2]: per-root candidates [15, 15]; hits 1
+   config: (((('I', 2), ('S', 1, 2)), (('S', 1, 1), ('S', 1, 1))), ((('S', 1, 1), ('S', 1, 1)), (('S', 1, 2), ('I', 2))))
+   pattern: (('I', 2), ('S', 1, Fraction(1, 1)), ('S', 1, Fraction(1, 1)), ('I', 2))
+m=2 d=2 |S|=9 carets<=3 levels=SI weights=[1, 2]: per-root candidates [15, 15, 15]; hits 0
+m=1 d=3 |S|=14 carets<=3 levels=SI weights=[1, 2]: per-root candidates [0, 0]; hits 0
