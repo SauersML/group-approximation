@@ -79,7 +79,7 @@ theorem tx_natural (hnat : EltNatural hB hC f) {v y : I → B} (hy : ∃ r, y r 
     (hyv : y ⬝ᵥ v = 0) : ringMap f (tx hB v y) = tx hC (f ∘ v) (f ∘ y) := by
   obtain ⟨r, hr⟩ := hy
   have hr' : (f ∘ y) r = 0 := by rw [Function.comp_apply, hr, map_zero]
-  have hyv' : (f ∘ y) ⬝ᵥ (f ∘ v) = 0 := by rw [← map_dotProduct, hyv, map_zero]
+  have hyv' : (f ∘ y) ⬝ᵥ (f ∘ v) = 0 := by rw [← RingHom.map_dotProduct, hyv, map_zero]
   rw [tx_eq hB hr hyv, tx_eq hC hr' hyv', ex_natural hB hC f hnat hr hyv]
 
 #audit_axioms tx_natural

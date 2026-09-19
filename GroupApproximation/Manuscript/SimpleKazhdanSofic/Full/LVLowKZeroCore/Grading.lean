@@ -48,7 +48,7 @@ def gradedFamily : LeavittFamily (AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ)
 
 /-- The length grading `L_k(1,2) → L_k(1,2)[ℤ]`. -/
 def grade : BinaryLeavittAlgebra k →ₐ[k] AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ :=
-  BinaryLeavitt.lift (gradedFamily k)
+  BinaryLeavitt.lift (A := AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ) (gradedFamily k)
 
 /-- Evaluation at `X = 1`. -/
 def collapse : AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ →ₐ[k] BinaryLeavittAlgebra k :=
@@ -64,7 +64,8 @@ theorem collapse_grade (x : BinaryLeavittAlgebra k) : collapse k (grade k x) = x
   have h : (collapse k).comp (grade k) = AlgHom.id k (BinaryLeavittAlgebra k) := by
     refine AlgHom.ext_of_adjoin_eq_top (adjoin_range_generator k) ?_
     rintro _ ⟨g, rfl⟩
-    show collapse k (BinaryLeavitt.lift (gradedFamily k) (generator k g)) = generator k g
+    show collapse k (grade k (generator k g)) = generator k g
+    rw [grade]
     rw [lift_generator]
     fin_cases g
     · exact collapse_single k 1 (generator k BinaryLeavitt.s0)
@@ -81,8 +82,10 @@ theorem grade_ne_zero {x : BinaryLeavittAlgebra k} (hx : x ≠ 0) : grade k x �
 theorem grade_s (i : Fin 2) :
     grade k ((family k).s i) = AddMonoidAlgebra.single 1 ((family k).s i) := by
   fin_cases i
-  · exact lift_generator (k := k) (gradedFamily k) BinaryLeavitt.s0
-  · exact lift_generator (k := k) (gradedFamily k) BinaryLeavitt.s1
+  · exact lift_generator (k := k) (A := AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ)
+      (gradedFamily k) BinaryLeavitt.s0
+  · exact lift_generator (k := k) (A := AddMonoidAlgebra (BinaryLeavittAlgebra k) ℤ)
+      (gradedFamily k) BinaryLeavitt.s1
 
 /-- An `s`-word of length `n` is homogeneous of degree `n`. -/
 theorem grade_wordS (a : List (Fin 2)) :
