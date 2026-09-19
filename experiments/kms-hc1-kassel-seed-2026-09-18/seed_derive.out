@@ -1,0 +1,9 @@
+p=5 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=7 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=11 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=13 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=17 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=19 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=23 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=29 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
+p=31 X_210 eps^2-part  OK ; X_012 eps'^2-part  OK
