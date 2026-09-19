@@ -62,3 +62,13 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   survivor after (K1), (K2) and (K3) of `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`. The
   natural next test is computational: an LP for `mu_(1/3)(Gamma / Lambda_N)` on the principal congruence quotients
   `Sp_4(Z/N)`, for small `N` prime to 3, from a certified finite presentation.
+- **2026-09-19, swarm-0917-w14-w14-deligne-break: level-2 census and a character obstruction**
+  (`deligne-third-floor-has-no-character-certificate`).
+  - *Census (numerical MILP).* On the six solved `Sp_4(F_2)`-sets, `mu = 1/(291 D)`, the Kahler-proportional
+    value. On the Weierstrass points and the 3+3 partitions (`D = 2`) this is exactly the (K2) floor `c_K = 1/582`.
+    No non-Kahler class lowers it.
+  - *Obstruction (proved).* `floor = dist(kappa/3, cl L)` in `C^2(Y; C(Sp_4(Z)^, R))`, and every continuous
+    character trivial on `L` is trivial at `kappa/3`. So this claim is equivalent to non-dual-closedness of `cl L`
+    at `kappa/3`, and no linear or detecting-cycle certificate, finite or profinite, can prove it. Already at
+    level 2, `A_0 = 98 > 97` and `196 > 194`: the exact value beats every single-cycle bound.
+  - Levels `N >= 3` were not solved exactly.
