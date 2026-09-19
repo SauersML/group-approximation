@@ -1,10 +1,10 @@
-# Boone–Higman: master route (synthesis v9.1, 2026-09-19)
+# Boone–Higman: master route (synthesis v9.2, 2026-09-19)
 
 Lead synthesis of the BH swarm, lane `bh-synth-lead`.
 - **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
   v7 a85dd1c95, v8 09c9d3cf9 (final text 38000f6a2). Earlier reconciliation logs live in those versions.
 - **What v9 folds in:** every landing and LESSONS.md entry from 38000f6a2 to 15:15 on 09-19 (§6), and one referee
-  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7.
+  correction to v8 (§0.1). v9.1 (after bh-ref-q11, 3f64521db) relabels the (RA) items: see fact 7. v9.2 adds §0.5.
 - **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
   status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The live table
   is `board/SYNTHESIS.md`.
@@ -108,11 +108,37 @@ Lead synthesis of the BH swarm, lane `bh-synth-lead`.
   - **Seed form (corrected):** `hard-evaluation-seeds-with-finitely-presented-full-groups`. The plain full group
     `[[Γ ⋉ Y]]` must be fp, with a fg seed stabilizer.
 
+### 0.5 v9.2 additions (summarized from referee verdicts, not re-refereed)
+
+- **T0 is F_∞** (fully refereed: db0daa1547, bb16c96e08, with the Region B repair). T0 is the free-group Houghton
+  group, RP_{F_2} of the Cayley tree. It is the first non-split test of the seed form of HARD-(A), and it passes
+  the finiteness half of gate 1.
+  - HARD-(A) is not thereby given: T0 carries no hard seed.
+  - Finite generation of the seed stabilizer is still pending.
+- **Complexity caps** (508b190dbb). "Finite type ⇒ finite-state" holds for Farley–Hughes hosts, but only narrowly.
+  "Forced self-similar" is false (Farley–Hughes Ex. 4.35). So the cap does not rule out a hard seed with a finitely
+  presented full group.
+- **Lift-ideal theorem** (c327ef1ef3, PASS in both directions). For finite-state self-similar G, V_d(G) is fp iff
+  the relator kernel of G is a finitely generated lift ideal (`rover-nekrashevych-fp-iff-finite-lift-presentation`).
+  The action decides finite presentation, not the group.
+- **BBMZ Q1.2 (F_∞ hosts for hyperbolic groups).** The level-set join lemma passes (78857ab1ec), a proved case of
+  BHM Remark 2.13, together with bounded-RSG F_∞ with integer flux. Surface groups already have hosts via 2V. The
+  Z^r extension is next, aimed at Kazhdan hyperbolic groups (§5 item 2).
+- **Kourovka.**
+  - 19.45 is Collatz-hard (c0b107c65e; credit Kohl's 18.47(b), f8dd716a18).
+  - 21.74(a) is decidable for every g in V, for any moduli (19e10ad19b, PASS).
+  - 20.44 is reduced to totally consumable groups (06eb299b09, e2b397604f PASS). Frozen tails anywhere give 20.44
+    (bc9e6452bf, 643914a82b PASS).
+- **(RA_free).**
+  - No rigid regular Toeplitz shift exists over surface groups, by the rank-gradient bound (e4b6958a0).
+  - Algebraic rows carry rigid free commutants but are never minimal. So the test T1 is an invariant free minimal
+    subset of Ledrappier² (54ed6d2fe, in review).
+
 ## 1. Gate ranking v9
 
 | Rank | Gate | Lanes |
 |---|---|---|
-| 1 | **HARD-(A), seed form:** a hierarchical seed checking one hard sequence at every level, with `[[Γ ⋉ Y]]` fp (Farley–Hughes engine; first test the Houghton group of the free group) and a fg seed stabilizer | bh-invent-11, bh-invent-03, bh-invent-14, bh-invent-15 |
+| 1 | **HARD-(A), seed form:** a hierarchical seed checking one hard sequence at every level, with `[[Γ ⋉ Y]]` fp (Farley–Hughes engine; the first test T0 is F_∞, refereed, db0daa1547) and a fg seed stabilizer (pending for T0) | bh-invent-11, bh-invent-03, bh-invent-14, bh-invent-15 |
 | 2 | **PBH-universality:** relators written into the permutation structure; ports are translations crossing every splitting (c6514e7e6, dd87ce431, e3897e787) | bh-ra-counter, bh-invent-02, bh-typeA-universal |
 | 3 | **Rigid seeds for non-hyperbolic Kazhdan inputs:** the Ã₂ seed boundary is classified as chambers plus panel-tree pointers (7d0b8309d); relatively hyperbolic overgroups with H_Γ parabolic | bh-g2-buildings, bh-free-09, bh-emitter-b, bh-invent-13 |
 | 4 | **(RA_free) and (RA′)** ((RA) in topologically free form is refuted), split by fibres: finite fibres, non-existence; infinite fibres, join-cap coherence (932c4670b, cf68fcdd7, 8fa6f7ccd) | bh-ra-proof, bh-star-b, bh-invent-16, bh-ra-counter |

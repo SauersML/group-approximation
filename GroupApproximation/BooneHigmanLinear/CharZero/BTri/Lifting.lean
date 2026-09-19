@@ -276,10 +276,10 @@ theorem amEval_injective (hA : TriangleAction G Γ s τ) (hsc : TriSimplyConnect
         exact ⟨l, by rw [hh]⟩
   rw [hg, one_smul] at hl
   have hclosed : (s 0 :: l).getLast (List.cons_ne_nil _ _) = s 0 := by
-    rw [List.getLast?_eq_getLast (List.cons_ne_nil _ _), Option.some.injEq] at hl
+    rw [List.getLast?_eq_some_getLast (List.cons_ne_nil _ _), Option.some.injEq] at hl
     exact hl
   have hE := (liftAll_eqvGen hA (mkHat 0 (1 : Am (stabs G s))) (hsc l hc hclosed)).2.2 hc
-    (by simp [hatProj_base])
+    (by simp)
   rw [hlift] at hE
   have hE' : mkHat 0 g = mkHat 0 (1 : Am (stabs G s)) := hE
   obtain ⟨c, hcg⟩ := mkHat_eq_iff.mp hE'
@@ -299,11 +299,11 @@ theorem amEval_surjective (hA : TriangleAction G Γ s τ) (hconn : Γ.Connected)
   intro g
   obtain ⟨p⟩ := hconn.preconnected (s 0) (g • s 0)
   have hc : List.IsChain Γ.Adj (hatProj G s (mkHat 0 (1 : Am (stabs G s))) :: p.support.tail) := by
-    rw [hatProj_base, ← SimpleGraph.Walk.support_eq_cons]
+    rw [hatProj_base, SimpleGraph.Walk.cons_tail_support]
     exact p.isChain_adj_support
   have hl := proj_liftAll hA p.support.tail (mkHat 0 (1 : Am (stabs G s))) hc
-  rw [hatProj_base, ← SimpleGraph.Walk.support_eq_cons,
-    List.getLast?_eq_getLast p.support_ne_nil, SimpleGraph.Walk.getLast_support,
+  rw [hatProj_base, SimpleGraph.Walk.cons_tail_support,
+    List.getLast?_eq_some_getLast p.support_ne_nil, SimpleGraph.Walk.getLast_support,
     Option.some.injEq] at hl
   set E := liftAll (mkHat 0 (1 : Am (stabs G s))) p.support.tail
   obtain ⟨h, hE⟩ := hat_exists_mk E

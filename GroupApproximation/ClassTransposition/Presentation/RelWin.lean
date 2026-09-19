@@ -41,8 +41,10 @@ theorem sq_all :
     intro k hv
     by_cases hn : n ≤ 8
     · exact inst_small (x := .sq n k) (by simp only [Inst.Valid]; omega)
-        (params_num (by simp only [Inst.params, Inst.code, List.forall_mem_cons,
-          List.forall_mem_nil, and_true]; omega))
+        (params_num (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega))
     obtain ⟨n, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
     by_cases hk : 2 ≤ k
     · obtain ⟨k, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
@@ -63,8 +65,10 @@ theorem br_all : ∀ n k, k + 3 ≤ n →
     intro k hv
     by_cases hn : n ≤ 8
     · exact inst_small (x := .br n k) (by simp only [Inst.Valid]; omega)
-        (params_num (by simp only [Inst.params, Inst.code, List.forall_mem_cons,
-          List.forall_mem_nil, and_true]; omega))
+        (params_num (by
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;> omega))
     obtain ⟨n, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
     by_cases hk : 2 ≤ k
     · obtain ⟨k, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
@@ -93,9 +97,10 @@ theorem dk_all (hB : BddAbove (P' P)) {p : ℕ} (hp : p ∈ P' P) :
     by_cases hn : n ≤ 8
     · exact inst_small (x := .dk n k p) (by simp only [Inst.Valid]; exact ⟨hv, hp⟩)
         (params_le (by
-          simp only [Inst.params, Inst.code, List.forall_mem_cons, List.forall_mem_nil, and_true]
-          exact ⟨Or.inl (by omega), Or.inl (by omega), Or.inr hp, Or.inl (by omega),
-            Or.inl (by omega)⟩) hB)
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;>
+            first | exact Or.inl (by omega) | exact Or.inr ‹_›) hB)
     obtain ⟨n, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
     by_cases hk : 2 ≤ k
     · obtain ⟨k, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
@@ -122,9 +127,10 @@ theorem dk1_all (hB : BddAbove (P' P)) {p : ℕ} (hp : p ∈ P' P) :
     by_cases hn : n ≤ 8
     · exact inst_small (x := .dk1 n k p) (by simp only [Inst.Valid]; exact ⟨hv, hp⟩)
         (params_le (by
-          simp only [Inst.params, Inst.code, List.forall_mem_cons, List.forall_mem_nil, and_true]
-          exact ⟨Or.inl (by omega), Or.inl (by omega), Or.inr hp, Or.inl (by omega),
-            Or.inl (by omega)⟩) hB)
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;>
+            first | exact Or.inl (by omega) | exact Or.inr ‹_›) hB)
     obtain ⟨n, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
     by_cases hk : 2 ≤ k
     · obtain ⟨k, rfl⟩ : ∃ m, k = m + 1 := ⟨k - 1, by omega⟩
@@ -159,9 +165,10 @@ theorem cx_all (hB : BddAbove (P' P)) {p q : ℕ} (hp : p ∈ P' P) (hq : q ∈ 
     by_cases hn : n ≤ 8
     · exact inst_small (x := .cx n i p q) (by simp only [Inst.Valid]; exact ⟨hv, hp, hq, hpq⟩)
         (params_le (by
-          simp only [Inst.params, Inst.code, List.forall_mem_cons, List.forall_mem_nil, and_true]
-          exact ⟨Or.inl (by omega), Or.inl (by omega), Or.inr hp, Or.inr hq,
-            Or.inl (by omega)⟩) hB)
+          intro c hc
+          simp only [Inst.params, Inst.code, List.mem_cons, List.not_mem_nil, or_false] at hc
+          rcases hc with rfl | rfl | rfl | rfl | rfl <;>
+            first | exact Or.inl (by omega) | exact Or.inr ‹_›) hB)
     obtain ⟨n, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
     by_cases hi : 2 ≤ i
     · obtain ⟨i, rfl⟩ : ∃ m, i = m + 1 := ⟨i - 1, by omega⟩

@@ -199,8 +199,7 @@ theorem good_left {G : Subgroup (Perm S.carrier)} {p R N : ℕ} (hR : SepRadius 
     intro z b hb
     have hz : ∀ n, (fun n => z (-1 + n)) (1 + n) = z n := fun n => by
       show z (-1 + (1 + n)) = z n
-      congr 1
-      ring
+      exact congrArg z (by ring)
     have hV : Good S G (cyl S (fun n => (fun n => z (-1 + n)) (1 + n)) (-(j : ℤ)) b) := by
       convert ih z b hb using 2
       all_goals first | exact funext hz | exact (funext hz).symm
