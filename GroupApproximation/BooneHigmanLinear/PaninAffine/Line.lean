@@ -40,7 +40,8 @@ theorem natDegree_aeval_le_totalDegree (g : σ → Polynomial R) (hg : ∀ i, (g
   refine (Polynomial.natDegree_C_mul_le _ _).trans ?_
   refine (Polynomial.natDegree_prod_le _ _).trans ?_
   have hdeg : (α.sum fun _ e => e) = ∑ i, α i := Finsupp.sum_fintype _ _ (fun _ => rfl)
-  refine le_trans (Finset.sum_le_sum fun i _ => ?_) (hdeg ▸ le_totalDegree hα)
+  have h2 : (∑ i, α i) ≤ f.totalDegree := hdeg ▸ le_totalDegree hα
+  refine le_trans (Finset.sum_le_sum fun i _ => ?_) h2
   exact (Polynomial.natDegree_pow_le).trans ((Nat.mul_le_mul le_rfl (hg i)).trans (mul_one _).le)
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.natDegree_aeval_le_totalDegree
