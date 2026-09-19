@@ -4,6 +4,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessS
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessCurveSublistRotate
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-65: nested successor walks in a planar map
 

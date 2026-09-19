@@ -5,6 +5,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.NormalFo
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.ArcSubInv
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, Route B: the lake-free enclosed face set from the planar order
 

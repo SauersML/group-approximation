@@ -60,7 +60,6 @@ theorem primrec_gDecide [Primcodable A] [DecidableEq A] [Primcodable ι] (L : Li
         (hF.comp (Primrec.fst.comp Primrec.fst)))))
       (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun a => ?_
   simp only [gDecide, all_eq_foldr]
-  rfl
 
 theorem gDecide_map_eq_true [DecidableEq A] (L : List A) (F : ι → Mat A) (w : ι)
     (φ : List A → ℕ) :
