@@ -76,3 +76,21 @@ germ host never realizes a tower of height two faithfully. Its germ group is the
 "lamplighter" relations between far-apart defects. This is the germ-level form of the lesson in
 `higman-chain-group-pbh-iff-chain-configuration`: the host must let one element act on infinitely many
 independent pieces. Here the pieces are the bends, and the extra relations are the price of that.
+
+## Attempts
+
+- **2026-09-19, swarm-0917-w15-w15-bh-follow: finite presentation of Q.** This is still OPEN. Here is
+  what was tried and what came out of it.
+  - *New coordinates.* Put `Λ(y) = 2^⌊y⌋(1+{y})`. Conjugating by `Λ` turns the square map `a` into
+    `y ↦ 2y` and `δ` into `y ↦ y+1`, exactly. The zoom `σ` becomes a carry map `e_0` with bends at the
+    integers. So `Q = M ⋊ BS(1,2)`, where `M = ⟨⟨σ⟩⟩` is the set of germs with `g(y) - y -> 0`.
+  - *A subgroup represented exactly.* The germ group `⟨σ, ρσρ^-1⟩`, with `ρ = s^-1 δ s`, is represented
+    exactly by its bend-local pictures in `PL(R)^2`. Explicit words in it satisfy the Cannon–Floyd–Parry
+    relations, so `F ≤ M ≤ Q`. See `pl-chain-germ-group-contains-thompson-f`. So `Q` is not soluble,
+    and soluble-group finiteness criteria cannot decide whether `Q` is finitely presented.
+  - *Where the relations `w_k` live.* The relations `w_k` of this node live where `s = D_2` rescales
+    pictures by factors that tend to infinity. These are limits of relations in
+    `⟨ε, D_λ ε D_λ^-1⟩` as `λ -> ∞`.
+  - *Dead ends.* Marked-group locality (`tail-uniform-germ-extensions-of-v-are-not-fp`) and a
+    Bieri–Strebel splitting over the character `Q -> Z` were both tried. Both were inconclusive:
+    `Q^ab = Z`, and every generator lies in a copy of `BS(1,2)`.

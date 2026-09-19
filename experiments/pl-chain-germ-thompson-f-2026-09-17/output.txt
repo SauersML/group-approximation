@@ -1,0 +1,14 @@
+f  coord1 ((Fraction(5, 2), Fraction(3, 1), Fraction(13, 4), Fraction(7, 2)), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(1, 2), Fraction(5, 4)), (Fraction(1, 1), Fraction(-1, 4)), (Fraction(2, 1), Fraction(-7, 2)), (Fraction(1, 1), Fraction(0, 1)))) 
+   coord2 ((Fraction(3, 4), Fraction(5, 4), Fraction(3, 2)), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(1, 2), Fraction(3, 8)), (Fraction(2, 1), Fraction(-3, 2)), (Fraction(1, 1), Fraction(0, 1))))
+g  coord1 ((Fraction(3, 1), Fraction(7, 2), Fraction(15, 4), Fraction(4, 1)), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(1, 2), Fraction(3, 2)), (Fraction(1, 1), Fraction(-1, 4)), (Fraction(2, 1), Fraction(-4, 1)), (Fraction(1, 1), Fraction(0, 1)))) 
+   coord2 ((Fraction(5, 4), Fraction(7, 4), Fraction(2, 1)), ((Fraction(1, 1), Fraction(0, 1)), (Fraction(1, 2), Fraction(5, 8)), (Fraction(2, 1), Fraction(-2, 1)), (Fraction(1, 1), Fraction(0, 1))))
+supports f: (Fraction(5, 2), Fraction(7, 2)) (Fraction(3, 4), Fraction(3, 2))  g: (Fraction(3, 1), Fraction(4, 1)) (Fraction(5, 4), Fraction(2, 1))
+[relator1 = 1, relator2 = 1, [x0,x1] != 1] in PL(R)^2: (True, True, True)
+integer picture : [x0,x1] support (Fraction(11, 4), Fraction(7, 2))
+half-integer picture : [x0,x1] support (Fraction(1, 1), Fraction(3, 2))
+word lengths: x0 346 x1 174 r1 2772 r2 4156
+sample points: 3472  relator failures: 0  points moved by [x0,x1]: 152
+ m=10: moved points lie in x - 2^m in [89/16, 111/16] or x - 3*2^(m-1) in [33/16, 47/16]
+ m=11: moved points lie in x - 2^m in [89/16, 111/16] or x - 3*2^(m-1) in [33/16, 47/16]
+ m=12: moved points lie in x - 2^m in [89/16, 111/16] or x - 3*2^(m-1) in [33/16, 47/16]
+ m=13: moved points lie in x - 2^m in [89/16, 111/16] or x - 3*2^(m-1) in [33/16, 47/16]
