@@ -1,0 +1,22 @@
+k(1,1) = (Fraction(2, 1), Fraction(1, 1))  r on probes: [('1', '0'), ('0', '1'), ('168', '-10'), ('1', '-1'), ('-29', '200'), ('701', '-2402'), ('-2097', '18958'), ('-346', '201'), ('-32', '95'), ('4216', '2118')]
+generators: 14  J = 1  MAXLEN = 5  RLEN = 3
+level 1 new elements 14 time 0.4 overflow 0
+level 2 new elements 158 time 0.4 overflow 0
+level 3 new elements 1646 time 0.8 overflow 0
+level 4 new elements 16789 time 5.6 overflow 36
+level 5 new elements 167723 time 48.5 overflow 2170
+ball size 186331 overflow 2170 stopped_early False
+linear-collision hits (|det L| != 1): 0
+near misses (fix both axes and (1,-1)): 185
+  near 3 / 10 probes agree with r | s-1X s0x
+  near 3 / 10 probes agree with r | s-1X s1x
+  near 3 / 10 probes agree with r | s-1Y s0y
+  near 3 / 10 probes agree with r | s-1Y s1y
+  near 3 / 10 probes agree with r | s0X s-1x
+  near 3 / 10 probes agree with r | s0X s1x
+  near 3 / 10 probes agree with r | s0Y s-1y
+  near 3 / 10 probes agree with r | s0Y s1y
+  near 3 / 10 probes agree with r | s1X s-1x
+  near 3 / 10 probes agree with r | s1X s0x
+r-translated words checked 1523 overflow 296 matches 0
+total time 51.3

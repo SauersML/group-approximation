@@ -1,0 +1,19 @@
+calibration lazy(default) = ('leaf', 'T')  cert2(default) = T
+depth 1 frontier 5 dead {} 0s
+depth 2 frontier 25 dead {} 0s
+depth 3 frontier 125 dead {} 0s
+  1/125 nodes=4000 unexplored=9 dead={'T': 837} 18s
+  11/125 nodes=44000 unexplored=109 dead={'T': 9306} 21s
+  21/125 nodes=84000 unexplored=213 dead={'T': 17842} 36s
+  31/125 nodes=124000 unexplored=328 dead={'T': 26402} 40s
+  41/125 nodes=164000 unexplored=438 dead={'T': 34923} 56s
+  51/125 nodes=204000 unexplored=571 dead={'T': 43578} 71s
+  61/125 nodes=244000 unexplored=714 dead={'T': 52466} 79s
+  71/125 nodes=284000 unexplored=828 dead={'T': 61223} 91s
+  81/125 nodes=324000 unexplored=963 dead={'T': 70110} 105s
+  91/125 nodes=364000 unexplored=1099 dead={'T': 78977} 115s
+  101/125 nodes=404000 unexplored=1223 dead={'T': 87772} 126s
+  111/125 nodes=444000 unexplored=1366 dead={'T': 96666} 140s
+  121/125 nodes=484000 unexplored=1484 dead={'T': 105488} 149s
+  125/125 nodes=500000 unexplored=1529 dead={'T': 108982} 155s
+DONE nodes=500000 unexplored=1529 dead={'T': 108982} 155s
