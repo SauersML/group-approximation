@@ -132,7 +132,7 @@ theorem exists_eventually_affine_class {Φ : ℕ → ℕ} (hΦ : Function.Biject
     (hN : 0 < N) (hq : ∀ n ≥ n₀, (fdiff N)^[m] (fun n => (Φ n : ℤ)) n = 0) :
     ∃ i < N, EventuallyConst (fdiff 1 (fun t => (Φ (i + N * t) : ℤ))) := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have hbig : ∀ i, i < N → ∃ t₀ : ℕ, ∀ t ≥ t₀,
       2 * (N : ℤ) ≤ fdiff 1 (fun t => (Φ (i + N * t) : ℤ)) t := by
     intro i hi
@@ -175,7 +175,7 @@ theorem exists_eventually_affine_class {Φ : ℕ → ℕ} (hΦ : Function.Biject
         nlinarith [Nat.zero_le (N * S)]
       have h3 : g y < N * (g y / N + 1) := by nlinarith
       exact lt_of_lt_of_le h3 (le_trans h1 h2)
-    · push_neg at ht
+    · push Not at ht
       have hb := hlow (g y % N) hi (g y / N) ht
       rw [hdecomp, hg] at hb
       have hq' : ((g y / N - S : ℕ) : ℤ) = ((g y / N : ℕ) : ℤ) - S := Nat.cast_sub ht
