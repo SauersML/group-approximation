@@ -104,3 +104,32 @@ inside `V` is finite with trivial defect, in every ambient group.
    - **Next hole.** The uniform gap for irreducibles of `G0`. Neither of the following is proved:
      - the case of irreducibles whose restriction to `S4` has bounded multiplicity pattern type;
      - a spectral-gap argument on the representation variety.
+
+3. **swarm-0917 w17 (ptl-break), the amenable-image locus is gapped at 1/2: a class kill.** The hole stays **OPEN**.
+   - **Result (ESTABLISHED, written proof).** Claim: `thompson-gap-witnesses-need-nonamenable-image`, via
+     `thompson-gap-witnesses-need-nonamenable-image-proof`.
+     - Every nontrivial representation `rho` of `G0 = S4 *_Z2 S3` whose image is virtually solvable (by Tits,
+       equivalently amenable, or free of `F_2`) has `D(rho) >= 1/2`, in every dimension.
+     - The same holds for pairs `A^4 = B^3 = 1` against the Lochak--Schneps relators of T.
+   - **Invariant.** The Frobenius ball.
+     - In a virtually solvable subgroup of `U(n)`, elements within `1/2` of `1` commute (dimension-free).
+     - The proof runs the commutator descent `h -> [g,h]` into the toral identity component of the closure,
+       which a near-identity normalizer must centralize, and then back-tracks by the eigenspace lemma.
+   - **Where every member dies.**
+     - The relator images and their conjugates commute, so their normal closure `N` is abelian.
+     - `image/N` is a virtually solvable quotient of the simple group V, so it is trivial and the image is abelian.
+     - `rho` then factors through `G0^ab = Z/2`, where the sign character pays `||rho(r5) - 1|| = 2`. For T, the
+       characters of `Z/12` pay at least `2 sin(pi/12)`.
+   - **Kills.**
+     - finite quotients of `G0`, of every kind (not only permutation models, which entry 2 had at `sqrt 3`);
+     - monomial and induced-from-character models;
+     - virtually abelian and solvable images.
+     - A sanity run over 419 random monomial gluings gives min `D = 1.95`
+       (`experiments/amenable-image-gap-witnesses-2026-09-17/`).
+   - **Consequences.**
+     - An MF witness sequence for V (or T) must consist of representations whose image contains `F_2` once
+       `D < 1/2`: the Zassenhaus descent must converge without terminating.
+     - The finite PSL(2,17) planted control of entry 2 is structurally the wrong calibration class: its exact
+       solutions have finite image, which is impossible for V below 1/2.
+   - **Next hole.** The uniform gap on the Tits-free locus. A first test class is images whose closure has
+     identity component of bounded semisimple rank (e.g. `SU(2)^m`-by-finite), where Lemma 4 of the route fails.
