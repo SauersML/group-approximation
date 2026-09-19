@@ -89,6 +89,8 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_chain.sh
   - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_r2_4887_m2_chain.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_r2_4012_m2_chain.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_m2_4887_rm2_rpa2b1c1.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_vmem_m2_4887.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -340,3 +342,20 @@ entries, one per line).
     - A positive limit on 4887 would mean the entry has no power-two certificate at all. Proving it needs a dual whose
       dart-shifted value is positive, which then goes to `farkas_rho.py` without `--mask`. Plain column generation has
       tailed off before reaching one, so the next step is a stabilised master.
+- **2026-09-18, addendum (w7-074): entry 4887 has no power-two certificate; 12 LP-negative entries stay open.**
+  - `census-entry-4887-has-no-power-two-legal-folded-fatgraph` proves that 4887 has no legal `f^2`-folded
+    fatgraph at all, for any boundary. So the full memory-2 LP of 4887, left undecided above, is infeasible.
+  - **Method: abstraction refinement.** The memory-2 LP is relaxed, not solved.
+    - `d^-` darts keep memory 2.
+    - A `d^+` dart of the block of `x` keeps memory 2 for `x = a` and memory 1 for `b` and `c` (`lp_vmem.py`).
+    - The flow stays on 3-letter windows, and each type counts a sum of windows.
+    - Every legal fatgraph still projects to a feasible point. The proof is Step 3 of
+      `census-entry-4887-has-no-power-two-legal-folded-fatgraph-proof`.
+  - **Size and convergence.** The relaxed LP has 524 types against 1164, and two column-generation rounds of
+    `vcg.py` reach a dual whose exact dart shift gives `z'_norm = 65944 > 0` at `D = 10^6`.
+  - **Checks.** The integer vector `farkas_vmem_m2_4887_rm2_rpa2b1c1.json` passes `farkas_vmem.py`, which uses
+    max-plus products (`FARKAS VERIFIED`, `farkas_vmem_m2_4887.log`). It also passes `farkas_vmem_brute.py`, which
+    enumerates the polygons one by one.
+  - **Dead ends.** Memory 1 on every `d^+` dart, `(r_-, r_+) = (2, 1)` or `(3, 1)`, is feasible with `chi = -1/2`.
+  - **Status.** 11 classes are certified at power two, 4887 is excluded, and 12 LP-negative representatives remain
+    open: 61, 108, 198, 228, 464, 1632, 1633, 1635, 1744, 2298, 4012 and 4485.

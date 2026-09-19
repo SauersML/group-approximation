@@ -1,0 +1,32 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c1 windows 114 types 524 maxval 4
+phase 1 it 1 obj 7.000000 cols 3000 pairs 449 min rc -4 LB -35 best -35 {2: -2.0, 3: -3.0, 4: -4.0} added 3000 t 1.3 tm 0.0 
+phase 1 it 2 obj 7.000000 cols 6000 pairs 1508 min rc -6 LB -56 best -35 {2: -4.0, 3: -4.0, 4: -6.0} added 3000 t 2.4 tm 0.1 
+phase 1 it 3 obj 7.000000 cols 9000 pairs 2663 min rc -7 LB -66.5 best -35 {2: -4.0, 3: -5.6985, 4: -7.0} added 3000 t 4.7 tm 1.1 
+phase 1 it 4 obj 6.741920 cols 12000 pairs 3511 min rc -5.61 LB -51.44 best -26.84 {2: -4.0, 3: -4.361, 4: -5.6102} added 3000 t 12.1 tm 3.0  dartLB -26.84
+phase 1 it 5 obj 6.211428 cols 15000 pairs 4261 min rc -6.066 LB -55.09 best -26.84 {2: -3.996, 3: -5.2984, 4: -6.066} added 3000 t 17.3 tm 6.7 
+phase 1 it 6 obj 5.757597 cols 18000 pairs 5342 min rc -6.05 LB -54.01 best -26.84 {2: -3.4255, 3: -4.2099, 4: -6.0505} added 3000 t 23.5 tm 11.8 
+phase 1 it 7 obj 4.826334 cols 21000 pairs 6076 min rc -6.029 LB -51.93 best -26.84 {2: -4.0, 3: -3.6219, 4: -6.0293} added 3000 t 32.0 tm 19.1 
+phase 1 it 8 obj 3.969027 cols 24000 pairs 6856 min rc -4.934 LB -40.36 best -20.49 {2: -3.8119, 3: -3.6432, 4: -4.9344} added 3000 t 47.4 tm 29.6  dartLB -20.49
+phase 1 it 9 obj 3.392583 cols 27000 pairs 7545 min rc -5.455 LB -44.04 best -20.49 {2: -4.0, 3: -3.3837, 4: -5.4547} added 3000 t 59.8 tm 40.9 
+phase 1 it 10 obj 2.914606 cols 30000 pairs 8417 min rc -5.244 LB -41.43 best -20.49 {2: -4.0, 3: -3.586, 4: -5.2437} added 3000 t 78.2 tm 57.6 
+phase 1 it 11 obj 2.558386 cols 33000 pairs 9055 min rc -4.658 LB -36 best -20.49 {2: -3.0, 3: -3.3305, 4: -4.6577} added 3000 t 99.6 tm 78.0 
+phase 1 it 12 obj 2.330642 cols 36000 pairs 10246 min rc -4.671 LB -35.81 best -16.34 {2: -3.0, 3: -3.8711, 4: -4.6711} added 3000 t 125.5 tm 99.0  dartLB -16.34
+phase 1 it 13 obj 1.920936 cols 39000 pairs 11684 min rc -4.307 LB -32.37 best -16.34 {2: -3.2045, 3: -3.5543, 4: -4.3074} added 3000 t 153.0 tm 125.5 
+phase 1 it 14 obj 1.584785 cols 42000 pairs 13025 min rc -4.037 LB -29.88 best -16.34 {2: -4.0, 3: -3.4263, 4: -4.0373} added 3000 t 181.1 tm 152.8 
+phase 1 it 15 obj 1.174061 cols 45000 pairs 13991 min rc -4.582 LB -33.59 best -16.34 {2: -3.6917, 3: -3.3017, 4: -4.5819} added 3000 t 217.6 tm 187.8 
+phase 1 it 16 obj 0.992518 cols 48000 pairs 14914 min rc -3.843 LB -27.81 best -14.46 {2: -3.2723, 3: -3.4115, 4: -3.8428} added 3000 t 265.7 tm 231.5  dartLB -14.46
+phase 1 it 17 obj 0.817173 cols 51000 pairs 15895 min rc -3.623 LB -26.03 best -14.46 {2: -2.8946, 3: -2.9126, 4: -3.6234} added 3000 t 310.4 tm 275.4 
+phase 1 it 18 obj 0.662189 cols 54000 pairs 16698 min rc -2.979 LB -21.18 best -14.46 {2: -2.9586, 3: -2.4883, 4: -2.979} added 3000 t 365.4 tm 329.4 
+phase 1 it 19 obj 0.520637 cols 57000 pairs 17647 min rc -2.713 LB -19.18 best -14.46 {2: -2.3428, 3: -2.4118, 4: -2.7129} added 3000 t 432.0 tm 395.1 
+phase 1 it 20 obj 0.404316 cols 60000 pairs 18631 min rc -2.818 LB -19.89 best -10.24 {2: -2.2883, 3: -2.1573, 4: -2.8176} added 3000 t 512.0 tm 470.6  dartLB -10.24
+phase 1 it 21 obj 0.329708 cols 63000 pairs 19325 min rc -2.906 LB -20.49 best -10.24 {2: -2.4781, 3: -1.8449, 4: -2.9058} added 3000 t 596.6 tm 554.3 
+phase 1 it 22 obj 0.263712 cols 66000 pairs 19961 min rc -2.536 LB -17.82 best -10.24 {2: -1.814, 3: -1.9384, 4: -2.536} added 3000 t 677.9 tm 634.7 
+phase 1 it 23 obj 0.220189 cols 69000 pairs 20689 min rc -2.456 LB -17.24 best -10.24 {2: -2.4559, 3: -1.5712, 4: -2.1808} added 3000 t 759.1 tm 715.0 
+phase 1 it 24 obj 0.185931 cols 72000 pairs 21463 min rc -2.323 LB -16.29 best -6.903 {2: -2.3232, 3: -1.2238, 4: -1.8871} added 3000 t 842.9 tm 796.0  dartLB -6.903
+phase 1 it 25 obj 0.151174 cols 75000 pairs 21978 min rc -2.412 LB -16.92 best -6.903 {2: -2.2976, 3: -1.2627, 4: -2.4122} added 3000 t 932.1 tm 884.3 
+phase 1 it 26 obj 0.124519 cols 78000 pairs 22327 min rc -2.459 LB -17.24 best -6.903 {2: -2.4587, 3: -1.4134, 4: -1.6679} added 3000 t 1021.2 tm 972.6 
+phase 1 it 27 obj 0.114645 cols 81000 pairs 22574 min rc -2.48 LB -17.39 best -6.903 {2: -2.4804, 3: -1.4183, 4: -1.7578} added 3000 t 1107.4 tm 1058.1 
+time limit
+RESULT ('timeout', -6.90286999505405)
+best dart-shifted phase-1 value -6.68688917471618
+window flow {'aab': 0.026118, 'aac': 0.003371, 'aba': 0.037023, 'abb': 0.063143, 'abc': 0.008683, 'abA': 0.0002, 'abC': 0.000344, 'aca': 0.044024, 'acb': 0.0045, 'acc': 0.000467, 'acB': 0.001203, 'aBA': 0.000481, 'aBB': 0.014671, 'baa': 0.027688, 'bab': 0.064722, 'bac': 0.014214, 'baB': 0.000481, 'bba': 0.062694, 'bbb': 0.040082, 'bbA': 0.000449, 'bca': 0.013903, 'bcb': 0.000259, 'bcB': 0.000247, 'bAB': 0.0002, 'bAC': 0.006355, 'bCA': 0.000344, 'caa': 0.001451, 'cab': 0.009196, 'cac': 0.032608, 'caB': 0.014671, 'cba': 0.001726, 'cbc': 0.00225, 'cbA': 0.000783, 'cBA': 0.00145, 'Aba': 0.005662, 'AbA': 0.005124, 'AAB': 0.039459, 'AAC': 0.000998, 'ABa': 0.005802, 'ABA': 0.028018, 'ABB': 0.059014, 'ABC': 0.003162, 'ACb': 0.003476, 'ACA': 0.039863, 'ACB': 0.013649, 'Bab': 0.009355, 'BAb': 0.010786, 'BAA': 0.025985, 'BAB': 0.05629, 'BAC': 0.017144, 'BBa': 0.003436, 'BBA': 0.070249, 'BBB': 0.031589, 'BCA': 0.006803, 'Cbc': 0.003476, 'CAA': 0.014472, 'CAB': 4.7e-05, 'CAC': 0.032491, 'CBA': 0.010007, 'CBC': 0.003642}
