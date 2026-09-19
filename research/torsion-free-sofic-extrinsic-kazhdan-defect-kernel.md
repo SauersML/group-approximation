@@ -22,6 +22,7 @@ distinct_from:
   ckn-forces-nonsofic-incompressible-affine-coset-wreath: That proves the chain-in-Kazhdan-envelope normalization input for killing (EK1) implies nonsoficity of an explicit affine coset wreath containing the summit wreath; this is the construction problem that input was meant to kill.
   finite-scale-compressors-preserve-kazhdan-fixed-algebras: That proves, by mass transport along the bijection sigma(u), that a compressor preserves the Kazhdan fixed algebra whenever the cluster sizes live on finitely many scales, with no period bound; this is the construction problem, whose witness must therefore defeat that scale hypothesis or survive at the centralizer level.
   twisted-lef-tower-order-budget-kills-compression-defects: That proves D_G(L)=1 whenever K has phi-twisted LEF towers of subexponential order, so a LEF kernel here must pay exponential tower order; this is the construction problem that must meet that budget.
+  stacked-models-force-lef-witnesses-into-doubling-towers: That proves the stacked sofic models of a LEF kernel's twisted towers carry every defect witness as a strict doubling tower with liminf lambda log|Y| >= log 2, so for LEF kernels fixed-algebra invariance on stacked models already kills the defect; this is the construction problem, whose LEF witnesses must therefore defeat fixed-algebra invariance.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -619,3 +620,42 @@ must build genuinely Hamming-approximate sofic models.
     containing a Kazhdan `L` has a sofic representation with a finite-scale profile on `L`.
     Direct sums over scales are not `G`-invariant, and tensor products add log-sizes, so
     neither regularizes the profile. A positive answer refutes (EK1).
+23. **Stacked models: every LEF witness is a doubling tower at the fixed-algebra level
+    (2026-09-19, operator-algebra transplant and decomposition,
+    swarm-0917-w19-w19-titz-pull).**
+    - *Result.* ESTABLISHED as
+      `stacked-models-force-lef-witnesses-into-doubling-towers`, with route
+      `stacked-models-doubling-tower-proof` and the check
+      `experiments/stacked-doubling-2026-09-17/stack_check.py`.
+      - The twisted towers of Attempt 22 are stacked into sofic models of `G` itself:
+        `Y = Z/P × F`, `sigma(k t^j)(m, f) = (m + j mod P, rho_(m+j)(k) f)`. They are
+        sofic, and the only error is the wrap, of mass `|j|/P`.
+      - The cells `{m} × Pi_m f` form an exact Kazhdan cluster frame. A compressor maps
+        each cell into one cell whose size ratio is `1` or `>= 2`.
+      - A surviving defect generator `[s z s^-1, l]` makes every interior layer strictly
+        double. The frame loss then satisfies `liminf lambda log|Y| >= log 2`, which is
+        exactly the constant of the doubling-tower example of
+        `finite-scale-compressors-preserve-kazhdan-fixed-algebras`. `Ad sigma(s)` moves
+        a `±1` diagonal function a distance `>= |J|/(2P)` off the fixed algebra.
+    - *Decomposition.* For a LEF kernel, the (W1)/(W2) split of Attempt 21 collapses to W1
+      on stacked models. Fixed-algebra invariance (the Kun--Thom Proposition 3.1 level) on
+      stacked models kills the defect. No centralizer-level input `(KT*)` is needed.
+    - *Invariant and death (of the programme "exclude doubling towers").* The invariant is
+      the frame loss times log order, `lambda log|Y|`, on stacked models. By (UP) and (LOW)
+      it is squeezed between `(|J| log 2)/P - o(1)` and `|a|(log P + log|F|)/P`. The
+      conservation identity alone returns `P <= |a| log_2|F| + 2(|a| + |b|)`, which is the
+      budget (OB4). So on LEF kernels, "no stacked doubling tower" is equivalent to the
+      twisted order budget `(SUB)`. It is not a weaker, independent prerequisite, and it
+      cannot be proved by mass transport without first bounding `|F|`.
+    - *Survivors.* The survivors are unchanged in shape but sharper in level:
+      - a LEF `K` whose towers are exponential; its witness is visible to the fixed algebra
+        on stacked models;
+      - a non-LEF sofic `K`. Stacking still gives sofic models with loss
+        `<= |a|/P + O(epsilon)`, but the Lagrange dichotomy is lost, so W2 is not excluded.
+
+    This node stays OPEN.
+
+    Next steps:
+    - Prove fixed-algebra invariance for stacked models of exponential towers directly,
+      using that each layer is a Cayley graph of a finite group, with no edits.
+    - Find a Hamming substitute for the index dichotomy `1` or `>= 2`, for the non-LEF case.

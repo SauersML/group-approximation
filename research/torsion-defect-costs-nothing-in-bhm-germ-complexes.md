@@ -115,3 +115,15 @@ criterion needs.
 - **What is left.** Only a non-torsion invariant, or uncountable singular sets, could be a genuine obstruction.
   - For Question 1.2 on hyperbolic hosts, the defect question is settled up to the torsion condition.
   - The real frontier is activity, which is driven by boundary dimension.
+
+## Result of the two finite checks (09-19, right-angled pentagon group; artifact `gq-bh-finf-hyp-pentagon-activity-and-defect-check.md`)
+
+- **Boundedness: evidence for.** Each generator has exactly 4 non-branching singular rays at levels 2–5.
+- **`det(I − A) ≠ 0` fails.** The equitable shape coarsening of the atom type graph has
+  `det(I − A_core) = 0`, with Perron value `φ²`. So the true type graph has eigenvalue 1, and `H_0(G_Σ)` is
+  infinite.
+- **Torsion is therefore undecided.** A reflection's singular germs come in pairs swapped across its wall, which
+  are not covered by the fixed-point lemma.
+- **Consequence.** For this surface-type example, the Theorem is conditional on torsion of those transfer
+  defects. This is exactly the open non-torsion case above.
+- This concerns `P` itself. The BBMZ host over `P ∗ Z` was not computed.
