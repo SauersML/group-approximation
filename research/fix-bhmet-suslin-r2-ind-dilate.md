@@ -9,13 +9,13 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.SuslinR2IndDilate: (determ
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
 
-**Repair landed, unprobed.** ed7f648b07: BH chain wave 5: static fixes for bh-pal-wires reds in union build b1789839564 (unprobed). Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**Repair landed, unprobed.** da5b910bed: BH chain wave 6: remaining bh-pal-wire reds of probe b1789846523 (unprobed). Stays OPEN until a trusted probe builds it green.
+
+**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```
-error: GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean:74:56: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
-error: GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean:76:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_mem_of_dilate' depends on axioms outside the classical allowlist: [sorryAx]
+error: GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean:75:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
 ```
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.SuslinR2IndDilate` compile under the repository settings without changing any statement.

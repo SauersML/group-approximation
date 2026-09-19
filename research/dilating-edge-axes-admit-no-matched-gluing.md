@@ -65,8 +65,8 @@ This proves 1. For 2, the axis of `t` has trivial vertex stabilizers in `⟨t⟩
 ## Scope
 
 - **Realized otherwise.** `(BS(1,2), ⟨b⟩)` does have a rigid relative seed, built from the affine order on `Z[1/2]`
-  rather than the Bass–Serre splitting (`ordered-orbits-give-rigid-relative-seeds`). With it, Baumslag–Gersten lies
-  in `𝒞`. The obstruction here is to tree gluing only.
+  rather than the Bass–Serre splitting (`order-seeds-are-rigid-relative-seeds`, bh-emitter-a; see also `ordered-orbits-give-rigid-relative-seeds`). With it, Baumslag–Gersten lies
+  in `𝒞` (`baumslag-gersten-groups-lie-in-class-c`). The obstruction here is to tree gluing only.
 - **Unimodular edges.** When `|m| = |n|` (for example `BS(2,2)` and unimodular GBS groups), the counting obstruction
   vanishes. Choosing tail periods divisible by `m` meets (DM), and (M) becomes a finite check on the tail orbits. This
   positive case is not claimed here.

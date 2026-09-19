@@ -105,7 +105,7 @@ theorem arith_inv {g : Perm ℤ} {m : ℤ} (hg : Arith g m) : ∃ M, Arith g⁻�
     rw [hr]
     exact (abs_dvd _ _).1 hd
   refine ⟨M, hMpos, fun y t => ?_⟩
-  obtain ⟨x, rfl⟩ : ∃ x, y = g x := ⟨g⁻¹ y, (Perm.apply_inv_self g y).symm⟩
+  obtain ⟨x, rfl⟩ : ∃ x, y = g x := ⟨g⁻¹ y, (Equiv.apply_symm_apply g y).symm⟩
   obtain ⟨q, hq⟩ := hdvd x
   have key : ∀ s : ℤ, g (x + s * q * m) = g x + s * M := by
     intro s
@@ -113,12 +113,15 @@ theorem arith_inv {g : Perm ℤ} {m : ℤ} (hg : Arith g m) : ∃ M, Arith g⁻�
     simp only [arithStep]
     ring
   have e1 : g⁻¹ (g x + t * M) = x + t * q * m := by
-    rw [← key t, Perm.inv_apply_self]
+    rw [← key t]
+    exact g.symm_apply_apply _
   have k1 := key 1
   rw [one_mul, one_mul] at k1
   have e2 : g⁻¹ (g x + M) = x + q * m := by
-    rw [← k1, Perm.inv_apply_self]
-  rw [e1, e2, Perm.inv_apply_self]
+    rw [← k1]
+    exact g.symm_apply_apply _
+  rw [e1, e2]
+  simp only [Perm.coe_inv, Equiv.symm_apply_apply]
   ring
 
 /-- The residue-class-wise affine permutations of `ℤ`, as a subgroup. -/
@@ -126,14 +129,14 @@ def rcwaGroup : Subgroup (Perm ℤ) where
   carrier := {g | IsResidueClassWiseAffine g}
   mul_mem' := by
     intro g h hg hh
-    obtain ⟨mg, hg⟩ := arith_of_rcwa hg
-    obtain ⟨mh, hh⟩ := arith_of_rcwa hh
+    obtain ⟨_, hg⟩ := arith_of_rcwa hg
+    obtain ⟨_, hh⟩ := arith_of_rcwa hh
     exact rcwa_of_arith (arith_mul hg hh)
   one_mem' := rcwa_of_arith arith_one
   inv_mem' := by
     intro g hg
-    obtain ⟨m, hm⟩ := arith_of_rcwa hg
-    obtain ⟨M, hM⟩ := arith_inv hm
+    obtain ⟨_, hm⟩ := arith_of_rcwa hg
+    obtain ⟨_, hM⟩ := arith_inv hm
     exact rcwa_of_arith hM
 
 theorem rcwa_of_isClassShift {g : Perm ℤ} (hg : IsClassShift g) :
@@ -271,7 +274,7 @@ theorem prod_transHom_apply :
     ∀ (l : List (Box × Perm ℤ)), l.Pairwise (fun p q => p.1.Disj q.1) → ∀ n : ℤ,
       ((∀ p ∈ l, ¬ p.1.Mem n) → (l.map fun p => transHom p.1 p.2).prod n = n) ∧
       (∀ p ∈ l, p.1.Mem n → (l.map fun p => transHom p.1 p.2).prod n = transHom p.1 p.2 n)
-  | [], _, n => ⟨fun _ => by simp, fun p hp => by simp at hp⟩
+  | [], _, _ => ⟨fun _ => by simp, fun _ hp => by simp at hp⟩
   | a :: l, hl, n => by
     rw [List.pairwise_cons] at hl
     obtain ⟨ha, hl⟩ := hl
@@ -334,7 +337,7 @@ theorem mem_cscrctGroup_of_rcwa {g : Perm ℤ} (hg : IsResidueClassWiseAffine g)
   have hρ : ∀ (j : Fin L) (t : ℤ), ρ ((j : ℤ) + t * L) = (j : ℤ) + f j t * L := by
     intro j t
     rw [hρdef]
-    exact (boxProd_apply (child L) f (fun i k h => child_disj L h) j
+    exact (boxProd_apply (child L) f (fun _ _ h => child_disj L h) j
       ((child L j).elt_mem t)).trans (transHom_elt (child L j) (f j) t)
   have hρmem : ρ ∈ cscrctGroup := by
     rw [hρdef]

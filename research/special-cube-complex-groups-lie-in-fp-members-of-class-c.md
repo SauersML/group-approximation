@@ -94,16 +94,52 @@ mathematics except the Remark, which is not used in the proof. No priority is cl
 
 ## Remark: the host is the Roller boundary of a RAAG
 
-This remark is a lane observation, not independently refereed, and not used above. Glue `Y_0 = Y_2(A_Γ)` and `Y_1 = C_Z`. Then the
-variant `X^+` over `A_Γ * Z` is conjugate, by a local recoding, to the Roller compactification of the cube complex of `A_(Γ⊔{v})`,
-and `X` is conjugate to its Roller boundary `∂_R`.
-- **Hyperplanes.** A-hyperplanes stay inside one A-piece, and each `t`-hyperplane is dual to a single `t`-edge. So an ultrafilter
-  restricts to ultrafilters on the pieces, which is R1.
-- **R3+.** Suppose neither piece of `λ` were seeded at `λ`. Then an A-halfspace missing `λ` and a `t`-halfspace hanging at `λ` would
-  both be chosen, and they are disjoint. So R3+ holds.
-- **Conversely.** `X^+` is the orbit closure of its seed (Step E). That seed is the principal ultrafilter at `1`, whose orbit closure
-  is the Roller compactification (Roller node, part 1).
-- **The boundary.** R3 removes exactly the element sinks, which are the principal points, so `X ≅ ∂_R`.
+This remark is not used in items 1–6 above. It is used by `clique-union-raag-roller-hosts-are-f-infinity`, item 2.
+
+*Status.* The proof below is complete (author bh-ref-hl, 2026-09-19). **Referee PASS** (bh-ref-q11, 2026-09-19, independent);
+see the Referee note after the proof.
+
+Glue `Y_0 = Y_2(A_Γ)` and `Y_1 = C_Z`. Then the variant `X^+` over `Λ = A_Γ * Z` is topologically conjugate, as a `Λ`-space, to the
+Roller compactification of `X̃ = X̃_(A_(Γ⊔{v}))`. And `X` is conjugate to its Roller boundary `∂_R`. That suffices for E3′, which
+depends only on the `Λ`-space.
+- **Hyperplanes.** `X̃` is a tree of spaces: copies of `X̃_(A_Γ)` (the A-pieces) and lines (the `t`-pieces), glued at vertices. Every
+  hyperplane lies in one piece.
+  - A piece hyperplane `H ⊆ P` extends to a halfspace of `X̃`. That halfspace also contains everything hanging at the vertices on its
+    side.
+  - Each `x ∈ X^+` restricts on every piece to a point of `Y_0` or of `C_Z`. These are ultrafilters on the hyperplanes of the piece.
+    So `x` orients every hyperplane of `X̃`. The orientation is local in `x`, and it determines `x`.
+- **Pairwise intersection.** Let `H ⊆ P` and `K ⊆ P′` with `P ≠ P′`, and let `P = P_0, e_1, …, e_m, P_m = P′` be the tree path.
+  - The chosen halfspaces are disjoint only if `o(H) ∌ e_1` and `o(K) ∌ e_m`.
+  - In the orientation of `T` (tree-gluing Step A), out-degrees are at most 1. So along any tree path the arrows point toward at most
+    one *valley*: a node whose two path-edges both point into it. Two valleys would need a node with two out-edges between them.
+  - So `P_0` or `P_m`, say `P_0`, is not the valley and points along the path. That means `P_0` is seeded at `e_1`, its configuration
+    is principal at `e_1`, and every `o(H)` with `H ⊆ P_0` contains `e_1`.
+  - Pairs inside one piece intersect because pieces carry ultrafilters.
+  - Hence `x ↦ o_x` maps `X^+` injectively, continuously and equivariantly into the Roller compactification.
+- **Onto.** `x_*` maps to the principal ultrafilter at `1`. The image is compact and contains every principal ultrafilter. `Λ` is
+  simply transitive on the vertices of `X̃`, so the principal ultrafilters are dense (`roller-compactifications-of-cube-complexes-are-sfts`,
+  part 1). So the map is onto.
+- **The boundary.** Suppose `x` has an element sink `v`. Then every piece points toward `v` and is principal at its exit, so `o_x` is
+  principal at `v`. Conversely, a principal ultrafilter is `v.x_*`. R3 removes exactly the element sinks, so `X ≅ ∂_R`.
+
+*Referee note (bh-ref-q11, 2026-09-19): PASS, no gap.* I checked every step against `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`
+(Step A) and `roller-compactifications-of-cube-complexes-are-sfts` (parts 1–2).
+- **Hyperplanes.**
+  - Squares of `X̃` lie in A-pieces, and `t`-edges lie in no square, so hyperplane classes stay in one piece.
+  - Removing `H ⊆ P` separates `X̃` into two parts. Each part is the `H`-side of `P` together with the subtrees hanging at its vertices.
+- **"Only if".** If `e_1 ∈ o(H)`, then `o(H)` contains everything beyond `e_1`, in particular all of `P′`, so it meets `o(K)`.
+- **The valley argument, made explicit.**
+  - A backward edge followed by a forward edge would give their common node two out-edges. So the path's edges are forward, then
+    backward, and point at one node.
+  - At least one endpoint piece is not that node, and its end edge points inward. That piece is seeded at its junction element,
+    so its configuration is `e.y_*` (seeds are principal, Roller part 2).
+  - Out-degree `≤ 1` at element nodes is exactly R3+.
+- **Onto.** Density of principal ultrafilters holds in any Roller compactification (the Helly argument of Roller part 1). Here `Λ`
+  acts freely and vertex-transitively on `X̃`.
+- **The boundary.**
+  - With a sink `v`, the path from any node to `v` is forced toward `v`, since the edge at `v` points in. So every out-path ends at `v`.
+  - A point of `X` cannot map to a principal ultrafilter, because injectivity would make it `v.x_*`, which has a sink.
+  - So `X` maps onto the non-principal ultrafilters, `Λ`-equivariantly.
 
 So E3′ for this host asks for the finite presentation of the V-stabilized full group of the Roller boundary action of the RAAG
 `A_(Γ⊔{v})`.
@@ -114,8 +150,11 @@ So E3′ for this host asks for the finite presentation of the V-stabilized full
   (E1′ + E2) now holds, with host `Λ = A_(Γ⊔{v})` and `X` as in item 4. Steps 2–4 and 6 are established. So (P)BH for `G` along
   this route is reduced to one gate: **E3′ for `(Λ, X)`**, the finite presentation of `F(G_V × (Λ ⋉ X))`.
 - **Where E3′ is known.** When `Γ` has no edges, `Λ` is free and `X` is the end shift of its Cayley tree.
-  `cocompact-tree-end-shift-hosts-are-f-infinity` (Referee PASS 092c2442f) covers this case. For every `Γ` with an edge, already
-  for `Z^2 * Z`, E3′ is **OPEN**.
+  `cocompact-tree-end-shift-hosts-are-f-infinity` (Referee PASS 092c2442f) covers this case.
+  - **Update (bh-ref-hl, 2026-09-19).** When `Γ` is a disjoint union of cliques, `Z^2 * Z` included, E3′ holds by
+    `clique-union-raag-roller-hosts-are-f-infinity` (bh-one-relator, 5ff0e87eb; Referee PASS, bh-ref-hl). That result uses the
+    Remark above.
+  - E3′ is **OPEN** for every other `Γ`. Cographs are sketched there, and `P_4` is the first graph not covered.
 - **No new Boone–Higman instance.**
   - Every virtually compact special group is already in the permutational class `B_A`. Haglund–Wise put compact special groups in
     `SL_n(Z)`; `char-zero-linear-groups-satisfy-permutational-boone-higman` then applies, and `B_A` is closed under finite-index
@@ -136,7 +175,8 @@ So E3′ for this host asks for the finite presentation of the V-stabilized full
    - *Update (bh-one-relator, 2026-09-19):* `clique-union-raag-roller-hosts-are-f-infinity`
      proves `F_∞` (so E3′) when `Γ` is a disjoint union of cliques, including the one-edge case `Z^2 * Z`. It uses a
      Thumann operad of orthant tiles with one peel per coordinate. It sketches the induction to all cographs
-     (disjoint unions and joins) and names `P_4` as the first open graph. Lane proof, unreviewed.
+     (disjoint unions and joins) and names `P_4` as the first open graph. Referee PASS (bh-ref-hl, 2026-09-19) for the
+     clique-union theorem. The cograph induction is a sketch.
 2. **Finite-index overgroups.** Is "lies in a finitely presented member of 𝒞" closed under finite-index overgroups?
    - For a virtually compact special `G`, Kaloujnine–Krasner gives `G ↪ A_Γ ≀ Sym(k)`.
    - That group is not known to lie in 𝒞. Item 1 cannot supply it, since `Sym(k)` for `k ≥ 3` embeds in no RACG.

@@ -159,7 +159,7 @@ theorem exists_blockMatching
     have hS : reachableExponents T (arrowSection T K C m (2 * m * H))
         (E0 ∪ arrowExponents (2 * m * H)) (m * (2 * m * H + 1) - 1) (y0 a) = S a :=
       (hsub a (hy0 a)).2
-    refine exists_injOn_of_card_le m (fun d => (S a).filter fun e =>
+    refine exists_injOn_of_card_le m (fun d : ℤ => (S a).filter fun e : ℤ =>
         (T ^ e) (y0 a) ∈ C ∧ (T ^ e) (y0 a) ∉ K ∧
           ∃ h ∈ firstReturns T C m (2 * m * H) ((T ^ d) (y0 a)), e = (h : ℤ) + d)
       ((S a).filter fun d => (T ^ d) (y0 a) ∈ K)
