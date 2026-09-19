@@ -160,7 +160,7 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
   So the door that bh-invent-16 left open for residually finite inputs, the profinite distal layer,
   is a question about nested periodic wire nets in a non-amenable group.
 - **Infinite fibres** (a relatively weakly mixing layer, or a non-expansive distal layer) remain as in
-  `time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows`. There (CC) is still the target.
+  `time-lifts-reduce-ra-prime-to-automorphism-groups-of-rigid-rows`. There join-cap coherence (JC′) of `products-of-trees-refute-cap-coherence-join-caps-restore-it` is the target; plain (CC′) is false (cf68fcdd7).
 
 ## Lesson for general BH
 
@@ -173,7 +173,8 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
   - In finite fibres an invariant measure exists, and amenability of the action would force the group
     to be amenable. So the question there is non-existence, and its residually finite form is about
     nested periodic wire nets.
-  - Cap coherence is the right target only in infinite fibres.
+  - Join-cap coherence (JC′) is the right target only in infinite fibres. Plain (CC′) fails already for
+    `∂T_m ⊠ ∂T_n` (cf68fcdd7).
 
 Credit: the variational principle for amenable groups is due to Ornstein–Weiss and Kerr–Li (recalled).
 The link between amenable actions with invariant measures and amenable groups is due to

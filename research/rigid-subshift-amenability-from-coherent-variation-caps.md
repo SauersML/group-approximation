@@ -86,7 +86,7 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
 | Subshift | Caps | (CC) | Consistent with |
 |---|---|---|---|
 | end shift of `F_n` | a point `ξ` has `Δ(ξ,η)` = the line `(ξ,η)`; `V_r^c(ξ)` is everything beyond the vertex `p_(r+1)(c)` at distance `r+1` on `[c,ξ)`; `ρ = r+1`; with `L = 0`, `Cap_r^c = {p_(r+1)(c)}` | holds: `ν_R^c` is uniform on the segment of `[c,ξ)` at distances `R+1 … 2R`; for a generator `s` the rays `[1,ξ)` and `[s,ξ)` merge within one step, so `‖ν_R^1 − ν_R^s‖ ≤ 4/R` | (RA) over `F_n` (`rigid-subshifts-over-free-factors-are-tight-almost-everywhere`, item 4) |
-| `∂T_m ⊠ ∂T_n`, BMW and tree-product transplants | caps are products of ray points, up to bounded error in the fibre | expected coordinatewise for the product, not checked; transplants are amenable anyway, since they factor onto the amenable skeleton | amenable boundary actions |
+| `∂T_m ⊠ ∂T_n`, BMW and tree-product transplants | caps are products of ray points, up to bounded error in the fibre | **fails** for the product, at every point and every `L` (bh-star-b, `products-of-trees-refute-cap-coherence-join-caps-restore-it`, cf68fcdd7); 2-fold join caps cohere there. The first landing's "expected" was wrong | amenable boundary actions |
 | Ã₂ boundary skew shift | caps are arcs of sectors toward `ω` (bh-star-b's reading, 9180ac550) | expected, since adjacent arcs are bounded translates; not checked | building boundaries are amenable (recalled) |
 | any rigid `X` without isolated points carrying an invariant probability measure over a non-amenable `Λ` (for example Cornulier-regime coset shifts, 696c37d57, on their perfect part) | — | **must fail**, by item 4: an amenable action with an invariant probability measure forces `Λ` amenable (recalled) | rigidity plus topological freeness does not give (CC); minimality would have to |
 | crossing-wire Z² (49939b957), and every rigid shift over an amenable group | — | irrelevant: the action is amenable because the group is | — |
@@ -103,6 +103,11 @@ finite-dimensional cube complexes via Brodzki–Campbell–Guentner–Niblo–Wr
   statement about the finite follower sets of `X`. So (RA′) follows from:
 
   > *(CC′) every minimal, topologically free, quantum-rigid subshift satisfies cap coherence.*
+
+  **(CC′) is false** (`products-of-trees-refute-cap-coherence-join-caps-restore-it`, cf68fcdd7): the product
+  `∂T_m ⊠ ∂T_n` is minimal, topologically free, rigid and amenable, and violates (CC). The reduction
+  above is therefore void. The corrected target is bh-star-b's (JC′), *k*-fold join-cap coherence for some *k*,
+  which implies amenability by the argument of item 4.
 - **Why rigidity alone does not give (CC).** Item 1 is everything the known rigidity certificates yield.
   The certificates are the two-configuration wall families. They make the cloud of each point a
   pairwise-`2D`-close family of coarsely connected rays. (CC) asks for more: that the nearest variation
@@ -144,7 +149,7 @@ Take `G` from `decidable-residually-finite-non-exact-group-exists`. Every `Λ �
   route. BH itself is untouched: (RA) is a statement about our tools, not about BH.
 - **Finite fibres** (`quantum-rigid-subshifts-are-determined-by-thick-collars`, item 5). Over the
   equicontinuous factor, finite fibres carry an invariant measure, so (CC) there forces the group to be
-  amenable. Cap coherence is the target only in infinite fibres.
+  amenable. Join-cap coherence (JC′) is the target only in infinite fibres; (CC′) itself is false (cf68fcdd7).
 - **If (RA′) fails**, a counterexample is a minimal, topologically free, rigid subshift whose caps never
   cohere. The cheapest candidate is a minimal set of `R(Λ)` for a non-exact Haagerup group with walls.
 
