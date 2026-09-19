@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** as a conditional theorem by `greedy-cube-codings-rsg-proof` (lane `bh-partials`, 2026-09-18; proof
-written out in full 2026-09-19; lane proof, not reviewed). **Unconditional instance:**
+written out in full 2026-09-19; lane proof). **Referee PASS** (bh-ref-q11, 2026-09-19), with three nits (an off-by-one,
+the size of `n_0(h)`, a missing hypothesis in Lemma C) recorded in the route's Referee section. **Unconditional instance:**
 `hyperbolic-racgs-with-spread-nerves-are-contracting-rsgs`, where (NA) is proved for every hyperbolic RACG and (IRR)
 becomes a check on the nerve.
 
@@ -42,7 +43,9 @@ this is possible because the vertex action is free. Consider:
   (`hyperbolic-racgs-with-spread-nerves-are-contracting-rsgs`). (NA) is proved there, and (IRR) is read off the nerve.
 - The right-angled Coxeter tilings of `H²` and `H³` (`closed-surface-groups-are-contracting-rsgs`,
   `right-angled-reflection-groups-in-h3-are-contracting-rsgs`). There, walls are orthogonal or ultraparallel, which
-  gives (NA). (IRR) holds by the Bowen–Series exactness, or by the face-graph conditions (a)–(c) with coset refinement.
+  gives (NA). (IRR) holds by the face-graph conditions (a)–(c) with coset refinement.
+  - Referee note (bh-ref-q11): Bowen–Series exactness is irreducibility of a different map, the Bowen–Series circle map. It
+    is not (IRR) for this greedy coding. For `H²`, (IRR) comes from the right-angled `n`-gon instance of the RACG node.
 
 ## What this does to Question 1.1
 

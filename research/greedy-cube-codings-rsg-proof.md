@@ -183,3 +183,37 @@ RSG (BBMZ Def. 2.41). ∎
 - Lemma B's uniformity.
 - The choice of `H` in Lemma Z. It uses `Λ(H^+) ∩ Λ(H^-) = Λ(H)` and the `dim X` bound on pairwise crossing families.
 - Lemma E's constants.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS, with three nits
+
+**Read in full.** Steps 1–5 and every lemma.
+
+**Verified.**
+- **Quarter lemma and Markov formula.** Includes the identification of the edges at `x` and at `x_1` that cross `H`, via the squares on `e`.
+- **Lemma H.** In the case "`L` misses `H` and does not separate": `L ⊂ H^-` and `H ⊂ L^-` give `L^+ ⊂ H^-`, which contradicts `ω ∈ L^+ ∩ H^+`.
+- **Lemma B.** The thin-quadrilateral step and Arzelà–Ascoli. The `(NA)` contradiction: the elements `g_s^{-1}g_t` are pairwise distinct because the vertex action is free. Uniformity: finitely many pairs up to `G`.
+- **Lemma C.** Both parts, and "after entry".
+- **Lemma I.** It needs only Lemma C(i), not `ζ`.
+- **Lemma Z.**
+  - Disjoint hyperplanes whose limit sets share `ξ` would give an unbounded `B(H,K,c)`. So at most `dim X` crossed hyperplanes contain a given endpoint (Helly).
+  - `Λ(H^+) ∩ Λ(H^-) = Λ(H)` holds because a geodesic between sequences on the two sides meets `N(H)` near `ξ`.
+  - The choice of `H` and the contradiction are correct.
+  - It gives `ζ` equivariant and onto, and a faithful `G`-action on `∂X`.
+- **(P2) from (IRR).** A one-point core piece would make `ζ(∂X)` countable.
+- **Lemma E.**
+  - Choosing `ω''` across `W*` from `hx_0`, together with "in `N(W*)` or on the `hω''`-side after time `m`", is exactly the repair that the 3D node `right-angled-h3-reflection-rsg-via-greedy-roller-coding` needed. There the targets need not lie on the wall.
+  - Upper bound, change of basepoint and conclusion: correct.
+- **Remark 2.4 for `Σ_𝒢`.** No empty cones, since every nonempty piece has a successor. No isolated points, by (P2) applied to every piece, not only core pieces.
+
+**Nits (none changes the result).**
+- **(N1) Off by one in Lemma E.** `[v]` fixes the state at `z = u_vx_0`. Minimality therefore makes the points of `h[w]` differ at the *next* vertex `z⁺ = A(m+1)`, and `W*` is adjacent to `z⁺`. Replace `m` by `m+1` in the lower bound; `K` grows by 1.
+- **(N2) `n_0(h)` is too small for the common-prefix step.** `m ≥ n − r − D(c_1) − K_0` and `m − 2δ ≥ r + c′` need `n ≥ 2r + c′ + D(c_1) + K_0 + 2δ`. Take `n_0(h) := 2r + c + c′ + D(c_1) + 2K_0 + 2δ + 1`. `n_0` may depend on `h`, so nothing else changes.
+- **(N3) Lemma C's hypothesis.** It needs `R(0) ∈ H^-`, as Lemma H assumes. Every use satisfies this: Lemma I (target across `H`), Lemma Z (`R_1(0) ∈ H^-`) and Lemma E (`hω''` across `W*` from `hx_0`).
+
+**Standard inputs recalled, not re-derived.**
+- Pairwise crossing hyperplanes at a vertex span a cube (flag links, no inter-osculation).
+- Hyperplane stabilizers act cocompactly on carriers and are quasiconvex.
+- `Λ(A) ∩ Λ(B) = Λ(A ∩ B)` for quasiconvex `A, B`. This is used only for the remark that (NA) is equivalent to disjoint limit sets.
+- Lemma D: asymptotic rays and Busemann shifts in `δ`-hyperbolic graphs.
+
+**Credit.** The mechanism is Bowen–Series (1979) transplanted to cube complexes. The main inputs are Sageev's and Roller's duality and boundary, the Niblo–Reeves pairwise-crossing lemma, and BBMZ's RSG framework. The hyperbolic-geometry lemmas are standard (Gromov; Coornaert–Delzant–Papadopoulos). Coornaert–Papadopoulos (1993) already code `∂G` of every hyperbolic group as a quotient of an SFT. What is new here is a coding that is injective on the Roller boundary and whose canonical similarities are group elements.

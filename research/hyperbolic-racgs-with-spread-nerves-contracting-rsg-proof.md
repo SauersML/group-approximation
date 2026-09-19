@@ -106,3 +106,51 @@ Lane `bh-partials`, lane proof, not reviewed.
 - Step 2's faithfulness argument could be replaced by a citation: infinite irreducible Coxeter groups have trivial finite
   radical.
 - The analytic input (Lemmas B, C, Z, E) is in `greedy-cube-codings-rsg-proof`.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS
+
+The analytic input, `greedy-cube-codings-rsg-proof`, passes review (Referee section there; nits N1–N3 do not affect this node).
+
+**Step 1 ((NA), the automatic disjointness of limit sets): correct.**
+- Disjoint walls give `⟨r_H, r_K⟩ ≅ D_∞`. A finite dihedral group would fix a point of `X`, which would lie on both walls.
+- `z^bH = H` would put `z^b` in `C(r_H)`. Then `z^{-b} = r_Hz^br_H = z^b`, so `b = 0`.
+- The remaining steps are sound: torsion subgroups of hyperbolic groups are finite; centralizers of infinite-order elements are virtually cyclic; hence `g^a = z^b`.
+- With quasiconvexity of wall stabilizers, this gives disjoint limit sets for disjoint walls, for every hyperbolic RACG.
+
+**Step 2: correct.**
+- **Faithfulness.** `w_{T′}(ut)^k` is reduced: `u ∉ T′`, since `u ∉ St(t)`, and `u` separates the two `t`'s. `t` is a left descent. The ray `(ut)^k` crosses only the pairwise disjoint walls of `⟨u,t⟩`, moving linearly away from `N(H_t)`, so `ξ ∉ Λ(H_t)`. Then `Λ(H_t^+) ∩ Λ(H_t^-) = Λ(H_t)` gives the contradiction.
+- **Remark.** Irreducibility needs only (a). A join `L_1 ∗ L_2` has an edge `{a,b}` with `a ∈ L_1` and `b ∈ L_2`, and `St(a) ∪ St(b) = S`. So (H) is not needed there.
+
+**Steps 3–5 (the nerve conditions): correct.**
+- **Step 3.** `w_σ(rs)^k` is reduced with left descent set exactly `σ` (Tits). So `S(1, ω_σ) = σ`.
+- **Step 4.** At the vertex `s_0`, the edge labelled `t` is dual to the wall of `s_0ts_0`. That wall crosses `H_{s_0}` iff `t ∈ lk(s_0)`, and it equals `H_t` then.
+- **Step 5.**
+  - `σ → σ∖{s_0}`.
+  - `{s} → {t}` iff `t ∉ St(s)`.
+  - `{r} → τ` iff `τ ∩ St(r) = ∅`, which (a) provides because `St` is symmetric.
+  - Branching fails only if `𝒩` is a perfect matching, excluded by (b) and (0).
+
+**Step 6: correct.** "Inductively" is valid, and here is the explicit form. Take a walk `m = w_0, …, w_q = a` in `𝒩` and an edge `a–b`. The loop out along the walk, across `a–b` and back, has label `x_b = β s_b β^{-1} s_m`. Here `β = s_{w_0}⋯s_{w_q}`, and the plain out-and-back loop has label `x_a = β s_a β^{-1} s_m`. So `x_a^{-1}x_b = g (s_a s_b) g^{-1}` with `g = s_{w_1}⋯s_{w_q}`.
+- For even `q`, `g` is a product of walk-edge pairs `s_{w_{2i-1}} s_{w_{2i}}`.
+- For odd `q`, `g = g′s_a` with `g′` such a product, and `s_a(s_as_b)s_a = s_bs_a`.
+
+Induction on `q` gives `s_as_b ∈ G_loop` for every edge of `𝒩`, so `G_loop ⊇ W⁺` by (b).
+
+**Dropping (c) (the 2026-09-19 repair): correct.**
+- **The walk.** `{s} → {t,t′}` holds because `t, t′ ∉ St(s)`, by (a) and symmetry of `St`. `{t,t′} → {max}` drops the minimum. `{max} → {s}` holds because `s ∉ St(max)`.
+- **Parity.** The walk has length 3 and odd label. Conjugating to the base singleton along an `𝒩`-path keeps the parity, so `G_loop` contains an odd element.
+- **No edges.** If `L` has no edge, `𝒩` is complete on `≥ 3` vertices.
+- **Conclusion.** `G_loop = W` from (0), (a) and (b) alone, and (c) is automatic.
+- **The general form.** `contracting-rsgs-pass-to-finite-index-subgroups-via-loops`, with `contracting-rsg-coset-refinement-proof`, is also correct as read. It covers the cocycle labels `ℓ_β`, the lift `ψ`, the RSG step (`Γ′ℓ_β = Γ′ℓ_{β′}`), the nucleus in `Nuc_G × (Γ′∖G)²`, and the recurrent components as loop-group orbits.
+
+**Instances: checked.**
+- **`C_n`, `n ≥ 5`.** (H), (a), (b) and (c) all hold.
+- **Dodecahedron and `L(n)`, `n ≥ 5`.** The nerve is the dual of the face structure, with no induced 4-cycle since there are no prismatic 4-circuits. Here (a) for all simplices is equivalent to the H³ node's (a), which is its vertex case. I rechecked all four vertex types of `L(n)` independently, and (b) and (c) (`T, d_1, d_3`); they match the H³ node.
+- **Surface groups.** They are commensurable with the pentagon group, so this is a second route to `closed-surface-groups-are-contracting-rsgs`.
+
+**Priority / credit.** I found no prior statement that hyperbolic RACGs, or 3-manifold groups, are contracting RSGs; the searches are recorded in `closed-surface-groups-contracting-rsg-via-bowen-series`, plus RACG-boundary and Kleinian searches on 2026-09-19. Credit:
+- Davis, and Moussong for hyperbolicity;
+- Tits for the word problem;
+- Andreev, Pogorelov and Löbell for the polyhedra;
+- Bowen–Series for the mechanism;
+- BBMZ for the framework and the question.

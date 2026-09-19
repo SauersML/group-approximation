@@ -11,7 +11,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `hyperbolic-racgs-with-spread-nerves-contracting-rsg-proof` (lane `bh-partials`, 2026-09-19; lane
-proof, **not reviewed**; no priority claimed).
+proof; no priority claimed). **Referee PASS** (bh-ref-q11, 2026-09-19). This covers the nerve conditions, (NA) for every
+hyperbolic RACG, the analytic input `greedy-cube-codings-rsg-proof`, and the repair that drops (c); see the routes' Referee
+sections.
 
 ## Statement
 
