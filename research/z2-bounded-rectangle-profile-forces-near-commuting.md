@@ -237,3 +237,30 @@ non-permutation unitary construction.
     - a neutral cone move that produces one of the first two.
     The cone-radius bound gives a short loop or saddle connection at each cone point. Two things are missing: the
     partner loop with the right crossing sign, and the simplicity of the donor copies.
+- **w14-124, 2026-09-18 — the donor slit-pair lemma. Reduced to self-bound cone points; both alternatives shown
+  necessary. The lemma is still open. Landed `cone-excess-transfer-reduces-donor-lemma-to-self-bound`.**
+  - **Proved (transfer).** Swapping `k + 1` same-word paths that leave a `2 pi (k + 1)` cone point one turn apart,
+    in the sequential order `P_(j-1) <-> P_j`, empties that point. The total excess stays the same, or drops by 2
+    when two current ends coincide, and the cost is at most `k |P_0|` per generator.
+  - **Proved (cone-ball dichotomy).** Develop the cone ball at a cone point `A` into the surface. Rectangle counting
+    closes it at radius `r* <= 2 rho + 1`. Then one of two cases holds.
+    - *Free:* the first collision is another cone point, and the rotated staircases to it satisfy the transfer
+      hypotheses. So the transfer lowers `E`, or keeps `E` and lowers the number of cone points.
+    - *Self-bound:* `A` carries an edge loop of nonzero holonomy and length at most `8 rho + 4`.
+  - **Consequence.** Only the self-bound case of the donor lemma remains. If a self-bound lemma holds at polynomial
+    length `P(rho)`, the permutation case follows with an explicit `F(K)`. This `F` is not polynomial
+    (`exp(O(K^2 log K))` even for linear `P`), because each transfer raises the profile.
+  - **Both alternatives are needed (proved).** One-cylinder surfaces with a single `6 pi` point have
+    `Lambda_rect <= C` for every height `H`. Every sign-matched handle there has length at least `H`, yet a one-edge
+    same-vertex slit pair lowers `E` to 0. The excised square is the reverse case.
+  - **Computation.**
+    - The transfer prediction matched in 60 422 of 60 422 cases.
+    - The sequential chain behaved as predicted in all 41 451 swaps.
+    - Pairing `P_0` with `P_j` instead fails in 347 steps.
+    - Loop copies were neutral in all 767 cases.
+  - **Open (the next step).** The self-bound lemma: at a cone point whose developed ball closes on itself, find one
+    of the following at length `poly(rho)`.
+    - a same-vertex slit pair;
+    - a partner loop crossing the short loop with the sign of `det`, whose donor copies are simple;
+    - a counterexample family of self-bound points where neither exists.
+    A polynomial `F` would also need a transfer that does not raise the profile at every step.
