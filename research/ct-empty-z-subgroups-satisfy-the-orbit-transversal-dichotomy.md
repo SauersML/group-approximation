@@ -154,3 +154,58 @@ Kourovka 20.44.
 Collatz-type. This is the same one-base/two-base split as torsion (ray-cocycle pumping) and
 Out(CT_P(Z)) (Cobham rigidity). Host constructions that need tame subgroup orbits should stay
 inside one-stack (one-base) coordinates.
+
+## Referee (bh-ref-kourovka-a, 2026-09-19): PASS
+
+**The printed question.** Kourovka 20.44 (S. Kohl), 20th issue, p. 153 of arXiv:1401.0300 (fetched
+09-19, md5 `bdbcb8e5…`), unstarred:
+"Is it true that a finitely generated subgroup of CT(Z) either has only finitely many orbits on Z
+or there is a set of representatives for its orbits on Z which has positive density?"
+The node settles it for finitely generated subgroups of `CT_∅(Z)` and correctly leaves `CT(Z)` open.
+
+**Checked line by line, adversarially.**
+- **Setup.** A class transposition with 2-power moduli has a table (`u_1 ↔ u_2`, identity cones on
+  the rest), and tables compose after refinement. So every element of `CT_∅(Z)` has a table.
+  Item 3 of the parent is not needed.
+  - `N_0` and the negatives are invariant, since `r + km ≥ 0` iff `k ≥ 0`. So orbit minima are well
+    defined.
+- **Moves.**
+  - A configuration is always `w · x[m, ∞)`, with `m` the number of original letters consumed so far.
+  - A move reads exactly its piece's `u`, since the pieces form a prefix code. So moves before the
+    consuming one read only above `x_K`, and the consuming one reads at most `D − 1` letters below it.
+  - Hence `C_K` is a finite union of cones of length `K + D`, and `C_(K+1) ⊆ C_K`.
+  - Rigid blocks and reversal are correct: a step of `P^(-1)` reads exactly the `v` its partner step
+    wrote, which is new letters only.
+- **Item 1.** A clopen set of full measure is everything. Just before the letter `x_ℓ` of `w0^∞` is
+  consumed, the configuration is a word of length `p < D` followed by `0^∞`, and likewise with `1^∞`
+  for negatives. So there are at most `2^(D+1)` orbits.
+- **Item 2, the repaired step.** It is correct, and it is exactly the right repair.
+  - The argument tracks **physical letters**, so positions are pinned independently of sequence
+    equality.
+  - `κ(y) ≤ q` follows by concatenating `P` then `R`.
+  - For `κ(y) ≥ q`: `Q = P^(-1)` carries `y[κ(y), ∞)` rigidly to `x[q', ∞)`. Reversal sends the physical
+    letter `x_(κ(x))`, sitting at `y_q`, back to position `κ(x)`, so `κ(x) = q' + q − κ(y)`. Then `Q`
+    followed by `R` shows `q'` is non-consumable.
+  - Consumability is a function of (configuration, position), so this is legitimate.
+  - I tested it on the node's `g` at `x = 1 = 10·0^∞` with orbit point `y = 3 = 110·0^∞`. As a
+    sequence `y = 11·0^∞`, which is the ambiguity that broke the old argument. The letter at position
+    2 is consumable (`g^(-1)` then `g`), so `κ(y) = 3 = q`, as claimed.
+- **Item 2, counting.**
+  - `{κ ≤ K}` depends on the first `K + D` letters, so it has exact proportion `δ_K` in `[0, 2^L)`
+    and in `[−2^L, 0)`.
+  - Each orbit has at most `2^(K+1) − 1` points in `N_K`, because `T` is an orbit invariant and every
+    orbit point has `κ` defined.
+  - The bound `δ_K N / 2^(K+2)` holds for `N ≥ 2^(K+D)`, on both sides.
+- **Example.** The table `00 ↦ 0, 01 ↦ 10, 1 ↦ 11` is a bijection, the orbit lines are as stated, and
+  the minima are `{0} ∪ 1(4)`.
+
+**Minor.**
+1. **Tables of involutions.** If a generator is an involution given by a non-self-inverse table,
+   include both tables as moves. The proof needs only that the set of tables is closed under table
+   inversion.
+2. **Density.** The node proves positive **lower** density, which covers the lower and upper readings
+   of "positive density". Natural density (existence of the limit) is not addressed. Plausibly the
+   minima with `κ ≤ K` form a clopen set, but that was not checked.
+
+**Not checked:** the two-prime remarks, which cite
+`ct-z-orbit-transversal-dichotomy-is-collatz-hard`.
