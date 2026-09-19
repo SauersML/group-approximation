@@ -1,0 +1,27 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean:112:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.length_wordOf`:
+  [DecidableEq σ]
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean:121:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.vecOf_wordOf`:
+  [DecidableEq σ]
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean:137:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.listPoint_wordOf`:
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeFaithful.lean:154:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.vecOf_sub`:
+  [DecidableEq σ]
+  [Fintype m]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq σ] [Fintype m] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

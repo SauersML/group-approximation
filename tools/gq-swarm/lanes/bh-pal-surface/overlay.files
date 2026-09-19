@@ -1,9 +1,0 @@
-Palomar/BooneHigmanChallenge.lean
-Palomar/BooneHigmanSolution.lean
-Palomar/BooneHigmanModelTests.lean
-Palomar/comparator-boone-higman.json
-scripts/PalomarBooneHigmanAxioms.lean
-scripts/PalomarBooneHigmanChallengeType.lean
-scripts/PalomarBooneHigmanSolutionType.lean
-formalization.yaml
-lakefile.toml

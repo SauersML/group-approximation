@@ -1,0 +1,48 @@
+/-- The four open inputs of route A, named Statements of the metabelian chain that
+`GroupApproximation/BooneHigmanLinear/FrontierFour.lean` composes: `S1`, Suslin absorption in the
+bad-prime local case; `P1`, the characteristic-`p` `K₂` gap pair; `Z1`, the characteristic-zero
+`K₂` split gap; and `H1`, the step-B core of the Higman–`V` envelope. -/
+def RouteAOwed : Prop :=
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZLocal_BadStatement ∧
+    (∀ p : ℕ, p.Prime →
+      GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4) ∧
+    GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement ∧
+    GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCStepBCoreStatement
+
+/-- BBMZ Problem 5.3(7), from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA`. -/
+theorem finitely_presented_metabelian_embeds_in_finitely_presented_simple_of
+    (h : RouteAOwed) :
+    ∀ (G : Type) [Group G], Group.IsFinitelyPresented G → IsMetabelianGroup G →
+      EmbedsInFinitelyPresentedSimpleGroup G := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  intro G _ hfp hmet
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA
+      hS1 hP1 hZ1 hH1 G hfp (isMetabelianGroup_iff.mp hmet))
+
+/-- The finitely generated form of BBMZ Problem 5.3(7), from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA`. -/
+theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
+    (h : RouteAOwed) :
+    ∀ (G : Type) [Group G], Group.FG G → IsMetabelianGroup G →
+      EmbedsInFinitelyPresentedSimpleGroup G := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  intro G _ hfg hmet
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA
+      hS1 hP1 hZ1 hH1 G hfg (isMetabelianGroup_iff.mp hmet))
+
+/-- Finitely generated linear groups over any field, from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA`. -/
+theorem finitely_generated_linear_embeds_in_finitely_presented_simple_of
+    (h : RouteAOwed) :
+    ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
+      H.FG →
+      EmbedsInFinitelyPresentedSimpleGroup H := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  intro K _ n H hfg
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA
+      hS1 hP1 hZ1 hH1 K n H hfg)
+

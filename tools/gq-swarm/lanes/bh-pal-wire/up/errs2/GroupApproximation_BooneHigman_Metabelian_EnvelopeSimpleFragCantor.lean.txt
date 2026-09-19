@@ -1,0 +1,7 @@
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean:35:49: Type mismatch
+  fun i => b i
+has type
+  ℕ → X
+but is expected to have type
+  Fin (M + (n + 1)) → X
+error: GroupApproximation/BooneHigman/Metabelian/EnvelopeSimpleFragCantor.lean:37:20: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
