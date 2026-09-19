@@ -1,0 +1,12 @@
+(R) x_j x_i = x_i x_(j+1): ok
+(A),(B) S_(2,3): |S|=2 d=1 I=1 J=1 K=3 forests=3382 splits=2342: ok
+(A),(B) S_(2,4): |S|=5 d=2 I=2 J=1 K=5 forests=3382 splits=1685: ok
+(A),(B) S_(3,5): |S|=9 d=2 I=3 J=2 K=6 forests=3382 splits=3033: ok
+(A),(B) S_(2,5): |S|=14 d=3 I=3 J=1 K=7 forests=3382 splits=1064: ok
+(A),(B) rand_a: |S|=5 d=3 I=4 J=3 K=8 forests=3382 splits=380: ok
+(A),(B) rand_b: |S|=5 d=3 I=4 J=3 K=8 forests=3382 splits=380: ok
+(A),(B) rand_c: |S|=5 d=3 I=4 J=2 K=8 forests=3382 splits=380: ok
+(C) S_(2,3): D^Psi(mu',eta') = D^(Psi o tau_(J+d))(mu,eta) on 20 random pairs, 3 observations, lambda in {1, 3/2}: ok
+(C) S_(2,4): D^Psi(mu',eta') = D^(Psi o tau_(J+d))(mu,eta) on 20 random pairs, 3 observations, lambda in {1, 3/2}: ok
+(C) S_(3,5): D^Psi(mu',eta') = D^(Psi o tau_(J+d))(mu,eta) on 20 random pairs, 3 observations, lambda in {1, 3/2}: ok
+(C) rand_a: D^Psi(mu',eta') = D^(Psi o tau_(J+d))(mu,eta) on 20 random pairs, 3 observations, lambda in {1, 3/2}: ok
