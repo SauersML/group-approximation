@@ -1,0 +1,14 @@
+# run: python3 flat_certs.py q5j3.txt   (Q = Gamma_3/P_5; infinite order of v u^-1 needs a larger quotient, see flat_rank.out)
+  radius 1: sphere 6, ball 7
+  radius 2: sphere 24, ball 31
+  radius 3: sphere 84, ball 115
+[u,v]                        trivial in Gamma_3: True  (tube rho=1, tube 54, alive on path 0)
+[u, baCa]                    trivial in Gamma_3: True  (tube rho=1, tube 54, alive on path 0)
+(ba)^-1 u (ba) = AcAB        trivial in Gamma_3: True  (tube rho=1, tube 36, alive on path 0)
+u^-1 = Acbc                  trivial in Gamma_3: True  (tube rho=1, tube 28, alive on path 0)
+v u = bcAc                   trivial in Gamma_3: True  (tube rho=1, tube 41, alive on path 0)
+v u^-1 = ABCabc              trivial in Gamma_3: True  (tube rho=1, tube 50, alive on path 0)
+u        infinite order: True
+v        infinite order: True
+v u^-1   infinite order: False
+baCa     infinite order: True

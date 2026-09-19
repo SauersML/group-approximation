@@ -386,6 +386,36 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      a separate argument for `K_n`.
    See `kms-hc1-virtual-vertex-route-is-conjugation-inert`.
 
+13. **Ozawa (T) certificate, and amenable wq-normal / commuting routes to `b_1^(2)(Gamma_3) = 0` (w27-057).**
+   - **SOS: no certificate at radius <= 4 (numerical, not rigorous).**
+     The Ozawa SDP was reduced by the symmetry group `H` of order 48
+     (Wedderburn blocks) and solved on exactly certified balls. It gives
+     `lambda ~ 0` at every radius tried:
+
+     | radius | `lambda` | size |
+     |---|---|---|
+     | 2 | `8e-6` | |
+     | 3 | `4e-6` | `n = 115`, 51 orbit rows |
+     | 4 | `6e-6` | `n = 361` |
+
+   - **Class-killing obstruction (ESTABLISHED).** This is
+     `kms-hc1-a2-p3-isolated-flats-kill-amenable-wq-normal`.
+     - The vertex links of `X_3` are Pappus graphs, with exactly 2 geodesics
+       between antipodal vertices. So `X_3` has no flat triplane.
+     - It follows (Hruska; Hruska--Kleiner) that `X_3` has isolated flats and
+       `Gamma_3` is hyperbolic relative to virtually `Z^2` flat stabilizers.
+     - `Z^2 = <bcba, babc>` is certified exactly.
+     - Elementary subgroups are almost malnormal. So every wq-normal chain
+       from an infinite amenable subgroup, and every commuting chain of
+       infinite-order elements, stays in a proper subgroup.
+     - This kills Peterson--Thom 5.12, Popa-type wq-normal routes, and
+       Gaboriau commuting-chain routes for `Gamma_3`.
+   - **Strict reduction.** A proper cocompact cubulation of `Gamma_3` gives
+     `b_1^(2) = 0`: virtually special (Groves--Manning / Oregón-Reyes), then
+     Schreve's Atiyah theorem gives `b_1^(2)` in `(1/27)Z`, and the w26 bound
+     `<= 0.006258` finishes it. A cubulation would also refute (T).
+     Next step: cubulate `Gamma_3`, i.e. find a sufficient family of
+     quasiconvex codimension-1 subgroups.
 13. **Pi on root groups: vanishes at every level; the Pi form of Route 2
    is empty (obstruction, all p >= 5).**
    - (A): at the first deviation, `Pi` is additive on commuting pairs of
