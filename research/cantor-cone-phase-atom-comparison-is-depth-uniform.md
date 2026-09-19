@@ -2,7 +2,9 @@
 rg: 2
 id: cantor-cone-phase-atom-comparison-is-depth-uniform
 kind: claim
-title: "Cone-phase atom transport in C(C,Z) ⋊ V is depth-free: for an ε-almost invariant spectral law the atom μ{χ[U] = 0} differs from μ{χ[[0]] = 0} by O(ε) with a constant that does not grow with the depth of the proper nonempty clopen set U"
+title: "Cone-phase atom transport in C(C,Z) ⋊ V is depth-free: for an ε-almost invariant spectral law the atom μ{χ[U] = 0} differs from μ{χ[[0]] = 0} by O(ε) with a constant that does not grow with the depth of the proper nonempty clopen set U (false as stated, refuted; the version for vectors with no 1_C-invariant component is open)"
+refuted_by:
+  - cone-product-laws-break-depth-uniform-atom-transport
 distinct_from:
   cantor-central-witnesses-have-active-cone-phases: that is the atom comparison `μ{χ[C]=0} ≥ 4μ{χ[U]=0} − 3 − Kε` with `K` absolute; its route proves only the form carrying an extra `16|h|_S ε`, where `h ∈ V` carries `[0]` to `U`. This is the one missing ingredient — a transport estimate whose constant does not grow with `|h|_S` — and it is what the "for every proper clopen `U`, `K` absolute" quantifier of that headline needs.
   cantor-central-witnesses-have-long-range-dependence: that lower-bounds the conditional TV-dependence of two cone phases, and its constants are likewise allowed to grow with the word lengths of the moving elements; this asks for the opposite, a transport bound with no word-length dependence at all, and says nothing about dependence.
@@ -70,3 +72,24 @@ Corollary 2 of that node is in fact stated.
   estimate for the `V`-action on the atom function `U ↦ μ{χ[U] = 0}`. Neither is available:
   `U ↦ μ{χ[U] = 0}` is not known to be continuous for any topology `V` acts on equicontinuously,
   and `V` is not amenable, so no invariant mean is available to average against.
+- **2026-09-19 (swarm-0917-w17-w17-nv-pull, minimal-counterexample): REFUTED as stated.**
+  - Established `cone-product-laws-break-depth-uniform-atom-transport` (unreviewed), with a
+    self-contained proof in its `-proof` route.
+  - *Counterexample.* Use the Bernoulli cone-product laws of
+    `cantor-integer-maps-pair-lacks-relative-property-t`, with seed character
+    `ξ(k) = √2(∫k dλ − k(1^∞)) mod 1`. They give Koopman vectors `f_p` with defect `ε ≤ c_S√p`.
+    Their atoms are exactly `μ{χ[0^d] = 0} = (1 − p)^d`: the phase at `[0^d]` is `√2` times a
+    dyadic rational in `(0,1)`, which is zero only when no proper prefix of `0^d` is drawn. At
+    `d = ⌈1/p⌉` the two atoms differ by at least `0.53`, while `K_0 ε → 0`.
+  - *Quantitative.* Every transport bound valid for general vectors is at least
+    `(1 − ε²/c_S²)(1 − e^{−ε²(d−1)/c_S²})` at depth `d`. So depth-uniformity fails beyond depth
+    `O(1/ε²)`. Between `1/ε`, where telescoping stops helping, and `1/ε²` it is open.
+  - *Where it breaks.* Every `f_p` is `π(1_C)`-invariant. So any depth-free transport argument that
+    does not use the absence of `1_C`-invariant vectors dies on this family. That covers orbit
+    averaging, fixed-point estimates for `U ↦ μ{χ[U]=0}`, and ruler-partition exchangeability.
+  - *What survives.* The same statement for unit vectors in `ker(π(1_C) − 1)^⊥`. That is the only
+    case that `cantor-central-witnesses-have-active-cone-phases` and the class-kills on
+    `cantor-integer-maps-central-direction-has-relative-t` need. Relative (T) of `(G, Z·1_C)`
+    implies it with `K_0 = L/κ`, where `L` is the largest `S`-length of an element of the Kazhdan set.
+    So a proof of the restricted form has to put the central spectral hypothesis into the transport
+    step itself.
