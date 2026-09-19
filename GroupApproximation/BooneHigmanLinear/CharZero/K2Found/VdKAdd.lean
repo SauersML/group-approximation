@@ -87,6 +87,7 @@ theorem conj_aux {G : Type*} [Group G] {y X R P B Z : G} (hP : y * P * y⁻¹ = 
 
 /-! ### `x(i, w)` at any zero -/
 
+open Classical in
 /-- `x(i, w)` computed at some zero of `w` (vdK 3.10); `1` if `w` has no zero. By `xz_eq` the
 choice of zero does not matter when `w i = 0`. -/
 noncomputable def xz (i w : I → A) : SteinbergGroup I A :=
@@ -103,10 +104,10 @@ theorem xvw_zero (i : I → A) (r : I) : xvw i 0 r = 1 := by
   rw [xvw, smul_zero, rowProd_zero, commutatorElement_one_right, one_mul]
 
 theorem xz_zero (i : I → A) : xz i (0 : I → A) = 1 := by
-  rw [xz]
-  split_ifs with h
-  · exact xvw_zero i _
-  · rfl
+  unfold xz
+  by_cases h : ∃ t, (0 : I → A) t = 0
+  · rw [dif_pos h, xvw_zero]
+  · rw [dif_neg h]
 
 theorem stU_xz {i w : I → A} {t : I} (hwi : w ⬝ᵥ i = 0) (ht : w t = 0) :
     stU I A (xz i w) = eUnit i w hwi := by

@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdKAdd
+import Mathlib.Algebra.Group.Subgroup.Pointwise
 
 /-!
 # vdK 3.13–3.15: the sets `X̄(i, j)` (k2-poly, piece F.1)
@@ -35,7 +36,6 @@ variable {I A : Type*} [Fintype I] [DecidableEq I] [CommRing A]
 
 /-! ### Counting and generation -/
 
-omit [DecidableEq I] in
 theorem exists_ne_three (h4 : 4 ≤ Fintype.card I) (a b c : I) :
     ∃ t, t ≠ a ∧ t ≠ b ∧ t ≠ c := by
   classical
@@ -84,32 +84,26 @@ theorem smul_basicRow_dotProduct (i : I → A) (c : A) (p q : I) :
     (c • basicRow i p q) ⬝ᵥ i = 0 := by
   rw [smul_dotProduct, basicRow_dotProduct, smul_zero]
 
-omit [Fintype I] in
 theorem basicRow_apply_of_ne (i : I → A) {p q t : I} (htp : t ≠ p) (htq : t ≠ q) :
     basicRow i p q t = 0 := by
   rw [basicRow, Pi.sub_apply, Pi.smul_apply, Pi.smul_apply, Pi.single_eq_of_ne htp,
     Pi.single_eq_of_ne htq, smul_zero, smul_zero, sub_zero]
 
-omit [Fintype I] in
 theorem smul_basicRow_apply_of_ne (i : I → A) (c : A) {p q t : I} (htp : t ≠ p) (htq : t ≠ q) :
     (c • basicRow i p q) t = 0 := by
   rw [Pi.smul_apply, basicRow_apply_of_ne i htp htq, smul_zero]
 
-omit [Fintype I] in
 theorem basicRow_apply_left (i : I → A) {p q : I} (hpq : p ≠ q) : basicRow i p q p = i q := by
   rw [basicRow, Pi.sub_apply, Pi.smul_apply, Pi.smul_apply, Pi.single_eq_same,
     Pi.single_eq_of_ne hpq, smul_zero, smul_eq_mul, mul_one, sub_zero]
 
-omit [Fintype I] in
 theorem basicRow_apply_right (i : I → A) {p q : I} (hpq : p ≠ q) : basicRow i p q q = -i p := by
   rw [basicRow, Pi.sub_apply, Pi.smul_apply, Pi.smul_apply, Pi.single_eq_same,
     Pi.single_eq_of_ne hpq.symm, smul_zero, smul_eq_mul, mul_one, zero_sub]
 
-omit [Fintype I] in
 theorem basicRow_self (i : I → A) (p : I) : basicRow i p p = 0 := by
   rw [basicRow, sub_self]
 
-omit [Fintype I] in
 /-- The `r`-th coordinate of a basic row for `ε_r` vanishes. -/
 theorem basicRow_single_apply_self (r p q : I) : basicRow (Pi.single r (1 : A)) p q r = 0 := by
   simp only [basicRow, Pi.sub_apply, Pi.smul_apply, smul_eq_mul, Pi.single_apply]
@@ -121,20 +115,16 @@ theorem basicRow_single_apply_self (r p q : I) : basicRow (Pi.single r (1 : A)) 
     · simp [hq, hp, Ne.symm hq]
     · simp [hp, hq, Ne.symm hp, Ne.symm hq]
 
-omit [Fintype I] in
-theorem single_eq_smul_one (q : I) (b : A) : Pi.single q b = b • Pi.single q (1 : A) := by
+theorem single_eq_smul_one (q : I) (b : A) : (Pi.single q b : I → A) = b • Pi.single q (1 : A) := by
   rw [← Pi.single_smul', smul_eq_mul, mul_one]
 
-omit [Fintype I] in
 theorem add_single_apply_self (i : I → A) (p : I) (b : A) : (i + Pi.single p b) p = i p + b := by
   rw [Pi.add_apply, Pi.single_eq_same]
 
-omit [Fintype I] in
 theorem add_single_apply_of_ne (i : I → A) {p t : I} (htp : t ≠ p) (b : A) :
     (i + Pi.single p b) t = i t := by
   rw [Pi.add_apply, Pi.single_eq_of_ne htp, add_zero]
 
-omit [Fintype I] in
 theorem basicRow_add_single_of_ne (i : I → A) {p r s : I} (hpr : p ≠ r) (hps : p ≠ s) (b : A) :
     basicRow (i + Pi.single p b) r s = basicRow i r s := by
   rw [basicRow, basicRow, add_single_apply_of_ne i (Ne.symm hpr), add_single_apply_of_ne i (Ne.symm hps)]
@@ -147,7 +137,6 @@ theorem IsBasic.dotProduct {i w : I → A} (h : IsBasic i w) : w ⬝ᵥ i = 0 :=
   obtain ⟨c, p, q, rfl⟩ := h
   exact smul_basicRow_dotProduct i c p q
 
-omit [DecidableEq I] in
 theorem exists_two_ne_of_card (h4 : 4 ≤ Fintype.card I) (p q : I) :
     ∃ r s : I, r ≠ s ∧ r ≠ p ∧ r ≠ q ∧ s ≠ p ∧ s ≠ q := by
   obtain ⟨r, hrp, hrq, -⟩ := exists_ne_three h4 p q p

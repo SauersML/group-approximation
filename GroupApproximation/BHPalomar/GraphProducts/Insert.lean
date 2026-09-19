@@ -89,17 +89,17 @@ theorem toAmalg_comm (s : Set V) (v : V) (u w : V) (hadj : Γ.Adj u w)
   have hne : u ≠ w := hadj.ne
   by_cases huv : u = v
   · cases huv
-    have hwv : w ≠ u := hne.symm
+    have hwv := hne.symm
     have hws : w ∈ s := (Set.mem_insert_iff.mp hw).resolve_left hwv
-    have hwc : w ∈ linkIn Γ s u := ⟨hws, hadj⟩
-    rw [toAmalgFam_v, toAmalgFam_s Γ G s u hwv hws]
-    exact link_comm Γ G s u hwc b a
+    have hwc := (⟨hws, hadj⟩ : w ∈ linkIn Γ s _)
+    rw [toAmalgFam_v, toAmalgFam_s Γ G s _ hwv hws]
+    exact link_comm Γ G s _ hwc b a
   · have hus : u ∈ s := (Set.mem_insert_iff.mp hu).resolve_left huv
     by_cases hwv : w = v
     · cases hwv
-      have huc : u ∈ linkIn Γ s w := ⟨hus, hadj.symm⟩
-      rw [toAmalgFam_v, toAmalgFam_s Γ G s w huv hus]
-      exact (link_comm Γ G s w huc a b).symm
+      have huc := (⟨hus, hadj.symm⟩ : u ∈ linkIn Γ s _)
+      rw [toAmalgFam_v, toAmalgFam_s Γ G s _ huv hus]
+      exact (link_comm Γ G s _ huc a b).symm
     · have hws : w ∈ s := (Set.mem_insert_iff.mp hw).resolve_left hwv
       rw [toAmalgFam_s Γ G s v huv hus, toAmalgFam_s Γ G s v hwv hws, ← map_mul, ← map_mul,
         ← map_mul, ← map_mul, gpOf_comm s hadj a b]

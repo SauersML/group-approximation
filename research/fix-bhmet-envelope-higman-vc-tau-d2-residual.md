@@ -5,8 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCTauD2Residual: Used tac1 <;> tac2 where (tac1; tac2) would suffice"
 ---
 
-**OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCTauD2Residual.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVCTauD2Residual.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
+
 
 **First errors (verbatim).**
 

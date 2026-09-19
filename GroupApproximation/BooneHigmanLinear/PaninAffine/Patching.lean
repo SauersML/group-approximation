@@ -294,8 +294,6 @@ theorem MFrame.col_split (ha : a ∈ nonZeroDivisors A) (hr : 5 ≤ r) (M : MFra
     Xf T a ⟨M.m1 + q, M.m2, q + (M.m1 + M.m2), a ^ q • M.P j + (-κ) • M.P i, M.Q k, M.Q j⟩ f s =
       Xf T a (M.vf j k) f (f a ^ (3 * q) * s) *
         Xf T a (M.vf i k) f (-(f κ) * f a ^ (2 * q) * s) := by
-  have hjk' := M.vf_isFrame ha hjk
-  have hik' := M.vf_isFrame ha hik
   have hWkVj : (f ∘ M.Q k) ⬝ᵥ (f ∘ M.P j) = 0 := M.dotC_ne ha f hjk.symm
   have hWkVi : (f ∘ M.Q k) ⬝ᵥ (f ∘ M.P i) = 0 := M.dotC_ne ha f hik.symm
   have hμj : f a ^ (M.m1 + M.m2) ∈ coordIdeal (f ∘ M.P j) := by

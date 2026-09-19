@@ -239,8 +239,8 @@ theorem zariski_split (hab : IsCoprime a b) (c : Localization.Away (a * b)) :
   obtain ⟨k, l, hl⟩ := IsLocalization.Away.surj (a * b) c
   refine ⟨k, fun N => ?_⟩
   obtain ⟨x, y, hxy⟩ := (hab.pow (m := N + k) (n := k))
-  set ua : Localization.Away a := ↑(isUnit_loc_self a).unit⁻¹ with hua
-  set ub : Localization.Away b := ↑(isUnit_loc_self b).unit⁻¹ with hub
+  set ua : Localization.Away a := ↑(isUnit_loc_self a).unit⁻¹
+  set ub : Localization.Away b := ↑(isUnit_loc_self b).unit⁻¹
   have hua1 : ua * loc a a = 1 := (isUnit_loc_self a).val_inv_mul
   have hub1 : ub * loc b b = 1 := (isUnit_loc_self b).val_inv_mul
   refine ⟨loc a (l * y) * ua ^ k, loc b (l * x) * ub ^ k, l * y, ?_, ?_⟩

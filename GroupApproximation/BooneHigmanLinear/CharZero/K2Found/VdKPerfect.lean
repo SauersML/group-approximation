@@ -44,15 +44,16 @@ theorem X_commutator_eq (i j v w : I → A) (h₁ : (i, j) ∈ U I A) (h₂ : (v
   have hs' : (i, j - (j ⬝ᵥ v) • w) ∈ U I A := mk_mem_U.2 ⟨(mk_mem_U.1 h₁).1, by
     rw [sub_dotProduct, smul_dotProduct, hwi, smul_zero, (mk_mem_U.1 h₁).2, sub_zero]⟩
   have hs : X (v, w) h₂ * X (i, j) h₁ * (X (v, w) h₂)⁻¹ = X (i, j - (j ⬝ᵥ v) • w) hs' := by
+    have hpair : conjPair (v, w) (i, j) = (i, j - (j ⬝ᵥ v) • w) := by
+      show (i + (w ⬝ᵥ i) • v, j - (j ⬝ᵥ v) • w) = (i, j - (j ⬝ᵥ v) • w)
+      rw [hwi, zero_smul, add_zero]
     rw [X_conj]
-    refine X_congr (Prod.ext ?_ rfl) _ _
-    show i + (w ⬝ᵥ i) • v = i
-    rw [hwi, zero_smul, add_zero]
+    exact X_congr hpair _ _
   have ht : X (i, j) h₁ = X (i, (j ⬝ᵥ v) • w) h₃ * X (i, j - (j ⬝ᵥ v) • w) hs' := by
+    have hpair : ((i, j) : (I → A) × (I → A)) = (i, (j ⬝ᵥ v) • w + (j - (j ⬝ᵥ v) • w)) := by
+      rw [add_sub_cancel]
     rw [X_mul i _ _ h₃ hs' (add_mem h₃ hs')]
-    refine X_congr (Prod.ext rfl ?_) _ _
-    show j = (j ⬝ᵥ v) • w + (j - (j ⬝ᵥ v) • w)
-    abel
+    exact X_congr hpair _ _
   calc ⁅X (i, j) h₁, X (v, w) h₂⁆
       = X (i, j) h₁ * (X (v, w) h₂ * X (i, j) h₁ * (X (v, w) h₂)⁻¹)⁻¹ := by
         rw [commutatorElement_def]; group
@@ -119,14 +120,12 @@ theorem vdkPiece_dotProduct (i j k : I → A) (p q : I) : vdkPiece i j k p q ⬝
   simp only [vdkPiece, smul_dotProduct, sub_dotProduct, single_dotProduct, one_mul, smul_eq_mul]
   ring
 
-omit [Fintype I] in
 theorem vdkPiece_apply (i j k : I → A) (p q r : I) :
     vdkPiece i j k p q r =
-      j p * k q * i q * Pi.single p (1 : A) r - j p * k q * i p * Pi.single q (1 : A) r := by
+      j p * k q * i q * (Pi.single p (1 : A) : I → A) r - j p * k q * i p * (Pi.single q (1 : A) : I → A) r := by
   simp only [vdkPiece, Pi.smul_apply, Pi.sub_apply, smul_eq_mul]
   ring
 
-omit [Fintype I] in
 theorem vdkPiece_apply_of_ne (i j k : I → A) {p q r : I} (hp : r ≠ p) (hq : r ≠ q) :
     vdkPiece i j k p q r = 0 := by
   rw [vdkPiece_apply, Pi.single_eq_of_ne hp, Pi.single_eq_of_ne hq, mul_zero, mul_zero, sub_zero]
@@ -138,21 +137,21 @@ theorem sum_vdkPiece {i j k : I → A} (hji : j ⬝ᵥ i = 0) (hk : k ⬝ᵥ i =
   simp only [Finset.sum_apply, vdkPiece_apply, Finset.sum_sub_distrib]
   have hk' : ∑ q, k q * i q = 1 := hk
   have hji' : ∑ p, j p * i p = 0 := hji
-  have h1 : ∑ p, ∑ q, j p * k q * i q * Pi.single p (1 : A) r = j r := by
-    have hin : ∀ p, ∑ q, j p * k q * i q * Pi.single p (1 : A) r = j p * Pi.single p (1 : A) r := by
+  have h1 : ∑ p, ∑ q, j p * k q * i q * (Pi.single p (1 : A) : I → A) r = j r := by
+    have hin : ∀ p, ∑ q, j p * k q * i q * (Pi.single p (1 : A) : I → A) r = j p * (Pi.single p (1 : A) : I → A) r := by
       intro p
-      calc ∑ q, j p * k q * i q * Pi.single p (1 : A) r
-          = (∑ q, k q * i q) * (j p * Pi.single p (1 : A) r) := by
+      calc ∑ q, j p * k q * i q * (Pi.single p (1 : A) : I → A) r
+          = (∑ q, k q * i q) * (j p * (Pi.single p (1 : A) : I → A) r) := by
             rw [Finset.sum_mul]
             exact Finset.sum_congr rfl (fun q _ => by ring)
-        _ = j p * Pi.single p (1 : A) r := by rw [hk', one_mul]
+        _ = j p * (Pi.single p (1 : A) : I → A) r := by rw [hk', one_mul]
     rw [Finset.sum_congr rfl (fun p _ => hin p), Finset.sum_eq_single r, Pi.single_eq_same, mul_one]
     · intro p _ hp
       rw [Pi.single_eq_of_ne (Ne.symm hp), mul_zero]
     · intro h
       exact absurd (Finset.mem_univ r) h
-  have h2 : ∑ p, ∑ q, j p * k q * i p * Pi.single q (1 : A) r = 0 := by
-    have hin : ∀ p, ∑ q, j p * k q * i p * Pi.single q (1 : A) r = k r * (j p * i p) := by
+  have h2 : ∑ p, ∑ q, j p * k q * i p * (Pi.single q (1 : A) : I → A) r = 0 := by
+    have hin : ∀ p, ∑ q, j p * k q * i p * (Pi.single q (1 : A) : I → A) r = k r * (j p * i p) := by
       intro p
       rw [Finset.sum_eq_single r, Pi.single_eq_same, mul_one]
       · ring

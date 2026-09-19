@@ -7,7 +7,7 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 
 ## L. LIVE COUNT: rows NOT yet unconditional (ms-map keeps this current)
 - NM: 717 rows. 658 complete (528 formalized + 75 definition + 55 structural). 22 partial. 37 attribution/provenance (6 of them assert mathematics).
-- SK: 228 rows. After batches b000f0610 and 642f73677 (census regen pending): 213 complete (168 formalized + 26 definition + 19 structural), **0 open**, 15 attribution. Of those, 5 assert mathematics (S2–S4) and 1 is 768ac9454e9b (S1, now attribution).
+- SK: 228 rows (census 4384927d3): 216 complete (171 formalized + 26 definition + 19 structural), **0 open**, 12 attribution. Of those 12, 2 still assert mathematics (e5932a45f053 Grigorchuk–Medynets, S2; fc84c012b409(b), S3), 768ac9454e9b is cited background, and 9 are history.
 - Build caveat: no endpoint module of either note has a green MSI build on current main. Slurm has been blocked since 09-18 20:55 (item C).
 
 | # | census | rows (key @tex line) | what is owed | owner(s) |
@@ -20,11 +20,11 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 | N1b | NM | 27e0c2f96db3@305 (attribution; builds Q from Fournier-Facio) | cites TheoremC.LiteratureInputs, a hypothesis bundle (Chiodo, Kotowski–Ollivier, FF Prop 2.3, Minasyan–Osin, Hull 7.4). It is inhabited only `_of_greendlinger` (TorsionFreeEndpoints/Closed), so it rides the waist. | nm-gl06e/nm-gl03d; regrade ms-nm-uncond-b |
 | N4 | NM | 512b53c80bd2@1604 | re-pointed to printedBilateralThreeRootAddition_closed (691b03881); needs census regen only | ms-map (E) |
 | S1 | SK | 768ac9454e9b@733 (finitely presented case) | open → attribution (642f73677, coordinator decision: a citation of Caprace–Rémy plus an open problem, used by no theorem). The K₂ route (LVWire/Chain; skLoc_GerstenTwo, skLoc_Localization) stays as partial evidence, off the count. | sk-k2-gersten, sk-k2-loc (optional), ms-sk-uncond-a |
-| S2 | SK | 3eaee0a2dc7e@307 (Matui), e5932a45f053@724 (Grigorchuk–Medynets) | topological full group layer: Matui generation (1–3 kLOC), then effective generation and WP ⇔ recursive | **sk-tfg** |
+| S2 | SK | 3eaee0a2dc7e@307 (Matui: graded formalized over the closed printedMatuiRemark, SK batch 2), e5932a45f053@724 (Grigorchuk–Medynets, still open) | topological full group layer: Matui generation (1–3 kLOC), then effective generation and WP ⇔ recursive | **sk-tfg** |
 | S3 | SK | fc84c012b409@477, clause (b) | rides the GL waist (N1) | nm-gl06e/nm-gl03d; regrade ms-sk-open |
-| S4 | SK | aaf5fe1a98c3@63 (Arzhantseva ARF), 9fe4e2896405@447 (Boone–Higman in Thompson's form) | proved in SkOpen (e7fff6d62), unprobed | probe: ms-sk-open; regrade: ms-map |
+| S4 | SK | aaf5fe1a98c3@63 (Arzhantseva ARF), 9fe4e2896405@447 (Boone–Higman in Thompson's form) | SkOpen GREEN (ms-sk-open 1789853108). Graded formalized (SK batch 2), with root wiring in the next ms-map root probe. | ms-map |
 | S5 | SK | 503221e301f6@309 (Stepanov), 8212b1470040@473 (Kionke–Schesler) | DONE at source: graded formalized in b000f0610; census regen pending | ms-map (E) |
-| S6 | SK | 91 formalized rows audited only in unwired SKAttestA/B | module green, then root wiring | probe: ms-sk-uncond-a (A), ms-sk-uncond-b (B); wire: ms-map (armed watcher) |
+| S6 | SK | 91 formalized rows audited only in unwired SKAttestA/B | SKAttestB GREEN (ms-sk-uncond-b record 1789852575; its overlays now equal main); it adds 2 root modules and has no declarations. Root probe after the GL06eSlit.Pocket root probe (queued 16:11). SKAttestA not green yet. | probe: ms-sk-uncond-a (A), ms-sk-uncond-b (B); wire: ms-map (armed watcher) |
 - Totals. NM: 16 math-open (N1 ×15, N1b) + 4 unowned literature (N3) + 9 pending build/census (N2 ×7, N3a, N4).
 - SK: 3 math-open (S2 ×2, S3) + 4 pending build/census (S4, S5), plus 91 rows pending build attestation (S6). SK open count: 0.
 - Not owed (history/provenance sentences, census-owner grading): NM 31 attribution/provenance rows; SK 9 attribution rows (5c1d, 7fa0, 54e3, 8339, b67f, 2745, 1e63, 5c45, a51f).
@@ -54,7 +54,7 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
 - SK batch 1 = b000f0610 (S5: 503221e301f6 and 8212b1470040 graded formalized in zz-full-sk16, plus 2 override drops).
 - Regeneration runs 1 (b000f0610) and 2 (2e7ca0694) ran directly on the node (1 process, nice 19). Both PASS: NM --verify-decls 0 missing of 2266, --verify-unconditional 76 accepted / 0 new / 0 stale; SK merge clean (168 formalized, 15 attribution, 0 open).
 - SK regenerated census LANDED dac9f9a1e.
-- NM regenerated census (NON_MF_SENTENCE_CENSUS.{tsv,md}, only the 9 re-pointed rows change) is STAGED in work/ms-map/metadata/. gqland-lean.sh refuses it, because its token scan hits the manuscript's provenance sentences quoted verbatim from the tex; the same text is already on main. It needs a team-lead exemption for those two generated paths.
+- NM regenerated census LANDED 73d41cf37, after team-lead exempted the generated census files from the token scan.
 - Next batches: SK (S4 after green); NM (N3a; N2 after green; nm-osin94 rows as they come).
 
 ## A. Endpoint status (read 09-18; section L supersedes the counts)
@@ -199,5 +199,6 @@ CLAIMED ms-sk-uncond-a 2026-09-18 15:35 CDT. New dir Full/LVPolyK2/ (registered 
 - [ms-nm-uncond-a 09-19] Register lines hhard (lem:saturation) and hroot (bilateral-three): closed in Lean on main, owed only as map-row edits (d47b29ce6). STAGED rows and remove-lists in work/ms-nm-uncond-a/metadata (row 2f55113239ce) and work/ms-nm-uncond-b/metadata (row 512b53c80bd2). They need the item-0 metadata lander, then a census regeneration and a detector re-run on MSI. The other 29 lines are nm-osin94's; please stage removals as remove-lists too.
 - ms-sk-uncond-b 09-19, census entry for ms-map (row 3eaee0a2dc7e, tex l.307–309, Matui): add the decls
   `GroupApproximation.Full.StepanovMatui.Matui.printedMatuiRemark`, `...Matui.printedMatuiRemarkSubshift`, and
-  `GroupApproximation.Full.SKTFGMatui.matuiDerivedFullGroupSimple` (landed 9907951763, unprobed, not wired). Keep the grade
+  `GroupApproximation.Full.SKTFGMatui.printedMatuiCantorMinimal` (SKTFGMatui.Simple, GREEN, landed 43e0006008; not root-wired). Keep the grade
   `attribution` (fidelity note on board/sk-tfg.md). Wire SKTFGMatui.Simple only after a green probe.
+- [ms-nm-uncond-b 15:47] ROOT-red repair: GL03BPinchOrder/Split (assigned), TorsionFreeEndpoints/Reductions (dupNamespace), and GL03BPinchOrder/OrderRing (on the §6 path). Fixes are in my overlay; the probe waits for Mac disk space.
