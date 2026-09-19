@@ -1,0 +1,20 @@
+OK A K=2 B=2: 0 good windows of length 5 with entries <= 2; min of max = None >= F_(K+2) = 3
+OK A K=2 B=3: 1 good windows of length 5 with entries <= 3; min of max = 3 >= F_(K+2) = 3
+OK A K=3 B=4: 0 good windows of length 7 with entries <= 4; min of max = None >= F_(K+2) = 5
+OK A K=3 B=5: 1 good windows of length 7 with entries <= 5; min of max = 5 >= F_(K+2) = 5
+OK A K=4 B=7: 0 good windows of length 9 with entries <= 7; min of max = None >= F_(K+2) = 8
+OK A K=4 B=8: 1 good windows of length 9 with entries <= 8; min of max = 8 >= F_(K+2) = 8
+OK A K=5 B=12: 0 good windows of length 11 with entries <= 12; min of max = None >= F_(K+2) = 13
+OK A K=5 B=13: 1 good windows of length 11 with entries <= 13; min of max = 13 >= F_(K+2) = 13
+OK A K=6 B=20: 0 good windows of length 13 with entries <= 20; min of max = None >= F_(K+2) = 21
+OK A K=6 B=21: 1 good windows of length 13 with entries <= 21; min of max = 21 >= F_(K+2) = 21
+OK B n=4 |W|=28 rho/4=0.6081 eta=0.3919 Q(bad0)=0.7137 <= 2tM+3tR=2.9670
+OK B n=4: 20 random perturbations satisfy all three inequalities
+OK B n=5 |W|=90 rho/4=0.6669 eta=0.3331 Q(bad0)=0.6609 <= 2tM+3tR=2.7414
+OK B n=5: 20 random perturbations satisfy all three inequalities
+OK B n=6 |W|=297 rho/4=0.7075 eta=0.2925 Q(bad0)=0.6351 <= 2tM+3tR=2.5576
+OK B n=6: 20 random perturbations satisfy all three inequalities
+OK B n=7 |W|=1001 rho/4=0.7372 eta=0.2628 Q(bad0)=0.6030 <= 2tM+3tR=2.4416
+OK B n=7: 20 random perturbations satisfy all three inequalities
+OK B n=8 |W|=3432 rho/4=0.7599 eta=0.2401 Q(bad0)=0.5782 <= 2tM+3tR=2.3306
+OK B n=8: 20 random perturbations satisfy all three inequalities
