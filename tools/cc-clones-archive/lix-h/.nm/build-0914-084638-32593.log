@@ -1,0 +1,19 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3716 oleans
+[job] acn205 cores=slurm threads=8 base=5e0eefb0c9844b2163fd24862cc199ebf441ab30 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+ℹ [3373/3428] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10196/10196] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel (86s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:409:3: failed to synthesize instance of type class
+  Group Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:472:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+error: build failed
+EXIT=1

@@ -1,0 +1,19 @@
+[job] 19:18:14 acn112 waiting for clone lock
+[job] delta sync 217332545..d7c85d207: 1 files changed
+===== SUMMARY
+host acn112 cores 72-79 base d7c85d207 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-191806-68334.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3731 oleans
+--- errors (first 80 lines)
+3:✖ [1035/1087] Running Mathlib.Data.Real.Irrational
+4:error: no such file or directory (error code: 4294967294)
+6:✖ [2099/2118] Running GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+7:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean: bad import 'Mathlib.Data.Real.Irrational'
+11:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,41 @@
+[job] 17:51:27 acn112 waiting for clone lock
+[job] delta sync 32ad69459..cc54707b9: 10 files changed
+===== SUMMARY
+host acn112 cores 64-71 base cc54707b9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-175113-42314.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3344 oleans
+--- errors (first 80 lines)
+55:✖ [10090/10090] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc (23s)
+57:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:67:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+58:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:69:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+59:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:71:24: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+60:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:72:14: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+61:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:89:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+62:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:90:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+63:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:98:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+64:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:99:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+65:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:122:24: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+66:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:122:47: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+67:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:161:14: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+68:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:162:16: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+69:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:172:58: unsolved goals
+94:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:186:70: unsolved goals
+146:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:226:19: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+147:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:227:16: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+148:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:236:10: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+159:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:267:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.not_simple_of_full_sourceArc' depends on axioms outside the classical allowlist: [sorryAx]
+160:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+165:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:269:21: 'GroupApproximation.GGT.VanKampen.PocketFullArc.wrapK_not_simple' depends on axioms outside the classical allowlist: [sorryAx]
+166:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+168:error: Lean exited with code 1
+171:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,15 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3477 oleans
+[job] acn19 cores=slurm threads=8 base=e854e80fade89c43374e143c9fd07a6a4fb3e5c5 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonMergeDisc
+ℹ [3309/3387] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5056/5056] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonMergeDisc (66s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:183:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_mergeDisc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:184:14: 'GroupApproximation.GGT.VanKampen.TwoGonMergeDiscInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:185:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_mergeDisc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5056 jobs).
+EXIT=0

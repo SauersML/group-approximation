@@ -1,0 +1,95 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 2340 oleans
+[job] acn112 cores=64-71 threads=8 base=8c49e43968ab5160f626286af88e0e50415b2fa2 mods: GroupApproximation.CharClass.CohomologyKunnethLixNOf
+ℹ [8747/9084] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8785/9084] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8877/9238] Replayed GroupApproximation.CharClass.LIXStepDGenRealEven
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:99:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:100:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8880/9238] Replayed GroupApproximation.CharClass.LIXStepDGenModP
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:172:14: 'GroupApproximation.CharClass.Gen.gamma_rank_eq_zero_modP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:173:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.toParityPData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:174:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.gamma_top_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8965/9238] Replayed GroupApproximation.AlgTop.ComplexProjectiveBasic
+info: GroupApproximation/AlgTop/ComplexProjectiveBasic.lean:197:14: 'GroupApproximation.AlgTop.CPn.basePoint_entry_zero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8966/9238] Replayed GroupApproximation.AlgTop.CPTautologicalSection
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:397:14: 'GroupApproximation.AlgTop.CPn.dualTautSection_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:398:14: 'GroupApproximation.AlgTop.CPn.sectionChart_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:399:14: 'GroupApproximation.AlgTop.CPn.tautChartHomotopy_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:400:14: 'GroupApproximation.AlgTop.CPn.continuous_tautColSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8991/9238] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9013/9238] Replayed GroupApproximation.CharClass.LIXLemmaTwoGenStepA
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:160:14: 'GroupApproximation.CharClass.Gen.sumElimZero_mem_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:161:14: 'GroupApproximation.CharClass.Gen.fromBlocks_rankOneProj_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:162:14: 'GroupApproximation.CharClass.Gen.isStarProjection_FHmatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:163:14: 'GroupApproximation.CharClass.Gen.isStarProjection_EHmat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:164:14: 'GroupApproximation.CharClass.Gen.exists_cornerUnitary_of_continuousMvNEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:165:14: 'GroupApproximation.CharClass.Gen.hasStepAUnitary_of_continuousMvNEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:166:14: 'GroupApproximation.CharClass.hasStepAUnitary_of_continuousMvNEquiv_of_gen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9023/9238] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9024/9238] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9120/9238] Replayed GroupApproximation.CharClass.LIXLemmaTwoGenGlue
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:218:14: 'GroupApproximation.CharClass.Gen.sumElim_eZero_comp_lastZeroSwap_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:219:14: 'GroupApproximation.CharClass.Gen.Vmat_submatrix_lastZeroSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:220:14: 'GroupApproximation.CharClass.Gen.isCornerUnitary_submatrix_lastZeroSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:221:14: 'GroupApproximation.CharClass.Gen.submatrix_lastZeroSwap_mulVec_eZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:222:14: 'GroupApproximation.CharClass.Gen.StepCHalf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:223:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_of_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:224:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_powers_of_halves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:225:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_powers_of_stepC_modP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9142/9238] Replayed GroupApproximation.CharClass.CohomologyKunnethTorusN
+info: GroupApproximation/CharClass/CohomologyKunnethTorusN.lean:210:14: 'GroupApproximation.CharClass.KnTwo.tx_inj_degreeN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusN.lean:211:14: 'GroupApproximation.CharClass.KnTwo.tx_injN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusN.lean:212:14: 'GroupApproximation.CharClass.KnTwo.decomp_evenN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusN.lean:213:14: 'GroupApproximation.CharClass.KnTwo.decomp_even_lowN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusN.lean:214:14: 'GroupApproximation.CharClass.KnTwo.totalSplitN' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9237/9238] Replayed GroupApproximation.CharClass.CohomologyKunnethLixN
+info: GroupApproximation/CharClass/CohomologyKunnethLixN.lean:190:14: 'GroupApproximation.CharClass.KnLix.tx_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixN.lean:191:14: 'GroupApproximation.CharClass.KnLix.chern_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixN.lean:192:14: 'GroupApproximation.CharClass.KnLix.gamma_split_of_graded' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixN.lean:193:14: 'GroupApproximation.CharClass.KnLix.gamma_split_mappingTorus' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9238/9238] Built GroupApproximation.CharClass.CohomologyKunnethLixNOf (22s)
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:312:14: 'GroupApproximation.CharClass.KnCP.noOddCohomology_piCPOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:313:14: 'GroupApproximation.CharClass.KnTwo.totalSplitOfK' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:314:14: 'GroupApproximation.CharClass.KnLix.evenKunnethSplitOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:315:14: 'GroupApproximation.CharClass.KnLix.slice_map_prY_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:316:14: 'GroupApproximation.CharClass.KnLix.slice_map_zClass' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9238 jobs).
+EXIT=0

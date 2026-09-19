@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2300 oleans
+[job] acn112 cores=64-71 threads=8 base=b712a4c5c92d3a58c2006be3572938ad140c0360 mods: GroupApproximation.CharClass.CohomologyKunnethTorusOf
+ℹ [8767/8827] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8768/8827] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8788/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethSphereOf
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:152:14: 'GroupApproximation.CharClass.isZero_mvAmbientOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:153:14: 'GroupApproximation.CharClass.isZero_cohomology_of_isEmptyOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:154:14: 'GroupApproximation.CharClass.isZero_prod_sphere_succOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8793/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethSplitOf
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:161:14: 'GroupApproximation.CharClass.kunneth_fst_eq_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:162:14: 'GroupApproximation.CharClass.kunnethMap_naturalOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:163:14: 'GroupApproximation.CharClass.kunnethInjective_of_secondOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8807/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethHemiOf
+info: GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean:133:14: 'GroupApproximation.CharClass.KnHemi.exists_pull_prSub_of_resOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean:134:14: 'GroupApproximation.CharClass.KnHemi.pull_bandHE_injectiveOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8808/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethStepOf
+info: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:116:14: 'GroupApproximation.CharClass.KnHemi.knGen_of_injectiveOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:117:14: 'GroupApproximation.CharClass.KnHemi.knGenOf_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8817/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethSurjOf
+info: GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean:235:14: 'GroupApproximation.CharClass.KnHemi.exists_delta_of_subOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean:236:14: 'GroupApproximation.CharClass.KnHemi.knLow_succOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean:237:14: 'GroupApproximation.CharClass.KnHemi.knTop_succOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8819/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethZeroOf
+info: GroupApproximation/CharClass/CohomologyKunnethZeroOf.lean:115:14: 'GroupApproximation.CharClass.KnHemi.knGen_zeroGenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8823/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethSurjZeroOf
+info: GroupApproximation/CharClass/CohomologyKunnethSurjZeroOf.lean:141:14: 'GroupApproximation.CharClass.KnZero.knTop_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8824/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethStepDeltaOf
+info: GroupApproximation/CharClass/CohomologyKunnethStepDeltaOf.lean:77:14: 'GroupApproximation.CharClass.KnHemi.injective_sphereNextOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8825/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethInjectiveOf
+info: GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean:108:14: 'GroupApproximation.CharClass.KnHemi.kunnethSecondInjectiveOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean:109:14: 'GroupApproximation.CharClass.KnHemi.kunnethInjectiveOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8826/8827] Replayed GroupApproximation.CharClass.CohomologyKunnethDecompOf
+info: GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean:133:14: 'GroupApproximation.CharClass.KnHemi.kunneth_lowOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean:134:14: 'GroupApproximation.CharClass.KnHemi.kunneth_decompositionOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean:135:14: 'GroupApproximation.CharClass.KnHemi.kunneth_decomposition_uniqueOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8827/8827] Built GroupApproximation.CharClass.CohomologyKunnethTorusOf (26s)
+info: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:173:14: 'GroupApproximation.CharClass.KnHemi.kunnethSecondInjective_of_ne_zeroOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:174:14: 'GroupApproximation.CharClass.KnTwo.tx_inj_degree_of_ne_zeroOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:175:14: 'GroupApproximation.CharClass.KnTwo.tx_inj_degreeOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8827 jobs).
+EXIT=0

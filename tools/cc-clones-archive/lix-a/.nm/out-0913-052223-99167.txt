@@ -1,0 +1,25 @@
+[job] 05:22:27 acn112 waiting for clone lock
+[job] delta sync e12190690..1faafe122: 67 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1faafe122 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-052223-99167.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3042 oleans
+--- errors (first 80 lines)
+6:✖ [10221/10221] Building GroupApproximation.Manuscript.NonMF.HullCorollary73 (27s)
+11:error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:301:38: unsolved goals
+22:error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:421:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_tower' depends on axioms outside the classical allowlist: [sorryAx]
+23:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+25:error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:432:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_leastAreaLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+26:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+28:error: Lean exited with code 1
+31:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullCorollary73 (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullLemma510.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+- GroupApproximation.Manuscript.NonMF.HullCorollary73
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

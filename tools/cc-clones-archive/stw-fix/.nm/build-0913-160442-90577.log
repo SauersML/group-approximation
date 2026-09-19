@@ -1,0 +1,32 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4588 oleans
+[job] acn112 cores=64-71 threads=8 base=cd6ab594b8f8aa9593537a5acd45185f2602e681 mods: GroupApproximation.Dynamics.RefiningClopenPartitions
+✖ [1217/1217] Building GroupApproximation.Dynamics.RefiningClopenPartitions (9.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/Dynamics/RefiningClopenPartitions.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/Dynamics/RefiningClopenPartitions.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/Dynamics/RefiningClopenPartitions.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/Dynamics/RefiningClopenPartitions.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/Dynamics/RefiningClopenPartitions.setup.json --json
+warning: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:35:32: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:46:41: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:80:41: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:93:54: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+info: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:111:14: 'GroupApproximation.ChainCore.proj_eq_of_le' depends on axioms: [propext, Quot.sound]
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:112:14: Unknown constant `GroupApproximation.ChainCore.exists_discreteQuotient_mesh_lt`
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:113:14: Unknown constant `GroupApproximation.ChainCore.exists_refiningClopenPartitions`
+error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:114:14: Unknown constant `GroupApproximation.ChainCore.exists_forall_proj_eq_imp_of_locallyConstant`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.RefiningClopenPartitions
+error: build failed
+EXIT=1

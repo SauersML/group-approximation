@@ -1,0 +1,13 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2127 oleans
+[job] acn112 cores=80-87 threads=8 base=dcaca96731831f0ccd42a227917b789e8aae4c56 mods: GroupApproximation.Analysis.LIXPowersSphere GroupApproximation.Analysis.LIXPowersEquator GroupApproximation.Analysis.LIXPowersEquatorChart
+✔ [2395/2397] Built GroupApproximation.Analysis.LIXPowersSphere (9.1s)
+✖ [2396/2397] Building GroupApproximation.Analysis.LIXPowersEquator (9.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXPowersEquator.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersEquator.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersEquator.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersEquator.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersEquator.setup.json --json
+error: GroupApproximation/Analysis/LIXPowersEquator.lean:187:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.LIXPowersEquator
+error: build failed
+EXIT=1

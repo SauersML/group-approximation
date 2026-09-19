@@ -1,0 +1,58 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4302 oleans
+[job] cn1123 cores=slurm threads=8 base=536d14301c0f8c16f14c27de5cbdc7c81181beeb mods: GroupApproximation.Dynamics.TwoEndedTailSymbols GroupApproximation.Dynamics.TwoEndedTailBalance GroupApproximation.Dynamics.TwoEndedUnitGroup GroupApproximation.Dynamics.TwoEndedUnitsLEF
+ℹ [1786/1812] Replayed GroupApproximation.Algebra.FinitaryGeneralLinear
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:366:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1788/1812] Replayed GroupApproximation.Algebra.LaurentMonomialUnits
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:169:14: 'GroupApproximation.LaurentMonomialUnits.coeff_mul_add_of_forall_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:170:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_of_mul_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:171:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2885/2949] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4112/4115] Built GroupApproximation.Dynamics.TwoEndedTailSymbols (11s)
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:269:14: 'GroupApproximation.TwoEndedShift.symbolOp_apply_single_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:270:14: 'GroupApproximation.TwoEndedShift.symbol_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:271:14: 'GroupApproximation.TwoEndedShift.exists_tail_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:272:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:273:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4113/4115] Building GroupApproximation.Dynamics.TwoEndedTailBalance (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedTailBalance.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedTailBalance.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedTailBalance.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedTailBalance.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedTailBalance.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:83:41: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  e ≥ 0
+  c - d ≥ 1
+  b ≥ 0
+  a ≤ 0
+where
+ a := Np
+ b := Nm
+ c := ap
+ d := am
+ e := ↑(Fintype.card ↑(Set.Ioo (-N + am) (N + ap)))
+info: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:136:14: 'GroupApproximation.TwoEndedShift.card_Ioo_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:137:14: 'GroupApproximation.TwoEndedShift.exists_common_tail_exponent' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:138:14: 'GroupApproximation.TwoEndedShift.units_map_mul_shiftGL_zpow_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedTailBalance
+error: build failed
+EXIT=1

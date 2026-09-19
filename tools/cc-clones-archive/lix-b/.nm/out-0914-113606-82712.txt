@@ -1,0 +1,26 @@
+[job] 13:37:03 acn143 waiting for clone lock
+[job] delta sync 818ceb66e..97ef09ec6: 6 files changed
+===== SUMMARY
+host acn143 cores slurm base 97ef09ec6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-113606-82712.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3538 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ListNoABABChanges (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactAssembly.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapCounts.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactWords.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+COMPILED GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean
+COMPILED GroupApproximation/GGT/VanKampen/ListNoABABLength.lean
+ Quot.sound]
+Build completed successfully (614 jobs).
+EXIT=0
+PROBE GREEN

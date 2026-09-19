@@ -1,0 +1,21 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4330 oleans
+[job] acn54 cores=slurm threads=8 base=7d859d6c8dfcf0e41389c4f11f622438afa1687a mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF
+✖ [3828/3829] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:146:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.compactSpace_carrier`:
+  [DiscreteTopology A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DiscreteTopology A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:192:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+error: build failed
+EXIT=1

@@ -1,0 +1,38 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3199 oleans
+[job] acn112 cores=88-95 threads=8 base=e5783d06f84f690fc8dfec38c8111d5d3738a29f mods: GroupApproximation.GGT.HullLemma35Thin
+ℹ [2808/2964] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4132/4294] Replayed GroupApproximation.GGT.HullLemma35Expansion
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:310:14: 'GroupApproximation.GGT.HullLemma35.prod_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:311:14: 'GroupApproximation.GGT.HullLemma35.mem_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:312:14: 'GroupApproximation.GGT.HullLemma35.guessPath_len' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:313:14: 'GroupApproximation.GGT.HullLemma35.wordDist_guessPath_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:314:14: 'GroupApproximation.GGT.HullLemma35.guessPath_short' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:315:14: 'GroupApproximation.GGT.HullLemma35.guessPath_in_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:316:14: 'GroupApproximation.GGT.HullLemma35.exists_letter_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4181/4294] Replayed GroupApproximation.GGT.HullLemma35Sides
+info: GroupApproximation/GGT/HullLemma35Sides.lean:220:14: 'GroupApproximation.GGT.HullLemma35.guessPath_letter_end' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:221:14: 'GroupApproximation.GGT.HullLemma35.vertex_mem_sidePoints_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:222:14: 'GroupApproximation.GGT.HullLemma35.vertex_revWord_mem_sidePoints_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:223:14: 'GroupApproximation.GGT.HullLemma35.exit_near_of_connected' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:224:14: 'GroupApproximation.GGT.HullLemma35.entrance_near_of_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:225:14: 'GroupApproximation.GGT.HullLemma35.side_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Sides.lean:226:14: 'GroupApproximation.GGT.HullLemma35.side_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4182/4294] Replayed GroupApproximation.GGT.HullLemma35Corner
+info: GroupApproximation/GGT/HullLemma35Corner.lean:226:14: 'GroupApproximation.GGT.HullLemma35.wordDist_vertex_succ_le_one_of_not_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Corner.lean:227:14: 'GroupApproximation.GGT.HullLemma35.corner_walk_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Corner.lean:228:14: 'GroupApproximation.GGT.HullLemma35.corner_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4608/4608] Built GroupApproximation.GGT.HullLemma35Thin (9.0s)
+info: GroupApproximation/GGT/HullLemma35Thin.lean:221:14: 'GroupApproximation.GGT.HullLemma35.vertex_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Thin.lean:222:14: 'GroupApproximation.GGT.HullLemma35.thin' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4608 jobs).
+EXIT=0

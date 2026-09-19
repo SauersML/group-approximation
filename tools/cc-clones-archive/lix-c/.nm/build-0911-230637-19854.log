@@ -1,0 +1,88 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2072 oleans
+[job] acn112 cores=64-71 threads=8 base=6833820c866ba59e3e1f01f13d15c5b843233961 mods: GroupApproximation.CharClass.ParityPWuAxiomGuard
+ℹ [1686/1686] Built GroupApproximation.CharClass.ParityPWuAxiomGuard (7.4s)
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:20:14: 'GroupApproximation.CharClass.ParityP.rename_twist' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:21:14: 'GroupApproximation.CharClass.ParityP.twist_isSymmetric' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:22:14: 'GroupApproximation.CharClass.ParityP.twistSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:23:14: 'GroupApproximation.CharClass.ParityP.aeval_zero_twist' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:24:14: 'GroupApproximation.CharClass.ParityP.eLin_twistSub_fst' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:28:14: 'GroupApproximation.CharClass.ParityP.neg_one_pow_add_two_mul_pow_add_two' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:29:14: 'GroupApproximation.CharClass.ParityP.eCoeff_esymmSub_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:30:14: 'GroupApproximation.CharClass.ParityP.eCoeff_psumSub_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:31:14: 'GroupApproximation.CharClass.ParityP.eCoeff_psumSub_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:32:14: 'GroupApproximation.CharClass.ParityP.twistSub_psumSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:33:14: 'GroupApproximation.CharClass.ParityP.eCoeff_twistSub_psumSub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:34:14: 'GroupApproximation.CharClass.ParityP.eCoeff_twistSub_psumSub_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:35:14: 'GroupApproximation.CharClass.ParityP.eCoeff_twistSub_esymmSub_succ_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:36:14: 'GroupApproximation.CharClass.ParityP.eCoeff_twistSub_esymmSub_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:40:14: 'GroupApproximation.CharClass.ParityP.gammaProd_append' depends on axioms: []
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:41:14: 'GroupApproximation.CharClass.ParityP.gammaProd_replicate' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:42:14: 'GroupApproximation.CharClass.ParityP.gammaProd_map' depends on axioms: []
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:43:14: 'GroupApproximation.CharClass.ParityP.IsDecomposable.map' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:44:14: 'GroupApproximation.CharClass.ParityP.IsDecomposable.congr' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:45:14: 'GroupApproximation.CharClass.ParityP.IsDecomposable.sub' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:46:14: 'GroupApproximation.CharClass.ParityP.IsDecomposable.intCast_mul' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:47:14: 'GroupApproximation.CharClass.ParityP.exists_list_of_finsupp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:48:14: 'GroupApproximation.CharClass.ParityP.two_le_degree_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:49:14: 'GroupApproximation.CharClass.ParityP.isDecomposable_eval₂_of_isWeightedHomogeneous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:50:14: 'GroupApproximation.CharClass.ParityP.isDecomposable_of_eCoeff_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:54:14: 'GroupApproximation.CharClass.ParityP.isSymmetric_homogeneousComponent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:55:14: 'GroupApproximation.CharClass.ParityP.compSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:56:14: 'GroupApproximation.CharClass.ParityP.eCoeff_eq_eCoeff_compSub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:57:14: 'GroupApproximation.CharClass.ParityP.eCoeff_C_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:58:14: 'GroupApproximation.CharClass.ParityP.wuComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:59:14: 'GroupApproximation.CharClass.ParityP.wuCompSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:60:14: 'GroupApproximation.CharClass.ParityP.wuCoeff' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:61:14: 'GroupApproximation.CharClass.ParityP.isHomogeneous_wuTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:62:14: 'GroupApproximation.CharClass.ParityP.wuDeg_eq_iff' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:63:14: 'GroupApproximation.CharClass.ParityP.wuComp_eq_wuRHSP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:64:14: 'GroupApproximation.CharClass.ParityP.eCoeff_wuCompSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:65:14: 'GroupApproximation.CharClass.ParityP.isDecomposable_wuComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:66:14: 'GroupApproximation.CharClass.ParityP.isDecomposable_wuRHSP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:67:14: 'GroupApproximation.CharClass.ParityP.wuCoeff_cast_eq' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:68:14: 'GroupApproximation.CharClass.ParityP.isUnit_wuCoeff_cast' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:72:14: 'GroupApproximation.CharClass.ParityP.esymmOn_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:73:14: 'GroupApproximation.CharClass.ParityP.esymmOn_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:74:14: 'GroupApproximation.CharClass.ParityP.esymmOn_eq_of_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:75:14: 'GroupApproximation.CharClass.ParityP.esymmOn_attach' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:76:14: 'GroupApproximation.CharClass.ParityP.wuMonomialP_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:77:14: 'GroupApproximation.CharClass.ParityP.wuMonomialP_eq_zero_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:78:14: 'GroupApproximation.CharClass.ParityP.wuRHSP_eq_of_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:79:14: 'GroupApproximation.CharClass.ParityP.wuRHSP_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:80:14: 'GroupApproximation.CharClass.ParityP.wuRHSP_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:81:14: 'GroupApproximation.CharClass.ParityP.wuRHSP_attach' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:82:14: 'GroupApproximation.CharClass.ParityP.exists_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:83:14: 'GroupApproximation.CharClass.ParityP.eval₂Hom_esymm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:84:14: 'GroupApproximation.CharClass.ParityP.eval₂Hom_wuRHSP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:85:14: 'GroupApproximation.CharClass.ParityP.IsDecomposable.exists_lift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:86:14: 'GroupApproximation.CharClass.ParityP.wu_isDecomposable_of_splitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:87:14: 'GroupApproximation.CharClass.ParityP.wu_field_of_splitting' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:88:14: 'GroupApproximation.CharClass.ParityP.isUnit_wuLeading' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:92:14: 'GroupApproximation.CharClass.ParityP.HasSplittingP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:93:14: 'GroupApproximation.CharClass.SplitStepDData' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:94:14: 'GroupApproximation.CharClass.SplitStepDData.toParityPData' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuAxiomGuard.lean:95:14: 'GroupApproximation.CharClass.SplitStepDData.gamma_top_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1686 jobs).
+EXIT=0

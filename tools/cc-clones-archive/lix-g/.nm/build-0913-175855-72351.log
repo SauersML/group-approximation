@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3555 oleans
+[job] acn112 cores=64-71 threads=8 base=1bb3e7bf0fd5649a14c9a921df6bd00cae1c342e mods: GroupApproximation.Dynamics.ClopenCrossedProductAlgebra
+ℹ [3659/3827] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4067/4067] Built GroupApproximation.Dynamics.ClopenCrossedProductAlgebra (13s)
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:161:14: 'GroupApproximation.ClopenCoeff.smul_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:162:14: 'GroupApproximation.ClopenCrossedProduct.algebraMap_eq_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:163:14: 'GroupApproximation.ClopenCrossedProduct.restrict_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:164:14: 'GroupApproximation.ClopenCrossedProduct.restrict_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:165:14: 'GroupApproximation.ClopenCrossedProduct.restrictAlgHom_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:166:14: 'GroupApproximation.ClopenCrossedProduct.smul_mem_transientIdeal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:167:14: 'GroupApproximation.ChainCore.TransientIdealLocallyMatricialStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:169:2: 'GroupApproximation.ChainCore.RankTwoLimit.coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4067 jobs).
+EXIT=0

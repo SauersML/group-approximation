@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3174 oleans
+[job] acn112 cores=88-95 threads=8 base=255995a1fbfa9ac46f41fd0ec1ba0a60edd14662 mods: GroupApproximation.Dynamics.ReturnRingUnit
+ℹ [1760/1762] Replayed GroupApproximation.Dynamics.ReturnCells
+info: GroupApproximation/Dynamics/ReturnCells.lean:217:14: 'GroupApproximation.ChainCore.image_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:218:14: 'GroupApproximation.ChainCore.sum_indicator_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:219:14: 'GroupApproximation.ChainCore.clopenExtendByZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1762/1762] Built GroupApproximation.Dynamics.ReturnRingUnit (8.3s)
+info: GroupApproximation/Dynamics/ReturnRingUnit.lean:255:14: 'GroupApproximation.ChainCore.returnUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnRingUnit.lean:256:14: 'GroupApproximation.ChainCore.returnV_mul_coeff_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1762 jobs).
+EXIT=0

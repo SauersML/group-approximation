@@ -1,0 +1,9 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2466 oleans
+[job] acn112 cores=80-87 threads=8 base=457c543a8dbf7c5316eaf24c4a593deb5b284be4 mods: GroupApproximation.GGT.HullSCLemma51LetterPullbackCut
+ℹ [2822/2996] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [9958/9958] Built GroupApproximation.GGT.HullSCLemma51LetterPullbackCut (30s)
+info: GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean:113:14: 'GroupApproximation.HullSC.letterStepBound_of_cutLiftOutcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9958 jobs).
+EXIT=0

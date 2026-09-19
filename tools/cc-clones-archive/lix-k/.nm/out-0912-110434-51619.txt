@@ -1,0 +1,44 @@
+[job] 11:04:49 acn112 waiting for clone lock
+[job] delta sync a6622e53c..d73168597: 47 files changed
+===== SUMMARY
+host acn112 cores 80-87 base d73168597 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0912-110434-51619.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+100:✖ [8986/8987] Building GroupApproximation.CharClass.LIXKGenAgree (22s)
+102:error: GroupApproximation/CharClass/LIXKGenAgree.lean:164:9: failed to synthesize instance of type class
+106:error: GroupApproximation/CharClass/LIXKGenAgree.lean:184:11: failed to synthesize instance of type class
+110:error: GroupApproximation/CharClass/LIXKGenAgree.lean:175:64: unsolved goals
+123:error: GroupApproximation/CharClass/LIXKGenAgree.lean:231:15: Variable name `x` is not explicitly referenced.
+128:error: GroupApproximation/CharClass/LIXKGenAgree.lean:336:11: Application type mismatch: The argument
+136:error: GroupApproximation/CharClass/LIXKGenAgree.lean:341:8: Type mismatch
+142:error: GroupApproximation/CharClass/LIXKGenAgree.lean:336:4: stuck at solving universe constraint
+148:error: GroupApproximation/CharClass/LIXKGenAgree.lean:346:31: stuck at solving universe constraint
+154:error: GroupApproximation/CharClass/LIXKGenAgree.lean:344:4: stuck at solving universe constraint
+160:error: GroupApproximation/CharClass/LIXKGenAgree.lean:308:34: stuck at solving universe constraint
+166:error: GroupApproximation/CharClass/LIXKGenAgree.lean:370:2: 'show' tactic failed, pattern
+172:error: GroupApproximation/CharClass/LIXKGenAgree.lean:417:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+203:Full error:
+212:error: GroupApproximation/CharClass/LIXKGenAgree.lean:423:9: Unknown identifier `relPullback_eq_of_homotopy`
+213:error: GroupApproximation/CharClass/LIXKGenAgree.lean:445:2: `simp` made no progress
+216:Full error:
+225:error: GroupApproximation/CharClass/LIXKGenAgree.lean:474:14: 'GroupApproximation.CharClass.KGen.injective_agreeRes' depends on axioms outside the classical allowlist: [sorryAx]
+226:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+229:error: GroupApproximation/CharClass/LIXKGenAgree.lean:476:14: 'GroupApproximation.CharClass.KGen.agreeRes_rotRel' depends on axioms outside the classical allowlist: [sorryAx]
+230:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+232:error: GroupApproximation/CharClass/LIXKGenAgree.lean:477:14: 'GroupApproximation.CharClass.KGen.lixKJlocOf_rotRel' depends on axioms outside the classical allowlist: [sorryAx]
+233:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+235:error: GroupApproximation/CharClass/LIXKGenAgree.lean:478:14: 'GroupApproximation.CharClass.KGen.localClassesAgree_of_localSplitOf' depends on axioms outside the classical allowlist: [sorryAx]
+236:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+238:error: Lean exited with code 1
+241:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenRotate
+mentioned-not-built GroupApproximation.CharClass.LIXKGenAgree (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenOfStepCAgree (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenRotate.lean
+- GroupApproximation.CharClass.LIXKGenAgree
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

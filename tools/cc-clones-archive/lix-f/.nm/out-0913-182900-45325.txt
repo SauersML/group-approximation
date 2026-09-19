@@ -1,0 +1,47 @@
+[job] 18:31:02 acn112 waiting for clone lock
+[job] delta sync 174328060..1ffeb09b3: 11 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1ffeb09b3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-182900-45325.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3359 oleans
+--- errors (first 80 lines)
+138:✖ [4311/4311] Building GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal (28s)
+140:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.single_coeff_one_of_ne`:
+146:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:59:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.posSupp_single`:
+152:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:67:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.negSupp_single`:
+158:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:75:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.PosSupp.add`:
+164:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:79:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.NegSupp.add`:
+170:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:101:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.eq_sum_single`:
+176:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:145:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.PosSupp.coeff_one`:
+182:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:149:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.NegSupp.coeff_one`:
+188:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:305:7: Tactic `rewrite` failed: motive is not type correct:
+233:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:323:31: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `↑(θ
+237:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:324:58: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `c`
+240:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:328:9: unsolved goals
+268:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:361:15: This simp argument is unused:
+276:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:361:24: This simp argument is unused:
+283:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:361:40: This simp argument is unused:
+291:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:361:51: This simp argument is unused:
+298:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:361:70: This simp argument is unused:
+305:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:362:6: This simp argument is unused:
+313:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:368:8: declaration uses `sorry`
+331:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:394:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coeff_one_theta' depends on axioms outside the classical allowlist: [sorryAx]
+332:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+334:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean:395:21: 'GroupApproximation.ChainCore.DynamicRankBudget.returnTransientIdealStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+335:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+337:error: Lean exited with code 1
+340:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean
+- GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnTransientIdeal
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

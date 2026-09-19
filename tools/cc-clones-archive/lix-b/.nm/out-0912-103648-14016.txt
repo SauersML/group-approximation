@@ -1,0 +1,21 @@
+[job] 10:44:16 acn197 waiting for clone lock
+[job] delta sync fb1085202..7e8a94ac9: 19 files changed
+===== SUMMARY
+host acn197 cores slurm base 7e8a94ac9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0912-103648-14016.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2329 oleans
+--- errors (first 80 lines)
+105:✖ [9308/9309] Building GroupApproximation.CharClass.LIXKGenLocalSquare (190s)
+107:error: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:126:32: unsolved goals
+139:error: GroupApproximation/CharClass/LIXKGenLocalSquare.lean:286:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGL_chain' depends on axioms outside the classical allowlist: [sorryAx]
+140:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+143:error: Lean exited with code 1
+146:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenLocalSquare (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenLocalNonzero (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.LIXKGenLocalSquare
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

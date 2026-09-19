@@ -1,0 +1,22 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3469 oleans
+[job] acn112 cores=88-95 threads=8 base=6042cae1040ee4e0e00fff0dccc80a774fc7f6e1 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+⚠ [1849/1849] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift (14s)
+warning: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.shift_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_add_intCast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:192:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_floor_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:193:14: 'GroupApproximation.SimpleKazhdanSofic.sum_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.isClosed_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.mapsTo_shift_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1849 jobs).
+EXIT=0

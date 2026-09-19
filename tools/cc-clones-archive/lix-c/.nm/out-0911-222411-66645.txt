@@ -1,0 +1,17 @@
+[job] 22:25:15 acn78 waiting for clone lock
+[job] delta sync 1d5d2fb9b..d974391a7: 16 files changed
+===== SUMMARY
+host acn78 cores slurm base d974391a7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0911-222411-66645.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2065 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.OddPTupleD
+BUILT GroupApproximation.CharClass.OddPTupleAction
+--- rebuilt GroupApproximation modules: 5
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTupleAction.lean
+COMPILED GroupApproximation/CharClass/OddPTupleD.lean
+✔ [2162/2162] Built GroupApproximation.CharClass.OddPTupleAction (7.1s)
+Build completed successfully (2162 jobs).
+EXIT=0
+PROBE GREEN

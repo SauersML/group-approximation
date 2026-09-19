@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3406 oleans
+[job] acn112 cores=64-71 threads=8 base=cb71b181f6dd4d34d4a8f95c77d058d20a312429 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns
+ℹ [615/615] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns (4.4s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:212:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.flatMap_range_getD' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:213:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.isChain_rotate_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:214:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getLast?_rotate_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:215:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.flatten_runs' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:216:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getD_runs_eq' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:217:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getElem_of_mem_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:218:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.not_of_mem_getLast?_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:219:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getLast?_getElem_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:220:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.runs_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:221:14: 'GroupApproximation.GGT.VanKampen.exists_cyclicRuns' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (615 jobs).
+EXIT=0

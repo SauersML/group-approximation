@@ -1,0 +1,50 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=1 syllables=0
+carrier=6 cuts=1 syllables=0
+carrier=7 cuts=1 syllables=0
+carrier=8 cuts=1 syllables=0
+carrier=9 cuts=1 syllables=0
+carrier=10 cuts=1 syllables=0
+carrier=10 words=4 states=40
+carrier=11 cuts=1 syllables=0
+carrier=12 cuts=1 syllables=0
+carrier=13 cuts=1 syllables=0
+carrier=14 cuts=1 syllables=0
+carrier=15 cuts=1 syllables=0
+carrier=16 cuts=1 syllables=0
+carrier=17 cuts=1 syllables=0
+carrier=18 cuts=1 syllables=0
+carrier=19 cuts=1 syllables=0
+carrier=20 cuts=1 syllables=0
+carrier=20 words=4 states=80
+carrier=21 cuts=1 syllables=0
+carrier=22 cuts=1 syllables=0
+carrier=23 cuts=1 syllables=0
+carrier=24 cuts=1 syllables=0
+carrier=25 cuts=1 syllables=0
+carrier=26 cuts=1 syllables=0
+carrier=27 cuts=1 syllables=0
+carrier=28 cuts=1 syllables=0
+carrier=29 cuts=1 syllables=0
+carrier=30 cuts=1 syllables=0
+carrier=30 words=4 states=120
+carrier=31 cuts=1 syllables=0
+carrier=32 cuts=1 syllables=0
+carrier=33 cuts=1 syllables=0
+carrier=34 cuts=1 syllables=0
+carrier=35 cuts=1 syllables=0
+carrier=36 cuts=1 syllables=0
+carrier=37 cuts=1 syllables=0
+carrier=38 cuts=1 syllables=0
+branch=II
+carrier_states=38
+distinct_augmented_words=4
+boundary_states=152
+nonempty_q=0
+free_nonempty_q=0
+direct_killed_q=0
+power_killed_q=0
+unresolved_q=0

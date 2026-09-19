@@ -1,0 +1,35 @@
+[job] 15:08:54 acn112 waiting for clone lock
+[job] delta sync cb71b181f..48c6cc71e: 15 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 48c6cc71e log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-150615-66993.log
+purged 41 stale artifact sets (source-newer=5, import-newer=36) of 3771 oleans
+--- errors (first 80 lines)
+208:✖ [10100/10100] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColourModels (21s)
+210:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:58:4: `simp` made no progress
+213:Full error:
+222:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:105:4: `simp` made no progress
+223:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:172:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWalkColourModels.pinch_orient' depends on axioms outside the classical allowlist: [sorryAx]
+224:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+229:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:174:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWalkColourModels.pinch_exists_boundaryCycle' depends on axioms outside the classical allowlist: [sorryAx]
+230:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+232:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:175:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWalkColourModels.lake_orient' depends on axioms outside the classical allowlist: [sorryAx]
+233:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+238:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:177:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWalkColourModels.lake_exists_boundaryCycle' depends on axioms outside the classical allowlist: [sorryAx]
+239:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+241:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColourModels.lean:178:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWalkColourModels.pocketWalkColourModelTest' depends on axioms outside the classical allowlist: [sorryAx]
+242:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+244:error: Lean exited with code 1
+247:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColourModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 10
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullLemma510.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColourModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,8 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=293 words=1 states=37
+/var/spool/slurmd/job16688332/slurm_script: line 22: 916998 Killed                  python3 msi-stage/solve-l14-three-winner-boundary.py --carrier-index "$carrier" --target "$target" --rotation-index "$rotation"
+[2026-08-22T08:04:39.961] error: Detected 1 oom_kill event in StepId=16688332.batch. Some of the step tasks have been OOM Killed.

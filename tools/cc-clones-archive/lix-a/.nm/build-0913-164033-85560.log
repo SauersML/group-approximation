@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3773 oleans
+[job] acn112 cores=72-79 threads=8 base=86eeadfde9f4bf41fbc17834d401bd197a3f08de mods: GroupApproximation.Algebra.BilateralThreeCellLevels
+✖ [805/805] Building GroupApproximation.Algebra.BilateralThreeCellLevels (6.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Algebra/BilateralThreeCellLevels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellLevels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellLevels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellLevels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellLevels.setup.json --json
+error: GroupApproximation/Algebra/BilateralThreeCellLevels.lean:203:4: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a - ?a
+in the target expression
+  0 = 0
+
+R : Type u_1
+inst✝ : Ring R
+C : Cell R
+m : ℤ
+hm : 1 ≤ m
+h0 : 0 ≤ m
+h0' : 0 ≤ m + 1
+h1' : 1 ≤ m + 1
+⊢ 0 = 0
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.BilateralThreeCellLevels
+error: build failed
+EXIT=1

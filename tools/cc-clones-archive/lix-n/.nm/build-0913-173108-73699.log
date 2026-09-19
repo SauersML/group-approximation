@@ -1,0 +1,41 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3327 oleans
+[job] acn112 cores=88-95 threads=8 base=46f71449ec2e4b32073a3357f9fb34a3f503df2b mods: GroupApproximation.Dynamics.SubshiftFiniteWindow GroupApproximation.Dynamics.SubshiftCycleLEF
+ℹ [884/954] Replayed GroupApproximation.Dynamics.SubshiftWordGraph
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:122:14: 'GroupApproximation.WordGraph.word_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:123:14: 'GroupApproximation.WordGraph.tail_mem_language' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:124:14: 'GroupApproximation.WordGraph.wordEdge_word' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:125:14: 'GroupApproximation.WordGraph.exists_realize_of_word_mem_language' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:126:14: 'GroupApproximation.WordGraph.isCyclicEdge_zero' depends on axioms: [propext, Quot.sound]
+ℹ [1237/1351] Replayed GroupApproximation.Dynamics.SubshiftCyclePeriodic
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:106:14: 'GroupApproximation.WordGraph.exists_edgeWalk_of_reflTransGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:107:14: 'GroupApproximation.WordGraph.edge_apply_eq_of_tail_eq_init' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean:108:14: 'GroupApproximation.WordGraph.exists_periodic_of_isCyclicEdge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1761/1762] Building GroupApproximation.Dynamics.SubshiftFiniteWindow (6.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/Dynamics/SubshiftFiniteWindow.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/Dynamics/SubshiftFiniteWindow.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/Dynamics/SubshiftFiniteWindow.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/Dynamics/SubshiftFiniteWindow.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/Dynamics/SubshiftFiniteWindow.setup.json --json
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:66:4: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:69:4: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:89:4: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:95:4: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:99:4: omega could not prove the goal:
+No usable constraints found. You may need to unfold definitions so `omega` can see linear arithmetic facts about `Nat` and `Int`, which may also involve multiplication, division, and modular remainder by constants.
+info: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:119:14: 'GroupApproximation.WordGraph.exists_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:120:14: 'GroupApproximation.WordGraph.shiftHomeomorph_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:121:14: 'GroupApproximation.WordGraph.zpow_apply_coord' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:122:14: 'GroupApproximation.WordGraph.evalFamily_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.SubshiftFiniteWindow
+error: build failed
+EXIT=1

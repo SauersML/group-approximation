@@ -1,0 +1,15 @@
+[job] 15:44:49 acn112 waiting for clone lock
+[job] delta sync e5783d06f..c71bd5e76: 198 files changed
+===== SUMMARY
+host acn112 cores 64-71 base c71bd5e76 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0913-154317-37555.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2891 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.DirectlyFiniteCorner
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/DirectlyFiniteCorner.lean
+info: GroupApproximation/Algebra/DirectlyFiniteCorner.lean:136:14: 'GroupApproximation.map_eq_zero_of_forall_entry_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1209 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,32 @@
+[job] 11:27:41 acn112 waiting for clone lock
+[job] delta sync 36dd8d07e..7fb29069a: 16 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 7fb29069a log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-112717-55909.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4704 oleans
+--- errors (first 80 lines)
+6:✖ [4632/4632] Building GroupApproximation.GGT.VanKampen.PermNonCrossingCount (30s)
+8:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:184:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+20:Full error:
+29:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:186:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+41:Full error:
+50:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:191:28: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+62:Full error:
+71:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:199:38: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+85:Full error:
+94:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:201:40: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+108:Full error:
+117:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:277:8: failed to synthesize instance of type class
+130:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:310:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_face_walsh' depends on axioms outside the classical allowlist: [sorryAx]
+131:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+136:error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:312:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_orbit_add_card_orbit_le' depends on axioms outside the classical allowlist: [sorryAx]
+137:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+139:error: Lean exited with code 1
+142:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.PermNonCrossingCount (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

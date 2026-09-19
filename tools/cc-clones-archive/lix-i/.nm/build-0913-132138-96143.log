@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3336 oleans
+[job] acn112 cores=64-71 threads=8 base=0d9538afee2891598357335c40f52b807487a9d7 mods: GroupApproximation.GGT.DGOProposition435PrintedCounterexample
+ℹ [2797/2934] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [9805/9805] Built GroupApproximation.GGT.DGOProposition435PrintedCounterexample (18s)
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:180:14: 'GroupApproximation.GGT.RelHyp.DGOProposition435PrintedCounterexample.fiveRelGenSet_isHyperbolicallyEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:181:14: 'GroupApproximation.GGT.RelHyp.DGOProposition435PrintedCounterexample.pairRelGenSet_isHyperbolicallyEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:182:14: 'GroupApproximation.GGT.RelHyp.not_dgoProposition435PrintedStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9805 jobs).
+EXIT=0

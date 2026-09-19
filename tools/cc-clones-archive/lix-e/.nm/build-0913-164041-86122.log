@@ -1,0 +1,143 @@
+purged 181 stale artifact sets (source-newer=12, import-newer=169) of 4393 oleans
+[job] acn112 cores=80-87 threads=8 base=c7ec8e7506898ef442469b59c347ddb94c33f712 mods: GroupApproximation.Dynamics.TwoEndedShift
+✖ [1443/1443] Building GroupApproximation.Dynamics.TwoEndedShift (6.6s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedShift.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:59:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  decide (j ≤ b)
+in the target expression
+  (fun i => decide (j ≤ i)) a ≤ (fun i => decide (j ≤ i)) b
+
+case pos
+j a b : ℤ
+hab : a ≤ b
+h : j ≤ a
+⊢ (fun i => decide (j ≤ i)) a ≤ (fun i => decide (j ≤ i)) b
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:61:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  decide (j ≤ a)
+in the target expression
+  (fun i => decide (j ≤ i)) a ≤ (fun i => decide (j ≤ i)) b
+
+case neg
+j a b : ℤ
+hab : a ≤ b
+h : ¬j ≤ a
+⊢ (fun i => decide (j ≤ i)) a ≤ (fun i => decide (j ≤ i)) b
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:126:8: Unknown constant `Bool.true_ne_false`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:152:22: Unknown constant `Bool.true_ne_false`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:171:8: Application type mismatch: The argument
+  IsClopen.isClosed (isClopen_discrete {p | p.1 ≤ p.2})
+has type
+  IsClosed {p | p.1 ≤ p.2}
+but is expected to have type
+  IsClosed[instTopologicalSpaceProd] ?m.113
+in the application
+  IsClosed.preimage (Continuous.prodMk (continuous_apply a) (continuous_apply b))
+    (IsClopen.isClosed (isClopen_discrete {p | p.1 ≤ p.2}))
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:288:4: Unknown constant `Bool.true_ne_false`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:316:22: Unknown constant `Bool.true_ne_false`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:359:8: Tactic `rfl` failed: The left-hand side
+  {x | ↑x 0 = true}
+is not definitionally equal to the right-hand side
+  x
+
+case mp.refine_1.true
+x : TwoEnded
+h₁ : x ∈ P
+h₂ : x ∉ {x | ↑x 0 = false}
+h₁' : ↑x (-1) = false
+h₂' : ¬↑x 0 = false
+hx0 : ↑x 0 = true
+⊢ x ∈ {x | ↑x 0 = true}
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:367:11: `Set.mem_diff_of_mem` has been deprecated: Use `Set.mem_sdiff_of_mem` instead
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:370:10: Unknown constant `Bool.true_ne_false`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:375:11: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute
+  (ClopenCrossedProduct.coeff T k) f
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:376:6: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute
+  (ClopenCrossedProduct.coeff T k) g
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:373:59: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : Ring k
+f g : LocallyConstant X k
+hfg : (ClopenCrossedProduct.coeff T k) f = (ClopenCrossedProduct.coeff T k) g
+⊢ f = g
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:384:62: Function expected at
+  ZMod
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  2
+
+Hint: The identifier `ZMod` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:386:6: Failed to rewrite using equation theorems for `ClopenCrossedProduct.defectD`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:399:58: Function expected at
+  ZMod
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  2
+
+Hint: The identifier `ZMod` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:401:62: Function expected at
+  ZMod
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  2
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:403:62: Function expected at
+  ZMod
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  2
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:399:70: unsolved goals
+case refine_2.refine_2
+x✝ : Sort u_1
+ZMod : x✝
+hfin : IsDedekindFiniteMonoid (ClopenCrossedProduct shift sorry)
+hts : ClopenCrossedProduct.defectT shift sorry isClopen_P * ClopenCrossedProduct.defectS shift sorry isClopen_P = 1
+hst :
+  ClopenCrossedProduct.defectS shift sorry isClopen_P * ClopenCrossedProduct.defectT shift sorry isClopen_P =
+    1 - ClopenCrossedProduct.defectD shift sorry isClopen_P
+⊢ False
+
+case refine_2.refine_1
+x✝ : Sort u_1
+ZMod : x✝
+hfin : IsDedekindFiniteMonoid (ClopenCrossedProduct shift sorry)
+hts : ClopenCrossedProduct.defectT shift sorry isClopen_P * ClopenCrossedProduct.defectS shift sorry isClopen_P = 1
+⊢ Ring sorry
+
+case refine_1
+x✝ : Sort u_1
+ZMod : x✝
+hfin : IsDedekindFiniteMonoid (ClopenCrossedProduct shift sorry)
+⊢ Ring sorry
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:423:58: Unknown identifier `ZMod`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:426:31: failed to synthesize instance of type class
+  TopologicalSpace.MetrizableSpace TwoEnded
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:428:26: Unknown identifier `not_isDedekindFiniteMonoid`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:436:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:437:14: 'GroupApproximation.TwoEndedShift.chainRecurrentSet_shift' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:438:14: Unknown constant `GroupApproximation.TwoEndedShift.not_isDedekindFiniteMonoid`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedShift
+error: build failed
+EXIT=1

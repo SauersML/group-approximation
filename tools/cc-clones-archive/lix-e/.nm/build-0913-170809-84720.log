@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+[job] acn112 cores=88-95 threads=8 base=740983a117909eee5d844166e2d3632920c38176 mods: GroupApproximation.Dynamics.TwoEndedShift
+✖ [1524/1524] Building GroupApproximation.Dynamics.TwoEndedShift (6.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedShift.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:185:57: failed to synthesize instance of type class
+  Finite ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:448:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:449:14: 'GroupApproximation.TwoEndedShift.chainRecurrentSet_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:450:14: 'GroupApproximation.TwoEndedShift.not_isDedekindFiniteMonoid' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedShift
+error: build failed
+EXIT=1

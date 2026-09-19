@@ -1,0 +1,27 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3393 oleans
+[job] acn112 cores=88-95 threads=8 base=a9a96021ca4277ea0ff15f7298350fc0f9cdea06 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+ℹ [3807/3807] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:190:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryGenerationSumOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:256:14: 'GroupApproximation.SimpleKazhdanSofic.exists_third_index_fin_three' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:257:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_locallyConstant_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:258:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup_fin_three_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:259:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:260:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:261:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:262:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3807 jobs).
+EXIT=0

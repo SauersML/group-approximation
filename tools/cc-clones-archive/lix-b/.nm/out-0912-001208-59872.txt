@@ -1,0 +1,33 @@
+[job] 00:12:46 acn112 waiting for clone lock
+[job] delta sync 891b3724e..0f6b23cea: 32 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 0f6b23cea log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0912-001208-59872.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2303 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.CohomologyLHRingPiecesOf
+BUILT GroupApproximation.CharClass.CohomologyLHRingDataOf
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethParityOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepDeltaOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjZeroOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethZeroOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyLHRingDataOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyLHRingPiecesOf.lean
+COMPILED GroupApproximation/CharClass/RelHomotopyIdentity.lean
+COMPILED GroupApproximation/CharClass/RelativeProdContractibleOf.lean
+COMPILED GroupApproximation/CharClass/RelativeSplitField.lean
+COMPILED GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean
+ Quot.sound]
+Build completed successfully (8959 jobs).
+EXIT=0
+PROBE GREEN

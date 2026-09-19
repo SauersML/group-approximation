@@ -1,0 +1,65 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4704 oleans
+[job] acn102 cores=slurm threads=8 base=fc03ebcdbfdec70a84f2b0a0a2d4daa5db745fc4 mods: GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+ℹ [3387/3430] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4632/4632] Building GroupApproximation.GGT.VanKampen.PermNonCrossingCount (330s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.setup.json --json
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:187:50: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (walshSigma ?π ?τ ^ ?n) (?i, ?b)
+in the target expression
+  (walshSigma (π * τ) (τ * π) ^ m) (i, b) = (((bif b then τ * π else π * τ) ^ m) i, b)
+
+k : ℕ
+π τ : Perm (Fin k)
+m : ℤ
+i : Fin k
+b : Bool
+⊢ (walshSigma (π * τ) (τ * π) ^ m) (i, b) = (((bif b then τ * π else π * τ) ^ m) i, b)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    walshSigma (π * τ) (τ * π)
+  has type
+    Perm (Fin k × Bool)
+  but is expected to have type
+    Perm (walsh π τ).Dart
+  in the application
+    HPow.hPow (walshSigma (π * τ) (τ * π))
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:199:82: Application type mismatch: The argument
+  Bool.true_eq_false
+has type
+  (true = false) = False
+but is expected to have type
+  ¬(((τ * π) ^ m) (τ i), true).2 = (j, false).2
+in the application
+  absurd
+    (congrArg Prod.snd
+      (have this := hn;
+      this))
+    Bool.true_eq_false
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:276:4: No goals to be solved
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:305:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.sameCycle_walshSigma_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:306:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_vertex_walsh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:307:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_edge_walsh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:308:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_face_walsh' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:309:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.walsh_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:310:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_orbit_add_card_orbit_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+error: build failed
+EXIT=1

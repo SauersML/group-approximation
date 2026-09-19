@@ -1,0 +1,28 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3632 oleans
+[job] acn112 cores=64-71 threads=8 base=9940281ba7370f9540d0a015eef91b56527db68c mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapHolds
+ℹ [3295/3376] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4967/5058] Replayed GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces
+info: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexOf_facePerm_ne_pow_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_filter_degenerate_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5057/5058] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:187:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_fixed_colour_false_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:188:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_degenerateFaces_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:189:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ContactMapSmallFacesInput_of_nondegenerate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5058/5058] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapHolds (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapHolds.lean:165:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5058 jobs).
+EXIT=0

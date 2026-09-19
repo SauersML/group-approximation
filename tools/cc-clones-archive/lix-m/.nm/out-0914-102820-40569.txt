@@ -1,0 +1,20 @@
+[job] 10:30:25 acn112 waiting for clone lock
+[job] delta sync 2a3175811..73a457ec7: 18 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 73a457ec7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0914-102820-40569.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3630 oleans
+--- errors (first 80 lines)
+6:✖ [4647/4647] Building GroupApproximation.GGT.VanKampen.CombMapRestrictionComponentFaceClasses (11s)
+8:error: GroupApproximation/GGT/VanKampen/CombMapRestrictionComponentFaceClasses.lean:61:85: Application type mismatch: The argument
+16:error: GroupApproximation/GGT/VanKampen/CombMapRestrictionComponentFaceClasses.lean:74:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf' depends on axioms outside the classical allowlist: [sorryAx]
+17:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+19:error: Lean exited with code 1
+22:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapRestrictionComponentFaceClasses (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.CombMapRestrictionComponentFaceClasses
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

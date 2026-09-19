@@ -1,0 +1,20 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 4467 oleans
+[job] acn112 cores=72-79 threads=8 base=e1ff5a5caa3ca68417c8942a8d8a4a1092e2a0e4 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.CStarNoLocalLifting
+ℹ [3255/3393] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4657/4657] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.CStarNoLocalLifting (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:91:14: 'GroupApproximation.SimpleKazhdanSofic.not_hasLocalLiftingProperty_of_not_hasFactorizationProperty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:92:14: 'GroupApproximation.SimpleKazhdanSofic.PrintedOzawaNoLocalLiftingGeneral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:93:14: 'GroupApproximation.SimpleKazhdanSofic.printedOzawaNoLocalLiftingGeneral_of_kirchberg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:94:21: 'GroupApproximation.SimpleKazhdanSofic.printedOzawaNoLocalLiftingGeneral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4657 jobs).
+EXIT=0

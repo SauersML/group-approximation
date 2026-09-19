@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3407 oleans
+[job] acn112 cores=64-71 threads=8 base=6bdedc4be0748552d6edc432e5b7c95e0af2af3d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94FaceArcFit
+ℹ [3314/3471] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4572/4572] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94FaceArcFit (13s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:66:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.getElem?_add_mod_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:78:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.pow_length_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:98:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.rotate_take_eq_map_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:123:14: 'GroupApproximation.GGT.VanKampen.List.eq_map_pow_of_isChain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:143:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_darts_eq_map_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94FaceArcFit.lean:163:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.two_le_count_map_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4572 jobs).
+EXIT=0

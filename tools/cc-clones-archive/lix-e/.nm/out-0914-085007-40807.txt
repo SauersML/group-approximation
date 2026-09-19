@@ -1,0 +1,30 @@
+[job] 08:50:16 acn112 waiting for clone lock
+[job] delta sync cf951f010..84799a1c5: 7 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 84799a1c5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-085007-40807.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4377 oleans
+--- errors (first 80 lines)
+7:✖ [4623/4623] Building GroupApproximation.Analysis.LocalLiftingFactorization (23s)
+9:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:58:18: failed to synthesize instance of type class
+13:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:59:16: failed to synthesize instance of type class
+17:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:62:21: failed to synthesize instance of type class
+21:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:64:4: Tactic `constructor` failed: no applicable constructor found
+25:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:85:17: Type mismatch
+31:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:97:0: Not a definitional equality: the left-hand side
+35:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:98:68: Type mismatch
+41:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:307:6: Type mismatch
+47:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:295:69: unsolved goals
+78:error: GroupApproximation/Analysis/LocalLiftingFactorization.lean:505:21: 'GroupApproximation.LocalLifting.localLiftingFactorizationStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+79:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+81:error: Lean exited with code 1
+84:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.MatrixModelFormPositivity
+mentioned-not-built GroupApproximation.Analysis.LocalLiftingFactorization (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MatrixModelFormPositivity.lean
+- GroupApproximation.Analysis.LocalLiftingFactorization
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

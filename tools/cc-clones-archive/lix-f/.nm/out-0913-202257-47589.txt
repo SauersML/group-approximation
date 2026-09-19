@@ -1,0 +1,25 @@
+[job] 20:23:17 acn112 waiting for clone lock
+[job] delta sync 74696702a..9fb719923: 6 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 9fb719923 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-202257-47589.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3609 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCoreClosed
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/ChainCoreClosures.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreClosed.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean
+ Quot.sound]
+Build completed successfully (4725 jobs).
+EXIT=0
+PROBE GREEN

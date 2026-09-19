@@ -1,0 +1,65 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2147 oleans
+[job] acn112 cores=72-79 threads=8 base=6c43ed4a5615ffdd356b025bdb8f0f2c30a031f7 mods: GroupApproximation.Analysis.LIXCor4PowersDiag
+ℹ [3173/3283] Replayed GroupApproximation.Analysis.LIXLimitAlgebra
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3174/3283] Replayed GroupApproximation.Analysis.LIXCor4PowersShape
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:330:14: 'GroupApproximation.LIX.Gen.HasSphereShape.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:331:14: 'GroupApproximation.LIX.Gen.HasSphereShape.pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:332:14: 'GroupApproximation.LIX.Gen.sphereUnitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:333:14: 'GroupApproximation.LIX.Gen.hasSphereShape_sphereStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:334:14: 'GroupApproximation.LIX.Gen.HasSphereShape.connect' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:335:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:336:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3175/3283] Replayed GroupApproximation.Analysis.LIXCor4PowersDiagChain
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:251:14: 'GroupApproximation.LIX.Gen.toStageZeroHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:252:14: 'GroupApproximation.LIX.Gen.flattenN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:253:14: 'GroupApproximation.LIX.Gen.diagChainN_sectionBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:254:14: 'GroupApproximation.LIX.Gen.diagOne_sphereUnitary_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3183/3283] Replayed GroupApproximation.Analysis.LIXCor4PowersField
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:667:14: 'GroupApproximation.LIX.Gen.equatorEmb_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:668:14: 'GroupApproximation.LIX.Gen.norm_sq_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:669:14: 'GroupApproximation.LIX.Gen.equatorEmb_dirPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:670:14: 'GroupApproximation.LIX.Gen.extTop_genU2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:671:14: 'GroupApproximation.LIX.Gen.southAtG_eq_northFG' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:672:14: 'GroupApproximation.LIX.Gen.exists_unitary_field_of_nullHomotopy_gauged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8721/8743] Replayed GroupApproximation.Manuscript.NinetyNineProblems.SquarefreeDvd
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:90:14: 'GroupApproximation.NinetyNineProblems.squarefree_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:91:14: 'GroupApproximation.NinetyNineProblems.six_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:92:14: 'GroupApproximation.NinetyNineProblems.not_forall_prime_dvd_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8733/8743] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8734/8743] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8742/8743] Replayed GroupApproximation.Analysis.LIXCor4PowersAssembly
+info: GroupApproximation/Analysis/LIXCor4PowersAssembly.lean:255:14: 'GroupApproximation.LIX.Gen.topBlock_star_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersAssembly.lean:256:14: 'GroupApproximation.LIX.Gen.normGen_psiE_dirPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersAssembly.lean:257:14: 'GroupApproximation.LIX.Gen.witness_pow_notMem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersAssembly.lean:258:14: 'GroupApproximation.LIX.Gen.corollary4Powers_of_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8743/8743] Built GroupApproximation.Analysis.LIXCor4PowersDiag (31s)
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:433:14: 'GroupApproximation.LIX.Gen.secPathU_zero_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:434:14: 'GroupApproximation.LIX.Gen.submatrix_genU_blockEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:435:14: 'GroupApproximation.LIX.Gen.sectionBlock_genU2_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:436:14: 'GroupApproximation.LIX.Gen.wallBlock_one_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:437:14: 'GroupApproximation.LIX.Gen.diagWitnessNullHomotopic' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:438:14: 'GroupApproximation.LIX.Gen.corollary4Powers' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8743 jobs).
+EXIT=0

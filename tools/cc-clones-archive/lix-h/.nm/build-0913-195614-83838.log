@@ -1,0 +1,108 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3668 oleans
+[job] acn125 cores=slurm threads=8 base=ec278f86742051ce17569465fd3bfaad8214d13f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue
+ℹ [3329/3394] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4800/4801] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra (133s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:254:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:255:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_gc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:256:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.expD_gQ' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:257:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_listVal_ab' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:258:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:259:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesQ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4801/4801] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.604` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.894` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.2397` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:56:23: Tactic `rcases` failed: `x✝ : ?m.2687` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:28: This simp argument is unused:
+  toAdd_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killP_gQ,
+        toAdd_mul, toAdd_inv, t̵o̵A̵d̵d̵_̵o̵ne,̵ ̵n̵e̵g_zero, add_zero, inv_one, mul_one, mul_inv_cancel,
+  ̵  ̵ ̵ ̵ ̵ ̵expD_gQ,
+  ̲  ̲ ̲ ̲ ̲ ̲expE_gQ] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:39: This simp argument is unused:
+  neg_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killP_gQ,
+        toAdd_mul, toAdd_inv, toAdd_one, n̵e̵g̵_̵z̵e̵r̵o̵,̵ ̵add_zero, inv_one, mul_one, mul_inv_cancel,
+  ̵  ̵ ̵ ̵ ̵ ̵expD_gQ,
+  ̲  ̲ ̲ ̲ ̲ ̲expE_gQ] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:42:49: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killP_gQ,
+        toAdd_mul, toAdd_inv, toAdd_one, neg_zero, a̵d̵d̵_̵z̵e̵r̵o̵,̵ ̵inv_one, mul_one, mul_inv_cancel,
+  ̵  ̵ ̵ ̵ ̵ ̵expD_gQ,
+  ̲  ̲ ̲ ̲ ̲ ̲expE_gQ] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.604` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.894` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.2397` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:14: Unknown identifier `hαe`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:85:23: Tactic `rcases` failed: `x✝ : ?m.2687` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:28: This simp argument is unused:
+  toAdd_one
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killQ_gP,
+        toAdd_mul, toAdd_inv, t̵o̵A̵d̵d̵_̵o̵n̵e̵,̵ ̵neg_zero, add_zero, inv_one, mul_one, mul_inv_cancel, expA_gP,
+  ̲  ̲ ̲ ̲ ̲ ̲expB_gP] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:39: This simp argument is unused:
+  neg_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killQ_gP,
+        toAdd_mul, toAdd_inv, toAdd_one, n̵e̵g̵_̵z̵e̵r̵o̵,̵ ̵add_zero, inv_one, mul_one, mul_inv_cancel,
+  ̵  ̵ ̵ ̵ ̵ ̵expA_gP,
+  ̲  ̲ ̲ ̲ ̲ ̲expB_gP] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:71:49: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [Bool.false_eq_true, if_false, if_true, map_mul, map_inv, hk, hd, he, killQ_gP,
+        toAdd_mul, toAdd_inv, toAdd_one, neg_zero, a̵d̵d̵_̵z̵e̵r̵o̵,̵ ̵inv_one, mul_one, mul_inv_cancel,
+  ̵  ̵ ̵ ̵ ̵ ̵expA_gP,
+  ̲  ̲ ̲ ̲ ̲ ̲expB_gP] at hkill hD hE
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:90:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptQ' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:91:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptP' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue
+error: build failed
+EXIT=1

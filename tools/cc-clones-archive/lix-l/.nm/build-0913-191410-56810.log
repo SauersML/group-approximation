@@ -1,0 +1,70 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3729 oleans
+[job] acn112 cores=64-71 threads=8 base=217332545f0f878e069e63040be1fd69c5648519 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides
+ℹ [3361/3411] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [9924/10046] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:161:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_first_repeat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:162:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isClosedDartWalk_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:163:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_innermost_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:164:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isSimpleClosedWalk_of_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10046/10046] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides (40s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:128:27: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+  d = b ∨ d ∈ []
+
+case inr
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+d a b : Delta.toCombMap.Dart
+hnodup : (List.map Delta.toCombMap.vertexOf [a, b]).Nodup
+hval : RelLetter.listVal (dartWord Delta [a, b]) ≠ 1
+h3 : ¬3 ≤ [a, b].length
+hne : [a, b] ≠ []
+hchain :
+  List.IsChain (fun d e => Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d) = Delta.toCombMap.vertexOf e) [a, b]
+hclose :
+  Delta.toCombMap.vertexOf (Delta.toCombMap.alpha ([a, b].getLast hne)) = Delta.toCombMap.vertexOf ([a, b].head hne)
+hαd : Delta.toCombMap.alpha d = a ∨ Delta.toCombMap.alpha d = b ∨ Delta.toCombMap.alpha d ∈ []
+h✝ : d = b ∨ d ∈ []
+⊢ b = Delta.toCombMap.alpha a
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:127:32: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.mem_cons,̵ ̵L̵i̵s̵t̵.̵m̵e̵m̵_̵s̵i̵n̵g̵l̵e̵t̵o̵n̵] at hd hαd
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:185:15: unexpected token 'Π'; expected '⟩'
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:246:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.eqvGen_faceClass_of_agree' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:247:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.sideFaces_subset_of_agree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:248:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.exists_arc_of_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:249:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.isSimpleClosedWalk_lobe' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:250:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.cell_not_mem_sideFaces_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:251:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.outerFace_not_mem_sideFaces_lobe' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides
+error: build failed
+EXIT=1

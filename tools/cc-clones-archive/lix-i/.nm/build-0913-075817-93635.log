@@ -1,0 +1,33 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3180 oleans
+[job] acn112 cores=64-71 threads=8 base=114eeb2448552f30a2d805a47ee2f0b72597ea9d mods: GroupApproximation.GGT.HullLemma35Transitive GroupApproximation.GGT.HullLemma35LocalFinite
+ℹ [2797/2944] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4661/4662] Building GroupApproximation.GGT.HullLemma35Transitive (8.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/HullLemma35Transitive.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35Transitive.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35Transitive.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35Transitive.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35Transitive.setup.json --json
+error: GroupApproximation/GGT/HullLemma35Transitive.lean:67:6: Unknown constant `Subgroup.map_closure`
+error: GroupApproximation/GGT/HullLemma35Transitive.lean:60:98: unsolved goals
+G : Type u
+inst✝ : Group G
+Λ : Type v
+M : Λ → Type w
+D : RelGenSet G Λ
+E : (i : Λ) → RelGenSet (↥(D.fam i)) (M i)
+i : Λ
+x : G
+hx : x ∈ ↑(D.fam i)
+hmem : ⟨x, hx⟩ ∈ Subgroup.closure ((E i).base ∪ ⋃ j, ↑((E i).fam j))
+hmap : (D.fam i).subtype ⟨x, hx⟩ ∈ Subgroup.map (D.fam i).subtype (Subgroup.closure ((E i).base ∪ ⋃ j, ↑((E i).fam j)))
+⊢ x ∈ ↑(Subgroup.closure (transitiveBase D E ∪ ⋃ p, ↑(transitiveFam D E p)))
+error: GroupApproximation/GGT/HullLemma35Transitive.lean:154:14: 'GroupApproximation.GGT.HullLemma35.isSymmetricGeneratingSet_transitive' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullLemma35Transitive.lean:155:14: 'GroupApproximation.GGT.HullLemma35.transitive_alphabet_subset' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:156:14: 'GroupApproximation.GGT.HullLemma35.val_mem_of_isCompOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.HullLemma35Transitive
+error: build failed
+EXIT=1

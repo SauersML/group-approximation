@@ -1,0 +1,3 @@
+[job] 21:28:42 acn32 waiting for clone lock
+===== SUMMARY
+PROBE DEFERRED: clone preparation in progress (base warm build + artifact copy). Author meanwhile; retry in ~15 min.

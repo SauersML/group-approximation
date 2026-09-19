@@ -1,0 +1,78 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3573 oleans
+[job] acn68 cores=slurm threads=8 base=73b555f381afde2cea1a963a5fa25262ca0bc4b3 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellEnclosedSucc
+ℹ [3353/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10205/10250] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:233:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.mem_enclosedFaces_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:234:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.walkMap_facePerm_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:235:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.walkMap_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:236:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.alpha_mem_of_faceClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:237:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.mem_iff_enclosedFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:238:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.turnMem_of_firstTurn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:239:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.eq_of_firstTurn' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean:240:14: 'GroupApproximation.GGT.VanKampen.FirstTurnEnclosure.firstTurn_getElem_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10240/10250] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosureProof
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:373:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.rotate_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:374:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.firstTurnWalk_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:375:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.nodup_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:376:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.face_not_mem_enclosedFaces_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:377:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.enclosedFaceSetSucc_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:378:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.not_mem_Y_of_mem_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:379:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.exists_reach_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:380:14: 'GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.disjoint_X_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:381:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSpurEnclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean:382:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneRCellSpur_of_enclosedSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10249/10250] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:65:21: 'GroupApproximation.GGT.VanKampen.enclosedBridgeDoublingCellsSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:66:21: 'GroupApproximation.GGT.VanKampen.closedWalkEnclosedSubdiagramSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:67:14: 'GroupApproximation.GGT.VanKampen.islandModel_enclosedSubdiagramSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10250/10250] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellEnclosedSucc (179s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellEnclosedSucc.lean:54:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_enclosedSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellEnclosedSucc.lean:55:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_enclosedLoopCutSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10250 jobs).
+EXIT=0

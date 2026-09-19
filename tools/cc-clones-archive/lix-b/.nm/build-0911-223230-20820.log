@@ -1,0 +1,161 @@
+purged 94 stale artifact sets (source-newer=6, import-newer=88) of 2237 oleans
+[job] acn112 cores=64-71 threads=8 base=b454496231b4fb4c7349cbc5ff03deb1852619e5 mods: GroupApproximation.CharClass.LIXKLocalSplit GroupApproximation.CharClass.LIXKLocalRestrict GroupApproximation.CharClass.LIXKStepCExponent
+ℹ [8718/8806] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8719/8806] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8742/8846] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8855/9016] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8917/9244] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8945/9244] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8946/9244] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8964/9244] Replayed GroupApproximation.CharClass.LIXKRelativeMV
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:270:14: 'GroupApproximation.CharClass.LIXKRelMV.splitDrop_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:271:14: 'GroupApproximation.CharClass.LIXKRelMV.splitKeep_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:272:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_relCocycle_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8977/9244] Replayed GroupApproximation.CharClass.ThomBridgeNaturalSquare
+info: GroupApproximation/CharClass/ThomBridgeNaturalSquare.lean:58:14: 'GroupApproximation.CharClass.relPullback_comm_of_map_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9185/9244] Built GroupApproximation.CharClass.LerayHirschBundle (20s)
+✔ [9186/9244] Built GroupApproximation.CharClass.LerayHirschPeel (21s)
+ℹ [9187/9244] Built GroupApproximation.CharClass.LIXKLocalSplit (23s)
+info: GroupApproximation/CharClass/LIXKLocalSplit.lean:336:14: 'GroupApproximation.CharClass.LIXKRelMV.relCocycleClass_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKLocalSplit.lean:337:14: 'GroupApproximation.CharClass.LIXKRelMV.relPullback_id_relCocycleClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKLocalSplit.lean:338:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_relClass_split_of_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKLocalSplit.lean:339:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_localSplit_of_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKLocalSplit.lean:340:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_localSplit_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9188/9244] Built GroupApproximation.CharClass.LerayHirschPeelCP (19s)
+✔ [9189/9244] Built GroupApproximation.CharClass.ParityEvenTransport (23s)
+✖ [9190/9244] Building GroupApproximation.CharClass.LIXKLocalRestrict (33s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/LIXKLocalRestrict.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKLocalRestrict.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKLocalRestrict.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKLocalRestrict.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/LIXKLocalRestrict.setup.json --json
+error: GroupApproximation/CharClass/LIXKLocalRestrict.lean:122:49: Application type mismatch: The argument
+  fun y hy hyz => ?m.132
+has type
+  (y : ↑X) → (hy : y ∈ B) → (hyz : ?m.133 y hy) → ?m.134 y hy hyz
+but is expected to have type
+  ∀ y ∈ B, y ∈ ?m.126
+in the application
+  restrictTo_relPullback_id_eq_zero B ?m.127 fun y hy hyz => ?m.132
+error: GroupApproximation/CharClass/LIXKLocalRestrict.lean:123:4: No goals to be solved
+error: GroupApproximation/CharClass/LIXKLocalRestrict.lean:138:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+info: GroupApproximation/CharClass/LIXKLocalRestrict.lean:175:14: 'GroupApproximation.CharClass.LIXKRelMV.restrictTo_relPullback_id_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/CharClass/LIXKLocalRestrict.lean:176:14: 'GroupApproximation.CharClass.LIXKRelMV.xloc_ne_zero_of_restrictTo_ne_zero' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKLocalRestrict.lean:177:14: 'GroupApproximation.CharClass.LIXKRelMV.topChernClass_ne_zero_kzero_two_of_restrict' depends on axioms: []
+error: Lean exited with code 1
+✔ [9191/9244] Built GroupApproximation.CharClass.LerayHirschPeelClosed (23s)
+✔ [9192/9244] Built GroupApproximation.CharClass.CohomologyParitySlice (21s)
+✔ [9193/9244] Built GroupApproximation.CharClass.LerayHirschColumnPack (23s)
+✔ [9194/9244] Built GroupApproximation.CharClass.LerayHirschLadder (22s)
+✔ [9195/9244] Built GroupApproximation.CharClass.LerayHirschChartGeneral (22s)
+✔ [9196/9244] Built GroupApproximation.CharClass.LerayHirschFreeTuple (23s)
+✔ [9197/9244] Built GroupApproximation.CharClass.CohomologyLHDegreewise (23s)
+✔ [9198/9244] Built GroupApproximation.CharClass.LerayHirschFreeTupleExists (21s)
+✔ [9199/9244] Built GroupApproximation.CharClass.LerayHirschChartBundleGen (22s)
+✔ [9200/9244] Built GroupApproximation.CharClass.CohomologyLHRingPieces (21s)
+✔ [9201/9244] Built GroupApproximation.CharClass.CohomologyLHRestrict (22s)
+ℹ [9202/9244] Built GroupApproximation.CharClass.ThomChernDegreewise (22s)
+info: GroupApproximation/CharClass/ThomChernDegreewise.lean:147:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9203/9244] Built GroupApproximation.CharClass.LIXThomLH (22s)
+info: GroupApproximation/CharClass/LIXThomLH.lean:86:14: 'GroupApproximation.CharClass.lhTopEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9204/9244] Built GroupApproximation.CharClass.LerayHirschTowerRev (25s)
+✔ [9205/9244] Built GroupApproximation.CharClass.LerayHirschChartHomeo (25s)
+ℹ [9206/9244] Built GroupApproximation.CharClass.LerayHirschGammaIso (25s)
+info: GroupApproximation/CharClass/LerayHirschGammaIso.lean:94:14: 'GroupApproximation.CharClass.LH.gamma_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9207/9244] Built GroupApproximation.CharClass.ThomRestrictSquare (25s)
+info: GroupApproximation/CharClass/ThomRestrictSquare.lean:90:14: 'GroupApproximation.CharClass.ThomChernDeg.absToSub_sum_lhTerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9208/9244] Built GroupApproximation.CharClass.LerayHirschChartClassGen (25s)
+ℹ [9209/9244] Built GroupApproximation.CharClass.LIXThomAssembly (25s)
+info: GroupApproximation/CharClass/LIXThomAssembly.lean:127:14: 'GroupApproximation.CharClass.thomData_of_absToSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9210/9244] Built GroupApproximation.CharClass.CohomologyLHRingTerm (26s)
+✔ [9211/9244] Built GroupApproximation.CharClass.LerayHirschFreeExists (21s)
+✔ [9212/9244] Built GroupApproximation.CharClass.LerayHirschChartClassIso (21s)
+✔ [9213/9244] Built GroupApproximation.CharClass.CohomologyLHRingComponent (21s)
+ℹ [9214/9244] Built GroupApproximation.CharClass.ThomHabs (21s)
+info: GroupApproximation/CharClass/ThomHabs.lean:145:14: 'GroupApproximation.CharClass.ThomChernDeg.range_thomJm_eq_ker_restrictMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9215/9244] Built GroupApproximation.CharClass.LerayHirschColTower (26s)
+✔ [9216/9244] Built GroupApproximation.CharClass.CohomologyLHRingInj (26s)
+ℹ [9217/9244] Built GroupApproximation.CharClass.ThomDataFromLH (25s)
+info: GroupApproximation/CharClass/ThomDataFromLH.lean:83:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9218/9244] Built GroupApproximation.CharClass.LerayHirschColRead (28s)
+✔ [9219/9244] Built GroupApproximation.CharClass.CohomologyLHRingSurj (29s)
+✔ [9220/9244] Built GroupApproximation.CharClass.CohomologyLHRingData (29s)
+✔ [9221/9244] Built GroupApproximation.CharClass.LerayHirschColSum (30s)
+✔ [9222/9244] Built GroupApproximation.CharClass.LerayHirschLadderClosed (29s)
+✔ [9223/9244] Built GroupApproximation.CharClass.ChernGammaBridge (31s)
+✔ [9224/9244] Built GroupApproximation.CharClass.LerayHirschRankOne (25s)
+✔ [9225/9244] Built GroupApproximation.CharClass.ChernGammaComponent (25s)
+✔ [9226/9244] Built GroupApproximation.CharClass.LerayHirschTrivOpen (24s)
+✔ [9227/9244] Built GroupApproximation.CharClass.LerayHirschChartTautGen (23s)
+✔ [9228/9244] Built GroupApproximation.CharClass.LerayHirschCompact (23s)
+✔ [9229/9244] Built GroupApproximation.CharClass.LIXChern (31s)
+✔ [9230/9244] Built GroupApproximation.CharClass.ChernSliceNaturality (32s)
+ℹ [9231/9244] Built GroupApproximation.CharClass.ThomBridgeTotal (33s)
+info: GroupApproximation/CharClass/ThomBridgeTotal.lean:138:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9232/9244] Built GroupApproximation.CharClass.ChernOfInvariance (23s)
+✔ [9233/9244] Built GroupApproximation.CharClass.LIXChernValue (24s)
+ℹ [9234/9244] Built GroupApproximation.CharClass.ThomBridgeTotalNatural (23s)
+info: GroupApproximation/CharClass/ThomBridgeTotalNatural.lean:122:14: 'GroupApproximation.CharClass.bridgeTotal_natural' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9235/9244] Built GroupApproximation.CharClass.ThomHyperplaneLH (23s)
+info: GroupApproximation/CharClass/ThomHyperplaneLH.lean:117:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_taut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9236/9244] Built GroupApproximation.CharClass.ChernTautRestrict (24s)
+ℹ [9237/9244] Built GroupApproximation.CharClass.ThomBridgeRelToAbs (24s)
+info: GroupApproximation/CharClass/ThomBridgeRelToAbs.lean:122:14: 'GroupApproximation.CharClass.relToAbs_bridgeTotal' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9238/9244] Built GroupApproximation.CharClass.LIXThomClassOfTaut (24s)
+info: GroupApproximation/CharClass/LIXThomClassOfTaut.lean:95:14: 'GroupApproximation.CharClass.ThomChernDeg.exists_lixThomClass_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9239/9244] Built GroupApproximation.CharClass.ThomChartTautZero (24s)
+info: GroupApproximation/CharClass/ThomChartTautZero.lean:191:14: 'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9240/9244] Built GroupApproximation.CharClass.LIXThomClassTerm (25s)
+info: GroupApproximation/CharClass/LIXThomClassTerm.lean:222:14: 'GroupApproximation.CharClass.lixThomClassTerm_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9241/9244] Built GroupApproximation.CharClass.LIXChernTopGamma (26s)
+info: GroupApproximation/CharClass/LIXChernTopGamma.lean:79:14: 'GroupApproximation.CharClass.lixChern_top_eq_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9242/9244] Built GroupApproximation.CharClass.ThomCoordinates (27s)
+info: GroupApproximation/CharClass/ThomCoordinates.lean:92:14: 'GroupApproximation.CharClass.thomJmTotal_lixThomClassTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9243/9244] Built GroupApproximation.CharClass.LIXHclass (26s)
+info: GroupApproximation/CharClass/LIXHclass.lean:238:14: 'GroupApproximation.CharClass.lixHclass' depends on axioms: [propext, Classical.choice, Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXKLocalRestrict
+error: build failed
+EXIT=1

@@ -1,0 +1,35 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4222 oleans
+[job] acn112 cores=80-87 threads=8 base=6b11f577f679b4e62629f81dbdbe5c34615c9b02 mods: GroupApproximation.Algebra.FinitaryGeneralLinear GroupApproximation.Dynamics.TwoEndedRepresentation
+ℹ [1795/1796] Built GroupApproximation.Algebra.FinitaryGeneralLinear (7.6s)
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:366:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1796/1796] Building GroupApproximation.Dynamics.TwoEndedRepresentation (8.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedRepresentation.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedRepresentation.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedRepresentation.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedRepresentation.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedRepresentation.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:151:37: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:153:9: unsolved goals
+case zero
+k : Type u_1
+inst✝ : CommRing k
+i l : ℤ
+c : k
+⊢ 0 = ((ClopenCoeff.of shift k).symm (sorry ())) (pt l) * c
+error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:176:47: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `x`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:207:14: 'GroupApproximation.TwoEndedShift.rho_apply_single_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:208:14: 'GroupApproximation.TwoEndedShift.rho_injective' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:209:14: 'GroupApproximation.TwoEndedShift.rho_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedRepresentation.lean:210:14: 'GroupApproximation.TwoEndedShift.rho_unit_zpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedRepresentation
+error: build failed
+EXIT=1

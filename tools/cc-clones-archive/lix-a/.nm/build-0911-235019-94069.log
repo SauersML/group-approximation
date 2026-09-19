@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2153 oleans
+[job] acn112 cores=64-71 threads=8 base=9c0a4f8cec52a00b64283a8609ddf2aff79bd93b mods: GroupApproximation.CharClass.LIXKGenOfBundle
+ℹ [8709/8845] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8711/8864] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8734/8876] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8786/8895] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8838/8895] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8839/8895] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8880/8895] Replayed GroupApproximation.CharClass.LIXKPunctured
+info: GroupApproximation/CharClass/LIXKPunctured.lean:168:14: 'GroupApproximation.CharClass.isZero_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKPunctured.lean:169:14: 'GroupApproximation.CharClass.isZero_punctured_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8888/8895] Replayed GroupApproximation.CharClass.LIXKGenSphere
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:342:14: 'GroupApproximation.CharClass.KGen.normSq_cxToEuc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:343:14: 'GroupApproximation.CharClass.KGen.cxToEuc_eucToCx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:344:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:345:14: 'GroupApproximation.CharClass.KGen.hbase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:346:14: 'GroupApproximation.CharClass.KGen.hbase_two_eq_hbase_lix' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8889/8895] Replayed GroupApproximation.CharClass.LIXKGenPunctured
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:182:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:183:14: 'GroupApproximation.CharClass.KGen.puncturedVanish_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:184:14: 'GroupApproximation.CharClass.puncturedAcyclic_lixBase_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8895/8895] Built GroupApproximation.CharClass.LIXKGenOfBundle (23s)
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:142:14: 'GroupApproximation.CharClass.KGen.lixK_hexactOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:143:14: 'GroupApproximation.CharClass.KGen.lixK_hcompatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:144:14: 'GroupApproximation.CharClass.KGen.lixK_hnatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:145:14: 'GroupApproximation.CharClass.KGen.lixK_hsectionOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8895 jobs).
+EXIT=0

@@ -1,0 +1,13 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2553 oleans
+[job] acn112 cores=80-87 threads=8 base=e32bac3f3e478d1df7742a92d58a60c062b3795c mods: GroupApproximation.Kazhdan.GHWEntries
+ℹ [2823/2907] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3256/3256] Built GroupApproximation.Kazhdan.GHWEntries (10s)
+info: GroupApproximation/Kazhdan/GHWEntries.lean:181:14: 'GroupApproximation.GHW.closure_le_entrySubgroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWEntries.lean:182:14: 'GroupApproximation.GHW.corestrict_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWEntries.lean:183:14: 'GroupApproximation.GHW.hasHaagerupProperty_of_finite_entries' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3256 jobs).
+EXIT=0

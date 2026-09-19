@@ -1,0 +1,74 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+[job] acn176 cores=slurm threads=8 base=01380722035532fabc85ca6d588c1a9e4c12be8f mods: GroupApproximation.CharClass.SliceGenOfLines GroupApproximation.CharClass.SliceGenOfBlocks GroupApproximation.CharClass.SliceHomogeneousOf GroupApproximation.CharClass.SliceValueVOf GroupApproximation.CharClass.SliceRootsOf
+ℹ [8749/8857] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8766/8857] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8822/9020] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8962/9221] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8963/9221] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9041/9221] Replayed GroupApproximation.CharClass.LIXKPunctured
+info: GroupApproximation/CharClass/LIXKPunctured.lean:168:14: 'GroupApproximation.CharClass.isZero_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKPunctured.lean:169:14: 'GroupApproximation.CharClass.isZero_punctured_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9061/9221] Replayed GroupApproximation.CharClass.LIXKGenSphere
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:342:14: 'GroupApproximation.CharClass.KGen.normSq_cxToEuc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:343:14: 'GroupApproximation.CharClass.KGen.cxToEuc_eucToCx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:344:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:345:14: 'GroupApproximation.CharClass.KGen.hbase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:346:14: 'GroupApproximation.CharClass.KGen.hbase_two_eq_hbase_lix' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9062/9221] Replayed GroupApproximation.CharClass.LIXKGenPunctured
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:182:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:183:14: 'GroupApproximation.CharClass.KGen.puncturedVanish_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:184:14: 'GroupApproximation.CharClass.puncturedAcyclic_lixBase_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9217/9221] Built GroupApproximation.CharClass.SliceGenOfBlocks (48s)
+✔ [9218/9221] Built GroupApproximation.CharClass.SliceHomogeneousOf (48s)
+ℹ [9219/9221] Built GroupApproximation.CharClass.SliceValueVOf (31s)
+info: GroupApproximation/CharClass/SliceValueVOf.lean:122:14: 'GroupApproximation.CharClass.LerayHirschDataEvenOf.chern_eq_esymmOn_of_splitRelationOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/SliceValueVOf.lean:123:14: 'GroupApproximation.CharClass.LerayHirschDataEvenOf.chern_eq_sliceClass_coeffOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/SliceValueVOf.lean:124:14: 'GroupApproximation.CharClass.LerayHirschDataEvenOf.chern_map_of_squareOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9220/9221] Built GroupApproximation.CharClass.SliceGenOfLines (186s)
+✖ [9221/9221] Building GroupApproximation.CharClass.SliceRootsOf (48s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/CharClass/SliceRootsOf.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/CharClass/SliceRootsOf.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/CharClass/SliceRootsOf.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/CharClass/SliceRootsOf.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/CharClass/SliceRootsOf.setup.json --json
+error: GroupApproximation/CharClass/SliceRootsOf.lean:164:9: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/SliceRootsOf.lean:173:50: Unknown identifier `sliceGenOf`
+
+Note: It is not possible to treat `sliceGenOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/SliceRootsOf.lean:175:6: Unknown identifier `sliceGenOf`
+error: GroupApproximation/CharClass/SliceRootsOf.lean:173:77: unsolved goals
+K : Type
+inst✝ : Field K
+n ℓ : ℕ
+dd : Fin ℓ → ℕ
+hgen : ↑(Hmod K (CPtop (1 + tautCardOf (VIdx n dd))) 2)
+β : HBlk dd
+hpos : 0 < dd β.fst
+⊢ evenTautOf K (vRootOf K n hgen (Sum.inr β)) = sorry
+info: GroupApproximation/CharClass/SliceRootsOf.lean:201:14: 'GroupApproximation.CharClass.Gen.vRootOf_inl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/SliceRootsOf.lean:202:14: 'GroupApproximation.CharClass.Gen.vRootOf_inr' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/SliceRootsOf.lean:203:14: 'GroupApproximation.CharClass.Gen.evenTautOf_vRootOf_inr' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.SliceRootsOf
+error: build failed
+EXIT=1
