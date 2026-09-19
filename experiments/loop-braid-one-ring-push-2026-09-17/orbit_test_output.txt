@@ -1,0 +1,70 @@
+G=S3 n=5
+  (0) members of P_b0 P_tau never certified: True
+  (0') A_vc certified outside P_b0 P_tau, tau containing c: 4 of 4
+  (1) vertices s[tau] of lk(b0), tau avoiding c, certified NOT in lk(g b0):
+      ('A_vc', (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+  (2) control: pair-twist push, triple-cable family member never certified: True
+G=S3 n=6
+  (0) members of P_b0 P_tau never certified: True
+  (0') A_vc certified outside P_b0 P_tau, tau containing c: 6 of 6
+  (1) vertices s[tau] of lk(b0), tau avoiding c, certified NOT in lk(g b0):
+      ('A_vc', (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (4, 6)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ('A_vc', (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (5, 6)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ('A_vc', (6, 4)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ('A_vc', (6, 5)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ("A_vc'", (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (4, 6)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ("A_vc'", (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (5, 6)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ("A_vc'", (6, 4)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ("A_vc'", (6, 5)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+  (2) control: pair-twist push, triple-cable family member never certified: True
+G=D4 n=5
+  (0) members of P_b0 P_tau never certified: True
+  (0') A_vc certified outside P_b0 P_tau, tau containing c: 4 of 4
+  (1) vertices s[tau] of lk(b0), tau avoiding c, certified NOT in lk(g b0):
+      none
+  (2) control: pair-twist push, triple-cable family member never certified: True
+G=A4 n=5
+  (0) members of P_b0 P_tau never certified: True
+  (0') A_vc certified outside P_b0 P_tau, tau containing c: 4 of 4
+  (1) vertices s[tau] of lk(b0), tau avoiding c, certified NOT in lk(g b0):
+      ('A_vc', (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+  (2) control: pair-twist push, triple-cable family member never certified: True
+G=S3 n=7
+  (0) members of P_b0 P_tau never certified: True
+  (0') A_vc certified outside P_b0 P_tau, tau containing c: 8 of 8
+  (1) vertices s[tau] of lk(b0), tau avoiding c, certified NOT in lk(g b0):
+      ('A_vc', (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (4, 6)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ('A_vc', (4, 7)) ['A34', "A34'", 'A37', "A37'", 'th4', "th4'", 'th7', "th7'", 'ze4', "ze4'", 'ze7', "ze7'"]
+      ('A_vc', (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ('A_vc', (5, 6)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ('A_vc', (5, 7)) ['A35', "A35'", 'A37', "A37'", 'th5', "th5'", 'th7', "th7'", 'ze5', "ze5'", 'ze7', "ze7'"]
+      ('A_vc', (6, 4)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ('A_vc', (6, 5)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ('A_vc', (6, 7)) ['A36', "A36'", 'A37', "A37'", 'th6', "th6'", 'th7', "th7'", 'ze6', "ze6'", 'ze7', "ze7'"]
+      ('A_vc', (7, 4)) ['A34', "A34'", 'A37', "A37'", 'th4', "th4'", 'th7', "th7'", 'ze4', "ze4'", 'ze7', "ze7'"]
+      ('A_vc', (7, 5)) ['A35', "A35'", 'A37', "A37'", 'th5', "th5'", 'th7', "th7'", 'ze5', "ze5'", 'ze7', "ze7'"]
+      ('A_vc', (7, 6)) ['A36', "A36'", 'A37', "A37'", 'th6', "th6'", 'th7', "th7'", 'ze6', "ze6'", 'ze7', "ze7'"]
+      ("A_vc'", (4, 5)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (4, 6)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ("A_vc'", (4, 7)) ['A34', "A34'", 'A37', "A37'", 'th4', "th4'", 'th7', "th7'", 'ze4', "ze4'", 'ze7', "ze7'"]
+      ("A_vc'", (5, 4)) ['A34', "A34'", 'A35', "A35'", 'th4', "th4'", 'th5', "th5'", 'ze4', "ze4'", 'ze5', "ze5'"]
+      ("A_vc'", (5, 6)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ("A_vc'", (5, 7)) ['A35', "A35'", 'A37', "A37'", 'th5', "th5'", 'th7', "th7'", 'ze5', "ze5'", 'ze7', "ze7'"]
+      ("A_vc'", (6, 4)) ['A34', "A34'", 'A36', "A36'", 'th4', "th4'", 'th6', "th6'", 'ze4', "ze4'", 'ze6', "ze6'"]
+      ("A_vc'", (6, 5)) ['A35', "A35'", 'A36', "A36'", 'th5', "th5'", 'th6', "th6'", 'ze5', "ze5'", 'ze6', "ze6'"]
+      ("A_vc'", (6, 7)) ['A36', "A36'", 'A37', "A37'", 'th6', "th6'", 'th7', "th7'", 'ze6', "ze6'", 'ze7', "ze7'"]
+      ("A_vc'", (7, 4)) ['A34', "A34'", 'A37', "A37'", 'th4', "th4'", 'th7', "th7'", 'ze4', "ze4'", 'ze7', "ze7'"]
+      ("A_vc'", (7, 5)) ['A35', "A35'", 'A37', "A37'", 'th5', "th5'", 'th7', "th7'", 'ze5', "ze5'", 'ze7', "ze7'"]
+      ("A_vc'", (7, 6)) ['A36', "A36'", 'A37', "A37'", 'th6', "th6'", 'th7', "th7'", 'ze6', "ze6'", 'ze7', "ze7'"]
+  (2) control: pair-twist push, triple-cable family member never certified: True

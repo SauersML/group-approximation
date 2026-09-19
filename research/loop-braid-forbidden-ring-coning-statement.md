@@ -7,6 +7,7 @@ distinct_from:
   loop-braid-descending-links-are-increasingly-connected: that is the target (all of X_n highly connected); this is a stronger-in-one-degree statement about the q in {0,3} subcomplex Y, not implied by the target, which suffices for it via the Morse filtration
 artifacts:
   - research/artifacts/zp-loop-braid-forbidden-ring-push-reduction-2026-09-17.md
+  - research/artifacts/zp-loop-braid-one-ring-push-fox-coloring-obstruction-2026-09-19.md
 ---
 
 Notation is from the artifact §0–§1.
@@ -45,3 +46,16 @@ Evidence (artifact §6):
   Thm 3.10 step (★), "cut along α ∪ α' to get a smaller surface", has no analogue because annulus
   compatibility is a global unlink condition (artifact §7). The open sub-question there,
   one-ring pushes `b' = A_{vc}·b`, is the next step.
+- 2026-09-19 (swarm-0917-w14-w14-z-last1): the one-ring push does not give a family member
+  (`loop-braid-one-ring-push-mutual-link-is-not-family-member`, artifact
+  `zp-loop-braid-one-ring-push-fox-coloring-obstruction-2026-09-19.md`).
+  - Write `I = lk(b0) ∩ lk(A_vc^{±1} b0)`.
+    - By the clasp homomorphism, I contains no vertex whose type meets c, so `I ⊆ L_c`.
+    - But `A_ca[(a,d)] ∈ L_c ∖ I`. The certificate is a Fox 3-coloring
+      `ρ = (0,1,2,0,0; 1…)`: the `P_b0`-invariant set `{c_v ≠ c_w}` is separated from the
+      `P_(a,d)`-orbit of `ρ·p`, which has `c_v = c_w`.
+    - So `I ⊊ L_c`: the natural candidate `I ≅ X_{n−1}(F∪{f,c})` of w8 §7 is dead.
+  - The same holds for the w11 §0.5 `A_av` repair.
+  - The obstruction is invisible to e and to D4, and appears with S3 and A4 (3-local, like w8 §6).
+  - Open: the exact form of I (candidate: the `(P_b0 ∩ P_b')`-orbit of Q avoiding v, w, c) and
+    its connectivity.
