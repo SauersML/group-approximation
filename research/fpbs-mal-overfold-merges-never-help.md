@@ -160,6 +160,10 @@ artifacts:
   - experiments/fpbs-overfold-other-chains-2026-09-17/ri_test.py
   - experiments/fpbs-overfold-other-chains-2026-09-17/run_ri.sh
   - experiments/fpbs-overfold-other-chains-2026-09-17/ri_test.txt
+  - research/artifacts/fpbs-doublecoset-transport-all-depths-2026-09-19.md
+  - experiments/fpbs-doublecoset-transport-2026-09-17/transport.py
+  - experiments/fpbs-doublecoset-transport-2026-09-17/transport_j9.txt
+  - experiments/fpbs-doublecoset-transport-2026-09-17/doublecoset_j6.txt
 ---
 
 **OPEN.** Notation is as in
@@ -608,3 +612,40 @@ such as rank 2 and the single lawful component above.
     these `k`, any argument that charges each level-0 seed a weight
     `c < 1`. What remains is an exact one-for-one exchange, (O-step)
     projected to one level.
+- **2026-09-19, swarm-0917-w18-w18-fp-pull (host-geometry): OPEN.** The
+  depth-shift reduction is now unconditional at every depth: (T_j) is proved
+  for all `j ≥ 1`. Details are in
+  `research/artifacts/fpbs-doublecoset-transport-all-depths-2026-09-19.md`,
+  with scripts in `experiments/fpbs-doublecoset-transport-2026-09-17/`.
+  - **Lemma 1 (proved).** The minimal subtree of `L_{j+1}` is the φ-image
+    of the minimal subtree of `L_j`, in `T(L; a, b)`, with its leaves
+    pruned.
+    - Every vertex of `Y = T_{L_1}` is `φ(w)`, `φ(w)b` or `φ(w)b²`.
+    - A `b`-edge maps to `f(w) → α(w) → β(wb) ← α(wb) ← f(wb)`.
+    - The only leaves are the `φ(v)` whose link is `{b, b⁻¹}`, and no
+      further pruning is needed.
+
+    This gives an explicit recursion `C_{j+1} = Exp(C_j)`. It is checked
+    against Stallings folding for `j ≤ 8` (`transport_j9.txt`).
+  - **Proposition 2 (proved).** Let `B` be a leafless subtree and `h ∈ L`.
+    The φ-expansions of `B` and `hB` can miss each other while `B` and `hB`
+    meet in only one way: they meet in a single vertex whose two links are
+    `{b, b⁻¹}` and `{a, a⁻¹}`.
+  - **Lemma 3 (proved).** No core `C_j` has a vertex with link `{a, a⁻¹}`.
+    Proof by induction: type-1 and type-2 vertices never carry `a⁻¹` and
+    `a` together.
+  - **Theorem 4.** (T_j) holds for every `j ≥ 1`.
+    - So Lemma D holds for all `j` and `i ≤ j`.
+    - So does Corollary R: (O) at depth `j` is equivalent to (O'_j), for
+      `L_{j+1}`-transitive `Q`, modulo the cited relative-rank form.
+  - **Independent check.** `doublecoset_check.py` now reports SET EQUAL for
+    `j ≤ 6`, with 3381 and 19992 types at `j = 5, 6`
+    (`doublecoset_j6.txt`).
+  - **Where it stands.** Three things remain open:
+    - level-0 domination (O'_j) itself;
+    - the intransitive scope;
+    - the uniform weak form. A weak level-0 bound still compounds to `c^j`.
+
+    By Lemma 1, level-0 seeds are the `g ∉ L_1` with
+    `T_H ∩ g T_H ⊂ Y ∩ gY ≠ ∅`. So a proof of (O'_j) can work entirely
+    inside the bounded overlaps of `L_1`-translates of `Y`.
