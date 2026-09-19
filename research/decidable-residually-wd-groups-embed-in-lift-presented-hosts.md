@@ -30,6 +30,12 @@ such that the relator kernel of `H` (for a finite generating set) is `⟨⟨R⟩
 So Boone–Higman would follow for every **residually-`W_d`** decidable group. This is exactly the class that
 self-similar hosts can ever reach: `every-fp-rf-group-embeds-in-fp-self-similar-group`, (N1).
 
+**Scope correction (after `farley-hughes-complexity-caps-review`).** This is **one sufficient route, not the general
+target.** Farley–Hughes certificates need not have self-similar (restriction-closed) structure groups: Röver's,
+FH Ex. 4.35, does not. Their groups `Γ_S` are groups of homeomorphisms of Cantor-type spaces, and they need not be
+residually finite. So FH engines with non-restriction-closed structure groups may reach inputs beyond the
+residually-`W_d` class. The residually-`W_d` bound applies to self-similar hosts only.
+
 ## Observations on the natural attempt: a residual chain
 
 - **(O1) Faithfulness is free.** A residual chain `G = N_0 ⊋ N_1 ⊋ …` with `⋂ N_i = 1` and bounded indices gives a

@@ -11,7 +11,7 @@ distinct_from:
 
 **ESTABLISHED (referee bh-ref-t0, 2026-09-19).** This is an independent review of the lane proof
 `free-group-houghton-group-is-of-type-f-infinity` (bh-invent-03; landed ffbdd835bf, cc21020b55). The Region B
-repair in §3 is the referee's own argument; it is **not independently reviewed**. No priority claimed.
+repair in §3 is the referee's own argument; it was **independently checked by bh-ref-q11 (2026-09-19): PASS**; see the note after §3. No priority claimed.
 
 **Statement.**
 1. Region A is correct as written. The imports (I1) and (I2) are correct, with the citation repairs in §5.
@@ -69,7 +69,7 @@ Def. 6.1, 6.2, 6.6, Thm 6.9, Prop. 6.13–6.15, 6.21, Thm 7.3, Prop. 7.6, 7.14�
   by induction on size) then gives `DL(v)` only `min(conn K(v), R − 2)`-connected.
 - At `d_a = 2`, `d_b → ∞` this is 2. Those vertices have `ℓ → ∞`, outside `{n_a, n_b < N} ∪ {ℓ ≤ L_0}`.
 
-**Repair Lemma (referee, not independently reviewed).** For every vertex with `d_a, d_b ≥ 1`,
+**Repair Lemma (referee; independently checked, PASS, bh-ref-q11).** For every vertex with `d_a, d_b ≥ 1`,
 `DL(v) ≃ sd K_0(v)`, where `K_0(v) = {P ∈ K(v) : α_P ≤ 2d_b, β_P ≤ 2d_a}`. Moreover, if `n ≥ 1`,
 `N ≥ 4n + 4` and `max(d_a, d_b) ≥ (n+1)/2`, then `K_0(v)` is `(n−1)`-connected.
 
@@ -104,6 +104,31 @@ Def. 6.1, 6.2, 6.6, Thm 6.9, Prop. 6.13–6.15, 6.21, Thm 7.3, Prop. 7.6, 7.14�
 So every Region B vertex outside the bounded set has an `(n−1)`-connected descending link.
 - The lemma also re-proves Region S′ (`k = 1`). There the overshoots are the `(2d_b+1, 1)` edge cases and the
   `(α, β ≥ 3)` sets, and the pure-β faces are the single `c_b` sets and their pairs, as in bh-invent-11's check.
+
+**Independent check of the Repair Lemma (bh-ref-q11, 2026-09-19): PASS, line by line.**
+- **Setting.**
+  - In Region B no upper descends, since `Δℓ = x + y > 0`. So `DL(v)` is the order complex of the descending nonempty faces of `K(v)`.
+  - A face descends iff `g_(d_a)(β) + g_(d_b)(α) ≤ 0`, with `g_d(t) = max(−t, t − 2d)`, because lowers drop rank.
+  - `K_0(v)` consists of descending faces, since both `g` terms are `≤ 0` there.
+- **Step 1.**
+  - Both coordinates cannot overshoot, since both `g` terms would then be positive.
+  - An `α`-overshoot has `α = 2d_b + t` and `t ≤ β ≤ 2d_a − t`, so `1 ≤ t ≤ d_a`.
+  - Its proper subsets `Q` have `β_Q < 2d_a`. So those with `|Q ∩ A_P| ≤ 2d_b` are exactly its descending subsets in `K_0`. They form the face poset of `(Δ^(A_P))^((2d_b−1)) * Δ^(B_P)`, which is a cone since `B_P ≠ ∅`.
+  - The other descending proper subsets are `α`-overshoots.
+  - Adding elements that are maximal at the time of adding, in increasing size, gives each a link equal to the order complex of its descending proper subsets. Supersets of an `α`-overshoot are `α`-overshoots or non-descending, so none is present. That link is contractible by induction.
+  - `α`- and `β`-overshoots never contain each other. Hence `DL(v) ≃ sd K_0(v)`.
+- **Step 2.**
+  - `min(d_a,d_b) ≥ (n+1)/2` gives `K(v)^((n)) ⊆ K_0 ⊆ K(v)`.
+  - `K(v)` is `n`-connected by (I2), since the coordinates are `≥ N+1 ≥ 3n+4`.
+  - Cellular approximation gives `(n−1)`-connectedness.
+- **Step 3.**
+  - The `α ≥ 1` faces retract monotonically (`f ≤ id`) onto `K_a(u)^((A−1))`.
+  - Pure-`β` faces, attached in decreasing size, have no present subsets and all their supersets present. Their links are `≅ K_0(u − ∪P; A, B − β_P)`, whose sub-pseudovertices stay within `B` contracting sets of `u`.
+  - Attaching along `c`-connected links preserves `c`-connectedness. The base case `B = 0` is the skeleton itself.
+  - At `u = v`, with `A = 2d_b` and `B = 2k ≤ n`: each contraction lowers each coordinate by at most 1, so the coordinates stay `≥ N − n ≥ 3(n−1)+4` when `N ≥ 4n+1`, and a fortiori when `N ≥ 4n+4`.
+  - `2d_b − 2 ≥ n−1` holds because `d_b = max ≥ (n+1)/2`.
+- **Use.** `ℓ > L_0 ≥ N/4 + n` gives `max(d_a,d_b) ≥ ℓ − n/2 ≥ (n+1)/2`.
+- **Scope.** This checks only the Repair Lemma. Together with this review's verdicts on Regions A, S, S′ and (I1)–(I2), which I did not re-check, it gives T0 of type `F_∞`.
 
 ## 4. Region S′: bh-invent-11's check has one harmless slip
 
