@@ -13,6 +13,9 @@ distinct_from:
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS with minor repairs for Theorem L, Propositions 1–2 and the F_∞ Theorem; the statement is a case of BHM Remark 2.13, see the Referee section):** Propositions 1 and 2, Theorem L, and the
   F_∞ Theorem.
 - **Open:** the sharp bound `h − 3` (Conjecture C, sharp at `h = 2`), and non-interval defect sets.
+- **Credit.** The F_∞ Theorem proves Belk–Hyde–Matucci Remark 2.13 (arXiv:2407.03149, stated there without proof)
+  for two cases: a finite defect group, and a defect group `Z` with interval defect sets. No earlier proof was found.
+  The new ingredient is Theorem L, which replaces the localization axiom used in the proof they indicate.
 - **Inputs:** the inflation formula of Björner–Wachs–Welker (*Poset fiber theorems*, Trans. AMS 357, 2005;
   recalled, not re-read); the nerve theorem; Bestvina–Brady Morse theory; Brown's criterion.
 
@@ -49,7 +52,8 @@ Split off coordinate `n`, with `D' = (D_1, …, D_{n−1})`.
      `conn Y_{k+1} ≥ min(conn Y_k, conn Z_k + 1)`.
    - By induction, `conn Z_k ≥ ⌊(n−1−w−1)/2⌋ − 2`. So `conn Y ≥ ⌊(n−w)/2⌋ − 2`.
 4. **Uncovered faces.**
-   - A face `F` avoiding coordinate `n` lies in some `A_v` iff the interval `[t_2 − s_F − b_R, t_1 − s_F + a_R]`
+   - Here `R` denotes the unassigned coordinates of `F` **among the first `n − 1`** (notation repaired per referee).
+     A face `F` avoiding coordinate `n` lies in some `A_v` iff the interval `[t_2 − s_F − b_R, t_1 − s_F + a_R]`
      meets `D_n`.
    - Given `F ∈ Λ(D; I)`, that happens iff `w ≤ a_R + b_R`.
    - So an uncovered face has `|R| ≤ a_R + b_R ≤ w − 1`, using `|D_i| ≥ 2`. It therefore has dimension
@@ -101,7 +105,8 @@ defect group `⟨Δ⟩` is either finite, or infinite cyclic with every defect s
   cocompact with `F_∞` cell stabilizers (parent, item 4, per the referee).
 - Descending links of vertices with `h` hidden points are `(⌊h/2⌋ − 2)`-connected (Proposition 2). This tends to
   infinity with `h`.
-- By Bestvina–Brady, `K_{0,≤N}` is `(⌊(N+1)/2⌋ − 1)`-connected, and Brown's criterion gives `F_n` for every `n`. ∎
+- By Bestvina–Brady, `K_{0,≤N}` is `(⌊(N+1)/2⌋ − 2)`-connected (constant repaired per referee), and Brown's
+  criterion gives `F_n` for every `n`. ∎
 
 ## What remains for surface groups
 
@@ -118,9 +123,11 @@ The right-angled pentagon RSG `[[P | ∂_h P]]` satisfies the hypotheses if thre
 - (ii) its true defect group is `Z`, with no torsion in the kernel of the map to the coarse `H_0 ≅ Z`;
 - (iii) each `D_p` is an interval, e.g. `⊆ {−1, 0, 1}`.
 
-If they hold, `SV_{[[P|∂_h P]]}` is an `F_∞` simple group containing `P` undistortedly. Every closed surface group
-of genus ≥ 2 is commensurable into `P`, so they all get `F_∞` simple hosts, and this would be a partial answer to
-BBMZ Question 1.2 for a full contracting RSG with nontrivial integer flux.
+If they held, `SV_{[[P|∂_h P]]}` would be an `F_∞` simple group containing `P` undistortedly.
+- **This gives no new host.** Closed surface groups already embed undistortedly in the `F_∞` simple group `2V`
+  (`virtually-compact-special-groups-undistorted-in-2v`). The pentagon is only a test of BBMZ Question 1.2.
+- **Where it would matter.** The new cases would be hyperbolic groups with property (T), such as cocompact lattices
+  in `Sp(n,1)`, for which no `F_∞` simple host is known.
 
 ## Lesson for general BH
 
