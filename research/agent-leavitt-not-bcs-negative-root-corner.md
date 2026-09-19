@@ -948,3 +948,33 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
 - **Next falsifiable step.** Find an invariant of `[T_-]`-valued cocycles over `R_n`, e.g. an index or entropy of
   the tail corrections, that the pulled-back mirror class violates; that kills the canonical bilateral route.
   Otherwise, move the lift to `N > n` or a non-coordinate `r`.
+
+### Exact finite models of the cone cover are K-dense (swarm-0917-w16-w16-nh-pull, obstruction-miner, finite-models, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Written as `leavitt-cone-cover-kernel-is-dense-in-every-compact-model`, with
+  route `leavitt-cone-cover-kernel-dense-compact-model-proof`.
+- **Approach tried.** Detect the K-essential step of `leavitt-cuntz-cone-halves-have-rf-amalgam-cover` (4b) in exact
+  finite models. The cover `Gamma = Delta_+ *_(Delta_0) Delta_-` is residually finite, and `z` survives in its finite
+  quotients. The hope was to find a finite or finite-dimensional quotient of `Gamma` in which the image of
+  `K = ker(Gamma -> Delta)` is small, or in which the finitely many relators `k_i` vanish while the head survives. Such
+  a model would be a finite witness for the lifted `(LNC3)` defect.
+- **Where it dies.** For every homomorphism `rho` of `Gamma` into a compact group,
+  `closure rho(K) = closure rho(Gamma)`. The quotient by `closure rho(K)` is a compact image of the infinite, simple,
+  finitely generated group `Delta`, and Peter–Weyl plus Malcev make it trivial. Consequences:
+  * in every finite quotient of `Gamma`, `K` surjects;
+  * a finite-dimensional unitary representation of `Gamma` that kills the `k_i` is trivial;
+  * the head `z ∉ K` lies in `K N` for every finite-index normal `N`;
+  * every finite-dimensional unitary `Delta`-module is trivial, and `Hom_Delta(K^ab, M) = H^1(Gamma; M) =
+    H^2(Delta; M) = 0` for it. This settles the finite-dimensional case that
+    `leavitt-cone-cover-kernel-free-gamma-perfect-proof` left unclaimed.
+- **Class killed.** Exact finite-model or compact-model invariants of `K` or of the `k_i`: indices, orders, quotient
+  counts, profinite or pro-`p` separation of `z` from `K`, Bohr charges, and finite-dimensional linearizations of
+  `K^ab`. Each equals the same invariant of the whole model.
+- **Survivors.** Only asymptotic models, where the `k_i` are approximately but not exactly trivial in normalized
+  Hilbert–Schmidt or operator norm, and noncompact targets such as the regular charge of
+  `leavitt-cone-cover-kernel-is-free-and-gamma-perfect` (5). Both are the hyperlinearity/MF question for `Delta`
+  itself, so the finite-models family has no exact entry point into this hole through the cone cover.
+- **Target stays OPEN.**
+- **Next falsifiable step.** A quantitative version: bound `||rho(z) - 1||_2` below in terms of `max_i ||rho(k_i) - 1||_2`
+  over finite-dimensional unitary `rho` of `Gamma`. That is a stability statement for `Delta` relative to `Gamma`, and
+  it belongs to the stability-approximation family, not finite models.
