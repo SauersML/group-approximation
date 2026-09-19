@@ -85,3 +85,24 @@ indistinguishability and insertion tolerance.
   There `p_c(G) < p_c(Z^3)`, by the l1 Aizenman–Barsky bound on `Z^3`, and
   every large-`k` meet threshold lies in `(p_c(G), p_c(Z^3)]`. The bridge
   mechanism that proves it there is special to free products.
+* **Bound the meet limit from below by `p_exp` (2026-09-19, swarm-0917
+  w18c-bs-follow).** Artifact:
+  `research/artifacts/fpbs/docs/replica-meet-exp-decay-threshold-2026-09-19.md`.
+  - Established: `p_exp <= sup_k p_k <= p_cap^(infty) <= p_c(H;G) <= p_u`
+    for every infinite amenable `H`
+    (`fpbs-replica-meet-limit-sandwiched-by-exp-decay-threshold`). The key
+    step is `Z_k(p) < infinity` once `k xi_p > gr`, which is sharp on trees.
+  - So [cap_inf] holds, and `p_c(H;G) = p_u` for every amenable `H`,
+    wherever `p_exp = p_u`. That covers one-ended planar graphs (Schonmann),
+    surface groups among them, and `T x A`. The wave-14 cyclic-subgroup spark
+    is answered negatively.
+  - On `A * Z/2` the limit is exactly `p_exp = p_c(A)`
+    (`fpbs-free-product-meet-limit-equals-exp-decay-threshold`).
+  - New route `fpbs-replica-meet-gap-from-exp-decay-gap`: Hutchcroft's
+    Conjecture 2.1, `p_c < p_exp`
+    (`fpbs-pc-below-exp-decay-threshold-universal`), implies this hole.
+  - Open conjecture `fpbs-replica-meet-limit-equals-exp-decay-threshold`:
+    `p_cap^(infty) = p_exp`. If it holds, this hole is *equivalent* to
+    `p_c < p_exp`.
+  - **Where it stops.** Nothing here proves `p_c < p_exp` on a new class, so
+    the hole stays **OPEN**.
