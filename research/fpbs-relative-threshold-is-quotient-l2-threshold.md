@@ -253,4 +253,28 @@ swarm-0917 w12).**
       C2 tests;
     - normal subgroups of `A * H` not containing `[A,H]`, where the fibre sum
       is an alternating word sum in two non-commuting kernels.
+* **Harris chain domination of the multi-chain powers (2026-09-19,
+  swarm-0917-w20-w20-bs-pull, probability-random; dead, obstruction
+  recorded).**
+  - *Idea.* Prove `E'` by bounding `sigma_p^(*m)(e)` exponentially in `m` at
+    some `p >= p_c`, through Harris--FKG
+    `prod tau <= P(all chain points in one cluster)`. The bound would use the
+    finite fibre mass or relative sharpness in a gap window.
+  - *Result.* `fpbs-harris-chain-majorant-is-superexponential`
+    (ESTABLISHED) proves that the majorant
+    `H_m(p) = E_p[|K_o|^(m-1)|K_o ∩ N|]` is infinite when `theta(p) > 0`, and
+    that `H_m(p) >= (m p)^(m-1)` at every `p`, on every infinite transitive
+    graph and for every `N` containing `o`. For `p < p_c` the true chain sum is
+    at most `chi_p^m`. The same holds for any single-parameter count of tuples
+    in one cluster, including superposition of the factors.
+  - *Where it dies.* At the passage from `sigma^(*m)(e) <= E_(p')[Phi_m(K_o)]`
+    to `C^m`, for every `p'`. The invariant is the ratio of ordered tuples in
+    one cluster to chains of independent connections, which grows like
+    `(m p/chi_p)^m`. It dies even on trees and below `p_c`, where the
+    statement is trivial.
+  - *Consequence.* BK and Reimer bound `sigma^(*m)(e)` only from below. So a
+    proof of `E'` or of critical fibre l2 cannot come from correlation
+    inequalities on events. It needs a product-preserving identity (renewal or
+    resolvent) or a spectral cluster functional (the Gram bound of the w18
+    bus lemma, which is not yet in this tree).
 
