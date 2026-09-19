@@ -345,3 +345,36 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     BMW lattice of these degrees has a non-left-orderable parity kernel.
   - **Remaining classes:** none. What stays open is irreducibility of #193 and #332, which no longer
     affects this claim.
+- (w13-107, 2026-09-19) **Removing the census: vertex groups are never convex, and the census pipeline
+  beyond the census degrees (`bmw-parity-kernel-vertex-groups-are-never-convex`).**
+  - **Uniform theorem (all degrees).** A convex subgroup that the ambient group commensurates is normal.
+    Hence, in any left order of the parity kernel `Γ^+` of an irreducible BMW group, no vertex
+    stabilizer of either tree is convex. Lexicographic and Zappa–Szép orders are ruled out in every
+    degree.
+  - **Theorem 2.** A convex subgroup containing a finite-index subgroup of `B^+` contains the normal
+    closure `N_B`. Also `Γ^+/N_B ≅ Q_B`, where `Q_B` is `A^+` modulo the `B^+`-orbit relations on
+    `S_2(T_A)`, and `Q_B = 1` when that action is transitive. Over the 1201 census candidates:
+    - `Q_A` and `Q_B` are both finite for 141 classes;
+    - one is infinite for 902;
+    - both are infinite for 158, including #193, #281 and #332.
+
+    So this obstruction does not reduce the conjecture to the census.
+  - **Which certificate type is universal.** Cone trees and cone lemmas are universal, by compactness.
+    Klein chains and Klein-power chains are not: census classes 31_30 #26 and 31_31 #12, and 19 of the
+    36 certified samples below, have no Klein pair in the balls searched.
+  - **Beyond the census.** 64 random samples in 8 patterns: 50_40, 60_30, 50_50, 51_41, 61_31, 52_42,
+    63_31 and 52_52.
+    - 27 are reducible.
+    - 30 are closed by R4 cone trees, 3 by R6s4 cone trees and 3 by RUP-checked R6s4 cone lemmas.
+    - One survivor: 50_40 seed 107. It is irreducible (Thompson–Wielandt on the horizontal side, local
+      action `S_5`), and its instance is SAT at R4, R6s4 and R8s2.
+      It is refuted by a four-term Klein chain of pure words,
+      `v2v0v1v2 → h2h3 → v0v2v0v1v2v0 → h0h1`, found at word length 6 and checked by `kverify.py`,
+      which shares no code with the search and rejects three tampered chains.
+    - So all 64 samples are settled and no counterexample appeared. Certificate completeness and
+      feasibility come apart: the universal types carry no radius bound, and a non-universal chain
+      closed the case they missed.
+  - **Next step.** Q-infinite classes are exactly where Theorem 2 stops. For those, decide
+    left-orderability of the normal closure `N_B`, which acts on `T_B`. Or find the
+    structural reason why pure Klein chains exist when one local action is a 2-group. Test this on 50_40
+    s107, whose vertical local action has order 2.
