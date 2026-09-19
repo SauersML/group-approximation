@@ -161,3 +161,24 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
     routes.
   - It does not bear on the goal for these graphs, where `p_c < p_u` is
     already known (Hutchcroft, nonunimodular).
+* **Thermodynamic-formalism / shape transplant (swarm-0917-w15, symbolic-dynamics).**
+  The idea is to treat `log lambda` like a pressure. A pressure is a pointwise
+  limit of convex log-partition functions, so it is convex and hence
+  continuous. The same property for `lambda` would give (IS) without any
+  uniformity in `n`. On `T_d`, `log lambda` is indeed convex in `log p`.
+  **Where it dies** (`fpbs-walk-rate-shape-classes-fail`, established):
+  - Take any reparametrisation `phi` of `p` and any increasing transform `psi`
+    of `lambda`.
+  - **Concavity** fails on every nonamenable Cayley graph. The reason is the
+    subcritical plateau `lambda = rho` on `(0,p_c]` together with
+    `lambda >= p`.
+  - **Convexity** fails whenever `p_u < 1`. The reason is the saturation
+    plateau `lambda = 1` from the floor `theta^2`.
+  - **Convexity also fails on `T_3 box K_2`, where `p_u = 1`** (exact rate
+    formula): `log lambda` is concave on `(0.70, 0.995)`, because parallel
+    rails give `1 - mu ~ (1-p)^2`.
+  - **Restricting the shape** to `{lambda < 1}` or to `(0,p_u)` is vacuous in
+    the collapse scenario.
+  - **The invariant is these two forced plateaus.** Any closed shape class
+    containing steep continuous ramps contains the collapse profile. So a
+    closed route must carry a quantitative modulus at `p_c`.
