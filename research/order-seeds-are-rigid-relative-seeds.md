@@ -138,3 +138,6 @@ I checked the Statement and Proof line by line.
 **Not checked.** Whether the Dubrovina–Dubrovin orders are dense (the node says it is recalled).
 Orders with finitely generated positive cones are often discrete; in that case the "Discrete orbits"
 variant must be used, and it needs every gap to be crossed by a single step.
+- **Resolved (bh-ref-kourovka-a, 09-19).** The "Not checked" item above is settled. The DD orders have
+  finitely generated cones (checked at source: Ito, arXiv:1107.0545, §1), so they are discrete. Instance 2
+  is correctly the discrete case, as the 09-19 correction says.

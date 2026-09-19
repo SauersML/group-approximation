@@ -114,3 +114,46 @@ a rigid relative seed from its vertex pieces.
   and core atoms shared across edges.
 - **The only obstruction.** The seed tower's Kurosh and HNN steps are now reduced to the edge-twist condition
   (FE), i.e. whether the subgroup contains the whole edge group on each of its core edges.
+
+## Referee (bh-ref-kourovka-a, 2026-09-19): PASS
+
+I checked the proof line by line against `relative-seeds-glue-graphs-of-groups-proof` (refereed PASS):
+its atoms (A), exclusivity (B), chains (C), domination (D) and the F-trick.
+
+- **Core edges are read locally.**
+  - Oriented core edges at `v` of type `ε` lie in finitely many `S_v`-orbits: an `s ∈ S` matching two
+    of them fixes their common origin, and `S\K` is finite.
+  - (FE) gives `aC_εa^(-1) ⊆ S'_v`, so each orbit is the right coset `S'_p a_k`.
+  - Seeds of `y_*^p` lie exactly on `S'_p`, so "core of datum `k` at `x`" iff there is a seed at
+    `x a_k^(-1)`. By (FE) this is independent of the representative `x ∈ xC_ε`.
+- **(RS1).** From the base seed, (K1) pins each core neighbour. Its class and a seed at a
+  prescribed element give a unique `Y_q`-configuration. Non-core edges at core vertices force out
+  neighbours pointing in, by (K2), and each out vertex points along exactly one edge. So the
+  cylinder is `{y_*}`.
+  - A class-`p` seed at `e` forces the translate `(e h_p^(-1)).y_*`, by uniqueness.
+  - `Stab = S`: `g v_0 = s v_0`, and then `s^(-1)g ∈ S_(v_0)`.
+- **(RS2).** The four kinds are exhaustive.
+  - A seeded core vertex pins a translate of the whole point.
+  - A seedless core vertex has no core edges, so it is a sink with everything pointing in.
+  - With no core vertex, this is the base orientation argument.
+  - Each kind is a limit of translates. For the seedless core sink, the core edges `a_nS'_pa_k` leave
+    every finite window, so the window sees only the sink and pointers toward it.
+- **Rigidity.**
+  - (K1) is an equivalence of two local events, so (L0) and (Q2) make the core atoms the **same
+    operator** at both endpoints.
+  - `B_i + C_i + Γ_i = 1`, with all three in both endpoint algebras.
+  - `C_i ⊥ B_(i+1)` (distinct pointer atoms) and `C_i ⊥ Γ_(i+1)` (out versus core), which gives
+    `C_i ≤ C_(i+1)`.
+  - A core atom `γ` has `γB_2 = 0`, so either `γ ≤ C_2` or `γ` equals the unique atom of `Γ_2` below
+    it. Two atoms with `γ ≤ γ''` are equal.
+  - Every piece of `X = XB_1 + XΓ_1 + XC_1` is dominated by an atom of `𝒜_w` or equals one.
+
+  Correct.
+- **Special cases.** A single-vertex `K` gives the vertex-marked item 1, and trivial edge groups make
+  (FE) automatic. Both are correct.
+
+**Minor.**
+- State the convention that each class `p` has a base vertex `h_pV_u`, with `S'_p = h_p^(-1)S_(v_p)h_p`,
+  and that other vertices of the class use representatives `s h_p`. This is what makes "a seed at
+  `x a_k^(-1)`" canonical.
+- The "Without (FE)" section is a correct diagnosis, not a theorem.
