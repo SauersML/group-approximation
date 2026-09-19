@@ -1,0 +1,13 @@
+ restart 0: delta=0.174311 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=18
+ restart 0: delta=0.174311 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=77
+ restart 0: delta=0.177688 rel=2.4e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=108
+ restart 0: delta=0.189561 rel=2.0e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=84
+ restart 1: delta=0.136153 rel=2.4e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=13
+ restart 1: delta=0.136153 rel=2.4e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=81
+ restart 1: delta=0.203115 rel=3.9e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=87
+ restart 2: delta=0.200547 rel=1.5e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=16
+ restart 3: delta=0.206342 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=16
+seed=['O3', 'E3', 'E3', '1', '1', '1'] tensor=[] load=None n=15 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-2.0), np.float64(2.0))
+seed=['O3', 'E3', 'E3', 'O3', 'E3', 'E3'] tensor=[] load=None n=24 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-4.0), np.float64(4.0))
+seed=['O3', 'E3', 'E3'] tensor=[] load=None n=12 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-2.0), np.float64(2.0))
+seed=['O5', 'E5', 'E5'] tensor=[] load=None n=36 theta=0.3333333333333333pi start delta=0.34730 rel=1.1e-15 w=(np.float64(-6.0), np.float64(6.0))
