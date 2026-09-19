@@ -8,13 +8,13 @@ distinct_from:
   a2-lattice-phase-seeds-are-quantum-rigid: that is the open quantum rigidity of the seed; this proves the classical necessary condition, so no classical freedom stands in its way.
 ---
 
-**ESTABLISHED, conditional on the boundary description (S) below** (lane bh-free-09, 2026-09-18,
-revised 2026-09-19; elementary lane proof, not independently reviewed; no priority claimed).
+**ESTABLISHED** (lane bh-free-09, 2026-09-18, revised 2026-09-19; elementary lane proof, not
+independently reviewed; no priority claimed). The boundary description (S) below is proved in
+`a2-seed-boundary-is-chambers-and-panel-tree-pointers`.
 
-The 09-19 revision closes three gaps of the first version: seed-orbit modifications of boundary
-points, the case of a wall vertex off the chamber, and the unstated use of (S). The chamber case of
-(S) is now proved here.
-
+The 09-19 revisions closed three gaps of the first version: seed-orbit modifications of boundary
+points, the case of a wall vertex off the chamber, and the unstated use of (S). They also proved (S),
+the chamber case here and the wall case in the node above.
 ## Facts used
 
 These are standard facts about Euclidean buildings, recalled and not re-derived:
@@ -38,7 +38,7 @@ of the ray from `x`. Up to the phase coordinate, every point of `Y_Γ^(N)` is on
   - elsewhere it is the chamber of `Lk(x)` that contains the `ξ`-germ and corresponds to the first
     edge of `[π_ξ(x), p]` in `T_ξ`.
 
-**Proved part.**
+**Chamber case (proved here).**
 - By (S3) every point is a limit of `y_(o_n)`. A bounded sequence `o_n` gives a seed-orbit point.
 - Otherwise pass to a subsequence with `o_n → η ∈ ∂Δ`. By (B4), each label contains the simplex
   carrying the direction of `[x, η)`.
@@ -46,12 +46,14 @@ of the ray from `x`. Up to the phase coordinate, every point of `Y_Γ^(N)` is on
   the limit is `y_c`.
 - If `η = ξ` is a vertex, every label is the `ξ`-germ or a chamber containing it.
 
-**Not proved here.** That in the vertex case the choice of chamber is a `T_ξ`-pointer toward one vertex
-`p`. A limit toward an end of `T_ξ` would give a chamber point. This is the wall-stratum description of
-`a2-lattice-phase-seeds-are-quantum-rigid` (What remains, item 1), which is supported there by the
-local tables: one inward and `q²` outward wall neighbours, with outward ones forced to point back.
+**Wall case, now proved.** In the vertex case, the choice of chamber is a `T_ξ`-pointer toward one
+vertex `p`, or toward an end, which gives a chamber point. This is
+`a2-seed-boundary-is-chambers-and-panel-tree-pointers`, item 3.
+- Vertex labels fill whole fibres of `π_ξ`.
+- Pointers transport along rays, by uniqueness of common neighbours in the links.
+- Every panel-tree edge is pointed along by exactly one endpoint.
 
-## Theorem (given (S))
+## Theorem
 
 1. Let `y` be a point and `y'` a modification of it. Then `y'` differs from `y`:
    - at `o`, if `y = y_o`;
@@ -100,7 +102,7 @@ singular line with the old one.
 vertices of one type, and the new labels are vertices of the other type or chambers. So it creates no
 separable freedom.
 
-**Where the opposite-type patterns occur.** Under (S), they occur only in seed-orbit points, and only
+**Where the opposite-type patterns occur.** By (S), they occur only in seed-orbit points, and only
 within bounded distance of the origin. Boundary points carry vertex labels of at most one type. In
 `y_o`, a line label at vector distance `(m, 0)` and a point label at `(0, n)` within distance `R` force
 `max(m, n) <= 2R`, because the vector distance is 1-Lipschitz. So their difficulty is purely quantum:
@@ -122,4 +124,4 @@ verbatim. The same proof goes through once two facts are known:
 - **Type is a free separator.** A modification that changes the type of the vertex at infinity
   changes every vertex label at once.
 - **For the `Ã₂` seed, the classical side is clean.** Its rigidity reduces to the quantum gluing of the
-  three strata, and to one geometric input (S) for the wall strata.
+  three strata. The geometric input (S) is now proved.
