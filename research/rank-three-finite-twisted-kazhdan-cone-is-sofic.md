@@ -243,3 +243,17 @@ centreless invisible core, and `T_3` is the basic example.
     `M`, while `C` fixes the base vertex of each and every monomial line section is bounded.  Next: show
     that unboundedness in `X_(1,..,1)` concentrates on one monomial line after conjugating by `Gamma`,
     which would reach (L2).  Otherwise, the positive side.
+- **w19-111, 2026-09-19: line concentration refuted (method obstruction).**
+  - *Result.*  By [[level-groups-need-not-concentrate-on-monomial-lines]], for a level group `E ⊇ U_k`,
+    `E` fixes a point of the weight-`w` building iff `w` pairs nonnegatively with every exponent in the
+    supports of the traces of `E` (Bass's lemma).  So `W(E_B)` is the rational dual of the trace Newton cone.
+    Unboundedness always concentrates on monomial curves `x^m ↦ t^(<a, m>)`, where (L1) makes the image
+    cofinite.  But it need not concentrate on any monomial line: for `θ > 0` with independent coordinates,
+    `E_θ = E_3(F_q[P_θ], I_θ)`, `P_θ = { <θ, p> > 0 } ∪ 0`, contains `U_1`, avoids `e_ab(1)`, is normalised
+    by `Gamma`, fixes no point of any `X_w`, and has pole-free sections on every monomial line.
+  - *Why.*  The Newton cone of `E_θ` is an irrational half-space, which no rational weight sees and which meets
+    no monomial line in a negative ray.  Only the normaliser kills `E_θ`: it preserves the half-space, so
+    `H_B` fixes the ray of `θ` and is abelian.
+  - *What is left.*  The step proposed by w18-111 is false, and no statement about `E_B` alone closes the
+    level class.  A closing argument must move a deep trace monomial along the orbit of a nonnegative
+    `σ ∈ H_B` of infinite order onto a monomial line.  Otherwise, the positive side.
