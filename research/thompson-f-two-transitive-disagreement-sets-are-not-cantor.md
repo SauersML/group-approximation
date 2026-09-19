@@ -38,3 +38,32 @@ This is one of the two halves of
     `D(ω,gω) = g(B(g))`, where `B(g)` is the set of points at which the germ of
     `g` is not the germ of an element of the stabilizer `F_ω`. This is not
     written out.
+- 2026-09-19 (swarm-0917-w15-w15-z-last1, calibration). Two new nodes, and the
+  claim is still OPEN.
+  - `thompson-f-two-transitive-gap-endpoints-lie-in-hull-orbits`: every left
+    gap endpoint of a disagreement set lies in `Θ^-` and every right gap
+    endpoint in `Θ^+`. Splicing at a point of the gap gives `α` with the two
+    endpoints equal to `η(ω,α)` and `ξ(α,ω')`. In the Cantor case,
+    `D_0 ∩ Θ^±` are dense in `D_0`.
+  - `quaternary-cantor-set-passes-disagreement-shape-tests`: the example of
+    the previous entry, `K = 1/2 + C/4` with `C` the base-4 digits-`{0,1}`
+    set, satisfies all known shape conditions. Its orbit `F·K` is the finite
+    disjoint unions of dyadic affine copies of `K`. It is closed under clopen
+    pieces and disjoint unions. The minima of its members are dyadic, their
+    maxima lie in `F·(1/3)`, and the gap endpoints are as required. Each member
+    has a swap-like stabilizing element with slope `1/4` at both extreme
+    points. So nothing that uses only `F·D_0` and the endpoint orbits can
+    prove this claim.
+  - Unproved, recorded only: "local transitivity", meaning that
+    `D(ω,σ) ⊂ (p,q)` implies `σ ∈ F_{[p,q]} ω`, would give strong control of
+    the `F_ω`-orbit of `D_0`. It is equivalent, circularly, to transitivity of
+    `F_ω ∩ F_p^+` on `(F·t) ∩ (p,1)` for good irrational `t`. Both reduce to
+    localizing germs of `F_ω`, and this step is not done.
+  - Where it dies: the data a proof must use are not shape data. They are
+    overlaps of `D(ω,·)` along an `F_ω`-orbit (the binary sum rule, where
+    available, is the only known constraint), colourings with three or more
+    colours, or the germ formula for `F_ω`. Next step: test the binary sum rule
+    on `F·K`. If the Cantor case occurs,
+    `{ D(ω,σ) : σ ≠ ω }` is a family of copies closed under closures of
+    symmetric differences. Decide whether some such family, `F_ω`-invariant,
+    can exist for `K`.
