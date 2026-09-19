@@ -385,3 +385,21 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    - Next: Route 2 (group-level Cartan p-powers), the level-`n` S-pairs, or
      a separate argument for `K_n`.
    See `kms-hc1-virtual-vertex-route-is-conjugation-inert`.
+
+13. **Pi on root groups: vanishes at every level; the Pi form of Route 2
+   is empty (obstruction, all p >= 5).**
+   - (A): at the first deviation, `Pi` is additive on commuting pairs of
+     order-`p` elements, by class-2 Hall–Petrescu at the central top layer.
+   - (V): the diagonal torus of `I_1` rescales `x_ij(f)` to a vertex root
+     element when `f/t^v0` is a unit, and otherwise
+     `x_ij(f) = x_ij(t^v0(1+g)) x_ij(-t^v0)`. So `Pi = 0` on all six real
+     affine root groups, on commuting products of root elements, and on
+     their conjugates. In particular `Pi(x21(t^n)) = 0` for every `n`. This
+     is new, since `x21(t^n)` (`n >= 2`) and `x13(t)` are not vertex
+     conjugates (content invariant).
+   - (O): the proof never evaluates `W_n`, so the answer "yes" holds for
+     every `V_n` and does not settle `C_2A`. Cartan data must come from
+     infinite-order relators, such as `h(1+t^n)^p = h(1+t^(np))`, written in
+     root elements by the Bruhat identity.
+   - Next: the centralizer pairing `delta_a` on `diag(u,u,u^-2)`.
+   See `kms-hc1-p-power-value-vanishes-on-affine-root-groups`.
