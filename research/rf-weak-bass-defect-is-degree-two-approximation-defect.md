@@ -172,3 +172,17 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
     residually finite amenable cd-2 group. Equivalently: `H_1(K; V) = 0` and
     `dim H_2(K; V) = χ dim V − dim V_K` for all finite-image `V`. Any proof must use amenability
     beyond Følner transversals of bounded radius.
+- **2026-09-18 (lane `w19-112`): the ultraproduct / von Neumann limit route is dead: the
+  limit sees only the `L²` rank.** See `ultraproduct-limits-of-finite-covers-see-only-the-l2-rank`
+  (proposed ESTABLISHED, obstruction).
+  - *Induced data are `χ`-blind.* `L(K) ↪ ∏^ω L(F_i)` preserves the trace, so every module
+    induced from `Q[K]` has its `L²`-dimension there, and so does every module induced into the
+    rank ultraproduct `R_ω` of the `Q[F_i]`. The induced Fox complex has profile `(n − 1, n, 1)`
+    with homology of rank 0, whatever `χ` is.
+  - *Where `χ` lives.* `χ = rk coker(Φ : R_ω ⊗ P → ∏_ω Q[F_i] ⊗ P) = rk ∏_ω H_2(N_i)`, and
+    `∏_ω H_2(N_i) ∩ im Φ = 0`. The covers' `H_2` meets the image of every finitely generated
+    `M ≤ P` in dimension `o([K:N_i])`.
+  - *Brief's question.* `b_2^{(2)} = 0` is unconditional. `χ = b_2^{(2)}` holds iff `χ = 0`, so
+    forcing `b_2^{(2)} = 0` decides nothing.
+  - *Next step.* Prove `rk coker Φ = 0` at the finite level, from structure of the covers that
+    is not induced from `Q[K]`: `H_2(N_i)` swallowed by finitely many relators up to `δ[K:N_i]`.
