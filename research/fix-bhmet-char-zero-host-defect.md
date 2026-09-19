@@ -10,6 +10,8 @@ Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a c
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean` failed to build in bh-pal-wire's direct batch probe b1789834028 (09-19, base a39af618f3, empty overlay; log work/bh-pal-wire/shared/probe-b1789834028-1.log in the swarm workspace; 7 error lines). It became reachable only once bh-pal-wire's wave-2 repairs went green. Its imports built green in that probe, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
+**Repair landed, unprobed.** 2dd8b94c03: BH metabelian: static repairs for the 8 NEW-RED modules of probe b1789834028, with fix nod. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
@@ -22,7 +24,6 @@ error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:147:7:
 
 **Kind.** mechanical (noncomputable) plus elaboration order.
 
-**Repair landed, unprobed.** fix-bh-b wraps the namespace body in `noncomputable section` … `end`. The right-hand `Pi.single` terms in natVec_single are ascribed `(Pi.single j 1 : Fin n → MvPolynomial (Fin k) A) j`. Both sides of `hW` in sigma_Zv get the ascription `(… : Fin n → MvPolynomial (Fin k) A)` before they are applied to `j`. The unsolved `case e_a` at 140 is the tail of sigma_Zv that did not run once `hW` failed.
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Defect` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 
