@@ -124,3 +124,7 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
     of `wopt.py` with `k = 3` (not landed) give upper bounds, not proofs. `K_4` plus a pendant,
     `{0, 1, 2, 3, 6}`, reaches density `1.4015`. `{0, 1, 2, 3, 4, 7}` reaches `1.4405`. The largest
     need among the `k = 3` exceptions is `9 sqrt3/11 = 1.4171`, at `n = 11`.
+- 2026-09-19 (w11-078): `hermitian-edge-trace-norm-web-rank-k5-n22-n29` closes `k = 5`,
+  `n = 22, 29` by the sharper certificate `c(H, w) >= 6.2829` for the window `{0, 1, 2, 3, 4, 9}`.
+  A 20-minute `fastbbw.py` pilot of `K_6` plus a pendant, weighted `(2/3 x5, 1, 1/8)`, at target
+  `6.865` covered only `1.3e-5` of the phase volume, so that window is out of reach for this solver.

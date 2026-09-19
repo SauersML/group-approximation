@@ -1,0 +1,37 @@
+weights 3/4,3/4,3/4,3/4,1,1/5 per-edge T {(0, 4): 2.1274, (1, 4): 2.1274, (2, 4): 2.1274, (3, 4): 2.1274, (4, 5): 3.6704, (0, 1): 2.2737, (0, 2): 2.2737, (0, 3): 2.2737, (1, 2): 2.2737, (1, 3): 2.2737, (2, 3): 2.2737}
+solves 2000 closed 914 (parent 66 sign 50 sdp 798) stack 18 minfc 6.344224 vol 1.237e-02 t 186
+solves 3000 closed 1406 (parent 105 sign 69 sdp 1232) stack 19 minfc 6.344224 vol 1.965e-02 t 281
+solves 4000 closed 1874 (parent 116 sign 91 sdp 1667) stack 19 minfc 6.344224 vol 4.739e-02 t 368
+solves 5000 closed 2345 (parent 132 sign 104 sdp 2109) stack 13 minfc 6.340030 vol 4.785e-02 t 423
+solves 6000 closed 2780 (parent 157 sign 112 sdp 2511) stack 15 minfc 6.340030 vol 5.046e-02 t 478
+solves 7000 closed 3268 (parent 179 sign 131 sdp 2958) stack 16 minfc 6.340030 vol 5.922e-02 t 517
+solves 11000 closed 5347 (parent 309 sign 276 sdp 4762) stack 7 minfc 6.340030 vol 1.826e-01 t 671
+solves 12000 closed 5826 (parent 348 sign 308 sdp 5170) stack 15 minfc 6.340030 vol 1.883e-01 t 709
+solves 13000 closed 6309 (parent 379 sign 328 sdp 5602) stack 17 minfc 6.340030 vol 1.993e-01 t 750
+solves 15000 closed 7206 (parent 427 sign 351 sdp 6428) stack 11 minfc 6.340030 vol 2.025e-01 t 840
+solves 17000 closed 8187 (parent 474 sign 402 sdp 7311) stack 12 minfc 6.340030 vol 2.368e-01 t 932
+solves 18000 closed 8671 (parent 527 sign 442 sdp 7702) stack 12 minfc 6.340030 vol 2.461e-01 t 984
+solves 19000 closed 9098 (parent 557 sign 458 sdp 8083) stack 9 minfc 6.340030 vol 2.497e-01 t 1036
+weights 3/4,3/4,3/4,3/4,1,1/5 per-edge T {(0, 4): 2.1274, (1, 4): 2.1274, (2, 4): 2.1274, (3, 4): 2.1274, (4, 5): 3.6704, (0, 1): 2.2737, (0, 2): 2.2737, (0, 3): 2.2737, (1, 2): 2.2737, (1, 3): 2.2737, (2, 3): 2.2737}
+resumed 13 boxes on stack
+solves 23000 closed 11166 (parent 596 sign 591 sdp 9979) stack 7 minfc 6.340030 vol 4.170e-01 t 1238
+solves 26000 closed 12717 (parent 639 sign 673 sdp 11405) stack 6 minfc 6.340030 vol 4.994e-01 t 1387
+solves 27000 closed 13238 (parent 648 sign 709 sdp 11881) stack 13 minfc 6.340030 vol 5.514e-01 t 1435
+solves 28000 closed 13769 (parent 658 sign 747 sdp 12364) stack 9 minfc 6.340030 vol 6.050e-01 t 1486
+solves 31000 closed 15322 (parent 697 sign 839 sdp 13786) stack 9 minfc 6.340030 vol 7.092e-01 t 1653
+solves 32000 closed 15836 (parent 706 sign 868 sdp 14262) stack 10 minfc 6.340030 vol 7.351e-01 t 1718
+solves 33000 closed 16296 (parent 717 sign 887 sdp 14692) stack 19 minfc 6.340030 vol 7.503e-01 t 1776
+solves 34000 closed 16754 (parent 736 sign 904 sdp 15114) stack 19 minfc 6.340030 vol 7.534e-01 t 1833
+solves 35000 closed 17236 (parent 782 sign 931 sdp 15523) stack 14 minfc 6.340030 vol 7.626e-01 t 1888
+solves 36000 closed 17737 (parent 820 sign 953 sdp 15964) stack 8 minfc 6.340030 vol 7.798e-01 t 1940
+solves 37000 closed 18228 (parent 836 sign 983 sdp 16409) stack 16 minfc 6.340030 vol 7.973e-01 t 1999
+solves 38000 closed 18658 (parent 851 sign 997 sdp 16810) stack 12 minfc 6.340030 vol 8.000e-01 t 2062
+solves 39000 closed 19096 (parent 868 sign 1011 sdp 17217) stack 9 minfc 6.340030 vol 8.025e-01 t 2127
+solves 40000 closed 19584 (parent 910 sign 1036 sdp 17638) stack 9 minfc 6.340030 vol 8.121e-01 t 2193
+weights 3/4,3/4,3/4,3/4,1,1/5 per-edge T {(0, 4): 2.1274, (1, 4): 2.1274, (2, 4): 2.1274, (3, 4): 2.1274, (4, 5): 3.6704, (0, 1): 2.2737, (0, 2): 2.2737, (0, 3): 2.2737, (1, 2): 2.2737, (1, 3): 2.2737, (2, 3): 2.2737}
+resumed 8 boxes on stack
+solves 46000 closed 22544 (parent 1077 sign 1243 sdp 20224) stack 9 minfc 6.340030 vol 9.517e-01 t 2594
+solves 48000 closed 23516 (parent 1110 sign 1286 sdp 21120) stack 4 minfc 6.340030 vol 9.833e-01 t 2723
+solves 50000 closed 24506 (parent 1192 sign 1332 sdp 21982) stack 8 minfc 6.340030 vol 9.966e-01 t 2860
+solves 51000 closed 24947 (parent 1206 sign 1341 sdp 22400) stack 4 minfc 6.340030 vol 9.997e-01 t 2926
+W14/1.2.3.4:0,1,2,3,4,8 edges 11 tree 5 (root 4) free phases 6 first (0, 1) SYM 0.1<0.2,0.3,1.2,1.3,2.3;0.2<0.3,1.2,1.3 TARGET 6.2829000 weights 3/4,3/4,3/4,3/4,1,1/5 max T 3.670 first phase in [0.000000,1.570796]: ALL CLOSED  boxes 25085 (dropped by symmetry 4364; parent Z 1208, centre sign 1347, robust SDP 22530)  solves 51296  min centre value 6.340030 at [0.3927, 0.4909, 5.3996, 5.3014, 5.9887, 6.0868]  smallest half-width 9.82e-02  time 2945s
