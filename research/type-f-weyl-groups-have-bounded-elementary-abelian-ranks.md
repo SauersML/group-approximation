@@ -186,3 +186,14 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   general three-tree lattices, the lamp preimage is free, acting freely on
   the third tree, and `H ∩ Σ` must be infinitely generated free. Open:
   hosts whose hyperbolic factors are all non-linear on `H`.
+- 2026-09-19 (w19-117, obstruction): proposed-established
+  `lamplighter-cut-outs-act-freely-on-the-third-tree`. In a three-tree
+  cut-out of `A ≀ Z`, a `T_a`-elliptic element normalizing `N = H ∩ Σ` has
+  finite conjugation orbits on `N` (discreteness), which forces
+  `C_L(γ) ≠ 1`. So `H` acts freely on the uncut tree `T_a` and is a
+  finitely generated free Schottky group, and `N` is infinitely generated
+  for every infinite `P`. Discrete cut-out projections (so all reducible
+  hosts) are killed, and so is any host where `H` normalizes a
+  finite-index subgroup of `Σ`. Open: find a Schottky pair in a
+  non-arithmetic irreducible cocompact lattice, or show its flat fixators
+  are trivial. This is a finite-state question for cube-complex lattices.
