@@ -151,3 +151,25 @@ as a named problem in the literature.
   - Separately, `sp21-finite-congruence-kernel-forbids-p-goodness` already records CSP => non-good. There
     is no cheap route to a negative answer through arithmetic lattices of hyperbolic type, since uniform
     lattices in `Sp(n,1)` are hyperbolic and CSP for them is itself open.
+
+- **Graph check of the inertness (2026-09-17, swarm-0917-w14-titz-pull, reframing). Dead as an approach
+  to `torsion-free-sofic-exact-mf-radical-over-z`; the node itself stays OPEN.**
+  - *Computation.* `experiments/goodness-goal-reachability-2026-09-17/route_reachability.py` runs a
+    breadth-first search on the route graph, with edges `requires -> route -> target`.
+  - *Output 1.* In the current graph this node does not reach the goal at all. Its only consumer is
+    `ghb7-degree-two-inflation-via-hyperbolic-goodness`. That route leads to
+    `ghb7-finite-index-z-extension-center-survives` and then to `ghb7-is-not-flexibly-hs-stable`, which is
+    the HS-stability cone, not the MF cone.
+  - *Output 2.* The rest of the hyperbolic cluster does reach the goal:
+    `hyperbolic-finite-residual-is-torsion-free`, `hyperbolic-groups-virtually-torsion-free` and (V2).
+    But every such path passes through the single route `titz-witzel-flat-hitting-via-soficity-and-2d-vtf`.
+    Deleting that route makes all of them UNREACHABLE.
+  - *Why that path is circular.* The route lists `titz-witzel-kernel-sofic` among its `requires`, as
+    hypothesis (S). Its target, the flat-hitting covers, is consumed on the goal side only by the three
+    routes whose target is `titz-witzel-kernel-sofic` (via flat-hitting covers, via connected-link covers,
+    and via branched hyperbolization). So hyperbolic-group input can at most yield the equivalence
+    "flat-hitting <=> kernel sofic" recorded in that route. It can never yield the soficity itself. This
+    matches the w13 fibre-cost result: the Titz--Witzel cone gets no progress from goodness, residual
+    finiteness or (V2) unless (S) is removed from `sofic-lattice-plus-hyperbolic-vtf-gives-flat-hitting-covers`.
+  - *Consequence for dispatch.* Any bounty from the MF goal on this node, or on the finite-residual and (V2)
+    nodes, comes from a cyclic path and should count as zero.
