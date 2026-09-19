@@ -11,3 +11,36 @@ seed=['O5', 'E5', 'E5'] tensor=[] load=None n=36 theta=0.3333333333333333pi star
  restart 0: delta=0.136066 rel=5.8e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=238
   adam p=8 delta=0.201836
   adam p=32 delta=0.195875
+  adam p=128 delta=0.205985
+  adam p=256 delta=0.150158
+  p=8 regressed (0.153); restored
+ restart 1: delta=0.150158 rel=6.5e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=111
+  adam p=8 delta=0.224293
+  adam p=32 delta=0.199047
+  adam p=128 delta=0.202971
+  adam p=256 delta=0.147163
+  p=8 regressed (0.153); restored
+ restart 2: delta=0.147163 rel=5.2e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=107
+  adam p=8 delta=0.212719
+  adam p=32 delta=0.207859
+  adam p=128 delta=0.212178
+  adam p=256 delta=0.163173
+  p=8 delta=0.155915 rel=7.7e-14
+  p=32 delta=0.146335 rel=6.5e-14
+  p=128 delta=0.143308 rel=7.4e-14
+  p=512 delta=0.142415 rel=5.1e-14
+  p=2048 delta=0.142153 rel=8.8e-14
+ restart 3: delta=0.142153 rel=8.8e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=165
+  adam p=8 delta=0.215498
+  adam p=32 delta=0.222672
+  adam p=128 delta=0.213993
+  adam p=256 delta=0.170000
+  p=8 regressed (0.172); restored
+ restart 4: delta=0.170000 rel=5.9e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=138
+  adam p=8 delta=0.204090
+  adam p=32 delta=0.206977
+  adam p=128 delta=0.208874
+  adam p=256 delta=0.162318
+  p=8 regressed (0.17); restored
+ restart 5: delta=0.162318 rel=6.7e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=78
+BEST n=36 delta=0.136066 profile 2sin(pi/36)=0.174311
