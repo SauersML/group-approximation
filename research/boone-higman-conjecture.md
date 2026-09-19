@@ -634,6 +634,26 @@ candidate on the Tits route needs a stable relator that is not a pure power: a r
 a weight-preserving section cycle that mixes state letters, or state letters with root
 permutations.
 
+**September 18: the retract criterion, and pure loops are never finitely presented.** See
+`pure-loop-self-replicating-groups-are-not-fp`.
+
+- A fully self-replicating `G` is finitely presented iff it is a retract of the stable
+  presentation `F/⟨⟨Q^∞⟩⟩`. The splitting is the section-at-`1^k` map `T_k`.
+- `G` is one-ended, so by Kurosh no free splitting of `F` into two factors of proper image
+  can carry `Q^∞`.
+- For unit-weight recursions whose weight-preserving section cycles are pure loops (a finite
+  screen), the stable relators are pure. So `Γ = Γ_st * Γ_rt`, and `G` is not finitely
+  presented.
+
+This gives a second proof for `R°`. It is new for the separated-loop host `R'`, which H_1
+had left open, and for the decorated-loop host `R_γ`, after a Nielsen move. Their simple
+Tits hosts are not finitely presented either.
+
+*Dead* for every pure-loop design. A finitely presented candidate needs stable relators
+that mix letters of different root image in every free basis. It would also be a finitely
+presented branch group, which is the open Bartholdi–Grigorchuk–Šunić question. So the
+Tits route is at least as hard as that question.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively
