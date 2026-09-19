@@ -109,3 +109,12 @@ word problems, and relator-contracting, element-expanding recursions.
   `W_d`: a separating family of finite quotients with composition factors of order `≤ d!`. It is not "bounded
   composition factors" of all finite quotients, which would exclude free groups (`F_2 ≤ Aut(T_2)`). Credit:
   bh-ref-t0, dda7d68b92.
+- **Two further precisions** (bh-ref-t0, 4c8bc0f94c).
+  - "`WP(Γ_S)` exponential over `WP(H_τ)`" is item 4(b) of the chart-coordinates node, a sketch, not a checked
+    theorem.
+  - Cantor-factor product certificates (`nV` type) have no singleton domains, so they cannot certify a seed full
+    group at all. They are not an escape. The only unexplored certificates are those that are neither nested nor
+    products of nested factors, and none is known.
+- **The channel that remains.** Finite recursion plus residual `W_d` gives **no** computable depth bound:
+  `finite-recursion-gives-no-computable-depth-bound`, via Bartholdi–Mitrofanov A″. So only finite presentation of
+  the structure groups could cap hardness via FH.

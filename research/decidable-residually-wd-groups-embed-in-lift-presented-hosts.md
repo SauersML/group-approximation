@@ -80,7 +80,7 @@ buy faithfulness only.
   - By `farley-hughes-certificates-have-prefix-chart-coordinates` (50a3370920; nested part refereed in
     dda7d68b92, product addendum a lane proof), every nested or product FH certificate caps seed orbits at
     `2^(O(n))`.
-  - Its word problem is exponential over the word problems of its structure groups `H_τ`.
+  - Its word problem is plausibly exponential over the word problems of its structure groups `H_τ`. That is item 4(b), a sketch the referee did not check in detail.
   - Those groups are residually `W_d` and carry a finite mutual recursion over a finite chart graph.
   - So a hard input still needs a hard, finitely presented, residually-`W_d` structure group, as this node's route
     assumes. The multi-type recursion is somewhat more permissive than a self-similar action of one group.
