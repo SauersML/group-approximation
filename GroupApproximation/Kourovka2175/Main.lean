@@ -103,12 +103,12 @@ theorem swap_mem_of_sep {Q Q' : Set ℕ} {H : Subgroup (Equiv.Perm ℤ)}
   have hAeq : place SA E = A := by
     ext
     · rw [place_r, hSAr, hEr, hSAm]
-      linear_combination Int.emod_add_ediv A.r (4 * K₁)
+      linear_combination Int.emod_add_ediv_mul A.r (4 * K₁)
     · rw [place_m, hEm, hSAm, hAm']
   have hBeq : place SB F = B := by
     ext
     · rw [place_r, hSBr, hFr, hSBm]
-      linear_combination Int.emod_add_ediv B.r (4 * L₁)
+      linear_combination Int.emod_add_ediv_mul B.r (4 * L₁)
     · rw [place_m, hFm, hSBm, hBm']
   -- residues mod `4`
   obtain ⟨x, hxA⟩ : ∃ x, x = A.r % 4 := ⟨_, rfl⟩
