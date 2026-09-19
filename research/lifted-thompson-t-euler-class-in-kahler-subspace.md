@@ -63,3 +63,25 @@ Hilbert space and 1-cocycles `b_1, b_2` into `π` such that
     `→ 0` would then need `M ⊗ M̄` (the conjugation action on Hilbert–Schmidt operators on Fock
     space) to have almost invariant vectors for `T`. That is the falsifiable next question on this
     lead.
+- **2026-09-19 (swarm-0917-w15-w15-nv-last1, operator-algebras): the smooth-model witness classes
+  die; the noncommutative pairing.**
+  - *Established.* `trace-class-conjugation-cocycles-have-exact-cup-products`.
+    - The invariant is the relative trace `N(g) = Re tr(F^* b_2(g))`.
+    - Every conjugation cocycle `U F U^* − F` with `F ∈ S_p` (`2 ≤ p ≤ ∞`, `S_∞ = B`) has exact
+      cup product with every `S_{p'}`-valued partner. So all pairs from the trace-class commutant
+      algebra `A_1(U)`, plus `S_2`, are killed.
+    - For any action of `T` by `C³` circle diffeomorphisms, the Hilbert-transform (Connes)
+      Fredholm-module cocycle is trace-class valued. The commutator kernel is `C¹` on the torus.
+    - The Navas–Liouville cocycle has `L¹(μ)` values.
+    - So both canonical sources of unitary cocycles for smooth circle groups are excluded as
+      (K)-witnesses. This includes the two natural unitary objects of the Ghys–Sergiescu model.
+  - *Where a witness could still live, among conjugation models.* It needs a potential whose
+    relative trace against the partner diverges: a Hilbert–Schmidt but not trace-class commutator
+    structure that no `(S_p, S_{p'})` pairing absorbs.
+  - *Not pursued.* The `M ⊗ M̄` question from the w13 spark is a separate route through the
+    twist cost, not a (K)-witness. The observation below is made informally, with no proof
+    written:
+    - the Weyl symbol identifies `M ⊗ M̄` with a Koopman representation of a nonsingular Gaussian
+      action of smooth `T`;
+    - so its Gaussian vectors are almost invariant iff `T` has almost fixed points in the
+      Hilbert–Schmidt Siegel disk.
