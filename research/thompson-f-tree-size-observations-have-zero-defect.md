@@ -31,6 +31,10 @@ artifacts:
   - experiments/thompson-f-size-observation-2026-09-17/mixed_search.out
   - experiments/thompson-f-size-observation-2026-09-17/mixed_search_m2d2_c4.out
   - experiments/thompson-f-size-observation-2026-09-17/mixed_search_m1d3_c5.out
+  - experiments/thompson-f-size-levels-2026-09-17/hierarchical_kill.py
+  - experiments/thompson-f-size-levels-2026-09-17/hierarchical_kill.out
+  - experiments/thompson-f-size-levels-2026-09-17/multilevel_lp.py
+  - experiments/thompson-f-size-levels-2026-09-17/colgen_lp.py
 ---
 
 **OPEN.** The boxed statement is proved for every Guba set of width `m + d <= 3`: Theorem 1 below,
@@ -264,4 +268,24 @@ single-level padding with two absorbing ends at width 4. It does **not** kill:
   - *Dead end recorded:* independent log-uniform scales per atom (the "independent levels" of
     `mixed_search.py`) die already at `(0, 3)`. The comb-and-dyadic search with at most 2 carets
     finds nothing at `(1, 3)`.
+- **2026-09-19, swarm-0917-w16-w16-f-follow.**
+  - *Found (new node `thompson-f-hierarchical-size-laws-die-at-width-four`, with proof route):* the
+    scouting item above, written out and extended. At **every** width `m + d >= 4` (including `(2,2)` and
+    `(3,1)`, which rested on numerics), no *hierarchical* law makes the laws of the middle piece sizes
+    agree. Hierarchical means finitely many levels with separated deterministic windows; levels, tight
+    weights and per-level scales may be random and arbitrarily dependent; ends and tail are free. Complete
+    tops are forced, not assumed (`P(T) >= 1 − D`). The proof has four steps. Domination at a common
+    position forces max-level equalities. Equal laws propagate coordinate equalities, and a Boolean
+    thresholding check (`hierarchical_kill.py`) collapses all middle leaves to one level. Then a
+    *ratio pair* (a shared node at one middle position, strict nesting at another) contradicts equal
+    laws of the scale-free ratio. Widths `>= 5` embed a width-4 base.
+  - *Sharp:* at width 3 every step goes through except the ratio pair, which does not exist; Theorem 1's
+    law lies in the class.
+  - *Consequence for this node:* a zero-defect law at width `>= 4` must have some middle size ratio that
+    is neither tight nor separated (overlapping scale windows). Theorem 1's mechanism cannot extend. The
+    node stays **OPEN**. Next step: decide overlapping-window laws at `(0,4)`, e.g. i.i.d. log-uniform
+    leaf sizes on a common range with absorbing ends, where the defect is a continuous optimisation over
+    the log-size law, or prove positive defect against them.
+  - *Numerics:* multi-level LP (`multilevel_lp.py`, `colgen_lp.py`) agrees. It is feasible at width 3 with
+    weights `{1,2}`, and at `(0,4)` with one level the exact minimum violation is `5.263`.
 
