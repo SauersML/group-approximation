@@ -1,0 +1,36 @@
+== Part 1: identities (i),(ii) exactly on random bin kernels ==
+rand N=2       ES=1.000000000000  max|lhs-rhs|=6.9e-17  |Dup|=0.0810<=dup=0.1619  |Ddn|=0.0810<=ddn=0.1619  VarS=0.5492>=-0.0984  delta=0.3238<=sqrtEa=0.3931  B=0.776886<=ceil(x)=0.945370  OK
+   scale_B cross-check |B - scale_B| = 2.2e-16
+rand N=3       ES=1.000000000000  max|lhs-rhs|=1.7e-16  |Dup|=0.0171<=dup=0.1195  |Ddn|=0.0294<=ddn=0.0968  VarS=0.3957>=0.0450  delta=0.2163<=sqrtEa=0.3355  B=0.822158<=ceil(x)=0.960197  OK
+   scale_B cross-check |B - scale_B| = 2.2e-16
+rand N=5       ES=1.000000000000  max|lhs-rhs|=4.2e-17  |Dup|=0.0023<=dup=0.1462  |Ddn|=0.0317<=ddn=0.1181  VarS=0.3773>=-0.0191  delta=0.2643<=sqrtEa=0.2961  B=0.872316<=ceil(x)=0.969009  OK
+   scale_B cross-check |B - scale_B| = 1.1e-16
+rand N=8       ES=1.000000000000  max|lhs-rhs|=8.3e-17  |Dup|=0.0328<=dup=0.3329  |Ddn|=0.0293<=ddn=0.2486  VarS=0.3527>=-0.4420  delta=0.5815<=sqrtEa=0.6339  B=0.622775<=ceil(x)=0.857911  OK
+   scale_B cross-check |B - scale_B| = 0.0e+00
+rand N=2       ES=1.000000000000  max|lhs-rhs|=1.7e-16  |Dup|=0.0216<=dup=0.0432  |Ddn|=0.0216<=ddn=0.0432  VarS=0.2757>=0.2181  delta=0.0864<=sqrtEa=0.2410  B=0.922736<=ceil(x)=0.978438  OK
+   scale_B cross-check |B - scale_B| = 1.1e-16
+rand N=3       ES=1.000000000000  max|lhs-rhs|=8.3e-17  |Dup|=0.0182<=dup=0.0577  |Ddn|=0.0243<=ddn=0.0516  VarS=0.3902>=0.1876  delta=0.1093<=sqrtEa=0.1364  B=0.914398<=ceil(x)=0.980428  OK
+   scale_B cross-check |B - scale_B| = 1.1e-16
+rand N=5       ES=1.000000000000  max|lhs-rhs|=1.7e-16  |Dup|=0.0250<=dup=0.4575  |Ddn|=0.1675<=ddn=0.2821  VarS=0.6341>=-0.6528  delta=0.7396<=sqrtEa=0.7595  B=0.467284<=ceil(x)=0.796040  OK
+   scale_B cross-check |B - scale_B| = 1.2e-13
+rand N=8       ES=1.000000000000  max|lhs-rhs|=1.4e-16  |Dup|=0.0059<=dup=0.1889  |Ddn|=0.0092<=ddn=0.2048  VarS=0.3158>=-0.1916  delta=0.3937<=sqrtEa=0.4737  B=0.790788<=ceil(x)=0.920669  OK
+   scale_B cross-check |B - scale_B| = 2.2e-16
+rand N=2       ES=1.000000000000  max|lhs-rhs|=5.6e-17  |Dup|=0.0119<=dup=0.0238  |Ddn|=0.0119<=ddn=0.0238  VarS=0.3016>=0.2699  delta=0.0476<=sqrtEa=0.0714  B=0.946426<=ceil(x)=0.977769  OK
+   scale_B cross-check |B - scale_B| = 2.2e-16
+rand N=3       ES=1.000000000000  max|lhs-rhs|=2.2e-16  |Dup|=0.0647<=dup=0.1854  |Ddn|=0.0641<=ddn=0.1980  VarS=0.5053>=-0.1777  delta=0.3833<=sqrtEa=0.5280  B=0.726268<=ceil(x)=0.901423  OK
+   scale_B cross-check |B - scale_B| = 1.6e-15
+rand N=5       ES=1.000000000000  max|lhs-rhs|=2.8e-17  |Dup|=0.0558<=dup=0.1997  |Ddn|=0.0317<=ddn=0.2241  VarS=0.4548>=-0.2318  delta=0.4239<=sqrtEa=0.4749  B=0.704075<=ceil(x)=0.920267  OK
+   scale_B cross-check |B - scale_B| = 1.1e-16
+rand N=8       ES=1.000000000000  max|lhs-rhs|=2.8e-17  |Dup|=0.0172<=dup=0.1239  |Ddn|=0.0026<=ddn=0.1419  VarS=0.3576>=-0.0212  delta=0.2659<=sqrtEa=0.2914  B=0.880418<=ceil(x)=0.969970  OK
+   scale_B cross-check |B - scale_B| = 4.4e-16
+product        ES=1.000000000000  max|lhs-rhs|=5.6e-17  |Dup|=0.0000<=dup=0.0000  |Ddn|=0.0000<=ddn=0.0000  VarS=0.3333>=0.3333  delta=0.0000<=sqrtEa=0.0000  B=0.942809<=ceil(x)=0.971405  OK
+   product: VarS=0.333333333333 (1/3), B=0.942809041582 (2sqrt2/3=0.942809041582)
+== Part 2: inequalities at L-BFGS optima of B (near-extremal kernels) ==
+opt N=4        ES=1.000000000000  max|lhs-rhs|=8.3e-17  |Dup|=0.0210<=dup=0.0356  |Ddn|=0.0210<=ddn=0.0356  VarS=0.2772>=0.2385  delta=0.0711<=sqrtEa=0.1012  B=0.951396<=ceil(x)=0.979358  OK
+opt N=8        ES=1.000000000000  max|lhs-rhs|=8.3e-17  |Dup|=0.0265<=dup=0.0422  |Ddn|=0.0265<=ddn=0.0422  VarS=0.2627>=0.2209  delta=0.0844<=sqrtEa=0.1120  B=0.953127<=ceil(x)=0.979780  OK
+opt N=16       ES=1.000000000000  max|lhs-rhs|=5.6e-17  |Dup|=0.0286<=dup=0.0447  |Ddn|=0.0286<=ddn=0.0447  VarS=0.2572>=0.2140  delta=0.0895<=sqrtEa=0.1158  B=0.953743<=ceil(x)=0.979911  OK
+== Part 3: closed-form ceiling and cell-certified dual ==
+closed form: x*=0.161760  ceiling=0.98065576  grid max=0.98065576  (x>1/4 branch <= 0.977903)  R<=0.990328
+dual (TV allowed):   lambda0=0.5908 lambda=0.1300  certified B <= 0.977125   R <= 0.988563
+lambda=0 only (Jensen, B<=1): 1.000002
+ALL CHECKS OK

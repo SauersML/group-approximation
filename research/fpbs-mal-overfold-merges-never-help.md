@@ -102,6 +102,31 @@ artifacts:
   - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j2_i1_n5.txt
   - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i1_n3.txt
   - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i2_n3.txt
+  - research/artifacts/fpbs-overfold-cascade-2026-09-19.md
+  - experiments/fpbs-overfold-cascade-2026-09-17/export_model.py
+  - experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/cascade.c
+  - experiments/fpbs-overfold-cascade-2026-09-17/run_all.sh
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n20000_j1_law.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n20000_j1_over.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n20000_j1_all.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n5000_j2_law.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n5000_j2_over.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n5000_j2_all.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/greedy_n1000_j1_all.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/greedy_n1000_j1_law.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/oloc.py
+  - experiments/fpbs-overfold-cascade-2026-09-17/oloc_results.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/oloc_mixed_results.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/oloc_small_results.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/ostep.py
+  - experiments/fpbs-overfold-cascade-2026-09-17/ostep_results.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/rand_n20000_j1_lev0.txt
+  - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc.sh
+  - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_mixed.sh
+  - experiments/fpbs-overfold-cascade-2026-09-17/run_oloc_small.sh
+  - experiments/fpbs-overfold-cascade-2026-09-17/run_ostep.sh
 ---
 
 **OPEN.** Notation is as in
@@ -446,3 +471,37 @@ such as rank 2 and the single lawful component above.
   - **Where it dies.** No sharing mechanism is observed. A minimal
     counterexample must use a level-0 seed in every minimal witness, so a
     future hunt can be restricted to those.
+- **2026-09-19, swarm-0917-w17-w17-fp-follow (compute scout,
+  probability-random): OPEN; large-n evidence on the witness towers; new
+  inductive decomposition (O-rel)/(O-step).** Details are in
+  `research/artifacts/fpbs-overfold-cascade-2026-09-19.md`, with scripts in
+  `experiments/fpbs-overfold-cascade-2026-09-17/`.
+  - **No overfold cascade on random lifts.**
+    - Random-order promotion on 2-permutation levels:
+      - `j = 1`, `n = 20000`: lawful seeds `0.157 n`, overfold `0.533 n`,
+        all types `0.51 n`;
+      - `j = 2`, `n = 5000`: lawful `0.157 n`, overfold `1.26 n`.
+    - Greedy search over all types (`j = 1`, `n = 1000`, 300 candidates per
+      step) chose 0 overfold seeds, finishing at `0.112 n` against
+      `0.114 n` lawful-only.
+    - This is evidence only; random order and greedy are not the minimum.
+  - **Decomposition.** Let `ℓ(P)` be the least number of lawful seeds whose
+    closure contains `cl(P) ∩ ker m`.
+    - (O-rel): `ℓ(P) ≤ |P|` for every finite seed set `P`.
+    - (O-step): every nonempty `P` has some `s` with
+      `ℓ(P) ≤ ℓ(P − s) + 1`.
+    - (O-step) ⇒ (O-rel) ⇒ (O). The weak forms with a constant `C` give
+      `deep ≥ law / C`, which is what step 5 of the route needs.
+    - (O-rel) is (F) of the free-fold entry, extended from realizable hits
+      to all seed sets. That extension is what lets induction on `|P|`
+      pass through non-hit intermediate families.
+  - **Checks (0 violations).**
+    - 56,200 clustered or whole-level seed sets, pure and mixed, `j = 1, 2`;
+      20,832 of them have a nontrivial lawful part.
+    - All of these satisfy the certified bound `ℓ ≤ |P| − 1`. Strictness
+      is proved for one overfold seed on tree-like levels, via Lemma A.
+    - 9,600 one-step tests: the jump `ℓ(P) − max_s ℓ(P − s)` is always 0
+      or 1. These values are upper bounds, so this part is heuristic.
+  - **Where it stands.** No proof of (O-step). A single `P` with
+    `ℓ(P) > |P|` on any finite `Q` would kill this decomposition, though
+    not (O) itself.
