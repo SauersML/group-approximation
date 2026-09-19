@@ -75,5 +75,7 @@ There, contraction of plain sections says nothing: the return section of a trans
 `3^n`. Its orbit coding is the Chinese-remainder conversion, which moves large primes in periods. That is exactly
 the loophole of the automaton-group invariant.
 
-For `GL_n(Q)` hosts, a divisible element of a self-similar group must be an odometer whose orbit coding mixes
-several radices. Single-radix odometers are dead (finite-state coding). Periodic elements are dead (nucleus).
+For `GL_n(Q)` hosts, a divisible element of a self-similar group must be odometer-like with an infinite-state
+orbit coding, which is what a coding that mixes radices, as the CRT example does, provides. Elements with a
+finite-state orbit coding are dead (period invariant), and in contracting groups elements with a good periodic
+point are dead (nucleus).
