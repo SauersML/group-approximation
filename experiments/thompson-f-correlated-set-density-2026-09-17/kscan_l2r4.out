@@ -1,0 +1,5 @@
+k=10 H=1 J=1 l=2 r=4 classes=3  R=0.292365  BB=3.415271 (4-2R=3.415271)  best=3.415863  kept mass=0.0000
+k=20 H=1 J=1 l=2 r=4 classes=3  R=0.265229  BB=3.469542 (4-2R=3.469542)  best=3.470160  kept mass=0.0000
+k=30 H=1 J=1 l=2 r=4 classes=3  R=0.257820  BB=3.484361 (4-2R=3.484361)  best=3.484964  kept mass=0.0000
+k=50 H=1 J=1 l=2 r=4 classes=3  R=0.253195  BB=3.493610 (4-2R=3.493610)  best=3.494202  kept mass=0.0000
+k=80 H=1 J=1 l=2 r=4 classes=3  R=0.251347  BB=3.497307 (4-2R=3.497307)  best=3.497893  kept mass=0.0000

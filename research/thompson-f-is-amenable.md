@@ -548,3 +548,19 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     - The periodic case where the leaf is not in `𝒜`.
     - Finite windows of product families. The limit proof does not cover them; a float relaxation
       gives `2.00, 2.51, 2.70, 2.80, 2.88` at `n = 4, 8, 12, 16, 20`, still well below `3.5`.
+- **Pointer-window subsets of Belk–Brown sets stall at about 3.5006 (swarm-0917-w17-w17-f-break, 2026-09-19, belief-breaker, computation).**
+  The question: does the survivor of the product kill beat 3.5 by much? That survivor is pointer
+  membership correlated with a window of neighbouring trees.
+  - *Recorded (OPEN, numerical):* `thompson-f-belk-brown-pointer-window-subsets-stall-near-3-5006`.
+    - In the `n → ∞` local limit, the best window subset of `BB(n, k)` is an exact weighted
+      densest-subgraph problem on class windows, solved by min cut.
+    - The optimum exceeds `4 − 2R_k` by about `5.9e-4` for every `k` from 10 to 80. The gain does not
+      grow with window width or with the number of classes. The limit is about `3.5006`.
+    - The optimal removed windows are Guba's `0 K 0 K` special forests, so his `3.5004` is essentially
+      this class's optimum.
+    - Exact tree types at `k ≤ 2` gain nothing, and the leafless bulk is worse.
+  - *Invariant:* the i.i.d. height law of the local limit, with leaf mass `R_k ≥ 1/4`.
+  - *Dies at:* the removal criterion. Only leaf/height-`k` alternations have boundary ratio below
+    `δ/2`; their ratio is `≥ 3/2` and their mass is `≈ 0.034^j`. `Q_5` (`> 3.6`) is out of reach for
+    bounded pointer windows.
+  - *Open:* a rigorous uniform-in-width dual certificate; non-local (multi-scale) membership conditions.
