@@ -27677,6 +27677,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-19 · fpbs-mal-overfold-merges-never-help [OPEN] On every finite F(a,b)-set, merges of the folded L_{j+1}-graph outside the kernel of its map onto the folded L_j-graph never lower the least number of merges that collapse that kernel, so deep_j(Q) = law_j(Q) = r(Q^(j))
 - 2026-09-19 · entanglement-sound-soundness-cannot-prove-ugc [OPEN] No soundness analysis that also bounds entangled or commuting-operator strategies can prove UGC, and neither can a composition whose inner decoder handles entangled strategies
 - 2026-09-19 · entanglement-certified-ug-soundness-puts-source-in-p-krt [COMPLETE] Threshold the Kempe--Regev--Toner estimate of the entangled deficit, and compose
 - 2026-09-19 · entanglement-certified-ug-soundness-puts-source-in-p [ESTABLISHED] A polynomial-time complete reduction to unique games whose soundness bounds all entangled (or commuting-operator) strategies puts its source in P, so under P != NP every UG-hardness reduction, composed or not, has infinitely many NO outputs of entangled value at least 1 - 6 eps; entanglement-sound outer layers are left uncovered
@@ -27684,7 +27685,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-19 · leavitt-cone-head-bound-holds-for-semisimple-ring-shadows [ESTABLISHED] The cone-cover head bound (QC) holds with a linear constant for every representation of Gamma that factors through St_20 of a finite semisimple ring shadow
 - 2026-09-19 · agent-leavitt-not-bcs-negative-root-corner [OPEN] Put the fixed non-CE BCS in the negative corner of the binary-Leavitt marked root
 - 2026-09-19 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
-- 2026-09-19 · deligne-third-floor-failure-is-continuous-untwisting-proof [COMPLETE] Take the ultralimit of the phase profiles of a counterexample sequence, read the flat holonomy on the limit as a continuous untwisting, and push every candidate limit back to an exact finite model or into the Bernoulli-profinite obstruction
 
 ## Active claims
 

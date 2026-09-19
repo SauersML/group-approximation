@@ -1,0 +1,36 @@
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 1 lawful 1 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 1000)]
+worst ell-|P|, rank N, P: (-1, 7, [(188573, 188574), (188568, 188572)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 1 lawful 1 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 1000)]
+worst ell-|P|, rank N, P: (-1, 7, [(599977, 599980), (599976, 599980)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 lawful 1 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 180), (-2, 820)]
+worst ell-|P|, rank N, P: (-1, 14, [(189058, 189062), (189058, 189059), (189056, 189060)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 lawful 1 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 58), (-2, 942)]
+worst ell-|P|, rank N, P: (-1, 14, [(140403, 140407), (140402, 140403), (140400, 140404)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 3 lawful 1 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 58), (-2, 458), (-3, 484)]
+worst ell-|P|, rank N, P: (-1, 21, [(302514, 302518), (302514, 302515), (302515, 302519), (302512, 302516)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 3 lawful 1 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 3), (-2, 163), (-3, 834)]
+worst ell-|P|, rank N, P: (-1, 21, [(465405, 465406), (465400, 465401), (465401, 465405), (739080, 739084)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 lawful 2 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-2, 165), (-3, 835)]
+worst ell-|P|, rank N, P: (-2, 14, [(284602, 284606), (284602, 284603), (284600, 284604), (284600, 284604)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j1.txt n 100000 k 2 lawful 2 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 43), (-2, 780), (-3, 177)]
+worst ell-|P|, rank N, P: (-1, 21, [(578074, 578078), (578074, 578075), (486376, 486380), (409000, 409004)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 1 lawful 1 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 1000)]
+worst ell-|P|, rank N, P: (-1, 16, [(346267, 346271), (346260, 346271)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 1 lawful 1 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 1000)]
+worst ell-|P|, rank N, P: (-1, 16, [(1593205, 1593215), (1593200, 1593211)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 2 lawful 1 radius 0 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 28), (-2, 972)]
+worst ell-|P|, rank N, P: (-1, 32, [(560702, 560706), (560702, 560717), (560700, 560711)])
+# model /home/user/group-approximation/.claude/worktrees/wf_a44c68f7-2a6-72/experiments/fpbs-overfold-cascade-2026-09-17/model_j2.txt n 100000 k 2 lawful 1 radius 1 trials 1000
+hist ell-|P| (empty = no lawful part): [(-1, 2), (-2, 998)]
+worst ell-|P|, rank N, P: (-1, 32, [(1789581, 1789595), (1542200, 1542218), (1977700, 1977711)])
