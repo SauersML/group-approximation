@@ -1097,3 +1097,21 @@ The hole itself is not closed here.
    A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
    Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
    `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
+
+**2026-09-19 (swarm-0917 w15, belief breaker, host-geometry): the mark lives in Thompson V.**
+
+1. **Established.** `leavitt-mark-is-conjugate-into-thompson-v`: under `Delta = GL_20(R) = R^x`, an explicit
+   unit `u` conjugates `z` to the cylinder swap `v = s_00t_01 + s_01t_00 + s_1t_1` of `V`. The proof is Kazhdan-free:
+   Leavitt relations in characteristic two plus `(KH2)`. The identity was checked exactly by
+   `experiments/leavitt-mark-thompson-conjugacy-2026-09-17/check_conjugacy.py`. Characteristic two is essential,
+   because `v = 1 + e'f'` with `f'e' = 1+1 = 0`.
+2. **New decomposition.** `property-t-free-leavitt-via-thompson-v` has the single hole `thompson-v-has-full-mf-radical`,
+   which says that `V` is not MF. That hole is about a Haagerup group, so (T) cannot occur in any proof of it. On this
+   route the (T)-freeness the goal requires is structural, not a matter of bookkeeping. w15-ptl-last1 posted the same
+   hole in parallel as `thompson-v-is-not-mf`. Its closing step differs: simplicity plus the Steinberg lift, where this
+   route uses conjugacy. The two ids should be merged on landing.
+3. **Link to the V hub.** `thompson-v-full-mf-radical-from-nonhyperlinearity` gives `thompson-v-not-hyperlinear`
+   implies `thompson-v-has-full-mf-radical`. The argument is torsion criterion, then scalar kernel trivial by
+   simplicity, then Diracization. So every incoming route of that hub now also serves this goal.
+4. **Limits.** The route is one-directional. An MF `V` kills only this route and the T-free arguments that use
+   relations of `V` alone. The goal stays OPEN.
