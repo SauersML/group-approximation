@@ -29,7 +29,7 @@ namespace Metabelian
 namespace Absorption
 
 /-- The ideal of the entries of row `r` of `M` outside column `t`. -/
-def suslinR1Int_rowIdeal {A : Type*} [CommRing A] {N : ℕ}
+noncomputable def suslinR1Int_rowIdeal {A : Type*} [CommRing A] {N : ℕ}
     (M : Matrix.GeneralLinearGroup (Fin N) (Polynomial A)) (r t : Fin N) :
     Ideal (Polynomial A) :=
   Ideal.span (Set.range fun j : {j : Fin N // j ≠ t} ↦

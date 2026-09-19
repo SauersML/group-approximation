@@ -7,10 +7,9 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.SuslinKillLift: no `IsPrin
 
 Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a claim with no prerequisites, not as a route, because the checker would read a route with no prerequisites as a complete proof.
 
-**OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinKillLift.lean` failed to build in bh-pal-wire's direct batch probe b1789834028 (09-19, base a39af618f3, empty overlay; log work/bh-pal-wire/shared/probe-b1789834028-1.log in the swarm workspace; 2 error lines). It became reachable only once bh-pal-wire's wave-2 repairs went green. Its imports built green in that probe, so this is a leaf: its errors are its own.
+**RESOLVED (296aff5838, trusted batched probe job direct-b1789837230).** Previously OPEN. Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinKillLift.lean` failed to build in bh-pal-wire's direct batch probe b1789834028 (09-19, base a39af618f3, empty overlay; log work/bh-pal-wire/shared/probe-b1789834028-1.log in the swarm workspace; 2 error lines). It became reachable only once bh-pal-wire's wave-2 repairs went green. Its imports built green in that probe, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
-**Repair landed, unprobed.** 2dd8b94c03: BH metabelian: static repairs for the 8 NEW-RED modules of probe b1789834028, with fix nod. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
