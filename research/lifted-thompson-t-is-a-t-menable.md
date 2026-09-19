@@ -302,3 +302,31 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
   - *Correction.* `T̄ ⊇ Z[1/2]`, so by Higman (verbatim in
     `hall-quotient-avoids-v-circle-groups-and-periodic-ends`) `T̄` is not a subgroup of `V` at
     all. The frontmatter wording is updated to match.
+- 2026-09-19 (swarm-0917-w15-w15-nv-break, stability-approximation): the order-type
+  configuration class dies. Status stays OPEN.
+  - *Class-kill (established).* `lifted-thompson-t-order-type-kernels-bounded-on-centre`, proved
+    by `lifted-thompson-t-order-type-kernels-riesz-smear-proof`.
+    - (O1) Every cnd function on `T̄` that is bi-invariant under `Stab(0) ≅ F` is bounded on all
+      of `T̄`.
+    - (O2) Every cnd function bi-invariant under the pointwise stabilizer `H_Y` of a finite
+      periodic dyadic configuration `Y` of depth `d` has `sup_n ψ(z^n) <= 4ψ(r_{d+1})`.
+    - Named invariant: order type is `Homeo~+(S^1)`-invariant, so it is unchanged by real
+      translations.
+    - Death step: smearing along translations gives a step-function cnd on `R`. By
+      Riesz–Crum, `e^{-sφ}` is a.e. continuous, so the winding steps `floor(y − x)` vanish.
+  - *Killed.*
+    - The unit-interval metric `ceil|x − y|` (already not of negative type at 2 generic points per unit on `[0, 6)`).
+    - Every function of `floor|x − y|`.
+    - All walls, convex or not, spanned by configuration points. This subsumes the w9
+      order-convex kill on its point-kernel part.
+    - Schreier-graph and separating-point kernels on `T̄/H_Y`.
+    - Sums of any of these at bounded depth.
+  - *Quantitative test for the residual route (O3).* A sum `Σ ψ_i` of configuration kernels, for
+    example `Σ a_k ψ_k∘ι_k` with `ψ_k` order-type on `T`, is proper on `⟨z⟩` only if
+    `Σ_i ψ_i(r_{d_i+1}) = ∞`. So the depths must be unbounded, and the mass must escape to depth.
+  - *Calibration.* `experiments/tbar-order-type-kernels-2026-09-17/check.py`. A 5% jump at
+    distance 1 first fails at density 64 per unit length. This matches `N ≈ 1/(0.43 ε)`, and it
+    explains why sparse tests look fine.
+  - *Forced shape.* A survivor reads non-order-type data: slopes or caret structure (Farley-type
+    parametrized intervals, whose pair orbits are not `Homeo~`-traces), measure-class data, or
+    a depth-escaping infinite sum.
