@@ -312,3 +312,31 @@ a cycle of equations through the window.
   decoder can test are non-decodable (for example PCP images with spanning
   equation vectors), `gamma > 0.105`, `gamma' < 2^(2-l)`, and hypotheses that
   use the selector's behaviour across inputs.
+* **Every per-input witness hypothesis collapses to its selector-free form
+  (2026-09-19, swarm-0917-w16-w16-ugc-pull, finite-models).** **Class killed
+  and decomposed** in
+  `selector-witness-hypotheses-collapse-to-selector-free-form` (ESTABLISHED).
+  The results:
+  - **Theorem X.** For ANY predicate `Hyp(x, o)` and ANY class `P` of YES
+    inputs, "every constant-bias selector satisfies `Hyp` with probability
+    `>= theta` on `P`" is equivalent to "every good orientation on `P`
+    satisfies `Hyp`", or else to "no selector exists". The proof hardcodes a
+    single violator `(x_0, o_0)` into any selector.
+  - **Theorem A.** If `Hyp` is an NP relation (as Star-List^C is, Lemma NP),
+    the almost-every form implies the almost-every selector-free form or
+    `P != NP`. The patch is found by Sigma_2 self-reduction under P = NP.
+  - **Answer to need 8842dd02.** Testability or decodability of `P` is
+    irrelevant. What matters is only whether violators exist in `P`. One
+    J-instance in `P` kills the exact form, with no Gaussian elimination.
+  - **Decomposition.** The CLV kill of the constant-bias cell now rests on
+    exactly one selector-free prerequisite,
+    `good-dkkms-orientations-admit-short-star-lists-on-hard-inputs` (OPEN).
+    It asks for star-list decoding of every good orientation on an NP-hard
+    low-kernel-rank sub-promise (P2), together with the NP-hardness of that
+    sub-promise (P1).
+
+  **Where it dies:** the per-selector hypothesis, applied to the patched
+  selector.
+  **Still alive:** cross-input and global hypotheses, average-case
+  hypotheses (only in their exact form), and decoders that query `S` on
+  other inputs.
