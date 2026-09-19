@@ -1,0 +1,98 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+[job] acn112 cores=72-79 threads=8 base=88878e9e7b9e94f91f8988c4804b0a28892c6f0b mods: GroupApproximation.CharClass.LIXStepDGenSlice GroupApproximation.CharClass.LIXStepDGenSliceV GroupApproximation.CharClass.LIXStepDGenWuData
+ℹ [8730/8903] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8785/9060] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8815/9167] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8886/9281] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8890/9281] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9000/9291] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9001/9291] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9045/9291] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9060/9312] Replayed GroupApproximation.CharClass.LIXKGenSphere
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:342:14: 'GroupApproximation.CharClass.KGen.normSq_cxToEuc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:343:14: 'GroupApproximation.CharClass.KGen.cxToEuc_eucToCx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:344:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:345:14: 'GroupApproximation.CharClass.KGen.hbase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:346:14: 'GroupApproximation.CharClass.KGen.hbase_two_eq_hbase_lix' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9061/9312] Replayed GroupApproximation.CharClass.LIXKPunctured
+info: GroupApproximation/CharClass/LIXKPunctured.lean:168:14: 'GroupApproximation.CharClass.isZero_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKPunctured.lean:169:14: 'GroupApproximation.CharClass.isZero_punctured_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9120/9336] Replayed GroupApproximation.CharClass.LIXKGenPunctured
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:182:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:183:14: 'GroupApproximation.CharClass.KGen.puncturedVanish_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:184:14: 'GroupApproximation.CharClass.puncturedAcyclic_lixBase_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9180/9336] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9181/9336] Replayed GroupApproximation.CharClass.LIXKStepC
+info: GroupApproximation/CharClass/LIXKStepC.lean:134:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepC.lean:135:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_naturality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9198/9345] Replayed GroupApproximation.CharClass.LIXKStepCTwo
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:134:14: 'GroupApproximation.CharClass.eq_of_ne_zero_of_line_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:135:14: 'GroupApproximation.CharClass.localClassesAgree_of_ne_zero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:136:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9213/9349] Replayed GroupApproximation.CharClass.LIXKGenSphereChartHomeo
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:199:14: 'GroupApproximation.CharClass.KGen.chartQ_clamp_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:200:14: 'GroupApproximation.CharClass.KGen.one_sub_chartQ_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:201:14: 'GroupApproximation.CharClass.KGen.sphereChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9257/9358] Replayed GroupApproximation.CharClass.LIXKGenZeroChartHomeo
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:151:14: 'GroupApproximation.CharClass.KGen.isOpen_sphereNearZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:152:14: 'GroupApproximation.CharClass.KGen.psiSphere_zeroChartFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:153:14: 'GroupApproximation.CharClass.KGen.zeroChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9265/9358] Replayed GroupApproximation.CharClass.LIXKGenBaseChart
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:219:14: 'GroupApproximation.CharClass.KGen.lixKBaseChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:220:14: 'GroupApproximation.CharClass.KGen.lixKFullChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:221:14: 'GroupApproximation.CharClass.KGen.lixKNbhdHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9266/9358] Replayed GroupApproximation.CharClass.LIXKGenTopLine
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:85:14: 'GroupApproximation.CharClass.KGen.hasTopLine_circleTimesSphere' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:86:14: 'GroupApproximation.CharClass.KGen.absEquiv_lixN' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9356/9358] Built GroupApproximation.CharClass.LIXStepDGenSlice (21s)
+info: GroupApproximation/CharClass/LIXStepDGenSlice.lean:127:14: 'GroupApproximation.CharClass.Gen.pull_lixChern_lixSliceN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenSlice.lean:128:14: 'GroupApproximation.CharClass.Gen.mappingTorus_lixSliceN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenSlice.lean:129:14: 'GroupApproximation.CharClass.Gen.map_lixSliceN_lixChernOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9357/9358] Built GroupApproximation.CharClass.LIXStepDGenSliceV (18s)
+info: GroupApproximation/CharClass/LIXStepDGenSliceV.lean:87:14: 'GroupApproximation.CharClass.Gen.chernOf_lixSliceN_eq_vBundleY' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenSliceV.lean:88:14: 'GroupApproximation.CharClass.Gen.map_lixSliceN_lixChernOf_eq_sliceClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [9358/9358] Building GroupApproximation.CharClass.LIXStepDGenWuData (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/CharClass/LIXStepDGenWuData.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/CharClass/LIXStepDGenWuData.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/CharClass/LIXStepDGenWuData.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/CharClass/LIXStepDGenWuData.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/CharClass/LIXStepDGenWuData.setup.json --json
+error: GroupApproximation/CharClass/LIXStepDGenWuData.lean:110:23: elaboration function for `Mathlib.Tactic.subscriptTerm` has not been implemented
+  ᵥ
+info: GroupApproximation/CharClass/LIXStepDGenWuData.lean:126:14: 'GroupApproximation.CharClass.Gen.wuStepDData_lixN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenWuData.lean:127:14: 'GroupApproximation.CharClass.Gen.nonempty_wuStepDData_lixN' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXStepDGenWuData.lean:128:14: Unknown constant `Gen.lemmaTwoFor_powers_two_of_localData`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXStepDGenWuData
+error: build failed
+EXIT=1

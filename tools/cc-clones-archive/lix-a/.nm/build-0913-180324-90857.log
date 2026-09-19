@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3856 oleans
+[job] acn112 cores=80-87 threads=8 base=57af1cdd01ac6c363dcd0f6a55698e389f109720 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketSides
+ℹ [3308/3419] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4650/4650] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketSides (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:372:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.mem_sideFaces_iff_of_not_walkKeep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:374:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:376:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.faceOf_alpha_eq_or_of_alpha_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:377:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_walkKeep_of_alpha_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:379:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:381:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:382:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.nodup_append_four' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:383:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.alpha_mem_of_mem_invDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:385:2: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.alpha_mem_of_mem_invDarts_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:386:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.faceOf_of_mem_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:387:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.faceOf_of_mem_cellDarts_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:388:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.exists_edge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:389:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.not_mem_walk_of_mem_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:390:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.face_not_mem_sideFaces_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:391:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.face_not_mem_sideFaces_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:392:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.disjoint_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:393:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.not_mem_sideFaces_or' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4650 jobs).
+EXIT=0

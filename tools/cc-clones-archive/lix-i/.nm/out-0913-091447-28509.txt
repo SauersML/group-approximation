@@ -1,0 +1,27 @@
+[job] 09:14:51 acn112 waiting for clone lock
+[job] delta sync 7bb586a06..6dd68ce8d: 26 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 6dd68ce8d log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-091447-28509.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3185 oleans
+--- errors (first 80 lines)
+6:✖ [4133/4133] Building GroupApproximation.GGT.HullLemma35Expansion (10s)
+8:error: GroupApproximation/GGT/HullLemma35Expansion.lean:52:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.HullLemma35.expWord_nil`:
+14:error: GroupApproximation/GGT/HullLemma35Expansion.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.HullLemma35.expWord_cons`:
+27:error: Lean exited with code 1
+30:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.HullLemma35Expansion (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullLemma35FreeFactors.lean
+COMPILED GroupApproximation/GGT/HullLemma35LocalFinite.lean
+COMPILED GroupApproximation/GGT/HullLemma35Printed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Transitive.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+- GroupApproximation.GGT.HullLemma35Expansion
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

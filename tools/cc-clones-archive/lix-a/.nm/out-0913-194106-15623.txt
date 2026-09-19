@@ -1,0 +1,29 @@
+[job] 19:42:31 n3 waiting for clone lock
+[job] delta sync 7534c5729..fef444368: 2 files changed
+===== SUMMARY
+host n3 cores slurm base fef444368 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-194106-15623.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4019 oleans
+--- errors (first 80 lines)
+124:✖ [10099/10099] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder (236s)
+126:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:188:77: unsolved goals
+204:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:198:8: unexpected token 'Π'; expected command
+232:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:535:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_regions_of_mem_sideFaces_both' depends on axioms outside the classical allowlist: [sorryAx]
+233:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+235:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:536:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or' depends on axioms outside the classical allowlist: [sorryAx]
+236:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+238:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:538:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks' depends on axioms outside the classical allowlist: [sorryAx]
+239:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+241:error: Lean exited with code 1
+244:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CyclicArcComplement (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CyclicArcComplement.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,15 @@
+[job] 02:35:36 acn55 waiting for clone lock
+[job] delta sync 63eeb5e54..3e9636d74: 319 files changed
+===== SUMMARY
+host acn55 cores slurm base 3e9636d74 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-023335-5925.log
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 4799 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.SystolicDiscZipPinch
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/SystolicDiscZipPinch.lean
+info: GroupApproximation/GGT/SystolicDiscZipPinch.lean:230:14: 'GroupApproximation.Systolic.zipPinchStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4703 jobs).
+EXIT=0
+PROBE GREEN

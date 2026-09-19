@@ -1,0 +1,342 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2724 oleans
+[job] acn112 cores=80-87 threads=8 base=e745e3c8ce949076dd4effd85660714f2a1c13c8 mods: GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel GroupApproximation.Manuscript.NonMF.Audit.Sec4
+ℹ [3827/3909] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4342/4343] Built GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel (12s)
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:146:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.dU_mul_affUnit_mul_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:147:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedGammaBarAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:148:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDefinition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:149:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDoublesTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:150:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDRangeEvenTranslations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4343/4343] Built GroupApproximation.Manuscript.NonMF.Audit.Sec4 (22s)
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:59:14: 'GroupApproximation.Quasidiagonal.IsAmenableTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:60:14: 'GroupApproximation.Quasidiagonal.AmenableTraceModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:66:14: 'GroupApproximation.Quasidiagonal.IsQuasidiagonalTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:67:14: 'GroupApproximation.Quasidiagonal.QuasidiagonalTraceModel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:71:14: 'GroupApproximation.canonicalMaximalTrace_generator_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:72:14: 'GroupApproximation.canonicalMaximalTrace_generator_of_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:77:14: 'GroupApproximation.maximalGroupCStarGenerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:83:21: 'GroupApproximation.NinetyNineProblems.manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:84:14: 'GroupApproximation.NinetyNineProblems.canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:89:14: 'GroupApproximation.ShulmanTrace.MFTraceModel.coronaHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:94:14: 'GroupApproximation.ShulmanTrace.exists_injective_coronaUnitaryHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:99:14: 'GroupApproximation.ShulmanTrace.exists_injective_coronaUnitaryHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:100:14: 'GroupApproximation.FactorizationTraceSentences.manuscriptSentence_quasidiagonalGivesMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:105:14: 'GroupApproximation.FactorizationTraceSentences.manuscriptSentence_quasidiagonalModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:110:14: 'GroupApproximation.LocallyRFByIntAmenableTrace.IsLocallyResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:115:21: 'GroupApproximation.AmenableExtensionTrace.manuscriptPrintedAmenableExtensionTrace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:119:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_cocycleValues' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:125:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_compressionUCPAndTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:126:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_rankBoundGivesHS' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:131:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_cosetsDistinct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:132:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_compressionUCPAndTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:137:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_cocyclePacketSeparates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:141:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_compressionUCPAndTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:147:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_rankBoundGivesHS' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:152:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_traceIsFixedPointFraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:157:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_folnerLimitsExtend' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:163:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_stagePacketSeparates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:164:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_stageCompressionUCP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:165:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_stageTraceZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:166:14: 'GroupApproximation.AmenableExtensionSentences.manuscriptSentence_stageLimitsExtend' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:172:14: 'GroupApproximation.CliffordWitnessDirectDefect.PrintedCliffordWitnessNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:173:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:179:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_defectFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:180:14: 'GroupApproximation.CliffordWitnessDirectDefect.signSubgroup_le_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:184:14: 'GroupApproximation.MappingTelescope.Telescope' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:185:14: 'GroupApproximation.MarkedCompression.Vertical' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:189:14: 'GroupApproximation.MarkedCompression.Cosets' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:190:14: 'GroupApproximation.MarkedCompression.rootCoset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:195:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_cliffordLampPresentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:200:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_hnnExtension' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:206:14: 'GroupApproximation.CliffordLamp.crossing' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:210:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_signedModelGroupLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:215:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_toModelHomomorphism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:220:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_signedModelGroupLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:225:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_cliffordLampNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:230:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_cliffordLampNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:235:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_cliffordLampCountableLocallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:240:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_verticalActsOnLamp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:245:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_permutationAutomorphism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:250:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_cliffordLampKillSignCentralExtension' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:251:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_wCentralExtensionOfWreath' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:256:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:257:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptMapSignEqOneOfIsOperatorMFTarget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:261:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:266:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptMapSignEqOneOfIsOperatorMFTarget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:271:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_rootLampCentralizesFixesCoset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:276:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_signSubgroupCentralNormalFiniteHasT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:280:21: 'GroupApproximation.CliffordWitnessDirectDefect.manuscriptCliffordWitnessNotIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:286:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_defectFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:287:14: 'GroupApproximation.CliffordWitnessDirectDefect.pointDefect_mem_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:288:14: 'GroupApproximation.CliffordWitnessDirectDefect.stable_mem_compressionSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:289:14: 'GroupApproximation.CliffordWitnessDirectDefect.lamp_mem_centralizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:294:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_conjugatedLampsAtCosets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:298:14: 'GroupApproximation.CliffordWitnessDirectDefect.signSubgroup_le_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:303:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_movedCosetsDistinct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:304:14: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_distinctInvolutionsCommutatorSign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:309:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:310:21: 'GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptAmbientEquivShiftKernelForByInt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:311:21: 'GroupApproximation.CliffordWitnessLocallyRFByInt.manuscriptShiftKernelForIsLocallyResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:315:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:319:21: 'GroupApproximation.CliffordWitnessLocallyRFByInt.witnessGroupEquivShiftKernelByInt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:320:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_reassociation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:325:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_stabilizerAndOrbitFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:330:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_commensuration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:331:14: 'GroupApproximation.MappingTelescopeFiniteOrbits.t_conj_base_eq_compressed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:336:14: 'GroupApproximation.MappingTelescope.level' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:337:14: 'GroupApproximation.MappingTelescopeFiniteOrbits.verticalLevel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:342:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_finiteInvariantSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:347:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_finiteInvariantSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:352:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_finiteSubsetOneLevel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:357:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_finiteInvariantSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:362:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_locallyResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:363:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_fgSubgroupSofic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:368:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_semidirectResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:373:14: 'GroupApproximation.isSofic_of_every_finset_mem_sofic_subgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:374:14: 'GroupApproximation.isSofic_of_increasing_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:375:14: 'GroupApproximation.SoficByAmenablePermanence.manuscriptSoficOfSoficKerOfAmenableQuotient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:376:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_wSoficMechanism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:381:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_quotientAmenable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:386:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_traceConclusions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:391:14: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_notMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:397:21: 'GroupApproximation.CliffordWitnessHSRemark.manuscriptSentence_hsCollapseFails' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:398:21: 'GroupApproximation.CliffordWitnessHSRemark.manuscriptSentence_noSoficCompressionCriterion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:403:21: 'GroupApproximation.CliffordWitnessHSRemark.manuscriptSentence_soficPermutationModelsHS' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:404:14: 'GroupApproximation.CliffordWitnessHSRemark.tendsto_hsNorm_modelUnitary_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:405:14: 'GroupApproximation.CliffordWitnessHSRemark.tendsto_hsNorm_modelUnitary_sub_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:406:14: 'GroupApproximation.CliffordWitnessHSRemark.tendsto_movedFraction_of_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:410:14: 'GroupApproximation.ExplicitLinearModel.gammaBar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:411:14: 'GroupApproximation.AffineHNNBase.affUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:412:14: 'GroupApproximation.AffineHNNBase.affUnit_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:413:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.PrintedGammaBarAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:414:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedGammaBarAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:419:21: 'GroupApproximation.ExplicitIntegralLinearModel.gammaBar_residuallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:420:21: 'GroupApproximation.CommutingLampCollapse.gammaBar_hasKazhdanPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:424:14: 'GroupApproximation.ExplicitLinearModel.dU' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:425:14: 'GroupApproximation.ExplicitLinearModel.conjD' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:426:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.PrintedConjDDefinition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:427:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDefinition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:432:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptAffineCliffordConclusions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:433:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_theorem4Application' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:437:14: 'GroupApproximation.CliffordConstructionSentences.manuscriptSentence_alphaDoublesTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:438:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.PrintedConjDDoublesTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:439:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDoublesTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:444:21: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_concreteInstanceDoubling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:445:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptAffineCliffordHypotheses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:450:21: 'GroupApproximation.AmenableTraceSentencesB.manuscriptSentence_concreteInstanceDoubling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:451:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.PrintedConjDRangeEvenTranslations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:452:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDRangeEvenTranslations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean:457:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptSentence_theorem4Application' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4343 jobs).
+EXIT=0

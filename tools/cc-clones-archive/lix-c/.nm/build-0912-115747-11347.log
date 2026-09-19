@@ -1,0 +1,31 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 2341 oleans
+[job] acn112 cores=64-71 threads=8 base=21c8eb2a687af5af29b6e0db07d1a74e6877cb1e mods: GroupApproximation.CharClass.ThomLIXHclassOf
+ℹ [8761/8945] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8786/9099] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8795/9099] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8914/9218] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8921/9218] Replayed GroupApproximation.AlgTop.ComplexProjectiveBasic
+info: GroupApproximation/AlgTop/ComplexProjectiveBasic.lean:197:14: 'GroupApproximation.AlgTop.CPn.basePoint_entry_zero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8922/9218] Replayed GroupApproximation.AlgTop.CPTautologicalSection
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:397:14: 'GroupApproximation.AlgTop.CPn.dualTautSection_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:398:14: 'GroupApproximation.AlgTop.CPn.sectionChart_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:399:14: 'GroupApproximation.AlgTop.CPn.tautChartHomotopy_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:400:14: 'GroupApproximation.AlgTop.CPn.continuous_tautColSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8975/9218] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9019/9218] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9218/9218] Built GroupApproximation.CharClass.ThomLIXHclassOf (23s)
+info: GroupApproximation/CharClass/ThomLIXHclassOf.lean:188:14: 'GroupApproximation.CharClass.chernMul_top_unitOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomLIXHclassOf.lean:189:14: 'GroupApproximation.CharClass.pull_bridgeChartIncl_lhSumOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomLIXHclassOf.lean:190:14: 'GroupApproximation.CharClass.relToAbs_total_eq_pull_coordOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9218 jobs).
+EXIT=0

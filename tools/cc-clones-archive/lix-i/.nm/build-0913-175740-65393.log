@@ -1,0 +1,34 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3659 oleans
+[job] acn112 cores=64-71 threads=8 base=a70912b62c8c61927ebf6a0fe98a0379b02f6986 mods: GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening GroupApproximation.GGT.VanKampen.SurgeryCellSideThickeningModel
+ℹ [3302/3377] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4936/4937] Building GroupApproximation.GGT.VanKampen.SurgeryCellSideThickeningModel (5.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:131:35: unknown tactic
+error: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:131:31: unsolved goals
+x : Fin 12
+⊢ ?m.6 ≤ ?m.7
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:147:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:148:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:149:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.cellSide_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:150:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:151:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:152:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.cellSide_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:153:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.retained' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningModel.lean:154:14: 'GroupApproximation.GGT.VanKampen.CellSideThickeningModel.boundary_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [4937/4937] Built GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening (12s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:96:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideCount_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgeryCellSideThickeningModel
+error: build failed
+EXIT=1

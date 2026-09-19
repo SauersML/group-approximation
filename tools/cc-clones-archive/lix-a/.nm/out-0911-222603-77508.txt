@@ -1,0 +1,17 @@
+[job] 22:26:30 acn112 waiting for clone lock
+[job] delta sync e2a3a3092..7b545b7c3: 14 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 7b545b7c3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-222603-77508.log
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 2117 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.LIXCor4PowersDiagChain
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:254:14: 'GroupApproximation.LIX.Gen.diagOne_sphereUnitary_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3021 jobs).
+EXIT=0
+PROBE GREEN

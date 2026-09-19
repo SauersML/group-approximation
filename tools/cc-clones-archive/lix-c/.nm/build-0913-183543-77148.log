@@ -1,0 +1,126 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3461 oleans
+[job] acn112 cores=80-87 threads=8 base=a19fd73b8e73e104ad74e2c5aacbd00504267fde mods: GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening GroupApproximation.GGT.VanKampen.SurgeryCellEdgeSideThickening GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyProducer
+ℹ [3372/3445] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [8468/8547] Built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening (14s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:413:21: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:414:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_self_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:415:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_cell_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:416:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_eq_faceImage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:417:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.boundary_faceImage_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:418:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_of_isCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:419:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:420:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.relatorValue_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:421:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:422:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.regionFamilyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:423:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.sectionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:424:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:425:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10142/10146] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkChain
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:268:14: 'GroupApproximation.GGT.VanKampen.closedWalk_isChain_closes_of_interleave' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:269:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_ne_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:270:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_isChain_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:271:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10144/10146] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:342:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_sideFrom_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:343:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideFrom_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:344:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.faceOf_alpha_of_mem_invDarts_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:345:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.mem_walk_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:346:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_nodup_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:347:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.alpha_not_mem_walk_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:348:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_nodup_and_alpha_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:349:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyCleanStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:350:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells_clean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:351:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_clean_of_copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10145/10146] Built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeSideThickening (21s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:214:21: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.cellEdgeSideThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:215:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.one_lt_length_of_mem_of_ne' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:216:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.one_lt_cellDarts_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:217:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.mem_sides_of_mem_sideFrom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:218:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.side_of_noCellSideDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:219:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.copyClean_of_noDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeSideThickening.lean:220:14: 'GroupApproximation.GGT.VanKampen.CellEdgeSideThickening.exists_cellEdgeSideFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10146/10146] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyProducer (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean:121:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.HasCellPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean:122:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.joinsCells_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean:123:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.hasCellPair_cellEdgeStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean:124:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.hasCellPair_cellSideStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyProducer.lean:125:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.exists_cellEdgeSideFree_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10146 jobs).
+EXIT=0

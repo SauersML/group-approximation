@@ -1,0 +1,47 @@
+[job] 02:00:24 acn112 waiting for clone lock
+[job] delta sync 58c056658..e1eb31317: 6 files changed
+===== SUMMARY
+host acn112 cores 72-79 base e1eb31317 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-020020-27789.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4045 oleans
+--- errors (first 80 lines)
+124:✖ [10282/10282] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchIsolated (21s)
+126:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.OuterPinchIsolated.pow_minimalPeriod_apply`:
+132:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:60:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.OuterPinchIsolated.pow_eq_pow_below`:
+138:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:176:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+145:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:180:14: Invalid field `boundary_alpha_not_mem`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.boundary_alpha_not_mem`, so it is not possible to project the field `boundary_alpha_not_mem` from an expression
+148:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:186:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+155:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:207:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+162:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:318:6: Invalid field `boundary_alpha_not_mem`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.boundary_alpha_not_mem`, so it is not possible to project the field `boundary_alpha_not_mem` from an expression
+165:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:340:10: Invalid field `boundary_alpha_not_mem`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.boundary_alpha_not_mem`, so it is not possible to project the field `boundary_alpha_not_mem` from an expression
+168:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:342:10: Invalid field `boundary_alpha_not_mem`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.boundary_alpha_not_mem`, so it is not possible to project the field `boundary_alpha_not_mem` from an expression
+171:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:392:6: Invalid field `boundary_alpha_not_mem`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.boundary_alpha_not_mem`, so it is not possible to project the field `boundary_alpha_not_mem` from an expression
+186:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:409:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.isolated_positions' depends on axioms outside the classical allowlist: [sorryAx]
+187:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+189:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:410:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.stretchAvoids_of_isolated' depends on axioms outside the classical allowlist: [sorryAx]
+190:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+192:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:411:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.runsIntoY_of_isolated' depends on axioms outside the classical allowlist: [sorryAx]
+193:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+195:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:412:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.runsIntoX_of_isolated' depends on axioms outside the classical allowlist: [sorryAx]
+196:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+198:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:413:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.turnKept_of_isolated' depends on axioms outside the classical allowlist: [sorryAx]
+199:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+201:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchIsolated.lean:414:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_isolatedTurn' depends on axioms outside the classical allowlist: [sorryAx]
+202:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+204:error: Lean exited with code 1
+207:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchSplit
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchIsolated (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CyclicArcComplement.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFirstTurnsOfOuterFollows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchSplit.lean
+COMPILED GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchIsolated
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

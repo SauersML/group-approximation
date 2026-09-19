@@ -1,0 +1,22 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3721 oleans
+[job] acn112 cores=88-95 threads=8 base=0fcdd9116e250043de80bd0dbc3c7122ccc8023f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel
+ℹ [3295/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10196/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:474:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10197/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModelMap
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModelMap.lean:317:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModelMap.lean:318:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.boundaryWord_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10198/10198] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:298:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.innerWalkModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10198 jobs).
+EXIT=0

@@ -1,0 +1,42 @@
+[job] 20:52:24 acn112 waiting for clone lock
+[job] delta sync d69606505..3a912e98f: 72 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 3a912e98f log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-205211-25305.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4747 oleans
+--- errors (first 80 lines)
+150:✖ [9949/9959] Building GroupApproximation.GGT.HullSCUnconeLemmaA (32s)
+152:error: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:38:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.Uncone.exists_comp_of_isCompOf`:
+158:error: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:195:40: unsolved goals
+241:error: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:203:9: unexpected token '₋'; expected command
+251:error: GroupApproximation/GGT/HullSCUnconeLemmaA.lean:338:14: 'GroupApproximation.GGT.Uncone.letter_point_near_sides' depends on axioms outside the classical allowlist: [sorryAx]
+252:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+254:error: Lean exited with code 1
+285:✖ [9956/9959] Building GroupApproximation.GGT.HullSCLemma51EmbeddedBridge (83s)
+287:error: GroupApproximation/GGT/HullSCLemma51EmbeddedBridge.lean:133:32: Function expected at
+305:error: GroupApproximation/GGT/HullSCLemma51EmbeddedBridge.lean:163:14: Unknown constant `GroupApproximation.HullSC.quotientPeripheralPreservation_of_embeddedBridge`
+306:error: Lean exited with code 1
+310:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullSCUnconePathPoints
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaA (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaB (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeThin (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCBoundedImageEmbedding (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconePathPoints.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+- GroupApproximation.GGT.HullSCLemma51EmbeddedBridge
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

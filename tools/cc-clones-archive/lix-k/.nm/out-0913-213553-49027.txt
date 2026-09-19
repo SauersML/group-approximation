@@ -1,0 +1,29 @@
+[job] 21:38:06 acn45 waiting for clone lock
+[job] delta sync 094e0827c..6d5464e9c: 3 files changed
+===== SUMMARY
+host acn45 cores slurm base 6d5464e9c log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-213553-49027.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3457 oleans
+--- errors (first 80 lines)
+21:✖ [2612/2612] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (19s)
+27:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:300:9: Invalid `⟨...⟩` notation: The expected type
+32:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:300:9: failed to synthesize instance of type class
+36:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:301:2: No goals to be solved
+37:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:317:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:318:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityIsSimpleGroup' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+53:error: Lean exited with code 1
+56:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

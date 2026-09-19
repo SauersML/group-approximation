@@ -1,0 +1,54 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2427 oleans
+[job] acn112 cores=72-79 threads=8 base=16dabf296d825fabd77023c0d10adbca111c28d3 mods: GroupApproximation.Analysis.LIXStageTrace GroupApproximation.Analysis.LIXLimitTrace GroupApproximation.Analysis.LIXLimitTraceFaithful GroupApproximation.Analysis.LIXStablyFinite GroupApproximation.Manuscript.NinetyNineProblems.LIXStablyFinite
+ℹ [3177/3224] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3290/3415] Replayed GroupApproximation.Analysis.LIXLimitAlgebra
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8859/8878] Replayed GroupApproximation.Manuscript.NinetyNineProblems.SquarefreeDvd
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:90:14: 'GroupApproximation.NinetyNineProblems.squarefree_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:91:14: 'GroupApproximation.NinetyNineProblems.six_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:92:14: 'GroupApproximation.NinetyNineProblems.not_forall_prime_dvd_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8874/8878] Built GroupApproximation.Analysis.LIXStageTrace (9.9s)
+✔ [8875/8878] Built GroupApproximation.Analysis.LIXLimitTraceFaithful (9.5s)
+✔ [8876/8878] Built GroupApproximation.Analysis.LIXLimitTrace (11s)
+ℹ [8877/8878] Built GroupApproximation.Analysis.LIXStablyFinite (9.0s)
+info: GroupApproximation/Analysis/LIXStablyFinite.lean:59:14: 'GroupApproximation.LIX.Gen.nonempty_tracialState_lixLimit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXStablyFinite.lean:60:14: 'GroupApproximation.LIX.Gen.lixLimitFaithfulTracialState' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXStablyFinite.lean:61:14: 'GroupApproximation.LIX.Gen.lixLimit_mul_star_eq_one_of_star_mul_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8878/8878] Built GroupApproximation.Manuscript.NinetyNineProblems.LIXStablyFinite (21s)
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:95:14: 'GroupApproximation.NinetyNineProblems.IsStablyFiniteMatrices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:96:14: 'GroupApproximation.NinetyNineProblems.isStablyFiniteMatrices_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:97:14: 'GroupApproximation.NinetyNineProblems.lixLimit_isStablyFiniteMatrices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:98:14: 'GroupApproximation.NinetyNineProblems.lixLimit_isStablyFiniteCStarAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:99:14: 'GroupApproximation.NinetyNineProblems.lixLimit_stablyFinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:100:14: 'GroupApproximation.NinetyNineProblems.lixLimit_two_isStablyFiniteMatrices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean:101:14: 'GroupApproximation.NinetyNineProblems.exists_isSimpleRing_separable_stablyFinite_hasK1InjPowerWitness_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8878 jobs).
+EXIT=0

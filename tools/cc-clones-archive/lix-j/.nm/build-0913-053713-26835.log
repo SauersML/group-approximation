@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2525 oleans
+[job] acn112 cores=64-71 threads=8 base=4be3a3a5cc86e15403345e6f233569f6450c9069 mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonThreePlusOnePresented
+ℹ [2814/2929] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4591/4591] Built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonThreePlusOnePresented (9.0s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean:97:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.isFinitelyGeneratedRing_toeplitzJacobson' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean:98:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_threePlusOneGeneral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean:99:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_threePlusOnePresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4591 jobs).
+EXIT=0

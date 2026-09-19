@@ -1,0 +1,2 @@
+      8 .codex-tex-audit-tex_ci_msi
+      1 .scratch_check.lean

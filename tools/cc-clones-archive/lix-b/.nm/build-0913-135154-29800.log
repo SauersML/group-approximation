@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3324 oleans
+[job] acn112 cores=72-79 threads=8 base=e0dcf8b998abc08956b7b404ad4aae02dfd3666f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+ℹ [3300/3411] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5020/5020] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides (13s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:201:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.shortSides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:202:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.faceOf_of_mem_sideDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:203:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sideDarts_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:204:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.alpha_mem_sides_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:205:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:207:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5020 jobs).
+EXIT=0

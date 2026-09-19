@@ -1,0 +1,55 @@
+      0: obj =   0.000000000e+00 inf =   1.229e+03 (104)
+    118: obj =   1.300000000e+01 inf =   0.000e+00 (0)
+*   132: obj =   0.000000000e+00 inf =   0.000e+00 (0)
+*   132: obj =   0.000000000e+00 inf =   0.000e+00 (0)
++   132: mip =     not found yet >=              -inf        (1; 0)
++  2963: >>>>>   5.000000000e+00 >=   1.000000000e+00  80.0% (724; 18)
++  5158: >>>>>   4.000000000e+00 >=   3.000000000e+00  25.0% (104; 1502)
++  5251: mip =   4.000000000e+00 >=     tree is empty   0.0% (0; 1899)
+{
+  "ambient_dimension": 328,
+  "candidate_centered_residue_cost": 13,
+  "exact_cocycle_residual_zero": true,
+  "exact_cycle_pairings_match": true,
+  "exact_lift_sha256": "477198830aef84faf2920aed24746b5b26b1d64cd839f55fbc107971d27460a9",
+  "exact_lift_squared_norm": 4,
+  "modular_coset_leader_entries": [
+    [
+      240,
+      1
+    ],
+    [
+      287,
+      -1
+    ],
+    [
+      302,
+      -1
+    ],
+    [
+      304,
+      1
+    ]
+  ],
+  "modular_coset_leader_squared_cost": 4,
+  "modulus": 3,
+  "parity_check_rank": 104,
+  "prime": 53,
+  "range_rank": 224,
+  "solution_is_exact_integral_lift": true,
+  "solver": "GLPK branch-and-bound",
+  "syndrome_support": [
+    103
+  ],
+  "ternary_lower_certificate": {
+    "excluded_centered_residue_costs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "method": "exhaustive signed-column meet-in-the-middle",
+    "signed_pair_cases_checked": 214512
+  },
+  "verification": "modular_check_times_solution_equals_syndrome"
+}

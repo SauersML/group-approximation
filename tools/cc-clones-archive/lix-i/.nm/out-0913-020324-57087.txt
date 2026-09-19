@@ -1,0 +1,29 @@
+[job] 02:03:29 acn112 waiting for clone lock
+[job] delta sync 5edf273be..b7e8a34e5: 205 files changed
+===== SUMMARY
+host acn112 cores 64-71 base b7e8a34e5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-020324-57087.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2444 oleans
+--- errors (first 80 lines)
+6:✖ [10206/10218] Building GroupApproximation.Sofic.StrongConvergenceMFSubsingleton (13s)
+8:error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:55:50: Unknown constant `Matrix.unitaryGroup.one_val`
+9:error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:47:30: unsolved goals
+17:error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:67:14: 'GroupApproximation.isStronglyOperatorMF_of_subsingleton' depends on axioms outside the classical allowlist: [sorryAx]
+18:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+20:error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:68:21: 'GroupApproximation.isStronglyOperatorMF_unit' depends on axioms outside the classical allowlist: [sorryAx]
+21:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+23:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt
+mentioned-not-built GroupApproximation.Sofic.StrongConvergenceMFSubsingleton (replayed or failed)
+BUILT GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+- GroupApproximation.Sofic.StrongConvergenceMFSubsingleton
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

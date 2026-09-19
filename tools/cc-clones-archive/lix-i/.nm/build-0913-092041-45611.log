@@ -1,0 +1,21 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3188 oleans
+[job] acn112 cores=64-71 threads=8 base=0793191e3f29cd5ba5e06c3286ae747972518c88 mods: GroupApproximation.GGT.HullLemma35Expansion GroupApproximation.GGT.HullLemma35Corner
+ℹ [2800/2936] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4178/4179] Built GroupApproximation.GGT.HullLemma35Expansion (10s)
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:310:14: 'GroupApproximation.GGT.HullLemma35.prod_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:311:14: 'GroupApproximation.GGT.HullLemma35.mem_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:312:14: 'GroupApproximation.GGT.HullLemma35.guessPath_len' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:313:14: 'GroupApproximation.GGT.HullLemma35.wordDist_guessPath_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:314:14: 'GroupApproximation.GGT.HullLemma35.guessPath_short' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:315:14: 'GroupApproximation.GGT.HullLemma35.guessPath_in_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:316:14: 'GroupApproximation.GGT.HullLemma35.exists_letter_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4179/4179] Built GroupApproximation.GGT.HullLemma35Corner (10s)
+info: GroupApproximation/GGT/HullLemma35Corner.lean:226:14: 'GroupApproximation.GGT.HullLemma35.wordDist_vertex_succ_le_one_of_not_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Corner.lean:227:14: 'GroupApproximation.GGT.HullLemma35.corner_walk_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Corner.lean:228:14: 'GroupApproximation.GGT.HullLemma35.corner_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4179 jobs).
+EXIT=0

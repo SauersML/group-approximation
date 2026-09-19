@@ -1,0 +1,97 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4109 oleans
+[job] acn112 cores=64-71 threads=8 base=27f2ed182c0f5b91466e5de32b5fa5020ef62656 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+ℹ [3317/3492] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10159/10161] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10161/10161] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:195:90: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+P : OsinLemma94RealizedPolygons S
+Q : OsinLemma94ClassPolygons P
+k : Fin P.count
+i x : ℕ
+hi : i < Q.classCount k
+hng : ¬Q.InGap k i x
+hg : ∀ s ∈ Q.classSides k i, RelLetter.listVal (dartWord S.diagram (Q.gap k s)) = 1
+hngRec : ¬Q.InGapRec k (Q.classSides k i) x
+hp : Q.runPos k (Q.classSides k i) x ≤ (Q.sideRun k i).length
+⊢ List.take (Q.runPos k (Q.classSides k i) x)
+      (List.flatMap (fun a => List.map S.diagram.label (P.sideDarts k a)) (Q.classSides k i)) =
+    List.take (Q.runPos k (Q.classSides k i) x) (List.flatMap (P.word k) (Q.classSides k i))
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:201:75: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+P : OsinLemma94RealizedPolygons S
+Q : OsinLemma94ClassPolygons P
+k : Fin P.count
+i x : ℕ
+hi : i < Q.classCount k
+hng : ¬Q.InGap k i x
+hg : ∀ s ∈ Q.classSides k i, RelLetter.listVal (dartWord S.diagram (Q.gap k s)) = 1
+hngRec : ¬Q.InGapRec k (Q.classSides k i) x
+hp : Q.runPos k (Q.classSides k i) x ≤ (Q.sideRun k i).length
+hR :
+  RelLetter.listVal (dartWord S.diagram (List.take (Q.runPos k (Q.classSides k i) x) (Q.sideRun k i))) =
+    RelLetter.listVal (List.take x (Q.word k i))
+y : ℕ
+hy : y ∈ List.range i
+hy' : y < Q.classCount k
+⊢ RelLetter.listVal (List.flatMap (fun a => List.map S.diagram.label (P.sideDarts k a)) (Q.classSides k y)) =
+    RelLetter.listVal (List.flatMap (P.word k) (Q.classSides k y))
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:197:8: This simp argument is unused:
+  OsinLemma94RealizedPolygons.word
+
+Hint: Omit it from the simp argument list.
+  simp only [Embedded.dartWord, List.map_take, sideRun, List.map_flatMap,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵O̵s̵i̵n̵L̵e̵m̵m̵a̵9̵4̵R̵e̵a̵l̵i̵z̵e̵d̵P̵o̵l̵y̵g̵o̵n̵s̵.̵w̵o̵r̵d̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:208:61: This simp argument is unused:
+  OsinLemma94RealizedPolygons.word
+
+Hint: Omit it from the simp argument list.
+  simp only [Embedded.dartWord, sideRun, List.map_flatMap,̵ ̵O̵s̵i̵n̵L̵e̵m̵m̵a̵9̵4̵R̵e̵a̵l̵i̵z̵e̵d̵P̵o̵l̵y̵g̵o̵n̵s̵.̵w̵o̵r̵d̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:222:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.listVal_take_blocks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:223:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.runPos_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:224:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+error: build failed
+EXIT=1

@@ -1,0 +1,24 @@
+[job] 03:35:14 acn112 waiting for clone lock
+[job] delta sync c3cfee844..ff4a0eea9: 28 files changed
+===== SUMMARY
+host acn112 cores 72-79 base ff4a0eea9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-033509-82781.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3042 oleans
+--- errors (first 80 lines)
+31:✖ [4507/4507] Building GroupApproximation.Manuscript.NonMF.HullLemma510 (11s)
+36:error: GroupApproximation/Manuscript/NonMF/HullLemma510.lean:255:8: Unknown constant `Subgroup.map_eq_bot_iff.mpr`
+37:error: GroupApproximation/Manuscript/NonMF/HullLemma510.lean:257:14: 'GroupApproximation.Manuscript.NonMF.HullLemma510.hasTrivialFiniteRadical_quotient' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: GroupApproximation/Manuscript/NonMF/HullLemma510.lean:272:21: 'GroupApproximation.Manuscript.NonMF.HullLemma510.printedHullLemma510' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+43:error: Lean exited with code 1
+46:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMF.HullFiniteRadical
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullLemma510 (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+- GroupApproximation.Manuscript.NonMF.HullLemma510
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

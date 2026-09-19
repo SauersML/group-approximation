@@ -1,0 +1,59 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3789 oleans
+[job] acn112 cores=72-79 threads=8 base=ae3d768ec7f14a4e371f12080b98e8bb0d1ff27a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk
+ℹ [3371/3420] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [9923/10082] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:161:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_first_repeat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:162:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isClosedDartWalk_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:163:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_innermost_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:164:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isSimpleClosedWalk_of_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10183/10216] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:174:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.exists_arcs_of_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:175:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.cell_not_mem_sideFaces_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:176:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.outerFace_not_mem_sideFaces_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:177:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.listVal_excision_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10202/10216] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellPinchLobes
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean:105:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneCellPinch_of_lobes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10216/10216] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk (32s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:116:5: Variable name `htrav` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:202:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellLobeExcision_of_simple_rest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:203:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.false_of_walkCellLobe_excision_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:204:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellLobeExcisionSimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:205:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellPinch_of_rest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk
+error: build failed
+EXIT=1

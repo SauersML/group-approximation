@@ -1,0 +1,37 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2446 oleans
+[job] acn143 cores=slurm threads=8 base=d2cf041370a350ea1b5bf3ef6836ba2b1eee3cf2 mods: GroupApproximation.Kazhdan.GHWCharZeroPlaces
+✖ [2671/2672] Building GroupApproximation.Algebra.IntegerGaussValuations (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Algebra/IntegerGaussValuations.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerGaussValuations.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerGaussValuations.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/IntegerGaussValuations.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/IntegerGaussValuations.setup.json --json
+error: GroupApproximation/Algebra/IntegerGaussValuations.lean:79:7: failed to synthesize instance of type class
+  WfDvdMonoid (MvPolynomial (Fin d) ℤ)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Algebra/IntegerGaussValuations.lean:72:62: unsolved goals
+case neg
+d p : ℕ
+hp : Nat.Prime p
+G H : MvPolynomial (Fin d) ℤ
+hG : ¬G = 0
+hH : ¬H = 0
+⊢ exp (-↑(multiplicity (↑p) (G * H))) = exp (-↑(multiplicity (↑p) G)) * exp (-↑(multiplicity (↑p) H))
+error: GroupApproximation/Algebra/IntegerGaussValuations.lean:94:15: failed to synthesize instance of type class
+  WfDvdMonoid (MvPolynomial (Fin d) ℤ)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Algebra/IntegerGaussValuations.lean:299:14: 'GroupApproximation.IntegerGaussValuations.padicValuation_natCast_self' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:300:14: 'GroupApproximation.IntegerGaussValuations.degValuation_inv_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:301:14: 'GroupApproximation.IntegerGaussValuations.degValuation_algebraMap_le_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Algebra/IntegerGaussValuations.lean:302:14: 'GroupApproximation.IntegerGaussValuations.exists_algebraMap_eq' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.IntegerGaussValuations
+error: build failed
+EXIT=1

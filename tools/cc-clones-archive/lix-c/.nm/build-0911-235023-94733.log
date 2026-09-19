@@ -1,0 +1,40 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2078 oleans
+[job] acn112 cores=80-87 threads=8 base=9c0a4f8cec52a00b64283a8609ddf2aff79bd93b mods: GroupApproximation.CharClass.ChernSplittingOfPowers
+ℹ [2320/2321] Replayed GroupApproximation.CharClass.LIXStepDGenRealEven
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:99:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:100:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2321/2321] Building GroupApproximation.CharClass.ChernSplittingOfPowers (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/ChernSplittingOfPowers.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ChernSplittingOfPowers.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ChernSplittingOfPowers.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ChernSplittingOfPowers.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ChernSplittingOfPowers.setup.json --json
+error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:62:34: failed to synthesize instance of type class
+  CommRing (TotalHOf K X)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:62:78: unsolved goals
+K : Type
+inst✝ : CommRing K
+X : TopCat
+σ : Type u_1
+s : Finset σ
+y : σ → ↥(Gen.evenPart K X)
+k : ℕ
+⊢ ∑ x ∈ Finset.powersetCard k s, (evenCoe K X) (∏ l ∈ x, y l) = sorry
+error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:63:35: This simp argument is unused:
+  map_prod
+
+Hint: Omit it from the simp argument list.
+  simp only [esymmOn_def, map_sum,̵ ̵m̵a̵p̵_̵p̵r̵o̵d̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:80:32: failed to synthesize instance of type class
+  CommRing (TotalHOf K F)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/ChernSplittingOfPowers.lean:129:8: declaration uses `sorry`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.ChernSplittingOfPowers
+error: build failed
+EXIT=1

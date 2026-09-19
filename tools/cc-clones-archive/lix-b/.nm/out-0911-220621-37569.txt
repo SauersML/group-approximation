@@ -1,0 +1,34 @@
+[job] 22:06:34 acn112 waiting for clone lock
+[job] delta sync b42b3e553..f4dc2a884: 23 files changed
+===== SUMMARY
+host acn112 cores 80-87 base f4dc2a884 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-220621-37569.log
+purged 32 stale artifact sets (source-newer=1, import-newer=31) of 2068 oleans
+--- errors (first 80 lines)
+17:✖ [8934/8940] Building GroupApproximation.CharClass.ThomDataOf (56s)
+19:error: GroupApproximation/CharClass/ThomDataOf.lean:40:30: Unknown identifier `Hmod`
+22:error: GroupApproximation/CharClass/ThomDataOf.lean:45:47: Unknown identifier `Hmod`
+25:error: GroupApproximation/CharClass/ThomDataOf.lean:55:47: Unknown identifier `Hmod`
+28:error: GroupApproximation/CharClass/ThomDataOf.lean:75:14: 'GroupApproximation.CharClass.thomData_of_absToSubOf' depends on axioms outside the classical allowlist: [sorryAx]
+29:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+31:error: Lean exited with code 1
+59:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.GysinRetractOf
+BUILT GroupApproximation.CharClass.GysinSphereOf
+mentioned-not-built GroupApproximation.CharClass.ThomDataOf (replayed or failed)
+BUILT GroupApproximation.CharClass.ThomStepCLocalOf
+BUILT GroupApproximation.CharClass.ThomBridgeChartHom
+--- rebuilt GroupApproximation modules: 6
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChartHom.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCLocalOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+- GroupApproximation.CharClass.ThomDataOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,19 @@
+[job] 09:38:27 acn112 waiting for clone lock
+[job] delta sync 840e6a1d8..e5783d06f: 120 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e5783d06f log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0913-093823-13550.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2734 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinCConditionLineModel
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinCConditionLineModel.lean
+COMPILED GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean
+COMPILED GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean
+ Quot.sound]
+Build completed successfully (4588 jobs).
+EXIT=0
+PROBE GREEN

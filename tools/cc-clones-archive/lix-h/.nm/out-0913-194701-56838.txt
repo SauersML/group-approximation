@@ -1,0 +1,25 @@
+[job] 19:47:04 acn112 waiting for clone lock
+[job] delta sync 7739e2789..3ceb56229: 16 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 3ceb56229 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-194701-56838.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3653 oleans
+--- errors (first 80 lines)
+6:✖ [4800/4800] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra (14s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:148:21: No goals to be solved
+9:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:150:21: No goals to be solved
+10:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:152:21: No goals to be solved
+11:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:154:21: No goals to be solved
+26:error: Lean exited with code 1
+29:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

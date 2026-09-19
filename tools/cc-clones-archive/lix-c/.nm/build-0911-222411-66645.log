@@ -1,0 +1,9 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2065 oleans
+[job] acn78 cores=slurm threads=8 base=d974391a7257a5d7f5ece385f4883cf32e5f3328 mods: GroupApproximation.CharClass.OddPTupleD GroupApproximation.CharClass.OddPTupleAction
+✔ [2158/2162] Built GroupApproximation.CharClass.OddPSingular (7.2s)
+✔ [2159/2162] Built GroupApproximation.CharClass.OddPTuple (5.7s)
+✔ [2160/2162] Built GroupApproximation.CharClass.OddPTupleSign (5.5s)
+✔ [2161/2162] Built GroupApproximation.CharClass.OddPTupleD (8.8s)
+✔ [2162/2162] Built GroupApproximation.CharClass.OddPTupleAction (7.1s)
+Build completed successfully (2162 jobs).
+EXIT=0

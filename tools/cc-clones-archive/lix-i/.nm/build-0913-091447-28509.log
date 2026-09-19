@@ -1,0 +1,31 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3185 oleans
+[job] acn112 cores=64-71 threads=8 base=6dd68ce8d16154cb3ee1830224e5e9728bde8693 mods: GroupApproximation.GGT.HullLemma35Expansion
+ℹ [2797/2837] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4133/4133] Building GroupApproximation.GGT.HullLemma35Expansion (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/HullLemma35Expansion.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35Expansion.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35Expansion.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35Expansion.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35Expansion.setup.json --json
+error: GroupApproximation/GGT/HullLemma35Expansion.lean:52:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.HullLemma35.expWord_nil`:
+  [Group G]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Group G] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/HullLemma35Expansion.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.HullLemma35.expWord_cons`:
+  [Group G]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Group G] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:304:14: 'GroupApproximation.GGT.HullLemma35.prod_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:305:14: 'GroupApproximation.GGT.HullLemma35.mem_expWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:306:14: 'GroupApproximation.GGT.HullLemma35.guessPath_len' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:307:14: 'GroupApproximation.GGT.HullLemma35.wordDist_guessPath_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:308:14: 'GroupApproximation.GGT.HullLemma35.guessPath_short' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:309:14: 'GroupApproximation.GGT.HullLemma35.guessPath_in_letter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Expansion.lean:310:14: 'GroupApproximation.GGT.HullLemma35.exists_letter_block' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.HullLemma35Expansion
+error: build failed
+EXIT=1

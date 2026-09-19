@@ -1,0 +1,205 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3477 oleans
+[job] cn1034 cores=slurm threads=8 base=484d9c62d0f71e8255724fe00b2fbfc7785ffcfc mods: GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+ℹ [3330/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5000/5119] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10100/10101] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.calibration_opposite_clauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:192:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:194:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:196:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:200:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.doubleTouchNeitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (227s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.setup.json --json
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:89:60: Expected type must not contain free variables
+  OsinPocketLakeModel.M.sigma (OsinPocketLakeModel.M.alpha ([0, 2].get ⟨0, hi⟩)) =
+    [0, 2].get ((finRotate [0, 2].length) ⟨0, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:90:43: Expected type must not contain free variables
+  OsinPocketLakeModel.M.sigma (OsinPocketLakeModel.M.alpha ([0, 2].get ⟨0, hi⟩)) =
+    [0, 2].get ((finRotate [0, 2].length) ⟨0, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:91:60: Expected type must not contain free variables
+  OsinPocketLakeModel.M.sigma (OsinPocketLakeModel.M.alpha ([0, 2].get ⟨1, hi⟩)) =
+    [0, 2].get ((finRotate [0, 2].length) ⟨1, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:92:43: Expected type must not contain free variables
+  OsinPocketLakeModel.M.sigma (OsinPocketLakeModel.M.alpha ([0, 2].get ⟨1, hi⟩)) =
+    [0, 2].get ((finRotate [0, 2].length) ⟨1, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:104:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:105:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:40: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 2) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩)) =
+    OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hj⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:89: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨0, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:89: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 2) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨0, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:107:24: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨3, hj⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:107:73: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨0, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:108:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:110:60: Expected type must not contain free variables
+  OsinPocketCellWalkFollowsModel.M.sigma (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨1, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:111:43: Expected type must not contain free variables
+  OsinPocketCellWalkFollowsModel.M.sigma (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨1, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:112:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:113:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:114:60: Expected type must not contain free variables
+  OsinPocketCellWalkFollowsModel.M.sigma (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨2, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:115:43: Expected type must not contain free variables
+  OsinPocketCellWalkFollowsModel.M.sigma (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨2, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:117:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:40: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 2) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩)) =
+    OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨0, hj⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:89: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨3, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:89: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 2) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨3, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:119:24: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩)) =
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨0, hj⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:119:73: Expected type must not contain free variables
+  (OsinPocketCellWalkFollowsModel.M.sigma ^ 1) (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩)) ≠
+    [0, 2, 4, 6].get ((finRotate [0, 2, 4, 6].length) ⟨3, hi⟩)
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:120:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨1, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:121:78: Expected type must not contain free variables
+  ¬OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf
+          (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨3, hi⟩))) =
+      OsinPocketCellWalkFollowsModel.vertexEquiv
+        (OsinPocketCellWalkFollowsModel.M.vertexOf (OsinPocketCellWalkFollowsModel.M.alpha ([0, 2, 4, 6].get ⟨2, hj⟩)))
+
+Hint: Use the `+revert` option to automatically clean up and revert free variables
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:145:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:147:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_first' depends on axioms: [propext,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:149:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+error: build failed
+EXIT=1

@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3439 oleans
+[job] acn112 cores=80-87 threads=8 base=694740ca6066d9ce74dd3e482f1323429f08142d mods: GroupApproximation.Dynamics.TransientSupport
+ℹ [1327/1369] Replayed GroupApproximation.Dynamics.ClopenSwapInvolution
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1442/1443] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1443/1443] Building GroupApproximation.Dynamics.TransientSupport (7.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Dynamics/TransientSupport.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/TransientSupport.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Dynamics/TransientSupport.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/TransientSupport.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Dynamics/TransientSupport.setup.json --json
+error: GroupApproximation/Dynamics/TransientSupport.lean:79:2: `dsimp` made no progress
+error: GroupApproximation/Dynamics/TransientSupport.lean:90:2: `dsimp` made no progress
+error: GroupApproximation/Dynamics/TransientSupport.lean:111:38: Application type mismatch: The argument
+  k
+has type
+  Type u_2
+of sort `Type (u_2 + 1)` but is expected to have type
+  IsClopen ?m.32
+of sort `Prop` in the application
+  @charFn_apply_eq_zero ?m.28 ?m.29 ?m.30 ?m.31 ?m.32 k
+error: GroupApproximation/Dynamics/TransientSupport.lean:109:69: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : Ring k
+Y A : Set X
+hA : IsClopen A
+hAY : Disjoint A Y
+⊢ CoeffVanishOn T k Y ((coeff T k) (LocallyConstant.charFn k hA))
+error: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:284:14: 'GroupApproximation.ClopenCrossedProduct.exists_clopen_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:285:14: 'GroupApproximation.ClopenCrossedProduct.exists_wandering_clopen_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:286:14: 'GroupApproximation.ClopenCrossedProduct.exists_uniform_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TransientSupport
+error: build failed
+EXIT=1

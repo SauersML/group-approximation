@@ -1,0 +1,29 @@
+[job] 18:26:54 acn112 waiting for clone lock
+[job] delta sync cde3aabeb..b92757ddc: 20 files changed
+===== SUMMARY
+host acn112 cores 80-87 base b92757ddc log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-182621-33921.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4235 oleans
+--- errors (first 80 lines)
+21:✖ [4112/4115] Building GroupApproximation.Dynamics.TwoEndedTailSymbols (86s)
+23:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:82:2: (deterministic) timeout at `whnf`, maximum number of heartbeats (1000000) has been reached
+28:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:205:14: 'GroupApproximation.TwoEndedShift.symbolHom_coeff' depends on axioms outside the classical allowlist: [sorryAx]
+29:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+31:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:206:14: 'GroupApproximation.TwoEndedShift.exists_tail_pos' depends on axioms outside the classical allowlist: [sorryAx]
+32:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+34:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:207:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms outside the classical allowlist: [sorryAx]
+35:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+37:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:208:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: Lean exited with code 1
+43:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailSymbols (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.TwoEndedTailSymbols
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/projects/standard/hsiehph/sauer354/nonsofic_existence/experiments/sl3_projective_cellular_cvp.py", line 387, in <module>
+    main()
+  File "/projects/standard/hsiehph/sauer354/nonsofic_existence/experiments/sl3_projective_cellular_cvp.py", line 252, in main
+    raise ValueError("the current exported harmonic lift is specific to level 53")
+ValueError: the current exported harmonic lift is specific to level 53

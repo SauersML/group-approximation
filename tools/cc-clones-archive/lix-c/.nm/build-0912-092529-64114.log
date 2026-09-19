@@ -1,0 +1,15 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2308 oleans
+[job] acn112 cores=64-71 threads=8 base=e725a36e2c02918015852924e154445674febc49 mods: GroupApproximation.CharClass.OddPDiagonalAug GroupApproximation.CharClass.OddPDiagonalSrc GroupApproximation.CharClass.OddPDiagonal
+✖ [8780/8782] Building GroupApproximation.CharClass.OddPDiagonalAug (21s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/OddPDiagonalAug.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.setup.json --json
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:262:0: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:271:8: (kernel) unknown constant 'GroupApproximation.CharClass.tupD_exists_preimage_stdSimplexTop_zmod'
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1

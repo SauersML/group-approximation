@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2322 oleans
+[job] acn112 cores=64-71 threads=8 base=3b442ed348f82d093994184e049803473a7b0f47 mods: GroupApproximation.CharClass.OddPWDiagonal GroupApproximation.CharClass.OddPWDiagonalCounit
+ℹ [1212/1440] Replayed GroupApproximation.CharClass.OddPWDiagonalRing
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:191:14: 'GroupApproximation.CharClass.wdQSum_mul_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:192:14: 'GroupApproximation.CharClass.wdQSum_mul_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:193:14: 'GroupApproximation.CharClass.wdChain_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:194:14: 'GroupApproximation.CharClass.wdQSum_one_one_zmod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:195:14: 'GroupApproximation.CharClass.wdPhi_one_one_odd_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1678/1679] Built GroupApproximation.CharClass.OddPWDiagonal (10s)
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:237:14: 'GroupApproximation.CharClass.wdT2_pow_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:238:14: 'GroupApproximation.CharClass.wwDAll_atBideg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:239:14: 'GroupApproximation.CharClass.psiW_chainMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:240:14: 'GroupApproximation.CharClass.psiW_grGen_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1679/1679] Built GroupApproximation.CharClass.OddPWDiagonalCounit (8.9s)
+info: GroupApproximation/CharClass/OddPWDiagonalCounit.lean:145:14: 'GroupApproximation.CharClass.psiW_counitLeft' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalCounit.lean:146:14: 'GroupApproximation.CharClass.psiW_counitRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1679 jobs).
+EXIT=0

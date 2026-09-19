@@ -1,0 +1,29 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3173 oleans
+[job] acn112 cores=64-71 threads=8 base=c6bdc0b991ce874a2120d65d0908c6657990e63a mods: GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction
+ℹ [3299/3421] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4650/4650] Built GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction (11s)
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:457:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.restrict_sigma_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:458:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:459:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_pow_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:460:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.sigma_toPhi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:461:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_toPhi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:462:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.faceOf_toPhi_eq_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:463:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.eqvGen_retract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4650 jobs).
+EXIT=0

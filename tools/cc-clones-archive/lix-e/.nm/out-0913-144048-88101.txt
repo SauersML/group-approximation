@@ -1,0 +1,225 @@
+[job] 14:41:19 acn112 waiting for clone lock
+[job] delta sync b590ad02a..afe0638dd: 5 files changed
+===== SUMMARY
+host acn112 cores 64-71 base afe0638dd log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-144048-88101.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4389 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.HullSCBoundedImageEmbeddingLeastArea (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCGreendlingerForms (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLeastAreaGreendlingerTwins (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaCanonical (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaFamilyBridge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCTheorem71GeneralLeastArea (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityFromFilling (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.KazhdanHypLiteralFilling (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.KazhdanHypLiteralFillingDegree (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.KazhdanHypSymmetrizedFilling (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.KazhdanHypSymPowerDisc (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.RelHypProp23FromLeastAreaLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.DiscEmbeddingAwayUnbound (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyDescent (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyPocket (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutSections (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentCut (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentInduction (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGon (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonSection (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerEmptyTwoGon (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorTwoGon (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSection (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSmallFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonFaceClass (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixGreendlingerParts (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixGreendlingerPocketParts (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLeastAreaCut (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLemma97Pocket (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Collapse (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52LeastArea (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Prep (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Surgery (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Values (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionBridge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDarts (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDegenerate (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInduction (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInterior (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionMultipleEdge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPieces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSections (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinDescentResiduals (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerOpenResiduals
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BudgetFilter (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalkHolds (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseTwo (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CellArcs (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ChainRespell (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CornerInsertion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94Counting (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingChains (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94DartMinimal (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellMorse (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellValue (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94Pieces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PlanarPieces (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonClasses
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonCovers (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonKinds (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonMaximal (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonPartition (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonRealization (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94QuasiGeodesicRespell (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RegionSideCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RunInput (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SectionResiduals (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertionProof (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatingRemoval (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SpikeTransport (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellArcs (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketClosedWalkNoncrossing (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCollarOfGeodesic (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCutResiduals (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscEmptyTwoGon (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscMerge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFollowsBoundary (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGapArcs (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueCarriers (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueCellTransport (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueDiagram (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueEquivalence (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterArc (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterTransport (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeAbsorption (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeModel (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLeastAreaCut (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLoopCut (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMergeRegion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCut (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeTransport (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPart (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPieces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonDiscCollapse (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonLobe (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonNoncrossing (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonNoncrossingRegion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonOuterFollows (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonRegion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSplit (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchUnpinched (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionNoncrossingWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionOfSimple (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionRotate (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSections (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSide (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSimpleWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionUnpinched (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionVertexSimple (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoCollars (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketUnpinchedEuler (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMerge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOneFace (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOneRun (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundMerged (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundReduced (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocket (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSharedEdge (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.FaceSetCircuitNoncrossing (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.GFaceQuadrilateralRegion (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.PlanarVanKampenWeighted (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingRegions (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollar (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarDouble (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarJoin (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeRegions (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryMonogonDoublingStrip (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryPinchSplitExtremal (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryPinchSplitSections (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionRegions (replayed or failed)
+mentioned-not-built GroupApproximation.Kazhdan.KotowskiOllivierLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.MFRecognition.SeedRemarkTheoremC (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullCitationSentences (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullCorollary73 (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullCorollary74 (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TheoremCAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TheoremCAssemblyFoldLeaf (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TheoremCAssemblyGreendlingerLeaf (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TheoremCAssemblyKOLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssemblyClosedGO (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGaussValuations.lean
+COMPILED GroupApproximation/Algebra/IntegerPlacesMinpoly.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/DiscEmbeddingAwayUnbound.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixGreendlingerParts.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSections.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonCount.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonCovers.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscEmptyTwoGon.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneRun.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSharedEdge.lean
+COMPILED GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean
+COMPILED GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeRegions.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryPinchSplitSections.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean
+ Quot.sound]
+Build completed successfully (11163 jobs).
+EXIT=0
+PROBE GREEN

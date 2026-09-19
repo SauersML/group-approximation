@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2430 oleans
+[job] acn112 cores=72-79 threads=8 base=e6d20ddb44a8ef0095947af3b9647c1dda739c5f mods: GroupApproximation.CharClass.OddPTotalGrading GroupApproximation.CharClass.OddPTotalPackagingDefs GroupApproximation.CharClass.OddPTotalPackagingGood GroupApproximation.CharClass.OddPTotalPackagingExpand GroupApproximation.CharClass.OddPTotalPackagingCartan GroupApproximation.CharClass.OddPTotalPackagingMulSingle GroupApproximation.CharClass.OddPTotalPackaging
+ℹ [8690/8700] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8693/8700] Replayed GroupApproximation.CharClass.OddPTotalInterface
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:185:14: 'GroupApproximation.CharClass.OddPTotal.evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:186:14: 'GroupApproximation.CharClass.OddPTotal.coe_evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:187:14: 'GroupApproximation.CharClass.OddPTotal.GoodDeg' depends on axioms: []
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:188:14: 'GroupApproximation.CharClass.OddPTotal.ptotOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:189:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:190:14: 'GroupApproximation.CharClass.OddPTotal.EvenReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8694/8700] Building GroupApproximation.CharClass.OddPTotalGrading (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/CharClass/OddPTotalGrading.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTotalGrading.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTotalGrading.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPTotalGrading.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/CharClass/OddPTotalGrading.setup.json --json
+error: GroupApproximation/CharClass/OddPTotalGrading.lean:117:61: invalid `▸` notation, argument
+  h
+has type
+  ?m.115
+equality expected
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:201:14: 'GroupApproximation.CharClass.OddPTotal.component_of_eq_dite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:202:14: 'GroupApproximation.CharClass.OddPTotal.smul_mul_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:203:14: 'GroupApproximation.CharClass.OddPTotal.mul_smul_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:204:14: 'GroupApproximation.CharClass.OddPTotal.component_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPTotalGrading.lean:205:14: 'GroupApproximation.CharClass.OddPTotal.eq_sum_components' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:206:14: 'GroupApproximation.CharClass.OddPTotal.projDeg_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:207:14: 'GroupApproximation.CharClass.OddPTotal.projDeg_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:208:14: 'GroupApproximation.CharClass.OddPTotal.goodDeg_add' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:209:14: 'GroupApproximation.CharClass.OddPTotal.exists_of_goodDeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:210:14: 'GroupApproximation.CharClass.OddPTotal.sub_goodDeg' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalGrading.lean:211:14: 'GroupApproximation.CharClass.OddPTotal.goodDeg_inj' depends on axioms: [propext, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPTotalGrading
+error: build failed
+EXIT=1

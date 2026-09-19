@@ -1,0 +1,84 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2265 oleans
+[job] acn112 cores=64-71 threads=8 base=68e7a64a4ce4c4d6e74216a44f5e4b3da22b45fe mods: GroupApproximation.CharClass.ThomBridgeTotalNaturalOf GroupApproximation.CharClass.ThomJmNaturalOf
+ℹ [8715/8829] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8783/8938] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8850/9106] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8861/9106] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8948/9214] Replayed GroupApproximation.CharClass.ThomBridgeNaturalSquare
+info: GroupApproximation/CharClass/ThomBridgeNaturalSquare.lean:58:14: 'GroupApproximation.CharClass.relPullback_comm_of_map_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8949/9214] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8950/9214] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9021/9214] Replayed GroupApproximation.CharClass.RelativeSubspaceIsoOf
+info: GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean:166:14: 'GroupApproximation.CharClass.RelativeSupport.relPullback_bijective_of_absoluteOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean:167:14: 'GroupApproximation.CharClass.RelativeSupport.relPullback_id_bijective_of_subspace_isoOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9154/9214] Replayed GroupApproximation.CharClass.ThomChernDegreewise
+info: GroupApproximation/CharClass/ThomChernDegreewise.lean:147:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9156/9214] Replayed GroupApproximation.CharClass.ThomRestrictSquare
+info: GroupApproximation/CharClass/ThomRestrictSquare.lean:90:14: 'GroupApproximation.CharClass.ThomChernDeg.absToSub_sum_lhTerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9157/9214] Replayed GroupApproximation.CharClass.LIXThomLH
+info: GroupApproximation/CharClass/LIXThomLH.lean:86:14: 'GroupApproximation.CharClass.lhTopEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9158/9214] Replayed GroupApproximation.CharClass.LIXThomAssembly
+info: GroupApproximation/CharClass/LIXThomAssembly.lean:127:14: 'GroupApproximation.CharClass.thomData_of_absToSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9159/9214] Replayed GroupApproximation.CharClass.ThomHabs
+info: GroupApproximation/CharClass/ThomHabs.lean:145:14: 'GroupApproximation.CharClass.ThomChernDeg.range_thomJm_eq_ker_restrictMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9160/9214] Replayed GroupApproximation.CharClass.ThomDataFromLH
+info: GroupApproximation/CharClass/ThomDataFromLH.lean:83:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9180/9214] Replayed GroupApproximation.CharClass.CohomologyLHDegreewiseOf
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:222:14: 'GroupApproximation.CharClass.LHCast.bijective_sum_lhTerm_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:223:14: 'GroupApproximation.CharClass.LHCast.bijective_pull_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:224:14: 'GroupApproximation.CharClass.LHCast.absToSub_surjective_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9181/9214] Replayed GroupApproximation.CharClass.ThomChernDegreewiseOf
+info: GroupApproximation/CharClass/ThomChernDegreewiseOf.lean:136:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sumOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9202/9214] Replayed GroupApproximation.CharClass.ThomBridgeTotal
+info: GroupApproximation/CharClass/ThomBridgeTotal.lean:138:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_lerayHirsch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9203/9214] Replayed GroupApproximation.CharClass.ThomBridgeTotalNatural
+info: GroupApproximation/CharClass/ThomBridgeTotalNatural.lean:122:14: 'GroupApproximation.CharClass.bridgeTotal_natural' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9205/9214] Replayed GroupApproximation.CharClass.ThomHyperplaneLH
+info: GroupApproximation/CharClass/ThomHyperplaneLH.lean:117:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_total_of_taut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9206/9214] Replayed GroupApproximation.CharClass.LIXThomClassOfTaut
+info: GroupApproximation/CharClass/LIXThomClassOfTaut.lean:95:14: 'GroupApproximation.CharClass.ThomChernDeg.exists_lixThomClass_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9210/9214] Replayed GroupApproximation.CharClass.LIXThomClassTerm
+info: GroupApproximation/CharClass/LIXThomClassTerm.lean:222:14: 'GroupApproximation.CharClass.lixThomClassTerm_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9213/9214] Built GroupApproximation.CharClass.ThomBridgeTotalNaturalOf (22s)
+info: GroupApproximation/CharClass/ThomBridgeTotalNaturalOf.lean:144:14: 'GroupApproximation.CharClass.bridgeTotalRestrictOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9214/9214] Built GroupApproximation.CharClass.ThomJmNaturalOf (21s)
+info: GroupApproximation/CharClass/ThomJmNaturalOf.lean:152:14: 'GroupApproximation.CharClass.ThomChernDeg.thomJm_naturalOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomJmNaturalOf.lean:153:14: 'GroupApproximation.CharClass.ThomChernDeg.thomJmTotal_restrictOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9214 jobs).
+EXIT=0

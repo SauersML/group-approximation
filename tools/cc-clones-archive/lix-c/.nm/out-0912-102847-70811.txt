@@ -1,0 +1,20 @@
+[job] 10:44:11 acn20 waiting for clone lock
+[job] delta sync f29a035ec..2d420fc26: 15 files changed
+===== SUMMARY
+host acn20 cores slurm base 2d420fc26 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-102847-70811.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2333 oleans
+--- errors (first 80 lines)
+24:✖ [9198/9199] Building GroupApproximation.CharClass.LIXStepDGenSlice (157s)
+26:error: GroupApproximation/CharClass/LIXStepDGenSlice.lean:114:37: Variable name `y` is not explicitly referenced.
+34:error: Lean exited with code 1
+43:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXStepDGenChernSplit
+mentioned-not-built GroupApproximation.CharClass.LIXStepDGenSlice (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXStepDGenChernSplit.lean
+- GroupApproximation.CharClass.LIXStepDGenSlice
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

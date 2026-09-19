@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3831 oleans
+[job] acn112 cores=72-79 threads=8 base=c268a0066dfbbaf0c73a6c002d4abfdfdac0ccb1 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellOuterPinchStep
+ℹ [3312/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10270/10299] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchSectionDistinct
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:189:14: 'GroupApproximation.GGT.VanKampen.CellPocketPinchSectionDistinctInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:190:14: 'GroupApproximation.GGT.VanKampen.CellPocketPinchSectionInput.toDistinct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:191:14: 'GroupApproximation.GGT.VanKampen.CellPocketPinchSectionDistinctStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:192:14: 'GroupApproximation.GGT.VanKampen.cellPocketPinchSectionDistinctStatement_of_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:193:14: 'GroupApproximation.GGT.VanKampen.CellPocketOuterPinchStepSectionDistinctStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:194:14: 'GroupApproximation.GGT.VanKampen.cellPocketPinchSectionDistinctStatement_of_outerPinchStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean:195:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.copyRegion_of_pinchSectionDistinct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10299/10299] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellOuterPinchStep (20s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean:158:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.pinchSplit_first_proper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean:159:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.pinchSplit_second_proper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean:160:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.pinchSplit_closedWalk_of_isolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean:161:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.exists_cellPinchStepDistinct_of_isolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean:162:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.exists_cellPinchStepDistinct_of_isolatedTurn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10299 jobs).
+EXIT=0

@@ -1,0 +1,69 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3555 oleans
+[job] acn112 cores=72-79 threads=8 base=465585d5c2d83379b9683bfd29489a920b8a99f7 mods: GroupApproximation.Dynamics.ClopenCrossedProductAlgebra
+ℹ [3659/3787] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4067/4067] Building GroupApproximation.Dynamics.ClopenCrossedProductAlgebra (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.setup.json --json
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:93:2: don't know how to synthesize implicit argument `a`
+  @Eq.trans (SkewMonoidAlgebra (ClopenCoeff (restrictHomeo T hY) k) (Multiplicative ℤ))
+    ((Pestov91.CrossedProduct.coeffMap
+        (coeffComap (restrictHomeo T hY) T k { toFun := Subtype.val, continuous_toFun := restrict._proof_1 })
+        (?m.65 T k restrict_algebraMap hY c))
+      (SkewMonoidAlgebra.single 1 ((algebraMap k (ClopenCoeff T k)) c)))
+    (SkewMonoidAlgebra.single 1
+      ((coeffComap (restrictHomeo T hY) T k { toFun := Subtype.val, continuous_toFun := restrict._proof_1 })
+        ((algebraMap k (ClopenCoeff T k)) c)))
+    ((algebraMap k (ClopenCrossedProduct (restrictHomeo T hY) k)) c)
+    (Pestov91.CrossedProduct.coeffMap_single
+      (coeffComap (restrictHomeo T hY) T k { toFun := Subtype.val, continuous_toFun := restrict._proof_1 })
+      (?m.65 T k restrict_algebraMap hY c) 1 ((algebraMap k (ClopenCoeff T k)) c))
+    (congrArg (SkewMonoidAlgebra.single 1) (LocallyConstant.ext fun x => rfl))
+context:
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+Y : Set X
+hY : ⇑T '' Y = Y
+c : k
+⊢ SkewMonoidAlgebra (ClopenCoeff (restrictHomeo T hY) k) (Multiplicative ℤ)
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:93:45: don't know how to synthesize placeholder for argument `hφ`
+context:
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+Y : Set X
+hY : ⇑T '' Y = Y
+c : k
+⊢ ∀ (g : Multiplicative ℤ) (a : ClopenCoeff T k),
+    (coeffComap (restrictHomeo T hY) T k { toFun := Subtype.val, continuous_toFun := ⋯ }) (g • a) =
+      g • (coeffComap (restrictHomeo T hY) T k { toFun := Subtype.val, continuous_toFun := ⋯ }) a
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:157:14: 'GroupApproximation.ClopenCoeff.smul_algebraMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:158:14: 'GroupApproximation.ClopenCrossedProduct.algebraMap_eq_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:159:14: 'GroupApproximation.ClopenCrossedProduct.restrict_algebraMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:160:14: 'GroupApproximation.ClopenCrossedProduct.restrict_smul' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:161:14: 'GroupApproximation.ClopenCrossedProduct.restrictAlgHom_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:162:14: 'GroupApproximation.ClopenCrossedProduct.smul_mem_transientIdeal' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:163:14: 'GroupApproximation.ChainCore.TransientIdealLocallyMatricialStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean:165:2: 'GroupApproximation.ChainCore.RankTwoLimit.coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ClopenCrossedProductAlgebra
+error: build failed
+EXIT=1

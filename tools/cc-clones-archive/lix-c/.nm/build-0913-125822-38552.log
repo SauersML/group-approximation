@@ -1,0 +1,61 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3121 oleans
+[job] acn112 cores=80-87 threads=8 base=6401c70a6f64c4ecde540afcb41da9f1242c6ef6 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides
+ℹ [3295/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5042/5045] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:336:14: 'GroupApproximation.GGT.VanKampen.PolygonList.isChain_chunks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:337:14: 'GroupApproximation.GGT.VanKampen.PolygonList.getLast?_flatten_of_mem_getLast?' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:338:14: 'GroupApproximation.GGT.VanKampen.PolygonList.range_flatMap_getD' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:339:14: 'GroupApproximation.GGT.VanKampen.PolygonList.head?_flatten_ne_of_lt' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:340:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:341:14: 'GroupApproximation.GGT.VanKampen.PolygonList.idxOf_eq_succ_or_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:342:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain_idxOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:343:14: 'GroupApproximation.GGT.VanKampen.PolygonList.lt_cutAt_sectionIndex_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5044/5045] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonKinds
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean:269:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.unselected_of_dartKind_cutting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean:270:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.regionOf_eq_some' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean:271:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.outerDarts_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean:272:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.length_outerDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean:273:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.runsBackAcross_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5045/5045] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides (13s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:302:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.listVal_sidesOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:303:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.side_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:304:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.cell_arc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:305:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.boundary_arc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:306:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.short_region_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:307:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.quasiGeodesic_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5045 jobs).
+EXIT=0

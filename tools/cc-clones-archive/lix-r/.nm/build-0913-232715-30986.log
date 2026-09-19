@@ -1,0 +1,41 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3480 oleans
+[job] n57 cores=slurm threads=8 base=d23d0e2774879037a041f7997cfda276949bf430 mods: GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSectorNoninterleaving
+ℹ [3351/3401] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4650/4651] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4651/4651] Built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSectorNoninterleaving (108s)
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:214:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.sectorFree_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:215:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.not_rotationBetween_of_sectorFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:216:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.rotationBetween_of_sectorFree_rev' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:217:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.get_finRotate_of_isChain_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:218:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_forall_get' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:219:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:220:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.passagesNoninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4651 jobs).
+EXIT=0

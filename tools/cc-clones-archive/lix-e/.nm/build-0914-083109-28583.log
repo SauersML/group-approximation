@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4357 oleans
+[job] cn1046 cores=slurm threads=8 base=d5d1b9db7ac0204c5930062907bc69974b0a586d mods: GroupApproximation.Analysis.LocalLiftingProperty GroupApproximation.Analysis.OperatorSystemStateExtension GroupApproximation.Analysis.OperatorSystemChoiFunctional GroupApproximation.Analysis.OperatorSystemMatrixArveson
+ℹ [3055/3058] Built GroupApproximation.Analysis.LocalLiftingProperty (59s)
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:191:14: 'GroupApproximation.LocalLifting.IsOperatorSystem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:192:14: 'GroupApproximation.LocalLifting.IsCompletelyPositiveOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:193:14: 'GroupApproximation.LocalLifting.IsLocallyUCPLiftable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:194:14: 'GroupApproximation.LocalLifting.HasLocalLiftingProperty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:195:14: 'GroupApproximation.LocalLifting.OperatorSystemMatrixArvesonStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:196:21: 'GroupApproximation.LocalLifting.hasLocalLiftingProperty_complex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [3056/3058] Built GroupApproximation.Analysis.OperatorSystemStateExtension (59s)
+✖ [3057/3058] Building GroupApproximation.Analysis.OperatorSystemChoiFunctional (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Analysis/OperatorSystemChoiFunctional.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Analysis/OperatorSystemChoiFunctional.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Analysis/OperatorSystemChoiFunctional.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Analysis/OperatorSystemChoiFunctional.setup.json --json
+error: GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean:168:14: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+error: GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean:225:6: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.zero_apply` to `zero_apply x`).
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.OperatorSystemChoiFunctional
+error: build failed
+EXIT=1

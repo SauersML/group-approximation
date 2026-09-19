@@ -1,0 +1,21 @@
+[job] 09:21:42 acn112 waiting for clone lock
+[job] delta sync bd2813a11..da5afd7a8: 64 files changed
+===== SUMMARY
+host acn112 cores 80-87 base da5afd7a8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0914-092131-67008.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3647 oleans
+--- errors (first 80 lines)
+6:✖ [10052/10052] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel (22s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:93:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+27:Full error:
+42:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:126:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.enclosedFaceSetSucc' depends on axioms outside the classical allowlist: [sorryAx]
+43:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+54:error: Lean exited with code 1
+57:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

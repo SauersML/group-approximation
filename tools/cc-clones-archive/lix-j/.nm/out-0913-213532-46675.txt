@@ -1,0 +1,32 @@
+[job] 21:35:50 acn112 waiting for clone lock
+[job] delta sync 1b6ad96f5..c6436f1c1: 15 files changed
+===== SUMMARY
+host acn112 cores 80-87 base c6436f1c1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-213532-46675.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3482 oleans
+--- errors (first 80 lines)
+3:✖ [1758/1758] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (9.2s)
+5:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:86:18: don't know how to synthesize placeholder for argument `hπ`
+19:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:91:22: don't know how to synthesize placeholder for argument `hπ`
+41:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

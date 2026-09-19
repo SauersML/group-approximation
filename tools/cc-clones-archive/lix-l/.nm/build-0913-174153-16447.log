@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3409 oleans
+[job] acn112 cores=72-79 threads=8 base=0fdc2af86a9dbce1cfe84ac0e80b35e0d88e63cc mods: GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection
+ℹ [3075/3075] Built GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection (18s)
+info: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:214:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.unitary_conj_spectralProjection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:215:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.shift_mul_proj_mul_star_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:216:21: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.manuscriptConjugateKazhdanProjection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3075 jobs).
+EXIT=0

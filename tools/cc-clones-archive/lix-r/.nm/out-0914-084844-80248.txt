@@ -1,0 +1,73 @@
+[job] 08:50:34 acn72 waiting for clone lock
+[job] delta sync 99d005f8e..524da3a8f: 42 files changed
+===== SUMMARY
+host acn72 cores slurm base 524da3a8f log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-084844-80248.log
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 3507 oleans
+--- errors (first 80 lines)
+19:✖ [2416/2419] Building GroupApproximation.Analysis.MatrixUnitHom (7.2s)
+21:error: GroupApproximation/Analysis/MatrixUnitHom.lean:34:44: failed to synthesize instance of type class
+25:error: GroupApproximation/Analysis/MatrixUnitHom.lean:38:60: failed to synthesize instance of type class
+32:error: GroupApproximation/Analysis/MatrixUnitHom.lean:38:19: failed to synthesize instance of type class
+36:error: GroupApproximation/Analysis/MatrixUnitHom.lean:39:16: failed to synthesize instance of type class
+40:error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:12: failed to synthesize instance of type class
+44:error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:7: failed to synthesize instance of type class
+48:error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:2: failed to synthesize instance of type class
+52:error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:21: failed to synthesize instance of type class
+56:error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:30: failed to synthesize instance of type class
+60:error: GroupApproximation/Analysis/MatrixUnitHom.lean:47:13: declaration uses `sorry`
+61:error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:21: failed to synthesize instance of type class
+65:error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:30: failed to synthesize instance of type class
+69:error: GroupApproximation/Analysis/MatrixUnitHom.lean:51:13: declaration uses `sorry`
+70:error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:62: failed to synthesize instance of type class
+77:error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:82: failed to synthesize instance of type class
+84:error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:87: unsolved goals
+92:error: GroupApproximation/Analysis/MatrixUnitHom.lean:54:8: declaration uses `sorry`
+93:error: GroupApproximation/Analysis/MatrixUnitHom.lean:57:21: failed to synthesize instance of type class
+97:error: GroupApproximation/Analysis/MatrixUnitHom.lean:57:30: failed to synthesize instance of type class
+101:error: GroupApproximation/Analysis/MatrixUnitHom.lean:56:48: Function expected at
+110:error: GroupApproximation/Analysis/MatrixUnitHom.lean:59:27: failed to synthesize instance of type class
+114:error: GroupApproximation/Analysis/MatrixUnitHom.lean:59:45: failed to synthesize instance of type class
+118:error: GroupApproximation/Analysis/MatrixUnitHom.lean:58:15: failed to synthesize instance of type class
+122:error: GroupApproximation/Analysis/MatrixUnitHom.lean:78:21: failed to synthesize instance of type class
+126:error: GroupApproximation/Analysis/MatrixUnitHom.lean:78:31: failed to synthesize instance of type class
+130:error: GroupApproximation/Analysis/MatrixUnitHom.lean:77:49: Function expected at
+139:error: GroupApproximation/Analysis/MatrixUnitHom.lean:80:6: No goals to be solved
+140:error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:28: This simp argument is unused:
+147:error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:38: This simp argument is unused:
+154:error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:58: This simp argument is unused:
+161:error: GroupApproximation/Analysis/MatrixUnitHom.lean:82:50: failed to synthesize instance of type class
+165:error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:21: failed to synthesize instance of type class
+172:error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:41: failed to synthesize instance of type class
+179:error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:28: This simp argument is unused:
+186:error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:46: This simp argument is unused:
+193:error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:56: This simp argument is unused:
+200:error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:66: This simp argument is unused:
+207:error: GroupApproximation/Analysis/MatrixUnitHom.lean:91:65: failed to synthesize instance of type class
+211:error: GroupApproximation/Analysis/MatrixUnitHom.lean:92:4: failed to synthesize instance of type class
+215:error: GroupApproximation/Analysis/MatrixUnitHom.lean:91:40: Function expected at
+224:error: GroupApproximation/Analysis/MatrixUnitHom.lean:103:75: failed to synthesize instance of type class
+228:error: GroupApproximation/Analysis/MatrixUnitHom.lean:104:61: failed to synthesize instance of type class
+232:error: GroupApproximation/Analysis/MatrixUnitHom.lean:103:50: Function expected at
+241:error: GroupApproximation/Analysis/MatrixUnitHom.lean:109:49: failed to synthesize instance of type class
+245:error: GroupApproximation/Analysis/MatrixUnitHom.lean:109:49: failed to synthesize instance of type class
+249:error: GroupApproximation/Analysis/MatrixUnitHom.lean:110:50: failed to synthesize instance of type class
+256:error: GroupApproximation/Analysis/MatrixUnitHom.lean:111:32: failed to synthesize instance of type class
+261:error: GroupApproximation/Analysis/MatrixUnitHom.lean:121:14: Unknown constant `trace_matrixUnitSum`
+262:error: Lean exited with code 1
+285:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.PauliHyperfiniteFactor
+BUILT GroupApproximation.Analysis.PauliStageOperators
+BUILT GroupApproximation.Analysis.TracialUltrapowerTrace
+mentioned-not-built GroupApproximation.Analysis.MatrixUnitHom (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.MatrixUnitHom
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

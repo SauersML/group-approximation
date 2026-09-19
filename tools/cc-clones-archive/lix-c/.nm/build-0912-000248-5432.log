@@ -1,0 +1,72 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2093 oleans
+[job] acn112 cores=72-79 threads=8 base=9d422f49dc0d9853be367f7a56336199a6400ed7 mods: GroupApproximation.CharClass.ChernSplittingOfPowers GroupApproximation.CharClass.ChernSplittingOfInjective
+ℹ [2440/2466] Replayed GroupApproximation.CharClass.LIXStepDGenRealEven
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:99:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:100:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3403/3404] Built GroupApproximation.CharClass.ChernSplittingOfPowers (11s)
+✖ [3404/3404] Building GroupApproximation.CharClass.ChernSplittingOfInjective (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/ChernSplittingOfInjective.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ChernSplittingOfInjective.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ChernSplittingOfInjective.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ChernSplittingOfInjective.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ChernSplittingOfInjective.setup.json --json
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:97:40: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:98:15: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:98:24: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:97:52: unsolved goals
+K : Type
+inst✝² : CommRing K
+A B : Type
+inst✝¹ : TopologicalSpace A
+inst✝ : TopologicalSpace B
+f : C(A, B)
+g : C(B, A)
+hfg : ∀ (b : B), f (g b) = b
+⊢ Function.Injective ⇑(TotalHOf.map K sorry)
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:119:23: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:120:40: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:121:13: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:122:8: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:122:37: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:120:74: unsolved goals
+K : Type
+inst✝² : CommRing K
+X : Type
+inst✝¹ : TopologicalSpace X
+ι : Type
+inst✝ : Fintype ι
+p : Bundle X ι
+n : ℕ
+h : Function.Injective ⇑(TotalHOf.map K sorry)
+⊢ Function.Injective ⇑(TotalHOf.map K sorry)
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:133:40: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:134:2: Unknown identifier `totalHOf_map_injective_of_leftInv`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:142:44: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:143:42: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:146:27: Unknown identifier `flagProj_zero_map_injective`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:149:17: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:150:10: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:150:41: Unknown identifier `cmap`
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:162:41: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:163:40: Unknown identifier `cmap`
+
+Note: It is not possible to treat `cmap` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ChernSplittingOfInjective.lean:164:2: Unknown identifier `flagProj_map_injective`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.ChernSplittingOfInjective
+error: build failed
+EXIT=1

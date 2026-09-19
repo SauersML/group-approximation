@@ -1,0 +1,15 @@
+[job] 08:48:25 acn30 waiting for clone lock
+[job] delta sync 1dacd6442..0e845fdda: 69 files changed
+===== SUMMARY
+host acn30 cores slurm base 0e845fdda log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0914-084719-84641.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3553 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean
+ Quot.sound]
+Build completed successfully (4984 jobs).
+EXIT=0
+PROBE GREEN
