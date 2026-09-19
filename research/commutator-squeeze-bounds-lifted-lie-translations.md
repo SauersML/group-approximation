@@ -34,8 +34,9 @@ hypotheses a construction must break.
 - `G ≤ Aut(Y)`, and `κ : G → K` is a homomorphism with `ρ ∘ g = R_(κ(g)) ∘ ρ` for all `g ∈ G`. Freeness
   of the `K`-action is not needed.
 - The **singular set** is `Z_1 = ⋃_(a≠b) ρ([a]) ∩ ρ([b])`, and `ν = ρ_*μ`.
-- **(Cod_s)**: `ν(Z_1 · B_K(ε)) ≤ C ε^s` for small `ε`, with `s > 0`. Tame singular sets satisfy it, for
-  example piecewise-smooth hypersurfaces meeting the orbits transversally, with `s = 1`.
+- **(Cod_s)**: `ν(Z_1 · B_K(ε)) ≤ C ε^s` for small `ε`, with `s > 0`. Tame singular sets satisfy it. For
+  example, `s = 1` for piecewise-smooth hypersurfaces meeting the orbits transversally, **provided `ν` has
+  bounded density along `K`-orbits** (with respect to Haar measure on the orbits).
 - `R(g)` is the larger of the radii of the local rules of `g` and `g^(-1)`.
 
 ## Statement
@@ -91,15 +92,24 @@ hypotheses a construction must break.
     contradiction for large `j`.
   - So **`κ(G)` has no pair `κ(x), κ(y)` in `B_K(δ_*)` generating a free group**: in a free group,
     iterated commutators of a free pair are never trivial.
-- *No free subgroup.* Suppose `κ(G) ⊇ F ≅ F_2`, and let `L` be the closure of `F`.
-  - If `L°` were abelian, then `F ∩ L°`, of finite index in `F`, would be abelian. That is impossible.
-  - So `L°` is non-abelian, and `F ∩ B_K(δ)` (which lies in `L°` for small `δ`) is not commutative.
-  - Two non-commuting elements of a free group generate a free group of rank 2, which contradicts the
-    previous bullet.
-- *Virtually abelian.* `κ(G)` is a linear group without `F_2`, hence virtually solvable (Tits).
-  - The closure of a virtually solvable subgroup of a compact Lie group has a solvable compact connected
-    identity component, which is a torus.
-  - So `κ(G) ∩ L°` is abelian and of finite index.
+- **The logic chain for the conclusion.** The squeeze rules out small free pairs. Then:
+  - (i) **Any free pair yields a small free pair.** Suppose `κ(G) ⊇ F ≅ F_2`, and let `L` be the closure of
+    `F` in `K`.
+    - If `L°` were abelian, then `F ∩ L°`, which has finite index in `F` because `L/L°` is finite, would
+      be abelian. That is impossible.
+    - So `L°` is non-abelian. For small `δ`, `L ∩ B_K(δ) ⊆ L°`. The set `F ∩ B_K(δ)` is dense in
+      `L ∩ B_K(δ)`, since `F` is dense in `L`.
+    - If all elements of `F ∩ B_K(δ)` commuted, the neighbourhood `L ∩ B_K(δ)` of `1` in `L°` would be
+      commutative. It generates `L°`, so `L°` would be abelian.
+    - Hence there are non-commuting `x, y ∈ F ∩ B_K(δ)`, for every `δ > 0`.
+    - Two non-commuting elements of a free group generate a free group of rank 2, because subgroups of
+      free groups are free and a non-abelian 2-generated free group has rank 2.
+    - So there is a **free pair of small lifted elements**, with `δ < δ_*`. This contradicts the squeeze.
+  - (ii) **Tits.** So `κ(G)`, a linear group since `K` is a compact Lie group, contains no `F_2`. By the
+    Tits alternative it is virtually solvable.
+  - (iii) **Compact Lie.** Let `L` now be the closure of `κ(G)`. The closure of a virtually solvable
+    subgroup is virtually solvable, and its identity component is a compact connected solvable Lie group,
+    hence a torus. So `κ(G) ∩ L°` is abelian and has finite index in `κ(G)`: `κ(G)` is virtually abelian.
 - *Nontrivial action.* `κ(c_j) ≠ 1` gives nontrivial action because `K` acts freely.
 
 **3(a).** By item 3 of the collapse node, the fibre-preserving automorphisms embed in `K` through `κ`.
@@ -161,3 +171,8 @@ with invariant measures.
 - Items 1–2 are symmetric under `k ↦ k^{-1}`, so nothing changes.
 
 **3(a).** Correct. The collapse node applies: `Z = M ×_c SU(2)` is distal and almost 1-1 implies proximal, so `G` is (virtually abelian)-by-abelian. So T1, which needs a dense finitely generated subgroup of `SU(2)` and hence `F_2`, is impossible under polynomial repetitivity together with (Cod_s).
+
+**Clarifications applied (bh-invent-16, 2026-09-19).**
+- The bounded-density hypothesis is added to the smooth example of (Cod_s).
+- The conclusion now appears as the explicit chain (i) free pair ⇒ small free pair, (ii) Tits, (iii)
+  compact Lie ⇒ virtually abelian.
