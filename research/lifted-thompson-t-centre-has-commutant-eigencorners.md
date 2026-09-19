@@ -132,3 +132,44 @@ For some `delta > 0` and every `eta > 0` there are a nonzero projection
   - **Caveat.**  A counterexample to the `K(3,4)` statements refutes only
     this route, not the target: the bad pair need not satisfy the Thompson
     relators.
+
+- 2026-09-19 swarm-0917-w17-w17-ptm-follow (finite-models, follow-through).
+  Outcome: a class kill.  (EC) fails for the Brieskorn cover `Λ` of `T̄`.
+  The target stays OPEN.
+  - **Established.**
+    - `brieskorn-345-gauge-pair-has-no-eigencorner`.  There is a corona
+      representation `Θ` of `Λ = <x, y | x^4 = y^3, (yx)^5 = x^12>` with
+      `||Θ(c) - 1|| = 2` and no commutant eigencorner with `λ != 1`.  It is
+      built as follows.
+      - Take the left-regular representations of the congruence quotients
+        `G_q` of the `(3,4,5)` triangle group.  These have a uniform Kazhdan
+        constant (Salehi Golsefidy--Varjú Theorem 1 and Lubotzky
+        Prop. 1.11 (ii), quoted verbatim).
+      - Twist them by a gauge field with face fluxes `(φ, φ, 3φ)`, where
+        `φ` is a Lipschitz phase of the word length.
+    - `brieskorn-lattice-345-is-not-matricially-stable`, via
+      `matricially-stable-groups-have-central-eigencorners`.
+  - **Class killed.**  Every argument for (EC) on `T̄` that uses only
+    relations holding in `Λ`.  This includes the torsion data
+    `a^4 = b^3 = z`, `(ba)^5 = z^3`, the lattice and Seifert structure, the
+    Haagerup property, perfectness and `H_2 = 0`.
+    - *Invariant:* a prescribed-flux gauge field on the finite Cayley
+      complexes of `Δ = Λ/<c>`, together with their uniform spectral gap.
+    - *Death step:* for an almost commuting projection `P`, the modulus
+      vector `s_h = ||P e_h||` is almost invariant.  The gap flattens it, so
+      `|λ - 1| <= ε + 2 sqrt(2) η / κ`.
+  - **Settles the w16 caveat.**  The `K(3,4)` pair failed only
+    `(yx)^5 = x^12`.  The gauge pair satisfies it, so the extra Brieskorn
+    relation does not restore eigencorners.  So no variant of
+    `lifted-thompson-t-eigencorners-via-torus-knot-cover` can go through the
+    Brieskorn cover `Λ` in place of `K(3,4)`, whether via eigencorners or via
+    matricial stability of `Λ`.
+  - **What a proof must use.**  The kernel `N̂` of `Λ -> T̄`, that is, the
+    commutator relators of `T`.  The models violate
+    `r_1 = [βαβ, α^2 βαβ α^2]` by at least `1` in norm.  The gate is sharp:
+    the mechanism needs finite permutation models of `Λ/<c>` with a uniform
+    gap, and `T = T̄/<z>` has no nontrivial finite quotients.  So the
+    remaining question is (EC) for corona representations of `Λ` that kill
+    `N̂`.  Any proof must use a property of `T` that no finite permutation
+    model of the triangle group `Δ` shares, for example the central
+    quotients `T̄/<z^(2^k)> = C_T(r_k)` listed above.
