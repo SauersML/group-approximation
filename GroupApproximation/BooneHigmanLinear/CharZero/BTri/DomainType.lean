@@ -42,6 +42,7 @@ variable {A : Type*} [CommRing A] [IsDomain A] {B : Type*} [CommRing B] [Algebra
 noncomputable def pU : Bˣ :=
   (IsLocalization.Away.algebraMap_isUnit (S := B) p).unit
 
+omit [IsDomain A] in
 @[simp] theorem coe_pU : ((pU (B := B) p : Bˣ) : B) = algebraMap A B p :=
   IsUnit.unit_spec _
 
@@ -51,6 +52,7 @@ noncomputable def pU : Bˣ :=
 noncomputable def unitsMap : Aˣ →* Bˣ :=
   Units.map (algebraMap A B).toMonoidHom
 
+omit [IsDomain A] in
 @[simp] theorem coe_unitsMap (v : Aˣ) : ((unitsMap (B := B) v : Bˣ) : B) = algebraMap A B v :=
   rfl
 
@@ -144,7 +146,7 @@ theorem pval_mul (hp : Prime p) (u w : Bˣ) : pval hp (u * w) = pval hp u + pval
   apply pval_eq hp (v := (exists_unit_decomp hp u).choose * (exists_unit_decomp hp w).choose)
   conv_lhs => rw [pval_spec hp u, pval_spec hp w]
   rw [map_mul, zpow_add]
-  simp only [mul_comm, mul_left_comm, mul_assoc]
+  exact mul_mul_mul_comm _ _ _ _
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.BTri.pval_mul
 
@@ -184,6 +186,7 @@ theorem latOf_le_of_eq_mul {g h : GL (Fin 3) B} {K : Matrix (Fin 3) (Fin 3) A}
     refine Finset.sum_congr rfl fun l _ => ?_
     simp only [Pi.smul_apply, Algebra.smul_def, Matrix.map_apply]
     ring
+  show (fun i => (h : Matrix (Fin 3) (Fin 3) B) i j) ∈ (latOf A B g : Set (Fin 3 → B))
   rw [hcol]
   exact Submodule.sum_mem _ fun l _ => Submodule.smul_mem _ _ (col_mem_latOf g l)
 
@@ -214,7 +217,8 @@ theorem exists_eq_mul_of_latOf_le {g h : GL (Fin 3) B} (hle : latOf A B h ≤ la
   refine ⟨Matrix.of fun l j => c j l, ?_⟩
   ext i j
   have hij := congrFun (hc j) i
-  simp only [Finset.sum_apply, Pi.smul_apply, Algebra.smul_def] at hij
+  simp only [Finset.sum_apply, Pi.smul_apply] at hij
+  simp only [Algebra.smul_def] at hij
   rw [← hij, Matrix.mul_apply]
   refine Finset.sum_congr rfl fun l _ => ?_
   simp only [Matrix.map_apply, Matrix.of_apply]
@@ -251,17 +255,17 @@ theorem smul_latOf [IsLocalization.Away p B] (a : ℕ) (g : GL (Fin 3) B) :
       latOf A B (Matrix.GeneralLinearGroup.scalar (Fin 3) (pU (B := B) p ^ a) * g) := by
   rw [latOf_mul A B, Submodule.pointwise_smul_def]
   congr 1
-  ext v i
-  simp only [DistribSMul.toLinearMap_apply, glLin, LinearMap.coe_restrictScalars,
-    Matrix.mulVecLin_apply, Matrix.GeneralLinearGroup.coe_scalar, Units.val_pow_eq_pow_val, coe_pU,
-    Matrix.scalar_apply, Matrix.mulVec_diagonal,
-    Pi.smul_apply, Algebra.smul_def, map_pow]
+  refine LinearMap.ext fun v => funext fun i => ?_
+  rw [DistribSMul.toLinearMap_apply, Pi.smul_apply, Algebra.smul_def, map_pow (algebraMap A B)]
+  simp only [glLin, LinearMap.coe_restrictScalars, Matrix.mulVecLin_apply,
+    Matrix.GeneralLinearGroup.coe_scalar, Units.val_pow_eq_pow_val, coe_pU, Matrix.scalar_apply,
+    Matrix.mulVec_diagonal]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.BTri.smul_latOf
 
 end Lattices
 
-section Type
+section VertexType
 
 variable {A : Type*} [CommRing A] [IsDomain A] {B : Type*} [CommRing B] [Algebra A B]
   {p : A} [IsLocalization.Away p B]
@@ -326,7 +330,7 @@ noncomputable def vertexType (hp : Prime p) : Vertex A B p → ZMod 3 :=
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.BTri.vertexType_vertexOf
 
-end Type
+end VertexType
 
 end BTri
 end BooneHigmanLinear

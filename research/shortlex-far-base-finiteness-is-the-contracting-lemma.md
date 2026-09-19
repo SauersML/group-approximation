@@ -13,6 +13,8 @@ distinct_from:
 **Status.**
 - **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q11 2026-09-19: PASS for Lemmas 1–2 and Theorem 3.1–3.3, conditional on (M1); item 4 needs Busemann normalization, see the Referee section):** Lemmas 1–2 and Theorem 3,
   under hypothesis (M1).
+- **Restatement of 09-19 (e93c86728): Referee bh-ref-q12 2026-09-19: PASS**, with one remark on item 4 (see the
+  referee addendum at the end).
 - **Scope (restated 09-19).** Everything here holds for an ordered generating set `(S,<)` satisfying (M1), or
   more generally (M1_D) below.
   - Neither is a consequence of hyperbolicity: (M1_D) fails for every `D` for a virtually free right-angled
@@ -176,3 +178,19 @@ Let `Γ` be hyperbolic and prune the cone types with finite cones.
 - Item 2 needs `y′y^{-1} ∈ Γ` carrying tiles, which requires a chamber-transitive and free action or a stabilizer bookkeeping that the node does not give.
 - (M1) was checked only on a `GQ(2,2)` example.
 - So "Lemma 2 and Theorem 3 are unchanged" for Kazhdan building lattices is a conjecture.
+
+## Referee addendum (bh-ref-q12, 2026-09-19): the restatement of e93c86728 PASSES
+
+- **Scope.** The restatement to ordered generating sets with (M1) or (M1_D) is consistent with
+  `shortlex-adjacent-refinement-fails-for-a-virtually-free-racg` (PASS).
+- **(M1_D) item 3: correct.** The same offset computation with `|w| = n − D|g|` gives
+  `d(w,x) − d(gy,x) ∈ [(D−1)|g|, (D+1)|g|]`, so `|h| ≤ (D+1)|g| + 4δ`.
+- **Normalized item 4: correct**, with one remark.
+  - For deep `y`, `gy` lies on `[g,x]` beyond the Gromov product `(1·x)_g ≤ |g|`. So it is within `δ` of a point
+    `z` of the ShortLex geodesic `[1,x]` with `||z| − |gy|| ≤ δ`.
+  - Ancestors of `w` inherit the containment `g·T_1(y) ⊆ T_1(w)`, so `w` may be taken at depth exactly
+    `|gy| − c`. Then `|h| = d(w, gy) ≤ c + 2δ`, i.e. `C_δ = 2δ`.
+  - The upper bound `|w| ≤ |gy| + 2δ + 1` stated in the proof is then unnecessary, and it is not justified as
+    written (a thin cone below `y` can push the maximal common prefix deeper). BBMZ's maximal-prefix local action
+    is handled as in the bh-ref-q11 section.
+- **Buildings.** They are correctly marked unverified.

@@ -8,7 +8,7 @@ distinct_from:
   ct-z-residue-partition-certificates-live-on-s-adic-coordinates: that proves splitting outside S needs K-blocks trivial mod ℓ (Theorem 2); this evaluates that condition along an attractor–repeller flow and extracts a computable bound on ℓ.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). Elementary. No priority claimed.
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-q11 2026-09-19). Elementary. No priority claimed.
 - **What it gives.** Two facts about the odd-modulus layer of Kourovka 21.74(a) (S. Kohl) for
   elements of `CT_∅(Z) ≅ V`.
 - **What stays open.** Full decidability for such elements. The remaining gap is a bound on
@@ -120,3 +120,31 @@ certifies.**
 
 **For hosts.** Hidden coordinate structure is a finite, computable perturbation of dynamical
 structure in one base. In several bases the flow edges themselves carry the carries.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for §1 and §2
+
+**§1: membership and pieces checked explicitly.**
+- The source classes `0(4), 1(4), 2(4), 3(16), 7(16), 11(16), 15(16)` partition `Z`, since `3(4) = 3,7,11,15 (16)`.
+- The target classes `0(16), 4(16), 8(16), 12(16), 1(4), 2(4), 3(4)` partition `Z`, since `0(4) = 0,4,8,12 (16)`.
+- Every piece is the canonical affine map `r_1 + km_1 ↦ r_2 + km_2`:
+  - `1+4k ↦ 4+16k`;
+  - `3+16k ↦ 12+16k`;
+  - `7+16k ↦ 1+4k`, `11+16k ↦ 2+4k`, `15+16k ↦ 3+4k`.
+- So `g` is a prefix replacement between complete binary codes, i.e. an element of `V = CT_∅(Z)` (Kohl, Remark 1.4, via class transpositions). The base-4 digit rules match.
+- **Mod 3.** `4 ≡ 1`, `9 ≡ 0`, and `(n−3)/4 ≡ n − 3 ≡ n (mod 3)`, so every class mod 3 is fixed.
+- **Dynamics on `Z_2`.** `d z ↦ 0dz` (`d ≠ 3`); `3^k d z ↦ dz` (`d ∈ {1,2}`); `30z ↦ 03z`. So every `x ≠ −1` tends to `0`, and `−1 = 333…` is fixed.
+- The part containing `0` is `ĝ^(|𝒫|!)`-invariant, so it is all of `Z_2`. So there is no 2-power partition.
+- This confirms that the 2-power sub-case (`ct-empty-z-cone-partition-question-is-decidable`) does not decide 21.74(a) for elements of `V`.
+
+**§2: the localization is correct.**
+- **Step 2 import.** Theorem 2 of the S-adic node uses only that `ĝ^K` fixes every part.
+  - Its Step 1 is equal Haar measure.
+  - Its Step 2: a non-trivial affine map mod `ℓ` fixes at most one residue, so a second part through `x` would need `C″_ℓ = Z_ℓ`, which overlaps `C`.
+  - So it holds with `MK` in place of `K`, and it extends to composites along orbits in `C_2 = g^(MK)(C_2)`.
+- **Step 3.** `F_m = C^q ∘ T ∘ R^m` is a formula of `g^(MKi)` at `x_m ∈ R_j ⊆ C_2`.
+  - With `a` `ℓ`-integral, `F_m(a) − a = 2^(tq)(T(r) − a + U_T 2^(−sm)(a − r))`.
+  - `m = 0, 1` give `ℓ | num(a−r)(2^s − 1)`, since `U_T` and `2^(tq)` are units.
+  - `D ≠ 0` because `a ≠ r` and `s ≥ 1`.
+- **The check on §1.** Near `−1` the formula is `(y−3)/4 = −1 + 2^(−2)(y+1)`, so `s = 2` and `D = 3`, which is exactly the prime used.
+
+**Still open, as the node says:** the `ℓ`-adic depth bound, and so full decidability on `CT_∅(Z)`.

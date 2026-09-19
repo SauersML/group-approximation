@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.ClassTransposition.Presentation.Moves: Not a definitional equality: the left-hand side"
 ---
 
-**OPEN.** Lean module `GroupApproximation/ClassTransposition/Presentation/Moves.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/ClassTransposition/Presentation/Moves.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
 **First errors (verbatim).**

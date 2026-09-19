@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdK
+import Mathlib.RingTheory.Ideal.BigOperators
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

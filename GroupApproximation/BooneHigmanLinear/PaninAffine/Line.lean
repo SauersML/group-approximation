@@ -52,7 +52,7 @@ theorem coeff_aeval_totalDegree (g : σ → Polynomial R) (hg : ∀ i, (g i).nat
       ∑ α ∈ f.support.filter (fun α => (α.sum fun _ e => e) = f.totalDegree),
         algebraMap K R (f.coeff α) * ∏ i, (g i).coeff 1 ^ α i := by
   classical
-  rw [aeval_def, eval₂_eq', Polynomial.finset_sum_coeff, Finset.sum_filter]
+  rw [aeval_def, eval₂_eq', Polynomial.finsetSum_coeff, Finset.sum_filter]
   refine Finset.sum_congr rfl fun α hα => ?_
   rw [Polynomial.algebraMap_apply, Polynomial.coeff_C_mul]
   have hdeg : (α.sum fun _ e => e) = ∑ i, α i := Finsupp.sum_fintype _ _ (fun _ => rfl)
@@ -120,14 +120,15 @@ noncomputable def shearLine (a : Fin n → K) : Fin (n + 1) → Polynomial (MvPo
 theorem shearLine_natDegree_le (a : Fin n → K) (i : Fin (n + 1)) :
     (shearLine a i).natDegree ≤ 1 := by
   refine Fin.cases ?_ (fun j => ?_) i
-  · simpa [shearLine] using Polynomial.natDegree_X_le
+  · simp [shearLine]
   · simp only [shearLine, Fin.cons_succ]
     exact (Polynomial.natDegree_add_le _ _).trans
       (max_le (by simp) ((Polynomial.natDegree_C_mul_le _ _).trans Polynomial.natDegree_X_le))
 
 theorem finSuccEquiv_shear (a : Fin n → K) (g : MvPolynomial (Fin (n + 1)) K) :
     finSuccEquiv K n (shear a g) = aeval (shearLine a) g := by
-  have hX : ∀ i, finSuccEquiv K n (shear a (X i)) = aeval (shearLine a) (X i) := by
+  have hX : ∀ i, finSuccEquiv K n (shear a (X i)) =
+      aeval (shearLine a) (X i : MvPolynomial (Fin (n + 1)) K) := by
     intro i
     refine Fin.cases ?_ (fun j => ?_) i
     · rw [shear_apply, shearHom_X_zero, finSuccEquiv_X_zero, aeval_X]
@@ -158,7 +159,7 @@ theorem coeff_finSuccEquiv_shear_totalDegree (a : Fin n → K) (f : MvPolynomial
   refine Finset.sum_congr rfl fun α _ => ?_
   rw [eval_monomial, Finsupp.prod_fintype _ _ (fun _ => pow_zero _), Fin.prod_univ_succ]
   simp [shearLine, Finsupp.tail_apply, map_prod, map_pow, MvPolynomial.algebraMap_eq,
-    Polynomial.coeff_C_mul_X, Polynomial.coeff_C]
+    Polynomial.coeff_C]
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.coeff_finSuccEquiv_shear_totalDegree
 
