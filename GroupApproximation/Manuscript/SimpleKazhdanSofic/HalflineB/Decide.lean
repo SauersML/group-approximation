@@ -73,7 +73,16 @@ theorem parB_cons (a : α) (l : List α) (f : α → Bool) : parB (a :: l) f = b
 theorem anyB_eq_true (l : List α) (f : α → Bool) : anyB l f = true ↔ ∃ a ∈ l, f a = true := by
   induction l with
   | nil => simp [anyB_nil]
-  | cons a l ih => rw [anyB_cons, Bool.or_eq_true, ih, List.exists_mem_cons]
+  | cons a l ih =>
+    rw [anyB_cons, Bool.or_eq_true, ih]
+    constructor
+    · rintro (h | ⟨b, hb, h⟩)
+      · exact ⟨a, List.mem_cons.2 (Or.inl rfl), h⟩
+      · exact ⟨b, List.mem_cons.2 (Or.inr hb), h⟩
+    · rintro ⟨b, hb, h⟩
+      rcases List.mem_cons.1 hb with rfl | hb
+      · exact Or.inl h
+      · exact Or.inr ⟨b, hb, h⟩
 
 theorem allB_eq_true (l : List α) (f : α → Bool) : allB l f = true ↔ ∀ a ∈ l, f a = true := by
   induction l with
