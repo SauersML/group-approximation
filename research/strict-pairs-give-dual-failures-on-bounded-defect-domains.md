@@ -48,3 +48,51 @@ works.
 - The only information lost is at configurations with a large or infinite defect component.
 - Those are exactly the configurations the repair lemma cannot handle.
 - The old hole is equivalent to extending some `σ|_{X_R}` to the full shift while keeping post-surjectivity.
+
+## Attempts
+
+- **2026-09-19, swarm-0917-w18c-w18c-gs-audit (calibration, refutation audit). Survives.** I tried to refute this
+  claim and the other 09-17 to 09-19 claims that the closest live routes into Gottschalk rely on
+  (`gottschalk-via-proper-domain-duality`, `gottschalk-via-constant-point-domains`,
+  `irs-surjunctivity-via-rank-corrected-co-sofic-split`, `alphabet-rank-from-dual-surjunctivity`, and the absorption
+  routes). I found no break. What I checked, step by step:
+  - **This claim (all five parts of `bounded-defect-domain-dual-failure-proof`).**
+    - (1): the forbidden patterns are "a component of more than `R` defects inside a `U`-connected set", so the
+      domain is finite type. Strong irreducibility holds via a common image background.
+    - (2): the lifts stay in `X_R`, with `Φ = M⁻¹U^R`.
+    - (4): `D(x1) ⊆ PW⁻¹`, and (F1) gives `E(x1) = x1` off `D(x1)`. This needs `1 ∈ W` and `W` to contain a memory
+      of `E`, both of which are assumed.
+    - (5): a maximal `P`-packing gives `D(x) = G`. The component is infinite, because a finite `⟨M⟩` would make `τ`
+      a product of injective maps on finite cosets, hence onto.
+    - Calibrations: non-finitely-generated `G`, where all the steps are local; the one-sided shift on `N`, where injective
+      automata are onto, so the hypothesis is empty; and the full shift.
+  - **Repair lemma** (`decoder-defect-chain-repair-proof`). A clean collar `K ∩ D(x) = ∅` forces `x = y` on `K`.
+    This is correct.
+  - **Scheduled sections** (`post-surjective-sft-covers-admit-scheduled-sections`, Theorem A). Same-colour sites
+    are separated by `E = NΦ⁻¹ ∪ ΦN⁻¹ ∪ {1}`, so the updates commute. Correct. B1 to B3 rest on the older
+    `strict-automaton-lowers-bernoulli-rokhlin-entropy`, which I did not re-audit.
+  - **Pointed cover pairs** (`pointed-pre-injective-cover-pairs-admit-sections`). Theorem P and Corollary 2
+    (`PSD_c ⇒ CP` via `X_R`, which contains a constant point) are correct.
+  - **Alphabet enlarging** (`alphabet-enlarging-covers-refute-dual-and-domain-duality`, parts 1 to 5).
+    - `P∘q^G` is post-surjective, because a composite of post-surjective maps is post-surjective, and it is
+      non-pre-injective through the letter collapse. Part 1 does not even need strong post-surjectivity.
+    - Part 5 passes the rank condition to `K[G]` via the augmentation map.
+  - **Co-sofic IRS bound** (`co-sofic-free-group-irs-carry-no-strict-design`). I re-derived
+    `δ ≤ (b_{Rτ} + b_{2ρ}|A|^{b_ρ} ln|A|)ε` by counting missing patterns on disjoint balls, and checked that it passes
+    to weak-* limits.
+  - **Local balance** (`extension-decoders-are-locally-balanced`).
+    - (B) and (D1) are correct: equivalent diagonal projections have equal fibre ranks.
+    - (C) holds on the shift example.
+    - I did not check (A) or (E).
+  - **Monomial absorption** (`monomial-qca-topological-absorption-proof`). This was the prime suspect: is the infinite
+    product `T^x` well defined and continuous?
+    - It is. The `T_g` commute, and `T^{x|F'} = T^{x|F'\F}∘T^{x|F}` with the outer factor writing only on
+      `(F'\F)R ∌ h`. So coordinate `h` of every finite product equals `(T^{x|hR⁻¹}u)_h`, which reads `u` only on
+      `hR⁻¹W`, since `R ⊆ W`. This gives joint continuity, and the action law extends by density.
+    - Step 4 (`σ` bijective implies `Φ` onto) uses `C(A^G) ⊆ Φ(A)` to absorb the diagonal factor. Correct.
+    - Step 5 (the Weyl relations for `U_{T_g}` and `ζ^{σ_g}`) is correct.
+    - So Step 3 of `absorbing-marked-groups-form-an-open-set-proof`, which uses (3)⇒(2), stands. Its Step 2
+      commutation for `g ∉ PS⁻¹ ∪ SP⁻¹` is also correct.
+  - **No gaps found that need a fix file.** These routes remain exactly as strong as their open holes:
+    `proper-sft-domains-admit-no-dual-failures`, `constant-point-sft-domains-admit-no-post-surjective-covers`, and
+    dual surjunctivity.
