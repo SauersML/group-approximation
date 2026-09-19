@@ -126,7 +126,7 @@ finite-dimensional cube complexes via Brodzki–Campbell–Guentner–Niblo–Wr
 
 Take `G` from `decidable-residually-finite-non-exact-group-exists`. Every `Λ ⊇ G` is non-exact
 (exactness passes to subgroups, recalled), so no `Λ ⊇ G` has any topologically amenable action.
-- **Group route (Track A) and its CARRIER.** No minimal, topologically free, rigid SFT exists over an
+- **Minimal-subshift group route (Track A) and its CARRIER.** No minimal, topologically free, rigid SFT exists over an
   fp overgroup of `G`. So the carrier (v7, a85dd1c95) fails at `G`.
 - **Ring route (FJ ∧ Khanh).** v7 records `BH ⇐ CARRIER ∧ ((A₂) ∨ (FJ ∧ Khanh))`, so the ring route
   also starts from the carrier, and it fails at `G` too.
@@ -134,10 +134,17 @@ Take `G` from `decidable-residually-finite-non-exact-group-exists`. Every `Λ �
   topologically free, rigid SFT over an overgroup of `G`. Such a seed therefore cannot exist.
 - **Track B** is confined by a different mechanism (the Kirchberg shadow of linear gate U, 926454737).
   **Stabilizer engines** are dead (a23f54860).
-- **Net effect.** Every route on main would reach only exact inputs. Boone–Higman for `G` would then need
-  a finitely presented simple non-exact group built without rigid minimal dynamics over an overgroup of
-  the input. That is a fifth construction principle, as the census (ac52110520) already predicts. BH
-  itself is untouched: (RA) is a statement about our tools, not about BH.
+- **The permutational route survives.** The route from a type (A) action to a twisted Brin–Thompson
+  group is not obstructed. Its rigid coset ambients are topologically free and non-amenable, but they
+  are never minimal (`ra-counterexamples-are-minimal-sets-of-rigid-ambients`, 4ed22df890, item 5).
+  (RA) says nothing about them.
+- **Net effect (corrected; the first landing overstated it).** The minimal-subshift tracks fail at `G`:
+  the Track A carrier, the ring route and the seeds. The permutational route survives. So (RA′) does
+  not force a new construction principle for BH; it moves the non-exact inputs onto the permutational
+  route. BH itself is untouched: (RA) is a statement about our tools, not about BH.
+- **Finite fibres** (`quantum-rigid-subshifts-are-determined-by-thick-collars`, item 5). Over the
+  equicontinuous factor, finite fibres carry an invariant measure, so (CC) there forces the group to be
+  amenable. Cap coherence is the target only in infinite fibres.
 - **If (RA′) fails**, a counterexample is a minimal, topologically free, rigid subshift whose caps never
   cohere. The cheapest candidate is a minimal set of `R(Λ)` for a non-exact Haagerup group with walls.
 
