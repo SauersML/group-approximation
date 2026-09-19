@@ -31,6 +31,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+noncomputable section
+
 variable {G : Type*} [Group G]
 
 /-- The coprimary components with `⊤` prepended, so that there is at least one piece. -/
@@ -120,6 +122,8 @@ theorem exists_pureCharacteristic_split [Group.FG G] (hG : IsMetabelianGroup G) 
   exact h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_pureCharacteristic_split
+
+end
 
 end Coprimary
 end Metabelian

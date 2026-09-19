@@ -20,6 +20,7 @@ import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.BooneHigman.Statement.API
 import GroupApproximation.SteinbergFP.Challenge
+import GroupApproximation.BooneHigmanLinear.FrontierFour
 
 /-!
 # Proofs for the Boone–Higman megasubmission (work in progress)
@@ -31,9 +32,8 @@ This file repeats the challenge's shared block byte for byte.
 under its `_of` name. Every other selected theorem appears under a name ending `_of` and takes,
 as a hypothesis, the proposition the development still owes:
 
-* the two metabelian theorems and the linear theorem take the development endpoints
-  `GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement` and
-  `GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement`;
+* the two metabelian theorems and the linear theorem take `RouteAOwed`, the four open inputs of
+  route A (`GroupApproximation/BooneHigmanLinear/FrontierFour.lean`);
 * the others take a proposition named here (`LinearSelfSimilarOwed`, `Kourovka1757Owed`,
   `Kourovka1759Owed`, `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`,
   `KohlFactorizationOwed`, `GraphProductOwed`, `MixedIdentitiesOwed`), which is the challenge
@@ -43,9 +43,9 @@ The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are 
 hypotheses removed, as the development discharges them.
 
 **Where each owed proposition stands.**
-* The metabelian and linear endpoints wait on the development's open gap statements; a wiring
-  file stating them from those gaps is being written, and its `_of` forms will replace the
-  endpoint hypotheses here.
+* `RouteAOwed`: route A reduces the metabelian and linear theorems to four named Statements of
+  the metabelian chain (Suslin absorption at bad primes, the two `K₂` gaps, and the Higman–`V`
+  step-B core); each is open in the development.
 * `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
   homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
   that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
@@ -240,6 +240,7 @@ theorem embedsInFinitelyPresentedSimpleGroup_iff {G : Type} [Group G] :
     EmbedsInFinitelyPresentedSimpleGroup G ↔
       GroupApproximation.BooneHigman.EmbedsInFinitelyPresentedSimpleGroup G :=
   Iff.rfl
+
 /-- **Kourovka 14.10(c), BBMZ Problem 2.7**, proved outright:
 `GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q` states the same
 proposition over byte-identical copies of the shared definitions, so it closes this one by
@@ -257,34 +258,53 @@ theorem explicit_fp_overgroup_of_all_gl_n_q_of :
         SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
   explicit_fp_overgroup_of_all_gl_n_q
 
+/-- The four open inputs of route A, named Statements of the metabelian chain that
+`GroupApproximation/BooneHigmanLinear/FrontierFour.lean` composes: `S1`, Suslin absorption in the
+bad-prime local case; `P1`, the characteristic-`p` `K₂` gap pair; `Z1`, the characteristic-zero
+`K₂` split gap; and `H1`, the step-B core of the Higman–`V` envelope. -/
+def RouteAOwed : Prop :=
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZLocal_BadStatement ∧
+    (∀ p : ℕ, p.Prime →
+      GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4) ∧
+    GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement ∧
+    GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCStepBCoreStatement
 
-/-- The finitely generated metabelian form, from the development endpoint. -/
-theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
-    (h : GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement) :
-    ∀ (G : Type) [Group G], Group.FG G → IsMetabelianGroup G →
-      EmbedsInFinitelyPresentedSimpleGroup G := by
-  intro G _ hfg hmet
-  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr (h G hfg (isMetabelianGroup_iff.mp hmet))
-
-/-- BBMZ Problem 5.3(7), from the same endpoint: a finitely presented group is finitely
-generated. -/
+/-- BBMZ Problem 5.3(7), from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA`. -/
 theorem finitely_presented_metabelian_embeds_in_finitely_presented_simple_of
-    (h : GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement) :
+    (h : RouteAOwed) :
     ∀ (G : Type) [Group G], Group.IsFinitelyPresented G → IsMetabelianGroup G →
       EmbedsInFinitelyPresentedSimpleGroup G := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
   intro G _ hfp hmet
   exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
-    (GroupApproximation.BooneHigman.finitelyPresentedMetabelianStatement_of_finitelyGenerated h
-      G hfp (isMetabelianGroup_iff.mp hmet))
+    (GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA
+      hS1 hP1 hZ1 hH1 G hfp (isMetabelianGroup_iff.mp hmet))
 
-/-- Finitely generated linear groups, from the development endpoint. -/
+/-- The finitely generated form of BBMZ Problem 5.3(7), from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA`. -/
+theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
+    (h : RouteAOwed) :
+    ∀ (G : Type) [Group G], Group.FG G → IsMetabelianGroup G →
+      EmbedsInFinitelyPresentedSimpleGroup G := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  intro G _ hfg hmet
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA
+      hS1 hP1 hZ1 hH1 G hfg (isMetabelianGroup_iff.mp hmet))
+
+/-- Finitely generated linear groups over any field, from route A's four inputs, through
+`GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA`. -/
 theorem finitely_generated_linear_embeds_in_finitely_presented_simple_of
-    (h : GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement) :
+    (h : RouteAOwed) :
     ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
       H.FG →
       EmbedsInFinitelyPresentedSimpleGroup H := by
+  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
   intro K _ n H hfg
-  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr (h K n H hfg)
+  exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
+    (GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA
+      hS1 hP1 hZ1 hH1 K n H hfg)
 
 /-- The proposition the linear development owes for Llosa Isenrich–Schesler–Wu Question 1.11. -/
 def LinearSelfSimilarOwed : Prop :=

@@ -64,6 +64,7 @@ theorem eHighWittE_decomp (x : WittVector p R) (j : ℕ) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_decomp
 
+omit [Fact (Nat.Prime p)] in
 theorem eHighWittE_shift_coeff_zero (x : WittVector p R) (j : ℕ) :
     ((WittVector.tail j x).shift j).coeff 0 = x.coeff j := by
   rw [WittVector.shift_coeff, add_zero, eHighWittE_tail_coeff_ge x (le_refl j)]
