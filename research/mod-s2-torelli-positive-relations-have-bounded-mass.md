@@ -69,3 +69,23 @@ By (RF), `K` is at least `1/(3D)` at every level. The base forces `K >= 5`, and 
     `Stab(s)`, and all sums of such relations.
   - *Survivors.* Relations whose letters generate non-T-flexible monodromy, and mixed-handle words whose
     individual commutators are not Torelli. The census relations (`F = 5`, `10`) are of this global kind.
+- **2026-09-19, swarm-0917-w19-w19-deligne-break (host-geometry): divisibility is vacuous, and holomorphic
+  certificates die.**
+  - *Divisibility cannot occur.* By ST5, `3 not| g(Gamma')` at every level
+    (`mod-s2-torelli-abelian-census-limit-is-positive`), so some `w in B` has `3 not| chi(w)`.
+    - The transfer `5m` has every coordinate positive, since `m` is the vector of class sizes.
+    - Hence `w + 15N m >= 0` for large `N`, with `chi == chi(w) mod 3`.
+    - So `A_+(Gamma') < infinity` at every level. The failure mode "Divisibility" above is empty, and w15's
+      "odd-index next hole" is closed a priori: only mass growth remains.
+  - *Holomorphic certificates have unbounded mass.* See
+    `mod-s2-holomorphic-torelli-certificates-have-unbounded-mass`.
+    - A compact holomorphic curve `f` in `A_2(Gamma')` with `Gamma' <= Gamma(3n)` has mass
+      `deg f^* H_1 = 5 deg f^* lambda`, using Igusa's `chi_10`.
+    - That mass is at least `5 |Phi mod 3n|`, where `Phi` is the infinite level-3 monodromy.
+    - There are finitely many `Phi` classes per degree, so every such certificate has mass `> 5D` once
+      `n >= n_0(D)`.
+    - This kills Shimura curves, complete intersections, and holomorphic separating-only genus-2 Lefschetz
+      fibrations as proofs of this node.
+  - *What is left.* A proof must use positive relations that are not holomorphic. Via the Maslov dictionary
+    these are achiral or symplectic, non-Kahler, separating-only genus-2 Lefschetz fibrations with monodromy
+    in `Lambda` and a bounded number of singular fibres.
