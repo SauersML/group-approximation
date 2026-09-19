@@ -1,0 +1,10 @@
+constant a_n = 1 (should pass)                   0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000
+a_n = n + 1 (ceil metric)                        0.4828    2.3170    4.5742    9.6100   19.7084   40.6322
+a_n = log(n + 2)                                -0.0000    0.1127    0.9734    2.3578    5.3624   11.4148
+a_n = sqrt(n + 1)                               -0.0000   -0.0000    0.7635    2.3268    5.6354   12.1540
+single jump a_0 = 1, a_n = 1.05 (n >= 1)        -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.2532
+single dip a_0 = 1, a_n = 0.95 (n >= 1)          0.0000   -0.0000    0.0000    0.3759    1.7438    4.4787
+columns: N = 2, 4, 8, 16, 32, 64 points per unit, window [0, 6)
+prediction: every nonconstant row becomes positive once N is large;
+for a single jump of size eps at distance 1 the threshold is N ~ 1/(0.43 eps),
+0.43 = -min of the Fourier transform 2 sin(x)/x of the indicator of (-1, 1)
