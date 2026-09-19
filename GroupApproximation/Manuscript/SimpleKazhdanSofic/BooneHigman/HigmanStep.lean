@@ -67,7 +67,7 @@ theorem rePred_evalRaw_natGen_eq_one {ι : Type} [Primcodable ι] (s : ι → Γ
 
 /-- The generators `j ↦ natGen s j`, `j ≤ N`, generate once every code of a generator is `≤ N`. -/
 theorem surjective_lift_natGen {ι : Type} [Primcodable ι] {s : ι → Γ}
-    (hs : Subgroup.closure (Set.range s) = ⊤) {N : ℕ} (hN : ∀ i, encode i ≤ N) :
+    (hs : Subgroup.closure (Set.range s) = ⊤) {N : ℕ} (hN : ∀ i : ι, encode i ≤ N) :
     Function.Surjective (FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ)) := by
   rw [← MonoidHom.range_eq_top, eq_top_iff, ← hs, Subgroup.closure_le]
   rintro _ ⟨i, rfl⟩
@@ -92,8 +92,8 @@ theorem nonempty_fgRecursive_of_hasSolvableWordProblem (h : HasSolvableWordProbl
   have hre : REPred fun v : RawWord =>
       (FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ)) (rawToFree N v) = 1 :=
     (rePred_comp (rePred_evalRaw_natGen_eq_one s hpart) hcomp).of_eq fun v => by rw [hmod]
-  exact ⟨{ rank := N, π := FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ),
-    π_surjective := surjective_lift_natGen hs hN, re := hre }⟩
+  exact ⟨⟨N, FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ),
+    surjective_lift_natGen hs hN, hre⟩⟩
 
 /-- **Higman.** A group with solvable word problem embeds in a finitely presented group. -/
 theorem nonempty_fpOvergroup_of_hasSolvableWordProblem (h : HasSolvableWordProblem Γ) :
