@@ -314,3 +314,16 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     - cone trees on the short-4 radius-6 instance, which is the one the census found UNSAT, instead
       of the full ball;
     - a `2`- and `3`-adic quaternion search over `ℚ` for the `(4,3)` classes.
+- (w11-107, 2026-09-18) **All 994 remaining census classes now have solver-free certificates
+  (ESTABLISHED, `bmw-census-radius6-cone-lemma-certificates`).**
+  - **Scope.** It covers the 509 classes that w10-107 left without a cone tree, all first UNSAT at
+    radius 6 with short 4.
+  - **Why not trees.** Tree-like refutations do not fit there. A C++ port of `dtree2.py` did not
+    finish `50_30` #14 in 900 s.
+  - **What each class gets.** A DAG-shaped list of cone lemmas `S_i ⊄ P`. It is translated from a
+    Glucose 4 + drat-trim LRAT refutation and re-checked in group language by `verify_lemmas.py`,
+    using the census squares alone: 509 OK, 0 failed, and six mutations are rejected.
+  - **Coverage.** Together with w10's 485 trees, this covers `remaining.json` exactly.
+  - **What is now unnecessary.** The quaternionic searches for the 41 `(4,3)` and the 62 even
+    `(5,3)` classes.
+  - **The three survivors.** They are not among the 994, and they stay resolved by w5-107b.
