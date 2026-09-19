@@ -27,6 +27,8 @@ artifacts:
   - research/artifacts/torsion-free-exact-radical-breakthrough-2026-08-26.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
+  - research/torsion-free-sofic-quotientless-kazhdan-group-exists.md
+  - research/sofic-hyperbolic-stages-give-quotientless-kazhdan-monster.md
 ---
 
 There exist a group `G` and a subgroup `K normal G` such that
@@ -145,3 +147,23 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
       `normal-kazhdan-defect-non-mf`.
     So the criterion does not yet produce an exact Kazhdan radical here.  The surviving routes
     need non-infranormal sources or a compressor of nonzero degree.
+- **2026-09-19, swarm-0917-w14-w14-titz-last1 (reframing).  Status: OPEN.**
+  - New necessary gate `torsion-free-sofic-quotientless-kazhdan-group-exists` (SQK): an
+    infinite torsion-free sofic Kazhdan group with no nontrivial finite quotient.
+    - Every witness kernel `K` satisfies it.
+    - The hole of each live route implies it: `titz-witzel-kernel-sofic`, the defect core, and
+      the extrinsic kernel.
+    - So each route can fail at (SQK) on its own, before any MF-radical, finite-presentation or
+      cyclic-action clause is reached.
+  - New ESTABLISHED dichotomy `sofic-hyperbolic-stages-give-quotientless-kazhdan-monster`.
+    - The Olshanskii--Osin--Sapir torsion-free Tarski monster quotient of a torsion-free
+      `Sp(n,1)` lattice has no proper finite-index subgroup, unconditionally: a finite-index
+      subgroup is cyclic, which would make the monster amenable and Kazhdan, hence finite.
+    - The monster is sofic as soon as its torsion-free hyperbolic stages are, since it is their
+      marked limit.
+    - Hence (SQK) holds or `nonsofic-hyperbolic-group` holds.
+  - **Class killed.** Any refutation of this root through the intrinsic properties it forces on
+    `K` (sofic, torsion-free, Kazhdan, no finite quotient) solves the flagship root. So a
+    disproof must use finite presentation, the exact radical, or the cyclic action.
+  - The monster is not a witness here. Its MF-ness, the radicals of its mapping tori and its
+    finite presentation are all unknown.
