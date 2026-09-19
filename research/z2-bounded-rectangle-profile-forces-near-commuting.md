@@ -264,3 +264,21 @@ non-permutation unitary construction.
     - a partner loop crossing the short loop with the sign of `det`, whose donor copies are simple;
     - a counterexample family of self-bound points where neither exists.
     A polynomial `F` would also need a transfer that does not raise the profile at every step.
+- **w15-124, 2026-09-18 — the self-bound lemma. Obstruction: without relocation moves it is false. Landed
+  `seam-surface-forces-neutral-relocation-in-self-bound-lemma`.**
+  - **The family.** `S(H, tw)` is one horizontal cylinder of circumference 6 and height `H`, with its top glued to
+    its bottom by the interval exchange that reverses lengths `(1, 2, 3)` (then twist `tw`). It has a single `6 pi`
+    cone point `A`, so `E = 2`, and `rho <= 6` for every `H`. So `A` is self-bound.
+  - **Theorem 1.** Every loop at `A` with nonzero vertical holonomy has length `>= H`, so every sign-matched handle is
+    long. No admissible same-vertex slit pair of length `< H` lowers `E`. The proof uses a corner rule for loop-pair
+    swaps and the fact that both paths keep equal heights. It then reduces every pair to a three-level band at the
+    seam, and one exhaustive band check finds 40 pairs, none lowering. So neither (i) nor (ii) exists at length
+    `poly(rho)` once `H > poly(6)`.
+  - **Theorem 2.** One neutral relocation (two one-edge swaps of top-row `c`-values) reaches a torus, at cost 2. So
+    the self-bound lemma must allow neutral relocation moves before the slit pair or handle.
+  - **Proposition 3.** Every one-cylinder surface of height `H >= n` is within rank `4 rho` of a torus, by regluing
+    the seam with the best rotation (`b` unchanged).
+  - **Open.** The cylinder form of Proposition 3. The short loop `u` at a self-bound point gives a periodic
+    decomposition in direction `u`. Tall cylinders should be seam-repairable at cost `O(rho)`, and short ones crossed
+    by a partner loop of length `poly(rho)`. A seam shared by several cylinders is the missing case. A transfer that
+    never raises the profile was not found.
