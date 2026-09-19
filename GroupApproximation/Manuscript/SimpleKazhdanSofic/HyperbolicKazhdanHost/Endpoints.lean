@@ -103,7 +103,7 @@ theorem simpleQuotientOfHyperbolicKazhdan_of_hull_of_geometry
   have hγ₀ : (((1 : Γ), Multiplicative.ofAdd (1 : ℤ)) : Γ × Multiplicative ℤ) ≠ 1 := by
     intro h
     have h2 : Multiplicative.ofAdd (1 : ℤ) = 1 := congrArg Prod.snd h
-    exact one_ne_zero (Multiplicative.ofAdd_eq_one.1 h2)
+    exact one_ne_zero (ofAdd_eq_one.1 h2)
   obtain ⟨S, _, hsimple, hπ, f, hf⟩ :=
     exists_simple_quotient_embedding hhull hgeom H (Γ × Multiplicative ℤ) hγ₀ hinf htf hhyp hT
   refine ⟨S, inferInstance, hsimple, hπ, f.comp (MonoidHom.inl Γ (Multiplicative ℤ)), ?_⟩
