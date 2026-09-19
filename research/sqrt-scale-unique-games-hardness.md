@@ -142,3 +142,24 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     imported only for `G^l`); derandomized, partial or fortified repetition;
     repetition followed by alphabet reduction or composition; and bases whose
     alphabet already has `ln k >= C^2/(4C_1^2)`, which is (R1).
+* **Raz–Rosen expander repetition, checked against the verbatim proof
+  (2026-09-19, swarm-0917, `w17-ugc-pull`, calibration).** **Dead.** This
+  resolves the "Unchecked" item above.
+  - *Source.* The ECCC TR10-142 PDF was obtained. The quotations are in
+    `raz-rosen-expander-projection-repetition-citation`.
+  - *What the proof certifies.* By `raz-rosen-expander-repetition-rate-is-quartic-in-gap`
+    (ESTABLISHED), the proof of Theorem 2 first amplifies to deficit
+    `10^(−15) λ` in `m = 10^10 log(2/λ)/(ελ^2)` rounds, then applies Rao. The
+    certified per-round rate is `ψ <= 2c · 10^(−40) ε λ^4/log(2/λ)`, where `c`
+    is Rao's constant and `c <= 6`.
+  - *Class membership.* That rate lies in `Rate(0, 2c · 10^(−40))`. So
+    `expansion-certified-repetition-caps-deficit-ratio` item 3 caps the ratio
+    at `R < 4 · 10^(−36)`, unless `P = NP`. Theorem 1 (general games) lies in
+    `Rate(10^(−12)/16, 0)`, and item 4 makes that route circular.
+  - *Why the proof reading matters.* The statement-level odd-cycle reading
+    needs `C_m` to count as uniform over the edges of a biregular graph. That
+    holds only as a multigraph, and the naive simple splitting has value 1.
+  - *Invariant and step.* The invariant is `ψ/η`, and the route dies at
+    soundness certification.
+  - *Survivor.* Unchanged: (P2) needs a rate superlinear in `λγ`. No published
+    expander bound on record (AKKSTV, Raz–Rosen) has one.
