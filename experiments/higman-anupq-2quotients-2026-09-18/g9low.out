@@ -1,0 +1,752 @@
+ANU p-Quotient Program Version 1.9 running with workspace 100000000 on vm
+Fri Sep 18 20:25:08 UTC 2026
+
+Select option: 1 
+
+Lower exponent-2 central series for G
+
+Group: G to lower exponent-2 central class 1 has order 2^4
+Computation of presentation took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 1 has order 2^4
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 2 has order 2^10
+Computation of next class took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 2 has order 2^10
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 3 has order 2^19
+Computation of next class took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 3 has order 2^19
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 4 has order 2^32
+Computation of next class took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 4 has order 2^32
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 5 has order 2^52
+Computation of next class took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 5 has order 2^52
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 6 has order 2^84
+Computation of next class took 0.00 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 6 has order 2^84
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 7 has order 2^141
+Computation of next class took 0.02 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 7 has order 2^141
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 8 has order 2^231
+Computation of next class took 0.05 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 8 has order 2^231
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119 .195 .196 .197 .201
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119 .195 .196 .197 .201
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119 .195 .196 .197 .201
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119 .195 .196 .197 .201
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 9 has order 2^395
+Computation of next class took 0.08 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 9 has order 2^395
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  .333 .338 .340 .353
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 10 has order 2^672
+Computation of next class took 0.22 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 10 has order 2^672
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  .333 .338 .340 .353 .582 .585 .591 .596 .597 .604
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 11 has order 2^1172
+Computation of next class took 0.60 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 11 has order 2^1172
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  .333 .338 .340 .353 .582 .585 .591 .596 .597 .604 .1021 .1025 .1026 .1031 .1032 .1036 .1037 .1044 .1045 .1049 .1053 .1057 .1061 .1065 .1070 .1072 .1086
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  .1025 .1029 .1030 .1041 .1050 .1086
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 12 has order 2^2046
+Computation of next class took 1.72 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 12 has order 2^2046
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 2 1 
+The result of collection is  .8 .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103 .1806 .1808 .1809 .1811 .1812 .1816 .1817 .1821 .1822 .1825 .1826 .1829 .1831 .1833 .1835 .1836 .1839 .1840 .1841 .1844 .1845 .1848 .1849 .1850 .1851 .1853 .1854 .1857 .1858 .1859 .1864 .1865 .1866 .1867 .1869 .1881 .1883 .1884 .1887 .1888 .1893 .1897 .1899 .1904 .1905 .1909 .1916 .1923 .1928 .1930 .1934 .1940 .1955 .1956
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 4 1 
+The result of collection is  .16 .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103 .1806 .1808 .1809 .1811 .1812 .1816 .1817 .1821 .1822 .1825 .1826 .1829 .1831 .1833 .1835 .1836 .1839 .1840 .1841 .1844 .1845 .1848 .1849 .1850 .1851 .1853 .1854 .1857 .1858 .1859 .1864 .1865 .1866 .1867 .1869 .1881 .1883 .1884 .1887 .1888 .1893 .1897 .1899 .1904 .1905 .1909 .1916 .1923 .1928 .1930 .1934 .1940 .1955 .1956
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 8 1 
+The result of collection is  .28 .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103 .1806 .1808 .1809 .1811 .1812 .1816 .1817 .1821 .1822 .1825 .1826 .1829 .1831 .1833 .1835 .1836 .1839 .1840 .1841 .1844 .1845 .1848 .1849 .1850 .1851 .1853 .1854 .1857 .1858 .1859 .1864 .1865 .1866 .1867 .1869 .1881 .1883 .1884 .1887 .1888 .1893 .1897 .1899 .1904 .1905 .1909 .1916 .1923 .1928 .1930 .1934 .1940 .1955 .1956
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 16 1 
+The result of collection is  .115 .119 .195 .196 .197 .201 .332 .334 .336 .340 .353 .577 .578 .579 .583 .584 .585 .586 .588 .589 .592 .596 .597 .598 .608 .612 .618 .1015 .1018 .1020 .1024 .1025 .1026 .1027 .1029 .1031 .1037 .1044 .1045 .1046 .1047 .1049 .1050 .1051 .1063 .1066 .1067 .1071 .1072 .1103 .1806 .1808 .1809 .1811 .1812 .1816 .1817 .1821 .1822 .1825 .1826 .1829 .1831 .1833 .1835 .1836 .1839 .1840 .1841 .1844 .1845 .1848 .1849 .1850 .1851 .1853 .1854 .1857 .1858 .1859 .1864 .1865 .1866 .1867 .1869 .1881 .1883 .1884 .1887 .1888 .1893 .1897 .1899 .1904 .1905 .1909 .1916 .1923 .1928 .1930 .1934 .1940 .1955 .1956
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 32 1 
+The result of collection is  .333 .338 .340 .353 .582 .585 .591 .596 .597 .604 .1021 .1025 .1026 .1031 .1032 .1036 .1037 .1044 .1045 .1049 .1053 .1057 .1061 .1065 .1070 .1072 .1086 .1809 .1810 .1811 .1815 .1818 .1820 .1822 .1825 .1828 .1829 .1833 .1835 .1837 .1841 .1844 .1845 .1846 .1848 .1849 .1852 .1853 .1854 .1860 .1862 .1864 .1865 .1866 .1872 .1875 .1886 .1887 .1892 .1894 .1897 .1898 .1916 .1930 .1949
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  .1025 .1029 .1030 .1041 .1050 .1086 .1814 .1815 .1828 .1834 .1835 .1838 .1840 .1841 .1842 .1844 .1853 .1854 .1856 .1865 .1866 .1868 .1870 .1882 .1883 .1892 .1904 .1906
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 0 
+Exiting from ANU p-Quotient Program
+Total user time in seconds is 2.68
