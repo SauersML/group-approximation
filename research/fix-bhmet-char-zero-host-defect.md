@@ -11,6 +11,8 @@ Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a c
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
 
+**Repair landed, unprobed.** 2bf6686af2: Fix the two union-build reds owned by fix-bh-b: CharZeroHost.Defect and Kourovka2175.Arith. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from union build b1789837230 on main 296aff5838).**
 
 ```

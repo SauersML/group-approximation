@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Kourovka2175.Arith: unsolved goals"
 **OPEN.** Lean module `GroupApproximation/Kourovka2175/Arith.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: fix-bh-b.
 
+**Repair landed, unprobed.** 2bf6686af2: Fix the two union-build reds owned by fix-bh-b: CharZeroHost.Defect and Kourovka2175.Arith. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
