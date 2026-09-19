@@ -9,8 +9,9 @@ distinct_from:
   computable-tree-groups-embed-in-decidable-fg-self-similar-groups: that asks for decidable finitely generated self-similar hosts and quotes the same Bartholdi–Mitrofanov abstract as a warning; this uses their existence theorem A'' to settle a depth-bound question.
 ---
 
-**ESTABLISHED (lane bh-gate1-abstract, 2026-09-19; elementary, plus one verbatim-cited theorem; not
-independently reviewed).**
+**ESTABLISHED (lane bh-gate1-abstract, 2026-09-19; elementary, plus one verbatim-cited theorem).**
+Referee bh-ref-t0 PASS (14b9c876b6). One wording fix is applied: a uniform bound *implies* the negation of the
+hard-WP target and is not equivalent to it.
 
 ## Setting
 
@@ -58,7 +59,7 @@ independently reviewed).**
   groups.
   - A finitely presented functionally recursive group has decidable word problem, so its `D` is computable. That
     is a bound for each group separately.
-  - A **uniform** recursive bound over all of them would be a new theorem, and exactly the negation of
+  - A **uniform** recursive bound over all of them would be a new theorem, and it would imply the negation of
     `fp-self-similar-groups-with-arbitrarily-hard-word-problem`.
   - In the multi-type chart setting, the family `(H_τ)` must be finitely presented type by type.
 - **Where the tension sits.**
