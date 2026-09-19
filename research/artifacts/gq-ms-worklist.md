@@ -52,7 +52,9 @@ Claim a row or item by appending `CLAIMED <lane> <time>` under it; put progress 
   - sk_sentence_census.py --merge.
   Outputs go to work/ms-map/census/out/<stamp>/ and ms-map lands them after review.
 - SK batch 1 = b000f0610 (S5: 503221e301f6 and 8212b1470040 graded formalized in zz-full-sk16, plus 2 override drops).
-- Regeneration run 1 is in progress (09-19 10:38, base b000f0610). It runs directly on the node (1 process, cores 120-127, nice 19) because sbatch is rejected.
+- Regeneration runs 1 (b000f0610) and 2 (2e7ca0694) ran directly on the node (1 process, nice 19). Both PASS: NM --verify-decls 0 missing of 2266, --verify-unconditional 76 accepted / 0 new / 0 stale; SK merge clean (168 formalized, 15 attribution, 0 open).
+- SK regenerated census LANDED dac9f9a1e.
+- NM regenerated census (NON_MF_SENTENCE_CENSUS.{tsv,md}, only the 9 re-pointed rows change) is STAGED in work/ms-map/metadata/. gqland-lean.sh refuses it, because its token scan hits the manuscript's provenance sentences quoted verbatim from the tex; the same text is already on main. It needs a team-lead exemption for those two generated paths.
 - Next batches: SK (S4 after green); NM (N3a; N2 after green; nm-osin94 rows as they come).
 
 ## A. Endpoint status (read 09-18; section L supersedes the counts)
