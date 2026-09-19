@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: kazhdan-regular-block-periodizations-of-mapping-tori-are-finite-proof
+id: kazhdan-regular-block-mapping-torus-models-are-finite-proof
 kind: route
 title: Proof that regular block models of a Kazhdan mapping torus below min(kappa/sqrt2, sqrt3/L) are finite representations, by Kazhdan rigidity on Hilbert--Schmidt conjugation and a Mirsky rank count
 target: kazhdan-regular-block-periodizations-of-mapping-tori-are-finite

@@ -4,7 +4,7 @@ id: char-p-burger-lamp-realizations-refute-haagerup
 kind: claim
 title: "Char-p Burger lamp criterion: a continuous affinely spanning map C^n -> (F_p^2)^Z intertwining a subgroup of nV with an affine action whose linear part contains EL_2(F_p[t,t^-1]) makes nV non-Haagerup; the torus generator already lifts in 2V"
 distinct_from:
-  brin-thompson-2v-not-a-t-menable-via-cantor-integer-maps: that goes through C(C,Z) ⋊ V and the open central relative (T) for it; this uses a locally finite F_p-module inside the lamp group C(C^n,F_p), where relative (T) is imported (EJZK/Shalom), and puts the whole difficulty into a lifting problem for linear cellular automata
+  brin-thompson-2v-is-not-a-t-menable: its route via Cantor integer maps goes through C(C,Z) ⋊ V and the open central relative (T) for it; this uses a locally finite F_p-module inside the lamp group C(C^n,F_p), where relative (T) is imported (EJZK/Shalom), and puts the whole difficulty into a lifting problem for linear cellular automata
   cantor-integer-maps-pair-lacks-relative-property-t: that concerns the pair (C(C,Z) ⋊ V, C(C,Z)); here the module is a proper Λ-invariant F_p-submodule of C(C^n,F_p) acted on through a quotient Λ -> EL_2(R), and nothing is claimed about the full lamp pair
   coordinate-shadows-rigidify-abelian-normalizers-in-nv: that rigidifies normalizers of Z^2 subgroups of nV; the module here is an infinite elementary abelian p-group, so coordinate shadows of Z^2 do not apply
   decidable-groups-embed-in-covered-cantor-module-actors: that embeds groups into module actors over covered Cantor systems; this is a sufficient criterion for non-Haagerup via one specific module R^2 and its dual cellular automata

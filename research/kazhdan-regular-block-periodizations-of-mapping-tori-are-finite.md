@@ -10,13 +10,13 @@ distinct_from:
   kazhdan-mapping-tori-have-proper-stably-finite-radical: that builds a finite von Neumann model nontrivial on the kernel with a Folner wrap of trace 1/N; this shows that the operator-norm analogue of that wrap, with regular blocks, costs a constant independent of N.
   compression-defect-dies-in-finite-dimensions: that kills the defect in genuine finite-dimensional representations; this shows that a whole class of approximate representations is genuine.
 artifacts:
-  - research/kazhdan-regular-block-periodizations-of-mapping-tori-are-finite-proof.md
+  - research/kazhdan-regular-block-mapping-torus-models-are-finite-proof.md
   - research/fpbs-shalom-property-t-is-open.md
   - research/fp-mapping-torus-iff-finite-automorphic-presentation.md
   - research/mapping-torus-mf-radical-lies-in-finite-residual.md
 ---
 
-**ESTABLISHED.** Proof: `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite-proof`.
+**ESTABLISHED.** Proof: `kazhdan-regular-block-mapping-torus-models-are-finite-proof`.
 It is elementary, apart from the imported openness of property (T) (Shalom) and the
 Eckart--Young--Mirsky inequality.
 

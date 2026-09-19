@@ -8,12 +8,10 @@ distinct_from:
   coordinate-shadows-rigidify-abelian-normalizers-in-nv: that concerns abstract Z^2 subgroups of nV and their normalizers; this concerns modules of locally constant functions and holds for any group acting on any compact space, not just nV
   cantor-integer-maps-pair-lacks-relative-property-t: that shows the full pair (C(C,Z) ⋊ V, C(C,Z)) lacks relative (T); this shows that no Burger-type submodule of C(Ω,A) exists in characteristic 0, which is a different, submodule-level obstruction
   abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q: that is about subgroups of abelian lamp wreath products over Q; this is about equivariant copies of R^2 inside continuous-function lamp modules
-artifacts:
-  - research/lamp-realized-burger-modules-have-positive-characteristic-proof.md
 ---
 
-**ESTABLISHED** by `lamp-realized-burger-modules-have-positive-characteristic-proof` (elementary,
-no imports). Lane proof by swarm-0917-w17-w17-nv-break. Not independently reviewed.
+**OPEN**: the proof route `lamp-realized-burger-modules-have-positive-characteristic-proof` (elementary,
+no imports) was not written before the lane was interrupted. Lane: swarm-0917-w17-w17-nv-break.
 
 ## Setting
 
