@@ -1,0 +1,25 @@
+(1) F_2 x Z, E = {z^0..z^(M-1)} central, A = E u D_R(E)
+  product S: R=1 |B_R|=7 |E|=9 |D_R(E)\E|=5 |A|=14 good=4  good<|A|/2: True
+  product S: R=2 |B_R|=29 |E|=31 |D_R(E)\E|=26 |A|=57 good=12  good<|A|/2: True
+  product S: R=3 |B_R|=99 |E|=101 |D_R(E)\E|=95 |A|=196 good=72  good<|A|/2: True
+  skew S: R=1 |B_R|=7 |E|=9 |D_R(E)\E|=6 |A|=15 good=6  good<|A|/2: True
+  skew S: R=2 |B_R|=33 |E|=35 |D_R(E)\E|=31 |A|=66 good=24  good<|A|/2: True
+  skew S: R=3 |B_R|=131 |E|=133 |D_R(E)\E|=129 |A|=262 good=114  good<|A|/2: True
+  skew S generates (z in 6-ball): True
+(2) lamplighter: |D_R(E)| / |E| for E = {(f,k): supp f in [0,n], 0<=k<=ell}
+  R=1 n=4 ell=4: |E|=160 |D_R(E)|=70 ratio=0.4375
+  R=1 n=4 ell=16: |E|=544 |D_R(E)|=82 ratio=0.1507
+  R=1 n=4 ell=64: |E|=2080 |D_R(E)|=130 ratio=0.0625
+  R=1 n=6 ell=64: |E|=8320 |D_R(E)|=322 ratio=0.0387
+  R=2 n=4 ell=4: |E|=160 |D_R(E)|=198 ratio=1.2375
+  R=2 n=4 ell=16: |E|=544 |D_R(E)|=978 ratio=1.7978
+  R=2 n=4 ell=64: |E|=2080 |D_R(E)|=4098 ratio=1.9702
+  R=2 n=6 ell=64: |E|=8320 |D_R(E)|=15682 ratio=1.8849
+    F_2 x lamplighter, E = {1} x lamplighter-set, product generators
+  R=1 n=4 ell=64: |E|=2080 |D_R(E)\E|=112 killer(|D\E|<|E|): True  brute good=95 |A|=2192
+  R=1 n=6 ell=200: |E|=25728 |D_R(E)\E|=390 killer(|D\E|<|E|): True  brute good=None |A|=26118
+  R=2 n=4 ell=400: |E|=12832 |D_R(E)\E|=27768 killer(|D\E|<|E|): False  brute good=None |A|=40600
+(3) calibration on F_2 (free basis): min over tested E of |D_R(E)\E|/|E|
+  R=1: worst ratio 1.811 (>=1 is consistent with CS4 holding on F_2)
+  R=2: worst ratio 7.698 (>=1 is consistent with CS4 holding on F_2)
+ALL CHECKS PASSED

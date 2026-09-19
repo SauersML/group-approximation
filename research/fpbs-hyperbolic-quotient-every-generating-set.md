@@ -56,3 +56,30 @@ The class contains:
   the unweighted bubble is necessary for the L2 gap
   (`fpbs-amenable-kernel-l2-gap-forces-fibre-bubble`), so the gap sits between
   the two bubbles.
+* **2026-09-19, swarm-0917-w17-w17-bs-last1, minimal-counterexample: can any
+  supporting-set family replace WPD?** **Refuted on the central part of the
+  class; the claim stays OPEN.**
+  (`fpbs-cs-set-family-hypothesis-fails-infinite-centre`.)
+  - *Question.* The entry above says the WPD remedy needs acylindricity. That
+    left open whether some other family `H(g)` could satisfy the hypothesis of
+    Choi–Seo `thm:hutchcroft1plus2`, their only route to (Gamma1). Such a
+    family might be built from the hyperbolic quotient.
+  - *Answer.* No. A disjoint short translate of a set containing `a^-1 A`
+    forces `a h a^-1 ∉ A A^-1`. Then `A = E ∪ D_R(E)`, with `D_R(E)` the
+    conjugates of the `R`-ball by `E`, defeats every family whenever
+    `#(D_R(E) \ E) < #E`.
+  - *Where it applies.* When the kernel contains an infinite central
+    subgroup, central `E` gives `D_R(E) = B(R)`. So the hypothesis fails for
+    every family, every `R` and every generating set, on:
+    - `F_2 x Z`;
+    - central extensions of hyperbolic groups;
+    - Seifert-fibred groups with central fibre;
+    - `Lambda x Z^k`.
+  - *Where it dies.* The named invariant is conjugation expansion,
+    `#(D_R(E) \ E) >= #E` for every finite `E`. It fails at the hypothesis of
+    `thm:hutchcroft1plus2`, before Appendix A of [CS] begins. Any route to
+    (Gamma1) here must count fibres instead, as
+    `fpbs-fibre-bubble-forces-mean-field-susceptibility` does.
+  - *What is left open.* Kernels with trivial or finite centre, such as
+    `Z^2 ⋊ F_2`, `F_2 x F_2`, and `F_2 x` a lamplighter. There the test does
+    not fire; the lamplighter compresses at `R = 1` but not at `R = 2`.
