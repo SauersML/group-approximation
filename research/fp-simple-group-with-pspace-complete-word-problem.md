@@ -61,3 +61,19 @@ family can host.
   evaluate witness points in a non-finite-state way, consuming the input's algorithm, as
   `compilers-cannot-drop-the-decidability-hypothesis` says. The finite-state program at best settles
   the automaton-group case, and with it this claim.
+
+## Attempts
+
+1. **Clopen towers of twisted Brin--Thompson groups (2026-09-19, lane swarm-0917-w18-w18-bh-break).**
+   *Climbs PH, stops short of PSPACE.*
+   - **Result.** `twisted-brin-thompson-towers-have-pi-k-complete-word-problems` (ESTABLISHED, lane
+     proof, unreviewed). The `k`-th tower `G_k` (`G_1 = 2V`, `G_(k+1) = SV_(G_k)` over clopen sets)
+     is finitely presented and simple, with a `Π_k^p`-complete word problem, unconditionally.
+   - **Effect on the rung table above.** Between coNP and PSPACE there is now an unconditional
+     `Π_k^p` rung for every `k`. The coNP^⊕P rung is not the only candidate step above `nV`.
+   - **Where it dies for this claim.** The hardness reduction for `G_k` has length about `4^k` times
+     polynomial, because each level uses the previous level's word a bounded number of times. So no
+     single `G_k` is PSPACE-hard unless PH collapses to level `k`.
+   - **What PSPACE would need.** An infinite tower is not finitely presented. A PSPACE-complete
+     group along this line needs one finitely presented actor that contains its own clopen tower
+     uniformly, with polynomial-length self-similarity of the amplification step. No candidate is known.
