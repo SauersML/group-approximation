@@ -26,6 +26,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace CharZeroHost
 
+noncomputable section
+
 open MvPolynomial
 open scoped Matrix
 
@@ -150,6 +152,8 @@ theorem stateG_mul (x y : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) :
   · exact map_mul (Matrix.GeneralLinearGroup.map (sigmaZ p ℓ.2)) x.right y.right
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.stateG_mul
+
+end
 
 end CharZeroHost
 end Metabelian

@@ -171,7 +171,8 @@ theorem model_c3 (k l : I) :
 theorem model_commutator (i k : I) (h : i ≠ k) (r : R) :
     ⁅(SemidirectProduct.inr (elementaryRoot i k h r) : AffineElementary I R),
       SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R))⁆ =
-    SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r : I → R)) := by
+    (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single i r : I → R)) :
+      AffineElementary I R) := by
   rw [commutatorElement_def, model_conj_single, Pi.single_eq_same, mul_one]
   refine mul_inv_eq_iff_eq_mul.mpr ?_
   exact (congrArg (SemidirectProduct.inl (φ := affAction I R))

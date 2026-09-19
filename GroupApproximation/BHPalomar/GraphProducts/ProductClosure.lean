@@ -4,6 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import GroupApproximation.BHPalomar.GraphProducts.Reduction
 import Mathlib.Data.Finite.Prod
+import Mathlib.Data.Fintype.EquivFin
+import Mathlib.Data.Set.Finite.Basic
+import Mathlib.Data.Set.Finite.Range
 import Mathlib.GroupTheory.NoncommCoprod
 import Mathlib.GroupTheory.Subgroup.Centralizer
 import Mathlib.Tactic.Group
@@ -11,7 +14,7 @@ import Mathlib.Tactic.Group
 /-!
 # PBH is closed under direct products (`ProductInput`)
 
-This is Zaremsky, arXiv:2405.09722, Proposition 5.5, proved here from Mathlib. If `Γ₁ ↷ S₁` and
+This is Zaremsky, arXiv:2405.18354, Proposition 5.5, proved here from Mathlib. If `Γ₁ ↷ S₁` and
 `Γ₂ ↷ S₂` are of type (A), then so is `Γ₁ × Γ₂ ↷ S₁ ⊕ S₂` (`isTypeA_sum`):
 
 * `Γ₁ × Γ₂` is finitely presented (`isFinitelyPresented_prod`): it is `Γ₁ ∗ Γ₂` modulo the
@@ -58,12 +61,11 @@ theorem isFinitelyPresented_prod (A B : Type) [Group A] [Group B] [Group.IsFinit
     rw [SetLike.mem_coe, MonoidHom.mem_ker]
     simp [Coprod.toProd_apply_inl, Coprod.toProd_apply_inr]
   · intro w hw
-    let N := Subgroup.normalClosure R
-    let mA : A →* Coprod A B ⧸ N := (QuotientGroup.mk' N).comp Coprod.inl
-    let mB : B →* Coprod A B ⧸ N := (QuotientGroup.mk' N).comp Coprod.inr
+    let mA : A →* Coprod A B ⧸ Subgroup.normalClosure R := (QuotientGroup.mk' (Subgroup.normalClosure R)).comp Coprod.inl
+    let mB : B →* Coprod A B ⧸ Subgroup.normalClosure R := (QuotientGroup.mk' (Subgroup.normalClosure R)).comp Coprod.inr
     have gen : ∀ a ∈ SA, ∀ b ∈ SB, mA a * mB b = mB b * mA a := by
       intro a ha b hb
-      have h0 : QuotientGroup.mk' N (Coprod.inl a * Coprod.inr b * (Coprod.inl a)⁻¹ *
+      have h0 : QuotientGroup.mk' (Subgroup.normalClosure R) (Coprod.inl a * Coprod.inr b * (Coprod.inl a)⁻¹ *
           (Coprod.inr b)⁻¹) = 1 := by
         rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
         exact Subgroup.subset_normalClosure ⟨a, ha, b, hb, rfl⟩
@@ -94,14 +96,14 @@ theorem isFinitelyPresented_prod (A B : Type) [Group A] [Group B] [Group.IsFinit
       have ha : a ∈ (Subgroup.centralizer {mB b}).comap mA := hle (by rw [hSA]; exact Subgroup.mem_top a)
       rw [Subgroup.mem_comap, Subgroup.mem_centralizer_iff] at ha
       exact (ha _ rfl).symm
-    let S : A × B →* Coprod A B ⧸ N := MonoidHom.noncommCoprod mA mB comm
-    have hS : S.comp Coprod.toProd = QuotientGroup.mk' N := by
+    let S : A × B →* Coprod A B ⧸ Subgroup.normalClosure R := MonoidHom.noncommCoprod mA mB comm
+    have hS : S.comp Coprod.toProd = QuotientGroup.mk' (Subgroup.normalClosure R) := by
       apply Coprod.hom_ext
       · ext a
         simp [S, mA, mB, Coprod.toProd_apply_inl]
       · ext b
         simp [S, mA, mB, Coprod.toProd_apply_inr]
-    have hw' : QuotientGroup.mk' N w = 1 := by
+    have hw' : QuotientGroup.mk' (Subgroup.normalClosure R) w = 1 := by
       rw [← hS, MonoidHom.comp_apply, MonoidHom.mem_ker.mp hw, map_one]
     rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff] at hw'
     exact hw'
