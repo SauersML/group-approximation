@@ -434,3 +434,22 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
   - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
     that is, whether the optimal tree-size law escapes to infinity.
+- **Guba's systems Q_k through density (swarm-0917-w15-w15-f-break, 2026-09-19, belief-breaker, group-rings).**
+  - *Established (unrefereed):* `thompson-f-guba-q4-systems-have-common-multiples`.
+    - For finite `Z`, `|{1, x_0, x_1} Z| <= (3 - δ(Z)/2)|Z|`, where `δ` is the `{x_0, x_1}` density.
+    - The copy `ψ(F) = <x_2 x_0^-1, x_1 x_0^-1>` turns `Z` into `Y = x_0^-1 ψ(Z)` with
+      `|AY| = |{1, x_0, x_1} Z|`, where `A = {x_0, x_1, x_2}`.
+    - A dimension count then solves Guba's `Q_k` for all coefficients and all fields as soon as
+      `δ̄ > 4 - 2/k`.
+    - Guba's own `δ̄ > 3.5` (survey Theorem 2.7) therefore solves `Q_4`.
+  - *Belief changed:* the survey's "possible candidiate to a negative solution" `Q_4` is dead, and so
+    is its `ε = 1/4` hope. The graph's listing of `Q_4` as an open non-amenability candidate (in
+    `thompson-f-is-not-amenable` and `thompson-f-rescaled-x0-binomials-have-common-multiples`) is
+    superseded.
+  - *Invariant:* the `{x_0, x_1}` density `δ̄`.
+  - *Where every member dies:* a negative `Q_k` forces `δ̄ <= 4 - 2/k`. So the Q-family can certify
+    non-amenability only at `k >= 5`, and `Q_5` falls to any finite set of density `> 3.6`. On the
+    amenable side, each density improvement solves a further block of `Q_k`. Density approaching 4
+    solves them all, but that is the root itself.
+  - *Computation:* exact mod-`p` search (`experiments/guba-qk-2026-09-17/qk_linalg.py`) finds no
+    solution of `Q_2`, `Q_3` or `Q_4` in degree `<= 5`. The solutions exist only on huge supports.
