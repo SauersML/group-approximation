@@ -136,3 +136,22 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
   * **What this means for a refutation.** An adversary below `2` must
     decode `(i, tau)` from `x`.
 
+* **Pin-moment hierarchy (w19, local-designs). Certificate class kill plus a
+  coset decomposition.** This is `hadamard-certificates-blind-below-planes`,
+  which is ESTABLISHED.
+  * **The hierarchy.** `R_t(k)` is the minimax value over adversaries whose
+    pin pattern is only `t`-wise uniform. Certificates of pin-degree `<= t`
+    are capped at `R_t(k)`.
+  * **Blind below planes.** `R_3(k) <= 1` for every `k`, since signed
+    dictators have a 3-wise uniform pin law. So any crossing proof must price
+    affine-plane pin parities.
+  * **Coset split.** `R_{2^(r+1)-1}(k) <= min_C R_C(k)`, and
+    `R*(k) <= avg_C R_C(k)`, over the cosets `C` of `RM(r,k)`.
+  * **Exact values at `k = 3`.** `R_4(3) = ... = R_7(3) = 21/16`, which is
+    below `R*(3) = 11/8`. The gain up to `11/8` comes only from the global
+    8-pin parity: the odd class is `21/16`, the even class is at least
+    `23/16`.
+  * **The failing step for a crossing.** Nothing is known about `R_C` for
+    `k >= 4`. The next prerequisite is whether `R_{K/2-1}(k) <= 2`, the
+    easiest hyperplane-parity syndrome. If it holds, every crossing
+    certificate must read `>= K/2` pins jointly.

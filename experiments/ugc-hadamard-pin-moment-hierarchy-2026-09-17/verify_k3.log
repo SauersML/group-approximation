@@ -1,0 +1,6 @@
+1. pattern orbits: {'lin': 16, 'quad': 112, 'cub': 128} ; cub = all odd-weight patterns
+2a. plane average Phi = 1, -1/7, 0 on lin, quad, cub
+2b. odd-pattern law is 7-wise uniform (not 8-wise); dictator law is 3-wise uniform, first failure on a plane (0, 1, 2, 3)
+3. certificate w=(5,1): K m^U = {'lin': '1', 'quad': '3/2', 'cub': '21/16'} => R_4(3) >= 21/16
+4. folded odd-class adversaries [(14, 182), (28, 112)] ; symmetrised 1/2-1/2 mixture cuts every edge w.p. 21/128 => R_7(3) <= 21/16
+VERIFIED: R_3(3) <= 1, R_4(3) = ... = R_7(3) = 21/16 < 11/8 = R_8(3) = R*(3)
