@@ -343,3 +343,26 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    - Next: the S-pairs of those slices at `p=5`, box `(10,6,10)`, and whether
      their values span `W_2`.
    See `kms-hc1-level-m-edge-tails-have-order-at-most-two`.
+
+11. **Level-n analogue of (R1): a first deviation sits only in a degree
+   `3np`, and its kernel is the image of the 3-dim `W_n`.**
+   - (RP): below the first deviation every real-root vector has p-power 0.
+     Take a vertex element `x` of order `p` and a torus lift `sigma`. Then
+     `g = [x, sigma]` lifts `t^k E_beta` up to the unit `-2u`, `[g,x]` is in
+     `ker phi^`, and `(x g)^p = 1`. Hall-Petrescu gives `g^p` in `D_(pd+1)`.
+   - (FD): given Open 1, the Lie part of the kernel is at most `H_2` in
+     degree `d0`, and the p-power part is only the Cartan defects `C_nA`
+     and `C_nB`. So `d0 = 3np` and the kernel is spanned by
+     `K_n, C_nA, C_nB` in multidegree `(np,np,np)`. `phi^` is an
+     isomorphism iff `V_n = W_n` for all `n >= 2`.
+   - Non-multihomogeneous parts of jumps cannot deviate first, which
+     removes the w12 caveat.
+   - Products of level-1 gr I elements with `(p,p,p)` words contribute 0
+     to `W_2`.
+   - The towers already give level 2 at `p = 5, 7` and level 3 at `p = 5`.
+     The direct `p = 5` S-pair step is not needed, and it is infeasible:
+     `u(N)` has 6.2M PBW monomials at `(10,10,10)`.
+   - Next: `V_n = W_n` for all `p`, via virtual-vertex Heisenberg pairs
+     with `t^2` centres plus T5, or via group-level Cartan p-power
+     relations.
+   See `kms-hc1-root-p-powers-die-first-deviation-at-3np`.
