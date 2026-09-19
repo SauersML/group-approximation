@@ -1,0 +1,465 @@
+GAINED 35 LOST 51 HONEST_GAINED 35 HONEST_LOST 51 HONEST_DELTA_EQUALS_DELTA True
+MONOTONE violations=0 only_old_rows=0 only_new_rows=0
+== GAINED AuxiliaryNonElementaryCores
+  in-place              honest  GroupApproximation.HullSC.simultaneousAuxiliaryPeripheralSelectionAtHullAlphabet_of_yi_theorem316 GroupApproximation/GGT/HullSCFillingSelectionTheorem316.lean:26 needs=['SimultaneousYiSuitableFamily']
+      built: let C : AuxiliaryNonElementaryCores A N S :=
+== GAINED AxisDichotomy
+  cascade               honest  GroupApproximation.GGT.CayleyGeodesicModel.axisDichotomy_cayley_of_commonPower GroupApproximation/GGT/CayleyGeodesicRealisation.lean:707 needs=['CommonPowerInGeodesicSpace', 'HullGeneratingSet']
+      newly discharged needs=['CommonPowerInGeodesicSpace']
+  cascade               honest  GroupApproximation.Manuscript.NonMF.AxisDichotomyRoute.axisDichotomy_of_commonPower GroupApproximation/Manuscript/NonMF/HullFillAxisDichotomy.lean:112 needs=['CommonPowerOfNotIndependent', 'IsIsometricAction']
+      newly discharged needs=['CommonPowerOfNotIndependent']
+  cascade               honest  GroupApproximation.Manuscript.NonMF.AxisDichotomyRoute.axisDichotomy_cayley GroupApproximation/Manuscript/NonMF/HullFillAxisDichotomy.lean:265 needs=['CommonPowerInGeodesicSpace', 'HasGeodesicModel', 'HullGeneratingSet']
+      newly discharged needs=['CommonPowerInGeodesicSpace']
+== GAINED Combing
+  in-place              honest  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.gerasimovaOsinFreeSubsemigroupInput_of_proposition41 GroupApproximation/Manuscript/NonMF/GerasimovaOsinCombingNorm.lean:343 needs=['GerasimovaOsinProposition41Statement']
+      built: let D : Combing G :=
+== GAINED CommonPowerInGeodesicSpace
+  conclusion-completion honest  GroupApproximation.GGT.ElementaryMorse.commonPowerInGeodesicSpace GroupApproximation/GGT/ElementaryIndependence.lean:883 needs=[]
+      conclusion: Manuscript.NonMF.AxisDichotomyRoute.CommonPowerInGeodesicSpace.{u, v}
+== GAINED CommonPowerOfNotIndependent
+  cascade               honest  GroupApproximation.Manuscript.NonMF.AxisDichotomyRoute.commonPowerOfNotIndependent_of_geodesicModel GroupApproximation/Manuscript/NonMF/HullFillAxisDichotomy.lean:235 needs=['CommonPowerInGeodesicSpace', 'GeodesicModel', 'IsAcylindrical']
+      newly discharged needs=['CommonPowerInGeodesicSpace']
+== GAINED CompatibleCoordinateCarriesHNNCorner
+  cascade               honest  GroupApproximation.Manuscript.MFRecognition.HNNPermanence.compatibleCoordinateCarriesHNNCorner GroupApproximation/Manuscript/MFRecognition/HNNPermanenceUedaCoordinateCorner.lean:61 needs=['CoronaConjugator']
+      newly discharged needs=['CoronaConjugator']
+== GAINED CoronaConjugator
+  in-place              honest  GroupApproximation.Manuscript.MFRecognition.HNNPermanence.manuscriptHNNPermanence GroupApproximation/Manuscript/MFRecognition/HNNPermanence.lean:67 needs=['HNNInputs', 'RegularRealizationData']
+      built: conjugates := hW } : CoronaConjugator G S T phi A X))
+== GAINED CutLift
+  in-place              honest  GroupApproximation.HullSC.letterStepBound_of_cutLiftOutcome GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean:25 needs=['CutLiftOutcome', 'IsBoundedLemma44Input', 'RelGenSet']
+      built: have hcl : CutLift W D q hq lam h c L arc R ext rem (after ++ before) x y :=
+== GAINED CutMove
+  cascade               honest  GroupApproximation.HullSC.CutLift.toCutMove GroupApproximation/GGT/HullSCLemma51LetterPullbackHolds.lean:30 needs=['CutLift', 'RelGenSet']
+      newly discharged needs=['CutLift']
+== GAINED ExplicitCompatibleCoordinateCorner
+  cascade               honest  GroupApproximation.Manuscript.MFRecognition.HNNPermanence.explicitCompatibleCoordinateCorner GroupApproximation/Manuscript/MFRecognition/HNNPermanenceUedaCompatibleCorner.lean:422 needs=['CoronaConjugator']
+      newly discharged needs=['CoronaConjugator']
+== GAINED FiniteGroupModel
+  in-place              honest  GroupApproximation.isLEF_iff_textbook GroupApproximation/Sofic/LEF.lean:78 needs=[]
+      built: let H : FiniteGroupModel :=
+== GAINED GOMatchState
+  cascade               honest  GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.goMatchState_nil GroupApproximation/Manuscript/NonMF/GerasimovaOsinLemma44.lean:414 needs=['GOSetting', 'IsGeodesicWord', 'RelGenSet']
+      newly discharged needs=['GOSetting']
+  cascade               honest  GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.goMatchState_cons GroupApproximation/Manuscript/NonMF/GerasimovaOsinLemma44.lean:657 needs=['GOSetting', 'IsGeodesicWord', 'RelGenSet']
+      newly discharged needs=['GOSetting']
+== GAINED GOSetting
+  in-place              honest  GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.go_prop41_core GroupApproximation/Manuscript/NonMF/GerasimovaOsinProposition41.lean:92 needs=['GerasimovaOsinLemma42Statement', 'HasTrivialFiniteRadical', 'IsAcylindricallyHyperbolic']
+      built: have hS : GOSetting D (F : Set G) t C :=
+== GAINED HasUnrestrictedMFEmbedding
+  in-place              honest  GroupApproximation.IsNFAlgebra.isMFAlgebra GroupApproximation/Analysis/NFAlgebra.lean:399 needs=['IsNFAlgebra']
+      built: have hunrestricted : MFAlgebraDimension.HasUnrestrictedMFEmbedding A :=
+  in-place              honest  GroupApproximation.NinetyNineProblems.isMFAlgebra_of_isQuasidiagonalTrace GroupApproximation/Manuscript/NinetyNineProblems/ProblemXImpliesIX.lean:142 needs=['FaithfulTracialState', 'IsQuasidiagonalTrace']
+      built: have hunrestricted : MFAlgebraDimension.HasUnrestrictedMFEmbedding A :=
+== GAINED Heis
+  in-place              honest  GroupApproximation.heis_centre_map_eq_one GroupApproximation/Sofic/HeisenbergCentre.lean:252 needs=[]
+      built: have hsame : QuotientGroup.mk' (Heis.intCentre (invPowSubring p))
+== GAINED IsElementaryGroup
+  conclusion-completion honest  GroupApproximation.HullSCUnionGeometry.isElementaryGroup_of_share GroupApproximation/GGT/HullSCUnionGeometryVirtuallyCyclic.lean:151 needs=['Alphabet', 'IsHyperbolicSpace']
+      conclusion: GGT.RelHyp.IsElementaryGroup H
+== GAINED IsHyperbolicallyEmbedded
+  conclusion-completion honest  GroupApproximation.HullSC.isHyperbolicallyEmbedded_prefixQuotient_of_kernelConeTransfer GroupApproximation/GGT/HullSCLemma44KernelCone.lean:400 needs=['IsHyperbolicallyEmbedded', 'IsLemma44Input', 'RelGenSet']
+      conclusion: GGT.RelGenSet.IsHyperbolicallyEmbedded (D.prefixQuotient W hsc.toIsSmallCancellation q hq)
+  conclusion-completion honest  GroupApproximation.HullSC.isHyperbolicallyEmbedded_prefixQuotient_of_bounds GroupApproximation/GGT/HullSCLemma44KernelGeodesic.lean:171 needs=['IsLemma44Input', 'RelGenSet']
+      conclusion: GGT.RelGenSet.IsHyperbolicallyEmbedded (D.prefixQuotient W hsc.toIsSmallCancellation q hq)
+  conclusion-completion honest  GroupApproximation.HullSC.hullLemma49PrefixKernelConeTransferAt_emptyFamily_trivialSource GroupApproximation/GGT/HullSCLemma49TransferModels.lean:30 needs=['IsLemma44Input', 'RelGenSet', 'RelativeLinearKernelArea']
+      conclusion: GGT.RelGenSet.IsHyperbolicallyEmbedded ((D.adjoinRelatorPrefixes (∅ : Set (List (GGT.RelLetter PUnit.{1} Lambda))) hsc.toIsSmallCancellation).adjoinKernel q)
+== GAINED IsPinch
+  in-place              honest  GroupApproximation.Systolic.mirrorFoldPinched GroupApproximation/GGT/SystolicDiscMirrorFold.lean:33 needs=['TriangleComplex']
+      built: have P : FoldStage.IsPinch (FoldStage.toStage T) d :=
+== GAINED IsSpelling
+  cascade               honest  GroupApproximation.GGT.RelHyp.isSpelling_spliceAux GroupApproximation/GGT/DGOProposition435IsolatedWitness.lean:202 needs=['IsSpelling', 'RelGenSet']
+      newly discharged needs=['IsSpelling']
+  in-place              honest  GroupApproximation.GGT.RelHyp.dgoProposition435IsolatedWitness GroupApproximation/GGT/DGOProposition435IsolatedWitness.lean:242 needs=[]
+      built: IsSpelling J lam h w ∧ w.length = m :=
+== GAINED KotowskiOllivierStatement
+  conclusion-completion honest  GroupApproximation.KMSGroup.GHBQuotient.kotowskiOllivierStatement_of_ghb7ConjHyp GroupApproximation/Kazhdan/GHBLatticeRouteKazhdan.lean:71 needs=['CCKWFiniteOrderConjugateIntoVertex', 'IsHyperbolicGroup']
+      conclusion: Manuscript.NonMF.TheoremC.KotowskiOllivierStatement
+  conclusion-completion honest  GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves GroupApproximation/Kazhdan/KotowskiOllivierClosed.lean:58 needs=['MirrorFoldStatement', 'SystolicInvariantCliqueStatement', 'ZipSpurStatement']
+      conclusion: Manuscript.NonMF.TheoremC.KotowskiOllivierStatement
+  conclusion-completion honest  GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_pinched GroupApproximation/Kazhdan/KotowskiOllivierClosed.lean:67 needs=['MirrorFoldPinchedStatement']
+      conclusion: Manuscript.NonMF.TheoremC.KotowskiOllivierStatement
+  conclusion-completion honest  GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed GroupApproximation/Kazhdan/KotowskiOllivierClosed.lean:77 needs=[]
+      conclusion: Manuscript.NonMF.TheoremC.KotowskiOllivierStatement
+  conclusion-completion honest  GroupApproximation.KMSGroup.KotowskiOllivierLeaves.kotowskiOllivierStatement_of_leaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:41 needs=['MirrorFoldStatement', 'SystolicInvariantCliqueStatement', 'ZipSpurStatement']
+      conclusion: Manuscript.NonMF.TheoremC.KotowskiOllivierStatement
+== GAINED LinkCertificateChecks
+  conclusion-completion honest  GroupApproximation.KazhdanHyp.FanoCalibration.fanoLinkCertificate GroupApproximation/GGT/KazhdanHypFanoCalibration.lean:315 needs=[]
+      conclusion: TriangularHodgeLayer.LinkCertificateChecks fanoTriangles 3 (fanoPlane.linkData).gapValue (fanoPlane.linkData).gramRow
+  conclusion-completion honest  GroupApproximation.KazhdanHyp.linkCertificateChecks_of_girthEightSDPChecks GroupApproximation/GGT/KazhdanHypGirthEight.lean:154 needs=['GirthEightChecks', 'GirthEightSDPChecks', 'Row']
+      conclusion: TriangularHodgeLayer.LinkCertificateChecks T d gap rows
+  conclusion-completion honest  GroupApproximation.KazhdanHyp.linkCertificateChecks_of_linkData GroupApproximation/GGT/KazhdanHypLinkGap.lean:616 needs=['BipartiteLinkData']
+      conclusion: TriangularHodgeLayer.LinkCertificateChecks T d D.gapValue D.gramRow
+  conclusion-completion honest  GroupApproximation.KazhdanHyp.linkCertificateChecks_of_kgonChecks_three GroupApproximation/GGT/KazhdanHypPolygonal.lean:340 needs=['LinkCertificateChecks_kgon', 'Row']
+      conclusion: TriangularHodgeLayer.LinkCertificateChecks T d gap rows
+== GAINED OrientedSidePair
+  cascade               honest  GroupApproximation.Olshanskii.OrientedSidePair.of_restrictions GroupApproximation/GGT/OlshanskiiOrientedClasses.lean:60 needs=['OrientedSidePair']
+      newly discharged needs=['OrientedSidePair']
+  cascade               honest  GroupApproximation.Olshanskii.OrientedSidePair.of_rotation GroupApproximation/GGT/OlshanskiiOrientedClasses.lean:79 needs=['OrientedSidePair']
+      newly discharged needs=['OrientedSidePair']
+  in-place              honest  GroupApproximation.Olshanskii.side_length_le_of_no_orientedClassPair_small GroupApproximation/GGT/OlshanskiiOrientedThreeClasses.lean:30 needs=['IsClosedPolygonAt', 'IsGeodesicSpace', 'IsHyperbolicSpace', 'OrientedClassPair']
+      built: have hp : OrientedSidePair (rotVertex vs n 0) (rotSide sides n 0) k i β (12 * d) :=
+== GAINED PackagedCStarAlgebra
+  cascade               honest  GroupApproximation.Manuscript.MFRecognition.HNNPermanence.amalgam GroupApproximation/Manuscript/MFRecognition/HNNPermanenceUedaAmalgamPackage.lean:22 needs=['CoronaConjugator']
+      newly discharged needs=['CoronaConjugator']
+== GAINED PenetratesAt
+  in-place              honest  GroupApproximation.GGT.OsinComponents.sepLT_total GroupApproximation/GGT/OsinTheorem54SepOrder.lean:110 needs=['LemmaFourEight', 'RelGenSet']
+      built: have hPi : PenetratesAt D lam Dc f w i c := ⟨⟨ki, hEPi⟩, hci⟩
+  in-place              honest  GroupApproximation.GGT.OsinComponents.sepLT_trans GroupApproximation/GGT/OsinTheorem54SepOrder.lean:129 needs=['LemmaFourEight', 'RelGenSet', 'SepLT']
+      built: have hPm : PenetratesAt D lam Dc f w m c'' := ⟨⟨km, hEPm⟩, hcm⟩
+== GAINED PhiData
+  cascade               honest  GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.PhiData.mono GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerHereditary.lean:25 needs=['PhiData']
+      newly discharged needs=['PhiData']
+  in-place              honest  GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.hasEndpointClosedPlanarEdgeBound_of_phiData GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerHereditary.lean:144 needs=['DiscDiagram', 'PairwiseCompatible', 'RelGenSet']
+      built: have P : PhiData family E :=
+== GAINED PrefixValuesAvoid
+  conclusion-completion honest  GroupApproximation.GGT.VanKampen.Estimating.UnboundSmallMuCounterexample.prefix_values_avoid GroupApproximation/GGT/VanKampen/Estimating/UnboundSmallMuCounterexample.lean:81 needs=[]
+      conclusion: ZeroConnectorObstruction.PrefixValuesAvoid W b
+== GAINED PullbackOutcome
+  cascade               honest  GroupApproximation.HullSC.CutMove.outcome_before GroupApproximation/GGT/HullSCLemma51LetterPullbackCutOutcome.lean:75 needs=['CutMove', 'RelGenSet']
+      newly discharged needs=['CutMove']
+  cascade               honest  GroupApproximation.HullSC.CutMove.outcome_right GroupApproximation/GGT/HullSCLemma51LetterPullbackCutOutcomeRight.lean:25 needs=['CutMove', 'IsCompOf', 'RelGenSet']
+      newly discharged needs=['CutMove']
+  cascade               honest  GroupApproximation.HullSC.CutMove.outcome GroupApproximation/GGT/HullSCLemma51LetterPullbackCutOutcomeRight.lean:212 needs=['CutMove', 'RelGenSet']
+      newly discharged needs=['CutMove']
+  cascade               honest  GroupApproximation.HullSC.CutMove.outcome_left GroupApproximation/GGT/HullSCLemma51LetterPullbackCutOutcomeSides.lean:26 needs=['CutMove', 'IsCompOf', 'RelGenSet']
+      newly discharged needs=['CutMove']
+  cascade               honest  GroupApproximation.HullSC.PullbackOutcome.mono GroupApproximation/GGT/HullSCLemma51LetterPullbackInduction.lean:56 needs=['PullbackOutcome', 'RelGenSet']
+      newly discharged needs=['PullbackOutcome']
+== GAINED SidePair
+  cascade               honest  GroupApproximation.Olshanskii.OrientedSidePair.toSidePair GroupApproximation/GGT/OlshanskiiOrientedClasses.lean:43 needs=['OrientedSidePair']
+      newly discharged needs=['OrientedSidePair']
+  cascade               honest  GroupApproximation.Olshanskii.SidePair.of_restrictions GroupApproximation/GGT/OlshanskiiPolygonClasses.lean:51 needs=['SidePair']
+      newly discharged needs=['SidePair']
+  cascade               honest  GroupApproximation.Olshanskii.SidePair.of_rotation GroupApproximation/GGT/OlshanskiiPolygonClasses.lean:103 needs=['SidePair']
+      newly discharged needs=['SidePair']
+== GAINED SpliceData
+  in-place              honest  GroupApproximation.P13DescentMaster.step_plain GroupApproximation/Monsters/P13DescentMaster.lean:1058 needs=['Letter', 'Viol']
+      built: let D : SpliceData V b :=
+  in-place              honest  GroupApproximation.P13DescentMaster.step_emit GroupApproximation/Monsters/P13DescentMaster.lean:1121 needs=['Letter', 'Viol']
+      built: let D : SpliceData V b :=
+== GAINED SplitCycle
+  in-place              honest  GroupApproximation.Systolic.CycleDisc.insertChord GroupApproximation/GGT/SystolicDiscMovesChord.lean:86 needs=['CycleDisc', 'TriangleComplex']
+      built: have hsplit : EdgeInsertion.SplitCycle D.map du b [dv] ys :=
+== GAINED SubdividedGraph
+  cascade               honest  GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.phiSubdividedGraph GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhi.lean:403 needs=['DiscDiagram', 'PhiData', 'RelGenSet']
+      newly discharged needs=['PhiData']
+== GAINED SubdividedMultigraph
+  cascade               honest  GroupApproximation.GGT.VanKampen.CombMap.SubdividedGraph.toSubdividedMultigraph GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerMultigraph.lean:97 needs=['CombMap', 'SubdividedGraph']
+      newly discharged needs=['SubdividedGraph']
+== GAINED UnitVectorSequence
+  in-place              honest  GroupApproximation.WeakMFVectorGNS.finiteAveragingDisplacementNormSq_eventually_lt GroupApproximation/Sofic/WeakMFVectorGNS.lean:645 needs=['IsKazhdanPair', 'OpAlmostRepresentation']
+      built: let v : UnitVectorSequence B := ⟨fun n ↦ x n, hx⟩
+== GAINED VanishingConstraintIndex
+  in-place              honest  GroupApproximation.FiniteTraceCompactness.directed_vanishingConstraintSet GroupApproximation/Analysis/FiniteTraceCompactness.lean:242 needs=[]
+      built: let M : VanishingConstraintIndex Z :=
+  in-place              honest  GroupApproximation.FiniteTraceCompactness.exists_tracialState_annihilating_of_finite_state_constraints GroupApproximation/Analysis/FiniteTraceCompactness.lean:272 needs=[]
+      built: have hnonempty : ∀ K : VanishingConstraintIndex Z,
+== GAINED machRels
+  in-place              honest  GroupApproximation.SemigroupWordProblem.conGenRel_of_step GroupApproximation/Computability/SemigroupWordProblemPresentation.lean:59 needs=['Machine', 'Step']
+      built: have hrule : machRels M (lhsWord ruleSp rulePre rulePost i) (ruleRhs M i) :=
+GAINED-PRODUCER-KINDS {'in-place': 22, 'cascade': 24, 'conclusion-completion': 15}
+== LOST AbstractTorsionFreeFullRadicalConstruction
+  GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptAbstractTorsionFreeFullRadicalConstruction GroupApproximation/Manuscript/OneSidedMFRadical/IntroductionClaimSentences.lean:167 missing=['LiteratureInputs'] newly-counted=['HullInputsCorrected', 'LiteratureInputs']
+== LOST BoundedHullLemma44CanonicalQuotientStatement
+  GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:67 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_unbounded GroupApproximation/GGT/HullSCLemma44BoundedBridge.lean:185 missing=['HullLemma44CanonicalQuotientStatement'] newly-counted=[]
+  GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesic GroupApproximation/GGT/HullSCLemma44BoundedBridge.lean:260 missing=['RelativeGreendlingerQuasiGeodesicSpellingStatement'] newly-counted=[]
+  GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_familyInclusion GroupApproximation/GGT/HullSCLemma44BoundedBridge.lean:395 missing=['BoundedHullLemma44CanonicalQuotientFamilyInclusionStatement'] newly-counted=[]
+  GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeastArea GroupApproximation/GGT/HullSCLemma44BoundedLeastAreaCanonical.lean:44 missing=['RelativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement'] newly-counted=[]
+== LOST BoundedImageEmbeddingStatement
+  GroupApproximation.HullSC.boundedImageEmbeddingStatement_of_quasiGeodesic GroupApproximation/GGT/HullSCBoundedImageEmbedding.lean:40 missing=['RelativeGreendlingerQuasiGeodesicSpellingStatement'] newly-counted=[]
+  GroupApproximation.HullSC.boundedImageEmbeddingStatement_of_quasiGeodesicLeastArea GroupApproximation/GGT/HullSCBoundedImageEmbeddingLeastArea.lean:21 missing=['RelativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement'] newly-counted=[]
+== LOST Configuration
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.nonempty_configuration_of_paragraph GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:154 missing=['FournierFacioParagraphFreeWitness'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TheoremC.exists_configuration GroupApproximation/Manuscript/NonMF/FournierFacioInput.lean:269 missing=['LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.configuration_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:180 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.configuration_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:128 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST FournierFacioParagraph
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.fournierFacioParagraph_of_leastAreaKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:77 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_configuration GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:314 missing=['Configuration'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:382 missing=['LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.fournierFacioParagraph_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:195 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.fournierFacioParagraph_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:80 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.fournierFacioParagraph_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:137 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.fournierFacioParagraph_of_leastAreaFixedCliqueHyp GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean:55 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.fournierFacioParagraph_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean:114 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST FournierFacioParagraphFreeWitness
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.paragraphFreeWitness_of_configuration GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:145 missing=['Configuration'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.paragraphFreeWitness_of_literatureInputs GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:299 missing=['LiteratureInputs'] newly-counted=[]
+== LOST FournierFacioProposition23
+  GroupApproximation.GGT.RelHyp.fournierFacioProposition23_of_osin24_of_nonCommensurablePair GroupApproximation/GGT/RelHypFournierFacioProp23SharpReduction.lean:90 missing=['OsinTheorem24FinitePresentationAddendum'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioProposition23_of_hull_osin24 GroupApproximation/GGT/RelHypProp23FromHullOsin24.lean:25 missing=['HullLemma44CanonicalQuotientFamilyInclusionStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioProposition23_of_hullStep GroupApproximation/GGT/RelHypProp23FromHullStep.lean:104 missing=['Osin24HullStepStatement'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioProposition23_of_osin24 GroupApproximation/GGT/RelHypProp23FromOsin24.lean:113 missing=['OsinTheorem24FinitePresentationAddendum'] newly-counted=[]
+== LOST FournierFacioQuotientStatement
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_osin GroupApproximation/GGT/RelHypFournierFacio.lean:87 missing=['OsinRelatorDesign', 'OsinTheorem24'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_prop23 GroupApproximation/GGT/RelHypFournierFacioProp23.lean:207 missing=['FournierFacioProposition23'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_osin24_of_nonCommensurablePair GroupApproximation/GGT/RelHypFournierFacioProp23SharpReduction.lean:98 missing=['OsinTheorem24FinitePresentationAddendum'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_osin24_of_yi GroupApproximation/GGT/RelHypFournierFacioProp23SharpReduction.lean:107 missing=['OsinTheorem24FinitePresentationAddendum'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_coned GroupApproximation/GGT/RelHypFreeProductPeripheral.lean:656 missing=['OsinRelatorDesign', 'OsinTheorem24'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_osin' GroupApproximation/GGT/RelHypKazhdanNonElementary.lean:147 missing=['OsinRelatorDesign', 'OsinTheorem24'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_osin_cayley GroupApproximation/GGT/RelHypOsin24CayleyEndpoint.lean:141 missing=['OsinRelatorDesignCayley', 'OsinTheorem24Cayley'] newly-counted=[]
+  GroupApproximation.GGT.RelHyp.fournierFacioQuotientStatement_of_cayley_pair GroupApproximation/GGT/RelHypOsin24CayleyTwoInput.lean:90 missing=['OsinRelatorDesignCayley', 'OsinTheorem24Cayley'] newly-counted=[]
+  … 9 more producers
+== LOST HullBallFormStatementGeneral
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:58 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_tower GroupApproximation/GGT/HullSCTheorem71General.lean:295 missing=['HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_lemma44_of_lemma49 GroupApproximation/GGT/HullSCTheorem71General.lean:315 missing=['HullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_boundedLemma44_of_lemma49 GroupApproximation/GGT/HullSCTheorem71GeneralBounded.lean:82 missing=['BoundedHullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_leastAreaLeaves GroupApproximation/GGT/HullSCTheorem71GeneralLeastArea.lean:67 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullBallFormStatementGeneral_of_leastAreaGreendlinger_of_boundedTransfer GroupApproximation/GGT/HullSCTheorem71GeneralLeastArea.lean:77 missing=['BoundedRelativeLinearAreaTransferStatement', 'RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST HullCanonicalQuotientStatementGeneral
+  GroupApproximation.HullSC.hullCanonicalQuotientStatementGeneral_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:31 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullCanonicalQuotientStatementGeneral_of_lemma44_of_lemma49 GroupApproximation/GGT/HullSCTheorem71General.lean:66 missing=['HullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCanonicalQuotientStatementGeneral_of_boundedLemma44_of_lemma49 GroupApproximation/GGT/HullSCTheorem71GeneralBounded.lean:27 missing=['BoundedHullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCanonicalQuotientStatementGeneral_of_leastAreaLeaves GroupApproximation/GGT/HullSCTheorem71GeneralLeastArea.lean:30 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST HullCommonQuotientPrinted
+  GroupApproximation.HullSC.hullCommonQuotientPrinted_of_tower GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:210 missing=['HullTowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotientPrinted_of_oneStep GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:312 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCitationSentences.manuscriptSentence_hullCommonQuotient_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/HullCitationSentences.lean:168 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences.manuscriptSentence_hullCommonQuotient_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerSentences.lean:138 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST HullCommonQuotientStatement
+  GroupApproximation.HullSC.hullCommonQuotient_of_tower GroupApproximation/GGT/HullSCCommonQuotient.lean:157 missing=['FreeProductStatement', 'HullTowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_oneStep GroupApproximation/GGT/HullSCCommonQuotient.lean:261 missing=['FreeProductStatement', 'HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_tower_corrected GroupApproximation/GGT/HullSCCommonQuotient.lean:300 missing=['HullTowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_oneStep_corrected GroupApproximation/GGT/HullSCCommonQuotientCorrected.lean:206 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_oneStep_of_alphabet GroupApproximation/GGT/HullSCCommonQuotientCorrected.lean:290 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_oneStep_of_union GroupApproximation/GGT/HullSCFreeProductFactor.lean:443 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullCommonQuotient_of_oneStep_of_geometry GroupApproximation/GGT/HullSCFreeProductFactor.lean:632 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.hullCommonQuotient_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:150 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  … 3 more producers
+== LOST HullLemma49InjectivityCallback
+  GroupApproximation.HullSC.hullLemma49InjectivityCallback_of_geodesicLengthLeastAreaGreendlinger GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:354 missing=['RelativeGreendlingerGeodesicLengthLeastAreaStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullLemma49InjectivityCallback_of_relativeGreendlinger GroupApproximation/GGT/HullSCLemma49InjectivityBridge.lean:46 missing=['RelativeGreendlingerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullLemma49InjectivityCallback_of_geodesicLengthGreendlinger GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:46 missing=['RelativeGreendlingerGeodesicLengthStatement'] newly-counted=[]
+== LOST HullLemma49KernelPowerStatement
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_leastAreaPowerDiagram GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:860 missing=['HullLemma49ShortestGeodesicLeastAreaPowerDiagramStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_leastAreaGreendlinger GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:896 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_geodesicPowerDiagram GroupApproximation/GGT/HullSCLemma49PowerDiagram.lean:440 missing=['HullLemma49ShortestGeodesicPowerDiagramStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:104 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:139 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:85 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullLemma49KernelPower_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:113 missing=['RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+== LOST HullLemma49ShortestGeodesicLeastAreaPowerDiagramStatement
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicLeastAreaPowerDiagram_of_sourceBranches GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:772 missing=['HullLemma49InjectivityCallback', 'RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicLeastAreaPowerDiagram_of_leastAreaGreendlinger GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:883 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST HullLemma49ShortestGeodesicPowerDiagramStatement
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger GroupApproximation/GGT/HullSCLemma49Assemble.lean:65 missing=['RelativeGreendlingerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger GroupApproximation/GGT/HullSCLemma49Assemble.lean:160 missing=['HullLemma49InjectivityCallback', 'RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components GroupApproximation/GGT/HullSCLemma49Assemble.lean:172 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'HullLemma49InjectivityCallback'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullLemma49GeodesicPowerDiagram_of_inputs GroupApproximation/GGT/HullSCLemma49Assemble.lean:193 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'PrefixKernelConeTransferStatement', 'RelativeGreendlingerStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'RelativeGreendlingerStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_greendlinger GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:69 missing=['RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:87 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:126 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches GroupApproximation/GGT/HullSCLemma49SourceAssembly.lean:90 missing=['HullLemma49InjectivityCallback', 'RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+== LOST HullOneStepStatement
+  GroupApproximation.HullSC.AuxiliaryPeripheralFamily.hullOneStep_of_canonicalQuotient GroupApproximation/GGT/HullSCAuxiliaryRelatorPublished.lean:627 missing=['TorsionFreeHullCanonicalQuotientStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullOneStep_of_fillingData GroupApproximation/GGT/HullSCFilling.lean:472 missing=['ExistsHypEmbeddedInSuitable', 'HullFillingDataStatement', 'HullRelatorStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullOneStepStatement_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:88 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullOneStepStatement_of_leastAreaLeaves GroupApproximation/GGT/HullSCLemma44BoundedLeastAreaCanonical.lean:140 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullOneStepStatement_of_leastAreaGreendlinger_of_boundedTransfer GroupApproximation/GGT/HullSCLemma44BoundedLeastAreaCanonical.lean:150 missing=['BoundedRelativeLinearAreaTransferStatement', 'RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:98 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] newly-counted=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.hullOneStep_of_quotient₂_of_baseLetter GroupApproximation/GGT/HullSCRelatorSeparation2OneStep.lean:54 missing=['HullQuotientStatement₂', 'HullRelatorStatement₂OfBaseLetter'] newly-counted=[]
+  GroupApproximation.HullSC.hullOneStep_of_relator_of_quotient GroupApproximation/GGT/HullSCSmallCancellation.lean:318 missing=['ExistsHypEmbeddedInSuitable', 'HullQuotientStatement', 'HullRelatorStatement'] newly-counted=[]
+  … 3 more producers
+== LOST HullOneStepStatementGeneral
+  GroupApproximation.HullSC.hullOneStepStatementGeneral_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:40 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullOneStepStatementGeneral_of_canonicalQuotient GroupApproximation/GGT/HullSCTheorem71General.lean:133 missing=['HullCanonicalQuotientStatementGeneral'] newly-counted=[]
+  GroupApproximation.HullSC.hullOneStepStatementGeneral_of_leastAreaLeaves GroupApproximation/GGT/HullSCTheorem71GeneralLeastArea.lean:47 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST HullQuotientNG
+  GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.HullQuotientNG.mono GroupApproximation/Manuscript/NonMF/HullFillCorrectedInputs.lean:79 missing=['HullQuotientNG'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.smallCancellation_of_ballFormNG GroupApproximation/Manuscript/NonMF/HullFillCorrectedInputs.lean:165 missing=['HullBallFormStatementNG'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFree.hullTheorem71_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TheoremCAssembly.lean:239 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences.manuscriptSentence_saturationPairAndHullAgain_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerSentences.lean:86 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences.manuscriptSentence_saturationApplyHullNoOmega_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerSentences.lean:103 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationHullAtLargerAlphabet GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:132 missing=['HullSmallCancellationPrinted'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_saturationApplyHull GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:148 missing=['HullSmallCancellationPrinted'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationPairAndHullAgain_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:165 missing=['RelativeGreendlingerQuasiGeodesicStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  … 3 more producers
+== LOST HullSmallCancellationTorsionFreePrinted
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.hullSmallCancellationTorsionFreePrinted_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:97 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.hullSmallCancellationTorsionFreePrinted_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:120 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.hullSmallCancellationTorsionFreePrinted_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:68 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullSmallCancellationTorsionFreePrinted_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:142 missing=['RelativeGreendlingerQuasiGeodesicStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly.hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeastAreaAssembly.lean:38 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.hullSmallCancellationTorsionFreePrinted_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeSaturationFromCorrected.lean:133 missing=['HullSmallCancellationPrinted'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.hullSmallCancellationTorsionFreePrinted_of_oneStep GroupApproximation/Manuscript/NonMF/TorsionFreeSaturationFromCorrected.lean:145 missing=['HullOneStepStatement'] newly-counted=[]
+== LOST HullStep
+  GroupApproximation.HullSC.HullStep.comp GroupApproximation/GGT/HullSC.lean:313 missing=['HullStep'] newly-counted=[]
+  GroupApproximation.HullSC.HullFillingQuotient.toHullStep GroupApproximation/GGT/HullSCTheorem51.lean:119 missing=['HullFillingQuotient'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.firstStage GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:264 missing=['HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.nextStage GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:286 missing=['HullStep', 'HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.stage GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:314 missing=['HullTowerStatementGeneral'] newly-counted=[]
+== LOST HullTower
+  GroupApproximation.HullSC.hullTower_of_oneStep GroupApproximation/GGT/HullSC.lean:487 missing=['HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.HullSC.hullTowerGeneral_of_oneStep GroupApproximation/GGT/HullSCTheorem71General.lean:175 missing=['HullOneStepStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.towerStep GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:278 missing=['HullStep', 'HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerSentences.lean:34 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences.manuscriptSentence_hullInductionOnTargetsGeneral_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerSentences.lean:48 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_oneStep GroupApproximation/Manuscript/NonMF/TorsionFreeHullParagraphGeneral.lean:42 missing=['HullOneStepStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullInductionOnTargetsGeneral_of_oneStep GroupApproximation/Manuscript/NonMF/TorsionFreeHullParagraphGeneral.lean:70 missing=['HullOneStepStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullParagraphGeneral.manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeHullPrintedLeastArea.lean:58 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  … 3 more producers
+== LOST HullTowerStatement
+  GroupApproximation.HullSC.hullTowerStatement_of_oneStep GroupApproximation/GGT/HullSC.lean:590 missing=['HullOneStepStatement'] newly-counted=[]
+== LOST HullTowerStatementGeneral
+  GroupApproximation.HullSC.hullTowerStatementGeneral_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:49 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.hullTowerStatementGeneral_of_oneStep GroupApproximation/GGT/HullSCTheorem71General.lean:274 missing=['HullOneStepStatementGeneral'] newly-counted=[]
+  GroupApproximation.HullSC.hullTowerStatementGeneral_of_leastAreaLeaves GroupApproximation/GGT/HullSCTheorem71GeneralLeastArea.lean:57 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST LiteratureInputs
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.literatureInputs_of_leastAreaKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:61 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.literatureInputs_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:169 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.literatureInputs_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:70 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.literatureInputs_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:119 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.literatureInputs_of_leastAreaFixedCliqueHyp GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean:41 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean:96 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST Osin24HullStepStatement
+  GroupApproximation.GGT.RelHyp.osin24HullStep_of_boundedLeaves GroupApproximation/GGT/RelHypOsin24PublishedHullStep.lean:54 missing=['BoundedHullLemma44CanonicalQuotientStatement', 'BoundedImageEmbeddingStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+== LOST PrintedHullCorollary73
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_tower GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:375 missing=['HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:425 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedHullCorollary74
+  GroupApproximation.Manuscript.NonMF.HullCorollary74.printedHullCorollary74_of_tower GroupApproximation/Manuscript/NonMF/HullCorollary74.lean:255 missing=['HullTowerStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorollary74.printedHullCorollary74_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/HullCorollary74.lean:293 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.HullCorollary74.printedHullCorollary74_of_greendlinger GroupApproximation/Manuscript/NonMF/HullCorollary74.lean:305 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedHullProofParagraph
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedHullProofParagraph_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:224 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves.printedHullProofParagraph_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentencesFourLeaves.lean:85 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedHullSmallCancellationCurrent
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedHullTheorem_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:67 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptSentence_hullTheorem_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:93 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedHullTheorem_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:43 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedGeneral.printedHullSmallCancellationCurrent_of_ballFormGeneral GroupApproximation/Manuscript/NonMF/TorsionFreeHullPrintedGeneral.lean:35 missing=['HullBallFormStatementGeneral'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedGeneral.printedHullSmallCancellationCurrent_of_lemma44_of_lemma49 GroupApproximation/Manuscript/NonMF/TorsionFreeHullPrintedGeneral.lean:44 missing=['HullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeHullPrintedLeastArea.lean:32 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.printedHullSmallCancellationCurrent_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:63 missing=['HullSmallCancellationPrinted'] newly-counted=[]
+== LOST PrintedHullSmallCancellationLimitSet
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedHullTheoremLimitSet_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:87 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptHullTheoremLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:111 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedHullTheoremLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:59 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedHullSmallCancellationLimitSet_of_current GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetNotion.lean:92 missing=['PrintedHullSmallCancellationCurrent'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptHullTheoremLimitSet_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetNotion.lean:177 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedHullSmallCancellationOsin
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedHullTheoremOsin_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:77 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptSentence_hullTheoremOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:102 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedHullTheoremOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:51 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheoremOsin_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeHullPrintedLeastArea.lean:42 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.printedHullSmallCancellationOsin_of_current GroupApproximation/Manuscript/NonMF/TorsionFreeOsinNotion.lean:85 missing=['PrintedHullSmallCancellationCurrent'] newly-counted=[]
+== LOST PrintedRegularNonMFAlgebra
+  GroupApproximation.GGT.OsinPrinted.manuscriptRegularNonMFAlgebra_of_citations_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:116 missing=['HullSmallCancellationPrinted', 'LiteratureInputs'] newly-counted=[]
+  GroupApproximation.GGT.OsinPrinted.manuscriptRegularNonMFAlgebra_of_citations_of_smallCancellation_closedCitations GroupApproximation/GGT/OsinLemma71PrintedReductionClosedCitations.lean:25 missing=['HullSmallCancellationPrinted', 'LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptRegularNonMFAlgebra_of_hullKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:125 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean:271 missing=['FournierFacioParagraph'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedRegularNonMFAlgebra_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:266 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptRegularNonMFAlgebra_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:193 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedRegularNonMFAlgebra_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:192 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptRegularNonMFAlgebra_of_hullFixedCliqueHyp GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean:95 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  … 11 more producers
+== LOST PrintedRegularNonMFAlgebraLimitSet
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedRegularNonMFAlgebraLimitSet_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:290 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptRegularNonMFAlgebraLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:215 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedRegularNonMFAlgebraLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:212 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetEndpoints.lean:55 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedRegularNonMFAlgebraLimitSet_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetNotion.lean:160 missing=['PrintedRegularNonMFAlgebra'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionAssembly.lean:64 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebraLimitSet_of_hullLeaves_closedGO GroupApproximation/Manuscript/NonMF/TorsionFreeSectionAssemblyClosedGO.lean:124 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedRegularNonMFAlgebraOsin
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptRegularNonMFAlgebraOsin_of_hullKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:158 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedRegularNonMFAlgebraOsin_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:278 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptRegularNonMFAlgebraOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:204 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedRegularNonMFAlgebraOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:202 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptRegularNonMFAlgebraOsin_of_hullFixedCliqueHyp GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean:124 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptRegularNonMFAlgebraOsin_of_hullLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean:174 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.printedRegularNonMFAlgebraOsin_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeOsinNotion.lean:183 missing=['PrintedRegularNonMFAlgebra'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeOsinNotion.lean:192 missing=['FournierFacioParagraph', 'RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  … 3 more producers
+== LOST PrintedRelativeQuotient
+  GroupApproximation.HullSC.manuscriptRelativeQuotient_of_oneStep GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:328 missing=['FournierFacioParagraph', 'HullOneStepStatement'] newly-counted=[]
+  GroupApproximation.GGT.OsinPrinted.manuscriptRelativeQuotient_of_citations_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:107 missing=['HullOneStepStatement', 'HullSmallCancellationPrinted', 'LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient GroupApproximation/Manuscript/NonMF/TorsionFreeRelativeQuotient.lean:133 missing=['FournierFacioParagraph', 'HullCommonQuotientPrinted'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient_of_citations GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean:134 missing=['HullOneStepStatement', 'LiteratureInputs'] newly-counted=[]
+== LOST PrintedSaturationApplyHull
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedSaturationApplyHull_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:242 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves.printedSaturationApplyHull_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentencesFourLeaves.lean:172 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedSaturationLimitSet
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedSaturationLimitSet_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:132 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptSaturationLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:148 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedSaturationLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:92 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedSaturationPairAndHullAgain
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedSaturationPairAndHullAgain_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:233 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves.printedSaturationPairAndHullAgain_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentencesFourLeaves.lean:131 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedTheoremApplySaturation
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedTheoremApplySaturation_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:251 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves.printedTheoremApplySaturation_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentencesFourLeaves.lean:213 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST PrintedTorsionFreeFullMFRadical
+  GroupApproximation.GGT.OsinPrinted.manuscriptTorsionFreeFullMFRadical_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:75 missing=['FournierFacioParagraph', 'HullSmallCancellationPrinted'] newly-counted=[]
+  GroupApproximation.GGT.OsinPrinted.manuscriptTorsionFreeFullMFRadical_of_citations_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:91 missing=['HullSmallCancellationPrinted', 'LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptTorsionFreeFullMFRadical_of_hullKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:108 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeFullMFRadical_of_configuration GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:186 missing=['Configuration'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.manuscriptTorsionFreeFullMFRadical_corrected GroupApproximation/Manuscript/NonMF/HullFillTheoremCCorrected.lean:37 missing=['LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs GroupApproximation/Manuscript/NonMF/TheoremCAssembly.lean:333 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaFold GroupApproximation/Manuscript/NonMF/TheoremCAssemblyFoldLeaf.lean:27 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_of_greendlinger GroupApproximation/Manuscript/NonMF/TheoremCAssemblyGreendlingerLeaf.lean:27 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  … 16 more producers
+== LOST PrintedTorsionFreeSimplified
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeSimplified_of_theorem GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:108 missing=['PrintedTorsionFreeTheorem'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.manuscriptTorsionFreeSimplified_corrected GroupApproximation/Manuscript/NonMF/HullFillTheoremCCorrected.lean:44 missing=['LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaInputs GroupApproximation/Manuscript/NonMF/TheoremCAssembly.lean:346 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaFold GroupApproximation/Manuscript/NonMF/TheoremCAssemblyFoldLeaf.lean:38 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_greendlinger GroupApproximation/Manuscript/NonMF/TheoremCAssemblyGreendlingerLeaf.lean:36 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaKOLeaves GroupApproximation/Manuscript/NonMF/TheoremCAssemblyKOLeaves.lean:51 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement', 'SystolicInvariantCliqueStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaZipFold GroupApproximation/Manuscript/NonMF/TheoremCAssemblyKOLeaves.lean:79 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified GroupApproximation/Manuscript/NonMF/TheoremCPrinted.lean:64 missing=['LiteratureInputs'] newly-counted=[]
+== LOST PrintedTorsionFreeTheorem
+  GroupApproximation.GGT.OsinPrinted.manuscriptTorsionFreeTheorem_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:69 missing=['FournierFacioParagraph', 'HullSmallCancellationPrinted'] newly-counted=[]
+  GroupApproximation.GGT.OsinPrinted.manuscriptTorsionFreeTheorem_of_citations_of_smallCancellation GroupApproximation/GGT/OsinLemma71PrintedReduction.lean:83 missing=['HullSmallCancellationPrinted', 'LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptTorsionFreeTheorem_of_hullKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:93 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_simplified GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:100 missing=['PrintedTorsionFreeSimplified'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:260 missing=['FournierFacioParagraphFreeWitness'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:283 missing=['FournierFacioParagraphFreeWitness'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_literatureInputs GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:312 missing=['LiteratureInputs'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_corrected GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:329 missing=['LiteratureInputs'] newly-counted=[]
+  … 14 more producers
+== LOST PrintedTorsionFreeTheoremLimitSet
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedTorsionFreeTheoremLimitSet_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:247 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptTorsionFreeTheoremLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:182 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedTorsionFreeTheoremLimitSet_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:179 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptTorsionFreeTheoremLimitSet_of_hullLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetEndpoints.lean:43 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion.printedTorsionFreeTheoremLimitSet_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeLimitSetNotion.lean:59 missing=['PrintedTorsionFreeTheorem'] newly-counted=[]
+== LOST PrintedTorsionFreeTheoremOsin
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptTorsionFreeTheoremOsin_of_hullKOLeaves GroupApproximation/Kazhdan/KotowskiOllivierLeaves.lean:142 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves.printedTorsionFreeTheoremOsin_of_fourLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean:236 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms.manuscriptTorsionFreeTheoremOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerForms.lean:171 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf.printedTorsionFreeTheoremOsin_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean:169 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves.manuscriptTorsionFreeTheoremOsin_of_hullFixedCliqueHyp GroupApproximation/Manuscript/NonMF/TorsionFreeKOLeaves.lean:110 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheoremOsin_of_hullLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean:163 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.printedTorsionFreeTheoremOsin_of_printed GroupApproximation/Manuscript/NonMF/TorsionFreeOsinNotion.lean:50 missing=['PrintedTorsionFreeTheorem'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion.manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves GroupApproximation/Manuscript/NonMF/TorsionFreeOsinNotion.lean:59 missing=['FournierFacioParagraph', 'RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST RelativeGreendlingerGeodesicLengthLeastAreaStatement
+  GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthLeastAreaStatement_of_leastAreaGreendlinger GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:211 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST RelativeGreendlingerGeodesicLengthStatement
+  GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_relativeGreendlingerStatement GroupApproximation/GGT/HullSCRelativeGreendlingerGeodesicConsumers.lean:154 missing=['RelativeGreendlingerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_quasiGeodesicSpelling GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:207 missing=['RelativeGreendlingerQuasiGeodesicSpellingStatement'] newly-counted=[]
+  GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_greendlinger GroupApproximation/GGT/HullSCRelativeGreendlingerSpelling.lean:335 missing=['RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerSpelling.lean:407 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+== LOST RelativeGreendlingerQuasiGeodesicSpellingAtStatement
+  GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingAtStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerPowerBoundary.lean:87 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+== LOST RelativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement
+  GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement_of_leastAreaGreendlinger GroupApproximation/GGT/HullSCLeastAreaGreendlingerTwins.lean:126 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+== LOST RelativeGreendlingerQuasiGeodesicSpellingStatement
+  GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_greendlinger GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:117 missing=['RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+  GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:188 missing=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement'] newly-counted=['EstimatingPieceConstructionStatement', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_relativeGreendlingerStatement GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:219 missing=['RelativeGreendlingerStatement'] newly-counted=[]
+  GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:93 missing=['RelativeGreendlingerQuasiGeodesicStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicStatement']
+== LOST TorsionFreeHullCanonicalQuotientStatement
+  GroupApproximation.HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49 GroupApproximation/GGT/HullSCCanonicalQuotientPublished.lean:224 missing=['HullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.torsionFreeHullCanonicalQuotientStatement_of_greendlinger GroupApproximation/GGT/HullSCGreendlingerForms.lean:79 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+  GroupApproximation.HullSC.torsionFreeHullCanonicalQuotientStatement_of_boundedLemma44_of_lemma49 GroupApproximation/GGT/HullSCLemma44BoundedBridge.lean:336 missing=['BoundedHullLemma44CanonicalQuotientStatement', 'HullLemma49KernelPowerStatement'] newly-counted=[]
+  GroupApproximation.HullSC.torsionFreeHullCanonicalQuotientStatement_of_leastAreaLeaves GroupApproximation/GGT/HullSCLemma44BoundedLeastAreaCanonical.lean:123 missing=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] newly-counted=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+ROOTS RelativeGreendlingerQuasiGeodesicLeastAreaStatement×143, RelativeGreendlingerQuasiGeodesicStatement×17, EstimatingUnboundOutputStatement×11, EstimatingSelectionConstructionStatement×11, RelativeGreendlingerStatement×1
+CLASSIFY old normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded: header-binder: the declaration header takes 9 binder(s) (G, Group G, D, hemb, h, hfam, hord, S, hS); move every binder after the colon; buried-conditional: premise `D.IsHyperbolicallyEmbedded` has head `D.IsHyperbolicallyEmbedded`, but buried below it requires the corpus-defined structure `IsHyperbolicallyEmbedded`…
+CLASSIFY new normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded: header-binder: the declaration header takes 9 binder(s) (G, Group G, D, hemb, h, hfam, hord, S, hS); move every binder after the colon
+CLASSIFY old cutLiftOutcome: header-binder: the declaration header takes 4 binder(s) (W, D, q, hq); move every binder after the colon; conditional-data: through `CutLiftOutcome`, premise `CutLift W D q hq lam h c L arc R ext rem tail x y` requires the corpus-defined structure `CutLift`, which nothing in the corp…
+CLASSIFY new cutLiftOutcome: header-binder: the declaration header takes 4 binder(s) (W, D, q, hq); move every binder after the colon
+CLASSIFY old toCutMove: header-binder: the declaration header takes 9 binder(s) (W, D, q, hq, lam, h, c, L arc R ext rem tail x y, hcl); move every binder after the colon; conditional-data: premise `CutLift W D q hq lam h c L arc R ext rem tail x y` requires the corpus-defined structure `CutLift`, which nothing in the corpus ever produces; the conc…
+CLASSIFY new toCutMove: header-binder: the declaration header takes 9 binder(s) (W, D, q, hq, lam, h, c, L arc R ext rem tail x y, hcl); move every binder after the colon

@@ -1,0 +1,31 @@
+e=3 |P|=2^19
+  try 1: |Q|=2^8 log2 ord(a,b,c,d)=[ 3, 3, 2, 3 ]
+  try 2: |Q|=2^8 log2 ord(a,b,c,d)=[ 3, 2, 3, 3 ]
+  try 3: |Q|=2^9 log2 ord(a,b,c,d)=[ 3, 2, 2, 2 ]
+  try 4: |Q|=2^8 log2 ord(a,b,c,d)=[ 3, 2, 1, 2 ]
+  try 5: |Q|=2^9 log2 ord(a,b,c,d)=[ 3, 3, 2, 1 ]
+  try 6: |Q|=2^10 log2 ord(a,b,c,d)=[ 3, 3, 2, 2 ]
+  try 7: |Q|=2^9 log2 ord(a,b,c,d)=[ 3, 3, 1, 2 ]
+  try 8: |Q|=2^10 log2 ord(a,b,c,d)=[ 3, 2, 3, 3 ]
+e=4 |P|=2^32
+  try 1: |Q|=2^16 log2 ord(a,b,c,d)=[ 4, 3, 4, 4 ]
+  try 2: |Q|=2^16 log2 ord(a,b,c,d)=[ 4, 4, 4, 4 ]
+  try 3: |Q|=2^14 log2 ord(a,b,c,d)=[ 4, 4, 4, 3 ]
+  try 4: |Q|=2^16 log2 ord(a,b,c,d)=[ 4, 3, 3, 2 ]
+  try 5: |Q|=2^16 log2 ord(a,b,c,d)=[ 4, 4, 4, 4 ]
+  try 6: |Q|=2^16 log2 ord(a,b,c,d)=[ 4, 4, 4, 4 ]
+  try 7: |Q|=2^12 log2 ord(a,b,c,d)=[ 4, 2, 3, 3 ]
+  try 8: |Q|=2^14 log2 ord(a,b,c,d)=[ 4, 4, 4, 2 ]
+e=5 |P|=2^137
+Error, reached the pre-set memory limit
+(change it with the -o command line option) in
+  return FinPowConjCol_ReducedProduct( TypeObj( left )![12], left, right )
+ ; at /usr/share/gap/lib/rwspcgrp.gi:326 called from 
+PROD_LIST_SCL_DEFAULT( list, nonlist ) at /usr/share/gap/lib/list.gi:3423 called from
+e * u at /usr/share/gap/lib/grppcatr.gi:32 called from
+AsList( Omega( Centre( Q ), 2, 1 ) ) at mono2.g:13 called from
+MonoPc( P, e, 8 ) at run2.g:6 called from
+<function "unknown">( <arguments> )
+ called from read-eval loop at run2.g:7
+you can 'return;'
+Reading file "run2.g" has been aborted.

@@ -322,3 +322,47 @@ the Kaplansky zero-divisor conjecture."
    - The coefficient-aware extremal-copy step (height-function extremal
      coset plus the rank-one lemma) was attempted and not proved.  It
      remains the route to every `N`.
+
+20. **Port-cycle counting has an N-independent ceiling (obstruction; `rips-segev-port-cycle-counting-has-n-independent-ceiling`).**
+   - Kills the plan "a linear active-coset bound `A(N) = O(N)` plus the
+     curvature count closes every large `N`".
+   - The window criterion of item 18 is capped by girth at `E* <= 39`.  Its
+     left side is `E* - min(e*, N) <= 39`, but it must reach `2N`.  So it is
+     vacuous for `N >= 20`, and on all-`b^2` faces for `N >= 14`.
+   - Then a one-face port-cycle diagram whose boundary is the relator of a
+     directed cycle of `Phi` passes every check, with `L = L_0(Phi)`
+     `b`-edges.  In the `gamma = 42` graph of item 12, `(x_4 x_1)^21` gives
+     `L = 42`.
+   - So the method closes large `N` only with an active-coset bound below
+     `L_0`, independent of `N`.  Linear bounds close only a bounded range of
+     `N`, and the `~12N` shell figure holds only while windows bite.
+   - Next step: a local coefficient lemma for a single shell face.  The port
+     equations with fixed `u/w` must fail along `>= 21` consecutive impure
+     arc cosets of one copy, whatever the other copies are.  Item 17 shows
+     that supports alone cannot give this.
+
+21. **One-copy port equations are always solvable (obstruction; `rips-segev-single-copy-port-equations-are-always-solvable`).**
+   - Kills the step of item 20: "the port equations with fixed `u/w`
+     cannot hold along `>= 21` consecutive impure arc cosets of one copy".
+     As a local statement it is false, for every nonconstant `u/w`, every
+     face and every field.
+   - Duality: the port map `f -> ((f u)(In_i), (f w)(Out_i))` of a line
+     has image `Dep_i^perp`, where `Dep_i` is the set of reflected pairs
+     `(A, B)` on `(In_i, Out_i)` with `Ǎ u + B̌ w = 0`.
+   - Row separation, applied to the tensor identity `Ǎ_i B̌_j = Ǎ_j B̌_i`,
+     leaves at most one line with `Dep != 0`.  So every edge valuation of a
+     copy that respects that one line is realized by coefficients `f_i`.
+   - Every directed face cycle of `Phi` gets nonzero values at all its
+     ports.  This includes `(x_4 x_1)^21` at `gamma = 42`: 42 active arc
+     cosets, all `b^2`.  Consecutive arc cosets share one scalar, so there
+     is no ratio recursion.
+   - Calibration: the regular element `1 + 2a + (3 + a) b` also solves
+     every one-copy system.  The contradiction in
+     `rips-segev-one-copy-configurations-carry-no-zero-divisors` comes only
+     from the support condition.
+   - Next step (holonomy form): impose the support condition at the escaped
+     points.  That is, `supp(f_T u)` lies in the arrival ports of `T` and
+     `supp(f_T w)` in its departure ports, over every copy `T` meets.  Then
+     the space `Rep_T` is small, and each coset fixes an exit/entry ratio.
+     Show that the product of these ratios around a directed port cycle
+     cannot be `±1`.

@@ -1,0 +1,11 @@
+# fbc_batch.py w313-L15.txt LI LG, 128 words, both orientations; each run completed (exit 0)
+## run 26: 2 6
+# LI=2 LG=6: 0 of 128 words hit
+real	1m3.039s
+## run 34: 3 4
+# LI=3 LG=4: 0 of 128 words hit
+real	2m22.604s
+## run 35: 3 5
+# LI=3 LG=5: 0 of 128 words hit
+real	2m52.492s
+# run 3 6 (images <= 3, g <= 6) did not finish within 1200 s and is not claimed

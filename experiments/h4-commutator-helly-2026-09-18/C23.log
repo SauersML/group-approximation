@@ -1,0 +1,5 @@
+F-ball 37 N-ball 13273 3 s
+hashed 155 s
+progress {'pairs': 35, 'trivial_k': 677731, 'tuples': 36, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 156 s
+{'pairs': 1260, 'trivial_k': 2927468, 'tuples': 32548, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 179 s
+exit 0

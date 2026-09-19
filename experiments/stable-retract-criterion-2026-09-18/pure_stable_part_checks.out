@@ -1,0 +1,63 @@
+=== R° = <M_11, b, C>, C = (1,1,1,C,b alpha,C^-1,1,...)
+(U) unit-weight letter sections: True
+(A') |P| = 7920, |P_st| = 1 (state root perms); P_st != P: True
+weight-preserving edges: {'b@0': 'b', 'c@3': 'c', 'c@4': 'b a', 'c@5': 'C'}
+cycle-capable edges: ['b@0', 'c@3', 'c@5']
+(B') cycle-capable sections undecorated: True
+(C'') one cycle-capable letter per point, fixing it: True  {0: ['b'], 3: ['c'], 5: ['c']}
+  order(b) = 55; iterated sections of b^55: ['(a)^55', '(b)^55', '(e)^55']; pure: True
+  order(c) > 300; infinite order imported from m11-balanced-loop-host-has-finite-h1 (R°), m11-separated-loop-host-has-b1-one (R'), m11-odometer-free-host-is-not-finitely-presented (R'')
+(D) iterated sections of s^ord(s) pure for finite-order cycle letters: True
+VERDICT: Corollary C applies: NOT finitely presented
+=== R' = <M_11, b, c'>, c' = (1,1,1,c',b alpha,1,...)
+(U) unit-weight letter sections: True
+(A') |P| = 7920, |P_st| = 1 (state root perms); P_st != P: True
+weight-preserving edges: {'b@0': 'b', 'c@3': 'c', 'c@4': 'b a'}
+cycle-capable edges: ['b@0', 'c@3']
+(B') cycle-capable sections undecorated: True
+(C'') one cycle-capable letter per point, fixing it: True  {0: ['b'], 3: ['c']}
+  order(b) = 55; iterated sections of b^55: ['(a)^55', '(b)^55', '(e)^55']; pure: True
+  order(c) > 300; infinite order imported from m11-balanced-loop-host-has-finite-h1 (R°), m11-separated-loop-host-has-b1-one (R'), m11-odometer-free-host-is-not-finitely-presented (R'')
+(D) iterated sections of s^ord(s) pure for finite-order cycle letters: True
+VERDICT: Corollary C applies: NOT finitely presented
+=== R'' = <M_11, b, c>, c = (c, b alpha, 1,...)
+(U) unit-weight letter sections: True
+(A') |P| = 7920, |P_st| = 1 (state root perms); P_st != P: True
+weight-preserving edges: {'b@0': 'b', 'c@0': 'c', 'c@1': 'b a'}
+cycle-capable edges: ['b@0', 'c@0']
+(B') cycle-capable sections undecorated: True
+(C'') one cycle-capable letter per point, fixing it: False  {0: ['b', 'c']}
+  order(b) = 55; iterated sections of b^55: ['(a)^55', '(b)^55', '(e)^55']; pure: True
+  order(c) > 300; infinite order imported from m11-balanced-loop-host-has-finite-h1 (R°), m11-separated-loop-host-has-b1-one (R'), m11-odometer-free-host-is-not-finitely-presented (R'')
+(D) iterated sections of s^ord(s) pure for finite-order cycle letters: True
+VERDICT: Corollary C does not apply
+
+gamma = a E (rooted word fixing point 0)
+=== R_gamma = <M_11, b_g, C>, b_g = (gamma b_g, alpha, beta, 1, ...)
+(U) unit-weight letter sections: True
+(A') |P| = 7920, |P_st| = 1 (state root perms); P_st != P: True
+weight-preserving edges: {'b@0': 'a E b', 'c@3': 'c', 'c@4': 'b a', 'c@5': 'C'}
+cycle-capable edges: ['b@0', 'c@3', 'c@5']
+(B') cycle-capable sections undecorated: False
+(C'') one cycle-capable letter per point, fixing it: True  {0: ['b'], 3: ['c'], 5: ['c']}
+  order(b) = 220; iterated sections of b^220: ['(a E b)^220', '(a)^220', '(b)^220', '(e)^220']; pure: False
+  order(c) > 300; infinite order imported from the f-orbit check at the end of this script (b_g alpha has infinite order, and C^m|_4 = (b_g alpha)^m)
+(D) iterated sections of s^ord(s) pure for finite-order cycle letters: False
+VERDICT: Corollary C does not apply
+gamma fixes [0, 1, 2]
+=== R_gamma in the basis {alpha, beta, g = gamma b_g, C}
+(U) unit-weight letter sections: True
+(A') |P| = 7920, |P_st| = 4 (state root perms); P_st != P: True
+weight-preserving edges: {'c@3': 'c', 'c@4': 'e A g a', 'c@5': 'C', 'g@0': 'g'}
+cycle-capable edges: ['c@3', 'c@5', 'g@0']
+(B') cycle-capable sections undecorated: True
+(C'') one cycle-capable letter per point, fixing it: True  {0: ['g'], 3: ['c'], 5: ['c']}
+  order(c) > 300; infinite order imported from the f-orbit check at the end of this script (b_g alpha has infinite order, and C^m|_4 = (b_g alpha)^m)
+  order(g) = 220; iterated sections of g^220: ['(a)^220', '(e)^220', '(g)^220']; pure: True
+(D) iterated sections of s^ord(s) pure for finite-order cycle letters: True
+VERDICT: Corollary C applies: NOT finitely presented
+
+summary: {'R°': True, "R'": True, "R''": False, 'R_gamma (after Nielsen move)': True}
+R_gamma: b_g alpha: cycle lengths of 0 along f-orbit [11, 5, 11]; periodic part [5, 11]; INFINITE order
+R°: b alpha (gamma = 1): cycle lengths of 0 along f-orbit [11, 5, 5]; periodic part [5, 5]; INFINITE order
+R_gamma: b_g: cycle lengths of 0 along f-orbit [1, 1]; periodic part [1]; no conclusion (finite-order pattern)

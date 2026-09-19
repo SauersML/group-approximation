@@ -125,3 +125,50 @@ normalized second Betti numbers of a residual chain of a finitely generated amen
 tend to `b_2^{(2)} = 0` (known for type `FP_2`, open without it). A residually finite
 counterexample must have linear growth of `b_2`, with slope exactly `1 + b_2(K)`. The proposed
 L²-Swan route through infinite amenable quotients cannot close the gap by itself (item 6).
+
+## Attempts
+
+- **2026-09-18 (lane `w17-112`): the Følner-tiling scheme for the degree-2 approximation. The local
+  part is proved, and the rest is a race between relator depth and Følner radius.** See
+  `folner-transversals-kill-local-degree-two-homology` (proposed ESTABLISHED).
+  - *Local bound, for any group.* Let `I_L(H)` be the part of `H_2(H; k)` carried by relators of
+    length `<= L`. Then `dim I_L(H) <= n|T B_L \ T|` for every transversal `T` of every
+    finite-index `H`. The proof: a 2-cycle of the universal cover supported on `T` is a
+    boundary, so it dies in `X_H`, and rank-nullity on `k[T]^c` leaves room only on the Følner
+    boundary. With Weiss's Følner transversals, `dim I_L(N_i) = o([K:N_i])` for every fixed `L`,
+    for every residually finite amenable `K`, of any cd.
+  - *Kazhdan check.* For the `SL_3(Q_2)` lattice `Γ` of `pro-p-route-cannot-see-amenability-in-cd-two`,
+    the bound reads `|T B_3 \ T| >= (V[Γ:N] − 1)/(6V + 1)`. This is true, since `Γ` is
+    non-amenable. So the scheme fails for `Γ` only at the choice of a small-boundary transversal,
+    which is exactly the amenability input.
+  - *What dies.* Any Følner-tiled control of `H_2` of `P ⊗ Z[K/N_i]` using relators of bounded
+    length. In a counterexample, the part of `H_2(N_i)` it misses is
+    `χ_Q(K)[K:N_i] + o([K:N_i])`.
+  - *Reduction, both directions.* Using integrality of `χ`, the target for `K` is equivalent to
+    this: for some `δ + nε < 1`, the relator depth `ℓ^δ(N_i)` is at most the Følner radius
+    `ρ_ε(N_i)` for infinitely many `i`. By the five-term sequence, the missing part is
+    `dim H_0(N_{i,L}; H_1(M_L)) − b_1(N_{i,L}) + b_1(N_i)`, where `M_L = ker(⟨S | R_{≤L}⟩ → K)`.
+  - *Next step.* Bound these coinvariants of the long relations at `L = ρ_ε(N_i)`.
+- **2026-09-18 (lane `w18-112`): the relator-depth versus Følner-radius race is the target itself,
+  with no slack.** See `relator-depth-race-is-pinned-by-euler-characteristic` (proposed
+  ESTABLISHED).
+  - *Excess identity.* This holds for any fg `K` of cd 2 with `b_2 < ∞`, without amenability. The
+    long-relation excess `e_L(N) = dim H_0(N_L; H_1(M_L)) − b_1(N_L)` equals
+    `χ[K:N] − 1 − dim I_L(N)` exactly. At `L <= ρ_ε(N)` it lies within `nε[K:N]` of `χ[K:N] − 1`.
+    So the proposed bound on the coinvariants at the Følner radius is equivalent to `χ = 0`.
+  - *Dichotomy.* Along a residual chain, `ℓ^δ(N_i)` is eventually `0` if `χ = 0`, and eventually
+    `> ρ_ε(N_i) → ∞` if `χ >= 1`. A single cover `N` with `ℓ^δ(N) <= ρ_ε(N)` and
+    `(1 − δ − nε)[K:N] > 1` already forces `χ = 0`. Relator depth cannot be bounded by any radius
+    without being bounded by `0`.
+  - *Shape of a counterexample.* Every finite-index `N` has `b_1(N) = 0`. For normal `N`,
+    `H_2(N; Q) ⊕ Q ≅ Q[K/N]^χ`, and the long-relation coinvariants carry `Q[K/N]^χ` at every
+    scale, beyond `H_1(N_L)`. For fixed `L`, `b_1(N_{i,L})/[K:N_i] → dim_U A_L → 0`, while the
+    coinvariants grow like `(χ + dim_U A_L)[K:N_i]`.
+  - *Elementary amenable first.* These are all `BS(1,m)`, which are finitely presented, so the race
+    is empty there. A counterexample has no elementary amenable quotient that could supply
+    explicit Følner sets.
+  - *Calibration.* The `SL_3(Q_2)` Kazhdan lattice also satisfies `H_2(N) ⊕ Q ≅ Q[F]^V`.
+  - *Next step.* Rule out `H_2(N_i; Q) ⊕ Q ≅ Q[F_i]^χ`, `χ >= 1`, along a residual chain of a
+    residually finite amenable cd-2 group. Equivalently: `H_1(K; V) = 0` and
+    `dim H_2(K; V) = χ dim V − dim V_K` for all finite-image `V`. Any proof must use amenability
+    beyond Følner transversals of bounded radius.

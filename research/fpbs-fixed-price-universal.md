@@ -366,3 +366,32 @@ vocabulary rather than its content.
   totally dissipative. A surviving ray-code certificate needs off-orbit matches.
   For skeleton codes these force insertions that fellow-travel cosets of `F` on
   unbounded lengths.
+
+* **Off-orbit matches through non-transverse insertions on a cocompact `Sp(n,1)`
+  lattice (w13-026, `fpbs-finite-to-one-quasigeodesic-ray-codes-die`).** The aim
+  was to escape match rigidity by allowing insertions that fellow-travel cosets
+  of `F`, so that off-orbit matches exist on a set of positive measure.
+  **Where it dies:** off-orbit matches are not the invariant that decides the
+  diagonal. On any hyperbolic group, a uniformly quasi-geodesic ray code whose
+  position-to-endpoint map is finite-to-one forward and countable-to-one backward
+  carries no class with a conservative diagonal. The proof uses a pigeonhole on a
+  finite ball, then the finite fibre freezes the position, so joint returns run
+  down one backward code line. This holds whatever its off-orbit matches. Recoding
+  the lattice odometer (merging each insertion with its preceding `F`-run) makes
+  off-orbit matches appear on half the space and fail (I1), yet the class still
+  dies. For invariant measures, a survivor needs positive entropy or **infinite
+  spelling multiplicity**: infinitely many forward words from `1` with a common
+  endpoint, on a set of positive measure.
+
+* **Infinite spelling multiplicity on a cocompact `Sp(n,1)` lattice (w14-026,
+  `fpbs-backward-locally-finite-ray-codes-die`).** The aim was to escape the
+  finite-fibre theorem by codes with infinitely many forward words sharing an
+  endpoint. **Such codes exist and die:** a Toeplitz respelling of the lattice
+  odometer code has continuum spelling multiplicity on full measure, zero
+  entropy and the same class. **Where it dies:** the freezing step needs only
+  that the code relation `R` (backward, forward endpoint pairs of code lines)
+  has backward sections accumulating only at their forward point, and null
+  forward sections. Respelling never moves `R`, and no entropy is used, so the
+  positive-entropy route dies under the same hypothesis. Zero-entropy code
+  classes have local dimension zero, so size filters are blind there. A
+  survivor, of any entropy, needs **accumulating backward sections** of `R`.

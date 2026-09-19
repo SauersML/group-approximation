@@ -1,0 +1,6 @@
+carrier-data           3 accepted,   0 new
+carrier-debt           3 accepted,   0 new
+conditional-debt       3 accepted,   0 new
+inlined-statement      1 accepted,   0 new
+open-predicate        10 accepted,   0 new
+20 conditional or literature-fed assignment(s): 20 accepted, 0 new

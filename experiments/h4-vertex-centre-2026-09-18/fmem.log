@@ -1,0 +1,11 @@
+p1 True
+p2 True
+p3 True
+p1p2^-1p3 True
+s4^2 False
+s2^2 False
+x0 p3 x0^-1 True
+x0 p2 x0^-1 True
+x0 p1 x0^-1 False
+s2^2 p1 s2^-2 True
+p1 s2^2 False

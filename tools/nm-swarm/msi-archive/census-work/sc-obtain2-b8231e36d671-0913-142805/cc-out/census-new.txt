@@ -1,0 +1,9 @@
+STALE BASELINE	conditional-data	GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.facePerm_keep_of_ne	matches no finding; delete it rather than leaving it to license a regression
+STALE BASELINE	conditional-data	GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.sigma_keep_eq_self	matches no finding; delete it rather than leaving it to license a regression
+STALE BASELINE	conditional-data	GroupApproximation.GGT.VanKampen.osinLemma94CaseTwo_false	matches no finding; delete it rather than leaving it to license a regression
+buried-conditional   172 accepted,   0 new
+carrier-data          35 accepted,   0 new
+conditional-data       1 accepted,   0 new
+inlined-statement      3 accepted,   0 new
+open-predicate       163 accepted,   0 new
+374 conditional or literature-fed assignment(s): 374 accepted, 0 new

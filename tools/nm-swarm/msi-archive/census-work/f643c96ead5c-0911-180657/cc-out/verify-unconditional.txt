@@ -1,0 +1,11 @@
+CONDITIONAL	a96c09324a87	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarWNotNuclear_of_quotient	open-predicate	premise `NuclearCStarQuotientInput.{1, 0}` requires the corpus-defined predicate `NuclearCStarQuotientInput`, which nothing in the corpus ev
+CONDITIONAL	0f22bdbc4184	GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem	conditional-debt	premise `FournierFacioParagraph` requires the corpus-defined predicate `FournierFacioParagraph`, which the corpus produces only through decl
+CONDITIONAL	4321530b3fec	GroupApproximation.LeavittKOneScalar.PrintedKhanhThanhDiagonalDecomposition	carrier-data	`PrintedKhanhThanhDiagonalDecomposition` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved b
+CONDITIONAL	4321530b3fec	GroupApproximation.LeavittKOneScalar.scalarSurjective_of_khanhThanh	open-predicate	premise `PrintedKhanhThanhDiagonalDecomposition k d` requires the corpus-defined predicate `PrintedKhanhThanhDiagonalDecomposition`, which n
+STALE BASELINE	open-predicate	GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra	matches no finding; delete it rather than leaving it to license a regression
+carrier-data           2 accepted,   1 new
+carrier-debt           1 accepted,   0 new
+conditional-debt       0 accepted,   1 new
+inlined-statement      1 accepted,   0 new
+open-predicate         4 accepted,   2 new
+12 conditional or literature-fed assignment(s): 8 accepted, 4 new

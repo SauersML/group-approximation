@@ -96,7 +96,9 @@ map `p: O → p(O)`.
 
 **Germs.** By `finite-k-graph-boundary-groupoid-standard-facts` (item 1), `G_Λ` is Li's `I_l ⋉ ∂Ω`, with basis
 `Z(μ, ν) = {(μz, d(μ) - d(ν), νz)}`. Under `Λ^∞ ≅ O`, the bisection `Z(μ, ν)` is the graph of the affine map
-`μν^{-1}: ν(O) → μ(O)`. So there is a continuous groupoid map `Φ: G_Λ → 𝒢`, `(μz, d(μ)-d(ν), νz) ↦ germ of μν^{-1}`.
+`μν^{-1}: ν(O) → μ(O)`. So there is a continuous groupoid map `Φ: G_Λ → 𝒢`, `(μz, d(μ)-d(ν), νz) ↦ germ of μν^{-1}`. The map `μν^{-1} ∈ Aff(R)`
+does not depend on the representative pair: any two representatives of an arrow have a common refinement
+`(μκ, νκ)`, and `(μκ)(νκ)^{-1} = μν^{-1}`.
 
 - **Well defined and injective.** The lag `d(μ) - d(ν) = d(μν^{-1})` depends only on the affine map, and `d` is a
   homomorphism. Two distinct affine maps agree at no more than one point. So a germ of an element of `Aff(R)` at
@@ -150,7 +152,9 @@ equivalent to `Aff(R) ⋉ K_π`, and for every coefficient group `A`,
 *Step 2: `A = F_2`.*
 - Let `pr: R_k → R_{k+1}` be a retraction. Then `res = pr^*` is onto in `F_2`-cohomology.
 - For every class `b`, the projection formula gives `cor(b) = cor(res(pr^*b)·1) = pr^*b · cor(1) = 2·pr^*b = 0`.
-- Dually the homology transfers vanish, including in degree `0`, where the transfer is multiplication by `2`.
+- In homology, `inc_*: H_*(R_{k+1}; F_2) → H_*(R_k; F_2)` is injective, since `R_{k+1}` is a direct summand, and
+  `inc_* ∘ tr` is multiplication by the index, `2 = 0`. So every transfer `tr` vanishes, including in degree `0`,
+  where it is multiplication by `2`.
 - So `H_*(R; C_c(K_π, F_2)) = 0`, and by Lyndon–Hochschild–Serre over `R^×`, `H_*(𝒢; F_2) = 0`.
 
 *Step 3: `A = Z[1/2]`.*

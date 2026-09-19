@@ -1,0 +1,9 @@
+FREE p=7 (P,Q)=(7,7) dimB=510 dim(B/K)=50 sum dimV*dimU=50 OK
+LIFT p=7 dimB(p,p)=510 gens(K+)=582 rank(K+)=454
+  sigma: U1a^2-U2c^2 = 0  R in K+ : True
+  e_1: syzygy=True  R in K+ : True
+  e_2: syzygy=True  R in K+ : True
+  e_3: syzygy=True  R in K+ : True
+  control (c^2 e^(p-2), 0): U1a^2 != 0 : True  R in K+ : False  (expected False)
+  control (3 e_(p-2) alone): R in K+ : False  (expected False)
+ALL OK

@@ -127,3 +127,58 @@ centreless invisible core, and `T_3` is the basic example.
   - *What is left.*  The monomial nonsofic side is closed.  A nonsofic certificate needs `B ⊇ U_k` with
     `B ∩ EL_3(R)` strictly larger than `Ũ`, where (N1) is unproved, or a `B` containing no level `U_k`.
     Otherwise the sofic side: build approximations of `T_3`.
+- **w14-111, 2026-09-18: compressors of every level-containing subpair (class-killing obstruction).**
+  - *Review.*  The proof of (W1)/(W2) of [[nonneg-generated-kazhdan-groups-have-nonsalient-cones]] was checked
+    adversarially at its two delicate steps, and no flaw was found.  In the block-triangular step, the cross term
+    `π b` lies in `F`, and `π g_F y` lies in `relint F` because `g_F` is invertible.  So (Φ2) applies, and `φ_F`
+    can only drop.  In the recursion, the quotient piece has `L'' ∩ O' = 0`: `K + R^J = K`, so the image of `K`
+    is closed, and `-p(e_i) ∈ p(K)` would put `e_i` in `L ∩ O`.
+  - *Result.*  By [[subring-level-subpairs-cannot-certify-rank-three-cone]], take any `B ≤ G` containing some
+    `U_k`, and let `H_B` be its projection to `SL_d(Z)`.  Then every compressor of `C = B ∩ Gamma` projects to a
+    nonnegative matrix; no salience or monomial hypothesis is needed.  If `H_B` is finite, an infranormal `C` is
+    normal.  If `B ∩ EL_3(R) = EL_3(A)` for a subring `A`, then a line in `cone(H_B · R_+^d)` gives `1 ∈ A`, and
+    so `psi(C) = F`.  With (W2), no such `B` is a Kun-Thom certificate.  This covers monomial subrings
+    `F_q[P]`, and lifts `u σ ∈ B` with `u ∉ B ∩ EL_3(R)`.
+  - *Why.*  For a compressor `u σ`, the element `1 + x^(σ n e_l) u E_ij u^-1` must be polynomial for every
+    `n ≥ k`, and `n → ∞` detects the sign of each column of `σ`.  For a permutation `σ` it makes `Ad(u)` preserve
+    `M_3(R_+)`, since the trace form has unit discriminant.  The scalars of the span of `B ∩ EL_3(R) - 1` form an
+    `H_B`-invariant algebra containing all monomials of degree `≥ 2k`.  A line in the cone then puts `1` among
+    them.
+  - *What is left.*  The nonsofic side needs a `B ⊇ U_k` with `H_B` infinite and `B ∩ EL_3(R)` not generated
+    by elementary matrices over a subring.  The span of that group already contains `M_3(F_q)`.  Or it needs a
+    `B` containing no level `U_k`.  The natural next class is the elementary net groups `E(σ)`.  There the
+    step to test is the passage from the span back to group elements.
+- **w15-111, 2026-09-18: net subpairs and the span-to-group passage (class-killing obstruction).**
+  - *Result.*  By [[net-sandwich-level-subpairs-cannot-certify-rank-three-cone]], take `B ⊇ U_k` with
+    `-e_l ∈ cone(H_B · R_+^d)`.  Then the span of `B ∩ EL_3(R) - 1` contains `M_3(F_q)`.  Suppose also that
+    `B ∩ EL_3(R)` lies between `e_ab(σ_ab)` and `1 + ⊕ σ_ab E_ab` for some pattern of entry spaces.  This
+    holds for every elementary net group `E(σ)` and every group between `E(σ)` and `G(σ)`.  Then
+    `e_ab(1) ∈ C` and `psi(C) = F`.  With (X1), (X2) and (W2), no such `B` is a Kun-Thom certificate.  A box
+    level is not enough: `D (EL_3(F_q[x^(±1)][y_1, y_2]) x| SL_(d_1)(Z)) D^-1` with `D = diag(1, 1, y_1/y_2)`
+    has a Kazhdan `B`, a net elementary part, and a line in the cone.  Its origin image lies in a Levi
+    subgroup with nontrivial centraliser, but its edge maps onto a finite-index overgroup of `SL_2(F_q[x_1])`.
+  - *Why.*  Conjugating level scalars `x^(2k e_i) I` through `H_B` and multiplying along a rational relation
+    `-N e_l = Σ n_s h_s e_(i_s)` puts `x^(-2kN e_l) I` in the span.  The single-variable level element
+    `x_l^(2kN) E_ab` then gives `E_ab`.  A pattern `1 + M(σ)` is a linear space, so the span cannot leave it,
+    and `1 ∈ σ_ab` forces `e_ab(1)` into the group.
+  - *What is left.*  With a level `U_k`, a certificate needs an elementary part that is not
+    pattern-sandwiched.  Some `E_ab` lies in its span while `e_ab(1)` does not lie in the group, as for
+    normal closures of `U_k` twisted by non-monomial `u`.  Without a level, the failure mode is a
+    hypersurface level, and the edge must be Kazhdan in a new way.
+- **w15-111, 2026-09-18: net subpairs and the span-to-group passage (class-killing obstruction).**
+  - *Result.*  By [[net-sandwich-level-subpairs-cannot-certify-rank-three-cone]], take `B ⊇ U_k` with
+    `-e_l ∈ cone(H_B · R_+^d)`.  Then the span of `B ∩ EL_3(R) - 1` contains `M_3(F_q)`.  Suppose also that
+    `B ∩ EL_3(R)` lies between `e_ab(σ_ab)` and `1 + ⊕ σ_ab E_ab` for some pattern of entry spaces.  This
+    holds for every elementary net group `E(σ)` and every group between `E(σ)` and `G(σ)`.  Then
+    `e_ab(1) ∈ C` and `psi(C) = F`.  With (X1), (X2) and (W2), no such `B` is a Kun-Thom certificate.  A box
+    level is not enough: `D (EL_3(F_q[x^(±1)][y_1, y_2]) x| SL_(d_1)(Z)) D^-1` with `D = diag(1, 1, y_1/y_2)`
+    has a Kazhdan `B`, a net elementary part, and a line in the cone.  Its origin image lies in a Levi
+    subgroup with nontrivial centraliser, but its edge maps onto a finite-index overgroup of `SL_2(F_q[x_1])`.
+  - *Why.*  Conjugating level scalars `x^(2k e_i) I` through `H_B` and multiplying along a rational relation
+    `-N e_l = Σ n_s h_s e_(i_s)` puts `x^(-2kN e_l) I` in the span.  The single-variable level element
+    `x_l^(2kN) E_ab` then gives `E_ab`.  A pattern `1 + M(σ)` is a linear space, so the span cannot leave it,
+    and `1 ∈ σ_ab` forces `e_ab(1)` into the group.
+  - *What is left.*  With a level `U_k`, a certificate needs an elementary part that is not
+    pattern-sandwiched.  Some `E_ab` lies in its span while `e_ab(1)` does not lie in the group, as for
+    normal closures of `U_k` twisted by non-monomial `u`.  Without a level, the failure mode is a
+    hypersurface level, and the edge must be Kazhdan in a new way.

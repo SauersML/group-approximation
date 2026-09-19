@@ -1,0 +1,206 @@
+# VR(Z^8,d_1;10), k = 8: machine outputs (g++ 13.3 -O2 -march=native, single thread, nice 10, timeout 1200 per
+# run; the host is a shared 4-core machine with load 17-31, so wall times are about 3-5x CPU times)
+
+## sha256 of the staged inputs
+3792c7635a828f647594203103d8df5a60b230c9669ae08b37b805e7ac4b69a7  sets/O-8-10.txt.gz
+4b1bdb860133588aa40e565c77ff35ea470c34e428bc1a83b6dad9ace0bbc1f5  sets/T-8-10.txt.gz
+54981b95b284601c8ec4556597049f3febde76914776cd6ab55fa0b9b5c43f0c  certs/d-prefix-8-10.txt.gz   (uncompressed 5f61a119eca2fa9306a2ecb157eeb03da6526d5a0bfa8f25468689f3ec9dd92b)
+ff754aa98900eec4628b9dfcec3058eccec53ac2167c9626c73174241d12d20f  certs/d-tail-8-10.txt.gz
+
+## Part (1). Search: ilv4 of experiments/zn-rips-lifted-domination-core-2026-09-18 (on main), one budgeted stage
+$ ./ilv4 8 10 c1.txt - o1.txt 1100
+k=8 r=10 |Lmax|=628232 alive=628232
+phase A: 227648, alive 400584, t=1s
+pass 1: deleted 214082, alive 186502, t=719s, dfs 19936649283; by norm: 8 54 211 490 2855 4360 16368 16096 75704 70356
+pass 2: deleted 356, alive 186146, t=1100s, dfs 28907444949; by norm: 8 54 211 490 2855 4360 16368 16096 75704 70000
+k=8 r=10 |Lmax|=628232 A=227648 D=214438 alive=186146 STUCK (time budget)
+# c1.txt = certs/d-prefix-8-10.txt.gz (442,086 lines); o1.txt sorted = sets/O-8-10.txt.gz
+
+## Part (1). Check: vcert2 of experiments/zn-rips-lifted-domination-core-2026-09-18 (on main), 18 chunks of 25,000 lines
+$ split -l 25000 d-prefix-8-10.txt ch; ./vcert2 8 10 -o st_ch00 ch00; ./vcert2 8 10 -i st_ch00 -o st_ch01 ch01; ...
+k=8 r=10 |B|=1256465 start present=628232 (= |Lmax|)
+ch00 rc=2 moves: A=25000 (K steps 0) left=603232 -> all moves valid; end set is not {e_k}
+ch01 rc=2 moves: A=25000 (K steps 0) left=578232 -> all moves valid; end set is not {e_k}
+ch02 rc=2 moves: A=25000 (K steps 0) left=553232 -> all moves valid; end set is not {e_k}
+ch03 rc=2 moves: A=25000 (K steps 0) left=528232 -> all moves valid; end set is not {e_k}
+ch04 rc=2 moves: A=25000 (K steps 0) left=503232 -> all moves valid; end set is not {e_k}
+ch05 rc=2 moves: A=25000 (K steps 0) left=478232 -> all moves valid; end set is not {e_k}
+ch06 rc=2 moves: A=25000 (K steps 0) left=453232 -> all moves valid; end set is not {e_k}
+ch07 rc=2 moves: A=25000 (K steps 0) left=428232 -> all moves valid; end set is not {e_k}
+ch08 rc=2 moves: A=25000 (K steps 0) left=403232 -> all moves valid; end set is not {e_k}
+ch09 rc=2 moves: A=2648 D=22352 (K steps 0) left=378232 -> all moves valid; end set is not {e_k}
+ch10 rc=2 moves: D=25000 (K steps 0) left=353232 -> all moves valid; end set is not {e_k}
+ch11 rc=2 moves: D=25000 (K steps 0) left=328232 -> all moves valid; end set is not {e_k}
+ch12 rc=2 moves: D=25000 (K steps 0) left=303232 -> all moves valid; end set is not {e_k}
+ch13 rc=2 moves: D=25000 (K steps 0) left=278232 -> all moves valid; end set is not {e_k}
+ch14 rc=2 moves: D=25000 (K steps 0) left=253232 -> all moves valid; end set is not {e_k}
+ch15 rc=2 moves: D=25000 (K steps 0) left=228232 -> all moves valid; end set is not {e_k}
+ch16 rc=2 moves: D=25000 (K steps 0) left=203232 -> all moves valid; end set is not {e_k}
+ch17 rc=2 moves: D=17086 (K steps 0) left=186146 -> all moves valid; end set is not {e_k}
+$ cmp <(sort st_ch17) <(zcat sets/O-8-10.txt.gz)   -> identical (186,146 points)
+
+## Part (2). topshell.py
+$ python3 topshell.py sets/O-8-10.txt.gz sets/T-8-10.txt.gz
+|O| = 186146  |T| (from definition) = 18816  |{x in O: |x|=10, x_8=0}| = 18816
+second file lists exactly T
+  last nonzero index 6, profile (3, 2, 2, 1, 1, 1), support 6: 1920
+  last nonzero index 7, profile (2, 2, 2, 1, 1, 1, 1), support 7: 2240
+  last nonzero index 7, profile (3, 2, 1, 1, 1, 1, 1), support 7: 2688
+  last nonzero index 7, profile (3, 2, 2, 1, 1, 1), support 6: 11520
+  last nonzero index 7, profile (4, 1, 1, 1, 1, 1, 1), support 7: 448
+TOPSHELL VERIFIED
+
+## Part (3). Search: kzs2, (D) only, from O \ T (167,330 points)
+$ KZ_DONLY=1 ./kzs2 8 10 OminusT.txt end.txt d-tail-8-10.txt 1100
+M=167330 packed (implicit adjacency) t=0s
+pass 1: left 1 D=167329 K=0 (viaZ 0 prot 0) fail=0 t=194s by norm: 1 0 0 0 0 0 0 0 0 0 [D sweep]
+n=8 r=10 |C|=167330 D=167329 K=0 left=1 REACHES {e_n}
+
+## Part (3). Check 1: vcert2 (on main), 7 chunks, from the state file OminusT.txt
+k=8 r=10 |B|=1256465 start present=167330 (from state)
+ch00 rc=2 moves: D=25000 (K steps 0) left=142330 -> all moves valid; end set is not {e_k}
+ch01 rc=2 moves: D=25000 (K steps 0) left=117330 -> all moves valid; end set is not {e_k}
+ch02 rc=2 moves: D=25000 (K steps 0) left=92330 -> all moves valid; end set is not {e_k}
+ch03 rc=2 moves: D=25000 (K steps 0) left=67330 -> all moves valid; end set is not {e_k}
+ch04 rc=2 moves: D=25000 (K steps 0) left=42330 -> all moves valid; end set is not {e_k}
+ch05 rc=2 moves: D=25000 (K steps 0) left=17330 -> all moves valid; end set is not {e_k}
+ch06 rc=0 moves: D=17329 (K steps 0) left=1 -> VERIFIED: ends at {e_k}
+
+## Part (3). Check 2: kzv6
+$ ./kzv6 8 10 OminusT.txt d-tail-8-10.txt end.txt 1150
+kzv6: 167330 start points (implicit adjacency)
+start is a proper subset of Lmax_k (|Lmax_k| = 628232)
+kzv6 k=8 r=10 start=167330 lines=167329 D=167329 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (89 s cpu)
+
+## kzv6 against kzv5 (the (8,9) verifier), and a negative control
+$ ./kzv5 5 9 L5.txt cert-9-k5.txt
+kzv k=5 r=9 start=11181 lines=11180 D=11180 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+$ ./kzv6 5 9 L5.txt cert-9-k5.txt
+kzv6 k=5 r=9 start=11181 lines=11180 D=11180 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+$ ./kzv5 8 9 e12.txt k8-stage-13-first-30.txt o_kzv5.txt      (95,571-point (8,9) set, 30 (K) lines)
+kzv k=8 r=9 start=95571 lines=30 D=0 K=30 collapse-steps=380928 end=95541 END>{e_k} ACCEPT (13 s cpu)
+$ ./kzv6 8 9 e12.txt k8-stage-13-first-30.txt o_kzv6.txt
+kzv6 k=8 r=9 start=95571 lines=30 D=0 K=30 collapse-steps=380928 end=95541 END>{e_k} ACCEPT (21 s cpu)
+$ cmp o_kzv5.txt o_kzv6.txt   -> identical
+$ ./kzv6 8 9 e12.txt neg.txt       (the first of those K lines relabelled as a D line)
+FAIL line 1: D not dominated
+
+## The D-stall set A (sets/stall-8-10.txt.gz, 186,074 points; certs/d-stall-8-10.txt.gz, 72 D lines from O)
+dc292e1a6814956e665c7592f247307d495df7b5b060682bdda0de967e7de5a7  certs/d-stall-8-10.txt.gz
+2d95c247c3b5b8e50a151fc8ac48439a2628bbe807c1b5db05039745e0ca6f9a  sets/stall-8-10.txt.gz
+$ KZ_DONLY=1 ./kzs2 8 10 O.txt stall.txt d-stall.txt 1100
+pass 1: left 186074 D=72 K=0 (viaZ 0 prot 0) fail=0 t=497s by norm: 8 54 211 490 2855 4360 16368 16096 75704 69928 [D sweep]
+pass 2: left 186074 D=72 K=0 (viaZ 0 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2855 4360 16368 16096 75704 69928 [D sweep]
+n=8 r=10 |C|=186146 D=72 K=0 left=186074 STUCK (time budget)
+$ ./kzv6 8 10 O.txt d-stall.txt end.txt 550
+kzv6 k=8 r=10 start=186146 lines=72 D=72 K=0 collapse-steps=0 end=186074 END>{e_k} ACCEPT (0 s cpu)
+# end.txt sorted = sets/stall-8-10.txt.gz
+# confirmation that A is a D-stall (search tier: one complete (D) sweep of kzs2 over every point of A finds nothing)
+$ KZ_DONLY=1 ./kzs2 8 10 stall.txt stall2.txt d2.txt 1150
+pass 1: left 186074 D=0 K=0 (viaZ 0 prot 0) fail=0 t=674s by norm: 8 54 211 490 2855 4360 16368 16096 75704 69928 [D sweep]
+n=8 r=10 |C|=186074 D=0 K=0 left=186074 STUCK
+# A contains all of T: 18,816 of its 69,928 norm-10 points have x_8 = 0; the other 51,112 have x_8 > 0.
+
+## The (K) phase: four block chains (segchain.sh; KZ_KFIRST=1 KZ_KSEL=1 KZ_KLIST=TX.txt ./kzs2 8 10 sX_{i-1} sX_i kX_i 1100)
+# block partition: sort(cat TA TB TC TD) = sort(T); start sets: sA_0 = O, sB_0 = O\TA, sC_0 = O\(TA+TB), sD_0 = O\(TA+TB+TC) (all checked with comm/cmp)
+2751dc9606430952c18b09d502c7456e6f5789f050710afe8173f51969fa4198  segments/TA.txt.gz
+86e776b7058501ad9b20f53d1f78c848b6f90878e3532194f4ddf1858ae09860  segments/TB.txt.gz
+fc1161efce5af276945cd3d92cd70587113972ddeda695de1679430ab9800520  segments/TC.txt.gz
+616f37d896249ba0045eb08d9599d7b4672ba7bf48d2ef7b84e4f1c445313101  segments/TD.txt.gz
+f8cd7f3cca55890da7ed7dfc82b4a5bfc0665100f62d88dd9ac330409b71f450  segments/k-segA-8-10.txt.gz
+bced1f003264be021a52f3306fecc37f622d79c0dd2a610f67c4c8c8d720a736  segments/k-segB-8-10.txt.gz
+eee304cea7eea5f629f1514b4990c186c3ae684a4c48718a0b6cac6fca6c5935  segments/k-segC-8-10.txt.gz
+031f17f0561e899402dc08aaa81466db0dba4ef7ce85fa49e6615a25dbcf976c  segments/k-segD-8-10.txt.gz
+19:33:44 seg A stage 1: n=8 r=10 |C|=186146 D=0 K=361 left=185785 STUCK (time budget)
+19:52:06 seg A stage 2: n=8 r=10 |C|=185785 D=0 K=554 left=185231 STUCK (time budget)
+20:10:27 seg A stage 3: n=8 r=10 |C|=185231 D=0 K=527 left=184704 STUCK (time budget)
+20:28:48 seg A stage 4: n=8 r=10 |C|=184704 D=0 K=438 left=184266 STUCK (time budget)
+20:47:10 seg A stage 5: n=8 r=10 |C|=184266 D=0 K=625 left=183641 STUCK (time budget)
+21:05:32 seg A stage 6: n=8 r=10 |C|=183641 D=0 K=366 left=183275 STUCK (time budget)
+21:23:56 seg A stage 7: n=8 r=10 |C|=183275 D=0 K=308 left=182967 STUCK (time budget)
+21:42:23 seg A stage 8: n=8 r=10 |C|=182967 D=0 K=372 left=182595 STUCK (time budget)
+22:00:43 seg A stage 9: n=8 r=10 |C|=182595 D=0 K=289 left=182306 STUCK (time budget)
+22:19:06 seg A stage 10: n=8 r=10 |C|=182306 D=0 K=278 left=182028 STUCK (time budget)
+19:33:44 seg B stage 1: n=8 r=10 |C|=181442 D=0 K=301 left=181141 STUCK (time budget)
+19:52:06 seg B stage 2: n=8 r=10 |C|=181141 D=0 K=354 left=180787 STUCK (time budget)
+20:10:29 seg B stage 3: n=8 r=10 |C|=180787 D=0 K=310 left=180477 STUCK (time budget)
+20:28:50 seg B stage 4: n=8 r=10 |C|=180477 D=0 K=297 left=180180 STUCK (time budget)
+20:47:13 seg B stage 5: n=8 r=10 |C|=180180 D=0 K=305 left=179875 STUCK (time budget)
+21:05:35 seg B stage 6: n=8 r=10 |C|=179875 D=0 K=321 left=179554 STUCK (time budget)
+21:23:58 seg B stage 7: n=8 r=10 |C|=179554 D=0 K=397 left=179157 STUCK (time budget)
+21:42:21 seg B stage 8: n=8 r=10 |C|=179157 D=0 K=308 left=178849 STUCK (time budget)
+22:00:50 seg B stage 9: n=8 r=10 |C|=178849 D=0 K=206 left=178643 STUCK (time budget)
+22:19:11 seg B stage 10: n=8 r=10 |C|=178643 D=0 K=166 left=178477 STUCK (time budget)
+19:33:43 seg C stage 1: n=8 r=10 |C|=176738 D=0 K=244 left=176494 STUCK (time budget)
+19:52:06 seg C stage 2: n=8 r=10 |C|=176494 D=0 K=329 left=176165 STUCK (time budget)
+20:10:34 seg C stage 3: n=8 r=10 |C|=176165 D=0 K=230 left=175935 STUCK (time budget)
+20:28:55 seg C stage 4: n=8 r=10 |C|=175935 D=0 K=185 left=175750 STUCK (time budget)
+20:47:15 seg C stage 5: n=8 r=10 |C|=175750 D=0 K=254 left=175496 STUCK (time budget)
+21:05:36 seg C stage 6: n=8 r=10 |C|=175496 D=0 K=281 left=175215 STUCK (time budget)
+21:24:00 seg C stage 7: n=8 r=10 |C|=175215 D=0 K=287 left=174928 STUCK (time budget)
+21:42:21 seg C stage 8: n=8 r=10 |C|=174928 D=0 K=727 left=174201 STUCK (time budget)
+22:00:42 seg C stage 9: n=8 r=10 |C|=174201 D=0 K=498 left=173703 STUCK (time budget)
+22:19:04 seg C stage 10: n=8 r=10 |C|=173703 D=0 K=420 left=173283 STUCK (time budget)
+19:33:45 seg D stage 1: n=8 r=10 |C|=172034 D=0 K=429 left=171605 STUCK (time budget)
+19:52:06 seg D stage 2: n=8 r=10 |C|=171605 D=0 K=546 left=171059 STUCK (time budget)
+20:10:28 seg D stage 3: n=8 r=10 |C|=171059 D=0 K=374 left=170685 STUCK (time budget)
+20:28:50 seg D stage 4: n=8 r=10 |C|=170685 D=0 K=381 left=170304 STUCK (time budget)
+20:47:11 seg D stage 5: n=8 r=10 |C|=170304 D=0 K=422 left=169882 STUCK (time budget)
+21:05:31 seg D stage 6: n=8 r=10 |C|=169882 D=0 K=593 left=169289 STUCK (time budget)
+21:23:52 seg D stage 7: n=8 r=10 |C|=169289 D=0 K=699 left=168590 STUCK (time budget)
+21:42:13 seg D stage 8: n=8 r=10 |C|=168590 D=0 K=555 left=168035 STUCK (time budget)
+22:00:36 seg D stage 9: n=8 r=10 |C|=168035 D=0 K=387 left=167648 STUCK (time budget)
+22:18:56 seg D stage 10: n=8 r=10 |C|=167648 D=97828 K=318 left=69502 STUCK (time budget)
+# chain D stage 10 printed 318 K lines then 97,828 D lines (D cascade from O\T); only the 318 K lines are kept.
+# sD_9 minus those 318 points, sorted, equals O\T (the start set of d-tail): cmp identical, 167,330 points
+$ ./stageseg.sh sg .
+A: 4118 lines, D=0, deleted points outside block X: 0
+B: 2965 lines, D=0, deleted points outside block X: 0
+C: 3455 lines, D=0, deleted points outside block X: 0
+D: 4704 lines, D=0, deleted points outside block X: 0
+
+## kzv6 replay of the chain stages (vloop.sh X -> vpiece6.sh X<i> sX_{i-1} kX_i sX_i; pieces of 1,000 wall-s)
+19:54:17 A1 piece: kzv6 k=8 r=10 start=186146 lines=165 D=0 K=165 collapse-steps=2226432 end=185981 END>{e_k} PAUSED (240 s cpu)
+20:11:10 A1 piece: kzv6 k=8 r=10 start=185981 lines=98 D=0 K=98 collapse-steps=3382139 end=185883 END>{e_k} PAUSED (207 s cpu)
+20:11:24 B1 piece: kzv6 k=8 r=10 start=181442 lines=110 D=0 K=110 collapse-steps=1630208 end=181332 END>{e_k} PAUSED (202 s cpu)
+20:11:25 D1 piece: kzv6 k=8 r=10 start=172034 lines=147 D=0 K=147 collapse-steps=308992 end=171887 END>{e_k} PAUSED (202 s cpu)
+20:11:29 C1 piece: kzv6 k=8 r=10 start=176738 lines=92 D=0 K=92 collapse-steps=1373184 end=176646 END>{e_k} PAUSED (204 s cpu)
+20:27:55 A1 piece: kzv6 k=8 r=10 start=185883 lines=83 D=0 K=83 collapse-steps=2842534 end=185800 END>{e_k} PAUSED (181 s cpu)
+20:28:08 D1 piece: kzv6 k=8 r=10 start=171887 lines=53 D=0 K=53 collapse-steps=2116241 end=171834 END>{e_k} PAUSED (181 s cpu)
+20:28:13 C1 piece: kzv6 k=8 r=10 start=176646 lines=49 D=0 K=49 collapse-steps=1963720 end=176597 END>{e_k} PAUSED (183 s cpu)
+20:28:28 B1 piece: kzv6 k=8 r=10 start=181332 lines=63 D=0 K=63 collapse-steps=2400636 end=181269 END>{e_k} PAUSED (186 s cpu)
+20:30:51 A1 piece: kzv6 k=8 r=10 start=185800 lines=15 D=0 K=15 collapse-steps=521850 end=185785 END>{e_k} ACCEPT (31 s cpu)
+A1 VERIFIED end set matches (185785 points)
+20:44:54 C1 piece: kzv6 k=8 r=10 start=176597 lines=58 D=0 K=58 collapse-steps=2241565 end=176539 END>{e_k} PAUSED (184 s cpu)
+20:45:13 D1 piece: kzv6 k=8 r=10 start=171834 lines=39 D=0 K=39 collapse-steps=1749697 end=171795 END>{e_k} PAUSED (188 s cpu)
+20:45:14 B1 piece: kzv6 k=8 r=10 start=181269 lines=55 D=0 K=55 collapse-steps=2129496 end=181214 END>{e_k} PAUSED (185 s cpu)
+20:47:38 A2 piece: kzv6 k=8 r=10 start=185785 lines=131 D=0 K=131 collapse-steps=1777408 end=185654 END>{e_k} PAUSED (189 s cpu)
+20:58:48 C1 piece: kzv6 k=8 r=10 start=176539 lines=45 D=0 K=45 collapse-steps=1712126 end=176494 END>{e_k} ACCEPT (157 s cpu)
+C1 VERIFIED end set matches (176494 points)
+21:01:16 B1 piece: kzv6 k=8 r=10 start=181214 lines=73 D=0 K=73 collapse-steps=2664659 end=181141 END>{e_k} ACCEPT (183 s cpu)
+B1 VERIFIED end set matches (181141 points)
+21:02:30 D1 piece: kzv6 k=8 r=10 start=171795 lines=59 D=0 K=59 collapse-steps=2392402 end=171736 END>{e_k} PAUSED (197 s cpu)
+21:04:28 A2 piece: kzv6 k=8 r=10 start=185654 lines=97 D=0 K=97 collapse-steps=3258286 end=185557 END>{e_k} PAUSED (193 s cpu)
+21:15:37 C2 piece: kzv6 k=8 r=10 start=176494 lines=84 D=0 K=84 collapse-steps=1320448 end=176410 END>{e_k} PAUSED (203 s cpu)
+21:18:04 B2 piece: kzv6 k=8 r=10 start=181141 lines=142 D=0 K=142 collapse-steps=2007296 end=180999 END>{e_k} PAUSED (206 s cpu)
+21:19:12 D1 piece: kzv6 k=8 r=10 start=171736 lines=48 D=0 K=48 collapse-steps=2055874 end=171688 END>{e_k} PAUSED (205 s cpu)
+21:21:17 A2 piece: kzv6 k=8 r=10 start=185557 lines=107 D=0 K=107 collapse-steps=3423865 end=185450 END>{e_k} PAUSED (207 s cpu)
+21:32:28 C2 piece: kzv6 k=8 r=10 start=176410 lines=76 D=0 K=76 collapse-steps=2833949 end=176334 END>{e_k} PAUSED (215 s cpu)
+21:35:06 B2 piece: kzv6 k=8 r=10 start=180999 lines=77 D=0 K=77 collapse-steps=2774213 end=180922 END>{e_k} PAUSED (215 s cpu)
+21:36:19 D1 piece: kzv6 k=8 r=10 start=171688 lines=55 D=0 K=55 collapse-steps=2311438 end=171633 END>{e_k} PAUSED (214 s cpu)
+21:38:04 A2 piece: kzv6 k=8 r=10 start=185450 lines=110 D=0 K=110 collapse-steps=3399516 end=185340 END>{e_k} PAUSED (211 s cpu)
+21:47:24 D1 piece: kzv6 k=8 r=10 start=171633 lines=28 D=0 K=28 collapse-steps=1232796 end=171605 END>{e_k} ACCEPT (129 s cpu)
+D1 VERIFIED end set matches (171605 points)
+21:49:23 C2 piece: kzv6 k=8 r=10 start=176334 lines=82 D=0 K=82 collapse-steps=3074730 end=176252 END>{e_k} PAUSED (193 s cpu)
+21:52:16 B2 piece: kzv6 k=8 r=10 start=180922 lines=51 D=0 K=51 collapse-steps=2165416 end=180871 END>{e_k} PAUSED (193 s cpu)
+21:54:58 A2 piece: kzv6 k=8 r=10 start=185340 lines=93 D=0 K=93 collapse-steps=3039437 end=185247 END>{e_k} PAUSED (182 s cpu)
+21:58:24 A2 piece: kzv6 k=8 r=10 start=185247 lines=16 D=0 K=16 collapse-steps=527616 end=185231 END>{e_k} ACCEPT (31 s cpu)
+A2 VERIFIED end set matches (185231 points)
+22:04:15 D2 piece: kzv6 k=8 r=10 start=171605 lines=90 D=0 K=90 collapse-steps=222720 end=171515 END>{e_k} PAUSED (157 s cpu)
+22:06:05 C2 piece: kzv6 k=8 r=10 start=176252 lines=68 D=0 K=68 collapse-steps=2542082 end=176184 END>{e_k} PAUSED (156 s cpu)
+22:08:58 B2 piece: kzv6 k=8 r=10 start=180871 lines=49 D=0 K=49 collapse-steps=1842653 end=180822 END>{e_k} PAUSED (150 s cpu)
+22:12:08 C2 piece: kzv6 k=8 r=10 start=176184 lines=19 D=0 K=19 collapse-steps=733303 end=176165 END>{e_k} ACCEPT (54 s cpu)
+C2 VERIFIED end set matches (176165 points)
+22:15:17 A3 piece: kzv6 k=8 r=10 start=185231 lines=109 D=0 K=109 collapse-steps=1446144 end=185122 END>{e_k} PAUSED (153 s cpu)
+22:20:23 B2 piece: kzv6 k=8 r=10 start=180822 lines=35 D=0 K=35 collapse-steps=1297489 end=180787 END>{e_k} ACCEPT (101 s cpu)
+B2 VERIFIED end set matches (180787 points)

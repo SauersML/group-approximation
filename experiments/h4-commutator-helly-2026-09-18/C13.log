@@ -1,0 +1,5 @@
+F-ball 7 N-ball 13273 3 s
+hashed 29 s
+selftest: pairs 2400 conjugate in F 142 violations 0
+{'pairs': 30, 'trivial_k': 454494, 'tuples': 0, 'VCFAIL': 0, 'HBALL': 0, 'HCAND': 0} 36 s
+exit 0

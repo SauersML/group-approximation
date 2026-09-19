@@ -1,0 +1,31 @@
+== Grigorchuk group: 11 elements in the section-closed set (words of length <= 2)
+   nucleus (sections reachable from cycles of the section graph), 5 elements: ['1', 'a', 'b', 'c', 'd']
+   nontrivial elements on cycles of the fixing graph: ['b', 'c', 'd']
+      b: fixed letters -> sections [(0, 'a'), (1, 'c')]
+      c: fixed letters -> sections [(0, 'a'), (1, 'd')]
+      d: fixed letters -> sections [(0, '1'), (1, 'b')]
+   NON-HAUSDORFF witnesses (cycle element from which 1 is reachable): ['b', 'c', 'd']
+   TORSION germs (finite-order cycle elements, order): [('b', 2), ('c', 2), ('d', 2)]
+   VERDICT: groupoid of germs is not Hausdorff; isotropy has torsion
+== basilica group IMG(z^2-1): a = sigma(1,b), b = (1,a): 153 elements in the section-closed set (words of length <= 4)
+   nucleus (sections reachable from cycles of the section graph), 7 elements: ['1', 'a', "a'", "ab'", 'b', "b'", "ba'"]
+   nontrivial elements on cycles of the fixing graph: []
+   NON-HAUSDORFF witnesses (cycle element from which 1 is reachable): []
+   TORSION germs (finite-order cycle elements, order): []
+   VERDICT: all fixed-point germs of H trivial; isotropy of G_H embeds in Z
+== Hanoi towers group H^(3): 10 elements in the section-closed set (words of length <= 2)
+   nucleus (sections reachable from cycles of the section graph), 4 elements: ['1', 'a', 'b', 'c']
+   nontrivial elements on cycles of the fixing graph: ['a', 'b', 'c']
+      a: fixed letters -> sections [(2, 'a')]
+      b: fixed letters -> sections [(1, 'b')]
+      c: fixed letters -> sections [(0, 'c')]
+   NON-HAUSDORFF witnesses (cycle element from which 1 is reachable): []
+   TORSION germs (finite-order cycle elements, order): [('a', 2), ('b', 2), ('c', 2)]
+   VERDICT: isotropy has torsion
+== adding machine (calibration): 7 elements in the section-closed set (words of length <= 3)
+   nucleus (sections reachable from cycles of the section graph), 3 elements: ['1', 'a', "a'"]
+   nontrivial elements on cycles of the fixing graph: []
+   NON-HAUSDORFF witnesses (cycle element from which 1 is reachable): []
+   TORSION germs (finite-order cycle elements, order): []
+   VERDICT: all fixed-point germs of H trivial; isotropy of G_H embeds in Z
+EXPECTED PATTERN (Grig: non-Hausdorff+torsion; Hanoi: Hausdorff+torsion; basilica, adding machine: no fixed germs): OK

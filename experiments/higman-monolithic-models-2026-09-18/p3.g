@@ -1,0 +1,48 @@
+F := FreeGroup( 19 );
+F := PcGroupFpGroupNC( F / [
+ F.1^2 / (F.8*F.16),
+ F.2^2 / F.5,
+ F.3^2 / F.7,
+ F.4^2 / F.10,
+ F.5^2 / F.11,
+ F.6^2,
+ F.7^2 / F.15,
+ F.8^2 / F.16,
+ F.9^2 / (F.12*F.17),
+ F.10^2 / F.19,
+ F.11^2,
+ F.12^2,
+ F.13^2,
+ F.14^2,
+ F.15^2,
+ F.16^2,
+ F.17^2,
+ F.18^2,
+ F.19^2,
+ Comm( F.2, F.1 ) / F.5,
+ Comm( F.3, F.1 ) / F.6,
+ Comm( F.3, F.2 ) / F.7,
+ Comm( F.4, F.1 ) / F.8,
+ Comm( F.4, F.2 ) / F.9,
+ Comm( F.4, F.3 ) / F.10,
+ Comm( F.5, F.1 ) / F.11,
+ Comm( F.5, F.4 ) / F.12,
+ Comm( F.6, F.1 ) / F.13,
+ Comm( F.6, F.2 ) / F.14,
+ Comm( F.6, F.3 ) / F.14,
+ Comm( F.6, F.4 ) / F.13,
+ Comm( F.7, F.1 ) / F.14,
+ Comm( F.7, F.2 ) / F.15,
+ Comm( F.8, F.3 ) / F.13,
+ Comm( F.8, F.4 ) / F.16,
+ Comm( F.9, F.1 ) / F.12,
+ Comm( F.9, F.2 ) / F.17,
+ Comm( F.9, F.3 ) / F.18,
+ Comm( F.9, F.4 ) / (F.12*F.17*F.18),
+ Comm( F.10, F.2 ) / F.18,
+ Comm( F.10, F.3 ) / F.19] );
+MapImages := [];
+MapImages[1] :=  F.1;
+MapImages[2] :=  F.2;
+MapImages[3] :=  F.3;
+MapImages[4] :=  F.4;

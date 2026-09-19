@@ -270,3 +270,47 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     radius-4 ball, refutes left orders on each kernel. `verify_cone.py` checks it without a solver.
   - **Lesson for other classes.** A class whose torsion-free parity kernel has a Klein pair does not
     embed in any `PGL_2(F)`. A class that does embed needs cone trees, not Klein chains.
+- (w10-107, 2026-09-18) **The 994 remaining census classes: cone trees for 485, three quaternionic
+  families, and a parity obstruction (`bmw-census-survivor-cone-tree-certificates`,
+  `bmw-quaternionic-type-53-parity-kernels`, `bmw-quaternionic-char3-type-44-parity-kernels`,
+  `bmw-a5-parity-obstruction-to-pgl2-tree-models`).**
+  - **The remaining set.** These are the census classes whose irreducibility is not certified and that
+    have no Klein-power or Klein-frame certificate: 994 in all (`remaining.json` in
+    `experiments/bmw-cone-trees-2026-09-18`). By degree: `(4,4)` 577, `(5,3)` 374, `(4,3)` 41,
+    `(3,3)` 2. The three classes of this node are not among them, since their Klein chains are on main.
+  - **Cone trees, no solver.** 485 of the 994 have a cone-propagation certificate that
+    `verify_cone.py` checks (`verify_trees.log`). These are all 470 classes first UNSAT at radius 4,
+    and 15 of the 524 first UNSAT at radius 6.
+  - **Quaternion step, certified** (faithful `Γ → D^*/K^*`, both trees Bruhat–Tits trees):
+    - six `(5,3)` classes in `[1, t+1)` over `F_2(t)`, with trees at `t` and `t²+t+1`;
+    - `30_30` #16 in `[t, t²+t+1)`;
+    - nine `(4,4)` classes in `(−1, t+1)` over `F_3(t)`, with trees at `t` and `t−1`: `40_40` #818,
+      `41_40` #1182, `42_40` #472, #535, `42_41` #318, #500, #533 and `42_42` #97, #114.
+
+    For these sixteen, `Γ` is irreducible, and `Γ^+` is torsion-free with no Klein pair and no
+    `BS(p, q)`, `p ≠ q`. Each also has a cone tree.
+  - **Where the quaternion step fails, by class group.**
+    - *`(5,3)`, 306 classes: step 1, the tree model.* An h-tree of valency 5 has residue field `F_4`,
+      and the local action lands in `PGL_2(F_4) ≅ A_5`. So every v-letter permutation `π_u` must be
+      even. These 306 classes have an odd `π_u`, so no `PGL_2` tree model exists over any field.
+    - *`(5,3)`, 62 of the 68 even classes: step 2, the letters.* The strict search in `[1, t+1)` finds
+      nothing, and it is exhaustive for that algebra, order and pair of places. Other algebras, orders
+      and `2`-adic number fields were not searched.
+    - *`(4,3)`, 41 classes: step 1, the field.* The residue fields `F_3` and `F_2` need a global field
+      with places of residue characteristic 3 and 2, so no function field works. Number-field models
+      were not searched.
+    - *`(4,4)`: step 2, the letters.* In `(−1, t+1)` the strict search covered all 75 filter-passing
+      classes and 222 of the 502 filter-failing classes, and found only the nine above. The other
+      568 `(4,4)` classes have no model there (or were not reached). The algebras
+      `(t+1, 2t²+2t+1)` and `(t+1, 2t²+2)` have no h-letter candidate of degree at most 1.
+    - *`30_30` #10: step 2.* It has no model in `[t, t²+t+1)` with letters of degree at most 2, with
+      either assignment of the places `t` and `t+1` (`quat2_30_10.out`).
+  - **Where the cone-tree step fails.** There are 509 radius-6 classes without a tree.
+    - The 8 left in `(4,3)` exhausted a 1500-leaf, 400 s budget (`run_R6b.jsonl`).
+    - For the `(4,4)` and `(5,3)` classes the full radius-6 ball did not fit: 0 leaves after more
+      than 400 s and 1.7 GB, or a timeout (`run_R6.jsonl`). The rest were not reached. For these classes the census SAT
+    theorem is still the only certificate.
+  - **Next step.** Two options:
+    - cone trees on the short-4 radius-6 instance, which is the one the census found UNSAT, instead
+      of the full ball;
+    - a `2`- and `3`-adic quaternion search over `ℚ` for the `(4,3)` classes.

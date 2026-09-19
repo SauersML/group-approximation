@@ -1,0 +1,42 @@
+old ok  via_partial              want=clean got=clean
+old ok  via_in_place             want=clean got=clean
+old ok  via_in_place_anonymous   want=clean got=clean
+old ok  via_in_place_term        want=clean got=clean
+old BAD via_in_place_witness     want=clean got=conditional-data
+old ok  via_partial_never        want=open-predicate got=buried-conditional,open-predicate
+old ok  hides_partial            want=open-predicate got=buried-conditional,open-predicate
+old ok  via_never_lift           want=conditional-data got=conditional-data
+old ok  via_needy_lift           want=conditional-data got=conditional-data
+old ok  via_sort_lift            want=conditional-data got=conditional-data
+old ok  via_never_witness        want=conditional-data got=conditional-data
+old ok  via_partial_debt         want=conditional-debt got=conditional-debt
+old ok  via_debt_lift            want=conditional-debt got=conditional-debt
+old FIXTURE_BAD=1
+new ok  via_partial              want=clean got=clean
+new ok  via_in_place             want=clean got=clean
+new ok  via_in_place_anonymous   want=clean got=clean
+new ok  via_in_place_term        want=clean got=clean
+new ok  via_in_place_witness     want=clean got=clean
+new ok  via_partial_never        want=open-predicate got=buried-conditional,open-predicate
+new ok  hides_partial            want=open-predicate got=buried-conditional,open-predicate
+new ok  via_never_lift           want=conditional-data got=conditional-data
+new ok  via_needy_lift           want=conditional-data got=conditional-data
+new ok  via_sort_lift            want=conditional-data got=conditional-data
+new ok  via_never_witness        want=conditional-data got=conditional-data
+new ok  via_partial_debt         want=conditional-debt got=conditional-debt
+new ok  via_debt_lift            want=conditional-debt got=conditional-debt
+new FIXTURE_BAD=0
+SIZES old-D=2476 new-D=2478
+GAINED GFaceMerge
+GAINED SpikeDeletion
+Traceback (most recent call last):
+  File "/projects/standard/hsiehph/sauer354/nm/census-work/sc-obtain-24ff9431211e-0913-134415/cc-out/sc_obtain_calib.py", line 83, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/projects/standard/hsiehph/sauer354/nm/census-work/sc-obtain-24ff9431211e-0913-134415/cc-out/sc_obtain_calib.py", line 74, in main
+    extra = new.in_place_heads(declaration) - old.in_place_heads(declaration)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/standard/hsiehph/sauer354/nm/census-work/sc-obtain-24ff9431211e-0913-134415/scripts/cnmu_candidate.py", line 572, in in_place_heads
+    conclusion = _strip_premises(declaration.statement)
+                                 ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'statement'

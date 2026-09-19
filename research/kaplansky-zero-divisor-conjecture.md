@@ -231,3 +231,8 @@ fixed finitely presented torsion-free group `U`.
       - At length 15, 128 open words have steps along a rank-2 window.
       - The C'(1/6) test shows none of these groups to be VCS.
       - As audited above, none of this bears on zero divisors.
+    - **Pro-unipotent Magnus steps (w12-059), Hughes-free only.**
+      [[pro-unipotent-magnus-steps-put-one-relators-in-h]] reduces a Magnus HNN step with `e_0 e_m ≠ 0` to its
+      base, through the rational pro-unipotent completion of the window. This puts the 128 rank-2-window words
+      of length 15 in `𝓗` and leaves 26 open words through length 15, all with `e = (0, ε, 0)`. It has no
+      bearing on zero divisors.

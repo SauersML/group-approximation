@@ -1,0 +1,8 @@
+solves 1000 closed 512 (parent 30 sign 32 sdp 450) stack 10 minfc 7.323213 vol 4.321e-02 t 61
+solves 3000 closed 1544 (parent 92 sign 91 sdp 1361) stack 10 minfc 7.268848 vol 2.593e-01 t 186
+solves 4000 closed 2050 (parent 133 sign 112 sdp 1805) stack 7 minfc 7.268848 vol 3.056e-01 t 250
+solves 6000 closed 3042 (parent 174 sign 147 sdp 2721) stack 7 minfc 7.268848 vol 5.638e-01 t 370
+solves 8000 closed 4029 (parent 237 sign 189 sdp 3603) stack 9 minfc 7.268848 vol 7.023e-01 t 489
+solves 9000 closed 4526 (parent 255 sign 218 sdp 4053) stack 12 minfc 7.268848 vol 7.754e-01 t 544
+solves 11000 closed 5580 (parent 309 sign 281 sdp 4990) stack 8 minfc 7.268848 vol 9.988e-01 t 602
+K5 edges 10 tree 4 (root 0) free phases 6 first (1, 2) SYM 1.2<1.3,1.4,2.3,2.4,3.4,1.2+2.3-1.3,1.2+2.4-1.4,1.3+3.4-1.4,2.3+3.4-2.4;1.3<2.3,1.2+2.3-1.3,1.4,2.4,1.2+2.4-1.4 TARGET 7.2169000 T 1.877 first phase in [0.000000,0.785398]: ALL CLOSED  boxes 5665 (dropped by symmetry 549; parent Z 313, centre sign 284, robust SDP 5068)  solves 11160  min centre value 7.268848 at [0.4909, 0.6545, 4.9742, 5.1051, 4.9742, 5.4978]  smallest half-width 6.54e-02  time 607s
