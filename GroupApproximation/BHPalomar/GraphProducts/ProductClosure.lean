@@ -14,7 +14,7 @@ import Mathlib.Tactic.Group
 /-!
 # PBH is closed under direct products (`ProductInput`)
 
-This is Zaremsky, arXiv:2405.09722, Proposition 5.5, proved here from Mathlib. If `Γ₁ ↷ S₁` and
+This is Zaremsky, arXiv:2405.18354, Proposition 5.5, proved here from Mathlib. If `Γ₁ ↷ S₁` and
 `Γ₂ ↷ S₂` are of type (A), then so is `Γ₁ × Γ₂ ↷ S₁ ⊕ S₂` (`isTypeA_sum`):
 
 * `Γ₁ × Γ₂` is finitely presented (`isFinitelyPresented_prod`): it is `Γ₁ ∗ Γ₂` modulo the
