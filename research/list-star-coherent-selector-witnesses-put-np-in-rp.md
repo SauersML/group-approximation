@@ -316,3 +316,13 @@ seconds and exits 0. It has four parts:
   (not on this branch): LS\* is stated and proved here for the defect-line rule
   as defined above. Not attempted: (Star-List) and (GStar_n) themselves; 2-to-2
   inner games; whether Remark P padding preserves Lemma 5.4 soundness.
+* 2026-09-19 (swarm-0917-w14-w14-ugc-follow): (GStar_n) calibrated in
+  `codim-one-gstar-threshold-is-two-to-minus-half-l`. At `n = l+1` the bias
+  threshold is `Theta(2^(-l/2))`: with the full list GStar holds for every
+  `gamma > delta(l) <= (2/3) 2^(-l/2)` (spectral triangle cap), and an
+  APN-Sidon rainbow graph gives violators at `gamma ~ 2^(-l/2)/16`. A
+  projection lift carries violators to every `n >= l+1` at
+  `>= 2^(-l/2)/43`, for every list size. So any proof of GStar_n with loss
+  `O(2^(-l))` is impossible. Still open: an upper bound `D <= C 2^(-l/2)`
+  for `n >= l+2`, where twisted families other than triangles appear once
+  `dim K >= 2`.
