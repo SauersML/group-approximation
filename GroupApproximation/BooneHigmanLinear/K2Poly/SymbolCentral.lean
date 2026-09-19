@@ -85,13 +85,16 @@ theorem hconj_exists (i j k l : I) (hij : i ≠ j) (hkl : k ≠ l)
       refine ⟨powMonoidHom 2, fun u t => ?_⟩
       rw [cr_h_conj_split, cr_w_conj_x_self k l n hij hin hjn,
         cr_w_conj_x_self_symm k l n hij hin hjn]
-      exact x_congr _ _ rfl rfl (by simp only [powMonoidHom_apply, Units.val_pow_eq_pow_val,
-        inv_neg_one, Units.val_neg, Units.val_one]; ring)
+      refine x_congr _ _ rfl rfl ?_
+      simp only [powMonoidHom_apply, Units.val_pow_eq_pow_val, inv_neg_one, Units.val_neg,
+        Units.val_one]
+      ring
     · refine ⟨MonoidHom.id _, fun u t => ?_⟩
       rw [cr_h_conj_split, w_conj_x_row_i k j l hij hkl (Ne.symm hlj),
         w_conj_x_row_j k j l hij hkl (Ne.symm hlj)]
-      exact x_congr _ _ rfl rfl (by simp only [MonoidHom.id_apply, inv_neg_one, Units.val_neg,
-        Units.val_one]; ring)
+      refine x_congr _ _ rfl rfl ?_
+      simp only [MonoidHom.id_apply, inv_neg_one, Units.val_neg, Units.val_one]
+      ring
   · by_cases hkj : k = j
     · subst hkj
       by_cases hli : l = i
@@ -99,26 +102,30 @@ theorem hconj_exists (i j k l : I) (hij : i ≠ j) (hkl : k ≠ l)
         refine ⟨(powMonoidHom 2).comp (invMonoidHom : Rˣ →* Rˣ), fun u t => ?_⟩
         rw [cr_h_conj_split, cr_w_conj_x_self_symm l k n hij hin hjn,
           cr_w_conj_x_self l k n hij hin hjn]
-        exact x_congr _ _ rfl rfl (by simp only [MonoidHom.coe_comp, Function.comp_apply,
-          invMonoidHom_apply, powMonoidHom_apply, Units.val_pow_eq_pow_val, inv_neg_one,
-          Units.val_neg, Units.val_one]; ring)
+        refine x_congr _ _ rfl rfl ?_
+        simp only [MonoidHom.coe_comp, Function.comp_apply, invMonoidHom_apply, powMonoidHom_apply,
+          Units.val_pow_eq_pow_val, inv_neg_one, Units.val_neg, Units.val_one]
+        ring
       · refine ⟨(invMonoidHom : Rˣ →* Rˣ), fun u t => ?_⟩
         rw [cr_h_conj_split, w_conj_x_row_j i k l hij (Ne.symm hli) hkl,
           w_conj_x_row_i i k l hij (Ne.symm hli) hkl]
-        exact x_congr _ _ rfl rfl (by simp only [invMonoidHom_apply, inv_neg_one, Units.val_neg,
-          Units.val_one]; ring)
+        refine x_congr _ _ rfl rfl ?_
+        simp only [invMonoidHom_apply, inv_neg_one, Units.val_neg, Units.val_one]
+        ring
     · by_cases hli : l = i
       · subst hli
         refine ⟨(invMonoidHom : Rˣ →* Rˣ), fun u t => ?_⟩
         rw [cr_h_conj_split, w_conj_x_col_i l j k hij hkl hkj, w_conj_x_col_j l j k hij hkl hkj]
-        exact x_congr _ _ rfl rfl (by simp only [invMonoidHom_apply, inv_neg_one, Units.val_neg,
-          Units.val_one]; ring)
+        refine x_congr _ _ rfl rfl ?_
+        simp only [invMonoidHom_apply, inv_neg_one, Units.val_neg, Units.val_one]
+        ring
       · by_cases hlj : l = j
         · subst hlj
           refine ⟨MonoidHom.id _, fun u t => ?_⟩
           rw [cr_h_conj_split, w_conj_x_col_j i l k hij hki hkl, w_conj_x_col_i i l k hij hki hkl]
-          exact x_congr _ _ rfl rfl (by simp only [MonoidHom.id_apply, inv_neg_one,
-            Units.val_neg, Units.val_one]; ring)
+          refine x_congr _ _ rfl rfl ?_
+          simp only [MonoidHom.id_apply, inv_neg_one, Units.val_neg, Units.val_one]
+          ring
         · refine ⟨1, fun u t => ?_⟩
           rw [cr_h_conj_split, w_conj_x_disjoint i j k l hij hkl (Ne.symm hki) (Ne.symm hkj)
             (Ne.symm hli) (Ne.symm hlj), w_conj_x_disjoint i j k l hij hkl (Ne.symm hki)
