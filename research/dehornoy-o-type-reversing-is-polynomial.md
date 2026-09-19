@@ -24,6 +24,14 @@ their abstracts do not address it.
   `finitely-generated-positive-cones-are-discrete`, item 3, proves why: its least letter would satisfy a
   Baumslag–Solitar relation.
 
+## Partial results (2026-09-19)
+
+`o-type-reversing-strips-the-minimum` recasts reversing of `u^{-1}v` as a greedy factorization of `min(u, v)`, and
+proves several partial results:
+- it bounds linearly every stripped letter seen by a nonnegative homomorphism;
+- it settles the Klein bottle presentation, quadratically;
+- it isolates the open core, the torus-knot presentations `a = b(a^p b)^q` with `pq > 1`, starting with `B_3`.
+
 ## Setting
 
 `(S ; R)` is a finite presentation that is both right- and left-triangular (Dehornoy, Definition 2.4). Its monoid
