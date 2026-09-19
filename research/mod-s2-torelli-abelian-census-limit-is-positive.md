@@ -188,3 +188,41 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
     `2^5`. Such subgroups are not run here.
   - No uniform argument is given.
 - **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w18c-w18c-deligne-follow (census-computation): first odd-index step Gamma(6), no transversal relation modulo 3, so the mass-10 certificate dies and A_+(Gamma(6)) >= 20
+
+- **What was computed.** See `mod-s2-level-six-torelli-census-has-no-transversal` (OPEN).
+  - `M'' = pi^(-1) Gamma(6)` embeds in `K2` as a point stabiliser of `Sp_4(F_3)/{+-1}`, which has
+    25920 cosets. After exact unit elimination the Reidemeister–Schreier matrix has 3466 columns.
+  - The rank is 3358 modulo each of eight primes, so `dim H_1(M''; F_p) = 108`.
+  - There are 900 twist classes, 90 over each level-two splitting, labelled by the ordered mod-3
+    splitting. The index is `720 * 51840 / (36 * 576 * 2) = 900`.
+  - An exhaustive meet-in-the-middle search (`mitm.cpp`, `2 * 90^5` half-sums) runs over all `90^10`
+    one-per-block choices.
+- **Results.**
+  - No choice sums to 0 in `H_1(M''; F_3)`. Since `W_p = W + p Z^900`, `W(Gamma(6))` has no
+    transversal relation.
+  - The same exhaustive search modulo 5 and modulo 7 also finds none.
+  - Modulo 2 there are exactly 7626240 transversals, and every one checked fails modulo 3.
+  - The linear relaxation holds, so `aug(W) = 10 Z` and `d(Gamma(6)) <= 1/30`.
+  - Controls:
+    - at `Gamma(4)` the same code finds 1024 transversals, all valid at every prime, including the
+      known exact one;
+    - a planted mod-3 transversal is recovered.
+- **Reading.**
+  - By (BS3), `A_+(Gamma(6)) >= 20`. Every `w in W` with `3 not| aug(w)` has `||w||_1 >= 12`.
+  - The mass-10 positive certificate gives `d = 1/30` at every level computed so far (`Gamma(2)`,
+    `Gamma(4)`, its index-two layer, `Gamma(4,8)`). It is absent at the first odd step.
+  - So `d_inf = 1/30` cannot be proved uniformly through transversal relations, and a sparse
+    certificate here needs support at least 12, where level three needs 5.
+  - This does not refute `d_inf > 0`. It removes the one positive certificate that was uniform
+    along the 2-adic tower.
+- **Where it stops.**
+  - `d(Gamma(6))` is not computed. It lies in `[?, 1/30]`, and it is at least `1/60` if a positive
+    relation of augmentation 20 exists.
+  - Real characters need an integral basis of `W^perp`. The rational reconstruction from two 31-bit
+    primes has denominators up to 2.8e7.
+  - The next tests:
+    - a mod-3 search for `w >= 0` with all block sums 2, which asks whether `A_+ = 20`;
+    - characters of order dividing 30030.
+- **Status.** OPEN.

@@ -1,0 +1,53 @@
+{
+  "group": "pi^-1 Gamma(6) in K2 = PMod(S_(0,6)), point stabiliser of Sp_4(F_3)/{+-1}",
+  "cosets": 25920,
+  "columns_after_exact_unit_elimination": 3466,
+  "primes": [2, 3, 5, 7, 11, 13, 2147483629, 2147483647],
+  "rank_mod_p": {"2": 3358, "3": 3358, "5": 3358, "7": 3358, "11": 3358, "13": 3358, "2147483629": 3358, "2147483647": 3358},
+  "dim_H1_mod_p": {"2": 108, "3": 108, "5": 108, "7": 108, "11": 108, "13": 108, "2147483629": 108, "2147483647": 108},
+  "twist_vectors_sampled": 3036,
+  "classes": 900,
+  "classes_distinct_mod_every_prime": true,
+  "classes_per_level_two_splitting": [90, 90, 90, 90, 90, 90, 90, 90, 90, 90],
+  "labels": "label (level-two splitting, ordered mod-3 splitting) constant on classes and injective on all 3036 samples; index 720*51840/(36*576*2) = 900",
+  "span_rank_of_classes": {"2": 98, "3": 98, "5": 108, "7": 108, "11": 108, "13": 108, "2147483629": 108, "2147483647": 108},
+  "linear_relaxation_block_sums_all_one": "solvable modulo every prime listed; hence aug(W) = 10 Z and theta = 3/10 in Ann(W), d(Gamma(6)) <= 1/30",
+  "mitm": {
+    "method": "mitm.cpp, blocks {0,1},{2,3,4},{5,6},{7,8,9}, lists 8100/729000/8100/729000, join on full-vector hash with exact confirmation",
+    "p2": {"K": 16, "solutions": 7626240, "factorisation": "2^9 * 3^2 * 5 * 331", "pairs": 11809800000, "checked_exactly": 50, "checked_satisfy": "p = 2 only"},
+    "p3": {"K": 10, "solutions": 0, "hashhits": 0, "pairs": 11809800000},
+    "p5": {"K": 7, "solutions": 0, "hashhits": 0, "pairs": 11809800000},
+    "p7": {"K": 6, "solutions": 0, "hashhits": 0, "pairs": 11809800000}
+  },
+  "planted_control_mod3": {
+    "script": "mitm_plant.py mitm-3.txt mitm-3-planted.txt 17",
+    "planted": [175, 246, 275, 350, 370, 396, 621, 625, 693, 842],
+    "found": [621, 625, 350, 396, 370, 246, 693, 842, 275, 175],
+    "solutions": 1,
+    "pairs": 11809800000,
+    "recovered": true
+  },
+  "gamma4_validation": {
+    "rank_mod_p": 806,
+    "dim_H1_mod_p": 54,
+    "classes": 160,
+    "classes_per_splitting": 16,
+    "mitm_p3_solutions": 1024,
+    "mitm_p5_solutions": 1024,
+    "pairs": 2097152,
+    "p3_solutions_valid_at_all_eight_primes": 1024,
+    "p5_solutions_valid_at_all_eight_primes": 1024,
+    "contains_exact_integral_transversal": [15, 17, 21, 23, 43, 61, 104, 117, 134, 148]
+  },
+  "cp_sat_mod3": "UNKNOWN after 1201 s (superseded by the exhaustive mitm)",
+  "cryptominisat_mod2_transversal": "found; fails modulo 3 and every other prime",
+  "wperp_rational_reconstruction": {
+    "script": "wperp_ratrec.py",
+    "rank": 108,
+    "max_denominator": 27957324,
+    "max_numerator": 1117295147,
+    "agrees_with_rref_mod": [5, 7, 11, 13],
+    "lll_of_cleared_rows_max_entry": 27957324,
+    "note": "evidence for b_1 = 108, not a proof; the cleared-row lattice is not saturated"
+  }
+}
