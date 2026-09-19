@@ -96,3 +96,24 @@ classifier, filters and register), on an origin/main snapshot at 4a734659e: 717 
 Detector blind spot: a cited name that `lean_decls.build_index` cannot resolve is skipped silently
 (`decl is None: continue`). The grep check above found every cited short name declared on main, but it
 did not check full-name resolution.
+
+## The two non-Osin register lines: discharged in Lean, owed only in metadata (09-19)
+
+Both inline premises already have closed producers on main. No Lean is owed. Each finding survives only
+because a map row still cites the generic intermediate instead of the closed carrier that applies it.
+
+| Register line | Only citing row | Closed producer of the premise | Carrier already on main | Staged fix |
+| --- | --- | --- | --- | --- |
+| `inlined-statement …TorsionFreeLimitSetEndpoints.manuscriptSaturationLimitSet_of_leastAreaLeaves` (`hhard`: limit set ⇒ Osin) | 2f55113239ce (`lem:saturation`, tex 1650, partial) | `GGT.OsinClassification.isAcylindricallyHyperbolicOsin_of_limitSet` (`GGT/OsinLimitSetSpelling`) | `TorsionFreeGreendlingerForms.manuscriptSaturationLimitSet_of_greendlinger`, already cited in the same row; its only binder is `hgreendlinger` | drop the intermediate from the row (`work/ms-nm-uncond-a/metadata/`) |
+| `inlined-statement …BilateralThree.relativeElementary_killed_of_rootThree_killed` (`hroot`) | 512b53c80bd2 (tex 1595–1596, "Extending by identity…"), formalized. The register text names 7f55f9a11e5a, which no longer cites it | `rootThree_killed_of_cell bilateralThreeCellStatement` | `ChainCoreSweep.printedBilateralThreeRootAddition_closed` (`NonMFSentences/ChainCoreSweepClosed`) | swap the citation, staged by ms-nm-uncond-b (`work/ms-nm-uncond-b/metadata/`) |
+
+Owed, in order. This is the item-0 lander gap: gqland.sh and gqland-lean.sh refuse `metadata/**`.
+1. Apply both staged rows to `metadata/NON_MF_SENTENCE_MAP.tsv`.
+2. Delete the two register lines.
+3. Regenerate the census with `scripts/sentence_census.py` on MSI.
+4. Re-run `--verify-unconditional`. Expect 0 new and 0 stale.
+
+The rows lose only the cited names above, and every name kept was already cited by the same row (or by
+7f55f9a11e5a, with no finding), so no new finding can appear. After that, every live line of the register
+is one of the 29 row-2135 lines that nm-osin94 owns: the Osin Lemma 9.4 pieces, plus the two HullSC `buried-conditional` lines. Those two are closed declarations that bind nothing, and the register records them as classifier false positives.
+The Greendlinger residuals themselves belong to nm-gl06e and nm-gl03d.

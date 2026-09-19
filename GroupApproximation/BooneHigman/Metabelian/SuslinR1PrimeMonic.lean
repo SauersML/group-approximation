@@ -105,15 +105,39 @@ theorem suslinR1Prime_primewiseLocal_of_zero_eq_one {A : Type*} [CommRing A] {N 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_primewiseLocal_of_zero_eq_one
 
+/-- The monic statement over one commutative ring `A`: every ideal of `A[X]` lying in no principal
+prime ideal contains an element that is monic after a ring automorphism.  It is stated for a
+general `A`, so that `A[X]` takes its semiring structure from the ring structure of `A`.  At
+`A = ℤ[1/m][s]`, `Localization.Away`'s commutative-semiring and ring instances are not unified by
+instance search, and `Polynomial A` elaborated directly there has no `CommRing` instance. -/
+abbrev suslinR1Prime_MonicAt (A : Type) [CommRing A] : Prop :=
+  ∀ J : Ideal (Polynomial A), (∀ π : Polynomial A, Prime π → ¬J ≤ Ideal.span {π}) →
+    ∃ φ : Polynomial A ≃+* Polynomial A, ∃ q ∈ J, (φ q).Monic
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_MonicAt
+
+/-- `suslinR1Prime_primewiseLocal_of_monicLocal` over `B[s_0..s_{k-1}]` for a noetherian domain
+`B`, with every instance derived from `[CommRing B]`.  The domain and noetherian hypotheses are
+explicit terms, so that a caller at `B = ℤ[1/m]` passes them as terms, which are checked at default
+transparency, instead of by instance search. -/
+theorem suslinR1Prime_primewiseLocal_of_monicAt {B : Type} [CommRing B] (hdom : IsDomain B)
+    (hnoeth : IsNoetherianRing B) (k : ℕ) {N : ℕ} (hN : 3 ≤ N)
+    (h : suslinR1Prime_MonicAt (MvPolynomial (Fin k) B)) :
+    SuslinR1IntPrimewiseLocal (MvPolynomial (Fin k) B) N := by
+  haveI := hdom
+  haveI := hnoeth
+  haveI : WfDvdMonoid (Polynomial (MvPolynomial (Fin k) B)) := IsNoetherianRing.wfDvdMonoid
+  exact suslinR1Prime_primewiseLocal_of_monicLocal hN h
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_primewiseLocal_of_monicAt
+
 /-- **The residual Statement** (matrix-free; the `d = 1` case of Suslin's monic polynomial
 result over `ℤ[1/m]`, see the module docstring): for `m ≠ 0`, every ideal of
 `ℤ[1/m][s_1,…,s_k][X]` lying in no principal prime ideal contains an element that is monic
 in `X` after a ring automorphism. -/
 def suslinR1Prime_MonicStatement : Prop :=
-  ∀ (m k : ℕ), m ≠ 0 → ∀ J : Ideal (Polynomial (Chain.SIntPoly m k)),
-    (∀ π : Polynomial (Chain.SIntPoly m k), Prime π → ¬J ≤ Ideal.span {π}) →
-      ∃ φ : Polynomial (Chain.SIntPoly m k) ≃+* Polynomial (Chain.SIntPoly m k),
-        ∃ q ∈ J, (φ q).Monic
+  ∀ (m k : ℕ), m ≠ 0 → suslinR1Prime_MonicAt (Chain.SIntPoly m k)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_MonicStatement
 
@@ -123,9 +147,11 @@ theorem suslinR1Prime_primewise_of_monic (h : suslinR1Prime_MonicStatement) :
   intro m k N _ hN
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · exact suslinR1Prime_primewiseLocal_of_zero_eq_one (by omega) (suslinR1Prime_zero_eq_one k)
-  · haveI : IsDomain (Localization.Away (m : ℤ)) := CharZeroHost.isDomain_away hm.ne'
-    haveI : WfDvdMonoid (Polynomial (Chain.SIntPoly m k)) := IsNoetherianRing.wfDvdMonoid
-    exact suslinR1Prime_primewiseLocal_of_monicLocal hN (h m k hm.ne')
+  · exact suslinR1Prime_primewiseLocal_of_monicAt (B := Localization.Away (m : ℤ))
+      (CharZeroHost.isDomain_away hm.ne')
+      (IsLocalization.isNoetherianRing (Submonoid.powers (m : ℤ)) (Localization.Away (m : ℤ))
+        inferInstance)
+      k hN (h m k hm.ne')
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Prime_primewise_of_monic
