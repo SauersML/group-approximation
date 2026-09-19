@@ -47,7 +47,7 @@ theorem oracleVal_encode {ι H : Type} [Group H] [Primcodable ι] (s : ι → H)
     rw [Encodable.encodek, Option.some_inj] at hw
     subst hw
     exact ⟨fun _ => hw1, fun _ => rfl⟩
-  · exact ⟨fun h0 => absurd h0 zero_ne_one, fun hx => absurd ⟨x, Encodable.encodek x, hx⟩ h⟩
+  · exact ⟨fun h0 => absurd h0 (by simp), fun hx => absurd ⟨x, Encodable.encodek x, hx⟩ h⟩
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.oracleVal_encode
 
@@ -98,6 +98,7 @@ theorem mem_pairCodes {ι : Type} [Primcodable ι] {W : List (LW ι)} {a b : LW 
 
 variable {Δ : Type} [Group Δ] {ι : Type} [Primcodable ι] [Finite ι] {κ : Type} [Primcodable κ] [Finite κ]
 
+omit [Finite ι] [Finite κ] in
 /-- The truth table answers the word problem of `v`. -/
 theorem hostKey (t : ι → Δ) (v : κ → (Matrix (Fin 3) (Fin 3) (LampRing Δ))ˣ) (L : κ × Bool → HMat ι)
     (hL : ∀ x : κ × Bool, hMatEval t (L x) =
