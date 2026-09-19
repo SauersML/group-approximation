@@ -11,6 +11,7 @@ requires:
   - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
   - two-sided-locality-holds-for-matrix-linear-automata
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
+  - minimal-system-automorphisms-fix-every-proximal-factor
 distinct_from:
   two-sided-locality-holds-for-matrix-linear-automata: that builds commuting free lift and transport groups on periodic data; this puts the free lift inside the automorphism group of a rigid algebraic SFT, where rigidity and an invariant measure come for free, and isolates minimality as the one missing property.
   group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp: that shows rigid group subshifts over non-amenable groups are measure-preserving, non-amenable and never minimal; this realizes that case as the time lift of an explicit Z^2-row, and turns the minimality defect into a precise target.
@@ -96,9 +97,10 @@ measured node, applied without minimality, and the invariant-measure obstruction
   scalar shifts trivially, since a free group has trivial center), and carrying the
   fixed measure.
 
-**4.** A hierarchical minimal subset is an almost 1-1 extension of an odometer. Its fibre-preserving
-automorphisms act through the profinite layers, which collapse (collapse node, items 1–3). The translation
-part of `Aut` is abelian. ∎
+**4.** A hierarchical (Toeplitz or substitutive) minimal subset is an almost 1-1 extension of its odometer,
+which is its MEF. So its fibre-preserving automorphisms are trivial, by item 5(a) of
+`minimal-system-automorphisms-fix-every-proximal-factor`, and `Aut` embeds in the abelian translation group
+of the odometer. Infinite profinite layers over the MEF would collapse anyway (collapse node, item 2). ∎
 
 ## Lesson for general BH
 
