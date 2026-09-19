@@ -103,3 +103,42 @@ value `1 - eta` and integral value `k^-Omega(eta)`.
     small-set expanders, and the paper is withdrawn. The stated reason is "SSE
     requires simulation conditioned on falling into the small set, which is not
     necessarily possible."
+* **Repetition of any bounded-alphabet base, any soundness argument (2026-09-19,
+  swarm-0917, `w17-ugc-last1`).** This attacks the (P2) survivor of the
+  previous attempt from the completeness side.
+  - *Construction.* Any route "NP-hard base family `G_x` of alphabet `k`, then
+    `G_x ↦ G_x^l`", with `l` of polynomial bit size and soundness argued by
+    anything (universal, expansion, SSE, threshold rank, or nothing).
+  - *Where it dies.* At the soundness of the output, by
+    `parallel-repetition-cannot-substitute-rounds-for-alphabet` (ESTABLISHED,
+    from the imported Steurer rounding
+    `steurer-parallel-repeated-unique-games-rounding`). The invariant is the
+    base SDP deficit. The base SDP, solved on `G_x` and never on `G_x^l`,
+    decides every repeated gap of ratio `C_out > 2 C_1 sqrt(ln k)`, for every
+    `l`. So unless `P = NP`, repetition reaches ratio `C` only if
+    `ln k >= C^2/(4C_1^2)`, and UGC at `eps` only if
+    `ln k >= 1/(16 C_1^2 eps)`. Rounds never pay for base alphabet.
+  - *Decomposition of (P2).* It splits into (R1) an NP-hard λ-gapped base at
+    alphabet `ln k >= C^2/(4C_1^2)`, and (R2) a per-round rate `ψ` valid on all
+    its NO instances, SDP-fooling ones included, in the window
+    `0.79 C <= ψ/η <= 7.51 C_1^2 ln k`. Each can fail on its own.
+  - *Raz–Rosen, re-checked.* The previous attempt's "Unchecked" item. Search
+    snippets (the PDF was unreachable) give, for projection games on graphs of
+    spectral gap `λ`, a strong bound `(1 − γ)^Ω(c(λ) n)` with `c(λ) = poly(λ)`.
+    That is a rate `a c(λ) γ`, linear in `γ`. If `c` is read literally as a
+    polynomial, it is killed by the existing node:
+    - the odd cycle `C_m` is a projection game with `γ = 1/2m` and gap
+      `λ_m = Θ(1/m^2) > 0`;
+    - `raz-odd-cycle-repetition-lower-bound` at `n = ⌊m^2/16B^2⌋` gives
+      `val >= 3/4`, which forces `c(λ_m) <= 32 B^2 ln(4/3)/(a m) → 0`;
+    - so `c(0) = 0`, and on `[0,1]`, `c(λ) <= ||c||_1 λ`;
+    - the rate therefore has the shape `κλγ`, with ratio capped at `3184 κ` by
+      `expansion-certified-repetition-caps-deficit-ratio`.
+
+    Under a non-polynomial reading, the argument only gives `c = o(1)` at `0`.
+    In either reading, bounded-alphabet Raz–Rosen routes are killed by the new
+    node.
+  - *What would survive.* Heterogeneous products `G_1 × ... × G_l` ((S1) is
+    imported only for `G^l`); derandomized, partial or fortified repetition;
+    repetition followed by alphabet reduction or composition; and bases whose
+    alphabet already has `ln k >= C^2/(4C_1^2)`, which is (R1).
