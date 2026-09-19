@@ -60,3 +60,16 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
   - Open, and the next step: is `V_2(Z/2 ≀ Z)` of type `F_∞`, or at least `F_3`? A route is a Stein--Farley complex
     whose vertices are decorated with points of the Bruhat--Tits trees at `0` and `∞` of `F_2(t)`, with a
     Busemann-sum height and Brown's criterion.
+- **2026-09-18 (w9-101).**
+  - `lamplighter-has-a-faithful-contracting-degree-8-action`: ADT arXiv:2609.01868 Ex. 4.8 checked.
+    - Its map does not determine `f`. Every candidate `f_c` has a nonzero kernel element, so none is injective.
+    - `f_0` still gives a faithful contracting action of `Z/2 ≀ Z` on the 8-regular tree. So `V_8(Z/2 ≀ Z)` is
+      finitely presented by FP2.
+    - This does not touch the fd85aac03 claim, which is about the non-contracting binary affine action.
+  - `rn-lamplighter-is-a-function-field-stein-group`:
+    - The sketch above is now proved: `V_2(Z/2 ≀ Z) = PAff(F_2[[1+t]]; F_2[t, 1/t, 1/(1+t)])`.
+    - A contractible complex with finite stabilisers is built: Stein–Farley leaves decorated by cells of
+      `T_0 × T_∞`, with an invariant Busemann-sum height and orbit counts from Riemann–Roch.
+    - Li's criterion (arXiv:2110.04505, Cor F) and SWZ both need `G` of type `F_n`, so neither applies.
+  - Still open: `F_3`, which needs the connectivity of descending links for `Σ φ(ℋ_i)`. The single low leaf is a
+    cone; the merge part is not done.

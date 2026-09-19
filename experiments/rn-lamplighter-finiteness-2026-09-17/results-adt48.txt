@@ -1,0 +1,29 @@
+## python3 adt48.py 2000 (states reachable from b, x, x^-1)
+c=[]                 states=6 maxlamps=2 max|k|=1
+c=[-2]               states=53 maxlamps=6 max|k|=1
+c=[-1]               states=17 maxlamps=4 max|k|=1
+c=[0]                states=8 maxlamps=2 max|k|=1
+c=[1]                states=6 maxlamps=2 max|k|=1
+c=[2]                states=7 maxlamps=2 max|k|=1
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w9-101/experiments/rn-lamplighter-finiteness-2026-09-17/adt48.py", line 63, in <module>
+    print("c=%-18s states=%s%s maxlamps=%d max|k|=%d" % (sorted(c), n, "+" if n >= cap else "", ml, mk))
+BrokenPipeError: [Errno 32] Broken pipe
+
+## python3 run48.py (nucleus size; kernel search lamps in [-3,3])
+c=[]           nucleus=6 kernel_witness=None
+c=[-2]         nucleus=208 kernel_witness=None
+c=[-1]         nucleus=52 kernel_witness=None
+c=[0]          nucleus=13 kernel_witness=None
+c=[1]          nucleus=6 kernel_witness=None
+c=[2]          nucleus=6 kernel_witness=None
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-group-approximation/cfda3a9f-8576-509e-963c-f9b8ce875a39/scratchpad/swarm2/w9-101/experiments/rn-lamplighter-finiteness-2026-09-17/run48.py", line 6, in <module>
+    print("c=%-12s nucleus=%s kernel_witness=%s" % (sorted(c), "infinite/cap" if N is None else len(N), None if kw is None else (sorted(kw[0]), kw[1])), flush=True)
+BrokenPipeError: [Errno 32] Broken pipe
+
+## python3 rand48.py
+c=[] |N|=6 misses=0/300  max size by depth=[130, 70, 35, 19, 12, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+c=[0] |N|=13 misses=1/300  max size by depth=[127, 67, 35, 19, 11, 7, 5, 4, 4, 4, 4, 3, 3, 2, 2]
+c=[1] |N|=6 misses=1/300  max size by depth=[130, 68, 38, 19, 10, 6, 4, 3, 3, 3, 3, 3, 3, 1, 1]
+c=[-1] |N|=52 misses=0/300  max size by depth=[132, 66, 37, 21, 13, 8, 7, 6, 5, 5, 5, 4, 4, 4, 4]
