@@ -113,6 +113,16 @@ Images of boxes under `ĝ` are explicit finite unions of boxes, so this is a fin
     `{0(3), 1(3), 2(3)}`. The 2-power candidates alone fail, as proved there.
 - **2-power sub-case.** It is the case `m′ = 1` of the search, which recovers the cone node.
 
+## Not Kohl's "respected partitions"
+
+- **Kohl's notion.** In Kohl's RCWA theory an rcwa mapping *respects* a residue-class partition if
+  it permutes the parts **and is affine on each part** (RCWA manual, `RespectedPartition`, `IsTame`).
+  Such a partition exists iff the mapping is tame, i.e. has finite order in `CT(Z)`.
+- **21.74(a).** It asks only that `g` **permute** the parts. The pieces of `g` may cut them.
+- **Different questions.** For example, `h = ψ_{0(2)}ψ_{1(2)}` has infinite order, so it
+  respects no partition, yet it permutes `{0(2), 1(2)}`. The decision procedure here is for the
+  permutation question. (Distinction noted by bh-ref-q11.)
+
 ## Lesson for general BH
 
 **A permuted partition must commute, over each flow component, with the attractor–repeller
