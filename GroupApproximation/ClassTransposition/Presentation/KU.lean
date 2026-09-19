@@ -53,6 +53,7 @@ variable (hB : BddAbove (P' P)) (hP2 : 2 ∉ P) (hpos : ∀ p ∈ P' P, 2 ≤ p)
   (hprime : ∀ p ∈ P' P, p.Prime)
 include hB hP2 hpos hprime
 
+omit hprime in
 /-- The case of different root primes. -/
 theorem ku_cross {K : ℕ} (IH : ∀ K' < K, KUstmt P K') {p q : ℕ} (hp : p ∈ P' P) (hq : q ∈ P' P)
     (hpq : p ≠ q) (qs : List ℕ) (hqs : ∀ x ∈ qs, x ∈ P' P) (hpm : p ∈ qs) (hK : K = q * qs.prod)
@@ -262,7 +263,7 @@ theorem ku : ∀ K, KUstmt P K := by
       · exact absurd ((Nat.prime_dvd_prime_iff_eq (hprime p hp) (hprime q hq)).1 h) hpq
       · exact h
     have hpm := mem_of_dvd_prod (hprime p hp) (fun y hy => hprime y (hqs' y hy)) hpd
-    obtain ⟨hg, ρ, hρ, e⟩ := ku_cross hB hP2 hpos hprime IH hp hq hpq qs' hqs' hpm hqK.symm hb ho hE
+    obtain ⟨hg, ρ, hρ, e⟩ := ku_cross hB hP2 hpos IH hp hq hpq qs' hqs' hpm hqK.symm hb ho hE
       hS hpS hU'
     refine ⟨by show p - 1 + growth S + 1 = K; omega, ρ, fun k hk => by
       have := hρ k hk; show o ≤ k ∧ k + 1 < o + 1 + (p - 1 + growth S); omega, e⟩
