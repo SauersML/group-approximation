@@ -71,3 +71,21 @@ On algebraic rows, the time-lift face of (RA_free) is **exactly** a positive-cha
 homogeneous-dynamics rigidity question for a free group of automorphisms. The relevant object is a free
 subgroup of `SL_2(F_2[s])` acting, together with the shifts, on the dual of `A^2`. A theorem there, in
 either direction, decides whether algebraic rigid rows can carry a minimal free commutant.
+
+## S-arithmetic form, and the natural attack route (added 2026-09-19)
+
+- **Identification (standard adelic duality, recalled).** `A = F_2[s, s^(-1), (1+s)^(-1)]` is the ring of
+  `S`-integers of `F_2(s)` for `S = {s = 0, s = 1, s = ∞}`. It is a cocompact lattice in `K_S = ∏_(v∈S) K_v`,
+  and `X_L ≅ K_S / A` as compact groups. The shifts act by multiplication by the units `s` and `1 + s`.
+  So `X = X_L^2 ≅ K_S^2 / A^2`, an **`S`-arithmetic solenoid in characteristic 2**. `F ≤ SL_2(A)` acts
+  linearly, and (BQ_2) is the characteristic-2 analogue of the torus case of Benoist–Quint and of
+  Bourgain–Furman–Lindenstrauss–Mozes, with extra diagonal units.
+- **Route.**
+  - (a) An exponential-drift argument in positive characteristic, making `F`-stationary measures invariant
+    under a unipotent subgroup. This is not found in the literature.
+  - (b) Positive-characteristic rigidity of measures invariant under unipotent or semisimple subgroups:
+    Einsiedler–Ghosh, Proc. LMS 100 (2010); Mohammadi (horospherical); Einsiedler–Lindenstrauss–Mohammadi
+    (diagonal actions). These are recalled from titles and abstracts, not read.
+- **Lane decision.** This is deep positive-characteristic homogeneous dynamics. bh-invent-16 leaves it
+  as a crux and pivots to non-linear two-sided locality (T2). T2 is what BH needs, since algebraic rows
+  lift only exact groups.
