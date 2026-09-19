@@ -110,13 +110,13 @@ def relAut (H : Type) [Group H] (n : ℕ) : Subgroup (MulAut (Coprod H (FreeGrou
   one_mem' := by
     show ∀ h : H, (1 : MulAut (Coprod H (FreeGroup (Fin n)))) (Coprod.inl h) = Coprod.inl h
     intro h
-    exact MulAut.one_apply _
+    rfl
   inv_mem' := by
     intro a ha
     show ∀ h : H, a⁻¹ (Coprod.inl h) = Coprod.inl h
     intro h
     conv_lhs => rw [← ha h]
-    exact MulAut.inv_apply_self a _
+    exact MulAut.inv_apply_self _ a _
 
 theorem mem_relAut {H : Type} [Group H] {n : ℕ} {α : MulAut (Coprod H (FreeGroup (Fin n)))} :
     α ∈ relAut H n ↔ ∀ h : H, α (Coprod.inl h) = Coprod.inl h :=

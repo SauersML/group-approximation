@@ -64,20 +64,24 @@ abbrev StLim : Type _ :=
 /-- The canonical map `St_I(R_i) → lim St_I(R_j)`. -/
 noncomputable def stOf (i : ι) : SteinbergGroup I (R i) →* StLim I φ where
   toFun u := ⟦⟨i, u⟩⟧
-  map_one' := (DirectLimit.one_def i).symm
-  map_mul' u v := (DirectLimit.mul_def i u v).symm
+  map_one' := (DirectLimit.one_def (G := fun i => SteinbergGroup I (R i))
+    (f := fun i j h => ringMap (I := I) (φ i j h)) i).symm
+  map_mul' u v := (DirectLimit.mul_def (G := fun i => SteinbergGroup I (R i))
+    (f := fun i j h => ringMap (I := I) (φ i j h)) i u v).symm
 
 variable {I φ}
 
 theorem stOf_le {i j : ι} (h : i ≤ j) (u : SteinbergGroup I (R i)) :
     stOf I φ i u = stOf I φ j (ringMap (φ i j h) u) :=
-  DirectLimit.eq_of_le ⟨i, u⟩ j h
+  DirectLimit.eq_of_le (F := fun i => SteinbergGroup I (R i))
+    (f := fun i j h => ringMap (I := I) (φ i j h)) ⟨i, u⟩ j h
 
 #audit_axioms stOf_le
 
 theorem stOf_eq_one_iff (i : ι) (u : SteinbergGroup I (R i)) :
     stOf I φ i u = 1 ↔ ∃ j, ∃ h : i ≤ j, ringMap (φ i j h) u = 1 :=
-  DirectLimit.exists_eq_one ⟨i, u⟩
+  DirectLimit.exists_eq_one (G := fun i => SteinbergGroup I (R i))
+    (f := fun i j h => ringMap (I := I) (φ i j h)) ⟨i, u⟩
 
 #audit_axioms stOf_eq_one_iff
 
@@ -107,14 +111,14 @@ noncomputable def limGen (g : SteinbergGenerator I S) : StLim I φ :=
 include hψ hinj in
 /-- Any lift of the coefficient computes the limit generator. -/
 theorem limGen_eq (k l : I) (hkl : k ≠ l) {i : ι} {r : R i} {s : S} (h : ψ i r = s) :
-    limGen ψ hsurj ⟨k, l, hkl, s⟩ = stOf I φ i (x k l hkl r) :=
+    limGen (φ := φ) ψ hsurj ⟨k, l, hkl, s⟩ = stOf I φ i (x k l hkl r) :=
   stOf_x_eq ψ hψ hinj ((hsurj s).choose_spec.choose_spec.trans h.symm) k l hkl
 
 #audit_axioms limGen_eq
 
 include hψ hinj in
 theorem limGen_kills (w : FreeGroup (SteinbergGenerator I S))
-    (hw : w ∈ relations (I := I) (R := S)) : FreeGroup.lift (limGen ψ hsurj) w = 1 := by
+    (hw : w ∈ relations (I := I) (R := S)) : FreeGroup.lift (limGen (φ := φ) ψ hsurj) w = 1 := by
   change IsRelation w at hw
   cases hw with
   | add k l hkl a b =>
@@ -125,8 +129,8 @@ theorem limGen_kills (w : FreeGroup (SteinbergGenerator I S))
       have ha : ψ m (φ i₁ m hm₁ r₁) = a := (hψ _ _ _ _).trans h₁
       have hb : ψ m (φ i₂ m hm₂ r₂) = b := (hψ _ _ _ _).trans h₂
       have hab : ψ m (φ i₁ m hm₁ r₁ + φ i₂ m hm₂ r₂) = a + b := by rw [map_add, ha, hb]
-      change limGen ψ hsurj ⟨k, l, hkl, a⟩ * limGen ψ hsurj ⟨k, l, hkl, b⟩ *
-          (limGen ψ hsurj ⟨k, l, hkl, a + b⟩)⁻¹ = 1
+      change limGen (φ := φ) ψ hsurj ⟨k, l, hkl, a⟩ * limGen (φ := φ) ψ hsurj ⟨k, l, hkl, b⟩ *
+          (limGen (φ := φ) ψ hsurj ⟨k, l, hkl, a + b⟩)⁻¹ = 1
       rw [limGen_eq ψ hψ hinj hsurj k l hkl ha, limGen_eq ψ hψ hinj hsurj k l hkl hb,
         limGen_eq ψ hψ hinj hsurj k l hkl hab, ← map_mul, x_mul, mul_inv_cancel]
   | commute k l k' l' hkl hkl' hlk' hl'k a b =>
@@ -136,7 +140,7 @@ theorem limGen_kills (w : FreeGroup (SteinbergGenerator I S))
       obtain ⟨m, hm₁, hm₂⟩ := exists_ge_ge i₁ i₂
       have ha : ψ m (φ i₁ m hm₁ r₁) = a := (hψ _ _ _ _).trans h₁
       have hb : ψ m (φ i₂ m hm₂ r₂) = b := (hψ _ _ _ _).trans h₂
-      change ⁅limGen ψ hsurj ⟨k, l, hkl, a⟩, limGen ψ hsurj ⟨k', l', hkl', b⟩⁆ = 1
+      change ⁅limGen (φ := φ) ψ hsurj ⟨k, l, hkl, a⟩, limGen (φ := φ) ψ hsurj ⟨k', l', hkl', b⟩⁆ = 1
       rw [limGen_eq ψ hψ hinj hsurj k l hkl ha, limGen_eq ψ hψ hinj hsurj k' l' hkl' hb,
         ← map_commutatorElement,
         (x_commute_of_ne k l k' l' hkl hkl' hlk' hl'k _ _).commutator_eq, map_one]
@@ -148,8 +152,8 @@ theorem limGen_kills (w : FreeGroup (SteinbergGenerator I S))
       have ha : ψ m (φ i₁ m hm₁ r₁) = a := (hψ _ _ _ _).trans h₁
       have hb : ψ m (φ i₂ m hm₂ r₂) = b := (hψ _ _ _ _).trans h₂
       have hab : ψ m (φ i₁ m hm₁ r₁ * φ i₂ m hm₂ r₂) = a * b := by rw [map_mul, ha, hb]
-      change ⁅limGen ψ hsurj ⟨k, l, hkl, a⟩, limGen ψ hsurj ⟨l, n, hln, b⟩⁆ *
-          (limGen ψ hsurj ⟨k, n, hkn, a * b⟩)⁻¹ = 1
+      change ⁅limGen (φ := φ) ψ hsurj ⟨k, l, hkl, a⟩, limGen (φ := φ) ψ hsurj ⟨l, n, hln, b⟩⁆ *
+          (limGen (φ := φ) ψ hsurj ⟨k, n, hkn, a * b⟩)⁻¹ = 1
       rw [limGen_eq ψ hψ hinj hsurj k l hkl ha, limGen_eq ψ hψ hinj hsurj l n hln hb,
         limGen_eq ψ hψ hinj hsurj k n hkn hab, ← map_commutatorElement,
         x_commutator k l n hkl hln hkn, mul_inv_cancel]
@@ -158,10 +162,10 @@ theorem limGen_kills (w : FreeGroup (SteinbergGenerator I S))
 
 /-- The homomorphism `St_I(S) → lim St_I(R_i)`. -/
 noncomputable def limHom : SteinbergGroup I S →* StLim I φ :=
-  PresentedGroup.toGroup (f := limGen ψ hsurj) (limGen_kills ψ hψ hinj hsurj)
+  PresentedGroup.toGroup (f := limGen (φ := φ) ψ hsurj) (limGen_kills ψ hψ hinj hsurj)
 
 theorem limHom_x (k l : I) (hkl : k ≠ l) (s : S) :
-    limHom ψ hψ hinj hsurj (x k l hkl s) = limGen ψ hsurj ⟨k, l, hkl, s⟩ :=
+    limHom ψ hψ hinj hsurj (x k l hkl s) = limGen (φ := φ) ψ hsurj ⟨k, l, hkl, s⟩ :=
   PresentedGroup.toGroup.of _
 
 /-- `limHom` splits the canonical maps: `limHom ∘ ringMap ψ_i = stOf i`. -/

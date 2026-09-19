@@ -134,3 +134,27 @@ artifacts:
     - Lifts over a non-injective base `τ`, where Step 2 of the route fails because `r_* μ_B` is no longer
       compared with a measure-preserving base.
     - Designs whose three sizes already fail, which the theorem cannot touch.
+- **Non-injective base, by fiber square** (swarm-0917-w18-w18-gs-break, 2026-09-19). This kills the survivor
+  "lifts over a non-injective base". By `noninjective-letter-factors-force-squared-fiber-sizes` (established,
+  route `noninjective-letter-factor-fiber-square-proof`), suppose `Φ` is injective with `r ∘ Φ = τ ∘ r` and `τ`
+  is not injective. Then one of `q`, `qm`, `q^2 m` lies in `NS(G)`, where `m` is the number of largest fibers.
+  - How it works. `Ψ = Φ × Φ` on the fiber square `(B ×_A B)^G` is injective. It is never onto, because two
+    lifts of a `τ`-collision have an image pair whose only preimage leaves the fiber square.
+  - The reduction. `Ψ` is itself a lift of the injective `Φ` through the first projection. That collapse has
+    fibers `Q_{r b}`, so its largest-fiber count is `qm`, and the w17 theorem applies to the pair `(Ψ, Φ)`.
+  - Invariant. The w17 sea charge of the first projection, `W(u) = Σ_g log(q / q_{r u(g)})` on `B`-configurations.
+  - Combined with w17. Every injective automaton commuting with a letter collapse is bijective over a
+    bijective base, or one of `q`, `m`, `qm`, `q^2 m` fails. Single-letter doubling `k -> k+1` needs
+    `4 ∈ NS(G)`, whatever the base.
+  - At the least failing size `n_0`, a strict automaton with a non-uniform letter factor has a non-injective
+    factor, with `q^2 m ∈ NS(G)`.
+  - By-products.
+    - `Σ_a q_a^2 ∈ NS(G)`.
+    - Fiber products of lifts multiply profiles pointwise: `Σ_a q_a c_a ∈ NS(G)`.
+  - What survives.
+    - Uniform profiles.
+    - Block-code factors that are not letter maps.
+    - Coupled dynamics with no letter factor at all.
+    - Designs over groups where one of the four sizes already fails. For doubling, this means `4 ∈ NS(G)`.
+      That is exactly the binary-power size excluded by the other premise of
+      `gottschalk-via-upward-closed-nonsurjunctive-sizes`.
