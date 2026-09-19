@@ -1,0 +1,14 @@
+part1 n=1 states=1 induced directed edges=0 = move edges; forbidden moves leaving R: 2
+part1 n=2 states=3 induced directed edges=4 = move edges; forbidden moves leaving R: 4
+part1 n=3 states=9 induced directed edges=16 = move edges; forbidden moves leaving R: 10
+part1 n=4 states=28 induced directed edges=56 = move edges; forbidden moves leaving R: 28
+part1 n=5 states=90 induced directed edges=192 = move edges; forbidden moves leaving R: 84
+part1 n=6 states=297 induced directed edges=660 = move edges; forbidden moves leaving R: 264
+part1 n=7 states=1001 induced directed edges=2288 = move edges; forbidden moves leaving R: 858
+part2 trial 0: |A|=13, pieces=27, shift C=9, h o A inside R
+part2 trial 1: |A|=13, pieces=17, shift C=1, h o A inside R
+part2 trial 2: |A|=13, pieces=17, shift C=7, h o A inside R
+part2 trial 3: |A|=13, pieces=12, shift C=4, h o A inside R
+part2 trial 4: |A|=13, pieces=20, shift C=4, h o A inside R
+part2 trial 199: |A|=13, pieces=21, shift C=6, h o A inside R
+part2: 200 random sets absorbed
