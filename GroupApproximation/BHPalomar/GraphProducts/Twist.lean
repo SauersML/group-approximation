@@ -178,17 +178,18 @@ theorem gamma_rho_conj (h l : H) :
 abbrev HH (H : Type) [Group H] := CoprodI (fun _ : Bool => H)
 
 /-- The swap of the two factors of `H ∗ H`. -/
-def swapHom : HH H →* HH H := CoprodI.lift fun b => CoprodI.of (i := !b)
+def swapHom : HH H →* HH H := CoprodI.lift fun b => CoprodI.of (M := fun _ : Bool => H) (i := !b)
 
 @[simp] theorem swapHom_of (b : Bool) (h : H) :
-    swapHom (CoprodI.of (i := b) h : HH H) = CoprodI.of (i := !b) h := by
+    swapHom (CoprodI.of (M := fun _ : Bool => H) (i := b) h) = CoprodI.of (M := fun _ : Bool => H) (i := !b) h := by
   simp [swapHom]
 
 theorem swapHom_comp_swapHom : (swapHom : HH H →* HH H).comp swapHom = MonoidHom.id (HH H) := by
   apply CoprodI.ext_hom
   intro b
   ext h
-  simp
+  simp only [MonoidHom.comp_apply, MonoidHom.id_apply, swapHom_of]
+  rw [Bool.not_not]
 
 /-- The swap as an automorphism. -/
 def swapAut : MulAut (HH H) :=
@@ -205,11 +206,11 @@ abbrev Pi2 (H : Type) [Group H] := HH H ⋊[swapZ] Multiplicative ℤ
 
 /-- `π : P → (H ∗ H) ⋊ ℤ`: `h ↦ h` in the first factor, `x ↦ 1`, `y ↦` the generator. -/
 def piHom : TwP H →* Pi2 H :=
-  Coprod.lift (SemidirectProduct.inl.comp (CoprodI.of (i := false)))
+  Coprod.lift (SemidirectProduct.inl.comp (CoprodI.of (M := fun _ : Bool => H) (i := false)))
     (FreeGroup.lift ![1, SemidirectProduct.inr (Multiplicative.ofAdd 1)])
 
 @[simp] theorem piHom_inl (h : H) :
-    piHom (Coprod.inl h : TwP H) = SemidirectProduct.inl (CoprodI.of (i := false) h) := by
+    piHom (Coprod.inl h : TwP H) = SemidirectProduct.inl (CoprodI.of (M := fun _ : Bool => H) (i := false) h) := by
   simp [piHom]
 
 @[simp] theorem piHom_y : piHom (𝕪 : TwP H) = SemidirectProduct.inr (Multiplicative.ofAdd 1) := by
@@ -222,17 +223,18 @@ theorem conj_inr_inl {N G : Type*} [Group N] [Group G] {φ : G →* MulAut N} (g
 
 /-- `π(y h y⁻¹)` is `h` in the second factor. -/
 theorem piHom_conj_y (h : H) :
-    piHom (𝕪 * Coprod.inl h * 𝕪⁻¹ : TwP H) = SemidirectProduct.inl (CoprodI.of (i := true) h) := by
+    piHom (𝕪 * Coprod.inl h * 𝕪⁻¹ : TwP H) =
+      SemidirectProduct.inl (CoprodI.of (M := fun _ : Bool => H) (i := true) h) := by
   rw [map_mul, map_mul, map_inv, piHom_y, piHom_inl, conj_inr_inl, swapZ_one_apply, swapHom_of,
     Bool.not_false]
 
 /-- Kill the first factor of `H ∗ H`. -/
 def killFalse : HH H →* H := CoprodI.lift fun b => bif b then MonoidHom.id H else 1
 
-@[simp] theorem killFalse_true (h : H) : killFalse (CoprodI.of (i := true) h : HH H) = h := by
+@[simp] theorem killFalse_true (h : H) : killFalse (CoprodI.of (M := fun _ : Bool => H) (i := true) h) = h := by
   simp [killFalse]
 
-@[simp] theorem killFalse_false (h : H) : killFalse (CoprodI.of (i := false) h : HH H) = 1 := by
+@[simp] theorem killFalse_false (h : H) : killFalse (CoprodI.of (M := fun _ : Bool => H) (i := false) h) = 1 := by
   simp [killFalse]
 
 /-- **In `H ∗ F(x, y)`, no nontrivial element of `H` commutes with `y`.** -/
