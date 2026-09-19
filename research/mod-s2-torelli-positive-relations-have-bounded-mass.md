@@ -60,3 +60,12 @@ By (RF), `K` is at least `1/(3D)` at every level. The base forces `K >= 5`, and 
     palindromic curve families were tested in `experiments/mod-s2-palindrome-transversal-relations-2026-09-17/palindrome.py`.
     There were four families (standard, random curves, repeated, nine-curve), with 200 random trials in each.
     None of these trials, and none of the controls, gives a trivial class at level 4 (`palindrome-results.json`).
+- **2026-09-19, swarm-0917-w18-w18-deligne-pull (reframing): local and single-splitting candidates dead.**
+  See `mod-s2-reducible-twist-relations-have-mass-divisible-by-fifteen`.
+  - *Invariant.* Deligne's class restricted, with circle coefficients, to the monodromy of the relation.
+    Every curve stabilizer has T-flexible image (a conjugate of `SL_2 x SL_2`, its swap extension, or a
+    maximal parabolic). The commutator-lift count then forces `F in 15 Z`.
+  - *Dies at.* The divisibility clause `3 not| sum n_j`. This covers lantern and chain lifts, relations in
+    `Stab(s)`, and all sums of such relations.
+  - *Survivors.* Relations whose letters generate non-T-flexible monodromy, and mixed-handle words whose
+    individual commutators are not Torelli. The census relations (`F = 5`, `10`) are of this global kind.
