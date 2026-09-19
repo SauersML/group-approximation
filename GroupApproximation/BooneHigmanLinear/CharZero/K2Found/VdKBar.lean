@@ -115,7 +115,7 @@ theorem basicRow_single_apply_self (r p q : I) : basicRow (Pi.single r (1 : A)) 
     · simp [hq, hp, Ne.symm hq]
     · simp [hp, hq, Ne.symm hp, Ne.symm hq]
 
-theorem single_eq_smul_one (q : I) (b : A) : Pi.single q b = b • Pi.single q (1 : A) := by
+theorem single_eq_smul_one (q : I) (b : A) : (Pi.single q b : I → A) = b • Pi.single q (1 : A) := by
   rw [← Pi.single_smul', smul_eq_mul, mul_one]
 
 theorem add_single_apply_self (i : I → A) (p : I) (b : A) : (i + Pi.single p b) p = i p + b := by

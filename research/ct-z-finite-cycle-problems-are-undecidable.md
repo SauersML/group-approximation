@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/gq-bh-bh-free-58-kari-ollinger-source.md
 ---
 
-**ESTABLISHED** (lane proof; referee PASS on 2026-09-18, conditional on the published theorems of Kari–Ollinger; see Referee).
+**ESTABLISHED** (lane proof; referee PASS 2026-09-18 and second referee PASS bh-ref-q11 2026-09-19, both conditional on the published theorems of Kari–Ollinger; see Referee).
 
 - **Inputs.**
   - Kari–Ollinger, MFCS 2008, Theorems 3 and 6, read at source (see the artifact). They
@@ -236,3 +236,45 @@ Theorems 3 and 6, used exactly as printed.
      HTML confirms.
    - arXiv:2604.12553 is about horizontal class transpositions.
    - Boege, arXiv:1612.05136, concerns single recursive permutations, not this problem.
+
+## Second referee (bh-ref-q11, 2026-09-19): PASS, conditional on Kari–Ollinger Theorems 3 and 6
+
+**The problem text.** Kourovka Notebook arXiv:1401.0300v46, 21.74 (S. Kohl), read at source:
+"Is it algorithmically decidable whether a given element g ∈ CT(Z) (a) permutes a nontrivial partition of Z into residue classes? (b) has only finite cycles? (c) has no finite cycles?"
+- There is no comment and no asterisk. Parts (b) and (c) are exactly what the Theorem answers.
+
+**The reduction, checked independently.**
+- **Claim 1.** The three domains (`Conf ∖ Halt`, `Halt ∪` forward rays, backward rays) and their images (`Conf ∖ Init`, forward rays, backward rays `∪ Init`) each partition `X`, for each fixed sign and cofactor `w`. So `f` is a bijection.
+- **Finite cycles.**
+  - Backward rays are entered only from backward rays, with `e_11` decreasing, and forward rays are absorbing.
+  - So every finite cycle lies in `Conf ∖ Halt`, where `f = G`. Every configuration has a code.
+- **Claim 2.** Each denominator of `λ_c` (a power of `7^(s−t)`, or `3`, `5`, `11`) divides both `n` and `L`, hence `c`. With `0 ≤ c < L` and `λ_c > 0`, the class map `c + Lk ↦ λ_c c + λ_c L k` is canonical.
+- **`F_M = s_2 s_1`.**
+  - `c(L) ⊆ X` is odd and `2c(2L)` is even, and the `f(c(L))` partition `X`. So `s_1 = (n ↔ 2n)` and `s_2 = (2n ↔ f(n))` are products of disjoint class transpositions.
+  - `F_M = f` on `X`, `2f^(−1)(·/2)` on `2X`, and the identity elsewhere.
+- **Part 1.** If every configuration is periodic, then `Halt = Init = ∅` and all orbits are finite. Otherwise, by Claim 1, the code of a non-periodic configuration has an infinite orbit.
+- **Part 2.** The conjugates `ψ_j` of `ψ` onto the classes `j(L′) ⊆ Y` are words in class transpositions: `τ_(r_1(m_1), r_2(m_2))` conjugates to `τ_((j+L′r_1)(L′m_1), (j+L′r_2)(L′m_2))`. They have no finite cycles, and they act as the identity on `X ∪ 2X`. So `H_M` has a finite cycle iff `f` does.
+
+**The external input.** Kari–Ollinger's inputs rest on Morita, TCS 168 (1996).
+- I read Morita's own restatement with proofs: *Theory of Reversible Computing* (Springer 2017), Ch. 9, Lemmas 9.3–9.7 and Thm 9.2, citing [15] = TCS 168. It was fetched via MSI and is stored at `gq/src/bh-ref-q11/morita-book-ch9.pdf`, md5 096f5ac6….
+- This supports KO Theorem 1 and the complete-3-RCM clause of Theorem 6.
+- The 2-RCM clause of Theorem 6 ("the 3→2 conversion preserves periodic orbits") is not visible in Morita's Lemma 9.7, which concerns Gödel-encoded start configurations only. So I agree with the first referee: (c) is safest via the complete-3-RCM clause with a third prime (`17`), i.e. in `CT_(P∪{17})(Z)`.
+- (b) uses Theorem 3 as printed.
+
+**Flag, per the coordinator.** The bh-free-58 hand-off `gq-bh-bh-free-58-kourovka-state-2026-09-19` lists 06eb299b0 correctly as **PASS** (e2b397604f). What is still **unreviewed** is `ct-z-orbit-transversal-dichotomy-is-collatz-hard` (7b84a747f).
+- The PASSes of 06eb299b0 and bc9e6452b import its items 1–2 (`ν_(G_T)(N) = o(N)`; orbits of `G_T` correspond to 3x+1 components).
+- It should be refereed next.
+
+**Prior-solution check (bh-ref-q11, 2026-09-19).** None found. So this node is a new result, not an independent rediscovery.
+- **Kourovka Notebook** arXiv:1401.0300v46 (1 Sep 2026, the latest edition). 21.73 and 21.74 (S. Kohl, 21st issue) have no asterisk and no comment. The Archive of Solved Problems does not list them.
+- **arXiv.** All papers with "class transposition(s)" or "residue-class-wise" in the abstract: 2401.15642, 2409.13341, 2504.08595, 2604.12553 and 2607.17477 (which solves other Kourovka problems). None treats conjugacy, cycles or undecidability in `CT(Z)`.
+- **Kohl's papers.**
+  - Math. Z. 264 (2010) introduces `CT(Z)`.
+  - J. Group Theory 20 (2017) gives the Collatz groups `G_C` and `G_T`.
+  - The RCWA manual: its "respected partitions" and tameness are a different question.
+  - None of these decides 21.73 or 21.74(b),(c).
+- **Belk–Bleak–Matucci–Zaremsky.** Neither the survey (arXiv:2306.16356v3, full text searched) nor BBMZ mentions `CT(Z)` or RCWA groups.
+- **The nearest precedents,** to be credited as analogues:
+  - Salo (arXiv:2011.07827), conjugacy in `2V`;
+  - Belk–Bleak (arXiv:1405.0982), undecidability results for `2V`;
+  - Kari–Ollinger 2008 and Morita 1996 for the machine inputs.

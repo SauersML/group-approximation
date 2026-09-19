@@ -5,7 +5,7 @@ kind: claim
 title: The square of Ledrappier's shift is a quantum-rigid zero-entropy Z^2-SFT whose automorphism group contains GL_2 of its endomorphism ring, hence F_2, all Haar-preserving; it is never minimal or free, but every closed invariant subset inherits rigidity, so target T1 is exactly an F_2-invariant, free, minimal, uniquely ergodic subset of an algebraic rigid row
 requires:
   - ledrappier-crossed-product-is-finitely-presented
-  - quantum-rigidity-is-product-stable
+  - permutive-triangle-sfts-are-quantum-rigid
   - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
   - group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp
   - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
@@ -43,8 +43,12 @@ priority is claimed for it.
    automorphisms and so preserve Haar measure. `GL_2(F_2[s]) ≤ GL_2(A)` contains a free group `F ≅ F_2`
    (Nagao, recalled).
 2. **Rigidity.** `X_L^2` is quantum rigid at every scale:
-   - Ledrappier's shift is rigid (`ledrappier-crossed-product-is-finitely-presented`);
-   - rigidity is product-stable (`quantum-rigidity-is-product-stable`).
+   - `X_L^2`, the **diagonal** self-product over `Z^2` with alphabet `F_2^2`, is itself triangle-permutive:
+     each coordinate satisfies `x(z + e_2) = x(z) + x(z + e_1)`, so every pair of points of
+     `{0, e_1, e_2}` determines the third;
+   - so it is rigid by `permutive-triangle-sfts-are-quantum-rigid`. (Corrected 2026-09-19, per
+     bh-ref-t0: `quantum-rigidity-is-product-stable` concerns products over `Λ_1 × Λ_2` and does not
+     apply to the diagonal product.)
 
    It has zero entropy. Its time lift over `F × Z^2` is rigid and measure-preserving, and its acting
    group is non-amenable, so the action is not topologically amenable. It is **not minimal and not free**,
@@ -61,11 +65,12 @@ priority is claimed for it.
    (RA_free) concerns subshifts, not SFTs, so such an `M` is admissible. Its time lift over `F × Z^2` is
    then a minimal, free, rigid subshift with an invariant measure. That refutes (RA_free), by item 1 of
    `ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows`.
-   - *Caveat.* That node's time-lift transfer is stated for SFT rows. The proof reads the row only through
-     patterns forbidden at scale `D`, so it should apply to subshifts, but this is not checked.
+   - *Caveat, resolved.* That node's time-lift transfer is stated for SFT rows. bh-ref-t0 (ba95be4ac)
+     confirmed that it applies to subshift rows.
 4. **Where `M` cannot come from.** By `profinite-skew-layers-collapse-into-the-equicontinuous-factor`
    and the squeeze nodes:
-   - `M` must have infinite fibres over its maximal equicontinuous factor;
+   - **every** fibre of `M` over its maximal equicontinuous factor must be infinite (repaired wording,
+     bh-ref-t0 ba95be4ac). If one fibre were finite, the fibre-preserving automorphisms would be finite;
    - hierarchical (Toeplitz, or Pascal-adic self-similar) minimal subsets collapse, so `F` would act on
      them through an abelian group.
 
@@ -114,3 +119,13 @@ and only minimality is hard.**
   non-profinite almost periodic structure inside an algebraic system.
 
 This is the sharpest form yet of bh-star-b's observation that "minimal carries the whole content of (RA)".
+
+## Scope (added 2026-09-19, per bh-ref-t0)
+
+- On main, rigidity ⇒ finite presentation is proved **only for SFTs**. A subset `M ⊆ X_L^2` meeting (i)–(iii)
+  that is not an SFT would refute (RA_free). It would **not** by itself yield a finitely presented group for
+  Boone–Higman.
+- If such an `M` is found, the next check is whether it can be chosen **sofic or of finite type**.
+- The subset question is now the open crux `char-2-benoist-quint-for-free-groups-on-ledrappier-rows`. The
+  literature check found no positive-characteristic Benoist–Quint theorem, so the algebraic route to T1 is
+  neither dead nor alive.
