@@ -168,6 +168,7 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-stw-x1.json",  # the two STW Problem X(1) theorems
     "Palomar/comparator-stw-xxii.json",  # the two STW Problem XXII theorems
     "Palomar/comparator-blanchard-toeplitz.json",  # the Blanchard Question 5.4 theorem
+    "Palomar/comparator-boone-higman.json",  # Boone-Higman stage 1: Kourovka 14.10(c), 17.59, Kohl
 )
 
 # Configurations whose SOLUTION is still a skeleton: it proves each theorem its
@@ -200,7 +201,6 @@ PALOMAR_CONFIGS = (
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
     "Palomar/comparator-metabelian-boone-higman.json",  # BBMZ 5.3(7), two theorems
-    "Palomar/comparator-boone-higman.json",  # the Boone-Higman megasubmission (WIP)
 )
 
 # The configuration(s) `formalization.yaml` currently describes.  A Palomar
@@ -210,8 +210,8 @@ PALOMAR_PENDING_CONFIGS = (
 # any other configuration may.  To submit another configuration, rewrite the
 # metadata for it and move it here.
 #
-# The metadata may describe a PENDING configuration (a work-in-progress record,
-# by the user's decision of 2026-09-18 for the Boone-Higman megasubmission).
+# The metadata may describe a PENDING configuration (a work-in-progress record; the
+# Boone-Higman megasubmission was one from 2026-09-18 until its stage 1 was proved).
 # Then `status.main_results` must publish nothing at all: a row asserts a
 # proved result, and a pending solution still carries hypotheses.
 PALOMAR_METADATA_CONFIGS = (
@@ -953,20 +953,20 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`blanchard_question_5_4`: the compared signature diverges"),
     ("blanchard comparator permitting a fourth axiom",
      "Palomar/comparator-blanchard-toeplitz.json: permitted_axioms"),
-    # The pending Boone-Higman megasubmission surface.
+    # The Boone-Higman stage 1 surface.
     ("boone-higman challenge with a project-local import",
      "Palomar/BooneHigmanChallenge.lean:1:"),
     ("boone-higman shared block edited on one side",
      "Palomar/comparator-boone-higman.json: shared block diverges"),
-    ("boone-higman solution missing an `_of` form",
-     "does not declare `kourovka_17_59_of`"),
+    ("boone-higman signature edited on one side",
+     "`kourovka_17_59`: the compared signature diverges"),
     ("boone-higman comparator permitting a fourth axiom",
      "Palomar/comparator-boone-higman.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
     ("pending result published in the metadata",
-     "for the pending Palomar/comparator-boone-higman.json"),
+     "for the pending Palomar/comparator-metabelian-boone-higman.json"),
     ("foreign result published in the metadata",
      "but the metadata describes Palomar/comparator-boone-higman.json only"),
 )
@@ -1148,28 +1148,27 @@ def plant(name: str, root: Path) -> None:
     elif name == "boone-higman shared block edited on one side":
         path = root / "Palomar" / "BooneHigmanSolution.lean"
         path.write_text(path.read_text().replace(
-            "def mixedIdentities (G : Type) [Group G] (n : ℕ) :",
-            "def mixedIdentities' (G : Type) [Group G] (n : ℕ) :", 1))
-    elif name == "boone-higman solution missing an `_of` form":
+            "def classTranspositionGroup : Subgroup (Equiv.Perm ℤ) :=",
+            "def classTranspositionGroup' : Subgroup (Equiv.Perm ℤ) :=", 1))
+    elif name == "boone-higman signature edited on one side":
         path = root / "Palomar" / "BooneHigmanSolution.lean"
         path.write_text(path.read_text().replace(
-            "theorem kourovka_17_59_of",
-            "theorem kourovka_17_59_renamed", 1))
+            "theorem kourovka_17_59 :",
+            "theorem kourovka_17_59 : True →", 1))
     elif name == "boone-higman comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-boone-higman.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "pending result published in the metadata":
         _edit_metadata(root,
-                       "  main_results: []\n",
+                       "  main_results:\n",
                        "  main_results:\n"
-                       "    - declaration: BooneHigman.kourovka_17_59\n"
-                       "      file: Palomar/BooneHigmanSolution.lean\n"
-                       "      sorry_count: 0\n"
-                       "      axioms: [propext, Classical.choice, Quot.sound]\n"
-                       "      comparator_config: Palomar/comparator-boone-higman.json\n")
+                       "    - declaration: MetabelianBooneHigman."
+                       "finitely_presented_metabelian_embeds_in_finitely_presented_simple\n"
+                       "      file: Palomar/MetabelianBooneHigmanSolution.lean\n"
+                       "      comparator_config: Palomar/comparator-metabelian-boone-higman.json\n")
     elif name == "foreign result published in the metadata":
         _edit_metadata(root,
-                       "  main_results: []\n",
+                       "  main_results:\n",
                        "  main_results:\n"
                        "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n"
                        "      file: Palomar/Pestov91Solution.lean\n"

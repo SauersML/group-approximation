@@ -128,3 +128,25 @@ A no here gives a no to Zaremsky 2.19(c), through
       decidable language.
     - NO for product hosts: show that no product-coloured realization exists, for any `N`.
     - NO in general: handle non-product commuting families as well.
+- 2026-09-19 (swarm-0917-w17-w17-z-break, host-geometry, unreviewed): **the fibred-tower class
+  is dead.** See `cantor-wreath-distortion-descends-to-fibre-or-base` and
+  `fibred-v-towers-in-brin-thompson-groups-are-distortion-free`.
+  - *Class.* Every host built from subgroups of `V` using subgroups, products, and continuous
+    wreaths `C(X,Γ) ⋊ W` over compact `W`-spaces. This includes the towers
+    `T_{j+1} = C(C,T_j) ⋊ V ≤ (j+1)V` of `cantor-maps-by-v-embed-in-next-brin-thompson-group`, at
+    every depth, and cocycle (Kaloujnine–Krasner) realizations over a compact base.
+  - *Invariant.* Linear growth of `|g^N|` in every finitely generated subgroup
+    (distortion-freeness).
+  - *Where every member dies.* A word of length `L` in `C(X,Γ) ⋊ W` has fibre values that are
+    words of length `L` in finitely many elements of `Γ`.
+    - If some `c^p` has torsion base image, then `c^{p'}` is a pure fibre map `(h,1)`. Its value
+      at a point `x_0`, where `h(x_0)` has infinite order, is quadratically distorted in the fibre.
+    - Otherwise `π(c)` is quadratically distorted in the base.
+    - The distortion descends to `V`, contradicting `thompson-v-cyclic-subgroups-are-undistorted`.
+  - The same count excludes `BS(1,k)` and the Callard–Salo element from the class. So
+    `T_j ≠ jV` for `j ≥ 2`.
+  - *Transfer form.* If `H_3 ≤ C(X,Γ) ⋊ W`, then `Γ` or `W` already has a `√`-distorted element.
+    Fibring never creates the first Heisenberg group.
+  - *What remains.* A YES must use coordinate-mixing elements that lie in no fibred subgroup, for
+    example RTM or SMART-type elements. This agrees with the product-coloured and `X_ι`
+    realization framing above. The node stays OPEN.
