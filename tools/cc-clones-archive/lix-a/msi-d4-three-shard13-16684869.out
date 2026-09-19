@@ -1,0 +1,24 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=131 words=76 states=29
+carrier=132 words=152 states=65
+carrier=133 words=220 states=73
+carrier=134 words=220 states=83
+carrier=135 words=288 states=100
+carrier=136 words=364 states=114
+carrier=137 words=424 states=114
+carrier=138 words=492 states=114
+carrier=139 words=568 states=137
+carrier=140 words=636 states=137
+distinct_augmented_words=636
+boundary_states=137
+nonempty_q=51
+free_nonempty_q=0
+direct_killed_q=21
+power_killed_q=29
+saturation_killed_q=1
+involution_killed_q=0
+unresolved_q=0

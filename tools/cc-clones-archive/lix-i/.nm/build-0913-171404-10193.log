@@ -1,0 +1,119 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3604 oleans
+[job] acn112 cores=88-95 threads=8 base=d0c0519f6380130bb71792875f9b1864ad423b51 mods: GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval GroupApproximation.Dynamics.RankTwoCoreImageHaagerup
+ℹ [2488/2533] Replayed GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:223:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:224:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:225:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:226:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3644/3693] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4063/4095] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:98:14: 'GroupApproximation.ChainCore.RankTwoLimit.FixedCoreImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:99:14: 'GroupApproximation.ChainCore.RankTwoLimit.PeriodTwoCoreUnitImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:100:14: 'GroupApproximation.ChainCore.RankTwoLimit.CoreRestrictionLocallyFiniteKernelStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:101:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedFixedCoreGLTwoKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:102:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedPeriodTwoCoreUnitsKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:103:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedRankTwoCompressionDefectsTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4089/4162] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:75:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:76:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:77:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4315/4317] Replayed GroupApproximation.Kazhdan.HaagerupFiniteProduct
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:69:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:70:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi_glTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4316/4317] Building GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (18s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.setup.json --json
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:126:9: typeclass instance problem is stuck
+  Semiring (?m.34 1)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Semiring` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:136:42: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a₁ • ?a₂ • ?b
+in the target expression
+  (LaurentPolynomial.T (toAdd (a * b)) • if Even (toAdd (a * b)) then 1 else swapMat (LaurentPolynomial k)) =
+    LaurentPolynomial.T (toAdd a) •
+      LaurentPolynomial.T (toAdd b) •
+        ((if Even (toAdd a) then 1 else swapMat (LaurentPolynomial k)) *
+          if Even (toAdd b) then 1 else swapMat (LaurentPolynomial k))
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+a b : Multiplicative ℤ
+⊢ (LaurentPolynomial.T (toAdd (a * b)) • if Even (toAdd (a * b)) then 1 else swapMat (LaurentPolynomial k)) =
+    LaurentPolynomial.T (toAdd a) •
+      LaurentPolynomial.T (toAdd b) •
+        ((if Even (toAdd a) then 1 else swapMat (LaurentPolynomial k)) *
+          if Even (toAdd b) then 1 else swapMat (LaurentPolynomial k))
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:149:6: typeclass instance problem is stuck
+  Semiring ?m.7
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Semiring` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:175:8: Unknown identifier `laurentSwap_ofAdd`
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:168:81: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+c : ClopenCoeff T k
+n : ℤ
+hev : ∀ (y : X), ((ClopenCoeff.of T k).symm (ofAdd n • c)) y = ((ClopenCoeff.of T k).symm c) (if Even n then y else T y)
+⊢ (coeffPair T k x) (ofAdd n • c) * (laurentSwap k) (ofAdd n) = (laurentSwap k) (ofAdd n) * (coeffPair T k x) c
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:196:23: Unknown identifier `laurentSwap_ofAdd`
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:195:85: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+m : ℤ
+c : ClopenCoeff T k
+⊢ ((coeffPair T k x) c * (laurentSwap k) (ofAdd m)) 0 0 + ((coeffPair T k x) c * (laurentSwap k) (ofAdd m)) 0 1 =
+    LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * LaurentPolynomial.T m
+info: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:228:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:229:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+error: build failed
+EXIT=1

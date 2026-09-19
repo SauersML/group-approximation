@@ -1,0 +1,31 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3173 oleans
+[job] cn1017 cores=slurm threads=8 base=5932d213f6a6d8785045c2c29096786da64fc65b mods: GroupApproximation.Dynamics.ReturnCells
+✖ [1760/1760] Building GroupApproximation.Dynamics.ReturnCells (60s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/Dynamics/ReturnCells.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnCells.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnCells.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnCells.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnCells.setup.json --json
+error: GroupApproximation/Dynamics/ReturnCells.lean:158:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.clopenRestrict_apply`:
+  [Ring k]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Ring k] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Dynamics/ReturnCells.lean:181:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a * ?b
+in the target expression
+  clopenExtendByZero k hC f * LocallyConstant.charFn k hC = clopenExtendByZero k hC f
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+C : Set X
+k : Type u_2
+inst✝ : Ring k
+hC : IsClopen C
+f : LocallyConstant (↑C) k
+⊢ clopenExtendByZero k hC f * LocallyConstant.charFn k hC = clopenExtendByZero k hC f
+info: GroupApproximation/Dynamics/ReturnCells.lean:189:14: 'GroupApproximation.ChainCore.image_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:190:14: 'GroupApproximation.ChainCore.sum_indicator_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:191:14: 'GroupApproximation.ChainCore.clopenExtendByZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ReturnCells
+error: build failed
+EXIT=1

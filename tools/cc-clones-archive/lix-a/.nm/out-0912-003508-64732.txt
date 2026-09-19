@@ -1,0 +1,39 @@
+[job] 00:35:17 acn112 waiting for clone lock
+[job] delta sync fee3cc504..01e539421: 6 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 01e539421 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0912-003508-64732.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2321 oleans
+--- errors (first 80 lines)
+9:✖ [1678/1679] Building GroupApproximation.CharClass.OddPWDiagonal (10s)
+11:error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:15: Unknown constant `Prod.fst_pow`
+12:error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:2: unsolved goals
+16:error: GroupApproximation/CharClass/OddPWDiagonal.lean:76:15: Unknown constant `Prod.snd_pow`
+17:error: GroupApproximation/CharClass/OddPWDiagonal.lean:77:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+25:error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:29: This simp argument is unused:
+32:error: GroupApproximation/CharClass/OddPWDiagonal.lean:177:19: `LinearMap.coeFn_sum` has been deprecated: Use `LinearMap.coe_sum` instead
+33:error: GroupApproximation/CharClass/OddPWDiagonal.lean:198:14: don't know how to synthesize implicit argument `T₁`
+42:error: GroupApproximation/CharClass/OddPWDiagonal.lean:198:7: failed to infer `have` declaration type
+43:error: GroupApproximation/CharClass/OddPWDiagonal.lean:187:82: unsolved goals
+53:error: GroupApproximation/CharClass/OddPWDiagonal.lean:236:14: 'GroupApproximation.CharClass.wdT2_pow_card' depends on axioms outside the classical allowlist: [sorryAx]
+54:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+57:error: GroupApproximation/CharClass/OddPWDiagonal.lean:238:14: 'GroupApproximation.CharClass.psiW_chainMap' depends on axioms outside the classical allowlist: [sorryAx]
+58:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+61:error: Lean exited with code 1
+64:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.OddPWDiagonalRing
+mentioned-not-built GroupApproximation.CharClass.OddPWDiagonal (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPWDiagonalCounit (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersAssembly.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiag.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersStage.lean
+COMPILED GroupApproximation/CharClass/OddPWDiagonalRing.lean
+- GroupApproximation.CharClass.OddPWDiagonal
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

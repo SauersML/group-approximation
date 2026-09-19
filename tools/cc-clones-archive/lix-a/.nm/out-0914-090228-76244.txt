@@ -1,0 +1,26 @@
+[job] 09:02:52 acn112 waiting for clone lock
+[job] delta sync 4b3f40eec..27f2ed182: 19 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 27f2ed182 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-090228-76244.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4109 oleans
+--- errors (first 80 lines)
+16:✖ [10161/10161] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions (20s)
+18:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:195:90: unsolved goals
+41:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:201:75: unsolved goals
+69:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:197:8: This simp argument is unused:
+77:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:208:61: This simp argument is unused:
+90:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:224:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take' depends on axioms outside the classical allowlist: [sorryAx]
+91:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+93:error: Lean exited with code 1
+96:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

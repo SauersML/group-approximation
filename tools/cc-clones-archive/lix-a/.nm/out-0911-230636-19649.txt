@@ -1,0 +1,24 @@
+[job] 23:17:13 acn112 waiting for clone lock
+[job] delta sync b6d871308..553e6ad86: 15 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 553e6ad86 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-230636-19649.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2138 oleans
+--- errors (first 80 lines)
+57:✖ [8743/8743] Building GroupApproximation.Analysis.LIXCor4PowersDiag (30s)
+59:error: GroupApproximation/Analysis/LIXCor4PowersDiag.lean:343:10: Variable name `v` is not explicitly referenced.
+70:error: Lean exited with code 1
+73:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.LIXCor4PowersAssembly
+mentioned-not-built GroupApproximation.Analysis.LIXCor4PowersDiag (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersAssembly.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersStage.lean
+- GroupApproximation.Analysis.LIXCor4PowersDiag
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

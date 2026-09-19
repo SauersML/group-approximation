@@ -1,0 +1,40 @@
+[job] 08:48:25 acn72 waiting for clone lock
+[job] delta sync 4fcbe5051..d1608fe00: 35 files changed
+===== SUMMARY
+host acn72 cores slurm base d1608fe00 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0914-084627-6800.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3617 oleans
+--- errors (first 80 lines)
+17:✖ [5076/5078] Building GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel (12s)
+19:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:39:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+27:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:44:8: failed to synthesize instance of type class
+31:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:49:18: failed to synthesize instance of type class
+35:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:48:51: unsolved goals
+37:error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:64:14: 'GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel.not_card_starts_add_two_mul_le_oneEdge' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: Lean exited with code 1
+41:✖ [5077/5078] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions (18s)
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:121:13: unexpected token 'by'; expected '{' or tactic
+44:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:108:10: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+45:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:119:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+82:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:86:92: unsolved goals
+99:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:190:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+106:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:218:7: Unknown constant `List.mem_of_ne_nil_of_mem`
+107:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:247:2: omega could not prove the goal:
+124:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:253:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_cuttingTransitions_le_sameFaceStarts' depends on axioms outside the classical allowlist: [sorryAx]
+125:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+127:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:254:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le' depends on axioms outside the classical allowlist: [sorryAx]
+128:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+130:error: Lean exited with code 1
+134:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

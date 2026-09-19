@@ -1,0 +1,82 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+[job] acn112 cores=64-71 threads=8 base=a51d90dda05dde6993ba2619251c0d7bfcdf9f5c mods: GroupApproximation.Algebra.FinitaryGeneralLinear
+✖ [1194/1194] Building GroupApproximation.Algebra.FinitaryGeneralLinear (9.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Algebra/FinitaryGeneralLinear.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.setup.json --json
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:89:8: Application type mismatch: The argument
+  Finset.mem_image_of_mem Prod.snd ((Set.Finite.mem_toFinset hA).mpr ?m.157)
+has type
+  ?m.154.2 ∈ Finset.image Prod.snd (Set.Finite.toFinset hA)
+but is expected to have type
+  j ∈ Finset.image Prod.snd (Set.Finite.toFinset hA)
+in the application
+  Finset.mem_union_right (Finset.image Prod.fst (Set.Finite.toFinset hA))
+    (Finset.mem_image_of_mem Prod.snd ((Set.Finite.mem_toFinset hA).mpr ?m.157))
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:220:6: `noncomm_ring` simp lemmas don't apply; try `abel` instead
+k : Type u_1
+inst✝ : CommRing k
+a b : LinearMap.GeneralLinearGroup k (ℤ →₀ k)
+ha : a ∈ {g | HasFiniteMatrixSupport k (↑g - 1)}
+hb : b ∈ {g | HasFiniteMatrixSupport k (↑g - 1)}
+S : Finset ℤ
+hS : SupportedIn k S (↑a - 1)
+S' : Finset ℤ
+hS' : SupportedIn k S' (↑b - 1)
+⊢ ↑a * ↑b - 1 = (↑a - 1) * (↑b - 1) + (↑a - 1) + (↑b - 1)
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:211:14: unsolved goals
+k : Type u_1
+inst✝ : CommRing k
+a b : LinearMap.GeneralLinearGroup k (ℤ →₀ k)
+ha : a ∈ {g | HasFiniteMatrixSupport k (↑g - 1)}
+hb : b ∈ {g | HasFiniteMatrixSupport k (↑g - 1)}
+S : Finset ℤ
+hS : SupportedIn k S (↑a - 1)
+S' : Finset ℤ
+hS' : SupportedIn k S' (↑b - 1)
+e : ↑(a * b) - 1 = (↑a - 1) * (↑b - 1) + (↑a - 1) + (↑b - 1)
+⊢ SupportedIn k (S ∪ S') ((↑a - 1) * (↑b - 1) + (↑a - 1) + (↑b - 1))
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:209:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a - ?a
+in the target expression
+  HasFiniteMatrixSupport k (1 - 1)
+
+k : Type u_1
+inst✝ : CommRing k
+⊢ HasFiniteMatrixSupport k (1 - 1)
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:252:2: Invalid alternative name `hz`: Expected `zero`, `succ`, or `pred`
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:253:2: Invalid alternative name `hp`: Expected `zero`, `succ`, or `pred`
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:257:2: Invalid alternative name `hn`: Expected `zero`, `succ`, or `pred`
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `zero` has not been provided
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `succ` has not been provided
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `pred` has not been provided
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:283:48: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a * (?b - ?c)
+in the target expression
+  ↑(shiftGL k ^ n) * ↑g * ↑(shiftGL k ^ n)⁻¹ - 1 = ↑(shiftGL k ^ n) * (↑g - 1) * ↑(shiftGL k ^ n)⁻¹
+
+k : Type u_1
+inst✝ : CommRing k
+n : ℤ
+g : LinearMap.GeneralLinearGroup k (ℤ →₀ k)
+hg : g ∈ GLfin k
+hD : HasFiniteMatrixSupport k (↑g - 1)
+⊢ ↑(shiftGL k ^ n) * ↑g * ↑(shiftGL k ^ n)⁻¹ - 1 = ↑(shiftGL k ^ n) * (↑g - 1) * ↑(shiftGL k ^ n)⁻¹
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:293:9: Invalid projection: Projections cannot be used on functions, and
+  Set.mem_image
+has function type
+  ∀ (f : ?m.318 → ?m.319) (s : Set ?m.318) (y : ?m.319), y ∈ f '' s ↔ ∃ x ∈ s, f x = y
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:294:2: No goals to be solved
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:342:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:343:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:344:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:345:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1

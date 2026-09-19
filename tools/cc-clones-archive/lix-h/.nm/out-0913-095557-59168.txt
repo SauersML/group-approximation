@@ -1,0 +1,34 @@
+[job] 09:56:01 acn112 waiting for clone lock
+[job] delta sync 97a6dbe03..8f0f73966: 40 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 8f0f73966 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-095557-59168.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3076 oleans
+--- errors (first 80 lines)
+6:✖ [4990/4990] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (10s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:177:53: Function expected at
+15:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:178:10: No goals to be solved
+16:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:197:79: Function expected at
+34:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:449:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eqvGen_of_faceOf_eq_cell' depends on axioms outside the classical allowlist: [sorryAx]
+35:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+37:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:451:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_of_sameCycle_collapsed' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:452:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eq_of_holdsCellAtO' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+49:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:458:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.exists_holdsCellAtO_of_not_mem' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+58:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:462:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.card_add_three_mul_le' depends on axioms outside the classical allowlist: [sorryAx]
+59:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+61:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:463:14: 'GroupApproximation.GGT.VanKampen.cellFaceCountInput' depends on axioms outside the classical allowlist: [sorryAx]
+62:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+64:error: Lean exited with code 1
+67:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/IntroLimitingTraceSentence.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

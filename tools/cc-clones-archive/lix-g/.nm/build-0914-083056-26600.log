@@ -1,0 +1,259 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3657 oleans
+[job] acn112 cores=72-79 threads=8 base=d5d1b9db7ac0204c5930062907bc69974b0a586d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonGapFaces GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan
+ℹ [3299/3414] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10088/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:186:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_weight_le_of_card_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:187:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_cons_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:188:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10089/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscMerge
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:269:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.ofPocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:270:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:271:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:272:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:273:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry_targetArc_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:274:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10106/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:179:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_pair_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:180:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_zeroCellPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:181:14: 'GroupApproximation.GGT.VanKampen.ZeroCellPocketMergeStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:182:21: 'GroupApproximation.GGT.VanKampen.zeroCellPocketMerge' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10185/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:198:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.targetArc_end_le_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:199:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:200:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10186/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellAbsorbed
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:512:14: 'GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.subset_or_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:513:14: 'GroupApproximation.GGT.VanKampen.RealizedRegionFamily.subset_of_not_disjoint_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:514:21: 'GroupApproximation.GGT.VanKampen.pocketMeetsContained' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:515:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_absorbed_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:516:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:517:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10187/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:127:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.outerFace_not_mem_sideFaces_of_noncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:128:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossing_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:129:21: 'GroupApproximation.GGT.VanKampen.pocketKeptCellNoncrossing' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10210/10211] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonGapFaces (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:434:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_pow_of_firstReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:435:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_outerGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:436:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.getElem?_darts_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:437:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_cellGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:438:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_targetSpan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10211/10211] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:128:8: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => ↑target.start + target.length ≤ _a
+Error: Application type mismatch: The argument
+  target.start
+has type
+  Fin ((targetDarts S.diagram none).length + 1)
+but is expected to have type
+  Fin (_a + 1)
+in the application
+  ↑target.start
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+W : Set (List (RelLetter G Lambda))
+hspan : TwoGonEulerSpanInput D lambda c eps W
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+hlea : Delta.LeastArea
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+hloops : S.NoLoops
+hmulti : S.NoMultipleEdges
+a₀ : RegionCandidate D eps S.diagram
+ha₀ : a₀ ∈ S.family
+hat : a₀.snd.target = none
+P : RegionCandidate.ExtPhiData S.family (RegionCandidate.linkedComponentO S.family a₀)
+f : (RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).Face
+hf : (RegionCandidate.phiSubdividedMultigraphO P).IsTwoGon f
+hcorner : ¬RegionCandidate.GapAtOHoldsCorner cuts S.family (RegionCandidate.linkedComponentO S.family a₀) f
+hcell : ¬RegionCandidate.HoldsCellO S.family (RegionCandidate.linkedComponentO S.family a₀) f
+y : (RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).Dart
+hy : RegionCandidate.phiCellSideO y = true
+hyf : (RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).faceOf y = f
+hnone : (RegionCandidate.phiRegionO y).sideCellO (RegionCandidate.phiSideO y) = none
+h4 :
+  (RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+        ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+          ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm y))) =
+    y
+j : Fin cuts.count
+hya : RegionCandidate.phiRegionO y ∈ RegionCandidate.exteriorAt S.family (RegionCandidate.phiRegionO y).snd.source
+hyb :
+  RegionCandidate.phiRegionO
+      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+        ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm y)) ∈
+    RegionCandidate.exteriorAt S.family (RegionCandidate.phiRegionO y).snd.source
+hab :
+  RegionCandidate.phiRegionO y ≠
+    RegionCandidate.phiRegionO
+      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+        ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm y))
+hja : RegionCandidate.TargetsSectionIndex cuts j (RegionCandidate.phiRegionO y)
+hjb :
+  RegionCandidate.TargetsSectionIndex cuts j
+    (RegionCandidate.phiRegionO
+      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+        ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm y)))
+horder :
+  ↑(RegionCandidate.phiRegionO y).snd.targetArc.start + (RegionCandidate.phiRegionO y).snd.targetArc.length ≤
+    ↑(RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.targetArc.start
+source : CyclicArc (cellDarts S.diagram (RegionCandidate.phiRegionO y).snd.source)
+target : CyclicArc (targetDarts S.diagram none)
+hw :
+  IsNoncrossingClosedWalk S.diagram.toCombMap
+    (source.reverseDarts ++ (RegionCandidate.phiRegionO y).snd.rightSide ++ target.darts ++
+      (RegionCandidate.phiRegionO
+            ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                y))).snd.leftSide)
+heuler :
+  (reclosedMap S.diagram.toCombMap
+          (sideFaces S.diagram.toCombMap
+            (source.reverseDarts ++ (RegionCandidate.phiRegionO y).snd.rightSide ++ target.darts ++
+              (RegionCandidate.phiRegionO
+                    ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                        y))).snd.leftSide))
+          (hw.innerCycle ⋯)).eulerCharacteristic =
+      S.diagram.toCombMap.eulerCharacteristic ∧
+    (reclosedMap S.diagram.toCombMap
+          (sideOutside S.diagram.toCombMap
+            (source.reverseDarts ++ (RegionCandidate.phiRegionO y).snd.rightSide ++ target.darts ++
+              (RegionCandidate.phiRegionO
+                    ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                        y))).snd.leftSide))
+          (hw.outerCycle ⋯)).eulerCharacteristic =
+      S.diagram.toCombMap.eulerCharacteristic
+gap : CyclicArc (cellDarts S.diagram (RegionCandidate.phiRegionO y).snd.source)
+hgap :
+  source.darts =
+    (RegionCandidate.phiRegionO y).snd.sourceArc.darts ++ gap.darts ++
+      (RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.sourceArc.darts
+hstart : ↑target.start = ↑(RegionCandidate.phiRegionO y).snd.targetArc.start
+hend :
+  ↑target.start + target.length =
+    ↑(RegionCandidate.phiRegionO
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                    y))).snd.targetArc.start +
+      (RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.targetArc.length
+H :
+  RegionCandidate.TwoGonClassHyp S.family (RegionCandidate.linkedComponentO S.family a₀) (↑y)
+    (RegionCandidate.phiRegionO y)
+    (RegionCandidate.phiRegionO
+      ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+        ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm y)))
+    (RegionCandidate.phiRegionO y).snd.source
+hnondegA :
+  0 < (RegionCandidate.phiRegionO y).snd.sourceArc.length ∧ 0 < (RegionCandidate.phiRegionO y).snd.targetArc.length
+hnondegB :
+  0 <
+      (RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.sourceArc.length ∧
+    0 <
+      (RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.targetArc.length
+hlen :
+  source.length =
+    (RegionCandidate.phiRegionO y).snd.sourceArc.length + gap.length +
+      (RegionCandidate.phiRegionO
+              ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                ((RegionCandidate.phiMapO S.family (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+                  y))).snd.sourceArc.length
+hL : (S.diagram.faceBoundary S.diagram.outerFace).darts.length = Delta.boundaryWord.length
+hbound :
+  ∀ x ∈ RegionCandidate.linkedComponentO S.family a₀,
+    x.snd.target = none →
+      ↑x.snd.targetArc.start + x.snd.targetArc.length ≤ (S.diagram.faceBoundary S.diagram.outerFace).darts.length
+hLo : (targetDarts S.diagram none).length = Delta.boundaryWord.length
+⊢ ↑target.start + target.length ≤ (targetDarts S.diagram none).length
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:200:14: 'GroupApproximation.GGT.VanKampen.TwoGonEulerSpanInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:201:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_eulerSpan' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan
+error: build failed
+EXIT=1

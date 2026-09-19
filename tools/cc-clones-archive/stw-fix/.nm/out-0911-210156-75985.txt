@@ -1,0 +1,33 @@
+[job] 21:02:03 acn112 waiting for clone lock
+[job] delta sync 3a912e98f..38172e61d: 18 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 38172e61d log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-210156-75985.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4750 oleans
+--- errors (first 80 lines)
+104:✖ [4639/4641] Building GroupApproximation.GGT.HullSCUnconeLemmaB (30s)
+106:error: GroupApproximation/GGT/HullSCUnconeLemmaB.lean:101:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+117:error: Lean exited with code 1
+120:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullSCUnconeLemmaA
+BUILT GroupApproximation.GGT.HullSCUnconeWalk
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaB (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeThin (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaA.lean
+COMPILED GroupApproximation/GGT/HullSCUnconePathPoints.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeWalk.lean
+- GroupApproximation.GGT.HullSCUnconeLemmaB
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

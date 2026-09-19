@@ -1,0 +1,751 @@
+purged 137 stale artifact sets (source-newer=23, import-newer=114) of 4877 oleans
+[job] acn112 cores=80-87 threads=8 base=23f99b77fd6423c80bbb6c0063edff31d0cc6bec mods: GroupApproximation.GGT.HullSCCyclicPeripheralRemoval GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator GroupApproximation.GGT.HullSCUnconeExpansion GroupApproximation.GGT.HullSCUnconeClosingJump GroupApproximation.GGT.HullSCUnconeCosetAvoidance GroupApproximation.GGT.HullSCUnconeTriangleConnectors GroupApproximation.GGT.HullSCUnconePathPoints GroupApproximation.GGT.HullSCUnconeCosetCoordinates GroupApproximation.GGT.HullSCUnconeLemmaA GroupApproximation.GGT.HullSCUnconeWalk GroupApproximation.GGT.HullSCUnconeLemmaB GroupApproximation.GGT.HullSCUnconeSides GroupApproximation.GGT.HullSCUnconeThin
+ℹ [2844/2891] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3378/3402] Replayed GroupApproximation.Sofic.HullSuitabilityGeometry
+info: GroupApproximation/Sofic/HullSuitabilityGeometry.lean:2057:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3827/3905] Replayed GroupApproximation.Analysis.MFAlgebra
+info: GroupApproximation/Analysis/MFAlgebra.lean:267:14: 'GroupApproximation.isCDEOperatorMF_of_faithful_corona_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4698/4745] Replayed GroupApproximation.Manuscript.NonMF.FreeCommutatorWitness
+info: GroupApproximation/Manuscript/NonMF/FreeCommutatorWitness.lean:90:21: 'GroupApproximation.Manuscript.NonMF.TheoremC.freeCommutatorWitness_package' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9802/9952] Replayed GroupApproximation.GGT.HullSCRelativeExteriorArcConversion
+info: GroupApproximation/GGT/HullSCRelativeExteriorArcConversion.lean:96:21: 'GroupApproximation.HullSC.relativeExteriorArcConversionAtWordRotatedStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9850/10000] Replayed GroupApproximation.GGT.DGOLemma421Proof
+info: GroupApproximation/GGT/DGOLemma421Proof.lean:3477:14: 'GroupApproximation.GGT.OsinComponents.wWord_quasiGeodesic_of_uniformBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9851/10000] Replayed GroupApproximation.GGT.DGOLemma421OccurrenceBounds
+info: GroupApproximation/GGT/DGOLemma421OccurrenceBounds.lean:79:14: 'GroupApproximation.GGT.OsinComponents.peripheralPos_zero_le_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421OccurrenceBounds.lean:80:14: 'GroupApproximation.GGT.OsinComponents.peripheralPos_zero_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421OccurrenceBounds.lean:81:14: 'GroupApproximation.GGT.OsinComponents.peripheralPos_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421OccurrenceBounds.lean:82:14: 'GroupApproximation.GGT.OsinComponents.peripheralOccurrence_pos_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9854/10000] Replayed GroupApproximation.GGT.DGOLemma421MinimalityFourGon
+info: GroupApproximation/GGT/DGOLemma421MinimalityFourGon.lean:121:14: 'GroupApproximation.GGT.OsinComponents.listVal_minimalityFourGon_closes_at' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalityFourGon.lean:122:14: 'GroupApproximation.GGT.OsinComponents.exists_minimalityFourGon_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9855/10000] Replayed GroupApproximation.GGT.DGOLemma421MinimalityConnections
+info: GroupApproximation/GGT/DGOLemma421MinimalityConnections.lean:121:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.source_connection_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalityConnections.lean:122:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.cross_connection_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalityConnections.lean:123:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.connected_source_of_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalityConnections.lean:124:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.connected_source_of_far' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9856/10000] Replayed GroupApproximation.GGT.DGOAssemblySubdivisionGeneral
+info: GroupApproximation/GGT/DGOAssemblySubdivisionGeneral.lean:162:14: 'GroupApproximation.GGT.DGOPolygonCut.exists_balanced_interior_cut_word_quasi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9872/10004] Replayed GroupApproximation.GGT.DGOLemma421LocatedAbsorption
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:115:14: 'GroupApproximation.GGT.OsinComponents.dgoLemma421b_locatedAbsorption_of_uniform414' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:116:14: 'GroupApproximation.GGT.OsinComponents.exists_match_in_window_of_short_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:117:14: 'GroupApproximation.GGT.OsinComponents.DGO421FiniteAbsorptionCertificate.rank_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:118:14: 'GroupApproximation.GGT.OsinComponents.DGO421LocatedAbsorptionCertificate.source_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:119:14: 'GroupApproximation.GGT.OsinComponents.DGO421LocatedAbsorptionCertificate.exists_match_in_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421LocatedAbsorption.lean:120:14: 'GroupApproximation.GGT.OsinComponents.DGO421FiniteAbsorptionCertificate.matched_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9873/10004] Replayed GroupApproximation.GGT.DGOLemma421MatchPositionBounds
+info: GroupApproximation/GGT/DGOLemma421MatchPositionBounds.lean:76:14: 'GroupApproximation.GGT.OsinComponents.target_position_le_of_cosetMatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MatchPositionBounds.lean:77:14: 'GroupApproximation.GGT.OsinComponents.target_position_lt_of_separated_source_matches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9874/10004] Replayed GroupApproximation.GGT.DGOLemma421MinimalityExclusion
+info: GroupApproximation/GGT/DGOLemma421MinimalityExclusion.lean:191:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.exists_opposite_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9875/10004] Replayed GroupApproximation.GGT.DGOLemma421MinimalityInterior
+info: GroupApproximation/GGT/DGOLemma421MinimalityInterior.lean:93:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.opposite_match_internal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalityInterior.lean:94:14: 'GroupApproximation.GGT.OsinComponents.DGO421MinimalityFourGonData.exists_internal_opposite_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9876/10004] Replayed GroupApproximation.GGT.DGOQuasiGeodesicChainHausdorff
+info: GroupApproximation/GGT/DGOQuasiGeodesicChainHausdorff.lean:95:14: 'GroupApproximation.GGT.exists_index_wordDist_eq_of_unit_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOQuasiGeodesicChainHausdorff.lean:96:14: 'GroupApproximation.GGT.exists_index_wordDist_le_of_isBetween_of_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOQuasiGeodesicChainHausdorff.lean:97:14: 'GroupApproximation.GGT.exists_chainAt_hausdorff_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9877/10004] Replayed GroupApproximation.GGT.DGOThinQuadrangleAt
+info: GroupApproximation/GGT/DGOThinQuadrangleAt.lean:98:14: 'GroupApproximation.GGT.exists_quadrangle_chainAt_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/DGOThinQuadrangleAt.lean:99:14: 'GroupApproximation.GGT.exists_quadrangle_chainAt_exempt_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9880/10004] Replayed GroupApproximation.GGT.DGOAssemblyChargeGeneral
+info: GroupApproximation/GGT/DGOAssemblyChargeGeneral.lean:183:14: 'GroupApproximation.GGT.DGOPolygonCut.IsCutPath.arcWord_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOAssemblyChargeGeneral.lean:184:14: 'GroupApproximation.GGT.DGOPolygonCut.quasi_auxiliaryCycleWord_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9889/10026] Replayed GroupApproximation.GGT.DGOLemma421MinimalGap
+info: GroupApproximation/GGT/DGOLemma421MinimalGap.lean:149:14: 'GroupApproximation.GGT.OsinComponents.PeripheralOccurrence.span_not_mem_relBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalGap.lean:150:14: 'GroupApproximation.GGT.OsinComponents.isIsolated_of_isCompStart_of_uniformBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalGap.lean:151:14: 'GroupApproximation.GGT.OsinComponents.cosetMatch_ends_of_starts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalGap.lean:152:14: 'GroupApproximation.GGT.OsinComponents.peripheralOccurrence_rank_lt_of_pos_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MinimalGap.lean:154:14: 'GroupApproximation.GGT.OsinComponents.exists_intermediate_rank_match_of_uniformBounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9890/10026] Replayed GroupApproximation.GGT.DGOLemma421ForwardMatches
+info: GroupApproximation/GGT/DGOLemma421ForwardMatches.lean:86:14: 'GroupApproximation.GGT.OsinComponents.DGO421LocatedAbsorptionCertificate.exists_forward_matches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9891/10026] Replayed GroupApproximation.GGT.DGOLemma421RankInterpolation
+info: GroupApproximation/GGT/DGOLemma421RankInterpolation.lean:182:14: 'GroupApproximation.GGT.OsinComponents.exists_successor_match_of_rank_interpolation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421RankInterpolation.lean:184:14: 'GroupApproximation.GGT.OsinComponents.exists_successor_rank_match_of_uniformBounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421RankInterpolation.lean:186:14: 'GroupApproximation.GGT.OsinComponents.rank_matches_on_interval_of_successors' depends on axioms: [propext, Quot.sound]
+ℹ [9892/10026] Replayed GroupApproximation.GGT.DGOLemma421MatchedInterval
+info: GroupApproximation/GGT/DGOLemma421MatchedInterval.lean:113:14: 'GroupApproximation.GGT.OsinComponents.peripheralOccurrence_eq_of_common_coset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MatchedInterval.lean:114:14: 'GroupApproximation.GGT.OsinComponents.rank_matches_on_interval_of_uniformBounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9893/10026] Replayed GroupApproximation.GGT.DGOLemma421MatchedBlock
+info: GroupApproximation/GGT/DGOLemma421MatchedBlock.lean:127:14: 'GroupApproximation.GGT.OsinComponents.orderedBlockPayload_of_rank_matches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOLemma421MatchedBlock.lean:129:14: 'GroupApproximation.GGT.OsinComponents.orderedBlockPayload_of_forward_matches_of_uniformBounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9894/10026] Replayed GroupApproximation.GGT.DGOQuasiGeodesicFourGonThinness
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonThinness.lean:113:14: 'GroupApproximation.GGT.OsinComponents.exists_quasiGeodesicFourGon_thinness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9895/10026] Replayed GroupApproximation.GGT.DGOQuasiGeodesicFourGonBounds
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonBounds.lean:79:14: 'GroupApproximation.GGT.OsinComponents.QuasiGeodesicFourGon.side_dist_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonBounds.lean:80:14: 'GroupApproximation.GGT.OsinComponents.QuasiGeodesicFourGon.index_gap_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonBounds.lean:81:14: 'GroupApproximation.GGT.OsinComponents.QuasiGeodesicFourGon.index_gap_le_of_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonBounds.lean:82:14: 'GroupApproximation.GGT.OsinComponents.QuasiGeodesicFourGon.metric_offset_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9896/10026] Replayed GroupApproximation.GGT.DGOProposition414SuppliedRadii
+info: GroupApproximation/GGT/DGOProposition414SuppliedRadii.lean:174:14: 'GroupApproximation.GGT.DGOProposition414.TwoHalfDistributedFactorPlacement.exists_witness_of_suppliedRadii' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9906/10065] Replayed GroupApproximation.GGT.DGOLemma421FromUniform414
+info: GroupApproximation/GGT/DGOLemma421FromUniform414.lean:81:14: 'GroupApproximation.GGT.OsinComponents.dgoLemma421b_of_uniform414' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9907/10065] Replayed GroupApproximation.GGT.DGOQuasiGeodesicFourGonNormalise
+info: GroupApproximation/GGT/DGOQuasiGeodesicFourGonNormalise.lean:69:14: 'GroupApproximation.GGT.OsinComponents.QuasiGeodesicFourGon.exists_unit_side_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9908/10065] Replayed GroupApproximation.GGT.DGOShortIsolatingCycleGeneralUnit
+info: GroupApproximation/GGT/DGOShortIsolatingCycleGeneralUnit.lean:212:14: 'GroupApproximation.GGT.OsinComponents.exists_short_isolating_cycleAt_of_unit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9909/10065] Replayed GroupApproximation.GGT.DGOShortIsolatingCycleGeneral
+info: GroupApproximation/GGT/DGOShortIsolatingCycleGeneral.lean:52:14: 'GroupApproximation.GGT.OsinComponents.existsShortIsolatingCycleAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOShortIsolatingCycleGeneral.lean:53:14: 'GroupApproximation.GGT.OsinComponents.exists_isolatedComponentBound_quasiGeodesicFourGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9910/10065] Replayed GroupApproximation.GGT.DGOProposition414GeneralInput
+info: GroupApproximation/GGT/DGOProposition414GeneralInput.lean:170:14: 'GroupApproximation.GGT.DGOProposition414.QuasiSumBoundInput.bookkeeping' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralInput.lean:171:14: 'GroupApproximation.GGT.DGOProposition414.QuasiSumBoundInput.toPolygon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralInput.lean:172:14: 'GroupApproximation.GGT.DGOProposition414.QuasiSumBoundInput.exists_balancedSplitData_quasi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9911/10065] Replayed GroupApproximation.GGT.DGOProposition414GeneralArcQuasi
+info: GroupApproximation/GGT/DGOProposition414GeneralArcQuasi.lean:283:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstArc_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralArcQuasi.lean:284:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondArc_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9912/10065] Replayed GroupApproximation.GGT.DGOIsolatedSingletonLetter
+info: GroupApproximation/GGT/DGOIsolatedSingletonLetter.lean:56:14: 'GroupApproximation.GGT.OsinComponents.eq_of_isolated_singleton_of_connected_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOIsolatedSingletonLetter.lean:57:14: 'GroupApproximation.GGT.OsinComponents.not_connected_of_isolated_singleton_of_isCompOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9933/10085] Replayed GroupApproximation.GGT.DGOProposition414GeneralFinite
+info: GroupApproximation/GGT/DGOProposition414GeneralFinite.lean:144:14: 'GroupApproximation.GGT.DGOProposition414.exists_quasiSumBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralFinite.lean:145:14: 'GroupApproximation.GGT.DGOProposition414.quasiSumBound_quasiSumCost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralFinite.lean:146:14: 'GroupApproximation.GGT.DGOProposition414.exists_extremal_quasiSumBoundInput_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9990/10093] Replayed GroupApproximation.GGT.DGOProposition414GeneralChildren
+info: GroupApproximation/GGT/DGOProposition414GeneralChildren.lean:157:14: 'GroupApproximation.GGT.DGOProposition414.AuxiliaryCycleCertificate.atParameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralChildren.lean:158:14: 'GroupApproximation.GGT.DGOProposition414.AuxiliaryCyclePathInput.certificate_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralChildren.lean:159:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChild_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralChildren.lean:160:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChild_quasi_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9991/10093] Replayed GroupApproximation.GGT.HullSCLemma44BoundedInput
+info: GroupApproximation/GGT/HullSCLemma44BoundedInput.lean:108:14: 'GroupApproximation.HullSC.RelWord.isStronglyBounded_symmetrized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44BoundedInput.lean:109:14: 'GroupApproximation.HullSC.RelWord.IsBoundedLemma44Input.mono_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44BoundedInput.lean:110:14: 'GroupApproximation.HullSC.AuxiliaryPeripheralFamily.exists_stronglyBoundedRelatorPublished_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10010/10093] Replayed GroupApproximation.GGT.DGOProposition414AdjacentPartnerExclusion
+info: GroupApproximation/GGT/DGOProposition414AdjacentPartnerExclusion.lean:130:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChord_not_edge_previous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414AdjacentPartnerExclusion.lean:132:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChord_not_edge_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414AdjacentPartnerExclusion.lean:134:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChord_not_edge_previous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414AdjacentPartnerExclusion.lean:136:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChord_not_edge_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10013/10093] Replayed GroupApproximation.GGT.VanKampen.Estimating.Unbound
+info: GroupApproximation/GGT/VanKampen/Estimating/Unbound.lean:365:40: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [10014/10093] Replayed GroupApproximation.GGT.VanKampen.Estimating.UnboundParameters
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundParameters.lean:85:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.exists_osinUnboundScale_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundParameters.lean:86:21: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.budget_threshold_without_shortening_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10040/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstArcSeparation
+info: GroupApproximation/GGT/DGOProposition414FirstArcSeparation.lean:164:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstArcSeparation.lean:165:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_not_connected_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstArcSeparation.lean:167:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_not_connected_chord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10041/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstArcConnectorSeparation
+info: GroupApproximation/GGT/DGOProposition414FirstArcConnectorSeparation.lean:153:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_not_connected_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstArcConnectorSeparation.lean:154:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_not_connected_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10042/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondArcSeparation
+info: GroupApproximation/GGT/DGOProposition414SecondArcSeparation.lean:161:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondArcSeparation.lean:162:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_not_connected_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondArcSeparation.lean:164:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_not_connected_chord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10043/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondArcConnectorSeparation
+info: GroupApproximation/GGT/DGOProposition414SecondArcConnectorSeparation.lean:153:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_not_connected_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondArcConnectorSeparation.lean:154:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_not_connected_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10044/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondArcIsolation
+info: GroupApproximation/GGT/DGOProposition414SecondArcIsolation.lean:51:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapArcSource_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10045/10093] Replayed GroupApproximation.GGT.DGOOrientedComponentCoset
+info: GroupApproximation/GGT/DGOOrientedComponentCoset.lean:73:14: 'GroupApproximation.GGT.DGOProposition414.orientedEdgeIndex_start_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOOrientedComponentCoset.lean:74:14: 'GroupApproximation.GGT.DGOProposition414.not_connected_auxiliaryCycle_chord_of_isolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10046/10093] Replayed GroupApproximation.GGT.DGOProposition414ChargedChordSeparation
+info: GroupApproximation/GGT/DGOProposition414ChargedChordSeparation.lean:127:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ChargedChordSeparation.lean:129:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_not_connected_chord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ChargedChordSeparation.lean:131:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ChargedChordSeparation.lean:133:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_not_connected_chord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10049/10093] Replayed GroupApproximation.GGT.DGOProposition414ConnectorAnchors
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:188:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstTarget_arc_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:190:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstBrokenSource_arc_partner_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:192:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapRight_sourceArc_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:194:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapLeft_sourceArc_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:196:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondTarget_arc_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:198:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondBrokenSource_arc_partner_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:200:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapRight_sourceArc_vertex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorAnchors.lean:202:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapLeft_sourceArc_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10050/10093] Replayed GroupApproximation.GGT.DGOOrientedSegmentSeparation
+info: GroupApproximation/GGT/DGOOrientedSegmentSeparation.lean:59:14: 'GroupApproximation.GGT.DGOProposition414.not_connected_orientedSegment_of_outside_component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10051/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondSeparationTargets
+info: GroupApproximation/GGT/DGOProposition414SecondSeparationTargets.lean:53:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapTarget_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10052/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstArcIsolation
+info: GroupApproximation/GGT/DGOProposition414FirstArcIsolation.lean:51:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10053/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstChargedAnchor
+info: GroupApproximation/GGT/DGOProposition414FirstChargedAnchor.lean:83:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_anchor_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstChargedAnchor.lean:84:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondTarget_not_connected_firstArc_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10054/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstChargedArcSeparation
+info: GroupApproximation/GGT/DGOProposition414FirstChargedArcSeparation.lean:82:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_not_connected_of_arc_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstChargedArcSeparation.lean:83:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_not_connected_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10055/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstChargedConnectorSeparation
+info: GroupApproximation/GGT/DGOProposition414FirstChargedConnectorSeparation.lean:124:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_not_connected_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstChargedConnectorSeparation.lean:125:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_not_connected_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10056/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstChargedIsolation
+info: GroupApproximation/GGT/DGOProposition414FirstChargedIsolation.lean:49:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapChordSource_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10057/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondChargedAnchor
+info: GroupApproximation/GGT/DGOProposition414SecondChargedAnchor.lean:84:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_anchor_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondChargedAnchor.lean:85:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstTarget_not_connected_secondArc_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10058/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondChargedArcSeparation
+info: GroupApproximation/GGT/DGOProposition414SecondChargedArcSeparation.lean:82:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_not_connected_of_arc_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondChargedArcSeparation.lean:83:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_not_connected_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10059/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondChargedConnectorSeparation
+info: GroupApproximation/GGT/DGOProposition414SecondChargedConnectorSeparation.lean:124:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_not_connected_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondChargedConnectorSeparation.lean:125:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_not_connected_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10060/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondChargedIsolation
+info: GroupApproximation/GGT/DGOProposition414SecondChargedIsolation.lean:49:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapChordSource_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10061/10093] Replayed GroupApproximation.GGT.DGOProposition414ConnectorSeparationTransport
+info: GroupApproximation/GGT/DGOProposition414ConnectorSeparationTransport.lean:157:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGap_not_connected_of_distinct_arc_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorSeparationTransport.lean:159:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGap_not_connected_chord_of_source_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorSeparationTransport.lean:161:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGap_not_connected_of_distinct_arc_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorSeparationTransport.lean:163:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGap_not_connected_chord_of_source_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10062/10093] Replayed GroupApproximation.GGT.DGOProposition414ConnectorArcSeparation
+info: GroupApproximation/GGT/DGOProposition414ConnectorArcSeparation.lean:159:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGap_not_connected_arc_of_source_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorArcSeparation.lean:161:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapLeftRight_not_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorArcSeparation.lean:163:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGap_not_connected_arc_of_source_anchor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorArcSeparation.lean:165:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapLeftRight_not_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10063/10093] Replayed GroupApproximation.GGT.DGOProposition414ConnectorCuts
+info: GroupApproximation/GGT/DGOProposition414ConnectorCuts.lean:68:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapCut_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorCuts.lean:70:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapCut_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorCuts.lean:72:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapCut_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414ConnectorCuts.lean:74:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapCut_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10064/10093] Replayed GroupApproximation.GGT.DGOProposition414FirstConnectorIsolation
+info: GroupApproximation/GGT/DGOProposition414FirstConnectorIsolation.lean:135:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapLeft_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstConnectorIsolation.lean:136:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapRight_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10065/10093] Replayed GroupApproximation.GGT.DGOProposition414SecondConnectorIsolation
+info: GroupApproximation/GGT/DGOProposition414SecondConnectorIsolation.lean:135:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapLeft_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414SecondConnectorIsolation.lean:136:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapRight_cycleIsolated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10066/10093] Replayed GroupApproximation.GGT.DGOProposition414GapTargetSeparation
+info: GroupApproximation/GGT/DGOProposition414GapTargetSeparation.lean:101:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapTargetSeparation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GapTargetSeparation.lean:103:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.secondGapTargetSeparation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10067/10093] Replayed GroupApproximation.GGT.DGOProposition414LinearSumBound
+info: GroupApproximation/GGT/DGOProposition414LinearSumBound.lean:46:14: 'GroupApproximation.GGT.DGOProposition414.linearSumBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414LinearSumBound.lean:47:14: 'GroupApproximation.GGT.DGOProposition414.exists_uniformSumBound_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10068/10093] Replayed GroupApproximation.GGT.DGOProposition414GeneralCharging
+info: GroupApproximation/GGT/DGOProposition414GeneralCharging.lean:94:14: 'GroupApproximation.GGT.DGOProposition414.TwoHalfDistributedFactorPlacement.exists_witness_of_quasiCosts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralCharging.lean:95:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.exists_gapCompletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralCharging.lean:96:14: 'GroupApproximation.GGT.DGOProposition414.QuasiSumBoundInput.hasRadiusWitness_of_gapCompletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10069/10093] Replayed GroupApproximation.GGT.DGOProposition414GeneralSubdivision
+info: GroupApproximation/GGT/DGOProposition414GeneralSubdivision.lean:107:14: 'GroupApproximation.GGT.DGOProposition414.exists_quasiCostSubdivisionData_atRadius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10070/10093] Replayed GroupApproximation.GGT.DGOProposition414GeneralLinear
+info: GroupApproximation/GGT/DGOProposition414GeneralLinear.lean:135:14: 'GroupApproximation.GGT.DGOProposition414.quasiSumBound_linear' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414GeneralLinear.lean:136:14: 'GroupApproximation.GGT.DGOProposition414.exists_uniformSumBound_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10071/10093] Replayed GroupApproximation.GGT.DGOProposition414AdditiveParameters
+info: GroupApproximation/GGT/DGOProposition414AdditiveParameters.lean:63:14: 'GroupApproximation.GGT.OsinComponents.DGOUniformSumBound.of_error_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414AdditiveParameters.lean:64:14: 'GroupApproximation.GGT.DGOProposition414.exists_uniformSumBound_one_real' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414AdditiveParameters.lean:65:14: 'GroupApproximation.GGT.DGOProposition414.exists_uniformSumBound_one_of_hyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10072/10093] Replayed GroupApproximation.GGT.DGOUniformSumBoundComponent
+info: GroupApproximation/GGT/DGOUniformSumBoundComponent.lean:117:14: 'GroupApproximation.GGT.OsinComponents.DGOUniformSumBound.mono_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOUniformSumBoundComponent.lean:118:14: 'GroupApproximation.GGT.OsinComponents.DGOUniformSumBound.sideZero_span' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOUniformSumBoundComponent.lean:119:14: 'GroupApproximation.GGT.OsinComponents.DGOUniformSumBound.component_span' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10073/10093] Replayed GroupApproximation.GGT.DGOProposition414General
+info: GroupApproximation/GGT/DGOProposition414General.lean:56:14: 'GroupApproximation.GGT.DGOProposition414.exists_uniformSumBound_general_of_hyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414General.lean:57:21: 'GroupApproximation.GGT.OsinComponents.dgoProposition414Uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414General.lean:58:21: 'GroupApproximation.GGT.OsinComponents.dgoLemma421b' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [10074/10093] Building GroupApproximation.GGT.HullSCCyclicPeripheralRemoval (211s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.setup.json --json
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:88:39: failed to synthesize instance of type class
+  Group Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:88:18: failed to synthesize instance of type class
+  Group Prop
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:89:54: Application type mismatch: The argument
+  Or.inl rfl
+has type
+  ?m.357 = ?m.357 ∨ ?m.355
+but is expected to have type
+  ?m.348 ∈ ?m.349 i
+in the application
+  Exists.intro i (Or.inl rfl)
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:122:12: unsolved goals
+case pos.refine_2
+Q : Type u
+inst✝ : Group Q
+Lambda : Type w
+I : Type v
+J : RelGenSet Q (Lambda ⊕ I)
+g : I → Q
+hg : ∀ (i : I), J.fam (Sum.inr i) = Subgroup.zpowers (g i)
+hbaseInv : ∀ x ∈ J.base, x⁻¹ ∈ J.base
+lam : Lambda
+t : List (RelLetter Q Lambda)
+ih :
+  ∀ (v : Q),
+    (∀ a ∈ t, (removeCyclicPeripherals J g hg hbaseInv).IsLetter a) →
+      AvoidsFrom (removeCyclicPeripherals J g hg hbaseInv).fam lam t v →
+        ∃ w',
+          (∀ b ∈ w', J.IsLetter b) ∧
+            RelLetter.listVal w' = RelLetter.listVal t ∧ AvoidsFrom J.fam (Sum.inl lam) w' v ∧ w'.length = t.length
+v : Q
+t' : List (RelLetter Q (Lambda ⊕ I))
+ht'letters : ∀ b ∈ t', J.IsLetter b
+ht'val : RelLetter.listVal t' = RelLetter.listVal t
+ht'len : t'.length = t.length
+x : Q
+hletters : ∀ a ∈ RelLetter.base x :: t, (removeCyclicPeripherals J g hg hbaseInv).IsLetter a
+hhead : ¬(RelLetter.IsCompOf lam (RelLetter.base x) ∧ v ∈ (removeCyclicPeripherals J g hg hbaseInv).fam lam)
+htail : AvoidsFrom (removeCyclicPeripherals J g hg hbaseInv).fam lam t (v * (RelLetter.base x).val)
+ha : (removeCyclicPeripherals J g hg hbaseInv).IsLetter (RelLetter.base x)
+ht'avoid : AvoidsFrom J.fam (Sum.inl lam) t' (v * (RelLetter.base x).val)
+hx : x ∈ J.base
+⊢ (RelLetter.base x).val * RelLetter.listVal t = (RelLetter.base x).val * RelLetter.listVal t
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:263:14: 'GroupApproximation.GGT.exists_jointWord_of_removeCyclicPeripherals' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:264:14: 'GroupApproximation.GGT.removeCyclicPeripherals_relBall_subset' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:265:14: 'GroupApproximation.GGT.removeCyclicPeripherals_locallyFinite' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:266:14: 'GroupApproximation.GGT.removeCyclicPeripherals_alphabet_carrier_of_isEmpty' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:267:14: 'GroupApproximation.GGT.removeCyclicPeripherals_isHyperbolicallyEmbedded_of_isEmpty' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:268:14: 'GroupApproximation.GGT.cyclicPeripheralRemovalStatement_of_hyperbolicity' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [10078/10093] Built GroupApproximation.GGT.HullSCUnconeClosingJump (135s)
+info: GroupApproximation/GGT/HullSCUnconeClosingJump.lean:137:14: 'GroupApproximation.GGT.Uncone.avoidsFrom_append_iff' depends on axioms: [propext]
+info: GroupApproximation/GGT/HullSCUnconeClosingJump.lean:138:14: 'GroupApproximation.GGT.Uncone.closingJump_inv_mem_relBall' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10079/10093] Built GroupApproximation.GGT.HullSCUnconeCosetAvoidance (34s)
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:246:14: 'GroupApproximation.GGT.Uncone.mk_vertex_ne_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:247:14: 'GroupApproximation.GGT.Uncone.mk_vertex_ne_of_isGeodesicWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:248:14: 'GroupApproximation.GGT.Uncone.vertex_drop' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:249:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.take' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:250:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:251:14: 'GroupApproximation.GGT.Uncone.AvoidsCosetFrom.revWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:252:14: 'GroupApproximation.GGT.Uncone.avoidsCosetFrom_take_of_isComp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:253:14: 'GroupApproximation.GGT.Uncone.avoidsCosetFrom_drop_of_isComp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean:254:14: 'GroupApproximation.GGT.Uncone.closingJump_located' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10080/10093] Built GroupApproximation.GGT.HullSCUnconeTriangleConnectors (32s)
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:214:14: 'GroupApproximation.GGT.Uncone.geodesicWord_drop' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:215:14: 'GroupApproximation.GGT.Uncone.exitConnector_mem_relBall' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:216:14: 'GroupApproximation.GGT.Uncone.exitEntranceConnector_mem_relBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:217:14: 'GroupApproximation.GGT.Uncone.exitConnector_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:218:14: 'GroupApproximation.GGT.Uncone.entranceConnector_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean:219:14: 'GroupApproximation.GGT.Uncone.span_mem_relBall_of_noComp' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [10086/10093] Building GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves (309s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.setup.json --json
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:81:8: typeclass instance problem is stuck
+  Group ?m.28
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Group` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:116:8: typeclass instance problem is stuck
+  Group ?m.63
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Group` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:146:14: 'GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:147:14: 'GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:148:14: 'GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:149:14: 'GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:150:14: 'GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [10087/10093] Built GroupApproximation.GGT.HullSCLemma44RespellingBinders (310s)
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:272:14: 'GroupApproximation.HullSC.famInr_eq_selectedFam' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:273:14: 'GroupApproximation.HullSC.famInl_mem_selectedBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:274:14: 'GroupApproximation.HullSC.jointAlphabet_subset_selectedAlphabet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:275:14: 'GroupApproximation.HullSC.baseLetters_mem_jointBase_of_baseSubset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:276:14: 'GroupApproximation.HullSC.relatorRespellingAt_joint_of_familyBinders' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:277:14: 'GroupApproximation.HullSC.hullRelatorRespellingBaseCompatibleStatement_of_hullRelatorRespelling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingBinders.lean:278:14: 'GroupApproximation.HullSC.hullRelatorRespellingBaseCompatibleStatement_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10088/10093] Built GroupApproximation.GGT.HullSCLemma51ShorteningBranch (310s)
+info: GroupApproximation/GGT/HullSCLemma51ShorteningBranch.lean:119:14: 'GroupApproximation.HullSC.exists_shorter_admissible_of_not_quasiGeodesic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma51ShorteningBranch.lean:120:14: 'GroupApproximation.HullSC.exists_shorter_spelling_of_not_hasQuasiGeodesicSpelling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10089/10093] Built GroupApproximation.GGT.HullSCLemma44RespellingOneRelator (62s)
+info: GroupApproximation/GGT/HullSCLemma44RespellingOneRelator.lean:215:14: 'GroupApproximation.HullSC.baseLetters_symmetrized_mem_of_baseLetters' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingOneRelator.lean:216:14: 'GroupApproximation.HullSC.hullRelatorRespellingOneRelatorStatement_of_baseCompatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma44RespellingOneRelator.lean:217:14: 'GroupApproximation.HullSC.hullRelatorRespellingOneRelatorStatement_of_expansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10090/10093] Building GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer (63s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean -o /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.olean -i /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/lib/lean/GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.c --setup /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.lake/build/ir/GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.setup.json --json
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:157:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:159:20: Invalid field `length_lt`: The environment does not contain `Nonempty.length_lt`, so it is not possible to project the field `length_lt` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:161:18: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:162:14: Invalid field `quotient_value`: The environment does not contain `Nonempty.quotient_value`, so it is not possible to project the field `quotient_value` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:164:17: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:55: Invalid field `shortenedWord_isWord`: The environment does not contain `Nonempty.shortenedWord_isWord`, so it is not possible to project the field `shortenedWord_isWord` from an expression
+  C
+of type
+  Nonempty (RelativeDehnCut D W eps q word)
+info: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:267:14: 'GroupApproximation.HullSC.exists_relativeDehnCut_of_quasiGeodesicKernelWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:268:14: 'GroupApproximation.HullSC.relativeDehnStepAt_of_cut' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:269:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_dehnSteps' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:270:14: 'GroupApproximation.HullSC.relativeDehnStepAt_of_quasiGeodesicCertificates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:271:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicCertificates' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.HullSCCyclicPeripheralRemoval
+- GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves
+- GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer
+error: build failed
+EXIT=1

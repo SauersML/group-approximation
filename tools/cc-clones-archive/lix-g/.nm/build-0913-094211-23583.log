@@ -1,0 +1,56 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3399 oleans
+[job] acn112 cores=64-71 threads=8 base=0090d6edcdafdfeae692976f2689630185fab483 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport
+ℹ [3326/3441] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5024/5024] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport (15s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:382:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_map_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:383:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_cellArcDarts_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:384:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_boundDarts_regionFamily_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:385:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.unboundDarts_regionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:386:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.sum_unboundDarts_regionFamily_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:387:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.faceOf_retained_or_sides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:388:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.mem_range_or_path' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:389:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.dartCount_le_add_two_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:390:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:391:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:392:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:393:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:394:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_unboundSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:395:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_dartCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:396:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:397:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5024 jobs).
+EXIT=0

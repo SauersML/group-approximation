@@ -1,0 +1,81 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3661 oleans
+[job] acn112 cores=88-95 threads=8 base=b122008b7400d53625cc5f5b38d8f3a1cdcb6419 mods: GroupApproximation.Dynamics.RankTwoRestrictionImageFinite
+ℹ [1533/1574] Replayed GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+info: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:219:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:220:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2439/2546] Replayed GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:223:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:224:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:225:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:226:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3660/3812] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4072/4172] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:98:14: 'GroupApproximation.ChainCore.RankTwoLimit.FixedCoreImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:99:14: 'GroupApproximation.ChainCore.RankTwoLimit.PeriodTwoCoreUnitImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:100:14: 'GroupApproximation.ChainCore.RankTwoLimit.CoreRestrictionLocallyFiniteKernelStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:101:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedFixedCoreGLTwoKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:102:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedPeriodTwoCoreUnitsKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:103:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedRankTwoCompressionDefectsTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4084/4172] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:75:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:76:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:77:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4316/4318] Replayed GroupApproximation.Kazhdan.HaagerupFiniteProduct
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:69:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:70:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi_glTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4317/4318] Replayed GroupApproximation.Dynamics.RankTwoCoreImageHaagerup
+info: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:338:21: 'GroupApproximation.ChainCore.RankTwoLimit.fixedCoreImageHaagerup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:339:21: 'GroupApproximation.ChainCore.RankTwoLimit.periodTwoCoreUnitImageHaagerup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:340:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:341:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:342:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4318/4318] Built GroupApproximation.Dynamics.RankTwoRestrictionImageFinite (12s)
+info: GroupApproximation/Dynamics/RankTwoRestrictionImageFinite.lean:76:14: 'GroupApproximation.ChainCore.RankTwoLimit.finite_map_of_kazhdan_of_haagerup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoRestrictionImageFinite.lean:77:21: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreRestrictionImageFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoRestrictionImageFinite.lean:78:21: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitRestrictionImageFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4318 jobs).
+EXIT=0

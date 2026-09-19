@@ -1,0 +1,25 @@
+[job] 14:05:47 acn112 waiting for clone lock
+[job] delta sync e533e5581..037386a74: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 037386a74 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-140543-86239.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3242 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonOuterFollows
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeModel
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonDiscCollapse.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonLobe.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonOuterFollows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+COMPILED GroupApproximation/Kazhdan/GHWInterfaces.lean
+ Quot.sound]
+Build completed successfully (10092 jobs).
+EXIT=0
+PROBE GREEN

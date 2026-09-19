@@ -1,0 +1,49 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3489 oleans
+[job] acn112 cores=88-95 threads=8 base=b421d06047cd63481da29fa494b5bc2590ee2958 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonInnerAssembly
+ℹ [3370/3422] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10091/10154] Replayed GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:119:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_boundaryPerm_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:120:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_of_mem_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:121:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eqvGen_of_mem_of_innerFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10092/10154] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonMergeDisc
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:183:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_mergeDisc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:184:14: 'GroupApproximation.GGT.VanKampen.TwoGonMergeDiscInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean:185:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_mergeDisc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10149/10154] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonNoncrossingRoute
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:149:14: 'GroupApproximation.GGT.VanKampen.TwoGonNoncrossingPocketInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:150:14: 'GroupApproximation.GGT.VanKampen.outerFace_not_mem_sideFaces_of_target_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean:151:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_noncrossingPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10150/10154] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonWalkHypInner
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonWalkHypInner.lean:89:14: 'GroupApproximation.GGT.VanKampen.cellFace_not_mem_sideFaces_of_source_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonWalkHypInner.lean:90:14: 'GroupApproximation.GGT.VanKampen.twoGonWalkHyp_of_innerFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10154/10154] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonInnerAssembly (46s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerAssembly.lean:165:14: 'GroupApproximation.GGT.VanKampen.TwoGonInnerFollowsWalkInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerAssembly.lean:166:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_innerFollowsWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10154 jobs).
+EXIT=0

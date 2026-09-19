@@ -1,0 +1,92 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+[job] acn112 cores=64-71 threads=8 base=17413083365aec0308689dce4c829234420d8a24 mods: GroupApproximation.Kazhdan.KazhdanNearInvariantVector GroupApproximation.Analysis.KirchbergCompactExtraction GroupApproximation.Algebra.OrthogonalRepresentationResiduallyFinite GroupApproximation.Analysis.KirchbergCompletionRepresentation GroupApproximation.Analysis.KirchbergRealForms GroupApproximation.Analysis.KirchbergTraceModels GroupApproximation.Analysis.KirchbergRealDilation GroupApproximation.Analysis.KirchbergTensorSquare
+ℹ [2843/2918] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [3286/3293] Building GroupApproximation.Analysis.KirchbergRealForms (6.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/KirchbergRealForms.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealForms.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealForms.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealForms.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealForms.setup.json --json
+error: GroupApproximation/Analysis/KirchbergRealForms.lean:84:37: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [realBasis, pairing_single, M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵h, Complex.conj_I]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/KirchbergRealForms.lean:86:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealForms.re_trace_conjTranspose_mul`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: Lean exited with code 1
+✖ [3287/3293] Building GroupApproximation.Analysis.KirchbergCompletionRepresentation (6.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompletionRepresentation.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompletionRepresentation.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompletionRepresentation.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompletionRepresentation.setup.json --json
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:44:16: typeclass instance problem is stuck
+  T2Space ?m.51
+
+Note: Lean will not try to resolve this typeclass instance problem because the first and second type arguments to `T2Space` are metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:43:2: Alternative `ih` has not been provided
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:45:6: unexpected token '('; expected command
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:51:16: typeclass instance problem is stuck
+  T2Space ?m.51
+
+Note: Lean will not try to resolve this typeclass instance problem because the first and second type arguments to `T2Space` are metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:50:2: Alternative `ih` has not been provided
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:52:6: unexpected token '('; expected command
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:71:44: Fields missing: `map_mul'`
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:76:12: Type mismatch
+  isClosed_eq (LinearIsometryEquiv.continuous (completionEquiv (ρ 1)))
+has type
+  Continuous ?m.80 → IsClosed {y | (completionEquiv (ρ 1)) y = ?m.80 y}
+but is expected to have type
+  IsClosed {a | (completionEquiv (ρ 1)) a = 1 a}
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:75:4: Alternative `ih` has not been provided
+error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:77:8: unexpected token '('; expected command
+error: Lean exited with code 1
+✔ [3289/3293] Built GroupApproximation.Kazhdan.KazhdanNearInvariantVector (7.9s)
+✔ [3290/3293] Built GroupApproximation.Algebra.OrthogonalRepresentationResiduallyFinite (7.7s)
+✖ [3291/3293] Building GroupApproximation.Analysis.KirchbergCompactExtraction (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/KirchbergCompactExtraction.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompactExtraction.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompactExtraction.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompactExtraction.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompactExtraction.setup.json --json
+error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:108:6: Type mismatch: After simplification, term
+  this
+ has type
+  @Tendsto ℕ ℝ ((fun x => √x) ∘ fun x_1 => c * (c - ‖S (x x_1)‖ ^ 2)) atTop (𝓝 0)
+but is expected to have type
+  @Tendsto ℕ ℝ (fun n => √(c * (c - ‖S (x n)‖ ^ 2))) atTop (𝓝 0)
+error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:166:4: Tactic `apply` failed: could not unify the conclusion of `@funext`
+  ?f = ?g
+with the goal
+  W.zero = W.addCommMonoid.toAddZeroClass.toZero
+
+Note: The full type of `@funext` is
+  ∀ {α : Sort ?u.184} {β : α → Sort ?u.183} {f g : (x : α) → β x}, (∀ (x : α), f x = g x) → f = g
+
+case e'_3
+K : Type v
+inst✝² : NormedAddCommGroup K
+inst✝¹ : InnerProductSpace ℝ K
+inst✝ : CompleteSpace K
+B : K →L[ℝ] K
+hB : IsCompactOperator ⇑B
+c : ℝ
+hc : c ≠ 0
+W : Submodule ℝ K := (↑B - c • LinearMap.id).ker
+hW : W = (↑B - c • LinearMap.id).ker
+hmemW : ∀ (v : K), v ∈ W ↔ B v = c • v
+hinv : ∀ v ∈ W, ↑B v ∈ W
+hclosed : IsClosed[PseudoMetricSpace.toUniformSpace.toTopologicalSpace] ↑W
+hres : IsCompactOperator ⇑((↑B).restrict hinv)
+h2 : IsCompactOperator (c⁻¹ • ⇑((↑B).restrict hinv))
+⊢ W.zero = W.addCommMonoid.toAddZeroClass.toZero
+error: Lean exited with code 1
+✔ [3293/3293] Built GroupApproximation.Analysis.KirchbergTraceModels (12s)
+Some required targets logged failures:
+- GroupApproximation.Analysis.KirchbergRealForms
+- GroupApproximation.Analysis.KirchbergCompletionRepresentation
+- GroupApproximation.Analysis.KirchbergCompactExtraction
+error: build failed
+EXIT=1

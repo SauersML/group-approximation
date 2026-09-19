@@ -1,0 +1,277 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3601 oleans
+[job] acn112 cores=64-71 threads=8 base=11df0897103c2b53dc1ff35cf1be335080e286f9 mods: GroupApproximation.Algebra.LocallyFiniteCongruenceKernel GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval GroupApproximation.Dynamics.RankTwoCoreImageHaagerup
+ℹ [3658/3727] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4312/4317] Replayed GroupApproximation.Kazhdan.HaagerupFiniteProduct
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:69:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:70:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi_glTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4313/4317] Built GroupApproximation.Algebra.LocallyFiniteCongruenceKernel (11s)
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:223:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:224:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:225:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:226:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4314/4317] Building GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.setup.json --json
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:49:48: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => (if Even ↑i then T x else T (T x)) = if _a then x else T x
+Error: Application type mismatch: The argument
+  (↑i + 1).instDecidablePredEven
+has type
+  Decidable (Even (↑i + 1))
+but is expected to have type
+  Decidable _a
+in the application
+  @ite X _a (↑i + 1).instDecidablePredEven
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+case succ
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+hT : ∀ (y : X), T (T y) = y
+hs : ∀ (y : X), T.symm y = T y
+i : ℕ
+ih : ∀ (x : X), (T ^ ↑i) x = if Even ↑i then x else T x
+x : X
+⊢ (if Even ↑i then T x else T (T x)) = if Even (↑i + 1) then x else T x
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:52:74: Tactic `rewrite` failed: motive is not type correct:
+  fun _a => (if Even (-↑i) then T x else T (T x)) = if _a then x else T x
+Error: Application type mismatch: The argument
+  (-↑i - 1).instDecidablePredEven
+has type
+  Decidable (Even (-↑i - 1))
+but is expected to have type
+  Decidable _a
+in the application
+  @ite X _a (-↑i - 1).instDecidablePredEven
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+
+case pred
+X : Type u_1
+inst✝ : TopologicalSpace X
+T : X ≃ₜ X
+hT : ∀ (y : X), T (T y) = y
+hs : ∀ (y : X), T.symm y = T y
+i : ℕ
+ih : ∀ (x : X), (T ^ (-↑i)) x = if Even (-↑i) then x else T x
+x : X
+⊢ (if Even (-↑i) then T x else T (T x)) = if Even (-↑i - 1) then x else T x
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:81:64: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `y`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:84:9: unsolved goals
+case zero
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+x : X
+hx : T x = x
+n : ℤ
+⊢ 0 = ((ClopenCoeff.of T k).symm (sorry ())) x
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:111:14: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+⊢ 1 • 1 = 1
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:112:18: unsolved goals
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+⊢ Type ?u.26
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+⊢ Semiring ?m.67
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+⊢ SMul (LaurentPolynomial ?m.67) (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+a b : Multiplicative ℤ
+⊢ IsScalarTower (LaurentPolynomial ?m.67) (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+    (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+a b : Multiplicative ℤ
+⊢ IsScalarTower (LaurentPolynomial ?m.67) (LaurentPolynomial ?m.67) (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+a b : Multiplicative ℤ
+⊢ SMulCommClass (LaurentPolynomial ?m.67) (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+    (Matrix (Fin 2) (Fin 2) (LaurentPolynomial k))
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:122:5: `Pi.ringHom` has been deprecated: Use `RingHom.pi` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.ringHom` to `RingHom.pi x`).
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:140:43: Unknown constant `Int.even_neg`
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:134:81: unsolved goals
+case pos.«_@».GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval.970459230._hygCtx._hyg.261.«0».«1»
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+c : ClopenCoeff T k
+n : ℤ
+hev : ∀ (y : X), ((ClopenCoeff.of T k).symm (ofAdd n • c)) y = ((ClopenCoeff.of T k).symm c) (if Even n then y else T y)
+a✝ : ℤ
+hn : Even n
+⊢ (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * (LaurentPolynomial.T n • 1) 0 1).coeff a✝ =
+    (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) (T x)) * (LaurentPolynomial.T n • 1) 0 1).coeff a✝
+
+case pos.«_@».GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval.970459230._hygCtx._hyg.261.«1».«0»
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+c : ClopenCoeff T k
+n : ℤ
+hev : ∀ (y : X), ((ClopenCoeff.of T k).symm (ofAdd n • c)) y = ((ClopenCoeff.of T k).symm c) (if Even n then y else T y)
+a✝ : ℤ
+hn : Even n
+⊢ (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) (T x)) * (LaurentPolynomial.T n • 1) 1 0).coeff a✝ =
+    (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * (LaurentPolynomial.T n • 1) 1 0).coeff a✝
+
+case neg.«_@».GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval.970459230._hygCtx._hyg.261.«0».«0»
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+c : ClopenCoeff T k
+n : ℤ
+hev : ∀ (y : X), ((ClopenCoeff.of T k).symm (ofAdd n • c)) y = ((ClopenCoeff.of T k).symm c) (if Even n then y else T y)
+a✝ : ℤ
+hn : ¬Even n
+⊢ (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) (T x)) * (LaurentPolynomial.T n • !![0, 1; 1, 0]) 0 0).coeff a✝ =
+    (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * (LaurentPolynomial.T n • !![0, 1; 1, 0]) 0 0).coeff a✝
+
+case neg.«_@».GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval.970459230._hygCtx._hyg.261.«1».«1»
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+c : ClopenCoeff T k
+n : ℤ
+hev : ∀ (y : X), ((ClopenCoeff.of T k).symm (ofAdd n • c)) y = ((ClopenCoeff.of T k).symm c) (if Even n then y else T y)
+a✝ : ℤ
+hn : ¬Even n
+⊢ (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * (LaurentPolynomial.T n • !![0, 1; 1, 0]) 1 1).coeff a✝ =
+    (LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) (T x)) * (LaurentPolynomial.T n • !![0, 1; 1, 0]) 1 1).coeff a✝
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:145:29: declaration uses `sorry`
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:146:8: This simp argument is unused:
+  Fin.sum_univ_two
+
+Hint: Omit it from the simp argument list.
+  simp [coeffPair_apply, laurentSwap, swapMat, hev, hn, hT, Matrix.mul_apply, F̵i̵n̵.̵s̵u̵m̵_̵u̵n̵i̵v̵_̵t̵w̵o̵,̵ ̵mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:152:2: 'show' tactic failed, pattern
+  ((coeffPair T k x) c * (laurentSwap k) (ofAdd m)) 0 0 + ((coeffPair T k x) c * (laurentSwap k) (ofAdd m)) 0 1 = ?m.96
+is not definitionally equal to target
+  (evalPair T k hT x) (SkewMonoidAlgebra.single (ofAdd m) c) 0 0 +
+      (evalPair T k hT x) (SkewMonoidAlgebra.single (ofAdd m) c) 0 1 =
+    LaurentPolynomial.C (((ClopenCoeff.of T k).symm c) x) * LaurentPolynomial.T m
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:162:33: Invalid field notation: Function `DFunLike.coe` (coerced from `coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute `y`
+
+Note: Such a parameter must be explicit, or implicit with a unique name, to be used by field notation
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:165:9: unsolved goals
+case zero
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+k : Type u_2
+inst✝ : CommRing k
+hT : ∀ (y : X), T (T y) = y
+x : X
+n : ℤ
+⊢ 0 = ((ClopenCoeff.of T k).symm (sorry ())) x
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:185:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:186:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [4315/4317] Built GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements (11s)
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:98:14: 'GroupApproximation.ChainCore.RankTwoLimit.FixedCoreImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:99:14: 'GroupApproximation.ChainCore.RankTwoLimit.PeriodTwoCoreUnitImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:100:14: 'GroupApproximation.ChainCore.RankTwoLimit.CoreRestrictionLocallyFiniteKernelStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:101:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedFixedCoreGLTwoKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:102:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedPeriodTwoCoreUnitsKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:103:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedRankTwoCompressionDefectsTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4316/4317] Built GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly (11s)
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:75:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:76:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:77:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+error: build failed
+EXIT=1

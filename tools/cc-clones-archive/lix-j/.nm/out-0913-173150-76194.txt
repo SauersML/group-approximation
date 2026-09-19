@@ -1,0 +1,52 @@
+[job] 17:32:00 acn112 waiting for clone lock
+[job] delta sync 694740ca6..97de60f05: 20 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 97de60f05 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-173150-76194.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3439 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BoundedIntegralFinite.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinaryPower.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySLUnion.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySimple.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBlocks.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearGroup.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearTransvections.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryHaagerup.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryLinearMF.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryPlaces.lean
+COMPILED GroupApproximation/Algebra/TotalDegreeValuation.lean
+COMPILED GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+COMPILED GroupApproximation/Algebra/ValuationWithTopInt.lean
+COMPILED GroupApproximation/Algebra/ValuedMatrixTwo.lean
+COMPILED GroupApproximation/Algebra/ValuedMatrixTwoCartan.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean
+COMPILED GroupApproximation/Kazhdan/BruhatTitsTwoTree.lean
+COMPILED GroupApproximation/Kazhdan/GHWPlaces.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupAffineSums.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupUnion.lean
+COMPILED GroupApproximation/Kazhdan/HalfSpaceBoundedOrbits.lean
+COMPILED GroupApproximation/Kazhdan/LevelTreeAcyclic.lean
+COMPILED GroupApproximation/Kazhdan/TreeHalfSpaces.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementaryPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonFiniteMatrices.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonLaurentKazhdanFinite.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedKazhdanFinite.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankFourSentences.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoInert.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonSymbol.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean
+ Quot.sound]
+Build completed successfully (10163 jobs).
+EXIT=0
+PROBE GREEN

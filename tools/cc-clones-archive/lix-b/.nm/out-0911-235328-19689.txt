@@ -1,0 +1,37 @@
+[job] 23:53:39 acn112 waiting for clone lock
+[job] delta sync 9c0a4f8ce..aff623aaf: 14 files changed
+===== SUMMARY
+host acn112 cores 88-95 base aff623aaf log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-235328-19689.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2298 oleans
+--- errors (first 80 lines)
+48:✖ [8827/8827] Building GroupApproximation.CharClass.CohomologyKunnethTorusOf (25s)
+50:error: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:128:4: Unknown identifier `pull_knSlice_knPrSOf`
+54:error: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:174:14: 'GroupApproximation.CharClass.KnTwo.tx_inj_degree_of_ne_zeroOf' depends on axioms outside the classical allowlist: [sorryAx]
+55:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+57:error: GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:175:14: 'GroupApproximation.CharClass.KnTwo.tx_inj_degreeOf' depends on axioms outside the classical allowlist: [sorryAx]
+58:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+60:error: Lean exited with code 1
+63:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethTorusOf (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethParityOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepDeltaOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjZeroOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethZeroOf.lean
+COMPILED GroupApproximation/CharClass/RelHomotopyIdentity.lean
+COMPILED GroupApproximation/CharClass/RelativeProdContractibleOf.lean
+COMPILED GroupApproximation/CharClass/RelativeSplitField.lean
+COMPILED GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean
+- GroupApproximation.CharClass.CohomologyKunnethTorusOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

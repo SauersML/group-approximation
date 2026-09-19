@@ -1,0 +1,25 @@
+[job] 21:58:24 cn1079 waiting for clone lock
+[job] delta sync 9d5cf111f..a0ff25d62: 172 files changed
+===== SUMMARY
+host cn1079 cores slurm base a0ff25d62 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-215732-76374.log
+purged 474 stale artifact sets (source-newer=0, import-newer=474) of 2527 oleans
+--- errors (first 80 lines)
+22:✖ [8805/8811] Building GroupApproximation.CharClass.LIXKGenSect (34s)
+24:error: GroupApproximation/CharClass/LIXKGenSect.lean:72:2: No goals to be solved
+29:error: Lean exited with code 1
+35:✖ [8809/8811] Building GroupApproximation.CharClass.LIXKGenChart (35s)
+37:error: GroupApproximation/CharClass/LIXKGenChart.lean:135:8: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+40:error: GroupApproximation/CharClass/LIXKGenChart.lean:136:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+43:error: GroupApproximation/CharClass/LIXKGenChart.lean:141:65: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+46:error: GroupApproximation/CharClass/LIXKGenChart.lean:143:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+56:error: Lean exited with code 1
+60:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenSector (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenLocalHomeo (replayed or failed)
+--- rebuilt GroupApproximation modules: 7
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.LIXKGenChart
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

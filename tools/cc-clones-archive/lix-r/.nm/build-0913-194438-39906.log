@@ -1,0 +1,34 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3459 oleans
+[job] acn112 cores=80-87 threads=8 base=7111800951aaa1cd51c06694a11afede520a23a3 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCellEuler
+ℹ [3377/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10188/10199] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_of_noncrossing_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:193:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:195:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:196:21: 'GroupApproximation.GGT.VanKampen.cellPocketKeptCellNoncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10199/10199] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCellEuler (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean:136:14: 'GroupApproximation.GGT.VanKampen.CellPocketEulerForOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean:137:14: 'GroupApproximation.GGT.VanKampen.sideRelatorCellForOrder_of_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean:138:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkEulerStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean:139:14: 'GroupApproximation.GGT.VanKampen.sideRelatorCellForOrder_of_eulerStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10199 jobs).
+EXIT=0

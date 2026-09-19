@@ -1,0 +1,37 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3112 oleans
+[job] acn112 cores=72-79 threads=8 base=035c3cc48b3c51bd2ace7a7df83a6eb286f3a8c9 mods: GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction
+ℹ [3299/3393] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4650/4650] Building GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:139:48: Application type mismatch: The argument
+  h
+has type
+  Eq.{u + 1} (some none) (embed M z)
+but is expected to have type
+  Eq.{?u.35 + 2} (some ?m.89) (some ?m.90)
+in the application
+  Option.some.inj h
+error: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:142:48: Application type mismatch: The argument
+  h
+has type
+  Eq.{u + 1} (embed M y) (some none)
+but is expected to have type
+  Eq.{?u.48 + 2} (some ?m.154) (some ?m.155)
+in the application
+  Option.some.inj h
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:286:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.restrict_sigma_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:287:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:288:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_pow_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction
+error: build failed
+EXIT=1

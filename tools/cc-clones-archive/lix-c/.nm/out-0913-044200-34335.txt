@@ -1,0 +1,19 @@
+[job] 04:42:03 acn112 waiting for clone lock
+[job] delta sync add35a53a..457c543a8: 14 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 457c543a8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-044200-34335.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2383 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Kazhdan.GHWCharZero
+BUILT GroupApproximation.Kazhdan.GHWTheoremFourClosed
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZero.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+COMPILED GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean
+info: GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean:33:21: 'GroupApproximation.GHW.printedGHWTheoremFour' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3691 jobs).
+EXIT=0
+PROBE GREEN

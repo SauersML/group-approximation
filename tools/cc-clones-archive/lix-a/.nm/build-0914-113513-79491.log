@@ -1,0 +1,62 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4133 oleans
+[job] acn112 cores=80-87 threads=8 base=7a3f05eb6b680af093d1dc762792dfd9cc537e50 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels
+ℹ [3307/3375] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5022/5024] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonRegion
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:404:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.sameCycle_of_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:405:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.innerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:406:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.outerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:407:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.pocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:408:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:409:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.not_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [5024/5024] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels (61s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:682:48: don't know how to synthesize placeholder for argument `h`
+context:
+hC : hairCell ∈ hairDiagram.relatorCells
+⊢ face 1 ∉ {face 2}
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:678:86: unsolved goals
+hC : hairCell ∈ hairDiagram.relatorCells
+⊢ hairCell.face ∉ pocket.faces
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:700:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:701:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.classArc_reverseDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:702:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.innerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:703:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.outerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:704:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.pocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:705:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.merged_darts' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:706:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.gap_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapPinchModels.lean:707:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94GapPinchModel.not_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapPinchModels
+error: build failed
+EXIT=1

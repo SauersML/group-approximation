@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4389 oleans
+[job] acn112 cores=80-87 threads=8 base=fa92d5adcb36cbc493843777a9843c30d238d9b0 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4Split
+ℹ [3361/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10320/10323] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4.lean:91:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4CopySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4.lean:92:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10323/10323] Built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4Split (31s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4Split.lean:57:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10323 jobs).
+EXIT=0

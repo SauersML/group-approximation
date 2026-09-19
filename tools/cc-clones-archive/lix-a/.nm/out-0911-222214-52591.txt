@@ -1,0 +1,29 @@
+[job] 22:23:26 acn16 waiting for clone lock
+[job] delta sync b0962ca49..e2a3a3092: 3 files changed
+===== SUMMARY
+host acn16 cores slurm base e2a3a3092 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-222214-52591.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2112 oleans
+--- errors (first 80 lines)
+81:✖ [8899/8901] Building GroupApproximation.CharClass.LIXKGenChartZero (28s)
+83:error: GroupApproximation/CharClass/LIXKGenChartZero.lean:127:88: Application type mismatch: The argument
+91:error: GroupApproximation/CharClass/LIXKGenChartZero.lean:128:4: Type mismatch: After simplification, term
+97:error: GroupApproximation/CharClass/LIXKGenChartZero.lean:130:4: Type mismatch: After simplification, term
+108:error: GroupApproximation/CharClass/LIXKGenChartZero.lean:139:14: 'GroupApproximation.CharClass.KGen.continuousOn_chartZeroVec' depends on axioms outside the classical allowlist: [sorryAx]
+109:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+111:error: Lean exited with code 1
+114:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenZeroChartHomeo (replayed or failed)
+BUILT GroupApproximation.CharClass.LIXKGenStepCWired
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenBundle.lean
+COMPILED GroupApproximation/CharClass/LIXKGenChart.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSect.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSectInverse.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSector.lean
+COMPILED GroupApproximation/CharClass/LIXKGenStepCWired.lean
+- GroupApproximation.CharClass.LIXKGenChartZero
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

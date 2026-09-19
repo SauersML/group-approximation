@@ -1,0 +1,29 @@
+[job] 09:21:48 acn212 waiting for clone lock
+[job] delta sync ee5d1f867..a782e4c7c: 23 files changed
+===== SUMMARY
+host acn212 cores slurm base a782e4c7c log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-092044-35566.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3509 oleans
+--- errors (first 80 lines)
+39:✖ [3047/3047] Building GroupApproximation.Analysis.HyperfiniteStageCorner (37s)
+41:error: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:87:54: unexpected token 'ᴴ'; expected ')', ',' or ':'
+42:error: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:84:83: unsolved goals
+58:error: GroupApproximation/Analysis/HyperfiniteStageCorner.lean:120:14: 'GroupApproximation.Hyperfinite.norm_stageCorner_deltaOne_sq' depends on axioms outside the classical allowlist: [sorryAx]
+59:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+64:error: Lean exited with code 1
+67:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.HyperfiniteStageCorner (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.HyperfiniteStageCorner
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

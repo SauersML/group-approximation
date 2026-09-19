@@ -1,0 +1,27 @@
+[job] 20:28:10 acn112 waiting for clone lock
+[job] delta sync 5d4049163..bb4e1f0f8: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base bb4e1f0f8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-202805-85068.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3479 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:190:21: 'GroupApproximation.SimpleKazhdanSofic.printedRingGeneration' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1757 jobs).
+EXIT=0
+PROBE GREEN

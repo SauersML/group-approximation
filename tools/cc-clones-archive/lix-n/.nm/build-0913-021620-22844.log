@@ -1,0 +1,11 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3104 oleans
+[job] acn112 cores=88-95 threads=8 base=f005179f64d17ddf78c6612d4dc74a4bb5060229 mods: GroupApproximation.Manuscript.NonMF.TorsionFreeAlgebraSentencesClosed
+ℹ [2797/2928] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10017/10017] Built GroupApproximation.Manuscript.NonMF.TorsionFreeAlgebraSentencesClosed (22s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeAlgebraSentencesClosed.lean:50:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_algebraSimpleUniqueTraceStableRank_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10017 jobs).
+EXIT=0

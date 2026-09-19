@@ -1,0 +1,17 @@
+[job] 22:08:36 acn112 waiting for clone lock
+[job] delta sync 9376e7605..f9cf9937e: 47 files changed
+===== SUMMARY
+host acn112 cores 88-95 base f9cf9937e log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0911-220816-52720.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 2071 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.ParityPDecomposable
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ParityPDecomposable.lean
+COMPILED GroupApproximation/CharClass/ParityPTwistSymm.lean
+COMPILED GroupApproximation/CharClass/ParityPWuValue.lean
+✔ [1616/1616] Built GroupApproximation.CharClass.ParityPDecomposable (7.5s)
+Build completed successfully (1616 jobs).
+EXIT=0
+PROBE GREEN

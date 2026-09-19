@@ -1,0 +1,15 @@
+[job] 11:03:24 acn112 waiting for clone lock
+[job] delta sync 0f7748100..b9399390e: 55 files changed
+===== SUMMARY
+host acn112 cores 80-87 base b9399390e log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0912-110111-36369.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2332 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.OddPShuffle
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPShuffle.lean
+info: GroupApproximation/CharClass/OddPShuffle.lean:647:14: 'GroupApproximation.CharClass.tupRiffle_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2164 jobs).
+EXIT=0
+PROBE GREEN

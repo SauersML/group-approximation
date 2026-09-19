@@ -1,0 +1,50 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3793 oleans
+[job] acn112 cores=64-71 threads=8 base=3877f8b6345df11c093180cd0314cccb563f9649 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk
+ℹ [3349/3426] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [9923/10086] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:161:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_first_repeat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:162:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isClosedDartWalk_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:163:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_innermost_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:164:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isSimpleClosedWalk_of_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10207/10216] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:174:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.exists_arcs_of_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:175:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.cell_not_mem_sideFaces_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:176:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.outerFace_not_mem_sideFaces_excision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean:177:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.listVal_excision_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10209/10216] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellPinchLobes
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean:105:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneCellPinch_of_lobes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10216/10216] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk (27s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:200:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellLobeExcision_of_simple_rest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:201:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.false_of_walkCellLobe_excision_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:202:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellLobeExcisionSimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:203:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalkCellPinch_of_rest' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10216 jobs).
+EXIT=0

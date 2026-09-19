@@ -1,0 +1,35 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3620 oleans
+[job] acn112 cores=88-95 threads=8 base=7a4df2737b6aa4ba106f3db2042c5a97d8b4667c mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+ℹ [3295/3394] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5073/5077] Replayed GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:176:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5075/5077] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+info: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:112:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5076/5077] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:253:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_cuttingTransitions_le_sameFaceStarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:254:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5077/5077] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:477:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_joined_cellOrOuter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:478:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.hittingSet_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:479:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CuttingTransitionInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5077 jobs).
+EXIT=0

@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2953 oleans
+[job] acn112 cores=80-87 threads=8 base=0793191e3f29cd5ba5e06c3286ae747972518c88 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RegionSideCount
+ℹ [3302/3431] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5001/5001] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RegionSideCount (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean:190:14: 'GroupApproximation.GGT.VanKampen.Embedded.mem_targetBoundaryDarts_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean:191:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.regionFacingUnbound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean:193:2: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.mem_cellDarts_of_mem_regionFacingUnbound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean:195:2: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.alpha_mem_sides_of_mem_regionFacingUnbound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean:196:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.sum_card_regionFacingUnbound_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5001 jobs).
+EXIT=0

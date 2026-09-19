@@ -1,0 +1,25 @@
+[job] 13:01:51 acn112 waiting for clone lock
+[job] delta sync be9ca5170..2ac4b032a: 226 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 2ac4b032a log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-130148-54122.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2582 oleans
+--- errors (first 80 lines)
+6:✖ [4985/4985] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount (19s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:360:62: Variable name `hsb` is not explicitly referenced.
+13:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:517:42: failed to synthesize instance of type class
+18:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:522:35: failed to synthesize instance of type class
+23:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean:523:38: failed to synthesize instance of type class
+73:error: Lean exited with code 1
+76:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGon.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientBothInclusions.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientDiagonalSentence.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientUnitsGL.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

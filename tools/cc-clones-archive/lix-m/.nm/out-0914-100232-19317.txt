@@ -1,0 +1,21 @@
+[job] 10:03:29 acn112 waiting for clone lock
+[job] delta sync 7a4df2737..10928ebc9: 86 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 10928ebc9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0914-100232-19317.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3621 oleans
+--- errors (first 80 lines)
+6:✖ [5056/5057] Building GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces (6.3s)
+8:error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:83:5: failed to synthesize instance of type class
+12:error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:85:7: failed to synthesize instance of type class
+19:error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:104:14: Unknown constant `GroupApproximation.GGT.VanKampen.CombMap.card_filter_degenerate_le`
+20:error: Lean exited with code 1
+23:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

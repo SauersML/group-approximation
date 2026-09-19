@@ -1,0 +1,25 @@
+[job] 17:22:07 acn112 waiting for clone lock
+[job] delta sync e7c4bb173..694740ca6: 4 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 694740ca6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-172202-44913.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3439 oleans
+--- errors (first 80 lines)
+19:✖ [1443/1443] Building GroupApproximation.Dynamics.TransientSupport (7.3s)
+21:error: GroupApproximation/Dynamics/TransientSupport.lean:79:2: `dsimp` made no progress
+22:error: GroupApproximation/Dynamics/TransientSupport.lean:90:2: `dsimp` made no progress
+23:error: GroupApproximation/Dynamics/TransientSupport.lean:111:38: Application type mismatch: The argument
+31:error: GroupApproximation/Dynamics/TransientSupport.lean:109:69: unsolved goals
+41:error: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms outside the classical allowlist: [sorryAx]
+42:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+53:error: Lean exited with code 1
+56:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TransientSupport (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+- GroupApproximation.Dynamics.TransientSupport
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

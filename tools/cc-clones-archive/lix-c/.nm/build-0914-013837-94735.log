@@ -1,0 +1,17 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3560 oleans
+[job] acn112 cores=80-87 threads=8 base=17413083365aec0308689dce4c829234420d8a24 mods: GroupApproximation.GGT.VanKampen.BridgeComponentValue
+ℹ [3336/3465] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4958/4958] Built GroupApproximation.GGT.VanKampen.BridgeComponentValue (11s)
+info: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:320:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.isFaceCycle_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:321:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.isFaceCycle_of_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BridgeComponentValue.lean:322:14: 'GroupApproximation.GGT.VanKampen.BridgeComponent.listVal_pocket_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4958 jobs).
+EXIT=0

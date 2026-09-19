@@ -1,0 +1,39 @@
+[job] 17:48:24 acn112 waiting for clone lock
+[job] delta sync bb32c57f9..68559b320: 23 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 68559b320 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-174816-36646.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3451 oleans
+--- errors (first 80 lines)
+25:✖ [10140/10140] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside (28s)
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:152:8: Unknown identifier `CyclicArc.mapTo_darts`
+28:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:151:19: unsolved goals
+48:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:168:8: Unknown identifier `CyclicArc.mapTo_start`
+49:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:167:11: unsolved goals
+64:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:171:8: Unknown identifier `CyclicArc.mapTo_start`
+65:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:170:11: unsolved goals
+94:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:263:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside' depends on axioms outside the classical allowlist: [sorryAx]
+95:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+97:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:264:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside_closedWalk' depends on axioms outside the classical allowlist: [sorryAx]
+98:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+100:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:265:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside_repeatedVisits' depends on axioms outside the classical allowlist: [sorryAx]
+101:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+103:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:266:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStep_of_monogonDoublingInside' depends on axioms outside the classical allowlist: [sorryAx]
+104:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+106:error: Lean exited with code 1
+109:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZero.lean
+COMPILED GroupApproximation/Kazhdan/GHWEntries.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+COMPILED GroupApproximation/Kazhdan/GHWJacobsonKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

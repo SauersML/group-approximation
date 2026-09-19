@@ -1,0 +1,16 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+[job] acn30 cores=slurm threads=8 base=24a27e5270dbdcbd82e523dda8922d36fe7cc578 mods: GroupApproximation.Analysis.HyperlinearOneSumModels GroupApproximation.Analysis.HyperlinearTraceVanishingProof
+✖ [2411/2412] Building GroupApproximation.Analysis.HyperlinearOneSumModels (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/HyperlinearOneSumModels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/HyperlinearOneSumModels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/HyperlinearOneSumModels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/HyperlinearOneSumModels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/HyperlinearOneSumModels.setup.json --json
+error: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:117:2: No goals to be solved
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:191:14: 'GroupApproximation.HyperlinearTraceVanishing.hsDistSq_ampMatrix_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:192:14: 'GroupApproximation.HyperlinearTraceVanishing.normTrace_ampMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.HyperlinearOneSumModels
+error: build failed
+EXIT=1

@@ -1,0 +1,19 @@
+[job] 12:07:25 acn112 waiting for clone lock
+[job] delta sync 880cf6c9d..a6f1063ea: 4 files changed
+===== SUMMARY
+host acn112 cores 64-71 base a6f1063ea log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-120719-63544.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3729 oleans
+--- errors (first 80 lines)
+92:✖ [10322/10322] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals (138s)
+94:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:205:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+116:error: Lean exited with code 1
+119:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

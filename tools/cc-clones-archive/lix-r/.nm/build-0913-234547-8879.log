@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+[job] acn112 cores=64-71 threads=8 base=e99966455d45784ff1c74c712ca6e122d67f8b7a mods: GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+ℹ [3335/3426] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4998/5170] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10100/10101] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.calibration_opposite_clauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:192:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:194:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:196:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:200:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.doubleTouchNeitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (24s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.setup.json --json
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:103:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:115:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:141:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:143:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_first' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:145:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+error: build failed
+EXIT=1
