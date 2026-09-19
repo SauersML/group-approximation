@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.BooneHigmanThompson: fails through red imports"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/BooneHigmanThompson.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/BooneHigmanThompson.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-sk-open.
 
 **First errors (verbatim).**

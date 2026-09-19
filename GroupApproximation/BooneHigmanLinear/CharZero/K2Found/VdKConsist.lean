@@ -97,12 +97,12 @@ theorem rowProd_mem_colAvoid {r s : I} (hrs : r ≠ s) {j : I → A} (hjs : j s 
   have hnorm : rowProd r j = rowProd r (j - Pi.single s (j s)) := by
     rw [hjs, Pi.single_zero, sub_zero]
   rw [hnorm]
-  refine mem_of_additive (f := fun u => rowProd r (u - Pi.single s (u s))) (fun u v => ?_)
+  refine mem_of_additive (f := fun u : I → A => rowProd r (u - Pi.single s (u s))) (fun u v => ?_)
     (fun q c => ?_) j
   · show rowProd r (u + v - Pi.single s ((u + v) s)) =
       rowProd r (u - Pi.single s (u s)) * rowProd r (v - Pi.single s (v s))
     rw [sub_single_add, rowProd_add]
-  · show rowProd r (Pi.single q c - Pi.single s (Pi.single q c s)) ∈ colAvoid I A s
+  · show rowProd r (Pi.single q c - Pi.single s ((Pi.single q c : I → A) s)) ∈ colAvoid I A s
     by_cases hqs : q = s
     · subst hqs
       rw [Pi.single_eq_same, sub_self, rowProd_zero]
@@ -140,12 +140,12 @@ theorem colProd_mem_rowAvoid {r s : I} (hrs : r ≠ s) {i : I → A} (his : i s 
   have hnorm : colProd r i = colProd r (i - Pi.single s (i s)) := by
     rw [his, Pi.single_zero, sub_zero]
   rw [hnorm]
-  refine mem_of_additive (f := fun u => colProd r (u - Pi.single s (u s))) (fun u v => ?_)
+  refine mem_of_additive (f := fun u : I → A => colProd r (u - Pi.single s (u s))) (fun u v => ?_)
     (fun p c => ?_) i
   · show colProd r (u + v - Pi.single s ((u + v) s)) =
       colProd r (u - Pi.single s (u s)) * colProd r (v - Pi.single s (v s))
     rw [sub_single_add, colProd_add]
-  · show colProd r (Pi.single p c - Pi.single s (Pi.single p c s)) ∈ rowAvoid I A s
+  · show colProd r (Pi.single p c - Pi.single s ((Pi.single p c : I → A) s)) ∈ rowAvoid I A s
     by_cases hps : p = s
     · subst hps
       rw [Pi.single_eq_same, sub_self, colProd_zero]
@@ -335,8 +335,8 @@ theorem wEl_conj_colProd {r s : I} (hrs : r ≠ s) {l : I → A} (hlr : l r = 0)
   have key : ∀ u : I → A, wEl r s hrs * colProd r (norm2 r s u) * (wEl r s hrs)⁻¹ =
       colProd s (-norm2 r s u) := by
     refine eq_of_add_of_single
-      (f := fun u => wEl r s hrs * colProd r (norm2 r s u) * (wEl r s hrs)⁻¹)
-      (g := fun u => colProd s (-norm2 r s u)) (fun u v => ?_) (fun u v => ?_) (fun p c => ?_)
+      (f := fun u : I → A => wEl r s hrs * colProd r (norm2 r s u) * (wEl r s hrs)⁻¹)
+      (g := fun u : I → A => colProd s (-norm2 r s u)) (fun u v => ?_) (fun u v => ?_) (fun p c => ?_)
     · show wEl r s hrs * colProd r (norm2 r s (u + v)) * (wEl r s hrs)⁻¹ =
         wEl r s hrs * colProd r (norm2 r s u) * (wEl r s hrs)⁻¹ *
           (wEl r s hrs * colProd r (norm2 r s v) * (wEl r s hrs)⁻¹)
@@ -362,8 +362,8 @@ theorem wEl_conj_rowProd {r s : I} (hrs : r ≠ s) {j : I → A} (hjr : j r = 0)
   have key : ∀ u : I → A, wEl r s hrs * rowProd r (norm2 r s u) * (wEl r s hrs)⁻¹ =
       rowProd s (-norm2 r s u) := by
     refine eq_of_add_of_single
-      (f := fun u => wEl r s hrs * rowProd r (norm2 r s u) * (wEl r s hrs)⁻¹)
-      (g := fun u => rowProd s (-norm2 r s u)) (fun u v => ?_) (fun u v => ?_) (fun q c => ?_)
+      (f := fun u : I → A => wEl r s hrs * rowProd r (norm2 r s u) * (wEl r s hrs)⁻¹)
+      (g := fun u : I → A => rowProd s (-norm2 r s u)) (fun u v => ?_) (fun u v => ?_) (fun q c => ?_)
     · show wEl r s hrs * rowProd r (norm2 r s (u + v)) * (wEl r s hrs)⁻¹ =
         wEl r s hrs * rowProd r (norm2 r s u) * (wEl r s hrs)⁻¹ *
           (wEl r s hrs * rowProd r (norm2 r s v) * (wEl r s hrs)⁻¹)
@@ -439,8 +439,8 @@ theorem x_conj_rowProd {r s : I} (hrs : r ≠ s) (b : A) {j : I → A} (hjr : j 
   have key : ∀ u : I → A, x s r hrs.symm b * rowProd r (norm2 r s u) * (x s r hrs.symm b)⁻¹ =
       rowProd s (b • norm2 r s u) * rowProd r (norm2 r s u) := by
     refine eq_of_add_of_single
-      (f := fun u => x s r hrs.symm b * rowProd r (norm2 r s u) * (x s r hrs.symm b)⁻¹)
-      (g := fun u => rowProd s (b • norm2 r s u) * rowProd r (norm2 r s u))
+      (f := fun u : I → A => x s r hrs.symm b * rowProd r (norm2 r s u) * (x s r hrs.symm b)⁻¹)
+      (g := fun u : I → A => rowProd s (b • norm2 r s u) * rowProd r (norm2 r s u))
       (fun u v => ?_) (fun u v => ?_) (fun q c => ?_)
     · show x s r hrs.symm b * rowProd r (norm2 r s (u + v)) * (x s r hrs.symm b)⁻¹ =
         x s r hrs.symm b * rowProd r (norm2 r s u) * (x s r hrs.symm b)⁻¹ *

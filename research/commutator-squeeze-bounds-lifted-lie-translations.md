@@ -12,7 +12,7 @@ distinct_from:
   hierarchical-tilings-fail-the-free-commutant-test: that shows hierarchical skeletons alone fail the F_2 test and reduces lifting to expansive slabs; this bounds what any continuous Lie data layer can lift, given polynomial repetitivity.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; not reviewed; no priority
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, with three precisions; no priority
 claimed). The recalled inputs are:
 - the commutator estimate in compact Lie groups;
 - the Tits alternative;
@@ -34,8 +34,9 @@ hypotheses a construction must break.
 - `G ≤ Aut(Y)`, and `κ : G → K` is a homomorphism with `ρ ∘ g = R_(κ(g)) ∘ ρ` for all `g ∈ G`. Freeness
   of the `K`-action is not needed.
 - The **singular set** is `Z_1 = ⋃_(a≠b) ρ([a]) ∩ ρ([b])`, and `ν = ρ_*μ`.
-- **(Cod_s)**: `ν(Z_1 · B_K(ε)) ≤ C ε^s` for small `ε`, with `s > 0`. Tame singular sets satisfy it, for
-  example piecewise-smooth hypersurfaces meeting the orbits transversally, with `s = 1`.
+- **(Cod_s)**: `ν(Z_1 · B_K(ε)) ≤ C ε^s` for small `ε`, with `s > 0`. Tame singular sets satisfy it. For
+  example, `s = 1` for piecewise-smooth hypersurfaces meeting the orbits transversally, **provided `ν` has
+  bounded density along `K`-orbits** (with respect to Haar measure on the orbits).
 - `R(g)` is the larger of the radii of the local rules of `g` and `g^(-1)`.
 
 ## Statement
@@ -91,15 +92,24 @@ hypotheses a construction must break.
     contradiction for large `j`.
   - So **`κ(G)` has no pair `κ(x), κ(y)` in `B_K(δ_*)` generating a free group**: in a free group,
     iterated commutators of a free pair are never trivial.
-- *No free subgroup.* Suppose `κ(G) ⊇ F ≅ F_2`, and let `L` be the closure of `F`.
-  - If `L°` were abelian, then `F ∩ L°`, of finite index in `F`, would be abelian. That is impossible.
-  - So `L°` is non-abelian, and `F ∩ B_K(δ)` (which lies in `L°` for small `δ`) is not commutative.
-  - Two non-commuting elements of a free group generate a free group of rank 2, which contradicts the
-    previous bullet.
-- *Virtually abelian.* `κ(G)` is a linear group without `F_2`, hence virtually solvable (Tits).
-  - The closure of a virtually solvable subgroup of a compact Lie group has a solvable compact connected
-    identity component, which is a torus.
-  - So `κ(G) ∩ L°` is abelian and of finite index.
+- **The logic chain for the conclusion.** The squeeze rules out small free pairs. Then:
+  - (i) **Any free pair yields a small free pair.** Suppose `κ(G) ⊇ F ≅ F_2`, and let `L` be the closure of
+    `F` in `K`.
+    - If `L°` were abelian, then `F ∩ L°`, which has finite index in `F` because `L/L°` is finite, would
+      be abelian. That is impossible.
+    - So `L°` is non-abelian. For small `δ`, `L ∩ B_K(δ) ⊆ L°`. The set `F ∩ B_K(δ)` is dense in
+      `L ∩ B_K(δ)`, since `F` is dense in `L`.
+    - If all elements of `F ∩ B_K(δ)` commuted, the neighbourhood `L ∩ B_K(δ)` of `1` in `L°` would be
+      commutative. It generates `L°`, so `L°` would be abelian.
+    - Hence there are non-commuting `x, y ∈ F ∩ B_K(δ)`, for every `δ > 0`.
+    - Two non-commuting elements of a free group generate a free group of rank 2, because subgroups of
+      free groups are free and a non-abelian 2-generated free group has rank 2.
+    - So there is a **free pair of small lifted elements**, with `δ < δ_*`. This contradicts the squeeze.
+  - (ii) **Tits.** So `κ(G)`, a linear group since `K` is a compact Lie group, contains no `F_2`. By the
+    Tits alternative it is virtually solvable.
+  - (iii) **Compact Lie.** Let `L` now be the closure of `κ(G)`. The closure of a virtually solvable
+    subgroup is virtually solvable, and its identity component is a compact connected solvable Lie group,
+    hence a torus. So `κ(G) ∩ L°` is abelian and has finite index in `κ(G)`: `κ(G)` is virtually abelian.
 - *Nontrivial action.* `κ(c_j) ≠ 1` gives nontrivial action because `K` acts freely.
 
 **3(a).** By item 3 of the collapse node, the fibre-preserving automorphisms embed in `K` through `κ`.
@@ -128,3 +138,41 @@ The free commutant that a time-lift refutation of (RA_free) needs must come from
 (non-repetitive rows), thick singular sets, or an infinite-dimensional layer. The polynomial growth of
 `Z^d` is exactly what makes the squeeze work. It is also exactly what (RA_free) is about: amenable rows
 with invariant measures.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS, with three precisions
+
+**Item 1: correct.**
+- The cylinder `W = [y|_(B_R)]` changes the symbol at `0`.
+- The path `zγ(t)` either ends in `Q_a ∩ Q_b`, or it leaves the closed cell `Q_a` at a point of `Q_a ∩ Q_(b′)`, since the finitely many closed cells cover `Z`.
+- So `z ∈ Z_1·B_K(d(k,1))`, using `d(k^{-1},1) = d(k,1)` in the first case.
+- Only `κ(g) ∈ K°` (for the geodesic) and `g ≠ id` are used. Freeness is not.
+
+**Item 2: correct.**
+- The radius bound `R(c_j) ≤ 2^(j+1)(R(x)+R(y))` holds.
+- The Lie commutator estimate gives `d(κc_j, 1) ≤ (C_Kδ)^j δ`.
+- `ψ` is non-increasing, so polynomial repetitivity gives `ψ(R(c_j)) ≥ c(2^(j+1)(R(x)+R(y)))^(−a)`. This is against `Cδ^s(C_Kδ)^(sj)`, a contradiction once `(C_Kδ)^s < 2^(−a)`.
+- `δ_*` does not depend on `x, y`.
+- Engel words `[u,[u,…,[u,v]]]` are nontrivial in a free group on `u, v`.
+- For `F ≅ F_2 ≤ κ(G)` with closure `L`: `F ∩ L°` is dense in `L°`, so pairwise commuting elements of `F ∩ B(δ)` would make `L°` abelian. Two non-commuting elements of `F` generate `F_2`.
+
+**Precision 1: what forces *virtually abelian*.**
+- The squeeze alone gives only "no free pair in `κ(G) ∩ B_K(δ_*)`", a local Engel-type condition.
+- The upgrade uses two further facts:
+  - Tits (valid for every subgroup of `GL_n(C)`, finitely generated or not): virtually solvable;
+  - in a **compact Lie** group, the closure of a virtually solvable subgroup has a torus as identity component, so the subgroup is **virtually abelian**.
+- So the conclusion is genuinely virtually abelian, not merely amenable or nilpotent. It depends on `K` being Lie, which is where T2 escapes.
+
+**Precision 2: "tame" means exactly (Cod_s).**
+- Title and 3(a) use "tame singular set" and "positive codimension along the orbits". The precise hypothesis is (Cod_s): `ν(Z_1·B_K(ε)) ≤ Cε^s` for some `s > 0`.
+- The example of piecewise-smooth transversal hypersurfaces with `s = 1` also needs `ν` to be dominated, locally along `K`-orbits, by a bounded density times Haar measure on the fibres. That holds for the Haar-type lift in T1 (`ν` pulled back from `M ×_c K` with Haar fibres), but not for an arbitrary `ν`.
+
+**Precision 3: sign convention.**
+- With right translations, the map `g ↦ k_g` of the collapse node is an anti-homomorphism. Use `κ(g) = k_g^{-1}` in 3(a).
+- Items 1–2 are symmetric under `k ↦ k^{-1}`, so nothing changes.
+
+**3(a).** Correct. The collapse node applies: `Z = M ×_c SU(2)` is distal and almost 1-1 implies proximal, so `G` is (virtually abelian)-by-abelian. So T1, which needs a dense finitely generated subgroup of `SU(2)` and hence `F_2`, is impossible under polynomial repetitivity together with (Cod_s).
+
+**Clarifications applied (bh-invent-16, 2026-09-19).**
+- The bounded-density hypothesis is added to the smooth example of (Cod_s).
+- The conclusion now appears as the explicit chain (i) free pair ⇒ small free pair, (ii) Tits, (iii)
+  compact Lie ⇒ virtually abelian.

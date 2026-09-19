@@ -93,7 +93,7 @@ theorem rayG_rayF (N : ℕ) (p : ℕ × Cantor (Fin (n + 2))) : rayG n N (rayF n
     congr 1
     omega
   · rw [rayF_mid w h1 h2, rayG_eq, prepend_single_zero, dropN_prepend_single,
-      fc_val_of_lt (i := M - N) (by omega)]
+      fc_val_of_lt (n := n) (i := M - N) (by omega)]
     congr 1
     omega
 
@@ -178,8 +178,8 @@ theorem up_injective : Function.Injective (up n) := by
   obtain ⟨-, hj⟩ := List.append_inj hu (by simp [hq])
   have hj' : fc n (N % (n + 1)) = fc n (N' % (n + 1)) := List.head_eq_of_cons_eq hj
   have hv := congrArg Fin.val hj'
-  rw [fc_val_of_lt (i := N % (n + 1)) (by have := Nat.mod_lt N (show 0 < n + 1 by omega); omega),
-    fc_val_of_lt (i := N' % (n + 1))
+  rw [fc_val_of_lt (n := n) (i := N % (n + 1)) (by have := Nat.mod_lt N (show 0 < n + 1 by omega); omega),
+    fc_val_of_lt (n := n) (i := N' % (n + 1))
       (by have := Nat.mod_lt N' (show 0 < n + 1 by omega); omega)] at hv
   have hN : N = N' := by
     rw [← Nat.div_add_mod N (n + 1), ← Nat.div_add_mod N' (n + 1), hq, hv]

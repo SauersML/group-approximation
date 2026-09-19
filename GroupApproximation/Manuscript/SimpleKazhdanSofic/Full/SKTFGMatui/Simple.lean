@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.Statements
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.FullGroup
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiSimplicity
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerPerm
 import GroupApproximation.Meta.AxiomGuard
@@ -12,23 +12,25 @@ import GroupApproximation.Meta.AxiomGuard
 > subgroup meets a simple union of products of alternating groups on towers
 > [Matui, Lemma 3.4 and Theorem 4.9].
 
-`Full.SKTFG.MatuiDerivedFullGroupSimpleStatement` states Matui's Theorem 4.9 for the derived
-topological full group `[[T]]' = ⁅[[T]], [[T]]⁆` of a Cantor minimal system, with `[[T]]` the
-subgroup `topologicalFullGroup T` of the homeomorphism group (`FlipConverse.FullGroup`).  The
-StepanovMatui lane proved Matui's theorem for `[[T]]` as the subgroup `fullGroup T` of the
-permutation group (`Full.StepanovMatui.Matui.isSimpleGroup_commutator_fullGroup`, with Lemma 3.4
-as `alternatingFullGroup_le_of_ne_bot`).  This file moves that theorem across the two encodings.
+The repository has two encodings of the topological full group `[[T]]`: `topologicalFullGroup T`,
+a subgroup of the homeomorphism group (`FlipConverse.FullGroup`, used for the flip converse), and
+`fullGroup T`, a subgroup of the permutation group (`Full.StepanovMatui.Matui`).  The StepanovMatui
+lane proved Matui's theorem for the second
+(`Full.StepanovMatui.Matui.isSimpleGroup_commutator_fullGroup`, with Lemma 3.4 as
+`alternatingFullGroup_le_of_ne_bot`; the printed remark is `printedMatuiRemark`).  This file moves
+it to the first.
 
 * `map_topologicalFullGroup`: on a compact Hausdorff space, forgetting continuity
   (`homeoToPerm`) maps `topologicalFullGroup T` onto `fullGroup T`.  An element of `fullGroup T`
   is continuous, and by compactness so is its inverse, so it is a homeomorphism.
-* `map_derivedFullGroup`, `derivedFullGroupMulEquiv`: hence `[[T]]' ≃* ⁅fullGroup T, fullGroup T⁆`,
-  since `homeoToPerm` is injective and maps commutator subgroups to commutator subgroups.
-* `isSimpleGroup_derivedFullGroup`: `[[T]]'` is simple for a minimal homeomorphism of an infinite
-  compact Hausdorff totally separated space.
-* `matuiDerivedFullGroupSimple`: the closed statement `MatuiDerivedFullGroupSimpleStatement`.  A
-  Cantor minimal system is compact, metrizable (so Hausdorff), totally disconnected (so totally
-  separated, having a clopen basis) and perfect and nonempty (so infinite).
+* `map_derivedTopologicalFullGroup`, `derivedTopologicalFullGroupMulEquiv`: hence
+  `⁅[[T]], [[T]]⁆` as homeomorphisms is isomorphic to `⁅fullGroup T, fullGroup T⁆`, because
+  `homeoToPerm` is injective and maps commutator subgroups to commutator subgroups.
+* `isSimpleGroup_derivedTopologicalFullGroup`: `⁅[[T]], [[T]]⁆` is simple for a minimal
+  homeomorphism of an infinite compact Hausdorff totally separated space.
+* `printedMatuiCantorMinimal`: the closed statement for Cantor minimal systems.  A Cantor minimal
+  system is compact, metrizable (so Hausdorff), totally disconnected (so totally separated, having a
+  clopen basis) and perfect and nonempty (so infinite).
 -/
 
 namespace GroupApproximation.Full.SKTFGMatui
@@ -64,47 +66,51 @@ theorem map_topologicalFullGroup [CompactSpace X] [T2Space X] (T : X ≃ₜ X) :
               continuous_invFun := (IsFullGroupElement.inv hg').continuous }, ?_, rfl⟩
     exact mem_topologicalFullGroup.2 ⟨n, hn, fun x => hgn x⟩
 
-/-- Forgetting continuity maps `[[T]]'` onto `⁅fullGroup T, fullGroup T⁆`. -/
-theorem map_derivedFullGroup [CompactSpace X] [T2Space X] (T : X ≃ₜ X) :
-    (SKTFG.derivedFullGroup T).map homeoToPerm = ⁅fullGroup T, fullGroup T⁆ := by
-  unfold SKTFG.derivedFullGroup
+/-- Forgetting continuity maps `⁅[[T]], [[T]]⁆` onto `⁅fullGroup T, fullGroup T⁆`. -/
+theorem map_derivedTopologicalFullGroup [CompactSpace X] [T2Space X] (T : X ≃ₜ X) :
+    (⁅topologicalFullGroup T, topologicalFullGroup T⁆ : Subgroup (X ≃ₜ X)).map homeoToPerm =
+      ⁅fullGroup T, fullGroup T⁆ := by
   rw [Subgroup.map_commutator, map_topologicalFullGroup]
 
-/-- `[[T]]'`, as homeomorphisms, is isomorphic to `⁅fullGroup T, fullGroup T⁆`. -/
-noncomputable def derivedFullGroupMulEquiv [CompactSpace X] [T2Space X] (T : X ≃ₜ X) :
-    SKTFG.derivedFullGroup T ≃* ⁅fullGroup T, fullGroup T⁆ :=
-  ((SKTFG.derivedFullGroup T).equivMapOfInjective homeoToPerm homeoToPerm_injective).trans
-    (MulEquiv.subgroupCongr (map_derivedFullGroup T))
+/-- `⁅[[T]], [[T]]⁆`, as homeomorphisms, is isomorphic to `⁅fullGroup T, fullGroup T⁆`. -/
+noncomputable def derivedTopologicalFullGroupMulEquiv [CompactSpace X] [T2Space X]
+    (T : X ≃ₜ X) :
+    ↥(⁅topologicalFullGroup T, topologicalFullGroup T⁆ : Subgroup (X ≃ₜ X)) ≃*
+      ↥⁅fullGroup T, fullGroup T⁆ :=
+  ((⁅topologicalFullGroup T, topologicalFullGroup T⁆ : Subgroup (X ≃ₜ X)).equivMapOfInjective
+    homeoToPerm homeoToPerm_injective).trans
+    (MulEquiv.subgroupCongr (map_derivedTopologicalFullGroup T))
 
 /-- **Matui, Theorem 4.9, for `[[T]]'` as homeomorphisms**: for a minimal homeomorphism `T` of an
-infinite compact Hausdorff totally separated space, `[[T]]'` is simple. -/
-theorem isSimpleGroup_derivedFullGroup [CompactSpace X] [T2Space X] [TotallySeparatedSpace X]
-    [Infinite X] (T : X ≃ₜ X) (hmin : IsMinimalHomeo T) :
-    IsSimpleGroup (SKTFG.derivedFullGroup T) := by
+infinite compact Hausdorff totally separated space, `⁅[[T]], [[T]]⁆` is simple. -/
+theorem isSimpleGroup_derivedTopologicalFullGroup [CompactSpace X] [T2Space X]
+    [TotallySeparatedSpace X] [Infinite X] (T : X ≃ₜ X) (hmin : IsMinimalHomeo T) :
+    IsSimpleGroup ↥(⁅topologicalFullGroup T, topologicalFullGroup T⁆ : Subgroup (X ≃ₜ X)) := by
   haveI : IsSimpleGroup ↥⁅fullGroup T, fullGroup T⁆ := isSimpleGroup_commutator_fullGroup T hmin
-  exact (derivedFullGroupMulEquiv T).isSimpleGroup
+  exact (derivedTopologicalFullGroupMulEquiv T).isSimpleGroup
 
 end Transport
 
-/-- **Matui, Theorem 4.9** (census row `3eaee0a2dc7e`, tex l.307–309): for every Cantor minimal
-system `(X, T)`, the derived topological full group `[[T]]'` is simple. -/
-theorem matuiDerivedFullGroupSimple : SKTFG.MatuiDerivedFullGroupSimpleStatement.{u} := by
-  intro X _ T hT
-  obtain ⟨hc, hm, htd, hp, hne, hmin⟩ := hT
-  haveI := hc
-  haveI := hm
-  haveI := htd
-  haveI := hp
-  haveI := hne
+/-- **Printed** (tex l.307–309, Matui, Theorem 4.9, for Cantor minimal systems): the derived
+topological full group `⁅[[T]], [[T]]⁆ ≤ Homeo(X)` of a minimal homeomorphism `T` of a Cantor
+space `X` (compact, metrizable, totally disconnected, perfect, nonempty) is simple. -/
+def PrintedMatuiCantorMinimal : Prop :=
+  ∀ (X : Type u) [TopologicalSpace X] [CompactSpace X] [TopologicalSpace.MetrizableSpace X]
+    [TotallyDisconnectedSpace X] [PerfectSpace X] [Nonempty X] (T : X ≃ₜ X),
+    IsMinimalHomeo T →
+      IsSimpleGroup ↥(⁅topologicalFullGroup T, topologicalFullGroup T⁆ : Subgroup (X ≃ₜ X))
+
+theorem printedMatuiCantorMinimal : PrintedMatuiCantorMinimal.{u} := by
+  intro X _ _ _ _ _ _ T hmin
   haveI : TotallySeparatedSpace X :=
     totallySeparatedSpace_of_t0_of_basis_clopen isTopologicalBasis_isClopen
   haveI : Infinite X :=
     GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.infinite_of_perfectSpace
-  exact isSimpleGroup_derivedFullGroup T hmin
+  exact isSimpleGroup_derivedTopologicalFullGroup T hmin
 
 end GroupApproximation.Full.SKTFGMatui
 
 #audit_axioms GroupApproximation.Full.SKTFGMatui.map_topologicalFullGroup
-#audit_axioms GroupApproximation.Full.SKTFGMatui.map_derivedFullGroup
-#audit_axioms GroupApproximation.Full.SKTFGMatui.isSimpleGroup_derivedFullGroup
-#audit_closed_axioms GroupApproximation.Full.SKTFGMatui.matuiDerivedFullGroupSimple
+#audit_axioms GroupApproximation.Full.SKTFGMatui.map_derivedTopologicalFullGroup
+#audit_axioms GroupApproximation.Full.SKTFGMatui.isSimpleGroup_derivedTopologicalFullGroup
+#audit_closed_axioms GroupApproximation.Full.SKTFGMatui.printedMatuiCantorMinimal

@@ -1,4 +1,7 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.TulElemLocal
+import Mathlib.Algebra.Module.BigOperators
+import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Data.Fintype.BigOperators
 import Mathlib.GroupTheory.Subgroup.Centralizer
 import GroupApproximation.Meta.AxiomGuard
 
