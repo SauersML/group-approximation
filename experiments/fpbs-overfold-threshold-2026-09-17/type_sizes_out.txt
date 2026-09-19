@@ -1,0 +1,5 @@
+j 0 |t_j| 1 |C_j| 1 |C_j+1| 3 lawful |T| [3] overfold types 0 overfold |T| min/median/max None None None total overfold pairs 0
+j 1 |t_j| 4 |C_j| 3 |C_j+1| 8 lawful |T| [7] overfold types 11 overfold |T| min/median/max 1 2 3 total overfold pairs 21
+j 2 |t_j| 11 |C_j| 8 |C_j+1| 20 lawful |T| [16] overfold types 87 overfold |T| min/median/max 1 2 7 total overfold pairs 174
+j 3 |t_j| 28 |C_j| 20 |C_j+1| 49 lawful |T| [38] overfold types 559 overfold |T| min/median/max 1 2 16 total overfold pairs 1138
+j 4 |t_j| 69 |C_j| 49 |C_j+1| 119 lawful |T| [91] overfold types 3380 overfold |T| min/median/max 1 2 38 total overfold pairs 6930

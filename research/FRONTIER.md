@@ -27771,6 +27771,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-19 · fpbs-mal-overfold-merges-never-help [OPEN] On every finite F(a,b)-set, merges of the folded L_{j+1}-graph outside the kernel of its map onto the folded L_j-graph never lower the least number of merges that collapse that kernel, so deep_j(Q) = law_j(Q) = r(Q^(j))
 - 2026-09-19 · fpbs-max-cost-finite-index-scaling-is-coset-descent-proof [COMPLETE] Identify Bernoulli restricted to H as Bernoulli, induce the coset product to the section X x {H}, and squeeze by finite-index star repair and maximality
 - 2026-09-19 · fpbs-max-cost-finite-index-scaling-is-coset-descent [ESTABLISHED] Finite-index scaling of maximal cost is cost descent through one Bernoulli-times-coset factor, both fixed price and the Betti target force it, and it forces chain-independent rank gradient
 - 2026-09-19 · fpbs-bernoulli-cycle-tail-compactness [OPEN] Bernoulli cost minimizers have tight finite-cycle dimension
@@ -27778,7 +27779,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-19 · deligne-universal-cover-lattice-is-not-hyperlinear [OPEN] Deligne's universal-cover lattice over Sp4(Z) is not hyperlinear
 - 2026-09-19 · deligne-triple-cover-via-lattice-non-hyperlinear [OPEN] Exclude the full parameter circle by non-hyperlinearity of Deligne's lattice through P_op inside E_CE, and the finite branch by period arithmetic
 - 2026-09-19 · deligne-norm-parameter-group-embeds-in-ce-subgroup-proof [COMPLETE] Camouflage norm models by regular representations of congruence quotients, and cut a hyperlinear lattice by spectral projections of its central unitary
-- 2026-09-19 · deligne-norm-parameter-group-embeds-in-ce-subgroup [ESTABLISHED] Deligne's norm-parameter group lies in the Connes-embeddable Maslov subgroup, and the universal-cover lattice is hyperlinear exactly when that subgroup is the whole circle
 
 ## Active claims
 

@@ -1,0 +1,3 @@
+n 3 j 5 transitive classes 7
+histogram (law, deep): count [((1, 1), 4), ((2, 2), 3)]
+classes not L_j-transitive 2 FLAGS 0
