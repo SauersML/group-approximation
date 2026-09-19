@@ -70,3 +70,25 @@ would survive, since it is already a theorem through property (T).
   dyadic permutation groups `W_N`. **Survivors:** arguments using
   infinite-order elements of `V`, or the relative position of the
   eigenspaces of non-commuting finite subgroups.
+
+- **swarm-0917-w19-w19-ptm-pull (2026-09-19): a probability-random transplant, dead in the regular gluing fibre;
+  the target stays OPEN.**
+  - **The transplant.** Build MF (or hyperlinear) witnesses for `V` by the probabilistic method: glue regular
+    representations of `S4` and `S3` along `<a>` by a Haar-random unitary `W` in the commutant `U(12k) x U(12k)`.
+  - **Result.** `thompson-v-haar-regular-gluings-have-defect-two` (ESTABLISHED, written proof via the Collins 2003
+    import `collins-haar-constant-matrices-asymptotic-freeness`) shows that the method fails:
+    - Haar gluings converge in distribution to `lambda_G0`;
+    - every relator `r_i`, which is cyclically alternating of syllable length 10, 20, 16 or 28, gets asymptotically
+      Haar spectrum;
+    - so `||r_i - 1|| -> 2` and `||r_i - 1||_2 -> sqrt 2` in probability, with `O(k^(-2))` concentration and almost
+      surely.
+    - The good sets of the hyperlinear and MF gluing criteria therefore have Haar measure tending to 0.
+  - **Where it dies.** At the step "each relator is cyclically alternating in `G0`". Freeness over the diagonal of
+    `a`, together with the vanishing diagonal blocks of regular representations, kills every cyclically alternating
+    trace.
+  - **Survivors.**
+    - Non-regular or unbalanced factor restrictions, where the characters are not `o(n)` off `e`.
+    - Measures singular with respect to Haar on the gluing fibre. Structured or deterministic gluings live here, as do
+      the Zariski-dense survivors of `thompson-v-gap-witnesses-need-unbounded-lie-closure`.
+  - **Numerics.** `experiments/thompson-v-random-gluing-defect-2026-09-17/` gives `D = 1.999` already at `n = 24` and
+    `2.0000` from `n = 96`.

@@ -1,0 +1,17 @@
+r5: word length 26, cyclic syllable length 10, cyclically alternating True, no syllable in <a> True
+     factors: YXYXYXYXYX
+r6: word length 28, cyclic syllable length 20, cyclically alternating True, no syllable in <a> True
+     factors: YXYXYXYXYXYXYXYXYXYX
+r7: word length 26, cyclic syllable length 16, cyclically alternating True, no syllable in <a> True
+     factors: XYXYXYXYXYXYXYXY
+r8: word length 37, cyclic syllable length 28, cyclically alternating True, no syllable in <a> True
+     factors: YXYXYXYXYXYXYXYXYXYXYXYXYXYX
+PART1 PASS
+n=  24 trial 0: G0-relations err 2.6e-15  ||sigma(r_i)-1|| = 1.9987 1.9917 1.9988 1.9944  D = 1.9988  max|tr r^j| = 0.0911
+n=  24 trial 1: G0-relations err 3.3e-15  ||sigma(r_i)-1|| = 1.9976 1.9994 1.9987 1.9966  D = 1.9994  max|tr r^j| = 0.1048
+n=  48 trial 0: G0-relations err 3.9e-15  ||sigma(r_i)-1|| = 1.9987 2.0000 1.9999 1.9999  D = 2.0000  max|tr r^j| = 0.0528
+n=  48 trial 1: G0-relations err 3.8e-15  ||sigma(r_i)-1|| = 1.9986 1.9991 1.9997 1.9949  D = 1.9997  max|tr r^j| = 0.0794
+n=  96 trial 0: G0-relations err 4.2e-15  ||sigma(r_i)-1|| = 1.9996 2.0000 2.0000 1.9999  D = 2.0000  max|tr r^j| = 0.0299
+n=  96 trial 1: G0-relations err 4.0e-15  ||sigma(r_i)-1|| = 2.0000 1.9999 2.0000 1.9999  D = 2.0000  max|tr r^j| = 0.0257
+n= 192 trial 0: G0-relations err 4.8e-15  ||sigma(r_i)-1|| = 2.0000 2.0000 1.9999 2.0000  D = 2.0000  max|tr r^j| = 0.0116
+n= 192 trial 1: G0-relations err 4.5e-15  ||sigma(r_i)-1|| = 2.0000 2.0000 1.9999 2.0000  D = 2.0000  max|tr r^j| = 0.0118
