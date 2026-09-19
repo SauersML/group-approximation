@@ -124,7 +124,8 @@ def shape (d : ℕ) : Fin 125 → List ShapeLetter := shapeStep^[d] shapeInit
 
 theorem shape_succ (d : ℕ) (i : Fin 125) :
     shape (d + 1) i = wordComm (shape d (pick i).1) (shapeShift (shape d (pick i).2)) := by
-  rw [shape, Function.iterate_succ_apply']
+  show (shapeStep^[d + 1] shapeInit) i = _
+  rw [Function.iterate_succ_apply']
   rfl
 
 theorem primrec_shapeShift : Primrec shapeShift :=
@@ -193,6 +194,7 @@ theorem substWord_wordComm (z : ℤ → A) (a b : List ShapeLetter) :
 
 variable [TopologicalSpace A] (S : Subshift A ℤ)
 
+open Classical in
 theorem genPerm_eq_of_disj (w : Finset.Icc (0 : ℤ) N → A)
     (σ : alternatingGroup (Fin 5))
     (h : TowerDisj (SimpleKazhdanSofic.subshiftHomeo S).toEquiv (cylW S N w) 4) :
@@ -330,8 +332,9 @@ theorem wordValue_substWord_ne_one_iff (hinf : Infinite S.carrier)
     rw [← coe_wordValue]
     exact ⟨fun h => congrArg Subtype.val h, fun h => Subtype.ext h⟩
   rw [h1, wordValue_substWord_shape e S hR hN hDG _ _ rootLab rootLab_valid hd,
-    towerPerm_eq_one_iff (fun j hj y => SK05.subshiftHomeo_zpow_apply_ne_self S hinf hmin hj y)
-      hd labPerm_rootLab_zero]
+    towerPerm_eq_one_iff (fun j hj y => by
+      rw [toEquiv_zpow_apply]
+      exact SK05.subshiftHomeo_zpow_apply_ne_self S hinf hmin hj y) hd labPerm_rootLab_zero]
   exact Set.nonempty_iff_ne_empty.symm.trans (cyl_nonempty_iff S a₀ v (by omega))
 
 end Reduction

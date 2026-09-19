@@ -61,7 +61,7 @@ theorem swapAt_braid {α : Type*} : ∀ (b : List α) (k : ℕ), k + 2 < b.lengt
   | _ :: _ :: _ :: _, 0, _ => rfl
   | E :: b, k + 1, h => by
     simp only [swapAt_succ]
-    rw [swapAt_braid b k (by simpa using h)]
+    rw [swapAt_braid b k (by simp at h; omega)]
 
 theorem swapAt_far {α : Type*} : ∀ (b : List α) (k l : ℕ), k + 2 ≤ l →
     swapAt (swapAt b k) l = swapAt (swapAt b l) k
