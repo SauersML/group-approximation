@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalk
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, inner pocket: sub-lists of sides are short
 

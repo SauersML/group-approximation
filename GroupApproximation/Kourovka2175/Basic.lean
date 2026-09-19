@@ -100,7 +100,7 @@ theorem conj_swap {c : Equiv.Perm ℤ} {A B A' B' : Box} (h : A.Disj B) (h' : A'
     have ha' : ¬ A.Mem (c⁻¹ n) := fun hm => ha (by simpa using hA.mem hm)
     have hb' : ¬ B.Mem (c⁻¹ n) := fun hm => hb (by simpa using hB.mem hm)
     rw [Equiv.Perm.mul_apply, Equiv.Perm.mul_apply, swap_fix h ha' hb',
-      Equiv.Perm.apply_inv_self]
+      Equiv.Perm.coe_inv, Equiv.apply_symm_apply]
 
 /-- A class transposition over `P` of two boxes with smooth moduli. -/
 theorem isClassTranspositionOver_swap {P : Set ℕ} {A B : Box} (h : A.Disj B)
@@ -164,7 +164,7 @@ def classOf (L : ℕ) (hL : 0 < L) (n : ℤ) : Fin L :=
 theorem mem_classOf (L : ℕ) (hL : 0 < L) (n : ℤ) : (child L (classOf L hL n)).Mem n := by
   have h1 := Int.emod_nonneg n (show (L : ℤ) ≠ 0 by exact_mod_cast hL.ne')
   unfold Box.Mem
-  simp only [child_m', child_r', classOf, Fin.val_mk]
+  simp only [child_m', child_r', classOf]
   omega
 
 /-- `n` lies in the `j`-th pair of `k`-children of `A, B`. -/

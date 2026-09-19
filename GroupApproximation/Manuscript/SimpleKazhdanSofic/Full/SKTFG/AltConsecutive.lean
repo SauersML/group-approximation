@@ -76,7 +76,7 @@ theorem closure_consSet_le_alternatingGroup (K : ℕ) :
     Subgroup.closure (consSet K) ≤ alternatingGroup (Fin (K + 1)) := by
   rw [Subgroup.closure_le]
   rintro σ ⟨i, j, -, rfl⟩
-  rw [SetLike.mem_coe, Perm.mem_alternatingGroup, Perm.sign_mul, sign_adjSwap]
+  rw [SetLike.mem_coe, Perm.mem_alternatingGroup, Perm.sign_mul, sign_adjSwap, sign_adjSwap]
   exact Int.units_mul_self _
 
 /-- **The consecutive three-cycles generate the alternating group** of `Fin (K + 1)`. -/
@@ -86,7 +86,7 @@ theorem alternatingGroup_le_closure_consSet (K : ℕ) (hK : 1 ≤ K) :
   set s₀ : Fin K := ⟨0, by omega⟩
   have key : ∀ σ : Perm (Fin (K + 1)), σ ∈ H ∨ σ * adjSwap s₀ ∈ H := by
     intro σ
-    refine Submonoid.induction_of_closure_eq_top_right (mclosure_swap_castSucc_succ K) σ
+    refine Submonoid.induction_of_closure_eq_top_right (Perm.mclosure_swap_castSucc_succ K) σ
       (Or.inl H.one_mem) ?_
     rintro x _ ⟨i, rfl⟩ hx
     change x * adjSwap i ∈ H ∨ x * adjSwap i * adjSwap s₀ ∈ H

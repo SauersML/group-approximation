@@ -77,7 +77,8 @@ variable {K κ : Type*} [CommRing K] [CommRing κ] [Algebra K κ] {n : ℕ}
 noncomputable def lineMap (x : Fin (n + 1) → κ) (a : Fin n → K) :
     MvPolynomial (Fin (n + 1)) K →ₐ[K] Polynomial κ :=
   aeval fun i => Polynomial.C (x i) +
-    Polynomial.C (Fin.cons (1 : κ) (fun j => algebraMap K κ (a j)) i) * Polynomial.X
+    Polynomial.C ((Fin.cons (1 : κ) (fun j => algebraMap K κ (a j)) : Fin (n + 1) → κ) i) *
+      Polynomial.X
 
 end LineMap
 
