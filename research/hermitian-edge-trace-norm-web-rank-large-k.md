@@ -71,3 +71,15 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
   `hermitian-edge-trace-norm-web-rank-k4` (the same `K_5` windows with
   `hermitian-edge-trace-norm-clique-k5-margin`). The `P_6^3` run finished: `c(P_6^3) >= 8.3139`,
   and `hermitian-edge-trace-norm-web-rank-k3` removes every `k = 3` exception except `n = 11`.
+- 2026-09-18 (w8-078): a Yudin certificate tuned to each clique size `m = 6..10` (five verified
+  `F`, degree 6 or 10) raises the certified `eps_m` to `0.0967, 0.2628, 0.4275, 0.6197, 0.8222`.
+  `hermitian-edge-trace-norm-web-rank-k5-to-k9` uses them to settle `k = 8, 9` for every `n`. It also
+  shortens the lists to 35 values for `k = 5` (the largest `89`), `17-20, 25-27, 34` for `k = 6`, and
+  `22, 23` for `k = 7`. The LP value is flat in the degree, so the remaining `n` need windows of more
+  than `k + 1` vertices or a different bound on `c_m`.
+- 2026-09-18 (w8-078): a robust exact-rational SDP branch-and-bound
+  (`experiments/hermitian-edge-trace-norm-webs-robust-2026-09-18/graphbb_r.py`) proves
+  `c(P_6^3) >= 8.5028 > 54 sqrt3/11`. `hermitian-edge-trace-norm-web-rank-k3-n11` then closes
+  `n = 11`, so `(R_{n,3})` holds for every `n >= 8`. The same code proves `c(K_5) >= 7.168`, and
+  `hermitian-edge-trace-norm-web-rank-k4-six-exceptions` reduces `k = 4` to `n = 12, 13, 14, 18, 19, 24`.
+  Next: `c(K_5) >= 7.2169` would close `12, 18, 24`, and `c(P_7^4) >= 6 sqrt3` would close all six.

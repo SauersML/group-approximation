@@ -1,0 +1,24 @@
+solves 4000 closed 2049 stack 2101 minval 7.013573 t 351
+solves 8000 closed 4146 stack 1920 minval 7.013573 t 644
+solves 10000 closed 5174 stack 1868 minval 7.013573 t 757
+solves 16000 closed 8275 stack 1694 minval 6.936426 t 1052
+solves 18000 closed 9302 stack 1650 minval 6.936426 t 1177
+resumed 1669 boxes on stack
+solves 18000 closed 9302 stack 1650 minval 6.936426 t 1180
+solves 20000 closed 10320 stack 1630 minval 6.915750 t 1313
+solves 26000 closed 13405 stack 1506 minval 6.915750 t 1654
+solves 32000 closed 16482 stack 1389 minval 6.915750 t 1965
+solves 34000 closed 17508 stack 1354 minval 6.915750 t 2081
+resumed 1196 boxes on stack
+solves 42000 closed 21689 stack 1002 minval 6.915750 t 2501
+solves 48000 closed 24763 stack 892 minval 6.896531 t 2752
+solves 50000 closed 25801 stack 817 minval 6.896531 t 2839
+solves 52000 closed 26831 stack 776 minval 6.896531 t 2933
+solves 56000 closed 28876 stack 722 minval 6.896531 t 3109
+solves 58000 closed 29903 stack 671 minval 6.896531 t 3205
+solves 62000 closed 31973 stack 545 minval 6.896531 t 3414
+resumed 540 boxes on stack
+solves 66000 closed 34054 stack 394 minval 6.896531 t 3613
+solves 72000 closed 37176 stack 172 minval 6.896531 t 3982
+solves 78000 closed 40270 stack 4 minval 6.896531 t 4368
+W12/1.2.3:0,1,2,3,4,5 edges 12 tree 5 free phases 7 TARGET 8.5028000 T 4.260 first phase in [0.000000,1.570796]: ALL CLOSED  boxes 40647 (reused parent Z 372)  solves 78735  min center value 6.896531 at [0.7854, 1.0472, 5.236, 1.0472, 1.0472, 5.236, 1.0472]  smallest half-width 2.62e-01  time 4408s
