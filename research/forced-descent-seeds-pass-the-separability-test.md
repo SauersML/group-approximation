@@ -11,7 +11,7 @@ requires:
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-19; elementary; not reviewed): Theorems A and B.
-**OPEN:** the covering statement (COV) of §3, which is equivalent to quantum rigidity here.
+**OPEN:** the covering statement (COV) of §3, which implies quantum rigidity here.
 
 ## 1. Descent structures
 
@@ -104,7 +104,7 @@ For a label `a` at `z` and `w ∈ Out_a(z)`, write `F_a(w)` for the forced label
 **The reduction.**
 - By B.2, `N` vanishes on the span of the ranges of the *admissible* idempotents `E_a(z)`, those with
   `q, q' ∈ Out_a(z)` and `z ∈ B_{4L+2}(q)`. By B.3 every classical point sees one of them.
-- So `Y` is `D`-quantum rigid iff:
+- So `Y` is `D`-quantum rigid as soon as the following holds:
 
   > **(COV)** For all `q, q'`, the ranges of the admissible `E_a(z)` span the representation space.
 - (COV) is automatic when all the admissible `z` lie in one `D`-ball. The event "no admissible `z`" is then a
@@ -125,6 +125,6 @@ For a label `a` at `z` and `w ∈ Out_a(z)`, write `F_a(w)` for the forced label
   configuration in particular, with no stratum-by-stratum analysis.
 - The quantum shadow is equally clean. A label at `z` dominates every forced letter upstream, so it annihilates the
   commutator of any two upstream letters.
-- Quantum rigidity of these Kazhdan seeds is therefore exactly one covering statement, (COV). It must be proved
+- Quantum rigidity of these Kazhdan seeds therefore follows from one covering statement, (COV). It must be proved
   across flats, where the hyperbolic drop chains lose (K2). Diagonal (special-vertex) lines, along which distance is
   V-shaped, are the natural rails.
