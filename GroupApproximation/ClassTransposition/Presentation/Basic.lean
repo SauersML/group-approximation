@@ -50,7 +50,8 @@ theorem conj_swap {c : Perm ℤ} {A B A' B' : Box} (h : A.Disj B) (h' : A'.Disj 
   · intro n ha hb
     have ha' : ¬ A.Mem (c⁻¹ n) := fun hm => ha (by simpa using hA.mem hm)
     have hb' : ¬ B.Mem (c⁻¹ n) := fun hm => hb (by simpa using hB.mem hm)
-    rw [Perm.mul_apply, Perm.mul_apply, swap_fix h ha' hb', Perm.apply_inv_self]
+    rw [Perm.mul_apply, Perm.mul_apply, swap_fix h ha' hb']
+    exact c.apply_symm_apply n
 
 /-- `n` lies in the `j`-th pair of `k`-children of `A, B`. -/
 def InKid (A B : Box) (k : ℕ) (j : Fin k) (n : ℤ) : Prop :=
