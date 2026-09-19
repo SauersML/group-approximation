@@ -31,11 +31,14 @@ from pysat.card import CardEnc, EncType
 from pysat.formula import IDPool
 
 
-def run(N, n, maxlev=None, extra=None, cap=None):
+def run(N, n, maxlev=None, extra=None, cap=None, keep=None):
     if maxlev is None:
         maxlev = N - 1
     L = 2 * n + 1
     cells = list(itertools.product(range(L), repeat=N))
+    if keep is not None:
+        cells = [c for c in cells if keep(c, L)]
+    cellset = set(cells)
     pool = IDPool()
     # ge[c][t] : delta(c) >= t, t = 1..maxlev
     ge = lambda c, t: pool.id(('ge', c, t))
@@ -67,6 +70,8 @@ def run(N, n, maxlev=None, extra=None, cap=None):
             if d[nu] % 2 == 1:  # open edge in coord nu
                 for off in (-1, 1):
                     c = list(d); c[nu] += off; c = tuple(c)
+                    if c not in cellset:
+                        continue
                     # usc: delta(c) >= delta(d)
                     for t in range(1, maxlev + 1):
                         S.add_clause([-ge(d, t), ge(c, t)])

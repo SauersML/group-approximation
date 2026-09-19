@@ -40,7 +40,108 @@
    "maxlev": 2,
    "result": "TIMEOUT",
    "seconds": 1200,
-   "note": "undecided within 20 min wall on a shared machine (nice 10, 3375 cells); needs symmetry breaking or a longer run"
+   "note": "undecided within 20 min wall on a shared machine (nice 10, 343 cells); needs symmetry breaking or a longer run"
+  },
+  {
+   "script": "face_form_sat_sym.py",
+   "N": 2,
+   "n": 3,
+   "maxlev": 1,
+   "result": "UNSAT",
+   "seconds": 0.01,
+   "note": "calibration with symmetry breaking",
+   "lane": "w15-113"
+  },
+  {
+   "script": "face_form_sat_sym.py",
+   "N": 3,
+   "n": 2,
+   "maxlev": 2,
+   "result": "UNSAT",
+   "seconds": 4.5,
+   "note": "calibration with symmetry breaking",
+   "lane": "w15-113"
+  },
+  {
+   "script": "face_form_sat_sym.py",
+   "N": 2,
+   "n": 4,
+   "maxlev": 2,
+   "cap": 2,
+   "result": "SAT",
+   "seconds": 0.02,
+   "note": "R1(2) control survives symmetry breaking",
+   "lane": "w15-113"
+  },
+  {
+   "script": "face_form_sat_sym.py",
+   "N": 3,
+   "n": 3,
+   "maxlev": 2,
+   "depth": null,
+   "result": "TIMEOUT",
+   "seconds": 1200,
+   "note": "full lex-leader, 343 cells, nice 19 on a machine at load ~35 on 4 CPUs",
+   "lane": "w15-113"
+  },
+  {
+   "script": "face_form_sat_sym.py",
+   "N": 3,
+   "n": 3,
+   "maxlev": 2,
+   "depth": 40,
+   "result": "TIMEOUT",
+   "seconds": 1200,
+   "note": "truncated lex-leader, same machine load; n=4 not attempted",
+   "lane": "w15-113"
+  },
+  {
+   "script": "jack_sat.py",
+   "N": 3,
+   "n": 2,
+   "maxlev": 1,
+   "cells": 61,
+   "result": "UNSAT",
+   "seconds": 0.02,
+   "note": "no octant-jack counterexample",
+   "lane": "w15-113"
+  },
+  {
+   "script": "jack_sat.py",
+   "N": 3,
+   "n": 4,
+   "maxlev": 1,
+   "cells": 217,
+   "result": "UNSAT",
+   "seconds": 13.61,
+   "note": "no octant-jack counterexample",
+   "lane": "w15-113"
+  },
+  {
+   "script": "jack_sat.py",
+   "N": 3,
+   "n": 6,
+   "maxlev": 1,
+   "cells": 469,
+   "result": "TIMEOUT",
+   "seconds": 1200,
+   "note": "machine load ~35 on 4 CPUs",
+   "lane": "w15-113"
+  },
+  {
+   "script": "jack_sat.py",
+   "N": 3,
+   "n": 4,
+   "maxlev": 2,
+   "cells": 217,
+   "result": "SAT",
+   "seconds": 0.0,
+   "note": "UNSOUND variant (drops level-2 contact with the blobs); trivially SAT, no information",
+   "lane": "w15-113"
   }
- ]
+ ],
+ "scripts_w15": {
+  "face_form_sat_sym.py": "face_form_sat.py + lex-leader symmetry breaking over all 2^N N! - 1 non-identity cube symmetries; args N n [depth|0] [maxlev] [cap]",
+  "jack_sat.py": "octant-jack normal form: level 2 on the eight octants, levels 0/1 on the cells of the three midplanes (index n, n even); SAT at maxlev 1 is a genuine F(3) counterexample; args n [maxlev]"
+ }
 }
