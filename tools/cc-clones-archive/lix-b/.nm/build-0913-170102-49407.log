@@ -1,0 +1,44 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3395 oleans
+[job] acn112 cores=72-79 threads=8 base=bdd1835ba3810fb7d92c5f8e340d48c55f2162fa mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassTransitions
+ℹ [3318/3457] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5020/5021] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:201:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.shortSides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:202:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.faceOf_of_mem_sideDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:203:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sideDarts_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:204:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.alpha_mem_sides_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:205:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:207:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5021/5021] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassTransitions (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:260:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.succ_mod_add_sub_one_mod' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:261:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_kindNonJoins_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:262:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_runEnds_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_runEnds_le_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:264:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_filter_not_le_kindNonJoins_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean:265:14: 'GroupApproximation.GGT.VanKampen.osinLemma94KindTransitionInput_of_longTransitions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5021 jobs).
+EXIT=0

@@ -1,0 +1,97 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2891 oleans
+[job] acn112 cores=64-71 threads=8 base=aa2ea928af00b4e9def5044204c12526efed73ef mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeLabelledModel
+ℹ [3321/3469] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10099/10100] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeAbsorption (32s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:312:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:313:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.absorbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:314:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.mem_component_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:315:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.mem_absorbed_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:316:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.faceOf_mem_iff_of_eqvGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:317:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.Reach.of_faceOf_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:318:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.Reach.alpha' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:319:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.self_mem_component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:320:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.not_mem_of_mem_component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:321:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.subset_absorbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:322:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.ExteriorComponent.isBoundaryDart_absorbed_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:323:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.wordNorm_dartWord_le_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:324:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.nodup_first' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:325:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.nodup_second' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:326:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.absorb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:327:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.absorb_faces' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:328:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faces_subset_absorb_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:329:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.absorb_boundary_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:330:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.absorb_firstSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeAbsorption.lean:331:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.absorb_secondSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10100/10100] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeLabelledModel (27s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:471:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.roseDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:472:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.label_isLetter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:473:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.pinchedK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:474:21: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.pinchedK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:475:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.pinchedK_not_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:476:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.petalK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:477:21: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.petalK_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:478:21: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.pinchedPocketPetal_conclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:479:21: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.isEmpty_input' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:480:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.source_not_mem_component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:481:14: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.source_mem_absorbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean:482:21: 'GroupApproximation.GGT.VanKampen.OsinPocketLakeLabelledModel.lakeRoseLabelledModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10100 jobs).
+EXIT=0

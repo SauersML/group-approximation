@@ -1,0 +1,90 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+TRACE carrier=301 rotations=19 syllables=19
+TRACE carrier=301 rotation=0 target=0 syllables=19 forest_states=21 seconds=0.148
+TRACE carrier=301 rotation=0 target=1 syllables=18 forest_states=5 seconds=0.060
+TRACE carrier=301 rotation=0 target=2 syllables=19 forest_states=9 seconds=0.100
+TRACE carrier=301 rotation=0 target=3 syllables=19 forest_states=11 seconds=0.089
+TRACE carrier=301 rotation=1 target=0 syllables=19 forest_states=8 seconds=0.052
+TRACE carrier=301 rotation=1 target=1 syllables=18 forest_states=6 seconds=0.023
+TRACE carrier=301 rotation=1 target=2 syllables=19 forest_states=15 seconds=0.044
+TRACE carrier=301 rotation=1 target=3 syllables=19 forest_states=17 seconds=0.025
+TRACE carrier=301 rotation=2 target=0 syllables=19 forest_states=5 seconds=0.068
+TRACE carrier=301 rotation=2 target=1 syllables=18 forest_states=5 seconds=0.022
+TRACE carrier=301 rotation=2 target=2 syllables=19 forest_states=10 seconds=0.031
+TRACE carrier=301 rotation=2 target=3 syllables=19 forest_states=10 seconds=0.014
+TRACE carrier=301 rotation=3 target=0 syllables=18 forest_states=8 seconds=0.010
+TRACE carrier=301 rotation=3 target=1 syllables=19 forest_states=5 seconds=0.013
+TRACE carrier=301 rotation=3 target=2 syllables=19 forest_states=11 seconds=0.015
+TRACE carrier=301 rotation=3 target=3 syllables=19 forest_states=12 seconds=0.015
+TRACE carrier=301 rotation=4 target=0 syllables=19 forest_states=21 seconds=0.070
+TRACE carrier=301 rotation=4 target=1 syllables=19 forest_states=5 seconds=0.025
+TRACE carrier=301 rotation=4 target=2 syllables=18 forest_states=4 seconds=0.013
+TRACE carrier=301 rotation=4 target=3 syllables=19 forest_states=9 seconds=0.028
+TRACE carrier=301 rotation=5 target=0 syllables=19 forest_states=15 seconds=0.036
+TRACE carrier=301 rotation=5 target=1 syllables=19 forest_states=6 seconds=0.023
+TRACE carrier=301 rotation=5 target=2 syllables=18 forest_states=6 seconds=0.007
+TRACE carrier=301 rotation=5 target=3 syllables=19 forest_states=14 seconds=0.015
+TRACE carrier=301 rotation=6 target=0 syllables=19 forest_states=10 seconds=0.050
+TRACE carrier=301 rotation=6 target=1 syllables=19 forest_states=5 seconds=0.027
+TRACE carrier=301 rotation=6 target=2 syllables=18 forest_states=4 seconds=0.005
+TRACE carrier=301 rotation=6 target=3 syllables=19 forest_states=9 seconds=0.009
+TRACE carrier=301 rotation=7 target=0 syllables=18 forest_states=5 seconds=0.006
+TRACE carrier=301 rotation=7 target=1 syllables=19 forest_states=4 seconds=0.016
+TRACE carrier=301 rotation=7 target=2 syllables=19 forest_states=10 seconds=0.013
+TRACE carrier=301 rotation=7 target=3 syllables=19 forest_states=10 seconds=0.005
+TRACE carrier=301 rotation=8 target=0 syllables=18 forest_states=22 seconds=0.030
+TRACE carrier=301 rotation=8 target=1 syllables=19 forest_states=5 seconds=0.024
+TRACE carrier=301 rotation=8 target=2 syllables=19 forest_states=12 seconds=0.037
+TRACE carrier=301 rotation=8 target=3 syllables=19 forest_states=13 seconds=0.027
+TRACE carrier=301 rotation=9 target=0 syllables=19 forest_states=25 seconds=0.067
+TRACE carrier=301 rotation=9 target=1 syllables=19 forest_states=10 seconds=0.017
+TRACE carrier=301 rotation=9 target=2 syllables=19 forest_states=4 seconds=0.022
+TRACE carrier=301 rotation=9 target=3 syllables=18 forest_states=4 seconds=0.007
+TRACE carrier=301 rotation=10 target=0 syllables=19 forest_states=19 seconds=0.037
+TRACE carrier=301 rotation=10 target=1 syllables=19 forest_states=14 seconds=0.011
+TRACE carrier=301 rotation=10 target=2 syllables=19 forest_states=6 seconds=0.025
+TRACE carrier=301 rotation=10 target=3 syllables=18 forest_states=7 seconds=0.007
+TRACE carrier=301 rotation=11 target=0 syllables=19 forest_states=17 seconds=0.039
+TRACE carrier=301 rotation=11 target=1 syllables=19 forest_states=12 seconds=0.013
+TRACE carrier=301 rotation=11 target=2 syllables=19 forest_states=4 seconds=0.036
+TRACE carrier=301 rotation=11 target=3 syllables=18 forest_states=6 seconds=0.006
+TRACE carrier=301 rotation=12 target=0 syllables=19 forest_states=16 seconds=0.017
+TRACE carrier=301 rotation=12 target=1 syllables=18 forest_states=5 seconds=0.002
+TRACE carrier=301 rotation=12 target=2 syllables=19 forest_states=4 seconds=0.005
+TRACE carrier=301 rotation=12 target=3 syllables=19 forest_states=9 seconds=0.011
+TRACE carrier=301 rotation=13 target=0 syllables=19 forest_states=13 seconds=0.025
+TRACE carrier=301 rotation=13 target=1 syllables=18 forest_states=5 seconds=0.005
+TRACE carrier=301 rotation=13 target=2 syllables=19 forest_states=5 seconds=0.005
+TRACE carrier=301 rotation=13 target=3 syllables=19 forest_states=10 seconds=0.009
+TRACE carrier=301 rotation=14 target=0 syllables=19 forest_states=23 seconds=0.038
+TRACE carrier=301 rotation=14 target=1 syllables=18 forest_states=6 seconds=0.010
+TRACE carrier=301 rotation=14 target=2 syllables=19 forest_states=5 seconds=0.012
+TRACE carrier=301 rotation=14 target=3 syllables=19 forest_states=13 seconds=0.012
+TRACE carrier=301 rotation=15 target=0 syllables=20 forest_states=23 seconds=0.062
+TRACE carrier=301 rotation=15 target=1 syllables=20 forest_states=14 seconds=0.014
+TRACE carrier=301 rotation=15 target=2 syllables=20 forest_states=14 seconds=0.011
+TRACE carrier=301 rotation=15 target=3 syllables=19 forest_states=7 seconds=0.013
+TRACE carrier=301 rotation=16 target=0 syllables=19 forest_states=21 seconds=0.018
+TRACE carrier=301 rotation=16 target=1 syllables=19 forest_states=10 seconds=0.006
+TRACE carrier=301 rotation=16 target=2 syllables=18 forest_states=4 seconds=0.007
+TRACE carrier=301 rotation=16 target=3 syllables=19 forest_states=4 seconds=0.006
+TRACE carrier=301 rotation=17 target=0 syllables=19 forest_states=19 seconds=0.021
+TRACE carrier=301 rotation=17 target=1 syllables=19 forest_states=13 seconds=0.008
+TRACE carrier=301 rotation=17 target=2 syllables=18 forest_states=5 seconds=0.004
+TRACE carrier=301 rotation=17 target=3 syllables=19 forest_states=7 seconds=0.009
+TRACE carrier=301 rotation=18 target=0 syllables=19 forest_states=20 seconds=0.027
+TRACE carrier=301 rotation=18 target=1 syllables=19 forest_states=11 seconds=0.023
+TRACE carrier=301 rotation=18 target=2 syllables=18 forest_states=6 seconds=0.008
+TRACE carrier=301 rotation=18 target=3 syllables=19 forest_states=6 seconds=0.010
+carrier=301 words=76 states=404
+distinct_augmented_words=76
+boundary_states=404
+nonempty_q=257
+free_nonempty_q=0
+direct_killed_q=172
+power_killed_q=85
+unresolved_q=0

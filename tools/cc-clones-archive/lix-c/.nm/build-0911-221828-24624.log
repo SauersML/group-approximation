@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2064 oleans
+[job] acn60 cores=slurm threads=8 base=1d5d2fb9b4cc1901f22e914089cce8ebf51542cf mods: GroupApproximation.CharClass.ParityPWuComponent
+✖ [1653/1653] Building GroupApproximation.CharClass.ParityPWuComponent (99s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/ParityPWuComponent.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ParityPWuComponent.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/ParityPWuComponent.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ParityPWuComponent.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/ParityPWuComponent.setup.json --json
+error: GroupApproximation/CharClass/ParityPWuComponent.lean:166:70: Unknown constant `Finset.sum_powerset`
+error: GroupApproximation/CharClass/ParityPWuComponent.lean:157:88: unsolved goals
+n p : ℕ
+hp : 2 ≤ p
+i : ℕ
+T : Finset (Fin n)
+hT : T ∈ Finset.powersetCard (i + 1) Finset.univ
+hcard : T.card = i + 1
+hfac : ∀ l ∈ T, (twist ℤ n p 1) (X l) = X l ^ p + X l
+⊢ ∑ x ∈ T.powerset, (homogeneousComponent (i * p + 1)) ((∏ i ∈ x, X i ^ p) * ∏ i ∈ T \ x, X i) =
+    wuMonomialP T (fun l => X l ^ p) X i
+error: GroupApproximation/CharClass/ParityPWuComponent.lean:194:60: Variable name `hn` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.ParityPWuComponent
+error: build failed
+EXIT=1

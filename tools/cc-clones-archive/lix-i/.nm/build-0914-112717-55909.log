@@ -1,0 +1,143 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4704 oleans
+[job] acn112 cores=64-71 threads=8 base=7fb29069a306a516462209c3cdee1b8ae773e865 mods: GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+ℹ [3356/3465] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4632/4632] Building GroupApproximation.GGT.VanKampen.PermNonCrossingCount (30s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.setup.json --json
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:184:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a ^ 2
+in the target expression
+  ((walsh π τ).facePerm ^ 2) (i, false) = (walshSigma (π * τ) (τ * π)) (i, false)
+
+case false
+k : ℕ
+π τ : Perm (Fin k)
+i : Fin k
+⊢ ((walsh π τ).facePerm ^ 2) (i, false) = (walshSigma (π * τ) (τ * π)) (i, false)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    instHPow
+  has type
+    HPow (Perm (walsh π τ).Dart) ℕ (Perm (walsh π τ).Dart)
+  but is expected to have type
+    HPow (Perm (walsh π τ).Dart) ℕ (Perm (Fin k × Bool))
+  in the application
+    @HPow.hPow (Perm (walsh π τ).Dart) ℕ (Perm (Fin k × Bool)) instHPow
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:186:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a ^ 2
+in the target expression
+  ((walsh π τ).facePerm ^ 2) (i, true) = (walshSigma (π * τ) (τ * π)) (i, true)
+
+case true
+k : ℕ
+π τ : Perm (Fin k)
+i : Fin k
+⊢ ((walsh π τ).facePerm ^ 2) (i, true) = (walshSigma (π * τ) (τ * π)) (i, true)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    instHPow
+  has type
+    HPow (Perm (walsh π τ).Dart) ℕ (Perm (walsh π τ).Dart)
+  but is expected to have type
+    HPow (Perm (walsh π τ).Dart) ℕ (Perm (Fin k × Bool))
+  in the application
+    @HPow.hPow (Perm (walsh π τ).Dart) ℕ (Perm (Fin k × Bool)) instHPow
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:191:28: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (walsh ?π ?τ).facePerm ^ 2
+in the target expression
+  (((walsh π τ).facePerm ^ 2) ^ m) (i, false) = (((π * τ) ^ m) i, false)
+
+k : ℕ
+π τ : Perm (Fin k)
+m : ℤ
+i : Fin k
+⊢ (((walsh π τ).facePerm ^ 2) ^ m) (i, false) = (((π * τ) ^ m) i, false)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (i, false)
+  has type
+    Fin k × Bool
+  but is expected to have type
+    (walsh π τ).Dart
+  in the application
+    (((walsh π τ).facePerm ^ 2) ^ m) (i, false)
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:199:38: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  @Eq (?m.72 × ?m.73) (?fst✝, ?snd✝) (?fst, ?snd)
+in the target expression
+  @Eq (walsh π τ).Dart (((π * τ) ^ m) i, false) (j, false)
+
+case mp.inl
+k : ℕ
+π τ : Perm (Fin k)
+i j : Fin k
+m : ℤ
+hn : (((π * τ) ^ m) i, false) = (j, false)
+⊢ (π * τ).SameCycle i j
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (((π * τ) ^ m) i, false)
+  has type
+    Fin k × Bool
+  but is expected to have type
+    (walsh π τ).Dart
+  in the application
+    Eq (((π * τ) ^ m) i, false)
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:201:40: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ((walsh ?π ?τ).facePerm ^ (2 * ?m)) (?i, false)
+in the target expression
+  ((walsh π τ).facePerm ^ (2 * m)) ((walsh π τ).facePerm (i, false)) = (j, false)
+
+case mp.inr
+k : ℕ
+π τ : Perm (Fin k)
+i j : Fin k
+m : ℤ
+hn : ((walsh π τ).facePerm ^ (2 * m)) ((walsh π τ).facePerm (i, false)) = (j, false)
+⊢ (π * τ).SameCycle i j
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    (i, false)
+  has type
+    Fin k × Bool
+  but is expected to have type
+    (walsh π τ).Dart
+  in the application
+    (walsh π τ).facePerm (i, false)
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:277:8: failed to synthesize instance of type class
+  Subsingleton (Fin (0 + 1))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:307:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.sameCycle_walshSigma_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:308:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_vertex_walsh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:309:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_edge_walsh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:310:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_face_walsh' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:311:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.walsh_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:312:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_orbit_add_card_orbit_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+error: build failed
+EXIT=1

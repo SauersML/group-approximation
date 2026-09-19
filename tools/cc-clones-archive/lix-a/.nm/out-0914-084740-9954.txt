@@ -1,0 +1,24 @@
+[job] 08:48:25 acn30 waiting for clone lock
+[job] delta sync 512115a38..24a27e527: 52 files changed
+===== SUMMARY
+host acn30 cores slurm base 24a27e527 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-084740-9954.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+--- errors (first 80 lines)
+3:✖ [2411/2412] Building GroupApproximation.Analysis.HyperlinearOneSumModels (14s)
+5:error: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:117:2: No goals to be solved
+12:error: Lean exited with code 1
+15:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.HyperlinearOneSumModels (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.HyperlinearTraceVanishingProof (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.HyperlinearOneSumModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

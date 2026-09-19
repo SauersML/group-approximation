@@ -1,0 +1,41 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3601 oleans
+[job] acn112 cores=72-79 threads=8 base=2433c7a375be9f7243ad19993482f110791b29e9 mods: GroupApproximation.Algebra.LocallyFiniteCongruenceKernel GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+ℹ [3658/3702] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4064/4086] Running Mathlib.Data.Matrix.Notation
+error: no such file or directory (error code: 4294967294)
+  file: /projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/Mathlib/Data/Matrix/Notation.lean
+✖ [4065/4086] Running GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean: bad import 'Mathlib.Data.Matrix.Notation'
+✖ [4084/4086] Building GroupApproximation.Algebra.LocallyFiniteCongruenceKernel (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.setup.json --json
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:97:12: Type mismatch
+  ρ.mapMatrix
+has type
+  Matrix ?m.17 ?m.17 R →+* Matrix ?m.17 ?m.17 S
+but is expected to have type
+  Matrix n n R →* Matrix n n S
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:115:6: Type mismatch
+  congrArg (fun z => ↑z p.1 p.2) hg
+has type
+  ↑((glMap n ρ) ↑g) p.1 p.2 = ↑1 p.1 p.2
+but is expected to have type
+  ρ (↑↑g p.1 p.2) = 1 p.1 p.2
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:217:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:218:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:219:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:220:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- Mathlib.Data.Matrix.Notation
+- GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+- GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+error: build failed
+EXIT=1

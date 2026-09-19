@@ -1,0 +1,26 @@
+[job] 19:57:14 acn112 waiting for clone lock
+[job] delta sync 84039d59f..ae3d768ec: 14 files changed
+===== SUMMARY
+host acn112 cores 72-79 base ae3d768ec log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-195438-79391.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3789 oleans
+--- errors (first 80 lines)
+36:✖ [10216/10216] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk (32s)
+38:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean:116:5: Variable name `htrav` is not explicitly referenced.
+55:error: Lean exited with code 1
+58:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean
+COMPILED GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeValue.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

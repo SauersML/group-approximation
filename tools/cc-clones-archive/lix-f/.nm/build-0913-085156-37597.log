@@ -1,0 +1,51 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2562 oleans
+[job] acn112 cores=64-71 threads=8 base=14724173b9de1e81408d19925092c44beabcbe89 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+ℹ [3297/3348] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4581/4581] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:209:10: '(change gx⁻¹ * (gx * 1) = 1; simp)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:214:10: '(change gy⁻¹ * (gy * 1) = 1; simp)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:220:8: '(change (1 : G) * (gx * (gy * (gz * 1))) * (1 : G)⁻¹ * 1 = (gx⁻¹)⁻¹ * ((gy⁻¹)⁻¹ * ((gz⁻¹)⁻¹ * 1));
+  group)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:240:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?m.16 ∈ {?m.15}
+in the target expression
+  face 1 ∉ {face 2}
+
+⊢ face 1 ∉ {face 2}
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    Finset.instSingleton
+  has type
+    Singleton diagram.toCombMap.Face (Finset diagram.toCombMap.Face)
+  but is expected to have type
+    Singleton M.Face (Finset diagram.toCombMap.Face)
+  in the application
+    @singleton M.Face (Finset diagram.toCombMap.Face) Finset.instSingleton
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:243:8: declaration uses `sorry`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:251:8: declaration uses `sorry`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:296:66: Type mismatch: After simplification, term
+  hd
+ has type
+  Or (d = 3) (d = 4 ∨ d = 5 ∨ d = 6)
+but is expected to have type
+  Or (d = 3) (d = 4 ∨ d = 5 ∨ d = 6)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:307:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:308:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' has a leading input; state and prove a closed proposition instead of accepting construction data
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+error: build failed
+EXIT=1

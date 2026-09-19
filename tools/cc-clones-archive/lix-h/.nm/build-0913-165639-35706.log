@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3113 oleans
+[job] acn112 cores=80-87 threads=8 base=c2cb05b3abe62986db2fdd7e1805e078a033b620 mods: GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction
+ℹ [3299/3408] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4650/4650] Built GroupApproximation.GGT.VanKampen.CombMapInsertionRestriction (15s)
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:288:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.restrict_sigma_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:289:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapInsertionRestriction.lean:290:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.InsertionRestriction.facePerm_pow_toNew' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4650 jobs).
+EXIT=0

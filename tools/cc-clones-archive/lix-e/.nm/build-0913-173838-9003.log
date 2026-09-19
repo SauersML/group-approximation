@@ -1,0 +1,29 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+[job] acn112 cores=64-71 threads=8 base=d42179e0a56ddb3daa3828fd34bbf0896feb02d8 mods: GroupApproximation.Dynamics.TwoEndedShift GroupApproximation.Algebra.FinitaryGeneralLinear
+ℹ [1794/1795] Built GroupApproximation.Dynamics.TwoEndedShift (7.6s)
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:450:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:451:14: 'GroupApproximation.TwoEndedShift.chainRecurrentSet_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:452:14: 'GroupApproximation.TwoEndedShift.not_isDedekindFiniteMonoid' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1795/1795] Building GroupApproximation.Algebra.FinitaryGeneralLinear (8.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Algebra/FinitaryGeneralLinear.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.setup.json --json
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:228:6: Type mismatch
+  sub_eq_zero.mpr Units.val_one
+has type
+  @HSub.hSub ?m.241 ?m.241 ?m.241 (@instHSub ?m.241 AddGroup.toSubNegMonoid.toSub) (↑1) 1 = 0
+but is expected to have type
+  @HSub.hSub ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k)
+      (@instHSub ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) LinearMap.instSub) (↑1) 1 =
+    0
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:370:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1

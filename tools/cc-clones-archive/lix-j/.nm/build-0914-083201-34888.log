@@ -1,0 +1,11 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3583 oleans
+[job] acn112 cores=80-87 threads=8 base=1eac0075820e054f6a31dbfd36f2ae1b4ee245cf mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketCellFree
+ℹ [3336/3362] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10219/10219] Built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketCellFree (21s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketCellFree.lean:38:21: 'GroupApproximation.GGT.VanKampen.sameCellPocketCellFreeValue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10219 jobs).
+EXIT=0

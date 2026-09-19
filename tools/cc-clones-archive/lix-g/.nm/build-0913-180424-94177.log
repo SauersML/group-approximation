@@ -1,0 +1,97 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3556 oleans
+[job] acn112 cores=64-71 threads=8 base=8b0c76b7de375c11bcd27827f36fa55717fe7983 mods: GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+ℹ [3317/3374] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5072/5072] Building GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:248:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.leftFace_mem`:
+  [DecidableEq Delta.toCombMap.Dart]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Delta.toCombMap.Dart] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:255:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rightFace_mem`:
+  [DecidableEq Delta.toCombMap.Dart]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Delta.toCombMap.Dart] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:285:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (p ++ ?m.572).head ?m.574
+in the target expression
+  C.face ≠ (digonInput X hdigon hnot).diagram.toCombMap.faceOf ((p ++ [d]).head ⋯)
+
+G : Type u
+inst✝¹ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+S : Finset Delta.toCombMap.Face
+p r : List Delta.toCombMap.Dart
+d n : Delta.toCombMap.Dart
+X : Strip Delta S p (d :: r)
+hdigon : Delta.toCombMap.IsFaceCycle [d, n]
+inst✝ : DecidableEq Delta.toCombMap.Dart
+hnot : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d
+hn : Delta.toCombMap.faceOf (Delta.toCombMap.alpha n) ∈ S
+C : RelatorCell (digonInput X hdigon hnot).diagram.toCombMap (digonInput X hdigon hnot).diagram.outerFace W
+hC : C ∈ (digonInput X hdigon hnot).diagram.relatorCells
+hm : (digonInput X hdigon hnot).kept (Delta.toCombMap.faceOf (p.head ⋯)) = (digonInput X hdigon hnot).merged
+⊢ C.face ≠ (digonInput X hdigon hnot).diagram.toCombMap.faceOf ((p ++ [d]).head ⋯)
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    p ++ [d]
+  has type
+    List Delta.toCombMap.Dart
+  but is expected to have type
+    List (digonInput X hdigon hnot).diagram.toCombMap.Dart
+  in the application
+    (p ++ [d]).head
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:460:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rotate_merged' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:461:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.vertexOf_alpha_getLast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:462:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.not_mem_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:463:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.faceOf_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:464:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.kept_mem_faceSet_iff_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:465:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:466:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.digonInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:467:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchStrip' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:468:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStep_of_digon' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:469:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.isFaceCycle_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:470:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.doubleStrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:471:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStepStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:472:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:473:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.geodesicCollarStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+error: build failed
+EXIT=1

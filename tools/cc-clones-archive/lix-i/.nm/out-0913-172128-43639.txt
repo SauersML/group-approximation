@@ -1,0 +1,26 @@
+[job] 17:21:37 acn112 waiting for clone lock
+[job] delta sync 4db9c6729..99fd4078e: 5 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 99fd4078e log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-172128-43639.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3658 oleans
+--- errors (first 80 lines)
+51:✖ [4316/4317] Building GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (18s)
+53:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:130:4: `dsimp` made no progress
+54:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:169:38: Tactic `simp` failed with a nested error:
+58:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:174:8: Tactic `simp` failed with a nested error:
+62:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:174:39: This simp argument is unused:
+69:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:187:4: Tactic `simp` failed with a nested error:
+73:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:188:4: Tactic `simp` failed with a nested error:
+78:error: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:218:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms outside the classical allowlist: [sorryAx]
+79:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+81:error: Lean exited with code 1
+84:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.RankTwoCoreImageHaagerup (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

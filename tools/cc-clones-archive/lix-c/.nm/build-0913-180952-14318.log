@@ -1,0 +1,85 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3451 oleans
+[job] acn112 cores=64-71 threads=8 base=1b706daa05b17df1742ce5ec04aaafff2fdf0b73 mods: GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening
+ℹ [3302/3354] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4998/4999] Building GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel (4.6s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:140:39: unknown tactic
+error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:140:35: unsolved goals
+x : Fin 4
+⊢ ?m.6 ≤ ?m.7
+error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:234:41: unknown tactic
+error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:234:37: unsolved goals
+x : Fin 6
+⊢ ?m.6 ≤ ?m.7
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:242:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:243:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:244:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cellEdge_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:245:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:246:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:247:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_cellEdge_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:248:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.spur_retained' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:249:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_map_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:250:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cycles_before' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:251:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cellEdge_before' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:252:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_map_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:253:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cycles_after' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:254:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_cellEdge_after' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:255:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickeningModel.shared_retained' depends on axioms: []
+error: Lean exited with code 1
+ℹ [4999/4999] Built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening (13s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:411:21: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:412:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_self_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:413:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_cell_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:414:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:415:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_dart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:416:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:417:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.boundary_faceImage_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:418:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_of_isCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:419:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:420:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.relatorValue_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:421:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:422:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.regionFamilyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:423:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.sectionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:424:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel
+error: build failed
+EXIT=1

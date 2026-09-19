@@ -1,0 +1,5 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3784 oleans
+[job] acn112 cores=64-71 threads=8 base=ffcc286553ee76392b92218e926058282b01d965 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+✔ [2175/2175] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (10s)
+Build completed successfully (2175 jobs).
+EXIT=0

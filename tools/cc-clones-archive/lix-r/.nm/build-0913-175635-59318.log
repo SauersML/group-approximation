@@ -1,0 +1,29 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3314 oleans
+[job] acn112 cores=80-87 threads=8 base=0346598447d630b22376bb3c537288dd4d04a6aa mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRoseFirstTurn
+ℹ [3295/3337] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10098/10098] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRoseFirstTurn (29s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:112:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.wrap_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:113:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.wrap_not_firstTurn_three_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:114:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.wrap_not_firstTurn_one_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:115:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.wrap_not_firstTurnWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:116:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.rescue_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:117:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.rescue_firstTurn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean:118:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseFirstTurn.wrapRoseFirstTurnModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10098 jobs).
+EXIT=0

@@ -1,0 +1,30 @@
+[job] 10:26:30 acn112 waiting for clone lock
+[job] delta sync a845f70a0..c174e86dc: 9 files changed
+===== SUMMARY
+host acn112 cores 88-95 base c174e86dc log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-102626-46325.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3336 oleans
+--- errors (first 80 lines)
+6:✖ [10019/10019] Building GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (19s)
+8:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:9: don't know how to synthesize implicit argument `Λ`
+18:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:33: don't know how to synthesize implicit argument `α`
+28:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:33: don't know how to synthesize implicit argument `α`
+38:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:34: don't know how to synthesize implicit argument `Λ`
+48:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:9: don't know how to synthesize implicit argument `Λ`
+58:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:33: don't know how to synthesize implicit argument `α`
+68:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:33: don't know how to synthesize implicit argument `α`
+78:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:34: don't know how to synthesize implicit argument `Λ`
+88:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:605:14: 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.not_loopCutInput' depends on axioms outside the classical allowlist: [sorryAx]
+89:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+91:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:606:21: 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.loopCutCapCounterexample' depends on axioms outside the classical allowlist: [sorryAx]
+92:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+94:error: Lean exited with code 1
+97:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/RegionShellingSpurCounterexample.lean
+- GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

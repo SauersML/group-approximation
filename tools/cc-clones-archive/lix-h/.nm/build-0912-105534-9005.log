@@ -1,0 +1,88 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2369 oleans
+[job] acn112 cores=64-71 threads=8 base=3733b381b0c544479db93ca8f1bd3b91aaee0560 mods: GroupApproximation.CharClass.ParityPWuCartanNarrow GroupApproximation.CharClass.ParityPWuTransportNarrow GroupApproximation.CharClass.ParityPDataNarrow GroupApproximation.CharClass.ParityPSplitStepDNarrow GroupApproximation.CharClass.ChernSplittingOfFlagRelation GroupApproximation.CharClass.ChernSplittingOfCompact
+ℹ [7072/7142] Built GroupApproximation.CharClass.ParityPWuCartanNarrow (6.9s)
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:175:14: 'GroupApproximation.CharClass.ParityP.PowerDataN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:176:14: 'GroupApproximation.CharClass.ParityP.PowerDataN.p_zero_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:177:14: 'GroupApproximation.CharClass.ParityP.PowerDataN.p_mul_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:178:14: 'GroupApproximation.CharClass.ParityP.PowerDataN.p_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:179:14: 'GroupApproximation.CharClass.ParityP.PowerDataN.p_gamma_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuCartanNarrow.lean:180:14: 'GroupApproximation.CharClass.ParityP.PowerDataN.p_gamma_succ_eq_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [7308/7397] Built GroupApproximation.CharClass.ParityPDataNarrow (7.3s)
+info: GroupApproximation/CharClass/ParityPDataNarrow.lean:206:14: 'GroupApproximation.CharClass.ParityPDataN' depends on axioms: [propext]
+info: GroupApproximation/CharClass/ParityPDataNarrow.lean:207:14: 'GroupApproximation.CharClass.ParityP.pH_z_mul_zero_of_cartan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPDataNarrow.lean:208:14: 'GroupApproximation.CharClass.ParityPDataN.b_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPDataNarrow.lean:209:14: 'GroupApproximation.CharClass.ParityPDataN.gamma_rank_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPDataNarrow.lean:210:14: 'GroupApproximation.CharClass.ParityPDataN.gamma_top_eq_zero_of_slice' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8758/8931] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8796/8931] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8891/9105] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8913/9163] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8914/9163] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9230/9233] Built GroupApproximation.CharClass.ParityPWuTransportNarrow (7.8s)
+info: GroupApproximation/CharClass/ParityPWuTransportNarrow.lean:82:14: 'GroupApproximation.CharClass.ParityP.wu_isDecomposable_of_splittingN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ParityPWuTransportNarrow.lean:83:14: 'GroupApproximation.CharClass.ParityP.wu_field_of_splittingN' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9231/9233] Built GroupApproximation.CharClass.ParityPSplitStepDNarrow (6.4s)
+info: GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean:132:14: 'GroupApproximation.CharClass.ParityP.HasSplittingPN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean:133:14: 'GroupApproximation.CharClass.ParityP.HasSplittingPN.elim' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean:134:14: 'GroupApproximation.CharClass.SplitStepDDataN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean:135:14: 'GroupApproximation.CharClass.SplitStepDDataN.toParityPDataN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean:136:14: 'GroupApproximation.CharClass.SplitStepDDataN.gamma_top_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9232/9233] Built GroupApproximation.CharClass.ChernSplittingOfFlagRelation (21s)
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:226:14: 'GroupApproximation.CharClass.lineEulerOfK' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:227:14: 'GroupApproximation.CharClass.eulerOf_restrict_eqOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:228:14: 'GroupApproximation.CharClass.pull_factor_eq_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:229:14: 'GroupApproximation.CharClass.coe_prod_range_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:230:14: 'GroupApproximation.CharClass.splitRelation_of_sumOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:231:14: 'GroupApproximation.CharClass.ChernSplittingOf.splitRelation_flagOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:232:14: 'GroupApproximation.CharClass.ChernSplittingOf.tautCompat_flagOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean:233:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingP_flag_ofGraded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9233/9233] Built GroupApproximation.CharClass.ChernSplittingOfCompact (20s)
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:248:14: 'GroupApproximation.CharClass.SplittingDataOf.powerDataN' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:249:14: 'GroupApproximation.CharClass.hasSplittingPN_of_splittingDataOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:250:14: 'GroupApproximation.CharClass.nontrivial_evenPartOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:251:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagRootOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:252:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingPN_flag_ofGraded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:253:14: 'GroupApproximation.CharClass.ChernSplittingOf.CompactLerayHirschDualOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:254:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagRest_pull_injectiveOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfCompact.lean:255:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingPN_of_compact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9233 jobs).
+EXIT=0

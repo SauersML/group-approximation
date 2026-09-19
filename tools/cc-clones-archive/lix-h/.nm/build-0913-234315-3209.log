@@ -1,0 +1,32 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3695 oleans
+[job] acn112 cores=88-95 threads=8 base=e0a0776bbfeba0a6fa0a4da98da2bbb1398f773c mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchRefutation
+ℹ [3331/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10101/10101] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchRefutation (37s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:478:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellPinchRose.roseDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:479:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellPinchRose.roseK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:480:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellPinchRose.roseK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:481:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellPinchRose.roseK_not_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:482:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellPinchRose.cellPocketPinchRoseRefutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:488:14: 'GroupApproximation.GGT.VanKampen.CellPocketWrap.not_simple_of_monogon_first' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:489:14: 'GroupApproximation.GGT.VanKampen.CellPocketWrap.no_simple_of_oEquivalent_monogons_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean:490:14: 'GroupApproximation.GGT.VanKampen.CellPocketWrap.not_cellPocketPinchPosStatement_of_monogon_cells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10101 jobs).
+EXIT=0

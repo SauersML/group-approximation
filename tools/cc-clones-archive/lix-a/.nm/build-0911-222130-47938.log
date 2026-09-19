@@ -1,0 +1,79 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2109 oleans
+[job] acn112 cores=72-79 threads=8 base=b0962ca493a37dd3ff675c95dbcb1ceb59b6f743 mods: GroupApproximation.Analysis.LIXCor4PowersStage GroupApproximation.Analysis.LIXCor4PowersDiagChain
+ℹ [3166/3204] Replayed GroupApproximation.Analysis.LIXLimitAlgebra
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3167/3204] Replayed GroupApproximation.Analysis.LIXCor4PowersShape
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:330:14: 'GroupApproximation.LIX.Gen.HasSphereShape.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:331:14: 'GroupApproximation.LIX.Gen.HasSphereShape.pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:332:14: 'GroupApproximation.LIX.Gen.sphereUnitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:333:14: 'GroupApproximation.LIX.Gen.hasSphereShape_sphereStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:334:14: 'GroupApproximation.LIX.Gen.HasSphereShape.connect' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:335:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:336:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3172/3204] Replayed GroupApproximation.Analysis.LIXCor4PowersField
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:667:14: 'GroupApproximation.LIX.Gen.equatorEmb_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:668:14: 'GroupApproximation.LIX.Gen.norm_sq_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:669:14: 'GroupApproximation.LIX.Gen.equatorEmb_dirPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:670:14: 'GroupApproximation.LIX.Gen.extTop_genU2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:671:14: 'GroupApproximation.LIX.Gen.southAtG_eq_northFG' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:672:14: 'GroupApproximation.LIX.Gen.exists_unitary_field_of_nullHomotopy_gauged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8712/8713] Building GroupApproximation.Analysis.LIXCor4PowersDiagChain (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersDiagChain.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersDiagChain.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersDiagChain.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersDiagChain.setup.json --json
+error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:184:4: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  0ᴴ
+in the target expression
+  Matrix.fromBlocks (sphereMatAt n 0 U hU)ᴴ 0 0 1ᴴ * Matrix.fromBlocks (sphereMatAt n 0 U hU) 0 0 1 = 1
+
+n : ℕ
+U : ↑(STW59.Gen.sphereEven n) → Matrix (Fin n) (Fin n) ℂ
+hU : Continuous U
+hu : ∀ (v : ↑(STW59.Gen.sphereEven n)), (U v)ᴴ * U v = 1
+⊢ Matrix.fromBlocks (sphereMatAt n 0 U hU)ᴴ 0 0 1ᴴ * Matrix.fromBlocks (sphereMatAt n 0 U hU) 0 0 1 = 1
+error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:193:4: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  0ᴴ
+in the target expression
+  Matrix.fromBlocks (sphereMatAt n 0 U hU) 0 0 1 * Matrix.fromBlocks (sphereMatAt n 0 U hU)ᴴ 0 0 1ᴴ = 1
+
+n : ℕ
+U : ↑(STW59.Gen.sphereEven n) → Matrix (Fin n) (Fin n) ℂ
+hU : Continuous U
+hu : ∀ (v : ↑(STW59.Gen.sphereEven n)), U v * (U v)ᴴ = 1
+⊢ Matrix.fromBlocks (sphereMatAt n 0 U hU) 0 0 1 * Matrix.fromBlocks (sphereMatAt n 0 U hU)ᴴ 0 0 1ᴴ = 1
+error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:214:104: unsolved goals
+case inl.inl.«1».«1»
+n : ℕ
+U : ↑(STW59.Gen.sphereEven n) → Matrix (Fin n) (Fin n) ℂ
+hU : Continuous U
+hu₁ : ∀ (v : ↑(STW59.Gen.sphereEven n)), (U v)ᴴ * U v = 1
+hu₂ : ∀ (v : ↑(STW59.Gen.sphereEven n)), U v * (U v)ᴴ = 1
+w : STW59.Gen.baseX n 0
+a b : Fin n
+⊢ (if a = b then 1 else 0) = 1 (Sum.inl a) (Sum.inl b)
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:250:14: 'GroupApproximation.LIX.Gen.toStageZeroHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:251:14: 'GroupApproximation.LIX.Gen.flattenN' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:252:14: 'GroupApproximation.LIX.Gen.diagChainN_sectionBlock' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:253:14: 'GroupApproximation.LIX.Gen.diagOne_sphereUnitary_mem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [8713/8713] Built GroupApproximation.Analysis.LIXCor4PowersStage (38s)
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:419:14: 'GroupApproximation.LIX.Gen.false_of_path_gauged' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:420:14: 'GroupApproximation.LIX.Gen.climb_pow_notMem_gauged' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:421:14: 'GroupApproximation.LIX.Gen.lixLimit_pow_notMem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:422:14: 'GroupApproximation.LIX.Gen.continuousMvNEquiv_of_unitary_field' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Analysis.LIXCor4PowersDiagChain
+error: build failed
+EXIT=1

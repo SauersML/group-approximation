@@ -1,0 +1,6 @@
+build rc=0
+axioms rc=0
+stmt-strong-challenge rc=0
+stmt-strong-solution rc=0
+submission-selftest rc=0
+submission rc=1

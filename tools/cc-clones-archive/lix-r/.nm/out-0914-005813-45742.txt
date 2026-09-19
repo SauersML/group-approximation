@@ -1,0 +1,36 @@
+[job] 00:58:17 acn112 waiting for clone lock
+[job] delta sync bb887b17d..ad284eb8c: 4 files changed
+===== SUMMARY
+host acn112 cores 80-87 base ad284eb8c log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-005813-45742.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3482 oleans
+--- errors (first 80 lines)
+127:✖ [10210/10210] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints (22s)
+129:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:209:16: don't know how to synthesize implicit argument `m`
+159:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:209:7: failed to infer `have` declaration type
+160:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:206:92: unsolved goals
+194:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:234:21: 'GroupApproximation.GGT.VanKampen.cellPocketWalkNoninterleaving' depends on axioms outside the classical allowlist: [sorryAx]
+195:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+197:error: Lean exited with code 1
+200:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerSectorFree
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerSectorFree.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,68 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3076 oleans
+[job] acn112 cores=72-79 threads=8 base=8f0f73966e76876e0a02d8371f94b2792303aee1 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+ℹ [3299/3408] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4990/4990] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:177:53: Function expected at
+  ih ?m.289 ?m.290
+but this term has type
+  Relation.EqvGen ((collapsedMap family).dual.FaceClassStep (PhiKeepO family E)) ?m.288 x'
+
+Note: Expected a function because this term is being applied to the argument
+  hk
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:178:10: No goals to be solved
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:197:79: Function expected at
+  ih ?m.142
+but this term has type
+  Relation.EqvGen ((collapsedMap family).dual.FaceClassStep keep) ?m.141 (((collapsedMap family).facePerm ^ k) ?m.141)
+
+Note: Expected a function because this term is being applied to the argument
+  (hS x hx)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:442:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_faceClassStep_range' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:443:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_facePerm_of_not_keep' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:444:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_sigma_of_alpha' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:445:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.iff_of_eqvGen_adjacent' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:447:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.not_phiKeepO_of_faceOf_eq_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:449:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eqvGen_of_faceOf_eq_cell' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:451:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.eqvGen_of_sameCycle_collapsed' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:452:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.eq_of_holdsCellAtO' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:454:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.exists_eqvGen_phiMapO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:456:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideCellO_not_mem_endCellsO_of_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:458:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.exists_holdsCellAtO_of_not_mem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:459:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_heldCellsO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:460:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_sourceRegionsO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:462:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.card_add_three_mul_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean:463:14: 'GroupApproximation.GGT.VanKampen.cellFaceCountInput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+error: build failed
+EXIT=1

@@ -1,0 +1,32 @@
+[job] 10:10:11 acn140 waiting for clone lock
+[job] delta sync 53e1897cb..4c9455581: 7 files changed
+===== SUMMARY
+host acn140 cores slurm base 4c9455581 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-100930-48348.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4113 oleans
+--- errors (first 80 lines)
+28:✖ [2422/2423] Building GroupApproximation.Analysis.VonNeumannSpatialIsomorphism (16s)
+30:error: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:71:0: automatically included section variable(s) unused in theorem `GroupApproximation.SpatialIso.memℓp_vecMap`:
+41:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.TwistedTensorProductAlgebra
+BUILT GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor
+mentioned-not-built GroupApproximation.Analysis.VonNeumannSpatialIsomorphism (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.McDuffTensorHyperfinite (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean
+COMPILED GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

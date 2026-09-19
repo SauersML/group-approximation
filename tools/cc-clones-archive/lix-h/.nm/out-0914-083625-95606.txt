@@ -1,0 +1,19 @@
+[job] 08:36:31 acn112 waiting for clone lock
+[job] delta sync fc8b0d080..1c2af0ea2: 26 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 1c2af0ea2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-083625-95606.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3702 oleans
+--- errors (first 80 lines)
+55:✖ [10292/10292] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection (24s)
+57:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:69:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+58:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:72:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+74:error: Lean exited with code 1
+77:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

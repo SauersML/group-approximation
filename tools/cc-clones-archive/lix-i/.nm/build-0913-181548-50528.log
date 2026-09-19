@@ -1,0 +1,64 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3672 oleans
+[job] acn112 cores=64-71 threads=8 base=c9899b2b693b3b1dd116d9e81e22bf0cc08e7ae0 mods: GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopySideCell
+ℹ [3316/3417] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5295/5359] Replayed GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingSideRegions
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:398:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.dart_not_mem_sourceArc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:399:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.dart_not_mem_targetArc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:400:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.familyArcAvoid_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:401:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometryOfArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:402:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometryOfArcs_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:403:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcs_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:404:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcs_pairwise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:405:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcsEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:406:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcsEquiv_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9300/9351] Built GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening (11s)
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:341:21: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:342:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideCount_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:343:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_of_isCellSideDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:344:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:345:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.sectionFamilyOfArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:346:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_cellSideFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:347:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_cellSideFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10136/10136] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopySideCell (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopySideCell.lean:120:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.eq_of_mem_of_length_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopySideCell.lean:121:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.side_cell_of_noCellSideDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10136 jobs).
+EXIT=0

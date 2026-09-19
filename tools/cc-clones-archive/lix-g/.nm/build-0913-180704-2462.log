@@ -1,0 +1,48 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3556 oleans
+[job] acn112 cores=72-79 threads=8 base=a22b1a4c8621a3e1dd93d022c1ec2c990f373791 mods: GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+ℹ [3302/3394] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5072/5072] Built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep (13s)
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:463:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rotate_merged' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:464:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.vertexOf_alpha_getLast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:465:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.not_mem_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:466:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.faceOf_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:467:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.kept_mem_faceSet_iff_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:468:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:469:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.digonInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:470:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchStrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:471:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStep_of_digon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:472:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.isFaceCycle_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:473:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.doubleStrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:474:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStepStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:475:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:476:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.geodesicCollarStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5072 jobs).
+EXIT=0

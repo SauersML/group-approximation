@@ -1,0 +1,20 @@
+[job] 00:04:23 acn35 waiting for clone lock
+[job] delta sync 9d422f49d..1f3ee6058: 8 files changed
+===== SUMMARY
+host acn35 cores slurm base 1f3ee6058 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0912-000107-87088.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2094 oleans
+--- errors (first 80 lines)
+3:✖ [2248/2248] Building GroupApproximation.CharClass.OddPDiagonalAug (97s)
+5:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:258:60: Type mismatch
+11:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:259:72: Application type mismatch: The argument
+19:error: GroupApproximation/CharClass/OddPDiagonalAug.lean:259:74: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+24:error: Lean exited with code 1
+27:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPDiagonalAug (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

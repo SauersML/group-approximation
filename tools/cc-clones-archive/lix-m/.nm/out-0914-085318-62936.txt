@@ -1,0 +1,33 @@
+[job] 08:54:36 cn1013 waiting for clone lock
+[job] delta sync d1608fe00..b8c585b7a: 26 files changed
+===== SUMMARY
+host cn1013 cores slurm base b8c585b7a log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0914-085318-62936.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3618 oleans
+--- errors (first 80 lines)
+28:✖ [5078/5078] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput (16s)
+30:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:74:47: Unknown identifier `p1`
+31:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:74:50: Unknown identifier `p2`
+32:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:71:47: unsolved goals
+47:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:190:64: Invalid field `trans`: The environment does not contain `Exists.trans`, so it is not possible to project the field `trans` from an expression
+52:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:393:88: Unknown identifier `p`
+53:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:401:42: Unknown identifier `p`
+54:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:476:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_joined_cellOrOuter' depends on axioms outside the classical allowlist: [sorryAx]
+55:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+57:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:477:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.hittingSet_hits' depends on axioms outside the classical allowlist: [sorryAx]
+58:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+60:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:478:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CuttingTransitionInput' depends on axioms outside the classical allowlist: [sorryAx]
+61:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+63:error: Lean exited with code 1
+66:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

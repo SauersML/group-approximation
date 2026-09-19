@@ -1,0 +1,33 @@
+[job] 11:08:57 acn112 waiting for clone lock
+[job] delta sync 5a5886551..eb8320e00: 155 files changed
+===== SUMMARY
+host acn112 cores 72-79 base eb8320e00 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0912-110847-76784.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+110:✖ [9309/9309] Building GroupApproximation.CharClass.LIXKGenLocalNonzero (20s)
+112:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:71:12: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+156:Full error:
+165:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:142:14: 'GroupApproximation.CharClass.KGen.lixKRestrict_lixThomClassTerm_ne_zero' depends on axioms outside the classical allowlist: [sorryAx]
+166:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+168:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:143:14: 'GroupApproximation.CharClass.KGen.kGenLocalNonzero_lixThomClassTerm' depends on axioms outside the classical allowlist: [sorryAx]
+169:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+171:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:144:14: 'GroupApproximation.CharClass.KGen.kZeroLocalData_holds' depends on axioms outside the classical allowlist: [sorryAx]
+172:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+174:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:145:14: 'GroupApproximation.CharClass.KGen.kZeroLocalData_powers' depends on axioms outside the classical allowlist: [sorryAx]
+175:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+177:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:146:14: 'GroupApproximation.CharClass.KGen.stepCHalf_two_powers_lixChernOf_holds' depends on axioms outside the classical allowlist: [sorryAx]
+178:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+180:error: GroupApproximation/CharClass/LIXKGenLocalNonzero.lean:147:21: 'GroupApproximation.CharClass.KGen.printedKZeroLocalData' depends on axioms outside the classical allowlist: [sorryAx]
+181:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+183:error: Lean exited with code 1
+186:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenLocalSquare
+mentioned-not-built GroupApproximation.CharClass.LIXKGenLocalNonzero (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenLocalSquare.lean
+- GroupApproximation.CharClass.LIXKGenLocalNonzero
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

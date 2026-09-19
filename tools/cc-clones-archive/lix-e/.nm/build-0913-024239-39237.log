@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2446 oleans
+[job] acn91 cores=slurm threads=8 base=3e34da4ea70408762b0bea392b98018a04e079ad mods: GroupApproximation.Algebra.IntegerGaussValuations GroupApproximation.Kazhdan.GHWCharZeroPlaces
+ℹ [2671/2672] Built GroupApproximation.Algebra.IntegerGaussValuations (46s)
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:301:14: 'GroupApproximation.IntegerGaussValuations.padicValuation_natCast_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:302:14: 'GroupApproximation.IntegerGaussValuations.degValuation_inv_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:303:14: 'GroupApproximation.IntegerGaussValuations.degValuation_algebraMap_le_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGaussValuations.lean:304:14: 'GroupApproximation.IntegerGaussValuations.exists_algebraMap_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2672/2672] Built GroupApproximation.Kazhdan.GHWCharZeroPlaces (45s)
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:191:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:192:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff_le_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:193:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2672 jobs).
+EXIT=0

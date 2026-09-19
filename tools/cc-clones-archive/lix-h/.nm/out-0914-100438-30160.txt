@@ -1,0 +1,39 @@
+[job] 10:08:52 acn112 waiting for clone lock
+[job] delta sync 0484d49b6..20140a5a0: 118 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 20140a5a0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-100438-30160.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3720 oleans
+--- errors (first 80 lines)
+17:✖ [10198/10198] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel (26s)
+19:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:99:4: failed to synthesize instance of type class
+23:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:109:4: failed to synthesize instance of type class
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:130:50: failed to synthesize instance of type class
+31:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:130:50: failed to synthesize instance of type class
+35:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:134:24: failed to synthesize instance of type class
+39:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:134:24: failed to synthesize instance of type class
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:135:28: failed to synthesize instance of type class
+47:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:135:28: failed to synthesize instance of type class
+51:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:149:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+54:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:151:6: unexpected token '++'; expected command
+55:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:159:21: failed to synthesize instance of type class
+59:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:159:21: failed to synthesize instance of type class
+63:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:164:21: failed to synthesize instance of type class
+67:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:164:21: failed to synthesize instance of type class
+71:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:169:21: failed to synthesize instance of type class
+75:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:169:21: failed to synthesize instance of type class
+79:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:217:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+82:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:219:6: unexpected token '++'; expected command
+83:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:290:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.innerWalkModel' depends on axioms outside the classical allowlist: [sorryAx]
+84:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+86:error: Lean exited with code 1
+89:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModelMap
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModelMap.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

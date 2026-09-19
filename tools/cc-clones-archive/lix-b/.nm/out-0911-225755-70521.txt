@@ -1,0 +1,52 @@
+[job] 22:58:33 acn112 waiting for clone lock
+[job] delta sync f0f56b337..a04e741f2: 7 files changed
+===== SUMMARY
+host acn112 cores 88-95 base a04e741f2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-225755-70521.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2189 oleans
+--- errors (first 80 lines)
+105:✖ [9068/9077] Building GroupApproximation.CharClass.ThomHabsOf (43s)
+107:error: GroupApproximation/CharClass/ThomHabsOf.lean:90:45: Unknown identifier `sInclusion`
+110:error: GroupApproximation/CharClass/ThomHabsOf.lean:91:63: Unknown identifier `sInclusion`
+113:error: GroupApproximation/CharClass/ThomHabsOf.lean:101:12: Unknown identifier `sInclusion`
+114:error: GroupApproximation/CharClass/ThomHabsOf.lean:103:35: Unknown identifier `sInclusion`
+115:error: GroupApproximation/CharClass/ThomHabsOf.lean:107:13: Unknown identifier `sInclusion`
+116:error: GroupApproximation/CharClass/ThomHabsOf.lean:107:2: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+121:error: GroupApproximation/CharClass/ThomHabsOf.lean:149:45: Unknown identifier `sInclusion`
+124:error: GroupApproximation/CharClass/ThomHabsOf.lean:150:63: Unknown identifier `sInclusion`
+127:error: GroupApproximation/CharClass/ThomHabsOf.lean:178:45: Unknown identifier `sInclusion`
+130:error: GroupApproximation/CharClass/ThomHabsOf.lean:179:63: Unknown identifier `sInclusion`
+133:error: GroupApproximation/CharClass/ThomHabsOf.lean:192:45: Unknown identifier `sInclusion`
+136:error: GroupApproximation/CharClass/ThomHabsOf.lean:193:63: Unknown identifier `sInclusion`
+139:error: GroupApproximation/CharClass/ThomHabsOf.lean:211:14: 'GroupApproximation.CharClass.ThomChernDeg.absToSub_sum_lhTermOf' depends on axioms outside the classical allowlist: [sorryAx]
+140:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+142:error: GroupApproximation/CharClass/ThomHabsOf.lean:212:14: 'GroupApproximation.CharClass.ThomChernDeg.range_thomJm_eq_ker_restrictMapOf' depends on axioms outside the classical allowlist: [sorryAx]
+143:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+145:error: GroupApproximation/CharClass/ThomHabsOf.lean:213:14: 'GroupApproximation.CharClass.ThomChernDeg.thomData_of_lerayHirschOf' depends on axioms outside the classical allowlist: [sorryAx]
+146:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+148:error: Lean exited with code 1
+162:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.ThomHabsOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.ThomBridgeTotalOf (replayed or failed)
+BUILT GroupApproximation.CharClass.ThomKunnethOf
+BUILT GroupApproximation.CharClass.ThomTopLineOf
+BUILT GroupApproximation.CharClass.GysinPairRetractOf
+--- rebuilt GroupApproximation modules: 29
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinPairRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinPairTautOf.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChartHom.lean
+COMPILED GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+COMPILED GroupApproximation/CharClass/ThomDataOf.lean
+COMPILED GroupApproximation/CharClass/ThomKunnethOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+COMPILED GroupApproximation/CharClass/ThomTopLineOf.lean
+- GroupApproximation.CharClass.ThomHabsOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

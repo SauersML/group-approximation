@@ -1,0 +1,9 @@
+BEST (0, 25) step 0 genome (('d', 'R', 'P', 'p'), ('P', 'A', 'R', 'B', 'A', 'b', 'b', 'A'), ('D', 'R', 'B', 'p', 'r'), ('R',), 0)
+BEST (0, 23) step 1 genome (('d', 'R', 'P', 'p', 'A', 'A', 'E'), (), ('D', 'A', 'r'), ('b', 'b', 'd', 'p', 'E', 'c', 'D'), 1)
+BEST (0, 21) step 6 genome (('d', 'd', 'a', 'R', 'B', 'd'), ('E',), (), ('p',), 0)
+BEST (0, 19) step 16 genome ((), ('R',), ('p', 'a', 'B', 'D', 'E', 'p', 'r'), (), 0)
+BEST (0, 18) step 50 genome (('D', 'D', 'C', 'E', 'e'), ('R', 'R', 'd', 'p'), ('D', 'a', 'a'), ('A',), 1)
+BEST (0, 17) step 224 genome (('E', 'r', 'E', 'R', 'E', 'p', 'r'), ('B', 'd', 'C', 'p', 'P'), ('C',), ('r', 'C', 'R', 'E', 'b', 'b'), 1)
+BEST (0, 11) step 271 genome ((), ('c', 'd', 'r', 'c', 'C'), (), (), 1)
+BEST (0, 9) step 690 genome (('p', 'P', 'd', 'd', 'c', 'd', 'D'), ('P', 'P', 'b', 'd', 'C', 'D', 'a', 'r', 'B'), ('C',), ('c', 'C'), 1)
+[2026-08-22T04:49:21.939] error: *** JOB 16673303 ON cn1143 CANCELLED AT 2026-08-22T04:49:21 DUE to SIGNAL Terminated ***

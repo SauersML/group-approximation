@@ -1,0 +1,5 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2077 oleans
+[job] acn112 cores=64-71 threads=8 base=d83a23c23e10cd89cdfe56c019da1b82c018ead1 mods: GroupApproximation.CharClass.OddPTupleFunctor
+✔ [2171/2171] Built GroupApproximation.CharClass.OddPTupleFunctor (12s)
+Build completed successfully (2171 jobs).
+EXIT=0

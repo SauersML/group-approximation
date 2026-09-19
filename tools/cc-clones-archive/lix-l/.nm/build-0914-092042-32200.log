@@ -1,0 +1,55 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3904 oleans
+[job] acn112 cores=88-95 threads=8 base=927bcb96eb4e4646ca52c7c1aa3bb109d17cb128 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift
+ℹ [3302/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10147/10147] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift (24s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:141:20: unsolved goals
+M : CombMap
+a b : M.Dart
+hab : a ≠ b
+x z : M.Dart
+t : ℕ
+h : some none = embed M z
+hsome : ((toCombMap M a b).sigma ^ t) (embed M x) = some none
+⊢ ¬some none = some (some z)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:194:63: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:195:36: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:196:27: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:196:51: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:201:22: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:201:45: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:203:63: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:204:38: Unknown identifier `hab`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:205:29: Unknown identifier `hab`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:211:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.liftCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:212:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.sigma_pow_liftCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:213:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.liftCount_strictMono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:214:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.sigma_pow_embed_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:215:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.exists_liftCount_of_sigma_pow_embed' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:216:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.minRun_embed' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:217:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.nonKeepRun_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:218:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.nonKeepRunStrict_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:219:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.rotationBetween_embed_iff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift
+error: build failed
+EXIT=1

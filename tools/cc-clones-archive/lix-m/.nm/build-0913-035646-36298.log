@@ -1,0 +1,40 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2726 oleans
+[job] n9 cores=slurm threads=8 base=7380da4b3a10e69b34ae19a6166a5eb233e5f4d8 mods: GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral
+ℹ [3585/3664] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4058/4058] Built GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral (92s)
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:250:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.isBlockDiagOne_one' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:251:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.IsBlockDiagOne.mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:252:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.elementaryRoot_isBlockDiagOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:253:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.core_isBlockDiagOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:254:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.centralMarkMatrix_eq_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:255:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.centralMarkMatrix_commute_blockDiagOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:256:14: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.centralMark_commute_core_blockRoute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:257:21: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCompressorPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:258:21: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCompressorInvertible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:259:21: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCentralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/RingCompressionCellGeneral.lean:260:21: 'GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCentralMarkCentral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4058 jobs).
+EXIT=0

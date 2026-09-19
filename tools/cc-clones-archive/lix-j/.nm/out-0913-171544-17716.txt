@@ -1,0 +1,57 @@
+[job] 17:16:06 acn112 waiting for clone lock
+[job] delta sync f37676d79..e7c4bb173: 16 files changed
+===== SUMMARY
+host acn112 cores 80-87 base e7c4bb173 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-171544-17716.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3376 oleans
+--- errors (first 80 lines)
+6:✖ [10163/10163] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell (25s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:384:13: Function expected at
+46:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellSameCell.lean:402:14: 'GroupApproximation.GGT.VanKampen.false_of_pocketRegion_of_below' depends on axioms outside the classical allowlist: [sorryAx]
+47:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+49:error: Lean exited with code 1
+52:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BoundedIntegralFinite.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinaryPower.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySLUnion.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySimple.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBlocks.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearGroup.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearTransvections.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryHaagerup.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryLinearMF.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryPlaces.lean
+COMPILED GroupApproximation/Algebra/TotalDegreeValuation.lean
+COMPILED GroupApproximation/Algebra/ValuationExtensionPlaces.lean
+COMPILED GroupApproximation/Algebra/ValuationWithTopInt.lean
+COMPILED GroupApproximation/Algebra/ValuedMatrixTwo.lean
+COMPILED GroupApproximation/Algebra/ValuedMatrixTwoCartan.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean
+COMPILED GroupApproximation/Kazhdan/BruhatTitsTwoTree.lean
+COMPILED GroupApproximation/Kazhdan/GHWPlaces.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupAffineSums.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/HaagerupUnion.lean
+COMPILED GroupApproximation/Kazhdan/HalfSpaceBoundedOrbits.lean
+COMPILED GroupApproximation/Kazhdan/LevelTreeAcyclic.lean
+COMPILED GroupApproximation/Kazhdan/TreeHalfSpaces.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementaryPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonFiniteMatrices.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonLaurentKazhdanFinite.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedKazhdanFinite.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankFourSentences.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoCarrier.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonRankTwoInert.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonSymbol.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

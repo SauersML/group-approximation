@@ -1,0 +1,75 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3475 oleans
+[job] acn112 cores=88-95 threads=8 base=5359a1ca673b9457aae44cfb6d9b8c6cd6343971 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+⚠ [1855/1857] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift (8.9s)
+warning: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:206:14: 'GroupApproximation.SimpleKazhdanSofic.shift_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:207:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_add_intCast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:208:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_floor_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:209:14: 'GroupApproximation.SimpleKazhdanSofic.sum_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.isClosed_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.mapsTo_shift_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1856/1857] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage (9.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:35:50: Variable name `hα0` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:224:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_true_iff_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:225:14: 'GroupApproximation.SimpleKazhdanSofic.language_sturmianSubshift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:226:14: 'GroupApproximation.SimpleKazhdanSofic.fract_neg_mul_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:227:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_true_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:228:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_word_eq_of_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:229:14: 'GroupApproximation.SimpleKazhdanSofic.count_word_sturmianCoding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:230:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianCodingArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:231:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianEndpointsDetermineWords' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:232:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianOnesWithinOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [1857/1857] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal (11s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:358:14: 'GroupApproximation.SimpleKazhdanSofic.exists_bounded_return' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:359:14: 'GroupApproximation.SimpleKazhdanSofic.exists_right_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:360:14: 'GroupApproximation.SimpleKazhdanSofic.exists_occurrence_of_mem_carrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:361:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_isMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:362:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:363:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftInfiniteMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:364:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftClosureOfCodings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+error: build failed
+EXIT=1

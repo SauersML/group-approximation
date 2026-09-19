@@ -1,0 +1,15 @@
+[job] 17:17:07 acn37 waiting for clone lock
+[job] delta sync bc6aa7b90..e24b2ae3b: 17 files changed
+===== SUMMARY
+host acn37 cores slurm base e24b2ae3b log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-171556-18781.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3115 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMFSentences.CitationSweepIntroAudit
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean
+ Quot.sound]
+Build completed successfully (4608 jobs).
+EXIT=0
+PROBE GREEN

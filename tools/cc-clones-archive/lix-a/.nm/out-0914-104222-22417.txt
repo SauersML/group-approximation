@@ -1,0 +1,49 @@
+[job] 10:46:06 acn112 waiting for clone lock
+[job] delta sync e39a422ba..bd6eae0d6: 14 files changed
+===== SUMMARY
+host acn112 cores 72-79 base bd6eae0d6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-104222-22417.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4115 oleans
+--- errors (first 80 lines)
+39:✖ [3120/3122] Building GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (15s)
+41:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:79:31: Unknown identifier `coe_ultrafilter_le_atTop`
+42:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:77:66: unsolved goals
+50:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:92:31: Unknown identifier `coe_ultrafilter_le_atTop`
+51:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:90:84: unsolved goals
+58:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:130:41: Application type mismatch: The argument
+66:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:137:84: Application type mismatch: The argument
+74:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:140:21: Application type mismatch: The argument
+82:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:148:25: Application type mismatch: The argument
+90:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:152:45: Unknown identifier `coe_ultrafilter_le_atTop`
+91:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:162:87: Unknown identifier `hω`
+92:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:164:55: Unknown identifier `hω`
+93:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:172:14: 'GroupApproximation.OzawaEmbedding.exists_maximalGroupCStar_hom' depends on axioms outside the classical allowlist: [sorryAx]
+94:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+96:error: Lean exited with code 1
+102:✖ [3122/3122] Building GroupApproximation.Analysis.McDuffTensorHyperfinite (22s)
+104:error: GroupApproximation/Analysis/McDuffTensorHyperfinite.lean:77:6: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+109:error: GroupApproximation/Analysis/McDuffTensorHyperfinite.lean:85:14: 'GroupApproximation.McDuff.isMcDuffFactor_tensorHyperfinite' depends on axioms outside the classical allowlist: [sorryAx]
+110:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+112:error: Lean exited with code 1
+116:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+mentioned-not-built GroupApproximation.Analysis.McDuffTensorHyperfinite (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean
+COMPILED GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean
+COMPILED GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.McDuffTensorHyperfinite
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

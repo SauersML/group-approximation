@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3525 oleans
+[job] acn112 cores=80-87 threads=8 base=754c810eb7b51e364ff5b33f03b9a01861b28e9c mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.LEFSoficHyperlinear
+ℹ [2409/2409] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.LEFSoficHyperlinear (9.9s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSoficHyperlinear.lean:68:21: 'GroupApproximation.SimpleKazhdanSofic.printedLEFGroupsAreSofic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSoficHyperlinear.lean:69:21: 'GroupApproximation.SimpleKazhdanSofic.printedSoficGroupsAreHyperlinear' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSoficHyperlinear.lean:70:21: 'GroupApproximation.SimpleKazhdanSofic.printedLEFSoficHyperlinearSentence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2409 jobs).
+EXIT=0

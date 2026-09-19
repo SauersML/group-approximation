@@ -1,0 +1,23 @@
+[job] 08:13:24 acn112 waiting for clone lock
+[job] delta sync 9ea947a92..7bb586a06: 1 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 7bb586a06 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-081320-10853.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3184 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.HullLemma35Transitive (replayed or failed)
+BUILT GroupApproximation.GGT.HullLemma35LocalFinite
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullLemma35FreeFactors.lean
+COMPILED GroupApproximation/GGT/HullLemma35LocalFinite.lean
+COMPILED GroupApproximation/GGT/HullLemma35Printed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Transitive.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+ Quot.sound]
+Build completed successfully (4662 jobs).
+EXIT=0
+PROBE GREEN

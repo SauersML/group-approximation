@@ -1,0 +1,140 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2605 oleans
+[job] acn186 cores=slurm threads=8 base=c4006e2168c5e9b694571f76762febdbdf470783 mods: GroupApproximation.GGT.HullSCCommonQuotientCorrected GroupApproximation.GGT.HullSCLemma44Canonical GroupApproximation.GGT.HullSCLemma44JointRelabel GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents GroupApproximation.Manuscript.NonMF.FournierFacioParagraphFromSimpleFactor GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected GroupApproximation.Manuscript.NonMF.TorsionFreeSectionCitations
+ℹ [2839/2897] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [9880/9979] Built GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected (87s)
+✔ [9881/9979] Built GroupApproximation.GGT.HullSCCommonQuotientCorrected (114s)
+ℹ [9882/9979] Built GroupApproximation.Manuscript.NonMF.FournierFacioParagraphFromSimpleFactor (88s)
+info: GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:479:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.injective_of_isSimpleGroup_of_map_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:481:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.hasKazhdanPropertyT_compressedCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:483:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_configuration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean:485:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.fournierFacioParagraph_of_literatureInputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9883/9979] Built GroupApproximation.GGT.HullSCFreeProductFactor (25s)
+✔ [9884/9979] Built GroupApproximation.GGT.HullSCUnionGeometryCoprod (17s)
+✔ [9885/9979] Built GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor (10s)
+✔ [9886/9979] Built GroupApproximation.GGT.HullSCUnionGeometryAcylindrical (11s)
+✔ [9887/9979] Built GroupApproximation.GGT.HullLemmaEe (10s)
+✔ [9888/9979] Built GroupApproximation.GGT.HullSCUnionGeometryWitness (10s)
+✔ [9889/9979] Built GroupApproximation.GGT.HullSCUnionGeometryConcat (10s)
+✔ [9890/9979] Built GroupApproximation.GGT.HullEeOneStep (12s)
+✔ [9891/9979] Built GroupApproximation.GGT.HullSCUnionGeometryVirtuallyCyclic (12s)
+✔ [9892/9979] Built GroupApproximation.GGT.HullSCUnionGeometryCrossing (12s)
+✔ [9893/9979] Built GroupApproximation.GGT.HullHeGXFamily (14s)
+✔ [9894/9979] Built GroupApproximation.GGT.HullEeTransfer (20s)
+✔ [9895/9979] Built GroupApproximation.GGT.HullSCUnionGeometryLineal (20s)
+✔ [9896/9979] Built GroupApproximation.GGT.HullEeIsolated (14s)
+✔ [9897/9979] Built GroupApproximation.GGT.HullSCUnionGeometryPrefix (14s)
+✔ [9898/9979] Built GroupApproximation.GGT.HullEeCycle (16s)
+✔ [9899/9979] Built GroupApproximation.GGT.HullSCUnionGeometryElliptic (16s)
+✔ [9900/9979] Built GroupApproximation.GGT.HullEeCycleComponents (17s)
+✔ [9901/9979] Built GroupApproximation.GGT.HullSCUnionGeometryLongSyllable (17s)
+✔ [9902/9979] Built GroupApproximation.GGT.HullEeAdjacent (18s)
+✔ [9903/9979] Built GroupApproximation.GGT.HullSCUnionGeometryFactorBranch (18s)
+✔ [9904/9979] Built GroupApproximation.GGT.HullEeAdjoinSet (17s)
+✔ [9905/9979] Built GroupApproximation.GGT.HullSCUnionGeometryCyclic (16s)
+✔ [9906/9979] Built GroupApproximation.GGT.HullEeUniformCut (15s)
+✔ [9907/9979] Built GroupApproximation.GGT.HullSCUnionGeometryTrichotomy (15s)
+✔ [9908/9979] Built GroupApproximation.GGT.HullSCRelatorSeparation2CountGeometry (15s)
+✔ [9909/9979] Built GroupApproximation.GGT.HullSCUnionGeometrySyllableSplit (15s)
+✔ [9910/9979] Built GroupApproximation.GGT.HullSCUnionGeometrySyllableCount (11s)
+✔ [9911/9979] Built GroupApproximation.GGT.HullHeGXPairOfFamily (146s)
+✔ [9912/9979] Built GroupApproximation.GGT.HullSCRelatorSeparation2ExactCount (15s)
+✔ [9913/9979] Built GroupApproximation.GGT.HullSCUnionGeometryFactorDichotomy (13s)
+✔ [9914/9979] Built GroupApproximation.GGT.HullSCRelatorSeparation2PublishedReduction (11s)
+✔ [9915/9979] Built GroupApproximation.GGT.HullSCUnionGeometryBranchPoint (14s)
+✔ [9916/9979] Built GroupApproximation.GGT.HullSCFillingNonElementary (28s)
+✔ [9917/9979] Built GroupApproximation.GGT.HullSCUnionGeometryFactorInput (12s)
+✔ [9918/9979] Built GroupApproximation.GGT.HullSCFillingSelectionTheorem316 (23s)
+✔ [9919/9979] Built GroupApproximation.GGT.HullSCLemma44QuotientRelGenSet (24s)
+✔ [9920/9979] Built GroupApproximation.GGT.HullSCUnionGeometryShortBranch (13s)
+✔ [9921/9979] Built GroupApproximation.GGT.HullSCLemma44ExteriorArc (27s)
+✔ [9922/9979] Built GroupApproximation.GGT.HullSCUnionGeometryAssembly (10s)
+✔ [9923/9979] Built GroupApproximation.GGT.HullSCLemma44PrefixRelGenSet (21s)
+ℹ [9924/9979] Built GroupApproximation.GGT.HullSCCommonQuotientPrinted (12s)
+info: GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:343:14: 'GroupApproximation.HullSC.nonempty_freeProductInput_of_acylindricallyHyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:345:14: 'GroupApproximation.HullSC.hullCommonQuotientPrinted_of_oneStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullSCCommonQuotientPrinted.lean:347:14: 'GroupApproximation.HullSC.manuscriptRelativeQuotient_of_oneStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9925/9979] Built GroupApproximation.GGT.HullSCLemma44ContiguityDiagram (19s)
+ℹ [9926/9979] Built GroupApproximation.Manuscript.NonMF.TorsionFreeSectionCitations (12s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean:172:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem_of_citations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean:174:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeFullMFRadical_of_citations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean:176:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRelativeQuotient_of_citations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean:178:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra_of_citations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9927/9979] Built GroupApproximation.GGT.HullSCCanonicalQuotientPublished (21s)
+✔ [9928/9979] Built GroupApproximation.GGT.HullSCLemma44PrefixPresentation (23s)
+✔ [9929/9979] Built GroupApproximation.GGT.HullSCLemma44BoundaryTransfer (22s)
+✔ [9930/9979] Built GroupApproximation.GGT.HullSCLemma49PowerDiagram (29s)
+✔ [9931/9979] Built GroupApproximation.GGT.HullSCLemma44PrefixGeometry (29s)
+✔ [9932/9979] Built GroupApproximation.GGT.HullSCLemma44CertificateInjectivity (28s)
+✔ [9933/9979] Built GroupApproximation.GGT.HullSCLemma44FamilyStatement (30s)
+✔ [9934/9979] Built GroupApproximation.GGT.HullSCLemma44PrefixCut (29s)
+✔ [9935/9979] Built GroupApproximation.GGT.VanKampen.CactusPowerConstruction (29s)
+✔ [9936/9979] Built GroupApproximation.GGT.HullSCLemma44KernelCone (29s)
+✔ [9937/9979] Built GroupApproximation.GGT.HullSCLemma44FamilyInclusionStatement (29s)
+✔ [9938/9979] Built GroupApproximation.GGT.HullSCLemma49Correction (30s)
+✔ [9939/9979] Built GroupApproximation.GGT.HullSCLemma44KernelGeodesic (31s)
+✔ [9940/9979] Built GroupApproximation.GGT.HullSCLemma49FromRelativeGreendlinger (31s)
+✔ [9941/9979] Built GroupApproximation.GGT.VanKampen.CactusPowerBigBoundary (35s)
+✔ [9942/9979] Built GroupApproximation.GGT.HullSCLemma44PrefixCutRatio (35s)
+✔ [9943/9979] Built GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPower (23s)
+✔ [9944/9979] Built GroupApproximation.GGT.HullSCLemma44WeightedArea (23s)
+✔ [9945/9979] Built GroupApproximation.GGT.HullSCLemma49LongArc (27s)
+✔ [9946/9979] Built GroupApproximation.GGT.HullSCLemma49EmbeddedArc (27s)
+✔ [9947/9979] Built GroupApproximation.GGT.HullSCLemma44KernelAssembly (29s)
+✔ [9948/9979] Built GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerCertificate (23s)
+✔ [9949/9979] Built GroupApproximation.GGT.HullSCLemma44RelativeIsoperimetric (24s)
+✔ [9950/9979] Built GroupApproximation.GGT.HullSCLemma49ScaledBlocks (24s)
+✔ [9951/9979] Built GroupApproximation.GGT.HullSCLemma49PowerChain (25s)
+✔ [9952/9979] Built GroupApproximation.GGT.HullSCLemma49StablePowerChain (27s)
+✔ [9953/9979] Built GroupApproximation.GGT.HullSCLemma49SourceGreendlinger (22s)
+✔ [9954/9979] Built GroupApproximation.GGT.VanKampen.RelativeDiscRealizationPowerAdapter (27s)
+✔ [9955/9979] Built GroupApproximation.GGT.HullSCLemma49QuadrangleShadow (24s)
+✔ [9956/9979] Built GroupApproximation.GGT.HullSCLemma49ShortPower (25s)
+✔ [9957/9979] Built GroupApproximation.GGT.HullSCLemma44Canonical (27s)
+✔ [9958/9979] Built GroupApproximation.GGT.HullSCLemma49Rebase (25s)
+✔ [9959/9979] Built GroupApproximation.GGT.HullSCLemma49ShadowIndices (28s)
+✔ [9960/9979] Built GroupApproximation.GGT.HullSCLemma49FacePasting (28s)
+✔ [9961/9979] Built GroupApproximation.GGT.HullSCLemma44FamilyAssembly (27s)
+✔ [9962/9979] Built GroupApproximation.GGT.HullSCRelativeGreendlingerFromComponents (30s)
+✔ [9963/9979] Built GroupApproximation.GGT.HullSCLemma49ScaledShadow (31s)
+✔ [9964/9979] Built GroupApproximation.GGT.HullSCLemma44OriginalExpansion (24s)
+✔ [9965/9979] Built GroupApproximation.GGT.HullSCLemma49RebasedCertificate (26s)
+✔ [9966/9979] Built GroupApproximation.GGT.HullSCLemma49InjectivityBridge (25s)
+✔ [9967/9979] Built GroupApproximation.GGT.HullSCLemma44JointRelabel (25s)
+✔ [9968/9979] Built GroupApproximation.GGT.HullSCLemma49PrimePiece (27s)
+✔ [9969/9979] Built GroupApproximation.GGT.HullSCRelativeGreendlingerSpelling (22s)
+✔ [9970/9979] Built GroupApproximation.GGT.HullSCLemma49LongPeriod (20s)
+✔ [9971/9979] Built GroupApproximation.GGT.HullSCLemma49ScaledPrimePiece (24s)
+✔ [9972/9979] Built GroupApproximation.GGT.HullSCRelativeGreendlingerGeodesicConsumers (25s)
+✔ [9973/9979] Built GroupApproximation.GGT.HullSCLemma49ShortLoxodromic (22s)
+✔ [9974/9979] Built GroupApproximation.GGT.HullSCLemma49FixedDelta (27s)
+✔ [9975/9979] Built GroupApproximation.GGT.HullSCLemma49SourceBranches (28s)
+✔ [9976/9979] Built GroupApproximation.GGT.HullSCLemma49BowditchGap (36s)
+✔ [9977/9979] Built GroupApproximation.GGT.HullSCLemma49SourceAssembly (21s)
+✔ [9978/9979] Built GroupApproximation.GGT.HullSCLemma49Assemble (21s)
+✔ [9979/9979] Built GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents (23s)
+Build completed successfully (9979 jobs).
+EXIT=0

@@ -1,0 +1,8 @@
+BEST 25 step 0 genome (('B', 'B', 'c', 'P', 'b'), ('B', 'R', 'E', 'c', 'b', 'e', 'B', 'e'), ('e', 'A', 'B', 'p'), ('R', 'p', 'P', 'E', 'A', 'A'), 0)
+BEST 23 step 1 genome (('b', 'A', 'b', 'B', 'c'), ('A', 'a', 'b', 'p', 'D', 'p'), ('b', 'D', 'e', 'r', 'A'), ('b', 'B', 'E', 'C', 'B', 'r', 'e'), 1)
+BEST 19 step 12 genome (('b', 'p'), ('r', 'R', 'r', 'e', 'D', 'p'), (), ('E', 'B', 'C', 'd', 'D', 'R'), 1)
+BEST 17 step 29 genome (('c',), ('c',), (), ('A', 'D'), 1)
+BEST 15 step 107 genome (('r', 'E', 'C'), (), ('C',), ('A',), 1)
+BEST 11 step 186 genome ((), ('P', 'c'), (), ('p', 'D'), 1)
+BEST 6 step 355 genome ((), ('p', 'P', 'c'), (), (), 1)
+seed 49 steps 250000 best 6 hits 0

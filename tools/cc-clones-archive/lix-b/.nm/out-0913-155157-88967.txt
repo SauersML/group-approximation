@@ -1,0 +1,28 @@
+[job] 15:52:03 acn112 waiting for clone lock
+[job] delta sync 34e9e025d..42dcc09c1: 5 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 42dcc09c1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-155157-88967.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3380 oleans
+--- errors (first 80 lines)
+3:✖ [886/887] Building GroupApproximation.Dynamics.RetainedSubshift (4.8s)
+5:error: GroupApproximation/Dynamics/RetainedSubshift.lean:37:19: Type mismatch
+11:error: GroupApproximation/Dynamics/RetainedSubshift.lean:84:14: 'GroupApproximation.ChainCore.isClosed_retainedSubshift' depends on axioms outside the classical allowlist: [sorryAx]
+12:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+17:error: Lean exited with code 1
+18:✖ [887/887] Building GroupApproximation.Dynamics.NoncyclicEdgeDefect (4.9s)
+20:error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:52:3: Unknown identifier `isClopen_discrete`
+21:error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:63:48: Invalid field `isClosed`: The environment does not contain `And.isClosed`, so it is not possible to project the field `isClosed` from an expression
+28:error: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:105:14: 'GroupApproximation.ChainCore.isClosed_reachableCylinderUnion' depends on axioms outside the classical allowlist: [sorryAx]
+29:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+31:error: Lean exited with code 1
+35:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.RetainedSubshift (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.NoncyclicEdgeDefect (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/SubshiftLanguageStabilization.lean
+- GroupApproximation.Dynamics.NoncyclicEdgeDefect
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

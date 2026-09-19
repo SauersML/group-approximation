@@ -1,0 +1,17 @@
+purged 4 stale artifact sets (source-newer=1, import-newer=3) of 2616 oleans
+[job] acn112 cores=72-79 threads=8 base=c52176461603bf166405d14d9bdb99a701a0155c mods: GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58
+ℹ [2797/2934] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4823/4823] Built GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58 (16s)
+info: GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean:151:21: 'GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58.printedHullTheorem312' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean:218:14: 'GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58.normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean:285:21: 'GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58.printedHullLemma58' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4823 jobs).
+EXIT=0

@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3402 oleans
+[job] acn112 cores=72-79 threads=8 base=945d9775360177b20d2adaada64a97b82a1dabbe mods: GroupApproximation.GGT.VanKampen.OEquivalentCellFaces
+ℹ [3295/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4588/4588] Replayed GroupApproximation.GGT.VanKampen.OEquivalentCellFaces
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:115:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:116:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:117:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv_faceWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:118:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.faceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:119:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.faceWord_faceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:120:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.ofCellFaceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:121:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.ofCellFaceEquiv_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4588 jobs).
+EXIT=0

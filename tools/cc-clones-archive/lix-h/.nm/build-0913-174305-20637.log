@@ -1,0 +1,48 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3172 oleans
+[job] acn112 cores=88-95 threads=8 base=538fe1b33364adb2025bfb4d2fe4e76877fb4531 mods: GroupApproximation.Dynamics.ReturnCells GroupApproximation.Dynamics.ReturnRingUnit
+ℹ [1761/1762] Built GroupApproximation.Dynamics.ReturnCells (8.0s)
+info: GroupApproximation/Dynamics/ReturnCells.lean:217:14: 'GroupApproximation.ChainCore.image_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:218:14: 'GroupApproximation.ChainCore.sum_indicator_returnCell' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnCells.lean:219:14: 'GroupApproximation.ChainCore.clopenExtendByZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1762/1762] Building GroupApproximation.Dynamics.ReturnRingUnit (6.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/Dynamics/ReturnRingUnit.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnRingUnit.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Dynamics/ReturnRingUnit.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnRingUnit.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Dynamics/ReturnRingUnit.setup.json --json
+error: GroupApproximation/Dynamics/ReturnRingUnit.lean:231:58: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  unitPow T k ↑h * cellCoeff k hC h
+in the target expression
+  (ClopenCrossedProduct.coeff T k)
+        (LocallyConstant.comap { toFun := ⇑(T ^ (-↑h)), continuous_toFun := ⋯ }
+          (LocallyConstant.charFn k ⋯ * clopenExtendByZero k ⋯ f)) *
+      unitPow T k ↑h =
+    (ClopenCrossedProduct.coeff T k)
+        (clopenExtendByZero k ⋯
+          (LocallyConstant.comap { toFun := ⇑(firstReturnHomeomorph hC).symm, continuous_toFun := ⋯ } f)) *
+      (unitPow T k ↑h * (ClopenCrossedProduct.coeff T k) (LocallyConstant.charFn k ⋯))
+
+X : Type u_1
+inst✝¹ : TopologicalSpace X
+T : X ≃ₜ X
+r : ℕ
+C : Set X
+k : Type u_2
+inst✝ : Ring k
+hC : IsReturnSection T r C
+f : LocallyConstant (↑C) k
+h : ℕ
+x✝ : h ∈ Finset.range (2 * r)
+⊢ (ClopenCrossedProduct.coeff T k)
+        (LocallyConstant.comap { toFun := ⇑(T ^ (-↑h)), continuous_toFun := ⋯ }
+          (LocallyConstant.charFn k ⋯ * clopenExtendByZero k ⋯ f)) *
+      unitPow T k ↑h =
+    (ClopenCrossedProduct.coeff T k)
+        (clopenExtendByZero k ⋯
+          (LocallyConstant.comap { toFun := ⇑(firstReturnHomeomorph hC).symm, continuous_toFun := ⋯ } f)) *
+      (unitPow T k ↑h * (ClopenCrossedProduct.coeff T k) (LocallyConstant.charFn k ⋯))
+info: GroupApproximation/Dynamics/ReturnRingUnit.lean:257:14: 'GroupApproximation.ChainCore.returnUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/ReturnRingUnit.lean:258:14: 'GroupApproximation.ChainCore.returnV_mul_coeff_extend' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.ReturnRingUnit
+error: build failed
+EXIT=1

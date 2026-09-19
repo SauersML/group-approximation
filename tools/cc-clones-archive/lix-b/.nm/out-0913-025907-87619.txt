@@ -1,0 +1,17 @@
+[job] 03:00:06 acn105 waiting for clone lock
+[job] delta sync 9f819ad8c..b1bd127ec: 72 files changed
+===== SUMMARY
+host acn105 cores slurm base b1bd127ec log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-025907-87619.log
+purged 4 stale artifact sets (source-newer=3, import-newer=1) of 3322 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.UnboundMonotoneMorseIndex
+BUILT GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean
+ Quot.sound]
+Build completed successfully (4850 jobs).
+EXIT=0
+PROBE GREEN

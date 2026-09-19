@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3408 oleans
+[job] acn112 cores=64-71 threads=8 base=8c48f43fcdbc8817bfa3016d510a7bb4724406c4 mods: GroupApproximation.Analysis.MaxInfiniteProperIsometry
+ℹ [3174/3206] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3529/3529] Built GroupApproximation.Analysis.MaxInfiniteProperIsometry (14s)
+info: GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean:101:14: 'GroupApproximation.MaxInfiniteProperIsometry.star_diagAmplification_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean:102:14: 'GroupApproximation.MaxInfiniteProperIsometry.diagAmplification_mul_star_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean:103:21: 'GroupApproximation.MaxInfiniteProperIsometry.manuscriptMaxInfiniteProperIsometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3529 jobs).
+EXIT=0

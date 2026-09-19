@@ -1,0 +1,27 @@
+[job] 23:45:53 acn112 waiting for clone lock
+[job] delta sync d23d0e277..e99966455: 8 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e99966455 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-234547-8879.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+--- errors (first 80 lines)
+37:✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (24s)
+39:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:103:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+42:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:115:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+53:error: Lean exited with code 1
+56:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1
