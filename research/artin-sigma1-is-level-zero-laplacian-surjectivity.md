@@ -79,3 +79,31 @@ Let `χ` be discrete, and suppose `Σ_ρ λ_ρ g_ρ (e_a - e_b) = f_i` with `λ 
   - No general lifting mechanism is known.
   - A non-lifting D-D syzygy is exactly where a counterexample would have to live: a dead
     cut that the Novikov ring closes only through negative-level cancellation.
+
+**w19 z-follow (2026-09-17): depth hierarchy, and a kill of every shape-only descent
+argument.** The claim stays OPEN.
+- *Reformulation (established,
+  `artin-sigma1-is-union-of-finite-depth-level-systems`).* `[χ] ∈ Σ^1` iff some finite
+  `Z[H]`-system `R_m` on levels `-m..0` is solvable.
+  - `R_m ⇒ R_{m+1}` and `R_0 ⟺ L_0` onto. So this claim is exactly collapse of the hierarchy
+    at depth 0.
+  - For `r = 2`: `R_1 ⟺ θ(J_0) + d^1(Syz_0) = Z[H]`, where `d^1(ν) = Σ_{D, χ(p)=1} ν_ρ σ_ρ h_ρ`.
+    A counterexample at depth 1 is precisely a mixed D–D syzygy with `d^1(ν)` a unit mod
+    `θ(J_0)` while `J_0 ≠ Z[H]`.
+- *Class kill (established,
+  `novikov-level-descent-fails-for-d-shaped-laplacian-systems`).* The swap toy
+  `Z^2 ⋊ Z`, with `g_1 = (1+a)(ab·t - 1)` and `g_2 = (1+b+b^2)(t-1)`:
+  - is Novikov onto at both signs, at depth 1;
+  - is not level-0 onto at either sign (quotient `Z[ω]`);
+  - has `θ`-stable ring hull equal to everything, cyclotomic `σ`, and abelian `H`.
+
+  So no argument that uses only the D-shape, cyclotomicity, sign symmetry, ring or Alexander
+  vanishing and least-level peeling can prove this claim. Every such argument dies at the
+  lifting of the level-(-1) syzygy, and the invariant is `d^1`.
+- *What the toy lacks* is the Artin constraint `[p, (pq)^k] = 1`, which every dead edge
+  satisfies. Gate: with this constraint and `H` abelian and torsion-free, descent holds,
+  because `J_0` becomes `θ`-stable and two-sided. A proof must therefore use the constraint
+  with non-abelian `H`. A counterexample must realise a toy-like `d^1` under the constraint.
+- *On prediction 1.* `Σ^1 = -Σ^1` is already known, so the prediction tests only the level-0
+  half. The two level-0 ideals at `±χ` are related by `θ`-twists and dead-edge conjugators;
+  in the toy both are proper. It gives no evidence against a depth-1 phenomenon.
