@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements: b
 **OPEN.** Lean module `GroupApproximation/BooneHigmanLinear/TulenbaevHorrocks/Statements.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
+**Repair landed, unprobed.** 13604e7553: K2 program, GEO/F.4: compile fixes from probe b1789846523 (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```

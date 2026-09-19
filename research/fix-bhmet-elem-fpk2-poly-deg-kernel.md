@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.ElemFPK2PolyDegKernel: inv
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/ElemFPK2PolyDegKernel.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
+**Repair landed, unprobed.** 3d373fe132: BH chain wave 7: ElemFPK2PolyDegKernel and ArtinHasseAlg (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

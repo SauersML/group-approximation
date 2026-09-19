@@ -1,5 +1,7 @@
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdKBar
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.VdKPerfect
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Data.List.ProdSigma
 
 /-!
 # vdK 3.17–3.22: the elements `X(i, j)` and Theorem 1 (k2-poly, piece F.1)
@@ -44,7 +46,6 @@ variable {I A : Type*} [Fintype I] [DecidableEq I] [CommRing A]
 
 /-! ### Lists of rows -/
 
-omit [Fintype I] [DecidableEq I] in
 theorem list_sum_apply_eq_zero {L : List (I → A)} {t : I} (h : ∀ w ∈ L, w t = 0) :
     L.sum t = 0 := by
   induction L with
@@ -53,7 +54,6 @@ theorem list_sum_apply_eq_zero {L : List (I → A)} {t : I} (h : ∀ w ∈ L, w 
     rw [List.sum_cons, Pi.add_apply, h w (List.mem_cons.2 (Or.inl rfl)),
       ih (fun w' h' => h w' (List.mem_cons.2 (Or.inr h'))), add_zero]
 
-omit [DecidableEq I] in
 theorem list_sum_dotProduct_eq_zero {L : List (I → A)} {i : I → A} (h : ∀ w ∈ L, w ⬝ᵥ i = 0) :
     L.sum ⬝ᵥ i = 0 := by
   induction L with
@@ -139,7 +139,6 @@ def pairsRest (a b : I) : List (I × I) :=
 def pairsAll (a b : I) : List (I × I) :=
   pairsAt a ++ pairsAt b ++ pairsRest a b
 
-omit [DecidableEq I] in
 theorem mem_pairsAt {q : I} (x : I × I) : x ∈ pairsAt q ↔ x.2 = q := by
   constructor
   · intro h
@@ -153,9 +152,11 @@ theorem mem_pairsRest {a b : I} (x : I × I) : x ∈ pairsRest a b ↔ x.2 ≠ b
   rw [pairsRest, List.mem_product, Finset.mem_toList, Finset.mem_toList, mem_rest2]
   simp
 
-omit [DecidableEq I] in
-theorem nodup_pairsAt (q : I) : (pairsAt q).Nodup :=
-  (Finset.nodup_toList _).map fun p p' h => congrArg Prod.fst h
+theorem nodup_pairsAt (q : I) : (pairsAt q).Nodup := by
+  unfold pairsAt
+  refine (Finset.nodup_toList _).map ?_
+  intro p p' h
+  exact congrArg Prod.fst h
 
 theorem nodup_pairsAll {a b : I} (hab : a ≠ b) : (pairsAll a b).Nodup := by
   refine List.Nodup.append (List.Nodup.append (nodup_pairsAt a) (nodup_pairsAt b) ?_)
@@ -184,11 +185,9 @@ theorem toFinset_pairsAll (a b : I) : (pairsAll a b).toFinset = Finset.univ :=
 abbrev piece (i j k : I → A) (x : I × I) : I → A :=
   vdkPiece i j k x.1 x.2
 
-omit [Fintype I] in
 theorem piece_isBasic (i j k : I → A) (x : I × I) : IsBasic i (piece i j k x) :=
   ⟨j x.1 * k x.2, x.1, x.2, rfl⟩
 
-omit [Fintype I] in
 theorem vdkPiece_of_apply_eq_zero {i j k : I → A} {p : I} (hjp : j p = 0) (q : I) :
     vdkPiece i j k p q = 0 := by
   rw [vdkPiece, hjp, zero_mul, zero_smul]
@@ -466,7 +465,6 @@ theorem xz_eq_xk (h4 : 4 ≤ Fintype.card I) {i j k : I → A} (hji : j ⬝ᵥ i
   rw [xk_eq_list_prod h4 i j k (nodup_pairsAll hab) (toFinset_pairsAll a b),
     xz_eq_prod_pairsAll h4 hji hk hab hja hjb]
 
-omit [Fintype I] in
 theorem vdkPiece_add (i u v k : I → A) (p q : I) :
     vdkPiece i (u + v) k p q = vdkPiece i u k p q + vdkPiece i v k p q := by
   rw [vdkPiece, vdkPiece, vdkPiece, Pi.add_apply, add_mul, add_smul]
@@ -527,7 +525,6 @@ theorem eq_xk_of_mem_Xbar (h4 : 4 ≤ Fintype.card I) {i j k : I → A} (hk : k 
 noncomputable def unitRow {i : I → A} (hi : IsUnimodular i) : I → A :=
   Classical.choose hi
 
-omit [DecidableEq I] in
 theorem unitRow_spec {i : I → A} (hi : IsUnimodular i) : unitRow hi ⬝ᵥ i = 1 :=
   Classical.choose_spec hi
 
@@ -583,9 +580,11 @@ at `r`. -/
 theorem elements_elt_eq_xvw (h4 : 4 ≤ Fintype.card I) {v w : I → A} (h : (v, w) ∈ U I A)
     {r s : I} (hrs : r ≠ s) (hwr : w r = 0) (hws : w s = 0) :
     (elements I A h4).elt (v, w) h = xvw v w r := by
+  have hwv : w ⬝ᵥ v = 0 := (mem_U.1 h).2
+  have hv : IsUnimodular v := (mem_U.1 h).1
   show eltOf h4 (v, w) h = xvw v w r
-  rw [← xz_eq (mem_U.1 h).2 hwr]
-  exact (xz_eq_xk h4 (mem_U.1 h).2 (unitRow_spec (mem_U.1 h).1) hrs hwr hws).symm
+  rw [← xz_eq hwv hwr]
+  exact (xz_eq_xk h4 hwv (unitRow_spec hv) hrs hwr hws).symm
 
 end VdK
 end K2Found

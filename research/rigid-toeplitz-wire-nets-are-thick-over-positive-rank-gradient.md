@@ -89,6 +89,73 @@ As in item 6 of `quantum-rigid-subshifts-are-determined-by-thick-collars`:
   thin nets are allowed. If it is greater than 1, the construction must fill holes of positive density
   rigidly.
 
+## The cost of Osajda's odometers (bh-ra-proof, 2026-09-19)
+
+**Which form is targeted.** (RA) itself is refuted on main by a non-free example
+(`rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`, over an exact group). A rigid Toeplitz
+shift over `G`:
+- refutes (RA′) if it is topologically free;
+- refutes (RA_free) if it is free.
+
+Toeplitz shifts over residually finite groups can be chosen free, along a normal chain with trivial
+intersection (Krieger; Cortez–Petite; recalled).
+
+**What governs the bound.**
+- The builder chooses the period chain. So the relevant quantity is the infimum of the cost over
+  normal chains `(Γ_n)` of `G` with trivial intersection.
+- The profinite action along such a chain is free and measure-preserving (the stabilizer of every
+  point is `⋂Γ_n = 1`).
+
+**Bounds (recalled facts only).** For every such chain,
+
+    1 + β₁⁽²⁾(G)  ≤  cost(G ↷ lim G/Γ_n)  ≤  d(G).
+
+- The lower bound is Gaboriau's inequality `cost ≥ 1 + β₁⁽²⁾` for free measure-preserving actions.
+- The upper bound comes from the generating graphing.
+
+**Consequences.**
+- **If `β₁⁽²⁾(G) > 0`,** every rigid Toeplitz shift over `G`, along every chain, has holes of density
+  `≥ 2β₁⁽²⁾(G)/|B_(2D)|` at every level with `inj > 4D`.
+- **If `β₁⁽²⁾(G) = 0`,** the bound is decided chain by chain. That is the fixed-price question for `G`,
+  open for such groups in general.
+
+**What is not computed.**
+- `β₁⁽²⁾(G)` is not computed on main, and not here.
+- `G` is infinitely presented. Its finitely presented stages `G_n` are small cancellation groups. There
+  an aspherical presentation complex fixes `β₂⁽²⁾ − β₁⁽²⁾ = χ(G_n)` and leaves `β₁⁽²⁾` free.
+- None of Gaboriau's fixed-price-1 criteria is visible for `G`: no infinite normal amenable subgroup,
+  no product structure, and no chain of commuting infinite-order generators.
+
+So **the cost of Osajda's odometers is open**. It lies between `1 + β₁⁽²⁾(G)` and `d(G)`.
+
+**The next decisive computation is `β₁⁽²⁾(G)`.** If it is positive, Line F needs thick rigid hole-filling
+at every level. If it is zero, Line F reduces to finding one chain of cost 1.
+
+### Bounding `β₁⁽²⁾(G)` (bh-ra-proof, 2026-09-19; recalled facts, not computed)
+
+**Infinite presentation is not the obstacle.**
+- For a finitely generated infinite group, `β₁⁽²⁾` is the von Neumann dimension of the space of harmonic
+  functions with finite Dirichlet energy on a Cayley graph, modulo constants (Bekka–Valette; recalled).
+- The relators enter only through the Cayley graph. So `β₁⁽²⁾(G)` is a question about the Cayley graph
+  of `G`, with the relator graphs `Θ_i` embedded in it.
+
+**What each tool gives.**
+
+| Tool | What it gives at `G` |
+|---|---|
+| generators | `β₁⁽²⁾(G) ≤ d(G) − 1` |
+| Gaboriau | `β₁⁽²⁾(G) ≤ cost − 1` along every free chain; this is the direction used above |
+| Peterson–Thom defect bound `β₁⁽²⁾ ≥ \|S\| − 1 − Σ_r 1/ord(w_r)`, for relators `r = w_r^(n_r)` | **vacuous**: the graphical relators are not proper powers, so each costs 1, and there are infinitely many |
+| Lück–Osin (recalled): `β₁⁽²⁾(G) ≥ lim sup_k b₁(Γ_k)/[G:Γ_k]` for a normal chain with trivial intersection | **the live lower bound**. It needs the first-Betti growth of Osajda's own finite quotients (his conditions (C), (D)), which is not recorded |
+| Euler characteristic of the finitely presented stages `G_n` (aspherical coned-off complex, `χ(G_n) = 1 − \|S\| + Σ_(i≤n) b₁(Θ_i)`) | fixes only `β₂⁽²⁾ − β₁⁽²⁾ = χ(G_n)`, and `χ(G_n)` grows. So it says nothing about `β₁⁽²⁾(G_n)` |
+| semicontinuity in the space of marked groups (Pichot 2006; direction recalled as `β₁⁽²⁾(lim G_n) ≥ lim sup β₁⁽²⁾(G_n)`, not re-read) | would pass lower bounds from the `G_n` to `G`, but `β₁⁽²⁾(G_n)` is itself unknown |
+
+**Status.** `0 ≤ β₁⁽²⁾(G) ≤ min(d(G) − 1, cost − 1)`. No nonzero lower bound and no vanishing proof is
+available.
+- The decisive inputs are the first-Betti gradient of the residual quotients of `G`, which would give a
+  lower bound, and harmonic Dirichlet functions on the Cayley graph, which would settle vanishing.
+- Neither is recorded on main.
+
 ## Lesson for general BH
 
 **A rigid Toeplitz shift pays for the rank of its periods.**
