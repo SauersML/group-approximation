@@ -2,7 +2,7 @@
 rg: 2
 id: word-codings-of-t2-force-finite-presentation
 kind: claim
-title: A two-sided cellular encoding by normal-form words with bounded end rewriting forces the lift group to be finitely presented (the combing argument), and fails on every finite quotient at the loop closure; so Osajda's infinitely presented non-exact groups have no word coding, and T2 through word codings would produce a finitely presented non-exact group; lamplighters escape because pointer codings realize their infinitely many relators by spatial separation, which is the mechanism an Osajda-type T2 would have to replace
+title: A two-sided cellular encoding by normal-form words with bounded end rewriting forces the lift group to be finitely presented (the combing argument), and fails on every finite quotient at the loop closure; so Osajda's infinitely presented non-exact groups have no word coding, and T2 through word codings would need a finitely presented, residually finite, non-exact group (none is known to us); the known encodings realize relators by local identities, spatial separation, periodicity or linear convolution, so an Osajda-type T2 needs a fifth, non-linear mechanism
 requires:
   - pointer-encodings-give-non-linear-two-sided-locality
 distinct_from:
@@ -16,7 +16,17 @@ distinct_from:
 - Item 3 is heuristic and labelled so.
 - Recalled, not re-proved: Osajda's residually finite non-exact groups (Acta Math. 2020) are graphical
   C′(1/6) quotients whose relator graphs have girth tending to infinity and embed isometrically. They are
-  not finitely presented; whether a finitely presented non-exact group exists is open.
+  not finitely presented, being direct limits of virtually special groups.
+- **Repairs applied** (both from the Referee section).
+  - Finitely presented non-exact groups exist: recursively presented non-exact groups embed in finitely
+    presented ones by Higman's theorem. The target is a **finitely presented, residually finite,
+    non-exact** group. A literature search found none:
+    - Osajda's residually finite examples are infinitely presented;
+    - the Kharlampovich–Myasnikov–Sapir finitely presented residually finite groups of arbitrary
+      complexity (arXiv:1204.6506) are solvable, hence exact.
+
+    Whether such a group exists is not claimed open in print here, pending a fuller check.
+  - Linear convolution is added to item 3's list.
 - **No two-sided encoding of Osajda's quotients is known. None is ruled out beyond item 2.**
 
 ## Setting
@@ -38,21 +48,29 @@ with Dehn-type reductions carried out at the two ends.
      The loop closure always breaks end-locality somewhere in `Q_n`.
    - (b) **The lift group.** Suppose the normal forms of `Q_n` restrict to `Γ`-balls of radius `R_n → ∞`,
      with lengths bounded by a function of word length, and satisfy item 1 there. Then `Γ` is finitely
-     presented. So a T2 lift group given by such a coding would be a finitely presented non-exact group,
-     which is an open problem.
+     presented. So a T2 lift group given by such a coding, being residually finite, would be a
+     **finitely presented, residually finite, non-exact** group. None is known to us. (Finitely presented
+     non-exact groups without residual finiteness exist, via Higman embedding.)
    - (c) **Osajda's groups.** They have no such coding, since they are infinitely presented. Concretely,
      Dehn reduction in them needs windows of unbounded length, because the relator girths are unbounded.
 3. **Relator mechanisms (heuristic).**
-   - In the known two-sided encodings, every relator of `Γ` is realized in one of three ways:
+   - In the known two-sided encodings, every relator of `Γ` is realized in one of four ways:
      - (i) as a **local identity** of radius `O(r)`, such as associativity at a cell;
      - (ii) by **spatial separation**: operations at cells far apart commute automatically, which is how
        pointer codings realize the infinitely many lamplighter relators `[a, t^k a t^(−k)]`;
-     - (iii) by **medium periodicity**: the loop closing, which gives `t^ℓ` or `t^ℓ − 1`.
+     - (iii) by **medium periodicity**: the loop closing, which gives `t^ℓ` or `t^ℓ − 1`;
+     - (iv) by **linear algebra**: ring identities of convolution operators in characteristic `p`. These
+       realize the infinitely many relators of `GL_2(F_2[t^(±1)])`, which is not finitely presented (Stuhler,
+       via the referee).
+   - Mechanism (iv) is excluded for T2 by item 4 of `pointer-encodings-give-non-linear-two-sided-locality`:
+     linear regular transports force exact lifts.
    - Osajda's long relators are labelled cycles of expanders. They are neither local, nor commutators of
-     separated operations, nor periodic.
-   - **The obstruction T2 must beat:** an Osajda-type lift group needs a fourth way to realize relators
-     between bounded-radius operations. Candidates are seam-driven non-local transport, or relators made
-     local by a hierarchical medium. Otherwise it needs a finitely presented non-exact group, via item 2(b).
+     separated operations, nor periodic, and they cannot come from (iv) in a non-exact lift group.
+   - **The obstruction T2 must beat:** an Osajda-type lift group needs a **fifth, non-linear** way to realize
+     relators between bounded-radius operations. Candidates are seam-driven non-local transport, or relators
+     made local by a hierarchical medium. The hierarchical candidate is tested in
+     `hierarchical-recursion-relaxes-t2-to-one-sided-locality`. Otherwise it needs a finitely presented,
+     residually finite, non-exact group, via item 2(b).
 
 ## Proof
 
@@ -79,19 +97,19 @@ with Dehn-type reductions carried out at the two ends.
 - *Conclusion.* Apply item 1.
 
 **2(c).**
-- A finite presentation of Osajda's group would be a finitely presented group containing isometrically
-  embedded expanders. The existence of such a group is open.
-- Directly: in a C′(1/6) graphical presentation, reducing a word needs more than half of a relator cycle,
+- Osajda's groups are infinitely presented (recalled), so item 2(b) excludes them.
+- Heuristically: in a C′(1/6) graphical presentation, reducing a word needs more than half of a relator cycle,
   and those have unbounded length. ∎
 
 ## Lesson for general BH
 
-**Two-sided locality realizes relators only locally, by separation, or by periodicity.**
-- Normal-form word codings force finite presentation, by combing. So they reach no non-exact group short of
-  answering Gromov-type existence for finitely presented non-exact groups.
-- Lamplighters show the escape: spatial separation realizes infinitely many relators.
-- Osajda's non-exactness lives in long expander relators that none of the three mechanisms produces. A T2
-  construction must supply a fourth mechanism.
+**Two-sided locality realizes relators locally, by separation, by periodicity, or by linear algebra.**
+- Normal-form word codings force finite presentation, by combing. So they reach no non-exact lift group
+  unless a finitely presented, residually finite, non-exact group is found. None is known to us.
+- Lamplighters show one escape: spatial separation realizes infinitely many relators. The linear pair shows
+  another, convolution, but that one is exact.
+- Osajda's non-exactness lives in long expander relators that none of the four mechanisms produces. A T2
+  construction must supply a fifth, non-linear mechanism.
 
 ## Referee (bh-ref-q12, 2026-09-19): items 1 and 2(a)–(b) PASS; two repairs, one of them substantive
 
