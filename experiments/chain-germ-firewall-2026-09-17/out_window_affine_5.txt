@@ -1,0 +1,2 @@
+affine n=5 rho_meta window [128.0,256.0) pieces 24960 comps 2 moved 4 first 130 last 193.5 (16s)
+affine n=5 tau_meta window [128.0,256.0) pieces 49154 comps 1 moved 0.00585938 first 192.996 last 193.002 (32s)
