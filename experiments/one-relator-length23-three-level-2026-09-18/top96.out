@@ -1,0 +1,97 @@
+TOP AAtATataTattAtAATataTTT n=3 W0=A0.A0.A1.a0.a1.a0.A2.A3.A3.a2.a3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattAtATataaTTT n=3 W0=A0.A0.A1.a0.a1.a0.A2.A3.a2.a3.a3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattAtaTatAATTT n=3 W0=A0.A0.A1.a0.a1.a0.A2.a3.a2.A3.A3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattAtaaTatATTT n=3 W0=A0.A0.A1.a0.a1.a0.A2.a3.a3.a2.A3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattatAATAtaTTT n=3 W0=A0.A0.A1.a0.a1.a0.a2.A3.A3.A2.a3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattatATAtaaTTT n=3 W0=A0.A0.A1.a0.a1.a0.a2.A3.A2.a3.a3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattataTAtAATTT n=3 W0=A0.A0.A1.a0.a1.a0.a2.a3.A2.A3.A3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTattataaTAtATTT n=3 W0=A0.A0.A1.a0.a1.a0.a2.a3.a3.A2.A3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttAATAtaTaTT n=3 W0=A0.A0.A1.a0.a1.a0.A3.A3.A2.a3.a2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttAATataTATT n=3 W0=A0.A0.A1.a0.a1.a0.A3.A3.a2.a3.A2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttATAtaaTaTT n=3 W0=A0.A0.A1.a0.a1.a0.A3.A2.a3.a3.a2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttATataaTATT n=3 W0=A0.A0.A1.a0.a1.a0.A3.a2.a3.a3.A2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttaTAtAATaTT n=3 W0=A0.A0.A1.a0.a1.a0.a3.A2.A3.A3.a2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttaTatAATATT n=3 W0=A0.A0.A1.a0.a1.a0.a3.a2.A3.A3.A2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttaaTAtATaTT n=3 W0=A0.A0.A1.a0.a1.a0.a3.a3.A2.A3.a2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATataTatttaaTatATATT n=3 W0=A0.A0.A1.a0.a1.a0.a3.a3.a2.A3.A2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatattAATTTatttaTTT n=3 W0=A0.A0.A1.a0.a1.A3.A3.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatattAATataTAtaTTT n=3 W0=A0.A0.A1.a0.a1.A3.A3.a2.a3.A2.a3 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatattATTTatttaaTTT n=3 W0=A0.A0.A1.a0.a1.A3.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatattATAtaaTatATTT n=3 W0=A0.A0.A1.a0.a1.A3.A2.a3.a3.a2.A3 s=a3 h0=0 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatattATatATAtaaTTT n=3 W0=A0.A0.A1.a0.a1.A3.a2.A3.A2.a3.a3 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatattATataaTAtATTT n=3 W0=A0.A0.A1.a0.a1.A3.a2.a3.a3.A2.A3 s=a3 h0=0 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatattaTTTatttAATTT n=3 W0=A0.A0.A1.a0.a1.a3.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatattaTAtAATataTTT n=3 W0=A0.A0.A1.a0.a1.a3.A2.A3.A3.a2.a3 s=a3 h0=0 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatattaTAtaTatAATTT n=3 W0=A0.A0.A1.a0.a1.a3.A2.a3.a2.A3.A3 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatattaTatAATAtaTTT n=3 W0=A0.A0.A1.a0.a1.a3.a2.A3.A3.A2.a3 s=a3 h0=0 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatattaaTTTatttATTT n=3 W0=A0.A0.A1.a0.a1.a3.a3.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatattaaTAtATatATTT n=3 W0=A0.A0.A1.a0.a1.a3.a3.A2.A3.a2.A3 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATattAtAATataTTTataT n=3 W0=A0.A0.A1.a0.A2.A3.A3.a2.a3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATattAtaTatAATTTataT n=3 W0=A0.A0.A1.a0.A2.a3.a2.A3.A3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATattAtaaTatATTTataT n=3 W0=A0.A0.A1.a0.A2.a3.a3.a2.A3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATattatAATAtaTTTataT n=3 W0=A0.A0.A1.a0.a2.A3.A3.A2.a3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATattatATAtaaTTTataT n=3 W0=A0.A0.A1.a0.a2.A3.A2.a3.a3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATattataaTAtATTTataT n=3 W0=A0.A0.A1.a0.a2.a3.a3.A2.A3.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttAATTTatattaTTT n=3 W0=A0.A0.A1.a0.A3.A3.a0.a1.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttAATTTatttaTTaT n=3 W0=A0.A0.A1.a0.A3.A3.a0.a3.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttAATTaTatttaTTT n=3 W0=A0.A0.A1.a0.A3.A3.a1.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttAATataTATTataT n=3 W0=A0.A0.A1.a0.A3.A3.a2.a3.A2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttAATataTAtaTTaT n=3 W0=A0.A0.A1.a0.A3.A3.a2.a3.A2.a3.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatttATTTatattaaTTT n=3 W0=A0.A0.A1.a0.A3.a0.a1.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttATTTatttaaTTaT n=3 W0=A0.A0.A1.a0.A3.a0.a3.a3.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttATTaTatttaaTTT n=3 W0=A0.A0.A1.a0.A3.a1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttATAtaaTaTTataT n=3 W0=A0.A0.A1.a0.A3.A2.a3.a3.a2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttATatATAtaaTTaT n=3 W0=A0.A0.A1.a0.A3.a2.A3.A2.a3.a3.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatttATataaTATTataT n=3 W0=A0.A0.A1.a0.A3.a2.a3.a3.A2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttaTTTatattAATTT n=3 W0=A0.A0.A1.a0.a3.a0.a1.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaTTTatttAATTaT n=3 W0=A0.A0.A1.a0.a3.a0.A3.A3.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaTTaTatttAATTT n=3 W0=A0.A0.A1.a0.a3.a1.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaTAtAATaTTataT n=3 W0=A0.A0.A1.a0.a3.A2.A3.A3.a2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttaTAtaTatAATTaT n=3 W0=A0.A0.A1.a0.a3.A2.a3.a2.A3.A3.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtATatttaTatAATATTataT n=3 W0=A0.A0.A1.a0.a3.a2.A3.A3.A2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttaaTTTatattATTT n=3 W0=A0.A0.A1.a0.a3.a3.a0.a1.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaaTTTatttATTaT n=3 W0=A0.A0.A1.a0.a3.a3.a0.A3.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaaTTaTatttATTT n=3 W0=A0.A0.A1.a0.a3.a3.a1.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtATatttaaTAtATaTTataT n=3 W0=A0.A0.A1.a0.a3.a3.A2.A3.a2.a0.a1 s=a0 h0=-1 -> (4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)')
+TOP AAtATatttaaTAtATatATTaT n=3 W0=A0.A0.A1.a0.a3.a3.A2.A3.a2.A3.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtAttAATTTataTatttaTTT n=3 W0=A0.A0.A1.A3.A3.a0.a1.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttAATTTatttaTTTataT n=3 W0=A0.A0.A1.A3.A3.a0.a3.a0.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttAATataTAtaTTTataT n=3 W0=A0.A0.A1.A3.A3.a2.a3.A2.a3.a0.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtAttATTTataTatttaaTTT n=3 W0=A0.A0.A1.A3.a0.a1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttATTTatttaaTTTataT n=3 W0=A0.A0.A1.A3.a0.a3.a3.a0.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttATatATAtaaTTTataT n=3 W0=A0.A0.A1.A3.a2.A3.A2.a3.a3.a0.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtAttaTTTataTatttAATTT n=3 W0=A0.A0.A1.a3.a0.a1.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttaTTTatttAATTTataT n=3 W0=A0.A0.A1.a3.a0.A3.A3.a0.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttaTAtaTatAATTTataT n=3 W0=A0.A0.A1.a3.A2.a3.a2.A3.A3.a0.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtAttaaTTTataTatttATTT n=3 W0=A0.A0.A1.a3.a3.a0.a1.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttaaTTTatttATTTataT n=3 W0=A0.A0.A1.a3.a3.a0.A3.a0.a1 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtAttaaTAtATatATTTataT n=3 W0=A0.A0.A1.a3.a3.A2.A3.a2.A3.a0.a1 s=a0:S-EXP-NONZERO s=a3:N-SPLIT -> None
+TOP AAtaTatATattAtaTatAATTT n=3 W0=A0.A0.a1.a0.A1.a0.A2.a3.a2.A3.A3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatATattatATAtaaTTT n=3 W0=A0.A0.a1.a0.A1.a0.a2.A3.A2.a3.a3 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatATatttAATataTATT n=3 W0=A0.A0.a1.a0.A1.a0.A3.A3.a2.a3.A2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatATatttaaTAtATaTT n=3 W0=A0.A0.a1.a0.A1.a0.a3.a3.A2.A3.a2 s=a0:N-SPLIT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatAttAATTTatttaTTT n=3 W0=A0.A0.a1.a0.A1.A3.A3.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatAttATTTatttaaTTT n=3 W0=A0.A0.a1.a0.A1.A3.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatAttaTTTatttAATTT n=3 W0=A0.A0.a1.a0.A1.a3.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatAttaaTTTatttATTT n=3 W0=A0.A0.a1.a0.A1.a3.a3.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttAATTTatAttaTTT n=3 W0=A0.A0.a1.a0.A3.A3.a0.A1.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttAATTATatttaTTT n=3 W0=A0.A0.a1.a0.A3.A3.A1.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttATTTatAttaaTTT n=3 W0=A0.A0.a1.a0.A3.a0.A1.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttATTATatttaaTTT n=3 W0=A0.A0.a1.a0.A3.A1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttaTTTatAttAATTT n=3 W0=A0.A0.a1.a0.a3.a0.A1.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttaTTATatttAATTT n=3 W0=A0.A0.a1.a0.a3.A1.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttaaTTTatAttATTT n=3 W0=A0.A0.a1.a0.a3.a3.a0.A1.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtaTatttaaTTATatttATTT n=3 W0=A0.A0.a1.a0.a3.a3.A1.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtattAATTTatATatttaTTT n=3 W0=A0.A0.a1.A3.A3.a0.A1.a0.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtattATTTatATatttaaTTT n=3 W0=A0.A0.a1.A3.a0.A1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtattaTTTatATatttAATTT n=3 W0=A0.A0.a1.a3.a0.A1.a0.A3.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtattaaTTTatATatttATTT n=3 W0=A0.A0.a1.a3.a3.a0.A1.a0.A3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAttAtATatATTTatttaaTTT n=3 W0=A0.A0.A2.A3.a2.A3.a0.a3.a3 s=a0:S-EXP-NONZERO s=a3:LETTER-ABSENT -> None
+TOP AAttAtaTataTTTatttAATTT n=3 W0=A0.A0.A2.a3.a2.a3.a0.A3.A3 s=a0:S-EXP-NONZERO s=a3:LETTER-ABSENT -> None
+TOP AAttatATAtATTTatttaaTTT n=3 W0=A0.A0.a2.A3.A2.A3.a0.a3.a3 s=a0:S-EXP-NONZERO s=a3:LETTER-ABSENT -> None
+TOP AAttataTAtaTTTatttAATTT n=3 W0=A0.A0.a2.a3.A2.a3.a0.A3.A3 s=a0:S-EXP-NONZERO s=a3:LETTER-ABSENT -> None
+TOP AAtttAATTTatATatattaTTT n=3 W0=A0.A0.A3.A3.a0.A1.a0.a1.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtttAATTTataTatAttaTTT n=3 W0=A0.A0.A3.A3.a0.a1.a0.A1.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtttATTATataTatttaaTTT n=3 W0=A0.A0.A3.A1.a0.a1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+TOP AAtttATTaTatATatttaaTTT n=3 W0=A0.A0.A3.a1.a0.A1.a0.a3.a3 s=a0:LETTER-ABSENT s=a3:S-EXP-NONZERO -> None
+SENTINEL_DONE
