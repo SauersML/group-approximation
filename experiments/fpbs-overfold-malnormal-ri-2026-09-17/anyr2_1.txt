@@ -1,0 +1,1 @@
+STATS anyr2 1 {'trials': 380, 'nontriv': 18, 'certified': 0, 'big': 0, 'JcontainsB': 12}

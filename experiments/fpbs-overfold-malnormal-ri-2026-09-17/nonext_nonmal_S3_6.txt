@@ -1,0 +1,16 @@
+HIT B=['aBAb', 'abA'] mal=False rho=((0, 2, 1), (1, 0, 2)) g=a rkJ=2
+HIT B=['aBAb', 'abA'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=a rkJ=2
+HIT B=['bABB', 'Babb'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=b rkJ=2
+HIT B=['bABB', 'Babb'] mal=False rho=((1, 2, 0), (0, 2, 1)) g=b rkJ=2
+HIT B=['AAbAb', 'AbAbA'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=a rkJ=2
+HIT B=['AAbAb', 'AbAbA'] mal=False rho=((1, 2, 0), (0, 2, 1)) g=a rkJ=2
+HIT B=['ba', 'BAba'] mal=False rho=((0, 2, 1), (1, 0, 2)) g=a rkJ=2
+HIT B=['ba', 'BAba'] mal=False rho=((1, 2, 0), (0, 2, 1)) g=a rkJ=2
+HIT B=['ABAb', 'BAb'] mal=False rho=((0, 2, 1), (1, 0, 2)) g=b rkJ=2
+HIT B=['ABAb', 'BAb'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=b rkJ=2
+HIT B=['aaBaBB', 'bA'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=a rkJ=2
+HIT B=['BAbb', 'BAba'] mal=False rho=((0, 2, 1), (1, 0, 2)) g=a rkJ=2
+HIT B=['BAbb', 'BAba'] mal=False rho=((1, 2, 0), (0, 2, 1)) g=a rkJ=2
+HIT B=['aBBBab', 'BAbb'] mal=False rho=((0, 2, 1), (1, 0, 2)) g=b rkJ=2
+HIT B=['aBBBab', 'BAbb'] mal=False rho=((0, 2, 1), (1, 2, 0)) g=b rkJ=2
+STATS nonmal S3 6 60 13 {'B': 60, 'kernels': 180, 'nonext_kernels': 142, 'hits': 15}

@@ -1,0 +1,9 @@
+C2C2  |G|=  4  |image of W|=   16 of    16   onto rho=    6   non-extendable onto rho=    0   onto rho with no onto extension=    0
+S3    |G|=  6  |image of W|=   30 of    36   onto rho=   18   non-extendable onto rho=    6   onto rho with no onto extension=    6
+D4    |G|=  8  |image of W|=   64 of    64   onto rho=   24   non-extendable onto rho=    0   onto rho with no onto extension=    0
+Q8    |G|=  8  |image of W|=   64 of    64   onto rho=   24   non-extendable onto rho=    0   onto rho with no onto extension=    0
+A4    |G|= 12  |image of W|=  120 of   144   onto rho=   96   non-extendable onto rho=   24   onto rho with no onto extension=   24
+C3C3  |G|=  9  |image of W|=   81 of    81   onto rho=   48   non-extendable onto rho=    0   onto rho with no onto extension=    0
+D5    |G|= 10  |image of W|=  100 of   100   onto rho=   60   non-extendable onto rho=    0   onto rho with no onto extension=    0
+S4    |G|= 24  |image of W|=  360 of   576   onto rho=  216   non-extendable onto rho=  168   onto rho with no onto extension=  168
+A5    |G|= 60  |image of W|= 2100 of  3600   onto rho= 2280   non-extendable onto rho= 1320   onto rho with no onto extension= 1320

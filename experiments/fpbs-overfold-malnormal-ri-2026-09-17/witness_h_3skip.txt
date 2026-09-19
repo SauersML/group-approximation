@@ -1,0 +1,80 @@
+ok X=['bbAB'] g=b h=a
+ok X=['bbABabbAbAB', 'baBBabbAB'] g=babAB h=baBB
+ok X=['a', 'bbABaabbAB', 'bbABAbbABabbAB'] g=b h=baBB
+ok X=['aa', 'bbAB'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['aa', 'bbAB', 'AbbABa'] g=b h=a
+ok X=['aa', 'AbbAB', 'bbAbABa', 'bbABabaBB'] g=aba h=a
+ok X=['AbaBB', 'baBaBBaa', 'baBBabbAB'] g=babAB h=a
+ok X=['a', 'bbABabaBB'] g=b h=baBB
+ok X=['AbaBB', 'baBaBBa', 'abbABA'] g=abA h=a
+ok X=['bbAB', 'abbABA'] g=b h=a
+ok X=['bbABabaBB'] g=bbABBB h=baBB
+ok X=['aa', 'AbbABa', 'bbAB'] g=b h=a
+ok X=['aa', 'bbAB', 'AbbABa'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['AbbABa', 'abbAB', 'bbABabaBB'] g=Aba h=a
+ok X=['AbbAB', 'aaaa', 'AAbbABaa'] g=aabaa h=a
+ok X=['a'] g=b h=baBB
+ok X=['AbbAbABAA', 'baBaBB', 'baBBabbAB'] g=baaBB h=baBB
+ok X=['abbAbAbAB', 'baBBabbAB'] g=babAB h=baBB
+ok X=['bbAB', 'aaa', 'abbABa'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['a'] g=b h=baBB
+ok X=['AAbbABa', 'bbAB'] g=b h=a
+ok X=['a'] g=b h=baBB
+ok X=['bbAB'] g=b h=a
+ok X=['a', 'baBaBB'] g=b h=baBB
+ok X=['a', 'bbABabbAbAbAB', 'baBBabbAbAB'] g=b h=baBB
+ok X=['a', 'bbAbAbAbAbAB', 'bbABabaBaBB', 'baBBabaBB'] g=b h=baBB
+ok X=['a', 'bbABAbaBaBB'] g=b h=baBB
+ok X=['a', 'baBaBB'] g=b h=baBB
+ok X=['baBBabbAB', 'bbAbAbAB', 'bbABabaBB'] g=baaBB h=baBB
+ok X=['a'] g=b h=baBB
+ok X=['bbABabaBBabaBB', 'AbbABa'] g=Aba h=a
+ok X=['bbAB', 'aaa', 'abbABA'] g=b h=a
+ok X=['a', 'baBBabaBB', 'bbABabbAB'] g=b h=baBB
+ok X=['AbbABa', 'bbABabaBB', 'baBBaabaBBA'] g=Aba h=a
+ok X=['aa', 'bbAB'] g=b h=a
+ok X=['a', 'bbABaabaBB', 'baBBabbAbAB'] g=b h=baBB
+ok X=['bbAB', 'abaBBa'] g=b h=a
+ok X=['aa', 'bbAB'] g=b h=a
+ok X=['bbAB', 'AbbAbABA'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['a', 'baBBabbAB'] g=b h=baBB
+ok X=['a', 'bbABAbaBaBB', 'baBBabbAB'] g=b h=baBB
+ok X=['AAbbABaa', 'bbABabaBBA'] g=AAbaa h=a
+ok X=['AAbbAB', 'AAAAbaBBa', 'abbABA'] g=abA h=a
+ok X=['AbaBaBBAA', 'abbABA', 'bbAB'] g=b h=a
+ok X=['abbABa', 'abaBBa', 'bbAB'] g=b h=a
+ok X=['a', 'baBaBB'] g=b h=baBB
+ok X=['a'] g=b h=baBB
+ok X=['aa', 'bbAB'] g=b h=a
+ok X=['a', 'baBaBB'] g=b h=baBB
+ok X=['abbABA', 'bbAB'] g=b h=a
+ok X=['bbAB', 'AAbbABA'] g=b h=a
+ok X=['bbAB', 'abbABa'] g=b h=a
+ok X=['a', 'bbABAbaBaBB'] g=b h=baBB
+ok X=['a'] g=b h=baBB
+ok X=['AAbbABa', 'bbAB'] g=b h=a
+ok X=['a', 'bbABabbAbAB'] g=b h=baBB
+ok X=['aa', 'AbbABa', 'bbAB'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['aa', 'bbAB', 'AbbABa'] g=b h=a
+ok X=['a', 'baBaBB', 'baBBabbAB'] g=b h=baBB
+ok X=['AbaBBabbAbAB', 'AbaBaBaBB', 'baBBabbAB'] g=babAB h=a
+ok X=['aaa', 'AbaBaBBA', 'bbAB'] g=b h=a
+ok X=['a'] g=b h=baBB
+ok X=['bbAB'] g=b h=a
+ok X=['a', 'baBaBB'] g=b h=baBB
+ok X=['a', 'bbABabbAB', 'baBBabbAbAB'] g=b h=baBB
+ok X=['bbAB'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['bbAB'] g=b h=a
+ok X=['abaBBabaBBa', 'bbAB'] g=b h=a
+ok X=['abbABa', 'aaa', 'AbbAbABA', 'bbAB'] g=b h=a
+ok X=['bbAB', 'aaa'] g=b h=a
+ok X=['baBaBBaa', 'AAbaBBA', 'abaBB', 'aaaa', 'AbbABa'] g=Aba h=a
+ok X=['aa', 'bbAB'] g=b h=a
+ok X=['baBaBaBaBB', 'baBBabbABA', 'bbABabaBB'] g=bbABBB h=baBB
+STATS 3 {'X': 197, 'hits': 79, 'h_found': 79, 'h_missing': 0}
