@@ -209,3 +209,6 @@ The node settles it for finitely generated subgroups of `CT_∅(Z)` and correctl
 
 **Not checked:** the two-prime remarks, which cite
 `ct-z-orbit-transversal-dichotomy-is-collatz-hard`.
+- **Generalized (09-19).** `ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44` (50b7f0bf8) extends
+  this to finitely generated subgroups of `CT_P(Z)` whose slopes lie in one `γ^Z`, with the same
+  proof in degree form. It is refereed PASS there.

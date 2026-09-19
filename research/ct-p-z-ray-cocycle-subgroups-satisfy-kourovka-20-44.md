@@ -131,3 +131,64 @@ cocycle, not the number of primes or the carries.**
 that must stay finitely generated with tame orbits or torsion, should be placed so that its
 cocycle lies on one positive ray. Hardness, such as periodic monsters or undecidable dynamics,
 must be sought in cocycles of rank 2 or of mixed sign.
+
+## Referee (bh-ref-kourovka-a, 2026-09-19): PASS
+
+I checked this together with the one-prime node (refereed PASS at ab9d63e16), of which it is the
+general case: `P = ∅`, `k = 1`, `v = 1`, `γ = 2` gives exactly that proof.
+The printed question is Kourovka 20.44, 20th issue, p. 153; it is still open for `CT(Z)`.
+
+**Checked line by line.**
+- **Tracking.**
+  - For `K ≥ d(λ)`, `σ^K x = σ^(K−d(λ)) z = σ^(K−d(λ)+d(μ)) y`, using `σ^(n+n') = σ^(n')σ^n`, which
+    I checked via `ρ_(n+n') = ρ_n + m_n ρ_(n')(σ^n x)`.
+  - The shifted degree stays in `N^k`.
+  - One move shifts every unread degree by `d(μ) − d(λ)`. Consumable degrees form a down-set.
+  - Reversal holds: the images `[μ]` partition `Ẑ`, and a tail at `K + d(μ) − d(λ) ≥ d(μ)` is unread
+    by the inverse step.
+- **Only a prefix matters.**
+  - Before the tail at `K` is read, the configuration is `w = ρ + m_p T`. Its low part evolves as
+    `ρ' = s' + m_(d')⌊ρ/m_d⌋ < m_(p')`, a function of `ρ` and the piece.
+  - A non-reading piece is fixed by `ρ` alone, since `m_(d(λ)) | m_p`. The reading piece is fixed by
+    `w mod Π^D`.
+  - So `C_K` is a union of classes mod `M_K = m_K Π^D`.
+- **The rank-one step.** Every total shift lies in `Zv`, so chain tails stay on
+  `K_s = sv + D·1`, and `K_s ≤ K_(s+1)` because `v ≥ 0`.
+  - In item 1 a reading move has `d(λ) ≤ D·1` and `d(λ) ≰ s'v + D·1`. That needs a coordinate with
+    `s' v_p < 0`, so `s' < 0` and `K_(s') ≤ D·1`.
+  - The configuration then equals its low part, which lies in `[0, Π^D)`, or in `[−Π^D, 0)` for the
+    tail `−1`.
+  - This is exactly where `v ≥ 0` enters. For mixed-sign `v`, `R` is bounded above and the corner
+    argument fails, consistent with the node's table.
+- **Frozen tail.**
+  - `κ(y) ≤ κ(x) + t` follows by concatenation.
+  - For `κ(y) ≥ κ(x) + t`: `Q` leaves the up-set above `K_(κ(y))` unread, which contains
+    `K_(κ(x)+t)`. So its uniform shift there is `−tv`, by reversal. Then `K_(κ(y)−t)` is
+    non-consumable from `x`.
+  - `T(y) = T(x)` by tracking. The argument is the same as the one-prime repair, with degrees in
+    place of letter positions.
+- **Counting.**
+  - `{κ ≤ s}` = "`K_s` non-consumable", which has exact proportion `δ_s` in `[0, jM_(K_s))`.
+  - An orbit has at most `A_s = Σ m_(K_(s'))` points there, since `x = ρ + m_(K_(s')) T`.
+  - `j = ⌊N/M_(K_s)⌋ ≥ N/(2M_(K_s))` gives `δ_s N/(2A_s)`.
+  - Item 1 needs `δ_s = 0` only for `s ≥ 0`, because `δ` is nondecreasing, so the dichotomy is
+    exhaustive.
+- **The carry example.** `τ_(1(3),0(6))` has degree change `(1,1) − (0,1) = v = (1,0)` and acts as
+  `x ↦ 2(x − 1)` on `1(3)`. Correct.
+
+**Minor.**
+1. **The only input.** The route says it is "item 3 and the k-graph section". In fact, only the
+   following are used:
+   - class transpositions with `P'`-smooth moduli have tables;
+   - tables compose after splitting cylinders by primes;
+   - the arithmetic of `σ^n`.
+
+   All three are elementary. For infinite `P`, a finitely generated subgroup uses finitely many
+   primes, so finite `P` loses nothing.
+2. **The hypothesis is intrinsic.** The slopes of an element are independent of its table, so the
+   ray condition is a property of `G`, closed under composition.
+3. **Density.** As in the one-prime node, this is positive lower density; natural density is not
+   addressed.
+
+**Not checked:** the torsion comparison with `periodic-k-graph-subgroups-with-ray-cocycle-are-finite`,
+and the rank-2 row of the table.
