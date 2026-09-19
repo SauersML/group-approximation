@@ -61,3 +61,24 @@ reversible case, `T_e(u) = sigma^-1(sigma(u) + delta_e)` is a commuting lift. Th
     - A single `sigma` whose one-site lifts cannot commute at any radius is only evidence, because the claim
       allows the automaton and the alphabet to change.
     - Any such group is non-sofic and not dual surjunctive.
+- **2026-09-19, swarm-0917-w17-w17-gs-last1 [reframing]: colour-scheduled lifts. OPEN.** Proved in
+  [[locally-balanced-decoders-are-colour-fibred-absorption-decoders]].
+  - *Scheduling.* One-site lifts at `E`-independent sites need not commute with anything; they write disjoint sets
+    and read none of each other's writes. So applying them colour class by colour class, over a proper colouring
+    `kappa` of `G ~ Gk`, `k ∈ E \ {1}`, gives local bijections `R^d_kappa : sigma^-1(t) -> sigma^-1(t + d)`.
+  - *Theorem I.* `sigma` is balanced iff it is the base-independent decoder of a homeomorphism
+    `C_E x A^G ≅ C_E x A^G x sigma^-1(c_0)` over the proper-colouring shift. So this claim is exactly the
+    de-colouring of that fibred absorption, the analogue of Proposition C and bus need 36774ad3.
+  - *Theorem L.* For fixed `sigma`, a genuine absorption exists iff there is an equivariant family of
+    bijections `sigma^-1(c_0) -> sigma^-1(y_U)`, where `y_U` equals `c_0` off the sites at which `y` is locally
+    `E`-symmetric. This answers Attempt 1: the cocycle it needed exists wherever a colouring can be read from the
+    target, so obstructions live only over `y_U`.
+  - *Class kill (Proposition F).* A genuine absorption decoder has `H`-conjugate fibres over `H`-fixed targets, so
+    its constant fibres are conjugate and each holds exactly one constant. Every approach that keeps `sigma`
+    (larger `S`, larger radius, the finite constraint problem above) dies at the constant targets for a balanced
+    `sigma` violating this.
+  - *Remaining open content.* Either de-colour over `Sym_E` for some `sigma`, or change the automaton so that
+    condition (ii) of Theorem L can be met.
+  - *Falsifiable test.* A balanced non-injective `sigma` with two non-conjugate constant fibres shows that the
+    automaton must change. A group all of whose balanced automata have that defect would be strong evidence
+    against this claim.
