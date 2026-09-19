@@ -17,6 +17,8 @@ artifacts:
   - research/artifacts/fpbs-spectral-fold-seed-floor-2026-09-18.md
   - research/artifacts/fpbs-relative-rank-collapse-2026-09-18.md
   - research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md
+  - experiments/fpbs-depth-overfolding-2026-09-17/exact_search.py
+  - experiments/fpbs-depth-overfolding-2026-09-17/check_surjective_n12.txt
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -621,3 +623,50 @@ Scripts are in `experiments/fpbs-iid-chord-union-bound-2026-09-17/`.
   `|P'| ≤ C(m + excess)`, where `C` does not depend on `j`.
 
   The claim stays OPEN, with (D0) settled and (D1) open.
+### swarm-0917-w15 (fp-follow): the Δ-part obstruction to (D1) is removed; (D1) is now two finite statements
+
+- **Result (ESTABLISHED).**
+  [[fpbs-mal-depth-promotion-equals-overfold-merge-number]] is proved
+  through its route.
+  - The folded `L_{j+1}`-graph `Γ_{j+1}(Q)` maps **onto** the folded
+    `L_j`-graph `Γ_j(Q)`. The proof uses the fact that reduced `t_j` is a
+    prefix of reduced `t_{j+1}`.
+  - Hence any morphism `Γ_j(Q) → F(Φ)` fixing the reals factors as
+    `g = f∘m` through the canonical map of `Γ_{j+1}(Q)`, by uniqueness of
+    morphisms into folded graphs.
+  - So the `t_j`-readings never enter the Δ-part. This answers the w15
+    fp-pull stopping point.
+  - The domination lemma then gives the exact count
+    `d_j(Q) = deep_j(Q)`. This is the least number of same-fibre merges of
+    `Γ_{j+1}(Q)` whose fold-closure contains `ker(Γ_{j+1} → Γ_j)`.
+    Overfold merges, which lie outside the kernel, are allowed.
+  - With `L_j`-labels the count is `law_j(Q) = r(Q^{(j)})`, where `Q^{(j)}`
+    is `Q` twisted by `φ^j`.
+  - The w15 clopen approximation runs with `t_j` in place of `b`. It gives
+    `Q_j(X) = inf_m deep_j(Q_m)/|Q_m|` on every essentially free profinite
+    `X` with transitive levels.
+- **New decomposition.** Route
+  `fpbs-mal-depth-floor-from-overfold-domination` targets this claim. Its
+  two open premises can each fail:
+  - (O) [[fpbs-mal-overfold-merges-never-help]]: `deep_j = law_j`, or
+    just `deep_j ≥ c_1 law_j`;
+  - (W) [[fpbs-mal-twisted-level-seed-density-uniform-witness]]: for some
+    towers, `r(Q_m^{(j)})/|Q_m| ≥ c`, uniformly in `j`.
+
+  (O) is the profinite form of (U) from the w14 D1 setup, with `c = 1`.
+- **Evidence for (O).**
+  - Exact search gives `deep_j = law_j` on 70 of 70 random levels
+    (`j = 1, 2`; `|Γ_{j+1}| ≤ 100`).
+  - Single-swap exchange at `j = 1` shows 0 failures in 288 tests. At
+    `j = 2`, single swaps fail on some minimal non-minimum sets, so a proof
+    must be global.
+  - Greedy search over all 11, 87 and 559 overfold types never beat
+    `law_j` at `j = 1, 2, 3`.
+- **Evidence for (W).** Greedy `r(Q^{(j)})/n` on random `n = 120` levels
+  stays at `0.117–0.125` for `j = 0..4`. These are upper bounds only.
+- **Where it stops.** (O) has no proof. A generating-set analogue fails
+  for general subgroup pairs, so a proof must use the rank-2 chain. (W)
+  needs a spectral gap or seed density for `<a, t_j>` that is uniform in
+  `j`. M. Hall induction loses the factor `[L : H_j]`.
+
+  The claim stays OPEN.

@@ -1,0 +1,20 @@
+trial 0 |P| 10 overfold 9 |tau7:4| |tau1:5| |tau7:4| |tau4:3| |tau2:3| |tau5:5| |tau10:3| |tau6:4| |tau4:5|
+trial 1 |P| 10 overfold 7 |tau2:5| |tau4:5| |tau7:4| |tau11:4| |tau3:5| |tau8:5| |tau5:5|
+trial 2 |P| 12 overfold 11 |tau4:4| |tau5:4| |tau9:4| |tau3:15| |tau10:4| |tau6:10| |tau7:17| |tau3:5| |tau2:10| |tau8:17| |tau11:15|
+trial 3 |P| 10 overfold 9 |tau8:9| |tau9:7| |tau1:9| |tau9:7| |tau1:4| |tau2:9| |tau3:8| |tau9:5| |tau10:7|
+trial 4 |P| 10 overfold 9 |tau11:7| |tau4:2| |tau2:3| |tau11:10| |tau9:10| |tau11:5| |tau7:14| |tau3:5| |tau2:2|
+trial 5 |P| 12 overfold 12 |tau8:1| |tau11:5| |tau9:6| |tau4:11| |tau2:11| |tau3:4| |tau10:3| |tau6:11| |tau5:3| |tau3:7| |tau8:10| |tau1:7|
+trial 6 |P| 11 overfold 9 |tau4:4| |tau7:8| |tau8:5| |tau1:9| |tau10:4| |tau11:5| |tau4:4| |tau1:9| |tau1:8|
+trial 7 |P| 14 overfold 14 |tau10:7| |tau8:9| |tau6:4| |tau11:3| |tau3:2| |tau5:14| |tau6:8| |tau5:13| |tau3:3| |tau10:3| |tau5:4| |tau1:4| |tau4:9| |tau4:7|
+overfold seeds tested 80 exchange failures 0
+type 1 size 2 rep (0, 1) always-good words 0 []
+type 2 size 3 rep (0, 3) always-good words 0 []
+type 3 size 1 rep (1, 5) always-good words 0 []
+type 4 size 2 rep (0, 6) always-good words 0 []
+type 5 size 1 rep (2, 4) always-good words 0 []
+type 6 size 2 rep (1, 4) always-good words 0 []
+type 7 size 2 rep (2, 6) always-good words 0 []
+type 8 size 2 rep (3, 7) always-good words 0 []
+type 9 size 1 rep (4, 7) always-good words 0 []
+type 10 size 3 rep (2, 3) always-good words 0 []
+type 11 size 2 rep (5, 6) always-good words 0 []
