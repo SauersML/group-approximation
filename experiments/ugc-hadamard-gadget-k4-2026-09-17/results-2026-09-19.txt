@@ -1,0 +1,59 @@
+Hadamard gadget deletion ratio R*(k) = K z*(P): exact sandwiches at k = 3 and k = 4
+swarm-0917-w16-w16-ugc-break, 2026-09-19.  All commands below run with HADK_BUILD=<any writable dir>
+(the C helpers hadk_flow.c / hadk_ls.c are compiled there with gcc -O2 on first use).
+
+Notation as in research/hadamard-gadget-deletion-ratio-window.md.  z_U = auxiliary-unfolded
+(Wiman-relaxed) adversary value, see research/hadamard-crossing-needs-folding-gap.md.
+
+LOWER BOUNDS (rigorous; relaxed soundness <= true soundness, exact integer min cuts)
+  verify_certificate.py k W : checks gadget invariance under the symmetry group generators and
+  negation, direction balance (c = 1/K), computes the exact s-t min cut (int64 Dinic) at every
+  pattern-orbit representative plus random samples of each orbit, and prints the exact rational.
+  k = 3, W = 1000000,200000,200000,1000000,200000                      -> R*(3) >= 11/8
+         (verify_k3.log)
+  k = 4, W = 1000000,66667,12440,23245,2389,2389,23245,12440,66667,1000000,454,454,
+             2389,2389,12440,66667,12440,23245,0,0,454,454,2389        -> R*(4) >= 905957293/621871104
+         ~ 1.456825  (verify_k4.log).  The float LP optimum of the unfolded column generation
+         (exact min-cut pricing, colgen_U_k4.log, 125 rounds, converged) is K z_U(4) = 1.456854,
+         matching Wiman's gadget (Martinsson arXiv:2408.04832: "c = 15/16 and
+         s = 3308625759/3640066048"), ratio 331440289/227504128 = 1.4568540, which is therefore
+         (numerically) the optimum of the relaxed problem at k = 4.
+
+UPPER BOUNDS (rigorous; exact rational mixtures of explicit folded columns)
+  hadk_fold_ub.py / hadk_fold_ub2.py k W [rounds ...] : folded column generation with heuristic
+  pricing (C 1-opt local search; ub2 adds folding-lemma starts T / -T / sigma x_i on D and
+  iterated kicks).  Pricing heuristic => only the UB side is claimed.  Every column is re-checked
+  folded and pinned; its integer cut counts per edge orbit are stored; the LP mixture is rounded to
+  rationals and renormalized inside each pattern orbit to |orbit|/2^K exactly; group
+  symmetrization then gives a folded distribution random on P (orbit-stabilizer); the certified
+  bound is K * max_o (exact cut probability on orbit o).
+  k = 3 : R*(3) <= 11/8 exactly (fold_ub2_k3.log; 8 columns).                => R*(3) = 11/8.
+  k = 4 : run0 (hadk_fold_ub.py, 1-opt only)          R*(4) <= 1.642950...   (fold_ub_k4_run0.log)
+          run1 (hadk_fold_ub2.py ... 300 8 6)          R*(4) <= 1.534726256...(fold_ub2_k4_run1.log;
+          exact rational printed on the "exact:" line, 35 columns, 87 rounds).
+  Previous best: decoded threshold adversary 1 + delta_4 (3 - 1/4) with delta_4 = 1961/8192,
+  i.e. R*(4) <= 1.6583.
+
+  ==> 1.4568540 (Wiman, imported; 1.456825 re-certified here)  <=  R*(4)  <=  1.5347263 (new).
+      Uncertainty width drops from 0.2014 to 0.0779.  Folding gap Delta(4) = R*(4) - K z_U(4)
+      is in [0, 0.0779].  Delta(3) = 0.
+
+PROBE (not a certificate): probe_gadget_gap.py at the final folded-LP dual gadget
+  W_F = 1000000,75364,13934,26621,1583,1494,43864,15618,75253,978287,590,152,0,3245,13682,
+        75253,14535,37513,4306,416,1662,79,585                     (probe_gadget_gap_WF.log)
+  relaxed ratio (exact) 1.316609; best folded found by heavy search 1.552017.  On 9 of 14 pattern
+  orbits the relaxed optimum has non-folded locus |D| ~ 99.95% of Q (the relaxed adversary is
+  essentially "f = f(-x)", i.e. it ignores folding), so the relaxation is maximally lossy there.
+  The heavy search value (1.552) exceeds the LP's 1.5347, so the heuristic is visibly not exact;
+  whether the TRUE folded soundness ratio of W_F exceeds 331440289/227504128 is open.  If it does,
+  W_F is a Had_4 gadget beating Wiman's (and Martinsson's 1.48969 if above that) with genuine
+  soundness; certifying it needs 14 exact folded Min-2Lin(2)-deletion solves on 2^15 variables.
+
+FILES
+  hadk_setup.py      symmetry group, edge orbits (k=4: 23), pattern orbits (k=4: 14)
+  hadk_flow.c        int64 Dinic min cut (scipy maximum_flow casts to int32 -> wrong at BIG pins)
+  hadk_mincut.py     exact relaxed pricing (s-t min cut with antipodal pins)
+  hadk_ls.c, hadk_fold.py   folded pinned 1-opt local search
+  hadk_colgen.py     master LP, unfolded (run_U) and folded (run_F) column generation
+  verify_certificate.py, hadk_fold_ub.py, hadk_fold_ub2.py, probe_gadget_gap.py : as above
+  hadk_price.py, timing_probe.py, debug_mincut.py : earlier MILP pricing / scratch sanity checks
