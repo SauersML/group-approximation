@@ -97,8 +97,6 @@ theorem local_box {N : Box} {C₀ u v : List Box} (hC₀ : ∀ E ∈ C₀, E.Dis
 
 end Equi
 
-theorem disj_symmetric : Symmetric Box.Disj := fun _ _ h => h.symm
-
 /-- Any reordering of pairwise disjoint boxes is realized canonically by an element of `CT(ℤ)`
 that fixes every point outside the boxes. -/
 theorem sym_perm {D D' : List Box} (hp : D.Perm D') (hd : D.Pairwise Box.Disj) :

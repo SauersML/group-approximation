@@ -9,12 +9,11 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWey
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: ms-green-sk.
 Source changed on main since that build: yes.
 
-**Repair landed, unprobed.** 8d6acdcd0c: Land the Boone-Higman swarms unlanded lane drafts and Lean edits. Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789834028 on main a39af618f3).**
 
 ```
-error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean:90:16: Tactic `simp` failed with a nested error:
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SkRows/SteinbergWeyl/Diagonal.lean:83:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl.diagonal_weyl_eq`:
 ```
 
 **What it needs.** Make `GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.SteinbergWeyl.Diagonal` compile with the repository's `-DwarningAsError=true` settings, changing no statement.

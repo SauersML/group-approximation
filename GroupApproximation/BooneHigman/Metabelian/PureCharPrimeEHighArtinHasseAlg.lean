@@ -193,7 +193,7 @@ def eHighArtinHasse_restr {A : Type} [Semiring A] [Algebra L A] (B : Subalgebra 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_restr
 
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 4000000 in
 /-- Conjugation by `Ψ q`, restricted to the translation algebra. -/
 def eHighArtinHasse_conjB (act : Q → M → M)
     (hadd : ∀ q x y, act q (x + y) = act q x + act q y)
@@ -281,7 +281,7 @@ def eHighArtinHasse_theta (V : Submodule L (M → L))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_theta
 
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 4000000 in
 /-- **Finite commutative algebras from invariant function spaces.**  Take a finite-dimensional,
 translation-stable, `act`-stable, point-separating `V ⊆ (M → L)`.  Then `M` embeds
 multiplicatively and `Q`-equivariantly into a finite-dimensional commutative `L`-algebra on
