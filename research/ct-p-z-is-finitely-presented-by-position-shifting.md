@@ -39,6 +39,10 @@ Write `c_i = (2^{i−1} − 1)(2^i)` for `i ≥ 1` and `ℓ_n = (2^{n−1} − 1
 `ℓ_1 = Z`, `c_1 = 0(2)`, `c_2 = 1(4)`, and `ℓ_n = c_n ⊔ ℓ_{n+1}` is the 2-split. The *comb*
 `B_n = (c_1, …, c_{n−1}, ℓ_n)` is an ordered natural basis of size `n`, and `ℓ_n` is its *tail*.
 
+**Convention (referee precision 1).** Products of permutations are compositions of functions:
+`gh` means "apply `h` first". Under this convention the FC form `g^{−1} h g = h^{+δ(g)}` below is
+the true identity in `PC`. Under the opposite convention every FC relator reads `g h g^{−1}`.
+
 For ordered bases `b, b'` of equal size, `[b → b'] ∈ PC` maps `b_k` onto `b'_k` canonically. For
 a generator `e: n → n'` of the Ore category `𝒞` of Fact O (a split `x_{n,i,p}` or a permutation),
 put `ê := [B_{n'} → B_n·e]`, where `B_n·e` is the realization of `e` applied to `B_n`. The comb

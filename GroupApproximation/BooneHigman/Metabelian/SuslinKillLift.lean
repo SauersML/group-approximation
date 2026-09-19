@@ -3,6 +3,7 @@ import Mathlib.Algebra.Polynomial.EraseLead
 import Mathlib.Algebra.Ring.GeomSum
 import Mathlib.RingTheory.UniqueFactorizationDomain.Multiplicity
 import Mathlib.RingTheory.PrincipalIdealDomain
+import Mathlib.Algebra.EuclideanDomain.Int
 import Mathlib.RingTheory.Localization.Ideal
 import GroupApproximation.Meta.AxiomGuard
 

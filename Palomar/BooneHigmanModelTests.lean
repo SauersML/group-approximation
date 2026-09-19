@@ -15,6 +15,9 @@ here are the solution's, which are byte-identical to the challenge's.
 * `IsResidueClassWiseAffine`: the identity is residue-class-wise affine.
 * `IsClassShift` and `IsClassReflection`: `n ↦ n + 1` is a class shift and `n ↦ -n` a class
   reflection; the identity is neither.
+* `IsSmoothModulus`: `1` is smooth over every `P`; `3` is not smooth over `∅`.
+* `IsClassTranspositionOver`: the identity is not one, and every one is a class transposition,
+  so `CT_P(ℤ) ≤ CT(ℤ)`.
 
 Not yet tested here: that `LeavittResolventRing` is nonzero (it has a faithful module on
 finitely supported functions of infinite words; see the development) and that the Steinberg
@@ -60,5 +63,38 @@ theorem one_not_isClassReflection : ¬ IsClassReflection 1 := by
   have h := hrefl 1
   simp at h
   omega
+
+/-- **Positive model.** `1` has no prime factors, so it is smooth over every `P`. -/
+theorem isSmoothModulus_one (P : Set ℕ) : IsSmoothModulus P 1 := by
+  intro p hp hd
+  have h1 := Int.le_of_dvd one_pos hd
+  have h2 := hp.two_le
+  exfalso
+  omega
+
+/-- **Negative model.** `3` is not smooth over the empty set of odd primes. -/
+theorem not_isSmoothModulus_empty_three : ¬ IsSmoothModulus (∅ : Set ℕ) 3 := by
+  intro h
+  rcases h 3 Nat.prime_three ⟨1, by norm_num⟩ with h3 | h3
+  · omega
+  · simp at h3
+
+/-- **Negative model.** The identity is not a class transposition over any `P`. -/
+theorem one_not_isClassTranspositionOver (P : Set ℕ) : ¬ IsClassTranspositionOver P 1 := by
+  rintro ⟨r₁, m₁, r₂, m₂, -, -, -, -, -, -, hdisj, hswap, -⟩
+  have h := (hswap 0).1
+  apply hdisj 0 0
+  simpa using h
+
+/-- Every class transposition over `P` is a class transposition. -/
+theorem isClassTransposition_of_isClassTranspositionOver {P : Set ℕ} {g : Equiv.Perm ℤ}
+    (h : IsClassTranspositionOver P g) : IsClassTransposition g := by
+  obtain ⟨r₁, m₁, r₂, m₂, -, -, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩ := h
+  exact ⟨r₁, m₁, r₂, m₂, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩
+
+/-- `CT_P(ℤ)` is a subgroup of `CT(ℤ)`, as in Kourovka 17.60 and 21.75. -/
+theorem classTranspositionGroupOver_le (P : Set ℕ) :
+    classTranspositionGroupOver P ≤ classTranspositionGroup :=
+  Subgroup.closure_mono fun _ hg => isClassTransposition_of_isClassTranspositionOver hg
 
 end BooneHigman.ModelTests
