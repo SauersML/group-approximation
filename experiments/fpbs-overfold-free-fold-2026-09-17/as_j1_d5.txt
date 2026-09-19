@@ -1,0 +1,3 @@
+j 1 d 5 classes 97 flags 0
+totals [(('law', 'hit'), 581), (('law', 'realizable'), 13909), (('law', 'unrealizable'), 3066), (('over', 'realizable'), 50775), (('over', 'unrealizable'), 150)]
+law histogram of hits [(('law', 1), 581)]

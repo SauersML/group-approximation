@@ -1,0 +1,5 @@
+j 0 |C_j+1| 3 principal 3 types 1 by level (count, max size) [(0, [1, 3])] | P_j: level>=1 types without principal pair 0 | T_j: level>=1 types 0 types at depth j-1 None
+j 1 |C_j+1| 8 principal 3 types 12 by level (count, max size) [(0, [11, 3]), (1, [1, 7])] | P_j: level>=1 types without principal pair 0 | T_j: level>=1 types 1 types at depth j-1 1
+j 2 |C_j+1| 20 principal 7 types 88 by level (count, max size) [(0, [76, 3]), (1, [11, 7]), (2, [1, 16])] | P_j: level>=1 types without principal pair 1 | T_j: level>=1 types 12 types at depth j-1 12
+j 3 |C_j+1| 49 principal 17 types 560 by level (count, max size) [(0, [472, 3]), (1, [76, 7]), (2, [11, 16]), (3, [1, 38])] | P_j: level>=1 types without principal pair 9 | T_j: level>=1 types 88 types at depth j-1 88
+j 4 |C_j+1| 119 principal 41 types 3381 by level (count, max size) [(0, [2821, 3]), (1, [472, 7]), (2, [76, 16]), (3, [11, 38]), (4, [1, 91])] | P_j: level>=1 types without principal pair 64 | T_j: level>=1 types 560 types at depth j-1 560

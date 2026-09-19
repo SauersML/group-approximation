@@ -1,0 +1,1 @@
+mode exh j 1 n 7 levels 4163 seed 0 hist [('law1', 393), ('law2', 3278), ('law>=3 deep>=3', 492)] secs 354

@@ -45,6 +45,63 @@ artifacts:
   - experiments/fpbs-overfold-relative-rank-2026-09-17/top_vs_law_n6_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exact_multi_s3_j1.txt
   - experiments/fpbs-overfold-relative-rank-2026-09-17/exh_n3_j3.txt
+  - research/artifacts/fpbs-overfold-free-fold-2026-09-19.md
+  - experiments/fpbs-overfold-free-fold-2026-09-17/freefold.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/bfs_free.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_law0.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/law_census.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/census_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/all_single.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j1_d5.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j1_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/as_j2_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/single_stats.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j1_d5.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j2_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/stats_j3_d2.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/level2.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/l2_j1_d4.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/l2_j1_d6.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/retract_test.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rt_j1_d3.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rt_j2_d2.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_nonsplit.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/check_nonsplit.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rank_states.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/rank_states_j1_d3.txt
+  - experiments/fpbs-overfold-free-fold-2026-09-17/matching.py
+  - experiments/fpbs-overfold-free-fold-2026-09-17/matching_j1_d4.txt
+  - research/artifacts/fpbs-overfold-exact-c-census-2026-09-19.md
+  - experiments/fpbs-overfold-exact-c-2026-09-17/deep.c
+  - experiments/fpbs-overfold-exact-c-2026-09-17/export.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/check_auts.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census.py
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run12_j1_cap5.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run24a_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run24b_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j1_cap3.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j1_law5_cap4.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/census_cayley24_j2_cap3.txt
+  - experiments/fpbs-overfold-exact-c-2026-09-17/run20e_cap4.txt
+  - research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md
+  - experiments/fpbs-overfold-breaker-2026-09-17/pb.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/smallk.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/reduction_check.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/principal_types.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/principal_types_j4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/doublecoset_check.py
+  - experiments/fpbs-overfold-breaker-2026-09-17/doublecoset_j4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j1_n7.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j2_n6.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j3_n4.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/exh_j4_n3.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j1_n14.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j2_n9.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j3_n8_single.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/rand_j4_n5_single.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j2_i1_n5.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i1_n3.txt
+  - experiments/fpbs-overfold-breaker-2026-09-17/redcheck_j3_i2_n3.txt
 ---
 
 **OPEN.** Notation is as in
@@ -246,3 +303,146 @@ such as rank 2 and the single lawful component above.
 
     For the same reason, the 1-dimensional local-system bound on `law` does
     not bound `deep`.
+- **2026-09-19, swarm-0917-w17-w17-fp-pull (reframer + compute scout):
+  OPEN; one lemma proved, one route killed, exact checks made
+  `Q`-universal.** Details are in
+  `research/artifacts/fpbs-overfold-free-fold-2026-09-19.md`, with scripts
+  in `experiments/fpbs-overfold-free-fold-2026-09-17/`.
+  - **Free-fold form (proved, Proposition 1).** Let `K` have index `d` in
+    `L_{j+1}`. A seed is a vertex pair of `Γ_K`, and `J = ⟨K, g_1..g_k⟩`
+    is the result of `k` seed folds. Call `J` realizable if
+    `J ∩ L_{j+1} = K`, and a hit if `[L_j : J ∩ L_j] = d`.
+    - (F) says: every realizable hit has `rk(J ∩ L_j : K) ≤ k`.
+    - (O) implies (F), using M. Hall's theorem to build a finite-index
+      `S ⊇ J` with `S ∩ L_j = J ∩ L_j`.
+    - (F) implies (O) on every `L_j`-orbit that is a single
+      `L_{j+1}`-orbit, in every finite `Q`.
+    - So exact checks of (F) at fixed `d` hold for all `Q`, of any size.
+      They do not reach cross-orbit levels.
+  - **Exact verification.** Two scripts do the checks:
+    - an all-class single-seed scan, `all_single.py`: 0 realizable
+      overfold hits for `d ≥ 2`;
+    - an exact two-seed BFS on the three law-3 classes at `d = 6`,
+      `level2.py`: no law-3 `K'` is reached.
+
+    Together they give (O) on coincident orbits of size `d ≤ 6` for
+    `j = 1`, and `d ≤ 4` for `j = 2`, in every finite `L`-set.
+  - **No-drop lemma (proved, Lemma 2).** Every hit has
+    `δ = rk K + k − rk J ≥ 1`.
+    - Suppose `δ = 0`. Hopficity gives `J = K * ⟨g⟩` and
+      `J = K' * ⟨g⟩`, because `rk K = rk K' = d + 1`.
+    - Killing the `g_i` then maps both `K` and `K'` isomorphically onto
+      the same quotient, so `K = K'`.
+    - That is impossible, since `[L_j : L_{j+1}] = ∞`.
+  - **Conjecture (R)** is the missing input for the level-1 case of (O),
+    which is `deep = 1 ⇒ law = 1`, for all `j` and `d`.
+    - (R) says a realizable single overfold seed with `d ≥ 2` never drops
+      rank. Lemma 2 then does the rest.
+    - It is checked for `j = 1, d ≤ 5`; `j = 2, d ≤ 4`; `j = 3, d ≤ 2`.
+    - It is false at `d = 1`, where it is harmless.
+    - Two proof routes fail on the data: the closure is not a matching of
+      the tree type, and SHNC equality does not force finite index.
+  - **Conjecture (O')** is `law(K') ≤ δ(J)`. It implies (F). There are 0
+    violations in the depth-2 runs.
+  - **Where it dies: the retract route (G) is false.** (G) says `K'` is a
+    retract of every witness `J`, or a free factor, or split in `H_1`.
+    - The first law-2 level already refutes it: `j = 1`, `Q = Z/3` with
+      `a = +1` and `b = −1`, so `law = 2`.
+    - Two seeds give `J = S`. The map `H_1(K') → H_1(S)` has determinant
+      −4, computed independently by Reidemeister–Schreier in
+      `check_nonsplit.py`.
+    - So no proof of (O) can go through a map `J → K'` that fixes `K'`.
+
+- **2026-09-19, swarm-0917-w17-w17-fp-last1 (census-computation).** Exact C
+  solver on the hardest known levels. No counterexample; the target stays
+  OPEN. Details are in
+  `research/artifacts/fpbs-overfold-exact-c-census-2026-09-19.md`.
+  - *Tools.* `export.py` writes instances, and `deep.c` searches them.
+    - The search is an exact breadth-first search over fold-closed
+      partitions, reduced by the lifted automorphisms of `Q`.
+    - `check_auts.py` verifies that those automorphisms are valid.
+    - The lawful-only mode reproduces every known `law` value.
+  - *Order-12 three-orbit Cayley level*, `(0,1,2,4,3),(1,0,3,4,2)` at
+    `j = 1` (`run12_j1_cap5.txt`):
+    - `law = 6`, and all-seed search is exhaustive up to 5 seeds, covering
+      793171 states and 114216624 extensions;
+    - so `deep = 6 = law`. w16 had only reached `deep ≥ 4`.
+  - *The two `n = 24` three-orbit levels with `law = 6`*,
+    `(0,1,3,2),(1,2,0,3)` and `(1,2,3,0),(0,2,3,1)`: `deep ≥ 5` for both
+    (`run24a_cap4.txt`, `run24b_cap4.txt`).
+  - *Census over the 54 Cayley levels of `local_cayley24_j1.txt`*
+    (`census.py`):
+    - at `j = 1`, `deep = law` exactly on every level with `law ≤ 5`;
+    - every level with `law ≥ 6` has `deep ≥ 4`, and the three `law = 6`
+      levels have `deep ≥ 5`;
+    - at `j = 2` (`V ≤ 256`), `deep = law` wherever `law ≤ 4`.
+  - *Lemma A (proved).* Fold consequences of a lawful pair are lawful, and
+    those of an overfold pair are overfold, because `Γ_j(Q)` is folded.
+    - Lawful identifications from overfold seeds therefore arise only by
+      transitivity, along cycles of overfold orbits through `Γ_j(Q)`.
+  - *Hanna Neumann counting is vacuous (proved).*
+    - The strengthened Hanna Neumann inequality for `H = ⟨K, seeds⟩` and the
+      rank-2 group `L_j` gives only `deep ≥ |p·L_j| − |p·L_{j+1}|`, summed
+      over components. That is the orbit-count bound.
+    - The other double-coset terms are unforced, since `L_j` is malnormal.
+    - So on towers with `o(|Q|)` orbits of `L_{j+1}`, this route cannot give
+      the floor.
+  - *Remaining.* The weak form `deep ≥ c · law` has to use the double-coset
+    restriction on seeds, or the cycle structure from Lemma A.
+- **2026-09-19, swarm-0917-w17-w17-fp-break (belief breaker): OPEN; no
+  counterexample; (O) reduced to its level-0 part.** Details:
+  `research/artifacts/fpbs-overfold-depth-shift-reduction-2026-09-19.md`.
+  Scripts: `experiments/fpbs-overfold-breaker-2026-09-17/`.
+  - **Levels.** The level of a seed type at depth `j` is the largest `i`
+    with equal images in `C_i`. Equivalently, `g = u_c u_{c'}^{-1} ∈ L_i`.
+    - Level `j` is the lawful type.
+    - At depth `j` there are `N_{j-i}` types of level `i`, with
+      `N = 1, 11, 76, 472, 2821` (`j ≤ 4`).
+    - Level-0 types have tree size `≤ 3`.
+  - **Lemma D (depth shift).** Let `deep_j^{≥i}` allow only seeds of level
+    `≥ i`. Then
+
+    ```text
+    deep_j^{≥i}(Q) = deep_{j-i}(Q^{(i)})   and   law_j(Q) = law_{j-i}(Q^{(i)}).
+    ```
+
+    - *Proof.* From the relative-rank form above: level `≥ 1` means
+      `g ∈ L_1`, and `φ` transports `(S ∩ L_1, K, K')` to the depth-`(j−1)`
+      data of `Q^{(1)}`. The one extra input is the double-coset identity
+      (T_j): `U_j ∩ L_1 = φ(U_{j-1})`, where `U_j` is the union of the
+      realised double cosets of `L_{j+1}`.
+    - (T_j) is basis-dependent: minimal subtrees in `T(L; a, b)` versus
+      `T(L_1; a, t_1)`. It is checked exactly for `j ≤ 4` by a
+      tree-projection test (`doublecoset_check.py`).
+    - Scope: `L_{j+1}`-transitive `Q`.
+    - Independent check: `reduction_check.py` gives matching closure and
+      promotion fingerprints on 22 random `Q`.
+    - Dead end, recorded: the naive proof via principal pairs fails, since
+      1, 9 and 64 level-≥1 types contain no principal pair
+      (`principal_types.py`).
+  - **Corollary.** (O) is equivalent to (O'_j): `deep_j(Q) = deep_j^{≥1}(Q)`
+    at every depth. That is, only the level-0 overfold types need to be
+    ruled out; all deeper types follow by induction. This is proved for
+    `j ≤ 4`, and for all `j` given (T).
+    - Caveat: the weak form `deep ≥ c·law` does not follow from a weak
+      level-0 bound, which only compounds to `c^j`.
+  - **Measure form (proved, all `j`).** `Q_j(X) ≤ Q_{j-1}(X^{(1)})` and
+    `Q_j^law(X) = Q_{j-1}^law(X^{(1)})`, because graphings inside
+    `E_{X|L_1}` are exactly the level-≥1 seeds.
+    - For Bernoulli `ρ`, `ρ^{(1)} ≅ ρ`, so `Q_0(ρ) ≥ Q_1(ρ) ≥ …` is
+      non-increasing, and `Q_j^law(ρ) = Q_0(ρ)`.
+    - (O) at `ρ` says this sequence is constant. The floor says its limit
+      is positive.
+  - **Census, 0 FLAGs.** The pullback-model seed reducer `smallk.py`
+    (validated against `exh_n5_j2`) ran on:
+    - every transitive `Q` with `(j, n) = (1, 7)`: 4163 classes;
+    - every transitive `Q` with `(j, n) = (2, 6)`: 624 classes;
+    - every transitive `Q` with `(j, n) = (3, 4)` and `(4, 3)`;
+    - random samples: `j=1, n=14` (300 levels) and `j=2, n=9` (100 levels),
+      with pairs;
+    - random samples, single seeds only: `j=3, n=8` and `j=4, n=5`.
+
+    Throughout, `deep = law` whenever `law ≤ 2`.
+  - **Where it dies.** No sharing mechanism is observed. A minimal
+    counterexample must use a level-0 seed in every minimal witness, so a
+    future hunt can be restricted to those.

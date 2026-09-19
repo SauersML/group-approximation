@@ -1,0 +1,9 @@
+Q 1 level>=1 at depth 2 (59, 1, 0) | depth 1 on Q^(1) (59, 1, 0) OK
+Q 2 level>=1 at depth 2 (60, 0, 7) | depth 1 on Q^(1) (60, 0, 7) OK
+Q 3 level>=1 at depth 2 (60, 1, 0) | depth 1 on Q^(1) (60, 1, 0) OK
+Q 4 level>=1 at depth 2 (60, 0, 5) | depth 1 on Q^(1) (60, 0, 5) OK
+Q 5 level>=1 at depth 2 (59, 1, 0) | depth 1 on Q^(1) (59, 1, 0) OK
+Q 6 level>=1 at depth 2 (59, 0, 0) | depth 1 on Q^(1) (59, 0, 0) OK
+Q 7 level>=1 at depth 2 (59, 1, 0) | depth 1 on Q^(1) (59, 1, 0) OK
+Q 8 level>=1 at depth 2 (60, 0, 9) | depth 1 on Q^(1) (60, 0, 9) OK
+agree 8 of 8
