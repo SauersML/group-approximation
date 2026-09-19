@@ -5,10 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Kourovka2175.Main: fails through red imports"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Kourovka2175/Main.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
+**RESOLVED (eae37b23a2, trusted batched probe job direct-b1789842431).** Previously OPEN. Lean module `GroupApproximation/Kourovka2175/Main.lean` is red on main at 9add2d485e (trusted batched probe, Slurm job direct-b1789839564). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: unowned.
 
-**Repair landed, unprobed.** c0cfb55eb8: Kourovka 21.75 builds: fix the remainder lemma name in Kourovka2175/Main.lean. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
