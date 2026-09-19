@@ -182,3 +182,20 @@ centreless invisible core, and `T_3` is the basic example.
     pattern-sandwiched.  Some `E_ab` lies in its span while `e_ab(1)` does not lie in the group, as for
     normal closures of `U_k` twisted by non-monomial `u`.  Without a level, the failure mode is a
     hypersurface level, and the edge must be Kazhdan in a new way.
+- **w16-111, 2026-09-18: coefficient ring and the unit commutator (class-killing obstruction).**
+  - *Result.*  By [[normalised-level-subpairs-cannot-certify-rank-three-cone]], take `B ⊇ U_k` with
+    `-e_l ∈ cone(H_B · R_+^d)`.  The span of `B ∩ EL_3(R) - 1` is `M_3(A_B)`, where `A_B` is an
+    `H_B`-invariant subring containing `x_l^(± 2kN)`.  So the pattern-sandwiched class of the net node is
+    exactly the case `EL_3(A_B) ≤ E_B`.  Suppose `E_B` is normalised by `EL_3(A')` for a subring `A'`
+    containing some `x^(-m)`, `m ∈ N^d \ {0}`.  Then `e_ab(1) = [e_ac(x^(nm)), e_cb(x^(-nm))] ∈ E_B`.  The
+    same holds when `E_B ∩ EL_3(A')` has finite index in `EL_3(A')` and `A'` has a monomial unit.  In each
+    case `C ⊇ SL_3(F_p)` and `C_F(psi(C)) = 1`.  This kills, with (X1), (X2) and (W2), every `E_B` normal in
+    `GL_3(A_B)`, all conjugates `D EL_3(A) D^-1` (Picard-twisted ones included), all subnormal subgroups, and
+    all finite-index subgroups containing `U_k` of every earlier level class.
+  - *Why.*  The level element `e_ac(t)` with `t = x^(nm)` sits in `U_k`, and a normalising `e_cb(t^-1 s)`
+    cancels the level from outside, which a span argument cannot do.  For a finite-index subgroup, a normal
+    core has an ideal level `𝔞` of finite index, and the unit `t` satisfies `t^n ≡ 1 mod 𝔞`.
+  - *What is left.*  With a level, a certificate needs a thin `E_B ⊆ SL_3(A_B)`.  It must span `M_3(A_B)`,
+    must not be normalised by `EL_3(A_B)`, and must meet every `EL_3(A')` with a monomial unit in infinite
+    index.  For instance `E_B ∩ SL_3(F_q[x_l^(± c)])` must contain `EL_3(x_l^c F_q[x_l^c])` but have infinite
+    index.  The next tool is an intermediate-subgroup (arithmeticity) theorem for overgroups of a level.
