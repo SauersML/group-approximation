@@ -1,0 +1,261 @@
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_40_40.json", "cls": 321, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 327, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 328, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 355, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 518, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 521, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 524, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 545, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 550, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 554, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 688, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 694, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 695, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 696, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 740, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 746, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 748, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 751, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 752, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 755, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 756, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 763, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 768, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 770, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 772, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 775, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 776, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 817, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 818, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[], [1], [1], [1]], "1": [[], [1], [1], [2]], "2": [[], [1], [2], [1]], "3": [[], [1], [2], [2]]}, "V": {"0": [[], [1], [1], []], "3": [[], [1], [], [2]], "1": [[], [1], [], [1]], "2": [[], [1], [2], []]}}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_40_40.json", "cls": 321, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 327, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 328, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 355, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 518, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 521, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 524, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 545, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 550, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 554, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 688, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 694, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 695, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 696, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 740, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 746, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 748, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 751, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 752, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 755, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 756, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 763, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 768, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 770, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 772, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 775, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 776, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 817, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 818, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_40_40.json", "cls": 321, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 327, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 328, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 355, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 518, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 521, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 524, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 545, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 550, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 554, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 688, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 694, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 695, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 696, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 740, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 746, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 748, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 751, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 752, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 755, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 756, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 763, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 768, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 770, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 772, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 775, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 776, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 817, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_40_40.json", "cls": 818, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_41_40.json", "cls": 655, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 656, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 908, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 921, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 922, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 924, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 926, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 982, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1086, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1155, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1156, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1157, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1158, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1159, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1160, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1169, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1173, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1182, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [], [1], [1]], "1": [[1], [], [2], [2]], "2": [[], [1], [1], [1]], "3": [[], [1], [2], [2]]}, "V": {"0": [[], [1, 1], [], [1]], "1": [[], [1, 1], [], [2]], "2": [[], [1, 1], [2], []], "3": [[], [1, 1], [1], []]}}
+{"census": "census_41_40.json", "cls": 1183, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1185, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_41_40.json", "cls": 655, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 656, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 908, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 921, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 922, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 924, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 926, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 982, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1086, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1155, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1156, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1157, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1158, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1159, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1160, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1169, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1173, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1182, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1183, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1185, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_41_40.json", "cls": 655, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 656, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 908, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 921, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 922, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 924, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 926, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 982, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1086, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1155, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1156, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1157, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1158, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1159, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1160, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1169, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1173, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1182, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1183, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_40.json", "cls": 1185, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_41_41.json", "cls": 482, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 532, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 533, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 538, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 539, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_41_41.json", "cls": 482, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 532, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 533, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 538, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 539, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_41_41.json", "cls": 482, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 532, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 533, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 538, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_41_41.json", "cls": 539, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_42_40.json", "cls": 289, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 380, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 382, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 426, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 469, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 470, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 471, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 472, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [1], [], [1]], "1": [[1], [2], [], [2]], "2": [[1], [2], [], [1]], "3": [[1], [1], [], [2]]}, "V": {"0": [[], [1, 1], [], [1]], "3": [[], [1, 1], [2], []], "1": [[], [1, 1], [1], []], "2": [[], [1, 1], [], [2]]}}
+{"census": "census_42_40.json", "cls": 474, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 535, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [], [1], [1]], "1": [[1], [], [2], [2]], "2": [[1], [], [1], [2]], "3": [[1], [], [2], [1]]}, "V": {"0": [[], [1], [1], []], "1": [[], [1], [], [1]], "2": [[], [1], [], [2]], "3": [[], [1], [2], []]}}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_40.json", "cls": 289, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 380, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 382, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 426, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 469, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 470, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 471, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 472, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 474, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 535, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_40.json", "cls": 289, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 380, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 382, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 426, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 469, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 470, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 471, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 472, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 474, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_40.json", "cls": 535, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_42_41.json", "cls": 318, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [1], [], [1]], "1": [[1], [2], [], [2]], "2": [[1], [1], [], [2]], "3": [[1], [2], [], [1]]}, "V": {"0": [[1], [], [2], []], "1": [[1], [], [1], []], "2": [[], [1], [2], []], "3": [[], [1], [1], []]}}
+{"census": "census_42_41.json", "cls": 474, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 475, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 479, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 495, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 500, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [], [1], [1]], "1": [[1], [], [2], [2]], "2": [[1], [], [1], [2]], "3": [[1], [], [2], [1]]}, "V": {"0": [[1, 1], [], [], [2]], "1": [[1, 1], [], [], [1]], "2": [[], [1, 1], [], [1]], "3": [[], [1, 1], [], [2]]}}
+{"census": "census_42_41.json", "cls": 533, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [1], [], [1]], "1": [[1], [2], [], [2]], "2": [[1], [1], [], [2]], "3": [[1], [2], [], [1]]}, "V": {"0": [[1], [], [], [2]], "1": [[1], [], [], [1]], "2": [[], [1], [], [2]], "3": [[], [1], [], [1]]}}
+{"census": "census_42_41.json", "cls": 534, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_41.json", "cls": 318, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 474, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 475, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 479, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 495, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 500, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 533, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 534, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_41.json", "cls": 318, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 474, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 475, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 479, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 495, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 500, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 533, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_41.json", "cls": 534, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (2,) (1, 1) ramified (finite, inf): [(1, 1)] True strict True
+candidates {('H', True): 8, ('H', False): 32, ('V', True): 8, ('V', False): 32}
+{"census": "census_42_42.json", "cls": 44, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": false, "H": null, "V": null}
+{"census": "census_42_42.json", "cls": 97, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [1], [], [1]], "1": [[1], [2], [], [2]], "2": [[1], [2], [], [1]], "3": [[1], [1], [], [2]]}, "V": {"0": [[1, 1], [], [2], []], "1": [[1, 1], [], [1], []], "2": [[1, 1], [], [], [2]], "3": [[1, 1], [], [], [1]]}}
+{"census": "census_42_42.json", "cls": 114, "a": [2], "b": [1, 1], "PV": [0, 1], "PH": [2, 1], "d": 1, "found": true, "H": {"0": [[1], [], [1], [1]], "1": [[1], [], [2], [2]], "2": [[1], [], [1], [2]], "3": [[1], [], [2], [1]]}, "V": {"0": [[1], [], [], [2]], "1": [[1], [], [], [1]], "2": [[1], [], [2], []], "3": [[1], [], [1], []]}}
+algebra (1, 1) (1, 2, 2) ramified (finite, inf): [(2, 1, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_42.json", "cls": 44, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_42.json", "cls": 97, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_42.json", "cls": 114, "a": [1, 1], "b": [1, 2, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+algebra (1, 1) (2, 0, 2) ramified (finite, inf): [(1, 0, 1)] True strict True
+candidates {('H', True): 0, ('H', False): 0, ('V', True): 2, ('V', False): 4}
+{"census": "census_42_42.json", "cls": 44, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_42.json", "cls": 97, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
+{"census": "census_42_42.json", "cls": 114, "a": [1, 1], "b": [2, 0, 2], "PV": [0, 1], "PH": [2, 1], "d": 2, "found": false, "H": null, "V": null}
