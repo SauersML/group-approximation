@@ -9,7 +9,7 @@ distinct_from:
   ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44: that is the opposite extreme, where all slopes are powers of one integer.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority claimed. It carries out the first step of the
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-q11 2026-09-19 for Lemmas 1–2 and item 3; items 1, 2, 4 rest on the mixed-ray nodes). No priority claimed. It carries out the first step of the
 *slope-lattice cone conjecture* stated below.
 - **What stays open.** Kourovka 20.44 and 19.46 (S. Kohl) in the totally consumable (sweeping)
   case, exactly as on a mixed ray.
@@ -56,8 +56,12 @@ and the potential are as in the mixed-ray nodes.
    - If some point of `Ẑ` has a frozen degree `n`, then `G` has infinitely many orbits on `Z`.
    - Its orbit minima in `[0, N]` number at least `δ_n N / (2A(n))` for `N ≥ M_n`, where
      `δ_n ≥ 1/M_n`, and likewise on `[−N, −1]`.
-3. **Finiteness criterion.** The following are equivalent: `G` is finite; `G` has finitely many
-   slopes; every point of `Ẑ` has a frozen tail.
+3. **Finiteness criterion.**
+   - For **every** finitely generated `G ≤ CT_P(Z)`, whatever `Λ`, `G` is finite iff it has
+     finitely many slopes. A bounded cocycle freezes a common degree `n`, and the tracked shifts
+     then lie in a finite box. This strength was noted by bh-ref-q11.
+   - Under cone-avoidance both conditions are also equivalent to: every point of `Ẑ` has a frozen
+     tail.
 4. **Periodic groups.** If `G` is periodic, the potential is well defined on orbits. Then `G` is
    infinite iff some orbit has unbounded potential, i.e. its tails sweep every level set they meet.
 
@@ -114,3 +118,30 @@ the sweeping phenomenon.
   integer dilation that can be combined with another direction.
 - For hosts, conserved levels are the arithmetic analogue of the length-preserving Turing-machine
   regime: tame at frozen points, and hard only through sweeping heads.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS; item 3 holds, and more generally
+
+**Lemma 1: correct.**
+- (ii)⇒(i): the cone `span_Q(Λ) ∩ Q^S_(≥0)` is rational polyhedral, so it has a nonzero rational point, and a multiple of it lies in `Λ`.
+- (i)⇔(iii) is Stiemke's alternative, with a rational, hence integral, positive `w`.
+- "Product of slopes" must include inverses, since `Λ` is a group.
+
+**Lemma 2: correct** (trivial from `w_q ≥ 1`).
+
+**The examples check.** `w = (1,1,1)` for `⟨3/2, 5/2⟩` and `⟨3/2, 5/3⟩`. `G_T` and Conway's `α` contain `(1,0)`.
+
+**Item 3, the "strong" claim: correct.**
+- The key point is that canonical maps carry the **integer** tail exactly. Write `x = ρ + m_n z` with `0 ≤ ρ < m_n` and `z ∈ Z`. A piece `r + km ↦ s + km′` with `m | m_n` sends `x` to `ρ′ + m_(n+λ) z`, where `ρ′ = s + ((ρ−r)/m)m′ ∈ [0, m_(n+λ))`. So there is no carry and no unit twist.
+- **Finitely many slopes ⇒ finite.**
+  - Let `B` be the finite set of slope exponents of all elements, and `D` the reading depth of the generators. The cumulative shift along any word is the slope exponent of that element at `x`, so it lies in `B`.
+  - With `n_q ≥ D + max_(λ∈B)|λ_q|`, the tail is never read. Hence every orbit lies in `{ρ′ + m_(n+λ)z : λ ∈ B}`, of size `≤ Σ_(λ∈B) m_(n+λ)`, **uniformly**.
+  - A finitely generated permutation group with uniformly bounded orbits is finite: it lies in `∏ Sym(orbit)` with orbits of size `≤ A`, so it satisfies the laws of `S_A`, and that variety is locally finite.
+- **Cone-avoidance is not needed for this direction.** "Finitely many slopes ⇒ finite" holds for every finitely generated `G ≤ CT_P(Z)`.
+- Cone-avoidance is needed only for "every point has a frozen tail ⇒ finite": there `Seg(n)` must be finite to bound orbits from a single frozen degree, and compactness supplies finitely many degrees.
+- "Finite ⇒ finitely many slopes" is trivial.
+- This fits Kohl's theory: an rcwa group is tame iff its moduli are bounded, and tame subgroups of `CT(Z)` are finite, since they preserve `N_0` and are affine on a respected partition. A literature check in Kohl's thesis, for "bounded multipliers ⇒ tame", is advised before any priority wording.
+
+**Items 1, 2 and 4** rest on `ct-p-z-mixed-ray-frozen-tails-force-finite-orbits` and `ct-p-z-mixed-ray-torsion-reduces-to-sweeping-orbits`, which I have not re-refereed.
+- The claim that their only use of the ray hypothesis is finiteness of `Seg(n)` agrees with the integer-tail computation above, which is exactly where `Seg(n)` enters (the orbit bound `ρ + m_p z`, `p ∈ Seg(n)`).
+
+**The conjecture** is labelled as such.
