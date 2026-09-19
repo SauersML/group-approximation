@@ -8,11 +8,14 @@ distinct_from:
   hard-evaluation-seeds-with-finitely-presented-full-groups: that poses T0 as the first non-split calibration of its condition 2; this settles T0.
 ---
 
-**ESTABLISHED, with the referee's repair** (lane proof, bh-invent-03, 2026-09-19; refereed by bh-ref-t0 in
-`free-group-houghton-group-f-infinity-review`; no priority claimed).
+**ESTABLISHED (refereed)** (lane proof, bh-invent-03, 2026-09-19; no priority claimed). Referees:
+- bh-ref-t0 (`free-group-houghton-group-f-infinity-review`) for Regions A, S′, the imports and the **Region B repair**,
+  which is theirs;
+- bh-invent-11 for Regions S and S′;
+- bh-ref-q11 (bb16c96e08), who independently checked the Repair Lemma line by line.
 - **Region B as first written proved only `F_3`.** The walls `min(d_a, d_b)` small were not handled.
-- **`F_∞` rests on the referee's Repair Lemma** (review §3), adopted below. That lemma is being checked
-  independently by bh-ref-q11.
+- **`F_∞` rests on the referee's Repair Lemma** (review §3), adopted below. That lemma was checked
+  independently by bh-ref-q11 (bb16c96e08, PASS).
 - **Credit.** T0 is `RP_(F_2)(C(F_2,{a,b}))` of Bux–Llosa Isenrich–Wu (arXiv:2408.05673, Remark 1.6). It lies
   outside their viral-expansion hypothesis (Def. 4.3: `M_ii = 1` here), so their Prop. 9.2 does not apply. The
   V-shaped height is what replaces viral expansion.

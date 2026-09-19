@@ -8,9 +8,16 @@ distinct_from:
   rover-nekrashevych-group-of-lamplighter-automaton-is-fp: that is the finite-state lamplighter L, where N = K_∞; this adds an infinite-state commuting factor and shows only the two commutators are needed on top of K_∞.
 ---
 
-**ESTABLISHED** (lane bh-invent-03, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS, conditional on the unreviewed `N_L = K_∞` of the lamplighter node; one literature check owed; elementary, given
+**ESTABLISHED** (lane bh-invent-03, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS, conditional on the unreviewed `N_L = K_∞` of the lamplighter node; elementary, given
 `lift-ideal-criterion-sufficiency-holds-for-infinite-state` and
-`rover-nekrashevych-group-of-lamplighter-automaton-is-fp`; not reviewed).
+`rover-nekrashevych-group-of-lamplighter-automaton-is-fp`).
+
+**Literature check (the one owed).** Checked against Li's `F_∞` results: *Left regular representations of Garside
+categories II*, arXiv:2110.04505, on products of shifts of finite type, and the homology of `V(G)`,
+arXiv:2209.08087.
+- **No overlap.** Neither covers `V_4(L × Z)`. Its groupoid is a synchronous, diagonal product of two self-similar
+  groupoids, not a product of shifts.
+- **Not claimed.** `F_∞` for `V_4(L × Z)`.
 
 ## The group
 
