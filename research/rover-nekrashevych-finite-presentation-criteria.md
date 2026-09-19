@@ -73,3 +73,17 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
     - Li's criterion (arXiv:2110.04505, Cor F) and SWZ both need `G` of type `F_n`, so neither applies.
   - Still open: `F_3`, which needs the connectivity of descending links for `Σ φ(ℋ_i)`. The single low leaf is a
     cone; the merge part is not done.
+- **2026-09-18 (w10-101).**
+  - `rn-lamplighter-is-f-infinity-and-acyclic-via-a-2-graph`: `F_∞` for `V_2(Z/2 ≀ Z)` is settled without Morse
+    theory.
+    - `P = {a ∈ Aff(R) : a(O) ⊆ O, a(ρ_*) an ancestor of ρ_*}` is a one-vertex 2-graph with edges
+      `e_c = (π/t)x + c/t`, `f_c = πx + c` and rule `e_i f_j = f_i e_{i+j}`. Its units are trivial because level `1`
+      is simply transitive.
+    - Its path groupoid is the germ groupoid of `PAff(O; R) = V_2(Z/2 ≀ Z)`. Li's k-graph theorem gives `F_∞`.
+    - `H_*(𝒢; Z) = 0` (two computations), so by Li's Cor D the group is integrally acyclic, perfect and simple.
+    - For `F_q ≀ Z` the same model gives `F_∞` and `H_0 = H_1 = Z/(q-1)`.
+    - So FP1/FP2-type hypotheses on `H` (or `F_n` of `H` in SWZ and Li's Cor F) are not necessary for `F_∞` of
+      `V_d(H)`: here `H` is not finitely presented.
+  - The Morse function `Σ c^{|β(ρ_i)-1|}` in the step before this one has local minima at every vertex whose leaves
+    all sit at height `1`. Merges cost `c - 2 > 0`, and splits and tree moves ascend. So Brown's criterion cannot be
+    run with it; the 2-graph route replaces it.

@@ -1,0 +1,5 @@
+(1) e_i f_j = f_i e_{i+j}: True
+(2),(3) counts, ball bijection, unique factorisation for m,n<=4: True
+(4) unique left factor of every degree <= d(a): True
+(5) g mu in P for sampled admissible mu of degree (M,M), all M >= 11 up to 16; 33 maps tested, 7 with g(O) disjoint from O: True
+ALL OK
