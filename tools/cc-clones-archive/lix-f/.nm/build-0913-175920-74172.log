@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3345 oleans
+[job] acn112 cores=72-79 threads=8 base=2e12b4cf6e9b73eda0bb5d2b3f5c3cb6f903bb8f mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCore
+ℹ [1822/1822] Built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCore (7.4s)
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:101:14: 'GroupApproximation.ChainCore.DynamicRankBudget.transGen_chainStep_of_zpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:102:14: 'GroupApproximation.ChainCore.DynamicRankBudget.transGen_of_firstReturn_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean:103:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_mem_chainRecurrentSet_of_firstReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1822 jobs).
+EXIT=0

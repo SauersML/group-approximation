@@ -1,0 +1,45 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3448 oleans
+[job] acn112 cores=72-79 threads=8 base=873a823bb25219ef648febbc3b911d4dc07734e5 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+✔ [2609/2612] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityStatement (6.0s)
+ℹ [2610/2612] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (7.6s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:189:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2611/2612] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup (8.0s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:156:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_transvection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:157:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_mem_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:158:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:159:14: 'GroupApproximation.SimpleKazhdanSofic.center_units_matrix_zmodTwo_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2612/2612] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.setup.json --json
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:72:4: Try this:
+  [apply] abel_nf
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:78:4: Try this:
+  [apply] abel_nf
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:146:13: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:281:14: 'GroupApproximation.SimpleKazhdanSofic.exists_towerCopy_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:282:14: 'GroupApproximation.SimpleKazhdanSofic.one_mem_levelIdeal_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:283:14: 'GroupApproximation.SimpleKazhdanSofic.eq_top_of_simplicityCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:284:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityThroughFiniteSimpleSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+error: build failed
+EXIT=1

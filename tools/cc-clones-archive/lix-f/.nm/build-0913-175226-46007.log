@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3344 oleans
+[job] acn112 cores=72-79 threads=8 base=255995a1fbfa9ac46f41fd0ec1ba0a60edd14662 mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+ℹ [1668/1668] Built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement (8.4s)
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:202:14: 'GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:203:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:204:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:205:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:206:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:207:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitizeGL_placementUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:208:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:209:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_placement_sub_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1668 jobs).
+EXIT=0

@@ -1,0 +1,18 @@
+[job] 02:55:52 acn197 waiting for clone lock
+[job] delta sync 80deb9a34..c3cfee844: 22 files changed
+===== SUMMARY
+host acn197 cores slurm base c3cfee844 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-025429-71955.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2333 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Kazhdan.GHWArchimedeanBound (replayed or failed)
+mentioned-not-built GroupApproximation.Kazhdan.GHWArchimedeanSeparation (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+COMPILED GroupApproximation/Kazhdan/GHWInterfaces.lean
+  [apply] abel_nf
+Build completed successfully (3261 jobs).
+EXIT=0
+PROBE GREEN

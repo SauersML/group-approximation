@@ -1,0 +1,69 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3263 oleans
+[job] acn112 cores=64-71 threads=8 base=856a2c2f99cadc4ffc8bc21c8d3abae74bd0aaa8 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport
+ℹ [3302/3431] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5024/5024] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:266:4: Application type mismatch: The argument
+  (CornerOutput.originalReplacement R.toCellOutput).oEquivalent
+has type
+  OEquivalentDiscDiagram S.diagram (CornerOutput.originalReplacement R.toCellOutput).diagram
+but is expected to have type
+  OEquivalentDiscDiagram (GFaceRebase.replacement S.diagram f (↑start) hf hcells).diagram R.diagram
+in the application
+  (S.equiv.trans (GFaceRebase.replacement S.diagram f (↑start) hf hcells).oEquivalent).trans
+    (CornerOutput.originalReplacement R.toCellOutput).oEquivalent
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:383:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_map_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:384:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_cellArcDarts_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:385:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.darts_mem_boundDarts_regionFamily_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:386:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.unboundDarts_regionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:387:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.sum_unboundDarts_regionFamily_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:388:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.faceOf_retained_or_sides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:389:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.mem_range_or_path' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:390:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.SplitOutput.dartCount_le_add_two_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:391:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:392:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection_weight' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:393:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:394:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_card' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:395:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_unboundSum' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:396:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_dartCount_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:397:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_avoid' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:398:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_profile' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport
+error: build failed
+EXIT=1

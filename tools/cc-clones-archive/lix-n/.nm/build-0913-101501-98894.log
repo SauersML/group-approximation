@@ -1,0 +1,120 @@
+purged 30 stale artifact sets (source-newer=2, import-newer=28) of 3107 oleans
+[job] acn112 cores=72-79 threads=8 base=a845f70a0e032254a8076ea7becee4dee307a4ea mods: GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+ℹ [3295/3389] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10019/10019] Building GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.setup.json --json
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:9: don't know how to synthesize implicit argument `Λ`
+  @OsinComponents.vertex G Perm.permGroup ?m.119 1 [RelLetter.base g⁻¹] j
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.63
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:33: don't know how to synthesize implicit argument `α`
+  @List.cons (RelLetter G ?m.119) (RelLetter.base g⁻¹) []
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.63
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:33: don't know how to synthesize implicit argument `α`
+  @List.nil (RelLetter G ?m.119)
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.63
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:34: don't know how to synthesize implicit argument `Λ`
+  @RelLetter.base G ?m.119 g⁻¹
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.63
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:9: don't know how to synthesize implicit argument `Λ`
+  @OsinComponents.vertex G Perm.permGroup ?m.108 1 [RelLetter.base g⁻¹] i
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.55
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:33: don't know how to synthesize implicit argument `α`
+  @List.cons (RelLetter G ?m.108) (RelLetter.base g⁻¹) []
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.55
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:33: don't know how to synthesize implicit argument `α`
+  @List.nil (RelLetter G ?m.108)
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.55
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:34: don't know how to synthesize implicit argument `Λ`
+  @RelLetter.base G ?m.108 g⁻¹
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+i j : ℕ
+_hij : i ≤ j
+hj : j ≤ [RelLetter.base g⁻¹].length
+hj1 : j ≤ 1
+h : j - i = 0
+⊢ Type ?u.55
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:433:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:465:68: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:503:23: Unknown identifier `hpos`
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:503:9: Tactic `rcases` failed: `x✝ : ?m.215` is not an inductive datatype
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:555:2: 'change other.family.card * 2 ≤ 2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:593:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.not_loopCutInput' has a leading input; state and prove a closed proposition instead of accepting construction data
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+error: build failed
+EXIT=1

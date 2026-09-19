@@ -1,0 +1,20 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3774 oleans
+[job] acn112 cores=88-95 threads=8 base=1c2f0e1aaaf6a2b00d7cb3dce6da94e1ec4bba8e mods: GroupApproximation.Algebra.BilateralThreeCellLevels GroupApproximation.Algebra.BilateralThreeCellMatrices GroupApproximation.Dynamics.BilateralThreeCellClopen
+✔ [1747/1749] Built GroupApproximation.Algebra.BilateralThreeCellLevels (7.0s)
+ℹ [1748/1749] Built GroupApproximation.Algebra.BilateralThreeCellMatrices (10s)
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:464:14: 'GroupApproximation.BilateralThreeCell.Cell.W_conj_mem_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:465:14: 'GroupApproximation.BilateralThreeCell.Cell.c_commute_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1749/1749] Built GroupApproximation.Dynamics.BilateralThreeCellClopen (8.7s)
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:77:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:78:14: 'GroupApproximation.ClopenCrossedProduct.defectD_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1749 jobs).
+EXIT=0

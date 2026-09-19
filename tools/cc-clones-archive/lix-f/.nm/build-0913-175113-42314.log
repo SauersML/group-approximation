@@ -1,0 +1,172 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3344 oleans
+[job] acn112 cores=64-71 threads=8 base=cc54707b9dff89c35fc7c601d9d30278fdd7cac2 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc
+ℹ [3295/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10029/10090] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:303:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:304:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10088/10090] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapMonogon
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:249:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.eq_or_mem_of_cycle_eq_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:250:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_simple_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.no_simple_of_oEquivalent_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchPinchedStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchLabelledStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStepStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10089/10090] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRose
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:433:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:434:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:435:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:436:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:437:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_not_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:438:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.pocketPinchWrapModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:439:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.pocketPinchWrapRefutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10090/10090] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc (23s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:67:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:69:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:71:24: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:72:14: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:89:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:90:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:98:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:99:6: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:122:24: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:122:47: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:161:14: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:162:16: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:172:58: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+hfull : K.sourceArc.length = (cellDarts X K.source).length
+hrest : K.firstSide ++ K.secondSide ++ K.targetArc.darts ≠ []
+hK : K.Simple
+hS : IsSimpleClosedWalk X.toCombMap K.boundary.cycle
+hne : K.sourceArc.darts ≠ []
+hlastfirst : X.toCombMap.facePerm (K.sourceArc.darts.getLast hne) = K.sourceArc.darts.head hne
+hv1 :
+  X.toCombMap.vertexOf (X.toCombMap.alpha (K.sourceArc.darts.getLast hne)) =
+    X.toCombMap.vertexOf (K.sourceArc.darts.head hne)
+hv2 :
+  X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha (K.sourceArc.darts.head hne))) =
+    X.toCombMap.vertexOf (K.sourceArc.darts.head hne)
+hmem : X.toCombMap.alpha (K.sourceArc.darts.getLast hne) ∈ invDarts X K.sourceArc.darts
+⊢ List.map (⇑X.toCombMap.alpha) K.sourceArc.darts =
+    X.toCombMap.alpha (K.sourceArc.darts.head hne) :: (List.map (⇑X.toCombMap.alpha) K.sourceArc.darts).tail
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:186:70: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+hfull : K.sourceArc.length = (cellDarts X K.source).length
+hrest : K.firstSide ++ K.secondSide ++ K.targetArc.darts ≠ []
+hK : K.Simple
+hS : IsSimpleClosedWalk X.toCombMap K.boundary.cycle
+hne : K.sourceArc.darts ≠ []
+hlastfirst : X.toCombMap.facePerm (K.sourceArc.darts.getLast hne) = K.sourceArc.darts.head hne
+hv1 :
+  X.toCombMap.vertexOf (X.toCombMap.alpha (K.sourceArc.darts.getLast hne)) =
+    X.toCombMap.vertexOf (K.sourceArc.darts.head hne)
+hv2 :
+  X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha (K.sourceArc.darts.head hne))) =
+    X.toCombMap.vertexOf (K.sourceArc.darts.head hne)
+hmem : X.toCombMap.alpha (K.sourceArc.darts.getLast hne) ∈ invDarts X K.sourceArc.darts
+E2 :
+  invDarts X K.sourceArc.darts =
+    List.map (⇑X.toCombMap.alpha) K.sourceArc.darts.tail.reverse ++ [X.toCombMap.alpha (K.sourceArc.darts.head hne)]
+hnd : (List.map X.toCombMap.vertexOf K.boundary.cycle).Nodup
+h2 : K.secondSide ++ K.targetArc.darts = []
+hs2 : K.secondSide = []
+ht2 : K.targetArc.darts = []
+hs1 : K.firstSide ≠ []
+b : X.toCombMap.Dart
+rest : List X.toCombMap.Dart
+hb : K.firstSide = b :: rest
+hc : K.boundary.cycle = b :: rest ++ invDarts X K.sourceArc.darts
+hcl :
+  ∀
+    x ∈
+      (b :: rest ++
+          (List.map (⇑X.toCombMap.alpha) K.sourceArc.darts.tail.reverse ++
+            [X.toCombMap.alpha (K.sourceArc.darts.head hne)])).getLast?,
+    ∀
+      y ∈
+        (b :: rest ++
+            (List.map (⇑X.toCombMap.alpha) K.sourceArc.darts.tail.reverse ++
+              [X.toCombMap.alpha (K.sourceArc.darts.head hne)])).head?,
+      X.toCombMap.vertexOf (X.toCombMap.alpha x) = X.toCombMap.vertexOf y
+⊢ (b ::
+        (rest ++
+          ((List.map (⇑X.toCombMap.alpha) K.sourceArc.darts).tail.reverse ++
+            [X.toCombMap.alpha (K.sourceArc.darts.head hne)]))).getLast? =
+    some (X.toCombMap.alpha (K.sourceArc.darts.head hne))
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:226:19: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:227:16: `List.head?_eq_head` has been deprecated: Use `List.head?_eq_some_head` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:236:10: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:263:14: 'GroupApproximation.GGT.VanKampen.PocketFullArc.cyclicRel_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:264:14: 'GroupApproximation.GGT.VanKampen.PocketFullArc.darts_eq_rotate_of_full' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:265:14: 'GroupApproximation.GGT.VanKampen.PocketFullArc.outerDarts_chain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:266:14: 'GroupApproximation.GGT.VanKampen.PocketFullArc.outerDarts_cyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:267:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.not_simple_of_full_sourceArc' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:268:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.not_simple_of_full_targetArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean:269:21: 'GroupApproximation.GGT.VanKampen.PocketFullArc.wrapK_not_simple' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArc
+error: build failed
+EXIT=1

@@ -1,0 +1,113 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3561 oleans
+[job] cn1120 cores=slurm threads=8 base=1d23a20e8dcc6a4367579fa70a8fdbc11e345152 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSimplePocket
+ℹ [3315/3383] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10124/10176] Replayed GroupApproximation.GGT.VanKampen.OEquivalentCellFaces
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:115:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:116:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:117:14: 'GroupApproximation.GGT.VanKampen.cellFaceEquiv_faceWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:118:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.faceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:119:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.faceWord_faceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:120:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.ofCellFaceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean:121:14: 'GroupApproximation.GGT.VanKampen.OEquivalentDiscDiagram.ofCellFaceEquiv_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10125/10176] Replayed GroupApproximation.GGT.VanKampen.Estimating.CyclicArcSub
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:68:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:69:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_start' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:70:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_length' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:71:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_rotated' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:72:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10166/10206] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:238:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:239:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.reverse_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:240:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.exists_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:241:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.eq_of_ne_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:242:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.isClosedDartWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:243:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.exists_isWalkFromTo_faceBoundary_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:244:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.exists_window_walks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:245:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:246:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10201/10206] Replayed GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:463:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rotate_merged' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:464:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.vertexOf_alpha_getLast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:465:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.not_mem_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:466:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.faceOf_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:467:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.kept_mem_faceSet_iff_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:468:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:469:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.digonInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:470:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchStrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:471:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStep_of_digon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:472:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.isFaceCycle_embed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:473:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.doubleStrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:474:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStepStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:475:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:476:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.geodesicCollarStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10206/10206] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSimplePocket (255s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean:195:14: 'GroupApproximation.GGT.VanKampen.SameCellSimplePocket.exists_rho_large' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean:196:14: 'GroupApproximation.GGT.VanKampen.SameCellSimplePocket.false_of_simpleWalk_of_below' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean:197:14: 'GroupApproximation.GGT.VanKampen.SameCellSimplePocket.false_of_simplePocket_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean:198:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSimplePocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10206 jobs).
+EXIT=0

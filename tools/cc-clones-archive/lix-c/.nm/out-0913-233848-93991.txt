@@ -1,0 +1,18 @@
+[job] 23:39:12 acn112 waiting for clone lock
+[job] delta sync 3f347c3df..199bac76a: 7 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 199bac76a log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-233848-93991.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3556 oleans
+--- errors (first 80 lines)
+25:✖ [10214/10214] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly (23s)
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean:123:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+37:error: Lean exited with code 1
+40:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

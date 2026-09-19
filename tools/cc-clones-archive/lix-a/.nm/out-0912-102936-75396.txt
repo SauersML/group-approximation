@@ -1,0 +1,23 @@
+[job] 10:42:31 acn112 waiting for clone lock
+[job] delta sync cdd4b82df..16dabf296: 3 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 16dabf296 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0912-102936-75396.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2427 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.LIXStageTrace
+BUILT GroupApproximation.Analysis.LIXLimitTrace
+BUILT GroupApproximation.Analysis.LIXLimitTraceFaithful
+BUILT GroupApproximation.Analysis.LIXStablyFinite
+BUILT GroupApproximation.Manuscript.NinetyNineProblems.LIXStablyFinite
+--- rebuilt GroupApproximation modules: 5
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXLimitTrace.lean
+COMPILED GroupApproximation/Analysis/LIXLimitTraceFaithful.lean
+COMPILED GroupApproximation/Analysis/LIXStablyFinite.lean
+COMPILED GroupApproximation/Analysis/LIXStageTrace.lean
+COMPILED GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean
+ Quot.sound]
+Build completed successfully (8878 jobs).
+EXIT=0
+PROBE GREEN

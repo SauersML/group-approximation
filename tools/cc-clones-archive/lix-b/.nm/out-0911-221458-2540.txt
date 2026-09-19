@@ -1,0 +1,21 @@
+[job] 22:16:48 acn101 waiting for clone lock
+[job] delta sync f4dc2a884..02212af9e: 34 files changed
+===== SUMMARY
+host acn101 cores slurm base 02212af9e log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-221458-2540.log
+purged 3 stale artifact sets (source-newer=2, import-newer=1) of 2061 oleans
+--- errors (first 80 lines)
+36:✖ [9189/9244] Building GroupApproximation.CharClass.LIXKLocalSplit (126s)
+38:error: GroupApproximation/CharClass/LIXKLocalSplit.lean:210:36: Variable name `y` is not explicitly referenced.
+43:error: GroupApproximation/CharClass/LIXKLocalSplit.lean:211:36: Variable name `y` is not explicitly referenced.
+63:error: Lean exited with code 1
+150:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKLocalSplit (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKLocalRestrict (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKStepCExponent (replayed or failed)
+--- rebuilt GroupApproximation modules: 58
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.LIXKLocalSplit
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

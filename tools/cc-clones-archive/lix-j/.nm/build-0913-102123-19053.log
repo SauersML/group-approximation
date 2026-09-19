@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2574 oleans
+[job] acn112 cores=64-71 threads=8 base=615da4f779d27f199172897f60adf36913e41547 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval
+ℹ [3334/3454] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5046/5046] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PendantRemoval.lean:197:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.facePerm_keep_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PendantRemoval.lean:198:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.sigma_keep_eq_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PendantRemoval.lean:199:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.pendantPathRemoval_of_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PendantRemoval.lean:200:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.pendantPathRemovalInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5046 jobs).
+EXIT=0

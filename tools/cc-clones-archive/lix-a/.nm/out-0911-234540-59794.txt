@@ -1,0 +1,35 @@
+[job] 23:46:10 acn112 waiting for clone lock
+[job] delta sync 6c43ed4a5..0289affa9: 44 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 0289affa9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-234540-59794.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2147 oleans
+--- errors (first 80 lines)
+51:✖ [8918/8919] Building GroupApproximation.CharClass.LIXKGenOfBundle (26s)
+53:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:63:2: Unknown identifier `absPullOf`
+54:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:70:2: Unknown identifier `absPullOf`
+55:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:112:37: Unknown identifier `absPullOf`
+56:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:115:6: Unknown identifier `absPull_id_eqOf`
+57:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:111:77: unsolved goals
+67:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:127:2: Type mismatch
+78:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:135:33: Unknown identifier `absPull_compOf`
+79:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:134:93: unsolved goals
+91:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:135:6: declaration uses `sorry`
+92:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:135:19: declaration uses `sorry`
+94:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:142:14: 'GroupApproximation.CharClass.KGen.lixK_hcompatOf' depends on axioms outside the classical allowlist: [sorryAx]
+95:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+97:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:143:14: 'GroupApproximation.CharClass.KGen.lixK_hnatOf' depends on axioms outside the classical allowlist: [sorryAx]
+98:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+100:error: GroupApproximation/CharClass/LIXKGenOfBundle.lean:144:14: 'GroupApproximation.CharClass.KGen.lixK_hsectionOf' depends on axioms outside the classical allowlist: [sorryAx]
+101:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+103:error: Lean exited with code 1
+108:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenOfModel
+mentioned-not-built GroupApproximation.CharClass.LIXKGenOfBundle (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenOfModel.lean
+- GroupApproximation.CharClass.LIXKGenOfBundle
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

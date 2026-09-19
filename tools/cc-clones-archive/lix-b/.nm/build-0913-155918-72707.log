@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3381 oleans
+[job] acn112 cores=64-71 threads=8 base=bfe1be05580b9a7c982c94326064cf68bc5eda3d mods: GroupApproximation.Dynamics.RetainedSubshift GroupApproximation.Dynamics.NoncyclicEdgeDefect GroupApproximation.Dynamics.CoreSubshift
+ℹ [1049/1051] Built GroupApproximation.Dynamics.RetainedSubshift (5.5s)
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:84:14: 'GroupApproximation.ChainCore.isClosed_retainedSubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:85:14: 'GroupApproximation.ChainCore.mapsTo_shift_retainedSubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:86:14: 'GroupApproximation.ChainCore.retainedSubshift_succ_subset' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/RetainedSubshift.lean:87:14: 'GroupApproximation.ChainCore.retainedSubshift_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1050/1051] Built GroupApproximation.Dynamics.NoncyclicEdgeDefect (5.5s)
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:103:14: 'GroupApproximation.ChainCore.mapsTo_shift_reachableCylinderUnion' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:104:14: 'GroupApproximation.ChainCore.shift_mem_diff_of_not_isCyclicEdge' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:105:14: 'GroupApproximation.ChainCore.diff_image_shift_nonempty_of_not_isCyclicEdge' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/NoncyclicEdgeDefect.lean:106:14: 'GroupApproximation.ChainCore.isClosed_reachableCylinderUnion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1051/1051] Built GroupApproximation.Dynamics.CoreSubshift (5.3s)
+info: GroupApproximation/Dynamics/CoreSubshift.lean:79:14: 'GroupApproximation.ChainCore.mem_coreSubshift_iff' depends on axioms: [propext]
+info: GroupApproximation/Dynamics/CoreSubshift.lean:80:14: 'GroupApproximation.ChainCore.isClosed_coreSubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshift.lean:81:14: 'GroupApproximation.ChainCore.mapsTo_shift_coreSubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshift.lean:82:14: 'GroupApproximation.ChainCore.coreSubshift_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshift.lean:83:14: 'GroupApproximation.ChainCore.exists_language_retainedSubshift_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1051 jobs).
+EXIT=0

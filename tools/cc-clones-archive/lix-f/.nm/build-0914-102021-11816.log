@@ -1,0 +1,85 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3660 oleans
+[job] acn112 cores=72-79 threads=8 base=4d3fbeb963d03a9e6d11544a00e56aebb7125603 mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides
+ℹ [3295/3401] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10166/10171] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingProof
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:323:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_pair_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:324:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.exists_bridge_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:325:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.cellCorrespondence_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:326:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.one_lt_faceBoundary_length_of_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:327:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutputSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:328:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.doublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:329:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedBridgeDoublingSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean:330:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.enclosedLeastAreaFilterSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10170/10171] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:95:5: Variable name `hcyc` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:168:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.mem_farFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:169:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_iff_mem_farFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:170:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_alpha_iff' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:171:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:172:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.near_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:173:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.not_far_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:174:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.far_pow_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:175:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.mem_pocketWalk' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:176:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.pocketWalk_getElem' depends on axioms: [propext, Quot.sound]
+error: Lean exited with code 1
+✖ [10171/10171] Building GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:147:6: 'exact heq_of_eq hw.symm' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:175:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.mem_cellDarts_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:176:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.faceOf_of_mem_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:177:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:178:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.darts_map_image_cellArc_spur' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:179:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.arcDoublingOutput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides
+- GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+error: build failed
+EXIT=1

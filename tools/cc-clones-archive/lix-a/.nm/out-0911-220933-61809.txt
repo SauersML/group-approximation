@@ -1,0 +1,49 @@
+[job] 22:10:11 acn52 waiting for clone lock
+[job] delta sync 477ebb4a1..24c49c5ce: 11 files changed
+===== SUMMARY
+host acn52 cores slurm base 24c49c5ce log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-220933-61809.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2081 oleans
+--- errors (first 80 lines)
+66:✖ [8894/8901] Building GroupApproximation.CharClass.LIXKGenSectInverse (38s)
+68:error: GroupApproximation/CharClass/LIXKGenSectInverse.lean:51:2: No goals to be solved
+72:error: Lean exited with code 1
+90:✖ [8900/8901] Building GroupApproximation.CharClass.LIXKGenBundle (32s)
+92:error: GroupApproximation/CharClass/LIXKGenBundle.lean:164:2: Unknown identifier `cohomologyZMod2`
+93:error: GroupApproximation/CharClass/LIXKGenBundle.lean:171:2: Type mismatch
+100:error: GroupApproximation/CharClass/LIXKGenBundle.lean:177:24: Function expected at
+109:error: GroupApproximation/CharClass/LIXKGenBundle.lean:183:4: Function expected at
+118:error: GroupApproximation/CharClass/LIXKGenBundle.lean:192:6: Function expected at
+127:error: GroupApproximation/CharClass/LIXKGenBundle.lean:199:6: Function expected at
+136:error: GroupApproximation/CharClass/LIXKGenBundle.lean:204:4: Function expected at
+145:error: GroupApproximation/CharClass/LIXKGenBundle.lean:205:6: Function expected at
+154:error: GroupApproximation/CharClass/LIXKGenBundle.lean:211:63: Function expected at
+163:error: GroupApproximation/CharClass/LIXKGenBundle.lean:235:42: don't know how to synthesize implicit argument `cohomologyZMod2`
+175:error: GroupApproximation/CharClass/LIXKGenBundle.lean:235:42: don't know how to synthesize implicit argument
+187:error: GroupApproximation/CharClass/LIXKGenBundle.lean:235:25: don't know how to synthesize implicit argument `cohomologyZMod2`
+199:error: GroupApproximation/CharClass/LIXKGenBundle.lean:235:25: don't know how to synthesize implicit argument
+211:error: GroupApproximation/CharClass/LIXKGenBundle.lean:249:28: don't know how to synthesize implicit argument `cohomologyZMod2`
+225:error: GroupApproximation/CharClass/LIXKGenBundle.lean:249:28: don't know how to synthesize implicit argument
+239:error: GroupApproximation/CharClass/LIXKGenBundle.lean:248:33: don't know how to synthesize implicit argument `cohomologyZMod2`
+253:error: GroupApproximation/CharClass/LIXKGenBundle.lean:248:33: don't know how to synthesize implicit argument
+267:error: GroupApproximation/CharClass/LIXKGenBundle.lean:258:60: Function expected at
+276:error: GroupApproximation/CharClass/LIXKGenBundle.lean:259:6: Failed to rewrite using equation theorems for `lixPiStar`
+277:error: GroupApproximation/CharClass/LIXKGenBundle.lean:259:6: declaration uses `sorry`
+280:error: GroupApproximation/CharClass/LIXKGenBundle.lean:268:14: Unknown constant `KGen.lixK_hcompat`
+281:error: GroupApproximation/CharClass/LIXKGenBundle.lean:269:14: Unknown constant `KGen.lixK_hnat`
+282:error: GroupApproximation/CharClass/LIXKGenBundle.lean:270:14: Unknown constant `KGen.lixK_hsection`
+283:error: Lean exited with code 1
+287:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenLocalHomeo
+mentioned-not-built GroupApproximation.CharClass.LIXKGenChartZero (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LIXKGenStepCWired (replayed or failed)
+--- rebuilt GroupApproximation modules: 11
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenChart.lean
+COMPILED GroupApproximation/CharClass/LIXKGenDeriv.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalHomeo.lean
+COMPILED GroupApproximation/CharClass/LIXKGenSect.lean
+- GroupApproximation.CharClass.LIXKGenBundle
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

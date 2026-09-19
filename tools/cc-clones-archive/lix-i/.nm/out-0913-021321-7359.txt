@@ -1,0 +1,21 @@
+[job] 02:13:33 acn112 waiting for clone lock
+[job] delta sync b7e8a34e5..0af6e2373: 7 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 0af6e2373 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-021321-7359.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3152 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt (replayed or failed)
+BUILT GroupApproximation.Sofic.StrongConvergenceMFSubsingleton
+mentioned-not-built GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+info: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:68:21: 'GroupApproximation.isStronglyOperatorMF_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10218 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,58 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3647 oleans
+[job] acn112 cores=80-87 threads=8 base=da5afd7a839442c1c94a147eefded392666fa799 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel
+ℹ [3307/3460] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10052/10052] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:93:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (M.sigma ^ m) (M.alpha 5)
+in the target expression
+  (pocketDiagram.toCombMap.sigma ^ m) (pocketDiagram.toCombMap.alpha 5) ∈ pocketWalk
+
+m : ℕ
+hm : 0 < m
+hx : 5 ∈ pocketWalk
+hkeep :
+  walkKeep pocketDiagram.toCombMap pocketWalk ((pocketDiagram.toCombMap.sigma ^ m) (pocketDiagram.toCombMap.alpha 5))
+hmin :
+  ∀ (k : ℕ),
+    0 < k →
+      k < m →
+        ¬walkKeep pocketDiagram.toCombMap pocketWalk
+            ((pocketDiagram.toCombMap.sigma ^ k) (pocketDiagram.toCombMap.alpha 5))
+⊢ (pocketDiagram.toCombMap.sigma ^ m) (pocketDiagram.toCombMap.alpha 5) ∈ pocketWalk
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    pocketWalk
+  has type
+    List M.Dart
+  but is expected to have type
+    List pocketDiagram.toCombMap.Dart
+  in the application
+    Membership.mem pocketWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:124:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.island_far' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:125:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.first_turn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:126:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.enclosedFaceSetSucc' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:127:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.ringArc_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:128:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.island_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean:129:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketLoopCutModel.ring_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCutModel
+error: build failed
+EXIT=1

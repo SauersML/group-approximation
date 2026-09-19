@@ -1,0 +1,22 @@
+[job] 08:31:00 acn112 waiting for clone lock
+[job] delta sync e5d468a27..d5d1b9db7: 5 files changed
+===== SUMMARY
+host acn112 cores 72-79 base d5d1b9db7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0914-083056-26600.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3657 oleans
+--- errors (first 80 lines)
+97:✖ [10211/10211] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan (22s)
+99:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:128:8: Tactic `rewrite` failed: motive is not type correct:
+252:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:201:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_eulerSpan' depends on axioms outside the classical allowlist: [sorryAx]
+253:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+255:error: Lean exited with code 1
+258:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonGapFaces
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

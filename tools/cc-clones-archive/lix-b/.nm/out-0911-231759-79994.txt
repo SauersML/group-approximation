@@ -1,0 +1,34 @@
+[job] 23:24:24 cn1069 waiting for clone lock
+[job] delta sync 46270ef0c..3eebc045e: 3 files changed
+===== SUMMARY
+host cn1069 cores slurm base 3eebc045e log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-231759-79994.log
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 2256 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.CohomologyKunnethStepOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethZeroOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethStepDeltaOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethInjectiveOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethSurjOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethSurjZeroOf
+BUILT GroupApproximation.CharClass.CohomologyKunnethDecompOf
+--- rebuilt GroupApproximation modules: 7
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepDeltaOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethStepOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSurjZeroOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethZeroOf.lean
+COMPILED GroupApproximation/CharClass/RelHomotopyIdentity.lean
+COMPILED GroupApproximation/CharClass/RelativeProdContractibleOf.lean
+COMPILED GroupApproximation/CharClass/RelativeSplitField.lean
+COMPILED GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean
+ Quot.sound]
+Build completed successfully (8826 jobs).
+EXIT=0
+PROBE GREEN

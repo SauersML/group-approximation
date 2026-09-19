@@ -1,0 +1,26 @@
+[job] 18:58:10 cn1123 waiting for clone lock
+[job] delta sync 497da0e01..536d14301: 36 files changed
+===== SUMMARY
+host cn1123 cores slurm base 536d14301 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-185559-62988.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4302 oleans
+--- errors (first 80 lines)
+33:✖ [4113/4115] Building GroupApproximation.Dynamics.TwoEndedTailBalance (11s)
+35:error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:83:41: omega could not prove the goal:
+48:error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:137:14: 'GroupApproximation.TwoEndedShift.exists_common_tail_exponent' depends on axioms outside the classical allowlist: [sorryAx]
+49:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+51:error: GroupApproximation/Dynamics/TwoEndedTailBalance.lean:138:14: 'GroupApproximation.TwoEndedShift.units_map_mul_shiftGL_zpow_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+52:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+54:error: Lean exited with code 1
+57:error: build failed
+--- per-module
+BUILT GroupApproximation.Dynamics.TwoEndedTailSymbols
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/TwoEndedTailSymbols.lean
+- GroupApproximation.Dynamics.TwoEndedTailBalance
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,46 @@
+[job] 00:12:25 acn112 waiting for clone lock
+[job] delta sync 948130d79..f32d5ed47: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base f32d5ed47 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0912-001151-57220.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2303 oleans
+--- errors (first 80 lines)
+3:✖ [1677/1679] Building GroupApproximation.CharClass.OddPWDiagonalRing (7.0s)
+5:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:78:48: Unknown identifier `sum_mul`
+6:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:77:71: unsolved goals
+13:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:86:7: unknown tactic
+14:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:84:14: unsolved goals
+22:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:131:5: unknown tactic
+23:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:126:2: unsolved goals
+40:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:121:58: unsolved goals
+85:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:152:86: unsolved goals
+90:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:166:5: unknown tactic
+91:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:163:62: unsolved goals
+95:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:159:82: unsolved goals
+100:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:189:14: 'GroupApproximation.CharClass.wdQSum_mul_left' depends on axioms outside the classical allowlist: [sorryAx]
+101:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+103:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:190:14: 'GroupApproximation.CharClass.wdQSum_mul_diag' depends on axioms outside the classical allowlist: [sorryAx]
+104:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+106:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:191:14: 'GroupApproximation.CharClass.wdChain_identity' depends on axioms outside the classical allowlist: [sorryAx]
+107:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+109:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:192:14: 'GroupApproximation.CharClass.wdQSum_one_one_zmod' depends on axioms outside the classical allowlist: [sorryAx]
+110:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+112:error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:193:14: 'GroupApproximation.CharClass.wdPhi_one_one_odd_odd' depends on axioms outside the classical allowlist: [sorryAx]
+113:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+115:error: Lean exited with code 1
+118:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPWDiagonalRing (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPWDiagonal (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPWDiagonalCounit (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersAssembly.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiag.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersStage.lean
+- GroupApproximation.CharClass.OddPWDiagonalRing
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

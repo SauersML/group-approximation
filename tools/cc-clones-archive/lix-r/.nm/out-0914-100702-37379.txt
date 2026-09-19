@@ -1,0 +1,35 @@
+[job] 10:10:11 acn99 waiting for clone lock
+[job] delta sync a9ef79561..9afdc9615: 25 files changed
+===== SUMMARY
+host acn99 cores slurm base 9afdc9615 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-100702-37379.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3510 oleans
+--- errors (first 80 lines)
+60:✖ [3051/3052] Building GroupApproximation.Analysis.PauliHyperfiniteDensity (23s)
+62:error: GroupApproximation/Analysis/PauliHyperfiniteDensity.lean:126:78: synthesized type class instance is not definitionally equal to expression inferred by typing rules, synthesized
+66:error: GroupApproximation/Analysis/PauliHyperfiniteDensity.lean:122:66: unsolved goals
+85:error: GroupApproximation/Analysis/PauliHyperfiniteDensity.lean:134:14: 'GroupApproximation.Hyperfinite.hyperfiniteFactor_approximatelyFinite' depends on axioms outside the classical allowlist: [sorryAx]
+86:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+88:error: Lean exited with code 1
+89:✖ [3052/3052] Building GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (30s)
+91:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:70:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.stageEmbedding_nonempty`:
+97:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:95:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.stageFactor_le_one`:
+108:error: Lean exited with code 1
+112:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.PauliHyperfiniteDensity (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/HyperfiniteStageCorner.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

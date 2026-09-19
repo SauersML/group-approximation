@@ -1,0 +1,35 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3560 oleans
+[job] acn112 cores=72-79 threads=8 base=966ce8f517c9ef34b043e3338ccc85aa3302c2f0 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk
+ℹ [3298/3434] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10090/10090] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk (49s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:238:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:239:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.reverse_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:240:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.exists_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:241:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.eq_of_ne_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:242:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.IsWalkFromTo.isClosedDartWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:243:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.exists_isWalkFromTo_faceBoundary_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:244:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.exists_window_walks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:245:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:246:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10090 jobs).
+EXIT=0

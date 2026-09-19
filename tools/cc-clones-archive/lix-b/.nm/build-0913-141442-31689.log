@@ -1,0 +1,248 @@
+purged 6 stale artifact sets (source-newer=3, import-newer=3) of 3332 oleans
+[job] acn112 cores=64-71 threads=8 base=97c0c40b9227f0275c8a6cd24f3c0efc3a3f5f41 mods: GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordPolygon GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SectionResiduals
+ℹ [2797/2934] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4746/4955] Replayed GroupApproximation.GGT.VanKampen.Estimating.UnboundMonotoneMorseIndex
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:194:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.vertex_take_prefix' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:195:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.isLambdaCQuasiGeodesicWord_take_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:196:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.index_lt_of_prefix_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:197:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.exists_word_replacement_morse_monotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:198:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.morse_gap_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5044/5097] Replayed GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionMap
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:266:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.exists_spikeCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:267:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.rest_ne_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:268:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.lift_isFaceCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:269:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceOf_eq_shrunkFace_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:270:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.face_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:271:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_shrunkFace_map_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:272:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceBoundary_keptFace_map_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean:273:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.SpikeCycle.faceCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5045/5097] Replayed GroupApproximation.GGT.VanKampen.SurgerySpikeDeletion
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:442:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.diagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:443:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.shrunkFace_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:444:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.face_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:445:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceOf_keep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:446:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceBoundary_kept_map_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:447:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.shrunk_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:448:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.shrunk_not_relatorFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:449:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:450:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.dartCount_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:451:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.boundaryWord_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:452:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.cellMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:453:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.oEquivalent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:454:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.reduced' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean:455:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.labelLegal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5046/5097] Replayed GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionDarts
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:281:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.map_keep_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:282:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.alpha_keep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:283:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.facePerm_keep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:284:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceOf_keep_mem_faceSet_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:285:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceSet_inj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:286:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.faceWord_kept' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:287:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.cellDarts_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:288:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.outerDarts_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:289:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.targetBoundaryDarts_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean:290:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.dartWord_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10048/10132] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalkHolds
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CaseOneWalkHolds.lean:267:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalk' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10049/10132] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOneFace
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:488:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.forwardOffset_of_val_eq_mod' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:489:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.faceOf_alpha_ne_of_mem_reverseDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:490:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.faceOf_alpha_ne_of_mem_targetBoundaryDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:491:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.option_map_map_equiv_eq_some_iff' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:492:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_quadrilateral_region_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean:493:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_quadrilateral_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10125/10132] Building GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionRegions (9.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:508:58: Invalid projection: Projections cannot be used on functions, and
+  S.respects x hx
+has function type
+  x.snd.target = none → ∃ j, RegionCandidate.TargetsSectionIndex cuts j x
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:549:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.transportBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:550:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.shelling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:551:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.contiguityGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:552:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.contiguityGeometry_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:553:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionCandidate_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:554:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:555:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:556:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_pairwise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:557:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:558:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:559:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_avoid_shrunk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:560:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.unboundDarts_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:561:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.sum_unboundDarts_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:562:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.transportSection' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:563:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.transportSection_weight' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean:564:14: 'GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.transportSection_labelLegal' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [10129/10132] Built GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors (10s)
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:372:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePairLong.toOrientedWordSidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:373:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePairLong.exists_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:374:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.nearby_endpoints_keep_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:375:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePairLong_of_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:376:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePairLong_of_orientedClassPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:378:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordConnectorPair.targetWord_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:379:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.toWordSidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:380:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.exists_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:381:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:382:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_orientedClassPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10130/10132] Built GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordPolygon (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean:174:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_orientedPolygonPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean:175:21: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.unboundOrientedWordPolygonMonotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean:176:21: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.unboundOrientedWordPolygonLong' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10131/10132] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric (9.8s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:144:14: 'GroupApproximation.GGT.VanKampen.exists_component_dense_of_sideBudget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:145:14: 'GroupApproximation.GGT.VanKampen.osinLemma94AntiparallelMetricLong' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:146:21: 'GroupApproximation.GGT.VanKampen.osinLemma94AntiparallelMetric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionRegions
+error: build failed
+EXIT=1

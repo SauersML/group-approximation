@@ -1,0 +1,23 @@
+[job] 12:17:38 acn112 waiting for clone lock
+[job] delta sync 225eb0f94..a929de238: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base a929de238 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0912-121712-84795.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2414 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenOfStepCThom
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenOfStepCThom.lean
+COMPILED GroupApproximation/CharClass/SliceGenOfBlocks.lean
+COMPILED GroupApproximation/CharClass/SliceGenOfLines.lean
+COMPILED GroupApproximation/CharClass/SliceHomogeneousOf.lean
+COMPILED GroupApproximation/CharClass/SliceNaturalOf.lean
+COMPILED GroupApproximation/CharClass/SliceRootsOf.lean
+COMPILED GroupApproximation/CharClass/SliceSplitVOf.lean
+COMPILED GroupApproximation/CharClass/SliceTorusOf.lean
+COMPILED GroupApproximation/CharClass/SliceValueVOf.lean
+info: GroupApproximation/CharClass/LIXKGenOfStepCThom.lean:281:14: 'GroupApproximation.CharClass.KGen.lixHclassOf_of_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9245 jobs).
+EXIT=0
+PROBE GREEN

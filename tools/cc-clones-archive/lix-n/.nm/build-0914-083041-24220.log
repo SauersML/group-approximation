@@ -1,0 +1,7 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3332 oleans
+[job] acn112 cores=88-95 threads=8 base=8c0c8ccdc8e277d3580f8609a2296747e9d3bd96 mods: GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosureProof
+ℹ [3297/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+Build completed successfully (10224 jobs).
+EXIT=0

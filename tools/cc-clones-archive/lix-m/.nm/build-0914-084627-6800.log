@@ -1,0 +1,135 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3617 oleans
+[job] acn72 cores=slurm threads=8 base=d1608fe00127eda5800517b54c2446da8379a26e mods: GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+ℹ [3336/3416] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4887/5078] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+info: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:112:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5075/5078] Built GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts (14s)
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:176:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [5076/5078] Building GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel (12s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:39:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Nat.card (Quotient (Perm.SameCycle.setoid oneEdge.sigma))
+in the target expression
+  Nat.card oneEdge.Vertex = 2
+
+hinj : Function.Injective Quotient.mk''
+hsurj : Function.Surjective Quotient.mk''
+⊢ Nat.card oneEdge.Vertex = 2
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:44:8: failed to synthesize instance of type class
+  DecidablePred fun y => (Equiv.symm oneEdge.sigma) y ∉ Finset.univ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:49:18: failed to synthesize instance of type class
+  DecidablePred fun y => (Equiv.symm oneEdge.sigma) y ∉ Finset.univ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:48:51: unsolved goals
+⊢ ¬sorry + 2 * Nat.card { v // ∀ (d : oneEdge.Dart), oneEdge.vertexOf d = v → d ∈ Finset.univ } ≤ Finset.univ.card
+error: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:64:14: 'GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel.not_card_starts_add_two_mul_le_oneEdge' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [5077/5078] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions (18s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:121:13: unexpected token 'by'; expected '{' or tactic
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:108:10: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:119:16: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  S.diagram.toCombMap.alpha (S.diagram.toCombMap.alpha ?x)
+in the target expression
+  S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha x) = P.face k
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+P : OsinLemma94RealizedPolygons S
+k : Fin P.count
+x0 : S.diagram.toCombMap.Dart
+hhead : ∀ i < P.sideCount k, (P.sideDarts k i).headD x0 ∈ (P.sideDarts k i).head?
+s : ℕ
+hs : s ∈ ↑(P.cuttingTransitions k)
+hsn : s < P.sideCount k
+hkind : (∃ j, P.kind k s = OsinLemma94SideClass.cell j) ∨ ∃ j, P.kind k s = OsinLemma94SideClass.boundary j
+hcut : P.kind k ((s + 1) % P.sideCount k) = OsinLemma94SideClass.cutting
+hpos : 0 < P.sideCount k
+htn : (s + 1) % P.sideCount k < P.sideCount k
+hy : (P.sideDarts k ((s + 1) % P.sideCount k)).headD x0 ∈ (P.sideDarts k ((s + 1) % P.sideCount k)).head?
+hymem : (P.sideDarts k ((s + 1) % P.sideCount k)).headD x0 ∈ P.sideDarts k ((s + 1) % P.sideCount k)
+x : S.diagram.toCombMap.Dart
+hx : x ∈ (P.sideDarts k s).getLast?
+hfp : S.diagram.toCombMap.facePerm x = (P.sideDarts k ((s + 1) % P.sideCount k)).headD x0
+hsymm :
+  (Equiv.symm S.diagram.toCombMap.sigma) ((P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) =
+    S.diagram.toCombMap.alpha x
+hmem : S.diagram.toCombMap.alpha x ∈ S.diagram.toCombMap.sameFaceDarts (P.face k)
+halpha : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha x) = P.face k
+⊢ S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha x) = P.face k
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:86:92: unsolved goals
+case refine_2
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+P : OsinLemma94RealizedPolygons S
+k : Fin P.count
+x0 : S.diagram.toCombMap.Dart
+hhead : ∀ i < P.sideCount k, (P.sideDarts k i).headD x0 ∈ (P.sideDarts k i).head?
+⊢ Set.InjOn (fun s => (P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) ↑(P.cuttingTransitions k)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:190:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:218:7: Unknown constant `List.mem_of_ne_nil_of_mem`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:247:2: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 0
+  d ≥ 0
+  2*d - e ≥ 0
+  b ≥ 0
+  2*b + 2*f - g ≥ 4
+  a ≥ 0
+  a - 4*d ≥ -3
+  a + 2*b - g ≤ 0
+where
+ a := ↑{y ∈ S.forestDarts | (Equiv.symm S.diagram.toCombMap.sigma) y ∉ S.forestDarts}.card
+ b := ↑(Nat.card { v // ∀ (d : S.diagram.toCombMap.Dart), S.diagram.toCombMap.vertexOf d = v → d ∈ S.forestDarts })
+ d := ↑T.card
+ e := S.forestDeleted.eulerCharacteristic
+ f := (CombMap.PredicateRestriction.toCombMap S.diagram.toCombMap (fun d => d ∉ S.forestDarts) ⋯).eulerCharacteristic
+ g := ↑(Nat.card ↥S.forestDarts)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:253:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_cuttingTransitions_le_sameFaceStarts' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:254:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+error: build failed
+EXIT=1

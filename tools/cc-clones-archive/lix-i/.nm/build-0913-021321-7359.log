@@ -1,0 +1,28 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3152 oleans
+[job] acn112 cores=72-79 threads=8 base=0af6e2373defeac67f800fb12415b4ffe989ab8b mods: GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt GroupApproximation.Sofic.StrongConvergenceMFSubsingleton GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+ℹ [3637/3821] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4562/4724] Replayed GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt
+info: GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean:57:14: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.fullDefectPair_aryLeavittAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean:58:21: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.fullDefectPair_aryLeavittAlgebra_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10147/10218] Replayed GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+info: GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:553:2: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10217/10218] Replayed GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic
+info: GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean:55:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.naiveFreeProductProperty_of_isAcylindricallyHyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean:56:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.powersAveragingEstimate_of_isAcylindricallyHyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10218/10218] Built GroupApproximation.Sofic.StrongConvergenceMFSubsingleton (9.6s)
+info: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:67:14: 'GroupApproximation.isStronglyOperatorMF_of_subsingleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:68:21: 'GroupApproximation.isStronglyOperatorMF_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10218 jobs).
+EXIT=0

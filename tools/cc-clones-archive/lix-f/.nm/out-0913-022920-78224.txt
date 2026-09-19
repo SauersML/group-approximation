@@ -1,0 +1,20 @@
+[job] 02:31:25 acn26 waiting for clone lock
+[job] delta sync b9399390e..80deb9a34: 310 files changed
+===== SUMMARY
+host acn26 cores slurm base 80deb9a34 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-022920-78224.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2333 oleans
+--- errors (first 80 lines)
+3:✖ [2906/2906] Building GroupApproximation.Algebra.IntegerPolynomialUnisolvence (90s)
+5:error: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:122:80: Application type mismatch: The argument
+16:error: GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:183:14: 'GroupApproximation.IntegerPolynomialUnisolvence.finite_bounded_on_grid' depends on axioms outside the classical allowlist: [sorryAx]
+17:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+22:error: Lean exited with code 1
+25:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.IntegerPolynomialUnisolvence (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.IntegerPolynomialUnisolvence
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2301 oleans
+[job] acn112 cores=88-95 threads=8 base=891b3724e62149263f26df8f6dfcf7e84d9f9eb6 mods: GroupApproximation.CharClass.ThomSphereSubspaceOf GroupApproximation.CharClass.BundleTotalPiCohIsoOf
+ℹ [8777/8826] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8778/8826] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8802/8826] Replayed GroupApproximation.CharClass.CohomologyKunnethSplitOf
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:161:14: 'GroupApproximation.CharClass.kunneth_fst_eq_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:162:14: 'GroupApproximation.CharClass.kunnethMap_naturalOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:163:14: 'GroupApproximation.CharClass.kunnethInjective_of_secondOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8825/8826] Built GroupApproximation.CharClass.BundleTotalPiCohIsoOf (12s)
+info: GroupApproximation/CharClass/BundleTotalPiCohIsoOf.lean:39:14: 'GroupApproximation.CharClass.Bundle.bijective_totalPiPullOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8826/8826] Built GroupApproximation.CharClass.ThomSphereSubspaceOf (24s)
+info: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:63:14: 'GroupApproximation.CharClass.absToSub_injective_of_sphereOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8826 jobs).
+EXIT=0

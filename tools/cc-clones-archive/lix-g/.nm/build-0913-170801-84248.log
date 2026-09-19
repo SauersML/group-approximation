@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3514 oleans
+[job] acn112 cores=80-87 threads=8 base=c28a60924a38fd8fc079e40d41ef0aebb0a2e7a3 mods: GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact
+ℹ [2817/2877] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3299/3299] Built GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact (12s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean:281:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact.manuscriptPrintedCentralCoronaCornerExact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean:283:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact.printedCentralCoronaCorner_of_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3299 jobs).
+EXIT=0

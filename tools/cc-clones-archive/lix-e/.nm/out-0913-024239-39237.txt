@@ -1,0 +1,17 @@
+[job] 02:44:37 acn91 waiting for clone lock
+[job] delta sync d2cf04137..3e34da4ea: 13 files changed
+===== SUMMARY
+host acn91 cores slurm base 3e34da4ea log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-024239-39237.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2446 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.IntegerGaussValuations
+BUILT GroupApproximation.Kazhdan.GHWCharZeroPlaces
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGaussValuations.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean
+info: GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean:193:14: 'GroupApproximation.GHW.exists_places_minpoly_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2672 jobs).
+EXIT=0
+PROBE GREEN

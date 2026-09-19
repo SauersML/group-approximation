@@ -1,0 +1,21 @@
+[job] 02:55:52 acn105 waiting for clone lock
+[job] delta sync c52176461..c3cfee844: 52 files changed
+===== SUMMARY
+host acn105 cores slurm base c3cfee844 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-025407-70919.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3040 oleans
+--- errors (first 80 lines)
+6:✖ [4505/4505] Building GroupApproximation.Manuscript.NonMF.HullFiniteRadical (126s)
+29:error: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:224:42: Unknown identifier `HullSC.isAcylindricallyHyperbolic_of_hullGeneratingSet`
+30:error: GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean:228:21: 'GroupApproximation.Manuscript.NonMF.HullFiniteRadical.printedHullSuitableIffFiniteRadical' depends on axioms outside the classical allowlist: [sorryAx]
+31:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+33:error: Lean exited with code 1
+36:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMF.HullFiniteRadical (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+- GroupApproximation.Manuscript.NonMF.HullFiniteRadical
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

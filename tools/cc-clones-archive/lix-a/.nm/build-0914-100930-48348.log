@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4113 oleans
+[job] acn140 cores=slurm threads=8 base=4c9455581ade14b01f5a68d95414837ba061e3a7 mods: GroupApproximation.Analysis.TwistedTensorProductAlgebra GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor GroupApproximation.Analysis.VonNeumannSpatialIsomorphism GroupApproximation.Analysis.McDuffTensorHyperfinite
+ℹ [2414/2423] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2415/2423] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannProduct
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:251:14: 'GroupApproximation.TwistedProduct.isTwistedICC_prodCocycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:252:14: 'GroupApproximation.TwistedProduct.groupVonNeumannAlgebra_eq_twisted_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:253:14: 'GroupApproximation.TwistedProduct.curryLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2418/2423] Replayed GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup
+info: GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean:90:14: 'GroupApproximation.GroupVonNeumann.leftRegularUnitaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2419/2423] Replayed GroupApproximation.Analysis.McDuffFactor
+info: GroupApproximation/Analysis/McDuffFactor.lean:77:21: 'GroupApproximation.McDuff.printedTensorHyperfiniteUnitaryContainsGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2420/2423] Built GroupApproximation.Analysis.TwistedTensorProductAlgebra (35s)
+info: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:240:14: 'GroupApproximation.TwistedProduct.curryConj_image_twistedTensor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2421/2423] Built GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor (15s)
+info: GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean:130:14: 'GroupApproximation.TwistedProduct.isIIOneFactor_tensorHyperfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2422/2423] Building GroupApproximation.Analysis.VonNeumannSpatialIsomorphism (16s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.setup.json --json
+error: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:71:0: automatically included section variable(s) unused in theorem `GroupApproximation.SpatialIso.memℓp_vecMap`:
+  [CompleteSpace H]
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:217:14: 'GroupApproximation.SpatialIso.conj_image_twistedTensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:218:14: 'GroupApproximation.SpatialIso.conj_image_twistedVonNeumannAlgebra_of_mulEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+error: build failed
+EXIT=1

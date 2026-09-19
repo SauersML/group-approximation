@@ -1,0 +1,66 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3475 oleans
+[job] cn1032 cores=slurm threads=8 base=c4cdb202bf1137fd75f3a92642fc153a471dd5bf mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+ℹ [1559/1611] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1825/1826] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent (8.2s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:110:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_sum_coeff_mul_unit_zpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:111:14: 'GroupApproximation.SimpleKazhdanSofic.eq_of_sum_coeff_mul_unit_zpow_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:112:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_mul_unit_zpow_mul_coeff_mul_unit_zpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1826/1826] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:106:42: failed to synthesize instance of type class
+  LocallyFiniteOrder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:127:47: failed to synthesize instance of type class
+  LocallyFiniteOrder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:133:25: Application type mismatch: The argument
+  h
+has type
+  ∀ (t : ↥I), ↑x ↑t = w t
+but is expected to have type
+  ∀ (x_1 : ↥I), w x_1 = ↑x ↑x_1
+in the application
+  funext h
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:145:85: failed to synthesize instance of type class
+  CommMonoid (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:145:85: failed to synthesize instance of type class
+  MonoidHomClass (LocallyConstant (↑S.carrier) (ZMod 2) →+* ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
+    (LocallyConstant (↑S.carrier) (ZMod 2)) (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:146:80: Application type mismatch: The argument
+  t
+has type
+  ℤ
+but is expected to have type
+  ↥I
+in the application
+  w t
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:169:14: 'GroupApproximation.SimpleKazhdanSofic.unit_zpow_mul_coeff_mul_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:170:14: 'GroupApproximation.SimpleKazhdanSofic.mem_closure_coeff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:171:21: 'GroupApproximation.SimpleKazhdanSofic.printedRingGeneration' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+error: build failed
+EXIT=1

@@ -1,0 +1,25 @@
+[job] 11:03:47 acn112 waiting for clone lock
+[job] delta sync 5a5886551..0c5535893: 142 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 0c5535893 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0912-110336-46269.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.SliceRootsOf
+BUILT GroupApproximation.CharClass.SliceNaturalOf
+BUILT GroupApproximation.CharClass.SliceSplitVOf
+BUILT GroupApproximation.CharClass.SliceTorusOf
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/SliceGenOfBlocks.lean
+COMPILED GroupApproximation/CharClass/SliceGenOfLines.lean
+COMPILED GroupApproximation/CharClass/SliceHomogeneousOf.lean
+COMPILED GroupApproximation/CharClass/SliceNaturalOf.lean
+COMPILED GroupApproximation/CharClass/SliceRootsOf.lean
+COMPILED GroupApproximation/CharClass/SliceSplitVOf.lean
+COMPILED GroupApproximation/CharClass/SliceTorusOf.lean
+COMPILED GroupApproximation/CharClass/SliceValueVOf.lean
+info: GroupApproximation/CharClass/SliceTorusOf.lean:88:14: 'GroupApproximation.CharClass.Gen.sliceValue_lixBundleOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9276 jobs).
+EXIT=0
+PROBE GREEN

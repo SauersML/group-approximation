@@ -1,0 +1,36 @@
+[job] 17:01:52 acn112 waiting for clone lock
+[job] delta sync 7a00fc72d..a51d90dda: 9 files changed
+===== SUMMARY
+host acn112 cores 64-71 base a51d90dda log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-170142-52649.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+--- errors (first 80 lines)
+3:✖ [1194/1194] Building GroupApproximation.Algebra.FinitaryGeneralLinear (9.1s)
+5:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:89:8: Application type mismatch: The argument
+14:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:220:6: `noncomm_ring` simp lemmas don't apply; try `abel` instead
+25:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:211:14: unsolved goals
+37:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:209:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+45:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:252:2: Invalid alternative name `hz`: Expected `zero`, `succ`, or `pred`
+46:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:253:2: Invalid alternative name `hp`: Expected `zero`, `succ`, or `pred`
+47:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:257:2: Invalid alternative name `hn`: Expected `zero`, `succ`, or `pred`
+48:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `zero` has not been provided
+49:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `succ` has not been provided
+50:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:251:2: Alternative `pred` has not been provided
+51:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:283:48: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+63:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:293:9: Invalid projection: Projections cannot be used on functions, and
+67:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:294:2: No goals to be solved
+68:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:342:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms outside the classical allowlist: [sorryAx]
+69:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+72:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:344:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+73:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:345:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+78:error: Lean exited with code 1
+81:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.FinitaryGeneralLinear (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,28 @@
+[job] 19:14:18 acn112 waiting for clone lock
+[job] delta sync 2c885772a..217332545: 21 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 217332545 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-191410-56810.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3729 oleans
+--- errors (first 80 lines)
+19:✖ [10046/10046] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides (40s)
+21:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:128:27: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+42:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:127:32: This simp argument is unused:
+49:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:185:15: unexpected token 'Π'; expected '⟩'
+57:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:249:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.isSimpleClosedWalk_lobe' depends on axioms outside the classical allowlist: [sorryAx]
+58:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+63:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean:251:14: 'GroupApproximation.GGT.VanKampen.SameCellCellLobe.outerFace_not_mem_sideFaces_lobe' depends on axioms outside the classical allowlist: [sorryAx]
+64:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+66:error: Lean exited with code 1
+69:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean
+COMPILED GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellLobeSides
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

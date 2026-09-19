@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4588 oleans
+[job] acn112 cores=64-71 threads=8 base=f720ed401d3369f966f6c7c17ddcb6dd740a59fe mods: GroupApproximation.Dynamics.RefiningClopenPartitions
+⚠ [1251/1251] Built GroupApproximation.Dynamics.RefiningClopenPartitions (5.2s)
+warning: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:115:14: 'GroupApproximation.ChainCore.proj_eq_of_le' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:116:14: 'GroupApproximation.ChainCore.exists_discreteQuotient_mesh_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:117:14: 'GroupApproximation.ChainCore.exists_refiningClopenPartitions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:118:14: 'GroupApproximation.ChainCore.exists_forall_proj_eq_imp_of_locallyConstant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1251 jobs).
+EXIT=0

@@ -1,0 +1,46 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 4359 oleans
+[job] acn112 cores=72-79 threads=8 base=9890ca815daa6c5a1ae44b69da9d63c49954f083 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+ℹ [4131/4294] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4615/4617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:161:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:247:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_of_perfectSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:248:14: 'GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:249:21: 'GroupApproximation.SimpleKazhdanSofic.printedMatricialExpandersStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:250:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [4616/4617] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:196:14: 'GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:197:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:198:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:199:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
+error: build failed
+EXIT=1

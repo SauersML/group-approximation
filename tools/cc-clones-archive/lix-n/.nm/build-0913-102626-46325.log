@@ -1,0 +1,98 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3336 oleans
+[job] acn112 cores=88-95 threads=8 base=c174e86dcd105fe1fca5ed97ba80a7140d215093 mods: GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+ℹ [3295/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10019/10019] Building GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.setup.json --json
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:9: don't know how to synthesize implicit argument `Λ`
+  @OsinComponents.vertex G Perm.permGroup ?m.179 1 [RelLetter.base g⁻¹] 1
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.100
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:33: don't know how to synthesize implicit argument `α`
+  @List.cons (RelLetter G ?m.179) (RelLetter.base g⁻¹) []
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.100
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:33: don't know how to synthesize implicit argument `α`
+  @List.nil (RelLetter G ?m.179)
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.100
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:291:34: don't know how to synthesize implicit argument `Λ`
+  @RelLetter.base G ?m.179 g⁻¹
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.100
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:9: don't know how to synthesize implicit argument `Λ`
+  @OsinComponents.vertex G Perm.permGroup ?m.166 1 [RelLetter.base g⁻¹] 0
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.91
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:33: don't know how to synthesize implicit argument `α`
+  @List.cons (RelLetter G ?m.166) (RelLetter.base g⁻¹) []
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.91
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:33: don't know how to synthesize implicit argument `α`
+  @List.nil (RelLetter G ?m.166)
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.91
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:290:34: don't know how to synthesize implicit argument `Λ`
+  @RelLetter.base G ?m.166 g⁻¹
+context:
+lambda c : ℝ
+hlam : lambda ≤ 1
+hc : 0 ≤ c
+hj : 1 ≤ [RelLetter.base g⁻¹].length
+hj1 : 1 ≤ 1
+_hij : 0 ≤ 1
+⊢ Type ?u.91
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:605:14: 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.not_loopCutInput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:606:21: 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.loopCutCapCounterexample' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+error: build failed
+EXIT=1

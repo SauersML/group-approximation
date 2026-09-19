@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3727 oleans
+[job] acn112 cores=64-71 threads=8 base=94dca4dd46bfcaa7d68d6abe8aa713303e066eae mods: GroupApproximation.GGT.VanKampen.SurgeryOuterThickeningInvariant
+ℹ [3359/3473] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5003/5003] Replayed GroupApproximation.GGT.VanKampen.SurgeryOuterThickeningInvariant
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean:311:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.exists_spurFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean:312:14: 'GroupApproximation.GGT.VanKampen.OuterCellThickening.exists_cellFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean:313:14: 'GroupApproximation.GGT.VanKampen.OuterSideThickening.exists_sideFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean:314:14: 'GroupApproximation.GGT.VanKampen.CellHairThickening.exists_cellHairFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5003 jobs).
+EXIT=0

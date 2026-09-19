@@ -1,0 +1,49 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3183 oleans
+[job] acn112 cores=64-71 threads=8 base=9ea947a9215d97d106ce56a43e38902c4c99ec03 mods: GroupApproximation.GGT.HullLemma35Transitive GroupApproximation.GGT.HullLemma35LocalFinite
+ℹ [2797/2923] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4661/4662] Built GroupApproximation.GGT.HullLemma35Transitive (8.8s)
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:154:14: 'GroupApproximation.GGT.HullLemma35.isSymmetricGeneratingSet_transitive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:155:14: 'GroupApproximation.GGT.HullLemma35.transitive_alphabet_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:156:14: 'GroupApproximation.GGT.HullLemma35.val_mem_of_isCompOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [4662/4662] Building GroupApproximation.GGT.HullLemma35LocalFinite (9.7s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/HullLemma35LocalFinite.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35LocalFinite.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/HullLemma35LocalFinite.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35LocalFinite.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/HullLemma35LocalFinite.setup.json --json
+error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:253:10: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  f ≥ 0
+  e ≥ 0
+  d ≥ 0
+  c ≥ 0
+  c + d - f ≤ -2
+  c + d + e - f ≥ -1
+  b ≥ 0
+  b - c - d ≥ 1
+where
+ b := ↑n
+ c := ↑s.length
+ d := ↑w.length
+ e := ↑[].length
+ f := ↑u.length
+error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:252:41: This simp argument is unused:
+  List.length_singleton
+
+Hint: Omit it from the simp argument list.
+  simp only [List.length_append, List.length_s̵i̵n̵g̵l̵e̵t̵o̵n̵,̵ ̵L̵i̵s̵t̵.̵l̵e̵n̵g̵t̵h̵_̵cons] at hulen ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:295:14: 'GroupApproximation.GGT.HullLemma35.exists_enlargedWord' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/HullLemma35LocalFinite.lean:296:14: 'GroupApproximation.GGT.HullLemma35.relBall_finite_transitive' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.HullLemma35LocalFinite
+error: build failed
+EXIT=1

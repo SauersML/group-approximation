@@ -1,0 +1,47 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4376 oleans
+[job] acn68 cores=slurm threads=8 base=e5a839117cceab958fbf44725ff1f0bc6a6b6b01 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+ℹ [4118/4183] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4598/4619] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:196:14: 'GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:197:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:198:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean:199:14: 'GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4617/4619] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction (36s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:268:33: failed to synthesize instance of type class
+  Zero (Multiplicative (Δ →₀ ZMod 2))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:317:21: 'GroupApproximation.SimpleKazhdanSofic.printedLamplighterAffineGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:340:21: 'GroupApproximation.SimpleKazhdanSofic.printedLamplighterMinimalTopologicallyFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:345:14: 'GroupApproximation.SimpleKazhdanSofic.Lamplighter.fg_lampAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:346:14: 'GroupApproximation.SimpleKazhdanSofic.Lamplighter.closure_insert_lampAdd_image_inr' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction
+error: build failed
+EXIT=1

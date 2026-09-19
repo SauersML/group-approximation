@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3628 oleans
+[job] acn112 cores=72-79 threads=8 base=2a3175811cc60bc810cae0a26a3a77be03decff4 mods: GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces
+ℹ [3296/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5056/5057] Built GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces (5.6s)
+info: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexOf_facePerm_ne_pow_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_filter_degenerate_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5057/5057] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces (13s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:187:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_fixed_colour_false_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:188:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_degenerateFaces_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapSmallFaces.lean:189:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ContactMapSmallFacesInput_of_nondegenerate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5057 jobs).
+EXIT=0

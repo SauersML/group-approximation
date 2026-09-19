@@ -1,0 +1,19 @@
+[job] 08:42:46 acn68 waiting for clone lock
+[job] delta sync 9890ca815..e5a839117: 7 files changed
+===== SUMMARY
+host acn68 cores slurm base e5a839117 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-084154-44592.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4376 oleans
+--- errors (first 80 lines)
+25:✖ [4617/4619] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction (36s)
+27:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterAction.lean:268:33: failed to synthesize instance of type class
+43:error: Lean exited with code 1
+46:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

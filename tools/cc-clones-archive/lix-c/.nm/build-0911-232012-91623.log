@@ -1,0 +1,92 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2073 oleans
+[job] acn112 cores=72-79 threads=8 base=9ad932111007a503491d388a6a5cfd7bf8500e94 mods: GroupApproximation.CharClass.LIXStepDGenRealEven GroupApproximation.CharClass.LIXStepDGenReal
+✖ [5417/5483] Building GroupApproximation.CharClass.LIXStepDGenRealEven (9.5s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/LIXStepDGenRealEven.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/LIXStepDGenRealEven.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/LIXStepDGenRealEven.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/LIXStepDGenRealEven.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/LIXStepDGenRealEven.setup.json --json
+error: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:69:31: failed to synthesize instance of type class
+  FunLike (TotalHOf K Y →+* TotalHOf K X) ↥(evenPart K Y) ?m.52
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:71:31: failed to synthesize instance of type class
+  FunLike (TotalHOf K Y →+* TotalHOf K X) ↥(evenPart K Y) ?m.82
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:84:31: failed to synthesize instance of type class
+  FunLike (TotalHOf K X →+ TotalHOf K X) ↥(evenPart K X) ?m.51
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:94:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:95:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [8702/8795] Replayed GroupApproximation.AlgTop.ComplexProjectiveBasic
+info: GroupApproximation/AlgTop/ComplexProjectiveBasic.lean:197:14: 'GroupApproximation.AlgTop.CPn.basePoint_entry_zero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8703/8795] Replayed GroupApproximation.AlgTop.CPTautologicalSection
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:397:14: 'GroupApproximation.AlgTop.CPn.dualTautSection_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:398:14: 'GroupApproximation.AlgTop.CPn.sectionChart_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:399:14: 'GroupApproximation.AlgTop.CPn.tautChartHomotopy_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:400:14: 'GroupApproximation.AlgTop.CPn.continuous_tautColSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8763/8849] Replayed GroupApproximation.CharClass.LIXStepDGenModP
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:172:14: 'GroupApproximation.CharClass.Gen.gamma_rank_eq_zero_modP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:173:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.toParityPData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:174:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.gamma_top_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8768/8849] Replayed GroupApproximation.CharClass.LIXLemmaTwoGenStepA
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:160:14: 'GroupApproximation.CharClass.Gen.sumElimZero_mem_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:161:14: 'GroupApproximation.CharClass.Gen.fromBlocks_rankOneProj_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:162:14: 'GroupApproximation.CharClass.Gen.isStarProjection_FHmatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:163:14: 'GroupApproximation.CharClass.Gen.isStarProjection_EHmat' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:164:14: 'GroupApproximation.CharClass.Gen.exists_cornerUnitary_of_continuousMvNEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:165:14: 'GroupApproximation.CharClass.Gen.hasStepAUnitary_of_continuousMvNEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenStepA.lean:166:14: 'GroupApproximation.CharClass.hasStepAUnitary_of_continuousMvNEquiv_of_gen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8831/8849] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8832/8849] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8848/8849] Replayed GroupApproximation.CharClass.LIXLemmaTwoGenGlue
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:218:14: 'GroupApproximation.CharClass.Gen.sumElim_eZero_comp_lastZeroSwap_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:219:14: 'GroupApproximation.CharClass.Gen.Vmat_submatrix_lastZeroSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:220:14: 'GroupApproximation.CharClass.Gen.isCornerUnitary_submatrix_lastZeroSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:221:14: 'GroupApproximation.CharClass.Gen.submatrix_lastZeroSwap_mulVec_eZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:222:14: 'GroupApproximation.CharClass.Gen.StepCHalf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:223:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_of_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:224:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_powers_of_halves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXLemmaTwoGenGlue.lean:225:14: 'GroupApproximation.CharClass.Gen.lemmaTwoFor_powers_of_stepC_modP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXStepDGenRealEven
+error: build failed
+EXIT=1

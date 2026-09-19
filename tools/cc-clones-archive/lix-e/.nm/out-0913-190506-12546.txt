@@ -1,0 +1,27 @@
+[job] 19:05:18 acn112 waiting for clone lock
+[job] delta sync 536d14301..6220bb856: 19 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 6220bb856 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-190506-12546.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4302 oleans
+--- errors (first 80 lines)
+41:✖ [4114/4115] Building GroupApproximation.Dynamics.TwoEndedUnitGroup (17s)
+43:error: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:133:34: Unknown constant `Multiplicative.ofAdd_eq_one`
+44:error: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:202:12: Function expected at
+51:error: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:198:43: unsolved goals
+58:error: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:211:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitGroup' depends on axioms outside the classical allowlist: [sorryAx]
+59:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+61:error: GroupApproximation/Dynamics/TwoEndedUnitGroup.lean:212:14: 'GroupApproximation.TwoEndedShift.printedTwoEndedUnitsLEFGLThreeNotMF_of_pieces' depends on axioms outside the classical allowlist: [sorryAx]
+62:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+64:error: Lean exited with code 1
+67:error: build failed
+--- per-module
+BUILT GroupApproximation.Dynamics.TwoEndedTailBalance
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/TwoEndedTailBalance.lean
+- GroupApproximation.Dynamics.TwoEndedUnitGroup
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2373 oleans
+[job] acn172 cores=slurm threads=8 base=73c719552947341412fa9434c0f0e1cf275bfc6d mods: GroupApproximation.Algebra.IntegerGridFinite
+ℹ [2906/2906] Built GroupApproximation.Algebra.IntegerGridFinite (76s)
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:204:14: 'GroupApproximation.IntegerGridFinite.expo_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:205:14: 'GroupApproximation.IntegerGridFinite.exists_expo_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:206:14: 'GroupApproximation.IntegerGridFinite.eval₂_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:207:14: 'GroupApproximation.IntegerGridFinite.gridMatrix_mulVec_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:208:14: 'GroupApproximation.IntegerGridFinite.finite_setOf_totalDegree_le_norm_eval_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:209:14: 'GroupApproximation.IntegerGridFinite.exists_algebraicIndependent_nat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:210:14: 'GroupApproximation.IntegerGridFinite.exists_grid_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2906 jobs).
+EXIT=0

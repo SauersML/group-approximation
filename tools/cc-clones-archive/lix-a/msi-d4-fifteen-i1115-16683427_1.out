@@ -1,0 +1,21 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=1 syllables=0
+carrier=6 cuts=1 syllables=0
+carrier=7 cuts=9 syllables=9
+carrier=8 cuts=12 syllables=12
+carrier=9 cuts=9 syllables=9
+carrier=10 cuts=12 syllables=12
+carrier=10 words=136 states=44
+carrier=11 cuts=12 syllables=12
+branch=II
+carrier_states=11
+distinct_augmented_words=136
+boundary_states=44
+nonempty_q=0
+free_nonempty_q=0
+direct_killed_q=0
+power_killed_q=0
+unresolved_q=0

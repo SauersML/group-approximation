@@ -1,0 +1,17 @@
+[job] 04:06:17 acn112 waiting for clone lock
+[job] delta sync b360f7a94..be9ca5170: 133 files changed
+===== SUMMARY
+host acn112 cores 80-87 base be9ca5170 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-040613-59510.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2582 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientUnitsGL (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientBothInclusions.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientDiagonalSentence.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientUnitsGL.lean
+  [apply] abel_nf
+Build completed successfully (4551 jobs).
+EXIT=0
+PROBE GREEN
