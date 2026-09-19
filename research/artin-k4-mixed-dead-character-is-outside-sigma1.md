@@ -5,7 +5,7 @@ kind: claim
 title: "Test case for the Sigma^1-conjecture: the dead character (1,1,-1,-1) of the four-vertex Artin group K with cross labels 4,4,4,6 lies outside Sigma^1"
 refuted_by:
   - artin-k4-mixed-dead-character-lies-in-sigma1
-refuted_by: [artin-k4-odd-family-dead-characters-lie-in-sigma1]
+  - artin-k4-odd-family-dead-characters-lie-in-sigma1
 ---
 
 `K`, `χ` as in `artin-k4-dead-cut-admits-no-nonzero-dead-edge-ring`:
