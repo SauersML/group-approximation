@@ -9,7 +9,7 @@ distinct_from:
   ct-z-residue-partition-certificates-live-on-s-adic-coordinates: that reduces certificates to S-adic coordinates plus trivial blocks; this closes the case S = {2}.
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority claimed.
+**ESTABLISHED** (lane proof; **Referee PASS** bh-ref-q11 2026-09-19). No priority claimed.
 - **The problem, verbatim.** Kourovka Notebook, 21st issue, 21.74 (S. Kohl): "Is it
   algorithmically decidable whether a given element g ∈ CT(Z) (a) permutes a nontrivial partition
   of Z into residue classes? …"
@@ -122,3 +122,40 @@ Images of boxes under `ĝ` are explicit finite unions of boxes, so this is a fin
 - In one base, coordinate structure is therefore decidable in full.
 - In two bases the same holonomy maps exist, but the components themselves (Collatz, machines) are
   no longer finite or computable. That, not the coordinates, is where 21.74(a) can become hard.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS
+
+**The problem.** Checked verbatim against the Kourovka Notebook, arXiv:1401.0300v46. 21.74 prints no comment.
+- The node settles (a) for `g ∈ CT_∅(Z) ≅ V`, with arbitrary moduli.
+- The printed question, over all of `CT(Z)`, stays open, as the node says.
+
+**Lemma B: correct.**
+- B.2: the parts through `x ∈ R_j` are exactly `𝒫_j`, and they are disjoint over `x`.
+- B.3 is `K`-free. `β^(N)_x` carries the fibre partition over `x` injectively into the fibre partition over `g^N x`, so the images equal the parts. The same parts `C^N` arise for `x` and `x′`.
+
+**Lemma C, the fixed-point counting: correct.**
+- `ψ_n = C^(−n)R^n` has `Z[1/2]` coefficients, so it acts on every `Z_ℓ`, `ℓ` odd. Its slope `λ_n = 2^(−(t+s)n) ≠ 1`.
+- `ψ_n(B) = B` for a box forces `ψ_n` to fix each `ℓ`-ball, by the product action.
+- **Distinctness.** A common fixed point for `n = 1,2,3` would be a kernel vector of `[u^n, v^n, 1]_(n=1..3)` with `u = 2^(−s)`, `v = 2^t`. Its determinant `uv(v−u)(1−u)(1−v)` is nonzero, so `a = r`, which is a contradiction.
+- **The bound.** `ψ(c) − c = (λ−1)(c−p)` gives `v_ℓ(c − p_n) ≥ e − v_ℓ(λ_n − 1)`, so `e ≤ v_ℓ(p_n − p_(n′)) + μ`.
+- `E_j(ℓ) ≥ 1` only for `ℓ` dividing `num(p_n − p_(n′))(2^((t+s)n) − 1)(2^((t+s)n′) − 1)`.
+- The bound does not depend on `|𝒫|`.
+
+**Finite and effective.**
+- The revealing pair gives `U`, `V`, `R_j`, `u_j` (cone node), the attractor and repeller formulas `C, R`, and the exact rationals `a, r, p_1, p_2, p_3`.
+- Factoring is not even needed: any computable multiple of `m*` works. For example, the product over `j` of `|num(p_n − p_(n′))|·(2^((t+s)n) − 1)(2^((t+s)n′) − 1)`.
+- There are then finitely many candidate boxes, and conditions 1–3 are finite checks, since images of boxes under `ĝ` are boxes computed by the piece formulas.
+- In ⇐, `ĝ^N = id` on `U × Ẑ_odd`, because the formula of `g^N` on each piece of `U` is the identity. The box refinement (CRT) is permuted.
+
+**Calibration.** For `n ↦ 4n, n+9, (n−3)/4`:
+- `p_n = −1/(4^n + 1)` and `p_1 − p_2 = −12/85`;
+- `E(3) = 1 + 1 = 2`, and `E(5) = E(17) = 0`;
+- so `m* = 9`, and the search finds `{0(3), 1(3), 2(3)}`. This matches the odd-moduli node.
+
+**Priority and credit.**
+- I found no prior decidability result for 21.74(a) on `V` (web search, 2026-09-19). The problem is new in the 21st issue (2026).
+- Kohl's RCWA "respected partition" is the *tame* variant: a partition on whose classes `g` is affine. In `V` that is equivalent to finite order, so it is a different question.
+- Credit:
+  - revealing pairs: Brin; Salazar-Díaz; Bleak–Bowman–Gordon–Graham–Hughes–Matucci–Sapir, arXiv:1107.0672;
+  - the decomposition: Gilabert Vio / Goffer–Lederle;
+  - `CT_∅(Z) ≅ V`: McDermott, via Kohl.
