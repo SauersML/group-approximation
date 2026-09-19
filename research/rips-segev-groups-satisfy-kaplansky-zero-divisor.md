@@ -340,3 +340,29 @@ the Kaplansky zero-divisor conjecture."
      equations with fixed `u/w` must fail along `>= 21` consecutive impure
      arc cosets of one copy, whatever the other copies are.  Item 17 shows
      that supports alone cannot give this.
+
+21. **One-copy port equations are always solvable (obstruction; `rips-segev-single-copy-port-equations-are-always-solvable`).**
+   - Kills the step of item 20: "the port equations with fixed `u/w`
+     cannot hold along `>= 21` consecutive impure arc cosets of one copy".
+     As a local statement it is false, for every nonconstant `u/w`, every
+     face and every field.
+   - Duality: the port map `f -> ((f u)(In_i), (f w)(Out_i))` of a line
+     has image `Dep_i^perp`, where `Dep_i` is the set of reflected pairs
+     `(A, B)` on `(In_i, Out_i)` with `Ǎ u + B̌ w = 0`.
+   - Row separation, applied to the tensor identity `Ǎ_i B̌_j = Ǎ_j B̌_i`,
+     leaves at most one line with `Dep != 0`.  So every edge valuation of a
+     copy that respects that one line is realized by coefficients `f_i`.
+   - Every directed face cycle of `Phi` gets nonzero values at all its
+     ports.  This includes `(x_4 x_1)^21` at `gamma = 42`: 42 active arc
+     cosets, all `b^2`.  Consecutive arc cosets share one scalar, so there
+     is no ratio recursion.
+   - Calibration: the regular element `1 + 2a + (3 + a) b` also solves
+     every one-copy system.  The contradiction in
+     `rips-segev-one-copy-configurations-carry-no-zero-divisors` comes only
+     from the support condition.
+   - Next step (holonomy form): impose the support condition at the escaped
+     points.  That is, `supp(f_T u)` lies in the arrival ports of `T` and
+     `supp(f_T w)` in its departure ports, over every copy `T` meets.  Then
+     the space `Rep_T` is small, and each coset fixes an exit/entry ratio.
+     Show that the product of these ratios around a directed port cycle
+     cannot be `±1`.
