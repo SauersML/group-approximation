@@ -194,3 +194,16 @@ remains:
    - **What remains for cubulated groups.** Groups that are only virtually special, i.e. quasiconvex subgroups of RACGs
      such as generic hyperbolic 3-manifold groups. Contracting RSGs pass to finite-index overgroups, not to subgroups,
      and for their own cubulations (NA) and (IRR) are open.
+10. **2026-09-19 (lane `bh-partials`), finite-index subgroups and quasiconvex subgroups (lane proofs, not reviewed).**
+   - **Finite-index subgroups.** `contracting-rsgs-pass-to-finite-index-subgroups-via-loops`. Coset
+     refinement makes every finite-index subgroup of a contracting RSG an RSG with finite nucleus. It is contracting iff
+     the loop group of the coding acts transitively on the reachable cosets, for example when the loop labels generate
+     `G`. For hyperbolic RACGs with spread nerves the loop labels always generate `W`, so the old condition (c) is
+     dropped.
+   - **Why this does not give Agol ⇒ Question 1.1.** Virtual specialness gives a quasiconvex, infinite-index embedding
+     into a right-angled Artin or Coxeter group, usually a non-hyperbolic one. Closure under finite-index subgroups does
+     not cover that.
+   - **Quasiconvex subgroups.** `convex-cores-inherit-greedy-coding-na`: (NA) passes from any (NA) cubulation to the
+     convex core of a quasiconvex subgroup, by Helly. So quasiconvex subgroups of hyperbolic RACGs need only (IRR).
+   - **Open.** (NA) for a general hyperbolic 3-manifold group's own cubulation (parallel surfaces with commensurable
+     stabilizers). Also (IRR) for convex cores.

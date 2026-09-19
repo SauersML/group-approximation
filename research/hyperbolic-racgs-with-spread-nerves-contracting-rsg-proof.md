@@ -79,7 +79,7 @@ Lane `bh-partials`, lane proof, not reviewed.
 - **Conclusion.** By `sft-irreducible-core-iff-unique-recurrent-component`, the whole graph is an irreducible core, and
   (IRR) holds. With Step 2, item 1 follows from `greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs`.
 
-## Step 6: finite-index subgroups and commensurable groups (uses (c))
+## Step 6: finite-index subgroups and commensurable groups (no extra condition)
 
 - **The refined graph.** Let `Γ ≤ W` have finite index. Its states are the pairs `(σ, c)` with `c ∈ Γ∖W`, and
   `(σ, c) → (τ, c·s_0)` whenever `σ → τ`.
@@ -92,7 +92,9 @@ Lane `bh-partials`, lane proof, not reviewed.
   - The closed walks `m,k,m` and `m,k,l,k,m` along `𝒩` have labels `mk` and `mklk`, so `lk` is a loop label.
   - Inductively, `ab` is a loop label for every edge `a–b` of `𝒩`. Along paths in `𝒩` this gives every product `st`, so
     all of `W⁺` by (b).
-  - A closed walk through an odd cycle, which exists by (c), has odd length.
+  - **An odd loop exists (repair, 2026-09-19; the first version assumed (c)).** If `L` has an edge `{t,t'}`, (a) for
+    `σ = {t,t'}` gives `s ∉ St(t) ∪ St(t')`, and `{s} → {t,t'} → {max(t,t')} → {s}` is a closed walk of
+    length 3, with a label of odd length. If `L` has no edge, `𝒩` is complete on `≥ 3` vertices and has a triangle.
   - So the loops act transitively on `Γ∖W`, and the refined graph is strongly connected. It is not a cycle, since it
     covers a branching graph.
 - **Conclusion.** `Γ` is a contracting RSG. A group commensurable with `W` contains such a `Γ` with finite index;
