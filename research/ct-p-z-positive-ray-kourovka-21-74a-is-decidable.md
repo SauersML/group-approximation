@@ -2,7 +2,7 @@
 rg: 2
 id: ct-p-z-positive-ray-kourovka-21-74a-is-decidable
 kind: claim
-title: "Kourovka 21.74(a) is decidable for every g in CT_P(Z) (P finite) whose slopes lie in γ^Z for an integer γ ≥ 2: refined along the ray, g is an almost-automorphism of a forest, neutral primes and outside primes become unit-slope fibres, and the attractor–repeller holonomy bound and finite box search of the V case go through; mixed-sign and rank-two slopes are exactly where the base itself becomes hyperbolic"
+title: "Kourovka 21.74(a) is decidable for every g in CT_P(Z) (P finite) whose slopes lie in γ^Z for an integer γ ≥ 2 divisible by every prime dividing a modulus of g: refined along the ray, g is a Higman–Thompson element of a forest, primes outside the moduli are unit-slope fibres, and the V method goes through; with neutral primes (p ∤ γ) an attractor and a repeller can share a rational fixed point and the case is open; off the ray the base becomes hyperbolic (heuristic)"
 distinct_from:
   ct-empty-z-kourovka-21-74a-is-decidable: that is the case P = ∅ (γ = 2, base the binary tree); this allows odd primes in the moduli, as long as the slopes stay on one positive ray.
   ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44: that is the orbit-transversal question (20.44) under the same ray hypothesis; this is the partition question (21.74(a)).
@@ -11,9 +11,12 @@ distinct_from:
 **ESTABLISHED** (lane proof). No priority claimed. **Referee (bh-ref-q11, 2026-09-19): PASS when every prime of `S` divides `γ` (no neutral primes); GAP when neutral primes occur**, at "a ≠ r forces a_Q ≠ r_Q". See the Referee section.
 - **The problem.** Kourovka 21.74(a) (S. Kohl) asks whether it is decidable if a given
   `g ∈ CT(Z)` permutes a nontrivial partition of `Z` into residue classes.
-- **What this settles.** (a) for every `g` whose slopes lie on one positive ray, with classes of
-  any moduli.
-- **What stays open.** 21.74(a) itself is OPEN for mixed-sign and rank-two slopes.
+- **What this settles.** (a) for every `g` whose slopes lie on one positive ray `γ^Z`, **provided
+  every prime of `S` divides `γ`** (no neutral primes, `S_0 = ∅`, e.g. `S = {2, 3}` with
+  `γ = 6^k`). Classes may have any moduli. This hypothesis is restored after the referee report.
+- **What stays open.**
+  - The neutral-prime case (`S_0 ≠ ∅`); see "The neutral-prime case".
+  - 21.74(a) itself, for mixed-sign and rank-two slopes.
 - **The proof.** It is that of `ct-empty-z-kourovka-21-74a-is-decidable`, after the reduction
   below. Only the changes are written out.
 
@@ -55,7 +58,10 @@ distinct_from:
    - Near an attractor `a`, the formula of `g^M` is `C(y) = a_Q + γ^(κ_a)(y − a_Q)` with
      `κ_a ≥ 1`. Near a repeller it is `R(y) = r_Q + γ^(κ_r)(y − r_Q)` with `κ_r ≤ −1`.
    - `a_Q, r_Q ∈ Q` are the unique fixed points of these formulas, embedded diagonally in `Ẑ`.
-     They project to `a` and `r`, so `a ≠ r` forces `a_Q ≠ r_Q`.
+     When `S_0 = ∅`, `C` contracts every coordinate, so `a` *is* the image of `a_Q`, and
+     likewise `r` is the image of `r_Q`. Hence `a ≠ r` forces `a_Q ≠ r_Q`.
+   - **This step fails with neutral primes.** There `a` carries neutral digits that the image of
+     `a_Q` need not carry (referee, bh-ref-q11).
    - On every fibre coordinate (neutral `Z_p` or `Z_ℓ`, `ℓ ∉ S`), `ψ_n = C^(−n)R^n` has unit slope
      `γ^(n(κ_r − κ_a)) ≠ 1`, and it preserves every box of the fibre partition `Π_j` (Lemma B.3).
    - The Vandermonde argument (bases `γ^(κ_a)`, `γ^(κ_r)` and `1`, pairwise distinct) shows that
@@ -67,11 +73,34 @@ The torsion part `U × Φ` splits as before: `g^N = id` on `U` means identity fo
 `ĝ^N = id` there. The finite search over (base candidates) × (classes mod divisors of `m*`)
 decides YES. ∎
 
-## Where the mechanism breaks
+## The neutral-prime case (open)
+
+- **How the pair degenerates.** Let `p ∤ γ` divide a modulus. An attractor and a repeller can lie
+  over the same `S_+` point in different neutral slices. This happens when `γ^(κ_a) ≡ 1 (mod p)`,
+  so that `C` fixes many residues mod `p^(b_p)`.
+- **What that does to the proof.** Then `a_Q = r_Q = q`, every `ψ_n` fixes `q`, and Lemma C gives
+  no bound.
+- **An example with no bound.** In the fully degenerate case every formula over `R_j` fixes one
+  `q` (e.g. `g(y) = γ^(κ(y)) y` with a neutral prime). Take `ℓ` with `γ ≡ 1 (mod ℓ)`. The radial
+  partitions of `Z_ℓ` around `q` are preserved to every depth, so the depth of permuted partitions
+  is unbounded (referee).
+- **Possible repairs.** Suggested by the referee:
+  - use an edge `(r, a)` with `a_Q ≠ r_Q` when one exists;
+  - otherwise use the transit holonomies `C^(−(m+n_0)) T R^m`, whose fixed points move with `m`
+    unless `T(q) = q`;
+  - in the fully degenerate case, prove that a permuted partition exists iff one of bounded depth
+    does.
+- **Why it matters.** This shared-fixed-point regime is a natural place for the slope-lattice
+  conjecture (`ct-p-z-cone-avoiding-slope-lattices-trap-frozen-tails`) to have content.
+
+## Where the mechanism breaks (heuristic)
+
+This section is evidence, not a theorem. No off-ray element has been shown to escape every tree
+structure, and no rank-two case has been shown undecidable.
 
 - **Mixed-sign rays and rank two.** A piece with slope `3/2` (degree change `(−1, 1)`) expands
-  `Z_2` and contracts `Z_3` at once. No refinement makes `g` a tree almost-automorphism, since
-  cylinders of the two primes move in opposite directions.
+  `Z_2` and contracts `Z_3` at once. The natural refinement therefore does not make `g` a tree
+  almost-automorphism, since cylinders of the two primes move in opposite directions.
 - **What the base can then contain.**
   - Hyperbolic invariant Cantor sets. Conway's amusical permutation (rank two) is conjugate to the
     full 3-shift (`conway-amusical-permutation-is-the-full-three-shift`), with infinitely many
@@ -96,9 +125,12 @@ decides YES. ∎
 
 ## Lesson for general BH
 
-**For arithmetic hosts, "tree-like after refinement" is exactly "slopes on one positive ray".**
-- On that side, element-level dynamics (flow components), coordinate structure (holonomy depth)
-  and orbit statistics are all finite and computable.
+**For arithmetic hosts, "tree-like after refinement" goes with "slopes on one positive ray".**
+This is heuristic off the ray.
+- On that side, with every modulus prime dividing `γ`, element-level dynamics (flow components),
+  coordinate structure (holonomy depth) and orbit statistics are all finite and computable.
+- Neutral primes are the first place where attractor–repeller holonomy can degenerate: a shared
+  rational fixed point allows unbounded coordinate depth.
 - Off it, hyperbolicity enters the base: one prime expands while another contracts. With it come
   horseshoes and Collatz-type components.
 - So a positive-ray element of `CT_P(Z)` is a V-element in disguise, with passenger fibres.

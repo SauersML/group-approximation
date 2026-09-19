@@ -97,7 +97,7 @@ Let `C_Λ = span_R(Λ) ∩ R^S_(≥0)`.
 | Shape of `Λ` | Status |
 |---|---|
 | `C_Λ = {0}` (trapped) | tame wherever something freezes (this node); the sweeping case is open |
-| `Λ = Zv`, `v ≥ 0` (positive ray) | tame: 20.44, torsion and 21.74(a) all decided |
+| `Λ = Zv`, `v ≥ 0` (positive ray) | tame: 20.44 and torsion decided; 21.74(a) decided when every modulus prime divides `γ`; the neutral-prime case (shared attractor–repeller fixed point) is open |
 | `dim C_Λ ≥ 1` and `rank Λ ≥ 2` | contains `G_T` and Conway's `α` when `dim C_Λ = 2`; Collatz-hard in these examples; open in general |
 
 **Conjecture.** Collatz-type hardness requires a genuine positive dilation (an integer slope
