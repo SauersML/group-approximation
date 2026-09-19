@@ -20,6 +20,13 @@ W. van der Kallen, *Another presentation for Steinberg groups*, Indag. Math. **3
   `j` has two zeros. The case `j_p = j_q = 0` is `conj_xvw_x_of_zeros`.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
@@ -80,6 +87,7 @@ theorem conj_aux {G : Type*} [Group G] {y X R P B Z : G} (hP : y * P * y⁻¹ = 
 
 /-! ### `x(i, w)` at any zero -/
 
+open Classical in
 /-- `x(i, w)` computed at some zero of `w` (vdK 3.10); `1` if `w` has no zero. By `xz_eq` the
 choice of zero does not matter when `w i = 0`. -/
 noncomputable def xz (i w : I → A) : SteinbergGroup I A :=
@@ -96,10 +104,10 @@ theorem xvw_zero (i : I → A) (r : I) : xvw i 0 r = 1 := by
   rw [xvw, smul_zero, rowProd_zero, commutatorElement_one_right, one_mul]
 
 theorem xz_zero (i : I → A) : xz i (0 : I → A) = 1 := by
-  rw [xz]
-  split_ifs with h
-  · exact xvw_zero i _
-  · rfl
+  unfold xz
+  by_cases h : ∃ t, (0 : I → A) t = 0
+  · rw [dif_pos h, xvw_zero]
+  · rw [dif_neg h]
 
 theorem stU_xz {i w : I → A} {t : I} (hwi : w ⬝ᵥ i = 0) (ht : w t = 0) :
     stU I A (xz i w) = eUnit i w hwi := by

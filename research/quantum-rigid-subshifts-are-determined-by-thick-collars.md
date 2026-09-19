@@ -145,6 +145,18 @@ priority claimed). The standard facts marked "recalled" were not re-read. (RA) a
 
 ## What this says about (RA′)
 
+> **Scope (2026-09-19).** (RA) as stated is **refuted** on main by a non-free example with a
+> non-amenable point stabilizer (`rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`; the group
+> there is exact). What survives is
+> - (RA′): a minimal, topologically free, rigid subshift forces an exact group;
+> - (RA_free): a free, minimal, rigid subshift action is amenable.
+>
+> Read "(RA)" below as one of these, as stated at each use.
+
+Here item 5 concerns the finite-fibre form (RA_fin), which the non-free refutation does not touch: its
+example carries no invariant measure. A rigid Toeplitz shift over `G` refutes (RA′) if it is
+topologically free, and (RA_free) as well if it is free.
+
 - **Correction to the plan "prove (CC) in finite fibres".** In finite fibres, an invariant measure
   exists. So (CC) there holds only over amenable groups, where (RA) needs no proof. Every rigid row on
   main is of this kind. The finite-fibre case at a non-amenable group is the non-existence statement
