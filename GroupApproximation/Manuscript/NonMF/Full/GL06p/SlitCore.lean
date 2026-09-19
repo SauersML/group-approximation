@@ -17,7 +17,8 @@ bounds on the slit sides.  This module separates them.
   than the word norm of any walk from the boundary to a relator cell, in any diagram
   `O`-equivalent to `Δ`.  This is what steps 2 (the ribbon copy) and 3 (the pocket region)
   deliver.  `GL06p.metricClassMinimal_of_geodesic` gives the minimality fields for geodesic
-  spellings of a metrically nearest walk.
+  spellings of a metrically nearest walk.  The fields `foot_in` / `foot_out` record that the slit
+  starts and ends on the boundary of the copy.
 * `slitPocketCoreStatement`: steps 2 and 3, a core for every diagram with a metrically nearest
   walk (`GL06p.exists_metricNearestWalk`).
 * `longSlitWindowsStatement`: step 4, the window bound on a slit side longer than `ε + ε`.
@@ -90,6 +91,13 @@ structure SlitPocketCore (D : RelGenSet G Lambda) (Delta : DiscDiagram.{u, w, v}
   slitIn_minimal : MetricClassMinimal D Delta slitIn.length
   /-- The slit side `s₂` is metrically class-minimal. -/
   slitOut_minimal : MetricClassMinimal D Delta slitOut.length
+  /-- The foot of `s₁` is a boundary vertex of the copy: `p` starts on `∂Δ`. -/
+  foot_in : ∀ d ∈ slitIn.head?, ∃ b : copy.toCombMap.Dart,
+    copy.toCombMap.faceOf b = copy.outerFace ∧ copy.toCombMap.vertexOf b = copy.toCombMap.vertexOf d
+  /-- The foot of `s₂` is a boundary vertex of the copy. -/
+  foot_out : ∀ d ∈ slitOut.getLast?, ∃ b : copy.toCombMap.Dart,
+    copy.toCombMap.faceOf b = copy.outerFace ∧
+      copy.toCombMap.vertexOf b = copy.toCombMap.vertexOf (copy.toCombMap.alpha d)
 
 namespace SlitPocketCore
 

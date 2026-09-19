@@ -94,13 +94,16 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 
 /-- **A near window of a pocket** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121).  Every region of an O-equivalent copy of the pocket to the
-boundary positions `[lo, hi]` has target arc at most `ε + ε`.  On a side of the slit `p̂` this
-follows from the minimality of `p`. -/
+boundary positions `[lo, hi]` with a nonempty source arc has target arc at most `ε + ε`.  On a side
+of the slit `p̂` this follows from the minimality of `p`.  A region with an empty source arc is
+not tied to its source cell, and has degree `0`, so the count of `GL06h3` needs no bound on
+it. -/
 def NearWindow (D : RelGenSet G Lambda) (eps : ℕ) {X : DiscDiagram.{u, w, v} W}
     (P : PocketRegion X) (lo hi : ℕ) : Prop :=
   ∀ Xi : DiscDiagram.{u, w, v} W, OEquivalentDiscDiagram P.diagram Xi →
     ∀ a : RegionCandidate D eps Xi, a.2.target = none → lo ≤ a.2.targetArc.start.1 →
-      a.2.targetArc.start.1 + a.2.targetArc.length ≤ hi → a.2.targetArc.length ≤ eps + eps
+      a.2.targetArc.start.1 + a.2.targetArc.length ≤ hi → 0 < a.2.sourceArc.length →
+        a.2.targetArc.length ≤ eps + eps
 
 /-- **The slit pocket at a nearest cell** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121).  A pocket region of an O-equivalent copy of `Δ`, with a relator
@@ -237,19 +240,19 @@ theorem near (N : NearestCellPocket D eps Delta) {rho : ℕ} {mu lambda c : ℝ}
       ∀ (Xi : DiscDiagram.{u, w, v} W), OEquivalentDiscDiagram N.pocket.diagram Xi →
         ∀ a : RegionCandidate D eps Xi,
           RegionCandidate.TargetsSectionIndex (N.sections hcondition hlambda1 hc) j a →
-            a.2.targetArc.length ≤ eps + eps := by
-  intro j hj Xi E a ha
+            0 < a.2.sourceArc.length → a.2.targetArc.length ≤ eps + eps := by
+  intro j hj Xi E a ha hsrc
   obtain ⟨hnone, hlo, hhi⟩ := ha
   rcases hj with hj | hj
   · rw [N.sections_cut hcondition hlambda1 hc, Fin.val_castSucc, hj,
       partsCut_four_first] at hlo
     rw [N.sections_cut hcondition hlambda1 hc, Fin.val_succ, hj, partsCut_four_second] at hhi
-    exact N.near_in Xi E a hnone hlo hhi
+    exact N.near_in Xi E a hnone hlo hhi hsrc
   · rw [N.sections_cut hcondition hlambda1 hc, Fin.val_castSucc, hj, partsCut_four_third,
       N.invDarts_arc_length] at hlo
     rw [N.sections_cut hcondition hlambda1 hc, Fin.val_succ, hj, partsCut_four_fourth,
       N.invDarts_arc_length] at hhi
-    exact N.near_out Xi E a hnone hlo hhi
+    exact N.near_out Xi E a hnone hlo hhi hsrc
 
 /-- **Section `2` transports** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121): a region to the arc of `Π` glues back, by
