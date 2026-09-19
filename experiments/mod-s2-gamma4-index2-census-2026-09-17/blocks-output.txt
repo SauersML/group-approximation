@@ -1,0 +1,16 @@
+block sizes [64, 64, 64, 64, 64, 64, 64, 64, 64, 64]
+0 (1, 0, 0, 0, 0, 0, 0, 0, 0, 0) orbit 60 killed splittings 0 predicted classes 160
+1 (0, 1, 0, 0, 0, 0, 0, 0, 0, 0) orbit 15 killed splittings 0 predicted classes 160
+2 (0, 0, 1, 0, 0, 0, 0, 0, 0, 0) orbit 45 killed splittings 2 predicted classes 192
+3 (1, 1, 0, 0, 1, 0, 0, 0, 0, 0) orbit 20 killed splittings 0 predicted classes 160
+4 (0, 0, 1, 0, 1, 0, 0, 0, 0, 0) orbit 180 killed splittings 0 predicted classes 160
+5 (1, 0, 1, 0, 1, 0, 0, 0, 0, 0) orbit 180 killed splittings 0 predicted classes 160
+6 (1, 1, 1, 0, 1, 0, 0, 0, 0, 0) orbit 60 killed splittings 0 predicted classes 160
+7 (0, 0, 0, 1, 0, 1, 0, 0, 0, 0) orbit 60 killed splittings 1 predicted classes 176
+8 (1, 0, 0, 1, 0, 1, 0, 0, 0, 0) orbit 120 killed splittings 0 predicted classes 160
+9 (0, 1, 0, 1, 0, 1, 0, 0, 0, 0) orbit 90 killed splittings 0 predicted classes 160
+10 (1, 0, 0, 0, 0, 0, 0, 1, 0, 0) orbit 10 killed splittings 0 predicted classes 160
+11 (1, 1, 0, 0, 1, 0, 0, 1, 0, 0) orbit 6 killed splittings 0 predicted classes 160
+12 (1, 1, 1, 0, 1, 0, 0, 1, 0, 0) orbit 90 killed splittings 0 predicted classes 160
+13 (0, 1, 0, 1, 1, 1, 0, 1, 0, 0) orbit 72 killed splittings 0 predicted classes 160
+14 (0, 1, 0, 1, 0, 0, 0, 0, 1, 0) orbit 15 killed splittings 0 predicted classes 160
