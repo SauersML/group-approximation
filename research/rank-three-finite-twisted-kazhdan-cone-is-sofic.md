@@ -148,3 +148,37 @@ centreless invisible core, and `T_3` is the basic example.
     by elementary matrices over a subring.  The span of that group already contains `M_3(F_q)`.  Or it needs a
     `B` containing no level `U_k`.  The natural next class is the elementary net groups `E(σ)`.  There the
     step to test is the passage from the span back to group elements.
+- **w15-111, 2026-09-18: net subpairs and the span-to-group passage (class-killing obstruction).**
+  - *Result.*  By [[net-sandwich-level-subpairs-cannot-certify-rank-three-cone]], take `B ⊇ U_k` with
+    `-e_l ∈ cone(H_B · R_+^d)`.  Then the span of `B ∩ EL_3(R) - 1` contains `M_3(F_q)`.  Suppose also that
+    `B ∩ EL_3(R)` lies between `e_ab(σ_ab)` and `1 + ⊕ σ_ab E_ab` for some pattern of entry spaces.  This
+    holds for every elementary net group `E(σ)` and every group between `E(σ)` and `G(σ)`.  Then
+    `e_ab(1) ∈ C` and `psi(C) = F`.  With (X1), (X2) and (W2), no such `B` is a Kun-Thom certificate.  A box
+    level is not enough: `D (EL_3(F_q[x^(±1)][y_1, y_2]) x| SL_(d_1)(Z)) D^-1` with `D = diag(1, 1, y_1/y_2)`
+    has a Kazhdan `B`, a net elementary part, and a line in the cone.  Its origin image lies in a Levi
+    subgroup with nontrivial centraliser, but its edge maps onto a finite-index overgroup of `SL_2(F_q[x_1])`.
+  - *Why.*  Conjugating level scalars `x^(2k e_i) I` through `H_B` and multiplying along a rational relation
+    `-N e_l = Σ n_s h_s e_(i_s)` puts `x^(-2kN e_l) I` in the span.  The single-variable level element
+    `x_l^(2kN) E_ab` then gives `E_ab`.  A pattern `1 + M(σ)` is a linear space, so the span cannot leave it,
+    and `1 ∈ σ_ab` forces `e_ab(1)` into the group.
+  - *What is left.*  With a level `U_k`, a certificate needs an elementary part that is not
+    pattern-sandwiched.  Some `E_ab` lies in its span while `e_ab(1)` does not lie in the group, as for
+    normal closures of `U_k` twisted by non-monomial `u`.  Without a level, the failure mode is a
+    hypersurface level, and the edge must be Kazhdan in a new way.
+- **w15-111, 2026-09-18: net subpairs and the span-to-group passage (class-killing obstruction).**
+  - *Result.*  By [[net-sandwich-level-subpairs-cannot-certify-rank-three-cone]], take `B ⊇ U_k` with
+    `-e_l ∈ cone(H_B · R_+^d)`.  Then the span of `B ∩ EL_3(R) - 1` contains `M_3(F_q)`.  Suppose also that
+    `B ∩ EL_3(R)` lies between `e_ab(σ_ab)` and `1 + ⊕ σ_ab E_ab` for some pattern of entry spaces.  This
+    holds for every elementary net group `E(σ)` and every group between `E(σ)` and `G(σ)`.  Then
+    `e_ab(1) ∈ C` and `psi(C) = F`.  With (X1), (X2) and (W2), no such `B` is a Kun-Thom certificate.  A box
+    level is not enough: `D (EL_3(F_q[x^(±1)][y_1, y_2]) x| SL_(d_1)(Z)) D^-1` with `D = diag(1, 1, y_1/y_2)`
+    has a Kazhdan `B`, a net elementary part, and a line in the cone.  Its origin image lies in a Levi
+    subgroup with nontrivial centraliser, but its edge maps onto a finite-index overgroup of `SL_2(F_q[x_1])`.
+  - *Why.*  Conjugating level scalars `x^(2k e_i) I` through `H_B` and multiplying along a rational relation
+    `-N e_l = Σ n_s h_s e_(i_s)` puts `x^(-2kN e_l) I` in the span.  The single-variable level element
+    `x_l^(2kN) E_ab` then gives `E_ab`.  A pattern `1 + M(σ)` is a linear space, so the span cannot leave it,
+    and `1 ∈ σ_ab` forces `e_ab(1)` into the group.
+  - *What is left.*  With a level `U_k`, a certificate needs an elementary part that is not
+    pattern-sandwiched.  Some `E_ab` lies in its span while `e_ab(1)` does not lie in the group, as for
+    normal closures of `U_k` twisted by non-monomial `u`.  Without a level, the failure mode is a
+    hypersurface level, and the edge must be Kazhdan in a new way.
