@@ -1,0 +1,1 @@
+max lower bound on rk(J cap B : X) with rk(J : X) = 1: <2

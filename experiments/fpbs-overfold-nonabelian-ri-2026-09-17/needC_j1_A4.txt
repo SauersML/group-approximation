@@ -1,0 +1,2 @@
+j 1 A4 X count 4 tested 1920 S3-skipped 0 violations 0
+hist (rk H, lower bound): [((2, 0), 474), ((5, 1), 24), ((13, 0), 1392), ((14, 1), 30)]
