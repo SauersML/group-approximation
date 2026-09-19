@@ -366,3 +366,19 @@ vocabulary rather than its content.
   totally dissipative. A surviving ray-code certificate needs off-orbit matches.
   For skeleton codes these force insertions that fellow-travel cosets of `F` on
   unbounded lengths.
+
+* **Off-orbit matches through non-transverse insertions on a cocompact `Sp(n,1)`
+  lattice (w13-026, `fpbs-finite-to-one-quasigeodesic-ray-codes-die`).** The aim
+  was to escape match rigidity by allowing insertions that fellow-travel cosets
+  of `F`, so that off-orbit matches exist on a set of positive measure.
+  **Where it dies:** off-orbit matches are not the invariant that decides the
+  diagonal. On any hyperbolic group, a uniformly quasi-geodesic ray code whose
+  position-to-endpoint map is finite-to-one forward and countable-to-one backward
+  carries no class with a conservative diagonal. The proof uses a pigeonhole on a
+  finite ball, then the finite fibre freezes the position, so joint returns run
+  down one backward code line. This holds whatever its off-orbit matches. Recoding
+  the lattice odometer (merging each insertion with its preceding `F`-run) makes
+  off-orbit matches appear on half the space and fail (I1), yet the class still
+  dies. For invariant measures, a survivor needs positive entropy or **infinite
+  spelling multiplicity**: infinitely many forward words from `1` with a common
+  endpoint, on a set of positive measure.
