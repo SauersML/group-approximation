@@ -132,3 +132,26 @@ nothing: the flagship then needs a torsion-free sofic Kazhdan kernel with
      every block.
    - *What survives.*  Norm-model arguments over the whole group, as in
      Attempts 3--5.  This is the same wrap block where Attempt 1 dies.
+7. **QD- and nuclear-coefficient covariant models (2026-09-19, operator-algebras,
+   dead class).**  This attempt is recorded by swarm-0917-w19-w19-titz-break. It
+   is the construction-side counterpart of Attempt 6.
+   `qd-coefficient-models-miss-quotientless-kazhdan-kernels`
+   (established) proves the following. Take any homomorphism
+   `Pi : Q semidirectProduct_psi Z -> U(A)`. Suppose `C*(Pi(Q))` lies in a
+   quasidiagonal subalgebra, or lies in a separable nuclear subalgebra of the
+   norm corona. Then `Pi` is trivial on `Q`.
+   - *What dies.*  Refutations of (XMF) built from any of the following:
+     - Pimsner--Voiculescu or Brown AF-embedding of `A rtimes_beta Z`, where
+       `A` is AF or quasidiagonal and carries a covariant copy of `Q`;
+     - nuclear or UCT hosts in the sense of Tikuisis--White--Winter;
+     - RFD and exact-product models.
+   - *Invariant.*  Quasidiagonality of the coefficient algebra `C*(Pi(Q))`.
+   - *Death step.*  Restrict to `Q`. The image group is Kazhdan and
+     quotientless, and by Mal'cev its finite-dimensional representations are
+     trivial. For case (QD), `kazhdan-groups-without-fd-reps-avoid-qd-unitary-groups`
+     kills it. For case (NUC), a Choi--Effros lift makes it weakly quasidiagonal,
+     and `weak-qd-kazhdan-quotientless-group-is-trivial` kills it.
+   - *What survives.*  Models whose coefficient algebra `C*(Pi(Q))` is MF but
+     neither quasidiagonal nor nuclear-contained, with the implementing unitary
+     built directly in the corona. The periodizations of Attempt 1 are of this
+     kind. (XMF) stays OPEN.

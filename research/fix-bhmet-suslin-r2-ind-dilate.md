@@ -10,6 +10,8 @@ It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm works
 
 
 
+**Repair landed, unprobed.** da5b910bed: BH chain wave 6: remaining bh-pal-wire reds of probe b1789846523 (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```

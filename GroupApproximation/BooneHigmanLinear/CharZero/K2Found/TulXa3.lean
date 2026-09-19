@@ -100,7 +100,8 @@ theorem pm_Xa (h4 : 4 ≤ Fintype.card I) {v w : I → A} (u : I → A) (hw : w 
       (fun pq => pc v w u pq.1 pq.2)
       (fun pq => by
         obtain ⟨l, -, -, hl, -⟩ := pc_twoZ h4 v w u pq.1 pq.2
-        rw [coe_txc, pm_tx hX ⟨l, hl⟩ (pc_dot v w u pq.1 pq.2)])
+        simp only [coe_txc]
+        rw [pm_tx hX ⟨l, hl⟩ (pc_dot v w u pq.1 pq.2)])
       (fun pq => pc_dot v w u pq.1 pq.2),
     pc_sum_all u hw, vecMulVec_smul]
 
@@ -166,9 +167,9 @@ theorem coe_prod_mul {v v₁ v₂ : I → A} {ι : Type*} (s : Finset ι) (H : �
   | empty => simp
   | insert a s ha ih =>
     rw [Finset.prod_insert ha, Finset.prod_insert ha, Finset.prod_insert ha, Subgroup.coe_mul,
-      Subgroup.coe_mul, Subgroup.coe_mul, hH a, ih, mul_assoc, ← mul_assoc (G a : SteinbergGroup I A),
-      (commute_coe_prod hX s F _ fun l => hc a l).eq]
+      Subgroup.coe_mul, Subgroup.coe_mul, hH a, ih]
     simp only [mul_assoc]
+    rw [(commute_coe_prod hX s F _ fun l => hc a l).left_comm]
 
 
 end TulElem

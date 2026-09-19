@@ -2,7 +2,7 @@
 rg: 2
 id: polygonal-anzai-codings-lift-only-finitely-many-rotations
 kind: claim
-title: In a subshift that is an almost 1-1 extension of the Anzai skew product (x,y) ↦ (x+α, y+x) with polygonal singular set, only finitely many fibre rotations lift to automorphisms, because rotations preserve slopes while the dynamics shears them; so the targets T1/T2 need singular sets containing pieces of unboundedly many tilts (hierarchical, simulation-type codings), and T1 would also give a minimal zero-entropy free Z^d-SFT with a free group of automorphisms
+title: In a subshift that is an almost 1-1 extension of the Anzai skew product (x,y) ↦ (x+α, y+x) with polygonal singular set, only finitely many fibre rotations lift to automorphisms, because rotations preserve slopes while the dynamics shears them; this suggests (heuristically, not proved) that the targets T1/T2 need singular sets containing pieces of unboundedly many tilts (hierarchical, simulation-type codings), and T1 would also give a minimal zero-entropy free Z^d-SFT with a free group of automorphisms
 requires:
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
   - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
@@ -12,7 +12,7 @@ distinct_from:
   ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows: that shows T1, if built, refutes (RA_free); this rules out the geometric codings as a way to build it, and records its zero-entropy consequence.
 ---
 
-**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; not reviewed; no priority
+**ESTABLISHED** (lane bh-invent-16, 2026-09-19; lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19 for item 1; no priority
 claimed). It is a calibration for targets T1 and T2 (Line I). The circle fibre is abelian, so this says
 nothing directly about (RA_free). It shows which codings cannot work.
 
@@ -31,11 +31,11 @@ nothing directly about (RA_free). It shows which codings cannot work.
 ## Statement
 
 1. `G_lift` is finite.
-2. **Mechanism.** Fibre rotations preserve slopes, while `T^n` adds `n` to the slope of every
+2. **Mechanism (heuristic; proved only in the case of item 1).** Fibre rotations preserve slopes, while `T^n` adds `n` to the slope of every
    non-vertical segment. The singular set `Z_sing = ⋃_n T^n Z_1` therefore meets each slope window in a
    compact set, and a compact set invariant under an infinite (hence dense) group of fibre rotations
    would contain whole fibres.
-3. **Consequence for T1 and T2.** Take a twisted skew product `M ×_c K` with lifted fibre translations
+3. **Consequence for T1 and T2 (heuristic, not proved).** Take a twisted skew product `M ×_c K` with lifted fibre translations
    dense in `K`. By the same mechanism, whenever the derivative cocycle shears tangent planes properly,
    the singular set must contain pieces of unboundedly many tilts in every tilt window. Geometric codings
    (polygonal or cut-and-project, bounded tilt) are then excluded. What remains are wild, hierarchical
@@ -83,3 +83,42 @@ A dense commutant, and with it the time-lift counterexample to (RA_free), needs 
 contain every sheared copy of themselves: self-similar, hierarchical boundaries. So T1 is a
 fixed-point-simulation problem, the same mechanism that gives rigidity. It would at the same time be a
 minimal zero-entropy `Z^2`-SFT with a free group of automorphisms.
+
+## Literature check for item 4 (bh-invent-16, 2026-09-19)
+
+This is for crediting the side result. Sources were read as noted.
+- **Hochman**, *On the automorphism groups of multidimensional shifts of finite type*, ETDS 2010. The
+  preprint was read at source, pp. 1–3 and §8.
+  - Theorems 1–3 concern positive entropy.
+  - After Theorem 1 he gives a **zero-entropy** `Z^2`-SFT whose automorphism group is that of the full
+    `Z`-shift, so it contains `F_2`: vertical columns are constant.
+  - That SFT is neither minimal nor free. So "zero entropy with `F_2 ≤ Aut`" is Hochman's. Item 4 claims
+    something only in the **minimal and free** case.
+  - §8 asks whether every finitely presented group embeds in `aut X` for some SFT `X`.
+- **Cyr–Kra**, arXiv:1708.06253 and 1509.08493 (abstracts read):
+  - `Z`-subshifts of complexity `o(n^2/log^2 n)` have amenable `Aut`;
+  - minimal `Z`-subshifts of stretched-exponential growth with exponent `< 1/2` have amenable `Aut`;
+  - they suggest zero entropy may suffice.
+- **Cortez–Petite**, *Realization of big centralizers of minimal aperiodic actions on the Cantor set*,
+  DCDS 2020 (abstract read). Every countable residually finite group, `F_2` and Osajda's group included,
+  embeds in the centralizer of some minimal `Z`-action on the Cantor set. These are Cantor systems, not
+  subshifts, and not rigid. So Line I's content is rigidity plus finite type, not the embedding alone.
+- **Fokkink–Rust–Salo**, arXiv:2203.13545 (abstract read): random substitution subshifts with `Aut`
+  containing the automorphism group of a full shift. These have positive entropy.
+- **Not found** in this search: a **minimal, free, zero-entropy** `Z^2`-SFT with `F_2 ≤ Aut`. Item 4 is
+  therefore stated as a consequence of T1, with no priority claimed.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for item 1; items 2–3 are heuristics; item 4 is conditional and correctly stated
+
+**Item 1: correct**, with three precisions (no gap).
+- **Slope count.** `T^n` has linear part `[[1,0],[n,1]]`, so slopes go `s ↦ s + n`. The slope-window count should read `(Sl + n) ∩ [a,a+1) ≠ ∅`, not `Sl − n`. It is still at most `|Sl|` values of `n`.
+- **Why `R_t(S_a) ⊆ S_a`.** `Z_sing` is a *countable* union of segments. The step needs each segment `σ ⊆ T^nZ_1` to have image `R_tσ ⊆ ⋃_(|m|≤R) T^(n+m)Z_1`, a *finite* union, by item 4 of the collapse node and `R_tT = TR_t`. Only then do local coincidence and closedness of `S_a` apply.
+- **The conclusion.** If `Z_sing` has no non-vertical segments, then:
+  - off countably many vertical circles, `ρ^(-1)(z)` is a single `y`, with `y(n) = f(T^nz)` depending only on `x`;
+  - so the unique preimages of `(x, y_1)` and `(x, y_2)` coincide, and `ρ` would send one point to two.
+
+  That is the contradiction. It also covers `Z_1 = ∅`, where the coding would be constant. Infinite subgroups of the circle are dense, so the density step holds.
+
+**Items 2–3** are motivation. They are proved only in the abelian, polygonal case of item 1. The title's "so the targets T1/T2 need singular sets containing pieces of unboundedly many tilts" should be read as a heuristic design constraint, not a theorem about `M ×_c K`.
+
+**Item 4** is a correct conditional: T1 is rigid, rigid rows have zero entropy, and `F_2 ≤ Aut`. The literature section credits Hochman's non-minimal zero-entropy example appropriately.
