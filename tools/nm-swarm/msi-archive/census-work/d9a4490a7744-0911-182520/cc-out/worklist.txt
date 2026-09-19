@@ -1,0 +1,1 @@
+wrote cc-out/WORKLIST.md {'structural': 50, 'formalized': 281, 'partial': 46, 'definition': 48, 'attribution': 19, 'open': 7, 'unassigned': 28, 'provenance': 19}

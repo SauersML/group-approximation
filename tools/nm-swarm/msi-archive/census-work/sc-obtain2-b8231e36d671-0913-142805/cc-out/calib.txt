@@ -1,0 +1,408 @@
+old ok  via_partial              want=clean got=clean
+old ok  via_in_place             want=clean got=clean
+old ok  via_in_place_anonymous   want=clean got=clean
+old ok  via_in_place_term        want=clean got=clean
+old BAD via_in_place_witness     want=clean got=conditional-data
+old ok  via_partial_never        want=open-predicate got=buried-conditional,open-predicate
+old ok  hides_partial            want=open-predicate got=buried-conditional,open-predicate
+old ok  via_never_lift           want=conditional-data got=conditional-data
+old ok  via_needy_lift           want=conditional-data got=conditional-data
+old ok  via_sort_lift            want=conditional-data got=conditional-data
+old ok  via_never_witness        want=conditional-data got=conditional-data
+old ok  via_partial_debt         want=conditional-debt got=conditional-debt
+old ok  via_debt_lift            want=conditional-debt got=conditional-debt
+old FIXTURE_BAD=1
+new ok  via_partial              want=clean got=clean
+new ok  via_in_place             want=clean got=clean
+new ok  via_in_place_anonymous   want=clean got=clean
+new ok  via_in_place_term        want=clean got=clean
+new ok  via_in_place_witness     want=clean got=clean
+new ok  via_partial_never        want=open-predicate got=buried-conditional,open-predicate
+new ok  hides_partial            want=open-predicate got=buried-conditional,open-predicate
+new ok  via_never_lift           want=conditional-data got=conditional-data
+new ok  via_needy_lift           want=conditional-data got=conditional-data
+new ok  via_sort_lift            want=conditional-data got=conditional-data
+new ok  via_never_witness        want=conditional-data got=conditional-data
+new ok  via_partial_debt         want=conditional-debt got=conditional-debt
+new ok  via_debt_lift            want=conditional-debt got=conditional-debt
+new FIXTURE_BAD=0
+SIZES old-D=2491 new-D=2493
+GAINED GFaceMerge
+GAINED SpikeDeletion
+HEADS GroupApproximation.BundleCalculus.unitaryConj_of_norm_sub_lt_one ['A', 'a', 'b', 'u', 'z'] GroupApproximation/AlgTop/BundleCalculusProjection.lean:129
+HEADS GroupApproximation.BundleCalculus.unitaryConj_pullback_of_homotopy ['C', 'F'] GroupApproximation/AlgTop/BundleCalculusPullback.lean:97
+HEADS GroupApproximation.AlgTop.TotalChern.powerSum_line ['q'] GroupApproximation/AlgTop/ChernLineRoots.lean:92
+HEADS GroupApproximation.AlgTop.TotalChern.chernClass_eq_of_chernChar_sq_zero ['q'] GroupApproximation/AlgTop/ChernNewtonDischarge.lean:59
+HEADS GroupApproximation.AlgTop.chern_eq_of_squareZero ['k'] GroupApproximation/AlgTop/ChernNewtonSquareZero.lean:140
+HEADS GroupApproximation.AlgTop.kronCycleMor_toCycles ['m'] GroupApproximation/AlgTop/Kronecker.lean:141
+HEADS GroupApproximation.AlgTop.MappingTorusParity.two_dvd_of_clearedNewton ['q'] GroupApproximation/AlgTop/MappingTorusParityCore.lean:127
+HEADS GroupApproximation.CongruenceTorsionFree.matrix_eq_one_of_pow_eq_one ['SpecialLinearGroup'] GroupApproximation/Algebra/CongruenceTorsionFree.lean:285
+HEADS GroupApproximation.FiniteIndex.isQuasiIsometry_retractMap ['wordNorm', 'ℕ'] GroupApproximation/Algebra/FiniteIndexQuasiIsometry.lean:73
+HEADS GroupApproximation.FreeProductCyclic.torsion_conj_into_factor ['n'] GroupApproximation/Algebra/FreeProductCyclicWord.lean:440
+HEADS GroupApproximation.HNNTrivialAssociated.commElt_zpow_ne_one ['q', 'ℕ'] GroupApproximation/Algebra/HNNTrivialAssociated.lean:135
+HEADS GroupApproximation.Hyperbolic.bigon_mem ['ℕ'] GroupApproximation/Algebra/HyperbolicFinitePresentation.lean:260
+HEADS GroupApproximation.Hyperbolic.ker_le_relClosure ['FreeGroup.mk', 'List'] GroupApproximation/Algebra/HyperbolicFinitePresentation.lean:341
+HEADS GroupApproximation.Hyperbolic.isSymmetricGeneratingSet_intAlphabet ['Multiplicative.ofAdd', 'ℤ'] GroupApproximation/Algebra/HyperbolicInteger.lean:54
+HEADS GroupApproximation.IntegerPolynomialUnisolvence.finite_bounded_on_grid ['T', 'v', 'ℤ'] GroupApproximation/Algebra/IntegerPolynomialUnisolvence.lean:112
+HEADS GroupApproximation.MFQuotientUnits.telescopePiece_mul_of_ne ['k', 'l'] GroupApproximation/Algebra/IsometryTelescope.lean:113
+HEADS GroupApproximation.MFQuotientUnits.exists_blockIdentityCorner ['R', 'x', 'y'] GroupApproximation/Algebra/PeirceBlockFactorization.lean:121
+HEADS GroupApproximation.MFQuotientUnits.printedItemA ['m'] GroupApproximation/Algebra/PeirceElementaryFactorization.lean:191
+HEADS GroupApproximation.MFQuotientUnits.exists_ringEquiv_twistedMatrixCorner ['g', 'ι'] GroupApproximation/Algebra/PeirceTwistedMatrixRing.lean:136
+HEADS GroupApproximation.PushoutITorsionFree.exists_conj_into_factor_aux ['G', 'φ'] GroupApproximation/Algebra/PushoutITorsionFree.lean:304
+HEADS GroupApproximation.DiscreteStokes.linearStokes_image_of_steps ["b'"] GroupApproximation/Algebra/QuotientLinearStokes.lean:151
+HEADS GroupApproximation.FiniteIndex.normalClosure_subgroupOf_eq ['f'] GroupApproximation/Algebra/ReidemeisterSchreier.lean:79
+HEADS GroupApproximation.AmenableTraceHyperlinear.isHyperlinear_of_isAmenableTrace_canonicalMaximal ['ℝ'] GroupApproximation/Analysis/AmenableTraceHyperlinear.lean:407
+HEADS GroupApproximation.CStarTensor.isExactCStar_complex ['B', 'x'] GroupApproximation/Analysis/CStarExactComplex.lean:85
+HEADS GroupApproximation.CStarTensor.IsCStarSeminorm.exists_isCStarNorm_on_quotient ['Ideal.Quotient.mk'] GroupApproximation/Analysis/CStarSeminormQuotient.lean:373
+HEADS GroupApproximation.Quasidiagonal.isCompletelyPositiveOnMatrices_compressionMap ['Fin', 'GroupHilbert', 'u', 'v'] GroupApproximation/Analysis/CompressionTraceModel.lean:260
+HEADS GroupApproximation.CuntzPedersenJordanModelTest.positive_scalar ['ℝ'] GroupApproximation/Analysis/CuntzPedersenJordanModelTest.lean:115
+HEADS GroupApproximation.GuentnerKaminker.hasPropertyA_of_gaussianRoeApproximation ['ℝ'] GroupApproximation/Analysis/GuentnerKaminker.lean:230
+HEADS GroupApproximation.GuentnerKaminkerEndpoint.hasPropertyA_of_gram ['ℝ'] GroupApproximation/Analysis/GuentnerKaminkerEndpoint.lean:95
+HEADS GroupApproximation.STW59.exists_frame ['Matrix', 'c'] GroupApproximation/Analysis/LIXBlockProjections.lean:297
+HEADS GroupApproximation.LIX.Gen.diagWitnessNullHomotopic ['n'] GroupApproximation/Analysis/LIXCor4PowersDiag.lean:410
+HEADS GroupApproximation.LIX.CStarTower.ind₂ ['i', 'ℕ'] GroupApproximation/Analysis/LIXLimitTower.lean:228
+HEADS GroupApproximation.LIX.CStarTower.ind₃ ['i', 'ℕ'] GroupApproximation/Analysis/LIXLimitTower.lean:239
+HEADS GroupApproximation.LIX.CStarTower.binAux_rel ['k', 'ℕ'] GroupApproximation/Analysis/LIXLimitTower.lean:265
+HEADS GroupApproximation.STW59.exists_rankOneProj_absorbed ['ℝ'] GroupApproximation/Analysis/LIXProjectiveSpaceModel.lean:333
+HEADS GroupApproximation.LIX.mem_of_mul_self_le ['ℝ'] GroupApproximation/Analysis/LIXSimplicity.lean:286
+HEADS GroupApproximation.AmenableExtensionTrace.stage_no_fixed_coset ['Quotient.out'] GroupApproximation/Analysis/LocallyRFQuasidiagonalTrace.lean:250
+HEADS GroupApproximation.ExactnessPermanence.hasPropertyA_of_ker_of_quotient ['Q', 'π'] GroupApproximation/Analysis/PropertyAExtension.lean:455
+HEADS GroupApproximation.mul_eq_one_comm_of_isometry_unitary ['A', 'c'] GroupApproximation/Analysis/ReducedGroupCStarDedekindFinite.lean:60
+HEADS GroupApproximation.RordamDistanceOne.rordam_pointwise ['ℝ'] GroupApproximation/Analysis/RordamDistanceOne.lean:150
+HEADS GroupApproximation.STW22.isTypeI_of_isScalarExtension ['B', 'π'] GroupApproximation/Analysis/STW22TypeIUnitization.lean:124
+HEADS GroupApproximation.GroupTower.mulAux_rel ['k', 'ℕ'] GroupApproximation/Analysis/SequentialGroupColimit.lean:110
+HEADS GroupApproximation.ShulmanFill.oneDim_mul_comm ['oneDimEquiv'] GroupApproximation/Analysis/ShulmanFillNormingPrintedPairRefuted.lean:83
+HEADS GroupApproximation.ShulmanFill.oneDim_eq_zero_of_mul_self ['oneDimEquiv'] GroupApproximation/Analysis/ShulmanFillNormingPrintedPairRefuted.lean:96
+HEADS GroupApproximation.StarStrong.exists_isStarStrongLimit ['H', 'Tendsto'] GroupApproximation/Analysis/StarStrongMatrixSequences.lean:217
+HEADS GroupApproximation.TracialQuotientCStar.exists_ideal_approximate_unit ['ModelBoundedSequence', 'e'] GroupApproximation/Analysis/TracialQuotientCStar.lean:133
+HEADS GroupApproximation.ShulmanFill.exists_quotient_extension_of_compactMem_eq_zero ['ψ'] GroupApproximation/Analysis/VoiculescuGlimmState.lean:96
+HEADS GroupApproximation.ShulmanFill.exists_extension_annihilating_compacts ['ρ'] GroupApproximation/Analysis/VoiculescuGlimmState.lean:137
+HEADS GroupApproximation.ShulmanFill.exists_monotoneCompactUnit_of_finiteDimensional ['n'] GroupApproximation/Analysis/VoiculescuMonotoneUnit.lean:202
+HEADS GroupApproximation.BowenChapman.CongruenceQuotient.exists_map_intCast_ne_one ['X', 'ℤ'] GroupApproximation/BowenChapman/ResiduallyFiniteSubstitution.lean:310
+HEADS GroupApproximation.CharClass.tensorCxMap_f_eq_zero ['i₂'] GroupApproximation/CharClass/AcyclicModelsTensor.lean:78
+HEADS GroupApproximation.CharClass.cartan_generic ['d', 'm'] GroupApproximation/CharClass/CartanFormula.lean:39
+HEADS GroupApproximation.CharClass.exists_of_mvResVOf_eq_zero ['pull'] GroupApproximation/CharClass/CohomologyChartCoverOf.lean:166
+HEADS GroupApproximation.CharClass.exists_flat_of_ltOf ['pull'] GroupApproximation/CharClass/CohomologyChartCoverOf.lean:195
+HEADS GroupApproximation.CharClass.exists_pull_cpPrSub_punct_zero ['Hmod2', 'pull'] GroupApproximation/CharClass/CohomologyChartFlatBase.lean:60
+HEADS GroupApproximation.CharClass.KnCP.exists_pull_cpPrSub_punct_zeroOf ['Hmod', 'pull'] GroupApproximation/CharClass/CohomologyChartFlatOf.lean:77
+HEADS GroupApproximation.CharClass.mvResV_surjective_of_cpSplit_all ['k'] GroupApproximation/CharClass/CohomologyChartInduction.lean:123
+HEADS GroupApproximation.CharClass.eq_zero_of_mvResV_eq_zero_of_lt ['pull'] GroupApproximation/CharClass/CohomologyChartInduction.lean:137
+HEADS GroupApproximation.CharClass.cpSplit_succ ['pull'] GroupApproximation/CharClass/CohomologyChartInduction.lean:192
+HEADS GroupApproximation.CharClass.mvResVOf_surjective_of_cpSplit_allOf ['k'] GroupApproximation/CharClass/CohomologyChartInductionOf.lean:81
+HEADS GroupApproximation.CharClass.eq_zero_of_mvResVOf_eq_zero_of_lt ['pull'] GroupApproximation/CharClass/CohomologyChartInductionOf.lean:93
+HEADS GroupApproximation.CharClass.cpSplitOf_succ ['pull'] GroupApproximation/CharClass/CohomologyChartInductionOf.lean:143
+HEADS GroupApproximation.CharClass.exists_pull_cpFst_of_lt ['pull'] GroupApproximation/CharClass/CohomologyChartLowDegree.lean:66
+HEADS GroupApproximation.CharClass.exists_pull_cpFst_of_ltOf ['pull'] GroupApproximation/CharClass/CohomologyChartLowDegreeOf.lean:39
+HEADS GroupApproximation.CharClass.exists_pull_cpPrU_of_lt ['pull'] GroupApproximation/CharClass/CohomologyChartRankTwoInterface.lean:71
+HEADS GroupApproximation.CharClass.exists_pull_cpPrU_of_ltOf ['pull'] GroupApproximation/CharClass/CohomologyChartRankTwoInterfaceOf.lean:81
+HEADS GroupApproximation.CharClass.flat_of_cpSplit ['Hmod2', 'pull'] GroupApproximation/CharClass/CohomologyChartSplit.lean:101
+HEADS GroupApproximation.CharClass.flat_of_cpSplitOf ['Hmod', 'pull'] GroupApproximation/CharClass/CohomologyChartSplitOf.lean:64
+HEADS GroupApproximation.CharClass.exists_flat_of_lt ['pull'] GroupApproximation/CharClass/CohomologyChartSurj.lean:41
+HEADS GroupApproximation.CharClass.exists_of_mvResV_eq_zero ['pull'] GroupApproximation/CharClass/CohomologyChartTop.lean:58
+HEADS GroupApproximation.CharClass.exists_peelTower ['N'] GroupApproximation/CharClass/CohomologyChartTower.lean:125
+HEADS GroupApproximation.CharClass.exists_peelTowerOf ['N'] GroupApproximation/CharClass/CohomologyChartTowerOf.lean:98
+HEADS GroupApproximation.CharClass.mvDeltaOf_data ['eltSubOf', 'singularCochainGroup'] GroupApproximation/CharClass/CohomologyDeltaSpecOf.lean:477
+HEADS GroupApproximation.CharClass.mvDelta_data ['eltSub', 'singularCochainGroup'] GroupApproximation/CharClass/CohomologyDeltaValue.lean:321
+HEADS GroupApproximation.CharClass.sphereTopClassOf_eq_smul_sphereGenOf ['K', 'sphereTopEquivOf'] GroupApproximation/CharClass/CohomologyKunnethDecompOf.lean:61
+HEADS GroupApproximation.CharClass.knGen_sphereTopClassOf ['K', 'sphereTopEquivOf'] GroupApproximation/CharClass/CohomologyKunnethInjectiveOf.lean:76
+HEADS GroupApproximation.CharClass.eq_zero_odd_prod_CP_succOf ['k', 'pull'] GroupApproximation/CharClass/CohomologyKunnethLixNOf.lean:66
+HEADS GroupApproximation.CharClass.even_pulled_back_of_odd_sphere ['n'] GroupApproximation/CharClass/CohomologyKunnethParity.lean:43
+HEADS GroupApproximation.CharClass.eq_zero_odd_of_even_sphere ['n'] GroupApproximation/CharClass/CohomologyKunnethParity.lean:61
+HEADS GroupApproximation.CharClass.even_pulled_back_of_odd_sphereOf ['n'] GroupApproximation/CharClass/CohomologyKunnethParityOf.lean:47
+HEADS GroupApproximation.CharClass.eq_zero_odd_of_even_sphereOf ['n'] GroupApproximation/CharClass/CohomologyKunnethParityOf.lean:65
+HEADS GroupApproximation.CharClass.knGen_of_injective ['n'] GroupApproximation/CharClass/CohomologyKunnethStep.lean:91
+HEADS GroupApproximation.CharClass.knGen_of_injectiveOf ['n'] GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:85
+HEADS GroupApproximation.CharClass.knTop_succOf ['k'] GroupApproximation/CharClass/CohomologyKunnethSurjOf.lean:206
+HEADS GroupApproximation.CharClass.knTop_succ ['k'] GroupApproximation/CharClass/CohomologyKunnethSurjStep.lean:62
+HEADS GroupApproximation.CharClass.kunnethSecondInjective_of_ne_zeroOf ['K', 'sphereTopEquivOf'] GroupApproximation/CharClass/CohomologyKunnethTorusOf.lean:50
+HEADS GroupApproximation.CharClass.eq_zero_odd_prod_CP_succ ['k', 'pull'] GroupApproximation/CharClass/CohomologyProjectiveParity.lean:68
+HEADS GroupApproximation.CharClass.isZero_prod_sphere ['k'] GroupApproximation/CharClass/CohomologySphereZero.lean:152
+HEADS GroupApproximation.CharClass.cocycleClass_eq_zero_of_mem_smallAnn_pos ['m'] GroupApproximation/CharClass/CupVanishCover.lean:48
+HEADS GroupApproximation.CharClass.prod_eq_zero_of_cover ['r'] GroupApproximation/CharClass/CupVanishIterate.lean:115
+HEADS GroupApproximation.CharClass.prod_eq_zero_of_coverOf ['r'] GroupApproximation/CharClass/CupVanishIterateOf.lean:90
+HEADS GroupApproximation.CharClass.cocycleClassK_eq_zero_of_mem_smallAnn_posOf ['m'] GroupApproximation/CharClass/CupVanishRepOf.lean:115
+HEADS CharClass.sphereHomologyOf_isZero_of_gt ['k'] GroupApproximation/CharClass/KroneckerSphereHomology.lean:76
+HEADS CharClass.sphereH1Of_isZero ['n'] GroupApproximation/CharClass/KroneckerSphereHomology.lean:187
+HEADS CharClass.sphereHomologyOf_isZero_of_lt ['k'] GroupApproximation/CharClass/KroneckerSphereHomology.lean:196
+HEADS CharClass.reducedH0_sphere0_isoOf ['LinearMap.ker', 'ker'] GroupApproximation/CharClass/KroneckerSphereHomology.lean:260
+HEADS LIXKRelMV.relCocycleClass_surjective ['relCochainSubmodule', 'w'] GroupApproximation/CharClass/LIXKLocalSplit.lean:133
+HEADS CharClass.Gen.sphereProd_top_eq_smul ['K', 'b', 'σodd', 'σ₁'] GroupApproximation/CharClass/LIXStepDGenTorusPPtot.lean:62
+HEADS GroupApproximation.CharClass.LH.freeTuple_unique ['m'] GroupApproximation/CharClass/LerayHirschColSum.lean:49
+HEADS GroupApproximation.CharClass.LH.freeTuple_uniqueOf ['m'] GroupApproximation/CharClass/LerayHirschColSumOf.lean:95
+HEADS GroupApproximation.CharClass.oddDClass_smul_vanMu ['p', 'q'] GroupApproximation/CharClass/OddPCartanVanish.lean:383
+HEADS GroupApproximation.CharClass.NaturalCocycleOp.class_add_coboundary ['U', 'singularCochainGroup'] GroupApproximation/CharClass/OddPClasses.lean:191
+HEADS GroupApproximation.CharClass.eR_pow_interval ['Fin'] GroupApproximation/CharClass/OddPDescentDomino.lean:269
+HEADS GroupApproximation.CharClass.eSgn_prod_card ['eDeg'] GroupApproximation/CharClass/OddPDescentShift.lean:278
+HEADS GroupApproximation.CharClass.rot_sign_arith ['N'] GroupApproximation/CharClass/OddPProductAW.lean:641
+HEADS GroupApproximation.CharClass.redPow_deg ['p', 'q'] GroupApproximation/CharClass/OddPRedPow.lean:74
+HEADS GroupApproximation.CharClass.OddPTotal.exists_of_goodDeg ['p'] GroupApproximation/CharClass/OddPTotalGrading.lean:160
+HEADS GroupApproximation.CharClass.OddPTotal.sub_goodDeg ['a', 'p'] GroupApproximation/CharClass/OddPTotalGrading.lean:174
+HEADS GroupApproximation.CharClass.OddPTotal.goodDeg_le ['p'] GroupApproximation/CharClass/OddPTotalGrading.lean:182
+HEADS GroupApproximation.CharClass.OddPTotal.lt_goodDeg_of_lt ['p'] GroupApproximation/CharClass/OddPTotalPackagingMulSingle.lean:41
+HEADS GroupApproximation.CharClass.even_sum_rotExp ['N'] GroupApproximation/CharClass/OddPTupleAction.lean:334
+HEADS GroupApproximation.CharClass.ParityP.snd_prod_eq_zero_of_ne ['d'] GroupApproximation/CharClass/ParityPCoeffBridge.lean:65
+HEADS GroupApproximation.CharClass.ParityPData.b_step ['i'] GroupApproximation/CharClass/ParityPData.lean:450
+HEADS GroupApproximation.CharClass.ParityPDataN.b_step ['i'] GroupApproximation/CharClass/ParityPDataNarrow.lean:133
+HEADS GroupApproximation.CharClass.ParityP.twist_psum_weight ['i', 'p'] GroupApproximation/CharClass/ParityPTwist.lean:80
+HEADS GroupApproximation.CharClass.ParityP.wuDeg_eq_iff ['p'] GroupApproximation/CharClass/ParityPWuComponent.lean:138
+HEADS GroupApproximation.CharClass.RelativeSupport.relPullback_slice_eq_of_line ['n'] GroupApproximation/CharClass/RelativeLineHomotopy.lean:96
+HEADS GroupApproximation.CharClass.RelativeSupport.relCohomologyProdIsoGen ['n'] GroupApproximation/CharClass/RelativeProdContractible.lean:205
+HEADS GroupApproximation.CharClass.RelativeSupport.relCohomologyProdIsoGenOf ['n'] GroupApproximation/CharClass/RelativeProdContractibleOf.lean:101
+HEADS GroupApproximation.CharClass.prod_eq_zero_of_cover_lt ['r'] GroupApproximation/CharClass/SplitRelationRange.lean:75
+HEADS GroupApproximation.CharClass.cochainCupI_zero ['Fin'] GroupApproximation/CharClass/SteenrodCupEdge.lean:87
+HEADS GroupApproximation.CharClass.kunnethFactor_sphereOf ['k'] GroupApproximation/CharClass/ThomKunnethOf.lean:49
+HEADS GroupApproximation.CharClass.kunnethFactor_CPOf ['k'] GroupApproximation/CharClass/ThomKunnethOf.lean:87
+HEADS GroupApproximation.CharClass.kunnethFactor_CP ['k'] GroupApproximation/CharClass/ThomKunnethProjective.lean:59
+HEADS GroupApproximation.BooneGroup.ModularMachine.haltsZ_right_iff ['u', 'v', 'ℕ'] GroupApproximation/Computability/BooneGroupModularMachine.lean:266
+HEADS GroupApproximation.BooneGroup.ModularMachine.haltsZ_left_iff ['u', 'v', 'ℕ'] GroupApproximation/Computability/BooneGroupModularMachine.lean:317
+HEADS GroupApproximation.ProfinitelyClosedIndexSet.two_pow_exponent_eq ['x', 'y'] GroupApproximation/Computability/ProfinitelyClosedIndexSet.lean:163
+HEADS GroupApproximation.TorsionFreeEnumeratedPi02.isPowerTorsionFree_iff_forall ['n'] GroupApproximation/Computability/TorsionFreeEnumeratedPi02.lean:70
+HEADS GroupApproximation.compression_eq_of_pow_mem ['k'] GroupApproximation/Criterion/FiniteQuotientBlindness.lean:113
+HEADS GroupApproximation.CuTensor.exists_murrayVonNeumannEquiv_le_of_cuntzLE ['A', 'a', 'b', 'd', 'e', 'x'] GroupApproximation/CuTensor/ObstructionCuntzProjection.lean:43
+HEADS GroupApproximation.Manuscript.exists_completePrefixCode ['r'] GroupApproximation/Endpoint/ManuscriptStatements.lean:147
+HEADS GroupApproximation.Manuscript.theoremB_gl_profile ['r'] GroupApproximation/Endpoint/ManuscriptStatements.lean:175
+HEADS GroupApproximation.Manuscript.theoremB_el_profile ['r'] GroupApproximation/Endpoint/ManuscriptStatements.lean:183
+HEADS GroupApproximation.Manuscript.cor_fgring_printed ['m'] GroupApproximation/Endpoint/ManuscriptStatements.lean:472
+HEADS TauCeti.exists_mem_representativeSubmodule_apply_ne ['C', 'F'] GroupApproximation/External/TauCeti/RepresentationTheory/Compact/RepresentativeDensity.lean:161
+HEADS GroupApproximation.GGT.isWPDAt_of_axis ['u', 'w', 'ε', 'ℕ'] GroupApproximation/GGT/BassSerreHNNAxisWPD.lean:96
+HEADS GroupApproximation.GGT.CyclicCayley.wordNorm_le_of_pow_eq_one ['ℕ'] GroupApproximation/GGT/CyclicCayleyHyperbolic.lean:234
+HEADS GroupApproximation.GGT.OsinComponents.connector_mem_relBall_at ["i'", 'ℕ'] GroupApproximation/GGT/DGOIsolatedComponentCut.lean:393
+HEADS GroupApproximation.GGT.OsinComponents.isQuasiGeodesicPolygon_fourGon_of_mixed ['x', 'y'] GroupApproximation/GGT/DGOLemma421Proof.lean:1455
+HEADS GroupApproximation.GGT.OsinComponents.getElem?_singleBase_even ['j'] GroupApproximation/GGT/DGOLemma421Statement.lean:342
+HEADS GroupApproximation.GGT.OsinComponents.getElem?_singleBase_odd ['j'] GroupApproximation/GGT/DGOLemma421Statement.lean:351
+HEADS GroupApproximation.GGT.DGOPolygonCut.IsPolygonCut.mono_le ['t', 'ℕ'] GroupApproximation/GGT/DGOPolygonCutFamily.lean:110
+HEADS GroupApproximation.GGT.OsinComponents.baseCase_of_sideCount_ge ['N', 'ℕ'] GroupApproximation/GGT/DGOPolygonSideCountAll.lean:116
+HEADS GroupApproximation.GGT.OsinComponents.span_mem_relBall_of_geodesicWord ['List', 'i', "i'", 'j', 'p', 'r', 'ℕ'] GroupApproximation/GGT/DGOProposition433Ball.lean:167
+HEADS GroupApproximation.GGT.EquivariantProjectionPerturbation.graph_adj_smul ['V', 'g'] GroupApproximation/GGT/DGOTheorem442ProjectionComplex.lean:144
+HEADS GroupApproximation.GGT.escapingIsLoxodromic_of_geodesic ['K', 'S', 'bx', 'i₀', 'ℕ', 'ℝ'] GroupApproximation/GGT/ElementaryBowditchProof.lean:246
+HEADS GroupApproximation.GGT.ElementaryMorse.exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold ['E', 'Fin', 'e', 'ef', 'ℕ', 'ℝ'] GroupApproximation/GGT/ElementaryIndependence.lean:235
+HEADS GroupApproximation.GGT.ElementaryMorse.exists_common_zpow_of_forward_fellow_travel_of_pairStab ['E', 'S', 'T', 'ℕ', 'ℝ'] GroupApproximation/GGT/ElementaryIndependence.lean:555
+HEADS GroupApproximation.GGT.ElementaryMorse.exists_bound_chord_near_chain_uniform ['Set', 'r'] GroupApproximation/GGT/ElementaryMorseChord.lean:347
+HEADS GroupApproximation.GGT.ElementaryMorse.exists_bound_chain_near_chord_uniform ['Set', 't'] GroupApproximation/GGT/ElementaryMorseChord.lean:424
+HEADS GroupApproximation.GGT.ElementaryMorse.centralizerOrbitNearAxis_of_geodesic ['X', 'w'] GroupApproximation/GGT/ElementaryMorseOrbit.lean:151
+HEADS GroupApproximation.GGT.Elementary.isLoxodromic_of_commute_of_orbitNearAxis ['A', 'Fin', 'S', 'ℕ'] GroupApproximation/GGT/ElementaryOsinNormalClosed.lean:50
+HEADS GroupApproximation.GGT.exists_isGeodesicChain_through ['j', 'm', 'ℕ'] GroupApproximation/GGT/GeodesicChainThrough.lean:40
+HEADS GroupApproximation.GGT.OsinEnlargement.bnd_bootstrap ['N', 'a', 'l', 't', 'ℕ'] GroupApproximation/GGT/GuessingGeodesicsBootstrap.lean:63
+HEADS GroupApproximation.GGT.OsinEnlargement.exists_chain_index_close ['a', 'ℕ'] GroupApproximation/GGT/GuessingGeodesicsSubdivision.lean:105
+HEADS GroupApproximation.GGT.OsinEnlargement.exists_uniform_pathBound ['P', 'm', 'ℕ'] GroupApproximation/GGT/GuessingGeodesicsUniform.lean:47
+HEADS GroupApproximation.GGT.HullLemma35.exists_enlargedWord ['fam'] GroupApproximation/GGT/HullLemma35LocalFinite.lean:128
+HEADS GroupApproximation.HullSC.exists_bound_prefix_pow ['b'] GroupApproximation/GGT/HullSCConeOffHeavyModel.lean:93
+HEADS GroupApproximation.HullSC.matchedPowersForceCommonPower_of_uniformThreshold ['G', 's'] GroupApproximation/GGT/HullSCConeOffHeavyModelTransfer.lean:72
+HEADS GroupApproximation.HullSC.exists_isQuasiGeodesic_pow_of_isLoxodromic ['j'] GroupApproximation/GGT/HullSCConeOffHeavyQuasiGeodesic.lean:80
+HEADS GroupApproximation.HullSC.hasPeriod_lemma49BoundaryPower ['n'] GroupApproximation/GGT/HullSCLemma49Correction.lean:58
+HEADS GroupApproximation.HullSC.exists_prefix_rotate_of_infix_lemma49BoundaryPower ['n'] GroupApproximation/GGT/HullSCLemma49Correction.lean:87
+HEADS GroupApproximation.HullSC.lemma49BoundaryPower_rotate_of_le ['n'] GroupApproximation/GGT/HullSCLemma49Rebase.lean:45
+HEADS GroupApproximation.HullSC.exists_block_of_long_prefix_rotate ['q', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyBlock.lean:91
+HEADS GroupApproximation.HullSC.exponent_of_comp_rotate_revInv ['ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyExp.lean:56
+HEADS GroupApproximation.HullSC.fourGonQG_of_sides ['y', 'z'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyQG.lean:57
+HEADS GroupApproximation.HullSC.exists_two_offsets_ge ['c', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:58
+HEADS GroupApproximation.HullSC.exists_two_offsets_lt ['c', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:85
+HEADS GroupApproximation.HullSC.exists_three_offsets_ge ['c', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:113
+HEADS GroupApproximation.HullSC.exists_three_offsets_lt ['c', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:138
+HEADS GroupApproximation.HullSC.exists_two_blocks_of_long_prefix_rotate ['q₁', 'q₂', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:228
+HEADS GroupApproximation.HullSC.exists_three_blocks_of_long_prefix_rotate ['q', 'ℕ'] GroupApproximation/GGT/HullSCRelatorSeparation2ApplyTwoBlock.lean:282
+HEADS GroupApproximation.HullSC.isComp_relatorWord₂ ['i₀'] GroupApproximation/GGT/HullSCRelatorSeparation2Component.lean:103
+HEADS GroupApproximation.GGT.Uncone.letter_point_near_sides ['ℤ'] GroupApproximation/GGT/HullSCUnconeLemmaA.lean:170
+HEADS GroupApproximation.GGT.isAcylindrical_cayley_of_finite ['ε', 'ℕ'] GroupApproximation/GGT/HyperbolicFreeGroupAH.lean:118
+HEADS GroupApproximation.GGT.isAcylindrical_treeSpace ['ε', 'ℕ'] GroupApproximation/GGT/HyperbolicTreeAction.lean:191
+HEADS GroupApproximation.GGT.graphDist_fourPoint_zero ['ℕ'] GroupApproximation/GGT/HyperbolicTreeMetric.lean:134
+HEADS GroupApproximation.Olshanskii.exists_long_close_pair ['F', 'N', 'σ', 'ℕ'] GroupApproximation/GGT/OlshanskiiLemma25.lean:355
+HEADS GroupApproximation.Olshanskii.exists_long_antiparallel_pair ['F', 'N', 'jf', 'sf', 'σ', 'ℕ'] GroupApproximation/GGT/OlshanskiiOrientedLemma25.lean:46
+HEADS GroupApproximation.GGT.OsinComponents.isQuasiGeodesicPolygon_fourGon_of_geodesic ['x', 'y'] GroupApproximation/GGT/OsinTheorem54SepGeodesicSides.lean:60
+HEADS GroupApproximation.GGT.OsinComponents.sub_le_wordDist_vertex_flatten ['i', 'j'] GroupApproximation/GGT/OsinTheorem54SepPieces.lean:112
+HEADS GroupApproximation.GGT.RelHyp.not_properPower_of_neWord ['k'] GroupApproximation/GGT/RelHypLetterPieces.lean:141
+HEADS GroupApproximation.GGT.RelHyp.finitePeripheralRelativePowerEscape_trivialModel ['ℕ'] GroupApproximation/GGT/RelHypOsin24ClassificationBridge.lean:259
+HEADS GroupApproximation.GGT.RelHyp.relativePowerEscape_trivialModel ['ℕ'] GroupApproximation/GGT/RelHypOsin24ClassificationBridge.lean:453
+HEADS GroupApproximation.Systolic.BFS.exists_isBFSRank ['V', 'ρ', 'ℕ'] GroupApproximation/GGT/SystolicBallDismantlable.lean:182
+HEADS GroupApproximation.Systolic.dismantlable_of_forall_dist_le ['H.card'] GroupApproximation/GGT/SystolicBallDismantlable.lean:447
+HEADS GroupApproximation.Systolic.TriangulatedDisc.SimpleBoundary.exists_arc_walk ['b'] GroupApproximation/GGT/SystolicCurvature.lean:422
+HEADS GroupApproximation.Systolic.TriangulatedDisc.SimpleBoundary.three_le_bdeg_of_geodesic ['i'] GroupApproximation/GGT/SystolicCurvature.lean:440
+HEADS GroupApproximation.Systolic.exists_nodup_cycle_of_nonbacktracking ['g'] GroupApproximation/GGT/SystolicDisc.lean:346
+HEADS GroupApproximation.Systolic.le_vertexDegree_of_least ['D.map.vertexOf', 'Dart'] GroupApproximation/GGT/SystolicDisc.lean:467
+HEADS GroupApproximation.Systolic.isFaceCycle_pow_length ['l.length'] GroupApproximation/GGT/SystolicDiscMovesAdapter.lean:42
+HEADS GroupApproximation.Systolic.zipSpurStatement_of_zipPinch ['D.lab'] GroupApproximation/GGT/SystolicDiscZip.lean:65
+HEADS GroupApproximation.Systolic.dominated_iso_map ['f'] GroupApproximation/GGT/SystolicDismantlable.lean:44
+HEADS GroupApproximation.Systolic.Dismantlable.map_equiv ['φ'] GroupApproximation/GGT/SystolicDismantlable.lean:116
+HEADS GroupApproximation.Systolic.Dismantlable.exists_invariantClique ['Finset', 'u'] GroupApproximation/GGT/SystolicDismantlable.lean:292
+HEADS GroupApproximation.Systolic.exists_invariantClique_of_graphConditions ['Finset', 'G.dist', 's', 'x', 'Γ', 'ℕ'] GroupApproximation/GGT/SystolicInvariantClique.lean:56
+HEADS GroupApproximation.Systolic.TriangulatedDisc.SimpleBoundary.three_le_bdeg ['k'] GroupApproximation/GGT/SystolicProjection.lean:69
+HEADS GroupApproximation.Systolic.exists_disc_of_cycle ['n'] GroupApproximation/GGT/SystolicProjection.lean:110
+HEADS GroupApproximation.GGT.finite_epsStab_of_middle ['ℕ'] GroupApproximation/GGT/TreeWPDAxis.lean:126
+HEADS GroupApproximation.GGT.isWPDAt_of_axis_pairStab_finite ['ε', 'ℕ'] GroupApproximation/GGT/TreeWPDAxis.lean:196
+HEADS GroupApproximation.GGT.VanKampen.OsinSectionPocketCut.exists_large_region ['Fin'] GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixDescentInduction.lean:122
+HEADS GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsed_facePerm_of_boundaryStep ['j'] GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:193
+HEADS GroupApproximation.GGT.VanKampen.phiPrimeCountInput_of_smallFaces ['RegionCandidate.linkedComponentO'] GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSmallFaces.lean:123
+HEADS GroupApproximation.GGT.VanKampen.Embedded.o52LeastArea ['CyclicArc', 'a'] GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixO52LeastArea.lean:31
+HEADS GroupApproximation.GGT.VanKampen.Embedded.ContiguityGeometry.targetBoundary_quasi_lower ['CyclicArc', 'a'] GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionDegenerate.lean:76
+HEADS GroupApproximation.GGT.VanKampen.osinLemma94AntiparallelMetric ['rho1', 'ℕ'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:62
+HEADS GroupApproximation.GGT.VanKampen.CaseOneWalk.rangeFlatMap_split ['n'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CaseOneWalkLists.lean:33
+HEADS GroupApproximation.GGT.VanKampen.CaseTwoWalk.getElem_of_last_of_step ['l.length'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CaseTwo.lean:56
+HEADS GroupApproximation.GGT.VanKampen.osinLemma94CaseTwo_false ['Sw', 'Tw'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CaseTwo.lean:119
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.cornerInsertionInput ['Fin', 'start.val'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CornerInsertion.lean:150
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal.unselectedGFacesMerged ['GFaceMerge', 'R.first'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:76
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_reduced_dartCount_le_of_faceCount ['GFaceMerge', 'I.Avoids', 'Input', 'R.first'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean:90
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.pendantPathRemoval_of_length ['R.dart', 'SpikeDeletion'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PendantRemoval.lean:85
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.gFacesApart_of_dartMinimal ['GFaceMerge', 'R.dart'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonRealization.lean:79
+HEADS GroupApproximation.GGT.VanKampen.quasiGeodesicRespellInput ['j', 'n'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94QuasiGeodesicRespell.lean:35
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.separatedCornerInsertionInput ['Fin', 'start.val'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SeparatedInsertionProof.lean:38
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.separatingPathRemovalInput_of_pendant ['GFaceMerge', 'R.dart'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SeparatingRemoval.lean:81
+HEADS GroupApproximation.GGT.VanKampen.exists_shorter_respelling_of_not_isLambdaCQuasiGeodesicWord ['RelLetter.listVal', 'j', 'n'] GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94WordRespelling.lean:36
+HEADS GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_gapArcs ['L', 'r'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGapArcs.lean:64
+HEADS PocketRegion.exists_glue_outerArc ['B.start', 'CyclicArc'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGlueOuterArc.lean:139
+HEADS GroupApproximation.GGT.VanKampen.nonempty_osinLoopCut_of_pocketRegion ['CyclicArc', 'invDarts'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCut.lean:201
+HEADS GroupApproximation.GGT.VanKampen.nonempty_osinMultipleEdgeCut_of_pocketRegion ['CyclicArc', 'invDarts'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeAssembly.lean:88
+HEADS GroupApproximation.GGT.VanKampen.DiscDiagram.exists_isRelatorProduct_of_discRegion ['Finset', 'S', 'bf'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPart.lean:118
+HEADS GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.sideFaces_pinchCycle ['face'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonNoncrossing.lean:66
+HEADS GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.mem_outsideFaces_iff_not_mem ['face'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:351
+HEADS GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eq_of_vertexOf_eq_of_complement ['k', 'r'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionVertexSimple.lean:128
+HEADS GroupApproximation.GGT.VanKampen.PocketWalk.exists_of_le ['CyclicArc', 't₂.start'] GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:363
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_unselectedGFacesMerged_of_faceCount ['GFaceMerge', 'R.first'] GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundMerged.lean:126
+HEADS GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_unselectedGFacesReduced_of_faceCount ['GFaceMerge', 'I.Avoids', 'Input', 'R.first'] GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundReduced.lean:72
+HEADS GroupApproximation.GGT.VanKampen.CombMap.exists_isFaceCycle_head ['k'] GroupApproximation/GGT/VanKampen/FaceCycle.lean:116
+HEADS GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryWalk.exists_pow ['k'] GroupApproximation/GGT/VanKampen/FaceSetCircuitNoncrossing.lean:77
+HEADS GroupApproximation.GGT.VanKampen.ne_of_nodup_orbitWalk ['j'] GroupApproximation/GGT/VanKampen/OneFaceWordTrivial.lean:136
+HEADS GroupApproximation.GGT.VanKampen.listVal_faceBoundary_eq_one_of_faceCount_eq_one ['B.darts.length'] GroupApproximation/GGT/VanKampen/OneFaceWordTrivial.lean:180
+HEADS GroupApproximation.GGT.VanKampen.isRelatorProduct_of_planar ['C.xs', 'Finset', 'MergeCycles', 'f'] GroupApproximation/GGT/VanKampen/PlanarVanKampen.lean:122
+HEADS GroupApproximation.GGT.VanKampen.exists_cellFactors_of_planar ['C.xs', 'Finset', 'L', 'List', 'MergeCycles', 'f'] GroupApproximation/GGT/VanKampen/PlanarVanKampenCells.lean:25
+HEADS GroupApproximation.GGT.VanKampen.exists_relatorCells_of_cellFactors ['C.face', 'RelatorCell'] GroupApproximation/GGT/VanKampen/PlanarVanKampenDiagram.lean:64
+HEADS GroupApproximation.GGT.VanKampen.planarVanKampenWeighted ['M.faceOf'] GroupApproximation/GGT/VanKampen/PlanarVanKampenWeighted.lean:100
+HEADS GroupApproximation.GGT.VanKampen.DiscDiagram.isRelatorProduct_filter_add_of_discRegion ['Finset', 'S', 'wt'] GroupApproximation/GGT/VanKampen/PlanarVanKampenWeighted.lean:136
+HEADS Seam.glue_sigma_firstReturn ['BoundaryDart'] GroupApproximation/GGT/VanKampen/SurgeryPocketGlue.lean:320
+HEADS GroupApproximation.GGT.VanKampen.VanKampenData.isRelatorProduct_sub_two ['C.xs', 'Dart', 'EdgeDeletion.value', 'MergeCycles'] GroupApproximation/GGT/VanKampen/VanKampenCancel.lean:34
+HEADS GroupApproximation.GGT.VanKampen.VanKampenData.exists_merge ['Finset', 'f'] GroupApproximation/GGT/VanKampen/VanKampenMerge.lean:101
+HEADS GroupApproximation.HigmanThompson.exists_germ_decomposition ['δ₀', 'δ₁', 'ℚ'] GroupApproximation/GroupTheory/HigmanThompson/CompactCoreGerms.lean:195
+HEADS GroupApproximation.HigmanThompson.commutator_compactF_eq ['ζ', 'ℚ'] GroupApproximation/GroupTheory/HigmanThompson/CompactCoreGerms.lean:341
+HEADS GroupApproximation.HigmanThompson.compConjInvFun_gridAffine ['GridAffine', 'ℕ'] GroupApproximation/GroupTheory/HigmanThompson/CompactRangeB.lean:132
+HEADS GroupApproximation.HigmanThompson.exists_resEq_unit ['j', 'ℕ'] GroupApproximation/GroupTheory/HigmanThompson/Orbits.lean:146
+HEADS GroupApproximation.HigmanThompson.exists_resEq_mem_Ioo ['k', 'w', 'ℚ', 'ℤ'] GroupApproximation/GroupTheory/HigmanThompson/ResidueInvariance.lean:133
+HEADS GroupApproximation.HydeLodha.slope_eq_of_affineOn ['y', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/GammaOrbitsTelescope.lean:67
+HEADS GroupApproximation.HydeLodha.gammaTwo_resEq_preimage_one ['L', 'c', 'ℕ', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/GammaOrbitsZero.lean:57
+HEADS GroupApproximation.HydeLodha.gammaTwo_resEq_image_zero ['L', 'c', 'ℕ', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/GammaOrbitsZero.lean:124
+HEADS GroupApproximation.HydeLodha.exists_mem_unit_of_not_int ['h', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/GammaTwoCoreMoves.lean:94
+HEADS GroupApproximation.HydeLodha.mem_closure_unitSet_of_step ['ℤ'] GroupApproximation/GroupTheory/HydeLodha/GammaTwoGeneration.lean:47
+HEADS GroupApproximation.HydeLodha.mem_closure_unitSet_of_natAbs_le ['ℤ'] GroupApproximation/GroupTheory/HydeLodha/GammaTwoGeneration.lean:133
+HEADS GroupApproximation.HydeLodha.lamFun_surjective ['Int.fract', 'ℚ', 'ℤ'] GroupApproximation/GroupTheory/HydeLodha/GammaTwoLambda.lean:147
+HEADS GroupApproximation.HydeLodha.lamFun_slope_eq ['k', 'ℤ'] GroupApproximation/GroupTheory/HydeLodha/GammaTwoLambda.lean:272
+HEADS GroupApproximation.HydeLodha.exists_perSet_displaced ['a', 'b', 'd', 'p', 'q', 'δ', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/PeriodicDisplacement.lean:89
+HEADS GroupApproximation.HydeLodha.vertexH_cover ['k', 't', 'ℤ'] GroupApproximation/GroupTheory/HydeLodha/QTwoBrownCover.lean:53
+HEADS GroupApproximation.HydeLodha.supportedIn_of_germLeft_zero ['Int.fract', 'ℚ', 'ℤ'] GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationGermGamma.lean:144
+HEADS GroupApproximation.HydeLodha.isFinitelyPresented_upsilon_gammaTwo_long_unit ['GermLeft', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationLong.lean:41
+HEADS GroupApproximation.HydeLodha.exists_move_into_unit ['Int.fract', 'b', 'ℚ', 'ℤ'] GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationMove.lean:44
+HEADS GroupApproximation.HydeLodha.exists_upsilon_qTwo_germs ['ε', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationSlopes.lean:63
+HEADS GroupApproximation.HydeLodha.isFinitelyPresented_stabK_of_upsilon ['Finset', 'S'] GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationStabK.lean:75
+HEADS GroupApproximation.HydeLodha.lemmaFourSixCaseOne_of_dynamics ['N', 'Subgroup'] GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixAssembly.lean:38
+HEADS GroupApproximation.HydeLodha.isFinitelyPresented_upsilon_long_unit_of_caseOne ['GermLeft', 'ℚ'] GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixAssembly.lean:183
+HEADS GroupApproximation.Higman.Seq.higmanGenerated_eqRel_of_lt ['ℕ'] GroupApproximation/Higman/HigmanAtoms.lean:581
+HEADS GroupApproximation.Higman.Seq.mem_auxPlace_iff ['i', 'ℕ'] GroupApproximation/Higman/HigmanPlacement.lean:74
+HEADS GroupApproximation.Higman.Seq.recTrace_run ['i', 'ℕ'] GroupApproximation/Higman/HigmanPrimitiveRecursion.lean:590
+HEADS GroupApproximation.Higman.Seq.higmanGenerated_agreeOp_ne ['d', 'ℕ'] GroupApproximation/Higman/HigmanVariableCalculus.lean:249
+HEADS GroupApproximation.Higman.ofNat_int_eq ['m'] GroupApproximation/Higman/IntPrimrec.lean:105
+HEADS GroupApproximation.Higman.Omega.exists_canonical_target_of_selected_equations ['Z₂'] GroupApproximation/Higman/OmegaTowerSelectedArbitraryTargetClassifier.lean:140
+HEADS GroupApproximation.Higman.Row.stable_xiOneA ['F₀', 'a', 'u'] GroupApproximation/Higman/RowDeletionBenign.lean:306
+HEADS GroupApproximation.Higman.Seq.higmanGenerated_pinAt ['d', 'ℕ'] GroupApproximation/Higman/TheoremThreeAssembly.lean:163
+HEADS GroupApproximation.Higman.Seq.higmanGenerated_vanishBelow ['N', 'ℕ'] GroupApproximation/Higman/TheoremThreeAssembly.lean:291
+HEADS GroupApproximation.LeavittFamily.elementaryGroup_eq_top_of_rankTwo ['n'] GroupApproximation/KOne/AllRanksElementaryCore.lean:79
+HEADS GroupApproximation.CompleteMatrixFamily.exists_sibling_group ['List', 'σ.word'] GroupApproximation/KOne/AryCodeChangeUnits.lean:71
+HEADS GroupApproximation.CompleteMatrixFamily.exists_depth_code ['Fintype.card'] GroupApproximation/KOne/AryCodeSupply.lean:116
+HEADS GroupApproximation.AryLeavitt.entry_window_negative_of_B_full ['f', 'ℕ'] GroupApproximation/KOne/AryEntrywiseKill.lean:61
+HEADS GroupApproximation.AryLeavitt.pow_add_pow_mul_pred ['d'] GroupApproximation/KOne/AryRefineLoopDischarge.lean:142
+HEADS GroupApproximation.KOneDescent.exists_stage_units ['S', 's'] GroupApproximation/KOne/LeavittKOneNestedUnion.lean:60
+HEADS GroupApproximation.AlgebraicK.moritaGLEquiv_elementaryColim ['p', 'ℕ'] GroupApproximation/KOne/MoritaKOne.lean:504
+HEADS GroupApproximation.RankNElimination.exists_diag_one ['R', 'p'] GroupApproximation/KOne/RankNElimination.lean:155
+HEADS GroupApproximation.EJZAngleBessel.sum_norm_sq_translateSum_le ['A', 'ℝ'] GroupApproximation/Kazhdan/EJZAngleBessel.lean:41
+HEADS GroupApproximation.GHW.Wedge.volume_wedge_pos ['s', 'ℝ'] GroupApproximation/Kazhdan/GHWArchimedeanWedge.lean:175
+HEADS GroupApproximation.KirchbergAlgebra.exists_isInfiniteProjection_of_mul_mul_eq_one ['A', 'IsSelfAdjoint'] GroupApproximation/KirchbergAlgebra/CuntzCriterion.lean:117
+HEADS GroupApproximation.KirchbergPhillips.exists_intertwining_data ['Gs', 'st', 'ℕ'] GroupApproximation/KirchbergPhillips/ApproximateUnitaryEquivalence.lean:86
+HEADS GroupApproximation.KunSpectral.no_uniform_spectral_gap ['m'] GroupApproximation/Kun/KunSpectralCounterexample.lean:637
+HEADS GroupApproximation.KunSpectral.repetition_of_components ['m'] GroupApproximation/Kun/KunSpectralCounterexample.lean:1067
+HEADS GroupApproximation.CentralizerNormalizationUniform.exists_isGood_nat ['ℕ'] GroupApproximation/KunThom/CentralizerNormalizationUniformMarkov.lean:82
+HEADS GroupApproximation.CountingEndgame.exists_injective_extend ['C'] GroupApproximation/KunThom/CountingEndgameCompletion.lean:67
+HEADS GroupApproximation.CountingEndgame.exists_bisection_extend_of_injOn ['C', 'τ'] GroupApproximation/KunThom/CountingEndgameLift.lean:90
+HEADS GroupApproximation.AryLeavitt.aryLeavitt_units_profile ['d'] GroupApproximation/Leavitt/AryProfile.lean:196
+HEADS GroupApproximation.AryLeavitt.aryLeavitt_gl_profile ['d'] GroupApproximation/Leavitt/AryProfile.lean:206
+HEADS GroupApproximation.AryLeavitt.aryLeavitt_elementary_profile ['d'] GroupApproximation/Leavitt/AryProfile.lean:217
+HEADS GroupApproximation.CompleteMatrixFamily.exists_window_reduction ["hi'", "lo'", 'ℕ'] GroupApproximation/Leavitt/AryWindowReduction.lean:278
+HEADS GroupApproximation.LeavittFamily.nonempty_prefixUnitsEquiv ['m'] GroupApproximation/Leavitt/BinaryLeavittAllRanksUnits.lean:135
+HEADS GroupApproximation.exists_inv_congruent ['R', 'mu'] GroupApproximation/Leavitt/CongruenceSubgroups.lean:328
+HEADS GroupApproximation.exists_elGen_mem_of_inv_entry_zero ['z'] GroupApproximation/Leavitt/ElementaryTransvectionExtraction.lean:754
+HEADS GroupApproximation.ExchangePrerequisite.exists_corner_partition ['Fin', 'H', 'R', 'g', 'h'] GroupApproximation/Leavitt/ExchangeRefinement.lean:154
+HEADS GroupApproximation.GeneralScheme.tailCross ['i', 'j'] GroupApproximation/Leavitt/GeneralScheme.lean:104
+HEADS GroupApproximation.GeneralScheme.uMatrix_mul_uPrimeMatrix ['m'] GroupApproximation/Leavitt/GeneralScheme.lean:229
+HEADS GroupApproximation.LeavittFamily.exists_window_reduction ["hi'", "lo'", 'ℕ'] GroupApproximation/Leavitt/LeavittWindowReduction.lean:245
+HEADS GroupApproximation.PreusserSandwich.exists_orthogonalRefinement ['ι'] GroupApproximation/Leavitt/PreusserSandwichStep.lean:257
+HEADS GroupApproximation.RankDescent.t_pow_mul_s_pow_of_le ['j'] GroupApproximation/Leavitt/ProperlyInfiniteUnit.lean:62
+HEADS GroupApproximation.RankDescent.t_pow_mul_s_pow_of_ge ['i'] GroupApproximation/Leavitt/ProperlyInfiniteUnit.lean:69
+HEADS GroupApproximation.RankDescent.e_mul_t_pow_mul_s_pow_mul_e ['i', 'j'] GroupApproximation/Leavitt/ProperlyInfiniteUnit.lean:76
+HEADS GroupApproximation.RankDescent.full_w0_mul_v1 ['m'] GroupApproximation/Leavitt/ProperlyInfiniteUnit.lean:169
+HEADS GroupApproximation.RankDescent.full_w1_mul_v0 ['m'] GroupApproximation/Leavitt/ProperlyInfiniteUnit.lean:183
+HEADS GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.isQuasiGeodesicPolygon_fourGon_of_oneOneSides ['x', 'y'] GroupApproximation/Manuscript/NonMF/GerasimovaOsinLemma44.lean:129
+HEADS GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.goMatch_cons ['j'] GroupApproximation/Manuscript/NonMF/GerasimovaOsinLemma44.lean:463
+HEADS GroupApproximation.Manuscript.NonMF.GerasimovaOsinWords.goMatchState_cons ['j'] GroupApproximation/Manuscript/NonMF/GerasimovaOsinLemma44.lean:657
+HEADS GroupApproximation.Manuscript.NonMF.HullFreeFactorSuitable.mem_range_of_of_mul_eq_mul_of ['G', 'g₁', 'p'] GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean:49
+HEADS GroupApproximation.Manuscript.NonMF.HullLemma510.isAcylindrical_image ['Q', 'q'] GroupApproximation/Manuscript/NonMF/HullLemma510.lean:166
+HEADS GroupApproximation.Manuscript.NonMF.HullLemma510.isAcylindricallyHyperbolic_of_finite_ker ['Q', 'q'] GroupApproximation/Manuscript/NonMF/HullLemma510.lean:216
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRankTwo.hom_eq_one_of_rankFour ['n'] GroupApproximation/Manuscript/OneSidedMFRadical/FullDefectRingRankTwo.lean:87
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRankTwo.exists_strictCompression_rankTwo ['n'] GroupApproximation/Manuscript/OneSidedMFRadical/FullDefectRingRankTwoIsometry.lean:140
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanPrintedRoute.manuscriptSentence_limsupCombinationLtQuarter ['BoundedMatrixSequence', 'c'] GroupApproximation/Manuscript/OneSidedMFRadical/NormalKazhdanPrintedRoute.lean:345
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.manuscriptLinearCollapse ['D', 'Fin', 'N1', 'w', 'ℕ'] GroupApproximation/Manuscript/OneSidedMFRadical/QuantitativeCollapse.lean:172
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.QuantitativeCollapse.subsingleton_of_finite_targets_trivial ['N', 'ℕ'] GroupApproximation/Manuscript/OneSidedMFRadical/QuantitativeCollapsePerfect.lean:67
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.e_tpow_mul_spow_e ['j', 'k'] GroupApproximation/Manuscript/OneSidedMFRadical/TorsionComplementaryIdempotentsMatrixUnits.lean:73
+HEADS GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupB.exists_hom_normallyGenerating ['n'] GroupApproximation/Manuscript/OneSidedMFRadical/UniversalGroupB.lean:137
+HEADS GroupApproximation.CyclicBaseLEFObstruction.markedCompressionWord_eq_one_of_finite ['orderOf', 'ℕ'] GroupApproximation/Monsters/CyclicBaseLEFObstruction.lean:89
+HEADS GroupApproximation.Pestov91.isLEF_quotient_of_finite ['F', 'G', 'Subgroup'] GroupApproximation/Pestov91/LEF.lean:45
+HEADS GroupApproximation.Pestov91.IsLEFRing.isLEF_units ['Aˣ', 'Finset'] GroupApproximation/Pestov91/LEF.lean:163
+HEADS GroupApproximation.Pestov91.isLEFRing_skewMonoidAlgebra_of_periodic ['Finset', 'ℕ'] GroupApproximation/Pestov91/LEFCrossedProduct.lean:224
+HEADS GroupApproximation.Pestov91.witnessRing_isLEFRing ['ℕ'] GroupApproximation/Pestov91/LEFWitness.lean:41
+HEADS GroupApproximation.Pestov91.exists_nat_cover ['i.natAbs', 'ℕ'] GroupApproximation/Pestov91/SubshiftMinimal.lean:45
+HEADS GroupApproximation.ThreeVertexClosure.sq_norm_le_sub_add_sub ['S', 'ℝ'] GroupApproximation/PropertyT/ThreeVertexClosure.lean:167
+HEADS GroupApproximation.ThreeVertexDuality.abs_inner_le_of_mem_closure_sup ['a', 'ℝ'] GroupApproximation/PropertyT/ThreeVertexDuality.lean:86
+HEADS GroupApproximation.ThreeVertexDuality.epsilonOrthogonal_sup_of_pairwise ['m', 'ℝ'] GroupApproximation/PropertyT/ThreeVertexDuality.lean:159
+HEADS GroupApproximation.ThreeVertexKazhdan.inner_movingProjection_fixedProjection ['E', 'p', 'q'] GroupApproximation/PropertyT/ThreeVertexKazhdan.lean:110
+HEADS GroupApproximation.FiniteTypeLeavittTT.elementaryGroup_hasTTmodT ['n'] GroupApproximation/PropertyTT/FiniteTypeLeavittTT.lean:194
+HEADS GroupApproximation.AscendingHNNFolner.smul_ray_eq ['k', 'ℕ'] GroupApproximation/Sofic/AscendingHNNFolner.lean:119
+HEADS GroupApproximation.AvatarMetricCheck.length_add_le_aux ['c', 't.countP'] GroupApproximation/Sofic/AvatarMetricCheck.lean:129
+HEADS GroupApproximation.AvatarMetricCheck.length_le_of_countP_le ['k', 'w.countP'] GroupApproximation/Sofic/AvatarMetricCheck.lean:197
+HEADS GroupApproximation.AvatarMetricCheck.code_injective ['K'] GroupApproximation/Sofic/AvatarMetricCheck.lean:242
+HEADS GroupApproximation.AvatarMetricCheck.junction_residue ['K'] GroupApproximation/Sofic/AvatarMetricCheck.lean:288
+HEADS GroupApproximation.AvatarMetricCheck.code_ne_mul_stride ['K'] GroupApproximation/Sofic/AvatarMetricCheck.lean:314
+HEADS GroupApproximation.AvatarRouterInstance.Inputs.two_le_pieceCeil ['I.sharedBound'] GroupApproximation/Sofic/AvatarRouterInstance.lean:213
+HEADS GroupApproximation.AvatarRouterInstance.Inputs.metric_margin ['I.sharedBound', 'I.wordFloor'] GroupApproximation/Sofic/AvatarRouterInstance.lean:224
+HEADS GroupApproximation.SmallCancellationRouter.exists_cancellation_decomposition ['A'] GroupApproximation/Sofic/GreendlingerCancellation.lean:51
+HEADS GroupApproximation.SmallCancellationRouter.greendlinger_of_isConj ['FreeGroup.mk'] GroupApproximation/Sofic/GreendlingerOneRelator.lean:63
+HEADS GroupApproximation.GreendlingerRelativeTransfer.noProperPower_of_prime_wlen ['k'] GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean:219
+HEADS GroupApproximation.GreendlingerRelativeTransfer.cyclicPowerRootClosed_of_prime ['m'] GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean:346
+HEADS GroupApproximation.GreendlingerRelativeTransfer.cyclicPowerRootClosed_of_eq_bot ['n'] GroupApproximation/Sofic/GreendlingerRelativeTransfer.lean:423
+HEADS GroupApproximation.SmallCancellationRouter.greendlingerSharp_of_isConj ['FreeGroup.mk'] GroupApproximation/Sofic/GreendlingerSharpMinimal.lean:226
+HEADS GroupApproximation.HilbertUltraproductSeparating.exists_matMass_moved ['t', 'ℝ'] GroupApproximation/Sofic/HilbertUltraproductSeparating.lean:92
+HEADS GroupApproximation.geometric_sum_eq ['k'] GroupApproximation/Sofic/LevelShiftObstruction.lean:72
+HEADS GroupApproximation.LiteralRelatorObstruction.literal_relator_uniform_obstruction ['IsRelatorProduct', 'ℕ'] GroupApproximation/Sofic/LiteralRelatorObstruction.lean:237
+HEADS GroupApproximation.SmallCancellationRouter.DTree.pairIdx_covers ['m'] GroupApproximation/Sofic/MatchingRunGap.lean:74
+HEADS GroupApproximation.PeriodicOverlap.rotate_eq_self_of_add ['a'] GroupApproximation/Sofic/PeriodicOverlap.lean:169
+HEADS GroupApproximation.PeriodicOverlap.rotate_gcd_eq_self_of_prefix_rotate ['p.length'] GroupApproximation/Sofic/PeriodicOverlap.lean:350
+HEADS GroupApproximation.ShulmanTrace.isMFRegularCharacter_of_isMFTrace ['ℝ'] GroupApproximation/Sofic/ShulmanMFTraceBridge.lean:67
+HEADS GroupApproximation.isSofic_of_soficApproximation ['N₁', 'ℕ'] GroupApproximation/Sofic/Sofic.lean:390
+HEADS GroupApproximation.exists_soficActionModel_of_finiteOrbits ['Finset', 'x'] GroupApproximation/Sofic/SoficActionFiniteOrbits.lean:86
+HEADS GroupApproximation.SoficByAmenablePermanence.isSofic_of_isSofic_of_isAmenable_quotient ['ℕ'] GroupApproximation/Sofic/SoficByAmenablePermanence.lean:504
+HEADS GroupApproximation.TorsionDescent.hasPeriod_flatten_replicate ['k'] GroupApproximation/Sofic/TorsionDescent.lean:275
+HEADS GroupApproximation.TorsionDescent.exists_prefix_rotate_of_infix_pow ['k'] GroupApproximation/Sofic/TorsionDescent.lean:332
+HEADS GroupApproximation.TorsionSpectralCollapse.char_sum ['M'] GroupApproximation/Sofic/TorsionSpectralCollapse.lean:74
+HEADS GroupApproximation.BinaryLeavittSteinberg.hasKazhdanPropertyT ['n'] GroupApproximation/Steinberg/BinaryLeavitt.lean:63
+HEADS GroupApproximation.BinaryLeavittSteinberg.elementaryBase_hasKazhdanPropertyT ['n'] GroupApproximation/Steinberg/BinaryLeavitt.lean:188
+HEADS GroupApproximation.BlockElementary.norm_displacement_blockRestrict_le ['elementaryGroup', 'mat'] GroupApproximation/Steinberg/GeneralRankElementaryPropertyT.lean:707
+HEADS GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.exists_small_boundary_witness ['barycentricSubdivisionIterHomotopyLinearMap', 'ℕ'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/SmallChainsHomologyInjectivity.lean:139
+HEADS reducedH0_sphere0_iso_F2 ['LinearMap.ker', 'ker'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/AlgebraicTopology/SphereModTwoOneBase.lean:100
+HEADS GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.rpHomologyZMod2_isZero_above_dim ['k'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/RPnHomologyDimensionVanishing.lean:42
+HEADS GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwoHomology_isZero_of_gt ['k'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:48
+HEADS GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwoH1_isZero ['n'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:271
+HEADS GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwoHomology_isZero_of_lt ['k'] GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:281
+HEADS GroupApproximation.ThompsonOre.ore_rangeS_of_mulEquiv ['MonoidAlgebra', 'Ψ'] GroupApproximation/ThompsonOre/NestedSupports.lean:123
+HEADS GroupApproximation.ThompsonOre.multichoose_succ_le_three_mul ['L'] GroupApproximation/ThompsonOre/ShiftCount.lean:16
+HEADS GroupApproximation.ThompsonOre.PositiveFrame.exists_oneSubMul_of_bounds ['Fin', 'Finset', 'G', 'W', 'u', 'w'] GroupApproximation/ThompsonOre/ShiftOre.lean:123
+HEADS GroupApproximation.ThompsonOre.PositiveFrame.exists_ne_zero_one_sub_x_zero_mul_eq_mul ['y'] GroupApproximation/ThompsonOre/ShiftOre.lean:230
+HEADS GroupApproximation.ThompsonOre.lift_brownWord_xn ['k'] GroupApproximation/ThompsonOre/ThompsonF.lean:183
+HEADS GroupApproximation.TypeA2.eq_one_of_replica_fixes ['ℤ'] GroupApproximation/TypeA2/HalfLineReplica.lean:267
+HEADS GroupApproximation.TypeA2.wreathEmbedding_injective ['x', 'ℤ'] GroupApproximation/TypeA2/HalfLineWreathEmbedding.lean:59
+HEADS TypeA2.IntWreath.presented_commute_of_lt ['j', 'ℕ'] GroupApproximation/TypeA2/IntWreathNotFinitelyPresented.lean:255
+HEADS GroupApproximation.XCVWitness.kishimotoCondition_of_shiftModel ['C', 'F', 'M', 'N', 'ℕ'] GroupApproximation/XCVWitness/BernoulliSimple.lean:36
+HEADS GroupApproximation.XCVWitness.detectsIdeals_of_kishimoto ['D', 'S', 'η', 'ℝ'] GroupApproximation/XCVWitness/KishimotoSimple.lean:87
+HEADS-DECLS=376

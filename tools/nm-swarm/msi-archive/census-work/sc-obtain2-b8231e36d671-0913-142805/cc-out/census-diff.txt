@@ -1,0 +1,11 @@
+0a1,2
+> STALE BASELINE	conditional-data	GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.facePerm_keep_of_ne	matches no finding; delete it rather than leaving it to license a regression
+> STALE BASELINE	conditional-data	GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.sigma_keep_eq_self	matches no finding; delete it rather than leaving it to license a regression
+4c6
+< conditional-data       5 accepted,   0 new
+---
+> conditional-data       1 accepted,   0 new
+7c9
+< 378 conditional or literature-fed assignment(s): 378 accepted, 0 new
+---
+> 374 conditional or literature-fed assignment(s): 374 accepted, 0 new

@@ -1,0 +1,7 @@
+STALE BASELINE	inlined-statement	GroupApproximation.LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial	matches no finding; delete it rather than leaving it to license a regression
+buried-conditional   185 accepted,   0 new
+carrier-data          44 accepted,   0 new
+conditional-data       1 accepted,   0 new
+inlined-statement      2 accepted,   0 new
+open-predicate       175 accepted,   0 new
+407 conditional or literature-fed assignment(s): 407 accepted, 0 new

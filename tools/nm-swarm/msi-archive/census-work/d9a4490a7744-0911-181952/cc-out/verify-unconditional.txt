@@ -1,0 +1,9 @@
+CONDITIONAL	e63d12558c72	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_kazhdanProjectionZeroGivesNoFixedVectors	open-predicate	premise `KazhdanProjectionImageZero D Theta` requires the corpus-defined predicate `KazhdanProjectionImageZero`, which nothing in the corpus
+CONDITIONAL	7b1fa3182135	GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra	conditional-debt	premise `FournierFacioParagraph` requires the corpus-defined predicate `FournierFacioParagraph`, which the corpus produces only through decl
+CONDITIONAL	8b1ec28a0e73	GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptRegularNonMFAlgebra	conditional-debt	premise `FournierFacioParagraph` requires the corpus-defined predicate `FournierFacioParagraph`, which the corpus produces only through decl
+carrier-data           3 accepted,   0 new
+carrier-debt           2 accepted,   0 new
+conditional-debt       1 accepted,   2 new
+inlined-statement      1 accepted,   0 new
+open-predicate        10 accepted,   1 new
+20 conditional or literature-fed assignment(s): 17 accepted, 3 new

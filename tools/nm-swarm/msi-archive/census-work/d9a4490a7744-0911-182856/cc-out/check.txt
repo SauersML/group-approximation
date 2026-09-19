@@ -1,0 +1,12 @@
+formalized       281
+structural        50
+definition        48
+partial           46
+unassigned        28
+attribution       19
+provenance        19
+open               7
+total            498
+
+FAIL: 28 sentences carry no assignment.
+FAIL: 46 sentences are only partially formalized.
