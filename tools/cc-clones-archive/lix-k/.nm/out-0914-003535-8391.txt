@@ -1,0 +1,52 @@
+[job] 00:35:40 acn112 waiting for clone lock
+[job] delta sync 4556191d6..b0f2ac0fe: 61 files changed
+===== SUMMARY
+host acn112 cores 72-79 base b0f2ac0fe log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0914-003535-8391.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3455 oleans
+--- errors (first 80 lines)
+43:✖ [2615/2617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits (7.1s)
+45:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:42:32: Unknown identifier `Z`
+46:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:46:16: Unknown identifier `coeff`
+47:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:41:49: unsolved goals
+63:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:49:41: Function expected at
+70:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:48:49: unsolved goals
+75:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:53:46: Unknown identifier `coeff`
+76:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:51:63: unsolved goals
+82:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:56:34: Unknown identifier `coeff`
+83:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:55:93: unsolved goals
+89:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:59:34: Unknown identifier `coeff`
+90:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:58:89: unsolved goals
+96:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:73:6: failed to synthesize instance of type class
+100:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:77:2: Tactic `split_ifs` failed: no if-then-else conditions to split
+121:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:64: Application type mismatch: The argument
+129:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:18: unsolved goals
+149:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:71: This simp argument is unused:
+156:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:112:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.General.epsilonAddHom_apply`:
+162:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:129:8: declaration uses `sorry`
+163:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:174:8: declaration uses `sorry`
+164:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilon_mul_epsilon' depends on axioms outside the classical allowlist: [sorryAx]
+165:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+170:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:212:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_single' depends on axioms outside the classical allowlist: [sorryAx]
+171:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+173:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:213:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_injective' depends on axioms outside the classical allowlist: [sorryAx]
+174:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+176:error: Lean exited with code 1
+179:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityStatement
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerCopy (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

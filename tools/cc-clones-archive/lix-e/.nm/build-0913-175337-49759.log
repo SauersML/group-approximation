@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4221 oleans
+[job] acn112 cores=64-71 threads=8 base=66adf4dea5df138e0190f6b7f4818aee0682686b mods: GroupApproximation.GGT.VanKampen.Estimating.RegionProfileTransport
+ℹ [3295/3357] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4934/4935] Replayed GroupApproximation.GGT.VanKampen.GFaceQuadrilateralRegion
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:410:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.SameTargetProfile.trans' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:411:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.faceOf_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:412:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:413:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:414:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_quadrilateral_region' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4935/4935] Built GroupApproximation.GGT.VanKampen.Estimating.RegionProfileTransport (12s)
+info: GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean:107:14: 'GroupApproximation.GGT.VanKampen.RegionProfileTransport.mem_exteriorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean:108:14: 'GroupApproximation.GGT.VanKampen.RegionProfileTransport.targetsSectionIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean:109:14: 'GroupApproximation.GGT.VanKampen.RegionProfileTransport.val_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean:110:14: 'GroupApproximation.GGT.VanKampen.RegionProfileTransport.exists_exteriorPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4935 jobs).
+EXIT=0

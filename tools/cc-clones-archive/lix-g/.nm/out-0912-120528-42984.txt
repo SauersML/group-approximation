@@ -1,0 +1,27 @@
+[job] 12:05:34 acn112 waiting for clone lock
+[job] delta sync 4b0b47431..e6d20ddb4: 60 files changed
+===== SUMMARY
+host acn112 cores 72-79 base e6d20ddb4 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0912-120528-42984.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2430 oleans
+--- errors (first 80 lines)
+12:✖ [8694/8700] Building GroupApproximation.CharClass.OddPTotalGrading (22s)
+14:error: GroupApproximation/CharClass/OddPTotalGrading.lean:117:61: invalid `▸` notation, argument
+23:error: GroupApproximation/CharClass/OddPTotalGrading.lean:205:14: 'GroupApproximation.CharClass.OddPTotal.eq_sum_components' depends on axioms outside the classical allowlist: [sorryAx]
+24:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+32:error: Lean exited with code 1
+35:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTotalGrading (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingDefs (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingGood (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingExpand (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingCartan (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingMulSingle (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackaging (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTotalInterface.lean
+- GroupApproximation.CharClass.OddPTotalGrading
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

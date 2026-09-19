@@ -1,0 +1,16 @@
+[job] 09:39:49 acn77 waiting for clone lock
+[job] delta sync 86572ea5c..6df1d4842: 16 files changed
+===== SUMMARY
+host acn77 cores slurm base 6df1d4842 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0914-093020-64478.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3726 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.SurgeryOuterThickeningInvariant
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonDoublingTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean
+ Quot.sound]
+Build completed successfully (5003 jobs).
+EXIT=0
+PROBE GREEN

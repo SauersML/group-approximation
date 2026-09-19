@@ -1,0 +1,43 @@
+[job] 23:55:17 acn112 waiting for clone lock
+[job] delta sync aff623aaf..3d58747ee: 2 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 3d58747ee log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-235449-30884.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 2300 oleans
+--- errors (first 80 lines)
+70:✖ [9063/9064] Building GroupApproximation.CharClass.ThomSphereSubspaceOf (21s)
+72:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:68:49: Unknown identifier `Bundle`
+75:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:69:52: `Total` has been deprecated: Use `Std.Total` instead
+81:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:69:51: Application type mismatch: The argument
+89:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:73:61: Unknown identifier `Bundle`
+92:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:74:45: Unknown identifier `totalPi`
+95:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:75:3: Unknown identifier `totalPiCohIsoOf`
+97:error: GroupApproximation/CharClass/ThomSphereSubspaceOf.lean:83:14: Unknown constant `Bundle.bijective_totalPiPullOf`
+98:error: Lean exited with code 1
+105:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.ThomHyperplaneLHOf
+mentioned-not-built GroupApproximation.CharClass.ThomSphereSubspaceOf (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinPairRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinPairTautOf.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/GysinTautChartOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChartHom.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeTotalOf.lean
+COMPILED GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+COMPILED GroupApproximation/CharClass/ThomDataOf.lean
+COMPILED GroupApproximation/CharClass/ThomHabsOf.lean
+COMPILED GroupApproximation/CharClass/ThomHyperplaneLHOf.lean
+COMPILED GroupApproximation/CharClass/ThomKunnethOf.lean
+COMPILED GroupApproximation/CharClass/ThomProjectivePuncturedOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+COMPILED GroupApproximation/CharClass/ThomTopLineOf.lean
+- GroupApproximation.CharClass.ThomSphereSubspaceOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

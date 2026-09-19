@@ -1,0 +1,20 @@
+[job] 05:25:49 acn112 waiting for clone lock
+[job] delta sync e6dc0d444..e32bac3f3: 12 files changed
+===== SUMMARY
+host acn112 cores 80-87 base e32bac3f3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-052545-5367.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2553 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Kazhdan.GHWEntries
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZero.lean
+COMPILED GroupApproximation/Kazhdan/GHWEntries.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+COMPILED GroupApproximation/Kazhdan/GHWJacobsonKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean
+ Quot.sound]
+Build completed successfully (3256 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,10 @@
+eq0_states=93
+eq4_states=103
+cached_intervals=1548
+combined_coordinate_states=446
+abstract_presentations=63
+carrier=321 words=108 states=37451
+carrier=322 words=216 states=75616
+carrier=323 words=316 states=91347
+carrier=324 words=416 states=102157
+[2026-08-22T07:13:26.282] error: *** JOB 16684938 ON acn103 CANCELLED AT 2026-08-22T07:13:26 DUE to SIGNAL Terminated ***

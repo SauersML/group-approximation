@@ -1,0 +1,180 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3455 oleans
+[job] acn112 cores=72-79 threads=8 base=b0f2ac0fe2328fbb0227613d19d020438003050f mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityStatement GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerCopy GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
+ℹ [2607/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:189:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2608/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:156:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_transvection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:157:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_mem_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:158:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:159:14: 'GroupApproximation.SimpleKazhdanSofic.center_units_matrix_zmodTwo_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2612/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:72:4: Try this:
+  [apply] abel_nf
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:78:4: Try this:
+  [apply] abel_nf
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:319:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:320:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityIsSimpleGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:321:14: 'GroupApproximation.SimpleKazhdanSofic.exists_towerCopy_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:322:14: 'GroupApproximation.SimpleKazhdanSofic.one_mem_levelIdeal_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:323:14: 'GroupApproximation.SimpleKazhdanSofic.eq_top_of_simplicityCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:324:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityThroughFiniteSimpleSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [2614/2617] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityStatement (7.4s)
+✖ [2615/2617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits (7.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:42:32: Unknown identifier `Z`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:46:16: Unknown identifier `coeff`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:41:49: unsolved goals
+case refine_1
+R : Type u_3
+inst✝ : Ring R
+⊢ OfNat sorry 0
+
+case refine_2
+R : Type u_3
+inst✝ : Ring R
+⊢ HAdd sorry ℕ sorry
+
+case refine_3
+R : Type u_3
+inst✝ : Ring R
+h : sorry + 1 = 0
+⊢ 1 + 1 = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:49:41: Function expected at
+  one_add_one_eq_zero
+but this term has type
+  1 + 1 = 0
+
+Note: Expected a function because this term is being applied to the argument
+  coeff
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:48:49: unsolved goals
+R : Type u_3
+inst✝ : Ring R
+y : R
+⊢ (1 + 1) * y = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:53:46: Unknown identifier `coeff`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:51:63: unsolved goals
+R : Type u_3
+inst✝ : Ring R
+n : ℕ
+y : R
+⊢ (n % 2) • y = (n % 2) • y + (n / 2) • 2 • y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:56:34: Unknown identifier `coeff`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:55:93: unsolved goals
+R : Type u_3
+inst✝ : Ring R
+x x' : ZMod 2
+y : R
+⊢ ((x.val + x'.val) % 2) • y = x.val • y + x'.val • y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:59:34: Unknown identifier `coeff`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:58:89: unsolved goals
+R : Type u_3
+inst✝ : Ring R
+x x' : ZMod 2
+y : R
+⊢ (x.val * x'.val % 2) • y = x.val • x'.val • y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:73:6: failed to synthesize instance of type class
+  Decidable (b = a')
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:77:2: Tactic `split_ifs` failed: no if-then-else conditions to split
+
+Λ : Type u_1
+Z : Type u_2
+R : Type u_3
+inst✝⁴ : Group Λ
+inst✝³ : TopologicalSpace Z
+inst✝² : MulAction Λ Z
+inst✝¹ : ContinuousConstSMul Λ Z
+inst✝ : Ring R
+coeff : LocallyConstant Z (ZMod 2) →+* R
+u : Λ →* Rˣ
+hcov : IsCovariantPair coeff u
+B : Finset Λ
+V : Set Z
+hV : IsClopen V
+hdisj : TranslatesDisjoint B V
+a b a' b' : Λ
+hb : b ∈ B
+ha' : a' ∈ B
+⊢ coeff (LocallyConstant.charFn (ZMod 2) ⋯ * LocallyConstant.charFn (ZMod 2) ⋯) * ↑(u (a * b⁻¹ * (a' * b'⁻¹))) = sorry
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:64: Application type mismatch: The argument
+  coeff
+has type
+  LocallyConstant Z (ZMod 2) →+* R
+of sort `Type (max u_2 u_3)` but is expected to have type
+  ZMod 2
+of sort `Type` in the application
+  val_add_nsmul coeff
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:18: unsolved goals
+Λ : Type u_1
+Z : Type u_2
+R : Type u_3
+inst✝⁵ : Group Λ
+inst✝⁴ : TopologicalSpace Z
+inst✝³ : MulAction Λ Z
+inst✝² : ContinuousConstSMul Λ Z
+inst✝¹ : Ring R
+coeff : LocallyConstant Z (ZMod 2) →+* R
+u : Λ →* Rˣ
+hcov : IsCovariantPair coeff u
+inst✝ : DecidableEq Λ
+B✝ : Finset Λ
+V : Set Z
+B : Finset Λ
+hV : IsClopen V
+M N : Matrix (↥B) (↥B) (ZMod 2)
+⊢ ∑ x, ∑ x_1, (M x x_1 + N x x_1).val • epsilon coeff u hV ↑x ↑x_1 =
+    ∑ a, ∑ b, (M a b).val • epsilon coeff u hV ↑a ↑b + ∑ a, ∑ b, (N a b).val • epsilon coeff u hV ↑a ↑b
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:109:71: This simp argument is unused:
+  Finset.sum_add_distrib
+
+Hint: Omit it from the simp argument list.
+  simp only [Matrix.add_apply, val_add_nsmul coeff,̵ ̵F̵i̵n̵s̵e̵t̵.̵s̵u̵m̵_̵a̵d̵d̵_̵d̵i̵s̵t̵r̵i̵b̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:112:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.General.epsilonAddHom_apply`:
+  [DecidableEq Λ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Λ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:129:8: declaration uses `sorry`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:174:8: declaration uses `sorry`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilon_mul_epsilon' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilon_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:212:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_single' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:213:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_injective' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits
+error: build failed
+EXIT=1

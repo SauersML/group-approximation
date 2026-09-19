@@ -1,0 +1,14 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4450 oleans
+[job] acn112 cores=72-79 threads=8 base=3a370d9d38af4cbf55f304b96150d95fedeb149e mods: GroupApproximation.Analysis.MatrixModelFormPositivity GroupApproximation.Analysis.LocalLiftingFactorization
+ℹ [3255/3295] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4623/4623] Built GroupApproximation.Analysis.LocalLiftingFactorization (31s)
+info: GroupApproximation/Analysis/LocalLiftingFactorization.lean:522:14: 'GroupApproximation.LocalLifting.LocalLiftingFactorizationStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingFactorization.lean:523:21: 'GroupApproximation.LocalLifting.localLiftingFactorizationStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4623 jobs).
+EXIT=0

@@ -1,0 +1,26 @@
+[job] 01:10:35 acn112 waiting for clone lock
+[job] delta sync b0f2ac0fe..9133128ae: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 9133128ae log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0914-011028-61503.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3456 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerCopy
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityNormalSubgroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerCopy.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityStatement.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+ Quot.sound]
+Build completed successfully (2617 jobs).
+EXIT=0
+PROBE GREEN

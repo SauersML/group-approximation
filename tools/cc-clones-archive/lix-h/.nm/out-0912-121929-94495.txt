@@ -1,0 +1,23 @@
+[job] 12:19:35 acn112 waiting for clone lock
+[job] delta sync 5edf273be..cbeced59f: 28 files changed
+===== SUMMARY
+host acn112 cores 64-71 base cbeced59f log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0912-121929-94495.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2405 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.ChernSplittingOfLHBridge
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ChernSplittingOfCompact.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfLHBridge.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfLix.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean
+COMPILED GroupApproximation/CharClass/ParityPDataNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuCartanNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransportNarrow.lean
+info: GroupApproximation/CharClass/ChernSplittingOfLHBridge.lean:106:14: 'GroupApproximation.CharClass.KGen.hasSplittingPN_lixBundle' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9317 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,52 @@
+[job] 23:19:47 cn1034 waiting for clone lock
+[job] delta sync aeddf2851..484d9c62d: 43 files changed
+===== SUMMARY
+host cn1034 cores slurm base 484d9c62d log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-231926-98884.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3477 oleans
+--- errors (first 80 lines)
+37:✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (227s)
+39:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:89:60: Expected type must not contain free variables
+44:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:90:43: Expected type must not contain free variables
+49:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:91:60: Expected type must not contain free variables
+54:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:92:43: Expected type must not contain free variables
+59:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:104:78: Expected type must not contain free variables
+67:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:105:78: Expected type must not contain free variables
+75:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:40: Expected type must not contain free variables
+80:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:89: Expected type must not contain free variables
+85:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:106:89: Expected type must not contain free variables
+90:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:107:24: Expected type must not contain free variables
+95:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:107:73: Expected type must not contain free variables
+100:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:108:78: Expected type must not contain free variables
+108:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:110:60: Expected type must not contain free variables
+113:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:111:43: Expected type must not contain free variables
+118:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:112:78: Expected type must not contain free variables
+126:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:113:78: Expected type must not contain free variables
+134:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:114:60: Expected type must not contain free variables
+139:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:115:43: Expected type must not contain free variables
+144:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:117:78: Expected type must not contain free variables
+152:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:40: Expected type must not contain free variables
+157:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:89: Expected type must not contain free variables
+162:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:118:89: Expected type must not contain free variables
+167:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:119:24: Expected type must not contain free variables
+172:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:119:73: Expected type must not contain free variables
+177:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:120:78: Expected type must not contain free variables
+185:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:121:78: Expected type must not contain free variables
+198:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:149:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration' depends on axioms outside the classical allowlist: [sorryAx]
+199:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+201:error: Lean exited with code 1
+204:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

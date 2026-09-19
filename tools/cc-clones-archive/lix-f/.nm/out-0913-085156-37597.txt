@@ -1,0 +1,32 @@
+[job] 08:52:03 acn112 waiting for clone lock
+[job] delta sync bb5b595bb..14724173b: 77 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 14724173b log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-085156-37597.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2562 oleans
+--- errors (first 80 lines)
+6:✖ [4581/4581] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel (12s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:209:10: '(change gx⁻¹ * (gx * 1) = 1; simp)' tactic does nothing
+11:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:214:10: '(change gy⁻¹ * (gy * 1) = 1; simp)' tactic does nothing
+14:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:220:8: '(change (1 : G) * (gx * (gy * (gz * 1))) * (1 : G)⁻¹ * 1 = (gx⁻¹)⁻¹ * ((gy⁻¹)⁻¹ * ((gz⁻¹)⁻¹ * 1));
+18:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:240:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+26:Full error:
+35:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:243:8: declaration uses `sorry`
+36:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:251:8: declaration uses `sorry`
+37:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:296:66: Type mismatch: After simplification, term
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:307:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+44:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+46:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:308:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' has a leading input; state and prove a closed proposition instead of accepting construction data
+47:error: Lean exited with code 1
+50:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+COMPILED GroupApproximation/Kazhdan/GHWInterfaces.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

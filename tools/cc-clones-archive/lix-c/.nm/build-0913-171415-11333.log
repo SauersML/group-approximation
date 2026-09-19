@@ -1,0 +1,19 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3430 oleans
+[job] acn46 cores=slurm threads=8 base=d31bc68b9cf0767eb3dd494dc99a997d98b8c17d mods: GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences
+ℹ [3157/3249] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4099/4099] Building GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences (19s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:50:13: Unknown constant `WithLp.ext_iff.mpr`
+error: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:189:21: 'GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences.manuscriptPrintedFaithfulNondegenerateRepresentationEveryUnital' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:190:21: 'GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences.manuscriptPrintedConjugatedProjectionOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences
+error: build failed
+EXIT=1

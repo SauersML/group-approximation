@@ -1,0 +1,32 @@
+[job] 10:15:05 acn112 waiting for clone lock
+[job] delta sync 4d91f2870..a845f70a0: 161 files changed
+===== SUMMARY
+host acn112 cores 72-79 base a845f70a0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-101501-98894.log
+purged 30 stale artifact sets (source-newer=2, import-newer=28) of 3107 oleans
+--- errors (first 80 lines)
+6:✖ [10019/10019] Building GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (22s)
+8:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:9: don't know how to synthesize implicit argument `Λ`
+20:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:33: don't know how to synthesize implicit argument `α`
+32:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:33: don't know how to synthesize implicit argument `α`
+44:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:285:34: don't know how to synthesize implicit argument `Λ`
+56:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:9: don't know how to synthesize implicit argument `Λ`
+68:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:33: don't know how to synthesize implicit argument `α`
+80:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:33: don't know how to synthesize implicit argument `α`
+92:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:284:34: don't know how to synthesize implicit argument `Λ`
+104:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:433:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+107:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:465:68: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+110:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:503:23: Unknown identifier `hpos`
+111:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:503:9: Tactic `rcases` failed: `x✝ : ?m.215` is not an inductive datatype
+112:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:555:2: 'change other.family.card * 2 ≤ 2' tactic does nothing
+115:error: GroupApproximation/GGT/VanKampen/LoopCutCapCounterexample.lean:593:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.not_loopCutInput' has a leading input; state and prove a closed proposition instead of accepting construction data
+116:error: Lean exited with code 1
+119:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/RegionShellingSpurCounterexample.lean
+- GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

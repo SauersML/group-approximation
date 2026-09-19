@@ -1,0 +1,8 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3206 oleans
+[job] acn112 cores=64-71 threads=8 base=e12190690bf1a55d60d0643e73868e2b7cbc89b3 mods: GroupApproximation.GGT.HullLemma35Printed
+ℹ [2800/2924] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [3634/3634] Built GroupApproximation.GGT.HullLemma35Printed (11s)
+Build completed successfully (3634 jobs).
+EXIT=0

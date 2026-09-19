@@ -1,0 +1,26 @@
+purged 94 stale artifact sets (source-newer=9, import-newer=85) of 3471 oleans
+[job] acn112 cores=64-71 threads=8 base=12f2f1dafd2ed03c81c0299cdacbb066098c811a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketEdgeDoublingInside
+ℹ [3314/3407] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10139/10139] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketEdgeDoublingInside (30s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:226:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.collarBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:227:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.source_face_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:228:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:229:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:230:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_repeatedVisits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:231:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStep_of_faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10139 jobs).
+EXIT=0

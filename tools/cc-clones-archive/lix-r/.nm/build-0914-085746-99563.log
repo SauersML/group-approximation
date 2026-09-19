@@ -1,0 +1,109 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3506 oleans
+[job] acn112 cores=80-87 threads=8 base=08d434c9cb35f6e063fdcb84fd6083b063384bf0 mods: GroupApproximation.Analysis.MatrixUnitHom GroupApproximation.Analysis.PauliMatrixUnits
+ℹ [2413/2417] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannFactor
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:318:14: 'GroupApproximation.TwistedGroupVonNeumann.exists_smul_one_of_mem_centralizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:319:14: 'GroupApproximation.TwistedGroupVonNeumann.isFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:320:14: 'GroupApproximation.TwistedGroupVonNeumann.twistedTrace_isFaithfulNormalTracialState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:321:14: 'GroupApproximation.TwistedGroupVonNeumann.isIIOneFactor_twistedVonNeumannAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2414/2417] Replayed GroupApproximation.Analysis.PauliHyperfiniteFactor
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:280:14: 'GroupApproximation.Hyperfinite.pauliCocycle_isTwistedICC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:281:14: 'GroupApproximation.Hyperfinite.isIIOneFactor_hyperfiniteFactor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:282:14: 'GroupApproximation.Hyperfinite.pauliCocycle_interleave' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2415/2417] Replayed GroupApproximation.Analysis.PauliStageOperators
+info: GroupApproximation/Analysis/PauliStageOperators.lean:127:14: 'GroupApproximation.TwistedGroupVonNeumann.star_twistedLeftOperator_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:128:14: 'GroupApproximation.Hyperfinite.pauliOp_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:129:14: 'GroupApproximation.Hyperfinite.star_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:130:14: 'GroupApproximation.Hyperfinite.coefficient_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2416/2417] Building GroupApproximation.Analysis.MatrixUnitHom (5.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/MatrixUnitHom.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUnitHom.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUnitHom.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUnitHom.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUnitHom.setup.json --json
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_add`:
+  [DecidableEq n]
+  [StarRing A]
+  [StarModule ℂ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_smul`:
+  [DecidableEq n]
+  [StarRing A]
+  [StarModule ℂ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_zero`:
+  [DecidableEq n]
+  [StarRing A]
+  [StarModule ℂ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:60:63: unsolved goals
+n : Type u_1
+inst✝⁵ : Fintype n
+inst✝⁴ : DecidableEq n
+A : Type u_2
+inst✝³ : Ring A
+inst✝² : StarRing A
+inst✝¹ : Algebra ℂ A
+inst✝ : StarModule ℂ A
+E : n → n → A
+hE : IsMatrixUnits E
+M N : Matrix n n ℂ
+⊢ ∑ x, ∑ x_1, ∑ x_2, ∑ x_3, (M x_2 x_3 * N x x_1) • (E x_2 x_3 * E x x_1) =
+    ∑ a, ∑ b, ∑ c, ∑ d, (M a b * N c d) • (E a b * E c d)
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:76:24: Unknown constant `Finset.sum_smul`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:58:71: unsolved goals
+n : Type u_1
+inst✝⁵ : Fintype n
+inst✝⁴ : DecidableEq n
+A : Type u_2
+inst✝³ : Ring A
+inst✝² : StarRing A
+inst✝¹ : Algebra ℂ A
+inst✝ : StarModule ℂ A
+E : n → n → A
+hE : IsMatrixUnits E
+M N : Matrix n n ℂ
+hprod : matrixUnitSum E M * matrixUnitSum E N = ∑ a, ∑ b, ∑ c, ∑ d, (M a b * N c d) • (E a b * E c d)
+hinner : ∀ (a b : n), (∑ c, ∑ d, if b = c then (M a b * N c d) • E a d else 0) = ∑ d, (M a b * N b d) • E a d
+a : n
+x✝¹ : a ∈ Finset.univ
+d : n
+x✝ : d ∈ Finset.univ
+⊢ (∑ j, M a j * N j d) • E a d = ∑ x, (M a x * N x d) • E a d
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_one`:
+  [StarRing A]
+  [StarModule ℂ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [StarRing A] [StarModule ℂ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:110:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.trace_matrixUnitSum`:
+  [StarRing A]
+  [StarModule ℂ A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [StarRing A] [StarModule ℂ A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:121:14: 'GroupApproximation.MatrixUnits.matrixUnitSum_mul' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/MatrixUnitHom.lean:122:14: 'GroupApproximation.MatrixUnits.trace_matrixUnitSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.MatrixUnitHom
+error: build failed
+EXIT=1

@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2734 oleans
+[job] acn112 cores=64-71 threads=8 base=e5783d06f84f690fc8dfec38c8111d5d3738a29f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinCConditionLineModel
+ℹ [3362/3470] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4588/4588] Built GroupApproximation.GGT.VanKampen.Estimating.OsinCConditionLineModel (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinCConditionLineModel.lean:259:21: 'GroupApproximation.GGT.VanKampen.Estimating.OsinCConditionLineModel.osinCConditionLineModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinCConditionLineModel.lean:260:21: 'GroupApproximation.GGT.VanKampen.Estimating.OsinCConditionLineModel.hyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4588 jobs).
+EXIT=0

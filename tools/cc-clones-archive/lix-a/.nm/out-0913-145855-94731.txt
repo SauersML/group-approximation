@@ -1,0 +1,27 @@
+[job] 14:58:59 acn112 waiting for clone lock
+[job] delta sync dfdaf521f..cb71b181f: 53 files changed
+===== SUMMARY
+host acn112 cores 88-95 base cb71b181f log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-145855-94731.log
+purged 21 stale artifact sets (source-newer=5, import-newer=16) of 3728 oleans
+--- errors (first 80 lines)
+6:✖ [10099/10100] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour (32s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:319:8: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+34:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:374:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.walk_orient' depends on axioms outside the classical allowlist: [sorryAx]
+35:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+37:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:375:21: 'GroupApproximation.GGT.VanKampen.pocketWalkColour' depends on axioms outside the classical allowlist: [sorryAx]
+38:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: Lean exited with code 1
+43:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColourModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkFaceColouring.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullLemma510.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

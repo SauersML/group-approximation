@@ -1,0 +1,35 @@
+[job] 11:45:36 acn112 waiting for clone lock
+[job] delta sync a5f0a1992..4b0b47431: 70 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 4b0b47431 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0912-114527-61309.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2430 oleans
+--- errors (first 80 lines)
+12:✖ [8694/8700] Building GroupApproximation.CharClass.OddPTotalGrading (23s)
+14:error: GroupApproximation/CharClass/OddPTotalGrading.lean:50:37: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+26:error: GroupApproximation/CharClass/OddPTotalGrading.lean:63:37: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+38:error: GroupApproximation/CharClass/OddPTotalGrading.lean:106:6: `DFinsupp.finset_sum_apply` has been deprecated: Use `DFinsupp.finsetSum_apply` instead
+39:error: GroupApproximation/CharClass/OddPTotalGrading.lean:106:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+54:Full error:
+64:error: GroupApproximation/CharClass/OddPTotalGrading.lean:201:14: 'GroupApproximation.CharClass.OddPTotal.smul_mul_left' depends on axioms outside the classical allowlist: [sorryAx]
+65:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+67:error: GroupApproximation/CharClass/OddPTotalGrading.lean:202:14: 'GroupApproximation.CharClass.OddPTotal.mul_smul_right' depends on axioms outside the classical allowlist: [sorryAx]
+68:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+71:error: GroupApproximation/CharClass/OddPTotalGrading.lean:204:14: 'GroupApproximation.CharClass.OddPTotal.eq_sum_components' depends on axioms outside the classical allowlist: [sorryAx]
+72:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+80:error: Lean exited with code 1
+83:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTotalGrading (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingDefs (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingGood (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingExpand (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingCartan (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingMulSingle (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackaging (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTotalInterface.lean
+- GroupApproximation.CharClass.OddPTotalGrading
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

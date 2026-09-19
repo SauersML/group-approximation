@@ -1,0 +1,97 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3690 oleans
+[job] acn112 cores=64-71 threads=8 base=73afca22d9437f3c80d3b6dba44074926292fe24 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInductionBelow GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyBelow GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyOrderSection
+ℹ [3295/3336] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10281/10338] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.nodup_append_four' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_leftSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_rightSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_invDarts_sourceArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_targetArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:256:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_walk_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:257:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:258:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.alpha_not_mem_walk_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:259:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_and_alpha_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10337/10338] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInductionBelow (14s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:540:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgeCutBelowInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:541:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgeCutInput.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:542:14: 'GroupApproximation.GGT.VanKampen.exists_elevenCell_of_below_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:543:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketCut.exists_large_region_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:544:14: 'GroupApproximation.GGT.VanKampen.descentInput_of_sectionPocketCut_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:545:14: 'GroupApproximation.GGT.VanKampen.osinLemma97_atParameters_of_inputs_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:546:14: 'GroupApproximation.GGT.VanKampen.osinLemma97Section_of_inputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:547:14: 'GroupApproximation.GGT.VanKampen.osinSection97Inputs_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:548:14: 'GroupApproximation.GGT.VanKampen.osinLemma97Section_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:549:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:550:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCutSectionStatement.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:551:14: 'GroupApproximation.GGT.VanKampen.osinSection97PocketInputsBelow_of_parts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:552:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10338/10338] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyBelow (18s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:290:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkProperArcsBelowInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:291:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkProperArcsInput.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:292:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionCopyBelowInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:293:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkProperArcsSectionStatement.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:294:14: 'GroupApproximation.GGT.VanKampen.copyRegion_of_offSideWalkSectionBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:295:14: 'GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyBelowInput_of_pinchSectionOrderEuler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:296:14: 'GroupApproximation.GGT.VanKampen.multipleEdgeCutBelowInput_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:297:14: 'GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopyBelowSection_of_pinchSectionOrderEuler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean:298:14: 'GroupApproximation.GGT.VanKampen.osinMultipleEdgeCutBelowSection_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10338 jobs).
+EXIT=0

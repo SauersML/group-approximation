@@ -1,0 +1,23 @@
+[job] 09:05:01 acn112 waiting for clone lock
+[job] delta sync 27f2ed182..cadf4bef4: 10 files changed
+===== SUMMARY
+host acn112 cores 72-79 base cadf4bef4 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-090458-35874.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4109 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup
+BUILT GroupApproximation.Analysis.McDuffFactor
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+ Quot.sound]
+Build completed successfully (2418 jobs).
+EXIT=0
+PROBE GREEN

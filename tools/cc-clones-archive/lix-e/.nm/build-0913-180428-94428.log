@@ -1,0 +1,65 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4223 oleans
+[job] acn112 cores=72-79 threads=8 base=8b0c76b7de375c11bcd27827f36fa55717fe7983 mods: GroupApproximation.GGT.VanKampen.SurgeryOuterDoublingTransport
+ℹ [3325/3394] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4993/4998] Replayed GroupApproximation.GGT.VanKampen.GFaceQuadrilateralRegion
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:410:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.SameTargetProfile.trans' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:411:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.faceOf_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:412:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:413:14: 'GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean:414:14: 'GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_quadrilateral_region' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4994/4998] Replayed GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingRegions
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:416:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.embedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:417:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:418:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometry_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:419:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:420:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:421:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean:422:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_pairwise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4998/4998] Built GroupApproximation.GGT.VanKampen.SurgeryOuterDoublingTransport (12s)
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:344:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.contiguityGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:345:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.regionCandidate_sides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:346:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.regionFamily_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:347:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.regionFamily_pairwise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:348:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.regionFamilyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:349:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.not_mem_targetArc_of_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean:350:14: 'GroupApproximation.GGT.VanKampen.OuterDoublingTransport.alpha_dart_not_mem_targetArc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4998 jobs).
+EXIT=0

@@ -1,0 +1,60 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3645 oleans
+[job] acn112 cores=88-95 threads=8 base=cd45177fe351e09e88b0398b9d4627f25a7b7336 mods: GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting
+ℹ [3336/3413] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4642/4644] Replayed GroupApproximation.GGT.VanKampen.CombMapComponents
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:102:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_alpha' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:103:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentOf_sigma' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:104:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:105:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrict_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:106:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:107:14: 'GroupApproximation.GGT.VanKampen.CombMap.edgeCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:108:14: 'GroupApproximation.GGT.VanKampen.CombMap.faceCount_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:109:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_component_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponents.lean:110:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_euler_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4644/4644] Building GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:73:2: linarith failed to find a contradiction
+N : CombMap
+T : Finset N.Dart
+hT : ∀ (x : N.Dart), ∃ t ∈ T, Relation.EqvGen N.Adjacent x t
+hχ : 2 * ↑T.card ≤ N.eulerCharacteristic
+x : N.Dart
+hadd : (N.component x).eulerCharacteristic + (N.componentCompl x).eulerCharacteristic = N.eulerCharacteristic
+hrest : (N.componentCompl x).eulerCharacteristic ≤ 2 * ↑(Finset.subtype (fun z => ¬N.componentOf x z) T).card
+hlt : ↑(Finset.subtype (fun z => ¬N.componentOf x z) T).card + 1 ≤ ↑T.card
+a✝ : (N.component x).eulerCharacteristic < 2
+⊢ False
+failed
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:100:14: 'GroupApproximation.GGT.VanKampen.CombMap.componentCompl_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:101:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_subtype_compl_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:102:14: 'GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_two_mul_card_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapComponentPlanarHitting.lean:103:14: 'GroupApproximation.GGT.VanKampen.CombMap.exists_hitting_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapComponentPlanarHitting
+error: build failed
+EXIT=1

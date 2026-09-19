@@ -1,0 +1,23 @@
+ progress 1 2
+ progress 2 4
+ progress 3 8
+ progress 4 16
+ progress 5 36
+ progress 6 68
+ progress 7 134
+ progress 8 240
+ progress 9 542
+ progress 10 1134
+ progress 11 2328
+ progress 12 4636
+ progress 13 11518
+ progress 14 25400
+ progress 15 48044
+ progress 16 105962
+ progress 17 162289
+ progress 18 336774
+ progress 19 676724
+ progress 20 1305464
+ progress 21 2338194
+/var/spool/slurmd/job16674353/slurm_script: line 13: 1691702 Killed                  python3 research/artifacts/split-degree4-length12-rank9-carriers.py --task "$SLURM_ARRAY_TASK_ID"
+[2026-08-22T04:58:40.116] error: Detected 1 oom_kill event in StepId=16674353.batch. Some of the step tasks have been OOM Killed.

@@ -1,0 +1,20 @@
+[job] 18:08:17 acn112 waiting for clone lock
+[job] delta sync 57af1cdd0..fbd253d47: 9 files changed
+===== SUMMARY
+host acn112 cores 72-79 base fbd253d47 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-180807-8399.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3858 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.TwoEndedMatrixUnits
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BilateralThreeCellCorner.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellLevels.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellMatrices.lean
+COMPILED GroupApproximation/Dynamics/BilateralThreeCellClopen.lean
+COMPILED GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean
+ Quot.sound]
+Build completed successfully (1797 jobs).
+EXIT=0
+PROBE GREEN

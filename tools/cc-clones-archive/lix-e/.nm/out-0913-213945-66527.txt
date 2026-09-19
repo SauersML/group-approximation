@@ -1,0 +1,34 @@
+[job] 21:39:56 acn112 waiting for clone lock
+[job] delta sync 52a2622dd..b4a7f3b70: 7 files changed
+===== SUMMARY
+host acn112 cores 64-71 base b4a7f3b70 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-213945-66527.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4337 oleans
+--- errors (first 80 lines)
+6:✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel (23s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:174:28: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+20:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:179:52: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+37:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:227:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'diagram', which is 'noncomputable'
+38:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:233:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'diagram', which is 'noncomputable'
+39:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:251:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'fullSourceArc', which is 'noncomputable'
+40:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:369:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.sign_of_isRelatorProduct' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:370:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.leastArea' depends on axioms outside the classical allowlist: [sorryAx]
+44:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+52:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:373:21: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.fullArcLake' depends on axioms outside the classical allowlist: [sorryAx]
+53:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+55:error: Lean exited with code 1
+58:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterCellThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

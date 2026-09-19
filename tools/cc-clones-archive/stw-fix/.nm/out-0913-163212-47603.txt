@@ -1,0 +1,16 @@
+[job] 16:32:20 acn112 waiting for clone lock
+[job] delta sync 9c2316846..a39b2f5fb: 4 files changed
+===== SUMMARY
+host acn112 cores 88-95 base a39b2f5fb log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-163212-47603.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4590 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.ItineraryInverseLimit
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ItineraryInverseLimit.lean
+COMPILED GroupApproximation/Dynamics/ItinerarySubshift.lean
+info: GroupApproximation/Dynamics/ItineraryInverseLimit.lean:109:14: 'GroupApproximation.ChainCore.mapsTo_zpow_inverseLimitCore' depends on axioms: [propext, Quot.sound]
+Build completed successfully (1082 jobs).
+EXIT=0
+PROBE GREEN

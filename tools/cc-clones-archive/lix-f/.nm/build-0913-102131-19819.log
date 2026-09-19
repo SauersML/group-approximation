@@ -1,0 +1,33 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2569 oleans
+[job] acn112 cores=72-79 threads=8 base=1968907fcb355293c9dc4b388f43ab07700d08b0 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonRegion
+ℹ [3297/3408] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4581/4665] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:303:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:304:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4979/4979] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonRegion (14s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:404:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.sameCycle_of_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:405:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.innerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:406:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.outerMap_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:407:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.pocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:408:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean:409:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.not_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4979 jobs).
+EXIT=0

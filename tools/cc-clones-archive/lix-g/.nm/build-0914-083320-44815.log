@@ -1,0 +1,103 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3713 oleans
+[job] acn112 cores=72-79 threads=8 base=c60e39ee8fb2a4b8d442c380a0a4b8948ef7364e mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan
+ℹ [3299/3369] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10094/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:186:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_weight_le_of_card_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:187:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_cons_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:188:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10157/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscMerge
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:269:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.ofPocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:270:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:271:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:272:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:273:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry_targetArc_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:274:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10171/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:179:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_pair_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:180:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_zeroCellPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:181:14: 'GroupApproximation.GGT.VanKampen.ZeroCellPocketMergeStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:182:21: 'GroupApproximation.GGT.VanKampen.zeroCellPocketMerge' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10183/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonGapFaces
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:434:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_pow_of_firstReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:435:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_outerGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:436:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.getElem?_darts_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:437:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_cellGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean:438:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_targetSpan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10194/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:198:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.targetArc_end_le_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:199:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:200:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10195/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellAbsorbed
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:512:14: 'GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.subset_or_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:513:14: 'GroupApproximation.GGT.VanKampen.RealizedRegionFamily.subset_of_not_disjoint_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:514:21: 'GroupApproximation.GGT.VanKampen.pocketMeetsContained' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:515:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_absorbed_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:516:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:517:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10196/10211] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:127:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.outerFace_not_mem_sideFaces_of_noncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:128:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossing_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellNoncrossing.lean:129:21: 'GroupApproximation.GGT.VanKampen.pocketKeptCellNoncrossing' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10211/10211] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerSpan (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:199:14: 'GroupApproximation.GGT.VanKampen.TwoGonEulerSpanInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean:200:14: 'GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_eulerSpan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10211 jobs).
+EXIT=0

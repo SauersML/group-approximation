@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3518 oleans
+[job] acn112 cores=64-71 threads=8 base=f3893f5b714dd6047b605052680555410a38ca31 mods: GroupApproximation.GGT.VanKampen.CombMapEulerComponents
+ℹ [3336/3416] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4608/4646] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerSmallFaceBudget
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:69:14: 'GroupApproximation.GGT.VanKampen.CombMap.six_mul_faceCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:70:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_mul_edgeCount_add_six_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4646/4646] Built GroupApproximation.GGT.VanKampen.CombMapEulerComponents (11s)
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:115:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrict_isRestriction_subtype' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:116:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_le_eulerCharacteristic_of_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:117:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_mul_edgeCount_add_six_le_of_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4646 jobs).
+EXIT=0

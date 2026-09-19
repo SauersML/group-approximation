@@ -1,0 +1,31 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4589 oleans
+[job] acn112 cores=64-71 threads=8 base=04544e6d67d989af1d529c3365cdd73221696db5 mods: GroupApproximation.Manuscript.NinetyNineProblems.FactorizationPropertyClosed GroupApproximation.Manuscript.SimpleKazhdanSofic.ThomFactorizationSentence
+ℹ [3715/3830] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4624/4626] Replayed GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:317:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:318:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4625/4626] Built GroupApproximation.Manuscript.NinetyNineProblems.FactorizationPropertyClosed (12s)
+info: GroupApproximation/Manuscript/NinetyNineProblems/FactorizationPropertyClosed.lean:65:21: 'GroupApproximation.NinetyNineProblems.FactorizationPropertyClosed.rankTwelveLeavitt_not_hasFactorizationProperty_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/FactorizationPropertyClosed.lean:66:14: 'GroupApproximation.NinetyNineProblems.FactorizationPropertyClosed.not_hasFactorizationProperty_of_simple_infinite_kazhdan_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/FactorizationPropertyClosed.lean:67:14: 'GroupApproximation.NinetyNineProblems.FactorizationPropertyClosed.not_forall_sofic_hasFactorizationProperty_of_thom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/FactorizationPropertyClosed.lean:68:14: 'GroupApproximation.NinetyNineProblems.FactorizationPropertyClosed.not_forall_hyperlinear_hasFactorizationProperty_of_thom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4626/4626] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.ThomFactorizationSentence (12s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ThomFactorizationSentence.lean:42:21: 'GroupApproximation.SimpleKazhdanSofic.printedKazhdanNotResiduallyFiniteLacksFactorizationProperty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4626 jobs).
+EXIT=0

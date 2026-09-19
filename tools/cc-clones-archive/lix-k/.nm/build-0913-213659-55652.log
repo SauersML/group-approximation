@@ -1,0 +1,47 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3452 oleans
+[job] acn112 cores=64-71 threads=8 base=094e0827c63c959adb13591c57519fb30e83b405 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.QuestionsNotFinitelyPresented GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+ℹ [4140/4227] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4704/4705] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts (11s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:191:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryGenerationSumOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:272:14: 'GroupApproximation.SimpleKazhdanSofic.exists_third_index_fin_three' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:273:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_locallyConstant_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:274:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup_fin_three_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:275:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:276:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:277:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:278:21: 'GroupApproximation.SimpleKazhdanSofic.printedElementaryInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ElementaryGroupFacts.lean:279:21: 'GroupApproximation.SimpleKazhdanSofic.printedGXPropertyT' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4705/4705] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.QuestionsNotFinitelyPresented (11s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:131:14: 'GroupApproximation.SimpleKazhdanSofic.exists_presentedGroup_mulEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:132:14: 'GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:133:14: 'GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_main' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:134:21: 'GroupApproximation.SimpleKazhdanSofic.printedFinitelyPresentedLEFResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:135:21: 'GroupApproximation.SimpleKazhdanSofic.printedNotFinitelyPresentedOfLEFSimpleInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4705 jobs).
+EXIT=0

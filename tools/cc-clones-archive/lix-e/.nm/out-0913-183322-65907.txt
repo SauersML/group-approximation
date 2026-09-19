@@ -1,0 +1,28 @@
+[job] 18:35:58 n62 waiting for clone lock
+[job] delta sync b92757ddc..c60bf78a2: 8 files changed
+===== SUMMARY
+host n62 cores slurm base c60bf78a2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-183322-65907.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4234 oleans
+--- errors (first 80 lines)
+21:✖ [4112/4115] Building GroupApproximation.Dynamics.TwoEndedTailSymbols (69s)
+23:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:135:6: Unknown identifier `map_finsupp_sum`
+24:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:133:91: unsolved goals
+36:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:269:14: 'GroupApproximation.TwoEndedShift.symbol_mul' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:271:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms outside the classical allowlist: [sorryAx]
+41:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+43:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:272:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms outside the classical allowlist: [sorryAx]
+44:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+46:error: Lean exited with code 1
+49:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailSymbols (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.TwoEndedTailSymbols
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

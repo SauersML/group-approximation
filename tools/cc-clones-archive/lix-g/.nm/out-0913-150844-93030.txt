@@ -1,0 +1,29 @@
+[job] 15:11:25 acn09 waiting for clone lock
+[job] delta sync 492057fb6..53ef29c55: 62 files changed
+===== SUMMARY
+host acn09 cores slurm base 53ef29c55 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-150844-93030.log
+purged 51 stale artifact sets (source-newer=18, import-newer=33) of 3514 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellAbsorbed
+--- rebuilt GroupApproximation modules: 5
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullSCCommonQuotientCorrected.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44Canonical.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44JointRelabel.lean
+COMPILED GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean
+COMPILED GroupApproximation/GGT/VanKampen/OEquivalentCellFaces.lean
+COMPILED GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean
+COMPILED GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFillTheoremCCorrected.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB2.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LimitingTraceTrivialCharacterSentence.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanUltrafilterRoute.lean
+ Quot.sound]
+Build completed successfully (10137 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,31 @@
+[job] 03:00:06 acn186 waiting for clone lock
+[job] delta sync cf3dcb3fe..c4006e216: 68 files changed
+===== SUMMARY
+host acn186 cores slurm base c4006e216 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-025915-88905.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2605 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.HullSCCommonQuotientCorrected
+BUILT GroupApproximation.GGT.HullSCLemma44Canonical
+BUILT GroupApproximation.GGT.HullSCLemma44JointRelabel
+BUILT GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents
+BUILT GroupApproximation.Manuscript.NonMF.FournierFacioParagraphFromSimpleFactor
+BUILT GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeSectionCitations
+--- rebuilt GroupApproximation modules: 100
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullSCCommonQuotientCorrected.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44Canonical.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44JointRelabel.lean
+COMPILED GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean
+COMPILED GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFillTheoremCCorrected.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreeSectionCitations.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB2.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LimitingTraceTrivialCharacterSentence.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanUltrafilterRoute.lean
+✔ [9979/9979] Built GroupApproximation.GGT.HullSCLemma49PowerDiagramFromComponents (23s)
+Build completed successfully (9979 jobs).
+EXIT=0
+PROBE GREEN

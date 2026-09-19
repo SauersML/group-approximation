@@ -1,0 +1,47 @@
+[job] 02:11:09 acn112 waiting for clone lock
+[job] delta sync 297e2dfc0..1fccc02b3: 6 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1fccc02b3 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-021008-43172.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4352 oleans
+--- errors (first 80 lines)
+26:✖ [4067/4067] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (12s)
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:44:35: Function expected at
+37:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:47:31: Function expected at
+46:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:48:4: Function expected at
+55:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:52:20: Function expected at
+64:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:53:60: Function expected at
+73:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:56:29: Function expected at
+82:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:58:5: Function expected at
+91:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:58:44: Function expected at
+100:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:62:33: Function expected at
+109:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:62:79: Function expected at
+118:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:114:41: Function expected at
+127:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:115:21: Function expected at
+136:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:121:45: Function expected at
+145:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:122:48: Function expected at
+154:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:130:34: Function expected at
+163:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:165:20: Function expected at
+172:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:169:20: Function expected at
+181:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:169:53: Function expected at
+190:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:176:89: Unknown identifier `Subshift`
+191:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:179:22: Unknown identifier `printedGenerators`
+192:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:190:11: Unknown identifier `perfectSpace_carrier`
+193:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:185:82: unsolved goals
+214:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:227:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.ringEquiv`
+215:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:228:14: Unknown constant `GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier`
+216:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainFromGeneral.lean:229:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_general' depends on axioms outside the classical allowlist: [sorryAx]
+217:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+219:error: Lean exited with code 1
+222:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral
+error: build failed
+EXIT=1
+PROBE FAILED rc=1
