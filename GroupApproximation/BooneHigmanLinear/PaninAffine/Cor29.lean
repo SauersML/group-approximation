@@ -207,7 +207,7 @@ theorem finSuccEquiv_C_C (c : K) :
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.finSuccEquiv_C_C
 
 /-- `𝔭 = ker (C → R/M)`: the prime of `C = K[s₁..sₙ]` below `M` in the coordinates `φ`. -/
-abbrev fibrePrime : Ideal (MvPolynomial (Fin n) K) := RingHom.ker (fibreMap M φ)
+noncomputable abbrev fibrePrime : Ideal (MvPolynomial (Fin n) K) := RingHom.ker (fibreMap M φ)
 
 instance fibrePrime_isPrime : (fibrePrime M φ).IsPrime := RingHom.ker_isPrime _
 
