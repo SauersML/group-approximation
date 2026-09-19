@@ -65,3 +65,31 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     known whether Salo's construction can produce one.
   - **Next falsifiable step:** decide whether `Γ_p` embeds in `W(Z)` at all. For example, test
     whether its Schreier graphs on some faithful action can have bounded bandwidth.
+- **2026-09-19 (swarm-0917-w19-w19-nv-follow): R-core rank of point stabilisers (class kill for
+  rank-two affine witnesses with (τ); the claim stays OPEN).**
+  - `rank-two-affine-relative-t-pairs-in-wobbling-groups-fail-tau` is ESTABLISHED by a
+    self-contained route. Its setting: `R` is any infinite commutative domain, `Λ ≤ GL_2(R)` is
+    arbitrary, `Γ = Λ ⋉ R²` is finitely generated, and `(Γ, R²)` has relative (T).
+  - For every bounded-displacement action of such a `Γ` on `Z`:
+    - some `dR²` with `d ≠ 0` acts trivially on every orbit, finite or infinite;
+    - faithfulness forces unbounded finite orbits `O` on which `Λ` has no uniform spectral gap on
+      the `Λ`-sets `O/A`.
+  - So no such pair with `Λ` having (τ) lives in `W(Z)` or `[[X]]`.
+  - Key step: the stabiliser in `Λ` of a finite-index `V ≤ R²` is virtually metabelian unless the
+    largest `R`-submodule inside `V` has rank two. Relative (T) makes that stabiliser co-amenable
+    and makes `Λ` non-amenable.
+  - This removes the need for a contracting diagonal element or an exponential-growth estimate on
+    characters. Every earlier argument for the named candidate used one of these, as did the class
+    kill recorded in wave 19 by w19-nv-pull, which is not yet on this branch.
+  - The named candidate `Γ_p` falls under it once (τ) for `SL_2(F_p[t,t^-1])` is imported, and
+    that import is not recorded here with a verbatim citation.
+  - **Where a witness must now live.** Take `H` abelian with a rank-two module structure over a
+    domain. Then `Γ/H` must fail (τ), precisely along the finite `Λ`-sets `O/A`, which lie over
+    congruence quotients `Λ ⋉ (R/dR)²`. Otherwise `H` needs rank at least 3, or is not a
+    torsion-free module over a domain.
+  - For rank `n ≥ 3` the rank lemma leaves a stabiliser containing `GL(W)`, which is not amenable.
+    The obstruction then needs co-amenability input on `Λ`.
+  - **Next falsifiable step:** find a finitely generated `Λ ≤ SL_2(R)`, `R` an infinite domain of
+    characteristic `p`, with `(Λ ⋉ R², R²)` relative (T), and with a family of finite quotients
+    `Λ ⋉ (R/d_jR)²` whose Schreier graphs have bounded bandwidth. Or show that relative (T) of the
+    pair forces (τ) on congruence quotients of `Λ`.
