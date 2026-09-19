@@ -340,3 +340,22 @@ non-permutation unitary construction.
     - Generic twists with `beta = 1` have profile about `sqrt(n)/2`.
     - `(400, 157, 229, 75, 96)` is two thin diagonal arc-tori (`c^3 = b^-4` and `c^2 = b^10`) at profile about 10.
   - **Next.** Show that profile `K` gives an `(F(K), F(K))`-arc-torus with its cuts in `U_{|j| <= O(K)} c^j(B_1)`.
+- **w19-124, 2026-09-19. Localisation half of the one-row step proved for all permutation pairs; the surgery half is
+  open, with strong computational support. Landed `bounded-profile-puts-short-essential-loops-at-cone-points`.**
+  - **Theorem (CAT(0) dichotomy).** The universal cover of the square-tiled surface `S(b, c)` is CAT(0). If
+    `Lambda_rect <= K` and `R = floor(4K) + 1`, then within distance `4R` of every cone point there is a homotopically
+    nontrivial closed lattice curve of length at most `4R`. It is either a zero-period rectangle loop or a loop of nonzero
+    period.
+    - *Proof idea.* A null-homotopic rectangle loop bounds a flat rectangle by the Flat Quadrilateral Theorem, and the
+      profile bound makes fewer than `R^2` of the squares near the cone point move.
+  - **Corollary.** `Lambda_rect >= R/4` whenever some cone point has no essential loop of length `4R` within distance
+    `4R`. So the profile is quadratic up to the local systole.
+    - For one-row pairs, this places the cuts in `U_{|i|, |j| <= O(K)} b^i c^j (B_1)`.
+  - **157 example corrected.** One slit swap of length 7 gives distance at most 4, not about 60.
+  - **Data (not proved).**
+    - For 3-arc exchanges with moved-profile at most 3 and `n <= 100`, exhaustively, one swap or one excision repairs
+      at cost at most 8, which is at most 3 times the profile.
+    - At `n = 200` (random), one swap repairs at cost at most about `2 Lambda` in 234 of 250 classes, and rotations
+      repair 4 more.
+  - **Next.** Prove the surgery half in genus 2: a short zero-period loop should give a staircase slit swap, and case
+    (b) should give a padded cylinder cut. Then reduce the doubly-wide case to one-row pairs.

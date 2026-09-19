@@ -1,0 +1,9 @@
+in_93_120_1_79.txt
+excess 2 single-swap lowering length 15 cost 10
+two-swap chain: none (L1<=0, L2<=16)
+in_116_170_29_1.txt
+excess 2 single-swap lowering length 0 cost -1
+two-swap chain: none (L1<=0, L2<=16)
+in_31_32_66_102.txt
+excess 2 single-swap lowering length 0 cost -1
+two-swap chain: none (L1<=0, L2<=16)
