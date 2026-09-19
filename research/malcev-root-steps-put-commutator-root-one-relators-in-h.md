@@ -146,3 +146,12 @@ computations. Item 3 is an obstruction with a sharpness example. Nothing is new 
   - Bi-orderable groups kill `y` for the 8 words with `(α, β) = (-1, 1)`.
   - Baumslag–Solitar groups kill `y` for all 26.
   - Open: `G(1, n)` targets and bi-orderings of `G(K; 1, ±1)`.
+- **G(1, n) targets and order obstructions (w14-059).**
+  - [[bg-chains-are-residually-tf-solvable-so-g1n-targets-die]] proves that every finite Baumslag–Gersten chain is
+    residually 𝒮. So the kernel of `G(1, n) → Z` is locally residually 𝒮, and every map from the 26 words to
+    any `G(1, n)`, `n ≠ 0`, kills the root. This closes the `G(1, n)` candidates for all `n`, including `|n| ≥ 3`.
+  - [[commutator-root-minus-one-groups-have-generalized-torsion]] shows that in `G(K; -1, 1)` a product of
+    `K^2 + K` conjugates of `y` is `1`. So the 8 words with `(α, β) = (-1, 1)` have no target without generalized
+    torsion.
+  - For `G(K; 1, ±1)`, a SAT test of bi-order consistency on word balls finds no certificate up to radius 4.
+  - Open: bi-orderability of `G(2; 1, 1)`.
