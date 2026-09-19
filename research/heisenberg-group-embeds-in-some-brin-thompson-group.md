@@ -75,3 +75,27 @@ A no here gives a no to Zaremsky 2.19(c), through
     - Product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` with `N ≥ 4`. The first open case is `W(Z^4)`.
     - Reversible Turing machine hosts.
     - Any no-proof must use prefix locality or the product coding. It cannot rest on growth.
+- 2026-09-19 (swarm-0917-w14-w14-z-last1, host-geometry, unreviewed): **rank-4 abelian hosts are
+  dead; the first open abelian case is now `W(Z^5)`.** See
+  `heisenberg-not-in-full-groups-of-z4-actions` and
+  `faithful-heisenberg-actions-are-locally-free-at-every-scale`.
+  - *Answer to the 2026-09-18 open case.* `H_3 ≰ [[Z^4 ↷ X]]` for every `Z^4`-set `X`. This covers
+    `W(Z^4)`, all `Z^4`-subshift full groups, and the rank-4 product-shift full group that maps into
+    `8V`.
+  - *New ingredient.* Every faithful `H_3`-set is locally free at every scale. For each `R`, some
+    point has `Stab ∩ B(R) = {1}`.
+    - Proof: pick a point whose `c`-orbit is longer than `R^2 + R|B(R)|`, then move it by
+      `a^s b^t`.
+    - A short non-central element `g` is fixed only where the linear form `ω(πg, (s,t))` meets one
+      value: a line, or `≤ mR` classes mod the `c`-period `m`.
+  - *Effect on the count.* Local freeness at scale `~j` gives two things.
+    - There is no short period vector: otherwise the quartic word ball would inject into a cubic
+      orbit ball.
+    - The displacement map is exactly injective on the blow-down ball, so the lower count is
+      `c(rj)^4` rather than the rank-3 route's `(rj)^3`.
+    - Pansu flattening bounds the image by `~ε^2 (rj)^4` lattice points in `R^4`.
+  - *Limit.* For `N ≥ 5` the planar upper bound `~ε^{N−2}(rj)^N` exceeds `(rj)^4`. This count cannot kill
+    `W(Z^5)`. A kill there would need more than injectivity plus planar flattening, e.g. finer
+    structure of the rounded blow-down.
+  - *What remains.* `W(Z^N)` and product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` (in `2N·V`) for `N ≥ 5`,
+    up to the Assouad rank. Also reversible Turing machine hosts.
