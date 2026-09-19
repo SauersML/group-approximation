@@ -122,6 +122,7 @@ theorem commutator_towerPerm_localize
   have ha_tow : ∀ w ∈ W, ∀ k : Fin 6,
       a ((f₀ ^ ((k : ℕ) : ℤ)) w) = (f₀ ^ (((α' k : Fin 6) : ℕ) : ℤ)) w := by
     intro w hw k
+    have hk6 := k.isLt
     by_cases hk : (k : ℕ) ≤ 4
     · obtain ⟨i, rfl⟩ : ∃ i : Fin 5, k = i.castSucc := ⟨⟨k, by omega⟩, Fin.ext rfl⟩
       have hlev : (f₀ ^ (-towerLevels 4 i)) ((f₀ ^ (((i.castSucc : Fin 6) : ℕ) : ℤ)) w) ∈ U := by
@@ -144,9 +145,10 @@ theorem commutator_towerPerm_localize
   have hb_tow : ∀ w ∈ W, ∀ k : Fin 6,
       b ((f₀ ^ ((k : ℕ) : ℤ)) w) = (f₀ ^ (((β' k : Fin 6) : ℕ) : ℤ)) w := by
     intro w hw k
+    have hk6 := k.isLt
     by_cases hk : 1 ≤ (k : ℕ)
     · obtain ⟨i, rfl⟩ : ∃ i : Fin 5, k = i.succ :=
-        ⟨⟨(k : ℕ) - 1, by omega⟩, Fin.ext (by rw [Fin.val_succ]; simp only; omega)⟩
+        ⟨⟨(k : ℕ) - 1, by omega⟩, Fin.ext (by rw [Fin.val_succ]; show (k : ℕ) = (k : ℕ) - 1 + 1; omega)⟩
       have hlev : (f₀ ^ (-towerLevels 4 i)) ((f₀ ^ (((i.succ : Fin 6) : ℕ) : ℤ)) w) ∈ V := by
         rw [perm_zpow_apply_zpow_apply, towerLevels_val, Fin.val_succ,
           show -((i : ℕ) : ℤ) + (((i : ℕ) + 1 : ℕ) : ℤ) = 1 by push_cast; ring, zpow_one]
