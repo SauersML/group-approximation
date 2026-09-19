@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.OrderCactusList
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus petal: order facts in a list without repeats (lane gl-p06-18)
 

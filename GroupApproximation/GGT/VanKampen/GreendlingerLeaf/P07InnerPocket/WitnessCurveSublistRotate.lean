@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessCurveSublistList
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-36c: a rotation is a sublist when every step is forward
 
