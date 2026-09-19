@@ -1,0 +1,55 @@
+[    0.0s] controls (certified offsets must give 0 walls once the window contains their certificate)
+[    0.1s] WALLS control v=(5, 0) margins=(0,2) window 6x5 patterns=270 wall-carrying z=0
+[    0.1s] WALLS control v=(5, 0) margins=(0,4) window 6x9 patterns=631 wall-carrying z=0
+[    0.1s] WALLS control v=(5, 0) margins=(1,3) window 8x7 patterns=550 wall-carrying z=0
+[    0.2s] WALLS control v=(5, 0) margins=(2,4) window 10x9 patterns=998 wall-carrying z=0
+[    0.2s] WALLS control v=(5, 0) margins=(0,6) window 6x13 patterns=1500 wall-carrying z=0
+[    0.3s] WALLS control v=(-5, -2) margins=(0,1) window 6x5 patterns=270 wall-carrying z=0
+[    0.3s] WALLS control v=(-5, -2) margins=(1,2) window 8x7 patterns=550 wall-carrying z=0
+[    0.3s] WALLS control v=(-5, -2) margins=(2,3) window 10x9 patterns=998 wall-carrying z=0
+[    0.5s] WALLS control v=(-5, -2) margins=(3,4) window 12x11 patterns=1613 wall-carrying z=0
+[    0.5s] resonant axis offset (6,0): compare band walls 7,5,3,1,0 at H=2..6
+[    0.5s] WALLS axis6 v=(6, 0) margins=(0,2) window 7x5 patterns=325 wall-carrying z=33  e.g. |A|=5 near 0 [(0, -2), (0, -1), (0, 0), (0, 1), (0, 2)] ; |B|=5 near v [(6, -2), (6, -1), (6, 0), (6, 1), (6, 2)]
+[    0.5s] WALLS axis6 v=(6, 0) margins=(0,3) window 7x7 patterns=475 wall-carrying z=24  e.g. |A|=7 near 0 [(0, -3), (0, -2), (0, -1), (0, 0), (0, 1), (0, 2)] ; |B|=7 near v [(6, -3), (6, -2), (6, -1), (6, 0), (6, 1), (6, 2)]
+[    0.6s] WALLS axis6 v=(6, 0) margins=(0,4) window 7x9 patterns=707 wall-carrying z=12  e.g. |A|=9 near 0 [(0, -4), (0, -3), (0, -2), (0, -1), (0, 0), (0, 1)] ; |B|=9 near v [(6, -4), (6, -3), (6, -2), (6, -1), (6, 0), (6, 1)]
+[    0.6s] WALLS axis6 v=(6, 0) margins=(0,5) window 7x11 patterns=1053 wall-carrying z=4  e.g. |A|=11 near 0 [(0, -5), (0, -4), (0, -3), (0, -2), (0, -1), (0, 0)] ; |B|=11 near v [(6, -5), (6, -4), (6, -3), (6, -2), (6, -1), (6, 0)]
+[    0.7s] WALLS axis6 v=(6, 0) margins=(0,6) window 7x13 patterns=1589 wall-carrying z=0
+[    0.8s] WALLS axis6 v=(6, 0) margins=(0,7) window 7x15 patterns=2398 wall-carrying z=0
+[    0.9s] WALLS axis6 v=(6, 0) margins=(1,6) window 9x13 patterns=1782 wall-carrying z=0
+[    0.9s] frontier offsets at distance 5
+[    1.0s] WALLS frontier v=(5, 5) margins=(0,0) window 6x6 patterns=334 wall-carrying z=14  e.g. |A|=1 near 0 [(0, 0)] ; |B|=6 near v [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5)]
+[    1.0s] WALLS frontier v=(5, 5) margins=(1,1) window 8x8 patterns=653 wall-carrying z=0
+[    1.1s] WALLS frontier v=(5, 5) margins=(2,2) window 10x10 patterns=1153 wall-carrying z=0
+[    1.3s] WALLS frontier v=(5, 5) margins=(3,3) window 12x12 patterns=1824 wall-carrying z=0
+[    1.8s] WALLS frontier v=(5, 5) margins=(4,4) window 14x14 patterns=2887 wall-carrying z=0
+[    1.8s] WALLS frontier v=(5, -5) margins=(0,0) window 6x6 patterns=334 wall-carrying z=64  e.g. |A|=3 near 0 [(0, -1), (0, 0), (1, 0)] ; |B|=1 near v [(5, -5)]
+[    1.8s] WALLS frontier v=(5, -5) margins=(1,1) window 8x8 patterns=653 wall-carrying z=40  e.g. |A|=12 near 0 [(-1, -2), (-1, -1), (0, -1), (0, 0), (1, 0), (2, 0)] ; |B|=4 near v [(4, -6), (5, -6), (5, -5), (6, -5)]
+[    1.9s] WALLS frontier v=(5, -5) margins=(2,2) window 10x10 patterns=1153 wall-carrying z=30  e.g. |A|=12 near 0 [(-2, -2), (-2, -1), (-1, -1), (0, -1), (0, 0), (1, 0)] ; |B|=10 near v [(-2, -7), (2, -7), (3, -7), (3, -6), (4, -6), (5, -6)]
+[    2.1s] WALLS frontier v=(5, -5) margins=(3,3) window 12x12 patterns=1824 wall-carrying z=12  e.g. |A|=18 near 0 [(-3, -2), (-3, -1), (-2, -1), (-1, -1), (-1, 0), (0, 0)] ; |B|=18 near v [(-3, -8), (-3, -7), (-2, -8), (-1, -8), (0, -8), (1, -8)]
+[    2.6s] WALLS frontier v=(5, -5) margins=(4,4) window 14x14 patterns=2887 wall-carrying z=0
+[    2.6s] WALLS frontier v=(5, 4) margins=(0,0) window 6x5 patterns=270 wall-carrying z=8  e.g. |A|=5 near 0 [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4)] ; |B|=1 near v [(5, 4)]
+[    2.6s] WALLS frontier v=(5, 4) margins=(1,1) window 8x7 patterns=550 wall-carrying z=0
+[    2.7s] WALLS frontier v=(5, 4) margins=(2,2) window 10x9 patterns=998 wall-carrying z=0
+[    2.8s] WALLS frontier v=(5, 4) margins=(3,3) window 12x11 patterns=1613 wall-carrying z=0
+[    3.2s] WALLS frontier v=(5, 4) margins=(4,4) window 14x13 patterns=2484 wall-carrying z=0
+[    3.2s] WALLS frontier v=(4, 5) margins=(0,0) window 5x6 patterns=291 wall-carrying z=10  e.g. |A|=5 near 0 [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0)] ; |B|=1 near v [(4, 5)]
+[    3.2s] WALLS frontier v=(4, 5) margins=(1,1) window 7x8 patterns=578 wall-carrying z=0
+[    3.3s] WALLS frontier v=(4, 5) margins=(2,2) window 9x10 patterns=1055 wall-carrying z=0
+[    3.4s] WALLS frontier v=(4, 5) margins=(3,3) window 11x12 patterns=1693 wall-carrying z=0
+[    3.8s] WALLS frontier v=(4, 5) margins=(4,4) window 13x14 patterns=2665 wall-carrying z=0
+[    3.8s] WALLS frontier v=(5, -4) margins=(0,0) window 6x5 patterns=270 wall-carrying z=18  e.g. |A|=1 near 0 [(0, 0)] ; |B|=1 near v [(5, -4)]
+[    3.8s] WALLS frontier v=(5, -4) margins=(1,1) window 8x7 patterns=550 wall-carrying z=14  e.g. |A|=7 near 0 [(-1, -1), (-1, 0), (0, 0), (0, 1), (1, 1), (2, 1)] ; |B|=4 near v [(4, -5), (5, -5), (5, -4), (6, -4)]
+[    3.9s] WALLS frontier v=(5, -4) margins=(2,2) window 10x9 patterns=998 wall-carrying z=12  e.g. |A|=9 near 0 [(-2, -1), (-2, 0), (-1, 0), (0, 0), (0, 1), (1, 1)] ; |B|=10 near v [(-2, -6), (2, -6), (3, -6), (3, -5), (4, -5), (5, -5)]
+[    4.0s] WALLS frontier v=(5, -4) margins=(3,3) window 12x11 patterns=1613 wall-carrying z=0
+[    4.4s] WALLS frontier v=(5, -4) margins=(4,4) window 14x13 patterns=2484 wall-carrying z=0
+[    4.4s] WALLS frontier v=(4, -5) margins=(0,0) window 5x6 patterns=291 wall-carrying z=52  e.g. |A|=2 near 0 [(0, 0), (1, 0)] ; |B|=1 near v [(4, -5)]
+[    4.4s] WALLS frontier v=(4, -5) margins=(1,1) window 7x8 patterns=578 wall-carrying z=37  e.g. |A|=10 near 0 [(-1, -1), (-1, 0), (0, 0), (1, 0), (1, 1), (2, 1)] ; |B|=4 near v [(3, -6), (4, -6), (4, -5), (5, -5)]
+[    4.5s] WALLS frontier v=(4, -5) margins=(2,2) window 9x10 patterns=1055 wall-carrying z=22  e.g. |A|=9 near 0 [(-2, -1), (-2, 0), (-1, 0), (0, 0), (0, 1), (1, 1)] ; |B|=13 near v [(-2, -7), (-2, -6), (-1, -7), (0, -7), (1, -7), (2, -7)]
+[    4.6s] WALLS frontier v=(4, -5) margins=(3,3) window 11x12 patterns=1693 wall-carrying z=24  e.g. |A|=16 near 0 [(-3, -2), (-3, -1), (-2, -1), (-1, -1), (-1, 0), (0, 0)] ; |B|=17 near v [(-3, -8), (-3, -7), (-2, -8), (-1, -8), (0, -8), (1, -8)]
+[    5.0s] WALLS frontier v=(4, -5) margins=(4,4) window 13x14 patterns=2665 wall-carrying z=0
+[    5.1s] WALLS frontier v=(-3, 5) margins=(1,1) window 6x8 patterns=511 wall-carrying z=18  e.g. |A|=5 near 0 [(-2, -1), (-1, -1), (0, -1), (0, 0), (1, 0)] ; |B|=4 near v [(-4, 5), (-3, 5), (-3, 6), (-2, 6)]
+[    5.1s] WALLS frontier v=(-3, 5) margins=(2,2) window 8x10 patterns=961 wall-carrying z=10  e.g. |A|=9 near 0 [(-3, -2), (-2, -2), (-2, -1), (-1, -1), (0, -1), (0, 0)] ; |B|=9 near v [(-5, 4), (-5, 5), (-4, 5), (-3, 5), (-3, 6), (-2, 6)]
+[    5.3s] WALLS frontier v=(-3, 5) margins=(3,3) window 10x12 patterns=1591 wall-carrying z=12  e.g. |A|=14 near 0 [(-5, -3), (-4, -3), (-3, -3), (-3, -2), (-2, -2), (-2, -1)] ; |B|=14 near v [(-6, 4), (-5, 4), (-5, 5), (-4, 5), (-3, 5), (-3, 6)]
+[    5.5s] WALLS frontier v=(-3, 5) margins=(4,4) window 12x14 patterns=2412 wall-carrying z=16  e.g. |A|=21 near 0 [(-7, -4), (-7, -3), (-7, -2), (-6, -4), (-6, -3), (-5, -4)] ; |B|=20 near v [(-7, 3), (-7, 4), (-6, 4), (-5, 4), (-5, 5), (-4, 5)]
+[    5.5s] DONE
+exit=0
