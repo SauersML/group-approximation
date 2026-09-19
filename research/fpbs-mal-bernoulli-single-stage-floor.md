@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -206,5 +207,45 @@ quantifier-shift).** Artifact
 - **What survives.**
   - (D1) via a P1-type bundling inequality for crossings of deep edges.
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
+
+  The claim stays OPEN.
+
+**Independent chords of P2: union bound plus a uniform chain count
+(September 19, 2026, swarm-0917-w14-w14-fp-last1, probability-random).**
+Artifact `research/artifacts/fpbs-iid-chord-union-bound-2026-09-19.md`.
+Scripts are in `experiments/fpbs-iid-chord-union-bound-2026-09-17/`.
+- **Target.** Survivor P2, restricted to independent seeds. This is
+  [[fpbs-mal-iid-chord-graphings-floor]]: `Theta(epsilon, p)`, where each
+  point is active with probability `epsilon` and draws an arbitrary label
+  `h ~ p`. The claim asks for a floor uniform in `p`, including heavy-tailed
+  `b`-length, where the length-weighted floor `1/(80 m)` is empty.
+- **Proved (Lemma 1, union bound).**
+  `P[x ~ bx] <= sum_n epsilon^n sum_{D_1..D_n} prod q(D_i) N_n(D)`. Here
+  `N_n` counts vertex-simple chains of classes from `K` to `Kb` with the
+  prescribed relative positions. The proof splits each double coset into
+  the disjoint sets `K g k^{-1}` (malnormality) and uses that distinct
+  sources in a simple chain are independent. So `N_n <= rho^n` gives
+  `epsilon_0 = 1/(6 rho)`, uniformly in `p`.
+- **ESTABLISHED (Lemma 2).**
+  [[fpbs-mal-two-step-relative-position-rigidity]]: for all classes `A`, `B`
+  and double cosets `D`, `D'`, at most 12 classes `C` satisfy
+  `D(A,C) = D` and `D(C,B) = D'`. The count is 9 exceptional plus 3 generic,
+  obtained from projections of size at most 3 between hull translates and
+  free stabilizer actions. It is uniform in the label length.
+- **Open hole.** [[fpbs-mal-simple-chain-count-uniform]]:
+  `N_n <= rho^n` uniformly. Route
+  `fpbs-mal-iid-chord-graphings-floor-union-route` requires only that.
+- **Evidence.** `N_3 <= 3` and `N_4 <= 5` in all scans. These cover short
+  labels, random, folding and periodic labels up to length 16, and buried
+  `K`-syllables of length 1 and 2. Walk counts, by contrast, blow up
+  (1803 non-backtracking walks against 5 simple paths), so vertex-simplicity
+  is essential.
+- **Where it could fail.** Bridges that run along a third hull of the chain
+  give about `|h|` attachment offsets. Iterating the projection argument
+  then gives only a polynomial count `C^n prod (1 + |h_i|)^{O(1)}`, which is
+  a moment condition, not a uniform floor. A family with `N_3` growing in
+  `|h_2|` would kill this route but not the claim.
+- **Scope.** Shared-seed factor-of-iid chords (the rest of P2) are not
+  covered, because Lemma 1 needs independence of distinct points.
 
   The claim stays OPEN.

@@ -1,0 +1,5 @@
+M 3 T 3 L 8 10 targets 21 labels 46
+hist {0: 23134, 1: 19155, 2: 2147} unstable 382
+max (2, ('b', 'B', 'bab'))
+
+[exited with code 0]

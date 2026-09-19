@@ -1,0 +1,2 @@
+ell 1 max N_3 (3, ('B', 'bab', 'B')) unstable 0
+ell 2 max N_3 (3, ('B', 'baab', 'B')) unstable 0
