@@ -59,3 +59,10 @@ them. No necessity or equivalence to Boone--Higman is claimed.
 7. Class kill for non-IBN hosts. By [[non-ibn-rational-hosts-have-infinite-elementary-centre]], every L with L ≅ L^{1+d} and Q ⊆ Z(L) has (Q^×)^d I_n ⊆ Z(EL_n(L)), so clause 2 fails. This excludes every characteristic-zero host receiving a unital Leavitt map L_Z(1,1+d) -> L, including B ⊗ L_K(1,n) over characteristic-zero fields K.
    The invariant is the rational scalar group. In characteristic p it is the finite group F_p^×, which is why the char-p Leavitt-tensor hosts do not transplant.
    Remaining host types are stably finite hosts, and purely infinite hosts with [1] of infinite order in K_0. They must still pass (N3) and (N4). No candidate is constructed here; the hole stays OPEN.
+8. Class kill for finite-Hochschild-dimension hosts (swarm-0917-w19-w19-z-pull, 2026-09-19), by [[thompson-f-hosts-have-infinite-hochschild-dimension]].
+   Take H = F, Thompson's group, which is f.p., decidable, and contains Z^m for every m. Since Q ⊆ Z(L), the map Q[F] -> L is injective. The m commuting translations then give w.gl.dim(L ⊗_Q Q(y_1..y_m)) >= m. The Eilenberg–Rosenberg–Zelinsky bound caps this at pd_{L^e} L. So every host has infinite Hochschild dimension over every finitely generated central subfield.
+   Dead classes, including their matrix rings, corners and finite tensor products:
+   - quasi-free algebras and their universal localizations;
+   - LC(X,K) ⋊ G for every Cantor G-space and every G with cd_Q G < ∞. These may be stably finite, so item 7 does not reach them.
+   - The invariant is the Hochschild dimension, or commuting rank. It dies at the Koszul top class in degree m.
+   Survivors for H = F must have infinite Hochschild dimension and also pass item 7, for example crossed products by groups of infinite rational cd, or the free-product engine. The hole stays OPEN.
