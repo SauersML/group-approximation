@@ -1,0 +1,10 @@
+e=6 m=64 beta=b d  S_beta=(('a', 21), ('c', 45), ('a', 51), ('c', 43), ('a', 21), ('c', 45), ('a', 51), ('c', 43))  beta''=()
+e=6 beta'' = 1
+e=7 m=128 beta=b d  S_beta=(('a', 85), ('c', 45), ('a', 51), ('c', 43), ('a', 85), ('c', 45), ('a', 51), ('c', 43))  beta''=(('b', 64),)
+e=7 beta'' sends vertex c L1=(0,1) to (0, 1): fixed
+e=8 m=256 beta=b d  S_beta=(('a', 85), ('c', 45), ('a', 179), ('c', 43), ('a', 85), ('c', 173), ('a', 179), ('c', 171))  beta''=(('b', 64),)
+e=8 beta'' sends vertex c L1=(0,1) to (0, 1): fixed
+e=9 m=512 beta=b d  S_beta=(('a', 341), ('c', 301), ('a', 435), ('c', 299), ('a', 341), ('c', 429), ('a', 435), ('c', 427))  beta''=(('b', 320),)
+e=9 beta'' sends vertex c L1=(0,1) to (0, 257): MOVED, so beta'' notin Lambda_B and (H_e) fails
+e=10 m=1024 beta=b d  S_beta=(('a', 341), ('c', 301), ('a', 435), ('c', 299), ('a', 341), ('c', 429), ('a', 435), ('c', 939))  beta''=(('b', 832),)
+e=10 beta'' sends vertex c L1=(0,1) to (0, 769): MOVED, so beta'' notin Lambda_B and (H_e) fails

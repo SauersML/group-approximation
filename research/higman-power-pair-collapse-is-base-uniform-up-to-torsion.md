@@ -146,3 +146,21 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
   - Next: prove a Freiheitssatz for the proper power `[a,c]^2` over `K1 = G(a,b) *_<b> G(b,c)` for
     `m = 2^e >= 8`, that is, `A/<<R>>_A` embeds in `K1/<<R>>_K1`. With the proof's Lemma 6.1 and
     Corollary 6.2 this settles infinite order in (a). Amenability of `A` stays open.
+- **w13-053 (question (a): the B-splitting, via the tree kernels).** Landed
+  `higman-gamma-3-2e-is-a-reducible-lattice-for-e-at-most-7` (claim and proof route).
+  - For every `e >= 3`, `b^(m/4)` and `d^(m/4)` fix all of `T_B`. So the kernel `Lambda_B` of the
+    B-tree action is infinite. As a consequence, `L1 = <d,a,b>` never embeds in `Gamma/Lambda_B`,
+    and the B-splitting Freiheitssatz cannot be reached through the tree action.
+  - For `e <= 7`, `Gamma(3,2^e)` is a reducible lattice (virtually `F x F`), with
+    `[B:Lambda_B] = 2^2, 2^4, 2^6, 2^9, 2^13`.
+  - Reduction. If each B-twist of `R` has its B-part in `Lambda_B`, then `A` embeds in
+    `Qbar_B = Gamma/Lambda_B<<R>>` as the explicit 2-generator group `Abar_e` of index
+    `|B/Lambda_B|`.
+  - Certified for `e = 3..6`: `ord(a) = 2^e`, an independent route to the known bound.
+  - Obstruction: for every `e >= 9` the hypothesis fails. The w12 relation `b^64 in Abar` forces
+    `m/4 | 64`, and `beta = b d` gives `beta'' = b^320` at `e = 9`.
+  - Dead: irreducibility via infinite-order sections, and GAP Reidemeister–Schreier presentations of
+    `<a,c> <= Qbar_B`.
+  - Next: describe `<<R>>_{Q_B}`, which is no longer inside `A` for `e >= 9`, together with a
+    subgroup `A · Bbar_0` containing it. Separately, decide reducibility of `Gamma(3,2^e)` for
+    `e >= 8`.

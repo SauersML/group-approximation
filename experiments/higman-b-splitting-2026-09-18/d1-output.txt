@@ -1,0 +1,10 @@
+e=3 log2|L1bar|=5 log2|Bbar|=2 log2|Bbar diag|=
+2 discrete=true Bbar abelian=true ord b,d in Bbar=[ 2, 2 ]
+e=4 log2|L1bar|=8 log2|Bbar|=4 log2|Bbar diag|=
+4 discrete=true Bbar abelian=true ord b,d in Bbar=[ 4, 4 ]
+e=5 log2|L1bar|=11 log2|Bbar|=6 log2|Bbar diag|=
+6 discrete=true Bbar abelian=true ord b,d in Bbar=[ 8, 8 ]
+e=6 log2|L1bar|=15 log2|Bbar|=9 log2|Bbar diag|=
+9 discrete=true Bbar abelian=false ord b,d in Bbar=[ 16, 16 ]
+e=7 log2|L1bar|=19 log2|Bbar|=12 log2|Bbar diag|=
+13 discrete=false Bbar abelian=false ord b,d in Bbar=[ 32, 32 ]
