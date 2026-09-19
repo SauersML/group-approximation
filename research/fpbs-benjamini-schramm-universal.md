@@ -868,3 +868,26 @@ content in that region.
   of wide components. Then transfer `d̄_n` back to the axis event
   `P(D'_n(0))`, for example by RSW quasi-invariance under rotation of the
   slit.
+
+* **The rotation margin returns the one-arm credit (w22-123,
+  2026-09-19).** See `fpbs-rotation-margin-returns-one-arm-credit`.
+
+  - **Obstruction to (K).** Let `ρ` be the distance from the random slit
+    angle to the bad set.
+    - Proved: `P(L^Φ|U^Φ) <= κ_n <= π P(L^Φ|U^Φ)/E[ρ|U^Φ]`.
+    - So, under the margin hypothesis `E[ρ|U^Φ] >= n^{-o(1)}`, (K) is
+      equivalent to `ζ̄ + ᾱ < 7/24`. That is stronger than (ii) by
+      `ᾱ - 5/48`: the Cauchy-Schwarz credit `n^{5/48}` is paid back in
+      `κ_n`.
+  - **Proved: the exact residual.** We have `κ_n = R_n/S_n`, where
+    `R_n = d̄_n P(E0)/ū_n^2` and the slack is `S_n >= 1`.
+    - The rotated (ii) is *equivalent* to `R_n >= n^{-δ}` for some
+      `δ < 7/24 - 2ᾱ`.
+  - **Proved: the Poisson independent-offset model.**
+    - `R_n = 1` exactly, and the margin is of order one.
+    - But `κ_n ≍ P(U^Φ|E0)`, so (K) with `δ -> 0` is false there.
+  - **Numerical, `n <= 256`.** `R_n` stays within 1% of 1, and two wide
+    components are rare (`P(N>=2|E0) <= 0.04`), so this is a one-hole regime.
+  - **Next.** Prove the conditional decorrelation (R): approximate
+    independence across scales of the angular offsets of wide white
+    components given `E0`. Then prove the axis transfer (T).
