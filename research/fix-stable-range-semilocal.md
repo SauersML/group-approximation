@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.StableRange.Semilocal: Unknown identifier on"
 **OPEN.** Lean module `GroupApproximation/StableRange/Semilocal.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: fix-bh-a.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789837230 on main 296aff5838).**
 
 ```
 error: GroupApproximation/StableRange/Semilocal.lean:32:35: Unknown identifier `on`
