@@ -32,6 +32,7 @@ artifacts:
   - research/titz-witzel-smallest-kernel-not-mf.md
   - research/torsion-free-sofic-quotientless-kazhdan-group-exists.md
   - research/sofic-hyperbolic-stages-give-quotientless-kazhdan-monster.md
+  - research/relation-gaps-forbid-fp-mapping-tori.md
 ---
 
 There exist a group `G` and a subgroup `K normal G` such that
@@ -220,3 +221,26 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     disproof must use finite presentation, the exact radical, or the cyclic action.
   - The monster is not a witness here. Its MF-ness, the radicals of its mapping tori and its
     finite presentation are all unknown.
+- **2026-09-19, swarm-0917-w15-w15-titz-follow (obstruction-miner, class kill).  Status: OPEN.**
+  - New ESTABLISHED claim `relation-gaps-forbid-fp-mapping-tori`, with
+    route `-proof` and the verbatim OOS import `oos-graded-small-cancellation-scales-separate`.
+  - *Invariant.* Relation gaps: `N_{≤CR} = N_{≤R} ≠ N`, where `N_{≤R}` is the normal closure of
+    the relations of length at most `R`.
+  - *Gap lemma.* If `K ⋊_ψ Z` is finitely presented and `L` is the stretch of word lifts of
+    `ψ^{±1}`, then at every large `R` a gap of ratio `L` forces `N_{≤R} = N`.
+    - The reason is that at such a gap `N_{≤R}` is `ψ^{±1}`-invariant, so `F/N_{≤R} ⋊ Z` is
+      sandwiched between two presentations of `P`.
+    - So every infinitely presented witness kernel has `L`-bounded gaps over every finite
+      generating set. The same holds for split extensions by finitely presented groups.
+  - *Class killed.* Kernels with unbounded gaps (UG). This includes every infinitely presented
+    graded small cancellation group, and in particular the OOS torsion-free Kazhdan Tarski monster
+    `Q`.
+    - No torus `Q ⋊_ψ Z` is finitely presented, for any `ψ`. This is unconditional: it needs
+      neither `(RF_Γ)` nor any assumption on the outer order.
+    - This kills survivor item 4 of `tarski-monster-tori-evade-compression-and-stage-lifts`, and
+      with it the whole w14 monster-kernel branch of (L1)/(LK1).
+    - The death step is (L3)/(LK2)/(FAP1).
+  - *What survives in region (IO).* A kernel with a genuinely new relation in every window
+    `[R, LR]`, so that the number of relation scales up to `T` is at least `log_L T`. This is the
+    self-similar or branch-type regime, not a sparse limit. Any lacunary or monster construction
+    of an (IO) kernel must first be shown to have bounded gaps.
