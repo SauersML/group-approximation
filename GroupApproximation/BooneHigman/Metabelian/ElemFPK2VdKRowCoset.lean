@@ -99,9 +99,13 @@ theorem vdkRowCosetEquiv_col (hinj : Function.Injective (vdkRowPar (n := n) (R :
     vdkRowCosetEquiv hinj (vdkCol (VdKRowCoset n R) i a w) =
       (vdkRowCanonical n R).col i a * vdkRowCosetEquiv hinj w := by
   obtain ⟨v, g, ξ⟩ := w
-  change vdkRowPar (v + Pi.single i a, g) * Quotient.out ξ =
-    colRoot i a * (vdkRowPar (v, g) * Quotient.out ξ)
-  rw [vdkRowPar_col, mul_assoc]
+  have hc : (vdkRowCanonical n R).col i a = colRoot i a := by simp only [vdkRowCanonical]
+  have hl : vdkRowCosetEquiv hinj (vdkCol (VdKRowCoset n R) i a (v, g, ξ)) =
+      vdkRowPar (v + Pi.single i a, g) * Quotient.out ξ := by
+    simp only [vdkRowCosetEquiv, Equiv.ofBijective_apply, vdkCol_apply, vdkRowCosetMap_apply]
+  have hr : vdkRowCosetEquiv hinj (v, g, ξ) = vdkRowPar (v, g) * Quotient.out ξ := by
+    simp only [vdkRowCosetEquiv, Equiv.ofBijective_apply, vdkRowCosetMap_apply]
+  rw [hl, hr, hc, vdkRowPar_col, mul_assoc]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowCosetEquiv_col
 
