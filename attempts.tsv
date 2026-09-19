@@ -370,3 +370,4 @@
 35456109994	2026-09-19T16:56:25Z	GroupApproximation/Sofic/FinitePacketDelormeDiagonalization.lean	boundedSeq_defect
 35463952847	2026-09-19T19:19:59Z	GroupApproximation/Sofic/FinitePacketDisplacementCocycle.lean	norm_normalizedDisplacement_sq_of_pos
 35471377199	2026-09-19T21:50:40Z	GroupApproximation/Sofic/FinitePacketFullCollapse.lean	rankScaled_normalizedDisplacement_eq
+35476579526	2026-09-19T23:37:23Z	GroupApproximation/Sofic/FinitePacketRankWeight.lean	displacementRank_le_generatorRankWeight
