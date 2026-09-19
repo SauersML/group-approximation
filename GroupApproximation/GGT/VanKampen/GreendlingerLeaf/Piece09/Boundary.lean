@@ -3,6 +3,8 @@ import Mathlib.Data.Finset.SDiff
 import Mathlib.Data.List.Nodup
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Piece 09: cutting a face set along a closed boundary
 

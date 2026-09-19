@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Kourovka2175.Basic: Unknown constant Equiv.Perm.a
 **OPEN.** Lean module `GroupApproximation/Kourovka2175/Basic.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-integrate.
 
+**Repair landed, unprobed.** c585f92296: Fix the two build errors in Kourovka2175/Basic.lean. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

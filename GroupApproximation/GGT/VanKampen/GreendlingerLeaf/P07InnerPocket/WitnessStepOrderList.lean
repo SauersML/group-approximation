@@ -3,6 +3,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessS
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessCurveSublistRotate
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-63: list facts on the strict order `WitnessStepGenusBefore`
 

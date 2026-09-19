@@ -1,6 +1,8 @@
 import Mathlib.Data.List.Rotate
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, inner pocket: cyclic non-interleaving of a binary class
 
