@@ -46,8 +46,8 @@ noncomputable def returnTimes (x : X) (t : ℕ) : Finset ℕ :=
 
 theorem mem_returnTimes {x : X} {t h : ℕ} :
     h ∈ returnTimes T C x t ↔ (1 ≤ h ∧ h ≤ t) ∧ (T ^ (h : ℤ)) x ∈ C := by
-  unfold returnTimes
-  rw [Finset.mem_filter, Finset.mem_Icc]
+  classical
+  simp only [returnTimes, Finset.mem_filter, Finset.mem_Icc]
 
 theorem returnTimes_mono (x : X) {h t : ℕ} (hht : h ≤ t) :
     returnTimes T C x h ⊆ returnTimes T C x t := by
@@ -64,8 +64,8 @@ noncomputable def firstReturns (x : X) : Finset ℕ :=
 theorem mem_firstReturns {x : X} {h : ℕ} :
     h ∈ firstReturns T C m N x ↔
       (1 ≤ h ∧ h ≤ N) ∧ (T ^ (h : ℤ)) x ∈ C ∧ (returnTimes T C x h).card ≤ 2 * m := by
-  unfold firstReturns
-  rw [Finset.mem_filter, Finset.mem_Icc]
+  classical
+  simp only [firstReturns, Finset.mem_filter, Finset.mem_Icc]
 
 /-- **The endpoints of the added arrows** (tex 1676–1677): `K` and the first `2m` returns of its
 points. -/
@@ -243,7 +243,8 @@ theorem exponentBound_arrowSection {W : Fin m → Set X}
     have hd := Dynamics.eq_zero_of_isWandering T (hWw _) h2 hmem
     have h2eq : (ι n).2 = (ι n').2 := congrArg Prod.snd heq
     omega
-  have hmaps : Set.MapsTo ι (S : Set ℤ) (Finset.range m ×ˢ Finset.range (N + 1) : Set (ℕ × ℕ)) :=
+  have hmaps : Set.MapsTo ι (S : Set ℤ)
+      (((Finset.range m ×ˢ Finset.range (N + 1) : Finset (ℕ × ℕ))) : Set (ℕ × ℕ)) :=
     fun n hn => by
       obtain ⟨hlt1, hlt2, -⟩ := hι n hn
       exact Finset.mem_coe.2 (Finset.mem_product.2 ⟨Finset.mem_range.2 hlt1,

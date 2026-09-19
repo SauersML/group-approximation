@@ -16,6 +16,13 @@ W. van der Kallen, *Another presentation for Steinberg groups*, Indag. Math. **3
   `M = 1` every element is `x_r(j)` (`eq_rowProd_of_mem_Xbar_single`).
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found
