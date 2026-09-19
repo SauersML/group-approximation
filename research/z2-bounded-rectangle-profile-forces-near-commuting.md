@@ -189,3 +189,24 @@ non-permutation unitary construction.
     square-tiled surface itself (here, undoing the slit). The next target is a *slit-pair lemma*. At a cone point
     with excess, find two parallel saddle connections of `l^1` length `poly(rho)` whose swap lowers the total excess.
     There are at most `2 rho` excess units, so iterating the lemma would finish the proof.
+- **w12-124, 2026-09-18 — the slit-pair lemma, tested both ways. Two-sided swaps close the cross slit, but the
+  lemma is false. Landed: `excised-square-kills-cone-local-slit-pair-repair`.**
+  - **Calibration.** A slit-pair swap exchanges the gluings along two grid paths with the same move word. On the
+    coprime two-torus cross slit, the shortest excess-lowering swap has 2 edges (the two L-slits) and costs `(1, 1)`.
+    It closes that family at distance 1 (`certify.py`, part A).
+  - **Obstruction.** Excise one square of the `n x n` torus into its own `1 x 1` torus. The pair has
+    `rho <= 2` and `dist = 1`. Its other component `S'` has genus 2 and one `6 pi` cone point.
+    - Every commuting permutation pair on `S'` costs at least `(n - 1 - n/p)/2 >= n/4 - 1/2`, where `p` is the least
+      prime factor of `n`. The intact `n`-cycles force the big torus to have area dividing `n^2`, and `S'` has area
+      `n^2 - 1`.
+    - So every excess-lowering swap at the cone point is that long. The exact minimum is `n - 1` for
+      `4 <= n <= 7`.
+    - Every cone-local chain costs at least as much, and so does every padding-free rounding of the permutation pair
+      `S'`, which has `rho(S') <= 2`.
+  - **Where it fails.** The cheap repair uses a flat donor (the stranded square, or a padded point), and its first
+    step leaves the excess unchanged. So excess is not a monotone potential for local moves. Greedy lowering swaps
+    strand small flat tori the same way in 5 of 178 random clustered perturbations.
+  - **Next step: a donor slit-pair lemma.** Pad by a flat torus of area `poly(rho)`. Then some chain of at most two
+    swaps of total length `poly(rho)` should lower the excess, with the first swap allowed to be excess-neutral and
+    to use the donor. With `rho(b', c') <= rho + 2 * cost` and `excess <= 2 rho`, this would settle the permutation
+    case with an iterated `F`.
