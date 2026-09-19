@@ -199,3 +199,33 @@ centreless invisible core, and `T_3` is the basic example.
     must not be normalised by `EL_3(A_B)`, and must meet every `EL_3(A')` with a monomial unit in infinite
     index.  For instance `E_B ∩ SL_3(F_q[x_l^(± c)])` must contain `EL_3(x_l^c F_q[x_l^c])` but have infinite
     index.  The next tool is an intermediate-subgroup (arithmeticity) theorem for overgroups of a level.
+- **w17-111, 2026-09-18: line sections of level subpairs (obstruction).**
+  - *Result.*  By [[level-subpair-line-sections-are-bounded-or-cofinite]], take `B ⊇ U_k`, `m ∈ N^d \ {0}`,
+    `t = x^m` and `n = ⌈k/|m|⌉`.  The line section `Δ_m = B ∩ SL_3(F_q[t^(±1)])` either has finite index in
+    `SL_3(F_q[t^(±1)])` or fixes a lattice between `t^(2n) L_0` and `L_0`.  In the second case its elements
+    have pole order at most `2n` at `t = 0`, and `Δ_m` is commensurable with `SL_3(F_q[t])`.  In the first
+    case (Z3) of [[normalised-level-subpairs-cannot-certify-rank-three-cone]] gives `SL_3(F_p) ≤ C`.  So one
+    element of `B` on a monomial line with a pole deeper than `2n` kills `B`.  The thin sections left open
+    by w16-111 do not exist.
+  - *Why.*  The closure of `Δ_m` in `SL_3(F_q((t)))` is open.  If it is unbounded it is everything, by
+    Howe-Moore, and density gives `SL_3(F_q[t^(±1)]) = Δ_m · SL_3(F_q[t])`-type finite index.  If it is
+    bounded it fixes a vertex, and the level `e_ab(t^n F_q[[t]])` pins that vertex near the base lattice.
+  - *What is left.*  A level certificate needs `E_B` whose Laurent monomials enter only off the monomial
+    lines.  The monomial-valuation groups `E_w = { g : v_w(g - 1) > 0 }` show such `E_B` exist.  The next
+    tool is a monomial valuation preserved by the compressors of an infranormal `C`, which would contradict
+    (W2).  Otherwise the positive side: sofic approximations of `T_3`.
+- **w17-111, 2026-09-18: line sections of level subpairs (obstruction).**
+  - *Result.*  By [[level-subpair-line-sections-are-bounded-or-cofinite]], take `B ⊇ U_k`, `m ∈ N^d \ {0}`,
+    `t = x^m` and `n = ⌈k/|m|⌉`.  The line section `Δ_m = B ∩ SL_3(F_q[t^(±1)])` either has finite index in
+    `SL_3(F_q[t^(±1)])` or fixes a lattice between `t^(2n) L_0` and `L_0`.  In the second case its elements
+    have pole order at most `2n` at `t = 0`, and `Δ_m` is commensurable with `SL_3(F_q[t])`.  In the first
+    case (Z3) of [[normalised-level-subpairs-cannot-certify-rank-three-cone]] gives `SL_3(F_p) ≤ C`.  So one
+    element of `B` on a monomial line with a pole deeper than `2n` kills `B`.  The thin sections left open
+    by w16-111 do not exist.
+  - *Why.*  The closure of `Δ_m` in `SL_3(F_q((t)))` is open.  If it is unbounded it is everything, by
+    Howe-Moore, and density gives `SL_3(F_q[t^(±1)]) = Δ_m · SL_3(F_q[t])`-type finite index.  If it is
+    bounded it fixes a vertex, and the level `e_ab(t^n F_q[[t]])` pins that vertex near the base lattice.
+  - *What is left.*  A level certificate needs `E_B` whose Laurent monomials enter only off the monomial
+    lines.  The monomial-valuation groups `E_w = { g : v_w(g - 1) > 0 }` show such `E_B` exist.  The next
+    tool is a monomial valuation preserved by the compressors of an infranormal `C`, which would contradict
+    (W2).  Otherwise the positive side: sofic approximations of `T_3`.
