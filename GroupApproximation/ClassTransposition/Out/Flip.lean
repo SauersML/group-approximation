@@ -162,7 +162,7 @@ theorem mem_nonnegStab_of_isClassTransposition {g : Equiv.Perm ℤ}
   · by_cases hn₂ : ∃ t : ℤ, n = r₂ + t * m₂
     · obtain ⟨t, rfl⟩ := hn₂
       rw [(hswap t).2, nonneg_add_mul_iff t h0₁ h1₁, nonneg_add_mul_iff t h0₂ h1₂]
-    · push_neg at hn₁ hn₂
+    · push Not at hn₁ hn₂
       rw [hfix n hn₁ hn₂]
 
 theorem classTranspositionGroup_le_nonnegStab : classTranspositionGroup ≤ nonnegStab := by
