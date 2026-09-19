@@ -1,0 +1,22 @@
+{
+ "D_exact_Steinberg": 4.7330469935222786e-15,
+ "n": 17,
+ "k": 8,
+ "pattern_S4": {
+  "1": 1,
+  "sgn": 0,
+  "2": 2,
+  "3": 2,
+  "3s": 2
+ },
+ "pattern_S3": {
+  "1": 3,
+  "sgn": 2,
+  "2": 6
+ },
+ "restarts": 8,
+ "iters": 1500,
+ "hs_warm": 1000,
+ "local_search_best": 1.7657870535245552,
+ "elapsed_s": 120.3
+}
