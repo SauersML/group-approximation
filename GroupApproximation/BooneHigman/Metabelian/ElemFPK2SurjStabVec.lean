@@ -34,12 +34,14 @@ def surjStabVec (u : Fin n → R) (t : R) : Fin (n + 1) → R :=
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabVec
 
+omit [Ring R] in
 theorem surjStabVec_castSucc (u : Fin n → R) (t : R) (i : Fin n) :
     surjStabVec u t i.castSucc = u i :=
   Fin.snoc_castSucc (α := fun _ => R) t u i
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabVec_castSucc
 
+omit [Ring R] in
 theorem surjStabVec_last (u : Fin n → R) (t : R) : surjStabVec u t (Fin.last n) = t :=
   Fin.snoc_last (α := fun _ => R) t u
 

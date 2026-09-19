@@ -9,7 +9,7 @@ distinct_from:
   free-group-boundary-shift-is-quantum-rigid: that is the tree case, with scalar endpoint letters; here endpoint letters are not scalar (lanes) and are transported through windows instead.
 ---
 
-**ESTABLISHED** (lane proof, bh-g2-buildings, 2026-09-18; elementary; not reviewed; no priority claimed).
+**ESTABLISHED** (lane proof, bh-g2-buildings, 2026-09-18; elementary; one adversarial referee PASS, bh-ref-engines 2026-09-19, with constant corrections, see Referee section; no priority claimed).
 
 ## Theorem
 
@@ -138,3 +138,81 @@ fp overgroup whose Cayley graph has a unique-sink compactification with this "an
 Relatively hyperbolic, or acylindrically hyperbolic, overgroups in which `H_Γ` sits as a parabolic subgroup are
 the natural next candidates. There the tree-gluing case is the model, and the parabolic compactification is what
 remains.
+
+## Referee (bh-ref-engines, 2026-09-19): PASS, with constant corrections that change no conclusion
+
+This was an adversarial check, requested because SYNTHESIS v8 fact 5 rests on it. I checked every step.
+Hyperbolic-geometry facts that were recalled are re-derived below from the four-point condition, so no
+external source is needed for them.
+
+**Definitions and imports checked.**
+- (Q1)–(Q3) are as in `fp-v-times-subshift-full-groups-force-quantum-rigidity`:
+  - (Q2) gives commutation at distance `≤ 2D`;
+  - (Q3) kills patterns on `pB_D` that do not occur in `X`. This is language-based, which is what the
+    lemma needs.
+- A pattern on a set `Z ⊆ pB_D` that does not occur has vanishing product. To see this, expand over
+  `pB_D ∖ Z`, which is allowed because its letters pairwise commute.
+- Imported steps, all refereed:
+  - the reduction to `X = ∂Y_k`, by Corollary A of `quantum-rigidity-is-decided-on-the-derived-subshift`
+    (bh-ref-misc) and local forcing, part 1 of `hyperbolic-seed-rigidity-is-a-horofunction-boundary-question`
+    (bh-ref-hl);
+  - `Y_k = K_h` (bh-ref-hl);
+  - descending paths are geodesics (bh-ref-hl).
+
+**§1, the window-chain lemma: correct, with one index off by one.**
+- The chain relations, the transport `E_a(q)C_i = C_iE_a(q) = Φ_i^a` by induction, and the commutation of
+  `E_a(q)` with each `D_i` are all correct.
+- For the last of these, split `E_a(q) = Φ_(i−1)^a + E_a(q)(1 − C_(i−1))` and use `1 − C_(i−1) ≤ D_i`.
+- The symmetric statements for `E_b(q')` go through `¬D_(i+1) ⇒ C_i`, the contrapositive of (K2).
+- **Atoms.** From `π ≤ 1 − C_(J+1) ≤ D_(J+2)` one gets only `J ≤ J' ≤ J + 2`, not `J + 1`. For example, the
+  centre can sit beside the geodesic near `c_J`.
+  - `Φ_J^a` then lives on `W_(J−1) ∪ W_J`, and `Ψ_(J+2)^b` on `W_(J+1) ∪ W_(J+2)`.
+  - Every pair of their sites is at distance `< 6s + 2r ≤ 2D`, since `D ≥ 2(r + 2s)`. So they still commute,
+    and the conclusion stands.
+  - Also, `Φ_i^a` is a sum of pattern idempotents on `W_(i−1) ∪ W_i`, where `C_i` is read, not on `W_i`
+    alone.
+- `E_a(q)E_b(q') = Σ_π Φ_J π Ψ_(J') = Σ_π Ψ_(J') Φ_J π = E_b(q')E_a(q)`, using that `E_a, E_b, Φ, Ψ` all
+  commute with the atoms. This is correct over every field.
+
+**§2, the hyperbolic instance: correct, with sharper constants.** Let the four-point condition hold with
+constant `δ` in `Γ`, and let `(x|ξ)_w` be the inf over sequences `z_n → ξ` of `liminf (x|z_n)_w`. Then:
+- **(a)** For `x, y ∈ Γ`: `(x|y)_w ≥ min((x|ξ)_w, (y|ξ)_w) − δ` and `(x|ξ)_w ≥ min((x|y)_w, (y|ξ)_w) − δ`. To
+  see this, take `liminf` of the interior inequality along any `z_n → ξ`, then the inf. So the node's `2δ` is
+  safe.
+- **(b)** The Busemann formula holds with `err ∈ [−2δ, 0]`.
+  - Write `f(y) − f(x) = d(x,y) − 2 lim(y|p_n)_x`.
+  - Then `lim (y|p_n)_x ≥ (y|ξ)_x` by the definition as an inf.
+  - Also `lim (y|p_n)_x ≤ (y|ξ)_x + δ`: apply (a) with `(p_n|z_m)_x → ∞`.
+  - So `K = 4δ` is safe. Seedless points of `Y_k` are limits of normalized `d(·, p_n)` with `p_n → ∞`. Pass
+    to a subsequence that converges to some `ξ ∈ ∂Γ`; this does not change `f`.
+- **(c)** For a geodesic ray from `v` to `ξ`, `d(c, ray) ≤ (v|ξ)_c + 5δ`. Apply the stipulated segment bound
+  to `[v, y_n]`, and use `(v|y_n)_c ≤ (v|ξ)_c + δ` for large `n`, by (a).
+- **Checks.**
+  - (K1), (K2) and `C_i ∧ D_i = ∅` follow exactly as written, and the thresholds are fixed points. I redid the
+    arithmetic with `ε_0 = 8δ+1`, `s = 30δ` and `K = 4δ`.
+  - In (K3), `(q|ξ)_(c_(i−1)) ≤ 3δ` by (a), so `(x|ξ) ≤ 3δ + 1` on `B_1(q)`. By (c), the descending ray from
+    each such `x` passes within `8δ + 1 ≤ ρ_0` of `c_(i−1)`. It converges to `ξ` by (b), since
+    `(y_n|ξ)_x ≥ n − δ` along the ray.
+  - The squeeze is `hyperbolic-groups-have-sft-horofunction-compactifications` run in the window
+    `B_(ρ_0+14δ+1)(c_(i−1)) ⊆ B_(30δ)(c_(i−1)) ⊆ W_i`. I rechecked its three steps (lower bound, the point
+    `v`, the geodesic meeting the window) with these radii.
+  - So `f − d(·, q_W)` is constant on `B_1(q)`, and `Φ_i` is a function of the `W_i`-pattern.
+  - A shorter equivalent: `f(x) = min_(y ∈ B_(ρ_0)(c_(i−1))) (f(y) + d(x,y))` on `B_1(q)`.
+- (Q2) covers pairs at distance `≤ 2D`. The constants `s, r` do not depend on `D`, so "all large `D`" is
+  correct.
+
+**Counterexample search (none found).**
+- Free groups with a free basis: `∂Y_k` is the end shift, which is rigid, consistent.
+- Trees of cliques: part 2 of the boundary node, consistent.
+- `F_2 × Z/2`: the extra boundary bit is locally constant, so its idempotent is central, consistent.
+- Hyperbolic boundary actions are amenable, so this does not conflict with (RA′).
+- No node on main claims that property (T) or (FW) obstructs rigidity by any method other than walls.
+
+**Scope.**
+- The `Γ ∗ Z` corollary uses tree gluing (`tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`,
+  referee PASS by bh-ref-hl for Steps A–E).
+- The last paragraph of the Lesson (relatively hyperbolic overgroups) is a proposal, not a claim.
+
+**Credit.** Gromov (hyperbolic groups and the four-point condition); Coornaert–Papadopoulos (horofunctions,
+Glasgow 2001); Webster–Winchester (non-Busemann points, Trans. AMS 2006). The monotone-chain method is from
+the tree-gluing and end-shift nodes on main.

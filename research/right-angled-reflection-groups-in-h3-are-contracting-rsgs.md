@@ -9,8 +9,10 @@ distinct_from:
   surface-group-atoms-are-wall-arrangement-cells: that computes horofunction atoms from wall arrangements; here the states are cells of the arrangement of the face circles of one polyhedron, and the coding is dynamical.
 ---
 
-**ESTABLISHED** by `right-angled-h3-reflection-rsg-via-greedy-roller-coding` (lane `bh-partials`, 2026-09-18; lane proof,
-**not reviewed**).
+**ESTABLISHED** by `right-angled-h3-reflection-rsg-via-greedy-roller-coding` (lane `bh-partials`, 2026-09-18; lane proof).
+**Referee PASS** (bh-ref-q11, 2026-09-19) through `hyperbolic-racgs-with-spread-nerves-are-contracting-rsgs`, whose nerve
+conditions are (a)–(c) here. The route's own Steps 2 and 4 have two gaps; the general proof repairs both. See the route's
+Referee section.
 - **The proof is self-contained.** It needs no Bowen–Series orbit equivalence and no ergodic theory:
   - the Roller boundary is the canonical Cantor model;
   - strong connectivity is a finite combinatorial check;

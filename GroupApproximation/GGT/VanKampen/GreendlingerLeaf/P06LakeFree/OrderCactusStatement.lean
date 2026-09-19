@@ -3,6 +3,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.OrderCactus
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.OrderCactusUnique
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus order: the planar filter statement (lane gl-p06-14)
 

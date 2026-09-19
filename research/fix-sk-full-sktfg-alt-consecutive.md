@@ -5,8 +5,9 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.SKTFG.AltConsecutive: Type mismatch"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/AltConsecutive.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (9add2d485e, trusted batched probe job direct-b1789839564).** Previously OPEN. Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/Full/SKTFG/AltConsecutive.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-green-sk.
+
 
 **First errors (verbatim).**
 

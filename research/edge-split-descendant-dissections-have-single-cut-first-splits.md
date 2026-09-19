@@ -3,6 +3,8 @@ rg: 2
 id: edge-split-descendant-dissections-have-single-cut-first-splits
 kind: claim
 title: Every nontrivial descendant dissection of a unimodular cell has a first split of the cell whose plane cuts each straddling piece along one of that piece's own first splits
+refuted_by:
+  - no-median-need-be-single-cut-for-a-descendant-dissection
 artifacts:
   - research/artifacts/gq-bh-major-mcg-2-single-cut-family.md
 distinct_from:
@@ -11,7 +13,23 @@ distinct_from:
   split-tree-restrictions-to-a-child-need-not-be-split-trees: that is one instance, repaired by two single cuts; this proposes that such one-cut repairs always exist.
 ---
 
-**OPEN** (lane bh-major-mcg-2, 2026-09-18). A conjecture with evidence, proposed as the
+**REFUTED** (lane bh-major-mcg-2, 2026-09-19) by
+`no-median-need-be-single-cut-for-a-descendant-dissection`.
+- **The counterexample.** A 14-piece descendant dissection of `Δ` has, for every median,
+  a straddler that the median does not cut along one of the straddler's first splits.
+  It was checked exactly.
+- **How often.** bh-free-54's `sclog.py` counts 148 such nodes among 14086 in rank 3.
+  Its `no_sc` is exactly this conjecture.
+- **What survives.** The reduction below does not need (SC) for its restriction step:
+  any cut-lemma resolution of a straddler is a split tree of it. (SC) was meant only as
+  a termination measure.
+- **Candidate replacement.** Bounded damage (SC₂): in the logged nodes, two medians fail
+  only at double-midpoint pieces, and two splits resolve each. It is an open question in
+  the counterexample node.
+
+The original status follows.
+
+Original status: **OPEN** (lane bh-major-mcg-2, 2026-09-18). A conjecture with evidence, proposed as the
 target of the bottom-up approach to TD. The reduction part below is a lane proof; one referee PASS for the reduction (bh-ref-engines, 2026-09-18).
 
 ## Statement (SC)

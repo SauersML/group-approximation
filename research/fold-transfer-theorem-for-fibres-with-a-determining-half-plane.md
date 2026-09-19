@@ -124,3 +124,9 @@ of the fold transfer is correct and clean.
 causality gap recorded on `sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices` still
 applies to "`τ_k` SW-deterministic". A row rule at one level (`ν = −e_2`) may be the easier way to get
 (D).
+
+**Addendum (re-check, 2026-09-19).** Item 3's parenthesis "for `n = 1`, `Z ≅ X̂`" is off by a factor.
+- For `n = 1` the tree is a line, so `∂T` has two ends, and item 1 gives `Z ≅ X̂ × ∂T = X̂ ⊔ X̂`.
+- Both copies are invariant, since `F_1` fixes both ends, and each is conjugate to `X̂` up to the flip
+  `h ↦ −h`. So `Z` is never minimal for `n = 1`.
+- Nothing for `n ≥ 2` is affected.

@@ -188,3 +188,17 @@ Theorem A (or to any isolated group) that is injective on `D_p[p]`.
 - The finite part is free (residual finiteness of `G/D`).
 - Finite presentation is paid once, by Kneser and Abels, in the core.
 - Boone–Higman additionally needs these explicit isolated groups to embed in simple groups.
+
+## Referee (bh-ref-kourovka-b, 2026-09-19): Theorem A and Corollary A′ PASS; Theorem B not reviewed
+
+Theorem A was checked while refereeing `s-unit-twisted-prufer-radicals-have-isolated-hosts` (see the
+Referee section there).
+- **Finite presentation.** The Kneser, Cornulier and Abels imports were read at source: Abels 0.2.5,
+  0.2.8, 6.1.2, 6.4.3 and 6.4.5, and Cornulier v4 Definition 2.4, Theorem 3.1 and Lemmas 3.2–3.6.
+  Blocks `(r, 3, 3, 1)` are admissible, and compact presentation holds at every `q`.
+- **Normal closure of `L`.** It is the `Z[Δ]`-span of `L`, because `V` is central in `H`.
+- **Isolation.** The commutator descent (A)–(C) was recomputed block by block and is correct. It
+  needs only the layers `U ⊋ U_{≥2} ⊋ U_14`, and it needs (ii) for `Z[1/m]`-submodules.
+- **Corollary A′.** Correct: Behr (Abels 0.2.5) covers `GL_r(Z[1/m'])`, and `Z[1/m']^r` contains
+  no `Z[1/pm']`-submodule.
+- **Not reviewed.** Theorem B and the Examples.

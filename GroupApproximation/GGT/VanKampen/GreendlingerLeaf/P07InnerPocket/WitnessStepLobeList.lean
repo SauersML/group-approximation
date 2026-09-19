@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.WitnessStepOrderList
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-64: an order-preserving list is a sublist
 

@@ -162,3 +162,19 @@ finite units and regular counts, lies in `B_A`.
 **Limit.** Such finite-type hosts have exponentially bounded word problem
 (`finite-k-graph-full-groups-have-exponential-word-problem` extends, since the units are
 finite). So universality needs codings that grow with the input.
+
+## Attempts
+
+1. **(bh-major-cube-b, 2026-09-19) Simple `F_∞` hosts, with Steps 3–4 and the loops removed.**
+   `euclidean-building-lattices-embed-in-f-infinity-simple-groups` applies the Cuntz host
+   theorem (`cuntz-garside-coded-actions-embed-in-f-infinity-simple-groups`) to the
+   **unrescaled** `ℭ_Γ` of Step 1.
+   - (C1): the degree cubes form a Garside family.
+   - (C2): Step 2.
+   - (C3): the uniform box measure shows that cylinders of degree-`km` loops have measure at
+     most `2^{−k|m|}`.
+   - (C4): Ciobotaru–Le Bars minimality and Step 5.
+
+   So every such lattice embeds in a simple group of type `F_∞`. This includes the Titz
+   Mite–Witzel Kazhdan non-residually-finite C̃₂ lattices. It is a lane proof, and it inherits
+   the Ciobotaru–Le Bars caveat above.

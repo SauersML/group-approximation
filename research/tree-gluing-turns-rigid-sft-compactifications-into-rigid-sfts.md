@@ -191,3 +191,56 @@ Q3. The second statement is the same argument with a second seed. `∎`
 - So the "minimality gap" of gate E1 disappears. Gates E1′ + E2 reduce to one deterministic object: a
   rigid, locally checkable coordinate system with a unique origin on a finitely presented overgroup of
   the input (`decidable-groups-embed-in-rigid-sft-compactification-groups`).
+
+## Referee (bh-ref-hl, 2026-09-19): PASS for parts 1–4 (Steps A–E)
+
+This is an internal lane review, line by line. It uses Q1–Q3 as defined in
+`fp-v-times-subshift-full-groups-force-quantum-rigidity`; there, (Q2) is commutation at distance `≤ 2D`.
+
+- **Locality.** Pieces are isometrically embedded, so `B^Λ_r(λ) ∩ λΛ_i = λB^(Λ_i)_r`. R1 has radius `r_i` and R3/R3+ have radius
+  `R_0`. Correct.
+- **Step A.**
+  - Every edge of `T` is oriented. Out-degrees are at most 1: pieces carry at most one seed, and R3+ gives elements at most one
+    out-edge.
+  - *At most one sink.* Along the tree path from one sink, every edge is forced to point back toward it, which contradicts a
+    second sink. The same argument makes any two out-paths merge, so without a sink all out-paths share one end.
+  - *Determination and existence.* Both hold as stated. I checked R3 at elements of a sink piece and at elements off it. Correct.
+- **Step B (minimality of `X`, and density for `X^+`).**
+  - Element nodes on tree paths between pieces of `T_R` lie in `B_R`. A Cayley path inside `B_R` gives a walk in `T`, and that walk
+    must visit every separating element.
+  - Hence all of `T_R` lies on the non-`e′` side of `P_last`, and in both `η` and `g.ξ` every other piece of `T_R` exits toward
+    `P_last`. So `η|_(B_R) = (g.ξ)|_(B_R)`.
+  - The seedless sink case uses (C2) for `Y_i` with seeds `e_n → ∞`, since a bounded subsequence would give a seeded limit.
+  - For `X^+`, a sink element inside `B_R` means `η` is itself in the seed orbit. A sink element outside `B_R` is the exit case.
+    Correct.
+- **Step C.** Correct; one precision. The three ends must be chosen with care when one factor has order 2 or 3. Take `P′` of the kind
+  with at least 3 elements, deep enough beyond `e′` that its entry direction also contains ends beyond `e′` (a big-kind piece
+  further up the path branches). Then `g` fixes `P′` and three rays out of it, hence an element node, so `g = 1`. The hypothesis
+  "not both of order 2" is used only here.
+- **Step D (rigidity), the key step.**
+  - *Letters.* `E_c = E^0_(c_0) E^1_(c_1)` follows from (Q1) at one site.
+  - *Same piece.* (Q2) holds because pieces are isometric. For (Q3), expanding a non-occurring `Y_i`-pattern into `X^+`-patterns on
+    the `Λ`-ball gives only non-occurring patterns, by R1. So the piece family is a `D`-family for `Y_i`, and it commutes.
+  - *Lemma 1.* The König argument is valid because `D ≥ r_i`: a configuration whose `D`-patterns all occur lies in `Y_i`. It also
+    uses (C1) and the trivial stabilizer.
+  - *Junctions.* `A_i` and `B_i` have their sites in `B_(R_0)(e_i)`, pairwise within `2R_0 ≤ 2D`, so they commute. The R3+
+    violation lives on `B_(R_0)(e_i) ⊆ B_D`, which gives `1−A_i ≤ B_i`. Lemma 1 in `P_i` (`e_i ≠ e_(i+1)`) gives
+    `B_i ≤ 1−A_(i+1)`.
+  - *Transitivity.* `≤` is transitive (`PR = PQR = P`, `RP = RQP = P`), and comparable idempotents commute.
+  - *Partition.* `Π_0, …, Π_(2m)` are orthogonal with sum `1`. `Π_j ≤ A_1` for `j ≥ 1`, and `Π_j ≤ B_m` for `j ≤ 2m−1`.
+  - *Scalars.* `f A_1 = A_1 f = δA_1`, because `f` and `A_1` are letters of one commuting piece family and
+    `A_1 ≤ E_(y_*(e_1^(−1)q))(q)`.
+  - *Conclusion.* On `Π_0`, `f′` is scalar and `f` commutes. On `Π_(2m)`, `f` is scalar and `f′` commutes. In between, both are
+    scalar. So `fΠ_jf′ = f′Π_jf` for every `j`, and `ff′ = f′f`. Correct.
+  - *Scope.* Rigidity holds at every `D ≥ max(r_i, R_0, 1)` at which both `Y_i` are rigid. So "all large `D`" is inherited. The
+    same proof covers `X`, since `X ⊆ X^+`.
+- **Step E (part 4).**
+  - "Both pieces seeded at 1" makes `1` the unique sink, and every other piece is seeded at its element nearest `1`. So the cylinder
+    is one point `x_*`, which lies in `X^+`: R3+ holds everywhere and R3 away from `1`.
+  - `g.x_* = x_*` gives a sink at `g`, so `g = 1`.
+  - Density is Step B with `ξ = x_*`, and rigidity is Step D. So (C1), (C2) and rigidity all hold, and `𝒞` is closed under free
+    products. Correct.
+- **Consequence for CARRIER.** This PASS, together with the PASSes of `wall-chamber-distance-sfts-are-quantum-rigid` and
+  `roller-compactifications-of-cube-complexes-are-sfts`, makes the chain unconditional up to published theorems. A special
+  cubulated input embeds in a RAAG `A` by Haglund–Wise, recalled (virtually, for virtually special inputs). `A ∈ 𝒞` holds by the
+  wall node, and `A * Z`, again a RAAG, carries a minimal, topologically free, quantum-rigid SFT by parts 1–3.

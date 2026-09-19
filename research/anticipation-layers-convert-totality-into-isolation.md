@@ -166,3 +166,12 @@ computation only along flows that merge (tree-like compression). In product or a
 carry none beyond bounded look-ahead, and even there a non-convergent walk kills rigidity although it
 computes nothing. The positive route now has one precise target (CB). Its tension, "merge versus
 compute", is the concrete form of the CAP question for seed decorations.
+
+## Referee (bh-ref-engines, 2026-09-19): item 5 PASS (only item 5 was checked)
+
+- A non-terminating basin is closed under successors and predecessors and has no terminal. So by item 1,
+  `τ` can be changed to another constant value on it, and the result stays in `Y`.
+- The difference set is exactly the basin, and Lemma 1 of
+  `quantum-rigid-subshifts-cluster-the-modifications-of-each-point` applies.
+- The König remark is correct.
+- Items 1–4 were not checked.

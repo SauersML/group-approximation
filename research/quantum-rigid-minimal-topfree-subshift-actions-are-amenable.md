@@ -184,3 +184,17 @@ It supersedes the OPEN line at the top of this node.
     Osajda's residually finite group is built the same way), then (RA′) is false.
   - Modification clouds give only 1-Lipschitz depth functions, which are Haagerup-type data. So
     "property A from clouds" cannot prove (RA′) if that test case is rigid.
+- **Caps are the wrong Reiter functions; joins are the right ones**
+  (`products-of-trees-refute-cap-coherence-join-caps-restore-it`).
+  - The cap-coherence reduction (CC′) of `rigid-subshift-amenability-from-coherent-variation-caps` is
+    **false**. `∂T_m ⊠ ∂T_n` is rigid, minimal, topologically free and amenable, but its caps fail
+    coherence at every point and for every `L`.
+  - The reason: a modification in one factor is constant along the other, so nearest variation points
+    sit on transverse axes that move with the centre.
+  - The repair is `k`-fold join caps: nearest points of intersections of `k` modification supports.
+    They still give amenability over any group. Over a product of `k` trees they cohere at level `k`,
+    and at no lower level.
+  - Corrected reduction: (RA′) ⇐ (JC′), which says every minimal, topologically free, rigid subshift
+    has coherent `k`-fold join caps for some `k`.
+  - What a proof must extract from minimality is a finite *join dimension* together with nearby common
+    corners (Helly), which are the properties infinite-dimensional non-exact wall spaces lack.

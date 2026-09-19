@@ -3,14 +3,23 @@ rg: 2
 id: absorbing-rope-readers-are-not-pointwise-rigid
 kind: claim
 title: A rope reader whose automaton merges two states (every automaton for a language that is not a group language, such as Cohen's digit set) hides the tail choice above a merging word, so sibling subtrees below it carry independent free choices and the reader is not pointwise rigid; readers with injective (group) automata link all tails, so rigid rope seeding needs rope index sets that are group languages
-invalidates:
-  - coupled-rope-reader-has-nested-one-bit-fibres-via-prereqs
 distinct_from:
   coupled-rope-reader-has-nested-one-bit-fibres: that claims every free chain is linked into one bit; this shows the claim fails whenever a merging word separates two sibling subtrees, which happens for Cohen's rope set.
   rope-readers-cannot-be-deterministic-and-must-couple-chains: that refutes deterministic readers and says co-determinism maximizes free runs; this shows injectivity is exactly what makes the free runs linkable.
 ---
-**ESTABLISHED** for parts 1–3 (lane proof, bh-invent-15, 2026-09-18; not reviewed). Part 4 is a
-sketch.
+**REFUTED: retracted by its author** (bh-invent-15, 2026-09-19). Part 1 (merging words exist
+for non-group languages) is true and harmless. Parts 2–4 are **false**.
+- **The error.** Part 2 checks only the chain through the base point. The top row of a subtree
+  `T_a` is a whole row, and it contains all-good positions, whose values carry the tail choice.
+  Sideways links (L) join those to the same positions in `T_{a+1}`. So the "hidden" choices are
+  linked after all.
+- **The correct linking proof** ("detours") is now in `coupled-rope-reader-has-nested-one-bit-fibres`.
+- **Graph status.** The route of this node is invalidated by
+  `free-bit-components-are-central-iff-they-see-the-base`.
+- **Kept for the record.** The text below is the original, unchanged, and it is wrong from part
+  2 on. Do not cite it.
+
+**Original status line:** ESTABLISHED for parts 1–3, part 4 a sketch.
 - **Correction.** Part 2 of `coupled-rope-reader-has-nested-one-bit-fibres` (every free chain
   linked into one bit) is **false** for Cohen's rope set. Its step "consecutive positions are
   linked" treats the common value `s = q(hl) = q(hxl)` as carrying the free choice. When a bad

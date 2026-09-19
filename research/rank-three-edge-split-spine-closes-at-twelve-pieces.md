@@ -77,10 +77,23 @@ rank three (`m = 2`). The closed-MCG host needs rank `6g − 6`.
     another one. The finitely many trees `U` with `G, S ≤ U ≤ X` include `X`. A minimal
     one among them is a minimal common upper bound of `G` and `S`, so under (H) it
     lies in `𝒮`. By maximality it equals `G`, so `S ≤ G`.
-- **Tests of that property.** PENDING (see the artifact):
-  - all split trees with at most 7 pieces;
-  - random split trees with 8 to 80 pieces;
-  - reversing upper bounds with up to 400 pieces.
+- **Tests of that property** (`spinecheck.py`, SLURM job 1329260, one core; output in
+  `research/artifacts/gq-bh-free-54-spine-computation.md`). Every tested split tree has a
+  greatest element of `𝒮` below it:
+  - all 105676 split trees with 2 to 7 pieces;
+  - 1650 random split trees with 8 to 80 pieces (at most 10 elements of `𝒮` below one
+    tree);
+  - 199 reversing upper bounds of random pairs, with up to 313 pieces.
+- **Calibration.** The test can fail. With `𝒮` cut down to the three atoms, it fails on
+  a flop element, as it must: `E_{01}` and `E_{02}` are both below it with no greatest
+  element. With the full `𝒮` it passes there.
+- **Reading.** By the (⇒) argument, a failing tree would expose a missing minimal
+  bound below it. So these passes support (H) in rank three, but they are not a
+  proof.
+  - The exhaustive range (at most 7 pieces) is already covered by the exact search to
+    12 pieces.
+  - Beyond 12 pieces the tests are samples. A missing bound `M` is detected only by
+    trees above `M` that lie above no element of `𝒮` bounding the same pair.
 
 ## Lesson for general BH
 

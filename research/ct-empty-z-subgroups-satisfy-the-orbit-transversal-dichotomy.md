@@ -30,7 +30,10 @@ distinct_from:
     `r`.
   - A canonical map is the prefix replacement `uz ↦ vz`.
 - **The group.** Let `G = ⟨S⟩` with `S` finite and symmetric. Each `s ∈ S` is given by a
-  partition of the Cantor set into cones `[u]` and the prefix replacements `u ↦ v` on them.
+  *table*: a partition of the Cantor set into cones `[u]` and the prefix replacements `u ↦ v`
+  on them.
+  - The table of `s^(-1)` is taken to be the inverse table: pieces `[v]` with `v ↦ u`.
+  - A self-inverse table, like that of a class transposition, is allowed.
 - **Depth.** `D` is the largest length of such a `u` or `v`.
 
 **Moves and consumption.** Applying `s` to a sequence `y` replaces the prefix `u` of the piece
@@ -47,6 +50,15 @@ containing `y`.
     which `K` is consumable is clopen.
 - **Monotonicity.** A move that reads `x_(K+1)` also reads `x_K` if it is still present. So
   `C_(K+1) ⊆ C_K`.
+- **Rigid blocks.** One move shifts every unread letter by the same amount `|v| − |u|`. So a
+  block of consecutive letters that no move reads stays consecutive.
+- **Reversal.** Let a word `P` lead from `x` to `y`, and let `P^(-1)` be the inverse word with
+  the inverse tables.
+  - Each step of `P^(-1)` reads exactly the `v` just written, so it undoes that step.
+  - Hence a letter that `P` does not read is not read by `P^(-1)`, and it returns to its
+    original position in `x`.
+- Positions, not sequences, are what is tracked. A word can fix `x` and still shift its tail,
+  as `0 ↦ 00` does at `0^∞`.
 
 ## Theorem
 
@@ -78,16 +90,22 @@ Kourovka 20.44.
 **2, step 1: the frozen tail is an orbit invariant.**
 - For `x` with some position non-consumable, let `κ(x)` be the least such position. Positions
   beyond it are non-consumable too, by monotonicity.
-- Put `T(x) = σ^(κ(x)) x`. The letters of `T(x)` are never touched, so every `y` in the orbit
-  has the form `y = v·T(x)`, with `v` the current stack.
-- **Claim: `T(y) = T(x)`.**
-  - A path from `y` that consumes a letter of `T(x)` would extend the path `x → y` to one that
-    consumes it from `x`. So `κ(y) ≤ |v|`.
-  - Suppose `κ(y) < |v|`. The letters of `y` from position `κ(y)` on are never touched on the
-    reverse path `y → x`. So `x = v'·v[κ(y), |v|)·T(x)`.
-  - That letter of `v` is non-consumable from `x`, by the same concatenation argument. Hence
-    `κ(x) ≤ |v'| = κ(x) − (|v| − κ(y)) < κ(x)`, which is absurd.
-  - So `κ(y) = |v|` and `T(y) = T(x)`.
+- Put `T(x) = σ^(κ(x)) x`.
+- **Claim: every `y = P(x)` in the orbit has `κ(y)` defined and `T(y) = T(x)`.**
+  - **Setup.** No word reads the block `x[κ(x), ∞)`. By rigid blocks, `P` carries it to
+    `y[q, ∞)` for some `q`, so `y = v·T(x)` with `|v| = q`.
+  - **`κ(y) ≤ q`.** Suppose a word `R` reads, from `y`, the letter at position `q + i`. Then
+    "first `P`, then `R`" reads `x_(κ(x)+i)` from `x`, which is impossible. So `q` is
+    non-consumable from `y`.
+  - **`κ(y) ≥ q`.**
+    - Put `Q = P^(-1)`. No word reads `y[κ(y), ∞)`, so `Q` carries this block rigidly to
+      `x[q', ∞)` for some `q'`.
+    - The block contains `y_q`, which is the tracked letter `x_(κ(x))`. By reversal `Q`
+      returns it to position `κ(x)`. So `κ(x) = q' + (q − κ(y))`.
+    - Suppose a word `R` read `x_(q')` from `x`. Then "first `Q`, then `R`" would read
+      `y_(κ(y))` from `y`. So `q'` is non-consumable from `x`, and
+      `κ(x) ≤ q' = κ(x) − (q − κ(y))`.
+  - **Conclusion.** `κ(y) = q`, and `T(y) = y[q, ∞) = T(x)`, letter for letter.
 
 **2, step 2: counting.**
 - Let `N_K = {x ∈ N_0 : K not consumable}` = `{κ(x) ≤ K}`. For `L ≥ K + D`, the integers in
@@ -103,10 +121,17 @@ Kourovka 20.44.
 ## Remarks
 
 - **Examples.**
-  - `V` itself is in case 1, with one orbit on `N_0`.
-  - The element `n ↦ n/2` on `0(4)`, `n − 1` on `2(4)`, `2n + 1` on `1(2)` is in case 2.
-    - Its letters below a leading `10` or `01` block are frozen.
-    - Its orbit minima are the class `1(4)`.
+  - `V` itself (finitely generated) is in case 1. It has one orbit on `N_0` and one on the
+    negative integers.
+  - The element `g` given by `n ↦ n/2` on `0(4)`, `n − 1` on `2(4)` and `2n + 1` on `1(2)` is in
+    case 2.
+    - Its table is `00 ↦ 0`, `01 ↦ 10`, `1 ↦ 11`.
+    - The `⟨g⟩`-orbit of `10z` is the line `… ↦ 001z ↦ 01z ↦ 10z ↦ 110z ↦ 1110z ↦ …`, so the
+      tail `z` below the first `10` or `01` is frozen.
+    - On `N_0` the orbit minima are `0`, which is fixed, and the class `1(4) ∩ N_0`: the least
+      element of the line of `z = m` is `1 + 4m`.
+  - **Tools not used.** The proof does not use bh-free-16's period lemma (2a993fc15), nor any
+    automaton theory. Only the prefix-rewriting form of `CT_∅(Z)` enters.
 - **Why one prime is tame.**
   - With one prime, a canonical map is a single-stack operation. The only way to reach deep
     letters is to pop down to them, and whether that is possible is decided by a bounded
@@ -129,3 +154,61 @@ Kourovka 20.44.
 Collatz-type. This is the same one-base/two-base split as torsion (ray-cocycle pumping) and
 Out(CT_P(Z)) (Cobham rigidity). Host constructions that need tame subgroup orbits should stay
 inside one-stack (one-base) coordinates.
+
+## Referee (bh-ref-kourovka-a, 2026-09-19): PASS
+
+**The printed question.** Kourovka 20.44 (S. Kohl), 20th issue, p. 153 of arXiv:1401.0300 (fetched
+09-19, md5 `bdbcb8e5…`), unstarred:
+"Is it true that a finitely generated subgroup of CT(Z) either has only finitely many orbits on Z
+or there is a set of representatives for its orbits on Z which has positive density?"
+The node settles it for finitely generated subgroups of `CT_∅(Z)` and correctly leaves `CT(Z)` open.
+
+**Checked line by line, adversarially.**
+- **Setup.** A class transposition with 2-power moduli has a table (`u_1 ↔ u_2`, identity cones on
+  the rest), and tables compose after refinement. So every element of `CT_∅(Z)` has a table.
+  Item 3 of the parent is not needed.
+  - `N_0` and the negatives are invariant, since `r + km ≥ 0` iff `k ≥ 0`. So orbit minima are well
+    defined.
+- **Moves.**
+  - A configuration is always `w · x[m, ∞)`, with `m` the number of original letters consumed so far.
+  - A move reads exactly its piece's `u`, since the pieces form a prefix code. So moves before the
+    consuming one read only above `x_K`, and the consuming one reads at most `D − 1` letters below it.
+  - Hence `C_K` is a finite union of cones of length `K + D`, and `C_(K+1) ⊆ C_K`.
+  - Rigid blocks and reversal are correct: a step of `P^(-1)` reads exactly the `v` its partner step
+    wrote, which is new letters only.
+- **Item 1.** A clopen set of full measure is everything. Just before the letter `x_ℓ` of `w0^∞` is
+  consumed, the configuration is a word of length `p < D` followed by `0^∞`, and likewise with `1^∞`
+  for negatives. So there are at most `2^(D+1)` orbits.
+- **Item 2, the repaired step.** It is correct, and it is exactly the right repair.
+  - The argument tracks **physical letters**, so positions are pinned independently of sequence
+    equality.
+  - `κ(y) ≤ q` follows by concatenating `P` then `R`.
+  - For `κ(y) ≥ q`: `Q = P^(-1)` carries `y[κ(y), ∞)` rigidly to `x[q', ∞)`. Reversal sends the physical
+    letter `x_(κ(x))`, sitting at `y_q`, back to position `κ(x)`, so `κ(x) = q' + q − κ(y)`. Then `Q`
+    followed by `R` shows `q'` is non-consumable.
+  - Consumability is a function of (configuration, position), so this is legitimate.
+  - I tested it on the node's `g` at `x = 1 = 10·0^∞` with orbit point `y = 3 = 110·0^∞`. As a
+    sequence `y = 11·0^∞`, which is the ambiguity that broke the old argument. The letter at position
+    2 is consumable (`g^(-1)` then `g`), so `κ(y) = 3 = q`, as claimed.
+- **Item 2, counting.**
+  - `{κ ≤ K}` depends on the first `K + D` letters, so it has exact proportion `δ_K` in `[0, 2^L)`
+    and in `[−2^L, 0)`.
+  - Each orbit has at most `2^(K+1) − 1` points in `N_K`, because `T` is an orbit invariant and every
+    orbit point has `κ` defined.
+  - The bound `δ_K N / 2^(K+2)` holds for `N ≥ 2^(K+D)`, on both sides.
+- **Example.** The table `00 ↦ 0, 01 ↦ 10, 1 ↦ 11` is a bijection, the orbit lines are as stated, and
+  the minima are `{0} ∪ 1(4)`.
+
+**Minor.**
+1. **Tables of involutions.** If a generator is an involution given by a non-self-inverse table,
+   include both tables as moves. The proof needs only that the set of tables is closed under table
+   inversion.
+2. **Density.** The node proves positive **lower** density, which covers the lower and upper readings
+   of "positive density". Natural density (existence of the limit) is not addressed. Plausibly the
+   minima with `κ ≤ K` form a clopen set, but that was not checked.
+
+**Not checked:** the two-prime remarks, which cite
+`ct-z-orbit-transversal-dichotomy-is-collatz-hard`.
+- **Generalized (09-19).** `ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44` (50b7f0bf8) extends
+  this to finitely generated subgroups of `CT_P(Z)` whose slopes lie in one `γ^Z`, with the same
+  proof in degree form. It is refereed PASS there.

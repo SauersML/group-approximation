@@ -49,3 +49,24 @@ irreducible core definition). This generalizes `contracting-rsg-finite-product-p
 - **It works.** Then `g t_i = t_j h`, so `g(i, α_aβω) = (j, α_bγω)`. That is the canonical
   similarity `C_{e_{i,a}β} → C_{e_{j,b}γ}`.
 - **Conclusion.** `G'`, the image of `G`, is a contracting RSG, and `G' ≅ G`. ∎
+
+## Referee (bh-ref-q11, 2026-09-19): PASS, no repairs
+
+Checked against BBMZ arXiv:2309.06224v3 (HTML):
+- `E` is a nonempty clopen subset of `Σ_Γ`;
+- the standing assumptions of Remark 2.4 (no isolated points, no empty cones);
+- the local actions of Def. 2.5 and rationality in Def. 2.6;
+- the irreducible core of Def. 2.19; Def. 2.32 (RSG); Def. 2.41 (nucleus and contracting).
+
+The steps:
+- **The splitting.** Every clopen `E` is a finite disjoint union of cones. `m ≥ 2` is possible because there are no isolated points.
+- **The new graph.** `Γ'` inherits Remark 2.4 from `Γ`, because `C_{e_{i,a}} ≅ C_{t(α_a)}` is nonempty.
+- **Irreducible core.** Def. 2.19 holds for `Γ'` with the same core `Γ_0`. Every path in `Γ'` of length `N+1` ends in `Γ_0`, since its last `N` edges lie in `Γ`, and `r'` reaches `Γ_0` through any `e_{i,a}`.
+- **Local actions.**
+  - Suppose `h_i(g)(C_{α_aβ}) ⊆ C_{α_b}`. The longest common prefix of the image in `E'` is then `e_{σ_g(i),b}` followed by the rest of that prefix in `E`, because cones meet only when nested.
+  - So `g|_{e_{i,a}β} = h_i(g)|_{α_aβ}` as maps `C_{t(β)} → C_{t(·)}`.
+  - The other cones are finitely many. So `g` has finitely many local actions and `Nuc_{G'} ⊆ Nuc_H`.
+- **RSG moves.** Every proper cone of `E'` begins with some `e_{i,a}`. `C_{α_aβ}` is proper in `E` because `m ≥ 2`. `g = t_j h t_i^{-1}` satisfies `σ_g(i) = j` and `h_i(g) = h`.
+- **Faithfulness.** As written.
+
+Consequence: with `closed-surface-groups-contracting-rsg-via-bowen-series` (referee PASS, 0c67e7a290) and Selberg's lemma, Question 1.1 is now refereed for every cocompact Fuchsian group.

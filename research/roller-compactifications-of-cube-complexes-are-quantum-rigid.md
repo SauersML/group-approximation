@@ -43,10 +43,14 @@ large enough that every radius-2 ball of `X^1` lies in the `D`-ball of a site.
    two nonempty parts at distance `> 2D`. Then the full ultrafilter subshift is not `D`-rigid.
    - The reason: two principal points `v`, `u` separated by that single wall differ exactly on its
      dual edges.
-   - This is the expected situation for walls of graphical `C'(1/6)` presentations with relators of
-     unbounded length. A wall meets a relator in two antipodal edges, and relators are isometrically
-     embedded (recalled). Whether other paths reconnect the two sides was **not** checked.
-   - In that situation finite type also fails, because wall consistency across a long relator is not
+   - This was first expected for walls of graphical `C'(1/6)` presentations with relators of
+     unbounded length. **Correction (2026-09-19):** every edge also lies on translates of the shortest
+     relators carrying its label, so such walls acquire short links, and (W1) there is **undecided**
+     (`products-of-trees-refute-cap-coherence-join-caps-restore-it`, Section 4(b)).
+   - The original reasoning: a wall meets a relator in two antipodal edges, and relators are
+     isometrically embedded (recalled). Whether other paths reconnect the two sides was **not**
+     checked.
+   - Where (W1) does fail, finite type also fails, because wall consistency across a long relator is not
      a local rule.
 
 ## Proof
@@ -110,11 +114,56 @@ of `rigid-subshifts-over-free-factors-are-tight-almost-everywhere` gives a nonco
 - crossing walls meet;
 - adjacent parallel walls touch.
 
-**What this means for (RA′).** The Arzhantseva–Osajda and Osajda constructions, which are non-exact
-but Haagerup, lose the first property at every scale: walls pass through relators of unbounded
-length. So the full compactification is not rigid there, and not of finite type.
-- (RA′) at Osajda's input now hinges on the minimal subsets of such a boundary, which admit no
-  single-wall flips.
+**What this means for (RA′).** For the Arzhantseva–Osajda and Osajda constructions, which are
+non-exact but Haagerup, it was first claimed that they lose the first property at every scale. That
+claim is withdrawn (see the correction in part 4): whether (W1) holds there is undecided.
+- What such wall spaces do lose, uniformly, is **finite dimension**: their dual cube complexes are
+  infinite-dimensional (recalled). The proof above never uses finite dimension. But the Reiter side
+  does: `products-of-trees-refute-cap-coherence-join-caps-restore-it` shows that Reiter functions
+  need joins of all independent directions.
 - No finitely presented group acting properly and cocompactly on a finite-dimensional cube complex
-  contains a non-exact group (Campbell–Niblo, recalled). So at Osajda's input, cube-type rigidity must
-  come from walls that are not uniformly coarsely connected, exactly where this proof breaks.
+  contains a non-exact group (Campbell–Niblo, recalled). So at Osajda's input, cube-type dynamics
+  must come from infinite-dimensional wall structure.
+
+## Referee (bh-ref-ffwz, 2026-09-19): PASS for parts 1–4
+
+**Wall projections.**
+- Opposite edges `e, e'` of a square satisfy `P_e(I − P_{e'}) = 0` and `(I − P_e)P_{e'} = 0`,
+  by (Q3) on the ball containing the square. With (Q2) this gives `P_e = P_e P_{e'} = P_{e'}`.
+- Dual edges of a hyperplane are square-connected, so `Q(h)` is well defined.
+- `E_a(q) = ∏_e P_e^{±}` at one site.
+
+**Crossing pairs.** Two crossing hyperplanes have dual edges at a corner vertex of a common
+square, and so `Q(h)`, `Q(k)` commute at one site.
+
+**Disjoint pairs, `N = 0`.**
+- The hyperplanes separating the carriers `N(H)`, `N(K)` are exactly those separating `H`
+  from `K`. A dual edge's endpoints lie on the `H`-side of any `V` that separates `H` from `K`.
+- The combinatorial distance between convex subcomplexes is the number of hyperplanes
+  separating them. So `N = 0` gives a common vertex `x`.
+- "`h` and `k*`" is a non-occurring pattern visible at `x`, so `Q(h)Q(k*) = 0`.
+
+**Disjoint pairs, `N ≥ 1`.**
+- `h ⊆ v ⊆ k` holds for the side `v` of a separating `V` containing `H`.
+- Both sub-counts are smaller than `N`.
+- The two displayed chains of equalities are correct, and they give `Q(h)Q(k) = Q(k)Q(h) = Q(h)`.
+- Subsets of `Y_2` inherit rigidity: a family for a subset is a family for `Y_2`.
+
+**Part 4.** Two adjacent principal points differ exactly near the dual edges of one wall.
+Lemma 1′ of `rigid-subshifts-over-free-factors-are-tight-almost-everywhere` needs only that
+both points' `B_D`-patterns occur, and it applies. I re-checked that lemma: its wall family
+uses `x` and `z` only through (Q3). The small-cancellation premise is correctly marked
+unchecked.
+
+**Cross-check.** The same monotone-chain argument, written in the out-arrow coding of the
+end shift (the `N = 0` relation is "at most one out-edge at a vertex"), re-proves
+`free-group-boundary-shifts-are-quantum-rigid` at every `D ≥ 1`.
+
+**Credit and citation.**
+- The compactification is Roller's (poc sets and median algebras, 1998). The
+  hyperplane/ultrafilter formalism is Sageev's.
+- Kazhdan groups fix a point on every CAT(0) cube complex: Niblo–Roller (1998), Niblo–Reeves.
+- The exactness input recalled as "Campbell–Niblo" is Brodzki–Campbell–Guentner–Niblo–Wright,
+  *Property A and CAT(0) cube complexes*, J. Funct. Anal. 256 (2009). Finite-dimensional CAT(0)
+  cube complexes have property A, so groups acting properly and cocompactly on them are exact.
+  Please cite it that way.

@@ -33,3 +33,20 @@ no periodic point, so both are non-sofic. This is the constraint that
 `free-minimal-z2-sft-is-quantum-rigid` has to meet along this mechanism.
 
 Route: `permutive-triangle-sfts-are-quantum-rigid-proof`.
+
+## Referee (bh-ref-ffwz, 2026-09-19): PASS for item 1
+
+I checked `permutive-triangle-sfts-are-quantum-rigid-proof`.
+- **Operator determinism.** `E_b(z)E_c(z+e_1) = E_{φ(b,c)}(z+e_2)E_b(z)E_c(z+e_1)` or `0`, by
+  (Q3) on a `D`-ball containing `T`. So
+  `E_a(z+e_2) = Σ_{φ(b,c)=a} E_b(z)E_c(z+e_1)`, and similarly for the other two points.
+- **Rows commute.** Induction on `k` for all rows at once. Write
+  `E(z) ∈ 𝒜(z+e_1, z+e_2)` and `E(z+ke_1) ∈ 𝒜(z+(k−1)e_1, z+(k−1)e_1+e_2)`. The four generator
+  pairs reduce to row distances `k−2` and `k−1` (the latter in the row above), and, after one
+  more expansion, to `k−1` and `k−2`. Every case is covered.
+- **All pairs.** A site above lies in the algebra of a row segment below. Upward iteration of
+  determinism gives this.
+- **Scale.** This works for every `D ≥ 1`.
+
+Item 1 is used for Ledrappier's shift in `fibre-product-rigidity-kill-and-transport-proof`, so
+that citation is now checked. Item 2 (periodicity) was read but is not needed there.

@@ -119,3 +119,17 @@ The theorem holds as stated, over any field and in any dimension.
 - the "Consequences" bullets, which rest on the unrefereed step-2 sketch of
   `busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid`;
 - the last lesson bullet, that conjugated or differentiated base families "commute automatically".
+
+## Referee (bh-ref-ffwz, 2026-09-19): second PASS
+
+I checked Steps 1–8 of `extension-rigidity-localization-proof` independently, and I concur
+with the first referee.
+- `N_z` is a directed union, since `ψ(1_U) = ψ(1_{U∪U'})ψ(1_U)`.
+- The compactness lemma and Step 4 (a forbidden base ball gives `ψ(1_[β]) = 0`) are correct.
+- In Step 5, the `β ≠ y|` terms land in `N_y`.
+- In Step 6, `[A, A']` commutes with `R`.
+
+This theorem is the decomposition used in my sections on
+`cylinder-transport-closure-certifies-centrality` and
+`quantum-rigidity-is-not-closed-under-fibre-products`. Those two sections are now
+unconditional on it.

@@ -12,7 +12,7 @@ artifacts:
 ---
 
 **ESTABLISHED** by `contracting-rsg-finite-index-overgroup-proof` (lane `bh-free-23`, lane proof,
-elementary, not independently reviewed; no priority claimed).
+elementary; no priority claimed). **Referee PASS** (bh-ref-q11, 2026-09-19), no repairs; see the route's Referee section.
 
 ## Statement
 

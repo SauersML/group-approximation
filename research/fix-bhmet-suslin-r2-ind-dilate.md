@@ -8,6 +8,9 @@ title: "Fix GroupApproximation.BooneHigman.Metabelian.SuslinR2IndDilate: (determ
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinR2IndDilate.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: BH Palomar). Owner: bh-pal-wire.
 
+
+**Repair landed, unprobed.** ed7f648b07: BH chain wave 5: static fixes for bh-pal-wires reds in union build b1789839564 (unprobed). Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
