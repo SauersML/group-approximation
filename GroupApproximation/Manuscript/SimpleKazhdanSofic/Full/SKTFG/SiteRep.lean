@@ -84,6 +84,7 @@ section Subshift
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
   (S : Subshift A ℤ)
 
+omit [DecidableEq A] in
 /-- `ρ(1_c u^j) δ_{x,t} = 1_c(T^{t+j} x) δ_{x,t+j}`. -/
 theorem rho_monoEval (m : Mono A) (x : S.carrier) (t : ℤ) (c : ZMod 2) :
     SiteAction.rho (SimpleKazhdanSofic.subshiftHomeo S) (ZMod 2)
@@ -102,6 +103,7 @@ def towerTable (cB : Cyl A) (σ : Equiv.Perm (Fin 5)) : Table A :=
     (List.finRange 5).map fun i : Fin 5 =>
       ((((σ i : Fin 5) : ℕ) : ℤ) - ((i : ℕ) : ℤ), cylShift (-(((σ i : Fin 5) : ℕ) : ℤ)) cB)
 
+omit [DecidableEq A] in
 theorem eval_map_finRange (f : Fin 5 → Mono A) :
     eval (SimpleKazhdanSofic.subshiftHomeo S) ((List.finRange 5).map f) =
       ∑ i : Fin 5, monoEval (SimpleKazhdanSofic.subshiftHomeo S) (f i) := by
@@ -124,6 +126,7 @@ theorem cylInd_cylShift_zpow (cB : Cyl A) (l s : ℤ) (x : S.carrier) :
     ring
   rw [e]
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem single_add_self (p : S.carrier × ℤ) (c : ZMod 2) :
     Finsupp.single p c + Finsupp.single p c = 0 := by
   rw [← Finsupp.single_add, show c + c = 0 by fin_cases c <;> rfl, Finsupp.single_zero]
@@ -189,6 +192,7 @@ theorem siteRep_towerTable {cB : Cyl A} {B : Set S.carrier}
       simp only [hzero, ↓reduceIte, zero_mul, Finsupp.single_zero, Finset.sum_const_zero,
         add_zero]
 
+omit [DecidableEq A] in
 theorem siteRep_unitTable :
     SiteRep (SimpleKazhdanSofic.subshiftHomeo S)
       (eval (SimpleKazhdanSofic.subshiftHomeo S) ([(0, [])] : Table A)) 1 := by

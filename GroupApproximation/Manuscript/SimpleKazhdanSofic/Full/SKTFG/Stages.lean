@@ -75,7 +75,7 @@ theorem consSet_four_cases {P : Perm (Fin 5) → Prop}
 
 section Subshift
 
-variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] (S : Subshift A ℤ)
+variable {A : Type} [TopologicalSpace A] (S : Subshift A ℤ)
 
 /-- Every even permutation of the five-level tower over `B` acts by an element of `G`. -/
 def Good (G : Subgroup (Perm S.carrier)) (B : Set S.carrier) : Prop :=
