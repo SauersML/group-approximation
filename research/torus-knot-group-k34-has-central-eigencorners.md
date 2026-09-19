@@ -3,6 +3,9 @@ rg: 2
 id: torus-knot-group-k34-has-central-eigencorners
 kind: claim
 title: "Every pair of corona unitaries X, Y with X^4 = Y^3 != 1 has an exact eigencorner of X^4, with eigenvalue other than 1, commuting with X and Y"
+refuted_by: torus-knot-k34-expander-pair-has-no-eigencorner
+invalidates:
+  - lifted-thompson-t-eigencorners-via-torus-knot-cover
 distinct_from:
   lifted-thompson-t-centre-has-commutant-eigencorners: that is the same conclusion only for the pairs that also satisfy the Thompson relators; this one is for all pairs and implies it (lifted-thompson-t-eigencorners-via-torus-knot-cover).
   commutant-projection-extraction: that is extraction for every countable group; this is its instance (K(3,4), x^4), a residually finite torsion-free one-relator group.
@@ -63,3 +66,27 @@ enough.
   - Deferred next attack: an arc real-rank-zero argument in
     `{X, Y}' ∩ Q`.  Alternatively, a Voiculescu-type counterexample with
     `X_n^4` near a rotation.
+- 2026-09-19 swarm-0917-w17-w17-ptm-pull (probability-random, expander).
+  **REFUTED** by `torus-knot-k34-expander-pair-has-no-eigencorner`.
+  - **The pair.**  Map `Z/4 * Z/3` onto `SL_2(F_p)` by `x -> S`,
+    `y -> (ST)^2`.  Let `alpha` and `beta` be the left-regular unitaries of
+    these images.  Twist them by a diagonal phase `D`, with
+    `D^12 = exp(i phi)`, where `phi` is `pi/R`-Lipschitz for the word metric,
+    equals `pi` at `e`, and is supported on a ball of vanishing proportion.
+    Put `X = D^3 alpha` and `Y = D^4 beta`.  Then `X^4 = Y^3 = u` in the
+    corona, and `||u - 1|| = 2`.
+  - **Why there is no corner.**  Any projection commuting with `X` and `Y`
+    commutes with `u`, hence with `D = g(u)`, hence with `alpha` and `beta`.
+    By Selberg's property (tau), the conjugation action has a uniform
+    Kazhdan constant.  So the projection is Hilbert--Schmidt close, relative
+    to its rank, to its average, and the average has flat diagonal.  So its
+    corner sees `u` only through `tau(|u - 1|^2) -> 0`.
+  - **Consequences.**
+    - `torus-knot-group-k34-is-not-matricially-stable` holds, so
+      `torus-knot-group-k34-is-matricially-stable` is refuted too.
+    - `commutant-projection-extraction` is refuted as well, in both of its
+      forms, by a torsion-free one-relator group.
+    - The trefoil `B_3` behaves in the same way.
+  - The expected mechanism was the one in "How it could fail" above, with the
+    Voiculescu phase carried on an expander, not on a cycle.  A cycle would
+    admit wave-packet corners; an expander admits none.
