@@ -93,3 +93,28 @@ kind would refute the claim on that group.
     - The claim, for all groups, implies Kaplansky stable finiteness over every finite field directly.
     - On every group with stably finite modular group algebras, which includes all sofic groups, any
       counterexample must be nonlinear. Linear kill-tests are dead there.
+- **2026-09-19, swarm-0917-w15-w15-gs-break [host-geometry]: ownership and arrow kill-tests are dead. The
+  claim stays OPEN.** See `ownership-subshifts-conserve-shell-waste` (ESTABLISHED, elementary).
+  - **Target of the attack.** The node caution above, which says the arrow and branching SFTs carrying
+    post-surjective, non-pre-injective maps "appear not to be strongly irreducible". The deferred
+    arrow-shift step would have made one of them SI.
+  - **Result.** Waste is conserved across shells. For an ownership point, the number of unclaimed vertices
+    in `T ⊇ QS` is `|T| - k|Q|` minus the claims from the shell `W ⊇ TS^(-1) \ Q`. For an arrow point, the
+    indegree excess is `|Q| - 2|T|` plus the arrows from `W`. Both are read from the point on `W`.
+    - An SI subshift of `Own(S,k)` or of `X_S` is therefore all-perfect (all-exact) or syndetically
+      wasteful.
+    - The full shifts contain both kinds of point, by Mendelsohn–Dulmage. So none of them is SI:
+      - `Own(S,k)` whenever `e ∈ S` and `Own(S,k+1)` is nonempty;
+      - `X_S` whenever some indegree is at least 3;
+      - `X_{S^2}` whenever `X_S` is nonempty;
+      - on `F_2`, both `Own(B_1,2)` and `X_{B_1}`.
+    - Factor images of SI shifts are SI. So the same dichotomy binds every ownership design `π : X -> Own(S,k)`
+      whose map reads exclusive data through the claims.
+  - **Where it dies.** The surviving candidates are all-perfect or syndetically wasteful SI subshifts of
+    ownership or arrow shifts. For `k ≥ 2` they have no finite orbits. On `F_2`, an SFT survivor would
+    therefore be an SI SFT without periodic points, which Poirier–Salo (arXiv 2401.16774, after Question
+    6.16) suspect does not exist.
+  - **Evidence, not proof.** On the all-perfect branch in `F_2`, `experiments/ownership-sft-si-2026-09-17/`
+    shows that translates of the explicit perfect point already fail to glue across a perfect shell. The
+    deficiency histogram is `{0: 42, 1: 101, 2: 18}` at `n = 5`. This suggests a further tree-branch flux
+    invariant, which has not been proved.
