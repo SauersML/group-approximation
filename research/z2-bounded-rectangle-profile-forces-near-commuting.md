@@ -321,3 +321,22 @@ non-permutation unitary construction.
   - **Next.** The one-row case: `b` an `n`-cycle and `c` a `b`-interval exchange with `<= 4 rho` breaks. Show that
     profile `K` gives a rotation after `O_K(1)` column insertions and deletions at the breaks. This is Theorem 1 with
     an interval transversal, in the style of zippered rectangles and Rauzy–Veech induction.
+- **w18-124, 2026-09-19. The one-row step (a rotation after column insertions) is false; the corrected target is the
+  arc-torus. Landed `one-row-profile-pairs-need-arc-tori-not-rotations`.**
+  - **Break lemma.** For `b = +1`, `Lambda_rect <= sup_t |B_t|`, where `B_t` is the set of breaks of `c^t`.
+  - **Obstruction.** Take `c` fixing `A = [0, alpha)` and swapping `B` and `C`. Then `|B_t| <= 3`, so the profile is at
+    most 3.
+    - Every single-row repair costs at least `min(alpha, beta + gamma) / 2`. The reason is that the centraliser of a
+      full cycle consists of its powers, and a power is either the identity or fixed-point-free.
+    - Cutting the row into `A` and `B u C` costs 1.
+    - So any argument that outputs a single row fails, including Rauzy–Veech induction with one interval as
+      transversal. A repair must cut the row.
+  - **Exact reformulation.** Permutation distance is equivalent, up to a factor of 2, to the least `max(m, e)` over
+    `(m, e)`-arc-tori. These are commuting pairs whose rows are concatenations of at most `m` old arcs and padding
+    runs, with `c` changed at `e` old points.
+  - **E(a, k) is the twist theta = beta + gamma.** It is repaired with `m = 2` and `e = beta` by column insertion.
+  - **Data.**
+    - Resonant twists `n/q` have profile about `2q`.
+    - Generic twists with `beta = 1` have profile about `sqrt(n)/2`.
+    - `(400, 157, 229, 75, 96)` is two thin diagonal arc-tori (`c^3 = b^-4` and `c^2 = b^10`) at profile about 10.
+  - **Next.** Show that profile `K` gives an `(F(K), F(K))`-arc-torus with its cuts in `U_{|j| <= O(K)} c^j(B_1)`.
