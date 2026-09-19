@@ -2,6 +2,7 @@ import Mathlib.Data.Matrix.Mul
 import Mathlib.LinearAlgebra.Span.Defs
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Algebra.BigOperators.Pi
+import Mathlib.Algebra.Module.BigOperators
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -50,6 +51,7 @@ theorem cramerRow_dot (v v' x : I → A) (hx : x = v ∨ x = v') (i j k : I) :
 
 #audit_axioms cramerRow_dot
 
+omit [Fintype I] in
 theorem cramerRow_apply_of_ne (v v' : I → A) {i j k m : I} (hi : m ≠ i) (hj : m ≠ j)
     (hk : m ≠ k) : cramerRow v v' i j k m = 0 := by
   simp only [cramerRow, Pi.sub_apply, Pi.smul_apply, Pi.single_apply, hi, hj, hk, if_false,
@@ -73,6 +75,7 @@ theorem cramerRow_mem (h5 : 5 ≤ Fintype.card I) (v v' : I → A) (i j k : I) :
 
 #audit_axioms cramerRow_mem
 
+omit [DecidableEq I] in
 theorem sum_mul_minor_left (v v' w : I → A) (j : I) :
     ∑ k, w k * minor2 v v' k j = (w ⬝ᵥ v) * v' j - v j * (w ⬝ᵥ v') := by
   simp only [minor2, dotProduct, Finset.sum_mul, Finset.mul_sum, ← Finset.sum_sub_distrib]
@@ -80,6 +83,7 @@ theorem sum_mul_minor_left (v v' w : I → A) (j : I) :
 
 #audit_axioms sum_mul_minor_left
 
+omit [DecidableEq I] in
 theorem sum_mul_minor_right (v v' w : I → A) (i : I) :
     ∑ k, w k * minor2 v v' i k = v i * (w ⬝ᵥ v') - (w ⬝ᵥ v) * v' i := by
   simp only [minor2, dotProduct, Finset.sum_mul, Finset.mul_sum, ← Finset.sum_sub_distrib]
@@ -114,6 +118,7 @@ theorem minor_smul_mem_span (h5 : 5 ≤ Fintype.card I) (v v' w : I → A) (hw :
 
 #audit_axioms minor_smul_mem_span
 
+omit [DecidableEq I] in
 theorem sum_minor (v v' p q : I → A) :
     ∑ i, ∑ j, (p i * q j) * minor2 v v' i j =
       (p ⬝ᵥ v) * (q ⬝ᵥ v') - (q ⬝ᵥ v) * (p ⬝ᵥ v') := by

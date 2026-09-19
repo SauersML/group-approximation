@@ -8,7 +8,7 @@ title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Predicate:
 **OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Predicate.lean` is red on main at b576f069a9 (trusted batched probe, job direct-b1789846523). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
-**First errors (verbatim).**
+**First errors (verbatim; from probe job direct-b1789850259 on main 13d4765e1b).**
 
 ```
 error: GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Piece06/Predicate.lean:96:59: failed to synthesize instance of type class

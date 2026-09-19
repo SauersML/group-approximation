@@ -2,7 +2,7 @@
 rg: 2
 id: bounded-defect-free-full-contracting-rsgs-are-f-infinity
 kind: claim
-title: A full contracting RSG in which every element is a canonical similarity near all but finitely many points, and whose singular germs have zero defect in the groupoid homology of the SFT, is of type F_infinity with F_infinity finite-set stabilizers, so its twisted Brin-Thompson envelope is an F_infinity simple group; the defect is a new obstruction to BHM localization carried exactly by non-surjective nucleus elements
+title: A full contracting RSG in which every element is a canonical similarity near all but finitely many points, and whose singular germs have zero defect in the groupoid homology of the SFT, is of type F_infinity with F_infinity finite-set stabilizers, so its twisted Brin-Thompson envelope is an F_infinity simple group; the defect obstructs BHM localization and is carried only by nucleus germs that are non-surjective or change the H_0 class (attribution: Belk-Hyde-Matucci Remark 2.13)
 requires:
   - twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family
   - contracting-rsgs-have-fp-full-closures
@@ -13,15 +13,18 @@ distinct_from:
 ---
 
 **Status.**
-- **Theorem 1: ESTABLISHED** (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS with
-  repairs for `F_∞` of `L`; the stabilizer and `SV_L` clauses are conditional on an unreviewed node; see the
-  Referee section, which also gives an example with nonzero defect). It makes precise
-  Belk–Hyde–Matucci's Remark `thm:RSGs` (arXiv:2407.03149: "any full, bounded, contracting RSG has type F_∞").
-  The defect hypothesis, which that remark does not state, is added. Credit to BHM.
+- **Theorem 1: ATTRIBUTION to Belk–Hyde–Matucci, Remark 2.13** (arXiv:2407.03149: "any full, bounded, contracting
+  RSG has type F_∞").
+  - Added here: the zero-defect hypothesis that the indicated proof needs, and a checked proof (lane,
+    bh-finf-hyp, 2026-09-19).
+  - Referee bh-ref-q12: PASS with repairs for `F_∞` of `L`. The stabilizer and `SV_L` clauses are conditional on
+    the unreviewed `twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family`.
+  - Nonzero defect does occur: see the Example below.
+- **Source.** BHM was read in the arXiv PDF by the referee; the local TeX copy was lost in the 09-19 reboot.
 - **Proposition 2 (defect): ESTABLISHED**, elementary.
 - **Section 3: analysis and a route.**
 - Inputs:
-  - BHM, Corollary `cor:MainFinitenessCorollary`, read at source (`$GQ/src/bhm2407/main.tex`);
+  - BHM, Corollary 2.10 (`cor:MainFinitenessCorollary`);
   - Matui: topological full groups of irreducible one-sided SFTs are `F_∞` (J. reine angew. Math. 705, 2015;
     recalled, not re-read);
   - BBMZ `prop:CyclicStabilizers` (germ groups of RSGs at rational points are virtually cyclic).
@@ -30,6 +33,8 @@ distinct_from:
 
 - `Σ` is an SFT with irreducible core, `E` is clopen, and `L ≤ R_(Σ,E)` is a full contracting RSG. So
   `B := V_(Σ,E) ≤ L`.
+- The irreducible core of `Σ` is not a single cycle, so `G_Σ|_E` is minimal and purely infinite (needed for
+  Matui's bisections).
 - A point `p` is **singular** for `g ∈ L` if `g` is not a canonical similarity on any cone around `p`, i.e. `g`
   agrees with no element of `B` near `p`.
 - `L` is **bounded** if every element has finitely many singular points.
@@ -105,7 +110,18 @@ Let `L` be bounded, with `d_g(p) = 0` for all `g` and all `p ∈ sing(g)`. Then:
   - The members of the family `𝓕(L)` of the twisted-BT node are full RSGs on clopens with nucleus inside
     `Nuc_L`. Boundedness and zero defect are properties of nucleus germs, so they hold for each member, and each
     member is `F_∞` by the same argument.
-  - Item 1 of that node then gives `F_∞` for the finite-set stabilizers, and item 2 gives it for `SV_L`. ∎
+  - Item 1 of that node then gives `F_∞` for the finite-set stabilizers, and item 2 gives it for `SV_L`. These two
+    clauses are conditional on that node, which is a lane proof not independently reviewed. ∎
+
+**Example (referee bh-ref-q12): nonzero defect occurs.**
+- **The space.** The full 3-shift, with `B = V_(3,1)` and `H_0 = Z/2`.
+- **The half-shift** `n: E → C_0 ⊔ C_1`, given by `n(0x) = 0n(x)`, `n(1x) = 02x`, `n(2x) = 1x`. Its square is
+  `x ↦ 0x`.
+- **The element** `g`, defined by `g(0x) = 0n(x)`, `g(1y) = 1n^{-1}(y)`, `g(12x) = 02x`, `g(2x) = 2x`.
+  - It is a homeomorphism, singular exactly at `0^∞` and `10^∞`, each with defect `1`.
+  - So `L = [[⟨V_(3,1), g⟩]]` is bounded, full and contracting with nonzero defect.
+- **Consequence.** Theorem 1 does not apply to it. Its `F_∞` is proved in
+  `torsion-defect-costs-nothing-in-bhm-germ-complexes`.
 
 ## 3. Where Q1.2 stands for BBMZ hosts (analysis)
 
@@ -134,8 +150,8 @@ Let `L` be bounded, with `d_g(p) = 0` for all `g` and all `p ∈ sing(g)`. Then:
 - **Two independent measures of an RSG's distance from Röver–Nekrashevych.**
   - **Activity.** How many points an element is singular at. Bounded activity is handled by finite germ
     extensions.
-  - **Surjectivity of the nucleus.** Non-surjective germs carry a defect in `H_0` of the SFT, and localization
-    must balance it.
+  - **Surjectivity of the nucleus.** Germs that are non-surjective or change the `H_0` class carry a defect in
+    `H_0` of the SFT, and localization must balance it.
 - **For hyperbolic inputs.** Branching creates the non-surjectivity, and boundary dimension creates the
   activity. So for these inputs Q1.2 reads: **balanced germ complexes for bounded hosts** (1-dimensional
   boundaries), and **a new finiteness idea** for exponential activity (boundaries of dimension ≥ 2, including

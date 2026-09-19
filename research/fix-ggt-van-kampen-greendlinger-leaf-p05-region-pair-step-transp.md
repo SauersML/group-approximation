@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.StepTransport: failed to synthesize instance of type class"
 ---
 
-**OPEN.** Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P05RegionPair/StepTransport.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
+**RESOLVED (13d4765e1b, trusted batched probe job direct-b1789850259).** Previously OPEN. Lean module `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/P05RegionPair/StepTransport.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
 **First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**

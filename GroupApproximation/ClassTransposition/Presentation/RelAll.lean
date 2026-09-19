@@ -29,7 +29,8 @@ theorem fsp_all {n i j p q : ℕ} (hij : i < j) (hj : j < n) (hp : p ∈ P' P) (
   · have hjn : j + 1 = n := by omega
     rcases hq with rfl | hq'
     · exact fsp_tail_two hij hjn hp (by omega)
-    · exact (fsp_tail hij hjn hp hq' (ne_two_of_mem hP2 hq') (by omega)).2
+    · exact (fsp_tail hij hjn hp hq' (ne_two_of_mem hP2 hq') (by omega)
+        (by have := hpos q (mem_P'_of_mem hq'); omega)).2
         (fc_all hB hP2 hpos (Or.inl ⟨p, hp, rfl⟩) (by omega) _ (show i + 1 + 1 ≤ j + 1 by omega))
 
 theorem dl_all {n k i p : ℕ} (hik : i < k) (hk : k + 2 ≤ n) (hp : p ∈ P' P) :
