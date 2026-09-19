@@ -26,6 +26,13 @@ artifacts:
   - experiments/fpbs-depth-overfolding-2026-09-17/compare_n30_j1.txt
   - experiments/fpbs-depth-overfolding-2026-09-17/compare_n20_j2.txt
   - experiments/fpbs-depth-overfolding-2026-09-17/compare_n12_j3.txt
+  - research/artifacts/fpbs-overfold-intransitive-levels-2026-09-19.md
+  - experiments/fpbs-overfold-sharing-2026-09-17/intransitive_exact.py
+  - experiments/fpbs-overfold-sharing-2026-09-17/run_n5_j1.txt
+  - experiments/fpbs-overfold-sharing-2026-09-17/run_n8_j1.txt
+  - experiments/fpbs-overfold-sharing-2026-09-17/run_n6_j1_3orb.txt
+  - experiments/fpbs-overfold-sharing-2026-09-17/run_n4_j2.txt
+  - experiments/fpbs-overfold-sharing-2026-09-17/run_n5_j2.txt
 ---
 
 **OPEN.** Notation is as in
@@ -92,3 +99,29 @@ A weaker statement suffices for the floor: `deep_j(Q) ≥ c · law_j(Q)`, with
 generating-set analogue fails: a subgroup of a 2-generated finite group can
 need 3 generators. So a proof has to use features special to this chain,
 such as rank 2 and the single lawful component above.
+
+## Attempts
+
+- **Cross-orbit sharing on `L_j`-intransitive levels** (swarm-0917-w16-w16-fp-break,
+  belief breaker, 2026-09-19). No counterexample found.
+  - *Idea.* `law_j` is additive over `L_j`-orbits. A single overfold pair
+    whose ends map to different `L_j`-orbits could serve two orbit kernels,
+    giving `deep < law`. The earlier 70 levels were almost all
+    `L_j`-transitive, so they never tested this.
+  - *Computation.* `intransitive_exact.py` computes `law_j` and `deep_j`
+    exactly on 53 `L`-transitive levels with at least 2 `L_j`-orbits:
+    - `j = 1`: `n = 5`, `n = 8`, and `n = 6` with 3 orbits;
+    - `j = 2`: `n = 4, 5`.
+  - *Result.* `deep_j = law_j` in all 53. In 17 of them the minimum witness
+    contains overfold seeds, but never with fewer seeds. The script counts
+    overfold seeds; it does not separate the cross-orbit ones.
+  - *Proved on the way (Lemma A of the artifact).* Every promoting seed set
+    has at least `sum_O (s_O - 1)` seeds, where `s_O` is the number of
+    `L_{j+1}`-orbits in the `L_j`-orbit `O`. This holds with or without
+    cross-orbit seeds.
+    - So cross-orbit seeds cannot save on connectivity. Any sharing would
+      have to come from fold-closure identifications.
+    - The bound has density 0 on free towers, so it is not a floor.
+  - *Where it dies.* The sharing mechanism is never observed. The open case
+    is still large transitive levels, beyond exact search.
+  - Details: `research/artifacts/fpbs-overfold-intransitive-levels-2026-09-19.md`.
