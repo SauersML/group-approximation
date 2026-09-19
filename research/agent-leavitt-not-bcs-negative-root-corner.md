@@ -464,3 +464,35 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+### Cuntz-cone halves and the residually finite cover (swarm-0917-w14-w14-ptl-pull, obstruction-miner, census-computation, 2026-09-19)
+
+*Approach tried.* Build the certificate one-sidedly. Use the positive Cuntz cone `R_+ = <s_1, s_2, q>` (both
+isometries and the head), then glue it to its mirror `R_- = <t_1, t_2, q>`. This is the Leavitt analogue of the
+Jacobson halves of `jacobson-one-sided-symbol-preimages-are-lef`.
+
+*Result* (`leavitt-cuntz-cone-halves-have-rf-amalgam-cover`, established).
+- **Halves.** `GL_20(R_+-)` are residually finite. The proof filters the eventually-`2` Leavitt module
+  `F_2[Omega_0]` by canonical length, and uses faithfulness from simplicity of `R`.
+- **Intersection.** By the `Z`-grading, `R_+ ∩ R_- = span{1,q}`. So `Delta_0 = SL_20(F_2)^2`, and it contains `z`.
+- **Cover.** `Gamma = Delta_+ *_(Delta_0) Delta_-` is residually finite and maps onto `Delta`. Its kernel `K` is
+  finitely normally generated. `z` survives in a faithful MF representation of `Gamma`.
+
+*Where it dies.*
+- The certificate lifted to `C[Gamma]` would make the residually finite group `Gamma` nonhyperlinear, by
+  `nonce-bcs-unital-algebraic-corner-map-forces-nonhyperlinear`.
+- So every `LNC3` certificate is **K-essential**: every lift has some BCS identity that holds only modulo the
+  augmentation ideal of `K`.
+- The first such relator is the negative-root commutator `[x_12(s_1), x_23(t_1)] = z`.
+- The same argument shows that any (T)-free MF collapse must use a normal generator of `K`. Supports inside one cone
+  were already dead by the coefficient gate, since `R_+` has finite-dimensional representations seeing `q`. What is
+  new is that joint use of both cones, glued only along `Delta_0`, is also dead.
+
+*Next falsifiable step.* `K` contains two kinds of relators:
+- the cross-commuting relators `[x_ij(a), x_kl(b)]`, with `a in {s_1,s_2}`, `b in {t_1,t_2}` and `{i,j} ∩ {k,l}` empty;
+- the mixed commutator relators `[x_ij(a), x_jk(b)] x_ik(ab)^(-1)`, whose first instance is
+  `kappa = [x_12(s_1), x_23(t_1)] z^(-1)`.
+
+Decide whether these finitely many mixed Steinberg relators normally generate `K`. If they do, the hole and the goal
+become statements about an explicit finite relator set over a residually finite amalgam. Then test the smallest
+partial quotient: does every MF representation of `Gamma / <<cross-commuting relators>>` still see `z`?
