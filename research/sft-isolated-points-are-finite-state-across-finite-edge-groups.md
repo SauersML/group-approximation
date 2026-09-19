@@ -3,14 +3,13 @@ rg: 2
 id: sft-isolated-points-are-finite-state-across-finite-edge-groups
 kind: claim
 title: Across a finite edge group, an isolated point of an SFT is a finite-state recursion of isolated points of SFTs over the vertex groups; so over virtually free groups relative seeds are exactly the Stallings seeds, and for finitely presented groups CAP for relative seeds reduces to one-ended groups
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues relative seeds of vertex groups into relative seeds of the fundamental group (construction); this is the converse over finite edge groups, where every isolated point of every SFT over the fundamental group decomposes into isolated points over the vertex groups (structure), with no rigidity assumed.
   heisenberg-rigid-seed-certifies-only-the-malcev-normal-form: that shows the seeds built from locally finite splittings certify only Britton normal forms; this bounds every isolated point of every SFT over a group split over finite subgroups, not only the ones built by gluing.
   finite-type-e3-prime-hosts-carry-complexity-in-units: that says the complexity of a finite-type E3′ host is that of its unit groupoid; this is the analogue for seeds, where the complexity of an isolated point is that of its one-ended pieces.
   relative-seeds-on-free-groups-have-fg-stabilizers: that proves the free-group case of item 3 (finitely generated stabilizers, regular membership), landed shortly before by bh-g1-universal-point; this extends it to virtually free groups and to every splitting over a finite subgroup, with the complexity reduction of items 1, 2 and 4.
   relative-seeds-over-free-products-have-finite-ropes: that proves the branch lemma across trivial edge stabilizers and its consequences over P * Q, landed shortly before by bh-invent-15; this is the same mechanism across finite edge groups, stated as a finite-state recursion of vertex-group isolated points, with the reduction of CAP to one-ended groups.---
+---
 
 **ESTABLISHED** by `sft-isolated-points-finite-edge-groups-proof` (lane bh-g3-topfree, 2026-09-18;
 elementary lane proof, not reviewed; no priority claimed). Anisimov–Seifert and Dunwoody accessibility

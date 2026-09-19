@@ -3,13 +3,6 @@ rg: 2
 id: hyperbolic-groups-lie-in-the-rigid-compactification-class
 kind: claim
 title: Every hyperbolic group, Kazhdan ones included, has a quantum-rigid SFT compactification, because Gromov-product drop events form non-degrading monotone chains along geodesics and the target squeeze transports letters along them, with no walls
-requires:
-  - hyperbolic-groups-have-sft-horofunction-compactifications
-  - hyperbolic-seed-rigidity-is-a-horofunction-boundary-question
-  - quantum-rigidity-is-decided-on-the-derived-subshift
-  - k-local-distance-functions-on-hyperbolic-groups-are-global
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   wall-chamber-distance-sfts-are-quantum-rigid: that gets rigidity from nested wall chains, which exclude FW groups; this needs no walls, and covers Kazhdan hyperbolic groups.
   hyperbolic-seed-rigidity-is-a-horofunction-boundary-question: that reduces rigidity to the horofunction boundary and leaves it open beyond trees; this proves it for every hyperbolic group.

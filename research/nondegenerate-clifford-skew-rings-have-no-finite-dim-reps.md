@@ -3,7 +3,8 @@ rg: 2
 id: nondegenerate-clifford-skew-rings-have-no-finite-dim-reps
 kind: claim
 title: Clifford skew rings with nondegenerate form have no finite-dimensional representations, so marked-site separation cannot reach them
-invalidates: [kun-thom-clifford-skew-rings-sf-via-marked-sites]
+invalidates:
+  - kun-thom-clifford-skew-rings-sf-via-marked-sites
 distinct_from:
   complete-graph-clifford-cover-center-dies-in-finite-quotients: that is group-level, saying finite quotients of the complete-graph cover kill eps; this is algebra-level, saying the anti-central factor has no finite-dimensional representation at all for every nondegenerate form, and draws the consequence for proof methods.
   rf-lamps-preserve-stable-finiteness-for-arbitrary-actions: that proves stable finiteness by separating maps into marked-site crossed products; this shows no such map leaves a nondegenerate Clifford skew ring.

@@ -3,12 +3,8 @@ rg: 2
 id: dynamically-v-separated-groups-satisfy-boone-higman
 kind: claim
 title: A finitely presented group with an injective endomorphism φ and a representation ρ in V whose φ-orbit separates points lies in a finitely presented full Cantor group, hence embeds in a finitely presented simple group
-requires:
-  - germ-complex-and-bux-gonzalez-morse-inputs
-  - fp-clopen-transitive-full-cantor-groups-have-type-a-actions
 distinct_from:
   annular-hosts-with-free-zoom-germs-are-not-finitely-presented: that shows annular hosts with no cross-depth germ relations are never finitely presented; this is the positive counterpart, where the single cross-depth relation t^(-1) g t = φ(g) makes every SingFix group an iterated ascending HNN extension, so the host is finitely presented.
-  fp-rf-boone-higman-via-fp-self-similar-overgroups: that asks for a virtual endomorphism into Aut(T_d), which is blocked by bounded composition factors; this uses a global endomorphism and a representation in V, which contains every finite group, so the regular-tree torsion obstruction does not apply.
   orbit-preserving-germ-corollary-extensions-of-v-are-rational: that treats Belk--Hyde--Matucci Corollary 2.10, where the zoom germs are normal and hosts are rational; here the germ group is an ascending HNN extension, in which the zoom is not normal, and Theorem 2.1 is applied directly.
   rf-groups-have-free-product-germs-over-v: that realizes residually finite groups with germ group G * Z through unrelated finite quotients, which kills finite presentation; this realizes a group through iterates of one representation under one endomorphism.
   f-infinity-tail-ascending-hnns-satisfy-boone-higman: that uses the same mechanism, a one-orbit germ extension whose germ group is an ascending HNN extension, for last-section endomorphisms of subgroups of bounded automata groups over V_d S; this is the abstract version over V itself, for any finitely presented group with an injective endomorphism and a V-representation separating along its orbit, with no automaton.

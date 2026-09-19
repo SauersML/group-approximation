@@ -3,9 +3,6 @@ rg: 2
 id: s-integral-splitting-stabilizers-are-finitely-generated
 kind: claim
 title: For primes l not in P, the stabilizer in the S-integral affine group of one l-splitting direction of Z_l^D is finitely generated
-requires:
-  - s-integral-affine-structure-group-is-finitely-presented
-  - integral-affine-halving-stabilizers-are-finitely-generated
 distinct_from:
   integral-affine-halving-stabilizers-are-finitely-generated: that is P empty and l = 2, over Z; this is the S-integral case with l-ary splittings, where the dilations by p in P act on the level-l congruence structure.
 artifacts:

@@ -3,15 +3,12 @@ rg: 2
 id: aligned-plane-lifts-share-infinite-level-degeneracy
 kind: claim
 title: Conjecture - no minimal quantum-rigid plane lift of a non-SFT input; reduced for aligned lifts to excluding one exceptional-key defect profile, and not supported for transplant lifts, where rigidity follows from explicit hypotheses
-requires:
-  - e2-for-plane-lifts-is-clustered-floating-freedom
-  - varying-skeleton-lifts-reduce-e2-to-skeleton-rigidity
-  - plane-local-freedom-kills-rigidity-of-plane-lifts
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
 distinct_from:
   e2-for-plane-lifts-is-clustered-floating-freedom: that proves the input is central and kills bijective transports; this treats ARBITRARY cross-plane couplings of floating data in aligned lifts and reduces the conjecture to one profile.
   varying-skeleton-lifts-reduce-e2-to-skeleton-rigidity: that gives sufficient conditions for rigidity of transplant lifts; here they are read as the obstruction to proving the conjecture for them.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `e2-for-plane-lifts-is-clustered-floating-freedom`, `varying-skeleton-lifts-reduce-e2-to-skeleton-rigidity`, `plane-local-freedom-kills-rigidity-of-plane-lifts`, `minimal-sfts-with-a-finite-modification-are-not-quantum-rigid`.
 
 **OPEN (conjecture of bh-g1-simulation, 2026-09-18).** Not proved here.
 - Part 1 reduces the aligned case to excluding one profile. Its lemmas 1–3 are proved; the

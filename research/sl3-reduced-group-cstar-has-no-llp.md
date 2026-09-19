@@ -3,7 +3,8 @@ rg: 2
 id: sl3-reduced-group-cstar-has-no-llp
 kind: claim
 title: The reduced group C-star algebra of SL_3(Z) does not have LLP
-invalidates: [sl3-weak-ucp-via-reduced-llp]
+invalidates:
+  - sl3-weak-ucp-via-reduced-llp
 distinct_from:
   sl3-z-weakly-ucp-stable: that is a positive-definite correction statement for prescribed hyperlinear approximations through the full group C-star algebra; failure of reduced LLP neither proves nor refutes it.
   no-published-unconditional-codense-stable-host: that records failure of LLP for the full group C-star algebra and the literature boundary for stable hosts; this closes the separate reduced-algebra shortcut by the canonical trace.

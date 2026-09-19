@@ -4,6 +4,7 @@ id: contracting-rsgs-embed-in-fp-simple-groups-citation
 kind: route
 title: Import of BBMZ's classification of full RSGs and their finitely presented simple hosts
 target: contracting-rsgs-embed-in-fp-simple-groups
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-03-substitution-full-groups.md
 ---

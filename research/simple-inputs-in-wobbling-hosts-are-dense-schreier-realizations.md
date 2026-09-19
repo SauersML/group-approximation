@@ -3,9 +3,6 @@ rg: 2
 id: simple-inputs-in-wobbling-hosts-are-dense-schreier-realizations
 kind: claim
 title: An infinite simple group lies in the full group of a free Λ-subshift, faithfully on every invariant subset, iff one of its nontrivial Schreier quotients has a coarsely dense injective Lipschitz realization in Λ, and the subshift is then effectively closed from WP(G) alone
-requires:
-  - translation-like-inputs-embed-in-full-groups-over-a-fixed-group
-  - translation-like-hosts-are-capped-by-separation-profiles
 distinct_from:
   translation-like-inputs-embed-in-full-groups-over-a-fixed-group: that treats FREE (translation-like) realizations, where freeness gives faithfulness on every invariant subset; this treats arbitrary, non-free realizations of simple inputs, where faithfulness has to come from simplicity plus coarse density of the moved set.
   translation-like-hosts-are-capped-by-separation-profiles: its Consequence 4 states the non-free escape as "faithful on Λ × N with bounded displacement, effectively closed when the action is computable"; this corrects that item. Faithfulness on minimal subsystems needs coarse density of moved points, and effectivity comes from WP(G) through a density condition, not from computability of the action.

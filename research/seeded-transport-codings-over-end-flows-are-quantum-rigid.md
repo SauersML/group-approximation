@@ -3,13 +3,8 @@ rg: 2
 id: seeded-transport-codings-over-end-flows-are-quantum-rigid
 kind: claim
 title: A computation layer transported bijectively along space and along the end flow's second-child steps, and seeded at every other time step, is quantum rigid over every field on every module; its spine sheet carries one global choice, so it is unsplittable
-requires:
-  - end-shift-path-covers-are-rigid-with-one-spine
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
-  - quantum-rigidity-is-product-stable
 distinct_from:
   causal-depth-localizes-quantum-noncommutativity: that shows seeded determination is classical at finite depth and leaves the infinite-depth residue open; this closes the residue for bijective transport rules, including the spine sheet, on every module.
-  path-fold-rigidity-transfer-proof: that proves centrality of flow idempotents by transporting commutation along a monotone chain, using invariance of the flow along the fibre's deterministic direction; this proves centrality by downhill induction, where a step away from the target site makes the target's flow letter classical.
   deterministic-extensions-of-rigid-sfts-are-rigid: that needs transport from every site in a monoid-generating set of directions; here a seed carries no information about its parent, so the transport breaks upward at every seed, and the downhill induction replaces it.
 ---
 

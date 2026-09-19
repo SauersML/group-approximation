@@ -3,12 +3,12 @@ rg: 2
 id: finite-type-operad-groups-split-over-a-label-kernel
 kind: claim
 title: In a finitely generated operad with transformations, transformations act on the finite sets of classes of each degree, so the transformation groups are residually finite modulo a class-trivial part, and that part only contributes a label kernel of the operad group
-requires:
-  - thumann-operad-groups-need-only-f-infinity-transformations
 distinct_from:
   finitely-coded-unit-groups-act-residually-finitely: that is the unit-group statement for Li-coded groupoids; this is the operad-with-transformations version, including abstract (non-topological) operads, where the class-trivial part need not vanish.
   wreath-recursion-thompson-groups-inherit-fn: that identifies V(B, psi) with V(B/J) through the dying kernel; here the same phenomenon is the label kernel, and the calibration recovers that identification.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `thumann-operad-groups-need-only-f-infinity-transformations`.
 
 **Status.**
 - **Part A: ESTABLISHED** (lane bh-invent-07, 2026-09-18; elementary lane proof, not reviewed).

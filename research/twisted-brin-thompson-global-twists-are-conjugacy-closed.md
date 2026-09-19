@@ -3,10 +3,7 @@ rg: 2
 id: twisted-brin-thompson-global-twists-are-conjugacy-closed
 kind: claim
 title: In a twisted Brin--Thompson group the global twists are conjugacy-closed, so SV_G adds no conjugacies to its actor, and an HNN input whose base sits in the global twists needs a base-faithful image of itself inside the actor
-requires:
-  - twisted-bt-quasi-retract-onto-acting-group-citation
 distinct_from:
-  twisted-bt-quasi-retract-onto-acting-group-citation: that imports the coarse retraction h -> gtwist_κ(h); this evaluates the same cocycle at a constant point, where it is exact on every conjugation between global twists.
   baumslag-gersten-group-satisfies-boone-higman: its 2026-09-18 Attempts entry records the BG instance; this is the general statement for all subgroups and all HNN inputs.
   type-a-actors-have-no-proper-power-cyclic-edge-splittings: that forbids proper-power edge conjugacies in the actor itself; this shows the twisted host cannot supply them between global twists either.
 ---

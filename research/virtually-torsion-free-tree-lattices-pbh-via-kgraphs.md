@@ -4,7 +4,10 @@ id: virtually-torsion-free-tree-lattices-pbh-via-kgraphs
 kind: route
 title: Embed a torsion-free finite-index subgroup in the full group of its powered cube k-graph, split the power into strongly connected pieces, and stabilize by the Cuntz groupoid
 target: virtually-torsion-free-tree-lattices-satisfy-pbh
-requires: [torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups, tree-lattice-kgraph-power-phase-proof, stabilized-kgraph-full-groups-have-type-a-actions, boone-higman-type-a-class-closed-under-finite-extensions]
+requires:
+  - torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+  - stabilized-kgraph-full-groups-have-type-a-actions
+  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 Notation as in `tree-lattice-kgraph-power-phase-proof`.

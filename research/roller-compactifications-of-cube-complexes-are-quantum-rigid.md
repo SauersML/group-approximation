@@ -3,9 +3,6 @@ rg: 2
 id: roller-compactifications-of-cube-complexes-are-quantum-rigid
 kind: claim
 title: For a free cocompact action on a locally finite CAT(0) cube complex, the Roller compactification SFT is quantum rigid at every scale over every field, and so is every closed invariant subset; the proof needs only that walls are uniformly coarsely connected, crossing walls meet, and adjacent parallel walls touch, which fails for walls through unboundedly long relators
-requires:
-  - roller-compactifications-of-cube-complexes-are-sfts
-  - rigid-subshifts-over-free-factors-are-tight-almost-everywhere
 distinct_from:
   free-group-boundary-shifts-are-quantum-rigid: that is the tree case (every pair of walls is nested); this adds crossing walls, which commute because they meet in a square, and runs the monotone chains by induction on the number of separating hyperplanes.
   wall-orientation-subshifts-are-quantum-rigid: that is the open question for all wall structures; this proves it for finite-dimensional cube complexes, isolates the three properties the proof uses, and shows the full compactification fails when walls are not uniformly coarsely connected.

@@ -3,8 +3,6 @@ rg: 2
 id: a2-seed-boundaries-defeat-domination-and-central-splitting
 kind: claim
 title: A midpoint-covering lemma turns domination into far commutation, and it proves the tree case; in Ã2 seed boundaries chamber-field patterns block every midpoint covering, and the wall strata are open but not closed, so neither tree-type forcing nor central splitting proves the Ã2 seed rigid
-requires:
-  - a2-seed-rigidity-reduces-to-its-perfect-boundary
 distinct_from:
   free-group-boundary-shift-is-quantum-rigid: that proves rigidity by domination chains; the covering lemma here is a reformulation that makes explicit what those chains need, namely that every midpoint letter dominates an end, which Ã2 boundaries violate.
   quantum-rigidity-is-decided-on-the-derived-subshift: that splits off central idempotents of locally forced isolated points; this shows the wall strata admit no finite-pattern splitting from the chamber stratum, since their union is open but not closed.

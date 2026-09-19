@@ -3,12 +3,8 @@ rg: 2
 id: outer-extensions-of-fp-steinberg-groupoids-need-no-rigidity
 kind: claim
 title: A finitely presented group acting by automorphisms on an ample groupoid with finitely presented Steinberg algebra gives a finitely presented, and under an outer-freeness condition central simple, crossed product with no rigidity hypothesis; but then the group's word problem is bounded by the algebra's, so no fixed groupoid hosts every decidable group
-requires:
-  - fp-simple-algebras-have-solvable-word-problem
-  - steinberg-fp-is-a-kakutani-invariant
 distinct_from:
   quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products: that gets a finitely presented crossed product over the trivial groupoid on X, where the diagonal LC(X) must be generated and made commutative by the group, which is quantum rigidity; this takes the diagonal from a groupoid whose algebra is already finitely presented, and the group costs nothing.
-  boone-higman-via-leavitt-units-of-rigid-topologically-free-sfts: that route needs premise (E′), a rigid topologically free SFT over an overgroup of G; this replaces (E′) by an outer action on a finitely presented groupoid, and shows why that moves the difficulty rather than removing it.
   no-fp-simple-algebra-hosts-every-decidable-algebra: that says no single fp simple algebra contains every decidable algebra; this is the group-of-automorphisms counterpart, with an explicit word-problem bound.
 ---
 

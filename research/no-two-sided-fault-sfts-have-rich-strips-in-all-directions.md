@@ -3,9 +3,6 @@ rg: 2
 id: no-two-sided-fault-sfts-have-rich-strips-in-all-directions
 kind: claim
 title: A free Z^2 SFT without two-sided faults is, in every rational direction, the spacetime of a surjective strip automaton on an aperiodic non-sofic strip subshift of at least quadratic complexity; products of Z-subshifts always have two-sided faults
-requires:
-  - sfts-without-two-sided-faults-are-quantum-rigid
-  - triangle-permutive-sfts-have-one-sided-total-faults
 distinct_from:
   triangle-permutive-sfts-have-one-sided-total-faults: that gives these constraints for rows, columns and antidiagonals of quasigroup spacetimes; this gives them for every rational direction of every SFT in the wider class of free-minimal-sft-without-two-sided-faults-exists, and adds the product obstruction.
   permutive-triangle-sfts-are-quantum-rigid: that proves that a periodic row of a triangle-permutive SFT gives a periodic point; the strip version here holds in every rational direction with a determining side.

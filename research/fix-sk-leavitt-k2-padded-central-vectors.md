@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-leavitt-k2-padded-central-vectors
-kind: route
+kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.Vectors: Application type mismatch: The argument"
 ---
 

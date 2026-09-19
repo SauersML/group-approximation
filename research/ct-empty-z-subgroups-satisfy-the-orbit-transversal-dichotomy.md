@@ -3,9 +3,6 @@ rg: 2
 id: ct-empty-z-subgroups-satisfy-the-orbit-transversal-dichotomy
 kind: claim
 title: "Kourovka 20.44 holds in the one-prime host CT_∅(Z) ≅ V: a finitely generated subgroup with rewriting depth D either has at most 2^(D+1) orbits on Z, or its orbit minima have positive lower density; the frozen deep tail of a one-stack rewriting is the orbit invariant"
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - ct-z-orbit-transversal-dichotomy-is-collatz-hard
 distinct_from:
   ct-z-orbit-transversal-dichotomy-is-collatz-hard: that shows the dichotomy is 3x+1-hard with two primes (2 and 3); this proves it unconditionally when all moduli are powers of 2.
   ct-z-orbit-transversal-counterexamples-need-unbounded-orbits: that treats bounded orbits in any CT_P(Z); this treats every orbit when P is empty.

@@ -3,10 +3,6 @@ rg: 2
 id: free-product-gluing-reduces-to-local-transposition-presentation
 kind: claim
 title: Type-changing transpositions of V times a free product action lift coherently to the free-product gluing group through B-interleaved ladders, so the free-product presentation FPG follows from the Quick-type local transposition presentation of the full group whenever cylinders have no nontrivial setwise stabilizers (full shifts over torsion-free free products); a direct check confirms FPG for PSL(2,Z) on two points
-requires:
-  - free-product-gluing-equals-splitting-of-the-gluing-kernel
-  - v-times-free-product-gluing-kernels-split-over-the-factors
-  - v-times-full-groups-have-local-transposition-presentations
 distinct_from:
   free-product-gluing-equals-splitting-of-the-gluing-kernel: that shows FPG is equivalent to the splitting of the gluing kernel and locates the open part in type-changing elements; this lifts every type-changing transposition canonically, verifies the local relations for the lifts, and so reduces FPG to the local transposition presentation.
   v-times-full-groups-have-local-transposition-presentations: that states the Quick-type presentation of F(T) and needs lifts in the gluing group Γ~; this lifts into the smaller quotient G_* = Γ~/⟨⟨factor kernels⟩⟩, where every factor's full group is available, and checks all four relation families there.

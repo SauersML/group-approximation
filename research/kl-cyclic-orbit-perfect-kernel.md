@@ -3,7 +3,8 @@ rg: 2
 id: kl-cyclic-orbit-perfect-kernel
 kind: claim
 title: The cyclic-orbit kernel is perfect and has no nontrivial finite quotient
-invalidates: [simple-kl-via-finite-quotient-certificate]
+invalidates:
+  - simple-kl-via-finite-quotient-certificate
 distinct_from:
   degree-kernel-abelianization-is-infinite-cyclic: that computes the abelianization of the index-m subgroup before the orbit relators are imposed; this computes the quotient by all orbit relators and proves both perfectness and finite-quotient invisibility.
   leavitt-degree-kernel-quotient-tests-are-procyclic: that controls finite and solvable images for the particular Leavitt coefficient group, which is not known here to be simple; this works for every infinite nonabelian simple coefficient group and identifies the exact Kervaire--Laudenbach core quotient.

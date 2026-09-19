@@ -3,11 +3,6 @@ rg: 2
 id: gluing-kernels-descend-from-the-free-group-full-shift
 kind: claim
 title: Gluing kernels of V times any action of any n-generated group are images of the gluing kernel of the full shift over the free group F_n, with no freeness assumed; so one statement FSG(F_n, A) gives P2'b for every subshift over A over every n-generated group
-requires:
-  - gluing-kernels-descend-from-the-full-shift
-  - v-times-ample-full-groups-are-generated-by-transpositions
-  - v-times-sft-full-groups-split-into-two-wreath-pieces
-  - v-times-full-groups-have-local-transposition-presentations
 distinct_from:
   gluing-kernels-descend-from-the-full-shift: that descends kernels from A^Λ to topologically free closed invariant subsets for one fixed group Λ; this removes the freeness hypothesis (working with full bisections) and adds descent along group quotients, so the one universal instance is the full shift over the free group of the same rank.
   v-times-sft-full-groups-glue-from-two-wreath-pieces: that is P2'b for one subshift X; this reduces P2'b for all subshifts over A over all n-generated groups to the single statement FSG(F_n, A).

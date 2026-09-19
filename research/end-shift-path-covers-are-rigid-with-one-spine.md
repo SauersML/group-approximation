@@ -3,10 +3,6 @@ rg: 2
 id: end-shift-path-covers-are-rigid-with-one-spine
 kind: claim
 title: The end shift of F_n codes, by a radius-zero block map, a paradoxical path cover by descending geodesic rays; it is quantum rigid, and its only backward-infinite path is one spine, which exists for finitely many orbits of ends; seeded codings over it are rigid off that spine
-requires:
-  - free-group-boundary-shifts-are-quantum-rigid
-  - quantum-rigidity-is-product-stable
-  - causal-depth-localizes-quantum-noncommutativity
 distinct_from:
   paradoxical-subshifts-are-never-quantum-rigid: that shows BSS's paradoxical geometry is never rigid, because its colours are free local choices; this supplies a paradoxical path cover with no free choice, read off a rigid shift.
   free-group-boundary-shifts-are-quantum-rigid: that proves rigidity of the end shift; this extracts from it the path and grid geometry of self-simulation, and locates exactly where that geometry has backward-infinite paths.

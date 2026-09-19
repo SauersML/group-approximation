@@ -3,16 +3,14 @@ rg: 2
 id: sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices
 kind: claim
 title: A crossing-wire fixed-point tile set can be laid out SW-deterministically; its Busemann transplants are free quantum-rigid SFTs over every Kazhdan Ã2 lattice of the transplant Setting, over F_m x F_n and over every BMW group
-requires:
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
-  - a2-busemann-transplants-preserve-quantum-rigidity
-  - tree-product-busemann-transplants-preserve-quantum-rigidity
 distinct_from:
   crossing-wire-fixed-point-tile-sets-are-quantum-rigid: that builds a free rigid Z^2 SFT with a two-way Turing head; this lays the same mechanism out with information flowing only rightward and upward, so that the tile is determined by its left and bottom neighbours and the shift can be transplanted.
   a2-busemann-transplants-preserve-quantum-rigidity: that reduces free rigid SFTs over Kazhdan Ã2 lattices to a free rigid cone-deterministic Z^2 fibre; this supplies the fibre.
   a2-lattice-boundary-skew-shifts-are-quantum-rigid: that gives rigid SFTs over the same lattices that are only topologically free; these are free.
   four-way-deterministic-sft-rigidity-lives-on-axis-faults: that shows determinism alone cannot certify hierarchical tile sets; here the certificate is co-location, and determinism is used only to make the shift transplantable.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`, `a2-busemann-transplants-preserve-quantum-rigidity`, `tree-product-busemann-transplants-preserve-quantum-rigidity`.
 
 **CONDITIONAL** (lane bh-invent-04, 2026-09-18; not reviewed; no priority claimed). It rests on:
 - (a) `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`, a lane proof for which referee review is

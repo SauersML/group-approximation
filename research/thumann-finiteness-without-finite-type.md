@@ -3,9 +3,6 @@ rg: 2
 id: thumann-finiteness-without-finite-type
 kind: claim
 title: Thumann's operad groups are of type F_n without finite type; infinitely many elementary classes are harmless once the splitting categories of large elementary classes are (n-2)-connected, so finite presentation needs only connected splittings
-requires:
-  - thumann-operad-groups-need-only-f-infinity-transformations
-  - stein-complex-elementary-intervals-are-grid-spheres
 distinct_from:
   thumann-operad-groups-need-only-f-infinity-transformations: that weakens the hypothesis on the transformation groups (F_infinity instead of F_infinity-plus) and keeps finite type; this removes finite type and replaces it by a connectivity condition on splitting categories.
   non-lcm-dissection-operad-groups-are-f-infinity: that specializes Thumann's theorem, with a finite spine, to dissection operads; this allows an infinite spine.

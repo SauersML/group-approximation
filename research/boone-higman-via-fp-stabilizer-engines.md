@@ -8,8 +8,6 @@ requires:
   - clapham-fp-embedding-preserves-word-problem
   - free-product-boundary-groupoids-carry-the-vertex-group-homology
   - fp-decidable-vertex-groups-have-fp-stabilizer-engines
-distinct_from:
-  boone-higman-via-stabilizer-engines: that put the input in a decidable SIMPLE envelope and is circular (stabilizer-engines-of-non-fp-simple-groups-are-not-fp); this puts it in a finitely presented decidable group, which is what finite presentation of the engine requires.
 ---
 
 Let `G` be a finitely generated group with solvable word problem. We may assume `G` is

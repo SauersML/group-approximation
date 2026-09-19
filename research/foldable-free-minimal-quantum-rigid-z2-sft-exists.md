@@ -3,8 +3,6 @@ rg: 2
 id: foldable-free-minimal-quantum-rigid-z2-sft-exists
 kind: claim
 title: Some free minimal quantum rigid Z^2 SFT has a rational determining half-plane (for instance, is corner-deterministic); then F_n x Z carries a free minimal quantum rigid SFT, independently of Labbé's J_2
-requires:
-  - abht-path-folds-accept-exactly-expansive-rational-half-planes
 distinct_from:
   free-minimal-z2-sft-is-quantum-rigid: that asks for a free minimal rigid Z^2 SFT by any mechanism, which the crossing-wire shift claims; this adds the one-sided determinism the ABHT fold needs.
   free-minimal-sft-without-two-sided-faults-exists: that asks for a determining side on every line, with topological freeness, and yields rigidity; this asks for rigidity plus one rational determining side, with freeness.

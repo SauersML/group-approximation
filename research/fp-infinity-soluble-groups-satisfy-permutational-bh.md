@@ -6,7 +6,6 @@ title: Every virtually soluble group of type FP_∞ lies in the permutational Bo
 distinct_from:
   rf-soluble-minimax-groups-satisfy-permutational-bh: that assumes residual finiteness and finite Prüfer rank; this assumes only the homological finiteness condition FP_∞, and derives those hypotheses from the Kropholler structure theorem.
   fp-metabelian-groups-satisfy-boone-higman: that is finitely presented metabelian groups, of possibly infinite rank; this is soluble groups of any derived length under the stronger condition FP_∞.
-  amenable-automatic-va-via-ea-and-soluble-case: that uses FP_∞ structure theory to reduce amenable automatic groups to the soluble case; this turns the same structure theory into Boone--Higman envelopes.
 artifacts:
   - research/artifacts/gq-bh-bh-solvable-status.md
 ---

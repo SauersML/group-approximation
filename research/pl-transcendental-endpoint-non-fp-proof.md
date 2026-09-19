@@ -4,6 +4,7 @@ id: pl-transcendental-endpoint-non-fp-proof
 kind: route
 title: Deforming the transcendental parameter turns a finite presentation into epimorphisms onto nearby groups, and a bump commutator that is trivial at λ but not nearby gives a contradiction
 target: fp-pl-groups-with-f-have-no-transcendental-support-endpoints
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-32-order-rigidity.md
 ---

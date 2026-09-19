@@ -3,9 +3,6 @@ rg: 2
 id: finite-type-branch-blow-ups-are-sft-compactifications
 kind: claim
 title: Finite-type branch blow-ups are exactly the SFT compactifications of the tree-gluing node, their engines are its tree gluing over Z/2 * S, and for hyperbolic S (Kazhdan ones included) the distance-gradient SFT has a unique seed, reducing (IE′) to one horofunction lemma
-requires:
-  - stabilizer-engines-embed-in-every-branch-compactification
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary; not reviewed):

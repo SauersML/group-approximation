@@ -4,6 +4,7 @@ id: seeded-groups-solvable-word-problem-proof
 kind: route
 title: Lift the seed to the free group, where it is the unique member of an effectively closed class; a Π^0_1 singleton is computable, and trivial stabilizer turns the word problem into one evaluation of it
 target: seeded-recursively-presented-groups-have-solvable-word-problem
+requires: []
 ---
 
 Notation is that of the target. `F` is the free group on `S` and `π : F -> Γ` the quotient map. `N = ker π` is

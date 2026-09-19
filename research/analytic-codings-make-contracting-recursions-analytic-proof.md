@@ -4,6 +4,7 @@ id: analytic-codings-make-contracting-recursions-analytic-proof
 kind: route
 title: The recursion transports each breakpoint t to g_u(t), and the orbit of a point other than the fixed point is infinite
 target: analytic-codings-make-contracting-recursions-analytic
+requires: []
 ---
 
 Notation is as in the target claim.

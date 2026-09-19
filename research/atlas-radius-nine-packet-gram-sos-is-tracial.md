@@ -3,7 +3,8 @@ rg: 2
 id: atlas-radius-nine-packet-gram-sos-is-tracial
 kind: claim
 title: The fixed A4 packet Gram and conditional-expectation SOS calculus is tracially blind
-invalidates: [atlas-joint-s3-charge-from-fixed-reynolds-gram]
+invalidates:
+  - atlas-joint-s3-charge-from-fixed-reynolds-gram
 distinct_from:
   tracial-npa-cannot-separate-canonical-trace: that treats the standard truncated scalar moment hierarchy; this also covers finite-packet Reynolds expectations, operator-valued Gram matrices, and fixed Schur-complement manipulations.
   global-tracial-positivity-cannot-separate-group-trace: that is the semantic firewall for arbitrary universal tracial proofs; this identifies the concrete proposed radius-nine packet calculus as lying behind that firewall.

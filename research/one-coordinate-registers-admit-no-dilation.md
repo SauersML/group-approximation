@@ -3,8 +3,6 @@ rg: 2
 id: one-coordinate-registers-admit-no-dilation
 kind: claim
 title: A register copy of Q living in one coordinate of nV, SV_G or any coordinatewise cellular host is normalized as x -> dx by no element of that host, however the element mixes the other coordinates
-requires:
-  - t-check-contains-no-q-rtimes-2-z
 distinct_from:
   rational-rotations-and-doubling-have-no-common-tree-coding: that assumes the dilation preserves the fibration over the register coordinate, with a covering base map; this assumes nothing about the dilation beyond being an element of the host, and proves the fibration is preserved up to piecewise-constant rotations.
   t-check-contains-no-q-rtimes-2-z: that is the one-real-coordinate PL host T-check and supplies the arithmetic lemma; this is the Cantor product hosts, where the cells are boxes and the dilation may permute and mix coordinates.

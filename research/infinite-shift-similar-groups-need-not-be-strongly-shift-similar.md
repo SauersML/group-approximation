@@ -3,8 +3,6 @@ rg: 2
 id: infinite-shift-similar-groups-need-not-be-strongly-shift-similar
 kind: claim
 title: There is an infinite (not finitely generated) shift-similar group that is not strongly shift-similar, answering Mallery-Zaremsky Question 3.18 as stated
-requires:
-  - houghton-like-groups-are-strongly-shift-similar
 distinct_from:
   fg-infinite-shift-similar-groups-are-strongly-shift-similar: that asks the same for finitely generated groups (OPEN), which is the version that matters for Observation 5.12 and Question 5.13 of the source; this answers the question as printed, with an example that is not finitely generated.
   strongly-shift-similar-type-f-m-passes-to-houghton-like-groups: that proves the finiteness transfer for strongly shift-similar groups; this shows that the class of infinite shift-similar groups is strictly larger.

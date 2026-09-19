@@ -4,7 +4,14 @@ id: reducible-building-lattices-via-product-boxes
 kind: route
 title: Take products of factor boxes as the cells of a transported orbit category, get strongly connected pieces one factor at a time from complete reducibility, and run the rescale, phase and stabilize machine
 target: reducible-euclidean-building-lattices-lie-in-type-a-class
-requires: [euclidean-building-lattices-lie-in-permutational-bh-class, automorphisms-fixing-open-boundary-sets-fix-large-balls, tree-lattice-kgraph-power-phase-proof, tree-lattice-with-torsion-via-zappa-szep-kgraphs, degree-category-full-groups-stabilized-have-type-a-actions, product-of-trees-faithful-factor-pbh-via-bass-serre-induction, boone-higman-type-a-class-closed-under-finite-extensions]
+requires:
+  - euclidean-building-lattices-lie-in-permutational-bh-class
+  - automorphisms-fixing-open-boundary-sets-fix-large-balls
+  - torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
+  - cocompact-tree-product-lattices-lie-in-type-a-class
+  - degree-category-full-groups-stabilized-have-type-a-actions
+  - product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+  - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
 Pass to the factor-preserving subgroup `Γ_0` (finite index; `B_A` passes to

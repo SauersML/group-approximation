@@ -3,8 +3,6 @@ rg: 2
 id: thompson-t-e-fails-on-multipoint-permutation-modules
 kind: claim
 title: The one-word basis candidate E of Thompson's T fails in Z ≀_X T whenever some point stabilizer of the T-set X preserves a finite set of at least two circle points, so multipoint permutation modules give no witness
-requires:
-  - thompson-t-identities-one-word-basis-over-cantor-overgroups
 distinct_from:
   thompson-t-identities-hold-in-circle-orbit-wreath-overgroups: that proves wreath products along orbits of single points satisfy every mixed identity of T; this proves wreath products along orbits of finite sets or tuples of two or more points violate E, so neither kind separates E from the other identities.
   thompson-t-identities-one-word-basis-over-cantor-overgroups: that builds the word E and the squeeze configuration inside homeomorphism groups; this reuses the configuration with an orientation-preserving element of T and reads the failure in the lamp coordinate by Fox calculus.

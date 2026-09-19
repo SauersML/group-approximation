@@ -3,7 +3,8 @@ rg: 2
 id: shifted-scale-recovery
 kind: claim
 title: Locally finite commutants recover at shifted scales
-invalidates: [separate-commutant-recovery]
+invalidates:
+  - separate-commutant-recovery
 ---
 
 Reynolds averaging over slowly-growing finite unitriangular envelopes puts

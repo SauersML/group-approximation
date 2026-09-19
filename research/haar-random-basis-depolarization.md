@@ -3,7 +3,8 @@ rg: 2
 id: haar-random-basis-depolarization
 kind: claim
 title: Random intermediate-basis dephasing is exactly a one over d plus one depolarizing channel
-invalidates: [markovization-via-random-intermediate-basis]
+invalidates:
+  - markovization-via-random-intermediate-basis
 artifacts:
   - research/artifacts/hyperlinear-extreme-breakthroughs-2026-08-18.md
 ---

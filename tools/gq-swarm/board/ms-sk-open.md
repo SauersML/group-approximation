@@ -38,3 +38,15 @@ Direction: SK census rows that are not truly closed (open row, conditional or st
 - 9fe4e2896405 → GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.manuscriptSentence_booneHigmanThompson (after green)
 - 503221e301f6 → GroupApproximation.Full.StepanovMatui.printedStepanovRouteSimplicity
 - 8212b1470040 → GroupApproximation.SimpleKazhdanSofic.Audit2.manuscriptSentence_simpleLEFHostsWithoutT
+
+## 09-18 ~21:15 (after restart; SLURM-BLOCKED)
+- Both modules are on main, byte-identical to the lane files: Arzhantseva in e7fff6d62e, BooneHigmanThompson in 8d6acdcd0c. Neither is root-wired (ms-map wires only after a green build).
+- No probe has built them yet. The v3 and v4 waiters were cancelled by the coordinator. The empty-overlay request 1789778213.65131 is queued; batch 1338076, now running, does not include it.
+- FIX-GRAPH lists both as UNPROBED.
+- Re-probe once SLURM-BLOCKED is gone. If red, fix and land the fix via gqland-lean.sh.
+- Remaining rows (no work in this lane):
+  - 768ac9454e9b: K₂ chain; ms-sk-uncond-a with fix node research/fix-sk-cohn-stable-k2-degree-zero-surj.md.
+  - e5932a45f053, 3eaee0a2dc7e: topological full group infrastructure (Matui generation).
+  - fc84c012b409(b): GL waist.
+  - 2745cd64eada: history sentence. Its content is the next two rows.
+- ~21:25: probe of request 1789778213.65131 came back DEFERRED (sbatch rejected, AssocMaxSubmitJobLimit). No re-probe loop; re-probe both targets once SLURM-BLOCKED is gone.

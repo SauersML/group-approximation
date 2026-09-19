@@ -6,9 +6,6 @@ title: The C_=P-complete integral Leavitt group Γ_Z has no simple host among Le
 distinct_from:
   leavitt-tensor-unit-word-problems-have-one-counting-quantifier: that bounds word problems of Leavitt-linear groups and constructs Γ_Z; this shows why none of those groups, nor their central quotients, can be a simple host of Γ_Z.
   leavitt-scalar-commutators-block-fp-central-quotients: that is the Schur-multiplier obstruction for groups containing L_K(1,d)^x over an infinite field; this uses it as one of four obstructions, specialized to hosts of Γ_Z.
-requires:
-  - leavitt-tensor-unit-word-problems-have-one-counting-quantifier
-  - leavitt-scalar-commutators-block-fp-central-quotients
 ---
 
 **ESTABLISHED** (route `integral-counting-group-hosts-proof`; lane proof by bh-free-26,

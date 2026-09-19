@@ -3,11 +3,6 @@ rg: 2
 id: linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings
 kind: claim
 title: For simple recursively presented inputs the oracle of Track B is free, so linear gate U over a fixed scaffold P is the coefficient-free question whether each canonical algebra R_Γ embeds in the algebraic uniform Roe algebra of P; its C*-analogue holds exactly for exact inputs
-requires:
-  - fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree
-  - non-amenable-scaffolds-absorb-the-leavitt-factor
-  - translation-like-inputs-embed-in-full-groups-over-a-fixed-group
-  - decidable-graphical-non-exact-groups-exist
 distinct_from:
   translation-like-inputs-embed-in-full-groups-over-a-fixed-group: that writes a PERMUTATION action (move tables) into an effective subshift and needs the word problem for (T3); this writes an arbitrary, possibly noncomputable, LINEAR finite-propagation module into an effective subshift, and simplicity of the input replaces (T3).
   non-amenable-scaffolds-absorb-the-leavitt-factor: that shows the permutational caps of gate U do not bind the linear gate and puts Track B over one scaffold; this identifies the linear gate exactly, as an embedding problem with no computability content, and locates its analytic shadow (exactness).

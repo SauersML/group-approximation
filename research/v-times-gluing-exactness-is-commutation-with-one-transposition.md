@@ -3,9 +3,6 @@ rg: 2
 id: v-times-gluing-exactness-is-commutation-with-one-transposition
 kind: claim
 title: The gluing group of V times any Lambda-space is the normal closure of one Thompson transposition, so its kernel onto the full group is trivial iff it commutes with that transposition, and finitely normally generated iff finitely many kernel relators force that commutation
-requires:
-  - v-times-sft-gluing-kernel-is-relatively-perfect
-  - v-times-sft-full-groups-split-into-two-wreath-pieces
 distinct_from:
   v-times-sft-gluing-kernel-is-relatively-perfect: that proves K = [K, Gamma~], so a central kernel is trivial; this proves Gamma~ is the normal closure of any one nontrivial element of V, so a kernel that commutes with ONE transposition is already central, and it states the finite-normal-generation form.
   v-times-full-groups-have-local-transposition-presentations: that proposes an infinite Quick-type presentation of F(T) by all basic transpositions and needs every conjugacy relation lifted; this shows exactness needs only that lifting one fixed transposition tau_0 around every relator loop returns tau_0.

@@ -3,11 +3,6 @@ rg: 2
 id: labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two
 kind: claim
 title: Labbé's 19-tile Wang shift is quantum rigid iff it is rigid at scale 2 (commutation at sup-distance 4, the 229 legal 5x5 patterns); one non-commuting scale-2 operator tiling refutes rigidity at every scale
-requires:
-  - recognizable-morphisms-collapse-quantum-rigidity-to-one-scale
-  - labbe-substitution-is-primitive-and-recognizable
-  - morphism-towers-double-covariant-tiling-scales
-  - minimal-aperiodic-wang-shift-exists
 distinct_from:
   labbe-wang-shift-crossed-product-is-finitely-presented: that is the open rigidity question itself; this fixes the one scale at which it is decided.
   labbe-torus-tiling-algebra-has-scale-one-module: that decides exact matriciality (finite-dimensional periodic modules) at scale 1; this decides quantum rigidity (all operator families, any dimension) at scale 2.

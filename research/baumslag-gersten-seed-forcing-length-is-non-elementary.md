@@ -3,10 +3,6 @@ rg: 2
 id: baumslag-gersten-seed-forcing-length-is-non-elementary
 kind: claim
 title: The Baumslag–Gersten group lies in 𝒞, via a rigid "real-cut" relative seed for (BS(1,2), ⟨b⟩) and relative-seed gluing; the explicit glued seed has non-elementary forcing length (at least a tower of height about log n) although the word problem is polynomial, so forcing length does not measure certified complexity
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - heisenberg-rigid-seed-certifies-only-the-malcev-normal-form
 distinct_from:
   heisenberg-rigid-seed-certifies-only-the-malcev-normal-form: that is rung 1b, where forcing length is quadratic and equals the distortion of the centre; this is rung 1c's distortion test, where forcing length is non-elementary while the word problem stays polynomial.
   relative-seeds-glue-graphs-of-groups-into-class-c: that is the gluing theorem; this supplies the two rigid relative seeds that the Baumslag–Gersten splitting needs, so the theorem applies.

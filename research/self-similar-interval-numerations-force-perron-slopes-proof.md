@@ -4,6 +4,7 @@ id: self-similar-interval-numerations-force-perron-slopes-proof
 kind: route
 title: The lengths of a sink component are a positive fixed vector of M(λ) = Σ C_k λ^k; det(I − M(x)) has constant term 1, and Perron–Frobenius monotonicity bounds every conjugate
 target: self-similar-interval-numerations-force-perron-slopes
+requires: []
 ---
 
 **Setup.**

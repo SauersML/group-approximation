@@ -3,9 +3,6 @@ rg: 2
 id: seed-compactifications-dominate-the-end-compactification
 kind: claim
 title: The difference set between a seed point and any translate coarsely connects the two seeds, so every seed compactification maps onto the Freudenthal end compactification; over groups with infinitely many ends the seed boundary has a perfect kernel mapping onto the end space, and scattered seeds exist only over one- or two-ended groups
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 distinct_from:
   quantum-rigidity-is-decided-on-the-derived-subshift: that shows rigidity of a locally forced seed lives on its derived levels and perfect kernel; this shows where the perfect kernel must exist, namely over every infinitely ended group, and where it may vanish.
   seeds-never-survive-marked-approximation: that is a gluing-free isolation property of the group among marked groups; this is a gluing argument inside one group, across cuts of its Cayley graph.

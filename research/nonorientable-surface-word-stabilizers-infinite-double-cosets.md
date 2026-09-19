@@ -3,9 +3,6 @@ rg: 2
 id: nonorientable-surface-word-stabilizers-infinite-double-cosets
 kind: claim
 title: For every n at least three, the stabilizer in Out(F_n) of the one-cusp nonorientable surface word a_1^2...a_n^2 has infinitely many double cosets, and so does every surface peripheral-structure stabilizer
-requires:
-  - surface-word-stabilizers-have-infinitely-many-double-cosets
-  - out-free-pair-finite-stabilizers-contain-fully-irreducibles
 distinct_from:
   surface-word-stabilizers-have-infinitely-many-double-cosets: that treats the orientable one-cusp word in even rank n = 2g ≥ 4; this treats the nonorientable one-cusp word in every rank n ≥ 3, including odd rank, and adds the multi-boundary surfaces.
   out-free-pair-finite-stabilizers-contain-fully-irreducibles: that excludes stabilizers that virtually fix a proper free factor class; this uses it for surfaces with two or more boundary components, whose boundary classes are primitive.

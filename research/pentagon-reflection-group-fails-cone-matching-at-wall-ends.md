@@ -3,13 +3,13 @@ rg: 2
 id: pentagon-reflection-group-fails-cone-matching-at-wall-ends
 kind: claim
 title: The right-angled pentagon reflection group fails cone matching along four persistent chains of atoms per generator (the wall-endpoint branch points), so condition (C) is not the route even for cubulated hyperbolic groups; colour-tameness of a tile operad means every colour has an operation with inputs of that colour only, which fails already for free groups and holds after Cuntz stabilization
-requires:
-  - hyperbolic-cone-matching-holds-off-the-branch-locus
 artifacts:
   - research/artifacts/gq-bh-finf-hyp-cone-matching-test.md
 distinct_from:
   hyperbolic-cone-matching-holds-off-the-branch-locus: that proves cone matching off the branch locus and reduces square filling to the automaton condition (C); this tests (C) on a hyperbolic group, finds it failing at branch points, and settles the colour-tameness gate.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `hyperbolic-cone-matching-holds-off-the-branch-locus`.
 
 **Status.**
 - **Item 1 is computational evidence.** Each reported failure is certified exactly at its level,

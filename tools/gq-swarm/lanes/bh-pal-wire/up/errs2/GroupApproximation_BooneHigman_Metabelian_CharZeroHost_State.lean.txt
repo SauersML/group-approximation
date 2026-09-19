@@ -1,0 +1,3 @@
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean:40:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.nonAssocSemiring', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean:46:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'outDigit', which is 'noncomputable'
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/State.lean:52:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputable'

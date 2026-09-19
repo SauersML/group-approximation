@@ -3,10 +3,6 @@ rg: 2
 id: cn-building-lattices-carry-locally-forced-seeds
 kind: claim
 title: Every torsion-free type-preserving cocompact lattice in a thick locally finite C̃_n building (n ≥ 2) carries a locally forced finite-type seed; labels are singular subspaces S of one polar factor of the link, outward labels are T ∩ S^⊥ (one-or-all axiom), and seed rigidity reduces to a perfect boundary SFT
-requires:
-  - c2-building-lattices-carry-finite-type-seeds
-  - a2-lattices-carry-finite-type-seeds
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-13, 2026-09-18; elementary building geometry; not reviewed).

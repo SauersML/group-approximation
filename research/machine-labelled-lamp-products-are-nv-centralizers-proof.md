@@ -5,7 +5,7 @@ kind: route
 title: Carry the lamp group on untouched coordinates, let branches choose a label and emit it at time C·s, and let the detector apply the label's centralizing set on those coordinates
 target: machine-labelled-lamp-products-are-nv-centralizers
 requires:
-  - nv-machines-realize-linear-time-lamp-centralizers-proof
+  - nv-machines-realize-linear-time-lamp-centralizers
   - pbh-coset-wreaths-iff-identity-edge-hnns
 ---
 

@@ -3,14 +3,8 @@ rg: 2
 id: li-coded-certificates-cannot-reach-hard-sft-hosts
 kind: claim
 title: The master-route bridge from a rigid SFT to a finite-state Li-coded category fails for every SFT whose pattern language is not decidable in time 2^(C n^8), whatever its rigidity
-requires:
-  - finite-state-li-coded-full-groups-have-exponential-word-problem
-  - alternating-v-full-group-wp-computes-sft-language
-  - minimal-free-z2-sfts-have-arbitrarily-hard-row-languages
-  - finitely-coded-groupoid-unit-groups-are-residually-finite
 distinct_from:
   fp-v-times-subshift-full-groups-force-quantum-rigidity: that derives quantum rigidity from finite presentation of the V-times-shift full group; this shows that for hard SFTs that finite presentation can never be certified through a finite-state Li-type coding, with or without rigidity.
-  arbitrarily-complex-fp-simple-via-hard-minimal-sft-v-full-groups: that notes that (P2) cannot be proved by an argument that bounds word problems uniformly; this identifies Li's theorems with finite-state data as exactly such an argument and extends the exclusion from A(T) to every finitely generated group containing Q.
   finitely-coded-cantor-actions-give-type-a-hosts: that reduces PBH to a finitely coded action plus finite presentation; this shows the finite-state codings reach only inputs of elementary word-problem complexity, so universal PBH through that node needs non-finite-state units.
 ---
 

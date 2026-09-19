@@ -3,13 +3,12 @@ rg: 2
 id: v-times-inflation-host-full-groups-are-finitely-presented
 kind: claim
 title: (OPEN) V times the translation-plus-inflation groupoid of a recognizable primitive aperiodic box substitution has a finitely presented full group; proved (type F_∞) in the fault-free odometer case, and the only missing ingredient is a product engine for rational transformations with lag at fault lines
-requires:
-  - substitution-inflation-hosts-are-full-contracting-rsgs
-  - thumann-operad-groups-need-only-f-infinity-transformations
 distinct_from:
   substitution-inflation-hosts-are-full-contracting-rsgs: that proves the inflation host F(𝒢⁺) itself finitely presented, as a full contracting RSG; this asks for the V-stabilized product G_V × 𝒢⁺, which contains the labelled master-route host F(G_V × (Z^d ⋉ X_ω)) as a subgroup.
   v-times-quantum-rigid-sft-full-groups-are-fp: that is P2′ for the labelled host, which needs quantum rigidity; this larger host contains the inflation germs, so the necessity theorem does not apply to it.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `substitution-inflation-hosts-are-full-contracting-rsgs`, `thumann-operad-groups-need-only-f-infinity-transformations`.
 
 **OPEN** (lane bh-invent-06b, 2026-09-18). Parts A and B below are lane proofs, not reviewed.
 

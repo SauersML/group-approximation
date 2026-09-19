@@ -3,11 +3,6 @@ rg: 2
 id: finite-root-prime-splittings-never-create-z-semilocal
 kind: claim
 title: In a group acting on a tree whose edge-in-vertex inclusions have finitely many relative root primes, every copy of Z_(S) lies in one vertex stabilizer up to those primes, and roots at infinitely many primes are never created; so no mapping torus of a free-group endomorphism and no graph of free, free abelian or nilpotent groups witnesses (SL)
-requires:
-  - z-semilocalized-embeds-in-fp-rf-group
-  - end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups
-  - fg-linear-groups-have-roots-at-finitely-many-primes
-  - fg-metabelian-groups-have-roots-at-finitely-many-primes
 distinct_from:
   end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups: its part 6 needs finite-index edge inclusions and residual finiteness; this needs only finitely many relative root primes, which also covers edge groups of infinite index (ascending HNN extensions of free groups), and uses no residual finiteness.
   bounded-valence-trees-scale-only-primes-below-the-valence: that bounds the primes that bounded valence can scale; this bounds the primes any splitting can add by an algebraic invariant of each edge inclusion, independent of valence.

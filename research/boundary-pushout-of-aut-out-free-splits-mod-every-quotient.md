@@ -3,10 +3,6 @@ rg: 2
 id: boundary-pushout-of-aut-out-free-splits-mod-every-quotient
 kind: claim
 title: Modulo any nontrivial normal subgroup of the boundary full group, the pushed Aut/Out(F_n) extension splits over a finite-index subgroup; so no quotient obstruction, nilpotent or otherwise, can refute piecewise-representative lifts, and every point stabilizer of such a lift embeds in Aut(F_n) through germs
-requires:
-  - out-free-extension-pushed-into-the-boundary-full-group
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
-  - aut-out-free-abelianized-extension-virtually-splits
 distinct_from:
   fox-rational-section-fails-class-two-virtually: that obstructs lifts of Aut(F_n) → Out(F_n) through the class-two quotient F_n/γ_3; this shows that after pushing the kernel into the boundary full group M, every proper quotient of M is abelian, and the pushed extension splits virtually modulo it.
   out-free-acts-on-boundary-by-piecewise-representatives: that is the open existence statement (PR); this proves that every obstruction to it factoring through a quotient of the kernel vanishes, and it constrains the stabilizers of any solution.

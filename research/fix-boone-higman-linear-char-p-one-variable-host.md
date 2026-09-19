@@ -1,11 +1,11 @@
 ---
 id: fix-boone-higman-linear-char-p-one-variable-host
-kind: route
+kind: claim
 rg: 2
 title: "Fix BooneHigmanLinear.CharP.OneVariableHost: red imports (Euclid Suslin step, affine FP) block the unconditional trdeg <= 1 char-p linear host"
-target: char-p-linear-groups-satisfy-permutational-boone-higman
-status: OPEN
 ---
+
+Recorded against `char-p-linear-groups-satisfy-permutational-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `char-p-linear-groups-satisfy-permutational-boone-higman`).
 
 **Modules.** `GroupApproximation/BooneHigmanLinear/CharP/OneVariableHost.lean` and its coordinates file
 `GroupApproximation/BooneHigmanLinear/CharP/LowTrdegCoords.lean` (lane `bh-pal-linear-charp`, landed

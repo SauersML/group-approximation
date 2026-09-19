@@ -3,18 +3,6 @@ rg: 2
 id: central-kazhdan-residual-separator-for-boone-higman
 kind: claim
 title: The class of groups whose Kazhdan subgroups have only finitely many central elements dying in every finite quotient separates Boone–Higman iff every finitely presented simple group is in it; Deligne's lattice and St_N(R_L) are decidable witnesses outside it, and every rank-one cone host is inside it
-requires:
-  - hereditary-approximation-disproofs-of-boone-higman
-  - bh-separators-must-omit-nested-decidable-hosts
-  - deligne-universal-cover-lattice-is-non-rf-kazhdan
-  - deligne-lattice-is-universal-central-extension-for-g-ge-4
-  - leavitt-resolvent-k2-stability-holds
-  - steinberg-finite-presentation-and-kazhdan-theorem
-  - torelli-lower-central-quotients-are-not-residually-finite
-  - rank-one-cone-hosts-put-fw-groups-in-local-map-groups
-  - normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups
-  - kazhdan-subgroups-of-fp-simple-groups-can-have-infinite-centre
-  - fp-simple-group-with-kazhdan-subgroup-of-non-residual-centre
 distinct_from:
   kazhdan-subgroups-of-fp-simple-groups-can-have-infinite-centre: that kills the naive "finite centre" class with a residually finite witness; this is the residual refinement, which that witness does not touch and which is open on the fp simple side.
   exactness-separates-boone-higman-iff-fp-simple-groups-exact: that separator is property A with the residually finite Osajda witness; this one is invisible to residually finite groups and is witnessed by Kazhdan central extensions.

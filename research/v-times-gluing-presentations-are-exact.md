@@ -3,12 +3,6 @@ rg: 2
 id: v-times-gluing-presentations-are-exact
 kind: claim
 title: For every group Lambda and every compact zero-dimensional Lambda-space X, the full group of V times Lambda ⋉ X is the amalgam of V(Lambda) and LC(X,V) ⋊ Lambda over V × Lambda modulo commutation of disjoint-cone pieces; auxiliary cones in spare room give coherent lifts of all transpositions, nested ones included
-requires:
-  - v-times-gluing-exactness-is-commutation-with-one-transposition
-  - incomparable-transposition-lifts-are-equivariant-off-self-swaps
-  - v-times-sft-gluing-kernel-is-relatively-perfect
-  - v-times-full-groups-have-local-transposition-presentations
-  - v-times-ample-full-groups-are-generated-by-transpositions
 distinct_from:
   v-times-sft-full-groups-glue-from-two-wreath-pieces: that asks for the gluing kernel K to be finitely normally generated (P2'b); this proves K = 1 for every Lambda and every X.
   incomparable-transposition-lifts-are-equivariant-off-self-swaps: that reduces exactness to coherent lifts of nested-cone transpositions (CL); this proves (CL) by routing every lift through auxiliary pieces placed in spare room, so self-swap configurations never arise.

@@ -3,9 +3,6 @@ rg: 2
 id: crossing-wire-shifts-pass-the-separability-test
 kind: claim
 title: In a crossing-wire fixed-point tiling, two modifications that change the type of a common macrotile have intersecting difference sets; so the crossing-wire shifts, their one-way variant and its transplants pass the separable-modifications test, and complete crossing is exactly what the test asks of a layout
-requires:
-  - cross-layer-separable-modifications-kill-quantum-rigidity
-  - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
 distinct_from:
   crossing-wire-fixed-point-tile-sets-are-quantum-rigid: that proves quantum rigidity through face-local edge families; this checks the classical necessary condition (no separable modifications) independently, and identifies complete crossing as its combinatorial content.
   cross-layer-separable-modifications-kill-quantum-rigidity: that is the test; this runs it on the E2 candidates on main.

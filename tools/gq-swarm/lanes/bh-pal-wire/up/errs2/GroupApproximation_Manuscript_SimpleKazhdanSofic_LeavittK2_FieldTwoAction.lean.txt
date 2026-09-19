@@ -1,0 +1,6 @@
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/FieldTwoAction.lean:59:0: automatically included section variable(s) unused in theorem `GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.unitVec_apply`:
+  [Fintype I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

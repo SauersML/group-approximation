@@ -3,7 +3,8 @@ rg: 2
 id: relative-soficity-extension-theorem-withdrawn
 kind: claim
 title: The sofic-by-residually-amenable extension theorem is withdrawn and unavailable
-invalidates: [one-relator-sofic-via-residually-amenable-quotient]
+invalidates:
+  - one-relator-sofic-via-residually-amenable-quotient
 distinct_from:
   sofic-semidirect-product-closure-fails: that is a mathematical refutation — a permanence statement shown false by explicit counterexamples; this is a bibliographic fact — a claimed permanence statement whose only source retracted it. One is known false, the other merely unsupported, and confusing the two would misreport what is open.
   one-relator-groups-sofic: that is the open question this shortcut would have nearly collapsed; this only records that the shortcut has no source, and it moves the question in neither direction.

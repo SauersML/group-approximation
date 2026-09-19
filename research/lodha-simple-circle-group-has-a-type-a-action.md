@@ -3,8 +3,6 @@ rg: 2
 id: lodha-simple-circle-group-has-a-type-a-action
 kind: claim
 title: Lodha's finitely presented simple circle group S acts on P^1(Q) with type (A), so S satisfies permutational Boone–Higman and BFFHZ Question 3.4
-requires:
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   fp-simple-groups-embed-in-fp-simple-mif-groups: that is BFFHZ Question 3.4 for all finitely presented simple groups (OPEN); this settles it for one further family, Lodha's group S, which the Q3.4 census (research/artifacts/q34-known-actors-coverage-2026-09-13.md, §3 item 2) listed as unchecked.
   burger-mozes-simple-lattices-are-highly-transitive: that settles the Burger–Mozes groups through high transitivity of an overgroup's boundary action; here S acts with type (A) itself, 2-transitively on P^1(Q).

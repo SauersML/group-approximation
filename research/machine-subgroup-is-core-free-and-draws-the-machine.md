@@ -3,9 +3,6 @@ rg: 2
 id: machine-subgroup-is-core-free-and-draws-the-machine
 kind: claim
 title: The Aanderaa–Cohen machine subgroup T'_M ≤ K_M is core-free, and its Schreier graph contains a base sheet Z² on which r_i, l_j act by the machine's multiplicative maps and t has loops exactly over −H_0(M); the natural relative seed (sheet + transported fate bit) is isolated with stabilizer T'_M for total machines but is never quantum rigid once two unterminated components of the move graph sit 2D apart
-requires:
-  - aanderaa-cohen-tower-subgroups-are-decidable
-  - relative-seeds-descend-to-quotients-and-consume-membership
 distinct_from:
   aanderaa-cohen-tower-subgroups-are-decidable: that proves membership in T'_M is decidable (≡_T H_0(M)); this shows T'_M is core-free (so descent cannot simplify the rung), describes its Schreier graph, and tests the first relative-seed candidate against isolation, (S3) and rigidity.
   higman-clapham-towers-leave-the-seed-form-at-three-steps: that locates the halting HNN as a step of the tower; this analyses the relative seed that the step needs.

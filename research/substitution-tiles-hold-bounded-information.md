@@ -3,15 +3,13 @@ rg: 2
 id: substitution-tiles-hold-bounded-information
 kind: claim
 title: In a finite substitution every generator and every clopen mark is a finite lookup on bounded-depth addresses, so a mortal machine cannot sit on tiles or points and must run in the reconciliation of words; seeds, whose single point carries unbounded forced data, are the natural home of the tower's machine, and the operadic rung reduces to an Ore condition on words
-requires:
-  - symmetric-ore-operads-containing-their-carrier-are-full-groups
-  - arithmetic-frames-are-capped-machines-live-in-orbits-not-words
-  - branching-squares-are-the-only-operadic-escape-from-the-cap
 distinct_from:
   arithmetic-frames-are-capped-machines-live-in-orbits-not-words: that caps hosts built from sized frame classes; this shows that even with arbitrary frames a single generator of a finite substitution carries bounded information, so all unbounded computation happens when words are reconciled.
   seed-evaluation-is-bounded-by-the-forcing-radius: that bounds evaluation of a seed by its forcing radius, which can be unbounded because one seed point is an infinite configuration; this shows substitution tiles have no analogue of that, since every clopen mark is decided at bounded depth.
   halting-pair-seeds-need-a-two-sided-core-mark: that asks the core mark of the halting pair for a two-sided certificate on the seed; this records that in substitution form the mark cannot be a union of tiles unless the decider's run is bounded on the whole space, so the negative certificate can only be an Ore computation on words.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `symmetric-ore-operads-containing-their-carrier-are-full-groups`, `arithmetic-frames-are-capped-machines-live-in-orbits-not-words`, `branching-squares-are-the-only-operadic-escape-from-the-cap`.
 
 **Parts 1–2 ESTABLISHED** (lane bh-typeA-universal, 2026-09-18). They are elementary, with the
 proof below; not independently reviewed. **Part 3 is a design statement for the seed tower

@@ -1,0 +1,8 @@
+base e6c93a1fe49d73f4ad1fa4605818dd5867070afd; batch job 1338076 (2 of 2); state TIMEOUT; rc none
+===== ERROR INDEX =====
+===== CONTEXT (from first error) =====
+===== STATUS =====
+SENTINEL
+grep: /projects/standard/hsiehph/sauer354/gq-slurm/batch-b1789778448-2.log: No such file or directory
+awk: fatal: cannot open file `/projects/standard/hsiehph/sauer354/gq-slurm/batch-b1789778448-2.log' for reading (No such file or directory)
+tail: cannot open '/projects/standard/hsiehph/sauer354/gq-slurm/batch-b1789778448-2.log' for reading: No such file or directory

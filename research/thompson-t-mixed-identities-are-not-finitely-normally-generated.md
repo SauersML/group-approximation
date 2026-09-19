@@ -3,9 +3,6 @@ rg: 2
 id: thompson-t-mixed-identities-are-not-finitely-normally-generated
 kind: claim
 title: The mixed identities of Thompson's group T are not finitely normally generated in T * F_n for any n, answering BFFHZ Question 3.3 negatively
-requires:
-  - homeo-circle-three-arc-commutator-word-is-mixed-identity
-  - bffhz-q33-is-normal-finite-generation-of-mixed-identities
 distinct_from:
   bffhz-q33-is-normal-finite-generation-of-mixed-identities: that reformulates BFFHZ Question 3.3 and proves descent in the rank; this answers the question negatively, with Thompson's T as the counterexample.
   thompson-t-mixed-identity-problem-is-decidable: that shows the mixed identities of T form a recursive set; this shows they are not the normal closure of any finite subset, so the recursive set has no finite normal generating set.

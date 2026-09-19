@@ -3,9 +3,6 @@ rg: 2
 id: blind-commutants-of-push-families-in-ct-p-z-are-trivial
 kind: claim
 title: In Kohl's CT_P(Z), a piecewise-canonical map that commutes with a binary push family and preserves that family's germ data is the identity; so in any copy of Brin's 2V the pushes of each stack must read hidden fibre data that the other stack's group moves
-requires:
-  - brin-thompson-nv-needs-n-minus-one-primes-in-ct-z
-  - ct-p-z-is-not-a-product-shift-full-group
 distinct_from:
   ct-p-z-is-not-a-product-shift-full-group: that proves the commutant lemma for single canonical pushes (item 3); this removes the single-piece hypothesis, needing only that the commuting map preserves the pushes' germ data.
   brin-thompson-nv-needs-n-minus-one-primes-in-ct-z: that bounds the dimension and reduces a copy of 2V in CT_{3}(Z) to commuting Cuntz families; this constrains those families (and the symmetric-power case) from inside.

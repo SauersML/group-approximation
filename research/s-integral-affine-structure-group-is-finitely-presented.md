@@ -3,9 +3,6 @@ rg: 2
 id: s-integral-affine-structure-group-is-finitely-presented
 kind: claim
 title: For a finite set of primes P, the S-integral affine group (Z[1/P]^(D) x| GL(Z[1/P]; D)) x| F is finitely presented
-requires:
-  - integral-affine-structure-group-is-finitely-presented
-  - finitary-steinberg-extensions-by-oligomorphic-actions-are-fp
 distinct_from:
   integral-affine-structure-group-is-finitely-presented: that is the case P empty, over Z; this inverts finitely many primes, which adds the diagonal dilations and uses K_1 and K_2 of Z[1/P].
 ---

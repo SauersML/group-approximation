@@ -3,9 +3,6 @@ rg: 2
 id: rigid-seed-constructions-pass-the-separability-test
 kind: claim
 title: Wall-chamber distance seeds have no two modifications of one point more than r_0 + 2 apart, because orientations along a nested wall chain switch once; the test is preserved by products, so surface, median and product seeds pass, relative-seed and Kurosh gluings pass on audit, and building seeds show no separable freedom
-requires:
-  - cross-layer-separable-modifications-kill-quantum-rigidity
-  - wall-chamber-distance-sfts-are-quantum-rigid
 distinct_from:
   wall-chamber-distance-sfts-are-quantum-rigid: that proves quantum rigidity by nested chains of projections; item 1 here is its classical shadow, the necessary condition proved directly on points.
   cross-layer-separable-modifications-kill-quantum-rigidity: that is the test; this runs it on the rigid-seed constructions behind CARRIER.

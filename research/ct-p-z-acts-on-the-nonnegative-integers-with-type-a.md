@@ -3,9 +3,6 @@ rg: 2
 id: ct-p-z-acts-on-the-nonnegative-integers-with-type-a
 kind: claim
 title: For every finite set P of odd primes, Kohl's finitely presented simple group CT_P(Z) acts on the nonnegative integers highly transitively with finitely generated point stabilizers, an action of type (A)
-requires:
-  - ct-p-z-is-a-one-vertex-k-graph-full-group
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   lodha-simple-circle-group-has-a-type-a-action: that gives Lodha's finitely presented simple group S its own type (A) action on P^1(Q); this does the same for the class transposition groups CT_P(Z), on N_0.
   ct-p-z-is-a-one-vertex-k-graph-full-group: that proves CT_P(Z) finitely presented, simple and F_infinity (Kourovka 17.61); this shows it is moreover its own type (A) actor.

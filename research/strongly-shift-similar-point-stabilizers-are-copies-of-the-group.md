@@ -3,8 +3,6 @@ rg: 2
 id: strongly-shift-similar-point-stabilizers-are-copies-of-the-group
 kind: claim
 title: In a strongly shift-similar group every point stabilizer, and every pointwise stabilizer of a finite set, is isomorphic to the group itself
-requires:
-  - houghton-like-groups-are-strongly-shift-similar
 distinct_from:
   houghton-like-groups-are-strongly-shift-similar: that imports the Mallery-Zaremsky facts (psi_j surjective, H_1(G) = G, H_n(G) contains FSym); this derives from them that stabilizers of finite sets are copies of G.
   fp-strongly-shift-similar-admits-type-a-action: that is Zaremsky's type (A) theorem for finitely presented strongly shift-similar groups; this is the elementary stabilizer computation behind finiteness statements of that kind.

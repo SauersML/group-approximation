@@ -3,9 +3,6 @@ rg: 2
 id: ct-z-residue-partitions-cannot-carve-thin-invariant-sets
 kind: claim
 title: "Kourovka 21.74(a), obstruction: a residue-class partition permuted by g in CT(Z) must put each clopen-indecomposable component in one class, so an invariant set created by a computation inside a thin region (e.g. inside 7Z) can never make g permute a partition; machine-plus-single-mixer reductions cannot decide (a)"
-requires:
-  - ct-z-invariant-residue-partitions-are-not-conjugacy-invariant
-  - ct-z-finite-cycle-problems-are-undecidable
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary. No priority is claimed.

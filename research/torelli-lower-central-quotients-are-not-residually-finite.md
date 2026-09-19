@@ -7,10 +7,6 @@ distinct_from:
   torelli-lower-central-quotients-do-not-virtually-split: that is the non-splitting input; this uses it, with Borel and Deligne, to produce a nontrivial finite residual.
   deligne-universal-cover-lattice-is-non-rf-kazhdan: that is Deligne's lattice itself; this finds a commensurable copy (modulo a finite central subgroup) inside the Torelli lower-central quotients, so their non-residual-finiteness is inherited from Deligne's theorem.
   deligne-lattice-satisfies-boone-higman: that is the BH test case for Deligne's Sp_4 lattice; this places Deligne-type lattices over Sp_2g (g >= 3) inside the Nowak quotients, so a BH host for a Nowak quotient contains one.
-requires:
-  - torelli-lower-central-quotients-do-not-virtually-split
-  - deligne-universal-cover-lattice-is-non-rf-kazhdan
-  - deligne-covers-of-sp2g-z-have-finite-residual-2z
 artifacts:
   - research/artifacts/gq-bh-bh-free-38-torelli-quotients.md
 ---

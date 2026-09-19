@@ -3,9 +3,6 @@ rg: 2
 id: w-contains-heisenberg-with-divisible-centre
 kind: claim
 title: The twisted integral-affine group W contains H_3(Z) x_Z Q, a Heisenberg group with divisible, quadratically distorted centre; the next step toward U_3(Q) needs register addition
-requires:
-  - twisted-integral-affine-full-group-is-finitely-presented
-  - twisted-bt-point-fixing-actor-elements-are-divisible
 distinct_from:
   u3-q-embeds-in-fp-simple-group: that is the open target U_3(Q); this is its second layer {a, b in Z, c in Q}, realized inside W with the centre distorted, and the exact reason the third layer fails in W.
   rational-slope-germ-groups-have-bs-but-no-heisenberg: that excludes Heisenberg groups from one-dimensional rational-slope germ groups; here the Heisenberg distortion comes from linear shears on 2-adic coordinates, which are the higher-dimensional germs that node points to.

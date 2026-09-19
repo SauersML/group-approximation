@@ -3,10 +3,6 @@ rg: 2
 id: mihailova-relative-seeds-must-force-across-both-factors
 kind: claim
 title: The rows of any configuration on F×F with a Mihailova stabilizer have infinitely generated stabilizers, so no SFT over one factor forces a row; diagonals, by contrast, are seeded row by row, for F×F always and for Q×Q whenever right multiplication acts on a rigid seed of Q by cellular automata
-requires:
-  - sft-isolated-points-are-finite-state-across-finite-edge-groups
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - relative-seeds-descend-to-quotients-and-consume-membership
 distinct_from:
   relative-seeds-descend-to-quotients-and-consume-membership: that descends a Mihailova relative seed on F_2×F_2 to the diagonal of Q×Q and reads its point as a two-sided colouring of Q; this works upstairs on F×F, where it shows that the forcing can never be done inside one factor, and it supplies the first two-sided seeds (diagonals seeded row by row).
   relative-seeds-on-free-groups-have-fg-stabilizers: that says forced points over a free group have finitely generated stabilizers; this applies it to the rows of a two-factor seed, whose row stabilizers must have normal core ker(F -> Q).

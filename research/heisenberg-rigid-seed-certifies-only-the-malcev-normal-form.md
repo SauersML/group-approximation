@@ -3,8 +3,6 @@ rg: 2
 id: heisenberg-rigid-seed-certifies-only-the-malcev-normal-form
 kind: claim
 title: The rigid seed of H_3(Z) is the sign pattern of its Mal'cev coordinates; its forcing radius is linear, its forcing length is quadratic (the distortion of the center), and it certifies no complexity beyond the normal form; more generally, seeds built from locally finite splittings certify only Britton normal forms
-requires:
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
 distinct_from:
   locally-finite-splittings-preserve-rigid-sft-compactifications: that proves H_3(Z) ∈ 𝒞 abstractly; this writes the seed out, computes what it forces and how fast, and measures the word-problem complexity it certifies (rung 1b of the v6 CAP gate).
 ---

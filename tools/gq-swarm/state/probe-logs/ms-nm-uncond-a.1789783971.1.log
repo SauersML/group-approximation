@@ -1,0 +1,9 @@
+base e6c93a1fe49d73f4ad1fa4605818dd5867070afd; batch job 1338076 (1 of 2); state TIMEOUT; rc none
+===== ERROR INDEX =====
+===== CONTEXT (from first error) =====
+===== STATUS =====
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition414FirstArcConnectorSeparation.lean:154:14: 'GroupApproximation.GGT.DGOProposition414.BalancedSplitData.firstGapArcSource_not_connected_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+SENTINEL

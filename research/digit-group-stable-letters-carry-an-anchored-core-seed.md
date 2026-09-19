@@ -3,11 +3,6 @@ rg: 2
 id: digit-group-stable-letters-carry-an-anchored-core-seed
 kind: claim
 title: In the k-letter digit group Z_J = <x, a_i | a_i^-1 x a_i = x^m>, the stable-letter subgroup F(a) is the stabilizer of a locally forced isolated point (an anchored core seed on the locally finite Bass-Serre tree); (RS1) and (RS2) hold, (RS3) reduces to the derived subshift of tree data plus one sign
-requires:
-  - kurosh-relative-seeds-and-the-b1-digit-splitting
-  - baumslag-gersten-groups-lie-in-class-c
-  - locally-finite-splittings-preserve-rigid-sft-compactifications
-  - quantum-rigidity-is-decided-on-the-derived-subshift
 distinct_from:
   baumslag-gersten-groups-lie-in-class-c: that seeds the cyclic stable-letter subgroup <b> of BS(1,n), whose core is a line; this seeds the free stable-letter subgroup F(a) of the k-letter BS(1,m), whose core is a 2k-regular tree with m-adic phase data.
   kurosh-relative-seeds-and-the-b1-digit-splitting: that reduced (B_1, <t,a_i>) to three stable-letter pairs; this treats the first, (Z_J, F(a)), and through an automorphism also (Z_J, Sigma).

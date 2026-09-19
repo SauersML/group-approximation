@@ -3,9 +3,6 @@ rg: 2
 id: gluing-kernels-descend-from-the-full-shift
 kind: claim
 title: For V times a topologically free subshift, the gluing kernel is the image of the full shift's gluing kernel, and the full group is the full-shift full group modulo one conditioned relator per forbidden pattern; so P2'b over a fixed group and alphabet is one statement about the full shift
-requires:
-  - v-times-ample-full-groups-are-generated-by-transpositions
-  - v-times-sft-full-groups-split-into-two-wreath-pieces
 distinct_from:
   v-times-sft-full-groups-glue-from-two-wreath-pieces: that is P2'b for one subshift X; this compares the kernels of different closed invariant sets and shows every one is an image of the full-shift kernel, so P2'b for all topologically free subshifts over an alphabet reduces to the full shift.
   v-times-sft-gluing-kernel-is-relatively-perfect: that computes what the copy endomorphisms force on one kernel (K = [K, Gamma~]); this is a descent statement between kernels of nested systems and uses no swindle.

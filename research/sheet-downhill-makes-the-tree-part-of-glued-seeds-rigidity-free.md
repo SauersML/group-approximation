@@ -3,10 +3,6 @@ rg: 2
 id: sheet-downhill-makes-the-tree-part-of-glued-seeds-rigidity-free
 kind: claim
 title: In a seed over a tree of sheets whose pointers flow toward the origin sheet or an end, any carrier determined sheet by sheet from the parent sheet leaves the pointers central; with bijective transport across edges, gate E2 is exactly rigidity of one sheet
-requires:
-  - downhill-centrality-needs-no-data-rigidity
-  - seeds-record-every-bass-serre-pointer
-  - fp-v-times-subshift-full-groups-force-quantum-rigidity
 distinct_from:
   downhill-centrality-needs-no-data-rigidity: that lemma needs a one-predecessor rule along a flow on the group; this lets each carrier letter depend on many sites of the parent sheet, with the flow on the Bass–Serre tree of sheets, as in glued seeds.
   fate-couplings-are-rigid-only-along-directed-implication-chains: that classifies couplings between unterminated components by implication order; this is the pointer order of the tree acting as the directed chain, for carriers transported sheet to sheet.

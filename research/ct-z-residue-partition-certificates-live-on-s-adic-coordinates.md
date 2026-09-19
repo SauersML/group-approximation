@@ -3,10 +3,6 @@ rg: 2
 id: ct-z-residue-partition-certificates-live-on-s-adic-coordinates
 kind: claim
 title: "Kourovka 21.74(a), certificates: for g ∈ CT(Z) with modulus primes S, ĝ is a skew product over its S-adic dynamics with S-unit affine fibre maps; a permuted residue partition can split at a prime outside S only where the K-step fibre maps are trivial mod that prime; orbit-hull certificates for 'no partition' reduce to the primes in S plus one ideal condition; and 'non-periodic machine ⇒ no partition' is false as stated"
-requires:
-  - ct-z-residue-partition-question-finite-vs-infinite-reading
-  - ct-z-invariant-residue-partitions-are-not-conjugacy-invariant
-  - ct-z-finite-cycle-problems-are-undecidable
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary. No priority is claimed.

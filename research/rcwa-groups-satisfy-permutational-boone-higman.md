@@ -3,10 +3,6 @@ rg: 2
 id: rcwa-groups-satisfy-permutational-boone-higman
 kind: claim
 title: Every finitely generated group of residue-class-wise affine permutations of Z, of a number ring of class number one, of F_q[t] or of Z_(pi), and every RCWA_P group and CT_P(Z), satisfies the permutational Boone-Higman conjecture, because the RCWA hosts are finitely presented, simple and highly transitive
-requires:
-  - rcwa-groups-satisfy-boone-higman
-  - rcwa-groups-over-pids-satisfy-boone-higman
-  - fp-simple-highly-transitive-groups-satisfy-pbh
 distinct_from:
   rcwa-groups-satisfy-boone-higman: that embeds RCWA groups in finitely presented simple hosts; this shows those hosts are highly transitive, which upgrades the conclusion to the permutational conjecture (type (A) actions, twisted Brin-Thompson groups).
   rcwa-groups-over-pids-satisfy-boone-higman: same relation, for the ax+b hosts over number rings, F_q[t] and Z_(pi).

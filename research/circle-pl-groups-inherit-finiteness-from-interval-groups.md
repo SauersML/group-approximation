@@ -3,12 +3,6 @@ rg: 2
 id: circle-pl-groups-inherit-finiteness-from-interval-groups
 kind: claim
 title: Under Bieri–Strebel's conditions (S) and (R), the circle group T(A,P) is of type F_n whenever the interval group F(A,P) is; so T_{2,3} and T_τ are of type F_infinity, hence finitely presented, and their breakpoint actions are of type (A)
-requires:
-  - oligomorphic-actions-with-f-n-set-stabilizers-are-f-n
-  - pl-rearrangement-groups-have-two-transitive-orbit-actions
-  - pl-interval-and-circle-groups-have-type-a-orbit-actions
-  - stein-group-f23-is-of-type-f-infinity
-  - irrational-slope-f-tau-is-of-type-f-infinity
 distinct_from:
   pl-interval-and-circle-groups-have-type-a-orbit-actions: that shows the circle action of T(A,P) is of type (A) exactly when T(A,P) is finitely presented; this proves the finite presentation from that of F(A,P).
   stein-groups-t23-and-v23-are-finitely-presented: that is the OPEN conjunction for T_{2,3} and V_{2,3}; this is its T half, and integral-slope-stein-v-groups-are-k-graph-full-groups is its V half.

@@ -5,7 +5,7 @@ kind: route
 title: Pairwise crossing of separating hyperplanes at a vertex gives the Markov property; free action gives canonical similarities in G; gates to carriers give heights, and (NA) makes carrier entry uniform, so the surface-case Lemmas A–E give a finite nucleus
 target: greedy-cube-codings-make-cubulated-hyperbolic-groups-rsgs
 requires:
-  - closed-surface-groups-contracting-rsg-via-bowen-series
+  - closed-surface-groups-are-contracting-rsgs
   - sft-irreducible-core-iff-unique-recurrent-component
 ---
 

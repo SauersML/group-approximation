@@ -3,8 +3,6 @@ rg: 2
 id: irrational-slope-v-tau-is-of-type-f-infinity
 kind: claim
 title: Cleary's golden-ratio rearrangement group V_τ is of type F_infinity; its golden subdivision category is Ore with a Garside family of elementary splits {L, R, M}, and its descending links are matching complexes with M-edges, (floor((n-2)/3)-1)-connected
-requires:
-  - irrational-slope-t-tau-and-v-tau-are-finitely-presented
 distinct_from:
   irrational-slope-t-tau-and-v-tau-are-finitely-presented: that proves T_τ is F_∞ and V_τ finitely presented (as a full contracting RSG); this upgrades V_τ to F_∞, the statement Burillo–Nucinkis–Reeves assert and defer to "the methods of Stein".
   pisot-unit-slope-stein-groups-are-finitely-presented: that gives finite presentation of all (F)-unit Stein groups through BBMZ; F_∞ is not reachable that way, since BBMZ prove only finite presentation, and V_τ is not the full group of a shift of finite type (its groupoid has H_1 = Z/2).

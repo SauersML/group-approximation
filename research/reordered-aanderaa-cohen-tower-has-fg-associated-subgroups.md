@@ -3,9 +3,6 @@ rg: 2
 id: reordered-aanderaa-cohen-tower-has-fg-associated-subgroups
 kind: claim
 title: Built with the digit letters before p, the Aanderaa-Cohen Higman tower H_1 -> B_1 -> B_2 -> B_3 = H_3 is a chain of genuine HNN extensions whose associated subgroups are all finitely generated; checks (R1) and (R2) hold by the subgroup lemma for HNN extensions
-requires:
-  - the-aanderaa-cohen-rope-is-the-digit-letter-orbit-of-one-element
-  - higman-clapham-towers-leave-the-seed-form-at-three-steps
 distinct_from:
   the-aanderaa-cohen-rope-is-the-digit-letter-orbit-of-one-element: that proposed the reordering, proved the first step is an HNN extension, and left (R1) and (R2) open; this proves both.
 ---

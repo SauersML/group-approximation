@@ -3,11 +3,8 @@ rg: 2
 id: elementary-shift-group-contains-every-integral-linear-group
 kind: claim
 title: The three-generated group E(Z) x| Z, finitary integer matrices extended by the shift, contains every integral linear group and lies in E_4 of the Toeplitz ring
-requires:
-  - sl3z-finite-index-subgroups-are-congruence-subgroups
 distinct_from:
   one-fp-simple-group-contains-every-brin-thompson-subgroup: that is an unconditional common simple host for the groups in some nV; this is a single explicit finitely generated group containing every subgroup of every GL_n(Z), whose own Boone-Higman property is open.
-  gl-n-q-all-n-in-st-10-of-resolvent-ring: that puts every GL_n(Q) in one finitely presented group St_10(R_L); this is the integral analogue, smaller and without Q.
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Items 1–3 are folklore-level; no priority

@@ -3,9 +3,6 @@ rg: 2
 id: mikhailova-relative-seeds-push-down-to-bi-seeds
 kind: claim
 title: A rigid relative seed for a Mikhailova fibre product M_Q in F x F pushes down to a rigid relative seed for the diagonal of Q x Q (a rigid bi-seed of Q), and every seed of Q gives a relative seed for that diagonal; so fibre products transfer word-problem hardness into class C but never create it
-requires:
-  - relative-seeds-glue-graphs-of-groups-into-class-c
-  - relative-seeds-on-free-groups-have-fg-stabilizers
 distinct_from:
   relative-seeds-on-free-groups-have-fg-stabilizers: that excludes relative seeds with infinitely generated stabilizers on free groups and names the Mikhailova edge as a test case; this settles what that test case needs.
   relative-seeds-glue-graphs-of-groups-into-class-c: that asks whether some rigid relative seed has membership outside every fixed class; this shows that for fibre-product edges the question is exactly the same question for diagonals, i.e. for two-sided seeds of the hard group itself.

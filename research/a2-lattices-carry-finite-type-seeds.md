@@ -3,8 +3,6 @@ rg: 2
 id: a2-lattices-carry-finite-type-seeds
 kind: claim
 title: Every lattice acting simply transitively on the vertices of a thick Ã2 building carries a finite-type seed, the origin-projection SFT; seed idempotents are classical in every quantum family, and its rigidity would contain that of the chamber-boundary shift
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
 distinct_from:
   tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts: that defines SFT compactifications (seeds) and glues them over free products, with members only finite groups, Z and their products and free products; this produces one over a one-ended Kazhdan lattice, where no splitting exists.
   euclidean-building-boundary-shifts-are-quantum-rigid: that is the open rigidity of the chamber-boundary shift X_Ω; this shows X_Ω is a subshift of the seed, so a rigid seed of this shape would prove it.

@@ -3,8 +3,6 @@ rg: 2
 id: rf-toeplitz-subshifts-from-normal-chains-are-free
 kind: claim
 title: The residually finite Toeplitz subshift built from a normal chain is free at every point, not only topologically free
-requires:
-  - rf-toeplitz-subshifts-over-residually-finite-groups
 distinct_from:
   rf-toeplitz-subshifts-over-residually-finite-groups: that proves minimality, residual finiteness and a free dense orbit (topological freeness); this upgrades the same subshift to freeness at every point, using only the one-hole-coset structure, normality of the chain and minimality.
   decidable-fp-groups-have-effective-minimal-free-subshifts: that is (M2) for all infinite fp groups with solvable word problem; this gives freeness for the Toeplitz construction, which only exists over residually finite groups.

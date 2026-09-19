@@ -3,11 +3,8 @@ rg: 2
 id: finitary-mixing-preserves-type-f-m
 kind: claim
 title: Permutation groups containing the finitary symmetric group whose finite-set stabilizers are of type F_m stay in that class under finitary mixing, proved by Brown's criterion on the balanced slice of the infinite cube of recolorings
-requires:
-  - strongly-shift-similar-point-stabilizers-are-copies-of-the-group
 distinct_from:
   finitary-mixing-of-fp-highly-transitive-groups-is-fp: that is the case m = 2, proved by an explicit presentation, with only point stabilizers assumed finitely generated; this proves every m (including m = infinity) by a contractible complex, and assumes all finite-set stabilizers of type F_m.
-  bh-class-closed-under-finite-direct-products: that is about embedding products into fp simple groups; this is a finiteness-property statement for one explicit overgroup of a product of permutation groups.
 ---
 
 **ESTABLISHED** (lane proof, below; not independently reviewed; no priority claimed). The only imports are

@@ -3,7 +3,8 @@ rg: 2
 id: literal-group-mark-invisible-to-hyperfinite-representations
 kind: claim
 title: Every homomorphism from the literal group E into the unitary group of a finite injective von Neumann algebra kills the mark
-invalidates: [non-mf-unitary-subgroup-via-literal-group]
+invalidates:
+  - non-mf-unitary-subgroup-via-literal-group
 distinct_from:
   marked-clifford-compressor-hyperfinite-invisibility: that is the abstract criterion combining a finite Clifford block, compressor conjugacy, and a nonamenable essentially free abelian-dual action; this verifies those hypotheses for the concrete arithmetic group E.
   literal-central-mark-corona-invisible: that kills the mark in every norm-matrix corona, by property (T) of the base and finiteness of matrix algebras; this kills it in every finite injective (hyperfinite) tracial representation, by a traceless Clifford permutation, the doubling conjugacy, and the null fixed sets of SL_3(Z) on the dual torus, with no use of property (T).

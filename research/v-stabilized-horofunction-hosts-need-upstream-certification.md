@@ -3,11 +3,6 @@ rg: 2
 id: v-stabilized-horofunction-hosts-need-upstream-certification
 kind: claim
 title: "E3′ for hyperbolic seeds: the V-stabilized full group of a non-elementary hyperbolic group acting on its horofunction boundary is finitely presented; a finite shadow basis needs tiles whose deep windows certify their upstream, which half-trees have and ball patterns of horofunctions lack"
-requires:
-  - one-scale-filling-decides-fp-of-v-times-subshift-hosts
-  - hyperbolic-groups-have-sft-horofunction-compactifications
-  - non-elementary-hyperbolic-groups-are-contracting-rsgs
-  - v-times-gluing-presentations-are-exact
 distinct_from:
   one-scale-filling-decides-fp-of-v-times-subshift-hosts: that states the one-scale criterion and the finite-shadow-basis mechanism, and names the seed compactifications' finite shadow bases as an unchecked condition (its Part 3); this isolates what that condition requires, shows why ball-pattern tiles of horofunctions fail it, and records the literature status.
   non-elementary-hyperbolic-groups-are-contracting-rsgs: that makes the UNSTABILIZED full group [[Γ | ∂_h Γ]] a full contracting RSG, hence finitely presented by Belk–Bleak–Matucci–Zaremsky; this is the V-stabilized group F(G_V × (Γ ⋉ ∂_h Γ)) that E3′ needs, which is not an RSG.

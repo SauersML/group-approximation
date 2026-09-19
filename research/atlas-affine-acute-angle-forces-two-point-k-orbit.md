@@ -3,7 +3,8 @@ rg: 2
 id: atlas-affine-acute-angle-forces-two-point-k-orbit
 kind: claim
 title: The Atlas affine frame refutes the polar acute-angle gate
-invalidates: [atlas-polar-principal-angle-injection-proves-singular-counting]
+invalidates:
+  - atlas-polar-principal-angle-injection-proves-singular-counting
 artifacts:
   - experiments/atlas_affine_raw_c3_membership_certificate.py
   - experiments/atlas-affine-raw-c3-membership-certificate.json

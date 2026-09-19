@@ -3,9 +3,6 @@ rg: 2
 id: finite-germ-extensions-with-singular-blocks-are-f-n
 kind: claim
 title: The Belk–Hyde–Matucci finite germ extension finiteness theorem holds verbatim with singular points replaced by pairwise disjoint closed blocks permuted by the group; but full groups with a Thompson subgroup have no nontrivial blocks, and for the coset blocks of G*Z the transport base is not finitely generated, so hyperbolic F_∞ hosts cannot come from germ extensions over coset blocks
-requires:
-  - bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid
-  - horofunction-atom-configurations-have-finitely-many-types
 distinct_from:
   bbmz-host-finiteness-reduces-to-the-vertex-boundary-groupoid: that observes the finite germ theorem does not apply to the BBMZ host with coset pieces; this proves the block version of the theorem and shows the obstruction is intrinsic to every block system of that shape.
   thumann-finiteness-without-finite-type: that is a global operad finiteness theorem with a connectivity condition (G); this is the germ-local theorem, and it points to (G) as the only remaining route.

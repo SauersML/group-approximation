@@ -3,9 +3,6 @@ rg: 2
 id: hall-type-prufer-quotients-embed-in-isolated-abels-groups
 kind: claim
 title: Every finitely generated subgroup of a central quotient A_n/C of the Hall–Abels triangular groups over Z[1/p] embeds in an isolated group; in particular Hall's non-residually-finite group A_3/Z lies in the isolated Abels group A_4/Z, so Cornulier–Guyot–Pitsch Question 4 holds for it while Boone–Higman for it is open
-requires:
-  - linear-and-metabelian-groups-embed-in-isolated-groups
-  - ascending-hnn-of-isolated-groups-embed-in-isolated-groups
 distinct_from:
   every-decidable-group-embeds-in-an-isolated-group: that is CGP Question 4 for all decidable groups; this answers it on the Hall–Abels central quotients, which are not residually finite and so lie outside the quasi-linear case.
   linear-and-metabelian-groups-embed-in-isolated-groups: that covers groups linear over a finite product of fields, all residually finite; this covers the non-residually-finite quotients with Prüfer centre.

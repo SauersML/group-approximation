@@ -3,13 +3,12 @@ rg: 2
 id: decidable-groups-embed-in-rigid-sft-compactification-groups
 kind: claim
 title: Every finitely generated group with solvable word problem embeds in a finitely presented group that has a quantum-rigid SFT compactification (one isolated seed orbit, dense, with trivial stabilizer)
-requires:
-  - tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts
-  - decidable-host-classes-reduce-to-canonical-kazhdan-groups
 distinct_from:
   decidable-groups-lie-in-fp-groups-with-rigid-topfree-sfts: that asks for a rigid minimal topologically free SFT over an overgroup; this asks for a rigid SFT compactification, with no minimality and an isolated orbit, and implies it through free product with Z.
   decidable-groups-embed-in-fp-groups-with-minimal-free-sft: that is P1, which asks for existence of a free minimal SFT with no rigidity; this asks for a deterministic object, a locally checkable coordinate system with a unique origin, that is rigid.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`, `decidable-host-classes-reduce-to-canonical-kazhdan-groups`.
 
 **OPEN** (lane bh-g2-buildings, 2026-09-18). This is premise (★𝒞) of route
 `rigid-topfree-sfts-via-rigid-sft-compactifications`.

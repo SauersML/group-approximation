@@ -3,7 +3,8 @@ rg: 2
 id: uniformly-doubled-rordam-steps-force-proper-infiniteness
 kind: claim
 title: Common tails beat bounded early parts, so uniformly doubled Rordam towers have properly infinite limits
-invalidates: [stw99-lxvi-via-dyadic-rordam-tower]
+invalidates:
+  - stw99-lxvi-via-dyadic-rordam-tower
 distinct_from:
   dyadic-rordam-tower-realizes-finite-car-corner: that was the paired-step candidate construction for Problem LXVI; this establishes that its halving mechanism (globally duplicated branch lists) forces the seed projection to become properly infinite, refuting the design as stated.
   stw99-lxvi-car-stabilization-destroys-finite-seed: that kills tensorial CAR insertion; this kills the multiset-doubling insertion inside Rordam's line-bundle calculus, a different mechanism with an Euler-theoretic proof.

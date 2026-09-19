@@ -6,9 +6,7 @@ title: Pure-hole cylinders of the product with the free monoid on two letters sa
 target: cuntz-stabilized-garside-full-groups-are-f-infinity
 requires:
   - perron-weights-do-not-give-li-finiteness
-  - perron-weights-do-not-give-li-finiteness-proof
   - thin-cycles-decide-li-packing
-  - cuntz-pure-hole-datum-satisfies-li-st-and-lcm
 ---
 
 **Lane proof, not independently reviewed.** Labels are Li's (arXiv:2110.04505v2). Notation:

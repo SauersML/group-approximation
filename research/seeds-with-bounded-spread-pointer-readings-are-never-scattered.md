@@ -3,9 +3,6 @@ rg: 2
 id: seeds-with-bounded-spread-pointer-readings-are-never-scattered
 kind: claim
 title: Over F × H with F free, a seed whose tree pointers can be read honestly near one common height on every tree-ball has a boundary of cardinality continuum; so a scattered seed must scatter its pointer readings across unboundedly many heights, and every known design either reads with bounded spread or violates the separation lemma
-requires:
-  - seeds-record-every-bass-serre-pointer
-  - seed-compactifications-dominate-the-end-compactification
 distinct_from:
   seeds-record-every-bass-serre-pointer: that proves the pointer exists on every column and that reading it in one bounded window gives an uncountable boundary; this allows the reading heights to vary without bound from edge to edge, and needs only that each tree-ball is read near a common height.
   seed-compactifications-dominate-the-end-compactification: that is the finite-cut case; here every cut is an infinite column F-edge × H.

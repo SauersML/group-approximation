@@ -3,10 +3,6 @@ rg: 2
 id: shift-similar-germ-groups-are-ascending-hnn-extensions
 kind: claim
 title: For any infinite shift-similar G, the extended germ group is the ascending HNN extension of Germs(G) by the shift, H_n(G)/FSym is its index-zero power, and it has type F_min(m,n-1) when Germs(G) has type F_m; strong shift-similarity is exactly two-sidedness of the index character in Sigma^1
-requires:
-  - houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group
-  - characters-living-on-m-plus-one-factors-lie-in-sigma-m
-  - infinite-shift-similar-groups-need-not-be-strongly-shift-similar
 distinct_from:
   houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group: that computes H_n(G)/FSym for strongly shift-similar G, where Ĝ = Germs(G) ⋊ Z; this does every infinite shift-similar G, where Ĝ is an ascending HNN extension, and explains the n >= m+1 threshold of Mallery-Zaremsky Question 5.13.
   fg-infinite-shift-similar-groups-are-strongly-shift-similar: that is the open question; this restates it as a one-sidedness statement for Sigma^1 of finitely generated subgroups of the near symmetric group containing the shift.

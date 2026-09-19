@@ -6,9 +6,6 @@ title: The simple Kazhdan groups EL_n over the binary Leavitt algebra have an in
 distinct_from:
   fw-window-zero-descending-sign-forces-trivial-core: that shows a descending window-zero shell action of an FW input forces a trivial endomorphism core, and excludes co-Hopfian FW inputs; this exhibits a finitely generated simple Kazhdan group that is not co-Hopfian and has an endomorphism with trivial core, so that exclusion does not cover the reduced Boone-Higman input class.
   binary-leavitt-elementary-group-is-simple: that proves simplicity of EL_n(L_(F_2)(1,2)); this uses it and adds a self-embedding with trivial core.
-requires:
-  - binary-leavitt-elementary-group-is-simple
-  - steinberg-finiteness-kazhdan-citation
 ---
 
 **ESTABLISHED** by `binary-leavitt-trivial-core-endomorphism-proof` (lane proof, elementary

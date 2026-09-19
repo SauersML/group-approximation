@@ -7,10 +7,6 @@ distinct_from:
   kazhdan-central-elements-of-2v-have-slope-free-periodic-points: that shows every periodic point of z has slope zero; this derives the structure of the remaining aperiodic part, which is where a counterexample to finite center would have to live.
   kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures: that is the measure criterion for all of K; this applies its item 1 to the aperiodic set of a central element.
   brin-thompson-aperiodic-elements-have-logarithmic-movement: that gives logarithmic excursions at every non-periodic point of any element; this adds centrality in a Kazhdan group, which makes the excursion data K-quasi-invariant and forbids comparable returns.
-requires:
-  - kazhdan-central-elements-of-2v-have-slope-free-periodic-points
-  - kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures
-  - brin-thompson-aperiodic-elements-have-logarithmic-movement
 ---
 
 **ESTABLISHED** (lane proof, elementary from the required nodes; not reviewed; no

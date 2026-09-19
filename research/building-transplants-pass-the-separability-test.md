@@ -3,9 +3,6 @@ rg: 2
 id: building-transplants-pass-the-separability-test
 kind: claim
 title: In a Busemann transplant over a Euclidean building lattice, changing the chamber at infinity changes the sector germ at every vertex of every apartment containing both chambers, so every skeleton modification reaches every horospherical level; the Ã2 transplants pass the separability test whenever their fibre does
-requires:
-  - tree-product-transplants-pass-the-separability-test
-  - busemann-transplants-give-free-sfts-on-building-lattices
 distinct_from:
   tree-product-transplants-pass-the-separability-test: that handles products of trees, where an end change flips pointers on a line times the other tree, and leaves the building case open; this settles the building case, where a chamber change moves the germ on a whole apartment.
   a2-busemann-transplants-preserve-quantum-rigidity: that proves rigidity from rigidity of the fibre; this checks the classical necessary condition independently, for the pairs the skeleton adds.

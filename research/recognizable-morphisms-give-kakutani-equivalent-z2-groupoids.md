@@ -3,8 +3,6 @@ rg: 2
 id: recognizable-morphisms-give-kakutani-equivalent-z2-groupoids
 kind: claim
 title: A recognizable 2-dimensional morphism that is onto up to a shift is a Kakutani equivalence of Z^2 transformation groupoids (block origins form a full clopen transversal), so it preserves finite presentation of the crossed product and, between SFTs, quantum rigidity in both directions
-requires:
-  - steinberg-fp-is-a-kakutani-invariant
 distinct_from:
   labbe-full-group-embeds-in-its-supertile-corner: that is the self-map case for Labbé's own ω on Ω_U, used for full groups; this is the general statement for any recognizable morphism between two subshifts, used for crossed-product finite presentation and rigidity.
   recognizable-morphisms-collapse-quantum-rigidity-to-one-scale: that transports non-commuting operator families upward along a recognizable morphism at a fixed scale (target rigid implies source rigid, with explicit scales); this gives both directions at the level of the groupoid, with no scale bookkeeping.

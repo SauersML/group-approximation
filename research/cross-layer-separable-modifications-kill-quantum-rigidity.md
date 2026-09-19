@@ -3,8 +3,6 @@ rg: 2
 id: cross-layer-separable-modifications-kill-quantum-rigidity
 kind: claim
 title: Over any finitely generated group, a fibre product of SFTs is not quantum rigid as soon as one layer's modification set can be translated arbitrarily far from another's; over Z^d, opposite half-space freedoms in two layers are fatal and non-opposite ones never are
-requires:
-  - minimal-sfts-with-a-finite-modification-are-not-quantum-rigid
 distinct_from:
   quantum-rigidity-is-not-closed-under-fibre-products: that kills one fibre product of two group shifts through the antipodal wall theorem; this kills every fibre product of arbitrary SFTs over any group whose layers have separable modification sets, using only the far-modification lemma, and corrects that node's first design rule.
   minimal-sfts-with-a-finite-modification-are-not-quantum-rigid: that needs two far modifications of ONE point of ONE shift; in a fibre product the layers supply them independently, and translation places them.

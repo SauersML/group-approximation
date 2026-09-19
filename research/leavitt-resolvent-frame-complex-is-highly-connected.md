@@ -4,7 +4,6 @@ id: leavitt-resolvent-frame-complex-is-highly-connected
 kind: claim
 title: The ordered frame complex X_r(R_L) is (r-3)-acyclic and simply connected for r >= 4, and E_r(R_L) acts transitively on its frames of size at most r-1, by a simultaneous word multiplier built from separated vacuum isometries
 distinct_from:
-  leavitt-resolvent-frame-complex-route-to-injective-stability: that lists simple connectivity (F) as an open input of the route to condition (i); this proves (F), leaving the characteristic-0 presentation step.
   leavitt-ge-rings-have-stable-k1-at-rank-three: that proves the compression y x z = 1 and GL_r(R_L)/E_r(R_L) = Z; this uses both, for the frame multiplier and for E_r-transitivity.
 ---
 

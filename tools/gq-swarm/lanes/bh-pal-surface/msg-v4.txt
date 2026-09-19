@@ -1,0 +1,17 @@
+Boone-Higman Palomar surface: take the metabelian and linear theorems through route A (unprobed)
+
+The Solution's `_of` forms of the three metabelian and linear theorems now take `RouteAOwed`, the
+four open inputs of route A, instead of the development's Statement endpoints. They are:
+
+- S1 Absorption.suslinZLocal_BadStatement;
+- P1 ∀ p prime, ElemFP.PolyK2NilGapStatementOver (ZMod p) 4;
+- Z1 ElemFPCharZero.CharZeroK2SplitGapStatement;
+- H1 Envelope.HigmanVCStepBCoreStatement.
+
+The proofs go through GroupApproximation.BooneHigmanLinear.FrontierFour (lane bh-pal-wire):
+finitelyPresentedMetabelianStatement_routeA, finitelyGeneratedMetabelianStatement_routeA and
+finitelyGeneratedLinearStatement_routeA. The shared block, the challenge and the config are
+unchanged. Two blank-line slips are also fixed.
+
+UNPROBED: MSI Slurm submission is blocked for the group, so this file has not been built. The
+earlier surface v3 on main is also still unprobed.

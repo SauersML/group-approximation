@@ -6,7 +6,7 @@ title: Kazhdan subgroups of the germ groups are finite in both alternatives, so 
 target: normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups
 requires:
   - almost-v-fw-subgroups-act-through-finitely-many-germs
-  - normal-germ-extensions-of-thompson-v-contain-no-sl3z-proof
+  - normal-germ-extensions-of-thompson-v-contain-no-sl3z
   - thompson-v-has-haagerup-property
 ---
 

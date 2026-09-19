@@ -1,0 +1,13 @@
+GraphProducts: harden elaboration in the T7 modules (unprobed; MSI Slurm blocked)
+
+These modules were landed by the coordinator sweep but never built. This pass fixes the
+spots most likely to fail elaboration, before the first MSI probe:
+- CoprodI.of with a constant or non-variable index now names its family (M := ...)
+  explicitly (Twist, Semidirect, Embedding), so unification never meets `?M true`;
+- simp no longer has to rewrite `!!b` inside an implicit index (swapHom_comp_swapHom uses rw);
+- quotient-lift apply lemmas are rfl instead of a mis-applied lift_mk';
+- induction over GP and Finset uses `induction ... using` (no beta-unreduced motives);
+- vertex cases use `cases` instead of `subst`, so which variable survives is fixed;
+- the normal closure in isFinitelyPresented_prod is no longer let-bound (instance search);
+- explicit imports for List.prod, Fintype.ofFinite, Finset.coe_insert and Set.finite_range.
+Not wired into the root. Statement, Reduction and Main are unchanged.

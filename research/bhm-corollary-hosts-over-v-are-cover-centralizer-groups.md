@@ -3,8 +3,6 @@ rg: 2
 id: bhm-corollary-hosts-over-v-are-cover-centralizer-groups
 kind: claim
 title: Every finite germ extension of V that Belk–Hyde–Matucci Corollary 2.10 certifies lies in an explicit cover-centralizer group of bounded word-problem complexity, so that corollary cannot carry Boone–Higman
-requires:
-  - complexity-bounded-host-classes-are-not-universal
 distinct_from:
   bhm-singfix-condition-forces-fp-germ-groups: that says Theorem 2.1's one-point hypothesis forces every singular germ group to be finitely presented; this says which germ groups the cheaper Corollary 2.10 can certify at all over the base V, and that they all live in one explicit family of hosts with bounded word problem.
   cantor-cover-germ-extension-of-v-is-fp-simple: that is the positive construction attaining the ceiling found here.

@@ -4,7 +4,8 @@ id: central-extension-untwisting-proof
 kind: route
 title: Continuous cocycles splitting the constant extension, their restriction to stabilizers, the retract through a unit, and the square complex count
 target: central-extension-untwisting-over-boundaries
-requires: [tree-lattice-kgraph-power-phase-proof]
+requires:
+  - torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups
 ---
 
 **Item 1.** Such an action is exactly a continuous map `κ : C x Y -> A` with

@@ -3,7 +3,8 @@ rg: 2
 id: simple-ah-strict-comparison-is-k1-injective
 kind: claim
 title: A unital simple AH algebra with strict comparison is K1-injective
-invalidates: [stw18-k1-witness-via-ah-lix-upgrade]
+invalidates:
+  - stw18-k1-witness-via-ah-lix-upgrade
 distinct_from:
   simple-ah-strict-comparison-is-z-stable: that is Z-stability; this is its nonstable K-theory consequence, the form that decides the K1 route to Problem XVIII.
   stw58-simple-pure-k1-bijective: that assumes pureness and covers all unital simple algebras; this assumes only strict comparison but needs the AH structure.

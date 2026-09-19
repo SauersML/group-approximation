@@ -3,8 +3,6 @@ rg: 2
 id: annular-free-factor-germ-extensions-fail-bhm-singfix
 kind: claim
 title: In a finite germ extension of V whose germ group at 0^∞ has the zoom as a free factor, with the other factor preserving every cone 0^nC, the one-point SingFix group is not finitely presented; finite annular actions also exclude the ascending alternative
-requires:
-  - rf-groups-have-free-product-germs-over-v
 distinct_from:
   rf-groups-have-free-product-germs-over-v: that builds hosts for every residually finite group with germ group G * Z; this shows the Belk--Hyde--Matucci Theorem 2.1 certificate cannot apply to them, and that the ascending alternative is closed to annular finite realizations.
   bhm-singfix-condition-forces-fp-germ-groups: that derives finite presentation of the germ group from finite presentation of SingFix({p},{p}); this shows the converse fails: here the germ group is finitely presented and SingFix({p},{p}) is not.

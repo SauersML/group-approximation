@@ -3,10 +3,6 @@ rg: 2
 id: coupled-rope-reader-has-nested-one-bit-fibres
 kind: claim
 title: A coupled rope reader on the modular-machine scaling seed (a transported region bit plus block links) links every free descent chain of every configuration into one bit, so each fibre is a nested chain of at most three points and the reader is pointwise rigid; its quantum rigidity is now exactly base-centrality (C_D)
-requires:
-  - rope-readers-cannot-be-deterministic-and-must-couple-chains
-  - modular-machine-scaling-seed-reads-regular-numerals
-  - extension-rigidity-is-base-centrality-plus-pointwise-rigidity
 distinct_from:
   rope-readers-cannot-be-deterministic-and-must-couple-chains: that shows uncoupled readers fail and proposes rules (L) and (R); this replaces (R) by a transported region bit, proves the linking, and proves pointwise fibre rigidity.
   modular-machine-scaling-seed-reads-regular-numerals: that is the uncoupled reader; this is the coupled one, with the same forced rope marks.

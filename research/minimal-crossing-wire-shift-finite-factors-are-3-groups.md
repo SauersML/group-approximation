@@ -3,8 +3,6 @@ rg: 2
 id: minimal-crossing-wire-shift-finite-factors-are-3-groups
 kind: claim
 title: Every finite factor of the minimal crossing-wire fixed-point shift (zooms N_k = 3^(C^k)) has 3-power order, so nZ^2 acts minimally on it whenever 3 does not divide n
-requires:
-  - minimal-crossing-wire-fixed-point-shift-is-quantum-rigid
 distinct_from:
   minimal-crossing-wire-fixed-point-shift-is-quantum-rigid: that proves the shift minimal, free and rigid for Z^2; this bounds its rational spectrum, which decides minimality of finite-index subactions (used by Busemann transplants with a phase skeleton).
 ---

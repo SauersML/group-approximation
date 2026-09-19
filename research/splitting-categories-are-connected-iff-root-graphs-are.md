@@ -3,9 +3,6 @@ rg: 2
 id: splitting-categories-are-connected-iff-root-graphs-are
 kind: claim
 title: In a dissection operad the splitting category of a dissection with at least three pieces is connected exactly when its root graph is connected, so only minimal common upper bounds of two atoms split disconnectedly and condition (G) for finite presentation is a statement about pairs of atoms
-requires:
-  - thumann-finiteness-without-finite-type
-  - edge-split-flop-spine-elements-split-disconnectedly
 distinct_from:
   thumann-finiteness-without-finite-type: that proves finite presentation from condition (G), connected splitting categories of large elementary classes; this decides when a splitting category is connected and reduces (G) to minimal common upper bounds of pairs of atoms.
   edge-split-flop-spine-elements-split-disconnectedly: that computes the splitting category of the two flop elements of the edge-split operad by hand; this explains the answer (two atoms, no third one) and shows that no element above the first spine level splits disconnectedly.

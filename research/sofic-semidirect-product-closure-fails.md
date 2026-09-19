@@ -3,7 +3,8 @@ rg: 2
 id: sofic-semidirect-product-closure-fails
 kind: claim
 title: Soficity is not closed under semidirect products of sofic groups
-invalidates: [linton-shell-sofic-via-generic-semidirect-closure]
+invalidates:
+  - linton-shell-sofic-via-generic-semidirect-closure
 distinct_from:
   kun-thom-nonsofic-wreath: that records the external theorem and its explicit Kazhdan pair, with the infranormality hypothesis and the realizing family; this is the one permanence consequence drawn from it — a closure property of the class of sofic groups — stated so that routes assuming that closure can be killed by reference rather than by re-deriving the counterexample.
   relative-soficity-extension-theorem-withdrawn: that is a bibliographic fact about an unavailable claimed theorem; this is a refutation, with counterexamples in hand. A route killed by that one might still be true; a route killed by this one is false.

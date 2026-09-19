@@ -3,10 +3,6 @@ rg: 2
 id: basilica-hnn-has-no-finitely-presented-ascending-base
 kind: claim
 title: The finitely presented Basilica HNN extension is not an ascending HNN extension of any finitely presented group, because a section-inverting endomorphism turns every such base into a finitely presented cover of the Basilica group
-requires:
-  - fp-covers-of-grigorchuk-groups-are-large
-  - basilica-hnn-extension-is-fp-amenable-non-ea
-  - basilica-group-is-torsion-free-and-contains-every-z-n
 distinct_from:
   grigorchuk-hnn-tree-stabilizers-not-fp2: that uses torsion to force every tree action of Grigorchuk's extension to have non-fp stabilizers; this uses only a section-inverting endomorphism and Erschler's theorem, so it reaches the torsion-free Basilica extension, but only for ascending decompositions.
   basilica-hnn-extension-is-fp-infinity: that is the open finiteness question; this closes one family of certificates for it, the base-change route in its homotopical form.

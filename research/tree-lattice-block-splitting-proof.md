@@ -4,7 +4,12 @@ id: tree-lattice-block-splitting-proof
 kind: route
 title: The kernel of a discrete sub-product is cocompact on the complement, its normalizer there is discrete, and faithfulness makes the two kernels commute and intersect trivially
 target: tree-lattices-split-into-irreducible-blocks
-requires: [product-of-trees-faithful-factor-pbh-via-bass-serre-induction, discrete-factor-tree-lattice-splitting-proof, boone-higman-type-a-class-closed-under-finite-extensions, product-of-two-trees-lattices-satisfy-permutational-boone-higman, bs-class-with-faithful-member-lies-in-type-a-class]
+requires:
+  - product-of-trees-lattices-with-faithful-factor-satisfy-pbh
+  - discrete-factor-tree-lattices-are-virtually-products
+  - boone-higman-type-a-class-closed-under-finite-extensions
+  - product-of-two-trees-lattices-satisfy-permutational-boone-higman
+  - bs-class-with-faithful-member-lies-in-type-a-class
 ---
 
 Notation as in the target. This repeats Steps 1–3 of

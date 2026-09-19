@@ -3,11 +3,6 @@ rg: 2
 id: grigorchuk-type-vertex-groups-fail-ss-hard-at-the-emitter
 kind: claim
 title: Grigorchuk and Šunić groups fail (SS-hard)_1. No branch group is known to be finitely presented (the first Grigorchuk group provably is not); hardness in the Grigorchuk family needs infinitely many self-similarity types; and Grigorchuk's finitely presented envelope is an ascending HNN extension over an infinite-index subgroup, i.e. an infinite emitter
-requires:
-  - faithful-finite-index-hnn-upgrades-to-half-tree-free
-  - grigorchuk-ascending-hnn-extension-is-finitely-presented
-  - grigorchuk-group-is-just-infinite-torsion-not-fp
-  - rational-homeomorphism-subgroups-have-exponential-wp
 distinct_from:
   kms-metabelian-layer-commensurations-have-finite-order: that closes the solvable (KMS) candidates for (SS-hard)_1 up to a division shape; this tests the branch-type candidates named there and finds the finite-presentation wall.
   computable-grigorchuk-groups-satisfy-boone-higman: that asks for fp simple hosts of computable G_ω; this records why those G_ω cannot be the vertex group of a finite-type E3′ host, and that their finitely presented envelope sits at an emitter.

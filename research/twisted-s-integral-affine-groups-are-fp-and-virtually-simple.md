@@ -3,12 +3,6 @@ rg: 2
 id: twisted-s-integral-affine-groups-are-fp-and-virtually-simple
 kind: claim
 title: For finite P and a prime l not in P, the twisted Z[1/lP]-affine group W_(P,l) on Z_l^D is finitely presented, with simple commutator subgroup of finite index containing every GL_n(Z[1/P])
-requires:
-  - s-integral-affine-structure-group-is-finitely-presented
-  - s-integral-splitting-stabilizers-are-finitely-generated
-  - integral-affine-splitting-types-have-finitely-many-tuple-orbits
-  - non-spanning-subsets-of-an-f2-space-are-highly-connected
-  - twisted-integral-affine-full-group-is-finitely-presented
 distinct_from:
   twisted-integral-affine-full-group-is-finitely-presented: that is W = W_(∅,2) over Z; this inverts a finite set of primes P and uses l-adic coordinates, l not in P, so that GL_n(Z[1/P]) acts.
 ---

@@ -3,6 +3,8 @@ rg: 2
 id: t-check-contains-q-rtimes-2-z
 kind: claim
 title: The finitely presented group T-check = <T-bar, x -> 2x> contains a subgroup isomorphic to Q x|_2 Z
+refuted_by:
+  - t-check-contains-no-q-rtimes-2-z
 distinct_from:
   q-x2-z-in-t-check-has-a-doubling-semiconjugacy: that is the structure theorem every copy must satisfy; this asks whether a copy exists.
   fg-pl-quasi-similarity-groups-contain-no-gl-2-q: that excludes Aff(Q) and GL_n(Q) from T-check; Q x|_2 Z is the stepping stone it leaves open.

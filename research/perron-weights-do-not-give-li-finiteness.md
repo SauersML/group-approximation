@@ -3,9 +3,6 @@ rg: 2
 id: perron-weights-do-not-give-li-finiteness
 kind: claim
 title: Li's F_n machinery needs merge packing, not a Perron height; the free-group reduced-word coding has Perron weights yet infinitely many non-simply-connected Witzel complexes, so the Perron substitution proof fails and the real gate is packing
-requires:
-  - perron-substitution-finiteness-for-garside-full-groups
-  - pointed-cube-categories-are-li-garside-categories
 invalidates:
   - perron-substitution-finiteness-proof
 distinct_from:

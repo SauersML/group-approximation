@@ -3,14 +3,6 @@ rg: 2
 id: jeandel-rao-minimal-subshift-is-quantum-rigid-iff-labbe-shift-is
 kind: claim
 title: The Jeandel-Rao minimal subshift, Labbé's 19-tile shift and ABHT's minimal free SFT on F_n x Z are quantum rigid together or not at all; all three are decided by the single scale-2 question J_2(Ω_U) = 0
-requires:
-  - jeandel-rao-minimal-subshift-is-morphic-image-of-labbe-shift
-  - recognizable-morphisms-give-kakutani-equivalent-z2-groupoids
-  - steinberg-fp-is-a-kakutani-invariant
-  - labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two
-  - path-folds-of-rigid-expansive-z2-sfts-are-quantum-rigid
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
-  - sft-crossed-product-fp-iff-quantum-rigid
 distinct_from:
   labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two: that fixes the scale at which Ω_U is decided; this shows that the Jeandel-Rao minimal subshift and ABHT's F_n x Z shift are decided by the same question.
   labbe-wang-shift-crossed-product-is-finitely-presented: that is the open question for Ω_U; this adds nothing to its truth value and shows it is also the E2 question over F_n x Z along ABHT's fold.

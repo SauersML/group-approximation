@@ -3,7 +3,9 @@ rg: 2
 id: degree-kernel-abelianization-is-infinite-cyclic
 kind: claim
 title: The degree-m kernel of a perfect coefficient group has infinite cyclic abelianization
-invalidates: [simple-kl-via-abelianized-relation-module, leavitt-kl-violation-via-fox-calculus]
+invalidates:
+  - simple-kl-via-abelianized-relation-module
+  - leavitt-kl-violation-via-fox-calculus
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
   - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md

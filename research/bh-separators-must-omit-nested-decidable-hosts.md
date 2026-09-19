@@ -3,14 +3,6 @@ rg: 2
 id: bh-separators-must-omit-nested-decidable-hosts
 kind: claim
 title: A property separating Boone–Higman must omit a simple Kazhdan group with solvable word problem inside a finitely presented group with solvable word problem, and the only hereditary decision-problem separators are word-problem complexity bounds
-requires:
-  - hereditary-approximation-disproofs-of-boone-higman
-  - fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree
-  - clapham-fp-embedding-preserves-word-problem
-  - complexity-bounded-host-classes-are-not-universal
-  - fp-simple-groups-with-arbitrarily-complex-word-problem
-  - simple-envelope-forces-solvable-word-problem
-  - odometer-2v-is-fp-simple-and-contains-bs12
 distinct_from:
   hereditary-approximation-disproofs-of-boone-higman: that sets up separation and kills approximation properties (sofic, MF); this adds the host-transfer constraint on every separator and kills the hereditary decision-problem properties stronger than solvable word problem, leaving complexity bounds.
   fp-simple-groups-with-arbitrarily-complex-word-problem: that is the complexity consequence of Boone–Higman as an open root; this places it as the unique surviving decision-problem separator and shows Kuznetsov-profile bounds reduce to it.

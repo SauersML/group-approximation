@@ -5,7 +5,7 @@ kind: route
 title: Downhill induction on flow distance makes flow letters central, space transport makes space letters central, and a step away from the target forces the target's chain back onto the source, so all computation letters commute
 target: seeded-transport-codings-over-end-flows-are-quantum-rigid
 requires:
-  - quantum-rigidity-product-stability-proof
+  - quantum-rigidity-is-product-stable
   - end-shift-path-covers-are-rigid-with-one-spine
 ---
 

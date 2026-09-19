@@ -3,10 +3,6 @@ rg: 2
 id: lamplighter-canonical-algebra-embeds-in-leavitt-tensor-square
 kind: claim
 title: The canonical algebra R_1 embeds in L⊗L through the bilateral-shift unit x_1⊗y_1+x_2⊗y_2, but no monomial module over a tree carries K[Z²]; so a one-tree Kirchberg embedding of R_Γ must be non-monomial, and would follow from the open problem L_2⊗L_2 ↪ L_2
-requires:
-  - linear-gate-u-reduces-to-algebraic-uniform-roe-embeddings
-  - non-amenable-scaffolds-absorb-the-leavitt-factor
-  - fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree
 distinct_from:
   canonical-algebras-embed-in-algebraic-uniform-roe-algebras: that is the open one-tree gate for every R_Γ; this settles R_1 over two trees by an explicit Leavitt formula, proves that no one-tree embedding of R_Γ (Γ with an element of infinite order) can be monomial, and reduces R_1 over one tree to a published open problem.
   translation-like-hosts-are-capped-by-separation-profiles: that caps free permutational realizations of a group by its Cayley graph; this caps monomial MODULES of the group algebra K[Z²] over a tree, where every orbit may have a stabilizer, by a separation-plus-ideal argument.

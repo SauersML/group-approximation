@@ -3,7 +3,8 @@ rg: 2
 id: thom-sofic-kazhdan-groups-without-factorization-property
 kind: claim
 title: There are sofic Kazhdan groups that are not residually finite, hence without Kirchberg's factorization property
-invalidates: [literal-fp-via-hyperlinear-groups-have-fp]
+invalidates:
+  - literal-fp-via-hyperlinear-groups-have-fp
 distinct_from:
   hyperlinear-groups-have-factorization-property: that is the universal upgrade statement; this is the family of counterexamples that refutes it.
   literal-group-factorization-property: that asks the factorization property for one specific non-Kazhdan group; this is about Kazhdan groups, where Kirchberg's theorem decides the property by residual finiteness.

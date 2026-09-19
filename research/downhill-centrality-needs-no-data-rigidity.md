@@ -3,10 +3,6 @@ rg: 2
 id: downhill-centrality-needs-no-data-rigidity
 kind: claim
 title: Downhill centrality of a flow survives seeds and rules that read an arbitrary input layer, so a seeded time direction is rigidity-neutral; a seeded transport coding is quantum rigid iff its input layer is, and it is minimal when every unseeded completion is a seeded limit
-requires:
-  - seeded-transport-codings-over-end-flows-are-quantum-rigid
-  - free-group-boundary-shifts-are-quantum-rigid
-  - quantum-rigidity-is-product-stable
 distinct_from:
   seeded-transport-codings-over-end-flows-are-quantum-rigid: that assumes the base marginals commute, hypothesis (B); this shows the flow half of (B) is automatic, needs nothing from the input, and that the input half is exactly the input's own rigidity.
   relational-spine-couplings-are-splittable-or-not-minimal: that treats seeds that do not read space; this lets seeds, time rules and space transports read the input, and states the minimality criterion in that generality.

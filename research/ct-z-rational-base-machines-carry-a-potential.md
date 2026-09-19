@@ -3,10 +3,6 @@ rg: 2
 id: ct-z-rational-base-machines-carry-a-potential
 kind: claim
 title: "Rational-base Turing machines in CT_{3}(Z): junk reflection by direction switching works, but an exact realization exists iff the machine's states carry a rational potential, and a potential makes every net tape change a function of (initial state, current state, head displacement), so such machines cannot store unbounded information and this coding cannot transport Kari–Ollinger's theorem"
-requires:
-  - ct-z-monomial-elements-have-decidable-torsion
-  - ct-z-torsion-problem-and-the-brin-thompson-transplant
-  - ct-z-residue-partition-certificates-live-on-s-adic-coordinates
 ---
 
 **ESTABLISHED** (lane proof, not reviewed). Elementary. No priority is claimed.

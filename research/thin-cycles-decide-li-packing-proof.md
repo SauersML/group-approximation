@@ -6,7 +6,6 @@ title: Dickson's lemma plus monotonicity of the rare-type count along expansions
 target: thin-cycles-decide-li-packing
 requires:
   - perron-weights-do-not-give-li-finiteness
-  - perron-weights-do-not-give-li-finiteness-proof
 ---
 
 **Lane proof, not independently reviewed.** Notation is that of

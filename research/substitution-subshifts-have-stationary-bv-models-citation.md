@@ -4,6 +4,7 @@ id: substitution-subshifts-have-stationary-bv-models-citation
 kind: route
 title: Durand--Host--Skau Propositions 8 and 20, Lemmas 9 and 15, plus telescoping
 target: substitution-subshifts-have-stationary-bv-models
+requires: []
 artifacts:
   - research/artifacts/gq-bh-bh-free-03-substitution-full-groups.md
 ---

@@ -3,7 +3,8 @@ rg: 2
 id: infranormal-compact-closure-normal
 kind: claim
 title: Infranormal subgroups have normal closure in every compact image
-invalidates: [compact-bogoliubov-clifford-model]
+invalidates:
+  - compact-bogoliubov-clifford-model
 distinct_from:
   finite-infranormal-subgroup-is-normal: This theorem concerns the closure of an arbitrary infranormal subgroup after mapping the ambient group into a compact group; the other uses finiteness of the subgroup itself to identify its compression semigroup with its normalizer.
 artifacts:

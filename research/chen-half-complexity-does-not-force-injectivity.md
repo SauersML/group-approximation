@@ -3,7 +3,8 @@ rg: 2
 id: chen-half-complexity-does-not-force-injectivity
 kind: claim
 title: Chen's universal one-half complexity bound does not force coefficient injectivity
-invalidates: [simple-kl-via-chen-half-complexity]
+invalidates:
+  - simple-kl-via-chen-half-complexity
 artifacts:
   - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
 ---

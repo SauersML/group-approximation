@@ -3,8 +3,6 @@ rg: 2
 id: decidable-group-with-coarsely-embedded-expanders-exists
 kind: claim
 title: Osajda's graphical small cancellation group over recursive LPS expanders has solvable word problem, so some finitely generated group with solvable word problem contains isometrically embedded expanders and does not coarsely embed into Hilbert space
-requires:
-  - fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree
 distinct_from:
   decidable-residually-finite-non-exact-group-exists: that is Osajda's residually finite non-exact group from arXiv:1703.03791, whose relator graphs have large girth but are not expanders, so it may coarsely embed into Hilbert space; this is his expander group from arXiv:1406.5015, which does not coarsely embed.
   haagerup-hosts-carry-no-weak-expander: that says Haagerup hosts contain no expander-type subgroup; this supplies a decidable expander-type group, so that kill becomes a kill of host classes at the universal Boone–Higman step.

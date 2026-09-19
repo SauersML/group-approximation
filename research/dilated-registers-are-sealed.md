@@ -3,8 +3,6 @@ rg: 2
 id: dilated-registers-are-sealed
 kind: claim
 title: A homeomorphism that dilates a register copy of Q never reads another coordinate into the register, so cross-coordinate odometer germs cannot build Q x| <d>, and every host that is almost-automorphic on the register coordinate sees only bounded denominators
-requires:
-  - one-coordinate-registers-admit-no-dilation
 distinct_from:
   one-coordinate-registers-admit-no-dilation: that assumes the host is coordinatewise cellular (each output coordinate is a cylinder map of one input coordinate); this proves, for an ARBITRARY homeomorphism, that the register output depends only on the register input, and then needs cellularity only on the register coordinate, so it covers hosts with adding-machine, affine or other germs that mix the remaining coordinates.
   rational-rotations-and-doubling-have-no-common-tree-coding: that assumes the dilation is a skew product over the register with a covering base map; this proves that shape is forced.

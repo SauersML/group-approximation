@@ -6,7 +6,7 @@ title: Proof that the corner endomorphism of EL_n over the binary Leavitt algebr
 target: binary-leavitt-elementary-groups-have-trivial-core-endomorphisms
 requires:
   - binary-leavitt-elementary-group-is-simple
-  - steinberg-finiteness-kazhdan-citation
+  - steinberg-finite-presentation-and-kazhdan-theorem
 ---
 
 Notation as in the target.

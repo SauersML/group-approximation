@@ -3,7 +3,6 @@ rg: 2
 id: ring-gate-k1-clause-is-unstable
 kind: claim
 title: The ring gate's K_1 clause is stable while the necessary condition is unstable, so failure of stable rational K_1 detection excludes a design only when unstable K_1 injects at that rank
-requires: [rational-scalars-obstruct-fp-elementary-hosts, rational-k1-detection-forces-infinite-order-unit-class, frame-designs-for-the-ring-gate-are-bracketed]
 distinct_from:
   rational-scalars-obstruct-fp-elementary-hosts: that proves the unstable centre clause and gives the stable kernel as a SUFFICIENT certificate (its part 5); this separates the two, proves the exact comparison in both directions, and audits which landed exclusions are stable-only.
   rational-k1-detection-forces-infinite-order-unit-class: that derives the K_0 consequence from the stable clause; this is about the stable clause versus the unstable one, and derives no K_0 statement.

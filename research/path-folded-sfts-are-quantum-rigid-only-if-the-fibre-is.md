@@ -3,9 +3,6 @@ rg: 2
 id: path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
 kind: claim
 title: An SFT that contains every fold of a fibre SFT along one skeleton configuration by a 1-Lipschitz surjection is quantum rigid only if the fibre is; so the Aubrun–Bitar–Huriot-Tattegrain minimal free SFT on F_n x Z is rigid only if its Z^2 fibre is
-requires:
-  - free-times-z-carries-a-minimal-free-sft
-  - free-group-boundary-shifts-are-quantum-rigid
 distinct_from:
   free-times-z-carries-a-minimal-free-sft: that imports existence of a minimal free SFT on F_n x Z from ABHT's path-folding construction; this tests that construction for quantum rigidity and pins its rigidity to the rigidity of the folded Z^2 shift.
   quantum-rigidity-passes-to-sub-sfts: that passes rigidity from an SFT to its sub-SFTs over the same group; this passes rigidity from a total shift over one group to a fibre shift over another group, along a Lipschitz fold.

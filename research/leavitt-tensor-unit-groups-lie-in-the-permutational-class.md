@@ -7,10 +7,6 @@ distinct_from:
   binary-leavitt-unit-group-satisfies-pbh: that is the one-factor case L_(F_2)(1,2)^×, with Thompson's V and the half-swap centralizer in V; this is the two-factor unit group, with Brin's 2V and a centralizer of a finite cyclic subgroup of 2V, and every prime field.
   leavitt-square-unit-group-is-fp-simple-and-acyclic: that makes (L ⊗ L)^× a finitely presented simple group (conditional on the Khanh / Ara–Cortiñas imports); this puts it, and every subgroup, in B_A under the same imports.
   leavitt-pair-unit-hosts-contain-their-own-squares: that gives (SQ) inside these hosts by the corner map; this gives the stronger B_A membership, hence joint embedding with every other B_A group.
-requires:
-  - khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts
-  - orbit-finite-affine-actions-are-type-a
-  - cantor-module-thompson-v-product-is-finitely-presented
 ---
 
 **ESTABLISHED** (lane proof, bh-major-product, 2026-09-18; not independently reviewed; no

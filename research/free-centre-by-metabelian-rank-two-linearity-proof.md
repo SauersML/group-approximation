@@ -4,6 +4,7 @@ id: free-centre-by-metabelian-rank-two-linearity-proof
 kind: route
 title: A second-order Magnus embedding makes F_2/[F_2'',F_2] a subgroup of GL_4(Z[x^(±1),y^(±1)])
 target: free-centre-by-metabelian-group-of-rank-two-is-linear
+requires: []
 ---
 
 Elementary and self-contained, apart from Magnus's embedding theorem (the kernel of

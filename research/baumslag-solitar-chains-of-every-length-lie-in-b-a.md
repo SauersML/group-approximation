@@ -3,16 +3,13 @@ rg: 2
 id: baumslag-solitar-chains-of-every-length-lie-in-b-a
 kind: claim
 title: Every finite Baumslag--Solitar chain T_n = <x_1, ..., x_n | x_i^-1 x_(i+1) x_i = x_(i+1)^2> lies in B_A, with its top cyclic subgroup realized as a centralizer; realization propagates up the tower through preimages under the twisted-lamplighter quotient
-requires:
-  - higman-chain-group-lies-in-b-a
-  - bs12-base-generator-is-a-centralizer-in-b-a
-  - pbh-coset-wreaths-iff-identity-edge-hnns
-  - type-a-action-gives-boone-higman-for-subgroups
 distinct_from:
   higman-chain-group-lies-in-b-a: that is the case n = 3 and gives the general amalgam form; this adds the realization of the new top generator, which is what makes the step repeatable.
   bs12-base-generator-is-a-centralizer-in-b-a: that is the case n = 2; this is the induction it starts.
   baumslag-gersten-group-satisfies-boone-higman: BG is the bi-infinite chain extended by its shift; this handles every finite piece of that chain, but not the shift.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `higman-chain-group-lies-in-b-a`, `bs12-base-generator-is-a-centralizer-in-b-a`, `pbh-coset-wreaths-iff-identity-edge-hnns`, `type-a-action-gives-boone-higman-for-subgroups`.
 
 **OPEN**: referee FAIL by inheritance, 2026-09-18, bh-ref-bs12; see the Referee section. The lane proof was marked established and not reviewed; no priority claimed. It inherits the status of
 `higman-chain-group-lies-in-b-a` and its lane chain.

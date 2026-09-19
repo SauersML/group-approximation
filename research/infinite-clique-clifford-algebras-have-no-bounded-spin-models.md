@@ -3,7 +3,8 @@ rg: 2
 id: infinite-clique-clifford-algebras-have-no-bounded-spin-models
 kind: claim
 title: Over a finite field, Clifford algebras of graphs with an infinite clique have no bounded-support model in any infinite tensor product of matrix algebras
-invalidates: [kun-thom-clifford-skew-rings-sf-from-matrix-lamp-wreath]
+invalidates:
+  - kun-thom-clifford-skew-rings-sf-from-matrix-lamp-wreath
 distinct_from:
   oriented-clifford-skew-rings-embed-in-matrix-lamp-wreath: that embeds every orientable graph into the matrix-lamp wreath by Pauli strings of bounded support; this proves no such bounded-support realization exists once the graph has an infinite clique, so the complete graph is out of reach of that embedding.
   nondegenerate-clifford-skew-rings-have-no-finite-dim-reps: that rules out finite-dimensional targets; this rules out bounded-support local targets inside simple infinite tensor products.

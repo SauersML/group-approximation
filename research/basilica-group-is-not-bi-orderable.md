@@ -3,8 +3,6 @@ rg: 2
 id: basilica-group-is-not-bi-orderable
 kind: claim
 title: The Basilica group is not bi-orderable, so neither it nor its finitely presented HNN extension embeds in any diagram group or in PL_+[0,1], and Farley's cube complexes give no certificate for the extension
-requires:
-  - basilica-group-is-torsion-free-and-contains-every-z-n
 distinct_from:
   basilica-hnn-self-similar-geometry-gives-no-brown-certificate: that closes the tree-type geometry coming from the self-similar action; this closes the free cube-complex route through diagram groups, the route that proves F_∞ for Thompson's F.
 ---

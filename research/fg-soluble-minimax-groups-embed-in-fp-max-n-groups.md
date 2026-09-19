@@ -3,13 +3,13 @@ rg: 2
 id: fg-soluble-minimax-groups-embed-in-fp-max-n-groups
 kind: claim
 title: Every finitely generated soluble minimax group embeds in a finitely presented group with max-n (weak form, which suffices for CGP Question 4 on this class, a homomorphism to such a group injective on the periodic radical)
-requires:
-  - isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts
 distinct_from:
   isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts: that proves this gate implies Cornulier–Guyot–Pitsch Question 4 for all finitely generated soluble minimax groups; this is the gate itself.
   fg-soluble-minimax-groups-satisfy-boone-higman: that asks for a finitely presented simple overgroup; this asks only for a finitely presented Noetherian (max-n) one.
   partial-torus-abels-quotients-are-finitely-presented-with-max-n: that is the family of hosts that settles the known cases; this is the statement for every input.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts`.
 
 **OPEN** (stated by bh-free-60, 2026-09-18).
 

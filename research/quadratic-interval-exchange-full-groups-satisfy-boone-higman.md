@@ -3,8 +3,6 @@ rg: 2
 id: quadratic-interval-exchange-full-groups-satisfy-boone-higman
 kind: claim
 title: Every subgroup of the topological full group of a minimal interval exchange with parameters in a real quadratic field with a unit of norm −1, in particular its finitely generated simple derived subgroup, embeds in a finitely presented simple group
-requires:
-  - stein-v-groups-act-with-type-a-on-breakpoints
 distinct_from:
   quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier) treats IET(Z+αZ) on [0,1) through contracting RSGs; this allows any finitely generated translation group Γ inside a real quadratic field and any interval length, via rescaling into a Stein V-group, and states the minimal-IET full-group corollary.
   stein-v-groups-act-with-type-a-on-breakpoints: that is the type (A) theorem for Stein V-groups with its Sturmian corollary; this applies it to all minimal interval exchanges defined over a real quadratic field, with any number of intervals.

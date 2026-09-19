@@ -95,3 +95,15 @@ IN-FLIGHT SET (bh-pal-wire owns; fix-bh-a/fix-bh-b please avoid). These are the 
   M/TorsionFreeNoetherLocalize.lean
   + BooneHigmanLinear/FrontierFour.lean
 - The probe (gqprobe-lean, target BooneHigmanLinear.FrontierFour) is queued. When it reports, I will flip the fix nodes of every module that went green to RESOLVED, and repair the next wave of reds downstream.
+
+## 09-18 (after restart), lane: re-probe against current main
+- Main (e6c93a1fe) is byte-identical to my 30 work files, so the overlay is now empty.
+- A gqprobe-lean v4 run of BooneHigmanLinear.FrontierFour is queued.
+- The in-flight set is unchanged (listed above). Fix nodes research/fix-bh-met-*.md will flip on green.
+
+## 09-18 21:13 wave 2 (Slurm blocked, so unprobed)
+- Wave-1 verdict (job 1328760): 24 of 27 green, and their nodes are flipped to RESOLVED (168b0c3c35).
+- Landed 55aba370a, red allowed: fixes to the 3 still-red modules and the 8 red importers, plus the S1-family statements (SuslinZLocalEndpoint, SuslinZHalfEndpoint), rewritten via generic `*_BadAt` abbrevs to avoid the Localization.Away semiring diamond, and PureCharPrimeSplit.
+- IN-FLIGHT (mine): the 3 red modules, the 8 importers, SuslinZLocalEndpoint, SuslinZHalfEndpoint, PureCharPrimeSplit, FrontierFour.
+- Next: when state/SLURM-BLOCKED is gone, run one empty-overlay probe of BooneHigmanLinear.FrontierFour.
+- Suspect (unverified): suslinR1Prime_MonicStatement and SuslinMonicConstLead use `Polynomial (Chain.SIntPoly m k)` and may hit the same diamond.

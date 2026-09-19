@@ -3,9 +3,6 @@ rg: 2
 id: bounded-refinement-operads-reduce-to-their-carriers
 kind: claim
 title: If any two elementary moves of an operad with transformations have a common refinement of bounded degree, orbit finiteness in that degree gives the transformation group finitely many orbits on pairs of moves, so the carrier is already a Zaremsky actor and inputs placed among the transformations of a bounded-refinement operad gain nothing beyond twisted Brin--Thompson
-requires:
-  - type-a-action-gives-boone-higman-for-subgroups
-  - thumann-operad-groups-need-only-f-infinity-transformations
 distinct_from:
   oligomorphic-operads-have-f-infinity-groups: that conjectures finiteness from orbit conditions on move composites; this shows that under bounded refinement those conditions already make the transformation group a type (A) actor on its moves, so the conjecture can only add new inputs in the unbounded regime.
   fp-symmetric-operad-groups-lie-in-the-permutational-class: that shows finitely presented operad hosts certify only B_A, at the level of the whole operad group; this is the carrier-level statement, that with bounded refinement the transformation group certifies it alone.

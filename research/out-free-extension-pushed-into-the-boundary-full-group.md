@@ -3,8 +3,6 @@ rg: 2
 id: out-free-extension-pushed-into-the-boundary-full-group
 kind: claim
 title: Pushed into the full group of the free-group boundary shift, Aut(F_n) → Out(F_n) becomes a finitely presented extension of Out(F_n) by a centerless group; it splits over a finite-index subgroup iff that subgroup acts on ∂F_n by piecewise representatives, and in rank 2g such an action moves the surface-word periodic point with infinite orbit
-requires:
-  - abelian-subgroups-of-out-free-virtually-lift-to-aut
 distinct_from:
   out-free-groups-virtually-embed-in-aut-free-groups: that asks for a finite-index subgroup of Out(F_n) inside some Aut(F_m); this replaces the kernel F_n by the full group M of the boundary groupoid, where a lift needs only to be piecewise a representative, and shows a virtual section is the one-piece case.
   aut-free-to-out-free-does-not-virtually-split-in-even-rank: that is the open non-splitting of Aut(F_2g) → Out(F_2g) itself; this proves a weaker, unconditional constraint that every piecewise lift (hence every virtual section) must satisfy in rank 2g, from the Euler class of the boundary capping extension.

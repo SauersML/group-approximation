@@ -3,9 +3,6 @@ rg: 2
 id: v-times-subshift-full-group-finiteness-is-horizontal
 kind: claim
 title: For V times any topologically free subshift over a finitely generated group, descending links of the domain-filtered Stein space are highly connected in every degree, so type F_n is exactly essential (n−1)-connectivity of the domain filtration and P2′ and E3′ are purely the horizontal condition (A_N)
-requires:
-  - thumann-finiteness-without-finite-type
-  - twisted-bt-type-fn-interval-filtration-proof
 distinct_from:
   v-times-quantum-rigid-sft-full-groups-are-fp: that is P2′. Its Attempt 1 set up the domain filtration, left the descending-link step (B_N) unchecked and used only the "if" direction; this proves (B_N) in every degree and makes the reduction to (A_N) an equivalence.
   v-times-rigid-topologically-free-sft-full-groups-are-fp: that is the open gate E3′; this reduces it, and every F_n analogue of it, exactly to essential connectivity of the domain filtration.

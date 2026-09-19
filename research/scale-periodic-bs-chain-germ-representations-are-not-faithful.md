@@ -3,8 +3,6 @@ rg: 2
 id: scale-periodic-bs-chain-germ-representations-are-not-faithful
 kind: claim
 title: Every piecewise-linear germ realization of the Baumslag-Solitar chain at an end of the line (translation, doubling, and any dyadic PL germ conjugating doubling to quadrupling) kills a nontrivial element of the chain group, so the germ group is a proper quotient of it
-requires:
-  - bs-chain-configurations-exist-in-finite-germ-extensions-of-v
 distinct_from:
   bs-chain-configurations-exist-in-finite-germ-extensions-of-v: that exhibits one realization and records that the whole question moves to the germ group at +∞; this shows the germ group is never the chain group itself for any PL choice of the square map, so its finite presentation cannot be inherited from the chain group.
   normal-germ-extensions-of-thompson-v-contain-no-sl3z: that (Lemma 5) shows germ groups in which the zoom is normal carry no Baumslag-Solitar dilation at all; this is about the complementary regime, where the zoom sits at the bottom of the tower, and finds relations there instead.

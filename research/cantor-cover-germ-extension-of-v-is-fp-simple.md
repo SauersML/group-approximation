@@ -3,8 +3,6 @@ rg: 2
 id: cantor-cover-germ-extension-of-v-is-fp-simple
 kind: claim
 title: The full germ extension of V by all germs commuting with its dyadic V-germs is a finitely presented simple group containing the lamplighter C(C,Z) ⋊ V and Q
-requires:
-  - bhm-corollary-hosts-over-v-are-cover-centralizer-groups
 distinct_from:
   bhm-corollary-hosts-over-v-are-cover-centralizer-groups: that is the ceiling (every host certified by BHM Corollary 2.10 over V lies in a cover-centralizer group); this shows the ceiling group with a = 1 on the orbits of 0^∞ and 1^∞ is itself finitely presented and simple.
 ---

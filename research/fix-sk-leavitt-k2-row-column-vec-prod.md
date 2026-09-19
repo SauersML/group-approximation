@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-leavitt-k2-row-column-vec-prod
-kind: route
+kind: claim
 title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.VecProd: automatically included section variable(s) unused in theorem ..."
 ---
 

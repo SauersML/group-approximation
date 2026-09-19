@@ -1097,6 +1097,38 @@ The hole itself is not closed here.
    A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
    Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
    `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
+
+**2026-09-19 (swarm-0917 w14, last mile): the stable-finiteness step of the compression criterion cannot use an amenable subgroup, and over a Haagerup subgroup it needs an infinite projection.**
+`k-amenable-compressors-need-infinite-projections` is ESTABLISHED. It is a method obstruction, not a route: it does not settle this goal.
+
+**Setting.** A subgroup-intrinsic one-sided certificate over `L <= Delta` consists of a projection `p` in `C*_max(L)` and an
+injective endomorphism `alpha = Ad(u)|_L` with `p <= alpha_*(p)`. The Kazhdan projection of `lem:kazhdan-projection-order`
+is the model case. Its defect is `q = alpha_*(p) - p`.
+
+1. **The defect is invisible to the regular representation.** The regular trace is `alpha`-invariant, so
+   `lambda_L(q) = 0` for every `L`.
+2. **Amenable `L`.** The defect is zero in `C*_max(L)`, so `U P U* = P` in every unitary representation of `Delta`.
+   The stable-finiteness step, which is the criterion's only MF input, is then idle. This proof is self-contained:
+   Folner vectors and Fell absorption.
+3. **K-amenable `L`, including every a-T-menable `L`.** Write `x` for the class of `q` in `K_0(C*_max L)`.
+   Then `x = alpha_*[p] - [p]` lies in the kernel of `(lambda_L)_*`, which is injective. So `x = 0`.
+   Consequently `q (+) 1_k ~ 1_k` in `M_(k+1)(C*_max L)`. If `C*_max(L)` is stably finite, then `q = 0` and the step is
+   idle. The imports are Lück--Reich Theorem 5.1 and Guo--Wang--Yao's statement of Cuntz's theorem, both quoted
+   verbatim in the route.
+
+**Where a subgroup-intrinsic (T)-free compression proof must live.**
+- **(K-ghost)** A non-K-amenable `L`, where `ker (lambda_L)_*` carries the defect. This is relative rigidity, for which
+  w9 found the spectral input equivalent to relative `(tau)`.
+- **(Haagerup-infinite)** A Haagerup `L`, for example `V`, `F`, `T` or a free subgroup, whose own maximal algebra has a
+  `K_0`-trivial infinite projection in `ker lambda_L`.
+
+Amenable subgroups are excluded outright.
+
+**Not covered.** Corona projections that are not images of fixed elements of `C*_max(L)`, that is, model-specific
+spectral projections. This is the same boundary that w9 reached.
+
+**New test question.** Is `C*_max(V)` stably finite? It is left open here and is not recorded as a node. A "yes" kills
+the whole Haagerup-infinite branch for `V`.
 - **2026-09-19 (swarm-0917-w14-w14-ptl-break, finite-models). The coherent
   Jacobson gap is true, via (T), and it is stronger than the head collapse.**
   See `jacobson-coherent-group-is-not-mf-via-kazhdan-transport` (ESTABLISHED,

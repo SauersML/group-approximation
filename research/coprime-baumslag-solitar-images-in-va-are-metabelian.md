@@ -3,8 +3,6 @@ rg: 2
 id: coprime-baumslag-solitar-images-in-va-are-metabelian
 kind: claim
 title: Every homomorphic image of BS(m,n), gcd(m,n) = 1 and |m| ≠ |n|, inside the Thompson-like group VA (so inside F, T, V, T̄) is cyclic-by-cyclic; so no quotient of BS(2,3) keeping [tat^-1, a] lies in VA
-requires:
-  - gl-n-q-embeds-in-fp-simple-group
 distinct_from:
   baumslag-solitar-groups-are-free-by-metabelian: that is structure of BS(m,n) itself; this constrains its quotients that live in VA.
   every-decidable-group-is-a-limit-of-isolated-groups: that is Cornulier--Guyot--Pitsch Question 1; this excludes one natural family of isolated quotients (finitely presented subgroups of V with a locally moving simple subgroup) for its test case BS(2,3).

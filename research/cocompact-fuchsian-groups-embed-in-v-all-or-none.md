@@ -4,7 +4,6 @@ id: cocompact-fuchsian-groups-embed-in-v-all-or-none
 kind: claim
 title: The subgroups of Thompson's group V are closed under abstract commensurability, so either every cocompact Fuchsian group embeds in V or none does
 distinct_from:
-  virtually-special-groups-embed-in-brin-thompson-citation: that imports Belk--Bleak--Matucci's remark that groups virtually embedding in nV embed in nV; this gives a self-contained proof for V and applies it to the Fuchsian commensurability class.
   closed-hyperbolic-surface-groups-embed-in-thompson-v: that is the open survey Question 4.7; this shows its surface-group form is a single question for the whole commensurability class of the genus-2 surface group.
 artifacts:
   - research/artifacts/gq-bh-bh-bbmz-problems-status.md

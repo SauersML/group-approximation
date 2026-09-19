@@ -3,9 +3,6 @@ rg: 2
 id: higman-group-embeds-in-no-lodha-moore-or-monod-group
 kind: claim
 title: Every homomorphism from Higman's group to Monod's group H(R) or to a Lodha-Moore group is trivial, answering Zaremsky's Oberwolfach 2018 Question 110 negatively
-requires:
-  - higman-group-embeds-in-no-piecewise-analytic-circle-group
-  - lodha-moore-groups-embed-in-lodha-circle-group
 distinct_from:
   higman-group-embeds-in-no-piecewise-analytic-circle-group: that excludes every group of piecewise real-analytic circle homeomorphisms; this records the instance at the two hosts named in a printed question, with the containments that make it apply.
   higman-group-satisfies-boone-higman: that is the open embedding question for Higman's group; this closes one proposed route to it.

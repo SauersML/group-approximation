@@ -3,7 +3,8 @@ rg: 2
 id: literal-witness-kernel-free
 kind: claim
 title: The kernel to the Clifford witness is free of infinite rank, hence non-amenable
-invalidates: [literal-sofic-via-amenable-kernel]
+invalidates:
+  - literal-sofic-via-amenable-kernel
 distinct_from:
   literal-witness-kernel-amenable: That claim asserts the kernel is amenable; this claim computes the kernel and finds a nonabelian free group, so the two are contradictory and this one refutes the other.
   literal-lamp-kernel-clifford-block-amalgam: That claim describes the lamp kernel of `E` over the telescope quotient `V`; this one describes the smaller kernel of the witness map `E -> W`.

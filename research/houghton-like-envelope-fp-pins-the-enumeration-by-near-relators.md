@@ -3,8 +3,6 @@ rg: 2
 id: houghton-like-envelope-fp-pins-the-enumeration-by-near-relators
 kind: claim
 title: If H_n(E_nu(P)) is finitely presented, then nu is the unique solution of finitely many far-out near relators of R_nu plus a finite seed; the relators must involve a finite-index set of P-letters, and for P not virtually cyclic each needs two P-letters
-requires:
-  - free-shift-houghton-like-envelopes-are-not-fp
 artifacts:
   - research/artifacts/gq-bh-bh-free-48-local-stability-verification.md
 distinct_from:

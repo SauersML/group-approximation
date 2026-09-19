@@ -3,7 +3,8 @@ rg: 2
 id: compressed-coset-shifts-carry-strict-equivariant-embeddings
 kind: claim
 title: A simple Kazhdan group has a Bernoulli coset shift with a strict continuous equivariant self-embedding
-invalidates: [fg-simple-kazhdan-surjunctive-via-bernoulli-rigidity]
+invalidates:
+  - fg-simple-kazhdan-surjunctive-via-bernoulli-rigidity
 distinct_from:
   subshift-self-embedding-carries-no-surjunctivity-content: that strictly embeds a proper invariant subshift of the full shift over a free group by a linear automaton; this strictly embeds the full coset shift over a transitive set with infinite stabilizers, over a simple Kazhdan group, by pulling back along a compressor.
   full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant: that shows continuous equivariant maps from the full shift into coset shifts with infinite stabilizers are constant; this shows the coset shift itself admits strict equivariant self-embeddings, so such shifts carry no surjunctivity content.

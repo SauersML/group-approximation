@@ -10,7 +10,7 @@ requires:
   - thompson-v-has-haagerup-property
   - deligne-universal-cover-lattice-is-non-rf-kazhdan
   - bhm-singfix-condition-forces-fp-germ-groups
-  - simple-kazhdan-germ-extension-germ-group-proof
+  - simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group
 ---
 
 Notation as in the claim. `Gamma~` has property (T), and so does every finite-index

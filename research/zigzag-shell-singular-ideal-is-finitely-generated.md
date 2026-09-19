@@ -3,7 +3,6 @@ rg: 2
 id: zigzag-shell-singular-ideal-is-finitely-generated
 kind: claim
 title: For the zigzag shell of Z the germ group is Z^3 by Z/4, the singular ideal J is finitely generated with an explicit local part, and the four-germ elements do not generate it
-requires: [shell-germ-singular-ideal-is-generated-at-the-singular-point, shell-germ-essential-algebras-are-central-simple]
 distinct_from:
   shell-germ-singular-ideal-is-generated-at-the-singular-point: that reduces finite generation of J to the germ group ring in general; this computes the germ group and the local ideal for one explicit enumeration.
   shell-germ-steinberg-algebras-are-never-simple: that exhibits the four-germ singular elements; this shows that for one explicit shell they generate a strictly smaller ideal than J.

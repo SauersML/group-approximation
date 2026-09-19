@@ -3,9 +3,6 @@ rg: 2
 id: shell-one-point-groups-are-ascending-hnn-over-window-lifts
 kind: claim
 title: If the shell germ group has an ascending window in the direction of the V-germ, the one-point group A_1 is an ascending HNN extension of an explicit lift of that window, so A_1 has every finiteness property the lift has
-requires:
-  - shell-cantor-embeddings-are-finite-germ-extensions
-  - bhm-singfix-condition-forces-fp-germ-groups
 distinct_from:
   shell-germ-fp-is-an-ascending-hnn-gate: that characterizes finite presentation of the germ group Q and records that sufficiency for A_1 is open; this proves a sufficient condition for A_1 itself, in one of the two directions of the gate.
   bhm-singfix-condition-forces-fp-germ-groups: that goes down from A_1 to its germ group; this goes up from a window of the germ group to A_1.

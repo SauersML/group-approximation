@@ -3,7 +3,9 @@ rg: 2
 id: overgroup-room-does-not-supply-a-root
 kind: claim
 title: Amplification and existential closure restate the conjecture instead of proving it
-invalidates: [kl-via-infinite-dimensional-amplification, kl-via-existentially-closed-overgroup]
+invalidates:
+  - kl-via-infinite-dimensional-amplification
+  - kl-via-existentially-closed-overgroup
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
 ---

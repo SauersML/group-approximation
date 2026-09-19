@@ -4,7 +4,6 @@ id: non-lcm-dissection-operad-groups-are-f-infinity
 kind: claim
 title: Thompson-like groups of dissection operads without least common multiples are of type F-infinity once square filling holds and the spine of minimal common refinements is finite
 distinct_from:
-  rational-projective-full-groups-fp-via-thumann-operad-finiteness: that applies the imported theorem to one operad, the unimodular dissections behind the closed-MCG host; this states the general non-LCM finiteness theorem for every dissection host, which is the top gate named in the master synthesis.
   odometer-2v-is-fp-simple-and-contains-bs12: that uses X. Li's finiteness theorem, which needs least common multiples of splittings; this needs only square filling and a finite spine, so it covers non-deterministic splittings where several minimal common refinements exist.
 ---
 

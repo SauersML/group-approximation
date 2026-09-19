@@ -3,12 +3,12 @@ rg: 2
 id: every-hyperbolic-group-is-a-limit-of-isolated-groups
 kind: claim
 title: Every word hyperbolic group is a limit of isolated groups (Cornulier--Guyot--Pitsch Question 2)
-requires:
-  - limits-of-isolated-groups-basic-closure
 distinct_from:
   every-decidable-group-is-a-limit-of-isolated-groups: that is Question 1 for all groups with solvable word problem; this is its hyperbolic case.
   hyperbolic-groups-satisfy-boone-higman: that embeds a hyperbolic group in a finitely presented simple group (BBMZ); this asks for nearby isolated QUOTIENTS, which that embedding does not provide.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `limits-of-isolated-groups-basic-closure`.
 
 **OPEN.**
 

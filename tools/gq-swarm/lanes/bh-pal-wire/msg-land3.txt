@@ -1,0 +1,18 @@
+BH metabelian chain: second repair wave, unprobed (Slurm blocked)
+
+Fixes the reds that the cancelled batch job 1328760 (base d2df12ed9) reported after the first
+repair wave: 3 repaired modules still red, plus 8 red importers downstream.
+- AffineFPModel: in model_commutator, the right-hand side now carries a type ascription.
+- PureCharPrimeEHighArtinHasseAlg: restr takes a Semiring, and conjB names its subalgebra
+  explicitly; the CommRing and Algebra instances on the translation algebra are now explicit terms.
+- PureCharPrimeEHighWittECoeff, CharPHost.TreeFaithful, CharPHost.TreeGroup: `omit ... in`.
+- CharZeroHost.State, CoprimarySplitting: noncomputable sections.
+- AffineFPConjugation: Pi.single is now typed.
+- EnvelopeSimpleFragCantor: typed binder. EnvelopeWreathEmbed and PureCharPrimeSplit: `mul_comm`
+  with an explicit type.
+- AbsorptionSuslinReduction, SuslinZLocalEndpoint, SuslinZHalfEndpoint: the char-0 statements now
+  go through generic abbrevs (SuslinOneVariableAt, suslinZLocal_BadAt, suslinZHalf_BadAt).
+  Written at Z[1/m] directly, Polynomial (SIntPoly m k) picked the Localization semiring path, and
+  no CommRing instance on it was found. The statement names and their meaning are unchanged.
+
+UNPROBED. MSI Slurm submission is blocked (state/SLURM-BLOCKED); re-probe when it clears.

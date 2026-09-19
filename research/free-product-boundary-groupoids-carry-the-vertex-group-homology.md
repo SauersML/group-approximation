@@ -3,12 +3,6 @@ rg: 2
 id: free-product-boundary-groupoids-carry-the-vertex-group-homology
 kind: claim
 title: For D = Z/k * B with B infinite, the action of D on its Bass–Serre tree compactified by the B-vertices is a purely infinite minimal Cantor groupoid with homology Z in degree 0 and H_n(B; Z) in every degree n >= 1; its derived full group is simple, contains every perfect subgroup of B, and is finitely generated when B is
-requires:
-  - matui-groupoid-homology-transformation-and-reduction
-  - matui-purely-infinite-minimal-full-groups-have-simple-d
-  - li-ah-exact-sequence-for-minimal-comparison-groupoids
-  - nekrashevych-expansive-groupoid-criteria
-  - nekrashevych-symmetric-and-alternating-full-groups
 distinct_from:
   li-ah-exact-sequence-for-minimal-comparison-groupoids: that is the imported exact sequence for any minimal groupoid with comparison; this computes the groupoid homology that the sequence needs, for one explicit family of boundary actions.
   cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple: that makes full groups acyclic by stabilizing with O_2; here the homology is not killed but equals the homology of the vertex group B.

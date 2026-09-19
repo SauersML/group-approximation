@@ -3,11 +3,9 @@ rg: 2
 id: oligomorphic-operads-have-f-infinity-groups
 kind: claim
 title: Conjecture - an operad with transformations whose transformation groups act oligomorphically on its elementary classes, with type F-infinity stabilizers of finite tuples, has operad groups of type F-infinity; this unifies Thumann's theorem, the Röver–Nekrashevych transfer and the twisted Brin–Thompson criterion
-requires:
-  - thumann-operad-groups-need-only-f-infinity-transformations
-  - thumann-finiteness-without-finite-type
-  - finite-type-operad-groups-split-over-a-label-kernel
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `thumann-operad-groups-need-only-f-infinity-transformations`, `thumann-finiteness-without-finite-type`, `finite-type-operad-groups-split-over-a-label-kernel`.
 
 **OPEN** (conjecture, lane bh-invent-07, 2026-09-18). Proposed as the operadic finiteness engine for
 "programmable" hosts. Part (a) of the reduction below is an argument under a local-finiteness hypothesis (LF), and part

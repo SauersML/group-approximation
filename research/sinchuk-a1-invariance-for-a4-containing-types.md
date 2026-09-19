@@ -3,7 +3,6 @@ rg: 2
 id: sinchuk-a1-invariance-for-a4-containing-types
 kind: claim
 title: Unstable K2 is A1-invariant for simply-laced types containing A4
-distinct_from:
 ---
 
 **Literature input (source re-read 2026-08-31, arXiv:2412.06944,

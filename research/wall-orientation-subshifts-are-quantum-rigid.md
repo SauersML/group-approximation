@@ -3,15 +3,13 @@ rg: 2
 id: wall-orientation-subshifts-are-quantum-rigid
 kind: claim
 title: For a group whose Cayley graph carries a wall structure, the subshift of consistent wall orientations (the Roller boundary coded over the group) is quantum rigid (open); true for trees and Z^2, and if true for a non-exact group with walls (Arzhantseva–Osajda type) it refutes (RA′)
-requires:
-  - quantum-rigid-minimal-topfree-subshift-actions-are-amenable
-  - free-group-boundary-shifts-are-quantum-rigid
-  - quantum-rigidity-is-product-stable
 distinct_from:
   free-group-boundary-shifts-are-quantum-rigid: that is the one-dimensional case, trees, proved by monotone chains; this asks for every wall structure, including infinite-dimensional ones.
   rigid-subshifts-without-isolated-points-factor-onto-the-ends: that turns finite cuts into a boundary map; walls are infinite cuts, so the analogous map lands in the Roller boundary, which for a non-exact group is never amenable.
   quantum-rigid-minimal-topfree-subshift-actions-are-amenable: that is the question (RA); this names the test case that decides its weak form (RA′) at Osajda-type groups.
 ---
+
+Inputs this claim recorded under the older schema (not a proof; they do not establish it): `quantum-rigid-minimal-topfree-subshift-actions-are-amenable`, `free-group-boundary-shifts-are-quantum-rigid`, `quantum-rigidity-is-product-stable`.
 
 **OPEN.** Posed by lane bh-star-b, 2026-09-18, as the decisive test of (RA′). The calibration cases
 are proved below; the rest is not.

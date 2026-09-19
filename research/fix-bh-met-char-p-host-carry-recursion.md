@@ -1,11 +1,11 @@
 ---
 id: fix-bh-met-char-p-host-carry-recursion
-kind: route
+kind: claim
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion: automatically included section variable(s) unused in theorem `GroupApp (4 errors on main 3c8b417428)"
-target: fp-metabelian-groups-satisfy-boone-higman
-status: SUPERSEDED
 ---
+
+Recorded against `fp-metabelian-groups-satisfy-boone-higman` (it was a route with no prerequisites listed, which the checker would read as a complete proof of `fp-metabelian-groups-satisfy-boone-higman`).
 
 **SUPERSEDED by `fix-bhmet-char-p-host-carry-recursion`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-char-p-host-carry-recursion`.
 

@@ -3,9 +3,6 @@ rg: 2
 id: locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions
 kind: claim
 title: Surface groups, infinite locally quasiconvex hyperbolic groups and closed hyperbolic 3-manifold groups carry no type (A) action; in any hyperbolic group, type (A) point stabilizers of infinite orbits have full limit set
-requires:
-  - limit-set-escaping-forces-infinitely-many-double-cosets
-  - hyperbolic-groups-have-fg-subgroups-with-two-double-cosets
 distinct_from:
   type-a-actors-have-no-proper-power-cyclic-edge-splittings: that excludes actors with an irreducible splitting over a finite group (so free and all infinitely-ended hyperbolic groups) or over a proper-power cyclic piece; this excludes one-ended hyperbolic actors such as surface groups and closed hyperbolic 3-manifold groups, which split only over non-proper-power cyclic groups or not at all.
   hyperbolic-groups-have-fg-subgroups-with-two-double-cosets: that shows finitely generated subgroups with two double cosets exist in hyperbolic groups when they need not be core-free; this shows faithfulness plus local quasiconvexity, or a 3-manifold structure, rules them out.

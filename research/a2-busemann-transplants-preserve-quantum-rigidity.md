@@ -3,10 +3,6 @@ rg: 2
 id: a2-busemann-transplants-preserve-quantum-rigidity
 kind: claim
 title: Over lattices of thick Ã2 buildings, Busemann transplants of cone-deterministic fibres are quantum rigid iff the fibre is, and free when it is; far germ events are sector cylinders at the tile's own site, and projective-plane uniqueness transports them forward
-requires:
-  - busemann-transplants-give-free-sfts-on-building-lattices
-  - a2-lattice-boundary-skew-shifts-are-quantum-rigid
-  - path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is
 distinct_from:
   busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid: that poses the transfer for all Euclidean building lattices with the centrality step (C) open; this proves (C) and the transfer for Ã2, where the germ events are not chains, by a different mechanism.
   tree-product-busemann-transplants-preserve-quantum-rigidity: that proves the transfer for products of trees through monotone arrow chains; Ã2 germs form no chains, and here centrality comes from forward determination of sector cylinders by the link geometry, which also reproves the tree case.

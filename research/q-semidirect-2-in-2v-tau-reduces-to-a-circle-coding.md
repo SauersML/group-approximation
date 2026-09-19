@@ -3,9 +3,6 @@ rg: 2
 id: q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding
 kind: claim
 title: The centralizer of the 2V_tau odometer is fibered, Q semidirect <2> acts on the Cantorized 2-adic solenoid through s and the baker map, and embedding it in 2V_tau reduces to one binary coding of the circle blown up at Q/Z
-requires:
-  - odometer-2v-is-fp-simple-and-contains-bs12
-  - odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators
 distinct_from:
   lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map: that is the OPEN target; this proves the fibered-centralizer reduction, gives the canonical solenoid model with all cocycles solved, and proves that the odd mixed-radix odometer cannot carry it.
   odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators: that settles each odd q with a q-dependent doubling element; this treats all q at once.

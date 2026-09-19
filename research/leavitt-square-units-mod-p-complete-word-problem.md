@@ -7,10 +7,6 @@ distinct_from:
   leavitt-square-units-have-conp-parity-p-complete-word-problem: that is the case p = 2, proved there with a characteristic-two slot unit; this is every prime p, with a characteristic-free slot unit and the projective quotient needed when p is odd.
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that supplies finite presentation and simplicity of the hosts; this is the complexity of their word problems.
   leavitt-tensor-unit-word-problems-have-one-counting-quantifier: that is the upper bound for all Leavitt tensor hosts and the barrier it puts on PSPACE; this is completeness for the square over a prime field.
-requires:
-  - prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre
-  - prime-field-leavitt-tensor-powers-have-trivial-k-theory
-  - leavitt-square-units-wp-complexity-proof
 ---
 
 **ESTABLISHED for items 2 and 3** (unconditional). **Items 1 and 4 are conditional**, like

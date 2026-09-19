@@ -4,6 +4,7 @@ id: free-action-fg-alternating-full-groups-force-expansivity-proof
 kind: route
 title: Code points by the cells of the generators' cocycle partition; two points with the same code are moved by every word through the same group element, and a 3-cycle that moves one and fixes the other contradicts freeness
 target: free-action-fg-alternating-full-groups-force-expansivity
+requires: []
 ---
 
 Notation as in the target. Group elements act on the left; `e` is the identity of `Λ`.

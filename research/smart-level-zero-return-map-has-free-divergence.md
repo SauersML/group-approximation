@@ -3,8 +3,6 @@ rg: 2
 id: smart-level-zero-return-map-has-free-divergence
 kind: claim
 title: SMART's level-0 return map has free divergence at every point, so neither it nor any finite skew-product decoration factors onto the ternary valuation Toeplitz subshift
-requires:
-  - smart-level-zero-return-map-factors-onto-3-adic-odometer
 distinct_from:
   smart-renormalization-admits-no-graded-basins: that rules out gradings of SMART's one landed renormalization and its decorations, and records openness of the odometer factor at the holes as a heuristic; this proves that openness (free divergence) at every point and so rules out every factor map onto T_3, whatever renormalization or coding is used.
   graded-renormalization-gives-ternary-toeplitz-factor: that proves Lemma A (a factor onto T_3 forces non-open odometer phases at the holes); this shows SMART's induced map violates the finer, level-sensitive form of that necessity everywhere.

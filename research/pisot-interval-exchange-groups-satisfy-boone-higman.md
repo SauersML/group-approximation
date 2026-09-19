@@ -3,8 +3,6 @@ rg: 2
 id: pisot-interval-exchange-groups-satisfy-boone-higman
 kind: claim
 title: If K = Q(β) for an algebraic unit β with property (F), every finitely generated group of interval exchanges with lengths and translations in K, of any rank up to [K:Q], embeds in a finitely presented simple group; for example all minimal interval exchange full groups over the d-bonacci fields, and Sturmian Juschenko--Monod groups with cubic angles
-requires:
-  - pisot-stein-groups-are-contracting-rsgs
 distinct_from:
   quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03) covers IET(Z+αZ) for quadratic α, rank 2; this covers every rank up to the degree, for example rank 3 over the tribonacci field. That is the "rank ≥ 3 IET groups through β-adic coding" direction bh-free-03 recorded as open.
   quadratic-interval-exchange-full-groups-satisfy-boone-higman: that is the degree-2 statement for norm −1 fields (its norm +1 claim was withdrawn 09-18 after reading Cleary); this reaches every degree with a unit satisfying (F). Fields without an isolated-sign unit, such as Q(√3), lie in no (F)-unit field (f-unit-fields-are-characterized-by-isolated-sign-units).

@@ -3,9 +3,6 @@ rg: 2
 id: finitely-generated-positive-cones-give-rigid-seeds
 kind: claim
 title: Every finitely generated group with a left order whose positive cone is a finitely generated semigroup lies in 𝒞, whether the order is dense or discrete; so all braid groups, all torus-knot groups and all of Ito's partially central cyclic amalgams lie in 𝒞, and CAP predicts that no such finitely presented group has a hard word problem
-requires:
-  - order-seeds-are-rigid-relative-seeds
-  - order-seeds-transfer-computable-orders
 distinct_from:
   order-seeds-are-rigid-relative-seeds: that proves the dense case and states the discrete case only where each gap is crossed by one step; this checks that condition for every finitely generated positive cone, removing density.
   order-seeds-transfer-computable-orders: that bounds what order seeds can reach; this lists what they do reach, and restates question (O) without density.

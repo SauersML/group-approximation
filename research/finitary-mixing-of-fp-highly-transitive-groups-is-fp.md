@@ -4,7 +4,6 @@ id: finitary-mixing-of-fp-highly-transitive-groups-is-fp
 kind: claim
 title: If finitely presented permutation groups G_1..G_n each contain the finitary symmetric group of their set and have finitely generated point stabilizers, then G_1 x ... x G_n together with all finitary permutations of the disjoint union is finitely presented
 distinct_from:
-  bh-class-closed-under-finite-direct-products: that is about embedding products into fp simple groups; this is a finite-presentation statement for one explicit overgroup of a product of permutation groups.
   strongly-shift-similar-point-stabilizers-are-copies-of-the-group: that supplies the stabilizer hypothesis for strongly shift-similar groups; this is the presentation theorem that consumes it.
 ---
 

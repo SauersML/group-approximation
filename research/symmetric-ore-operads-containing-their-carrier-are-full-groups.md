@@ -3,11 +3,6 @@ rg: 2
 id: symmetric-ore-operads-containing-their-carrier-are-full-groups
 kind: claim
 title: A symmetric refinement operad with the calculus of fractions whose pieces are identified by local maps of a group Λ is exactly the full group of Λ as soon as its operad group contains Λ; saturation is automatic from Ore, so every refinement host of a carrier is the canonical full group and finiteness is its only gate
-requires:
-  - fp-symmetric-operad-groups-lie-in-the-permutational-class
-  - symmetric-operad-groups-full-cantor-proof
-  - thumann-finiteness-without-finite-type
-  - bounded-refinement-operads-reduce-to-their-carriers
 distinct_from:
   ore-operad-groups-contain-the-derived-full-group: that obtains only the derived subgroup of the full group, through Matui's simplicity theorem, and needs minimality and pure infiniteness; this obtains the whole full group from Ore and symmetry alone, with no dynamical hypothesis and no recalled theorem.
   edge-split-ore-iff-synchronization-and-tree-domination: that proves saturation for the edge-split operad from (Sync_m) and (TD) by explicit domination; this proves saturation in every symmetric Ore operad containing its carrier, and recovers that case, since (Sync_m) is established there and (Ore) is then equivalent to (TD).

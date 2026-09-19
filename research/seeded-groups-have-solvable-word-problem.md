@@ -3,8 +3,6 @@ rg: 2
 id: seeded-groups-have-solvable-word-problem
 kind: claim
 title: A recursively presented group with a seed SFT (isolated point with trivial stabilizer; no rigidity, no density) has solvable word problem, and more generally so does any recursively presented group with an effectively closed subshift that is normally aperiodic on one nonempty cylinder
-requires:
-  - seeds-never-survive-marked-approximation
 distinct_from:
   rigid-topologically-free-sfts-force-solvable-word-problem: that needs a quantum-rigid minimal topologically free SFT and goes through crossed products; this needs only a seed, and the argument is purely dynamical.
   seeds-never-survive-marked-approximation: that rules out seed configurations on nearby proper quotients; this rules them out on every proper quotient, using word windows, and turns that into an algorithm.

@@ -3,8 +3,6 @@ rg: 2
 id: minimal-free-sft-overgroups-exist-iff-m2-overgroups-exist
 kind: claim
 title: A decidable group lies in an infinite finitely presented group carrying a minimal free SFT iff it lies in a finitely presented decidable group carrying an effectively closed minimal free subshift
-requires:
-  - free-effective-minimal-subshifts-lift-to-minimal-sfts-times-z2
 distinct_from:
   decidable-groups-embed-in-fp-groups-with-minimal-free-sft: that is (P1), the left side for all inputs; this proves it equivalent, input by input, to the right side.
   decidable-groups-embed-in-fp-groups-satisfying-m2: that is the right side for all inputs, still open; this shows it is not weaker than (P1).

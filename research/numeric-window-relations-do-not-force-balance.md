@@ -3,7 +3,8 @@ rg: 2
 id: numeric-window-relations-do-not-force-balance
 kind: claim
 title: Window fiber counts used only as numbers force a uniform site law over amenable decoder memory groups and never over nonamenable ones at large alphabets
-invalidates: [balance-from-numeric-window-relations]
+invalidates:
+  - balance-from-numeric-window-relations
 distinct_from:
   decoder-window-fiber-bound-loses-exactly-the-boundary: that proves the decoder fiber bound and its boundary loss for one automaton; this shows no argument from that bound, translation invariance, integral finitely dependent counts and a zero removes the loss, since unbalanced measures satisfy all of them over every nonamenable decoder memory.
   finite-left-inverse-identity-does-not-force-balance: that is a fact about the end-fixing tree, an index set that is not a group acting on itself, where counts obey totals and invariance but reads are not right-cancellative; this keeps the discrete group law and still exhibits imbalance, so what is missing is not a numerical relation.
