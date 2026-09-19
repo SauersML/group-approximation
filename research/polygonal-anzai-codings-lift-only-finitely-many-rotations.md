@@ -2,7 +2,7 @@
 rg: 2
 id: polygonal-anzai-codings-lift-only-finitely-many-rotations
 kind: claim
-title: In a subshift that is an almost 1-1 extension of the Anzai skew product (x,y) ↦ (x+α, y+x) with polygonal singular set, only finitely many fibre rotations lift to automorphisms, because rotations preserve slopes while the dynamics shears them; so the targets T1/T2 need singular sets containing pieces of unboundedly many tilts (hierarchical, simulation-type codings), and T1 would also give a minimal zero-entropy free Z^d-SFT with a free group of automorphisms
+title: In a subshift that is an almost 1-1 extension of the Anzai skew product (x,y) ↦ (x+α, y+x) with polygonal singular set, only finitely many fibre rotations lift to automorphisms, because rotations preserve slopes while the dynamics shears them; this suggests (heuristically, not proved) that the targets T1/T2 need singular sets containing pieces of unboundedly many tilts (hierarchical, simulation-type codings), and T1 would also give a minimal zero-entropy free Z^d-SFT with a free group of automorphisms
 requires:
   - profinite-skew-layers-collapse-into-the-equicontinuous-factor
   - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
@@ -31,11 +31,11 @@ nothing directly about (RA_free). It shows which codings cannot work.
 ## Statement
 
 1. `G_lift` is finite.
-2. **Mechanism.** Fibre rotations preserve slopes, while `T^n` adds `n` to the slope of every
+2. **Mechanism (heuristic; proved only in the case of item 1).** Fibre rotations preserve slopes, while `T^n` adds `n` to the slope of every
    non-vertical segment. The singular set `Z_sing = ⋃_n T^n Z_1` therefore meets each slope window in a
    compact set, and a compact set invariant under an infinite (hence dense) group of fibre rotations
    would contain whole fibres.
-3. **Consequence for T1 and T2.** Take a twisted skew product `M ×_c K` with lifted fibre translations
+3. **Consequence for T1 and T2 (heuristic, not proved).** Take a twisted skew product `M ×_c K` with lifted fibre translations
    dense in `K`. By the same mechanism, whenever the derivative cocycle shears tangent planes properly,
    the singular set must contain pieces of unboundedly many tilts in every tilt window. Geometric codings
    (polygonal or cut-and-project, bounded tilt) are then excluded. What remains are wild, hierarchical
