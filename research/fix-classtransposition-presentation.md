@@ -49,3 +49,26 @@ This node then covers only the module. The mathematical debt stays on the two cl
 
 This is the group-theoretic core of the elementary finite presentation of `CT_P(Z)`. It does not
 depend on the transposition presentation. The module is unprobed and not root-wired.
+
+**Added 09-19 (Stage-1 route, all unprobed):** the formal route to `kourovka_17_61` through the
+position-shifting finite presentation.
+- `Coxeter`: the Coxeter relations present `Sym(n)`, via the right-transversal normal form.
+- `Frac`, `Moves`, `Comb`, `ListId`, `ListBlock`: the concrete side.
+  - `frac b c` maps an ordered box partition `b` onto `c` box by box;
+  - moves (splits and swaps) on lists of boxes, and the comb bases;
+  - the list identities of the relation families (a), (b) and (d).
+- `Gens`, `Group`, `Hats`: the finitely presented group `H P`.
+  - The generators `Ty P × Bool` are the types at positions 1 and 2, and positions `≥ 3` come
+    from the shift definitions.
+  - The relators are the bounded valid instances, a finite set (`relSet_finite`).
+  - Also: the shift lemma `toH_up`, stabilization `toH_stable`, and the hat evaluations.
+- `RelFC`: Lemma FC in `H P` (`fc_all`), from bounded base instances (`fc_base`).
+- `WinAux`: bookkeeping for the window relations.
+
+Still to write:
+- the window relations at all positions;
+- the Coxeter application;
+- the full-split normal form;
+- injectivity of the evaluation into `Perm ℤ`;
+- its range, which is `CT_P(ℤ)`;
+- the assembly of `kourovka1761Statement`.

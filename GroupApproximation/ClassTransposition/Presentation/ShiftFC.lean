@@ -105,7 +105,6 @@ theorem fc_of_base (hD : ∀ υ j, 2 ≤ j → g υ (j + 1) = s⁻¹ * g υ j * 
     exact fc_step hD hυ₀ hw₀ hδ₀ hw hbase hτ (by omega) n υ
   · obtain ⟨k, rfl⟩ : ∃ k, i = 2 + k := ⟨i - 2, by omega⟩
     obtain ⟨n, rfl⟩ : ∃ n, j = 2 + w τ + n + k := ⟨j - (2 + k + w τ), by omega⟩
-    have hwτ := hw τ hτ
     exact fc_shift hD k (fc_step hD hυ₀ hw₀ hδ₀ hw hbase hτ (Or.inr rfl) n υ) (by omega)
 
 end
