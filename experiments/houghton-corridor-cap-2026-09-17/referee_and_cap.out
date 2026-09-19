@@ -1,0 +1,18 @@
+identities 1a: (True, True)
+m 2 len 14 forced matching unique; sum inv 4 m^2(m-1) = 4 OK
+m 3 len 20 forced matching unique; sum inv 18 m^2(m-1) = 18 OK
+m 4 len 26 forced matching unique; sum inv 48 m^2(m-1) = 48 OK
+m 5 len 32 forced matching unique; sum inv 100 m^2(m-1) = 100 OK
+m 6 len 38 forced matching unique; sum inv 180 m^2(m-1) = 180 OK
+m 7 len 44 forced matching unique; sum inv 294 m^2(m-1) = 294 OK
+m 8 len 50 forced matching unique; sum inv 448 m^2(m-1) = 448 OK
+m 9 len 56 forced matching unique; sum inv 648 m^2(m-1) = 648 OK
+m 10 len 62 forced matching unique; sum inv 900 m^2(m-1) = 900 OK
+m 11 len 68 forced matching unique; sum inv 1210 m^2(m-1) = 1210 OK
+m 12 len 74 forced matching unique; sum inv 1584 m^2(m-1) = 1584 OK
+Lemma D sanity (B-length of constructed word vs H3-length l):
+  l 6 max |b|_B / l^2 over random 0.278 | h_k: inv 4  |constructed| 10  /l^2 0.278
+  l 10 max |b|_B / l^2 over random 0.14 | h_k: inv 9  |constructed| 24  /l^2 0.24
+  l 16 max |b|_B / l^2 over random 0.078 | h_k: inv 25  |constructed| 70  /l^2 0.273
+  l 24 max |b|_B / l^2 over random 0.113 | h_k: inv 64  |constructed| 184  /l^2 0.319
+  l 32 max |b|_B / l^2 over random 0.117 | h_k: inv 100  |constructed| 290  /l^2 0.283
