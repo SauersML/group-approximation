@@ -34,6 +34,7 @@ artifacts:
   - research/torsion-free-sofic-quotientless-kazhdan-group-exists.md
   - research/sofic-hyperbolic-stages-give-quotientless-kazhdan-monster.md
   - research/relation-gaps-forbid-fp-mapping-tori.md
+  - research/rel-hyperbolic-hosts-make-witness-powers-host-inner.md
 ---
 
 There exist a group `G` and a subgroup `K normal G` such that
@@ -305,3 +306,34 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
     should read "is not residually finite".
   - *Not done.* The converse "hyperbolic witness kernel ⇒ `Rad_MF(K) = K`" needs `Out(K)` finite
     for hyperbolic Kazhdan `K` (Paulin plus property FA_R). That theorem is not imported verbatim.
+- **2026-09-19, swarm-0917-w17-w17-titz-break (breaker, class kill and reframing).  Status: OPEN.**
+  - New ESTABLISHED import `fa-groups-finitely-many-homs-to-rel-hyperbolic-groups`,
+    with route `-citation`. It quotes verbatim Drutu--Sapir Cor. 4.37 (an FA group has only
+    finitely many non-parabolic homomorphisms to a relatively hyperbolic group, up to conjugacy),
+    their standing assumption and Remark 1.13, and Levitt Thm 1.4.
+  - New ESTABLISHED claim `rel-hyperbolic-hosts-make-witness-powers-host-inner`,
+    with route `-proof`.
+    - *Host-inner theorem.* Let `ψ : K → H` be injective and non-parabolic, with `H` relatively
+      hyperbolic. The maps `ψφ^n` have the same image, so Drutu--Sapir gives `m ≥ 1` and `h ∈ H`
+      with `ψφ^m = c_h ψ`.
+    - Case A: a power `h^j ≠ 1` lies in `ψK`. Then `φ^{mj}` is inner, and the witness is FO-AT (AT).
+    - Case B: no such power. Then `ψ(k)h^j` embeds the index-`m` torus `K ⋊ <t^m>` in `H`.
+    - Either way `H` is not MF.
+  - *Closes the w16 "Not done" item.* A relatively hyperbolic kernel, in particular a hyperbolic
+    one, has `[φ]` of finite order and `Rad_MF(K) = K`. So a hyperbolic-kernel witness exists
+    **iff** `sofic-tf-hyperbolic-kazhdan-group-with-full-mf-radical` holds. By the lacunary node,
+    a kernel quasi-isometric to a lacunary hyperbolic group needs the same claim.
+  - *Class kill.*
+    - The invariant is the class of `[φ]` in `Out_H(ψK) = N_H(ψK)/ψ(K)C_H(ψK)`. It is torsion
+      for every relatively hyperbolic host, and the death step is Drutu--Sapir pigeonhole.
+    - Consequences:
+      - region (IO), including (IO-ext), contains no relatively hyperbolic kernel;
+      - an MF kernel embeds non-parabolically in no MF relatively hyperbolic group;
+      - any design that builds `K` inside a hyperbolic group `H` makes `H` non-MF, which solves
+        `non-mf-hyperbolic-group`;
+      - with `H` torsion-free, it gives (H1), and hence (T2) or (T3) of the w16 trichotomy.
+    - The w16 Rips-torus obligation "`G` not MF" is therefore forced for every hyperbolic host, not
+      just the torus itself.
+  - *Surviving region.* (IO) kernels must be neither relatively hyperbolic nor non-parabolically
+    embeddable in an MF relatively hyperbolic group. Acylindrically hyperbolic kernels and hosts are
+    not covered: Drutu--Sapir finiteness is not available there.
