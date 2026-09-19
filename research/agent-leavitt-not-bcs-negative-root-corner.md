@@ -1215,3 +1215,34 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   overgroup of it inside `Delta_+`. Its commutant `C_R(s_1) E + (1-E) M (1-E)` is not of corner type.
   - A *yes* with a moving centralizer proves `(QC)`.
   - Showing that every Kazhdan subgroup of `Delta_+` has a `Delta_+`-rigid centralizer kills this route.
+* **Two-place (tdlc) envelope of the Toeplitz Haar relation: dead, no new finite models (swarm-0917-w18-w18-nh-pull, 2026-09-19, finite-models).**
+  This attempt targeted the Toeplitz survivor class through `jacobson-haar-relation-lifts-into-bilateral-relation`.
+  - **Identification (elementary, checked by hand).** Put `A = F_2[x, x^(-1)]`, `K_inf = F_2((1/x))` and `K_0 = F_2((x))`.
+    - `A` is a cocompact lattice in `K_inf x K_0`, with fundamental domain `D x F_2[[x]]`. So
+      `T = (K_inf x K_0)^n / A^n ≅ F_2^(Z x n)` is the bilateral space of `bilateral-laurent-haar-relation-is-sofic`.
+    - `A` is dense in `K_0`, and a translation `(0, a)` acts on `T` as the finitely supported translation `(-a, 0)`.
+      So that sofic relation `R'` is the orbit relation of the dense countable subgroup `A^n x| SL_n(A)` of the
+      unimodular tdlc group `H = K_0^n x| SL_n(A)`.
+    - With `U = F_2[[x]]^n` compact open, `R_n` (the Haar relation of `EL_n(J)`) is the `U`-quotient, i.e. the
+      cross-section, relation of `H` on `T`. The transversal is the leaf `D x {0}`, and the compensating
+      translations `[gu]_(>=0)` have bounded support.
+    - The quotient map `T -> T/U = D` carries `R'` onto `R_n` class-surjectively. Its fibres are the
+      `F_2[x]^n`-orbits.
+  - **Death step.** This envelope is exactly the coordinate-projection picture of
+    `bilateral-lift-at-coordinate-projection-is-mirror-cocycle-lift`, so it adds no finite models. Soficity of the
+    `H`-action is soficity of `R_n` by stable orbit equivalence of cross-sections, so the question is only renamed.
+    - The periodic points `T[f]` are `SL_n(A)`-invariant, but `K_0^n` does not preserve them.
+    - Cross-sectioning a periodic model `X_m` along `{y|_[0,w) = 0}` recovers the finite Toeplitz truncation.
+      There, exact `TS = 1` in finite dimension forces `ST = 1`, which kills the head `x_13(1 - ST)`. Breaking `TS = 1`
+      at one boundary vector makes the relator `[x_12(T), x_23(S)] x_13(1)^(-1)` a rank-one transvection, which moves
+      half of the points.
+    - The invariant is stable finiteness of finite-dimensional `J`-modules. It is already recorded on the
+      finite-model side.
+  - **Tensor-swindle variant also dead.** Take the ambient `(X_+ x X_-)^N` with the genuine diagonal bilateral action.
+    This is still sofic by periodic points.
+    - The auxiliary factors carry a genuine `Q`-action, so they act only as a free extension.
+    - The cocycle defect of the induced `beta` sits entirely on the `X_-` factor next to the boundary. It is the same
+      `L_-`-valued boundary defect, and that is exactly (ML).
+    - The infinite tensor product of per-factor inner corrections is not inner, so no swindle absorbs it.
+  - **Status.** The target stays OPEN, and nothing is ESTABLISHED here. The Toeplitz branch remains
+    (HS)/(G2) of `mirror-extension-lifts-over-every-amenable-subgroup`.
