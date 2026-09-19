@@ -226,3 +226,18 @@ a cycle of equations through the window.
     The lower end comes from Theorem LS. The full cover of Theorem LS's
     family uses `2^l` references, which is the vacuous end of the seed form.
     Its partial covers need `t ~ 0.026 * 2^l`, which lies inside the window.
+* **Ev-form (List-Str_t) plus a list-guessing decoder, need `fb418c25`
+  (2026-09-19, swarm-0917-w15-w15-ugc-pull).** **Refuted for every `t`** in
+  `dkkms-ev-list-structure-needs-lists-exponential-in-k`. Take the LS
+  defect-line labelling on a J-instance with kernel rank `k - 8`. On a
+  satisfied defect edge the direction is uniform off the proper subspace
+  `phi^(-1)(phi(L'))`, so a reference other than the branch assignment
+  agrees with the A-label with probability `<= 1/2` (Lemma A). As a result,
+  every t-list with `t < 2^(k-l-11)`, even with an index depending on
+  `(U,V,L')`, leaves ev-dishonest satisfied mass `> 0.110` at value `>= 0.605`.
+  Every instance has outer value `>= 2^(-k)`, so (S_t) of Theorem C_t (held
+  wave-14 node) forces `t < gamma'^3 2^(k/2-l-5/2)`. Any loss `t^(-alpha)`
+  with `alpha >= 1` forces `t < 2^(k-2l-5)`. **Where it dies:** the
+  list-guessing step, against the `2^(-k)` floor. **Still alive:** sources
+  with no near-full-rank kernel (conditional padding transfer), decoders that
+  do not lose `1/t`, and `gamma > 0.11`.
