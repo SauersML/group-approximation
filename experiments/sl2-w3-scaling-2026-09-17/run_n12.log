@@ -18,3 +18,8 @@ seed=['O3', 'E3', 'E3'] tensor=[] load=None n=12 theta=0.3333333333333333pi star
   p=8 regressed (0.22); restored
  restart 2: delta=0.200547 rel=1.5e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=87
   adam p=8 delta=0.228587
+  adam p=32 delta=0.210955
+  adam p=128 delta=0.206991
+  adam p=256 delta=0.206342
+  p=8 regressed (0.229); restored
+ restart 3: delta=0.206342 rel=2.1e-14 w=(np.float64(-2.0), np.float64(2.0)) secs=58

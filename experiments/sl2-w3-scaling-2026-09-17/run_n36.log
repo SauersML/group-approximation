@@ -10,3 +10,4 @@ seed=['O5', 'E5', 'E5'] tensor=[] load=None n=36 theta=0.3333333333333333pi star
   p=2048 delta=0.136066 rel=5.8e-14
  restart 0: delta=0.136066 rel=5.8e-14 w=(np.float64(-6.0), np.float64(6.0)) secs=238
   adam p=8 delta=0.201836
+  adam p=32 delta=0.195875

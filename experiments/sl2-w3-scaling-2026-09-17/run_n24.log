@@ -13,3 +13,7 @@ seed=['O3', 'E3', 'E3', 'O3', 'E3', 'E3'] tensor=[] load=None n=24 theta=0.33333
  restart 1: delta=0.193931 rel=2.7e-14 w=(np.float64(-4.0), np.float64(4.0)) secs=114
   adam p=8 delta=1.414279
   adam p=32 delta=1.414214
+  adam p=128 delta=1.414214
+  adam p=256 delta=1.414214
+  p=8 regressed (1.41); restored
+ restart 2: delta=1.414214 rel=2.5e-14 w=(np.float64(-4.0), np.float64(-2.0)) secs=83
