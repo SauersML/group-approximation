@@ -69,9 +69,9 @@ theorem adm_map {B C : Type*} [CommRing B] [CommRing C] (f : B →+* C) {v w : F
     (fun c hc n hn => ?_) (fun x y hx hy => ?_)
   · obtain ⟨u, rfl⟩ := exists_row_of_mem hc
     change AdmRow _ (f ∘ ((u ⬝ᵥ v) • n))
-    rw [comp_smul, map_dotProduct]
+    rw [comp_smul, RingHom.map_dotProduct]
     exact PaninAffine.admRow_smul (mem_of_row _ _)
-      (show (f ∘ n) ⬝ᵥ (f ∘ v) = 0 by rw [← map_dotProduct, show n ⬝ᵥ v = 0 from hn, map_zero])
+      (show (f ∘ n) ⬝ᵥ (f ∘ v) = 0 by rw [← RingHom.map_dotProduct, show n ⬝ᵥ v = 0 from hn, map_zero])
   · change AdmRow _ (f ∘ (x + y))
     rw [comp_add]
     exact Submodule.add_mem _ hx hy
@@ -137,7 +137,7 @@ noncomputable def tulX_of_elements
     intro B C _ _ f v w t hw ht
     obtain ⟨u, rfl⟩ := exists_row_of_mem ht
     rw [tX_eq E _ (dec_of_adm (by omega) hw) rfl, Xa_natural (E B) (E C) f (hnat B C f),
-      tX_eq E _ (dec_of_adm (by omega) (adm_map f hw)) (map_dotProduct f u v).symm]
+      tX_eq E _ (dec_of_adm (by omega) (adm_map f hw)) (RingHom.map_dotProduct f u v).symm]
   add := by
     intro B _ v w t t' hw ht ht'
     obtain ⟨u, rfl⟩ := exists_row_of_mem ht
