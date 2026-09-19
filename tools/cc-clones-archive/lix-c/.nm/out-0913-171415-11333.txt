@@ -1,0 +1,20 @@
+[job] 17:14:58 acn46 waiting for clone lock
+[job] delta sync 46dd14831..d31bc68b9: 23 files changed
+===== SUMMARY
+host acn46 cores slurm base d31bc68b9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-171415-11333.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3430 oleans
+--- errors (first 80 lines)
+6:✖ [4099/4099] Building GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences (19s)
+8:error: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:50:13: Unknown constant `WithLp.ext_iff.mpr`
+9:error: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:189:21: 'GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences.manuscriptPrintedFaithfulNondegenerateRepresentationEveryUnital' depends on axioms outside the classical allowlist: [sorryAx]
+10:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+15:error: Lean exited with code 1
+18:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,27 @@
+[job] 10:22:46 acn112 waiting for clone lock
+[job] delta sync 180455469..5ae1409d7: 9 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 5ae1409d7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-101309-62570.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3533 oleans
+--- errors (first 80 lines)
+62:✖ [5056/5056] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapCounts (14s)
+64:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapCounts.lean:87:4: `simp` made no progress
+65:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapCounts.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.two_mul_richNeighbourSum_le_dartCount' depends on axioms outside the classical allowlist: [sorryAx]
+66:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+74:error: Lean exited with code 1
+77:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapCounts (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapCounts
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

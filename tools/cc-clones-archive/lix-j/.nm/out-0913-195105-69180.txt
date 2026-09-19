@@ -1,0 +1,22 @@
+[job] 19:51:12 acn112 waiting for clone lock
+[job] delta sync ad637cf5a..5359a1ca6: 4 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 5359a1ca6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-195105-69180.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3475 oleans
+--- errors (first 80 lines)
+21:✖ [1856/1857] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage (9.1s)
+23:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:35:50: Variable name `hα0` is not explicitly referenced.
+53:error: Lean exited with code 1
+74:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

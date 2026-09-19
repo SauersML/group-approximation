@@ -1,0 +1,35 @@
+purged 55 stale artifact sets (source-newer=5, import-newer=50) of 2238 oleans
+[job] acn112 cores=72-79 threads=8 base=f0f56b337d6175d6ffabd0b2ab5a95af99f98f81 mods: GroupApproximation.CharClass.CohomologyKunnethHemiOf GroupApproximation.CharClass.CohomologyKunnethStepOf GroupApproximation.CharClass.CohomologyKunnethZeroOf GroupApproximation.CharClass.CohomologyKunnethStepDeltaOf GroupApproximation.CharClass.CohomologyKunnethInjectiveOf
+ℹ [8767/8817] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8768/8817] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8787/8817] Replayed GroupApproximation.CharClass.CohomologyKunnethSphereOf
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:152:14: 'GroupApproximation.CharClass.isZero_mvAmbientOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:153:14: 'GroupApproximation.CharClass.isZero_cohomology_of_isEmptyOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:154:14: 'GroupApproximation.CharClass.isZero_prod_sphere_succOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8792/8817] Replayed GroupApproximation.CharClass.CohomologyKunnethSplitOf
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:161:14: 'GroupApproximation.CharClass.kunneth_fst_eq_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:162:14: 'GroupApproximation.CharClass.kunnethMap_naturalOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean:163:14: 'GroupApproximation.CharClass.kunnethInjective_of_secondOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8813/8817] Built GroupApproximation.CharClass.CohomologyKunnethHemiOf (24s)
+info: GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean:133:14: 'GroupApproximation.CharClass.KnHemi.exists_pull_prSub_of_resOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean:134:14: 'GroupApproximation.CharClass.KnHemi.pull_bandHE_injectiveOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8814/8817] Building GroupApproximation.CharClass.CohomologyKunnethStepOf (21s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/CohomologyKunnethStepOf.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/CohomologyKunnethStepOf.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/CohomologyKunnethStepOf.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/CohomologyKunnethStepOf.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/CohomologyKunnethStepOf.setup.json --json
+error: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:93:30: Unknown identifier `SphereOddDegree.northPole`
+error: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:115:14: 'GroupApproximation.CharClass.KnHemi.knGen_of_injectiveOf' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:116:14: 'GroupApproximation.CharClass.KnHemi.knGenOf_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.CohomologyKunnethStepOf
+error: build failed
+EXIT=1

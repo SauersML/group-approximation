@@ -1,0 +1,110 @@
+purged 19 stale artifact sets (source-newer=3, import-newer=16) of 2123 oleans
+[job] acn112 cores=64-71 threads=8 base=9c0697aa3e19595f559ab999097cb5648cd35dad mods: GroupApproximation.Analysis.LIXCor4PowersStage GroupApproximation.Analysis.LIXCor4PowersAssembly
+ℹ [3064/3093] Replayed GroupApproximation.Analysis.LIXLimitAlgebra
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3073/3108] Replayed GroupApproximation.Analysis.LIXCor4PowersShape
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:330:14: 'GroupApproximation.LIX.Gen.HasSphereShape.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:331:14: 'GroupApproximation.LIX.Gen.HasSphereShape.pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:332:14: 'GroupApproximation.LIX.Gen.sphereUnitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:333:14: 'GroupApproximation.LIX.Gen.hasSphereShape_sphereStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:334:14: 'GroupApproximation.LIX.Gen.HasSphereShape.connect' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:335:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:336:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3089/3114] Replayed GroupApproximation.Analysis.LIXCor4PowersField
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:667:14: 'GroupApproximation.LIX.Gen.equatorEmb_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:668:14: 'GroupApproximation.LIX.Gen.norm_sq_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:669:14: 'GroupApproximation.LIX.Gen.equatorEmb_dirPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:670:14: 'GroupApproximation.LIX.Gen.extTop_genU2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:671:14: 'GroupApproximation.LIX.Gen.southAtG_eq_northFG' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:672:14: 'GroupApproximation.LIX.Gen.exists_unitary_field_of_nullHomotopy_gauged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8712/8739] Replayed GroupApproximation.Manuscript.NinetyNineProblems.SquarefreeDvd
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:90:14: 'GroupApproximation.NinetyNineProblems.squarefree_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:91:14: 'GroupApproximation.NinetyNineProblems.six_dvd_of_forall_prime_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/SquarefreeDvd.lean:92:14: 'GroupApproximation.NinetyNineProblems.not_forall_prime_dvd_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8721/8739] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8722/8739] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8735/8739] Building GroupApproximation.Analysis.LIXPowersSphere (47s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXPowersSphere.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersSphere.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersSphere.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersSphere.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersSphere.setup.json --json
+error: GroupApproximation/Analysis/LIXPowersSphere.lean:332:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: Lean exited with code 1
+ℹ [8737/8739] Built GroupApproximation.Manuscript.NinetyNineProblems.ProblemLIXStrong (84s)
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:281:14: 'GroupApproximation.NinetyNineProblems.HasK1InjPowerWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:282:14: 'GroupApproximation.NinetyNineProblems.hasK1InjWitness_of_hasK1InjPowerWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:283:14: 'GroupApproximation.NinetyNineProblems.not_k1Inj_of_hasK1InjPowerWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:284:14: 'GroupApproximation.NinetyNineProblems.six_dvd_of_hasK1InjPowerWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:285:14: 'GroupApproximation.NinetyNineProblems.dvd_of_hasK1InjPowerWitness_of_squarefree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:286:14: 'GroupApproximation.NinetyNineProblems.ClimbedPowersOutside' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:287:14: 'GroupApproximation.NinetyNineProblems.LemmaTwoHoldsForSections' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:288:14: 'GroupApproximation.NinetyNineProblems.Corollary4Powers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:289:14: 'GroupApproximation.NinetyNineProblems.hasK1InjPowerWitness_of_climbedPowersOutside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:290:14: 'GroupApproximation.NinetyNineProblems.exists_simple_separable_hasK1InjPowerWitness_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:291:14: 'GroupApproximation.NinetyNineProblems.exists_isSimpleRing_separable_hasK1InjPowerWitness_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:292:14: 'GroupApproximation.NinetyNineProblems.exists_isSimpleRing_separable_hasK1InjPowerWitness_of_lemmaTwo_data' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/ProblemLIXStrong.lean:293:14: 'GroupApproximation.NinetyNineProblems.exists_simple_separable_not_k1Inj_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8738/8739] Building GroupApproximation.Analysis.LIXCor4PowersStage (86s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXCor4PowersStage.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersStage.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersStage.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersStage.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersStage.setup.json --json
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:275:13: typeclass instance problem is stuck
+  Fintype (CharClass.Gen.VIdx n ?m.62)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Fintype` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:419:14: 'GroupApproximation.LIX.Gen.false_of_path_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:420:14: 'GroupApproximation.LIX.Gen.climb_pow_notMem_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:421:14: 'GroupApproximation.LIX.Gen.lixLimit_pow_notMem' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:422:14: 'GroupApproximation.LIX.Gen.continuousMvNEquiv_of_unitary_field' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.LIXPowersSphere
+- GroupApproximation.Analysis.LIXCor4PowersStage
+error: build failed
+EXIT=1

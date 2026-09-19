@@ -1,0 +1,49 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3594 oleans
+[job] cn1123 cores=slurm threads=8 base=4ce7498e30acce7bb36736e65b013a14af07c799 mods: GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection
+ℹ [3664/3725] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4307/4307] Building GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection (139s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:87:36: Application type mismatch: The argument
+  hle hmem
+has type
+  x ∈ TwoSidedIdeal.ker ψ
+but is expected to have type
+  ψ ?m.137 = 0
+in the application
+  (TwoSidedIdeal.mem_ker ψ).mpr (hle hmem)
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:151:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.CoreRingReflection.coreRestrict_surjective`:
+  [Nonempty X]
+  [Finite k]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty X] [Finite k] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:155:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.CoreRingReflection.killsKernelOfDirectlyFinite_coreRestrict`:
+  [Nonempty X]
+  [Finite k]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty X] [Finite k] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:218:21: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreKillsDefectsAndI' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:219:21: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreIZeroIff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:220:14: 'GroupApproximation.ChainCore.CoreRingReflection.restrict_surjective_of_isClosed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:221:14: 'GroupApproximation.ChainCore.CoreRingReflection.printedCoreRingReflection_of_coreModels' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/CoreRingReflection.lean:222:14: 'GroupApproximation.ChainCore.CoreRingReflection.coreRingReflectionStatement_of_coreModels' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection
+error: build failed
+EXIT=1

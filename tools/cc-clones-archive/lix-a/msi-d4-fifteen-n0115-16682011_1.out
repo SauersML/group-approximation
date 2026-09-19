@@ -1,0 +1,54 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=1 syllables=0
+carrier=6 cuts=1 syllables=0
+carrier=7 cuts=8 syllables=8
+carrier=8 cuts=10 syllables=10
+carrier=9 cuts=8 syllables=8
+carrier=10 cuts=8 syllables=8
+carrier=10 words=140 states=44
+carrier=11 cuts=10 syllables=10
+carrier=12 cuts=32 syllables=32
+carrier=13 cuts=7 syllables=7
+carrier=14 cuts=7 syllables=7
+carrier=15 cuts=23 syllables=23
+carrier=16 cuts=11 syllables=11
+carrier=17 cuts=13 syllables=13
+carrier=18 cuts=14 syllables=14
+carrier=19 cuts=10 syllables=10
+carrier=20 cuts=10 syllables=10
+carrier=20 words=688 states=81
+carrier=21 cuts=9 syllables=9
+carrier=22 cuts=7 syllables=7
+carrier=23 cuts=7 syllables=7
+carrier=24 cuts=28 syllables=28
+carrier=25 cuts=9 syllables=9
+carrier=26 cuts=7 syllables=7
+carrier=27 cuts=8 syllables=8
+carrier=28 cuts=10 syllables=10
+carrier=29 cuts=10 syllables=10
+carrier=30 cuts=11 syllables=11
+carrier=30 words=984 states=81
+carrier=31 cuts=9 syllables=9
+carrier=32 cuts=11 syllables=11
+carrier=33 cuts=9 syllables=9
+branch=II
+carrier_states=33
+distinct_augmented_words=1100
+boundary_states=101
+nonempty_q=9
+free_nonempty_q=0
+direct_killed_q=3
+power_killed_q=6
+unresolved_q=0
+DIRECT (0, ((-4, -4),), (4, 4), ((-4,), (), (), (4,), (), (), (), ()))
+DIRECT (0, ((4, 4),), (-4, -4), ((4,), (), (), (4,), (), (), (), ()))
+DIRECT (0, ((4, 4),), (4, 4), ((4,), (), (), (4,), (), (), (), ()))
+POWER (0, ((-9, -9), (-9, -9, -9)), (9,), ((-9,), (), (), (-9,), (), (), (), ()))
+POWER (0, ((-9, -9), (9, 9, 9)), (9,), ((-9,), (), (), (-9,), (), (), (), ()))
+POWER (0, ((-9, -9), (9, 9, 9)), (9,), ((-9,), (), (), (9,), (), (), (), ()))
+POWER (0, ((-4, -4), (-4, -4, -4), (4, 4)), (4,), ((4,), (), (), (4,), (), (), (), ()))
+POWER (0, ((-4, -4), (4, 4, 4)), (-4,), ((-4,), (), (), (4,), (), (), (), ()))
+POWER (0, ((4, 4), (4, 4, 4)), (4,), ((4,), (), (), (4,), (), (), (), ()))

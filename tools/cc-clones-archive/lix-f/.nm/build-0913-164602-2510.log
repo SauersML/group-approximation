@@ -1,0 +1,83 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3261 oleans
+[job] acn112 cores=80-87 threads=8 base=ad33958c0db19ab096c9f565cc4dc43fa4bc617d mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudget
+ℹ [3632/3705] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4289/4292] Replayed GroupApproximation.Manuscript.OneSidedMFRadical.MFRadicalTransport
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:221:14: 'GroupApproximation.MFRadicalTransport.map_mfHomKernel_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:222:14: 'GroupApproximation.MFRadicalTransport.mem_mfHomKernel_of_conj_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:223:14: 'GroupApproximation.MFRadicalTransport.le_mfHomKernel_of_conj_mem_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:224:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_le_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:225:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_bot_of_isOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:226:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_ker_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:227:14: 'GroupApproximation.MFRadicalTransport.mfHomKernel_eq_ker_of_conj_into_embedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:228:14: 'GroupApproximation.MFRadicalTransport.quotientMFRadicalEquivRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:229:14: 'GroupApproximation.MFRadicalTransport.isLEF_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:230:14: 'GroupApproximation.MFRadicalTransport.isOperatorMF_range_of_isLEF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:231:14: 'GroupApproximation.MFRadicalTransport.not_isOperatorMF_of_injective_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:232:14: 'GroupApproximation.MFRadicalTransport.isOperatorMF_iff_isLEF_and_isLEF_iff_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:233:14: 'GroupApproximation.MFRadicalTransport.isDedekindFiniteMonoid_of_injective_nonUnitalRingHom' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:234:14: 'GroupApproximation.MFRadicalTransport.isDedekindFiniteMonoid_of_injective_nonUnitalRingHom_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean:235:14: 'GroupApproximation.MFRadicalTransport.not_isDedekindFiniteMonoid_of_tower_corner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [4292/4292] Building GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudget (15s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:119:65: Application type mismatch: The argument
+  hab
+has type
+  (((elementaryGroup (Fin n) (ClopenCrossedProduct T k)).subtype.comp (elCoreKernel T k n).subtype).codRestrict
+        (glCoreKernel T k n) ⋯)
+      x✝¹ =
+    (((elementaryGroup (Fin n) (ClopenCrossedProduct T k)).subtype.comp (elCoreKernel T k n).subtype).codRestrict
+        (glCoreKernel T k n) ⋯)
+      x✝
+but is expected to have type
+  ↑x✝¹ = ↑x✝
+in the application
+  congrArg Subtype.val hab
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:427:14: 'GroupApproximation.ChainCore.DynamicRankBudget.image_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:428:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isLocallyFiniteGroup_elCoreKernel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:429:14: 'GroupApproximation.ChainCore.DynamicRankBudget.countable_units_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:430:14: 'GroupApproximation.ChainCore.DynamicRankBudget.countable_units' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:431:14: 'GroupApproximation.ChainCore.DynamicRankBudget.exists_mem_ne_one_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:432:14: 'GroupApproximation.ChainCore.DynamicRankBudget.mfHomKernel_eq_ker_of_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:433:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedDynamicRankBudget_of_pieces' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean:434:14: 'GroupApproximation.ChainCore.DynamicRankBudget.printedIntroductionAperiodicSentence_of_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudget
+error: build failed
+EXIT=1

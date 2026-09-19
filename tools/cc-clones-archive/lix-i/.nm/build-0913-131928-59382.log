@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3204 oleans
+[job] acn112 cores=72-79 threads=8 base=28a5bc98ed3ba58064ada2d26ae4b615d44cd7e0 mods: GroupApproximation.GGT.DGOProposition435PrintedCounterexample
+ℹ [2797/2874] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [9805/9805] Building GroupApproximation.GGT.DGOProposition435PrintedCounterexample (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/DGOProposition435PrintedCounterexample.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/DGOProposition435PrintedCounterexample.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/DGOProposition435PrintedCounterexample.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/DGOProposition435PrintedCounterexample.setup.json --json
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:67:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:78:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:114:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:125:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:126:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:181:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:186:12: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:189:12: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:198:14: 'GroupApproximation.GGT.RelHyp.DGOProposition435PrintedCounterexample.fiveRelGenSet_isHyperbolicallyEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:199:14: 'GroupApproximation.GGT.RelHyp.DGOProposition435PrintedCounterexample.pairRelGenSet_isHyperbolicallyEmbedded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean:200:14: 'GroupApproximation.GGT.RelHyp.not_dgoProposition435PrintedStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.DGOProposition435PrintedCounterexample
+error: build failed
+EXIT=1

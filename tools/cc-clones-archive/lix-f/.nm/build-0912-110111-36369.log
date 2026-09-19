@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2332 oleans
+[job] acn112 cores=80-87 threads=8 base=b9399390e5340356b4c8a9b763da761c12bfd756 mods: GroupApproximation.CharClass.OddPShuffle
+ℹ [2164/2164] Built GroupApproximation.CharClass.OddPShuffle (12s)
+info: GroupApproximation/CharClass/OddPShuffle.lean:642:14: 'GroupApproximation.CharClass.tupPermAll_mul_tupDAll' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShuffle.lean:643:14: 'GroupApproximation.CharClass.tupPermAll_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShuffle.lean:644:14: 'GroupApproximation.CharClass.tupTAll_eq_tupPermAll' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShuffle.lean:645:14: 'GroupApproximation.CharClass.tupPerm_tupD' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShuffle.lean:646:14: 'GroupApproximation.CharClass.tupRiffleAll_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShuffle.lean:647:14: 'GroupApproximation.CharClass.tupRiffle_conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2164 jobs).
+EXIT=0

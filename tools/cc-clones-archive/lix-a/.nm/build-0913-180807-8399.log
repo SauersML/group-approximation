@@ -1,0 +1,13 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3858 oleans
+[job] acn112 cores=72-79 threads=8 base=fbd253d4702de3fab73c12ee50426ea991515972 mods: GroupApproximation.Dynamics.TwoEndedMatrixUnits
+ℹ [1797/1797] Built GroupApproximation.Dynamics.TwoEndedMatrixUnits (7.6s)
+info: GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean:159:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedFinitaryShiftUnits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean:160:14: 'GroupApproximation.TwoEndedShift.rho_matrixUnit_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean:161:14: 'GroupApproximation.TwoEndedShift.rho_sum_matrixUnit_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean:162:14: 'GroupApproximation.TwoEndedShift.exists_unit_rho_eq_of_mem_GLfin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1797 jobs).
+EXIT=0

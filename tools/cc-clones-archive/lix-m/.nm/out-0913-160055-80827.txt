@@ -1,0 +1,16 @@
+[job] 16:01:24 acn112 waiting for clone lock
+[job] delta sync 98bdaeee9..1af283387: 3 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 1af283387 log /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.nm/build-0913-160055-80827.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3525 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.DirectlyFiniteReflection
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/DirectlyFiniteCorner.lean
+COMPILED GroupApproximation/Algebra/DirectlyFiniteReflection.lean
+info: GroupApproximation/Algebra/DirectlyFiniteReflection.lean:226:14: 'GroupApproximation.not_killsKernelOfDirectlyFinite_toZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1675 jobs).
+EXIT=0
+PROBE GREEN

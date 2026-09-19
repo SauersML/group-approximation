@@ -1,0 +1,20 @@
+[job] 22:07:46 acn112 waiting for clone lock
+[job] delta sync 19c641d25..477ebb4a1: 39 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 477ebb4a1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-220736-46696.log
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 2079 oleans
+--- errors (first 80 lines)
+8:✖ [2395/2397] Building GroupApproximation.Analysis.LIXPowersSphere (10s)
+10:error: GroupApproximation/Analysis/LIXPowersSphere.lean:332:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+13:error: Lean exited with code 1
+16:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.LIXPowersSphere (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.LIXPowersEquator (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.LIXPowersEquatorChart (replayed or failed)
+--- rebuilt GroupApproximation modules: 5
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Analysis.LIXPowersSphere
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

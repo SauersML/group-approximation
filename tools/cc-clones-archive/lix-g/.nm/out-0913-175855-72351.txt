@@ -1,0 +1,15 @@
+[job] 17:59:06 acn112 waiting for clone lock
+[job] delta sync 465585d5c..1bb3e7bf0: 5 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1bb3e7bf0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-175855-72351.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3555 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.ClopenCrossedProductAlgebra
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean
+ Quot.sound]
+Build completed successfully (4067 jobs).
+EXIT=0
+PROBE GREEN

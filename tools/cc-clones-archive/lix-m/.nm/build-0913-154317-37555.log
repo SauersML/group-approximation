@@ -1,0 +1,8 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2891 oleans
+[job] acn112 cores=64-71 threads=8 base=c71bd5e76a1f76ff42250cf1bb41ae4eda7de1c3 mods: GroupApproximation.Algebra.DirectlyFiniteCorner
+ℹ [1209/1209] Built GroupApproximation.Algebra.DirectlyFiniteCorner (6.3s)
+info: GroupApproximation/Algebra/DirectlyFiniteCorner.lean:134:14: 'GroupApproximation.isDedekindFiniteMonoid_corner' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteCorner.lean:135:14: 'GroupApproximation.matrixUnitCornerHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/DirectlyFiniteCorner.lean:136:14: 'GroupApproximation.map_eq_zero_of_forall_entry_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1209 jobs).
+EXIT=0

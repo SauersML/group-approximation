@@ -1,0 +1,22 @@
+[job] 12:10:26 acn49 waiting for clone lock
+[job] delta sync 10d9b0bf1..5edf273be: 26 files changed
+===== SUMMARY
+host acn49 cores slurm base 5edf273be log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0912-120941-56371.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2432 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LerayHirschColSumOf
+BUILT GroupApproximation.CharClass.LerayHirschLadderClosedOf
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXLimitTrace.lean
+COMPILED GroupApproximation/Analysis/LIXLimitTraceFaithful.lean
+COMPILED GroupApproximation/Analysis/LIXStablyFinite.lean
+COMPILED GroupApproximation/Analysis/LIXStageTrace.lean
+COMPILED GroupApproximation/CharClass/LerayHirschColSumOf.lean
+COMPILED GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean
+COMPILED GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean
+info: GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean:70:14: 'GroupApproximation.CharClass.LH.hasFreeTuple_cpProdOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9048 jobs).
+EXIT=0
+PROBE GREEN

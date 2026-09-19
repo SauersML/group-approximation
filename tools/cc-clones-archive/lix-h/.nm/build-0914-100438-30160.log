@@ -1,0 +1,90 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3720 oleans
+[job] acn112 cores=80-87 threads=8 base=20140a5a0b529491a009895e76eb1ca0ff4a440a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModelMap GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel
+ℹ [3301/3467] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10196/10198] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:474:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10197/10198] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModelMap (27s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModelMap.lean:317:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModelMap.lean:318:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.boundaryWord_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10198/10198] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel (26s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:99:4: failed to synthesize instance of type class
+  HAppend (List M.Dart) (List diagram.toCombMap.Dart) (List diagram.toCombMap.Dart)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:109:4: failed to synthesize instance of type class
+  HAppend (List M.Dart) (List diagram.toCombMap.Dart) (List diagram.toCombMap.Dart)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:130:50: failed to synthesize instance of type class
+  Insert M.Face (Finset diagram.toCombMap.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:130:50: failed to synthesize instance of type class
+  Insert M.Face (Finset diagram.toCombMap.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:134:24: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:134:24: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:135:28: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:135:28: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:149:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  [5, 3, 1, 8, 10, 12] = [] ++ List.take 3 (List.drop 0 (cellDarts diagram iP) ++ List.take 0 (cellDarts diagram iP))
+has type `Prop` which does not have the necessary form.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:151:6: unexpected token '++'; expected command
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:159:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:159:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:164:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:164:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:169:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:169:21: failed to synthesize instance of type class
+  Insert M.Face (Finset M.Face)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:217:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  [3, 10] = [] ++ List.take 1 (List.drop 1 (cellDarts diagram iP) ++ List.take 1 (cellDarts diagram iP))
+has type `Prop` which does not have the necessary form.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:219:6: unexpected token '++'; expected command
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkModel.lean:290:21: 'GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.innerWalkModel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModel
+error: build failed
+EXIT=1

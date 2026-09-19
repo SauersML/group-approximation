@@ -1,0 +1,86 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=1 syllables=0
+carrier=6 cuts=1 syllables=0
+carrier=7 cuts=1 syllables=0
+carrier=8 cuts=1 syllables=0
+carrier=9 cuts=1 syllables=0
+carrier=10 cuts=1 syllables=0
+carrier=10 words=4 states=40
+carrier=11 cuts=1 syllables=0
+carrier=12 cuts=1 syllables=0
+carrier=13 cuts=1 syllables=0
+carrier=14 cuts=1 syllables=0
+carrier=15 cuts=1 syllables=0
+carrier=16 cuts=1 syllables=0
+carrier=17 cuts=1 syllables=0
+carrier=18 cuts=1 syllables=0
+carrier=19 cuts=1 syllables=0
+carrier=20 cuts=1 syllables=0
+carrier=20 words=4 states=80
+carrier=21 cuts=1 syllables=0
+carrier=22 cuts=1 syllables=0
+carrier=23 cuts=1 syllables=0
+carrier=24 cuts=1 syllables=0
+carrier=25 cuts=1 syllables=0
+carrier=26 cuts=1 syllables=0
+carrier=27 cuts=1 syllables=0
+carrier=28 cuts=1 syllables=0
+carrier=29 cuts=1 syllables=0
+carrier=30 cuts=1 syllables=0
+carrier=30 words=4 states=120
+carrier=31 cuts=1 syllables=0
+carrier=32 cuts=1 syllables=0
+carrier=33 cuts=1 syllables=0
+carrier=34 cuts=1 syllables=0
+carrier=35 cuts=1 syllables=0
+carrier=36 cuts=1 syllables=0
+carrier=37 cuts=1 syllables=0
+carrier=38 cuts=1 syllables=0
+carrier=39 cuts=1 syllables=0
+carrier=40 cuts=1 syllables=0
+carrier=40 words=4 states=160
+carrier=41 cuts=1 syllables=0
+carrier=42 cuts=1 syllables=0
+carrier=43 cuts=1 syllables=0
+carrier=44 cuts=1 syllables=0
+carrier=45 cuts=1 syllables=0
+carrier=46 cuts=1 syllables=0
+carrier=47 cuts=1 syllables=0
+carrier=48 cuts=1 syllables=0
+carrier=49 cuts=1 syllables=0
+carrier=50 cuts=1 syllables=0
+carrier=50 words=4 states=200
+carrier=51 cuts=1 syllables=0
+carrier=52 cuts=1 syllables=0
+carrier=53 cuts=1 syllables=0
+carrier=54 cuts=1 syllables=0
+carrier=55 cuts=1 syllables=0
+carrier=56 cuts=1 syllables=0
+carrier=57 cuts=1 syllables=0
+carrier=58 cuts=1 syllables=0
+carrier=59 cuts=1 syllables=0
+carrier=60 cuts=1 syllables=0
+carrier=60 words=4 states=240
+carrier=61 cuts=1 syllables=0
+carrier=62 cuts=1 syllables=0
+carrier=63 cuts=1 syllables=0
+carrier=64 cuts=1 syllables=0
+carrier=65 cuts=1 syllables=0
+carrier=66 cuts=1 syllables=0
+carrier=67 cuts=1 syllables=0
+carrier=68 cuts=1 syllables=0
+carrier=69 cuts=1 syllables=0
+carrier=70 cuts=1 syllables=0
+carrier=70 words=4 states=280
+branch=I
+carrier_states=70
+distinct_augmented_words=4
+boundary_states=280
+nonempty_q=0
+free_nonempty_q=0
+direct_killed_q=0
+power_killed_q=0
+unresolved_q=0

@@ -1,0 +1,174 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3606 oleans
+[job] cn1009 cores=slurm threads=8 base=a9a96021ca4277ea0ff15f7298350fc0f9cdea06 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection
+ℹ [3332/3390] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10191/10280] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPositive
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:142:14: 'GroupApproximation.GGT.VanKampen.PocketPinchLabelledPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:143:14: 'GroupApproximation.GGT.VanKampen.PocketPinchStepPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:144:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledPosStatement_of_labelled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:145:14: 'GroupApproximation.GGT.VanKampen.pocketPinchStepPosStatement_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:146:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledPosStatement_of_stepPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:147:14: 'GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:148:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10228/10280] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinDescentResidualsPos
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean:61:14: 'GroupApproximation.GGT.VanKampen.osinDescentSection_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean:62:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10279/10280] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSection (212s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:199:14: 'GroupApproximation.GGT.VanKampen.SectionPocketFaceSetProperInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:200:14: 'GroupApproximation.GGT.VanKampen.SectionPocketFaceSetProperInput.toInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:201:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketFaceSetProperSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:202:14: 'GroupApproximation.GGT.VanKampen.PocketPinchLabelledSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:203:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledSectionStatement_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:204:14: 'GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_residualsSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:205:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_residualsSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean:206:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyProper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10280/10280] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection (31s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:110:52: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (List.map ?f ?m.252).length
+in the target expression
+  (List.map id (cellDarts X K.source)).length = (cellDarts X K.source).length
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+I : PinchSplit.Input X
+hs : I.Avoids K.faces
+hprop : K.sourceArc.length < (cellDarts X K.source).length
+h1 : (K.pinchSplit I hs).sourceArc.length = K.sourceArc.length
+⊢ (List.map id (cellDarts X K.source)).length = (cellDarts X K.source).length
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    List.map id (cellDarts X K.source)
+  has type
+    List X.toCombMap.Dart
+  but is expected to have type
+    List I.diagram.toCombMap.Dart
+  in the application
+    (List.map id (cellDarts X K.source)).length
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:121:33: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (CyclicArc.darts ?arc).length
+in the target expression
+  (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.darts.length
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+I : PinchSplit.Input X
+hs : I.Inside K.faces
+hprop : K.sourceArc.length < (cellDarts X K.source).length
+h : (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.darts.length
+⊢ (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.length
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    K.sourceArc.darts
+  has type
+    List X.toCombMap.Dart
+  but is expected to have type
+    List I.diagram.toCombMap.Dart
+  in the application
+    K.sourceArc.darts.length
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:124:58: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (List.map ?f ?m.252).length
+in the target expression
+  (List.map id (cellDarts X K.source)).length = (cellDarts X K.source).length
+
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+I : PinchSplit.Input X
+hs : I.Inside K.faces
+hprop : K.sourceArc.length < (cellDarts X K.source).length
+h1 : (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.length
+⊢ (List.map id (cellDarts X K.source)).length = (cellDarts X K.source).length
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    List.map id (cellDarts X K.source)
+  has type
+    List X.toCombMap.Dart
+  but is expected to have type
+    List I.diagram.toCombMap.Dart
+  in the application
+    (List.map id (cellDarts X K.source)).length
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:187:14: 'GroupApproximation.GGT.VanKampen.PocketPinchStepSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:188:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledSectionStatement_of_stepSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:189:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_source_proper' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:190:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplitInside_source_proper' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_avoids' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean:192:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_inside' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection
+error: build failed
+EXIT=1

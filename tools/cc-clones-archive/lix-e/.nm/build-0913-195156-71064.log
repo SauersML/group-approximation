@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4322 oleans
+[job] acn112 cores=64-71 threads=8 base=abebc7b720ed26add8c83129ff59220cc60fcbe3 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+✖ [3826/3826] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:146:8: failed to synthesize
+  Nontrivial (LocallyConstant (↑S.carrier) (ZMod 2))
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:174:95: Application type mismatch: The argument
+  hT
+has type
+  HasKazhdanPropertyT ↥(elementaryGroup (Fin n) (R S))
+of sort `Prop` but is expected to have type
+  Type ?u.23
+of sort `Type (?u.23 + 1)` in the application
+  @KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT hT
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:183:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:184:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_pieces' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+error: build failed
+EXIT=1

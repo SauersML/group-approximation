@@ -1,0 +1,100 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3311 oleans
+[job] acn112 cores=72-79 threads=8 base=0968ba9c3e2cbc1d9520195f46c6daa9ba6d3980 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPositive GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRoseRescue
+ℹ [3295/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10041/10115] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:303:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:304:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10102/10115] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapMonogon
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:249:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.eq_or_mem_of_cycle_eq_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:250:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_simple_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.no_simple_of_oEquivalent_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchPinchedStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchLabelledStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapMonogon.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWrap.not_pocketPinchStepStatement_of_monogons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10103/10115] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRose
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:433:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:434:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:435:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:436:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:437:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.wrapK_not_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:438:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.pocketPinchWrapModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRose.lean:439:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRose.pocketPinchWrapRefutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10114/10115] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRoseRescue (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:127:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescueBoundaryDart_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:128:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescueCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:129:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescue_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:130:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescue_side_norm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:131:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescueK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:132:14: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.rescueK_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean:133:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWrapRoseRescue.wrapRoseRescue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10115/10115] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPositive (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:142:14: 'GroupApproximation.GGT.VanKampen.PocketPinchLabelledPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:143:14: 'GroupApproximation.GGT.VanKampen.PocketPinchStepPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:144:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledPosStatement_of_labelled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:145:14: 'GroupApproximation.GGT.VanKampen.pocketPinchStepPosStatement_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:146:14: 'GroupApproximation.GGT.VanKampen.pocketPinchLabelledPosStatement_of_stepPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:147:14: 'GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean:148:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_residualsPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10115 jobs).
+EXIT=0

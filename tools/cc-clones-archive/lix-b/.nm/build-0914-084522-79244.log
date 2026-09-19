@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3516 oleans
+[job] acn112 cores=80-87 threads=8 base=ac21dbc55d7d70d79d2cafadd18c4046ebfee065 mods: GroupApproximation.GGT.VanKampen.CombMapEulerSmallFaceBudget
+ℹ [1247/1247] Built GroupApproximation.GGT.VanKampen.CombMapEulerSmallFaceBudget (5.2s)
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:69:14: 'GroupApproximation.GGT.VanKampen.CombMap.six_mul_faceCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:70:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_mul_edgeCount_add_six_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1247 jobs).
+EXIT=0

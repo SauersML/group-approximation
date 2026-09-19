@@ -1,0 +1,34 @@
+[job] 17:15:38 acn112 waiting for clone lock
+[job] delta sync d0c0519f6..4db9c6729: 4 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 4db9c6729 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-171531-16914.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3604 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkCopyNoncrossing
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellUnpinched
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/DGOProposition435PrintedCounterexample.lean
+COMPILED GroupApproximation/GGT/HullLemma35Closed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Corner.lean
+COMPILED GroupApproximation/GGT/HullLemma35Expansion.lean
+COMPILED GroupApproximation/GGT/HullLemma35Letter.lean
+COMPILED GroupApproximation/GGT/HullLemma35LocalFinite.lean
+COMPILED GroupApproximation/GGT/HullLemma35PieceGeometry.lean
+COMPILED GroupApproximation/GGT/HullLemma35PieceSides.lean
+COMPILED GroupApproximation/GGT/HullLemma35PieceWords.lean
+COMPILED GroupApproximation/GGT/HullLemma35Printed.lean
+COMPILED GroupApproximation/GGT/HullLemma35Sides.lean
+COMPILED GroupApproximation/GGT/HullLemma35Thin.lean
+COMPILED GroupApproximation/GGT/HullLemma35Transitive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellUnpinched.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkCopyNoncrossing.lean
+COMPILED GroupApproximation/Manuscript/NonMF/RegularNonMFAlgebra.lean
+COMPILED GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean
+COMPILED GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean
+ Quot.sound]
+Build completed successfully (10147 jobs).
+EXIT=0
+PROBE GREEN

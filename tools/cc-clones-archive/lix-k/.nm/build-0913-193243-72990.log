@@ -1,0 +1,28 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3378 oleans
+[job] acn229 cores=slurm threads=8 base=c7217781c279d6d6dc933098964ac27f8c81b43c mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits
+✔ [1747/1748] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerStatement (12s)
+✖ [1748/1748] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits (7.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:44:58: This simp argument is unused:
+  Set.indicator_apply
+
+Hint: Omit it from the simp argument list.
+  simp [S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵_̵a̵p̵p̵l̵y̵,̵ ̵hxU, hxV]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:93:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:158:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerE' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:159:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean:160:14: 'GroupApproximation.SimpleKazhdanSofic.levelSum_mul_eq_mul_levelSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits
+error: build failed
+EXIT=1

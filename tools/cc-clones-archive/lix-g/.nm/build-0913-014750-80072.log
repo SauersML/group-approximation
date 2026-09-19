@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2460 oleans
+[job] acn112 cores=64-71 threads=8 base=cf3dcb3fe822cc2d51702f041671ab6ee21f6550 mods: GroupApproximation.Manuscript.NonMFSentences.LimitingTraceTrivialCharacterSentence
+ℹ [2806/2941] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4393/4393] Built GroupApproximation.Manuscript.NonMFSentences.LimitingTraceTrivialCharacterSentence (14s)
+info: GroupApproximation/Manuscript/NonMFSentences/LimitingTraceTrivialCharacterSentence.lean:191:2: 'GroupApproximation.Manuscript.NonMFSentences.manuscriptSentence_limitingTraceIsTrivialCharacter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/LimitingTraceTrivialCharacterSentence.lean:193:2: 'GroupApproximation.Manuscript.NonMFSentences.manuscriptSentence_compressionOutlineFootnote' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4393 jobs).
+EXIT=0

@@ -1,0 +1,25 @@
+[job] 10:43:18 acn112 waiting for clone lock
+[job] delta sync 9bd2b6027..bf00643d4: 11 files changed
+===== SUMMARY
+host acn112 cores 64-71 base bf00643d4 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-104009-14753.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3511 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/HyperfiniteStageCorner.lean
+COMPILED GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteDensity.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+ Quot.sound]
+Build completed successfully (3051 jobs).
+EXIT=0
+PROBE GREEN

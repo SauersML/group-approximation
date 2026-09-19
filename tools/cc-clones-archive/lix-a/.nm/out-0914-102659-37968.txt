@@ -1,0 +1,31 @@
+[job] 10:30:29 cn1032 waiting for clone lock
+[job] delta sync 4c9455581..e39a422ba: 15 files changed
+===== SUMMARY
+host cn1032 cores slurm base e39a422ba log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-102659-37968.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4115 oleans
+--- errors (first 80 lines)
+28:✖ [2422/2423] Building GroupApproximation.Analysis.VonNeumannSpatialIsomorphism (25s)
+30:error: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:108:0: automatically included section variable(s) unused in theorem `GroupApproximation.SpatialIso.vecMap_apply`:
+37:error: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:111:0: automatically included section variable(s) unused in theorem `GroupApproximation.SpatialIso.vecMap_symm_apply`:
+48:error: Lean exited with code 1
+51:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.VonNeumannSpatialIsomorphism (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.McDuffTensorHyperfinite (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean
+COMPILED GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

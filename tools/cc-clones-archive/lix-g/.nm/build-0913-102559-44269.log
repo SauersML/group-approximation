@@ -1,0 +1,15 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3401 oleans
+[job] acn112 cores=64-71 threads=8 base=0889971f4044a8672fac8c421f74bafc5fbf292d mods: GroupApproximation.GGT.VanKampen.Estimating.CyclicArcSub
+ℹ [3295/3351] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4572/4572] Built GroupApproximation.GGT.VanKampen.Estimating.CyclicArcSub (10s)
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:68:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:69:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_start' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:70:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_length' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:71:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_rotated' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/CyclicArcSub.lean:72:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.sub_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4572 jobs).
+EXIT=0

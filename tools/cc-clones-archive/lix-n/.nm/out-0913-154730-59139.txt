@@ -1,0 +1,15 @@
+[job] 15:49:11 acn112 waiting for clone lock
+[job] delta sync 0c73d2a77..d42e8ab4a: 167 files changed
+===== SUMMARY
+host acn112 cores 64-71 base d42e8ab4a log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-154730-59139.log
+purged 12 stale artifact sets (source-newer=3, import-newer=9) of 3337 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.SubshiftWordGraph
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/SubshiftWordGraph.lean
+info: GroupApproximation/Dynamics/SubshiftWordGraph.lean:126:14: 'GroupApproximation.WordGraph.isCyclicEdge_zero' depends on axioms: [propext, Quot.sound]
+Build completed successfully (885 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3538 oleans
+[job] acn112 cores=72-79 threads=8 base=818ceb66e69cc4a1de02b9e0d2b27932c820934c mods: GroupApproximation.GGT.VanKampen.ListFilterMapABAB
+ℹ [612/613] Replayed GroupApproximation.GGT.VanKampen.ListNoABABLength
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:133:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:134:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [613/613] Built GroupApproximation.GGT.VanKampen.ListFilterMapABAB (25s)
+info: GroupApproximation/GGT/VanKampen/ListFilterMapABAB.lean:61:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_index_of_filterMap_eq_cons' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ListFilterMapABAB.lean:62:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_abab_positions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (613 jobs).
+EXIT=0

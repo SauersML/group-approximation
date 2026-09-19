@@ -1,0 +1,51 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3474 oleans
+[job] acn112 cores=80-87 threads=8 base=5c58e3ab5e2ae7000a3d52e41f29c74129fb1256 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerNoninterleaving
+ℹ [3371/3426] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5158/5279] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:127:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10198/10201] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_of_noncrossing_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:193:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:195:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:196:21: 'GroupApproximation.GGT.VanKampen.cellPocketKeptCellNoncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10201/10201] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerNoninterleaving (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.SectionPocketWalkNoninterleavingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkNoninterleavingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.sectionPocketWalkEuler_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.cellPocketWalkEuler_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:133:14: 'GroupApproximation.GGT.VanKampen.sectionPocketKeptCell_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10201 jobs).
+EXIT=0

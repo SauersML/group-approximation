@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3410 oleans
+[job] acn112 cores=80-87 threads=8 base=ed6cf4b3ea5d64268d679e4290ca82f369c66acc mods: GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe
+ℹ [3295/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4653/4653] Built GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe (19s)
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:161:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_first_repeat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:162:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isClosedDartWalk_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:163:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_innermost_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:164:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isSimpleClosedWalk_of_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4653 jobs).
+EXIT=0

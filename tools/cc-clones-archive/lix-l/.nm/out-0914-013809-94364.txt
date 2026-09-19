@@ -1,0 +1,41 @@
+[job] 01:38:15 acn112 waiting for clone lock
+[job] delta sync 68038d827..174130833: 85 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 174130833 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0914-013809-94364.log
+purged 3 stale artifact sets (source-newer=2, import-newer=1) of 3799 oleans
+--- errors (first 80 lines)
+12:✖ [1992/1995] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianQueries (6.1s)
+14:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:93:37: This simp argument is unused:
+21:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:123:76: Application type mismatch: The argument
+29:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:129:37: Type mismatch
+35:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:186:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.natCast_lt_mul_iff_allWords' depends on axioms outside the classical allowlist: [sorryAx]
+36:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+50:error: Lean exited with code 1
+55:✖ [1995/1995] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem (13s)
+57:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:78:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'SkewMonoidAlgebra.instRing', which is 'noncomputable'
+58:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:81:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.elemG_eq_one_iff`:
+65:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:91:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.elemG_comm`:
+72:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:138:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.shiftComap_apply`:
+79:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.subshiftHomeo_apply_val`:
+86:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:218:2: unsolved goals
+98:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:222:35: This simp argument is unused:
+105:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:317:21: 'GroupApproximation.SimpleKazhdanSofic.printedLanguageReducesToWordProblem' depends on axioms outside the classical allowlist: [sorryAx]
+106:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+108:error: Lean exited with code 1
+112:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianQueries (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianComputability (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeInvariant.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

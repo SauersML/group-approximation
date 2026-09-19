@@ -1,0 +1,37 @@
+[job] 19:47:22 cn1012 waiting for clone lock
+[job] delta sync e2312fb7f..ad637cf5a: 15 files changed
+===== SUMMARY
+host cn1012 cores slurm base ad637cf5a log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-194712-58058.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3474 oleans
+--- errors (first 80 lines)
+8:✖ [1444/1444] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent (69s)
+10:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:48:61: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:49:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+43:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:46:44: This simp argument is unused:
+50:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:47:4: This simp argument is unused:
+58:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:60:2: `simp` made no progress
+59:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:92:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_sum_coeff_mul_unit_zpow' depends on axioms outside the classical allowlist: [sorryAx]
+60:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+62:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:93:14: 'GroupApproximation.SimpleKazhdanSofic.eq_of_sum_coeff_mul_unit_zpow_eq' depends on axioms outside the classical allowlist: [sorryAx]
+63:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+68:error: Lean exited with code 1
+71:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

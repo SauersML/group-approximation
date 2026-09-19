@@ -1,0 +1,15 @@
+[job] 17:15:24 acn112 waiting for clone lock
+[job] delta sync b39b4b5a1..eb25dd606: 18 files changed
+===== SUMMARY
+host acn112 cores 88-95 base eb25dd606 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-171514-15612.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3313 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean
+ Quot.sound]
+Build completed successfully (4060 jobs).
+EXIT=0
+PROBE GREEN

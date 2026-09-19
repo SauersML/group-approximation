@@ -1,0 +1,106 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3308 oleans
+[job] acn112 cores=80-87 threads=8 base=b39b4b5a1956965744772c93ec3775bb25b4cd7c mods: GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps
+ℹ [3626/3748] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4060/4060] Building GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps (15s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:206:4: Function expected at
+  (1 + Matrix.single 0 1 P.e) * compressorMatrix P
+but this term has type
+  ?m.47
+
+Note: Expected a function because this term is being applied to the argument
+  0
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:207:65: unsolved goals
+case «0»
+R : Type
+inst✝ : Ring R
+P : OneSidedInverse R
+⊢ sorry () = P.s
+
+case «1»
+R : Type
+inst✝ : Ring R
+P : OneSidedInverse R
+⊢ sorry () = 0
+
+case «2»
+R : Type
+inst✝ : Ring R
+P : OneSidedInverse R
+⊢ sorry () = 0
+
+case «3»
+R : Type
+inst✝ : Ring R
+P : OneSidedInverse R
+⊢ sorry () = P.e + P.e * P.t
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:28: This simp argument is unused:
+  Matrix.mul_apply
+
+Hint: Omit it from the simp argument list.
+  simp [compressorMatrix, M̵a̵t̵r̵i̵x̵.̵m̵u̵l̵_̵a̵p̵p̵l̵y̵,̵ ̵Fin.sum_univ_succ, Matrix.one_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:46: This simp argument is unused:
+  Fin.sum_univ_succ
+
+Hint: Omit it from the simp argument list.
+  simp [compressorMatrix, Matrix.mul_apply, F̵i̵n̵.̵s̵u̵m̵_̵u̵n̵i̵v̵_̵s̵u̵c̵c̵,̵ ̵Matrix.one_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:65: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp [compressorMatrix, Matrix.mul_apply, Fin.sum_univ_succ,̵ ̵M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:231:19: Function expected at
+  (1 + Matrix.single 0 1 P.e) * compressorMatrix P
+but this term has type
+  ?m.204
+
+Note: Expected a function because this term is being applied to the argument
+  0
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:234:8: declaration uses `sorry`
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:253:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedTwoCopiesConverse' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:255:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedTwoCopiesFourEquations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:257:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedCompressorMarkProducts' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:258:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w0_mul_v1_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:260:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.sum_t_pow_sub_mul_e_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:261:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w1_mul_v0_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:263:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.sum_e_mul_s_pow_sub_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:264:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.w1_mul_v1_eq_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:266:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.compressorMatrix_mul_centralMarkMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:268:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.elementaryMatrix_mul_compressorMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:270:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.compressorMatrix_mul_centralMarkMatrix_lastCol' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:272:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.elementaryMatrix_mul_compressorMatrix_firstRow' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps
+error: build failed
+EXIT=1

@@ -1,0 +1,22 @@
+[job] 03:09:42 acn112 waiting for clone lock
+[job] delta sync 9f8227f46..7157facfd: 326 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 7157facfd log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-030935-26168.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2349 oleans
+--- errors (first 80 lines)
+6:✖ [4504/4504] Building GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented (21s)
+8:error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean:296:12: Unknown identifier `_root_.mul_mem`
+9:error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean:299:12: Unknown identifier `_root_.add_mem`
+10:error: Lean exited with code 1
+13:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/LaurentBinaryLinearMF.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonFiniteMatrices.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonSymbol.lean
+- GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

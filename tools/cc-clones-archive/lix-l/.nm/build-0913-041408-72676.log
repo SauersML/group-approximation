@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2952 oleans
+[job] acn112 cores=72-79 threads=8 base=1a033dfb3faa6c9596a09ca8eebcff1bcf35feb2 mods: GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence
+ℹ [3583/3692] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4102/4102] Built GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence (17s)
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:211:21: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.manuscriptSentence_witnessMFHomKillsSign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:212:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.PrintedWitnessMFHomKillsSign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:213:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gammaEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:214:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gamma_hasKazhdanPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:215:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gamma_countable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4102 jobs).
+EXIT=0

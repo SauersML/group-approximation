@@ -1,0 +1,20 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3614 oleans
+[job] acn112 cores=64-71 threads=8 base=191fc813dbc636df2e1ff32b9b3cce5973c214ca mods: GroupApproximation.Manuscript.NonMF.HullCorollary73
+ℹ [2797/2934] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10257/10257] Built GroupApproximation.Manuscript.NonMF.HullCorollary73 (21s)
+info: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:209:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.isHypEmbeddedOf_merged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:425:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_tower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:436:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_leastAreaLeaves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:447:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_greendlinger' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10257 jobs).
+EXIT=0

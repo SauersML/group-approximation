@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3416 oleans
+[job] acn112 cores=72-79 threads=8 base=2c885772a713d82e59e4ad8c6598ba5b8d66ac9f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellPinchLobes
+ℹ [3337/3477] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10092/10154] Replayed GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:161:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_first_repeat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:162:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isClosedDartWalk_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:163:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.exists_innermost_lobe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean:164:14: 'GroupApproximation.GGT.VanKampen.ClosedWalkInnermostLobe.isSimpleClosedWalk_of_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10154/10154] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellPinchLobes (36s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean:105:14: 'GroupApproximation.GGT.VanKampen.osinLemma94CaseOneCellPinch_of_lobes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10154 jobs).
+EXIT=0

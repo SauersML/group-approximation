@@ -1,0 +1,17 @@
+purged 4 stale artifact sets (source-newer=2, import-newer=2) of 3517 oleans
+[job] acn112 cores=64-71 threads=8 base=492057fb6867dd20a6921298129aee54a4fcb3e4 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell
+ℹ [3295/3351] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10136/10136] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:196:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.targetArc_end_le_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:197:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:198:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10136 jobs).
+EXIT=0

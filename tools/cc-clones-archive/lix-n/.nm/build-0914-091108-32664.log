@@ -1,0 +1,17 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3556 oleans
+[job] acn112 cores=64-71 threads=8 base=724165d616128b6e2ab6d360b170343231f7cb3f mods: GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly
+ℹ [3309/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10164/10164] Built GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly (24s)
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:65:21: 'GroupApproximation.GGT.VanKampen.enclosedBridgeDoublingCellsSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:66:21: 'GroupApproximation.GGT.VanKampen.closedWalkEnclosedSubdiagramSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean:67:14: 'GroupApproximation.GGT.VanKampen.islandModel_enclosedSubdiagramSucc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10164 jobs).
+EXIT=0

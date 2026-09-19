@@ -1,0 +1,46 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3611 oleans
+[job] acn87 cores=slurm threads=8 base=edf5febde6a12f5b23b49303897b08424fdfe4aa mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionPieces
+ℹ [3333/3409] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4922/5196] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:336:14: 'GroupApproximation.GGT.VanKampen.PolygonList.isChain_chunks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:337:14: 'GroupApproximation.GGT.VanKampen.PolygonList.getLast?_flatten_of_mem_getLast?' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:338:14: 'GroupApproximation.GGT.VanKampen.PolygonList.range_flatMap_getD' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:339:14: 'GroupApproximation.GGT.VanKampen.PolygonList.head?_flatten_ne_of_lt' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:340:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:341:14: 'GroupApproximation.GGT.VanKampen.PolygonList.idxOf_eq_succ_or_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:342:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain_idxOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:343:14: 'GroupApproximation.GGT.VanKampen.PolygonList.lt_cutAt_sectionIndex_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9309/9325] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion (21s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:291:21: 'GroupApproximation.GGT.VanKampen.osinLemma94JunctionFaceClause' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:293:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.facePerm_getLast_eq_head_mod' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:295:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.junctionGap_faceOf_ne_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:297:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.listVal_junctionGap_ne_one_of_mem_badJunctions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:299:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_badJunctions_le_sum_boundaryBad' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10227/10227] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionPieces (135s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionPieces.lean:60:14: 'GroupApproximation.GGT.VanKampen.osinLemma94BadJunctionInput_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10227 jobs).
+EXIT=0

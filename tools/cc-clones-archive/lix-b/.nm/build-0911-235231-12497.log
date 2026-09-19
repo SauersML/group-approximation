@@ -1,0 +1,55 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2299 oleans
+[job] acn133 cores=slurm threads=8 base=c2e0c40396657330a25dffda39f52ce0911594c5 mods: GroupApproximation.CharClass.LIXKGenLocalSplitOf
+ℹ [8721/8851] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8775/8876] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8806/8952] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8861/8960] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8862/8960] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8876/8960] Replayed GroupApproximation.CharClass.LIXKRelativeMV
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:270:14: 'GroupApproximation.CharClass.LIXKRelMV.splitDrop_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:271:14: 'GroupApproximation.CharClass.LIXKRelMV.splitKeep_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKRelativeMV.lean:272:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_relCocycle_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8886/8960] Replayed GroupApproximation.CharClass.RelativeSplitField
+info: GroupApproximation/CharClass/RelativeSplitField.lean:84:14: 'GroupApproximation.CharClass.exists_smallAnnOf_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/RelativeSplitField.lean:85:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_relCocycle_splitOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8918/8960] Replayed GroupApproximation.CharClass.RelativeSubspaceIsoOf
+info: GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean:166:14: 'GroupApproximation.CharClass.RelativeSupport.relPullback_bijective_of_absoluteOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean:167:14: 'GroupApproximation.CharClass.RelativeSupport.relPullback_id_bijective_of_subspace_isoOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8939/8960] Replayed GroupApproximation.CharClass.RelativeProdContractibleOf
+info: GroupApproximation/CharClass/RelativeProdContractibleOf.lean:134:14: 'GroupApproximation.CharClass.RelativeSupport.relPullback_slice_bijectiveOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8958/8960] Replayed GroupApproximation.CharClass.LIXKGenLocalSplit
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:114:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_kgen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:115:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_ne_zero_kgen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplit.lean:116:14: 'GroupApproximation.CharClass.KGen.kZeroStepCData_of_localNonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8960/8960] Built GroupApproximation.CharClass.LIXKGenLocalSplitOf (149s)
+info: GroupApproximation/CharClass/LIXKGenLocalSplitOf.lean:100:14: 'GroupApproximation.CharClass.LIXKRelMV.exists_localSplitOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplitOf.lean:101:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_kgenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalSplitOf.lean:102:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_ne_zero_kgenOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8960 jobs).
+EXIT=0

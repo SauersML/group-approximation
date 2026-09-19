@@ -1,0 +1,20 @@
+[job] 23:24:38 acn212 waiting for clone lock
+[job] delta sync 6d5464e9c..3f347c3df: 49 files changed
+===== SUMMARY
+host acn212 cores slurm base 3f347c3df log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-232200-9064.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3534 oleans
+--- errors (first 80 lines)
+25:✖ [10214/10214] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly (239s)
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean:94:56: Application type mismatch: The argument
+35:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean:132:14: 'GroupApproximation.GGT.VanKampen.osinLemma94SameCellPocketInput_of_loopCut' depends on axioms outside the classical allowlist: [sorryAx]
+36:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+38:error: Lean exited with code 1
+41:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,17 @@
+[job] 20:30:52 acn06 waiting for clone lock
+[job] delta sync 3877f8b63..5d22e07f2: 5 files changed
+===== SUMMARY
+host acn06 cores slurm base 5d22e07f2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-202831-88178.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3794 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (replayed or failed)
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+ Quot.sound]
+Build completed successfully (1985 jobs).
+EXIT=0
+PROBE GREEN
