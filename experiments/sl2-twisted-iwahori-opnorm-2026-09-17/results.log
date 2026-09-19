@@ -1,0 +1,22 @@
+# match.py --exact (random determinant patterns), theta = pi/3
+theta=0.3333pi n= 3 det_lb=0.17431 npat=268 best_delta=0.17431 median=1.72546 pat=((3, 0), (1, 2, 0), (3, 0), (1, 0, 2)) secs=43
+theta=0.3333pi n= 4 det_lb=0.08724 npat=300 best_delta=0.74688 median=1.41421 pat=((3, 1), (0, 3, 1), (3, 1), (1, 1, 2)) secs=48
+theta=0.3333pi n= 5 det_lb=0.03490 npat=1323 best_delta=0.81176 median=1.42648 pat=((2, 3), (2, 1, 2), (2, 3), (1, 3, 1)) secs=52
+theta=0.3333pi n= 6 det_lb=0.00000 npat=2349 best_delta=0.84600 median=1.46778 pat=((3, 3), (1, 2, 3), (3, 3), (0, 1, 5)) secs=60
+# match.py --seeded, theta = pi/3 (noise 0 0.05 0.2 0.5, 2 restarts, 250 steps)
+theta=0.3333pi blocks=[F3 S S S S] n=6 seed_delta=0.34730 seed_w=(-1.0, 1.0) best_delta=0.34730 noise=0.0 w=(-1.0, 1.0) all=[0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.7469, 0.7469] secs=51
+theta=0.3333pi blocks=[O3 E3 S S S S] n=12 seed_delta=0.34730 seed_w=(-2.0, 2.0) best_delta=0.22135 noise=0.5 w=(-2.0, 2.0) all=[0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.2243, 0.2214] secs=35
+theta=0.3333pi blocks=[O3 E3 E3] n=12 seed_delta=0.34730 seed_w=(-2.0, 2.0) best_delta=0.13274 noise=0.5 w=(-2.0, 2.0) all=[0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.3473, 0.2413, 0.1327] secs=34
+theta=0.3333pi blocks=[O5 E5 E5] n=36 seed_delta=0.34730 seed_w=(-6.0, 6.0) best_delta=0.17164 noise=0.5 w=(-6.0, 6.0) all=[0.3473, 0.3473, 1.4142, 0.192, 1.4142, 0.1885, 0.1716, 0.1819] secs=1014
+# verify_below_profile.py (certified in float64; witness_O3E3E3.npz is the 800-step run; the n=24 noise-0.8 start fell into a bad sector)
+spec=[O3 E3 E3] n=12 seed=1 noise=0.5 steps=250 relator_error=1.81e-14 dT=0.132704 dU=0.132703 delta=0.132704 profile=2sin(pi/36)=0.174311 w=(-2.0, 2.0)
+spec=[O3 E3 E3] n=12 seed=1 noise=0.5 steps=800 relator_error=1.30e-14 dT=0.132648 dU=0.132647 delta=0.132648 profile=2sin(pi/36)=0.174311 w=(-2.0, 2.0)
+spec=[O3 E3 E3 O3 E3 E3] n=24 seed=2 noise=0.8 steps=500 relator_error=3.63e-14 dT=1.414214 dU=1.414214 delta=1.414214 profile=2sin(pi/36)=0.174311 w=(-4.0, 10.0)
+# match.py --seeded, theta = pi/2 (W_2 block; scalar value 2 sin(pi/24) = 0.26105; the O5 E5 row hit the 1200 s timeout)
+theta=0.5000pi blocks=[S] n=1 seed_delta=0.26105 seed_w=(0.0, -0.0) best_delta=0.26105 noise=0.2 w=(0.0, -0.0) all=[0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.2611] secs=20
+theta=0.5000pi blocks=[F3 S S] n=4 seed_delta=0.26105 seed_w=(-1.0, 1.0) best_delta=0.26105 noise=0.5 w=(-1.0, 1.0) all=[0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.7585, 0.2611] secs=28
+theta=0.5000pi blocks=[O3 E3] n=8 seed_delta=0.26105 seed_w=(-2.0, 2.0) best_delta=0.24197 noise=0.5 w=(-2.0, 2.0) all=[0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.2611, 0.242, 0.2823] secs=30
+# refine_witness.py (restarts from the certified witness, with and without doubling)
+witness(+)[] n=12 noise=0.1 seed=0 steps=400 relator_error=1.3e-14 delta=0.132693 w=(-2.0, 2.0)
+witness(+)[W] n=24 noise=0.1 seed=0 steps=400 relator_error=2.0e-14 delta=0.144215 w=(-4.0, 4.0)
+witness(+)[W] n=24 noise=0.3 seed=1 steps=400 relator_error=2.6e-14 delta=0.174401 w=(-4.0, 4.0)
