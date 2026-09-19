@@ -1,0 +1,120 @@
+# results.txt -- raw outputs behind items 4-6 of higman-j-odometer-models-restrict-to-single-cycle-models
+# (exit 124/143 = the 1200 s timeout; lines before it are complete)
+
+## item 4, exact: satlift.py 0 7 e=... noR on all canonical level-3 classes (exact.sh)
+J 0 K 7 exps [3, 3, 3, 9] R 0 : bases 108, extendable 0, not extendable 108
+J 0 K 7 exps [3, 3, 9, 3] R 0 : bases 72, extendable 0, not extendable 72
+EXT M | 0 1 2 3 4 5 6 7 | 0 1 2 3 4 5 6 7 | 0 3 6 1 4 7 2 5
+FIRST SAT base: M | 0 1 2 3 4 5 6 7 | 0 1 2 3 4 5 6 7 | 0 3 6 1 4 7 2 5
+EXT M | 0 1 2 3 4 5 6 7 | 0 5 2 7 4 1 6 3 | 0 3 6 1 4 7 2 5
+EXT M | 0 1 2 3 4 5 6 7 | 0 5 6 7 4 1 2 3 | 0 3 6 1 4 7 2 5
+EXT M | 0 1 2 3 4 5 6 7 | 0 1 6 3 4 5 2 7 | 0 3 6 1 4 7 2 5
+EXT M | 0 1 2 3 4 5 6 7 | 0 7 6 5 4 3 2 1 | 0 3 6 1 4 7 2 5
+EXT M | 0 1 2 3 4 5 6 7 | 0 3 2 1 4 7 6 5 | 4 7 2 5 0 3 6 1
+J 0 K 7 exps [3, 9, 3, 3] R 0 : bases 88, extendable 6, not extendable 82
+## e=3,9,3,3 at K=8 (exact-3933-k8): timed out
+exit 143 secs 1200
+
+## item 4, J=0 exhaustive for m=(1,1,1) (glift, grid.sh)
+=== m=(1,1,1)
+exponents 3,3,3,3 J 0 base n 3 R 0 first 0 split -1,1,0 : complete after 2s
+level 0 classes 1 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+level 1 classes 8 (lifts tried 8, max free 3) max log2 ord(a,b,c,d) (1,1,1,1)
+level 2 classes 16 (lifts tried 32, max free 4) max log2 ord(a,b,c,d) (2,1,1,1)
+level 3 classes 72 (lifts tried 144, max free 5) max log2 ord(a,b,c,d) (3,2,1,2)
+level 4 classes 544 (lifts tried 1088, max free 7) max log2 ord(a,b,c,d) (4,2,2,3)
+level 5 classes 9728 (lifts tried 19456, max free 9) max log2 ord(a,b,c,d) (5,2,2,3)
+level 6 classes 0 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+NO 0-ODOMETER MODEL AT LEVEL 6
+=== m=(1,1,2)
+
+## item 4, random existence probe (randgrid.sh), deepest level found; blank = probe limit
+m=(1,1,1) e=3,3,3,3 deepest=5
+m=(1,1,2) e=3,3,3,9 deepest=6
+m=(1,1,4) e=3,3,3,81 deepest=7
+m=(1,2,1) e=3,3,9,3 deepest=6
+m=(1,2,2) e=3,3,9,9 deepest=7
+m=(1,2,4) e=3,3,9,81 deepest=8
+m=(1,4,1) e=3,3,81,3 deepest=7
+m=(1,4,2) e=3,3,81,9 deepest=8
+m=(1,4,4) e=3,3,81,81 deepest=9
+m=(2,1,1) e=3,9,3,3 deepest=7
+m=(2,1,2) e=3,9,3,9 deepest=7
+m=(2,1,4) e=3,9,3,81 deepest=8
+m=(2,2,1) e=3,9,9,3 deepest=7
+m=(2,2,2) e=3,9,9,9 deepest=8
+m=(2,2,4) e=3,9,9,81 deepest=9
+m=(2,4,1) e=3,9,81,3 deepest=8
+m=(2,4,2) e=3,9,81,9 deepest=9
+m=(2,4,4) e=3,9,81,81 deepest=
+m=(4,1,1) e=3,81,3,3 deepest=8
+m=(4,1,2) e=3,81,3,9 deepest=8
+m=(4,1,4) e=3,81,3,81 deepest=8
+m=(4,2,1) e=3,81,9,3 deepest=8
+m=(4,2,2) e=3,81,9,9 deepest=8
+m=(4,2,4) e=3,81,9,81 deepest=9
+m=(4,4,1) e=3,81,81,3 deepest=8
+m=(4,4,2) e=3,81,81,9 deepest=10
+m=(4,4,4) e=3,81,81,81 deepest=9
+
+## item 5, J=2 random lifting probe (glift, 32 seeds), tail
+level 8 classes 8384 (lifts tried 8384, max free 16) max log2 ord(a,b,c,d) (6,3,4,4)
+   level-1 swap pattern (a,b,c,d): 0010:1888 0001:6496
+   log2 ord(b,c,d) = (1,2,4): 1780
+   log2 ord(b,c,d) = (1,3,4): 92
+   log2 ord(b,c,d) = (2,2,4): 4908
+   log2 ord(b,c,d) = (2,3,4): 164
+   log2 ord(b,c,d) = (2,4,4): 32
+   log2 ord(b,c,d) = (3,4,4): 1408
+level 9 classes 0 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+   level-1 swap pattern (a,b,c,d):
+NO 2-ODOMETER MODEL AT LEVEL 9
+exit 124
+
+## item 5, satlift.py 2 8 on the first transitive level-2 classes, and base 1 at K=9
+base 1 secs 68 :: EXT M | 0 1 2 3 | 0 3 2 1 | 1 2 3 0 J 2 K 8 exps [3, 3, 3, 3] R 1 : bases 1, extendable 1, not extendable 0 
+base 2 secs 181 :: EXT M | 0 1 2 3 | 2 3 0 1 | 1 0 3 2 J 2 K 8 exps [3, 3, 3, 3] R 1 : bases 1, extendable 1, not extendable 0 
+base 3 secs 59 :: EXT M | 0 1 2 3 | 1 0 3 2 | 2 3 0 1 J 2 K 8 exps [3, 3, 3, 3] R 1 : bases 1, extendable 1, not extendable 0 
+base 1 secs 1201 :: 
+
+## item 6, pq.g: EpimorphismPGroup(H4(3)/<<R>>, 2, cl)
+class 1 actual 1 |P| = 2^4 ord(a,b,c,d) = [ 2, 2, 2, 2 ]
+class 2 actual 2 |P| = 2^10 ord(a,b,c,d) = [ 4, 4, 4, 4 ]
+class 3 actual 3 |P| = 2^19 ord(a,b,c,d) = [ 8, 8, 8, 8 ]
+class 4 actual 4 |P| = 2^32 ord(a,b,c,d) = [ 16, 16, 16, 16 ]
+class 5 actual 5 |P| = 2^52 ord(a,b,c,d) = [ 16, 32, 16, 32 ]
+class 6 actual 6 |P| = 2^84 ord(a,b,c,d) = [ 16, 64, 16, 64 ]
+class 7 actual 7 |P| = 2^141 ord(a,b,c,d) = [ 32, 64, 32, 64 ]
+class 8 actual 8 |P| = 2^231 ord(a,b,c,d) = [ 32, 64, 32, 64 ]
+class 9 actual 9 |P| = 2^395 ord(a,b,c,d) = [ 64, 64, 64, 64 ]
+class 10 actual 10 |P| = 2^672 ord(a,b,c,d) = [ 64, 128, 64, 128 ]
+class 11 actual 11 |P| = 2^1172 ord(a,b,c,d) = [ 128, 128, 128, 128 ]
+exit 124
+
+## item 6, pq4.g (adds b^4, c^4) and pq48.g (adds b^4, c^8)
+pq4.out:b^4=c^4=1: class 1 actual 1 |P| = 2^4 ord(a,b,c,d) = [ 2, 2, 2, 2 ]
+pq4.out:b^4=c^4=1: class 2 actual 2 |P| = 2^10 ord(a,b,c,d) = [ 4, 4, 4, 4 ]
+pq4.out:b^4=c^4=1: class 3 actual 3 |P| = 2^17 ord(a,b,c,d) = [ 8, 4, 4, 8 ]
+pq4.out:b^4=c^4=1: class 4 actual 4 |P| = 2^27 ord(a,b,c,d) = [ 16, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 5 actual 5 |P| = 2^41 ord(a,b,c,d) = [ 16, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 6 actual 6 |P| = 2^61 ord(a,b,c,d) = [ 16, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 7 actual 7 |P| = 2^97 ord(a,b,c,d) = [ 32, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 8 actual 8 |P| = 2^149 ord(a,b,c,d) = [ 32, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 9 actual 9 |P| = 2^242 ord(a,b,c,d) = [ 64, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 10 actual 10 |P| = 2^386 ord(a,b,c,d) = [ 64, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 11 actual 11 |P| = 2^640 ord(a,b,c,d) = [ 64, 4, 4, 16 ]
+pq4.out:b^4=c^4=1: class 12 actual 12 |P| = 2^1055 ord(a,b,c,d) = [ 64, 4, 4, 16 ]
+pq4.out:exit 124
+pq48.out:b^4=c^8=1: class 1 actual 1 |P| = 2^4 ord(a,b,c,d) = [ 2, 2, 2, 2 ]
+pq48.out:b^4=c^8=1: class 2 actual 2 |P| = 2^10 ord(a,b,c,d) = [ 4, 4, 4, 4 ]
+pq48.out:b^4=c^8=1: class 3 actual 3 |P| = 2^18 ord(a,b,c,d) = [ 8, 4, 8, 8 ]
+pq48.out:b^4=c^8=1: class 4 actual 4 |P| = 2^28 ord(a,b,c,d) = [ 16, 4, 8, 16 ]
+pq48.out:b^4=c^8=1: class 5 actual 5 |P| = 2^44 ord(a,b,c,d) = [ 16, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 6 actual 6 |P| = 2^67 ord(a,b,c,d) = [ 16, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 7 actual 7 |P| = 2^107 ord(a,b,c,d) = [ 32, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 8 actual 8 |P| = 2^166 ord(a,b,c,d) = [ 32, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 9 actual 9 |P| = 2^271 ord(a,b,c,d) = [ 64, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 10 actual 10 |P| = 2^438 ord(a,b,c,d) = [ 64, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 11 actual 11 |P| = 2^728 ord(a,b,c,d) = [ 64, 4, 8, 32 ]
+pq48.out:b^4=c^8=1: class 12 actual 12 |P| = 2^1209 ord(a,b,c,d) = [ 128, 4, 8, 32 ]
+pq48.out:exit 124

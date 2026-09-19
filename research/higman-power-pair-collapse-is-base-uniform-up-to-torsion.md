@@ -288,3 +288,27 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     subgroup that fixes level `J` (Reidemeister–Schreier). Or search non-uniform tree models,
     where `a` is level-transitive on some subtrees but stalls on others. Killing every `J` would
     not by itself exclude infinite order.
+- **w19-053 (question (a): J-odometer models and 2-quotients).** Landed
+  `higman-j-odometer-models-restrict-to-single-cycle-models` (claim and proof route).
+  - Proved:
+    - subtree reduction: a model with `a : x -> x + 2^J` restricts, below each level-`J` vertex, to a
+      single-cycle model of `H(3, 3^(m_b), 3^(m_c), 3^(m_d))` (the Reidemeister-Schreier step on the tree),
+      where the `m`'s are the level-`J` orbit lengths;
+    - the exponents matter only mod `2^(k+1)`;
+    - the cap: `x^y = x^3` and `y^(2^m) = 1` give `ord(x) | 2^(m+2)`, so in a finite 2-quotient
+      `ord(a) <= 4 ord(d) <= 16 ord(c) <= 64 ord(b)`, and `c^4 = 1` forces `ord(a) <= 64`.
+  - Computed:
+    - exact SAT walls `w_0(3,3,3,9) = w_0(3,3,9,3) = 6`, and a table of lower bounds for the twisted groups;
+    - `J = 2` reaches level 8. A GAP-checked transitive model of degree 256 and order `2^41` has
+      `ord(a,b,c,d) = (64,4,4,16)`. The random probe finds nothing at level 9, but this is not exhaustive.
+    - GAP's 2-quotient algorithm on `H4(3)/<<[a,c]^2>>`: the class-11 quotient `P_11` (order `2^1172`) has
+      `ord(a) = 128`, twice the best tree model. `ord(a)` first doubles at classes `1, 2, 3, 4, 7, 9, 11`.
+      With `b^4 = c^4 = 1` it stops at 64. With `b^4 = c^8 = 1` it reaches the cap 128 at class 12.
+  - Consequence: the odometer walls (`J <= 2`) come from the models sitting on the cap with `ord(c) = 4`,
+    not from `a`. They are no evidence for torsion of `a`.
+  - Open:
+    - whether `ord(a)` in `P_cl` is unbounded, which is equivalent to `a` having infinite order in the
+      pro-2 completion;
+    - a conceptual proof of any wall; `5 + 2J` stays a guess.
+  - Next: find a GAP-checkable tree model or explicit finite 2-group with `ord(a) = 128`, which needs
+    `ord(c) >= 8`. Then look for a self-similar pattern in the doubling classes that can be proved.
