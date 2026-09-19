@@ -57,3 +57,35 @@ then the decoder `sigma`:
     needs an equivariant, continuous trivialization of the fibre bundle `sigma : A^G -> A^G` with a fixed
     subshift as fibre. No local construction from `(tau, sigma)` alone is known to do this.
   - **Falsifiable test.** A non-surjunctive group on which no strict pair, over any alphabet, has a measure-preserving post-surjective decoder would refute this claim.
+- **2026-09-19 (swarm-0917-w15-w15-gs-last1, reframing). Wreath form, extension criterion and shape of `Y`; the w6
+  death point is removed. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `free-compatible-wreath-actions-are-bernoulli-absorptions`.
+    - `A^G` absorbs iff, for some (equivalently every) group `H` of order `|A|`, some continuous action of `H^G` on
+      `A^G` compatible with the shift, `lambda_g(k * u) = (g.k) * lambda_g u`, is free and not transitive.
+    - The decoder and the equivariant trivialization come for free. Quotient by the coordinates off `1`, cut a
+      clopen fundamental domain for the remaining free `H`-action, and spread it by the shift.
+    - No commutation is needed, since `H` may be nonabelian. No given decoder is needed.
+    - The strict automaton of an absorption is the orbit map `k -> k * c` of a constant. So `Gottschalk => no
+      absorption` is one line.
+  - *The w6 death point is not an obstruction.* w6 died at trivializing the fibres of the decoder `sigma` of the
+    given pair, and those fibres depend on `x`. The fibres that need trivializing are orbits of a compact group, and
+    that trivialization is automatic. The absorption's decoder is manufactured from the action and need not be
+    `sigma`.
+  - *Exact reduction (extension criterion).* This claim holds at `G` iff, at some alphabet size `n`, some strict
+    `tau` on `A^G` (`|A| = n`) has this property: the free transitive action `k * tau(u) = tau(k . u)` that it
+    transports onto `X = tau(A^G)` extends to a free, shift-compatible, continuous action of `H^G` on all of
+    `A^G`. What remains is freeness off the nowhere-dense image. Continuity at `X` and compatibility are the
+    constraints; commutation and decoder fibres are not.
+  - *Class kill (necessary shape of `Y`).* In every absorption:
+    - `Psi_* mu = mu x nu`, with `nu` of full support and atomless;
+    - `Y` is a Cantor set whose only finite orbit is the fixed point `y_0`;
+    - `Y` is conjugate to an SFT and is an equivariant retract of `A^G`, hence strongly irreducible.
+
+    So every construction whose absorbed factor is finite, countable, has an isolated point, has a second finite
+    orbit (a periodic orbit or a finite `G`-set), or splits into two closed invariant pieces dies. This covers any
+    "absorb a finite register or a periodic orbit" design, and the one-extra-bit and track-doubling variants.
+  - *What would close it.* A construction, from an arbitrary strict `tau`, of a free compatible extension of the
+    image action, possibly after passing to `A^k` and `tau x id`. No such construction is recorded.
+    - The obvious candidate, extension through a decoder, is the w6 pointwise-additive lift. It is compatible, but
+      it fails to be an action off `X` for nonaffine decoders.
+    - An extension that does not factor through any decoder is the untried direction.
