@@ -8,6 +8,8 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.SkOpen.HyperbolicHo
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/SkOpen/HyperbolicHost.lean` is red on main at 463f140e0d (trusted batched probe, Slurm job 1398755). It is not in the root closure.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: SK). Owner: ms-sk-open.
 
+**Repair landed, unprobed.** 3c57ee4c3b: SK SkOpen/HyperbolicHost: route clause (b) of fc84c012b409 through the current NM open sta. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```

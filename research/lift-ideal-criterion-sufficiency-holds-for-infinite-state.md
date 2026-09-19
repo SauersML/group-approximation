@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **Status.**
-- Item 1 is **ESTABLISHED** (lane bh-invent-03, 2026-09-19). It re-reads the proof of the finite-state theorem step
+- Item 1 is **ESTABLISHED** (lane bh-invent-03, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS; items 2(a) and 2(b) also PASS). It re-reads the proof of the finite-state theorem step
   by step; not reviewed.
 - Item 2(a) is **ESTABLISHED**.
 - Item 2(b) is a **cautionary computation**: the naive infinite-state lamplighter is not faithful.
@@ -67,3 +67,22 @@ infinite-state hosts, which hard word problems require, are not excluded by the 
   factors or free generators, and keep every relator inside a contracting part.
 - **The next test.** A faithful self-similar `A * B`, or an HNN extension, with `A` contracting (carrying all
   relators) and `B` free with infinite-state sections.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS
+
+- **Item 1: correct.** I had flagged the same point in the review of 354df8d20d, before this node landed.
+  - Sufficiency (§§0, 1a, 2, 3 of the proof node) never uses section-closure of `S` or step (1c).
+  - The one step to recheck is the normal form in (2c). With word-valued sections, `(S′)` splits `L_v(s)` into
+    cone copies `L_(vx)(W)` of words, and `L_(vx)` is multiplicative on words.
+  - So the normal form `h L_(v_1)(s_1) ⋯ L_(v_m)(s_m)`, with letters `s_i ∈ S^(±1)`, is still reached.
+  - The rest of (2c) uses only faithfulness: an element of `G` acting as an element of `V_d` is finitary.
+  - `(S)` and `(C)` are finitely many relations, and Lemma 5.12 needs only that `S` generates.
+- **Item 2(a): correct.**
+  - The `φ`-core of `φ(2k) = 3k` is trivial, since `(3m/2)Z ⊆ mZ` fails for every `m ≠ 0`. So the action is
+    faithful.
+  - The iterated sections of `t` are `t^0, t^3, t^6, t^9, …`, so there are infinitely many states.
+  - `N = 1`. This is consistent with Scott's theorem, so nothing new is claimed for it.
+- **Item 2(b): correct.** The lamp subgroup is normal, lies in `dom φ`, and is `φ`-invariant. So it lies in the
+  kernel of the action.
+
+**Verdict: PASS.**
