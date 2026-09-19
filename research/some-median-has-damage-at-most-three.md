@@ -3,13 +3,25 @@ rg: 2
 id: some-median-has-damage-at-most-three
 kind: claim
 title: Every descendant dissection of a rank-three unimodular cell has a median that resolves each straddling piece in at most three pieces
+refuted_by:
+  - no-median-need-have-damage-at-most-three
 distinct_from:
   edge-split-descendant-dissections-have-single-cut-first-splits: that asked for damage two (SC) and is refuted; this asks for damage at most three (SC₂).
   median-cut-damage-is-born-at-parallel-splits: that classifies damage three and shows larger damage is born only at parallel splits; this is the existence statement that would give tree domination a termination potential.
   edge-split-descendant-dissections-are-tree-dominated: that is tree domination (TD); this is a candidate local invariant for the termination of bh-free-54's least-damage recursion, not TD itself.
 ---
 
-**OPEN** (lane bh-major-mcg-2, 2026-09-19). Conjecture SC₂, with evidence from three
+**REFUTED** (2026-09-19) by `no-median-need-have-damage-at-most-three`.
+- **The counterexample.** A 17-piece descendant dissection of `Δ` in which every median
+  has a straddler of least damage `4`. bh-free-54 found it (acb6bede1), and
+  bh-major-mcg-2 re-checked it exactly.
+- **Frequency.** SC₂ fails at 6 of 18018 rank-3 recursion nodes and 10 of 36670 rank-4
+  nodes.
+- **Tree domination is untouched.**
+
+The original status follows.
+
+Original status: **OPEN** (lane bh-major-mcg-2, 2026-09-19). Conjecture SC₂, with evidence from three
 nodes. A full test is running (bh-free-54's damage logging over the rank-3 and rank-4
 recursion nodes).
 
