@@ -87,7 +87,7 @@ theorem k2PolyDeg_eq_one_of_mem_P {K : Finset I} {m L n : I} (hmL : m ≠ L) (hm
   obtain ⟨c, s, hs, v, hv, rfl⟩ := k2PolyDeg_P_decomp hmL hmn hLn hLK hg
   have hproj := (mem_K2_iff _).mp hK2
   have hfix : ∀ j : I, j ∈ K → unitVec (R := Polynomial (ZMod p)) L j = 0 := fun j hj => by
-    rw [unitVec_apply, if_neg (fun e => hLK (e ▸ hj))]
+    rw [unitVec_apply, if_neg (fun e : j = L => hLK (e ▸ hj))]
   have hS : act s (unitVec L) = unitVec L :=
     act_eq_self_of_rootSpan (p := fun i j => i ∈ K ∧ j ∈ K) (fun _ j hij => hfix j hij.2) hs
   have hV : act v (unitVec L) = unitVec L :=

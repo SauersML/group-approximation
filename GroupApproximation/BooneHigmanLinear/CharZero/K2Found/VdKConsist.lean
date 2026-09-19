@@ -23,6 +23,13 @@ Write `i = i_r ε_r + i_s ε_s + l` with `l_r = l_s = 0`, and `y_r = [x(l)_r, x_
   `x_s(i_s j) y x_r(i_r j)`; the three factors commute pairwise.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

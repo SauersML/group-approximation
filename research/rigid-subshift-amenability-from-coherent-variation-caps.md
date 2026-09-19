@@ -129,6 +129,16 @@ finite-dimensional cube complexes via Brodzki–Campbell–Guentner–Niblo–Wr
 
 ## If (RA) (or just (RA′)) holds: consequences for BH
 
+> **Scope (2026-09-19).** (RA) as stated is **refuted** on main by a non-free example with a
+> non-amenable point stabilizer (`rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`; the group
+> there is exact). What survives is
+> - (RA′): a minimal, topologically free, rigid subshift forces an exact group;
+> - (RA_free): a free, minimal, rigid subshift action is amenable.
+>
+> Read "(RA)" below as one of these, as stated at each use.
+
+The consequences below need only (RA′) at `G`.
+
 Take `G` from `decidable-residually-finite-non-exact-group-exists`. Every `Λ ⊇ G` is non-exact
 (exactness passes to subgroups, recalled), so no `Λ ⊇ G` has any topologically amenable action.
 - **Minimal-subshift group route (Track A) and its CARRIER.** No minimal, topologically free, rigid SFT exists over an

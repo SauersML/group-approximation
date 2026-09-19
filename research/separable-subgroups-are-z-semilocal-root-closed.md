@@ -9,7 +9,7 @@ requires:
   - finite-root-prime-splittings-never-create-z-semilocal
   - bounded-root-primes-close-under-extensions-and-geometry
 distinct_from:
-  finite-root-prime-splittings-never-create-z-semilocal: that pushes Z_(S) into a vertex group when the edge inclusions have finitely many relative root primes; this does it when the vertex groups are separable, whatever the edge inclusions, and so settles route (b) outside non-separable splittings.
+  finite-root-prime-splittings-never-create-z-semilocal: that puts the smaller copy Z_(S ∪ P) in a vertex group when the edge inclusions have finitely many relative root primes P, while Z_(S) itself may climb a ray at primes of P; this does it when the vertex groups are separable, whatever the edge inclusions, and so settles route (b) outside non-separable splittings.
   bounded-root-primes-close-under-extensions-and-geometry: that is a census by root counting; this is a profinite mechanism, so it applies to separable subgroups of any group and to every residually finite quotient.
   z-semilocalized-embeds-in-fp-rf-group: that records that 1 in Z_(S) has S-order in every finite quotient; this turns that fact into uniqueness of Z_(S)-structures and root-closure of separable subgroups.
 ---
