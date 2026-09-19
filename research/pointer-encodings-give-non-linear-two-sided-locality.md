@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 **Status.**
-- Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; not reviewed; no priority claimed).
+- Items 1–4 are ESTABLISHED (lane bh-ra-t2, 2026-09-19; elementary; no priority claimed; Referee bh-ref-q12 2026-09-19: items 1, 3 and 4 PASS, item 2 PASS with a repair to the padding argument, and the Caveat to item 4 is wrong as stated; see the Referee section).
 - Item 5 is the sharpened open crux. Item 6 is heuristic and labelled so.
 - Recalled inputs, not re-proved:
   - linear groups over fields satisfy the minimal condition on centralizers (Wehrfritz);
@@ -196,3 +196,99 @@ restriction to single-pointer data does.
   finite quotients carry left and right multiplications as commuting bounded-radius cellular automata.
 - The three known mechanisms (convolution in characteristic `p`, pointers over lamps, products) all produce
   exact groups. A fourth mechanism is needed.
+
+## Referee (bh-ref-q12, 2026-09-19): items 1, 3 and 4 PASS; item 2 repaired; the Caveat's example is wrong
+
+**Item 1: correct.**
+- *The four rules.* With `(f,k)(f′,k′) = (f·σ^k f′, k+k′)`:
+  - right multiplication by `(δ_a,0)` multiplies the pointer cell on the right;
+  - right multiplication by `(1,1)` moves the pointer;
+  - left multiplication by `(δ_a,0)` multiplies the origin on the left;
+  - left multiplication by `(1,1)` gives `(σf, k+1)`.
+- *Commutation on all configurations*, with any number of pointers:
+  - two shifts commute;
+  - rotating both tracks moves pointers with their values;
+  - the origin rule and the pointer shift act on different tracks;
+  - at an origin cell with a pointer, `(a v) b = a (v b)`.
+- *The lift group is `F ≀ Z`.* It is the image of the free group in `∏_n Q_n`, acting by right multiplication. That
+  action factors through `F ≀ Z → F ≀ Z/ℓ_n`, which folds the lamps mod `ℓ_n` and is a homomorphism because distinct
+  coordinates commute. Faithfulness gives injectivity, since `ℓ_n → ∞`.
+- *`A_5 ≀ Z` is not virtually linear.* The trivial-`K` case: an `x` in the product of `k` copies that lies in `N`
+  has `[x, y] ∈ N ∩ A_5^((i)) = 1` for every `y` in copy `i`. Since `Z(A_5) = 1`, this gives `x = 1`. So `A_5^k`
+  embeds in a fixed finite quotient, which is impossible. The centralizer chain then violates Wehrfritz's minimal
+  condition.
+  - Stronger, by the same normal-subgroup analysis and the reduction in item 4: `A_5 ≀ Z` is not linear over **any**
+    commutative ring.
+    - Every nontrivial normal subgroup contains `⊕A_5`, and there is no nontrivial nilpotent normal subgroup.
+    - So an embedding in `∏_i GL_d(K_i)` would have some faithful factor.
+  - Hence the quotients `A_5 ≀ Z/ℓ_n` are not uniformly linear over commutative rings. This is consistent with
+    "non-linear on both sides".
+- *Soficity: correct.* The prefix-OR track uses only nearest-neighbour constraints along the loop, and the origin
+  and last-cell marks that the skeleton provides. It enforces "at most one pointer" by `p(i) ⇒ ¬b(i−1)`, and "at
+  least one" by `b = 1` at the last cell. Forgetting `b` is a factor map, so the single-pointer layer is sofic.
+  - The rules preserve it and have local inverses, so they are automorphisms of it.
+  - Two footnotes. On an infinite loop of a degenerate skeleton configuration, the layer allows at most one pointer.
+    "Not of finite type" is asserted but not proved in the node.
+  - It is true when loops are unboundedly long, by gluing: two single-pointer labels with pointers far apart agree
+    on every window of a two-pointer label.
+
+**Item 2: correct after one repair.**
+- *Padding with a blank that every rule fixes* does not work for pointer encodings. The rules "rotate along the loop"
+  and "move the pointer" act on the whole cycle of length `ℓ`. On a padded loop of length `L > ℓ` they realize
+  `Z/L`, not `Z/ℓ`, and rotating a sub-arc cyclically is not local.
+- *The repair.* Index both residual chains by the loop length itself. This is already the case here: the pointer
+  encoding uses `Z/ℓ_n`, and the linear pair uses `A_ℓ = M_2(F_2)[t]/(t^ℓ − 1)`. Parallel tracks then need no
+  padding.
+- So `GL_2(F_2[t^(±1)]) × (A_5 ≀ Z)` is in the class. State "closure under products" for encodings on a common
+  loop-length sequence.
+- *The plaquette construction is correct.* The horizontal and vertical transports commute elementwise, and right
+  multiplications commute with both.
+
+**Item 3: correct.**
+- Restriction to the invariant admissible set is a homomorphism.
+- On two-pointer data at distance `m`, the operations `ρ_a` and `ρ_t^m ρ_b ρ_t^(−m)` hit a common cell. So their
+  commutator is nontrivial when `[a,b] ≠ 1`, whereas the corresponding lamps commute in `F ≀ Z`. So `Γ̃` does not
+  factor through `F ≀ Z`.
+- *The logic is right.* Exactness passes to subgroups, not to quotients, so the exactness of the ambient group of
+  automata does not constrain the lift group.
+- *Wording.* The loops live in a 2-dimensional skeleton, so the ambient group is `Aut(B^(Z²))`, or `Aut(B^Z)` only
+  after coding. Salo's universality theorem (arXiv:1808.08697) concerns one-dimensional reversible automata.
+  Say which is meant.
+
+**Item 4: correct (checked closely).**
+- *Centralizer.* The centralizer of a regular `H` in `Sym(O)` is the right regular action, isomorphic to `H`.
+  So each `Γ_n` embeds in `H_n ≤ GL_d(R_n)` by a fixed isomorphism.
+- *Ultraproduct.* `∏_U GL_d(R_n) = GL_d(∏_U R_n)`, since invertibility and inverses pass entrywise almost
+  everywhere. The hypothesis "nontrivial for all large `n`" puts each `g ≠ 1` outside the kernel on a set in `U`.
+  So `Γ ↪ GL_d(R)` with `R` commutative.
+- *Exactness.*
+  - The finitely generated subring `R_0` (entries of the generators and their inverses) is Noetherian, so its
+    nilradical `J` is nilpotent.
+  - `1 + M_d(J)` is nilpotent, via the filtration by `1 + M_d(J^i)`.
+  - `R_0/J` embeds in `∏_i Frac(R_0/p_i)` over its finitely many minimal primes.
+  - So `Γ` is nilpotent-by-(subgroup of a finite product of `GL_d(fields)`). That is exact by Guentner–Higson–Weinberger
+    and closure of exactness under extensions (Kirchberg–Wassermann).
+- *Consequence.* In regular designs, T2 needs transport groups that are not uniformly linear over commutative
+  rings. Item 1's quotients are not (see above).
+
+**The Caveat to item 4 is wrong as stated.**
+- *Not a faithful non-regular action.* `U_3(F_q)` acting on the cosets of an index-`p` subgroup `Z_0` of its center
+  has kernel `Z_0`, since `Z_0` is central, hence normal. So its image `U_3(F_q)/Z_0` acts **regularly**. It is
+  not a faithful transitive non-regular example.
+- *"Minimal faithful degree unbounded" is true only over fields.* Over commutative rings, the extraspecial group
+  `U_3(F_q)/Z_0`, of order `p^(1+2f)`, embeds in `GL_3`.
+  - Take `R′ = F_p[v_1..v_f, w_1..w_f, z]` modulo `v_iv_j`, `w_iw_j`, `v_iw_j − δ_ij z` and `z·(v, w, z)`.
+  - Put `x_i = I + v_i E_12` and `y_j = I + w_j E_23`. Then `[x_i, y_j] = I + δ_ij z E_13`.
+  - This works for `p` odd; for `p = 2`, adjust with the quadratic form.
+- *So the example shows nothing* about extending item 4 beyond regular designs. Whether item 4 extends to
+  transitive designs, where the centralizer is a section `N_H(H_x)/H_x`, is **open**. A genuine test needs sections
+  of uniformly linear groups that are not uniformly linear over commutative rings.
+
+**Item 6(b).** "Linear growth of the Schreier graphs, hence virtually cyclic lifts" is an unproved step inside a
+heuristic; keep it labelled as such.
+
+**Verdict.**
+- Items 1, 3 and 4: PASS.
+- Item 2: PASS, with the padding argument replaced by a common loop-length indexing.
+- The Caveat to item 4 is to be corrected or withdrawn.
+- No literature check beyond the node's own citations (Salo 1709.00858, 1808.08697, 2305.17946).
