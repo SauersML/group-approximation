@@ -1,0 +1,6 @@
+e=5 mismatches 0
+e=6 mismatches 0
+e=7 mismatches 0
+e=8 mismatches 0
+e=9 mismatches 0
+e=10 mismatches 0

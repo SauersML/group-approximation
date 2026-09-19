@@ -1,0 +1,11 @@
+e=7 K=4 |Bbar| = 8192 = 2^13
+exact verification of rows and tables: OK
+BFS radius 68
+ord b = 32, ord(b d) = 32
+beta'' != 1 for 0 of 8192 beta; 1 distinct values
+  beta'' value 0 (b^0): 8192 times
+(b d)'' = 0 = b^0
+central defects: 0 of 0
+smallest section-closed Bbar_0 containing all beta'': order 1, index 8192
+<b^64, d^64>: order 1, contains all beta'': True, b^64 central: True
+<b^64, d^64> closed under swap and sections: True

@@ -164,3 +164,18 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
   - Next: describe `<<R>>_{Q_B}`, which is no longer inside `A` for `e >= 9`, together with a
     subgroup `A · Bbar_0` containing it. Separately, decide reducibility of `Gamma(3,2^e)` for
     `e >= 8`.
+- **w14-053 (question (a): relative Freiheitssatz at e = 9, reducibility at e = 8, 9).** Landed
+  `higman-b-twist-hypothesis-holds-exactly-for-e-at-most-8` (claim and proof route).
+  - `Bbar_e = B/Lambda_B` is a finite self-similar group on the `m`-ary word tree, and is computed
+    exactly with every level verified. Its order is `2^6, 2^9, 2^13, 2^17, 2^22` for `e = 5..9`.
+    So `Gamma(3,256)` and `Gamma(3,512)` are reducible lattices.
+  - w13's twist hypothesis `(H_e)` holds if and only if `e <= 8`: all `beta'' = 1` at `e = 7, 8`.
+    So `Abar_e` embeds in `Qbar_B` with index `|Bbar_e|` for `e <= 8`.
+  - At `e = 9`, `<<[a,c]^2>>_(Q_B)` lies in `A ⋊ <b^64, d^64>`, where `<b^64, d^64> = (Z/2)^2` is
+    the minimal choice. So the edge image has index exactly `2^20` in `Qbar_B`, with an explicit
+    2-generator presentation. This embedding is exact and gives no bound by itself.
+  - `ord(a) >= 2^7` in `Gammabar_e` for all `e >= 7`.
+  - At `e = 9`, every 2-quotient of class at most 10 has `ord(a) <= 2^8`. The `d^64` relation is
+    what caps it.
+  - Next: decide whether that cap persists in all classes (ANUPQ with a larger budget, and the
+    `e = 10` analogue).
