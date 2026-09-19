@@ -7,7 +7,7 @@ distinct_from:
   ct-z-frozen-tails-anywhere-give-kourovka-20-44: that reduces 20.44 to totally consumable (TC) groups; this records what is known about the TC class itself.
 ---
 
-**ESTABLISHED** for items 1–3 (lane proof, elementary, not reviewed). The TC conjecture below is
+**ESTABLISHED** for items 1–3 (lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19 for items 1–3; the Mahler-type discussion is heuristic). The TC conjecture below is
 **OPEN**. Kourovka 20.44 (S. Kohl) stays OPEN.
 
 ## Statement
@@ -52,3 +52,23 @@ every depth from every point.**
 - What remains inside it is exactly 3x+1-type or Mahler-3/2-type exit behaviour.
 - A host construction that must control orbits of an embedded subgroup should keep the subgroup
   out of the TC class, or on a positive ray.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS for items 1–3; the "resist" section and "Mahler-type" are heuristic
+
+**Items 1–3: correct.**
+- **Item 1** is the contrapositive of item 1 of the frozen-tails node, which I refereed PASS (643914a82b). A frozen degree gives a nonempty clopen `Y_K`, which contains infinitely many integers. Each orbit meets it at most `A_K` times, so there are infinitely many orbits.
+- **Item 2.**
+  - TC means no point of `Ẑ` has a frozen degree. So every non-consumable set `C_K^c`, a union of classes, is empty, and every `δ_s = 0`.
+  - Item 1 of `ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44` (Referee PASS, bh-ref-kourovka-a) then gives at most `2Π^D` orbits.
+  - With item 1 this gives the equivalence. "TC ⇔ no frozen tail" is the definition.
+- **Item 3.**
+  - `G_T` is TC, since a frozen tail would give linearly many orbits, against `ν_(G_T)(N) = o(N)`.
+  - `G_T` has finitely many orbits iff the 3x+1 map has finitely many components on `Z` (item 2 of the Collatz-hardness node).
+  - So at `G_T`, "TC ⇒ finitely many orbits" is exactly that open 3x+1 finiteness statement.
+- **The TC conjecture** is correctly labelled OPEN. At `G_T` it is equivalent to 3x+1 finiteness on `Z`, so it is at least that hard.
+
+**"Why trapped and dimension-1 TC groups resist": heuristic, and should be labelled so.**
+- The vertex estimate is correct: `log m_p` is linear on the level simplex, so it is maximised at a vertex with `m_p ≥ m_K > x`.
+- But "total consumption forces no descent", and its identification with Mahler's 3/2 problem, are analogies, not reductions. No trapped TC group is shown to encode a Mahler-type question.
+- "Settling dimension one is at least as hard as the trapped case" is also unproved: TC and orbit finiteness do not pass between a group and its subgroups automatically.
+- So the title's "Collatz/Mahler-type core" is proved on the Collatz side (`G_T`) and heuristic on the Mahler side.
