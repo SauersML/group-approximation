@@ -38,15 +38,24 @@ namespace BooneHigman
 namespace Metabelian
 namespace Absorption
 
+/-- The one-variable Suslin step over one commutative ring `A`: given `SL_{N'}(A) = E_{N'}(A)` for all
+`N' ≥ 3`, `SL_N(A[X]) = E_N(A[X])` for `N ≥ 3`.  It is stated for a general `A`, so that `A[X]` takes its
+semiring structure from the ring structure of `A`.  Written directly at `A = ℤ[1/m][t]`, `A[X]` would
+elaborate with the semiring structure that comes through `Localization.Away`'s commutative-semiring
+instance, and then no `CommRing (A[X])` instance is found. -/
+abbrev SuslinOneVariableAt (A : Type) [CommRing A] (N : ℕ) : Prop :=
+  (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary A N') → 3 ≤ N →
+    SpecialLinearInElementary (Polynomial A) N
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinOneVariableAt
+
 /-- **The one-variable Suslin step** for the two coefficient families (see the module
 docstring for why this is strictly smaller than `PolynomialSuslinStatement`, and true). -/
 def SuslinOneVariableStatement : Prop :=
   (∀ (p : ℕ) [Fact p.Prime] (k N : ℕ), 1 ≤ k →
       (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.CharPPoly p k) N') → 3 ≤ N →
         SpecialLinearInElementary (Polynomial (Chain.CharPPoly p k)) N) ∧
-    ∀ (m k N : ℕ),
-      (∀ N' : ℕ, 3 ≤ N' → SpecialLinearInElementary (Chain.SIntPoly m k) N') → 3 ≤ N →
-        SpecialLinearInElementary (Polynomial (Chain.SIntPoly m k)) N
+    ∀ (m k N : ℕ), SuslinOneVariableAt (Chain.SIntPoly m k) N
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinOneVariableStatement
 
