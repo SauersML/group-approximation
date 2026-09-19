@@ -194,3 +194,5 @@ drop	swarm-thm-main-a	2d5abd159c20	sk16: this row says partial; zz-full-sk16 rec
 drop	swarm-thompson-construction	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	ms-traces-1	8212b1470040	ms-map census batch 2026-09-19: zz-full-sk16 now grades this row formalized (Audit2.manuscriptSentence_simpleLEFHostsWithoutT); this row says attribution
 drop	swarm-audit-2	8212b1470040	ms-map census batch 2026-09-19: zz-full-sk16 now grades this row formalized (Audit2.manuscriptSentence_simpleLEFHostsWithoutT); this row says attribution
+drop	swarm-abstract-intro	aaf5fe1a98c3	ms-map census batch 2026-09-19 (2): zz-full-sk16 now grades this row formalized (SkOpen Arzhantseva); this row says attribution
+drop	swarm-simplicity-steps	3eaee0a2dc7e	ms-map census batch 2026-09-19 (2): zz-full-sk16 now grades this row formalized (printedMatuiRemark); this row says attribution
