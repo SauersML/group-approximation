@@ -78,6 +78,7 @@ theorem h_projection_val (i j : I) (hij : i ≠ j) (u : Rˣ) :
   abel
 
 set_option linter.unusedSimpArgs false in
+omit [Fintype I] in
 /-- **Diagonal matrix in unit form.**  `diag(u at i, u⁻¹ at j, 1 elsewhere)` equals
 `1 - E_ii(1) - E_jj(1) + E_ii(u) + E_jj(u⁻¹)`. -/
 theorem diagonal_weyl_eq (i j : I) (hij : i ≠ j) (u : Rˣ) :
