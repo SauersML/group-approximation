@@ -147,8 +147,9 @@ are the `𝔠`-parts.
   - By Dickson's lemma, each support class of `𝐑` has finitely many minimal elements.
     Let `C` be 2 plus their largest coordinate. Then `𝐦 ∈ 𝐑` and `𝐦(τ) ≥ C` imply
     `𝐦 − e_τ ∈ 𝐑`.
-  - The simplices and `μ_+ ⊔ μ_a` touch at most `(n + Lm)B` pieces. Take
-    `R = (n+Lm)B + |𝔛(*)|(C+2)`. Then some type `τ` has at least `C+2` untouched pieces.
+  - The simplices and `μ_+ ⊔ μ_a` touch at most `(n + L(m+1))B` pieces (an `m`-simplex has
+    `m+1` atoms; bound corrected after bh-ref-q115-b). Take
+    `R = (n+L(m+1))B + |𝔛(*)|(C+2)`. Then some type `τ` has at least `C+2` untouched pieces.
   - Let `α` be the doubling atom `δ_τ` on two untouched `τ`-pieces. It is an atom of `𝒮`:
     its only coarsening with pure pieces is the whole piece.
   - Each `O_l = 𝐭(ν_l)` has `𝐦_{O_l}(τ) ≥ C+2`. Applying `α` gives multiset
