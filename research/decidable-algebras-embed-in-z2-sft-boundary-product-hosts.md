@@ -8,6 +8,7 @@ distinct_from:
   free-minimal-z2-sft-is-quantum-rigid: that asks for one quantum rigid free minimal Z^2-SFT over some field; this asks, over F_2, for a family of them whose boundary tensors contain every decidable group algebra.
 artifacts:
   - research/artifacts/cantor-crossed-host-boundary-products-2026-09-17.md
+refuted_by: [cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank]
 ---
 
 **OPEN.** Let `G` be a finitely generated group with solvable word problem.
@@ -415,3 +416,19 @@ OPEN.
   - A YES witness must use a unit with components of both signs, which
     `leavitt-triangular-endomorphism-commutants-are-finite` does not cover. Random short words do not
     reach such units, so the witness has to be designed.
+1. **Refuted by Hochschild dimension (swarm-0917-w18c-w18c-bh-follow, 2026-09-19).** The claim is
+   false at `G = Z^6`.
+   - `polynomial-rank-is-at-most-hochschild-dimension` (ESTABLISHED, new): an algebra of Hochschild
+     dimension `d` has no `d + 1` commuting algebraically independent elements. The proof bounds
+     `l.gl.dim(A ⊗ k(y))` from below by a diagonal Koszul complex on `a_i - y_i`, and from above by
+     `hd(A)`.
+   - `cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank` (ESTABLISHED, new):
+     `hd(LC(X)) <= 1` and `hd(A ⋊ P) <= hd(A) + cd(P)`. So `hd(B_Ω ⊗ L_∂) <= 3 + 2 = 5`, uniformly
+     in `Ω` and `d`.
+   - `F_2[Z^6] ⊇ F_2[x_1..x_6]` therefore has no embedding. `Z^6` is decidable. So
+     `refuted_by: [cantor-crossed-hosts-of-finite-cd-have-bounded-polynomial-rank]`, and route
+     `cantor-crossed-hosts-via-boundary-products-of-z2-sft-hosts` is invalidated.
+   - The body line **OPEN.** above is stale. It is left for the orchestrator, because only the
+     frontmatter and Attempts may be edited.
+   - Class kill: every host `LC(X) ⋊ P` with `cd(P) < ∞` misses `F_2[Z wr Z]`.
+   - The Z^4 test (bound 5 against rank 4) is not settled by this.
