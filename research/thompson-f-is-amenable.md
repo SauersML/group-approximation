@@ -580,3 +580,18 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     `δ/2`; their ratio is `≥ 3/2` and their mass is `≈ 0.034^j`. `Q_5` (`> 3.6`) is out of reach for
     bounded pointer windows.
   - *Open:* a rigorous uniform-in-width dual certificate; non-local (multi-scale) membership conditions.
+- **Finite-dimensional nonpositively curved hosts always have a copy of F in a stabilizer
+  (swarm-0917-w19-w19-f-pull, 2026-09-19, obstruction-miner, host-geometry).**
+  - *Recorded (ESTABLISHED, lane):* `thompson-f-finite-rank-median-actions-fix-a-copy-of-f`.
+    - Fioravanti's Tits alternative (arXiv:1708.01215, Theorem E and the proof of Theorem A) puts a
+      finite-index `Γ_0 ≤ F` over an abelian quotient with a locally finite-orbit kernel `N`.
+    - `F'` is simple, so it lies in `Γ_0` and in `N`.
+    - Kato's criterion (arXiv:1804.10506, Theorems 1.1 and 1.2) gives the same for semi-simple actions
+      on complete CAT(0) spaces of finite dimension.
+  - *Invariant:* a point whose `F`-stabilizer contains a subgroup of index at most `2^dim` in a copy
+    `F_I ≅ F`.
+  - *Dies at:* "stabilizers are amenable". This covers Fioravanti's Theorem A(3), cubical
+    amenable-stabilizer criteria, proper finite-dimensional hosts, and stabilizer-exactness. Each of
+    these presupposes the root (or exactness of `F`), for `F` and for every host `G ≥ F`.
+  - *Survivors:* infinite-rank hosts (Farley), non-semi-simple finite-dimensional CAT(0) actions, and
+    non-NPC hosts.
