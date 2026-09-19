@@ -224,3 +224,19 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
   - *Next step.* (II): prove `rk_Λ H_2(L) <= rk_Λ H_1(L)` for one amenable Z-kernel `L`.
     `F_2 × F_2` has `A_2 = Λ²` and shows amenability is needed. (I): decide whether a
     residually finite amenable cd-2 group can have `b_1 = 0` on every finite-index subgroup.
+- **2026-09-19 (lane `w22-112`): the Ore/Følner step for the fibred type (II) is blocked.**
+  See `fibred-ore-rank-comparison-is-local-indicability` (proposed ESTABLISHED; obstruction).
+  - *Result.* For `φ : G ↠ Z`, the comparison `rank_{Q(t)} φ(A) <= rk_U(A)` holds for all
+    matrices exactly when `G` is locally indicable. It then already holds on `Q[ker φ]`, where it
+    is the augmentation comparison. In a fibred counterexample, the fibre contains a
+    finitely generated rationally perfect counterexample `J`. The Fox matrix of `J` is constant
+    in `t` and breaks every Ore, Følner or specialization rank comparison over `Q[L] ⋊ ⟨t⟩`.
+  - *Calibrations.* `Z ≀ Z` (amenable, comparison holds, cd `∞`) has `ρ_2 = ∞ > ρ_1 = 1`.
+    `F_2 × F_2` (cd 2, comparison holds, not amenable) has `ρ_2 − ρ_1 = 1`. So
+    `ρ_2 <= ρ_1` needs amenability, cd 2 and a comparison valid only on projective summands,
+    all at once.
+  - *Effect on the target.* Item 6(b) for `Γ = Z` on the relation module is equivalent to
+    `χ <= 0`, and no easier than the core inequality for L²-finite projectives. Type (I) remains
+    open.
+  - *Next step.* Use the splitting `P ⊕ P'' = Q[H]^{(∞)}` together with the `Λ`-freeness of
+    `Λ ⊗ P`, or show that fibre descent ends in a type (I) counterexample.
