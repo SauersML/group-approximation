@@ -46,3 +46,18 @@ recorded obstruction:
   detected on that core.
 
 ## Attempts
+
+- **Winding (Exel--Loring--Dadarlat) certificates (swarm-0917-w15-titz-last1, 2026-09-19;
+  cohomology-index). Dead as a class.**
+  - The idea: `H_2(K; Q) = Q^6`, so degree-two windings are the natural index for showing that
+    every MF model of `K` degenerates.
+  - Why it dies: by `mf-radical-is-blind-to-degree-two-windings`, every MF approximation `Pi`
+    of `K` has a realification `r o Pi`, which is orthogonal and unitarily equal to
+    `Pi (+) Pibar`. It has the same corona kernel as `Pi` and every winding equal to zero.
+  - So a certificate of the form "a faithful model forces a nonzero winding" is refuted by
+    `r o Pi` whenever `K` is MF. It can therefore never prove that `K` is not MF.
+  - `K` has rational cohomological dimension 2. So no other rational almost-flat index exists
+    on `K`, or on `K x Z`.
+  - What would survive: only arguments that break complex-conjugation symmetry, such as spectral
+    corners along a non-real arc. These need an almost-central element, which a centreless simple
+    `K` does not have.
