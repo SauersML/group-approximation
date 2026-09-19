@@ -301,7 +301,7 @@ theorem homotopic_of_descent (hD : DescentData G f v₀) :
 theorem triSimplyConnected_of_descent (hD : DescentData G f v₀) : TriSimplyConnected G v₀ := by
   intro l hl hlast
   refine homotopic_of_descent hD (v₀ :: l) hl rfl ?_
-  rw [List.head?_reverse, List.getLast?_eq_getLast (List.cons_ne_nil _ _), hlast]
+  rw [List.head?_reverse, List.getLast?_eq_some_getLast (List.cons_ne_nil _ _), hlast]
 
 theorem connected_of_descent (hD : DescentData G f v₀) : G.Connected :=
   (SimpleGraph.connected_iff_exists_forall_reachable (G := G)).2 ⟨v₀, hD.reachable⟩
