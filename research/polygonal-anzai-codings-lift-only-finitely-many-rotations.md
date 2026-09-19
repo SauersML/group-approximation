@@ -83,3 +83,27 @@ A dense commutant, and with it the time-lift counterexample to (RA_free), needs 
 contain every sheared copy of themselves: self-similar, hierarchical boundaries. So T1 is a
 fixed-point-simulation problem, the same mechanism that gives rigidity. It would at the same time be a
 minimal zero-entropy `Z^2`-SFT with a free group of automorphisms.
+
+## Literature check for item 4 (bh-invent-16, 2026-09-19)
+
+This is for crediting the side result. Sources were read as noted.
+- **Hochman**, *On the automorphism groups of multidimensional shifts of finite type*, ETDS 2010. The
+  preprint was read at source, pp. 1–3 and §8.
+  - Theorems 1–3 concern positive entropy.
+  - After Theorem 1 he gives a **zero-entropy** `Z^2`-SFT whose automorphism group is that of the full
+    `Z`-shift, so it contains `F_2`: vertical columns are constant.
+  - That SFT is neither minimal nor free. So "zero entropy with `F_2 ≤ Aut`" is Hochman's. Item 4 claims
+    something only in the **minimal and free** case.
+  - §8 asks whether every finitely presented group embeds in `aut X` for some SFT `X`.
+- **Cyr–Kra**, arXiv:1708.06253 and 1509.08493 (abstracts read):
+  - `Z`-subshifts of complexity `o(n^2/log^2 n)` have amenable `Aut`;
+  - minimal `Z`-subshifts of stretched-exponential growth with exponent `< 1/2` have amenable `Aut`;
+  - they suggest zero entropy may suffice.
+- **Cortez–Petite**, *Realization of big centralizers of minimal aperiodic actions on the Cantor set*,
+  DCDS 2020 (abstract read). Every countable residually finite group, `F_2` and Osajda's group included,
+  embeds in the centralizer of some minimal `Z`-action on the Cantor set. These are Cantor systems, not
+  subshifts, and not rigid. So Line I's content is rigidity plus finite type, not the embedding alone.
+- **Fokkink–Rust–Salo**, arXiv:2203.13545 (abstract read): random substitution subshifts with `Aut`
+  containing the automorphism group of a full shift. These have positive entropy.
+- **Not found** in this search: a **minimal, free, zero-entropy** `Z^2`-SFT with `F_2 ≤ Aut`. Item 4 is
+  therefore stated as a consequence of T1, with no priority claimed.
