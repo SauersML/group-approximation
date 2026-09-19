@@ -778,3 +778,34 @@ content in that region.
   prove `zeta(0) < 3/16` for the axis-to-axis event `D'_n(0)`: no
   pinch-free non-`I_n` path from the positive to the negative axis, a
   two-boundary-arc event. Together these give (H).
+
+* **Wedge K-arm reduction of the box events (w19-123, 2026-09-18): (H)
+  reduced to one increasing quadrant-arm exponent, plus one decorrelation
+  inequality.** See `fpbs-box-event-quadrant-k-arm-reduction`. A
+  *K-path* is a path of wired-cluster (`I_n`) sites that may also jump
+  to the far corner of a rhombus. A jump crosses only a pinch edge.
+
+  - **Proved: two arms force the box events.** Two K-arms from the
+    origin, one in each left quadrant, give `D'_n(pi/2)`. Two in the
+    upper and lower half-planes give `D'_n(0)`. The proof is a Jordan
+    crossing argument.
+  - **Proved: FKG and reflection.** `P(D'_n(pi/2)) >= P(A_n(UL))^2`, so
+    `alpha_Q < 3/16` implies (H).
+  - **Proved: obstruction.** No FKG product of arm events can give
+    `zeta(0) < 3/16`, since each factor lies in the one-arm event and the
+    product is therefore at most `pi(n)^2 = n^{-5/24}`.
+  - **Open: (CD).** (CD) says the two arms are conditionally independent
+    given the one arm. With (CD), (H) needs only `alpha_Q < 23/96`, and
+    (ii) needs only `alpha_H < 7/48`.
+  - **Proved: duality identity.** Flipping the short diagonal of each
+    checkerboard rhombus gives a triangulation, and the Hex lemma then
+    gives `D'_n(0) ∩ {0 ∈ I_n} = A_n(UH) ∩ A_n(LH)` exactly.
+  - **Numerics (`karm.c`, `n <= 512`, about 19000 samples).**
+    `alpha_Q = 0.190(3)`, right at `3/16`, so the unconditional route is
+    inconclusive. `alpha_H = 0.127(3)`, `zeta(0) = 0.145(4)`,
+    `zeta(pi/2) = 0.265(7)`. The decorrelation ratios are
+    `kappa_Q = 1.00-1.03` and `kappa_H = 0.99-1.00`, so the (CD) route
+    closes (H) with margin 0.10 and (ii) with margin 0.03.
+
+  **Next:** prove (CD) by decoupling the arm-arc events across scales
+  under the incipient-infinite-cluster conditioning.
