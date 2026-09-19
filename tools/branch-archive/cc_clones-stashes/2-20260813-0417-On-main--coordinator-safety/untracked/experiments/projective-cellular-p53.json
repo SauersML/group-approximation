@@ -1,0 +1,48 @@
+{
+  "boundary_ranks": {
+    "1": 140,
+    "2": 224,
+    "3": 102
+  },
+  "boundary_squared_zero": {
+    "2": true,
+    "3": true
+  },
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "homology_dimensions": {
+    "0": 1,
+    "1": 0,
+    "2": 2,
+    "3": 10
+  },
+  "integral_harmonic_basis_sha256": "c661950bcffb2402a0436fafac727b8a5242038eb7756aca40fbdf62d18dde28",
+  "integral_harmonic_gram": [
+    [
+      43809413037966329191842960183784057840889997554664326087726427003984282142287805,
+      -13683922646477838889668121673796050803759752492023146604778883147192974813424428
+    ],
+    [
+      -13683922646477838889668121673796050803759752492023146604778883147192974813424428,
+      383746614132902906595825979699984890962343057912371515554279349070114016706538184436
+    ]
+  ],
+  "integral_harmonic_maximum_absolute_coefficient": 105527940588950272011010175599798480941159,
+  "integral_harmonic_rank": 2,
+  "integral_harmonic_support_sizes": [
+    320,
+    320
+  ],
+  "prime": 53,
+  "projective_degree": 2863,
+  "rational_coinvariant_dimensions": [
+    141,
+    364,
+    328,
+    112
+  ]
+}

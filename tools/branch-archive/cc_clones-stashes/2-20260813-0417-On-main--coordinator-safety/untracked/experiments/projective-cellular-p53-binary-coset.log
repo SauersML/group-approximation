@@ -1,0 +1,28 @@
+      0: obj =   0.000000000e+00 inf =   1.000e+00 (1)
+     39: obj =   1.000000000e+00 inf =   0.000e+00 (0)
+*    40: obj =   1.000000000e+00 inf =   0.000e+00 (0)
+     40: obj =   0.000000000e+00 inf =   5.000e-01 (1)
+     41: obj =   1.000000000e+00 inf =   0.000e+00 (0)
+*    42: obj =   1.000000000e+00 inf =   0.000e+00 (0)
++    42: mip =     not found yet >=              -inf        (1; 0)
++    66: >>>>>   4.000000000e+00 >=   2.000000000e+00  50.0% (26; 0)
++   273: mip =   4.000000000e+00 >=     tree is empty   0.0% (0; 185)
+{
+  "ambient_dimension": 328,
+  "binary_coset_leader_support": [
+    240,
+    287,
+    302,
+    304
+  ],
+  "binary_coset_leader_weight": 4,
+  "candidate_mod2_weight": 13,
+  "parity_check_rank": 104,
+  "prime": 53,
+  "range_rank": 224,
+  "solver": "GLPK branch-and-bound",
+  "syndrome_support": [
+    103
+  ],
+  "verification": "parity_check_times_solution_equals_syndrome"
+}

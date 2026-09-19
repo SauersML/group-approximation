@@ -1,0 +1,32 @@
+{
+  "ambient_dimension": 328,
+  "candidate_centered_residue_cost": 13,
+  "modular_coset_leader_entries": [
+    [
+      240,
+      1
+    ],
+    [
+      287,
+      -1
+    ],
+    [
+      302,
+      -1
+    ],
+    [
+      304,
+      1
+    ]
+  ],
+  "modular_coset_leader_squared_cost": 4,
+  "modulus": 3,
+  "parity_check_rank": 104,
+  "prime": 53,
+  "range_rank": 224,
+  "solver": "GLPK branch-and-bound",
+  "syndrome_support": [
+    103
+  ],
+  "verification": "modular_check_times_solution_equals_syndrome"
+}

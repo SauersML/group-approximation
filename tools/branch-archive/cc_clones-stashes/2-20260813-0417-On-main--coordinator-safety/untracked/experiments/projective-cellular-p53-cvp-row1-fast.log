@@ -1,0 +1,98 @@
+{"elapsed_seconds": 15.654827202029992, "maximum_absolute_coefficient": 140503799371966155273869849978, "norm_approx": 3.2443728461323105e+29, "squared_norm": "105259551647206688739308090440512319653601049767068101843945", "stage": "exported_hnf", "support_size": 90}
+{"elapsed_seconds": 15.766264478035737, "maximum_absolute_coefficient": 16, "norm_approx": 49.27473997901968, "squared_norm": "2428", "stage": "saturated_plane_round", "support_size": 67}
+{"elapsed_seconds": 16.24020457698498, "maximum_absolute_coefficient": 1, "norm_approx": 7.211102550927978, "squared_norm": "52", "stage": "lll_plane_round", "support_size": 52}
+{"elapsed_seconds": 16.68353596900124, "maximum_absolute_coefficient": 1, "norm_approx": 5.291502622129181, "squared_norm": "28", "stage": "lll_babai", "support_size": 28}
+{"elapsed_seconds": 17.33771130401874, "maximum_absolute_coefficient": 1, "norm_approx": 5.291502622129181, "squared_norm": "28", "stage": "bkz_20_plane_round", "support_size": 28}
+{"elapsed_seconds": 17.760946328984573, "maximum_absolute_coefficient": 1, "norm_approx": 5.0990195135927845, "squared_norm": "26", "stage": "bkz_20_babai", "support_size": 26}
+{"elapsed_seconds": 18.355460898019373, "maximum_absolute_coefficient": 1, "norm_approx": 5.0990195135927845, "squared_norm": "26", "stage": "bkz_30_plane_round", "support_size": 26}
+{"elapsed_seconds": 18.67596694501117, "maximum_absolute_coefficient": 1, "norm_approx": 5.0990195135927845, "squared_norm": "26", "stage": "bkz_30_babai", "support_size": 26}
+{
+  "ambient_dimension": 328,
+  "bkz_block_sizes": [
+    20,
+    30
+  ],
+  "bkz_loops": 2,
+  "cycle_lattice_rank": 104,
+  "elapsed_seconds": 18.716726694023237,
+  "exact_cycle_pairing_verified": true,
+  "exact_degree_three_annihilation_verified": true,
+  "history": [
+    {
+      "elapsed_seconds": 15.654827202029992,
+      "maximum_absolute_coefficient": 140503799371966155273869849978,
+      "norm_approx": 3.2443728461323105e+29,
+      "squared_norm": "105259551647206688739308090440512319653601049767068101843945",
+      "stage": "exported_hnf",
+      "support_size": 90
+    },
+    {
+      "elapsed_seconds": 15.766264478035737,
+      "maximum_absolute_coefficient": 16,
+      "norm_approx": 49.27473997901968,
+      "squared_norm": "2428",
+      "stage": "saturated_plane_round",
+      "support_size": 67
+    },
+    {
+      "elapsed_seconds": 16.24020457698498,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 7.211102550927978,
+      "squared_norm": "52",
+      "stage": "lll_plane_round",
+      "support_size": 52
+    },
+    {
+      "elapsed_seconds": 16.68353596900124,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 5.291502622129181,
+      "squared_norm": "28",
+      "stage": "lll_babai",
+      "support_size": 28
+    },
+    {
+      "elapsed_seconds": 17.33771130401874,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 5.291502622129181,
+      "squared_norm": "28",
+      "stage": "bkz_20_plane_round",
+      "support_size": 28
+    },
+    {
+      "elapsed_seconds": 17.760946328984573,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 5.0990195135927845,
+      "squared_norm": "26",
+      "stage": "bkz_20_babai",
+      "support_size": 26
+    },
+    {
+      "elapsed_seconds": 18.355460898019373,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 5.0990195135927845,
+      "squared_norm": "26",
+      "stage": "bkz_30_plane_round",
+      "support_size": 26
+    },
+    {
+      "elapsed_seconds": 18.67596694501117,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 5.0990195135927845,
+      "squared_norm": "26",
+      "stage": "bkz_30_babai",
+      "support_size": 26
+    }
+  ],
+  "lift_sha256": "2ab4e5f628a3d8084839e53cb24b71017163a505a5b6c725f21ab984791abbb6",
+  "modular_coset_certificates": [],
+  "paired_distortion_upper": 5.734788802247875,
+  "paired_distortion_upper_squared": "448999973329568343688093477476826379330935818348917241533604412283858302568290589614/13652477141855668986785589318594066780128481258677480963257028544207685068564640667",
+  "prime": 53,
+  "projective_degree": 2863,
+  "qsharp_gauss_basis_row": 1,
+  "qsharp_squared_norm": "13652477141855668986785589318594066780128481258677480963257028544207685068564640667/17269229743444936295695902979877937666574454551881432366677092780148396252626561139",
+  "reduced_lift_squared_norm": "26",
+  "saturated_range_basis_maximum_absolute_coefficient": 85,
+  "saturated_range_lattice_rank": 224,
+  "support_exhaustion_certificate": null
+}
