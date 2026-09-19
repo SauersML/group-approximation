@@ -534,5 +534,51 @@ Scripts are in `experiments/fpbs-iid-chord-union-bound-2026-09-17/`.
   `|h_2|` would kill this route but not the claim.
 - **Scope.** Shared-seed factor-of-iid chords (the rest of P2) are not
   covered, because Lemma 1 needs independence of distinct points.
+### swarm-0917-w14 (fp-follow): route to the counterexample node, and the D1 excursion retraction dies
+
+- **Wiring.** New route `fpbs-mal-floor-gives-fixed-price-counterexample`
+  targets `fpbs-fixed-price-counterexample-exists`. It requires this claim,
+  `fpbs-mal-fixed-price-iff-bernoulli-finite-cost` and
+  `fpbs-mal-odometer-product-actions-have-cost-two`. Both of those are
+  ESTABLISHED. So this claim is now the only open premise of a complete route
+  to the flagship's negation. Before this, no route connected them.
+- **Setup for D1.** Write `M = L_j`. `M` is malnormal in `L`, because
+  `φ^j(K)` is malnormal in `φ^j(L)` and malnormality is transitive. Let
+  `S = S_{j+1}` be the orbit relation of `L_{j+1}`.
+  - **Chain identity (remark).** `Q_j` with labels restricted to `L_i` equals
+    `Q_{j-i}`. Transport along `φ^i`, and use Theorem M: restricted Bernoulli
+    shifts are weakly equivalent to Bernoulli.
+  - **Uniform statement (U).** There is `c > 0`, independent of `j`, with
+    promotion cost using `L`-labels `>= c ×` promotion cost using `M`-labels.
+    (U) together with D0 gives D1.
+- **Attempt.** Retract an arbitrary `L`-labelled promoting graphing `Φ` onto
+  `M`-labels.
+  - Split `Φ = Φ_in ∪ Φ_out`. `Φ_in` has labels in `M`. The edges of
+    `Φ_out` leave the `M`-orbit `Mx`.
+  - Each excursion component of `S ∨ Φ_out` outside `Mx` returns to `Mx`.
+    Each composite chord through it gives an edge of `E_M`. Let `T` be the
+    relation these chords generate. Then `S ∨ Φ_in ∨ T ⊇ E_M`.
+  - **Finite-contact lemma (proved).** An outside `S`-class `L_{j+1}·y` has
+    at most one attachment point to `Mx` for each label `w ∉ M`. Proof: if
+    `k g = w m` and `k' g = w m'` with `k, k' ∈ L_{j+1}`, then
+    `k k'^{-1} ∈ M ∩ wMw^{-1} = 1`.
+  - The hope was to charge `T` to the outside edges: each outside class would
+    contribute at most `|labels|` chords.
+- **Where it dies.**
+  - A single excursion component can chain infinitely many outside
+    `S`-classes through `Φ_out`. The finite-contact lemma bounds contacts per
+    class and per label, not per component. So the attachment set `A(C)` of
+    a component can be infinite.
+  - Then `T` restricted to the attachment domain `D` is an infinite
+    sub-relation of `E_M|_D`. Generating it can cost as much as
+    `C(E_M|_D)`, which is about `1` by Gaboriau's induction formula.
+  - Bounding that cost from below by `Φ_out`'s measure is (U) again. The
+    retraction is circular with D0/(U), so this class dies here.
+- **What survives.**
+  - Retractions that control the number of outside classes per excursion
+    component. A finite component bound would close (U) with
+    `c = 1/(labels × bound)`.
+  - Arguments that avoid retraction entirely, such as a profinite or
+    relative-rank D1 statement along `fpbs-profinite-relcost-equals-relative-rank-gradient`.
 
   The claim stays OPEN.
