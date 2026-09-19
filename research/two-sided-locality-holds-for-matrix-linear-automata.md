@@ -48,7 +48,7 @@ distinct_from:
    So **two-sided locality holds**: a free lifted group and a transitive transport group, commuting, both
    given by radius-bounded cellular automata on the same periodic data.
 3. **Only exact groups.** For every finite ring `R`, every group of invertible linear (additive) cellular
-   automata of `R^Z` embeds in `End(R)[t^(±1)]^×`. That group is linear over a commutative ring and is exact. So
+   automata of `R^Z` embeds in `End(R)[t^(±1)]^×`. That group is nilpotent-by-(linear over function fields), hence exact. So
    ring-linear two-sided designs can lift `F_2` (target T1, which would refute (RA_free)), but **never**
    a non-exact group such as Osajda's (target T2). T2 needs two-sided locality that is not linear.
 4. **Transports in the loop architecture.**
@@ -78,7 +78,7 @@ distinct_from:
 and they commute with the shift. Composition is convolution with matrix coefficients: `L_u L_v x = u(vx)`
 and `R_u R_v x = (xv)u`. Commutation is associativity, `u(xv) = (ux)v`. `L_(u^(-1))` inverts `L_u`. If
 `L_u` is invertible, its inverse is a cellular automaton commuting with all `R_v` and with the shift,
-and applying it to `δ_0 · 1` shows it equals `L_w` with `uw = 1`.
+and applying it to `δ_0 · 1` shows it equals `L_w` with `wu = 1`.
 
 **2(b).** `SL_2(F_2[t]) ⊆ U` is a nontrivial amalgam (Nagao), so it contains non-abelian free subgroups.
 Alternatively, it is a linear group that is not virtually solvable, and the Tits alternative applies.
@@ -95,10 +95,13 @@ Alternatively, it is a linear group that is not virtually solvable, and the Tits
 - *Embedding.* A linear cellular automaton is left convolution by a Laurent polynomial with coefficients
   in `End(R)`. So the group embeds in `End(R)[t^(±1)]^×`, which is `R′[t^(±1)]^×` for the finite ring
   `R′ = End(R)`.
-- *Linearity.* `R′` is a finite `Z/m`-algebra, so `R′[t^(±1)]` is a free module of finite rank over
-  `(Z/m)[t^(±1)]`. Left multiplication embeds its units in `GL_r((Z/m)[t^(±1)])`.
-- *Exactness.* Modulo the nilpotent kernel of reduction to `GL_r(F_p[t^(±1)])`, this is linear over the
-  field `F_p(t)`. Linear groups are exact, and exact-by-nilpotent groups are exact.
+- *Reduction.* Let `J` be the Jacobson radical of `R′`, which is nilpotent. Then `J[t^(±1)]` is a
+  nilpotent ideal of `R′[t^(±1)]`, and reduction gives
+  `1 → 1 + J[t^(±1)] → R′[t^(±1)]^× → (R′/J)[t^(±1)]^×`, with a nilpotent kernel.
+- *Linearity.* `R′/J` is a finite semisimple ring `∏_i M_(n_i)(F_(q_i))`. So the image lies in
+  `∏_i GL_(n_i)(F_(q_i)[t^(±1)])`, which is linear over the fields `F_(q_i)(t)`.
+- *Exactness.* Linear groups are exact, and an extension of an exact group by a nilpotent (amenable)
+  group is exact.
 
 **4(a).**
 - *The factor.* Level-boundedness makes the label of the level-`n` square at `v`, relative to the square
