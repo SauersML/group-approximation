@@ -1148,3 +1148,33 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   - A *no* must come from an approximate, non-exact gluing of two finite shadows `B_+`, `B_-`. The
     smallest test case is `B_+- = M_2(F_2)` glued along different embeddings of `F_2 + F_2 q`.
   - A *yes* proves `(QC)` by the node above.
+
+### Far cross relators of the cone cover are uniformly small (swarm-0917-w18-w18-nh-last1, decomposition, group-rings, 2026-09-19)
+
+- **Attempt.** This is the next falsifiable step of the previous entry: stability of `ker Phi_P ∩ K`. The
+  relators named there, the cross-commutators `[x_ij(a), x_kl(b)]` and the middle-index coherence of `x_ik(ab)`,
+  were only `delta`-trivial one relator at a time, with constants depending on the word lengths of `a` and `b`.
+- **Result, ESTABLISHED:** `leavitt-cone-cover-far-cross-relators-are-uniformly-small`, with route
+  `leavitt-cone-cover-far-cross-relators-uniform-proof`. There is one constant `C_1 = 4 N_0 / kappa^2` such that,
+  for every unitary `rho` into any tracial von Neumann algebra:
+  - `(U1)` `||[rho(g), rho(h)] - 1||_2 <= C_1 delta` for all `g in G_I^+`, `h in G_J^-`, with `I`, `J` disjoint blocks;
+  - `(U2)` every far cross relator `[x_ij(a), x_kl(b)]` is at most `4 C_1 delta`;
+  - `(U3)` every middle-index coherence relator is at most `5 C_1 delta`.
+  - *Proof:* double Kazhdan averaging. The finitely many generator commutators `[x_ij(c), x_kl(c')]` lie in `K`
+    and cost at most `N_0 delta`. `(T)` of `St_m(R_+)` (EJK) spreads this over `G_I^+`; `(T)` of `St_m(R_-)` spreads
+    it over `G_J^-`. The overlap and same-root cases go through `R_0`-elements `x_im(1)` and a conjugation-transfer
+    lemma.
+- **Class killed (refutation side).** Every counterexample family to `(QC)` whose gap comes from the
+  `ker Phi_P` relators on *long* ring words is dead. This includes twisted gluings `(sigma_+, U sigma_- U^*)`
+  whose twist is invisible on the generators. *Invariant:* `kappa` together with `N_0`. *Death step:* double
+  averaging.
+- **Obstruction, proved.** Averaging stops at the halves. Every `(T)` subgroup of `Gamma` has FA and is
+  conjugate into `Delta_+` or `Delta_-`. The same-block mixed group `<G_I^+, G_I^->` is not Kazhdan, since
+  `x_12(s_1) x_12(t_1)` is hyperbolic on the Bass--Serre tree. The ring-shadow head bound consumes exactly the
+  uniformity over mixed alternations that this lacks.
+- **Target stays OPEN.**
+- **Next target (MW), not a proved reduction.** For every word `w = g_1 h_1 ... g_m h_m` in one block `I`, the
+  unitary `rho(w) rho(x_IK(M)) rho(w)^(-1)` should depend, up to `C delta` uniformly in `m`, only on the image of
+  `w` in `EL_I(R)`.
+  - It fails if some family with `delta -> 0` has a dependence error growing with `m`.
+  - It is open even for `m = 1`, because Leavitt reductions `t_i s_j = delta_ij` cost normal generators.
