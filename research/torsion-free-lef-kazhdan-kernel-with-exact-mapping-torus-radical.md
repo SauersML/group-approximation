@@ -12,6 +12,7 @@ distinct_from:
 artifacts:
   - research/quotient-permuting-and-ambient-inner-mapping-tori-are-lef.md
   - research/char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless.md
+  - research/kazhdan-gapped-mapping-torus-models-are-lef-quotients.md
 ---
 
 **OPEN.** There exist a nontrivial finitely generated group `K` and `φ ∈ Aut(K)` such that
@@ -113,3 +114,47 @@ this class; the claim stays OPEN.**
   - Coefficient rings in which the lamp corner is null for every invariant rank function, which is
     the Hilbert-hotel, rank-function-free side. There, soficity of the kernel is the open problem.
   - Proofs of (LK3) that do not go through compression certificates at all.
+
+**Attempt 3 (swarm-0917 w17-titz-follow): gapped corona models of `G`, with an arbitrary wrap
+unitary. Dead for this class. (LK3) splits into a gapped half and a non-gapped half; the claim stays
+OPEN.**
+
+- **The class.** Homomorphisms `π : G -> U(Q)` whose kernel part lifts to spectrally gapped
+  representations `U_i` of the free group `F(S)`. Gapped means that `‖U_i(g) − 1‖ ≥ c` whenever
+  `U_i(g) ≠ 1`. The unitary `π(t)` is arbitrary. The class contains:
+  - permutation models, including `ℓ²(Π/Λ)` blocks and Gassmann pairs;
+  - sums of regular representations of any LEF sequence of `K`;
+  - rational-character and bounded-exponent models;
+  - wraps that are neither permutations nor block-monomial.
+
+  It contains the regular-block class of `kazhdan-regular-block-periodizations-of-mapping-tori-are-finite`,
+  together with two of its three survivors.
+- **Where every member dies.** The kill is `kazhdan-gapped-mapping-torus-models-are-lef-quotients`.
+  - (SR1): any unitary `T` with `max_s ‖T U(s) T* − U(w_s)‖ < κ` gives `Supp U = Supp (U ∘ ŵ)`.
+    Here `U` is any finite-dimensional representation of Shalom's finitely presented Kazhdan cover
+    `K~`, and `κ` is its Kazhdan constant.
+  - The proof: property (T) on `HS(H_σ, H)`, applied to the almost invariant vector `T J`.
+  - Hence `ker U = ker (U ∘ ŵ)`, and `ŵ` induces an automorphism of the image `U(F)`.
+  - With a gap, the relators of `K` become exact, and the images converge to a `φ`-invariant
+    quotient `K/N` carrying stage lifts. By `lef-mapping-torus-iff-stage-liftable-automorphism`,
+    `(K/N) ⋊ Z` is LEF, and `k ∉ N`.
+- **What this kills.** For a witness, no gapped model of `K`, for instance the LEF embedding
+  `[λ_(F_i)]`, is `φ`-covariant in `Q`, under any unitary. Exactly:
+
+  ```text
+  gapped MF residual of G on K  =  LEF residual  (SR3).
+  ```
+
+- **The new decomposition.** (LK3) is equivalent to (LK3-gap) together with (LK3-ng). Each can fail
+  on its own.
+  - **(LK3-gap)** is equivalent to (NSL+): for every `φ`-invariant `N ⊊ K`, `φ̄` is not stage-liftable
+    on `K/N`. This is purely combinatorial. It is (NSL) strengthened to every invariant quotient.
+  - **(LK3-ng)** says that no non-gapped homomorphism is nontrivial on `K`.
+- **What survives.** Kernel models with no gapped lift, where the MF-ness must come from spectral
+  clustering at `1`:
+  - lifts in which the relators hold only approximately;
+  - exact lifts with finite images of growing order and irrational characters;
+  - exact lifts with infinite images.
+
+  So (EKL1) needs either (NSL+) to fail, which is combinatorial, or a non-gapped covariant model.
+  No argument confined to permutation, regular or rational models can prove (EKL1) otherwise.
