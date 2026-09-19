@@ -162,10 +162,13 @@ theorem exists_sepRadius [DiscreteTopology A] [Finite A] (hinf : Infinite S.carr
     have hcover : (Set.univ : Set S.carrier) ⊆ ⋃ R, O R := by
       intro x _
       obtain ⟨m, hm⟩ := hfree x
-      exact Set.mem_iUnion.mpr ⟨m.natAbs, m, by omega, by omega, hm⟩
+      refine Set.mem_iUnion.mpr ⟨m.natAbs, ?_⟩
+      simp only [O, Set.mem_setOf_eq]
+      exact ⟨m, by omega, by omega, hm⟩
     obtain ⟨t, ht⟩ := isCompact_univ.elim_finite_subcover O hO hcover
     refine ⟨t.sup id, fun x => ?_⟩
     obtain ⟨R, hRt, hxR⟩ := Set.mem_iUnion₂.mp (ht (Set.mem_univ x))
+    simp only [O, Set.mem_setOf_eq] at hxR
     obtain ⟨m, h1, h2, h3⟩ := hxR
     have hR : R ≤ t.sup id := Finset.le_sup (f := id) hRt
     exact ⟨m, by omega, by omega, h3⟩

@@ -37,6 +37,13 @@ This file proves everything except Theorem 1 itself:
 Columns and rows are both functions `I → A`, and `j i` is `j ⬝ᵥ i`.
 -/
 
+set_option linter.unusedSectionVars false
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+set_option linter.unusedTactic false
+set_option linter.unreachableTactic false
+set_option linter.unnecessarySimpa false
+
 namespace GroupApproximation
 namespace BooneHigmanLinear
 namespace K2Found

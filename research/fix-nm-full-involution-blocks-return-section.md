@@ -5,7 +5,7 @@ kind: claim
 title: "Fix GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.ReturnSection: failed to synthesize instance of type class"
 ---
 
-**OPEN.** Lean module `GroupApproximation/Manuscript/NonMF/Full/InvolutionBlocks/ReturnSection.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It IS in the root closure: the root build is red until it is fixed (top priority).
+**RESOLVED (b576f069a9, trusted batched probe job direct-b1789846523).** Previously OPEN. Lean module `GroupApproximation/Manuscript/NonMF/Full/InvolutionBlocks/ReturnSection.lean` is red on main at 296aff5838 (trusted batched probe, Slurm job union build b1789837230). It IS in the root closure: the root build is red until it is fixed (top priority).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace; goal: non-MF). Owner: ms-green-nm.
 
 **First errors (verbatim).**

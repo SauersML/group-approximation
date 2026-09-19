@@ -164,6 +164,7 @@ theorem hatAdj_mk_elim {i : Fin 3} {g : Am (stabs G s)} {w : Hat G s}
     (h : HatAdj G s (mkHat i g) w) :
     ∃ a : stabs G s i, i ≠ w.1 ∧ w = mkHat w.1 (g * amOf (stabs G s) i a) := by
   obtain ⟨hne, k, hk, hw⟩ := h
+  change mkHat i k = mkHat i g at hk
   obtain ⟨c, hc⟩ := mkHat_eq_iff.mp hk
   have hk2 : g * amOf (stabs G s) i c⁻¹ = k := by
     rw [map_inv, hc, mul_inv_rev, inv_inv, mul_inv_cancel_left]

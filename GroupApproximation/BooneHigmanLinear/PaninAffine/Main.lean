@@ -59,12 +59,12 @@ noncomputable def translEquiv (x : Fin (n + 1) → κ) :
 
 theorem constantCoeff_transl (x : Fin (n + 1) → κ) (g : MvPolynomial (Fin (n + 1)) κ) :
     constantCoeff (transl x g) = eval x g := by
-  refine MvPolynomial.induction_on g ?_ ?_ ?_
-  · intro c
+  induction g using MvPolynomial.induction_on with
+  | C c =>
     rw [transl_C, constantCoeff_C, eval_C]
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [map_add, hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [map_mul, hp, transl_X, map_add, constantCoeff_X, constantCoeff_C, zero_add, eval_X]
 
 end Transl
@@ -93,13 +93,13 @@ noncomputable def genLine (x : Fin (n + 1) → κ) (g : MvPolynomial (Fin (n + 1
 
 theorem map_genLine (x : Fin (n + 1) → κ) (a : Fin n → K) (g : MvPolynomial (Fin (n + 1)) K) :
     (genLine x g).map (MvPolynomial.eval fun j => algebraMap K κ (a j)) = lineMap x a g := by
-  refine MvPolynomial.induction_on g ?_ ?_ ?_
-  · intro r
+  induction g using MvPolynomial.induction_on with
+  | C r =>
     simp [genLine, lineMap, transl_C, chart_C, Polynomial.algebraMap_apply]
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [genLine, map_add, Polynomial.map_add] at hp hq ⊢
     rw [hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [genLine, map_mul, Polynomial.map_mul, MvPolynomial.map_X] at hp ⊢
     rw [hp]
     congr 1
@@ -209,13 +209,13 @@ theorem fibre_eq {K : Type} [Field K] {n : ℕ} (a : Fin n → K)
     intro c
     show Ideal.Quotient.mk M ((shear a).symm (rename Fin.succ (C c))) = _
     rw [rename_C, ← MvPolynomial.algebraMap_eq, AlgEquiv.commutes, Ideal.Quotient.mk_algebraMap]
-  refine MvPolynomial.induction_on g ?_ ?_ ?_
-  · intro c
+  induction g using MvPolynomial.induction_on with
+  | C c =>
     rw [shear_apply, show shearHom a (C c) = C c by simp [shearHom], finSuccEquiv_C',
       Polynomial.map_C, hfibC, lineMap, aeval_C, Polynomial.algebraMap_apply, Polynomial.C_comp]
-  · intro p q hp hq
+  | add p q hp hq =>
     simp only [map_add, Polynomial.map_add, Polynomial.add_comp, hp, hq]
-  · intro p i hp
+  | mul_X p i hp =>
     simp only [map_mul, Polynomial.map_mul, Polynomial.mul_comp, hp]
     congr 1
     refine Fin.cases ?_ (fun j => ?_) i
@@ -244,12 +244,12 @@ theorem infiniteFieldAffineMonicFibre : InfiniteFieldAffineMonicFibreStatement :
       Ideal.Quotient.mk M g = eval x (map (algebraMap K _) g) := by
     intro g
     rw [MvPolynomial.eval_map]
-    refine MvPolynomial.induction_on g ?_ ?_ ?_
-    · intro c
+    induction g using MvPolynomial.induction_on with
+    | C c =>
       rw [eval₂_C, ← MvPolynomial.algebraMap_eq, Ideal.Quotient.mk_algebraMap]
-    · intro p q hp hq
+    | add p q hp hq =>
       simp only [map_add, eval₂_add, hp, hq]
-    · intro p i hp
+    | mul_X p i hp =>
       simp only [map_mul, eval₂_mul, hp, eval₂_X, hx]
   have hx' : eval x (map (algebraMap K _) f') ≠ 0 := by
     rw [← hπ]
