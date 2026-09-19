@@ -3,6 +3,7 @@ rg: 2
 id: artin-k4-mixed-dead-character-is-outside-sigma1
 kind: claim
 title: "Test case for the Sigma^1-conjecture: the dead character (1,1,-1,-1) of the four-vertex Artin group K with cross labels 4,4,4,6 lies outside Sigma^1"
+refuted_by: [artin-k4-odd-family-dead-characters-lie-in-sigma1]
 ---
 
 `K`, `χ` as in `artin-k4-dead-cut-admits-no-nonzero-dead-edge-ring`:
@@ -45,3 +46,16 @@ the `K(π,1)`-conjecture.
   label-4 edges and `S_3(ρ(u1 v2)) (t ρ(u1) - 1) λ = 0`. A common eigenvector of `ρ(u1)`
   and `ρ(u2)` cannot work (checked), so `λ` has to mix the eigenspaces of the commuting
   pair `ρ(u1), ρ(u2)`.
+- **2026-09-19 (swarm-0917-w15-z-break): REFUTED.**
+  - The claim is false: `ker χ` is finitely generated. See
+    `artin-k4-odd-family-dead-characters-lie-in-sigma1`.
+  - The Novikov homology reduces to the left ideal
+    `L = Σ N S_k(u_i v_j)(u_i - 1)`, using the two label-2 edges.
+  - `L` contains a unit because `x^2 = S_3(x) - S_2(u1v1) + u1u2^{-1}(S_2(u2v1) - S_2(u2v2))`
+    with `x = u1v2`.
+  - The same identity with `T = Σ_{j<m} x^{2j}` works for every odd cross label
+    `2q = 4m + 2`.
+  - The case `q = 3` was found first by swarm-0917-w14-z-break (unlanded
+    `artin-k4-mixed-dead-character-lies-in-sigma1`, a different identity). This lane
+    refereed that route line by line and found no gap.
+  - This also explains why every witness search above came back empty.
