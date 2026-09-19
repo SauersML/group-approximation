@@ -1,0 +1,5 @@
+n=6: theta kills [A_ij,A_kl]: True; [A_ij,A_kj]: True; [A_ij A_kj, A_ik]: True; theta(gens) commute with A_vc, A_wc: True
+n=6: vertices g[type meeting c], g in P_vw: rank(C_u cap C_vw) = [4]; passing the rank test against A_vc b0: 0 of 546
+n=7: theta kills [A_ij,A_kl]: True; [A_ij,A_kj]: True; [A_ij A_kj, A_ik]: True; theta(gens) commute with A_vc, A_wc: True
+n=7: vertices g[type meeting c], g in P_vw: rank(C_u cap C_vw) = [5]; passing the rank test against A_vc b0: 0 of 728
+ALL CHECKS PASSED

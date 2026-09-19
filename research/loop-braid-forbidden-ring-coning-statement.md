@@ -7,6 +7,8 @@ distinct_from:
   loop-braid-descending-links-are-increasingly-connected: that is the target (all of X_n highly connected); this is a stronger-in-one-degree statement about the q in {0,3} subcomplex Y, not implied by the target, which suffices for it via the Morse filtration
 artifacts:
   - research/artifacts/zp-loop-braid-forbidden-ring-push-reduction-2026-09-17.md
+  - research/artifacts/zp-loop-braid-one-ring-push-absorbed-block-2026-09-17.md
+  - experiments/loop-braid-one-ring-push-2026-09-17/absorbed_block_output.txt
 ---
 
 Notation is from the artifact §0–§1.
@@ -45,3 +47,24 @@ Evidence (artifact §6):
   Thm 3.10 step (★), "cut along α ∪ α' to get a smaller surface", has no analogue because annulus
   compatibility is a global unlink condition (artifact §7). The open sub-question there,
   one-ring pushes `b' = A_{vc}·b`, is the next step.
+- 2026-09-19 (swarm-0917-w17-w17-z-last1): answered the one-ring sub-question (★);
+  artifact `zp-loop-braid-one-ring-push-absorbed-block-2026-09-17.md`.
+  - **Literal (★) is false (proved).** `A_ca[(a,b)] ∈ lk(b0)` avoids c, but it is not in
+    `lk(A_vc b0)`. The certificate is the P-invariant `rank(pC_u ∩ qC_z)` for the free factors
+    `C_(a,b) = ⟨x_a x_b, x_k⟩`, computed by Stallings graphs. It separates vertices that no
+    abelian invariant can separate.
+  - **Absorbed-block embedding (proved).** The rule `A_cj ↦ A_cj A_vj A_wj` gives an injective
+    `θ : PLB_{n−2} → P_vw ∩ C(A_vc, A_wc)` and an embedding `X_{n−2}(F ∪ {c}) ↪ lk(b0) ∩ lk(A_vc b0)`,
+    with free count N − 3. Recorded as `loop-braid-one-ring-push-link-contains-absorbed-block`.
+  - **Equality (★′) is open.** It has 5040/5040 random agreement, and it is reduced to a
+    double-coset statement (K) about `P_vw ∩ ker π`, plus a type exclusion (C). Recorded as
+    `loop-braid-one-ring-push-link-equals-absorbed-block`.
+  - Under (★′), the one-ring pairs meet the t = 1 Björner condition exactly:
+    `c(N−3) = η(N) − 1`.
+  - **Not closed.** Longer pushes, such as `A_vc A_vd`, absorb bigger blocks and should lose more
+    free count. So the plain nerve over all b fails, and a refined nerve is needed.
+  - The suggested decomposition (artifact §5) is:
+    - (D1) (★′);
+    - (D2) a push-length Morse order on the type-{v, w} vertices, in which descending links meet
+      only through one-ring pushes;
+    - (D3) chains of one-ring pushes give iterated absorbed blocks, losing 3 free count per step.
