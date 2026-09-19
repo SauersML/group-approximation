@@ -1,0 +1,74 @@
+== slice 5 1 5 alpha 0 0
+p=5 slice<=(5,1,5) alpha=(0,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 3*z.  rho(C2)= 1*z.
+GB[9] deg 7 lead cacacab (mu (3,1,3)) terms 18 from S(cbcaca|caa,k=2)  X= 4*E23t0.E23t1.hAt2. 1*E23t0.E13t0.E23t1.E31t2. 4*E12t0.E23t0.E31t1.E13t0.E21t1.E23t1. 4*E13t0.E23t1.E21t2. 4*E23t1.E23t2. 2*E12t0.E23t0^2.E31t1.E13t0.E21t2. ...
+GB[10] deg 10 lead cacacacaca (mu (5,0,5)) terms 2 from [a,c,a]{101}  X= 0
+SUMMARY p=5 slice (5,1,5) alpha (0,0): jumps=0 sanity-fails=0
+== slice 5 1 5 alpha 1 0
+p=5 slice<=(5,1,5) alpha=(1,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 0
+GB[9] deg 7 lead cacacab (mu (3,1,3)) terms 18 from S(cbcaca|caa,k=2)  X= 4*E23t0.E23t1.hAt2. 1*E23t0.E13t0.E23t1.E31t2. 4*E12t0.E23t0.E31t1.E13t0.E21t1.E23t1. 4*E13t0.E23t1.E21t2. 4*E23t1.E23t2. 2*E12t0.E23t0^2.E31t1.E13t0.E21t2. ...
+GB[10] deg 10 lead cacacacaca (mu (5,0,5)) terms 2 from [a,c,a]{101}  X= 0
+SUMMARY p=5 slice (5,1,5) alpha (1,0): jumps=0 sanity-fails=0
+== slice 5 1 5 alpha 0 1
+p=5 slice<=(5,1,5) alpha=(0,1) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 1*z.
+GB[9] deg 7 lead cacacab (mu (3,1,3)) terms 18 from S(cbcaca|caa,k=2)  X= 4*E23t0.E23t1.hAt2. 1*E23t0.E13t0.E23t1.E31t2. 4*E12t0.E23t0.E31t1.E13t0.E21t1.E23t1. 4*E13t0.E23t1.E21t2. 4*E23t1.E23t2. 2*E12t0.E23t0^2.E31t1.E13t0.E21t2. ...
+GB[10] deg 10 lead cacacacaca (mu (5,0,5)) terms 2 from [a,c,a]{101}  X= 0
+JUMP S(cacacacaca|cacacab,k=6) deg 11->15 mu (5,1,5): rho =  4*z.  zcoef 4 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (5,1,5) alpha (0,1): jumps=1 sanity-fails=0
+== slice 1 5 5 alpha 0 0
+p=5 slice<=(1,5,5) alpha=(0,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 3*z.  rho(C2)= 1*z.
+SUMMARY p=5 slice (1,5,5) alpha (0,0): jumps=0 sanity-fails=0
+== slice 1 5 5 alpha 1 0
+p=5 slice<=(1,5,5) alpha=(1,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 0
+JUMP S(cbcbcbcbcb|cbcba,k=4) deg 11->15 mu (1,5,5): rho =  1*z.  zcoef 1 pure-z
+SUMMARY p=5 slice (1,5,5) alpha (1,0): jumps=1 sanity-fails=0
+== slice 1 5 5 alpha 0 1
+p=5 slice<=(1,5,5) alpha=(0,1) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 1*z.
+SUMMARY p=5 slice (1,5,5) alpha (0,1): jumps=0 sanity-fails=0
+== slice 5 5 1 alpha 0 0
+p=5 slice<=(5,5,1) alpha=(0,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 3*z.  rho(C2)= 1*z.
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  4*z.  zcoef 4 pure-z
+SUMMARY p=5 slice (5,5,1) alpha (0,0): jumps=1 sanity-fails=0
+== slice 5 5 1 alpha 1 0
+p=5 slice<=(5,5,1) alpha=(1,0) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 0
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  3*z.  zcoef 3 pure-z
+SUMMARY p=5 slice (5,5,1) alpha (1,0): jumps=1 sanity-fails=0
+== slice 5 5 1 alpha 0 1
+p=5 slice<=(5,5,1) alpha=(0,1) |basis N|=41
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_4)= 1*E21t4.
+test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 1*z.
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  3*z.  zcoef 3 pure-z
+SUMMARY p=5 slice (5,5,1) alpha (0,1): jumps=1 sanity-fails=0
