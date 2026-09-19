@@ -67,23 +67,22 @@ What is **not** used:
   group has no proper action on a median graph (Niblo–Reeves; Chatterji–Druţu–Haglund). So Kazhdan inputs
   must enter through non-median codings with disjoint mcms, such as grid codings with
   `k`-graph combinatorics.
-- **Ã₂ lattices.** The Robertson–Steger 2-graph codings used in
-  `a2-lattices-satisfy-permutational-boone-higman` are the natural candidates for (C1) and (C2).
-  With them the theorem would need no loops or powers, only (C3) and (C4). None of this is
-  checked here.
-- **C̃_n lattices.** The locally forced seeds of `cn-building-lattices-carry-locally-forced-seeds`
-  (`21cd0dd3e`) are candidate states. The test is exactly (C1)–(C4):
-  - (C1): do seed-labelled geodesics form a category with disjoint mcms and a left-divisor-closed
-    height?
-  - (C2): is there a promise move for the passive link factor, playing the role of the flag?
-  - (C3), (C4): these come from exits, provided the coding of a tree of buildings is the free
-    product of codings. That is expected but not proved in general.
+- **Euclidean buildings, all types (done 2026-09-19).** The box orbit categories of
+  `euclidean-building-lattices-lie-in-permutational-bh-class` satisfy (C1)–(C4) with no
+  rescaling: see `euclidean-building-lattices-embed-in-f-infinity-simple-groups`. (C3) is
+  "shadows shrink", proved with a uniform box measure. This covers Ã₂, C̃_n and G̃₂, including
+  the Kazhdan non-residually-finite C̃₂ lattices.
+- **Correction (2026-09-19): no promise moves are needed for buildings.** The earlier text
+  here proposed seed codings with promise moves for C̃_n. That is unnecessary. Sector codings of
+  chambers at infinity resynchronize by themselves, because that boundary is closed and
+  generic. Promise moves are needed only when the natural boundary contains non-generic limit
+  points, as the Roller boundary does.
 
 ## Lesson for general BH
 
 For simple `F_∞` hosts, a geometric group has to supply exactly **a finite-state coding of
-its boundary whose prefix order has disjoint mcms, together with promise moves that make
-codings from different base points resynchronize.** The rest is free:
+its boundary whose prefix order has disjoint mcms, and, where that boundary is not closed,
+promise moves that make codings from different base points resynchronize.** The rest is free:
 - the Cuntz factor supplies merge packing, and with it finiteness;
 - free exits supply topological freeness, (Acyc) and minimality;
 - Li's Corollary D and Matui supply simplicity.
