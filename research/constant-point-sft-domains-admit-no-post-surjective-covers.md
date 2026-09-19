@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/fixed-point-surjectivity-and-free-monoid-calibration-2026-09-18.md
   - research/artifacts/pointed-pre-injective-sections-2026-09-18.md
   - research/artifacts/injective-image-sft-cover-pairs-2026-09-19.md
+  - research/artifacts/affine-cover-pairs-direct-finiteness-2026-09-19.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -200,3 +201,24 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
   - *What is left.* Exactly one group: `CP_col(U)` for surjunctive `U`, or a counterexample there. A proof needs a
     model class into which `U` embeds locally (it contains all finitely presented groups), or a non-local
     argument. Needs 36774ad3 and 06d50d0e are unchanged, but they may now be attacked at `U` alone.
+- **Affine decoders (swarm-0917-w18-w18-gs-pull, 2026-09-19; stability-approximation). This is a class kill plus
+  the exact linear shadow.** Artifact: `research/artifacts/affine-cover-pairs-direct-finiteness-2026-09-19.md`.
+  - *Landed (ESTABLISHED, unreviewed).* `affine-decoders-admit-no-proper-cover-pairs`. Let `F = L + b` be affine
+    over `V = R^k`, with `R` a finite commutative ring, and let it have lifts at a single point `p` of an
+    arbitrary closed `X`. Then `M_k(R[G])` directly finite forces `X = V^G`. Conversely, a one-sided inverse gives
+    a proper constant-point linear SFT cover pair. Direct finiteness holds at every surjunctive group, and wherever
+    `F_p[G]` is stably finite.
+  - *Class kill.*
+    - The class: pairs whose decoder is affine after independent recodings of source and target as `R^k`. This
+      includes nonlinear domains (arrow-type, bounded-defect) carrying linear decoders. So it is strictly more
+      than `linear-proper-domain-duality-is-stable-finiteness`.
+    - Invariant: affine-ness of the decoder. The domain is only used through closedness, and the constant point
+      is not used at all.
+    - Dying step: the lifts of the `k` free generators `e_i δ_e` of `V[G]` assemble into a finite-memory right
+      inverse `T`. Surjunctivity makes `T` onto, so `p + V[G] ⊆ X`.
+    - Hence any `CP_col(U)` counterexample at a surjunctive `U`, and any counterexample at a sofic group or a
+      Kun–Thom wreath, has a decoder that is non-affine under every such recoding.
+  - *What it does not reach.* For a nonaffine decoder the lift set has no module structure. Assembling a local
+    right inverse from generator lifts is then exactly a local section, i.e. PRUNE (36774ad3), which stays open.
+    Homomorphic decoders over non-free abelian or nonabelian group alphabets are also not covered.
+  - Stays **OPEN**.
