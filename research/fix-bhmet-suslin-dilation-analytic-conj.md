@@ -10,6 +10,8 @@ Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a c
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/SuslinDilationAnalyticConj.lean` failed to build in bh-pal-wire's direct batch probe b1789834028 (09-19, base a39af618f3, empty overlay; log work/bh-pal-wire/shared/probe-b1789834028-1.log in the swarm workspace; 1 error lines). It became reachable only once bh-pal-wire's wave-2 repairs went green. Its imports built green in that probe, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
+**Repair landed, unprobed.** 2dd8b94c03: BH metabelian: static repairs for the 8 NEW-RED modules of probe b1789834028, with fix nod. Stays OPEN until a trusted probe builds it green.
+
 **First errors (verbatim).**
 
 ```
@@ -18,7 +20,6 @@ error: GroupApproximation/BooneHigman/Metabelian/SuslinDilationAnalyticConj.lean
 
 **Kind.** proof gap (mechanical): the residual goal contains `single p l (c*y) * single p q c`, which vanishes because `l ≠ p`, and that fact was not among the `noncomm_ring` hypotheses.
 
-**Repair landed, unprobed.** fix-bh-b adds `hZA : Matrix.single p l (c * y) * Matrix.single p q c = 0 := Matrix.single_mul_single_of_ne (c := c * y) p l p hpl.symm c` and passes it to `noncomm_ring`.
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.SuslinDilationAnalyticConj` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 
