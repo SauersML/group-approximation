@@ -182,3 +182,41 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   - **The invariant is these two forced plateaus.** Any closed shape class
     containing steep continuous ramps contains the collapse profile. So a
     closed route must carry a quantitative modulus at `p_c`.
+* **Invariant-partition / co-spectral-radius transplant (swarm-0917-w16,
+  transplanter, reframing; obstruction).** The idea is to read `lambda(p)` as
+  the co-spectral radius of the invariant random cluster partition `Pi_p`,
+  i.e. `a_n = P(X_n in K(o))`. This is the analogue of `P(X_n in H)` for an
+  invariant random subgroup `H`. The hope was to import the
+  Abért–Glasner–Virág Kesten theorem for IRS (arXiv:1201.3399, co-spectral
+  radius `= rho` iff `H` is amenable a.s.): a structural property of `Pi_p`
+  would pin `lambda` near `rho` just above `p_c`.
+  - *Proved (standard, via Schramm's mass transport).* For any
+    `Gamma`-invariant random partition with a.s. finite classes,
+    `a_n = E[|K(o)|^(-1) <P^n 1_K, 1_K>] <= rho^n`. By monotone convergence
+    in each `a_n` and Fekete (`lambda = sup_n a_n^(1/n)`, supermultiplicativity
+    from Harris), the rate class `R_r = {a_n <= r^n for all n}` is closed under
+    increasing unions of invariant partitions. So hyperfinite partitions have
+    `lambda <= rho`. Since `Pi_p` is the increasing union of `Pi_q` for
+    `q < p`, this gives only left-continuity of `lambda`.
+  - *Right side.* `Pi_(p_c)` is the decreasing limit of `Pi_p` as `p`
+    decreases to `p_c`. Pairwise this limit is exact:
+    `0 <= tau_p(o,x) - tau_(p_c)(o,x) <= theta(p) -> theta(p_c) = 0`.
+    So (IS) is exactly the statement that `R_r` survives this decreasing
+    limit for every `r > rho`.
+  - **Where it dies.** `R_r` is not closed under pairwise-convergent
+    decreasing limits. The state-level collapse witness of
+    `fpbs-two-point-state-axioms-admit-collapse` (every group, with (T7)
+    pairwise right continuity) and the event-level spine families of
+    `fpbs-soft-collapse-iff-invariant-sparse-spines` are such limits with
+    `lambda = 1` above `p_c`. The structural substitute fails too, because
+    the AGV dichotomy is false for partitions. On `T_d`, for
+    `p in (1/(d-1), 1/sqrt(d-1)]`, `Pi_p` has infinite nonamenable,
+    non-hyperfinite clusters, yet `lambda = rho`. The reason is that
+    `P(|X_n| = k)` is at most `poly(n) rho^n (d-1)^(k/2)`, so
+    `E p^|X_n| = O(poly(n) rho^n)`. AGV's proof uses closure `H H = H`, which
+    clusters lack. So no amenability or hyperfiniteness property of `Pi_p`
+    characterises `R_r`, and the transplant reaches the same missing
+    quantitative input at `p_c + 0` as every route above. No new node was
+    written: the kill is the one already recorded by those two collapse
+    nodes, and this bullet only records that the IRS dictionary adds
+    nothing.
