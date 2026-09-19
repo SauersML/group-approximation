@@ -113,3 +113,44 @@ an `(n−1)`-connected descending link. So `F` is of type `F_n` for every `n`, i
 - **For the hard-actor route (SYNTHESIS v9 #1).** Condition 2 (finite presentation) holds for the first non-split
   calibration. The same V-height template should apply to any tree seed with finitely many cone types, and plausibly
   to hierarchical seeds whose type vectors satisfy linear invariants.
+
+## Check of Regions S and S′ (bh-invent-11, 2026-09-19, on request; internal lane check, not an external review)
+
+**Region S: PASS.**
+- **Descending conditions.** Recomputed: lowers descend iff `β ≤ α ≤ 2d_b − β`; uppers iff `y < x` and
+  `x + y < 2|d_a|`.
+- **The two retractions.**
+  - `P ↦ P ∩ {c_a/c_A}` keeps `(α, 0)` descending, since `α ≤ 2d_b`. It satisfies `f ≥ id`.
+  - When `v^E` is attached, its link is exactly `D_low(E) * Up_<(E)`. The coupling only sees the largest
+    upper `E` and the largest lower `P_1`, and `E ∩ ∪P_1 = ∅` implies the condition for smaller uppers.
+  - A join with a possibly empty `Up_<(E)` is at least as connected as `D_low(E)`.
+- **Part sizes.** The part sizes `s, 2n_a, n_b, n_b`, and at least `N/2` after removing `E`, are correct.
+- **Make explicit: the size of `L_0`.** `L_0` must depend on `N`, with `L_0 ≥ N/4 + C·n`.
+  - In Region S, `d_b ≥ ℓ − N/4`, so this bound is what makes the truncation `2d_b − 2` large.
+  - The row `n_b = N` (`d_b = 0`) has **no** descending lowers. It is harmless only because it lies in
+    `{ℓ ≤ N/4} ⊆ {ℓ ≤ L_0}`.
+
+**Region S′: the conclusion holds, but the description needs a repair.**
+- **What is actually descending.** For `d_a = 1`, the lowers descend iff `α ≥ max(β − 2, 0)` and `α + β ≥ 1`, with
+  upper bounds `α ≤ 2d_b` for `β = 0`, `α ≤ 2d_b + 1` for `β = 1`, and `α ≤ 2d_b + 2 − β` for `β ≥ 2`. This is more
+  than "S plus pure `c_b` sets of size ≤ 2": for example `(α, β) = (1, 2)` and `(1, 3)` also descend.
+- **No descending uppers.** For `d_a ≥ 1` every upper raises `ℓ` by `x + y`. So `DL(v)` consists of lowers only;
+  the "as in S" attachment of uppers does not occur.
+- **The retraction breaks at one edge case.** `P ↦ P ∩ {c_a/c_A}` fails to stay descending exactly at
+  `(α, β) = (2d_b + 1, 1)`.
+- **The repair.**
+  1. Let `D′ = {P descending : 1 ≤ α ≤ 2d_b}`. The retraction maps `D′` into itself with `f ≥ id`, so `D′` is
+     homotopy equivalent to the truncated pure `c_a/c_A` matching complex, which is highly connected by (I2).
+  2. Attach the edge-case vertices `(2d_b + 1, 1)`. They have no descending proper supersets. Their link is the
+     poset of proper nonempty subsets other than the single `c_b` element `{c}`. It is contractible via
+     `σ ↦ σ ∖ {c}`, which is `≤ id`, onto the full simplex on `P ∖ {c}`.
+  3. Attach the single `c_b` sets `{c}`. Their link is the descending supersets. The map
+     `P ↦ (P ∩ c_a) ∪ {c}`, which is `≤ id`, is a homotopy equivalence onto the truncated `c_a/c_A` matching
+     complex avoiding the pieces of `c`. That complex is highly connected, not merely connected as stated.
+  4. Attach the pairs `{c, c′}`. Their link is `{{c}, {c′}} * (upward part)`, and the upward part is highly
+     connected by the same map with `{c, c′}`.
+
+  With this repair, Region S′ is `(n−1)`-connected for `N ≥ C·n`, and the Conclusion stands.
+- **Coverage.** The cases `n_a ≥ N + 2` with `n_b ∈ {N, N + 1}` are covered by S and S′ through the `a ↔ b`
+  symmetry, as the setting says.
+- **Not checked here.** Regions A and B, and the imports (I1) and (I2).
