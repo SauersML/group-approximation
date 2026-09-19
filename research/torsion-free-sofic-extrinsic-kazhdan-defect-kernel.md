@@ -585,3 +585,37 @@ must build genuinely Hamming-approximate sofic models.
     - Replace the finite group `F` by the `sigma(L)`-invariant blocks of a Hamming model,
       and bound the order of the block groups by the number of exactly invariant blocks.
     - Test the bound on the lamp calibration of the new node.
+
+23. **Finite-scale profiles kill W1 and W2 in the Hamming regime (2026-09-19,
+    stability-approximation transplant, swarm-0917-w17-w17-titz-pull).** This carries out the
+    second next step of Attempt 21 and answers the non-LEF survivor of Attempt 22.
+    - *Where the ambient group was spent.* The Kun--Thom Section 4 audit (route
+      `ambient-decomposition-kun-thom-normalization-audit`) locates every ambient input in two
+      places: the Proposition 3.1 matching inside Lemma 4.3, and the two calls of Lemma 4.4 for
+      the orbit size `o_n` and the isotropy order `k_n`.
+    - *Replacement.* Established `finite-scale-sofic-profiles-kill-compression-defects`, with
+      route `...-proof`.
+      - A tight-cluster matching built by mass transport of `log |Q|` under (FS-size) replaces
+        the first input. It depends only on `sigma|_L` and `u_n`, so its error can be
+        prescribed before the cluster scales are chosen.
+      - Item 3 of `finite-scale-compressors-preserve-kazhdan-fixed-algebras`, applied to
+        `log o_n` and `log k_n`, replaces the second.
+      - The index step (index `< 2`, hence `1`) then goes through for every compressor. So
+        `sigma(<Comp_G(L)>)` normalizes `C(sigma(L))`, and `D_G(L) = 1`.
+      - The hypothesis is on `sigma|_L` alone. The compressors may be arbitrary, non-Kazhdan
+        and of unbounded period, and no ambient expander decomposition is needed.
+    - *Invariant and death.* The three log-profiles of `sigma|_L`: cluster size, groupoid orbit
+      size and isotropy order. Every witness with one sofic representation whose three
+      profiles are finite-scale dies at Kun--Thom's index step (K6).
+    - *New necessary condition.* For every nonprincipal `U` and every sofic representation of
+      `K semidirect Z`, some profile of `sigma|_L` is multi-scale. That means a doubling tower
+      (item 4 of the fixed-algebra node) in size, orbit or isotropy, which the compressors
+      traverse across unboundedly many scales. This holds for LEF and non-LEF `K` alike, so it
+      replaces the non-LEF survivor of Attempt 22.
+
+    This node stays OPEN.
+
+    Next steps: the open reduction (PR) of the new node. It asks whether every sofic group
+    containing a Kazhdan `L` has a sofic representation with a finite-scale profile on `L`.
+    Direct sums over scales are not `G`-invariant, and tensor products add log-sizes, so
+    neither regularizes the profile. A positive answer refutes (EK1).
