@@ -42,3 +42,19 @@ A sufficient window-free form: some `(W, eps_1)` with `S_W(eps_1) < eps_1 nu/(2 
 ## Attempts
 - **2026-09-18, swarm-0917-w14-w14-deligne-last1: posed.** Obtained from the deficit hole by the superadditivity
   theorem. No fixed-scale argument has been tried.
+- **2026-09-19, swarm-0917-w17-w17-deligne-last1: dimension-free fixed-scale rigidity is dead**
+  (`sp4-winding-deficit-fails-in-twisted-tracial-algebras`, operator-algebras).
+  - *Proved.* Replace `U(d)` by the unitaries of a tracial C*-algebra, and `kappa_r/d` by `tau(log W_r)/(2 pi i)`. Then
+    (SSD) fails at every window and every scale. Take `A_t = C*_lambda(Gamma, e(tb))` with
+    `t = arcsin(eps/2)/(pi beta*_W)`, and rephase `u_g` by the minimizer `psi*` of `beta*_W`.
+    - The defects are the scalars `e(t(b + delta psi*))`, of norm `<= eps`.
+    - `W_r = e(tk)`.
+    - The ratio is `tau_W * 2 arcsin(eps/2)/eps > tau_W`.
+  - *Consequence.* This kills the Kazhdan-pair, spectral-gap and tracial-SOS arguments proposed in "Why it matters"
+    above, unless they use finite dimension. It also kills them when rational windings are required. Item 8 of the
+    sharp-constant node already kills arguments that keep finite dimension but only scalar data.
+  - *Left.* A proof must bound the traceless defect from below in terms of the winding, using a property of `M_d`
+    that fails in `A_t`. The witnesses have zero traceless defect, and in `M_d` that is excluded for small `t != 0`
+    by `sp4-fd-projective-multiplier-is-finite`. Candidate properties are compression, matricial stability and
+    residual finiteness input.
+  - (SSD) itself is untouched.
