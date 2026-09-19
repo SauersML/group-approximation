@@ -9,6 +9,8 @@ distinct_from:
   kazhdan-subgroups-of-brin-thompson-groups-are-finite: that is the special case G = G_2^n, which this implies through brick-groupoid-has-zn-cocycle-with-af-kernel; this is the general hypothesis list, which can fail on its own through any other AF-by-Z^k host.
   sft-topological-full-groups-have-the-haagerup-property: that is Matui's positive theorem for k = 1, the strongest known instance; this asks only for the (weaker) finiteness of Kazhdan subgroups, but for all k.
 artifacts: []
+refuted_by:
+  - af-by-z2-ample-groupoid-full-group-contains-infinite-kazhdan
 ---
 
 **Status: OPEN.**
@@ -137,3 +139,24 @@ that can fail on its own, rather than a restatement of the target.
     `c` normalize `ker c`. (Correctly so: `V = [[G_2]]` does not preserve the Bernoulli
     measure.) Any argument that pushes an invariant measure around with full-group
     elements dies here.
+
+- **2026-09-19 (swarm-0917-w16-w16-z-last1, calibration): refuted; the refuter is now wired.**
+  - `af-by-z2-ample-groupoid-full-group-contains-infinite-kazhdan` (ESTABLISHED) supplies
+    `R = Γ ⋉ Ω`, the Robertson–Steger boundary groupoid of a Kazhdan `PGL_3(K)` lattice. It is
+    second countable, Hausdorff, ample, with Cantor unit space, minimal and effective, and
+    carries a continuous `Z^2` cocycle whose kernel is AF in Matui's sense. Matui's compact
+    open principal subgroupoids have finite orbits (a fibre `r^(-1)(x)` is closed and discrete
+    in a compact set), so they are elementary in the sense of the Statement above. Every
+    hypothesis of `(S_2)` holds, and `Γ ≤ [[R]]` is infinite and Kazhdan.
+  - For `k ≥ 3`, pad: `c_k = (c, 0, ..., 0)` has the same kernel. So `(S_k)` is false for
+    every `k ≥ 2`, and `refuted_by` is set. The route `nv-finite-kazhdan-subgroups-via-af-by-zn`
+    is invalidated. The bus need `239f5784` is answered: no.
+  - **What survives, and where it went.** The two things the refuting host lacks are the
+    product decomposition `G_2^n = G_2 × G_2^(n-1)` and the fact that one factor's gauge skew
+    product is AF *while the other factor is again a Brin–Thompson groupoid*. Both are used in
+    the new ESTABLISHED claim `nv-coordinate-coboundary-subgroups-embed-in-lower-rank`:
+    a finitely generated `Λ ≤ nV` with one coordinate cocycle a continuous coboundary embeds in
+    `(n-1)V`. So Kazhdan finiteness in `nV` is equivalent to Kazhdan finiteness in `(n-1)V`
+    together with straightening *one* coordinate of each Kazhdan subgroup. That per-coordinate
+    statement replaces `(S_n)` as the AF-kernel input for `nV`.
+  - `(S_1)` is not settled here. Lemma A, Lemma B and the two facts after them remain valid.
