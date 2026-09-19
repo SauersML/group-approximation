@@ -1,0 +1,39 @@
+# Exact supports (dyadic arithmetic, fast.py of the w16 lane), recorded 2026-09-19.
+# bulk period at delta-scale n: [delta^n(5), delta^n(5) + 2^n)  (scout.py)
+# window at delta-scale n: delta^n [X, delta X)                   (window.py)
+
+## scout.py nonaffine 3
+nonaffine n=3 rho_meta  moved 8        (whole period)
+nonaffine n=3 tau_meta  moved 4.22778  comps 29
+nonaffine n=3 c1        moved 7.05859
+nonaffine n=3 rho_c     moved 8        (whole period)
+
+## scout.py nonaffine 5   period [170.5,202.5)
+nonaffine n=5 rho_meta  moved 32       (whole period)
+nonaffine n=5 tau_meta  moved 3.02419  comps 89
+
+## scout.py nonaffine 6   period [341.0,405.0)  (see out_scout_nonaffine_6.txt)
+nonaffine n=6 rho_meta  len= 20 pieces 187881 comps 1 moved 64  (whole period)
+nonaffine n=6 tau_meta  len= 20 pieces 128030 comps 116 moved 2.17322
+
+## window.py affine 5, 6  (see out_window_affine_5.txt, out_window_affine_6.txt)
+affine n=5 rho_meta window [128,256) comps 2 moved 4 first 130 last 193.5
+affine n=5 tau_meta window [128,256) comps 1 moved 0.00585938 (near 193)
+affine n=6 rho_meta window [256,512) comps 2 moved 4 first 258 last 385.5
+
+## scout.py affine 5   bulk [160,192)
+affine n=5 rho_meta  moved 0
+affine n=5 tau_meta  moved 0
+affine n=5 c1        moved 0
+affine n=5 rho_c     moved 32
+
+## window.py affine 3   window [32,64)
+affine n=3 rho_meta  moved 4       first 34 last 49.5
+affine n=3 tau_meta  moved 0.0234
+affine n=3 c1        moved 1.0078
+
+# Reading: in the affine control the metabelian words vanish on the bulk period
+# but not on the whole window (the window contains the bends of the square map),
+# consistent with the affine germ group containing F (not metabelian).  In the
+# non-affine lift rho_meta moves the whole bulk period at every tested scale, so
+# the F3 test is passed at scales 3, 5, 6.  This is evidence, not a proof of F3.

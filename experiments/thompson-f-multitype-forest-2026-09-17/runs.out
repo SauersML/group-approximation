@@ -1,0 +1,26 @@
+# multitype_scale.py <N> <H> <trials> <iters>; H=1 N=4 value 0.951396 reproduced (E2 table)
+## run_N4_H2
+N=4 H=2 trial 0  B=0.952273  R=0.976137
+N=4 H=2 trial 1  B=0.951759  R=0.975880
+N=4 H=2 trial 2  B=0.942809  R=0.971405
+BEST N=4 H=2 B=0.952273 R=0.976137
+## run_N4_H3
+N=4 H=3 trial 0  B=0.952527  R=0.976263
+N=4 H=3 trial 1  B=0.952474  R=0.976237
+N=4 H=3 trial 2  B=0.942809  R=0.971405
+BEST N=4 H=3 B=0.952527 R=0.976263
+## run_N4_H4
+N=4 H=4 trial 0  B=0.952622  R=0.976311
+N=4 H=4 trial 1  B=0.952362  R=0.976181
+BEST N=4 H=4 B=0.952622 R=0.976311
+## run_N8_H2
+N=8 H=2 trial 0  B=0.954217  R=0.977109
+N=8 H=2 trial 1  B=0.954173  R=0.977087
+BEST N=8 H=2 B=0.954217 R=0.977109
+## run_N8_H3
+N=8 H=3 trial 0  B=0.954544  R=0.977272
+N=8 H=3 trial 1  B=0.954319  R=0.977160
+BEST N=8 H=3 B=0.954544 R=0.977272
+## run_N16_H2
+N=16 H=2 trial 0  B=0.954756  R=0.977378
+BEST N=16 H=2 B=0.954756 R=0.977378
