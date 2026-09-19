@@ -9,7 +9,7 @@ distinct_from:
   ct-z-orbit-transversal-dichotomy-is-collatz-hard: that shows G_T has density-zero transversals; combined with this, G_T reads every depth from every point.
 ---
 
-**ESTABLISHED** (lane proof, elementary, not reviewed). No priority claimed. Kourovka 20.44
+**ESTABLISHED** (lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19). No priority claimed. Kourovka 20.44
 (S. Kohl) stays **OPEN**. This node reduces it to one class.
 
 ## Setting (any slope lattice)
@@ -92,3 +92,30 @@ none, so all of its difficulty sits in the totally consumable class, as the conj
   - bounded, at the corner of a positive ray;
   - sweeping, on trapped level sets and along tube ends;
   - Collatz, in dimension 2.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS; arbitrary slopes and the G_T corollary checked
+
+**Lemma 1: correct.**
+- A frozen tail is carried unread by `h` to `d + c`. A later reading of it from `y′` would be a reading from `y` along `uh`.
+- Reversal gives the other inclusion.
+
+**Lemma 2: correct for arbitrary slopes.**
+- The shift is capped on both sides: `c ≥ −K`, since the frozen tail lands at the degree `K + c ∈ N^k`; and `c ≤ K`, since `K − c ∈ E(y_0) ⊆ N^k` by Lemma 1.
+- So `c` ranges over the finite set `Λ ∩ [−K, K]`, with no cone condition.
+- The form `y = ρ + m_(K+c)σ^K(y_0)`, with `0 ≤ ρ < m_(K+c)`, holds because canonical maps `r + km ↦ s + km′` carry the **integer** tail exactly: `ρ′ = s + ((ρ−r)/m)m′ ∈ [0, m_(K+c))`, with no carry and no unit twist. Hence `≤ A_K` points of `Y_K` per orbit.
+- Note that this bounds the number of points of `Y_K` in each orbit, not the orbit size. Orbits may be infinite here, unlike under cone-avoidance.
+
+**Item 1: correct.**
+- `Y_K` is clopen and a union of classes mod `M_K`, by prefix dependence, which the ray node proves without the ray hypothesis.
+- `CT(Z)` preserves `N_0` and the negatives, so the orbits of points of `Y_K ∩ [0, jM_K)` have their minima there. That gives `≥ δ_K N/(2A_K)` distinct orbit minima in `[0,N]`.
+- The set of all orbit minima (maxima on the negative side) is therefore a transversal of positive lower density. That is the second alternative of 20.44.
+- Every finitely generated `G ≤ CT(Z)` lies in some `CT_P(Z)` with `P` finite, so "arbitrary slopes" is justified.
+
+**Item 2: immediate.** A frozen tail at a point of `Ẑ` gives a nonempty clopen `Y_K`, which contains integers.
+
+**Corollary (`G_T` is totally consumable): correct**, given item 1 of `ct-z-orbit-transversal-dichotomy-is-collatz-hard` (`ν_(G_T)(N) = o(N)`).
+- That item is stated unconditionally: component minima of the 3x+1 map have infinite stopping time, hence density `0` by Terras–Everett.
+- A frozen tail anywhere would force `ν(N) ≥ cN`.
+- So "unconditional" is right, modulo that node, which I have not re-refereed.
+
+**Consistency.** This removes cone-avoidance from item 2 of `ct-p-z-cone-avoiding-slope-lattices-trap-frozen-tails`, as its distinct_from says. Items 1 and 3 there, the orbit-size bounds, still need `Seg(n)` finite.
