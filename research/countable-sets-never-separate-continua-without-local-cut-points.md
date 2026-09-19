@@ -2,7 +2,7 @@
 rg: 2
 id: countable-sets-never-separate-continua-without-local-cut-points
 kind: claim
-title: No countable closed set separates a Peano continuum without local cut points; so for every one-ended hyperbolic group that is not virtually Fuchsian and does not split over a two-ended subgroup (every infinite Kazhdan hyperbolic group, every random group at density below 1/2), the shear frontiers of loxodromic elements are uncountable
+title: No countable closed set separates a Peano continuum without local cut points; so for every one-ended hyperbolic group that is not virtually Fuchsian and does not split over a two-ended subgroup (every infinite Kazhdan hyperbolic group, and a random group at density below 1/2 with overwhelming probability), the shear frontiers of loxodromic elements are uncountable
 requires:
   - busemann-frontiers-separate-the-boundary
 distinct_from:
@@ -43,14 +43,21 @@ closed `C ⊆ X`.
   virtually Fuchsian (recalled).
 - **Kazhdan groups.** An infinite Kazhdan hyperbolic group has property (FA), so it has no splitting at all. It is
   one-ended, and it is not virtually Fuchsian. So `∂Γ` has no local cut points, and the Lemma applies.
-- **Random groups.** Random groups at density `< 1/2` do not split (Dahmani–Guirardel–Przytycki). Their Menger
-  boundary has no local cut points.
+- **Random groups.** At density `< 1/2`, **with overwhelming probability**, a random group is hyperbolic,
+  one-ended, does not split, and has Menger-curve boundary (Dahmani–Guirardel–Przytycki). Its boundary then has no
+  local cut points.
 
-**Consequence.** For all these groups, (T0) of `busemann-frontiers-separate-the-boundary` holds. So every
-loxodromic `g` has an **uncountable shear frontier `F`**, for `k` large.
+**Consequence.** For all these groups (random ones with overwhelming probability), (T0) of
+`busemann-frontiers-separate-the-boundary` holds. So, given Theorem 1 of that node, every loxodromic `g` has an
+**uncountable shear frontier `F`**, for `k` large.
 
-**The only remaining step toward "BBMZ hosts of Kazhdan hyperbolic groups are unbounded" (Conjecture U)** is
-persistence: that `g` is singular over the frontier. It is proved for reflections only.
+**What Conjecture U ("BBMZ hosts of Kazhdan hyperbolic groups are unbounded") still needs.** This node supplies the
+topological input only. Conjecture U also needs:
+- Theorem 1 of `busemann-frontiers-separate-the-boundary` (the frontier separates), which is not yet reviewed;
+- persistence, that `g` is singular over the frontier, which is proved for reflections only.
+
+`bbmz-singularity-is-a-recurrent-coincidence` sharpens the second input: singularity over a frontier point is the
+recurrence of a coincidence, which frontier membership alone does not give.
 
 ## Lesson for general BH
 
@@ -104,3 +111,5 @@ dimension count is needed to see it.
 
 **Verdict: PASS**, with the two wording repairs. The Lemma is a folklore-level fact with a correct proof; no
 classical citation was found.
+
+**Repairs applied** (bh-q12-kazhdan, 2026-09-19). Repair 1 is in the title and in the random-groups bullet. Repair 2 is in the paragraph on what Conjecture U still needs.

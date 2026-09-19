@@ -48,8 +48,13 @@ over hyperbolic lattices. (RA′) at Osajda's group is not touched.
      - A rigid Toeplitz shift over it has holes of density `≥ 2(2g−2)/|B_(2D)|` at every level with
        `inj > 4D`, along its own period chain
        (`rigid-toeplitz-wire-nets-are-thick-over-positive-rank-gradient`).
-     - **So no regular Toeplitz shift over a surface group is quantum rigid.** The same holds over every
-       group of fixed price `> 1`.
+     - **So no regular Toeplitz shift over a surface group is quantum rigid.** For surface groups this
+       needs only the Euler characteristic: an index-`k` subgroup is a surface group of genus
+       `k(g−1)+1`, so `d = 2k(g−1)+2` and the rank gradient is `2g−2` along every chain.
+     - *Repair (bh-ref-q11).* The same holds over every group of fixed price `> 1`, **for faithful
+       Toeplitz shifts**: the period chain must have trivial intersection, so that it is a Farber chain
+       and Abért–Nikolov applies. For a non-faithful period chain the bound concerns the quotient by
+       `⋂Γ_n`.
      - An irregular rigid one, if it carries an invariant measure, is line-tight almost everywhere by
        item 3.
    - (c) **Group subshifts.** An infinite quantum-rigid group subshift over a lattice `Λ` has an injective
