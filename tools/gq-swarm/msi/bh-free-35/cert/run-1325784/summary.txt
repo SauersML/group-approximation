@@ -1,0 +1,14 @@
+[   3.2s] probe ok singular-cmd=0 :: PROBE 3 | P1 OK | P2 NO | 
+[   8.4s] led v=(2, 1) |W|=16 vars=32 rels=344 q3=36 deg=4 ok 5.1s GB 429  certified 4/4  undecided 0
+[  14.2s] led v=(1, 2) |W|=16 vars=32 rels=344 q3=36 deg=4 ok 5.7s GB 449  certified 4/4  undecided 0
+[  20.0s] led v=(2, -1) |W|=16 vars=32 rels=344 q3=36 deg=4 ok 5.7s GB 429  certified 4/4  undecided 0
+[  25.8s] led v=(1, -2) |W|=16 vars=32 rels=344 q3=36 deg=4 ok 5.6s GB 449  certified 4/4  undecided 0
+[  28.7s] led v=(3, 0) |W|=14 vars=28 rels=286 q3=28 deg=4 ok 2.9s GB 341  certified 4/4  undecided 0
+[  31.8s] led v=(0, 3) |W|=14 vars=28 rels=286 q3=28 deg=4 ok 3.0s GB 380  certified 4/4  undecided 0
+[  92.5s] ledk v=(2, 1) |W|=16 vars=64 rels=1656 q3=472 deg=4 TIMEOUT 60.1s GB ?  certified 0/16  undecided 0
+[ 124.5s] ledk v=(3, 0) |W|=14 vars=56 rels=1366 q3=376 deg=4 ok 31.7s GB 1130  certified 16/16  undecided 0
+[ 126.2s] full v=(2, 1) |W|=6 vars=12 rels=82 q3=0 deg=4 ok 1.7s GB 31  certified 0/4  undecided 4  undecided pairs [(0, 0), (0, 1), (1, 0), (1, 1)]
+[ 128.2s] full v=(3, 0) |W|=4 vars=8 rels=40 q3=0 deg=4 ok 1.9s GB 15  certified 0/4  undecided 4  undecided pairs [(0, 0), (0, 1), (1, 0), (1, 1)]
+[ 130.5s] colp v=(2, 1) |W|=6 vars=24 rels=366 q3=56 deg=5 ok 2.2s GB 118  certified 16/16  undecided 0
+[ 132.5s] colp v=(3, 0) |W|=4 vars=16 rels=172 q3=24 deg=5 ok 1.9s GB 78  certified 8/16  undecided 8  undecided pairs [(0, 0), (0, 1), (1, 0), (1, 1), (2, 2), (2, 3), (3, 2), (3, 3)]
+[ 390.8s] labbe v=(2, 1) |W|=6 vars=114 rels=10514 q3=3649 deg=4 TIMEOUT 75.2s GB ?  certified 0/361  undecided 0
