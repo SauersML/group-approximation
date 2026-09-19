@@ -227,6 +227,21 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     cosets meet. A ball search cannot refute (H″); only a finite-quotient obstruction can.
   - **Lifting test.** Vertex centres map to vertex centres under the fibred braid shadows. So an H_4 Case 1 hexagon
     whose `P_5`-shadow is the A_4 example would refute VC in H_4. Finding one is the lifting problem.
+- **Single-edge case: vertex centres fail in H_4 itself** (w15-042,
+  `h4-case1-vertex-centres-fail-by-orthogonal-parabolics`; proved, inequalities certified).
+  - **The tuple.** Take `a = p_2p_3`, `b = p_1p_3 = s_3^{-1}as_3`, `c = s_4^2`, `d = s_3^{-1}s_4^2s_3`,
+    `w = (s_2s_3)s_4^2(s_2s_3)^{-1}`, `u = wc` and `v = wd`.
+    - `[u,a] = [v,b] = k`.
+    - The structure comes from `A_{s_4} ⊥ A_{s_1s_2}`: `c`, `d` and `w` centralise `a`, `b` and `b^{-1}a`.
+  - **What it shows.** It is a Case 1 tuple with no vertex centre, in the target orientation.
+    - `C_N(a)` and `C_N(b)` are incomparable, so the nesting route (w14 Q.4) is dead.
+    - The lifting test (L) is not needed.
+    - (H″) holds for it: `u^{-1}v = c^{-1}d`, with centre point `w`.
+  - **Certificates.** Exact Garside normal forms, and an exact `ℚ(√5)` linear representation. The same tuple works
+    for `m_{s_3s_4} = 3, 4, 5`.
+  - **Why the searches missed it.** The N-length of `d` exceeds 6 in H_4, so `v` lies outside w14's ball.
+  - **What is left.** Case 1 needs an H_4 Helly argument that reaches non-vertex centres. The line fixed by `W_X`
+    is not modular in H_4 (510 bad hyperplane pairs), so the free-fibre arc model does not transport.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
