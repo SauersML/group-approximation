@@ -37,6 +37,30 @@ some honest `rho` with `rho(K)` abelian does.
   - A reduction would have to replace `rho` by a representation of `G = M/[K,K]` with no worse operator-norm
     distance. Two natural candidates are passing to the associated graded of the lower central series of
     `rho(K)`, or specializing a Galois conjugate with finite image. Neither is checked.
+- **2026-09-19, swarm-0917-w16-w16-deligne-pull (reframing): this reduction can be weakened to one small
+  constituent of dimension prime to three, and determinant arguments cannot supply it.** Result:
+  `mod-s2-prime-to-three-torelli-constituents-are-large` (ESTABLISHED).
+  - *Proved.* Split `rho|_K` into irreducible Torelli constituents `sigma_i` (dimension `n_i`, multiplicity
+    `m_i`).
+    - Untensor each isotypic block over its stabilizer, and untwist the multiplicity factor by Malcev.
+    - Then `sigma_i` extends to an honest representation of some finite-index `M'' >= K`, so `det sigma_i`
+      extends to a character of `M''`.
+    - Its separating-twist angles are `n_i/3 + n_i h`, a point of the census torus `W(Gamma'')^perp`.
+    - Hence `n_i arcsin(eps/2) >= pi d_inf` whenever `3` does not divide `n_i`. At `n_i = 1` this is (TA1).
+  - *Consequence for this node.* In the route to the gap, this node only supplies near-`omega` input for the
+    Torelli-abelian arithmetic. The weaker statement
+    `mod-s2-cube-root-reps-have-small-prime-to-three-constituents` (SB) supplies enough: one prime-to-three
+    constituent with `n eps -> 0`. This node implies (SB).
+    - With (TAP), (SB) is equivalent to the gap, via route `mod-s2-opnorm-torelli-gap-via-small-constituents`.
+  - *Kill (PC6).* Data from the determinants of extended constituents are the conditions
+    `n/3 + n h in W^perp`.
+    - They are consistent with `sigma_i(t_s) = omega I` when `3 | n`.
+    - They are consistent with distance `2 sin(pi d(Gamma'')/n)` otherwise.
+    - So (PC2) is their sharp bound, and every such argument dies at "`3 | n_i`, or `n_i >= c/eps`".
+    - An associated-graded or abelianization step that keeps only such determinant data therefore cannot prove
+      this node.
+  - *Status.* OPEN. The node is now needed only in its weakened form (SB).
+
 - **2026-09-19, swarm-0917-w16-w16-deligne-last1: compact-closure dichotomy; reduction proved with loss
   `D(rho)` outside one residual class.** ESTABLISHED as `mod-s2-near-scalar-torelli-closure-dichotomy`.
   Put `H = cl rho(K)` and `S = cl[H,H]`. Then:
