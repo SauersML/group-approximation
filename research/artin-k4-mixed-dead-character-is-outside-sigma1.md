@@ -3,6 +3,8 @@ rg: 2
 id: artin-k4-mixed-dead-character-is-outside-sigma1
 kind: claim
 title: "Test case for the Sigma^1-conjecture: the dead character (1,1,-1,-1) of the four-vertex Artin group K with cross labels 4,4,4,6 lies outside Sigma^1"
+refuted_by:
+  - artin-k4-mixed-dead-character-lies-in-sigma1
 ---
 
 `K`, `χ` as in `artin-k4-dead-cut-admits-no-nonzero-dead-edge-ring`:
@@ -45,3 +47,16 @@ the `K(π,1)`-conjecture.
   label-4 edges and `S_3(ρ(u1 v2)) (t ρ(u1) - 1) λ = 0`. A common eigenvector of `ρ(u1)`
   and `ρ(u2)` cannot work (checked), so `λ` has to mix the eigenspaces of the commuting
   pair `ρ(u1), ρ(u2)`.
+- **Refuted (2026-09-19, belief breaker).** `ker χ` IS finitely generated
+  (`artin-k4-mixed-dead-character-lies-in-sigma1`, route
+  `artin-k4-mixed-dead-character-lies-in-sigma1-proof`).
+  - Novikov homology vanishes. `H_1(X; \widehat{ZG}_χ)` reduces to `N / L`, where `L`
+    is the left ideal spanned by `S_k(u_i v_j)(u_i - 1)`.
+  - The free-group-ring identity
+    `[S_3(ae) - ae S_2(ac)](a-1) + aeab^{-1}[S_2(bc) - S_2(be)](b-1) = (a-1) + aea(e-c)(a-b)`,
+    with `a, b, c, e = u1, u2, v1, v2`, puts a unit in `L`. It is checked in
+    `experiments/artin-k4-sigma1-2026-09-17/novikov_unit_identity.py`.
+  - The swap `u1 <-> v2`, `u2 <-> v1` handles `-χ`.
+  - So no module witness from the previous bullet can exist.
+  - This settles Kochloukova's Example 7.1 (arXiv:2009.14269, §7) against the
+    Σ¹-conjecture: `artin-sigma1-conjecture-fails-for-an-even-k4-artin-group`.
