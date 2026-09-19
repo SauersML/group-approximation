@@ -15,6 +15,9 @@ artifacts:
   - experiments/thompson-f-markov-forest-2026-09-17/lift_fast.out
   - experiments/thompson-f-markov-forest-2026-09-17/lift_fast_big.out
   - experiments/thompson-f-markov-forest-2026-09-17/runs.out
+  - experiments/thompson-f-multitype-forest-2026-09-17/multitype_scale.py
+  - experiments/thompson-f-multitype-forest-2026-09-17/selftest.out
+  - experiments/thompson-f-multitype-forest-2026-09-17/runs.out
 ---
 
 **OPEN** (numerical evidence plus exact reductions; no rigorous ceiling).
@@ -149,3 +152,45 @@ swarm-0917-w14-w14-f-break named as the next family after its product class kill
   - *Next falsifiable step:* hierarchical two-level laws, i.e. a Markov chain on increments of log-size
     with its own Markov size chain on top. They test whether the defect decreases level by level (towards
     1) or saturates (as order 1 → 2 suggests).
+
+- **Hidden-state (shape-typed) Markov chains (swarm-0917-w17-w17-f-break, 2026-09-19, census-computation).**
+  - *Family.* Every tree carries a state `x = (size, type h ∈ 1..H)`, and the type is a function of the
+    shape (a partition of the shapes of each size into `H` classes). The states form a stationary chain `K`.
+    A class-`X` tree `(T_0, T_1)` with child states `(x_0, x_1)` has law
+    `κ(x_0,x_1|X) σ_{x_0} σ_{x_1} / α(X|x_0,x_1)`. Here `α(·|x_0,x_1)` (with `Σ_X α ≤ 1`) is the fraction
+    of child-shape pairs that are assigned to class `X`, and `κ(·|X)` is a probability law.
+  - *Formula.* Summing over a part of mass `α` gives `α √(κ/α)`, so (E1) becomes
+    `BC_merge = Σ_X ( Σ_{x_0,x_1} β² α )^{1/2}` with the same `β = G S H` on states. With `H = 1` this is
+    (E1). The type of the big child may differ from its parent's, so the family can carry level
+    counters and other hidden memory that the size chain cannot see.
+  - *Code.* `multitype_scale.py` is the (formal, E2-style) scale limit on `N` bins.
+    - `selftest.out` checks that `H = 1` reproduces `scale_limit.scale_B` exactly.
+    - It checks that a lumped chain (types drawn independently, `α` equal to the type weights)
+      reproduces the `H = 1` value to `3e-16`.
+    - It checks that `B ≤ 1` on random parameters.
+  - *(E3) survives types.* Cauchy–Schwarz gives `G ≤ √(π(x_0)π(X))` and `H ≤ 1`, and `Σ_h α ≤ 1`. Together
+    these give `B ≤ E_π √(U + D)` for every hidden-state chain, with `U, D` read off the sizes. So the
+    necessary condition `U + D → 1` is unchanged.
+  - *Numbers* (`runs.out`, L-BFGS from 1–3 random starts each). The best `B` for each bin count:
+
+    | bins | `H = 1` (from the table above) | `H = 2` | `H = 3` | `H = 4` |
+    |---|---|---|---|---|
+    | `N = 4` | `0.951396` | `0.952273` | `0.952527` | `0.952622` |
+    | `N = 8` | `0.953127` | `0.954217` | `0.954544` | — |
+    | `N = 16` | `0.953743` | `0.954756` | — | — |
+
+    - Each extra type adds about 0.3 times what the previous one added: `8.8e-4, 2.5e-4, 1e-4` at
+      `N = 4`, and `1.1e-3, 3.3e-4` at `N = 8`. So the values converge in `H`, to about `0.9527`
+      (`N = 4`) and `0.9547` (`N = 8`).
+    - The whole gain from types is about `0.0013–0.0017`, independent of `N`. That is the same size as
+      the order-2 gain.
+    - Extrapolating in both `N` and `H` gives `B ≈ 0.9557`, so `R ≈ 0.978`, still below `71/72`.
+    - At the optimum, the types are used mainly in the lowest bin, the smallest trees. There is no sign
+      of a level-counter mechanism.
+  - *Dies at:* the same place as order 2. Hidden memory attached to shapes does not move the saturation,
+    so the "hierarchical / hidden-state laws" item of **Not covered** is answered negatively for finite
+    `H`, as a formal scale-limit computation.
+  - *Still not covered:* ties at leading order (neighbour sizes within a factor `M^{o(1)}`). These are
+    invisible to every density kernel in the scale limit, and by (E3) and Moore's tower they are the only
+    place left for a size-only law to approach `1`.
+  - *Rigorous ceiling:* still open, as before.
