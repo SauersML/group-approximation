@@ -147,6 +147,7 @@ noncomputable def genTab (N : ℕ) (p : (Finset.Icc (0 : ℤ) N → A) × altern
       (if b then (p.2 : Equiv.Perm (Fin 5)) else (p.2 : Equiv.Perm (Fin 5))⁻¹)
   else [((0 : ℤ), ([] : Cyl A))]
 
+open Classical in
 theorem siteRep_genTab (N : ℕ) (p : (Finset.Icc (0 : ℤ) N → A) × alternatingGroup (Fin 5))
     (b : Bool) :
     SiteRep (SimpleKazhdanSofic.subshiftHomeo S)
