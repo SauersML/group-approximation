@@ -5,6 +5,8 @@ import GroupApproximation.GGT.VanKampen.SimpleClosedWalkSideFaces
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus petal: closing the petal turn statement (lane gl-p06-18b)
 
