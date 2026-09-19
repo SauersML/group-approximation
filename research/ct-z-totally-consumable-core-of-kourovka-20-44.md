@@ -19,7 +19,7 @@ frozen degree (`ct-z-frozen-tails-anywhere-give-kourovka-20-44`).
 2. **Positive ray: TC ⇔ finitely many orbits ⇔ no frozen tail.** If `Λ(G) = Zv` with `v ≥ 0`,
    the corner argument (`ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44`, item 1) puts a
    point of every orbit in `[−Π^D, Π^D)`.
-3. **Dimension two is Collatz.** Kohl's `G_T` is TC (frozen-tails node, corollary). It has
+3. **Dimension two is Collatz.** Kohl's `G_T` is TC, because every transversal of `G_T` has density zero (`ct-z-orbit-transversal-dichotomy-is-collatz-hard`), which rules out a frozen tail by the frozen-tails node. It has
    finitely many orbits iff the 3x+1 map has finitely many components on `Z`
    (`ct-z-orbit-transversal-dichotomy-is-collatz-hard`). So the implication "TC ⇒ finitely many
    orbits" is, already at `G_T`, a finiteness statement for 3x+1.

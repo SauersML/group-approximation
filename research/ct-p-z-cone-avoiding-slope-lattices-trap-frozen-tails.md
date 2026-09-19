@@ -56,8 +56,12 @@ and the potential are as in the mixed-ray nodes.
    - If some point of `Ẑ` has a frozen degree `n`, then `G` has infinitely many orbits on `Z`.
    - Its orbit minima in `[0, N]` number at least `δ_n N / (2A(n))` for `N ≥ M_n`, where
      `δ_n ≥ 1/M_n`, and likewise on `[−N, −1]`.
-3. **Finiteness criterion.** The following are equivalent: `G` is finite; `G` has finitely many
-   slopes; every point of `Ẑ` has a frozen tail.
+3. **Finiteness criterion.**
+   - For **every** finitely generated `G ≤ CT_P(Z)`, whatever `Λ`, `G` is finite iff it has
+     finitely many slopes. A bounded cocycle freezes a common degree `n`, and the tracked shifts
+     then lie in a finite box. This strength was noted by bh-ref-q11.
+   - Under cone-avoidance both conditions are also equivalent to: every point of `Ẑ` has a frozen
+     tail.
 4. **Periodic groups.** If `G` is periodic, the potential is well defined on orbits. Then `G` is
    infinite iff some orbit has unbounded potential, i.e. its tails sweep every level set they meet.
 
