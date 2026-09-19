@@ -1,4 +1,4 @@
-import GroupApproximation.BooneHigmanLinear.PaninAffine.Statements
+import GroupApproximation.BooneHigmanLinear.PaninAffine.Geometry
 import GroupApproximation.BooneHigmanLinear.TulenbaevHorrocks.Statements
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.RingTheory.Polynomial.Resultant.Basic

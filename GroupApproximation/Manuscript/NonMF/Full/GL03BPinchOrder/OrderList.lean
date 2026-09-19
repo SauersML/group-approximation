@@ -1,6 +1,8 @@
 import Mathlib.Data.List.NodupEquivFin
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Reading a list backwards inside another list
 

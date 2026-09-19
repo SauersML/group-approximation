@@ -1,5 +1,5 @@
 import GroupApproximation.BooneHigmanLinear.PaninAffine.Line
-import GroupApproximation.BooneHigmanLinear.PaninAffine.Statements
+import GroupApproximation.BooneHigmanLinear.PaninAffine.Geometry
 import Mathlib.RingTheory.Polynomial.Resultant.Basic
 import Mathlib.Algebra.MvPolynomial.Funext
 
