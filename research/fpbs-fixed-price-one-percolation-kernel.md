@@ -147,3 +147,36 @@ title: Every Cayley graph of a nonamenable fixed-price-one group has strict perc
   spanning forest inside `H_{R,M}`. Every such route is vacuous on the whole
   kernel, so an FMSF-excess proof (`fpbs-msf-excess-equals-nonuniqueness`) must
   control `δ_G` with infinitely many trees. The kernel stays **OPEN**.
+* **Derive spines from invariant Cayley cost one through forests
+  (host-geometry, 2026-09-19, swarm-0917 w19).** Established
+  `fpbs-sparse-spines-iff-sparse-one-ended-forest-connectors`:
+  - Sparse spines give sparse inter-tree connectors for *every* one-ended
+    invariant forest.
+  - Conversely, one-ended forests whose `|desc(o)|` laws are uniformly tight,
+    together with `beta`-sparse connectors for every `beta`, give spines.
+
+  Every such pair `F ∪ E'` is a connected spanning graph of cost
+  `<= 1 + |S| beta/2`. So spines are exactly invariant Cayley cost one at `S`
+  *plus uniform tightness of the descendant tails*.
+
+  The attempted route was to take cheap `H_eps` (expected degree `2+2eps`),
+  a spanning forest `F_eps` of `H_eps` of expected degree 2 (for example the
+  wired forest), and `E' = H_eps \ F_eps`, which has endpoint density
+  `<= 2eps`. **Where it dies:** at uniformity in `eps`. Nothing controls
+  `P(|desc_(F_eps)(o)| > n)` as `eps -> 0`. `F_eps` may also have two-ended
+  components, whose trunks carry no density bound.
+
+  Intrinsic pruning cannot give tightness. In the unimodular (non-Cayley)
+  subdivided 3-regular tree, cost tends to 1, but every invariant connected
+  infinite subgraph has density 1. This follows from the MTP: such a subgraph
+  must contain the whole of every subdivision path it enters. So spines cannot
+  be extracted from `H_eps` alone, and a proof must use `G`-edges outside
+  `H_eps` as shortcuts. `fpbs-quantitative-routing-tail-bound` records the
+  same pressure as long `H`-routes.
+
+  **Invariant:** tightness of descendant tails of one-ended forests inside
+  cost-`(1+eps)` graphs. **Step:** `eps -> 0` with fixed tails.
+
+  A counterexample to spines on a survivor with `c_inv(S)=1` must have
+  descendant tails that escape as the price tends to one. The kernel stays
+  OPEN.
