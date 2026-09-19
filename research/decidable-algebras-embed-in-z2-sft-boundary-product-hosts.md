@@ -390,6 +390,27 @@ OPEN.
     `leavitt-triangular-endomorphism-commutants-are-finite` does not cover. Random short words do not
     reach such units, so the witness has to be designed.
 
+**w17-z obstruction-miner (linear-characteristic), 2026-09-19: the field bound for mechanism (i) is pushed from invertible elements to universal localizations.**
+- **Established.** `leavitt-polynomial-pairs-contain-a-universally-singular-element`, by
+  `leavitt-polynomial-pairs-singular-element-proof` (unreviewed). A witness `k[a, b] ⊆ L_k(1,2)`, for any field `k`
+  (in particular `F_2` and `F_2(x, y)`), must contain one `p(a, b) ≠ 0` with `L_(p(a,b)) = 0`. Equivalently,
+  `p(a, b)` is non-bijective on every nonzero `L`-module.
+  - Lemma: `universal-localizations-of-quasi-free-algebras-are-quasi-free`. Base change of the length-one bimodule
+    resolution, using Bergman–Dicks `B ⊗_A B = B` and `Tor_1^A(B, B) = 0`, imported verbatim from
+    Neeman–Ranicki Lemma 8.6.
+  - Then `L_Σ` (`Σ = k[a, b] ∖ 0`) would be quasi-free, contain `k(a, b)` by simplicity, and contradict
+    `quasi-free-algebras-have-no-trdeg-two-subfields`. Compactness and commutativity give a single element.
+  - This is strictly stronger than `leavitt-algebras-have-no-trdeg-two-subfields`. `1 + s_0` (`char ≠ 2`) and
+    `1 + s_0 + s_0^2` (`char ≠ 3`) are non-units that are bijective on the function module `F({0,1}^N, k)`.
+  - The w16 remark that the homological method "stops at zero divisors" is therefore too pessimistic. It reaches
+    every element invertible in some nonzero overring.
+- **Where it dies.** The universally singular elements include isometries, zero divisors and idempotents. So
+  `k[s_0]` already contains one, and the centralizer of an idempotent `e` is `eLe × (1-e)L(1-e) ≅ L × L`.
+  - So no statement of the form "centralizers of singular elements have rank one" is weaker than Q_2 itself. It
+    is not recorded as a prerequisite.
+  - The remaining NO obstruction must say which singular element can sit in a trdeg-2 domain. Grading, leading
+    forms and Hochschild dimension give no handle on that.
+
 **w17-z-pull obstruction-miner (linear-characteristic), 2026-09-19: mechanism (i) is dead for every field; the firewall Q_2 is answered NO, and with it Ara–Cortiñas Question 5.7 over F_2.**
 - **New theorem.** `quasi-free-algebras-contain-no-two-variable-polynomial-ring` is ESTABLISHED (unreviewed) by
   `polynomial-subring-bound-via-fraction-field-koszul-ext`. If `k[a_1, ..., a_n] ⊆ A'`, then

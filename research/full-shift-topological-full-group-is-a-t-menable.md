@@ -67,3 +67,31 @@ part of the goal that is "proper on `M_n`". A refutation here refutes the Haager
   Then `ψ_p = ψ_{ν_p}` for the counting measure `ν_p` on `Per_p`, which is finite and invariant. So
   this is in the class above, and it dies by the same involutions `g_m`. (Finiteness of `ψ(σ)` forces
   `Σ_p w_p |Per_p| < ∞`.)
+- **2026-09-19 (swarm-0917-w17-w17-nv-last1): refutation by normal relative-(T) pairs (class-kill
+  outside positive characteristic).**
+  - *Class.* Refutation witnesses `(Γ, H)` with `Γ ≤ [[X]]`, `H ⊴ Γ` infinite and `(Γ, H)` relative
+    (T). This is the CSV Cor 1.2 / Burger pattern `R² ⋊ EL_2(R)`, and it includes quotients of
+    Haagerup wreath products by base submodules, such as Salo's lamplighter subgroups of `[[X]]`.
+  - **Result.** `wobbling-normal-relative-t-subgroups-are-locally-finite` (ESTABLISHED, for every
+    subgroup of `W(Z) ⊇ [[X]]`) proves that such an `H` is locally finite.
+  - **Invariant:** the one-dimensional orbit geometry. Every element of `Γ` moves points of a
+    `σ`-orbit by a bounded amount.
+  - **Where every member dies.**
+    - Interval vectors `L^{-1/2} 1_I ∈ ℓ²(Z)` are almost invariant. Normality makes the relative
+      projection `Γ`-equivariant, so it has a quantitative form. Hence at most a `2δ²` fraction of
+      each long window lies in `H`-orbits larger than `2L`.
+    - A large orbit of a finitely generated `H' ≤ H` has bounded gaps, so it fills a positive
+      fraction of some window. This bounds the `H'`-orbits, and `H'` is finite.
+    - So every characteristic-zero witness `R² ⋊ EL_2(R)` is excluded, and so is any witness whose
+      normal part contains `Z`. The earlier distortion exclusion only removed exponentially
+      distorted ones.
+  - **Surviving:** a locally finite normal `H`. The candidate is `EL_2(F_p[t,t^{-1}]) ⋉
+    F_p[t,t^{-1}]²`, recorded as the new failable node
+    `full-shift-full-group-has-infinite-normal-relative-t-subgroup`. A proof of that node refutes
+    this claim and the goal.
+  - Non-normal relative-(T) subsets survive as well. Removing normality needs Jolissaint's
+    quantitative relative (T), which was not checked verbatim.
+  - *Side observation, not proved in a node.* For the basic Salo module `A[G]/J ⋊ G`, the
+    orbit-indicator characters form an amenable `G`-set, because `W(Z)`-orbits have linear growth.
+    The permutation representation on them therefore has almost invariant vectors and no
+    base-invariant vector. So that module fails relative (T) directly.
