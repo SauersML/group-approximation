@@ -337,3 +337,27 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
   - *Surviving region.* (IO) kernels must be neither relatively hyperbolic nor non-parabolically
     embeddable in an MF relatively hyperbolic group. Acylindrically hyperbolic kernels and hosts are
     not covered: Drutu--Sapir finiteness is not available there.
+- **2026-09-19, swarm-0917-w17-w17-titz-last1 (last mile, class kill).  Status: OPEN.**
+  - *Target.* The acylindrical extension that w17-titz-break left open. Does (HI) `ψφ^m = c_hψ`
+    hold for acylindrically hyperbolic hosts? If it did, it would clear (IO) of acylindrically
+    hyperbolic kernels.
+  - New ESTABLISHED import `osin-acylindrical-trichotomy-and-cayley-models`, with route `-citation`.
+    It quotes verbatim Osin's Theorem 1.1 (the trichotomy) and Theorem 1.2 (AH1 ⇔ AH2).
+  - New ESTABLISHED claim `acylindrical-hosts-break-witness-host-inner-pigeonhole`, with route
+    `-proof`. **The extension is false at the pigeonhole step.**
+    - The Ollivier--Wise kernel `N` over `Z` acts acylindrically with unbounded orbits on two
+      hyperbolic graphs: `Cay(G_OW)`, which is proper but not cobounded, and an Osin Cayley model,
+      which is cobounded and non-elementary. So `N` is acylindrically hyperbolic.
+    - With host `H = N` and `ψ = id`, the maps `φ^n` are pairwise non-conjugate, because `[φ]` has
+      infinite outer order.
+    - On `Cay(G_OW)` the Groves--Hull scaling factors are bounded, witnessed at `t^n`. So
+      non-divergence, which is all that (T)/FR gives, does not force finitely many classes.
+  - *Class killed.* Every attempt to prove (HI), finite outer order, or "host non-MF" for
+    acylindrical hosts from these inputs dies at Step 1 of the w17 proof:
+    - (T), torsion-free, infinite outer order;
+    - a finitely presented, hyperbolic `cd 2` torus;
+    - a non-elliptic acylindrical host, whether proper, cobounded, or Kazhdan.
+  - *Consequence.* In region (IO), acylindrically hyperbolic kernels survive every such argument.
+    Excluding them needs (S), (Q) or (R) of the Ollivier--Wise node.
+  - *Not refuted.* The conclusion-level "acylindrical hosts of witness kernels are non-MF" is not
+    refuted, because MF of `N` is unknown.
