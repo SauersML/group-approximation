@@ -241,3 +241,41 @@ a cycle of equations through the window.
   list-guessing step, against the `2^(-k)` floor. **Still alive:** sources
   with no near-full-rank kernel (conditional padding transfer), decoders that
   do not lose `1/t`, and `gamma > 0.11`.
+* **Value-free star references (2026-09-19, swarm-0917-w15-w15-ugc-last1).**
+  **Decomposition established; the counterexample it aimed at is refuted.**
+  - *Planned counterexample (refuted).* The aim was a constant-bias witness
+    explained only by honest encodings of low-value assignments: domain walls
+    on cycle-3LIN padding, and near-kernel encodings. The hope was that these
+    escape every list of GOOD references in Theorem CL. They do not. At the
+    certified `beta = log log k / k`, the canonical local-fix labelling of `y`
+    has value `(1 - beta delta/3)^k = 1 - O(log log k / k)` whenever
+    `eps_out(y) = O(1)`, and its star mass is `<= eps_out(y) + z`. So Theorem
+    CL already kills these witnesses at large `k` (Check C of
+    `experiments/ugc-value-free-star-2026-09-17/check_value_free_star.py`).
+  - *What was proved instead.* `value-free-star-list-references-put-np-in-rp`
+    (Theorem CLV) deletes the value condition on the references. It charges a
+    reference for satisfied edges that break the outer constraint
+    `(a_e, b(w_e))`, and gets the outer value from the good stars by
+    Cauchy-Schwarz through the seed-to-B marginal `K1`. The price is `1/L^4`,
+    with no `eps` term. On DKKMS, `K1 <= 1/(1 - 2^(l-k))` and lists up to
+    `exp(k/(4 exp(ql)))` are affordable. The corrected prerequisite of the
+    constant-bias cell is now (Star-List^C): lists of ARBITRARY outer
+    labellings with small consistency-charged star mass. It is implied by the
+    Star-List prerequisite of Theorem CL. So any counterexample must beat
+    every outer labelling, good or bad, on average over stars.
+  - *Status of (Star-List^C).* It is likely false for `gamma <= 0.11`. The
+    parallel lane w15-ugc-pull (node
+    `dkkms-ev-list-structure-needs-lists-exponential-in-k`, not on this
+    branch) proves a Lemma A that does not use the value of the reference:
+    on defect edges, every non-branch linear form predicts at most half. That
+    lane gets `t >= 2^(k-l-11)` at value `0.605` and `D > 0.110`, which is far
+    above the CLV budget `exp(k/(4 exp(ql)))`. This transfer is unchecked
+    here. Together the two results locate the obstruction: it is branch
+    multiplicity per A-vertex, not the value of the references.
+  - *Exploratory, unproved.* At a GStar pass star, suppose the B-labels are
+    honest (`f_W = alpha|W`). Then a dishonest `L` passes only on the single
+    hyperplane `ker(phi_L - alpha|L)`, so the dishonest pass mass is
+    `<= 1/(2^l - 1)`. What is missing is B-side honesty. The B-side satisfies a
+    Grassmann agreement test at acceptance `>= (1/2 + gamma)^2`, and an
+    iterated KMS zoom decoding might supply Star-List^C. The obstacle is the
+    per-star split ambiguity.
