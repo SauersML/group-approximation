@@ -89,3 +89,46 @@ then the decoder `sigma`:
     - The obvious candidate, extension through a decoder, is the w6 pointwise-additive lift. It is compatible, but
       it fails to be an action off `X` for nonaffine decoders.
     - An extension that does not factor through any decoder is the untried direction.
+- **2026-09-19 (swarm-0917-w16-w16-gs-last1, local-designs). Local fibre-count invariant, decomposition into two
+  prerequisites that fail separately, and the quantum class kill. Stays OPEN.**
+  - *Landed (ESTABLISHED, elementary).* `extension-decoders-are-locally-balanced`. Absorption decoders, and every
+    decoder whose pullback extends to any quantum automaton (monomial or not), are *locally balanced*.
+    - Balanced means: inside every context, fibres over outputs that agree on the collar `B_F` have equal size.
+    - Balanced automata are strongly post-surjective with lifts inside `FS`, and they preserve `mu`.
+    - On sofic groups balanced means reversible.
+    - Balance is strictly stronger than measure preservation. On `Z`, `u_n + u_(n+1)` preserves `mu` but is not
+      balanced.
+  - *Landed (ESTABLISHED, elementary).* `absorbing-marked-groups-form-an-open-set`. An absorption has a finite-ball
+    witness, so `no-group-carries-a-topological-bernoulli-absorption` needs checking only on finitely presented
+    groups.
+  - *Correction to w15's "untried direction".* It is void.
+    - Given a free compatible extension of the image action of `tau`, choose the clopen fundamental domain at `e`
+      through the constant `tau(1^G)`. This is possible because that orbit is free and the point is
+      shift-fixed.
+    - Then the manufactured decoder `sigma'` satisfies `sigma'(tau x) = sigma'(x * tau(1^G)) = x`. So it is a
+      decoder of `tau` itself, and it is locally balanced by (A).
+    - Every extension therefore factors through a balanced decoder of `tau`. There is no decoder-free direction.
+      The w6 lift failed because of the decoder it chose, not because it used a decoder.
+  - *New decomposition.* Route `absorptions-via-locally-balanced-decoders`:
+    `strict-pairs-admit-locally-balanced-decoders` (T1) and `locally-balanced-decoders-admit-translation-lifts`
+    (T2) together give this claim.
+    - T1 is implied by this claim, and it already implies `strict-pairs-admit-post-surjective-decoders`, by route
+      `post-surjective-decoders-via-local-balance`.
+    - T2 is pure gluing. By (E) of the lemma, a balanced `sigma` always has a one-site lift `T_e` with
+      `T_e^d = id` and `sigma o T_e = sigma + delta_e`. Only `T_e T_g = T_g T_e`, for `g` in a finite set `K`,
+      can fail.
+  - *Class kill: decoder-extension forms of the quantum transfer.* Any proof of
+    `strict-automata-yield-strict-quantum-endomorphisms` that extends the pullback of a decoder produces a
+    balanced decoder. It therefore proves T1, and so `strict-pairs-admit-post-surjective-decoders` and a failure of
+    dual surjunctivity on that group.
+    - The invariant is the in-context fibre count.
+    - The step where every member dies is the same as for post-surjective decoders: choosing the rule off the
+      image at infinite defect chains. There the demand is exact counts, not merely nonempty fibres.
+    - Condition (D1), measure preservation, is only the average of this count over contexts. A decoder chosen for
+      (D1) alone cannot be enough.
+  - *Where it dies.* The gluing for T2 was attacked in two ways, both recorded in its node.
+    - Canonical enumerations fail, because `T_g` for `g ∈ K` rewrites the context that `T_e` enumerates. This is a
+      circular cocycle condition.
+    - Compactness over finite `F` fails, because the `F`-slice actions are not shift-compatible. Only shift
+      compatibility forces locality.
+    - T1 dies where `strict-pairs-admit-post-surjective-decoders` dies.
