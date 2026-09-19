@@ -421,3 +421,18 @@ vocabulary rather than its content.
   futures that fellow-travel to one endpoint and whose pasts differ. Respelling
   collapses tails without separating the pasts, so the mechanism must use
   relators of Gamma.
+
+* **Odometer cell-flip codes and tail collapse with separated pasts (w17-026,
+  `fpbs-finite-measure-ray-codes-die-on-rank-one-lattices`).** The aim was a
+  zero-entropy code on a surface group, then on an `Sp(n,1)` lattice, where an
+  odometer picks the side of each relator cell and also drives the past.
+  **Dead: the mechanism cannot exist.** Read the current as a finite measure of
+  the geodesic flow on the compact quotient. At zero flow entropy the backward
+  endpoint is measurable for the forward partition, via a thin-boundary
+  partition and Poincare recurrence. So a.e. forward endpoint has **one** past
+  endpoint, whatever the flip pattern. At positive flow entropy, Ledrappier--Young
+  makes the forward class positive-dimensional, and the Dini filter kills it.
+  So every ray code with a finite invariant measure dies on every cocompact
+  rank-one lattice. A BB class `C` must have `C x C` carrying no equivalent
+  invariant Radon measure. Open: **Radon-free crossing classes** (codes with no
+  finite invariant measure).

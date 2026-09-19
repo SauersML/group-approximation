@@ -1,0 +1,15 @@
+# python3 lp_vmem.py --validate rm rp cert/phi<entry>.json ... (certificates of surfaces_m2_census); each run's lines in turn
+# --validate a2b1c2 a1b2c1 cert/phi4052.json cert/phi4011.json  (4011: killed at the 2 GB limit)
+# --validate 2 1 cert/phi4052.json; --validate a1b2c0 a2b0c1 cert/phi4052.json cert/phi4011.json
+cert/phi4052.json rm a2b1c2 rp a1b2c1 types 572 polygons 1340018 darts 40 vertices 16 chi -4 nonzero rows 0
+cert/phi4052.json rm 2 rp 1 types 364 polygons 382587 darts 40 vertices 16 chi -4 nonzero rows 0
+failures 0
+cert/phi4052.json rm a1b2c0 rp a2b0c1 types 453 polygons 577471 darts 40 vertices 16 chi -4 nonzero rows 0
+cert/phi4011.json rm a1b2c0 rp a2b0c1 types 390 polygons 559548 darts 56 vertices 24 chi -4 nonzero rows 0
+failures 0
+# --validate 2 1 cert/phi4052.json cert/phi3684.json
+cert/phi4052.json rm 2 rp 1 types 364 polygons 382587 darts 40 vertices 16 chi -4 nonzero rows 0
+cert/phi3684.json rm 2 rp 1 types 408 polygons 1250831 darts 104 vertices 48 chi -4 nonzero rows 0
+failures 0
+# --validate 2 a2b1c1 cert/phi4052.json cert/phi4011.json  (the choice of the 4887 proof; corrected successor rule; 4011 hit MemoryError at the 2 GB limit)
+cert/phi4052.json rm 2 rp a2b1c1 types 574 polygons 1452760 darts 40 vertices 16 chi -4 nonzero rows 0

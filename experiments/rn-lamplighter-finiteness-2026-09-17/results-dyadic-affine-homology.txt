@@ -1,0 +1,57 @@
+== Part A: brute-force PV computation for G_r (groupoid of V_2(BS(1,r)) on Z_2)
+r=   3: for m=0..6  T_m = [[2,0],[1,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+1tau) = 2(t+1tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/2 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/2, H_2(G_r)=Z/2, H_>=3=0
+r=   5: for m=0..6  T_m = [[2,0],[2,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+2tau) = 2(t+2tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/4 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/4, H_2(G_r)=Z/4, H_>=3=0
+r=   7: for m=0..6  T_m = [[2,0],[3,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+3tau) = 2(t+3tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/6 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/6, H_2(G_r)=Z/6, H_>=3=0
+r=   9: for m=0..6  T_m = [[2,0],[4,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+4tau) = 2(t+4tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/8 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/8, H_2(G_r)=Z/8, H_>=3=0
+r=  11: for m=0..6  T_m = [[2,0],[5,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+5tau) = 2(t+5tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/10 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/10, H_2(G_r)=Z/10, H_>=3=0
+r=  13: for m=0..6  T_m = [[2,0],[6,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+6tau) = 2(t+6tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/12 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/12, H_2(G_r)=Z/12, H_>=3=0
+r=  15: for m=0..6  T_m = [[2,0],[7,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+7tau) = 2(t+7tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/14 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/14, H_2(G_r)=Z/14, H_>=3=0
+r=  21: for m=0..6  T_m = [[2,0],[10,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+10tau) = 2(t+10tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/20 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/20, H_2(G_r)=Z/20, H_>=3=0
+r=  -3: for m=0..6  T_m = [[2,0],[-2,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+-2tau) = 2(t+-2tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/4 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/4, H_2(G_r)=Z/4, H_>=3=0
+r=  -5: for m=0..6  T_m = [[2,0],[-3,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+-3tau) = 2(t+-3tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/6 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/6, H_2(G_r)=Z/6, H_>=3=0
+r=  -7: for m=0..6  T_m = [[2,0],[-4,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+-4tau) = 2(t+-4tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/8 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/8, H_2(G_r)=Z/8, H_>=3=0
+r=  -9: for m=0..6  T_m = [[2,0],[-5,1]] (cols t,tau), alpha_* = id, ab/transfer homomorphic on 20 random pairs; T(t+-5tau) = 2(t+-5tau)
+        => H_0(N)=Z[1/2], D=1/2 invertible; H_1(N)=Z[1/2]f + Z/10 tau, D f=f/2, D tau=0; H_2(N)=0.  PV: H_0(G_r)=0, H_1(G_r)=Z/10, H_2(G_r)=Z/10, H_>=3=0
+== Part B: independent LHS/Koszul computation over U (rows q=0: Z[1/2], q=1: Z[1/m])
+m= 3 U=[2, 3]: v_2(U)=1Z; row0 [('0', 1), ('0', 1), ('0', 0)]; row1 [('Z/2', 1), ('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+      BS(1,3): row 0 exact, row 1 = (Z/2, Z/2, 0): H_1 = H_2 = Z/2, agreeing with Part A
+m= 5 U=[2, 5]: v_2(U)=1Z; row0 [('0', 1), ('0', 1), ('0', 0)]; row1 [('Z/4', 1), ('Z/4', 1), ('Z/4', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 7 U=[2, 7]: v_2(U)=1Z; row0 [('0', 1), ('0', 1), ('0', 0)]; row1 [('Z/6', 1), ('Z/6', 1), ('Z/6', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 3 U=[2, -3]: v_2(U)=1Z; row0 [('0', 1), ('0', 1), ('0', 0)]; row1 [('Z/4', 1), ('Z/4', 1), ('Z/4', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m=15 U=[2, 3, 5]: v_2(U)=1Z; row0 [('0', 1), ('0', 2), ('0', 1), ('0', 0)]; row1 [('Z/2', 1), ('Z/2', 2), ('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 3 U=[4, 3]: v_2(U)=2Z; row0 [('Z/3', 1), ('Z/3', 1), ('Z/3', 0)]; row1 [('Z/2', 1), ('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 5 U=[8, 5]: v_2(U)=3Z; row0 [('Z/7', 1), ('Z/7', 1), ('Z/7', 0)]; row1 [('Z/4', 1), ('Z/4', 1), ('Z/4', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 3 U=[6, 3]: v_2(U)=1Z; row0 [('0', 1), ('0', 1), ('0', 0)]; row1 [('Z/2', 1), ('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 3 U=[2]: v_2(U)=1Z; row0 [('0', 1), ('0', 0)]; row1 [('R', 1), ('R', 1)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 1 U=[2]: v_2(U)=1Z; row0 [('0', 1), ('0', 0)]; row1 [('R', 1), ('R', 1)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 1 U=[-2]: v_2(U)=1Z; row0 [('0', 1), ('0', 0)]; row1 [('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+m= 3 U=[12, 3]: v_2(U)=2Z; row0 [('Z/3', 1), ('Z/3', 1), ('Z/3', 0)]; row1 [('Z/2', 1), ('Z/2', 1), ('Z/2', 0)]; H_0 (x) Z_(2) = 0: True; row1 (x) Z_(2) != 0: True
+== Part C: prime-support lemma  H_0 (x) Z_(l) = 0  =>  H_* (x) Z_(l) = 0  (l prime or l = 0: Q)
+random commuting tuples (k<=3, |V|<=3): 2500 tested, 0 prime-support violations, 1425 with H_0 = 0, of which 0 have H_* != 0
+exhaustive commuting pairs of 2x2 matrices over {0,1,2}: 743 pairs, 0 violations; pairs with homology (0, Z/2, Z/2) of G_3: 0
+calibration lamplighter 2-graph (2,2): H_* = [(0, []), (0, []), (0, [])]
+calibration F_3(t), S-rank 2: (3, 9): H_* = [(0, [2]), (0, [2]), (0, [])]
+calibration O_2 x O_3 product (2,3): H_* = [(0, []), (0, []), (0, [])]
+calibration rank-3 (2,4,8): H_* = [(0, []), (0, []), (0, []), (0, [])]
+== Part D: germs of Aff(Z[1/2r], <2,r>) on Z_2 are lambda_v h lambda_w^{-1}, h in BS(1,r)
+488 random (g, ball) pairs checked, all decompose with h in BS(1,r)
+== Part E: V_p(Z[1/m] x| U'), U' <= Z[1/m]^x torsion-free, on Z_p; germs = Aff(Z[1/pm], <p> x U')
+p=3 m=7 U'=[7]: H_0 = Z/2; E2_(0,1) = Z[1/7]/(6); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): [3]  -> EXCLUDED
+p=3 m=2 U'=[2]: H_0 = Z/2; E2_(0,1) = Z[1/2]/(1); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): []  -> no obstruction
+p=5 m=7 U'=[7]: H_0 = Z/4; E2_(0,1) = Z[1/7]/(6); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): [3]  -> EXCLUDED
+p=5 m=3 U'=[3]: H_0 = Z/4; E2_(0,1) = Z[1/3]/(2); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): []  -> no obstruction
+p=3 m=10 U'=[2, 5]: H_0 = Z/2; E2_(0,1) = Z[1/10]/(1); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): []  -> no obstruction
+p=7 m=2 U'=[2]: H_0 = Z/6; E2_(0,1) = Z[1/2]/(1); primes l with H_0 (x) Z_(l) = 0 != H_1 (x) Z_(l): []  -> no obstruction
+193 germ decompositions lambda_v h lambda_w^-1 (h in Z[1/m] x| U') verified for odd p
+ALL CHECKS PASSED

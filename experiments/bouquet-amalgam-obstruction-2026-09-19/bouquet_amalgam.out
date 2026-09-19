@@ -1,0 +1,4 @@
+linear bouquet recursions: 472
+all hypotheses (B, Tb, Sb, U, L, O) hold: 472
+ord T distribution: {11: 138, 22: 20, 44: 314}
+ord S certificates: {'finite': 390, 'inf': 82}

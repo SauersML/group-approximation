@@ -304,3 +304,20 @@ non-permutation unitary construction.
   - **Open.** Pairs with a locally wide cylinder in both directions. The next step is a two-sided width adjustment:
     padding or deleting a column of a height-`h` cylinder costs `O(h)`. The profile should bound
     `sum_j h_j |w_j - w'_j|` for some matchable width vector `w'`.
+- **w17-124, 2026-09-18 — the doubly-wide case. Width matching plus one-sided regluing is killed. Landed
+  `excised-thick-torus-kills-width-matched-one-sided-repair`.**
+  - **Family.** The thick torus `Z/(a^2+1)` with `b = +1` and `c = +a` is one row, wide in both directions. Excise
+    the `k` squares `0, ..., k-1` (with `a >= 2k+1`) to get `E(a, k)`.
+    - It is within rank `k` of the torus in each generator, so `Lambda_rect <= 2k` by Lemma B.
+    - Both decompositions are a single self-glued cylinder of width `n = a^2 + 1 - k` and height 1.
+  - **One-sided costs.** In `b`-order, `c` is a 3-interval exchange, so keeping `b` costs exactly `a`. In `c`-order,
+    `b` is translation by `-a+1` on an arc of `k(a-1)` points and by `-a` elsewhere, so keeping `c` costs exactly
+    `k(a-1)+1`. The computation matches for `a <= 13`.
+  - **What this kills.** On `E` the width defect `sum_j h_j |w_j - w'_j|` is 0 and Theorem 3 is vacuous. So the
+    brief's step holds trivially, but combining it with Theorem 1 of
+    `tall-cylinder-seams-reglue-within-quadratic-profile` costs `~ sqrt(d)` at profile `2k`. The repair that works
+    is `k` column insertions at the holes, which are the break points of the seam. So a certificate must locate
+    columns, not only count them.
+  - **Next.** The one-row case: `b` an `n`-cycle and `c` a `b`-interval exchange with `<= 4 rho` breaks. Show that
+    profile `K` gives a rotation after `O_K(1)` column insertions and deletions at the breaks. This is Theorem 1 with
+    an interval transversal, in the style of zippered rectangles and Rauzy–Veech induction.

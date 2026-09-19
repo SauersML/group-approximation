@@ -685,6 +685,26 @@ In the bouquet case the rooted Nielsen move `s ↦ A s B` puts both root permuta
 *Open*: 364 recursions (20 commuting survivors, 212 non-commuting with `H` infinite,
 132 undecided). No finitely presented member, so no Boone–Higman certificate from this family yet.
 
+**September 19: the linear bouquet recursions split over a finite group, so none is finitely
+presented.** See `linear-m11-bouquet-recursions-are-not-finitely-presented`.
+
+- New obstruction (item 1). Let `G` be fully self-replicating. Suppose its stable relators
+  lie in two free factors `F_1` and `F_2` of `F` that share a sub-basis `B_0`, and suppose
+  `ρ(F(B_0))` is finite. Then the stable presentation is an amalgam over a finite group.
+  One-endedness puts the retracted copy of `G` in a vertex group, so `ρ(F_i) = G` for some
+  `i`. If neither factor maps onto `G`, then `G` is not finitely presented. This extends
+  the free-splitting (Kurosh) obstruction, which is the case `B_0 = ∅`.
+- For every two-letter bouquet under (U) and (L1), the stable relators are sections of words
+  in `F(S, T)`. Such sections lie in `F(S, T)` or `F(a, e, T)`, and `ord T` is finite
+  because `t` is bounded. So none of these recursions is finitely presented.
+- This decides the step's case 468, all 20 commuting survivors (`H ≅ Z × C_k`), and the
+  remaining 344 open cases. All 472 linear bouquets are therefore not finitely presented.
+- The whole 62,500-member M_11 family now has no finitely presented member.
+
+*Design rule*: a finitely presented self-similar Boone–Higman host needs one of three
+things: three or more state letters, a section of weight at least 2, or a two-letter section
+cycle. In each case the aim is that no finite-order loop has a section-closed letter block.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

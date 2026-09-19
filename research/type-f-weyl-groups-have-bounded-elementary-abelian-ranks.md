@@ -176,3 +176,13 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
   pointwise, so the host needs a nontrivial pointwise flat fixator
   `Λ_F ∋ 1 ≠ H ∩ Σ`. The literal `DL(2,2)` completion is excluded. Open:
   whether `Λ_F = 1` for irreducible lattices in three trees.
+- 2026-09-19 (w18-117, obstruction): proposed-established
+  `linear-dl-factor-kills-lamplighter-tree-cut-outs`. If `H` is
+  torsion-free, `ρ` injective on `H`, and one factor where the shift is
+  hyperbolic acts through `PGL_2(k)` of a local field (injectively on `H`),
+  the flat fixator `H ∩ Σ` lies in the split torus of the shift axis, so
+  `H` normalizes it and is virtually abelian: no `A ≀ Z` witness. This kills
+  every `S`-arithmetic quaternionic host (any ambient `Aut(T)` factors). In
+  general three-tree lattices, the lamp preimage is free, acting freely on
+  the third tree, and `H ∩ Σ` must be infinitely generated free. Open:
+  hosts whose hyperbolic factors are all non-linear on `H`.

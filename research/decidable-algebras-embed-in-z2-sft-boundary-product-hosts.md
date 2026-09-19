@@ -370,3 +370,22 @@ OPEN.
 - **Literature check.** Bilich–Hazrat–Nam, arXiv:2512.09241, has an obstruction for the Weyl algebra in
   characteristic 0 via `C*`-completions. It says nothing about `k[x,y]` in `L_k(1,2)`. `C*` methods cannot, since
   `C(T^2) ⊆ O_2`.
+
+**w16-z obstruction-miner (linear-characteristic), 2026-09-19: mechanism (ii) is closed down to rank 1, and the relative-commutant YES scout is already covered.**
+- **Closed.** `minimal-cantor-z-crossed-products-contain-no-f2-z2` is now ESTABLISHED by the new route
+  `minimal-cantor-z-no-f2-z2-via-point-column`, which is Part 5 of
+  `steinberg-ore-domains-have-faithful-point-columns` with `P = Z` and `D = 1`.
+  - It gives no `k[Z^2]` in `LC(X, k) ⋊ Z` for any compact `X`, field `k` or homeomorphism. Degenerate
+    embeddings do not survive.
+  - So the `s = 1` case of the commutative-rank conjecture holds for every `Z`-transformation groupoid.
+  - With the `D = 2` case (no `F_2[Z^3] ⊆ B_Ω`), mechanism (ii) is dead at every rank.
+- **Where it stops.** The point-column count gives nothing on groupoids with exponential orbit growth:
+  the Cuntz groupoid and `Z^2 × F_d`. So the whole Z^4 question now sits on mechanism (i) (Q_2) and
+  mechanism (iii) (entangled).
+  - The NO side of Q_2 is firewalled by Ara–Cortiñas Question 5.7.
+  - A YES scout on the twisted fixed-point equation `x u = u φ(x)` would repeat the screens already on
+    `leavitt-endomorphism-relative-commutants-are-finite`: 843 words and 32 core units, all with
+    `dim <= 2`. So it was not rerun.
+  - A YES witness must use a unit with components of both signs, which
+    `leavitt-triangular-endomorphism-commutants-are-finite` does not cover. Random short words do not
+    reach such units, so the witness has to be designed.

@@ -114,3 +114,16 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
     convergence.
   - *Left.* A proof must be non-polynomial and non-local: min-max or rigidity over uncountably many leaves. The
     refutation side is unchanged.
+- **2026-09-19, swarm-0917-w16-w16-deligne-break: calibration in `SL_2(Z[1/2])`. The small-level evidence does not
+  discriminate** (`sl2-half-deligne-monomial-third-floor-calibration`, calibration).
+  - *Setup.* The same invariant `mu_(1/3)` for the Deligne cover of `G = SL_2(Z[1/2])`. There `b_2^(2) > 0`, property
+    T fails, and `G` is not matricially stable. The presentation has 6 relators with exact lifts; only `x^4` has
+    `k = 1`. `||kappa_R|| = 1/17` on every transitive `X` (proved by averaging and the point cycle `c0`), so
+    `mu <= 1/51` everywhere.
+  - *Computed.* The MILP closes exactly at `mu = 1/51`, the Kahler value, on the point and 8 congruence sets up to 14 points. From
+    6 points on, the exact value beats every single-cycle bound: `1/51` against `1/54` to `1/66`. Minimal detecting
+    cycles grow from norm 17 to norm 35 at 30 points.
+  - *Consequence.* Both level-2 `Sp_4` phenomena of w14 recur where no rigidity is available. They are not evidence
+    for this claim. The dual bound stays 0 from 12 points on, so the MILP tool is dead there too.
+  - *Left.* A large-level primal model with defect below the Kahler value in `SL_2(Z[1/2])` would be a genuine
+    calibration counterexample. None has been found.

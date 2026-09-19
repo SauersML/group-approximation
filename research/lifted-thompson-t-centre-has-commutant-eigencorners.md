@@ -1,0 +1,105 @@
+---
+rg: 2
+id: lifted-thompson-t-centre-has-commutant-eigencorners
+kind: claim
+title: Every corona representation of T-bar that moves the central translation has an exact eigencorner of it, with eigenvalue other than 1, in its relative commutant
+distinct_from:
+  commutant-projection-extraction: that is the same extraction for every countable group and every central element; this is its single instance H = T-bar, eps = z, which is all that the torsion-free seed needs. The general claim implies this one (route lifted-thompson-t-eigencorners-via-projection-extraction); the converse is not claimed.
+  lifted-thompson-t-is-not-mf: that says rho(z) = 1 for every rho; this only asks that rho(z) != 1 be witnessed by a commutant eigencorner, and is vacuously implied by it.
+  central-eigencorners-die-over-full-radical-quotients: that assumes an eigencorner and shows it is fixed when T has full radical; this asks for the eigencorner.
+---
+
+**OPEN.**  Let `Q` be a norm matrix corona, `rho : T̄ -> U(Q)` a homomorphism
+and `B = rho(T̄)' ∩ Q`.  If `rho(z) != 1`, then there are a nonzero
+projection `P in B` and `lambda in C` with `lambda != 1` such that
+
+```text
+rho(z) P = lambda P.                                   (EC)
+```
+
+**Approximate form.**  It is equivalent to ask the following, by the diagonal
+lemma in `lifted-thompson-t-eigencorners-via-projection-extraction`.
+For some `delta > 0` and every `eta > 0` there are a nonzero projection
+`q in B` and `lambda` with `|lambda - 1| >= delta` and
+`||(rho(z) - lambda) q|| <= eta`.
+
+## Position in the graph
+
+- `lifted-thompson-t-is-not-mf` holds if and only if both this claim and
+  `thompson-t-has-full-mf-radical` hold.  The forward direction uses item 3
+  of `lifted-thompson-t-mf-radical-dichotomy`, and this claim holds
+  vacuously.  The reverse direction is the route
+  `lifted-thompson-t-not-mf-via-central-eigencorners`.  So the hole of the
+  flagship has split into a Thompson-`T` statement and this corona-commutant
+  statement, and each can fail on its own.
+- **Where it already holds.**  (EC) holds whenever `sp(rho(z))` has an
+  isolated point `lambda != 1`: take the spectral projection, which lies in
+  `C^*(rho(z)) <= B`.  In particular it holds whenever `rho(z)` has finite
+  order.  So only unitaries `rho(z)` whose spectrum is perfect away from `1`
+  are in question.  Assuming `thompson-t-has-full-mf-radical`, item 3 of
+  `central-eigencorners-die-over-full-radical-quotients` shows these are the
+  only ones that can occur.
+- **Why it is not formal.**  In the block and continuous-phase test models of
+  `commutant-projection-extraction`, the eigencorner was found either as a
+  block projection or as a rank-one wave packet.  For `T̄` every
+  bounded-rank corner is excluded.  Suppose the ranks `r_n <= R` and the
+  corner representation moves `g`.  Pass to a subsequence of constant rank
+  on which it moves `g` by at least `eps`, and use compactness of `U(r)` along
+  an enumeration of `T̄`.  This gives a homomorphism `T̄ -> U(r)` that moves
+  `g`.  Its image is finitely generated and linear, hence residually finite
+  (Mal'cev).  But `T̄` has no proper finite-index subgroup (item 3 of
+  `lifted-thompson-t-perfect-centre-cubically-elliptic`), so the image is
+  trivial, a contradiction.  So any witness `P` has unbounded rank.
+- **Structure available for `T̄` and not for a general `(H, eps)`.**
+  - `z` has roots of every order: `g_n^n = z` (item 1 of
+    `lifted-thompson-t-perfect-centre-cubically-elliptic`).
+  - The dilation `lambda(g)(x) = g(2x)/2` satisfies `lambda(z)^2 = z`.
+  - The finite quotients `T̄/<z^(2^k)>` are the rotation centralizers
+    `C_T(r_k)`.
+
+  Any proof specific to `T̄` has to use one of these.  The general claim
+  `commutant-projection-extraction` has none of them.
+
+## Attempts
+
+- **2026-09-19 (swarm-0917-w16-w16-ptm-last1, operator-algebras): cutting
+  inside `C^*(rho(z))` proves (EC) off the arcs of the spectrum, and dies on
+  them.**
+
+  *What works.*  Let `mu != 1` be a point of `K = sp(rho(z))` whose connected
+  component in `K` is `{mu}`.  In a compact Hausdorff space components equal
+  quasi-components.  So for every `eta > 0` there is a set `U` with
+  `mu in U`, `U` relatively clopen in `K`, `diam U < eta` and `1 notin U`.
+  Its indicator is continuous on `K`, so `P_U = chi_U(rho(z))` lies in
+  `C^*(rho(z)) <= B`.  It is nonzero, since `mu in K`, and it satisfies
+  `||(rho(z) - mu) P_U|| <= eta`.  That is the approximate form with
+  `lambda = mu` and `delta = |mu - 1|`.  The diagonal lemma of
+  `lifted-thompson-t-eigencorners-via-projection-extraction` then turns it
+  into (EC).  So (EC) holds unless every point of `K \ {1}` lies in a
+  nondegenerate arc contained in `K`.
+
+  *Combined with full `T`.*  Assume `thompson-t-has-full-mf-radical`, and
+  apply item 1 of `central-eigencorners-die-over-full-radical-quotients` to
+  the exact corner obtained above.  Every corona representation `rho` of `T̄`
+  with `rho(z) != 1` then has the following property: `sp(rho(z)) \ {1}` is
+  nonempty and is covered by nondegenerate arcs of `sp(rho(z))`.  This
+  sharpens item 3 of that node from "no isolated points" to "no degenerate
+  components".
+
+  *Where it dies.*  On an arc of `K` the algebra `C^*(rho(z)) ≅ C(K)` has no
+  nonzero projection supported near a point.  So the eigencorner, if it
+  exists, must come from `B` strictly outside `C^*(rho(z))`, that is, from
+  the relative commutant of the whole image `rho(T̄)`.  This is the
+  connected-arc case of `commutant-projection-extraction`, now for a single
+  group.  Neither of the other two structures helps here.
+  - The roots `g_n^n = z` give unitaries `rho(g_n)` that commute with
+    `rho(z)` but not with `rho(T̄)`.  So their spectral projections are not
+    in `B`.
+  - The dilation `lambda` gives a second representation `rho o lambda`,
+    whose "centre" `rho(t_1)` is a square root of `rho(z)`.  But `t_1` is not
+    central, so this again leaves `B`.
+
+  The next step is either a real-rank-zero statement for `B` restricted to
+  arcs, or a counterexample built as a corona representation of `T̄` with
+  `rho(z)` of arc spectrum.  By the bounded-rank remark above, any such
+  counterexample has unbounded rank.

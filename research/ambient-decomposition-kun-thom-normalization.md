@@ -10,6 +10,7 @@ distinct_from:
   kt-per-compressor-assembly-over-cluster-frames: that is the Lean sequential assembly for Kazhdan pairs, quantified over all sofic approximations; this is a per-representation statement whose ambient hypothesis is a decomposition of that representation alone.
 artifacts:
   - research/artifacts/kun-thom-2608-06222-verified.md
+  - research/artifacts/kun-thom-2608-06222-section4-ambient-audit.md
   - GroupApproximation/KunThom/CompressorNormalizationAssemblyCore.lean
 ---
 
@@ -76,3 +77,36 @@ Together with the established fixed-algebra criterion, (KT\*) yields
 `bounded-period-compressors-carry-no-sofic-defect`. That turns the sofic kill of
 compression defects from a statement about Kazhdan compressor groups into one about a
 combinatorial invariant, the cluster period of each compressor.
+
+## Attempts
+
+**Attempt 1 (swarm-0917-w16-w16-titz-pull, 2026-09-19, operator-algebras): the line-by-line
+audit, written as route `ambient-decomposition-kun-thom-normalization-audit`.**
+
+Source. The whole arXiv e-print LaTeX of 2608.06222v1 was re-read: Sections 2–4, lines
+395–1362. Verbatim excerpts with line numbers are in
+`research/artifacts/kun-thom-2608-06222-section4-ambient-audit.md`.
+
+Findings:
+- In Section 4, "(T)" occurs only in the statement, `h_G` only at line 1033, and the ambient
+  partition only at lines 857 and 1031–1084.
+- The partition enters through the Proposition 3.1 matching (Lemma 4.3) and Lemma 4.4. Both
+  times it enters only through:
+  - (AP1), a crossing count;
+  - (AP2), the summed median inequality from Lemma 2.3.
+- The route proves the two missing links:
+  - the decomposition hypothesis gives (AP1) and (AP2) for `T`;
+  - (AP1) and (AP2) transfer between finite generating sets by word paths, with constant
+    `c/(|R|L')`.
+
+  The transfer is needed because Kun–Thom's ambient generating set `S_Γ ∪ {t_ℓ^{±1}}`
+  depends on the chosen compressor family.
+
+The Lean assembly (`seqNormalizes_of_compressor_of_steps`, line 168) is independently
+per-approximation. It corroborates the audit but is not imported.
+
+The route has `requires: []`, and its trust surface is the preprint already imported by
+`kun-thom-sofic-centralizer-normalization-citation`.
+
+The route does not re-check any step of the proof. It checks which hypothesis each step
+consumes.

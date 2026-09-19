@@ -104,3 +104,17 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
   - Seven-vertex windows with fewer phases than `P_7^4` are tabulated there. The best is
     `{0..5, 8}`, with 10 phases and a 1% margin at `n = 14`.
   - Second-order box bounds on `P_7^4` are weaker than the linear one.
+- 2026-09-19 (w11-078): `k = 4`, `n = 13, 14` are proved: `hermitian-edge-trace-norm-web-rank-k4-n13-n14`.
+  So with the three-exceptions and `n = 19` claims, the rank inequality of `C_n^4` holds for every
+  `n >= 10`.
+  - New tool, a weighted covering lemma: for diagonal `W_t >= 0` with `sum_t W_t <= I`,
+    `||C||_1 >= sum_t ||W_t^(1/2) C W_t^(1/2)||_1`. Rotating a window with vertex weights `w`
+    gives `||C||_1 >= n c(H, w)/|w|`, where `c(H, w)` asks `|C_ij| >= sqrt(w_i w_j)`.
+  - The window is `K_5` plus a pendant vertex, `{0, 1, 2, 3, 4, 8}`, with weights
+    `(3/4, 3/4, 3/4, 3/4, 1, 1/5)`. Its weighted density is `1.5067`, against `1.4846` needed.
+    `c(H, w) >= 6.23539` took 29653 solves of `fastbbw.py` over 6 phases, reduced by `S_4`.
+  - The brief's unweighted `c({0..5, 8}) >= 6 sqrt3` was piloted at about `4e7` solves, and not run.
+  - Next: the same tool on the finitely many exceptions of `k = 3` and `5 <= k <= 9`. Scratch runs
+    of `wopt.py` with `k = 3` (not landed) give upper bounds, not proofs. `K_4` plus a pendant,
+    `{0, 1, 2, 3, 6}`, reaches density `1.4015`. `{0, 1, 2, 3, 4, 7}` reaches `1.4405`. The largest
+    need among the `k = 3` exceptions is `9 sqrt3/11 = 1.4171`, at `n = 11`.

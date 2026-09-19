@@ -1,0 +1,9 @@
+weights 16/25,83/100,83/100,83/100,1,23/40,17/50 per-edge T {(0, 4): 2.3315, (1, 4): 2.1727, (2, 4): 2.1727, (3, 4): 2.1727, (4, 5): 2.883, (4, 6): 2.9682, (5, 6): 3.3552, (0, 1): 2.4288, (0, 2): 2.4288, (0, 3): 2.4288, (1, 2): 2.2749, (1, 3): 2.2749, (1, 5): 2.6613, (2, 3): 2.2749, (2, 5): 2.6613, (3, 5): 2.6613}
+solves 1000 closed 506 (parent 5 sign 0 sdp 501) stack 26 minfc 8.021073 vol 1.078e-04 t 29
+solves 3000 closed 1546 (parent 23 sign 0 sdp 1523) stack 27 minfc 8.009594 vol 5.403e-04 t 73
+solves 5000 closed 2572 (parent 48 sign 2 sdp 2522) stack 26 minfc 8.009594 vol 7.807e-04 t 129
+solves 6000 closed 3084 (parent 56 sign 3 sdp 3025) stack 30 minfc 8.009594 vol 9.156e-04 t 153
+solves 11000 closed 5744 (parent 76 sign 5 sdp 5663) stack 26 minfc 7.983633 vol 2.943e-03 t 293
+solves 12000 closed 6252 (parent 82 sign 5 sdp 6165) stack 26 minfc 7.983633 vol 3.052e-03 t 321
+solves 14000 closed 7269 (parent 101 sign 6 sdp 7162) stack 24 minfc 7.983633 vol 3.221e-03 t 384
+solves 17000 closed 8824 (parent 119 sign 6 sdp 8699) stack 23 minfc 7.930135 vol 3.850e-03 t 463

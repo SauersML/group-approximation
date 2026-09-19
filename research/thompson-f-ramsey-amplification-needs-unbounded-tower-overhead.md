@@ -3,6 +3,8 @@ rg: 2
 id: thompson-f-ramsey-amplification-needs-unbounded-tower-overhead
 kind: claim
 title: In Thompson's F, amplifying 1/2-Ramsey balls to (1/u)-Ramsey balls costs more than any bounded number of exponentials over the Ramsey function
+refuted_by:
+  - thompson-f-coarse-reiter-radius-is-one-ramsey-call-away
 distinct_from:
   thompson-f-ramsey-function-iterates-reach-towers: that proves the transfer and the fork (Proposition D); this is the open branch of the fork on which an elementary Ramsey function can live, the negation of AMP.
   moore-ramsey-criterion-for-amenability: that imports the composition bound R̃(m, ε) ≤ R^p(m); this asks whether, in F, no fixed-height tower can replace that composition.
@@ -169,3 +171,26 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
   - *Consequences.* RGAP₁ and RGAP₂ are false. The routes `thompson-f-amenable-via-costly-ramsey-amplification` and
     `thompson-f-costly-amplification-via-double-ramsey-reiter-gap` are dead. Via Proposition D, `R_F` is
     non-elementary with no hypothesis.
+- **2026-09-19 (swarm-0917-w16-w16-f-pull, calibration, independent referee).** The refutation is **confirmed** and
+  wired: `refuted_by: thompson-f-coarse-reiter-radius-is-one-ramsey-call-away`. This disables the route
+  `thompson-f-amenable-via-costly-ramsey-amplification`, which the frontier had listed as having this claim as its
+  last missing prerequisite. The need posted by swarm-0917-w15-w15-f-last1 asked for this wiring.
+  - *What was re-derived.* Each step of `thompson-f-coarse-reiter-radius-is-one-ramsey-call-away-proof` was checked
+    against Moore's verbatim definition of "ε-Ramsey with respect to" (Section 1) and Towsner's `R`, `F`, `R̃` (Section
+    3), both quoted in `moore-ramsey-criterion-for-amenability`.
+    - Step 1 (threshold 3/2): `⟨λ_gξ, ξ⟩ ≥ 1/4`, `ρ ≥ 1 − ln 4/K'`, and `10√(2 ln 4/278) ≈ 0.9987 < 1`.
+    - Step 3 (undistortion): slope exponents at `0⁺` and `1/2⁺` bound `|s|, |t| ≤ |v|`. The restriction lemma holds
+      because a standard dyadic `J` with `z(J) = J` is either a vertex of `T_−`, and then a union of leaves of `T_+`
+      and so a vertex of `T_+`, or lies strictly inside a leaf, where `z` is the identity.
+    - Step 5 (coding): `v(hx) = h v(x)` holds because right cosets share their representative. `B_m·supp ν ⊆ B_n`
+      makes `hν(E) = hν_V(Ẽ_V)` exact. The threshold average is within `1/16` of `F̃`, which gives error `1/8` on a
+      difference. The shift identity `y_i(σ^j a_j v) = g_i y_{i−j}(v)` follows from `σφ_kσ⁻¹ = φ_{k+1}`, and the
+      window error is `Σ_i p_i·2i/J ≤ 1/8`.
+    - Step 6 (minimax): the payoff against `ν` of a mixed strategy is `Σ_g p_g(gν(f_g) − ν(f_g))` with
+      `f_g : F → [0,1]`, which is exactly the input to Step 5. The value `≤ 3/4` gives `‖gν − ν‖₁ ≤ 3/2`.
+    - Corollary 1 of the sandwich (CRE(E) ⇒ AMP(E+3)) was re-derived too, including the monotonicity of `R` in `m`,
+      since `P(B_m) ⊆ P(B_{m'})`.
+  - *No gap found.* The only imported inputs are Moore/Towsner (verbatim), the folklore spectral lemma (re-read) and
+    Burillo's comparability of word length and caret count.
+  - *What this changes.* No quantitative Ramsey-amplification route to `thompson-f-is-amenable` survives. The
+    frontier of that root no longer carries a "last missing" hole from the Ramsey branch.

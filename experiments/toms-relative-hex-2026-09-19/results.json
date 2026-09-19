@@ -1,10 +1,46 @@
 {
-  "script": "face_form_sat.py (pysat Cadical153); args N n [maxlev] [cap]",
-  "model": "cell-constant usc delta on the product cell complex with n intervals per coordinate; SAT = genuine face counterexample",
-  "runs": [
-    {"N": 2, "n": 3, "maxlev": 1, "result": "UNSAT", "seconds": 0.03, "note": "planar Hex calibration"},
-    {"N": 2, "n": 6, "maxlev": 1, "result": "UNSAT", "seconds": 23.0, "note": "planar Hex calibration"},
-    {"N": 2, "n": 4, "maxlev": 2, "cap": 2, "result": "SAT", "note": "control: level 2 needs only 2 coordinates (R1(2)); slit wall found"},
-    {"N": 3, "n": 2, "maxlev": 2, "result": "UNSAT", "seconds": 7.67, "note": "whole face form F(3) at this resolution"}
-  ]
+ "script": "face_form_sat.py (pysat Cadical153); args N n [maxlev] [cap]",
+ "model": "cell-constant usc delta on the product cell complex with n intervals per coordinate; SAT = genuine face counterexample",
+ "runs": [
+  {
+   "N": 2,
+   "n": 3,
+   "maxlev": 1,
+   "result": "UNSAT",
+   "seconds": 0.03,
+   "note": "planar Hex calibration"
+  },
+  {
+   "N": 2,
+   "n": 6,
+   "maxlev": 1,
+   "result": "UNSAT",
+   "seconds": 23.0,
+   "note": "planar Hex calibration"
+  },
+  {
+   "N": 2,
+   "n": 4,
+   "maxlev": 2,
+   "cap": 2,
+   "result": "SAT",
+   "note": "control: level 2 needs only 2 coordinates (R1(2)); slit wall found"
+  },
+  {
+   "N": 3,
+   "n": 2,
+   "maxlev": 2,
+   "result": "UNSAT",
+   "seconds": 7.67,
+   "note": "whole face form F(3) at this resolution"
+  },
+  {
+   "N": 3,
+   "n": 3,
+   "maxlev": 2,
+   "result": "TIMEOUT",
+   "seconds": 1200,
+   "note": "undecided within 20 min wall on a shared machine (nice 10, 3375 cells); needs symmetry breaking or a longer run"
+  }
+ ]
 }

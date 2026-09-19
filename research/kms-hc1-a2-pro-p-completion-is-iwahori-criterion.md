@@ -366,3 +366,22 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      with `t^2` centres plus T5, or via group-level Cartan p-power
      relations.
    See `kms-hc1-root-p-powers-die-first-deviation-at-3np`.
+
+12. **Route 1 (virtual vertices + T5) is inert: obstruction, all p >= 5.**
+   - (P): at the first deviation `d0`, the value `Pi(y)` of the p-th power of
+     a lift of an order-`p` element `y` of `I_1` is well defined, lies in
+     `W_n/V_n`, is invariant under `I_1`-conjugation (the top layer is
+     central), and vanishes on the conjugates of vertex elements.
+   - (L): given (FD), every word in two elements with real-root leading forms
+     has zero `W_n`-component at the leading-form level, because weights
+     `n1 beta + n2 gamma` never vanish. Virtual Heisenberg relators of
+     leading degree `3np` hold mod `D_(3np+1)` automatically. Relators of
+     lower leading degree carry exactly the level-`n` S-pair data.
+   - (B): the T5 bridge `Pi(exp(Y t^n)) = alpha(Cart Y)` already implies
+     `C_nA, C_nB in V_n`. Compare `x21(t^n)` with its conjugate by
+     `x12(lambda)`, whose Cartan part is `lambda h_A`. So reading
+     `alpha_A + alpha_B` off conjugated virtual centres is circular, and
+     `K_n` is not reached at all.
+   - Next: Route 2 (group-level Cartan p-powers), the level-`n` S-pairs, or
+     a separate argument for `K_n`.
+   See `kms-hc1-virtual-vertex-route-is-conjugation-inert`.

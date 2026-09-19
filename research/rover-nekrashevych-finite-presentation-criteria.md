@@ -128,3 +128,19 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
     - `BS(1,3)` passes it, but has `H_1 = H_2 = Z/2`, so it has no graph (`k = 1`) model.
   - Next: decide whether `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_2` (i.e. `V_2(BS(1,3))`) is a `k`-graph groupoid for some
     `k ≥ 2`; and handle higher genus.
+- **2026-09-18 (w13-101).**
+  - **`V_2(BS(1,3))` is settled negatively for every `k ≥ 1`**
+    (`dyadic-affine-germ-groupoids-are-not-k-graph-groupoids`).
+    - The sketched homology is machine-checked by two independent routes (Pimsner–Voiculescu with coset
+      enumeration, and LHS over the unit group). The germ groupoid of `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_2` has
+      `H_0 = 0` and `H_1 = H_2 = Z/2`.
+    - **Prime-support theorem.** For a finite `k`-graph, `H_0(G_Λ) ⊗ Z_(ℓ) = 0` forces `H_*(G_Λ) ⊗ Z_(ℓ) = 0`.
+      This follows from Nakayama on the FKPS Koszul complex. In particular, `H_0 = 0` forces integral acyclicity.
+    - So no finite `k`-graph with (H), for any `k`, has full group `V_2(BS(1,r))` (`r` odd, `|r| ≥ 3`, where
+      `H_1 = H_2 = Z/|r-1|`), and none has full group `V_2(Z[1/m] ⋊ U')`. No Kakutani-equivalent model exists either.
+  - Over `Q` at the place 2, every such affine germ groupoid has odd `H_0` and nonzero 2-local `H_1`. This
+    contrasts with `F_q(t)`, where all of them are `k`-graph groupoids.
+  - For odd `p`, a prime criterion excludes `V_3(BS(1,7))` and `V_5(BS(1,7))`.
+  - Next: decide `V_3(BS(1,2))`, i.e. `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_3`. It passes every homological test: its
+    homology `(Z/2, Z/2, 0)` is that of the one-vertex `(3,3)` 2-graph. Either build a 2-graph model or find a
+    finer (K-theoretic or order) invariant.

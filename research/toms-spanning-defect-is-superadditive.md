@@ -53,6 +53,8 @@ equal across equal-level face relations, forbidden on the corresponding face, an
 - *Calibration.* `N = 2` is UNSAT (planar Hex). Relaxing the level-2 requirement to two
   coordinates at `N = 2` is SAT at once (the slit wall of `R1(2)`).
 - *`N = 3`* (the whole face form in dimension 3, which is `R1(3)` there, since levels `>= 3`
-  cannot occur): UNSAT at `n = 2`; see `results.json` for larger `n`.
+  cannot occur): UNSAT at `n = 2` (125 cells). At `n = 3` (3375 cells) the solver did not
+  decide within 20 minutes; symmetry breaking under the cube's symmetry group, or the growth
+  normal form below, is the next step for larger `n`.
 
 UNSAT at a resolution is evidence, not a proof.

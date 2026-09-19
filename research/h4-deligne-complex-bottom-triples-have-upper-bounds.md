@@ -242,6 +242,23 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   - **Why the searches missed it.** The N-length of `d` exceeds 6 in H_4, so `v` lies outside w14's ball.
   - **What is left.** Case 1 needs an H_4 Helly argument that reaches non-vertex centres. The line fixed by `W_X`
     is not modular in H_4 (510 bad hyperplane pairs), so the free-fibre arc model does not transport.
+- **Exact presentation of ker ρ_X in H_4** (w16-042, `h4-ker-rho-x-is-f45-mod-transported-collision-twists`;
+  proved, census exact over `ℚ(√5)`).
+  - **The collisions.** The 510 bad pairs group into 316 bad rank-2 flats (240 `A_1×A_1`, 70 `A_2`, 6 `I_2(5)`).
+    They lie on 106 collision walls `D_E = E + L_X`, none of which is a wall of `𝒜`.
+  - **Removing and restoring the collision walls.** Adding the 106 collision walls makes `L_X` modular. That gives
+    `F_45 ⋊ B°`, with the section realising `P_X`. Removing them again with a semidirect-quotient lemma gives
+    `P = (F_45/R) ⋊ P_X` with no defect.
+    - `R` is the normal closure of the transported relators `[δ_E, x_h]`, for cluster boundaries `δ_E` and punctures
+      `h ∈ E`.
+    - For the 240 flats of type `A_1×A_1` these are commutations.
+  - **Consequences.**
+    - `K^{ab} = ℤ^{45}`.
+    - Each F-wall lies in 16 bad flats. So `C_K(P_i) ⊇ ℤ²` for `i = 1, 2, 3`, and `K` is not free.
+    - Calibration: `H_3` has the same kind of `ℤ²`'s, yet Case 1 holds there. So this alone does not refute (H″).
+  - **Next.** Compute the monodromy `μ` of explicit loops for `N`. The fibre punctures are linear:
+    `y_h(b) = −h(b)/h(ℓ)`. Then test whether the w14/w15 coincidences `[u,a] = [v,b]` already hold in `F_45`, or
+    only modulo `R`. Coincidences that hold only modulo `R` are the one place a counterexample can live.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

@@ -104,3 +104,17 @@ Hilbert space and 1-cocycles `b_1, b_2` into `π` such that
       No such state is known, so (K) is not decided.
   - *The w13 PL obstacle, explained.* It is a model artefact: dyadic `log g'` jumps, while Farey
     `log g'` only has kinks.
+- **2026-09-19 (swarm-0917-w16-w16-nv-pull, cohomology-index): the metaplectic lead is dead in
+  the Farey model; (K) stays OPEN.**
+  - *Established.* `farey-fock-representation-of-t-is-not-bekka-amenable`: `δ_* > 0`, so (Q1) is NO.
+  - *Invariant.* The spectral gap of the lattice `PSL_2(Z)` on the particle sectors
+    `Sym^m(D_2) ⊗ conj Sym^n(D_2)` (`m + n ≥ 1`) of `HS(F)`. These are tempered for `PSU(1,1)`,
+    because `D_2` is square-integrable (Fell absorption), and Kesten turns this into a gap.
+  - *Step where it dies.* An almost invariant density `ρ` has `ρ^{1/2}` close to `P_Ω`. A
+    vacuum-fixing element preserves the one-particle norm, so it commutes with `J_0` and maps `z`
+    into `H^2`. The argument principle then makes it a single Möbius map, but `T ≠ PSL_2(Z)`.
+  - *Consequences for this node.* Every `W(√t b)M ⊗ M̄` and every `V ⊗ M̄` family gives nothing.
+    There is no invariant normal state either, so the `O(√θ)` sub-route is also closed.
+  - *What survives.* Fock or Gaussian models over a complex structure `J` that no non-amenable
+    subgroup of `T` preserves with a tempered one-particle representation. Any other circle model
+    in which a non-amenable subgroup of `T` acts through a lattice of `PSU(1,1)` dies the same way.

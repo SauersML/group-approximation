@@ -1,0 +1,12 @@
+p=1.0 m=20: Lp-ratio(n=1)=0.6684  first n with Lp(a)>=1: 917  min Lp(rel) there=1.1190  min ratios op=1.000 hs=1.002 rank=1.000
+p=1.0 m=40: Lp-ratio(n=1)=0.4737  first n with Lp(a)>=1: 4428  min Lp(rel) there=1.0955  min ratios op=1.000 hs=1.003 rank=1.000
+p=1.0 m=80: Lp-ratio(n=1)=0.3353  first n with Lp(a)>=1: 16440  min Lp(rel) there=1.0672  min ratios op=1.000 hs=1.004 rank=1.000
+p=1.5 m=20: Lp-ratio(n=1)=1.4842  first n with Lp(a)>=1: 706  min Lp(rel) there=1.3333  min ratios op=1.000 hs=1.002 rank=1.000
+p=1.5 m=40: Lp-ratio(n=1)=1.3230  first n with Lp(a)>=1: 3406  min Lp(rel) there=1.3326  min ratios op=1.000 hs=1.003 rank=1.000
+p=1.5 m=80: Lp-ratio(n=1)=1.1789  first n with Lp(a)>=1: 12646  min Lp(rel) there=1.3245  min ratios op=1.000 hs=1.004 rank=1.000
+p=3.0 m=100: Lp-ratio(n=1)=0.8965  first n with Lp(a)>=1: 18  min Lp(rel) there=1.0178  min ratios op=0.997 hs=1.000 rank=1.961
+p=3.0 m=1000: Lp-ratio(n=1)=0.8361  first n with Lp(a)>=1: 146  min Lp(rel) there=0.9618  min ratios op=1.000 hs=1.000 rank=1.988
+p=3.0 m=10000: Lp-ratio(n=1)=0.7812  first n with Lp(a)>=1: 1550  min Lp(rel) there=1.0239  min ratios op=1.000 hs=1.000 rank=1.999
+p=4.0 m=100: Lp-ratio(n=1)=0.8683  first n with Lp(a)>=1: 8  min Lp(rel) there=0.9354  min ratios op=0.996 hs=1.000 rank=1.961
+p=4.0 m=1000: Lp-ratio(n=1)=0.8068  first n with Lp(a)>=1: 67  min Lp(rel) there=0.9076  min ratios op=0.999 hs=1.000 rank=1.988
+p=4.0 m=10000: Lp-ratio(n=1)=0.7503  first n with Lp(a)>=1: 706  min Lp(rel) there=1.0269  min ratios op=1.000 hs=1.000 rank=1.999

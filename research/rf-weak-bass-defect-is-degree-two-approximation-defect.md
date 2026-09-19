@@ -202,3 +202,25 @@ L²-Swan route through infinite amenable quotients cannot close the gap by itsel
   - *Next step.* Bound `dim H_0(N_i; Q ⊗ P) <= (n − 1)[K:N_i] + o` from a non-tiling input. On
     the escape side, look for a torsion-free, amenable, non-elementary-amenable group of cd 2
     whose finite-index subgroups all have `b_1 = 0`.
+- **2026-09-19 (lane `w21-112`): the Swan-rank step through `Z`-quotients (Alexander modules).**
+  See `cd-two-z-kernels-have-zero-or-free-alexander-h2` (proposed ESTABLISHED; reduction and
+  obstruction).
+  - *Idea.* Replace the finite quotients by `φ : H ↠ Z`. Then `Λ = Q[t^{±1}]` is a PID, so
+    `Λ ⊗ P` is free of rank `r`. Swan and Lück hold exactly there, with no amenability or
+    residual finiteness.
+  - *Results.* `H_2(ker φ; Q)` is a free `Λ`-module, so it is `0` or infinite-dimensional. The
+    Alexander formula `χ_Q = rk H_2(ker) − rk H_1(ker)` holds. Along the cyclic tower,
+    `b_2(H_m) = mρ_2 + O(1)`, and `H_2(H_m)` contains `Q[Z/m]^{ρ_2}`.
+  - *Construction kill.* Every virtually (finite-`b_2`)-by-`Z` group has `χ <= 0`. This covers
+    ascending HNN extensions over arbitrary bases of finite `b_2`.
+  - *Escape-side dichotomy.* A counterexample is either (I) virtually rationally perfect, with
+    `H_2(N) ⊕ Q ≅ Q[F]^χ`, or (II) fibred, with every virtual `Z`-kernel non-fg, non-EA and with
+    `H_2 ≅ Λ^{ρ_2}`, `ρ_2 >= [K:H]`.
+  - *Class result.* If every fg subgroup with finite abelianization is virtually
+    (finite-`b_2`)-by-`Z`, the group is solvable.
+  - *Effect on the target.* For `Γ = Z`, item 6(a) holds with equality, and 6(b) becomes
+    `ρ_2 <= ρ_1`. The induced module structure on the remainder is free of rank `ρ_2`, so it
+    cannot make `H_2` small.
+  - *Next step.* (II): prove `rk_Λ H_2(L) <= rk_Λ H_1(L)` for one amenable Z-kernel `L`.
+    `F_2 × F_2` has `A_2 = Λ²` and shows amenability is needed. (I): decide whether a
+    residually finite amenable cd-2 group can have `b_1 = 0` on every finite-index subgroup.

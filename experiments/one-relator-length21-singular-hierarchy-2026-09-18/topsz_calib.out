@@ -1,0 +1,5 @@
+CALIB W0=a0.a1.A0.A1.a2.a1.A2.A1 -> (3, 3, 2, 'FAIL(t-loop) sZ=(2, 2)', 'FAIL(t-loop) sZ=(2, 2)') s=a0 h0=0
+CALIB hand D for [a0,a1][a2,a1]: ((3, 3, 2, 'FAIL(t-loop) sZ=(2, 2)', 'FAIL(t-loop) sZ=(2, 2)'), 'hand')
+CALIB nonexc n=2: ((2, 2, 1, 'cyclic', 'cyclic'), 'F(S cap T)')
+CALIB nonexc n=3: ((3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)'), 'F(S cap T)')
+CALIB nonexc n=4: ((4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)'), 'F(S cap T)')

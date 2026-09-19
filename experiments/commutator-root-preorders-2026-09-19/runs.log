@@ -1,0 +1,27 @@
+# pre_sat.py runs, 2026-09-19 (perms files: lowindex.g of commutator-root-orders-2026-09-18, index <= 9).
+# Args: K al be permsfile W r r1 [--chain]. Not completed under 2 GB: (2,1,1) W4 r6 r1=2, W3 r7 r1=3, W5 r5 r1=3; (3,1,-1) W4 r5; (3,1,1) W4 r5.
+K al be 2 1 1 W 4 r 5 r1 2 pre  | words 22408 classes 20476 trivial 0 D 216 2s
+RESULT K al be 2 1 1 W 4 r 5 r1 2 pre  SAT 58s
+K al be 2 1 1 W 4 r 5 r1 2 pre chain | words 22408 classes 20476 trivial 0 D 216 1s
+RESULT K al be 2 1 1 W 4 r 5 r1 2 pre chain SAT 55s
+K al be 2 1 1 W 4 r 5 r1 3 pre chain | words 22408 classes 20476 trivial 0 D 216 1s
+RESULT K al be 2 1 1 W 4 r 5 r1 3 pre chain SAT 262s
+K al be 2 1 1 W 5 r 5 r1 2 pre chain | words 73810 classes 69112 trivial 0 D 216 8s
+RESULT K al be 2 1 1 W 5 r 5 r1 2 pre chain SAT 519s
+K al be 2 1 1 W 4 r 6 r1 2 pre chain | words 156864 classes 138768 trivial 24 D 216 18s
+K al be 2 1 1 W 3 r 6 r1 2 pre chain | words 23436 classes 20016 trivial 12 D 216 1s
+RESULT K al be 2 1 1 W 3 r 6 r1 2 pre chain SAT 63s
+K al be 2 1 1 W 3 r 6 r1 3 pre chain | words 23436 classes 20016 trivial 12 D 216 1s
+RESULT K al be 2 1 1 W 3 r 6 r1 3 pre chain SAT 243s
+K al be 2 1 1 W 3 r 7 r1 2 pre chain | words 117186 classes 95910 trivial 12 D 216 17s
+RESULT K al be 2 1 1 W 3 r 7 r1 2 pre chain SAT 623s
+K al be 2 1 1 W 3 r 7 r1 3 pre chain | words 117186 classes 95910 trivial 12 D 216 12s
+RESULT K al be 2 1 -1 W 3 r 3 r1 2 pre  SAT 1s
+RESULT K al be 2 1 -1 W 4 r 4 r1 2 pre  SAT 7s
+RESULT K al be 2 1 -1 W 4 r 5 r1 2 pre  SAT 85s
+RESULT K al be 3 1 1 W 3 r 3 r1 2 pre  SAT 1s
+RESULT K al be 3 1 1 W 4 r 4 r1 2 pre  SAT 57s
+RESULT K al be 3 1 -1 W 3 r 3 r1 2 pre  SAT 1s
+RESULT K al be 3 1 -1 W 4 r 4 r1 2 pre  SAT 65s
+RESULT K al be 2 -1 1 W 3 r 3 r1 2 pre  UNSAT 0s
+RESULT K al be 2 -1 1 W 3 r 4 r1 2 pre  UNSAT 2s

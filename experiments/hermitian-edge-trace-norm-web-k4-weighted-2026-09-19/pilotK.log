@@ -1,0 +1,8 @@
+weights 3/4,3/4,3/4,3/4,1,1/5 per-edge T {(0, 4): 2.1, (1, 4): 2.1, (2, 4): 2.1, (3, 4): 2.1, (4, 5): 3.6173, (0, 1): 2.2421, (0, 2): 2.2421, (0, 3): 2.2421, (1, 2): 2.2421, (1, 3): 2.2421, (2, 3): 2.2421}
+solves 2000 closed 989 (parent 39 sign 80 sdp 870) stack 20 minfc 6.344224 vol 4.696e-02 t 267
+solves 3000 closed 1459 (parent 50 sign 113 sdp 1296) stack 11 minfc 6.344224 vol 5.066e-02 t 404
+solves 4000 closed 1974 (parent 77 sign 164 sdp 1733) stack 16 minfc 6.344224 vol 6.599e-02 t 493
+solves 6000 closed 3059 (parent 113 sign 242 sdp 2704) stack 19 minfc 6.344224 vol 1.875e-01 t 604
+solves 7000 closed 3551 (parent 142 sign 289 sdp 3120) stack 14 minfc 6.344224 vol 1.997e-01 t 669
+solves 8000 closed 4030 (parent 152 sign 326 sdp 3552) stack 12 minfc 6.344224 vol 2.070e-01 t 733
+solves 9000 closed 4538 (parent 181 sign 368 sdp 3989) stack 11 minfc 6.344224 vol 2.379e-01 t 794

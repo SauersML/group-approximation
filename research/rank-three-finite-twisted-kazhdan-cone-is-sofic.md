@@ -229,3 +229,17 @@ centreless invisible core, and `T_3` is the basic example.
     lines.  The monomial-valuation groups `E_w = { g : v_w(g - 1) > 0 }` show such `E_B` exist.  The next
     tool is a monomial valuation preserved by the compressors of an infranormal `C`, which would contradict
     (W2).  Otherwise the positive side: sofic approximations of `T_3`.
+- **w18-111, 2026-09-18: weight-bounded level subpairs (obstruction).**
+  - *Result.*  By [[weight-bounded-level-subpairs-cannot-certify-rank-three]], for `B ⊇ U_k` let `W(E_B)`
+    be the set of rational weights `w` such that `E_B` fixes a point of the Bruhat-Tits building of
+    `SL_3` over the `v_w`-completion.  Then `W(E_B)` is `H_B`-invariant and lies in the dual cone of
+    `cone(H_B · R_+^d)`.  With (X1) and (W2) this puts every weight of a surviving `B` to zero on the
+    invariant core `M ≠ ∅`.  So no `B` whose `E_B` fixes a point for one strictly positive weight is a
+    certificate.  This kills the E_w-type groups left by w17-111, every parahoric and every conjugate.
+  - *Why.*  The level forces bounded weights into the positive orthant: `e_12(x_l^n) e_21(x_l^n)` has
+    trace of negative valuation when `w_l < 0`.  Each `u σ ∈ B` carries a fixed point in `X_w` to one in
+    `X_(σ^T w)`.  No compressor-invariant valuation is needed, since all of `B` permutes the buildings.
+  - *What is left.*  A certificate needs `E_B` with no fixed point in any positive-weight building meeting
+    `M`, while `C` fixes the base vertex of each and every monomial line section is bounded.  Next: show
+    that unboundedness in `X_(1,..,1)` concentrates on one monomial line after conjugating by `Gamma`,
+    which would reach (L2).  Otherwise, the positive side.

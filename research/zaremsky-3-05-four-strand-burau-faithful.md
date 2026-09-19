@@ -81,3 +81,17 @@ whether this homomorphism is injective for `n = 4`.
   `research/artifacts/burau-cyclotomic-blindness-2026-09-17.md`). Surviving classes: evaluation
   points that depend on the braid with unbounded 2-power order, and invariants that are not
   cyclotomic residues of `𝕄` (full no-cancellation, extreme exponents, weighted counts).
+- **2026-09-19, v2 audited from the PDF: still broken (lane swarm-0917-w16-w16-z-break,
+  calibration).**
+  - arXiv:2607.05283v2 was posted 2026-09-14 (28 pp., "Minor corrections and improved
+    exposition"). It has the same mechanism, renumbered: Proposition 6.7, Corollary 6.8 and
+    Theorem 6.9.
+  - Its definitions, read verbatim, match the ones behind the `t = −1` obstruction. Parity-clean
+    arcs realize `ι`.
+  - So `burau-preprint-v2-parity-push-fails-for-a-brunnian-four-braid` holds: Proposition 6.7
+    fails at every proper-product conjugate of `Φ_0`, or the conjugation step of Theorem 6.9
+    fails.
+  - The v2 proof checks parity only for its first loop. It never checks parity for the
+    modified loop `Γ′`, which is where v1's gap G1 sat.
+  - The preprint's own Section 7 example agrees with `parity ⟺ |M(−1)| = m`. Artifact:
+    `research/artifacts/zp-burau-v2-audit-2026-09-19.md`.

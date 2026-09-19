@@ -147,3 +147,28 @@ Status on main, by dimension:
   - *Next.* The (K) phase on `T`: formula witnesses first, and the `kzs2` search only where they fail, run as block
     chains split across lanes and replayed by `kzc1`. For a uniform proof, the target is a lemma that `e_j + e_8`
     link-collapses every unbalanced zero-coordinate top-shell point `u` with last index `j`, in a fixed class order.
+- **w11-103, the formula link-collapse lemma is blocked; order-free certificates instead.** See
+  `zn-rips-top-shell-formula-link-collapse` and `zn-rips-top-shell-sign-hull-certificates`.
+  - *Obstruction.* No proof can remove the bad points of the formula move `K u | e_j + e_k` one at a time. At
+    `(6, 6)`, `u = (2,1,1,1,1,0)` has a bad point `b = (2,1,1,1,0,0)` that no present point dominates, in every state
+    `C ⊇ Lmax ∖ Z_0`. So `b` is never the first removal. This holds for 32 points at `(6, 6)`, for at least 370 at
+    `(7, 7)`, and for the point `(-2,2,2,-1,2,1,1,0)` of `T` at `(8, 11)`. A class order on `T` cannot help.
+    The formula chains still pass `kzc1` in both orders at every `(k, r)` from `(4,4)` to `(6,7)`.
+  - *Certificates.* For a sign-hull certificate for `u`:
+    - pick a witness `w ∉ F` in `hull(0,u,E)`;
+    - give each bad point `b` a point `v_b ∉ F` in `hull(0,u,b,E) ∩ sh{0,u,b}` with `d(v_b,w) ≤ r`.
+
+    Then `K u | w` is valid in every state that contains `Lmax ∖ F`, so no order on `F` is needed. By exhaustive
+    search:
+    - every point of `Z_0` has such a certificate for `k ≤ r ≤ 7`;
+    - every unbalanced point of `Top ∖ Z_0` has one for `k ≤ r ≤ 6` and for `k ≤ 6`, `r = 7`.
+
+    So `VR(Z^n, d_1; r)` is contractible for `n ≤ r ≤ 6` and for `n ≤ 6`, `r = 7`, by one local scheme.
+  - *Limit.* At `(7, 7)`, 824 unbalanced top-shell points with `x_7 = 1` have no certificate, even with
+    `F = {x ∈ Top : x_7 ≤ 1}`. So the scheme alone is not uniform.
+  - *(8, 11).* Here `T ⊆ Z_0`, and the node's (D) prefix and tail never touch `T`. So `Z_0`-certificates for the
+    53,312 points of `T` finish `(8, 11)`, with no order. 59 of 59 unbalanced sampled points have one, with a
+    witness of norm at most 4.
+  - *Next.* Run the certificate search over all of `T` (`shdomw 8 11`, sharded, `WMAX = 4`), which finishes `(8, 11)`.
+    For a uniform proof, one also needs a hand rule for the `Z_0` witnesses, and a separate deletion for the top-shell
+    points with `x_k = 1`.

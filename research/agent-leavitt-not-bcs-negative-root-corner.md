@@ -978,3 +978,57 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
 - **Next falsifiable step.** A quantitative version: bound `||rho(z) - 1||_2` below in terms of `max_i ||rho(k_i) - 1||_2`
   over finite-dimensional unitary `rho` of `Gamma`. That is a stability statement for `Delta` relative to `Gamma`, and
   it belongs to the stability-approximation family, not finite models.
+
+### Cone-cover head bound is half of non-hyperlinearity (swarm-0917-w16-w16-ptm-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Two nodes.
+  - `leavitt-st20-nonhyperlinear-iff-cone-bound-and-half-rounding`, with route
+    `leavitt-st20-cone-bound-half-rounding-proof`.
+  - The general tool `flexible-rounding-glues-across-finite-edge-amalgams`, with route
+    `flexible-rounding-finite-edge-amalgam-gluing-proof`.
+- **Approach tried.** Take the w16 next step at face value. The quantitative head bound is
+  - `(QC)`: for every `eps` there is `delta` such that every genuine finite-dimensional unitary `rho` of
+    `Gamma = Delta_+ *_(Delta_0) Delta_-` with `max_i ||rho(k_i) - 1||_2 <= delta` has
+    `||rho(z) - 1||_2 <= eps`.
+
+  Then try to turn it into non-hyperlinearity of `Delta`, which `(LNC3)` needs, by correcting
+  asymptotic representations of `Delta` to genuine representations of the residually finite cover.
+- **What was proved.**
+  - *Hyperlinearity is read off the head.* `Delta` is hyperlinear iff some asymptotic representation
+    has `σ_n(z)` not tending to `1`. The proof uses simplicity, the absence of scalar values in an
+    injective ultraproduct image, and tensor powers.
+  - *Split.* `Delta` is non-hyperlinear iff both `(QC)` and `(HR)` hold, where
+    - `(HR)`: restrictions to `Delta_+` of asymptotic representations of `Delta` round flexibly
+      (`D_n/d_n -> 1`) to genuine representations of `Delta_+`.
+  - *Refutation side.* If `(QC)` fails, then `Delta` is hyperlinear, and `(LNC3)` fails. A set section
+    of `Gamma -> Delta` that is the identity on the halves turns a `(QC)` counterexample into an
+    asymptotic representation that keeps the head.
+  - *Halves-exact form.* `(QC)` is equivalent to the same statement for asymptotic representations of
+    `Delta` that are exact on each half.
+  - *Mirror.* `(HR)` for `Delta_+` is equivalent to `(HR)` for `Delta_-`.
+  - *Gluing is never the obstacle.* Flexible roundings of the two factors of any amalgam over a
+    finite edge group glue, whenever a finite quotient is injective on the edge. The steps are a
+    representation-ring balance with regular representations of that quotient, then a Mirsky polar
+    correction of the averaged intertwiner.
+- **Where it dies.** At `(HR)`, the flexible rounding of a half.
+  - The halves are infinite, residually finite and Kazhdan. By
+    `infinite-hyperlinear-kazhdan-group-is-not-hs-stable` they are not even locally strictly
+    HS-stable. So `(HR)` can only be a flexible statement, relative to `Delta`.
+  - No input on the graph bears on it: finite models, compact models, charges, twist and holonomy
+    invariants all fail to reach it.
+  - `(QC)` alone is necessary for this hole but not sufficient for non-hyperlinearity.
+  - Given `(HR)`, `(QC)` is the flagship statement for `Delta`.
+- **Class killed.** Cone-cover correction arguments, i.e. any proof of non-hyperlinearity or of the
+  MF-radical collapse of `Delta` that corrects approximations to genuine `Gamma`-representations and
+  then bounds the head through the `k_i`.
+  - *Invariant:* property (T), infinitude and residual finiteness of the halves.
+  - *Death step:* the correction of a half.
+- **Target stays OPEN.**
+- **Next falsifiable steps (independent).**
+  1. *Refute `(QC)`, which refutes `(LNC3)`.* Search for pairs of genuine representations of the
+     residually finite halves `EL_20(R_+-)` that agree on `SL_20(F_2)^2` and make every `k_i` almost
+     trivial, while the `(-1)`-eigenspace of `z` keeps positive normalized dimension. For example,
+     use congruence quotients of `R_+-` and compute `max_i ||rho(k_i) - 1||_2` against
+     `||rho(z) - 1||_2`.
+  2. *Prove or refute `(HR)`.* One route is flexible HS stability of `EL_n` over the stably finite
+     cone ring `R_+`, which would also give flexible stability of `Gamma`.
