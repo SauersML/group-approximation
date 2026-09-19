@@ -320,3 +320,26 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
      cannot supply the level-2 direction. The next check is the `(2p,2,2p)`
      slice at `p=5`.
    See `kms-hc1-witt-carry-syzygy-lifts-by-right-freeness`.
+
+10. **Level `m >= 2`: the proposed `(2p,2,2p)` slice is empty. The edge
+   tails have order at most two, and order two only on the diagonal. The
+   Kassel p-map step holds at every level.**
+   - `rho` of an edge eigencomponent lies in `u(heis)`, where letter degrees
+     stop at `2p-2`. Every monomial involves both letters. So the visible
+     shifts are `{0,p-1}` per letter, and an order-2 tail is only the
+     diagonal `(p-1)(e_x+e_y)`.
+   - An exact check at `p = 5, 7, 11` finds the shifts `(0,1)` and `(1,1)`
+     for `[[x,y],x]`, and `(1,0)` and `(1,1)` for `[[x,y],y]`. Lowest forms
+     are never visible.
+   - `u(N)` vanishes in multidegrees `(2,2p-1,0)` and `(0,2p-1,2)`. So the
+     second-order seeds `f2` are `rho`-trivial, and no jump reaches
+     `(2p,2p,2p)` from `(2p,2,2p)`.
+   - At level `m` the value of an element of `I` localizes to nine
+     (edge, shift) slices. At `m=2` these are the `(2p,p+1,2p)`-type slices
+     (first order) and the `(p+1,p+1,2p)`-type slices (diagonal).
+   - For every `t^m`-homogeneous `X`, the `z`-part of `(X t^m)^[p]` is
+     `alpha` of the Cartan part. The proof is trace invariance on
+     `ad(W)^(p-1)`, and needs no square-zero hypothesis.
+   - Next: the S-pairs of those slices at `p=5`, box `(10,6,10)`, and whether
+     their values span `W_2`.
+   See `kms-hc1-level-m-edge-tails-have-order-at-most-two`.
