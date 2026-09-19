@@ -1,0 +1,5 @@
+m=2 d=1 |S|=3: FEASIBLE (ok)
+m=3 d=1 |S|=4: INFEASIBLE (The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None))
+m=4 d=1 |S|=5: INFEASIBLE (The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None))
+m=2 d=1: best max |log residual| = 3.244e-10; min/max leaf weight = 4.934e-02
+m=3 d=1: best max |log residual| = 3.630e-01; min/max leaf weight = 3.705e-01

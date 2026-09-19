@@ -1,0 +1,16 @@
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPConjugation.lean:98:47: Application type mismatch: The argument
+  r
+has type
+  R
+but is expected to have type
+  ?m.74 i
+in the application
+  Pi.single i r
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPConjugation.lean:100:47: Application type mismatch: The argument
+  r
+has type
+  R
+but is expected to have type
+  ?m.84 i
+in the application
+  Pi.single i r

@@ -1,0 +1,143 @@
+=== round 0 (v2_a2b1c2_4485_0.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 10.000000 cols 3000 pairs 521 min rc -4 LB -36 best -36 {2: -2.0, 3: -3.0, 4: -4.0} added 3000 t 7.3 tm 0.0 
+phase 1 it 2 obj 9.968750 cols 6000 pairs 1080 min rc -6.056 LB -59.57 best -36 {2: -2.7, 3: -4.4, 4: -6.0562} added 3000 t 13.3 tm 0.2 
+phase 1 it 3 obj 9.375000 cols 9000 pairs 2198 min rc -6.075 LB -58.41 best -36 {2: -3.3643, 3: -5.1, 4: -6.0754} added 3000 t 21.1 tm 0.9 
+phase 1 it 4 obj 8.697304 cols 12000 pairs 3126 min rc -4.7 LB -41.9 best -26.37 {2: -3.4, 3: -3.7, 4: -4.7} added 3000 t 76.5 tm 3.0  dartLB -26.37
+phase 1 it 5 obj 8.655462 cols 15000 pairs 3810 min rc -5.133 LB -46.52 best -26.37 {2: -3.4, 3: -3.7907, 4: -5.1328} added 3000 t 86.9 tm 6.1 
+phase 1 it 6 obj 8.652937 cols 18000 pairs 4414 min rc -5.259 LB -47.87 best -26.37 {2: -3.4, 3: -4.3466, 4: -5.2585} added 3000 t 96.9 tm 9.4 
+phase 1 it 7 obj 8.551190 cols 21000 pairs 5498 min rc -5.358 LB -48.75 best -26.37 {2: -3.4, 3: -3.7, 4: -5.3584} added 3000 t 107.6 tm 13.6 
+phase 1 it 8 obj 8.545131 cols 24000 pairs 6443 min rc -4.85 LB -43.27 best -26.35 {2: -3.4, 3: -4.3757, 4: -4.8501} added 3000 t 159.4 tm 19.2  dartLB -26.35
+phase 1 it 9 obj 8.472935 cols 27000 pairs 7465 min rc -5.239 LB -47.32 best -26.35 {2: -3.4, 3: -3.8693, 4: -5.239} added 3000 t 173.3 tm 26.5 
+phase 1 it 10 obj 8.445709 cols 30000 pairs 8235 min rc -4.821 LB -42.78 best -26.35 {2: -3.4, 3: -4.0871, 4: -4.8205} added 3000 t 187.1 tm 34.2 
+phase 1 it 11 obj 8.395880 cols 33000 pairs 9257 min rc -4.883 LB -43.36 best -26.35 {2: -3.4, 3: -4.1165, 4: -4.8826} added 3000 t 201.9 tm 43.9 
+phase 1 it 12 obj 8.357295 cols 36000 pairs 10210 min rc -4.833 LB -42.76 best -26.35 {2: -3.4, 3: -3.5909, 4: -4.8333} added 3000 t 255.2 tm 52.4  dartLB -26.38
+phase 1 it 13 obj 8.316072 cols 39000 pairs 11089 min rc -4.989 LB -44.35 best -26.35 {2: -3.4, 3: -3.5059, 4: -4.9889} added 3000 t 273.0 tm 63.9 
+phase 1 it 14 obj 7.638832 cols 42000 pairs 11997 min rc -4.996 LB -43.21 best -26.35 {2: -3.3935, 3: -3.9342, 4: -4.9958} added 3000 t 294.3 tm 78.2 
+phase 1 it 15 obj 6.979283 cols 45000 pairs 12801 min rc -5.25 LB -44.56 best -26.35 {2: -3.4, 3: -4.0319, 4: -5.2497} added 3000 t 318.0 tm 95.3 
+phase 1 it 16 obj 6.348776 cols 48000 pairs 13650 min rc -5.636 LB -47.08 best -24.14 {2: -3.397, 3: -4.083, 4: -5.6359} added 3000 t 369.1 tm 109.0  dartLB -24.14
+phase 1 it 17 obj 5.932368 cols 51000 pairs 14775 min rc -4.304 LB -33.59 best -24.14 {2: -3.3117, 3: -3.4128, 4: -4.3036} added 3000 t 386.1 tm 121.5 
+phase 1 it 18 obj 5.599447 cols 54000 pairs 16325 min rc -5.313 LB -42.49 best -24.14 {2: -3.1505, 3: -3.6248, 4: -5.3128} added 3000 t 406.3 tm 136.7 
+phase 1 it 19 obj 4.871478 cols 57000 pairs 17593 min rc -5.008 LB -38.34 best -24.14 {2: -2.9481, 3: -3.9703, 4: -5.0079} added 3000 t 436.9 tm 162.7 
+phase 1 it 20 obj 4.444886 cols 60000 pairs 18595 min rc -4.731 LB -35.15 best -19.35 {2: -3.0771, 3: -3.5794, 4: -4.7306} added 3000 t 496.4 tm 187.9  dartLB -19.35
+phase 1 it 21 obj 3.959895 cols 63000 pairs 19651 min rc -3.948 LB -27.71 best -19.35 {2: -3.0737, 3: -3.244, 4: -3.9481} added 3000 t 543.6 tm 226.8 
+phase 1 it 22 obj 3.299670 cols 66000 pairs 20637 min rc -3.827 LB -25.88 best -19.35 {2: -3.3267, 3: -3.3397, 4: -3.8271} added 3000 t 602.7 tm 277.4 
+phase 1 it 23 obj 2.876631 cols 69000 pairs 21493 min rc -4.224 LB -28.52 best -19.35 {2: -3.4, 3: -3.9927, 4: -4.2238} added 3000 t 669.3 tm 336.6 
+phase 1 it 24 obj 2.257925 cols 72000 pairs 22102 min rc -4.214 LB -27.57 best -15.15 {2: -2.7075, 3: -3.3078, 4: -4.2142} added 3000 t 785.6 tm 401.2  dartLB -15.15
+phase 1 it 25 obj 1.849706 cols 75000 pairs 23078 min rc -3.691 LB -23.11 best -15.15 {2: -2.9274, 3: -3.3521, 4: -3.6912} added 3000 t 876.7 tm 482.6 
+phase 1 it 26 obj 1.543024 cols 78000 pairs 24056 min rc -4.292 LB -27.13 best -15.15 {2: -3.1439, 3: -3.1607, 4: -4.2922} added 3000 t 969.2 tm 566.3 
+time limit
+RESULT ('timeout', -15.154130160205932)
+best dart-shifted phase-1 value -8.971780799225339
+=== round 1 (v2_a2b1c2_4485_1.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 1.441789 cols 15071 pairs 24460 min rc -4.658 LB -32.16 best -14.14 {2: -2.8673, 3: -3.9429, 4: -4.6581} added 3000 t 66.3 tm 10.1 
+phase 1 it 2 obj 1.436864 cols 18071 pairs 25443 min rc -5.031 LB -34.84 best -14.14 {2: -2.9262, 3: -2.9558, 4: -5.0306} added 3000 t 92.3 tm 26.9 
+phase 1 it 3 obj 1.375288 cols 21071 pairs 26530 min rc -3.575 LB -24.27 best -14.14 {2: -2.6249, 3: -3.0752, 4: -3.5747} added 3000 t 122.5 tm 48.6 
+phase 1 it 4 obj 1.286040 cols 24071 pairs 28121 min rc -3.433 LB -23.16 best -14.14 {2: -2.7822, 3: -2.708, 4: -3.4325} added 3000 t 205.9 tm 71.6  dartLB -15.68
+phase 1 it 5 obj 1.162893 cols 27071 pairs 29584 min rc -3.574 LB -24.04 best -14.14 {2: -2.8614, 3: -2.5677, 4: -3.5745} added 3000 t 239.0 tm 97.5 
+phase 1 it 6 obj 1.086584 cols 30071 pairs 30804 min rc -4.036 LB -27.2 best -14.14 {2: -2.756, 3: -2.5787, 4: -4.0362} added 3000 t 281.7 tm 132.9 
+phase 1 it 7 obj 1.064200 cols 33071 pairs 32489 min rc -3.527 LB -23.59 best -14.14 {2: -2.3572, 3: -1.8844, 4: -3.5265} added 3000 t 339.6 tm 181.2 
+phase 1 it 8 obj 0.999444 cols 36071 pairs 33908 min rc -3.749 LB -25.08 best -14.14 {2: -2.327, 3: -2.2505, 4: -3.7495} added 3000 t 466.2 tm 240.1  dartLB -15.05
+phase 1 it 9 obj 0.952091 cols 39071 pairs 35756 min rc -3.357 LB -22.29 best -14.14 {2: -2.3739, 3: -1.9606, 4: -3.357} added 3000 t 555.1 tm 318.8 
+phase 1 it 10 obj 0.906467 cols 42071 pairs 37463 min rc -2.935 LB -19.31 best -14.14 {2: -2.2249, 3: -2.4595, 4: -2.9349} added 3000 t 652.8 tm 408.4 
+phase 1 it 11 obj 0.841834 cols 45068 pairs 39254 min rc -3.128 LB -20.6 best -14.14 {2: -2.3178, 3: -2.0243, 4: -3.1281} added 2997 t 736.6 tm 484.7 
+phase 1 it 12 obj 0.779447 cols 48065 pairs 41063 min rc -2.823 LB -18.44 best -12.66 {2: -2.11, 3: -1.7923, 4: -2.8234} added 2997 t 881.8 tm 577.6  dartLB -12.66
+phase 1 it 13 obj 0.720041 cols 51061 pairs 42803 min rc -2.721 LB -17.7 best -12.66 {2: -2.033, 3: -1.6362, 4: -2.7209} added 2996 t 974.1 tm 663.0 
+time limit
+RESULT ('timeout', -12.65784258221986)
+best dart-shifted phase-1 value -11.42339419930624
+=== round 2 (v2_a2b1c2_4485_2.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.681434 cols 23737 pairs 42887 min rc -3.912 LB -26.06 best -12.23 {2: -2.6686, 3: -3.0416, 4: -3.9116} added 3000 t 85.9 tm 37.6 
+phase 1 it 2 obj 0.677230 cols 26737 pairs 43100 min rc -3.581 LB -23.8 best -12.23 {2: -2.4953, 3: -2.8076, 4: -3.5806} added 3000 t 140.6 tm 85.2 
+phase 1 it 3 obj 0.659879 cols 29737 pairs 43527 min rc -3.326 LB -22.04 best -12.23 {2: -2.208, 3: -2.3659, 4: -3.3256} added 3000 t 200.0 tm 137.4 
+phase 1 it 4 obj 0.627596 cols 32737 pairs 44079 min rc -3.164 LB -20.9 best -12.23 {2: -2.6123, 3: -2.0492, 4: -3.1639} added 3000 t 297.7 tm 192.0  dartLB -14.57
+phase 1 it 5 obj 0.579320 cols 35737 pairs 44754 min rc -3.019 LB -19.87 best -12.23 {2: -2.0265, 3: -2.3132, 4: -3.0186} added 3000 t 362.4 tm 250.9 
+phase 1 it 6 obj 0.551877 cols 38737 pairs 45521 min rc -2.998 LB -19.71 best -12.23 {2: -2.2067, 3: -1.7945, 4: -2.9984} added 3000 t 434.0 tm 316.0 
+phase 1 it 7 obj 0.517395 cols 41737 pairs 46322 min rc -2.869 LB -18.81 best -12.23 {2: -2.0055, 3: -1.9679, 4: -2.8692} added 3000 t 514.5 tm 390.4 
+phase 1 it 8 obj 0.495463 cols 44737 pairs 47442 min rc -2.519 LB -16.44 best -12.23 {2: -2.0988, 3: -1.807, 4: -2.5195} added 3000 t 649.9 tm 477.2  dartLB -12.74
+phase 1 it 9 obj 0.470926 cols 47737 pairs 48790 min rc -2.711 LB -17.72 best -12.23 {2: -2.1508, 3: -1.5712, 4: -2.7115} added 3000 t 747.0 tm 567.1 
+phase 1 it 10 obj 0.454118 cols 50736 pairs 50027 min rc -2.792 LB -18.25 best -12.23 {2: -2.2378, 3: -1.8754, 4: -2.7917} added 2999 t 873.5 tm 684.9 
+phase 1 it 11 obj 0.435321 cols 53733 pairs 51418 min rc -2.341 LB -15.21 best -12.23 {2: -1.9623, 3: -1.6511, 4: -2.3413} added 2997 t 999.0 tm 803.4 
+time limit
+RESULT ('timeout', -12.227571311346031)
+best dart-shifted phase-1 value -11.252356769765594
+=== round 3 (v2_a2b1c2_4485_3.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.418533 cols 29084 pairs 51443 min rc -4.215 LB -27.85 best -10.95 {2: -2.4136, 3: -3.1557, 4: -4.2145} added 3000 t 134.2 tm 68.3 
+phase 1 it 2 obj 0.417012 cols 32084 pairs 51496 min rc -3.137 LB -20.62 best -10.95 {2: -2.1841, 3: -2.3365, 4: -3.1368} added 3000 t 218.8 tm 144.9 
+phase 1 it 3 obj 0.415184 cols 35084 pairs 51708 min rc -3.134 LB -20.6 best -10.95 {2: -1.9109, 3: -1.8862, 4: -3.1337} added 3000 t 317.8 tm 233.2 
+phase 1 it 4 obj 0.407835 cols 38084 pairs 52292 min rc -2.988 LB -19.61 best -10.95 {2: -2.1236, 3: -1.7913, 4: -2.9875} added 3000 t 471.1 tm 327.9  dartLB -13.95
+phase 1 it 5 obj 0.396536 cols 41084 pairs 52926 min rc -3.117 LB -20.47 best -10.95 {2: -2.0099, 3: -1.7262, 4: -3.1169} added 3000 t 587.2 tm 435.1 
+phase 1 it 6 obj 0.386093 cols 44084 pairs 53601 min rc -2.414 LB -15.75 best -10.95 {2: -2.0426, 3: -1.5673, 4: -2.4138} added 3000 t 727.9 tm 565.8 
+phase 1 it 7 obj 0.371453 cols 47081 pairs 54708 min rc -2.334 LB -15.21 best -10.95 {2: -2.0498, 3: -1.3627, 4: -2.3336} added 2997 t 879.8 tm 707.9 
+phase 1 it 8 obj 0.354484 cols 50079 pairs 55594 min rc -2.447 LB -15.96 best -10.95 {2: -2.0645, 3: -1.6748, 4: -2.447} added 2998 t 1103.6 tm 863.2  dartLB -11.59
+time limit
+RESULT ('timeout', -10.947199972191092)
+best dart-shifted phase-1 value -10.345263576207945
+=== round 4 (v2_a2b1c2_4485_4.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.346736 cols 30684 pairs 55595 min rc -4.157 LB -27.39 best -11.58 {2: -2.5904, 3: -2.9825, 4: -4.1571} added 3000 t 171.1 tm 97.5 
+phase 1 it 2 obj 0.346736 cols 33684 pairs 55607 min rc -3.095 LB -20.3 best -11.58 {2: -2.2859, 3: -2.0654, 4: -3.0946} added 3000 t 289.9 tm 206.2 
+phase 1 it 3 obj 0.346628 cols 36684 pairs 55738 min rc -2.953 LB -19.36 best -11.58 {2: -1.965, 3: -1.8833, 4: -2.9531} added 3000 t 422.7 tm 330.1 
+phase 1 it 4 obj 0.345747 cols 39684 pairs 56158 min rc -2.851 LB -18.68 best -11.58 {2: -2.1786, 3: -1.6744, 4: -2.8512} added 3000 t 628.9 tm 473.2  dartLB -12.58
+phase 1 it 5 obj 0.344661 cols 42684 pairs 56570 min rc -2.714 LB -17.76 best -11.58 {2: -2.1672, 3: -1.5962, 4: -2.7141} added 3000 t 784.4 tm 618.8 
+phase 1 it 6 obj 0.342613 cols 45680 pairs 57352 min rc -2.658 LB -17.39 best -11.58 {2: -2.1089, 3: -1.6566, 4: -2.6582} added 2996 t 954.1 tm 778.7 
+time limit
+RESULT ('timeout', -11.580585732921719)
+best dart-shifted phase-1 value -11.064487745164488
+=== round 5 (v2_a2b1c2_4485_5.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.333241 cols 31376 pairs 57353 min rc -3.999 LB -26.32 best -11.55 {2: -2.4915, 3: -2.8759, 4: -3.9991} added 3000 t 162.2 tm 100.0 
+phase 1 it 2 obj 0.333241 cols 34376 pairs 57369 min rc -3.321 LB -21.81 best -11.55 {2: -2.0235, 3: -2.0836, 4: -3.3213} added 3000 t 275.8 tm 205.6 
+phase 1 it 3 obj 0.333191 cols 37376 pairs 57454 min rc -2.783 LB -18.22 best -11.55 {2: -2.419, 3: -2.1339, 4: -2.7834} added 3000 t 403.6 tm 324.5 
+phase 1 it 4 obj 0.332439 cols 40376 pairs 57860 min rc -2.264 LB -14.76 best -11.55 {2: -2.264, 3: -1.5612, 4: -2.2057} added 3000 t 587.9 tm 447.3  dartLB -13.33
+phase 1 it 5 obj 0.329539 cols 43376 pairs 58228 min rc -2.456 LB -16.04 best -11.55 {2: -2.4278, 3: -1.7832, 4: -2.4563} added 3000 t 744.1 tm 593.9 
+phase 1 it 6 obj 0.326837 cols 46373 pairs 58686 min rc -2.324 LB -15.15 best -11.55 {2: -2.3239, 3: -1.5651, 4: -2.2027} added 2997 t 913.1 tm 754.0 
+time limit
+RESULT ('timeout', -11.545983552217438)
+best dart-shifted phase-1 value -11.046388153549087
+=== round 6 (v2_a2b1c2_4485_6.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.322803 cols 32460 pairs 58701 min rc -4.083 LB -26.88 best -11.94 {2: -2.549, 3: -2.6416, 4: -4.0832} added 3000 t 149.7 tm 93.3 
+phase 1 it 2 obj 0.322803 cols 35460 pairs 58726 min rc -3.238 LB -21.25 best -11.94 {2: -2.0349, 3: -2.1287, 4: -3.2382} added 3000 t 268.3 tm 202.9 
+phase 1 it 3 obj 0.322772 cols 38460 pairs 58823 min rc -2.972 LB -19.48 best -11.94 {2: -2.2133, 3: -1.8689, 4: -2.9725} added 3000 t 405.3 tm 330.6 
+phase 1 it 4 obj 0.321348 cols 41460 pairs 59046 min rc -2.923 LB -19.14 best -11.94 {2: -2.3107, 3: -2.0502, 4: -2.9226} added 3000 t 598.2 tm 469.1  dartLB -12.81
+phase 1 it 5 obj 0.319329 cols 44458 pairs 59383 min rc -2.451 LB -16 best -11.94 {2: -2.2769, 3: -1.53, 4: -2.4506} added 2998 t 742.7 tm 606.1 
+phase 1 it 6 obj 0.314972 cols 47455 pairs 59786 min rc -2.146 LB -13.97 best -11.94 {2: -2.1405, 3: -1.3913, 4: -2.1459} added 2997 t 889.4 tm 744.0 
+phase 1 it 7 obj 0.306042 cols 50448 pairs 60127 min rc -2.356 LB -15.36 best -11.94 {2: -2.0738, 3: -1.302, 4: -2.3561} added 2993 t 1055.3 tm 901.9 
+time limit
+RESULT ('timeout', -11.939461301903643)
+best dart-shifted phase-1 value -11.439780219910684
+=== round 7 (v2_a2b1c2_4485_7.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.297406 cols 33812 pairs 60130 min rc -3.837 LB -25.21 best -11.47 {2: -2.4807, 3: -3.0515, 4: -3.8366} added 3000 t 166.4 tm 105.8 
+phase 1 it 2 obj 0.297402 cols 36812 pairs 60150 min rc -2.941 LB -19.26 best -11.47 {2: -2.2573, 3: -2.1164, 4: -2.9414} added 3000 t 292.4 tm 223.8 
+phase 1 it 3 obj 0.297170 cols 39812 pairs 60204 min rc -2.662 LB -17.4 best -11.47 {2: -2.2026, 3: -1.8157, 4: -2.6617} added 3000 t 419.1 tm 342.6 
+phase 1 it 4 obj 0.296097 cols 42812 pairs 60447 min rc -2.432 LB -15.87 best -11.47 {2: -2.2376, 3: -1.5788, 4: -2.4315} added 3000 t 613.9 tm 478.1  dartLB -12.86
+phase 1 it 5 obj 0.294474 cols 45809 pairs 60758 min rc -2.298 LB -14.98 best -11.47 {2: -2.2982, 3: -1.6286, 4: -2.2891} added 2997 t 754.7 tm 611.7 
+phase 1 it 6 obj 0.287905 cols 48804 pairs 61111 min rc -2.743 LB -17.93 best -11.47 {2: -2.183, 3: -1.4994, 4: -2.7435} added 2995 t 901.2 tm 751.1 
+time limit
+RESULT ('timeout', -11.467621351703858)
+best dart-shifted phase-1 value -11.034399457402218
+=== round 8 (v2_a2b1c2_4485_8.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.278889 cols 51804 pairs 61213 min rc -3.965 LB -26.04 best -11.62 {2: -2.2179, 3: -2.0167, 4: -3.9646} added 3000 t 232.2 tm 169.6 
+phase 1 it 2 obj 0.277346 cols 54798 pairs 61575 min rc -3.505 LB -22.99 best -11.62 {2: -2.2691, 3: -1.884, 4: -3.5047} added 2994 t 411.3 tm 341.1 
+phase 1 it 3 obj 0.275542 cols 57729 pairs 62237 min rc -2.221 LB -14.46 best -11.62 {2: -2.0576, 3: -1.2755, 4: -2.2207} added 2931 t 607.4 tm 529.6 
+phase 1 it 4 obj 0.260481 cols 60662 pairs 62899 min rc -2.23 LB -14.52 best -9.89 {2: -1.9115, 3: -1.3033, 4: -2.2301} added 2933 t 866.1 tm 727.9  dartLB -9.89
+phase 1 it 5 obj 0.252073 cols 63543 pairs 63593 min rc -1.974 LB -12.81 best -9.89 {2: -1.8672, 3: -1.4852, 4: -1.9737} added 2881 t 1086.6 tm 939.3 
+time limit
+RESULT ('timeout', -9.890433709763908)
+best dart-shifted phase-1 value -9.558373530861926
+=== round 9 (v2_a2b1c2_4485_9.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.241755 cols 37470 pairs 63599 min rc -3.766 LB -24.69 best -8.598 {2: -2.1982, 3: -2.9473, 4: -3.7664} added 3000 t 238.0 tm 160.0 
+phase 1 it 2 obj 0.241755 cols 40470 pairs 63610 min rc -2.83 LB -18.5 best -8.598 {2: -2.0256, 3: -2.0227, 4: -2.8305} added 3000 t 430.4 tm 340.9 
+phase 1 it 3 obj 0.241755 cols 43470 pairs 63643 min rc -2.545 LB -16.61 best -8.598 {2: -1.8616, 3: -1.6662, 4: -2.545} added 3000 t 640.0 tm 538.9 
+phase 1 it 4 obj 0.241748 cols 46470 pairs 63787 min rc -2.573 LB -16.79 best -8.598 {2: -1.974, 3: -1.3777, 4: -2.5732} added 3000 t 916.7 tm 738.9  dartLB -12.12
+time limit
+RESULT ('timeout', -8.597760610474886)
+best dart-shifted phase-1 value -8.302132483348089
+=== round 10 (v2_a2b1c2_4485_10.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.241487 cols 35420 pairs 63788 min rc -3.962 LB -25.99 best -12.12 {2: -2.6192, 3: -2.8336, 4: -3.9616} added 3000 t 234.9 tm 157.4 
+phase 1 it 2 obj 0.241487 cols 38420 pairs 63796 min rc -3.186 LB -20.85 best -12.12 {2: -2.132, 3: -1.9792, 4: -3.1856} added 3000 t 422.1 tm 332.0 
+phase 1 it 3 obj 0.241487 cols 41420 pairs 63815 min rc -3.007 LB -19.67 best -12.12 {2: -1.9349, 3: -2.0474, 4: -3.0073} added 3000 t 636.4 tm 535.5 
+phase 1 it 4 obj 0.241487 cols 44420 pairs 63933 min rc -2.748 LB -17.95 best -12.12 {2: -2.3714, 3: -1.9046, 4: -2.7482} added 3000 t 856.6 tm 703.5  dartLB -13.49
+phase 1 it 5 obj 0.237836 cols 47420 pairs 64069 min rc -2.831 LB -18.5 best -12.12 {2: -2.2344, 3: -1.5302, 4: -2.831} added 3000 t 1014.6 tm 851.7 
+time limit
+RESULT ('timeout', -12.120533546687376)
+best dart-shifted phase-1 value -11.756420024159548
+=== round 11 (v2_a2b1c2_4485_11.log): rounds 0-7 vchain4.sh (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); rounds 8-11 gowarm.sh 4485 a2b1c2 7 4 (round 8 reloads round 7 unpruned); round 11 stopped by hand
+phase 1 it 1 obj 0.232098 cols 34948 pairs 64069 min rc -3.99 LB -26.16 best -12.2 {2: -2.6665, 3: -2.9848, 4: -3.9898} added 3000 t 234.7 tm 152.3 

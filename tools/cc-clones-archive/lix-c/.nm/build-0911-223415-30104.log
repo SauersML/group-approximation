@@ -1,0 +1,6 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 2070 oleans
+[job] acn112 cores=80-87 threads=8 base=40c0145d193bdf1423d162eabc3c5f9daf21eb49 mods: GroupApproximation.CharClass.ParityPWuComponent GroupApproximation.CharClass.ParityPWuTransport
+✔ [1654/1655] Built GroupApproximation.CharClass.ParityPWuComponent (9.1s)
+✔ [1655/1655] Built GroupApproximation.CharClass.ParityPWuTransport (10s)
+Build completed successfully (1655 jobs).
+EXIT=0

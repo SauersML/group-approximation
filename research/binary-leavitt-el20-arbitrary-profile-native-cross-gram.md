@@ -76,3 +76,31 @@ one.
   remain, because regular packet models already realize them.
 
 `(EAP1)` itself is not proved, and this node stays OPEN.
+
+**Entropy-measure transplant and the order-seven gauge kill
+(swarm-0917-w15-w15-ptm-pull, transplanter, 2026-09-19).**
+
+- **The entropy transplant dies a priori.**  The plan was to replace the
+  cross-Gram overlap by an entropy or Haar-measure count on the canonical
+  profile.  After the Dirac reduction above, the Haar-averaged packet
+  measure is the regular character: trace `delta_e`, Plancherel
+  multiplicities, and carrier of `z` of trace `1/2`.  So every
+  measure-theoretic estimate it produces is also satisfied by `lambda`.  By
+  `native-cross-gram-conclusions-fail-in-every-tracial-model`, `lambda`
+  fails the gauge-lock clause.  The transplant therefore cannot supply
+  `(EAP1)` and is dead at the gauge-lock clause.
+- **The surviving route is also dead as a decomposition.**
+  `order-seven-gauge-trivialization-contradicts-selector-rank` proves the
+  row-wise floors `delta_1+||1-D_1||_2^2/4>=1/2` and
+  `delta_2+(3/8)||1-D_2||_2^2>=1/4` in every finite von Neumann algebra.
+  Both are tight on the OAP gauges.  The conclusion `D_i=1+o_2(1)` of
+  `(GMC3)` contradicts the selector row that `E_0` must retain, separately
+  for each row.  The same holds for the outputs of
+  `el20-six-moving-coefficient-square-bridges`, through the six-square lock.
+  So GMI and ESB are equivalent to the endpoint.  No relator-charged EL20
+  word can satisfy `(ESB2)` in any exact tracial model; the canonical
+  profile has exactly such a limit.  The recorded "bridge retains a gauge"
+  failures are all forced.
+- **What remains.**  A non-tracial input, such as operator-norm
+  integrality, must enter before `(ESB2)`.  This node stays OPEN only in
+  that vacuous sense.

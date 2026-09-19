@@ -1,0 +1,31 @@
+field F_2
+  [witness {1,a,b,ab}] p=2: |supp u|=1, |supp w|=2, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=105
+    open pair 0: |S| = 17, span = 10^60.., rows r with (S - S) meeting Dist_r: 11
+  [open random 0] p=2: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+    open pair 1: |S| = 15, span = 10^64.., rows r with (S - S) meeting Dist_r: 2
+  [open random 1] p=2: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+    open pair 2: |S| = 16, span = 10^59.., rows r with (S - S) meeting Dist_r: 4
+  [open random 2] p=2: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+  [dependent middle M_0] p=2: |supp u|=2, |supp w|=2, dependent lines=1, active lines=44 (face 42 + private 2), edge eqs ok=True, pure=0, escaped port points=260
+  [dependent long L_3] p=2: |supp u|=2, |supp w|=2, dependent lines=1, active lines=45 (face 42 + private 3), edge eqs ok=True, pure=0, escaped port points=266
+field F_3
+  [witness {1,a,b,ab}] p=3: |supp u|=2, |supp w|=1, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=125
+    open pair 0: |S| = 16, span = 10^61.., rows r with (S - S) meeting Dist_r: 9
+  [open random 0] p=3: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1359
+    open pair 1: |S| = 14, span = 10^64.., rows r with (S - S) meeting Dist_r: 3
+  [open random 1] p=3: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1099
+    open pair 2: |S| = 15, span = 10^65.., rows r with (S - S) meeting Dist_r: 9
+  [open random 2] p=3: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+  [dependent middle M_0] p=3: |supp u|=2, |supp w|=2, dependent lines=1, active lines=47 (face 42 + private 5), edge eqs ok=True, pure=0, escaped port points=277
+  [dependent long L_3] p=3: |supp u|=2, |supp w|=2, dependent lines=1, active lines=46 (face 42 + private 4), edge eqs ok=True, pure=0, escaped port points=268
+field F_10007
+  [witness {1,a,b,ab}] p=10007: |supp u|=2, |supp w|=2, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=210
+    open pair 0: |S| = 16, span = 10^61.., rows r with (S - S) meeting Dist_r: 12
+  [open random 0] p=10007: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1374
+    open pair 1: |S| = 15, span = 10^64.., rows r with (S - S) meeting Dist_r: 4
+  [open random 1] p=10007: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+    open pair 2: |S| = 15, span = 10^64.., rows r with (S - S) meeting Dist_r: 5
+  [open random 2] p=10007: |supp u|=9, |supp w|=8, dependent lines=0, active lines=42 (face 42 + private 0), edge eqs ok=True, pure=0, escaped port points=1344
+  [dependent middle M_0] p=10007: |supp u|=2, |supp w|=2, dependent lines=1, active lines=48 (face 42 + private 6), edge eqs ok=True, pure=0, escaped port points=282
+  [dependent long L_3] p=10007: |supp u|=2, |supp w|=2, dependent lines=1, active lines=48 (face 42 + private 6), edge eqs ok=True, pure=0, escaped port points=282
+ALL CHECKS PASS

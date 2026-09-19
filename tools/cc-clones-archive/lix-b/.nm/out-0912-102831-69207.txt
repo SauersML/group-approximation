@@ -1,0 +1,15 @@
+[job] 10:44:11 acn02 waiting for clone lock
+[job] delta sync 2889b6229..fb1085202: 74 files changed
+===== SUMMARY
+host acn02 cores slurm base fb1085202 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0912-102831-69207.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2325 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKGenLocalHomotopy
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:678:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8938 jobs).
+EXIT=0
+PROBE GREEN

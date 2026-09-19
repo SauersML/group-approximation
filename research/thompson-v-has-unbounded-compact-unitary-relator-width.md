@@ -80,3 +80,18 @@ The statement does not depend on the presentation or on `a`.
      one in normalized rank to an embedding in a unitary rank ultraproduct, which makes `V` linear sofic over `C`.
    - What survives: Schatten `p`-lengths with `p` not in `{2, infinity}`, which are not covered, model-dependent lengths, and
      non-metric arguments.
+5. **Schatten-`p` ratio models through tensor replicas** (2026-09-19, swarm-0917-w16-w16-ptl-pull, calibration). Dead as a
+   class for `p` not in `{2, infinity}`, at the level of eigenvalue measures.
+   - `schatten-p-ratio-data-defeat-tensor-replica-amplification` (ESTABLISHED) gives explicit conjugation-invariant eigenvalue
+     data for `a(U)` and for every relator. The data satisfy the normalized Schatten-`p` ratio condition.
+   - On these data every tensor replica fails:
+     - separation `c` of `a` forces relator `p`-length at least `c/5`;
+     - the op, HS and rank ratios all stay at least `1/4`.
+   - **Invariant.** Convolution of the eigenvalue measures, as in Attempt 4.
+   - **Death step.** Atoms spread by count, at degree `~ L_p^(-p)`. Small-angle spreads spread by variance, at degree
+     `~ L_p^(-2)`. For `p > 2` an atomic `a` loses to spread relators; for `p < 2` a spread `a` loses to rare relator atoms.
+   - So Schatten-`p` witnesses are not reducible to MF, hyperlinearity or rank approximability by the method of Attempt 4.
+   - What survives:
+     - arguments that use the joint structure of the words, since realizability of the data by words of `V` is not claimed;
+     - Schur-functor replicas (`Lambda^k`, `Sym^k`) and compressions;
+     - model-dependent lengths.

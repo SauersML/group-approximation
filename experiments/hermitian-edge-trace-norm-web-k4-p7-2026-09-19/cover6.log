@@ -1,0 +1,34 @@
+density thresholds {13: np.float64(1.46558), 14: np.float64(1.48461), 19: np.float64(1.45857)}
+classes 91 by size {1: 1, 2: 2, 3: 4, 4: 9, 5: 21, 6: 54}
+density 1.46844  c<=8.81064  |W|=6  edges=13  from C_13^4 W=(0, 1, 2, 3, 4, 6)
+density 1.44805  c<=7.24025  |W|=5  edges=10  from C_13^4 W=(0, 1, 2, 3, 4)
+density 1.44022  c<=8.64134  |W|=6  edges=12  from C_13^4 W=(0, 1, 2, 3, 5, 6)
+density 1.43335  c<=8.60008  |W|=6  edges=11  from C_13^4 W=(0, 1, 2, 3, 4, 8)
+density 1.42124  c<=8.52745  |W|=6  edges=14  from C_13^4 W=(0, 1, 2, 3, 4, 5)
+density 1.41202  c<=8.47214  |W|=6  edges=11  from C_13^4 W=(0, 1, 2, 3, 6, 10)
+density 1.40979  c<=8.45876  |W|=6  edges=12  from C_13^4 W=(0, 1, 2, 3, 4, 7)
+density 1.39794  c<=8.38767  |W|=6  edges=11  from C_13^4 W=(0, 1, 2, 3, 5, 7)
+density 1.38743  c<=8.32456  |W|=6  edges=11  from C_13^4 W=(0, 1, 3, 4, 6, 7)
+density 1.38673  c<=8.32039  |W|=6  edges=10  from C_13^4 W=(0, 1, 2, 3, 5, 8)
+density 1.37358  c<=8.24147  |W|=6  edges=10  from C_13^4 W=(0, 1, 2, 5, 6, 9)
+density 1.36615  c<=5.46461  |W|=4  edges=6  from C_13^4 W=(0, 1, 2, 3)
+density 1.36146  c<=8.16873  |W|=6  edges=10  from C_13^4 W=(0, 1, 2, 3, 6, 9)
+density 1.35946  c<=8.15678  |W|=6  edges=10  from C_13^4 W=(0, 1, 2, 3, 6, 7)
+density 1.35738  c<=8.14427  |W|=6  edges=9  from C_13^4 W=(0, 1, 2, 3, 6, 8)
+density 1.35507  c<=8.13040  |W|=6  edges=11  from C_13^4 W=(0, 1, 2, 3, 5, 9)
+density 1.35356  c<=8.12135  |W|=6  edges=8  from C_13^4 W=(0, 1, 3, 6, 8, 11)
+density 1.34721  c<=6.73603  |W|=5  edges=8  from C_13^4 W=(0, 1, 2, 3, 6)
+density 1.34421  c<=8.06526  |W|=6  edges=9  from C_13^4 W=(0, 1, 2, 5, 6, 7)
+density 1.34210  c<=8.05260  |W|=6  edges=9  from C_13^4 W=(0, 1, 2, 5, 7, 9)
+density 1.33333  c<=8.00000  |W|=6  edges=10  from C_13^4 W=(0, 1, 3, 4, 6, 11)
+density 1.33333  c<=8.00000  |W|=6  edges=10  from C_13^4 W=(0, 1, 3, 6, 7, 10)
+density 1.33259  c<=7.99555  |W|=6  edges=9  from C_13^4 W=(0, 1, 2, 4, 7, 8)
+density 1.33048  c<=6.65238  |W|=5  edges=9  from C_13^4 W=(0, 1, 2, 3, 5)
+density 1.33034  c<=7.98203  |W|=6  edges=9  from C_13^4 W=(0, 1, 2, 3, 7, 9)
+size 1: max density 0.00000
+size 2: max density 1.00000
+size 3: max density 1.15470
+size 4: max density 1.36615
+size 5: max density 1.44805
+size 6: max density 1.46844
+max density over |W|<=6: 1.46844

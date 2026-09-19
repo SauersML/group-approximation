@@ -1,0 +1,841 @@
+OPEN AAAtATatatAATTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (1, 1), (2, -2), (0, 2), (2, 1)] FAIL
+OPEN AAAtATatatATTaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (1, 1), (2, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtATatataTTaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (1, 1), (2, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtATatataaTTaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (1, 1), (2, 2), (0, 2), (2, -1)] FAIL
+OPEN AAAtATattAATTaatataTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, -2), (0, 2), (1, 1), (2, 1)] FAIL
+OPEN AAAtATattAATTaattaTaT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, -2), (0, 2), (2, 1), (1, 1)] FAIL
+OPEN AAAtATattAATaTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, -2), (1, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAtATattATTaatataaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, -1), (0, 2), (1, 1), (2, 2)] FAIL
+OPEN AAAtATattATTaattaaTaT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, -1), (0, 2), (2, 2), (1, 1)] FAIL
+OPEN AAAtATattATaTaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, -1), (1, 1), (0, 2), (2, 2)] FAIL
+OPEN AAAtATattaTTaatatAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, 1), (0, 2), (1, 1), (2, -2)] FAIL
+OPEN AAAtATattaTTaattAATaT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, 1), (0, 2), (2, -2), (1, 1)] FAIL
+OPEN AAAtATattaTaTaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 1), (2, 1), (1, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtATattaaTTaatatATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, 2), (0, 2), (1, 1), (2, -1)] FAIL
+OPEN AAAtATattaaTTaattATaT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, 2), (0, 2), (2, -1), (1, 1)] FAIL
+OPEN AAAtATattaaTaTaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 1), (2, 2), (1, 1), (0, 2), (2, -1)] FAIL
+OPEN AAAtATaatatAATTattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (1, 1), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAAtATaatatATTattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (1, 1), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAAtATaatataTTattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (1, 1), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAAtATaatataaTTattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (1, 1), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAAtATaattAATTatataTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, -2), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAAtATaattAATTattaTaT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, -2), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAAtATaattAATaTattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, -2), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAAtATaattATTatataaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAAtATaattATTattaaTaT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAAtATaattATaTattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAAtATaattaTTatatAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAAtATaattaTTattAATaT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAAtATaattaTaTattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (0, 2), (2, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAAtATaattaaTTatatATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, 2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAAtATaattaaTTattATaT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, 2), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAAtATaattaaTaTattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (0, 2), (2, 2), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAAtAtAATTataTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, -2), (0, 1), (1, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAtAtAATTattaTTaataT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, -2), (0, 1), (2, 1), (0, 2), (1, 1)] FAIL
+OPEN AAAtAtAATTaataTattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, -2), (0, 2), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAAtAtAATTaattaTTataT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, -2), (0, 2), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAAtAtAATTaattaTataTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -2), (0, 2), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAAtAtAATataTTaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -2), (1, 1), (2, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAtAtATTataTaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, -1), (0, 1), (1, 1), (0, 2), (2, 2)] FAIL
+OPEN AAAtAtATTattaaTTaataT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, -1), (0, 1), (2, 2), (0, 2), (1, 1)] FAIL
+OPEN AAAtAtATTaataTattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, -1), (0, 2), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAAtAtATTaattATataaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -1), (0, 2), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAAtAtATTaattaaTTataT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, -1), (0, 2), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAAtAtATTaattaaTatATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -1), (0, 2), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAAtAtATatATTaattaaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -1), (1, 1), (2, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtAtATataaTTaattATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, -1), (1, 1), (2, 2), (0, 2), (2, -1)] FAIL
+OPEN AAAtAtaTTataTaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, 1), (0, 1), (1, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtAtaTTattAATTaataT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, 1), (0, 1), (2, -2), (0, 2), (1, 1)] FAIL
+OPEN AAAtAtaTTaataTattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, 1), (0, 2), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAAtAtaTTaattAATTataT 21 levels [0, 0, -1] seq [(0, -3), (1, -1), (2, 1), (0, 2), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAAtAtaTTaattAATataTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 1), (0, 2), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAAtAtaTTaattaTatAATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 1), (0, 2), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAAtAtaTatAATTaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 1), (1, 1), (2, -2), (0, 2), (2, 1)] FAIL
+OPEN AAAtAtaTataTTaattAATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 1), (1, 1), (2, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtAtaaTTataTaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, 2), (0, 1), (1, 1), (0, 2), (2, -1)] FAIL
+OPEN AAAtAtaaTTattATTaataT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, 2), (0, 1), (2, -1), (0, 2), (1, 1)] FAIL
+OPEN AAAtAtaaTTaataTattATT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, 2), (0, 2), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAAtAtaaTTaattATTataT 21 levels [0, 0, 1] seq [(0, -3), (1, -1), (2, 2), (0, 2), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAAtAtaaTTaattATatATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 2), (0, 2), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAAtAtaaTatATTaattATT 21 levels [-1, 0, 0] seq [(0, -3), (1, -1), (2, 2), (1, 1), (2, -1), (0, 2), (2, -1)] FAIL
+OPEN AAAtaTatAtAATTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (1, -1), (2, -2), (0, 2), (2, 1)] FAIL
+OPEN AAAtaTatAtATTaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (1, -1), (2, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtaTatAtaTTaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (1, -1), (2, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtaTatAtaaTTaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (1, -1), (2, 2), (0, 2), (2, -1)] FAIL
+OPEN AAAtaTattAATTaatAtaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (2, -2), (0, 2), (1, -1), (2, 1)] FAIL
+OPEN AAAtaTattAATATaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (2, -2), (1, -1), (0, 2), (2, 1)] FAIL
+OPEN AAAtaTattATTaatAtaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (2, -1), (0, 2), (1, -1), (2, 2)] FAIL
+OPEN AAAtaTattATATaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (2, -1), (1, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtaTattaTTaatAtAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (2, 1), (0, 2), (1, -1), (2, -2)] FAIL
+OPEN AAAtaTattaTATaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 1), (2, 1), (1, -1), (0, 2), (2, -2)] FAIL
+OPEN AAAtaTattaaTTaatAtATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (2, 2), (0, 2), (1, -1), (2, -1)] FAIL
+OPEN AAAtaTattaaTATaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 1), (2, 2), (1, -1), (0, 2), (2, -1)] FAIL
+OPEN AAAtaTaatAtAATTattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (1, -1), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAAtaTaatAtATTattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (1, -1), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAAtaTaatAtaTTattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (1, -1), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAAtaTaatAtaaTTattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (1, -1), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAAtaTaattAATTatAtaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (2, -2), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAAtaTaattAATATattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (2, -2), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAAtaTaattATTatAtaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (2, -1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAAtaTaattATATattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAAtaTaattaTTatAtAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (2, 1), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAAtaTaattaTATattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (0, 2), (2, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAAtaTaattaaTTatAtATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (2, 2), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAAtaTaattaaTATattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (0, 2), (2, 2), (1, -1), (0, 1), (2, -1)] FAIL
+OPEN AAAtatAATTatATaattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (2, -2), (0, 1), (1, -1), (0, 2), (2, 1)] FAIL
+OPEN AAAtatAATTaatATattaTT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (2, -2), (0, 2), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAAtatAATTaattaTAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -2), (0, 2), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAAtatAATAtaTTaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -2), (1, -1), (2, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAtatATTatATaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (2, -1), (0, 1), (1, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtatATTaatATattaaTT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (2, -1), (0, 2), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAAtatATTaattATAtaaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -1), (0, 2), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAAtatATTaattaaTAtATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -1), (0, 2), (2, 2), (1, -1), (2, -1)] FAIL
+OPEN AAAtatATAtATTaattaaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -1), (1, -1), (2, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAtatATAtaaTTaattATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, -1), (1, -1), (2, 2), (0, 2), (2, -1)] FAIL
+OPEN AAAtataTTatATaattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (2, 1), (0, 1), (1, -1), (0, 2), (2, -2)] FAIL
+OPEN AAAtataTTaatATattAATT 21 levels [0, 0, -1] seq [(0, -3), (1, 1), (2, 1), (0, 2), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAAtataTTaattAATAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 1), (0, 2), (2, -2), (1, -1), (2, 1)] FAIL
+OPEN AAAtataTTaattaTAtAATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 1), (0, 2), (2, 1), (1, -1), (2, -2)] FAIL
+OPEN AAAtataTAtAATTaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 1), (1, -1), (2, -2), (0, 2), (2, 1)] FAIL
+OPEN AAAtataTAtaTTaattAATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 1), (1, -1), (2, 1), (0, 2), (2, -2)] FAIL
+OPEN AAAtataaTTatATaattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (2, 2), (0, 1), (1, -1), (0, 2), (2, -1)] FAIL
+OPEN AAAtataaTTaatATattATT 21 levels [0, 0, 1] seq [(0, -3), (1, 1), (2, 2), (0, 2), (1, -1), (0, 1), (2, -1)] FAIL
+OPEN AAAtataaTTaattATAtATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 2), (0, 2), (2, -1), (1, -1), (2, -1)] FAIL
+OPEN AAAtataaTAtATTaattATT 21 levels [-1, 0, 0] seq [(0, -3), (1, 1), (2, 2), (1, -1), (2, -1), (0, 2), (2, -1)] FAIL
+OPEN AAAttAATTatATaatataTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (0, 1), (1, -1), (0, 2), (1, 1), (2, 1)] FAIL
+OPEN AAAttAATTataTaatAtaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (0, 1), (1, 1), (0, 2), (1, -1), (2, 1)] FAIL
+CERT AAAttAATTattaTTattaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (0, 1), (2, 1), (0, 1), (2, 1)] R1(g=2)[PEEL]
+OPEN AAAttAATTaatATatataTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (0, 2), (1, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAAttAATTaatAtaTataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (0, 2), (1, -1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAAttAATTaataTatAtaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (0, 2), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAAttAATTaatataTAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (0, 2), (1, 1), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAAttAATATataTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (1, -1), (0, 1), (1, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAttAATATaataTattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (1, -1), (0, 2), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAAttAATATaattaTataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, -1), (0, 2), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAAttAATAtaTTaatataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, -1), (2, 1), (0, 2), (1, 1), (2, 1)] FAIL
+OPEN AAAttAATAtaTaTaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, -1), (2, 1), (1, 1), (0, 2), (2, 1)] FAIL
+OPEN AAAttAATaTatATaattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (1, 1), (0, 1), (1, -1), (0, 2), (2, 1)] FAIL
+OPEN AAAttAATaTaatATattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -2), (1, 1), (0, 2), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAAttAATaTaattaTAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, 1), (0, 2), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAAttAATataTTaatAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, 1), (2, 1), (0, 2), (1, -1), (2, 1)] FAIL
+OPEN AAAttAATataTATaattaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -2), (1, 1), (2, 1), (1, -1), (0, 2), (2, 1)] FAIL
+OPEN AAAttATTatATaatataaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 1), (1, -1), (0, 2), (1, 1), (2, 2)] FAIL
+OPEN AAAttATTataTaatAtaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 1), (1, 1), (0, 2), (1, -1), (2, 2)] FAIL
+CERT AAAttATTattATTattaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 1), (2, -1), (0, 1), (2, 2)] R1(g=2)[PEEL]
+CERT AAAttATTattATTaattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -1), (0, 1), (2, -1), (0, 2), (2, 1)] R1(g=2)[PEEL]
+CERT AAAttATTattaTTaattATT 21 levels [0, 0, -1] seq [(0, -3), (2, -1), (0, 1), (2, 1), (0, 2), (2, -1)] R1(g=2)[PP]
+CERT AAAttATTattaTTaattaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 1), (2, 1), (0, 2), (2, 1)] R1(g=2)[PEEL]
+CERT AAAttATTattaaTTattATT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 1), (2, 2), (0, 1), (2, -1)] R1(g=2)[PEEL]
+OPEN AAAttATTaatATatataaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 2), (1, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAAttATTaatAtATataaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 2), (1, -1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAAttATTaatAtaaTatATT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 2), (1, -1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAAttATTaataTatAtaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 2), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAAttATTaatatATAtaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 2), (1, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAAttATTaatataaTAtATT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (0, 2), (1, 1), (2, 2), (1, -1), (2, -1)] FAIL
+CERT AAAttATTaattATTattaTT 21 levels [0, 0, -1] seq [(0, -3), (2, -1), (0, 2), (2, -1), (0, 1), (2, 1)] R1(g=2)[PEEL]
+CERT AAAttATTaattaTTattaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (0, 2), (2, 1), (0, 1), (2, 1)] R1(g=2)[PEEL]
+OPEN AAAttATATataTaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (1, -1), (0, 1), (1, 1), (0, 2), (2, 2)] FAIL
+OPEN AAAttATATaataTattaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (1, -1), (0, 2), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAAttATATaattATataaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, -1), (0, 2), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAAttATATaattaaTatATT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, -1), (0, 2), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAAttATAtATTaatataaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, -1), (2, -1), (0, 2), (1, 1), (2, 2)] FAIL
+OPEN AAAttATAtATaTaattaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, -1), (2, -1), (1, 1), (0, 2), (2, 2)] FAIL
+OPEN AAAttATAtaaTTaatatATT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, -1), (2, 2), (0, 2), (1, 1), (2, -1)] FAIL
+OPEN AAAttATaTatATaattaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (1, 1), (0, 1), (1, -1), (0, 2), (2, 2)] FAIL
+OPEN AAAttATaTaatATattaaTT 21 levels [0, 0, 1] seq [(0, -3), (2, -1), (1, 1), (0, 2), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAAttATaTaattATAtaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, 1), (0, 2), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAAttATatATTaatAtaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, 1), (2, -1), (0, 2), (1, -1), (2, 2)] FAIL
+OPEN AAAttATatATATaattaaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, -1), (1, 1), (2, -1), (1, -1), (0, 2), (2, 2)] FAIL
+CERT AAAttaTTattAATTattaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, 1), (0, 1), (2, -2), (0, 1), (2, 1)] R1(g=2)[PEEL]
+CERT AAAttaTTattATTaattaTT 21 levels [0, 0, 1] seq [(0, -3), (2, 1), (0, 1), (2, -1), (0, 2), (2, 1)] R1(g=2)[PP]
+OPEN AAAttaTTaatAtAATataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, 1), (0, 2), (1, -1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAAttaTTaatatAATAtaTT 21 levels [-1, 0, 0] seq [(0, -3), (2, 1), (0, 2), (1, 1), (2, -2), (1, -1), (2, 1)] FAIL
+OPEN AAAttaTATaattAATataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, 1), (1, -1), (0, 2), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAAttaTAtAATTaatataTT 21 levels [-1, 0, 0] seq [(0, -3), (2, 1), (1, -1), (2, -2), (0, 2), (1, 1), (2, 1)] FAIL
+OPEN AAtAATataTattAATataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (0, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtAATataTattATataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (0, 1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtAATataTattaTatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (0, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAATataTattaaTatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (0, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtAATatatAATTatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -2), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAATatatAATTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -2), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAATatatAATaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -2), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAATatatATTatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAATatatATTattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAATatatATaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtAATatataTTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAATatataTTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAATatataTaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAATatataaTTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAATatataaTTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 2), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAATatataaTaTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 1), (2, 2), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAATataatAATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 2), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAtAATataatATTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 2), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtAATataataTTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (1, 2), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAATataataaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (1, 2), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtAATattAATTatataTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (0, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAATattAATTataataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (0, 1), (1, 2), (2, 1)] FAIL
+OPEN AAtAATattAATTattaTaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (0, 1), (2, 1), (1, 2)] FAIL
+OPEN AAtAATattAATaTatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (1, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAATattAATaTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (1, 1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAATattAATataTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (1, 1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAATattAATataTataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, -2), (1, 1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAATattAATaaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, -2), (1, 2), (0, 1), (2, 1)] FAIL
+OPEN AAtAATattATTatataaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (0, 1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAATattATTataataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (0, 1), (1, 2), (2, 2)] FAIL
+OPEN AAtAATattATTattaaTaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (0, 1), (2, 2), (1, 2)] FAIL
+OPEN AAtAATattATaTatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAATattATaTattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAATattATatATataaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtAATattATataaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAATattATataaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtAATattATaaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, -1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAtAATattaTTatatAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (0, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAATattaTTataatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (0, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAATattaTTattAATaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (0, 1), (2, -2), (1, 2)] FAIL
+OPEN AAtAATattaTaTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAATattaTaTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAATattaTatAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAATattaTatAATataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtAATattaTataTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAATattaTaaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (0, 1), (2, 1), (1, 2), (0, 1), (2, -2)] FAIL
+OPEN AAtAATattaaTTatatATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAATattaaTTataatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtAATattaaTTattATaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtAATattaaTaTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (1, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAATattaaTaTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (1, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAATattaaTatATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (1, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAATattaaTatATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (0, 1), (2, 2), (1, 1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtAATattaaTaaTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (0, 1), (2, 2), (1, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtAAtAATTataTatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (1, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAAtAATTataTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (1, 1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAAtAATTatataTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (1, 1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtAATTataaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (1, 2), (0, 1), (2, 1)] FAIL
+OPEN AAtAAtAATTattaTTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (2, 1), (0, 1), (1, 2)] FAIL
+OPEN AAtAAtAATTattaTaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (0, 1), (2, 1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtAATTattaTataTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -2), (0, 1), (2, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAAtAATaTattaTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, -2), (1, 1), (0, 1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtATTataTatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAAtATTataTattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAAtATTatatATataaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtAAtATTatataaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtATTatataaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtATTataaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAtAAtATTattATataaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (0, 1), (2, -1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAAtATTattaaTTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (2, 2), (0, 1), (1, 2)] FAIL
+OPEN AAtAAtATTattaaTaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (0, 1), (2, 2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtATTattaaTatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (0, 1), (2, 2), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAAtATaTataTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (1, 1), (0, 1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtAAtATaTattATataaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (0, 1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtAAtATaTattaaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, -1), (1, 1), (0, 1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtATaTattaaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (0, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtATatATTatataaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAAtATatATTattaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAAtATatATaTattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtAAtATataaTTatatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, 2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtATataaTTattATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, 2), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAAtATataaTaTattATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 1), (2, 2), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAAtATaatATTattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, -1), (1, 2), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtAAtaTTataTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAAtaTTataTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAAtaTTatatAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaTTatatAATataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtAAtaTTatataTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAAtaTTataaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (1, 2), (0, 1), (2, -2)] FAIL
+OPEN AAtAAtaTTattAATTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, -2), (0, 1), (1, 2)] FAIL
+OPEN AAtAAtaTTattAATaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, -2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaTTattAATataTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, -2), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAAtaTTattAATaataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, -2), (1, 2), (2, 1)] FAIL
+OPEN AAtAAtaTTattaTatAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAAtaTTattaTaatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (0, 1), (2, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAAtaTaTataTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (1, 1), (0, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAAtaTaTattAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -2), (2, 1), (1, 1), (0, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaTaTattAATataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (0, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtAAtaTaTattaTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (0, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAAtaTatAATTatataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, -2), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAAtaTatAATTattaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, -2), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAAtaTatAATaTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, -2), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAAtaTataTTatatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAAtaTataTTattAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAAtaTataTaTattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 1), (2, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAAtaTaatAATTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 2), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAtAAtaTaataTTattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 1), (1, 2), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAAtaaTTataTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (1, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTTataTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (1, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAAtaaTTatatATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (1, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaaTTatatATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (0, 1), (1, 1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTTataaTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (1, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTTattATTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (2, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAAtaaTTattATaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (0, 1), (2, -1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaaTTattATatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (0, 1), (2, -1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAAtaaTTattATaatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (0, 1), (2, -1), (1, 2), (2, -1)] FAIL
+OPEN AAtAAtaaTaTataTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (1, 1), (0, 1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTaTattATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -2), (2, 2), (1, 1), (0, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAAtaaTaTattATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (1, 1), (0, 1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTatATTatatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (1, 1), (2, -1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAAtaaTatATTattATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (1, 1), (2, -1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAAtaaTatATaTattATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -2), (2, 2), (1, 1), (2, -1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtATatATatatAATataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtATatATatatATataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtATatATatataTatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATatATatataaTatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtATatATattAATataTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, -2), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtATatATattAATaataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, -2), (1, 2), (2, 1)] FAIL
+OPEN AAtATatATattATataaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, -1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtATatATattaTatAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATatATattaTaatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtATatATattaaTatATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (0, 1), (2, 2), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATatAtAATTatataTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (0, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtATatAtAATTataataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (0, 1), (1, 2), (2, 1)] FAIL
+OPEN AAtATatAtAATTattaTaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (0, 1), (2, 1), (1, 2)] FAIL
+OPEN AAtATatAtAATaTatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (1, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtATatAtAATaTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (1, 1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtATatAtAATataTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (1, 1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtATatAtAATataTataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (1, 1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtATatAtAATaaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -2), (1, 2), (0, 1), (2, 1)] FAIL
+OPEN AAtATatAtATTatataaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (0, 1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtATatAtATaTatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtATatAtATaTattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtATatAtATataaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtATatAtATataaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtATatAtATaaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAtATatAtaTTatatAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (0, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATatAtaTTataatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (0, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtATatAtaTTattAATaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (0, 1), (2, -2), (1, 2)] FAIL
+OPEN AAtATatAtaTaTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATatAtaTaTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATatAtaTatAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtATatAtaTatAATataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtATatAtaTataTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATatAtaTaaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 1), (1, 2), (0, 1), (2, -2)] FAIL
+OPEN AAtATatAtaaTTatatATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATatAtaaTTataatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtATatAtaaTTattATaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtATatAtaaTaTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (1, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtATatAtaaTaTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (1, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATatAtaaTatATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, -1), (2, 2), (1, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtATataTatAtAATataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtATataTatAtATataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, -1), (1, 1), (2, 2)] FAIL
+OPEN AAtATataTatAtaTatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATataTatAtaaTatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtATataTatatAATAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, -2), (1, -1), (2, 1)] FAIL
+OPEN AAtATataTatatATAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtATataTatataTAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtATataTatataaTAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, 2), (1, -1), (2, -1)] FAIL
+OPEN AAtATataTattAATAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, -2), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtATataTattAATataTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, -2), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATataTattATAtaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, -1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtATataTattATataaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, -1), (1, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATataTattaTAtAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, 1), (1, -1), (2, -2), (1, 1)] FAIL
+OPEN AAtATataTattaTatAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, 1), (1, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATataTattaaTAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtATataTattaaTatATAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, 2), (1, 1), (2, -1), (1, -1)] FAIL
+OPEN AAtATatatAATTatAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtATatatAATTatataTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (0, 1), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATatatAATATatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtATatatAATATattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, -1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtATatatAATAtaTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, -1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtATatatAATaTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtATatatAATaTattaTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (0, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATatatAATataTTatAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1), (0, 1), (1, -1)] FAIL
+OPEN AAtATatatAATataTAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtATatatATTatAtaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (0, 1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtATatatATTatataaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (0, 1), (1, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATatatATATatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtATatatATATattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtATatatATAtaaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtATatatATAtaaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2), (1, 1), (2, -1)] FAIL
+OPEN AAtATatatATaTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtATatatATaTattaaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATatatATatATAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtATatataTTatAtAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (0, 1), (1, -1), (2, -2), (1, 1)] FAIL
+OPEN AAtATatataTTatatAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (0, 1), (1, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATatataTATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATatataTATattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATatataTAtAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, -1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtATatataTAtaTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, -1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtATatataTaTatAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtATatataTaTattAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (0, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATatataTatAATTatAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (2, -2), (0, 1), (1, -1)] FAIL
+OPEN AAtATatataTatAATAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (2, -2), (1, -1), (2, 1)] FAIL
+OPEN AAtATatataaTTatAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtATatataaTTatatATAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (0, 1), (1, 1), (2, -1), (1, -1)] FAIL
+OPEN AAtATatataaTATatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, -1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtATatataaTATattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATatataaTAtATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtATatataaTAtATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, -1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtATatataaTaTatAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtATatataaTaTattATAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1), (0, 1), (2, -1), (1, -1)] FAIL
+OPEN AAtATatataaTatATTatAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1), (2, -1), (0, 1), (1, -1)] FAIL
+OPEN AAtATataaTattAATAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (0, 1), (2, -2), (1, -1), (2, 1)] FAIL
+OPEN AAtATataaTattATAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (0, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtATataaTattaTAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (0, 1), (2, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtATataaTattaaTAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (0, 1), (2, 2), (1, -1), (2, -1)] FAIL
+OPEN AAtATataatAATTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -2), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtATataatAATTattaTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -2), (0, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATataatAATATattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -2), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtATataatATTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtATataatATTattaaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -1), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATataatATATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtATataataTTatAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, 1), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtATataataTTattAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, 1), (0, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATataataTATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (1, 2), (2, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAtATattAATTatAtaTaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 2)] FAIL
+OPEN AAtATattAATTataataTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (0, 1), (1, 2), (2, 1), (1, -1)] FAIL
+OPEN AAtATattAATATatataTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtATattAATATataataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, -1), (0, 1), (1, 2), (2, 1)] FAIL
+OPEN AAtATattAATATattaTaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, -1), (0, 1), (2, 1), (1, 2)] FAIL
+OPEN AAtATattAATAtaTTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, -1), (2, 1), (0, 1), (1, 2)] FAIL
+OPEN AAtATattAATaTatAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 1), (0, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtATattAATaTatataTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 1), (0, 1), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATattAATataTATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 1), (2, 1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattAATataTAtaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 1), (2, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtATattAATataTataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 1), (2, 1), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATattAATaaTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 2), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtATattAATaaTattaTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 2), (0, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATattAATaataTTatAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 2), (2, 1), (0, 1), (1, -1)] FAIL
+OPEN AAtATattAATaataTAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, -2), (1, 2), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtATattATTattATataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (0, 1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAtATattATTattaTatATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (0, 1), (2, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtATattATTattaTataTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (0, 1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtATattATATatataaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtATattATAtaaTTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 2)] FAIL
+OPEN AAtATattATAtaaTaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, -1), (2, 2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattATaTatAtaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtATattATaTatataaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (0, 1), (1, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATattATatATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtATattATatATAtaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (2, -1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtATattATataTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtATattATataTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtATattATataaTATataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 1), (2, 2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattATaaTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 2), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtATattATaaTattaaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 2), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtATattATaatATAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, -1), (1, 2), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtATattaTTatAtAATaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (0, 1), (1, -1), (2, -2), (1, 2)] FAIL
+OPEN AAtATattaTTataatAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (0, 1), (1, 2), (2, -2), (1, -1)] FAIL
+OPEN AAtATattaTTattATatATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (0, 1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtATattaTTattATataTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (0, 1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAtATattaTTattaTatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (0, 1), (2, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtATattaTATatatAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATattaTATataatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (0, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtATattaTATattAATaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 2)] FAIL
+OPEN AAtATattaTAtAATTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (2, -2), (0, 1), (1, 2)] FAIL
+OPEN AAtATattaTAtAATaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (2, -2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattaTAtaTatAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (2, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtATattaTAtaTaatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, -1), (2, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtATattaTaTatAtAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (0, 1), (1, -1), (2, -2), (1, 1)] FAIL
+OPEN AAtATattaTaTatatAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (0, 1), (1, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATattaTatAATATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, -2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattaTatAATataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, -2), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtATattaTatATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtATattaTatATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtATattaTataTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtATattaTataTatAATAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, 1), (1, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATattaTaaTatAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 2), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtATattaTaaTattAATAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (0, 1), (2, 1), (1, 2), (0, 1), (2, -2), (1, -1)] FAIL
+OPEN AAtATattaaTTatAtATaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 2)] FAIL
+OPEN AAtATattaaTTataatATAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (0, 1), (1, 2), (2, -1), (1, -1)] FAIL
+OPEN AAtATattaaTATatatATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATattaaTATataatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtATattaaTATattATaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtATattaaTAtATTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtATattaaTAtATaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtATattaaTAtATatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtATattaaTAtATaatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 2), (2, -1)] FAIL
+OPEN AAtATattaaTaTatAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, 1), (0, 1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtATattaaTaTatatATAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (0, 1), (2, 2), (1, 1), (0, 1), (1, 1), (2, -1), (1, -1)] FAIL
+OPEN AAtAtAATTatATatataTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATTatATataataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (0, 1), (1, 2), (2, 1)] FAIL
+OPEN AAtAtAATTatATattaTaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (0, 1), (2, 1), (1, 2)] FAIL
+OPEN AAtAtAATTatAtaTTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (2, 1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtAATTatAtaTaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATTatAtaTataTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATTatAtaTaataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 2), (2, 1)] FAIL
+OPEN AAtAtAATTataTatAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 1), (0, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATTataTatataTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 1), (0, 1), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtAtAATTatataTATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 1), (2, 1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATTatataTAtaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 1), (2, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATTatataTataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 1), (2, 1), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtAtAATTataaTattaTAT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (1, 2), (0, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtAtAATTattaTTattaTT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtAATTattaTATataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (0, 1), (2, 1), (1, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtAATTattaTAtaTaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (2, 1), (1, -1), (2, 1), (1, 2)] FAIL
+OPEN AAtAtAATTattaTaataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (0, 1), (2, 1), (1, 2), (2, 1), (1, -1)] FAIL
+OPEN AAtAtAATATataTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, -1), (0, 1), (1, 1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATATatataTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, -1), (0, 1), (1, 1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATATattaTTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, -1), (0, 1), (2, 1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtAATATattaTaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, -1), (0, 1), (2, 1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATATattaTataTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -2), (1, -1), (0, 1), (2, 1), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATaTatATattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, 1), (0, 1), (1, -1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtAATaTatAtaTTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, 1), (0, 1), (1, -1), (2, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATaTattaTATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, 1), (0, 1), (2, 1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtAATataTTatATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -2), (1, 1), (2, 1), (0, 1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATTatATatataaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATTatAtaaTTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, -1), (2, 2), (0, 1), (1, 2)] FAIL
+OPEN AAtAtATTatAtaaTaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, -1), (2, 2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATTataTatAtaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATTataTatataaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtAtATTatatATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATTatatATAtaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATTatataTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtATTatataTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATTatataaTATataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 1), (2, 2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATTataaTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 2), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATTataaTattaaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 2), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtAtATTataatATAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (0, 1), (1, 2), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATTattATTatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAtATTattATTattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, -1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtATTattATTattaaTT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtAtATTattATaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, -1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATTattaTTatatATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtATTattaTTatataTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAtATTattaTTattATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtATTattaTTattaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtATTattaTaTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtATTattaTaTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATTattaaTTattATT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtAtATTattaaTATataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 2), (1, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtATTattaaTAtATaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 2)] FAIL
+OPEN AAtAtATATataTatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAtATATataTattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (1, 1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATATatataaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (1, 1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATATataaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAtAtATATattaaTTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (2, 2), (0, 1), (1, 2)] FAIL
+OPEN AAtAtATATattaaTaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (0, 1), (2, 2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATAtATaTattaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, -1), (1, 1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATAtATaaTattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, -1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAtAtATAtaaTTataTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATAtaaTTatatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtATAtaaTTataatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtAtATAtaaTTattATaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, -1), (2, 2), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtAtATaTatATatataaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, -1), (0, 1), (1, 1), (2, 2)] FAIL
+OPEN AAtAtATaTatATattaaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATaTatAtaaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATaTataTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATaTataTattaaTAT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtAtATaTatatATAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATaTattATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATaTattATAtaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, -1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATaTattaTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtATaTattaTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtATaTattaaTATataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, 2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATaTattaaTAtATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtATatATTatAtaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (2, -1), (0, 1), (1, -1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATatATATattaaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (2, -1), (1, -1), (0, 1), (2, 2), (1, 1)] FAIL
+OPEN AAtAtATatATAtaaTTataT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtATatATaTatAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATatATaTattaaTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 1), (2, -1), (1, 1), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtAtATaaTatATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, -1), (1, 2), (0, 1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtAtATaaTattATAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 2), (0, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATaaTattaaTAtATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 2), (0, 1), (2, 2), (1, -1), (2, -1)] FAIL
+OPEN AAtAtATaatATTatAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 2), (2, -1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtAtATaatATTattaaTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 2), (2, -1), (0, 1), (2, 2), (1, -1)] FAIL
+OPEN AAtAtATaatATATattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, -1), (1, 2), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtAtaTTatATatatAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTTatATataatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (0, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAtaTTatATattAATaaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (0, 1), (2, -2), (1, 2)] FAIL
+OPEN AAtAtaTTatAtAATTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (2, -2), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaTTatAtAATaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (2, -2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTTatAtaTatAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTTatAtaTaatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, -1), (2, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAtaTTataTatAtAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (0, 1), (1, -1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTTatatAATATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (2, -2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTTatatAATataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtAtaTTatatATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTTatatATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtaTTatataTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTTataaTatAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (1, 2), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtAtaTTattAATTattaTT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAtAtaTTattAATATataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -2), (1, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaTTattAATaataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -2), (1, 2), (2, 1), (1, -1)] FAIL
+OPEN AAtAtaTTattATTatatATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtaTTattATTatataTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtAtaTTattATTattATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaTTattATTattaTaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtaTTattATaTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTTattATaTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, -1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtaTTattaTTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtaTTattaTTattAATT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtAtaTTattaTTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaTTattaTaTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (0, 1), (2, 1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTATataTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTATataTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTATatatAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTATatatAATataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtAtaTATatataTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTATataaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (1, 2), (0, 1), (2, -2)] FAIL
+OPEN AAtAtaTATattAATTataaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaTATattAATaTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTATattAATataTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtaTATattAATaataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 2), (2, 1)] FAIL
+OPEN AAtAtaTATattaTatAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTATattaTaatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (0, 1), (2, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAtaTAtaTTatatAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (0, 1), (1, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTAtaTTataatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (0, 1), (1, 2), (2, -2)] FAIL
+OPEN AAtAtaTAtaTTattAATaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (0, 1), (2, -2), (1, 2)] FAIL
+OPEN AAtAtaTAtaTaTatatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (1, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTAtaTaTattAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (1, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTAtaTatAATTataT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (1, 1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTAtaTaaTattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, -1), (2, 1), (1, 2), (0, 1), (2, -2)] FAIL
+OPEN AAtAtaTaTatATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTaTatATattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (1, -1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTaTatAtAATTataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (1, -1), (2, -2), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTaTatAtaTatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTaTataTatAtAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (1, 1), (0, 1), (1, -1), (2, -2)] FAIL
+OPEN AAtAtaTaTattAATATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (2, -2), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTaTattAATataTAT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (2, -2), (1, 1), (2, 1), (1, -1)] FAIL
+OPEN AAtAtaTaTattATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTaTattATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtAtaTaTattaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (0, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaTatAATTatATataT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 1), (2, -2), (0, 1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaTatAATTatAtaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (2, -2), (0, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtAtaTatAATaTatAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (2, -2), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtAtaTataTATatatAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtAtaTataTATattAATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtAtaTaaTatATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, -1), (2, 1), (1, 2), (0, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAtAtaTaatAATTatAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 2), (2, -2), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtAtaTaataTATattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 1), (1, 2), (2, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAtAtaaTTatATatatATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTTatATataatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtAtaaTTatATattATaaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtAtaaTTatAtATTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (2, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaaTTatAtATaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTTatAtATatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTTatAtATaatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 2), (2, -1)] FAIL
+OPEN AAtAtaaTTataTatAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, 1), (0, 1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTTatatATATataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, 1), (2, -1), (1, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTTatatATAtATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, 1), (2, -1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTTataaTatAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, 2), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtAtaaTTataatATAtATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (1, 2), (2, -1), (1, -1), (2, -1)] FAIL
+OPEN AAtAtaaTTattATTattATT 21 levels [0, -1, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaaTTattATATataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (0, 1), (2, -1), (1, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaaTTattATAtATaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (0, 1), (2, -1), (1, -1), (2, -1), (1, 2)] FAIL
+OPEN AAtAtaaTATataTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (1, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtaaTATataTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (1, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTATatatATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (1, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTATatatATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (1, 1), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtaaTATataaTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (1, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtAtaaTATattATTataaT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (2, -1), (0, 1), (1, 2)] FAIL
+OPEN AAtAtaaTATattATaTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTATattATatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTATattATaatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 2), (2, -1)] FAIL
+OPEN AAtAtaaTAtATTataTataT 21 levels [0, 0, 1] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTAtATTatatATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTAtATTataatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 2), (2, -1)] FAIL
+OPEN AAtAtaaTAtATTattATaaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (0, 1), (2, -1), (1, 2)] FAIL
+OPEN AAtAtaaTAtATaTatatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (1, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtAtaaTAtATaTattATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (1, 1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtAtaaTAtATatATTataT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (1, 1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtAtaaTAtATaaTattATT 21 levels [-1, 0, 0] seq [(0, -2), (1, -1), (2, 2), (1, -1), (2, -1), (1, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtaTatAATattAATataTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (0, 1), (2, -2), (1, 1), (2, 1)] FAIL
+OPEN AAtaTatAATattaTatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (0, 1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtaTatAAtATaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtaTatAAtaTTatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, 1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtaTatAAtaTTattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, 1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtaTatAAtaTaTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtaTatAAtaaTTatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, 2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtaTatAAtaaTTattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -2), (2, 2), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtaTatATatAtaTatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtaTatATatatATAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtaTatATattaaTAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (0, 1), (2, 2), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtaTatAtATAtaaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, -1), (1, -1), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtaTatAtATaTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtaTatAtaTATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtaTatAtaTATattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtaTatAtaaTTatAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 2), (0, 1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtaTatAtaaTATatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 2), (1, -1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtaTatAtaaTATattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 2), (1, -1), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtaTatAtaaTAtATTataT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, -1), (2, 2), (1, -1), (2, -1), (0, 1), (1, 1)] FAIL
+OPEN AAtaTataTatAtATAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (0, 1), (1, -1), (2, -1), (1, -1), (2, 2)] FAIL
+OPEN AAtaTataTatAtaaTAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 2), (1, -1), (2, -1)] FAIL
+OPEN AAtaTataTattATAAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (0, 1), (2, -1), (1, -2), (2, 2)] FAIL
+OPEN AAtaTataTattaaTAAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (0, 1), (2, 2), (1, -2), (2, -1)] FAIL
+OPEN AAtaTatatAATTatAAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (2, -2), (0, 1), (1, -2), (2, 1)] FAIL
+OPEN AAtaTatatATTatAAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (2, -1), (0, 1), (1, -2), (2, 2)] FAIL
+OPEN AAtaTatatATAATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (2, -1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAtaTatatATATatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (2, -1), (1, -1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtaTatataTAATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (1, 1), (2, 1), (1, -2), (0, 1), (2, -2)] FAIL
+OPEN AAtaTattAATTatAAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -2), (0, 1), (1, -2), (2, 1), (1, 1)] FAIL
+OPEN AAtaTattAATaTatAAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -2), (1, 1), (0, 1), (1, -2), (2, 1)] FAIL
+OPEN AAtaTattATTattATAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (0, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAtaTattATTattaTAtATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (0, 1), (2, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtaTattATTattaTAtaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (0, 1), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtaTattATAAtaaTTataT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, -2), (2, 2), (0, 1), (1, 1)] FAIL
+OPEN AAtaTattATAtATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtaTattATAtaTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, -1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtaTattATAtaTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, -1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtaTattATaTatAAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, 1), (0, 1), (1, -2), (2, 2)] FAIL
+OPEN AAtaTattATatATAAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (0, 1), (2, -1), (1, 1), (2, -1), (1, -2), (2, 2)] FAIL
+OPEN AAtaTattaTTattATAtATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (0, 1), (2, -1), (1, -1), (2, -1)] FAIL
+OPEN AAtaTattaTTattATAtaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (0, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAtaTattaTTattaTAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (0, 1), (2, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtaTattaTAATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (1, -2), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtaTattaTAATattAATaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (1, -2), (0, 1), (2, -2), (1, 1)] FAIL
+OPEN AAtaTattaTAtATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (1, -1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtaTattaTAtATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtaTattaTAtaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 1), (1, -1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtaTattaaTTatAAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 2), (0, 1), (1, -2), (2, -1), (1, 1)] FAIL
+OPEN AAtaTattaaTAATatatATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 2), (1, -2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtaTattaaTAATattATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 2), (1, -2), (0, 1), (2, -1), (1, 1)] FAIL
+OPEN AAtaTattaaTAAtATatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (0, 1), (2, 2), (1, -2), (2, -1), (1, 1), (2, -1)] FAIL
+OPEN AAtaTattaaTATatAtATaT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (0, 1), (2, 2), (1, -1), (0, 1), (1, -1), (2, -1), (1, 1)] FAIL
+OPEN AAtatAATTatAATatataTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -2), (0, 1), (1, -2), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtatAATTatAATattaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -2), (0, 1), (1, -2), (0, 1), (2, 1), (1, 1)] FAIL
+OPEN AAtatAATTatAAtaTataTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -2), (0, 1), (1, -2), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAtatAATTatATatAtaTaT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -2), (0, 1), (1, -1), (0, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtatAATTatAtaTAtaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -2), (0, 1), (1, -1), (2, 1), (1, -1), (2, 1), (1, 1)] FAIL
+OPEN AAtatAATTattaTTattaTT 21 levels [0, 1, 0] seq [(0, -2), (1, 1), (2, -2), (0, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtatAATTattaTAAtaTaT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -2), (0, 1), (2, 1), (1, -2), (2, 1), (1, 1)] FAIL
+OPEN AAtatATTatAtATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATTatAtaTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (1, -1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtatATTatAtaTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (1, -1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATTataTatAAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (1, 1), (0, 1), (1, -2), (2, 2)] FAIL
+OPEN AAtatATTatatATAAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (0, 1), (1, 1), (2, -1), (1, -2), (2, 2)] FAIL
+OPEN AAtatATTattATTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtatATTattATTattaaTT 21 levels [0, 1, 0] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtatATTattATATattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, -1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATTattaTTatAtATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtatATTattaTTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtatATTattaTATattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 1), (1, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtatATTattaTATattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATTattaaTTattATT 21 levels [0, 1, 0] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtatATTattaaTAAtATaT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (0, 1), (2, 2), (1, -2), (2, -1), (1, 1)] FAIL
+OPEN AAtatATAATataTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (1, -2), (0, 1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtatATAAtATaTattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, -2), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAtatATAAtaaTTatatATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, -2), (2, 2), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAtatATATataTatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (1, -1), (0, 1), (1, 1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtatATATattATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (1, -1), (0, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATATattaTTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, -1), (1, -1), (0, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtatATATattaTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (1, -1), (0, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAtatATaTatAATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (1, 1), (0, 1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAtatATaTatATatAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, -1), (1, 1), (0, 1), (1, -1), (0, 1), (1, -1), (2, 2)] FAIL
+OPEN AAtatATaTattATAAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, 1), (0, 1), (2, -1), (1, -2), (2, 2)] FAIL
+OPEN AAtatATaTattaaTAAtATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, 1), (0, 1), (2, 2), (1, -2), (2, -1)] FAIL
+OPEN AAtatATatATTatAAtaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, 1), (2, -1), (0, 1), (1, -2), (2, 2)] FAIL
+OPEN AAtatATatATAATattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, -1), (1, 1), (2, -1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAtataTTatAATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (1, -2), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtataTTatAtATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (1, -1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTTatAtATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtataTTatAtaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (1, -1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTTattAATTattaTT 21 levels [0, 1, 0] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, -2), (0, 1), (2, 1)] FAIL
+OPEN AAtataTTattATTatAtATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, -1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtataTTattATTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtataTTattATATattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, -1), (1, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTTattATATattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, -1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtataTTattaTTatAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, 1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAtataTTattaTTattAATT 21 levels [0, 1, 0] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtataTTattaTATattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (0, 1), (2, 1), (1, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTAATataTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (1, -2), (0, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtataTAAtaTaTattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, 1), (1, -2), (2, 1), (1, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtataTATatATatatAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (1, -1), (0, 1), (1, -1), (0, 1), (1, 1), (2, -2)] FAIL
+OPEN AAtataTATattATTattATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (1, -1), (0, 1), (2, -1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTATattATTattaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (1, -1), (0, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAtataTATattaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 1), (2, 1), (1, -1), (0, 1), (2, 1), (0, 1), (2, -1)] FAIL
+OPEN AAtataTaTatAATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 1), (2, 1), (1, 1), (0, 1), (1, -2), (0, 1), (2, -2)] FAIL
+OPEN AAtataTataTAATattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 1), (2, 1), (1, 1), (2, 1), (1, -2), (0, 1), (2, -2)] FAIL
+OPEN AAtaaTatAAtATTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (1, -2), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtaaTatAAtaTTattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (0, 1), (1, -2), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtaaTatAAtaaTTattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (1, -2), (2, 2), (0, 1), (2, -1)] FAIL
+OPEN AAtaaTatAtATATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (1, -1), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtaaTatAtaTATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (0, 1), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAtaaTattAATTatAAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (0, 1), (2, -2), (0, 1), (1, -2), (2, 1)] FAIL
+OPEN AAtaaTattATTatAAtaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (2, -1), (0, 1), (1, -2), (2, 2)] FAIL
+OPEN AAtaaTattATAATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (2, -1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAtaaTattaTAATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (0, 1), (2, 1), (1, -2), (0, 1), (2, -2)] FAIL
+OPEN AAtaaTattaaTTatAAtATT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (2, 2), (0, 1), (1, -2), (2, -1)] FAIL
+OPEN AAtaaTattaaTAATattATT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (0, 1), (2, 2), (1, -2), (0, 1), (2, -1)] FAIL
+OPEN AAtaatAATTatAATattaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (2, -2), (0, 1), (1, -2), (0, 1), (2, 1)] FAIL
+OPEN AAtaatAATTatATatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (2, -2), (0, 1), (1, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAtaatATTatAATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (2, -1), (0, 1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAtaatATAAtATTattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 2), (2, -1), (1, -2), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtaatATATatATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (1, 2), (2, -1), (1, -1), (0, 1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtaatATAtATATattaaTT 21 levels [-1, 0, 0] seq [(0, -2), (1, 2), (2, -1), (1, -1), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAtaataTTatAATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (2, 1), (0, 1), (1, -2), (0, 1), (2, -2)] FAIL
+OPEN AAtaataTAAtaTTattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 2), (2, 1), (1, -2), (2, 1), (0, 1), (2, -2)] FAIL
+OPEN AAtaataTATatATattAATT 21 levels [0, 0, -1] seq [(0, -2), (1, 2), (2, 1), (1, -1), (0, 1), (1, -1), (0, 1), (2, -2)] FAIL
+OPEN AAtaataTAtaTATattAATT 21 levels [-1, 0, 0] seq [(0, -2), (1, 2), (2, 1), (1, -1), (2, 1), (1, -1), (0, 1), (2, -2)] FAIL
+CERT AAttAATTAttaTTaattaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -2), (0, -1), (2, 1), (0, 2), (2, 1)] R1(g=2)[PEEL]
+OPEN AAttAATTatAATataataTT 21 levels [0, 0, -1] seq [(0, -2), (2, -2), (0, 1), (1, -2), (0, 1), (1, 2), (2, 1)] FAIL
+OPEN AAttAATTatAAtaTaataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -2), (0, 1), (1, -2), (2, 1), (1, 2), (2, 1)] FAIL
+OPEN AAttAATTatAtaTTattaTT 21 levels [0, -1, 0] seq [(0, -2), (2, -2), (0, 1), (1, -1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttAATTatataTTattaTT 21 levels [0, 1, 0] seq [(0, -2), (2, -2), (0, 1), (1, 1), (2, 1), (0, 1), (2, 1)] FAIL
+CERT AAttAATTattATTattaaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -2), (0, 1), (2, -1), (0, 1), (2, 2)] R1(g=2)[PEEL]
+CERT AAttAATTattaTTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -2), (0, 1), (2, 1), (0, 1), (2, 2)] R1(g=2)[PEEL]
+CERT AAttAATTattaTTaattaTT 21 levels [1, 0, 0] seq [(0, -2), (2, -2), (0, 1), (2, 1), (0, 2), (2, 1)] R1(g=2)[PEEL]
+OPEN AAttAATTattaTATattaTT 21 levels [0, -1, 0] seq [(0, -2), (2, -2), (0, 1), (2, 1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttAATTattaTaTattaTT 21 levels [0, 1, 0] seq [(0, -2), (2, -2), (0, 1), (2, 1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATTatATattATataTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (0, 1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTatATattaTatATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (0, 1), (2, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATTatATattaTataTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (0, 1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTatAtATTatataTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTatAtATTattaaTT 21 levels [0, -1, 0] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, -1), (0, 1), (2, 2)] FAIL
+OPEN AAttATTatAtATaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATTatAtaTTatatATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATTatAtaTTatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTatAtaTaTattATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, 1), (1, 1), (0, 1), (2, -1)] FAIL
+OPEN AAttATTatAtaTaTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, -1), (2, 1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATTataTattATAtaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (0, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTataTattaTAtATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (0, 1), (2, 1), (1, -1), (2, -1)] FAIL
+OPEN AAttATTataTattaTAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (0, 1), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTatatATTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (2, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTatatATATattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (2, -1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATTatataTTatAtATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (2, 1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAttATTatataTTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (2, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTatataTATattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (1, 1), (2, 1), (1, -1), (0, 1), (2, 1)] FAIL
+CERT AAttATTattAATTattaaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (2, -2), (0, 1), (2, 2)] R1(g=2)[PEEL]
+OPEN AAttATTattATATatataTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTattATATattaaTT 21 levels [0, -1, 0] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, -1), (0, 1), (2, 2)] FAIL
+OPEN AAttATTattATAtaTataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, -1), (2, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTattATaTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTattATaTattaaTT 21 levels [0, 1, 0] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, 1), (0, 1), (2, 2)] FAIL
+OPEN AAttATTattATataTAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, -1), (1, 1), (2, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTattaTATatatATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, -1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATTattaTATatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTattaTAtATataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, -1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAttATTattaTAtaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, -1), (2, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATTattaTaTatAtATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, 1), (0, 1), (1, -1), (2, -1)] FAIL
+OPEN AAttATTattaTaTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTattaTatATAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAttATTattaTataTAtATT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 1), (2, 1), (1, 1), (2, 1), (1, -1), (2, -1)] FAIL
+OPEN AAttATTattaaTTatAtATT 21 levels [0, -1, 0] seq [(0, -2), (2, -1), (0, 1), (2, 2), (0, 1), (1, -1), (2, -1)] FAIL
+CERT AAttATTaattATTAttaaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (0, 2), (2, -1), (0, -1), (2, 2)] R1(g=2)[PEEL]
+OPEN AAttATAATataaTattaaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, -2), (0, 1), (1, 2), (0, 1), (2, 2)] FAIL
+OPEN AAttATATatatATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATATatataTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (1, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATATattATTatataTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATATattATaTattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (2, -1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATATattaTTatatATT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (2, 1), (0, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATATattaTTatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (2, 1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttATATattaTaTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, -1), (0, 1), (2, 1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATAtATTataTattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, -1), (2, -1), (0, 1), (1, 1), (0, 1), (2, 1)] FAIL
+CERT AAttATAtATTattaTataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, -1), (2, -1), (0, 1), (2, 1), (1, 1), (2, 1)] CYC-bot[PEEL]
+OPEN AAttATAtATataTTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, -1), (2, -1), (1, 1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATAtaTTataTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, -1), (2, 1), (0, 1), (1, 1), (0, 1), (2, 1)] FAIL
+CERT AAttATAtaTTattATataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, -1), (2, 1), (0, 1), (2, -1), (1, 1), (2, 1)] CYC-bot[PEEL]
+OPEN AAttATAtaTTattaTatATT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, -1), (2, 1), (0, 1), (2, 1), (1, 1), (2, -1)] FAIL
+OPEN AAttATAtaTatATTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, -1), (2, 1), (1, 1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATaTatAtATTattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATaTatAtaTTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (1, -1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATaTattATTatAtaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (2, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATaTattATATattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (2, -1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATaTattaTTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (2, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttATaTattaTATattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, 1), (0, 1), (2, 1), (1, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATatATTatATattaTT 21 levels [0, 0, -1] seq [(0, -2), (2, -1), (1, 1), (2, -1), (0, 1), (1, -1), (0, 1), (2, 1)] FAIL
+CERT AAttATatATTattaTAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, 1), (2, -1), (0, 1), (2, 1), (1, -1), (2, 1)] CYC-bot[PEEL]
+OPEN AAttATatATAtaTTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, 1), (2, -1), (1, -1), (2, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttATataTTatATattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, 1), (2, 1), (0, 1), (1, -1), (0, 1), (2, 1)] FAIL
+CERT AAttATataTTattATAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, 1), (2, 1), (0, 1), (2, -1), (1, -1), (2, 1)] CYC-bot[PEEL]
+OPEN AAttATataTAtATTattaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, -1), (1, 1), (2, 1), (1, -1), (2, -1), (0, 1), (2, 1)] FAIL
+OPEN AAttATaaTatAATattaaTT 21 levels [0, 0, 1] seq [(0, -2), (2, -1), (1, 2), (0, 1), (1, -2), (0, 1), (2, 2)] FAIL
+OPEN AAttaTTatATattATataTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (1, -1), (0, 1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTTatAtATTatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (1, -1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTTatAtATaTattaTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (1, -1), (2, -1), (1, 1), (0, 1), (2, 1)] FAIL
+OPEN AAttaTTataTattATAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (1, 1), (0, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAttaTTatatATTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (1, 1), (2, -1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttaTTattAATTatAtaTT 21 levels [0, -1, 0] seq [(0, -2), (2, 1), (0, 1), (2, -2), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttaTTattAATTatataTT 21 levels [0, 1, 0] seq [(0, -2), (2, 1), (0, 1), (2, -2), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTTattATATatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (2, -1), (1, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTTattATAtATataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, 1), (0, 1), (2, -1), (1, -1), (2, -1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTTattATaTatAtaTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (0, 1), (2, -1), (1, 1), (0, 1), (1, -1), (2, 1)] FAIL
+OPEN AAttaTTattATatATAtaTT 21 levels [-1, 0, 0] seq [(0, -2), (2, 1), (0, 1), (2, -1), (1, 1), (2, -1), (1, -1), (2, 1)] FAIL
+OPEN AAttaTATattATTatataTT 21 levels [0, 0, 1] seq [(0, -2), (2, 1), (1, -1), (0, 1), (2, -1), (0, 1), (1, 1), (2, 1)] FAIL
+OPEN AAttaTAtATTattATataTT 21 levels [-1, 0, 0] seq [(0, -2), (2, 1), (1, -1), (2, -1), (0, 1), (2, -1), (1, 1), (2, 1)] FAIL

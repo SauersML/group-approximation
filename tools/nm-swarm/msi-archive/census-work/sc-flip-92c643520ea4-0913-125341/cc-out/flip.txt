@@ -1,0 +1,398 @@
+SANITY discharged-match=True honest-match=True names=3649 rows=84034
+SIZES D0=2458 LA=2508 EstimatingUnboundOutputStatement=2509 EstimatingSelectionConstructionStatement=2509 RelativeGreendlingerQuasiGeodesicStatement=2512 RelativeGreendlingerStatement=2513 ALL=2519
+LA in D0=False honest=False
+
+== BLOCKER EstimatingUnboundOutputStatement D0=False LA=False
+  producer GroupApproximation.GGT.VanKampen.Estimating.estimatingUnboundOutputStatement_of_scaledDecomposition GroupApproximation/GGT/VanKampen/Estimating/UnboundScaledDecomposition.lean:113 missing-under-LA=['Lemma62ScaledDecompositionStatement']
+  refutation GroupApproximation.GGT.VanKampen.Estimating.UnboundScaledCounterexample.not_estimatingUnboundOutputStatement GroupApproximation/GGT/VanKampen/Estimating/UnboundScaledCounterexample.lean:192: ¬ EstimatingUnboundOutputStatement.{0, 0, 0}
+  consumers=22
+  CONSUMER GroupApproximation.HullSC.exists_realized_relativeGreendlingerWitness_of_components GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:110 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_realized_embeddedBoundaryContiguity_of_components_and_geodesicBoundary GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:238 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components GroupApproximation/GGT/HullSCLemma49Assemble.lean:172 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49GeodesicPowerDiagram_of_inputs GroupApproximation/GGT/HullSCLemma49Assemble.lean:193 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'PrefixKernelConeTransferStatement', 'RelativeGreendlingerStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:104 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:126 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:139 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:152 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:87 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:115 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullBallFormStatementNG']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullBallFormStatementNG'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:126 kw=def
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullInputsCorrected']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullInputsCorrected'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:71 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:85 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:98 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{0, 0, 0} heads=['HullOneStepStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullOneStepStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerBaseGeodesicStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:359 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['RelativeGreendlingerBaseGeodesicStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'RelativeExteriorArcConversionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullSC_relativeGreendlingerStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:421 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['RelativeGreendlingerStatement']
+      other-missing-under-LA=['AllReducedDiagramsHaveBaseGeodesicBoundary', 'EstimatingSelectionConstructionStatement', 'RelativeExteriorArcConversionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerGeodesicConsumers.lean:127 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingAtStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerPowerBoundary.lean:87 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['EmbeddedBoundaryContiguity', 'RelativeGreendlingerQuasiGeodesicSpellingAtStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=['EmbeddedBoundaryContiguity'] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:188 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['RelativeGreendlingerQuasiGeodesicSpellingStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerSpelling.lean:407 kw=theorem
+      written=GGT.VanKampen.EstimatingUnboundOutputStatement.{u, w, 0} heads=['RelativeGreendlingerGeodesicLengthStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:1039 kw=theorem
+      written=EstimatingUnboundOutputStatement.{u, w, v} heads=['RelativeGreendlingerQuasiGeodesicStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.estimatingDataConstruction_of_components GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:849 kw=theorem
+      written=EstimatingUnboundOutputStatement.{u, w, v} heads=['EstimatingDataConstructionStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement'] heads-under-LA=[] census=[]
+
+== BLOCKER EstimatingSelectionConstructionStatement D0=False LA=False
+  producer GroupApproximation.GGT.VanKampen.estimatingSelectionConstruction_of_lemma65aDichotomy GroupApproximation/GGT/VanKampen/Estimating/SelectionDichotomy.lean:151 missing-under-LA=['Lemma65aDichotomyStatement']
+  producer GroupApproximation.GGT.VanKampen.estimatingSelectionConstruction_of_lemma65aOrderedDichotomy GroupApproximation/GGT/VanKampen/Estimating/SelectionOrderedDichotomy.lean:90 missing-under-LA=['Lemma65aOrderedDichotomyStatement']
+  consumers=22
+  CONSUMER GroupApproximation.HullSC.exists_realized_relativeGreendlingerWitness_of_components GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:110 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_realized_embeddedBoundaryContiguity_of_components_and_geodesicBoundary GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:238 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components GroupApproximation/GGT/HullSCLemma49Assemble.lean:172 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49GeodesicPowerDiagram_of_inputs GroupApproximation/GGT/HullSCLemma49Assemble.lean:193 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'PrefixKernelConeTransferStatement', 'RelativeGreendlingerStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:104 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:126 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:139 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_estimating GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:152 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:87 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:115 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullBallFormStatementNG']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullBallFormStatementNG'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:126 kw=def
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullInputsCorrected']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullInputsCorrected'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:71 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:85 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:98 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{0, 0, 0} heads=['HullOneStepStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullOneStepStatement'] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerBaseGeodesicStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:359 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['RelativeGreendlingerBaseGeodesicStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement', 'RelativeExteriorArcConversionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullSC_relativeGreendlingerStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:421 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['RelativeGreendlingerStatement']
+      other-missing-under-LA=['AllReducedDiagramsHaveBaseGeodesicBoundary', 'EstimatingUnboundOutputStatement', 'RelativeExteriorArcConversionStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerGeodesicConsumers.lean:127 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingAtStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerPowerBoundary.lean:87 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['EmbeddedBoundaryContiguity', 'RelativeGreendlingerQuasiGeodesicSpellingAtStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=['EmbeddedBoundaryContiguity'] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:188 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['RelativeGreendlingerQuasiGeodesicSpellingStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerSpelling.lean:407 kw=theorem
+      written=GGT.VanKampen.EstimatingSelectionConstructionStatement.{u, w, 0} heads=['RelativeGreendlingerGeodesicLengthStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:1039 kw=theorem
+      written=EstimatingSelectionConstructionStatement.{u, w, v} heads=['RelativeGreendlingerQuasiGeodesicStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.estimatingDataConstruction_of_components GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:849 kw=theorem
+      written=EstimatingSelectionConstructionStatement.{u, w, v} heads=['EstimatingDataConstructionStatement']
+      other-missing-under-LA=['EstimatingUnboundOutputStatement'] heads-under-LA=[] census=[]
+
+== BLOCKER RelativeGreendlingerQuasiGeodesicStatement D0=False LA=False
+  producer GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_data GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:1031 missing-under-LA=['EstimatingDataConstructionStatement']
+  producer GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components GroupApproximation/GGT/VanKampen/Estimating/Assembly.lean:1039 missing-under-LA=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement']
+  producer GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_joint GroupApproximation/GGT/VanKampen/Estimating/EndpointClosedAssembly.lean:199 missing-under-LA=['EstimatingJointConstructionStatement']
+  producer GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic GroupApproximation/GGT/VanKampen/RelativeGreendlinger.lean:392 missing-under-LA=['EmbeddedEstimatingSystemConstructionStatement']
+  consumers=28
+  CONSUMER GroupApproximation.HullSC.exists_realized_relativeGreendlingerWitness_of_geodesicBoundary GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:150 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=[] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_realized_embeddedBoundaryContiguity_of_geodesicBoundary GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:189 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['EmbeddedBoundaryContiguity', 'OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=[] heads-under-LA=['EmbeddedBoundaryContiguity', 'OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_realized_relativeGreendlingerWitness GroupApproximation/GGT/HullSCLemma44RelativeGreendlingerAdapter.lean:63 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['OEquivalentDiscDiagram', 'RelativeDiscRealization']
+      other-missing-under-LA=[] heads-under-LA=['OEquivalentDiscDiagram', 'RelativeDiscRealization'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_greendlinger GroupApproximation/GGT/HullSCLemma49Assemble.lean:160 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_greendlinger GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean:69 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_sourceBranches GroupApproximation/GGT/HullSCLemma49SourceAssembly.lean:90 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_shortLoxodromic_powerDiagram_source GroupApproximation/GGT/HullSCLemma49SourceBranches.lean:168 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_longPeriod_powerDiagram_source GroupApproximation/GGT/HullSCLemma49SourceBranches.lean:53 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_greendlinger GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:117 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['EmbeddedBoundaryContiguity', 'RelativeGreendlingerQuasiGeodesicSpellingStatement']
+      other-missing-under-LA=[] heads-under-LA=['EmbeddedBoundaryContiguity'] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_greendlinger GroupApproximation/GGT/HullSCRelativeGreendlingerSpelling.lean:335 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['EmbeddedBoundaryContiguity', 'RelativeGreendlingerGeodesicLengthStatement']
+      other-missing-under-LA=[] heads-under-LA=['EmbeddedBoundaryContiguity'] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_reduced GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionBridge.lean:69 kw=theorem
+      written=RelativeGreendlingerQuasiGeodesicStatement.{u, w, v} heads=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement']
+      other-missing-under-LA=[] heads-under-LA=['RelativeGreendlingerQuasiGeodesicLeastAreaStatement'] census=[]
+  CONSUMER GroupApproximation.GGT.VanKampen.lemma49Certificate_of_relativeGreendlinger GroupApproximation/GGT/VanKampen/RelativeDiscRealizationPowerCertificate.lean:100 kw=theorem
+      written=RelativeGreendlingerQuasiGeodesicStatement.{u, w, 0} heads=['Lemma49SourceGreendlingerCertificate']
+      other-missing-under-LA=[] heads-under-LA=['Lemma49SourceGreendlingerCertificate'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullLemma44Canonical_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:103 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullLemma49KernelPower_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:113 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullLemma49KernelPowerStatement']
+      other-missing-under-LA=[] heads-under-LA=['HullLemma49KernelPowerStatement'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullOneStep_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:126 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullOneStepStatement']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullOneStepStatement'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.hullSmallCancellationTorsionFreePrinted_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:142 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullSmallCancellationTorsionFreePrinted']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullSmallCancellationTorsionFreePrinted'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.printedSaturationNoOmega_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:152 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['PrintedSaturationNoOmega']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['PrintedSaturationNoOmega'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.manuscriptTorsionFreeTheorem_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:164 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['PrintedTorsionFreeTheorem']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['PrintedTorsionFreeTheorem'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.manuscriptTorsionFreeFullMFRadical_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:173 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['PrintedTorsionFreeFullMFRadical']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['PrintedTorsionFreeFullMFRadical'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.manuscriptRegularNonMFAlgebra_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:262 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['PrintedRegularNonMFAlgebra']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['PrintedRegularNonMFAlgebra'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeLeafAssembly.relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger GroupApproximation/Manuscript/NonMF/TorsionFreeLeafAssembly.lean:93 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['RelativeGreendlingerQuasiGeodesicSpellingStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_of_leaves_closedCitations GroupApproximation/Manuscript/NonMF/TorsionFreeSectionAssemblyClosedGO.lean:61 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['PrintedRegularNonMFAlgebra']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['PrintedRegularNonMFAlgebra'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_hullInductionOnTargets_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:126 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullTower', 'Suitable']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullTower', 'Suitable'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationPairAndHullAgain_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:165 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullGeneratingSet', 'HullQuotientNG']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullGeneratingSet', 'HullQuotientNG'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_saturationApplyHullNoOmega_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:188 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullQuotientNG']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullQuotientNG'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_theoremApplySaturationNoOmega_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:210 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['SaturationQuotient']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['SaturationQuotient'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_hullTheoremTorsionFree_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:71 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullQuotient']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullQuotient'] census=[]
+  CONSUMER GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentences.manuscriptSentence_hullOneTargetOneRelator_of_leaves GroupApproximation/Manuscript/NonMF/TorsionFreeSectionSentences.lean:93 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0} heads=['HullTower']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeQuasiGeodesicStatement'] heads-under-LA=['HullTower'] census=[]
+
+== BLOCKER RelativeGreendlingerStatement D0=False LA=False
+  producer GroupApproximation.HullSC.relativeGreendlingerStatement_of_baseGeodesicStatement GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:144 missing-under-LA=['AllReducedDiagramsHaveBaseGeodesicBoundary', 'RelativeGreendlingerBaseGeodesicStatement']
+  producer GroupApproximation.HullSC.hullSC_relativeGreendlingerStatement_of_components GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:421 missing-under-LA=['AllReducedDiagramsHaveBaseGeodesicBoundary', 'EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'RelativeExteriorArcConversionStatement']
+  consumers=37
+  CONSUMER GroupApproximation.HullSC.boundedRelativeFilling_of_greendlinger_of_boundedTransfer GroupApproximation/GGT/HullSCLemma44BoundedFilling.lean:58 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['BoundedRelativeFillingStatement']
+      other-missing-under-LA=['BoundedRelativeLinearAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_isoperimetric GroupApproximation/GGT/HullSCLemma44Canonical.lean:131 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44PreservedPeripheralFamily_of_greendlinger_of_isoperimetric GroupApproximation/GGT/HullSCLemma44Canonical.lean:203 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44PreservedPeripheralFamily']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixIsoperimetric GroupApproximation/GGT/HullSCLemma44Canonical.lean:218 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixRelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero GroupApproximation/GGT/HullSCLemma44Canonical.lean:293 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_prefixIsoperimetric GroupApproximation/GGT/HullSCLemma44Canonical.lean:301 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixRelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:309 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeDehnTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:317 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeDehnTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:341 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeLinearAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_linearAreaTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:349 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['RelativeLinearAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_prefixLinearAreaTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:358 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixRelativeLinearAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_weightedTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:371 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixRelativeWeightedAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_weightedTransfer GroupApproximation/GGT/HullSCLemma44Canonical.lean:443 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixRelativeWeightedAreaTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixKernelCone GroupApproximation/GGT/HullSCLemma44Canonical.lean:454 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_prefixKernelCone GroupApproximation/GGT/HullSCLemma44Canonical.lean:528 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_greendlinger GroupApproximation/GGT/HullSCLemma44CertificateInjectivity.lean:143 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_ball_and_peripheralUnion_injectivity_of_greendlinger GroupApproximation/GGT/HullSCLemma44CertificateInjectivity.lean:191 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.familyInclusionRelativeControlStatement_of_greendlinger_of_isoperimetric_of_respelling GroupApproximation/GGT/HullSCLemma44FamilyAssembly.lean:545 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['FamilyInclusionRelativeControlStatement']
+      other-missing-under-LA=['HullRelatorRespellingStatement', 'RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_controls GroupApproximation/GGT/HullSCLemma44FamilyAssembly.lean:652 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientFamilyInclusionJointStatement']
+      other-missing-under-LA=['HullRelatorRespellingStatement', 'RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientFamilyInclusionStatement_of_controls GroupApproximation/GGT/HullSCLemma44FamilyAssembly.lean:667 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientFamilyInclusionStatement']
+      other-missing-under-LA=['HullRelatorRespellingStatement', 'RelativeIsoperimetricBridgeStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelBounds GroupApproximation/GGT/HullSCLemma44KernelAssembly.lean:274 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['KernelConeLocalFinitenessStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer GroupApproximation/GGT/HullSCLemma44KernelAssembly.lean:326 kw=theorem
+      written=RelativeGreendlingerStatement.{u, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer GroupApproximation/GGT/HullSCLemma44KernelAssembly.lean:380 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=['HullLemma44CanonicalQuotientStatement']
+      other-missing-under-LA=['PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49GeodesicPowerDiagram_of_inputs GroupApproximation/GGT/HullSCLemma49Assemble.lean:193 kw=theorem
+      written=GGT.VanKampen.RelativeGreendlingerStatement.{0, 0} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=['EstimatingSelectionConstructionStatement', 'EstimatingUnboundOutputStatement', 'PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_relativeGreendlinger GroupApproximation/GGT/HullSCLemma49Assemble.lean:65 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['HullLemma49ShortestGeodesicPowerDiagramStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_longPeriod_powerDiagram_fixedDelta GroupApproximation/GGT/HullSCLemma49FixedDelta.lean:24 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_shortLoxodromic_powerDiagram_fixedDelta GroupApproximation/GGT/HullSCLemma49FixedDelta.lean:81 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma49InjectivityCallback_of_relativeGreendlinger GroupApproximation/GGT/HullSCLemma49InjectivityBridge.lean:46 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['HullLemma49InjectivityCallback']
+      other-missing-under-LA=[] heads-under-LA=['HullLemma49InjectivityCallback'] census=[]
+  CONSUMER GroupApproximation.HullSC.hullLemma44InjectivityOutput_of_relativeGreendlinger_of_kernelGeodesic_of_prefixTransfer GroupApproximation/GGT/HullSCLemma49InjectivityBridge.lean:84 kw=theorem
+      written=RelativeGreendlingerStatement.{0, 0} heads=[]
+      other-missing-under-LA=['PrefixKernelConeTransferStatement'] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_longPeriod_powerDiagram GroupApproximation/GGT/HullSCLemma49LongPeriod.lean:151 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['IsFourPointHyperbolic']
+      other-missing-under-LA=[] heads-under-LA=['IsFourPointHyperbolic'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_longPeriod_powerDiagram_at GroupApproximation/GGT/HullSCLemma49LongPeriod.lean:94 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_rebasedLemma49Cell_of_relativeGreendlinger GroupApproximation/GGT/HullSCLemma49RebasedCertificate.lean:80 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['Lemma49GeodesicPowerDiagram', 'Lemma49RelativeGreendlingerCell']
+      other-missing-under-LA=[] heads-under-LA=['Lemma49GeodesicPowerDiagram', 'Lemma49RelativeGreendlingerCell'] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_shortLoxodromic_powerDiagram_at GroupApproximation/GGT/HullSCLemma49ShortLoxodromic.lean:145 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.exists_parameters_false_of_shortLoxodromic_powerDiagram GroupApproximation/GGT/HullSCLemma49ShortLoxodromic.lean:293 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=[]
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerBaseGeodesicStatement_of_relativeGreendlingerStatement GroupApproximation/GGT/HullSCRelativeGreendlingerFromComponents.lean:104 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['RelativeGreendlingerBaseGeodesicStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_relativeGreendlingerStatement GroupApproximation/GGT/HullSCRelativeGreendlingerGeodesicConsumers.lean:154 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['RelativeGreendlingerGeodesicLengthStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+  CONSUMER GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_relativeGreendlingerStatement GroupApproximation/GGT/HullSCRelativeGreendlingerQuasiGeodesicSpelling.lean:219 kw=theorem
+      written=RelativeGreendlingerStatement.{u, w} heads=['RelativeGreendlingerQuasiGeodesicSpellingStatement']
+      other-missing-under-LA=[] heads-under-LA=[] census=[]
+
+CROSSCHECK official=366 mine=366 equal=True
+FINDINGS base=366 LA=59 EstimatingUnboundOutputStatement=59 EstimatingSelectionConstructionStatement=59 RelativeGreendlingerQuasiGeodesicStatement=59 RelativeGreendlingerStatement=59 ALL=59
+CLEARED-BY-LA=307 BLOCKED-OFF-ROUTE=0 carriers=0
+
+REST {'inlined-statement': 3, 'buried-conditional': 12, 'open-predicate': 12, 'carrier-data': 28, 'conditional-data': 4}
+  rest 2f55113239ce GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints.manuscriptSaturationLimitSet_of_leastAreaLeaves inlined-statement: premise `∀ (G : Type) [Group G], GGT.SequentialBoundary.IsAcylindricallyHyperbolicLimitSet G → GGT…` is a statement written inline; its head reads as `IsAcylind…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.BoundaryArcsQuasiGeodesic carrier-data: `BoundaryArcsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CellArcsQuasiGeodesic carrier-data: `CellArcsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel hold…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.ChainRespellInput carrier-data: `ChainRespellInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CornerInsertionInput carrier-data: `CornerInsertionInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CuttingChainsQuasiGeodesic carrier-data: `CuttingChainsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal carrier-data: `DartMinimal` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal.unselectedGFacesMerged buried-conditional: premise `S.DartMinimal` has head `S.DartMinimal`, but buried below it requires the corpus-defined predicate `DartMinimal` (buried:DartMinimal), which nothing in…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.GFacesApart carrier-data: `GFacesApart` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.chainRespellInput_of_pieces buried-conditional: through `ChainRespellInput`, premise `S.RunsBackAcross chain` has head `S.RunsBackAcross`, but buried below it requires the corpus-defined predicate `RunsBackAc…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.chainRespellInput_of_pieces open-predicate: premise `CornerInsertionInput.{u, w, v}` requires the corpus-defined predicate `CornerInsertionInput`, which nothing in the corpus ever produces; the conclusion…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.gFacesApart_of_dartMinimal buried-conditional: premise `S.DartMinimal` has head `S.DartMinimal`, but buried below it requires the corpus-defined predicate `DartMinimal` (buried:DartMinimal), which nothing in…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.separatingPathRemovalInput_of_pendant buried-conditional: through `SeparatingPathRemovalInput`, premise `S.DegreeTwoJoints path` has head `S.DegreeTwoJoints`, but buried below it requires the corpus-defined predicate `…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94CaseTwoInput carrier-data: `OsinLemma94CaseTwoInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel ho…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94CuttingChainsInput carrier-data: `OsinLemma94CuttingChainsInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the ker…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PlanarPolygons.unbound_lt open-predicate: premise `OsinLemma94DensePolygonsAntiparallel D lambda c eps rho K` requires the corpus-defined predicate `OsinLemma94DensePolygonsAntiparallel`, which nothing …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PlanarRunInput carrier-data: `OsinLemma94PlanarRunInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PolygonCountInput carrier-data: `OsinLemma94PolygonCountInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kern…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PolygonPartitionInput carrier-data: `OsinLemma94PolygonPartitionInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PolygonRealizationInput carrier-data: `OsinLemma94PolygonRealizationInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than th…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.OsinLemma94PolygonSideBudgetInput carrier-data: `OsinLemma94PolygonSideBudgetInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.facePerm_keep_of_ne conditional-data: premise `GFaceMerge Delta` requires the corpus-defined structure `GFaceMerge`, which nothing in the corpus ever produces; the conclusion is available only to a …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.Surgery.GFaceMerge.sigma_keep_eq_self conditional-data: premise `GFaceMerge Delta` requires the corpus-defined structure `GFaceMerge`, which nothing in the corpus ever produces; the conclusion is available only to a …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.osinLemma94PolygonCountInput_of_sideBudget open-predicate: premise `OsinLemma94PolygonSideBudgetInput.{u, w, v}` requires the corpus-defined predicate `OsinLemma94PolygonSideBudgetInput`, which nothing in the corpus eve…
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.osinLemma94PolygonRealizationInput_of_pieces open-predicate: premise `OsinLemma94PolygonPartitionInput.{u, w, v}` requires the corpus-defined predicate `OsinLemma94PolygonPartitionInput`, which nothing in the corpus ever …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.osinLemma94Section_of_pieces open-predicate: premise `OsinLemma94PlanarRunInput.{u, w, v}` requires the corpus-defined predicate `OsinLemma94PlanarRunInput`, which nothing in the corpus ever produces; the …
+  rest 4895f03fdf5f GroupApproximation.GGT.VanKampen.osinLemma94Section_of_planarPieces open-predicate: premise `OsinLemma94CaseTwoInput.{u, w, v}` requires the corpus-defined predicate `OsinLemma94CaseTwoInput`, which nothing in the corpus ever produces; the conc…
+  rest 4895f03fdf5f GroupApproximation.HullSC.quotientPeripheralLetterPullbackStatement_holds buried-conditional: through `QuotientPeripheralLetterPullbackStatement`, premise `(∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R), Z.toRelativeReducedDiagram.HasQuasiGeode…` has he…
+  rest 4895f03fdf5f GroupApproximation.HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed buried-conditional: through `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedAt`, premise `(∀ (R : ℕ) (Z : RelativeLeastAreaDiagram D W R), Z.toRelativeReducedDiagram.HasQuasiGeode…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.BoundaryArcsQuasiGeodesic carrier-data: `BoundaryArcsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel …
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CellArcsQuasiGeodesic carrier-data: `CellArcsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel hold…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.ChainRespellInput carrier-data: `ChainRespellInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CornerInsertionInput carrier-data: `CornerInsertionInput` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.CuttingChainsQuasiGeodesic carrier-data: `CuttingChainsQuasiGeodesic` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal carrier-data: `DartMinimal` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.DartMinimal.unselectedGFacesMerged buried-conditional: premise `S.DartMinimal` has head `S.DartMinimal`, but buried below it requires the corpus-defined predicate `DartMinimal` (buried:DartMinimal), which nothing in…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.GFacesApart carrier-data: `GFacesApart` is a cited def that nothing in the corpus ever produces, so a row claiming the sentence is proved by it claims more than the kernel holds
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.chainRespellInput_of_pieces buried-conditional: through `ChainRespellInput`, premise `S.RunsBackAcross chain` has head `S.RunsBackAcross`, but buried below it requires the corpus-defined predicate `RunsBackAc…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.chainRespellInput_of_pieces open-predicate: premise `CornerInsertionInput.{u, w, v}` requires the corpus-defined predicate `CornerInsertionInput`, which nothing in the corpus ever produces; the conclusion…
+  rest 8aead549f1fe GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.gFacesApart_of_dartMinimal buried-conditional: premise `S.DartMinimal` has head `S.DartMinimal`, but buried below it requires the corpus-defined predicate `DartMinimal` (buried:DartMinimal), which nothing in…

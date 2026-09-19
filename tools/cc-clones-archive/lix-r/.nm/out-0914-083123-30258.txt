@@ -1,0 +1,41 @@
+[job] 08:31:32 acn222 waiting for clone lock
+[job] delta sync 22f1b26f1..169cd95cb: 10 files changed
+===== SUMMARY
+host acn222 cores slurm base 169cd95cb log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-083123-30258.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3499 oleans
+--- errors (first 80 lines)
+3:✖ [2414/2416] Building GroupApproximation.Analysis.TwistedGroupVonNeumannFactor (52s)
+5:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:126:50: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+18:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:131:11: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+34:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:141:50: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+53:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:142:32: Invalid rewrite argument: Expected an equality or iff proof or definition name, but `?m.107` is a value of type
+57:Full error:
+66:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:318:14: 'GroupApproximation.TwistedGroupVonNeumann.exists_smul_one_of_mem_centralizer' depends on axioms outside the classical allowlist: [sorryAx]
+67:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+69:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:319:14: 'GroupApproximation.TwistedGroupVonNeumann.isFactor' depends on axioms outside the classical allowlist: [sorryAx]
+70:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:321:14: 'GroupApproximation.TwistedGroupVonNeumann.isIIOneFactor_twistedVonNeumannAlgebra' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+78:error: Lean exited with code 1
+79:✖ [2416/2416] Building GroupApproximation.Analysis.TracialUltrapower (59s)
+81:error: GroupApproximation/Analysis/TracialUltrapower.lean:61:65: unsolved goals
+90:error: GroupApproximation/Analysis/TracialUltrapower.lean:92:34: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+107:error: GroupApproximation/Analysis/TracialUltrapower.lean:121:60: Type mismatch
+113:error: GroupApproximation/Analysis/TracialUltrapower.lean:127:69: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+129:error: GroupApproximation/Analysis/TracialUltrapower.lean:149:51: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+132:error: GroupApproximation/Analysis/TracialUltrapower.lean:268:14: 'GroupApproximation.TracialUltrapower.TracialVector.norm_mul_apply_le' depends on axioms outside the classical allowlist: [sorryAx]
+133:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+135:error: GroupApproximation/Analysis/TracialUltrapower.lean:269:14: 'GroupApproximation.TracialUltrapower.nullIdeal_star_mem' depends on axioms outside the classical allowlist: [sorryAx]
+136:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+138:error: Lean exited with code 1
+142:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.TwistedGroupVonNeumannFactor (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.PauliHyperfiniteFactor (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.TracialUltrapower (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Analysis.TracialUltrapower
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

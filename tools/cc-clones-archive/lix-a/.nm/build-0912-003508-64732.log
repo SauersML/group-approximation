@@ -1,0 +1,65 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2321 oleans
+[job] acn112 cores=80-87 threads=8 base=01e539421fcceb38427688ad43caa7336da0d5b2 mods: GroupApproximation.CharClass.OddPWDiagonalRing GroupApproximation.CharClass.OddPWDiagonal GroupApproximation.CharClass.OddPWDiagonalCounit
+ℹ [1677/1679] Built GroupApproximation.CharClass.OddPWDiagonalRing (6.3s)
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:191:14: 'GroupApproximation.CharClass.wdQSum_mul_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:192:14: 'GroupApproximation.CharClass.wdQSum_mul_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:193:14: 'GroupApproximation.CharClass.wdChain_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:194:14: 'GroupApproximation.CharClass.wdQSum_one_one_zmod' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonalRing.lean:195:14: 'GroupApproximation.CharClass.wdPhi_one_one_odd_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1678/1679] Building GroupApproximation.CharClass.OddPWDiagonal (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/CharClass/OddPWDiagonal.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/CharClass/OddPWDiagonal.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/CharClass/OddPWDiagonal.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/CharClass/OddPWDiagonal.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/CharClass/OddPWDiagonal.setup.json --json
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:15: Unknown constant `Prod.fst_pow`
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:2: unsolved goals
+case e_m.refine_1
+p : ℕ
+⊢ ((1, Multiplicative.ofAdd 1) ^ p).1 = 1
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:76:15: Unknown constant `Prod.snd_pow`
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:77:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  Multiplicative.ofAdd ?a ^ ?n
+in the target expression
+  ((1, Multiplicative.ofAdd 1) ^ p).2 = 1
+
+case e_m.refine_2
+p : ℕ
+⊢ ((1, Multiplicative.ofAdd 1) ^ p).2 = 1
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:75:29: This simp argument is unused:
+  one_pow
+
+Hint: Omit it from the simp argument list.
+  simp only [Prod.fst_pow, o̵n̵e̵_̵p̵o̵w̵,̵ ̵Prod.fst_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:177:19: `LinearMap.coeFn_sum` has been deprecated: Use `LinearMap.coe_sum` instead
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:198:14: don't know how to synthesize implicit argument `T₁`
+  @wdChain_identity (GroupRingZMod2 p) MonoidAlgebra.commRing p ?m.167 (wdT2 p) (wdT2_pow_card p) i.1 i.2
+context:
+p n : ℕ
+x : GroupRingZMod p
+i : ℕ × ℕ
+hi : i ∈ antidiagonal n
+hi' : i.1 + i.2 = n
+⊢ GroupRingZMod2 p
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:198:7: failed to infer `have` declaration type
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:187:82: unsolved goals
+case e_6
+p n : ℕ
+x : GroupRingZMod p
+i : ℕ × ℕ
+hi : i ∈ antidiagonal n
+hi' : i.1 + i.2 = n
+⊢ (wdDiag p) (altCoeff (grS p) (grNorm p) n * x) * wdPhiG p i.1 i.2 =
+    wdCAlt p i.1 (wdT1 p) * ((wdDiag p) x * wdPhiG p (i.1 + 1) i.2) +
+      (-1) ^ i.1 • (wdCAlt p i.2 (wdT2 p) * ((wdDiag p) x * wdPhiG p i.1 (i.2 + 1)))
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:236:14: 'GroupApproximation.CharClass.wdT2_pow_card' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:237:14: 'GroupApproximation.CharClass.wwDAll_atBideg' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPWDiagonal.lean:238:14: 'GroupApproximation.CharClass.psiW_chainMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPWDiagonal.lean:239:14: 'GroupApproximation.CharClass.psiW_grGen_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPWDiagonal
+error: build failed
+EXIT=1

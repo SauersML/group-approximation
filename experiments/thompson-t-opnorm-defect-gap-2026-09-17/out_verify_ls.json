@@ -1,0 +1,146 @@
+[
+ {
+  "alpha": "rot(1/4)",
+  "beta": "C_cfp^-1",
+  "convention": "left",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": true,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": true,
+   "(ba)^5": true
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": true
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(1/4)",
+  "beta": "C_cfp^-1",
+  "convention": "right",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": true,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": true,
+   "(ba)^5": true
+  },
+  "dictionary": {
+   "A=ba^2": true,
+   "B=b^2a": false,
+   "C=b^2": true
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(1/4)",
+  "beta": "C_cfp",
+  "convention": "left",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": false,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": false,
+   "(ba)^5": false
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": false
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(1/4)",
+  "beta": "C_cfp",
+  "convention": "right",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": false,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": false,
+   "(ba)^5": false
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": false
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(3/4)",
+  "beta": "C_cfp^-1",
+  "convention": "left",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": false,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": false,
+   "(ba)^5": false
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": true
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(3/4)",
+  "beta": "C_cfp^-1",
+  "convention": "right",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": false,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": false,
+   "(ba)^5": false
+  },
+  "dictionary": {
+   "A=ba^2": true,
+   "B=b^2a": false,
+   "C=b^2": true
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(3/4)",
+  "beta": "C_cfp",
+  "convention": "left",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": true,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": true,
+   "(ba)^5": true
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": false
+  },
+  "all": false
+ },
+ {
+  "alpha": "rot(3/4)",
+  "beta": "C_cfp",
+  "convention": "right",
+  "relators_trivial": {
+   "a^4": true,
+   "b^3": true,
+   "[bab, a^2 bab a^2]": true,
+   "[bab, a^2 b^2 a^2 bab a^2 b a^2]": true,
+   "(ba)^5": true
+  },
+  "dictionary": {
+   "A=ba^2": false,
+   "B=b^2a": false,
+   "C=b^2": false
+  },
+  "all": false
+ }
+]

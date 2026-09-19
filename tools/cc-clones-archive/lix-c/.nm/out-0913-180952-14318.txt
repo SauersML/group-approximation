@@ -1,0 +1,25 @@
+[job] 18:10:02 acn112 waiting for clone lock
+[job] delta sync 68559b320..1b706daa0: 35 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 1b706daa0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-180952-14318.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3451 oleans
+--- errors (first 80 lines)
+6:✖ [4998/4999] Building GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel (4.6s)
+8:error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:140:39: unknown tactic
+9:error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:140:35: unsolved goals
+12:error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:234:41: unknown tactic
+13:error: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean:234:37: unsolved goals
+38:error: Lean exited with code 1
+84:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean
+- GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickeningModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

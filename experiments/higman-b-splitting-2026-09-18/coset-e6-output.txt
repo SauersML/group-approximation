@@ -1,0 +1,2 @@
+e=6 |L1bar|=2^15 [Qbar_B:Abar]=512
+e=6 |perm image|=8192 ord of images of a,b,c,d=[ 4, 16, 4, 16 ]

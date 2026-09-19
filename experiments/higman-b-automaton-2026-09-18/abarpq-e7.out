@@ -1,0 +1,21 @@
+e=7 Abar: 8194 relators
+Syntax warning: Unbound global variable in abarpq.g:9
+  o:=List(GeneratorsOfGroup(Ab),x->Log(Order(Image(epi,x)),2));;
+                                                   ^^^
+Syntax warning: Unbound global variable in abarpq.g:13
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                              ^^
+Syntax warning: Unbound global variable in abarpq.g:13
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                                 ^^
+Syntax warning: Unbound global variable in abarpq.g:13
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                                           ^
+e=7 class 1 log2 size 2 log2 ord(a,c) [ 1, 1 ] t=1132
+e=7 class 2 log2 size 5 log2 ord(a,c) [ 2, 2 ] t=3799
+e=7 class 3 log2 size 9 log2 ord(a,c) [ 3, 3 ] t=13079
+e=7 class 4 log2 size 14 log2 ord(a,c) [ 4, 4 ] t=33556
+e=7 class 5 log2 size 20 log2 ord(a,c) [ 4, 4 ] t=72738

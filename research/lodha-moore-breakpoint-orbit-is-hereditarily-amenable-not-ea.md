@@ -70,3 +70,27 @@ breakpoints, and it passes all of them while failing extensive amenability.
 
 Not covered: whether some nonamenable subgroup of `H` with pieces in `PSL_2(Z)` exists (it would kill
 integrality); whether `G_{1/2}` is nonamenable.
+
+## Attempts
+
+- **2026-09-17, swarm-0917-w14-w14-f-last1 (host-geometry). Item 4 is unconditional; the `C^1`
+  survivor dies; integrality is forced.**
+  - *Premise of item 4.* `G_{1/2}` is nonamenable. Two independent sources give this:
+    - part 2 of `thompson-f-co-amenable-hosts-have-integral-end-germs`, through the end germ `t + 1/2`;
+    - part 2 of `f-overgroups-with-a-non-integral-rational-piece-are-nonamenable`, through a
+      congruence drag that needs only an interior piece.
+    So `G_{1/2} ↷ Q` is a `C^1` calibrator with pieces in `PSL_2(Z[1/2])`. The survivor "`C^1`
+    regularity" in "What survives" is killed.
+  - *Integrality is forced.* Part 4 of the new node: if `F ≤ G` and `G` has finitely many
+    `PGL_2^+(Q)` pieces per element, then amenability of `G` forces
+    - all pieces into `PSL_2(Z)`;
+    - all breakpoints into `Q` or real quadratic irrationals;
+    - all rational-breakpoint elements into `F`.
+  - *The integrality survivor cannot be calibrated by measured orbit relations.* The "Not covered"
+    question above asks for a nonamenable subgroup `G` of `H` with pieces in `PSL_2(Z)`. Any such
+    group has `R_G ⊆ R_{PSL_2(Z)} = R_F` on `R \ Q`, with equality when `F ≤ G` (part 4 of the new
+    node). That relation is hyperfinite, so
+    Monod- or Carrière–Ghys-type arguments cannot certify its nonamenability. The invariant is the
+    measured orbit relation, and the step that dies is "exhibit a non-hyperfinite subrelation".
+  - *Still standing.* Specific relations of `F`, and the joint input "`C^1` and finitely presented".
+    `G_0` is not `C^1`, and finite presentability of `G_{1/2}` is open (l.138).

@@ -1,0 +1,476 @@
+0 pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+1 pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+2 pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+3 pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+4 pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+5 pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+6 pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+7 pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+8 pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+9 pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+10 pi_s=a pi_t=a e s|0=A s t|0=E t A s|3=t | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+11 pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+12 pi_s=a pi_t=a e s|0=E s t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+13 pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+14 pi_s=a pi_t=a e s|0=E s t|0=E t A s|3=t | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+15 pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+16 pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+17 pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+18 pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+19 pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+20 pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+21 pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+22 pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+23 pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+24 pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+25 pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+26 pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+27 pi_s=a pi_t=e a s|0=A s t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+28 pi_s=a pi_t=e a s|0=A s t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+29 pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+30 pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+31 pi_s=a pi_t=e a s|0=E s t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+32 pi_s=a pi_t=e a s|0=E s t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+33 pi_s=a pi_t=e a s|0=E s t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+34 pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+35 pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+36 pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+37 pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+38 pi_s=a pi_t=e e s|0=E s t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+39 pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+40 pi_s=a pi_t=e e s|0=E s t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+41 pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+42 pi_s=e pi_t=a s|0=s A t|0=t A s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+43 pi_s=e pi_t=a s|0=s A t|0=t E s|3=t | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+44 pi_s=e pi_t=a s|0=s E t|0=t A s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+45 pi_s=e pi_t=a s|0=s E t|0=t E s|3=t | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+46 pi_s=e pi_t=a s|0=A s t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+47 pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+48 pi_s=e pi_t=a s|0=E s t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+49 pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+50 pi_s=e pi_t=a e s|0=A s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+51 pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+52 pi_s=e pi_t=a e s|0=A s t|0=E t A s|3=t | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+53 pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+54 pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+55 pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+56 pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+57 pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+58 pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+59 pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+60 pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+61 pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+62 pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+63 pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+64 pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+65 pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+66 pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+67 pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+68 pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+69 pi_s=e pi_t=e a s|0=A s t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+70 pi_s=e pi_t=e a s|0=A s t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+71 pi_s=e pi_t=e a s|0=A s t|0=E t E s|3=t | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+72 pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+73 pi_s=e pi_t=e a s|0=E s t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+74 pi_s=e pi_t=e a s|0=E s t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+75 pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+76 pi_s=e pi_t=a a s|0=A s t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+77 pi_s=e pi_t=a a s|0=A s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+78 pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+79 pi_s=e pi_t=a a s|0=A s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+80 pi_s=e pi_t=a a s|0=E s t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+81 pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+82 pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+83 pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+84 pi_s=a e pi_t=a s|0=A s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+85 pi_s=a e pi_t=a s|0=A s A t|0=E t s|3=t | infinite ord(SSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+86 pi_s=a e pi_t=a s|0=A s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+87 pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+88 pi_s=a e pi_t=a s|0=E s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+89 pi_s=a e pi_t=a s|0=E s A t|0=E t s|3=t | infinite ord(SST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+90 pi_s=a e pi_t=a s|0=E s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+91 pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+92 pi_s=a e pi_t=e s|0=A s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+93 pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+94 pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+95 pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+96 pi_s=a e pi_t=e s|0=E s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+97 pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+98 pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+99 pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+100 pi_s=a e pi_t=a E s|0=A s A t|0=A t a s|3=t | infinite ord(ST) = inf, certificate ('a t', 6, 'a t')
+101 pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+102 pi_s=a e pi_t=a E s|0=A s A t|0=E t a s|3=t | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+103 pi_s=a e pi_t=a E s|0=A s A t|0=E t e s|3=t | infinite ord(SSt) = inf, certificate ('a E t t e', 8, 'a E t t e')
+104 pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+105 pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+106 pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+107 pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+108 pi_s=a e pi_t=a E s|0=E s A t|0=A t a s|3=t | infinite ord(ST) = inf, certificate ('a t', 6, 'a t')
+109 pi_s=a e pi_t=a E s|0=E s A t|0=A t e s|3=t | infinite ord(ST) = inf, certificate ('e t', 11, 'e t')
+110 pi_s=a e pi_t=a E s|0=E s A t|0=E t a s|3=t | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+111 pi_s=a e pi_t=a E s|0=E s A t|0=E t e s|3=t | infinite ord(SST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+112 pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+113 pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+114 pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+115 pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+116 pi_s=a e pi_t=e a s|0=A s A t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+117 pi_s=a e pi_t=e a s|0=A s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+118 pi_s=a e pi_t=e a s|0=A s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+119 pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+120 pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+121 pi_s=a e pi_t=e a s|0=A s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+122 pi_s=a e pi_t=e a s|0=A s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+123 pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+124 pi_s=a e pi_t=e a s|0=E s A t|0=A t A s|3=t | infinite ord(SSST) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+125 pi_s=a e pi_t=e a s|0=E s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+126 pi_s=a e pi_t=e a s|0=E s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+127 pi_s=a e pi_t=e a s|0=E s A t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E E t E', 5, 'a E t E E t E E t E')
+128 pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+129 pi_s=a e pi_t=e a s|0=E s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+130 pi_s=a e pi_t=e a s|0=E s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+131 pi_s=a e pi_t=e a s|0=E s E t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+132 pi_s=a e pi_t=a a s|0=A s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+133 pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+134 pi_s=a e pi_t=a a s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+135 pi_s=a e pi_t=a a s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+136 pi_s=a e pi_t=a a s|0=A s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+137 pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+138 pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+139 pi_s=a e pi_t=a a s|0=A s E t|0=E t E s|3=t | infinite ord(SSST) = inf, certificate ('a a a E t E E t E E t E', 5, 'a a a E t E E t E E t E')
+140 pi_s=a e pi_t=a a s|0=E s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+141 pi_s=a e pi_t=a a s|0=E s A t|0=A t E s|3=t | infinite ord(SSSt) = inf, certificate ('A t E t E', 8, 'A t E t E')
+142 pi_s=a e pi_t=a a s|0=E s A t|0=E t A s|3=t | infinite ord(SSSt) = inf, certificate ('A E t A E t E t', 5, 'A E t A E t E t')
+143 pi_s=a e pi_t=a a s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+144 pi_s=a e pi_t=a a s|0=E s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+145 pi_s=a e pi_t=a a s|0=E s E t|0=A t E s|3=t | infinite ord(SStt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+146 pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+147 pi_s=a e pi_t=a a s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+148 pi_s=a e pi_t=e e s|0=A s A t|0=A t A s|3=t | infinite ord(SSt) = inf, certificate ('A t', 8, 'A t')
+149 pi_s=a e pi_t=e e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+150 pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+151 pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+152 pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+153 pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+154 pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+155 pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+156 pi_s=a e pi_t=e e s|0=E s A t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+157 pi_s=a e pi_t=e e s|0=E s A t|0=A t E s|3=t | infinite ord(SSST) = inf, certificate ('A t E A t E t E', 6, 'A t E A t E t E')
+158 pi_s=a e pi_t=e e s|0=E s A t|0=E t A s|3=t | infinite ord(SSSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+159 pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+160 pi_s=a e pi_t=e e s|0=E s E t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+161 pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+162 pi_s=a e pi_t=e e s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+163 pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+164 pi_s=a E pi_t=a s|0=s t|0=t A s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+165 pi_s=a E pi_t=a s|0=s t|0=t E s|3=t | infinite ord(S) = inf, certificate ('a t E', 6, 'a t E')
+166 pi_s=a E pi_t=a s|0=A s a t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+167 pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+168 pi_s=a E pi_t=a s|0=A s e t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+169 pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+170 pi_s=a E pi_t=a s|0=E s a t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+171 pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+172 pi_s=a E pi_t=a s|0=E s e t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+173 pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+174 pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+175 pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+176 pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+177 pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+178 pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+179 pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+180 pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+181 pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+182 pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+183 pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+184 pi_s=a E pi_t=a e s|0=A s a t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+185 pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+186 pi_s=a E pi_t=a e s|0=A s a t|0=E t A s|3=t | infinite ord(STst) = inf, certificate ('e T', 11, 'e T')
+187 pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+188 pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+189 pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+190 pi_s=a E pi_t=a e s|0=A s e t|0=E t A s|3=t | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+191 pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+192 pi_s=a E pi_t=a e s|0=E s a t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+193 pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+194 pi_s=a E pi_t=a e s|0=E s a t|0=E t A s|3=t | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+195 pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+196 pi_s=a E pi_t=a e s|0=E s e t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+197 pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+198 pi_s=a E pi_t=a e s|0=E s e t|0=E t A s|3=t | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+199 pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+200 pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+201 pi_s=a E pi_t=e a s|0=A s a t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+202 pi_s=a E pi_t=e a s|0=A s a t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+203 pi_s=a E pi_t=e a s|0=A s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+204 pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+205 pi_s=a E pi_t=e a s|0=A s e t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+206 pi_s=a E pi_t=e a s|0=A s e t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+207 pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+208 pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+209 pi_s=a E pi_t=e a s|0=E s a t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+210 pi_s=a E pi_t=e a s|0=E s a t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+211 pi_s=a E pi_t=e a s|0=E s a t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+212 pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+213 pi_s=a E pi_t=e a s|0=E s e t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+214 pi_s=a E pi_t=e a s|0=E s e t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+215 pi_s=a E pi_t=e a s|0=E s e t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+216 pi_s=a E pi_t=a a s|0=A s a t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+217 pi_s=a E pi_t=a a s|0=A s a t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+218 pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+219 pi_s=a E pi_t=a a s|0=A s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+220 pi_s=a E pi_t=a a s|0=A s e t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+221 pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+222 pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+223 pi_s=a E pi_t=a a s|0=A s e t|0=E t E s|3=t | infinite ord(SSST) = inf, certificate ('a a a E t E E t E E t E', 5, 'a a a E t E E t E E t E')
+224 pi_s=a E pi_t=a a s|0=E s a t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+225 pi_s=a E pi_t=a a s|0=E s a t|0=A t E s|3=t | infinite ord(SSSt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+226 pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+227 pi_s=a E pi_t=a a s|0=E s a t|0=E t E s|3=t | infinite ord(STSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+228 pi_s=a E pi_t=a a s|0=E s e t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+229 pi_s=a E pi_t=a a s|0=E s e t|0=A t E s|3=t | infinite ord(SStt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+230 pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+231 pi_s=a E pi_t=a a s|0=E s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+232 pi_s=a E pi_t=e e s|0=A s a t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+233 pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+234 pi_s=a E pi_t=e e s|0=A s a t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+235 pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+236 pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+237 pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+238 pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+239 pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+240 pi_s=a E pi_t=e e s|0=E s a t|0=A t A s|3=t | infinite ord(ST) = inf, certificate ('A t', 8, 'A t')
+241 pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+242 pi_s=a E pi_t=e e s|0=E s a t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+243 pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+244 pi_s=a E pi_t=e e s|0=E s e t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+245 pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+246 pi_s=a E pi_t=e e s|0=E s e t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+247 pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+248 pi_s=e a pi_t=a s|0=A s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+249 pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+250 pi_s=e a pi_t=a s|0=A s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+251 pi_s=e a pi_t=a s|0=A s E t|0=E t s|3=t | infinite ord(SSST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+252 pi_s=e a pi_t=a s|0=E s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+253 pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+254 pi_s=e a pi_t=a s|0=E s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+255 pi_s=e a pi_t=a s|0=E s E t|0=E t s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+256 pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+257 pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+258 pi_s=e a pi_t=e s|0=A s E t|0=A t s|3=t | infinite ord(SSTT) = inf, certificate ('A t t', 8, 'A t a t')
+259 pi_s=e a pi_t=e s|0=A s E t|0=E t s|3=t | infinite ord(ST) = inf, certificate ('a E t', 11, 'a E t')
+260 pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+261 pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+262 pi_s=e a pi_t=e s|0=E s E t|0=A t s|3=t | infinite ord(SStt) = inf, certificate ('A t t', 8, 'A t a t')
+263 pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+264 pi_s=e a pi_t=a e s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+265 pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+266 pi_s=e a pi_t=a e s|0=A s A t|0=E t A s|3=t | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+267 pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+268 pi_s=e a pi_t=a e s|0=A s E t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t A A t A t', 6, 'A A t A A t A t')
+269 pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+270 pi_s=e a pi_t=a e s|0=A s E t|0=E t A s|3=t | infinite ord(STT) = inf, certificate ('E t', 11, 'E t')
+271 pi_s=e a pi_t=a e s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+272 pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+273 pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+274 pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+275 pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+276 pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+277 pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+278 pi_s=e a pi_t=a e s|0=E s E t|0=E t A s|3=t | infinite ord(SSST) = inf, certificate ('E t', 11, 'E t')
+279 pi_s=e a pi_t=a e s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+280 pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+281 pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+282 pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+283 pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+284 pi_s=e a pi_t=a E s|0=A s E t|0=A t a s|3=t | infinite ord(SSt) = inf, certificate ('a t', 6, 'a t')
+285 pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+286 pi_s=e a pi_t=a E s|0=A s E t|0=E t a s|3=t | infinite ord(SSt) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+287 pi_s=e a pi_t=a E s|0=A s E t|0=E t e s|3=t | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+288 pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+289 pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+290 pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+291 pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+292 pi_s=e a pi_t=a E s|0=E s E t|0=A t a s|3=t | infinite ord(SST) = inf, certificate ('a t', 6, 'a t')
+293 pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+294 pi_s=e a pi_t=a E s|0=E s E t|0=E t a s|3=t | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+295 pi_s=e a pi_t=a E s|0=E s E t|0=E t e s|3=t | infinite ord(SSSt) = inf, certificate ('a E t t e', 8, 'a E t t e')
+296 pi_s=e a pi_t=a a s|0=A s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+297 pi_s=e a pi_t=a a s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+298 pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+299 pi_s=e a pi_t=a a s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+300 pi_s=e a pi_t=a a s|0=A s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+301 pi_s=e a pi_t=a a s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+302 pi_s=e a pi_t=a a s|0=A s E t|0=E t A s|3=t | infinite ord(SStt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+303 pi_s=e a pi_t=a a s|0=A s E t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+304 pi_s=e a pi_t=a a s|0=E s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+305 pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+306 pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+307 pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+308 pi_s=e a pi_t=a a s|0=E s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+309 pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+310 pi_s=e a pi_t=a a s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+311 pi_s=e a pi_t=a a s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+312 pi_s=e a pi_t=e e s|0=A s A t|0=A t A s|3=t | infinite ord(SSt) = inf, certificate ('A t', 8, 'A t')
+313 pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+314 pi_s=e a pi_t=e e s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+315 pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+316 pi_s=e a pi_t=e e s|0=A s E t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+317 pi_s=e a pi_t=e e s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+318 pi_s=e a pi_t=e e s|0=A s E t|0=E t A s|3=t | infinite ord(SSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+319 pi_s=e a pi_t=e e s|0=A s E t|0=E t E s|3=t | infinite ord(ST) = inf, certificate ('a E t E', 11, 'a E t E')
+320 pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+321 pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+322 pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+323 pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+324 pi_s=e a pi_t=e e s|0=E s E t|0=A t A s|3=t | infinite ord(ST) = inf, certificate ('A t', 8, 'A t')
+325 pi_s=e a pi_t=e e s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+326 pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+327 pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+328 pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+329 pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+330 pi_s=a a pi_t=e s|0=A s E t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+331 pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+332 pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+333 pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+334 pi_s=a a pi_t=e s|0=E s E t|0=A t s|3=t | infinite ord(SSt) = inf, certificate ('A t t', 8, 'A t a t')
+335 pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+336 pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+337 pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+338 pi_s=a a pi_t=a e s|0=A s A t|0=E t A s|3=t | infinite ord(SSSt) = inf, certificate ('A E t A E t a a E t', 5, 'A E t A E t a E t')
+339 pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+340 pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+341 pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+342 pi_s=a a pi_t=a e s|0=A s E t|0=E t A s|3=t | infinite ord(STT) = inf, certificate ('E t', 11, 'E t')
+343 pi_s=a a pi_t=a e s|0=A s E t|0=E t E s|3=t | infinite ord(SStt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+344 pi_s=a a pi_t=a e s|0=E s A t|0=A t A s|3=t | infinite ord(SSSt) = inf, certificate ('A A t t', 8, 'A A t t')
+345 pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+346 pi_s=a a pi_t=a e s|0=E s A t|0=E t A s|3=t | infinite ord(Stt) = inf, certificate ('E t', 11, 'E t')
+347 pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+348 pi_s=a a pi_t=a e s|0=E s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+349 pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+350 pi_s=a a pi_t=a e s|0=E s E t|0=E t A s|3=t | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+351 pi_s=a a pi_t=a e s|0=E s E t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+352 pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+353 pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+354 pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+355 pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+356 pi_s=a a pi_t=a E s|0=A s E t|0=A t a s|3=t | infinite ord(St) = inf, certificate ('a t', 6, 'a t')
+357 pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+358 pi_s=a a pi_t=a E s|0=A s E t|0=E t a s|3=t | infinite ord(SST) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+359 pi_s=a a pi_t=a E s|0=A s E t|0=E t e s|3=t | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+360 pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+361 pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+362 pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+363 pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+364 pi_s=a a pi_t=a E s|0=E s E t|0=A t a s|3=t | infinite ord(STT) = inf, certificate ('a t', 6, 'a t')
+365 pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+366 pi_s=a a pi_t=a E s|0=E s E t|0=E t a s|3=t | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+367 pi_s=a a pi_t=a E s|0=E s E t|0=E t e s|3=t | infinite ord(SST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+368 pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+369 pi_s=a a pi_t=e a s|0=A s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+370 pi_s=a a pi_t=e a s|0=A s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+371 pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+372 pi_s=a a pi_t=e a s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+373 pi_s=a a pi_t=e a s|0=A s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+374 pi_s=a a pi_t=e a s|0=A s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+375 pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+376 pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+377 pi_s=a a pi_t=e a s|0=E s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+378 pi_s=a a pi_t=e a s|0=E s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+379 pi_s=a a pi_t=e a s|0=E s A t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+380 pi_s=a a pi_t=e a s|0=E s E t|0=A t A s|3=t | infinite ord(SSt) = inf, certificate ('A A t A t', 8, 'A A t t')
+381 pi_s=a a pi_t=e a s|0=E s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+382 pi_s=a a pi_t=e a s|0=E s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+383 pi_s=a a pi_t=e a s|0=E s E t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+384 pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+385 pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+386 pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+387 pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+388 pi_s=a a pi_t=e e s|0=A s E t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+389 pi_s=a a pi_t=e e s|0=A s E t|0=A t E s|3=t | infinite ord(SSTT) = inf, certificate ('A t E a t E', 8, 'A t E t E')
+390 pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+391 pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+392 pi_s=a a pi_t=e e s|0=E s A t|0=A t A s|3=t | infinite ord(SST) = inf, certificate ('A t', 8, 'A t')
+393 pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+394 pi_s=a a pi_t=e e s|0=E s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+395 pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+396 pi_s=a a pi_t=e e s|0=E s E t|0=A t A s|3=t | infinite ord(SSt) = inf, certificate ('A A t t', 11, 'A A t t')
+397 pi_s=a a pi_t=e e s|0=E s E t|0=A t E s|3=t | infinite ord(SSST) = inf, certificate ('A t E a t E', 8, 'A t E t E')
+398 pi_s=a a pi_t=e e s|0=E s E t|0=E t A s|3=t | infinite ord(SSt) = inf, certificate ('A E t E t', 8, 'A E t E t')
+399 pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+400 pi_s=e e pi_t=a s|0=A s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+401 pi_s=e e pi_t=a s|0=A s A t|0=E t s|3=t | infinite ord(SSSt) = inf, certificate ('a E t E t', 8, 'a E t E t')
+402 pi_s=e e pi_t=a s|0=A s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+403 pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+404 pi_s=e e pi_t=a s|0=E s A t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+405 pi_s=e e pi_t=a s|0=E s A t|0=E t s|3=t | infinite ord(SSST) = inf, certificate ('a E t E t', 8, 'a E t E t')
+406 pi_s=e e pi_t=a s|0=E s E t|0=A t s|3=t | infinite ord(S) = inf, certificate ('t', 11, 't')
+407 pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+408 pi_s=e e pi_t=a e s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+409 pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+410 pi_s=e e pi_t=a e s|0=A s A t|0=E t A s|3=t | infinite ord(SSt) = inf, certificate ('E t', 11, 'E t')
+411 pi_s=e e pi_t=a e s|0=A s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+412 pi_s=e e pi_t=a e s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+413 pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+414 pi_s=e e pi_t=a e s|0=A s E t|0=E t A s|3=t | infinite ord(SSTT) = inf, certificate ('E t', 11, 'E t')
+415 pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+416 pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+417 pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+418 pi_s=e e pi_t=a e s|0=E s A t|0=E t A s|3=t | infinite ord(SSST) = inf, certificate ('E t', 11, 'E t')
+419 pi_s=e e pi_t=a e s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+420 pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+421 pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+422 pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+423 pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+424 pi_s=e e pi_t=a E s|0=A s A t|0=A t a s|3=t | infinite ord(St) = inf, certificate ('a t', 6, 'a t')
+425 pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+426 pi_s=e e pi_t=a E s|0=A s A t|0=E t a s|3=t | infinite ord(SST) = inf, certificate ('a a a E t a E t', 11, 'a a a E t a E t')
+427 pi_s=e e pi_t=a E s|0=A s A t|0=E t e s|3=t | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+428 pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+429 pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+430 pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+431 pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+432 pi_s=e e pi_t=a E s|0=E s A t|0=A t a s|3=t | infinite ord(SST) = inf, certificate ('a a t t', 8, 'a a t t')
+433 pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+434 pi_s=e e pi_t=a E s|0=E s A t|0=E t a s|3=t | infinite ord(ST) = inf, certificate ('a a E t', 8, 'a a E t')
+435 pi_s=e e pi_t=a E s|0=E s A t|0=E t e s|3=t | infinite ord(SSST) = inf, certificate ('a E t t e', 8, 'a E t t e')
+436 pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+437 pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+438 pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+439 pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+440 pi_s=e e pi_t=e a s|0=A s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+441 pi_s=e e pi_t=e a s|0=A s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+442 pi_s=e e pi_t=e a s|0=A s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+443 pi_s=e e pi_t=e a s|0=A s A t|0=E t E s|3=t | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+444 pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+445 pi_s=e e pi_t=e a s|0=A s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+446 pi_s=e e pi_t=e a s|0=A s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+447 pi_s=e e pi_t=e a s|0=A s E t|0=E t E s|3=t | infinite ord(SSST) = inf, certificate ('a E t E E t E', 8, 'a E t E E t E')
+448 pi_s=e e pi_t=e a s|0=E s A t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+449 pi_s=e e pi_t=e a s|0=E s A t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+450 pi_s=e e pi_t=e a s|0=E s A t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+451 pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+452 pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+453 pi_s=e e pi_t=e a s|0=E s E t|0=A t E s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+454 pi_s=e e pi_t=e a s|0=E s E t|0=E t A s|3=t | infinite ord(S) = inf, certificate ('E t', 11, 'E t')
+455 pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+456 pi_s=e e pi_t=a a s|0=A s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+457 pi_s=e e pi_t=a a s|0=A s A t|0=A t E s|3=t | infinite ord(SSt) = inf, certificate ('A t E a t E', 8, 'A t E a t E')
+458 pi_s=e e pi_t=a a s|0=A s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+459 pi_s=e e pi_t=a a s|0=A s A t|0=E t E s|3=t | infinite ord(SSSt) = inf, certificate ('a a E t E E t E', 11, 'a a E t E E t E')
+460 pi_s=e e pi_t=a a s|0=A s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+461 pi_s=e e pi_t=a a s|0=A s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+462 pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+463 pi_s=e e pi_t=a a s|0=A s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+464 pi_s=e e pi_t=a a s|0=E s A t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+465 pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+466 pi_s=e e pi_t=a a s|0=E s A t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+467 pi_s=e e pi_t=a a s|0=E s A t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+468 pi_s=e e pi_t=a a s|0=E s E t|0=A t A s|3=t | infinite ord(S) = inf, certificate ('A t', 11, 'A t')
+469 pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+470 pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+471 pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | undecided |H| > 0, no infinite-order word of length <= 4
+
+verdict, |H| : count
+  ('undecided', '') : 286
+  ('infinite', '') : 186

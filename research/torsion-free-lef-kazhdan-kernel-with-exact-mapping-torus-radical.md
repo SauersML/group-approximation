@@ -86,3 +86,30 @@ these classes; the claim stays OPEN.**
   no invariant approximating family in any mother presentation. For elementary kernels, this means a
   nonstandard automorphism, or `EL_n(σ)` with `σ` of infinite order modulo inner automorphisms, e.g.
   induced by `ψ ∈ Aut(X,T)` of infinite order modulo `<T>`.
+
+**Attempt 2 (swarm-0917 w15-titz-break): the corner route to (LK3) over rank-function rings. Dead for
+this class; the claim stays OPEN.**
+
+- **The class.** The only established tool that proves `Rad_MF ⊇` a nontrivial subgroup by compression
+  is `kazhdan-centralizer-commuting-conjugates-kill-derived-subgroup`. Its matrix form over a ring `R`
+  inside `GL_n(R) ⋊_σ Z` places:
+  - the Kazhdan block `L` on a corner `f`;
+  - the lamp `C` on an orthogonal corner `e`;
+  - a compressor `u = h_0 π t^m`.
+
+  This is a corner certificate.
+- **Where every member dies.** (KC0) read entrywise gives `τ(e) = τ(e)(f - τf)(1 + w)`. So
+  `rk(e) ≤ rk(f) - rk(τ f)` for every `τ`-invariant Sylvester rank function. One `σ`-invariant rank
+  function exists as soon as any rank function does (averaging), and it forces `e` into its proper null
+  ideal. See `corner-kc-certificates-die-at-invariant-rank-functions`.
+- **What this kills.**
+  - Over `LC(X,F_q) ⋊ Z` and `LC(X,Z) ⋊ Z`, which are simple or residually simple with rank functions,
+    there is no nontrivial corner certificate in any subgroup of `GL_n(R) ⋊_σ Z`, for any `σ`.
+  - This includes the residual (L2) automorphisms induced by `ψ ∈ Aut(X,T)` of infinite order modulo
+    `<T>`, and every torsion-free Kazhdan subgroup of these linear groups.
+- **What survives.**
+  - Compressors `u` that mix coordinates non-monomially.
+  - Centralizers that do not come from orthogonal corners.
+  - Coefficient rings in which the lamp corner is null for every invariant rank function, which is
+    the Hilbert-hotel, rank-function-free side. There, soficity of the kernel is the open problem.
+  - Proofs of (LK3) that do not go through compression certificates at all.

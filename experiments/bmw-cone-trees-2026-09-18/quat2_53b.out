@@ -1,0 +1,174 @@
+== 50_30 169
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 236
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 266
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 270
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 328
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 334
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 356
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 383
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 399
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 435
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 451
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 459
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 483
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 486
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 491
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 495
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 502
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_30 559
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 114
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 135
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 141
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 158
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 185
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 219
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 232
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 240
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 244
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 249
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 41
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 80
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 50_31 84
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 146
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 324
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 503
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 539
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 568
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 637
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_30 643
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 155
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 244
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 245
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 264
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 266
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 294
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 300
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 303
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 304
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 306
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 307
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 51_31 47
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_30 134
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_30 256
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_30 271
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_30 290
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_31 133
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_31 197
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_31 39
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0
+== 52_31 48
+candidates {('H', True): 12, ('H', False): 30, ('V', True): 6, ('V', False): 18}
+done found 0

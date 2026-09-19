@@ -584,6 +584,193 @@ acceptor with unknown constant
 A constructive proof must consume a total decision procedure of the input, not
 a presentation or a complexity grade.
 
+**September 18: the balanced-loop Tits host.**  This attempt is the Tits route through
+the fully self-replicating `M_11`-group `R° = ⟨M_11, b, C⟩`
+(`m11-balanced-loop-host-has-finite-h1`). Its simple host is finitely presented iff
+`R°` is.
+
+- The homological screen is now complete in degree 2:
+  - a fully self-replicating group of type `FP_2` has odd cyclic `H_1`, over every
+    field, including `p = 2` and the primes dividing `|P|`
+    (`fully-self-replicating-fp2-groups-have-odd-cyclic-h1`);
+  - this kills every `b_1 ≥ 1` candidate on this route.
+- `R°` passes that screen: `H_1(R°) = Z/55` exactly
+  (`m11-balanced-loop-host-h1-is-z55`).
+- The degree-2 Nakaoka recursion for `R°` is the identity, so homology cannot decide
+  `FP_2`.
+
+*Stuck* at `FP_2` of `R°`. This needs a presentation-level argument, for example an
+L-presentation.
+
+**September 18: an L-presentation for the balanced-loop host.**  This continues the
+`R°` route, at the presentation level and without homology
+(`m11-balanced-loop-host-has-exact-finite-l-presentation`).
+
+- `R°` has an exact finite L-presentation `⟨S | Q_0 | σ⟩` with `σ(s) = s@1`, even though it
+  is not contracting. Exactness comes from a letter-weight descent that ends in pure powers.
+- The partial groups satisfy `G_n ≅ G_{n-1} ≀ M_11`. So `R°` is finitely presented iff
+  `σ(Q_0) ⊆ ⟨⟨Q_0⟩⟩`, iff the explicit epimorphism `G_0 ↠ G_0 ≀ M_11` is injective.
+- `R°` embeds in the finitely presented ascending HNN extension `R° *_{ι_1}`.
+
+*Stuck* at the single inclusion `σ(Q_0) ⊆ ⟨⟨Q_0⟩⟩`. `Q_0 ∖ R1` has 48 explicit words.
+There are two ways forward:
+- derive the `M_11` relations for `ι_1(M_11)` inside `G_0`;
+- find a quotient of `G_0` that does not factor through `G_0 ↠ G_0 ≀ M_11`.
+
+**September 18: the balanced-loop host is not finitely presented.**  This closes the `R°`
+route (`m11-balanced-loop-host-is-not-finitely-presented`).
+
+- For a finitely presented self-similar group, the relations have stable sections in a
+  finite section-closed set `Q^∞`. For `R°`, weight-preserving section cycles end in pure
+  powers, so `Q^∞ ⊆ {b^{55j}, α^{55j}, β^{55j}}`.
+- The relations `σ^k(α)^{11}` keep the fixed section `ω_α^{11}` at `1^k`, and it is
+  nontrivial in `Z/55 * Z/55`. So `R°` and its simple Tits host are not finitely presented.
+- The explicit inclusion also fails: `σ(R2(C)) ∉ ⟨⟨Q_0⟩⟩`, witnessed by level-3 sections
+  mapped to `S_5`. So the L-presentation tower is strictly increasing.
+
+*Dead* for `R°`. The argument is not homological. It shows that the descent which made
+the L-presentation exact also forces non-finite presentation. A finitely presented
+candidate on the Tits route needs a stable relator that is not a pure power: a relation on
+a weight-preserving section cycle that mixes state letters, or state letters with root
+permutations.
+
+**September 18: the retract criterion, and pure loops are never finitely presented.** See
+`pure-loop-self-replicating-groups-are-not-fp`.
+
+- A fully self-replicating `G` is finitely presented iff it is a retract of the stable
+  presentation `F/⟨⟨Q^∞⟩⟩`. The splitting is the section-at-`1^k` map `T_k`.
+- `G` is one-ended, so by Kurosh no free splitting of `F` into two factors of proper image
+  can carry `Q^∞`.
+- For unit-weight recursions whose weight-preserving section cycles are pure loops (a finite
+  screen), the stable relators are pure. So `Γ = Γ_st * Γ_rt`, and `G` is not finitely
+  presented.
+
+This gives a second proof for `R°`. It is new for the separated-loop host `R'`, which H_1
+had left open, and for the decorated-loop host `R_γ`, after a Nielsen move. Their simple
+Tits hosts are not finitely presented either.
+
+*Dead* for every pure-loop design. A finitely presented candidate needs stable relators
+that mix letters of different root image in every free basis. It would also be a finitely
+presented branch group, which is the open Bartholdi–Grigorchuk–Šunić question. So the
+Tits route is at least as hard as that question.
+
+**September 18: same-point loops reduce to loop-graph words.** See
+`same-point-loop-recursions-reduce-to-loop-graph-words`.
+
+- Assume (U), and that every weight-preserving section cycle is a self-loop. Then every
+  stable relator is a section of a cycle word of a finite loop graph `Γ_1` on `X`.
+- So finite presentation is decided by finitely many explicit power relators `Q_E`:
+  - a forest, or infinite-order cycle words, gives "not fp";
+  - otherwise a Kurosh splitting of `Q_E` into blocks of proper image gives "not fp".
+- In a 62,500-member `M_11` family, with two letters looping at the same point and
+  generating root permutations, everything is killed except the 472 linear bouquet
+  recursions (`R''`-type).
+
+*Dead* for the expectation that such same-point designs break (A') and (C'') in every basis.
+In the bouquet case the rooted Nielsen move `s ↦ A s B` puts both root permutations in
+`Stab(z)`. What remains there is the ray-loop subgroup at `z^∞`.
+
+**September 19: the 472 linear bouquet recursions by their ray-loop group.** See
+`linear-bouquet-recursions-ray-loop-and-contraction`.
+
+- The ray-loop hypotheses hold, and the only loop group is `H = ⟨S, T⟩` at `z^∞`, embedded in
+  `B ≀_{X∖z} F` with `B = ⟨α, β, t⟩` contracting.
+- Lemma C: `G` is contracting iff `H` is finite. Finite `H` therefore kills `G` (contracting and
+  regular branch over itself). This kills 108 recursions: 27 commuting ones with finite
+  orders and 81 by an exact presentation certificate of `H`.
+- Lemma G (germ character): `b_1(G) = b_1(H) ≤ 1`. The 20 commuting recursions with `S` of
+  infinite order have `H ≅ Z × C_k` (fp), `b_1(G) = 1`, and are not `FP_10`. They are amenable
+  and not contracting, and no current obstruction decides their finite presentability.
+
+*Open*: 364 recursions (20 commuting survivors, 212 non-commuting with `H` infinite,
+132 undecided). No finitely presented member, so no Boone–Higman certificate from this family yet.
+
+**September 19: the linear bouquet recursions split over a finite group, so none is finitely
+presented.** See `linear-m11-bouquet-recursions-are-not-finitely-presented`.
+
+- New obstruction (item 1). Let `G` be fully self-replicating. Suppose its stable relators
+  lie in two free factors `F_1` and `F_2` of `F` that share a sub-basis `B_0`, and suppose
+  `ρ(F(B_0))` is finite. Then the stable presentation is an amalgam over a finite group.
+  One-endedness puts the retracted copy of `G` in a vertex group, so `ρ(F_i) = G` for some
+  `i`. If neither factor maps onto `G`, then `G` is not finitely presented. This extends
+  the free-splitting (Kurosh) obstruction, which is the case `B_0 = ∅`.
+- For every two-letter bouquet under (U) and (L1), the stable relators are sections of words
+  in `F(S, T)`. Such sections lie in `F(S, T)` or `F(a, e, T)`, and `ord T` is finite
+  because `t` is bounded. So none of these recursions is finitely presented.
+- This decides the step's case 468, all 20 commuting survivors (`H ≅ Z × C_k`), and the
+  remaining 344 open cases. All 472 linear bouquets are therefore not finitely presented.
+- The whole 62,500-member M_11 family now has no finitely presented member.
+
+*Design rule*: a finitely presented self-similar Boone–Higman host needs one of three
+things: three or more state letters, a section of weight at least 2, or a two-letter section
+cycle. In each case the aim is that no finite-order loop has a section-closed letter block.
+
+**September 19: the amalgam obstruction extends to infinite edge groups and to polynomial
+recursions with any number of letters.** See
+`unit-weight-polynomial-recursions-split-over-loop-edges`.
+
+- *Lemma T* replaces one-endedness. Let `G` be fully self-replicating with a perfect,
+  transitive root group (such as `M_11`). Then every `G`-tree without inversions has a
+  vertex fixed by `G`, or an edge stabilizer that contains a coordinate copy `ι_y(G')`.
+- *Tree-of-factors obstruction.* Suppose the stable relators lie, up to conjugacy, in the
+  vertex factors of a tree of free factors of `F`, no edge factor maps onto a group
+  containing `ι_y(G')`, and no vertex factor maps onto `G`. Then `G` is not finitely
+  presented. The edge images may be infinite; the bouquet node needed them finite.
+- *Polynomial loop star.* This covers M_11 recursions with unit-weight sections (U) and
+  polynomial activity (Poly), with any number of letters and with section cycles such as
+  `s → t → s^{-1} → …`. The stable relators live in the lower-degree letters or in the
+  loop-graph components. The lower-degree centre maps into `Pol(d − 1)`, so it is proper
+  automatically. A component is harmless when its lower loops form a forest and its
+  rank is at most 1 (free split), or when its edge is small and its loop group is proper.
+- *Screen.* The screen covered 16,384 three-letter M_11 recursions in four families: chain,
+  fan, section cycle `s ↔ t`, and signed cycle. It killed 15,011 of them exactly, including
+  367 whose edge loops have no finite order `≤ 60` (so the bouquet obstruction cannot touch
+  them). The 1373 survivors all fail only (b). Each has a non-free loop component
+  containing `s, t, u` whose loops are transitive on levels 1–3, and in the 48 inspected
+  cases the level-2 image is full `M_11 ≀ M_11`. These are the first candidates on which the
+  amalgam argument genuinely fails, provided the loops generate `G`. The example is chain
+  with `(ps, pt, pu) = (a, a, e)` and no decorations.
+- Nontrivial loops are never finitary. So the bouquet node's design rule ("no finite-order
+  loop with a section-closed letter block") does not describe the obstruction.
+
+*Design rule (replaces the September 19 bouquet rule)*: a finitely presented unit-weight
+polynomial host needs a loop-graph component with `rank π_1 ≥ 2`, or a cycle of lower
+loops, that contains a top-degree letter and whose loops generate all of `G`. The other
+ways out are leaving (U), with a section of weight at least 2, or leaving (Poly), with
+exponential activity.
+
+**September 19: the 1373 loop-star survivors are dead, by homology; the loops of the first one do generate G.**
+See `m11-loop-star-survivors-are-not-finitely-presented`.
+
+- *The (γ)-case is real.* In the chain survivor with root words `(a, a, e)`, the loops
+  `s, t, u` generate all of `G`. The stabilizer sections are all of `G`, and a commutator of
+  loops is a coordinate element, so the loop group contains `∏_x ι_x(G')`. It also maps onto
+  `Z^{33} ⋊ M_11`. So the loop-star leaf maps onto `G`, and no splitting argument separates
+  this recursion.
+- *But `H_1(G) = Z^3`.* A new linear descent theorem shows that an exponent-sum functional
+  `λ` survives every relation when three conditions hold:
+  - `λ(M^p − I)` lies in the span of the functionals already found;
+  - `λ` kills the closed loop-graph walks fixed by `M^p`;
+  - `λ` restricts to a valid functional on the lower letters.
+
+  The theorem applies to unit-weight polynomial recursions under a mild uniqueness
+  condition (T_p). Its key point is that stable relators spell closed walks in the
+  loop graph.
+- *All survivors.* Exact linear algebra on all 1373 survivors gives `b_1 ≥ 1` in every
+  case:
+  - `b_1 ≥ 3` for 637 chain survivors;
+  - `b_1 ≥ 2` for 673 survivors;
+  - `b_1 ≥ 1` for the other 63 (fan, cycle, scycle).
+
+  By `fully-self-replicating-fp2-groups-have-odd-cyclic-h1`, none is `FP_2`, and neither
+  is its Tits host. All 16,384 screened three-letter M_11 recursions are therefore not
+  finitely presented.
+
+*Design rule (adds to the September 19 loop-star rule)*: a finitely presented unit-weight
+polynomial host needs `Λ_S = 0`. Every exponent-sum functional must be killed by closed
+loop-graph walks whose letter sums are fixed by `M^p`. This is on top of escaping the
+loop-star obstruction. Screen with `descent.py` first; it is cheap.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

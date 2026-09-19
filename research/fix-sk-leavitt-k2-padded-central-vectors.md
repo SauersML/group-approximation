@@ -7,7 +7,9 @@ title: "Fix GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCen
 
 **OPEN.** Lean module `GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittK2/PaddedCentral/Vectors.lean` fails to build on main (trusted MSI build of origin/main 3c8b417428, 09-18; 2 error lines).
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: ms-green-sk.
-Source changed on main since that build: no.
+Source changed on main since that build: yes.
+
+**Repair landed, unprobed.** 8d6acdcd0c: Land the Boone-Higman swarms unlanded lane drafts and Lean edits. Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 

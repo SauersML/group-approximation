@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2509 oleans
+[job] acn112 cores=64-71 threads=8 base=39dd43b399a1a69065c1c59441879a389a2132ee mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+ℹ [2823/2976] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4587/4587] Built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences (15s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:376:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:377:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonShiftAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:378:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonKernelFinitary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:379:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonRadicalEquality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4587 jobs).
+EXIT=0

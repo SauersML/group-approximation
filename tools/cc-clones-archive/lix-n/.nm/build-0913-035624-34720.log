@@ -1,0 +1,11 @@
+purged 19 stale artifact sets (source-newer=2, import-newer=17) of 3103 oleans
+[job] n9 cores=slurm threads=8 base=4d91f287083630d290ae5671f550c0e000de6537 mods: GroupApproximation.GGT.VanKampen.RegionShellingSpurCounterexample
+ℹ [3367/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4592/4592] Built GroupApproximation.GGT.VanKampen.RegionShellingSpurCounterexample (87s)
+info: GroupApproximation/GGT/VanKampen/RegionShellingSpurCounterexample.lean:121:21: 'GroupApproximation.GGT.VanKampen.RegionShellingSpurCounterexample.not_regionShellingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4592 jobs).
+EXIT=0

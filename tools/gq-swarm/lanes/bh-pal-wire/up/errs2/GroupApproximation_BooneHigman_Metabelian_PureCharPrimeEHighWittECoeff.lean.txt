@@ -1,0 +1,6 @@
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:67:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_shift_coeff_zero`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

@@ -1,0 +1,9 @@
+{"pat": "30_30", "cls": 10, "R": 6, "ok": true, "leaves": 250, "sec": 27.0, "msg": ""}
+{"pat": "40_30", "cls": 14, "R": 6, "ok": false, "leaves": null, "sec": 408.5, "msg": "budget exhausted: leaves 86 time 408"}
+{"pat": "40_30", "cls": 57, "R": 6, "ok": false, "leaves": null, "sec": 415.2, "msg": "budget exhausted: leaves 341 time 415"}
+{"pat": "40_30", "cls": 61, "R": 6, "ok": false, "leaves": null, "sec": 407.3, "msg": "budget exhausted: leaves 101 time 407"}
+{"pat": "40_30", "cls": 62, "R": 6, "ok": false, "leaves": null, "sec": 401.6, "msg": "budget exhausted: leaves 204 time 401"}
+{"pat": "40_30", "cls": 68, "R": 6, "ok": false, "leaves": null, "sec": 401.6, "msg": "budget exhausted: leaves 95 time 401"}
+{"pat": "40_30", "cls": 114, "R": 6, "ok": false, "leaves": null, "sec": 401.2, "msg": "budget exhausted: leaves 64 time 400"}
+{"pat": "41_30", "cls": 74, "R": 6, "ok": false, "leaves": null, "sec": 401.3, "msg": "budget exhausted: leaves 216 time 400"}
+{"pat": "41_30", "cls": 132, "R": 6, "ok": false, "leaves": null, "sec": 401.4, "msg": "budget exhausted: leaves 212 time 400"}

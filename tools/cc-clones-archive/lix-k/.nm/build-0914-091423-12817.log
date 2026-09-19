@@ -1,0 +1,43 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3709 oleans
+[job] acn112 cores=72-79 threads=8 base=23cc32b8a71916268a4231d236fd1b2b41c8b4b5 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels
+ℹ [3308/3407] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10110/10118] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:397:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:398:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:399:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_letters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:400:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:401:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_boundaryWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10118/10118] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels (24s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:213:4: 'change C ∈ P.diagram.relatorCells' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:298:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.eq_or_mem_of_cycle_mem_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:299:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.mem_T_of_wordNorm_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:300:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.false_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:301:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pocketPinchPosRefutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels
+error: build failed
+EXIT=1

@@ -1,0 +1,7 @@
+phi0 {'a': 'abb', 'b': 'bca', 'c': 'babb'} m 2 rm 2 rp a2b1c1 types 649 windows 112 maxval 4
+polygons 40 by length {2: 32, 3: 0, 4: 8} non-polygons 0 []
+rows 726 nonzero rows 0 normalisation 1 negative values 0
+chi -1 window flow {'bbc': '1/8', 'bcc': '1/8', 'cbb': '1/8', 'ccb': '1/8', 'BBC': '1/8', 'BCC': '1/8', 'CBB': '1/8', 'CCB': '1/8'}
+EXACT FEASIBLE POINT VERIFIED
+polygons 40 found by the brute enumeration 40 start types 40
+MEMBERSHIP VERIFIED

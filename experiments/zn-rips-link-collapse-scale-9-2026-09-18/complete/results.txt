@@ -1,0 +1,270 @@
+# VR(Z^8, d_1; 9): logs of the search and of every verification run
+# Machine: one core per process, nice 10, timeout 1200 s per run.
+
+## Search, k = 8, stage 13 (KZ_KFIRST=1 KZ_KSEL=1 ./kzh 8 9 e12.txt e13.txt k13.txt 1100)
+M=95571 adjacency built t=41s
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=95371 t=271s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=95171 t=477s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=94971 t=813s
+pass 1: left 94817 D=0 K=754 (viaZ 754 prot 0) fail=0 t=1101s by norm: 8 54 211 490 2756 4296 15768 15808 55426 [D+K sweep]
+n=8 r=9 |C|=95571 D=0 K=754 left=94817 STUCK (time budget)
+
+## Prediction: delete T13 (11,170 points) from the stage-13 end set, then D only
+M=83647 adjacency built t=33s
+pass 1: left 1 D=83646 K=0 (viaZ 0 prot 0) fail=0 t=66s by norm: 1 0 0 0 0 0 0 0 0 [D sweep]
+n=8 r=9 |C|=83647 D=83646 K=0 left=1 REACHES {e_n}
+adjacency of 83647 points built
+start is a proper subset of Lmax_k (|Lmax_k| = 299208)
+kzv k=8 r=9 start=83647 lines=83646 D=83646 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+
+## Segment A (segchain.sh, KZ_KLIST = part A of T13)
+seg A stage 1: killed and truncated to 104 complete K lines (restart in own session)
+seg A stage 2: n=8 r=9 |C|=94713 D=0 K=719 left=93994 STUCK (time budget)
+seg A stage 3: n=8 r=9 |C|=93994 D=0 K=767 left=93227 STUCK (time budget)
+seg A stage 4: n=8 r=9 |C|=93227 D=0 K=868 left=92359 STUCK (time budget)
+seg A stage 5: n=8 r=9 |C|=92359 D=2704 K=1162 left=88493 STUCK (time budget)
+seg A stage 6: n=8 r=9 |C|=88493 D=0 K=0 left=88493 STUCK
+END
+### kA_1.log
+M=94817 adjacency built t=118s
+KLIST: 3724 points present
+### kA_2.log
+M=94713 adjacency built t=32s
+KLIST: 3620 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=94513 t=368s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=94313 t=659s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=94113 t=898s
+pass 1: left 93994 D=0 K=719 (viaZ 719 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15768 15808 54603 [D+K sweep]
+n=8 r=9 |C|=94713 D=0 K=719 left=93994 STUCK (time budget)
+### kA_3.log
+M=93994 adjacency built t=31s
+KLIST: 2901 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=93794 t=363s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=93594 t=604s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=93394 t=809s
+pass 1: left 93227 D=0 K=767 (viaZ 767 prot 0) fail=0 t=1101s by norm: 8 54 211 490 2756 4296 15768 15808 53836 [D+K sweep]
+n=8 r=9 |C|=93994 D=0 K=767 left=93227 STUCK (time budget)
+### kA_4.log
+M=93227 adjacency built t=33s
+KLIST: 2134 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=93027 t=399s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=92827 t=643s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=92627 t=857s
+  K=800 (viaZ 800, prot 0) D=0 fail=0 left=92427 t=1026s
+pass 1: left 92359 D=0 K=868 (viaZ 868 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15768 15808 52968 [D+K sweep]
+n=8 r=9 |C|=93227 D=0 K=868 left=92359 STUCK (time budget)
+### kA_5.log
+M=92359 adjacency built t=29s
+KLIST: 1266 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=92159 t=130s
+  K=400 (viaZ 400, prot 0) D=104 fail=0 left=91855 t=240s
+  K=600 (viaZ 600, prot 0) D=104 fail=0 left=91655 t=426s
+  K=800 (viaZ 800, prot 0) D=104 fail=0 left=91455 t=566s
+  K=1000 (viaZ 1000, prot 0) D=104 fail=0 left=91255 t=649s
+pass 1: left 88493 D=2704 K=1162 (viaZ 1162 prot 0) fail=0 t=1016s by norm: 8 54 211 490 2756 4296 15584 15808 49286 [D+K sweep]
+pass 2: left 88493 D=2704 K=1162 (viaZ 1162 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15584 15808 49286 [D sweep]
+n=8 r=9 |C|=92359 D=2704 K=1162 left=88493 STUCK (time budget)
+### kA_6.log
+M=88493 adjacency built t=35s
+KLIST: 0 points present
+pass 1: left 88493 D=0 K=0 (viaZ 0 prot 0) fail=0 t=177s by norm: 8 54 211 490 2756 4296 15584 15808 49286 [D+K sweep]
+n=8 r=9 |C|=88493 D=0 K=0 left=88493 STUCK
+
+## Segment B (segchain.sh, KZ_KLIST = part B of T13)
+seg B stage 1: killed and truncated to 300 complete K lines (restart in own session)
+seg B stage 2: n=8 r=9 |C|=90793 D=0 K=1169 left=89624 STUCK (time budget)
+seg B stage 3: n=8 r=9 |C|=89624 D=0 K=1113 left=88511 STUCK (time budget)
+seg B stage 4: n=8 r=9 |C|=88511 D=0 K=1012 left=87499 STUCK (time budget)
+seg B stage 5: n=8 r=9 |C|=87499 D=10864 K=130 left=76505 STUCK
+END
+seg B stage 5 cert truncated to its 130 K lines (the D cascade after them dropped); end set sB_5 = sC_0
+### kB_1.log
+M=91093 adjacency built t=112s
+KLIST: 3724 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=90893 t=626s
+### kB_2.log
+M=90793 adjacency built t=30s
+KLIST: 3424 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=90593 t=181s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=90393 t=352s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=90193 t=531s
+  K=800 (viaZ 800, prot 0) D=0 fail=0 left=89993 t=781s
+  K=1000 (viaZ 1000, prot 0) D=0 fail=0 left=89793 t=898s
+pass 1: left 89624 D=0 K=1169 (viaZ 1169 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15768 15808 50233 [D+K sweep]
+n=8 r=9 |C|=90793 D=0 K=1169 left=89624 STUCK (time budget)
+### kB_3.log
+M=89624 adjacency built t=30s
+KLIST: 2255 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=89424 t=210s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=89224 t=400s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=89024 t=550s
+  K=800 (viaZ 800, prot 0) D=0 fail=0 left=88824 t=763s
+  K=1000 (viaZ 1000, prot 0) D=0 fail=0 left=88624 t=999s
+pass 1: left 88511 D=0 K=1113 (viaZ 1113 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15768 15808 49120 [D+K sweep]
+n=8 r=9 |C|=89624 D=0 K=1113 left=88511 STUCK (time budget)
+### kB_4.log
+M=88511 adjacency built t=31s
+KLIST: 1142 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=88311 t=209s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=88111 t=475s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=87911 t=693s
+  K=800 (viaZ 800, prot 0) D=0 fail=0 left=87711 t=876s
+  K=1000 (viaZ 1000, prot 0) D=0 fail=0 left=87511 t=1085s
+pass 1: left 87499 D=0 K=1012 (viaZ 1012 prot 0) fail=0 t=1100s by norm: 8 54 211 490 2756 4296 15768 15808 48108 [D+K sweep]
+n=8 r=9 |C|=88511 D=0 K=1012 left=87499 STUCK (time budget)
+### kB_5.log
+M=87499 adjacency built t=26s
+KLIST: 130 points present
+pass 1: left 76505 D=10864 K=130 (viaZ 130 prot 0) fail=0 t=260s by norm: 8 54 211 490 2756 4296 15056 15808 37826 [D+K sweep]
+pass 2: left 76505 D=10864 K=130 (viaZ 130 prot 0) fail=0 t=361s by norm: 8 54 211 490 2756 4296 15056 15808 37826 [D sweep]
+pass 3: left 76505 D=10864 K=130 (viaZ 130 prot 0) fail=0 t=457s by norm: 8 54 211 490 2756 4296 15056 15808 37826 [D+K sweep]
+n=8 r=9 |C|=87499 D=10864 K=130 left=76505 STUCK
+
+## Segment C (segchain.sh, KZ_KLIST = part C of T13)
+seg C stage 1: killed and truncated to 200 complete K lines (restart in own session)
+seg C stage 2: n=8 r=9 |C|=87169 D=0 K=841 left=86328 STUCK (time budget)
+seg C stage 3: n=8 r=9 |C|=86328 D=83980 K=2347 left=1 REACHES {e_n}
+DONE
+### kC_1.log
+M=87369 adjacency built t=105s
+KLIST: 3722 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=87169 t=881s
+### kC_2.log
+M=87169 adjacency built t=28s
+KLIST: 3522 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=86969 t=244s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=86769 t=550s
+  K=600 (viaZ 600, prot 0) D=0 fail=0 left=86569 t=813s
+  K=800 (viaZ 800, prot 0) D=0 fail=0 left=86369 t=1072s
+pass 1: left 86328 D=0 K=841 (viaZ 841 prot 0) fail=0 t=1101s by norm: 8 54 211 490 2756 4296 15768 15808 46937 [D+K sweep]
+n=8 r=9 |C|=87169 D=0 K=841 left=86328 STUCK (time budget)
+### kC_3.log
+M=86328 adjacency built t=27s
+KLIST: 2681 points present
+  K=200 (viaZ 200, prot 0) D=0 fail=0 left=86128 t=160s
+  K=400 (viaZ 400, prot 0) D=0 fail=0 left=85928 t=203s
+  K=600 (viaZ 600, prot 0) D=104 fail=0 left=85624 t=251s
+  K=800 (viaZ 800, prot 0) D=110 fail=0 left=85418 t=308s
+  K=1000 (viaZ 1000, prot 0) D=158 fail=0 left=85170 t=370s
+  K=1200 (viaZ 1200, prot 0) D=158 fail=0 left=84970 t=426s
+  K=1400 (viaZ 1400, prot 0) D=158 fail=0 left=84770 t=481s
+  K=1600 (viaZ 1600, prot 0) D=158 fail=0 left=84570 t=538s
+  K=1800 (viaZ 1800, prot 0) D=206 fail=0 left=84322 t=620s
+  K=2000 (viaZ 2000, prot 0) D=220 fail=0 left=84108 t=698s
+  K=2200 (viaZ 2200, prot 0) D=334 fail=0 left=83794 t=771s
+pass 1: left 1 D=83980 K=2347 (viaZ 2347 prot 0) fail=0 t=839s by norm: 1 0 0 0 0 0 0 0 0 [D+K sweep]
+n=8 r=9 |C|=86328 D=83980 K=2347 left=1 REACHES {e_n}
+
+## Note: segment A stage 6 (kA_6) made no move (no point of list A is left); segment A = stages 1-5.
+## Stages killed and truncated (A1, B1, C1) keep only their complete lines; their logs stop mid-run.
+## Piece 5 (k8-tail) = kB_1..kB_4, the 130 (K) lines of kB_5, kC_1..kC_3, with the 2,600 lines
+## whose point is absent from the end set of segment A removed (all (D)). 88,492 lines: 7,112 K, 81,380 D.
+
+## kzv5 replays of pieces 3-5 (vpiece.sh). s13 = piece 3, A1..A5 = piece 4, P0..P3 = piece 5 (cut after lines 1778, 3556, 5438; 1,778 (K) lines in each).
+## Piece 2 (stages 1-12) was replayed by kzv5 in ../results.txt. Stage-13 start = ../partial/end-stage-12-8-9.txt.gz (sorted compare: equal).
+## B1, B2, C1, C2 are replays of the unfiltered segment stages from their assumed starts (not used by the proof).
+s13 piece: kzv k=8 r=9 start=95571 lines=570 D=0 K=570 collapse-steps=4627456 end=95001 END>{e_k} PAUSED (159 s cpu)
+s13 piece: kzv k=8 r=9 start=95001 lines=184 D=0 K=184 collapse-steps=3126595 end=94817 END>{e_k} ACCEPT (99 s cpu)
+s13 VERIFIED end set matches (94817 points)
+A1 piece: kzv k=8 r=9 start=94817 lines=104 D=0 K=104 collapse-steps=803840 end=94713 END>{e_k} ACCEPT (31 s cpu)
+A1 VERIFIED end set matches (94713 points)
+B1 piece: kzv k=8 r=9 start=91093 lines=300 D=0 K=300 collapse-steps=975360 end=90793 END>{e_k} ACCEPT (46 s cpu)
+B1 VERIFIED end set matches (90793 points)
+C1 piece: kzv k=8 r=9 start=87369 lines=200 D=0 K=200 collapse-steps=868352 end=87169 END>{e_k} ACCEPT (41 s cpu)
+C1 VERIFIED end set matches (87169 points)
+A2 piece: kzv k=8 r=9 start=94713 lines=557 D=0 K=557 collapse-steps=3581184 end=94156 END>{e_k} PAUSED (139 s cpu)
+A2 piece: kzv k=8 r=9 start=94156 lines=162 D=0 K=162 collapse-steps=2613203 end=93994 END>{e_k} ACCEPT (83 s cpu)
+A2 VERIFIED end set matches (93994 points)
+B2 piece: kzv k=8 r=9 start=90793 lines=1095 D=0 K=1095 collapse-steps=4203776 end=89698 END>{e_k} PAUSED (156 s cpu)
+B2 piece: kzv k=8 r=9 start=89698 lines=74 D=0 K=74 collapse-steps=1028719 end=89624 END>{e_k} ACCEPT (28 s cpu)
+B2 VERIFIED end set matches (89624 points)
+C2 piece: kzv k=8 r=9 start=87169 lines=705 D=0 K=705 collapse-steps=3166976 end=86464 END>{e_k} PAUSED (139 s cpu)
+C2 piece: kzv k=8 r=9 start=86464 lines=136 D=0 K=136 collapse-steps=1833979 end=86328 END>{e_k} ACCEPT (39 s cpu)
+C2 VERIFIED end set matches (86328 points)
+P3 piece: kzv k=8 r=9 start=83055 lines=83054 D=81276 K=1778 collapse-steps=1250048 end=1 END={e_k} ACCEPT (110 s cpu)
+P3 VERIFIED end set matches (1 points)
+A3 piece: kzv k=8 r=9 start=93994 lines=767 D=0 K=767 collapse-steps=4544256 end=93227 END>{e_k} ACCEPT (173 s cpu)
+A3 VERIFIED end set matches (93227 points)
+P2 piece: kzv k=8 r=9 start=84937 lines=956 D=0 K=956 collapse-steps=4023808 end=83981 END>{e_k} PAUSED (180 s cpu)
+P1 piece: kzv k=8 r=9 start=86715 lines=1139 D=0 K=1139 collapse-steps=5694208 end=85576 END>{e_k} PAUSED (180 s cpu)
+P0 piece: kzv k=8 r=9 start=88493 lines=1287 D=0 K=1287 collapse-steps=4479232 end=87206 END>{e_k} PAUSED (177 s cpu)
+A4 piece: kzv k=8 r=9 start=93227 lines=868 D=0 K=868 collapse-steps=5039872 end=92359 END>{e_k} ACCEPT (176 s cpu)
+A4 VERIFIED end set matches (92359 points)
+P0 piece: kzv k=8 r=9 start=87206 lines=491 D=0 K=491 collapse-steps=6741285 end=86715 END>{e_k} ACCEPT (164 s cpu)
+P0 VERIFIED end set matches (86715 points)
+P1 piece: kzv k=8 r=9 start=85576 lines=407 D=0 K=407 collapse-steps=6388770 end=85169 END>{e_k} PAUSED (197 s cpu)
+P2 piece: kzv k=8 r=9 start=83981 lines=843 D=104 K=739 collapse-steps=9065335 end=83138 END>{e_k} PAUSED (198 s cpu)
+P2 piece: kzv k=8 r=9 start=83138 lines=83 D=0 K=83 collapse-steps=1155773 end=83055 END>{e_k} ACCEPT (25 s cpu)
+P2 VERIFIED end set matches (83055 points)
+P1 piece: kzv k=8 r=9 start=85169 lines=232 D=0 K=232 collapse-steps=3019602 end=84937 END>{e_k} ACCEPT (77 s cpu)
+P1 VERIFIED end set matches (84937 points)
+A5 piece: kzv k=8 r=9 start=92359 lines=3866 D=2704 K=1162 collapse-steps=3824384 end=88493 END>{e_k} ACCEPT (158 s cpu)
+A5 VERIFIED end set matches (88493 points)
+A45DONE
+
+## k = 2..7 (kzv5) and piece 1 (vcert2, 25,000-line chunks from Lmax_8)
+k=2 exit 0 start is all of Lmax_k (|Lmax_k| = 90) kzv k=2 r=9 start=90 lines=89 D=89 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu) 
+k=3 exit 0 start is all of Lmax_k (|Lmax_k| = 579) kzv k=3 r=9 start=579 lines=578 D=578 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu) 
+k=4 exit 0 start is all of Lmax_k (|Lmax_k| = 2820) kzv k=4 r=9 start=2820 lines=2819 D=2819 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu) 
+k=5 exit 0 start is all of Lmax_k (|Lmax_k| = 11181) kzv k=5 r=9 start=11181 lines=11180 D=11180 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu) 
+k=6 exit 0 start is all of Lmax_k (|Lmax_k| = 37758) kzv k=6 r=9 start=37758 lines=37757 D=37757 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu) 
+k=7 exit 0 start is all of Lmax_k (|Lmax_k| = 112071) kzv k=7 r=9 start=112071 lines=112070 D=111590 K=480 collapse-steps=903168 end=1 END={e_k} ACCEPT (14 s cpu) 
+vcert2 dp_00 exit 2 moves: A=25000 (K steps 0) left=274208 dfs=308125042 -> all moves valid; end set is not {e_k}
+vcert2 dp_01 exit 2 moves: A=25000 (K steps 0) left=249208 dfs=237433282 -> all moves valid; end set is not {e_k}
+vcert2 dp_02 exit 2 moves: A=23928 D=1072 (K steps 0) left=224208 dfs=93918240 -> all moves valid; end set is not {e_k}
+vcert2 dp_03 exit 2 moves: D=25000 (K steps 0) left=199208 dfs=181327470 -> all moves valid; end set is not {e_k}
+vcert2 dp_04 exit 2 moves: D=25000 (K steps 0) left=174208 dfs=182759174 -> all moves valid; end set is not {e_k}
+vcert2 dp_05 exit 2 moves: D=25000 (K steps 0) left=149208 dfs=195788252 -> all moves valid; end set is not {e_k}
+vcert2 dp_06 exit 2 moves: D=25000 (K steps 0) left=124208 dfs=243078548 -> all moves valid; end set is not {e_k}
+vcert2 dp_07 exit 2 moves: D=10887 (K steps 0) left=113321 dfs=117543231 -> all moves valid; end set is not {e_k}
+vcert2 end set == K8_9 (a8_9, 113321 points)
+AUXDONE
+
+## k = 2..7 (kzv3 of ../zn-rips-link-collapse-2026-09-18)
+### k=2
+start is all of Lmax_k (|Lmax_k| = 90)
+kzv k=2 r=9 start=90 lines=89 D=89 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+### k=3
+start is all of Lmax_k (|Lmax_k| = 579)
+kzv k=3 r=9 start=579 lines=578 D=578 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+### k=4
+start is all of Lmax_k (|Lmax_k| = 2820)
+kzv k=4 r=9 start=2820 lines=2819 D=2819 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+### k=5
+start is all of Lmax_k (|Lmax_k| = 11181)
+kzv k=5 r=9 start=11181 lines=11180 D=11180 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+### k=6
+start is all of Lmax_k (|Lmax_k| = 37758)
+kzv k=6 r=9 start=37758 lines=37757 D=37757 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+### k=7
+start is all of Lmax_k (|Lmax_k| = 112071)
+kzv k=7 r=9 start=112071 lines=112070 D=111590 K=480 collapse-steps=903168 end=1 END={e_k} ACCEPT (15 s cpu)
+
+## kzs (implicit adjacency) against kzh on a8_8, same budget
+n=8 r=8 |C|=40442 D=0 K=276 left=40166 STUCK (time budget)
+n=8 r=8 |C|=40442 D=0 K=165 left=40277 STUCK (time budget)
+kzs certificate (165 lines) is a prefix of the kzh certificate (276 lines)
+
+## kzs at (8,10), from the 205,606-point set left by two ilv4 stages from Lmax_8 (628,232 points)
+M=205606 packed (implicit adjacency) t=0s
+pass 1: left 205469 D=0 K=137 (viaZ 137 prot 0) fail=0 t=1106s by norm: 8 64 344 1408 4712 13504 23838 16096 75704 69791 [D+K sweep]
+n=8 r=10 |C|=205606 D=0 K=137 left=205469 STUCK (time budget)
+
+## sha256
+76ade5551e1cabadbd7baac8c58226e55196729084dcacdca81717af20acca0f  complete/README.md
+04f05b24695a233cd0dd6b2bddd9b91d2c22b48a4cb8cce8e763a83d7a30f36b  complete/certs/cert-9-k2.txt.gz
+4769ccf10d905f61f5afcbbeb1409805f556644e0c7e78be6be33acfad9b55fc  complete/certs/cert-9-k3.txt.gz
+e946dc35a826e41f81357545374649a113e5196afd0c971b4162610fc7f76208  complete/certs/cert-9-k4.txt.gz
+d174c3dee66723a7c2a88c01b2719088dd0455e630efa29ff5cc12f9e9cb62b3  complete/certs/cert-9-k5.txt.gz
+9cd6467d09628009a9330bb940add23e37be5acee1c31b21feaf6f9f4ba146c5  complete/certs/cert-9-k6.txt.gz
+bda4961759a4edbdbabfb0cbb2e7484994a091087cbfbe88018ea0e5a22e2609  complete/certs/cert-9-k7.txt.gz
+b1c8302554710622ad438da554690620c43c6047246a7201af7c1f3154a9d04d  complete/certs/k8-seg-A.txt.gz
+44e54ef8d10e02d6b8b05fe41424d5f16adfff2fb199c060d58488ae6afa6aea  complete/certs/k8-stage-13.txt.gz
+86bb729a9812a5cf0a7ac827a9054dc489f3087ea4b907e5f979d41b555aafe9  complete/certs/k8-tail.txt.gz
+1eb65946fc36f8ac94c91723656cd380ce1a8a94a16ebe6f5a4f1b6db5ee10fc  complete/kzh.cpp
+e1677e6572be58d7bcd9655a23555feed0d76bb99ce45bda0ecfe07767a7f22a  complete/kzs.cpp
+3058992726a3a0ef8d827bb1ab3a7d4b149bd1fc1ee34840e16a593bd52bda09  complete/segchain.sh
+a00c4a0672fd3a1880654fb4fa58b30b13832a6a94a9d039cb5acfaeea1dcee7  complete/sets/T13.txt.gz
+fd35804f35cef42e830856c98a00f87ce7a098574bedc77cc13f9dd09c185123  complete/sets/end-seg-A.txt.gz
+ad83a9fe4d5dd297f1cdef5784bc9f1aef7c188477d5fd3157d0a52acaf3a110  complete/sets/end-stage-13.txt.gz
+0b43a63fa14fa9bd094cc07c7b230d7b6ad5963b2b059bd99a2c68cc4b121a1f  complete/vpiece.sh

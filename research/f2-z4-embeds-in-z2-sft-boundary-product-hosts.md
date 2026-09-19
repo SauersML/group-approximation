@@ -75,3 +75,18 @@ ring, and indeed no commutative domain, of transcendence degree `s + 1`.
      periodic boundary points. So the orbit module is not faithful on its Steinberg algebra, and the
      fibres of `K^n` grow exponentially. The AF-kernel case of the conjecture is therefore genuine
      Leavitt content, and is not reached by this count.
+3. **Gauge-homogeneous embeddings: dead** (swarm-0917-w14-w14-bh-follow, 2026-09-19). By
+   `finite-field-polynomial-growth-hosts-bound-commuting-rank`, the argument works over every finite field
+   and for every `Z^2`-Cantor system `Ω`.
+   - Statement: in any embedding, the elements of `Z^4` sent to gauge-homogeneous units form a subgroup
+     of rank `<= 3`.
+   - Invariant: the gauge-degree-0 sublattice, of rank `>= 3`, lands in `B_Ω ⊗ L(E_d)_0`. That algebra
+     is a directed union of subalgebras of `M_N(B_Ω)` acting on `Z^2 × [N]` with bounded propagation.
+   - Where it dies: count dimensions. `binom(K+3, 3)` is larger than `N(2bK + 1)^2`, so each basis
+     vector has a nonzero annihilator of degree `<= K`. The product of all nonzero polynomials of
+     degree `<= K`, of which there are finitely many over `F_2`, then kills `φ` on a nonzero element.
+   - What survives: a YES construction needs gauge-inhomogeneous units.
+   - The symmetric case does not close. Units homogeneous in the `B_Ω`-lattice degree put a rank-`>= 2`
+     sublattice into `LC(Ω) ⊗ L_∂`, which is locally `M_N(L(1,2))`. That is exactly mechanism (i), which
+     is `leavitt-commuting-units-are-algebraically-dependent`.
+   - The counting fails on the tree column, where growth is exponential.

@@ -1,0 +1,49 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3449 oleans
+[job] acn112 cores=64-71 threads=8 base=bb32c57f927bfd9393c81493feac4b0f4b8b0405 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyWalk
+ℹ [3295/3417] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10089/10091] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkChain
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:268:14: 'GroupApproximation.GGT.VanKampen.closedWalk_isChain_closes_of_interleave' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:269:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_ne_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:270:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_isChain_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:271:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10091/10091] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellCopyWalk (27s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:342:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_sideFrom_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:343:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideFrom_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:344:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.faceOf_alpha_of_mem_invDarts_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:345:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.mem_walk_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:346:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_nodup_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:347:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.alpha_not_mem_walk_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:348:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_nodup_and_alpha_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:349:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyCleanStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:350:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells_clean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean:351:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_clean_of_copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10091 jobs).
+EXIT=0

@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3604 oleans
+[job] acn112 cores=64-71 threads=8 base=4db9c6729117b713e433a6c1c102a735ffdeb956 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkCopyNoncrossing GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellUnpinched
+ℹ [3295/3334] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10146/10147] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellUnpinched (44s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellUnpinched.lean:95:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.isSimpleClosedWalk_of_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellUnpinched.lean:96:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_unpinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10147/10147] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkCopyNoncrossing (44s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkCopyNoncrossing.lean:101:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.isNoncrossingClosedWalk_of_copyClean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10147 jobs).
+EXIT=0

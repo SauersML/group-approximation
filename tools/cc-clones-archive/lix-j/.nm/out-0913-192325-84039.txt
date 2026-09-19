@@ -1,0 +1,38 @@
+[job] 19:23:32 acn112 waiting for clone lock
+[job] delta sync 0ec08fc2c..4fd6ccdf2: 74 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 4fd6ccdf2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-192325-84039.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3469 oleans
+--- errors (first 80 lines)
+8:✖ [1442/1442] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions (11s)
+10:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:62:20: Unknown constant `Int.emod_add_ediv`
+11:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:61:35: unsolved goals
+20:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:75:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+39:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:100:43: failed to synthesize instance of type class
+43:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:103:49: unsolved goals
+60:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:108:35: failed to synthesize instance of type class
+64:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:178:14: 'GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self' depends on axioms outside the classical allowlist: [sorryAx]
+65:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+67:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:179:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_nbhd_disjoint_translates' depends on axioms outside the classical allowlist: [sorryAx]
+68:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+70:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:180:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_partition_disjoint_translates' depends on axioms outside the classical allowlist: [sorryAx]
+71:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+74:error: Lean exited with code 1
+77:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

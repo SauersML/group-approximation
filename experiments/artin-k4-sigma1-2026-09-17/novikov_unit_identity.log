@@ -1,0 +1,7 @@
+edge ac label 4 fox formula True shift True
+edge bc label 4 fox formula True shift True
+edge be label 4 fox formula True shift True
+edge ae label 6 fox formula True shift True
+unit identity holds in Z F(a,b,c,e): True
+chi of words in a e a (e-c)(a-b): [1, 1, 1, 1]
+ALL OK

@@ -1,0 +1,22 @@
+[job] 10:28:47 acn112 waiting for clone lock
+[job] delta sync fa7c379f3..4d3fbeb96: 18 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 4d3fbeb96 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0914-102021-11816.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3660 oleans
+--- errors (first 80 lines)
+31:✖ [10170/10171] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides (12s)
+33:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean:95:5: Variable name `hcyc` is not explicitly referenced.
+59:error: Lean exited with code 1
+60:✖ [10171/10171] Building GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (22s)
+62:error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:147:6: 'exact heq_of_eq hw.symm' tactic does nothing
+80:error: Lean exited with code 1
+84:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -104,3 +104,27 @@ Earlier ruled-out witness classes are listed under `lifted-thompson-t-is-a-t-men
     theory, or a non-central pair. The kill does not reach non-central normal subgroups, such as
     the coordinate-mixing `Z² ⋊ F_2` of `brin-thompson-2v-is-not-a-t-menable`. The same kill
     applies verbatim to `cantor-integer-maps-central-direction-has-relative-t`.
+
+- **2026-09-19 (swarm-0917-w16-w16-nv-follow, reframing): Brieskorn-lattice covering. Node stays
+  OPEN; one class of proofs killed.**
+  - *Structure (ESTABLISHED, `lifted-thompson-t-is-a-quotient-of-a-brieskorn-lattice`).* The
+    Ptolemy generators `α` (rotation by `1/4`) and `β` (order-3 Farey rotation) generate `T`. Their
+    lifts satisfy `α̃^4 = β̃^3 = z` and `(β̃α̃)^5 = z^3` exactly.
+    - So `T̄ = Λ/N̂`, where `Λ = ⟨x,y | x^4 = y^3, (yx)^5 = x^{12}⟩` is a perfect cocompact lattice
+      in the universal cover of `PSL_2(R)` (recalled: `π_1 Σ(3,4,5)`).
+    - The centre generator `c = x^4` maps to `z`, and `N̂ ≅ ker(Δ(3,4,5) → T)` meets `⟨c⟩`
+      trivially.
+  - *Kill (proved).* `Λ` is Haagerup, so `(Λ, ⟨c⟩)` fails relative (T). Every argument for this node
+    that uses only relations holding in `Λ` is dead.
+    - This includes the torsion data, the rotation numbers `1/4`, `1/3`, `3/5`, and anything
+      derived from them.
+    - A proof must use elements of `N̂`. In the Lochak–Schneps presentation these are lifted
+      disjoint-support commutations, which lift with exponent `0`.
+    - Relative (T) of the centre, if true, is created entirely by the quotient `Λ → T̄`.
+  - *Next falsifiable step.* The Seifert/magnetic reformulation: induce a representation `σ` of
+    `T̄` from `Λ` to the universal cover.
+    - Prove that `c_{T̄}(θ)²` is comparable, with constants independent of `σ`, to the bottom of the
+      spectrum of a magnetic Laplacian with field `∝ θ/n`. This is on Hermitian orbibundles over
+      `S^2(3,4,5)` whose monodromy kills `N̂`.
+    - Then test whether a uniform lower bound on the lowest Landau level can survive the
+      constraint that the bundle's monodromy kills `N̂`.

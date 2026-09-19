@@ -23,6 +23,7 @@ MSI=/Users/user/msi-node/msi; SOCK=/tmp/msi-login.sock; ALIAS=login.msi.umn.edu
 MUSER=sauer354; LOGIN=128.101.190.100
 PHOME=/projects/standard/hsiehph/sauer354; REMOTE=$PHOME/nonsofic_existence
 PQ=$GQ/state/pq
+[ -f "$GQ/state/SLURM-BLOCKED" ] && { echo "PROBE DEFERRED: Slurm submission is blocked (see $GQ/state/SLURM-BLOCKED). Do not re-probe until that file is gone; wait, or work on proofs meanwhile."; exit 5; }
 LANE=${1:?usage: gqprobe-lean.sh <lane> <Module.Name...>}; shift
 [ $# -ge 1 ] || { echo "usage: gqprobe-lean.sh <lane> <Module.Name...>"; exit 2; }
 W=$GQ/work/$LANE; OV=$W/overlay.files

@@ -1,0 +1,245 @@
+pi_s=a pi_t=e s|0=s A t|0=t A s|3=t | stable-from-3
+pi_s=a pi_t=e s|0=s A t|0=t E s|3=t | stable-from-2
+pi_s=a pi_t=e s|0=s E t|0=t A s|3=t | stable-from-3
+pi_s=a pi_t=e s|0=s E t|0=t E s|3=t | stable-from-2
+pi_s=a pi_t=e s|0=A s t|0=A t s|3=t | stable-from-3
+pi_s=a pi_t=e s|0=A s t|0=E t s|3=t | stable-from-2
+pi_s=a pi_t=e s|0=E s t|0=A t s|3=t | stable-from-3
+pi_s=a pi_t=e s|0=E s t|0=E t s|3=t | stable-from-2
+pi_s=a pi_t=a e s|0=A s t|0=A t A s|3=t | stable-from-3
+pi_s=a pi_t=a e s|0=A s t|0=A t E s|3=t | stable-from-2
+pi_s=a pi_t=a e s|0=A s t|0=E t E s|3=t | stable-from-3
+pi_s=a pi_t=a e s|0=E s t|0=A t E s|3=t | stable-from-2
+pi_s=a pi_t=a e s|0=E s t|0=E t E s|3=t | stable-from-3
+pi_s=a pi_t=a E s|0=s A t|0=t s|3=t | stable-from-3
+pi_s=a pi_t=a E s|0=s E t|0=t s|3=t | stable-from-2
+pi_s=a pi_t=a E s|0=A s t|0=A t a s|3=t | stable-from-3
+pi_s=a pi_t=a E s|0=A s t|0=A t e s|3=t | stable-from-2
+pi_s=a pi_t=a E s|0=A s t|0=E t a s|3=t | stable-from-3
+pi_s=a pi_t=a E s|0=A s t|0=E t e s|3=t | stable-from-3
+pi_s=a pi_t=a E s|0=E s t|0=A t a s|3=t | stable-from-2
+pi_s=a pi_t=a E s|0=E s t|0=A t e s|3=t | stable-from-2
+pi_s=a pi_t=a E s|0=E s t|0=E t a s|3=t | stable-from-2
+pi_s=a pi_t=a E s|0=E s t|0=E t e s|3=t | stable-from-2
+pi_s=a pi_t=e a s|0=A s t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=a pi_t=e a s|0=A s t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=a pi_t=e a s|0=E s t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=a pi_t=e e s|0=A s t|0=A t A s|3=t | stable-from-3
+pi_s=a pi_t=e e s|0=A s t|0=A t E s|3=t | stable-from-3
+pi_s=a pi_t=e e s|0=A s t|0=E t A s|3=t | stable-from-3
+pi_s=a pi_t=e e s|0=A s t|0=E t E s|3=t | stable-from-2
+pi_s=a pi_t=e e s|0=E s t|0=A t E s|3=t | stable-from-3
+pi_s=a pi_t=e e s|0=E s t|0=E t E s|3=t | stable-from-2
+pi_s=e pi_t=a s|0=A s t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e pi_t=a s|0=E s t|0=E t s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e pi_t=a e s|0=A s t|0=A t E s|3=t | stable-from-2
+pi_s=e pi_t=a e s|0=A s t|0=E t E s|3=t | stable-from-3
+pi_s=e pi_t=a e s|0=E s t|0=A t A s|3=t | stable-from-3
+pi_s=e pi_t=a e s|0=E s t|0=A t E s|3=t | stable-from-2
+pi_s=e pi_t=a e s|0=E s t|0=E t A s|3=t | stable-from-3
+pi_s=e pi_t=a e s|0=E s t|0=E t E s|3=t | stable-from-3
+pi_s=e pi_t=a E s|0=s A t|0=t s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=s E t|0=t s|3=t | stable-from-3
+pi_s=e pi_t=a E s|0=A s t|0=A t a s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=A s t|0=A t e s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=A s t|0=E t a s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=A s t|0=E t e s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=E s t|0=A t a s|3=t | stable-from-3
+pi_s=e pi_t=a E s|0=E s t|0=A t e s|3=t | stable-from-2
+pi_s=e pi_t=a E s|0=E s t|0=E t a s|3=t | stable-from-3
+pi_s=e pi_t=a E s|0=E s t|0=E t e s|3=t | stable-from-3
+pi_s=e pi_t=e a s|0=A s t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=e pi_t=e a s|0=E s t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=e pi_t=e a s|0=E s t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=e pi_t=a a s|0=A s t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e pi_t=a a s|0=E s t|0=A t E s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e pi_t=a a s|0=E s t|0=E t A s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e pi_t=a a s|0=E s t|0=E t E s|3=t | growing S: orders [55, 440, 19360]
+pi_s=a e pi_t=a s|0=A s E t|0=E t s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a e pi_t=a s|0=E s E t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a e pi_t=e s|0=A s A t|0=E t s|3=t | stable-from-2
+pi_s=a e pi_t=e s|0=A s E t|0=A t s|3=t | stable-from-3
+pi_s=a e pi_t=e s|0=A s E t|0=E t s|3=t | stable-from-2
+pi_s=a e pi_t=e s|0=E s A t|0=E t s|3=t | stable-from-2
+pi_s=a e pi_t=e s|0=E s E t|0=A t s|3=t | stable-from-3
+pi_s=a e pi_t=e s|0=E s E t|0=E t s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=A s A t|0=A t e s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=A s E t|0=A t a s|3=t | stable-from-3
+pi_s=a e pi_t=a E s|0=A s E t|0=A t e s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=A s E t|0=E t a s|3=t | stable-from-3
+pi_s=a e pi_t=a E s|0=A s E t|0=E t e s|3=t | stable-from-3
+pi_s=a e pi_t=a E s|0=E s E t|0=A t a s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=E s E t|0=A t e s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=E s E t|0=E t a s|3=t | stable-from-2
+pi_s=a e pi_t=a E s|0=E s E t|0=E t e s|3=t | stable-from-2
+pi_s=a e pi_t=e a s|0=A s A t|0=E t E s|3=t | growing S: orders [220, 1320, 5280]
+pi_s=a e pi_t=e a s|0=A s E t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=a e pi_t=e a s|0=A s E t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=a e pi_t=e a s|0=E s E t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=a e pi_t=a a s|0=A s A t|0=A t E s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a e pi_t=a a s|0=A s E t|0=A t E s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a e pi_t=a a s|0=A s E t|0=E t A s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a e pi_t=a a s|0=E s E t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a e pi_t=e e s|0=A s A t|0=E t A s|3=t | stable-from-3
+pi_s=a e pi_t=e e s|0=A s A t|0=E t E s|3=t | stable-from-2
+pi_s=a e pi_t=e e s|0=A s E t|0=A t A s|3=t | stable-from-3
+pi_s=a e pi_t=e e s|0=A s E t|0=A t E s|3=t | stable-from-3
+pi_s=a e pi_t=e e s|0=A s E t|0=E t A s|3=t | stable-from-3
+pi_s=a e pi_t=e e s|0=A s E t|0=E t E s|3=t | stable-from-2
+pi_s=a e pi_t=e e s|0=E s A t|0=E t E s|3=t | stable-from-2
+pi_s=a e pi_t=e e s|0=E s E t|0=A t E s|3=t | stable-from-3
+pi_s=a e pi_t=e e s|0=E s E t|0=E t E s|3=t | stable-from-2
+pi_s=a E pi_t=a s|0=A s a t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a E pi_t=a s|0=A s e t|0=E t s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a E pi_t=a s|0=E s a t|0=E t s|3=t | growing S: orders [110, 660, 29040]
+pi_s=a E pi_t=a s|0=E s e t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a E pi_t=e s|0=s t|0=t A s|3=t | stable-from-3
+pi_s=a E pi_t=e s|0=s t|0=t E s|3=t | stable-from-2
+pi_s=a E pi_t=e s|0=A s a t|0=A t s|3=t | stable-from-3
+pi_s=a E pi_t=e s|0=A s a t|0=E t s|3=t | stable-from-2
+pi_s=a E pi_t=e s|0=A s e t|0=A t s|3=t | stable-from-3
+pi_s=a E pi_t=e s|0=A s e t|0=E t s|3=t | stable-from-2
+pi_s=a E pi_t=e s|0=E s a t|0=A t s|3=t | stable-from-3
+pi_s=a E pi_t=e s|0=E s a t|0=E t s|3=t | stable-from-2
+pi_s=a E pi_t=e s|0=E s e t|0=A t s|3=t | stable-from-3
+pi_s=a E pi_t=e s|0=E s e t|0=E t s|3=t | stable-from-2
+pi_s=a E pi_t=a e s|0=A s a t|0=A t E s|3=t | stable-from-2
+pi_s=a E pi_t=a e s|0=A s a t|0=E t E s|3=t | stable-from-3
+pi_s=a E pi_t=a e s|0=A s e t|0=A t A s|3=t | stable-from-3
+pi_s=a E pi_t=a e s|0=A s e t|0=A t E s|3=t | stable-from-2
+pi_s=a E pi_t=a e s|0=A s e t|0=E t E s|3=t | stable-from-3
+pi_s=a E pi_t=a e s|0=E s a t|0=A t E s|3=t | stable-from-2
+pi_s=a E pi_t=a e s|0=E s a t|0=E t E s|3=t | stable-from-3
+pi_s=a E pi_t=a e s|0=E s e t|0=A t E s|3=t | stable-from-2
+pi_s=a E pi_t=a e s|0=E s e t|0=E t E s|3=t | stable-from-3
+pi_s=a E pi_t=e a s|0=A s a t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=a E pi_t=e a s|0=A s e t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=a E pi_t=e a s|0=A s e t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=a E pi_t=e a s|0=E s a t|0=A t A s|3=t | growing S: orders [110, 550, 2200]
+pi_s=a E pi_t=e a s|0=E s e t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=a E pi_t=a a s|0=A s a t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a E pi_t=a a s|0=A s e t|0=A t E s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a E pi_t=a a s|0=A s e t|0=E t A s|3=t | growing S: orders [55, 330, 14520]
+pi_s=a E pi_t=a a s|0=E s a t|0=E t A s|3=t | growing S: orders [110, 660, 29040]
+pi_s=a E pi_t=a a s|0=E s e t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=a E pi_t=e e s|0=A s a t|0=A t E s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=A s a t|0=E t E s|3=t | stable-from-2
+pi_s=a E pi_t=e e s|0=A s e t|0=A t A s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=A s e t|0=A t E s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=A s e t|0=E t A s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=A s e t|0=E t E s|3=t | stable-from-2
+pi_s=a E pi_t=e e s|0=E s a t|0=A t E s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=E s a t|0=E t E s|3=t | stable-from-2
+pi_s=a E pi_t=e e s|0=E s e t|0=A t E s|3=t | stable-from-3
+pi_s=a E pi_t=e e s|0=E s e t|0=E t E s|3=t | stable-from-2
+pi_s=e a pi_t=a s|0=A s A t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e a pi_t=a s|0=E s A t|0=E t s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e a pi_t=e s|0=A s A t|0=A t s|3=t | stable-from-3
+pi_s=e a pi_t=e s|0=A s A t|0=E t s|3=t | stable-from-2
+pi_s=e a pi_t=e s|0=E s A t|0=A t s|3=t | stable-from-3
+pi_s=e a pi_t=e s|0=E s A t|0=E t s|3=t | stable-from-2
+pi_s=e a pi_t=e s|0=E s E t|0=E t s|3=t | stable-from-2
+pi_s=e a pi_t=a e s|0=A s A t|0=A t E s|3=t | stable-from-2
+pi_s=e a pi_t=a e s|0=A s A t|0=E t E s|3=t | stable-from-3
+pi_s=e a pi_t=a e s|0=A s E t|0=A t E s|3=t | stable-from-2
+pi_s=e a pi_t=a e s|0=E s A t|0=A t A s|3=t | stable-from-3
+pi_s=e a pi_t=a e s|0=E s A t|0=A t E s|3=t | stable-from-2
+pi_s=e a pi_t=a e s|0=E s A t|0=E t A s|3=t | stable-from-3
+pi_s=e a pi_t=a e s|0=E s A t|0=E t E s|3=t | stable-from-3
+pi_s=e a pi_t=a e s|0=E s E t|0=A t A s|3=t | stable-from-3
+pi_s=e a pi_t=a e s|0=E s E t|0=A t E s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=A s A t|0=A t a s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=A s A t|0=A t e s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=A s A t|0=E t a s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=A s A t|0=E t e s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=A s E t|0=A t e s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=E s A t|0=A t a s|3=t | stable-from-3
+pi_s=e a pi_t=a E s|0=E s A t|0=A t e s|3=t | stable-from-2
+pi_s=e a pi_t=a E s|0=E s A t|0=E t a s|3=t | stable-from-3
+pi_s=e a pi_t=a E s|0=E s A t|0=E t e s|3=t | stable-from-3
+pi_s=e a pi_t=a E s|0=E s E t|0=A t e s|3=t | stable-from-2
+pi_s=e a pi_t=a a s|0=A s A t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e a pi_t=a a s|0=E s A t|0=A t E s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e a pi_t=a a s|0=E s A t|0=E t A s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e a pi_t=a a s|0=E s A t|0=E t E s|3=t | growing S: orders [55, 440, 19360]
+pi_s=e a pi_t=a a s|0=E s E t|0=A t E s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e a pi_t=e e s|0=A s A t|0=A t E s|3=t | stable-from-3
+pi_s=e a pi_t=e e s|0=A s A t|0=E t E s|3=t | stable-from-2
+pi_s=e a pi_t=e e s|0=E s A t|0=A t A s|3=t | stable-from-3
+pi_s=e a pi_t=e e s|0=E s A t|0=A t E s|3=t | stable-from-3
+pi_s=e a pi_t=e e s|0=E s A t|0=E t A s|3=t | stable-from-3
+pi_s=e a pi_t=e e s|0=E s A t|0=E t E s|3=t | stable-from-2
+pi_s=e a pi_t=e e s|0=E s E t|0=E t A s|3=t | stable-from-3
+pi_s=e a pi_t=e e s|0=E s E t|0=E t E s|3=t | stable-from-2
+pi_s=a a pi_t=e s|0=A s A t|0=A t s|3=t | stable-from-3
+pi_s=a a pi_t=e s|0=A s A t|0=E t s|3=t | stable-from-2
+pi_s=a a pi_t=e s|0=A s E t|0=E t s|3=t | stable-from-2
+pi_s=a a pi_t=e s|0=E s A t|0=A t s|3=t | stable-from-3
+pi_s=a a pi_t=e s|0=E s A t|0=E t s|3=t | stable-from-2
+pi_s=a a pi_t=e s|0=E s E t|0=E t s|3=t | stable-from-2
+pi_s=a a pi_t=a e s|0=A s A t|0=A t A s|3=t | stable-from-3
+pi_s=a a pi_t=a e s|0=A s A t|0=A t E s|3=t | stable-from-2
+pi_s=a a pi_t=a e s|0=A s A t|0=E t E s|3=t | stable-from-3
+pi_s=a a pi_t=a e s|0=A s E t|0=A t A s|3=t | stable-from-3
+pi_s=a a pi_t=a e s|0=A s E t|0=A t E s|3=t | stable-from-2
+pi_s=a a pi_t=a e s|0=E s A t|0=A t E s|3=t | stable-from-2
+pi_s=a a pi_t=a e s|0=E s A t|0=E t E s|3=t | stable-from-3
+pi_s=a a pi_t=a e s|0=E s E t|0=A t E s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=A s A t|0=A t a s|3=t | stable-from-3
+pi_s=a a pi_t=a E s|0=A s A t|0=A t e s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=A s A t|0=E t a s|3=t | stable-from-3
+pi_s=a a pi_t=a E s|0=A s A t|0=E t e s|3=t | stable-from-3
+pi_s=a a pi_t=a E s|0=A s E t|0=A t e s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=E s A t|0=A t a s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=E s A t|0=A t e s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=E s A t|0=E t a s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=E s A t|0=E t e s|3=t | stable-from-2
+pi_s=a a pi_t=a E s|0=E s E t|0=A t e s|3=t | stable-from-2
+pi_s=a a pi_t=e a s|0=A s A t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=a a pi_t=e a s|0=A s A t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=a a pi_t=e a s|0=A s E t|0=E t E s|3=t | growing S: orders [220, 1320, 5280]
+pi_s=a a pi_t=e a s|0=E s A t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=a a pi_t=e e s|0=A s A t|0=A t A s|3=t | stable-from-3
+pi_s=a a pi_t=e e s|0=A s A t|0=A t E s|3=t | stable-from-3
+pi_s=a a pi_t=e e s|0=A s A t|0=E t A s|3=t | stable-from-3
+pi_s=a a pi_t=e e s|0=A s A t|0=E t E s|3=t | stable-from-2
+pi_s=a a pi_t=e e s|0=A s E t|0=E t A s|3=t | stable-from-3
+pi_s=a a pi_t=e e s|0=A s E t|0=E t E s|3=t | stable-from-2
+pi_s=a a pi_t=e e s|0=E s A t|0=A t E s|3=t | stable-from-3
+pi_s=a a pi_t=e e s|0=E s A t|0=E t E s|3=t | stable-from-2
+pi_s=a a pi_t=e e s|0=E s E t|0=E t E s|3=t | stable-from-2
+pi_s=e e pi_t=a s|0=A s E t|0=E t s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e e pi_t=a s|0=E s E t|0=E t s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e e pi_t=a e s|0=A s A t|0=A t E s|3=t | stable-from-2
+pi_s=e e pi_t=a e s|0=A s E t|0=A t E s|3=t | stable-from-2
+pi_s=e e pi_t=a e s|0=A s E t|0=E t E s|3=t | stable-from-3
+pi_s=e e pi_t=a e s|0=E s A t|0=A t A s|3=t | stable-from-3
+pi_s=e e pi_t=a e s|0=E s A t|0=A t E s|3=t | stable-from-2
+pi_s=e e pi_t=a e s|0=E s E t|0=A t A s|3=t | stable-from-3
+pi_s=e e pi_t=a e s|0=E s E t|0=A t E s|3=t | stable-from-2
+pi_s=e e pi_t=a e s|0=E s E t|0=E t A s|3=t | stable-from-3
+pi_s=e e pi_t=a e s|0=E s E t|0=E t E s|3=t | stable-from-3
+pi_s=e e pi_t=a E s|0=A s A t|0=A t e s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=A s E t|0=A t a s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=A s E t|0=A t e s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=A s E t|0=E t a s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=A s E t|0=E t e s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=E s A t|0=A t e s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=E s E t|0=A t a s|3=t | stable-from-3
+pi_s=e e pi_t=a E s|0=E s E t|0=A t e s|3=t | stable-from-2
+pi_s=e e pi_t=a E s|0=E s E t|0=E t a s|3=t | stable-from-3
+pi_s=e e pi_t=a E s|0=E s E t|0=E t e s|3=t | stable-from-3
+pi_s=e e pi_t=e a s|0=A s E t|0=A t A s|3=t | growing S: orders [220, 1100, 4400]
+pi_s=e e pi_t=e a s|0=E s A t|0=E t E s|3=t | growing S: orders [220, 1320, 5280]
+pi_s=e e pi_t=e a s|0=E s E t|0=A t A s|3=t | growing S: orders [55, 275, 1100]
+pi_s=e e pi_t=e a s|0=E s E t|0=E t E s|3=t | growing S: orders [55, 330, 1320]
+pi_s=e e pi_t=a a s|0=A s E t|0=E t A s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e e pi_t=a a s|0=E s A t|0=A t E s|3=t | growing S: orders [220, 1320, 58080]
+pi_s=e e pi_t=a a s|0=E s E t|0=A t E s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e e pi_t=a a s|0=E s E t|0=E t A s|3=t | growing S: orders [55, 330, 14520]
+pi_s=e e pi_t=a a s|0=E s E t|0=E t E s|3=t | growing S: orders [55, 440, 19360]
+
+# 240 cases (the 286 undecided in h_inf.out minus the 46 infinite in h_inf6.out):
+#     58 growing
+#     96 stable-from-2
+#     86 stable-from-3

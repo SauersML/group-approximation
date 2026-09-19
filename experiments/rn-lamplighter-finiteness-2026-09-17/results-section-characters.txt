@@ -1,0 +1,15 @@
+== A. section-invariant characters (dimension of solution space over Q)
+basilica: gens ['a', 'b'], dim = 1, basis = [[1, 1]]
+odometer: gens ['a'], dim = 1, basis = [[1]]
+lamplighter: gens ['a', 'b'], dim = 0, basis = []
+grigorchuk: gens ['a', 'b', 'c', 'd'], dim = 0, basis = []
+hanoi3: gens ['a', 'b', 'c'], dim = 0, basis = []
+== B. trivial reduced words of length <= 8 have psi = 0
+basilica: psi = {'a': 1, 'b': 1}; nonempty trivial reduced words: 16; with psi != 0: 0
+odometer: psi = {'a': 1}; nonempty trivial reduced words: 0; with psi != 0: 0
+basilica: shortest nonempty trivial reduced words (A = a^-1, B = b^-1): ['abAbaBAB', 'abABaBAb', 'aBAbabAB', 'aBABabAb', 'AbabABaB', 'AbaBABab'] total 16
+== C. Koszul lemma on 400 random commuting pairs (A, p(A)) over Q
+counts of (H0==0, H2==0): {(True, True): 389, (False, False): 11} -> H0 = 0 always forces H2 = 0 = H1
+== D. 1 - Phi on H_ab (x) Q for the basilica, basis a, b
+1 - Phi = [[1, -1], [-1, 1]] ; rank 1 -> coker rank 1
+ALL OK

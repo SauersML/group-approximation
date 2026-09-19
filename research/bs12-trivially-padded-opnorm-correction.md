@@ -179,3 +179,91 @@ Class kill on the open test family; the node stays **OPEN**.
   the Fourier basis.  Fixed-base corrections (arbitrary `C`, `Z = D`) are
   already dead at about `s/2`.  So the next test is exact pairs
   `(U W_u U^*, U D U^*)` with `U` monomial in neither basis.
+2026-09-19 (census-computation, swarm-0917-w14-w14-ptm-last1).  **Test
+family `(A_s, D)`: moving the base beats the fixed-base floor, and the
+distance keeps falling in `N`.**  Details are in
+`bs12-twisted-clock-exact-pair-census`.  The claim stays **OPEN**.
+- *Sharpened fixed-base floor (proved).*  Take `k = (N-1)/2`.  Then
+  `D^k H D^(-k)` changes `cos a` to `cos(a + pi - pi/N)`, which gives
+  `||A_s D^k A_s^* - D^(2k)|| >= 2 sin(s(1+cos(pi/N)))`.  Hence every
+  `C` with `C D C^* = D^2` has `||C - A_s|| >= sin(s(1+cos(pi/N))) -> sin 2s`.
+  This replaces `|J_1(2s)|/2` above: at `s = 1/2` it is `0.841` against
+  `0.220`.  Any exact correction closer than this must move the
+  near-antipodal powers `Z^((N-1)/2)` and `Z^(N-1)` by order one.
+- *Census (explicit exact pairs, upper bounds only).*  The search runs over
+  all exact pairs with simple `N`-th-root base in `U(N)`, namely
+  `(U W diag U^*, U D U^*)`.  The values of `d(s,N)` are:
+  - `0.566 -> 0.364` at `s = 0.5`, for `N = 9 .. 243`;
+  - `0.314 -> 0.259` at `s = 0.25`, for `N = 27 .. 243`;
+  - `0.147 -> 0.135` at `s = 0.1`, for `N = 27 .. 243`.
+
+  The optimal `U` is far from `1`.  It blurs the clock over a position
+  window of about `0.05 N` sites.  These are the spectrum-changing
+  corrections that the Livsic / first-order analysis above could not see.
+  They come in below the first-order level `~ 1.5 s`.
+- *Belief update.*  At `s = 1/2` there is no plateau, so the census gives
+  no evidence for a Q3 counterexample on this family.  At small `s`,
+  `d/s` falls only slowly (`1.47 -> 1.35` at `s = 0.1`), so the census
+  cannot separate a slow decay to `0` from a positive limit.  The
+  isolated open question is whether some fixed `s` has
+  `liminf_N d(s,N) > 0`; a positive answer refutes ESS Q3.
+2026-09-19 (reframing, swarm-0917-w15-w15-ptm-break).  Class kill on the sharp
+family.  The claim stays **OPEN**.
+- *Established:* `bs12-sharp-pair-twist-coherent-corrections-are-bounded-below`.
+  Call `u` a twist for `C` if `u^3 = 1` and `C u C^* = u^2`, and suppose
+  `u f_0` is within `kappa` of a multiple of `f_(2N/3)`.  Then
+  `2|sin 3s| <= 4||C - A_s|| + 2 kappa`, with no condition on `Z`.
+- *The class it covers.*  For exact pairs with `Z^N = 1`, the power
+  `u = Z^(N/3)` is a twist.  For every Fourier gauge `Z = h(V) D h(V)^*`, of
+  any size, it has `kappa = 0`.  So every exact `C` over such a `Z` is at least
+  `|sin 3s|/2` away, uniformly in `N`.  This makes the first-order Livsic
+  remark above nonlinear.  An LP shows the small-`s` constant `3/2` is attained
+  inside this class (`N <= 729`).
+- *Why it matters.*  The w14 census pairs reach `d(0.5, 243) = 0.364 < 0.4987`
+  and `d/s ~ 1.35 < 1.5`.  So they are twist-incoherent, with
+  `kappa >= 2|sin 3s| - 4d`.  A proof of ESS Q3 here has to scramble the base
+  modulo 3 at scale `1/N`.  A counterexample needs an invariant other than a
+  twist.  `p = 7` gives the analogous bound `2|sin(7s/2)| <= 6 eps + 2 kappa`.
+- 2026-09-19 (swarm-0917-w15-w15-ptm-follow): *decomposition along the limit
+  trace.*  Route `bs12-trivially-padded-opnorm-correction-via-faithful-padding`
+  proves that Q3 is equivalent to `bs12-faithful-trace-opnorm-correction`
+  (Q3_full, for near-reps with faithful limit trace) together with
+  `bs12-regular-padding-is-removable` (RPR).  The proof pads by the odd clock
+  representation, which makes the trace faithful.
+  - Q3_full follows from LV HS-stability (`bs1n-hs-stable-levit-vigdorovich`,
+    verbatim) together with
+    `bs12-full-lift-uniqueness-in-matrix-ultraproducts`.
+  - Every K/KL obstruction vanishes
+    (`bs12-matrix-lift-pairs-have-zero-kl-class`).
+  - The live crux is de-amplification without Z-stability.  CGSTW Thm 1.2
+    fails verbatim, because the relative commutant of `prod M_N` in `Q_omega`
+    is `C`.
+  - Uniqueness is false for non-faithful traces: `1_{N-1} + chi` versus
+    `1_N`.
+  - The wave-14 twisted-clock census has limit trace `tau_reg`.  So it is
+    exactly a test of Q3_full, and a positive liminf would refute TPC.
+- 2026-09-19 (swarm-0917-w16-w16-ptm-break): *twist-free bases are a dead
+  end.  The dyadic ladder reduction is new.*  See
+  `bs12-sharp-pair-dyadic-scale-ladder`.
+  - *Tried.* Correcting the sharp pair with exact pairs whose base has order
+    `M`, where `3` does not divide `M`, so that `Z^(N/3)` is not available as
+    a twist. At `N = 27`, `s = 0.1` the census gives:
+    - `M = 25`: `0.664`;
+    - `M = 23`: `0.795`;
+    - control `M = 27`: `0.147`.
+  - *Where it dies.* First, the premise is false in general. Every
+    squaring-equivariant `mu_3`-colouring `f` of `spec Z` gives the twist
+    `f(Z)`, and such colourings exist exactly on squaring orbits of even
+    length. For example, `M = 25` has orbits of lengths `4` and `20`. Second,
+    the genuinely twist-free bases (for example `M = 23`, whose orbit length
+    is `11`) cannot be aligned with `D`: the cycle types of `x2` differ. They
+    come out farther still.
+  - *Proved on the way.* The telescoping gauge `h = exp(-is sum_{k<K} H_(2^k))`
+    gives `h^* A_s h = W e^(isH_(2^K))` exactly and moves `D` by at most
+    `4 pi s (2^K - 1)/N`. So `d(s,N)` equals `dist((A_s, D^R), exact)` up to
+    `4 pi s R/N` for every dyadic `R << N/s`. The Livsic series diverges at
+    the doubling fixed point, which is why the reduction stops there.
+  - *Belief update.* The census minimisers keep an order-`N` base and are
+    twist-incoherent. A counterexample to Q3 therefore needs a lower bound
+    over order-`N` bases with scrambled mod-3 structure. Removing the twist
+    does not help.

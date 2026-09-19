@@ -1,0 +1,12 @@
+orb_e5_L3.g deg=1396 log2|G|=6 ord b=8 t=2
+  class=1 derlen=1 exp=8
+orb_e5_L4.g deg=1872 log2|G|=6 ord b=8 t=3
+  class=1 derlen=1 exp=8
+orb_e6_L3.g deg=6592 log2|G|=9 ord b=16 t=9
+  class=2 derlen=2 exp=16
+orb_e6_L4.g deg=11072 log2|G|=9 ord b=16 t=12
+  class=2 derlen=2 exp=16
+orb_e7_L3.g deg=42624 log2|G|=13 ord b=32 t=138
+  class=3 derlen=2 exp=32
+orb_e7_L4.g deg=76672 log2|G|=13 ord b=32 t=410
+  class=3 derlen=2 exp=32

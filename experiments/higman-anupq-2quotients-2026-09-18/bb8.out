@@ -1,0 +1,29 @@
+ANU p-Quotient Program Version 1.9 running with workspace 10000000 on vm
+Fri Sep 18 20:30:47 UTC 2026
+
+Select option: 1 
+
+Lower exponent-2 central series for G
+
+Group: G to lower exponent-2 central class 1 has order 2^2
+
+Group: G to lower exponent-2 central class 2 has order 2^5
+
+Group: G to lower exponent-2 central class 3 has order 2^9
+
+Group: G to lower exponent-2 central class 4 has order 2^13
+
+Group: G to lower exponent-2 central class 5 has order 2^15
+
+Group: G to lower exponent-2 central class 6 has order 2^17
+
+Group completed. Lower exponent-2 central class = 6, Order = 2^17
+Computation of presentation took 0.05 seconds
+
+Select option: 0 
+Exiting from ANU p-Quotient Program
+Total user time in seconds is 0.05
+
+real	0m0.368s
+user	0m0.039s
+sys	0m0.000s

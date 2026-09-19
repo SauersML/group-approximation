@@ -1,0 +1,4 @@
+M_Phi {'terms': 8, 'M_at_minus_1': 2, 'parity_clean': False, 'no_cancellation': False, 'simplified_matches': True}
+M_PhiGamma {'terms': 8, 'M_at_minus_1': 8, 'parity_clean': True, 'no_cancellation': True, 'simplified_matches': True}
+M_Gamma {'terms': 20, 'M_at_minus_1': -20, 'parity_clean': True, 'no_cancellation': True, 'simplified_matches': True}
+PREPRINT SECTION 7 CONSISTENT WITH PARITY LEMMA: True

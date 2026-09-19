@@ -471,3 +471,32 @@ literature theorem is permitted in this claim.
   no estimate of the overlap mass or of the gauge on a given model can
   contribute.  Workers should not be dispatched here unless they bring such
   an input; the claim stays **OPEN**.
+
+- **Transplant host geometry through subgroups whose regular representation
+  has a matrix model (swarm-0917-w15, transplanter via host-geometry).**
+  Idea: pick a host `H <= Delta`, such as an amenable subgroup of `EL_n(J)`,
+  a free subgroup, or a Haagerup host.  Import an operator-norm MF fact about
+  `H` as the input "false for `lambda`" that the reframing Attempt asks for.
+
+  The established `lambda-realizable-hosts-cannot-exclude-regular-model`
+  kills this whole class.
+  - Suppose some MF model of `H` realizes `(ker lambda_H, tau_H)`.  This holds
+    for every amenable `H` (TWW) and whenever `C*_r(H)` is MF with a unique
+    trace, in particular every free `H` (Haagerup--Thorbjornsen, Powers).
+  - Then every H-level input, meaning any property of the pair (kernel,
+    trace) of the restricted representation, that holds for all MF models
+    of `H` also holds for `lambda_Delta|_H`.  The reason is that
+    `lambda_Delta|_H` is an amplification of `lambda_H`.
+
+  **Where it dies.**  At the gauge-lock clause, applied to `lambda_Delta`.
+  Every hypothesis and every such input holds there, and `(XCG)` fails.  The
+  `pi_Q` branch reduces to this one, because a valid H-level input already
+  holds on each profile's restriction.
+
+  Survivors:
+  - (i) hosts that are not lambda-realizable, for example with non-MF
+    `C*_r(H)`; see `measure-free-steinberg-el-n-reduced-cstar-not-mf`, whose
+    freedom from property (T) is unchecked;
+  - (ii) Delta-level derivations that are not valid in tracial C*-algebras.
+
+  The claim stays **OPEN**.

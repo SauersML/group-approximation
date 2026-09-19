@@ -1,0 +1,7 @@
+original: 40_30 14 accepted (17, 172)
+m_drop rejected: no contradiction
+m_prod rejected: bad product
+m_end rejected: no contradiction
+m_last rejected: last lemma is not the empty set
+m_word rejected: AssertionError
+m_fwd rejected: AssertionError

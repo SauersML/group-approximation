@@ -62,3 +62,26 @@ indistinguishability and insertion tolerance.
    - The hole itself stays **OPEN**, including on `Z^2 * Z/2`, where it needs
      `p_c(G) < p_cap^(k) <= p_c(Z^2)`.
    - [cap_inf] on one-ended graphs also stays open.
+* **Push `p_cap^(k)` up to `p_u` ([cap_inf]), w14-bs-follow, 2026-09-19.**
+  **Where it dies:** the meet thresholds are capped by every amenable
+  subgroup. Lemma A of
+  `research/artifacts/fpbs/docs/replica-meet-amenable-caps-2026-09-19.md`
+  (node `fpbs-meet-threshold-capped-by-amenable-relative-threshold`) gives
+  `p_cap^(k) <= p_c(H;G)` for every infinite amenable `H` and every `k`.
+  - On `Z^3 * Z/2`, `lim_k p_cap^(k) = p_c(Z^3) <= 1/2 < 1 = p_u`
+    (`fpbs-meet-thresholds-tend-to-pc-z3-below-pu-on-z3-free-z2`).
+  - So [cap_inf] is false. Any route to this hole through a replica
+    characterisation of nonuniqueness is dead. The named invariant is
+    `c(G,S) = inf_H p_c(H;G)` over infinite amenable `H`.
+* **What any proof must contain (same artifact, Corollary C).** This hole
+  implies the relative gap `p_c(G) < p_c(H;G)` along *every* infinite
+  amenable subgroup. That is the new OPEN node
+  `fpbs-relative-gap-along-every-amenable-subgroup-universal`. It contains the
+  wq-normal hole `fpbs-amenable-wq-normal-relative-subcriticality`.
+  - A proof of this hole therefore solves the relative-gap lane along every
+    cyclic subgroup at once.
+  - It must separate `p_c(G)` from the subgroup thresholds, not from `p_u`.
+* **Calibration, not a counterexample.** This hole *holds* on `Z^3 * Z/2`.
+  There `p_c(G) < p_c(Z^3)`, by the l1 Aizenman–Barsky bound on `Z^3`, and
+  every large-`k` meet threshold lies in `(p_c(G), p_c(Z^3)]`. The bridge
+  mechanism that proves it there is special to free products.

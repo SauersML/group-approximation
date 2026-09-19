@@ -1,0 +1,7 @@
+lhs 16430 keys 24 s
+  same-regions 9312
+  tuples 9312
+  ('V1V2', 'common') 1224
+  (False, False, True) 8064
+  (False, True, False) 24
+  (False, True, True) 1224

@@ -1,0 +1,286 @@
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 3507 oleans
+[job] acn72 cores=slurm threads=8 base=524da3a8f3d2daed4bd558a2033ff8992e7bdd6b mods: GroupApproximation.Analysis.PauliHyperfiniteFactor GroupApproximation.Analysis.PauliStageOperators GroupApproximation.Analysis.TracialUltrapowerTrace GroupApproximation.Analysis.MatrixUnitHom
+ℹ [2414/2419] Replayed GroupApproximation.Analysis.TracialUltrapower
+info: GroupApproximation/Analysis/TracialUltrapower.lean:266:14: 'GroupApproximation.TracialUltrapower.TracialVector.norm_mul_apply_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapower.lean:267:14: 'GroupApproximation.TracialUltrapower.nullIdeal_star_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2415/2419] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannFactor
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:318:14: 'GroupApproximation.TwistedGroupVonNeumann.exists_smul_one_of_mem_centralizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:319:14: 'GroupApproximation.TwistedGroupVonNeumann.isFactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:320:14: 'GroupApproximation.TwistedGroupVonNeumann.twistedTrace_isFaithfulNormalTracialState' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean:321:14: 'GroupApproximation.TwistedGroupVonNeumann.isIIOneFactor_twistedVonNeumannAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2416/2419] Building GroupApproximation.Analysis.MatrixUnitHom (7.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/Analysis/MatrixUnitHom.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUnitHom.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/Analysis/MatrixUnitHom.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUnitHom.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/Analysis/MatrixUnitHom.setup.json --json
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:34:44: failed to synthesize instance of type class
+  CommSemiring ℂ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:38:60: failed to synthesize instance of type class
+  OfNat A 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  A
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:38:19: failed to synthesize instance of type class
+  HMul A A ?m.14
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:39:16: failed to synthesize instance of type class
+  Star A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:12: failed to synthesize instance of type class
+  HSMul ℂ A ?m.17
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:7: failed to synthesize instance of type class
+  AddCommMonoid A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:43:2: failed to synthesize instance of type class
+  AddCommMonoid A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:21: failed to synthesize instance of type class
+  HAdd (Matrix n n ℂ) (Matrix n n ℂ) ?m.8
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:30: failed to synthesize instance of type class
+  HAdd A A ?m.18
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:47:13: declaration uses `sorry`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:21: failed to synthesize instance of type class
+  HSMul ℂ (Matrix n n ℂ) ?m.8
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:30: failed to synthesize instance of type class
+  HSMul ℂ A ?m.15
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:51:13: declaration uses `sorry`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:62: failed to synthesize instance of type class
+  OfNat (Matrix n n ℂ) 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  Matrix n n ℂ
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:82: failed to synthesize instance of type class
+  OfNat A 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  A
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:53:87: unsolved goals
+n : Type u_1
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+A : Type u_2
+ℂ : Type u_3
+E : n → n → A
+⊢ sorry () = 0
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:54:8: declaration uses `sorry`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:57:21: failed to synthesize instance of type class
+  HMul (Matrix n n ℂ) (Matrix n n ℂ) ?m.10
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:57:30: failed to synthesize instance of type class
+  HMul A A ?m.20
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:56:48: Function expected at
+  IsMatrixUnits
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  E
+
+Hint: The identifier `IsMatrixUnits` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:59:27: failed to synthesize instance of type class
+  HMul ℂ ℂ ?m.59
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:59:45: failed to synthesize instance of type class
+  HMul A A ?m.64
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:58:15: failed to synthesize instance of type class
+  HMul A A ?m.74
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:78:21: failed to synthesize instance of type class
+  Star (Matrix n n ℂ)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:78:31: failed to synthesize instance of type class
+  Star A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:77:49: Function expected at
+  IsMatrixUnits
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  E
+
+Hint: The identifier `IsMatrixUnits` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:80:6: No goals to be solved
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:28: This simp argument is unused:
+  star_sum
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, star_su̵m,̵ ̵s̵t̵a̵r̵_̵s̵m̵ul, hE.star, Matrix.star_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:38: This simp argument is unused:
+  star_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, star_sum, s̵t̵a̵r̵_̵s̵m̵u̵l̵,̵ ̵hE.star, Matrix.star_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:79:58: This simp argument is unused:
+  Matrix.star_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, star_sum, star_smul, hE.star,̵ ̵M̵a̵t̵r̵i̵x̵.̵s̵t̵a̵r̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:82:50: failed to synthesize instance of type class
+  AddCommMonoid A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:21: failed to synthesize instance of type class
+  OfNat (Matrix n n ℂ) 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  Matrix n n ℂ
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:41: failed to synthesize instance of type class
+  OfNat A 1
+numerals are polymorphic in Lean, but the numeral `1` cannot be used in a context where the expected type is
+  A
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:28: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, M̵a̵t̵r̵i̵x̵.̵o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵ite_smul, one_smul, zero_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:46: This simp argument is unused:
+  ite_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, Matrix.one_apply, i̵t̵e̵_̵s̵m̵u̵l̵,̵ ̵one_smul, zero_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:56: This simp argument is unused:
+  one_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, Matrix.one_apply, ite_smul, o̵n̵e̵_̵s̵m̵u̵l̵,̵ ̵zero_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:84:66: This simp argument is unused:
+  zero_smul
+
+Hint: Omit it from the simp argument list.
+  simp only [matrixUnitSum, Matrix.one_apply, ite_smul, one_smul,̵ ̵z̵e̵r̵o̵_̵s̵m̵u̵l̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:91:65: failed to synthesize instance of type class
+  AddCommMonoid A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:92:4: failed to synthesize instance of type class
+  CommSemiring ℂ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:91:40: Function expected at
+  IsMatrixUnits
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  E
+
+Hint: The identifier `IsMatrixUnits` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:103:75: failed to synthesize instance of type class
+  AddCommMonoid A
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:104:61: failed to synthesize instance of type class
+  HSMul ℂ A ?m.39
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:103:50: Function expected at
+  IsMatrixUnits
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  E
+
+Hint: The identifier `IsMatrixUnits` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:109:49: failed to synthesize instance of type class
+  NonAssocSemiring ℂ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:109:49: failed to synthesize instance of type class
+  Semiring ℂ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:110:50: failed to synthesize instance of type class
+  OfNat ℂ 0
+numerals are polymorphic in Lean, but the numeral `0` cannot be used in a context where the expected type is
+  ℂ
+due to the absence of the instance above
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:111:32: failed to synthesize instance of type class
+  AddCommMonoid ℂ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/Analysis/MatrixUnitHom.lean:120:14: 'GroupApproximation.MatrixUnits.matrixUnitSum_mul' depends on axioms: []
+error: GroupApproximation/Analysis/MatrixUnitHom.lean:121:14: Unknown constant `trace_matrixUnitSum`
+error: Lean exited with code 1
+ℹ [2417/2419] Built GroupApproximation.Analysis.PauliHyperfiniteFactor (10s)
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:280:14: 'GroupApproximation.Hyperfinite.pauliCocycle_isTwistedICC' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:281:14: 'GroupApproximation.Hyperfinite.isIIOneFactor_hyperfiniteFactor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliHyperfiniteFactor.lean:282:14: 'GroupApproximation.Hyperfinite.pauliCocycle_interleave' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2418/2419] Built GroupApproximation.Analysis.TracialUltrapowerTrace (15s)
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:247:14: 'GroupApproximation.TracialUltrapower.ultratrace_mul_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:248:14: 'GroupApproximation.TracialUltrapower.ultratrace_star_mul_self_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:249:14: 'GroupApproximation.TracialUltrapower.ultratrace_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TracialUltrapowerTrace.lean:250:14: 'GroupApproximation.TracialUltrapower.diag_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2419/2419] Built GroupApproximation.Analysis.PauliStageOperators (11s)
+info: GroupApproximation/Analysis/PauliStageOperators.lean:127:14: 'GroupApproximation.TwistedGroupVonNeumann.star_twistedLeftOperator_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:128:14: 'GroupApproximation.Hyperfinite.pauliOp_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:129:14: 'GroupApproximation.Hyperfinite.star_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/PauliStageOperators.lean:130:14: 'GroupApproximation.Hyperfinite.coefficient_pauliOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Analysis.MatrixUnitHom
+error: build failed
+EXIT=1

@@ -1,0 +1,215 @@
+F-ball 187 N-ball 305265 (max NF length 12) 3 s
+hashed f=0 4 s
+hashed f=1 7 s
+hashed f=2 10 s
+hashed f=3 13 s
+hashed f=4 16 s
+hashed f=5 19 s
+hashed f=6 22 s
+hashed f=7 25 s
+hashed f=8 29 s
+hashed f=9 33 s
+hashed f=10 36 s
+hashed f=11 41 s
+hashed f=12 45 s
+hashed f=13 49 s
+hashed f=14 53 s
+hashed f=15 60 s
+hashed f=16 64 s
+hashed f=17 68 s
+hashed f=18 72 s
+hashed f=19 77 s
+hashed f=20 80 s
+hashed f=21 85 s
+hashed f=22 89 s
+hashed f=23 93 s
+hashed f=24 97 s
+hashed f=25 102 s
+hashed f=26 107 s
+hashed f=27 111 s
+hashed f=28 116 s
+hashed f=29 121 s
+hashed f=30 125 s
+hashed f=31 129 s
+hashed f=32 134 s
+hashed f=33 138 s
+hashed f=34 143 s
+hashed f=35 145 s
+hashed f=36 149 s
+hashed f=37 154 s
+hashed f=38 160 s
+hashed f=39 166 s
+hashed f=40 171 s
+hashed f=41 178 s
+hashed f=42 183 s
+hashed f=43 188 s
+hashed f=44 194 s
+hashed f=45 198 s
+hashed f=46 203 s
+
+real	3m22.722s
+user	0m50.225s
+sys	0m0.291s
+F-ball 187 N-ball 305265 (max NF length 12) 4 s
+hashed f=47 10 s
+hashed f=48 15 s
+hashed f=49 22 s
+hashed f=50 27 s
+hashed f=51 33 s
+hashed f=52 38 s
+hashed f=53 43 s
+hashed f=54 49 s
+hashed f=55 54 s
+hashed f=56 60 s
+hashed f=57 68 s
+hashed f=58 73 s
+hashed f=59 79 s
+hashed f=60 84 s
+hashed f=61 91 s
+hashed f=62 97 s
+hashed f=63 103 s
+hashed f=64 109 s
+hashed f=65 115 s
+hashed f=66 122 s
+hashed f=67 129 s
+hashed f=68 137 s
+hashed f=69 144 s
+hashed f=70 150 s
+hashed f=71 158 s
+hashed f=72 166 s
+hashed f=73 173 s
+hashed f=74 180 s
+hashed f=75 187 s
+hashed f=76 195 s
+hashed f=77 203 s
+hashed f=78 211 s
+hashed f=79 219 s
+hashed f=80 227 s
+hashed f=81 236 s
+hashed f=82 244 s
+hashed f=83 252 s
+hashed f=84 260 s
+hashed f=85 267 s
+hashed f=86 275 s
+hashed f=87 284 s
+hashed f=88 290 s
+hashed f=89 299 s
+hashed f=90 306 s
+hashed f=91 313 s
+hashed f=92 321 s
+hashed f=93 329 s
+
+real	5m28.643s
+user	1m2.887s
+sys	0m0.396s
+F-ball 187 N-ball 305265 (max NF length 12) 7 s
+hashed f=94 16 s
+hashed f=95 22 s
+hashed f=96 29 s
+hashed f=97 37 s
+hashed f=98 45 s
+hashed f=99 52 s
+hashed f=100 59 s
+hashed f=101 67 s
+hashed f=102 73 s
+hashed f=103 79 s
+hashed f=104 86 s
+hashed f=105 93 s
+hashed f=106 100 s
+hashed f=107 108 s
+hashed f=108 115 s
+hashed f=109 123 s
+hashed f=110 129 s
+hashed f=111 138 s
+hashed f=112 146 s
+hashed f=113 151 s
+hashed f=114 157 s
+hashed f=115 163 s
+hashed f=116 170 s
+hashed f=117 177 s
+hashed f=118 182 s
+hashed f=119 187 s
+hashed f=120 192 s
+hashed f=121 198 s
+hashed f=122 204 s
+hashed f=123 211 s
+hashed f=124 219 s
+hashed f=125 227 s
+hashed f=126 234 s
+hashed f=127 242 s
+hashed f=128 248 s
+hashed f=129 256 s
+hashed f=130 265 s
+hashed f=131 272 s
+hashed f=132 281 s
+hashed f=133 288 s
+hashed f=134 296 s
+hashed f=135 302 s
+hashed f=136 309 s
+hashed f=137 317 s
+hashed f=138 324 s
+hashed f=139 332 s
+hashed f=140 341 s
+
+real	5m41.420s
+user	1m0.828s
+sys	0m0.562s
+F-ball 187 N-ball 305265 (max NF length 12) 4 s
+hashed f=141 12 s
+hashed f=142 20 s
+hashed f=143 28 s
+hashed f=144 36 s
+hashed f=145 45 s
+hashed f=146 53 s
+hashed f=147 62 s
+hashed f=148 70 s
+hashed f=149 78 s
+hashed f=150 85 s
+hashed f=151 94 s
+hashed f=152 101 s
+hashed f=153 108 s
+hashed f=154 117 s
+hashed f=155 125 s
+hashed f=156 132 s
+hashed f=157 140 s
+hashed f=158 148 s
+hashed f=159 155 s
+hashed f=160 163 s
+hashed f=161 170 s
+hashed f=162 177 s
+hashed f=163 183 s
+hashed f=164 189 s
+hashed f=165 194 s
+hashed f=166 201 s
+hashed f=167 207 s
+hashed f=168 212 s
+hashed f=169 218 s
+hashed f=170 223 s
+hashed f=171 229 s
+hashed f=172 236 s
+hashed f=173 242 s
+hashed f=174 249 s
+hashed f=175 255 s
+hashed f=176 262 s
+hashed f=177 267 s
+hashed f=178 271 s
+hashed f=179 276 s
+hashed f=180 281 s
+hashed f=181 286 s
+hashed f=182 292 s
+hashed f=183 298 s
+hashed f=184 305 s
+hashed f=185 309 s
+hashed f=186 315 s
+
+real	5m14.743s
+user	0m58.868s
+sys	0m0.292s
+F-ball 187 N-ball 305265 (max NF length 12) 4 s
+hashes ready 6 s
+sorted 56753000 nontrivial commutators 101 s
+RESULT LA=3 LB=4 |FB|=187 |NB|=305265 unordered_pairs=17205 shared_classes=85048 tuples(unordered)=954436 VCFAIL=0 HBALL=0 HCAND=0 hash_collisions=0  113 s
+
+real	1m53.287s
+user	0m20.429s
+sys	0m1.042s

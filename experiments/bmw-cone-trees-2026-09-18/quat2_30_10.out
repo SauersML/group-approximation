@@ -1,0 +1,5 @@
+# 30_30 #10 in [t, t^2+t+1), d=2: (PV,PH)=(t,t+1) then (t+1,t)
+candidates {('H', True): 48, ('H', False): 432, ('V', True): 46, ('V', False): 428}
+done found 0
+candidates {('H', True): 46, ('H', False): 428, ('V', True): 48, ('V', False): 432}
+done found 0

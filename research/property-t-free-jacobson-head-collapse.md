@@ -810,5 +810,112 @@ The claim stays OPEN.
   must be a property of approximate `W`-models on one fixed window. It must
   separate `theta o alpha^m` from the unitary orbit of `theta` for all `m`
   at once, uniformly in the dimension, on head-keeping models.
+- **group-rings, swarm-0917 (swarm-0917-w14-w14-ptl-follow), 2026-09-19:
+  both halves of `H_mix` are LEF, and the LEF-factor Schafhauser tool is
+  false. The `H_mix` lane reduces to MF of the single amalgam
+  `W x| D_inf`.**
+
+  *Proposal.* Follow the w13 missing tool: an MF theorem for `N`-normal
+  amalgams of LEF groups, or for `W x| D_inf`, where
+  `H_mix = (W x| <a>) *_W (W x| <b>)`, `a = x_34(1)`, `b = x_43(S)`.
+
+  *Result 1.* `h-mix-halves-are-lef-by-column-windows` (established, route
+  `h-mix-halves-are-lef-by-column-windows-proof`, script
+  `experiments/h-mix-column-windows-2026-09-17/check_windows.py`).
+  - Replace `ev_d` by restriction to any finite-dimensional window
+    `Omega ⊂ V_+^2` that the right Levi factor preserves. The two-step models
+    `[[Phi_M(g), X|Omega], [0, B|Omega]]` stay exact.
+  - The offset window `Win_d (+) Win_(d+1)` serves `x_43(S)`, so
+    `W x| <x_43(S)>` is LEF. This answers the w13 spark "`x_43(S)` through a
+    shift on a second window" for that half.
+  - `W` is LEF but not residually finite.
+  - `H_mix` is not LEF: the P22 certificate lies inside it.
+  - For right Levi factors `R <= GL_2(F_2[S])`, windows exist exactly when
+    `R` is locally finite.
+  - Death step on `D`: `ab` has characteristic polynomial `x^2 + S x + 1`, so
+    it preserves no nonzero finite-dimensional subspace. Every exact
+    column-restriction model of `H_mix` then has `Omega = 0`.
+  - Caution: `0 (+) (JQ)^2`, taken in the second column, is a nonzero normal
+    subgroup of `H_mix` that misses the head. So head survival and
+    faithfulness differ. An MF quotient of `H_mix` that keeps the head would
+    already kill the `H_mix` lane.
+
+  *Result 2.* `lef-normal-amalgams-need-not-be-mf` (established, route
+  `lef-normal-amalgams-need-not-be-mf-proof`). Doubling:
+  - `N^2 x| <swap, beta>`, with `beta(x, y) = (phi y, phi^-1 x)`, is an
+    index-two normal amalgam of two copies of `N wr Z/2`, and it contains
+    `N x|_phi Z`.
+  - Apply this to the sofic non-MF `G = K x| Z` of
+    `ascending-hnn-finitary-linear-family-is-sofic-non-mf`, whose kernel `K`
+    is locally residually finite.
+  - The result is finitely generated and sofic, and it is not MF. Its factors
+    are locally residually finite. So w13 tool (a) is false.
+  - With finitely generated residually finite `N`, the doubling is always
+    residually finite. A finitely generated counterexample would therefore
+    need `N` finitely generated, LEF and not residually finite, which is
+    exactly the situation of `W`.
+
+  *Invariant.* The right-Levi action on columns of `V_+^2`. Its
+  finite-dimensional invariant subspaces are the windows. Any certificate of
+  LEF or MF has to replace them.
+
+  *What is left.* Only tool (b): MF of `W x| D_inf` itself, or of a quotient
+  that keeps the head. It must use structure of `W` beyond "both halves are
+  LEF", because Result 2 refutes the general statement. A natural candidate is
+  a bundle of windows `c^k Omega_0` over `k in Z`, on which `D` acts through
+  the dihedral action on `Z`, glued at `|k| ~ n` by approximate unitary
+  equivalence of window models of `W`. Its endpoint step is open: the
+  `M`-parts are exactly equivalent, the `EL_2(J)`-parts are not.
+
+  The claim stays OPEN.
+
+- **group-rings, swarm-0917 (swarm-0917-w15-w15-ptl-follow), 2026-09-19: the
+  rank-three contraction trap has no operator-norm shadow; its witness
+  survives in an amenable Magnus-lamp quotient.**
+
+  *Proposal.* Collapse the head operator-normly from the 12-relator
+  contraction-trap certificate `Gamma_3 = T(F_6, phi_C)` of
+  `jacobson-el3-is-not-lef` alone. That is, show
+  `w = [e, g^-1 a1 g]`, which maps to `x_23(-sq)`, lies in
+  `Rad_MF(Gamma_3)`, the operator-norm analogue of the finite-quotient
+  collapse.
+
+  *Result.* Refuted: `contraction-trap-witness-is-outside-the-mf-radical`
+  (established, route `contraction-trap-witness-is-outside-the-mf-radical-proof`,
+  script `experiments/contraction-trap-mf-2026-09-17/fox_separation.py`).
+  - `Gamma_3` maps onto a subgroup of `(Z/2)^(Q/P) x| Q`, where `Q` is the
+    ascending HNN of the Magnus group `Z[A]^6 x| A` along
+    `Phi(a, f) = (phi_ab(a), phi_ab(f) D)`, with `D` the abelianized Fox
+    Jacobian of `phi_C`. `Q` is solvable, so the lamp group is amenable,
+    hence MF.
+  - `w` maps to a nonzero lamp difference, because `e_1` is not in
+    `Z[A]^6 D`. The certificate is one `F_5` point, `z = (4,4,2,1,4,1)`,
+    where `rank D(z) = 5` and `e_1` leaves the row space (also checked by
+    hand).
+  - Simpler quotients cannot see this. Nilpotent images of `F_6` fail
+    because `phi_ab` is onto. Rank-one affine images fail because the
+    character is `phi`-fixed and there `det D` is a unit.
+
+  *Invariant.* `det D = -x2^6 x3^2 P_C / (x1^6 x4^4 x6)`, with
+  `P_C = x1x3x4x5x6 - x1x3x4x5 + x1x4x5x6 - x1x4x6 - x2^2x3x5x6 + x3x4x5x6 - x3x4x6`
+  a non-unit of `Z[A]`. `P_C` restricts to the unit `-alpha^2 beta` on the
+  `phi`-fixed torus.
+
+  *Where it dies.* The step "injective endomorphism of the hull, hence
+  onto", transplanted from finite models to operator-norm models. In the
+  MF model, `Ad t` maps the hull `G` of `P` injectively but not onto,
+  because `P_C` is not a unit. The same death applies to every trap that
+  passes the metabelian Fox test, including every Baumslag-Solitar trap.
+
+  *What is left.* Any (T)-free head collapse must use relations of
+  `EL_3(J)` beyond the 12 trap relators. The precise open extension is
+  **(E1)**: take the base to be the true image `A_J` of `A` in `EL_3(J)`,
+  where over `F_2` all six generators are involutions and `c` commutes with
+  `U a1 U^-1`. Does some amenable quotient of
+  `<A_J, g | g a g^-1 = Psi(a)>` still separate `g^-1 a1 g` from `A_J`?
+  The Magnus construction does not respect these involution relations,
+  since every metabelian quotient of an involution-generated base is
+  virtually abelian. If no amenable quotient separates, that is evidence
+  for the collapse. If one does, the head lane needs property (T).
 
   The claim stays OPEN.

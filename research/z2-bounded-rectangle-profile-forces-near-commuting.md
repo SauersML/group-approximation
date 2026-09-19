@@ -189,3 +189,173 @@ non-permutation unitary construction.
     square-tiled surface itself (here, undoing the slit). The next target is a *slit-pair lemma*. At a cone point
     with excess, find two parallel saddle connections of `l^1` length `poly(rho)` whose swap lowers the total excess.
     There are at most `2 rho` excess units, so iterating the lemma would finish the proof.
+- **w12-124, 2026-09-18 — the slit-pair lemma, tested both ways. Two-sided swaps close the cross slit, but the
+  lemma is false. Landed: `excised-square-kills-cone-local-slit-pair-repair`.**
+  - **Calibration.** A slit-pair swap exchanges the gluings along two grid paths with the same move word. On the
+    coprime two-torus cross slit, the shortest excess-lowering swap has 2 edges (the two L-slits) and costs `(1, 1)`.
+    It closes that family at distance 1 (`certify.py`, part A).
+  - **Obstruction.** Excise one square of the `n x n` torus into its own `1 x 1` torus. The pair has
+    `rho <= 2` and `dist = 1`. Its other component `S'` has genus 2 and one `6 pi` cone point.
+    - Every commuting permutation pair on `S'` costs at least `(n - 1 - n/p)/2 >= n/4 - 1/2`, where `p` is the least
+      prime factor of `n`. The intact `n`-cycles force the big torus to have area dividing `n^2`, and `S'` has area
+      `n^2 - 1`.
+    - So every excess-lowering swap at the cone point is that long. The exact minimum is `n - 1` for
+      `4 <= n <= 7`.
+    - Every cone-local chain costs at least as much, and so does every padding-free rounding of the permutation pair
+      `S'`, which has `rho(S') <= 2`.
+  - **Where it fails.** The cheap repair uses a flat donor (the stranded square, or a padded point), and its first
+    step leaves the excess unchanged. So excess is not a monotone potential for local moves. Greedy lowering swaps
+    strand small flat tori the same way in 5 of 178 random clustered perturbations.
+  - **Next step: a donor slit-pair lemma.** Pad by a flat torus of area `poly(rho)`. Then some chain of at most two
+    swaps of total length `poly(rho)` should lower the excess, with the first swap allowed to be excess-neutral and
+    to use the donor. With `rho(b', c') <= rho + 2 * cost` and `excess <= 2 rho`, this would settle the permutation
+    case with an iterated `F`.
+- **w13-124, 2026-09-18 — the donor slit-pair lemma. One mechanism proved, and every stall resolved. The lemma is
+  still open. Landed `lattice-donor-excises-sign-matched-cone-handles`.**
+  - **Context.** w12-124 (landing pending) showed that the plain slit-pair lemma fails. On the excised-square torus
+    (`rho <= 2`, `dist 1`), every cone-local slit-pair repair costs at least `n/4`. So the step is: pad with a flat
+    donor torus, allow a first swap that keeps the excess unchanged, then lower the excess.
+  - **Proved (handle excision).** Take two edge loops `alpha, beta` at a cone point, with holonomies `u, w` and
+    `det(u, w) != 0`. Suppose `beta` crosses `alpha` with the sign of `det`, and the copies of the loops in
+    `Z^2/<u,w>` are simple. Then two swaps with that donor, of area at most `|alpha||beta|`, excise them:
+    - the first swap is excess-neutral and splits the cone point;
+    - the second swap lowers the excess by exactly 2;
+    - `rho` grows by at most `2(|alpha| + |beta|)`.
+    This closes w12-124's excised square at total length 2, and excised `k x l` blocks at length `k + l`, which is
+    linear in the measured profile.
+  - **Computation.**
+    - The sign condition is sharp: 600 lowering pairs out of 8298, and all of them satisfy (H1).
+    - The donor two-swap search resolves all 13 greedy stalls of w12-124, at total length at most 8 (at most 5 with a
+      donor).
+    - Iterated greedily on 737 random clustered perturbations, it never stalls.
+    - The 8 uninvestigated stalls are not arithmetic: each has a full-area excess-2 component. They are artifacts of
+      a greedy that allows only lowering first moves. The chains that resolve them first move or merge cone points
+      with a neutral transposition, then slit.
+  - **Open (the next step).** The dichotomy at length `poly(rho)`: every cone point carries one of the following.
+    - a same-vertex slit pair;
+    - a sign-matched handle satisfying (H1) and (H2);
+    - a neutral cone move that produces one of the first two.
+    The cone-radius bound gives a short loop or saddle connection at each cone point. Two things are missing: the
+    partner loop with the right crossing sign, and the simplicity of the donor copies.
+- **w14-124, 2026-09-18 — the donor slit-pair lemma. Reduced to self-bound cone points; both alternatives shown
+  necessary. The lemma is still open. Landed `cone-excess-transfer-reduces-donor-lemma-to-self-bound`.**
+  - **Proved (transfer).** Swapping `k + 1` same-word paths that leave a `2 pi (k + 1)` cone point one turn apart,
+    in the sequential order `P_(j-1) <-> P_j`, empties that point. The total excess stays the same, or drops by 2
+    when two current ends coincide, and the cost is at most `k |P_0|` per generator.
+  - **Proved (cone-ball dichotomy).** Develop the cone ball at a cone point `A` into the surface. Rectangle counting
+    closes it at radius `r* <= 2 rho + 1`. Then one of two cases holds.
+    - *Free:* the first collision is another cone point, and the rotated staircases to it satisfy the transfer
+      hypotheses. So the transfer lowers `E`, or keeps `E` and lowers the number of cone points.
+    - *Self-bound:* `A` carries an edge loop of nonzero holonomy and length at most `8 rho + 4`.
+  - **Consequence.** Only the self-bound case of the donor lemma remains. If a self-bound lemma holds at polynomial
+    length `P(rho)`, the permutation case follows with an explicit `F(K)`. This `F` is not polynomial
+    (`exp(O(K^2 log K))` even for linear `P`), because each transfer raises the profile.
+  - **Both alternatives are needed (proved).** One-cylinder surfaces with a single `6 pi` point have
+    `Lambda_rect <= C` for every height `H`. Every sign-matched handle there has length at least `H`, yet a one-edge
+    same-vertex slit pair lowers `E` to 0. The excised square is the reverse case.
+  - **Computation.**
+    - The transfer prediction matched in 60 422 of 60 422 cases.
+    - The sequential chain behaved as predicted in all 41 451 swaps.
+    - Pairing `P_0` with `P_j` instead fails in 347 steps.
+    - Loop copies were neutral in all 767 cases.
+  - **Open (the next step).** The self-bound lemma: at a cone point whose developed ball closes on itself, find one
+    of the following at length `poly(rho)`.
+    - a same-vertex slit pair;
+    - a partner loop crossing the short loop with the sign of `det`, whose donor copies are simple;
+    - a counterexample family of self-bound points where neither exists.
+    A polynomial `F` would also need a transfer that does not raise the profile at every step.
+- **w15-124, 2026-09-18 — the self-bound lemma. Obstruction: without relocation moves it is false. Landed
+  `seam-surface-forces-neutral-relocation-in-self-bound-lemma`.**
+  - **The family.** `S(H, tw)` is one horizontal cylinder of circumference 6 and height `H`, with its top glued to
+    its bottom by the interval exchange that reverses lengths `(1, 2, 3)` (then twist `tw`). It has a single `6 pi`
+    cone point `A`, so `E = 2`, and `rho <= 6` for every `H`. So `A` is self-bound.
+  - **Theorem 1.** Every loop at `A` with nonzero vertical holonomy has length `>= H`, so every sign-matched handle is
+    long. No admissible same-vertex slit pair of length `< H` lowers `E`. The proof uses a corner rule for loop-pair
+    swaps and the fact that both paths keep equal heights. It then reduces every pair to a three-level band at the
+    seam, and one exhaustive band check finds 40 pairs, none lowering. So neither (i) nor (ii) exists at length
+    `poly(rho)` once `H > poly(6)`.
+  - **Theorem 2.** One neutral relocation (two one-edge swaps of top-row `c`-values) reaches a torus, at cost 2. So
+    the self-bound lemma must allow neutral relocation moves before the slit pair or handle.
+  - **Proposition 3.** Every one-cylinder surface of height `H >= n` is within rank `4 rho` of a torus, by regluing
+    the seam with the best rotation (`b` unchanged).
+  - **Open.** The cylinder form of Proposition 3. The short loop `u` at a self-bound point gives a periodic
+    decomposition in direction `u`. Tall cylinders should be seam-repairable at cost `O(rho)`, and short ones crossed
+    by a partner loop of length `poly(rho)`. A seam shared by several cylinders is the missing case. A transfer that
+    never raises the profile was not found.
+- **w16-124, 2026-09-18 — the cylinder form of Proposition 3, with shared seams. Landed
+  `tall-cylinder-seams-reglue-within-quadratic-profile`: F(K) = 176 K^2 on the locally tall class.**
+  - **Theorem 1.** Take the horizontal cylinders `C_j` that are not torus components (at most `4 rho` of them), with
+    widths `w_j`, heights `h_j`, and `tau_j` the least height among `C_j` and its seam neighbours. Some `c'`
+    commuting with `b` differs from `c` only on top rows, at at most `96 rho^2 + 20 rho sum_j w_j/tau_j` points. So if
+    `w_j <= tau_j` for every `j`, the pair is within `176 rho^2` of commuting, with `b` unchanged.
+  - **Proof idea.** With `t = tau_j`, every orbit of `c^t` counted crosses exactly one seam.
+    - *Width lemma.* With `s = w_j`, `b^s` fixes `C_j`, so seam points into cylinders of non-dividing width are
+      few (`u_j <= 2 rho (1 + w_j/tau_j)`); the same holds from below.
+    - *Offset lemma.* Averaging over `s < w_j` bounds the defect of the best rotation class.
+    - *Regluing.* Majority classes pick distinct targets, and a width-preserving completion exists.
+  - **Theorem 2 (sharpness).** On the excised square `T_n` (`rho <= 2`, distance 1) every regluing that keeps `b`
+    costs at least `2(n-1)`, while `w_B/tau_B = n - 1`. The ratio term is needed, and short wide cylinders need
+    two-sided moves.
+  - **Theorem 3 (height gap).** If the seam joins `a` top points of `C_j` to `C_beta`, with `w_beta != w_j`, then
+    `a min(h_j, h_beta) <= 2 rho (max w + min h)`. So a mismatch of mass `a >= max w/2 >= 4 rho` forces a cylinder of
+    height `<= 8 rho`: short means `O(rho)`, not just shorter than wide.
+  - **Computation.** `seams.py` ran on 450 random multi-cylinder surfaces. It checked every inequality and compared
+    with the exact one-sided optimum (an assignment). Tall cases have `alg <= 1.57 rho_hat^2`.
+  - **Open.** Pairs with a locally wide cylinder in both directions. The next step is a two-sided width adjustment:
+    padding or deleting a column of a height-`h` cylinder costs `O(h)`. The profile should bound
+    `sum_j h_j |w_j - w'_j|` for some matchable width vector `w'`.
+- **w17-124, 2026-09-18 — the doubly-wide case. Width matching plus one-sided regluing is killed. Landed
+  `excised-thick-torus-kills-width-matched-one-sided-repair`.**
+  - **Family.** The thick torus `Z/(a^2+1)` with `b = +1` and `c = +a` is one row, wide in both directions. Excise
+    the `k` squares `0, ..., k-1` (with `a >= 2k+1`) to get `E(a, k)`.
+    - It is within rank `k` of the torus in each generator, so `Lambda_rect <= 2k` by Lemma B.
+    - Both decompositions are a single self-glued cylinder of width `n = a^2 + 1 - k` and height 1.
+  - **One-sided costs.** In `b`-order, `c` is a 3-interval exchange, so keeping `b` costs exactly `a`. In `c`-order,
+    `b` is translation by `-a+1` on an arc of `k(a-1)` points and by `-a` elsewhere, so keeping `c` costs exactly
+    `k(a-1)+1`. The computation matches for `a <= 13`.
+  - **What this kills.** On `E` the width defect `sum_j h_j |w_j - w'_j|` is 0 and Theorem 3 is vacuous. So the
+    brief's step holds trivially, but combining it with Theorem 1 of
+    `tall-cylinder-seams-reglue-within-quadratic-profile` costs `~ sqrt(d)` at profile `2k`. The repair that works
+    is `k` column insertions at the holes, which are the break points of the seam. So a certificate must locate
+    columns, not only count them.
+  - **Next.** The one-row case: `b` an `n`-cycle and `c` a `b`-interval exchange with `<= 4 rho` breaks. Show that
+    profile `K` gives a rotation after `O_K(1)` column insertions and deletions at the breaks. This is Theorem 1 with
+    an interval transversal, in the style of zippered rectangles and Rauzy–Veech induction.
+- **w18-124, 2026-09-19. The one-row step (a rotation after column insertions) is false; the corrected target is the
+  arc-torus. Landed `one-row-profile-pairs-need-arc-tori-not-rotations`.**
+  - **Break lemma.** For `b = +1`, `Lambda_rect <= sup_t |B_t|`, where `B_t` is the set of breaks of `c^t`.
+  - **Obstruction.** Take `c` fixing `A = [0, alpha)` and swapping `B` and `C`. Then `|B_t| <= 3`, so the profile is at
+    most 3.
+    - Every single-row repair costs at least `min(alpha, beta + gamma) / 2`. The reason is that the centraliser of a
+      full cycle consists of its powers, and a power is either the identity or fixed-point-free.
+    - Cutting the row into `A` and `B u C` costs 1.
+    - So any argument that outputs a single row fails, including Rauzy–Veech induction with one interval as
+      transversal. A repair must cut the row.
+  - **Exact reformulation.** Permutation distance is equivalent, up to a factor of 2, to the least `max(m, e)` over
+    `(m, e)`-arc-tori. These are commuting pairs whose rows are concatenations of at most `m` old arcs and padding
+    runs, with `c` changed at `e` old points.
+  - **E(a, k) is the twist theta = beta + gamma.** It is repaired with `m = 2` and `e = beta` by column insertion.
+  - **Data.**
+    - Resonant twists `n/q` have profile about `2q`.
+    - Generic twists with `beta = 1` have profile about `sqrt(n)/2`.
+    - `(400, 157, 229, 75, 96)` is two thin diagonal arc-tori (`c^3 = b^-4` and `c^2 = b^10`) at profile about 10.
+  - **Next.** Show that profile `K` gives an `(F(K), F(K))`-arc-torus with its cuts in `U_{|j| <= O(K)} c^j(B_1)`.
+- **w19-124, 2026-09-19. Localisation half of the one-row step proved for all permutation pairs; the surgery half is
+  open, with strong computational support. Landed `bounded-profile-puts-short-essential-loops-at-cone-points`.**
+  - **Theorem (CAT(0) dichotomy).** The universal cover of the square-tiled surface `S(b, c)` is CAT(0). If
+    `Lambda_rect <= K` and `R = floor(4K) + 1`, then within distance `4R` of every cone point there is a homotopically
+    nontrivial closed lattice curve of length at most `4R`. It is either a zero-period rectangle loop or a loop of nonzero
+    period.
+    - *Proof idea.* A null-homotopic rectangle loop bounds a flat rectangle by the Flat Quadrilateral Theorem, and the
+      profile bound makes fewer than `R^2` of the squares near the cone point move.
+  - **Corollary.** `Lambda_rect >= R/4` whenever some cone point has no essential loop of length `4R` within distance
+    `4R`. So the profile is quadratic up to the local systole.
+    - For one-row pairs, this places the cuts in `U_{|i|, |j| <= O(K)} b^i c^j (B_1)`.
+  - **157 example corrected.** One slit swap of length 7 gives distance at most 4, not about 60.
+  - **Data (not proved).**
+    - For 3-arc exchanges with moved-profile at most 3 and `n <= 100`, exhaustively, one swap or one excision repairs
+      at cost at most 8, which is at most 3 times the profile.
+    - At `n = 200` (random), one swap repairs at cost at most about `2 Lambda` in 234 of 250 classes, and rotations
+      repair 4 more.
+  - **Next.** Prove the surgery half in genus 2: a short zero-period loop should give a staircase slit swap, and case
+    (b) should give a padded cylinder cut. Then reduce the doubly-wide case to one-row pairs.

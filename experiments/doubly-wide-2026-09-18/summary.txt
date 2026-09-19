@@ -1,0 +1,18 @@
+run3.py: excised thick torus E(a,k), W=a^2+1, n=W-k. rho_hat = max rank([b^s,c^t]-I)/(s+t), s,t<=2a (lower bound for rho).
+Hcyl/Vcyl = (width,height) of non-torus cylinders; H1side/V1side = exact one-sided optimum (c' commuting with b / b' commuting with c).
+Predicted: rho<=2k, H1side=a, V1side=k(a-1)+1 for a>=2k+1.
+W=26 a=5 k=1 rho_hat=1.75@(4, 4) Hcyl=[(25, 1)] Vcyl=[(25, 1)] H1side=5 V1side=5
+W=26 a=5 k=2 rho_hat=2.67@(2, 4) Hcyl=[(24, 1)] Vcyl=[(24, 1)] H1side=5 V1side=9
+W=26 a=5 k=3 rho_hat=2.67@(2, 4) Hcyl=[(23, 1)] Vcyl=[(23, 1)] H1side=5 V1side=11
+W=50 a=7 k=1 rho_hat=1.83@(6, 6) Hcyl=[(49, 1)] Vcyl=[(49, 1)] H1side=7 V1side=7
+W=50 a=7 k=2 rho_hat=3.00@(2, 6) Hcyl=[(48, 1)] Vcyl=[(48, 1)] H1side=7 V1side=13
+W=50 a=7 k=3 rho_hat=4.00@(3, 6) Hcyl=[(47, 1)] Vcyl=[(47, 1)] H1side=7 V1side=19
+W=82 a=9 k=1 rho_hat=1.88@(8, 8) Hcyl=[(81, 1)] Vcyl=[(81, 1)] H1side=9 V1side=9
+W=82 a=9 k=2 rho_hat=3.20@(2, 8) Hcyl=[(80, 1)] Vcyl=[(80, 1)] H1side=9 V1side=17
+W=82 a=9 k=3 rho_hat=4.36@(3, 8) Hcyl=[(79, 1)] Vcyl=[(79, 1)] H1side=9 V1side=25
+W=122 a=11 k=1 rho_hat=1.90@(10, 10) Hcyl=[(121, 1)] Vcyl=[(121, 1)] H1side=11 V1side=11
+W=122 a=11 k=2 rho_hat=3.33@(2, 10) Hcyl=[(120, 1)] Vcyl=[(120, 1)] H1side=11 V1side=21
+W=122 a=11 k=3 rho_hat=4.62@(3, 10) Hcyl=[(119, 1)] Vcyl=[(119, 1)] H1side=11 V1side=31
+W=170 a=13 k=1 rho_hat=1.92@(12, 12) Hcyl=[(169, 1)] Vcyl=[(169, 1)] H1side=13 V1side=13
+W=170 a=13 k=2 rho_hat=3.43@(2, 12) Hcyl=[(168, 1)] Vcyl=[(168, 1)] H1side=13 V1side=25
+W=170 a=13 k=3 rho_hat=4.80@(3, 12) Hcyl=[(167, 1)] Vcyl=[(167, 1)] H1side=13 V1side=37

@@ -1,0 +1,37 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2339 oleans
+[job] acn112 cores=72-79 threads=8 base=178be1c228fed7928343e657b3e420c034a0060b mods: GroupApproximation.CharClass.ThomChartTautZeroOf
+ℹ [8768/9013] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8789/9183] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8857/9183] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8949/9183] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8950/9183] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9183/9183] Built GroupApproximation.CharClass.ThomChartTautZeroOf (21s)
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:173:14: 'GroupApproximation.CharClass.eulerOfBundleOf_comap_const_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:174:14: 'GroupApproximation.CharClass.eulerOfBundleOf_pushforward_eq_zero_of_trivIso' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:175:14: 'GroupApproximation.CharClass.LH.pull_zeroSectionProj_tautEulerOfK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:176:14: 'GroupApproximation.CharClass.LH.pull_chartInclMap_tautEulerOfK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:177:14: 'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerOfK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomChartTautZeroOf.lean:178:14: 'GroupApproximation.CharClass.LH.pull_bridgeChartIncl_tautEulerDualK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9183 jobs).
+EXIT=0

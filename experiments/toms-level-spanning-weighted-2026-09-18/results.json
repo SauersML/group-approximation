@@ -1,0 +1,19 @@
+{
+  "program": "anneal.c (gcc -O2 anneal.c -o anneal -lm); usage: anneal N m Tmax mode steps seed [T0]",
+  "complex": "product cell complex of I^N, L = 6m+1 cells per coordinate, walls at cells 2m and 4m; delta = usc closure of a random cell labelling in {0..Tmax}",
+  "modes": {
+    "0": "(T) bad component: 3t + c <= 3N - 1",
+    "1": "(S) bad component: number of coordinates not spanned > t",
+    "2": "(B) bad component: c + t + 2*max(delta) <= 3N - 1"
+  },
+  "score": "sum over level components of the violation; score 0 would be a counterexample (all components bad)",
+  "runs": [
+    {"N": 2, "m": 2, "Tmax": 2, "modes": [0, 1, 2], "best": 1, "counterexample": false},
+    {"N": 3, "m": 1, "Tmax": 2, "modes": [0, 1, 2], "best": 1, "counterexample": false},
+    {"N": 3, "m": 1, "Tmax": 2, "mode": 1, "seeds": [11, 12, 13, 14, 15, 16], "best": 1, "counterexample": false},
+    {"N": 3, "m": 2, "Tmax": 2, "mode": 1, "steps": 1500000, "T0": 0.7, "seeds": [1, 2], "final": [3, 3], "best": [1, 1], "counterexample": false},
+    {"N": 3, "m": 2, "Tmax": 2, "mode": 0, "steps": 1500000, "T0": 0.7, "seeds": [1, 2], "final": [7, 7], "best": [1, 1], "counterexample": false},
+    {"N": 4, "m": 1, "Tmax": 1, "mode": 2, "seeds": [1, 2, 3], "final": [4, 4, 4], "best": [1, 1, 1], "counterexample": false}
+  ],
+  "conclusion": "No counterexample to (S), (T) or (B) found; best score 1 throughout. Search evidence only."
+}

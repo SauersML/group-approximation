@@ -310,3 +310,22 @@ sees.
   agreement argument transfers to `G_multi` is open. The attempt artifacts are
   `research/artifacts/grassmann-restriction-99-percent-rigidity-proof-2026-09-18.md`
   and `research/artifacts/dkkms-branch-coordinate-untested-proof-2026-09-18.md`.
+- **2026-09-17, swarm-0917-w16-w16-ugc-last1 (reframing: quotient free bit;
+  the approach is dead for this hole and alive for UGC).**
+  - **The selector.** `dkkms-quotient-free-bit-lifts-seed-mass-to-unique-games`
+    removes the folding-compatibility hypothesis of Proposition 4. It puts the
+    branch bit on `y_e = can(L + H_U, L' + H_U)` and uses the class label
+    `a + a(y_C) phi_C` on the quotient. The result is a canonical
+    polynomial-time orientation with YES lift value `>= 1 - xi - eps_out`,
+    where `xi = E_C[1 - max_Q w(Q|C)]`.
+  - **Why it fails at proved points.** The class posterior is exactly
+    `∝ prod_i ((1-beta) + (beta/3) 2^(l-1) n_i(Q))`. At the proved points,
+    regime (R), it is flat, with `xi >= 1 - 1/(2^l - 1) - 6d`. So this selector
+    fails here, as Theorem S predicts.
+  - **Where it works.** At every fixed `beta` in `(0,1)`,
+    `xi <= 2^l exp(-Omega_(l,beta)(k))`, so the selector is near-perfect there.
+  - **What remains.** The obstruction to this hole is not the selector but
+    where soundness is proved. The UGC route is re-decomposed as
+    `ugc-from-dkkms-soundness-at-heavy-smoothing`, whose only open
+    prerequisite is `dkkms-2to1-game-sound-at-heavy-smoothing`.
+  - **Artifact.** `experiments/ugc-free-bit-2026-09-17/quotient_seed_posterior.py`.

@@ -1,0 +1,16 @@
+H4: roots 60, walls through L 15, fibre punctures 45, F-walls 3
+  rank-2 flats 722; bad flats 316 by size {2: 240, 3: 70, 5: 6}; bad pairs 510
+  collision walls 106; #walls carrying m bad flats: {1: 16, 2: 30, 4: 60}
+  bad flats containing an F-wall 48 by size {2: 30, 3: 15, 5: 3}; by #F-walls {1: 48}
+  per F-wall: 0:16, 4:16, 8:16
+  modularity of L in A u D verified for all 990 pairs
+H4Y: roots 60, walls through L 6, fibre punctures 54, F-walls 12
+  rank-2 flats 722; bad flats 547 by size {2: 363, 3: 148, 5: 36}; bad pairs 1167
+  collision walls 319; #walls carrying m bad flats: {1: 256, 3: 24, 5: 15, 6: 24}
+  bad flats containing an F-wall 279 by size {2: 153, 3: 93, 5: 33}; by #F-walls {3: 6, 1: 264, 2: 9}
+  per F-wall: 3:25, 6:25, 7:25, 9:25, 10:25, 11:25, 13:25, 14:25, 17:25, 18:25, 23:25, 27:25
+  modularity of L in A u D verified for all 1431 pairs
+
+real	6m0.611s
+user	1m2.550s
+sys	0m0.062s

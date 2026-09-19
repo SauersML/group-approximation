@@ -1,0 +1,43 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4558 oleans
+[job] acn112 cores=88-95 threads=8 base=2d7e894f544a10afafef42e1f4db0df6005e78a6 mods: GroupApproximation.Analysis.KirchbergRealDilation GroupApproximation.Analysis.KirchbergTensorSquare GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+ℹ [3702/3748] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4622/4624] Built GroupApproximation.Analysis.KirchbergRealDilation (9.9s)
+✔ [4623/4624] Built GroupApproximation.Analysis.KirchbergTensorSquare (12s)
+✖ [4624/4624] Building GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (374s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.setup.json --json
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:177:28: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:181:4: (deterministic) timeout at `«tactic execution»`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:147:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:247:8: (kernel) unknown constant 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.exists_moving_representation'
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:259:8: (kernel) unknown constant 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.exists_moving_representation'
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:278:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput' depends on axioms outside the classical allowlist: [GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput]
+  full closure: [propext,
+ Classical.choice,
+ Quot.sound,
+ GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:279:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem' depends on axioms outside the classical allowlist: [GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem]
+  full closure: [propext,
+ Classical.choice,
+ Quot.sound,
+ GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+error: build failed
+EXIT=1

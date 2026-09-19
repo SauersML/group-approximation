@@ -109,6 +109,7 @@ def wordOf : ℕ → (m → F[X]) → (σ → F[X]) → List (Letter m F i₀)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.wordOf
 
+omit [DecidableEq σ] in
 theorem length_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]), (wordOf i₀ j c A).length = j := by
   induction j with
   | zero => intro c A; rfl
@@ -118,6 +119,7 @@ theorem length_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]), (wordO
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.length_wordOf
 
+omit [DecidableEq σ] in
 theorem vecOf_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]),
     vecOf i₀ (wordOf i₀ j c A) (fun k => Polynomial.divX^[j] (c k)) = c := by
   induction j with
@@ -134,6 +136,7 @@ theorem vecOf_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]),
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.vecOf_wordOf
 
+omit [Fintype m] in
 theorem listPoint_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]) (i : σ), i ≠ i₀ →
     listPoint Polynomial.X (params i₀ (wordOf i₀ j c A)) (fun i => Polynomial.divX^[j] (A i)) i =
       A i := by
@@ -151,6 +154,7 @@ theorem listPoint_wordOf (j : ℕ) : ∀ (c : m → F[X]) (A : σ → F[X]) (i :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.listPoint_wordOf
 
+omit [DecidableEq σ] in
 theorem vecOf_sub (w : List (Letter m F i₀)) (v v' : m → F[X]) (k : m) :
     vecOf i₀ w v k - vecOf i₀ w v' k = Polynomial.X ^ w.length * (v k - v' k) := by
   induction w with

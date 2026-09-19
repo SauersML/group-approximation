@@ -1,0 +1,1 @@
+trace-manuscript-deps: self-test passed

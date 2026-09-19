@@ -215,6 +215,55 @@ claim [[nonsofic-one-relator-group]].
        - Linton Thm 7.1 then gives virtual specialness.
      - Open next: length 20 and up, where `A cap B` can be exceptional and
        the top-level Z-stability needs another argument.
+   - **Length-21 singular-extreme slice closed, exceptional top level included
+     (2026-09-18, w10-073).** Length 20 is empty, since the parity forces
+     `|w|` odd.
+     - [[magnus-windows-are-linton-one-relator-towers]]: the iterated Magnus
+       windows form a Linton one-relator hierarchy that ends at a primitive
+       relator (free group), so Linton Thm 7.1 applies to two-level towers.
+     - [[length21-singular-relators-z-stable-hierarchy-special]]: the census
+       has 660 one-level and 20 two-level relators with census certificates,
+       and 821 open two-level relators. There are none with `n >= 3`, by a
+       length bound checked by a second enumerator.
+       - Top level: 713 have cyclic `A cap B` (Collins, `sZ = 2`). The other
+         108 have a rank-two, exceptional `A cap B`. Stallings pullbacks in
+         the free Magnus subgroup give `sZ = 3` for these.
+       - Level one: Stallings pullbacks.
+       - Hyperbolicity: kbmag for 815 relators and `C'(1/6)` for 6.
+       - All 821 are virtually special.
+     - Open next: length 23, the first length with three-level relators
+       (96 `n = 3` candidates). This needs a three-step tower with `sZ` at
+       the middle level, and perhaps hyperbolicity certificates that do not
+       use kbmag.
+   - **Obstruction: the per-length Linton route cannot close the slice
+     (w11-073).**
+     [[unit-alexander-singular-slice-contains-non-rf-bs-groups]].
+     - Let `T = a_2 a_0 a_1 a_2` and `W_0 = T a_0^(-k) T^(-1) a_0^(k+1)`.
+       This gives unpeelable singular unit-Alexander relators `w_k` of length
+       `25 + 2k` that the census certificates do not close.
+     - Their Magnus vertex group is `BS(k,k+1) * Z`, and it embeds in `G_k`.
+     - So from length 27 on, the slice has members that are not hyperbolic
+       and not virtually special.
+     - From length 29 on (`k >= 2`), it has members that are not residually
+       finite and not linear.
+     - A Nielsen-basis search finds 288, 216 and 216 classes for
+       `BS(1,2)`, `BS(2,3)` and `BS(3,4)`, with minimum lengths 27, 29 and 31.
+     - Open next: is `G_2` sofic? `G_2` is an HNN extension of
+       `BS(2,3) * Z` over free groups of rank 2. Lengths 23 and 25 are not
+       covered by this search.
+   - **Length-23 three-level slice closed (w11-073).**
+     [[length23-three-level-singular-relators-hyperbolic-special]].
+     - All 96 `n = 3` relators, none with a census certificate, are
+       hyperbolic and virtually special. `n >= 4` is empty.
+     - The hierarchy has length two: level one of `B_0` already ends at a
+       primitive relator.
+     - 80 relators are certified only in the basis `(a, t a)`. The
+       automorphism `t -> t a^-1` gives a different Magnus splitting of the
+       same group, whose top `sZ` is finite. 48 of the 96 have exceptional
+       `A cap B`.
+     - The census certificates close all 2226 `n = 1` candidates (R1).
+     - Open next: the 7961 `n = 2` relators of length 23 that have no
+       census certificate, then length 25.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

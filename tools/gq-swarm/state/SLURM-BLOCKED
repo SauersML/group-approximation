@@ -1,0 +1,3 @@
+2026-09-18 ~20:55 CDT: every sbatch fails with AssocMaxSubmitJobLimit. The hsiehph association's GrpSubmitJobs counter
+underflowed (uint32), so no job can be submitted until an MSI admin resets it (the user is filing a ticket).
+Do NOT build Lean directly on acn112/acl42 (heavy compute is Slurm-only). Remove this file when sbatch works again.

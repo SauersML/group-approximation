@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/finite-outer-order-radical-witnesses-cross-alekseev-thom.md
   - research/fp-mapping-torus-iff-finite-automorphic-presentation.md
+  - research/lacunary-hyperbolic-witness-kernels-are-non-rf-hyperbolic.md
 ---
 
 **OPEN.** There exist a finitely generated group `K` and `phi in Aut(K)` such that
@@ -84,3 +85,23 @@ Profinite hosts are dead. The claim stays OPEN.**
   action has no generating refining sequence of `H`-permuted finite partitions. A (P1) group inside the
   full group of a Bernoulli shift of an RF Kazhdan group is the concrete remaining target for this
   certificate.
+1. **Lacunary hyperbolic kernels (Hull--Osin and sparse hyperbolic-stage limits).** Dead at (P2)
+   for the intended infinitely presented design (swarm-0917 w16, host-geometry). See
+   `lacunary-hyperbolic-witness-kernels-are-non-rf-hyperbolic`, which is ESTABLISHED from a verbatim
+   import of the OOS proof of Theorem 3.3 and of Kapovich--Kleiner Theorem 8.1
+   (`oos-lacunary-hyperbolic-short-relator-stages`).
+   - *Stage sandwich.* For a lacunary hyperbolic `K = F(S)/N`, the OOS stages satisfy
+     `N_{≤ C_2 k ℓ_k} = M_{n(k)} = N_{≤ ℓ_k}` with `ℓ_k → ∞`. So `K` is either hyperbolic or has
+     unbounded relation gaps.
+   - *Consequence.* The gap lemma of `relation-gaps-forbid-fp-mapping-tori` then gives:
+     `(P2)` implies `K` is finitely presented, and hence `K` is hyperbolic.
+   - *What a solution would be.* Any (P1)+(P2) pair with `K` quasi-isometric to a lacunary
+     hyperbolic group is a finitely presented, torsion-free, hyperbolic, sofic Kazhdan group with no
+     finite quotient. That is simultaneously a non-residually-finite hyperbolic group and an answer
+     to Alekseev--Thom 6.1.
+   - *Invariant and scope.* The invariant is the relation-gap ratio, which is at least
+     `d_{n(k)} / ℓ_k = C_2 k`, the metric form of `δ_i = o(r_i)`. This kills the Hull--Osin
+     candidates named above whenever their stages are hyperbolic with constants little-o of the
+     injectivity radii.
+   - *What survives.* (P1) candidates with no R-tree asymptotic cone, for example Burnside-type
+     limits with `δ_i / r_i` bounded below. The node stays OPEN.

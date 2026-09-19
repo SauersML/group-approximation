@@ -63,3 +63,58 @@ Hilbert space and 1-cocycles `b_1, b_2` into `π` such that
     `→ 0` would then need `M ⊗ M̄` (the conjugation action on Hilbert–Schmidt operators on Fock
     space) to have almost invariant vectors for `T`. That is the falsifiable next question on this
     lead.
+- **2026-09-19 (swarm-0917-w15-w15-nv-last1, operator-algebras): the smooth-model witness classes
+  die; the noncommutative pairing.**
+  - *Established.* `trace-class-conjugation-cocycles-have-exact-cup-products`.
+    - The invariant is the relative trace `N(g) = Re tr(F^* b_2(g))`.
+    - Every conjugation cocycle `U F U^* − F` with `F ∈ S_p` (`2 ≤ p ≤ ∞`, `S_∞ = B`) has exact
+      cup product with every `S_{p'}`-valued partner. So all pairs from the trace-class commutant
+      algebra `A_1(U)`, plus `S_2`, are killed.
+    - For any action of `T` by `C³` circle diffeomorphisms, the Hilbert-transform (Connes)
+      Fredholm-module cocycle is trace-class valued. The commutator kernel is `C¹` on the torus.
+    - The Navas–Liouville cocycle has `L¹(μ)` values.
+    - So both canonical sources of unitary cocycles for smooth circle groups are excluded as
+      (K)-witnesses. This includes the two natural unitary objects of the Ghys–Sergiescu model.
+  - *Where a witness could still live, among conjugation models.* It needs a potential whose
+    relative trace against the partner diverges: a Hilbert–Schmidt but not trace-class commutator
+    structure that no `(S_p, S_{p'})` pairing absorbs.
+  - *Not pursued.* The `M ⊗ M̄` question from the w13 spark is a separate route through the
+    twist cost, not a (K)-witness. The observation below is made informally, with no proof
+    written:
+    - the Weyl symbol identifies `M ⊗ M̄` with a Koopman representation of a nonsingular Gaussian
+      action of smooth `T`;
+    - so its Gaussian vectors are almost invariant iff `T` has almost fixed points in the
+      Hilbert–Schmidt Siegel disk.
+- **2026-09-19 (swarm-0917-w15-w15-nv-follow, reframing): the metaplectic lead made precise;
+  (K) stays OPEN.**
+  - *Established.* `lifted-thompson-t-farey-fock-twist-bound`. No Ghys–Sergiescu smoothing is
+    needed. In the Farey model `T ≅ PPSL_2(Z)`, breakpoints are cusps and the pieces differ by
+    parabolics, so every element is `C^1` with Lipschitz `log g'`. That puts it in the
+    Weil–Petersson class, so `T` acts through `Sp_res(H^{1/2}/R)` and gives the Farey–Fock
+    representation `M`.
+  - The Weyl-twisted representations `W(√t b)M ⊗ M̄` of `T̄` give
+    `c(t/4π) ≤ K|t| + B√(2|t|(1+n(ρ))) + δ(ρ)^{1/2}`. Conversely, every vector has defect at least
+    `δ_*/2`, where `δ_*` is the Bekka defect of `M|_T`.
+  - *Consequences for this node.*
+    - The w13 spark is exactly the question "is `M|_T` Bekka-amenable?".
+    - If no, the metaplectic lead dies, along with every `V ⊗ M̄` family.
+    - If yes, relative (T) of the centre is refuted.
+    - If yes with a subexponential particle-number profile, `T̄` is Haagerup without (K).
+    - An exactly invariant normal state with finite second moment would give the (K) rate `O(√θ)`.
+      No such state is known, so (K) is not decided.
+  - *The w13 PL obstacle, explained.* It is a model artefact: dyadic `log g'` jumps, while Farey
+    `log g'` only has kinks.
+- **2026-09-19 (swarm-0917-w16-w16-nv-pull, cohomology-index): the metaplectic lead is dead in
+  the Farey model; (K) stays OPEN.**
+  - *Established.* `farey-fock-representation-of-t-is-not-bekka-amenable`: `δ_* > 0`, so (Q1) is NO.
+  - *Invariant.* The spectral gap of the lattice `PSL_2(Z)` on the particle sectors
+    `Sym^m(D_2) ⊗ conj Sym^n(D_2)` (`m + n ≥ 1`) of `HS(F)`. These are tempered for `PSU(1,1)`,
+    because `D_2` is square-integrable (Fell absorption), and Kesten turns this into a gap.
+  - *Step where it dies.* An almost invariant density `ρ` has `ρ^{1/2}` close to `P_Ω`. A
+    vacuum-fixing element preserves the one-particle norm, so it commutes with `J_0` and maps `z`
+    into `H^2`. The argument principle then makes it a single Möbius map, but `T ≠ PSL_2(Z)`.
+  - *Consequences for this node.* Every `W(√t b)M ⊗ M̄` and every `V ⊗ M̄` family gives nothing.
+    There is no invariant normal state either, so the `O(√θ)` sub-route is also closed.
+  - *What survives.* Fock or Gaussian models over a complex structure `J` that no non-amenable
+    subgroup of `T` preserves with a tempered one-particle representation. Any other circle model
+    in which a non-amenable subgroup of `T` acts through a lattice of `PSU(1,1)` dies the same way.

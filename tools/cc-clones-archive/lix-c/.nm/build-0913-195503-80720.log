@@ -1,0 +1,139 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3484 oleans
+[job] acn112 cores=88-95 threads=8 base=59da9064fe97b12225cc997f85cdbe27fe4d7883 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerProof
+ℹ [3363/3411] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10120/10175] Replayed GroupApproximation.GGT.VanKampen.SurgeryCellEdgeThickening
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:413:21: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:414:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_self_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:415:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_cell_of_noCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:416:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_eq_faceImage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:417:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.boundary_faceImage_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:418:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_of_isCellEdgeDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:419:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:420:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.relatorValue_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:421:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_avoid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:422:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.regionFamilyEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:423:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.sectionFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:424:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean:425:14: 'GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10179/10187] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerThickening
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:114:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.eq_of_mem_of_length_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:115:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.one_lt_faceBoundary_length_of_not_loop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:116:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.exists_dart_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:117:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_embedding_doubled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:118:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.digon_ne_outerFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean:119:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.digon_not_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10180/10187] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:152:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_project' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:153:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_project_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:154:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.walkKeep_embedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:155:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.eqvGen_project' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:156:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.mem_sideFaces_project' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean:157:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.not_mem_sideFaces_faceImage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10182/10187] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketEdgeDoublingInside
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:226:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.collarBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:227:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.source_face_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:228:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:229:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:230:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_repeatedVisits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:231:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStep_of_faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10186/10187] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep (32s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:140:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.facePerm_ne_self_of_not_loop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:141:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:142:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.faceOf_ne_of_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:143:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.sigma_embedding_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:144:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.outerFace_eq_faceImage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:145:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.outerFace_not_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:146:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.cell_indexEquiv_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:147:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.cell_not_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:148:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.cellDarts_indexEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10187/10187] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerProof (28s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerProof.lean:140:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.exists_doubling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerProof.lean:141:21: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.osinPocketTouchCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10187 jobs).
+EXIT=0

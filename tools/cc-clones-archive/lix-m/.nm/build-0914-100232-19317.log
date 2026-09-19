@@ -1,0 +1,24 @@
+purged 3 stale artifact sets (source-newer=1, import-newer=2) of 3621 oleans
+[job] acn112 cores=72-79 threads=8 base=10928ebc94b8f25b6169a5f589e9dfae63fb71f7 mods: GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces
+ℹ [3296/3391] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [5056/5057] Building GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces (6.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:83:5: failed to synthesize instance of type class
+  DecidablePred fun F => ∃ x, M.faceOf x = F ∧ c x = true ∧ M.vertexOf x = M.vertexOf (M.facePerm (M.facePerm x))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:85:7: failed to synthesize instance of type class
+  DecidablePred fun y => c y = false ∧ M.sigma y = y
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:103:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexOf_facePerm_ne_pow_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapBipartiteSmallFaces.lean:104:14: Unknown constant `GroupApproximation.GGT.VanKampen.CombMap.card_filter_degenerate_le`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapBipartiteSmallFaces
+error: build failed
+EXIT=1

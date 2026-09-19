@@ -1,0 +1,287 @@
+# prounipotent_step_certify.py, degree 6, run on frontier-L14.txt, frontier-L15.txt (amalgam-segment-steps-2026-09-17) and w313-L15.txt
+# 'open' with no reason: no letter of exponent sum 0 in the given basis; after a Nielsen move the rewrite has e = (0, +-2, 0) (all 10 such L14 words)
+AAABBABabAbaaB open 
+AABaBAAbaBABab open 
+AAAbbAbaBABaab open 
+AAABaabAbaBABB open 
+AAABaabbabbaaB open 
+AABaabAAbaBBaB open S1 fails: e=[0, -2, 0]
+AABaabAbbAbaaB open S1 fails: e=[0, 2, 0]
+AABaabABBAbaaB open S1 fails: e=[0, -2, 0]
+AABaaBAAbaBBab open S1 fails: e=[0, -2, 0]
+AABaaBAbbAbaab open S1 fails: e=[0, 2, 0]
+AABaaBABBAbaab open S1 fails: e=[0, -2, 0]
+AABAbbaBBabbAB open S1 fails: e=[0, -2, 0]
+AABAbbABBabbaB open S1 fails: e=[0, -2, 0]
+AAAbaaBABabAbb open 
+AAAbaaBBaBBaab open 
+AABabAAbaBAAbb open 
+AABabAABBAAbaB open 
+AABabAbaBAAbab open 
+# amalgam-segment-steps-2026-09-17/frontier-L14.txt: 18 words, rule S certifies 0, degree 6
+AABBaabAbABaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabABABaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAAbabab CERT rule-S t=a e=[3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABBaabbAAbabaB CERT rule-S t=a e=[1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAAbaBab CERT rule-S t=a e=[3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABBaabbAAbaBaB CERT rule-S t=a e=[1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAbABaaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaabbABABaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbABABaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaabbABBabAb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaaBAbABaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaaBABABaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaaBBAAbabab CERT rule-S t=a e=[-1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBaaBBAAbabaB CERT rule-S t=a e=[-3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBaaBBAAbaBab CERT rule-S t=a e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBaaBBAAbaBaB CERT rule-S t=a e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBAAbbaBaBAbb CERT rule-S t=b e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABBAAbbaBABAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABBAAbbaBBabab CERT rule-S t=b e=[-1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbaBBabAb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbABaBAbb CERT rule-S t=b e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbABABAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbABBabab CERT rule-S t=b e=[-3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBAAbbABBabAb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AAAbaBBabbABBAb open S1 fails: e=[0, -3, 0]
+AAAbaBBAbbABBab open S1 fails: e=[0, -3, 0]
+AAAbABBabbaBBAb open S1 fails: e=[0, -3, 0]
+AAAbABBAbbaBBab open S1 fails: e=[0, -3, 0]
+AAABabbaBBAbbAB open S1 fails: e=[0, -3, 0]
+AAABabbABBAbbaB open S1 fails: e=[0, -3, 0]
+AABaabAAbbabaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAAbbaBabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabAAbbaBaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAABBabaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabAABBaBabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAABBaBaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabAbAbbaabb CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabAbAbbaaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAbABBaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAbABBaaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabABAbbaabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabABAbbaaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabABABBaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabABABBaaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabbAAbbabab CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAAbbabaB CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAAbbaBab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAAbbaBaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAABBabab CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAABBabaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbAABBaBab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAABBaBaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbAbAbbaab CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAbAbbaaB CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAbABBaab CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAbABBaaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbABAbbaab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbABAbbaaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbABABBaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbABABBaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBAAbbabaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBAAbbaBabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAAbbaBaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBAABBabaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAABBaBabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBAABBaBaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAbAbbaabb CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAbAbbaaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBAbABBaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBAbABBaaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBABAbbaabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBABAbbaaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBABABBaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBABABBaaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAAbbabab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaaBBAAbbabaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAAbbaBab CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaaBBAAbbaBaB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAABBabab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAABBabaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAABBaBab CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAABBaBaB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAbAbbaab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaaBBAbAbbaaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAbABBaab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAbABBaaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABababAAbbaabb CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABababAAbbaaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABababAABBaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABababAABBaaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABabaBAAbbaabb CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABabaBAAbbaaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABabaBAABBaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABabaBAABBaaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABabaBBAAbbaab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABabaBBAAbbaaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABabaBBAABBaab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABabaBBAABBaaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AAABAbbaBBabbAB open S1 fails: e=[0, -3, 0]
+AAABAbbABBabbaB open S1 fails: e=[0, -3, 0]
+AABaBabAAbbaabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaBabAAbbaaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabAABBaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabAABBaaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBabbAAbbaab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaBabbAAbbaaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBabbAABBaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabbAABBaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaBaBAAbbaabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBaBAAbbaaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBaBAABBaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaBaBAABBaaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBaBBAAbbaab CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBaBBAAbbaaB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBaBBAABBaab CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBaBBAABBaaB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBAbbaBBaabb CERT rule-S t=b e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBAbbaBBAAbb CERT rule-S t=b e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBAbbABBaabb CERT rule-S t=b e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBAbbABBAAbb CERT rule-S t=b e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABaabbaBBabb CERT rule-S t=b e=[-1, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABABaabbaBBAbb CERT rule-S t=b e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABaabbABBabb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABaabbABBAbb CERT rule-S t=b e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABABabbaBBaabb CERT rule-S t=b e=[-1, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABABabbaBBAAbb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABabbABBaabb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABabbABBAAbb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABABAAbbaBBabb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABAAbbaBBAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABABAAbbABBabb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABABAAbbABBAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABAbbaBBaabb CERT rule-S t=b e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABAbbaBBAAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABABAbbABBaabb CERT rule-S t=b e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABABAbbABBAAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+# amalgam-segment-steps-2026-09-17/frontier-L15.txt: 136 words, rule S certifies 128, degree 6
+AABABAAbbABBAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABAAbbABBabb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABABAAbbaBBAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABABAAbbaBBabb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABAbbABBAAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABAbbABBaabb CERT rule-S t=b e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABABAbbaBBAAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABABAbbaBBaabb CERT rule-S t=b e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABaabbABBAbb CERT rule-S t=b e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABABaabbABBabb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABaabbaBBAbb CERT rule-S t=b e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABaabbaBBabb CERT rule-S t=b e=[-1, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABABabbABBAAbb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABABabbABBaabb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABABabbaBBAAbb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABABabbaBBaabb CERT rule-S t=b e=[-1, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBAAbbABABAbb CERT rule-S t=b e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbABBabAb CERT rule-S t=b e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBAAbbABBabab CERT rule-S t=b e=[-3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBAAbbABaBAbb CERT rule-S t=b e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbaBABAbb CERT rule-S t=b e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABBAAbbaBBabAb CERT rule-S t=b e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbaBBabab CERT rule-S t=b e=[-1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBAAbbaBaBAbb CERT rule-S t=b e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABBaaBABABaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaaBAbABaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaaBBAAbaBaB CERT rule-S t=a e=[-3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBaaBBAAbaBab CERT rule-S t=a e=[-1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBaaBBAAbabaB CERT rule-S t=a e=[-3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABBaaBBAAbabab CERT rule-S t=a e=[-1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABBaabABABaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabAbABaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAAbaBaB CERT rule-S t=a e=[1, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAAbaBab CERT rule-S t=a e=[3, -1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABBaabbAAbabaB CERT rule-S t=a e=[1, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAAbabab CERT rule-S t=a e=[3, 1, -1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABBaabbABABaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABBaabbABABaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbABBabAb CERT rule-S t=b e=[-3, -1, 3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABBaabbAbABaaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaBAbbABBAAbb CERT rule-S t=b e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBAbbABBaabb CERT rule-S t=b e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBAbbaBBAAbb CERT rule-S t=b e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBAbbaBBaabb CERT rule-S t=b e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBaBAABBaaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBaBAABBaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaBaBAAbbaaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBaBAAbbaabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBaBBAABBaaB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBaBBAABBaab CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBaBBAAbbaaB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaBaBBAAbbaab CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabAABBaaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaBabAABBaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabAAbbaaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabAAbbaabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaBabbAABBaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaBabbAABBaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaBabbAAbbaaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaBabbAAbbaab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaaBAABBaBaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAABBaBabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBAABBabaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAAbbaBaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBAAbbaBabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAAbbabaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBABABBaaBB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBABABBaabb CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBABAbbaaBB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBABAbbaabb CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAbABBaaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBAbABBaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaaBAbAbbaaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBAbAbbaabb CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAABBaBaB CERT rule-S t=a e=[-3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAABBaBab CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAABBabaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAABBabab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAAbbaBaB CERT rule-S t=a e=[-3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAAbbaBab CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaaBBAAbbabaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAAbbabab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaaBBAbABBaaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaaBBAbABBaab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaaBBAbAbbaaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABaaBBAbAbbaab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAABBaBaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabAABBaBabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAABBabaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabAAbbaBaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAAbbaBabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabAAbbabaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabABABBaaBB CERT rule-S t=a e=[-1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabABABBaabb CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabABAbbaaBB CERT rule-S t=a e=[-1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabABAbbaabb CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabAbABBaaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABaabAbABBaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAbAbbaaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabAbAbbaabb CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAABBaBaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbAABBaBab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAABBabaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbAABBabab CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAAbbaBaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAAbbaBab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAAbbabaB CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAAbbabab CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbABABBaaB CERT rule-S t=a e=[1, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbABABBaab CERT rule-S t=a e=[3, -1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbABAbbaaB CERT rule-S t=a e=[1, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbABAbbaab CERT rule-S t=a e=[3, -1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABaabbAbABBaaB CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABaabbAbABBaab CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABaabbAbAbbaaB CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABaabbAbAbbaab CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+AABabaBAABBaaBB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABabaBAABBaabb CERT rule-S t=a e=[1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1/3 relation-checked-to-degree=6
+AABabaBAAbbaaBB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABabaBAAbbaabb CERT rule-S t=a e=[1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABabaBBAABBaaB CERT rule-S t=a e=[-3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1 relation-checked-to-degree=6
+AABabaBBAABBaab CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABabaBBAAbbaaB CERT rule-S t=a e=[-3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-3 relation-checked-to-degree=6
+AABabaBBAAbbaab CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABababAABBaaBB CERT rule-S t=a e=[-1, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=1/3 relation-checked-to-degree=6
+AABababAABBaabb CERT rule-S t=a e=[3, 1, -3] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABababAAbbaaBB CERT rule-S t=a e=[-1, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=-1 relation-checked-to-degree=6
+AABababAAbbaabb CERT rule-S t=a e=[3, 1, 1] occ=[3, 1, 3] free-letter=a_1 detT=3 relation-checked-to-degree=6
+# non-residually-solvable-targets-2026-09-18/w313-L15.txt: 128 words, rule S certifies 128, degree 6

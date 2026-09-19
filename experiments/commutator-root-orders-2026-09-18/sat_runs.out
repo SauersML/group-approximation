@@ -1,0 +1,47 @@
+# bo_sat.py K al be permsfile W r: finite-ball SAT test for a t-invariant bi-order of N (see bo_sat.py docstring).
+# SAT = no certificate in the ball; UNSAT = exact proof that no t-invariant bi-order of N exists.
+words 456 classes 444 trivial 0
+clauses 12048 product clauses 10380
+K al be 2 1 -1 W 4 r 3 SAT
+words 3200 classes 3018 trivial 0
+clauses 265292 product clauses 254382
+K al be 2 1 -1 W 4 r 4 SAT
+words 456 classes 456 trivial 0
+clauses 12276 product clauses 10584
+K al be 3 1 1 W 4 r 3 SAT
+words 3200 classes 3172 trivial 0
+clauses 270944 product clauses 259596
+K al be 3 1 1 W 4 r 4 SAT
+words 456 classes 456 trivial 0
+clauses 12276 product clauses 10584
+K al be 3 1 -1 W 4 r 3 SAT
+words 3200 classes 3172 trivial 0
+clauses 271172 product clauses 259824
+K al be 3 1 -1 W 4 r 4 SAT
+words 456 classes 456 trivial 0
+clauses 12276 product clauses 10584
+K al be 3 -1 1 W 4 r 3 UNSAT
+words 3200 classes 3172 trivial 0
+clauses 270944 product clauses 259596
+K al be 3 -1 1 W 4 r 4 UNSAT
+words 186 classes 180 trivial 0
+clauses 3686 product clauses 3066
+K al be 2 -1 1 W 3 r 3 UNSAT
+words 456 classes 444 trivial 0
+clauses 12036 product clauses 10368
+K al be 2 -1 1 W 4 r 3 UNSAT
+words 3200 classes 3020 trivial 0
+clauses 264784 product clauses 253872
+K al be 2 -1 1 W 4 r 4 UNSAT
+words 64 classes 64 trivial 0
+clauses 760 product clauses 528
+K al be 2 1 1 W 4 r 2 SAT
+words 456 classes 444 trivial 0
+clauses 12036 product clauses 10368
+K al be 2 1 1 W 4 r 3 SAT
+words 3200 classes 3020 trivial 0
+clauses 264770 product clauses 253866
+K al be 2 1 1 W 4 r 4 SAT
+words 8200 classes 7858 trivial 0
+clauses 1015040 product clauses 985182
+K al be 2 1 1 W 5 r 4 SAT

@@ -1,0 +1,29 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3670 oleans
+[job] acn112 cores=72-79 threads=8 base=2829a1eb9d530ed66d8ff3e8ea7df0d2b72245d4 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue
+ℹ [3308/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4800/4801] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:254:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:255:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_gc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:256:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.expD_gQ' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:257:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_listVal_ab' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:258:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:259:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesQ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4801/4801] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsNoRescue (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:90:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptQ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean:91:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.noRescueKeptP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4801 jobs).
+EXIT=0

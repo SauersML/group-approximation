@@ -1,0 +1,17 @@
+  radius 1: sphere 6, ball 7
+  radius 2: sphere 24, ball 31
+  radius 3: sphere 84, ball 115
+  radius 4: sphere 246, ball 361
+  radius 5: sphere 744, ball 1105
+  radius 6: sphere 2112, ball 3217
+  radius 7: sphere 6144, ball 9361
+round 0: gens 1, |H cap B_7| = 3, short infinite 2, in H: [] [71s]
+  + x = baCa:  bcba x = x bcba  (tube rho=2)
+round 1: gens 2, |H cap B_7| = 13, short infinite 12, in H: [] [72s]
+  + x = ba:  bcba x = x AcAB  (tube rho=2)
+round 2: gens 3, |H cap B_7| = 37, short infinite 12, in H: [] [73s]
+  no new element: closure stalls inside the ball
+RESULT False
+   ('start', 'bcba')
+   ('conj', 'baCa', 'bcba', 'bcba', 2)
+   ('conj', 'ba', 'bcba', 'AcAB', 2)

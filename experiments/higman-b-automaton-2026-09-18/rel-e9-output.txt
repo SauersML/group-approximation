@@ -1,0 +1,15 @@
+e=9 K=4 |Bbar| = 4194304 = 2^22
+exact verification of rows and tables: OK
+BFS radius 272
+ord b = 128, ord(b d) = 128
+beta'' != 1 for 2621440 of 4194304 beta; 4 distinct values
+  beta'' value 0 (b^0): 1572864 times
+  beta'' value 388027 (d^64): 524288 times
+  beta'' value 393470 (b^64): 524288 times
+  beta'' value 1823142 (other(depth-word)): 1572864 times
+(b d)'' = 393470 = b^64
+central defects: 3 of 3
+smallest section-closed Bbar_0 containing all beta'': order 4, index 1048576
+<b^64, d^64>: order 4, contains all beta'': True, b^64 central: True
+<b^64, d^64> closed under swap and sections: True
+rc=0

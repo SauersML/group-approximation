@@ -1,0 +1,23 @@
+{
+  "model": "chern_component_sat.py: product cell complex, m open cells per chamber; delta usc, constant on cells; basic budget delta(Omega) + E(Omega) <= beta per level component (closure refinement not imposed). SAT = model candidate only; UNSAT = excluded at this resolution only.",
+  "min_depth_vs_budget": {
+    "rule_tested": "min max(delta) == N - floor(beta/2)",
+    "N1_m3": "holds for beta = 0..2",
+    "N2_m3": "holds for beta = 0..4",
+    "N3_m2": [[0,3],[1,3],[2,2],[3,2],[4,1],[5,1],[6,0]]
+  },
+  "beta_equals_N": {
+    "N1": {"depth0": "UNSAT", "depth1": "SAT"},
+    "N2": {"depth0": "UNSAT", "depth1": "SAT"},
+    "N3": {"depth1_m1": "UNSAT", "depth1_m2": "UNSAT (11s)", "depth1_m3": "UNSAT (46s)", "depth1_m4": "UNSAT (124s)", "depth2_m2": "SAT (21s)"}
+  },
+  "spanning_principle_S": {
+    "encoding": "span_mode=True: per cell, delta + #spanned coordinates <= N-1 (negation of (S)); UNSAT means (S) holds",
+    "N1_m3": "holds", "N2_m3": "holds", "N2_m4": "holds",
+    "N3_m2": "timeout (900s)", "N3_m1": "see span3.txt if present; not completed at landing"
+  },
+  "weighted_form_T": {
+    "lambda3": "holds for (N,m) = (1,3), (2,3), (2,4)",
+    "lambda2": "fails at N=1 (bare node)"
+  }
+}

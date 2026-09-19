@@ -1,0 +1,45 @@
+A (2,3,2,4) dim 4: relations True; d cycle type (1, 3) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,3,2,5) dim 5: relations True; d cycle type (2, 3) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,4,2,5) dim 5: relations True; d cycle type (1, 4) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,3,2,6) dim 6: relations True; d cycle type (3, 3) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,4,2,6) dim 6: relations True; d cycle type (2, 4) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,5,2,6) dim 6: relations True; d cycle type (1, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,3,2,7) dim 7: relations True; d cycle type (3, 4) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,4,2,7) dim 7: relations True; d cycle type (3, 4) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,5,2,7) dim 7: relations True; d cycle type (2, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,6,2,7) dim 7: relations True; d cycle type (1, 6) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,3,2,8) dim 8: relations True; d cycle type (3, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,4,2,8) dim 8: relations True; d cycle type (4, 4) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,5,2,8) dim 8: relations True; d cycle type (3, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,6,2,8) dim 8: relations True; d cycle type (2, 6) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,7,2,8) dim 8: relations True; d cycle type (1, 7) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,3,2,9) dim 9: relations True; d cycle type (3, 6) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,4,2,9) dim 9: relations True; d cycle type (4, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,5,2,9) dim 9: relations True; d cycle type (4, 5) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,6,2,9) dim 9: relations True; d cycle type (3, 6) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,7,2,9) dim 9: relations True; d cycle type (2, 7) ok True; p(t) != 0 True; all blocks kill p(t) True
+A (2,8,2,9) dim 9: relations True; d cycle type (1, 8) ok True; p(t) != 0 True; all blocks kill p(t) True
+A control q=2, (2,2,2,3): dim of reduced kernel = 0 (expected 0)
+A control q=2, (2,2,2,5): dim of reduced kernel = 0 (expected 0)
+PART A ALL OK: True
+B vertex construction, 399 halves with h_ac,h_bc in 2..6, h_be,h_ae in 3..6 except (2,2,3,3): relations, e_1 killed, Fox rank H_1 >= 1 at random t: ALL OK = True
+B (2,2,3,3): vertex_rep finds a choice: False (expected False: the pair products are forced equal)
+B (2,2,3,3) scalar witness a=b=1, c=-1, e=omega (doubled): Fox rank H_1 at random t = 2 (expected 2)
+== general opposite construction d=[0, 3, 1, 2], f=[1, 2, 3, 0]: halves(ac,bc,be,ae)=(2, 3, 2, 4), dimension 4
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 1
+    certificate p(t) = [0, -1, 1 - t, t]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 11 over Q(t); rank H_1 = 16 - 4 - 11 = 1
+== general opposite construction d=[4, 3, 1, 2, 0], f=[1, 2, 3, 4, 0]: halves(ac,bc,be,ae)=(2, 3, 2, 5), dimension 5
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 1
+    certificate p(t) = [0, -1, 1 - t, t, 0]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 14 over Q(t); rank H_1 = 20 - 5 - 14 = 1
+== general opposite construction d=[0, 4, 1, 2, 3], f=[1, 2, 3, 4, 0]: halves(ac,bc,be,ae)=(2, 4, 2, 5), dimension 5
+(1) all Artin relations hold: True
+(2) dim_Q(t) of {p : S(uv)(tU-1)p = 0 for all cross edges} = 2
+    certificate p(t) = [0, 0, -1, 1, 0]
+    check residual zero: True
+(3) full Fox matrix: rank d2 = 13 over Q(t); rank H_1 = 20 - 5 - 13 = 2

@@ -1,0 +1,27 @@
+## ./jlift 0 7   (J=0, with R; w17 counts 8,16,48,192,736 then none)
+J 0 base n 3 R 1 first 0 split -1,1,0 : complete after 0s
+level 0 classes 1 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+level 1 classes 8 (lifts tried 8, max free 3) max log2 ord(a,b,c,d) (1,1,1,1)
+level 2 classes 16 (lifts tried 32, max free 4) max log2 ord(a,b,c,d) (2,1,1,1)
+level 3 classes 48 (lifts tried 96, max free 5) max log2 ord(a,b,c,d) (3,2,1,2)
+level 4 classes 192 (lifts tried 384, max free 7) max log2 ord(a,b,c,d) (4,2,2,2)
+level 5 classes 736 (lifts tried 1472, max free 8) max log2 ord(a,b,c,d) (5,2,2,3)
+level 6 classes 0 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+NO 0-ODOMETER MODEL AT LEVEL 6
+## ./jlift 0 6 noR   (J=0 without R; w17 classes 9728 at level 5, none at 6)
+J 0 base n 3 R 0 first 0 split -1,1,0 : complete after 1s
+level 0 classes 1 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+level 1 classes 8 (lifts tried 8, max free 3) max log2 ord(a,b,c,d) (1,1,1,1)
+level 2 classes 16 (lifts tried 32, max free 4) max log2 ord(a,b,c,d) (2,1,1,1)
+level 3 classes 72 (lifts tried 144, max free 5) max log2 ord(a,b,c,d) (3,2,1,2)
+level 4 classes 544 (lifts tried 1088, max free 7) max log2 ord(a,b,c,d) (4,2,2,3)
+level 5 classes 9728 (lifts tried 19456, max free 9) max log2 ord(a,b,c,d) (5,2,2,3)
+level 6 classes 0 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+NO 0-ODOMETER MODEL AT LEVEL 6
+## ./jlift 1 5 trans   (J=1 up to translations only; bfs2.py gives 8,96,752,9152,229376)
+J 1 base n 3 R 1 first 0 split -1,1,0 : complete after 3s
+level 1 classes 8 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,1,1,1)
+level 2 classes 96 (lifts tried 184, max free 6) max log2 ord(a,b,c,d) (1,1,2,2)
+level 3 classes 752 (lifts tried 1696, max free 8) max log2 ord(a,b,c,d) (2,2,2,3)
+level 4 classes 9152 (lifts tried 18304, max free 10) max log2 ord(a,b,c,d) (3,3,3,3)
+level 5 classes 229376 (lifts tried 458752, max free 14) max log2 ord(a,b,c,d) (4,3,4,4)

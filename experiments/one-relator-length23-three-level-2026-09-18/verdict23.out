@@ -1,0 +1,105 @@
+PASS AAtATataTattAtAATataTTT pres=y=ta P=AAtATataTatAtAAtAATataTaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattAtATataaTTT pres=y=ta P=AAtATataTatAtAAtATataaTaTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattAtaTatAATTT pres=y=ta P=AAtATataTatAtAAtaTatAATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattAtaaTatATTT pres=y=ta P=AAtATataTatAtAAtaaTatATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattatAATAtaTTT pres=y=ta P=AAtATataTatAttAATAtaTaTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattatATAtaaTTT pres=y=ta P=AAtATataTatAttATAtaaTaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTattataTAtAATTT pres=y=ta P=AAtATataTatAttaTAtAATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTattataaTAtATTT pres=y=ta P=AAtATataTatAttaaTAtATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTatttAATAtaTaTT pres=y=ta P=AAtATataTatAtAtAATAtaTaaTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTatttAATataTATT pres=y=ta P=AAtATataTatAtAtAATataTTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTatttATAtaaTaTT pres=y=ta P=AAtATataTatAtAtATAtaaTaaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATataTatttATataaTATT pres=y=ta P=AAtATataTatAtAtATataaTTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTatttaTAtAATaTT pres=y=ta P=AAtATataTatAtAtaTAtAATaaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTatttaTatAATATT pres=y=ta P=AAtATataTatAtAtaTatAATTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTatttaaTAtATaTT pres=y=ta P=AAtATataTatAtAtaaTAtATaaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATataTatttaaTatATATT pres=y=ta P=AAtATataTatAtAtaaTatATTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATatattAATTTatttaTTT pres=y=ta P=AAtATattAtAATaTaTatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATatattAATataTAtaTTT pres=y=ta P=AAtATattAtAATataTAtaTaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtATatattATTTatttaaTTT pres=y=ta P=AAtATattAtATaTaTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatattATAtaaTatATTT pres=orig P=AAtATatattATAtaaTatATTT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatattATatATAtaaTTT pres=y=ta P=AAtATattAtATatATAtaaTaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatattATataaTAtATTT pres=orig P=AAtATatattATataaTAtATTT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtATatattaTTTatttAATTT pres=y=ta P=AAtATattAtaTaTaTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatattaTAtAATataTTT pres=orig P=AAtATatattaTAtAATataTTT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatattaTAtaTatAATTT pres=y=ta P=AAtATattAtaTAtaTatAATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtATatattaTatAATAtaTTT pres=orig P=AAtATatattaTatAATAtaTTT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtATatattaaTTTatttATTT pres=y=ta P=AAtATattAtaaTaTaTatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatattaaTAtATatATTT pres=y=ta P=AAtATattAtaaTAtATatATaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATattAtAATataTTTataT pres=orig P=AAtATattAtAATataTTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATattAtaTatAATTTataT pres=orig P=AAtATattAtaTatAATTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATattAtaaTatATTTataT pres=orig P=AAtATattAtaaTatATTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATattatAATAtaTTTataT pres=orig P=AAtATattatAATAtaTTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATattatATAtaaTTTataT pres=orig P=AAtATattatATAtaaTTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATattataaTAtATTTataT pres=orig P=AAtATattataaTAtATTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttAATTTatattaTTT pres=y=ta P=AAtATatAtAtAATaTaTattAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttAATTTatttaTTaT pres=y=ta P=AAtATatAtAtAATaTaTatAtAtaTaTaaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttAATTaTatttaTTT pres=y=ta P=AAtATatAtAtAATaTaaTatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATatttAATataTATTataT pres=orig P=AAtATatttAATataTATTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttAATataTAtaTTaT pres=y=ta P=AAtATatAtAtAATataTAtaTaTaaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatttATTTatattaaTTT pres=y=ta P=AAtATatAtAtATaTaTattAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttATTTatttaaTTaT pres=y=ta P=AAtATatAtAtATaTaTatAtAtaaTaTaaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttATTaTatttaaTTT pres=y=ta P=AAtATatAtAtATaTaaTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttATAtaaTaTTataT pres=orig P=AAtATatttATAtaaTaTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttATatATAtaaTTaT pres=y=ta P=AAtATatAtAtATatATAtaaTaTaaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatttATataaTATTataT pres=orig P=AAtATatttATataaTATTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaTTTatattAATTT pres=y=ta P=AAtATatAtAtaTaTaTattAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaTTTatttAATTaT pres=y=ta P=AAtATatAtAtaTaTaTatAtAtAATaTaaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaTTaTatttAATTT pres=y=ta P=AAtATatAtAtaTaTaaTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaTAtAATaTTataT pres=orig P=AAtATatttaTAtAATaTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaTAtaTatAATTaT pres=y=ta P=AAtATatAtAtaTAtaTatAATaTaaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtATatttaTatAATATTataT pres=orig P=AAtATatttaTatAATATTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaaTTTatattATTT pres=y=ta P=AAtATatAtAtaaTaTaTattAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaaTTTatttATTaT pres=y=ta P=AAtATatAtAtaaTaTaTatAtAtATaTaaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaaTTaTatttATTT pres=y=ta P=AAtATatAtAtaaTaTaaTatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtATatttaaTAtATaTTataT pres=orig P=AAtATatttaaTAtATaTTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtATatttaaTAtATatATTaT pres=y=ta P=AAtATatAtAtaaTAtATatATaTaaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtAttAATTTataTatttaTTT pres=y=ta P=AAtAAtAtAATaTaTataTatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttAATTTatttaTTTataT pres=y=ta P=AAtAAtAtAATaTaTatAtAtaTaTaTataT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttAATataTAtaTTTataT pres=y=ta P=AAtAAtAtAATataTAtaTaTaTataT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtAttATTTataTatttaaTTT pres=y=ta P=AAtAAtAtATaTaTataTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtAttATTTatttaaTTTataT pres=y=ta P=AAtAAtAtATaTaTatAtAtaaTaTaTataT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttATatATAtaaTTTataT pres=y=ta P=AAtAAtAtATatATAtaaTaTaTataT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtAttaTTTataTatttAATTT pres=y=ta P=AAtAAtAtaTaTaTataTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttaTTTatttAATTTataT pres=y=ta P=AAtAAtAtaTaTaTatAtAtAATaTaTataT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttaTAtaTatAATTTataT pres=y=ta P=AAtAAtAtaTAtaTatAATaTaTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb29large.out:-large
+PASS AAtAttaaTTTataTatttATTT pres=y=ta P=AAtAAtAtaaTaTaTataTatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttaaTTTatttATTTataT pres=y=ta P=AAtAAtAtaaTaTaTatAtAtATaTaTataT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtAttaaTAtATatATTTataT pres=y=ta P=AAtAAtAtaaTAtATatATaTaTataT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a1 kb=kb96.out:default
+PASS AAtaTatATattAtaTatAATTT pres=y=ta P=AAtaTatATatAtAAtaTatAATaTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatATattatATAtaaTTT pres=y=ta P=AAtaTatATatAttATAtaaTaTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatATatttAATataTATT pres=y=ta P=AAtaTatATatAtAtAATataTTaT top=(4, 4, 3, 'PASS sZ=(3, 3)', 'PASS sZ=(3, 3)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatATatttaaTAtATaTT pres=y=ta P=AAtaTatATatAtAtaaTAtATaaTaT top=(5, 5, 3, 'PASS sZ=(4, 4)', 'PASS sZ=(4, 4)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatAttAATTTatttaTTT pres=y=ta P=AAtaTatAAtAtAATaTaTatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatAttATTTatttaaTTT pres=y=ta P=AAtaTatAAtAtATaTaTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatAttaTTTatttAATTT pres=y=ta P=AAtaTatAAtAtaTaTaTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatAttaaTTTatttATTT pres=y=ta P=AAtaTatAAtAtaaTaTaTatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatttAATTTatAttaTTT pres=y=ta P=AAtaTatAtAtAATaTaTatAAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatttAATTATatttaTTT pres=y=ta P=AAtaTatAtAtAATaTTatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatttATTTatAttaaTTT pres=y=ta P=AAtaTatAtAtATaTaTatAAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatttATTATatttaaTTT pres=y=ta P=AAtaTatAtAtATaTTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatttaTTTatAttAATTT pres=y=ta P=AAtaTatAtAtaTaTaTatAAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatttaTTATatttAATTT pres=y=ta P=AAtaTatAtAtaTaTTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtaTatttaaTTTatAttATTT pres=y=ta P=AAtaTatAtAtaaTaTaTatAAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtaTatttaaTTATatttATTT pres=y=ta P=AAtaTatAtAtaaTaTTatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtattAATTTatATatttaTTT pres=y=ta P=AAttAtAATaTaTatATatAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtattATTTatATatttaaTTT pres=y=ta P=AAttAtATaTaTatATatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtattaTTTatATatttAATTT pres=y=ta P=AAttAtaTaTaTatATatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtattaaTTTatATatttATTT pres=y=ta P=AAttAtaaTaTaTatATatAtAtATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAttAtATatATTTatttaaTTT pres=y=ta P=AAtAtAAtATatATaTaTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a2 kb=kb96.out:default
+PASS AAttAtaTataTTTatttAATTT pres=y=ta P=AAtAtAAtaTataTaTaTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a2 kb=kb29large.out:-large
+PASS AAttatATAtATTTatttaaTTT pres=y=ta P=AAtAttATAtATaTaTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a2 kb=kb29large.out:-large
+PASS AAttataTAtaTTTatttAATTT pres=y=ta P=AAtAttaTAtaTaTaTatAtAtAATaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a2 kb=kb96.out:default
+PASS AAtttAATTTatATatattaTTT pres=y=ta P=AAtAtAtAATaTaTatATattAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtttAATTTataTatAttaTTT pres=y=ta P=AAtAtAtAATaTaTataTatAAtAtaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb29large.out:-large
+PASS AAtttATTATataTatttaaTTT pres=y=ta P=AAtAtAtATaTTataTatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+PASS AAtttATTaTatATatttaaTTT pres=y=ta P=AAtAtAtATaTaaTatATatAtAtaaTaTaT top=(3, 3, 2, 'PASS sZ=(2, 2)', 'PASS sZ=(2, 2)') l1=ZSTABLE via s=a0 kb=kb96.out:default
+census OPEN 96; certified 96 of 96
+  orig  top sZ=(4,4) rkD=3   l1 ZSTABLE via s=a0   : 12
+  orig  top sZ=(4,4) rkD=3   l1 ZSTABLE via s=a1   : 4
+  y=ta  top sZ=(3,3) rkD=2   l1 ZSTABLE via s=a0   : 44
+  y=ta  top sZ=(3,3) rkD=2   l1 ZSTABLE via s=a2   : 4
+  y=ta  top sZ=(4,4) rkD=3   l1 ZSTABLE via s=a0   : 14
+  y=ta  top sZ=(4,4) rkD=3   l1 ZSTABLE via s=a1   : 10
+  y=ta  top sZ=(5,5) rkD=3   l1 ZSTABLE via s=a0   : 6
+  y=ta  top sZ=(5,5) rkD=3   l1 ZSTABLE via s=a1   : 2

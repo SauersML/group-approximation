@@ -93,3 +93,26 @@ kernel puts the perfect group `P` in a finitely presented simple group. By
    `simple-inputs-have-fp-elementary-leavitt-tensor-hosts`), and it does not preserve
    simplicity. The exchange of gates therefore buys the cylinder idempotents and the
    compression of the `V`-relations, and nothing more; whether that is enough is open.
+
+2. **Quantifier audit: this gate, as stated, cannot feed Boone--Higman (swarm-0917-w17-bh-last1,
+   2026-09-19).** *A decomposition, not a proof or a refutation of the claim.*
+   - **The issue.** `bin/cairn impact` on this node lists `boone-higman-conjecture` among the
+     flips, through `boone-higman-via-germ-steinberg-algebra-presentation`, where this node is the
+     only open prerequisite. The argument does not support that flip:
+     1. This node is existential: some perfect `P`, some `nu`. Step 4 of the route needs a
+        witness for every infinite simple input `S`.
+     2. `A_nu` is never simple (`shell-germ-steinberg-algebras-are-never-simple`), so
+        `leavitt-tensor-elementary-host-criterion` cannot be applied to it. The host has to be
+        `A_nu/J`. Finite presentation of `A_nu` gives finite presentation of `A_nu/J` only
+        together with finite generation of `J`, and that condition is not a prerequisite.
+     3. The Steinberg kernel condition of route step 5 is not a prerequisite either.
+   - **Replacement.** `boone-higman-via-essential-shell-germ-algebras` states the same idea
+     with two universal holes, each of which can fail on its own:
+     - `simple-inputs-have-fp-essential-shell-germ-algebras`, finite presentation of `A_nu/J`
+       for every simple input;
+     - `essential-shell-germ-leavitt-tensors-have-fng-steinberg-kernels`.
+   - **What stays true of this node.** It keeps its value as a test of whether the algebra gate
+     differs from the group gate, but only in the `A/J` form. Its `A` form already implies a
+     finitely presented germ group, by `shell-germ-algebra-fp-forces-fp-germ-group`.
+   - **Warning.** A proof of this node for one explicit perfect `P` must not be read as progress
+     on Boone--Higman. The old route's `requires` needs re-encoding, which this lane may not do.

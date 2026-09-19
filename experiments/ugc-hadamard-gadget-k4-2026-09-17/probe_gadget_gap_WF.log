@@ -1,0 +1,16 @@
+pattern orbit 0: relaxed 189943266  folded(best found) 189943266  ratio 1.00000  |D|/half 0.0000 [1s]
+pattern orbit 1: relaxed 217335226  folded(best found) 217335226  ratio 1.00000  |D|/half 0.0000 [3s]
+pattern orbit 2: relaxed 217334858  folded(best found) 217334858  ratio 1.00000  |D|/half 0.0000 [5s]
+pattern orbit 3: relaxed 241507938  folded(best found) 241507938  ratio 1.00000  |D|/half 0.0000 [7s]
+pattern orbit 4: relaxed 243986040  folded(best found) 243986040  ratio 1.00000  |D|/half 0.0000 [9s]
+pattern orbit 5: relaxed 250788880  folded(best found) 272119298  ratio 1.08505  |D|/half 0.9995 [10s]
+pattern orbit 6: relaxed 250788880  folded(best found) 272119298  ratio 1.08505  |D|/half 0.9995 [12s]
+pattern orbit 7: relaxed 250788880  folded(best found) 299511334  ratio 1.19428  |D|/half 0.9995 [13s]
+pattern orbit 8: relaxed 250788880  folded(best found) 272119074  ratio 1.08505  |D|/half 0.9995 [15s]
+pattern orbit 9: relaxed 250788880  folded(best found) 299511334  ratio 1.19428  |D|/half 0.9995 [17s]
+pattern orbit 10: relaxed 250788880  folded(best found) 299511410  ratio 1.19428  |D|/half 0.9995 [19s]
+pattern orbit 11: relaxed 250788880  folded(best found) 326903370  ratio 1.30350  |D|/half 0.9995 [20s]
+pattern orbit 12: relaxed 250788880  folded(best found) 354295406  ratio 1.41272  |D|/half 0.9995 [21s]
+pattern orbit 13: relaxed 250788880  folded(best found) 326903446  ratio 1.30350  |D|/half 0.9995 [22s]
+relaxed ratio (exact)            K*E[min]/tot = 1.316609
+folded ratio (best found, >= true) K*E[min]/tot = 1.552017

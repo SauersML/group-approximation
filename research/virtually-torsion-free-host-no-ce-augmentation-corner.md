@@ -71,3 +71,26 @@ so one construction feeds two endpoints.
     state.  This holds for every host and every `K != 1`.
   - The class kill `radical-calculus-misses-virtually-torsion-free-groups`
     closes the whole (C)+(I) gate, including multi-host derivations.
+- 2026-09-18 (swarm-0917-w14-w14-ptm-last1, finite-models): **REFUTED**
+  for every host, by `virtually-torsion-free-mf-radical-is-torsion-free`.
+  - `K` is finite and nontrivial, and it meets the torsion-free normal core
+    `N = Core_H(E)` trivially.  So `K` embeds in the finite quotient `H/N`.
+  - Let `lambda` be the regular representation of `H/N`, of dimension
+    `d = [H:N]`.  Then `lambda(q_K)` is a projection of rank
+    `d(1 - 1/|K|) > 0`.
+  - `tr o lambda o Phi` is therefore a matrix, hence Connes-embeddable,
+    tracial state on `B`, which contradicts the hypothesis on `B`.
+  - Equivalently, `Rad_MF(H) <= N` is torsion-free, because finite quotients
+    are MF.  So the corner theorem's conclusion `K <= Rad_MF(H)` forces
+    `K = 1`.
+  - The necessary-conditions list above missed this finite-quotient
+    obstruction.
+  - Where it dies: at the very first step.  Any virtually torsion-free host
+    detects `K` in a finite quotient.
+  - The route `property-t-free-seed-via-virtual-torsion-corner` is dead.
+  - The class version,
+    `virtually-torsion-free-residual-kills-radical-calculus`, shows that no
+    combination of torsion conclusions with finite-index trace reaches a
+    torsion-free non-MF group.  The seed needs the descent hole
+    `full-mf-radical-abelianized-cover-is-not-mf` or an intrinsic analytic
+    torsion-free non-MF theorem.

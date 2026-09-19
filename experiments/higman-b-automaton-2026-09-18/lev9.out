@@ -1,0 +1,22 @@
+e=9 M=32 level 1: |G_k| = 128 = 2^7.000  (t=0s)
+e=9 M=32 level 2: |G_k| = 262144 = 2^18.000  (t=59s)
+budget used in level 3 at 3393443 rows; checkpointed
+run 1 rc=3 16:51
+e=9 M=32 level 2: |G_k| = 262144 = 2^18.000  (t=0s)
+budget used in level 3 at 4130681 rows; checkpointed
+run 2 rc=3 17:06
+e=9 M=32 level 2: |G_k| = 262144 = 2^18.000  (t=0s)
+e=9 M=32 level 3: |G_k| = 4194304 = 2^22.000  (t=575s)
+budget used in level 4 at 1873156 rows; checkpointed
+run 3 rc=3 17:22
+e=9 M=32 level 3: |G_k| = 4194304 = 2^22.000  (t=0s)
+budget used in level 4 at 3668093 rows; checkpointed
+run 4 rc=3 17:37
+e=9 M=32 level 3: |G_k| = 4194304 = 2^22.000  (t=0s)
+budget used in level 4 at 4186454 rows; checkpointed
+run 5 rc=3 17:52
+e=9 M=32 level 3: |G_k| = 4194304 = 2^22.000  (t=0s)
+e=9 M=32 level 4: |G_k| = 4194304 = 2^22.000  (t=385s)
+stable: |G_3| = |G_4|, so Bbar_9 = G_4 (stabilization lemma)
+run 6 rc=0 17:58
+FINISHED

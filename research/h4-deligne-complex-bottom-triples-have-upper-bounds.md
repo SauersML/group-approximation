@@ -149,6 +149,155 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     that are not `H_4` walls (`twoflat.py`). So there is no braid picture with two rigid clusters. A multi-flat
     joint certificate has to be computed in the non-fibre-type group `π_1M(ℬ_V ∪ ℬ_{V'})`, or in a
     non-fibred shadow.
+- **Two-flat joint centres reduce to one pencil loop** (w10-042,
+  `h4-i25-two-flat-joint-centres-reduce-to-pencil-loops`, established).
+  - *Centre criterion.* In a fibred shadow `F_k ⋊ B`, `c ∈ B` is a centre iff `α_1` and `β_1α_2β_1^{-1}`
+    lie in `cF_Yc^{-1}`.
+  - *Reduction.* A joint centre `g ∈ P_XP_Y` for `(V_a,V_b)` exists iff the two single-flat solution sets
+    meet in `B_{ab} = π_1M(base_a ∩ base_b) = P_4 ×_{P_3} Π_{ab}`. Here `Π_{ab} = π_1(ℂ² ∖ 5` concurrent
+    lines`) ≅ ℤ × F_4`.
+  - *What is new.* `P_4` is the `A_4` core, which is already an `A_2` shadow. So the only new condition is
+    that the loop of `p_{b+1}` around the rigid cluster `C_a` matches the loop of `p_{a+1}` around `C_b`.
+    Both lie in the same 5-line pencil: `x2, x3` for `(V_0,V_1)`.
+  - *Correction to w9.* Fibred two-cluster shadows do exist: 6 of them, each with two 3-point clusters and
+    a double collision wall.
+  - *Machine check.* In all 180 length-1 tuples, `p_c` is never ejected, so no class is
+    pinned and the tuples give no candidate.
+  - *Next.* Search for tuples in which both flats eject their cluster point, and compare their
+    `Π_{ab}`-classes.
+- **Joint shadow certificates see only vertex-free tuples** (w11-042,
+  `h4-i25-joint-certificates-refute-only-vertex-free-tuples`, established plus machine).
+  - *Vertex criterion.* With `c_01 = β_1α_2β_1^{-1}`, `c_12 = β_1^{-1}α_1β_1` and `c_20 = β_3α_1β_3^{-1}`, the
+    hexagon vertex `u_P` is a pure centre iff `c_P ∈ F·P_X` (for `P = 12`, iff `c_12 ∈ P_X·F`).
+  - *Shadow form.* In each fibred shadow, `ρ_a(b_P) ∈ Sol_a` iff `ρ_a(c_P) ∈ F^{(a)}_Y`.
+  - *Consequence.* Every multi-flat joint certificate, including w10's `Π_{ab}` pencil-loop matching, can
+    refute only tuples in which each `P` fails in some shadow.
+  - *Machine.* Double ejection is common. Exact Garside tuples with `|α| ≤ 1, |β| ≤ 2` and `|α| ≤ 2, |β| ≤ 1`
+    give 1224 and 1368 doubly ejected tuples, and zero-winding commutator searches give 368 more.
+  - *No mismatch.* Every doubly ejected tuple has a common ejecting pair. A Burau-hashed search, complete for
+    its word lengths (`|α| ≤ 2, |β| ≤ 2` and `|α| ≤ 3, |β| ≤ 1`: 91360 and 53156 genuine tuples, plus 14832 from a partial `|α| ≤ 1, |β| ≤ 3` run), finds 0 vertex-free tuples: every genuine tuple has a Garside-verified `c_P ∈ F`. So no
+    `Π_{ab}` mismatch occurs.
+  - *Next.* Prove (VC), that every Case 1 tuple has a pure centre among `u_01, u_12, u_20`; this would settle
+    Case 1. Otherwise, find a vertex-free tuple at longer words and only then run the joint test on it.
+- **Pure bounds of Case 1 are a conjugate-membership problem** (w12-042,
+  `h4-case1-pure-centre-iff-px-conjugate-of-f-holds-triple`, proved; searches are evidence).
+  - **Reformulation.** Put `e_0 = α_1`, `e_1 = β_1α_2β_1^{-1}` and `e_2 = (e_0e_1)^{-1}`. The homomorphism `ρ_X`
+    shows that a Case 1 hexagon has a pure `ŝ_4` bound iff `⟨e_0, e_1⟩ ≤ γFγ^{-1}` for some `γ ∈ P_X`.
+  - **Vertex criterion.** A hexagon vertex is such a bound iff `γ ∈ {1, β_1, β_3^{-1}}` works. So the vertex
+    criterion (V) is exactly `c_P ∈ F`, and it is decided by the Garside test `fmem.py`.
+  - **No free-product shortcut.** `F ∩ s_4^2Fs_4^{-2} ⊇ ⟨p_2, p_3⟩` while `s_4^2Fs_4^{-2} ≠ F`.
+  - **Searches.** Transporter triangles, pair twists and the `|α| ≤ 1`, `|β| ≤ 3` vertex search (34 of 36 letter pairs) found no
+    vertex-free tuple.
+  - **Next.** Find an action of `ker ρ_X` on a tree (or a CAT(0) complex) whose vertex stabilisers are the
+    `γFγ^{-1}`. Serre's lemma then gives Case 1 in full.
+- **Case 1 Helly is a commutator double-coset problem** (w13-042,
+  `h4-case1-helly-is-a-commutator-double-coset-problem`; proved, searches are evidence).
+  - **Rigidity.** Applying `ρ_Y` shows that conjugation by `γ ∈ N` fixes every element of `P_Y` that it keeps in
+    `P_Y`. Hence `F ∩ γFγ^{-1} = C_F(γ)`.
+  - **Exact pure bounds.** The pure bounds of a Case 1 tuple are exactly the `γA_Y` with
+    `γ ∈ C_N(α_1) ∩ β_1C_N(α_2)`. So (H) holds iff `β_1 ∈ C_N(α_1)C_N(α_2)`.
+  - **Commutator form.** With `a = α_1^{-1}`, `b = α_2`, `u = β_3` and `v = β_3β_1`:
+    - `(*)` says `[u, a] = [v, b] =: k`;
+    - the pure bounds are the `w ∈ N` with `[w, a] = [w, b] = k`;
+    - the three hexagon vertices are `w = 1, u, v`.
+  - **Diagonal pairs.** For `α_1 = α_2`, (H) and VC are equivalent. This closes the two diagonal pairs that `vsearch3`
+    could not finish.
+  - **Search.** An exact hash-class search over `N`-elements of length ≤ 3 (12 letters) and all `F`-pairs of length
+    ≤ 2 found no VC-failure.
+  - **Next.** Case 1 is now equivalent to `(H″)`: for `a ≠ b` in `F` and `u, v ∈ N`, `[u, a] = [v, b]` implies
+    `u^{-1}v ∈ C_N(a)C_N(b)`. It needs an invariant of `⟨N, F⟩` finer than `(ρ_X, ρ_Y)`, e.g. a tree for `⟨N, F⟩` whose
+    edge groups at `F` are the `C_F(n)`.
+- **Commutator Helly holds in type A, but vertex centres fail there** (w14-042,
+  `h4-case1-commutator-helly-holds-in-type-a-but-vc-fails`; (Q) and (A) proved, (B) certified, searches are evidence).
+  - **Cosets.** `U_a(k) = {u ∈ N : [u, a] = k}` is empty or a coset `uC_N(a)`. So (H″) for `(a, b, k)` says the
+    cosets `U_a(k)` and `U_b(k)` meet. When they meet with `k ≠ 1`, VC fails iff `C_N(a)` and `C_N(b)` are
+    incomparable.
+  - **Type A.** In every `A_n`, (H″) holds. The reductions of w12 and w13 use only facts true for `B_{n+1}`, and the
+    arc-model Helly theorem (`braid-pure-single-edge-hexagons-always-have-a-centre`) supplies the pure centre.
+  - **VC is false in A_4.** In `B_5`, take `a = p_1p_0`, `b = p_2p_0`, `u = x_2x_0` and `v = x_2x_0x_1x_0^{-1}`.
+    - This is a Case 1 tuple with no vertex centre; its pure centre is `x_0^{-1}A_Y`.
+    - It is certified in the faithful Artin representation.
+    - An exact Garside search counts 18720 VC failures at radii (3, 6).
+  - **H_4 search.** An exact hash search at F-radius 3 and N-radius 4 found no VC failure and no Helly candidate. It
+    covered 187 `F`-elements, 305265 `N`-elements and 954436 tuples.
+    In the reversed H_4 orientation, which the target does not cover, VC already fails at radii (2, 4) (2688 tuples), but
+    every failure has a centre inside the ball.
+  - **Next.** A uniform proof of Case 1 cannot always give a hexagon vertex. It needs an H_4 analogue of the Z/2 Helly
+    argument that reaches non-vertex centres, or a proof that the H_4 centralisers `C_N(a)` are nested whenever the
+    cosets meet. A ball search cannot refute (H″); only a finite-quotient obstruction can.
+  - **Lifting test.** Vertex centres map to vertex centres under the fibred braid shadows. So an H_4 Case 1 hexagon
+    whose `P_5`-shadow is the A_4 example would refute VC in H_4. Finding one is the lifting problem.
+- **Single-edge case: vertex centres fail in H_4 itself** (w15-042,
+  `h4-case1-vertex-centres-fail-by-orthogonal-parabolics`; proved, inequalities certified).
+  - **The tuple.** Take `a = p_2p_3`, `b = p_1p_3 = s_3^{-1}as_3`, `c = s_4^2`, `d = s_3^{-1}s_4^2s_3`,
+    `w = (s_2s_3)s_4^2(s_2s_3)^{-1}`, `u = wc` and `v = wd`.
+    - `[u,a] = [v,b] = k`.
+    - The structure comes from `A_{s_4} ⊥ A_{s_1s_2}`: `c`, `d` and `w` centralise `a`, `b` and `b^{-1}a`.
+  - **What it shows.** It is a Case 1 tuple with no vertex centre, in the target orientation.
+    - `C_N(a)` and `C_N(b)` are incomparable, so the nesting route (w14 Q.4) is dead.
+    - The lifting test (L) is not needed.
+    - (H″) holds for it: `u^{-1}v = c^{-1}d`, with centre point `w`.
+  - **Certificates.** Exact Garside normal forms, and an exact `ℚ(√5)` linear representation. The same tuple works
+    for `m_{s_3s_4} = 3, 4, 5`.
+  - **Why the searches missed it.** The N-length of `d` exceeds 6 in H_4, so `v` lies outside w14's ball.
+  - **What is left.** Case 1 needs an H_4 Helly argument that reaches non-vertex centres. The line fixed by `W_X`
+    is not modular in H_4 (510 bad hyperplane pairs), so the free-fibre arc model does not transport.
+- **Exact presentation of ker ρ_X in H_4** (w16-042, `h4-ker-rho-x-is-f45-mod-transported-collision-twists`;
+  proved, census exact over `ℚ(√5)`).
+  - **The collisions.** The 510 bad pairs group into 316 bad rank-2 flats (240 `A_1×A_1`, 70 `A_2`, 6 `I_2(5)`).
+    They lie on 106 collision walls `D_E = E + L_X`, none of which is a wall of `𝒜`.
+  - **Removing and restoring the collision walls.** Adding the 106 collision walls makes `L_X` modular. That gives
+    `F_45 ⋊ B°`, with the section realising `P_X`. Removing them again with a semidirect-quotient lemma gives
+    `P = (F_45/R) ⋊ P_X` with no defect.
+    - `R` is the normal closure of the transported relators `[δ_E, x_h]`, for cluster boundaries `δ_E` and punctures
+      `h ∈ E`.
+    - For the 240 flats of type `A_1×A_1` these are commutations.
+  - **Consequences.**
+    - `K^{ab} = ℤ^{45}`.
+    - Each F-wall lies in 16 bad flats. So `C_K(P_i) ⊇ ℤ²` for `i = 1, 2, 3`, and `K` is not free.
+    - Calibration: `H_3` has the same kind of `ℤ²`'s, yet Case 1 holds there. So this alone does not refute (H″).
+  - **Next.** Compute the monodromy `μ` of explicit loops for `N`. The fibre punctures are linear:
+    `y_h(b) = −h(b)/h(ℓ)`. Then test whether the w14/w15 coincidences `[u,a] = [v,b]` already hold in `F_45`, or
+    only modulo `R`. Coincidences that hold only modulo `R` are the one place a counterexample can live.
+- **Braid monodromy over the 45-point fibre: the w15 coincidence is exact in F_45** (w17-042,
+  `h4-w15-coincidence-lifts-to-f45-x-flats-block-local-lifts`; local obstruction and orbit bound proved,
+  monodromy computed and calibrated on `A_4` and `B_4`).
+  - **Tool.** Brieskorn loops have closed-form 46-strand monodromy, because the punctures move linearly.
+    Inequalities are certified by the Artin action, and equalities are randomized `SL_2(𝔽_p)` tests.
+  - **The X-flats lie in collision walls.** `L_{23}`, `L_{24}` and `L_{34}` lie in 9, 10 and 5 D-walls, while `L_{1j}`
+    lies in none.
+    - Near `L_{24}` the local group is `F_{11} × ℤ`, a retract of `B°`. In it the lifts of `s_2^2` and `s_4^2`
+      generate `F_2`.
+    - So `A_X` has no local lifts to `P°`. Brieskorn lifts fail every rank-2 relation except `(1,3)`, and they
+      depend on the base point.
+  - **The w15 tuple lifts exactly.** At base `(x_0, y_0)`, `[ũ,ã] = [ṽ,b̃] = k̃ ≠ 1` holds in `F_45`, as do all the
+    identities of its derivation. The same holds at 7 of 10 nearby base points, and fails at 24 of 24 random ones.
+    - So the one known H_4 coincidence with no vertex centre is not an only-mod-`R` coincidence.
+    - The w16 dichotomy must be read existentially (some lift is exact).
+  - **Why Helly does not transport verbatim.** `μ(B°)` has infinite index in `PB_45`, because its `H_1` rank is at
+    most 121 against 990. So the y-discs are a thin orbit `𝒟°`, not all discs.
+  - **Next.** Prove (Q1): the Z/2 Helly centre disc of three discs in `𝒟°` lies in `𝒟°`. The approach is to compute
+    the μ-images of the 121 meridians and the invariant `ι` of the hull disc. Otherwise, build a triple whose hull
+    leaves the orbit.
+- **Disc orbit invariant and (Q1) at the H_1 level** (w18-042, `h4-disc-orbit-invariant-closes-covered-helly-gluing`;
+  proposed-established, exact integer linear algebra).
+  - **Invariant.** Let `ι(D)_{a,j} = e_{F_a j} − e_{m j}` for `D = σΔ_F`. This is the winding number of outside puncture
+    `j` around the moved F-arc. It is well defined on discs, and point-pushes of `m` inside `D` do not change it.
+  - **Orbit lattice.** The 121 collision meridians act as cluster full twists. Together with the section winding
+    `(−1, …, −1)` they span `Λ`, which has rank 60 in `ℤ^{126}` and is saturated.
+    - So the orbit discs adjacent to `x_0` satisfy 66 integral equations.
+    - Calibration: 60 random pure words, all inside the span.
+  - **Gluing.** The Helly hull agrees with each pair disc on the F-arcs of that pair hull. So `ι(hull)` lies in the
+    glued lattice.
+    - The glued lattice equals `Λ` in all 23 feasible patterns where every F-pair shares a pair hull. This includes
+      `{01, 02, 12}`.
+    - It is strictly larger in all 15 uncovered patterns: rank 62 or 67.
+    - `B_4` and `D_4` show the same 15 gaps, so an uncovered pattern alone is not a counterexample.
+  - **Next.** Prove or refute pair covering: in a Helly triple, any two F-punctures in the hull lie in a common pair
+    hull.
+    - If it holds, only non-abelian obstructions to (Q1) remain. Test them with 7-strand forgetful shadows through
+      `r_{29}, r_{33}, r_{35}`.
+    - If it fails, the realising triple is the (H'') candidate.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

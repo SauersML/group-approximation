@@ -1,0 +1,7 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3621 oleans
+[job] cn1017 cores=slurm threads=8 base=eefd9492d6cc66ae6bb9a93eead6a86d5c643f98 mods: GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingFaces GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellGoodCorners
+ℹ [3337/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+Build completed successfully (10158 jobs).
+EXIT=0

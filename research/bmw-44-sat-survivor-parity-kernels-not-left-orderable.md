@@ -254,3 +254,127 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     conjugation, find every Klein chain.
   - **Not attempted.** Irreducibility of #332 by a route other than self-replication. It does not affect
     orderability of the three classes, which the pure four-term chains already settle.
+- (w9-107, 2026-09-18) **`31_30` #26 and `31_31` #12: no Klein pair at any length, and a non-Klein
+  certificate (`bmw-klein-free-quaternionic-parity-kernels`).**
+  - **Representation.** Both groups embed faithfully in `D^*/K^*`, where `D = [t, t²+t+1)` is a
+    quaternion division algebra over `F_2(t)`. The two tree actions become the Bruhat–Tits trees at `t`
+    and `t+1`. The letters have coordinates of degree at most 2, and the proof of faithfulness is a
+    non-backtracking path argument.
+  - **Consequence.** In `PGL_2(F)`, over any field, `a b a^{-1} = b^{-1}` with `b ≠ 1` forces `a² = 1` or
+    `b² = 1`. So the torsion-free `Γ^+` has no Klein pair, pure or conjugate, at any length. It also
+    contains no `BS(p, q)` with `p ≠ q`.
+  - **What this closes.** No Klein-power chain (Corollary 3) exists for these two kernels. The empty
+    searches of w7-107 and w8-107 are explained, and the kbottle fallback is moot. A left order is
+    impossible too.
+  - **New certificate type.** A depth-3 cone-propagation tree with 6 leaves and 54 product steps, on the
+    radius-4 ball, refutes left orders on each kernel. `verify_cone.py` checks it without a solver.
+  - **Lesson for other classes.** A class whose torsion-free parity kernel has a Klein pair does not
+    embed in any `PGL_2(F)`. A class that does embed needs cone trees, not Klein chains.
+- (w10-107, 2026-09-18) **The 994 remaining census classes: cone trees for 485, three quaternionic
+  families, and a parity obstruction (`bmw-census-survivor-cone-tree-certificates`,
+  `bmw-quaternionic-type-53-parity-kernels`, `bmw-quaternionic-char3-type-44-parity-kernels`,
+  `bmw-a5-parity-obstruction-to-pgl2-tree-models`).**
+  - **The remaining set.** These are the census classes whose irreducibility is not certified and that
+    have no Klein-power or Klein-frame certificate: 994 in all (`remaining.json` in
+    `experiments/bmw-cone-trees-2026-09-18`). By degree: `(4,4)` 577, `(5,3)` 374, `(4,3)` 41,
+    `(3,3)` 2. The three classes of this node are not among them, since their Klein chains are on main.
+  - **Cone trees, no solver.** 485 of the 994 have a cone-propagation certificate that
+    `verify_cone.py` checks (`verify_trees.log`). These are all 470 classes first UNSAT at radius 4,
+    and 15 of the 524 first UNSAT at radius 6.
+  - **Quaternion step, certified** (faithful `Γ → D^*/K^*`, both trees Bruhat–Tits trees):
+    - six `(5,3)` classes in `[1, t+1)` over `F_2(t)`, with trees at `t` and `t²+t+1`;
+    - `30_30` #16 in `[t, t²+t+1)`;
+    - nine `(4,4)` classes in `(−1, t+1)` over `F_3(t)`, with trees at `t` and `t−1`: `40_40` #818,
+      `41_40` #1182, `42_40` #472, #535, `42_41` #318, #500, #533 and `42_42` #97, #114.
+
+    For these sixteen, `Γ` is irreducible, and `Γ^+` is torsion-free with no Klein pair and no
+    `BS(p, q)`, `p ≠ q`. Each also has a cone tree.
+  - **Where the quaternion step fails, by class group.**
+    - *`(5,3)`, 306 classes: step 1, the tree model.* An h-tree of valency 5 has residue field `F_4`,
+      and the local action lands in `PGL_2(F_4) ≅ A_5`. So every v-letter permutation `π_u` must be
+      even. These 306 classes have an odd `π_u`, so no `PGL_2` tree model exists over any field.
+    - *`(5,3)`, 62 of the 68 even classes: step 2, the letters.* The strict search in `[1, t+1)` finds
+      nothing, and it is exhaustive for that algebra, order and pair of places. Other algebras, orders
+      and `2`-adic number fields were not searched.
+    - *`(4,3)`, 41 classes: step 1, the field.* The residue fields `F_3` and `F_2` need a global field
+      with places of residue characteristic 3 and 2, so no function field works. Number-field models
+      were not searched.
+    - *`(4,4)`: step 2, the letters.* In `(−1, t+1)` the strict search covered all 75 filter-passing
+      classes and 222 of the 502 filter-failing classes, and found only the nine above. The other
+      568 `(4,4)` classes have no model there (or were not reached). The algebras
+      `(t+1, 2t²+2t+1)` and `(t+1, 2t²+2)` have no h-letter candidate of degree at most 1.
+    - *`30_30` #10: step 2.* It has no model in `[t, t²+t+1)` with letters of degree at most 2, with
+      either assignment of the places `t` and `t+1` (`quat2_30_10.out`).
+  - **Where the cone-tree step fails.** There are 509 radius-6 classes without a tree.
+    - The 8 left in `(4,3)` exhausted a 1500-leaf, 400 s budget (`run_R6b.jsonl`).
+    - For the `(4,4)` and `(5,3)` classes the full radius-6 ball did not fit: 0 leaves after more
+      than 400 s and 1.7 GB, or a timeout (`run_R6.jsonl`). The rest were not reached. For these classes the census SAT
+    theorem is still the only certificate.
+  - **Next step.** Two options:
+    - cone trees on the short-4 radius-6 instance, which is the one the census found UNSAT, instead
+      of the full ball;
+    - a `2`- and `3`-adic quaternion search over `ℚ` for the `(4,3)` classes.
+- (w11-107, 2026-09-18) **All 994 remaining census classes now have solver-free certificates
+  (ESTABLISHED, `bmw-census-radius6-cone-lemma-certificates`).**
+  - **Scope.** It covers the 509 classes that w10-107 left without a cone tree, all first UNSAT at
+    radius 6 with short 4.
+  - **Why not trees.** Tree-like refutations do not fit there. A C++ port of `dtree2.py` did not
+    finish `50_30` #14 in 900 s.
+  - **What each class gets.** A DAG-shaped list of cone lemmas `S_i ⊄ P`. It is translated from a
+    Glucose 4 + drat-trim LRAT refutation and re-checked in group language by `verify_lemmas.py`,
+    using the census squares alone: 509 OK, 0 failed, and six mutations are rejected.
+  - **Coverage.** Together with w10's 485 trees, this covers `remaining.json` exactly.
+  - **What is now unnecessary.** The quaternionic searches for the 41 `(4,3)` and the 62 even
+    `(5,3)` classes.
+  - **The three survivors.** They are not among the 994, and they stay resolved by w5-107b.
+- (w12-107, 2026-09-19) **Full solver-free resolution route, independently re-checked
+  (`bmw-44-sat-survivor-resolution-via-census-recheck`, via
+  `bmw-census-solver-free-parity-kernel-certificates`).**
+  - **Re-check.** A fresh reader, `recheck.py` in
+    `experiments/bmw-census-solver-free-recheck-2026-09-18/`, shares no code with the earlier
+    checkers and uses no SAT solver. It re-verifies all 1206 certificates of w6c, w7, w8, w9, w10 and
+    w11 from the census squares alone: 1203 classes, 0 rejected. `mutate.py` confirms that 18 kinds
+    of corruption are rejected.
+  - **Coverage.** It recomputes reducibility at cap 4000, agreeing with `out_*.jsonl` on all 6964
+    classes of the 20 patterns in degrees (3,3), (4,3), (4,4) and (5,3). `51_30#506` needs cap 60000,
+    where its image orders are 6 and 6912. Every one of the 1200 candidates has a checked certificate,
+    including the classes settled before w10. By degree the candidates are 4, 50, 689 and 457.
+  - **The three survivors.** Each carries two accepted four-term Klein chains, from
+    `chains_40_40.json` and `chains_census_40_40.json`.
+  - **Consequence.** The census theorem now holds with no exceptions and no solver: every irreducible
+    BMW lattice of these degrees has a non-left-orderable parity kernel.
+  - **Remaining classes:** none. What stays open is irreducibility of #193 and #332, which no longer
+    affects this claim.
+- (w13-107, 2026-09-19) **Removing the census: vertex groups are never convex, and the census pipeline
+  beyond the census degrees (`bmw-parity-kernel-vertex-groups-are-never-convex`).**
+  - **Uniform theorem (all degrees).** A convex subgroup that the ambient group commensurates is normal.
+    Hence, in any left order of the parity kernel `Γ^+` of an irreducible BMW group, no vertex
+    stabilizer of either tree is convex. Lexicographic and Zappa–Szép orders are ruled out in every
+    degree.
+  - **Theorem 2.** A convex subgroup containing a finite-index subgroup of `B^+` contains the normal
+    closure `N_B`. Also `Γ^+/N_B ≅ Q_B`, where `Q_B` is `A^+` modulo the `B^+`-orbit relations on
+    `S_2(T_A)`, and `Q_B = 1` when that action is transitive. Over the 1201 census candidates:
+    - `Q_A` and `Q_B` are both finite for 141 classes;
+    - one is infinite for 902;
+    - both are infinite for 158, including #193, #281 and #332.
+
+    So this obstruction does not reduce the conjecture to the census.
+  - **Which certificate type is universal.** Cone trees and cone lemmas are universal, by compactness.
+    Klein chains and Klein-power chains are not: census classes 31_30 #26 and 31_31 #12, and 19 of the
+    36 certified samples below, have no Klein pair in the balls searched.
+  - **Beyond the census.** 64 random samples in 8 patterns: 50_40, 60_30, 50_50, 51_41, 61_31, 52_42,
+    63_31 and 52_52.
+    - 27 are reducible.
+    - 30 are closed by R4 cone trees, 3 by R6s4 cone trees and 3 by RUP-checked R6s4 cone lemmas.
+    - One survivor: 50_40 seed 107. It is irreducible (Thompson–Wielandt on the horizontal side, local
+      action `S_5`), and its instance is SAT at R4, R6s4 and R8s2.
+      It is refuted by a four-term Klein chain of pure words,
+      `v2v0v1v2 → h2h3 → v0v2v0v1v2v0 → h0h1`, found at word length 6 and checked by `kverify.py`,
+      which shares no code with the search and rejects three tampered chains.
+    - So all 64 samples are settled and no counterexample appeared. Certificate completeness and
+      feasibility come apart: the universal types carry no radius bound, and a non-universal chain
+      closed the case they missed.
+  - **Next step.** Q-infinite classes are exactly where Theorem 2 stops. For those, decide
+    left-orderability of the normal closure `N_B`, which acts on `T_B`. Or find the
+    structural reason why pure Klein chains exist when one local action is a 2-group. Test this on 50_40
+    s107, whose vertical local action has order 2.

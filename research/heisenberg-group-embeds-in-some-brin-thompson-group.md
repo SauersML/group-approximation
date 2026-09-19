@@ -75,3 +75,56 @@ A no here gives a no to Zaremsky 2.19(c), through
     - Product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` with `N ≥ 4`. The first open case is `W(Z^4)`.
     - Reversible Turing machine hosts.
     - Any no-proof must use prefix locality or the product coding. It cannot rest on growth.
+- 2026-09-19 (swarm-0917-w14-w14-z-last1, host-geometry, unreviewed): **rank-4 abelian hosts are
+  dead; the first open abelian case is now `W(Z^5)`.** See
+  `heisenberg-not-in-full-groups-of-z4-actions` and
+  `faithful-heisenberg-actions-are-locally-free-at-every-scale`.
+  - *Answer to the 2026-09-18 open case.* `H_3 ≰ [[Z^4 ↷ X]]` for every `Z^4`-set `X`. This covers
+    `W(Z^4)`, all `Z^4`-subshift full groups, and the rank-4 product-shift full group that maps into
+    `8V`.
+  - *New ingredient.* Every faithful `H_3`-set is locally free at every scale. For each `R`, some
+    point has `Stab ∩ B(R) = {1}`.
+    - Proof: pick a point whose `c`-orbit is longer than `R^2 + R|B(R)|`, then move it by
+      `a^s b^t`.
+    - A short non-central element `g` is fixed only where the linear form `ω(πg, (s,t))` meets one
+      value: a line, or `≤ mR` classes mod the `c`-period `m`.
+  - *Effect on the count.* Local freeness at scale `~j` gives two things.
+    - There is no short period vector: otherwise the quartic word ball would inject into a cubic
+      orbit ball.
+    - The displacement map is exactly injective on the blow-down ball, so the lower count is
+      `c(rj)^4` rather than the rank-3 route's `(rj)^3`.
+    - Pansu flattening bounds the image by `~ε^2 (rj)^4` lattice points in `R^4`.
+  - *Limit.* For `N ≥ 5` the planar upper bound `~ε^{N−2}(rj)^N` exceeds `(rj)^4`. This count cannot kill
+    `W(Z^5)`. A kill there would need more than injectivity plus planar flattening, e.g. finer
+    structure of the rounded blow-down.
+  - *What remains.* `W(Z^N)` and product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` (in `2N·V`) for `N ≥ 5`,
+    up to the Assouad rank. Also reversible Turing machine hosts.
+- 2026-09-19 (swarm-0917-w15-w15-z-follow, reframing, unreviewed): **the YES direction reduces to
+  one realization problem, and all product hosts form one class.** See
+  `heisenberg-in-mv-reduces-to-zn-subshift-realization`.
+  - *Clarification.* At and above the Assouad rank `W(Z^N)` already contains `H_3`, so for large `N`
+    the open question is only how to get from `W(Z^N)` into `mV`.
+  - *Reduction.*
+    - The Assouad injection `ι` gives a `Z^N`-subshift `X_ι`, the orbit closure of the
+      labelled image. On `X_ι`, every relator of `H_3` has cocycle identically `0`.
+    - Such cocycles lift along every equivariant map `π : U → X_ι` from `N` commuting elements of
+      `mV`. No aperiodicity is needed, only one free point over the base configuration.
+    - So `H_3 ≤ mV` as soon as `X_ι` is Brin–Thompson realizable by a `Z^N`-action with a free point over `x_ι`.
+      This is the `Z^N` analogue of `decidable-minimal-subshifts-are-brin-thompson-factors`.
+  - *Class.* Hosts `[[Z^N ↷ Y_1 × ⋯ × Y_N]]` with aperiodic `Z`-systems `Y_i`. These include
+    `2N·V`'s product shifts, products of SMART traces, and any `N` one-dimensional devices run in
+    separate blocks of `mV`.
+    - *Invariant.* They host `H_3` iff there is a product-coloured realization: bijections
+      `z ↦ z + F_s(κ_1(z_1), …, κ_N(z_N))` of `Z^N` generating an `H_3`-action with a free orbit.
+    - The free orbit comes from local freeness plus clopen fixed sets and compactness.
+  - *Where the constructions die.* Right multiplication by `a` shifts the `c`-string of `(α, β)` by
+    `−β`. Encodings of `β` by base-`b` digits, boustrophedon order, `μ/ρ` scaling and diagonal
+    dependence all fail here. Coordinate `i` sees `z_j` only through `κ_j(z_j)`.
+  - *Induction attempt.* Periodizing one tape, with the finite-orbit bound `|orbit| ≥ m^2` for
+    `c`-period `m`, yields the recursion `α_N = 2α_{N−1}/(2−α_{N−1})`. It closes only for `N ≤ 3`,
+    weaker than the `Z^4` kill, so it is not recorded as a node.
+  - *What remains.*
+    - YES: realize some `X_ι` by commuting elements of `mV`. Necessary condition:
+      decidable language.
+    - NO for product hosts: show that no product-coloured realization exists, for any `N`.
+    - NO in general: handle non-product commuting families as well.

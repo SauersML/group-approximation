@@ -1,0 +1,23 @@
+[job] 21:44:51 acn112 waiting for clone lock
+[job] delta sync b421d0604..fc88159fc: 115 files changed
+===== SUMMARY
+host acn112 cores 64-71 base fc88159fc log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-214335-23508.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3491 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellFirstTurnsLakeModel
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerAssembly.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerFollowsClosed.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonWalkHypInner.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean
+ Quot.sound]
+Build completed successfully (10122 jobs).
+EXIT=0
+PROBE GREEN

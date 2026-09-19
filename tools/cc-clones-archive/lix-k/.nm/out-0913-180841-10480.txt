@@ -1,0 +1,23 @@
+[job] 18:08:51 acn112 waiting for clone lock
+[job] delta sync a97619bce..ec784032c: 5 files changed
+===== SUMMARY
+host acn112 cores 72-79 base ec784032c log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-180841-10480.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3370 oleans
+--- errors (first 80 lines)
+6:✖ [4648/4648] Building GroupApproximation.GGT.VanKampen.CombMapSameFaceForest (22s)
+8:error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:218:26: failed to synthesize instance of type class
+12:error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:283:64: unsolved goals
+27:error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:297:14: 'GroupApproximation.GGT.VanKampen.SameFaceForest.card_add_two_le' depends on axioms outside the classical allowlist: [sorryAx]
+28:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+30:error: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:298:21: 'GroupApproximation.GGT.VanKampen.sameFaceDartForest' depends on axioms outside the classical allowlist: [sorryAx]
+31:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+33:error: Lean exited with code 1
+36:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapSameFaceForest (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.CombMapSameFaceForest
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

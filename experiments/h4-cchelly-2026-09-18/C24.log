@@ -1,0 +1,8 @@
+F-ball 37 N-ball 305265 (max NF length 12) 5 s
+hashes ready 273 s
+sorted 10976560 nontrivial commutators 293 s
+RESULT LA=2 LB=4 |FB|=37 |NB|=305265 unordered_pairs=630 shared_classes=13660 tuples(unordered)=155476 VCFAIL=0 HBALL=0 HCAND=0 hash_collisions=0  295 s
+
+real	4m54.728s
+user	0m43.206s
+sys	0m0.321s

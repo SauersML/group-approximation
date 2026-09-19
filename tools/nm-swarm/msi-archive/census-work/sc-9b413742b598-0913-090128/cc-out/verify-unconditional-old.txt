@@ -1,0 +1,6 @@
+buried-conditional   217 accepted,   0 new
+carrier-data          12 accepted,   0 new
+conditional-data       4 accepted,   0 new
+inlined-statement      1 accepted,   0 new
+open-predicate        50 accepted,   0 new
+284 conditional or literature-fed assignment(s): 284 accepted, 0 new

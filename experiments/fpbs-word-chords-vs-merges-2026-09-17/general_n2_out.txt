@@ -1,0 +1,16 @@
+
+real	15m0.020s
+user	8m2.863s
+sys	0m1.543s
+n 2 V 9 rho 3 arcs 1000 pairs 132120 full 0 wit None k(R) {1: 9, 2: 9} kwit None
+n 2 V 12 rho 3 arcs 2416 pairs 504676 full 0 wit None k(R) {1: 16, 2: 58} kwit None
+n 2 V 15 rho 3 arcs 3420 pairs 844866 full 0 wit None k(R) {2: 97, 1: 22} kwit None
+n 2 V 11 rho 3 arcs 1620 pairs 275370 full 0 wit None k(R) {2: 22, 1: 11} kwit None
+n 2 V 11 rho 3 arcs 1624 pairs 276104 full 0 wit None k(R) {2: 22, 1: 11} kwit None
+skipped rho histogram {1: 2320, 2: 607, 0: 336}
+
+real	1m11.616s
+user	0m31.430s
+sys	0m0.219s
+
+[exited with code 0]

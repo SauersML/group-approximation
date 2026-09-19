@@ -1,0 +1,9 @@
+{"class": 74, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 123, "nodes": 4520, "edges": 19115, "capped": false, "cert": null}
+{"class": 80, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 49, "nodes": 10849, "edges": 54896, "capped": false, "cert": ["v010210|h", "v01020210|h", "v02|h0320", "v|h132320", "v020120|h00", "v02010120|h", "v01|h32", "v|h2323"]}
+{"class": 113, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 49, "nodes": 10849, "edges": 54896, "capped": false, "cert": ["v010210|h", "v01020210|h", "v02|h0320", "v|h132320", "v020120|h00", "v02010120|h", "v01|h32", "v|h2323"]}
+{"class": 132, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 66, "nodes": 3642, "edges": 12795, "capped": false, "cert": null}
+{"class": 167, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 15, "nodes": 991, "edges": 2682, "capped": false, "cert": null}
+{"class": 168, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 16, "nodes": 455, "edges": 1693, "capped": false, "cert": null}
+{"class": 169, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 19, "nodes": 3547, "edges": 16356, "capped": false, "cert": null}
+{"class": 170, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 0, "nodes": 0, "edges": 0, "capped": false, "cert": null}
+{"class": 171, "L": 6, "S": 6, "NB": 16, "shift": false, "seeds": 0, "nodes": 0, "edges": 0, "capped": false, "cert": null}

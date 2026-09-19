@@ -1,0 +1,85 @@
+=== R'' (bouquet at 0; killed by the ray-loop obstruction)
+  loops: {'b': (0, '1', '1'), 'c': (0, '1', '1')}
+  Delta_n = Gamma_1 (n=2..3): True
+  components: [((0,), 2, ['b', 'c'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  class: BOUQUET (rank >= 2 loop group)
+  verdict: open: reduces to the ray-loop subgroup at the bouquet ray
+=== R' (separated loops)
+  loops: {'b': (0, '1', '1'), 'c': (3, '1', '1')}
+  Delta_n = Gamma_1 (n=2..3): True
+  components: [((0,), 1, ['b']), ((3,), 1, ['c'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  orders: {'b': ('finite', 55), 'c': ('infinite', ('a e b', 5, 'b e'))}
+  class: RANK-ONE
+  |Q_E|: 3
+  basis: ["b' = b", "c' = c"]
+  blocks: [(['a'], 'proper'), (['e'], 'proper'), (["b'"], 'proper'), (["c'"], 'proper')]
+  Whitehead graph of Q_E connected without cut vertex: False
+  verdict: not fp (Kurosh: Q_E carried by a free splitting with proper images)
+=== R_0 = <M_11, b> (one loop)
+  loops: {'b': (0, '1', '1')}
+  Delta_n = Gamma_1 (n=2..3): True
+  components: [((0,), 1, ['b'])]
+  cycle words fixed by section at base: True
+  bounded: True
+  class: RANK-ONE
+  verdict: not fp (bounded, hence contracting regular branch)
+=== R° (C loops at two points: outside (L1))
+  class: outside (L1)
+  why: long cycle
+
+##### family linear=False: s|0 = A s B, s|1 = alpha, s|2 = beta; t|0 = C t D, t|4 = alpha
+   20640  TREE  ->  not fp (bounded, hence contracting regular branch)
+   10138  RANK-ONE  ->  not fp (bounded, hence contracting regular branch)
+     472  BOUQUET (rank >= 2 loop group)  ->  not fp (bounded, hence contracting regular branch)
+
+##### family linear=True: s|0 = A s B, s|1 = alpha, s|2 = beta, s|3 = t; t|0 = C t D, t|4 = alpha
+   20640  TREE  ->  not fp (Q^infinity empty)
+    5610  RANK-ONE  ->  not fp (every cycle word has infinite order, so Q^infinity is empty)
+    4528  RANK-ONE  ->  not fp (Kurosh: Q_E carried by a free splitting with proper images)
+     472  BOUQUET (rank >= 2 loop group)  ->  open: reduces to the ray-loop subgroup at the bouquet ray
+=== pi_s=a pi_t=e s|0=s t|0=t A s|3=t
+  loops: {'s': (0, '1', '1'), 't': (0, '1', 'A')}
+  Delta_n = Gamma_1 (n=2..2): True
+  components: [((0, 1), 1, ['t A'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  orders: {'t A': ('finite', 44)}
+  class: RANK-ONE
+  |Q_E|: 2
+  basis: ["s' = s", "t' = t A"]
+  blocks: [(['a'], 'proper'), (['e'], 'proper'), (["s'"], 'proper'), (["t'"], 'proper')]
+  Whitehead graph of Q_E connected without cut vertex: False
+  verdict: not fp (Kurosh: Q_E carried by a free splitting with proper images)
+=== pi_s=a pi_t=e s|0=s t|0=t E s|3=t
+  loops: {'s': (0, '1', '1'), 't': (0, '1', 'E')}
+  Delta_n = Gamma_1 (n=2..2): True
+  components: [((0, 1), 1, ['t E'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  orders: {'t E': ('finite', 11)}
+  class: RANK-ONE
+  |Q_E|: 2
+  basis: ["s' = s", "t' = t E"]
+  blocks: [(['a'], 'proper'), (['e'], 'proper'), (["s'"], 'proper'), (["t'"], 'proper')]
+  Whitehead graph of Q_E connected without cut vertex: False
+  verdict: not fp (Kurosh: Q_E carried by a free splitting with proper images)
+=== pi_s=a pi_t=e s|0=s A t|0=t A s|3=t
+  loops: {'s': (0, '1', 'A'), 't': (0, '1', 'A')}
+  Delta_n = Gamma_1 (n=2..2): True
+  components: [((0,), 2, ['s A', 't A'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  class: BOUQUET (rank >= 2 loop group)
+  verdict: open: reduces to the ray-loop subgroup at the bouquet ray
+=== pi_s=a pi_t=e s|0=s A t|0=t E s|3=t
+  loops: {'s': (0, '1', 'A'), 't': (0, '1', 'E')}
+  Delta_n = Gamma_1 (n=2..2): True
+  components: [((0,), 2, ['s A', 't E'])]
+  cycle words fixed by section at base: True
+  bounded: False
+  class: BOUQUET (rank >= 2 loop group)
+  verdict: open: reduces to the ray-loop subgroup at the bouquet ray

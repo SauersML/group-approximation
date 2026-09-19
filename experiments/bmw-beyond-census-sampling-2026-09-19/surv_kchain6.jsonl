@@ -1,0 +1,2 @@
+nodes 6552 edges 26628
+{"pat": "50_40", "seed": 107, "L": 6, "cycle": ["v2v0v1v2", "h2h3", "v0v2v0v1v2v0", "h0h1"]}

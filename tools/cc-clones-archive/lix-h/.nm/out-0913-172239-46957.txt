@@ -1,0 +1,15 @@
+[job] 17:22:46 acn112 waiting for clone lock
+[job] delta sync d0c0519f6..68cc72eb2: 5 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 68cc72eb2 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-172239-46957.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3171 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.ReturnTowerCrossedProduct
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ReturnTowerCrossedProduct.lean
+info: GroupApproximation/Dynamics/ReturnTowerCrossedProduct.lean:321:14: 'GroupApproximation.ChainCore.returnTowerUnits' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1760 jobs).
+EXIT=0
+PROBE GREEN

@@ -60,3 +60,114 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
   - Open, and the next step: is `V_2(Z/2 ≀ Z)` of type `F_∞`, or at least `F_3`? A route is a Stein--Farley complex
     whose vertices are decorated with points of the Bruhat--Tits trees at `0` and `∞` of `F_2(t)`, with a
     Busemann-sum height and Brown's criterion.
+- **2026-09-18 (w9-101).**
+  - `lamplighter-has-a-faithful-contracting-degree-8-action`: ADT arXiv:2609.01868 Ex. 4.8 checked.
+    - Its map does not determine `f`. Every candidate `f_c` has a nonzero kernel element, so none is injective.
+    - `f_0` still gives a faithful contracting action of `Z/2 ≀ Z` on the 8-regular tree. So `V_8(Z/2 ≀ Z)` is
+      finitely presented by FP2.
+    - This does not touch the fd85aac03 claim, which is about the non-contracting binary affine action.
+  - `rn-lamplighter-is-a-function-field-stein-group`:
+    - The sketch above is now proved: `V_2(Z/2 ≀ Z) = PAff(F_2[[1+t]]; F_2[t, 1/t, 1/(1+t)])`.
+    - A contractible complex with finite stabilisers is built: Stein–Farley leaves decorated by cells of
+      `T_0 × T_∞`, with an invariant Busemann-sum height and orbit counts from Riemann–Roch.
+    - Li's criterion (arXiv:2110.04505, Cor F) and SWZ both need `G` of type `F_n`, so neither applies.
+  - Still open: `F_3`, which needs the connectivity of descending links for `Σ φ(ℋ_i)`. The single low leaf is a
+    cone; the merge part is not done.
+- **2026-09-18 (w10-101).**
+  - `rn-lamplighter-is-f-infinity-and-acyclic-via-a-2-graph`: `F_∞` for `V_2(Z/2 ≀ Z)` is settled without Morse
+    theory.
+    - `P = {a ∈ Aff(R) : a(O) ⊆ O, a(ρ_*) an ancestor of ρ_*}` is a one-vertex 2-graph with edges
+      `e_c = (π/t)x + c/t`, `f_c = πx + c` and rule `e_i f_j = f_i e_{i+j}`. Its units are trivial because level `1`
+      is simply transitive.
+    - Its path groupoid is the germ groupoid of `PAff(O; R) = V_2(Z/2 ≀ Z)`. Li's k-graph theorem gives `F_∞`.
+    - `H_*(𝒢; Z) = 0` (two computations), so by Li's Cor D the group is integrally acyclic, perfect and simple.
+    - For `F_q ≀ Z` the same model gives `F_∞` and `H_0 = H_1 = Z/(q-1)`.
+    - So FP1/FP2-type hypotheses on `H` (or `F_n` of `H` in SWZ and Li's Cor F) are not necessary for `F_∞` of
+      `V_d(H)`: here `H` is not finitely presented.
+  - The Morse function `Σ c^{|β(ρ_i)-1|}` in the step before this one has local minima at every vertex whose leaves
+    all sit at height `1`. Merges cost `c - 2 > 0`, and splits and tree moves ascend. So Brown's criterion cannot be
+    run with it; the 2-graph route replaces it.
+- **2026-09-18 (w11-101).**
+  - **Review of `rn-lamplighter-is-f-infinity-and-acyclic-via-a-2-graph`: no gap found.**
+    - Lemma 2 (unique factorisation) and the germ step were re-derived by hand.
+    - All computational input was recomputed by independent code, `review_two_graph.py`, which decides membership
+      in `P` from valuations rather than from the normal form. It checks:
+      - the normal form for `d ≤ (3,3)`, exhaustively;
+      - unique factorisation, in 2401 cases;
+      - the germ threshold, over `P_(M,M)` for `M ≤ 7`.
+    - Two wording fixes are recorded in the review, in
+      `torsion-germ-rn-groups-are-not-k-graph-full-groups-proof`.
+  - **The extension to Grigorchuk, basilica and Hanoi is negative for two of the three**
+    (`torsion-germ-rn-groups-are-not-k-graph-full-groups`).
+    - Rubin makes an isomorphism `V_d(H) ≅ F(G_Λ)` spatial. `Germ(F(G_Λ))` is then an open subgroupoid of the
+      Hausdorff groupoid `G_Λ`, whose isotropy embeds in `Z^k`.
+    - So a finite-order element of `H` with a nontrivial fixed-point germ excludes every aperiodic finite `k`-graph
+      model, for every `k`. So does a non-Hausdorff germ groupoid.
+    - **Grigorchuk.** `b` at `1^ω` has a germ of order 2, and the germ groupoid is non-Hausdorff.
+    - **Hanoi.** `a` at `2^ω` has a germ of order 2.
+    - **Basilica.** It passes both tests, since all fixed germs are trivial. It is left open, with a
+      hyperbolicity/quasi-flat sketch.
+    - All three `V_d` are `F_∞` anyway, by bounded automata (Belk–Hyde–Matucci; Belk–Matucci for Röver's group).
+      The 2-graph method is specific to non-contracting, `S`-arithmetic examples such as the lamplighter.
+  - Next: find which self-similar `H` admit `k`-graph models. The candidates are non-contracting affine groups
+    `x ↦ ux + b` over `S`-integers of global fields, where the `S`-unit rank gives `k`.
+- **2026-09-18 (w12-101).**
+  - **The basilica is settled negatively for every `k ≥ 1`** (`basilica-rn-group-is-not-a-k-graph-full-group`).
+    - If `V_d(H) ≅ F(G_Λ)`, then `H_*(𝒢_H; Q) = 0`. Here `H_0(𝒢_H)` is a quotient of `Z/(d-1)`, and for a finite
+      `k`-graph, rational `H_0 = 0` forces all rational homology to vanish (a Koszul eigenspace argument).
+    - A section character `ψ(h) = Σ_x ψ(h|_x)` gives `H_1(𝒢_H; Q) ≠ 0`.
+    - The basilica and the odometer have one (exponent sum); the lamplighter, Grigorchuk and Hanoi have none.
+    - So `V_2(Basilica)` is not a finite `k`-graph full group, including `k = 1` (Cuntz–Krieger).
+  - **The lamplighter construction generalises to every `S`-rank over `F_q(t)`**
+    (`s-arithmetic-affine-rn-groups-are-k-graph-full-groups`).
+    - The `k`-graph monoid is `P_n = {x ↦ (t^m x + N)/Q_n : deg N < m}` inside `Aff(O_S, ⟨t, p_1, ..., p_{k-1}⟩)`.
+      Its path groupoid is the affine germ groupoid.
+    - So these `V_q(H)` are `F_∞`, with `H_j = (Z/(q-1))^{C(k-1,j)}`. For `q = 2` they are acyclic and simple.
+    - `H` is non-contracting for `k ≥ 2`.
+  - Number fields: a rational criterion is sketched (no trivial character `|u|_v Π_{σ∈I} σ(u)` on `U`).
+    - `BS(1,3)` passes it, but has `H_1 = H_2 = Z/2`, so it has no graph (`k = 1`) model.
+  - Next: decide whether `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_2` (i.e. `V_2(BS(1,3))`) is a `k`-graph groupoid for some
+    `k ≥ 2`; and handle higher genus.
+- **2026-09-18 (w13-101).**
+  - **`V_2(BS(1,3))` is settled negatively for every `k ≥ 1`**
+    (`dyadic-affine-germ-groupoids-are-not-k-graph-groupoids`).
+    - The sketched homology is machine-checked by two independent routes (Pimsner–Voiculescu with coset
+      enumeration, and LHS over the unit group). The germ groupoid of `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_2` has
+      `H_0 = 0` and `H_1 = H_2 = Z/2`.
+    - **Prime-support theorem.** For a finite `k`-graph, `H_0(G_Λ) ⊗ Z_(ℓ) = 0` forces `H_*(G_Λ) ⊗ Z_(ℓ) = 0`.
+      This follows from Nakayama on the FKPS Koszul complex. In particular, `H_0 = 0` forces integral acyclicity.
+    - So no finite `k`-graph with (H), for any `k`, has full group `V_2(BS(1,r))` (`r` odd, `|r| ≥ 3`, where
+      `H_1 = H_2 = Z/|r-1|`), and none has full group `V_2(Z[1/m] ⋊ U')`. No Kakutani-equivalent model exists either.
+  - Over `Q` at the place 2, every such affine germ groupoid has odd `H_0` and nonzero 2-local `H_1`. This
+    contrasts with `F_q(t)`, where all of them are `k`-graph groupoids.
+  - For odd `p`, a prime criterion excludes `V_3(BS(1,7))` and `V_5(BS(1,7))`.
+  - Next: decide `V_3(BS(1,2))`, i.e. `Aff(Z[1/6], ⟨2, 3⟩)` on `Z_3`. It passes every homological test: its
+    homology `(Z/2, Z/2, 0)` is that of the one-vertex `(3,3)` 2-graph. Either build a 2-graph model or find a
+    finer (K-theoretic or order) invariant.
+- **2026-09-18 (w14-101).**
+  - **`V_3(BS(1,2))` is settled negatively for every `k`** (`rational-affine-rn-groups-are-not-k-graph-full-groups`).
+    - Homology cannot see it, but the degree cocycle can.
+    - Every continuous `Z`-cocycle on the germ groupoid of `Aff(Z[1/pm], U)` on `Z_p` (`m > 1`) is a multiplier
+      character plus a coboundary. Odometer averaging gives `I_0 ∈ ⋂ m^j Z[1/p] = 0`.
+    - So a `k`-graph model would force the multiplier skew product to be AF up to Kakutani equivalence. Its core is
+      the translation groupoid `Z[1/m] ⋉ Z_p`, with `H_1 = Z[1/m] ≠ 0`.
+  - This covers every `V_p(Z[1/m] ⋊ U_0)` over `Q`, and re-proves `V_2(BS(1,r))`.
+  - Over `F_q(t)` the translation core is locally finite, hence AF, which is why the models exist there.
+  - Next: finiteness of `V_3(BS(1,2))` must come from a Stein–Farley complex decorated by the 2-adic Bruhat–Tits tree,
+    not from `k`-graphs.
+- **2026-09-19 (w15-101).**
+  - **`V_3(BS(1,2))` is of type `F_∞`, by citation, with no new complex**
+    (`rational-affine-rn-groups-over-type-f-hosts-are-f-infinity`).
+    - `BS(1,2)` is of type `F` and self-similar on `T_3`.
+    - Skipper–Witzel–Zaremsky (arXiv:1712.05361, Thm 4.15) transfer `F_n` from a self-similar `G` to `V_d(G)`.
+  - More generally, `V_p(Z[1/m] ⋊ U_0)` is `F_∞` whenever `U_0` has finite index in `Z[1/m]^×` and `p ∤ m`.
+    - The host acts cocompactly on `∏_{ℓ|m} BT_ℓ` with cyclic stabilisers.
+    - This corrects the "Open" note of the `k`-graph node and the "length 2" remark on `Aff(Z[1/6])` in the
+      function-field Stein node.
+  - A decorated Stein–Farley complex is needed only for hosts of deficient unit rank, which are not `FP_2`.
+  - The first such case is `H_* = Z[1/6] ⋊ ⟨2/3⟩` on `Z_5`. It is finite-state, not contracting, not persistent, and
+    has `N ≠ K_∞`, so every known criterion is silent.
+    - Its persistent re-embedding on `T_6` has `V_6(H_*)` not finitely presented.
+    - `V_5(H_*)` is the Cantor analogue of the open Bieri–Strebel compact-interval case.
+  - Next: decide whether `V_5(Z[1/6] ⋊ ⟨2/3⟩)` is finitely presented. The candidate complex is a Stein–Farley complex
+    decorated by `DL(2,3) ⊂ BT_2 × BT_3`.

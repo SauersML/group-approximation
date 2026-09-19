@@ -1,0 +1,31 @@
+[job] 10:10:18 acn116 waiting for clone lock
+[job] delta sync 2486678e6..180455469: 29 files changed
+===== SUMMARY
+host acn116 cores slurm base 180455469 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-100636-36149.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3533 oleans
+--- errors (first 80 lines)
+3:✖ [612/612] Building GroupApproximation.GGT.VanKampen.ListNoABABLength (56s)
+5:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:44:37: unexpected token '+'; expected term
+6:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:46:64: unexpected token '+'; expected term
+7:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:94:28: unexpected token '+'; expected term
+8:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:77:2: unsolved goals
+30:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:70:11: unsolved goals
+49:error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:131:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+52:error: Lean exited with code 1
+55:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ListNoABABLength (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+- GroupApproximation.GGT.VanKampen.ListNoABABLength
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

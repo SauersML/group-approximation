@@ -1,0 +1,14 @@
+$ python3 scan_exhaustive.py 2 4 5 7 4      (all 2^14 elements A of V_{1,2} over F_2; commutant in V_{2,4})
+algebraic-on-test-vectors A: 168
+commutant dims (in box) -> count: [(3, 15256), (5, 324), (6, 270), (12, 6), (17, 72), (25, 180), (33, 36), (48, 72)]
+(growth k1, growth k2) -> count: [((-1, -1), 15256), ((9, 13), 4), ((10, 14), 1), ((12, 18), 382), ((14, 22), 573)]
+flagged: 0
+
+Reading:
+- (-1,-1): commutant inside the box is exactly span{1, A, A^2} = F[A] ∩ box (15256 of the 16216 transcendental A).
+- The other 960 A have larger box commutants (dims 5..48). For every commutant basis vector and 6 random
+  combinations B, the joint growth rank of {A^i B^j delta_z : i+j<k} on three random length-400 words z is
+  at most 14 at k=5 and 22 at k=7: increments of 3-4 per step, i.e. linear, the signature of a finite-rank
+  F[A]-module (algebraic dependence).  An algebraically independent pair has k(k+1)/2 = 15, 28.
+- No A in V_{1,2} has a commuting partner in V_{2,4} with quadratic growth.  Evidence only: the growth
+  rank is a lower bound from three test vectors, and the partner search is confined to the box.

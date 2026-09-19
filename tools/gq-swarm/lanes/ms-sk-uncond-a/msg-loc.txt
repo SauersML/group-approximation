@@ -1,0 +1,9 @@
+SK LVPolyK2/Localization: the open row from Gersten (2 generators) + the K2 localization step; ABC Thm 7.6 cited at source (unprobed)
+
+The module states the two open inputs of tex l.733-735 as named Props:
+- skLoc_GerstenTwoStatement, the Gersten nil part of K2(F2<x0,x1>);
+- skLoc_LocalizationStatement, the stable surjectivity of K2(F2<x0,x1>) -> K2(L_F2(1,2)) (Neeman-Ranicki localization, LVK2Route Core-B).
+It wires them straight to the manuscript sentence through stable K2(L) = 0, which skips the Cohn colimit.
+Stable K2(L_F2(1,2)) = 0 is published: Ara-Brustenga-Cortinas 2009, Thm 7.6, whose text was checked on MSI; for the rose, 1 - N^t = -1. It is still owed in Lean.
+LOUD: given Gersten, the localization step is equivalent to the target.
+The module is unprobed because MSI Slurm is blocked.

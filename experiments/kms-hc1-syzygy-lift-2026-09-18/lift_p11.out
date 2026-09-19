@@ -1,0 +1,13 @@
+FREE p=11 (P,Q)=(11,11) dimB=2320 dim(B/K)=82 sum dimV*dimU=82 OK
+LIFT p=11 dimB(p,p)=2320 gens(K+)=3242 rank(K+)=2228
+  sigma: U1a^2-U2c^2 = 0  R in K+ : True
+  e_1: syzygy=True  R in K+ : True
+  e_2: syzygy=True  R in K+ : True
+  e_3: syzygy=True  R in K+ : True
+  e_4: syzygy=True  R in K+ : True
+  e_5: syzygy=True  R in K+ : True
+  e_6: syzygy=True  R in K+ : True
+  e_7: syzygy=True  R in K+ : True
+  control (c^2 e^(p-2), 0): U1a^2 != 0 : True  R in K+ : False  (expected False)
+  control (3 e_(p-2) alone): R in K+ : False  (expected False)
+ALL OK

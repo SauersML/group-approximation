@@ -1,0 +1,20 @@
+[job] 16:37:06 acn112 waiting for clone lock
+[job] delta sync 854abfaa8..e87355863: 109 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e87355863 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-163702-75330.log
+purged 16 stale artifact sets (source-newer=6, import-newer=10) of 3121 oleans
+--- errors (first 80 lines)
+18:✖ [1751/1751] Building GroupApproximation.Dynamics.ReturnTowerStatements (7.4s)
+20:error: GroupApproximation/Dynamics/ReturnTowerStatements.lean:87:66: Unknown identifier `TotallyDisconnectedSpace`
+21:error: Lean exited with code 1
+24:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.ReturnTowerUnits
+mentioned-not-built GroupApproximation.Dynamics.ReturnTowerStatements (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/ReturnTowerUnits.lean
+- GroupApproximation.Dynamics.ReturnTowerStatements
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,3969 @@
+diff --git a/GroupApproximation.lean b/GroupApproximation.lean
+index 80287225f..9d3dd46c0 100644
+--- a/GroupApproximation.lean
++++ b/GroupApproximation.lean
+@@ -2,8 +2,14 @@ import GroupApproximation.Algebra.MappingTelescope
+ import GroupApproximation.Analysis.FaithfulTracialMatrix
+ import GroupApproximation.Analysis.ProperIsometryFromCompression
+ import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
+-import GroupApproximation.Analysis.NormMatrixCorona
++import GroupApproximation.Computability.MarkovMFConsequences
+ import GroupApproximation.Computability.OperatorMFMarkovWitness
++import GroupApproximation.Computability.CStarRecognitionConsequences
++import GroupApproximation.Kazhdan.LaplacianSOSCertificate
++import GroupApproximation.Kazhdan.RealGroupRing
++import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
++import GroupApproximation.Kazhdan.RationalGroupRingCertificate
++import GroupApproximation.Kazhdan.LiteralRelatorReduction
+ import GroupApproximation.Sofic.AdjointMatrix
+ import GroupApproximation.Sofic.ProjectionRankFlip
+ import GroupApproximation.Sofic.SpectralCapture
+@@ -16,18 +22,10 @@ import GroupApproximation.Monsters.ExplicitLinearModel
+ import GroupApproximation.Monsters.CyclicBaseCalibration
+ import GroupApproximation.Monsters.LiteralCyclicCalibration
+ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+-import GroupApproximation.Sofic.LiteralBaseRelations
+-import GroupApproximation.Sofic.LiteralBaseTranslationNormal
+ import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+-import GroupApproximation.Sofic.LiteralTranslationOrbit
+-import GroupApproximation.Sofic.LiteralBasePropertyTBridge
+-import GroupApproximation.Sofic.LiteralBaseRotationRetract
+ import GroupApproximation.Sofic.LiteralBaseP13Replay
+-import GroupApproximation.Sofic.LiteralBaseTwoGenerator
+ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+ import GroupApproximation.Sofic.LiteralUniversalHorn
+-import GroupApproximation.Sofic.ChosenUniversalHorn
+-import GroupApproximation.Sofic.ChosenMarkedCylinder
+ import GroupApproximation.Sofic.LiteralPresentationRadius
+ import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+ import GroupApproximation.Sofic.MarkedCompressionInclusionData
+@@ -46,6 +44,7 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
+ import GroupApproximation.Sofic.NormMFCoronaRadical
+ import GroupApproximation.Sofic.NormMFPrintedConsequences
+ import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
++import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
+ import GroupApproximation.Sofic.OperatorMFPositiveControls
+ import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+ import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
+@@ -178,6 +177,7 @@ import GroupApproximation.Sofic.IntrinsicCompressionDefect
+ import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
+ import GroupApproximation.Sofic.NormalKazhdanMFRadical
++import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+ import GroupApproximation.Sofic.TensorPowerAmplification
+ import GroupApproximation.Sofic.OperatorMFPairAmplification
+ import GroupApproximation.Sofic.OperatorMFLocalNormalization
+diff --git a/GroupApproximation/Analysis/ExplicitReducedGroupCStarConsequences.lean b/GroupApproximation/Analysis/ExplicitReducedGroupCStarConsequences.lean
+index 0741c93ae..24ea481c5 100644
+--- a/GroupApproximation/Analysis/ExplicitReducedGroupCStarConsequences.lean
++++ b/GroupApproximation/Analysis/ExplicitReducedGroupCStarConsequences.lean
+@@ -1,6 +1,7 @@
+ import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
+ import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ 
+ /-!
+ # Reduced-group-C-star consequences for the explicit MF obstructions
+@@ -9,7 +10,8 @@ The repository's concrete reduced group C-star algebra has a faithful
+ canonical trace, hence finite matrix amplifications.  A faithful embedding
+ into a norm-matrix corona would, on canonical group unitaries, yield a
+ faithful group representation.  This file instantiates that obstruction for
+-the unconditional chosen witness.
++the unconditional chosen witness and, conditionally, for the literal printed
++group.
+ -/
+ 
+ namespace GroupApproximation
+@@ -50,5 +52,35 @@ theorem matrix_isometry_is_unitary
+ 
+ end ChosenReducedGroupCStar
+ 
++namespace LiteralReducedGroupCStar
++
++open LiteralNonMFPresentation LiteralKazhdanCompression
++
++/-- Literal printed-group version, with its remaining property-`(T)` boundary
++kept explicit. -/
++theorem no_faithfulCoronaUnitaryRestriction
++    (hT : HasKazhdanPropertyT.{0, 0} Base) :
++    IsEmpty (FaithfulReducedCoronaUnitaryRestriction MarkedGroup) :=
++  no_faithfulReducedCoronaUnitaryRestriction_of_nontrivial_residual
++    MarkedGroup
++    (mem_normMFResidual_iff.mpr
++      (mark_normMFInvisible_of_hasKazhdanPropertyT hT))
++    LiteralNonMFLinearWitness.literal_mark_ne_one
++
++/-- The split affine--Clifford witness has the same reduced-C-star corona
++obstruction under the literal-base property-`(T)` input. -/
++theorem witness_no_faithfulCoronaUnitaryRestriction
++    (hT : HasKazhdanPropertyT.{0, 0} Base) :
++    IsEmpty (FaithfulReducedCoronaUnitaryRestriction
++      LiteralNonMFLinearWitness.WitnessGroup) :=
++  no_faithfulReducedCoronaUnitaryRestriction_of_nontrivial_residual
++    LiteralNonMFLinearWitness.WitnessGroup
++    (mem_normMFResidual_iff.mpr
++      (witness_sign_normMFInvisible_of_hasKazhdanPropertyT hT))
++    (MarkedCompression.signAmbient_ne_one
++      LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective)
++
++end LiteralReducedGroupCStar
++
+ end
+ end GroupApproximation
+diff --git a/GroupApproximation/Analysis/NormMatrixCorona.lean b/GroupApproximation/Analysis/NormMatrixCorona.lean
+index b66afaa07..cb9fed54c 100644
+--- a/GroupApproximation/Analysis/NormMatrixCorona.lean
++++ b/GroupApproximation/Analysis/NormMatrixCorona.lean
+@@ -270,8 +270,8 @@ noncomputable instance normMatrixCoronaAlgebraInvolutiveStar :
+         Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a
+       rw [normMatrixCorona_star_mk, normMatrixCorona_star_mk, star_star]
+ 
+-noncomputable instance normMatrixCoronaAlgebraStarAddMonoid :
+-    StarAddMonoid (NormMatrixCoronaAlgebra X) where
++noncomputable instance normMatrixCoronaAlgebraStarRing :
++    StarRing (NormMatrixCoronaAlgebra X) where
+   star_add x y := by
+     induction x using QuotientAddGroup.induction_on with
+     | _ a =>
+@@ -283,9 +283,6 @@ noncomputable instance normMatrixCoronaAlgebraStarAddMonoid :
+         rw [normMatrixCorona_star_mk, normMatrixCorona_star_mk,
+           normMatrixCorona_star_mk, star_add]
+         rfl
+-
+-noncomputable instance normMatrixCoronaAlgebraStarMul :
+-    StarMul (NormMatrixCoronaAlgebra X) where
+   star_mul x y := by
+     induction x using QuotientAddGroup.induction_on with
+     | _ a =>
+@@ -478,7 +475,7 @@ theorem norm_normMatrixCorona_mk_eq_limsup
+   le_antisymm (normMatrixCorona_mk_le_tailNorm X a)
+     (matrixSequenceTailNorm_le_normMatrixCorona_mk X a)
+ 
+-omit [∀ (n : ℕ), Nonempty (X n)] in
++omit [∀ n, Nonempty (X n)] in
+ private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
+     (Filter.limsup (fun n ↦ ‖a n‖) atTop) ^ 2 =
+       Filter.limsup (fun n ↦ ‖a n‖ ^ 2) atTop := by
+@@ -498,16 +495,16 @@ private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
+   rw [max_eq_left htail] at hmap
+   simpa [Function.comp_def, max_eq_left] using hmap
+ 
+-noncomputable instance normMatrixCoronaAlgebraStarRing :
+-    StarRing (NormMatrixCoronaAlgebra X) :=
+-  { normMatrixCoronaAlgebraStarMul X with
+-    star_add := star_add }
+-
+ noncomputable instance normMatrixCoronaAlgebraCStarRing :
+     CStarRing (NormMatrixCoronaAlgebra X) where
+   norm_mul_self_le x := by
+     induction x using QuotientAddGroup.induction_on with
+     | _ a =>
++      change
++        ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
++            ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ ≤
++          ‖star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a) *
++            Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖
+       rw [normMatrixCorona_star_mk]
+       change
+         ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
+@@ -520,9 +517,8 @@ noncomputable instance normMatrixCoronaAlgebraCStarRing :
+       apply le_of_eq
+       congr 1
+       funext n
+-      have hcoord : (star a * a) n = star (a n) * a n := by
+-        simp [lp.star_apply]
+-      rw [hcoord, pow_two, CStarRing.norm_star_mul_self]
++      simpa [pow_two, lp.star_apply] using
++        (CStarRing.norm_star_mul_self (x := a n)).symm
+ 
+ /-- Audit pin: the concrete quotient norm satisfies the C-star identity. -/
+ theorem norm_normMatrixCorona_star_mul_self
+@@ -550,6 +546,77 @@ theorem normMatrixCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
+   rw [Ideal.Quotient.eq_zero_iff_mem]
+   rfl
+ 
++/-! ## An opaque C-star-corona interface
++
++`NormMatrixCoronaAlgebra` above remains reducible while its quotient norm and
++operations are constructed.  Exposing that raw abbreviation directly to
++downstream typeclass search makes Lean repeatedly unfold the noncommutative
++ideal quotient.  The following definition is an opaque type synonym with the
++same elements and explicitly transported structures.  It is the public
++C-star-algebra object used by the unitary-corona correspondence. -/
++
++/-- The genuine norm-matrix C-star corona, exposed behind an opaque boundary
++so its intended structures elaborate without unfolding the ideal quotient. -/
++def NormMatrixCStarCorona := NormMatrixCoronaAlgebra X
++
++noncomputable instance normMatrixCStarCoronaNormedRing :
++    NormedRing (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraNormedRing X
++
++noncomputable instance normMatrixCStarCoronaCompleteSpace :
++    CompleteSpace (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraCompleteSpace X
++
++noncomputable instance normMatrixCStarCoronaStar :
++    Star (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraStar X
++
++noncomputable instance normMatrixCStarCoronaInvolutiveStar :
++    InvolutiveStar (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraInvolutiveStar X
++
++noncomputable instance normMatrixCStarCoronaStarRing :
++    StarRing (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraStarRing X
++
++noncomputable instance normMatrixCStarCoronaNormedStarGroup :
++    NormedStarGroup (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraNormedStarGroup X
++
++noncomputable instance normMatrixCStarCoronaCStarRing :
++    CStarRing (NormMatrixCStarCorona X) := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaAlgebraCStarRing X
++
++/-- The quotient homomorphism into the opaque C-star-corona interface. -/
++def normMatrixCStarCoronaMk :
++    BoundedMatrixSequence X →+* NormMatrixCStarCorona X := by
++  unfold NormMatrixCStarCorona
++  exact normMatrixCoronaMk X
++
++@[simp] theorem normMatrixCStarCorona_star_mk (a : BoundedMatrixSequence X) :
++    star (normMatrixCStarCoronaMk X a) =
++      normMatrixCStarCoronaMk X (star a) := by
++  unfold normMatrixCStarCoronaMk NormMatrixCStarCorona
++  exact normMatrixCorona_star_mk X a
++
++theorem normMatrixCStarCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
++    normMatrixCStarCoronaMk X a = 0 ↔ IsC0MatrixSequence X a := by
++  unfold normMatrixCStarCoronaMk NormMatrixCStarCorona
++  exact normMatrixCoronaMk_eq_zero_iff X a
++
++/-- Every element of the opaque corona has a bounded matrix-sequence lift. -/
++theorem normMatrixCStarCoronaMk_surjective :
++    Function.Surjective (normMatrixCStarCoronaMk X) := by
++  unfold normMatrixCStarCoronaMk NormMatrixCStarCorona
++  exact Ideal.Quotient.mk_surjective
++
+ end
+ 
+ end GroupApproximation
+diff --git a/GroupApproximation/Analysis/ReducedGroupCStarTraceFaithful.lean b/GroupApproximation/Analysis/ReducedGroupCStarTraceFaithful.lean
+index 6541576b5..e2e1d13ac 100644
+--- a/GroupApproximation/Analysis/ReducedGroupCStarTraceFaithful.lean
++++ b/GroupApproximation/Analysis/ReducedGroupCStarTraceFaithful.lean
+@@ -153,13 +153,22 @@ theorem hasSum_product_coefficient (T S : ReducedGroupCStar G) :
+     ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))).mapL evalAfterT
+   convert hs using 1
+   · ext g
+-    dsimp [evalAfterT]
++    dsimp only [evalAfterT, ContinuousLinearMap.comp_apply]
++    change
++      ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g *
++          ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g⁻¹ =
++        ((T : GroupHilbert G →L[ℂ] GroupHilbert G)
++          (lp.single 2 g
++            ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G) g))) 1
+     rw [apply_single]
+-    rw [map_smul]
+-    change _ = _ * (rightRegularOperator G g
+-      ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))) 1
++    change
++      ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g *
++          ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g⁻¹ =
++        ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g *
++          (rightRegularOperator G g
++            ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))) 1
+     rw [rightRegularOperator_apply]
+-    rw [one_mul]
++    simp only [one_mul]
+   · rfl
+ 
+ /-- The canonical coefficient is tracial on the reduced group C⋆-algebra. -/
+@@ -171,8 +180,7 @@ theorem canonicalCoefficientAtOne_mul_comm (T S : ReducedGroupCStar G) :
+   apply hTS.unique
+   convert hSTinv using 1
+   · ext g
+-    rw [Function.comp_apply]
+-    rw [show (Equiv.inv G) g = g⁻¹ from rfl, inv_inv]
++    simp only [Function.comp_apply, Equiv.inv_apply, inv_inv]
+     rw [mul_comm]
+   · rfl
+ 
+@@ -183,17 +191,17 @@ theorem canonicalCoefficientAtOne_star_mul_self (T : ReducedGroupCStar G) :
+   change
+     (((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
+       (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)) 1 = _
+-  rw [show
+-    (((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
+-      (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)) 1 =
+-        ⟪deltaOne G,
+-          ((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
+-            (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)⟫_ℂ by
++  calc
++    _ = ⟪deltaOne G,
++        ((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
++          (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)⟫_ℂ := by
+       rw [deltaOne, lp.inner_single_left]
+-      simp]
+-  simp only [mul_apply_eq_comp, ContinuousLinearMap.star_eq_adjoint,
+-    ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
+-  rfl
++      simp
++    _ = _ := by
++      simp only [mul_apply_eq_comp,
++        ContinuousLinearMap.star_eq_adjoint,
++        ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
++      rfl
+ 
+ /-- The identity vector separates the concrete reduced group C⋆-algebra. -/
+ theorem eq_zero_of_apply_deltaOne_eq_zero (T : ReducedGroupCStar G)
+@@ -230,8 +238,9 @@ def canonicalFaithfulTracialState : FaithfulTracialState (ReducedGroupCStar G) w
+     change canonicalCoefficientAtOne G (star T * T) = 0 at hT
+     rw [canonicalCoefficientAtOne_star_mul_self] at hT
+     have hnorm : ‖(T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ = 0 := by
+-      apply sq_eq_zero_iff.mp
+-      exact Complex.ofReal_injective (by simpa using hT)
++      have hc : (‖(T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ : ℂ) = 0 :=
++        sq_eq_zero_iff.mp hT
++      exact Complex.ofReal_eq_zero.mp hc
+     apply eq_zero_of_apply_deltaOne_eq_zero G T
+     exact norm_eq_zero.mp hnorm
+ 
+diff --git a/GroupApproximation/Analysis/UniversalKazhdanCStarConsequences.lean b/GroupApproximation/Analysis/UniversalKazhdanCStarConsequences.lean
+index 30a250d43..f4ed10b95 100644
+--- a/GroupApproximation/Analysis/UniversalKazhdanCStarConsequences.lean
++++ b/GroupApproximation/Analysis/UniversalKazhdanCStarConsequences.lean
+@@ -10,11 +10,11 @@ constructed in `ReducedGroupCStarTrace` has its canonical faithful trace, so
+ all finite matrix amplifications are finite.
+ 
+ Mathlib currently has no maximal group C⋆-algebra API.  Accordingly, the
+-general transport result below is stated solely for an explicit injective
+-star-algebra homomorphism and proper projection-compression data in its
+-source.  It makes no claim that a particular maximal group C⋆-algebra map has
+-been constructed.  Injectivity preserves properness and yields a proper
+-isometry in the target C⋆-algebra.
++maximal-side result below does not introduce a fictitious one.  It accepts an
++explicit injective star-algebra homomorphism (the paper supplies this from a
++subgroup inclusion/universal property) and proper projection-compression data
++in its source.  Injectivity preserves properness, producing the advertised
++proper isometry in the target C⋆-algebra.
+ -/
+ 
+ namespace GroupApproximation
+@@ -24,7 +24,9 @@ noncomputable section
+ universe u v
+ 
+ /-- Explicit data for an injective unital star-algebra map between complex
+-C⋆-algebras. -/
++C⋆-algebras.  In the group-algebra application this is the map induced by an
++injective subgroup homomorphism; that literature input is kept visible rather
++than hidden behind a nonexistent maximal-group-C⋆ API. -/
+ structure InjectiveCStarEmbedding (A : Type u) (B : Type v)
+     [CStarAlgebra A] [CStarAlgebra B] where
+   /-- The specified unital star-algebra map. -/
+diff --git a/GroupApproximation/Endpoint/Audit.lean b/GroupApproximation/Endpoint/Audit.lean
+index 819a61e5a..8a89ce56c 100644
+--- a/GroupApproximation/Endpoint/Audit.lean
++++ b/GroupApproximation/Endpoint/Audit.lean
+@@ -13,55 +13,27 @@ import GroupApproximation.Sofic.LineDouble
+ import GroupApproximation.Sofic.DoubleSoficTransfer
+ import GroupApproximation.Sofic.CentralCoverInheritance
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
+-import GroupApproximation.Sofic.ChosenUniversalHorn
+-import GroupApproximation.Sofic.ChosenMarkedCylinder
++import GroupApproximation.Sofic.MarkedMFClosed
+ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+ import GroupApproximation.Sofic.NormMFPrintedConsequences
+-import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
+ import GroupApproximation.Sofic.OperatorMFPositiveControls
+ import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
+-import GroupApproximation.Sofic.MarkedGroupWordBall
+-import GroupApproximation.Sofic.MarkedMFClosed
+ import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+-import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
+ import GroupApproximation.Analysis.FaithfulTracialMatrix
+ import GroupApproximation.Analysis.ProperIsometryFromCompression
+-import GroupApproximation.Analysis.NormMatrixCorona
+-import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
+-import GroupApproximation.Analysis.ReducedGroupCStarTrace
+-import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
+-import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
+-import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
+-import GroupApproximation.Computability.OperatorMFMarkovWitness
+-import GroupApproximation.Kazhdan.KazhdanTextbook
+-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+-import GroupApproximation.Monsters.AffineSL3Doubling
+-import GroupApproximation.Monsters.AffineSL3Scaling
+-import GroupApproximation.Sofic.MarkedGroupTopology
+-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+-import GroupApproximation.Sofic.TensorPowerAmplification
+ import GroupApproximation.Criterion.CompressionCentralizerDefect
+ import GroupApproximation.Criterion.FiniteDimensionalKill
+ import GroupApproximation.Monsters.CliffordAlgebraLamp
+ import GroupApproximation.Monsters.ExplicitLinearModel
+-import GroupApproximation.Monsters.LiteralCyclicCalibration
+ import GroupApproximation.Sofic.CompressionDefectSquare
+ import GroupApproximation.Sofic.IntrinsicCompressionDefect
+ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+ import GroupApproximation.Sofic.LiteralNonMFPresentation
+-import GroupApproximation.Sofic.LiteralBaseRelations
+-import GroupApproximation.Sofic.LiteralBaseTranslationNormal
+ import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+-import GroupApproximation.Sofic.LiteralTranslationOrbit
+-import GroupApproximation.Sofic.LiteralBasePropertyTBridge
+-import GroupApproximation.Sofic.LiteralBaseRotationRetract
+ import GroupApproximation.Sofic.LiteralBaseP13Replay
+-import GroupApproximation.Sofic.LiteralBaseTwoGenerator
+-import GroupApproximation.Sofic.LiteralPresentationRadius
+-import GroupApproximation.Sofic.LiteralUniversalHorn
+ import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+-import GroupApproximation.Sofic.NormalKazhdanMFRadical
+ import GroupApproximation.Sofic.NormMFResidualExactQuotient
+ import GroupApproximation.KOne.ClassicalKOne
+ import GroupApproximation.KOne.FactorizationCertificate
+@@ -83,8 +55,6 @@ import GroupApproximation.PropertyTT.NonsoficCorollary
+ import GroupApproximation.Kazhdan.KazhdanComplex
+ import GroupApproximation.Kazhdan.KazhdanUniverse
+ import GroupApproximation.Kazhdan.InvariantSubsetRounding
+-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+-import GroupApproximation.Kazhdan.FixedSpaceDefect
+ import GroupApproximation.Kazhdan.DiagonalInvariantRelation
+ import GroupApproximation.KOne.RefineLoopDischarge
+ import GroupApproximation.Kazhdan.ShalomFinitePresentation
+@@ -281,6 +251,7 @@ the entire project namespace and fails on anything beyond classical Lean.
+ #print axioms GroupApproximation.BinaryLeavitt.K1_trivial
+ #print axioms GroupApproximation.KOnePaper.diagUnit_mem_elementary
+ #print axioms GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
++#print axioms GroupApproximation.BinaryLeavitt.elementaryGroup_eq_top
+ 
+ -- The unit-group and general-linear profiles (Theorem B(i) closed): finite
+ -- generation, infinitude, property (T), and nonsoficity of `L_k(1,2)ˣ` and
+@@ -479,19 +450,8 @@ the entire project namespace and fails on anything beyond classical Lean.
+ #print axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+ #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
+ #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+-#print axioms GroupApproximation.ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity
+-#print axioms GroupApproximation.ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
+-#print axioms GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen
+-#print axioms GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF
+-#print axioms GroupApproximation.normMatrixCoronaMk_eq_zero_iff
+-#print axioms GroupApproximation.c0MatrixSequenceIdeal_star_mem
+-#print axioms GroupApproximation.isClosed_c0MatrixSequenceIdeal
+-#print axioms GroupApproximation.norm_normMatrixCorona_mul_le
+-#print axioms GroupApproximation.norm_normMatrixCorona_star
+-#print axioms GroupApproximation.norm_normMatrixCorona_mk_eq_limsup
+-#print axioms GroupApproximation.norm_normMatrixCorona_star_mul_self
+-#print axioms GroupApproximation.ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction
+-#print axioms GroupApproximation.ChosenReducedGroupCStar.matrix_isometry_is_unitary
++#print axioms GroupApproximation.ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage
++#print axioms GroupApproximation.ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage
+ #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
+ #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual
+ #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
+@@ -510,83 +470,44 @@ the entire project namespace and fails on anything beyond classical Lean.
+ #print axioms GroupApproximation.IsOperatorMF.subgroup
+ #print axioms GroupApproximation.isOperatorMFIncreasing_iff
+ #print axioms GroupApproximation.MarkedGroupSpace.cylinder_wordBall_subset_cylinder
++#print axioms GroupApproximation.OperatorNormAmplification.exists_tensorPower_pair_far
++#print axioms GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
+ #print axioms GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus
+ #print axioms GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus
++#print axioms GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus
+ #print axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto
+ #print axioms GroupApproximation.OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
+-#print axioms GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF
+-#print axioms GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective
+-#print axioms GroupApproximation.not_isOperatorMF_coprod_left
+-#print axioms GroupApproximation.normMFResidual_eq_top_of_mem_normalClosure_eq_top
+-#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_map_mem
+-#print axioms GroupApproximation.FixedSpaceDefect.compressionCentralizerDefect_le_ker
+ #print axioms GroupApproximation.not_injective_of_coronaMFInvisible
+ #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility
+ #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel
+ #print axioms GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one
+ #print axioms GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne
++#print axioms GroupApproximation.ProperProjectionCompression.exists_leftInvertible_not_isUnit
++#print axioms GroupApproximation.ProperProjectionCompression.not_isDedekindFiniteMonoid
+ #print axioms GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing
+-#print axioms GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState
+-#print axioms GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top
+-#print axioms GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one
+-#print axioms GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec
+-#print axioms GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing
++#print axioms GroupApproximation.ProperProjectionCompression.no_faithfulTracialState
+ #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package
+ #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_permutation_package
+ #print axioms GroupApproximation.compressionCentralizerDefect_le_ker
+-#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_le_stabilizer
+-#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_map_mem
+ #print axioms GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
+ #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
+-#print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
+-#print axioms GroupApproximation.LiteralCyclicCalibration.mark_central
+-#print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val
+-#print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central
+-#print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
+-#print axioms GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill
+ #print axioms GroupApproximation.map_marked_commutator_eq_one
+ #print axioms GroupApproximation.map_marked_commutator_eq_one_units
+ #print axioms GroupApproximation.KazhdanCompressionCore.defectNormal_le_orbitDefectNormal
+ #print axioms GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect
+ #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
+ #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
+-#print axioms GroupApproximation.LiteralNonMFLinearWitness.matrixBaseHom_surjective
+-#print axioms GroupApproximation.LiteralBaseRelations.baseRelator_eq_one
+-#print axioms GroupApproximation.LiteralBaseRelations.x_conj_v1
+-#print axioms GroupApproximation.LiteralBaseRelations.z_conj_v3
+-#print axioms GroupApproximation.LiteralBaseTranslationNormal.normalizer_translations_eq_top
+ #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_injective
+ #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_range
+ #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeEquivTranslations
+-#print axioms GroupApproximation.LiteralTranslationOrbit.translation_eq_two_rotation_conjugates
+-#print axioms GroupApproximation.LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed
+-#print axioms GroupApproximation.LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation
+ #print axioms GroupApproximation.LiteralBaseP13Replay.yFromUZXY_eq
+ #print axioms GroupApproximation.LiteralBaseP13Replay.closure_Z_XY_eq_top
+-#print axioms GroupApproximation.LiteralBaseTwoGenerator.rotationEquivTwoRotation
+-#print axioms GroupApproximation.LiteralBaseRotationRetract.rotationToBase_injective
+-#print axioms GroupApproximation.LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
+-#print axioms GroupApproximation.LiteralBaseRotationRetract.translations_inf_rotations
+-#print axioms GroupApproximation.LiteralBaseRotationRetract.translations_isComplement_rotations
+-#print axioms GroupApproximation.LiteralBaseRotationRetract.internalSemidirectEquiv
+ #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+-#print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
+-#print axioms GroupApproximation.LiteralPresentationRadius.markedWord_length_le
+-#print axioms GroupApproximation.LiteralPresentationRadius.relator_wordLength_le_34
+-#print axioms GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34
+-#print axioms GroupApproximation.OperatorMFMarkovWitness.positive_punit
+-#print axioms GroupApproximation.OperatorMFMarkovWitness.chosen_forbidden_subgroup
+-#print axioms GroupApproximation.OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup
++#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
++#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate
+ #print axioms GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona
+ #print axioms GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF
+ #print axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
+ #print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual
+ #print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual
+ #print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual
+-#print axioms GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal
+-#print axioms GroupApproximation.AffineSL3Scaling.scaling_package
+-#print axioms GroupApproximation.ambient_hasKazhdanPropertyTComplex
+-#print axioms GroupApproximation.universalLeavitt_profile_textbook
+-#print axioms GroupApproximation.AffineSL3Doubling.doubling_package
+-#print axioms GroupApproximation.MarkedGroupSpace.tendsto_iff_eventually_relation
+-#print axioms GroupApproximation.exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap
+diff --git a/GroupApproximation/Endpoint/ChosenNonMFAudit.lean b/GroupApproximation/Endpoint/ChosenNonMFAudit.lean
+index 05523f848..8bae4337d 100644
+--- a/GroupApproximation/Endpoint/ChosenNonMFAudit.lean
++++ b/GroupApproximation/Endpoint/ChosenNonMFAudit.lean
+@@ -1,11 +1,10 @@
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
++import GroupApproximation.Sofic.MarkedMFClosed
+ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+ import GroupApproximation.Sofic.LiteralNonMFPresentation
+-import GroupApproximation.Sofic.LiteralUniversalHorn
+-import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+-import GroupApproximation.Monsters.LiteralCyclicCalibration
+ 
+ /-!
+ # Lightweight axiom audit for the chosen non-MF endpoint
+@@ -20,8 +19,8 @@ endpoint.
+ 
+ The literal eight-generator group is also printed below, but only at the
+ boundary actually proved: its algebraic package, nontrivial mark, and
+-finite-dimensional obstruction are unconditional.  No conditional analytic
+-endpoint for that literal presentation is admitted to this audit surface.
++finite-dimensional obstruction are unconditional; its operator-MF conclusion
++retains either a property-`(T)` premise or an exact rational SOS certificate.
+ -/
+ 
+ #print axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
+@@ -31,6 +30,8 @@ endpoint for that literal presentation is admitted to this audit surface.
+ #print axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+ #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
+ #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
++#print axioms GroupApproximation.ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage
++#print axioms GroupApproximation.ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage
+ #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
+ #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
+ #print axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot
+@@ -41,6 +42,11 @@ endpoint for that literal presentation is admitted to this audit surface.
+ #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
+ #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
+ #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+-#print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
+-#print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
+-#print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
++#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
++#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate
++#print axioms GroupApproximation.OperatorNormAmplification.exists_tensorPower_pair_far
++#print axioms GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
++#print axioms GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus
++#print axioms GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus
++#print axioms GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus
++#print axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto
+diff --git a/GroupApproximation/Endpoint/Public.lean b/GroupApproximation/Endpoint/Public.lean
+index b61c6819f..788a28992 100644
+--- a/GroupApproximation/Endpoint/Public.lean
++++ b/GroupApproximation/Endpoint/Public.lean
+@@ -1,53 +1,32 @@
+ import GroupApproximation.Endpoint.MainResults
+ import GroupApproximation.Endpoint.ManuscriptStatements
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
+-import GroupApproximation.Sofic.ChosenUniversalHorn
+-import GroupApproximation.Sofic.ChosenMarkedCylinder
+-import GroupApproximation.Sofic.MarkedCompressionProperness
+ import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
+ import GroupApproximation.Sofic.NormMFUniversalCorona
+ import GroupApproximation.Sofic.NormMFCoronaRadical
+ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+ import GroupApproximation.Sofic.OperatorMFPositiveControls
+ import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
+-import GroupApproximation.Sofic.MarkedGroupWordBall
+ import GroupApproximation.Sofic.MarkedMFClosed
+ import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+-import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
+ import GroupApproximation.Sofic.NormMFPrintedConsequences
+ import GroupApproximation.Sofic.NormMFResidualExactQuotient
+ import GroupApproximation.Analysis.FaithfulTracialMatrix
+ import GroupApproximation.Analysis.ProperIsometryFromCompression
+-import GroupApproximation.Analysis.NormMatrixCorona
+-import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
+-import GroupApproximation.Computability.OperatorMFMarkovWitness
++import GroupApproximation.Computability.MarkovMFConsequences
+ import GroupApproximation.Criterion.CompressionCentralizerDefect
+ import GroupApproximation.Criterion.FiniteDimensionalKill
+ import GroupApproximation.Monsters.CliffordAlgebraLamp
+ import GroupApproximation.Monsters.ExplicitLinearModel
+-import GroupApproximation.Monsters.AffineSL3Doubling
+-import GroupApproximation.Monsters.AffineSL3Scaling
+-import GroupApproximation.Monsters.LiteralCyclicCalibration
+ import GroupApproximation.Sofic.CompressionDefectSquare
+ import GroupApproximation.Sofic.IntrinsicCompressionDefect
+ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+ import GroupApproximation.Sofic.LiteralNonMFPresentation
+-import GroupApproximation.Sofic.LiteralBaseRelations
+-import GroupApproximation.Sofic.LiteralBaseTranslationNormal
+ import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+-import GroupApproximation.Sofic.LiteralTranslationOrbit
+-import GroupApproximation.Sofic.LiteralBasePropertyTBridge
+-import GroupApproximation.Sofic.LiteralBaseRotationRetract
+ import GroupApproximation.Sofic.LiteralBaseP13Replay
+-import GroupApproximation.Sofic.LiteralBaseTwoGenerator
+-import GroupApproximation.Sofic.MarkedGroupTopology
+-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+-import GroupApproximation.Sofic.LiteralPresentationRadius
+-import GroupApproximation.Sofic.LiteralUniversalHorn
+ import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+-import GroupApproximation.Sofic.NormalKazhdanMFRadical
+-import GroupApproximation.Sofic.TensorPowerAmplification
+ import GroupApproximation.Covers.KazhdanCover
+ import GroupApproximation.Kazhdan.ShalomFinitePresentation
+ import GroupApproximation.Kun.KunDecomposition
+@@ -56,8 +35,6 @@ import GroupApproximation.KOne.RefineLoopDischarge
+ import GroupApproximation.KOne.ClassicalKOne
+ import GroupApproximation.KOne.FactorizationCertificate
+ import GroupApproximation.Kazhdan.KazhdanTextbook
+-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+-import GroupApproximation.Kazhdan.FixedSpaceDefect
+ import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+ 
+ /-!
+@@ -96,6 +73,10 @@ generated from the manuscript's margin notes; this module is the short list.
+ * `ChosenNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word in
+   the noncomputably chosen Shalom-cover witness is
+   killed by every homomorphism to every norm-matrix ultraproduct.
++* `ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage` and
++  `ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage` -- the exact
++  algebraic packages carried by that chosen witness; these names deliberately
++  do not identify it with the paper's separate literal presentation.
+ * `ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the chosen
+   finitely presented marked group is not local weak-MF.
+ * `ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
+@@ -125,79 +106,47 @@ generated from the manuscript's margin notes; this module is the short list.
+ * `isOperatorMFIncreasing_iff` -- the arbitrary positive dimension sequences
+   used internally are equivalent to the strictly increasing convention in
+   Carrión--Dadarlat--Eckhardt.
+-* `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
+-  closed locus in each fixed-rank marked-group space, with a finite word-ball
+-  cylinder witnessing every failure.
+-* `ChosenMarkedCylinder.chosenCylinder_isClopen` and
+-  `ChosenMarkedCylinder.chosenCylinder_subset_nonMF` -- the chosen finite
+-  presentation gives a nonempty explicit clopen cylinder all of whose marked
+-  quotients are non-MF.
+ * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
+   answer to the universal operator-MF assertion.
+-* `ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity` and
+-  `ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity` -- an
+-  unconditional finite universal Horn sentence valid in every operator-MF
+-  group and false in the chosen finitely presented witness.
+-* `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
+-  free product to be non-MF; the unconditional chosen witness gives a
+-  finitely presented example after free product with `ℤ`.
++
++## Marked-limit stability of operator MF
++
++* `OperatorNormAmplification.exists_tensorPower_pair_far` -- bounded tensor
++  powers amplify any positive unitary-pair gap beyond the universal threshold
++  one, with dimension-free error control.
++* `OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one` --
++  for countable groups, operator MF is equivalent to local norm approximation
++  with separation constant exactly one.
++* `MarkedGroupSpace.isClosed_operatorMFLocus` and
++  `MarkedGroupSpace.isOpen_compl_operatorMFLocus` -- operator-MF marked groups
++  form a closed locus, equivalently non-MF is open, in every fixed rank.
++* `MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus` --
++  every non-MF marked group has a finite-radius Cayley-ball certificate.
++* `MarkedGroupSpace.isOperatorMF_of_tendsto` -- the arbitrary-filter marked
++  limit theorem, of which sequential closure is an immediate instance.
+ 
+ ## The literal eight-generator boundary
+ 
+ The paper's displayed group is formalized separately from the unconditional
+-Shalom-cover witness.  The declarations below expose only its verified
+-algebraic boundary.  No conditional operator-MF endpoint for the literal
+-group is part of the Lean API.
++Shalom-cover witness.  The declarations below deliberately expose the exact
++boundary instead of conflating the two constructions.
+ 
+ * `LiteralNonMFPresentation.literal_algebraic_package` and
+   `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
+   presentation, its relations, and a genuine nontrivial marked involution.
+-* `LiteralNonMFLinearWitness.matrixBaseHom_surjective` -- the exact direction
+-  formally justified by the twenty relators: the raw presented base
+-  surjects onto the displayed affine matrix group.  No injectivity or
+-  backwards transfer of property `(T)` is asserted.
+-* `LiteralBaseRelations.baseRelator_eq_one` and the named conjugation laws --
+-  the twenty relations used intrinsically in the raw presented base, without
+-  reflecting equality from the affine quotient.
+-* `LiteralBaseTranslationNormal.normalizer_translations_eq_top` -- the
+-  subgroup generated by the three literal translations is normal, proved
+-  intrinsically from the printed relations.
+-* `LiteralBaseTranslationLattice.latticeEquivTranslations` -- the
+-  translation subgroup is canonically the full lattice `ℤ³`; exact affine
+-  matrix entries prove that no nonzero exponent vector collapses.
+-* `LiteralTranslationOrbit.translation_eq_two_rotation_conjugates` -- every
+-  literal translation is a product of two conjugates of the two displayed
+-  basis translations by literal rotations.
+-* `LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed`
+-  -- a rotation-fixed vector has its entire translation displacement uniformly
+-  controlled by the two displayed basis displacements.
+-* `LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` -- the
+-  twenty-relator affine base has property `(T)` as soon as its exact
+-  eight-relator rotation presentation does; the affine transfer itself is now
+-  intrinsic, leaving only the rotation presentation as the open formal step.
+-* `LiteralBaseRotationRetract.rotationToBase_injective` and
+-  `LiteralBaseRotationRetract.baseToRotation_ker_eq_translations` -- the
+-  eight-relator rotation group is a retract of the literal base, and the
+-  retraction kernel is exactly the translation subgroup.
+-* `LiteralBaseRotationRetract.internalSemidirectEquiv` -- the resulting
+-  complement data identifies the literal base with its internal semidirect
+-  product of translations by rotations.
+ * `LiteralBaseP13Replay.yFromUZXY_eq` and `closure_Z_XY_eq_top` -- an exact
+   finite-relator replay proving that the abstract rotation presentation is
+   generated by `Z` and `X * Y`.
+-* `LiteralBaseTwoGenerator.rotationEquivTwoRotation` -- the replay is upgraded
+-  to a complete, internal Tietze equivalence with the presentation obtained by
+-  substituting the two generators into all eight rotation relators.
+ * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
+   -- every finite-dimensional linear representation of the literal group is
+   nonfaithful.
+-* `LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity`
+-  -- the canonical literal tuple unconditionally falsifies the printed finite
+-  quasi-identity.  No validity claim for operator-MF targets is asserted.
+-* `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
+-  finite-radius bound for every printed relator.
+-* `LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark`
+-  -- no finite quotient detects the genuine nontrivial literal mark.
++* `LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT` -- the
++  remaining property-`(T)` boundary as an explicit premise.
++* `LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate` -- the
++  proof-carrying version: an exact rational group-ring SOS certificate would
++  close that premise.  No such certificate is asserted or selected here, so
++  this is not an unconditional endpoint for the literal group.
++
+ ## Consequences and reusable obstruction APIs
+ 
+ * `not_injective_of_coronaMFInvisible`,
+@@ -205,49 +154,15 @@ group is part of the Lean API.
+   positive-model formulation
+   `KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel` --
+   portability and uniform killing of the obstruction.
+-* `KazhdanCompressionCore.normalKazhdan_le_normMFResidual` and
+-  `normalKazhdanDefectPart_le_normMFResidual` -- the printed strengthening
+-  from finite normal obstructions to arbitrary normal property-`(T)`
+-  subgroups, including the subgroup generated by every such obstruction.
+ * `existsUnique_quotient_factorization_to_normMatrixCorona` -- exact quotient
+   factorization in the cofinite-corona language.
+-* `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
+-  the unconditional group-theoretic positive/negative Markov witness.  The
+-  library makes no algorithmic undecidability claim without a formalized
+-  Adian--Rabin transformation.
++* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the generic
++  computability reduction, conditional on an explicitly supplied computable
++  Adian--Rabin transformation and its correctness proof; no such external
++  transformation is postulated by the library.
+ * `ProperProjectionCompression` -- the one-sided compression API, including
+-  its proper isometry, failure of stable finiteness, and obstruction to a
+-  faithful tracial state.
+-* `FixedSpaceStabilizer.compressionGroup_le_stabilizer` -- the exact subgroup
+-  closure step propagating fixed-sector stabilization from one-sided
+-  compressors to the group they generate.
+-* `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
+-  the printed construction, with injective doubling, index-eight image, and
+-  an explicit translation outside that image.  This does not assert that the
+-  literal six-generator presentation is isomorphic to the semantic group.
+-* `AffineSL3Scaling.scaling_package` -- the corresponding injectivity, image,
+-  and escaping-translation calculation for every integral scale `m ≥ 2`.
+-* `MarkedGroupSpace.tendsto_iff_eventually_relation` and
+-  `exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap` -- the fixed-rank
+-  marked-group topology and the operator-norm tensor amplifier used by the
+-  marked-limit program.
+-* `LiteralCyclicCalibration.mark_ne_one` and
+-  `LiteralCyclicCalibration.finiteDimensional_kill` -- the literal cyclic
+-  comparison presentation has a surviving marked involution although every
+-  exact finite-dimensional representation kills it.
+-* `normMatrixCoronaMk_eq_zero_iff` -- the complete normed
+-  bounded-matrix-sequence quotient has exactly the cofinite
+-  operator-norm-null sequences as the kernel of its quotient map.
+-* `norm_normMatrixCorona_mk_eq_limsup` and
+-  `norm_normMatrixCorona_star_mul_self` -- its quotient norm is exactly the
+-  limsup of coordinate operator norms, and the resulting quotient is a
+-  genuine C-star ring.
+-* `ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction` -- the chosen
+-  witness's canonical reduced-group unitaries admit no faithful restriction
+-  to a norm-matrix ultraproduct.
+-* `ChosenReducedGroupCStar.matrix_isometry_is_unitary` -- every finite matrix
+-  amplification of the chosen witness's concrete reduced group C-star algebra
+-  has no proper isometry.
++  an explicit left-invertible nonunit, failure of direct and stable finiteness,
++  and obstruction to a faithful tracial state.
+ 
+ ## One endpoint per printed theorem
+ 
+@@ -359,10 +274,18 @@ open GroupApproximation
+ /-! ### Finite-radius marked-group neighborhoods -/
+ 
+ export GroupApproximation.MarkedGroupSpace
+-  (reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
+-    cylinder_wordBall_subset_cylinder
++  (cylinder isClopen_cylinder tendsto_iff_eventually_relation
++    tendsto_iff_eventually_cylinder
++    reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
++    cylinder_wordBall_subset_cylinder operatorMFLocus
++    exists_cylinder_subset_compl_operatorMFLocus
+     exists_wordBall_cylinder_subset_compl_operatorMFLocus
+-    isClosed_operatorMFLocus isOperatorMF_of_tendsto)
++    isClosed_operatorMFLocus isOpen_compl_operatorMFLocus
++    isOperatorMF_of_tendsto)
++export GroupApproximation.OperatorNormAmplification
++  (exists_tensorPower_pair_far)
++export GroupApproximation.OperatorMFLocalNormalization
++  (isNormApproximable_one isOperatorMF_iff_isNormApproximable_one)
+ 
+ /-! ### The headline -/
+ 
+@@ -383,11 +306,10 @@ export GroupApproximation.ChosenNonMFTheorem
+     exists_finitelyPresented_not_isWeakMF
+     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
+     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
++export GroupApproximation.ChosenMarkedPresentation
++  (chosenFinitelyPresented_markedPackage)
+ export GroupApproximation.ChosenNonMFEndpoint
+   (chosenFinitelyPresented_inclusionPackage)
+-export GroupApproximation.ChosenUniversalHorn
+-  (isOperatorMF_satisfies_chosenQuasiIdentity
+-    markedGroup_not_satisfies_chosenQuasiIdentity)
+ export GroupApproximation.KazhdanCompressionCore
+   (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
+     finiteNormal_le_coronaMFResidual
+@@ -408,13 +330,6 @@ export GroupApproximation
+ export GroupApproximation.IsOperatorMF (comap subgroup)
+ export GroupApproximation.OperatorMFQuotientNonclosure
+   (operatorMF_not_closed_under_this_quotient)
+-export GroupApproximation.LiteralOperatorMFQuotientControls
+-  (source_isOperatorMF quotientMap_surjective)
+-export GroupApproximation
+-  (not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
+-    coprod_isFinitelyPresented)
+-export GroupApproximation.ChosenFreeProductConsequences
+-  (chosen_coprod_int_finitelyPresented_not_isOperatorMF)
+ export GroupApproximation
+   (not_injective_of_coronaMFInvisible
+     not_injective_of_coronaMFInvisible_of_target_embeds
+@@ -427,88 +342,43 @@ export GroupApproximation.KazhdanCompressionCore
+     not_isWeakMF_of_normalKazhdan_le_defect
+     normalKazhdan_le_normMFResidual normalKazhdan_le_coronaMFResidual
+     normalKazhdanDefectPart_le_normMFResidual
+-    existsUnique_defectNormal_factorization_to_normMatrixCorona
+-    normMFResidual_eq_defectNormal
+     defectNormal_le_orbitDefectNormal
+     orbitDefectNormal_le_compressionCentralizerDefect)
+-export GroupApproximation.KazhdanCompressionCore
+-  (defectNormal_le_compressionCentralizerDefect)
+ export GroupApproximation.MarkedCompressionInclusionData
+-  (word_eq_compressionDefect_sq
+-    iota_a_not_in_compressed_image_of_word_ne_one
+-    infinite_iota_range_of_word_ne_one)
+-export GroupApproximation.MarkedCompressionData
+-  (a_not_mem_range_alpha_of_word_ne_one)
+-export GroupApproximation.MarkedCompressionInclusionData
+-  (not_isWeakMF_of_mem_finiteNormal not_isOperatorMF_of_mem_finiteNormal)
+-export GroupApproximation.KazhdanCompressionCore
+-  (finiteNormal_le_kernel_of_target_embeds)
++  (not_isOperatorMF_of_mem_finiteNormal)
+ 
+ /-! ### The literal eight-generator boundary -/
+ 
+-export GroupApproximation.LiteralNonMFPresentation
+-  (generator_card literal_algebraic_package)
+-export GroupApproximation.LiteralNonMFLinearWitness
+-  (matrixBaseHom matrixBaseHom_surjective literal_mark_ne_one
+-    literal_finitelyPresented_nontrivial_mark witnessGroup_finitelyGenerated)
+-export GroupApproximation.LiteralFiniteDimensionalObstruction
+-  (no_finite_quotient_detects_literal_mark)
+-export GroupApproximation.LiteralBaseRelations
+-  (baseRelator_eq_one x_cube y_cube z_sq commute_v1_v2 commute_v1_v3
+-    commute_v2_v3 x_conj_v1 x_conj_v2 x_conj_v3 y_conj_v1 y_conj_v2
+-    y_conj_v3 z_conj_v1 z_conj_v2 z_conj_v3)
+-export GroupApproximation.LiteralBaseTranslationNormal
+-  (translations normalizer_translations_eq_top)
++export GroupApproximation.LiteralNonMFPresentation (literal_algebraic_package)
++export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
+ export GroupApproximation.LiteralBaseTranslationLattice
+   (latticeToBase_injective latticeToBase_range latticeEquivTranslations)
+-export GroupApproximation.LiteralTranslationOrbit
+-  (translation_eq_two_rotation_conjugates
+-    norm_translation_displacement_le_of_rotations_fixed)
+-export GroupApproximation.LiteralBasePropertyTBridge
+-  (base_hasKazhdanPropertyT_of_rotation)
+ export GroupApproximation.LiteralBaseP13Replay
+   (yFromUZXY_eq closure_Z_XY_eq_top)
+-export GroupApproximation.LiteralBaseTwoGenerator
+-  (TwoRotation rotationEquivTwoRotation)
+-export GroupApproximation.LiteralBaseRotationRetract
+-  (Rotation rotationToBase baseToRotation rotationToBase_injective
+-    baseToRotation_surjective baseToRotation_ker_eq_translations
+-    translations_inf_rotations translations_isComplement_rotations
+-    internalSemidirectEquiv rotationEquivRotations)
+ export GroupApproximation.LiteralFiniteDimensionalObstruction
+   (literal_finiteDimensional_rep_not_injective)
+-export GroupApproximation.LiteralUniversalHorn
+-  (literalMarkedGroup_not_satisfies_literalQuasiIdentity)
+-export GroupApproximation.LiteralPresentationRadius
+-  (markedWord_length_le relator_wordLength_le_34
+-    relators_or_markedWord_length_le_34)
++export GroupApproximation.LiteralKazhdanCompression
++  (mark_normMFInvisible_of_hasKazhdanPropertyT
++    not_isOperatorMF_of_hasKazhdanPropertyT
++    not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
++    mark_normMFInvisible_of_isRationalCertificate
++    not_isOperatorMF_of_isRationalCertificate
++    not_injective_to_isOperatorMF_of_isRationalCertificate)
+ export GroupApproximation.CliffordAlgebraLamp
+   (cliffordLamp_group_package cliffordLamp_permutation_package)
+ export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
+-export GroupApproximation.AffineSL3Doubling (doubling_package)
+-export GroupApproximation.AffineSL3Scaling (scaling_package)
+-export GroupApproximation.LiteralCyclicCalibration
+-  (mark_ne_one mark_central quotientMap_mark_val quotientMap_mark_ne_one
+-    quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
+-    realizedQuotient_finiteDimensional_kill)
+-export GroupApproximation.FixedSpaceStabilizer
+-  (compressionGroup_le_stabilizer compressionGroup_map_mem)
+ export GroupApproximation
+   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
+     compressionCentralizerDefect_le_ker
+     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
+ 
+-/-! ### Algebraic consequences -/
+-export GroupApproximation
+-  (BoundedMatrixSequence boundedMatrixSequence_norm_eq_ciSup
+-    IsC0MatrixSequence c0MatrixSequenceIdeal c0MatrixSequenceIdeal_star_mem
+-    NormMatrixCoronaAlgebra normMatrixCoronaMk normMatrixCoronaMk_eq_zero_iff
+-    norm_normMatrixCorona_mk_eq_limsup norm_normMatrixCorona_star_mul_self)
+-export GroupApproximation.ChosenReducedGroupCStar
+-  (no_faithfulCoronaUnitaryRestriction matrix_isometry_is_unitary)
+-export GroupApproximation.OperatorMFMarkovWitness
+-  (positive_punit chosen_forbidden_subgroup
+-    exists_finitelyPresented_forbidden_subgroup)
++/-! ### Conditional computability interface and algebraic consequences -/
++
++export GroupApproximation.MarkovMFConsequences
++  (MarkovWitness FinitePresentationSemantics operatorMFProperty
++    AdianRabinReduction recognition_undecidable negative_side_not_re
++    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
++    operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
+ export GroupApproximation (isOperatorMF_of_finite_standard
+   not_isOperatorMF_of_subgroup)
+ export GroupApproximation.ProperProjectionCompression
+@@ -516,16 +386,6 @@ export GroupApproximation.ProperProjectionCompression
+     exists_leftInvertible_not_isUnit not_isDedekindFiniteMonoid
+     not_isStablyFiniteRing no_injective_monoidHom_to_dedekindFinite
+     no_faithfulTracialState)
+-export GroupApproximation.MarkedGroupSpace
+-  (mem_nhds_iff_exists_cylinder_subset tendsto_iff_eventually_relation
+-    tendsto_iff_eventually_cylinder)
+-export GroupApproximation
+-  (l2_opNorm_kronecker_le exists_pow_re_lt_half
+-    exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap)
+-export GroupApproximation
+-  (IsOperatorMF.of_coprod_left IsOperatorMF.of_coprod_right
+-    not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
+-    coprod_isFinitelyPresented)
+ 
+ /-! ### Reach of the construction -/
+ 
+@@ -568,10 +428,5 @@ export GroupApproximation.BinaryLeavitt (K1_trivial narrowReduction_holds
+ /-! ### The definitions are the textbook ones -/
+ 
+ export GroupApproximation (hasKazhdanPropertyT_iff_textbook isLEF_iff_textbook)
+-export GroupApproximation
+-  (ambient_hasKazhdanPropertyTComplex universalLeavitt_profile_textbook)
+-export GroupApproximation.FixedSpaceStabilizer
+-  (stabilizer mem_stabilizer_iff compressionGroup_le_stabilizer
+-    compressionGroup_map_mem)
+ 
+ end GroupApproximation.Public
+diff --git a/GroupApproximation/Monsters/CliffordAlgebraLamp.lean b/GroupApproximation/Monsters/CliffordAlgebraLamp.lean
+index db41e81d1..065456bca 100644
+--- a/GroupApproximation/Monsters/CliffordAlgebraLamp.lean
++++ b/GroupApproximation/Monsters/CliffordAlgebraLamp.lean
+@@ -108,6 +108,10 @@ theorem lamp_mul_lamp_of_ne {x y : X} (h : x ≠ y) :
+   simp only [lamp]
+   exact eq_neg_of_add_eq_zero_left h0
+ 
++/-- Each lamp generator is a unit (it is its own inverse). -/
++theorem isUnit_lamp (x : X) : IsUnit (lamp X x) :=
++  ⟨⟨lamp X x, lamp X x, lamp_mul_self X x, lamp_mul_self X x⟩, rfl⟩
++
+ /-- **The sign wall**: the group commutator word of two lamps at distinct
+ sites is the central sign `-1`.  Since each lamp is its own inverse, the
+ word `c_x c_y c_x c_y` is literally `[c_x, c_y] = c_x c_y c_x⁻¹ c_y⁻¹`;
+diff --git a/GroupApproximation/Monsters/LiteralCyclicCalibration.lean b/GroupApproximation/Monsters/LiteralCyclicCalibration.lean
+index 8f01d8a75..94053a0ec 100644
+--- a/GroupApproximation/Monsters/LiteralCyclicCalibration.lean
++++ b/GroupApproximation/Monsters/LiteralCyclicCalibration.lean
+@@ -1,4 +1,5 @@
+ import GroupApproximation.Monsters.CyclicBaseCalibration
++import GroupApproximation.Sofic.OperatorMF
+ import Mathlib.GroupTheory.FinitelyPresentedGroup
+ import Mathlib.GroupTheory.PresentedGroup
+ 
+@@ -10,7 +11,9 @@ of the manuscript.  It maps that presentation to the existing exact Clifford
+ cyclic model, where the marked central involution survives, and proves that
+ every finite-dimensional linear representation kills the marked element.
+ 
+-This module makes no analytic MF or corona-survival claim.
++No amenability-to-MF theorem is assumed or postulated here.  The final corona
++statement takes operator-MF of the concrete Clifford target as an explicit
++hypothesis.
+ -/
+ 
+ namespace GroupApproximation
+@@ -141,26 +144,6 @@ theorem mark_comm_lamp : Commute mark lamp := by
+   apply PresentedGroup.one_of_mem
+   simp [relators]
+ 
+-/-- The three displayed commutation relators make the marked element central
+-in the whole literal presented group. -/
+-theorem mark_central (g : LiteralGroup) : Commute mark g := by
+-  have hgen : ∀ i : Generator,
+-      Commute mark (evalWord (FreeGroup.of i)) := by
+-    intro i
+-    fin_cases i
+-    · exact mark_comm_gamma
+-    · exact mark_comm_stable
+-    · exact mark_comm_lamp
+-  obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ g
+-  induction w using FreeGroup.induction_on with
+-  | C1 => exact Commute.one_right _
+-  | of i => exact hgen i
+-  | inv_of i hi =>
+-      rw [map_inv]
+-      exact hi.inv_right
+-  | mul a b ha hb =>
+-      simpa only [map_mul] using ha.mul_right hb
+-
+ /-! ## Exact realization in the Clifford cyclic model -/
+ 
+ noncomputable def targetGenerator : Generator → CliffordBS
+@@ -174,7 +157,7 @@ noncomputable def targetGenerator : Generator → CliffordBS
+ 
+ /-- Evaluation of a represented word under the universal map out of a
+ presented group. -/
+-@[simp] theorem presentedToGroup_mk {H : Type*} [Group H]
++theorem presentedToGroup_mk {H : Type*} [Group H]
+     {R : Set (FreeGroup Generator)} {f : Generator → H}
+     (h : ∀ r ∈ R, FreeGroup.lift f r = 1)
+     (w : FreeGroup Generator) :
+@@ -266,40 +249,7 @@ theorem quotientMap_mark_ne_one : quotientMap mark ≠ 1 := by
+   have hv := congrArg Subtype.val h
+   simpa [quotientMap, realization_mark] using hv
+ 
+-/-- The literal marked word maps to the distinguished Clifford sign, not
+-merely to some unspecified nontrivial element of the realized quotient. -/
+-theorem quotientMap_mark_val :
+-    ((quotientMap mark : RealizedQuotient) : CliffordBS) = zBS := by
+-  change realization mark = zBS
+-  rw [realization_mark, markedWord_eq_zBS]
+-
+-/-- The surviving image of the literal mark is still an involution. -/
+-theorem quotientMap_mark_sq : quotientMap mark ^ 2 = 1 := by
+-  rw [← map_pow, mark_sq, map_one]
+-
+-/-- The surviving image of the literal mark is central in the realized
+-quotient, because its value is the central Clifford sign. -/
+-theorem quotientMap_mark_central (g : RealizedQuotient) :
+-    Commute (quotientMap mark) g := by
+-  apply Subtype.ext
+-  change ((quotientMap mark : RealizedQuotient) : CliffordBS) *
+-      (g : CliffordBS) =
+-    (g : CliffordBS) * ((quotientMap mark : RealizedQuotient) : CliffordBS)
+-  rw [quotientMap_mark_val]
+-  exact (zBS_central (g : CliffordBS)).eq
+-
+-/-- The concrete quotient generated by the three displayed elements is
+-finitely generated.  This is the exact quotient realized by the literal
+-finite presentation; no presentation-completeness assertion is hidden here. -/
+-theorem realizedQuotient_finitelyGenerated : Group.FG RealizedQuotient := by
+-  letI : Group.FG LiteralGroup :=
+-    Group.fg_of_surjective
+-      (PresentedGroup.mk_surjective
+-        ((relators : Finset (FreeGroup Generator)) :
+-          Set (FreeGroup Generator)))
+-  exact Group.fg_of_surjective quotientMap_surjective
+-
+-/-! ## Finite-dimensional kill -/
++/-! ## Finite-dimensional kill and the conditional MF calibration -/
+ 
+ def cyclicBase : Set LiteralGroup := {g | ∃ n : ℤ, g = gamma ^ n}
+ 
+@@ -329,14 +279,19 @@ theorem finiteDimensional_kill
+     map_marked_commutator_eq_one_units pi gamma_mem_cyclicBase
+       stable_compresses_cyclicBase lamp_centralizes_cyclicBase
+ 
+-/-- Every finite-dimensional representation of the realized Clifford
+-quotient kills the image of the marked element.  This is the quotient-side
+-half of the "either group" assertion in manuscript Theorem C. -/
+-theorem realizedQuotient_finiteDimensional_kill
+-    {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+-    [FiniteDimensional k V] (pi : RealizedQuotient →* (Module.End k V)ˣ) :
+-    pi (quotientMap mark) = 1 := by
+-  simpa using finiteDimensional_kill (pi.comp quotientMap)
++/-- If the concrete Clifford cyclic target is operator-MF, the literal group
++has a standard corona representation in which its marked involution survives.
++This keeps the paper-side amenability/TWW input explicit. -/
++theorem exists_coronaRepresentation_mark_ne_one
++    (hMF : IsOperatorMF CliffordBS) :
++    ∃ (X : ℕ → FiniteModel), (∀ n, 0 < Fintype.card (X n)) ∧
++      ∃ rho : LiteralGroup →* NormMatrixCoronaUnitary X, rho mark ≠ 1 := by
++  obtain ⟨X, hX, rho, hrho⟩ := hMF
++  refine ⟨X, hX, rho.comp realization, ?_⟩
++  intro h
++  apply markedWord_ne_one
++  apply hrho
++  simpa [MonoidHom.comp_apply, realization_mark] using h
+ 
+ end
+ end LiteralCyclicCalibration
+diff --git a/GroupApproximation/Sofic/ChosenMarkedCylinder.lean b/GroupApproximation/Sofic/ChosenMarkedCylinder.lean
+deleted file mode 100644
+index 22cfa4755..000000000
+--- a/GroupApproximation/Sofic/ChosenMarkedCylinder.lean
++++ /dev/null
+@@ -1,162 +0,0 @@
+-import GroupApproximation.Sofic.ChosenUniversalHorn
+-import GroupApproximation.Sofic.MarkedGroupTopology
+-import Mathlib.Logic.Equiv.Fin.Basic
+-
+-/-!
+-# A clopen non-MF cylinder around the chosen finitely presented witness
+-
+-The chosen finite presentation and its marked residual element determine an
+-exact marked-group cylinder: keep every chosen relator trivial and keep the
+-marked word nontrivial.  The finite Horn obstruction proves that every point
+-of this cylinder is non-MF.  Unlike the literal radius-34 cylinder, this
+-result uses only the unconditional chosen Shalom-cover witness.
+--/
+-
+-namespace GroupApproximation
+-namespace ChosenMarkedCylinder
+-
+-open ChosenMarkedPresentation ChosenNonMFTheorem ChosenUniversalHorn
+-open MarkedGroupSpace
+-
+-noncomputable section
+-
+-/-- Reindex the chosen finite alphabet by a standard finite type. -/
+-def generatorEquiv : Generator ≃ Fin (generatorCount + 2) :=
+-  finSumFinEquiv
+-
+-/-- Reindex a chosen presentation word by the standard alphabet. -/
+-def reindexWord : FreeGroup Generator →* FreeGroup (Fin (generatorCount + 2)) :=
+-  FreeGroup.map generatorEquiv
+-
+-/-- The chosen finite relator set on the standard alphabet. -/
+-def reindexedRelators : Finset (FreeGroup (Fin (generatorCount + 2))) :=
+-  relators.image reindexWord
+-
+-/-- The chosen marked obstruction word on the standard alphabet. -/
+-def reindexedMarkedWord : FreeGroup (Fin (generatorCount + 2)) :=
+-  reindexWord markedWord
+-
+-/-- The chosen finitely presented witness as a marked-group-space point. -/
+-def chosenPoint : MarkedGroupSpace (generatorCount + 2) where
+-  relations := Subgroup.normalClosure
+-    (reindexedRelators : Set (FreeGroup (Fin (generatorCount + 2))))
+-  normal_relations := Subgroup.normalClosure_normal
+-
+-/-- The exact finite control set: all chosen relators and survival of the
+-marked word. -/
+-def controlWords : Finset (FreeGroup (Fin (generatorCount + 2))) :=
+-  insert reindexedMarkedWord reindexedRelators
+-
+-/-- The exact marked-group neighborhood of the chosen witness. -/
+-def chosenCylinder : Set (MarkedGroupSpace (generatorCount + 2)) :=
+-  cylinder chosenPoint controlWords
+-
+-private theorem lift_generatorEquiv_symm_reindexWord
+-    (q : FreeGroup Generator) :
+-    FreeGroup.lift
+-        (fun i : Fin (generatorCount + 2) ↦ wordInMarkedGroup
+-          (FreeGroup.of (generatorEquiv.symm i)))
+-        (reindexWord q) = wordInMarkedGroup q := by
+-  change ((FreeGroup.lift _).comp reindexWord) q = wordInMarkedGroup q
+-  apply freeGroup_hom_eq_on_generators
+-  intro i
+-  simp [reindexWord, generatorEquiv]
+-
+-/-- Each reindexed chosen relator belongs to the relation subgroup of the
+-canonical point. -/
+-theorem reindexed_relator_mem_chosenPoint {r : FreeGroup Generator}
+-    (hr : r ∈ relators) : reindexWord r ∈ chosenPoint.relations := by
+-  apply Subgroup.subset_normalClosure
+-  exact Finset.mem_coe.mpr (Finset.mem_image.mpr ⟨r, hr, rfl⟩)
+-
+-/-- The reindexed marked word is not a relation of the canonical point. -/
+-theorem reindexedMarkedWord_not_mem_chosenPoint :
+-    reindexedMarkedWord ∉ chosenPoint.relations := by
+-  intro hw
+-  let assignment : Fin (generatorCount + 2) → MarkedGroup := fun i ↦
+-    wordInMarkedGroup (FreeGroup.of (generatorEquiv.symm i))
+-  have hrels : ∀ q ∈
+-      (reindexedRelators : Set (FreeGroup (Fin (generatorCount + 2)))),
+-      FreeGroup.lift assignment q = 1 := by
+-    intro q hq
+-    obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp (Finset.mem_coe.mp hq)
+-    rw [lift_generatorEquiv_symm_reindexWord]
+-    exact PresentedGroup.one_of_mem (Finset.mem_coe.mpr hr)
+-  have hkill := PresentedGroup.to_group_eq_one_of_mem_closure
+-    hrels reindexedMarkedWord hw
+-  rw [show reindexedMarkedWord = reindexWord markedWord from rfl,
+-    lift_generatorEquiv_symm_reindexWord] at hkill
+-  exact mark_ne_one hkill
+-
+-/-- The canonical point belongs to its own exact cylinder. -/
+-theorem chosenPoint_mem_chosenCylinder : chosenPoint ∈ chosenCylinder :=
+-  mem_cylinder_self chosenPoint controlWords
+-
+-/-- The chosen cylinder is nonempty. -/
+-theorem chosenCylinder_nonempty : chosenCylinder.Nonempty :=
+-  ⟨chosenPoint, chosenPoint_mem_chosenCylinder⟩
+-
+-/-- The chosen cylinder is simultaneously open and closed. -/
+-theorem chosenCylinder_isClopen : IsClopen chosenCylinder :=
+-  isClopen_cylinder chosenPoint controlWords
+-
+-/-- The canonical assignment into an arbitrary marked quotient, transported
+-back to the chosen alphabet. -/
+-def quotientGenerator (N : MarkedGroupSpace (generatorCount + 2))
+-    (i : Generator) : N.Quotient :=
+-  QuotientGroup.mk (FreeGroup.of (generatorEquiv i))
+-
+-private theorem lift_reindexed_quotient_mk
+-    (N : MarkedGroupSpace (generatorCount + 2))
+-    (q : FreeGroup Generator) :
+-    FreeGroup.lift (quotientGenerator N) q =
+-      (QuotientGroup.mk (reindexWord q) : N.Quotient) := by
+-  change FreeGroup.lift (quotientGenerator N) q =
+-    ((QuotientGroup.mk' N.relations).comp reindexWord) q
+-  apply freeGroup_hom_eq_on_generators
+-  intro i
+-  simp [quotientGenerator, reindexWord]
+-
+-/-- Every point of the cylinder satisfies every chosen relator. -/
+-theorem cylinder_relator_eq_one
+-    {N : MarkedGroupSpace (generatorCount + 2)}
+-    (hN : N ∈ chosenCylinder) {r : FreeGroup Generator}
+-    (hr : r ∈ relators) :
+-    FreeGroup.lift (quotientGenerator N) r = 1 := by
+-  rw [lift_reindexed_quotient_mk, QuotientGroup.eq_one_iff]
+-  have hcontrol : reindexWord r ∈ controlWords :=
+-    Finset.mem_insert_of_mem (Finset.mem_image.mpr ⟨r, hr, rfl⟩)
+-  exact ((mem_cylinder_iff chosenPoint N controlWords).mp hN
+-    _ hcontrol).mpr (reindexed_relator_mem_chosenPoint hr)
+-
+-/-- Every point of the cylinder keeps the chosen marked word nontrivial. -/
+-theorem cylinder_markedWord_ne_one
+-    {N : MarkedGroupSpace (generatorCount + 2)}
+-    (hN : N ∈ chosenCylinder) :
+-    FreeGroup.lift (quotientGenerator N) markedWord ≠ 1 := by
+-  rw [lift_reindexed_quotient_mk]
+-  intro hone
+-  have hmem : reindexedMarkedWord ∈ N.relations := by
+-    rw [← QuotientGroup.eq_one_iff]
+-    exact hone
+-  have hcontrol : reindexedMarkedWord ∈ controlWords :=
+-    Finset.mem_insert_self _ _
+-  exact reindexedMarkedWord_not_mem_chosenPoint
+-    (((mem_cylinder_iff chosenPoint N controlWords).mp hN
+-      _ hcontrol).mp hmem)
+-
+-/-- Every group in the exact finite cylinder around the chosen witness is
+-non-MF. -/
+-theorem chosenCylinder_subset_nonMF :
+-    chosenCylinder ⊆
+-      {N : MarkedGroupSpace (generatorCount + 2) |
+-        ¬ IsOperatorMF N.Quotient} := by
+-  intro N hN hMF
+-  have hkill := isOperatorMF_satisfies_chosenQuasiIdentity N.Quotient hMF
+-  exact cylinder_markedWord_ne_one hN
+-    (hkill (quotientGenerator N) (fun _ hr ↦
+-      cylinder_relator_eq_one hN hr))
+-
+-end
+-end ChosenMarkedCylinder
+-end GroupApproximation
+diff --git a/GroupApproximation/Sofic/ChosenMarkedPresentation.lean b/GroupApproximation/Sofic/ChosenMarkedPresentation.lean
+index 18d311c70..94614925d 100644
+--- a/GroupApproximation/Sofic/ChosenMarkedPresentation.lean
++++ b/GroupApproximation/Sofic/ChosenMarkedPresentation.lean
+@@ -340,6 +340,16 @@ theorem stable_conjugates_vertex_into_vertex :
+         group
+       exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hmul
+ 
++/-- The Kazhdan subgroup used by the analytic obstruction is the range of
++`vertexMap`. -/
++noncomputable def kazhdanVertex : Subgroup MarkedGroup := vertexMap.range
++
++theorem stable_conjugates_kazhdanVertex :
++    ∀ x : kazhdanVertex,
++      stable * (x : MarkedGroup) * stable⁻¹ ∈ kazhdanVertex := by
++  rintro ⟨x, y, rfl⟩
++  exact stable_conjugates_vertex_into_vertex y
++
+ /-- The marked word is an involution in the presented group. -/
+ theorem mark_sq : mark ^ 2 = 1 := by
+   apply PresentedGroup.one_of_mem
+@@ -559,5 +569,17 @@ theorem mark_ne_one : mark ≠ 1 := by
+   rw [realizationHom_mark]
+   exact MarkedCompression.Explicit.theWordNeOne
+ 
++/-- The finite-presentation package needed by the non-MF theorem. -/
++theorem chosenFinitelyPresented_markedPackage :
++    Group.IsFinitelyPresented MarkedGroup ∧
++      HasKazhdanPropertyT.{0, 0} Vertex ∧
++      (∀ x : Vertex,
++        stable * vertexMap x * stable⁻¹ ∈ vertexMap.range) ∧
++      mark ^ 2 = 1 ∧
++      (∀ x : MarkedGroup, mark * x = x * mark) ∧
++      mark ≠ 1 := by
++  exact ⟨inferInstance, vertex_hasKazhdanPropertyT,
++    stable_conjugates_vertex_into_vertex, mark_sq, mark_central, mark_ne_one⟩
++
+ end ChosenMarkedPresentation
+ end GroupApproximation
+diff --git a/GroupApproximation/Sofic/ChosenUniversalHorn.lean b/GroupApproximation/Sofic/ChosenUniversalHorn.lean
+deleted file mode 100644
+index a0bca201b..000000000
+--- a/GroupApproximation/Sofic/ChosenUniversalHorn.lean
++++ /dev/null
+@@ -1,82 +0,0 @@
+-import GroupApproximation.Sofic.ChosenNonMFTheorem
+-import GroupApproximation.Sofic.LiteralUniversalHorn
+-import GroupApproximation.Sofic.NormMFCoronaRadical
+-
+-/-!
+-# A finite universal Horn obstruction for operator-MF groups
+-
+-The chosen finite presentation carries a nontrivial word in its operator-MF
+-residual.  Its relators therefore imply that word in every operator-MF group.
+-This is the unconditional semantic quasi-identity promised by the construction;
+-no property of the unresolved literal eight-generator presentation is used.
+--/
+-
+-namespace GroupApproximation
+-namespace ChosenUniversalHorn
+-
+-open ChosenMarkedPresentation ChosenNonMFTheorem
+-
+-/-- Every assignment satisfying the chosen finite relators induces the
+-corresponding homomorphism from the chosen presented group. -/
+-noncomputable def assignmentHom {H : Type*} [Group H]
+-    (assignment : Generator → H)
+-    (hrel : ∀ r ∈ relators, FreeGroup.lift assignment r = 1) :
+-    MarkedGroup →* H :=
+-  PresentedGroup.toGroup hrel
+-
+-/-- Evaluation of a word through the induced homomorphism agrees with free
+-evaluation at the assignment. -/
+-theorem assignmentHom_mk {H : Type*} [Group H]
+-    (assignment : Generator → H)
+-    (hrel : ∀ r ∈ relators, FreeGroup.lift assignment r = 1)
+-    (word : FreeGroup Generator) :
+-    assignmentHom assignment hrel
+-        (PresentedGroup.mk (relators : Set (FreeGroup Generator)) word) =
+-      FreeGroup.lift assignment word := by
+-  simpa [assignmentHom] using presentedToGroup_mk hrel word
+-
+-/-- **Finite universal Horn obstruction.**  Every operator-MF group satisfies
+-the quasi-identity whose premises are the chosen presentation's finite
+-relator set and whose conclusion is its marked word. -/
+-theorem isOperatorMF_satisfies_chosenQuasiIdentity
+-    (H : Type*) [Group H] (hMF : IsOperatorMF H) :
+-    SatisfiesQuasiIdentity Generator relators markedWord H := by
+-  intro assignment hrel
+-  let f : MarkedGroup →* H := assignmentHom assignment hrel
+-  obtain ⟨X, hX, rho, hrho⟩ := hMF
+-  have hmark : f mark = 1 := by
+-    apply hrho
+-    simpa only [MonoidHom.comp_apply, map_one] using
+-      mark_normMFInvisible.toCoronaMFInvisible X hX (rho.comp f)
+-  have heval := assignmentHom_mk assignment hrel markedWord
+-  exact heval ▸ hmark
+-
+-/-- The canonical tuple in the chosen presented group satisfies every
+-premise of the quasi-identity. -/
+-theorem canonicalAssignment_satisfies_relators :
+-    ∀ r ∈ relators,
+-      FreeGroup.lift
+-        (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i)) r = 1 := by
+-  intro r hr
+-  rw [freeGroup_lift_presentedGroup_generators]
+-  exact PresentedGroup.one_of_mem (Finset.mem_coe.mpr hr)
+-
+-/-- Its marked conclusion is false. -/
+-theorem canonicalAssignment_markedWord_ne_one :
+-    FreeGroup.lift
+-        (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i)) markedWord ≠
+-      1 := by
+-  rw [freeGroup_lift_presentedGroup_generators]
+-  exact mark_ne_one
+-
+-/-- The chosen finitely presented non-MF group falsifies the same finite
+-quasi-identity which every operator-MF group satisfies. -/
+-theorem markedGroup_not_satisfies_chosenQuasiIdentity :
+-    ¬ SatisfiesQuasiIdentity Generator relators markedWord MarkedGroup := by
+-  intro h
+-  exact canonicalAssignment_markedWord_ne_one
+-    (h (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i))
+-      canonicalAssignment_satisfies_relators)
+-
+-end ChosenUniversalHorn
+-end GroupApproximation
+diff --git a/GroupApproximation/Sofic/CliffordLampGroup.lean b/GroupApproximation/Sofic/CliffordLampGroup.lean
+index b7125f590..5bc2eff0a 100644
+--- a/GroupApproximation/Sofic/CliffordLampGroup.lean
++++ b/GroupApproximation/Sofic/CliffordLampGroup.lean
+@@ -100,6 +100,24 @@ theorem commutator_lamp_lamp {x y : X} (h : x ≠ y) :
+     _ = 1 * sign X := by rw [h2]
+     _ = sign X := one_mul _
+ 
++/-- **Derived Clifford phase.**  Commuting one lamp with the product of it
++and a distinct lamp gives the same central sign.  This is the algebraic
++identity used by the Kun--Thom phase lock: if the first commutator becomes
++`lamp x * lamp y`, then one more commutator with `lamp x` is exactly `sign`.
++-/
++theorem commutator_lamp_lamp_mul_lamp {x y : X} (h : x ≠ y) :
++    ⁅lamp X x, lamp X x * lamp X y⁆ = sign X := by
++  have hxx : lamp X x * lamp X x = 1 := by
++    simpa [pow_two] using lamp_sq X x
++  have hxinv : (lamp X x)⁻¹ = lamp X x :=
++    inv_eq_of_mul_eq_one_left hxx
++  calc
++    ⁅lamp X x, lamp X x * lamp X y⁆ = ⁅lamp X y, lamp X x⁆ := by
++      simp only [commutatorElement_def, mul_inv_rev, hxinv]
++      rw [← mul_assoc (lamp X x) (lamp X x) (lamp X y), hxx, one_mul]
++      simp only [mul_assoc]
++    _ = sign X := commutator_lamp_lamp X h.symm
++
+ /-- The sign is central. -/
+ theorem sign_commute (g : CliffordLamp X) : Commute (sign X) g := by
+   have hmem : g ∈ Subgroup.centralizer {sign X} := by
+diff --git a/GroupApproximation/Sofic/HyperlinearResidualDetector.lean b/GroupApproximation/Sofic/HyperlinearResidualDetector.lean
+index c09a91b51..54bc511cc 100644
+--- a/GroupApproximation/Sofic/HyperlinearResidualDetector.lean
++++ b/GroupApproximation/Sofic/HyperlinearResidualDetector.lean
+@@ -17,6 +17,8 @@ needed.
+ 
+ namespace GroupApproximation
+ 
++open scoped commutatorElement
++
+ universe u
+ 
+ variable {G H : Type u} [Group G] [Group H]
+@@ -32,6 +34,15 @@ theorem soficInvisible_one : SoficInvisible (1 : G) := by
+   intro S _ _ f
+   exact map_one f
+ 
++/-- Sofic invisibility is closed under taking a commutator with an arbitrary
++group element.  This is the radical-propagation step used by the Kun--Thom
++Clifford phase: once `r` is killed by every sofic target, so is `⁅k,r⁆`. -/
++theorem SoficInvisible.commutator_left (k r : G) (hr : SoficInvisible r) :
++    SoficInvisible ⁅k, r⁆ := by
++  intro S _ hS f
++  rw [map_commutatorElement, hr S inferInstance hS f]
++  simp [commutatorElement_def]
++
+ /-- The elements killed by every homomorphism to a sofic group form a
+ subgroup.  This is the *sofic residual* (as opposed to a largest normal sofic
+ subgroup, which is a different construction). -/
+diff --git a/GroupApproximation/Sofic/KazhdanCornerPolar.lean b/GroupApproximation/Sofic/KazhdanCornerPolar.lean
+index 59b1a9b82..5cee9a02e 100644
+--- a/GroupApproximation/Sofic/KazhdanCornerPolar.lean
++++ b/GroupApproximation/Sofic/KazhdanCornerPolar.lean
+@@ -294,13 +294,13 @@ theorem polarCorrect_mem_unitaryGroup (C : Matrix Y Y ℂ)
+       simp
+     _ = 1 := hUUstar
+ 
+-/-- Polar correction changes a contraction by at most twice its Gram defect
+-from the identity. -/
+-theorem norm_polarCorrect_sub_le
++/-- Polar correction changes a matrix by at most its norm times twice its
++Gram defect from the identity. -/
++theorem norm_polarCorrect_sub_le_mul
+     (C : Matrix Y Y ℂ) (hP : (cornerGram C).IsHermitian) {delta : ℝ}
+-    (hC : ‖C‖ ≤ 1) (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
++    (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
+     (hclose : ‖cornerGram C - 1‖ ≤ delta) :
+-    ‖polarCorrect C hP - C‖ ≤ 2 * delta := by
++    ‖polarCorrect C hP - C‖ ≤ ‖C‖ * (2 * delta) := by
+   have hrewrite : polarCorrect C hP - C =
+       C * (cornerGramInvSqrt C hP - 1) := by
+     rw [polarCorrect, Matrix.mul_sub, Matrix.mul_one]
+@@ -309,9 +309,21 @@ theorem norm_polarCorrect_sub_le
+     ‖C * (cornerGramInvSqrt C hP - 1)‖ ≤
+         ‖C‖ * ‖cornerGramInvSqrt C hP - 1‖ :=
+       Matrix.l2_opNorm_mul _ _
+-    _ ≤ 1 * (2 * delta) := mul_le_mul hC
++    _ ≤ ‖C‖ * (2 * delta) := mul_le_mul_of_nonneg_left
+       (norm_cornerGramInvSqrt_sub_one_le C hP hdelta hdeltaHalf hclose)
+-      (norm_nonneg _) zero_le_one
++      (norm_nonneg _)
++
++/-- For a contraction, the polar correction is at most twice the Gram defect
++from the identity. -/
++theorem norm_polarCorrect_sub_le
++    (C : Matrix Y Y ℂ) (hP : (cornerGram C).IsHermitian) {delta : ℝ}
++    (hC : ‖C‖ ≤ 1) (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
++    (hclose : ‖cornerGram C - 1‖ ≤ delta) :
++    ‖polarCorrect C hP - C‖ ≤ 2 * delta := by
++  calc
++    ‖polarCorrect C hP - C‖ ≤ ‖C‖ * (2 * delta) :=
++      norm_polarCorrect_sub_le_mul C hP hdelta hdeltaHalf hclose
++    _ ≤ 1 * (2 * delta) := mul_le_mul_of_nonneg_right hC (by positivity)
+     _ = 2 * delta := one_mul _
+ 
+ /-- The bundled exact unitary supplied by polar correction under a `1/2`
+diff --git a/GroupApproximation/Sofic/LeavittTraceFloor.lean b/GroupApproximation/Sofic/LeavittTraceFloor.lean
+index 6bb8da1ae..27b864ddc 100644
+--- a/GroupApproximation/Sofic/LeavittTraceFloor.lean
++++ b/GroupApproximation/Sofic/LeavittTraceFloor.lean
+@@ -1,4 +1,6 @@
+ import GroupApproximation.Sofic.PhasePropagation
++import GroupApproximation.Sofic.NormTraceGap
++import Mathlib.Analysis.Matrix.Order
+ 
+ /-!
+ # A dimension-free Hilbert--Schmidt floor for the Leavitt relations
+@@ -25,6 +27,7 @@ the matrix dimension and without any operator-norm or adjoint hypothesis.
+ namespace GroupApproximation
+ 
+ open Matrix
++open scoped ComplexOrder Matrix.Norms.L2Operator MatrixOrder
+ 
+ /-- The normalized Hilbert--Schmidt norm associated to `hsNormSq`. -/
+ noncomputable def hsNorm (Y : FiniteModel) (A : Matrix Y Y ℂ) : ℝ :=
+@@ -113,4 +116,333 @@ theorem one_third_le_max_leavitt_hsNorm (Y : FiniteModel)
+   change (1 / 3 : ℝ) ≤ M
+   linarith
+ 
++/-! ## A multiplicative-only Leavitt floor -/
++
++/-- Left multiplication by an arbitrary matrix costs at most its squared
++operator norm in normalized Hilbert--Schmidt norm. -/
++theorem hsNormSq_mul_le_sq_l2_opNorm_mul (Y : FiniteModel)
++    (A B : Matrix Y Y ℂ) :
++    hsNormSq Y (A * B) ≤ ‖A‖ ^ 2 * hsNormSq Y B := by
++  classical
++  have hcol : ∀ j : Y,
++      ∑ i : Y, Complex.normSq ((A * B) i j) ≤
++        ‖A‖ ^ 2 * ∑ i : Y, Complex.normSq (B i j) := by
++    intro j
++    simpa only [Matrix.mul_apply, Matrix.mulVec_apply_eq_sum] using
++      (sum_normSq_mulVec_le Y A (fun i ↦ B i j))
++  unfold hsNormSq
++  rw [Finset.sum_comm]
++  calc
++    (∑ j : Y, ∑ i : Y, Complex.normSq ((A * B) i j)) /
++          Fintype.card Y
++        ≤ (∑ j : Y, ‖A‖ ^ 2 * ∑ i : Y, Complex.normSq (B i j)) /
++          Fintype.card Y := by
++            exact div_le_div_of_nonneg_right
++              (Finset.sum_le_sum fun j _ ↦ hcol j) (Nat.cast_nonneg _)
++    _ = ‖A‖ ^ 2 *
++          ((∑ i : Y, ∑ j : Y, Complex.normSq (B i j)) /
++            Fintype.card Y) := by
++          rw [← Finset.mul_sum, Finset.sum_comm]
++          ring
++
++/-- The normalized trace of a product of two positive semidefinite matrices
++has nonnegative real part.  The product itself need not be self-adjoint. -/
++theorem re_normTrace_mul_nonneg_of_posSemidef (Y : FiniteModel)
++    (hY : 0 < Fintype.card Y) {P Q : Matrix Y Y ℂ}
++    (hP : P.PosSemidef) (hQ : Q.PosSemidef) :
++    0 ≤ (normTrace Y (P * Q)).re := by
++  obtain ⟨C, hC⟩ := CStarAlgebra.nonneg_iff_eq_star_mul_self.mp hP.nonneg
++  have hC' : P = Cᴴ * C := by
++    simpa [Matrix.star_eq_conjTranspose] using hC
++  have hpos : (C * Q * Cᴴ).PosSemidef := hQ.mul_mul_conjTranspose_same C
++  have htrace : 0 ≤ (Matrix.trace (C * Q * Cᴴ)).re :=
++    (RCLike.nonneg_iff.mp hpos.trace_nonneg).1
++  have hcycle : Matrix.trace (P * Q) = Matrix.trace (C * Q * Cᴴ) := by
++    rw [hC']
++    calc
++      Matrix.trace ((Cᴴ * C) * Q) = Matrix.trace (Cᴴ * (C * Q)) := by
++        rw [Matrix.mul_assoc]
++      _ = Matrix.trace ((C * Q) * Cᴴ) := by
++        exact Matrix.trace_mul_comm Cᴴ (C * Q)
++      _ = Matrix.trace (C * Q * Cᴴ) := rfl
++  have hcard : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
++  rw [normTrace, hcycle]
++  simpa using div_nonneg htrace hcard.le
++
++/-- A contraction has positive semidefinite Gram deficiency. -/
++theorem one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one
++    (Y : FiniteModel) (A : Matrix Y Y ℂ) (hA : ‖A‖ ≤ 1) :
++    (1 - Aᴴ * A).PosSemidef := by
++  have hself (x : Y → ℂ) :
++      star x ⬝ᵥ x = ((∑ i : Y, Complex.normSq (x i) : ℝ) : ℂ) := by
++    rw [Complex.ofReal_sum]
++    refine Finset.sum_congr rfl fun i _ ↦ ?_
++    exact Complex.normSq_eq_conj_mul_self.symm
++  have hgram (x : Y → ℂ) :
++      star x ⬝ᵥ ((Aᴴ * A) *ᵥ x) =
++        ((∑ i : Y, Complex.normSq ((A *ᵥ x) i) : ℝ) : ℂ) := by
++    rw [← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec,
++      Matrix.vecMul_conjTranspose, star_star, hself]
++  have hHerm : (1 - Aᴴ * A)ᴴ = 1 - Aᴴ * A := by simp
++  refine Matrix.PosSemidef.of_dotProduct_mulVec_nonneg hHerm fun x ↦ ?_
++  have hbound := sum_normSq_mulVec_le Y A x
++  have hAsq : ‖A‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg A]
++  have hxnonneg : 0 ≤ ∑ i : Y, Complex.normSq (x i) :=
++    Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg _
++  have hreal :
++      ∑ i : Y, Complex.normSq ((A *ᵥ x) i) ≤
++        ∑ i : Y, Complex.normSq (x i) := by
++    calc
++      ∑ i : Y, Complex.normSq ((A *ᵥ x) i)
++          ≤ ‖A‖ ^ 2 * ∑ i : Y, Complex.normSq (x i) := hbound
++      _ ≤ 1 * ∑ i : Y, Complex.normSq (x i) :=
++        mul_le_mul_of_nonneg_right hAsq hxnonneg
++      _ = ∑ i : Y, Complex.normSq (x i) := one_mul _
++  rw [Matrix.sub_mulVec, Matrix.one_mulVec, dotProduct_sub, hself, hgram]
++  exact RCLike.nonneg_iff.mpr ⟨sub_nonneg.mpr hreal, by simp⟩
++
++/-- The trace expansion behind the contraction product inequality. -/
++theorem normTrace_gram_deficiency_product (Y : FiniteModel)
++    (hY : 0 < Fintype.card Y) (A B : Matrix Y Y ℂ) :
++    normTrace Y ((1 - Aᴴ * A) * (1 - B * Bᴴ)) =
++      (1 : ℂ) - (hsNormSq Y A : ℂ) - (hsNormSq Y B : ℂ) +
++        (hsNormSq Y (A * B) : ℂ) := by
++  have hc : ((Fintype.card Y : ℕ) : ℂ) ≠ 0 := by
++    simpa using (Nat.cast_ne_zero (R := ℂ)).mpr hY.ne'
++  have hexpand :
++      (1 - Aᴴ * A) * (1 - B * Bᴴ) =
++        1 - B * Bᴴ - Aᴴ * A + (Aᴴ * A) * (B * Bᴴ) := by
++    noncomm_ring
++  unfold normTrace
++  rw [hexpand, Matrix.trace_add, Matrix.trace_sub, Matrix.trace_sub,
++    Matrix.trace_one, Matrix.trace_mul_comm Aᴴ A,
++    ← ofReal_sum_normSq Y A, ← ofReal_sum_normSq Y B]
++  have hAB :
++      Matrix.trace ((Aᴴ * A) * (B * Bᴴ)) =
++        Matrix.trace ((A * B) * (A * B)ᴴ) := by
++    rw [Matrix.conjTranspose_mul]
++    calc
++      Matrix.trace ((Aᴴ * A) * (B * Bᴴ)) =
++          Matrix.trace (Aᴴ * (A * (B * Bᴴ))) := by
++            simp [Matrix.mul_assoc]
++      _ = Matrix.trace ((A * (B * Bᴴ)) * Aᴴ) :=
++        Matrix.trace_mul_comm Aᴴ (A * (B * Bᴴ))
++      _ = Matrix.trace ((A * B) * (Bᴴ * Aᴴ)) := by
++            simp [Matrix.mul_assoc]
++  rw [hAB, ← ofReal_sum_normSq Y (A * B)]
++  unfold hsNormSq
++  push_cast
++  field_simp
++  ring
++
++/-- Two contractions cannot lose more normalized Hilbert--Schmidt mass in a
++product than the sum of their two individual deficiencies. -/
++theorem one_sub_hsNormSq_mul_le_add_deficiencies
++    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
++    (A B : Matrix Y Y ℂ) (hA : ‖A‖ ≤ 1) (hB : ‖B‖ ≤ 1) :
++    1 - hsNormSq Y (A * B) ≤
++      (1 - hsNormSq Y A) + (1 - hsNormSq Y B) := by
++  have hD := one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one Y A hA
++  have hBstar : ‖Bᴴ‖ ≤ 1 := by
++    rw [Matrix.l2_opNorm_conjTranspose]
++    exact hB
++  have hE := one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one Y Bᴴ hBstar
++  rw [Matrix.conjTranspose_conjTranspose] at hE
++  have hnonneg := re_normTrace_mul_nonneg_of_posSemidef Y hY hD hE
++  rw [normTrace_gram_deficiency_product Y hY A B] at hnonneg
++  norm_num at hnonneg ⊢
++  linarith
++
++/-- **Multiplicative-only Leavitt obstruction.**  If four contractions have
++the two right-inverse defects and one cross-product defect at most `ε`, then
++`ε ≥ 2 - sqrt 3`.  The weaker rational consequence `ε ≥ 1/4` is exposed
++below as the convenient theorem used by the atlas endpoint. -/
++theorem two_sub_sqrt_three_le_of_leavitt_product_defects
++    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
++    (T₀ S₀ T₁ S₁ : Matrix Y Y ℂ) (ε : ℝ)
++    (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
++    (hT₀ : ‖T₀‖ ≤ 1) (hS₀ : ‖S₀‖ ≤ 1)
++    (hT₁ : ‖T₁‖ ≤ 1) (hS₁ : ‖S₁‖ ≤ 1)
++    (h00 : hsNorm Y (T₀ * S₀ - 1) ≤ ε)
++    (h11 : hsNorm Y (T₁ * S₁ - 1) ≤ ε)
++    (h01 : hsNorm Y (T₀ * S₁) ≤ ε) :
++    2 - Real.sqrt 3 ≤ ε := by
++  have factor_sq_lower (T S : Matrix Y Y ℂ) (hT : ‖T‖ ≤ 1)
++      (hdef : hsNorm Y (T * S - 1) ≤ ε) :
++      (1 - ε) ^ 2 ≤ hsNormSq Y S := by
++    have htrdef : ‖normTrace Y (T * S - 1)‖ ≤ ε :=
++      (norm_normTrace_le_hsNorm Y _).trans hdef
++    have htr : 1 - ε ≤ ‖normTrace Y (T * S)‖ := by
++      have hone : ‖(1 : ℂ)‖ ≤
++          ‖normTrace Y (T * S)‖ + ‖normTrace Y (T * S) - 1‖ := by
++        calc
++          ‖(1 : ℂ)‖ = ‖normTrace Y (T * S) +
++              (1 - normTrace Y (T * S))‖ := by ring_nf
++          _ ≤ ‖normTrace Y (T * S)‖ +
++              ‖1 - normTrace Y (T * S)‖ := norm_add_le _ _
++          _ = ‖normTrace Y (T * S)‖ +
++              ‖normTrace Y (T * S) - 1‖ := by rw [norm_sub_rev]
++      rw [normTrace_sub, normTrace_one' Y hY] at htrdef
++      norm_num at hone
++      linarith
++    have htraceSq : (1 - ε) ^ 2 ≤ hsNormSq Y (T * S) := by
++      have hnonneg : 0 ≤ 1 - ε := sub_nonneg.mpr hε1
++      have hsquare : (1 - ε) ^ 2 ≤ ‖normTrace Y (T * S)‖ ^ 2 :=
++        (sq_le_sq₀ hnonneg (norm_nonneg _)).mpr htr
++      exact hsquare.trans (by
++        simpa [Complex.sq_norm] using normSq_normTrace_le_hsNormSq Y (T * S))
++    have hmul := hsNormSq_mul_le_sq_l2_opNorm_mul Y T S
++    have hTsq : ‖T‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg T]
++    have hSnonneg := hsNormSq_nonneg Y S
++    calc
++      (1 - ε) ^ 2 ≤ hsNormSq Y (T * S) := htraceSq
++      _ ≤ ‖T‖ ^ 2 * hsNormSq Y S := hmul
++      _ ≤ hsNormSq Y S := by nlinarith
++  have hT₀sq : (1 - ε) ^ 2 ≤ hsNormSq Y T₀ :=
++    by
++      have hS₀star : ‖S₀ᴴ‖ ≤ 1 := by
++        rw [Matrix.l2_opNorm_conjTranspose]
++        exact hS₀
++      have hstar : hsNorm Y (S₀ᴴ * T₀ᴴ - 1) ≤ ε := by
++        have hct : (T₀ * S₀ - 1)ᴴ = S₀ᴴ * T₀ᴴ - 1 := by simp
++        unfold hsNorm at h00 ⊢
++        rw [← hct, hsNormSq_conjTranspose]
++        exact h00
++      have h := factor_sq_lower S₀ᴴ T₀ᴴ hS₀star hstar
++      rwa [hsNormSq_conjTranspose] at h
++  have hS₁sq : (1 - ε) ^ 2 ≤ hsNormSq Y S₁ :=
++    factor_sq_lower T₁ S₁ hT₁ h11
++  have hproduct :=
++    one_sub_hsNormSq_mul_le_add_deficiencies
++      Y hY T₀ S₁ hT₀ hS₁
++  have hcross : hsNormSq Y (T₀ * S₁) ≤ ε ^ 2 := by
++    unfold hsNorm at h01
++    have hsnonneg := hsNormSq_nonneg Y (T₀ * S₁)
++    have hsquare := (sq_le_sq₀ (Real.sqrt_nonneg _) hε0).mpr h01
++    rwa [Real.sq_sqrt hsnonneg] at hsquare
++  have hquad : 1 - 4 * ε + ε ^ 2 ≤ 0 := by
++    nlinarith [hT₀sq, hS₁sq, hproduct, hcross]
++  have hsqrt3nonneg : 0 ≤ Real.sqrt 3 := Real.sqrt_nonneg _
++  have hsqrt3sq : (Real.sqrt 3) ^ 2 = 3 := Real.sq_sqrt (by norm_num)
++  by_contra h
++  have hlt : ε < 2 - Real.sqrt 3 := lt_of_not_ge h
++  nlinarith
++
++/-- Rational form of the multiplicative-only obstruction. -/
++theorem one_fourth_le_of_leavitt_product_defects
++    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
++    (T₀ S₀ T₁ S₁ : Matrix Y Y ℂ) (ε : ℝ)
++    (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
++    (hT₀ : ‖T₀‖ ≤ 1) (hS₀ : ‖S₀‖ ≤ 1)
++    (hT₁ : ‖T₁‖ ≤ 1) (hS₁ : ‖S₁‖ ≤ 1)
++    (h00 : hsNorm Y (T₀ * S₀ - 1) ≤ ε)
++    (h11 : hsNorm Y (T₁ * S₁ - 1) ≤ ε)
++    (h01 : hsNorm Y (T₀ * S₁) ≤ ε) :
++    (1 / 4 : ℝ) ≤ ε := by
++  have hmain := two_sub_sqrt_three_le_of_leavitt_product_defects
++    Y hY T₀ S₀ T₁ S₁ ε hε0 hε1 hT₀ hS₀ hT₁ hS₁ h00 h11 h01
++  have hsqrt3lt : Real.sqrt 3 < 7 / 4 := by
++    rw [Real.sqrt_lt' (by norm_num)]
++    norm_num
++  linarith
++
++/-- Max-defect form of the sharp multiplicative-only contraction gap. -/
++theorem two_sub_sqrt_three_le_max_leavitt_product_hsNorm
++    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
++    (T₀ S₀ T₁ S₁ : Matrix Y Y ℂ)
++    (hT₀ : ‖T₀‖ ≤ 1) (hS₀ : ‖S₀‖ ≤ 1)
++    (hT₁ : ‖T₁‖ ≤ 1) (hS₁ : ‖S₁‖ ≤ 1) :
++    2 - Real.sqrt 3 ≤
++      max (hsNorm Y (T₀ * S₀ - 1))
++        (max (hsNorm Y (T₁ * S₁ - 1)) (hsNorm Y (T₀ * S₁))) := by
++  let ε := max (hsNorm Y (T₀ * S₀ - 1))
++    (max (hsNorm Y (T₁ * S₁ - 1)) (hsNorm Y (T₀ * S₁)))
++  have hε0 : 0 ≤ ε :=
++    (hsNorm_nonneg Y (T₀ * S₀ - 1)).trans (le_max_left _ _)
++  by_cases hε1 : ε ≤ 1
++  · have h00 : hsNorm Y (T₀ * S₀ - 1) ≤ ε := le_max_left _ _
++    have h11 : hsNorm Y (T₁ * S₁ - 1) ≤ ε :=
++      (le_max_left _ _).trans (le_max_right _ _)
++    have h01 : hsNorm Y (T₀ * S₁) ≤ ε :=
++      (le_max_right _ _).trans (le_max_right _ _)
++    exact two_sub_sqrt_three_le_of_leavitt_product_defects
++      Y hY T₀ S₀ T₁ S₁ ε hε0 hε1 hT₀ hS₀ hT₁ hS₁ h00 h11 h01
++  · have hεgt : 1 < ε := lt_of_not_ge hε1
++    have hsqrt3nonneg : 0 ≤ Real.sqrt 3 := Real.sqrt_nonneg _
++    have hsqrt3sq : (Real.sqrt 3) ^ 2 = 3 := Real.sq_sqrt (by norm_num)
++    change 2 - Real.sqrt 3 ≤ ε
++    nlinarith
++
++/-- **Unitary-pairing form of the multiplicative obstruction.**  Suppose
++`U : W → V` is the unitary matrix of a flat finite pairing, while `Rᵢ` and
++`Lⱼ` are contraction arrows on its two sides.  The diagonal pairing
++identities and one cross identity cannot all have small normalized
++Hilbert--Schmidt defect.
++
++Right multiplication by `Uᴴ` turns the three displayed pairing defects into
++the product defects for `Tᵢ = Rᵢᴴ` and `Sⱼ = U Lⱼ Uᴴ`.  This is the exact
++finite-dimensional endpoint needed by the robust radical-quotient gate. -/
++theorem two_sub_sqrt_three_le_max_unitary_pairing_defects
++    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
++    (U R₀ L₀ R₁ L₁ : Matrix Y Y ℂ)
++    (hU : U ∈ Matrix.unitaryGroup Y ℂ)
++    (hR₀ : ‖R₀‖ ≤ 1) (hL₀ : ‖L₀‖ ≤ 1)
++    (hR₁ : ‖R₁‖ ≤ 1) (hL₁ : ‖L₁‖ ≤ 1) :
++    2 - Real.sqrt 3 ≤
++      max (hsNorm Y (R₀ᴴ * U * L₀ - U))
++        (max (hsNorm Y (R₁ᴴ * U * L₁ - U))
++          (hsNorm Y (R₀ᴴ * U * L₁))) := by
++  have hUstar : Uᴴ ∈ Matrix.unitaryGroup Y ℂ := by
++    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
++      Matrix.conjTranspose_conjTranspose]
++    exact Unitary.star_mul_self_of_mem hU
++  have hUUstar : U * Uᴴ = 1 := by
++    have h := hU
++    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose] at h
++    exact h
++  have hR₀star : ‖R₀ᴴ‖ ≤ 1 := by
++    rw [Matrix.l2_opNorm_conjTranspose]
++    exact hR₀
++  have hR₁star : ‖R₁ᴴ‖ ≤ 1 := by
++    rw [Matrix.l2_opNorm_conjTranspose]
++    exact hR₁
++  have hUL₀Ustar : ‖U * L₀ * Uᴴ‖ ≤ 1 := by
++    rw [CStarRing.norm_mul_mem_unitary _ hUstar,
++      CStarRing.norm_mem_unitary_mul _ hU]
++    exact hL₀
++  have hUL₁Ustar : ‖U * L₁ * Uᴴ‖ ≤ 1 := by
++    rw [CStarRing.norm_mul_mem_unitary _ hUstar,
++      CStarRing.norm_mem_unitary_mul _ hU]
++    exact hL₁
++  have hdef00 :
++      hsNorm Y (R₀ᴴ * (U * L₀ * Uᴴ) - 1) =
++        hsNorm Y (R₀ᴴ * U * L₀ - U) := by
++    have hfactor :
++        R₀ᴴ * (U * L₀ * Uᴴ) - 1 = (R₀ᴴ * U * L₀ - U) * Uᴴ := by
++      rw [Matrix.sub_mul, hUUstar]
++      noncomm_ring
++    unfold hsNorm
++    rw [hfactor, hsNormSq_mul_right Y hUstar]
++  have hdef11 :
++      hsNorm Y (R₁ᴴ * (U * L₁ * Uᴴ) - 1) =
++        hsNorm Y (R₁ᴴ * U * L₁ - U) := by
++    have hfactor :
++        R₁ᴴ * (U * L₁ * Uᴴ) - 1 = (R₁ᴴ * U * L₁ - U) * Uᴴ := by
++      rw [Matrix.sub_mul, hUUstar]
++      noncomm_ring
++    unfold hsNorm
++    rw [hfactor, hsNormSq_mul_right Y hUstar]
++  have hdef01 :
++      hsNorm Y (R₀ᴴ * (U * L₁ * Uᴴ)) =
++        hsNorm Y (R₀ᴴ * U * L₁) := by
++    have hfactor :
++        R₀ᴴ * (U * L₁ * Uᴴ) = (R₀ᴴ * U * L₁) * Uᴴ := by
++      noncomm_ring
++    unfold hsNorm
++    rw [hfactor, hsNormSq_mul_right Y hUstar]
++  have hgap := two_sub_sqrt_three_le_max_leavitt_product_hsNorm
++    Y hY R₀ᴴ (U * L₀ * Uᴴ) R₁ᴴ (U * L₁ * Uᴴ)
++    hR₀star hUL₀Ustar hR₁star hUL₁Ustar
++  rwa [hdef00, hdef11, hdef01] at hgap
++
+ end GroupApproximation
+diff --git a/GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean b/GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean
+deleted file mode 100644
+index b2bf180aa..000000000
+--- a/GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean
++++ /dev/null
+@@ -1,217 +0,0 @@
+-import GroupApproximation.Sofic.LiteralTranslationOrbit
+-import GroupApproximation.Sofic.LiteralBaseRotationRetract
+-import GroupApproximation.Kazhdan.HilbertConvexFixedPoint
+-
+-/-!
+-# Property (T) transfer from the literal rotation group to the affine base
+-
+-The literal affine base is the internal semidirect product of its translation
+-lattice by its rotation subgroup.  This file proves, entirely from the printed
+-relations, that property `(T)` of the abstract eight-relator rotation group
+-implies property `(T)` of the full twenty-relator base.
+-
+-The key point is stronger than the usual extension permanence argument.  Once
+-a vector has been projected to the rotation-fixed subspace, every translation
+-moves it by a uniformly bounded amount: the two-conjugate normal form from
+-`LiteralTranslationOrbit` makes that bound independent of the lattice vector.
+-The bounded-orbit fixed-point theorem then projects once more to a vector fixed
+-by both subgroups.  Thus the only remaining property-`(T)` input for the
+-literal base is the rotation presentation itself.
+--/
+-
+-namespace GroupApproximation
+-namespace LiteralBasePropertyTBridge
+-
+-open LiteralNonMFPresentation
+-open LiteralBaseRelations LiteralBaseTranslationNormal
+-open LiteralBaseRotationRetract LiteralTranslationOrbit
+-
+-noncomputable section
+-
+-private abbrev Base := LiteralNonMFPresentation.Base
+-
+-local instance : DecidableEq Base := Classical.decEq Base
+-local instance : DecidableEq rotations := Classical.decEq rotations
+-
+-private def baseControlSet (S : Finset rotations) : Finset Base :=
+-  (S.image fun r ↦ (r : Base)) ∪ {v2, v3}
+-
+-private theorem mem_baseControlSet_of_mem {S : Finset rotations}
+-    {r : rotations} (hr : r ∈ S) : (r : Base) ∈ baseControlSet S := by
+-  exact Finset.mem_union_left _ (Finset.mem_image_of_mem _ hr)
+-
+-private theorem v2_mem_baseControlSet (S : Finset rotations) :
+-    v2 ∈ baseControlSet S := by
+-  simp [baseControlSet]
+-
+-private theorem v3_mem_baseControlSet (S : Finset rotations) :
+-    v3 ∈ baseControlSet S := by
+-  simp [baseControlSet]
+-
+-private theorem norm_displacement_at_near
+-    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (g : Base) (x p : E) :
+-    ‖rho g p - p‖ ≤ ‖rho g x - x‖ + 2 * ‖p - x‖ := by
+-  have hid : rho g p - p =
+-      rho g (p - x) + (rho g x - x) + (x - p) := by
+-    rw [map_sub]
+-    abel
+-  rw [hid]
+-  calc
+-    ‖rho g (p - x) + (rho g x - x) + (x - p)‖ ≤
+-        ‖rho g (p - x)‖ + ‖rho g x - x‖ + ‖x - p‖ := by
+-      exact (norm_add_le _ _).trans
+-        (add_le_add_right (norm_add_le _ _) _)
+-    _ = ‖rho g x - x‖ + 2 * ‖p - x‖ := by
+-      rw [(rho g).norm_map, norm_sub_rev]
+-      ring
+-
+-private theorem movingProjection_norm_lt_one_div_sixtyFour
+-    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+-    [CompleteSpace E]
+-    {S : Finset rotations} {kappa : ℝ}
+-    (hS : IsKazhdanPair rotations S kappa) (hkappaOne : kappa ≤ 1)
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (x : E)
+-    (hnear : ∀ q ∈ baseControlSet S,
+-      ‖rho q x - x‖ < kappa / 64) :
+-    ‖KazhdanFixedSpace.subgroupMovingProjection rho rotations x‖ < 1 / 64 := by
+-  let m : E := KazhdanFixedSpace.subgroupMovingProjection rho rotations x
+-  have hmMem : m ∈ KazhdanFixedSpace.subgroupMovingSubspace rho rotations :=
+-    KazhdanFixedSpace.subgroupMovingProjection_mem rho rotations x
+-  by_cases hm : m = 0
+-  · rw [hm, norm_zero]
+-    norm_num
+-  · let w : KazhdanFixedSpace.subgroupMovingSubspace rho rotations := ⟨m, hmMem⟩
+-    have hw : w ≠ 0 := by
+-      intro hw
+-      apply hm
+-      exact congrArg Subtype.val hw
+-    obtain ⟨q, hqS, hmove⟩ :=
+-      hS.exists_moved_mul_norm_of_noInvariant
+-        (KazhdanFixedSpace.subgroupMovingRepresentation rho rotations)
+-        (KazhdanFixedSpace.subgroupMovingRepresentation_hasNoInvariantVectors
+-          rho rotations) w hw
+-    have hprojected :
+-        ‖rho (q : Base) m - m‖ ≤ ‖rho (q : Base) x - x‖ :=
+-      KazhdanFixedSpace.norm_subgroupMovingProjection_displacement_le_of_mem_normalizer
+-        rho rotations (rotations.le_normalizer q.2) x
+-    have hsmall : ‖rho (q : Base) x - x‖ < kappa / 64 :=
+-      hnear (q : Base) (mem_baseControlSet_of_mem hqS)
+-    have hgap : kappa * ‖m‖ ≤ ‖rho (q : Base) m - m‖ := by
+-      simpa [w, m] using hmove
+-    have hkappa : 0 < kappa := hS.1
+-    nlinarith [hgap.trans_lt (hprojected.trans_lt hsmall)]
+-
+-private theorem exists_global_fixed_near
+-    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+-    [CompleteSpace E]
+-    {S : Finset rotations} {kappa : ℝ}
+-    (hS : IsKazhdanPair rotations S kappa) (hkappaOne : kappa ≤ 1)
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (x : E)
+-    (hnear : ∀ q ∈ baseControlSet S,
+-      ‖rho q x - x‖ < kappa / 64) :
+-    ∃ y : E, (∀ g : Base, rho g y = y) ∧ ‖y - x‖ < 1 := by
+-  let p : E := KazhdanFixedSpace.fixedProjection rho rotations x
+-  let m : E := KazhdanFixedSpace.subgroupMovingProjection rho rotations x
+-  have hm : ‖m‖ < 1 / 64 :=
+-    movingProjection_norm_lt_one_div_sixtyFour hS hkappaOne rho x hnear
+-  have hpx : ‖p - x‖ = ‖m‖ := by
+-    rw [KazhdanFixedSpace.subgroupMovingProjection_eq_sub_fixedProjection]
+-    change ‖p - x‖ = ‖x - p‖
+-    exact norm_sub_rev _ _
+-  have hpRot : p ∈ KazhdanFixedSpace.fixedSubspace rho rotations :=
+-    (KazhdanFixedSpace.fixedProjection rho rotations x).property
+-  have hpFixed : ∀ r : rotations, rho (r : Base) p = p := by
+-    intro r
+-    exact (KazhdanFixedSpace.mem_fixedSubspace_iff rho rotations p).mp
+-      hpRot r r.2
+-  have hkappa64 : kappa / 64 ≤ 1 / 64 := by nlinarith
+-  have hv2x : ‖rho v2 x - x‖ < kappa / 64 :=
+-    hnear v2 (v2_mem_baseControlSet S)
+-  have hv3x : ‖rho v3 x - x‖ < kappa / 64 :=
+-    hnear v3 (v3_mem_baseControlSet S)
+-  have hv2p : ‖rho v2 p - p‖ < 3 / 64 := by
+-    have h := norm_displacement_at_near rho v2 x p
+-    rw [hpx] at h
+-    nlinarith
+-  have hv3p : ‖rho v3 p - p‖ < 3 / 64 := by
+-    have h := norm_displacement_at_near rho v3 x p
+-    rw [hpx] at h
+-    nlinarith
+-  have htranslation : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8 := by
+-    intro t
+-    have h := norm_translation_displacement_le_of_rotations_fixed
+-      rho p hpFixed t.2
+-    nlinarith
+-  obtain ⟨z, hzTrans, hzp⟩ :=
+-    HilbertConvexFixedPoint.exists_near_fixedSubspace
+-      rho translations p htranslation
+-  let y : E := KazhdanFixedSpace.fixedProjection rho translations p
+-  have hyTrans : y ∈ KazhdanFixedSpace.fixedSubspace rho translations :=
+-    (KazhdanFixedSpace.fixedProjection rho translations p).property
+-  have hRotNormalizes :
+-      rotations ≤ Subgroup.normalizer (translations : Set Base) := by
+-    rw [normalizer_translations_eq_top]
+-    exact le_top
+-  have hySup : y ∈
+-      KazhdanFixedSpace.fixedSubspace rho (translations ⊔ rotations) := by
+-    have heq := KazhdanFixedSpace.fixedProjection_eq_sup_of_fixed_of_normalizes
+-      rho translations rotations hRotNormalizes hpRot
+-    change (KazhdanFixedSpace.fixedProjection rho translations p : E) ∈
+-      KazhdanFixedSpace.fixedSubspace rho (translations ⊔ rotations)
+-    rw [heq]
+-    exact (KazhdanFixedSpace.fixedProjection rho
+-      (translations ⊔ rotations) p).property
+-  have hyGlobal : ∀ g : Base, rho g y = y := by
+-    intro g
+-    apply (KazhdanFixedSpace.mem_fixedSubspace_iff rho
+-      (translations ⊔ rotations) y).mp hySup
+-    rw [translations_sup_rotations]
+-    exact Subgroup.mem_top g
+-  have hyp : ‖y - p‖ ≤ 1 / 8 := by
+-    let U := KazhdanFixedSpace.fixedSubspace rho translations
+-    letI : CompleteSpace U :=
+-      (KazhdanFixedSpace.isClosed_fixedSubspace rho translations).completeSpace_coe
+-    have hmin : ‖p - y‖ ≤ ‖p - z‖ := by
+-      change ‖p - U.starProjection p‖ ≤ ‖p - z‖
+-      rw [U.starProjection_minimal]
+-      exact ciInf_le
+-        ⟨0, Set.forall_mem_range.mpr fun u : U ↦ norm_nonneg (p - (u : E))⟩
+-        ⟨z, hzTrans⟩
+-    rw [norm_sub_rev] at hmin ⊢
+-    exact hmin.trans hzp
+-  refine ⟨y, hyGlobal, ?_⟩
+-  calc
+-    ‖y - x‖ = ‖(y - p) + (p - x)‖ := by congr 1 <;> abel
+-    _ ≤ ‖y - p‖ + ‖p - x‖ := norm_add_le _ _
+-    _ < 1 := by rw [hpx]; nlinarith
+-
+-/-- **Exact affine property-`(T)` reduction.**  If the abstract rotation
+-presentation has property `(T)`, then the literal twenty-relator affine base
+-has property `(T)`.
+-
+-No relative-property-`(T)` theorem is assumed: the translation control is
+-proved intrinsically from the printed conjugation relations.  Consequently
+-the only remaining task for an unconditional property-`(T)` theorem for the
+-literal base is property `(T)` of `LiteralBaseRotationRetract.Rotation`. -/
+-theorem base_hasKazhdanPropertyT_of_rotation
+-    (hRotation : HasKazhdanPropertyT.{0, 0} Rotation) :
+-    HasKazhdanPropertyT.{0, 0} Base := by
+-  have hRotations : HasKazhdanPropertyT.{0, 0} rotations :=
+-    HasKazhdanPropertyT.of_mulEquiv rotationEquivRotations.symm hRotation
+-  obtain ⟨S, kappa, -, hkappa, hkappaOne, hS⟩ :=
+-    hRotations.exists_identity_pair
+-  refine ⟨baseControlSet S, kappa / 64, by positivity, ?_⟩
+-  intro E _ _ _ rho x hx hnear
+-  obtain ⟨y, hyFixed, hyNear⟩ :=
+-    exists_global_fixed_near hS hkappaOne rho x hnear
+-  have hy : y ≠ 0 := by
+-    intro hy0
+-    rw [hy0, zero_sub, norm_neg, hx] at hyNear
+-    linarith
+-  exact ⟨y, hy, hyFixed⟩
+-
+-end
+-
+-end LiteralBasePropertyTBridge
+-end GroupApproximation
+diff --git a/GroupApproximation/Sofic/LiteralFiniteDimensionalObstruction.lean b/GroupApproximation/Sofic/LiteralFiniteDimensionalObstruction.lean
+index 4ccfe5ca9..04e0f757e 100644
+--- a/GroupApproximation/Sofic/LiteralFiniteDimensionalObstruction.lean
++++ b/GroupApproximation/Sofic/LiteralFiniteDimensionalObstruction.lean
+@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+ import Mathlib.RepresentationTheory.Basic
+ 
+ /-!
+-# Finite-dimensional sterility of the literal marked presentation
++# Finite-dimensional sterility of the literal non-MF presentation
+ 
+ This is the exact application of manuscript Theorem B to the literal
+ eight-generator group.  It uses only the displayed one-sided compression and
+diff --git a/GroupApproximation/Sofic/LiteralNonMFLinearWitness.lean b/GroupApproximation/Sofic/LiteralNonMFLinearWitness.lean
+index 8e3398495..d379d7791 100644
+--- a/GroupApproximation/Sofic/LiteralNonMFLinearWitness.lean
++++ b/GroupApproximation/Sofic/LiteralNonMFLinearWitness.lean
+@@ -263,58 +263,6 @@ theorem matrixBaseGenerator_kills :
+   · exact matrix_kills_zv2
+   · exact matrix_kills_zv3
+ 
+-/-- The homomorphism defined by the printed six-generator base presentation
+-into the concrete affine matrix subgroup. -/
+-noncomputable def matrixBaseHom : Base →* gammaBar :=
+-  PresentedGroup.toGroup matrixBaseGenerator_kills
+-
+-@[simp] theorem matrixBaseHom_generator (i : BaseGenerator) :
+-    matrixBaseHom (PresentedGroup.of i) = matrixBaseGenerator i :=
+-  PresentedGroup.toGroup.of _
+-
+-/-- The printed generators generate the concrete affine matrix subgroup, so
+-the presentation homomorphism is onto.  Injectivity is the separate
+-presentation-completeness input. -/
+-theorem matrixBaseHom_surjective : Function.Surjective matrixBaseHom := by
+-  rw [← MonoidHom.range_eq_top]
+-  apply top_unique
+-  intro γ _
+-  let K : Subgroup gammaBar := matrixBaseHom.range
+-  have hgen (i : BaseGenerator) : matrixBaseGenerator i ∈ K :=
+-    ⟨PresentedGroup.of i, matrixBaseHom_generator i⟩
+-  have hgenerators :
+-      gammaBar.subtype ⁻¹' ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ) ⊆ K := by
+-    intro u hu
+-    rcases hu with h | h | h | h | h | h
+-    · rw [show u = xG from Subtype.ext h]
+-      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex]
+-        using hgen xIndex
+-    · rw [show u = yG from Subtype.ext h]
+-      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex]
+-        using hgen yIndex
+-    · rw [show u = zG from Subtype.ext h]
+-      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex,
+-        zIndex] using hgen zIndex
+-    · rw [show u = v1G from Subtype.ext h]
+-      simpa [matrixBaseGenerator] using hgen v1Index
+-    · rw [show u = v2G from Subtype.ext h]
+-      simpa [matrixBaseGenerator, v1Index, v2Index] using hgen v2Index
+-    · rw [Set.mem_singleton_iff] at h
+-      rw [show u = v3G from Subtype.ext h]
+-      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index] using hgen v3Index
+-  have hclosure :
+-      Subgroup.closure
+-          (gammaBar.subtype ⁻¹'
+-            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) ≤ K :=
+-    (Subgroup.closure_le _).mpr hgenerators
+-  have htop :
+-      Subgroup.closure
+-          (gammaBar.subtype ⁻¹'
+-            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) = ⊤ := by
+-    exact Subgroup.closure_preimage_eq_top
+-      ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)
+-  exact hclosure (htop.symm ▸ Subgroup.mem_top γ)
+-
+ /-! ## The generic telescope/Clifford target -/
+ 
+ abbrev alpha : gammaBar →* gammaBar := conjD
+@@ -464,17 +412,6 @@ sign in the witness group. -/
+   rw [witnessHom, realizationHom_base_generator]
+   rfl
+ 
+-/-- On the printed base, the literal witness is exactly the affine matrix
+-homomorphism followed by the embedded base copy in the ambient witness. -/
+-theorem witnessHom_comp_baseMap :
+-    witnessHom.comp baseMap =
+-      (iotaAmbient alpha conjD_injective).comp matrixBaseHom := by
+-  apply PresentedGroup.ext
+-  intro i
+-  change witnessHom (baseMap (PresentedGroup.of i)) =
+-    iotaAmbient alpha conjD_injective (matrixBaseHom (PresentedGroup.of i))
+-  rw [witnessHom_base_generator, matrixBaseHom_generator]
+-
+ @[simp] theorem witnessHom_stable :
+     witnessHom stable = tAmbient alpha conjD_injective := by
+   simp [witnessHom, realization]
+diff --git a/GroupApproximation/Sofic/LiteralNonMFPresentation.lean b/GroupApproximation/Sofic/LiteralNonMFPresentation.lean
+index 2677f35b4..4cc22791c 100644
+--- a/GroupApproximation/Sofic/LiteralNonMFPresentation.lean
++++ b/GroupApproximation/Sofic/LiteralNonMFPresentation.lean
+@@ -20,11 +20,8 @@ the marked word is imposed to be a central involution.
+ No completeness theorem for the six-generator base presentation is used in
+ this file.  This module asserts only the literal finite-presentation algebra;
+ the separate exact realization in `LiteralNonMFLinearWitness` proves that its
+-marked word is nontrivial.  The Lean library intentionally asserts no
+-operator-MF endpoint for this literal group: it neither identifies the
+-presented base with `ℤ³ ⋊ SL₃(ℤ)` nor proves property `(T)` for the abstract
+-presented base.  The unconditional formal counterexample is the independent
+-chosen Shalom-cover witness in `ChosenNonMFTheorem`.
++marked word is nontrivial.  No Kazhdan or MF endpoint is asserted for this
++literal group.
+ -/
+ 
+ namespace GroupApproximation
+diff --git a/GroupApproximation/Sofic/LiteralTranslationOrbit.lean b/GroupApproximation/Sofic/LiteralTranslationOrbit.lean
+deleted file mode 100644
+index 32d687968..000000000
+--- a/GroupApproximation/Sofic/LiteralTranslationOrbit.lean
++++ /dev/null
+@@ -1,457 +0,0 @@
+-import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+-
+-/-!
+-# Two rotation conjugates suffice for every literal translation
+-
+-This file isolates the elementary orbit calculation behind the relative
+-property-`(T)` part of the literal affine base.  Three explicit words in the
+-rotation generators act on the translation lattice as the elementary
+-transvections `E₁₃`, `E₂₃`, and `E₃₂`.  Consequently every lattice vector is
+-the sum of two rotation translates of standard basis vectors.
+-
+-All equalities are proved inside the twenty-relator presented group.  The
+-matrix realization is used only to distinguish two elements already known to
+-belong to the translation subgroup, where it is faithful by
+-`latticeToBase_injective`.
+--/
+-
+-namespace GroupApproximation
+-namespace LiteralTranslationOrbit
+-
+-open ExplicitLinearModel LiteralNonMFLinearWitness
+-open LiteralBaseRelations LiteralBaseTranslationNormal
+-open LiteralBaseTranslationLattice
+-
+-noncomputable section
+-
+-private abbrev Base := LiteralNonMFPresentation.Base
+-
+-/-- The short rotation word whose lattice action is `E₁₃`. -/
+-def e13 : Base := x * z * y⁻¹ * x⁻¹ * y⁻¹
+-
+-/-- The short rotation word whose lattice action is `E₂₃`. -/
+-def e23 : Base := x⁻¹ * y⁻¹ * x * z * y⁻¹
+-
+-/-- The short rotation word whose lattice action is `E₃₂`. -/
+-def e32 : Base := x⁻¹ * z * y⁻¹ * x⁻¹ * y⁻¹ * x⁻¹
+-
+-theorem e13_mem_rotations : e13 ∈ rotations := by
+-  exact rotations.mul_mem
+-    (rotations.mul_mem
+-      (rotations.mul_mem
+-        (rotations.mul_mem x_mem_rotations z_mem_rotations)
+-        (rotations.inv_mem y_mem_rotations))
+-      (rotations.inv_mem x_mem_rotations))
+-    (rotations.inv_mem y_mem_rotations)
+-
+-theorem e23_mem_rotations : e23 ∈ rotations := by
+-  exact rotations.mul_mem
+-    (rotations.mul_mem
+-      (rotations.mul_mem
+-        (rotations.mul_mem
+-          (rotations.inv_mem x_mem_rotations)
+-          (rotations.inv_mem y_mem_rotations))
+-        x_mem_rotations)
+-      z_mem_rotations)
+-    (rotations.inv_mem y_mem_rotations)
+-
+-theorem e32_mem_rotations : e32 ∈ rotations := by
+-  exact rotations.mul_mem
+-    (rotations.mul_mem
+-      (rotations.mul_mem
+-        (rotations.mul_mem
+-          (rotations.mul_mem
+-            (rotations.inv_mem x_mem_rotations) z_mem_rotations)
+-          (rotations.inv_mem y_mem_rotations))
+-        (rotations.inv_mem x_mem_rotations))
+-      (rotations.inv_mem y_mem_rotations))
+-    (rotations.inv_mem x_mem_rotations)
+-
+-/-- The direct translation-matrix representation is faithful. -/
+-theorem latticeMatrixHom_injective : Function.Injective latticeMatrixHom := by
+-  intro a b hab
+-  apply Multiplicative.toAdd.injective
+-  funext i
+-  have hentry := congrArg
+-    (fun g : Matˣ ↦ (((g : Mat) i.castSucc 3))) hab
+-  change (translationMatrix a.toAdd) i.castSucc 3 =
+-    (translationMatrix b.toAdd) i.castSucc 3 at hentry
+-  fin_cases i <;> simpa [translationMatrix] using hentry
+-
+-/-- The affine matrix realization is injective after restriction to the
+-literal translation subgroup. -/
+-theorem matrixBaseHom_injective_on_translations {a b : Base}
+-    (ha : a ∈ translations) (hb : b ∈ translations)
+-    (hab : matrixBaseHom a = matrixBaseHom b) : a = b := by
+-  have ha' : a ∈ latticeToBase.range := by
+-    rw [latticeToBase_range]
+-    exact ha
+-  have hb' : b ∈ latticeToBase.range := by
+-    rw [latticeToBase_range]
+-    exact hb
+-  rcases ha' with ⟨u, rfl⟩
+-  rcases hb' with ⟨v, rfl⟩
+-  have hmatrix := congrArg gammaBar.subtype hab
+-  rw [DFunLike.congr_fun matrixBaseHom_comp_latticeToBase u,
+-    DFunLike.congr_fun matrixBaseHom_comp_latticeToBase v] at hmatrix
+-  exact congrArg latticeToBase (latticeMatrixHom_injective hmatrix)
+-
+-private theorem e13_conj_v3_mem : e13 * v3 * e13⁻¹ ∈ translations := by
+-  have he : e13 ∈ Subgroup.normalizer translations := by
+-    rw [normalizer_translations_eq_top]
+-    exact Subgroup.mem_top e13
+-  exact ((Subgroup.mem_normalizer_iff.mp he) v3).mp v3_mem_translations
+-
+-private theorem e23_conj_v3_mem : e23 * v3 * e23⁻¹ ∈ translations := by
+-  have he : e23 ∈ Subgroup.normalizer translations := by
+-    rw [normalizer_translations_eq_top]
+-    exact Subgroup.mem_top e23
+-  exact ((Subgroup.mem_normalizer_iff.mp he) v3).mp v3_mem_translations
+-
+-private theorem e32_conj_v2_mem : e32 * v2 * e32⁻¹ ∈ translations := by
+-  have he : e32 ∈ Subgroup.normalizer translations := by
+-    rw [normalizer_translations_eq_top]
+-    exact Subgroup.mem_top e32
+-  exact ((Subgroup.mem_normalizer_iff.mp he) v2).mp v2_mem_translations
+-
+-private theorem conjugate_mem_translations (g u : Base)
+-    (hu : u ∈ translations) : g * u * g⁻¹ ∈ translations := by
+-  have hg : g ∈ Subgroup.normalizer translations := by
+-    rw [normalizer_translations_eq_top]
+-    exact Subgroup.mem_top g
+-  exact ((Subgroup.mem_normalizer_iff.mp hg) u).mp hu
+-
+-/-- The first short word sends the third basis translation to `v1 * v3`. -/
+-theorem e13_conj_v3 : e13 * v3 * e13⁻¹ = v1 * v3 := by
+-  apply matrixBaseHom_injective_on_translations e13_conj_v3_mem
+-    (translations.mul_mem v1_mem_translations v3_mem_translations)
+-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v1, matrixBaseGenerator_v3]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v1G, v3G, xU, yU, zU, v1U, v3U,
+-      xM, yM, zM, v1M, v3M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The second short word sends the third basis translation to `v2 * v3`. -/
+-theorem e23_conj_v3 : e23 * v3 * e23⁻¹ = v2 * v3 := by
+-  apply matrixBaseHom_injective_on_translations e23_conj_v3_mem
+-    (translations.mul_mem v2_mem_translations v3_mem_translations)
+-  simp only [e23, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v2, matrixBaseGenerator_v3]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v2G, v3G, xU, yU, zU, v2U, v3U,
+-      xM, yM, zM, v2M, v3M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The third short word sends the second basis translation to `v2 * v3`. -/
+-theorem e32_conj_v2 : e32 * v2 * e32⁻¹ = v2 * v3 := by
+-  apply matrixBaseHom_injective_on_translations e32_conj_v2_mem
+-    (translations.mul_mem v2_mem_translations v3_mem_translations)
+-  simp only [e32, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v2, matrixBaseGenerator_v3]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v2G, v3G, xU, yU, zU, v2U, v3U,
+-      xM, yM, zM, v2M, v3M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The `E₁₃` word fixes the first basis translation. -/
+-theorem e13_conj_v1 : e13 * v1 * e13⁻¹ = v1 := by
+-  apply matrixBaseHom_injective_on_translations
+-    (conjugate_mem_translations e13 v1 v1_mem_translations)
+-    v1_mem_translations
+-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v1]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v1G, xU, yU, zU, v1U,
+-      xM, yM, zM, v1M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The `E₁₃` word fixes the second basis translation. -/
+-theorem e13_conj_v2 : e13 * v2 * e13⁻¹ = v2 := by
+-  apply matrixBaseHom_injective_on_translations
+-    (conjugate_mem_translations e13 v2 v2_mem_translations)
+-    v2_mem_translations
+-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v2]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v2G, xU, yU, zU, v2U,
+-      xM, yM, zM, v2M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The `E₂₃` word fixes the second basis translation. -/
+-theorem e23_conj_v2 : e23 * v2 * e23⁻¹ = v2 := by
+-  apply matrixBaseHom_injective_on_translations
+-    (conjugate_mem_translations e23 v2 v2_mem_translations)
+-    v2_mem_translations
+-  simp only [e23, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v2]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v2G, xU, yU, zU, v2U,
+-      xM, yM, zM, v2M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- The `E₃₂` word fixes the third basis translation. -/
+-theorem e32_conj_v3 : e32 * v3 * e32⁻¹ = v3 := by
+-  apply matrixBaseHom_injective_on_translations
+-    (conjugate_mem_translations e32 v3 v3_mem_translations)
+-    v3_mem_translations
+-  simp only [e32, map_mul, map_inv, matrixBaseHom_generator,
+-    matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
+-    matrixBaseGenerator_v3]
+-  apply Subtype.ext
+-  apply Units.ext
+-  apply Matrix.ext
+-  intro i j
+-  fin_cases i <;> fin_cases j <;>
+-    norm_num [xG, yG, zG, v3G, xU, yU, zU, v3U,
+-      xM, yM, zM, v3M, Matrix.mul_apply, Fin.sum_univ_succ]
+-
+-/-- Iterating a transvection conjugation adds the corresponding integral
+-multiple of the fixed direction. -/
+-private theorem zpow_conj_of_transvection {G : Type*} [Group G]
+-    {e u v : G} (heu : Commute e u) (huv : Commute u v)
+-    (hstep : e * v * e⁻¹ = u * v) (n : ℤ) :
+-    e ^ n * v * (e ^ n)⁻¹ = u ^ n * v := by
+-  have hback : e⁻¹ * v * e = u⁻¹ * v := by
+-    have hv : v = u * (e⁻¹ * v * e) := by
+-      calc
+-        v = e⁻¹ * (e * v * e⁻¹) * e := by group
+-        _ = e⁻¹ * (u * v) * e := by rw [hstep]
+-        _ = u * (e⁻¹ * v * e) := by rw [heu.eq]; group
+-    rw [hv]
+-    group
+-  induction n using Int.induction_on with
+-  | zero => simp
+-  | succ n ih =>
+-      rw [zpow_add_one]
+-      calc
+-        (e ^ (n : ℤ) * e) * v * (e ^ (n : ℤ) * e)⁻¹ =
+-            e ^ (n : ℤ) * (e * v * e⁻¹) * (e ^ (n : ℤ))⁻¹ := by group
+-        _ = e ^ (n : ℤ) * (u * v) * (e ^ (n : ℤ))⁻¹ := by rw [hstep]
+-        _ = u * (e ^ (n : ℤ) * v * (e ^ (n : ℤ))⁻¹) := by
+-          rw [(heu.zpow_left n).eq]
+-          group
+-        _ = u * (u ^ (n : ℤ) * v) := by rw [ih]
+-        _ = u ^ ((n : ℤ) + 1) * v := by
+-          rw [zpow_add_one]
+-          group
+-  | pred n ih =>
+-      rw [zpow_sub_one]
+-      calc
+-        (e ^ (-(n : ℤ)) * e⁻¹) * v * (e ^ (-(n : ℤ)) * e⁻¹)⁻¹ =
+-            e ^ (-(n : ℤ)) * (e⁻¹ * v * e) *
+-              (e ^ (-(n : ℤ)))⁻¹ := by group
+-        _ = e ^ (-(n : ℤ)) * (u⁻¹ * v) *
+-              (e ^ (-(n : ℤ)))⁻¹ := by rw [hback]
+-        _ = u⁻¹ * (e ^ (-(n : ℤ)) * v *
+-              (e ^ (-(n : ℤ)))⁻¹) := by
+-          rw [(heu.zpow_left (-(n : ℤ))).eq]
+-          group
+-        _ = u⁻¹ * (u ^ (-(n : ℤ)) * v) := by rw [ih]
+-        _ = u ^ (-(n : ℤ) - 1) * v := by
+-          rw [zpow_sub_one]
+-          group
+-
+-private theorem commute_of_conj_eq_self {G : Type*} [Group G] {g u : G}
+-    (h : g * u * g⁻¹ = u) : Commute g u := by
+-  rw [Commute]
+-  calc
+-    g * u = (g * u * g⁻¹) * g := by group
+-    _ = u * g := by rw [h]
+-
+-private theorem e13_zpow_conj_v3 (n : ℤ) :
+-    e13 ^ n * v3 * (e13 ^ n)⁻¹ = v1 ^ n * v3 :=
+-  zpow_conj_of_transvection
+-    (commute_of_conj_eq_self e13_conj_v1)
+-    (translations_commute v1_mem_translations v3_mem_translations)
+-    e13_conj_v3 n
+-
+-private theorem e13_zpow_conj_v2 (n : ℤ) :
+-    e13 ^ n * v2 * (e13 ^ n)⁻¹ = v2 := by
+-  have hcomm := commute_of_conj_eq_self e13_conj_v2
+-  rw [(hcomm.zpow_left n).eq]
+-  group
+-
+-private theorem e23_zpow_conj_v3 (n : ℤ) :
+-    e23 ^ n * v3 * (e23 ^ n)⁻¹ = v2 ^ n * v3 :=
+-  zpow_conj_of_transvection
+-    (commute_of_conj_eq_self e23_conj_v2)
+-    (translations_commute v2_mem_translations v3_mem_translations)
+-    e23_conj_v3 n
+-
+-private theorem e32_zpow_conj_v2 (n : ℤ) :
+-    e32 ^ n * v2 * (e32 ^ n)⁻¹ = v2 * v3 ^ n := by
+-  have h := zpow_conj_of_transvection
+-    (commute_of_conj_eq_self e32_conj_v3)
+-    (translations_commute v3_mem_translations v2_mem_translations)
+-    (by
+-      rw [(translations_commute v2_mem_translations v3_mem_translations).eq]
+-      exact e32_conj_v2) n
+-  calc
+-    e32 ^ n * v2 * (e32 ^ n)⁻¹ = v3 ^ n * v2 := h
+-    _ = v2 * v3 ^ n :=
+-      (translations_commute v3_mem_translations v2_mem_translations).zpow_left n |>.eq
+-
+-/-- Every integral translation is a product of two conjugates of the fixed
+-basis translations `v3` and `v2` by elements of the rotation subgroup.
+-
+-This is the elementary relative-`(T)` orbit calculation for the literal
+-affine base; notably, the number of conjugates is uniformly two, independent
+-of the lattice coordinates. -/
+-theorem latticeTranslation_eq_two_rotation_conjugates
+-    (a : Multiplicative Lattice) :
+-    ∃ r s : rotations,
+-      latticeToBase a =
+-        (r : Base) * v3 * (r : Base)⁻¹ *
+-          ((s : Base) * v2 * (s : Base)⁻¹) := by
+-  let m : ℤ := a.toAdd 0
+-  let n : ℤ := a.toAdd 1 - 1
+-  let k : ℤ := a.toAdd 2 - 1
+-  let r : rotations :=
+-    ⟨e13 ^ m * e23 ^ n,
+-      rotations.mul_mem (rotations.zpow_mem e13_mem_rotations m)
+-        (rotations.zpow_mem e23_mem_rotations n)⟩
+-  let s : rotations :=
+-    ⟨e32 ^ k, rotations.zpow_mem e32_mem_rotations k⟩
+-  refine ⟨r, s, ?_⟩
+-  have hr : (r : Base) * v3 * (r : Base)⁻¹ =
+-      v1 ^ m * v2 ^ n * v3 := by
+-    dsimp only [r]
+-    calc
+-      (e13 ^ m * e23 ^ n) * v3 * (e13 ^ m * e23 ^ n)⁻¹ =
+-          e13 ^ m * (e23 ^ n * v3 * (e23 ^ n)⁻¹) *
+-            (e13 ^ m)⁻¹ := by group
+-      _ = e13 ^ m * (v2 ^ n * v3) * (e13 ^ m)⁻¹ := by
+-        rw [e23_zpow_conj_v3]
+-      _ = (e13 ^ m * v2 ^ n * (e13 ^ m)⁻¹) *
+-            (e13 ^ m * v3 * (e13 ^ m)⁻¹) := by group
+-      _ = v2 ^ n * (v1 ^ m * v3) := by
+-        rw [← conj_zpow, e13_conj_v2, e13_zpow_conj_v3]
+-      _ = v1 ^ m * v2 ^ n * v3 := by
+-        have hcomm := translations_commute v1_mem_translations v2_mem_translations
+-        rw [(hcomm.zpow m n).eq]
+-        group
+-  have hs : (s : Base) * v2 * (s : Base)⁻¹ = v2 * v3 ^ k := by
+-    simpa only [s] using e32_zpow_conj_v2 k
+-  rw [lattice_eq_basis_product a, map_mul, map_mul, map_zpow, map_zpow,
+-    map_zpow, latticeToBase_basis_zero, latticeToBase_basis_one,
+-    latticeToBase_basis_two, hr, hs]
+-  dsimp only [m, n, k]
+-  have h23 := translations_commute v2_mem_translations v3_mem_translations
+-  calc
+-    v1 ^ a.toAdd 0 * v2 ^ a.toAdd 1 * v3 ^ a.toAdd 2 =
+-        v1 ^ a.toAdd 0 * (v2 ^ (a.toAdd 1 - 1) * v2) *
+-          (v3 * v3 ^ (a.toAdd 2 - 1)) := by
+-      rw [← zpow_add_one, sub_add_cancel]
+-      rw [show v3 * v3 ^ (a.toAdd 2 - 1) =
+-          v3 ^ (a.toAdd 2 - 1) * v3 from
+-        (Commute.self_zpow v3 (a.toAdd 2 - 1)).eq]
+-      rw [← zpow_add_one, sub_add_cancel]
+-    _ = (v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * v3) *
+-        (v2 * v3 ^ (a.toAdd 2 - 1)) := by
+-      rw [(h23.zpow_left (a.toAdd 1 - 1)).eq]
+-      group
+-
+-/-- Subgroup-facing form of
+-`latticeTranslation_eq_two_rotation_conjugates`. -/
+-theorem translation_eq_two_rotation_conjugates {t : Base}
+-    (ht : t ∈ translations) :
+-    ∃ r s : rotations,
+-      t = (r : Base) * v3 * (r : Base)⁻¹ *
+-        ((s : Base) * v2 * (s : Base)⁻¹) := by
+-  let a := latticeEquivTranslations.symm ⟨t, ht⟩
+-  obtain ⟨r, s, hrs⟩ := latticeTranslation_eq_two_rotation_conjugates a
+-  refine ⟨r, s, ?_⟩
+-  have ha : latticeEquivTranslations a = ⟨t, ht⟩ :=
+-    latticeEquivTranslations.apply_symm_apply ⟨t, ht⟩
+-  change latticeToBase a = t at ha
+-  exact ha.symm.trans hrs
+-
+-section Displacement
+-
+-variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+-
+-private theorem norm_mul_displacement_le
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (a b : Base) (p : E) :
+-    ‖rho (a * b) p - p‖ ≤ ‖rho a p - p‖ + ‖rho b p - p‖ := by
+-  calc
+-    ‖rho (a * b) p - p‖ =
+-        ‖rho a (rho b p - p) + (rho a p - p)‖ := by
+-      congr 1
+-      simp only [map_mul, LinearIsometryEquiv.coe_mul, Function.comp_apply,
+-        map_sub, map_add]
+-      abel
+-    _ ≤ ‖rho a (rho b p - p)‖ + ‖rho a p - p‖ := norm_add_le _ _
+-    _ = ‖rho b p - p‖ + ‖rho a p - p‖ := by rw [(rho a).norm_map]
+-    _ = ‖rho a p - p‖ + ‖rho b p - p‖ := add_comm _ _
+-
+-private theorem norm_conjugate_displacement_eq
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
+-    (hfixed : ∀ r : rotations, rho (r : Base) p = p)
+-    (r : rotations) (v : Base) :
+-    ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ = ‖rho v p - p‖ := by
+-  have hr : rho (r : Base) p = p := hfixed r
+-  have hri : rho ((r : Base)⁻¹) p = p := by
+-    have := congrArg (fun q : E ↦ rho ((r : Base)⁻¹) q) hr
+-    simpa using this
+-  calc
+-    ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ =
+-        ‖rho (r : Base) (rho v p - p)‖ := by
+-      congr 1
+-      simp only [map_mul, map_inv, LinearIsometryEquiv.coe_mul,
+-        Function.comp_apply, map_sub, hri, hr]
+-    _ = ‖rho v p - p‖ := (rho (r : Base)).norm_map _
+-
+-/-- A vector fixed by all literal rotations has uniformly bounded
+-translation orbit: every translation moves it by at most the sum of the
+-displacements of `v3` and `v2`.
+-
+-This is the quantitative relative-`(T)` consequence of the two-conjugate
+-normal form and is independent of the lattice coordinates. -/
+-theorem norm_translation_displacement_le_of_rotations_fixed
+-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
+-    (hfixed : ∀ r : rotations, rho (r : Base) p = p)
+-    {t : Base} (ht : t ∈ translations) :
+-    ‖rho t p - p‖ ≤ ‖rho v3 p - p‖ + ‖rho v2 p - p‖ := by
+-  obtain ⟨r, s, hrs⟩ := translation_eq_two_rotation_conjugates ht
+-  rw [hrs]
+-  calc
+-    ‖rho (((r : Base) * v3 * (r : Base)⁻¹) *
+-        ((s : Base) * v2 * (s : Base)⁻¹)) p - p‖ ≤
+-        ‖rho ((r : Base) * v3 * (r : Base)⁻¹) p - p‖ +
+-          ‖rho ((s : Base) * v2 * (s : Base)⁻¹) p - p‖ :=
+-      norm_mul_displacement_le rho _ _ p
+-    _ = ‖rho v3 p - p‖ + ‖rho v2 p - p‖ := by
+-      rw [norm_conjugate_displacement_eq rho p hfixed r v3,
+-        norm_conjugate_displacement_eq rho p hfixed s v2]
+-
+-end Displacement
+-
+-end
+-
+-end LiteralTranslationOrbit
+-end GroupApproximation
+diff --git a/GroupApproximation/Sofic/LiteralUniversalHorn.lean b/GroupApproximation/Sofic/LiteralUniversalHorn.lean
+index b7c28394d..f8b494239 100644
+--- a/GroupApproximation/Sofic/LiteralUniversalHorn.lean
++++ b/GroupApproximation/Sofic/LiteralUniversalHorn.lean
+@@ -1,18 +1,18 @@
+-import GroupApproximation.Sofic.LiteralNonMFLinearWitness
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ 
+ /-!
+-# The finite universal Horn sentence falsified by the literal presentation
++# The finite universal Horn obstruction carried by the literal presentation
+ 
+ The group-theoretic content of the manuscript's quasi-identity is isolated
+ here without introducing a first-order syntax library.  `SatisfiesQuasiIdentity`
+ is the semantic universal Horn sentence associated to a finite list of free
+ group relators and one conclusion word.
+ 
+-The canonical tuple in the literal presented group violates the conclusion
+-unconditionally, using the exact Clifford realization of its mark.  This
+-module deliberately makes no analytic claim that operator-MF groups satisfy
+-the sentence: the repository has no proof of property `(T)` for the abstract
+-six-generator group printed in the literal presentation.
++For the literal eight-generator presentation, every operator-MF target
++satisfies the sentence once property `(T)` of the literal base is supplied;
++an exact rational SOS certificate supplies precisely that input.  The
++canonical tuple in the literal presented group violates the conclusion
++unconditionally, using the exact Clifford realization of its mark.
+ -/
+ 
+ namespace GroupApproximation
+@@ -34,7 +34,47 @@ def SatisfiesQuasiIdentity (X : Type u)
+ 
+ namespace LiteralUniversalHorn
+ 
+-open LiteralNonMFPresentation
++open LiteralNonMFPresentation LiteralKazhdanCompression
++
++/-- Every map from the literal presented group to an operator-MF group kills
++the marked word, provided the literal base has property `(T)`. -/
++theorem map_mark_eq_one_of_hasKazhdanPropertyT
++    (hT : HasKazhdanPropertyT.{0, 0} Base)
++    {H : Type v} [Group H] (hH : IsOperatorMF H)
++    (f : MarkedGroup →* H) : f mark = 1 := by
++  obtain ⟨X, hX, j, hj⟩ := hH
++  apply hj
++  have hkill :=
++    (mark_normMFInvisible_of_hasKazhdanPropertyT hT).toCoronaMFInvisible
++      X hX (j.comp f)
++  simpa only [MonoidHom.coe_comp, Function.comp_apply, map_one] using hkill
++
++/-- **Finite quasi-identity for the literal presentation.**  Under the one
++remaining property-`(T)` input, every operator-MF group satisfies all the
++displayed relators only by killing the marked word. -/
++theorem operatorMF_satisfies_literalQuasiIdentity_of_hasKazhdanPropertyT
++    (hT : HasKazhdanPropertyT.{0, 0} Base)
++    {H : Type v} [Group H] (hH : IsOperatorMF H) :
++    SatisfiesQuasiIdentity Generator relators markedWord H := by
++  intro assignment hrelations
++  let f : MarkedGroup →* H := PresentedGroup.toGroup (by
++    intro r hr
++    exact hrelations r (Finset.mem_coe.mp hr))
++  have hmark : f mark = 1 :=
++    map_mark_eq_one_of_hasKazhdanPropertyT hT hH f
++  change f (PresentedGroup.mk _ markedWord) = 1 at hmark
++  rw [presentedToGroup_mk] at hmark
++  exact hmark
++
++/-- Proof-carrying form: an exact rational group-ring SOS certificate makes
++the finite quasi-identity valid in every operator-MF group. -/
++theorem operatorMF_satisfies_literalQuasiIdentity_of_isRationalCertificate
++    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c)
++    {H : Type v} [Group H] (hH : IsOperatorMF H) :
++    SatisfiesQuasiIdentity Generator relators markedWord H :=
++  operatorMF_satisfies_literalQuasiIdentity_of_hasKazhdanPropertyT
++    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
++    hH
+ 
+ /-- The canonical generating tuple of the literal presented group satisfies
+ every premise of the quasi-identity. -/
+@@ -63,5 +103,17 @@ theorem literalMarkedGroup_not_satisfies_literalQuasiIdentity :
+     (h (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i))
+       canonicalAssignment_satisfies_relators)
+ 
++/-- Exact separation package: a rational SOS certificate makes the finite
++sentence true in every operator-MF group and false in the literal group. -/
++theorem literalQuasiIdentity_separates_of_isRationalCertificate
++    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
++    (∀ (H : Type) [Group H], IsOperatorMF H →
++      SatisfiesQuasiIdentity Generator relators markedWord H) ∧
++      ¬ SatisfiesQuasiIdentity Generator relators markedWord MarkedGroup := by
++  exact ⟨fun H _ hH ↦
++    operatorMF_satisfies_literalQuasiIdentity_of_isRationalCertificate
++      hcert hH,
++    literalMarkedGroup_not_satisfies_literalQuasiIdentity⟩
++
+ end LiteralUniversalHorn
+ end GroupApproximation
+diff --git a/GroupApproximation/Sofic/MarkedCompressionGroup.lean b/GroupApproximation/Sofic/MarkedCompressionGroup.lean
+index 5b5ed2a24..fe1582da2 100644
+--- a/GroupApproximation/Sofic/MarkedCompressionGroup.lean
++++ b/GroupApproximation/Sofic/MarkedCompressionGroup.lean
+@@ -230,10 +230,6 @@ instance : Group (Ambient α hα) :=
+ def iotaAmbient : Γ →* Ambient α hα :=
+   (inr : Vertical α hα →* Ambient α hα).comp (iotaVertical α hα)
+ 
+-/-- The base copy remains embedded after adjoining the Clifford lamps. -/
+-theorem iotaAmbient_injective : Function.Injective (iotaAmbient α hα) :=
+-  SemidirectProduct.inr_injective.comp (iotaVertical_injective α hα)
+-
+ /-- The stable letter in the ambient group. -/
+ def tAmbient : Ambient α hα := inr (tVertical α hα)
+ 
+diff --git a/GroupApproximation/Sofic/NegativeCornerModel.lean b/GroupApproximation/Sofic/NegativeCornerModel.lean
+index a7471a3b7..17de092df 100644
+--- a/GroupApproximation/Sofic/NegativeCornerModel.lean
++++ b/GroupApproximation/Sofic/NegativeCornerModel.lean
+@@ -37,13 +37,8 @@ non-local games and the hyperlinear profile of groups*, Proposition 2.7
+ (arXiv:1711.10676).  Their normalized Hilbert--Schmidt argument obtains a
+ positive relative dimension.  The operator-norm construction here needs only
+ that the corner is nonempty and then treats it as the whole finite model, so
+-no rank-density estimate is used. Bachner--Dogon--Lubotzky,
+-*On L1-approximation of groups*, Lemma 2.3 and Propositions 1.5 and 2.4,
+-already carry out the corresponding operator-norm, dimension-changing
+-corner restriction and polar correction for a central involution. The new
+-downstream ingredient here is not this local corner technology but its use in
+-the Kazhdan-adjoint/stable-finiteness universal-kernel argument. This file is
+-an independent Lean proof; no external Lean code was copied.
++no rank-density estimate is used.  This file is an independent Lean proof;
++no external Lean code was copied.
+ -/
+ 
+ namespace GroupApproximation
+diff --git a/GroupApproximation/Sofic/NormMFResidualDetector.lean b/GroupApproximation/Sofic/NormMFResidualDetector.lean
+index 63b823831..5a1128f11 100644
+--- a/GroupApproximation/Sofic/NormMFResidualDetector.lean
++++ b/GroupApproximation/Sofic/NormMFResidualDetector.lean
+@@ -2,17 +2,13 @@ import GroupApproximation.Sofic.WeakMFUltraproduct
+ import Mathlib.GroupTheory.Commutator.Basic
+ 
+ /-!
+-# The universal-ultraproduct residual and the marked-compression endpoint
++# The operator-norm MF residual and the marked-compression endpoint
+ 
+ This file isolates the exact formal endpoint of the marked Kazhdan-compression
+ obstruction.  An element is `NormMFInvisible` when every homomorphism from its
+-group to every operator-norm matrix ultraproduct kills it.  The quantifier is
+-over every ultrafilter, including principal ultrafilters.  Such elements form
+-the universal-ultraproduct residual defined below.  This is not definitionally
+-the paper's cofinite-corona radical.  For countable groups,
+-`NormMFCoronaRadical` proves elementwise equivalence and equality of the two
+-subgroups.  A single nonidentity element in this residual precludes
+-weak/operator-norm MF approximation.
++group to every operator-norm matrix ultraproduct kills it.  Such elements form
++the operator-norm MF residual.  A single nonidentity element in this residual
++precludes weak/operator-norm MF approximation.
+ 
+ The final section records the group word used by the explicit construction:
+ 
+@@ -40,12 +36,10 @@ universe v
+ 
+ variable {G : Type u} [Group G]
+ 
+-/-! ## The universal operator-norm-ultraproduct residual -/
++/-! ## The operator-norm MF residual -/
+ 
+ /-- An element is invisible to operator-norm matrix ultraproducts when every
+-homomorphism into every such ultraproduct kills it.  This includes targets
+-built from principal ultrafilters; use `CoronaMFInvisible` for the paper's
+-cofinite-corona formulation. -/
++homomorphism into every such ultraproduct kills it. -/
+ def NormMFInvisible (x : G) : Prop :=
+   ∀ (I : Type) (U : Ultrafilter I) (X : I → FiniteModel)
+     (rho : G →* UniversalWeakMF U X), rho x = 1
+@@ -63,10 +57,7 @@ theorem NormMFInvisible.map {H : Type v} [Group H] {x : G}
+   intro I U X rho
+   exact hx I U X (rho.comp f)
+ 
+-/-- Universal-ultraproduct-invisible elements form a subgroup.  The historical
+-name `normMFResidual` is not a definitional identification with the paper's
+-cofinite-corona radical; see `coronaMFResidual_eq_normMFResidual` for the
+-countable-group comparison theorem. -/
++/-- Operator-norm MF-invisible elements form a subgroup. -/
+ def normMFResidual (G : Type u) [Group G] : Subgroup G where
+   carrier := {x | NormMFInvisible x}
+   one_mem' := normMFInvisible_one
+diff --git a/GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean b/GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean
+index 38f5dbd30..1ce3a261c 100644
+--- a/GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean
++++ b/GroupApproximation/Sofic/NormallyGeneratedMFObstruction.lean
+@@ -1,22 +1,35 @@
+ import GroupApproximation.Sofic.NormMFResidualFunctorial
++import GroupApproximation.Kazhdan.Kazhdan
++import Mathlib.GroupTheory.FinitelyPresentedGroup
+ import Mathlib.GroupTheory.IsPerfect
++import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+ 
+ /-!
+ # Normally generated MF obstructions
+ 
+ An MF-invisible element which normally generates its ambient group forces the
+ whole norm-MF residual to be the ambient group.  Consequently every
+-homomorphism to a group with trivial norm-MF residual is trivial.
++homomorphism to a group with trivial norm-MF residual is trivial.  This file
++also packages the input supplied by a normally generated finitely presented
++Kazhdan envelope theorem as explicit data: no existence theorem is postulated.
+ -/
+ 
+ namespace GroupApproximation
+ 
+ open scoped commutatorElement
+ 
+-universe u v
++universe u v w x
+ 
+ variable {Γ : Type u} [Group Γ]
+ 
++/-- Every finite-dimensional linear representation, over every field, is
++trivial.  The explicit name records the field-general statement and avoids
++identifying it with any one topological convention for "almost periodic". -/
++def AllFiniteDimensionalRepresentationsTrivial
++    (Γ : Type u) [Group Γ] : Prop :=
++  ∀ {k : Type v} {V : Type w} [Field k] [AddCommGroup V] [Module k V]
++    [FiniteDimensional k V], ∀ π : Γ →* (Module.End k V)ˣ, π = 1
++
+ /-- A homomorphism is trivial as soon as it kills an element which normally
+ generates its source.  This is the purely algebraic bridge from a marked
+ finite-dimensional kill theorem to field-general representation-triviality
+@@ -158,4 +171,179 @@ theorem not_surjective_of_residual_eq_top_to_residuallyFinite
+     (normMFResidual_eq_bot_of_isWeakMF
+       (isWeakMF_of_residuallyFinite (H := M))) f
+ 
++/-! ## Explicit envelope data -/
++
++/-- Data furnished by a normally generated finitely presented Kazhdan
++envelope theorem.  The literature-dependent existence of such data is not
++asserted here: a consumer must provide the envelope, embedding, and proofs. -/
++structure NormallyGeneratedKazhdanEnvelopeData
++    (E : Type u) [Group E] (w : E) where
++  Envelope : Type v
++  [groupEnvelope : Group Envelope]
++  embedding : E →* Envelope
++  embedding_injective : Function.Injective embedding
++  [finitelyPresented : Group.IsFinitelyPresented Envelope]
++  kazhdan : HasKazhdanPropertyT.{v, 0} Envelope
++  normally_generates :
++    Subgroup.normalClosure ({embedding w} : Set Envelope) = ⊤
++
++namespace NormallyGeneratedKazhdanEnvelopeData
++
++variable {E : Type u} [Group E] {w : E}
++    (D : NormallyGeneratedKazhdanEnvelopeData.{u, v} E w)
++
++local instance : Group D.Envelope := D.groupEnvelope
++local instance : Group.IsFinitelyPresented D.Envelope := D.finitelyPresented
++
++/-- A finitely presented group is countable, extracted directly from its
++finite free-group presentation. -/
++theorem envelopeCountable : Countable D.Envelope := by
++  obtain ⟨n, f, hsurj, -⟩ := D.finitelyPresented.out
++  letI : Countable (FreeGroup (Fin n)) := by
++    have hfree : Function.Surjective
++        (FreeGroup.mk : List (Fin n × Bool) → FreeGroup (Fin n)) := by
++      intro g
++      obtain ⟨L, hL⟩ := Quot.exists_rep g
++      exact ⟨L, by rw [← FreeGroup.quot_mk_eq_mk, hL]⟩
++    exact hfree.countable
++  exact hsurj.countable
++
++/-- Injectivity of the envelope embedding preserves nontriviality of the
++marked element. -/
++theorem embedding_ne_one {hw : w ≠ 1} : D.embedding w ≠ 1 := by
++  intro h
++  apply hw
++  apply D.embedding_injective
++  simpa using h
++
++/-- Any homomorphism out of the envelope is trivial once it kills the
++normally generating embedded mark.  In particular, a finite-dimensional
++kill theorem for the source mark can be transported through `embedding` and
++then upgraded to triviality of the whole envelope representation. -/
++theorem hom_eq_one_of_map_embedding_eq_one
++    {M : Type*} [Group M] (f : D.Envelope →* M)
++    (hw : f (D.embedding w) = 1) : f = 1 :=
++  hom_eq_one_of_map_eq_one_of_normalClosure_eq_top
++    D.normally_generates f hw
++
++/-- Precomposition form of `hom_eq_one_of_map_embedding_eq_one`.  It is
++tailored to a marked kill theorem on the source: if the restriction of an
++envelope representation along `embedding` kills `w`, normal generation
++forces the entire envelope representation to be trivial. -/
++theorem hom_eq_one_of_comp_embedding_map_eq_one
++    {M : Type*} [Group M] (f : D.Envelope →* M)
++    (hw : (f.comp D.embedding) w = 1) : f = 1 := by
++  apply D.hom_eq_one_of_map_embedding_eq_one f
++  simpa using hw
++
++/-- A field-general marked kill theorem on the source upgrades, by
++precomposition and normal generation, to triviality of every
++finite-dimensional linear representation of the envelope. -/
++theorem allFiniteDimensionalRepresentationsTrivial
++    (hkill : ∀ {k : Type w} {V : Type x}
++      [Field k] [AddCommGroup V] [Module k V]
++      [FiniteDimensional k V],
++      ∀ π : E →* (Module.End k V)ˣ, π w = 1) :
++    AllFiniteDimensionalRepresentationsTrivial.{v, w, x} D.Envelope := by
++  intro k V _ _ _ _ π
++  apply D.hom_eq_one_of_comp_embedding_map_eq_one π
++  exact hkill (k := k) (V := V) (π.comp D.embedding)
++
++/-- The supplied envelope is perfect whenever its normally generating
++embedded mark belongs to its commutator subgroup. -/
++theorem envelopeIsPerfect
++    (hw : D.embedding w ∈ commutator D.Envelope) :
++    Group.IsPerfect D.Envelope :=
++  isPerfect_of_mem_commutator_normalClosure_eq_top hw D.normally_generates
++
++/-- A concrete source commutator remains a commutator under the envelope
++embedding; if it is the normally generating mark, the envelope is perfect. -/
++theorem envelopeIsPerfect_of_eq_commutator (a b : E)
++    (hw : w = ⁅a, b⁆) : Group.IsPerfect D.Envelope := by
++  apply D.envelopeIsPerfect
++  have hmap : D.embedding w = ⁅D.embedding a, D.embedding b⁆ := by
++    calc
++      D.embedding w = D.embedding ⁅a, b⁆ := congrArg D.embedding hw
++      _ = ⁅D.embedding a, D.embedding b⁆ := map_commutatorElement D.embedding a b
++  rw [hmap]
++  exact Subgroup.commutator_mem_commutator
++    (Subgroup.mem_top _) (Subgroup.mem_top _)
++
++/-- MF invisibility is portable through the envelope embedding. -/
++theorem embedding_mem_normMFResidual
++    (hw : w ∈ normMFResidual E) :
++    D.embedding w ∈ normMFResidual D.Envelope :=
++  mem_normMFResidual_iff.mpr
++    ((mem_normMFResidual_iff.mp hw).map D.embedding)
++
++/-- The normally generated envelope has full norm-MF residual. -/
++theorem envelope_normMFResidual_eq_top
++    (hw : w ∈ normMFResidual E) :
++    normMFResidual D.Envelope = ⊤ :=
++  normMFResidual_eq_top_of_mem_normalClosure_eq_top
++    (D.embedding_mem_normMFResidual hw) D.normally_generates
++
++/-- Every homomorphism from the envelope to a residual-free group is
++trivial. -/
++theorem hom_eq_one_to_residualFree
++    (hw : w ∈ normMFResidual E)
++    {M : Type*} [Group M] (hM : normMFResidual M = ⊥)
++    (f : D.Envelope →* M) : f = 1 :=
++  hom_eq_one_of_residual_eq_top_to_residual_eq_bot
++    (D.envelope_normMFResidual_eq_top hw) hM f
++
++/-- Every homomorphism from the envelope to an operator-MF group is
++trivial, with no countability assumption on the target: its range is
++countable and inherits operator-MF. -/
++theorem hom_eq_one_to_isOperatorMF
++    (hw : w ∈ normMFResidual E)
++    {M : Type*} [Group M] (hM : IsOperatorMF M)
++    (f : D.Envelope →* M) : f = 1 := by
++  letI : Countable D.Envelope := D.envelopeCountable
++  apply MonoidHom.ext
++  intro g
++  exact map_eq_one_of_normMFResidual_eq_top_to_isOperatorMF
++    (D.envelope_normMFResidual_eq_top hw) hM f g
++
++/-- The envelope itself is not operator-MF when the source mark is
++nontrivial and invisible. -/
++theorem not_isOperatorMF
++    (hw : w ∈ normMFResidual E) (hw1 : w ≠ 1) :
++    ¬ IsOperatorMF D.Envelope := by
++  intro hMF
++  have htrivial := D.hom_eq_one_to_isOperatorMF hw hMF
++    (MonoidHom.id D.Envelope)
++  have himage : D.embedding w = 1 := by
++    simpa using DFunLike.congr_fun htrivial (D.embedding w)
++  exact D.embedding_ne_one (hw := hw1) himage
++
++/-- Every homomorphism from the envelope to a finite group is trivial. -/
++theorem hom_eq_one_to_finite
++    (hw : w ∈ normMFResidual E)
++    (M : Type) [Group M] [Finite M] (f : D.Envelope →* M) : f = 1 :=
++  hom_eq_one_of_residual_eq_top_to_finite
++    (D.envelope_normMFResidual_eq_top hw) M f
++
++/-- Every homomorphism from the envelope to a countable residually finite
++group is trivial. -/
++theorem hom_eq_one_to_residuallyFinite
++    (hw : w ∈ normMFResidual E)
++    {M : Type*} [Group M] [Countable M] [Group.ResiduallyFinite M]
++    (f : D.Envelope →* M) : f = 1 :=
++  hom_eq_one_of_residual_eq_top_to_residuallyFinite
++    (D.envelope_normMFResidual_eq_top hw) f
++
++/-- Formal consequence package: the supplied envelope is finitely presented,
++Kazhdan, has full MF residual, and is not operator-MF. -/
++theorem consequence_package
++    (hw : w ∈ normMFResidual E) (hw1 : w ≠ 1) :
++    Group.IsFinitelyPresented D.Envelope ∧
++      HasKazhdanPropertyT.{v, 0} D.Envelope ∧
++      normMFResidual D.Envelope = ⊤ ∧
++      ¬ IsOperatorMF D.Envelope :=
++  ⟨D.finitelyPresented, D.kazhdan,
++    D.envelope_normMFResidual_eq_top hw,
++    D.not_isOperatorMF hw hw1⟩
++
++end NormallyGeneratedKazhdanEnvelopeData
+ end GroupApproximation
+diff --git a/GroupApproximation/Sofic/OperatorMFFreeProductConsequences.lean b/GroupApproximation/Sofic/OperatorMFFreeProductConsequences.lean
+index dd01f28e5..83a780dbd 100644
+--- a/GroupApproximation/Sofic/OperatorMFFreeProductConsequences.lean
++++ b/GroupApproximation/Sofic/OperatorMFFreeProductConsequences.lean
+@@ -1,3 +1,4 @@
++import GroupApproximation.Sofic.LiteralKazhdanCompression
+ import GroupApproximation.Sofic.OperatorMFPositiveControls
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
+ import Mathlib.GroupTheory.FinitelyPresentedGroup
+@@ -62,4 +63,39 @@ theorem chosen_coprod_int_finitelyPresented_not_isOperatorMF :
+ 
+ end ChosenFreeProductConsequences
+ 
++namespace LiteralFreeProductConsequences
++
++open LiteralNonMFPresentation LiteralKazhdanCompression
++
++/-- Conditional kernel-checked form of the companion note's `E * Z`
++consequence.  The literal printed presentation is finitely presented
++unconditionally; its non-MF endpoint uses exactly the still-explicit
++property-`(T)` input for its six-generator base. -/
++theorem literal_coprod_int_finitelyPresented_not_isOperatorMF
++    (hT : HasKazhdanPropertyT.{0, 0} Base) :
++    Group.IsFinitelyPresented (MarkedGroup ∗ Multiplicative ℤ) ∧
++      ¬ IsOperatorMF (MarkedGroup ∗ Multiplicative ℤ) :=
++  ⟨inferInstance,
++    not_isOperatorMF_coprod_left
++      (not_isOperatorMF_of_hasKazhdanPropertyT hT)⟩
++
++/-- Proof-carrying rational-SOS version of the literal `E * Z` consequence. -/
++theorem literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
++    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
++    Group.IsFinitelyPresented (MarkedGroup ∗ Multiplicative ℤ) ∧
++      ¬ IsOperatorMF (MarkedGroup ∗ Multiplicative ℤ) :=
++  literal_coprod_int_finitelyPresented_not_isOperatorMF
++    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
++
++/-- The affine--Clifford witness remains non-MF after free product with an
++infinite cyclic group, under the same literal-base input. -/
++theorem witness_coprod_int_not_isOperatorMF
++    (hT : HasKazhdanPropertyT.{0, 0} Base) :
++    ¬ IsOperatorMF
++      (LiteralNonMFLinearWitness.WitnessGroup ∗ Multiplicative ℤ) :=
++  not_isOperatorMF_coprod_left
++    (witness_not_isOperatorMF_of_hasKazhdanPropertyT hT)
++
++end LiteralFreeProductConsequences
++
+ end GroupApproximation
+diff --git a/GroupApproximation/Sofic/OperatorMFLocalNormalization.lean b/GroupApproximation/Sofic/OperatorMFLocalNormalization.lean
+index b7ff3c587..bca7856e6 100644
+--- a/GroupApproximation/Sofic/OperatorMFLocalNormalization.lean
++++ b/GroupApproximation/Sofic/OperatorMFLocalNormalization.lean
+@@ -108,11 +108,10 @@ theorem exists_pairStage
+     exact normMatrixCorona_lift_eventually_multiplicative X rho lift hlift
+       r s (ε / N) (div_pos hε hNpos)
+   obtain ⟨n, hnsep, hnmul⟩ := (hsep.and_eventually hmul).exists
+-  have hnonempty : Nonempty (X n) := Fintype.card_pos_iff.mp (hX n)
+-  letI : Nonempty (X n) := hnonempty
++  letI : Nonempty (X n) := Fintype.card_pos_iff.mp (hX n)
+   obtain ⟨p, _hp1, hpN, hpsep⟩ :=
+     OperatorNormAmplification.exists_tensorPower_pair_far
+-      hnonempty (lift g n).property (lift h n).property hδ hnsep N hN
++      inferInstance (lift g n).property (lift h n).property hδ hnsep N hN
+   exact ⟨{
+     N := N
+     n := n
+diff --git a/GroupApproximation/Sofic/OperatorMFPairAmplification.lean b/GroupApproximation/Sofic/OperatorMFPairAmplification.lean
+index 823ec9af0..98784d750 100644
+--- a/GroupApproximation/Sofic/OperatorMFPairAmplification.lean
++++ b/GroupApproximation/Sofic/OperatorMFPairAmplification.lean
+@@ -50,12 +50,13 @@ theorem exists_conjugate_diagonal_gap (hY : Nonempty Y)
+     ∃ (V : Matrix Y Y ℂ) (i : Y),
+       V ∈ Matrix.unitaryGroup Y ℂ ∧
+       ‖W - 1‖ ^ 2 / 2 ≤ 1 - ((Vᴴ * W * V) i i).re := by
++  letI : Nonempty Y := hY
+   let D : Matrix Y Y ℂ := W - 1
+   let H : Matrix Y Y ℂ := D * Dᴴ
+   let hH : H.IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
+   let V : Matrix Y Y ℂ := hH.eigenvectorUnitary
+   obtain ⟨i, hi⟩ :=
+-    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D hY
++    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D inferInstance
+   have hVV : Vᴴ * V = 1 :=
+     Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+   have hVVstar : V * Vᴴ = 1 :=
+@@ -156,6 +157,7 @@ theorem exists_conjugated_tensorPower_far_from_one (hY : Nonempty Y)
+     ∃ (V : Matrix Y Y ℂ) (p : ℕ),
+       V ∈ Matrix.unitaryGroup Y ℂ ∧ 1 ≤ p ∧ p ≤ N ∧
+       ‖opTensorPow (Vᴴ * W * V) p - 1‖ > 1 := by
++  letI : Nonempty Y := hY
+   obtain ⟨V, i, hV, hgap⟩ := exists_conjugate_diagonal_gap hY hW
+   let WV : Matrix Y Y ℂ := Vᴴ * W * V
+   have hWV : WV ∈ Matrix.unitaryGroup Y ℂ :=
+@@ -192,6 +194,7 @@ theorem exists_tensorPower_pair_far (hY : Nonempty Y)
+     (N : ℕ) (hN : 8 < (N : ℝ) * δ ^ 2) :
+     ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧
+       ‖opTensorPow A p - opTensorPow B p‖ > 1 := by
++  letI : Nonempty Y := hY
+   let W : Matrix Y Y ℂ := A * Bᴴ
+   have hW : W ∈ Matrix.unitaryGroup Y ℂ :=
+     mul_mem hA (conjTranspose_mem_unitaryGroup hB)
+diff --git a/GroupApproximation/Sofic/OperatorMFQuotientNonclosure.lean b/GroupApproximation/Sofic/OperatorMFQuotientNonclosure.lean
+index 6fd6e2980..d5b3434c6 100644
+--- a/GroupApproximation/Sofic/OperatorMFQuotientNonclosure.lean
++++ b/GroupApproximation/Sofic/OperatorMFQuotientNonclosure.lean
+@@ -1,6 +1,5 @@
+ import GroupApproximation.Sofic.ChosenNonMFTheorem
+ import GroupApproximation.Sofic.FreeGroupResiduallyFinite
+-import GroupApproximation.Sofic.LiteralNonMFPresentation
+ import GroupApproximation.Sofic.OperatorMFPositiveControls
+ 
+ /-!
+@@ -41,22 +40,4 @@ theorem operatorMF_not_closed_under_this_quotient :
+     chosenFinitelyPresented_not_isOperatorMF.2⟩
+ 
+ end OperatorMFQuotientNonclosure
+-
+-namespace LiteralOperatorMFQuotientControls
+-
+-open LiteralNonMFPresentation
+-
+-/-- The free group on the literal presentation's eight-letter alphabet is
+-operator-MF.  This is independent of any analytic claim about its quotient. -/
+-theorem source_isOperatorMF : IsOperatorMF (FreeGroup Generator) :=
+-  isOperatorMF_of_residuallyFinite
+-
+-/-- The canonical map from the rank-eight free group onto the literal
+-presented group is surjective. -/
+-theorem quotientMap_surjective :
+-    Function.Surjective
+-      (PresentedGroup.mk (relators : Set (FreeGroup Generator))) :=
+-  PresentedGroup.mk_surjective (relators : Set (FreeGroup Generator))
+-
+-end LiteralOperatorMFQuotientControls
+ end GroupApproximation
+diff --git a/scripts/Audit.lean b/scripts/Audit.lean
+index 0c5a0ced1..064d69d07 100644
+--- a/scripts/Audit.lean
++++ b/scripts/Audit.lean
+@@ -18,8 +18,8 @@ It fails, with a nonzero exit code, if either check below fails:
+    theorems verbatim.  The complete manuscript-mapped surface is pinned by
+    `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
+    statement is weakened or gains a premise, that signature gate changes.
+-2. **Transitive axiom closure.**  Every declaration compiled from a
+-   `GroupApproximation` module is traversed through the *kernel*
++2. **Transitive axiom closure.**  Every declaration in the
++   `GroupApproximation` namespace is traversed through the *kernel*
+    environment, and the accumulated axiom set must be contained in the three
+    axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
+    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
+@@ -52,54 +52,6 @@ example :
+       ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
+   ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+ 
+-example (H : Type*) [Group H] (hMF : IsOperatorMF H) :
+-    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+-      ChosenMarkedPresentation.relators
+-      ChosenMarkedPresentation.markedWord H :=
+-  ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity H hMF
+-
+-example :
+-    ¬ SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+-      ChosenMarkedPresentation.relators
+-      ChosenMarkedPresentation.markedWord
+-      ChosenMarkedPresentation.MarkedGroup :=
+-  ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
+-
+-example : IsClopen ChosenMarkedCylinder.chosenCylinder :=
+-  ChosenMarkedCylinder.chosenCylinder_isClopen
+-
+-example :
+-    ChosenMarkedCylinder.chosenCylinder ⊆
+-      {N | ¬ IsOperatorMF N.Quotient} :=
+-  ChosenMarkedCylinder.chosenCylinder_subset_nonMF
+-
+-example : LiteralCyclicCalibration.mark ≠ 1 :=
+-  LiteralCyclicCalibration.mark_ne_one
+-
+-example : Function.Surjective LiteralNonMFLinearWitness.matrixBaseHom :=
+-  LiteralNonMFLinearWitness.matrixBaseHom_surjective
+-
+-example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
+-    LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
+-  LiteralBaseRelations.x_conj_v1
+-
+-example : Subgroup.normalizer
+-    (LiteralBaseTranslationNormal.translations : Set LiteralNonMFPresentation.Base) = ⊤ :=
+-  LiteralBaseTranslationNormal.normalizer_translations_eq_top
+-
+-example : Function.Injective LiteralBaseRotationRetract.rotationToBase :=
+-  LiteralBaseRotationRetract.rotationToBase_injective
+-
+-example : LiteralBaseRotationRetract.baseToRotation.ker =
+-    LiteralBaseTranslationNormal.translations :=
+-  LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
+-
+-example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+-    [FiniteDimensional k V]
+-    (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
+-    pi LiteralCyclicCalibration.mark = 1 :=
+-  LiteralCyclicCalibration.finiteDimensional_kill pi
+-
+ example :
+     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
+   ChosenNonMFTheorem.countableWitness_not_isOperatorMF
+@@ -117,6 +69,42 @@ example :
+       IsOperatorMF E) :=
+   ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+ 
++example (G : Type) [Group G] [Countable G] :
++    IsOperatorMF G ↔ IsNormApproximable G 1 :=
++  OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
++
++example (k : ℕ) :
++    IsClosed (MarkedGroupSpace.operatorMFLocus k) :=
++  MarkedGroupSpace.isClosed_operatorMFLocus
++
++example (k : ℕ) :
++    IsOpen (MarkedGroupSpace.operatorMFLocus k)ᶜ :=
++  MarkedGroupSpace.isOpen_compl_operatorMFLocus
++
++example {k : ℕ} (M : MarkedGroupSpace k)
++    (hM : ¬ IsOperatorMF M.Quotient) :
++    ∃ R : ℕ, MarkedGroupSpace.cylinder M
++      (MarkedGroupSpace.wordBall k R) ⊆
++        (MarkedGroupSpace.operatorMFLocus k)ᶜ :=
++  MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus M hM
++
++example {k : ℕ} {I : Type} {l : Filter I} (hl : NeBot l)
++    {f : I → MarkedGroupSpace k} {M : MarkedGroupSpace k}
++    (hf : Tendsto f l (𝒩 M))
++    (hMF : ∀ᶠ i in l, IsOperatorMF (f i).Quotient) :
++    IsOperatorMF M.Quotient :=
++  MarkedGroupSpace.isOperatorMF_of_tendsto hl hf hMF
++
++example {A : Type} [Ring A] [StarRing A]
++    (D : ProperProjectionCompression A) :
++    ∃ a b : A, b * a = 1 ∧ ¬ IsUnit a :=
++  D.exists_leftInvertible_not_isUnit
++
++example {A : Type} [Ring A] [StarRing A]
++    (D : ProperProjectionCompression A) :
++    ¬ IsDedekindFiniteMonoid A :=
++  D.not_isDedekindFiniteMonoid
++
+ example (G : Type) [Group G] [Countable G] :
+     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
+   isOperatorMF_iff_normMFResidual_eq_bot
+@@ -416,22 +404,10 @@ def headlineTheorems : List Name :=
+    ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
+    ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
+    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+-   ``ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity,
+-   ``ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity,
+-   ``ChosenMarkedCylinder.chosenCylinder_isClopen,
+-   ``ChosenMarkedCylinder.chosenCylinder_subset_nonMF,
+-   ``OperatorMFMarkovWitness.positive_punit,
+-   ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
+-   ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
+-   ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
+-   ``LiteralCyclicCalibration.mark_ne_one,
+-   ``LiteralCyclicCalibration.finiteDimensional_kill,
++   ``ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage,
++   ``ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage,
+    ``LiteralBaseP13Replay.yFromUZXY_eq,
+    ``LiteralBaseP13Replay.closure_Z_XY_eq_top,
+-   ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
+-   ``LiteralTranslationOrbit.translation_eq_two_rotation_conjugates,
+-   ``LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed,
+-   ``LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation,
+    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
+    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
+    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
+@@ -448,6 +424,12 @@ def headlineTheorems : List Name :=
+    ``existsUnique_coronaMFQuotient_factorization_to_isOperatorMF,
+    ``isOperatorMF_of_residuallyFinite,
+    ``IsOperatorMF.subgroup,
++   ``OperatorNormAmplification.exists_tensorPower_pair_far,
++   ``OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one,
++   ``MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus,
++   ``MarkedGroupSpace.isClosed_operatorMFLocus,
++   ``MarkedGroupSpace.isOpen_compl_operatorMFLocus,
++   ``MarkedGroupSpace.isOperatorMF_of_tendsto,
+    ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
+    ``not_injective_of_coronaMFInvisible,
+    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
+@@ -455,7 +437,10 @@ def headlineTheorems : List Name :=
+    ``KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual,
+    ``FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one,
+    ``ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne,
++   ``ProperProjectionCompression.exists_leftInvertible_not_isUnit,
++   ``ProperProjectionCompression.not_isDedekindFiniteMonoid,
+    ``ProperProjectionCompression.not_isStablyFiniteRing,
++   ``ProperProjectionCompression.no_faithfulTracialState,
+    ``universalLeavittEL4_not_isSofic,
+    ``universalLeavittEL3_not_isSofic,
+    ``universalLeavittUnits_not_isSofic,
+@@ -483,7 +468,7 @@ than from a hand-maintained list, so that a new module cannot escape the
+ audit by not being mentioned here. -/
+ def projectDeclarations (env : Environment) : Array Name :=
+   env.constants.fold (init := #[]) fun acc n _ =>
+-    if Audit.inCorpusModule env `GroupApproximation n then acc.push n else acc
++    if (`GroupApproximation).isPrefixOf n then acc.push n else acc
+ 
+ /-- The union of the transitive axiom closures of `roots`. -/
+ def axiomClosure (roots : Array Name) : CommandElabM (Array Name) := do
+@@ -512,12 +497,12 @@ run_cmd do
+ 
+   let decls := projectDeclarations env
+   if decls.size < 100 then
+-    throwError "only {decls.size} declarations found in `GroupApproximation` \
+-modules; the audit is not seeing the library"
++    throwError "only {decls.size} declarations found in the `GroupApproximation` \
++namespace; the audit is not seeing the library"
+   let axioms ← axiomClosure decls
+   let bad := disallowed axioms
+   unless bad.isEmpty do
+-    throwError "the `GroupApproximation` modules depend on disallowed \
++    throwError "the `GroupApproximation` namespace depends on disallowed \
+ axioms: {bad.toList}"
+   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
+ 
+diff --git a/scripts/Audit/Scan.lean b/scripts/Audit/Scan.lean
+index c24790b2d..632c06023 100644
+--- a/scripts/Audit/Scan.lean
++++ b/scripts/Audit/Scan.lean
+@@ -65,25 +65,18 @@ structure Finding where
+   detail : String
+   deriving Inhabited
+ 
+-/-- Was `n` compiled in a module of the corpus source tree?
++/-- Is `n` declared in the corpus under audit, rather than in Mathlib?
+ 
+-Membership is deliberately by module, not namespace.  A project file may
+-open `Algebra`, `Ring`, or any other namespace; that must not let its
+-declarations escape the audit. -/
+-def inCorpusModule (env : Environment) (moduleRoot : Name) (n : Name) : Bool :=
+-  match env.getModuleIdxFor? n with
+-  | some idx =>
+-      match env.header.moduleNames[idx.toNat]? with
+-      | some m => m.getRoot == moduleRoot
+-      | none => false
+-  | none => false
++`getRoot` and not `isPrefixOf`: they agree on every name in this corpus and
++`getRoot` says what is meant. -/
++def isOurs (root n : Name) : Bool := n.getRoot == root
+ 
+ /-- Every hand-written declaration of the corpus, taken from the environment
+ rather than from a list, so a new module cannot escape the audit by not being
+ mentioned anywhere. -/
+ def corpusNames (env : Environment) (root : Name) : Array Name :=
+   env.constants.fold (init := #[]) fun acc n _ =>
+-    if inCorpusModule env root n && userWritten env n then acc.push n else acc
++    if isOurs root n && userWritten env n then acc.push n else acc
+ 
+ /-- Strip leading binders, returning the body.
+ 
+@@ -414,6 +407,17 @@ Population is by MODULE, not namespace: a corpus file can open any namespace
+ it likes, so membership is decided by where the declaration was compiled,
+ which the author of a corpus file cannot spoof. -/
+ 
++/-- Was `n` compiled in a module of the corpus source tree?  Module-based,
++unlike `isOurs`: a declaration escapes its namespace by writing `namespace
++Anything`, but not the file it lives in. -/
++def inCorpusModule (env : Environment) (moduleRoot : Name) (n : Name) : Bool :=
++  match env.getModuleIdxFor? n with
++  | some idx =>
++      match env.header.moduleNames[idx.toNat]? with
++      | some m => m.getRoot == moduleRoot
++      | none => false
++  | none => false
++
+ /-- Corpus constants from which some tagged name is reachable through types,
+ bodies, and constructor types.  Always contains the tagged names themselves.
+ Propagation stays inside the corpus modules: nothing compiled before the
+diff --git a/scripts/Calibrate.lean b/scripts/Calibrate.lean
+index 4f9b742fe..1496885d7 100644
+--- a/scripts/Calibrate.lean
++++ b/scripts/Calibrate.lean
+@@ -65,12 +65,8 @@ def mustNotReport : List Name :=
+ 
+ run_cmd do
+   let env ← getEnv
+-  -- `allScans` selects declarations by source-module root.  The planted
+-  -- declarations live in module `Audit.Plants` while their namespace is
+-  -- `AuditPlant`, so the module root—not the namespace—is the calibration
+-  -- corpus selector.
+   let findings ← liftTermElabM <|
+-    Audit.allScans env `Audit [``propext, ``Classical.choice, ``Quot.sound]
++    Audit.allScans env `AuditPlant [``propext, ``Classical.choice, ``Quot.sound]
+ 
+   let mut failures : Array String := #[]
+ 
+diff --git a/scripts/Signatures.lean b/scripts/Signatures.lean
+index 3be2a04cf..7aa203e1d 100644
+--- a/scripts/Signatures.lean
++++ b/scripts/Signatures.lean
+@@ -2,10 +2,10 @@ import GroupApproximation
+ import Lean.Elab.Command
+ 
+ /-!
+-# Elaborated signatures of every mapped declaration from both manuscripts
++# Elaborated signatures of every mapped declaration
+ 
+-`scripts/check.py` verifies that each declaration a margin note or visible
+-non-MF counterpart link names *exists*.  This script is the next layer: it elaborates every name in
++`scripts/check.py` verifies that each declaration a margin note names
++*exists*.  This script is the next layer: it elaborates every name in
+ `docs/CLAIM_DECLS.txt` (generated by `scripts/claim_map.py --write`) and
+ writes its type, pretty-printed by Lean itself, to
+ `docs/CLAIM_SIGNATURES.md`.  A declaration that keeps its name while losing
+@@ -27,9 +27,6 @@ namespace GroupApproximation.Signatures
+ /-- Where the declaration list is read from. -/
+ def declsPath : System.FilePath := "docs" / "CLAIM_DECLS.txt"
+ 
+-/-- Declarations visibly linked from the non-MF manuscript. -/
+-def nonMFDeclsPath : System.FilePath := "docs" / "NON_MF_CLAIM_DECLS.txt"
+-
+ /-- Where the signatures are written to. -/
+ def outPath : System.FilePath := "docs" / "CLAIM_SIGNATURES.md"
+ 
+@@ -37,8 +34,8 @@ def header : String :=
+   "<!-- generated by `lake env lean scripts/Signatures.lean`; do not edit \
+ by hand -->\n\n\
+ # Elaborated types of the mapped declarations\n\n\
+-One entry per declaration named by either manuscript's formal counterpart \
+-links, in qualified-name order.  The types are printed by Lean from the \
++One entry per declaration named by a manuscript margin note, in the order \
++of `docs/CLAIM_DECLS.txt`.  The types are printed by Lean from the \
+ elaborated environment, so this file records what each mapped declaration \
+ actually states -- the layer of the correspondence that name resolution \
+ alone cannot check.\n"
+@@ -46,12 +43,8 @@ alone cannot check.\n"
+ run_cmd do
+   let env ← getEnv
+   let input ← IO.FS.readFile declsPath
+-  let nonMFInput ← IO.FS.readFile nonMFDeclsPath
+-  let names := (input ++ "\n" ++ nonMFInput).splitOn "\n"
+-    |>.map (fun s => s.trimAscii.toString)
++  let names := input.splitOn "\n" |>.map (fun s => s.trimAscii.toString)
+     |>.filter (· ≠ "")
+-    |>.mergeSort (· < ·)
+-    |>.eraseDups
+   if names.isEmpty then
+     throwError "{declsPath}: no declarations listed; \
+ run `python3 scripts/claim_map.py --write` first"
+diff --git a/scripts/check_non_mf_refs.py b/scripts/check_non_mf_refs.py
+old mode 100755
+new mode 100644
+index ee0b9c76d..716f3f258
+--- a/scripts/check_non_mf_refs.py
++++ b/scripts/check_non_mf_refs.py
+@@ -14,16 +14,13 @@ formal development includes the finite-dimensional core, the sequential
+ Kazhdan-compression kill, an independently constructed finitely presented
+ non-MF witness, the literal eight-generator presentation and its exact
+ nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
+-radical.  No unconditional MF endpoint is claimed for the literal group: its
+-algebraic, finite-dimensional, and universal-Horn boundary is formalized,
+-but no analytic operator-MF endpoint for it is part of the Lean API.
+-
+-This checker enforces both lexical resolution and an exact semantic contract
+-for the margin links.  The reviewed whitelist below is deliberately closed:
+-adding a true but weaker component theorem, a conditional bridge, or a badge
+-whose surrounding prose claims more than its type is a source-review event,
+-not something lexical declaration lookup may silently approve.  Transitive
+-axiom checking remains the responsibility of ``scripts/Audit.lean``.
++radical.  The literal MF endpoint is conditional on property (T) of its raw
++presented base.  Accordingly this checker enforces both lexical resolution
++and a semantic headline contract: the unconditional finitely presented
++claim must point to the chosen witness's standard ``IsOperatorMF`` theorem,
++never to the auxiliary ``IsWeakMF`` predicate or the retired ``Explicit*``
++surface.  Exact statement pinning and transitive axiom checking remain a
++second, independent gate in ``scripts/Audit.lean``.
+ """
+ 
+ from __future__ import annotations
+@@ -41,57 +38,17 @@ from lean_decls import build_index
+ 
+ REPO = Path(__file__).resolve().parent.parent
+ DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
+-DECLS_FILE = REPO / "docs" / "NON_MF_CLAIM_DECLS.txt"
+ REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
+-UNCONDITIONAL_ENDPOINT = (
++HEADLINE_REFERENCE = (
+     "Sofic/ChosenNonMFTheorem",
+     "GroupApproximation.ChosenNonMFTheorem."
+-    "exists_finitelyPresented_not_isOperatorMF",
++    "chosenFinitelyPresented_not_isOperatorMF",
+ )
+-APPROVED_REFERENCES = frozenset({
+-    UNCONDITIONAL_ENDPOINT,
+-    ("Criterion/CompressionCentralizerDefect",
+-     "GroupApproximation.compressionCentralizerDefect_le_ker"),
+-    ("Monsters/AffineSL3Doubling",
+-     "GroupApproximation.AffineSL3Doubling.doubling_package"),
+-    ("Sofic/LiteralNonMFLinearWitness",
+-     "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one"),
+-    ("Sofic/LiteralFiniteDimensionalObstruction",
+-     "GroupApproximation.LiteralFiniteDimensionalObstruction."
+-     "literal_finiteDimensional_rep_not_injective"),
+-    ("Sofic/CompressionDefectSquare",
+-     "GroupApproximation."
+-     "commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),
+-    ("Sofic/ChosenUniversalHorn",
+-     "GroupApproximation.ChosenUniversalHorn."
+-     "isOperatorMF_satisfies_chosenQuasiIdentity"),
+-    ("Sofic/ChosenUniversalHorn",
+-     "GroupApproximation.ChosenUniversalHorn."
+-     "markedGroup_not_satisfies_chosenQuasiIdentity"),
+-    ("Analysis/FaithfulTracialMatrix",
+-     "GroupApproximation.FaithfulTracialState."
+-     "matrix_mul_star_eq_one_of_star_mul_eq_one"),
+-    ("Sofic/FiniteNormalCoronaObstruction",
+-     "GroupApproximation.KazhdanCompressionCore."
+-     "finiteNormal_le_coronaMFResidual"),
+-    ("Sofic/NormalKazhdanMFRadical",
+-     "GroupApproximation.KazhdanCompressionCore."
+-     "normalKazhdan_le_coronaMFResidual"),
+-    ("Sofic/NormMFPrintedConsequences",
+-     "GroupApproximation.KazhdanCompressionCore."
+-     "finiteNormal_uniform_invisibility_positiveModel"),
+-    ("Sofic/MarkedMFClosed",
+-     "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus"),
+-    ("Sofic/ChosenMarkedCylinder",
+-     "GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen"),
+-    ("Sofic/ChosenMarkedCylinder",
+-     "GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF"),
+-})
+-RETIRED_EXPLICIT_MODULES = frozenset({
+-    "Sofic/ExplicitMarkedPresentation",
+-    "Sofic/ExplicitNonMFEndpoint",
++RETIRED_HEADLINE_FRAGMENTS = (
+     "Sofic/ExplicitNonMFTheorem",
+-})
++    "GroupApproximation.ExplicitNonMFTheorem",
++    "explicit_finitelyPresented",
++)
+ 
+ 
+ def validate(repo: Path, tex: Path) -> list[str]:
+@@ -102,58 +59,23 @@ def validate(repo: Path, tex: Path) -> list[str]:
+ 
+     index = build_index(repo)
+     problems: list[str] = []
+-
+-    unapproved = sorted(set(references) - APPROVED_REFERENCES)
+-    if unapproved:
+-        problems.append(
+-            "margin links outside the reviewed exact whitelist: "
+-            + ", ".join(f"{module}:{declaration}"
+-                        for module, declaration in unapproved)
+-        )
+-
+-    missing = sorted(APPROVED_REFERENCES - set(references))
+-    if missing:
+-        problems.append(
+-            "reviewed exact margin links missing from the manuscript: "
+-            + ", ".join(f"{module}:{declaration}"
+-                        for module, declaration in missing)
+-        )
+-
+-    duplicates = sorted(reference for reference in APPROVED_REFERENCES
+-                        if references.count(reference) > 1)
+-    if duplicates:
++    if HEADLINE_REFERENCE not in references:
+         problems.append(
+-            "reviewed exact margin links must occur once each; duplicates: "
+-            + ", ".join(f"{module}:{declaration}"
+-                        for module, declaration in duplicates)
++            "missing standard operator-MF headline reference "
++            f"{HEADLINE_REFERENCE[1]} in {HEADLINE_REFERENCE[0]}"
+         )
+-
+-    if references.count(UNCONDITIONAL_ENDPOINT) != 1:
+-        problems.append(
+-            "margin links must name exactly once the pinned unconditional "
+-            "IsOperatorMF existence endpoint"
+-        )
+-
+-    weak_endpoints = [
+-        declaration for _module, declaration in references
+-        if "WeakMF" in declaration
+-    ]
+-    if weak_endpoints:
+-        problems.append(
+-            "margin links an IsWeakMF auxiliary endpoint: "
+-            + ", ".join(weak_endpoints)
+-        )
+-
+-    retired = [
+-        f"{module}:{declaration}" for module, declaration in references
+-        if module in RETIRED_EXPLICIT_MODULES
+-    ]
+-    if retired:
+-        problems.append(
+-            "margin links a retired explicit endpoint: " + ", ".join(retired)
+-        )
+-
+     for module, declaration in references:
++        if "not_isWeakMF" in declaration:
++            problems.append(
++                "auxiliary IsWeakMF theorem used as a manuscript counterpart: "
++                f"{declaration}; use the standard IsOperatorMF endpoint"
++            )
++        if any(fragment in module or fragment in declaration
++               for fragment in RETIRED_HEADLINE_FRAGMENTS):
++            problems.append(
++                "retired Explicit* chosen-witness reference: "
++                f"{module} / {declaration}"
++            )
+         expected = repo / "GroupApproximation" / f"{module}.lean"
+         full_name = (declaration if declaration.startswith("GroupApproximation.")
+                      else f"GroupApproximation.{declaration}")
+@@ -170,24 +92,6 @@ def validate(repo: Path, tex: Path) -> list[str]:
+     return problems
+ 
+ 
+-def resolved_declarations(repo: Path, tex: Path) -> list[str]:
+-    """Fully qualified declarations named by valid visible counterpart links."""
+-    source = tex.read_text(encoding="utf-8")
+-    index = build_index(repo)
+-    out: set[str] = set()
+-    for module, declaration in REFERENCE_RE.findall(source):
+-        full = (declaration if declaration.startswith("GroupApproximation.")
+-                else f"GroupApproximation.{declaration}")
+-        expected = repo / "GroupApproximation" / f"{module}.lean"
+-        if index.get(full) == expected:
+-            out.add(full)
+-    return sorted(out)
+-
+-
+-def render_declarations(repo: Path, tex: Path) -> str:
+-    return "\n".join(resolved_declarations(repo, tex)) + "\n"
+-
+-
+ def self_test() -> int:
+     with tempfile.TemporaryDirectory() as directory:
+         repo = Path(directory)
+@@ -199,58 +103,44 @@ def self_test() -> int:
+             "end GroupApproximation\n",
+             encoding="utf-8",
+         )
+-        endpoint = repo / "GroupApproximation" / "Sofic" / "ChosenNonMFTheorem.lean"
+-        endpoint.parent.mkdir(parents=True)
+-        endpoint.write_text(
+-            "namespace GroupApproximation.ChosenNonMFTheorem\n"
+-            "theorem chosenFinitelyPresented_not_isOperatorMF : True := by trivial\n"
+-            "theorem exists_finitelyPresented_not_isOperatorMF : True := by trivial\n"
+-            "theorem chosenFinitelyPresented_not_isWeakMF : True := by trivial\n"
+-            "end GroupApproximation.ChosenNonMFTheorem\n",
+-            encoding="utf-8",
+-        )
+-        retired = repo / "GroupApproximation" / "Sofic" / "ExplicitNonMFTheorem.lean"
+-        retired.write_text(
+-            "namespace GroupApproximation.ExplicitNonMFTheorem\n"
+-            "theorem retired : True := by trivial\n"
+-            "end GroupApproximation.ExplicitNonMFTheorem\n",
+-            encoding="utf-8",
+-        )
+         elsewhere = repo / "GroupApproximation" / "Sofic"
+-        elsewhere.mkdir(parents=True, exist_ok=True)
++        elsewhere.mkdir(parents=True)
+         (elsewhere / "Stray.lean").write_text(
+             "namespace GroupApproximation\n"
+             "theorem strayed : True := by trivial\n"
+             "end GroupApproximation\n",
+             encoding="utf-8",
+         )
++        (elsewhere / "ChosenNonMFTheorem.lean").write_text(
++            "namespace GroupApproximation.ChosenNonMFTheorem\n"
++            "theorem chosenFinitelyPresented_not_isOperatorMF : True := by "
++            "trivial\n"
++            "theorem chosenFinitelyPresented_not_isWeakMF : True := by "
++            "trivial\n"
++            "end GroupApproximation.ChosenNonMFTheorem\n",
++            encoding="utf-8",
++        )
+         tex = repo / "paper.tex"
+-
+-        correct_endpoint = (
++        headline = (
+             r"\leanverified{Sofic/ChosenNonMFTheorem}"
+             r"{GroupApproximation.ChosenNonMFTheorem."
+-            r"exists_finitelyPresented_not_isOperatorMF}"
++            r"chosenFinitelyPresented_not_isOperatorMF}"
+         )
++
+         tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+-            + r"{GroupApproximation.map_marked_commutator_eq_one}",
++            headline + "\n" +
++            r"\leanverified{Criterion/FiniteDimensionalKill}"
++            r"{GroupApproximation.map_marked_commutator_eq_one}",
+             encoding="utf-8",
+         )
+-        self_decls = resolved_declarations(repo, tex)
+-        if self_decls != [
+-            "GroupApproximation.ChosenNonMFTheorem."
+-            "exists_finitelyPresented_not_isOperatorMF",
+-            "GroupApproximation.map_marked_commutator_eq_one",
+-        ]:
+-            print("self-test: valid reference was not added to declaration roster",
+-                  file=sys.stderr)
++        if validate(repo, tex):
++            print("self-test: valid reference was rejected", file=sys.stderr)
+             return 1
+ 
+         tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+-            + r"{GroupApproximation.map_marked_commutator_eq_two}",
++            headline + "\n" +
++            r"\leanverified{Criterion/FiniteDimensionalKill}"
++            r"{GroupApproximation.map_marked_commutator_eq_two}",
+             encoding="utf-8",
+         )
+         problems = validate(repo, tex)
+@@ -259,9 +149,9 @@ def self_test() -> int:
+             return 1
+ 
+         tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+-            + r"{GroupApproximation.strayed}",
++            headline + "\n" +
++            r"\leanverified{Criterion/FiniteDimensionalKill}"
++            r"{GroupApproximation.strayed}",
+             encoding="utf-8",
+         )
+         problems = validate(repo, tex)
+@@ -271,51 +161,40 @@ def self_test() -> int:
+             return 1
+ 
+         tex.write_text(
+-            correct_endpoint
+-            + correct_endpoint,
++            headline + "\n" +
++            r"\leanverified{Sofic/ChosenNonMFTheorem}"
++            r"{GroupApproximation.ChosenNonMFTheorem."
++            r"chosenFinitelyPresented_not_isWeakMF}",
+             encoding="utf-8",
+         )
+         problems = validate(repo, tex)
+-        if not any("exactly once" in problem
+-                   for problem in problems):
+-            print("self-test: duplicate unconditional endpoint was not detected",
++        if not any("auxiliary IsWeakMF" in problem for problem in problems):
++            print("self-test: weak-MF headline was not rejected",
+                   file=sys.stderr)
+             return 1
+ 
+         tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Sofic/ChosenNonMFTheorem}"
+-            + r"{GroupApproximation.ChosenNonMFTheorem."
+-            + r"chosenFinitelyPresented_not_isWeakMF}",
++            headline + "\n" +
++            r"\leanverified{Sofic/ExplicitNonMFTheorem}"
++            r"{GroupApproximation.ExplicitNonMFTheorem."
++            r"explicit_finitelyPresented_not_isOperatorMF}",
+             encoding="utf-8",
+         )
+         problems = validate(repo, tex)
+-        if not any("IsWeakMF auxiliary endpoint" in problem for problem in problems):
+-            print("self-test: WeakMF endpoint was not rejected", file=sys.stderr)
+-            return 1
+-
+-        tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Sofic/ExplicitNonMFTheorem}"
+-            + r"{GroupApproximation.ExplicitNonMFTheorem.retired}",
+-            encoding="utf-8",
+-        )
+-        problems = validate(repo, tex)
+-        if not any("retired explicit endpoint" in problem for problem in problems):
+-            print("self-test: retired explicit endpoint was not rejected",
++        if not any("retired Explicit" in problem for problem in problems):
++            print("self-test: retired Explicit* headline was not rejected",
+                   file=sys.stderr)
+             return 1
+ 
+         tex.write_text(
+-            correct_endpoint
+-            + r"\leanverified{Sofic/Stray}"
+-            + r"{GroupApproximation.strayed}",
++            r"\leanverified{Criterion/FiniteDimensionalKill}"
++            r"{GroupApproximation.map_marked_commutator_eq_one}",
+             encoding="utf-8",
+         )
+         problems = validate(repo, tex)
+-        if not any("outside the reviewed exact whitelist" in problem
++        if not any("missing standard operator-MF headline" in problem
+                    for problem in problems):
+-            print("self-test: unapproved reference was not rejected",
++            print("self-test: missing operator-MF headline was not detected",
+                   file=sys.stderr)
+             return 1
+ 
+@@ -334,7 +213,6 @@ def main() -> int:
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
+     parser.add_argument("--self-test", action="store_true")
+-    parser.add_argument("--write", action="store_true")
+     args = parser.parse_args()
+     if args.self_test:
+         return self_test()
+@@ -347,16 +225,6 @@ def main() -> int:
+             print(f"  {problem}", file=sys.stderr)
+         return 1
+ 
+-    rendered = render_declarations(REPO, tex)
+-    if args.write:
+-        DECLS_FILE.parent.mkdir(parents=True, exist_ok=True)
+-        DECLS_FILE.write_text(rendered, encoding="utf-8")
+-        print(f"wrote {DECLS_FILE.relative_to(REPO)}")
+-    elif not DECLS_FILE.is_file() or DECLS_FILE.read_text(encoding="utf-8") != rendered:
+-        print(f"check-non-mf-refs: stale {DECLS_FILE.relative_to(REPO)}; "
+-              "run scripts/check_non_mf_refs.py --write", file=sys.stderr)
+-        return 1
+-
+     count = len(REFERENCE_RE.findall(tex.read_text(encoding="utf-8")))
+     print(f"check-non-mf-refs: {count} references all resolve")
+     return 0

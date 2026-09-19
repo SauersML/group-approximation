@@ -1,0 +1,71 @@
+== slice 7 1 7 alpha 0 0
+p=7 slice<=(7,1,7) alpha=(0,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 5*z.  rho(C2)= 1*z.
+GB[10] deg 14 lead cacacacacacaca (mu (7,0,7)) terms 2 from [a,c,a]{101}  X= 0
+SUMMARY p=7 slice (7,1,7) alpha (0,0): jumps=0 sanity-fails=0
+== slice 7 1 7 alpha 1 0
+p=7 slice<=(7,1,7) alpha=(1,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 0
+GB[10] deg 14 lead cacacacacacaca (mu (7,0,7)) terms 2 from [a,c,a]{101}  X= 0
+SUMMARY p=7 slice (7,1,7) alpha (1,0): jumps=0 sanity-fails=0
+== slice 7 1 7 alpha 0 1
+p=7 slice<=(7,1,7) alpha=(0,1) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 1*z.
+GB[10] deg 14 lead cacacacacacaca (mu (7,0,7)) terms 2 from [a,c,a]{101}  X= 0
+JUMP S(cacacacacacaca|cacacab,k=6) deg 15->21 mu (7,1,7): rho =  6*z.  zcoef 6 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (7,1,7) alpha (0,1): jumps=1 sanity-fails=0
+== slice 1 7 7 alpha 0 0
+p=7 slice<=(1,7,7) alpha=(0,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 5*z.  rho(C2)= 1*z.
+SUMMARY p=7 slice (1,7,7) alpha (0,0): jumps=0 sanity-fails=0
+== slice 1 7 7 alpha 1 0
+p=7 slice<=(1,7,7) alpha=(1,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 0
+JUMP S(cbcbcbcbcbcbcb|cbcba,k=4) deg 15->21 mu (1,7,7): rho =  1*z.  zcoef 1 pure-z
+SUMMARY p=7 slice (1,7,7) alpha (1,0): jumps=1 sanity-fails=0
+== slice 1 7 7 alpha 0 1
+p=7 slice<=(1,7,7) alpha=(0,1) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 1*z.
+SUMMARY p=7 slice (1,7,7) alpha (0,1): jumps=0 sanity-fails=0
+== slice 7 7 1 alpha 0 0
+p=7 slice<=(7,7,1) alpha=(0,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 5*z.  rho(C2)= 1*z.
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  6*z.  zcoef 6 pure-z
+SUMMARY p=7 slice (7,7,1) alpha (0,0): jumps=1 sanity-fails=0
+== slice 7 7 1 alpha 1 0
+p=7 slice<=(7,7,1) alpha=(1,0) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 0
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  5*z.  zcoef 5 pure-z
+SUMMARY p=7 slice (7,7,1) alpha (1,0): jumps=1 sanity-fails=0
+== slice 7 7 1 alpha 0 1
+p=7 slice<=(7,7,1) alpha=(0,1) |basis N|=57
+test rho([a,[a,b]])= 0 rho([b,[b,a]])= 0 rho([c,[c,a]])= 0 rho([a,[a,c]])= 0
+test rho(H1=[[a,b],c])= 1*hAt1. 1*hBt1.
+test rho(H1)= 1*hAt1. 1*hBt1. rho(E12_1)= 1*E12t1. rho(E21_6)= 1*E21t6.
+test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 1*z.
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  5*z.  zcoef 5 pure-z
+SUMMARY p=7 slice (7,7,1) alpha (0,1): jumps=1 sanity-fails=0

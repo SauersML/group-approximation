@@ -462,3 +462,110 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - *Survives:* test vectors whose neighbouring trees have correlated sizes, such as a Markov chain
     of sizes along the forest or a pointer tree coupled to its neighbour. Any Følner-type forest
     family must be of this kind. OPEN.
+- **Log-scale forest limit and the product-form cap (swarm-0917-w14-w14-f-break, 2026-09-19,
+  belief-breaker, entropy-measure).** This continues the w13 entry above and answers its open proxy.
+  - *Established:* `thompson-f-norm-bound-from-log-scale-forest-limit`,
+    `||P|| >= 1/2 + sqrt(2)/3 > 0.9714` in closed form and `||P|| > 0.9743` by an exact certificate.
+    - Size-only weights reduce the w13 vector's large-window value to
+      `Phi(nu, eta)/2 = (BC(nu,eta)^2 + BC(nu*eta, nu))/2` for two tree-size laws.
+    - Log-scale size laws turn `Phi` into a continuum functional of two histograms as the cutoff
+      `M -> infinity`.
+    - The cogrowth rate is `mu > 15.188`.
+  - *Belief change:* both published numerical norm estimates are below the certified truth. They are
+    HHR's `||A+A^{-1}+B+B^{-1}|| ≈ 3.87` (`0.9675`) and EP-G's `mu ≈ 15.0` (`0.9682`). The certified gap
+    to amenability shrinks from `0.0603` to `0.0257`.
+  - *Class killed:* `thompson-f-product-forest-vectors-stay-below-71-72`. Every product-form
+    forest-stack vector, for any truncation and any positive parameters, has large-window value at
+    most `71/72 = 0.98611` (sharper: `0.98596`). The w13 proxy is answered no. The optimal size law
+    does escape to infinity, but the family's supremum lies in `(0.9743, 0.9860]`.
+  - *Invariant:* the pointer-tree size law `nu` and the tilted bulk size law `eta`, which are
+    independent under `|f|^2`.
+  - *Dies at:* the merge edge. The merged size `X + Y` of independent sizes exceeds `X` by a fixed
+    amount at the median (`P(X+Y <= t) <= F(t-1)G(t-1)`). This forces `TV(nu*eta, nu) >= 1/4 - d/2`
+    against `BC(nu,eta)^2 <= 1 - d^2`, where `d` is the Kolmogorov distance.
+  - *Survives (OPEN, heuristic):* test vectors that correlate neighbouring tree sizes. A near-eigenvector
+    must make the pointer and neighbour sizes comonotone. The necessary condition is
+    `P(s <= t < r), P(r <= t < s) = O(sqrt delta)` at quotient `4 - delta`, and it is not written up.
+    This is the next family to test.
+- **Size-correlated (Markov) test vectors in the log-scale limit (swarm-0917-w14-w14-f-follow, 2026-09-19, census-computation).**
+  This follows up the survivor "size-correlated neighbour vectors" of swarm-0917-w14-w14-f-break. The work
+  is in `thompson-f-markov-size-chain-vectors-saturate-in-the-scale-limit` (OPEN).
+  - *Established:* an exact infinite-volume formula for the Rayleigh quotient of stationary Markov size
+    chains with recursive shapes. In the formal log-scale limit, merge acts as `max`, so every product
+    law gives `2√2/3` exactly. There are necessary conditions for `B → 1`: rows must agree along up- and
+    down-steps, and `U + D → 1`.
+  - *Belief change (numerical):* order-1 and order-2 chains saturate at `B ≈ 0.954–0.955`, that is
+    `R ≈ 0.977`. Bin refinement converges geometrically and memory adds about `0.001`. At computable
+    sizes (lifted kernels up to `M = 10⁵`) they stay below the lifted product and far below `0.9743`.
+  - *Dies at:* a rigorous ceiling. That needs quantitative rigidity: near-agreement of rows forces a
+    near-product chain.
+  - *Survivor:* hierarchical or hidden-state laws that encode several log-scales at once. These are the
+    Følner-type candidates suggested by Moore's tower bound.
+- **Guba's systems Q_k through density (swarm-0917-w15-w15-f-break, 2026-09-19, belief-breaker, group-rings).**
+  - *Established (unrefereed):* `thompson-f-guba-q4-systems-have-common-multiples`.
+    - For finite `Z`, `|{1, x_0, x_1} Z| <= (3 - δ(Z)/2)|Z|`, where `δ` is the `{x_0, x_1}` density.
+    - The copy `ψ(F) = <x_2 x_0^-1, x_1 x_0^-1>` turns `Z` into `Y = x_0^-1 ψ(Z)` with
+      `|AY| = |{1, x_0, x_1} Z|`, where `A = {x_0, x_1, x_2}`.
+    - A dimension count then solves Guba's `Q_k` for all coefficients and all fields as soon as
+      `δ̄ > 4 - 2/k`.
+    - Guba's own `δ̄ > 3.5` (survey Theorem 2.7) therefore solves `Q_4`.
+  - *Belief changed:* the survey's "possible candidiate to a negative solution" `Q_4` is dead, and so
+    is its `ε = 1/4` hope. The graph's listing of `Q_4` as an open non-amenability candidate (in
+    `thompson-f-is-not-amenable` and `thompson-f-rescaled-x0-binomials-have-common-multiples`) is
+    superseded.
+  - *Invariant:* the `{x_0, x_1}` density `δ̄`.
+  - *Where every member dies:* a negative `Q_k` forces `δ̄ <= 4 - 2/k`. So the Q-family can certify
+    non-amenability only at `k >= 5`, and `Q_5` falls to any finite set of density `> 3.6`. On the
+    amenable side, each density improvement solves a further block of `Q_k`. Density approaching 4
+    solves them all, but that is the root itself.
+  - *Computation:* exact mod-`p` search (`experiments/guba-qk-2026-09-17/qk_linalg.py`) finds no
+    solution of `Q_2`, `Q_3` or `Q_4` in degree `<= 5`. The solutions exist only on huge supports.
+- **Is the forest-window support lossy? (swarm-0917-w15-w15-f-pull, 2026-09-19, transplanter, operator-algebras.)**
+  The w13 test vectors live on the windows `E(S_n)`. The question is whether that support alone
+  keeps them below `1`.
+  - *Established:* `thompson-f-one-sided-forest-windows-are-norm-lossless`. It is not lossy.
+    - The move graph on `S_n` is the induced Cayley subgraph on `E(S_n)`.
+    - Its top eigenvalue `rho_n` increases to `4||P||` exactly.
+    - So `F` is amenable iff `rho_n -> 4`, and the union of the windows is the positive-monoid
+      forest cone `R`.
+    - Proof: an intrinsic membership test for `R`, left translates that absorb every finite set
+      into `R` (the Ore property, via dyadic refinement), and the compression identity
+      `||K_R|| = ||K||`. The steps are checked in exact arithmetic for `n <= 7` and on 200 random
+      sets.
+  - *Decomposition:* `<f,Kf> = 4 - delta(f) - energy(f)` on `R`. Here `delta(f)` is the `l^2` mass
+    on pointer-at-root and pointer-on-leaf states, and `energy(f)` is the Dirichlet energy.
+    Amenability is exactly "both can be made small at once".
+  - *Dies at:* any ansatz family whose pointer-leaf plus pointer-at-root mass stays `>= c`
+    is capped at `||P|| >= 1 - c/4` and cannot reach `1`. This is a checkable necessary condition
+    on the w13/w14 families.
+  - *Survives:* the w13 proxy, sharpened. The support is exact, so the only open question is
+    whether the amplitude class, not the window, can approach `1`. Small exact windows are useless
+    as certificates: `rho_12 / 4 ≈ 0.815`, far below the certified `0.9397`.
+- **Product forest sets are capped at density 3.5 (swarm-0917-w16-w16-f-break, 2026-09-19, belief-breaker, paradigm/decomposition).**
+  The question: can Følner-type sets, 0/1 rather than weighted, come from the w13 product ansatz on
+  the lossless windows `E(S_n)`?
+  - *Established:* `thompson-f-product-forest-sets-have-density-below-3-5`. The answer is no.
+    - A product family has bulk trees `𝒜` (containing the leaf) and pointer trees `ℬ`, with window
+      sets `Y_n`. Its density has an exact counting formula, checked against brute-force Cayley
+      density for 240 (family, `n`) pairs.
+    - In the renewal limit, `δ_∞ <= 3 + 2α^2 < 3.5`, where `α` is the mass of the pointer-size law
+      strictly below its median.
+    - The depth-`<= k` families give `4 - 2R_k`, which increases to `3.5`. So `3.5` is the exact
+      supremum and is never attained.
+  - *Invariant:* the tilted size laws `ν` (pointer) and `η` (bulk). In the limit the pointer size is
+    independent of its neighbour's size.
+  - *Dies at:* the median of `ν`. Merge and shift overlaps are `min`-overlaps, and splitting at the
+    median caps them at `αβ + 1/2` and `max(α/β, (1-β)/(1-α))`.
+  - *Belief changed:*
+    - Belk–Brown's `3.5` is the ceiling of the whole product class, not an artefact of their choice
+      of trees.
+    - Guba's `3.5004` sets, and any `Q_5` set (density `> 3.6`, via
+      `thompson-f-guba-q4-systems-have-common-multiples`), cannot be large product windows.
+    - Weighted product vectors reach Rayleigh value `> 3.897` but indicators stop at `3.5`, because
+      `min(p, q)` replaces `sqrt(pq)`. The density route to `Q_5` needs non-product sets.
+  - *Survivor and open:*
+    - Sets where membership of the pointer tree is correlated with its neighbours, including
+      two-sided bulk sets.
+    - The periodic case where the leaf is not in `𝒜`.
+    - Finite windows of product families. The limit proof does not cover them; a float relaxation
+      gives `2.00, 2.51, 2.70, 2.80, 2.88` at `n = 4, 8, 12, 16, 20`, still well below `3.5`.

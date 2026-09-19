@@ -199,3 +199,47 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
   - *Next.* Prove the case `N = 2` of the overlap cube conjecture with ideal two-wall windows.
     The gap is that the room-three facet data lie outside the band space of the cube proof,
     and the `N = 1` obstruction is a divisibility statement, not a single class.
+
+- **Level-two spanning, reduced (w13-113).** `toms-level-two-spanning-reduces-to-relative-hex`.
+  - *Reduction.* At `max delta = 2`, the face form of the spanning principle (S) is equivalent
+    to a relative Hex statement `R1(3)`. That statement is over finitely many disjoint
+    non-separating level-2 continua, each missing faces in three coordinates.
+  - *Proved around it.* `R1(2)` is false (a slit wall). Flat level-1 walls are impossible.
+    Counterexamples propagate upward in `N`.
+  - *Next.* Prove `R1(3)`. That gives depth `3` for slice-constant targets in every `N >= 5`,
+    exact at `N = 5, 6`. It must handle folded partitions, a non-unicoherent complement of
+    the level-2 set, and chaining of level-1 pieces through one level-2 continuum.
+- **w14-113: the slack in (S) amplifies; exact SAT model for F(3).**
+  `toms-spanning-defect-is-superadditive`. The spanning defect
+  `D(M) = max_delta min_Omega (f - delta)` is superadditive under products. So one face
+  counterexample in dimension `N_0` gives `D(M) >= floor(M/N_0)`, and the face form holds in
+  every dimension iff `D = o(M)`. A defect rate `lambda < 1/3` already gives slice-constant depth
+  `(1 - 3 lambda) N / 2`. An exact local SAT model of cell-constant face counterexamples (no
+  connectivity variables) finds `F(3)` (= `R1(3)` in dimension 3) UNSAT at resolution
+  `n = 2`; `n = 3` was undecided in 20 minutes. The planar and slit-wall controls behave
+  as expected. `R1(3)` itself is still unproved.
+  - *Next step.* Growth normal form. A level-2 set may be enlarged by any closed set as long as
+    every merged level-2 component still misses faces in three coordinates. Enlarge until `R` is a
+    thin neighbourhood of a 2-complex, then prove Hex on that 2-complex. The obstruction is
+    a conflict-free choice of missed-face colours on adjacent components, which is what the SAT
+    model decides.
+- **w15-113: the conflict-free-labelling route to `R1(3)` is vacuous; octant-jack searches.**
+  `toms-conflict-free-face-labellings-never-exist`.
+  - *Degree lemma.* Label every cell of a cube subdivision by `+-e_nu`, never by the outward
+    normal of a cube face that contains the cell. Some cell and a cell in its closure always get
+    antipodal labels. The proof is that the piecewise-linear extension is boundary-homotopic to
+    `-r`, which has degree `+-1`. So every partition into face-missing pieces has two touching
+    pieces that picked opposite faces. For level components, the conflict sits where a strictly
+    higher level lies in the closure of a lower one.
+  - *What this kills.* The next step recorded by w14-113 (rule out conflict-free missed-face
+    colourings in the grown normal form) proves nothing, because such colourings never exist.
+    That includes the `R1(2)` slit wall.
+  - *Computation.* Exact SAT, unreviewed:
+    - The octant jack is the normal form with all eight corner blobs and `R` a thin
+      neighbourhood of the three midplanes. It is UNSAT at `n = 2` and `n = 4`, and SAT there
+      would be a genuine `F(3)` counterexample.
+    - Lex-leader breaking over the 48 cube symmetries reproduces all the controls.
+    - Full `F(3)` at `n = 3` is still undecided at the 20-minute cap.
+  - *Next step.* Use set-valued labels (a level-`t` component carries `t + 1` missed
+    coordinates) and prove a Ky Fan style alternating-chain count. This is where `R1(2)` and
+    `R1(3)` differ.

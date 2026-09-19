@@ -635,3 +635,259 @@ content in that region.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
+
+* **Outermost-circuit / dyadic-RSW refinement of that chain (w13-123,
+  2026-09-18): obstruction.** See
+  `fpbs-bisector-split-chain-caps-at-inverse-theta-squared`. Every
+  refinement of Step 4 only lower-bounds `Theta^±`, and the exact values
+  are small.
+
+  On the straight path with pattern `{e_{k-1}, e_{k+1}}`, every dual circuit
+  around the cut leaves `L`. So `P(A^L) = P(B^R) = 1`, and
+  `Theta^± = q(S^±) <= theta/p'`. The chain then outputs at least
+  `p'^2/theta^2`, while the true value is `K <= 2/theta`.
+
+  On sparse dyadic patterns, finger circuits cap `Theta^±` at
+  `(1-c_0)^{#scales <= L(p')}`.
+
+  The loss is in Step 1, which discards the shared arm. Monte Carlo at
+  `M = 32, 64, 128` puts the true `K*theta` in `[0.78, 0.85]` on every
+  dyadic pattern, so `C/theta` remains plausible.
+
+  **Next:** either a Step 1 that keeps one shared arm (arm separation), or,
+  for the gate alone, the bound `Theta^± >= c theta^{gamma/2}` with
+  `gamma < 36/5`.
+
+* **Polynomial lower bound for the bisector chain (w14-123, 2026-09-18).**
+  See `fpbs-bisector-chain-is-polynomial-in-inverse-theta`. On the straight
+  path, `Theta^±(S) >= Phi := P(D^-(U^-))` for every pattern, by monotone
+  coupling. So `K(S) <= 1/Phi^2` holds uniformly, and `Phi` is one
+  pattern-free event.
+
+  `D^-(U^-)` is decided exactly: no point of the negative axis lies in a
+  bounded face of the non-`L` dual blocks. Nested primal circuits in the
+  left half-plane, one RSW factor per dyadic scale, give
+  `Phi >= c L(p')^{-kappa}`. So `K <= C theta^{-gamma_0}`, which is
+  polynomial and replaces the source's `theta^{-c xi}`. This is ESTABLISHED
+  modulo RSW and Kesten scaling.
+
+  The gate `gamma < 36/5` is equivalent to `zeta_Phi < 3/8`. Critical Monte
+  Carlo at `n = 16..256` gives a fitted `zeta = 0.24`, a last local slope
+  of `0.31(5)`, and `log Phi / log pi_n` between 1.5 and 1.9, against the
+  gate threshold of 3.6. So the gate is favoured numerically, but not
+  decisively, and it is OPEN rigorously: RSW constants alone cannot give
+  it.
+
+  The shared-arm Step 1 is needed only for the sharp `C/theta`.
+
+  **Next:** prove `zeta_Phi < 3/8` via CLE_6 on the triangular lattice, or
+  by comparison with the half-plane one-arm (`1/3`) or polychromatic
+  two-arm (`1/4`) exponent. Then extend the circuits to geodesic paths.
+
+* **Geodesic paths, and the gate reduced to one critical inequality
+  (w15-123, 2026-09-18).** See
+  `fpbs-geodesic-bisector-chain-polynomial-in-inverse-theta`.
+
+  - **Theorem A.** On every monotone path, `Theta^± >= c L^{-kappa_1}`.
+    The construction uses 64 linked circuits per dyadic scale in boxes of
+    half-width `t/8`, and these boxes lie in the bisector half. So
+    `K <= C theta^{-gamma_0}` holds for all geodesic paths, and with
+    exponent `O(λ)` for `λ`-quasi-geodesics. Hairpins are still open.
+  - **Theorem B.** The box event `D_n` is an exact face condition of edge
+    walls and pinch (diagonal) walls of the wired cluster. It gives a
+    linear-time evaluator with 0 mismatches against w14's block code.
+  - **Proposition C.** `Phi(p') >= c · P_{1/2}(D_{C L(p')})`, obtained by
+    FKG from the box event, an RSW circuit and a no-large-dual-circuit
+    event. So the gate `gamma < 36/5` follows from the single critical
+    inequality (H): `P_{1/2}(D_n) >= pi(n)^β` with `β < 18/5`
+    (`zeta < 3/8`). This is ESTABLISHED modulo near-critical RSW and
+    exponential decay.
+  - **Numerics.** The critical Monte Carlo runs to `n = 2048` with 5,900
+    samples. Local slopes are stable at `0.251(6)`, with no upward drift
+    (w14's `0.31(5)` was a fluctuation), and the one-arm calibration gives
+    `0.10 ≈ 5/48`. So `β_eff ≈ 2.4 < 3.6` and `gamma ≈ 4.8`.
+  - **Refuted.** "Two half-plane arms imply `D`" is false (a pocket
+    opening to the right).
+
+  **Next:** prove (H). On the triangular lattice this is the CLE_6 wedge
+  exponent of "no loop meets both the negative real axis and the imaginary
+  axis", conjecturally `1/4`, which would give `gamma = 24/5`.
+
+* **CLE_6 wedge route to (H) (w16-123, 2026-09-18): obstruction, and the
+  correct target.** See `fpbs-cle6-hull-wedge-event-is-not-the-box-event`.
+  Setting: triangular site percolation at `p = 1/2`, wired box `B_n`,
+  boundary cluster `I_n`.
+
+  The §3.4 CLE_6 loop event of
+  `fpbs-geodesic-bisector-chain-polynomial-in-inverse-theta` is the *hull
+  form* `H_n`: no hole of `I_n` meets both the negative axis `S_n` and
+  `{x > 0}`. The box event `D_n` is the *circuit form*.
+
+  - **Proved: sub-event.** `H_n ⊆ D'_n ⊆ D_n`, where `D'_n` is the
+    pinch-wall proxy computed by `tri_d.c`.
+  - **Proved: upper bound.** `P(H_n) <= 2 pi^+(n/2) = n^{-1/3+o(1)}`, via
+    four-arc duality, which forces a black half-plane arm at the origin.
+  - **Proved: pinch lemma.** No white circuit uses a step whose two
+    common neighbours lie in `I_n`.
+  - **Numerics (`tri_d.c`, 3000 samples).** `D'_n` has local slopes
+    `0.267-0.306` for `n <= 512` (`0.270(17)` at `n = 512`), consistent
+    with the Z^2 value `0.251(6)`. `P(0 ∈ I_n)` has slope near `5/48`, a
+    sanity check. `H_n` has slopes `1.1-2`, with `P(H_256) ≈ 7e-4`.
+
+  So the CLE_6 hull route cannot give (H); this is a numerical
+  obstruction, since rigorously only exponent `>= 1/3` is known, against a measured value of at least about 1. The
+  continuum object for `zeta` is filled-cluster outer boundaries
+  (external perimeters, SLE_{8/3}-type), separated from the hulls by
+  pinch passages. (H) remains OPEN.
+
+  **Next:** prove `P(D'_n) >= n^{-zeta'}` with `zeta' < 3/8`. `D'_n` is a
+  rigorous sub-event of `D_n`, so this would prove (H) on the triangular
+  lattice. Candidate tools: an exploration along `S_n` that closes fjords
+  at pinch (four-arm) points, or restriction/SLE_{8/3} estimates for
+  external perimeters.
+
+* **Restriction-wedge route to (H) (w18-123, 2026-09-18): refuted, and the
+  FKG half-split is lossy.** See
+  `fpbs-box-event-wedge-angle-law-refutes-restriction`. The pinch-wall
+  event `D'_n(X_theta)` has a target wedge `X_theta = {|arg z| < theta}`,
+  and `theta = pi/2` is the (H) case.
+
+  - **Proved: floor.** `zeta(theta) >= 5/48` for every `theta`. The
+    outer boundary of the filled black clusters at the origin is a
+    white circuit that crosses the positive axis, so the event forces a
+    black one-arm.
+  - **Proved: half-split.** By FKG and a reflection,
+    `P(D'_n) >= P(D'_n(X^+))^2` for the quadrant `X^+ = {x > 0, y >= 0}`.
+    So `rho < 3/16` for the quadrant event implies (H), and
+    `rho >= 5/48`.
+  - **Refuted: the SLE_6-exploration/restriction bound.** Its slit-sqrt
+    calculus gives `zeta(theta) = alpha(pi+theta)/(pi-theta)`, so
+    `zeta(pi/2) = 3 zeta(0) >= 5/16`. SLE_{8/3} would give `15/8`, and
+    the SLE_6 hull `1`.
+  - **Numerics (`tri_wedge.c`, 6000 samples, n <= 256).**
+    `zeta(0) = 0.149(4)` and `zeta(pi/2) = 0.256(6)`, a ratio of
+    `0.58(2)`. The restriction law predicts `1/3`, and plain unslit
+    covariance predicts `1/2`. With the measured `alpha`, the restriction
+    law certifies only `0.447 > 3/8`.
+  - **Numerics: half-split.** The quadrant exponent is
+    `rho = 0.211(7) > 3/16`, so the half-split cannot close the gate
+    either. The two halves are strongly correlated.
+
+  **Next:** prove the widening inequality
+  `P(D'_n(pi/2)) >= c P(D'_n(0))^2` (numerically `0.256 < 0.298`), and
+  prove `zeta(0) < 3/16` for the axis-to-axis event `D'_n(0)`: no
+  pinch-free non-`I_n` path from the positive to the negative axis, a
+  two-boundary-arc event. Together these give (H).
+
+* **Wedge K-arm reduction of the box events (w19-123, 2026-09-18): (H)
+  reduced to one increasing quadrant-arm exponent, plus one decorrelation
+  inequality.** See `fpbs-box-event-quadrant-k-arm-reduction`. A
+  *K-path* is a path of wired-cluster (`I_n`) sites that may also jump
+  to the far corner of a rhombus. A jump crosses only a pinch edge.
+
+  - **Proved: two arms force the box events.** Two K-arms from the
+    origin, one in each left quadrant, give `D'_n(pi/2)`. Two in the
+    upper and lower half-planes give `D'_n(0)`. The proof is a Jordan
+    crossing argument.
+  - **Proved: FKG and reflection.** `P(D'_n(pi/2)) >= P(A_n(UL))^2`, so
+    `alpha_Q < 3/16` implies (H).
+  - **Proved: obstruction.** No FKG product of arm events can give
+    `zeta(0) < 3/16`, since each factor lies in the one-arm event and the
+    product is therefore at most `pi(n)^2 = n^{-5/24}`.
+  - **Open: (CD).** (CD) says the two arms are conditionally independent
+    given the one arm. With (CD), (H) needs only `alpha_Q < 23/96`, and
+    (ii) needs only `alpha_H < 7/48`.
+  - **Proved: duality identity.** Flipping the short diagonal of each
+    checkerboard rhombus gives a triangulation, and the Hex lemma then
+    gives `D'_n(0) ∩ {0 ∈ I_n} = A_n(UH) ∩ A_n(LH)` exactly.
+  - **Numerics (`karm.c`, `n <= 512`, about 19000 samples).**
+    `alpha_Q = 0.190(3)`, right at `3/16`, so the unconditional route is
+    inconclusive. `alpha_H = 0.127(3)`, `zeta(0) = 0.145(4)`,
+    `zeta(pi/2) = 0.265(7)`. The decorrelation ratios are
+    `kappa_Q = 1.00-1.03` and `kappa_H = 0.99-1.00`, so the (CD) route
+    closes (H) with margin 0.10 and (ii) with margin 0.03.
+
+  **Next:** prove (CD) by decoupling the arm-arc events across scales
+  under the incipient-infinite-cluster conditioning.
+
+* **Exact half-plane decomposition of the axis box event, and why (CD_H)
+  cannot come from soft tools (w20-123, 2026-09-19).** See
+  `fpbs-cd-h-exact-decomposition-and-renewal-obstruction`.
+
+  - **Proved: exact decomposition.** `D'_n(0) = U_n ∩ L_n` on every
+    configuration, where `U_n` and `L_n` are increasing, exchanged by
+    reflection, and say that there is no pinch-free non-`I_n` path from
+    the negative to the positive axis in the upper or lower half-plane.
+    Moreover `A_n(UH) = C_n ∩ U_n`.
+  - **Proved: one-site flip.** `P(D'_n(0)) <= 2 P(D'_n(0) ∩ C_n)`, so the
+    one-arm conditioning costs a factor at most 2.
+  - **Proved: reformulation.** (ii) holds iff `U_n` and `L_n` beat FKG by
+    `n^{2 alpha_H - 3/16 + eps}`, that is, iff the (CD_H) loss is
+    `delta_H < 7/24 - 2 alpha_H` (about 0.037). (CD_H) holds iff
+    `zeta(0) <= 2 alpha_H - 5/48`.
+  - **Obstruction, and a dead route.** An independent-scales product model
+    has every structural property: FKG, reflection, the flip, and exact
+    quasi-multiplicativity. It has FKG gain 1 and `kappa = n^{-0.415}`. So
+    arm separation plus quasi-multiplicativity under one-arm conditioning
+    cannot prove (CD_H), or even (ii). Exact enumeration at `n = 3` gives
+    `kappa_H = 0.999969 < 1`, so conditional positive association fails.
+  - **Numerics.** `delta_H` is about 0.002, against a threshold of 0.037.
+
+  **Next:** prove `P(D'_n(0)) >= n^{-3/16+eps}` for the single increasing
+  event `U_n ∩ L_n`, using lattice-specific input. The candidates are the
+  SLE6 slit-separation exponent of the white Γ_n clusters (predicted
+  `7/48`) and a quantitative per-scale arm-sharing lemma.
+
+* **Winding law for the slit events and the rotation reduction (w21-123,
+  2026-09-19).** See `fpbs-slit-winding-law-and-rotation-reduction`.
+
+  - **Proved: winding law.** Let `E0` be the local event that the step
+    `(0,0)(1,0)` is not a usable white step. On `E0`, no white circuit
+    winds around the slit point `z0 = (1/2,0)`. So each pinch-free white
+    component carries an argument range `J_W`. Then `U_n` fails iff some
+    `J_W` contains a cell `[2kπ,(2k+1)π]`, and `D'_n(0)` fails iff some
+    `J_W` contains a cell `[kπ,(k+1)π]`. Sampling up to `n = 256` gives
+    zero violations.
+  - **Proved: sandwich.** `W_π ⊆ D'_n(0) ⊆ W_{2π}` for the
+    rotation-invariant events `W_t` = {every range is shorter than `t`}.
+  - **Proved: rotation reduction.** Averaging over rotations of the slit
+    grid, Cauchy-Schwarz gives the one-arm credit for free:
+    `d̄_n >= κ_n ū_n^2 n^{5/48-o(1)}`. So the rotated (ii) needs only
+    `κ_n >= n^{-δ}` with `2ᾱ + δ < 7/24`, where `κ_n` compares
+    antipodal slit directions with independent ones. A single wide
+    component always anticorrelates the two sides.
+  - **Numerically dead: the proxy `W_π`.** Its exponent is about 0.23,
+    above 3/16, so the rotation-invariant radial proxy cannot give (ii).
+    The event `D'_n(0) ⊆ W_{2π}` is almost all of `E0`.
+  - **Numerics.** `κ_n` decays with `δ̄ ≈ 0.007`, and `2ᾱ + δ̄ ≈ 0.25`,
+    against 7/24 ≈ 0.29.
+
+  **Next:** prove `κ_n >= n^{-δ}` for small `δ`. This is an
+  antipodal-versus-independent comparison of the rotated slit events,
+  and a candidate proof is a per-scale coupling of the angular positions
+  of wide components. Then transfer `d̄_n` back to the axis event
+  `P(D'_n(0))`, for example by RSW quasi-invariance under rotation of the
+  slit.
+
+* **The rotation margin returns the one-arm credit (w22-123,
+  2026-09-19).** See `fpbs-rotation-margin-returns-one-arm-credit`.
+
+  - **Obstruction to (K).** Let `ρ` be the distance from the random slit
+    angle to the bad set.
+    - Proved: `P(L^Φ|U^Φ) <= κ_n <= π P(L^Φ|U^Φ)/E[ρ|U^Φ]`.
+    - So, under the margin hypothesis `E[ρ|U^Φ] >= n^{-o(1)}`, (K) is
+      equivalent to `ζ̄ + ᾱ < 7/24`. That is stronger than (ii) by
+      `ᾱ - 5/48`: the Cauchy-Schwarz credit `n^{5/48}` is paid back in
+      `κ_n`.
+  - **Proved: the exact residual.** We have `κ_n = R_n/S_n`, where
+    `R_n = d̄_n P(E0)/ū_n^2` and the slack is `S_n >= 1`.
+    - The rotated (ii) is *equivalent* to `R_n >= n^{-δ}` for some
+      `δ < 7/24 - 2ᾱ`.
+  - **Proved: the Poisson independent-offset model.**
+    - `R_n = 1` exactly, and the margin is of order one.
+    - But `κ_n ≍ P(U^Φ|E0)`, so (K) with `δ -> 0` is false there.
+  - **Numerical, `n <= 256`.** `R_n` stays within 1% of 1, and two wide
+    components are rare (`P(N>=2|E0) <= 0.04`), so this is a one-hole regime.
+  - **Next.** Prove the conditional decorrelation (R): approximate
+    independence across scales of the angular offsets of wide white
+    components given `E0`. Then prove the axis transfer (T).

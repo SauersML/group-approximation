@@ -1,0 +1,143 @@
+d=2 q=3 m=1: S(m)/q^(m/2) = 2 formula 2 lower 4/3 histogram {-1: 3, 1: 1} OK
+d=2 q=3 m=2: S(m)/q^(m/2) = 8/3 formula 8/3 lower 2 histogram {-2: 9, 0: 2, 2: 1} OK
+d=2 q=3 m=3: S(m)/q^(m/2) = 10/3 formula 10/3 lower 8/3 histogram {-3: 27, -1: 6, 1: 2, 3: 1} OK
+d=2 q=3 m=4: S(m)/q^(m/2) = 4 formula 4 lower 10/3 histogram {-4: 81, -2: 18, 0: 6, 2: 2, 4: 1} OK
+d=2 q=3 m=5: S(m)/q^(m/2) = 14/3 formula 14/3 lower 4 histogram {-5: 243, -3: 54, -1: 18, 1: 6, 3: 2, 5: 1} OK
+d=2 q=3 m=6: S(m)/q^(m/2) = 16/3 formula 16/3 lower 14/3 histogram {-6: 729, -4: 162, -2: 54, 0: 18, 2: 6, 4: 2, 6: 1} OK
+d=2 q=3 m=7: S(m)/q^(m/2) = 6 formula 6 lower 16/3 histogram {-7: 2187, -5: 486, -3: 162, -1: 54, 1: 18, 3: 6, 5: 2, 7: 1} OK
+d=3 q=5 m=1: S(m)/q^(m/2) = 2 formula 2 lower 8/5 histogram {-1: 5, 1: 1} OK
+d=3 q=5 m=2: S(m)/q^(m/2) = 14/5 formula 14/5 lower 12/5 histogram {-2: 25, 0: 4, 2: 1} OK
+d=3 q=5 m=3: S(m)/q^(m/2) = 18/5 formula 18/5 lower 16/5 histogram {-3: 125, -1: 20, 1: 4, 3: 1} OK
+d=3 q=5 m=4: S(m)/q^(m/2) = 22/5 formula 22/5 lower 4 histogram {-4: 625, -2: 100, 0: 20, 2: 4, 4: 1} OK
+d=3 q=5 m=5: S(m)/q^(m/2) = 26/5 formula 26/5 lower 24/5 histogram {-5: 3125, -3: 500, -1: 100, 1: 20, 3: 4, 5: 1} OK
+d=2 q=3 m=0 lambda=0.1: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.2: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.35: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.5: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.65: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.8: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=0 lambda=0.95: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=2 q=3 m=1 lambda=0.1: 2.6879 <= S_lambda = 3.8040 <= 5.3758 OK
+d=2 q=3 m=1 lambda=0.2: 2.4082 <= S_lambda = 3.6540 <= 4.8164 OK
+d=2 q=3 m=1 lambda=0.35: 2.0423 <= S_lambda = 3.5112 <= 4.0847 OK
+d=2 q=3 m=1 lambda=0.5: 1.7321 <= S_lambda = 3.4641 <= 3.4641 OK
+d=2 q=3 m=1 lambda=0.65: 2.0423 <= S_lambda = 3.5112 <= 4.0847 OK
+d=2 q=3 m=1 lambda=0.8: 2.4082 <= S_lambda = 3.6540 <= 4.8164 OK
+d=2 q=3 m=1 lambda=0.95: 2.8397 <= S_lambda = 3.8961 <= 5.6793 OK
+d=2 q=3 m=2 lambda=0.1: 7.2247 <= S_lambda = 10.4704 <= 21.6740 OK
+d=2 q=3 m=2 lambda=0.2: 5.7995 <= S_lambda = 9.3514 <= 17.3986 OK
+d=2 q=3 m=2 lambda=0.35: 4.1712 <= S_lambda = 8.3288 <= 12.5135 OK
+d=2 q=3 m=2 lambda=0.5: 3.0000 <= S_lambda = 8.0000 <= 9.0000 OK
+d=2 q=3 m=2 lambda=0.65: 4.1712 <= S_lambda = 8.3288 <= 12.5135 OK
+d=2 q=3 m=2 lambda=0.8: 5.7995 <= S_lambda = 9.3514 <= 17.3986 OK
+d=2 q=3 m=2 lambda=0.95: 8.0636 <= S_lambda = 11.1797 <= 24.1909 OK
+d=2 q=3 m=3 lambda=0.1: 19.4190 <= S_lambda = 28.4174 <= 77.6761 OK
+d=2 q=3 m=3 lambda=0.2: 13.9666 <= S_lambda = 23.2077 <= 55.8664 OK
+d=2 q=3 m=3 lambda=0.35: 8.5190 <= S_lambda = 18.7108 <= 34.0758 OK
+d=2 q=3 m=3 lambda=0.5: 5.1962 <= S_lambda = 17.3205 <= 20.7846 OK
+d=2 q=3 m=3 lambda=0.65: 8.5190 <= S_lambda = 18.7108 <= 34.0758 OK
+d=2 q=3 m=3 lambda=0.8: 13.9666 <= S_lambda = 23.2077 <= 55.8664 OK
+d=2 q=3 m=3 lambda=0.95: 22.8979 <= S_lambda = 31.8693 <= 91.5916 OK
+d=2 q=3 m=4 lambda=0.1: 52.1959 <= S_lambda = 76.6886 <= 260.9796 OK
+d=2 q=3 m=4 lambda=0.2: 33.6347 <= S_lambda = 56.7457 <= 168.1737 OK
+d=2 q=3 m=4 lambda=0.35: 17.3986 <= S_lambda = 40.7118 <= 86.9932 OK
+d=2 q=3 m=4 lambda=0.5: 9.0000 <= S_lambda = 36.0000 <= 45.0000 OK
+d=2 q=3 m=4 lambda=0.65: 17.3986 <= S_lambda = 40.7118 <= 86.9932 OK
+d=2 q=3 m=4 lambda=0.8: 33.6347 <= S_lambda = 56.7457 <= 168.1737 OK
+d=2 q=3 m=4 lambda=0.95: 65.0221 <= S_lambda = 90.6273 <= 325.1103 OK
+d=2 q=3 m=5 lambda=0.1: 140.2961 <= S_lambda = 206.4710 <= 841.7767 OK
+d=2 q=3 m=5 lambda=0.2: 81.0000 <= S_lambda = 137.7233 <= 486.0000 OK
+d=2 q=3 m=5 lambda=0.35: 35.5340 <= S_lambda = 86.8167 <= 213.2040 OK
+d=2 q=3 m=5 lambda=0.5: 15.5885 <= S_lambda = 72.7461 <= 93.5307 OK
+d=2 q=3 m=5 lambda=0.65: 35.5340 <= S_lambda = 86.8167 <= 213.2040 OK
+d=2 q=3 m=5 lambda=0.8: 81.0000 <= S_lambda = 137.7233 <= 486.0000 OK
+d=2 q=3 m=5 lambda=0.95: 184.6401 <= S_lambda = 257.4870 <= 1107.8404 OK
+d=2 q=3 m=6 lambda=0.1: 377.0985 <= S_lambda = 555.3496 <= 2639.6893 OK
+d=2 q=3 m=6 lambda=0.2: 195.0662 <= S_lambda = 332.9977 <= 1365.4634 OK
+d=2 q=3 m=6 lambda=0.35: 72.5726 <= S_lambda = 182.6991 <= 508.0084 OK
+d=2 q=3 m=6 lambda=0.5: 27.0000 <= S_lambda = 144.0000 <= 189.0000 OK
+d=2 q=3 m=6 lambda=0.65: 72.5726 <= S_lambda = 182.6991 <= 508.0084 OK
+d=2 q=3 m=6 lambda=0.8: 195.0662 <= S_lambda = 332.9977 <= 1365.4634 OK
+d=2 q=3 m=6 lambda=0.95: 524.3136 <= S_lambda = 731.3181 <= 3670.1954 OK
+d=2 q=3 m=7 lambda=0.1: 1013.5937 <= S_lambda = 1493.1362 <= 8108.7496 OK
+d=2 q=3 m=7 lambda=0.2: 469.7632 <= S_lambda = 803.5887 <= 3758.1059 OK
+d=2 q=3 m=7 lambda=0.35: 148.2183 <= S_lambda = 381.0511 <= 1185.7461 OK
+d=2 q=3 m=7 lambda=0.5: 46.7654 <= S_lambda = 280.5922 <= 374.1230 OK
+d=2 q=3 m=7 lambda=0.65: 148.2183 <= S_lambda = 381.0511 <= 1185.7461 OK
+d=2 q=3 m=7 lambda=0.8: 469.7632 <= S_lambda = 803.5887 <= 3758.1059 OK
+d=2 q=3 m=7 lambda=0.95: 1488.8685 <= S_lambda = 2076.8421 <= 11910.9481 OK
+d=3 q=5 m=0 lambda=0.1: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.2: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.35: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.5: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.65: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.8: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=0 lambda=0.95: 1.0000 <= S_lambda = 1.0000 <= 1.0000 OK
+d=3 q=5 m=1 lambda=0.1: 4.2567 <= S_lambda = 5.4313 <= 8.5134 OK
+d=3 q=5 m=1 lambda=0.2: 3.6239 <= S_lambda = 5.0036 <= 7.2478 OK
+d=3 q=5 m=1 lambda=0.35: 2.8466 <= S_lambda = 4.6031 <= 5.6933 OK
+d=3 q=5 m=1 lambda=0.5: 2.2361 <= S_lambda = 4.4721 <= 4.4721 OK
+d=3 q=5 m=1 lambda=0.65: 2.8466 <= S_lambda = 4.6031 <= 5.6933 OK
+d=3 q=5 m=1 lambda=0.8: 3.6239 <= S_lambda = 5.0036 <= 7.2478 OK
+d=3 q=5 m=1 lambda=0.95: 4.6134 <= S_lambda = 5.6972 <= 9.2268 OK
+d=3 q=5 m=2 lambda=0.1: 18.1195 <= S_lambda = 23.4992 <= 54.3585 OK
+d=3 q=5 m=2 lambda=0.2: 13.1326 <= S_lambda = 19.0363 <= 39.3979 OK
+d=3 q=5 m=2 lambda=0.35: 8.1033 <= S_lambda = 15.1885 <= 24.3098 OK
+d=3 q=5 m=2 lambda=0.5: 5.0000 <= S_lambda = 14.0000 <= 15.0000 OK
+d=3 q=5 m=2 lambda=0.65: 8.1033 <= S_lambda = 15.1885 <= 24.3098 OK
+d=3 q=5 m=2 lambda=0.8: 13.1326 <= S_lambda = 19.0363 <= 39.3979 OK
+d=3 q=5 m=2 lambda=0.95: 21.2835 <= S_lambda = 26.4581 <= 63.8505 OK
+d=3 q=5 m=3 lambda=0.1: 77.1292 <= S_lambda = 100.4752 <= 308.5169 OK
+d=3 q=5 m=3 lambda=0.2: 47.5913 <= S_lambda = 70.2324 <= 190.3654 OK
+d=3 q=5 m=3 lambda=0.35: 23.0670 <= S_lambda = 46.8984 <= 92.2681 OK
+d=3 q=5 m=3 lambda=0.5: 11.1803 <= S_lambda = 40.2492 <= 44.7214 OK
+d=3 q=5 m=3 lambda=0.65: 23.0670 <= S_lambda = 46.8984 <= 92.2681 OK
+d=3 q=5 m=3 lambda=0.8: 47.5913 <= S_lambda = 70.2324 <= 190.3654 OK
+d=3 q=5 m=3 lambda=0.95: 98.1894 <= S_lambda = 122.2512 <= 392.7575 OK
+d=3 q=5 m=4 lambda=0.1: 328.3160 <= S_lambda = 428.2165 <= 1641.5799 OK
+d=3 q=5 m=4 lambda=0.2: 172.4662 <= S_lambda = 256.2353 <= 862.3310 OK
+d=3 q=5 m=4 lambda=0.35: 65.6632 <= S_lambda = 139.9353 <= 328.3160 OK
+d=3 q=5 m=4 lambda=0.5: 25.0000 <= S_lambda = 110.0000 <= 125.0000 OK
+d=3 q=5 m=4 lambda=0.65: 65.6632 <= S_lambda = 139.9353 <= 328.3160 OK
+d=3 q=5 m=4 lambda=0.8: 172.4662 <= S_lambda = 256.2353 <= 862.3310 OK
+d=3 q=5 m=4 lambda=0.95: 452.9873 <= S_lambda = 564.1995 <= 2264.9364 OK
+d=3 q=5 m=5 lambda=0.1: 1397.5425 <= S_lambda = 1823.4045 <= 8385.2549 OK
+d=3 q=5 m=5 lambda=0.2: 625.0000 <= S_lambda = 930.9441 <= 3750.0000 OK
+d=3 q=5 m=5 lambda=0.35: 186.9186 <= S_lambda = 409.6430 <= 1121.5116 OK
+d=3 q=5 m=5 lambda=0.5: 55.9017 <= S_lambda = 290.6888 <= 335.4102 OK
+d=3 q=5 m=5 lambda=0.65: 186.9186 <= S_lambda = 409.6430 <= 1121.5116 OK
+d=3 q=5 m=5 lambda=0.8: 625.0000 <= S_lambda = 930.9441 <= 3750.0000 OK
+d=3 q=5 m=5 lambda=0.95: 2089.8135 <= S_lambda = 2603.1026 <= 12538.8807 OK
+c=(1,) g=(): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1,) g=(2,): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1,) g=(2, 2, -1): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1,) g=(-1, 2, 1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1,) g=(1, 1, 2, -1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2) g=(): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2) g=(2,): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2) g=(2, 2, -1): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2) g=(-1, 2, 1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2) g=(1, 1, 2, -1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1, -2) g=(): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1, -2) g=(2,): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1, -2) g=(2, 2, -1): max_m #(g<c> cap S_m) for m<=12 is 1 OK
+c=(1, 2, -1, -2) g=(-1, 2, 1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1, -2) g=(1, 1, 2, -1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(2, 1, 1) g=(): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(2, 1, 1) g=(2,): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(2, 1, 1) g=(2, 2, -1): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(2, 1, 1) g=(-1, 2, 1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(2, 1, 1) g=(1, 1, 2, -1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1) g=(): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1) g=(2,): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1) g=(2, 2, -1): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1) g=(-1, 2, 1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+c=(1, 2, -1) g=(1, 1, 2, -1, 2): max_m #(g<c> cap S_m) for m<=12 is 2 OK
+J=<a,b> in F_3: f_1(J) = 4, expected 4 OK
+J=<a,b> in F_3: f_2(J) = 12, expected 12 OK
+J=<a,b> in F_3: f_3(J) = 36, expected 36 OK
+J=<a,b> in F_3: f_4(J) = 108, expected 108 OK
+J=<a,b> in F_3: f_5(J) = 324, expected 324 OK
+J=<a,b> in F_3: f_6(J) = 972, expected 972 OK
+alpha(J) = 3, sqrt(q) = sqrt 5 < 3 < 5 = q: 3^2 = 9 > 5 is True
+ALL OK

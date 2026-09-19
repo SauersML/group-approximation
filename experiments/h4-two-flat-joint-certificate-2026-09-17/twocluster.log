@@ -1,0 +1,84 @@
+V0,V1  extra o13,o12 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o13', 'o12'], 10 collision walls
+    wall x0   cluster [('p1', 'o14'), ('p1', 'o13'), ('o14', 'o13')]
+    wall x1   cluster [('p2', 'o14'), ('p2', 'o12'), ('o14', 'o12')]
+    wall z0   double  [('p1', 'p2'), ('o13', 'o12')]
+    wall z1   single  [('p1', 'p3')]
+    wall x3   single  [('p1', 'o12')]
+    wall z2   single  [('p2', 'p3')]
+    wall x2   single  [('p2', 'o13')]
+    wall x4   single  [('p3', 'o14')]
+    wall x5   single  [('p3', 'o13')]
+    wall x6   single  [('p3', 'o12')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o12', 'o13', 'o14', 'p1', 'p2', 'p3'] < t
+V0,V1  extra o13,o37 : NOT fibred
+V0,V1  extra o56,o12 : NOT fibred
+V0,V1  extra o56,o37 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o56', 'o37'], 10 collision walls
+    wall x0   cluster [('p1', 'o14'), ('p1', 'o56'), ('o14', 'o56')]
+    wall x1   cluster [('p2', 'o14'), ('p2', 'o37'), ('o14', 'o37')]
+    wall z0   double  [('p1', 'p2'), ('o56', 'o37')]
+    wall z1   single  [('p1', 'p3')]
+    wall x2   single  [('p1', 'o37')]
+    wall z2   single  [('p2', 'p3')]
+    wall x3   single  [('p2', 'o56')]
+    wall x4   single  [('p3', 'o14')]
+    wall x11  single  [('p3', 'o56')]
+    wall x10  single  [('p3', 'o37')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o37', 'o56', 'o14', 'p1', 'p2', 'p3'] < t
+V0,V2  extra o13,o15 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o13', 'o15'], 10 collision walls
+    wall x0   cluster [('p1', 'o14'), ('p1', 'o13'), ('o14', 'o13')]
+    wall x4   cluster [('p3', 'o14'), ('p3', 'o15'), ('o14', 'o15')]
+    wall z1   double  [('p1', 'p3'), ('o13', 'o15')]
+    wall z0   single  [('p1', 'p2')]
+    wall x11  single  [('p1', 'o15')]
+    wall z2   single  [('p2', 'p3')]
+    wall x1   single  [('p2', 'o14')]
+    wall x2   single  [('p2', 'o13')]
+    wall x10  single  [('p2', 'o15')]
+    wall x5   single  [('p3', 'o13')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o15', 'o13', 'o14', 'p1', 'p2', 'p3'] < t
+V0,V2  extra o13,o36 : NOT fibred
+V0,V2  extra o56,o15 : NOT fibred
+V0,V2  extra o56,o36 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o56', 'o36'], 10 collision walls
+    wall x0   cluster [('p1', 'o14'), ('p1', 'o56'), ('o14', 'o56')]
+    wall x4   cluster [('p3', 'o14'), ('p3', 'o36'), ('o14', 'o36')]
+    wall z1   double  [('p1', 'p3'), ('o56', 'o36')]
+    wall z0   single  [('p1', 'p2')]
+    wall x5   single  [('p1', 'o36')]
+    wall z2   single  [('p2', 'p3')]
+    wall x1   single  [('p2', 'o14')]
+    wall x3   single  [('p2', 'o56')]
+    wall x6   single  [('p2', 'o36')]
+    wall x11  single  [('p3', 'o56')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o36', 'o56', 'o14', 'p1', 'p2', 'p3'] < t
+V1,V2  extra o12,o15 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o12', 'o15'], 10 collision walls
+    wall x1   cluster [('p2', 'o14'), ('p2', 'o12'), ('o14', 'o12')]
+    wall x4   cluster [('p3', 'o14'), ('p3', 'o15'), ('o14', 'o15')]
+    wall z2   double  [('p2', 'p3'), ('o12', 'o15')]
+    wall z0   single  [('p1', 'p2')]
+    wall z1   single  [('p1', 'p3')]
+    wall x0   single  [('p1', 'o14')]
+    wall x3   single  [('p1', 'o12')]
+    wall x11  single  [('p1', 'o15')]
+    wall x10  single  [('p2', 'o15')]
+    wall x6   single  [('p3', 'o12')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o15', 'o12', 'o14', 'p1', 'p2', 'p3'] < t
+V1,V2  extra o12,o36 : NOT fibred
+V1,V2  extra o37,o15 : NOT fibred
+V1,V2  extra o37,o36 : fibred; 6 fibre points ['p1', 'p2', 'p3', 'o14', 'o37', 'o36'], 10 collision walls
+    wall x1   cluster [('p2', 'o14'), ('p2', 'o37'), ('o14', 'o37')]
+    wall x4   cluster [('p3', 'o14'), ('p3', 'o36'), ('o14', 'o36')]
+    wall z2   double  [('p2', 'p3'), ('o37', 'o36')]
+    wall z0   single  [('p1', 'p2')]
+    wall z1   single  [('p1', 'p3')]
+    wall x0   single  [('p1', 'o14')]
+    wall x2   single  [('p1', 'o37')]
+    wall x5   single  [('p1', 'o36')]
+    wall x6   single  [('p2', 'o36')]
+    wall x10  single  [('p3', 'o37')]
+    rank of fibre normals together with x: 4
+    real order at base point: ['o36', 'o37', 'o14', 'p1', 'p2', 'p3'] < t

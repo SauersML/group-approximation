@@ -1,0 +1,5 @@
+m=0 d=3: best max |log residual| = 4.241e-10; min/max leaf weight = 3.359e-01
+m=1 d=2: best max |log residual| = 4.241e-10; min/max leaf weight = 3.359e-01
+m=0 d=4: best max |log residual| = 3.630e-01; min/max leaf weight = 1.783e-01
+m=1 d=3: best max |log residual| = 3.630e-01; min/max leaf weight = 1.783e-01
+m=2 d=2: best max |log residual| = 3.671e-01; min/max leaf weight = 1.801e-01

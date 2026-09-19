@@ -133,4 +133,58 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
   - `Gamma(8)` itself needs 524288 cosets of `PB_5/<Delta^2>`, which is feasible only with a
     compiled Reidemeister-Schreier.
   - No geometric relation in `M` producing the transversal is identified.
+### 2026-09-19, swarm-0917-w15-w15-deligne-pull (census-computation): index-two layer below Gamma(4) computed, d = 1/30, b_1(M_8) = 54
+
+- **What was computed.** See `mod-s2-gamma4-index-two-torelli-census`, established through
+  `mod-s2-gamma4-index-two-torelli-census-proof`.
+  - The 1023 index-two subgroups `Gamma(8) < G_chi < Gamma(4)` fall into 15 `Sp_4(F_2)`-orbits.
+  - For one `chi` per orbit, the [G4] pipeline was run on the 122880 cosets of `H`.
+- **Results.**
+  - `d(G_chi) = 1/30` for all 1023. In every orbit the certificate is a mass-10 relation with
+    `l1 = aug = 10`, so it does not spread to the transfer mass 20.
+  - `b_1(M_chi) = 54` in every orbit. `H_1` is `Z^54`, except in orbit 2 (45 subgroups), where it
+    is `Z^54 + Z/2` with 192 classes.
+  - By the character decomposition of `H_1(M_8; C)` over `Gamma(4)/Gamma(8) = F_2^10`,
+    `b_1(M_8) = 54`. The same holds for every `Gamma(8) <= Gamma' <= Gamma(4)`.
+- **Reading.**
+  - Real characters are frozen from level four to level eight: every real character of `M_8` is
+    restricted from `M_4`. So the identity component of `Ann(W(Gamma(8)))` gives exactly `1/30`.
+  - Hence `d(Gamma(8)) < 1/30`, the first possible decay of the 2-adic tower, can only come from a
+    torsion character of `H_1(M_8; Z)`.
+  - In the index-two layer the only torsion is one `Z/2`, and it does not lower `d`.
+- **Where it stops.**
+  - The torsion of `H_1(M_8; Z)` is not computed. The transfer argument sees only `H_1(-; C)`.
+  - It is also open whether `b_1(M_(2^k))` stays 54 for all `k`. For `k = 4`, `Gamma(8)/Gamma(16)` is
+    again `sp_4(F_2)`, so the question is again 15 orbit runs. Each run has twice the cosets of
+    `M_8`, about 1.26e8, which is out of reach of this coset pipeline.
+  - If `b_1` stays 54 along the whole tower, (TAP) on the 2-adic tower becomes a statement about
+    torsion characters alone.
+- **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w16-w16-deligne-follow (census-computation): first torsion level Gamma(4,8) computed integrally, the torsion character kills nothing, d = 1/30, A_+ = 10
+
+- **What was computed.** See `mod-s2-igusa-torelli-census-is-one-thirtieth`, established through
+  `mod-s2-igusa-torelli-census-proof`.
+  - The 512-coset level-four Fox complex is lifted to a free `Z[F_2^4]`-complex for
+    `pi^(-1) Gamma(4,8)`, which has 8192 cosets.
+  - Elimination is done over the local ring `(Z/2^8)[F_2^4]`, where every odd-augmentation entry is a
+    unit.
+  - The direct 8192-coset elimination ran out of memory (over 11 GB); the equivariant one needs 11 minutes.
+- **Results.**
+  - `H_1 = Z^54 + Z/2`, so `k = 1` in (I48).
+  - There are 160 classes, one over each level-four class. The order-two torsion character is 1 on
+    76 of them.
+  - Still, `W(Gamma(4,8)) = W(Gamma(4))`: rank 106, and equal Gram determinant.
+  - `d = 1/30` with a mass-10 certificate, and `A_+ = 10`, up from the bound `{10, ..., 160}`.
+  - `d = 1/30` on the whole interval `Gamma(4,8) <= Gamma' <= Gamma(4)`.
+- **Reading.** The torsion-only failure mode of the 2-adic tower is live, since torsion characters do
+  occur and are nontrivial on twists. At its first occurrence it does not fire. On the twist classes the
+  new character agrees with a level-four real character, because `W(Gamma(4))` is saturated and `eps`
+  pairs evenly with it.
+- **Where it stops.**
+  - `M_8` has `|A| = 2^10`. The dense stage would need about `54 * 1024` integer columns over
+    `Z/2^m`, which is out of reach as written.
+  - The same code handles any `Gamma(8) <= Gamma' <= Gamma(4)` with `|Gamma(4)/Gamma'|` up to about
+    `2^5`. Such subgroups are not run here.
+  - No uniform argument is given.
 - **Status.** OPEN.

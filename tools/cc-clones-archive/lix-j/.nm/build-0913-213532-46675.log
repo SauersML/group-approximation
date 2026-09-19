@@ -1,0 +1,45 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3482 oleans
+[job] acn112 cores=80-87 threads=8 base=c6436f1c18c98417936a6fcad75aed3b215c2e13 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
+✖ [1758/1758] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (9.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:86:18: don't know how to synthesize placeholder for argument `hπ`
+context:
+X : Type u_1
+Y : Type u_2
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+T : X ≃ₜ X
+S : Y ≃ₜ Y
+k : Type u_3
+inst✝ : Ring k
+φ : X ≃ₜ Y
+hφ : ∀ (x : X), φ (T x) = S (φ x)
+f : LocallyConstant X k
+⊢ ∀ (x : Y), { toFun := ⇑φ.symm, continuous_toFun := ⋯ } (S x) = T ({ toFun := ⇑φ.symm, continuous_toFun := ⋯ } x)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:91:22: don't know how to synthesize placeholder for argument `hπ`
+context:
+X : Type u_1
+Y : Type u_2
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+T : X ≃ₜ X
+S : Y ≃ₜ Y
+k : Type u_3
+inst✝ : Ring k
+φ : X ≃ₜ Y
+hφ : ∀ (x : X), φ (T x) = S (φ x)
+j : ℤ
+⊢ ∀ (x : Y), { toFun := ⇑φ.symm, continuous_toFun := ⋯ } (S x) = T ({ toFun := ⇑φ.symm, continuous_toFun := ⋯ } x)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.conjRingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:212:14: 'GroupApproximation.SimpleKazhdanSofic.flipRingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:213:14: 'GroupApproximation.SimpleKazhdanSofic.nonempty_elementaryGroup_equiv_of_conj_or_flip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:214:21: 'GroupApproximation.SimpleKazhdanSofic.printedConjugacyIsomorphism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
+error: build failed
+EXIT=1

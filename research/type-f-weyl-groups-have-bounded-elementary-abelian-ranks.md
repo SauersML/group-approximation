@@ -100,3 +100,113 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
     (`Z/2 ≀ Z` on `T_3 × T_3`, `SL_3(F_q[t])`), so the bound of this node has
     no geometric analogue there.
   - See `commensurated-cat0-witnesses-force-finite-rational-cd`.
+- **Neretin-type (Thompson-like) completions are dead by property (T);
+  discrete completions reduce to this node** (proposed-established, w12-117,
+  2026-09-18).
+  - For any cut-out `N = F ∩ ρ^{-1}(K)` with `K` compact open in a locally
+    compact `H`, `F/N ≅ F̂/M` with `M` compact open normal. So `F/N` is
+    Haagerup (resp. amenable, resp. has only finite (T) subgroups) when `H`
+    is.
+  - Neretin groups act properly on CAT(0) cube complexes (Genevois–Lonjou–
+    Urech), so hosts built from `V`, `T`, `F` or Cremona groups with `Σ` a
+    tree-automorphism cut-out never witness `N_U`, since `SL_3(Z) ≤ U`.
+  - A discrete completion forces a finite-index normal core of `Σ`, where
+    the bound of this node applies.
+  - Grigorchuk's group has no finite-dimensional CAT(0) cut-out
+    (Izeki–Karlsson). `Z/2 ≀ Z` is a cut-out in `T_3 × T_3` and passes every
+    completion test, so only the finiteness type of the host can exclude it.
+  - See `haagerup-cut-out-completions-force-haagerup-quotients`.
+- **Every host with a coarse tameness property is dead for `N_U`; only hosts
+  coarsely as wild as `U` survive** (proposed-established, w13-117,
+  2026-09-18).
+  - For a commensurated witness, `fN ↦ fΣ` is an injective, `F`-equivariant,
+    1-Lipschitz coarse embedding of `F/N` into the Hecke graph of
+    `(⟨F, Σ⟩, Σ)`. That graph is a Cayley–Abels graph of the Schlichting
+    completion. Amenability at infinity also descends through `F̂/M`.
+  - `U` contains every `Z^n`, Osajda's non-exact group and Sapir's expander
+    group. So no host that is exact, has finite asymptotic dimension, or
+    coarsely embeds in Hilbert space witnesses `N_U`, whatever the
+    finiteness type or torsion. This includes `SL_3(Q_p) × Neretin`, which
+    the Haagerup kill misses.
+  - Almost-automorphism groups of higher-rank buildings reduce to one open
+    coarse question: are they coarsely embeddable in Hilbert space?
+  - Non-discrete type F pairs with non-A Hecke graphs exist, so this is a
+    gate, not a kill.
+  - See `commensurated-quotients-coarsely-embed-in-hecke-graphs`.
+- 2026-09-18 (w14-117, obstruction-miner): proposed-established
+  `f-cores-reduce-benign-witnesses-to-normalized-ones`. The F-core
+  `S = ∩_f fΣf^{-1}` of every witness is an F-normalized witness with the same
+  quotient. So root => normalized witness is exactly a finiteness question on
+  `S`. Commensurated type `F` witnesses die by Browder when any of these hold:
+  finitely many F-conjugates of Σ, open closure of F in a cut-out
+  completion, open Schlichting closure (including discrete completions), or
+  lattice type with dense projection. For `U`, `V`, `Z/2 ≀ Z` and Grigorchuk's
+  group, every torsion-free finite-cd witness has a core with infinitely
+  generated homology. Survivors need `K` to act on `φ(U) ⊂ Hk` with infinite
+  image. Open: a type `F` commensurated witness for `Z/2 ≀ Z` whose core has
+  infinite index.
+- 2026-09-18 (w15-117, obstruction): proposed-established
+  `ascending-completions-give-only-virtually-cyclic-quotients`. The
+  BS(1,2)-style construction for `Z/2 ≀ Z` is impossible. If one letter `t`
+  contracts `Σ` into itself (`tΣt^{-1} ≤ Σ` of finite index) and
+  `F ⊆ (⋃_k t^{-k}Σt^k)⟨t⟩`, then `P = F/N` is finite or finite-by-`Z`.
+  The same holds for any cut-out `N = ρ^{-1}(K')` in an ascending tdlc
+  completion. No finiteness or torsion hypothesis is needed, so this also
+  excludes `U`, `V`, Grigorchuk's group and `Z^2`. Two contracting letters
+  (`Z[1/6] ⋊ Z^2`) already give `Z^2`. For `Z/2 ≀ Z` in general, every
+  lamp must be non-parabolic for both `τ` and `τ^{-1}`. Open: a two-sided
+  characteristic-`p` or non-linear completion.
+- 2026-09-19 (w16-117, obstruction): proposed-established
+  `rank-one-cut-outs-kill-amenable-non-abelian-quotients`. The two-sided
+  characteristic-2 completion cannot come from a rank-one lattice. Suppose
+  the cut-out factors through groups whose closed amenable subgroups are
+  compact or virtually solvable, such as `PGL_2(k)` in any characteristic.
+  Suppose also that the host is VSA (e.g. cocompact CAT(0)) and injective
+  on subproducts (e.g. irreducible). Then every amenable `P` is virtually
+  abelian, so `Z/2 ≀ Z` is excluded. Open: an `Aut(T)`-type factor, whose
+  end stabilizers are amenable but not solvable, as in
+  `Z/2 ≀ Z ≤ Aut(T_3)^2` on `DL(2,2)`.
+- 2026-09-19 (w17-117, obstruction): proposed-established
+  `tree-cut-outs-force-locally-finite-by-abelian-quotients`. For cut-outs
+  through `Aut(T)` factors, with no host hypothesis, every amenable `P` is
+  virtually locally-finite-by-`Z^k`. This excludes Grigorchuk's group,
+  `BS(1,n)` and `Z ≀ Z`. A witness for `Z/2 ≀ Z` must have the
+  Diestel–Leader shape: two tree factors where the shift is hyperbolic with
+  opposite orientations. `M` then fixes the orbit hulls of the shift axes
+  pointwise, so the host needs a nontrivial pointwise flat fixator
+  `Λ_F ∋ 1 ≠ H ∩ Σ`. The literal `DL(2,2)` completion is excluded. Open:
+  whether `Λ_F = 1` for irreducible lattices in three trees.
+- 2026-09-19 (w18-117, obstruction): proposed-established
+  `linear-dl-factor-kills-lamplighter-tree-cut-outs`. If `H` is
+  torsion-free, `ρ` injective on `H`, and one factor where the shift is
+  hyperbolic acts through `PGL_2(k)` of a local field (injectively on `H`),
+  the flat fixator `H ∩ Σ` lies in the split torus of the shift axis, so
+  `H` normalizes it and is virtually abelian: no `A ≀ Z` witness. This kills
+  every `S`-arithmetic quaternionic host (any ambient `Aut(T)` factors). In
+  general three-tree lattices, the lamp preimage is free, acting freely on
+  the third tree, and `H ∩ Σ` must be infinitely generated free. Open:
+  hosts whose hyperbolic factors are all non-linear on `H`.
+- 2026-09-19 (w19-117, obstruction): proposed-established
+  `lamplighter-cut-outs-act-freely-on-the-third-tree`. In a three-tree
+  cut-out of `A ≀ Z`, a `T_a`-elliptic element normalizing `N = H ∩ Σ` has
+  finite conjugation orbits on `N` (discreteness), which forces
+  `C_L(γ) ≠ 1`. So `H` acts freely on the uncut tree `T_a` and is a
+  finitely generated free Schottky group, and `N` is infinitely generated
+  for every infinite `P`. Discrete cut-out projections (so all reducible
+  hosts) are killed, and so is any host where `H` normalizes a
+  finite-index subgroup of `Σ`. Open: find a Schottky pair in a
+  non-arithmetic irreducible cocompact lattice, or show its flat fixators
+  are trivial. This is a finite-state question for cube-complex lattices.
+- 2026-09-19 (w20-117, obstruction): proposed-established
+  `lamplighter-flat-fixators-have-product-centralizers`.
+  - For torsion-free cocompact three-tree hosts, the flat fixator `Λ_F` of
+    the shift is never trivial. This follows from the centralizer theorem
+    and integral translation lengths. So the "certify `Λ_F = 1`" kill of
+    Corollary B′ is empty for every cocompact host.
+  - Replacement: every `n ∈ N∖1` has `C_Λ(n) ≈ C_0 × ⟨n⟩`, where `C_0`
+    (containing `F_2`) acts geometrically on `Fix_b(n) × Fix_c(n)`, two
+    infinitely-ended trees. So hosts with amenable centralizers are killed,
+    including all arithmetic ones. For one-vertex cube lattices this becomes
+    an exact finite-state test for doubly branching `a`-words.
+  - Open: do irreducible non-arithmetic hosts have such product
+    centralizers?

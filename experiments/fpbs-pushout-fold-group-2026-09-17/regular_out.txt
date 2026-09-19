@@ -1,0 +1,9 @@
+PSL2(5) regular        n=  60 r<= 10 (0.167n)  log|H1|/n=0.046  maxnull=4@p=2   Z_C2=16 (log_|S| Z=4.00)   Z_C3=1 (log_|S| Z=0.00)
+PSL2(5) regular        n=  60 r<=  7 (0.117n)  log|H1|/n=0.092  maxnull=4@p=2   Z_C2=16 (log_|S| Z=4.00)   Z_C3=1 (log_|S| Z=0.00)   Z_S3=496 (log_|S| Z=3.46)
+PSL2(5) regular        n=  60 r<=  7 (0.117n)  log|H1|/n=0.092  maxnull=4@p=2   Z_C2=16 (log_|S| Z=4.00)   Z_C3=1 (log_|S| Z=0.00)   Z_S3=496 (log_|S| Z=3.46)
+PSL2(7) regular        n= 168 r<= 18 (0.107n)  log|H1|/n=-1.468  maxnull=8@p=3   Z_C2=128 (log_|S| Z=7.00)
+PSL2(7) regular        n= 168 r<= 21 (0.125n)  log|H1|/n=0.188  maxnull=13@p=2   Z_C2=8192 (log_|S| Z=13.00)
+PSL2(7) regular        n= 168 r<= 24 (0.143n)  log|H1|/n=0.132  maxnull=14@p=2
+PSL2(11) regular       n= 660 r<= 87 (0.132n)  log|H1|/n=0.161  maxnull=42@p=2
+PSL2(11) regular       n= 660 r<= 97 (0.147n)  log|H1|/n=0.110  maxnull=11@p=17
+PSL2(11) regular       n= 660 r<= 89 (0.135n)  log|H1|/n=0.161  maxnull=42@p=2

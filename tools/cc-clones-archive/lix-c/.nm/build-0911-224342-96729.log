@@ -1,0 +1,5 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2070 oleans
+[job] acn112 cores=72-79 threads=8 base=5385424f3a402165695a8020ef2e27ab30a11eb2 mods: GroupApproximation.CharClass.ParityPSplitStepD
+✔ [1684/1684] Built GroupApproximation.CharClass.ParityPSplitStepD (9.5s)
+Build completed successfully (1684 jobs).
+EXIT=0

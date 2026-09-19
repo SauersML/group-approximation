@@ -1,7 +1,7 @@
 # Odd antiholes: ||C||_1 >= sqrt3 (n-2) on the complement of C_n (lane w7-078, 2026-09-18)
 
 Supports `research/hermitian-edge-trace-norm-odd-antihole-facets-by-size.md` (route) and
-`research/hermitian-edge-trace-norm-odd-antihole-c11.md` (the open case n = 11).
+`research/hermitian-edge-trace-norm-odd-antihole-c11.md` (the case n = 11, now closed via `research/hermitian-edge-trace-norm-clique-k5-margin.md`).
 Every run is single-threaded (`OMP_NUM_THREADS=1`), in python3 with numpy, scipy, cvxpy (Clarabel) and mpmath.
 
 | file | what | proof status |
@@ -15,11 +15,11 @@ Every run is single-threaded (`OMP_NUM_THREADS=1`), in python3 with numpy, scipy
 | `verify_K_n13_D4.log`, `K_n13_D4_exact.json` | `python3 verify_ah.py K_n13_D4.json`: `c(C̄_13) >= 19.2096 > 11 sqrt3` | certificate |
 | `cert_circ.py` | the same LP on any circulant graph (webs): `python3 cert_circ.py n D eta eps EDGES alpha out.json` | search only |
 | `tail_check.py`, `tail_check.log` | exact check that clique covering + the energy LP give every n >= 15 | exact |
-| `k5hilane.sh` | driver for `c_5 >= 7.0857` (n = 11): `./k5hilane.sh 16 <slice> ...`, resumable | running |
-| `k5hi_n16_s<i>.log` | per-slice logs of `k5hilane.sh`; so far slice 7 prints `ALL CLOSED` (59042 boxes, 2765 s) | partial certificate |
+| `k5hilane.sh` | driver for `c_5 >= 7.0857` (n = 11): `./k5hilane.sh 16 <slice> ...`, resumable | done |
+| `k5hi_runs.log` | final `ALL CLOSED` line of each of the 16 slices of `k5hilane.sh` plus a total; certifies `c_5 >= 7.0857` | certificate log |
 
 Running times on one core, under load: house 2 s, `K_4` 39 s, `verify_ah.py` 82 s (it reproduces the log exactly), and
-the `c_5 >= 7.0857` computation about 45 min per slice (twice the boxes of the `6.928` run).
+the `c_5 >= 7.0857` computation about 47 min per slice (45002 s for all 16, 938614 boxes: about twice the boxes of the `6.928` run).
 
 ## graphbb.py
 

@@ -1,0 +1,14 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2347 oleans
+[job] acn112 cores=88-95 threads=8 base=bb5b595bbd46118011b2ae7923075e8ff792d312 mods: GroupApproximation.GGT.SystolicDiscMirrorFoldModel
+ℹ [3321/3415] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4599/4599] Built GroupApproximation.GGT.SystolicDiscMirrorFoldModel (16s)
+info: GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean:579:21: 'GroupApproximation.Systolic.MirrorFoldModel.mirrorFoldDistinct_nonvacuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean:580:21: 'GroupApproximation.Systolic.MirrorFoldModel.mirrorFoldPinched_nonvacuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4599 jobs).
+EXIT=0

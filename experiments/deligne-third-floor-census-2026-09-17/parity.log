@@ -1,0 +1,5 @@
+{"status": 0, "msg": "Optimization terminated successfully. (HiGHS Status 7: Optimal)", "A0": 97.0, "bound": 97.0, "cells": 8, "name": "point", "q": 2, "npts": 1, "secs": 0.615260124206543, "LB": null}
+{"status": 2, "msg": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)", "A0": null, "bound": null, "cells": 58, "name": "s6_1", "q": 2, "npts": 6, "secs": 23.228694438934326, "LB": null}
+{"status": 2, "msg": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)", "A0": null, "bound": null, "cells": 100, "name": "s6_33", "q": 2, "npts": 10, "secs": 9.08095908164978, "LB": null}
+{"status": 0, "msg": "Optimization terminated successfully. (HiGHS Status 7: Optimal)", "A0": 97.99999999999707, "bound": 97.99999999999707, "cells": 150, "name": "s6_pair", "q": 2, "npts": 15, "secs": 18.226322650909424, "LB": null}
+{"status": 0, "msg": "Optimization terminated successfully. (HiGHS Status 7: Optimal)", "A0": 97.99999999989721, "bound": 97.99999999989721, "cells": 150, "name": "P3F2", "q": 2, "npts": 15, "secs": 11.309920072555542, "LB": null}

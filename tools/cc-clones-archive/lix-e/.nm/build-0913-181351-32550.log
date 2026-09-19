@@ -1,0 +1,34 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4225 oleans
+[job] acn96 cores=slurm threads=8 base=fdf7b4f3aff9514476578df774fc1c01aa7a809d mods: GroupApproximation.Algebra.SupportedCodimension GroupApproximation.Algebra.LaurentMonomialUnits GroupApproximation.Dynamics.TwoEndedTailSymbols GroupApproximation.Dynamics.TwoEndedTailBalance GroupApproximation.Dynamics.TwoEndedUnitGroup
+ℹ [1985/2014] Replayed GroupApproximation.Algebra.FinitaryGeneralLinear
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:366:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2851/2916] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4108/4112] Building GroupApproximation.Algebra.LaurentMonomialUnits (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Algebra/LaurentMonomialUnits.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/LaurentMonomialUnits.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/LaurentMonomialUnits.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/LaurentMonomialUnits.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/LaurentMonomialUnits.setup.json --json
+error: GroupApproximation/Algebra/LaurentMonomialUnits.lean:87:44: `Finsupp.sum_zero` has been deprecated: Use `Finsupp.sum_fun_zero` instead
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:169:14: 'GroupApproximation.LaurentMonomialUnits.coeff_mul_add_of_forall_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:170:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_of_mul_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LaurentMonomialUnits.lean:171:14: 'GroupApproximation.LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [4110/4112] Built GroupApproximation.Algebra.SupportedCodimension (24s)
+info: GroupApproximation/Algebra/SupportedCodimension.lean:63:14: 'GroupApproximation.SupportedCodimension.finrank_quotient_supported_compl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/SupportedCodimension.lean:64:14: 'GroupApproximation.SupportedCodimension.card_eq_of_map_supported_compl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Algebra.LaurentMonomialUnits
+error: build failed
+EXIT=1

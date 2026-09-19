@@ -1,0 +1,263 @@
+purged 4 stale artifact sets (source-newer=4, import-newer=0) of 4799 oleans
+[job] acn55 cores=slurm threads=8 base=3e9636d7457b915ce63d4cddfdec027578aacefe mods: GroupApproximation.GGT.SystolicDiscZipPinch
+ℹ [3339/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3716/3773] Replayed GroupApproximation.Sofic.HullSuitabilityGeometry
+info: GroupApproximation/Sofic/HullSuitabilityGeometry.lean:2057:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3872/3949] Replayed GroupApproximation.Analysis.MFAlgebra
+info: GroupApproximation/Analysis/MFAlgebra.lean:267:14: 'GroupApproximation.isCDEOperatorMF_of_faithful_corona_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4558/4627] Replayed GroupApproximation.GGT.VanKampen.FiniteCycleSplit
+info: GroupApproximation/GGT/VanKampen/FiniteCycleSplit.lean:118:14: 'GroupApproximation.GGT.VanKampen.FiniteCycleSplit.cut_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FiniteCycleSplit.lean:119:14: 'GroupApproximation.GGT.VanKampen.FiniteCycleSplit.orbit_card_cut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4586/4665] Replayed GroupApproximation.GGT.VanKampen.PermOrbitInsert
+info: GroupApproximation/GGT/VanKampen/PermOrbitInsert.lean:111:14: 'GroupApproximation.GGT.VanKampen.PermOrbitInsert.sameCycle_old_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitInsert.lean:112:14: 'GroupApproximation.GGT.VanKampen.PermOrbitInsert.sameCycle_some_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitInsert.lean:113:14: 'GroupApproximation.GGT.VanKampen.PermOrbitInsert.orbitEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4587/4665] Replayed GroupApproximation.GGT.VanKampen.PermOrbitOption
+info: GroupApproximation/GGT/VanKampen/PermOrbitOption.lean:49:14: 'GroupApproximation.GGT.VanKampen.PermOrbitOption.orbitEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitOption.lean:50:14: 'GroupApproximation.GGT.VanKampen.PermOrbitOption.orbit_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4588/4665] Replayed GroupApproximation.GGT.VanKampen.PermFirstReturnOrbits
+info: GroupApproximation/GGT/VanKampen/PermFirstReturnOrbits.lean:121:14: 'GroupApproximation.GGT.VanKampen.PermFirstReturn.sameCycle_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermFirstReturnOrbits.lean:122:14: 'GroupApproximation.GGT.VanKampen.PermFirstReturn.orbitEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermFirstReturnOrbits.lean:123:14: 'GroupApproximation.GGT.VanKampen.PermFirstReturn.exists_pow_of_skip_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4590/4665] Replayed GroupApproximation.GGT.VanKampen.CombMapSimpleEuler
+info: GroupApproximation/GGT/VanKampen/CombMapSimpleEuler.lean:178:14: 'GroupApproximation.GGT.VanKampen.CombMap.sigma_fixed_of_facePerm_twoCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSimpleEuler.lean:179:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexCount_pos_of_planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSimpleEuler.lean:180:14: 'GroupApproximation.GGT.VanKampen.CombMap.dart_eq_or_alpha_of_fixed_endpoints' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSimpleEuler.lean:181:14: 'GroupApproximation.GGT.VanKampen.CombMap.faceDegree_ge_three_of_not_twoCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSimpleEuler.lean:182:14: 'GroupApproximation.GGT.VanKampen.CombMap.edgeCount_le_three_mul_vertex_sub_one_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4591/4665] Replayed GroupApproximation.GGT.VanKampen.SurgeryReclosedFaces
+info: GroupApproximation/GGT/VanKampen/SurgeryReclosedFaces.lean:156:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.reclosedFaceEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryReclosedFaces.lean:157:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.reclosedMap_faceCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4592/4665] Replayed GroupApproximation.GGT.VanKampen.CombMapDual
+info: GroupApproximation/GGT/VanKampen/CombMapDual.lean:65:14: 'GroupApproximation.GGT.VanKampen.CombMap.dual_facePerm' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapDual.lean:66:14: 'GroupApproximation.GGT.VanKampen.CombMap.dual_connected' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapDual.lean:67:14: 'GroupApproximation.GGT.VanKampen.CombMap.dual_planar' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4593/4665] Replayed GroupApproximation.GGT.VanKampen.SurgeryReclosedConnected
+info: GroupApproximation/GGT/VanKampen/SurgeryReclosedConnected.lean:117:14: 'GroupApproximation.GGT.VanKampen.CombMap.eqvGen_of_sameCycle_facePerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryReclosedConnected.lean:118:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.reclosedMap_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryReclosedConnected.lean:119:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.toDiscRegion_of_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4594/4665] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeInsertion
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeInsertion.lean:172:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.vertexEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeInsertion.lean:173:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.edgeEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeInsertion.lean:174:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.vertexCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeInsertion.lean:175:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.edgeCount_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeInsertion.lean:176:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.connected' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4595/4665] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeFaces
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeFaces.lean:57:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.facePerm_eq_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeFaces.lean:58:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.facePerm_eq_of_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4618/4703] Replayed GroupApproximation.Manuscript.NonMF.FreeCommutatorWitness
+info: GroupApproximation/Manuscript/NonMF/FreeCommutatorWitness.lean:90:21: 'GroupApproximation.Manuscript.NonMF.TheoremC.freeCommutatorWitness_package' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4625/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapUnderlyingGraph
+info: GroupApproximation/GGT/VanKampen/CombMapUnderlyingGraph.lean:125:14: 'GroupApproximation.GGT.VanKampen.CombMap.underlyingGraph_edge_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapUnderlyingGraph.lean:126:14: 'GroupApproximation.GGT.VanKampen.CombMap.vertexCount_le_edgeCount_add_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4649/4703] Replayed GroupApproximation.GGT.VanKampen.CyclicFaceBoundary
+info: GroupApproximation/GGT/VanKampen/CyclicFaceBoundary.lean:90:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.cyclic_get_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CyclicFaceBoundary.lean:91:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.cyclic_mem_iff_sameCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CyclicFaceBoundary.lean:92:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.ofCyclicList' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4655/4703] Replayed GroupApproximation.GGT.VanKampen.PermCycleCoordinates
+info: GroupApproximation/GGT/VanKampen/PermCycleCoordinates.lean:91:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.get_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermCycleCoordinates.lean:92:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.perm_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermCycleCoordinates.lean:93:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.orbit_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4656/4703] Replayed GroupApproximation.GGT.VanKampen.PermOrbitSplit
+info: GroupApproximation/GGT/VanKampen/PermOrbitSplit.lean:83:14: 'GroupApproximation.GGT.VanKampen.FiniteCycleSplit.orbit_card_swap_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitSplit.lean:84:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.swap_perm_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitSplit.lean:85:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.orbit_card_swap_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4657/4703] Replayed GroupApproximation.GGT.VanKampen.PermOrbitErasePoint
+info: GroupApproximation/GGT/VanKampen/PermOrbitErasePoint.lean:146:14: 'GroupApproximation.GGT.VanKampen.PermOrbitErasePoint.firstReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitErasePoint.lean:147:14: 'GroupApproximation.GGT.VanKampen.PermOrbitErasePoint.orbit_card_of_not_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitErasePoint.lean:148:14: 'GroupApproximation.GGT.VanKampen.PermOrbitErasePoint.orbit_card_of_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitErasePoint.lean:149:14: 'GroupApproximation.GGT.VanKampen.PermOrbitErasePoint.erase_mul_of_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitErasePoint.lean:150:14: 'GroupApproximation.GGT.VanKampen.PermOrbitErasePoint.orbit_card_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4658/4703] Replayed GroupApproximation.GGT.VanKampen.PermOrbitJoin
+info: GroupApproximation/GGT/VanKampen/PermOrbitJoin.lean:79:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.sameCycle_swap_mul_of_not_sameCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitJoin.lean:80:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.orbit_card_swap_mul_of_not_sameCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4659/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeDeletion
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:162:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.facePerm_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:163:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexOf_eq_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:164:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.edgeCount_add_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:165:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.vertex_face_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:166:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.faceCount_balance_of_sameFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletion.lean:167:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.faceCount_balance_of_neFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4660/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeDeletionEuler
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionEuler.lean:199:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_loss_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionEuler.lean:200:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_eq_of_sigma_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionEuler.lean:201:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.vertexCount_eq_of_neFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionEuler.lean:202:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.euler_eq_of_neFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionEuler.lean:203:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.eulerCharacteristic_le_deleted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4661/4703] Replayed GroupApproximation.GGT.VanKampen.PermOrbitJoinReach
+info: GroupApproximation/GGT/VanKampen/PermOrbitJoinReach.lean:50:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.sameCycle_mul_swap_of_not_sameCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/PermOrbitJoinReach.lean:51:14: 'GroupApproximation.GGT.VanKampen.PermCycleCoordinates.sameCycle_mul_swap_of_sameCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4662/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgePlanarity
+info: GroupApproximation/GGT/VanKampen/CombMapEdgePlanarity.lean:53:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.faceCount_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgePlanarity.lean:54:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.eulerCharacteristic_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgePlanarity.lean:55:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.planar' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4663/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeSubdivision
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:83:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.facePerm_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:84:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.vertexCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:85:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.edgeCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:86:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.faceCount_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:87:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.planar' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:88:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.faceEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeSubdivision.lean:89:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.faceEquiv_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4664/4703] Replayed GroupApproximation.GGT.VanKampen.CyclicListExpansion
+info: GroupApproximation/GGT/VanKampen/CyclicListExpansion.lean:73:14: 'GroupApproximation.GGT.VanKampen.CyclicListExpansion.chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CyclicListExpansion.lean:74:14: 'GroupApproximation.GGT.VanKampen.CyclicListExpansion.closes' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4665/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapSubdivisionWalks
+info: GroupApproximation/GGT/VanKampen/CombMapSubdivisionWalks.lean:143:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.expand_chain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSubdivisionWalks.lean:144:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.expand_join' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSubdivisionWalks.lean:145:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.expanded_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4676/4703] Replayed GroupApproximation.GGT.VanKampen.FaceBoundaryRotation
+info: GroupApproximation/GGT/VanKampen/FaceBoundaryRotation.lean:61:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceBoundaryRotation.lean:62:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.rotate_head' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/FaceBoundaryRotation.lean:63:14: 'GroupApproximation.GGT.VanKampen.FaceBoundary.rotatedIndex_get' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4677/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEdgeDeletionConnected
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionConnected.lean:162:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.exists_retained_joined_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionConnected.lean:163:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.connected_of_neFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEdgeDeletionConnected.lean:164:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.planar_of_neFace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4678/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerUpperBound
+info: GroupApproximation/GGT/VanKampen/CombMapEulerUpperBound.lean:89:14: 'GroupApproximation.GGT.VanKampen.CombMap.exists_edge_neFace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerUpperBound.lean:90:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerUpperBound.lean:91:14: 'GroupApproximation.GGT.VanKampen.EdgeDeletion.planar_of_connected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4682/4703] Replayed GroupApproximation.GGT.VanKampen.CombMapSubdivisionBoundary
+info: GroupApproximation/GGT/VanKampen/CombMapSubdivisionBoundary.lean:78:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapSubdivisionBoundary.lean:79:14: 'GroupApproximation.GGT.VanKampen.EdgeSubdivision.allBoundary_darts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4703/4703] Built GroupApproximation.GGT.SystolicDiscZipPinch (116s)
+info: GroupApproximation/GGT/SystolicDiscZipPinch.lean:227:14: 'GroupApproximation.Systolic.isFaceCycle_of_map_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/SystolicDiscZipPinch.lean:228:14: 'GroupApproximation.Systolic.exists_map_val_eq' depends on axioms: []
+info: GroupApproximation/GGT/SystolicDiscZipPinch.lean:229:14: 'GroupApproximation.Systolic.CycleDisc.zip_pinch' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/SystolicDiscZipPinch.lean:230:14: 'GroupApproximation.Systolic.zipPinchStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4703 jobs).
+EXIT=0

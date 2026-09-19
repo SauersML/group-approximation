@@ -1,0 +1,5 @@
+pattern m=4 pA=1 n=3 pB=0 iA=[1, 0, 2, 3] iB=[0, 1, 2]
+class 80 chain of length 8 with 4 inverting steps verified: Gamma^+ is not left-orderable
+class 113 chain of length 8 with 4 inverting steps verified: Gamma^+ is not left-orderable
+class 80 ok: 8 steps, 4 inverting
+class 113 ok: 8 steps, 4 inverting

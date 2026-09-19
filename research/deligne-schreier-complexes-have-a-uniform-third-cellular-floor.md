@@ -62,3 +62,68 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   survivor after (K1), (K2) and (K3) of `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`. The
   natural next test is computational: an LP for `mu_(1/3)(Gamma / Lambda_N)` on the principal congruence quotients
   `Sp_4(Z/N)`, for small `N` prime to 3, from a certified finite presentation.
+- **2026-09-19, swarm-0917-w14-w14-deligne-break: level-2 census and a character obstruction**
+  (`deligne-third-floor-has-no-character-certificate`).
+  - *Census (numerical MILP).* On the six solved `Sp_4(F_2)`-sets, `mu = 1/(291 D)`, the Kahler-proportional
+    value. On the Weierstrass points and the 3+3 partitions (`D = 2`) this is exactly the (K2) floor `c_K = 1/582`.
+    No non-Kahler class lowers it.
+  - *Obstruction (proved).* `floor = dist(kappa/3, cl L)` in `C^2(Y; C(Sp_4(Z)^, R))`, and every continuous
+    character trivial on `L` is trivial at `kappa/3`. So this claim is equivalent to non-dual-closedness of `cl L`
+    at `kappa/3`, and no linear or detecting-cycle certificate, finite or profinite, can prove it. Already at
+    level 2, `A_0 = 98 > 97` and `196 > 194`: the exact value beats every single-cycle bound.
+  - Levels `N >= 3` were not solved exactly.
+- **2026-09-19, swarm-0917-w14-w14-deligne-follow: fixed-level floor proved, sufficient condition corrected**
+  (`deligne-third-floor-holds-above-every-fixed-level`, cohomology-index).
+  - *Proved.* Fix any finite-index `Lambda_0`. Every class `f in kappa + 3 H^2` on any Schreier complex above
+    `Gamma / Lambda_0` whose real part is pulled back from `Lambda_0` has `||f_R|| >= nu(Lambda_0) > 0`. This extends
+    (K2) from level one to every level.
+  - *Why.* Virtual divisibility of a fixed class is bounded by the finite profinite multiplier
+    `H^2_cts(Lambda_0^, Q/Z)` of `sp4-finite-index-fd-projective-multiplier-is-finite`. Dividing pullbacks up a tower
+    (the `T^2` mechanism above) is therefore dead.
+  - *Refuted.* The sufficient condition above is false as written. At `Gamma(3)` a torsion class, not divisible by
+    3, has `u_R = 0`. The repaired condition asks for `u(Z_2)` not contained in `3Z`, and it stays open.
+  - *Left.* A counterexample must use classes new at each level. The open part is a bound on `nu` uniform in the
+    level.
+- **2026-09-19, swarm-0917-w15-w15-deligne-break (census-computation): the test was run. No counterexample was
+  found, and it cannot certify lower bounds as posed.** Code and table are in
+  `experiments/deligne-third-floor-level-census-2026-09-17/`.
+  - *Presentation.* Birman-Hilden `Sp_4(Z) = Mod(S_2)/<<(t1 t2)^6>>` has 14 relators, each checked to be exact in
+    `Sp_4(Z)`. The lift exponents from the `det u` winding are: chain6 `-3`, iota2 `-2`, sep `-1`, and 0 for the rest.
+  - *Values.* `mu_(1/3)(pt) = 1/291` exactly (MILP closed). On `P^3(F_2)`, `Lag(F_2)` and `P^3(F_3)` the best
+    certified upper bound is 1/291, which is the pulled-back point model.
+    - That model is a fixed point of LP polishing.
+    - Random starts end at 0.08-0.16.
+    - No non-Kahler model beats the Kahler value on any set tried. This is weak evidence for the claim.
+  - *Where the posed test dies.* An LP gives only upper bounds. The relaxation with real `n` is identically 0
+    (`a = 0`, `n_c = -theta k_r`). By (L1), any lower bound is an `l^inf`-type closest-vector problem for the coset
+    `kappa + 3 H^2(Y_X; Z)`, in a lattice of rank `10|X| - 1 + b_1(Y_X)`, which is at least 149 already at `|X| = 15`.
+    HiGHS leaves the dual bound at 0 after 120 s at `|X| = 15`. Lower bounds need structure, such as the transfer
+    relations of `mod-s2-induced-torelli-characters-have-positive-relation-floors`, not a larger computation.
+- **2026-09-19, swarm-0917-w15-w15-deligne-follow: every polynomial certificate dies**
+  (`deligne-third-floor-has-no-polynomial-certificate`, linear-characteristic).
+  - *Proved.* The w14 character kill extends to all degrees. Every continuous polynomial `P` on
+    `E = C^2(Y; C(Sp_4(Z)^, R))` with `P(L) subset Z`, and every continuous polynomial phase trivial on `L`, is
+    integral at `kappa/3`.
+  - *Why.* A new finite-support lemma says an integer-valued bounded multilinear form on `C(Omega)` depends on
+    finitely many points. The proof uses Bonami's inequality on the Rademacher chaos of the integer array, then a
+    Hausdorff limit. Leafwise exactness on the finitely many leaves that meet the support then finishes.
+  - *Finite levels.* Certificates of degree `<= k` and norm `<= b` depend on at most `R(k, b)` cells, so they
+    collapse to detecting cycles on `R(k, b)` cells. These do not exist on `Gamma / Gamma(N)` once `N` is large. So
+    no bounded family of algebraic certificates proves this claim.
+  - *Also.* On any countable union of leaves, `kappa/3 + L` meets every neighbourhood of `0` for bounded pointwise
+    convergence.
+  - *Left.* A proof must be non-polynomial and non-local: min-max or rigidity over uncountably many leaves. The
+    refutation side is unchanged.
+- **2026-09-19, swarm-0917-w16-w16-deligne-break: calibration in `SL_2(Z[1/2])`. The small-level evidence does not
+  discriminate** (`sl2-half-deligne-monomial-third-floor-calibration`, calibration).
+  - *Setup.* The same invariant `mu_(1/3)` for the Deligne cover of `G = SL_2(Z[1/2])`. There `b_2^(2) > 0`, property
+    T fails, and `G` is not matricially stable. The presentation has 6 relators with exact lifts; only `x^4` has
+    `k = 1`. `||kappa_R|| = 1/17` on every transitive `X` (proved by averaging and the point cycle `c0`), so
+    `mu <= 1/51` everywhere.
+  - *Computed.* The MILP closes exactly at `mu = 1/51`, the Kahler value, on the point and 8 congruence sets up to 14 points. From
+    6 points on, the exact value beats every single-cycle bound: `1/51` against `1/54` to `1/66`. Minimal detecting
+    cycles grow from norm 17 to norm 35 at 30 points.
+  - *Consequence.* Both level-2 `Sp_4` phenomena of w14 recur where no rigidity is available. They are not evidence
+    for this claim. The dual bound stays 0 from 12 points on, so the MILP tool is dead there too.
+  - *Left.* A large-level primal model with defect below the Kahler value in `SL_2(Z[1/2])` would be a genuine
+    calibration counterexample. None has been found.

@@ -1,0 +1,28 @@
+e=6 elements beta with beta R beta^-1 not in A (in Q_B): 0 of 512
+e=6 Abar: 2 generators, 514 relators
+Syntax warning: Unbound global variable in z6.g:14
+  o:=List(GeneratorsOfGroup(Ab),x->Log(Order(Image(epi,x)),2));;
+                                                   ^^^
+Syntax warning: Unbound global variable in z6.g:18
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                              ^^
+Syntax warning: Unbound global variable in z6.g:18
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                                 ^^
+Syntax warning: Unbound global variable in z6.g:18
+    if ForAny(rels,w->MappedWord(w,[F.1,F.2],[ga,gc])<>One(I)) then Error("rel\
+ator check"); fi;
+                                                           ^
+e=6 Abar 2-quotient class 1 log2 size 2 log2 ord(a,c) [ 1, 1 ]
+e=6 Abar 2-quotient class 2 log2 size 5 log2 ord(a,c) [ 2, 2 ]
+e=6 Abar 2-quotient class 3 log2 size 9 log2 ord(a,c) [ 3, 3 ]
+e=6 Abar 2-quotient class 4 log2 size 14 log2 ord(a,c) [ 4, 4 ]
+e=6 Abar 2-quotient class 5 log2 size 20 log2 ord(a,c) [ 4, 4 ]
+e=6 Abar 2-quotient class 6 log2 size 29 log2 ord(a,c) [ 4, 4 ]
+e=6 Abar 2-quotient class 7 log2 size 47 log2 ord(a,c) [ 5, 5 ]
+e=6 Abar 2-quotient class 8 log2 size 70 log2 ord(a,c) [ 5, 5 ]
+e=6 Abar 2-quotient class 9 log2 size 114 log2 ord(a,c) [ 6, 6 ]
+CERTIFICATE: all 514 relators hold in a 2-group of order 2^
+114 in which a has order 2^6

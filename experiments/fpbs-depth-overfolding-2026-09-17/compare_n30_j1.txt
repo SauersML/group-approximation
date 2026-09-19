@@ -1,0 +1,8 @@
+trial 0 n 30 j 1 law 3 deep<= 4 overfold in best 0 
+trial 1 n 30 j 1 law 4 deep<= 4 overfold in best 0 
+trial 2 n 30 j 1 law 4 deep<= 5 overfold in best 0 
+trial 3 n 30 j 1 law 4 deep<= 4 overfold in best 0 
+trial 4 n 30 j 1 law 4 deep<= 4 overfold in best 0 
+trial 5 n 30 j 1 law 4 deep<= 4 overfold in best 0 
+trial 6 n 30 j 1 law 4 deep<= 4 overfold in best 0 
+trial 7 n 30 j 1 law 5 deep<= 5 overfold in best 0 

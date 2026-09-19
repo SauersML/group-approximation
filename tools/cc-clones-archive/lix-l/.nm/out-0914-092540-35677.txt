@@ -1,0 +1,34 @@
+[job] 09:26:41 acn112 waiting for clone lock
+[job] delta sync 927bcb96e..fee2f017e: 19 files changed
+===== SUMMARY
+host acn112 cores 64-71 base fee2f017e log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0914-092540-35677.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3905 oleans
+--- errors (first 80 lines)
+6:✖ [10147/10147] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift (21s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:141:29: Type mismatch
+24:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:216:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.exists_liftCount_of_sigma_pow_embed' depends on axioms outside the classical allowlist: [sorryAx]
+25:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:217:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.minRun_embed' depends on axioms outside the classical allowlist: [sorryAx]
+28:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+36:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChordLift.lean:220:14: 'GroupApproximation.GGT.VanKampen.EdgeInsertion.rotationBetween_embed_iff' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+39:error: Lean exited with code 1
+42:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellGoodCorners.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterPinchStep.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellOuterSpur.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchOuterDispatch.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchSectionDistinct.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingFaces.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

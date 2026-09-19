@@ -1,0 +1,26 @@
+e=6 |Bbar|=2^9 Bbar relators 5 t=760
+Syntax warning: Unbound global variable in qbpq.g:16
+  o:=List(GeneratorsOfGroup(Q),x->Log(Order(Image(epi,x)),2));;
+                                                  ^^^
+Syntax warning: Unbound global variable in qbpq.g:19
+    im:=List(GeneratorsOfGroup(Q),x->Image(epi,x));;
+                                           ^^^
+Syntax warning: Unbound global variable in qbpq.g:20
+    if ForAny(rels,w->MappedWord(w,GeneratorsOfGroup(F),im)<>One(I)) then Erro\
+r("relator check"); fi;
+                                                        ^^
+Syntax warning: Unbound global variable in qbpq.g:20
+    if ForAny(rels,w->MappedWord(w,GeneratorsOfGroup(F),im)<>One(I)) then Erro\
+r("relator check"); fi;
+                                                                 ^
+e=6 class 1 log2 size 4 log2 ord(a,b,c,d) [ 1, 1, 1, 1 ] t=761
+e=6 class 2 log2 size 10 log2 ord(a,b,c,d) [ 2, 2, 2, 2 ] t=763
+e=6 class 3 log2 size 16 log2 ord(a,b,c,d) [ 3, 3, 3, 3 ] t=766
+e=6 class 4 log2 size 23 log2 ord(a,b,c,d) [ 4, 4, 4, 4 ] t=772
+e=6 class 5 log2 size 29 log2 ord(a,b,c,d) [ 4, 4, 4, 4 ] t=783
+e=6 class 6 log2 size 38 log2 ord(a,b,c,d) [ 4, 4, 4, 4 ] t=804
+e=6 class 7 log2 size 56 log2 ord(a,b,c,d) [ 5, 4, 5, 4 ] t=844
+e=6 class 8 log2 size 79 log2 ord(a,b,c,d) [ 5, 4, 5, 4 ] t=963
+e=6 class 9 log2 size 123 log2 ord(a,b,c,d) [ 6, 4, 6, 4 ] t=1337
+CERTIFICATE e=6: all 14 relators of Qbar_B hold in a 2-group of order 2^
+123 in which a has order 2^6

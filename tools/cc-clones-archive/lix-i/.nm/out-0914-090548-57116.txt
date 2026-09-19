@@ -1,0 +1,22 @@
+[job] 09:06:10 acn112 waiting for clone lock
+[job] delta sync 2d653dd59..d1a44d40b: 10 files changed
+===== SUMMARY
+host acn112 cores 64-71 base d1a44d40b log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-090548-57116.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4567 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.KirchbergFactorizationSentences
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/KirchbergCompactExtraction.lean
+COMPILED GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealDilation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealForms.lean
+COMPILED GroupApproximation/Analysis/KirchbergTensorSquare.lean
+COMPILED GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences.lean
+ Quot.sound]
+Build completed successfully (4625 jobs).
+EXIT=0
+PROBE GREEN

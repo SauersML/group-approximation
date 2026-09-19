@@ -1,0 +1,12 @@
+class 1 actual 1 |P| = 2^4 ord(a,b,c,d) = [ 2, 2, 2, 2 ]
+class 2 actual 2 |P| = 2^10 ord(a,b,c,d) = [ 4, 4, 4, 4 ]
+class 3 actual 3 |P| = 2^19 ord(a,b,c,d) = [ 8, 8, 8, 8 ]
+class 4 actual 4 |P| = 2^32 ord(a,b,c,d) = [ 16, 16, 16, 16 ]
+class 5 actual 5 |P| = 2^52 ord(a,b,c,d) = [ 16, 32, 16, 32 ]
+class 6 actual 6 |P| = 2^84 ord(a,b,c,d) = [ 16, 64, 16, 64 ]
+class 7 actual 7 |P| = 2^141 ord(a,b,c,d) = [ 32, 64, 32, 64 ]
+class 8 actual 8 |P| = 2^231 ord(a,b,c,d) = [ 32, 64, 32, 64 ]
+class 9 actual 9 |P| = 2^395 ord(a,b,c,d) = [ 64, 64, 64, 64 ]
+class 10 actual 10 |P| = 2^672 ord(a,b,c,d) = [ 64, 128, 64, 128 ]
+class 11 actual 11 |P| = 2^1172 ord(a,b,c,d) = [ 128, 128, 128, 128 ]
+exit 124

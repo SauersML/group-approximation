@@ -1,0 +1,15 @@
+F round 0: K*z = 2.020833, added 2 [0s]
+F round 1: K*z = 1.820188, added 4 [0s]
+F round 2: K*z = 1.627004, added 3 [0s]
+F round 3: K*z = 1.608492, added 3 [0s]
+F round 4: K*z = 1.463154, added 4 [0s]
+F round 5: K*z = 1.437785, added 2 [0s]
+F round 6: K*z = 1.427864, added 4 [0s]
+F round 7: K*z = 1.401500, added 2 [0s]
+F round 8: K*z = 1.385832, added 1 [0s]
+F round 9: K*z = 1.375434, added 2 [0s]
+F round 10: K*z = 1.375000, added 0 [0s]
+final dual gadget (orbit weights x1e6): 1000000,200000,200000,1000000,200000
+float LP: R*(3) <= 1.375000
+certified (exact rational mixture of 8 folded columns): R*(3) <= 1.375000000
+exact: 11/8

@@ -1,0 +1,16 @@
+{"class": 12, "swap": false, "p": 2, "states": 18, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 4, "states": 104, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 6, "states": 344, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 8, "states": 2680, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 10, "states": 11944, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 12, "states": 43016, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 14, "states": 236232, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": false, "p": 16, "states": 1010312, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 2, "states": 18, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 4, "states": 104, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 6, "states": 344, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 8, "states": 2680, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 10, "states": 11944, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 12, "states": 43016, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 14, "states": 236232, "complete": true, "capped": false, "pairs": []}
+{"class": 12, "swap": true, "p": 16, "states": 1010312, "complete": true, "capped": false, "pairs": []}

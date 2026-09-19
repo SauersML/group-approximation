@@ -351,3 +351,115 @@ vocabulary rather than its content.
     fixed price is most in doubt.
   - **Denying U3.** This gives nothing new: the only nonlinear lower bound available is still Gaboriau's
     `beta_1^(2)`, and it is already action-independent.
+
+* **Transplant the quasiconvex-null odometer class to a cocompact `Sp(n,1)` lattice
+  (w12-026, `fpbs-quasiconvex-null-lattice-odometer-class-dies`,
+  `fpbs-transverse-skeleton-ray-codes-are-match-rigid`).** Encode the `F_2`
+  odometer letters as the basis of a malnormal quasiconvex free `F = <y, yxxyx>`
+  inside a Kapovich subgroup. Insert `F`-transverse killing elements from a
+  semigroup `W`, which by a semigroup Neumann lemma escapes every finite union of
+  double neighbourhoods of infinite-index quasiconvex subgroups. The class is
+  ergodic, nonatomic and quasiconvex-null on every torsion-free hyperbolic group.
+  **Where it dies:** exact coset alignment (malnormality plus the tree of `F`)
+  makes every transverse skeleton code match-rigid. By
+  `fpbs-match-rigid-ray-codes-die-on-hyperbolic-groups`, the diagonal is then
+  totally dissipative. A surviving ray-code certificate needs off-orbit matches.
+  For skeleton codes these force insertions that fellow-travel cosets of `F` on
+  unbounded lengths.
+
+* **Off-orbit matches through non-transverse insertions on a cocompact `Sp(n,1)`
+  lattice (w13-026, `fpbs-finite-to-one-quasigeodesic-ray-codes-die`).** The aim
+  was to escape match rigidity by allowing insertions that fellow-travel cosets
+  of `F`, so that off-orbit matches exist on a set of positive measure.
+  **Where it dies:** off-orbit matches are not the invariant that decides the
+  diagonal. On any hyperbolic group, a uniformly quasi-geodesic ray code whose
+  position-to-endpoint map is finite-to-one forward and countable-to-one backward
+  carries no class with a conservative diagonal. The proof uses a pigeonhole on a
+  finite ball, then the finite fibre freezes the position, so joint returns run
+  down one backward code line. This holds whatever its off-orbit matches. Recoding
+  the lattice odometer (merging each insertion with its preceding `F`-run) makes
+  off-orbit matches appear on half the space and fail (I1), yet the class still
+  dies. For invariant measures, a survivor needs positive entropy or **infinite
+  spelling multiplicity**: infinitely many forward words from `1` with a common
+  endpoint, on a set of positive measure.
+
+* **Infinite spelling multiplicity on a cocompact `Sp(n,1)` lattice (w14-026,
+  `fpbs-backward-locally-finite-ray-codes-die`).** The aim was to escape the
+  finite-fibre theorem by codes with infinitely many forward words sharing an
+  endpoint. **Such codes exist and die:** a Toeplitz respelling of the lattice
+  odometer code has continuum spelling multiplicity on full measure, zero
+  entropy and the same class. **Where it dies:** the freezing step needs only
+  that the code relation `R` (backward, forward endpoint pairs of code lines)
+  has backward sections accumulating only at their forward point, and null
+  forward sections. Respelling never moves `R`, and no entropy is used, so the
+  positive-entropy route dies under the same hypothesis. Zero-entropy code
+  classes have local dimension zero, so size filters are blind there. A
+  survivor, of any entropy, needs **accumulating backward sections** of `R`.
+
+* **Accumulating backward sections on a cocompact `Sp(n,1)` lattice (w15-026,
+  `fpbs-ray-code-deaths-depend-only-on-the-current`).** The aim was to close the
+  ray-code route by showing that quasiconvex-nullness forces the invariant
+  current `mu_R` onto a backward-locally-finite set. **The closure is false:**
+  the Markov code of the geodesic flow of a compact quaternionic hyperbolic
+  manifold is uniformly quasi-geodesic, has a quasiconvex-null (Lebesgue) class,
+  and a current equivalent to the Liouville current with nonatomic backward
+  conditionals; it dies only by the Dini filter. **What was proved instead:** for
+  codes with a finite invariant measure the death is decided exactly by the
+  current (atomic, locally finite backward conditionals), not by the relation;
+  at zero entropy the forward word determines the past. A survivor needs an
+  essentially accumulating current over a Dini-singular class.
+
+* **Toeplitz asymptotic pairs as the source of accumulation (w16-026,
+  `fpbs-zero-entropy-accumulation-needs-tail-collapse`).** The aim was to get an
+  essentially accumulating zero-entropy current from right-asymptotic pairs: one
+  right ray with infinitely many left extensions. **Dead at the first step:** at
+  zero entropy the past word is a.e. a function of the forward S-word, so all
+  left extensions but one are rho-null. More generally, tail-equivalent futures
+  with a common endpoint carry at most |Stab(eta)| pasts. So codes with finitely
+  many tail classes per endpoint satisfy (LF_mu) and die. What is left is **tail
+  collapse with separated pasts**: infinitely many tail-inequivalent typical
+  futures that fellow-travel to one endpoint and whose pasts differ. Respelling
+  collapses tails without separating the pasts, so the mechanism must use
+  relators of Gamma.
+
+* **Odometer cell-flip codes and tail collapse with separated pasts (w17-026,
+  `fpbs-finite-measure-ray-codes-die-on-rank-one-lattices`).** The aim was a
+  zero-entropy code on a surface group, then on an `Sp(n,1)` lattice, where an
+  odometer picks the side of each relator cell and also drives the past.
+  **Dead: the mechanism cannot exist.** Read the current as a finite measure of
+  the geodesic flow on the compact quotient. At zero flow entropy the backward
+  endpoint is measurable for the forward partition, via a thin-boundary
+  partition and Poincare recurrence. So a.e. forward endpoint has **one** past
+  endpoint, whatever the flip pattern. At positive flow entropy, Ledrappier--Young
+  makes the forward class positive-dimensional, and the Dini filter kills it.
+  So every ray code with a finite invariant measure dies on every cocompact
+  rank-one lattice. A BB class `C` must have `C x C` carrying no equivalent
+  invariant Radon measure. Open: **Radon-free crossing classes** (codes with no
+  finite invariant measure).
+
+* **Radon-free crossing classes, finite-fibre half (w18-026,
+  `fpbs-finite-fibre-bb-classes-are-boundary-squares`).** The question was
+  whether a conservative crossing diagonal over a boundary class `C` forces a
+  sigma-finite invariant measure in `C x C`, and whether it must be Radon.
+  **Settled for finite fibres; reduced exactly.** Fibre masses of an ergodic imp
+  action over `dGamma` are a.e. finite or a.e. infinite. When they are finite,
+  `h lambda_0` is a `Gamma`-invariant boundary measure `lambda`, infinite on
+  every open set by minimality. So `lambda x lambda` is the forced measure in
+  `C x C`, and it is nowhere Radon, which is why the flow-entropy kill cannot
+  reach it. A fibre-mass Halmos count shows the crossing diagonal is
+  conservative iff `lambda x lambda` is. Conversely, a conservative square makes
+  `(dGamma, lambda)` itself an amenable PDR certificate, so it gives fixed
+  price one. Such `lambda` exist on every hyperbolic group (Glimm--Effros).
+  For cost `> 1` groups none has a conservative square. Open: the square problem
+  (II_inf-square) on `Sp(n,1)` lattices, and infinite fibres (Maharam type).
+
+- **w19-026 (2026-09-19), (II_inf-square): invariance put into the Dini count; the square problem stays OPEN.**
+  Node `fpbs-invariant-boundary-squares-need-heavy-returns` (ESTABLISHED obstruction, full proof). For invariant
+  sigma-finite `lambda` on `dGamma`, a two-sided North--South split bounds the return mass of `A1 x A2` at `g` by
+  `a_g b_g`, where `a_g` is the expanded and `b_g` the contracted self-return. Invariance gives each of them a sphere-sum
+  budget of `M lambda(A_i)`, and this bound fails for merely quasi-invariant classes. A conservative square therefore
+  needs non-summable sphere maxima of the heavy self-returns. For nonatomic `lambda` these tend to 0, so the divergence
+  must come from slowly vanishing masses. The atomic loxodromic pair `Gamma h^+ ∪ Gamma h^-` is sharp. The
+  `Z`-calibration (Kakutani--Parry) shows that counting alone cannot decide the question. Next step: **(heavy-pair)**.
+  Show that the attracting points `g_n^+` of coincident heavy elements must converge, which forces an atom (a kill).
+  Otherwise build a nonatomic invariant `lambda` that imitates the loxodromic pair at vanishing scales.

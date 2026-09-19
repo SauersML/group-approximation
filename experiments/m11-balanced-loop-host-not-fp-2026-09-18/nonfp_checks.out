@@ -1,0 +1,36 @@
+== 1. letter sections (weight-preserving pairs)
+  b {1: 'b', 2: 'a', 3: 'e'}  weight-1 sections at points [1]
+  B {1: 'B', 2: 'A', 3: 'E'}  weight-1 sections at points [1]
+  C {4: 'C', 5: 'ba', 6: 'c'}  weight-1 sections at points [4, 5, 6]
+  c {4: 'c', 5: 'AB', 6: 'C'}  weight-1 sections at points [4, 5, 6]
+  C-count preserved only at points 4, 6; at 5 the section (b alpha)^{+-1} has no C
+== 2. C-free words for alpha@1, beta@1, b@1
+  W_a: length 152, C-free, equals a@1 exactly: True, free sections {1: 'AAEaEAeaeaEAEaee'}
+  W_e: length 164, C-free, equals e@1 exactly: True, free sections {1: 'AEaeAAEaeaEAeAAEaaea'}
+  W_b: length 315, C-free, equals b@1 exactly: True, free sections {1: 'b', 2: 'aEEAeaeAEAEaeAeaa', 3: 'eAEAAeaaEaeAEAeaaEAea'}
+  omega_a = AAEaEAeaeaEAEaee  omega_e = AEaeAAEaeaEAeAAEaaea  (W_b|_1 = b exactly)
+== 3. sigma^k(alpha) at the vertex 1^k
+  k=1: len sigma^k(alpha) = 152, section at 1^k = AAEaEAeaeaEAEaee, equals omega_a: True
+  k=2: len sigma^k(alpha) = 26722, section at 1^k = AAEaEAeaeaEAEaee, equals omega_a: True
+  k=3: len sigma^k(alpha) = 4702952, section at 1^k = AAEaEAeaeaEAEaee, equals omega_a: True
+  checked: sigma(u)|_1 = theta(u) and theta(u)|_x = u|_x for u = sigma(alpha)
+== 4. omega_a in A = <a|a^55> * <e|e^55>
+  chi(omega_a) syllables: 14 [('a', 53), ('e', 54), ('a', 1), ('e', 54), ('a', 54), ('e', 1), ('a', 1), ('e', 1), ('a', 1), ('e', 54), ('a', 54), ('e', 54), ('a', 1), ('e', 2)]
+  omega_a is cyclically reduced of syllable length 14, so omega_a^11 has 154 syllables != 1
+  S_5 witness: a -> (12345), e -> (1 2 4 5 3); image of omega_a has order 5
+== 5. the L-presentation of m11-balanced-loop-host-has-exact-finite-l-presentation
+  sibling sigma words agree with W_a, W_e, W_b; |Q_0| = 48  letters 1805338
+  Q^(1): 21 words
+  Q^(2): 9 words
+  Q^(3): 3 words
+  stable part Q^inf = {b^55, alpha^55, beta^55}, reached at level 3
+  phi_3 (level-3 sections, then chi) kills every element of Q_0
+  sigma(R2C) = W_{R2C}: its section at 1 has length 2374920
+   vertex (1, 4, 5) AAAEaEAeaeaEAEaee  chi-syllables 14  S_5 image order 3
+   vertex (1, 4, 6) aEEAeaeAEAEaeAeaa  chi-syllables 15  S_5 image order 3
+   vertex (1, 4, 7) eAEAAeaaEaeAEAeaaEAea  chi-syllables 18  S_5 image order 3
+   vertex (1, 6, 5) baEEAeaeAEAEaeAeaaB  chi-syllables 15  S_5 image order 3
+   vertex (1, 6, 6) cAAEaEAeaeaEAEaeeAC  chi-syllables 15  S_5 image order 3
+   vertex (1, 6, 7) AEaeAAEaeaEAeAAEaaeaE  chi-syllables 18  S_5 image order 3
+  so phi_3(sigma(R2C)) != 1 = phi_3(<<Q_0>>): sigma(Q_0) is not contained in <<Q_0>>;
+  the same holds in the finite quotient (S_5)^(X^3) : (level-3 group) via a->(12345), e->(12453)

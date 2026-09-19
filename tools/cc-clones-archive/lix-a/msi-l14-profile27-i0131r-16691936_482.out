@@ -1,0 +1,18 @@
+UNRESOLVED 3 3 2 (((-6, -4, -6, -4, -6, -4), (4, -6, -4, -6, -4, -6, -4), (4, 6, 4, 6, 4, 6), (6, 4, 6, 4, 6, 4, 6)), ((), (-6, -4, -6, -4, -6, -4), (), (4,), (), (6,), (), (-6, -4, -6, -4, -6, -4), (4, 6, 4, 6))) (4, 6, 4, 6) ((-6, -6, -4, -6, -4), (-6, -6, -4, -6, -4, -6, -4), (-6, -4, -6, -4, -6, -4), (4, -6, -4, -6, -4, -6, -4), (4, 6, 4, 6, 4, 6), (6, 4, 6, 4, 6, 4, 6))
+rotation=3
+target=3
+rootblock_peers=6
+prefix_bits=5
+prefix=2
+rootblock_masks=2
+forest_states=3020
+empty_q=2851
+free_q=0
+direct_q=109
+power_q=52
+saturation_q=5
+involution_q=0
+difference_q=2
+unresolved_q=1
+free_nonempty_q=0
+unresolved_q=1

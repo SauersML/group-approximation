@@ -225,4 +225,32 @@ swarm-0917 w12).**
     re-enter at far `N`-cosets, so Step 5 (sprinkling onto one coset) has
     nothing to act on. The invariant is `h(Gamma/M) > 0`. The method is as
     blind to amenable extensions as `p^Q` is, so it cannot decide C4.
+* **Counterexample search on free products (2026-09-19, swarm-0917-w17-w17-bs-break,
+  minimal-counterexample).** No counterexample exists there. E is proved on the
+  class: `fpbs-free-product-commuting-quotients-satisfy-identity-e`
+  (ESTABLISHED).
+  - *Class.* `Gamma = A * H` with union generators, and any normal `N`
+    containing `[A,H]`. This includes `Q = H` for an arbitrary nonamenable
+    `H`, so the quotient need not be a tree, and it includes `Q = A x H`.
+    The w12 "next test" (a non-tree quotient or a non-product generating set)
+    is answered negatively on this class.
+  - *Result.* Write `alpha` and `beta` for the pushforwards of `tau^A - delta`
+    and `tau^H - delta`. Cut vertices of the block tree and commuting images
+    give the renewal formula
+    `sigma^N_p = (1+alpha)(1+beta) sum_k (alpha beta)^k`. From it,
+    `p_c(N;G) = p^Q_(2->2)(N;G) = sup{p : ||alpha_p beta_p||_Q < 1}`, and the
+    pair is of type (i) iff `Q` is nonamenable.
+  - *Invariant.* The renewal structure: `sigma^N` is a resolvent of one
+    symmetric kernel `f`, with prefactor at least `delta_e`.
+  - *Step that forces E.* `sigma(e) < infinity` makes `f^(*2k)(e)` summable,
+    so `||f||_Q <= 1` by the diagonal lemma. Thinning gives
+    `f_p <= c f_(p')` with `c < 1`, so every smaller `p` is in the l2 regime.
+  - *Consequence for a disproof.* A type-(ii) pair, or any failure of E, needs
+    a fibre kernel that is not dominated by a resolvent with diagonal
+    controlled by `sigma(e)`. That excludes gluing at single cut vertices over
+    commuting images. The remaining free-product-like tests are:
+    - amalgams `A *_C H` over infinite amenable normal `C`, which are also
+      C2 tests;
+    - normal subgroups of `A * H` not containing `[A,H]`, where the fibre sum
+      is an alternating word sum in two non-commuting kernels.
 

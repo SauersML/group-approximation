@@ -764,3 +764,321 @@ over one coefficient algebra.
 - Extracting such a pair would be a Steinberg-relation stability theorem, which is again flagship-level.
 - So head-seeing approximations, if they exist, must be non-elementary on the root letters. This is
   consistent with the wall-rigidity requirement recorded above.
+**Bounded-depth symmetric models are sofic approximations (swarm-0917-w14-w14-nh-pull, 2026-09-18, family
+stability-approximation, obstruction-miner).** Landed as `bounded-depth-symmetric-models-are-sofic-approximations`
+(established, unreviewed, route `-proof`). It settles the `A_m`-on-configurations step above for bounded
+configuration size. It reduces that step to a soficity question; it does not kill it.
+- *Statement.* Let `π = c·ρ∘φ` be an asymptotic model of any group through `φ: G -> Sym(m)`, with `ρ` having all
+  constituents one-dimensional or of depth or conjugate depth in `[1, D]`. Then `φ` is a Hamming sofic approximation:
+  `d_Ham(φ(g)φ(h), φ(gh)) <= def^2/w + C_D/m`. Also `||π([a,b]) - 1||_2 <= 3 def + (2w(D(1-f(κ)) + C_D/m))^{1/2}`,
+  where `κ = [φ(a), φ(b)]`.
+- *Invariant.* The fixed-point fraction `f`. The character ratio on `(m-j, μ)` is `f^j + O_j(1/m)` (Young's rule,
+  Kostka inversion and hook bound; checked by Murnaghan-Nakayama in the artifact).
+- *Death step.* A Hilbert-Schmidt relator defect is at least `w(1 - f) - O(1/m)`, which is a Hamming defect. So the
+  model is a sofic certificate in disguise, and it sees the head only if the sofic trace moves the head.
+- *Consequence.* The finitary kernel `L = GL_fin(V^n, F_2) ⊂ EL_n(J)` is simple, contains `z_Q`, and has trivial
+  centralizer. So a bounded-depth symmetric model of `Δ` sees `z` iff `EL_5(J)` is sofic. The "iff" uses the pullback
+  along `EL_5(J) ≅ St_5(J) -> St_20(R)` and, for the converse, the standard representation. Soficity of `EL_5(J)`
+  implies `binary-jacobson-el3-is-sofic`. So these certificates cannot separate hyperlinear from sofic for `EL_20(J)`,
+  and cannot refute the hole on that route.
+- *Survivors (hole stays OPEN).*
+  - Symmetric constituents of depth growing faster than a universal `h(m) -> ∞`.
+  - Growing depth `D_k <= h(m_k)` where the head is invisible to the sofic trace but moves at least `c/D_k` of the points.
+  - Product actions of `A_m^ℓ` with `ℓ -> ∞`.
+  - The primitive non-alternating branch of `fp-simple-finite-group-models-reduce-to-alternating-constituents`.
+- **Next falsifiable step.** Either extend Lemma CA to depth `j ~ m^α` using Roichman or Larsen-Shalev character
+  bounds, which would close the first two survivors, or decide soficity of `EL_5(J)` directly.
+### Cuntz-cone halves and the residually finite cover (swarm-0917-w14-w14-ptl-pull, obstruction-miner, census-computation, 2026-09-19)
+
+*Approach tried.* Build the certificate one-sidedly. Use the positive Cuntz cone `R_+ = <s_1, s_2, q>` (both
+isometries and the head), then glue it to its mirror `R_- = <t_1, t_2, q>`. This is the Leavitt analogue of the
+Jacobson halves of `jacobson-one-sided-symbol-preimages-are-lef`.
+
+*Result* (`leavitt-cuntz-cone-halves-have-rf-amalgam-cover`, established).
+- **Halves.** `GL_20(R_+-)` are residually finite. The proof filters the eventually-`2` Leavitt module
+  `F_2[Omega_0]` by canonical length, and uses faithfulness from simplicity of `R`.
+- **Intersection.** By the `Z`-grading, `R_+ ∩ R_- = span{1,q}`. So `Delta_0 = SL_20(F_2)^2`, and it contains `z`.
+- **Cover.** `Gamma = Delta_+ *_(Delta_0) Delta_-` is residually finite and maps onto `Delta`. Its kernel `K` is
+  finitely normally generated. `z` survives in a faithful MF representation of `Gamma`.
+
+*Where it dies.*
+- The certificate lifted to `C[Gamma]` would make the residually finite group `Gamma` nonhyperlinear, by
+  `nonce-bcs-unital-algebraic-corner-map-forces-nonhyperlinear`.
+- So every `LNC3` certificate is **K-essential**: every lift has some BCS identity that holds only modulo the
+  augmentation ideal of `K`.
+- The first such relator is the negative-root commutator `[x_12(s_1), x_23(t_1)] = z`.
+- The same argument shows that any (T)-free MF collapse must use a normal generator of `K`. Supports inside one cone
+  were already dead by the coefficient gate, since `R_+` has finite-dimensional representations seeing `q`. What is
+  new is that joint use of both cones, glued only along `Delta_0`, is also dead.
+
+*Next falsifiable step.* `K` contains two kinds of relators:
+- the cross-commuting relators `[x_ij(a), x_kl(b)]`, with `a in {s_1,s_2}`, `b in {t_1,t_2}` and `{i,j} ∩ {k,l}` empty;
+- the mixed commutator relators `[x_ij(a), x_jk(b)] x_ik(ab)^(-1)`, whose first instance is
+  `kappa = [x_12(s_1), x_23(t_1)] z^(-1)`.
+
+Decide whether these finitely many mixed Steinberg relators normally generate `K`. If they do, the hole and the goal
+become statements about an explicit finite relator set over a residually finite amalgam. Then test the smallest
+partial quotient: does every MF representation of `Gamma / <<cross-commuting relators>>` still see `z`?
+
+* **Symbol-half amalgam kernels (swarm-0917-w14-w14-nh-last1, 2026-09-19).** Hole stays OPEN. New ESTABLISHED nodes:
+  * `fibre-split-amalgam-kernels-are-free-and-centralize-the-fibre`. For subgroups `A_0, B_0` meeting a normal `L`
+    trivially with `π(A_0) ∩ π(B_0) = π(A_0 ∩ B_0)`, the kernel `N` of `L A_0 *_(L C_0) L B_0 -> E` is free, centralizes
+    `L`, and is the graph of `ℓ : K -> L`. If `<A_0, B_0> = E`, then `P / ker ℓ ≅ E ×_Λ E`.
+  * `jacobson-polynomial-symbol-preimages-are-lef-in-every-rank`: `H_±` are LEF in every rank.
+  * `jacobson-symbol-half-amalgams-are-sofic-with-free-kernel`. For `EL_3(J) = <H_+, H_->` and
+    `EL_(2n)(J) = <H_+, rho(H_bi(n))>`, the amalgam `P` is sofic (Elek--Szabo 2011), and
+    `N = ker ℓ · <<head relator>>`.
+  * **Consequence.** `EL_m(J)` is sofic iff `P / ker ℓ` is. The whole question sits in the free normal subgroup
+    `ker ℓ` of the linear amalgam `U = A_0 *_(C_0) B_0`, and `E ≅ U / ker ℓ`.
+  * **Next.** Describe `ker ℓ ⊂ U`, for instance whether it is normally generated by finitely many Steinberg-type
+    words, and whether some sofic approximation of `P` kills it asymptotically.
+
+### Rank-three contraction trap: EL_3 over any non-directly-finite ring is not LEF (swarm-0917-w14-w14-ptl-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+*Approach tried.* Mine the stability-approximation side for an obstruction that works in rank three, where the P22
+pigeonhole (`p22-double-parabolic-is-not-lef`) cannot run, because there is no second Levi block. The target was the
+survivor class "finite and amenable local models of the elementary group", which feeds every finite-model
+construction or refutation of (LNC2)-(LNC3).
+
+*Result* (`jacobson-el3-is-not-lef`, established, agent-verified; route `jacobson-el3-is-not-lef-proof`; artifacts
+`experiments/jacobson-el3-bs-trap-2026-09-17/verify_trap.py` and `verify_trap_signed.py`, both exit 0).
+- **The trap.** Let `R` have `ts = 1 != st`, `q = 1 - st`, and `g = diag([[s,-q],[0,t]], 1)`. Take
+  `A = <x_13(1), x_13(s), x_31(1), x_31(t), diag(1+sq,1,1), diag(1-qt,1,1)>`. Six explicit relations (C1)-(C6)
+  give `g A g^{-1} <= A`, and `e = diag(1,1+sq,1)` centralizes `A`. But
+  `[e, g^{-1} x_13(1) g] = x_23(-sq) != 1`.
+- **The group.** This defines an 8-generator, 12-relator group `Gamma_3 -> EL_3(R)`. In every finite image the
+  injective map `Ad g` on the image of `A` is onto, so the witness dies. The same holds in every finite-dimensional
+  linear image, via the Zariski closure.
+- **Consequences.**
+  - `EL_3(R)` is not LEF. In particular `EL_3(J)` is not LEF and, via the Kazhdan node, not LEA.
+  - The LEF threshold for `EL_n(J)` is exactly `n = 3`.
+  - Some ball of `EL_3(J)` has no partial iota-lift.
+  - `Gamma_3` is finitely presented and not residually finite.
+- **For this hole.**
+  - With `(s,t) = (s_2,t_2)` in `R = L_(F_2)(1,2)`, `1 - st = s_1 t_1 = q` is the LNC1 root parameter. So
+    `EL_20(R)` is not LEF on an explicit ball. The witness is `x_23(-s_2 s_1 t_1)`, built from the head parameter.
+  - Every finite or LEF-style certificate for (LNC3) that factors through `EL_20(R)`, one that verifies the corner
+    relations on a finite partial model, must therefore handle a ball on which all such models fail.
+- **Invariant and death step.** The invariant is the endomorphism `Ad sigma(g)` of a co-Hopfian hull of `sigma(A)`.
+  Every member dies when co-Hopficity makes it onto, which puts `g^{-1} x_13(1) g` into the centralizer of `e`.
+
+*Where it stops (hole stays OPEN).*
+- (LNC3) is an exact identity in the group ring of `Delta = St_20(R)` and does not pass through finite models. So
+  this is side progress on the approximation layer, not an attack on the corner algebra.
+- The relations (C1)-(C6) are verified in `EL_3(R)`, not in `St_3(R)` or `St_20(R)`. Lifting them to the Steinberg
+  group changes each relator by an element of `K_2`, and the central correction terms are not controlled. So
+  non-LEF of `Delta` itself is **not** claimed.
+- The trap says nothing about MF or sofic models, which are not local embeddings.
+- **Next falsifiable step.** Lift (C1)-(C6) to `St_3(J)` or `St_20(R)`, that is, decide whether each relator is
+  trivial in the Steinberg group or only central. If they are trivial, `Delta` is not LEF and every finite partial
+  model of `P_z C[Delta] P_z` fails on an explicit ball.
+
+### Charges on the cone-cover kernel (swarm-0917-w14-w14-ptm-pull, obstruction-miner, cohomology-index, 2026-09-19)
+
+*Approach tried.* Measure the K-essential step of the Cuntz-cone cover `Γ = Δ_+ *_(Δ_0) Δ_- -> Δ` (landing-branch node
+`leavitt-cuntz-cone-halves-have-rf-amalgam-cover`) by an index or charge on the kernel `K`.
+
+*Result* (`leavitt-cone-cover-kernel-is-free-and-gamma-perfect`, established, unreviewed).
+- `K ≅ π_1` of the `Δ`-coset graph on `Δ/Δ_+ ⊔ Δ/Δ_-`, and `K` is nonabelian free.
+- `K = [K, Γ]`: halves perfect, and `H_2(Δ) = 0` by Khanh.
+- So every `Γ`-invariant abelian charge on `K` vanishes, and a representation of `Γ` in which `K` acts centrally (for
+  example by scalars) is a representation of `Δ`.
+- For unitary `M`, `H^1(Γ; M) ≅ M^(Δ_0)/(M^(Δ_+) + M^(Δ_-))` embeds in `Hom_Δ(K^ab, M)`. This uses (T) for the halves
+  and for `Δ`.
+- For `M = l^2 Δ` there is an explicit nonzero charge on
+  `kappa = [x_12(s_1), x_23(t_1)] z^(-1)`:
+  `1_(abΔ_0) - 1_(aΔ_0) + 1_(Δ_0) - 1_(aba^(-1)Δ_0)`.
+
+*Where it dies.* Scalar and central charges (relator counts, winding numbers on the coset graph, determinant or
+Fredholm-index homomorphisms) are zero on `[K, Γ] = K`. A central relaxation of the cover MF test is literally the test
+for `Δ`. The first nonzero linear charges take values in the regular representation of `Δ`, which is the object whose
+approximability is in question. So cohomology-index invariants of `K` add nothing unless they use `l^2(Δ_0\Δ)`-type
+coefficients.
+
+*Next falsifiable step.* For finite-dimensional unitary `Δ`-modules `M`, compute the two pieces that control
+`Hom_Δ(K^ab, M)`:
+- `M^(Δ_0)/(M^(Δ_+) + M^(Δ_-))`;
+- `ker(H^2(Δ; M) -> H^2(Γ; M))`.
+
+If both vanish for every such `M`, then every finite-dimensional linearisation of `K` is trivial, and the K-essential
+step is invisible to first-order (abelianised-kernel) MF arguments.
+### Bilateral Haar sandwich: the compact two-sided affine relation is sofic, and the Haar route reduces to a class-bijective lift into it (swarm-0917-w15-w15-nh-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+*Approach tried.* Mine the dead Haar and inert entries for a shared invariant.
+* The w4 transplant, the w10 affine sandwich and the w11 Kazhdan kill each approximate, or split, the **one-sided**
+  Haar relation `R_n = R_Γ|_D`.
+* The inert class and the bilateral fusion obstruction restrict **group characters** of `H_bi` along `P -> E_+`.
+
+The shared invariant has two parts:
+* on the one-sided space, no finite scheme is invariant under both polynomial halves (balls against lattices);
+* group-level traces of `H_bi` are pulled back along `pr`, and so are head-blind (F3).
+
+The gate that changes both: pass to the **compact two-sided** dual `F_2^(Z x n)`, where periodicity is invariant
+under both halves, and to the **full semigroup** of its relation, where lifts may depend on the point.
+
+*Results.*
+* **Established** (`bilateral-laurent-haar-relation-is-sofic`, route `...-sofic-proof`, experiment
+  `experiments/bilateral-haar-periodic-2026-09-17/`): the free affine action of `A^n x| SL_n(A)` on
+  `(F_2^(Z x n), Haar)` is Păunescu-sofic, so its orbit relation `R'_n` and every subrelation are sofic.
+  * The models are periodic points, and cylinder statistics are exact for `m` beyond the window.
+  * Fixed-point proportions are at most `2^(-(m - s))`.
+  * Imports: Păunescu Definition 1.4 and Proposition 1.15, and Cordeiro Definition 2.1, all verbatim in existing
+    nodes.
+  * By the Remarks of the proof, `R'_n` is also the Haar relation of `H_bi`, so `P` acts inside it.
+* **Established** (`jacobson-el-sofic-if-haar-relation-lifts-into-bilateral`): if `R_n` is a class-bijective factor
+  of a subrelation `S ⊆ R'_N` (statement `(BL_N)`), then `EL_n(J)` is sofic and `L(R_n)` is CE.
+  * Proof: lift `[[R_n]] -> [[S]]` trace-preservingly, then restrict the sofic maps.
+  * This **replaces the w4 death step** (amenable-by-sofic permanence for the cocycle crossed product) by a placement
+    problem into a relation already proved sofic.
+  * The fusion obstruction (F3) does not apply: the transported trace is `μ(Fix)`, which is `1/2` at the head and is
+    not a pullback along `pr`.
+  * Class-surjectivity would be worthless, since every relation is a class-surjective factor of a free
+    `F_∞`-Bernoulli action.
+
+*Where it stops (hole stays OPEN).* `(BL_N)` is open (`jacobson-haar-relation-lifts-into-bilateral-relation`).
+* A sufficient form is (ML): the symbol cocycle `s : R_n -> SL_n(A)` lifts to a cocycle into the mirror tail
+  normalizer `N_- = E_- · [T_-]`.
+* (ML) holds on each polynomial half, through the homomorphic sections `EL_n(F_2[x^(±1)]) -> E_-`.
+* The gluing defect on the relator `ρ_- = [x_12(T), x_23(S)] x_13(1)^(-1)` is the mirror head `x_13(Q') ∈ L_-`. It
+  can be absorbed only by a point-dependent `[T_-]` correction.
+* A proof of non-hyperlinearity of `EL_20(J)` must refute `(BL_N)` for every `N`.
+
+*Next falsifiable step.* Decide whether the `L_-`-valued defect 2-cocycle of a Borel lift `σ_0 ∘ s` is a
+`[T_-]`-coboundary over `R_n`. Test it first on the `EL_3` corner generated by `x_12(x^(±1))` and `x_23(x^(±1))`.
+* Yes (even there) gives the first measured head-seeing approximation of a Toeplitz corner inside a sofic ambient.
+* No, robustly in `N` and `r`, is the first measured obstruction on the survivor side.
+
+### The canonical bilateral lift is exactly a mirror cocycle lift (swarm-0917-w15-w15-nh-break, breaker, cohomology-index, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Landed as `bilateral-lift-at-coordinate-projection-is-mirror-cocycle-lift`.
+  Its route is `bilateral-lift-at-coordinate-projection-proof`.
+- **Background.** swarm-0917-w15-w15-nh-pull (unlanded) posed the class-bijective lift `(BL_N)` of the Haar relation
+  `R_n` into the sofic bilateral Laurent relation as the single prerequisite for soficity of `EL_n(J)`. Its sufficient
+  condition was `(ML)`: a cocycle `R_n -> E_-[T_-]` lifting the symbol.
+- **Theorem.** At `N = n` and `r = pr_+`, `(BL_n)` holds **iff** `(ML)` holds.
+  * The two objects correspond bijectively through fibre maps.
+  * The key input is a null-coset lemma: a Toeplitz-plus-finite matrix with nonzero symbol hits any countable set
+    only on a null set. It forces the linear part of every realizing group element to equal the symbol pointwise.
+- **Consequence for this hole.** On the positive (sofic) side through the bilateral relation, the whole content at
+  the canonical placement is one nonabelian lifting problem:
+  * the `L_-`-valued Toeplitz defect of a pointwise lift, pulled back along the symbol cocycle, must be a
+    `[T_-]`-coboundary over the Kazhdan relation `R_n`.
+- **Conditional.** Granting the unlanded non-LEF lemma for `EL_3(J)`, no homomorphic (point-independent) witness
+  exists.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Find an invariant of `[T_-]`-valued cocycles over `R_n`, e.g. an index or entropy of
+  the tail corrections, that the pulled-back mirror class violates; that kills the canonical bilateral route.
+  Otherwise, move the lift to `N > n` or a non-coordinate `r`.
+
+### Exact finite models of the cone cover are K-dense (swarm-0917-w16-w16-nh-pull, obstruction-miner, finite-models, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Written as `leavitt-cone-cover-kernel-is-dense-in-every-compact-model`, with
+  route `leavitt-cone-cover-kernel-dense-compact-model-proof`.
+- **Approach tried.** Detect the K-essential step of `leavitt-cuntz-cone-halves-have-rf-amalgam-cover` (4b) in exact
+  finite models. The cover `Gamma = Delta_+ *_(Delta_0) Delta_-` is residually finite, and `z` survives in its finite
+  quotients. The hope was to find a finite or finite-dimensional quotient of `Gamma` in which the image of
+  `K = ker(Gamma -> Delta)` is small, or in which the finitely many relators `k_i` vanish while the head survives. Such
+  a model would be a finite witness for the lifted `(LNC3)` defect.
+- **Where it dies.** For every homomorphism `rho` of `Gamma` into a compact group,
+  `closure rho(K) = closure rho(Gamma)`. The quotient by `closure rho(K)` is a compact image of the infinite, simple,
+  finitely generated group `Delta`, and Peter–Weyl plus Malcev make it trivial. Consequences:
+  * in every finite quotient of `Gamma`, `K` surjects;
+  * a finite-dimensional unitary representation of `Gamma` that kills the `k_i` is trivial;
+  * the head `z ∉ K` lies in `K N` for every finite-index normal `N`;
+  * every finite-dimensional unitary `Delta`-module is trivial, and `Hom_Delta(K^ab, M) = H^1(Gamma; M) =
+    H^2(Delta; M) = 0` for it. This settles the finite-dimensional case that
+    `leavitt-cone-cover-kernel-free-gamma-perfect-proof` left unclaimed.
+- **Class killed.** Exact finite-model or compact-model invariants of `K` or of the `k_i`: indices, orders, quotient
+  counts, profinite or pro-`p` separation of `z` from `K`, Bohr charges, and finite-dimensional linearizations of
+  `K^ab`. Each equals the same invariant of the whole model.
+- **Survivors.** Only asymptotic models, where the `k_i` are approximately but not exactly trivial in normalized
+  Hilbert–Schmidt or operator norm, and noncompact targets such as the regular charge of
+  `leavitt-cone-cover-kernel-is-free-and-gamma-perfect` (5). Both are the hyperlinearity/MF question for `Delta`
+  itself, so the finite-models family has no exact entry point into this hole through the cone cover.
+- **Target stays OPEN.**
+- **Next falsifiable step.** A quantitative version: bound `||rho(z) - 1||_2` below in terms of `max_i ||rho(k_i) - 1||_2`
+  over finite-dimensional unitary `rho` of `Gamma`. That is a stability statement for `Delta` relative to `Gamma`, and
+  it belongs to the stability-approximation family, not finite models.
+
+### Cone-cover head bound is half of non-hyperlinearity (swarm-0917-w16-w16-ptm-pull, obstruction-miner, stability-approximation, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** Two nodes.
+  - `leavitt-st20-nonhyperlinear-iff-cone-bound-and-half-rounding`, with route
+    `leavitt-st20-cone-bound-half-rounding-proof`.
+  - The general tool `flexible-rounding-glues-across-finite-edge-amalgams`, with route
+    `flexible-rounding-finite-edge-amalgam-gluing-proof`.
+- **Approach tried.** Take the w16 next step at face value. The quantitative head bound is
+  - `(QC)`: for every `eps` there is `delta` such that every genuine finite-dimensional unitary `rho` of
+    `Gamma = Delta_+ *_(Delta_0) Delta_-` with `max_i ||rho(k_i) - 1||_2 <= delta` has
+    `||rho(z) - 1||_2 <= eps`.
+
+  Then try to turn it into non-hyperlinearity of `Delta`, which `(LNC3)` needs, by correcting
+  asymptotic representations of `Delta` to genuine representations of the residually finite cover.
+- **What was proved.**
+  - *Hyperlinearity is read off the head.* `Delta` is hyperlinear iff some asymptotic representation
+    has `σ_n(z)` not tending to `1`. The proof uses simplicity, the absence of scalar values in an
+    injective ultraproduct image, and tensor powers.
+  - *Split.* `Delta` is non-hyperlinear iff both `(QC)` and `(HR)` hold, where
+    - `(HR)`: restrictions to `Delta_+` of asymptotic representations of `Delta` round flexibly
+      (`D_n/d_n -> 1`) to genuine representations of `Delta_+`.
+  - *Refutation side.* If `(QC)` fails, then `Delta` is hyperlinear, and `(LNC3)` fails. A set section
+    of `Gamma -> Delta` that is the identity on the halves turns a `(QC)` counterexample into an
+    asymptotic representation that keeps the head.
+  - *Halves-exact form.* `(QC)` is equivalent to the same statement for asymptotic representations of
+    `Delta` that are exact on each half.
+  - *Mirror.* `(HR)` for `Delta_+` is equivalent to `(HR)` for `Delta_-`.
+  - *Gluing is never the obstacle.* Flexible roundings of the two factors of any amalgam over a
+    finite edge group glue, whenever a finite quotient is injective on the edge. The steps are a
+    representation-ring balance with regular representations of that quotient, then a Mirsky polar
+    correction of the averaged intertwiner.
+- **Where it dies.** At `(HR)`, the flexible rounding of a half.
+  - The halves are infinite, residually finite and Kazhdan. By
+    `infinite-hyperlinear-kazhdan-group-is-not-hs-stable` they are not even locally strictly
+    HS-stable. So `(HR)` can only be a flexible statement, relative to `Delta`.
+  - No input on the graph bears on it: finite models, compact models, charges, twist and holonomy
+    invariants all fail to reach it.
+  - `(QC)` alone is necessary for this hole but not sufficient for non-hyperlinearity.
+  - Given `(HR)`, `(QC)` is the flagship statement for `Delta`.
+- **Class killed.** Cone-cover correction arguments, i.e. any proof of non-hyperlinearity or of the
+  MF-radical collapse of `Delta` that corrects approximations to genuine `Gamma`-representations and
+  then bounds the head through the `k_i`.
+  - *Invariant:* property (T), infinitude and residual finiteness of the halves.
+  - *Death step:* the correction of a half.
+- **Target stays OPEN.**
+- **Next falsifiable steps (independent).**
+  1. *Refute `(QC)`, which refutes `(LNC3)`.* Search for pairs of genuine representations of the
+     residually finite halves `EL_20(R_+-)` that agree on `SL_20(F_2)^2` and make every `k_i` almost
+     trivial, while the `(-1)`-eigenspace of `z` keeps positive normalized dimension. For example,
+     use congruence quotients of `R_+-` and compute `max_i ||rho(k_i) - 1||_2` against
+     `||rho(z) - 1||_2`.
+  2. *Prove or refute `(HR)`.* One route is flexible HS stability of `EL_n` over the stably finite
+     cone ring `R_+`, which would also give flexible stability of `Gamma`.
+
+### Nonsoficity proves the Hamming cone bound; the refutation side is Pestov 3.4 (swarm-0917-w17-w17-nh-last1, calibration, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** `leavitt-cone-cover-hamming-head-bound-holds`, with route
+  `leavitt-cone-cover-hamming-head-bound-proof`.
+- **Approach tried.** Test w16 next step 1 before computing: what would a congruence-quotient refutation
+  of `(QC)` prove?
+- **What was proved.**
+  - `(QC)` holds for every permutation representation of `Gamma` (Hamming form `(QC_H)`). It also holds
+    for every representation into `C_m wr Sym(d)` with `m` fixed, and for genuine representations
+    pointwise close to such maps.
+  - *Proof.* Take a counterexample and apply the set section. This gives a head-moving Hamming
+    asymptotic homomorphism of `Delta`. Simplicity and tensor powers upgrade it to a sofic
+    approximation. But `R^x <= Delta` is nonsofic (`openai-leavitt-unit-nonsofic`).
+  - Every Hamming or bounded-phase monomial asymptotic homomorphism of `Delta` collapses. So the sofic
+    form of the whole `(QC)/(HR)` split is settled.
+  - *Calibration.* If `(QC)` or `(HR)` fails, then `Delta` is hyperlinear, and `R^x` is a hyperlinear
+    nonsofic group (Pestov 3.4). If both hold, the flagship follows. Every outcome of the split
+    resolves a famous problem.
+- **Class killed.** Finite-phase monomial refutations of `(QC)`. This covers w16 next step 1 in its
+  literal form: permutation or Schreier representations of congruence quotients glued on `Delta_0`,
+  and representations induced from bounded-order characters.
+  - *Invariant:* nonsoficity of `R^x`.
+  - *Death step:* the Hamming shadowing plus tensor-power amplification.
+- **Target stays OPEN.**
+- **Next falsifiable step.** The only refutation survivors are genuinely non-monomial unitary
+  representations. The proof side must show `(QC)` for unitary representations, using a property that
+  separates hyperlinear models from sofic ones. Soficity-type inputs (finite actions, Hamming bounds,
+  LEF, RF) are now exhausted on both sides.

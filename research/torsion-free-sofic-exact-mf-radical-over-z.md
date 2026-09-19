@@ -28,8 +28,12 @@ artifacts:
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
   - research/finite-outer-order-radical-witnesses-cross-alekseev-thom.md
+  - research/ollivier-wise-z-torus-kernel-not-finitely-presented.md
   - research/automorphic-sofic-kazhdan-kernel-with-full-mf-radical.md
   - research/titz-witzel-smallest-kernel-not-mf.md
+  - research/torsion-free-sofic-quotientless-kazhdan-group-exists.md
+  - research/sofic-hyperbolic-stages-give-quotientless-kazhdan-monster.md
+  - research/relation-gaps-forbid-fp-mapping-tori.md
 ---
 
 There exist a group `G` and a subgroup `K normal G` such that
@@ -198,3 +202,106 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
       failure of (EKL1), and (L3) a finite automorphic presentation of a non-finitely-presented kernel.
     - (W_out) needs a non-LEF sofic Kazhdan kernel certified outside `𝒫`.
   - Consequence: (EKL1) holds iff no witness lies in `𝒫`.
+- **2026-09-19, swarm-0917-w14-w14-titz-last1 (reframing).  Status: OPEN.**
+  - New necessary gate `torsion-free-sofic-quotientless-kazhdan-group-exists` (SQK): an
+    infinite torsion-free sofic Kazhdan group with no nontrivial finite quotient.
+    - Every witness kernel `K` satisfies it.
+    - The hole of each live route implies it: `titz-witzel-kernel-sofic`, the defect core, and
+      the extrinsic kernel.
+    - So each route can fail at (SQK) on its own, before any MF-radical, finite-presentation or
+      cyclic-action clause is reached.
+  - New ESTABLISHED dichotomy `sofic-hyperbolic-stages-give-quotientless-kazhdan-monster`.
+    - The Olshanskii--Osin--Sapir torsion-free Tarski monster quotient of a torsion-free
+      `Sp(n,1)` lattice has no proper finite-index subgroup, unconditionally: a finite-index
+      subgroup is cyclic, which would make the monster amenable and Kazhdan, hence finite.
+    - The monster is sofic as soon as its torsion-free hyperbolic stages are, since it is their
+      marked limit.
+    - Hence (SQK) holds or `nonsofic-hyperbolic-group` holds.
+  - **Class killed.** Any refutation of this root through the intrinsic properties it forces on
+    `K` (sofic, torsion-free, Kazhdan, no finite quotient) solves the flagship root. So a
+    disproof must use finite presentation, the exact radical, or the cyclic action.
+  - The monster is not a witness here. Its MF-ness, the radicals of its mapping tori and its
+    finite presentation are all unknown.
+- **2026-09-19, swarm-0917-w15-w15-titz-follow (obstruction-miner, class kill).  Status: OPEN.**
+  - New ESTABLISHED claim `relation-gaps-forbid-fp-mapping-tori`, with
+    route `-proof` and the verbatim OOS import `oos-graded-small-cancellation-scales-separate`.
+  - *Invariant.* Relation gaps: `N_{≤CR} = N_{≤R} ≠ N`, where `N_{≤R}` is the normal closure of
+    the relations of length at most `R`.
+  - *Gap lemma.* If `K ⋊_ψ Z` is finitely presented and `L` is the stretch of word lifts of
+    `ψ^{±1}`, then at every large `R` a gap of ratio `L` forces `N_{≤R} = N`.
+    - The reason is that at such a gap `N_{≤R}` is `ψ^{±1}`-invariant, so `F/N_{≤R} ⋊ Z` is
+      sandwiched between two presentations of `P`.
+    - So every infinitely presented witness kernel has `L`-bounded gaps over every finite
+      generating set. The same holds for split extensions by finitely presented groups.
+  - *Class killed.* Kernels with unbounded gaps (UG). This includes every infinitely presented
+    graded small cancellation group, and in particular the OOS torsion-free Kazhdan Tarski monster
+    `Q`.
+    - No torus `Q ⋊_ψ Z` is finitely presented, for any `ψ`. This is unconditional: it needs
+      neither `(RF_Γ)` nor any assumption on the outer order.
+    - This kills survivor item 4 of `tarski-monster-tori-evade-compression-and-stage-lifts`, and
+      with it the whole w14 monster-kernel branch of (L1)/(LK1).
+    - The death step is (L3)/(LK2)/(FAP1).
+  - *What survives in region (IO).* A kernel with a genuinely new relation in every window
+    `[R, LR]`, so that the number of relation scales up to `T` is at least `log_L T`. This is the
+    self-similar or branch-type regime, not a sparse limit. Any lacunary or monster construction
+    of an (IO) kernel must first be shown to have bounded gaps.
+- **2026-09-19, swarm-0917-w16-w16-titz-break (breaker, heuristic falsified).  Status: OPEN.**
+  - New ESTABLISHED claim `ollivier-wise-z-torus-kernel-not-finitely-presented`, with route
+    `-proof`. It uses the Ollivier--Wise import, Brown's cohomology facts and Stallings--Swan.
+  - *Heuristic falsified.* w15 recorded above that the surviving (IO) regime is "self-similar or
+    branch-type", and that no Kazhdan group with a finite invariant presentation that is not
+    finitely presented is known. Both are false.
+    - The Ollivier--Wise Rips construction over `Q = Z` gives a finitely presented, torsion-free,
+      hyperbolic `G = N ⋊_φ Z` with `cd G ≤ 2`.
+    - Its kernel `N = <x,y>` is Kazhdan, not FP_2, and `[φ]` has infinite outer order.
+    - So `N` has a finite two-sided automorphic presentation. Its bounded gaps are forced by the
+      w15 lemma, and it is hyperbolic-subgroup-like rather than branch.
+  - *Dimension-jump lemma, a class kill.* If `cd G ≤ 2`, `G/N ≅ Z` and `N` is nontrivial Kazhdan,
+    then `N` is not FP_2.
+    - The invariant is `cd`. The death step is `H^{n+1}(G; ZG) ⊇ H^1(Z; Z[t^±]⊗H^n(N;ZN)) ≠ 0`,
+      which forces `cd N ≤ 1`, so `N` is free.
+    - Consequence: every witness with `cd G ≤ 2` (one-relator, `C'(1/6)`, `Gr'(1/6)`, aspherical
+      2-complex) lies in (IO). The (AT) branch, which would answer Alekseev--Thom 6.1, needs
+      `cd G ≥ 3`.
+  - *What is left.* (P2)/(L3)/(FAP1) are no longer the hard part of (IO). For a Rips torus the
+    remaining obligations are exactly three: `G` sofic, `N` without finite quotients (`G` not
+    residually finite), and `N ⊆ Rad_MF(G)` (`G` not MF).
+    - All three are open problems about torsion-free hyperbolic groups. So on this route the goal
+      lives inside "a sofic, non-residually-finite, non-MF torsion-free hyperbolic group with a
+      Kazhdan Rips kernel over `Z`".
+- **2026-09-19, swarm-0917-w16-w16-titz-follow (reframer, reframing).  Status: OPEN.**
+  - New ESTABLISHED claim `non-mf-tf-hyperbolic-gives-fp-full-radical-kazhdan-group`, with route
+    `-proof`. It uses Olshanskii's G-subgroup theorem on `H_0 * P`, the partner `P`, the universal
+    MF quotient and FO-AT part 2.
+    - Fix any torsion-free non-elementary hyperbolic host `P`. Then "some torsion-free hyperbolic
+      group is not MF" is equivalent to: `P` has torsion-free hyperbolic quotients `Q`, injective on
+      any prescribed ball, with `Rad_MF(Q) = Q` and `Q = ⟨q, sqs⁻¹⟩`.
+    - The mechanism: `X = ⟨r, prp⁻¹⟩` is free and lies in `Rad_MF(H_0 * P)`, and `X` and `P` both
+      surject onto one Olshanskii quotient.
+    - For a Kazhdan host, `(Q × Z, Q × 0)` meets every clause of `(TFZ1)` and of the preferred
+      strengthening except soficity. It is a witness iff `Q` is sofic.
+  - *Trichotomy.* One of the following holds:
+    - (T1) every torsion-free hyperbolic group is MF;
+    - (T2) some torsion-free hyperbolic Kazhdan group is not sofic;
+    - (T3) the flagship holds, with a hyperbolic product kernel.
+
+    So refuting even the strengthened flagship forces (T1) or (T2).
+  - *New decomposition.* The route `exact-mf-radical-over-z-via-sofic-hyperbolic-kernel` needs the
+    single OPEN `sofic-tf-hyperbolic-kazhdan-group-with-full-mf-radical`. That claim splits into
+    (H1) a non-MF torsion-free hyperbolic group, and (H2) soficity of one Olshanskii quotient of a
+    fixed `Sp(2,1)` lattice. Each half can fail on its own, and each failure is itself a result:
+    - if (H1) fails, (T1) holds;
+    - if (H2) fails, a nonsofic hyperbolic group exists.
+  - *Relation to the w16 Rips list.* Of the three Rips-torus obligations listed just above, the
+    non-residual-finiteness one is redundant here, and soficity is needed for the single group
+    `Q` only. There is no Rips step and no automorphism. The price is region (AT), with
+    `cd(Q × Z) = cd Q + 1 ≥ 3`, which is consistent with the dimension-jump lemma. An unlanded w14
+    branch (commit 3ec242c521) proposed the same common-quotient step followed by a
+    Belegradek--Osin Rips step. That branch needed soficity of all torsion-free hyperbolic groups.
+  - *Audit note (not edited, outside this lane).* The "Kazhdan host" bullet of
+    `hyperbolic-rf-question-reduces-to-one-fixed-host` says every quotient in its item (2) "is
+    non-MF". Its proof route never proves this. For a finite-quotient-free hyperbolic Kazhdan group,
+    non-MF is the open implication (3) ⇒ (4) of `hyperbolic-rf-question-equals-non-mf-question`. It
+    should read "is not residually finite".
+  - *Not done.* The converse "hyperbolic witness kernel ⇒ `Rad_MF(K) = K`" needs `Out(K)` finite
+    for hyperbolic Kazhdan `K` (Paulin plus property FA_R). That theorem is not imported verbatim.

@@ -1,0 +1,139 @@
+# vcg.py, entry 4012, (rm, rp) = (2, a2b1c1); rounds 2-5 of the chain (rounds 0-1 by w7-074: work/v2_a2b1c1_4012_1.json).
+# Each round is one 'timeout 1200' process; the section header gives how it was started.
+## round 2: vchain3.sh, CG_ALPHA=0.3, --load pruned round-1 columns (prune.py, x-support)
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+phase 1 it 1 obj 0.130979 cols 7111 pairs 5423 min rc -6.113 LB -43.06 best -43.06 {2: -4.0, 3: -5.0086, 4: -6.1128} added 3000 t 3.4 tm 1.6 
+phase 1 it 2 obj 0.130979 cols 10111 pairs 6981 min rc -4.908 LB -34.55 best -34.55 {2: -3.2601, 3: -3.5375, 4: -4.9085} added 3000 t 7.1 tm 4.1 
+phase 1 it 3 obj 0.130976 cols 13111 pairs 8455 min rc -3.672 LB -25.81 best -25.81 {2: -2.5229, 3: -3.0821, 4: -3.672} added 3000 t 13.1 tm 8.7 
+phase 1 it 4 obj 0.130976 cols 16111 pairs 9902 min rc -3.926 LB -27.61 best -13.61 {2: -2.4069, 3: -2.6935, 4: -3.9257} added 3000 t 26.7 tm 17.0  dartLB -13.61
+phase 1 it 5 obj 0.130623 cols 19111 pairs 11434 min rc -3.009 LB -21.13 best -13.61 {2: -2.1061, 3: -2.6167, 4: -3.0091} added 3000 t 37.3 tm 26.7 
+phase 1 it 6 obj 0.130577 cols 22111 pairs 12910 min rc -2.625 LB -18.41 best -13.61 {2: -2.1208, 3: -2.0927, 4: -2.6249} added 3000 t 52.6 tm 41.2 
+phase 1 it 7 obj 0.130577 cols 25111 pairs 14394 min rc -2.649 LB -18.58 best -13.61 {2: -1.8577, 3: -1.8018, 4: -2.6486} added 3000 t 71.4 tm 59.0 
+phase 1 it 8 obj 0.130357 cols 28109 pairs 15787 min rc -1.933 LB -13.52 best -9.642 {2: -1.9328, 3: -1.533, 4: -1.8387} added 2998 t 101.3 tm 85.5  dartLB -9.642
+phase 1 it 9 obj 0.130309 cols 31109 pairs 16825 min rc -2.343 LB -16.42 best -9.642 {2: -1.9853, 3: -1.5066, 4: -2.343} added 3000 t 131.6 tm 114.9 
+phase 1 it 10 obj 0.130300 cols 34107 pairs 18229 min rc -1.892 LB -13.23 best -9.642 {2: -1.7229, 3: -1.6438, 4: -1.8917} added 2998 t 171.4 tm 153.9 
+phase 1 it 11 obj 0.130250 cols 37102 pairs 19295 min rc -1.734 LB -12.12 best -9.642 {2: -1.6959, 3: -1.2111, 4: -1.7337} added 2995 t 221.6 tm 203.4 
+phase 1 it 12 obj 0.130023 cols 40083 pairs 20146 min rc -1.56 LB -10.89 best -7.739 {2: -1.5595, 3: -1.1017, 4: -1.4321} added 2981 t 269.1 tm 246.9  dartLB -7.739
+phase 1 it 13 obj 0.130012 cols 42960 pairs 20947 min rc -1.454 LB -10.14 best -7.739 {2: -1.4539, 3: -0.8955, 4: -1.3923} added 2877 t 314.3 tm 291.5 
+phase 1 it 14 obj 0.129375 cols 45769 pairs 21411 min rc -1.515 LB -10.57 best -7.739 {2: -1.5147, 3: -1.166, 4: -1.2758} added 2809 t 357.8 tm 334.3 
+phase 1 it 15 obj 0.128867 cols 48263 pairs 21884 min rc -1.514 LB -10.56 best -7.739 {2: -1.5137, 3: -1.0717, 4: -1.001} added 2494 t 403.7 tm 379.6 
+phase 1 it 16 obj 0.128023 cols 50653 pairs 22156 min rc -1.486 LB -10.37 best -5.64 {2: -1.4865, 3: -0.803, 4: -1.1296} added 2390 t 451.7 tm 425.7  dartLB -5.64
+phase 1 it 17 obj 0.127142 cols 52440 pairs 22398 min rc -1.086 LB -7.543 best -5.64 {2: -1.0744, 3: -0.5655, 4: -1.086} added 1787 t 488.6 tm 462.1 
+phase 1 it 18 obj 0.126406 cols 54279 pairs 22505 min rc -1.058 LB -7.343 best -5.64 {2: -0.834, 3: -0.6979, 4: -1.0577} added 1839 t 529.6 tm 502.7 
+phase 1 it 19 obj 0.125999 cols 55320 pairs 22618 min rc -1.422 LB -9.914 best -5.64 {2: -1.4217, 3: -0.6635, 4: -1.1032} added 1041 t 579.6 tm 552.2 
+phase 1 it 20 obj 0.125685 cols 56177 pairs 22674 min rc -0.8904 LB -6.162 best -3.342 {2: -0.7208, 3: -0.7561, 4: -0.8904} added 857 t 635.8 tm 606.1  dartLB -3.342
+phase 1 it 21 obj 0.125470 cols 56757 pairs 22749 min rc -0.6973 LB -4.798 best -3.342 {2: -0.6973, 3: -0.5206, 4: -0.5792} added 580 t 686.2 tm 656.1 
+phase 1 it 22 obj 0.125351 cols 57402 pairs 22783 min rc -1.135 LB -7.89 best -3.342 {2: -0.6402, 3: -0.7436, 4: -1.1351} added 645 t 733.0 tm 702.5 
+phase 1 it 23 obj 0.125098 cols 57755 pairs 22813 min rc -0.6636 LB -4.56 best -3.342 {2: -0.6636, 3: -0.397, 4: -0.5382} added 353 t 793.2 tm 762.0 
+phase 1 it 24 obj 0.124910 cols 58086 pairs 22839 min rc -0.6844 LB -4.707 best -2.444 {2: -0.6562, 3: -0.37, 4: -0.6844} added 331 t 855.9 tm 821.7  dartLB -2.444
+phase 1 it 25 obj 0.124904 cols 58270 pairs 22851 min rc -0.6628 LB -4.554 best -2.444 {2: -0.6628, 3: -0.4451, 4: -0.3789} added 184 t 923.3 tm 888.6 
+phase 1 it 26 obj 0.124904 cols 58346 pairs 22857 min rc -0.6048 LB -4.145 best -2.444 {2: -0.6048, 3: -0.2876, 4: -0.4253} added 76 t 995.7 tm 960.1 
+phase 1 it 27 obj 0.124898 cols 58418 pairs 22860 min rc -0.5749 LB -3.934 best -2.444 {2: -0.5749, 3: -0.312, 4: -0.4686} added 72 t 1063.3 tm 1027.2 
+phase 1 it 28 obj 0.124869 cols 58444 pairs 22861 min rc -0.6195 LB -4.249 best -1.99 {2: -0.6195, 3: -0.2775, 4: -0.3354} added 26 t 1141.6 tm 1102.6  dartLB -1.99
+time limit
+RESULT ('timeout', -1.9897183766200435)
+best dart-shifted phase-1 value -1.9432184417781768
+window flow {'aaa': 0.047796, 'aab': 0.073739, 'abb': 0.044011, 'abc': 0.038251, 'aca': 0.005999, 'acB': 0.002682, 'baa': 0.02687, 'bab': 0.001778, 'bac': 0.008681, 'bba': 0.036789, 'bbb': 0.056129, 'bbc': 0.013118, 'bbC': 0.007203, 'bca': 0.046869, 'bcb': 0.008357, 'bcB': 0.001309, 'bCA': 0.007203, 'caa': 0.046869, 'cab': 0.006745, 'cba': 0.000539, 'cbb': 0.010141, 'cbc': 0.004931, 'cBB': 0.003991, 'AAA': 0.046686, 'AAB': 0.036544, 'AAC': 0.030631, 'ABB': 0.04872, 'ACb': 0.002145, 'ACB': 0.047753, 'Bcb': 0.007255, 'BAA': 0.059972, 'BAB': 0.012176, 'BAC': 0.019266, 'BBc': 0.001518, 'BBA': 0.066102, 'BBB': 0.024828, 'BBC': 0.007073, 'BCb': 0.001048, 'BCB': 0.015068, 'Cbb': 0.002958, 'Cbc': 0.000235, 'CAA': 0.007203, 'CBc': 0.005736, 'CBA': 0.025313, 'CBB': 0.022728, 'CBC': 0.009044}
+## farkas_vmem.py on round-2 dual
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 windows 114 D 1000000 key y
+shift: darts with R_d > 0: 530 max R 372388.0
+z'_norm -1940449.0 (/D = -1.94045) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: 0.0, 4: 0.0}
+FARKAS FAILED
+## round 3: CG_ALPHA=0.3, --load all round-2 columns (unpruned)
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+phase 1 it 1 obj 0.124859 cols 61444 pairs 22999 min rc -0.9339 LB -6.471 best -6.471 {2: -0.9339, 3: -0.6943, 4: -0.822} added 3000 t 84.3 tm 81.2 
+phase 1 it 2 obj 0.124853 cols 64376 pairs 23150 min rc -1.025 LB -7.114 best -6.471 {2: -0.6855, 3: -0.5791, 4: -1.025} added 2932 t 188.8 tm 184.5 
+phase 1 it 3 obj 0.124725 cols 66066 pairs 23219 min rc -0.864 LB -5.977 best -5.977 {2: -0.7128, 3: -0.6398, 4: -0.864} added 1690 t 283.8 tm 278.7 
+phase 1 it 4 obj 0.124723 cols 67346 pairs 23258 min rc -0.7318 LB -5.044 best -1.925 {2: -0.5774, 3: -0.547, 4: -0.7318} added 1280 t 395.6 tm 386.4  dartLB -1.925
+phase 1 it 5 obj 0.124695 cols 67836 pairs 23275 min rc -0.6153 LB -4.221 best -1.925 {2: -0.5287, 3: -0.3874, 4: -0.6153} added 490 t 499.4 tm 489.4 
+phase 1 it 6 obj 0.124678 cols 68042 pairs 23280 min rc -0.4979 LB -3.392 best -1.925 {2: -0.323, 3: -0.4248, 4: -0.4979} added 206 t 599.5 tm 588.9 
+phase 1 it 7 obj 0.124678 cols 68085 pairs 23280 min rc -0.3646 LB -2.45 best -1.925 {2: -0.0976, 3: -0.3315, 4: -0.3646} added 43 t 695.8 tm 684.5 
+phase 1 it 8 obj 0.124678 cols 68094 pairs 23280 min rc -0.09814 LB -0.5684 best -0.1781 {2: -0.0981, 3: -0.0058, 4: -0.0383} added 9 t 819.2 tm 803.4  dartLB -0.1781
+phase 1 it 9 obj 0.124678 cols 68296 pairs 23291 min rc -0.1811 LB -1.154 best -0.1781 {2: -0.0375, 3: -0.1811, 4: -0.1795} added 202 t 906.3 tm 890.0 
+phase 1 it 10 obj 0.124678 cols 68477 pairs 23295 min rc -0.4312 LB -2.92 best -0.1781 {2: -0.0006, 3: -0.2595, 4: -0.4312} added 181 t 973.7 tm 956.9 
+phase 1 it 11 obj 0.124678 cols 68636 pairs 23302 min rc -0.6591 LB -4.53 best -0.1781 {2: -0.2079, 3: -0.5899, 4: -0.6591} added 159 t 1055.6 tm 1038.2 
+phase 1 it 12 obj 0.124678 cols 68678 pairs 23303 min rc -0.382 LB -2.573 best -0.1781 {2: -0.1775, 3: -0.0017, 4: -0.382} added 42 t 1126.5 tm 1106.1  dartLB -0.6199
+time limit
+RESULT ('timeout', -0.17805334697477626)
+best dart-shifted phase-1 value -0.1663918071440852
+window flow {'aaa': 0.049025, 'aab': 0.071448, 'abb': 0.046258, 'abc': 0.037747, 'aca': 0.005956, 'acB': 0.003636, 'baa': 0.024102, 'bab': 0.005377, 'bac': 0.009591, 'bba': 0.03907, 'bbb': 0.060198, 'bbc': 0.009363, 'bbC': 0.005891, 'bca': 0.047346, 'bcb': 0.007038, 'bCA': 0.005891, 'caa': 0.047346, 'cab': 0.00718, 'cbb': 0.007954, 'cbc': 0.005946, 'cBB': 0.003636, 'AAA': 0.04987, 'AAB': 0.035568, 'AAC': 0.031167, 'ABB': 0.047386, 'ACb': 0.001787, 'ACB': 0.048291, 'Bcb': 0.006862, 'BAA': 0.060843, 'BAB': 0.011819, 'BAC': 0.018911, 'BBc': 0.004741, 'BBA': 0.065075, 'BBB': 0.024653, 'BBC': 0.004872, 'BCb': 3.7e-05, 'BCB': 0.016056, 'Cbb': 0.000497, 'Cbc': 0.001327, 'CAA': 0.005891, 'CBc': 0.002122, 'CBA': 0.026498, 'CBB': 0.024506, 'CBC': 0.01122}
+## farkas_vmem.py on round-3 dual (key y, then y_rho)
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 windows 114 D 1000000 key y
+shift: darts with R_d > 0: 327 max R 235723.0
+z'_norm -590365.0 (/D = -0.590365) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: 0.0, 4: 0.0}
+FARKAS FAILED
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 windows 114 D 1000000 key y_rho
+shift: darts with R_d > 0: 348 max R 93534.0
+z'_norm -166400.0 (/D = -0.1664) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: -1.0, 4: -1.0}
+FARKAS FAILED
+## round 4: vchain4.sh, CG_ALPHA=0.3, --load prune.py(round 3, x-support + newest 15000): the smoothing centre is lost
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+phase 1 it 1 obj 0.124678 cols 19124 pairs 9569 min rc -6.004 LB -42.28 best -42.28 {2: -3.7751, 3: -5.0451, 4: -6.0043} added 3000 t 10.4 tm 7.9 
+phase 1 it 2 obj 0.124678 cols 22124 pairs 10854 min rc -4.236 LB -29.79 best -29.79 {2: -3.0767, 3: -3.2757, 4: -4.2362} added 3000 t 25.0 tm 19.8 
+phase 1 it 3 obj 0.124678 cols 25124 pairs 12402 min rc -3.29 LB -23.11 best -23.11 {2: -2.6601, 3: -2.9014, 4: -3.2899} added 3000 t 48.9 tm 41.5 
+phase 1 it 4 obj 0.124678 cols 28124 pairs 14106 min rc -2.316 LB -16.23 best -12.66 {2: -2.2982, 3: -2.2098, 4: -2.316} added 3000 t 87.4 tm 71.7  dartLB -12.66
+phase 1 it 5 obj 0.124678 cols 31124 pairs 15671 min rc -2.093 LB -14.66 best -12.66 {2: -1.9351, 3: -2.0219, 4: -2.0934} added 3000 t 127.1 tm 109.8 
+phase 1 it 6 obj 0.124678 cols 34122 pairs 17339 min rc -2.03 LB -14.21 best -12.66 {2: -1.9227, 3: -1.7408, 4: -2.0297} added 2998 t 165.7 tm 147.4 
+phase 1 it 7 obj 0.124678 cols 37101 pairs 18765 min rc -1.634 LB -11.41 best -11.41 {2: -1.6338, 3: -1.3013, 4: -1.2692} added 2979 t 221.7 tm 202.2 
+phase 1 it 8 obj 0.124678 cols 40101 pairs 19709 min rc -1.753 LB -12.25 best -8.336 {2: -1.7527, 3: -1.0838, 4: -1.2611} added 3000 t 285.3 tm 260.9  dartLB -8.336
+phase 1 it 9 obj 0.124678 cols 43018 pairs 20631 min rc -1.574 LB -10.99 best -8.336 {2: -1.5741, 3: -0.8347, 4: -1.1802} added 2917 t 353.9 tm 328.4 
+phase 1 it 10 obj 0.124678 cols 45711 pairs 21404 min rc -1.717 LB -12 best -8.336 {2: -1.7168, 3: -0.7665, 4: -0.7984} added 2693 t 427.4 tm 400.8 
+phase 1 it 11 obj 0.124678 cols 48003 pairs 21862 min rc -1.54 LB -10.75 best -8.336 {2: -1.5403, 3: -0.6859, 4: -0.8691} added 2292 t 500.5 tm 472.6 
+phase 1 it 12 obj 0.124678 cols 50002 pairs 22117 min rc -1.451 LB -10.12 best -5.588 {2: -1.451, 3: -0.8247, 4: -1.0089} added 1999 t 586.7 tm 554.1  dartLB -5.588
+phase 1 it 13 obj 0.124678 cols 51660 pairs 22262 min rc -1.186 LB -8.249 best -5.588 {2: -1.1856, 3: -0.7378, 4: -0.8192} added 1658 t 689.0 tm 655.4 
+phase 1 it 14 obj 0.124678 cols 52819 pairs 22365 min rc -0.9059 LB -6.273 best -5.588 {2: -0.7439, 3: -0.9059, 4: -0.668} added 1159 t 788.5 tm 753.6 
+phase 1 it 15 obj 0.124678 cols 53610 pairs 22414 min rc -0.6041 LB -4.142 best -4.142 {2: -0.6041, 3: -0.5514, 4: -0.5872} added 791 t 883.2 tm 847.3 
+phase 1 it 16 obj 0.124678 cols 55901 pairs 22569 min rc -0.5288 LB -3.61 best -2.144 {2: -0.5116, 3: -0.4377, 4: -0.5288} added 2291 t 974.8 tm 933.6  dartLB -2.144
+phase 1 it 17 obj 0.124678 cols 57712 pairs 22671 min rc -1.35 LB -9.411 best -2.144 {2: -1.3502, 3: -0.4581, 4: -0.6887} added 1811 t 1065.3 tm 1023.1 
+phase 1 it 18 obj 0.124678 cols 58572 pairs 22721 min rc -0.6795 LB -4.674 best -2.144 {2: -0.6132, 3: -0.6795, 4: -0.5428} added 860 t 1155.3 tm 1112.2 
+time limit
+RESULT ('timeout', -2.143749242770676)
+best dart-shifted phase-1 value -2.095041962868102
+window flow {'aaa': 0.049025, 'aab': 0.071448, 'abb': 0.046034, 'abc': 0.037971, 'aca': 0.005956, 'acB': 0.003636, 'baa': 0.024102, 'bab': 0.005377, 'bac': 0.009591, 'bba': 0.03907, 'bbb': 0.060325, 'bbc': 0.009235, 'bbC': 0.005891, 'bca': 0.047346, 'bcb': 0.007038, 'bCA': 0.005891, 'caa': 0.047346, 'cab': 0.00718, 'cbb': 0.008138, 'cbc': 0.005762, 'cBB': 0.003636, 'AAA': 0.04987, 'AAB': 0.035568, 'AAC': 0.031167, 'ABB': 0.047386, 'ACb': 0.001792, 'ACB': 0.048286, 'Bcb': 0.006862, 'BAA': 0.060843, 'BAB': 0.011819, 'BAC': 0.018911, 'BBc': 0.004899, 'BBA': 0.064975, 'BBB': 0.024559, 'BBC': 0.004907, 'BCb': 3.3e-05, 'BCB': 0.01606, 'Cbb': 0.000409, 'Cbc': 0.001415, 'CAA': 0.005891, 'CBc': 0.001964, 'CBA': 0.026598, 'CBB': 0.024599, 'CBC': 0.011185}
+## farkas_vmem.py on round-4 dual
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 windows 114 D 1000000 key y
+shift: darts with R_d > 0: 508 max R 463287.0
+z'_norm -2193356.0 (/D = -2.19336) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: 0.0, 4: 0.0}
+FARKAS FAILED
+## round 5, attempt a (killed): CG_ALPHA=0.85, warm centre = round-3 dual, --load pruned round 3
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+warm centre from v2_a2b1c1_4012_3.json dart-shifted value -0.6199
+phase 1 it 1 obj 0.124678 cols 19119 pairs 23306 min rc -0.7628 LB -5.262 best -0.6199 {2: -0.5723, 3: -0.543, 4: -0.7628} added 2995 t 18.8 tm 9.8 
+phase 1 it 2 obj 0.124678 cols 22102 pairs 23321 min rc -0.5899 LB -4.041 best -0.6199 {2: -0.5482, 3: -0.4692, 4: -0.5899} added 2983 t 39.0 tm 28.8 
+phase 1 it 3 obj 0.124678 cols 25080 pairs 23333 min rc -0.5411 LB -3.696 best -0.6199 {2: -0.4349, 3: -0.4626, 4: -0.5411} added 2978 t 69.6 tm 58.2 
+phase 1 it 4 obj 0.124678 cols 26813 pairs 23351 min rc -0.4754 LB -3.233 best -0.6199 {2: -0.3849, 3: -0.4294, 4: -0.4754} added 1733 t 115.5 tm 98.8  dartLB -15.37
+phase 1 it 5 obj 0.124678 cols 27536 pairs 23356 min rc -0.4667 LB -3.171 best -0.6199 {2: -0.3397, 3: -0.201, 4: -0.4667} added 723 t 159.8 tm 142.0 
+phase 1 it 6 obj 0.124678 cols 27839 pairs 23357 min rc -0.4632 LB -3.147 best -0.6199 {2: -0.3135, 3: -0.1873, 4: -0.4632} added 303 t 210.7 tm 192.0 
+phase 1 it 7 obj 0.124678 cols 27946 pairs 23358 min rc -0.4649 LB -3.159 best -0.6199 {2: -0.2682, 3: -0.1724, 4: -0.4649} added 107 t 257.0 tm 237.3 
+phase 1 it 8 obj 0.124678 cols 27995 pairs 23358 min rc -0.4653 LB -3.161 best -0.6199 {2: -0.2689, 3: -0.1732, 4: -0.4653} added 49 t 307.3 tm 282.7  dartLB -13.07
+phase 1 it 9 obj 0.124678 cols 28012 pairs 23358 min rc -0.4648 LB -3.158 best -0.6199 {2: -0.2517, 3: -0.1708, 4: -0.4648} added 17 t 350.7 tm 325.3 
+phase 1 it 10 obj 0.124678 cols 28024 pairs 23358 min rc -0.4654 LB -3.162 best -0.6199 {2: -0.2614, 3: -0.1712, 4: -0.4654} added 12 t 397.3 tm 370.8 
+phase 1 it 11 obj 0.124678 cols 28033 pairs 23358 min rc -0.4645 LB -3.156 best -0.6199 {2: -0.2917, 3: -0.1684, 4: -0.4645} added 9 t 449.2 tm 421.6 
+phase 1 it 12 obj 0.124678 cols 28040 pairs 23358 min rc -0.4653 LB -3.161 best -0.6199 {2: -0.2604, 3: -0.1689, 4: -0.4653} added 7 t 500.0 tm 466.8  dartLB -13.01
+phase 1 it 13 obj 0.124678 cols 28046 pairs 23358 min rc -0.4647 LB -3.157 best -0.6199 {2: -0.1852, 3: -0.1686, 4: -0.4647} added 6 t 548.3 tm 514.1 
+## round 5, attempt b: box-stabilised phase 1 (CG_BOX=0.05, hard box) -> master unbounded
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+box centre value -0.5905 delta 0.05
+master status 1 HighsModelStatus.kUnbounded
+RESULT None
+best dart-shifted phase-1 value -0.5904833978547845
+window flow {}
+## round 5, attempt c (killed): soft box (CG_BOX=0.05, CG_BOX_U=1)
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+box centre value -0.5905 delta 0.05
+box it 1 obj -0.421701 cols 19124 pairs 23324 min rc -0.3631 dartLB -0.7875 best -0.5905 null {2: -0.2119, 3: -0.3113, 4: -0.3631} added 3000 t 55.7 tm 42.5
+box it 2 obj -0.423163 cols 22124 pairs 23345 min rc -0.936 dartLB -1.489 best -0.5905 null {2: -0.8243, 3: -0.7621, 4: -0.936} added 3000 t 127.1 tm 108.6
+box it 3 obj -0.424044 cols 24478 pairs 23360 min rc -0.8908 dartLB -1.237 best -0.5905 null {2: -0.8908, 3: -0.7176, 4: -0.7572} added 2354 t 242.2 tm 216.7
+box it 4 obj -0.424226 cols 26150 pairs 23374 min rc -0.9432 dartLB -1.89 best -0.5905 null {2: -0.9336, 3: -0.7641, 4: -0.9432} added 1672 t 373.7 tm 341.1
+box it 5 obj -0.424317 cols 27657 pairs 23390 min rc -0.9036 dartLB -1.069 best -0.5905 null {2: -0.9036, 3: -0.756, 4: -0.8865} added 1507 t 528.7 tm 489.3
+## round 5, final: go4012.sh = CG_ALPHA=0.3, warm centre = round-3 dual (CG_CENTER), --load all round-3 columns
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 windows 114 types 540 maxval 4
+warm centre from v2_a2b1c1_4012_3.json dart-shifted value -0.6199
+phase 1 it 1 obj 0.124678 cols 68889 pairs 23308 min rc -0.2486 LB -1.631 best -0.6199 {2: -0.0707, 3: -0.2331, 4: -0.2486} added 211 t 120.5 tm 109.0 
+phase 1 it 2 obj 0.124678 cols 68991 pairs 23308 min rc -0.4897 LB -3.334 best -0.6199 {2: 0.0, 3: -0.2622, 4: -0.4897} added 102 t 245.2 tm 232.9 
+phase 1 it 3 obj 0.124678 cols 69055 pairs 23308 min rc -0.4927 LB -3.355 best -0.6199 {2: 0.0, 3: -0.411, 4: -0.4927} added 64 t 363.6 tm 350.5 
+phase 1 it 4 obj 0.124678 cols 69056 pairs 23308 min rc -0.1007 LB -0.5867 best 0.043 {2: -0.0163, 3: -0.0006, 4: -0.1007} added 1 t 487.7 tm 469.2  dartLB 0.043
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible
+best dart-shifted phase-1 value 0.04299779036577542
+window flow {'aaa': 0.049025, 'aab': 0.071448, 'abb': 0.044831, 'abc': 0.039174, 'aca': 0.005956, 'acB': 0.003636, 'baa': 0.024102, 'bab': 0.005377, 'bac': 0.009591, 'bba': 0.03907, 'bbb': 0.060932, 'bbc': 0.008629, 'bbC': 0.005891, 'bca': 0.047346, 'bcb': 0.007038, 'bCA': 0.005891, 'caa': 0.047346, 'cab': 0.00718, 'cbb': 0.008437, 'cbc': 0.005463, 'cBB': 0.003636, 'AAA': 0.04987, 'AAB': 0.035568, 'AAC': 0.031167, 'ABB': 0.047386, 'ACb': 0.00181, 'ACB': 0.048268, 'Bcb': 0.006862, 'BAA': 0.060843, 'BAB': 0.011819, 'BAC': 0.018911, 'BBc': 0.004815, 'BBA': 0.065073, 'BBB': 0.026059, 'BBC': 0.003393, 'BCb': 1.5e-05, 'BCB': 0.016078, 'Cbb': 0.000708, 'Cbc': 0.001117, 'CAA': 0.005891, 'CBc': 0.002047, 'CBA': 0.0265, 'CBB': 0.023099, 'CBC': 0.0127}

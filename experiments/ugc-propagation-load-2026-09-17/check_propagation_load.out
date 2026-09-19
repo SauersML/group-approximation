@@ -1,0 +1,6 @@
+trials 200
+list-membership failures 0
+load-bound failures 0
+E[val] >= p/K^2 failures 0
+max dirty/(kappa eta') ratio 0.692
+PASS

@@ -1,0 +1,121 @@
+J 1 base n 3 R 1 first 0 split -1,1,0 : complete after 198s
+level 1 classes 8 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,1,1,1)
+   level-1 swap pattern (a,b,c,d): 0000:1 0100:1 0010:1 0110:1 0001:1 0101:1 0011:1 0111:1
+   log2 ord(b,c,d) = (0,0,0): 1
+   log2 ord(b,c,d) = (0,0,1): 1
+   log2 ord(b,c,d) = (0,1,0): 1
+   log2 ord(b,c,d) = (0,1,1): 1
+   log2 ord(b,c,d) = (1,0,0): 1
+   log2 ord(b,c,d) = (1,0,1): 1
+   log2 ord(b,c,d) = (1,1,0): 1
+   log2 ord(b,c,d) = (1,1,1): 1
+level 2 classes 80 (lifts tried 184, max free 6) max log2 ord(a,b,c,d) (1,1,2,2)
+   level-1 swap pattern (a,b,c,d): 0000:36 0100:6 0010:6 0110:6 0001:10 0101:4 0011:6 0111:6
+   log2 ord(b,c,d) = (0,0,0): 1
+   log2 ord(b,c,d) = (0,0,1): 3
+   log2 ord(b,c,d) = (0,1,0): 3
+   log2 ord(b,c,d) = (0,1,1): 9
+   log2 ord(b,c,d) = (0,1,2): 2
+   log2 ord(b,c,d) = (1,0,0): 3
+   log2 ord(b,c,d) = (1,0,1): 11
+   log2 ord(b,c,d) = (1,1,0): 9
+   log2 ord(b,c,d) = (1,1,1): 29
+   log2 ord(b,c,d) = (1,1,2): 6
+   log2 ord(b,c,d) = (1,2,0): 2
+   log2 ord(b,c,d) = (1,2,1): 2
+level 3 classes 332 (lifts tried 1584, max free 8) max log2 ord(a,b,c,d) (2,2,2,3)
+   level-1 swap pattern (a,b,c,d): 0000:136 0100:36 0010:12 0110:32 0001:30 0101:30 0011:22 0111:34
+   log2 ord(b,c,d) = (0,0,1): 4
+   log2 ord(b,c,d) = (0,1,1): 44
+   log2 ord(b,c,d) = (0,1,2): 6
+   log2 ord(b,c,d) = (0,1,3): 2
+   log2 ord(b,c,d) = (1,0,1): 17
+   log2 ord(b,c,d) = (1,1,1): 143
+   log2 ord(b,c,d) = (1,1,2): 18
+   log2 ord(b,c,d) = (1,1,3): 6
+   log2 ord(b,c,d) = (1,2,1): 26
+   log2 ord(b,c,d) = (1,2,2): 6
+   log2 ord(b,c,d) = (1,2,3): 8
+   log2 ord(b,c,d) = (2,0,1): 8
+   log2 ord(b,c,d) = (2,1,1): 20
+   log2 ord(b,c,d) = (2,1,2): 6
+   log2 ord(b,c,d) = (2,2,1): 6
+   log2 ord(b,c,d) = (2,2,2): 12
+level 4 classes 1908 (lifts tried 9952, max free 10) max log2 ord(a,b,c,d) (3,3,3,3)
+   level-1 swap pattern (a,b,c,d): 0000:1176 0100:144 0010:56 0110:136 0001:84 0101:120 0011:88 0111:104
+   log2 ord(b,c,d) = (0,0,1): 2
+   log2 ord(b,c,d) = (0,1,1): 99
+   log2 ord(b,c,d) = (0,1,2): 110
+   log2 ord(b,c,d) = (0,1,3): 3
+   log2 ord(b,c,d) = (1,0,1): 9
+   log2 ord(b,c,d) = (1,1,1): 313
+   log2 ord(b,c,d) = (1,1,2): 349
+   log2 ord(b,c,d) = (1,1,3): 9
+   log2 ord(b,c,d) = (1,2,1): 103
+   log2 ord(b,c,d) = (1,2,2): 67
+   log2 ord(b,c,d) = (1,2,3): 12
+   log2 ord(b,c,d) = (1,3,1): 8
+   log2 ord(b,c,d) = (1,3,2): 4
+   log2 ord(b,c,d) = (2,0,1): 16
+   log2 ord(b,c,d) = (2,1,1): 287
+   log2 ord(b,c,d) = (2,1,2): 343
+   log2 ord(b,c,d) = (2,1,3): 4
+   log2 ord(b,c,d) = (2,2,1): 41
+   log2 ord(b,c,d) = (2,2,2): 25
+   log2 ord(b,c,d) = (2,2,3): 12
+   log2 ord(b,c,d) = (2,3,1): 4
+   log2 ord(b,c,d) = (2,3,2): 16
+   log2 ord(b,c,d) = (3,0,1): 6
+   log2 ord(b,c,d) = (3,1,1): 16
+   log2 ord(b,c,d) = (3,1,2): 26
+   log2 ord(b,c,d) = (3,2,1): 6
+   log2 ord(b,c,d) = (3,2,2): 10
+   log2 ord(b,c,d) = (3,3,3): 8
+level 5 classes 24336 (lifts tried 122496, max free 14) max log2 ord(a,b,c,d) (4,3,4,4)
+   level-1 swap pattern (a,b,c,d): 0000:18528 0100:416 0010:296 0110:2424 0001:648 0101:632 0011:432 0111:960
+   log2 ord(b,c,d) = (0,1,2): 3147
+   log2 ord(b,c,d) = (0,1,3): 6
+   log2 ord(b,c,d) = (1,1,2): 9525
+   log2 ord(b,c,d) = (1,1,3): 22
+   log2 ord(b,c,d) = (1,2,2): 2604
+   log2 ord(b,c,d) = (1,2,3): 76
+   log2 ord(b,c,d) = (1,2,4): 8
+   log2 ord(b,c,d) = (1,3,2): 184
+   log2 ord(b,c,d) = (1,3,3): 16
+   log2 ord(b,c,d) = (2,1,2): 5828
+   log2 ord(b,c,d) = (2,1,3): 4
+   log2 ord(b,c,d) = (2,2,2): 1952
+   log2 ord(b,c,d) = (2,2,3): 52
+   log2 ord(b,c,d) = (2,2,4): 8
+   log2 ord(b,c,d) = (2,3,2): 312
+   log2 ord(b,c,d) = (2,3,3): 80
+   log2 ord(b,c,d) = (3,1,2): 216
+   log2 ord(b,c,d) = (3,2,2): 104
+   log2 ord(b,c,d) = (3,2,3): 32
+   log2 ord(b,c,d) = (3,2,4): 16
+   log2 ord(b,c,d) = (3,3,2): 32
+   log2 ord(b,c,d) = (3,3,3): 48
+   log2 ord(b,c,d) = (3,4,3): 64
+level 6 classes 318432 (lifts tried 1454976, max free 16) max log2 ord(a,b,c,d) (5,3,4,3)
+   level-1 swap pattern (a,b,c,d): 0000:271216 0100:1968 0010:1752 0110:20632 0001:5528 0101:5464 0011:3568 0111:8304
+   log2 ord(b,c,d) = (0,1,3): 51144
+   log2 ord(b,c,d) = (1,1,3): 152480
+   log2 ord(b,c,d) = (1,2,3): 16984
+   log2 ord(b,c,d) = (1,3,3): 4928
+   log2 ord(b,c,d) = (2,1,3): 776
+   log2 ord(b,c,d) = (2,2,3): 81016
+   log2 ord(b,c,d) = (2,3,3): 9792
+   log2 ord(b,c,d) = (3,2,3): 64
+   log2 ord(b,c,d) = (3,3,3): 992
+   log2 ord(b,c,d) = (3,4,3): 256
+level 7 classes 11776 (lifts tried 47104, max free 9) max log2 ord(a,b,c,d) (6,3,4,4)
+   level-1 swap pattern (a,b,c,d): 0100:1280 0110:5120 0001:3328 0111:2048
+   log2 ord(b,c,d) = (1,2,4): 512
+   log2 ord(b,c,d) = (1,3,4): 128
+   log2 ord(b,c,d) = (2,2,4): 3840
+   log2 ord(b,c,d) = (2,3,4): 128
+   log2 ord(b,c,d) = (3,4,4): 7168
+level 8 classes 0 (lifts tried 0, max free 0) max log2 ord(a,b,c,d) (0,0,0,0)
+   level-1 swap pattern (a,b,c,d):
+NO 1-ODOMETER MODEL AT LEVEL 8
+exit 0

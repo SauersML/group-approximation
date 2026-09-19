@@ -143,3 +143,27 @@ step for order arithmetic).  `(CGC)` stays open.
   - Status: no progress on `(CGC)` itself. The split records that the NAQ
     content of `(HMF5)` sits either in `(PUU)` or in `(CGC)`, and that a
     nontrivial amenable quotient refutes at least one of them.
+- *Finite-image models collapse (2026-09-19, swarm-0917-w14-w14-ptm-break,
+  finite-models; a class kill, not a proof of `(CGC)`).*  See
+  `finite-image-higman-models-collapse-opnorm` (established).
+  - Suppose the conjugators `C_0..C_3` generate a **finite** subgroup of
+    `U(M)` and `eta < 1/6`.  Then `max_i ||C_i - 1|| <= 3 eta`.  The constant
+    does not depend on `M` or on the group order.
+  - Behind this is (FIC): a finite-image Higman tuple with defect
+    `delta < 1/2` has `max ||u_i - 1|| <= delta`.
+    - Zassenhaus contraction together with the discreteness gap makes the
+      `delta`-small elements generate a nilpotent normal subgroup.
+    - Hig kills the finite quotient, so the whole image is nilpotent.
+    - Clifford isotypic permutation, which Hig also kills, then forces an
+      abelian image.
+  - Death step for the class: the finite quotient `Gamma / <S_delta>`.
+  - So every countermodel of `(CGC)`, `(PUC)` or `(HMF5)` must generate an
+    infinite subgroup of `U(M)` at every stage.  This excludes:
+    - root-of-unity or monomial clocks;
+    - Clifford/Weil-group matchers;
+    - HOC clocks with finite-group matchers `H_n`, whose four seams must
+      have maximum `>= 1/6`.
+  - The live torus-regauge search has to use phases that are not all roots
+    of unity.  With monomial `H_n` and regauges whose phases are all rational
+    angles, the generated group is finite and the fourth seam is `>= 1/6`.
+  - `(CGC)` stays OPEN.

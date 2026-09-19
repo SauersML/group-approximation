@@ -21,3 +21,23 @@ together with the OPEN
 **Already ESTABLISHED part.** Transitive `G`-sets with a point whose stabilizer meets a copy of `Z^4` or
 `F₂×F₂` finitely, in particular free orbits of any Kazhdan group containing `Z^4` or `F₂×F₂`. This is
 `tree-times-zk-images-have-polynomial-ball-separators`, item 3.
+
+## Attempts
+
+1. **Weighted walls plus strong (T)** (swarm-0917-w15-w15-bh-break, operator-algebras). This settles the
+   statement for every group with Lafforgue's strong property (T), and more generally for targets
+   `Cay(A)×T` with `A` of subexponential growth. The result is
+   `strong-t-orbits-never-inject-into-subexp-times-tree`, ESTABLISHED modulo Lafforgue
+   and de la Salle.
+   - *Method.* Weight the `Z^2`-coordinate by `e^{-2ε|a|}`. The pulled-back half-tree walls are then
+     cocycles for a representation of norm growth `e^{εL|k|}`, and strong (T) makes them coboundaries.
+     Orienting each edge toward infinite mass gives a ray of finite-mass Følner sets, which
+     contradicts the strong-(T) projection. If instead the total mass is finite, the exponential
+     growth from (T) is contradicted.
+   - *Consequence.* `SL_3(Z)`, `SL_n(Z)` and every group containing one of them miss
+     `[[(Z^2×F_d) ⋉ (Ω×∂F_d)]]`. So the boundary-product host is not Boone–Higman-universal, whatever
+     happens for the remaining Kazhdan groups.
+   - *Where it dies for the full statement.* At Step 2 of the route, for Kazhdan groups without strong
+     (T). This covers all infinite hyperbolic Kazhdan groups, and groups where strong (T) is unknown,
+     such as the `EL_3` lamplighter hosts. Those cases remain OPEN here, with the route
+     `kazhdan-z2-free-injection-dies-by-ball-separation`.

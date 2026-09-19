@@ -361,3 +361,18 @@ it is supplied, and the exponential pairing-support obstruction persists.
     blow-up at completeness amplification, from `1/2` to `1 - gamma`.
   - Where it stops: it constrains the shape of a proof and proves nothing
     toward the conjecture.
+* **Decode-tree load law (2026-09-19, swarm-0917-w14-w14-ugc-last1).**
+  **Class kill, ESTABLISHED; the conjecture stays OPEN.** By
+  `honest-decode-trees-must-be-cut-in-ug-compositions` (Theorem P), any
+  reduction to unique games with alphabet `K` whose completeness witness has
+  outer labels decoded from connected decode trees `T_z` (`c` components per
+  site) puts the source in `P` when `p_0 - (kappa_1+kappa_2) eta' > K^(c_1+c_2) s`.
+  - *Invariant.* The decode-tree load `kappa` times the honest violation
+    weight `eta'`, against `p_0 - K^c s`.
+  - *Where every member dies.* At seed propagation along clean decode trees,
+    which list-decodes the outer game with lists of size `K^c`.
+  - *Survivors.* (V1) load `kappa >= Omega(1/eta')` (long-code-type blocks);
+    (V2) `K^c s >= p_0`; (V3) no bounded-load decoder of any near-perfect
+    witness, which is (F4) of Theorem S\* without (F1)/(F2); (V4) NO
+    analyses not of the form `val(Phi) <= s`.
+  - Where it stops: a necessary condition on proofs, not progress toward one.

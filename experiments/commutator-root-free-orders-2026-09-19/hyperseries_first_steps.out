@@ -1,0 +1,6 @@
+K=2 beta=1 step y_2: relation OK; g_2 - x -> -oo (want -oo)
+K=2 beta=1 step y_3: relation OK; g_3 - x -> -oo (want -oo)
+K=2 beta=-1 step y_2: relation OK; g_2 - x -> oo (want oo)
+K=3 beta=1 step y_2: relation OK; g_2 - x -> -oo (want -oo)
+K=3 beta=1 step y_3: relation OK; g_3 - x -> -oo (want -oo)
+K=3 beta=-1 step y_2: relation OK; g_2 - x -> oo (want oo)

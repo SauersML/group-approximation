@@ -1,0 +1,27 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c1 mask abAB windows 114 types 524
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a1b2c1 mask abAB windows 114 types 772
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a1b1c2 mask abAB windows 114 types 580
+surviving windows 12 ['aab', 'aba', 'abb', 'baa', 'bab', 'bba', 'AAB', 'ABA', 'ABB', 'BAA', 'BAB', 'BBA']
+RESULT survives 12
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c2 mask abAB windows 114 types 748
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b2c1 mask abAB windows 114 types 940
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a1b2c2 mask abAB windows 114 types 996
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c1 mask bcBC windows 114 types 524
+surviving windows 0 []
+RESULT empty 0
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c1 mask acAC windows 114 types 524
+surviving windows 8 ['aaa', 'aac', 'aca', 'caa', 'AAA', 'AAC', 'ACA', 'CAA']
+RESULT survives 8
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 rm 2 rp a2b1c1 mask None windows 114 types 524
+surviving windows 96 ['aaa', 'aab', 'aac', 'aaB', 'aba', 'abb', 'abc', 'abA', 'abC', 'aca', 'acb', 'acB', 'aBa', 'aBc', 'aBA', 'aBB', 'aBC', 'baa', 'bab', 'bac', 'baB', 'bba', 'bbb', 'bbc', 'bbA', 'bbC', 'bca', 'bcb', 'bcB', 'bAb', 'bAA', 'bAB', 'bAC', 'bCb', 'bCA', 'bCB', 'caa', 'cab', 'cac', 'caB']
+RESULT survives 96

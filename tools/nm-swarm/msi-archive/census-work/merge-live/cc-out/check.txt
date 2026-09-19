@@ -1,0 +1,8 @@
+formalized       495
+definition        73
+partial           57
+structural        55
+provenance        19
+attribution       18
+total            717
+FAIL: 57 sentences are only partially formalized.

@@ -261,3 +261,201 @@ the Kaplansky zero-divisor conjecture."
    - Next: an extremal-copy lemma (some copy of a minimal covering meets the
      others in `<= 3` links) and a rank-one removal of that copy, which would
      give induction on `N`.  Counting alone cannot handle every `N`.
+16. **Six-copy configurations carry no zero divisors (proposed established; `rips-segev-six-copy-configurations-carry-no-zero-divisors`).**
+   - Walk the Greendlinger shell arc of item 15 coset by coset.  It has 12
+     consecutive `b`-syllables, `e_2` of them `b^2`, so it visits `13 + e_2`
+     pairwise distinct active cosets.
+   - *Two-or-a-syllable lemma.*  A copy other than the shell copy meets at
+     most two arc cosets, or three forming one `b^2`-syllable.  Otherwise a
+     shared `b`-run and the arc close a cycle of length `<= 26 < 42` in `Phi`.
+   - Shell copy outside the covering: `13 + e_2 <= 2N + e_2`.  Inside: `12 +
+     e_2 <= 2(N - 1) + e_2`.  Both fail for `N <= 6`.  This closes the `N = 4`
+     residue of item 15 and also `N = 5, 6`, in `k[K]` and `k[G]`.  At girth
+     `g` it covers `2N <= ~5g/16`.
+   - *Three-port lemma.*  In a counterexample each clean active coset has
+     `>= 3` port edges, all to dirty cosets.
+   - Exact `N = 7` residue: the shell copy is in the covering, exactly one arc
+     coset is pure, and the other six copies see disjoint arc sets.
+17. **Extremal-copy lemma on supports alone (killed; `rips-segev-coefficient-free-extremal-copy-lemma-fails`).**
+   - The step proposed in item 15 ("some copy meets the others in `<= t`
+     links") is false as a support statement, even for port-closed supports,
+     for every `t <= 8`.
+   - Star family: every copy whose chosen line lies in one long `a`-interval.
+     Each copy meets the others in 9 cosets, and far lines stay private, so
+     the covering is minimal.
+   - The family has many clean active cosets per copy, so the coefficients
+     kill it.  Next: the coefficient-compatible version.  If every copy has
+     at most one clean active coset (with `>= 3` dirty port neighbours), then
+     some copy of a minimal covering has at most two dirty cosets.  With the
+     rank-one lemma this gives induction on `N`.
+18. **Eight-copy configurations carry no zero divisors (proposed established; `rips-segev-eight-copy-configurations-carry-no-zero-divisors`).**
+   - This closes the `N = 7` residue of item 16, and `N = 8`, in `k[K]` and
+     `k[G]`.
+   - Size the shell window by the shell face's own syllable length `l`, not by
+     `gamma`, and count partial end syllables.
+   - Bound the arc cosets seen by `N` copies by `2N + min(N, e_2)`.
+   - The girth of `Phi` forces a face of length `l` to have at most `l - 42`
+     single-`b` syllables, so it is all `b^2` at `l = 42`.
+   - Criterion: `n* + max(0, e* - N) >= 2N` for some window with `<= 39`
+     `b`-edges.  It holds at `N = 8` for every `l`.
+   - Exact `N = 9` residue: shell face of length `42..54` in a diagram with at
+     least three faces.
+   - The window count cannot pass about `N = 12`.  The extremal-copy step of
+     item 17 (coefficient-aware) is still the route to every `N`.  It was not
+     proved in this pass.
+
+19. **Nine-copy configurations carry no zero divisors (proposed established; `rips-segev-nine-copy-configurations-carry-no-zero-divisors`).**
+   - This closes the exact `N = 9` residue of item 18, in `k[K]` and `k[G]`.
+   - Use the whole curvature budget of the port-cycle disc, not one
+     Greendlinger face.  The disc has simple boundary with exactly `L`
+     `b`-edges.  Gauss–Bonnet under `C'(1/8)` gives `sum (4 - i) >= 6` over
+     the shells, where `i` is a shell's number of interior arcs.
+   - A shell with `i <= 2` has an arc of `> 3l/4` syllables.  A window in it
+     meets the item-18 criterion at `N = 9` for every `l`.  The same holds
+     for `i = 3` and `l >= 56`.
+   - Otherwise there are at least six three-arc shells of length `42..54`.
+     Each carries at least 21 `b`-edges, because girth forces them to be
+     mostly `b^2`.  So `L >= 126 > 117 = N + 3N(N-1)/2`, which bounds the
+     active cosets.
+   - This does not reach `N = 10`.  The surviving shells carry about `2N`
+     `b`-edges against `A(N) ~ 1.5 N^2` cosets.
+   - The coefficient-aware extremal-copy step (height-function extremal
+     coset plus the rank-one lemma) was attempted and not proved.  It
+     remains the route to every `N`.
+
+20. **Port-cycle counting has an N-independent ceiling (obstruction; `rips-segev-port-cycle-counting-has-n-independent-ceiling`).**
+   - Kills the plan "a linear active-coset bound `A(N) = O(N)` plus the
+     curvature count closes every large `N`".
+   - The window criterion of item 18 is capped by girth at `E* <= 39`.  Its
+     left side is `E* - min(e*, N) <= 39`, but it must reach `2N`.  So it is
+     vacuous for `N >= 20`, and on all-`b^2` faces for `N >= 14`.
+   - Then a one-face port-cycle diagram whose boundary is the relator of a
+     directed cycle of `Phi` passes every check, with `L = L_0(Phi)`
+     `b`-edges.  In the `gamma = 42` graph of item 12, `(x_4 x_1)^21` gives
+     `L = 42`.
+   - So the method closes large `N` only with an active-coset bound below
+     `L_0`, independent of `N`.  Linear bounds close only a bounded range of
+     `N`, and the `~12N` shell figure holds only while windows bite.
+   - Next step: a local coefficient lemma for a single shell face.  The port
+     equations with fixed `u/w` must fail along `>= 21` consecutive impure
+     arc cosets of one copy, whatever the other copies are.  Item 17 shows
+     that supports alone cannot give this.
+
+21. **One-copy port equations are always solvable (obstruction; `rips-segev-single-copy-port-equations-are-always-solvable`).**
+   - Kills the step of item 20: "the port equations with fixed `u/w`
+     cannot hold along `>= 21` consecutive impure arc cosets of one copy".
+     As a local statement it is false, for every nonconstant `u/w`, every
+     face and every field.
+   - Duality: the port map `f -> ((f u)(In_i), (f w)(Out_i))` of a line
+     has image `Dep_i^perp`, where `Dep_i` is the set of reflected pairs
+     `(A, B)` on `(In_i, Out_i)` with `Ǎ u + B̌ w = 0`.
+   - Row separation, applied to the tensor identity `Ǎ_i B̌_j = Ǎ_j B̌_i`,
+     leaves at most one line with `Dep != 0`.  So every edge valuation of a
+     copy that respects that one line is realized by coefficients `f_i`.
+   - Every directed face cycle of `Phi` gets nonzero values at all its
+     ports.  This includes `(x_4 x_1)^21` at `gamma = 42`: 42 active arc
+     cosets, all `b^2`.  Consecutive arc cosets share one scalar, so there
+     is no ratio recursion.
+   - Calibration: the regular element `1 + 2a + (3 + a) b` also solves
+     every one-copy system.  The contradiction in
+     `rips-segev-one-copy-configurations-carry-no-zero-divisors` comes only
+     from the support condition.
+   - Next step (holonomy form): impose the support condition at the escaped
+     points.  That is, `supp(f_T u)` lies in the arrival ports of `T` and
+     `supp(f_T w)` in its departure ports, over every copy `T` meets.  Then
+     the space `Rep_T` is small, and each coset fixes an exit/entry ratio.
+     Show that the product of these ratios around a directed port cycle
+     cannot be `±1`.
+
+22. **Port holonomy is tautological and blind over `F_2` (obstruction; `rips-segev-port-holonomy-is-tautological-and-f2-blind`).**
+   - Kills the holonomy form of the previous item: impose the escape support
+     condition, get `dim Rep_T <= 1`, and show the ratio product around a
+     directed port cycle is not `±1`.
+   - (A) The edge equation `X(z b) = - Y(z)` telescopes.  For every solution
+     and every directed cycle of length `L`, `prod rho_T = (-1)^L`.
+   - (B) The support condition is relative to a covering.  One copy per
+     active edge always satisfies it.  Adding copies whose line starts at
+     chosen points (position `0` is a port of both kinds) makes `Rep_T`
+     arbitrarily large.  So `dim Rep_T <= 1` is false in general.
+   - (C) Over `F_2` every ratio is `1`.  The `F_2` case is exactly the
+     non-existence of a finite `(u, w)`-harmonic family, a support statement.
+   - Also: `Lambda` (active cosets, active `b`-edges) is simple and oriented,
+     by the short-relation lemma.  A support-minimal counterexample is
+     globally rigid (`V = k alpha`), but that does not make any single coset
+     rigid.  On the `(x_4 x_1)^21` face, the intrinsic `R_T` is
+     2-dimensional with a free ratio on most cosets, and on all 42 over
+     `F_10007` (`port_holonomy.py`).
+   - Next step: (i) in characteristic `!= 2`, find a directed cycle of
+     locally rigid cosets (`dim R_T = 1`) in a copy-minimal covering and show
+     that the pattern-forced product is not `(-1)^L`; (ii) over `F_2`,
+     exclude harmonic families by support matching, using only simplicity of
+     `Lambda` and the rank-one lemma.
+
+23. **Harmonic cycles split over copies (strict reduction; `rips-segev-two-layer-cycles-split-over-copies`).**
+   - The previous item asked for two things: exclude `F_2` harmonic families by support matching with simple
+     `Lambda` and the rank-one lemma, and find a rigid directed cycle whose forced product is not `(-1)^L`.
+     Neither can close as stated.  In `<a, b | (a^m b)^n>`, `sum_j (a^m b)^j (1 - a^m b) = 0` satisfies every
+     such hypothesis.  A proof must use row separation or the non-monomial ratio.
+   - New object: if `u(1) + w(1) = 0`, then `sum_z Y(z)[z -> z b] + sum_T f_T (u + w)/(t - 1)` is a finite
+     1-cycle on the Cayley graph.  Relators are closed paths in `Gamma`, so it splits as `sum_i c_i` with
+     `0 != c_i in Z_1(C_i)`, over finitely many copies that `alpha` itself picks.
+   - Each `c_i` runs through a `Phi`-cycle of at least 42 lines.  A cycle line that no other `c_j` touches is
+     active and pure.  The rank-one lemma allows such lines on one row only, so each copy has at most one.
+   - Reduction: the coefficient-free **linked-cycle lemma** (in every finite family of copies carrying nonzero
+     cycles, some copy has two untouched cycle lines) excludes every relation with `u(1) + w(1) = 0`, over any
+     field.  Two copies share at most 3 cosets, so the lemma holds for at most 14 copies.  The star family is not
+     a counterexample: it leaves at least 33 lines untouched.
+   - Next step: prove the linked-cycle lemma for 15 or more copies, via an outermost copy.  Also handle
+     `u(1) + w(1) != 0`, where the chain has rays along the cosets with `f_T(1) != 0`.
+
+24. **Two-layer elements have no left annihilator (proposed established; `rips-segev-two-layer-elements-have-no-left-annihilator`).**
+   - The previous item reduced the half `u(1) + w(1) = 0` to a linked-cycle lemma, known for at most 14 copies.
+     Both halves now close: `alpha (u + w b^{±1}) = 0` with `w != 0` forces `alpha = 0`, in `k[G]` for every
+     field `k`.
+   - *Hopping lemma, every `N`.*  In any finite family of distinct copies carrying nonzero cycles, some copy has at
+     least three lines of its cycle support untouched by the others.
+     - Otherwise walk through the cycle supports, leaving the current copy at the first touched coset among the
+       3rd, 4th and 5th.  The walk closes into a cyclically non-backtracking loop.
+     - Its label is a cyclically reduced relation of `K`.  Greendlinger's arc (`> 5 gamma/8` syllables) puts
+       13 consecutive `b`-edges of it into one copy.
+     - Those 13 edges contain 3 consecutive edges, spanning 4 cosets, of each of two distinct copies.  Two distinct
+       copies share at most 3 cosets.
+   - *Removing `u(1) + w(1) = 0`.*  The edges `y <a> -- y b <a>` with `(alpha w)(y) != 0` form a graph in which
+     every active coset has degree `>= 2`.
+     - A leaf 2-edge-connected block carries a nowhere-zero flow over `k(s)`.  Filled along the cosets, it is a
+       nonzero cycle that splits over copies as before.
+     - Away from the block's bridge end, every port edge carries the cycle.  So untouched lines there are pure,
+       and rows allow at most one per copy.  With the bridge end, that makes at most two, which the hopping lemma
+       excludes.
+   - This closes the line of `N`-copy attempts (items 13–15 and the linked-cycle reduction) for left
+     annihilators.  By `g -> g^{-1}`, elements `u' + b^{±1} w'` have no nonzero right annihilator.
+   - Next step: the other side, `(u + w b) alpha = 0`.  Equivalently, left annihilators of `w' + b u'`, with `b`
+     to the left of the coefficient.
+     - The edge equation becomes `X(b z) = -Y(z)`, linking right cosets `<a> z` to `<a> b z`.
+     - The copies are left translates, with lines in left cosets, so the port graph has to be rebuilt.
+     - After that comes `b`-degree at least two.
+
+25. **Elements supported in `<a><b>` have no left annihilator; degree-one elements are two-sided regular (proposed established; `rips-segev-ab-layered-elements-have-no-left-annihilator`).**
+   - *Every `b`-degree, left side.*  If `alpha (sum_{j=0}^d u_j(a) b^j) = 0` with some `u_j != 0`, then
+     `alpha = 0`, over every field.  By the involution, nonzero elements supported in `<b><a>` have no right
+     annihilator.
+     - With `X_j = alpha u_j`, each `b`-line satisfies `sum_j X_j(v b^{-j}) = 0`.  So its active points form
+       clusters with gaps `<= d`.  The `b`-edges inside cluster spans form a port graph of minimum degree 2, and
+       the leaf-block flow cycle of the previous item applies.
+     - A multi-layer rank-one lemma, `P^i_T P^j_T' = P^i_T' P^j_T`, allows at most one pure active untouched line
+       per copy.  Inactive untouched lines carry only pass-through points at the middle positions `0, C`.  In
+       Steenbock's gluing (`b`-runs of at most 2 edges) the neighbours of a middle are never middles, so two such
+       lines are never consecutive.
+     - Among 6 consecutive untouched lines of a copy this is impossible, so visits have 3 to 8 edges.  A 13-edge
+       Greendlinger arc then meets two copies in 4 common cosets, against the two-copy bound of 3.
+   - *Flip (any group).*  If `alpha (u + v b^{±1} w) = 0` with `v w != 0`, let `g = gcd(u, w)`,
+     `u = g u_0`, `w = g w_0`.  Then coset-wise `alpha = eta w_0` and `eta (u_0 + w_0 v b^{±1}) = 0`.
+   - *Two-sided, degree one.*  Every `u + v b^{±1} w` with `v w != 0` is a non-zero-divisor on both sides.  In
+     particular this settles the right-annihilator step `(u + w b) alpha = 0`.
+   - *Open.*  Right annihilators of `b`-degree `>= 2`, i.e. `alpha (sum_j b^j v_j) = 0`.  The port graph, the
+     flow cycle and the purity step transfer.  The rank-one step does not: the port vector of a coset lies in the
+     syzygy module of `(v_0, ..., v_d)`, which has rank `d >= 2`.
+
+26. **Elements `sum_j b^j v_j(a)` of coefficient rank at most 2 have no left annihilator (proposed established; `rips-segev-rank-two-ba-elements-have-no-left-annihilator`).**  For `alpha (sum_j b^j v_j) = 0` the segments `y, ..., y b^d` (`y in supp alpha`) give a port graph of minimum degree 2, and the leaf-block flow cycle, copy splitting and purity carry over.  Good untouched lines are middle lines (never consecutive, by Fact M) or bad lines, whose port polynomial at an `I` or `O` position is a multiple of `v_d` or `v_0`.  The rank-one lemma fails for `d >= 2`; it is replaced by a row bound: pure cosets in distinct rows with nonzero port polynomials number at most `dim span(v_j) - 1` (determinant in the syzygy module, injective sums over distinct rows, Rado's theorem).  For rank 2 a copy has at most one bad line, and the window-of-6 Greendlinger count closes.  With Theorem A and the involution, every `<a>/<b>`-layered element of coefficient rank `<= 2` is a two-sided non-zero-divisor.  Open: rank 3, where only a visit of 9 or 10 edges through the bridge end escapes the 13-edge count; rank `>= 4`; mixed-layer supports.
+
+27. **Elements `sum_j b^j v_j(a)` of every coefficient rank have no left annihilator (proposed established; `rips-segev-ba-layered-elements-have-no-left-annihilator`).**  The rank condition of the rank-two node is removed.  A face of a minimal diagram has at least 42 `b`-edges and `b`-runs of at most 2 edges, so a Greendlinger arc reads at least 18 `b`-edges, not 13, and visits of up to 13 edges close the count.  For `b`-degree `d <= 2` the rank is at most 3, the row bound leaves at most 2 bad lines per copy, and windows of untouched lines give visits of at most 10 edges; this closes the rank-3 case left open there.  For `d >= 3` no row bound is needed: an edge of the copy cycle between two good untouched lines has a middle endpoint, and the copy's other `b`-edge at that middle carries level 2 into an `I` position or level `d - 2` out of an `O` position, which purity forbids, so it ends at a touched coset or at the bridge end; girth 42 keeps the bridge end from blocking, and visits have at most 11 edges.  With Theorem A and the involution, every nonzero element supported in `<a><b>` or `<b><a>` is a two-sided non-zero-divisor.  Open: mixed-layer supports.

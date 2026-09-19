@@ -263,3 +263,31 @@ construction is currently known; nearby-spectrum mixing is also not covered.
     decay.
     Neither proves nor refutes `(HMF3)`.  **Still OPEN.**  What is missing
     is a lower bound for the one equation `R P R^* ~ P^2`, `R=D^*PD`.
+- **Higman-sterile closure and a class kill for (NAQ) refutations
+  (2026-09-19, swarm-0917-w14-w14-ptm-follow, reframing).**  Result:
+  `higman-sterile-class-is-extension-and-ultraproduct-closed`.
+  - *What was proved.* Let `S` be the class of groups that receive only
+    trivial maps from `Hig`. It is closed under:
+    * subgroups, extensions and directed unions;
+    * direct products and algebraic ultraproducts;
+    * local embeddings;
+    * wreath products and free products.
+
+    It contains every group that is `D`, linear, periodic, of locally
+    subexponential growth, `BS(1,2)`-free or low-distortion. Hence it
+    contains every LEF group, every Juschenko--Monod group `[[T]]'`, every
+    group of `lrf-cantor-actions-give-lef-full-and-elementary-groups`, and
+    Nekrashevych's periodic simple groups.
+  - *Reformulations.* (NAQ) says every amenable group lies in `S`. `(HMF5)`
+    says every corona unitary group `prod U(k_n)/N_(k)` lies in `S`. In
+    both, the ambient `prod U(k_n)` and the normal subgroup `N_(k)` are
+    already in `S`.
+  - *Class killed.* Refutations of (NAQ) or `(HMF5)` through a target built
+    from those pieces by those operations. The invariant is membership in
+    `S`. Every member dies at a leaf, after the map is pulled back along the
+    operation tree.
+  - *Correction.* The Juschenko--Monod exclusion demanded by
+    `hmf5-forces-higman-to-have-no-amenable-quotient` holds unconditionally.
+  - *What is left.* The only operation `S` lacks is taking quotients, and
+    that is where `(HMF5)` sits. So is the residual (NAQ): f.g. simple
+    amenable groups outside the closure `S_0`. **Still OPEN.**

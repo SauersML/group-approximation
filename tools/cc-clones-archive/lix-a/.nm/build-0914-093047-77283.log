@@ -1,0 +1,116 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4112 oleans
+[job] acn112 cores=72-79 threads=8 base=fcf0b37b3123500e8689aa5ef71e2853cd77ddf4 mods: GroupApproximation.Analysis.TwistedGroupVonNeumannProduct GroupApproximation.Analysis.TwistedTensorProductAlgebra GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+ℹ [2414/2422] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2417/2422] Replayed GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup
+info: GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean:90:14: 'GroupApproximation.GroupVonNeumann.leftRegularUnitaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2418/2422] Replayed GroupApproximation.Analysis.McDuffFactor
+info: GroupApproximation/Analysis/McDuffFactor.lean:77:21: 'GroupApproximation.McDuff.printedTensorHyperfiniteUnitaryContainsGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2419/2422] Built GroupApproximation.Analysis.TwistedGroupVonNeumannProduct (10s)
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:251:14: 'GroupApproximation.TwistedProduct.isTwistedICC_prodCocycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:252:14: 'GroupApproximation.TwistedProduct.groupVonNeumannAlgebra_eq_twisted_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:253:14: 'GroupApproximation.TwistedProduct.curryLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2420/2422] Building GroupApproximation.Analysis.TwistedTensorProductAlgebra (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/TwistedTensorProductAlgebra.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/TwistedTensorProductAlgebra.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/TwistedTensorProductAlgebra.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/TwistedTensorProductAlgebra.setup.json --json
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:45:0: automatically included section variable(s) unused in theorem `GroupApproximation.TwistedProduct.entry_apply`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:49:0: automatically included section variable(s) unused in theorem `GroupApproximation.TwistedProduct.hasSum_entry`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:73:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ↑(lp.single 2 δ ?m.95) ε
+in the target expression
+  x (↑(lp.single 2 δ w) ε) = ↑(lp.single 2 δ (x w)) ε
+
+case neg
+H : Type v
+inst✝³ : NormedAddCommGroup H
+inst✝² : InnerProductSpace ℂ H
+inst✝¹ : CompleteSpace H
+Γ : Type u
+inst✝ : DecidableEq Γ
+x : H →L[ℂ] H
+δ : Γ
+w : H
+ε : Γ
+hε : ¬ε = δ
+⊢ x (↑(lp.single 2 δ w) ε) = ↑(lp.single 2 δ (x w)) ε
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    fun x => x ∈ lp (fun x => H) 2
+  has type
+    (PreLp fun x => H) → Prop
+  but is expected to have type
+    ((i : Γ) → (fun x => H) i) → Prop
+  in the application
+    @Subtype.val ((i : Γ) → (fun x => H) i) fun x => x ∈ lp (fun x => H) 2
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:73:31: Application type mismatch: The argument
+  w
+has type
+  H
+but is expected to have type
+  ?m.90 δ
+in the application
+  @lp.single_apply_ne Γ ?m.90 ?m.91 inst✝ 2 δ w
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:75:0: automatically included section variable(s) unused in theorem `GroupApproximation.TwistedProduct.entry_ampOperator_mul`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:199:12: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  twistedLeftOperator (prodCocycle σ ρ) (?γ, ?a)
+in the target expression
+  (fun g => star (twistedLeftOperator (prodCocycle σ ρ) g)) (γ, a) * X =
+    X * (fun g => star (twistedLeftOperator (prodCocycle σ ρ) g)) (γ, a)
+
+case a.inr
+Γ : Type u
+A : Type w
+inst✝¹ : Group Γ
+inst✝ : Group A
+σ : Γ → Γ → ZMod 2
+ρ : A → A → ZMod 2
+hσ : IsSignCocycle σ
+hρ : IsSignCocycle ρ
+Φ : (↥(VecHilbert Γ ↥(GroupHilbert A)) →L[ℂ] ↥(VecHilbert Γ ↥(GroupHilbert A))) ≃*
+  (↥(GroupHilbert (Γ × A)) →L[ℂ] ↥(GroupHilbert (Γ × A))) :=
+  curryConj.toMulEquiv
+hΦ : ∀ (T : ↥(VecHilbert Γ ↥(GroupHilbert A)) →L[ℂ] ↥(VecHilbert Γ ↥(GroupHilbert A))), Φ T = curryConj T
+hshift : ∀ (γ : Γ), Φ (twistedShiftOperator σ γ) = twistedLeftOperator (prodCocycle σ ρ) (γ, 1)
+hamp : ∀ (a : A), Φ (ampOperator Γ (twistedLeftOperator ρ a)) = twistedLeftOperator (prodCocycle σ ρ) (1, a)
+hstar : ∀ (T : ↥(VecHilbert Γ ↥(GroupHilbert A)) →L[ℂ] ↥(VecHilbert Γ ↥(GroupHilbert A))), Φ (star T) = star (Φ T)
+X : ↥(GroupHilbert (Γ × A)) →L[ℂ] ↥(GroupHilbert (Γ × A))
+hX : X ∈ (⇑Φ '' tensorGenerators (twistedVonNeumannAlgebra ρ) σ).centralizer
+h1 : ∀ (γ : Γ), Commute (twistedLeftOperator (prodCocycle σ ρ) (γ, 1)) X
+h2 : ∀ (a : A), Commute (twistedLeftOperator (prodCocycle σ ρ) (1, a)) X
+h3 : ∀ (γ : Γ), Commute (star (twistedLeftOperator (prodCocycle σ ρ) (γ, 1))) X
+h4 : ∀ (a : A), Commute (star (twistedLeftOperator (prodCocycle σ ρ) (1, a))) X
+γ : Γ
+a : A
+⊢ (fun g => star (twistedLeftOperator (prodCocycle σ ρ) g)) (γ, a) * X =
+    X * (fun g => star (twistedLeftOperator (prodCocycle σ ρ) g)) (γ, a)
+error: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:236:14: 'GroupApproximation.TwistedProduct.curryConj_image_twistedTensor' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.TwistedTensorProductAlgebra
+error: build failed
+EXIT=1

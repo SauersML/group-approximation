@@ -82,3 +82,58 @@ distinct_from:
        half-line.  Such a pair defeats every expansive direction.
      - For Attempt 1 this sharpens step (ii): a Mozes seam carrying independent decorations on two
        half-lines would be such a pair.
+
+3. **Reframing: this question is the survivor question (2026-09-19, reframing, swarm-0917 w14).**
+   - *Established.* `minimal-z2-subshift-non-rf-iff-inside-aperiodic-sft` (proof:
+     `minimal-z2-subshift-non-rf-iff-inside-aperiodic-sft-proof`) shows that a minimal `Z^2`-subshift is not
+     residually finite iff some window SFT of it has no periodic point.
+     - The proof uses uniform recurrence to drop the covering clause of
+       `rf-subshifts-are-periodic-window-approximable`, and band pigeonhole to upgrade one period to two.
+     - `Y_ψ` is always minimal, with `e_1` expansive and minimal.
+     - So this claim holds **iff** some infinite minimal `X` and some `ψ ∈ Aut(X,T)` have a non-RF `Y_ψ`.
+       Equivalently, some block code of an automorphism violates `(*)_F`.
+   - *Correction to "Why it matters".* The last bullet there is wrong. A non-RF `Y_ψ` always lies in an
+     aperiodic SFT, namely one of its own window SFTs. A negative answer here therefore kills, through
+     Theorem 2 of `commuting-subshift-automorphisms-die-when-space-time-is-rf`, every `σ` with
+     `σ^m = Ad(w) ∘ σ_ψ^k`, for every infinite minimal `X` and every `ψ`.
+   - *Class kill: square-zoom hierarchical and fixed-point tile sets.*
+     - Let `Σ` be any tile set whose tilings decompose uniquely and locally into `N × N` macrotiles with
+       `N ≥ 2`. Examples are Robinson, Kari–Papasoglu, the crossing-wire fixed-point sets and the
+       Durand–Romashchenko minimal set of `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`.
+     - The level-1 position mod `N` is a continuous factor of every subsystem onto `Z^2 / N Z^2`, which is a
+       non-cyclic finite factor.
+     - By `minimal-z2-directions-forbid-eigenvalues-vanishing-on-them`, no rational direction of any
+       subsystem is minimal. Concretely, for `v = (p,q)` the eigenvalue `θ = (q/N, −p/N) ≠ 0` has
+       `θ(v) = 0`.
+     - So the free minimal SFTs already in the graph are **not** witnesses, even though they are minimal
+       subsystems of aperiodic SFTs. The invariant is the lattice of the level-1 grid, and the proof dies
+       at minimality of `v`. Any self-similar or fixed-point witness needs macrotile lattices `L_k` with
+       `Z^2 / L_k` cyclic, e.g. `N_k × M_k` rectangles with `gcd(N_k, M_k) = 1`.
+   - *Decomposition for a positive answer, replacing step (ii) of Attempt 1.* The prerequisites below can
+     each fail on their own, and none is checked.
+     - **(R1) Strongly deterministic coprime cover.** A primitive `2 × 3` product substitution `θ` has an SFT
+       cover `π : Σ → X_θ` that is four-way deterministic, i.e. any two adjacent edges determine a tile.
+       Take for instance period doubling `× ` a ternary Toeplitz substitution with a coincidence.
+       - Le Gloannec–Ollinger (CiE 2012, recalled) prove this for `2 × 2` substitutions only. The rectangular
+         coprime case is not in the literature found in this pass.
+       - Given (R1), item 2 of `four-way-deterministic-sft-rigidity-lives-on-axis-faults` makes every
+         non-axis direction, in particular `(1,1)`, expansive on `Σ`. Expansiveness passes to every subsystem,
+         since a subsystem has fewer pairs to separate.
+       - (R1) also answers the half-line constraint of Attempt 2. In a four-way deterministic shift, two
+         points agreeing on a half-plane below a row and differing above it differ on the whole next row. So
+         no difference set lies near a half-line.
+     - **(R2) Coprime odometer.** `X_θ` is an almost one-to-one extension of `Z_2 × Z_3`. There `(1,1)` is
+       translation by a topological generator, by CRT, so `(1,1)` acts minimally on `Z_2 × Z_3`.
+     - **(R3) Almost one-to-one cover.** Some minimal `Y' ⊆ Σ` has `π|_(Y')` almost one-to-one. Then `(1,1)`
+       acts minimally on `Y'`, as in step (i) of Attempt 1.
+     - `Σ` has no periodic points because `X_θ` has none. So (R1)–(R3) give a witness.
+     - By this Attempt's reframing, the witness gives a commuting-automorphism survivor that no permutation
+       model reaches.
+     - Here `X` is the row subshift of `Y'` along `(1,1)`. `ψ` is a shift in any other direction.
+   - *Search form.* By item (iii) of the new node, a candidate `(X, F)` is refuted at scale `M` by one
+     periodic word whose forward orbit stays `M`-legal, which is a finite check for each period. No
+     computation was run in this pass.
+   - *Status.* The claim stays **OPEN**. Its truth value is now exactly the truth value of "the
+     commuting-automorphism survivor class is nonempty". Attempts 1 and 3 locate the positive side in
+     (R1)–(R3), and the negative side in a uniform periodic-point theorem for window SFTs of space-time
+     subshifts.

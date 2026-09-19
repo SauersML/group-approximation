@@ -112,3 +112,37 @@ just above `p_c`.
      `delta e^n` vertices. Combined with the stationary-boundary calibration of
      swarm-0917-w10-w10-bs-last1, a transfer must work with random layer sets
      and use nonamenability of `Gamma` directly.
+2. **Orbit-uniform half tilts are Schur tests (2026-09-19,
+   swarm-0917-w14-w14-bs-last1; obstruction, ESTABLISHED as
+   `fpbs-orbit-uniform-half-tilt-bounds-connectivity-operator`).**
+   - *Mechanism.* Write `X_p(zeta) = sum_y tau_p(o,y) Delta_zeta(o,y)^(1/2)`,
+     so `chi^nu_(1/2) = int X_p d nu`. The cocycle factorises
+     `psi_zeta = Delta_zeta(o,.)^(1/2)` into an eigen-majorant:
+     `T_p psi_zeta = psi_zeta · X_p(.^(-1) zeta)`. The Schur test then gives
+     `||T_p||_(2->2) <= sup_g X_p(g zeta)`. Also `||X_p||_(L2(nu))^2 >=
+     sum_y tau_p(o,y)^2`.
+   - *Invariant.* `sup_(g in Gamma) X_p(g zeta) >= ||T_p||_(2->2)` for a.e.
+     `zeta`, and `||X_p||_(L2(nu)) >= ||tau_p(o,.)||_2`.
+   - *Class killed.* Every proof of [BT] that bounds `X_p`, at some
+     `p >= p_c`, uniformly along one `Gamma`-orbit. This covers the
+     fibre-uniform escape left open by Attempt 1, and any `L^infinity(nu)`
+     bound. It also covers arguments bounding `X_p` in `L2(nu)` at some
+     `p > p_c`.
+   - *Where every member dies.* At the step that produces the orbit-uniform
+     bound. That step already proves `||T_(p_c)|| < infinity`, which is
+     `fpbs-nonamenability-bounds-critical-connectivity-operator` and implies
+     `p_c < p_(2->2)` and `p_c < p_u` without [BT]. The `L2(nu)` version
+     proves `p_c < p_2`, which gives `p_c < p_u` without [BT].
+   - *Radial inputs.* The pointwise form `tau_(p_c)(o,y) <= gr^(-|y|/2)` of
+     Hutchcroft's exponential-growth bound (recalled) cannot give even the
+     `L2(nu)` version for any `nu`, because `sum_k gr^(-k)|S_k| = infinity`.
+   - *Shape forced on the window.* If `p_c = p_(2->2)` on some
+     graph where [BT] holds, then on `(p_c, p^nu_t)` the function `X_p` is in
+     `L1(nu)` but unbounded on almost every orbit. If moreover `p > p_2`, it is
+     not in `L2(nu)`.
+   - *What survives.* Only genuinely averaged `L^r(nu)` arguments with
+     `1 <= r < 2`, for example non-uniform uses of stationarity. The positive
+     side, item 6, shows that an orbit-uniform bound at `p_c` with
+     `max_s ess sup Delta(o,s) < infinity` propagates above `p_c` by a
+     truncated Russo–BK Riccati comparison. By the invariant, though, this is
+     never cheaper than critical l2.

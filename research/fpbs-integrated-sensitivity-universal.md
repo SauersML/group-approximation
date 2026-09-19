@@ -139,3 +139,84 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   **Calibration:** the kernel `1_H` (H infinite amenable) has rate `rho` but is
   in no l^q, so a failure of [Q] would not refute (IS). Artifact:
   `research/artifacts/fpbs/docs/lq-two-point-walk-rate-2026-09-17.md`.
+* **Spherical transplant on tree products (swarm-0917-w14, group-rings;
+  exact identity, no counterexample).**
+  - On `X = T_{a_1} □ ... □ T_{a_r}`, `τ_p` is bi-radial. Kesten's corner
+    together with a Schur test with weight `Φ = ⊗ φ_{a_i}` gives
+    `||T_p||_{2->2} = Σ_t τ_p(t) |S_t| Φ(t)` exactly
+    (`fpbs-tree-product-two-point-norm-is-spherical-sum`).
+  - So `p_c < p_{2->2}` on `X` is one scalar series question, and
+    `p_c < p_{2->2}` implies (IS) through [Q].
+  - The test for a counterexample was whether the w12 pointwise failures
+    `τ_pc(o,z_k) gr^{2k} >= R^k` on T3xT10 make the series diverge. They do
+    not. The diagonal weight is `Θ(k^2 18^{k/2})`, so the per-step decay
+    threshold is `18^{-1/2} ≈ 0.236`. The 2-path blocks give only
+    `2p_c^2 - p_c^4 <= 0.0247`.
+  - **Where it dies:** the lower side needs `τ_pc` at the tempered scale
+    `Φ`, and no pointwise block estimate comes within `9.5^k` of it. The
+    upper side, convergence at `p_c + ε`, needs a pointwise bound
+    `τ_pc(t) <= Φ(t) · Π (a_i-1)^{-δ t_i}`. Sharpness gives only the
+    infimum `κ_pc(n)`, and w12 shows `gr`-decay itself fails pointwise.
+    This is the same missing critical-l2 input as the Russo-BK and l^q
+    routes.
+  - It does not bear on the goal for these graphs, where `p_c < p_u` is
+    already known (Hutchcroft, nonunimodular).
+* **Thermodynamic-formalism / shape transplant (swarm-0917-w15, symbolic-dynamics).**
+  The idea is to treat `log lambda` like a pressure. A pressure is a pointwise
+  limit of convex log-partition functions, so it is convex and hence
+  continuous. The same property for `lambda` would give (IS) without any
+  uniformity in `n`. On `T_d`, `log lambda` is indeed convex in `log p`.
+  **Where it dies** (`fpbs-walk-rate-shape-classes-fail`, established):
+  - Take any reparametrisation `phi` of `p` and any increasing transform `psi`
+    of `lambda`.
+  - **Concavity** fails on every nonamenable Cayley graph. The reason is the
+    subcritical plateau `lambda = rho` on `(0,p_c]` together with
+    `lambda >= p`.
+  - **Convexity** fails whenever `p_u < 1`. The reason is the saturation
+    plateau `lambda = 1` from the floor `theta^2`.
+  - **Convexity also fails on `T_3 box K_2`, where `p_u = 1`** (exact rate
+    formula): `log lambda` is concave on `(0.70, 0.995)`, because parallel
+    rails give `1 - mu ~ (1-p)^2`.
+  - **Restricting the shape** to `{lambda < 1}` or to `(0,p_u)` is vacuous in
+    the collapse scenario.
+  - **The invariant is these two forced plateaus.** Any closed shape class
+    containing steep continuous ramps contains the collapse profile. So a
+    closed route must carry a quantitative modulus at `p_c`.
+* **Invariant-partition / co-spectral-radius transplant (swarm-0917-w16,
+  transplanter, reframing; obstruction).** The idea is to read `lambda(p)` as
+  the co-spectral radius of the invariant random cluster partition `Pi_p`,
+  i.e. `a_n = P(X_n in K(o))`. This is the analogue of `P(X_n in H)` for an
+  invariant random subgroup `H`. The hope was to import the
+  Abért–Glasner–Virág Kesten theorem for IRS (arXiv:1201.3399, co-spectral
+  radius `= rho` iff `H` is amenable a.s.): a structural property of `Pi_p`
+  would pin `lambda` near `rho` just above `p_c`.
+  - *Proved (standard, via Schramm's mass transport).* For any
+    `Gamma`-invariant random partition with a.s. finite classes,
+    `a_n = E[|K(o)|^(-1) <P^n 1_K, 1_K>] <= rho^n`. By monotone convergence
+    in each `a_n` and Fekete (`lambda = sup_n a_n^(1/n)`, supermultiplicativity
+    from Harris), the rate class `R_r = {a_n <= r^n for all n}` is closed under
+    increasing unions of invariant partitions. So hyperfinite partitions have
+    `lambda <= rho`. Since `Pi_p` is the increasing union of `Pi_q` for
+    `q < p`, this gives only left-continuity of `lambda`.
+  - *Right side.* `Pi_(p_c)` is the decreasing limit of `Pi_p` as `p`
+    decreases to `p_c`. Pairwise this limit is exact:
+    `0 <= tau_p(o,x) - tau_(p_c)(o,x) <= theta(p) -> theta(p_c) = 0`.
+    So (IS) is exactly the statement that `R_r` survives this decreasing
+    limit for every `r > rho`.
+  - **Where it dies.** `R_r` is not closed under pairwise-convergent
+    decreasing limits. The state-level collapse witness of
+    `fpbs-two-point-state-axioms-admit-collapse` (every group, with (T7)
+    pairwise right continuity) and the event-level spine families of
+    `fpbs-soft-collapse-iff-invariant-sparse-spines` are such limits with
+    `lambda = 1` above `p_c`. The structural substitute fails too, because
+    the AGV dichotomy is false for partitions. On `T_d`, for
+    `p in (1/(d-1), 1/sqrt(d-1)]`, `Pi_p` has infinite nonamenable,
+    non-hyperfinite clusters, yet `lambda = rho`. The reason is that
+    `P(|X_n| = k)` is at most `poly(n) rho^n (d-1)^(k/2)`, so
+    `E p^|X_n| = O(poly(n) rho^n)`. AGV's proof uses closure `H H = H`, which
+    clusters lack. So no amenability or hyperfiniteness property of `Pi_p`
+    characterises `R_r`, and the transplant reaches the same missing
+    quantitative input at `p_c + 0` as every route above. No new node was
+    written: the kill is the one already recorded by those two collapse
+    nodes, and this bullet only records that the IRS dictionary adds
+    nothing.

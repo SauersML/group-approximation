@@ -49,3 +49,13 @@ least `m^2 (m - 1)`.
   corridor certificate is `O(x^2 log x)`; see
   `houghton-ray-stabilizer-corridor-bounds-cap-near-quadratic`. So the
   cubic bound is specific to `n = 3`, where the base `H_2` has two rays.
+- 2026-09-19 (swarm-0917-w14-w14-z-follow, calibration/referee): independent
+  hand referee of `houghton-h3-at-least-cubic-dehn-corridor-proof`; verdict
+  survives. Checked: the HNN normal form and injectivity (1b), the Neumann
+  finite subset (1c), the Step 2b orientation (paired letters have opposite
+  exponents), the arc lemma (2c), (F2) `inv(h_k) = km`, and case (ii) (the arc
+  `(X^(-m) α^(Y^m) X^m)^(Y^(-k))` moves `(3, m-k)`). Re-verified from scratch
+  for `m = 2..12` (forced matching unique, cost `m^2(m-1)`) in
+  `experiments/houghton-corridor-cap-2026-09-17/referee_and_cap.py`. Also
+  showed that this method is exhausted at `x^3`:
+  `houghton-hnn-corridor-lower-bounds-cap-at-base-distortion`.

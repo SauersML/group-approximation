@@ -1,0 +1,1 @@
+N=81 s=0.25 defect=0.03877 ||A_s-W||=0.4948 best max=0.2771 (||C-A||=0.2771, ||Z-D||=0.2492, exact rel err=2.0e-14, restart 0)

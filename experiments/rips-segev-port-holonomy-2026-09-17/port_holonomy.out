@@ -1,0 +1,16 @@
+field F_2
+  [witness {1,a,b,ab}] p=2: |supp u|=1 |supp w|=2; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=1; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(1, 'rigid'): 21, (2, 'free'): 21}
+  [open random 0] p=2: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=1; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+  [open random 1] p=2: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=1; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(1, 'rigid'): 21, (2, 'free'): 21}
+  [open random 2] p=2: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=1; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+field F_3
+  [witness {1,a,b,ab}] p=3: |supp u|=2 |supp w|=1; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=2; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(1, 'rigid'): 10, (2, 'free'): 32}
+  [open random 0] p=3: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=2; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+  [open random 1] p=3: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=2; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(1, 'rigid'): 10, (2, 'free'): 32}
+  [open random 2] p=3: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=2; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(1, 'rigid'): 14, (2, 'free'): 28}
+field F_10007
+  [witness {1,a,b,ab}] p=10007: |supp u|=2 |supp w|=2; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=42; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+  [open random 0] p=10007: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=42; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+  [open random 1] p=10007: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=42; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+  [open random 2] p=10007: |supp u|=9 |supp w|=8; face lines with nonzero face-copy Rep: 0; holonomy product=1 (=(-1)^42); distinct transfer ratios=42; escape covering and shifted covering ok=True; (intrinsic dim, transfer ratio) counts {(2, 'free'): 42}
+ALL CHECKS PASS

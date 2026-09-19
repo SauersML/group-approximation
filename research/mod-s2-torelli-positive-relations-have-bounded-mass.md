@@ -36,3 +36,27 @@ By (RF), `K` is at least `1/(3D)` at every level. The base forces `K >= 5`, and 
   transfers, of mass `5 [Sp_4(Z) : Gamma']`. A short positive relation must come from `H_2(Gamma')`
   classes supported near a single splitting orbit. Candidates are lifts of lantern or chain relations in
   `Gamma'`, which are not tested.
+- **2026-09-19, swarm-0917-w15-w15-deligne-last1: 2-adic interval settled up to torsion exponent;
+  palindrome transversals dead.** See `mod-s2-two-adic-torelli-tower-keeps-rank-to-level-sixteen`.
+  - *Base.* `A_+(Gamma(4)) = 10` is attained by a positive relation, one twist over each level-two
+    splitting.
+  - *Transport.* If `b_1` does not change from `Gamma'` to `Gamma'' <= Gamma'`, then
+    `ker(H_1(Lambda'') -> H_1(Lambda'))` is finite of some exponent `e`. When `3 not| e`, the `e`-th
+    power of a positive relation at `Gamma'` is a positive relation at `Gamma''`.
+  - *Level 8, exact over Z.* By Shapiro over `F_2^10`, `b_1(M_8) = 54` with no odd torsion, and
+    `A_+(Gamma(8)) <= 10 * 2^11`.
+  - *Level 16.* The same splitting over `Sym_4(Z/4)` of order `4^10`, done modulo `p` and over `F_9`,
+    gives `b_1 = 54` and a kernel prime to 3 for every `Gamma(16) <= Gamma' <= Gamma(4)`. So
+    `A_+ < infinity` there.
+  - *First torsion.* At the Igusa level `Gamma(4,8)`, `H_1 = Z^54 (+) Z/2^k` with `1 <= k <= 4`
+    (`igusa48-results.json`), so the integral census is not frozen on this interval.
+  - *Where the problem now sits.*
+    - On the 2-adic interval, only the growth of a 2-power exponent (mass growth) is left.
+    - Divisibility can come only from odd-index steps, for example `Gamma(4) cap Gamma(3)`; that is
+      the next hole.
+    - By Mess, `H_1(I)` is free on the splittings, so no relation is universal. Every short positive
+      relation must come from `H_2(Gamma')`.
+  - *Dead: palindrome and transversal products.* Products `prod_(c in T) t_c` over transversal
+    palindromic curve families were tested in `experiments/mod-s2-palindrome-transversal-relations-2026-09-17/palindrome.py`.
+    There were four families (standard, random curves, repeated, nine-curve), with 200 random trials in each.
+    None of these trials, and none of the controls, gives a trivial class at level 4 (`palindrome-results.json`).

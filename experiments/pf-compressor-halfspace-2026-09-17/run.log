@@ -1,0 +1,15 @@
+PASS det sigma = 1
+PASS sigma nonnegative
+PASS sigma^2 positive (primitive)
+char poly: x**3 - 3*x**2 + 2*x - 1
+PASS char poly irreducible over Q
+lambda = 2.3247179572447460260  theta = [0.569840290998, 1.00000000000, 0.754877666247]
+PASS theta > 0
+PASS sigma^T theta = lambda theta
+PASS sigma^-1 integral
+PASS sigma^-1 has a negative entry (C not normal)
+sigma^-1 e_1 = [0, 1, -1]
+PASS sigma preserves P_theta on the box
+PASS sigma^n p in N^3 for n <= 40, all p in P_theta of the box (max n = 5)
+PASS negative monomial rays miss P_theta
+PASS sigma-orbits of P_theta never enter -N^3

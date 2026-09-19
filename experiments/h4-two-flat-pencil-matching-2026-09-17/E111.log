@@ -1,0 +1,9 @@
+  ejected V12 280
+  not genuine 384
+  ('V1', 'O-size', 1, 'zero-winding') 42
+  ('V1', 'O-size', 2, 'zero-winding') 182
+  ('V1', 'O-size', 3, 'wind') 56
+  ('V12', 'common') 280
+  ('V2', 'O-size', 1, 'zero-winding') 30
+  ('V2', 'O-size', 2, 'zero-winding') 26
+  ('V2', 'O-size', 3, 'wind') 224

@@ -1,0 +1,78 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3469 oleans
+[job] acn112 cores=72-79 threads=8 base=4fd6ccdf2a7bc862eebcad32e788659ae62359b6 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions
+ℹ [1441/1442] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1442/1442] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions (11s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:62:20: Unknown constant `Int.emod_add_ediv`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:61:35: unsolved goals
+Y : Type u_1
+inst✝ : TopologicalSpace Y
+T : Y ≃ₜ Y
+j : ℤ
+y : Y
+hy : (T ^ j) y = y
+i : ℤ
+⊢ (T ^ i) y = (T ^ (i % j)) y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:75:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (T ^ i) y
+in the target expression
+  (fun i => (T ^ i) y) i ∈ ↑S
+
+Y : Type u_1
+inst✝² : TopologicalSpace Y
+T : Y ≃ₜ Y
+inst✝¹ : T2Space Y
+inst✝ : Infinite Y
+hmin : IsMinimalSystem T
+j : ℤ
+hj : j ≠ 0
+y : Y
+hy : (T ^ j) y = y
+S : Finset Y
+hSdef : S = Finset.image (fun n => (T ^ ↑n) y) (Finset.range j.natAbs)
+i : ℤ
+⊢ (fun i => (T ^ i) y) i ∈ ↑S
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:100:43: failed to synthesize instance of type class
+  LocallyFiniteOrder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:103:49: unsolved goals
+Y : Type u_1
+inst✝¹ : TopologicalSpace Y
+T : Y ≃ₜ Y
+inst✝ : TotallySeparatedSpace Y
+hfree : ∀ (j : ℤ), j ≠ 0 → ∀ (y : Y), (T ^ j) y ≠ y
+L : ℕ
+y : Y
+C : ℤ → Set Y
+hC : ∀ (j : ℤ), IsClopen (C j)
+hyC : ∀ (j : ℤ), y ∈ C j
+hTC : ∀ (j : ℤ), j ≠ 0 → (T ^ j) y ∉ C j
+F : Finset ℤ
+hFdef : F = sorry
+j : ℤ
+hj : j ∈ sorry
+⊢ j ≠ 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:108:35: failed to synthesize instance of type class
+  LocallyFiniteOrder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:178:14: 'GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:179:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_nbhd_disjoint_translates' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:180:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_partition_disjoint_translates' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:181:14: 'GroupApproximation.SimpleKazhdanSofic.unit_mul_eU_mul_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions
+error: build failed
+EXIT=1

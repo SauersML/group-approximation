@@ -82,3 +82,25 @@ w12-fp-follow, cohomology-index).**
     `E_a` when `⟨a⟩` is ergodic.
   - A hull Euler-characteristic formula for `β_1(E)` is suggested in
     artifact §5, with its finiteness hypotheses unchecked.
+
+**Fox-cocycle rank bound: closes MC (September 19, 2026,
+w15-fp-break, group-rings).** Route: `fpbs-free-group-sandwich-cost-is-two-proof`,
+via `fpbs-sandwich-cost-fox-rank-lower-bound`.
+- **Idea.** Work inside `M = L(E_a)`. A Fox cocycle
+  `β(φ) = Σ_g 1_{gD_g} δ(g) ∈ M^{1×2}` on bounded elements of `[[E_a]]`
+  satisfies `β(φψ) = w_φ β(ψ) + r(φψ) β(φ)` and `β(φ) = r(φ) β(φ)`.
+- **Factorization.** For any graphing `Φ` of any sandwich `E`, a truncation
+  of the Fox matrix `A` of a basis of `K` factors as `P A = C · diag(r_i) · B`.
+  Here `r_i` are the range projections of the letters and `τ(1 − P) < ε`.
+  So `rk A ≤ C(Φ) + 2ε`.
+- **Rank of A.** `rk_{N(F_2)} A = 2` for rank-2 `K`, because every rank-2
+  subgroup of `F_2` is compressed, hence L2-independent (Jaikin-Zapirain).
+  The rank transfers to `M` by the trace-preserving inclusion.
+- **What it shows.** MC holds for every measurable sandwich, with no
+  treeability, coset split or MC_∞ step. The malnormal core
+  `⟨a, bab^{-2}⟩` is included.
+- **Consequence.** This gives the `F_2` slice of
+  `fpbs-relative-sandwich-cost-bernoulli-lower-bound`. The general form gives
+  RBL for every compressed subgroup of every finite-rank free group:
+  `p^F_H ≡ rk H`.
+- **Status.** ESTABLISHED via the route, pending adversarial verification.

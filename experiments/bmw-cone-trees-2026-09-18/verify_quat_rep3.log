@@ -1,0 +1,82 @@
+census_40_40.json 818 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (0, 1, 1, 1)   Nrd = t - 1
+   h_1 = (0, 1, 1, -1)   Nrd = t - 1
+   h_2 = (0, 1, -1, 1)   Nrd = t - 1
+   h_3 = (0, 1, -1, -1)   Nrd = t - 1
+   v_0 = (0, 1, 1, 0)   Nrd = -t
+   v_1 = (0, 1, 0, 1)   Nrd = -t
+   v_2 = (0, 1, -1, 0)   Nrd = -t
+   v_3 = (0, 1, 0, -1)   Nrd = -t
+census_41_40.json 1182 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 0, 1, 1)   Nrd = t - 1
+   h_1 = (1, 0, -1, -1)   Nrd = t - 1
+   h_2 = (0, 1, 1, 1)   Nrd = t - 1
+   h_3 = (0, 1, -1, -1)   Nrd = t - 1
+   v_0 = (0, t + 1, 0, 1)   Nrd = t**2 + t
+   v_1 = (0, t + 1, 0, -1)   Nrd = t**2 + t
+   v_2 = (0, t + 1, -1, 0)   Nrd = t**2 + t
+   v_3 = (0, t + 1, 1, 0)   Nrd = t**2 + t
+census_42_40.json 472 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 1, 0, 1)   Nrd = 1 - t
+   h_1 = (1, -1, 0, -1)   Nrd = 1 - t
+   h_2 = (1, -1, 0, 1)   Nrd = 1 - t
+   h_3 = (1, 1, 0, -1)   Nrd = 1 - t
+   v_0 = (0, t + 1, 0, 1)   Nrd = t**2 + t
+   v_1 = (0, t + 1, 1, 0)   Nrd = t**2 + t
+   v_2 = (0, t + 1, 0, -1)   Nrd = t**2 + t
+   v_3 = (0, t + 1, -1, 0)   Nrd = t**2 + t
+census_42_40.json 535 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 0, 1, 1)   Nrd = t - 1
+   h_1 = (1, 0, -1, -1)   Nrd = t - 1
+   h_2 = (1, 0, 1, -1)   Nrd = t - 1
+   h_3 = (1, 0, -1, 1)   Nrd = t - 1
+   v_0 = (0, 1, 1, 0)   Nrd = -t
+   v_1 = (0, 1, 0, 1)   Nrd = -t
+   v_2 = (0, 1, 0, -1)   Nrd = -t
+   v_3 = (0, 1, -1, 0)   Nrd = -t
+census_42_41.json 318 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 1, 0, 1)   Nrd = 1 - t
+   h_1 = (1, -1, 0, -1)   Nrd = 1 - t
+   h_2 = (1, 1, 0, -1)   Nrd = 1 - t
+   h_3 = (1, -1, 0, 1)   Nrd = 1 - t
+   v_0 = (1, 0, -1, 0)   Nrd = -t
+   v_1 = (1, 0, 1, 0)   Nrd = -t
+   v_2 = (0, 1, -1, 0)   Nrd = -t
+   v_3 = (0, 1, 1, 0)   Nrd = -t
+census_42_41.json 500 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 0, 1, 1)   Nrd = t - 1
+   h_1 = (1, 0, -1, -1)   Nrd = t - 1
+   h_2 = (1, 0, 1, -1)   Nrd = t - 1
+   h_3 = (1, 0, -1, 1)   Nrd = t - 1
+   v_0 = (t + 1, 0, 0, -1)   Nrd = t**2 + t
+   v_1 = (t + 1, 0, 0, 1)   Nrd = t**2 + t
+   v_2 = (0, t + 1, 0, 1)   Nrd = t**2 + t
+   v_3 = (0, t + 1, 0, -1)   Nrd = t**2 + t
+census_42_41.json 533 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 1, 0, 1)   Nrd = 1 - t
+   h_1 = (1, -1, 0, -1)   Nrd = 1 - t
+   h_2 = (1, 1, 0, -1)   Nrd = 1 - t
+   h_3 = (1, -1, 0, 1)   Nrd = 1 - t
+   v_0 = (1, 0, 0, -1)   Nrd = -t
+   v_1 = (1, 0, 0, 1)   Nrd = -t
+   v_2 = (0, 1, 0, -1)   Nrd = -t
+   v_3 = (0, 1, 0, 1)   Nrd = -t
+census_42_42.json 97 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 1, 0, 1)   Nrd = 1 - t
+   h_1 = (1, -1, 0, -1)   Nrd = 1 - t
+   h_2 = (1, -1, 0, 1)   Nrd = 1 - t
+   h_3 = (1, 1, 0, -1)   Nrd = 1 - t
+   v_0 = (t + 1, 0, -1, 0)   Nrd = t**2 + t
+   v_1 = (t + 1, 0, 1, 0)   Nrd = t**2 + t
+   v_2 = (t + 1, 0, 0, -1)   Nrd = t**2 + t
+   v_3 = (t + 1, 0, 0, 1)   Nrd = t**2 + t
+census_42_42.json 114 OK: D = (-1, t + 1) over F_3(t), PV = t, PH = t - 1; rho is a homomorphism satisfying the tree conditions
+   h_0 = (1, 0, 1, 1)   Nrd = t - 1
+   h_1 = (1, 0, -1, -1)   Nrd = t - 1
+   h_2 = (1, 0, 1, -1)   Nrd = t - 1
+   h_3 = (1, 0, -1, 1)   Nrd = t - 1
+   v_0 = (1, 0, 0, -1)   Nrd = -t
+   v_1 = (1, 0, 0, 1)   Nrd = -t
+   v_2 = (1, 0, -1, 0)   Nrd = -t
+   v_3 = (1, 0, 1, 0)   Nrd = -t
+all 9 representations OK

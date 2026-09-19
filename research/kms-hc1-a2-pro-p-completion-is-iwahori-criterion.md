@@ -211,3 +211,268 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    left is group-level input with no graded shadow, namely the
    non-homogeneous tails of `(1+X)^p` and of the Heisenberg commutators. See
    `kms-hc1-kassel-classes-survive-restricted-initial-forms`.
+
+6. **First-order edge jumps at `(p,p,p)`, `p=5,7`; reduction of the first
+   Kassel direction.** Evaluate each first-order Rees jump by functionals
+   `rho_alpha: A -> u(N_alpha)`, where `N_alpha` is the Kassel extension with
+   `(h_A t)^[p] = h_A t^p + alpha_A z` and `(h_B t)^[p] = h_B t^p + alpha_B z`.
+   This gives absolute coordinates on the 3-dimensional space
+   `W = ker(A -> u(L_p))/(J+Z)` at `(p,p,p)`.
+   - The lifts have coordinates `K=(2,0,0)`, `C1=(-2,1,1)` and `C2=(1,-1,0)`,
+     the same for `p=5,7,11,13`.
+   - For both `p=5` and `p=7`, there is one jump `2p+1 -> 3p` per edge:
+     `S_ab=(-1,-1,-1)`, `S_bc=(0,1,0)` and `S_ca=(0,0,-1)`. These are
+     independent, with determinant 1. This is the first `p=7` computation at
+     degree 21.
+   - The predicted step "the `[c,a]^p` S-pair jump equals `K`" is **false as
+     stated.** In fact `S_ca = -K/2 - C1 - C2` and
+     `K = 2(S_ca - S_ab - S_bc)`, so all three edges are needed. The triangle
+     word has multidegree `(3,1,3)` for every `p`, not `(p-2,1,p-2)`. Each
+     edge jump is the restricted p-power relation of one affine coroot, with
+     the Kassel coordinate only on `ab`.
+   - Reduction, given Open 1: if the three edge jumps are independent at
+     `(p,p,p)`, then `gr I = ker(A -> u(L_p))` through degree `3p`. That is
+     the `n=1` case of Open 2. So `n=1` is proved for `p=5,7`, and for
+     `p >= 11` it reduces to one finite statement `(E_p)`.
+   - The symbolic argument breaks at the `t^0`-reduction of the overlap
+     `(Y_cY_a)^p Y_b`. It has about `p` steps, and its cofactors have no
+     closed form. At `p=11` the program runs out of 2 GB storing
+     `u(N_alpha)` images at multidegree `(p,p-1,p)`.
+   See `kms-hc1-edge-s-pair-jumps-are-affine-coroot-p-power-relations`.
+
+7. **`(E_11)` exact; for every `p`, `(E_p)` reduces to one scalar.** Store
+   each t-part as its vector in the induced module
+   `M = u(N)/u(N)H^+`, where `H` is the edge Heisenberg subalgebra. The
+   functional is the `z`-coefficient of the vector. This makes `p=11`
+   exact, at 130-175 s per slice.
+   - At `p=11` the jumps are `S_ca=(0,0,-1)`, `S_bc=(0,1,0)` and
+     `S_ab=(-1,-1,-1)`, with determinant `-1`. So `(E_11)` holds, and
+     `gr I = ker(A -> u(L_11))` through degree 33.
+   - For every `p`, the ca jump is carried by the unique u(h)-syzygy
+     `sigma = 2e_(p-3)+3e_(p-2)` of the two `b`-ending seeds that uses
+     `e^p = 0`, the `(Y_cY_a)^p` Witt carry.
+   - Its restricted part is `6 alpha_B` for every `p >= 5`. This is a
+     derivation count with Wilson's theorem, given the seed t-parts
+     `E23^(p-2)E13^2` and `-E23^(p-2)(E21 t)^2`. Those are numeric for
+     `p <= 13`.
+   - A rotation lemma gives the other two edges. `tau = Ad(diag(1,t,t) Pi)`
+     lifts to `N_(kappa,alpha') -> N_(kappa,alpha)` with
+     `alpha'_A = alpha_B` and `alpha'_B = -alpha_A-alpha_B-kappa`. So the
+     three edge rows are the rotations of `(k,0,6)`, with determinant
+     `108(k-2)`.
+   - Hence `(E_p)` holds iff `k(p) != 2 mod p`. Equivalently, the ca syzygy
+     does not vanish on the rotation-invariant extension
+     `N_(1,-1/3,-1/3)`.
+   - Exact: `k = 0` at `p = 5, 7, 11, 13` (`p=13` from the closed-form
+     seeds alone, SEEDFORM with a capped memo). So `(E_11)` is exact and
+     `(E_13)` holds given the lift.
+   - Open: a symbolic evaluation of the `kappa`-part `k(p)`. It comes from
+     straightening in `M` and is not a derivation count.
+
+   See `kms-hc1-ca-edge-defect-is-a-witt-carry-syzygy`.
+
+8. **`k(p) = 0` and the seeds (S0) for every `p >= 5`; so `(E_p)` holds for
+   every `p`, given the lift.**
+   - (S0) is proved. On `u(<a,b,E13>) m0` the letter `a` acts as `E13 d/db`,
+     because `a m0 = 0`. So `rho([a,b,a]) m0` is a ten-factor product in
+     `F_p[b]/(b^p)`, truncated at `E13^3`. Its only defect is
+     `d E(b)/db = E(b) + b^(p-1)`, and the product is
+     `m0 + E23^(p-2) E13^2 m0`. The bc seed is the same computation, with
+     `c` acting as `-E21 t d/db`.
+   - `k(p) = 0` is proved. Conjugate by `G = E(lambda E23)`. Modulo
+     `lambda^p`, this is the automorphism `exp(lambda ad E23)`. It carries the
+     integral syzygy `U1 a^2 - U2 c^2 = -6 e^p` to one whose `lambda^(p-2)`
+     coefficient on `m0` is `U1 X_210 + U2 X_012`. Here `1/(p-2)! = 1`.
+   - The right side becomes `-6 e~^[p]`, with
+     `e~ = t(E32 - lambda hB - lambda^2 E23)`, which is `t` times a square-zero
+     matrix. For a degree-1 element `tX`, the Kassel cocycle adds nothing to
+     `(tX)^[p]`: every Jacobson word has z-part `tr(Y [Y,R]) = 0`. So
+     `e~^[p] = -lambda^p alpha_B z`, and `zeta(sigma) = 6 alpha_B`.
+   - Hence `k(p) = 0 != 2`, and `(E_p)` holds for every `p >= 5`, given the
+     lift of `sigma` (argued, checked at `p = 5, 7`). With Open 1 this is the
+     `n=1` case of Open 2.
+   - Checks: the seeds for `p <= 31`; the conjugation identity exactly at
+     `p = 5, 7, 11`.
+   - Open: formalise the lift, then `n >= 2`.
+
+   See `kms-hc1-witt-carry-syzygy-kassel-coordinate-vanishes`.
+
+9. **The lift of the syzygy to `I` holds for every `p >= 5`, so `(E_p)` and
+   the `n=1` case of Open 2 hold for every `p >= 5`, given Open 1.**
+   - The `b`-linear part of the ca-edge algebra, `B/K`, with
+     `B = u(h) (x) u(h)` and `K` generated by the lowest forms of
+     `[[a,b],a]` and `[[b,c],c]`, is isomorphic to `V (x) u(h)` with
+     `V = u(h)/(u(h)a^2 + u(h)c^2)`. The map is `u (x) w -> ad(u)(b) w`, with
+     inverse given by the smash-product bimodule. So `B/K` is a free right
+     `u(h)`-module.
+   - Hence `Tor_1^U(B/K, F_p) = 0`, and every syzygy `U1 a^2 = U2 c^2` gives
+     `U1 s1 + U2 s2` in `K U^+`: all its right contexts kill `m0`.
+   - Lifting to `A` and subtracting gives `T` in `I`. By the torus lemma, its
+     lowest form is in degree `3p`. It has `rho`-value `zeta(U1,U2) z`, and
+     its `(p,p,p)` part lies in `gr I` by (R1).
+   - With `zeta(sigma) = 6 alpha_B` (Attempt 8) and the rotation lemma, this
+     gives three independent rows (determinant `-216`), so `gr I` maps onto
+     `W`.
+   - Exact `F_p` checks of the freeness dimension and of the membership, with
+     negative controls, at `p = 5, 7, 11, 13`.
+   - For `n >= 2`: freeness survives in every `b`-degree, and the slice for
+     `m=2` moves to `(2p,2,2p)` with second-order seeds. The Witt carry
+     cannot supply the level-2 direction. The next check is the `(2p,2,2p)`
+     slice at `p=5`.
+   See `kms-hc1-witt-carry-syzygy-lifts-by-right-freeness`.
+
+10. **Level `m >= 2`: the proposed `(2p,2,2p)` slice is empty. The edge
+   tails have order at most two, and order two only on the diagonal. The
+   Kassel p-map step holds at every level.**
+   - `rho` of an edge eigencomponent lies in `u(heis)`, where letter degrees
+     stop at `2p-2`. Every monomial involves both letters. So the visible
+     shifts are `{0,p-1}` per letter, and an order-2 tail is only the
+     diagonal `(p-1)(e_x+e_y)`.
+   - An exact check at `p = 5, 7, 11` finds the shifts `(0,1)` and `(1,1)`
+     for `[[x,y],x]`, and `(1,0)` and `(1,1)` for `[[x,y],y]`. Lowest forms
+     are never visible.
+   - `u(N)` vanishes in multidegrees `(2,2p-1,0)` and `(0,2p-1,2)`. So the
+     second-order seeds `f2` are `rho`-trivial, and no jump reaches
+     `(2p,2p,2p)` from `(2p,2,2p)`.
+   - At level `m` the value of an element of `I` localizes to nine
+     (edge, shift) slices. At `m=2` these are the `(2p,p+1,2p)`-type slices
+     (first order) and the `(p+1,p+1,2p)`-type slices (diagonal).
+   - For every `t^m`-homogeneous `X`, the `z`-part of `(X t^m)^[p]` is
+     `alpha` of the Cartan part. The proof is trace invariance on
+     `ad(W)^(p-1)`, and needs no square-zero hypothesis.
+   - Next: the S-pairs of those slices at `p=5`, box `(10,6,10)`, and whether
+     their values span `W_2`.
+   See `kms-hc1-level-m-edge-tails-have-order-at-most-two`.
+
+11. **Level-n analogue of (R1): a first deviation sits only in a degree
+   `3np`, and its kernel is the image of the 3-dim `W_n`.**
+   - (RP): below the first deviation every real-root vector has p-power 0.
+     Take a vertex element `x` of order `p` and a torus lift `sigma`. Then
+     `g = [x, sigma]` lifts `t^k E_beta` up to the unit `-2u`, `[g,x]` is in
+     `ker phi^`, and `(x g)^p = 1`. Hall-Petrescu gives `g^p` in `D_(pd+1)`.
+   - (FD): given Open 1, the Lie part of the kernel is at most `H_2` in
+     degree `d0`, and the p-power part is only the Cartan defects `C_nA`
+     and `C_nB`. So `d0 = 3np` and the kernel is spanned by
+     `K_n, C_nA, C_nB` in multidegree `(np,np,np)`. `phi^` is an
+     isomorphism iff `V_n = W_n` for all `n >= 2`.
+   - Non-multihomogeneous parts of jumps cannot deviate first, which
+     removes the w12 caveat.
+   - Products of level-1 gr I elements with `(p,p,p)` words contribute 0
+     to `W_2`.
+   - The towers already give level 2 at `p = 5, 7` and level 3 at `p = 5`.
+     The direct `p = 5` S-pair step is not needed, and it is infeasible:
+     `u(N)` has 6.2M PBW monomials at `(10,10,10)`.
+   - Next: `V_n = W_n` for all `p`, via virtual-vertex Heisenberg pairs
+     with `t^2` centres plus T5, or via group-level Cartan p-power
+     relations.
+   See `kms-hc1-root-p-powers-die-first-deviation-at-3np`.
+
+12. **Route 1 (virtual vertices + T5) is inert: obstruction, all p >= 5.**
+   - (P): at the first deviation `d0`, the value `Pi(y)` of the p-th power of
+     a lift of an order-`p` element `y` of `I_1` is well defined, lies in
+     `W_n/V_n`, is invariant under `I_1`-conjugation (the top layer is
+     central), and vanishes on the conjugates of vertex elements.
+   - (L): given (FD), every word in two elements with real-root leading forms
+     has zero `W_n`-component at the leading-form level, because weights
+     `n1 beta + n2 gamma` never vanish. Virtual Heisenberg relators of
+     leading degree `3np` hold mod `D_(3np+1)` automatically. Relators of
+     lower leading degree carry exactly the level-`n` S-pair data.
+   - (B): the T5 bridge `Pi(exp(Y t^n)) = alpha(Cart Y)` already implies
+     `C_nA, C_nB in V_n`. Compare `x21(t^n)` with its conjugate by
+     `x12(lambda)`, whose Cartan part is `lambda h_A`. So reading
+     `alpha_A + alpha_B` off conjugated virtual centres is circular, and
+     `K_n` is not reached at all.
+   - Next: Route 2 (group-level Cartan p-powers), the level-`n` S-pairs, or
+     a separate argument for `K_n`.
+   See `kms-hc1-virtual-vertex-route-is-conjugation-inert`.
+
+13. **Ozawa (T) certificate, and amenable wq-normal / commuting routes to `b_1^(2)(Gamma_3) = 0` (w27-057).**
+   - **SOS: no certificate at radius <= 4 (numerical, not rigorous).**
+     The Ozawa SDP was reduced by the symmetry group `H` of order 48
+     (Wedderburn blocks) and solved on exactly certified balls. It gives
+     `lambda ~ 0` at every radius tried:
+
+     | radius | `lambda` | size |
+     |---|---|---|
+     | 2 | `8e-6` | |
+     | 3 | `4e-6` | `n = 115`, 51 orbit rows |
+     | 4 | `6e-6` | `n = 361` |
+
+   - **Class-killing obstruction (ESTABLISHED).** This is
+     `kms-hc1-a2-p3-isolated-flats-kill-amenable-wq-normal`.
+     - The vertex links of `X_3` are Pappus graphs, with exactly 2 geodesics
+       between antipodal vertices. So `X_3` has no flat triplane.
+     - It follows (Hruska; Hruska--Kleiner) that `X_3` has isolated flats and
+       `Gamma_3` is hyperbolic relative to virtually `Z^2` flat stabilizers.
+     - `Z^2 = <bcba, babc>` is certified exactly.
+     - Elementary subgroups are almost malnormal. So every wq-normal chain
+       from an infinite amenable subgroup, and every commuting chain of
+       infinite-order elements, stays in a proper subgroup.
+     - This kills Peterson--Thom 5.12, Popa-type wq-normal routes, and
+       Gaboriau commuting-chain routes for `Gamma_3`.
+   - **Strict reduction.** A proper cocompact cubulation of `Gamma_3` gives
+     `b_1^(2) = 0`: virtually special (Groves--Manning / Oregón-Reyes), then
+     Schreve's Atiyah theorem gives `b_1^(2)` in `(1/27)Z`, and the w26 bound
+     `<= 0.006258` finishes it. A cubulation would also refute (T).
+     Next step: cubulate `Gamma_3`, i.e. find a sufficient family of
+     quasiconvex codimension-1 subgroups.
+13. **Pi on root groups: vanishes at every level; the Pi form of Route 2
+   is empty (obstruction, all p >= 5).**
+   - (A): at the first deviation, `Pi` is additive on commuting pairs of
+     order-`p` elements, by class-2 Hall–Petrescu at the central top layer.
+   - (V): the diagonal torus of `I_1` rescales `x_ij(f)` to a vertex root
+     element when `f/t^v0` is a unit, and otherwise
+     `x_ij(f) = x_ij(t^v0(1+g)) x_ij(-t^v0)`. So `Pi = 0` on all six real
+     affine root groups, on commuting products of root elements, and on
+     their conjugates. In particular `Pi(x21(t^n)) = 0` for every `n`. This
+     is new, since `x21(t^n)` (`n >= 2`) and `x13(t)` are not vertex
+     conjugates (content invariant).
+   - (O): the proof never evaluates `W_n`, so the answer "yes" holds for
+     every `V_n` and does not settle `C_2A`. Cartan data must come from
+     infinite-order relators, such as `h(1+t^n)^p = h(1+t^(np))`, written in
+     root elements by the Bruhat identity.
+   - Next: the centralizer pairing `delta_a` on `diag(u,u,u^-2)`.
+   See `kms-hc1-p-power-value-vanishes-on-affine-root-groups`.
+
+14. **Cubulating `Gamma_3`, or proving (T): (T) is false, and convex walls do not exist (w28-057).**
+   - **Not (T).** `P_3` has index `3^6` and is torsion-free, with
+     `P_3^ab = Z^24 + Z/3` (GAP). So `Gamma_3` is not Kazhdan, and no Ozawa
+     certificate exists at any radius.
+   - **For (T3).** `ker phi^` is infinite. It lies in `bar P_3` and surjects
+     onto a finite-index subgroup of `Z_3^24 + Z/3`, because every open
+     subgroup of `I_1` has finite abelianization (`sl_3(F_3)` is perfect).
+   - **No convex walls.** `X_3` has no convex wall. At a vertex, a wall would
+     give a far-apart set of Pappus-link vertices and midpoints with an
+     admissible side colouring. There are 1293 far-apart sets, and exhaustive
+     search finds that none admits one.
+   - So cubulation needs relatively quasiconvex codimension-1 subgroups whose
+     tracks bend by at least `pi/3`, or another CAT(0) model.
+   - Next: test the quasiconvexity of bent tracks in `Y = X_3/P_3` dual to
+     `H^1(P_3;F_2) = F_2^24`, including how they meet the flats.
+   See `kms-hc1-a2-p3-no-convex-walls-and-not-kazhdan`.
+14. **Cartan relator: the torus kills the centralizer pairings, and `R_n`
+   carries exactly `C_nA` (obstruction, all p >= 5). `V_n` is one of four
+   `S_3`-submodules.**
+   - (S): `Gamma` has the automorphisms `(F_p^*)^3 x| S_3`: power maps,
+     the rotation `a -> c -> b -> a`, and the flip `a <-> b, c -> c^-1`.
+     Each is compatible with `phi` via an automorphism of `I_1`.
+     `sigma_(al,be,ga)` acts on `W_n` as `(al be ga)^n`. So
+     `delta_v(c) = 0` for diagonal `c` and every vertex element `v`. In
+     particular `delta_a = 0` on `diag(u,u,u^-2)`.
+   - (T): `g^p mod D_(d0+1)` does not depend on the lift of `h(1+t^n)`. The
+     Bruhat word of `h(1+t^(np))` is `[yt_(np), a^-1]` mod `D_(d0+1)`. So
+     `class(R_n) = C_nA` exactly, and the pairings enter with coefficient
+     zero. `C_nA` lies in `V_n` iff `R_n` lies in `D_(3np+1)`. No identity
+     of `I_1` decides this; it needs `Gamma`'s relators at class `3np`.
+   - (H): `W_n = L_n (+) S_n`, where `L_n` is the Kassel line and `S_n` is
+     the reflection representation, which is irreducible for `p >= 5`. So
+     `V_n` is one of `0`, `L_n`, `S_n`, `W_n`. One relation class with
+     nonzero components in both `L_n` and `S_n` gives `V_n = W_n`.
+   - `symmetry_check.py`: ALL OK for p = 5, 7, 11, 13.
+   - p = 11 tower: its orders agree with `I_1` through class 33, which
+     re-confirms `V_1 = W_1` at `p = 11`. Class 66, which would decide
+     `n = 2`, is out of reach, since the time per class grows about 1.4x
+     per class.
+   - Next: find one generic `(2p,2,2p)`-slice jump for `n = 2`, and project
+     it onto `S_3` by averaging.
+   See `kms-hc1-cartan-relator-is-tautological-mod-symmetry`.

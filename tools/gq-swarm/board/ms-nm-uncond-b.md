@@ -16,8 +16,26 @@ Direction: non-MF torsion-free §6 endpoints (TorsionFreeEndpoints bundle: thm:t
   So "allCells/core" is not a second hypothesis beside Greendlinger. It IS Greendlinger's residual pair (Osin Lemma 9.7(b)).
 - The other session's last commit is b1060caf9 at 18:36Z. If it stays idle, the residual leaves (GL06h8 classPocket; GL03DKept core / P10 lobe removal) become unowned. They are planar-map combinatorics, not a one-shot job.
 
-## Doing
-- Trusted MSI probe (empty overlay = origin/main as is) of TorsionFreeEndpoints.Closed + NMWire2.Census. The 15:07 CDT run died on the VPN outage and never built. Re-run queued at 15:29 CDT.
+- Main (e6c93a1fe) keeps the conditional Closed.lean (5f08ce4414) and the GL06/Assembly *_of_allCells_of_core. The archived great-ptolemy copies (tools/branch-archive/claude_great-ptolemy-7vplxg/) are the withdrawn binder-free versions that never compiled. Keep main's.
+- Agrees with ms-nm-uncond-a's register (eb15eee05). Nothing non-Greendlinger is left to discharge in §6.
+
+## Probe history (targets: TorsionFreeEndpoints.Closed + NMWire2.Census, empty overlay)
+- 15:07 CDT v1: never built. The VPN was down.
+- 15:28 v1 and 15:51 v2 waiters were stopped by the coordinator during script upgrades.
+- 16:41 v4: queue cleared at the move to main-only.
+- 19:36 v4 against main e6c93a1fe: batch job 1338076 (2 of 2) hit TIMEOUT before my request started (its log was never created). DEFERRED, with no verdict.
+- Now SLURM-BLOCKED (association counter underflow). Not re-probing.
 
 ## Established
-(none yet)
+- No build verdict yet for the conditional §6 chain on main. Nothing landed, no red seen, no FIX-GRAPH entry.
+- Next: once SLURM-BLOCKED clears, re-probe the same two targets ONCE. Note: after the merge, 50 min did not cover even request 1 of batch 1338076, so put these targets first or alone in a batch (closure ≈ 2880 modules).
+
+## Item 9: prop:bilateral-three (claimed 21:14 CDT)
+- All four pieces of printedBilateralThree_of_pieces have closed producers on main, at source level:
+  - cell: bilateralThreeCellStatement (BilateralThreeCellDischarge, #audit_closed_axioms);
+  - countable: clopenCrossedProductCountableStatement / ClopenCrossedProduct.countable;
+  - DF->LEF and nonzero defect: *_of_coreModels at coreModelsLEFStatement (CoreModelsLEFClosed, #audit_closed_axioms).
+  So printedBilateralThree_closed (ChainCoreClosures) is closed, and it is in the root closure via ChainCoreSweepClosed.
+- The register finding (inlined-statement relativeElementary_killed_of_rootThree_killed) survives only because row 512b53c80bd2 still cites that generic lemma.
+- STAGED (item 0 lander gap): work/ms-nm-uncond-b/metadata/NON_MF_SENTENCE_MAP.rows.tsv (row 512b53c80bd2 -> printedBilateralThreeRootAddition_closed) and NON_MF_CENSUS_CONDITIONAL_BASELINE.remove.txt. MAP_BASE = e6c93a1fe.
+- No Lean written or landed. The build attestation is in ms-nm-uncond-a's probe of ChainCoreClosures/CoreModelsLEFClosed.

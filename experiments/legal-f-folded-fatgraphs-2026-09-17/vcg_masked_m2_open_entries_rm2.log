@@ -1,0 +1,119 @@
+# float column-generation diagnostics for masked mixed-memory LPs (vcg.py with VCG_MASK); excerpts: status lines of each run. Not certificates.
+=== entry 108, mask bcBC, rp a2b1c1, round 0: VCG_MASK=bcBC vchain4.sh 108bc (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); round 3 stopped by hand
+phase 1 it 1 obj 16.000000 cols 3000 pairs 351 min rc -4 LB -50 best -50 {2: -2.0, 3: -3.0, 4: -4.0} added 3000 t 13.0 tm 0.0 
+phase 1 it 2 obj 15.250000 cols 6000 pairs 899 min rc -5.4 LB -71.6 best -50 {2: -3.4, 3: -3.7, 4: -5.4} added 3000 t 26.6 tm 0.4 
+phase 1 it 3 obj 13.267857 cols 9000 pairs 1755 min rc -5.4 LB -67.64 best -50 {2: -3.4, 3: -4.2721, 4: -5.4} added 3000 t 40.2 tm 1.2 
+phase 1 it 4 obj 12.805467 cols 12000 pairs 2434 min rc -5.4 LB -66.71 best -39.34 {2: -3.4, 3: -4.3958, 4: -5.4} added 3000 t 138.9 tm 2.9  dartLB -39.34
+phase 1 it 5 obj 10.565595 cols 15000 pairs 3354 min rc -5.151 LB -58.8 best -39.34 {2: -3.4, 3: -4.005, 4: -5.1509} added 3000 t 154.8 tm 5.7 
+phase 1 it 6 obj 9.573872 cols 18000 pairs 4168 min rc -4.604 LB -49.67 best -39.34 {2: -3.4, 3: -3.4358, 4: -4.6038} added 3000 t 170.5 tm 9.0 
+phase 1 it 7 obj 6.008872 cols 21000 pairs 4931 min rc -4.595 LB -43.86 best -39.34 {2: -3.4, 3: -3.6054, 4: -4.5954} added 3000 t 187.5 tm 14.1 
+phase 1 it 8 obj 4.646035 cols 24000 pairs 5652 min rc -4.491 LB -40.56 best -22.42 {2: -2.8875, 3: -3.2775, 4: -4.4913} added 3000 t 288.5 tm 20.3  dartLB -22.42
+phase 1 it 9 obj 4.146604 cols 27000 pairs 6520 min rc -3.976 LB -34.34 best -22.42 {2: -3.0467, 3: -2.9176, 4: -3.976} added 3000 t 306.9 tm 27.1 
+phase 1 it 10 obj 3.260027 cols 30000 pairs 7442 min rc -4.32 LB -36.68 best -22.42 {2: -2.6794, 3: -2.5952, 4: -4.3198} added 3000 t 326.4 tm 35.8 
+phase 1 it 11 obj 2.847572 cols 33000 pairs 7984 min rc -4.684 LB -39.69 best -22.42 {2: -2.6148, 3: -3.0738, 4: -4.6841} added 3000 t 348.7 tm 47.1 
+phase 1 it 12 obj 2.761321 cols 36000 pairs 8885 min rc -3.621 LB -29.04 best -18.66 {2: -2.898, 3: -2.5591, 4: -3.6208} added 3000 t 453.6 tm 60.6  dartLB -18.66
+phase 1 it 13 obj 2.453703 cols 39000 pairs 9841 min rc -3.19 LB -24.51 best -18.66 {2: -2.9369, 3: -3.0373, 4: -3.1903} added 3000 t 483.6 tm 78.9 
+phase 1 it 14 obj 1.913756 cols 42000 pairs 10428 min rc -3.329 LB -25.35 best -18.66 {2: -2.9967, 3: -2.1149, 4: -3.3294} added 3000 t 520.8 tm 102.7 
+phase 1 it 15 obj 1.386791 cols 45000 pairs 10922 min rc -3.37 LB -25.21 best -18.66 {2: -2.8056, 3: -2.1601, 4: -3.3698} added 3000 t 557.6 tm 127.5 
+phase 1 it 16 obj 0.990227 cols 48000 pairs 11885 min rc -2.89 LB -20.5 best -13.26 {2: -2.8236, 3: -2.2231, 4: -2.8896} added 3000 t 683.6 tm 155.7  dartLB -13.26
+phase 1 it 17 obj 0.525481 cols 51000 pairs 12185 min rc -2.893 LB -20.18 best -13.26 {2: -2.3199, 3: -2.4989, 4: -2.8927} added 3000 t 729.9 tm 189.2 
+phase 1 it 18 obj 0.263280 cols 53973 pairs 12714 min rc -2.801 LB -19.19 best -13.26 {2: -1.9383, 3: -1.9001, 4: -2.8006} added 2973 t 782.2 tm 228.7 
+phase 1 it 19 obj 0.156277 cols 56908 pairs 13233 min rc -2.618 LB -17.55 best -13.26 {2: -1.9691, 3: -1.7647, 4: -2.6178} added 2935 t 840.1 tm 274.4 
+phase 1 it 20 obj 0.124121 cols 59737 pairs 13676 min rc -2.147 LB -13.49 best -8.161 {2: -2.1468, 3: -1.6513, 4: -1.9558} added 2829 t 991.1 tm 322.6  dartLB -8.161
+time limit
+RESULT ('timeout', -8.161033941299388)
+best dart-shifted phase-1 value -8.023899447487869
+=== entry 108, mask bcBC, rp a2b1c1, round 1: VCG_MASK=bcBC vchain4.sh 108bc (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); round 3 stopped by hand
+phase 1 it 1 obj 0.114260 cols 12972 pairs 14002 min rc -3.513 LB -29.95 best -8.15 {2: -2.0044, 3: -2.4833, 4: -3.5132} added 3000 t 123.5 tm 6.9 
+phase 1 it 2 obj 0.114260 cols 15972 pairs 14385 min rc -2.718 LB -23.14 best -8.15 {2: -1.6447, 3: -1.738, 4: -2.7181} added 3000 t 149.0 tm 17.4 
+phase 1 it 3 obj 0.114260 cols 18972 pairs 15192 min rc -2.206 LB -18.76 best -8.15 {2: -1.5202, 3: -1.4727, 4: -2.2061} added 3000 t 176.0 tm 30.9 
+phase 1 it 4 obj 0.113274 cols 21967 pairs 16005 min rc -2.088 LB -17.75 best -8.15 {2: -1.58, 3: -1.2462, 4: -2.0882} added 2995 t 326.1 tm 46.3  dartLB -13.4
+phase 1 it 5 obj 0.103499 cols 24934 pairs 16596 min rc -2.151 LB -18.29 best -8.15 {2: -1.6105, 3: -1.4521, 4: -2.1511} added 2967 t 360.9 tm 66.2 
+phase 1 it 6 obj 0.103134 cols 27632 pairs 17306 min rc -1.255 LB -10.62 best -8.15 {2: -0.9905, 3: -0.7433, 4: -1.2548} added 2698 t 402.9 tm 91.0 
+phase 1 it 7 obj 0.096054 cols 30200 pairs 17680 min rc -1.316 LB -11.15 best -8.15 {2: -1.2246, 3: -0.7675, 4: -1.3161} added 2568 t 447.4 tm 119.5 
+phase 1 it 8 obj 0.091726 cols 32511 pairs 17966 min rc -1.405 LB -11.9 best -7.334 {2: -0.9858, 3: -1.0681, 4: -1.4046} added 2311 t 612.4 tm 154.1  dartLB -7.334
+phase 1 it 9 obj 0.091488 cols 33569 pairs 18179 min rc -1.112 LB -9.398 best -7.334 {2: -1.1115, 3: -0.7354, 4: -0.876} added 1058 t 669.0 tm 193.9 
+phase 1 it 10 obj 0.091488 cols 34214 pairs 18315 min rc -1.075 LB -9.084 best -7.334 {2: -0.8988, 3: -0.4972, 4: -1.0748} added 645 t 721.3 tm 231.8 
+phase 1 it 11 obj 0.091488 cols 34932 pairs 18447 min rc -0.8696 LB -7.33 best -7.33 {2: -0.8696, 3: -0.6502, 4: -0.828} added 718 t 773.3 tm 269.2 
+phase 1 it 12 obj 0.091488 cols 37927 pairs 18865 min rc -0.9826 LB -8.303 best -4.332 {2: -0.516, 3: -0.9826, 4: -0.9521} added 2995 t 935.1 tm 305.9  dartLB -4.332
+time limit
+RESULT ('timeout', -4.331684511906229)
+best dart-shifted phase-1 value -4.283648920776586
+=== entry 108, mask bcBC, rp a2b1c1, round 2: VCG_MASK=bcBC vchain4.sh 108bc (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); round 3 stopped by hand
+phase 1 it 1 obj 0.091488 cols 14229 pairs 19202 min rc -3.407 LB -29.02 best -4.332 {2: -1.8466, 3: -2.475, 4: -3.4069} added 3000 t 125.7 tm 8.6 
+phase 1 it 2 obj 0.091488 cols 17229 pairs 19456 min rc -2.698 LB -22.97 best -4.332 {2: -1.7315, 3: -2.0828, 4: -2.6983} added 3000 t 149.7 tm 19.5 
+phase 1 it 3 obj 0.091488 cols 20229 pairs 19653 min rc -1.943 LB -16.51 best -4.332 {2: -1.4659, 3: -1.2907, 4: -1.9431} added 3000 t 174.7 tm 31.6 
+phase 1 it 4 obj 0.091488 cols 23229 pairs 19918 min rc -1.831 LB -15.56 best -4.332 {2: -1.2521, 3: -1.2553, 4: -1.8314} added 3000 t 308.2 tm 48.6  dartLB -11.51
+phase 1 it 5 obj 0.091488 cols 26229 pairs 20036 min rc -1.9 LB -16.15 best -4.332 {2: -1.3696, 3: -1.2533, 4: -1.9002} added 3000 t 345.4 tm 70.2 
+phase 1 it 6 obj 0.091488 cols 29229 pairs 20306 min rc -1.368 LB -11.6 best -4.332 {2: -1.3429, 3: -1.1068, 4: -1.3684} added 3000 t 394.6 tm 100.6 
+phase 1 it 7 obj 0.091488 cols 32225 pairs 20779 min rc -1.26 LB -10.68 best -4.332 {2: -1.2601, 3: -0.9298, 4: -1.1227} added 2996 t 445.2 tm 135.0 
+phase 1 it 8 obj 0.091488 cols 33975 pairs 20897 min rc -1.166 LB -9.873 best -4.332 {2: -1.166, 3: -0.7356, 4: -0.836} added 1750 t 628.5 tm 172.5  dartLB -8.035
+phase 1 it 9 obj 0.091488 cols 34887 pairs 20987 min rc -0.8562 LB -7.225 best -4.332 {2: -0.809, 3: -0.7561, 4: -0.8562} added 912 t 681.3 tm 209.5 
+phase 1 it 10 obj 0.091488 cols 35912 pairs 21051 min rc -1.013 LB -8.565 best -4.332 {2: -0.8071, 3: -1.013, 4: -1.0045} added 1025 t 718.7 tm 238.5 
+phase 1 it 11 obj 0.091488 cols 36455 pairs 21112 min rc -0.8995 LB -7.595 best -4.332 {2: -0.8766, 3: -0.8425, 4: -0.8995} added 543 t 756.6 tm 265.4 
+phase 1 it 12 obj 0.091488 cols 36899 pairs 21145 min rc -0.9292 LB -7.849 best -4.332 {2: -0.7357, 3: -0.852, 4: -0.9292} added 444 t 864.4 tm 295.5  dartLB -5.495
+phase 1 it 13 obj 0.091488 cols 37219 pairs 21161 min rc -0.9623 LB -8.132 best -4.332 {2: -0.8254, 3: -0.8297, 4: -0.9623} added 320 t 905.6 tm 324.7 
+time limit
+RESULT ('timeout', -4.3316845118914955)
+best dart-shifted phase-1 value -4.283648920776586
+=== entry 108, mask bcBC, rp a2b1c1, round 3: VCG_MASK=bcBC vchain4.sh 108bc (TL=900 CG_ALPHA=0.3 WARM=1 RCEPS=0.4); round 3 stopped by hand
+phase 1 it 1 obj 0.091488 cols 11941 pairs 21537 min rc -3.186 LB -27.14 best -5.474 {2: -1.8403, 3: -2.3666, 4: -3.1863} added 3000 t 110.3 tm 6.9 
+phase 1 it 2 obj 0.091488 cols 14941 pairs 21727 min rc -2.479 LB -21.09 best -5.474 {2: -1.7381, 3: -1.8986, 4: -2.4792} added 3000 t 136.0 tm 17.2 
+phase 1 it 3 obj 0.091488 cols 17941 pairs 21920 min rc -2.604 LB -22.16 best -5.474 {2: -1.6926, 3: -1.523, 4: -2.6036} added 3000 t 164.2 tm 30.2 
+phase 1 it 4 obj 0.091488 cols 20941 pairs 21990 min rc -2.057 LB -17.49 best -5.474 {2: -1.35, 3: -1.6822, 4: -2.0573} added 3000 t 303.7 tm 46.5  dartLB -12.64
+phase 1 it 5 obj 0.091488 cols 23941 pairs 22055 min rc -1.473 LB -12.49 best -5.474 {2: -1.3226, 3: -1.4725, 4: -1.4177} added 3000 t 336.2 tm 63.7 
+=== entry 108, mask acAC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 22 obj 0.849904 cols 44000 pairs 13363 min rc -1.979 LB -16.81 best -8.07 {2: -1.9791, 3: -1.1959, 4: -1.5425} added 2000 t 869.5 tm 271.8 
+phase 1 it 23 obj 0.846286 cols 46000 pairs 13732 min rc -2.033 LB -17.29 best -8.07 {2: -2.0326, 3: -1.5813, 4: -1.3523} added 2000 t 923.0 tm 314.3 
+RESULT ('timeout', -8.069755011802753)
+best dart-shifted phase-1 value -7.16679692015128
+=== entry 108, mask bcBC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 26 obj 0.091488 cols 51133 pairs 16334 min rc -1.069 LB -9.046 best -3.302 {2: -0.9987, 3: -0.7926, 4: -1.0693} added 1476 t 893.0 tm 332.4 
+phase 1 it 27 obj 0.091488 cols 51867 pairs 16554 min rc -1.145 LB -9.692 best -3.302 {2: -0.8606, 3: -0.6498, 4: -1.1448} added 734 t 937.1 tm 367.9 
+RESULT ('timeout', -3.3021715196665697)
+best dart-shifted phase-1 value -3.2594226100225616
+=== entry 1632, mask abAB, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 30 obj 0.857667 cols 60000 pairs 18126 min rc -1.841 LB -15.58 best -6.083 {2: -1.377, 3: -1.1348, 4: -1.841} added 2000 t 898.3 tm 541.0  dartLB -6.083
+phase 1 it 31 obj 0.824644 cols 62000 pairs 18622 min rc -2.595 LB -22.31 best -6.083 {2: -2.5953, 3: -0.8714, 4: -1.4406} added 2000 t 967.6 tm 605.3 
+RESULT ('timeout', -6.082524639813374)
+best dart-shifted phase-1 value -5.492013886633099
+=== entry 1632, mask bcBC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 31 obj 0.224754 cols 50736 pairs 15067 min rc -0.8659 LB -7.233 best -1.415 {2: -0.7693, 3: -0.2612, 4: -0.8659} added 212 t 893.9 tm 570.2 
+phase 1 it 32 obj 0.224744 cols 50895 pairs 15127 min rc -0.7993 LB -6.659 best -1.415 {2: -0.149, 3: -0.2541, 4: -0.7993} added 159 t 937.0 tm 609.0 
+RESULT ('timeout', -1.4145384916744064)
+best dart-shifted phase-1 value -1.3578412290904214
+=== entry 1633, mask bcBC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 31 obj 0.196379 cols 50843 pairs 16576 min rc -0.819 LB -6.846 best -1.592 {2: -0.6454, 3: -0.2959, 4: -0.819} added 274 t 895.8 tm 586.0 
+phase 1 it 32 obj 0.196379 cols 51097 pairs 16647 min rc -0.9395 LB -7.882 best -1.592 {2: -0.816, 3: -0.2959, 4: -0.9395} added 254 t 943.4 tm 629.4 
+RESULT ('timeout', -1.591935585444994)
+best dart-shifted phase-1 value -1.528731028669033
+=== entry 1744, mask acAC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 25 obj 1.181818 cols 35862 pairs 10642 min rc -0.359 LB -2.082 best 0.8492 {2: -0.0, 3: 0.0253, 4: -0.359} added 168 t 577.2 tm 263.4  dartLB 0.8492
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible
+best dart-shifted phase-1 value 0.8492320580173883
+=== entry 198, mask acAC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 24 obj 1.394669 cols 48000 pairs 17851 min rc -2.065 LB -16.57 best -12.67 {2: -2.0654, 3: -1.4497, 4: -1.9434} added 2000 t 895.6 tm 298.3 
+phase 1 it 25 obj 1.363967 cols 50000 pairs 18474 min rc -2.335 LB -18.91 best -6.871 {2: -2.335, 3: -1.2742, 4: -1.5711} added 2000 t 1042.3 tm 342.9  dartLB -6.871
+RESULT ('timeout', -6.870692672266948)
+best dart-shifted phase-1 value -5.278245752890179
+=== entry 198, mask bcBC, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 21 obj 0.149005 cols 42000 pairs 13977 min rc -1.125 LB -8.937 best -3.945 {2: -1.1092, 3: -0.7032, 4: -1.1252} added 2000 t 895.6 tm 247.5 
+phase 1 it 22 obj 0.121685 cols 43896 pairs 14530 min rc -1.129 LB -8.98 best -3.945 {2: -0.9016, 3: -0.7621, 4: -1.1291} added 1896 t 941.2 tm 280.5 
+RESULT ('timeout', -3.9451290891524775)
+best dart-shifted phase-1 value -3.7821595821885765
+=== entry 61, mask abAB, rp a2b1c1: maskq.sh (one run, --kcol 2000 --tl 900); last lines
+phase 1 it 23 obj 1.285742 cols 46000 pairs 13377 min rc -3.24 LB -28.34 best -14.88 {2: -2.9314, 3: -2.367, 4: -3.2399} added 2000 t 884.3 tm 314.2 
+phase 1 it 24 obj 1.200347 cols 48000 pairs 14007 min rc -2.9 LB -25.19 best -14.88 {2: -2.3419, 3: -2.5, 4: -2.9004} added 2000 t 957.9 tm 372.4 
+RESULT ('timeout', -14.876397655496048)
+best dart-shifted phase-1 value -12.316275460891271
+=== entry 4485, mask bcBC, rp a2b2c1: VCG_MASK=bcBC vcg.py (one run, --tl 900); last lines
+phase 1 it 24 obj 0.166435 cols 36923 pairs 17005 min rc -1.791 LB -11.63 best -2.903 {2: -1.0444, 3: -0.3193, 4: -1.7914} added 328 t 827.1 tm 338.7 
+phase 1 it 25 obj 0.162903 cols 37177 pairs 17071 min rc -1.835 LB -11.91 best -2.049 {2: -0.9196, 3: -0.2973, 4: -1.8351} added 254 t 950.9 tm 374.7  dartLB -2.049
+RESULT ('timeout', -2.049081210763615)
+best dart-shifted phase-1 value -1.9741799137073999
+=== entry 4485, mask bcBC, rp a2b1c2: VCG_MASK=bcBC vcg.py (one run, --tl 900); last lines
+phase 1 it 24 obj 0.148884 cols 33337 pairs 16488 min rc -0.97 LB -6.228 best -3.134 {2: -0.1814, 3: -0.5775, 4: -0.97} added 107 t 835.4 tm 289.1 
+phase 1 it 25 obj 0.148475 cols 33384 pairs 16498 min rc -0.9211 LB -5.907 best -1.066 {2: -0.3455, 3: -0.3319, 4: -0.9211} added 47 t 956.9 tm 319.8  dartLB -1.066
+RESULT ('timeout', -1.066465291640678)
+best dart-shifted phase-1 value -1.0322749571611127

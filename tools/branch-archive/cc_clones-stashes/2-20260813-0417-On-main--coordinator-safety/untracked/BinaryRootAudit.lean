@@ -1,0 +1,6 @@
+import NonsoficGroupsExist.Steinberg.BinaryLeavitt
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.map_root_injective_of_ne_one
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.normalClosure_root_eq_top
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.quotient_root_injective
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.quotient_infinite
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.hom_eq_one_of_finite

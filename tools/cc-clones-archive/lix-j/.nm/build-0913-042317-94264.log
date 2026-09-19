@@ -1,0 +1,30 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2492 oleans
+[job] acn112 cores=80-87 threads=8 base=37252fbabd74b101da39fc50c6054c5ea2d43037 mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+ℹ [2815/2952] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4587/4587] Building GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences (16s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.setup.json --json
+error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:173:4: Type mismatch
+  TwoSidedIdeal.mem_top
+has type
+  ∀ (R : Type ?u.12) [inst : NonUnitalNonAssocRing R] {x : R}, x ∈ ⊤
+but is expected to have type
+  1 ∈ ⊤
+error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:376:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonAlgebra' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:377:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonShiftAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:378:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonKernelFinitary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:379:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonRadicalEquality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+error: build failed
+EXIT=1

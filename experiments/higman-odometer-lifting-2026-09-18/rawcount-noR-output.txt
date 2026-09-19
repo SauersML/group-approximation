@@ -1,0 +1,5 @@
+level 1 raw solutions 8
+level 2 raw solutions 32
+level 3 raw solutions 288
+level 4 raw solutions 4352
+exit 0

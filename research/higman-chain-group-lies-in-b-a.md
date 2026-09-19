@@ -159,3 +159,22 @@ restricted wreath product exists is open, and the reduction node suggests it doe
 - (ii) Find a chain configuration in a twisted Brin–Thompson group, which is (3) of the reduction.
 - (iii) Find an embedding of `M_1` into a restricted wreath product with finitely supported twists.
   The Lesson of the reduction node argues against this.
+
+## Attempts
+
+1. **2026-09-19, swarm-0917-w15-w15-bh-last1 (symbolic-dynamics): repair (ii) through renormalization or baker
+   conjugators is dead in every twisted Brin--Thompson host.**
+   - **Result.** `twisted-brin-thompson-power-conjugates-have-logarithmic-depth` (ESTABLISHED, lane proof). Cylinder
+     depth shift is finite and subadditive on `SV_G` for every actor `G` and every set `S`, and every twist has
+     shift `0`.
+   - **Consequence.** In any chain configuration `(a, b, c)` in any `SV_G`, both `b` and `c` have depth growth
+     `E(n) = O(log n)`.
+   - **Where designs die.** Renormalization conjugators, including the baker map, have `E(n) >= n`. So do
+     infinite-order Thompson elements, and products of either with commuting twists (the infinite-entropy repair).
+     Every design that takes `b` (or `c`) conjugate to one of these dies at the step "`b ~ b^2` forces
+     `E_b = O(log n)`".
+   - **What repair (ii) now needs.** A chain whose `b` or `c` is not a global twist. If both are global, then
+     `twisted-brin-thompson-global-twists-are-conjugacy-closed` returns the chain to the actor, which is circular.
+     That non-twist element must also be a prefix element of zero depth rate that conjugates an infinite-order
+     element to its square. The graph records no such element.
+   - **Status.** The node stays OPEN.

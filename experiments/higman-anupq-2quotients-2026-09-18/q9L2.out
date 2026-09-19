@@ -1,0 +1,190 @@
+ANU p-Quotient Program Version 1.9 running with workspace 400000000 on vm
+Fri Sep 18 21:09:17 UTC 2026
+
+Select option: 1 
+
+Lower exponent-2 central series for G
+
+Group: G to lower exponent-2 central class 1 has order 2^4
+
+Group: G to lower exponent-2 central class 2 has order 2^10
+
+Group: G to lower exponent-2 central class 3 has order 2^17
+
+Group: G to lower exponent-2 central class 4 has order 2^25
+
+Group: G to lower exponent-2 central class 5 has order 2^32
+
+Group: G to lower exponent-2 central class 6 has order 2^42
+
+Group: G to lower exponent-2 central class 7 has order 2^60
+
+Group: G to lower exponent-2 central class 8 has order 2^83
+
+Group: G to lower exponent-2 central class 9 has order 2^127
+
+Group: G to lower exponent-2 central class 10 has order 2^191
+
+Group: G to lower exponent-2 central class 11 has order 2^301
+
+Group: G to lower exponent-2 central class 12 has order 2^475
+Computation of presentation took 0.63 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 12 has order 2^475
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 13 has order 2^776
+Computation of next class took 0.52 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 13 has order 2^776
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 14 has order 2^1264
+Computation of next class took 1.35 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 14 has order 2^1264
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 15 has order 2^2102
+Computation of next class took 4.35 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 15 has order 2^2102
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 6 
+
+Group: G to lower exponent-2 central class 16 has order 2^3501
+Computation of next class took 16.55 seconds
+
+Select option: 4 
+
+Group: G to lower exponent-2 central class 16 has order 2^3501
+
+Select option: 8 
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 64 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 128 1 
+The result of collection is  IDENTITY
+
+Select option: 23 
+Input the word for collection:
+(use generators x1,x2,... and terminate with a semicolon)
+The input word is 256 1 
+The result of collection is  IDENTITY
+
+Select option: 31 
+Exiting from interactive p-Quotient menu
+
+Select option: 0 
+Exiting from ANU p-Quotient Program
+Total user time in seconds is 23.45

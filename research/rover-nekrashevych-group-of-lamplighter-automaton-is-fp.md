@@ -37,3 +37,8 @@ non-contracting self-similar group whose Rover–Nekrashevych group is known to 
   - Machine check: `experiments/nonc-rn-fp-2026-09-17/lamp.py` confirms `[c, d_k] in K_∞` for `k <= 10`.
   - Next: F_∞ for `V_2(G)`, and other bounded or linear-activity automata. `scan.py` lists their short relators
     outside `K_∞`.
+- 2026-09-18 (w10-101): the "Next: F_∞ for `V_2(G)`" is answered in
+  `rn-lamplighter-is-f-infinity-and-acyclic-via-a-2-graph`. `V_2(G)` is the full group of the one-vertex 2-graph
+  `e_i f_j = f_i e_{i+j}` inside `Aff(F_2[t, 1/t, 1/(1+t)])`. So it is of type `F_∞` by Li's k-graph theorem, and it is
+  integrally acyclic and simple. This supersedes finite presentation for this group, but not the lift-ideal method,
+  which also covers automata with no affine model.

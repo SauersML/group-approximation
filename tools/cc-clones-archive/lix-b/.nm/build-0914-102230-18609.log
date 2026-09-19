@@ -1,0 +1,19 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3533 oleans
+[job] acn112 cores=64-71 threads=8 base=b26aefc3d849f0c2af4b95d2b837974dee0d066c mods: GroupApproximation.GGT.VanKampen.ListNoABABLength
+✖ [612/612] Building GroupApproximation.GGT.VanKampen.ListNoABABLength (4.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/ListNoABABLength.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABLength.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABLength.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABLength.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABLength.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:48:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.ListNoABAB.NoABAB.sublist`:
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:132:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:133:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ListNoABABLength
+error: build failed
+EXIT=1

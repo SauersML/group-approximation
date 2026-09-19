@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/projects/standard/hsiehph/sauer354/nonsofic_existence/experiments/sl3_projective_cellular_saturated_reduce.py", line 194, in <module>
+    main()
+  File "/projects/standard/hsiehph/sauer354/nonsofic_existence/experiments/sl3_projective_cellular_saturated_reduce.py", line 128, in main
+    reduced_basis = saturated_basis.LLL(delta=0.99)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "sage/structure/element.pyx", line 495, in sage.structure.element.Element.__getattr__
+  File "sage/structure/element.pyx", line 508, in sage.structure.element.Element.getattr_from_category
+  File "sage/cpython/getattr.pyx", line 363, in sage.cpython.getattr.getattr_from_other_class
+AttributeError: 'sage.matrix.matrix_integer_sparse.Matrix_integer_sparse' object has no attribute 'LLL'

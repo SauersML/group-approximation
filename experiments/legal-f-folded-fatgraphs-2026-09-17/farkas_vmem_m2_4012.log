@@ -1,0 +1,4 @@
+phi0 {'a': 'ab', 'b': 'bbac', 'c': 'abb'} m 2 rm 2 rp a2b1c1 types 540 windows 114 D 1000000 key y
+shift: darts with R_d > 0: 216 max R 48586.0
+z'_norm 43609.0 (/D = 0.043609) max window charge 0.0 max polygon charge 0.0 {2: 0.0, 3: 0.0, 4: -1.0}
+FARKAS VERIFIED

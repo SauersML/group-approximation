@@ -125,3 +125,135 @@ normalized second Betti numbers of a residual chain of a finitely generated amen
 tend to `b_2^{(2)} = 0` (known for type `FP_2`, open without it). A residually finite
 counterexample must have linear growth of `b_2`, with slope exactly `1 + b_2(K)`. The proposed
 L²-Swan route through infinite amenable quotients cannot close the gap by itself (item 6).
+
+## Attempts
+
+- **2026-09-18 (lane `w17-112`): the Følner-tiling scheme for the degree-2 approximation. The local
+  part is proved, and the rest is a race between relator depth and Følner radius.** See
+  `folner-transversals-kill-local-degree-two-homology` (proposed ESTABLISHED).
+  - *Local bound, for any group.* Let `I_L(H)` be the part of `H_2(H; k)` carried by relators of
+    length `<= L`. Then `dim I_L(H) <= n|T B_L \ T|` for every transversal `T` of every
+    finite-index `H`. The proof: a 2-cycle of the universal cover supported on `T` is a
+    boundary, so it dies in `X_H`, and rank-nullity on `k[T]^c` leaves room only on the Følner
+    boundary. With Weiss's Følner transversals, `dim I_L(N_i) = o([K:N_i])` for every fixed `L`,
+    for every residually finite amenable `K`, of any cd.
+  - *Kazhdan check.* For the `SL_3(Q_2)` lattice `Γ` of `pro-p-route-cannot-see-amenability-in-cd-two`,
+    the bound reads `|T B_3 \ T| >= (V[Γ:N] − 1)/(6V + 1)`. This is true, since `Γ` is
+    non-amenable. So the scheme fails for `Γ` only at the choice of a small-boundary transversal,
+    which is exactly the amenability input.
+  - *What dies.* Any Følner-tiled control of `H_2` of `P ⊗ Z[K/N_i]` using relators of bounded
+    length. In a counterexample, the part of `H_2(N_i)` it misses is
+    `χ_Q(K)[K:N_i] + o([K:N_i])`.
+  - *Reduction, both directions.* Using integrality of `χ`, the target for `K` is equivalent to
+    this: for some `δ + nε < 1`, the relator depth `ℓ^δ(N_i)` is at most the Følner radius
+    `ρ_ε(N_i)` for infinitely many `i`. By the five-term sequence, the missing part is
+    `dim H_0(N_{i,L}; H_1(M_L)) − b_1(N_{i,L}) + b_1(N_i)`, where `M_L = ker(⟨S | R_{≤L}⟩ → K)`.
+  - *Next step.* Bound these coinvariants of the long relations at `L = ρ_ε(N_i)`.
+- **2026-09-18 (lane `w18-112`): the relator-depth versus Følner-radius race is the target itself,
+  with no slack.** See `relator-depth-race-is-pinned-by-euler-characteristic` (proposed
+  ESTABLISHED).
+  - *Excess identity.* This holds for any fg `K` of cd 2 with `b_2 < ∞`, without amenability. The
+    long-relation excess `e_L(N) = dim H_0(N_L; H_1(M_L)) − b_1(N_L)` equals
+    `χ[K:N] − 1 − dim I_L(N)` exactly. At `L <= ρ_ε(N)` it lies within `nε[K:N]` of `χ[K:N] − 1`.
+    So the proposed bound on the coinvariants at the Følner radius is equivalent to `χ = 0`.
+  - *Dichotomy.* Along a residual chain, `ℓ^δ(N_i)` is eventually `0` if `χ = 0`, and eventually
+    `> ρ_ε(N_i) → ∞` if `χ >= 1`. A single cover `N` with `ℓ^δ(N) <= ρ_ε(N)` and
+    `(1 − δ − nε)[K:N] > 1` already forces `χ = 0`. Relator depth cannot be bounded by any radius
+    without being bounded by `0`.
+  - *Shape of a counterexample.* Every finite-index `N` has `b_1(N) = 0`. For normal `N`,
+    `H_2(N; Q) ⊕ Q ≅ Q[K/N]^χ`, and the long-relation coinvariants carry `Q[K/N]^χ` at every
+    scale, beyond `H_1(N_L)`. For fixed `L`, `b_1(N_{i,L})/[K:N_i] → dim_U A_L → 0`, while the
+    coinvariants grow like `(χ + dim_U A_L)[K:N_i]`.
+  - *Elementary amenable first.* These are all `BS(1,m)`, which are finitely presented, so the race
+    is empty there. A counterexample has no elementary amenable quotient that could supply
+    explicit Følner sets.
+  - *Calibration.* The `SL_3(Q_2)` Kazhdan lattice also satisfies `H_2(N) ⊕ Q ≅ Q[F]^V`.
+  - *Next step.* Rule out `H_2(N_i; Q) ⊕ Q ≅ Q[F_i]^χ`, `χ >= 1`, along a residual chain of a
+    residually finite amenable cd-2 group. Equivalently: `H_1(K; V) = 0` and
+    `dim H_2(K; V) = χ dim V − dim V_K` for all finite-image `V`. Any proof must use amenability
+    beyond Følner transversals of bounded radius.
+- **2026-09-18 (lane `w19-112`): the ultraproduct / von Neumann limit route is dead: the
+  limit sees only the `L²` rank.** See `ultraproduct-limits-of-finite-covers-see-only-the-l2-rank`
+  (proposed ESTABLISHED, obstruction).
+  - *Induced data are `χ`-blind.* `L(K) ↪ ∏^ω L(F_i)` preserves the trace, so every module
+    induced from `Q[K]` has its `L²`-dimension there, and so does every module induced into the
+    rank ultraproduct `R_ω` of the `Q[F_i]`. The induced Fox complex has profile `(n − 1, n, 1)`
+    with homology of rank 0, whatever `χ` is.
+  - *Where `χ` lives.* `χ = rk coker(Φ : R_ω ⊗ P → ∏_ω Q[F_i] ⊗ P) = rk ∏_ω H_2(N_i)`, and
+    `∏_ω H_2(N_i) ∩ im Φ = 0`. The covers' `H_2` meets the image of every finitely generated
+    `M ≤ P` in dimension `o([K:N_i])`.
+  - *Brief's question.* `b_2^{(2)} = 0` is unconditional. `χ = b_2^{(2)}` holds iff `χ = 0`, so
+    forcing `b_2^{(2)} = 0` decides nothing.
+  - *Next step.* Prove `rk coker Φ = 0` at the finite level, from structure of the covers that
+    is not induced from `Q[K]`: `H_2(N_i)` swallowed by finitely many relators up to `δ[K:N_i]`.
+- **2026-09-18 (lane `w20-112`): the finite-level `coker Φ` step is the target, and Følner
+  tilings compute `χ` rather than bound it.** See
+  `folner-tile-collapse-of-cycle-module-computes-chi-exactly` (proposed ESTABLISHED,
+  obstruction).
+  - *Exact collapse.* In the Cayley-cycle model `Q[X] ⊗ P → Q[X]^n → Q[X]`, every tile, at every
+    scale and with no relator-length condition, spans an acyclic subcomplex whose 2-cycles meet
+    `H_2(N)` in `0`. Hence `H_2(N) ≅ H_2(C/T_*)`, with quotient dimensions
+    `(χ[K:N] + β − c, β, 0)` for a transversal. Also `b_1(N) <= β − c + 1`.
+  - *Blindness.* Følner transversals give `b_2(N_i)/[K:N_i] → χ` with no Lück approximation, and
+    every estimate from the collapse has the form `b_2 = χ[K:N] + O(β)`. `χ` enters only through
+    Swan's `r = χ + n − 1`. Covering `H_2(N_i)` by finitely many relators up to `δ[K:N_i]` is
+    equivalent to `χ <= δ`, so the step has no content beyond the target. The relator-depth race
+    becomes the single number `r`.
+  - *Next step.* Bound `dim H_0(N_i; Q ⊗ P) <= (n − 1)[K:N_i] + o` from a non-tiling input. On
+    the escape side, look for a torsion-free, amenable, non-elementary-amenable group of cd 2
+    whose finite-index subgroups all have `b_1 = 0`.
+- **2026-09-19 (lane `w21-112`): the Swan-rank step through `Z`-quotients (Alexander modules).**
+  See `cd-two-z-kernels-have-zero-or-free-alexander-h2` (proposed ESTABLISHED; reduction and
+  obstruction).
+  - *Idea.* Replace the finite quotients by `φ : H ↠ Z`. Then `Λ = Q[t^{±1}]` is a PID, so
+    `Λ ⊗ P` is free of rank `r`. Swan and Lück hold exactly there, with no amenability or
+    residual finiteness.
+  - *Results.* `H_2(ker φ; Q)` is a free `Λ`-module, so it is `0` or infinite-dimensional. The
+    Alexander formula `χ_Q = rk H_2(ker) − rk H_1(ker)` holds. Along the cyclic tower,
+    `b_2(H_m) = mρ_2 + O(1)`, and `H_2(H_m)` contains `Q[Z/m]^{ρ_2}`.
+  - *Construction kill.* Every virtually (finite-`b_2`)-by-`Z` group has `χ <= 0`. This covers
+    ascending HNN extensions over arbitrary bases of finite `b_2`.
+  - *Escape-side dichotomy.* A counterexample is either (I) virtually rationally perfect, with
+    `H_2(N) ⊕ Q ≅ Q[F]^χ`, or (II) fibred, with every virtual `Z`-kernel non-fg, non-EA and with
+    `H_2 ≅ Λ^{ρ_2}`, `ρ_2 >= [K:H]`.
+  - *Class result.* If every fg subgroup with finite abelianization is virtually
+    (finite-`b_2`)-by-`Z`, the group is solvable.
+  - *Effect on the target.* For `Γ = Z`, item 6(a) holds with equality, and 6(b) becomes
+    `ρ_2 <= ρ_1`. The induced module structure on the remainder is free of rank `ρ_2`, so it
+    cannot make `H_2` small.
+  - *Next step.* (II): prove `rk_Λ H_2(L) <= rk_Λ H_1(L)` for one amenable Z-kernel `L`.
+    `F_2 × F_2` has `A_2 = Λ²` and shows amenability is needed. (I): decide whether a
+    residually finite amenable cd-2 group can have `b_1 = 0` on every finite-index subgroup.
+- **2026-09-19 (lane `w22-112`): the Ore/Følner step for the fibred type (II) is blocked.**
+  See `fibred-ore-rank-comparison-is-local-indicability` (proposed ESTABLISHED; obstruction).
+  - *Result.* For `φ : G ↠ Z`, the comparison `rank_{Q(t)} φ(A) <= rk_U(A)` holds for all
+    matrices exactly when `G` is locally indicable. It then already holds on `Q[ker φ]`, where it
+    is the augmentation comparison. In a fibred counterexample, the fibre contains a
+    finitely generated rationally perfect counterexample `J`. The Fox matrix of `J` is constant
+    in `t` and breaks every Ore, Følner or specialization rank comparison over `Q[L] ⋊ ⟨t⟩`.
+  - *Calibrations.* `Z ≀ Z` (amenable, comparison holds, cd `∞`) has `ρ_2 = ∞ > ρ_1 = 1`.
+    `F_2 × F_2` (cd 2, comparison holds, not amenable) has `ρ_2 − ρ_1 = 1`. So
+    `ρ_2 <= ρ_1` needs amenability, cd 2 and a comparison valid only on projective summands,
+    all at once.
+  - *Effect on the target.* Item 6(b) for `Γ = Z` on the relation module is equivalent to
+    `χ <= 0`, and no easier than the core inequality for L²-finite projectives. Type (I) remains
+    open.
+  - *Next step.* Use the splitting `P ⊕ P'' = Q[H]^{(∞)}` together with the `Λ`-freeness of
+    `Λ ⊗ P`, or show that fibre descent ends in a type (I) counterexample.
+- **2026-09-19 (lane `w23-112`): fibre descent stops after one step; the finite-index step is the gap.**
+  See `zero-divisor-support-is-fibre-conserved` (proposed ESTABLISHED; obstruction).
+  - *Result.* For any `φ : H ↠ Z`, the minimal zero-divisor support satisfies
+    `μ(ker φ) = μ(H)`. Normalized minimal pairs lie in every fibre at once, hence in the
+    rational derived core, and generate a finitely generated `J` with `b_1(J) = 0`. In an
+    amenable cd-2 counterexample every finite-index `J' ≤ J` is again a counterexample, with
+    `μ(J') >= μ(J)`. If `b_2(J) < ∞`, then `χ(J') = [J:J'] χ(J) >= [J:J']`, and a fibred `J'` has
+    free Alexander `H_2` of rank `ρ_2 >= ρ_1 + [J:J']`.
+  - *Obstruction.* Along descent, `μ` and every zero-divisor infimum are non-decreasing. For
+    `i >= 1`, `cd = 2`, `b_1 = 0` and `χ >= 1` at every step. So termination in type (I) needs a
+    Hirsch-length-type invariant. Restricting a minimal pair to finite index gives only
+    coset-matrix zero divisors.
+  - *Calibrations.* `D_∞`: finite index can kill all element zero divisors. Hantzsche–Wendt: a
+    non-locally-indicable group with no type (I) subgroup, whose descent exits through a
+    locally indicable fibre; that exit is closed in cd 2.
+  - *Next step.* Exclude fibred finite-index subgroups of a minimal-pair group `J`, using the
+    linear growth of their Alexander `H_2`. Alternatively, build a strictly decreasing invariant.

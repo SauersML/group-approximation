@@ -1,0 +1,3 @@
+census_31_30.json 26 OK: rho is a homomorphism satisfying the tree conditions at t and t+1; Nrd(h) = ['t + 1', 't + 1', 't + 1'] Nrd(v) = ['t**3 + t**2 + t', 't**3 + t**2 + t', 't**3 + t**2 + t']
+census_31_31.json 12 OK: rho is a homomorphism satisfying the tree conditions at t and t+1; Nrd(h) = ['t + 1', 't + 1', 't + 1'] Nrd(v) = ['t', 't', 't']
+D = [t, t^2+t+1): associative table, disc(O) = b, ramified at b: all OK

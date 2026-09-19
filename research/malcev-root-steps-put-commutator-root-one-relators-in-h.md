@@ -16,6 +16,10 @@ artifacts:
   - experiments/amalgam-segment-steps-2026-09-17/frontier-L14.txt
   - experiments/amalgam-segment-steps-2026-09-17/probe.py
   - experiments/amalgam-segment-steps-2026-09-17/vcs_triage.py
+  - experiments/amalgam-segment-steps-2026-09-17/census-L15.txt
+  - experiments/amalgam-segment-steps-2026-09-17/frontier-L15.txt
+  - experiments/commutator-root-preorders-2026-09-19/pre_sat.py
+  - experiments/commutator-root-preorders-2026-09-19/runs.log
 ---
 
 **ESTABLISHED** (written proof, unreviewed) by
@@ -125,3 +129,85 @@ computations. Item 3 is an obstruction with a sharpness example. Nothing is new 
   different kind, and is open.
 - Rule N is sound only with `α = β = 1`. Twists `a_2 = α^{-1} σ β^{-1}` change the leading terms and are not
   covered by the proof.
+
+## Attempts
+
+- **Pro-unipotent step (w12-059).** [[pro-unipotent-magnus-steps-put-one-relators-in-h]] takes the whole Magnus HNN
+  step at once when `e_0 e_m ≠ 0`. It solves for the top letter in the completed free group of the window, so the
+  base alone decides membership in `𝓗`.
+  - All 128 words of the rank-2-window shape of item 2 at length 15 are then in `𝓗`.
+  - The open part through length 15 is the 26 words of item 3: 18 of length 14 and 8 of length 15, all with
+    `e = (0, ε, 0)`. That rule applies to them in no basis, because `H_1` of the kernel of `G -> Z` vanishes
+    rationally.
+  - Its targets are residually 𝒮, so item 3 here excludes them for the 26. `G(1, k)` is not residually 𝒮 and
+    lies in `𝓗`, so family C targets remain allowed.
+- **Global targets for the 26 (w13-059).** [[commutator-root-frontier-kills-pl-and-bi-ordered-targets]] rewrites
+  all 26 words as `y_1^K = [y_0^α, y_2^β]`, which gives at most six groups. Each is in `𝓗` iff one map to `𝓗` keeps `y`.
+  - PL groups of an interval kill `y` for all 26. This includes Thompson's `F`, which is in `𝓗` and not residually
+    solvable.
+  - Bi-orderable groups kill `y` for the 8 words with `(α, β) = (-1, 1)`.
+  - Baumslag–Solitar groups kill `y` for all 26.
+  - Open: `G(1, n)` targets and bi-orderings of `G(K; 1, ±1)`.
+- **G(1, n) targets and order obstructions (w14-059).**
+  - [[bg-chains-are-residually-tf-solvable-so-g1n-targets-die]] proves that every finite Baumslag–Gersten chain is
+    residually 𝒮. So the kernel of `G(1, n) → Z` is locally residually 𝒮, and every map from the 26 words to
+    any `G(1, n)`, `n ≠ 0`, kills the root. This closes the `G(1, n)` candidates for all `n`, including `|n| ≥ 3`.
+  - [[commutator-root-minus-one-groups-have-generalized-torsion]] shows that in `G(K; -1, 1)` a product of
+    `K^2 + K` conjugates of `y` is `1`. So the 8 words with `(α, β) = (-1, 1)` have no target without generalized
+    torsion.
+  - For `G(K; 1, ±1)`, a SAT test of bi-order consistency on word balls finds no certificate up to radius 4.
+  - Open: bi-orderability of `G(2; 1, 1)`.
+- **Bi-orderable targets for `G(K; 1, ±1)`: preorder SAT balls (w15-059).** Open. `G(2; 1, 1)` is still undecided.
+  - **What was tested.** A map from `G` to a bi-orderable group with `y ≠ 1` is the same thing as a bi-invariant
+    total preorder on `G` with `y > 1`. By compactness, if none exists, some finite set of the conditions T/M/C/S/Y
+    in `experiments/commutator-root-preorders-2026-09-19/pre_sat.py` is already unsatisfiable. The script builds
+    that clause set on the ball `B(W, r)`: reduced words of length at most `r` in `y_0, …, y_{W-1}`, merged by exact
+    equality (Britton). Products are taken only with one factor of length at most `r1`. For `G(2; 1, 1)`, the
+    `--chain` units add `y_i^k < y_{i+1}`, which item 4 of
+    [[commutator-root-frontier-kills-pl-and-bi-ordered-targets]] forces.
+  - **Results.** Every run is SAT (`runs.log`). So no obstruction to a target, and none to bi-orderability, is
+    supported on these balls:
+    - `G(2; 1, 1)`: `(W, r, r1) = (4, 5, 3)`, `(5, 5, 2)`, `(3, 6, 3)` and `(3, 7, 2)`, all with the chain.
+    - `G(2; 1, -1)`: `(4, 5, 2)`.
+    - `G(3; 1, 1)`: `(4, 4, 2)`.
+    - `G(3; 1, -1)`: `(4, 4, 2)`.
+
+    Calibration: the same script is UNSAT for `(2, -1, 1)`, which has generalized torsion.
+  - **Forced shape of any order (proved, one line).** Let `a = y_0`, `b_0 = y_1` and `e_k = b_0^{-k} a b_0^k`.
+    Conjugation by `t` sends `e_k` to `b_k = y_2^{-k} y_1 y_2^k`. Conjugation by `y_2` pushes each archimedean class
+    `c_k` into `c_{k+1}`, and `b_k ∈ c_{k+1}`, so the classes of the `e_k` strictly increase. Hence
+    `[a, b_0^k] = a^{-1} e_k` dominates `a` for `k ≥ 1`. On the free group `K = F(a, b_k : k ∈ Z)`, the kernel of
+    `P = <y_0, y_1, y_2> → Z` (y_2-exponent), the order therefore has `γ_2 K` non-convex. That excludes every
+    Magnus-type or nilpotent-lex order on `K`, although `K` does carry a `ψ`-invariant Magnus order with the right
+    classes `c_k` (via `H_1(K) ⊂ Q a' ⊕ Q((s^{-1})) b`).
+  - **Next.** Either build a `t`- and `y_2`-compatible non-Magnus order on `K` (candidate: germs or transseries under
+    composition, where `[a, b]` can dominate `a`), or find an UNSAT ball with `W ≥ 4` and `r ≥ 6`. The latter needs
+    a sparser product enumeration: `(4, 6, 2)` and `(3, 7, 3)` exceed 2 GB with the present one.
+- **Hyperseries conjugators put `G(K; 1, ±1)` in 𝓗 (w16-059).** Resolved for 18 of the 26 frontier words, by
+  [[hyperseries-conjugators-put-commutator-roots-in-h]] (written proof, unreviewed, on Bagayoko arXiv:2509.09186).
+  - **Target.** The bi-ordered group `Γ` of positive infinite hyperseries under composition, in which all elements
+    `> x` are conjugate. Using Abel functions, if `x < A < B` then some conjugator `c` with `A ∘ c = c ∘ B` lies
+    below `x`.
+  - **Tower.** This fixes the sign of each new letter. So `N_[0,∞)` of `G(K; 1, ±1)` maps into `Γ` with every
+    letter on one side of `x`, which makes the map injective on every edge group. The edge-injective lemma and the
+    shift isomorphisms then give `G ∈ 𝓗`, and reversing `t` gives the same for `(-1, -1)`.
+  - **Not settled.** Bi-orderability of `G(2; 1, 1)` is still open, because the map ignores `t`. The preorder-SAT
+    run `(4, 6, 2)` was dropped: it exceeds 2 GB.
+  - **Left.** The 8 words with `(α, β) = (-1, 1)`. There the sign rule fails, and generalized torsion kills
+    bi-orderable targets. Next: find an 𝓗-target with generalized torsion for `N_[0,3]` of `G(2; -1, 1)`, or prove
+    that every such target kills `y`.
+- **The `(-1, 1)` towers keep bi-ordered targets (w17-059).** Partial result, in
+  [[commutator-root-minus-one-towers-keep-bi-ordered-targets]] (written proof, unreviewed).
+  - **Obstruction removed.** The generalized-torsion identity kills maps of `G`. On the tower `N_[0,n]`, which
+    ignores `t`, its factors are conjugates of two different letters, so it only forces `y_1, y_2, …` to alternate
+    in sign. So it cannot show that every 𝓗-target kills `y`.
+  - **Proved.** `Γ` receives `N_[0,4]` of `G(K; -1, 1)` with every letter kept, for every `K`, with signs
+    `(-, -, +, -, -)`. The mirror of the w16 conjugator lemma gives conjugators above `x`. So `N_[0,4] ∈ 𝓗`.
+  - **Where it stops.** The always-available conjugator sign is `σ_{n+1} = σ_{n-1} σ_n`. From `N_[0,5]` on, every
+    `(+, -)` step needs the other sign, which exists iff an Abel difference `V_{y_{n-1}} - V_{y_n^{-K} y_{n-1}}`
+    is bounded above.
+  - **Computed.** Ball SAT for `G(2; -1, 1)`: `t`-invariant bi-orders are UNSAT; bi-orders of `N_[0,W-1]` and
+    `t`-reversing bi-orders are SAT up to `W = 7`, `r = 3`. A `t`-reversing bi-order of `N` would put
+    `G(K; -1, 1)` in 𝓗.
+  - **Next.** Bound one Abel difference at `N_[0,5]` by choosing `Y_0, Y_1` and the conjugator parameters, or
+    build a `t`-reversing bi-order of `N`.

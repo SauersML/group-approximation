@@ -100,3 +100,63 @@ together with the established imports, implies Boone–Higman.
 
    **Status after this attempt:** OPEN. No candidate factor class is known to
    survive (a), (b) and (c) simultaneously, and none is known to fail.
+
+2. **Belief breaker: one bad factor suffices, twice (swarm-0917 w17, 2026-09-19).**
+   Attempt 1 intersected with the discrete `Γ`, so it needed both factors bad.
+   NST item 2 (each `p_j` is injective) together with
+   `fg-infinite-simple-groups-are-minimally-almost-periodic` needs only one bad
+   factor. Two established obstructions follow.
+
+   - **(b') One Haagerup factor dies**
+     (`one-haagerup-factor-kills-bader-shalom-universality`).
+     - *Invariant:* property (T) of the probe `H` against Haagerup.
+     - *Step where it dies:* `cl p_j(H)` is compact by Delorme-Guichardet
+       (`delorme-guichardet-property-t-implies-fh`, verbatim BdlHV import).
+       Injectivity then maps the infinite simple `H` nontrivially into a compact
+       group.
+     - This settles 1(b) in its one-factor form. The survivor of 1(b)'s
+       "stronger form", a Kazhdan probe sitting discretely in the other factor,
+       does not exist. Amenable factors and tree factors die, and so does
+       every lattice in (tree) × (anything).
+   - **(c') One finite-dimensional CAT(0) factor with compact point stabilizers
+     dies** (`cat0-factors-kill-bader-shalom-universality`).
+     - *Probe:* `P = [F,F]`, the golden-mean group. It is simple, periodic and of
+       intermediate growth, and it has solvable word problem because it lies in
+       a finitely presented simple group
+       (`golden-mean-periodic-group-lies-in-a-contracting-rsg`).
+     - *Step where it dies:* by Izeki-Karlsson Corollary 4 (verbatim,
+       `izeki-karlsson-torsion-groups-fix-cat0-points`), `p_j(P)` fixes a point
+       of the factor's space. So `p_j(P)` lies in a relatively compact
+       stabilizer, and injectivity gives the same contradiction.
+     - This replaces 1(c). It needs no cocompactness, no Dehn function bound and
+       no properness of the space, and only one side. It kills every Ã2,
+       Fuchsian or Kac-Moody building factor and every finite-dimensional cube
+       complex factor, including the non-Haagerup ones that (b') misses.
+   - **Both at once.** Take the input `S = H_P`, the decidable simple Kazhdan
+     host of `P`. Then one lattice must defeat both probes.
+
+   **Survivors, upgraded.** If P1 holds for `S = H_P`, each factor `G_i` of the
+   hosting lattice has all of the following properties:
+   - non-linear;
+   - not Haagerup;
+   - admits no isometric action with relatively compact point stabilizers on any
+     finite-dimensional complete CAT(0) space;
+   - contains the non-compact closed subgroups `cl p_i(H_P)` and `cl p_i(P)`,
+     and `p_i(P)` fixes a point in every action of `G_i` on such a space.
+
+   The known non-linear two-factor examples (Burger-Mozes, Wise, Rattaggi) and
+   every building-type Kac-Moody product therefore die on **each** side
+   separately. A candidate would have to be a pair of non-linear tdlc groups of
+   "infinite-dimensional" type, for example almost-automorphism or Neretin-like
+   groups. Neretin groups themselves are Haagerup and die by (b'), at the trust
+   level of `haagerup-cut-out-completions-force-haagerup-quotients-proof`.
+
+   **Next test.** Does some non-linear, non-Haagerup, compactly generated simple
+   tdlc group with no proper action on a finite-dimensional CAT(0) space even
+   contain a cocompact lattice with dense projections in a product? No such
+   lattice is known. Caprace (arXiv:1709.05949, p. 36) records no non-linear
+   example beyond tree products.
+
+   **Status after this attempt:** OPEN. Belief in P1 should drop. Every
+   lattice class named in Attempt 1 is dead as a host of `H_P`: the linear ones
+   by (a), and the tree and building products on one side alone.

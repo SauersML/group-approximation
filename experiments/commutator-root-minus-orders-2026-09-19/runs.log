@@ -1,0 +1,86 @@
+# G(2;-1,1) ball SAT runs: bo_sat_ns.py 2 -1 1 perms_2_-1_1.txt W r 24 SHIFT (SHIFT 1 invariant, 0 none, -1 t-reversing)
+== W=3 r=3 shiftmode=0
+clauses 3582 product clauses 3066
+K al be 2 -1 1 W 3 r 3 SAT
+positive letters [((0, -1),), ((1, -1),), ((2, -1),)]
+2s
+== W=3 r=4 shiftmode=0
+clauses 45882 product clauses 43260
+K al be 2 -1 1 W 3 r 4 SAT
+positive letters [((0, -1),), ((1, -1),), ((2, -1),)]
+8s
+== W=4 r=3 shiftmode=0
+clauses 11676 product clauses 10368
+K al be 2 -1 1 W 4 r 3 SAT
+positive letters [((0, 1),), ((1, -1),), ((2, 1),), ((3, 1),)]
+3s
+== W=4 r=4 shiftmode=0
+clauses 263044 product clauses 253872
+K al be 2 -1 1 W 4 r 4 SAT
+positive letters [((0, -1),), ((1, -1),), ((2, 1),), ((3, -1),)]
+49s
+== W=5 r=3 shiftmode=0
+clauses 28842 product clauses 26190
+K al be 2 -1 1 W 5 r 3 SAT
+positive letters [((0, 1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, 1),)]
+10s
+== W=6 r=3 shiftmode=0
+clauses 60168 product clauses 55476
+K al be 2 -1 1 W 6 r 3 SAT
+positive letters [((0, 1),), ((1, -1),), ((2, 1),), ((3, -1),), ((4, 1),), ((5, 1),)]
+66s
+== W=5 r=4 shiftmode=0
+clauses 1009022 product clauses 985188
+K al be 2 -1 1 W 5 r 4 SAT
+positive letters [((0, -1),), ((1, -1),), ((2, 1),), ((3, -1),), ((4, -1),)]
+381s
+== W=3 r=3 shiftmode=-1
+clauses 3686 product clauses 3066
+K al be 2 -1 1 W 3 r 3 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),)]
+1s
+== W=4 r=3 shiftmode=-1
+clauses 12036 product clauses 10368
+K al be 2 -1 1 W 4 r 3 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),)]
+3s
+== W=4 r=4 shiftmode=-1
+clauses 264784 product clauses 253872
+K al be 2 -1 1 W 4 r 4 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),)]
+45s
+== W=5 r=3 shiftmode=-1
+clauses 29730 product clauses 26190
+K al be 2 -1 1 W 5 r 3 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, -1),)]
+9s
+== W=6 r=3 shiftmode=-1
+clauses 61952 product clauses 55476
+K al be 2 -1 1 W 6 r 3 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, -1),), ((5, 1),)]
+28s
+== W=5 r=4 shiftmode=-1
+clauses 1015062 product clauses 985188
+K al be 2 -1 1 W 5 r 4 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, -1),)]
+369s
+== W=7 r=3 shiftmode=-1
+clauses 115038 product clauses 104322
+K al be 2 -1 1 W 7 r 3 SAT
+positive letters [((0, -1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, -1),), ((5, 1),), ((6, -1),)]
+54s
+== W=7 r=3 shiftmode=0
+clauses 111894 product clauses 104322
+K al be 2 -1 1 W 7 r 3 SAT
+positive letters [((0, 1),), ((1, 1),), ((2, -1),), ((3, 1),), ((4, -1),), ((5, 1),), ((6, 1),)]
+52s
+== W=3 r=3 shiftmode=1
+words 186 classes 180 trivial 0
+clauses 3686 product clauses 3066
+K al be 2 -1 1 W 3 r 3 UNSAT
+1s
+== W=4 r=3 shiftmode=1
+words 456 classes 444 trivial 0
+clauses 12036 product clauses 10368
+K al be 2 -1 1 W 4 r 3 UNSAT
+3s

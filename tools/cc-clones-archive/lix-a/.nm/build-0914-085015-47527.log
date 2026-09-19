@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+[job] acn112 cores=72-79 threads=8 base=145f2a6f1db1b84f5b940825d138023e0c2b4c34 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows
+ℹ [3295/3434] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4921/4921] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows (9.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:133:23: `simp` made no progress
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:133:56: `simp` made no progress
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:135:23: `simp` made no progress
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:135:55: `simp` made no progress
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:143:80: `simp` made no progress
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:144:59: `simp` made no progress
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:150:14: 'GroupApproximation.GGT.VanKampen.flatMap_rotate_eq_rotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:151:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_rotate_eq_classWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassFourWindows.lean:152:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.class_four_windows' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows
+error: build failed
+EXIT=1

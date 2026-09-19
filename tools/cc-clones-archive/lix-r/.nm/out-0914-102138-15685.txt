@@ -1,0 +1,29 @@
+[job] 10:30:29 acn32 waiting for clone lock
+[job] delta sync 9afdc9615..9bd2b6027: 15 files changed
+===== SUMMARY
+host acn32 cores slurm base 9bd2b6027 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-102138-15685.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3510 oleans
+--- errors (first 80 lines)
+65:✖ [3052/3052] Building GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (34s)
+67:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:145:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.norm_one_sub_stageCorner_one_deltaOne_sq'`:
+78:error: Lean exited with code 1
+81:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (replayed or failed)
+BUILT GroupApproximation.Analysis.PauliHyperfiniteDensity
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/HyperfiniteStageCorner.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteDensity.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

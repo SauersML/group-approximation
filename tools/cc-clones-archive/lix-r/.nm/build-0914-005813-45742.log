@@ -1,0 +1,201 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3482 oleans
+[job] acn112 cores=80-87 threads=8 base=ad284eb8c0284da65cf6032b03822d3511228235 mods: GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerSectorFree GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints
+ℹ [3297/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4668/4854] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:128:14: 'GroupApproximation.GGT.VanKampen.RotationBetween' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.PassagesNoninterleaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_vertexCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.NoninterleavingVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10044/10210] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSectorNoninterleaving
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:214:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.sectorFree_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:215:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.not_rotationBetween_of_sectorFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:216:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.rotationBetween_of_sectorFree_rev' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:217:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.get_finRotate_of_isChain_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:218:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_forall_get' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:219:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean:220:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.passagesNoninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10177/10210] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.calibration_opposite_clauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:192:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:194:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:196:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:200:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.doubleTouchNeitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10178/10210] Replayed GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:145:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:147:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_first' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean:149:2: 'GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10204/10210] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellKeptCellNoncrossing
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:191:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_of_noncrossing_of_eitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:193:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:195:2: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_leastArea' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:196:21: 'GroupApproximation.GGT.VanKampen.cellPocketKeptCellNoncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10207/10210] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerNoninterleaving
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:129:14: 'GroupApproximation.GGT.VanKampen.SectionPocketWalkNoninterleavingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:130:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkNoninterleavingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:131:14: 'GroupApproximation.GGT.VanKampen.sectionPocketWalkEuler_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:132:14: 'GroupApproximation.GGT.VanKampen.cellPocketWalkEuler_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:133:14: 'GroupApproximation.GGT.VanKampen.sectionPocketKeptCell_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10208/10210] Built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerSectorFree (10s)
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerSectorFree.lean:70:14: 'GroupApproximation.GGT.VanKampen.SectorFreeVertexCountStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerSectorFree.lean:71:14: 'GroupApproximation.GGT.VanKampen.sectorFreeVertexCount_of_noninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerSectorFree.lean:72:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eulers_of_sectorFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10209/10210] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints (21s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:349:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.isChain_sigma_invDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:350:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.closes_sigma_invDarts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:351:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.sectorFree_of_boundaryStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:352:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.internal_not_walkKeep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:353:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_isChain_closes_of_rel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:354:21: 'GroupApproximation.GGT.VanKampen.sectionPocketWalkNoninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10210/10210] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-r/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:209:16: don't know how to synthesize implicit argument `m`
+  @OuterCellThickening.leastArea_of_oEquivalent G inst✝ Lambda W Delta S.diagram S.equiv (fun {m} => hlea) ?m.75
+context:
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+lambda c : ℝ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+hlea : Delta.LeastArea
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+i j : Fin S.diagram.rCellCount
+a b : RegionCandidate D eps S.diagram
+ha : a ∈ S.family
+hb : b ∈ S.family
+hab : a ≠ b
+hij : i ≠ j
+hai : a.JoinsCells i j
+hbi : b.JoinsCells i j
+hclean : CellPocketWalk.CopyClean a b i j
+K : CellPocketWalk D eps S.diagram i j
+hfirst : K.firstSide = b.sideFrom j
+hsecond : K.secondSide = a.sideFrom i
+h₁ : ∃ G₁, K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i
+h₂ : ∃ G₂, K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j
+hw : IsNoncrossingClosedWalk S.diagram.toCombMap K.walk
+⊢ ℕ
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:209:7: failed to infer `have` declaration type
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:206:92: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+lambda c : ℝ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+hlea : Delta.LeastArea
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+i j : Fin S.diagram.rCellCount
+a b : RegionCandidate D eps S.diagram
+ha : a ∈ S.family
+hb : b ∈ S.family
+hab : a ≠ b
+hij : i ≠ j
+hai : a.JoinsCells i j
+hbi : b.JoinsCells i j
+hclean : CellPocketWalk.CopyClean a b i j
+K : CellPocketWalk D eps S.diagram i j
+hfirst : K.firstSide = b.sideFrom j
+hsecond : K.secondSide = a.sideFrom i
+h₁ : ∃ G₁, K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i
+h₂ : ∃ G₂, K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j
+hw : IsNoncrossingClosedWalk S.diagram.toCombMap K.walk
+⊢ PassagesNoninterleaving S.diagram.toCombMap K.walk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:232:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.internal_not_walkKeep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:233:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_isChain_closes_of_rel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean:234:21: 'GroupApproximation.GGT.VanKampen.cellPocketWalkNoninterleaving' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints
+error: build failed
+EXIT=1

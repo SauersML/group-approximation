@@ -1,0 +1,7 @@
+m=1 d=1 |S|=2 tops<= 2 carets: 53 deterministic hits
+    (('INF', 'L'), ('INF', 'R')) -> ('inf', 1, 'inf')
+    (('INF', 'L'), ((), ('INF', 'L'))) -> ('inf', 1, 'inf')
+    (('INF', 'L'), ((), ('INF', 'R'))) -> ('inf', 1, 'inf')
+m=1 d=2 |S|=5 tops<= 2 carets: 0 deterministic hits
+m=2 d=2 |S|=9 tops<= 2 carets: 0 deterministic hits
+m=1 d=3 |S|=14 tops<= 2 carets: 0 deterministic hits

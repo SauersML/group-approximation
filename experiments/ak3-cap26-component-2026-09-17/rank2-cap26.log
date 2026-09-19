@@ -1,0 +1,53 @@
+RANK 2 CAP 26 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 4546
+depth 3 states 23751
+depth 4 states 72338
+depth 5 states 166278
+depth 6 states 332444
+depth 7 states 524545
+depth 8 states 735028
+depth 9 states 917080
+depth 10 states 1073409
+depth 11 states 1199820
+depth 12 states 1300686
+SLOT END states 1338752 head 1262592 depth 12
+resumed c26.ck: states 1338752 head 1262592 depth 12
+depth 13 states 1377177
+depth 14 states 1437975
+depth 15 states 1483477
+depth 16 states 1519968
+depth 17 states 1546911
+depth 18 states 1568097
+depth 19 states 1585663
+depth 20 states 1600163
+depth 21 states 1614794
+depth 22 states 1628589
+depth 23 states 1642660
+depth 24 states 1653304
+depth 25 states 1662341
+depth 26 states 1669466
+depth 27 states 1675139
+depth 28 states 1679381
+depth 29 states 1682394
+depth 30 states 1684506
+depth 31 states 1685879
+depth 32 states 1687054
+depth 33 states 1688004
+depth 34 states 1688718
+depth 35 states 1689080
+depth 36 states 1689288
+depth 37 states 1689413
+depth 38 states 1689518
+depth 39 states 1689610
+depth 40 states 1689708
+depth 41 states 1689791
+depth 42 states 1689848
+depth 43 states 1689924
+depth 44 states 1689991
+depth 45 states 1690033
+depth 46 states 1690039
+EXHAUSTED depth 46 states 1690039 processed 1690039; PRIM tests 1690038, goals PRIM 0
+lengths: 13:2 14:5 15:72 16:83 17:476 18:541 19:2910 20:3169 21:17268 22:18775 23:102841 24:119614 25:637882 26:786401
+dumped 1690039 states to c26.ck.txt
+FINAL exit 0

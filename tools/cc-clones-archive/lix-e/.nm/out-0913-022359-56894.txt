@@ -1,0 +1,24 @@
+[job] 02:25:09 acn143 waiting for clone lock
+[job] delta sync 38107691a..d2cf04137: 60 files changed
+===== SUMMARY
+host acn143 cores slurm base d2cf04137 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-022359-56894.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2446 oleans
+--- errors (first 80 lines)
+3:✖ [2671/2672] Building GroupApproximation.Algebra.IntegerGaussValuations (12s)
+5:error: GroupApproximation/Algebra/IntegerGaussValuations.lean:79:7: failed to synthesize instance of type class
+9:error: GroupApproximation/Algebra/IntegerGaussValuations.lean:72:62: unsolved goals
+17:error: GroupApproximation/Algebra/IntegerGaussValuations.lean:94:15: failed to synthesize instance of type class
+21:error: GroupApproximation/Algebra/IntegerGaussValuations.lean:299:14: 'GroupApproximation.IntegerGaussValuations.padicValuation_natCast_self' depends on axioms outside the classical allowlist: [sorryAx]
+22:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+30:error: GroupApproximation/Algebra/IntegerGaussValuations.lean:302:14: 'GroupApproximation.IntegerGaussValuations.exists_algebraMap_eq' depends on axioms outside the classical allowlist: [sorryAx]
+31:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+33:error: Lean exited with code 1
+36:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Kazhdan.GHWCharZeroPlaces (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.IntegerGaussValuations
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,38 @@
+# float cross-check: python3 dwalls.py B3 B4 A4 H3
+B3 roots 9 Xwalls 4 Fwalls [0, 3] bad flats 0 sizes 0 [0, 0, 0] bad pairs 0 D-walls 0
+  D-wall multiplicities (#bad flats per D-wall): []
+  bad flats meeting F-walls: 0 []
+B4 roots 16 Xwalls 9 Fwalls [0, 4, 8] bad flats 0 sizes 0 [0, 0, 0] bad pairs 0 D-walls 0
+  D-wall multiplicities (#bad flats per D-wall): []
+  bad flats meeting F-walls: 0 []
+A4 roots 10 Xwalls 6 Fwalls [0, 4, 7] bad flats 0 sizes 0 [0, 0, 0] bad pairs 0 D-walls 0
+  D-wall multiplicities (#bad flats per D-wall): []
+  bad flats meeting F-walls: 0 []
+H3 roots 15 Xwalls 5 Fwalls [0, 3] bad flats 5 sizes 5 [0, 0, 0] bad pairs 5 D-walls 5
+  D-wall multiplicities (#bad flats per D-wall): [1, 1, 1, 1, 1]
+  bad flats meeting F-walls: 2 [[0, 14], [3, 13]]
+# exact small types: python3 exact.py A3 A4 H3 H3Y
+A3: roots 6, walls through L 3, fibre punctures 3, F-walls 2
+  rank-2 flats 7; bad flats 0 by size {}; bad pairs 0
+  collision walls 0; #walls carrying m bad flats: {}
+  bad flats containing an F-wall 0 by size {}; by #F-walls {}
+  per F-wall: 0:0, 3:0
+  modularity of L in A u D verified for all 3 pairs
+A4: roots 10, walls through L 6, fibre punctures 4, F-walls 3
+  rank-2 flats 25; bad flats 0 by size {}; bad pairs 0
+  collision walls 0; #walls carrying m bad flats: {}
+  bad flats containing an F-wall 0 by size {}; by #F-walls {}
+  per F-wall: 0:0, 4:0, 7:0
+  modularity of L in A u D verified for all 6 pairs
+H3: roots 15, walls through L 5, fibre punctures 10, F-walls 2
+  rank-2 flats 31; bad flats 5 by size {2: 5}; bad pairs 5
+  collision walls 5; #walls carrying m bad flats: {1: 5}
+  bad flats containing an F-wall 2 by size {2: 2}; by #F-walls {1: 2}
+  per F-wall: 0:1, 3:1
+  modularity of L in A u D verified for all 45 pairs
+H3Y: roots 15, walls through L 3, fibre punctures 12, F-walls 4
+  rank-2 flats 31; bad flats 15 by size {2: 9, 3: 6}; bad pairs 27
+  collision walls 9; #walls carrying m bad flats: {1: 3, 2: 6}
+  bad flats containing an F-wall 12 by size {2: 6, 3: 6}; by #F-walls {1: 12}
+  per F-wall: 2:3, 4:3, 5:3, 7:3
+  modularity of L in A u D verified for all 66 pairs

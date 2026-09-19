@@ -1,0 +1,1 @@
+{"name": "SL_3", "npts": 24, "cap": 0.0195, "status": 1, "msg": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)", "eps": null, "secs": 3200.2}

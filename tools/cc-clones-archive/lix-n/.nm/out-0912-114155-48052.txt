@@ -1,0 +1,30 @@
+[job] 11:42:02 acn112 waiting for clone lock
+[job] delta sync de1be2b16..2e8f27ae8: 52 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 2e8f27ae8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0912-114155-48052.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2334 oleans
+--- errors (first 80 lines)
+3:✖ [2248/2251] Building GroupApproximation.CharClass.OddPTopPowerAW (7.8s)
+5:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:122:51: `Fin.lt_iff_val_lt_val` has been deprecated: Use `Fin.lt_def` instead
+6:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:122:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+7:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:123:36: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+8:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:125:74: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+9:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:127:6: omega could not prove the goal:
+24:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:157:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+47:Full error:
+56:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:216:48: `Fin.coe_castSucc` has been deprecated: Use `Fin.val_castSucc` instead
+58:error: GroupApproximation/CharClass/OddPTopPowerAW.lean:381:14: 'GroupApproximation.CharClass.TopPow.tagBd_vtx' depends on axioms outside the classical allowlist: [sorryAx]
+59:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+63:error: Lean exited with code 1
+66:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAW (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAWChain (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerAWEval (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTopPowerHomotopy (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPTopPowerAW
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

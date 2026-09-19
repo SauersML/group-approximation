@@ -1,0 +1,822 @@
+SC AAAtATatatAATTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATatatAATTaattaTT,tATTAAttaaTATAtaTaaat,TATAtaTaaattATTAAttaa
+SC AAAtATatatATTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATatatATTaattaaTT,tAATTAAttaTATAtaTaaat,TATAtaTaaattAATTAAtta
+SC AAAtATatataTTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATatataTTaattAATT,tAATTAAAtATatataTTaat,TTAAttATATAtaTaaattaa
+SC AAAtATatataaTTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATatataaTTaattATT,tAATATAtaTaaattaTTAAt,TTAAttAATATAtaTaaatta
+SC AAAtATattAATTaatataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattAATTaatataTT,tAATTaatataTTAAAtATat,TTAAAtATattAATTaatata
+SC AAAtATattAATTaattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattAATTaattaTaT,tAATTaattaTaTAAAtATat,TAAAtATattAATTaattaTa
+SC AAAtATattAATaTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattAATaTaattaTT,tAATaTaattaTTAAAtATat,TTAAAtATattAATaTaatta
+SC AAAtATattATTaatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattATTaatataaTT,tAATATAAttaTTAtaTaaat,TTAAAtATattATTaatataa
+SC AAAtATattATTaattaaTaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATattATTaattaaTaT,tAATTAAttaTTAtaTaaatA,aTaTAAAtATattATTaatta
+SC AAAtATattATaTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattATaTaattaaTT,tAATTAAtAtaTTAtaTaaat,TTAAAtATattATaTaattaa
+SC AAAtATattaTTaatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattaTTaatatAATT,tATTAtaTaaattaaTATAAt,TATAAttATTAtaTaaattaa
+SC AAAtATattaTTaattAATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATattaTTaattAATaT,tAATaTAAAtATattaTTaat,TAAAtATattaTTaattAATa
+SC AAAtATattaTaTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattaTaTaattAATT,tAATTAAAtATattaTaTaat,TTAAtAtATTAtaTaaattaa
+SC AAAtATattaaTTaatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattaaTTaatatATT,tAATTAtaTaaattaTATAAt,TATAAttAATTAtaTaaatta
+SC AAAtATattaaTTaattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattaaTTaattATaT,tAATTAtaTaaatAtaTTAAt,TAAAtATattaaTTaattATa
+SC AAAtATattaaTaTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATattaaTaTaattATT,tAATTAtaTaaattaTTAAtA,aTaTaattATTAAAtATatta
+SC AAAtATaatatAATTattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaatatAATTattaTT,tATTAttaaTATAAtaTaaat,TATAAtaTaaattATTAttaa
+SC AAAtATaatatATTattaaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaatatATTattaaTT,tAATTAttaTATAAtaTaaat,TATAAtaTaaattAATTAtta
+SC AAAtATaatataTTattAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaatataTTattAATT,tAATTAAAtATaatataTTat,TTAttATATAAtaTaaattaa
+SC AAAtATaatataaTTattATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaatataaTTattATT,tAATATAAtaTaaattaTTAt,TTAttAATATAAtaTaaatta
+SC AAAtATaattAATTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattAATTatataTT,tAATTatataTTAAAtATaat,TTAAAtATaattAATTatata
+SC AAAtATaattAATTattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattAATTattaTaT,tAATTattaTaTAAAtATaat,TAAAtATaattAATTattaTa
+SC AAAtATaattAATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattAATaTattaTT,tAATaTattaTTAAAtATaat,TTAAAtATaattAATaTatta
+SC AAAtATaattATTatataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattATTatataaTT,tAATATAttaTTAAtaTaaat,TTAAAtATaattATTatataa
+SC AAAtATaattATTattaaTaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaattATTattaaTaT,tAATTAttaTTAAtaTaaatA,aTaTAAAtATaattATTatta
+SC AAAtATaattATaTattaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattATaTattaaTT,tAATTAtAtaTTAAtaTaaat,TTAAAtATaattATaTattaa
+SC AAAtATaattaTTatatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattaTTatatAATT,tATTAAtaTaaattaaTATAt,TATAttATTAAtaTaaattaa
+SC AAAtATaattaTTattAATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtATaattaTTattAATaT,tAATaTAAAtATaattaTTat,TAAAtATaattaTTattAATa
+SC AAAtATaattaTaTattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattaTaTattAATT,tAATTAAAtATaattaTaTat,TTAtAtATTAAtaTaaattaa
+SC AAAtATaattaaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattaaTTatatATT,tAATTAAtaTaaattaTATAt,TATAttAATTAAtaTaaatta
+SC AAAtATaattaaTTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattaaTTattATaT,tAATTAAtaTaaatAtaTTAt,TAAAtATaattaaTTattATa
+SC AAAtATaattaaTaTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtATaattaaTaTattATT,tAATTAAtaTaaattaTTAtA,aTaTattATTAAAtATaatta
+SC AAAtAtAATTataTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtAATTataTaattaTT,tAATTataTaattaTTAAAtA,aTaTaaattATTAAtATAtta
+SC AAAtAtAATTattaTTaataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtAATTattaTTaataT,tAATTattaTTaataTAAAtA,aTaTaaatATAAttATTAtta
+SC AAAtAtAATTaataTattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtAATTaataTattaTT,tAATTaataTattaTTAAAtA,aTaTaaattATTAtATAAtta
+SC AAAtAtAATTaattaTTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtAATTaattaTTataT,tAATTaattaTTataTAAAtA,aTaTaaatATAttATTAAtta
+SC AAAtAtAATTaattaTataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtAATTaattaTataTT,tAATTaattaTataTTAAAtA,aTaTaaattATAtATTAAtta
+SC AAAtAtAATataTTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtAATataTTaattaTT,tAATataTTaattaTTAAAtA,aTaTaaattATTAAttATAta
+SC AAAtAtATTataTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATTataTaattaaTT,tAATTAAtATAttaTaTaaat,TTAAAtAtATTataTaattaa
+SC AAAtAtATTattaaTTaataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtATTattaaTTaataT,tAATTAttaTaTaaatATAAt,TAAAtAtATTattaaTTaata
+SC AAAtAtATTaataTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATTaataTattaaTT,tAATTAtATAAttaTaTaaat,TTAAAtAtATTaataTattaa
+SC AAAtAtATTaattATataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATTaattATataaTT,tAATAtaTTAAttaTaTaaat,TTAAAtAtATTaattATataa
+SC AAAtAtATTaattaaTTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtATTaattaaTTataT,tAATTAAttaTaTaaatATAt,TAAAtAtATTaattaaTTata
+SC AAAtAtATTaattaaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATTaattaaTatATT,tAATTAAttaTaTaaattaTA,aTatATTAAAtAtATTaatta
+SC AAAtAtATatATTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATatATTaattaaTT,tAATTAAttaTAtaTaTaaat,TAtaTaTaaattAATTAAtta
+SC AAAtAtATataaTTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtATataaTTaattATT,tAATAtaTaTaaattaTTAAt,TTAAttAATAtaTaTaaatta
+SC AAAtAtaTTataTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaTTataTaattAATT,tAATTAAAtAtaTTataTaat,TTAAtATAttATaTaaattaa
+SC AAAtAtaTTattAATTaataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaTTattAATTaataT,tAATTaataTAAAtAtaTTat,TAAAtAtaTTattAATTaata
+SC AAAtAtaTTaataTattAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaTTaataTattAATT,tAATTAAAtAtaTTaataTat,TTAtATAAttATaTaaattaa
+SC AAAtAtaTTaattAATTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaTTaattAATTataT,tAATTataTAAAtAtaTTaat,TAAAtAtaTTaattAATTata
+SC AAAtAtaTTaattAATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaTTaattAATataTT,tAATataTTAAAtAtaTTaat,TTAAAtAtaTTaattAATata
+SC AAAtAtaTTaattaTatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaTTaattaTatAATT,tATTAAttATaTaaattaaTA,aTAtATTAAttATaTaaatta
+SC AAAtAtaTatAATTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaTatAATTaattaTT,tATTAAttaaTAtATaTaaat,TAtATaTaaattATTAAttaa
+SC AAAtAtaTataTTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaTataTTaattAATT,tAATTAAAtAtaTataTTaat,TTAAttATAtATaTaaattaa
+SC AAAtAtaaTTataTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaaTTataTaattATT,tAATaTaaattaTTAAtATAt,TTAAtATAttAATaTaaatta
+SC AAAtAtaaTTattATTaataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaaTTattATTaataT,tAATaTaaatATAAttaTTAt,TAAAtAtaaTTattATTaata
+SC AAAtAtaaTTaataTattATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaaTTaataTattATT,tAATaTaaattaTTAtATAAt,TTAtATAAttAATaTaaatta
+SC AAAtAtaaTTaattATTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtAtaaTTaattATTataT,tAATaTaaatATAttaTTAAt,TAAAtAtaaTTaattATTata
+SC AAAtAtaaTTaattATatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaaTTaattATatATT,tAATaTaaattaTAtaTTAAt,TAtaTTAAttAATaTaaatta
+SC AAAtAtaaTatATTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtAtaaTatATTaattATT,tAATaTaaattaTTAAttaTA,aTatATTaattATTAAAtAta
+SC AAAtaTatAtAATTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTatAtAATTaattaTT,tAATTaattaTTAAAtaTatA,aTaTAtATaaattATTAAtta
+SC AAAtaTatAtATTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTatAtATTaattaaTT,tAATTAAttaTaTAtATaaat,TAtATaaattAATTAAttaTa
+SC AAAtaTatAtaTTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTatAtaTTaattAATT,tAATTAAAtaTatAtaTTaat,TAtATaaattaaTTAAttATa
+SC AAAtaTatAtaaTTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTatAtaaTTaattATT,tAATaTAtATaaattaTTAAt,TAtATaaattaTTAAttAATa
+SC AAAtaTattAATTaatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattAATTaatAtaTT,tAATTaatAtaTTAAAtaTat,TAAttaaTTAtATaaattATa
+SC AAAtaTattAATATaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattAATATaattaTT,tAATATaattaTTAAAtaTat,TTAAAtaTattAATATaatta
+SC AAAtaTattATTaatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattATTaatAtaaTT,tAATaTAAttaTTAtATaaat,TAAttaTTAtATaaattAATa
+SC AAAtaTattATATaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattATATaattaaTT,tAATTAAtataTTAtATaaat,TTAAAtaTattATATaattaa
+SC AAAtaTattaTTaatAtAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattaTTaatAtAATT,tAATTAAAtaTattaTTaatA,aTaTAAttATTAtATaaatta
+SC AAAtaTattaTATaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattaTATaattAATT,tAATTAAAtaTattaTATaat,TATaattAATTAAAtaTatta
+SC AAAtaTattaaTTaatAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattaaTTaatAtATT,tAATTAtATaaattaTaTAAt,TAAttAATTAtATaaattaTa
+SC AAAtaTattaaTATaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTattaaTATaattATT,tATTAAAtaTattaaTATaat,TATaattATTAAAtaTattaa
+SC AAAtaTaatAtAATTattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtaTaatAtAATTattaTT,tAATTattaTTAAAtaTaatA,aTaTAAtATaaattATTAtta
+SC AAAtaTaatAtATTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaatAtATTattaaTT,tAATTAttaTaTAAtATaaat,TAAtATaaattAATTAttaTa
+SC AAAtaTaatAtaTTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaatAtaTTattAATT,tAATTAAAtaTaatAtaTTat,TAAtATaaattaaTTAttATa
+SC AAAtaTaatAtaaTTattATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtaTaatAtaaTTattATT,tAATaTAAtATaaattaTTAt,TAAtATaaattaTTAttAATa
+SC AAAtaTaattAATTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattAATTatAtaTT,tAATTatAtaTTAAAtaTaat,TAttaaTTAAtATaaattATa
+SC AAAtaTaattAATATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattAATATattaTT,tAATATattaTTAAAtaTaat,TTAAAtaTaattAATATatta
+SC AAAtaTaattATTatAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattATTatAtaaTT,tAATaTAttaTTAAtATaaat,TAttaTTAAtATaaattAATa
+SC AAAtaTaattATATattaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattATATattaaTT,tAATTAtataTTAAtATaaat,TTAAAtaTaattATATattaa
+SC AAAtaTaattaTTatAtAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattaTTatAtAATT,tAATTAAAtaTaattaTTatA,aTaTAttATTAAtATaaatta
+SC AAAtaTaattaTATattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattaTATattAATT,tAATTAAAtaTaattaTATat,TATattAATTAAAtaTaatta
+SC AAAtaTaattaaTTatAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattaaTTatAtATT,tAATTAAtATaaattaTaTAt,TAttAATTAAtATaaattaTa
+SC AAAtaTaattaaTATattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtaTaattaaTATattATT,tATTAAAtaTaattaaTATat,TATattATTAAAtaTaattaa
+SC AAAtatAATTatATaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatAATTatATaattaTT,tATTAAtaTAttaaTATaaat,TATaaattATTAAtaTAttaa
+SC AAAtatAATTaatATattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtatAATTaatATattaTT,tATTAtaTAAttaaTATaaat,TAAttaaTATaaattATTAta
+SC AAAtatAATTaattaTAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatAATTaattaTAtaTT,tATatATTAAttaaTATaaat,TATaaattATatATTAAttaa
+SC AAAtatAATAtaTTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatAATAtaTTaattaTT,tATTAAttATataaTATaaat,TATaaattATTAAttATataa
+SC AAAtatATTatATaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATTatATaattaaTT,tAATTAAtaTAttaTATaaat,TATaaattAATTAAtaTAtta
+SC AAAtatATTaatATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATTaatATattaaTT,tAATTAtaTAAttaTATaaat,TAAttaTATaaattAATTAta
+SC AAAtatATTaattATAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATTaattATAtaaTT,tAATataTTAAttaTATaaat,TATaaattAATataTTAAtta
+SC AAAtatATTaattaaTAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATTaattaaTAtATT,tATTAAAtatATTaattaaTA,aTAtATTAAAtatATTaatta
+SC AAAtatATAtATTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATAtATTaattaaTT,tAATTAAttaTataTATaaat,TATaaattAATTAAttaTata
+SC AAAtatATAtaaTTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtatATAtaaTTaattATT,tAATataTATaaattaTTAAt,TATaaattaTTAAttAATata
+SC AAAtataTTatATaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataTTatATaattAATT,tAATTAAAtataTTatATaat,TAttATATaaattaaTTAAta
+SC AAAtataTTaatATattAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtataTTaatATattAATT,tAATTAAAtataTTaatATat,TAAttATATaaattaaTTAta
+SC AAAtataTTaattAATAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataTTaattAATAtaTT,tAATAtaTTAAAtataTTaat,TTAAAtataTTaattAATAta
+SC AAAtataTTaattaTAtAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataTTaattaTAtAATT,tAATTAAAtataTTaattaTA,aTatATTAAttATATaaatta
+SC AAAtataTAtAATTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataTAtAATTaattaTT,tAATTaattaTTAAAtataTA,aTatATATaaattATTAAtta
+SC AAAtataTAtaTTaattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataTAtaTTaattAATT,tAATTAAAtataTAtaTTaat,TAtaTTaattAATTAAAtata
+SC AAAtataaTTatATaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataaTTatATaattATT,tAATATaaattaTTAAtaTAt,TAttAATATaaattaTTAAta
+SC AAAtataaTTaatATattATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAtataaTTaatATattATT,tAATATaaattaTTAtaTAAt,TAAttAATATaaattaTTAta
+SC AAAtataaTTaattATAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataaTTaattATAtATT,tAATATaaattaTataTTAAt,TTAAttAATATaaattaTata
+SC AAAtataaTAtATTaattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAtataaTAtATTaattATT,tATTAAAtataaTAtATTaat,TAtATTaattATTAAAtataa
+SC AAAttAATTatATaatataTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttAATTatATaatataTT,tAATTatATaatataTTAAAt,TAttaaTTaaattATATAAta
+SC AAAttAATTataTaatAtaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttAATTataTaatAtaTT,tAATTataTaatAtaTTAAAt,TAAtATAttaaTTaaattATa
+SC AAAttAATTaatATatataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATTaatATatataTT,tAATTaatATatataTTAAAt,TAAttaaTTaaattATATAta
+SC AAAttAATTaatAtaTataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATTaatAtaTataTT,tAATTaatAtaTataTTAAAt,TAAttaaTTaaattATAtATa
+SC AAAttAATTaataTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATTaataTatAtaTT,tAATTaataTatAtaTTAAAt,TAtATAAttaaTTaaattATa
+SC AAAttAATTaatataTAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATTaatataTAtaTT,tAATTaatataTAtaTTAAAt,TAtaTTAAAttAATTaatata
+SC AAAttAATATataTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATATataTaattaTT,tAATATataTaattaTTAAAt,TTAAAttAATATataTaatta
+SC AAAttAATATaataTattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttAATATaataTattaTT,tAATATaataTattaTTAAAt,TTAAAttAATATaataTatta
+SC AAAttAATATaattaTataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATATaattaTataTT,tAATATaattaTataTTAAAt,TTAAAttAATATaattaTata
+SC AAAttAATAtaTTaatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATAtaTTaatataTT,tAATAtaTTaatataTTAAAt,TTAAAttAATAtaTTaatata
+SC AAAttAATAtaTaTaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATAtaTaTaattaTT,tAATAtaTaTaattaTTAAAt,TTAAAttAATAtaTaTaatta
+SC AAAttAATaTatATaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATaTatATaattaTT,tAATaTatATaattaTTAAAt,TAtAtaaTTaaattATTAAta
+SC AAAttAATaTaatATattaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttAATaTaatATattaTT,tAATaTaatATattaTTAAAt,TAAtAtaaTTaaattATTAta
+SC AAAttAATaTaattaTAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATaTaattaTAtaTT,tAATaTaattaTAtaTTAAAt,TAtaTTAAAttAATaTaatta
+SC AAAttAATataTTaatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATataTTaatAtaTT,tAATataTTaatAtaTTAAAt,TAAttATAtaaTTaaattATa
+SC AAAttAATataTATaattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttAATataTATaattaTT,tAATataTATaattaTTAAAt,TATaattaTTAAAttAATata
+SC AAAttATTatATaatataaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttATTatATaatataaTT,tAATATAAtaTAttaTTaaat,TAttaTTaaattAATATAAta
+SC AAAttATTataTaatAtaaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AAAttATTataTaatAtaaTT,tAATaTAAtATAttaTTaaat,TAAtATAttaTTaaattAATa
+SC AAAttATTaatATatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaatATatataaTT,tAATATAtaTAAttaTTaaat,TAAttaTTaaattAATATAta
+SC AAAttATTaatAtATataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaatAtATataaTT,tAATAtaTaTAAttaTTaaat,TAAttaTTaaattAATAtaTa
+SC AAAttATTaatAtaaTatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaatAtaaTatATT,tAATaTAAttaTTaaattaTA,aTatATTAAAttATTaatAta
+SC AAAttATTaataTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaataTatAtaaTT,tAATaTAtATAAttaTTaaat,TAtATAAttaTTaaattAATa
+SC AAAttATTaatatATAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaatatATAtaaTT,tAATataTATAAttaTTaaat,TATAAttaTTaaattAATata
+SC AAAttATTaatataaTAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATTaatataaTAtATT,tATTAAAttATTaatataaTA,aTAtATTAAAttATTaatata
+SC AAAttATATataTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATATataTaattaaTT,tAATTAAtATAtataTTaaat,TTAAAttATATataTaattaa
+SC AAAttATATaataTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATATaataTattaaTT,tAATTAtATAAtataTTaaat,TTAAAttATATaataTattaa
+SC AAAttATATaattATataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATATaattATataaTT,tAATAtaTTAAtataTTaaat,TTAAAttATATaattATataa
+SC AAAttATATaattaaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATATaattaaTatATT,tAATTAAtataTTaaattaTA,aTatATTAAAttATATaatta
+SC AAAttATAtATTaatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATAtATTaatataaTT,tAATATAAttaTataTTaaat,TTAAAttATAtATTaatataa
+SC AAAttATAtATaTaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATAtATaTaattaaTT,tAATTAAtAtaTataTTaaat,TTAAAttATAtATaTaattaa
+SC AAAttATAtaaTTaatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATAtaaTTaatatATT,tAATataTTaaattaTATAAt,TATAAttAATataTTaaatta
+SC AAAttATaTatATaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATaTatATaattaaTT,tAATTAAtaTAtAtaTTaaat,TAtAtaTTaaattAATTAAta
+SC AAAttATaTaatATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATaTaatATattaaTT,tAATTAtaTAAtAtaTTaaat,TAAtAtaTTaaattAATTAta
+SC AAAttATaTaattATAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATaTaattATAtaaTT,tAATataTTAAtAtaTTaaat,TTAAAttATaTaattATAtaa
+SC AAAttATatATTaatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATatATTaatAtaaTT,tAATaTAAttaTAtaTTaaat,TAAttaTAtaTTaaattAATa
+SC AAAttATatATATaattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttATatATATaattaaTT,tAATTAAtataTAtaTTaaat,TAtaTTaaattAATTAAtata
+SC AAAttaTTaatAtAATataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttaTTaatAtAATataTT,tAATataTTAAAttaTTaatA,aTaTAAttATTaaattATAta
+SC AAAttaTTaatatAATAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttaTTaatatAATAtaTT,tATTaaattATataaTATAAt,TATAAttATTaaattATataa
+SC AAAttaTATaattAATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttaTATaattAATataTT,tAATataTTAAAttaTATaat,TATaattAATataTTAAAtta
+SC AAAttaTAtAATTaatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAAttaTAtAATTaatataTT,tAATTaatataTTAAAttaTA,aTatATTaaattATATAAtta
+SC AAtAATataTattAATataTT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATataTTAAtAATataTatt,TAAtAATataTattAATataT,taTTAAtAATataTattAATa
+SC AAtAATataTattATataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtATAtaaTaatt,TAAtAATataTattATataaT,taTattATataaTTAAtAATa
+SC AAtAATataTattaTatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATataTattaTat,TAAtAATataTattaTatAAT,tAATTAAtAATataTattaTa
+SC AAtAATataTattaaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtaaTaattaTAt,TAAtAATataTattaaTatAT,tATTAAtAATataTattaaTa
+SC AAtAATatatAATTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTTAAtAATatat,TAAtAATatatAATTatataT,tAATTatataTTAAtAATata
+SC AAtAATatatAATTattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaTAAtAATatat,TAtaaTaatAtATTAttaaTA,aTATAtaaTaatAtATTAtta
+SC AAtAATatatAATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTTAAtAATatat,TAAtAATatatAATaTattaT,tAATaTattaTTAAtAATata
+SC AAtAATatatATTatataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTATAtaaTaatt,TAAtAATatatATTatataaT,tATTatataaTTAAtAATata
+SC AAtAATatatATTattaaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTATAtaaTaatAt,TAtaaTaatAtAATTAttaTA,aTaTAAtAATatatATTatta
+SC AAtAATatatATaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTATAtaaTaatt,TAAtAATatatATaTattaaT,tATaTattaaTTAAtAATata
+SC AAtAATatataTTatatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATatataTTatat,TAAtAATatataTTatatAAT,tAATTAAtAATatataTTata
+SC AAtAATatataTTattAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAATatataTTatt,TATAtaaTaatAtaaTTAttA,aTTAttATATAtaaTaatAta
+SC AAtAATatataTaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATatataTaTatt,TAAtAATatataTaTattAAT,taTaTattAATTAAtAATata
+SC AAtAATatataaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaaTaattaTATAtt,TAAtAATatataaTTatatAT,tATTAAtAATatataaTTata
+SC AAtAATatataaTTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaaTaatAtaTTAtt,TATAtaaTaatAtaTTAttAA,aTTattATaTAAtAATatata
+SC AAtAATatataaTaTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaaTaattaTTAtAt,TAAtAATatataaTaTattAT,taaTaTattATTAAtAATata
+SC AAtAATataatAATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaaTaattATTAttaaT,tAATataatAATTattaTTAA,aTAATAtaaTaattATTAtta
+SC AAtAATataatATTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaaTaattAATTAttaT,tAATTAttaTAATAtaaTaat,TAATAtaaTaattAATTAtta
+SC AAtAATataataTTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaaTaattaaTTAttAT,tAATTAAtAATataataTTat,TTAttATAATAtaaTaattaa
+SC AAtAATataataaTTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAATAtaaTaattaTTAtt,TAATAtaaTaattaTTAttAA,aTTattATTAAtAATataata
+SC AAtAATattAATTatataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTaTAAtAATatt,TATAttaaTTAtaaTaatAtA,aTTAtaaTaatAtATATAtta
+SC AAtAATattAATTataataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTTAtaaTaattAT,tAATTataataTTAAtAATat,TTAAtAATattAATTataata
+SC AAtAATattAATTattaTaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaaTAAtAATatt,TAtaaTaatAAtATTAttaaT,tAAtATTAttaaTTAtaaTaa
+SC AAtAATattAATaTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatataTTAAtAATatt,TAAtAATattAATaTatataT,taTTAAtAATattAATaTata
+SC AAtAATattAATaTattaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTaTAAtAATatt,TAtAtaaTTAtaaTaatAtAT,tAtATTAtAtaaTTAtaaTaa
+SC AAtAATattAATataTTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTataTAAtAATatt,TAtaaTTAtaaTaatATAttA,aTTAtaaTaatATAttATAta
+SC AAtAATattAATataTataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTataTTAAtAATatt,TAAtAATattAATataTataT,taTTAAtAATattAATataTa
+SC AAtAATattAATaaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTattaTTAAtAATatt,TAAtAATattAATaaTattaT,ttAATaaTattaTTAAtAATa
+SC AAtAATattATTatataaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTTAtaaTaatAt,TATAttaTTAtaaTaatAtAA,aTaTAAtAATattATTatata
+SC AAtAATattATTataataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAATAttaTTAtaaTaatt,TAATAttaTTAtaaTaattAA,aTTAAtAATattATTataata
+SC AAtAATattATTattaaTaaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAttaTTAtaaTaatAAt,TAtaaTaatAAtAATTAttaT,tAAtAATTAttaTTAtaaTaa
+SC AAtAATattATaTatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtAtaTTAtaaTaatt,TAAtAATattATaTatataaT,taaTTAAtAATattATaTata
+SC AAtAATattATaTattaaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTTAtaaTaatAt,TAtAtaTTAtaaTaatAtAAT,tAtAATTAtAtaTTAtaaTaa
+SC AAtAATattATatATataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTAtaTTAtaaTaatt,TAAtAATattATatATataaT,tATataaTTAAtAATattATa
+SC AAtAATattATataaTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtaaTaatATAtt,TAtaTTAtaaTaatATAttAA,aTTataTAAtAATattATata
+SC AAtAATattATataaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtaaTaattaTAt,TAAtAATattATataaTatAT,tATTAAtAATattATataaTa
+SC AAtAATattATaaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAAtaTTAtaaTaatt,TAAtAATattATaaTattaaT,ttAATTAtAAtaTTAtaaTaa
+SC AAtAATattaTTatatAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAATattaTTatat,TAtaaTaatAtaaTATAttAT,tAATaTAAtAATattaTTata
+SC AAtAATattaTTataatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATTAtaaTaattaaT,tAATattaTTataatAATTAA,aTAATAttATTAtaaTaatta
+SC AAtAATattaTTattAATaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAAtAATattaTTatt,TAtaaTaatAAtaaTTAttAT,tAAtaaTTAttATTAtaaTaa
+SC AAtAATattaTaTatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATattaTaTatat,TAAtAATattaTaTatatAAT,tAATTAAtAATattaTaTata
+SC AAtAATattaTaTattAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAATattaTaTatt,TAtAtATTAtaaTaatAtaaT,tAtaaTTAtAtATTAtaaTaa
+SC AAtAATattaTatAATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAATattaTat,TAtaaTaatATAttaaTAtAT,tAATTataTAAtAATattaTa
+SC AAtAATattaTatAATataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTAAtAATattaTat,TAAtAATattaTatAATataT,tAATataTTAAtAATattaTa
+SC AAtAATattaTataTatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATattaTataTat,TAAtAATattaTataTatAAT,tAATTAAtAATattaTataTa
+SC AAtAATattaTaaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAATattaTaaTatt,TAAtAATattaTaaTattAAT,ttAATTAAtAATattaTaaTa
+SC AAtAATattaaTTatatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaatAtaTATAtt,TAtaaTaatAtaTATAttAAT,tATaTAAtAATattaaTTata
+SC AAtAATattaaTTataatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATTAtaaTaattaT,tAATTAtaaTaattaTAATAt,TAATAttAATTAtaaTaatta
+SC AAtAATattaaTTattATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaatAAtaTTAtt,TAtaaTaatAAtaTTAttAAT,tAAtaTTAttAATTAtaaTaa
+SC AAtAATattaaTaTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaattaTATAtAt,TAAtAATattaaTaTatatAT,tATTAAtAATattaaTaTata
+SC AAtAATattaaTaTattATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaatAtaTTAtAt,TAtAtAATTAtaaTaatAtaT,tAtaTTAtAtAATTAtaaTaa
+SC AAtAATattaaTatATTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaatATAttaTAt,TAtaaTaatATAttaTAtAAT,tATAttaTAtAATTAtaaTaa
+SC AAtAATattaaTatATatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTaattaTAtaTAt,TAAtAATattaaTatATatAT,tATTAAtAATattaaTatATa
+SC AAtAATattaaTaaTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAtaaTaattaTTAtAAt,TAAtAATattaaTaaTattAT,ttATTAAtAATattaaTaaTa
+SC AAtAAtAATTataTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTatataTTAAtAAt,TAAtAAtAATTataTatataT,taTTAAtAAtAATTataTata
+SC AAtAAtAATTataTattaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTattaTaTAAtAAt,TAtATAttaaTaaTaatAtAT,tAtATTAtATAttaaTaaTaa
+SC AAtAAtAATTatataTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTTataTAAtAAt,TATAttaaTaaTaatATAttA,aTaaTaatATAttATATAtta
+SC AAtAAtAATTataaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTaaTaattATTAt,TAAtAAtAATTataaTattaT,taaTattaTTAAtAAtAATTa
+SC AAtAAtAATTattaTTataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATTAttaaTaaTaat,TAttATTAttaaTaaTaatAA,aTAAtAAtAATTattaTTata
+SC AAtAAtAATTattaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaTataTAAtAAt,TAtAtATTAttaaTaaTaatA,aTaaTaatATAtAtATTAtta
+SC AAtAAtAATTattaTataTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTataTaTAAtAAt,TAtATTAttaaTaaTaatAtA,aTaaTaatAtATAtATTAtta
+SC AAtAAtAATaTattaTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTTataTAAtAAt,TAtAtaaTaaTaatATAttAT,tATAttATTAtAtaaTaaTaa
+SC AAtAAtATTataTatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtATAttaTaaTaatt,TAAtAAtATTataTatataaT,taTatataaTTAAtAAtATTa
+SC AAtAAtATTataTattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAttaTaaTaatAt,TAtATAttaTaaTaatAtAAT,tAtAATTAtATAttaTaaTaa
+SC AAtAAtATTatatATataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTATAttaTaaTaatt,TAAtAAtATTatatATataaT,tATataaTTAAtAAtATTata
+SC AAtAAtATTatataaTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTaaTaatATAtt,TATAttaTaaTaatATAttAA,aTTataTAAtAAtATTatata
+SC AAtAAtATTatataaTatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTaaTaattaTAt,TAAtAAtATTatataaTatAT,tATTAAtAAtATTatataaTa
+SC AAtAAtATTataaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTaaTaattAATTAt,TAAtAAtATTataaTattaaT,taaTattaaTTAAtAAtATTa
+SC AAtAAtATTattATataaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAttaTaaTaatAt,TAtaTTAttaTaaTaatAtAA,aTaTAAtAAtATTattATata
+SC AAtAAtATTattaaTTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATTAttaTaaTaat,TAttAATTAttaTaaTaatAA,aTAAtAAtATTattaaTTata
+SC AAtAAtATTattaaTaTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaaTaatATAtAt,TAtAtAATTAttaTaaTaatA,aTaTataTAAtAAtATTatta
+SC AAtAAtATTattaaTatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaaTaatAtaTAt,TAttaTaaTaatAtaTAtAAT,tATaTAAtAAtATTattaaTa
+SC AAtAAtATaTataTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtAtaTaaTaatt,TAAtAAtATaTataTattaaT,taTattaaTTAAtAAtATaTa
+SC AAtAAtATaTattATataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtAtaTaaTaatt,TAAtAAtATaTattATataaT,taaTTAAtAAtATaTattATa
+SC AAtAAtATaTattaaTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaaTaatATAtt,TAtAtaTaaTaatATAttAAT,tATAttAATTAtAtaTaaTaa
+SC AAtAAtATaTattaaTatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaaTaattaTAt,TAAtAAtATaTattaaTatAT,tATTAAtAAtATaTattaaTa
+SC AAtAAtATatATTatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTAtaTaaTaatt,TAAtAAtATatATTatataaT,tATTatataaTTAAtAAtATa
+SC AAtAAtATatATTattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTAtaTaaTaatAt,TAttaTAtaTaaTaatAtAAT,tATTattaaTaTAAtAAtATa
+SC AAtAAtATatATaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTAtaTaaTaatt,TAAtAAtATatATaTattaaT,tATaTattaaTTAAtAAtATa
+SC AAtAAtATataaTTatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaaTaattaTATAtt,TAAtAAtATataaTTatatAT,tATTAAtAAtATataaTTata
+SC AAtAAtATataaTTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaaTaatAtaTTAtt,TAtaTaaTaatAtaTTAttAA,aTTattATaTAAtAAtATata
+SC AAtAAtATataaTaTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaaTaattaTTAtAt,TAAtAAtATataaTaTattAT,taaTaTattATTAAtAAtATa
+SC AAtAAtATaatATTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTAAtaTaaTaatt,TAAtAAtATaatATTattaaT,tATTattaaTTAAtAAtATaa
+SC AAtAAtaTTataTatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTTataTatat,TAAtAAtaTTataTatatAAT,tAATTAAtAAtaTTataTata
+SC AAtAAtaTTataTattAATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAAtAAtaTTataTatt,TAtATAttATaaTaatAtaaT,tAtaaTTAtATAttATaaTaa
+SC AAtAAtaTTatatAATTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAAtaTTatat,TAttATaaTaatATAttaaTA,aTATAttATaaTaatATAtta
+SC AAtAAtaTTatatAATataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtAAtaTTatat,TAAtAAtaTTatatAATataT,tAATataTTAAtAAtaTTata
+SC AAtAAtaTTatataTatAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtAAtaTTatataTat,TAAtAAtaTTatataTatAAT,tAATTAAtAAtaTTatataTa
+SC AAtAAtaTTataaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATaaTaattaaTTAt,TAAtAAtaTTataaTattAAT,taaTattAATTAAtAAtaTTa
+SC AAtAAtaTTattAATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTTAttATaaTaat,TAttATaaTaatAATAttaaT,tAATAttaaTTAttATaaTaa
+SC AAtAAtaTTattAATaTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTataTAAtAAtaTTatt,TAtAtaaTTAttATaaTaatA,aTTAttATaaTaatATAtAta
+SC AAtAAtaTTattAATataTaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATataTaTAAtAAtaTTatt,TAtaaTTAttATaaTaatAtA,aTTAttATaaTaatAtATAta
+SC AAtAAtaTTattAATaataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAAtAAtaTTatt,TAAtAAtaTTattAATaataT,taTTAAtAAtaTTattAATaa
+SC AAtAAtaTTattaTatAATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAAtAAtaTTattaTat,TAttATaaTaatAtaaTAtAT,tAATaTAAtAAtaTTattaTa
+SC AAtAAtaTTattaTaatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTTattaTaat,TAAtAAtaTTattaTaatAAT,tAATTAAtAAtaTTattaTaa
+SC AAtAAtaTaTataTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTaTataTatt,TAAtAAtaTaTataTattAAT,taTattAATTAAtAAtaTaTa
+SC AAtAAtaTaTattAATTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTataTAAtAAtaTaTatt,TAtAtATaaTaatATAttaaT,tATAttaaTTAtAtATaaTaa
+SC AAtAAtaTaTattAATataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtAAtaTaTatt,TAAtAAtaTaTattAATataT,taTTAAtAAtaTaTattAATa
+SC AAtAAtaTaTattaTatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTaTattaTat,TAAtAAtaTaTattaTatAAT,tAATTAAtAAtaTaTattaTa
+SC AAtAAtaTatAATTatataTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTatataTTAAtAAtaTat,TAAtAAtaTatAATTatataT,tAATTatataTTAAtAAtaTa
+SC AAtAAtaTatAATTattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaTAAtAAtaTat,TAttaaTAtATaaTaatAtAT,tAATTattaTaTAAtAAtaTa
+SC AAtAAtaTatAATaTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTTAAtAAtaTat,TAAtAAtaTatAATaTattaT,tAATaTattaTTAAtAAtaTa
+SC AAtAAtaTataTTatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTataTTatat,TAAtAAtaTataTTatatAAT,tAATTAAtAAtaTataTTata
+SC AAtAAtaTataTTattAATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAAtAAtaTataTTatt,TAtATaaTaatAtaaTTAttA,aTTAttATAtATaaTaatAta
+SC AAtAAtaTataTaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTataTaTatt,TAAtAAtaTataTaTattAAT,taTaTattAATTAAtAAtaTa
+SC AAtAAtaTaatAATTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTTAAtAAtaTaat,TAAtAAtaTaatAATTattaT,tAATTattaTTAAtAAtaTaa
+SC AAtAAtaTaataTTattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAAtaTaataTTatt,TAAtAAtaTaataTTattAAT,taTTattAATTAAtAAtaTaa
+SC AAtAAtaaTTataTatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTATAtATAtt,TAAtAAtaaTTataTatatAT,tATTAAtAAtaaTTataTata
+SC AAtAAtaaTTataTattATaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaaTaatAtaTTAtATAtt,TAtATAttAATaaTaatAtaT,tAtaTTAtATAttAATaaTaa
+SC AAtAAtaaTTatatATTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaatATAttaTATAtt,TAttAATaaTaatATAttaTA,aTTatatATTataTAAtAAta
+SC AAtAAtaaTTatatATatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTAtaTATAtt,TAAtAAtaaTTatatATatAT,tATTAAtAAtaaTTatatATa
+SC AAtAAtaaTTataaTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATaaTaattaTTAt,TAAtAAtaaTTataaTattAT,taaTattATTAAtAAtaaTTa
+SC AAtAAtaaTTattATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTTAttAATaaTaat,TAttAATaaTaatAATAttaT,tAATAttaTTAttAATaaTaa
+SC AAtAAtaaTTattATaTataT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaaTaatATAtAtaTTAtt,TAtAtaTTAttAATaaTaatA,aTTattATaTataTAAtAAta
+SC AAtAAtaaTTattATatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaatAtaTAtaTTAtt,TAttAATaaTaatAtaTAtaT,tATaTAAtAAtaaTTattATa
+SC AAtAAtaaTTattATaatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTAAtaTTAtt,TAAtAAtaaTTattATaatAT,tATTAAtAAtaaTTattATaa
+SC AAtAAtaaTaTataTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTTAtATAtAt,TAAtAAtaaTaTataTattAT,taTattATTAAtAAtaaTaTa
+SC AAtAAtaaTaTattATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaatATAttaTTAtAt,TAtAtAATaaTaatATAttaT,tATAttaTTAtAtAATaaTaa
+SC AAtAAtaaTaTattATatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTAtaTTAtAt,TAAtAAtaaTaTattATatAT,tATTAAtAAtaaTaTattATa
+SC AAtAAtaaTatATTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTATAttaTAt,TAAtAAtaaTatATTatatAT,tATTAAtAAtaaTatATTata
+SC AAtAAtaaTatATTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaatAtaTTAttaTAt,TAttaTAtAATaaTaatAtaT,tATTattATaTAAtAAtaaTa
+SC AAtAAtaaTatATaTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTaattaTTAtAtaTAt,TAAtAAtaaTatATaTattAT,tATaTattATTAAtAAtaaTa
+SC AAtATatATatatAATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtATatATatat,TAAtATatATatatAATataT,tAATataTTAAtATatATata
+SC AAtATatATatatATataaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATAtaTATAtaTAtaTaatt,TAAtATatATatatATataaT,tATataaTTAAtATatATata
+SC AAtATatATatataTatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATatATatataTat,TAAtATatATatataTatAAT,tAATTAAtATatATatataTa
+SC AAtATatATatataaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTAtaTaattaTAt,TAAtATatATatataaTatAT,tATTAAtATatATatataaTa
+SC AAtATatATattAATataTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTaTAAtATatATatt,TAtaTAtaTaatAtATAtaaT,tATattAATataTaTAAtATa
+SC AAtATatATattAATaataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAAtATatATatt,TAAtATatATattAATaataT,tATattAATaataTTAAtATa
+SC AAtATatATattATataaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtaTAtaTaatAt,TAtaTAtaTaatAtAATAtaT,tATattATataaTaTAAtATa
+SC AAtATatATattaTatAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATatATattaTat,TAtaTAtaTaatAtaaTAtAT,tAATaTAAtATatATattaTa
+SC AAtATatATattaTaatAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtATatATattaTaat,TAAtATatATattaTaatAAT,tAATTAAtATatATattaTaa
+SC AAtATatATattaaTatATaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAtaTAtaTaatAtaTAt,TAtaTAtaTaatAtaTAtAAT,tATaTAAtATatATattaaTa
+SC AAtATatAtAATTatataTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTaTAAtATatAt,TATAttaaTaTAtaTaatAtA,aTaTAtaTaatAtATATAtta
+SC AAtATatAtAATTataataTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAttaaTaTAtaTaattAT,tAATTataataTTAAtATatA,aTaTAtaTaattATAATAtta
+SC AAtATatAtAATTattaTaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTaaTAAtATatAt,TAttaaTaTAtaTaatAAtAT,tAAtATTAttaaTaTAtaTaa
+SC AAtATatAtAATaTatataTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTatataTTAAtATatAt,TAAtATatAtAATaTatataT,tAtAATaTatataTTAAtATa
+SC AAtATatAtAATaTattaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTaTAAtATatAt,TAtAtaaTaTAtaTaatAtAT,tAtAATaTattaTaTAAtATa
+SC AAtATatAtAATataTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTataTAAtATatAt,TAtaaTaTAtaTaatATAttA,aTaTAtaTaatATAttATAta
+SC AAtATatAtAATataTataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTataTTAAtATatAt,TAAtATatAtAATataTataT,tAtAATataTataTTAAtATa
+SC AAtATatAtAATaaTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTattaTTAAtATatAt,TAAtATatAtAATaaTattaT,tAtAATaaTattaTTAAtATa
+SC AAtATatAtATTatataaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTaTAtaTaatAt,TATAttaTaTAtaTaatAtAA,aTaTAAtATatAtATTatata
+SC AAtATatAtATaTatataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtAtaTaTAtaTaatt,TAAtATatAtATaTatataaT,tAtATaTatataaTTAAtATa
+SC AAtATatAtATaTattaaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaTAtaTaatAt,TAtAtaTaTAtaTaatAtAAT,tAtAATTAtAtaTaTAtaTaa
+SC AAtATatAtATataaTTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTaTAtaTaatATAtt,TAtaTaTAtaTaatATAttAA,aTTataTAAtATatAtATata
+SC AAtATatAtATataaTatATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTaTAtaTaattaTAt,TAAtATatAtATataaTatAT,tATTAAtATatAtATataaTa
+SC AAtATatAtATaaTattaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAAtaTaTAtaTaatt,TAAtATatAtATaaTattaaT,tAtATaaTattaaTTAAtATa
+SC AAtATatAtaTTatatAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATatAtaTTatat,TAttATaTAtaTaatAtaaTA,aTATAttATaTAtaTaatAta
+SC AAtATatAtaTTataatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATaTAtaTaattaaT,tATaTAtaTaattaaTAATAt,TAATAttATaTAtaTaattaa
+SC AAtATatAtaTTattAATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAAtATatAtaTTatt,TAttATaTAtaTaatAAtaaT,tAAtaaTTAttATaTAtaTaa
+SC AAtATatAtaTaTatatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATatAtaTaTatat,TAAtATatAtaTaTatatAAT,tAATTAAtATatAtaTaTata
+SC AAtATatAtaTaTattAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATatAtaTaTatt,TAtAtATaTAtaTaatAtaaT,tAtaTaTattAATaTAAtATa
+SC AAtATatAtaTatAATTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtATatAtaTat,TAttaaTAtATaTAtaTaatA,aTAtATaTAtaTaatATAtta
+SC AAtATatAtaTatAATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtATatAtaTat,TAAtATatAtaTatAATataT,tAATataTTAAtATatAtaTa
+SC AAtATatAtaTataTatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATatAtaTataTat,TAAtATatAtaTataTatAAT,tAATTAAtATatAtaTataTa
+SC AAtATatAtaTaaTattAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtATatAtaTaaTatt,TAAtATatAtaTaaTattAAT,tAtaTaaTattAATTAAtATa
+SC AAtATatAtaaTTatatATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtaTaatAtaTATAtt,TAttAATaTAtaTaatAtaTA,aTTatatATaTAAtATatAta
+SC AAtATatAtaaTTataatATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAttAATaTAtaTaattaT,tAATaTAtaTaattaTAATAt,TAATAttAATaTAtaTaatta
+SC AAtATatAtaaTTattATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtaTaatAAtaTTAtt,TAttAATaTAtaTaatAAtaT,tAAtaTTAttAATaTAtaTaa
+SC AAtATatAtaaTaTatatATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAtaTaattaTATAtAt,TAAtATatAtaaTaTatatAT,tATTAAtATatAtaaTaTata
+SC AAtATatAtaaTaTattATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtaTaatAtaTTAtAt,TAtAtAATaTAtaTaatAtaT,tAtaTTAtAtAATaTAtaTaa
+SC AAtATatAtaaTatATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtaTaatATAttaTAt,TAttaTAtAATaTAtaTaatA,aTatATTataTAAtATatAta
+SC AAtATataTatAtAATataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTAAtATataTatAt,TAAtATataTatAtAATataT,tAtAATataTTAAtATataTa
+SC AAtATataTatAtATataaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATAtaTaTAtATAtaTaatt,TAAtATataTatAtATataaT,tAtATataaTTAAtATataTa
+SC AAtATataTatAtaTatAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtATataTatAtaTat,TAAtATataTatAtaTatAAT,tAATTAAtATataTatAtaTa
+SC AAtATataTatAtaaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATAtaTaattaTAt,TAAtATataTatAtaaTatAT,tATTAAtATataTatAtaaTa
+SC AAtATataTatatAATAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTTAAtATataTatat,TAAtATataTatatAATAtaT,tAATAtaTTAAtATataTata
+SC AAtATataTatatATAtaaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTATAtATAtaTaatt,TAAtATataTatatATAtaaT,tATAtaaTTAAtATataTata
+SC AAtATataTatataTAtAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATataTatataTAt,TAAtATataTatataTAtAAT,tATATAtATAtaTaattaaTa
+SC AAtATataTatataaTAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtATAtaTaattaTat,TAAtATataTatataaTAtAT,tAATATAtATAtaTaattaTa
+SC AAtATataTattAATAtaTaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATAtaTaTAAtATataTatt,TAtATAtaTaatAtATataaT,tAtATataaTTAtATAtaTaa
+SC AAtATataTattAATataTAT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTATAAtATataTatt,TAAtATataTattAATataTA,aTTAtATAtaTaatatATAta
+SC AAtATataTattATAtaaTaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTAtATAtaTaatAt,TAtATAtaTaatAtAATataT,tAtAATataTTAtATAtaTaa
+SC AAtATataTattATataaTAT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTTAtATAtaTaatat,TAAtATataTattATataaTA,aTATAAtATataTattATata
+SC AAtATataTattaTAtAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATataTattaTAt,TAtATAtaTaatAtaaTatAT,tATTAtATAtaTaatAtaaTa
+SC AAtATataTattaTatAATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATataTattaTat,TAAtATataTattaTatAATA,aTAtATTAtATAtaTaatata
+SC AAtATataTattaaTAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtaTaatAtaTat,TAtATAtaTaatAtaTatAAT,tAATTAtATAtaTaatAtaTa
+SC AAtATataTattaaTatATAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtaTaatataTAt,TAAtATataTattaaTatATA,aTatATATAAtATataTatta
+SC AAtATatatAATTatAtaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTaTAAtATatat,TAtaTaatAtATaTAttaaTA,aTATAtaTaatAtATaTAtta
+SC AAtATatatAATTatataTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTATAAtATatat,TAAtATatatAATTatataTA,aTATAtaTaatatATATAtta
+SC AAtATatatAATATatataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATATatataTTAAtATatat,TAAtATatatAATATatataT,tAATATatataTTAAtATata
+SC AAtATatatAATATattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTaTAAtATatat,TATattaTaTAAtATatatAA,aTATAtaTaatAtATTAtata
+SC AAtATatatAATAtaTTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTTataTAAtATatat,TAtaTTataTAAtATatatAA,aTATAtaTaatATAttATata
+SC AAtATatatAATaTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatAtaTTAAtATatat,TAAtATatatAATaTatAtaT,tAATaTatAtaTTAAtATata
+SC AAtATatatAATaTattaTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTATAAtATatat,TAAtATatatAATaTattaTA,aTATAtaTaatatATTAtAta
+SC AAtATatatAATataTTatAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTatATAAtATatat,TAAtATatatAATataTTatA,aTATAtaTaataTAttATAta
+SC AAtATatatAATataTAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTAtaTTAAtATatat,TAAtATatatAATataTAtaT,tAATataTAtaTTAAtATata
+SC AAtATatatATTatAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAttaTATAtaTaatAt,TAtaTaatAtAATaTAttaTA,aTaTAAtATatatATTatAta
+SC AAtATatatATTatataaTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTATAtaTaatat,TAAtATatatATTatataaTA,aTATAAtATatatATTatata
+SC AAtATatatATATatataaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATATAtataTATAtaTaatt,TAAtATatatATATatataaT,tATATatataaTTAAtATata
+SC AAtATatatATATattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTATAtaTaatAt,TATattaaTaTAAtATatatA,aTaTAAtATatatATATatta
+SC AAtATatatATAtaaTTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTATAtaTaatATAtt,TAtaTaatATAttAATataTA,aTTataTAAtATatatATAta
+SC AAtATatatATAtaaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAtaTaattaTAt,TAAtATatatATAtaaTatAT,tATAtaaTatATTAAtATata
+SC AAtATatatATaTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtAtaTATAtaTaatt,TAAtATatatATaTatAtaaT,tATaTatAtaaTTAAtATata
+SC AAtATatatATaTattaaTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTATAtaTaatat,TAAtATatatATaTattaaTA,aTATAAtATatatATaTatta
+SC AAtATatatATatATAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTAtaTATAtaTaatt,TAAtATatatATatATAtaaT,tATAtaaTTAAtATatatATa
+SC AAtATatataTTatAtAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATatataTTatAt,TATAtaTaatAtaaTaTAttA,aTaTAttATATAtaTaatAta
+SC AAtATatataTTatatAATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATatataTTatat,TAAtATatataTTatatAATA,aTATAttATATAtaTaatata
+SC AAtATatataTATatatAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtATatataTATatat,TAAtATatataTATatatAAT,tAATTAAtATatataTATata
+SC AAtATatataTATattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATatataTATatt,TATAtaTaatAtaaTTAtatA,aTTAtatATATAtaTaatAta
+SC AAtATatataTAtAATTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtATatataTAt,TATAtaTaatATAttaaTatA,aTatATATAtaTaatATAtta
+SC AAtATatataTAtaTatAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtATatataTAtaTat,TAAtATatataTAtaTatAAT,tAATTAAtATatataTAtaTa
+SC AAtATatataTaTatAtAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATatataTaTatAt,TAAtATatataTaTatAtAAT,tAtAATTAAtATatataTaTa
+SC AAtATatataTaTattAATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATatataTaTatt,TAAtATatataTaTattAATA,aTTAtAtATATAtaTaatata
+SC AAtATatataTatAATTatAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATAAtATatataTat,TAAtATatataTatAATTatA,aTAtATATAtaTaataTAtta
+SC AAtATatataTatAATAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTTAAtATatataTat,TAAtATatataTatAATAtaT,tAATAtaTTAAtATatataTa
+SC AAtATatataaTTatAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaatAtaTaTAtt,TATAtaTaatAtaTaTAttAA,aTTatAtATaTAAtATatata
+SC AAtATatataaTTatatATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaatataTATAtt,TAAtATatataaTTatatATA,aTTatatATATAAtATatata
+SC AAtATatataaTATatatATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATATAtaTaattaTATAtat,TAAtATatataaTATatatAT,tAATATAtaTaattaTATAta
+SC AAtATatataaTATattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaatAtaTTAtat,TATAtaTaatAtaTTAtatAA,aTATattATaTAAtATatata
+SC AAtATatataaTAtATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaatATAttaTat,TATAtaTaatATAttaTatAA,aTAtATTataTAAtATatata
+SC AAtATatataaTAtATatATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATATAtaTaattaTAtaTat,TAAtATatataaTAtATatAT,tAATATAtaTaattaTAtaTa
+SC AAtATatataaTaTatAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaattaTaTAtAt,TAAtATatataaTaTatAtAT,tAtATTAAtATatataaTaTa
+SC AAtATatataaTaTattATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaatataTTAtAt,TAAtATatataaTaTattATA,aTaTattATATAAtATatata
+SC AAtATatataaTatATTatAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTaataTAttaTAt,TAAtATatataaTatATTatA,aTatATTatATAAtATatata
+SC AAtATataaTattAATAtaTT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATAtaTTAAtATataaTatt,TAAtATataaTattAATAtaT,taaTTAtAATAtaTaattATa
+SC AAtATataaTattATAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaattAATataTTAt,TAAtATataaTattATAtaaT,taTTAtAATAtaTaattAATa
+SC AAtATataaTattaTAtAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTaattaaTatATTAt,TAAtATataaTattaTAtAAT,tATTAtAATAtaTaattaaTa
+SC AAtATataaTattaaTAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaattaTatAATTAt,TAAtATataaTattaaTAtAT,tAATTAtAATAtaTaattaTa
+SC AAtATataatAATTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaattATaTAttaaT,tATaTAttaaTAATAtaTaat,TAATAtaTaattATaTAttaa
+SC AAtATataatAATTattaTAT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAtaTaatatATTAttaaT,tATataatAATTattaTATAA,aTAATAtaTaatatATTAtta
+SC AAtATataatAATATattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTTAAtATataat,TAAtATataatAATATattaT,tAATATattaTTAAtATataa
+SC AAtATataatATTatAtaaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAtaTaattAATaTAttaT,tAATaTAttaTAATAtaTaat,TAATAtaTaattAATaTAtta
+SC AAtATataatATTattaaTAT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAtaTaatatAATTAttaT,tATataatATTattaaTATAA,aTATAAtATataatATTatta
+SC AAtATataatATATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaattAATTAtataT,tAATTAtataTAATAtaTaat,TAATAtaTaattAATTAtata
+SC AAtATataataTTatAtAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAtaTaattaaTaTAttAT,tAATTAAtATataataTTatA,aTaTAttATAATAtaTaatta
+SC AAtATataataTTattAATAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATataataTTatt,TAATAtaTaatataaTTAttA,aTTAttATAATAtaTaatata
+SC AAtATataataTATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTaattaaTTAtatAT,tAATTAAtATataataTATat,TATattAATTAAtATataata
+SC AAtATattAATTatAtaTaaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTatAtaTaaTAAtATatt,TAtaTaatAAtATaTAttaaT,tAAtATaTAttaaTTAtaTaa
+SC AAtATattAATTataataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTTAtaTaatatAT,tAATTataataTATAAtATat,TATAAtATattAATTataata
+SC AAtATattAATATatataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATatataTaTAAtATatt,TATAtataaTTAtaTaatAtA,aTTAtaTaatAtATATAtata
+SC AAtATattAATATataataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataataTTAAtATatt,TAATAtataaTTAtaTaattA,aTTAtaTaattATAATAtata
+SC AAtATattAATATattaTaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTaaTAAtATatt,TATattaTaaTAAtATattAA,aTAAtATattAATATattaTa
+SC AAtATattAATAtaTTataaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATAtaTTataaTAAtATatt,TAtaTTataaTAAtATattAA,aTAAtATattAATAtaTTata
+SC AAtATattAATaTatAtaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatAtaTaTAAtATatt,TAtaTaatAtATaTAtAtaaT,tAtATaTAtAtaaTTAtaTaa
+SC AAtATattAATaTatataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatataTATAAtATatt,TAAtATattAATaTatataTA,aTTAtaTaatatATATAtAta
+SC AAtATattAATataTATataT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATataTATataTAAtATatt,TAtaTaatATAtatATAtaaT,tATAtaaTTAtaTaatATAta
+SC AAtATattAATataTAtaTaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTAtaTaTAAtATatt,TAtaTaatAtATatATAtaaT,tATAtaaTTAtaTaatAtATa
+SC AAtATattAATataTataTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTataTATAAtATatt,TAAtATattAATataTataTA,aTTAtaTaatatATAtATAta
+SC AAtATattAATaaTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTatAtaTTAAtATatt,TAAtATattAATaaTatAtaT,tAtaTTAAtATattAATaaTa
+SC AAtATattAATaaTattaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTattaTATAAtATatt,TAAtATattAATaaTattaTA,aTTAtaTaatatATTAtAAta
+SC AAtATattAATaataTTatAT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaataTTatATAAtATatt,TAAtATattAATaataTTatA,aTTAtaTaataTAttATAAta
+SC AAtATattAATaataTAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTAtaTTAAtATatt,TAAtATattAATaataTAtaT,tATAAtaaTTAtaTaattATa
+SC AAtATattATTattATataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtATattATTattATataTT,tATAtaTTAttaTTAtaTaat,TTAAtATattATTattATata
+SC AAtATattATTattaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattATTattaTatATT,tATTAttaTTAtaTaattaTA,attaTAtATTAttaTTAtaTa
+SC AAtATattATTattaTataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattATTattaTataTT,tATAtATTAttaTTAtaTaat,TTAAtATattATTattaTata
+SC AAtATattATATatataaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtataTTAtaTaatAt,TATAtataTTAtaTaatAtAA,aTaTAAtATattATATatata
+SC AAtATattATAtaaTTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATataTTAtaTaat,TAtaTaatAATAttAATataT,tAATAttAATataTTAtaTaa
+SC AAtATattATAtaaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAtaTaatATAtAt,TAtAtAATataTTAtaTaatA,aTaTataTAAtATattATAta
+SC AAtATattATaTatAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtAtaTTAtaTaatAt,TAtaTaatAtAATaTAtAtaT,tAtAATaTAtAtaTTAtaTaa
+SC AAtATattATaTatataaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtAtaTTAtaTaatat,TAAtATattATaTatataaTA,aTATAAtATattATaTatata
+SC AAtATattATatATTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattATatATTattaTT,tATTAttaTAtaTTAtaTaat,TAtaTTAtaTaattATTAtta
+SC AAtATattATatATAtaaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTAtaTTAtaTaatAt,TAtaTaatAtAATataTAtaT,tATAtaaTaTAAtATattATa
+SC AAtATattATataTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtATattATataTTattATT,tATAtaTTAtaTaattaTTAt,TTAtaTaattaTTAttATAta
+SC AAtATattATataTTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattATataTTattaTT,tATAtaTTAtaTaattATTAt,TTAAtATattATataTTatta
+SC AAtATattATataaTATataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTTAtaTaatATAtat,TAtaTTAtaTaatATAtatAA,aTATataTAAtATattATata
+SC AAtATattATaaTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtAAtaTTAtaTaatt,TAAtATattATaaTatAtaaT,tAtaaTTAAtATattATaaTa
+SC AAtATattATaaTattaaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAAtaTTAtaTaatat,TAAtATattATaaTattaaTA,aTATAAtATattATaaTatta
+SC AAtATattATaatATAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTAAtaTTAtaTaatt,TAAtATattATaatATAtaaT,tATAtaaTTAAtATattATaa
+SC AAtATattaTTatAtAATaaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaaTAAtATattaTTatAt,TAtaTaatAAtaaTaTAttAT,tAAtaaTaTAttATTAtaTaa
+SC AAtATattaTTataatAATAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATattaTTataat,TAAtATattaTTataatAATA,aTAATAttATTAtaTaatata
+SC AAtATattaTTattATatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattaTTattATatATT,tATTAtaTaattaTAtaTTAt,TAtaTTAttATTAtaTaatta
+SC AAtATattaTTattATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattaTTattATataTT,tATAtaTTAttATTAtaTaat,TTAAtATattaTTattATata
+SC AAtATattaTTattaTatATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtATattaTTattaTatATT,tATTAtaTaattaTAtATTAt,TAtATTAttATTAtaTaatta
+SC AAtATattaTATatatAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATattaTATatat,TAtaTaatAtaaTATAtatAT,tAATaTAAtATattaTATata
+SC AAtATattaTATataatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatATTAtaTaattaaT,tATattaTATataatAATTAA,aTAATAtatATTAtaTaatta
+SC AAtATattaTATattAATaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAAtATattaTATatt,TAtaTaatAAtaaTTAtatAT,tAAtaaTTAtatATTAtaTaa
+SC AAtATattaTAtAATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTatATTAtaTaat,TAtaTaatAATAttaaTatAT,tAATAttaaTatATTAtaTaa
+SC AAtATattaTAtAATaTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTataTAAtATattaTAt,TAtAtaaTatATTAtaTaatA,aTatATTAtaTaatATAtAta
+SC AAtATattaTAtaTatAATaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaTAAtATattaTAtaTat,TAtaTaatAtaaTAtATatAT,tAATaTAAtATattaTAtaTa
+SC AAtATattaTAtaTaatAATT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATTAAtATattaTAtaTaat,TAAtATattaTAtaTaatAAT,tAATTAAtATattaTAtaTaa
+SC AAtATattaTaTatAtAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtATattaTaTatAt,TAtaTaatAtaaTaTAtAtAT,tAtAATaTAAtATattaTaTa
+SC AAtATattaTaTatatAATAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATattaTaTatat,TAAtATattaTaTatatAATA,aTATAtAtATTAtaTaatata
+SC AAtATattaTatAATATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataTAAtATattaTat,TATataTAAtATattaTatAA,aTAtATTAtaTaatATAtata
+SC AAtATattaTatAATataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAAtATattaTat,TAAtATattaTatAATataTA,aTAtATTAtaTaatatATAta
+SC AAtATattaTatATTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattaTatATTattATT,tATTAAtATattaTatATTat,TAtATTAtaTaattaTTAtta
+SC AAtATattaTatATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtATattaTatATTattaTT,tATTAtaTaattATTAttaTA,attATTAttaTAtATTAtaTa
+SC AAtATattaTataTTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtATattaTataTTattATT,tATAtATTAtaTaattaTTAt,TTAttATAtATTAtaTaatta
+SC AAtATattaTataTatAATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATattaTataTat,TAAtATattaTataTatAATA,aTAtATAtATTAtaTaatata
+SC AAtATattaTaaTatAtAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtATattaTaaTatAt,TAAtATattaTaaTatAtAAT,tAtAATTAAtATattaTaaTa
+SC AAtATattaTaaTattAATAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAAtATattaTaaTatt,TAAtATattaTaaTattAATA,aTTAtAAtATTAtaTaatata
+SC AAtATattaaTTatAtATaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatAAtaTaTAtt,TAtaTaatAAtaTaTAttAAT,tAAtaTaTAttAATTAtaTaa
+SC AAtATattaaTTataatATAT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAttAATTAtaTaatataT,tAATTAtaTaatataTAATAt,TAATAttAATTAtaTaatata
+SC AAtATattaaTATatatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatAtaTATAtat,TAtaTaatAtaTATAtatAAT,tAATTAtaTaatAtaTATAta
+SC AAtATattaaTATataatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatAATTAtaTaattaT,tATattaaTATataatATTAA,aTATataatATTAAtATatta
+SC AAtATattaaTATattATaaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatAAtaTTAtat,TAtaTaatAAtaTTAtatAAT,tAATTAtaTaatAAtaTTAta
+SC AAtATattaaTAtATTataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTatAATTAtaTaat,TAtaTaatAATAttaTatAAT,tAATAttaTatAATTAtaTaa
+SC AAtATattaaTAtATaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatATAtAtaTat,TAtAtaTatAATTAtaTaatA,aTAtATaTataTAAtATatta
+SC AAtATattaaTAtATatATaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAtaTaatAtaTAtaTat,TAtaTaatAtaTAtaTatAAT,tAATTAtaTaatAtaTAtaTa
+SC AAtATattaaTAtATaatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaattaTAAtaTat,TAAtATattaaTAtATaatAT,tAATTAtaTaattaTAAtaTa
+SC AAtATattaaTaTatAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatAtaTaTAtAt,TAtaTaatAtaTaTAtAtAAT,tAtATaTAAtATattaaTaTa
+SC AAtATattaaTaTatatATAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTaatataTATAtAt,TAAtATattaaTaTatatATA,aTaTatatATATAAtATatta
+SC AAtAtAATTatATatataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATatataTaTAAtAt,TATAtaTAttaaTaTaatAtA,aTaTaatAtATATAtaTAtta
+SC AAtAtAATTatATataataTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATAtaTAttaaTaTaattAT,tAATTatATataataTTAAtA,aTaTaattATAATAtaTAtta
+SC AAtAtAATTatATattaTaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATattaTaaTAAtAt,TAtaTAttaaTaTaatAAtAT,tAAtATTAtaTAttaaTaTaa
+SC AAtAtAATTatAtaTTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATaTAttaaTaTaat,TAttATaTAttaaTaTaatAA,aTAAtAtAATTatAtaTTata
+SC AAtAtAATTatAtaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTaTataTAAtAt,TAtAtATaTAttaaTaTaatA,aTaTaatATAtAtATaTAtta
+SC AAtAtAATTatAtaTataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTataTaTAAtAt,TAtATaTAttaaTaTaatAtA,aTaTaatAtATAtATaTAtta
+SC AAtAtAATTatAtaTaataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTaataTTAAtAt,TAAtATaTAttaaTaTaattA,aTaTaattATAAtATaTAtta
+SC AAtAtAATTataTatAtaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTatAtaTaTAAtAt,TAttaaTaTaatAtATaTAtA,aTaTaatAtATaTAtATAtta
+SC AAtAtAATTataTatataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTatataTATAAtAt,TAAtAtAATTataTatataTA,aTaTaatatATATAtATAtta
+SC AAtAtAATTatataTATataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTATataTAAtAt,TATAttaaTaTaatATAtatA,aTaTaatATAtatATATAtta
+SC AAtAtAATTatataTAtaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTAtaTaTAAtAt,TATAttaaTaTaatAtATatA,aTaTaatAtATatATATAtta
+SC AAtAtAATTatataTataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTataTATAAtAt,TAAtAtAATTatataTataTA,aTaTaatatATAtATATAtta
+SC AAtAtAATTataaTattaTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTaTaatatATTAt,TAAtAtAATTataaTattaTA,aTaTaatatATTAtAATAtta
+SC AAtAtAATTattaTTattaTT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATTattaTTattaTTAAtAt,TAAtAtAATTattaTTattaT,ttATTAttATTAttaaTaTaa
+SC AAtAtAATTattaTATataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatATTAttaaTaTaat,TAtatATTAttaaTaTaatAA,aTAAtAtAATTattaTATata
+SC AAtAtAATTattaTAtaTaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTAtaTaaTAAtAt,TAttaaTaTaatAAtATatAT,tAAtATatATTAttaaTaTaa
+SC AAtAtAATTattaTaataTAT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTattaTaataTATAAtAt,TAAtATTAttaaTaTaatatA,aTaTaatatATAAtATTAtta
+SC AAtAtAATATataTattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataTattaTaTAAtAt,TATataTattaTaTAAtAtAA,aTaTaatAtATTAtATAtata
+SC AAtAtAATATatataTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATatataTTataTAAtAt,TATAtataaTaTaatATAttA,aTaTaatATAttATATAtata
+SC AAtAtAATATattaTTataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTTataaTAAtAt,TATattaTTataaTAAtAtAA,aTAAtAtAATATattaTTata
+SC AAtAtAATATattaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTaTataTAAtAt,TATattaTaTataTAAtAtAA,aTaTaatATAtAtATTAtata
+SC AAtAtAATATattaTataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATattaTataTaTAAtAt,TATattaTataTaTAAtAtAA,aTaTaatAtATAtATTAtata
+SC AAtAtAATaTatATattaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatATattaTaTAAtAt,TAtaTAtAtaaTaTaatAtAT,tATattaTaTAAtAtAATaTa
+SC AAtAtAATaTatAtaTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatAtaTTataTAAtAt,TAttATaTAtAtaaTaTaatA,aTaTaatATAttATaTAtAta
+SC AAtAtAATaTattaTATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTattaTATataTAAtAt,TAtAtaaTaTaatATAtatAT,tATAtatATTAtAtaaTaTaa
+SC AAtAtAATataTTatATataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTatATataTAAtAt,TAtaTAttATAtaaTaTaatA,aTaTaatATAtaTAttATAta
+SC AAtAtATTatATatataaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTAttaTaTaatAt,TATAtaTAttaTaTaatAtAA,aTaTAAtAtATTatATatata
+SC AAtAtATTatAtaaTTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATaTAttaTaTaat,TAttAATaTAttaTaTaatAA,aTAAtAtATTatAtaaTTata
+SC AAtAtATTatAtaaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAttaTaTaatATAtAt,TAtAtAATaTAttaTaTaatA,aTaTataTAAtAtATTatAta
+SC AAtAtATTataTatAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATAttaTaTaatAt,TAttaTaTaatAtAATaTAtA,aTaTAAtAtATTataTatAta
+SC AAtAtATTataTatataaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtATAttaTaTaatat,TAAtAtATTataTatataaTA,aTATAAtAtATTataTatata
+SC AAtAtATTatatATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtATTatatATTattaTT,tATTAttaTATAttaTaTaat,TATAttaTaTaattATTAtta
+SC AAtAtATTatatATAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAttaTaTaatAt,TAtaaTaTAAtAtATTatatA,aTaTAAtAtATTatatATAta
+SC AAtAtATTatataTTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTatataTTattATT,tATATAttaTaTaattaTTAt,TTAttATATAttaTaTaatta
+SC AAtAtATTatataTTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTatataTTattaTT,tATATAttaTaTaattATTAt,TTAAtAtATTatataTTatta
+SC AAtAtATTatataaTATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAttaTaTaatATAtat,TATAttaTaTaatATAtatAA,aTATataTAAtAtATTatata
+SC AAtAtATTataaTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTaTaattAATaTAt,TAAtAtATTataaTatAtaaT,tAtaaTTAAtAtATTataaTa
+SC AAtAtATTataaTattaaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTaTaatatAATTAt,TAAtAtATTataaTattaaTA,aTATAAtAtATTataaTatta
+SC AAtAtATTataatATAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTaTaattAATataT,tAATataTAATAttaTaTaat,TAATAttaTaTaattAATata
+SC AAtAtATTattATTatataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtATTattATTatataTT,tATATAttaTTAttaTaTaat,TTAAtAtATTattATTatata
+SC AAtAtATTattATTattaTaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtATTattATTattaTaT,tATTAttaTTAttaTaTaatA,atAtATTAttaTTAttaTaTa
+SC AAtAtATTattATTattaaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAttaTTAttaTaTaatt,TAAtAtATTattATTattaaT,ttAATTAttaTTAttaTaTaa
+SC AAtAtATTattATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTattATaTattaTT,tATTAtAtaTTAttaTaTaat,TTAAtAtATTattATaTatta
+SC AAtAtATTattaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTattaTTatatATT,tATTAttaTaTaattaTATAt,TATAttATTAttaTaTaatta
+SC AAtAtATTattaTTatataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTattaTTatataTT,tATATAttATTAttaTaTaat,TTAAtAtATTattaTTatata
+SC AAtAtATTattaTTattATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtATTattaTTattATaT,tATTAttaTaTaatAtaTTAt,TAAtAtATTattaTTattATa
+SC AAtAtATTattaTTattaTaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtATTattaTTattaTaT,tATTAttATTAttaTaTaatA,atAtATTAttATTAttaTaTa
+SC AAtAtATTattaTaTattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtATTattaTaTattATT,tATTAAtAtATTattaTaTat,TTAtAtATTAttaTaTaatta
+SC AAtAtATTattaTaTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtATTattaTaTattaTT,tATTAtAtATTAttaTaTaat,TTAAtAtATTattaTaTatta
+SC AAtAtATTattaaTTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaTaattaTTAtt,TAAtAtATTattaaTTattAT,ttATTAAtAtATTattaaTTa
+SC AAtAtATTattaaTATataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatAATTAttaTaTaat,TAtatAATTAttaTaTaatAA,aTAAtAtATTattaaTATata
+SC AAtAtATTattaaTAtATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaTaatAAtaTat,TAttaTaTaatAAtaTatAAT,tAATTAttaTaTaatAAtaTa
+SC AAtAtATATataTatataaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtATAtataTaTaatt,TAAtAtATATataTatataaT,taTaTaattAATATAtATAta
+SC AAtAtATATataTattaaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtataTaTaatAt,TATataTattaaTaTAAtAtA,aTaTAAtAtATATataTatta
+SC AAtAtATATatataaTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtataTaTaatATAtt,TATAtataTaTaatATAttAA,aTTataTAAtAtATATatata
+SC AAtAtATATataaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtataTaTaattAATTAt,TAAtAtATATataaTattaaT,taTaTaattAATTAtAATAta
+SC AAtAtATATattaaTTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATTAtataTaTaat,TATattaaTTataaTAAtAtA,aTAAtAtATATattaaTTata
+SC AAtAtATATattaaTaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTaTaatATAtAt,TATattaaTaTataTAAtAtA,aTaTataTAAtAtATATatta
+SC AAtAtATAtATaTattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTataTaTaatAt,TAtATaTattaaTaTAAtAtA,aTaTAAtAtATAtATaTatta
+SC AAtAtATAtATaaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAAtaTataTaTaatt,TAAtAtATAtATaaTattaaT,taTaTaattAATTAtAAtaTa
+SC AAtAtATAtaaTTataTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTaTaatATAtATAtt,TAtATAttAATataTaTaatA,aTTataTataTAAtAtATAta
+SC AAtAtATAtaaTTatatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTaTaatAtaTATAtt,TAtaaTTatatATaTAAtAtA,aTTatatATaTAAtAtATAta
+SC AAtAtATAtaaTTataatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATataTaTaattaT,tAATataTaTaattaTAATAt,TAATAttAATataTaTaatta
+SC AAtAtATAtaaTTattATaaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATataTaTaatAAtaTTAtt,TAtaaTTattATaaTAAtAtA,aTAAtAtATAtaaTTattATa
+SC AAtAtATaTatATatataaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATAtaTAtAtaTaTaatt,TAAtAtATaTatATatataaT,tATatataaTTAAtAtATaTa
+SC AAtAtATaTatATattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTAtAtaTaTaatAt,TAtaTAtAtaTaTaatAtAAT,tATattaaTaTAAtAtATaTa
+SC AAtAtATaTatAtaaTTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtAtaTaTaatATAtt,TAttAATaTAtAtaTaTaatA,aTTataTAAtAtATaTatAta
+SC AAtAtATaTataTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATAtAtaTaTaatt,TAAtAtATaTataTatAtaaT,tAtaaTTAAtAtATaTataTa
+SC AAtAtATaTataTattaaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtAtaTaTaatat,TAAtAtATaTataTattaaTA,aTATAAtAtATaTataTatta
+SC AAtAtATaTatatATAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAtAtaTaTaatt,TAAtAtATaTatatATAtaaT,tATAtaaTTAAtAtATaTata
+SC AAtAtATaTattATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtATaTattATTattaTT,tATTAttaTTAtAtaTaTaat,TTAAtAtATaTattATTatta
+SC AAtAtATaTattATAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAtAtaTaTaatAt,TAtAtaTaTaatAtAATataT,tAtAATataTTAtAtaTaTaa
+SC AAtAtATaTattaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtATaTattaTTattATT,tATTAAtAtATaTattaTTat,TTAttATTAtAtaTaTaatta
+SC AAtAtATaTattaTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtATaTattaTTattaTT,tATTAtAtaTaTaattATTAt,TTAAtAtATaTattaTTatta
+SC AAtAtATaTattaaTATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaTaatATAtat,TAtAtaTaTaatATAtatAAT,tAATTAtAtaTaTaatATAta
+SC AAtAtATaTattaaTAtATaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAtAtaTaTaatAtaTat,TAtAtaTaTaatAtaTatAAT,tAATTAtAtaTaTaatAtaTa
+SC AAtAtATatATTatAtaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAttaTAtaTaTaatAt,TTatAtaaTaTAAtAtATatA,aTaTAAtAtATatATTatAta
+SC AAtAtATatATATattaaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTAtaTaTaatAt,TATattaaTaTAAtAtATatA,aTaTAAtAtATatATATatta
+SC AAtAtATatATAtaaTTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTAtaTaTaatATAtt,TAtaaTTataTAAtAtATatA,aTTataTAAtAtATatATAta
+SC AAtAtATatATaTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtAtaTAtaTaTaatt,TAAtAtATatATaTatAtaaT,tATaTatAtaaTTAAtAtATa
+SC AAtAtATatATaTattaaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTAtaTaTaatat,TAAtAtATatATaTattaaTA,aTATAAtAtATatATaTatta
+SC AAtAtATaaTatATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTAtAAtaTaTaatt,TAAtAtATaaTatATattaaT,tATattaaTTAAtAtATaaTa
+SC AAtAtATaaTattATAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAtAAtaTaTaatt,TAAtAtATaaTattATAtaaT,taTTAtAAtaTaTaattAATa
+SC AAtAtATaaTattaaTAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAAtaTaTaattaTat,TAAtAtATaaTattaaTAtAT,tAATTAtAAtaTaTaattaTa
+SC AAtAtATaatATTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAttaTAAtaTaTaatt,TAAtAtATaatATTatAtaaT,tATTatAtaaTTAAtAtATaa
+SC AAtAtATaatATTattaaTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTAAtaTaTaatat,TAAtAtATaatATTattaaTA,aTATAAtAtATaatATTatta
+SC AAtAtATaatATATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTAAtaTaTaatt,TAAtAtATaatATATattaaT,tATATattaaTTAAtAtATaa
+SC AAtAtaTTatATatatAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTTatATatat,TAtaTAttATaTaatAtaaTA,aTATAtaTAttATaTaatAta
+SC AAtAtaTTatATataatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTAttATaTaattaaT,tATaTaattaaTAATAtaTAt,TAATAtaTAttATaTaattaa
+SC AAtAtaTTatATattAATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAAtAtaTTatATatt,TAtaTAttATaTaatAAtaaT,tAAtaaTTAtaTAttATaTaa
+SC AAtAtaTTatAtAATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTaTAttATaTaat,TAttaaTaTAttATaTaatAA,aTAAtAtaTTatAtAATTata
+SC AAtAtaTTatAtAATaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTataTAAtAtaTTatAt,TAtAtaaTaTAttATaTaatA,aTaTAttATaTaatATAtAta
+SC AAtAtaTTatAtaTatAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTTatAtaTat,TaTAAtAtaTTatAtaTatAA,aTAtATaTAttATaTaatAta
+SC AAtAtaTTatAtaTaatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTTatAtaTaat,TAAtAtaTTatAtaTaatAAT,tAATTAAtAtaTTatAtaTaa
+SC AAtAtaTTataTatAtAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTTataTatAt,TAttATaTaatAtaaTaTAtA,aTaTAtATAttATaTaatAta
+SC AAtAtaTTatatAATATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataTAAtAtaTTatat,TATataTAAtAtaTTatatAA,aTATAttATaTaatATAtata
+SC AAtAtaTTatatAATataTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAAtAtaTTatat,TAAtAtaTTatatAATataTA,aTATAttATaTaatatATAta
+SC AAtAtaTTatatATTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTatatATTattATT,tATTAAtAtaTTatatATTat,TATAttATaTaattaTTAtta
+SC AAtAtaTTatatATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTatatATTattaTT,tATTAttaTATAttATaTaat,TATAttATaTaattATTAtta
+SC AAtAtaTTatataTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtaTTatataTTattATT,tATATAttATaTaattaTTAt,TTAttATATAttATaTaatta
+SC AAtAtaTTataaTatAtAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATaTaattaaTaTAt,TAAtAtaTTataaTatAtAAT,tAtAATTAAtAtaTTataaTa
+SC AAtAtaTTattAATTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTTAAtAtaTTatt,TAAtAtaTTattAATTattaT,ttAATTattaTTAAtAtaTTa
+SC AAtAtaTTattAATATataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataaTAAtAtaTTatt,TATataaTAAtAtaTTattAA,aTAAtAtaTTattAATATata
+SC AAtAtaTTattAATaataTAT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTATAAtAtaTTatt,TAAtAtaTTattAATaataTA,aTTAttATaTaatatATAAta
+SC AAtAtaTTattATTatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTattATTatatATT,tATTatatATTAAtAtaTTat,TATAttaTTAttATaTaatta
+SC AAtAtaTTattATTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTattATTatataTT,tATATAttaTTAttATaTaat,TTAAtAtaTTattATTatata
+SC AAtAtaTTattATTattATaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtaTTattATTattATaT,tATTattATaTAAtAtaTTat,TAAtAtaTTattATTattATa
+SC AAtAtaTTattATTattaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTattATTattaTaT,tATTAttaTTAttATaTaatA,atAtATTAttaTTAttATaTa
+SC AAtAtaTTattATaTattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtaTTattATaTattATT,tATTAAtAtaTTattATaTat,TTAtAtaTTAttATaTaatta
+SC AAtAtaTTattATaTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtaTTattATaTattaTT,tATTAtAtaTTAttATaTaat,TTAAtAtaTTattATaTatta
+SC AAtAtaTTattaTTatatATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtaTTattaTTatatATT,tATTAttATaTaattaTATAt,TATAttATTAttATaTaatta
+SC AAtAtaTTattaTTattAATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAAtAtaTTattaTTatt,TAAtAtaTTattaTTattAAT,ttAATTAAtAtaTTattaTTa
+SC AAtAtaTTattaTTattATaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtaTTattaTTattATaT,tATTAttATaTaatAtaTTAt,TAAtAtaTTattaTTattATa
+SC AAtAtaTTattaTaTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtAtaTTattaTaTattATT,tATTAAtAtaTTattaTaTat,TTAtAtATTAttATaTaatta
+SC AAtAtaTATataTatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTATataTatat,TAAtAtaTATataTatatAAT,tAATTAAtAtaTATataTata
+SC AAtAtaTATataTattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTATataTatt,TAtATAtatATaTaatAtaaT,tATaTaatAtaaTTAtATAta
+SC AAtAtaTATatatAATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAtaTATatat,TAtatATaTaatATAttaaTA,aTATAtatATaTaatATAtta
+SC AAtAtaTATatatAATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTTAAtAtaTATatat,TAAtAtaTATatatAATataT,tAATataTTAAtAtaTATata
+SC AAtAtaTATatataTatAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtAtaTATatataTat,TAAtAtaTATatataTatAAT,tAATTAAtAtaTATatataTa
+SC AAtAtaTATataaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatATaTaattaaTTAt,TAAtAtaTATataaTattAAT,tATaTaattaaTTAtAATAta
+SC AAtAtaTATattAATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaaTTAtatATaTaat,TAtatATaTaatAATAttaaT,tAATAttaaTTAtatATaTaa
+SC AAtAtaTATattAATaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTataTAAtAtaTATatt,TAtAtaaTTAtatATaTaatA,aTTAtatATaTaatATAtAta
+SC AAtAtaTATattAATataTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTaTAAtAtaTATatt,TAtaaTTAtatATaTaatAtA,aTTAtatATaTaatAtATAta
+SC AAtAtaTATattAATaataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAAtAtaTATatt,TAAtAtaTATattAATaataT,tATaTaattATAAtaaTTAta
+SC AAtAtaTATattaTatAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTATattaTat,TAtatATaTaatAtaaTAtAT,tAATaTAAtAtaTATattaTa
+SC AAtAtaTATattaTaatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTATattaTaat,TAAtAtaTATattaTaatAAT,tAATTAAtAtaTATattaTaa
+SC AAtAtaTAtaTTatatAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTAtaTTatat,TAttATatATaTaatAtaaTA,aTATAttATatATaTaatAta
+SC AAtAtaTAtaTTataatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttATatATaTaattaaT,tATatATaTaattaaTAATAt,TAATAttATatATaTaattaa
+SC AAtAtaTAtaTTattAATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAAtAtaTAtaTTatt,TAttATatATaTaatAAtaaT,tAAtaaTTAttATatATaTaa
+SC AAtAtaTAtaTaTatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTAtaTaTatat,TAAtAtaTAtaTaTatatAAT,tAATTAAtAtaTAtaTaTata
+SC AAtAtaTAtaTaTattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTAtaTaTatt,TAtAtATatATaTaatAtaaT,tATaTaatAtaaTTAtAtATa
+SC AAtAtaTAtaTatAATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAtaTAtaTat,TAttaaTAtATatATaTaatA,aTAtATatATaTaatATAtta
+SC AAtAtaTAtaTaaTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTAtaTaaTatt,TAAtAtaTAtaTaaTattAAT,tATaTaattaaTTAtAAtATa
+SC AAtAtaTaTatATatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTaTatATatat,TAAtAtaTaTatATatatAAT,tAATTAAtAtaTaTatATata
+SC AAtAtaTaTatATattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTaTatATatt,TAtaTAtAtATaTaatAtaaT,tATattAATaTAAtAtaTaTa
+SC AAtAtaTaTatAtAATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTataTAAtAtaTaTatAt,TAttaaTaTAtAtATaTaatA,aTaTAtAtATaTaatATAtta
+SC AAtAtaTaTatAtaTatAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtAtaTaTatAtaTat,TAAtAtaTaTatAtaTatAAT,tAATTAAtAtaTaTatAtaTa
+SC AAtAtaTaTataTatAtAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTaTataTatAt,TAAtAtaTaTataTatAtAAT,tAtAATTAAtAtaTaTataTa
+SC AAtAtaTaTattAATATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATATataTAAtAtaTaTatt,TATataTAAtAtaTaTattAA,aTTAtAtATaTaatATAtata
+SC AAtAtaTaTattAATataTAT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAAtAtaTaTatt,TAAtAtaTaTattAATataTA,aTTAtAtATaTaatatATAta
+SC AAtAtaTaTattATTattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtAtaTaTattATTattATT,tATTAAtAtaTaTattATTat,TTAtAtATaTaattaTTAtta
+SC AAtAtaTaTattATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtaTaTattATTattaTT,tATTAttaTTAtAtATaTaat,TTAAtAtaTaTattATTatta
+SC AAtAtaTaTattaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtAtaTaTattaTTattATT,tATTAAtAtaTaTattaTTat,TTAttATTAtAtATaTaatta
+SC AAtAtaTatAATTatATataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATataTAAtAtaTat,TAtaTAttaaTAtATaTaatA,aTAtATaTaatATAtaTAtta
+SC AAtAtaTatAATTatAtaTaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTatAtaTaTAAtAtaTat,TTatAtaTaTAAtAtaTatAA,aTAtATaTaatAtATaTAtta
+SC AAtAtaTatAATaTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatAtaTTAAtAtaTat,TAAtAtaTatAATaTatAtaT,tAATaTatAtaTTAAtAtaTa
+SC AAtAtaTataTATatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTataTATatat,TAAtAtaTataTATatatAAT,tAATTAAtAtaTataTATata
+SC AAtAtaTataTATattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtAtaTataTATatt,TAtATaTaatAtaaTTAtatA,aTTAtatATAtATaTaatAta
+SC AAtAtaTaaTatATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTaaTatATatt,TAAtAtaTaaTatATattAAT,tATattAATTAAtAtaTaaTa
+SC AAtAtaTaatAATTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTTAAtAtaTaat,TAAtAtaTaatAATTatAtaT,tAATTatAtaTTAAtAtaTaa
+SC AAtAtaTaataTATattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtAtaTaataTATatt,TAAtATaTaattaaTTAtatA,aTTAtatATAAtATaTaatta
+SC AAtAtaaTTatATatatATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTATAtaTAtt,TAtaTAttAATaTaatAtaTA,aTTatATatatATaTAAtAta
+SC AAtAtaaTTatATataatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaTAttAATaTaattaT,tAATaTaattaTAATAtaTAt,TAATAtaTAttAATaTaatta
+SC AAtAtaaTTatATattATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAAtaTTAtaTAtt,TAtaTAttAATaTaatAAtaT,tAAtaTTAtaTAttAATaTaa
+SC AAtAtaaTTatAtATTataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTaTAttAATaTaat,TAttaTaTAttAATaTaatAA,aTAAtAtaaTTatAtATTata
+SC AAtAtaaTTatAtATaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAtAtaTaTAtt,TAtAtaTaTAttAATaTaatA,aTTatAtATaTataTAAtAta
+SC AAtAtaaTTatAtATatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTAtaTaTAtt,TaTAAtAtaaTTatAtATatA,aTTatAtATatATaTAAtAta
+SC AAtAtaaTTatAtATaatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTAAtaTaTAtt,TAAtAtaaTTatAtATaatAT,tATTAAtAtaaTTatAtATaa
+SC AAtAtaaTTataTatAtATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTaTAtATAtt,TAttAATaTaatAtaTaTAtA,aTTataTatAtATaTAAtAta
+SC AAtAtaaTTatatATATataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAtataTATAtt,TATataTAAtAtaaTTatatA,aTTatatATATataTAAtAta
+SC AAtAtaaTTatatATAtATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTataTATAtt,TAtATaTAAtAtaaTTatatA,aTTatatATAtATaTAAtAta
+SC AAtAtaaTTataaTatAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATaTaattaTaTAt,TAAtAtaaTTataaTatAtAT,tAtATTAAtAtaaTTataaTa
+SC AAtAtaaTTataatATAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttAATaTaattaTataT,tAATaTaattaTataTAATAt,TAATAttAATaTaattaTata
+SC AAtAtaaTTattATTattATT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATaTaattaTTAttaTTAtt,TAAtAtaaTTattATTattAT,ttATTAAtAtaaTTattATTa
+SC AAtAtaaTTattATATataaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtataTTAttAATaTaat,TATataaTAAtAtaaTTattA,aTAAtAtaaTTattATATata
+SC AAtAtaaTTattATAtATaaT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTaatAAtaTataTTAtt,TAtATaaTAAtAtaaTTattA,aTAAtAtaaTTattATAtATa
+SC AAtAtaaTATataTatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTATAtATAtat,TAAtAtaaTATataTatatAT,tAATaTaattaTATAtATAta
+SC AAtAtaaTATataTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTTAtATAtat,TAtATAtatAATaTaatAtaT,tAATaTaatAtaTTAtATAta
+SC AAtAtaaTATatatATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAttaTATAtat,TAtatAATaTaatATAttaTA,aTATatatATTataTAAtAta
+SC AAtAtaaTATatatATatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTAtaTATAtat,TAAtAtaaTATatatATatAT,tAATaTaattaTAtaTATAta
+SC AAtAtaaTATataaTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtatAATaTaattaTTAt,TAAtAtaaTATataaTattAT,tAATaTaattaTTAtAATAta
+SC AAtAtaaTATattATTataaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTTAtatAATaTaat,TAtatAATaTaatAATAttaT,tAATAttaTTAtatAATaTaa
+SC AAtAtaaTATattATaTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAtAtaTTAtat,TAtAtaTTAtatAATaTaatA,aTATattATaTataTAAtAta
+SC AAtAtaaTATattATatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTAtaTTAtat,TAtatAATaTaatAtaTAtaT,tAATaTaatAtaTAtaTTAta
+SC AAtAtaaTATattATaatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTAAtaTTAtat,TAAtAtaaTATattATaatAT,tAATaTaattaTAAtaTTAta
+SC AAtAtaaTAtATTataTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAtATAttaTat,TAtATAttaTatAATaTaatA,aTAtATTataTataTAAtAta
+SC AAtAtaaTAtATTatatATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTATAttaTat,TAttaTatAATaTaatAtaTA,aTAtATTatatATaTAAtAta
+SC AAtAtaaTAtATTataatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAttaTatAATaTaattaT,tATTataatATTAAtAtaaTA,aTAtATTataatATTAAtAta
+SC AAtAtaaTAtATTattATaaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAAtaTTAttaTat,TAttaTatAATaTaatAAtaT,tAATaTaatAAtaTTAttaTa
+SC AAtAtaaTAtATaTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTATAtAtaTat,TAAtAtaaTAtATaTatatAT,tAATaTaattaTATAtAtaTa
+SC AAtAtaaTAtATaTattATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatAtaTTAtAtaTat,TAtAtaTatAATaTaatAtaT,tAATaTaatAtaTTAtAtaTa
+SC AAtAtaaTAtATatATTataT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaatATAttaTAtaTat,TAttaTAtaTatAATaTaatA,aTAtATatATTataTAAtAta
+SC AAtAtaaTAtATaaTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTaattaTTAtAAtaTat,TAAtAtaaTAtATaaTattAT,tAATaTaattaTTAtAAtaTa
+SC AAtaTatAATattAATataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTTAAtaTatAATatt,TAAtaTatAATattAATataT,tAATattAATataTTAAtaTa
+SC AAtaTatAATattaTatAATT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATTAAtaTatAATattaTat,TAAtaTatAATattaTatAAT,tAATTAAtaTatAATattaTa
+SC AAtaTatAAtATaTattaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaaTAtATaatt,TAAtaTatAAtATaTattaaT,tAAtATaTattaaTTAAtaTa
+SC AAtaTatAAtaTTatatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaTatAAtaTTatat,TAAtaTatAAtaTTatatAAT,tAATTAAtaTatAAtaTTata
+SC AAtaTatAAtaTTattAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtaTatAAtaTTatt,TAttATaaTAtATaatAtaaT,tAAtaTTattAATaTAAtaTa
+SC AAtaTatAAtaTaTattAATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAAtaTatAAtaTaTatt,TAAtaTatAAtaTaTattAAT,tAAtaTaTattAATTAAtaTa
+SC AAtaTatAAtaaTTatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAtATaattaTATAtt,TAAtaTatAAtaaTTatatAT,tAAtaaTTatatATTAAtaTa
+SC AAtaTatAAtaaTTattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAtATaatAtaTTAtt,TAttAATaaTAtATaatAtaT,tAAtaaTTattATaTAAtaTa
+SC AAtaTatATatAtaTatAATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAAtaTatATatAtaTat,TAAtaTatATatAtaTatAAT,tAATTAAtaTatATatAtaTa
+SC AAtaTatATatatATAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTATAtaTAtATaatt,TAAtaTatATatatATAtaaT,tATAtaaTTAAtaTatATata
+SC AAtaTatATattaaTAtATaT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAtaTAtATaatAtaTat,TAtaTAtATaatAtaTatAAT,tAATTAtaTAtATaatAtaTa
+SC AAtaTatAtATAtaaTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATataTaTAtATaatATAtt,TAtaaTTataTAAtaTatAtA,aTTataTAAtaTatAtATAta
+SC AAtaTatAtATaTatAtaaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaTAtAtaTaTAtATaatt,TAAtaTatAtATaTatAtaaT,tAtATaTatAtaaTTAAtaTa
+SC AAtaTatAtaTATatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaTatAtaTATatat,TAAtaTatAtaTATatatAAT,tAATTAAtaTatAtaTATata
+SC AAtaTatAtaTATattAATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtaTatAtaTATatt,TAtatATaTAtATaatAtaaT,tATaTAtATaatAtaaTTAta
+SC AAtaTatAtaaTTatAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATaatAtaTaTAtt,TaTAAtaTatAtaaTTatAtA,aTTatAtATaTAAtaTatAta
+SC AAtaTatAtaaTATatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATaattaTATAtat,TAAtaTatAtaaTATatatAT,tAATaTAtATaattaTATAta
+SC AAtaTatAtaaTATattATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATaatAtaTTAtat,TAtatAATaTAtATaatAtaT,tAATaTAtATaatAtaTTAta
+SC AAtaTatAtaaTAtATTataT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaTAtATaatATAttaTat,TAttaTatAATaTAtATaatA,aTAtATTataTAAtaTatAta
+SC AAtaTataTatAtATAtaaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATataTaTAtATAtATaatt,TAAtaTataTatAtATAtaaT,tAtATAtaaTTAAtaTataTa
+SC AAtaTataTatAtaaTAtATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaTAtATAtATaattaTat,TAAtaTataTatAtaaTAtAT,tAATaTAtATAtATaattaTa
+SC AAtaTataTattATAAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAtATAtATaatt,TAAtaTataTattATAAtaaT,taTTAtATAtATaattAATaa
+SC AAtaTataTattaaTAAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtATaattaTaat,TAAtaTataTattaaTAAtAT,tAATTAtATAtATaattaTaa
+SC AAtaTatatAATTatAAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAAtaTTAAtaTatat,TAAtaTatatAATTatAAtaT,tAATTatAAtaTTAAtaTata
+SC AAtaTatatATTatAAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAttaTATAtATaatt,TAAtaTatatATTatAAtaaT,tAAtaaTTAAtaTatatATTa
+SC AAtaTatatATAATattaaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAtaataTATAtATaatt,TAATattaaTTAAtaTatatA,aTTAAtaTatatATAATatta
+SC AAtaTatatATATatAtaaTT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATaTAtataTATAtATaatt,TAAtaTatatATATatAtaaT,tATATatAtaaTTAAtaTata
+SC AAtaTatataTAATattAATT len=21 maxpiece=3 C6=True C4=True T4=False -> C'(1/6) T4witness=AATTAAtaTatataTAATatt,TAAtaTatataTAATattAAT,tATATAtATaattaaTTAtaa
+SC AAtaTattAATTatAAtaTaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTatAAtaTaTAAtaTatt,TAtATaatAtATaaTAttaaT,tAAtaTaTAAtaTattAATTa
+SC AAtaTattAATaTatAAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTatAAtaTTAAtaTatt,TAAtaTattAATaTatAAtaT,tAAtaTTAAtaTattAATaTa
+SC AAtaTattATTattATAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtaTattATTattATAtaTT,tATAtaTTAAtaTattATTat,TTAAtaTattATTattATAta
+SC AAtaTattATTattaTAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattATTattaTAtATT,tATTAAtaTattATTattaTA,attaTatATTAttaTTAtATa
+SC AAtaTattATTattaTAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattATTattaTAtaTT,tATTattaTAtaTTAAtaTat,TAtaTTAAtaTattATTatta
+SC AAtaTattATAAtaaTTataT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAtATaatATAtt,TAAtaaTTataTAAtaTattA,aTTataTAAtaTattATAAta
+SC AAtaTattATAtATTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattATAtATTattaTT,tATAtATTattaTTAAtaTat,TTAAtaTattATAtATTatta
+SC AAtaTattATAtaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtaTattATAtaTTattATT,tATAtaTTattATTAAtaTat,TTAtATaattaTTAttATata
+SC AAtaTattATAtaTTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattATAtaTTattaTT,tATAtaTTattaTTAAtaTat,TTAAtaTattATAtaTTatta
+SC AAtaTattATaTatAAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAtAtaTTAtATaatt,TAAtaTattATaTatAAtaaT,tAAtaaTTAAtaTattATaTa
+SC AAtaTattATatATAAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTAtaTTAtATaatt,TAAtaTattATatATAAtaaT,tATAAtaaTTAAtaTattATa
+SC AAtaTattaTTattATAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattaTTattATAtATT,tATAtATTAAtaTattaTTat,TTAttATTAtATaattaTata
+SC AAtaTattaTTattATAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattaTTattATAtaTT,tATAtaTTAAtaTattaTTat,TTAAtaTattaTTattATAta
+SC AAtaTattaTTattaTAtATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtaTattaTTattaTAtATT,tATTAAtaTattaTTattaTA,attaTatATTAttATTAtATa
+SC AAtaTattaTAATatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaTattaTAATatat,TAAtaTattaTAATatatAAT,tAATTAAtaTattaTAATata
+SC AAtaTattaTAATattAATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAAtaTattaTAATatt,TAtATaatAtaaTTAtaatAT,tATTAtATaatAtaaTTAtaa
+SC AAtaTattaTAtATTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattaTAtATTattATT,tATTAAtaTattaTAtATTat,TAtATTattATTAAtaTatta
+SC AAtaTattaTAtATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtaTattaTAtATTattaTT,tATTAttaTatATTAtATaat,TAtATTattaTTAAtaTatta
+SC AAtaTattaTAtaTTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtaTattaTAtaTTattATT,tATTAAtaTattaTAtaTTat,TAtaTTattATTAAtaTatta
+SC AAtaTattaaTTatAAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaatAtaTaaTAtt,TAtATaatAtaTaaTAttAAT,tAAtATaTAAtaTattaaTTa
+SC AAtaTattaaTAATatatATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaattaTATAtaat,TAAtaTattaaTAATatatAT,tAATTAtATaattaTATAtaa
+SC AAtaTattaaTAATattATaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaatAtaTTAtaat,TAtATaatAtaTTAtaatAAT,tAATTAtATaatAtaTTAtaa
+SC AAtaTattaaTAAtATatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaattaTAtaTaat,TAAtaTattaaTAAtATatAT,tAATTAtATaattaTAtaTaa
+SC AAtaTattaaTATatAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATaatAtaTaTAtat,TAtATaatAtaTaTAtatAAT,tAATTAtATaatAtaTaTAta
+SC AAtatAATTatAATatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAATatataTTAAtat,TAAtatAATTatAATatataT,tAATTatAATatataTTAAta
+SC AAtatAATTatAATattaTaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAATattaTaTAAtat,TAtaaTAttaaTATaatAtAT,tAATTatAATattaTaTAAta
+SC AAtatAATTatAAtaTataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAAtaTataTTAAtat,TAAtatAATTatAAtaTataT,tAATTatAAtaTataTTAAta
+SC AAtatAATTatATatAtaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATatAtaTaTAAtat,TTatATatAtaTaTAAtatAA,aTATaatAtATaTAtaTAtta
+SC AAtatAATTatAtaTAtaTaT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTAtaTaTAAtat,TTatAtaTAtaTaTAAtatAA,aTATaatAtATatATaTAtta
+SC AAtatAATTattaTTattaTT len=21 maxpiece=8 C6=False C4=False T4=False -> none T4witness=AATTattaTTattaTTAAtat,TAAtatAATTattaTTattaT,tAATTattaTTattaTTAAta
+SC AAtatAATTattaTAAtaTaT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTattaTAAtaTaTAAtat,TAttaaTATaatAtATaatAT,tAATTattaTAAtaTaTAAta
+SC AAtatATTatAtATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtatATTatAtATTattaTT,tATTAttaTaTAttaTATaat,TATaattATTAttaTaTAtta
+SC AAtatATTatAtaTTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtatATTatAtaTTattATT,tATTAAtatATTatAtaTTat,TATaattaTTAttATaTAtta
+SC AAtatATTatAtaTTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtatATTatAtaTTattaTT,tATTAttATaTAttaTATaat,TATaattATTAttATaTAtta
+SC AAtatATTataTatAAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAtATAttaTATaatt,TAAtatATTataTatAAtaaT,tAAtaaTTAAtatATTataTa
+SC AAtatATTatatATAAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTATAttaTATaatt,TAAtaaTTAAtatATTatatA,aTTAAtatATTatatATAAta
+SC AAtatATTattATTatAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtatATTattATTatAtaTT,tATTatAtaTTAAtatATTat,TATaattATaTAttaTTAtta
+SC AAtatATTattATTattaaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAttaTTAttaTATaatt,TAAtatATTattATTattaaT,tATTattATTattaaTTAAta
+SC AAtatATTattATATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtatATTattATATattaTT,tATATattaTTAAtatATTat,TATaattATTAtataTTAtta
+SC AAtatATTattaTTatAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtatATTattaTTatAtATT,tATTAAtatATTattaTTatA,attaTaTAttATTAttaTATa
+SC AAtatATTattaTTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtatATTattaTTatAtaTT,tATTAttaTATaattATaTAt,TATaattATaTAttATTAtta
+SC AAtatATTattaTATattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtatATTattaTATattATT,tATTAAtatATTattaTATat,TATaattaTTAtatATTAtta
+SC AAtatATTattaTATattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtatATTattaTATattaTT,tATTAtatATTAttaTATaat,TATaattATTAtatATTAtta
+SC AAtatATTattaaTTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTATaattaTTAtt,TAAtatATTattaaTTattAT,tATTattaaTTattATTAAta
+SC AAtatATTattaaTAAtATaT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTATaatAtaTaat,TAttaTATaatAtaTaatAAT,tAATTAttaTATaatAtaTaa
+SC AAtatATAATataTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtATAtaataTATaatt,TAATataTattaaTTAAtatA,aTTAAtatATAATataTatta
+SC AAtatATAAtATaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTaataTATaatt,TAAtATaTattaaTTAAtatA,aTTAAtatATAAtATaTatta
+SC AAtatATAAtaaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTATaattaTATAtt,TAAtaaTTatatATTAAtatA,aTTatatATTAAtatATAAta
+SC AAtatATATataTatAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtATAtataTATaatt,TAAtatATATataTatAtaaT,tATATataTatAtaaTTAAta
+SC AAtatATATattATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtatATATattATTattaTT,tATTAttaTTAtataTATaat,TATaattATTAttaTTAtata
+SC AAtatATATattaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtatATATattaTTattATT,tATTAAtatATATattaTTat,TATaattaTTAttATTAtata
+SC AAtatATATattaTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtatATATattaTTattaTT,tATTAtataTATaattATTAt,TATaattATTAttATTAtata
+SC AAtatATaTatAATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTAtAtaTATaatt,TAAtatATaTatAATattaaT,tAATattaaTTAAtatATaTa
+SC AAtatATaTatATatAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaTAtaTAtAtaTATaatt,TAAtatATaTatATatAtaaT,tATaTatATatAtaaTTAAta
+SC AAtatATaTattATAAtaaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaataTTAtAtaTATaatt,TAAtaaTTAAtatATaTattA,aTTAAtatATaTattATAAta
+SC AAtatATaTattaaTAAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTATaattaTaat,TAAtatATaTattaaTAAtAT,tAATTAtAtaTATaattaTaa
+SC AAtatATatATTatAAtaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATaaTAttaTAtaTATaatt,TAAtatATatATTatAAtaaT,tAAtaaTTAAtatATatATTa
+SC AAtatATatATAATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaataTAtaTATaatt,TAATattaaTTAAtatATatA,aTTAAtatATatATAATatta
+SC AAtataTTatAATatatAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTTatAATatat,TAAtataTTatAATatatAAT,tAATTAAtataTTatAATata
+SC AAtataTTatAtATTattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtataTTatAtATTattATT,tATATaattaTTAttaTaTAt,TAttATATaattaTTAttaTa
+SC AAtataTTatAtATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtataTTatAtATTattaTT,tATATaattATTAttaTaTAt,TAttATATaattATTAttaTa
+SC AAtataTTatAtaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtataTTatAtaTTattATT,tATATaattaTTAttATaTAt,TAttATATaattaTTAttATa
+SC AAtataTTattAATTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTattaTTAAtataTTatt,TAAtataTTattAATTattaT,taTTattAATTattaTTAAta
+SC AAtataTTattATTatAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtataTTattATTatAtATT,tATATaattaTaTAttaTTAt,TAttaTTAttATATaattaTa
+SC AAtataTTattATTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtataTTattATTatAtaTT,tATATaattATaTAttaTTAt,TAttaTTAttATATaattATa
+SC AAtataTTattATATattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtataTTattATATattATT,tATATaattaTTAtataTTAt,TTAtataTTAttATATaatta
+SC AAtataTTattATATattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtataTTattATATattaTT,tATATaattATTAtataTTAt,TTAAtataTTattATATatta
+SC AAtataTTattaTTatAtATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtataTTattaTTatAtATT,tATATaattaTaTAttATTAt,TAttATTAttATATaattaTa
+SC AAtataTTattaTTattAATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AATTAAtataTTattaTTatt,TAAtataTTattaTTattAAT,taTTattaTTattAATTAAta
+SC AAtataTTattaTATattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAtataTTattaTATattATT,tATATaattaTTAtatATTAt,TATattATTAAtataTTatta
+SC AAtataTAATataTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTAATataTatt,TAAtataTAATataTattAAT,tATATaattaaTTAtATAtaa
+SC AAtataTAAtaTaTattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTAAtaTaTatt,TAAtataTAAtaTaTattAAT,tATATaattaaTTAtAtATaa
+SC AAtataTATatATatatAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTATatATatat,TAAtataTATatATatatAAT,tAATTAAtataTATatATata
+SC AAtataTATattATTattATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAtataTATattATTattATT,tATTAAtataTATattATTat,TATattATTattATTAAtata
+SC AAtataTATattATTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtataTATattATTattaTT,tATTAttaTTAtatATATaat,TATattATTattaTTAAtata
+SC AAtataTATattaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAtataTATattaTTattATT,tATTAAtataTATattaTTat,TATattaTTattATTAAtata
+SC AAtataTaTatAATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTaTatAATatt,TAAtataTaTatAATattAAT,tAATattAATTAAtataTaTa
+SC AAtataTataTAATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtataTataTAATatt,TAAtataTataTAATattAAT,tATAtATATaattaaTTAtaa
+SC AAtaaTatAAtATTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaaTAtAATaatt,TAAtaaTatAAtATTattaaT,tAAtATTattaaTTAAtaaTa
+SC AAtaaTatAAtaTTattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaaTatAAtaTTatt,TAAtaaTatAAtaTTattAAT,tAAtaTTattAATTAAtaaTa
+SC AAtaaTatAAtaaTTattATT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaaTAtAATaattaTTAtt,TAAtaaTatAAtaaTTattAT,tAAtaaTTattATTAAtaaTa
+SC AAtaaTatAtATATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTaTAtAATaatt,TAAtaaTatAtATATattaaT,tAtATATattaaTTAAtaaTa
+SC AAtaaTatAtaTATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaaTatAtaTATatt,TAAtaaTatAtaTATattAAT,tATaTAtAATaattaaTTAta
+SC AAtaaTattAATTatAAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAAtaTTAAtaaTatt,TAAtaaTattAATTatAAtaT,tAAtaTTAAtaaTattAATTa
+SC AAtaaTattATTatAAtaaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATaaTAttaTTAtAATaatt,TAAtaaTattATTatAAtaaT,tAAtaaTTAAtaaTattATTa
+SC AAtaaTattATAATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaataTTAtAATaatt,TAATattaaTTAAtaaTattA,aTTAAtaaTattATAATatta
+SC AAtaaTattaTAATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaaTattaTAATatt,TAAtaaTattaTAATattAAT,tATTAtAATaattaaTTAtaa
+SC AAtaaTattaaTTatAAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAATaattaTaaTAtt,TAAtaaTattaaTTatAAtAT,tAAtATTAAtaaTattaaTTa
+SC AAtaaTattaaTAATattATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAATaattaTTAtaat,TAAtaaTattaaTAATattAT,tAATTAtAATaattaTTAtaa
+SC AAtaatAATTatAATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAATattaTTAAtaat,TAAtaatAATTatAATattaT,tAATTatAATattaTTAAtaa
+SC AAtaatAATTatATatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatATatAtaTTAAtaat,TAAtaatAATTatATatAtaT,tAATTatATatAtaTTAAtaa
+SC AAtaatATTatAATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTAttaTAATaatt,TAAtaatATTatAATattaaT,tAATattaaTTAAtaatATTa
+SC AAtaatATAAtATTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTaataTAATaatt,TAAtATTattaaTTAAtaatA,aTTAAtaatATAAtATTatta
+SC AAtaatATATatATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaTAtataTAATaatt,TAAtaatATATatATattaaT,tATATatATattaaTTAAtaa
+SC AAtaatATAtATATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTataTAATaatt,TAAtaatATAtATATattaaT,tATAtATATattaaTTAAtaa
+SC AAtaataTTatAATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaataTTatAATatt,TAATaattaaTTAtaaTAttA,aTAttATAATaattaaTTAta
+SC AAtaataTAAtaTTattAATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaataTAAtaTTatt,TAATaattaaTTAttATaatA,aTTAttATaatATAATaatta
+SC AAtaataTATatATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaataTATatATatt,TAATaattaaTTAtaTAtatA,aTTAtaTAtatATAATaatta
+SC AAtaataTAtaTATattAATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAAtaataTAtaTATatt,TAATaattaaTTAtatATatA,aTTAtatATatATAATaatta
+SC AAttAATTatAATataataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaaTAttaaTTaattAT,tAATTatAATataataTTAAt,TAttaaTTaattATAATAtaa
+SC AAttAATTatAAtaTaataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAAtaTaataTTAAtt,TAAtATaaTAttaaTTaattA,aTAttaaTTaattATAAtATa
+SC AAttAATTatAtaTTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTTattaTTAAtt,TAAttAATTatAtaTTattaT,tAtaTTattaTTAAttAATTa
+SC AAttAATTatataTTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTTattaTTAAtt,TAAttAATTatataTTattaT,taTTattaTTAAttAATTata
+SC AAttAATTattaTATattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTattaTATattaTTAAtt,TAAttAATTattaTATattaT,tATTAttaaTTaattATTAta
+SC AAttAATTattaTaTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTattaTaTattaTTAAtt,TAAttAATTattaTaTattaT,ttATTAtAtATTAttaaTTaa
+SC AAttATTatATattATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatATattATataTT,tATAtaTTAtaTAttaTTaat,TAttaTTaattATAtaTTAta
+SC AAttATTatATattaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatATattaTatATT,tATTAtaTAttaTTaattaTA,attaTAtATTAtaTAttaTTa
+SC AAttATTatATattaTataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatATattaTataTT,tATAtATTAtaTAttaTTaat,TAttaTTaattATAtATTAta
+SC AAttATTatAtATTatataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATTatAtATTatataTT,tATATAttaTaTAttaTTaat,TAttaTTaattATATAttaTa
+SC AAttATTatAtATTattaaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AATTAttaTaTAttaTTaatt,TAAttATTatAtATTattaaT,tAtATTattaaTTAAttATTa
+SC AAttATTatAtATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatAtATaTattaTT,tATTAtAtaTaTAttaTTaat,TAttaTTaattATTAtAtaTa
+SC AAttATTatAtaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatAtaTTatatATT,tATTatAtaTTatatATTAAt,TATAttATaTAttaTTaatta
+SC AAttATTatAtaTTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatAtaTTatataTT,tATATAttATaTAttaTTaat,TAttaTTaattATATAttATa
+SC AAttATTatAtaTaTattATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatAtaTaTattATT,tATTAAttATTatAtaTaTat,TAttaTTaattaTTAtAtATa
+SC AAttATTatAtaTaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatAtaTaTattaTT,tATTAtAtATaTAttaTTaat,TAttaTTaattATTAtAtATa
+SC AAttATTataTattATAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTataTattATAtaTT,tATAtaTTAAttATTataTat,TTAAttATTataTattATAta
+SC AAttATTataTattaTAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTataTattaTAtATT,tATAttaTTaattaTatATTA,attaTatATTAtATAttaTTa
+SC AAttATTataTattaTAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTataTattaTAtaTT,tATAttaTTaattATatATTA,attATatATTAtATAttaTTa
+SC AAttATTatatATTatAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATTatatATTatAtaTT,tATTatatATTatAtaTTAAt,TATAttaTTaattATaTAtta
+SC AAttATTatatATATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatatATATattaTT,tATTAtataTATAttaTTaat,TATAttaTTaattATTAtata
+SC AAttATTatataTTatAtATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatataTTatAtATT,tATATAttaTTaattaTaTAt,TAttATATAttaTTaattaTa
+SC AAttATTatataTTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatataTTatAtaTT,tATATAttaTTaattATaTAt,TAttATATAttaTTaattATa
+SC AAttATTatataTATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTatataTATattaTT,tATTAtatATATAttaTTaat,TATattaTTAAttATTatata
+SC AAttATTattATATatataTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattATATatataTT,tATATAtataTTAttaTTaat,TTAAttATTattATATatata
+SC AAttATTattATATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtataTTAttaTTaatt,TAAttATTattATATattaaT,taTTAttaTTaattAATTAta
+SC AAttATTattATAtaTataTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattATAtaTataTT,tATAtATataTTAttaTTaat,TTAAttATTattATAtaTata
+SC AAttATTattATaTatAtaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattATaTatAtaTT,tATTattATaTatAtaTTAAt,TAtAtaTTAttaTTaattATa
+SC AAttATTattATaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtAtaTTAttaTTaatt,TAAttATTattATaTattaaT,ttAATTAtAtaTTAttaTTaa
+SC AAttATTattATataTAtaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattATataTAtaTT,tATTattATataTAtaTTAAt,TAtaTTAAttATTattATata
+SC AAttATTattaTATatatATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattaTATatatATT,tATTattaTATatatATTAAt,TATAtatATTAttaTTaatta
+SC AAttATTattaTATatataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTattaTATatataTT,tATATAtatATTAttaTTaat,TATatataTTAAttATTatta
+SC AAttATTattaTAtATataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTattaTAtATataTT,tATAtaTatATTAttaTTaat,TAtATataTTAAttATTatta
+SC AAttATTattaTAtaTatATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattaTAtaTatATT,tATTattaTAtaTatATTAAt,TAtATatATTAttaTTaatta
+SC AAttATTattaTaTatAtATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattaTaTatAtATT,tATTAAttATTattaTaTatA,attaTaTAtAtATTAttaTTa
+SC AAttATTattaTaTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTattaTaTatAtaTT,tATTAttaTTaattATaTAtA,attATaTAtAtATTAttaTTa
+SC AAttATTattaTatATAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATTattaTatATAtaTT,tATTAttaTTaattATataTA,attATataTAtATTAttaTTa
+SC AAttATTattaTataTAtATT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATTattaTataTAtATT,tATTAAttATTattaTataTA,attaTatATAtATTAttaTTa
+SC AAttATTattaaTTatAtATT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAttaTTaattaTaTAtt,TAAttATTattaaTTatAtAT,tAtATTAAttATTattaaTTa
+SC AAttATAATataaTattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATAtaataTTaattAATTAt,TAATataaTattaaTTAAttA,aTTAAttATAATataaTatta
+SC AAttATATatatATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATATatatATTattaTT,tATATatatATTattaTTAAt,TATAtataTTaattATTAtta
+SC AAttATATatataTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATATatataTTattaTT,tATATAtataTTaattATTAt,TTAAttATATatataTTatta
+SC AAttATATattATTatataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATATattATTatataTT,tATATAttaTTAtataTTaat,TTAAttATATattATTatata
+SC AAttATATattATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATATattATaTattaTT,tATATattATaTattaTTAAt,TTAAttATATattATaTatta
+SC AAttATATattaTTatatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATATattaTTatatATT,tATATattaTTatatATTAAt,TATAttATTAtataTTaatta
+SC AAttATATattaTTatataTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATATattaTTatataTT,tATATAttATTAtataTTaat,TTAAttATATattaTTatata
+SC AAttATATattaTaTattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATATattaTaTattaTT,tATATattaTaTattaTTAAt,TTAAttATATattaTaTatta
+SC AAttATAtATTataTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATAtATTataTattaTT,tATAtATTataTattaTTAAt,TTAAttATAtATTataTatta
+SC AAttATAtATataTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATAtATataTTattaTT,tATAtATataTTattaTTAAt,TTAAttATAtATataTTatta
+SC AAttATAtaTTataTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATAtaTTataTattaTT,tATAtaTTataTattaTTAAt,TTAAttATAtaTTataTatta
+SC AAttATAtaTTattaTatATT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATAtaTTattaTatATT,tATAtaTTattaTatATTAAt,TAtATTAttATataTTaatta
+SC AAttATAtaTatATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATAtaTatATTattaTT,tATAtaTatATTattaTTAAt,TAtATataTTaattATTAtta
+SC AAttATaTatAtATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATaTatAtATTattaTT,tATTAttaTaTAtAtaTTaat,TAtAtaTTaattATTAttaTa
+SC AAttATaTatAtaTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATaTatAtaTTattaTT,tATTAttATaTAtAtaTTaat,TAtAtaTTaattATTAttATa
+SC AAttATaTattATTatAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATaTattATTatAtaTT,tATTatAtaTTAAttATaTat,TAttaTTAtAtaTTaattATa
+SC AAttATaTattATATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATaTattATATattaTT,tATATattaTTAAttATaTat,TTAAttATaTattATATatta
+SC AAttATaTattaTTatAtaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATaTattaTTatAtaTT,tATTAtAtaTTaattATaTAt,TAttATTAtAtaTTaattATa
+SC AAttATaTattaTATattaTT len=21 maxpiece=6 C6=False C4=False T4=False -> none T4witness=AAttATaTattaTATattaTT,tATTAtatATTAtAtaTTaat,TATattaTTAAttATaTatta
+SC AAttATatATTatATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATatATTatATattaTT,tATTAtaTAttaTAtaTTaat,TAtaTTaattATTAtaTAtta
+SC AAttATatATAtaTTattaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttATatATAtaTTattaTT,tATTAttATataTAtaTTaat,TAtaTTaattATTAttATata
+SC AAttATataTTatATattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATataTTatATattaTT,tATAtaTTaattATTAtaTAt,TAttATAtaTTaattATTAta
+SC AAttATataTAtATTattaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttATataTAtATTattaTT,tATTAttaTatATAtaTTaat,TAtATTattaTTAAttATata
+SC AAttATaaTatAATattaaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTAtaaTAtAAtaTTaatt,TAAttATaaTatAATattaaT,tAATattaaTTAAttATaaTa
+SC AAttaTTatATattATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTTatATattATataTT,tATAtaTTAtaTAttATTaat,TAttATTaattATAtaTTAta
+SC AAttaTTatAtATTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTTatAtATTatataTT,tATATAttaTaTAttATTaat,TAttATTaattATATAttaTa
+SC AAttaTTatAtATaTattaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTTatAtATaTattaTT,tATTAtAtaTaTAttATTaat,TAttATTaattATTAtAtaTa
+SC AAttaTTataTattATAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTTataTattATAtaTT,tATAtaTTAAttaTTataTat,TTAAttaTTataTattATAta
+SC AAttaTTatatATTatAtaTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTTatatATTatAtaTT,tATTaattATaTAttaTATAt,TATAttATTaattATaTAtta
+SC AAttaTTattAATTatAtaTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatAtaTTAAttaTTatt,TAAttaTTattAATTatAtaT,tAtaTTAAttaTTattAATTa
+SC AAttaTTattAATTatataTT len=21 maxpiece=4 C6=False C4=True T4=False -> C'(1/4) only T4witness=AATTatataTTAAttaTTatt,TAAttaTTattAATTatataT,taTTAAttaTTattAATTata
+SC AAttaTTattATATatataTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttaTTattATATatataTT,tATATAtataTTAttATTaat,TTAAttaTTattATATatata
+SC AAttaTTattATAtATataTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttaTTattATAtATataTT,tATAtATataTTAAttaTTat,TTAAttaTTattATAtATata
+SC AAttaTTattATaTatAtaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttaTTattATaTatAtaTT,tATTaattATaTAtAtaTTAt,TAtAtaTTAttATTaattATa
+SC AAttaTTattATatATAtaTT len=21 maxpiece=7 C6=False C4=False T4=False -> none T4witness=AAttaTTattATatATAtaTT,tATTaattATataTAtaTTAt,TAtaTTAttATTaattATata
+SC AAttaTATattATTatataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTATattATTatataTT,tATATAttaTTAtatATTaat,TATattATTatataTTAAtta
+SC AAttaTAtATTattATataTT len=21 maxpiece=5 C6=False C4=True T4=False -> C'(1/4) only T4witness=AAttaTAtATTattATataTT,tATAtaTTAttaTatATTaat,TAtATTattATataTTAAtta
+SENTINEL_DONE

@@ -1,0 +1,59 @@
+# calibration 1: BUDGET=60 capbfs 2 24 4000000 xxxYYYY xyxYXY c24.ck (split into slots)
+RANK 2 CAP 24 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 1653
+depth 3 states 6987
+depth 4 states 17815
+depth 5 states 36729
+depth 6 states 66549
+depth 7 states 97304
+SLOT END states 113465 head 74752 depth 7
+resumed c24.ck: states 113465 head 74752 depth 7
+depth 8 states 129042
+depth 9 states 155267
+SLOT END states 175068 head 148480 depth 9
+resumed c24.ck: states 175068 head 148480 depth 9
+depth 10 states 177570
+depth 11 states 196083
+depth 12 states 210237
+depth 13 states 220931
+depth 14 states 229468
+SLOT END states 231921 head 224256 depth 14
+resumed c24.ck: states 231921 head 224256 depth 14
+depth 15 states 235622
+depth 16 states 240754
+depth 17 states 244334
+depth 18 states 247078
+depth 19 states 249185
+depth 20 states 251151
+depth 21 states 252819
+depth 22 states 254609
+depth 23 states 256116
+depth 24 states 257506
+depth 25 states 258657
+depth 26 states 259624
+depth 27 states 260335
+depth 28 states 260803
+depth 29 states 261108
+depth 30 states 261311
+depth 31 states 261486
+depth 32 states 261594
+depth 33 states 261654
+depth 34 states 261686
+depth 35 states 261711
+depth 36 states 261718
+depth 37 states 261720
+EXHAUSTED depth 37 states 261720 processed 261720; PRIM tests 261719, goals PRIM 0
+lengths: 13:2 14:5 15:72 16:83 17:476 18:541 19:2905 20:3159 21:17189 22:18658 23:101800 24:116830
+dumped 261720 states to c24.ck.txt
+# cmp c24.ck.txt s24r2.txt (thzsearch 2 24 4000000 xxxYYYY xyxYXY dump): identical
+# calibration 2: thzsearch 2 26 4000000 xxxYYYY xyxYXY (stopped during level 9)
+RANK 2 CAP 26 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 4546
+depth 3 states 23751
+depth 4 states 72338
+depth 5 states 166278
+depth 6 states 332444
+depth 7 states 524545
+depth 8 states 735028

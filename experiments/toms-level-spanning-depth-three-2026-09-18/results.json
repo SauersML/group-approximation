@@ -1,0 +1,129 @@
+{
+ "anneal": {
+  "program": "experiments/toms-level-spanning-weighted-2026-09-18/anneal.c (usage: anneal N m Tmax mode steps seed [T0]); modes 1 = (S), 2 = (B)",
+  "runs": [
+   {
+    "N": 5,
+    "m": 1,
+    "Tmax": 2,
+    "mode": 2,
+    "seed": 1,
+    "steps_completed": 160000,
+    "stopped_by": "timeout 1200 s",
+    "final": 13,
+    "best": 1,
+    "counterexample": false,
+    "meaning": "(B) at N = 5 with max delta <= 2: a score-0 state would be a budget-5 configuration of depth 2, refuting depth 3 at beta = N = 5"
+   },
+   {
+    "N": 4,
+    "m": 1,
+    "Tmax": 2,
+    "mode": 1,
+    "seeds": [
+     1,
+     2,
+     3
+    ],
+    "steps": 1500000,
+    "last_logged": [
+     1400000,
+     1460000,
+     1440000
+    ],
+    "final": [
+     3,
+     3,
+     3
+    ],
+    "best": [
+     1,
+     1,
+     1
+    ],
+    "counterexample": false
+   }
+  ]
+ },
+ "torus_relative_hex": {
+  "program": "torus_relative_hex.py (usage: python3 torus_relative_hex.py n k steps seed [disk]); n x n triangular-lattice torus minus a k x k block (k = 0 with 'disk': the plain n x n rhombus), vertex 2-colourings, 6-adjacency for both colours",
+  "question": "surface form of R1(3) for a level-1 wall with one handle: can H components each meet at most two adjacent sides while every complement component misses a side?",
+  "corner_semantics": "the point between consecutive boundary cells of different colours lies in H, so an H cell also meets the sides of its boundary neighbours; with the naive labelling (no such transfer) the search finds spurious counterexamples at once",
+  "runs": [
+   {
+    "n": 10,
+    "k": 0,
+    "disk": true,
+    "steps": 30000,
+    "best": 1
+   },
+   {
+    "n": 8,
+    "k": 2,
+    "steps": 30000,
+    "best": 1
+   },
+   {
+    "n": 10,
+    "k": 3,
+    "steps": 30000,
+    "best": 1
+   },
+   {
+    "n": 12,
+    "k": 4,
+    "steps": 200000,
+    "seeds": [
+     3,
+     11,
+     12
+    ],
+    "best": 1
+   },
+   {
+    "n": 14,
+    "k": 5,
+    "steps": 200000,
+    "seed": 13,
+    "best": 1
+   },
+   {
+    "n": 16,
+    "k": 4,
+    "steps": 200000,
+    "seed": 14,
+    "best": 1
+   },
+   {
+    "n": 10,
+    "k": 2,
+    "steps": 200000,
+    "seed": 15,
+    "best": 1
+   }
+  ],
+  "counterexample": false,
+  "annulus_control": {
+   "model": "'disk' mode with k > 0: plane rhombus minus a k x k block, sides on the inner circle, outer circle unlabelled and free",
+   "runs": [
+    {
+     "n": 10,
+     "k": 3,
+     "steps": 60000,
+     "seed": 1,
+     "best": 0
+    },
+    {
+     "n": 12,
+     "k": 4,
+     "steps": 60000,
+     "seed": 2,
+     "best": 0
+    }
+   ],
+   "counterexample": true,
+   "meaning": "with a second, free boundary circle the relative Hex statement fails; in the cube such a circle lets level 0 leak through the wall, so the closing-off supplied by the level-0 hypothesis is essential"
+  }
+ },
+ "conclusion": "No counterexample to (B) at N = 5, (S) at N = 4, or the one-handle wall; the annulus control (two boundary circles) does have counterexamples. Search evidence only."
+}

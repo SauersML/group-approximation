@@ -1,0 +1,36 @@
+e=5 M=2 level 1: |G_k| = 8 = 2^3.000  (t=0s)
+e=5 level 1: 8 rows, exact verification OK
+e=5 M=2 level 2: |G_k| = 64 = 2^6.000  (t=0s)
+e=5 level 2: 64 rows, exact verification OK
+stable: |G_2| = |G_3|, so Bbar_5 = G_3 (stabilization lemma)
+e=5 level 3: 64 rows, exact verification OK
+stable: |G_2| = |G_3|, so Bbar_5 = G_3 (stabilization lemma)
+e=5: fresh level-3 tables equal ck5/L3.npz: True
+e=6 M=4 level 1: |G_k| = 16 = 2^4.000  (t=0s)
+e=6 level 1: 16 rows, exact verification OK
+e=6 M=4 level 2: |G_k| = 512 = 2^9.000  (t=0s)
+e=6 level 2: 512 rows, exact verification OK
+stable: |G_2| = |G_3|, so Bbar_6 = G_3 (stabilization lemma)
+e=6 level 3: 512 rows, exact verification OK
+stable: |G_2| = |G_3|, so Bbar_6 = G_3 (stabilization lemma)
+e=6: fresh level-3 tables equal ck6/L3.npz: True
+e=7 M=8 level 1: |G_k| = 32 = 2^5.000  (t=0s)
+e=7 level 1: 32 rows, exact verification OK
+e=7 M=8 level 2: |G_k| = 4096 = 2^12.000  (t=0s)
+e=7 level 2: 4096 rows, exact verification OK
+e=7 M=8 level 3: |G_k| = 8192 = 2^13.000  (t=1s)
+e=7 level 3: 8192 rows, exact verification OK
+stable: |G_3| = |G_4|, so Bbar_7 = G_4 (stabilization lemma)
+e=7 level 4: 8192 rows, exact verification OK
+stable: |G_3| = |G_4|, so Bbar_7 = G_4 (stabilization lemma)
+e=7: fresh level-4 tables equal ck7/L4.npz: True
+e=8 M=16 level 1: |G_k| = 64 = 2^6.000  (t=0s)
+e=8 level 1: 64 rows, exact verification OK
+e=8 M=16 level 2: |G_k| = 32768 = 2^15.000  (t=3s)
+e=8 level 2: 32768 rows, exact verification OK
+e=8 M=16 level 3: |G_k| = 131072 = 2^17.000  (t=14s)
+e=8 level 3: 131072 rows, exact verification OK
+stable: |G_3| = |G_4|, so Bbar_8 = G_4 (stabilization lemma)
+e=8 level 4: 131072 rows, exact verification OK
+stable: |G_3| = |G_4|, so Bbar_8 = G_4 (stabilization lemma)
+e=8: fresh level-4 tables equal ck8/L4.npz: True

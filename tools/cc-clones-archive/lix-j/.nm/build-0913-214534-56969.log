@@ -1,0 +1,13 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+[job] acn112 cores=80-87 threads=8 base=94882efab8f0b4cc396f9fa10a96413dc95c761a mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
+ℹ [1758/1758] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy (8.5s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.conjRingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:212:14: 'GroupApproximation.SimpleKazhdanSofic.flipRingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:213:14: 'GroupApproximation.SimpleKazhdanSofic.nonempty_elementaryGroup_equiv_of_conj_or_flip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean:214:21: 'GroupApproximation.SimpleKazhdanSofic.printedConjugacyIsomorphism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1758 jobs).
+EXIT=0

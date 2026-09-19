@@ -1,0 +1,40 @@
+S_(2,4), k=1
+  s=(0, 0) pieces=['inf+0', 1, 1, 'inf+4']
+  s=(0, 1) pieces=['inf+2', 0, 0, 'inf+4']
+  s=(0, 2) pieces=['inf+2', 1, 1, 'inf+2']
+  s=(1, 1) pieces=['inf+4', 0, 0, 'inf+2']
+  s=(1, 2) pieces=['inf+4', 1, 1, 'inf+0']
+  distinct middle patterns: [(0, 0), (1, 1)]
+S_(2,4), k=2
+  s=(0, 0) pieces=['inf+0', 3, 3, 'inf+8']
+  s=(0, 1) pieces=['inf+4', 1, 1, 'inf+8']
+  s=(0, 2) pieces=['inf+4', 3, 3, 'inf+4']
+  s=(1, 1) pieces=['inf+8', 1, 1, 'inf+4']
+  s=(1, 2) pieces=['inf+8', 3, 3, 'inf+0']
+  distinct middle patterns: [(1, 1), (3, 3)]
+S_(2,4), k=3
+  s=(0, 0) pieces=['inf+0', 7, 7, 'inf+16']
+  s=(0, 1) pieces=['inf+8', 3, 3, 'inf+16']
+  s=(0, 2) pieces=['inf+8', 7, 7, 'inf+8']
+  s=(1, 1) pieces=['inf+16', 3, 3, 'inf+8']
+  s=(1, 2) pieces=['inf+16', 7, 7, 'inf+0']
+  distinct middle patterns: [(3, 3), (7, 7)]
+S_(3,4), k=1
+  s=(0,) pieces=['inf+0', 3, 3, 'inf+4']
+  s=(1,) pieces=['inf+4', 1, 1, 'inf+4']
+  s=(2,) pieces=['inf+4', 3, 3, 'inf+0']
+  distinct middle patterns: [(1, 1), (3, 3)]
+S_(3,4), k=2
+  s=(0,) pieces=['inf+0', 7, 7, 'inf+8']
+  s=(1,) pieces=['inf+8', 3, 3, 'inf+8']
+  s=(2,) pieces=['inf+8', 7, 7, 'inf+0']
+  distinct middle patterns: [(3, 3), (7, 7)]
+S_(3,4), k=3
+  s=(0,) pieces=['inf+0', 15, 15, 'inf+16']
+  s=(1,) pieces=['inf+16', 7, 7, 'inf+16']
+  s=(2,) pieces=['inf+16', 15, 15, 'inf+0']
+  distinct middle patterns: [(7, 7), (15, 15)]
+S_(2,3)
+  s=(0,) pieces=['inf+0', 0, 'inf+1']
+  s=(1,) pieces=['inf+1', 0, 'inf+0']
+  distinct middle patterns: [(0,)]

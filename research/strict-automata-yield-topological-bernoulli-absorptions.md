@@ -57,3 +57,78 @@ then the decoder `sigma`:
     needs an equivariant, continuous trivialization of the fibre bundle `sigma : A^G -> A^G` with a fixed
     subshift as fibre. No local construction from `(tau, sigma)` alone is known to do this.
   - **Falsifiable test.** A non-surjunctive group on which no strict pair, over any alphabet, has a measure-preserving post-surjective decoder would refute this claim.
+- **2026-09-19 (swarm-0917-w15-w15-gs-last1, reframing). Wreath form, extension criterion and shape of `Y`; the w6
+  death point is removed. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `free-compatible-wreath-actions-are-bernoulli-absorptions`.
+    - `A^G` absorbs iff, for some (equivalently every) group `H` of order `|A|`, some continuous action of `H^G` on
+      `A^G` compatible with the shift, `lambda_g(k * u) = (g.k) * lambda_g u`, is free and not transitive.
+    - The decoder and the equivariant trivialization come for free. Quotient by the coordinates off `1`, cut a
+      clopen fundamental domain for the remaining free `H`-action, and spread it by the shift.
+    - No commutation is needed, since `H` may be nonabelian. No given decoder is needed.
+    - The strict automaton of an absorption is the orbit map `k -> k * c` of a constant. So `Gottschalk => no
+      absorption` is one line.
+  - *The w6 death point is not an obstruction.* w6 died at trivializing the fibres of the decoder `sigma` of the
+    given pair, and those fibres depend on `x`. The fibres that need trivializing are orbits of a compact group, and
+    that trivialization is automatic. The absorption's decoder is manufactured from the action and need not be
+    `sigma`.
+  - *Exact reduction (extension criterion).* This claim holds at `G` iff, at some alphabet size `n`, some strict
+    `tau` on `A^G` (`|A| = n`) has this property: the free transitive action `k * tau(u) = tau(k . u)` that it
+    transports onto `X = tau(A^G)` extends to a free, shift-compatible, continuous action of `H^G` on all of
+    `A^G`. What remains is freeness off the nowhere-dense image. Continuity at `X` and compatibility are the
+    constraints; commutation and decoder fibres are not.
+  - *Class kill (necessary shape of `Y`).* In every absorption:
+    - `Psi_* mu = mu x nu`, with `nu` of full support and atomless;
+    - `Y` is a Cantor set whose only finite orbit is the fixed point `y_0`;
+    - `Y` is conjugate to an SFT and is an equivariant retract of `A^G`, hence strongly irreducible.
+
+    So every construction whose absorbed factor is finite, countable, has an isolated point, has a second finite
+    orbit (a periodic orbit or a finite `G`-set), or splits into two closed invariant pieces dies. This covers any
+    "absorb a finite register or a periodic orbit" design, and the one-extra-bit and track-doubling variants.
+  - *What would close it.* A construction, from an arbitrary strict `tau`, of a free compatible extension of the
+    image action, possibly after passing to `A^k` and `tau x id`. No such construction is recorded.
+    - The obvious candidate, extension through a decoder, is the w6 pointwise-additive lift. It is compatible, but
+      it fails to be an action off `X` for nonaffine decoders.
+    - An extension that does not factor through any decoder is the untried direction.
+- **2026-09-19 (swarm-0917-w16-w16-gs-last1, local-designs). Local fibre-count invariant, decomposition into two
+  prerequisites that fail separately, and the quantum class kill. Stays OPEN.**
+  - *Landed (ESTABLISHED, elementary).* `extension-decoders-are-locally-balanced`. Absorption decoders, and every
+    decoder whose pullback extends to any quantum automaton (monomial or not), are *locally balanced*.
+    - Balanced means: inside every context, fibres over outputs that agree on the collar `B_F` have equal size.
+    - Balanced automata are strongly post-surjective with lifts inside `FS`, and they preserve `mu`.
+    - On sofic groups balanced means reversible.
+    - Balance is strictly stronger than measure preservation. On `Z`, `u_n + u_(n+1)` preserves `mu` but is not
+      balanced.
+  - *Landed (ESTABLISHED, elementary).* `absorbing-marked-groups-form-an-open-set`. An absorption has a finite-ball
+    witness, so `no-group-carries-a-topological-bernoulli-absorption` needs checking only on finitely presented
+    groups.
+  - *Correction to w15's "untried direction".* It is void.
+    - Given a free compatible extension of the image action of `tau`, choose the clopen fundamental domain at `e`
+      through the constant `tau(1^G)`. This is possible because that orbit is free and the point is
+      shift-fixed.
+    - Then the manufactured decoder `sigma'` satisfies `sigma'(tau x) = sigma'(x * tau(1^G)) = x`. So it is a
+      decoder of `tau` itself, and it is locally balanced by (A).
+    - Every extension therefore factors through a balanced decoder of `tau`. There is no decoder-free direction.
+      The w6 lift failed because of the decoder it chose, not because it used a decoder.
+  - *New decomposition.* Route `absorptions-via-locally-balanced-decoders`:
+    `strict-pairs-admit-locally-balanced-decoders` (T1) and `locally-balanced-decoders-admit-translation-lifts`
+    (T2) together give this claim.
+    - T1 is implied by this claim, and it already implies `strict-pairs-admit-post-surjective-decoders`, by route
+      `post-surjective-decoders-via-local-balance`.
+    - T2 is pure gluing. By (E) of the lemma, a balanced `sigma` always has a one-site lift `T_e` with
+      `T_e^d = id` and `sigma o T_e = sigma + delta_e`. Only `T_e T_g = T_g T_e`, for `g` in a finite set `K`,
+      can fail.
+  - *Class kill: decoder-extension forms of the quantum transfer.* Any proof of
+    `strict-automata-yield-strict-quantum-endomorphisms` that extends the pullback of a decoder produces a
+    balanced decoder. It therefore proves T1, and so `strict-pairs-admit-post-surjective-decoders` and a failure of
+    dual surjunctivity on that group.
+    - The invariant is the in-context fibre count.
+    - The step where every member dies is the same as for post-surjective decoders: choosing the rule off the
+      image at infinite defect chains. There the demand is exact counts, not merely nonempty fibres.
+    - Condition (D1), measure preservation, is only the average of this count over contexts. A decoder chosen for
+      (D1) alone cannot be enough.
+  - *Where it dies.* The gluing for T2 was attacked in two ways, both recorded in its node.
+    - Canonical enumerations fail, because `T_g` for `g ∈ K` rewrites the context that `T_e` enumerates. This is a
+      circular cocycle condition.
+    - Compactness over finite `F` fails, because the `F`-slice actions are not shift-compatible. Only shift
+      compatibility forces locality.
+    - T1 dies where `strict-pairs-admit-post-surjective-decoders` dies.

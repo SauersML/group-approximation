@@ -1,0 +1,18 @@
+e=8 |Bbar|=2^17 Bbar relators 6 t=8212
+Syntax warning: Unbound global variable in qbpq.g:16
+  o:=List(GeneratorsOfGroup(Q),x->Log(Order(Image(epi,x)),2));;
+                                                  ^^^
+Syntax warning: Unbound global variable in qbpq.g:19
+    im:=List(GeneratorsOfGroup(Q),x->Image(epi,x));;
+                                           ^^^
+Syntax warning: Unbound global variable in qbpq.g:20
+    if ForAny(rels,w->MappedWord(w,GeneratorsOfGroup(F),im)<>One(I)) then Erro\
+r("relator check"); fi;
+                                                        ^^
+Syntax warning: Unbound global variable in qbpq.g:20
+    if ForAny(rels,w->MappedWord(w,GeneratorsOfGroup(F),im)<>One(I)) then Erro\
+r("relator check"); fi;
+                                                                 ^
+e=8 class 11 log2 size 306 log2 ord(a,b,c,d) [ 7, 6, 7, 6 ] t=13774
+e=8 class 12 log2 size 480 log2 ord(a,b,c,d) [ 7, 6, 7, 6 ] t=40201
+e=8 class 13 log2 size 782 log2 ord(a,b,c,d) [ 7, 6, 7, 6 ] t=158171

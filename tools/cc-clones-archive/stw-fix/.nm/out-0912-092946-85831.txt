@@ -1,0 +1,28 @@
+[job] 09:29:50 acn112 waiting for clone lock
+[job] delta sync b9f144093..44c6bab14: 17 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 44c6bab14 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0912-092946-85831.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4768 oleans
+--- errors (first 80 lines)
+595:✖ [4966/4970] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces (34s)
+597:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:352:76: Tactic `assumption` failed
+640:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:469:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsedMap_connected' depends on axioms outside the classical allowlist: [sorryAx]
+641:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+643:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:470:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsedMap_planar' depends on axioms outside the classical allowlist: [sorryAx]
+644:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+646:error: Lean exited with code 1
+649:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiBound (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

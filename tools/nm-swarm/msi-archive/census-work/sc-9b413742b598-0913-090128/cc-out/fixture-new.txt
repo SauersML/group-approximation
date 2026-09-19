@@ -1,0 +1,12 @@
+ok  via_partial              want=clean got=clean
+ok  via_in_place             want=clean got=clean
+ok  via_in_place_anonymous   want=clean got=clean
+ok  via_in_place_term        want=clean got=clean
+ok  via_partial_never        want=open-predicate got=buried-conditional,open-predicate
+ok  hides_partial            want=open-predicate got=buried-conditional,open-predicate
+ok  via_never_lift           want=conditional-data got=conditional-data
+ok  via_needy_lift           want=conditional-data got=conditional-data
+ok  via_sort_lift            want=conditional-data got=conditional-data
+ok  via_partial_debt         want=conditional-debt got=conditional-debt
+ok  via_debt_lift            want=conditional-debt got=conditional-debt
+FIXTURE_BAD=0

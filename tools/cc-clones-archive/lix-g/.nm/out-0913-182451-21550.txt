@@ -1,0 +1,25 @@
+[job] 18:25:27 acn112 waiting for clone lock
+[job] delta sync a22b1a4c8..24f758ea4: 41 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 24f758ea4 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-182451-21550.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3557 oleans
+--- errors (first 80 lines)
+6:✖ [10090/10090] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk (28s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:204:9: Unknown identifier `x₀`
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:244:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.exists_window_walks' depends on axioms outside the classical allowlist: [sorryAx]
+28:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+30:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:245:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_X' depends on axioms outside the classical allowlist: [sorryAx]
+31:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+33:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketWalk.lean:246:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketWalk.isClosedDartWalk_Y' depends on axioms outside the classical allowlist: [sorryAx]
+34:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+36:error: Lean exited with code 1
+39:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketWalk
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

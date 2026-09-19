@@ -70,6 +70,33 @@ definite functions, walls, cocycles or distortion.
 - **Deferred.** Matui's isomorphism classification of products of SFT groupoids
   (arXiv:1512.01724) is not applicable until the host is known to be, or not to be, such a
   product — which is this question.
+- **2026-09-19 (swarm-0917-w16-w16-nv-break, finite-models): the isotropy stratification
+  separates, and the W1 half is settled.**
+  - *Invariant.* The cardinality of the top isotropy stratum.
+    - In `G_2^n` the isotropy at `x` is `Z^{p(x)}`, where `p(x)` counts the eventually periodic
+      coordinates.
+    - So the rank-`n` set is `E^n`, which is countable.
+    - Isomorphisms carry isotropy groups to isotropy groups. No topology is used.
+  - *Theorem (ESTABLISHED, self-contained).* `brick-groupoid-has-no-principal-cantor-factor`.
+    - `G_2^n ≇ 𝒫 × 𝒦` whenever `𝒫` is principal with uncountable unit space.
+    - More generally, an isomorphism forces countable top strata in both factors.
+    - This gives `G_2^n ≇ 𝒢_W1 = (M ⋊ Γ) × G_2` for every `n ≥ 1`, since `Γ ↷ M` is free.
+    - It also rules out isomorphisms between nonempty open reductions, so it covers Kakutani
+      equivalence too.
+  - *Death step for the whole class.* Every "free Cantor model × amplifier" host dies at the
+    count: `(top of 𝒫) × (top of 𝒦)` is uncountable, while `E^n` is countable.
+  - *Correction.* "No invariant recorded on the graph separates the two groupoids" is no
+    longer true, and the gate list on the flagship should add isotropy strata as a separator.
+  - *Decomposition.* New route `brick-host-nonisomorphism-via-isotropy-strata`, which does not
+    use the flagship.
+    - It requires the established theorem.
+    - It also requires the one OPEN hole `brick-groupoid-not-isomorphic-to-rs-boundary-host`.
+      That hole is already reduced: an isomorphism would force every `Γ_ω` to be free abelian,
+      the action to be non-free, and the maximal stabilizer rank `n − 1 ≥ 1` to be attained
+      on a countable set.
+    - A conditional sketch there, through the non-regular isotropy locus, would finish the RS
+      half given a regular split `Z^2 ≤ Γ`.
+  - *Status.* This node stays OPEN only through its RS half.
 
 ## What is known
 

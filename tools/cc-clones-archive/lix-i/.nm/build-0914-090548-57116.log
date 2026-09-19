@@ -1,0 +1,21 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4567 oleans
+[job] acn112 cores=64-71 threads=8 base=d1a44d40baf76e113c4605f3d8a21dd7216c83e2 mods: GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem GroupApproximation.Manuscript.SimpleKazhdanSofic.KirchbergFactorizationSentences
+ℹ [3696/3731] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4624/4625] Built GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (14s)
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:317:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.kirchbergKazhdanFactorizationInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NinetyNineProblems/KirchbergTheorem.lean:318:21: 'GroupApproximation.NinetyNineProblems.KirchbergTheorem.printedKirchbergTheorem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4625/4625] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.KirchbergFactorizationSentences (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences.lean:60:21: 'GroupApproximation.SimpleKazhdanSofic.printedKirchbergTheoremOneOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences.lean:61:21: 'GroupApproximation.SimpleKazhdanSofic.printedGLacksFactorizationProperty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4625 jobs).
+EXIT=0
