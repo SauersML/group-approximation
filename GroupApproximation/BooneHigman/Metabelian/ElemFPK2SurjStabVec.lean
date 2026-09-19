@@ -47,6 +47,7 @@ theorem surjStabVec_last (u : Fin n → R) (t : R) : surjStabVec u t (Fin.last n
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabVec_last
 
+omit [Ring R] in
 theorem surjStabVec_inj {u u' : Fin n → R} {t t' : R} (h : surjStabVec u t = surjStabVec u' t') :
     u = u' := by
   funext i

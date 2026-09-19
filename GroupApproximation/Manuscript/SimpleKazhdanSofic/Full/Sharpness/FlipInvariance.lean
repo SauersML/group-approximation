@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
 import GroupApproximation.Kazhdan.Kazhdan
+import Mathlib.GroupTheory.Subgroup.Simple
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
