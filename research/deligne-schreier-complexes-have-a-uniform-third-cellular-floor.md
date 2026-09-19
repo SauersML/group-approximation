@@ -148,3 +148,17 @@ It implies the claim together with (K1). A residual `f` vanishes on `S_X`, and i
   - *Left.* (NFA): no finitely approximable space carries a continuous untwisting. A connected compact space and a
     free compact space carry untwistings that are not cohomologous to discrete ones (step 6 of the proof). So (C2)
     alone cannot prove this claim, and whether such spaces are finitely approximable is the open core.
+- **2026-09-19, swarm-0917-w19-w19-deligne-last1 (quantifier-shift): (NFA) is about one explicit affine system**
+  (`deligne-untwisted-spaces-pull-back-from-one-affine-system`, ESTABLISHED).
+  - *Proved.* Every continuous untwisting of a class `[beta]` in `H^2(Gamma; T)` on any compact space is pulled
+    back, along the continuous `Gamma`-map `y -> [h -> -c(h^(-1), y)]`, from one universal system. That system is
+    `U_beta = T^Gamma / T` with the twisted shift `(g.omega)(h) = omega(g^(-1) h) + beta(h^(-1), g)` and the
+    untwisting `omega(e) - omega(g^(-1))`.
+  - *Consequences.* Finite approximability passes to continuous images. So this claim is equivalent to one
+    statement: the affine torus system `U_(theta_D)` has no approximate periodic orbits, with a uniform
+    `delta_0 > 0`. Its linear part has dense exact periodic points. The classes whose `U` is finitely approximable
+    form a subgroup `M(Gamma)` of `H^2(Gamma; T)`, which contains the metaplectic class.
+  - *Effect on the search.* The quantifier over all compact spaces in (NFA) is gone. A refutation needs only
+    approximately equivariant maps from finite `Gamma`-sets into `U_(theta_D)`. A proof must separate
+    `U_(theta_D)` from `U_(theta_M)`, which has the same linear part, by the translation class alone.
+  - *Not decided.* This is a reformulation. The difficulty is unchanged, and the claim stays OPEN.
