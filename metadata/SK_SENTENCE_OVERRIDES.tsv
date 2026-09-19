@@ -192,3 +192,5 @@ drop	swarm-skrows-07	5b6a5a222cdd	sk16: this row says provenance; zz-full-sk16 r
 drop	swarm-skrows-09	5b15f5d8faae	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-thm-main-a	2d5abd159c20	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-thompson-construction	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
+drop	ms-traces-1	8212b1470040	ms-map census batch 2026-09-19: zz-full-sk16 now grades this row formalized (Audit2.manuscriptSentence_simpleLEFHostsWithoutT); this row says attribution
+drop	swarm-audit-2	8212b1470040	ms-map census batch 2026-09-19: zz-full-sk16 now grades this row formalized (Audit2.manuscriptSentence_simpleLEFHostsWithoutT); this row says attribution

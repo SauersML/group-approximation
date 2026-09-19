@@ -1,0 +1,20 @@
+psi=  id rc=[R S r, S]          len= 16 max|w(x)-x| = 4.978e-60
+psi=  id c1=[U,S]               len=  8 max|w(x)-x| = 9.069e-02
+psi=  id w3=[c1,S^3 c1 S^-3]    len= 44 max|w(x)-x| = 4.621e-01
+psi=  id rho_meta               len= 36 max|w(x)-x| = 9.957e-60
+psi=  id tau_meta               len= 36 max|w(x)-x| = 1.211e-02
+psi=   1 rc=[R S r, S]          len= 16 max|w(x)-x| = 4.101e+00
+psi=   1 c1=[U,S]               len=  8 max|w(x)-x| = 7.510e-01
+psi=   1 w3=[c1,S^3 c1 S^-3]    len= 44 max|w(x)-x| = 1.691e+00
+psi=   1 rho_meta               len= 36 max|w(x)-x| = 6.928e+00
+psi=   1 tau_meta               len= 36 max|w(x)-x| = 2.162e+00
+psi=   2 rc=[R S r, S]          len= 16 max|w(x)-x| = 1.451e+01
+psi=   2 c1=[U,S]               len=  8 max|w(x)-x| = 2.582e+00
+psi=   2 w3=[c1,S^3 c1 S^-3]    len= 44 max|w(x)-x| = 2.992e+00
+psi=   2 rho_meta               len= 36 max|w(x)-x| = 1.103e+01
+psi=   2 tau_meta               len= 36 max|w(x)-x| = 2.675e+00
+psi=   3 rc=[R S r, S]          len= 16 max|w(x)-x| = 1.876e+01
+psi=   3 c1=[U,S]               len=  8 max|w(x)-x| = 9.685e-01
+psi=   3 w3=[c1,S^3 c1 S^-3]    len= 44 max|w(x)-x| = 1.622e+00
+psi=   3 rho_meta               len= 36 max|w(x)-x| = 1.594e+01
+psi=   3 tau_meta               len= 36 max|w(x)-x| = 2.741e+00

@@ -76,7 +76,7 @@ theorem gl06h4Nearest_nearWindow_of_width (D : RelGenSet G Lambda) (eps : ℕ)
     {X : DiscDiagram.{u, w, v} W} (P : PocketRegion X) {lo hi : ℕ}
     (h : hi ≤ lo + (eps + eps)) : NearWindow D eps P lo hi := by
   unfold NearWindow
-  intro _Xi _E a _hnone hlo hhi
+  intro _Xi _E a _hnone hlo hhi _hsrc
   omega
 
 /-- A near or short window is a near window. -/
