@@ -144,3 +144,25 @@ direction is used here.
   vanishes as `1 - rho_Q -> 0` (linearly, on trees). So it must read a global
   quantity of the quotient walk. A quantitative law
   `p_c(N;G) - p_c(G) >= F_D(1 - rho_Q)` is not excluded.
+* **Finite-models transplant, and soft supercritical inputs (transplanter,
+  2026-09-19, swarm-0917 w17).** The idea was to certify `chi^N_p < infinity`
+  above `p_c` on finite or approximating models, such as fibre-truncation
+  towers or finite quotients `Gamma/M` with `M <= N`, and pass to the limit.
+  **Where it dies:** at the limit step, for three recorded reasons.
+  - Towers add no slack, and `p_u` is only lower semicontinuous along them.
+  - Finite approximants carry a glued giant.
+  - The margin collapses near the lamplighter (item above).
+
+  The soft form of the limit object, a monotone invariant family equal to
+  Bernoulli up to `p_c`, is killed outright by
+  `fpbs-soft-collapse-kills-relative-gap-proofs` (ESTABLISHED). On every graph
+  with invariant sparse spines, the collapse family has `chi^I = infinity` for
+  every `t > p_c` and every infinite subgroup `I`. That class includes
+  `F_2 x Z` along `Z`, `F_2 x F_2` along a factor, and `T_3 x Z` along `Z`,
+  where the gap is true. **Invariant:** invariant sparse spines. **Failing
+  step:** the passage from data at `p_c` to `chi^N_(p_c + delta) < infinity`.
+  Any proof must use a supercritical Bernoulli property outside (S1)--(S4),
+  such as BK or Russo above `p_c`, deletion tolerance, or Harris--FKG. The
+  same node records a second point: submultiplicative weight tilts pulled back
+  from `Q` have infinite tilted susceptibility at `p_c` on unimodular graphs,
+  so Hutchcroft-type tilting needs a cocycle.
