@@ -2,7 +2,7 @@
 rg: 2
 id: ct-z-totally-consumable-core-of-kourovka-20-44
 kind: claim
-title: "The totally consumable core of Kourovka 20.44: finitely many orbits always implies total consumability; on a positive ray the converse holds; for Kohl's G_T the converse is equivalent to the 3x+1 map having finitely many components; so 'totally consumable ⇒ finitely many orbits' is the Collatz/Mahler-type core"
+title: "The totally consumable core of Kourovka 20.44: finitely many orbits always implies total consumability; on a positive ray the converse holds; for Kohl's G_T the converse is equivalent to the 3x+1 map having finitely many components; so 'totally consumable ⇒ finitely many orbits' is the Collatz-type core, with a Mahler-type 3/2 analogy on trapped lattices (heuristic)"
 distinct_from:
   ct-z-frozen-tails-anywhere-give-kourovka-20-44: that reduces 20.44 to totally consumable (TC) groups; this records what is known about the TC class itself.
 ---
@@ -29,18 +29,21 @@ frozen degree (`ct-z-frozen-tails-anywhere-give-kourovka-20-44`).
 - It holds on positive rays (item 2).
 - At `G_T` it is equivalent to 3x+1 having finitely many components.
 
-## Why trapped and dimension-1 TC groups resist
+## Why trapped and dimension-1 TC groups resist (heuristic)
+
+This section gives analogies, not reductions. No trapped TC group is shown to encode a Mahler-type question. Nor is dimension one shown to be as hard as the trapped case, since TC and orbit finiteness do not pass automatically between a group and its subgroups.
+
 
 - **Trapped slope lattices** (cone-avoiding, e.g. `(3/2)^Z` or `⟨3/2, 5/2⟩`).
   - A zero tail of `x` at degree `K` is read somewhere on the boundary of its finite level set
     `{w·p = w·K}`. The configuration there is only bounded by `m_p`.
   - On that simplex `log m_p` is linear in `p`, so the boundary contains the maximizing vertex,
     where `m_p ≥ m_K > x`.
-  - Total consumption therefore forces no descent. Proving one is a Mahler-type 3/2 question about
+  - Total consumption therefore forces no descent. Proving one looks like, by analogy, a Mahler-type 3/2 question about
     where drift walks on level sets exit.
 - **Dimension one with rank at least two** (e.g. slopes `2` and `3/5`).
   - Tubes along the ray can be read at their transversal ends at any depth.
-  - Their trapped subgroups are trapped groups, so settling dimension one is at least as hard as the
+  - Their trapped subgroups are trapped groups, so heuristically dimension one contains the difficulty of the
     trapped case.
 
 ## Lesson for general BH
@@ -49,7 +52,7 @@ frozen degree (`ct-z-frozen-tails-anywhere-give-kourovka-20-44`).
 every depth from every point.**
 - Frozen information, the positive-ray corner, and holonomy at attractor–repeller pairs are all
   mechanisms for leaving that class or controlling it.
-- What remains inside it is exactly 3x+1-type or Mahler-3/2-type exit behaviour.
+- What remains inside it is 3x+1-type behaviour (proved at `G_T`) and, by analogy, Mahler-3/2-type exit behaviour.
 - A host construction that must control orbits of an embedded subgroup should keep the subgroup
   out of the TC class, or on a positive ray.
 
