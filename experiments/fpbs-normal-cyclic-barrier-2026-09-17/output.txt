@@ -1,0 +1,21 @@
+[core] F2xZ std: rho=2, window |m|<=6: 2262 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[core] F2xZ skew: rho=2, window |m|<=6: 2574 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[core] Z|x F2 (a inverts z) std: rho=2, window |m|<=6: 2262 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[core] Z|x F2 (a inverts z) skew: rho=2, window |m|<=6: 2574 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[core] F2xDinf std: rho=2, window |m|<=6: 2262 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[core] F2xDinf skew: rho=2, window |m|<=6: 2730 coset pairs, every pair collides at k=2 -> #(B' cap <z>t) <= 1
+[calib] F_2: {a^m b : |m|<=3} injective for k<=3, meets 1-tube of <a> in 7 points (no cap without normality)
+[calib] F_2 x Z: {z^m b : |m|<=3} collides at k=2
+[thm2.9] F2xZ std: R=1, L=8, #B(R)=7, #A=27, #good=8 < #A/2; line points good: 0
+[thm2.9] F2xZ std: R=2, L=30, #B(R)=29, #A=113, #good=24 < #A/2; line points good: 0
+[thm2.9] F2xZ skew: R=1, L=8, #B(R)=7, #A=29, #good=12 < #A/2; line points good: 0
+[thm2.9] F2xZ skew: R=2, L=34, #B(R)=33, #A=131, #good=48 < #A/2; line points good: 0
+[thm2.9] Z|x F2 (a inverts z) std: R=1, L=8, #B(R)=7, #A=27, #good=10 < #A/2; line points good: 0
+[thm2.9] Z|x F2 (a inverts z) std: R=2, L=30, #B(R)=29, #A=113, #good=42 < #A/2; line points good: 0
+[thm2.9] Z|x F2 (a inverts z) skew: R=1, L=8, #B(R)=7, #A=29, #good=12 < #A/2; line points good: 0
+[thm2.9] Z|x F2 (a inverts z) skew: R=2, L=34, #B(R)=33, #A=131, #good=50 < #A/2; line points good: 0
+[thm2.9] F2xDinf std: R=1, L=8, #B(R)=7, #A=29, #good=10 < #A/2; line points good: 0
+[thm2.9] F2xDinf std: R=2, L=30, #B(R)=29, #A=115, #good=42 < #A/2; line points good: 0
+[thm2.9] F2xDinf skew: R=1, L=8, #B(R)=7, #A=29, #good=10 < #A/2; line points good: 0
+[thm2.9] F2xDinf skew: R=2, L=36, #B(R)=35, #A=139, #good=53 < #A/2; line points good: 0
+ALL CHECKS PASSED
