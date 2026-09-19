@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.OrderCactus
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.DefComponent
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus build: arc entries of the lake-filled walk (lane gl-p06-15)
 

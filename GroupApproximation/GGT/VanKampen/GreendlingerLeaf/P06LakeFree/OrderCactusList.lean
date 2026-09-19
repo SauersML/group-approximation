@@ -1,6 +1,8 @@
 import Mathlib.Data.List.Rotate
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P06, cactus order: contiguous pieces of a sublist (lane gl-p06-14)
 

@@ -2,6 +2,8 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.Noninter
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlockCurve
 import GroupApproximation.Meta.AxiomGuard
 
+open scoped List
+
 /-!
 # Greendlinger leaf P07, lane gl-p07-22: the pocket outer walk follows the pocket curve
 

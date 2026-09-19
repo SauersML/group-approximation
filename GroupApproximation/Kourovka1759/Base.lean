@@ -16,6 +16,9 @@ open Equiv Box
 
 namespace STree
 
+theorem two_le_of_mem_replicate {j a : ℕ} (ha : a ∈ List.replicate j 2) : 2 ≤ a :=
+  le_of_eq (List.eq_of_mem_replicate ha).symm
+
 theorem wf_node {k : ℕ} {c : Fin k → STree} : WF (node k c) ↔ 2 ≤ k ∧ ∀ j, WF (c j) := Iff.rfl
 
 theorem wf_leaf : WF leaf := True.intro
@@ -40,7 +43,8 @@ theorem wf_xTree {k : ℕ} (hk : 2 ≤ k) : WF (xTree k) := by
   · exact wf_tail (by simp)
 
 theorem ml_xTree (k : ℕ) : ml (xTree k) = spl k (child 2 0) + spl 2 (child 2 1) := by
-  rw [xTree, ml_node, Fin.sum_univ_two] <;> rfl
+  rw [xTree, ml_node, Fin.sum_univ_two]
+  rfl
 
 theorem ml_tail_two (k : ℕ) : ml (tail [2, k]) = spl k (child 2 0) + {child 2 1} := by
   rw [tail_cons, ml_node, Fin.sum_univ_two]
@@ -64,13 +68,13 @@ theorem ty_subst {s t : STree} {r q : ℕ} {M N : Multiset ℕ} (hs : Ty (ml s) 
 /-- **Base.** The `k`-split of `ℤ` has the type of a binary tree with `k` leaves. -/
 theorem ty_split_binary {k : ℕ} (hk : 2 ≤ k) :
     Ty (ml (tail [k])) 2 (Multiset.replicate (k - 2) 2) := by
-  rcases Nat.lt_or_ge k 3 with h3 | h3
+  rcases Nat.lt_or_ge k 3 with h3 | -
   · obtain rfl : k = 2 := by omega
     exact (Ty.chain (le_refl 2) (l := []) (by simp)).congr2 rfl (by simp)
   have hu : Ty (ml (tail [k])) k 0 :=
     (Ty.chain hk (l := []) (by simp)).congr2 rfl Multiset.coe_nil
   have hv : Ty (ml (tail (2 :: List.replicate (k - 2) 2))) 2 (Multiset.replicate (k - 2) 2) :=
-    Ty.chain (le_refl 2) (by simp)
+    Ty.chain (le_refl 2) fun a ha => two_le_of_mem_replicate ha
   have hX := ty_xTree hk
   have cu : Multiset.card (ml (tail [k])) = k := card_ml_tail_single (by omega)
   have cv : Multiset.card (ml (tail (2 :: List.replicate (k - 2) 2))) = k := by
@@ -101,7 +105,7 @@ theorem ty_split_binary {k : ℕ} (hk : 2 ≤ k) :
   have hmeq := (h3'.congr2 rfl (by
       ext a
       simp only [Multiset.count_add, Multiset.count_cons, Multiset.count_replicate,
-        Multiset.count_nsmul, Multiset.count_singleton, Multiset.count_zero]
+        Multiset.count_nsmul, Multiset.count_singleton]
       split_ifs <;> omega)).equi hV
   exact hv.of_meq (cancel_tree (wf_xTree hk) (cu.trans cv.symm) hmeq)
 
@@ -161,9 +165,11 @@ theorem Ty.meq_of_card {P Q : Multiset Box} {k k' : ℕ} {M M' : Multiset ℕ} (
   obtain ⟨m, hm⟩ := hP.binary
   obtain ⟨n, hn⟩ := hQ.binary
   have hb : ∀ j, Ty (ml (tail (2 :: List.replicate j 2))) 2 (Multiset.replicate j 2) :=
-    fun j => Ty.chain (le_refl 2) (by simp)
+    fun j => Ty.chain (le_refl 2) fun a ha => two_le_of_mem_replicate ha
   have cb : ∀ j, Multiset.card (ml (tail (2 :: List.replicate j 2))) = j + 2 := fun j => by
-    rw [← List.replicate_succ, card_ml_tail_replicate] <;> omega
+    have h := card_ml_tail_replicate (j + 1)
+    rw [List.replicate_succ] at h
+    omega
   have h1 := (hm.equi (hb m)).card_eq
   have h2 := (hn.equi (hb n)).card_eq
   rw [cb] at h1 h2
