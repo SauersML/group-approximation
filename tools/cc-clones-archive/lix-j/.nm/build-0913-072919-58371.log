@@ -1,0 +1,30 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2573 oleans
+[job] acn112 cores=64-71 threads=8 base=b9b11365feb854f408c37af4a962e4cc1b7a48fa mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedKazhdanFinite
+ℹ [2823/2885] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4812/4815] Replayed GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedSentences
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:376:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:377:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonShiftAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:378:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonKernelFinitary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean:379:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.manuscriptSentence_toeplitzJacobsonRadicalEquality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4815/4815] Built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresentedKazhdanFinite (11s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedKazhdanFinite.lean:128:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.presGLEquivMap_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedKazhdanFinite.lean:129:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.isLocallyFiniteGroup_ker_presGLSymbolMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedKazhdanFinite.lean:130:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented.printedPresentedJacobsonRankTwoKazhdanFiniteField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4815 jobs).
+EXIT=0

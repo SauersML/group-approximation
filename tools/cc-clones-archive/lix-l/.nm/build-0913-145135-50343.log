@@ -1,0 +1,34 @@
+purged 6 stale artifact sets (source-newer=5, import-newer=1) of 3412 oleans
+[job] acn112 cores=64-71 threads=8 base=6d7b3181a8d2e7ac60ce525d1ebac951ea3c0572 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns
+✖ [615/615] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns (4.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:56:6: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:93:25: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:107:4: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:108:63: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:167:37: `List.getLast?_eq_getLast` has been deprecated: Use `List.getLast?_eq_some_getLast` instead
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:212:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.flatMap_range_getD' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:213:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.isChain_rotate_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:214:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getLast?_rotate_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:215:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.flatten_runs' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:216:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getD_runs_eq' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:217:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getElem_of_mem_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:218:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.not_of_mem_getLast?_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:219:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.getLast?_getElem_runs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:220:14: 'GroupApproximation.GGT.VanKampen.CyclicRuns.runs_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean:221:14: 'GroupApproximation.GGT.VanKampen.exists_cyclicRuns' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns
+error: build failed
+EXIT=1

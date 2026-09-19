@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4110 oleans
+[job] acn112 cores=72-79 threads=8 base=352f27ec47385fd53741ecc4250b5c5f63f171c3 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+ℹ [3295/3376] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10159/10161] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10161/10161] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions (22s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:237:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.listVal_take_blocks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:238:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.runPos_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:239:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10161 jobs).
+EXIT=0

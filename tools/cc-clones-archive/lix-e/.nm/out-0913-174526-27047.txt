@@ -1,0 +1,22 @@
+[job] 17:45:33 acn112 waiting for clone lock
+[job] delta sync 41d8c3b03..816697e81: 3 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 816697e81 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-174526-27047.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4221 oleans
+--- errors (first 80 lines)
+3:✖ [1795/1796] Building GroupApproximation.Algebra.FinitaryGeneralLinear (8.1s)
+5:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:227:96: unsolved goals
+11:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+12:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+15:error: Lean exited with code 1
+18:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.FinitaryGeneralLinear (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedRepresentation (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/TwoEndedShift.lean
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

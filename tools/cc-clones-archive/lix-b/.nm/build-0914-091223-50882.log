@@ -1,0 +1,39 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3523 oleans
+[job] acn124 cores=slurm threads=8 base=7445a5a2da526b80b90f7ebcf0cd960eec963b8d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+ℹ [3327/3387] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4665/4665] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (90s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:97:68: unsolved goals
+M : CombMap
+c : M.Dart → Bool
+hflip : ∀ (x : M.Dart), c (M.alpha x) = !c x
+hsig : ∀ (x : M.Dart), c (M.sigma x) = c x
+hsimple : ∀ (x y : M.Dart), M.vertexOf x = M.vertexOf y → M.vertexOf (M.alpha x) = M.vertexOf (M.alpha y) → x = y
+hdeg : ∀ (x : M.Dart), c x = true → M.sigma x ≠ x
+x : M.Dart
+l : List M.Dart
+hl : M.IsFaceCycle l
+hhead : l.head ⋯ = x
+hlen : l.length = M.faceDegree (M.faceOf x)
+hpos : 0 < l.length
+hper : (M.facePerm ^ l.length) x = x
+hodd : ¬l.length % 2 = 1
+hlt : ¬4 ≤ M.faceDegree (M.faceOf x)
+h2 : l.length = 2
+hper2 : M.facePerm (M.facePerm x) = x
+hvy : M.vertexOf (M.facePerm x) = M.vertexOf (M.alpha x)
+e : M.sigma (M.alpha (M.facePerm x)) = x
+⊢ M.vertexOf (M.alpha (M.facePerm (M.sigma (M.alpha (M.facePerm x))))) = M.vertexOf (M.alpha (M.facePerm x))
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:115:14: 'GroupApproximation.GGT.VanKampen.CombMap.colour_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:116:14: 'GroupApproximation.GGT.VanKampen.CombMap.four_le_faceDegree_of_bipartite' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+error: build failed
+EXIT=1

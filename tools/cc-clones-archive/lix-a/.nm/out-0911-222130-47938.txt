@@ -1,0 +1,28 @@
+[job] 22:22:09 acn112 waiting for clone lock
+[job] delta sync 9c0697aa3..b0962ca49: 44 files changed
+===== SUMMARY
+host acn112 cores 72-79 base b0962ca49 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0911-222130-47938.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2109 oleans
+--- errors (first 80 lines)
+28:✖ [8712/8713] Building GroupApproximation.Analysis.LIXCor4PowersDiagChain (19s)
+30:error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:184:4: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+40:error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:193:4: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+50:error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:214:104: unsolved goals
+62:error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:252:14: 'GroupApproximation.LIX.Gen.diagChainN_sectionBlock' depends on axioms outside the classical allowlist: [sorryAx]
+63:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+65:error: GroupApproximation/Analysis/LIXCor4PowersDiagChain.lean:253:14: 'GroupApproximation.LIX.Gen.diagOne_sphereUnitary_mem' depends on axioms outside the classical allowlist: [sorryAx]
+66:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+68:error: Lean exited with code 1
+78:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.LIXCor4PowersStage
+mentioned-not-built GroupApproximation.Analysis.LIXCor4PowersDiagChain (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXCor4PowersField.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersShape.lean
+COMPILED GroupApproximation/Analysis/LIXCor4PowersStage.lean
+- GroupApproximation.Analysis.LIXCor4PowersDiagChain
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

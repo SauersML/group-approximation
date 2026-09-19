@@ -1,0 +1,48 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3773 oleans
+[job] acn112 cores=64-71 threads=8 base=835fa3ee58be7cb9ea14b6d8d298784c76ea7d11 mods: GroupApproximation.Algebra.BilateralThreeCellLevels GroupApproximation.Algebra.BilateralThreeCellMatrices
+✔ [1663/1664] Built GroupApproximation.Algebra.BilateralThreeCellLevels (7.3s)
+✖ [1664/1664] Building GroupApproximation.Algebra.BilateralThreeCellMatrices (9.3s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Algebra/BilateralThreeCellMatrices.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellMatrices.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Algebra/BilateralThreeCellMatrices.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellMatrices.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Algebra/BilateralThreeCellMatrices.setup.json --json
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:193:11: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:226:14: failed to synthesize instance of type class
+  HMul (Matrix (Fin 3) ℕ R) (Matrix (Fin 3) ℕ R) ?m.117
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:228:6: Type mismatch
+  single_mul_single_eq_zero (Or.inr (f_mul_self_neg_one_neg_two C))
+has type
+  Eq.{u_1 + 1} (Matrix.single ?m.123 ?m.124 (C.f (-1) (-2)) * Matrix.single ?m.125 ?m.126 (C.f (-1) (-2))) 0
+but is expected to have type
+  Eq.{1} (Matrix.single 2 2 (C.f (-1) (-2)) * Matrix.single 2 2 (C.f (-1) (-2))) 0
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:231:14: failed to synthesize instance of type class
+  HMul (Matrix (Fin 3) ℕ R) (Matrix (Fin 3) ℕ R) ?m.186
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:233:6: Type mismatch
+  single_mul_single_eq_zero (Or.inr (f_mul_self_neg_one_neg_two C))
+has type
+  Eq.{u_1 + 1} (Matrix.single ?m.192 ?m.193 (C.f (-1) (-2)) * Matrix.single ?m.194 ?m.195 (C.f (-1) (-2))) 0
+but is expected to have type
+  Eq.{1} (Matrix.single 2 2 (C.f (-1) (-2)) * Matrix.single 2 2 (C.f (-1) (-2))) 0
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:464:14: 'GroupApproximation.BilateralThreeCell.Cell.W_conj_mem_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:465:14: 'GroupApproximation.BilateralThreeCell.Cell.c_commute_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.BilateralThreeCellMatrices
+error: build failed
+EXIT=1

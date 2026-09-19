@@ -1,0 +1,23 @@
+[job] 09:13:31 acn112 waiting for clone lock
+[job] delta sync 050d866ab..ee5d1f867: 13 files changed
+===== SUMMARY
+host acn112 cores 80-87 base ee5d1f867 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-091311-84018.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3507 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Analysis.PauliMatrixUnits
+BUILT GroupApproximation.Analysis.DyadicCornerEmbedding
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+info: GroupApproximation/Analysis/PauliMatrixUnits.lean:325:14: 'GroupApproximation.Hyperfinite.coefficient_stageHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2418 jobs).
+EXIT=0
+PROBE GREEN

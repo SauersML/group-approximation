@@ -1,0 +1,15 @@
+[job] 17:59:29 acn112 waiting for clone lock
+[job] delta sync a70912b62..b122008b7: 6 files changed
+===== SUMMARY
+host acn112 cores 88-95 base b122008b7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0913-175925-74501.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3661 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Dynamics.RankTwoRestrictionImageFinite
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/RankTwoRestrictionImageFinite.lean
+ Quot.sound]
+Build completed successfully (4318 jobs).
+EXIT=0
+PROBE GREEN

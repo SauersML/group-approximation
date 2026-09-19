@@ -1,0 +1,27 @@
+[job] 12:13:32 acn112 waiting for clone lock
+[job] delta sync 0c5535893..225eb0f94: 100 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 225eb0f94 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0912-121326-69734.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2405 oleans
+--- errors (first 80 lines)
+48:✖ [9245/9245] Building GroupApproximation.CharClass.LIXKGenOfStepCThom (23s)
+50:error: GroupApproximation/CharClass/LIXKGenOfStepCThom.lean:88:13: This simp argument is unused:
+57:error: GroupApproximation/CharClass/LIXKGenOfStepCThom.lean:88:34: This simp argument is unused:
+82:error: Lean exited with code 1
+85:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenOfStepCThom (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/SliceGenOfBlocks.lean
+COMPILED GroupApproximation/CharClass/SliceGenOfLines.lean
+COMPILED GroupApproximation/CharClass/SliceHomogeneousOf.lean
+COMPILED GroupApproximation/CharClass/SliceNaturalOf.lean
+COMPILED GroupApproximation/CharClass/SliceRootsOf.lean
+COMPILED GroupApproximation/CharClass/SliceSplitVOf.lean
+COMPILED GroupApproximation/CharClass/SliceTorusOf.lean
+COMPILED GroupApproximation/CharClass/SliceValueVOf.lean
+- GroupApproximation.CharClass.LIXKGenOfStepCThom
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2568 oleans
+[job] acn112 cores=72-79 threads=8 base=4b78f0090112fab92a86b548f5823a75e2bd4762 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel
+ℹ [3297/3359] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4581/4581] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonModel (14s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:303:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean:304:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchedTwoGonModel.no_contiguity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4581 jobs).
+EXIT=0

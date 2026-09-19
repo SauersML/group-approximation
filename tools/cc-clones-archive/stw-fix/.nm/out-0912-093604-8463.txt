@@ -1,0 +1,30 @@
+[job] 09:36:07 acn112 waiting for clone lock
+[job] delta sync 44c6bab14..e4cb2d641: 4 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e4cb2d641 log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0912-093604-8463.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4769 oleans
+--- errors (first 80 lines)
+595:✖ [4966/4970] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces (12s)
+597:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:369:14: don't know how to synthesize implicit argument `d'`
+624:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:369:78: don't know how to synthesize placeholder for argument `h`
+649:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:369:9: failed to infer `have` declaration type
+673:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:469:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsedMap_connected' depends on axioms outside the classical allowlist: [sorryAx]
+674:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+676:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerRegionFaces.lean:470:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsedMap_planar' depends on axioms outside the classical allowlist: [sorryAx]
+677:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+679:error: Lean exited with code 1
+682:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSubdivided (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiCount (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhiBound (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerSubdivided.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerRegionFaces
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "research/artifacts/search-degree4-length12-rank7-branch-a.py", line 105, in <module>
+    raise AssertionError((rname, sname, tname, aname, vname, projections))
+AssertionError: ('r', '1', '1', '1', '1', [frozenset({('', '')}), frozenset({('', '')}), frozenset({('', '')}), frozenset({('', '')})])

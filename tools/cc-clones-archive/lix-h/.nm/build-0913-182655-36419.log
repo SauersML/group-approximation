@@ -1,0 +1,33 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3176 oleans
+[job] acn112 cores=64-71 threads=8 base=a188b6cc69acb2be02e896b01ac3fa3f97ad8e06 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopy GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2Copy
+ℹ [3295/3387] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10259/10260] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopy (25s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:143:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionCopyInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:144:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionInput.copyInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:145:14: 'GroupApproximation.GGT.VanKampen.multipleEdgeCutInput_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:146:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionCopySectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:147:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionSectionStatement.copySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:148:14: 'GroupApproximation.GGT.VanKampen.osinMultipleEdgeCutSection_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10260/10260] Built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2Copy (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean:69:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean:70:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10260 jobs).
+EXIT=0

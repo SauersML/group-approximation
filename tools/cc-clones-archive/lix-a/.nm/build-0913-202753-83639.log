@@ -1,0 +1,194 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4021 oleans
+[job] acn112 cores=72-79 threads=8 base=76b029a04511dce89c84c12e8b361f8900a9eef0 mods: GroupApproximation.GGT.VanKampen.CyclicArcComplement GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder
+ℹ [3354/3418] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5074/5209] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:372:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.mem_sideFaces_iff_of_not_walkKeep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:374:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:376:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.faceOf_alpha_eq_or_of_alpha_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:377:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_walkKeep_of_alpha_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:379:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:381:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_two_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:382:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.nodup_append_four' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:383:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.alpha_mem_of_mem_invDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:385:2: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.alpha_mem_of_mem_invDarts_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:386:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.faceOf_of_mem_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:387:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.faceOf_of_mem_cellDarts_rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:388:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.exists_edge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:389:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.not_mem_walk_of_mem_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:390:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.face_not_mem_sideFaces_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:391:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.face_not_mem_sideFaces_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:392:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.disjoint_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean:393:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketSides.not_mem_sideFaces_or' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10079/10117] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:374:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_iff_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:375:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.exists_component_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:376:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.isSimpleClosedWalk_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:377:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_of_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:378:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.reverseAlpha_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:379:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_invDarts_outer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:380:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_outer_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10100/10117] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGapArcs
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGapArcs.lean:138:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.getElem_mem_take_of_lt' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGapArcs.lean:139:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.shorten_darts' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGapArcs.lean:140:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.rest_darts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGapArcs.lean:141:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_gapArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10101/10117] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:453:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_spanArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:454:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.outerFace_not_mem_sideFaces_of_mem_outerDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:455:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.cell_face_not_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:456:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.ofSimpleClosedWalk_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:457:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_transport' depends on axioms: []
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:458:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSet_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:459:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.cut_le_length_outerDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:460:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.exists_of_exteriorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:461:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.ofBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:462:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketSectionFaceSet.lean:463:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10103/10117] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:367:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.orient_of_sides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:368:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.iff_of_not_iff_of_not_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:369:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.mem_iff_of_faceSetBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:370:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.mem_exteriorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:371:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.exists_sourceDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:372:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.cell_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:373:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.walk_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:374:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.exists_targetDart_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:375:14: 'GroupApproximation.GGT.VanKampen.PocketWalkColour.walk_orient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkColour.lean:376:21: 'GroupApproximation.GGT.VanKampen.pocketWalkColour' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10109/10117] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:79:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.unpinched_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:80:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_simple_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:81:14: 'GroupApproximation.GGT.VanKampen.pocketPinchStatement_of_pinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10117/10117] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:527:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_mem_sideFaces_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:528:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_alpha_not_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:529:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_walk_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:530:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_of_mem_firstArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:531:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_of_mem_secondArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:532:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_mem_of_mem_sideFrom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:533:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_parts_of_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:534:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_mem_iff_of_not_kept' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:536:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_regions_of_mem_sideFaces_both' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:537:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:539:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:540:14: 'GroupApproximation.GGT.VanKampen.cellPocketWalkOuterOffSideSomeOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10117 jobs).
+EXIT=0

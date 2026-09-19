@@ -1,0 +1,51 @@
+purged 9 stale artifact sets (source-newer=1, import-newer=8) of 3335 oleans
+[job] acn112 cores=72-79 threads=8 base=5f9c16b7bb065416be8cd2b0fb346d4ecfb5109b mods: GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordPolygon GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric
+ℹ [2797/2888] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4903/4923] Replayed GroupApproximation.GGT.VanKampen.Estimating.UnboundMonotoneMorseIndex
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:194:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.vertex_take_prefix' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:195:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.isLambdaCQuasiGeodesicWord_take_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:196:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.index_lt_of_prefix_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:197:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.exists_word_replacement_morse_monotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:198:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.morse_gap_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4908/4923] Replayed GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:234:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordConnectorPair.targetWord_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:235:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.toWordSidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:236:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.exists_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:237:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:238:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_orientedClassPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4922/4923] Built GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordPolygon (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean:115:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.exists_orientedPolygonPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean:116:21: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.unboundOrientedWordPolygonMonotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4923/4923] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:97:14: 'GroupApproximation.GGT.VanKampen.exists_component_dense_of_sideBudget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean:98:21: 'GroupApproximation.GGT.VanKampen.osinLemma94AntiparallelMetric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4923 jobs).
+EXIT=0

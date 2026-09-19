@@ -1,0 +1,29 @@
+[job] 17:31:16 acn112 waiting for clone lock
+[job] delta sync c0ff0a5f9..46f71449e: 96 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 46f71449e log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0913-173108-73699.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3327 oleans
+--- errors (first 80 lines)
+17:✖ [1761/1762] Building GroupApproximation.Dynamics.SubshiftFiniteWindow (6.0s)
+19:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:66:4: omega could not prove the goal:
+21:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:69:4: omega could not prove the goal:
+23:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:89:4: omega could not prove the goal:
+25:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:95:4: omega could not prove the goal:
+27:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:99:4: omega could not prove the goal:
+30:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:120:14: 'GroupApproximation.WordGraph.shiftHomeomorph_apply' depends on axioms outside the classical allowlist: [sorryAx]
+31:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+33:error: GroupApproximation/Dynamics/SubshiftFiniteWindow.lean:121:14: 'GroupApproximation.WordGraph.zpow_apply_coord' depends on axioms outside the classical allowlist: [sorryAx]
+34:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+37:error: Lean exited with code 1
+40:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.SubshiftFiniteWindow (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.SubshiftCycleLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/SubshiftCyclePeriodic.lean
+COMPILED GroupApproximation/Dynamics/SubshiftWordGraph.lean
+- GroupApproximation.Dynamics.SubshiftFiniteWindow
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,260 @@
+[job] 13:57:40 acn112 waiting for clone lock
+[job] delta sync 2d25ebab5..67ec49f02: 193 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 67ec49f02 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-135734-55169.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2788 oleans
+--- errors (first 80 lines)
+1277:✖ [11058/11144] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellValue (22s)
+1279:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellValue.lean:82:40: Unknown constant `List.nil_rotate`
+1286:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneCellValue.lean:219:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.exists_darts_eq_of_rotate_eq' depends on axioms outside the classical allowlist: [sorryAx]
+1287:  full closure: [propext, sorryAx, Quot.sound]
+1303:error: Lean exited with code 1
+1865:✖ [11094/11144] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels (12s)
+1867:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:201:5: Function expected at
+1874:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:201:27: Function expected at
+1896:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:214:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_twoGonLabels' depends on axioms outside the classical allowlist: [sorryAx]
+1897:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+1899:error: Lean exited with code 1
+2529:✖ [11136/11144] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSplit (17s)
+2531:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:157:19: failed to synthesize instance of type class
+2535:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:215:29: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+2555:Full error:
+2564:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:219:51: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+2584:Full error:
+2593:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:223:51: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+2615:Full error:
+2624:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:231:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+2646:Full error:
+2673:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:297:14: 'GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexOf_eq_of_diagram' depends on axioms outside the classical allowlist: [sorryAx]
+2674:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2682:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:300:14: 'GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexOf_x_ne_y' depends on axioms outside the classical allowlist: [sorryAx]
+2683:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2685:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:301:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit' depends on axioms outside the classical allowlist: [sorryAx]
+2686:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2688:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:302:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_faces' depends on axioms outside the classical allowlist: [sorryAx]
+2689:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2691:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:303:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_source' depends on axioms outside the classical allowlist: [sorryAx]
+2692:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2694:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:304:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_kept' depends on axioms outside the classical allowlist: [sorryAx]
+2695:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2697:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:305:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_boundary_cycle' depends on axioms outside the classical allowlist: [sorryAx]
+2698:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2700:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:306:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_firstSide' depends on axioms outside the classical allowlist: [sorryAx]
+2701:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2703:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:307:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_secondSide' depends on axioms outside the classical allowlist: [sorryAx]
+2704:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2706:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:308:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_sourceArc_darts' depends on axioms outside the classical allowlist: [sorryAx]
+2707:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2709:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:309:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_targetArc_darts' depends on axioms outside the classical allowlist: [sorryAx]
+2710:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2712:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:310:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_targetArc_start' depends on axioms outside the classical allowlist: [sorryAx]
+2713:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2715:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSplit.lean:311:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_followsBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+2716:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2718:error: Lean exited with code 1
+2735:✖ [11138/11144] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell (17s)
+2737:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:137:2: Type mismatch
+2754:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:193:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion' depends on axioms outside the classical allowlist: [sorryAx]
+2755:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2757:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:194:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple' depends on axioms outside the classical allowlist: [sorryAx]
+2758:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+2760:error: Lean exited with code 1
+2988:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.HullSCBoundedImageEmbeddingLeastArea
+BUILT GroupApproximation.GGT.HullSCGreendlingerForms
+BUILT GroupApproximation.GGT.HullSCLeastAreaGreendlingerTwins
+BUILT GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaCanonical
+BUILT GroupApproximation.GGT.HullSCLemma44BoundedLeastAreaFamilyBridge
+BUILT GroupApproximation.GGT.HullSCTheorem71GeneralLeastArea
+BUILT GroupApproximation.GGT.KazhdanHypGirthEightHyperbolicityFromFilling
+BUILT GroupApproximation.GGT.KazhdanHypLiteralFilling
+BUILT GroupApproximation.GGT.KazhdanHypLiteralFillingDegree
+BUILT GroupApproximation.GGT.KazhdanHypSymmetrizedFilling
+BUILT GroupApproximation.GGT.KazhdanHypSymPowerDisc
+BUILT GroupApproximation.GGT.RelHypProp23FromLeastAreaLeaves
+BUILT GroupApproximation.GGT.VanKampen.Estimating.DiscEmbeddingAwayUnbound
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssembly
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyDescent
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixAssemblyPocket
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutSections
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentCut
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentInduction
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGon
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonSection
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCount
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerEmptyTwoGon
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorTwoGon
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerHereditary
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSection
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerSmallFaces
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonFaceClass (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixGreendlingerParts
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixGreendlingerPocketParts
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLeastAreaCut
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixLemma97Pocket
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Collapse
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52LeastArea
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Prep
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Surgery
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52Values
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionBridge
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDarts
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDegenerate
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInduction
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInterior
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionMultipleEdge
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPieces
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSections
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94AntiparallelMetric
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalk
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalkHolds
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseTwo
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CellArcs
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ChainRespell
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CornerInsertion
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94Counting
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingChains
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94DartMinimal
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellValue (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94Pieces
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PlanarPieces
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonCount
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonCovers
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonKinds
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonMaximal
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonPartition
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonRealization
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94QuasiGeodesicRespell
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RegionSideCount
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94RunInput
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SectionResiduals
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertionProof
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatingRemoval
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SpikeTransport
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellArcs
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalk
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketClosedWalkNoncrossing
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCollarOfGeodesic
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscEmptyTwoGon
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscMerge
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFollowsBoundary
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGapArcs
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueDiagram
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueEquivalence
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterArc
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterTransport
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLeastAreaCut
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMergeRegion
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeAssembly
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCut
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeTransport
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPart
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPieces
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonDiscCollapse
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonLobe
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonNoncrossing
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonOuterFollows
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonRegion
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSplit (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchUnpinched
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegion
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionOfSimple
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionRotate
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSections
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSide
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSimpleWalk
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionUnpinched
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionVertexSimple
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoCollars
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketUnpinchedEuler
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMerge
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOneFace
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOneRun
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundMerged
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundReduced
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSharedEdge
+BUILT GroupApproximation.GGT.VanKampen.GFaceQuadrilateralRegion
+BUILT GroupApproximation.GGT.VanKampen.PlanarVanKampenWeighted
+BUILT GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingRegions
+BUILT GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollar
+BUILT GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarAssembly
+BUILT GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarJoin
+BUILT GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeRegions
+BUILT GroupApproximation.GGT.VanKampen.SurgeryMonogonDoublingStrip
+BUILT GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+BUILT GroupApproximation.GGT.VanKampen.SurgeryPinchSplitExtremal
+BUILT GroupApproximation.GGT.VanKampen.SurgeryPinchSplitSections
+BUILT GroupApproximation.GGT.VanKampen.SurgerySpikeDeletionRegions
+BUILT GroupApproximation.Kazhdan.KotowskiOllivierLeaves
+BUILT GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC
+BUILT GroupApproximation.Manuscript.MFRecognition.SeedRemarkTheoremC
+BUILT GroupApproximation.Manuscript.NonMF.HullCitationSentences
+BUILT GroupApproximation.Manuscript.NonMF.HullCorollary73
+BUILT GroupApproximation.Manuscript.NonMF.HullCorollary74
+BUILT GroupApproximation.Manuscript.NonMF.TheoremCAssembly
+BUILT GroupApproximation.Manuscript.NonMF.TheoremCAssemblyFoldLeaf
+BUILT GroupApproximation.Manuscript.NonMF.TheoremCAssemblyGreendlingerLeaf
+BUILT GroupApproximation.Manuscript.NonMF.TheoremCAssemblyKOLeaves
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeFourLeaves
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeHullPrintedLeastArea
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeKOLeaves
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeLeastAreaAssembly
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetEndpoints
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeOsinNotion
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssembly
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeSectionAssemblyClosedGO
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesFourLeaves
+BUILT GroupApproximation.Manuscript.NonMF.TorsionFreeSectionSentencesLeastArea
+--- rebuilt GroupApproximation modules: 160
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGaussValuations.lean
+COMPILED GroupApproximation/Algebra/IntegerPlacesMinpoly.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/DiscEmbeddingAwayUnbound.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCornerTwoGonCount.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixGreendlingerParts.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSections.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonCount.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonCovers.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscEmptyTwoGon.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOne.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneFace.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundCaseOneRun.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSharedEdge.lean
+COMPILED GroupApproximation/GGT/VanKampen/GFaceQuadrilateralRegion.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingRegions.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryGFaceMergeRegions.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryPinchSplitSections.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

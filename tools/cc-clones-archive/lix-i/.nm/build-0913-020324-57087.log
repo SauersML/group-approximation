@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2444 oleans
+[job] acn112 cores=64-71 threads=8 base=b7e8a34e5591915fe9c7a37967252517b461538a mods: GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt GroupApproximation.Sofic.StrongConvergenceMFSubsingleton GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+ℹ [3636/3699] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10206/10218] Building GroupApproximation.Sofic.StrongConvergenceMFSubsingleton (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.setup.json --json
+error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:55:50: Unknown constant `Matrix.unitaryGroup.one_val`
+error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:47:30: unsolved goals
+G : Type u
+inst✝¹ : Group G
+inst✝ : Subsingleton G
+c : G →₀ ℂ
+hreg : ∀ g ∈ c.support, c g • reducedLeftRegular G g = c g • 1
+n : ℕ
+⊢ ‖∑ x ∈ c.support, c x • 1‖ = ‖∑ g ∈ c.support, c g • ↑1‖
+error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:67:14: 'GroupApproximation.isStronglyOperatorMF_of_subsingleton' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Sofic/StrongConvergenceMFSubsingleton.lean:68:21: 'GroupApproximation.isStronglyOperatorMF_unit' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [10216/10218] Built GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt (24s)
+info: GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean:57:14: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.fullDefectPair_aryLeavittAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/FullDefectPairLeavitt.lean:58:21: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.fullDefectPair_aryLeavittAlgebra_zmodTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10217/10218] Built GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences (16s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:553:2: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10218/10218] Built GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic (87s)
+info: GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean:55:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.naiveFreeProductProperty_of_isAcylindricallyHyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean:56:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.powersAveragingEstimate_of_isAcylindricallyHyperbolic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Sofic.StrongConvergenceMFSubsingleton
+error: build failed
+EXIT=1

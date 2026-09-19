@@ -1,0 +1,24 @@
+[job] 23:38:35 acn112 waiting for clone lock
+[job] delta sync 6511c4175..77f3ac926: 19 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 77f3ac926 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0911-233801-99316.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2077 oleans
+--- errors (first 80 lines)
+3:✖ [2171/2171] Building GroupApproximation.CharClass.OddPTupleFunctor (7.0s)
+5:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:173:15: unsolved goals
+15:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:181:15: unsolved goals
+27:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:300:8: This simp argument is unused:
+35:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:348:57: This simp argument is unused:
+42:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:348:76: This simp argument is unused:
+49:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:367:6: This simp argument is unused:
+57:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:377:6: This simp argument is unused:
+65:error: Lean exited with code 1
+68:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTupleFunctor (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPTupleFunctor
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

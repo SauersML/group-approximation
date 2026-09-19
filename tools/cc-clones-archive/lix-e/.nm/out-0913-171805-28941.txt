@@ -1,0 +1,28 @@
+[job] 17:18:25 acn112 waiting for clone lock
+[job] delta sync 740983a11..a44fdc00e: 21 files changed
+===== SUMMARY
+host acn112 cores 64-71 base a44fdc00e log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-171805-28941.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+--- errors (first 80 lines)
+3:✖ [1528/1529] Building GroupApproximation.Dynamics.TwoEndedShift (5.8s)
+5:error: GroupApproximation/Dynamics/TwoEndedShift.lean:184:10: Unknown constant `TopologicalSpace.SecondCountableTopology`
+6:error: GroupApproximation/Dynamics/TwoEndedShift.lean:186:8: Unknown constant `TopologicalSpace.metrizableSpace_of_t3_secondCountable`
+7:error: GroupApproximation/Dynamics/TwoEndedShift.lean:448:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+8:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+12:error: Lean exited with code 1
+13:✖ [1529/1529] Building GroupApproximation.Algebra.FinitaryGeneralLinear (7.0s)
+15:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:228:6: Type mismatch
+23:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:307:28: Application type mismatch: The argument
+36:error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+40:error: Lean exited with code 1
+44:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedShift (replayed or failed)
+mentioned-not-built GroupApproximation.Algebra.FinitaryGeneralLinear (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

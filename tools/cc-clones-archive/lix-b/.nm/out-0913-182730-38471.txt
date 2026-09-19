@@ -1,0 +1,29 @@
+[job] 18:28:23 acn112 waiting for clone lock
+[job] delta sync 704b70f2c..2562633bc: 6 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 2562633bc log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-182730-38471.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3484 oleans
+--- errors (first 80 lines)
+6:✖ [4979/4979] Building GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass (9.4s)
+8:error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:60:48: don't know how to synthesize placeholder for argument `d`
+21:error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:119:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_boundaryPerm_of_followsBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+22:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+24:error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:120:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_of_mem_of_followsBoundary' depends on axioms outside the classical allowlist: [sorryAx]
+25:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+27:error: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:121:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eqvGen_of_mem_of_innerFollows' depends on axioms outside the classical allowlist: [sorryAx]
+28:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+30:error: Lean exited with code 1
+33:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollows.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerFollowsClosed.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean
+- GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

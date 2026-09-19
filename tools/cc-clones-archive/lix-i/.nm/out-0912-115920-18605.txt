@@ -1,0 +1,29 @@
+[job] 11:59:27 acn112 waiting for clone lock
+[job] delta sync b3e39f5d9..10d9b0bf1: 118 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 10d9b0bf1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0912-115920-18605.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2385 oleans
+--- errors (first 80 lines)
+15:✖ [9037/9048] Building GroupApproximation.CharClass.CohomologyChartPeelUniqOf (27s)
+17:error: GroupApproximation/CharClass/CohomologyChartPeelUniqOf.lean:41:8: Unknown identifier `cpSliceGen_comp_cpPrCP`
+18:error: Lean exited with code 1
+19:✖ [9046/9048] Building GroupApproximation.CharClass.ProjectiveSpaceRingBootstrapOf (28s)
+21:error: GroupApproximation/CharClass/ProjectiveSpaceRingBootstrapOf.lean:75:6: Unknown identifier `HasFreeTuple`
+24:error: GroupApproximation/CharClass/ProjectiveSpaceRingBootstrapOf.lean:109:6: Unknown identifier `HasFreeTuple`
+27:error: GroupApproximation/CharClass/ProjectiveSpaceRingBootstrapOf.lean:123:6: Unknown identifier `HasFreeTuple`
+30:error: Lean exited with code 1
+34:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LerayHirschColSumOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.LerayHirschLadderClosedOf (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LIXLimitTrace.lean
+COMPILED GroupApproximation/Analysis/LIXLimitTraceFaithful.lean
+COMPILED GroupApproximation/Analysis/LIXStablyFinite.lean
+COMPILED GroupApproximation/Analysis/LIXStageTrace.lean
+COMPILED GroupApproximation/Manuscript/NinetyNineProblems/LIXStablyFinite.lean
+- GroupApproximation.CharClass.ProjectiveSpaceRingBootstrapOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4620 oleans
+[job] acn112 cores=64-71 threads=8 base=36dd8d07ec64c55c0c712e2ac162ae2b52eb7349 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GXAnswersBrownOzawaPestovClosed
+ℹ [4121/4185] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4673/4673] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.GXAnswersBrownOzawaPestovClosed (20s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GXAnswersBrownOzawaPestovClosed.lean:31:21: 'GroupApproximation.SimpleKazhdanSofic.printedGXAnswersBrownOzawaPestov' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4673 jobs).
+EXIT=0

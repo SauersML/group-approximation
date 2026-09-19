@@ -1,0 +1,57 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3079 oleans
+[job] acn112 cores=64-71 threads=8 base=492057fb6867dd20a6921298129aee54a4fcb3e4 mods: GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+ℹ [3302/3379] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4997/4997] Building GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.setup.json --json
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:226:30: Application type mismatch: The argument
+  List.map_congr_left fun d x => alpha_dartImage Delta j hlen d
+has type
+  List.map (fun d => (diagram Delta j hlen).toCombMap.alpha (FaceEdgeDoubling.dartImage Delta Delta.outerFace j hlen d))
+      ?m.114 =
+    List.map (fun d => outerImage Delta j hlen (Delta.toCombMap.alpha d)) ?m.114
+but is expected to have type
+  List.map (⇑(diagram Delta j hlen).toCombMap.alpha)
+      (List.map (FaceEdgeDoubling.dartImage Delta Delta.outerFace j hlen) (Delta.faceBoundary Delta.outerFace).darts) =
+    List.map (outerImage Delta j hlen ∘ ⇑Delta.toCombMap.alpha) (Delta.faceBoundary Delta.outerFace).darts
+in the application
+  congrArg List.reverse (List.map_congr_left fun d x => alpha_dartImage Delta j hlen d)
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:679:21: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerSpurThickening' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:680:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.diagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:681:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.oEquivalent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:682:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.embedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:683:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerDarts_eq' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:684:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.contiguityGeometry' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:685:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamily_weight' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:686:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamilyEquiv' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:687:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerSpurCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:688:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.sectionFamily' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean:689:14: 'GroupApproximation.GGT.VanKampen.OuterSpurThickening.exists_spurFree' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+error: build failed
+EXIT=1

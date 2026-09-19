@@ -1,0 +1,36 @@
+[job] 11:07:44 acn112 waiting for clone lock
+[job] delta sync 38783585e..fa7ff2759: 12 files changed
+===== SUMMARY
+host acn112 cores 72-79 base fa7ff2759 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0914-110622-93657.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4116 oleans
+--- errors (first 80 lines)
+53:✖ [3341/3341] Building GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (37s)
+55:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:76:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+60:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:127:4: (kernel) unknown constant 'GroupApproximation.OzawaEmbedding.isHilbertSchmidtNull_unitarySeq_mul'
+61:error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:176:14: 'GroupApproximation.OzawaEmbedding.exists_maximalGroupCStar_hom' depends on axioms outside the classical allowlist: [GroupApproximation.OzawaEmbedding.unitaryHom._proof_5]
+64:error: Lean exited with code 1
+67:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.McDuffTensorHyperfinite
+mentioned-not-built GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (replayed or failed)
+BUILT GroupApproximation.Analysis.TracialMatrixQuotientUnitBall
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
+COMPILED GroupApproximation/Analysis/HyperlinearOneSumModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean
+COMPILED GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean
+COMPILED GroupApproximation/Analysis/McDuffFactor.lean
+COMPILED GroupApproximation/Analysis/McDuffTensorHyperfinite.lean
+COMPILED GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean
+COMPILED GroupApproximation/Analysis/TracialMatrixQuotientUnitBall.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean
+COMPILED GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean
+COMPILED GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean
+COMPILED GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
+- GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

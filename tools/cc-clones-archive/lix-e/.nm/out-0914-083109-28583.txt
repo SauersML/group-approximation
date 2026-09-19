@@ -1,0 +1,24 @@
+[job] 08:31:20 cn1046 waiting for clone lock
+[job] delta sync 1fccc02b3..d5d1b9db7: 9 files changed
+===== SUMMARY
+host cn1046 cores slurm base d5d1b9db7 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-083109-28583.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4357 oleans
+--- errors (first 80 lines)
+15:✖ [3057/3058] Building GroupApproximation.Analysis.OperatorSystemChoiFunctional (12s)
+17:error: GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean:168:14: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+20:error: GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean:225:6: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+23:error: Lean exited with code 1
+26:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.LocalLiftingProperty
+BUILT GroupApproximation.Analysis.OperatorSystemStateExtension
+mentioned-not-built GroupApproximation.Analysis.OperatorSystemChoiFunctional (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.OperatorSystemMatrixArveson (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/LocalLiftingProperty.lean
+COMPILED GroupApproximation/Analysis/OperatorSystemStateExtension.lean
+- GroupApproximation.Analysis.OperatorSystemChoiFunctional
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

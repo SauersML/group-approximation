@@ -1,0 +1,60 @@
+purged 32 stale artifact sets (source-newer=1, import-newer=31) of 2068 oleans
+[job] acn112 cores=80-87 threads=8 base=f4dc2a884953860bc3f972f0f3df128d7b0883ab mods: GroupApproximation.CharClass.GysinRetractOf GroupApproximation.CharClass.GysinSphereOf GroupApproximation.CharClass.ThomDataOf GroupApproximation.CharClass.ThomStepCLocalOf GroupApproximation.CharClass.ThomBridgeChartHom
+ℹ [8745/8830] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8774/8910] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8799/8940] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8851/8940] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8854/8940] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8934/8940] Building GroupApproximation.CharClass.ThomDataOf (56s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/ThomDataOf.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/ThomDataOf.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/ThomDataOf.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/ThomDataOf.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/ThomDataOf.setup.json --json
+error: GroupApproximation/CharClass/ThomDataOf.lean:40:30: Unknown identifier `Hmod`
+
+Note: It is not possible to treat `Hmod` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ThomDataOf.lean:45:47: Unknown identifier `Hmod`
+
+Note: It is not possible to treat `Hmod` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ThomDataOf.lean:55:47: Unknown identifier `Hmod`
+
+Note: It is not possible to treat `Hmod` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/ThomDataOf.lean:75:14: 'GroupApproximation.CharClass.thomData_of_absToSubOf' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [8935/8940] Built GroupApproximation.CharClass.ThomBridgeNaturalSquare (56s)
+info: GroupApproximation/CharClass/ThomBridgeNaturalSquare.lean:58:14: 'GroupApproximation.CharClass.relPullback_comm_of_map_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8936/8940] Built GroupApproximation.CharClass.GysinSphereOf (55s)
+info: GroupApproximation/CharClass/GysinSphereOf.lean:63:14: 'GroupApproximation.CharClass.Gysin.hasSphereCohomologyOf_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/GysinSphereOf.lean:64:14: 'GroupApproximation.CharClass.Gysin.eq_zero_unitVectorsOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8937/8940] Built GroupApproximation.CharClass.GysinRetractOf (52s)
+info: GroupApproximation/CharClass/GysinRetractOf.lean:116:14: 'GroupApproximation.CharClass.Gysin.rChartOf_cup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/GysinRetractOf.lean:117:14: 'GroupApproximation.CharClass.Gysin.rNotZeroOf_cup' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8938/8940] Built GroupApproximation.CharClass.RelativeLocalModelOf (56s)
+info: GroupApproximation/CharClass/RelativeLocalModelOf.lean:159:14: 'GroupApproximation.CharClass.localGeneratorOf_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/RelativeLocalModelOf.lean:160:14: 'GroupApproximation.CharClass.eq_smul_localGeneratorOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/RelativeLocalModelOf.lean:161:14: 'GroupApproximation.CharClass.isUnit_localEquivOf_of_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8939/8940] Built GroupApproximation.CharClass.ThomStepCLocalOf (41s)
+info: GroupApproximation/CharClass/ThomStepCLocalOf.lean:98:14: 'GroupApproximation.CharClass.hsu_isUnit_of_ne_zeroOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCLocalOf.lean:99:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_of_localOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCLocalOf.lean:100:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_odd_localModelOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8940/8940] Built GroupApproximation.CharClass.ThomBridgeChartHom (42s)
+info: GroupApproximation/CharClass/ThomBridgeChartHom.lean:177:14: 'GroupApproximation.CharClass.bridgeChart_natural' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomBridgeChartHom.lean:178:14: 'GroupApproximation.CharClass.bridgeChartOf_natural' depends on axioms: [propext, Classical.choice, Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.CharClass.ThomDataOf
+error: build failed
+EXIT=1
