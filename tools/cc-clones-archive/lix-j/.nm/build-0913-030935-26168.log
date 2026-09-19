@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2349 oleans
+[job] acn112 cores=64-71 threads=8 base=7157facfd7a4757217da75a9610599a65cee1b3e mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented
+ℹ [2833/2945] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4504/4504] Building GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented (21s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.setup.json --json
+error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean:296:12: Unknown identifier `_root_.mul_mem`
+error: GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean:299:12: Unknown identifier `_root_.add_mem`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented
+error: build failed
+EXIT=1

@@ -1,0 +1,21 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2347 oleans
+[job] acn112 cores=64-71 threads=8 base=b360f7a94ea6e434c68016618b44ed40e28f6ff7 mods: GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientBothInclusions GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientDiagonalSentence
+ℹ [3802/3928] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4646/4647] Built GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientDiagonalSentence (17s)
+info: GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientDiagonalSentence.lean:105:2: 'GroupApproximation.LeavittMFQuotientDiagonalSentence.manuscriptSentence_khanhThanhPrinted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientDiagonalSentence.lean:106:14: 'GroupApproximation.LeavittMFQuotientDiagonalSentence.mem_printedDiagonal_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4647/4647] Built GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientBothInclusions (17s)
+info: GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientBothInclusions.lean:96:2: 'GroupApproximation.LeavittMFQuotientBothInclusions.manuscriptSentence_bothInclusionsPrinted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/LeavittMFQuotientBothInclusions.lean:97:14: 'GroupApproximation.LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4647 jobs).
+EXIT=0

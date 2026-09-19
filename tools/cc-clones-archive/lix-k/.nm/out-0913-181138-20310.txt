@@ -1,0 +1,15 @@
+[job] 18:11:46 acn112 waiting for clone lock
+[job] delta sync ec784032c..97890f538: 8 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 97890f538 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-181138-20310.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3369 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.CombMapSameFaceForest
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean
+info: GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean:298:21: 'GroupApproximation.GGT.VanKampen.sameFaceDartForest' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (4648 jobs).
+EXIT=0
+PROBE GREEN

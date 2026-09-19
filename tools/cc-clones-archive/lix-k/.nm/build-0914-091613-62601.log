@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3709 oleans
+[job] acn112 cores=80-87 threads=8 base=74c8be3ac9f6e2e9bc07f1aec1fdaa58b4a796f0 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels
+ℹ [3307/3402] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10115/10118] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:397:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:398:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchK' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:399:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_letters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:400:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchK_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:401:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_boundaryWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10118/10118] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:297:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.eq_or_mem_of_cycle_mem_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:298:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.mem_T_of_wordNorm_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:299:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.false_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:300:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pocketPinchPosRefutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10118 jobs).
+EXIT=0

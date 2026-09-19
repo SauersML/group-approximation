@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3489 oleans
+[job] acn112 cores=64-71 threads=8 base=90bc1a47496b14a1ce7c0e40561104470a335e08 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketModel
+ℹ [3340/3426] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4953/5148] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:336:14: 'GroupApproximation.GGT.VanKampen.PolygonList.isChain_chunks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:337:14: 'GroupApproximation.GGT.VanKampen.PolygonList.getLast?_flatten_of_mem_getLast?' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:338:14: 'GroupApproximation.GGT.VanKampen.PolygonList.range_flatMap_getD' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:339:14: 'GroupApproximation.GGT.VanKampen.PolygonList.head?_flatten_ne_of_lt' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:340:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:341:14: 'GroupApproximation.GGT.VanKampen.PolygonList.idxOf_eq_succ_or_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:342:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain_idxOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:343:14: 'GroupApproximation.GGT.VanKampen.PolygonList.lt_cutAt_sectionIndex_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10050/10050] Built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketModel (24s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:204:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.not_pocketValue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:205:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.not_oriented_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:206:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.free_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:207:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.step_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:208:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.pocket_three_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean:209:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketModel.ga_inv_ne_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10050 jobs).
+EXIT=0

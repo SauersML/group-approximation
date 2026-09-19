@@ -1,0 +1,59 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4337 oleans
+[job] acn112 cores=64-71 threads=8 base=b4a7f3b70b00e694ef2989d522ff1df32bb9bcbb mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+ℹ [3352/3430] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10101/10101] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel (23s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:174:28: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a ^ 1
+in the target expression
+  -1 = (-1) ^ 1
+
+case base
+R : Set G
+hR : ∀ r ∈ R, Perm.sign r = -1
+n : ℕ
+w r✝ : G
+hr : r✝ ∈ R
+⊢ -1 = (-1) ^ 1
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:179:52: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a ^ (?m + ?n)
+in the target expression
+  (-1) ^ m✝ * (-1) ^ n✝ = (-1) ^ (m✝ + n✝)
+
+case mul
+R : Set G
+hR : ∀ r ∈ R, Perm.sign r = -1
+n : ℕ
+w : G
+m✝ n✝ : ℕ
+a✝ b✝ : G
+ha✝ : RelatorDefectBudget.IsRelatorProduct R m✝ a✝
+hb✝ : RelatorDefectBudget.IsRelatorProduct R n✝ b✝
+iha : Perm.sign a✝ = (-1) ^ m✝
+ihb : Perm.sign b✝ = (-1) ^ n✝
+⊢ (-1) ^ m✝ * (-1) ^ n✝ = (-1) ^ (m✝ + n✝)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:227:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'diagram', which is 'noncomputable'
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:233:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'diagram', which is 'noncomputable'
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:251:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'fullSourceArc', which is 'noncomputable'
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:369:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.sign_of_isRelatorProduct' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:370:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.leastArea' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:371:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.pocketWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:372:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.enclosedFaceSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean:373:21: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.fullArcLake' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+error: build failed
+EXIT=1

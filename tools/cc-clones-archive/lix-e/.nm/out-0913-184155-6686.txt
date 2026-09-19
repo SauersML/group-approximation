@@ -1,0 +1,27 @@
+[job] 18:43:06 acn112 waiting for clone lock
+[job] delta sync def464f1b..497da0e01: 16 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 497da0e01 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-184155-6686.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4301 oleans
+--- errors (first 80 lines)
+21:✖ [4112/4115] Building GroupApproximation.Dynamics.TwoEndedTailSymbols (11s)
+23:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:137:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+42:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:269:14: 'GroupApproximation.TwoEndedShift.symbol_mul' depends on axioms outside the classical allowlist: [sorryAx]
+43:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+46:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:271:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_pos' depends on axioms outside the classical allowlist: [sorryAx]
+47:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+49:error: GroupApproximation/Dynamics/TwoEndedTailSymbols.lean:272:14: 'GroupApproximation.TwoEndedShift.exists_tail_translation_neg' depends on axioms outside the classical allowlist: [sorryAx]
+50:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+52:error: Lean exited with code 1
+55:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailSymbols (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitsLEF (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.TwoEndedTailSymbols
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

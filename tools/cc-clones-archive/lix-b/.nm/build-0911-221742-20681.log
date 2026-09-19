@@ -1,0 +1,106 @@
+purged 4 stale artifact sets (source-newer=1, import-newer=3) of 2236 oleans
+[job] cn1051 cores=slurm threads=8 base=3e84d2862cacc1e8f2722d97e8085491c47a98a4 mods: GroupApproximation.CharClass.ThomDataOf GroupApproximation.CharClass.ThomChernDegreewiseOf GroupApproximation.CharClass.ThomHabsOf GroupApproximation.CharClass.GysinPairTautOf
+ℹ [8705/8772] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8761/8894] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8846/9023] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8873/9023] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8880/9023] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8921/9023] Replayed GroupApproximation.CharClass.CohomologyKunnethSphereOf
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:152:14: 'GroupApproximation.CharClass.isZero_mvAmbientOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:153:14: 'GroupApproximation.CharClass.isZero_cohomology_of_isEmptyOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean:154:14: 'GroupApproximation.CharClass.isZero_prod_sphere_succOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8923/9023] Replayed GroupApproximation.CharClass.GysinSphereOf
+info: GroupApproximation/CharClass/GysinSphereOf.lean:63:14: 'GroupApproximation.CharClass.Gysin.hasSphereCohomologyOf_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/GysinSphereOf.lean:64:14: 'GroupApproximation.CharClass.Gysin.eq_zero_unitVectorsOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9012/9023] Replayed GroupApproximation.CharClass.LIXThomLH
+info: GroupApproximation/CharClass/LIXThomLH.lean:86:14: 'GroupApproximation.CharClass.lhTopEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9013/9023] Replayed GroupApproximation.CharClass.ThomChernDegreewise
+info: GroupApproximation/CharClass/ThomChernDegreewise.lean:147:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9014/9023] Replayed GroupApproximation.CharClass.ThomRestrictSquare
+info: GroupApproximation/CharClass/ThomRestrictSquare.lean:90:14: 'GroupApproximation.CharClass.ThomChernDeg.absToSub_sum_lhTerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9015/9023] Replayed GroupApproximation.CharClass.LIXThomAssembly
+info: GroupApproximation/CharClass/LIXThomAssembly.lean:127:14: 'GroupApproximation.CharClass.thomData_of_absToSub' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9017/9023] Replayed GroupApproximation.CharClass.ThomHabs
+info: GroupApproximation/CharClass/ThomHabs.lean:145:14: 'GroupApproximation.CharClass.ThomChernDeg.range_thomJm_eq_ker_restrictMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9018/9023] Built GroupApproximation.CharClass.GysinPairTautOf (281s)
+info: GroupApproximation/CharClass/GysinPairTautOf.lean:63:14: 'GroupApproximation.CharClass.Gysin.bijective_resPair_cpTautOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9019/9023] Built GroupApproximation.CharClass.ThomDataOf (282s)
+info: GroupApproximation/CharClass/ThomDataOf.lean:76:14: 'GroupApproximation.CharClass.thomData_of_absToSubOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9020/9023] Built GroupApproximation.CharClass.ThomChernDegreewiseOf (280s)
+info: GroupApproximation/CharClass/ThomChernDegreewiseOf.lean:136:14: 'GroupApproximation.CharClass.ThomChernDeg.lhTerm_top_eq_sumOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [9021/9023] Building GroupApproximation.CharClass.MayerVietorisPullOf (282s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/MayerVietorisPullOf.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/MayerVietorisPullOf.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/MayerVietorisPullOf.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/MayerVietorisPullOf.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/MayerVietorisPullOf.setup.json --json
+error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:166:6: Type mismatch
+  hc
+has type
+  HomologicalComplex.homologyMap (mvCxInclVOf K U V) n ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n =
+    HomologicalComplex.homologyMap (-dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n
+but is expected to have type
+  mvHInclVOf K U V n ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n =
+    -HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n
+error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:175:30: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (-?f) ≫ ?g
+in the target expression
+  (-HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n) ≫
+      HomologicalComplex.homologyMap (dualMapOf K (subChainCorestrict K X (↑U ∩ ↑V))) n =
+    -HomologicalComplex.homologyMap (dualMapOf K (subChainCorestrict K X ↑V)) n ≫
+        HomologicalComplex.homologyMap (dualMapOf K ((chainCxFunOf K).map (subInclusion ⋯))) n
+
+X : TopCat
+K : Type
+inst✝ : CommRing K
+U V : Opens ↑X
+hUV : U ⊔ V = ⊤
+n : ℕ
+h2 :
+  mvHInclVOf K U V n ≫ HomologicalComplex.homologyMap (mvCoSCOf K U V hUV).g n =
+    -HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n
+⊢ (-HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n) ≫
+      HomologicalComplex.homologyMap (dualMapOf K (subChainCorestrict K X (↑U ∩ ↑V))) n =
+    -HomologicalComplex.homologyMap (dualMapOf K (subChainCorestrict K X ↑V)) n ≫
+        HomologicalComplex.homologyMap (dualMapOf K ((chainCxFunOf K).map (subInclusion ⋯))) n
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  Application type mismatch: The argument
+    -HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n
+  has type
+    @Quiver.Hom (ModuleCat K) (ModuleCat.moduleCategory K).toQuiver
+      (HomologicalComplex.homology (dualCxOf K (subChainComplex K X ↑V)) n)
+      (HomologicalComplex.homology (dualCxOf K (subChainComplex K X (↑U ∩ ↑V))) n)
+  but is expected to have type
+    @Quiver.Hom (ModuleCat K) (ModuleCat.moduleCategory K).toQuiver
+      (HomologicalComplex.homology (dualCxOf K (mvCxOf K V)) n) (HomologicalComplex.homology (mvCoSCOf K U V hUV).X₃ n)
+  in the application
+    CategoryStruct.comp (-HomologicalComplex.homologyMap (dualMapOf K (subChainInclusion (↑U ∩ ↑V) ↑V ⋯)) n)
+error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:165:54: This simp argument is unused:
+  HomologicalComplex.homologyMap_neg
+
+Hint: Omit it from the simp argument list.
+  simp only [HomologicalComplex.homologyMap_comp,̵ ̵H̵o̵m̵o̵l̵o̵g̵i̵c̵a̵l̵C̵o̵m̵p̵l̵e̵x̵.̵h̵o̵m̵o̵l̵o̵g̵y̵M̵a̵p̵_̵n̵e̵g̵] at hc
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.MayerVietorisPullOf
+error: build failed
+EXIT=1

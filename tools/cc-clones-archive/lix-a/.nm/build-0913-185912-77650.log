@@ -1,0 +1,58 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4020 oleans
+[job] acn112 cores=64-71 threads=8 base=abcbd8c9ccbabc9a02b3766e65fe8dee3953f0aa mods: GroupApproximation.Dynamics.BilateralThreeCellClopen GroupApproximation.Algebra.BilateralThreeCellZOrder GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge GroupApproximation.Manuscript.ChainCore.BilateralThreeClosures
+ℹ [1663/1754] Replayed GroupApproximation.Algebra.BilateralThreeCellMatrices
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:464:14: 'GroupApproximation.BilateralThreeCell.Cell.W_conj_mem_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:465:14: 'GroupApproximation.BilateralThreeCell.Cell.c_commute_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1758/1883] Replayed GroupApproximation.Dynamics.BilateralThreeCellClopen
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:73:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:74:14: 'GroupApproximation.ClopenCrossedProduct.defectD_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1781/1883] Replayed GroupApproximation.Algebra.BilateralThreeCellZOrder
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:182:21: 'GroupApproximation.ClopenCrossedProduct.manuscriptSentence_bilateralThreeZCentralOfOrderChar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:183:14: 'GroupApproximation.BilateralThreeCell.ZOrder.z_pow_eq_one_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:184:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_orderOf_z' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1786/1883] Replayed GroupApproximation.Algebra.BilateralThreeCellCorner
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:209:14: 'GroupApproximation.BilateralThreeCell.Cell.cornerEmbed_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:210:14: 'GroupApproximation.BilateralThreeCell.Cell.range_cornerEmbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:211:14: 'GroupApproximation.BilateralThreeCell.Cell.unit_conj_mem_range' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:212:14: 'GroupApproximation.BilateralThreeCell.Cell.isOfFinOrder_z' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2829/2886] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4584/4585] Replayed GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:127:21: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.bilateralThreeCellStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:128:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.isFinitelyGeneratedRing_cellRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:129:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.natCast_ringChar_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4585/4585] Replayed GroupApproximation.Manuscript.ChainCore.BilateralThreeClosures
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeClosures.lean:55:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.printedBilateralThree_of_reflection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeClosures.lean:56:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.bilateralThreeTransferStatement_of_nonzeroDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4585 jobs).
+EXIT=0

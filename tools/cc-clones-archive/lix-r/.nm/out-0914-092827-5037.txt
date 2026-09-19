@@ -1,0 +1,31 @@
+[job] 09:34:57 acn112 waiting for clone lock
+[job] delta sync a782e4c7c..a9ef79561: 22 files changed
+===== SUMMARY
+host acn112 cores 72-79 base a9ef79561 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-092827-5037.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3509 oleans
+--- errors (first 80 lines)
+60:✖ [3051/3051] Building GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (18s)
+62:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:64:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.card_mul_stageMult_le`:
+68:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:81:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.stageFactor_complex`:
+74:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:88:0: automatically included section variable(s) unused in theorem `GroupApproximation.Hyperfinite.stageFactor_nonneg`:
+80:error: GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean:151:55: Variable name `n` is not explicitly referenced.
+90:error: Lean exited with code 1
+93:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.HyperfiniteStageCorner
+mentioned-not-built GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/DyadicCornerEmbedding.lean
+COMPILED GroupApproximation/Analysis/HyperfiniteStageCorner.lean
+COMPILED GroupApproximation/Analysis/MatrixUnitHom.lean
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliMatrixUnits.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.MatrixUltraproductToHyperfiniteUltrapower
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

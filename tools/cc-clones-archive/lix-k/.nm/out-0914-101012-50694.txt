@@ -1,0 +1,28 @@
+[job] 10:10:24 acn112 waiting for clone lock
+[job] delta sync 248c486be..655d43fba: 8 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 655d43fba log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0914-101012-50694.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3712 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinMultipleEdgeCutNonzero
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinMultipleEdgeCutNonzero.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoCollarsEuler.lean
+ Quot.sound]
+Build completed successfully (10041 jobs).
+EXIT=0
+PROBE GREEN

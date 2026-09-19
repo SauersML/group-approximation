@@ -1,0 +1,45 @@
+[job] 09:35:42 acn112 waiting for clone lock
+[job] delta sync 2e93f09d1..856a2c2f9: 129 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 856a2c2f9 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-093536-9874.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3263 oleans
+--- errors (first 80 lines)
+6:✖ [5024/5024] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport (12s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:266:4: Application type mismatch: The argument
+41:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:391:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection' depends on axioms outside the classical allowlist: [sorryAx]
+42:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+44:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:392:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.insertionSection_weight' depends on axioms outside the classical allowlist: [sorryAx]
+45:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+47:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:393:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport' depends on axioms outside the classical allowlist: [sorryAx]
+48:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+50:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:394:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_card' depends on axioms outside the classical allowlist: [sorryAx]
+51:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+53:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:395:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_unboundSum' depends on axioms outside the classical allowlist: [sorryAx]
+54:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+56:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:396:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_dartCount_le' depends on axioms outside the classical allowlist: [sorryAx]
+57:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+59:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:397:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_avoid' depends on axioms outside the classical allowlist: [sorryAx]
+60:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+62:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94InsertionTransport.lean:398:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.insertionTransport_profile' depends on axioms outside the classical allowlist: [sorryAx]
+63:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+65:error: Lean exited with code 1
+68:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullSCCommonQuotientCorrected.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44Canonical.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44JointRelabel.lean
+COMPILED GroupApproximation/GGT/HullSCLemma49PowerDiagramFromComponents.lean
+COMPILED GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean
+COMPILED GroupApproximation/Manuscript/NonMF/FournierFacioParagraphFromSimpleFactor.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFillTheoremCCorrected.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CompressionSentencesB2.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/LimitingTraceTrivialCharacterSentence.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/NormalKazhdanUltrafilterRoute.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94InsertionTransport
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

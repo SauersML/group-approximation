@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4103 oleans
+[job] cn1016 cores=slurm threads=8 base=512115a387724d2574384f1b5d6625a53d63d98a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortCaseOne
+ℹ [3330/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5019/5019] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortCaseOne (70s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean:286:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.ShortWordConnectorPair.exists_nonempty_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean:287:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ShortCaseOneWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortCaseOne.lean:288:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ShortCaseOne_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5019 jobs).
+EXIT=0

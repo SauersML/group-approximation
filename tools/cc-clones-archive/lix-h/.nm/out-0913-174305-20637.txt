@@ -1,0 +1,22 @@
+[job] 17:43:14 acn112 waiting for clone lock
+[job] delta sync c6bdc0b99..538fe1b33: 19 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 538fe1b33 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-174305-20637.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3172 oleans
+--- errors (first 80 lines)
+7:✖ [1762/1762] Building GroupApproximation.Dynamics.ReturnRingUnit (6.8s)
+9:error: GroupApproximation/Dynamics/ReturnRingUnit.lean:231:58: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+41:error: GroupApproximation/Dynamics/ReturnRingUnit.lean:258:14: 'GroupApproximation.ChainCore.returnV_mul_coeff_extend' depends on axioms outside the classical allowlist: [sorryAx]
+42:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+44:error: Lean exited with code 1
+47:error: build failed
+--- per-module
+BUILT GroupApproximation.Dynamics.ReturnCells
+mentioned-not-built GroupApproximation.Dynamics.ReturnRingUnit (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ReturnCells.lean
+- GroupApproximation.Dynamics.ReturnRingUnit
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

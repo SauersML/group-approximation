@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2455 oleans
+[job] acn112 cores=80-87 threads=8 base=a763cb445a762d64442489e792206c4db8f5d201 mods: GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers GroupApproximation.Manuscript.NonMFSentences.IntroLimitingTraceSentence
+ℹ [2797/2907] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4142/4143] Built GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers (10s)
+info: GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean:100:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.hsVanishes_of_mem_opToHSShadowResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean:102:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.hsVanishes_of_mem_printedDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean:104:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCompressionCriterionHSHypothesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/HSVanishesProducers.lean:106:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCompressionCriterionCoronaTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4143/4143] Built GroupApproximation.Manuscript.NonMFSentences.IntroLimitingTraceSentence (11s)
+info: GroupApproximation/Manuscript/NonMFSentences/IntroLimitingTraceSentence.lean:110:2: 'GroupApproximation.Manuscript.NonMFSentences.manuscriptPrintedIntroLimitingTraceIsTrivialCharacter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroLimitingTraceSentence.lean:112:2: 'GroupApproximation.Manuscript.NonMFSentences.manuscriptPrintedIntroSecondStepConclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4143 jobs).
+EXIT=0

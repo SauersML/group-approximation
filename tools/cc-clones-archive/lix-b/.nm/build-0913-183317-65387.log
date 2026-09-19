@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3484 oleans
+[job] acn112 cores=80-87 threads=8 base=ae9c59333b3acd72b49291476f2d64629a6edbbf mods: GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass
+ℹ [3343/3419] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4979/4979] Built GroupApproximation.GGT.VanKampen.BoundaryCycleFaceClass (47s)
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:119:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_boundaryPerm_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:120:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.eqvGen_of_mem_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean:121:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.eqvGen_of_mem_of_innerFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4979 jobs).
+EXIT=0

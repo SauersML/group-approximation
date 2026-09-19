@@ -1,0 +1,18 @@
+[job] 17:14:16 acn112 waiting for clone lock
+[job] delta sync e24b2ae3b..d0c0519f6: 3 files changed
+===== SUMMARY
+host acn112 cores 72-79 base d0c0519f6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0913-171403-10124.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3169 oleans
+--- errors (first 80 lines)
+3:✖ [1760/1760] Building GroupApproximation.Dynamics.ReturnTowerCrossedProduct (7.5s)
+5:error: GroupApproximation/Dynamics/ReturnTowerCrossedProduct.lean:61:40: Variable name `x` is not explicitly referenced.
+14:error: Lean exited with code 1
+17:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ReturnTowerCrossedProduct (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.ReturnTowerCrossedProduct
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

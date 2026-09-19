@@ -1,0 +1,27 @@
+[job] 17:36:02 acn112 waiting for clone lock
+[job] delta sync 8c48f43fc..63831fd7a: 61 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 63831fd7a log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-173556-1815.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3409 oleans
+--- errors (first 80 lines)
+3:✖ [3075/3075] Building GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection (18s)
+5:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:83:59: unsolved goals
+25:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:130:10: failed to synthesize instance of type class
+29:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:150:15: failed to synthesize instance of type class
+33:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:206:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.unitary_conj_spectralProjection' depends on axioms outside the classical allowlist: [sorryAx]
+34:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+36:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:207:14: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.shift_mul_proj_mul_star_shift' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+39:error: GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean:208:21: 'GroupApproximation.MaxInfiniteConjugateKazhdanProjection.manuscriptConjugateKazhdanProjection' depends on axioms outside the classical allowlist: [sorryAx]
+40:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+42:error: Lean exited with code 1
+45:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean
+- GroupApproximation.Analysis.MaxInfiniteConjugateKazhdanProjection
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

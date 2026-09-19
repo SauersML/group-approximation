@@ -1,0 +1,33 @@
+[job] 08:57:53 acn112 waiting for clone lock
+[job] delta sync 524da3a8f..08d434c9c: 26 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 08d434c9c log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-085746-99563.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3506 oleans
+--- errors (first 80 lines)
+27:✖ [2416/2417] Building GroupApproximation.Analysis.MatrixUnitHom (5.1s)
+29:error: GroupApproximation/Analysis/MatrixUnitHom.lean:46:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_add`:
+37:error: GroupApproximation/Analysis/MatrixUnitHom.lean:50:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_smul`:
+45:error: GroupApproximation/Analysis/MatrixUnitHom.lean:54:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_zero`:
+53:error: GroupApproximation/Analysis/MatrixUnitHom.lean:60:63: unsolved goals
+67:error: GroupApproximation/Analysis/MatrixUnitHom.lean:76:24: Unknown constant `Finset.sum_smul`
+68:error: GroupApproximation/Analysis/MatrixUnitHom.lean:58:71: unsolved goals
+87:error: GroupApproximation/Analysis/MatrixUnitHom.lean:83:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.matrixUnitSum_one`:
+94:error: GroupApproximation/Analysis/MatrixUnitHom.lean:110:0: automatically included section variable(s) unused in theorem `GroupApproximation.MatrixUnits.trace_matrixUnitSum`:
+101:error: GroupApproximation/Analysis/MatrixUnitHom.lean:121:14: 'GroupApproximation.MatrixUnits.matrixUnitSum_mul' depends on axioms outside the classical allowlist: [sorryAx]
+102:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+105:error: Lean exited with code 1
+108:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Analysis.MatrixUnitHom (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.PauliMatrixUnits (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
+COMPILED GroupApproximation/Analysis/PauliStageOperators.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapower.lean
+COMPILED GroupApproximation/Analysis/TracialUltrapowerTrace.lean
+COMPILED GroupApproximation/Analysis/TwistedGroupVonNeumannFactor.lean
+- GroupApproximation.Analysis.MatrixUnitHom
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

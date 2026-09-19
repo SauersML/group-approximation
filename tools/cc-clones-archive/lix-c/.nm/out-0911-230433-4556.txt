@@ -1,0 +1,28 @@
+[job] 23:16:41 acn112 waiting for clone lock
+[job] delta sync 5385424f3..023c61d58: 21 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 023c61d58 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0911-230433-4556.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2071 oleans
+--- errors (first 80 lines)
+4:✖ [2171/2171] Building GroupApproximation.CharClass.OddPTupleFunctor (9.1s)
+6:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:176:4: No goals to be solved
+7:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:187:4: No goals to be solved
+8:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:266:4: failed to synthesize instance of type class
+12:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:273:0: Not a definitional equality: the left-hand side
+16:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:275:2: Type mismatch
+22:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:283:6: failed to synthesize
+26:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:289:8: declaration uses `sorry`
+27:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:296:4: failed to synthesize instance of type class
+31:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:314:4: Type mismatch
+38:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:327:4: Type mismatch
+44:error: GroupApproximation/CharClass/OddPTupleFunctor.lean:333:4: Type mismatch
+51:error: Lean exited with code 1
+54:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.OddPTupleFunctor (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.OddPTupleFunctor
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

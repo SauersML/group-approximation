@@ -1,0 +1,33 @@
+[job] 02:02:28 acn112 waiting for clone lock
+[job] delta sync 832396b7d..297e2dfc0: 11 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 297e2dfc0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-020223-33055.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4352 oleans
+--- errors (first 80 lines)
+155:✖ [10197/10197] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeGlueModel (21s)
+157:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:152:14: invalid `▸` notation, failed to compute motive for the substitution
+158:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:155:8: declaration uses `sorry`
+159:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:163:8: declaration uses `sorry`
+163:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:268:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.glueAlpha_m1' depends on axioms outside the classical allowlist: [sorryAx]
+164:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+166:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:269:14: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.glueMap_not_connected' depends on axioms outside the classical allowlist: [sorryAx]
+167:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+169:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean:270:21: 'GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.lakeGlueSplits' depends on axioms outside the classical allowlist: [sorryAx]
+170:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+172:error: Lean exited with code 1
+175:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeGlueModel (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/RegionProfileTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterCellThickening.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterDoublingTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryOuterSideThickening.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeGlueModel
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,72 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3474 oleans
+[job] cn1012 cores=slurm threads=8 base=ad637cf5a4b8a26e4b89ef7ead4ee092d9794368 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent
+ℹ [1442/1444] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1444/1444] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent (69s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:48:61: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if ?m.58 then ?t else ?e
+in the target expression
+  SkewMonoidAlgebra.single (ofAdd i) ((ClopenCoeff.of T k) (f i)) = 0
+
+Y : Type u_1
+inst✝¹ : TopologicalSpace Y
+T : Y ≃ₜ Y
+k : Type u_2
+inst✝ : Ring k
+S : Finset ℤ
+f : ℤ → LocallyConstant Y k
+j : ℤ
+hj : j ∈ S
+i : ℤ
+x✝ : i ∈ S
+hij : i ≠ j
+⊢ SkewMonoidAlgebra.single (ofAdd i) ((ClopenCoeff.of T k) (f i)) = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:49:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if ?m.68 = ?m.68 then ?m.70 else ?m.71
+in the target expression
+  (SkewMonoidAlgebra.single (ofAdd j) ((ClopenCoeff.of T k) (f j))).coeff (ofAdd j) = (ClopenCoeff.of T k) (f j)
+
+Y : Type u_1
+inst✝¹ : TopologicalSpace Y
+T : Y ≃ₜ Y
+k : Type u_2
+inst✝ : Ring k
+S : Finset ℤ
+f : ℤ → LocallyConstant Y k
+j : ℤ
+hj : j ∈ S
+⊢ (SkewMonoidAlgebra.single (ofAdd j) ((ClopenCoeff.of T k) (f j))).coeff (ofAdd j) = (ClopenCoeff.of T k) (f j)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:46:44: This simp argument is unused:
+  SkewMonoidAlgebra.coeff_sum
+
+Hint: Omit it from the simp argument list.
+  simp only [coeff_mul_unit_zpow_eq_single, S̵k̵e̵w̵M̵o̵n̵o̵i̵d̵A̵l̵g̵e̵b̵r̵a̵.̵c̵o̵e̵f̵f̵_̵s̵u̵m̵,̵SkewMonoidAlgebra.coeff_single_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:47:4: This simp argument is unused:
+  SkewMonoidAlgebra.coeff_single_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [coeff_mul_unit_zpow_eq_single, SkewMonoidAlgebra.coeff_sum,̵
+  ̵ ̵ ̵ ̵ ̵S̵k̵e̵w̵M̵o̵n̵o̵i̵d̵A̵l̵g̵e̵b̵r̵a̵.̵c̵o̵e̵f̵f̵_̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:60:2: `simp` made no progress
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:92:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_sum_coeff_mul_unit_zpow' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:93:14: 'GroupApproximation.SimpleKazhdanSofic.eq_of_sum_coeff_mul_unit_zpow_eq' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean:94:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_mul_unit_zpow_mul_coeff_mul_unit_zpow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent
+error: build failed
+EXIT=1

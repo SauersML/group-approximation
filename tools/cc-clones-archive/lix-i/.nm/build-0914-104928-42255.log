@@ -1,0 +1,46 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4620 oleans
+[job] acn112 cores=64-71 threads=8 base=fd466e0dca851decf87ebb2c0ea9479cf2cf5867 mods: GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+ℹ [3360/3441] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4632/4632] Building GroupApproximation.GGT.VanKampen.PermNonCrossingCount (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/GGT/VanKampen/PermNonCrossingCount.setup.json --json
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:92:8: Unknown constant `Equiv.Perm.apply_inv_self`
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:116:47: Application type mismatch: The argument
+  h
+has type
+  (i, false) ≈ (j, false)
+but is expected to have type
+  (i, false).1 ≈ (j, false).1
+in the application
+  Quotient.sound h
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:117:47: Application type mismatch: The argument
+  h
+has type
+  (i, true) ≈ (j, true)
+but is expected to have type
+  (i, true).1 ≈ (j, true).1
+in the application
+  Quotient.sound h
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:146:32: Application type mismatch: The argument
+  h
+has type
+  (walsh π τ).alpha (i, b) = (j, c)
+but is expected to have type
+  (i, b) = (j, c)
+in the application
+  congrArg Prod.fst h
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:161:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.sameCycle_walshSigma_iff' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:162:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_vertex_walsh' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/PermNonCrossingCount.lean:163:14: 'GroupApproximation.GGT.VanKampen.PermNonCrossing.card_edge_walsh' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.PermNonCrossingCount
+error: build failed
+EXIT=1

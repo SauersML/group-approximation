@@ -1,0 +1,34 @@
+[job] 12:51:03 acn112 waiting for clone lock
+[job] delta sync c57399ded..18e92aca5: 26 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 18e92aca5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-125058-28175.log
+purged 6 stale artifact sets (source-newer=2, import-newer=4) of 3121 oleans
+--- errors (first 80 lines)
+41:✖ [5045/5045] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides (10s)
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:106:67: failed to synthesize instance of type class
+47:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:196:30: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+76:Full error:
+88:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:300:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.side_facts' depends on axioms outside the classical allowlist: [sorryAx]
+89:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+91:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:301:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.cell_arc_of_side' depends on axioms outside the classical allowlist: [sorryAx]
+92:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+100:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonSides.lean:304:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.quasiGeodesic_of_side' depends on axioms outside the classical allowlist: [sorryAx]
+101:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+103:error: Lean exited with code 1
+106:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonKinds.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean
+COMPILED GroupApproximation/Kazhdan/GHWCharZero.lean
+COMPILED GroupApproximation/Kazhdan/GHWEntries.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+COMPILED GroupApproximation/Kazhdan/GHWJacobsonKazhdanFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWTheoremFourClosed.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonSides
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

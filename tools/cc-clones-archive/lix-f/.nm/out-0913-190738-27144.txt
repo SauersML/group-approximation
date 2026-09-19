@@ -1,0 +1,23 @@
+[job] 19:07:47 acn112 waiting for clone lock
+[job] delta sync 20f65e6be..1ddea784f: 10 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 1ddea784f log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-190738-27144.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3445 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetAssembly
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetAssembly.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetInducedCore.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnBridge.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnKernel.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetReturnTransientIdeal.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean
+ Quot.sound]
+Build completed successfully (4678 jobs).
+EXIT=0
+PROBE GREEN

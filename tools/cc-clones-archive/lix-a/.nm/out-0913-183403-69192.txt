@@ -1,0 +1,35 @@
+[job] 18:35:58 cn1139 waiting for clone lock
+[job] delta sync 6ef3e9bd9..def464f1b: 35 files changed
+===== SUMMARY
+host cn1139 cores slurm base def464f1b log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-183403-69192.log
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3976 oleans
+--- errors (first 80 lines)
+93:✖ [10574/10575] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection (161s)
+95:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:149:8: failed to synthesize instance of type class
+99:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:153:19: Type mismatch
+108:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms outside the classical allowlist: [sorryAx]
+109:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+111:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms outside the classical allowlist: [sorryAx]
+112:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+114:error: Lean exited with code 1
+117:error: build failed
+--- per-module
+BUILT GroupApproximation.Dynamics.BilateralThreeCellClopen
+BUILT GroupApproximation.Algebra.BilateralThreeCellZOrder
+BUILT GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge
+BUILT GroupApproximation.Manuscript.ChainCore.BilateralThreeClosures
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV3 (replayed or failed)
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BilateralThreeCellCorner.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellLevels.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellMatrices.lean
+COMPILED GroupApproximation/Dynamics/BilateralThreeCellClopen.lean
+COMPILED GroupApproximation/Dynamics/TwoEndedMatrixUnits.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2.lean
+COMPILED GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

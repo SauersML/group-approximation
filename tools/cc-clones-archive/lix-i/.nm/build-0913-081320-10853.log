@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3184 oleans
+[job] acn112 cores=64-71 threads=8 base=7bb586a06a49aac66950209aaf385bef725de95d mods: GroupApproximation.GGT.HullLemma35Transitive GroupApproximation.GGT.HullLemma35LocalFinite
+ℹ [2814/2978] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4620/4662] Replayed GroupApproximation.GGT.HullLemma35Transitive
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:154:14: 'GroupApproximation.GGT.HullLemma35.isSymmetricGeneratingSet_transitive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:155:14: 'GroupApproximation.GGT.HullLemma35.transitive_alphabet_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/HullLemma35Transitive.lean:156:14: 'GroupApproximation.GGT.HullLemma35.val_mem_of_isCompOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4662/4662] Built GroupApproximation.GGT.HullLemma35LocalFinite (12s)
+info: GroupApproximation/GGT/HullLemma35LocalFinite.lean:295:14: 'GroupApproximation.GGT.HullLemma35.exists_enlargedWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/HullLemma35LocalFinite.lean:296:14: 'GroupApproximation.GGT.HullLemma35.relBall_finite_transitive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4662 jobs).
+EXIT=0

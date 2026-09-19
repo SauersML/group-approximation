@@ -1,0 +1,12 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3726 oleans
+[job] acn129 cores=slurm threads=8 base=3c2fa5f39261828138fd80b563c5b35266b97ec6 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalk
+ℹ [3345/3396] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10173/10173] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalk (373s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalk.lean:181:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.exists_inner_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalk.lean:182:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.ofInner' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (10173 jobs).
+EXIT=0

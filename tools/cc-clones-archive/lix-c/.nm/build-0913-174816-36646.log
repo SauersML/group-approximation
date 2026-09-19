@@ -1,0 +1,110 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3451 oleans
+[job] acn112 cores=64-71 threads=8 base=68559b3201aa884df3a536b8d39ec81378d2ddae mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside
+ℹ [3302/3405] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10139/10140] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketEdgeDoublingInside
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:226:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.collarBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:227:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.source_face_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:228:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:229:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:230:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.faceEdgeDoublingInside_repeatedVisits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingInside.lean:231:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStep_of_faceEdgeDoublingInside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10140/10140] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside (28s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:152:8: Unknown identifier `CyclicArc.mapTo_darts`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:151:19: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+f : X.toCombMap.Face
+hf : f ≠ X.outerFace
+hmono : (X.faceBoundary f).darts.length = 1
+hs : f ∈ K.faces
+⊢ (MonogonDoubling.faceSetBoundaryCycle X f hf hmono hs K.boundary).cycle =
+    List.map (⇑(MonogonDoubling.embedding X f hf hmono).darts) K.firstSide ++
+          Embedded.invDarts (MonogonDoubling.diagram X f hf hmono)
+            (K.sourceArc.mapTo ⇑(MonogonDoubling.embedding X f hf hmono).darts ⋯).darts ++
+        List.map (⇑(MonogonDoubling.embedding X f hf hmono).darts) K.secondSide ++
+      (K.targetArc.mapTo ⇑(MonogonDoubling.embedding X f hf hmono).darts ⋯).darts
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:168:8: Unknown identifier `CyclicArc.mapTo_start`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:167:11: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+f : X.toCombMap.Face
+hf : f ≠ X.outerFace
+hmono : (X.faceBoundary f).darts.length = 1
+hs : f ∈ K.faces
+⊢ lo ≤ ↑(K.targetArc.mapTo ⇑(MonogonDoubling.embedding X f hf hmono).darts ⋯).start
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:171:8: Unknown identifier `CyclicArc.mapTo_start`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:170:11: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+eps : ℕ
+X : DiscDiagram W
+lo hi : ℕ
+K : PocketFaceSet D eps X lo hi
+f : X.toCombMap.Face
+hf : f ≠ X.outerFace
+hmono : (X.faceBoundary f).darts.length = 1
+hs : f ∈ K.faces
+⊢ ↑(K.targetArc.mapTo ⇑(MonogonDoubling.embedding X f hf hmono).darts ⋯).start +
+      (K.targetArc.mapTo ⇑(MonogonDoubling.embedding X f hf hmono).darts ⋯).length ≤
+    hi
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:259:14: 'GroupApproximation.GGT.VanKampen.MonogonDoubling.isBoundaryDart_faceSet_iff_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:260:14: 'GroupApproximation.GGT.VanKampen.MonogonDoubling.faceSetBoundaryCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:261:14: 'GroupApproximation.GGT.VanKampen.MonogonDoubling.vertexOf_alpha_embedding_eq_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:262:14: 'GroupApproximation.GGT.VanKampen.MonogonDoubling.label_letter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:263:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:264:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside_closedWalk' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:265:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.monogonDoublingInside_repeatedVisits' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMonogonDoublingInside.lean:266:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStep_of_monogonDoublingInside' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMonogonDoublingInside
+error: build failed
+EXIT=1

@@ -1,0 +1,15 @@
+[job] 17:34:09 acn112 waiting for clone lock
+[job] delta sync ecb2bbc76..543638579: 15 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 543638579 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-173352-83225.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3854 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.SimpleClosedWalkSidesDisjoint
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean
+ Quot.sound]
+Build completed successfully (4649 jobs).
+EXIT=0
+PROBE GREEN

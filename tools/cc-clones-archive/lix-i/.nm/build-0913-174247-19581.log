@@ -1,0 +1,79 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3658 oleans
+[job] acn112 cores=64-71 threads=8 base=91f2dea7a431637a32d3abb97b9a524cf75bfbef mods: GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval GroupApproximation.Dynamics.RankTwoCoreImageHaagerup
+ℹ [2547/2638] Replayed GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:223:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:224:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:225:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:226:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3647/3746] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4087/4172] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:98:14: 'GroupApproximation.ChainCore.RankTwoLimit.FixedCoreImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:99:14: 'GroupApproximation.ChainCore.RankTwoLimit.PeriodTwoCoreUnitImageHaagerupStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:100:14: 'GroupApproximation.ChainCore.RankTwoLimit.CoreRestrictionLocallyFiniteKernelStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:101:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedFixedCoreGLTwoKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:102:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedPeriodTwoCoreUnitsKazhdanFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitStatements.lean:103:14: 'GroupApproximation.ChainCore.RankTwoLimit.PrintedRankTwoCompressionDefectsTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4095/4172] Replayed GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:75:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:76:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/RankTwoKazhdanLimitAssembly.lean:77:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4315/4317] Replayed GroupApproximation.Kazhdan.HaagerupFiniteProduct
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:69:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:70:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi_glTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4316/4317] Built GroupApproximation.Dynamics.ClopenCrossedProductLaurentEval (9.5s)
+info: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:219:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ClopenCrossedProductLaurentEval.lean:220:14: 'GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [4317/4317] Building GroupApproximation.Dynamics.RankTwoCoreImageHaagerup (20s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.setup.json --json
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:100:2: `dsimp` made no progress
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:260:8: `simp` made no progress
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:257:8: `simp` made no progress
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:263:8: `simp` made no progress
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:333:21: 'GroupApproximation.ChainCore.RankTwoLimit.fixedCoreImageHaagerup' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:334:21: 'GroupApproximation.ChainCore.RankTwoLimit.periodTwoCoreUnitImageHaagerup' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:335:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedFixedCoreGLTwoKazhdanFinite_of_kernel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:336:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedPeriodTwoCoreUnitsKazhdanFinite_of_kernel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Dynamics/RankTwoCoreImageHaagerup.lean:337:14: 'GroupApproximation.ChainCore.RankTwoLimit.printedRankTwoCompressionDefectsTrivial_of_kernel' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.RankTwoCoreImageHaagerup
+error: build failed
+EXIT=1

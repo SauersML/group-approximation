@@ -1,0 +1,32 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3042 oleans
+[job] acn112 cores=64-71 threads=8 base=1faafe122503fb0f28d02e3b200d6d0a1990b3a6 mods: GroupApproximation.Manuscript.NonMF.HullCorollary73
+ℹ [2797/2898] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10221/10221] Building GroupApproximation.Manuscript.NonMF.HullCorollary73 (27s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Manuscript/NonMF/HullCorollary73.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/HullCorollary73.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/HullCorollary73.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Manuscript/NonMF/HullCorollary73.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Manuscript/NonMF/HullCorollary73.setup.json --json
+info: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:206:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.isHypEmbeddedOf_merged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:301:38: unsolved goals
+G : Type
+inst✝ : Group G
+htower : HullSC.HullTowerStatementGeneral
+A : HullGeneratingSet G
+S : Subgroup G
+R : ℕ
+s : HullSC.HullStep A S (fun j => j.elim0) R
+g x : G
+hx : s.q x = 1
+⊢ 1 = 1
+error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:421:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_tower' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMF/HullCorollary73.lean:432:14: 'GroupApproximation.Manuscript.NonMF.HullCorollary73.printedHullCorollary73_of_leastAreaLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMF.HullCorollary73
+error: build failed
+EXIT=1

@@ -1,0 +1,50 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2373 oleans
+[job] acn143 cores=slurm threads=8 base=a5893bd6f5945e37526e61ece3cc858aec59d80a mods: GroupApproximation.Algebra.IntegerGridFinite
+✖ [2906/2906] Building GroupApproximation.Algebra.IntegerGridFinite (78s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/Algebra/IntegerGridFinite.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerGridFinite.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/Algebra/IntegerGridFinite.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/Algebra/IntegerGridFinite.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/Algebra/IntegerGridFinite.setup.json --json
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:55:34: Application type mismatch: The argument
+  P
+has type
+  MvPolynomial (Fin d) ℤ
+but is expected to have type
+  MvPolynomial (Fin d) ℂ
+in the application
+  coeff (expo e) P
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:66:34: Application type mismatch: The argument
+  P
+has type
+  MvPolynomial (Fin d) ℤ
+but is expected to have type
+  MvPolynomial (Fin d) ℂ
+in the application
+  coeff (expo e) P
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:77:66: elaboration function for `Mathlib.Tactic.subscriptTerm` has not been implemented
+  ᵥ
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:120:7: Application type mismatch: The argument
+  P
+has type
+  MvPolynomial (Fin d) ℤ
+but is expected to have type
+  MvPolynomial (Fin d) ℂ
+in the application
+  coeff (expo e) P
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:203:14: 'GroupApproximation.IntegerGridFinite.expo_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:204:14: 'GroupApproximation.IntegerGridFinite.exists_expo_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:205:14: 'GroupApproximation.IntegerGridFinite.eval₂_eq_sum' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:206:14: 'GroupApproximation.IntegerGridFinite.gridMatrix_mulVec_eq_zero' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/IntegerGridFinite.lean:207:14: 'GroupApproximation.IntegerGridFinite.finite_setOf_totalDegree_le_norm_eval_le' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:208:14: 'GroupApproximation.IntegerGridFinite.exists_algebraicIndependent_nat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:209:14: 'GroupApproximation.IntegerGridFinite.exists_grid_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Algebra.IntegerGridFinite
+error: build failed
+EXIT=1

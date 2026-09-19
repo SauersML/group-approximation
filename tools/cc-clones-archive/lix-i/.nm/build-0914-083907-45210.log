@@ -1,0 +1,245 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4499 oleans
+[job] acn112 cores=64-71 threads=8 base=fc6a142b062a518d968706b53606685cb968b006 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV6 GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6
+ℹ [3295/3339] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10221/10391] Replayed GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingSideRegions
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:398:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.dart_not_mem_sourceArc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:399:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.dart_not_mem_targetArc_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:400:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.familyArcAvoid_of_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:401:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometryOfArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:402:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometryOfArcs_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:403:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcs_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:404:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcs_pairwise' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:405:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcsEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean:406:14: 'GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamilyOfArcsEquiv_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10222/10391] Replayed GroupApproximation.GGT.VanKampen.SurgeryCellSideThickening
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:341:21: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideThickening' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:342:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideCount_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:343:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_of_isCellSideDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:344:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideCount_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:345:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.sectionFamilyOfArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:346:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_cellSideFree_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean:347:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.exists_cellSideFree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10227/10391] Replayed GroupApproximation.GGT.VanKampen.SurgeryCellSideThickeningPreserves
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:182:21: 'GroupApproximation.GGT.VanKampen.CellSideThickening.cellSideThickeningPreserving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:183:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.faceOf_eq_outer_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:184:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.noOuterSpur_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:185:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.noOuterCellDart_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:186:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.noOuterSideDart_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean:187:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.outerClean_of_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10332/10472] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopySideCell
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopySideCell.lean:120:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.eq_of_mem_of_length_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopySideCell.lean:121:14: 'GroupApproximation.GGT.VanKampen.CellSideThickening.side_cell_of_noCellSideDart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10416/10473] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV4
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4.lean:91:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4CopySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV4.lean:92:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10438/10483] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV5
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV5.lean:85:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV5' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [11007/11039] Replayed GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences
+info: GroupApproximation/Manuscript/NonMF/TorsionFreePrintedSentences.lean:557:2: 'GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [11219/11221] Replayed GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:211:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.greendlinger_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:212:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.manuscriptTorsionFreeTheorem_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:213:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.manuscriptTorsionFreeFullMFRadical_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:214:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.manuscriptTorsionFreeTheoremOsin_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:215:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedTorsionFreeTheoremLimitSet_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:216:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.manuscriptRegularNonMFAlgebra_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:217:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.manuscriptRegularNonMFAlgebraOsin_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:218:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedRegularNonMFAlgebraLimitSet_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:219:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedHullTheorem_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:220:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedHullTheoremOsin_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:221:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedHullTheoremLimitSet_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:222:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.hullSmallCancellationTorsionFreePrinted_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:223:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedHullProofParagraph_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:224:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedSaturation_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:225:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedSaturationOsin_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:226:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedSaturationLimitSet_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:227:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedSaturationPairAndHullAgain_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:228:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedSaturationApplyHull_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:229:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedTheoremApplySaturation_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:230:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.fournierFacioParagraph_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:231:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.hullCommonQuotientPrinted_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV2Copy.lean:232:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy.printedHullCorollary74_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [11220/11221] Built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV6 (22s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV6.lean:130:14: 'GroupApproximation.GGT.VanKampen.OsinTwoGonEulerWalkSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV6.lean:131:14: 'GroupApproximation.GGT.VanKampen.OsinTwoGonEulerGapSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV6.lean:132:14: 'GroupApproximation.GGT.VanKampen.osinTwoGonHoldsSection_of_eulerWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerWaistV6.lean:133:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [11221/11221] Built GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6 (19s)
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:223:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.greendlinger_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:224:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.manuscriptTorsionFreeTheorem_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:225:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.manuscriptTorsionFreeFullMFRadical_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:226:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.manuscriptTorsionFreeTheoremOsin_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:227:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedTorsionFreeTheoremLimitSet_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:228:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.manuscriptRegularNonMFAlgebra_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:229:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.manuscriptRegularNonMFAlgebraOsin_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:230:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedRegularNonMFAlgebraLimitSet_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:231:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedHullTheorem_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:232:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedHullTheoremOsin_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:233:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedHullTheoremLimitSet_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:234:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.hullSmallCancellationTorsionFreePrinted_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:235:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedHullProofParagraph_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:236:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedSaturation_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:237:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedSaturationOsin_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:238:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedSaturationLimitSet_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:239:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedSaturationPairAndHullAgain_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:240:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedSaturationApplyHull_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:241:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedTheoremApplySaturation_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:242:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.fournierFacioParagraph_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:243:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.hullCommonQuotientPrinted_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/TorsionFreeResidualsV6.lean:244:14: 'GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV6.printedHullCorollary74_of_residualsV6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (11221 jobs).
+EXIT=0

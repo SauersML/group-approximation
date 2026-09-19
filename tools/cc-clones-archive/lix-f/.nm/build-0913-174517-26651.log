@@ -1,0 +1,216 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3340 oleans
+[job] acn112 cores=64-71 threads=8 base=32ad69459d355a06e0213cdd38bab3a5d6b06729 mods: GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+✖ [1668/1668] Building GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement (9.2s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-f/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:55:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation`:
+  [Fintype n]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype n] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:93:68: unsolved goals
+case pos
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+i j : n
+a b : Fin r
+h✝¹ : ⟨0, hr⟩ = a ∧ ⟨0, hr⟩ = b
+h✝ : i = j
+⊢ 1 a b - Matrix.single a a 1 a b = 0
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:95:80: This simp argument is unused:
+  ite_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, i̵t̵e̵_̵a̵p̵p̵l̵y̵,̵
+  ̵ ̵ ̵ ̵ ̵Matrix.sub_apply,
+  ̲  ̲ ̲ ̲Matrix.one_apply, Matrix.zero_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:4: This simp argument is unused:
+  Matrix.sub_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, ite_apply,
+      Matrix.s̵u̵b̵_̵a̵p̵p̵l̵y̵,̵ ̵M̵a̵t̵r̵i̵x̵.̵one_apply, Matrix.zero_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:22: This simp argument is unused:
+  Matrix.one_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, ite_apply,
+      Matrix.sub_apply, Matrix.o̵n̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵M̵a̵t̵r̵i̵x̵.̵zero_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:40: This simp argument is unused:
+  Matrix.zero_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, ite_apply,
+      Matrix.sub_apply, Matrix.one_apply,̵ ̵M̵a̵t̵r̵i̵x̵.̵z̵e̵r̵o̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:177:16: unsolved goals
+case pos
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+i j : n
+a b : Fin r
+h✝¹ : ⟨0, hr⟩ = a ∧ ⟨0, hr⟩ = b
+h✝ : i = j
+⊢ 1 a b = 1
+
+case pos
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+i j : n
+a b : Fin r
+h✝² : ¬⟨0, hr⟩ = b
+h✝¹ : a = b
+h✝ : i = j
+⊢ 1 - 1 a b = 0
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:178:77: This simp argument is unused:
+  ite_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.sub_apply, Matrix.of_apply, Matrix.one_apply, i̵t̵e̵_̵a̵p̵p̵l̵y̵,̵
+  ̵ ̵ ̵ ̵ ̵Matrix.zero_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:179:4: This simp argument is unused:
+  Matrix.zero_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [placement, Matrix.sub_apply, Matrix.of_apply, Matrix.one_apply, ite_apply,̵
+  ̵ ̵ ̵ ̵ ̵M̵a̵t̵r̵i̵x̵.̵z̵e̵r̵o̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:191:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if i = j then ?m.108 else ?m.109
+in the target expression
+  ↑(cornerOf τ (M i j) - 1) = (M - 1) i j
+
+case pos
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+hM : IsCornerDeviation τ M
+i j : n
+a b : Fin r
+h : ⟨0, hr⟩ = a ∧ ⟨0, hr⟩ = b
+h✝ : i = j
+key : τ.p * M i j * τ.p = (M - 1) i j + if i = j then τ.p else 0
+hij : i = j
+⊢ ↑(cornerOf τ (M i j) - 1) = (M - 1) i j
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    M i
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:194:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if i = j then ?m.113 else ?m.114
+in the target expression
+  ↑(cornerOf τ (M i j) - 1) = (M - 1) i j
+
+case neg
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+hM : IsCornerDeviation τ M
+i j : n
+a b : Fin r
+h : ⟨0, hr⟩ = a ∧ ⟨0, hr⟩ = b
+h✝ : i = j
+key : τ.p * M i j * τ.p = (M - 1) i j + if i = j then τ.p else 0
+hij : ¬i = j
+⊢ ↑(cornerOf τ (M i j) - 1) = (M - 1) i j
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    M i
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:197:4: Type mismatch
+  coe_corner_zero ?m.117 ?m.118
+has type
+  ↑0 = 0
+but is expected to have type
+  ↑(cornerOf τ (M i j) - 0) = (M - 1) i j
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:186:82: unsolved goals
+case neg
+R : Type u_1
+inst✝² : Ring R
+N r : ℕ
+τ : ReturnTowerUnits R N r
+n : Type u_2
+inst✝¹ : Fintype n
+inst✝ : DecidableEq n
+hr : 0 < r
+M : Matrix n n R
+hM : IsCornerDeviation τ M
+i j : n
+a b : Fin r
+h : ¬(⟨0, hr⟩ = a ∧ ⟨0, hr⟩ = b)
+⊢ ↑0 = 0
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:203:14: 'GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:204:14: 'GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:205:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_eq' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:206:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:207:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_placement' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:208:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:209:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitizeGL_placementUnit' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:210:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_sub_one_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:211:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_placement_sub_one_apply' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+error: build failed
+EXIT=1

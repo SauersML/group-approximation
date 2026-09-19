@@ -1,0 +1,15 @@
+[job] 10:44:16 acn48 waiting for clone lock
+[job] delta sync 9c00f7100..e5d42a1ee: 10 files changed
+===== SUMMARY
+host acn48 cores slurm base e5d42a1ee log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0912-103732-17067.log
+purged 4 stale artifact sets (source-newer=1, import-newer=3) of 2433 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.OddPTotalInterface
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTotalInterface.lean
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:132:14: 'GroupApproximation.CharClass.OddPTotal.GradedReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2075 jobs).
+EXIT=0
+PROBE GREEN

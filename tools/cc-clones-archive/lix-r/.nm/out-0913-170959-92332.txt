@@ -1,0 +1,28 @@
+[job] 17:10:15 acn112 waiting for clone lock
+[job] delta sync ad004ff1a..b39b4b5a1: 21 files changed
+===== SUMMARY
+host acn112 cores 80-87 base b39b4b5a1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-170959-92332.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3308 oleans
+--- errors (first 80 lines)
+6:✖ [4060/4060] Building GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps (15s)
+8:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:206:4: Function expected at
+15:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:207:65: unsolved goals
+39:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:28: This simp argument is unused:
+46:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:46: This simp argument is unused:
+53:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:209:65: This simp argument is unused:
+60:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:231:19: Function expected at
+67:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:234:8: declaration uses `sorry`
+72:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:257:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.printedCompressorMarkProducts' depends on axioms outside the classical allowlist: [sorryAx]
+73:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+99:error: GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean:272:2: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps.elementaryMatrix_mul_compressorMatrix_firstRow' depends on axioms outside the classical allowlist: [sorryAx]
+100:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+102:error: Lean exited with code 1
+105:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Manuscript.NonMFSentences.OneSidedInversesPrintedSteps
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

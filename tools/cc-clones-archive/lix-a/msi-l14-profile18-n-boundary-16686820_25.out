@@ -1,0 +1,113 @@
+TRACE carrier=26 rotations=25 syllables=25
+TRACE carrier=26 rotation=0 target=0 states=2
+TRACE carrier=26 rotation=0 target=1 states=2
+TRACE carrier=26 rotation=0 target=2 states=4
+TRACE carrier=26 rotation=0 target=3 states=4
+TRACE carrier=26 rotation=1 target=0 states=2
+TRACE carrier=26 rotation=1 target=1 states=2
+TRACE carrier=26 rotation=1 target=2 states=6
+TRACE carrier=26 rotation=1 target=3 states=7
+TRACE carrier=26 rotation=2 target=0 states=2
+TRACE carrier=26 rotation=2 target=1 states=5
+TRACE carrier=26 rotation=2 target=2 states=6
+TRACE carrier=26 rotation=2 target=3 states=7
+TRACE carrier=26 rotation=3 target=0 states=4
+TRACE carrier=26 rotation=3 target=1 states=2
+TRACE carrier=26 rotation=3 target=2 states=2
+TRACE carrier=26 rotation=3 target=3 states=4
+TRACE carrier=26 rotation=4 target=0 states=4
+TRACE carrier=26 rotation=4 target=1 states=2
+TRACE carrier=26 rotation=4 target=2 states=4
+TRACE carrier=26 rotation=4 target=3 states=7
+TRACE carrier=26 rotation=5 target=0 states=3
+TRACE carrier=26 rotation=5 target=1 states=3
+TRACE carrier=26 rotation=5 target=2 states=2
+TRACE carrier=26 rotation=5 target=3 states=4
+TRACE carrier=26 rotation=6 target=0 states=3
+TRACE carrier=26 rotation=6 target=1 states=3
+TRACE carrier=26 rotation=6 target=2 states=3
+TRACE carrier=26 rotation=6 target=3 states=7
+TRACE carrier=26 rotation=7 target=0 states=3
+TRACE carrier=26 rotation=7 target=1 states=3
+TRACE carrier=26 rotation=7 target=2 states=2
+TRACE carrier=26 rotation=7 target=3 states=4
+TRACE carrier=26 rotation=8 target=0 states=3
+TRACE carrier=26 rotation=8 target=1 states=3
+TRACE carrier=26 rotation=8 target=2 states=3
+TRACE carrier=26 rotation=8 target=3 states=7
+TRACE carrier=26 rotation=9 target=0 states=2
+TRACE carrier=26 rotation=9 target=1 states=2
+TRACE carrier=26 rotation=9 target=2 states=4
+TRACE carrier=26 rotation=9 target=3 states=4
+TRACE carrier=26 rotation=10 target=0 states=2
+TRACE carrier=26 rotation=10 target=1 states=2
+TRACE carrier=26 rotation=10 target=2 states=6
+TRACE carrier=26 rotation=10 target=3 states=7
+TRACE carrier=26 rotation=11 target=0 states=3
+TRACE carrier=26 rotation=11 target=1 states=3
+TRACE carrier=26 rotation=11 target=2 states=2
+TRACE carrier=26 rotation=11 target=3 states=4
+TRACE carrier=26 rotation=12 target=0 states=3
+TRACE carrier=26 rotation=12 target=1 states=3
+TRACE carrier=26 rotation=12 target=2 states=4
+TRACE carrier=26 rotation=12 target=3 states=7
+TRACE carrier=26 rotation=13 target=0 states=3
+TRACE carrier=26 rotation=13 target=1 states=3
+TRACE carrier=26 rotation=13 target=2 states=2
+TRACE carrier=26 rotation=13 target=3 states=4
+TRACE carrier=26 rotation=14 target=0 states=3
+TRACE carrier=26 rotation=14 target=1 states=3
+TRACE carrier=26 rotation=14 target=2 states=3
+TRACE carrier=26 rotation=14 target=3 states=7
+TRACE carrier=26 rotation=15 target=0 states=3
+TRACE carrier=26 rotation=15 target=1 states=3
+TRACE carrier=26 rotation=15 target=2 states=3
+TRACE carrier=26 rotation=15 target=3 states=3
+TRACE carrier=26 rotation=16 target=0 states=4
+TRACE carrier=26 rotation=16 target=1 states=7
+TRACE carrier=26 rotation=16 target=2 states=2
+TRACE carrier=26 rotation=16 target=3 states=2
+TRACE carrier=26 rotation=17 target=0 states=4
+TRACE carrier=26 rotation=17 target=1 states=10
+TRACE carrier=26 rotation=17 target=2 states=3
+TRACE carrier=26 rotation=17 target=3 states=4
+TRACE carrier=26 rotation=18 target=0 states=4
+TRACE carrier=26 rotation=18 target=1 states=7
+TRACE carrier=26 rotation=18 target=2 states=2
+TRACE carrier=26 rotation=18 target=3 states=2
+TRACE carrier=26 rotation=19 target=0 states=4
+TRACE carrier=26 rotation=19 target=1 states=2
+TRACE carrier=26 rotation=19 target=2 states=2
+TRACE carrier=26 rotation=19 target=3 states=4
+TRACE carrier=26 rotation=20 target=0 states=4
+TRACE carrier=26 rotation=20 target=1 states=2
+TRACE carrier=26 rotation=20 target=2 states=3
+TRACE carrier=26 rotation=20 target=3 states=7
+TRACE carrier=26 rotation=21 target=0 states=3
+TRACE carrier=26 rotation=21 target=1 states=3
+TRACE carrier=26 rotation=21 target=2 states=3
+TRACE carrier=26 rotation=21 target=3 states=4
+TRACE carrier=26 rotation=22 target=0 states=4
+TRACE carrier=26 rotation=22 target=1 states=7
+TRACE carrier=26 rotation=22 target=2 states=2
+TRACE carrier=26 rotation=22 target=3 states=2
+TRACE carrier=26 rotation=23 target=0 states=4
+TRACE carrier=26 rotation=23 target=1 states=7
+TRACE carrier=26 rotation=23 target=2 states=2
+TRACE carrier=26 rotation=23 target=3 states=3
+TRACE carrier=26 rotation=24 target=0 states=5
+TRACE carrier=26 rotation=24 target=1 states=11
+TRACE carrier=26 rotation=24 target=2 states=3
+TRACE carrier=26 rotation=24 target=3 states=2
+carrier=26 words=100 states=68
+carrier_states=45
+distinct_augmented_words=100
+boundary_states=68
+nonempty_q=39
+free_nonempty_q=0
+direct_killed_q=29
+power_killed_q=10
+saturation_killed_q=0
+involution_killed_q=0
+difference_killed_q=0
+unresolved_q=0

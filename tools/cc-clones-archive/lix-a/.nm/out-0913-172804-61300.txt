@@ -1,0 +1,23 @@
+[job] 17:28:50 acn112 waiting for clone lock
+[job] delta sync 50b95d51d..ecb2bbc76: 12 files changed
+===== SUMMARY
+host acn112 cores 64-71 base ecb2bbc76 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-172804-61300.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3855 oleans
+--- errors (first 80 lines)
+21:✖ [4571/4572] Building GroupApproximation.Algebra.BilateralThreeCellCorner (11s)
+23:error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:154:6: this tactic is never executed
+26:error: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:155:6: this tactic is never executed
+37:error: Lean exited with code 1
+40:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Algebra.BilateralThreeCellCorner (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BilateralThreeCellLevels.lean
+COMPILED GroupApproximation/Algebra/BilateralThreeCellMatrices.lean
+COMPILED GroupApproximation/Dynamics/BilateralThreeCellClopen.lean
+- GroupApproximation.Algebra.BilateralThreeCellCorner
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

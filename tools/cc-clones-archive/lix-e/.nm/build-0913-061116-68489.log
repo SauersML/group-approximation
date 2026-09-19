@@ -1,0 +1,29 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2605 oleans
+[job] acn112 cores=72-79 threads=8 base=2d25ebab543ff3e04e0bf529d4089ba791c65d1f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorLinked
+ℹ [3299/3340] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4653/4653] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorLinked (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:152:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:153:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.linkedO_symm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:154:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.linked_linkedComponentO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:155:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideCellO_ne_of_not_mem_linkedComponentO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:156:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_linkedComponentO_of_sideCellO_eq_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:157:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sideCellO_mem_endCellsO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerExteriorLinked.lean:158:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.card_add_six_le_linkedComponentO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4653 jobs).
+EXIT=0

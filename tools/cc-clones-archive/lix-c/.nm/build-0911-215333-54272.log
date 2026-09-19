@@ -1,0 +1,49 @@
+purged 300 stale artifact sets (source-newer=0, import-newer=300) of 2527 oleans
+[job] acn112 cores=64-71 threads=8 base=b2a12437acc1bda3a3fdeaca548da62060f53d96 mods: GroupApproximation.CharClass.LIXStepDGenModP GroupApproximation.CharClass.LIXStepDGenHalf
+ℹ [3914/3966] Built GroupApproximation.CharClass.LIXStepDGenModP (10s)
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:172:14: 'GroupApproximation.CharClass.Gen.gamma_rank_eq_zero_modP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:173:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.toParityPData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenModP.lean:174:14: 'GroupApproximation.CharClass.Gen.ModPStepDData.gamma_top_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8789/8818] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8790/8818] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8803/8818] Built GroupApproximation.AlgTop.ComplexProjectiveBasic (31s)
+info: GroupApproximation/AlgTop/ComplexProjectiveBasic.lean:197:14: 'GroupApproximation.AlgTop.CPn.basePoint_entry_zero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8804/8818] Built GroupApproximation.Analysis.LIXObstructionComplementUnitary (31s)
+✔ [8805/8818] Built GroupApproximation.CharClass.LemmaTwoUnitary (33s)
+ℹ [8806/8818] Built GroupApproximation.AlgTop.CPTautologicalSection (34s)
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:397:14: 'GroupApproximation.AlgTop.CPn.dualTautSection_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:398:14: 'GroupApproximation.AlgTop.CPn.sectionChart_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:399:14: 'GroupApproximation.AlgTop.CPn.tautChartHomotopy_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/AlgTop/CPTautologicalSection.lean:400:14: 'GroupApproximation.AlgTop.CPn.continuous_tautColSection' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8807/8818] Built GroupApproximation.CharClass.LIXSectionManuscript (30s)
+✔ [8808/8818] Built GroupApproximation.CharClass.LemmaTwoParity (28s)
+✔ [8809/8818] Built GroupApproximation.CharClass.LemmaTwoStatement (34s)
+✔ [8810/8818] Built GroupApproximation.Analysis.LIXLemmaTwoProp (36s)
+✔ [8811/8818] Built GroupApproximation.CharClass.LemmaTwoBridge (36s)
+✔ [8812/8818] Built GroupApproximation.CharClass.LIXShapeGeneric (37s)
+✔ [8813/8818] Built GroupApproximation.Analysis.LIXLemmaTwoPropGeneric (41s)
+✔ [8814/8818] Built GroupApproximation.CharClass.LemmaTwoStepA (42s)
+✔ [8815/8818] Built GroupApproximation.CharClass.LemmaTwoGlue (46s)
+✔ [8816/8818] Built GroupApproximation.CharClass.LemmaTwoStepD (38s)
+✔ [8817/8818] Built GroupApproximation.CharClass.LIXStepDGenData (35s)
+ℹ [8818/8818] Built GroupApproximation.CharClass.LIXStepDGenHalf (32s)
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:215:14: 'GroupApproximation.CharClass.stepDHalf_two_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:216:14: 'GroupApproximation.CharClass.Gen.StepDHalf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:217:14: 'GroupApproximation.CharClass.Gen.stepDHalf_of_wu' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:218:14: 'GroupApproximation.CharClass.Gen.stepDHalf_of_wu_stage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:219:14: 'GroupApproximation.CharClass.Gen.stepDHalf_of_modP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:220:14: 'GroupApproximation.CharClass.Gen.stepDHalf_of_modP_stage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:221:14: 'GroupApproximation.CharClass.Gen.stepDHalf_powers_of_modP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenHalf.lean:222:14: 'GroupApproximation.CharClass.Gen.stepDHalf_powers_of_wu' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8818 jobs).
+EXIT=0

@@ -1,0 +1,74 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3523 oleans
+[job] acn112 cores=72-79 threads=8 base=cfc75485421a34bc9338587784037f1c2680e698 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap
+ℹ [3295/3398] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4946/5055] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerSmallFaceBudget
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:69:14: 'GroupApproximation.GGT.VanKampen.CombMap.six_mul_faceCount_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean:70:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_mul_edgeCount_add_six_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4947/5055] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerComponents
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:115:14: 'GroupApproximation.GGT.VanKampen.CombMap.restrict_isRestriction_subtype' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:116:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_le_eulerCharacteristic_of_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean:117:14: 'GroupApproximation.GGT.VanKampen.CombMap.two_mul_edgeCount_add_six_le_of_isRestriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5046/5055] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:201:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.shortSides' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:202:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.faceOf_of_mem_sideDarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:203:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sideDarts_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:204:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.alpha_mem_sides_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:205:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean:207:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_shortSides_le_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5054/5055] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (12s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:116:14: 'GroupApproximation.GGT.VanKampen.CombMap.colour_facePerm_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean:117:14: 'GroupApproximation.GGT.VanKampen.CombMap.four_le_faceDegree_of_bipartite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [5055/5055] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:286:74: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  0 ≤ b ≤ 1
+  a ≥ 2
+where
+ a := ↑(P.neighbours k).card
+ b := ↑(Finset.card ?m.108)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:321:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.faceOf_alpha_rep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:322:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.contactMap_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:323:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.contactMap_sigma_ne' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean:324:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.four_le_faceDegree_contactMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap
+error: build failed
+EXIT=1
