@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigmanLinear.PaninAffine.Patching
 import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.TulXInst
+import GroupApproximation.BooneHigmanLinear.CharZero.K2Found.TulVdK
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -10,9 +11,9 @@ This module composes two results:
 * `K2Found.TulElem.tulX_of_elements` (bh-pal-linear-char0): `TulX r` from van der Kallen's elements
   (T 1.1–1.3).
 
-Zariski excision for `St_r`, `r ≥ 5`, therefore waits only on k2-vdk's construction. That
-construction must give elements `E B` for every ring `B` that are local (`TulElem.IsLocal`) and
-natural in ring maps (`TulElem.EltNatural`). Not root-wired.
+With k2-vdk's `VdK.elements` (local and natural; `K2Found.TulElem.tulX`, bh-pal-linear-char0),
+`stZariskiExcisionAt` gives Zariski excision for `St_r`, `r ≥ 5`, with no hypotheses. Not
+root-wired.
 -/
 
 namespace GroupApproximation
@@ -31,6 +32,14 @@ theorem stZariskiExcisionAt_of_elements {r : ℕ}
   stZariskiExcisionAt_of_tulX (TulElem.tulX_of_elements E hnat h5) h5 A
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.stZariskiExcisionAt_of_elements
+
+/-- **F.4, unconditional** (Tulenbaev Prop 1.4(b), the case `(1, β)`): for `r ≥ 5` and every
+commutative ring `A`. -/
+theorem stZariskiExcisionAt {r : ℕ} (h5 : 5 ≤ r) (A : Type) [CommRing A] :
+    StZariskiExcisionAt A r :=
+  stZariskiExcisionAt_of_tulX (TulElem.tulX r h5) h5 A
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.PaninAffine.stZariskiExcisionAt
 
 end PaninAffine
 end BooneHigmanLinear

@@ -73,10 +73,10 @@ theorem higmanVCTauD2_mo {d : ℕ} (hd : d = 2) {p q m o m' o' : List (Fin d)}
   have hd1 : 1 < d := by omega
   have hs := higmanVCTauBridge_mkNode (higmanVCTauBridge_mkStep hpq hqp hp hq hsm hso) hlt
   rcases m with _ | ⟨a, _ | ⟨b, _ | ⟨c, _ | ⟨k, t⟩⟩⟩⟩
-  · simp only [List.length_nil] at hm <;> omega
-  · simp only [List.length_cons, List.length_nil] at hm <;> omega
-  · simp only [List.length_cons, List.length_nil] at hm <;> omega
-  · simp only [List.length_cons, List.length_nil] at hm <;> omega
+  · simp only [List.length_nil] at hm; omega
+  · simp only [List.length_cons, List.length_nil] at hm; omega
+  · simp only [List.length_cons, List.length_nil] at hm; omega
+  · simp only [List.length_cons, List.length_nil] at hm; omega
   rcases higmanVCTauD2_uv_of hd1 hpq hqp hp hq hsm hso hlt with hUV | hUV
   · have hNF : higmanVCTauD2_NF d (higmanVCTau_descP (a :: b :: c :: k :: t) o) [a, b, c]
         (a :: b :: c :: k :: t) o q p := by
