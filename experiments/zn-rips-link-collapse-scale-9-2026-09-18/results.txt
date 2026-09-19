@@ -1,0 +1,65 @@
+# VR(Z^8,d_1;9) — machine outputs (g++ 13.3 -O2, single thread, nice 10, timeout 1200 per run; wall times are on a shared, loaded host)
+
+## (D) prefix: ilv4 8 9 (core dir), replayed by vcert2
+k=8 r=9 |Lmax|=299208 A=73928 D=111959 alive=113321 STUCK
+vcert2: moves: A=73928 D=111959 (K steps 0) left=113321 dfs=1559973239 -> all moves valid; end set is not {e_k}   (exit 2 = end set is not {e_k}, as expected)
+
+## gfpr 8 9 on a8_9 (resumed in 1080 s budgets; every pass-1 piece removed 0)
+PAUSED pieces: 14
+RESULT k=8 r=9 |K|=113321 K != {e_k}: NO (D)-only certificate exists
+
+## kchkr sanity check on the landed (7,7) core: pieces add up to the full kchk counts
+$ ./kchkr 7 7 K7_7.txt            -> OBSTRUCTION VERIFIED: k=7 r=7 |K|=6720, every x in K\{e_k} blocked for all 442643 (x,w) pairs (97947252 distance tests)
+$ ./kchkr 7 7 K7_7.txt 0 3000     -> PIECE VERIFIED: ... [0,3000): all 199989 (x,w) pairs blocked (49533557 distance tests)
+$ ./kchkr 7 7 K7_7.txt 3000 99999999 -> PIECE VERIFIED: ... [3000,6720): all 242654 (x,w) pairs blocked (48413695 distance tests)
+
+## kchkr 8 9 K8_9.txt lo lo+10000, lo = 0..110000 (covers every index)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [0,10000): all 1954592 (x,w) pairs blocked (3740489676 distance tests) (exit 0, 125 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [10000,20000): all 1660647 (x,w) pairs blocked (2211299258 distance tests) (exit 0, 90 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [20000,30000): all 1982561 (x,w) pairs blocked (3761679535 distance tests) (exit 0, 115 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [30000,40000): all 1956432 (x,w) pairs blocked (4328085359 distance tests) (exit 0, 169 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [40000,50000): all 1627422 (x,w) pairs blocked (2073465485 distance tests) (exit 0, 82 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [50000,60000): all 1440805 (x,w) pairs blocked (666563539 distance tests) (exit 0, 44 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [60000,70000): all 1620011 (x,w) pairs blocked (817658960 distance tests) (exit 0, 50 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [70000,80000): all 1955317 (x,w) pairs blocked (2433317894 distance tests) (exit 0, 94 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [80000,90000): all 1680245 (x,w) pairs blocked (1939666125 distance tests) (exit 0, 90 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [90000,100000): all 1973852 (x,w) pairs blocked (2980916293 distance tests) (exit 0, 113 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [100000,110000): all 1986128 (x,w) pairs blocked (4480895435 distance tests) (exit 0, 130 s wall)
+PIECE VERIFIED: k=8 r=9 |K|=113321, x index range [110000,113321): all 639481 (x,w) pairs blocked (2202756315 distance tests) (exit 0, 54 s wall)
+total: 20477493 (x,w) pairs blocked, 31636793874 distance tests; all 12 pieces exit 0
+
+## partial (D)+(K) search: kze (stages 1-3), kzf (stages 4-12), 1100 s budget each
+stage 1: n=8 r=9 |C|=113321 D=0 K=885 left=112436 STUCK (time budget)
+stage 2: n=8 r=9 |C|=112436 D=912 K=584 left=110940 STUCK (time budget)
+stage 3: n=8 r=9 |C|=110940 D=0 K=1316 left=109624 STUCK (time budget)
+stage 4: n=8 r=9 |C|=109624 D=637 K=1627 left=107360 STUCK (time budget)
+stage 5: n=8 r=9 |C|=107360 D=4111 K=1109 left=102140 STUCK (time budget)
+stage 6: n=8 r=9 |C|=102140 D=942 K=547 left=100651 STUCK (time budget)
+stage 7: n=8 r=9 |C|=100651 D=0 K=709 left=99942 STUCK (time budget)
+stage 8: n=8 r=9 |C|=99942 D=0 K=513 left=99429 STUCK (time budget)
+stage 9: n=8 r=9 |C|=99429 D=0 K=961 left=98468 STUCK (time budget)
+stage 10: n=8 r=9 |C|=98468 D=0 K=1084 left=97384 STUCK (time budget)
+stage 11: n=8 r=9 |C|=97384 D=0 K=1194 left=96190 STUCK (time budget)
+stage 12: n=8 r=9 |C|=96190 D=0 K=619 left=95571 STUCK (time budget)
+
+## kzv5 replay of the stages (budgeted pieces; end set compared with the search output)
+stage 1 VERIFIED end set matches (112436 points)
+stage 2 VERIFIED end set matches (110940 points)
+stage 3 VERIFIED end set matches (109624 points)
+stage 4 VERIFIED end set matches (107360 points)
+stage 5 VERIFIED end set matches (102140 points)
+stage 6 VERIFIED end set matches (100651 points)
+stage 7 VERIFIED end set matches (99942 points)
+stage 8 VERIFIED end set matches (99429 points)
+stage 9 VERIFIED end set matches (98468 points)
+stage 10 VERIFIED end set matches (97384 points)
+stage 11 VERIFIED end set matches (96190 points)
+stage 12 VERIFIED end set matches (95571 points)
+all 12 stages replayed; the stage 3 replay was redone after a race between two replayers on one work dir
+
+## sha256
+d8356027337c7be9f2b3ff1efd603ce22a30e424e9cedd78dececf80a9b6c944  cores/K8_9.txt.gz
+e3677816c4243f0daa2a2a71f5f4702cf08dee298f2fee1ee9302a3972d63d0c  partial/d-prefix-8-9.txt.gz
+35c3d1fae3b49c30bd1bd6db49bee9622c569051819e67a3cb1464937d4137af  partial/end-stage-12-8-9.txt.gz
+8f9ba165092a5c6ad59b0726883f3ded7496f80891cf9b7d5d1258a3f3471145  partial/k-stages-1-12-8-9.txt.gz
+6733008e9a1e20d33ffe09f55c4aaa0187e24eaae9bb5ad813e12d29f9d634e2  K8_9.txt (unzipped)

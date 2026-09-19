@@ -1,0 +1,35 @@
+A. two-torus cross slit
+  p=3 excess 2  shortest lowering swap: 2 edges, cost (rank b, rank c) = (1, 1), new excess 0; greedy dist 1
+  p=4 excess 2  shortest lowering swap: 2 edges, cost (rank b, rank c) = (1, 1), new excess 0; greedy dist 1
+  p=5 excess 2  shortest lowering swap: 2 edges, cost (rank b, rank c) = (1, 1), new excess 0; greedy dist 1
+  p=6 excess 2  shortest lowering swap: 2 edges, cost (rank b, rank c) = (1, 1), new excess 0; greedy dist 1
+  p=7 excess 2  shortest lowering swap: 2 edges, cost (rank b, rank c) = (1, 1), new excess 0; greedy dist 1
+B. excised square
+  n=5 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (24, 2)] rho(s,t<=12)>=1.750 excess after restoring b only 2
+  n=6 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (35, 2)] rho(s,t<=12)>=1.800 excess after restoring b only 2
+  n=7 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (48, 2)] rho(s,t<=12)>=1.833 excess after restoring b only 2
+  n=9 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (80, 2)] rho(s,t<=12)>=1.875 excess after restoring b only 2
+  n=12 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (143, 2)] rho(s,t<=12)>=1.909 excess after restoring b only 2
+  n=17 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (288, 2)] rho(s,t<=12)>=1.917 excess after restoring b only 2
+  n=25 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (624, 2)] rho(s,t<=12)>=nan excess after restoring b only 2
+  n=40 dist-to-(b0,c0) (1,1) excess 2 cone angles/2pi [3] components (size,excess) [(1, 0), (1599, 2)] rho(s,t<=12)>=nan excess after restoring b only 2
+C. slit-pair swaps from the cone point of the excised square (all words <= 10 edges)
+  n=4 shortest lowering swap 3 edges (= n-1), min cost at that length (0, 3); lengths found [3, 5, 6, 8, 10]
+  n=5 shortest lowering swap 4 edges (= n-1), min cost at that length (0, 4); lengths found [4, 6, 8, 10]
+  n=6 shortest lowering swap 5 edges (= n-1), min cost at that length (0, 5); lengths found [5, 7, 9, 10]
+  n=7 shortest lowering swap 6 edges (= n-1), min cost at that length (0, 6); lengths found [6, 8, 10]
+D. greedy repair on clustered perturbations (Lmax 7)
+  178 non-commuting instances, 13 stuck
+   tori [(4, 9), (4, 9)] start comps [(36, 0), (36, 12)] -> stuck comps [(2, 0), (34, 2), (36, 0)]
+   tori [(8, 8)] start comps [(64, 6)] -> stuck comps [(2, 0), (62, 2)]
+   tori [(9, 9)] start comps [(81, 10)] -> stuck comps [(1, 0), (80, 2)]
+   tori [(4, 6), (5, 9)] start comps [(24, 0), (45, 8)] -> stuck comps [(24, 0), (45, 2)]
+   tori [(9, 5)] start comps [(45, 8)] -> stuck comps [(1, 0), (1, 0), (43, 2)]
+   tori [(8, 8)] start comps [(64, 6)] -> stuck comps [(64, 2)]
+   tori [(4, 7), (9, 6)] start comps [(28, 0), (54, 8)] -> stuck comps [(28, 0), (54, 2)]
+   tori [(8, 9)] start comps [(72, 6)] -> stuck comps [(72, 2)]
+   tori [(9, 7)] start comps [(63, 8)] -> stuck comps [(2, 0), (61, 2)]
+   tori [(8, 9)] start comps [(72, 8)] -> stuck comps [(72, 2)]
+   tori [(9, 9), (4, 8)] start comps [(32, 0), (81, 6)] -> stuck comps [(32, 0), (81, 2)]
+   tori [(7, 6), (9, 5)] start comps [(42, 4), (45, 0)] -> stuck comps [(42, 2), (45, 0)]
+   tori [(6, 9), (8, 8)] start comps [(54, 0), (64, 8)] -> stuck comps [(54, 0), (64, 2)]

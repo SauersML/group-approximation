@@ -602,6 +602,21 @@ the fully self-replicating `M_11`-group `R° = ⟨M_11, b, C⟩`
 *Stuck* at `FP_2` of `R°`. This needs a presentation-level argument, for example an
 L-presentation.
 
+**September 18: an L-presentation for the balanced-loop host.**  This continues the
+`R°` route, at the presentation level and without homology
+(`m11-balanced-loop-host-has-exact-finite-l-presentation`).
+
+- `R°` has an exact finite L-presentation `⟨S | Q_0 | σ⟩` with `σ(s) = s@1`, even though it
+  is not contracting. Exactness comes from a letter-weight descent that ends in pure powers.
+- The partial groups satisfy `G_n ≅ G_{n-1} ≀ M_11`. So `R°` is finitely presented iff
+  `σ(Q_0) ⊆ ⟨⟨Q_0⟩⟩`, iff the explicit epimorphism `G_0 ↠ G_0 ≀ M_11` is injective.
+- `R°` embeds in the finitely presented ascending HNN extension `R° *_{ι_1}`.
+
+*Stuck* at the single inclusion `σ(Q_0) ⊆ ⟨⟨Q_0⟩⟩`. `Q_0 ∖ R1` has 48 explicit words.
+There are two ways forward:
+- derive the `M_11` relations for `ι_1(M_11)` inside `G_0`;
+- find a quotient of `G_0` that does not factor through `G_0 ↠ G_0 ≀ M_11`.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

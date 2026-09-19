@@ -218,3 +218,16 @@ fixed finitely presented torsion-free group `U`.
       perfect kernel (`e = (0, ±1, 0)`). As audited above, this bears on
       Hughes-free existence in characteristic `p` and for crossed products,
       not on zero divisors.
+    - **Commutator-root segment steps (w10-059), Hughes-free only.**
+      Rule R of [[retract-segment-steps-put-perfect-kernel-one-relator-groups-in-h]]
+      closes everything up to length 13. The first uncertified relators are 36
+      of length 14.
+      [[malcev-root-steps-put-commutator-root-one-relators-in-h]] handles the
+      steps `a_{n+2}^k = u(a_n, a_{n+1})` with `u` a commutator word of
+      nonzero area. It maps each segment to a rational Mal'cev completion of
+      Fibonacci class, and this certifies 16 of the 36, and 16 more at length 15.
+      - The 18 still open at length 14 have `e = (0, ±2, 0)`. No residually
+        torsion-free-solvable target climbs their steps past the second.
+      - At length 15, 128 open words have steps along a rank-2 window.
+      - The C'(1/6) test shows none of these groups to be VCS.
+      - As audited above, none of this bears on zero divisors.

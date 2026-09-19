@@ -76,3 +76,21 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - Census: all 132 fiber-product configurations on 3 vertices (`λ ∈ {2, 3/2}`, `ε = 1`) are non-admissible through an `F_3`-character. The vanishing locus tracks the Alexander polynomial of `w` under `s ↦ -s`.
 
   Next: prove that for every `ab ≠ 0` two-cell core some character `χ` has `c^χ = 0`, for instance via the Alexander polynomial under `s ↦ -s`. That would settle `ab = 0` for admissible bases. Otherwise, find an `ab ≠ 0` configuration that passes every character test and has `g ∈ P`.
+
+- **w10-048, 2026-09-18: the character mechanism fails; the ab != 0 step reduces to one core question.** Landed `degree-one-two-cell-configs-evade-character-tests`.
+  - The step "some character kills `c`" cannot be proved from `c^ab`, the Alexander polynomial, or any specialization of `(s, t)`. There are explicit degree-one `(a,b) = (1,2)` configurations whose `c^ab` generates the unit ideal of `Z[s^±, t^±]`:
+    - (C1) has rank 4 and `|w| = 34`, with certificate `s⁻²t c_a − s⁻¹t c_b − s⁻¹t⁻¹ c_d = 1`. It is still non-admissible, through an `F_2`-rank drop in `S_3`.
+    - (C2) has rank 5 and `w = yxYXXyyxYXYxYYxyXy`, with certificate `(1+s)c_a + s⁻²c_c = 1`.
+  - (C2) passes every necessary test found so far. By a free identity `g ∈ P`, and by a degree-9 G-set extending `Γ` we have `g ∉ H` and `C ⊂ X_H`. It survives every transitive `S_k` quotient with `k ≤ 7`, and `c` is unimodular over `Z[Q]` for all 1064 finite images `Q` tried (tier: computation).
+  - Census: every rank-3 configuration (362 of them) is killed by a character. Unimodular `c^ab` starts at rank 4.
+  - The finite-cover core proof (Brodskii–Howie) needs `r ≤ 3`. For (C2), `r = 5` and the minimal cover has index 9.
+
+  Next: decide whether `C` of (C2) is a core, that is, whether `π_1(C) → G` is injective. Use the Magnus–Moldavanskii splitting `G = HNN(G_0, x)`, `G_0 = ⟨y_{-1}, y_0, y_1 | y_1^{-1} V y_1 = y_0^{-2}⟩`, and fold `H = ⟨y_0, y_1, y_{-1}^3, y_{-1}^{-1}y_0x⟩` in the graph of groups. If it is a core, the `ab = 0` step is false, and (C2) is the first candidate pair for relative defect `≥ 1`, pending a `ZG`-unimodularity certificate for `c`. If it is not a core, prove the rank-3 character-kill theorem (there `c^ab = φ·ν`, with `ν` the minor vector of `J^ab`) and look for the obstruction at rank ≥ 4 in injectivity.
+
+- **w11-048, 2026-09-18: (C2) is an admissible ab != 0 core, so RP(H,G) or an Eilenberg–Ganea counterexample.** Landed `rank-five-degree-one-two-cell-configuration-is-a-core` and `admissible-ab-nonzero-two-cell-base-exists`.
+  - **Core.** `G = F_4 ⋊_φ Z` for `w = yxYXXyyxYXYxYYxyXy`. A Reidemeister–Schreier fibre basis of `π_1(C)` and a window shift lemma reduce injectivity to the windows `T_M`. A rose train track for `θφθ⁻¹` makes the folded windows stabilise, and a 106-vertex fixed point closes the induction over all `M`. So `π_1(C) → G` is injective and the `ab = 0` step for cores is false.
+  - **Admissible.** The row `c` is unimodular over `ZG`. The explicit certificate `Σ c_z d_z = 1` has 16 terms, with `d_c = −1`. It was found by reducing `ZG/cZG` to `ZF_4/J` and solving `1 ∈ J` on a radius-3 ball, and it is checked exactly in the normal form of `F_4 ⋊ Z`. So `pd I_{G/H} ≤ 1` with `ab = 2`, and every one-cell deletion fails in every basis.
+  - **Dichotomy.** `ρ(H,G) ∈ {0,1}`. Either `RP(H,G)` holds, or `Γ_{ℵ_1}(H,G)` has `cd 2` and `gd 3`. This is the first concrete pair where the Eilenberg–Ganea question for size `ℵ_1` is a single rank question.
+  - **Route to RP.** Relator slides by the certificate (`d_c = −1`) delete `r_c` and give a defect-0 complex `Y''` with `π_1 = Γ'' = ⟨t,x,y | R_0, R_1⟩`, of lengths 391 and 350. The kernel `⟨⟨t⟩⟩` over `G` is perfect, and `Γ''^{ab} = G^{ab}`. If `t = 1` there, `RP(H,G)` follows. For this certificate, however, `t` survives in `A_5`, `S_5` and `PSL(2,7)` quotients, so this route fails.
+
+  Next: vary the certificate `d ↦ d + k`, with `k ∈ ker(c·)` and a unit entry, and retest `t = 1` in the resulting `Γ''`. Or prove `ρ(H,G) = 1` with an invariant that separates `Y_1` from every defect-0 relative presentation. A natural candidate is a representation `G → Q` for which every `Γ''` keeps a nontrivial image of `N`. That would make `Γ_{ℵ_1}(H,G)` an Eilenberg–Ganea counterexample.

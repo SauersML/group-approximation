@@ -1,0 +1,16 @@
+e=4 |L1bar|=2^8 relators 6
+Syntax warning: Unbound global variable in q4.g:16
+        List(GeneratorsOfGroup(Q),x->Log(Order(Image(P,x)),2)),"\n");
+                                                     ^
+e=4 class 1 log2|P|=4 log2 ord(a,b,c,d)=[ 1, 1, 1, 1 ]
+e=4 class 2 log2|P|=9 log2 ord(a,b,c,d)=[ 2, 2, 2, 2 ]
+e=4 class 3 log2|P|=13 log2 ord(a,b,c,d)=[ 3, 2, 3, 2 ]
+e=4 class 4 log2|P|=18 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 5 log2|P|=24 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 6 log2|P|=33 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 7 log2|P|=49 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 8 log2|P|=72 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 9 log2|P|=112 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 10 log2|P|=172 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 11 log2|P|=274 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]
+e=4 class 12 log2|P|=435 log2 ord(a,b,c,d)=[ 4, 2, 4, 2 ]

@@ -1,0 +1,4 @@
+2064512 vertices
+log2|Bbar3|=13
+log2|L1bar3|=20
+log2|Bbar3 diag|=13

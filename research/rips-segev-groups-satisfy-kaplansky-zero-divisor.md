@@ -261,3 +261,64 @@ the Kaplansky zero-divisor conjecture."
    - Next: an extremal-copy lemma (some copy of a minimal covering meets the
      others in `<= 3` links) and a rank-one removal of that copy, which would
      give induction on `N`.  Counting alone cannot handle every `N`.
+16. **Six-copy configurations carry no zero divisors (proposed established; `rips-segev-six-copy-configurations-carry-no-zero-divisors`).**
+   - Walk the Greendlinger shell arc of item 15 coset by coset.  It has 12
+     consecutive `b`-syllables, `e_2` of them `b^2`, so it visits `13 + e_2`
+     pairwise distinct active cosets.
+   - *Two-or-a-syllable lemma.*  A copy other than the shell copy meets at
+     most two arc cosets, or three forming one `b^2`-syllable.  Otherwise a
+     shared `b`-run and the arc close a cycle of length `<= 26 < 42` in `Phi`.
+   - Shell copy outside the covering: `13 + e_2 <= 2N + e_2`.  Inside: `12 +
+     e_2 <= 2(N - 1) + e_2`.  Both fail for `N <= 6`.  This closes the `N = 4`
+     residue of item 15 and also `N = 5, 6`, in `k[K]` and `k[G]`.  At girth
+     `g` it covers `2N <= ~5g/16`.
+   - *Three-port lemma.*  In a counterexample each clean active coset has
+     `>= 3` port edges, all to dirty cosets.
+   - Exact `N = 7` residue: the shell copy is in the covering, exactly one arc
+     coset is pure, and the other six copies see disjoint arc sets.
+17. **Extremal-copy lemma on supports alone (killed; `rips-segev-coefficient-free-extremal-copy-lemma-fails`).**
+   - The step proposed in item 15 ("some copy meets the others in `<= t`
+     links") is false as a support statement, even for port-closed supports,
+     for every `t <= 8`.
+   - Star family: every copy whose chosen line lies in one long `a`-interval.
+     Each copy meets the others in 9 cosets, and far lines stay private, so
+     the covering is minimal.
+   - The family has many clean active cosets per copy, so the coefficients
+     kill it.  Next: the coefficient-compatible version.  If every copy has
+     at most one clean active coset (with `>= 3` dirty port neighbours), then
+     some copy of a minimal covering has at most two dirty cosets.  With the
+     rank-one lemma this gives induction on `N`.
+18. **Eight-copy configurations carry no zero divisors (proposed established; `rips-segev-eight-copy-configurations-carry-no-zero-divisors`).**
+   - This closes the `N = 7` residue of item 16, and `N = 8`, in `k[K]` and
+     `k[G]`.
+   - Size the shell window by the shell face's own syllable length `l`, not by
+     `gamma`, and count partial end syllables.
+   - Bound the arc cosets seen by `N` copies by `2N + min(N, e_2)`.
+   - The girth of `Phi` forces a face of length `l` to have at most `l - 42`
+     single-`b` syllables, so it is all `b^2` at `l = 42`.
+   - Criterion: `n* + max(0, e* - N) >= 2N` for some window with `<= 39`
+     `b`-edges.  It holds at `N = 8` for every `l`.
+   - Exact `N = 9` residue: shell face of length `42..54` in a diagram with at
+     least three faces.
+   - The window count cannot pass about `N = 12`.  The extremal-copy step of
+     item 17 (coefficient-aware) is still the route to every `N`.  It was not
+     proved in this pass.
+
+19. **Nine-copy configurations carry no zero divisors (proposed established; `rips-segev-nine-copy-configurations-carry-no-zero-divisors`).**
+   - This closes the exact `N = 9` residue of item 18, in `k[K]` and `k[G]`.
+   - Use the whole curvature budget of the port-cycle disc, not one
+     Greendlinger face.  The disc has simple boundary with exactly `L`
+     `b`-edges.  Gauss–Bonnet under `C'(1/8)` gives `sum (4 - i) >= 6` over
+     the shells, where `i` is a shell's number of interior arcs.
+   - A shell with `i <= 2` has an arc of `> 3l/4` syllables.  A window in it
+     meets the item-18 criterion at `N = 9` for every `l`.  The same holds
+     for `i = 3` and `l >= 56`.
+   - Otherwise there are at least six three-arc shells of length `42..54`.
+     Each carries at least 21 `b`-edges, because girth forces them to be
+     mostly `b^2`.  So `L >= 126 > 117 = N + 3N(N-1)/2`, which bounds the
+     active cosets.
+   - This does not reach `N = 10`.  The surviving shells carry about `2N`
+     `b`-edges against `A(N) ~ 1.5 N^2` cosets.
+   - The coefficient-aware extremal-copy step (height-function extremal
+     coset plus the rank-one lemma) was attempted and not proved.  It
+     remains the route to every `N`.

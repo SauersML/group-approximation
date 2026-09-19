@@ -11,8 +11,8 @@ distinct_from:
   hermitian-edge-trace-norm-clique-inequality: that is the clique facets; this facet is x(V) <= 2 on a graph with clique number (n-1)/2.
 ---
 
-**OPEN - proved for every odd `n >= 7` except `n = 11`; `n = 11` is reduced to one bound on `K_5`
-(`hermitian-edge-trace-norm-odd-antihole-c11`).** Let `n = 2k + 1 >= 7` and let `H = C̄_n` be the odd
+**ESTABLISHED (computer-assisted, exact-rational certificates; unreviewed, not Lean-verified) -
+proved for every odd `n >= 7`; the case `n = 11` is `hermitian-edge-trace-norm-odd-antihole-c11`.** Let `n = 2k + 1 >= 7` and let `H = C̄_n` be the odd
 antihole: vertices `Z_n`, with `i ~ j` iff `i - j` is not `0, +1, -1` mod `n`. Here `alpha(H) = 2`.
 For every admissible `C` on `H` (Hermitian, zero diagonal, `C_ij = 0` on non-edges, `|C_ij| >= 1` on
 edges),
@@ -36,13 +36,14 @@ tested facets at the antiholes (`C̄_9`: `1.108`).
 |---|---|---|---|
 | 7 | cover by 7 houses, `||house||_1 >= 6.1859` (exact SDP branch-and-bound) | 8.660260 | 8.660254 |
 | 9 | cover by 9 cliques `K_4`, `c_4 >= 5.3887` (exact SDP branch-and-bound) | 12.124575 | 12.124356 |
-| 11 | cover by 11 cliques `K_5`; needs `c_5 >= 7.0857` | open | 15.588457 |
+| 11 | cover by 11 cliques `K_5`, `c_5 >= 7.0857` (exact SDP branch-and-bound, `hermitian-edge-trace-norm-odd-antihole-c11-clique-cover`) | 15.588540 | 15.588457 |
 | 13 | new Delsarte-type LP on `Z_13 x disc` (interval-verified) | 19.209602 | 19.052559 |
 | >= 15 | cover by cliques `K_k` + the landed energy LP | exact | |
 
 Here `c_m` is the minimum of `||C||_1` over admissible `C` on `K_m`. The numerical value of `c_5` is
-`5 + sqrt5 = 7.236`, so the `n = 11` gap is a finite computation of the same kind as
-`hermitian-edge-trace-norm-clique-inequality-k5`, at a higher target.
+`5 + sqrt5 = 7.236`; the bound `c_5 >= 7.0857` is `hermitian-edge-trace-norm-clique-k5-margin`, a
+finite computation of the same kind as `hermitian-edge-trace-norm-clique-inequality-k5` at a higher
+target.
 
 ## Attempts
 
@@ -51,3 +52,7 @@ Here `c_m` is the minimum of `||C||_1` over admissible `C` on `K_m`. The numeric
   only `15.53 / 15.59` (degree 5), and uniform-matching averaging reaches about `0.93` of the target.
   The `K_5` branch-and-bound at target `7.0857` is running
   (`experiments/hermitian-edge-trace-norm-antihole-2026-09-18/k5hilane.sh`).
+- 2026-09-18 (w7-078): all 16 slices of the `K_5` run at target `7.0857` print `ALL CLOSED`
+  (`k5hi_runs.log`), giving `hermitian-edge-trace-norm-clique-k5-margin`. With the 11-clique cover
+  this closes `n = 11` (`15.58854 > 9 sqrt3 = 15.58846`), so every odd antihole `n >= 7` is done.
+  Status moved to ESTABLISHED.

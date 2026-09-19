@@ -1,0 +1,41 @@
+== slice 5 1 5 alpha 0 0
+p=5 slice<=(5,1,5) alpha=(0,0) |basis N|=41
+SUMMARY p=5 slice (5,1,5) alpha (0,0): jumps=0 sanity-fails=0
+   time 0s
+== slice 5 1 5 alpha 1 0
+p=5 slice<=(5,1,5) alpha=(1,0) |basis N|=41
+SUMMARY p=5 slice (5,1,5) alpha (1,0): jumps=0 sanity-fails=0
+   time 0s
+== slice 5 1 5 alpha 0 1
+p=5 slice<=(5,1,5) alpha=(0,1) |basis N|=41
+JUMP S(cacacacaca|cacacab,k=6) deg 11->15 mu (5,1,5): rho =  4*z.  zcoef 4 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (5,1,5) alpha (0,1): jumps=1 sanity-fails=0
+   time 0s
+== slice 1 5 5 alpha 0 0
+p=5 slice<=(1,5,5) alpha=(0,0) |basis N|=41
+SUMMARY p=5 slice (1,5,5) alpha (0,0): jumps=0 sanity-fails=0
+   time 0s
+== slice 1 5 5 alpha 1 0
+p=5 slice<=(1,5,5) alpha=(1,0) |basis N|=41
+JUMP S(cbcbcbcbcb|cbcba,k=4) deg 11->15 mu (1,5,5): rho =  1*z.  zcoef 1 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (1,5,5) alpha (1,0): jumps=1 sanity-fails=0
+   time 0s
+== slice 1 5 5 alpha 0 1
+p=5 slice<=(1,5,5) alpha=(0,1) |basis N|=41
+SUMMARY p=5 slice (1,5,5) alpha (0,1): jumps=0 sanity-fails=0
+   time 0s
+== slice 5 5 1 alpha 0 0
+p=5 slice<=(5,5,1) alpha=(0,0) |basis N|=41
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  4*z.  zcoef 4 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (5,5,1) alpha (0,0): jumps=1 sanity-fails=0
+   time 1s
+== slice 5 5 1 alpha 1 0
+p=5 slice<=(5,5,1) alpha=(1,0) |basis N|=41
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  3*z.  zcoef 3 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (5,5,1) alpha (1,0): jumps=1 sanity-fails=0
+   time 0s
+== slice 5 5 1 alpha 0 1
+p=5 slice<=(5,5,1) alpha=(0,1) |basis N|=41
+JUMP S(cbab|bababababa,k=3) deg 11->15 mu (5,5,1): rho =  3*z.  zcoef 3 pure-z [target S-pair multidegree]
+SUMMARY p=5 slice (5,5,1) alpha (0,1): jumps=1 sanity-fails=0
+   time 0s

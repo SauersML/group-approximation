@@ -1,0 +1,41 @@
+== slice 11 1 11 alpha 0 0
+p=11 slice<=(11,1,11) alpha=(0,0) |basis N|=89
+SUMMARY p=11 slice (11,1,11) alpha (0,0): jumps=0 sanity-fails=0
+   time 142s
+== slice 11 1 11 alpha 1 0
+p=11 slice<=(11,1,11) alpha=(1,0) |basis N|=89
+SUMMARY p=11 slice (11,1,11) alpha (1,0): jumps=0 sanity-fails=0
+   time 131s
+== slice 11 1 11 alpha 0 1
+p=11 slice<=(11,1,11) alpha=(0,1) |basis N|=89
+JUMP S(cacacacacacacacacacaca|cacacab,k=6) deg 23->33 mu (11,1,11): rho =  10*z.  zcoef 10 pure-z [target S-pair multidegree]
+SUMMARY p=11 slice (11,1,11) alpha (0,1): jumps=1 sanity-fails=0
+   time 132s
+== slice 1 11 11 alpha 0 0
+p=11 slice<=(1,11,11) alpha=(0,0) |basis N|=89
+SUMMARY p=11 slice (1,11,11) alpha (0,0): jumps=0 sanity-fails=0
+   time 145s
+== slice 1 11 11 alpha 1 0
+p=11 slice<=(1,11,11) alpha=(1,0) |basis N|=89
+JUMP S(cbcbcbcbcbcbcbcbcbcbcb|cbcba,k=4) deg 23->33 mu (1,11,11): rho =  1*z.  zcoef 1 pure-z [target S-pair multidegree]
+SUMMARY p=11 slice (1,11,11) alpha (1,0): jumps=1 sanity-fails=0
+   time 143s
+== slice 1 11 11 alpha 0 1
+p=11 slice<=(1,11,11) alpha=(0,1) |basis N|=89
+SUMMARY p=11 slice (1,11,11) alpha (0,1): jumps=0 sanity-fails=0
+   time 157s
+== slice 11 11 1 alpha 0 0
+p=11 slice<=(11,11,1) alpha=(0,0) |basis N|=89
+JUMP S(cbab|bababababababababababa,k=3) deg 23->33 mu (11,11,1): rho =  10*z.  zcoef 10 pure-z [target S-pair multidegree]
+SUMMARY p=11 slice (11,11,1) alpha (0,0): jumps=1 sanity-fails=0
+   time 175s
+== slice 11 11 1 alpha 1 0
+p=11 slice<=(11,11,1) alpha=(1,0) |basis N|=89
+JUMP S(cbab|bababababababababababa,k=3) deg 23->33 mu (11,11,1): rho =  9*z.  zcoef 9 pure-z [target S-pair multidegree]
+SUMMARY p=11 slice (11,11,1) alpha (1,0): jumps=1 sanity-fails=0
+   time 166s
+== slice 11 11 1 alpha 0 1
+p=11 slice<=(11,11,1) alpha=(0,1) |basis N|=89
+JUMP S(cbab|bababababababababababa,k=3) deg 23->33 mu (11,11,1): rho =  9*z.  zcoef 9 pure-z [target S-pair multidegree]
+SUMMARY p=11 slice (11,11,1) alpha (0,1): jumps=1 sanity-fails=0
+   time 169s

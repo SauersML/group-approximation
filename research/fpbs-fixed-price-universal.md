@@ -351,3 +351,18 @@ vocabulary rather than its content.
     fixed price is most in doubt.
   - **Denying U3.** This gives nothing new: the only nonlinear lower bound available is still Gaboriau's
     `beta_1^(2)`, and it is already action-independent.
+
+* **Transplant the quasiconvex-null odometer class to a cocompact `Sp(n,1)` lattice
+  (w12-026, `fpbs-quasiconvex-null-lattice-odometer-class-dies`,
+  `fpbs-transverse-skeleton-ray-codes-are-match-rigid`).** Encode the `F_2`
+  odometer letters as the basis of a malnormal quasiconvex free `F = <y, yxxyx>`
+  inside a Kapovich subgroup. Insert `F`-transverse killing elements from a
+  semigroup `W`, which by a semigroup Neumann lemma escapes every finite union of
+  double neighbourhoods of infinite-index quasiconvex subgroups. The class is
+  ergodic, nonatomic and quasiconvex-null on every torsion-free hyperbolic group.
+  **Where it dies:** exact coset alignment (malnormality plus the tree of `F`)
+  makes every transverse skeleton code match-rigid. By
+  `fpbs-match-rigid-ray-codes-die-on-hyperbolic-groups`, the diagonal is then
+  totally dissipative. A surviving ray-code certificate needs off-orbit matches.
+  For skeleton codes these force insertions that fellow-travel cosets of `F` on
+  unbounded lengths.

@@ -1,0 +1,12 @@
+p=5 alpha=0 0: test rho(K)= 2*z.  rho(C1)= 3*z.  rho(C2)= 1*z.
+p=5 alpha=1 0: test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 0
+p=5 alpha=0 1: test rho(K)= 2*z.  rho(C1)= 4*z.  rho(C2)= 1*z.
+p=7 alpha=0 0: test rho(K)= 2*z.  rho(C1)= 5*z.  rho(C2)= 1*z.
+p=7 alpha=1 0: test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 0
+p=7 alpha=0 1: test rho(K)= 2*z.  rho(C1)= 6*z.  rho(C2)= 1*z.
+p=11 alpha=0 0: test rho(K)= 2*z.  rho(C1)= 9*z.  rho(C2)= 1*z.
+p=11 alpha=1 0: test rho(K)= 2*z.  rho(C1)= 10*z.  rho(C2)= 0
+p=11 alpha=0 1: test rho(K)= 2*z.  rho(C1)= 10*z.  rho(C2)= 1*z.
+p=13 alpha=0 0: test rho(K)= 2*z.  rho(C1)= 11*z.  rho(C2)= 1*z.
+p=13 alpha=1 0: test rho(K)= 2*z.  rho(C1)= 12*z.  rho(C2)= 0
+p=13 alpha=0 1: test rho(K)= 2*z.  rho(C1)= 12*z.  rho(C2)= 1*z.

@@ -1,0 +1,13 @@
+Syntax warning: Unbound global variable in abartest.g:18
+        List([Etest.1, Etest.2], x -> Log(Order(Image(hom, x)), 2)), " t=", Ru\
+ntime() - t, "\n");
+                                                      ^^^
+class 1 log2 size 2 log2 ord(a,c) [ 1, 1 ] t=4
+class 2 log2 size 5 log2 ord(a,c) [ 2, 2 ] t=71
+class 3 log2 size 9 log2 ord(a,c) [ 3, 3 ] t=249
+class 4 log2 size 14 log2 ord(a,c) [ 4, 4 ] t=592
+class 5 log2 size 22 log2 ord(a,c) [ 5, 5 ] t=1120
+class 6 log2 size 32 log2 ord(a,c) [ 6, 6 ] t=2158
+class 7 log2 size 51 log2 ord(a,c) [ 7, 7 ] t=4079
+class 8 log2 size 78 log2 ord(a,c) [ 8, 8 ] t=8303
+class 9 log2 size 126 log2 ord(a,c) [ 9, 9 ] t=19312

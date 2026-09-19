@@ -189,3 +189,51 @@ non-permutation unitary construction.
     square-tiled surface itself (here, undoing the slit). The next target is a *slit-pair lemma*. At a cone point
     with excess, find two parallel saddle connections of `l^1` length `poly(rho)` whose swap lowers the total excess.
     There are at most `2 rho` excess units, so iterating the lemma would finish the proof.
+- **w12-124, 2026-09-18 — the slit-pair lemma, tested both ways. Two-sided swaps close the cross slit, but the
+  lemma is false. Landed: `excised-square-kills-cone-local-slit-pair-repair`.**
+  - **Calibration.** A slit-pair swap exchanges the gluings along two grid paths with the same move word. On the
+    coprime two-torus cross slit, the shortest excess-lowering swap has 2 edges (the two L-slits) and costs `(1, 1)`.
+    It closes that family at distance 1 (`certify.py`, part A).
+  - **Obstruction.** Excise one square of the `n x n` torus into its own `1 x 1` torus. The pair has
+    `rho <= 2` and `dist = 1`. Its other component `S'` has genus 2 and one `6 pi` cone point.
+    - Every commuting permutation pair on `S'` costs at least `(n - 1 - n/p)/2 >= n/4 - 1/2`, where `p` is the least
+      prime factor of `n`. The intact `n`-cycles force the big torus to have area dividing `n^2`, and `S'` has area
+      `n^2 - 1`.
+    - So every excess-lowering swap at the cone point is that long. The exact minimum is `n - 1` for
+      `4 <= n <= 7`.
+    - Every cone-local chain costs at least as much, and so does every padding-free rounding of the permutation pair
+      `S'`, which has `rho(S') <= 2`.
+  - **Where it fails.** The cheap repair uses a flat donor (the stranded square, or a padded point), and its first
+    step leaves the excess unchanged. So excess is not a monotone potential for local moves. Greedy lowering swaps
+    strand small flat tori the same way in 5 of 178 random clustered perturbations.
+  - **Next step: a donor slit-pair lemma.** Pad by a flat torus of area `poly(rho)`. Then some chain of at most two
+    swaps of total length `poly(rho)` should lower the excess, with the first swap allowed to be excess-neutral and
+    to use the donor. With `rho(b', c') <= rho + 2 * cost` and `excess <= 2 rho`, this would settle the permutation
+    case with an iterated `F`.
+- **w13-124, 2026-09-18 — the donor slit-pair lemma. One mechanism proved, and every stall resolved. The lemma is
+  still open. Landed `lattice-donor-excises-sign-matched-cone-handles`.**
+  - **Context.** w12-124 (landing pending) showed that the plain slit-pair lemma fails. On the excised-square torus
+    (`rho <= 2`, `dist 1`), every cone-local slit-pair repair costs at least `n/4`. So the step is: pad with a flat
+    donor torus, allow a first swap that keeps the excess unchanged, then lower the excess.
+  - **Proved (handle excision).** Take two edge loops `alpha, beta` at a cone point, with holonomies `u, w` and
+    `det(u, w) != 0`. Suppose `beta` crosses `alpha` with the sign of `det`, and the copies of the loops in
+    `Z^2/<u,w>` are simple. Then two swaps with that donor, of area at most `|alpha||beta|`, excise them:
+    - the first swap is excess-neutral and splits the cone point;
+    - the second swap lowers the excess by exactly 2;
+    - `rho` grows by at most `2(|alpha| + |beta|)`.
+    This closes w12-124's excised square at total length 2, and excised `k x l` blocks at length `k + l`, which is
+    linear in the measured profile.
+  - **Computation.**
+    - The sign condition is sharp: 600 lowering pairs out of 8298, and all of them satisfy (H1).
+    - The donor two-swap search resolves all 13 greedy stalls of w12-124, at total length at most 8 (at most 5 with a
+      donor).
+    - Iterated greedily on 737 random clustered perturbations, it never stalls.
+    - The 8 uninvestigated stalls are not arithmetic: each has a full-area excess-2 component. They are artifacts of
+      a greedy that allows only lowering first moves. The chains that resolve them first move or merge cone points
+      with a neutral transposition, then slit.
+  - **Open (the next step).** The dichotomy at length `poly(rho)`: every cone point carries one of the following.
+    - a same-vertex slit pair;
+    - a sign-matched handle satisfying (H1) and (H2);
+    - a neutral cone move that produces one of the first two.
+    The cone-radius bound gives a short loop or saddle connection at each cone point. Two things are missing: the
+    partner loop with the right crossing sign, and the simplicity of the donor copies.

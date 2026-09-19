@@ -81,3 +81,14 @@ two drops must share a point.
 
   The route to the target only needs some `c > 0`. The open case is non-split targets, where
   a candidate argument bounds how many nodes can absorb.
+
+- **Non-split slice-constant targets reduced to a level-set spanning principle.**
+  `toms-slice-constant-targets-reduce-to-level-spanning` (w11-113). Take targets whose rank is
+  constant on vertex slices. These need not split, and they include the staggered extremals.
+  - Apply the Part-1 lcm argument on each level component `Omega` of `delta = U - rank`,
+    over its closure. This gives `delta(Omega) + E(cl Omega) <= N`, where `E` counts wall
+    crossings.
+  - If one component fails to span at most `delta` coordinates, then the depth is
+    `>= ceil(N/2)`, which is sharp.
+  - Open: (S) for `N >= 3`. The model gives exactly `N - floor(beta/2)` for `N <= 3`. Also
+    open: targets whose rank varies along `Y`.

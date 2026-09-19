@@ -1,0 +1,42 @@
+RANK 3 CAP 24 NPERM 48 NWA 90
+depth 1 states 222
+depth 2 states 2564
+depth 3 states 9221
+depth 4 states 21811
+depth 5 states 44127
+depth 6 states 78609
+depth 7 states 112010
+depth 8 states 145689
+depth 9 states 172632
+depth 10 states 195424
+depth 11 states 214309
+depth 12 states 228593
+depth 13 states 239413
+depth 14 states 247953
+depth 15 states 254111
+depth 16 states 259246
+depth 17 states 262826
+depth 18 states 265570
+depth 19 states 267677
+depth 20 states 269643
+depth 21 states 271312
+depth 22 states 273102
+depth 23 states 274609
+depth 24 states 275999
+depth 25 states 277150
+depth 26 states 278117
+depth 27 states 278828
+depth 28 states 279296
+depth 29 states 279601
+depth 30 states 279804
+depth 31 states 279979
+depth 32 states 280087
+depth 33 states 280147
+depth 34 states 280179
+depth 35 states 280204
+depth 36 states 280211
+depth 37 states 280213
+EXHAUSTED depth 37 states 280213 processed 280213; PRIM tests 280212, goals PRIM 0
+lengths: 13:2 14:5 15:72 16:83 17:476 18:541 19:2908 20:3164 21:17451 22:19292 23:108576 24:127643
+dumped 280213 states to r3c24.ck.txt
+FINAL exit 0

@@ -1,0 +1,8 @@
+pairs tested before success: 767
+F = <u, v>, u = y, v = yxxyx
+Stallings core graph: 4 vertices, 5 edges, rank 2, base core: True
+malnormal (every non-diagonal fibre-product component is a tree): True
+no x-labelled cycle (no power of x conjugate into F): True
+control <x, yxY>: malnormal = False
+control <xx, yy>: malnormal = False
+control <x, yy>: malnormal = False

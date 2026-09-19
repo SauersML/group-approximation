@@ -1,0 +1,8 @@
+S_28 states 11535176; contains all 1690039 of the 1690039 S_26 states: True
+S_28 minus S_26 by length: [(19, 1), (20, 11), (21, 71), (22, 179), (23, 696), (24, 1303), (25, 7378), (26, 23553), (27, 4188175), (28, 5623770)]
+  length 19 examples: XXXYxxyyy XXYxyXYxyy
+  length 20 examples: XXXYxxy XYXyyXYxyXYxy | XXXYxxy XYXyXYxyXYYxy | XXXYxxy XYXyXYxyXYxyy
+  length 21 examples: XXXXYxxyy XXYYYXyyyxxy | XXXYxxy XXYxyxYXyxYYxy | XXXYxxy XYXYXyXYxyXYxy
+  length 22 examples: XXXXYxxyy XXYYYYYxyyyyy | XXXYxxy XXYxyxYXyxYxYxy | XXXYxxy XXYxyXyxYXyxYxy
+  length 23 examples: XXXYYXyyXYY XXXYXXYYxxyy | XXYXXYXXYxY XXXYYxYYxyyy | XXYXXYXXYxY XXXYYYYxyxyy
+  length 24 examples: XXYxYxYxY XXXYXYYxyxyxyxy | XXXYXyxYXyy XXYxyxYxyxYXy | XXXXYxxyy XXYxxyXXYYYxyyy

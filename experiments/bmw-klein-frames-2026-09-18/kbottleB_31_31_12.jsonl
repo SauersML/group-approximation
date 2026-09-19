@@ -1,0 +1,14 @@
+{"class": 12, "swap": false, "q": 2, "states": 48, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 4, "states": 192, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 6, "states": 768, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 8, "states": 3072, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 10, "states": 12288, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 12, "states": 49152, "pairs": 0, "B": []}
+{"class": 12, "swap": false, "q": 14, "states": 196608, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 2, "states": 48, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 4, "states": 192, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 6, "states": 768, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 8, "states": 3072, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 10, "states": 12288, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 12, "states": 49152, "pairs": 0, "B": []}
+{"class": 12, "swap": true, "q": 14, "states": 196608, "pairs": 0, "B": []}

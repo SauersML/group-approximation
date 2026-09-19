@@ -1,0 +1,5 @@
+solves 2000 closed 1045 stack 651 minval 5.724042 t 151
+solves 12000 closed 6229 stack 331 minval 5.460114 t 806
+resumed 196 boxes on stack
+solves 24000 closed 12426 stack 5 minval 5.460114 t 1452
+K5 edges 10 tree 4 free phases 6 TARGET 7.1680000 T 3.600 first phase in [0.785398,1.570796]: ALL CLOSED  boxes 12600 (reused parent Z 132)  solves 24339  min center value 5.460114 at [1.4399, 1.0472, 1.0472, 5.236, 5.236, 5.236]  smallest half-width 2.62e-01  time 1463s

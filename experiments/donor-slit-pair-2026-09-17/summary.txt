@@ -1,0 +1,58 @@
+Donor slit-pair experiments (w13-124, 2026-09-17), for z2-bounded-rectangle-profile-forces-near-commuting and
+lattice-donor-excises-sign-matched-cone-handles.
+
+Conventions: swap.py (w12-124's square-tiled surface code; b = right neighbour, c = up neighbour, excess =
+rank([b,c]-I) = F/2 - #vertices). Build: cc -O2 -o chain2 chain2.c. All runs are single-threaded, and each takes
+seconds to minutes.
+
+1. The 13 greedy stalls of w12-124 (stalls.py regenerates stalls.json from its seeds; drive2.py runs chain2 on the
+   stuck component with donors None, 1x1, 2x1, 1x2 and 2x2, where L1 <= 3 and L2 <= 5).
+   The "best" column is the least L1+L2 over all donors; the "donor-free" column uses no donor.
+     trial   best  (donor)   donor-free
+       29     3      -          3
+       46     4     1x2         7
+       64     4     1x1         8
+       78     3      -          3
+      122     5      -          5
+      130     2      -          2
+      131     3      -          3
+      133     2      -          2
+      138     5     1x2         7
+      152     2      -          2
+      153     2      -          2
+      169     3      -          3
+      198     3      -          3
+   Every stall is resolved, and none needs more than 8 edges. The 8 stalls that w12-124 did not investigate (78,
+   130, 131, 133, 152, 153, 169, 198) have a stuck excess-2 component of full torus area. They are not arithmetic:
+   they stall because w12-124's greedy accepts only lowering first swaps. decode.py prints the chains for trials
+   29, 78 and 130:
+     29: two 4pi points merge into one 6pi point, then a 2-edge same-vertex slit;
+     78: a neutral transposition moves a cone point, then a slit;
+     130: a transposition, then a 1-edge slit.
+
+2. Iterated greedy with donor two-swap chains (greedy2.py SEED TRIALS, which uses w12-124's clustered-perturbation
+   distribution and calls ./chain2):
+     seed 5: 178 trials, 0 stuck, max steps 7, max chain 6
+     seed 6: 277 trials, 0 stuck, max steps 8, max chain 7
+     seed 7: 282 trials, 0 stuck, max steps 7, max chain 8
+   The logs and JSON are not kept. Rerun with: python3 greedy2.py 5 200.
+
+3. Handle excision sign test (python3 handle_check.py, about 1 minute). It enumerates every pair of simple edge loops
+   of length <= 5 at a cone point, with det != 0 and the donor copies simple and meeting only at 0 (H2). The
+   surfaces are excised squares n = 4 and 5, excised blocks (8,2,2), (8,2,3) and (9,3,3), and the excess components
+   of 40 perturb_local trials (seed 3).
+     ('H1',      'lowers',  '1st-neutral') 600
+     ('anti-H1', 'no-drop', '1st-neutral') 3014
+     ('nocross', 'no-drop', '1st-neutral') 4684
+   So the first swap is always neutral, and the second swap lowers the excess (always by exactly 2) iff (H1) holds.
+
+4. handle.py: python3 handle.py tests excised squares n = 4..7. Each is closed at total length 2 with loops (0,-1)
+   and (1,0) and a 1x1 donor, and the excess goes 2 -> 2 -> 0. No stall has a sign-matched handle with loops of
+   length <= 5.
+
+5. blocks.py: python3 blocks.py excises a k x l block of the n x n torus. For each (n,k,l) it gives the handle total
+   length and the profile lower bound:
+     (10,2,2): 4, 3.33    (10,3,3): 6, 4.71    (12,4,4): 8, 6.0    (12,2,5): 7, 6.67    (14,5,5): 10, 7.22
+   So the cost is linear in rho on this family.
+
+Other helpers: stalls_lib.py (components, restrict) and tchain.py (pad: disjoint union with a lattice donor torus).

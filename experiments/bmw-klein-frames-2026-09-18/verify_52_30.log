@@ -1,0 +1,3 @@
+pattern m=5 pA=2 n=3 pB=0 iA=[1, 0, 3, 2, 4] iB=[0, 1, 2]
+class 158 chain of length 10 with 4 inverting steps verified: Gamma^+ is not left-orderable
+class 158 ok: 10 steps, 4 inverting

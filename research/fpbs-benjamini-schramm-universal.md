@@ -635,3 +635,51 @@ content in that region.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
+
+* **Outermost-circuit / dyadic-RSW refinement of that chain (w13-123,
+  2026-09-18): obstruction.** See
+  `fpbs-bisector-split-chain-caps-at-inverse-theta-squared`. Every
+  refinement of Step 4 only lower-bounds `Theta^±`, and the exact values
+  are small.
+
+  On the straight path with pattern `{e_{k-1}, e_{k+1}}`, every dual circuit
+  around the cut leaves `L`. So `P(A^L) = P(B^R) = 1`, and
+  `Theta^± = q(S^±) <= theta/p'`. The chain then outputs at least
+  `p'^2/theta^2`, while the true value is `K <= 2/theta`.
+
+  On sparse dyadic patterns, finger circuits cap `Theta^±` at
+  `(1-c_0)^{#scales <= L(p')}`.
+
+  The loss is in Step 1, which discards the shared arm. Monte Carlo at
+  `M = 32, 64, 128` puts the true `K*theta` in `[0.78, 0.85]` on every
+  dyadic pattern, so `C/theta` remains plausible.
+
+  **Next:** either a Step 1 that keeps one shared arm (arm separation), or,
+  for the gate alone, the bound `Theta^± >= c theta^{gamma/2}` with
+  `gamma < 36/5`.
+
+* **Polynomial lower bound for the bisector chain (w14-123, 2026-09-18).**
+  See `fpbs-bisector-chain-is-polynomial-in-inverse-theta`. On the straight
+  path, `Theta^±(S) >= Phi := P(D^-(U^-))` for every pattern, by monotone
+  coupling. So `K(S) <= 1/Phi^2` holds uniformly, and `Phi` is one
+  pattern-free event.
+
+  `D^-(U^-)` is decided exactly: no point of the negative axis lies in a
+  bounded face of the non-`L` dual blocks. Nested primal circuits in the
+  left half-plane, one RSW factor per dyadic scale, give
+  `Phi >= c L(p')^{-kappa}`. So `K <= C theta^{-gamma_0}`, which is
+  polynomial and replaces the source's `theta^{-c xi}`. This is ESTABLISHED
+  modulo RSW and Kesten scaling.
+
+  The gate `gamma < 36/5` is equivalent to `zeta_Phi < 3/8`. Critical Monte
+  Carlo at `n = 16..256` gives a fitted `zeta = 0.24`, a last local slope
+  of `0.31(5)`, and `log Phi / log pi_n` between 1.5 and 1.9, against the
+  gate threshold of 3.6. So the gate is favoured numerically, but not
+  decisively, and it is OPEN rigorously: RSW constants alone cannot give
+  it.
+
+  The shared-arm Step 1 is needed only for the sharp `C/theta`.
+
+  **Next:** prove `zeta_Phi < 3/8` via CLE_6 on the triangular lattice, or
+  by comparison with the half-plane one-arm (`1/3`) or polychromatic
+  two-arm (`1/4`) exponent. Then extend the circuits to geodesic paths.

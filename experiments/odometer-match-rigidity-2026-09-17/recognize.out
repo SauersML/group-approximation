@@ -1,0 +1,5 @@
+K = 16, q = 65536, stages (n_j, l_j) = [(8, 6), (12, 100)], delta = 0.0239 <= 2^-C = 0.0312
+1. paperfolding: P(p(y+2) = -p(y) | y odd) = 1.0000, | y even) = 0.5000
+2. max_k eta_k = 0.0283 <= delta + 2^-C = 0.0552; even-class density = 0.0239
+3a. full-period recognition, 65 residues, forward and backward: 0 failures
+3b. window q/4, 60 random x, compare mod 2^(K-3): 0 failures; sample parity scores {0: 0.4926138444634355, 1: 0.9951165913807838}

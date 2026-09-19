@@ -1,0 +1,2849 @@
+NC True  | x4 | p3 | x0 x4'
+NC True  | x4 | p3 | x1 x4'
+NC True  | x4 | p3 | x3 x4'
+NC True  | x4 | p3 | x2 x4'
+NC True  | x4 | p3 | x0' x4'
+NC True  | x4 | p3 | x1' x4'
+NC True  | x4 | p3 | x3' x4'
+NC True  | x4 | p3 | x2' x4'
+NC True  | x11 | p3 | x0 x11'
+NC True  | x11 | p3 | x1 x11'
+NC True  | x11 | p3 | x3 x11'
+NC True  | x11 | p3 | x2 x11'
+NC True  | x11 | p3 | x0' x11'
+NC True  | x11 | p3 | x1' x11'
+NC True  | x11 | p3 | x3' x11'
+NC True  | x11 | p3 | x2' x11'
+NC True  | x5 | p3 | x0 x5'
+NC True  | x5 | p3 | x1 x5'
+NC True  | x5 | p3 | x3 x5'
+NC True  | x5 | p3 | x2 x5'
+NC True  | x5 | p3 | x0' x5'
+NC True  | x5 | p3 | x1' x5'
+NC True  | x5 | p3 | x3' x5'
+NC True  | x5 | p3 | x2' x5'
+NC False  | x5 | p3 | x5' x1
+NC False  | x5 | p3 | x5' x3
+NC False  | x5 | p3 | x5' x1'
+NC False  | x5 | p3 | x5' x3'
+NC True  | x10 | p3 | x0 x10'
+NC True  | x10 | p3 | x1 x10'
+NC True  | x10 | p3 | x3 x10'
+NC True  | x10 | p3 | x2 x10'
+NC True  | x10 | p3 | x0' x10'
+NC True  | x10 | p3 | x1' x10'
+NC True  | x10 | p3 | x3' x10'
+NC True  | x10 | p3 | x2' x10'
+NC True  | x6 | p3 | x0 x6'
+NC True  | x6 | p3 | x1 x6'
+NC True  | x6 | p3 | x3 x6'
+NC True  | x6 | p3 | x2 x6'
+NC True  | x6 | p3 | x0' x6'
+NC True  | x6 | p3 | x1' x6'
+NC True  | x6 | p3 | x3' x6'
+NC True  | x6 | p3 | x2' x6'
+NC False  | x6 | p3 | x6' x0
+NC False  | x6 | p3 | x6' x2
+NC False  | x6 | p3 | x6' x0'
+NC False  | x6 | p3 | x6' x2'
+NC True  | x4' | p3 | x0 x4
+NC True  | x4' | p3 | x1 x4
+NC True  | x4' | p3 | x3 x4
+NC True  | x4' | p3 | x2 x4
+NC True  | x4' | p3 | x0' x4
+NC True  | x4' | p3 | x1' x4
+NC True  | x4' | p3 | x3' x4
+NC True  | x4' | p3 | x2' x4
+NC True  | x11' | p3 | x0 x11
+NC True  | x11' | p3 | x1 x11
+NC True  | x11' | p3 | x3 x11
+NC True  | x11' | p3 | x2 x11
+NC True  | x11' | p3 | x0' x11
+NC True  | x11' | p3 | x1' x11
+NC True  | x11' | p3 | x3' x11
+NC True  | x11' | p3 | x2' x11
+NC True  | x5' | p3 | x0 x5
+NC True  | x5' | p3 | x1 x5
+NC True  | x5' | p3 | x3 x5
+NC True  | x5' | p3 | x2 x5
+NC False  | x5' | p3 | x5 x1
+NC False  | x5' | p3 | x5 x3
+NC False  | x5' | p3 | x5 x1'
+NC False  | x5' | p3 | x5 x3'
+NC True  | x5' | p3 | x0' x5
+NC True  | x5' | p3 | x1' x5
+NC True  | x5' | p3 | x3' x5
+NC True  | x5' | p3 | x2' x5
+NC True  | x10' | p3 | x0 x10
+NC True  | x10' | p3 | x1 x10
+NC True  | x10' | p3 | x3 x10
+NC True  | x10' | p3 | x2 x10
+NC True  | x10' | p3 | x0' x10
+NC True  | x10' | p3 | x1' x10
+NC True  | x10' | p3 | x3' x10
+NC True  | x10' | p3 | x2' x10
+NC True  | x6' | p3 | x0 x6
+NC True  | x6' | p3 | x1 x6
+NC True  | x6' | p3 | x3 x6
+NC True  | x6' | p3 | x2 x6
+NC False  | x6' | p3 | x6 x0
+NC False  | x6' | p3 | x6 x2
+NC False  | x6' | p3 | x6 x0'
+NC False  | x6' | p3 | x6 x2'
+NC True  | x6' | p3 | x0' x6
+NC True  | x6' | p3 | x1' x6
+NC True  | x6' | p3 | x3' x6
+NC True  | x6' | p3 | x2' x6
+NC False  | x0 x6 | p3 | x6'
+NC False  | x0 x6 | p3 | x0 x6'
+NC False  | x0 x6 | p3 | x1 x6'
+NC False  | x0 x6 | p3 | x3 x6'
+NC False  | x0 x6 | p3 | x2 x6'
+NC False  | x0 x6 | p3 | x0' x6'
+NC False  | x0 x6 | p3 | x1' x6'
+NC False  | x0 x6 | p3 | x3' x6'
+NC False  | x0 x6 | p3 | x2' x6'
+NC False  | x0 x6 | p3 | x6' x0
+NC False  | x0 x6 | p3 | x6' x2
+NC False  | x0 x6 | p3 | x6' x2'
+NC False  | x0 x6' | p3 | x6
+NC False  | x0 x6' | p3 | x0 x6
+NC False  | x0 x6' | p3 | x1 x6
+NC False  | x0 x6' | p3 | x3 x6
+NC False  | x0 x6' | p3 | x2 x6
+NC False  | x0 x6' | p3 | x6 x0
+NC False  | x0 x6' | p3 | x6 x2
+NC False  | x0 x6' | p3 | x6 x2'
+NC False  | x0 x6' | p3 | x0' x6
+NC False  | x0 x6' | p3 | x1' x6
+NC False  | x0 x6' | p3 | x3' x6
+NC False  | x0 x6' | p3 | x2' x6
+NC False  | x1 x5 | p3 | x5'
+NC False  | x1 x5 | p3 | x0 x5'
+NC False  | x1 x5 | p3 | x1 x5'
+NC False  | x1 x5 | p3 | x3 x5'
+NC False  | x1 x5 | p3 | x2 x5'
+NC False  | x1 x5 | p3 | x0' x5'
+NC False  | x1 x5 | p3 | x1' x5'
+NC False  | x1 x5 | p3 | x3' x5'
+NC False  | x1 x5 | p3 | x2' x5'
+NC False  | x1 x5 | p3 | x5' x1
+NC False  | x1 x5 | p3 | x5' x3
+NC False  | x1 x5 | p3 | x5' x3'
+NC False  | x1 x5' | p3 | x5
+NC False  | x1 x5' | p3 | x0 x5
+NC False  | x1 x5' | p3 | x1 x5
+NC False  | x1 x5' | p3 | x3 x5
+NC False  | x1 x5' | p3 | x2 x5
+NC False  | x1 x5' | p3 | x5 x1
+NC False  | x1 x5' | p3 | x5 x3
+NC False  | x1 x5' | p3 | x5 x3'
+NC False  | x1 x5' | p3 | x0' x5
+NC False  | x1 x5' | p3 | x1' x5
+NC False  | x1 x5' | p3 | x3' x5
+NC False  | x1 x5' | p3 | x2' x5
+NC False  | x3 x5 | p3 | x5'
+NC False  | x3 x5 | p3 | x0 x5'
+NC False  | x3 x5 | p3 | x1 x5'
+NC False  | x3 x5 | p3 | x3 x5'
+NC False  | x3 x5 | p3 | x2 x5'
+NC False  | x3 x5 | p3 | x0' x5'
+NC False  | x3 x5 | p3 | x1' x5'
+NC False  | x3 x5 | p3 | x3' x5'
+NC False  | x3 x5 | p3 | x2' x5'
+NC False  | x3 x5 | p3 | x5' x1
+NC False  | x3 x5 | p3 | x5' x3
+NC False  | x3 x5 | p3 | x5' x1'
+NC False  | x3 x5' | p3 | x5
+NC False  | x3 x5' | p3 | x0 x5
+NC False  | x3 x5' | p3 | x1 x5
+NC False  | x3 x5' | p3 | x3 x5
+NC False  | x3 x5' | p3 | x2 x5
+NC False  | x3 x5' | p3 | x5 x1
+NC False  | x3 x5' | p3 | x5 x3
+NC False  | x3 x5' | p3 | x5 x1'
+NC False  | x3 x5' | p3 | x0' x5
+NC False  | x3 x5' | p3 | x1' x5
+NC False  | x3 x5' | p3 | x3' x5
+NC False  | x3 x5' | p3 | x2' x5
+NC False  | x2 x6 | p3 | x6'
+NC False  | x2 x6 | p3 | x0 x6'
+NC False  | x2 x6 | p3 | x1 x6'
+NC False  | x2 x6 | p3 | x3 x6'
+NC False  | x2 x6 | p3 | x2 x6'
+NC False  | x2 x6 | p3 | x0' x6'
+NC False  | x2 x6 | p3 | x1' x6'
+NC False  | x2 x6 | p3 | x3' x6'
+NC False  | x2 x6 | p3 | x2' x6'
+NC False  | x2 x6 | p3 | x6' x0
+NC False  | x2 x6 | p3 | x6' x2
+NC False  | x2 x6 | p3 | x6' x0'
+NC False  | x2 x6' | p3 | x6
+NC False  | x2 x6' | p3 | x0 x6
+NC False  | x2 x6' | p3 | x1 x6
+NC False  | x2 x6' | p3 | x3 x6
+NC False  | x2 x6' | p3 | x2 x6
+NC False  | x2 x6' | p3 | x6 x0
+NC False  | x2 x6' | p3 | x6 x2
+NC False  | x2 x6' | p3 | x6 x0'
+NC False  | x2 x6' | p3 | x0' x6
+NC False  | x2 x6' | p3 | x1' x6
+NC False  | x2 x6' | p3 | x3' x6
+NC False  | x2 x6' | p3 | x2' x6
+NC True  | x4 x0 | p3 | x4'
+NC True  | x4 x0 | p3 | x0 x4'
+NC True  | x4 x0 | p3 | x1 x4'
+NC True  | x4 x0 | p3 | x3 x4'
+NC True  | x4 x0 | p3 | x2 x4'
+NC True  | x4 x0 | p3 | x1' x4'
+NC True  | x4 x0 | p3 | x3' x4'
+NC True  | x4 x0 | p3 | x2' x4'
+NC True  | x4 x1 | p3 | x4'
+NC True  | x4 x1 | p3 | x0 x4'
+NC True  | x4 x1 | p3 | x1 x4'
+NC True  | x4 x1 | p3 | x3 x4'
+NC True  | x4 x1 | p3 | x2 x4'
+NC True  | x4 x1 | p3 | x0' x4'
+NC True  | x4 x1 | p3 | x3' x4'
+NC True  | x4 x1 | p3 | x2' x4'
+NC True  | x4 x3 | p3 | x4'
+NC True  | x4 x3 | p3 | x0 x4'
+NC True  | x4 x3 | p3 | x1 x4'
+NC True  | x4 x3 | p3 | x3 x4'
+NC True  | x4 x3 | p3 | x2 x4'
+NC True  | x4 x3 | p3 | x0' x4'
+NC True  | x4 x3 | p3 | x1' x4'
+NC True  | x4 x3 | p3 | x2' x4'
+NC True  | x4 x2 | p3 | x4'
+NC True  | x4 x2 | p3 | x0 x4'
+NC True  | x4 x2 | p3 | x1 x4'
+NC True  | x4 x2 | p3 | x3 x4'
+NC True  | x4 x2 | p3 | x2 x4'
+NC True  | x4 x2 | p3 | x0' x4'
+NC True  | x4 x2 | p3 | x1' x4'
+NC True  | x4 x2 | p3 | x3' x4'
+NC True  | x4 x0' | p3 | x4'
+NC True  | x4 x0' | p3 | x1 x4'
+NC True  | x4 x0' | p3 | x3 x4'
+NC True  | x4 x0' | p3 | x2 x4'
+NC True  | x4 x0' | p3 | x0' x4'
+NC True  | x4 x0' | p3 | x1' x4'
+NC True  | x4 x0' | p3 | x3' x4'
+NC True  | x4 x0' | p3 | x2' x4'
+NC True  | x4 x1' | p3 | x4'
+NC True  | x4 x1' | p3 | x0 x4'
+NC True  | x4 x1' | p3 | x3 x4'
+NC True  | x4 x1' | p3 | x2 x4'
+NC True  | x4 x1' | p3 | x0' x4'
+NC True  | x4 x1' | p3 | x1' x4'
+NC True  | x4 x1' | p3 | x3' x4'
+NC True  | x4 x1' | p3 | x2' x4'
+NC True  | x4 x3' | p3 | x4'
+NC True  | x4 x3' | p3 | x0 x4'
+NC True  | x4 x3' | p3 | x1 x4'
+NC True  | x4 x3' | p3 | x2 x4'
+NC True  | x4 x3' | p3 | x0' x4'
+NC True  | x4 x3' | p3 | x1' x4'
+NC True  | x4 x3' | p3 | x3' x4'
+NC True  | x4 x3' | p3 | x2' x4'
+NC True  | x4 x2' | p3 | x4'
+NC True  | x4 x2' | p3 | x0 x4'
+NC True  | x4 x2' | p3 | x1 x4'
+NC True  | x4 x2' | p3 | x3 x4'
+NC True  | x4 x2' | p3 | x0' x4'
+NC True  | x4 x2' | p3 | x1' x4'
+NC True  | x4 x2' | p3 | x3' x4'
+NC True  | x4 x2' | p3 | x2' x4'
+NC True  | x11 x0 | p3 | x11'
+NC True  | x11 x0 | p3 | x0 x11'
+NC True  | x11 x0 | p3 | x1 x11'
+NC True  | x11 x0 | p3 | x3 x11'
+NC True  | x11 x0 | p3 | x2 x11'
+NC True  | x11 x0 | p3 | x1' x11'
+NC True  | x11 x0 | p3 | x3' x11'
+NC True  | x11 x0 | p3 | x2' x11'
+NC True  | x11 x1 | p3 | x11'
+NC True  | x11 x1 | p3 | x0 x11'
+NC True  | x11 x1 | p3 | x1 x11'
+NC True  | x11 x1 | p3 | x3 x11'
+NC True  | x11 x1 | p3 | x2 x11'
+NC True  | x11 x1 | p3 | x0' x11'
+NC True  | x11 x1 | p3 | x3' x11'
+NC True  | x11 x1 | p3 | x2' x11'
+NC True  | x11 x3 | p3 | x11'
+NC True  | x11 x3 | p3 | x0 x11'
+NC True  | x11 x3 | p3 | x1 x11'
+NC True  | x11 x3 | p3 | x3 x11'
+NC True  | x11 x3 | p3 | x2 x11'
+NC True  | x11 x3 | p3 | x0' x11'
+NC True  | x11 x3 | p3 | x1' x11'
+NC True  | x11 x3 | p3 | x2' x11'
+NC True  | x11 x2 | p3 | x11'
+NC True  | x11 x2 | p3 | x0 x11'
+NC True  | x11 x2 | p3 | x1 x11'
+NC True  | x11 x2 | p3 | x3 x11'
+NC True  | x11 x2 | p3 | x2 x11'
+NC True  | x11 x2 | p3 | x0' x11'
+NC True  | x11 x2 | p3 | x1' x11'
+NC True  | x11 x2 | p3 | x3' x11'
+NC False  | x11 x10 | p3 | x11' x10'
+NC False  | x11 x6 | p3 | x11' x6'
+NC True  | x11 x0' | p3 | x11'
+NC True  | x11 x0' | p3 | x1 x11'
+NC True  | x11 x0' | p3 | x3 x11'
+NC True  | x11 x0' | p3 | x2 x11'
+NC True  | x11 x0' | p3 | x0' x11'
+NC True  | x11 x0' | p3 | x1' x11'
+NC True  | x11 x0' | p3 | x3' x11'
+NC True  | x11 x0' | p3 | x2' x11'
+NC True  | x11 x1' | p3 | x11'
+NC True  | x11 x1' | p3 | x0 x11'
+NC True  | x11 x1' | p3 | x3 x11'
+NC True  | x11 x1' | p3 | x2 x11'
+NC True  | x11 x1' | p3 | x0' x11'
+NC True  | x11 x1' | p3 | x1' x11'
+NC True  | x11 x1' | p3 | x3' x11'
+NC True  | x11 x1' | p3 | x2' x11'
+NC True  | x11 x3' | p3 | x11'
+NC True  | x11 x3' | p3 | x0 x11'
+NC True  | x11 x3' | p3 | x1 x11'
+NC True  | x11 x3' | p3 | x2 x11'
+NC True  | x11 x3' | p3 | x0' x11'
+NC True  | x11 x3' | p3 | x1' x11'
+NC True  | x11 x3' | p3 | x3' x11'
+NC True  | x11 x3' | p3 | x2' x11'
+NC True  | x11 x2' | p3 | x11'
+NC True  | x11 x2' | p3 | x0 x11'
+NC True  | x11 x2' | p3 | x1 x11'
+NC True  | x11 x2' | p3 | x3 x11'
+NC True  | x11 x2' | p3 | x0' x11'
+NC True  | x11 x2' | p3 | x1' x11'
+NC True  | x11 x2' | p3 | x3' x11'
+NC True  | x11 x2' | p3 | x2' x11'
+NC False  | x11 x10' | p3 | x11' x10
+NC False  | x11 x6' | p3 | x11' x6
+NC True  | x5 x0 | p3 | x5'
+NC True  | x5 x0 | p3 | x0 x5'
+NC True  | x5 x0 | p3 | x1 x5'
+NC True  | x5 x0 | p3 | x3 x5'
+NC True  | x5 x0 | p3 | x2 x5'
+NC True  | x5 x0 | p3 | x1' x5'
+NC True  | x5 x0 | p3 | x3' x5'
+NC True  | x5 x0 | p3 | x2' x5'
+NC False  | x5 x0 | p3 | x5' x1
+NC False  | x5 x0 | p3 | x5' x3
+NC False  | x5 x0 | p3 | x5' x1'
+NC False  | x5 x0 | p3 | x5' x3'
+NC True  | x5 x1 | p3 | x5'
+NC True  | x5 x1 | p3 | x0 x5'
+NC True  | x5 x1 | p3 | x1 x5'
+NC True  | x5 x1 | p3 | x3 x5'
+NC True  | x5 x1 | p3 | x2 x5'
+NC True  | x5 x1 | p3 | x0' x5'
+NC True  | x5 x1 | p3 | x3' x5'
+NC True  | x5 x1 | p3 | x2' x5'
+NC False  | x5 x1 | p3 | x5' x1
+NC False  | x5 x1 | p3 | x5' x3
+NC False  | x5 x1 | p3 | x5' x1'
+NC False  | x5 x1 | p3 | x5' x3'
+NC True  | x5 x3 | p3 | x5'
+NC True  | x5 x3 | p3 | x0 x5'
+NC True  | x5 x3 | p3 | x1 x5'
+NC True  | x5 x3 | p3 | x3 x5'
+NC True  | x5 x3 | p3 | x2 x5'
+NC True  | x5 x3 | p3 | x0' x5'
+NC True  | x5 x3 | p3 | x1' x5'
+NC True  | x5 x3 | p3 | x2' x5'
+NC False  | x5 x3 | p3 | x5' x1
+NC False  | x5 x3 | p3 | x5' x3
+NC False  | x5 x3 | p3 | x5' x1'
+NC False  | x5 x3 | p3 | x5' x3'
+NC True  | x5 x2 | p3 | x5'
+NC True  | x5 x2 | p3 | x0 x5'
+NC True  | x5 x2 | p3 | x1 x5'
+NC True  | x5 x2 | p3 | x3 x5'
+NC True  | x5 x2 | p3 | x2 x5'
+NC True  | x5 x2 | p3 | x0' x5'
+NC True  | x5 x2 | p3 | x1' x5'
+NC True  | x5 x2 | p3 | x3' x5'
+NC False  | x5 x2 | p3 | x5' x1
+NC False  | x5 x2 | p3 | x5' x3
+NC False  | x5 x2 | p3 | x5' x1'
+NC False  | x5 x2 | p3 | x5' x3'
+NC False  | x5 x10 | p3 | x5' x10'
+NC False  | x5 x6 | p3 | x5' x6'
+NC True  | x5 x0' | p3 | x5'
+NC True  | x5 x0' | p3 | x1 x5'
+NC True  | x5 x0' | p3 | x3 x5'
+NC True  | x5 x0' | p3 | x2 x5'
+NC True  | x5 x0' | p3 | x0' x5'
+NC True  | x5 x0' | p3 | x1' x5'
+NC True  | x5 x0' | p3 | x3' x5'
+NC True  | x5 x0' | p3 | x2' x5'
+NC False  | x5 x0' | p3 | x5' x1
+NC False  | x5 x0' | p3 | x5' x3
+NC False  | x5 x0' | p3 | x5' x1'
+NC False  | x5 x0' | p3 | x5' x3'
+NC True  | x5 x1' | p3 | x5'
+NC True  | x5 x1' | p3 | x0 x5'
+NC True  | x5 x1' | p3 | x3 x5'
+NC True  | x5 x1' | p3 | x2 x5'
+NC True  | x5 x1' | p3 | x0' x5'
+NC True  | x5 x1' | p3 | x1' x5'
+NC True  | x5 x1' | p3 | x3' x5'
+NC True  | x5 x1' | p3 | x2' x5'
+NC False  | x5 x1' | p3 | x5' x1
+NC False  | x5 x1' | p3 | x5' x3
+NC False  | x5 x1' | p3 | x5' x1'
+NC False  | x5 x1' | p3 | x5' x3'
+NC True  | x5 x3' | p3 | x5'
+NC True  | x5 x3' | p3 | x0 x5'
+NC True  | x5 x3' | p3 | x1 x5'
+NC True  | x5 x3' | p3 | x2 x5'
+NC True  | x5 x3' | p3 | x0' x5'
+NC True  | x5 x3' | p3 | x1' x5'
+NC True  | x5 x3' | p3 | x3' x5'
+NC True  | x5 x3' | p3 | x2' x5'
+NC False  | x5 x3' | p3 | x5' x1
+NC False  | x5 x3' | p3 | x5' x3
+NC False  | x5 x3' | p3 | x5' x1'
+NC False  | x5 x3' | p3 | x5' x3'
+NC True  | x5 x2' | p3 | x5'
+NC True  | x5 x2' | p3 | x0 x5'
+NC True  | x5 x2' | p3 | x1 x5'
+NC True  | x5 x2' | p3 | x3 x5'
+NC True  | x5 x2' | p3 | x0' x5'
+NC True  | x5 x2' | p3 | x1' x5'
+NC True  | x5 x2' | p3 | x3' x5'
+NC True  | x5 x2' | p3 | x2' x5'
+NC False  | x5 x2' | p3 | x5' x1
+NC False  | x5 x2' | p3 | x5' x3
+NC False  | x5 x2' | p3 | x5' x1'
+NC False  | x5 x2' | p3 | x5' x3'
+NC False  | x5 x10' | p3 | x5' x10
+NC False  | x5 x6' | p3 | x5' x6
+NC True  | x10 x0 | p3 | x10'
+NC True  | x10 x0 | p3 | x0 x10'
+NC True  | x10 x0 | p3 | x1 x10'
+NC True  | x10 x0 | p3 | x3 x10'
+NC True  | x10 x0 | p3 | x2 x10'
+NC True  | x10 x0 | p3 | x1' x10'
+NC True  | x10 x0 | p3 | x3' x10'
+NC True  | x10 x0 | p3 | x2' x10'
+NC True  | x10 x1 | p3 | x10'
+NC True  | x10 x1 | p3 | x0 x10'
+NC True  | x10 x1 | p3 | x1 x10'
+NC True  | x10 x1 | p3 | x3 x10'
+NC True  | x10 x1 | p3 | x2 x10'
+NC True  | x10 x1 | p3 | x0' x10'
+NC True  | x10 x1 | p3 | x3' x10'
+NC True  | x10 x1 | p3 | x2' x10'
+NC True  | x10 x3 | p3 | x10'
+NC True  | x10 x3 | p3 | x0 x10'
+NC True  | x10 x3 | p3 | x1 x10'
+NC True  | x10 x3 | p3 | x3 x10'
+NC True  | x10 x3 | p3 | x2 x10'
+NC True  | x10 x3 | p3 | x0' x10'
+NC True  | x10 x3 | p3 | x1' x10'
+NC True  | x10 x3 | p3 | x2' x10'
+NC True  | x10 x2 | p3 | x10'
+NC True  | x10 x2 | p3 | x0 x10'
+NC True  | x10 x2 | p3 | x1 x10'
+NC True  | x10 x2 | p3 | x3 x10'
+NC True  | x10 x2 | p3 | x2 x10'
+NC True  | x10 x2 | p3 | x0' x10'
+NC True  | x10 x2 | p3 | x1' x10'
+NC True  | x10 x2 | p3 | x3' x10'
+NC False  | x10 x11 | p3 | x10' x11'
+NC False  | x10 x5 | p3 | x10' x5'
+NC True  | x10 x0' | p3 | x10'
+NC True  | x10 x0' | p3 | x1 x10'
+NC True  | x10 x0' | p3 | x3 x10'
+NC True  | x10 x0' | p3 | x2 x10'
+NC True  | x10 x0' | p3 | x0' x10'
+NC True  | x10 x0' | p3 | x1' x10'
+NC True  | x10 x0' | p3 | x3' x10'
+NC True  | x10 x0' | p3 | x2' x10'
+NC True  | x10 x1' | p3 | x10'
+NC True  | x10 x1' | p3 | x0 x10'
+NC True  | x10 x1' | p3 | x3 x10'
+NC True  | x10 x1' | p3 | x2 x10'
+NC True  | x10 x1' | p3 | x0' x10'
+NC True  | x10 x1' | p3 | x1' x10'
+NC True  | x10 x1' | p3 | x3' x10'
+NC True  | x10 x1' | p3 | x2' x10'
+NC True  | x10 x3' | p3 | x10'
+NC True  | x10 x3' | p3 | x0 x10'
+NC True  | x10 x3' | p3 | x1 x10'
+NC True  | x10 x3' | p3 | x2 x10'
+NC True  | x10 x3' | p3 | x0' x10'
+NC True  | x10 x3' | p3 | x1' x10'
+NC True  | x10 x3' | p3 | x3' x10'
+NC True  | x10 x3' | p3 | x2' x10'
+NC True  | x10 x2' | p3 | x10'
+NC True  | x10 x2' | p3 | x0 x10'
+NC True  | x10 x2' | p3 | x1 x10'
+NC True  | x10 x2' | p3 | x3 x10'
+NC True  | x10 x2' | p3 | x0' x10'
+NC True  | x10 x2' | p3 | x1' x10'
+NC True  | x10 x2' | p3 | x3' x10'
+NC True  | x10 x2' | p3 | x2' x10'
+NC False  | x10 x11' | p3 | x10' x11
+NC False  | x10 x5' | p3 | x10' x5
+NC True  | x6 x0 | p3 | x6'
+NC True  | x6 x0 | p3 | x0 x6'
+NC True  | x6 x0 | p3 | x1 x6'
+NC True  | x6 x0 | p3 | x3 x6'
+NC True  | x6 x0 | p3 | x2 x6'
+NC True  | x6 x0 | p3 | x1' x6'
+NC True  | x6 x0 | p3 | x3' x6'
+NC True  | x6 x0 | p3 | x2' x6'
+NC False  | x6 x0 | p3 | x6' x0
+NC False  | x6 x0 | p3 | x6' x2
+NC False  | x6 x0 | p3 | x6' x0'
+NC False  | x6 x0 | p3 | x6' x2'
+NC True  | x6 x1 | p3 | x6'
+NC True  | x6 x1 | p3 | x0 x6'
+NC True  | x6 x1 | p3 | x1 x6'
+NC True  | x6 x1 | p3 | x3 x6'
+NC True  | x6 x1 | p3 | x2 x6'
+NC True  | x6 x1 | p3 | x0' x6'
+NC True  | x6 x1 | p3 | x3' x6'
+NC True  | x6 x1 | p3 | x2' x6'
+NC False  | x6 x1 | p3 | x6' x0
+NC False  | x6 x1 | p3 | x6' x2
+NC False  | x6 x1 | p3 | x6' x0'
+NC False  | x6 x1 | p3 | x6' x2'
+NC True  | x6 x3 | p3 | x6'
+NC True  | x6 x3 | p3 | x0 x6'
+NC True  | x6 x3 | p3 | x1 x6'
+NC True  | x6 x3 | p3 | x3 x6'
+NC True  | x6 x3 | p3 | x2 x6'
+NC True  | x6 x3 | p3 | x0' x6'
+NC True  | x6 x3 | p3 | x1' x6'
+NC True  | x6 x3 | p3 | x2' x6'
+NC False  | x6 x3 | p3 | x6' x0
+NC False  | x6 x3 | p3 | x6' x2
+NC False  | x6 x3 | p3 | x6' x0'
+NC False  | x6 x3 | p3 | x6' x2'
+NC True  | x6 x2 | p3 | x6'
+NC True  | x6 x2 | p3 | x0 x6'
+NC True  | x6 x2 | p3 | x1 x6'
+NC True  | x6 x2 | p3 | x3 x6'
+NC True  | x6 x2 | p3 | x2 x6'
+NC True  | x6 x2 | p3 | x0' x6'
+NC True  | x6 x2 | p3 | x1' x6'
+NC True  | x6 x2 | p3 | x3' x6'
+NC False  | x6 x2 | p3 | x6' x0
+NC False  | x6 x2 | p3 | x6' x2
+NC False  | x6 x2 | p3 | x6' x0'
+NC False  | x6 x2 | p3 | x6' x2'
+NC False  | x6 x11 | p3 | x6' x11'
+NC False  | x6 x5 | p3 | x6' x5'
+NC True  | x6 x0' | p3 | x6'
+NC True  | x6 x0' | p3 | x1 x6'
+NC True  | x6 x0' | p3 | x3 x6'
+NC True  | x6 x0' | p3 | x2 x6'
+NC True  | x6 x0' | p3 | x0' x6'
+NC True  | x6 x0' | p3 | x1' x6'
+NC True  | x6 x0' | p3 | x3' x6'
+NC True  | x6 x0' | p3 | x2' x6'
+NC False  | x6 x0' | p3 | x6' x0
+NC False  | x6 x0' | p3 | x6' x2
+NC False  | x6 x0' | p3 | x6' x0'
+NC False  | x6 x0' | p3 | x6' x2'
+NC True  | x6 x1' | p3 | x6'
+NC True  | x6 x1' | p3 | x0 x6'
+NC True  | x6 x1' | p3 | x3 x6'
+NC True  | x6 x1' | p3 | x2 x6'
+NC True  | x6 x1' | p3 | x0' x6'
+NC True  | x6 x1' | p3 | x1' x6'
+NC True  | x6 x1' | p3 | x3' x6'
+NC True  | x6 x1' | p3 | x2' x6'
+NC False  | x6 x1' | p3 | x6' x0
+NC False  | x6 x1' | p3 | x6' x2
+NC False  | x6 x1' | p3 | x6' x0'
+NC False  | x6 x1' | p3 | x6' x2'
+NC True  | x6 x3' | p3 | x6'
+NC True  | x6 x3' | p3 | x0 x6'
+NC True  | x6 x3' | p3 | x1 x6'
+NC True  | x6 x3' | p3 | x2 x6'
+NC True  | x6 x3' | p3 | x0' x6'
+NC True  | x6 x3' | p3 | x1' x6'
+NC True  | x6 x3' | p3 | x3' x6'
+NC True  | x6 x3' | p3 | x2' x6'
+NC False  | x6 x3' | p3 | x6' x0
+NC False  | x6 x3' | p3 | x6' x2
+NC False  | x6 x3' | p3 | x6' x0'
+NC False  | x6 x3' | p3 | x6' x2'
+NC True  | x6 x2' | p3 | x6'
+NC True  | x6 x2' | p3 | x0 x6'
+NC True  | x6 x2' | p3 | x1 x6'
+NC True  | x6 x2' | p3 | x3 x6'
+NC True  | x6 x2' | p3 | x0' x6'
+NC True  | x6 x2' | p3 | x1' x6'
+NC True  | x6 x2' | p3 | x3' x6'
+NC True  | x6 x2' | p3 | x2' x6'
+NC False  | x6 x2' | p3 | x6' x0
+NC False  | x6 x2' | p3 | x6' x2
+NC False  | x6 x2' | p3 | x6' x0'
+NC False  | x6 x2' | p3 | x6' x2'
+NC False  | x6 x11' | p3 | x6' x11
+NC False  | x6 x5' | p3 | x6' x5
+NC False  | x0' x6 | p3 | x6'
+NC False  | x0' x6 | p3 | x0 x6'
+NC False  | x0' x6 | p3 | x1 x6'
+NC False  | x0' x6 | p3 | x3 x6'
+NC False  | x0' x6 | p3 | x2 x6'
+NC False  | x0' x6 | p3 | x0' x6'
+NC False  | x0' x6 | p3 | x1' x6'
+NC False  | x0' x6 | p3 | x3' x6'
+NC False  | x0' x6 | p3 | x2' x6'
+NC False  | x0' x6 | p3 | x6' x2
+NC False  | x0' x6 | p3 | x6' x0'
+NC False  | x0' x6 | p3 | x6' x2'
+NC False  | x0' x6' | p3 | x6
+NC False  | x0' x6' | p3 | x0 x6
+NC False  | x0' x6' | p3 | x1 x6
+NC False  | x0' x6' | p3 | x3 x6
+NC False  | x0' x6' | p3 | x2 x6
+NC False  | x0' x6' | p3 | x6 x2
+NC False  | x0' x6' | p3 | x6 x0'
+NC False  | x0' x6' | p3 | x6 x2'
+NC False  | x0' x6' | p3 | x0' x6
+NC False  | x0' x6' | p3 | x1' x6
+NC False  | x0' x6' | p3 | x3' x6
+NC False  | x0' x6' | p3 | x2' x6
+NC False  | x1' x5 | p3 | x5'
+NC False  | x1' x5 | p3 | x0 x5'
+NC False  | x1' x5 | p3 | x1 x5'
+NC False  | x1' x5 | p3 | x3 x5'
+NC False  | x1' x5 | p3 | x2 x5'
+NC False  | x1' x5 | p3 | x0' x5'
+NC False  | x1' x5 | p3 | x1' x5'
+NC False  | x1' x5 | p3 | x3' x5'
+NC False  | x1' x5 | p3 | x2' x5'
+NC False  | x1' x5 | p3 | x5' x3
+NC False  | x1' x5 | p3 | x5' x1'
+NC False  | x1' x5 | p3 | x5' x3'
+NC False  | x1' x5' | p3 | x5
+NC False  | x1' x5' | p3 | x0 x5
+NC False  | x1' x5' | p3 | x1 x5
+NC False  | x1' x5' | p3 | x3 x5
+NC False  | x1' x5' | p3 | x2 x5
+NC False  | x1' x5' | p3 | x5 x3
+NC False  | x1' x5' | p3 | x5 x1'
+NC False  | x1' x5' | p3 | x5 x3'
+NC False  | x1' x5' | p3 | x0' x5
+NC False  | x1' x5' | p3 | x1' x5
+NC False  | x1' x5' | p3 | x3' x5
+NC False  | x1' x5' | p3 | x2' x5
+NC False  | x3' x5 | p3 | x5'
+NC False  | x3' x5 | p3 | x0 x5'
+NC False  | x3' x5 | p3 | x1 x5'
+NC False  | x3' x5 | p3 | x3 x5'
+NC False  | x3' x5 | p3 | x2 x5'
+NC False  | x3' x5 | p3 | x0' x5'
+NC False  | x3' x5 | p3 | x1' x5'
+NC False  | x3' x5 | p3 | x3' x5'
+NC False  | x3' x5 | p3 | x2' x5'
+NC False  | x3' x5 | p3 | x5' x1
+NC False  | x3' x5 | p3 | x5' x1'
+NC False  | x3' x5 | p3 | x5' x3'
+NC False  | x3' x5' | p3 | x5
+NC False  | x3' x5' | p3 | x0 x5
+NC False  | x3' x5' | p3 | x1 x5
+NC False  | x3' x5' | p3 | x3 x5
+NC False  | x3' x5' | p3 | x2 x5
+NC False  | x3' x5' | p3 | x5 x1
+NC False  | x3' x5' | p3 | x5 x1'
+NC False  | x3' x5' | p3 | x5 x3'
+NC False  | x3' x5' | p3 | x0' x5
+NC False  | x3' x5' | p3 | x1' x5
+NC False  | x3' x5' | p3 | x3' x5
+NC False  | x3' x5' | p3 | x2' x5
+NC False  | x2' x6 | p3 | x6'
+NC False  | x2' x6 | p3 | x0 x6'
+NC False  | x2' x6 | p3 | x1 x6'
+NC False  | x2' x6 | p3 | x3 x6'
+NC False  | x2' x6 | p3 | x2 x6'
+NC False  | x2' x6 | p3 | x0' x6'
+NC False  | x2' x6 | p3 | x1' x6'
+NC False  | x2' x6 | p3 | x3' x6'
+NC False  | x2' x6 | p3 | x2' x6'
+NC False  | x2' x6 | p3 | x6' x0
+NC False  | x2' x6 | p3 | x6' x0'
+NC False  | x2' x6 | p3 | x6' x2'
+NC False  | x2' x6' | p3 | x6
+NC False  | x2' x6' | p3 | x0 x6
+NC False  | x2' x6' | p3 | x1 x6
+NC False  | x2' x6' | p3 | x3 x6
+NC False  | x2' x6' | p3 | x2 x6
+NC False  | x2' x6' | p3 | x6 x0
+NC False  | x2' x6' | p3 | x6 x0'
+NC False  | x2' x6' | p3 | x6 x2'
+NC False  | x2' x6' | p3 | x0' x6
+NC False  | x2' x6' | p3 | x1' x6
+NC False  | x2' x6' | p3 | x3' x6
+NC False  | x2' x6' | p3 | x2' x6
+NC True  | x4' x0 | p3 | x4
+NC True  | x4' x0 | p3 | x0 x4
+NC True  | x4' x0 | p3 | x1 x4
+NC True  | x4' x0 | p3 | x3 x4
+NC True  | x4' x0 | p3 | x2 x4
+NC True  | x4' x0 | p3 | x1' x4
+NC True  | x4' x0 | p3 | x3' x4
+NC True  | x4' x0 | p3 | x2' x4
+NC True  | x4' x1 | p3 | x4
+NC True  | x4' x1 | p3 | x0 x4
+NC True  | x4' x1 | p3 | x1 x4
+NC True  | x4' x1 | p3 | x3 x4
+NC True  | x4' x1 | p3 | x2 x4
+NC True  | x4' x1 | p3 | x0' x4
+NC True  | x4' x1 | p3 | x3' x4
+NC True  | x4' x1 | p3 | x2' x4
+NC True  | x4' x3 | p3 | x4
+NC True  | x4' x3 | p3 | x0 x4
+NC True  | x4' x3 | p3 | x1 x4
+NC True  | x4' x3 | p3 | x3 x4
+NC True  | x4' x3 | p3 | x2 x4
+NC True  | x4' x3 | p3 | x0' x4
+NC True  | x4' x3 | p3 | x1' x4
+NC True  | x4' x3 | p3 | x2' x4
+NC True  | x4' x2 | p3 | x4
+NC True  | x4' x2 | p3 | x0 x4
+NC True  | x4' x2 | p3 | x1 x4
+NC True  | x4' x2 | p3 | x3 x4
+NC True  | x4' x2 | p3 | x2 x4
+NC True  | x4' x2 | p3 | x0' x4
+NC True  | x4' x2 | p3 | x1' x4
+NC True  | x4' x2 | p3 | x3' x4
+NC True  | x4' x0' | p3 | x4
+NC True  | x4' x0' | p3 | x1 x4
+NC True  | x4' x0' | p3 | x3 x4
+NC True  | x4' x0' | p3 | x2 x4
+NC True  | x4' x0' | p3 | x0' x4
+NC True  | x4' x0' | p3 | x1' x4
+NC True  | x4' x0' | p3 | x3' x4
+NC True  | x4' x0' | p3 | x2' x4
+NC True  | x4' x1' | p3 | x4
+NC True  | x4' x1' | p3 | x0 x4
+NC True  | x4' x1' | p3 | x3 x4
+NC True  | x4' x1' | p3 | x2 x4
+NC True  | x4' x1' | p3 | x0' x4
+NC True  | x4' x1' | p3 | x1' x4
+NC True  | x4' x1' | p3 | x3' x4
+NC True  | x4' x1' | p3 | x2' x4
+NC True  | x4' x3' | p3 | x4
+NC True  | x4' x3' | p3 | x0 x4
+NC True  | x4' x3' | p3 | x1 x4
+NC True  | x4' x3' | p3 | x2 x4
+NC True  | x4' x3' | p3 | x0' x4
+NC True  | x4' x3' | p3 | x1' x4
+NC True  | x4' x3' | p3 | x3' x4
+NC True  | x4' x3' | p3 | x2' x4
+NC True  | x4' x2' | p3 | x4
+NC True  | x4' x2' | p3 | x0 x4
+NC True  | x4' x2' | p3 | x1 x4
+NC True  | x4' x2' | p3 | x3 x4
+NC True  | x4' x2' | p3 | x0' x4
+NC True  | x4' x2' | p3 | x1' x4
+NC True  | x4' x2' | p3 | x3' x4
+NC True  | x4' x2' | p3 | x2' x4
+NC True  | x11' x0 | p3 | x11
+NC True  | x11' x0 | p3 | x0 x11
+NC True  | x11' x0 | p3 | x1 x11
+NC True  | x11' x0 | p3 | x3 x11
+NC True  | x11' x0 | p3 | x2 x11
+NC True  | x11' x0 | p3 | x1' x11
+NC True  | x11' x0 | p3 | x3' x11
+NC True  | x11' x0 | p3 | x2' x11
+NC True  | x11' x1 | p3 | x11
+NC True  | x11' x1 | p3 | x0 x11
+NC True  | x11' x1 | p3 | x1 x11
+NC True  | x11' x1 | p3 | x3 x11
+NC True  | x11' x1 | p3 | x2 x11
+NC True  | x11' x1 | p3 | x0' x11
+NC True  | x11' x1 | p3 | x3' x11
+NC True  | x11' x1 | p3 | x2' x11
+NC True  | x11' x3 | p3 | x11
+NC True  | x11' x3 | p3 | x0 x11
+NC True  | x11' x3 | p3 | x1 x11
+NC True  | x11' x3 | p3 | x3 x11
+NC True  | x11' x3 | p3 | x2 x11
+NC True  | x11' x3 | p3 | x0' x11
+NC True  | x11' x3 | p3 | x1' x11
+NC True  | x11' x3 | p3 | x2' x11
+NC True  | x11' x2 | p3 | x11
+NC True  | x11' x2 | p3 | x0 x11
+NC True  | x11' x2 | p3 | x1 x11
+NC True  | x11' x2 | p3 | x3 x11
+NC True  | x11' x2 | p3 | x2 x11
+NC True  | x11' x2 | p3 | x0' x11
+NC True  | x11' x2 | p3 | x1' x11
+NC True  | x11' x2 | p3 | x3' x11
+NC False  | x11' x10 | p3 | x11 x10'
+NC False  | x11' x6 | p3 | x11 x6'
+NC True  | x11' x0' | p3 | x11
+NC True  | x11' x0' | p3 | x1 x11
+NC True  | x11' x0' | p3 | x3 x11
+NC True  | x11' x0' | p3 | x2 x11
+NC True  | x11' x0' | p3 | x0' x11
+NC True  | x11' x0' | p3 | x1' x11
+NC True  | x11' x0' | p3 | x3' x11
+NC True  | x11' x0' | p3 | x2' x11
+NC True  | x11' x1' | p3 | x11
+NC True  | x11' x1' | p3 | x0 x11
+NC True  | x11' x1' | p3 | x3 x11
+NC True  | x11' x1' | p3 | x2 x11
+NC True  | x11' x1' | p3 | x0' x11
+NC True  | x11' x1' | p3 | x1' x11
+NC True  | x11' x1' | p3 | x3' x11
+NC True  | x11' x1' | p3 | x2' x11
+NC True  | x11' x3' | p3 | x11
+NC True  | x11' x3' | p3 | x0 x11
+NC True  | x11' x3' | p3 | x1 x11
+NC True  | x11' x3' | p3 | x2 x11
+NC True  | x11' x3' | p3 | x0' x11
+NC True  | x11' x3' | p3 | x1' x11
+NC True  | x11' x3' | p3 | x3' x11
+NC True  | x11' x3' | p3 | x2' x11
+NC True  | x11' x2' | p3 | x11
+NC True  | x11' x2' | p3 | x0 x11
+NC True  | x11' x2' | p3 | x1 x11
+NC True  | x11' x2' | p3 | x3 x11
+NC True  | x11' x2' | p3 | x0' x11
+NC True  | x11' x2' | p3 | x1' x11
+NC True  | x11' x2' | p3 | x3' x11
+NC True  | x11' x2' | p3 | x2' x11
+NC False  | x11' x10' | p3 | x11 x10
+NC False  | x11' x6' | p3 | x11 x6
+NC True  | x5' x0 | p3 | x5
+NC True  | x5' x0 | p3 | x0 x5
+NC True  | x5' x0 | p3 | x1 x5
+NC True  | x5' x0 | p3 | x3 x5
+NC True  | x5' x0 | p3 | x2 x5
+NC False  | x5' x0 | p3 | x5 x1
+NC False  | x5' x0 | p3 | x5 x3
+NC False  | x5' x0 | p3 | x5 x1'
+NC False  | x5' x0 | p3 | x5 x3'
+NC True  | x5' x0 | p3 | x1' x5
+NC True  | x5' x0 | p3 | x3' x5
+NC True  | x5' x0 | p3 | x2' x5
+NC True  | x5' x1 | p3 | x5
+NC True  | x5' x1 | p3 | x0 x5
+NC True  | x5' x1 | p3 | x1 x5
+NC True  | x5' x1 | p3 | x3 x5
+NC True  | x5' x1 | p3 | x2 x5
+NC False  | x5' x1 | p3 | x5 x1
+NC False  | x5' x1 | p3 | x5 x3
+NC False  | x5' x1 | p3 | x5 x1'
+NC False  | x5' x1 | p3 | x5 x3'
+NC True  | x5' x1 | p3 | x0' x5
+NC True  | x5' x1 | p3 | x3' x5
+NC True  | x5' x1 | p3 | x2' x5
+NC True  | x5' x3 | p3 | x5
+NC True  | x5' x3 | p3 | x0 x5
+NC True  | x5' x3 | p3 | x1 x5
+NC True  | x5' x3 | p3 | x3 x5
+NC True  | x5' x3 | p3 | x2 x5
+NC False  | x5' x3 | p3 | x5 x1
+NC False  | x5' x3 | p3 | x5 x3
+NC False  | x5' x3 | p3 | x5 x1'
+NC False  | x5' x3 | p3 | x5 x3'
+NC True  | x5' x3 | p3 | x0' x5
+NC True  | x5' x3 | p3 | x1' x5
+NC True  | x5' x3 | p3 | x2' x5
+NC True  | x5' x2 | p3 | x5
+NC True  | x5' x2 | p3 | x0 x5
+NC True  | x5' x2 | p3 | x1 x5
+NC True  | x5' x2 | p3 | x3 x5
+NC True  | x5' x2 | p3 | x2 x5
+NC False  | x5' x2 | p3 | x5 x1
+NC False  | x5' x2 | p3 | x5 x3
+NC False  | x5' x2 | p3 | x5 x1'
+NC False  | x5' x2 | p3 | x5 x3'
+NC True  | x5' x2 | p3 | x0' x5
+NC True  | x5' x2 | p3 | x1' x5
+NC True  | x5' x2 | p3 | x3' x5
+NC False  | x5' x10 | p3 | x5 x10'
+NC False  | x5' x6 | p3 | x5 x6'
+NC True  | x5' x0' | p3 | x5
+NC True  | x5' x0' | p3 | x1 x5
+NC True  | x5' x0' | p3 | x3 x5
+NC True  | x5' x0' | p3 | x2 x5
+NC False  | x5' x0' | p3 | x5 x1
+NC False  | x5' x0' | p3 | x5 x3
+NC False  | x5' x0' | p3 | x5 x1'
+NC False  | x5' x0' | p3 | x5 x3'
+NC True  | x5' x0' | p3 | x0' x5
+NC True  | x5' x0' | p3 | x1' x5
+NC True  | x5' x0' | p3 | x3' x5
+NC True  | x5' x0' | p3 | x2' x5
+NC True  | x5' x1' | p3 | x5
+NC True  | x5' x1' | p3 | x0 x5
+NC True  | x5' x1' | p3 | x3 x5
+NC True  | x5' x1' | p3 | x2 x5
+NC False  | x5' x1' | p3 | x5 x1
+NC False  | x5' x1' | p3 | x5 x3
+NC False  | x5' x1' | p3 | x5 x1'
+NC False  | x5' x1' | p3 | x5 x3'
+NC True  | x5' x1' | p3 | x0' x5
+NC True  | x5' x1' | p3 | x1' x5
+NC True  | x5' x1' | p3 | x3' x5
+NC True  | x5' x1' | p3 | x2' x5
+NC True  | x5' x3' | p3 | x5
+NC True  | x5' x3' | p3 | x0 x5
+NC True  | x5' x3' | p3 | x1 x5
+NC True  | x5' x3' | p3 | x2 x5
+NC False  | x5' x3' | p3 | x5 x1
+NC False  | x5' x3' | p3 | x5 x3
+NC False  | x5' x3' | p3 | x5 x1'
+NC False  | x5' x3' | p3 | x5 x3'
+NC True  | x5' x3' | p3 | x0' x5
+NC True  | x5' x3' | p3 | x1' x5
+NC True  | x5' x3' | p3 | x3' x5
+NC True  | x5' x3' | p3 | x2' x5
+NC True  | x5' x2' | p3 | x5
+NC True  | x5' x2' | p3 | x0 x5
+NC True  | x5' x2' | p3 | x1 x5
+NC True  | x5' x2' | p3 | x3 x5
+NC False  | x5' x2' | p3 | x5 x1
+NC False  | x5' x2' | p3 | x5 x3
+NC False  | x5' x2' | p3 | x5 x1'
+NC False  | x5' x2' | p3 | x5 x3'
+NC True  | x5' x2' | p3 | x0' x5
+NC True  | x5' x2' | p3 | x1' x5
+NC True  | x5' x2' | p3 | x3' x5
+NC True  | x5' x2' | p3 | x2' x5
+NC False  | x5' x10' | p3 | x5 x10
+NC False  | x5' x6' | p3 | x5 x6
+NC True  | x10' x0 | p3 | x10
+NC True  | x10' x0 | p3 | x0 x10
+NC True  | x10' x0 | p3 | x1 x10
+NC True  | x10' x0 | p3 | x3 x10
+NC True  | x10' x0 | p3 | x2 x10
+NC True  | x10' x0 | p3 | x1' x10
+NC True  | x10' x0 | p3 | x3' x10
+NC True  | x10' x0 | p3 | x2' x10
+NC True  | x10' x1 | p3 | x10
+NC True  | x10' x1 | p3 | x0 x10
+NC True  | x10' x1 | p3 | x1 x10
+NC True  | x10' x1 | p3 | x3 x10
+NC True  | x10' x1 | p3 | x2 x10
+NC True  | x10' x1 | p3 | x0' x10
+NC True  | x10' x1 | p3 | x3' x10
+NC True  | x10' x1 | p3 | x2' x10
+NC True  | x10' x3 | p3 | x10
+NC True  | x10' x3 | p3 | x0 x10
+NC True  | x10' x3 | p3 | x1 x10
+NC True  | x10' x3 | p3 | x3 x10
+NC True  | x10' x3 | p3 | x2 x10
+NC True  | x10' x3 | p3 | x0' x10
+NC True  | x10' x3 | p3 | x1' x10
+NC True  | x10' x3 | p3 | x2' x10
+NC True  | x10' x2 | p3 | x10
+NC True  | x10' x2 | p3 | x0 x10
+NC True  | x10' x2 | p3 | x1 x10
+NC True  | x10' x2 | p3 | x3 x10
+NC True  | x10' x2 | p3 | x2 x10
+NC True  | x10' x2 | p3 | x0' x10
+NC True  | x10' x2 | p3 | x1' x10
+NC True  | x10' x2 | p3 | x3' x10
+NC False  | x10' x11 | p3 | x10 x11'
+NC False  | x10' x5 | p3 | x10 x5'
+NC True  | x10' x0' | p3 | x10
+NC True  | x10' x0' | p3 | x1 x10
+NC True  | x10' x0' | p3 | x3 x10
+NC True  | x10' x0' | p3 | x2 x10
+NC True  | x10' x0' | p3 | x0' x10
+NC True  | x10' x0' | p3 | x1' x10
+NC True  | x10' x0' | p3 | x3' x10
+NC True  | x10' x0' | p3 | x2' x10
+NC True  | x10' x1' | p3 | x10
+NC True  | x10' x1' | p3 | x0 x10
+NC True  | x10' x1' | p3 | x3 x10
+NC True  | x10' x1' | p3 | x2 x10
+NC True  | x10' x1' | p3 | x0' x10
+NC True  | x10' x1' | p3 | x1' x10
+NC True  | x10' x1' | p3 | x3' x10
+NC True  | x10' x1' | p3 | x2' x10
+NC True  | x10' x3' | p3 | x10
+NC True  | x10' x3' | p3 | x0 x10
+NC True  | x10' x3' | p3 | x1 x10
+NC True  | x10' x3' | p3 | x2 x10
+NC True  | x10' x3' | p3 | x0' x10
+NC True  | x10' x3' | p3 | x1' x10
+NC True  | x10' x3' | p3 | x3' x10
+NC True  | x10' x3' | p3 | x2' x10
+NC True  | x10' x2' | p3 | x10
+NC True  | x10' x2' | p3 | x0 x10
+NC True  | x10' x2' | p3 | x1 x10
+NC True  | x10' x2' | p3 | x3 x10
+NC True  | x10' x2' | p3 | x0' x10
+NC True  | x10' x2' | p3 | x1' x10
+NC True  | x10' x2' | p3 | x3' x10
+NC True  | x10' x2' | p3 | x2' x10
+NC False  | x10' x11' | p3 | x10 x11
+NC False  | x10' x5' | p3 | x10 x5
+NC True  | x6' x0 | p3 | x6
+NC True  | x6' x0 | p3 | x0 x6
+NC True  | x6' x0 | p3 | x1 x6
+NC True  | x6' x0 | p3 | x3 x6
+NC True  | x6' x0 | p3 | x2 x6
+NC False  | x6' x0 | p3 | x6 x0
+NC False  | x6' x0 | p3 | x6 x2
+NC False  | x6' x0 | p3 | x6 x0'
+NC False  | x6' x0 | p3 | x6 x2'
+NC True  | x6' x0 | p3 | x1' x6
+NC True  | x6' x0 | p3 | x3' x6
+NC True  | x6' x0 | p3 | x2' x6
+NC True  | x6' x1 | p3 | x6
+NC True  | x6' x1 | p3 | x0 x6
+NC True  | x6' x1 | p3 | x1 x6
+NC True  | x6' x1 | p3 | x3 x6
+NC True  | x6' x1 | p3 | x2 x6
+NC False  | x6' x1 | p3 | x6 x0
+NC False  | x6' x1 | p3 | x6 x2
+NC False  | x6' x1 | p3 | x6 x0'
+NC False  | x6' x1 | p3 | x6 x2'
+NC True  | x6' x1 | p3 | x0' x6
+NC True  | x6' x1 | p3 | x3' x6
+NC True  | x6' x1 | p3 | x2' x6
+NC True  | x6' x3 | p3 | x6
+NC True  | x6' x3 | p3 | x0 x6
+NC True  | x6' x3 | p3 | x1 x6
+NC True  | x6' x3 | p3 | x3 x6
+NC True  | x6' x3 | p3 | x2 x6
+NC False  | x6' x3 | p3 | x6 x0
+NC False  | x6' x3 | p3 | x6 x2
+NC False  | x6' x3 | p3 | x6 x0'
+NC False  | x6' x3 | p3 | x6 x2'
+NC True  | x6' x3 | p3 | x0' x6
+NC True  | x6' x3 | p3 | x1' x6
+NC True  | x6' x3 | p3 | x2' x6
+NC True  | x6' x2 | p3 | x6
+NC True  | x6' x2 | p3 | x0 x6
+NC True  | x6' x2 | p3 | x1 x6
+NC True  | x6' x2 | p3 | x3 x6
+NC True  | x6' x2 | p3 | x2 x6
+NC False  | x6' x2 | p3 | x6 x0
+NC False  | x6' x2 | p3 | x6 x2
+NC False  | x6' x2 | p3 | x6 x0'
+NC False  | x6' x2 | p3 | x6 x2'
+NC True  | x6' x2 | p3 | x0' x6
+NC True  | x6' x2 | p3 | x1' x6
+NC True  | x6' x2 | p3 | x3' x6
+NC False  | x6' x11 | p3 | x6 x11'
+NC False  | x6' x5 | p3 | x6 x5'
+NC True  | x6' x0' | p3 | x6
+NC True  | x6' x0' | p3 | x1 x6
+NC True  | x6' x0' | p3 | x3 x6
+NC True  | x6' x0' | p3 | x2 x6
+NC False  | x6' x0' | p3 | x6 x0
+NC False  | x6' x0' | p3 | x6 x2
+NC False  | x6' x0' | p3 | x6 x0'
+NC False  | x6' x0' | p3 | x6 x2'
+NC True  | x6' x0' | p3 | x0' x6
+NC True  | x6' x0' | p3 | x1' x6
+NC True  | x6' x0' | p3 | x3' x6
+NC True  | x6' x0' | p3 | x2' x6
+NC True  | x6' x1' | p3 | x6
+NC True  | x6' x1' | p3 | x0 x6
+NC True  | x6' x1' | p3 | x3 x6
+NC True  | x6' x1' | p3 | x2 x6
+NC False  | x6' x1' | p3 | x6 x0
+NC False  | x6' x1' | p3 | x6 x2
+NC False  | x6' x1' | p3 | x6 x0'
+NC False  | x6' x1' | p3 | x6 x2'
+NC True  | x6' x1' | p3 | x0' x6
+NC True  | x6' x1' | p3 | x1' x6
+NC True  | x6' x1' | p3 | x3' x6
+NC True  | x6' x1' | p3 | x2' x6
+NC True  | x6' x3' | p3 | x6
+NC True  | x6' x3' | p3 | x0 x6
+NC True  | x6' x3' | p3 | x1 x6
+NC True  | x6' x3' | p3 | x2 x6
+NC False  | x6' x3' | p3 | x6 x0
+NC False  | x6' x3' | p3 | x6 x2
+NC False  | x6' x3' | p3 | x6 x0'
+NC False  | x6' x3' | p3 | x6 x2'
+NC True  | x6' x3' | p3 | x0' x6
+NC True  | x6' x3' | p3 | x1' x6
+NC True  | x6' x3' | p3 | x3' x6
+NC True  | x6' x3' | p3 | x2' x6
+NC True  | x6' x2' | p3 | x6
+NC True  | x6' x2' | p3 | x0 x6
+NC True  | x6' x2' | p3 | x1 x6
+NC True  | x6' x2' | p3 | x3 x6
+NC False  | x6' x2' | p3 | x6 x0
+NC False  | x6' x2' | p3 | x6 x2
+NC False  | x6' x2' | p3 | x6 x0'
+NC False  | x6' x2' | p3 | x6 x2'
+NC True  | x6' x2' | p3 | x0' x6
+NC True  | x6' x2' | p3 | x1' x6
+NC True  | x6' x2' | p3 | x3' x6
+NC True  | x6' x2' | p3 | x2' x6
+NC False  | x6' x11' | p3 | x6 x11
+NC False  | x6' x5' | p3 | x6 x5
+NC True  | x1 | p2 | x0 x1'
+NC True  | x1 | p2 | x0' x1'
+NC True  | x3 | p2 | x0 x3'
+NC True  | x3 | p2 | x0' x3'
+NC True  | x2 | p2 | x0 x2'
+NC True  | x2 | p2 | x0' x2'
+NC True  | x4 | p2 | x0 x4'
+NC True  | x4 | p2 | x0' x4'
+NC True  | x11 | p2 | x0 x11'
+NC True  | x11 | p2 | x0' x11'
+NC True  | x5 | p2 | x0 x5'
+NC True  | x5 | p2 | x0' x5'
+NC True  | x10 | p2 | x0 x10'
+NC True  | x10 | p2 | x0' x10'
+NC False  | x10 | p2 | x10' x0
+NC False  | x10 | p2 | x10' x0'
+NC True  | x6 | p2 | x0 x6'
+NC True  | x6 | p2 | x0' x6'
+NC True  | x1' | p2 | x0 x1
+NC True  | x1' | p2 | x0' x1
+NC True  | x3' | p2 | x0 x3
+NC True  | x3' | p2 | x3 x11
+NC True  | x3' | p2 | x3 x11'
+NC True  | x3' | p2 | x0' x3
+NC True  | x2' | p2 | x0 x2
+NC False  | x2' | p2 | x2 x5
+NC False  | x2' | p2 | x2 x5'
+NC True  | x2' | p2 | x0' x2
+NC True  | x4' | p2 | x0 x4
+NC True  | x4' | p2 | x0' x4
+NC True  | x11' | p2 | x0 x11
+NC True  | x11' | p2 | x0' x11
+NC True  | x5' | p2 | x0 x5
+NC True  | x5' | p2 | x0' x5
+NC True  | x10' | p2 | x0 x10
+NC False  | x10' | p2 | x10 x0
+NC False  | x10' | p2 | x10 x0'
+NC True  | x10' | p2 | x0' x10
+NC True  | x6' | p2 | x0 x6
+NC True  | x6' | p2 | x0' x6
+NC False  | x0 x10 | p2 | x10'
+NC False  | x0 x10 | p2 | x0 x10'
+NC False  | x0 x10 | p2 | x0' x10'
+NC False  | x0 x10 | p2 | x10' x0
+NC False  | x0 x10' | p2 | x10
+NC False  | x0 x10' | p2 | x0 x10
+NC False  | x0 x10' | p2 | x10 x0
+NC False  | x0 x10' | p2 | x0' x10
+NC True  | x1 x0 | p2 | x1'
+NC True  | x1 x0 | p2 | x0 x1'
+NC False  | x1 x5 | p2 | x1' x5'
+NC True  | x1 x0' | p2 | x1'
+NC True  | x1 x0' | p2 | x0' x1'
+NC False  | x1 x5' | p2 | x1' x5
+NC True  | x3 x0 | p2 | x3'
+NC True  | x3 x0 | p2 | x0 x3'
+NC False  | x3 x5 | p2 | x3' x5'
+NC False  | x3 x10 | p2 | x3' x10'
+NC True  | x3 x0' | p2 | x3'
+NC True  | x3 x0' | p2 | x0' x3'
+NC False  | x3 x5' | p2 | x3' x5
+NC False  | x3 x10' | p2 | x3' x10
+NC True  | x2 x0 | p2 | x2'
+NC True  | x2 x0 | p2 | x0 x2'
+NC False  | x2 x10 | p2 | x2' x10'
+NC False  | x2 x6 | p2 | x2' x6'
+NC True  | x2 x0' | p2 | x2'
+NC True  | x2 x0' | p2 | x0' x2'
+NC False  | x2 x10' | p2 | x2' x10
+NC False  | x2 x6' | p2 | x2' x6
+NC True  | x4 x0 | p2 | x4'
+NC True  | x4 x0 | p2 | x0 x4'
+NC True  | x4 x0' | p2 | x4'
+NC True  | x4 x0' | p2 | x0' x4'
+NC True  | x11 x0 | p2 | x11'
+NC True  | x11 x0 | p2 | x0 x11'
+NC True  | x11 x0' | p2 | x11'
+NC True  | x11 x0' | p2 | x0' x11'
+NC True  | x11 x3' | p2 | x3
+NC True  | x11 x3' | p2 | x0 x3
+NC True  | x11 x3' | p2 | x3 x11
+NC True  | x11 x3' | p2 | x0' x3
+NC True  | x5 x0 | p2 | x5'
+NC True  | x5 x0 | p2 | x0 x5'
+NC False  | x5 x1 | p2 | x5' x1'
+NC False  | x5 x3 | p2 | x5' x3'
+NC False  | x5 x10 | p2 | x5' x10'
+NC True  | x5 x0' | p2 | x5'
+NC True  | x5 x0' | p2 | x0' x5'
+NC False  | x5 x1' | p2 | x5' x1
+NC False  | x5 x3' | p2 | x5' x3
+NC False  | x5 x2' | p2 | x2
+NC False  | x5 x2' | p2 | x0 x2
+NC False  | x5 x2' | p2 | x2 x5
+NC False  | x5 x2' | p2 | x0' x2
+NC False  | x5 x10' | p2 | x5' x10
+NC True  | x10 x0 | p2 | x10'
+NC True  | x10 x0 | p2 | x0 x10'
+NC False  | x10 x0 | p2 | x10' x0
+NC False  | x10 x0 | p2 | x10' x0'
+NC False  | x10 x3 | p2 | x10' x3'
+NC False  | x10 x2 | p2 | x10' x2'
+NC False  | x10 x5 | p2 | x10' x5'
+NC True  | x10 x0' | p2 | x10'
+NC True  | x10 x0' | p2 | x0' x10'
+NC False  | x10 x0' | p2 | x10' x0
+NC False  | x10 x0' | p2 | x10' x0'
+NC False  | x10 x3' | p2 | x10' x3
+NC False  | x10 x2' | p2 | x10' x2
+NC False  | x10 x5' | p2 | x10' x5
+NC True  | x6 x0 | p2 | x6'
+NC True  | x6 x0 | p2 | x0 x6'
+NC False  | x6 x2 | p2 | x6' x2'
+NC True  | x6 x0' | p2 | x6'
+NC True  | x6 x0' | p2 | x0' x6'
+NC False  | x6 x2' | p2 | x6' x2
+NC False  | x0' x10 | p2 | x10'
+NC False  | x0' x10 | p2 | x0 x10'
+NC False  | x0' x10 | p2 | x0' x10'
+NC False  | x0' x10 | p2 | x10' x0'
+NC False  | x0' x10' | p2 | x10
+NC False  | x0' x10' | p2 | x0 x10
+NC False  | x0' x10' | p2 | x10 x0'
+NC False  | x0' x10' | p2 | x0' x10
+NC True  | x1' x0 | p2 | x1
+NC True  | x1' x0 | p2 | x0 x1
+NC False  | x1' x5 | p2 | x1 x5'
+NC True  | x1' x0' | p2 | x1
+NC True  | x1' x0' | p2 | x0' x1
+NC False  | x1' x5' | p2 | x1 x5
+NC True  | x3' x0 | p2 | x3
+NC True  | x3' x0 | p2 | x0 x3
+NC True  | x3' x0 | p2 | x3 x11
+NC True  | x3' x0 | p2 | x3 x11'
+NC False  | x3' x5 | p2 | x3 x5'
+NC False  | x3' x10 | p2 | x3 x10'
+NC True  | x3' x0' | p2 | x3
+NC True  | x3' x0' | p2 | x3 x11
+NC True  | x3' x0' | p2 | x3 x11'
+NC True  | x3' x0' | p2 | x0' x3
+NC False  | x3' x5' | p2 | x3 x5
+NC False  | x3' x10' | p2 | x3 x10
+NC True  | x2' x0 | p2 | x2
+NC True  | x2' x0 | p2 | x0 x2
+NC False  | x2' x0 | p2 | x2 x5
+NC False  | x2' x0 | p2 | x2 x5'
+NC False  | x2' x10 | p2 | x2 x10'
+NC False  | x2' x6 | p2 | x2 x6'
+NC True  | x2' x0' | p2 | x2
+NC False  | x2' x0' | p2 | x2 x5
+NC False  | x2' x0' | p2 | x2 x5'
+NC True  | x2' x0' | p2 | x0' x2
+NC False  | x2' x10' | p2 | x2 x10
+NC False  | x2' x6' | p2 | x2 x6
+NC True  | x4' x0 | p2 | x4
+NC True  | x4' x0 | p2 | x0 x4
+NC True  | x4' x0' | p2 | x4
+NC True  | x4' x0' | p2 | x0' x4
+NC True  | x11' x0 | p2 | x11
+NC True  | x11' x0 | p2 | x0 x11
+NC True  | x11' x0' | p2 | x11
+NC True  | x11' x0' | p2 | x0' x11
+NC True  | x11' x3' | p2 | x3
+NC True  | x11' x3' | p2 | x0 x3
+NC True  | x11' x3' | p2 | x3 x11'
+NC True  | x11' x3' | p2 | x0' x3
+NC True  | x5' x0 | p2 | x5
+NC True  | x5' x0 | p2 | x0 x5
+NC False  | x5' x1 | p2 | x5 x1'
+NC False  | x5' x3 | p2 | x5 x3'
+NC False  | x5' x10 | p2 | x5 x10'
+NC True  | x5' x0' | p2 | x5
+NC True  | x5' x0' | p2 | x0' x5
+NC False  | x5' x1' | p2 | x5 x1
+NC False  | x5' x3' | p2 | x5 x3
+NC False  | x5' x2' | p2 | x2
+NC False  | x5' x2' | p2 | x0 x2
+NC False  | x5' x2' | p2 | x2 x5'
+NC False  | x5' x2' | p2 | x0' x2
+NC False  | x5' x10' | p2 | x5 x10
+NC True  | x10' x0 | p2 | x10
+NC True  | x10' x0 | p2 | x0 x10
+NC False  | x10' x0 | p2 | x10 x0
+NC False  | x10' x0 | p2 | x10 x0'
+NC False  | x10' x3 | p2 | x10 x3'
+NC False  | x10' x2 | p2 | x10 x2'
+NC False  | x10' x5 | p2 | x10 x5'
+NC True  | x10' x0' | p2 | x10
+NC False  | x10' x0' | p2 | x10 x0
+NC False  | x10' x0' | p2 | x10 x0'
+NC True  | x10' x0' | p2 | x0' x10
+NC False  | x10' x3' | p2 | x10 x3
+NC False  | x10' x2' | p2 | x10 x2
+NC False  | x10' x5' | p2 | x10 x5
+NC True  | x6' x0 | p2 | x6
+NC True  | x6' x0 | p2 | x0 x6
+NC False  | x6' x2 | p2 | x6 x2'
+NC True  | x6' x0' | p2 | x6
+NC True  | x6' x0' | p2 | x0' x6
+NC False  | x6' x2' | p2 | x6 x2
+NC False  | x1 x5 | p1 | x1' x5'
+NC False  | x1 x5' | p1 | x1' x5
+NC False  | x3 x11 | p1 | x3' x11'
+NC False  | x3 x5 | p1 | x3' x5'
+NC False  | x3 x11' | p1 | x3' x11
+NC False  | x3 x5' | p1 | x3' x5
+NC False  | x2 x6 | p1 | x2' x6'
+NC False  | x2 x6' | p1 | x2' x6
+NC False  | x11 x3 | p1 | x11' x3'
+NC False  | x11 x3' | p1 | x11' x3
+NC False  | x5 x1 | p1 | x5' x1'
+NC False  | x5 x3 | p1 | x5' x3'
+NC False  | x5 x10 | p1 | x5' x10'
+NC False  | x5 x1' | p1 | x5' x1
+NC False  | x5 x3' | p1 | x5' x3
+NC False  | x5 x10' | p1 | x5' x10
+NC False  | x10 x5 | p1 | x10' x5'
+NC False  | x10 x5' | p1 | x10' x5
+NC False  | x6 x2 | p1 | x6' x2'
+NC False  | x6 x2' | p1 | x6' x2
+NC False  | x1' x5 | p1 | x1 x5'
+NC False  | x1' x5' | p1 | x1 x5
+NC False  | x3' x11 | p1 | x3 x11'
+NC False  | x3' x5 | p1 | x3 x5'
+NC False  | x3' x11' | p1 | x3 x11
+NC False  | x3' x5' | p1 | x3 x5
+NC False  | x2' x6 | p1 | x2 x6'
+NC False  | x2' x6' | p1 | x2 x6
+NC False  | x11' x3 | p1 | x11 x3'
+NC False  | x11' x3' | p1 | x11 x3
+NC False  | x5' x1 | p1 | x5 x1'
+NC False  | x5' x3 | p1 | x5 x3'
+NC False  | x5' x10 | p1 | x5 x10'
+NC False  | x5' x1' | p1 | x5 x1
+NC False  | x5' x3' | p1 | x5 x3
+NC False  | x5' x10' | p1 | x5 x10
+NC False  | x10' x5 | p1 | x10 x5'
+NC False  | x10' x5' | p1 | x10 x5
+NC False  | x6' x2 | p1 | x6 x2'
+NC False  | x6' x2' | p1 | x6 x2
+NC True  | x4 | p3' | x0 x4'
+NC True  | x4 | p3' | x1 x4'
+NC True  | x4 | p3' | x3 x4'
+NC True  | x4 | p3' | x2 x4'
+NC True  | x4 | p3' | x0' x4'
+NC True  | x4 | p3' | x1' x4'
+NC True  | x4 | p3' | x3' x4'
+NC True  | x4 | p3' | x2' x4'
+NC True  | x11 | p3' | x0 x11'
+NC True  | x11 | p3' | x1 x11'
+NC True  | x11 | p3' | x3 x11'
+NC True  | x11 | p3' | x2 x11'
+NC True  | x11 | p3' | x0' x11'
+NC True  | x11 | p3' | x1' x11'
+NC True  | x11 | p3' | x3' x11'
+NC True  | x11 | p3' | x2' x11'
+NC True  | x5 | p3' | x0 x5'
+NC True  | x5 | p3' | x1 x5'
+NC True  | x5 | p3' | x3 x5'
+NC True  | x5 | p3' | x2 x5'
+NC True  | x5 | p3' | x0' x5'
+NC True  | x5 | p3' | x1' x5'
+NC True  | x5 | p3' | x3' x5'
+NC True  | x5 | p3' | x2' x5'
+NC False  | x5 | p3' | x5' x1
+NC False  | x5 | p3' | x5' x3
+NC False  | x5 | p3' | x5' x1'
+NC False  | x5 | p3' | x5' x3'
+NC True  | x10 | p3' | x0 x10'
+NC True  | x10 | p3' | x1 x10'
+NC True  | x10 | p3' | x3 x10'
+NC True  | x10 | p3' | x2 x10'
+NC True  | x10 | p3' | x0' x10'
+NC True  | x10 | p3' | x1' x10'
+NC True  | x10 | p3' | x3' x10'
+NC True  | x10 | p3' | x2' x10'
+NC True  | x6 | p3' | x0 x6'
+NC True  | x6 | p3' | x1 x6'
+NC True  | x6 | p3' | x3 x6'
+NC True  | x6 | p3' | x2 x6'
+NC True  | x6 | p3' | x0' x6'
+NC True  | x6 | p3' | x1' x6'
+NC True  | x6 | p3' | x3' x6'
+NC True  | x6 | p3' | x2' x6'
+NC False  | x6 | p3' | x6' x0
+NC False  | x6 | p3' | x6' x2
+NC False  | x6 | p3' | x6' x0'
+NC False  | x6 | p3' | x6' x2'
+NC True  | x4' | p3' | x0 x4
+NC True  | x4' | p3' | x1 x4
+NC True  | x4' | p3' | x3 x4
+NC True  | x4' | p3' | x2 x4
+NC True  | x4' | p3' | x0' x4
+NC True  | x4' | p3' | x1' x4
+NC True  | x4' | p3' | x3' x4
+NC True  | x4' | p3' | x2' x4
+NC True  | x11' | p3' | x0 x11
+NC True  | x11' | p3' | x1 x11
+NC True  | x11' | p3' | x3 x11
+NC True  | x11' | p3' | x2 x11
+NC True  | x11' | p3' | x0' x11
+NC True  | x11' | p3' | x1' x11
+NC True  | x11' | p3' | x3' x11
+NC True  | x11' | p3' | x2' x11
+NC True  | x5' | p3' | x0 x5
+NC True  | x5' | p3' | x1 x5
+NC True  | x5' | p3' | x3 x5
+NC True  | x5' | p3' | x2 x5
+NC False  | x5' | p3' | x5 x1
+NC False  | x5' | p3' | x5 x3
+NC False  | x5' | p3' | x5 x1'
+NC False  | x5' | p3' | x5 x3'
+NC True  | x5' | p3' | x0' x5
+NC True  | x5' | p3' | x1' x5
+NC True  | x5' | p3' | x3' x5
+NC True  | x5' | p3' | x2' x5
+NC True  | x10' | p3' | x0 x10
+NC True  | x10' | p3' | x1 x10
+NC True  | x10' | p3' | x3 x10
+NC True  | x10' | p3' | x2 x10
+NC True  | x10' | p3' | x0' x10
+NC True  | x10' | p3' | x1' x10
+NC True  | x10' | p3' | x3' x10
+NC True  | x10' | p3' | x2' x10
+NC True  | x6' | p3' | x0 x6
+NC True  | x6' | p3' | x1 x6
+NC True  | x6' | p3' | x3 x6
+NC True  | x6' | p3' | x2 x6
+NC False  | x6' | p3' | x6 x0
+NC False  | x6' | p3' | x6 x2
+NC False  | x6' | p3' | x6 x0'
+NC False  | x6' | p3' | x6 x2'
+NC True  | x6' | p3' | x0' x6
+NC True  | x6' | p3' | x1' x6
+NC True  | x6' | p3' | x3' x6
+NC True  | x6' | p3' | x2' x6
+NC False  | x0 x6 | p3' | x6'
+NC False  | x0 x6 | p3' | x0 x6'
+NC False  | x0 x6 | p3' | x1 x6'
+NC False  | x0 x6 | p3' | x3 x6'
+NC False  | x0 x6 | p3' | x2 x6'
+NC False  | x0 x6 | p3' | x0' x6'
+NC False  | x0 x6 | p3' | x1' x6'
+NC False  | x0 x6 | p3' | x3' x6'
+NC False  | x0 x6 | p3' | x2' x6'
+NC False  | x0 x6 | p3' | x6' x0
+NC False  | x0 x6 | p3' | x6' x2
+NC False  | x0 x6 | p3' | x6' x2'
+NC False  | x0 x6' | p3' | x6
+NC False  | x0 x6' | p3' | x0 x6
+NC False  | x0 x6' | p3' | x1 x6
+NC False  | x0 x6' | p3' | x3 x6
+NC False  | x0 x6' | p3' | x2 x6
+NC False  | x0 x6' | p3' | x6 x0
+NC False  | x0 x6' | p3' | x6 x2
+NC False  | x0 x6' | p3' | x6 x2'
+NC False  | x0 x6' | p3' | x0' x6
+NC False  | x0 x6' | p3' | x1' x6
+NC False  | x0 x6' | p3' | x3' x6
+NC False  | x0 x6' | p3' | x2' x6
+NC False  | x1 x5 | p3' | x5'
+NC False  | x1 x5 | p3' | x0 x5'
+NC False  | x1 x5 | p3' | x1 x5'
+NC False  | x1 x5 | p3' | x3 x5'
+NC False  | x1 x5 | p3' | x2 x5'
+NC False  | x1 x5 | p3' | x0' x5'
+NC False  | x1 x5 | p3' | x1' x5'
+NC False  | x1 x5 | p3' | x3' x5'
+NC False  | x1 x5 | p3' | x2' x5'
+NC False  | x1 x5 | p3' | x5' x1
+NC False  | x1 x5 | p3' | x5' x3
+NC False  | x1 x5 | p3' | x5' x3'
+NC False  | x1 x5' | p3' | x5
+NC False  | x1 x5' | p3' | x0 x5
+NC False  | x1 x5' | p3' | x1 x5
+NC False  | x1 x5' | p3' | x3 x5
+NC False  | x1 x5' | p3' | x2 x5
+NC False  | x1 x5' | p3' | x5 x1
+NC False  | x1 x5' | p3' | x5 x3
+NC False  | x1 x5' | p3' | x5 x3'
+NC False  | x1 x5' | p3' | x0' x5
+NC False  | x1 x5' | p3' | x1' x5
+NC False  | x1 x5' | p3' | x3' x5
+NC False  | x1 x5' | p3' | x2' x5
+NC False  | x3 x5 | p3' | x5'
+NC False  | x3 x5 | p3' | x0 x5'
+NC False  | x3 x5 | p3' | x1 x5'
+NC False  | x3 x5 | p3' | x3 x5'
+NC False  | x3 x5 | p3' | x2 x5'
+NC False  | x3 x5 | p3' | x0' x5'
+NC False  | x3 x5 | p3' | x1' x5'
+NC False  | x3 x5 | p3' | x3' x5'
+NC False  | x3 x5 | p3' | x2' x5'
+NC False  | x3 x5 | p3' | x5' x1
+NC False  | x3 x5 | p3' | x5' x3
+NC False  | x3 x5 | p3' | x5' x1'
+NC False  | x3 x5' | p3' | x5
+NC False  | x3 x5' | p3' | x0 x5
+NC False  | x3 x5' | p3' | x1 x5
+NC False  | x3 x5' | p3' | x3 x5
+NC False  | x3 x5' | p3' | x2 x5
+NC False  | x3 x5' | p3' | x5 x1
+NC False  | x3 x5' | p3' | x5 x3
+NC False  | x3 x5' | p3' | x5 x1'
+NC False  | x3 x5' | p3' | x0' x5
+NC False  | x3 x5' | p3' | x1' x5
+NC False  | x3 x5' | p3' | x3' x5
+NC False  | x3 x5' | p3' | x2' x5
+NC False  | x2 x6 | p3' | x6'
+NC False  | x2 x6 | p3' | x0 x6'
+NC False  | x2 x6 | p3' | x1 x6'
+NC False  | x2 x6 | p3' | x3 x6'
+NC False  | x2 x6 | p3' | x2 x6'
+NC False  | x2 x6 | p3' | x0' x6'
+NC False  | x2 x6 | p3' | x1' x6'
+NC False  | x2 x6 | p3' | x3' x6'
+NC False  | x2 x6 | p3' | x2' x6'
+NC False  | x2 x6 | p3' | x6' x0
+NC False  | x2 x6 | p3' | x6' x2
+NC False  | x2 x6 | p3' | x6' x0'
+NC False  | x2 x6' | p3' | x6
+NC False  | x2 x6' | p3' | x0 x6
+NC False  | x2 x6' | p3' | x1 x6
+NC False  | x2 x6' | p3' | x3 x6
+NC False  | x2 x6' | p3' | x2 x6
+NC False  | x2 x6' | p3' | x6 x0
+NC False  | x2 x6' | p3' | x6 x2
+NC False  | x2 x6' | p3' | x6 x0'
+NC False  | x2 x6' | p3' | x0' x6
+NC False  | x2 x6' | p3' | x1' x6
+NC False  | x2 x6' | p3' | x3' x6
+NC False  | x2 x6' | p3' | x2' x6
+NC True  | x4 x0 | p3' | x4'
+NC True  | x4 x0 | p3' | x0 x4'
+NC True  | x4 x0 | p3' | x1 x4'
+NC True  | x4 x0 | p3' | x3 x4'
+NC True  | x4 x0 | p3' | x2 x4'
+NC True  | x4 x0 | p3' | x1' x4'
+NC True  | x4 x0 | p3' | x3' x4'
+NC True  | x4 x0 | p3' | x2' x4'
+NC True  | x4 x1 | p3' | x4'
+NC True  | x4 x1 | p3' | x0 x4'
+NC True  | x4 x1 | p3' | x1 x4'
+NC True  | x4 x1 | p3' | x3 x4'
+NC True  | x4 x1 | p3' | x2 x4'
+NC True  | x4 x1 | p3' | x0' x4'
+NC True  | x4 x1 | p3' | x3' x4'
+NC True  | x4 x1 | p3' | x2' x4'
+NC True  | x4 x3 | p3' | x4'
+NC True  | x4 x3 | p3' | x0 x4'
+NC True  | x4 x3 | p3' | x1 x4'
+NC True  | x4 x3 | p3' | x3 x4'
+NC True  | x4 x3 | p3' | x2 x4'
+NC True  | x4 x3 | p3' | x0' x4'
+NC True  | x4 x3 | p3' | x1' x4'
+NC True  | x4 x3 | p3' | x2' x4'
+NC True  | x4 x2 | p3' | x4'
+NC True  | x4 x2 | p3' | x0 x4'
+NC True  | x4 x2 | p3' | x1 x4'
+NC True  | x4 x2 | p3' | x3 x4'
+NC True  | x4 x2 | p3' | x2 x4'
+NC True  | x4 x2 | p3' | x0' x4'
+NC True  | x4 x2 | p3' | x1' x4'
+NC True  | x4 x2 | p3' | x3' x4'
+NC True  | x4 x0' | p3' | x4'
+NC True  | x4 x0' | p3' | x1 x4'
+NC True  | x4 x0' | p3' | x3 x4'
+NC True  | x4 x0' | p3' | x2 x4'
+NC True  | x4 x0' | p3' | x0' x4'
+NC True  | x4 x0' | p3' | x1' x4'
+NC True  | x4 x0' | p3' | x3' x4'
+NC True  | x4 x0' | p3' | x2' x4'
+NC True  | x4 x1' | p3' | x4'
+NC True  | x4 x1' | p3' | x0 x4'
+NC True  | x4 x1' | p3' | x3 x4'
+NC True  | x4 x1' | p3' | x2 x4'
+NC True  | x4 x1' | p3' | x0' x4'
+NC True  | x4 x1' | p3' | x1' x4'
+NC True  | x4 x1' | p3' | x3' x4'
+NC True  | x4 x1' | p3' | x2' x4'
+NC True  | x4 x3' | p3' | x4'
+NC True  | x4 x3' | p3' | x0 x4'
+NC True  | x4 x3' | p3' | x1 x4'
+NC True  | x4 x3' | p3' | x2 x4'
+NC True  | x4 x3' | p3' | x0' x4'
+NC True  | x4 x3' | p3' | x1' x4'
+NC True  | x4 x3' | p3' | x3' x4'
+NC True  | x4 x3' | p3' | x2' x4'
+NC True  | x4 x2' | p3' | x4'
+NC True  | x4 x2' | p3' | x0 x4'
+NC True  | x4 x2' | p3' | x1 x4'
+NC True  | x4 x2' | p3' | x3 x4'
+NC True  | x4 x2' | p3' | x0' x4'
+NC True  | x4 x2' | p3' | x1' x4'
+NC True  | x4 x2' | p3' | x3' x4'
+NC True  | x4 x2' | p3' | x2' x4'
+NC True  | x11 x0 | p3' | x11'
+NC True  | x11 x0 | p3' | x0 x11'
+NC True  | x11 x0 | p3' | x1 x11'
+NC True  | x11 x0 | p3' | x3 x11'
+NC True  | x11 x0 | p3' | x2 x11'
+NC True  | x11 x0 | p3' | x1' x11'
+NC True  | x11 x0 | p3' | x3' x11'
+NC True  | x11 x0 | p3' | x2' x11'
+NC True  | x11 x1 | p3' | x11'
+NC True  | x11 x1 | p3' | x0 x11'
+NC True  | x11 x1 | p3' | x1 x11'
+NC True  | x11 x1 | p3' | x3 x11'
+NC True  | x11 x1 | p3' | x2 x11'
+NC True  | x11 x1 | p3' | x0' x11'
+NC True  | x11 x1 | p3' | x3' x11'
+NC True  | x11 x1 | p3' | x2' x11'
+NC True  | x11 x3 | p3' | x11'
+NC True  | x11 x3 | p3' | x0 x11'
+NC True  | x11 x3 | p3' | x1 x11'
+NC True  | x11 x3 | p3' | x3 x11'
+NC True  | x11 x3 | p3' | x2 x11'
+NC True  | x11 x3 | p3' | x0' x11'
+NC True  | x11 x3 | p3' | x1' x11'
+NC True  | x11 x3 | p3' | x2' x11'
+NC True  | x11 x2 | p3' | x11'
+NC True  | x11 x2 | p3' | x0 x11'
+NC True  | x11 x2 | p3' | x1 x11'
+NC True  | x11 x2 | p3' | x3 x11'
+NC True  | x11 x2 | p3' | x2 x11'
+NC True  | x11 x2 | p3' | x0' x11'
+NC True  | x11 x2 | p3' | x1' x11'
+NC True  | x11 x2 | p3' | x3' x11'
+NC False  | x11 x10 | p3' | x11' x10'
+NC False  | x11 x6 | p3' | x11' x6'
+NC True  | x11 x0' | p3' | x11'
+NC True  | x11 x0' | p3' | x1 x11'
+NC True  | x11 x0' | p3' | x3 x11'
+NC True  | x11 x0' | p3' | x2 x11'
+NC True  | x11 x0' | p3' | x0' x11'
+NC True  | x11 x0' | p3' | x1' x11'
+NC True  | x11 x0' | p3' | x3' x11'
+NC True  | x11 x0' | p3' | x2' x11'
+NC True  | x11 x1' | p3' | x11'
+NC True  | x11 x1' | p3' | x0 x11'
+NC True  | x11 x1' | p3' | x3 x11'
+NC True  | x11 x1' | p3' | x2 x11'
+NC True  | x11 x1' | p3' | x0' x11'
+NC True  | x11 x1' | p3' | x1' x11'
+NC True  | x11 x1' | p3' | x3' x11'
+NC True  | x11 x1' | p3' | x2' x11'
+NC True  | x11 x3' | p3' | x11'
+NC True  | x11 x3' | p3' | x0 x11'
+NC True  | x11 x3' | p3' | x1 x11'
+NC True  | x11 x3' | p3' | x2 x11'
+NC True  | x11 x3' | p3' | x0' x11'
+NC True  | x11 x3' | p3' | x1' x11'
+NC True  | x11 x3' | p3' | x3' x11'
+NC True  | x11 x3' | p3' | x2' x11'
+NC True  | x11 x2' | p3' | x11'
+NC True  | x11 x2' | p3' | x0 x11'
+NC True  | x11 x2' | p3' | x1 x11'
+NC True  | x11 x2' | p3' | x3 x11'
+NC True  | x11 x2' | p3' | x0' x11'
+NC True  | x11 x2' | p3' | x1' x11'
+NC True  | x11 x2' | p3' | x3' x11'
+NC True  | x11 x2' | p3' | x2' x11'
+NC False  | x11 x10' | p3' | x11' x10
+NC False  | x11 x6' | p3' | x11' x6
+NC True  | x5 x0 | p3' | x5'
+NC True  | x5 x0 | p3' | x0 x5'
+NC True  | x5 x0 | p3' | x1 x5'
+NC True  | x5 x0 | p3' | x3 x5'
+NC True  | x5 x0 | p3' | x2 x5'
+NC True  | x5 x0 | p3' | x1' x5'
+NC True  | x5 x0 | p3' | x3' x5'
+NC True  | x5 x0 | p3' | x2' x5'
+NC False  | x5 x0 | p3' | x5' x1
+NC False  | x5 x0 | p3' | x5' x3
+NC False  | x5 x0 | p3' | x5' x1'
+NC False  | x5 x0 | p3' | x5' x3'
+NC True  | x5 x1 | p3' | x5'
+NC True  | x5 x1 | p3' | x0 x5'
+NC True  | x5 x1 | p3' | x1 x5'
+NC True  | x5 x1 | p3' | x3 x5'
+NC True  | x5 x1 | p3' | x2 x5'
+NC True  | x5 x1 | p3' | x0' x5'
+NC True  | x5 x1 | p3' | x3' x5'
+NC True  | x5 x1 | p3' | x2' x5'
+NC False  | x5 x1 | p3' | x5' x1
+NC False  | x5 x1 | p3' | x5' x3
+NC False  | x5 x1 | p3' | x5' x1'
+NC False  | x5 x1 | p3' | x5' x3'
+NC True  | x5 x3 | p3' | x5'
+NC True  | x5 x3 | p3' | x0 x5'
+NC True  | x5 x3 | p3' | x1 x5'
+NC True  | x5 x3 | p3' | x3 x5'
+NC True  | x5 x3 | p3' | x2 x5'
+NC True  | x5 x3 | p3' | x0' x5'
+NC True  | x5 x3 | p3' | x1' x5'
+NC True  | x5 x3 | p3' | x2' x5'
+NC False  | x5 x3 | p3' | x5' x1
+NC False  | x5 x3 | p3' | x5' x3
+NC False  | x5 x3 | p3' | x5' x1'
+NC False  | x5 x3 | p3' | x5' x3'
+NC True  | x5 x2 | p3' | x5'
+NC True  | x5 x2 | p3' | x0 x5'
+NC True  | x5 x2 | p3' | x1 x5'
+NC True  | x5 x2 | p3' | x3 x5'
+NC True  | x5 x2 | p3' | x2 x5'
+NC True  | x5 x2 | p3' | x0' x5'
+NC True  | x5 x2 | p3' | x1' x5'
+NC True  | x5 x2 | p3' | x3' x5'
+NC False  | x5 x2 | p3' | x5' x1
+NC False  | x5 x2 | p3' | x5' x3
+NC False  | x5 x2 | p3' | x5' x1'
+NC False  | x5 x2 | p3' | x5' x3'
+NC False  | x5 x10 | p3' | x5' x10'
+NC False  | x5 x6 | p3' | x5' x6'
+NC True  | x5 x0' | p3' | x5'
+NC True  | x5 x0' | p3' | x1 x5'
+NC True  | x5 x0' | p3' | x3 x5'
+NC True  | x5 x0' | p3' | x2 x5'
+NC True  | x5 x0' | p3' | x0' x5'
+NC True  | x5 x0' | p3' | x1' x5'
+NC True  | x5 x0' | p3' | x3' x5'
+NC True  | x5 x0' | p3' | x2' x5'
+NC False  | x5 x0' | p3' | x5' x1
+NC False  | x5 x0' | p3' | x5' x3
+NC False  | x5 x0' | p3' | x5' x1'
+NC False  | x5 x0' | p3' | x5' x3'
+NC True  | x5 x1' | p3' | x5'
+NC True  | x5 x1' | p3' | x0 x5'
+NC True  | x5 x1' | p3' | x3 x5'
+NC True  | x5 x1' | p3' | x2 x5'
+NC True  | x5 x1' | p3' | x0' x5'
+NC True  | x5 x1' | p3' | x1' x5'
+NC True  | x5 x1' | p3' | x3' x5'
+NC True  | x5 x1' | p3' | x2' x5'
+NC False  | x5 x1' | p3' | x5' x1
+NC False  | x5 x1' | p3' | x5' x3
+NC False  | x5 x1' | p3' | x5' x1'
+NC False  | x5 x1' | p3' | x5' x3'
+NC True  | x5 x3' | p3' | x5'
+NC True  | x5 x3' | p3' | x0 x5'
+NC True  | x5 x3' | p3' | x1 x5'
+NC True  | x5 x3' | p3' | x2 x5'
+NC True  | x5 x3' | p3' | x0' x5'
+NC True  | x5 x3' | p3' | x1' x5'
+NC True  | x5 x3' | p3' | x3' x5'
+NC True  | x5 x3' | p3' | x2' x5'
+NC False  | x5 x3' | p3' | x5' x1
+NC False  | x5 x3' | p3' | x5' x3
+NC False  | x5 x3' | p3' | x5' x1'
+NC False  | x5 x3' | p3' | x5' x3'
+NC True  | x5 x2' | p3' | x5'
+NC True  | x5 x2' | p3' | x0 x5'
+NC True  | x5 x2' | p3' | x1 x5'
+NC True  | x5 x2' | p3' | x3 x5'
+NC True  | x5 x2' | p3' | x0' x5'
+NC True  | x5 x2' | p3' | x1' x5'
+NC True  | x5 x2' | p3' | x3' x5'
+NC True  | x5 x2' | p3' | x2' x5'
+NC False  | x5 x2' | p3' | x5' x1
+NC False  | x5 x2' | p3' | x5' x3
+NC False  | x5 x2' | p3' | x5' x1'
+NC False  | x5 x2' | p3' | x5' x3'
+NC False  | x5 x10' | p3' | x5' x10
+NC False  | x5 x6' | p3' | x5' x6
+NC True  | x10 x0 | p3' | x10'
+NC True  | x10 x0 | p3' | x0 x10'
+NC True  | x10 x0 | p3' | x1 x10'
+NC True  | x10 x0 | p3' | x3 x10'
+NC True  | x10 x0 | p3' | x2 x10'
+NC True  | x10 x0 | p3' | x1' x10'
+NC True  | x10 x0 | p3' | x3' x10'
+NC True  | x10 x0 | p3' | x2' x10'
+NC True  | x10 x1 | p3' | x10'
+NC True  | x10 x1 | p3' | x0 x10'
+NC True  | x10 x1 | p3' | x1 x10'
+NC True  | x10 x1 | p3' | x3 x10'
+NC True  | x10 x1 | p3' | x2 x10'
+NC True  | x10 x1 | p3' | x0' x10'
+NC True  | x10 x1 | p3' | x3' x10'
+NC True  | x10 x1 | p3' | x2' x10'
+NC True  | x10 x3 | p3' | x10'
+NC True  | x10 x3 | p3' | x0 x10'
+NC True  | x10 x3 | p3' | x1 x10'
+NC True  | x10 x3 | p3' | x3 x10'
+NC True  | x10 x3 | p3' | x2 x10'
+NC True  | x10 x3 | p3' | x0' x10'
+NC True  | x10 x3 | p3' | x1' x10'
+NC True  | x10 x3 | p3' | x2' x10'
+NC True  | x10 x2 | p3' | x10'
+NC True  | x10 x2 | p3' | x0 x10'
+NC True  | x10 x2 | p3' | x1 x10'
+NC True  | x10 x2 | p3' | x3 x10'
+NC True  | x10 x2 | p3' | x2 x10'
+NC True  | x10 x2 | p3' | x0' x10'
+NC True  | x10 x2 | p3' | x1' x10'
+NC True  | x10 x2 | p3' | x3' x10'
+NC False  | x10 x11 | p3' | x10' x11'
+NC False  | x10 x5 | p3' | x10' x5'
+NC True  | x10 x0' | p3' | x10'
+NC True  | x10 x0' | p3' | x1 x10'
+NC True  | x10 x0' | p3' | x3 x10'
+NC True  | x10 x0' | p3' | x2 x10'
+NC True  | x10 x0' | p3' | x0' x10'
+NC True  | x10 x0' | p3' | x1' x10'
+NC True  | x10 x0' | p3' | x3' x10'
+NC True  | x10 x0' | p3' | x2' x10'
+NC True  | x10 x1' | p3' | x10'
+NC True  | x10 x1' | p3' | x0 x10'
+NC True  | x10 x1' | p3' | x3 x10'
+NC True  | x10 x1' | p3' | x2 x10'
+NC True  | x10 x1' | p3' | x0' x10'
+NC True  | x10 x1' | p3' | x1' x10'
+NC True  | x10 x1' | p3' | x3' x10'
+NC True  | x10 x1' | p3' | x2' x10'
+NC True  | x10 x3' | p3' | x10'
+NC True  | x10 x3' | p3' | x0 x10'
+NC True  | x10 x3' | p3' | x1 x10'
+NC True  | x10 x3' | p3' | x2 x10'
+NC True  | x10 x3' | p3' | x0' x10'
+NC True  | x10 x3' | p3' | x1' x10'
+NC True  | x10 x3' | p3' | x3' x10'
+NC True  | x10 x3' | p3' | x2' x10'
+NC True  | x10 x2' | p3' | x10'
+NC True  | x10 x2' | p3' | x0 x10'
+NC True  | x10 x2' | p3' | x1 x10'
+NC True  | x10 x2' | p3' | x3 x10'
+NC True  | x10 x2' | p3' | x0' x10'
+NC True  | x10 x2' | p3' | x1' x10'
+NC True  | x10 x2' | p3' | x3' x10'
+NC True  | x10 x2' | p3' | x2' x10'
+NC False  | x10 x11' | p3' | x10' x11
+NC False  | x10 x5' | p3' | x10' x5
+NC True  | x6 x0 | p3' | x6'
+NC True  | x6 x0 | p3' | x0 x6'
+NC True  | x6 x0 | p3' | x1 x6'
+NC True  | x6 x0 | p3' | x3 x6'
+NC True  | x6 x0 | p3' | x2 x6'
+NC True  | x6 x0 | p3' | x1' x6'
+NC True  | x6 x0 | p3' | x3' x6'
+NC True  | x6 x0 | p3' | x2' x6'
+NC False  | x6 x0 | p3' | x6' x0
+NC False  | x6 x0 | p3' | x6' x2
+NC False  | x6 x0 | p3' | x6' x0'
+NC False  | x6 x0 | p3' | x6' x2'
+NC True  | x6 x1 | p3' | x6'
+NC True  | x6 x1 | p3' | x0 x6'
+NC True  | x6 x1 | p3' | x1 x6'
+NC True  | x6 x1 | p3' | x3 x6'
+NC True  | x6 x1 | p3' | x2 x6'
+NC True  | x6 x1 | p3' | x0' x6'
+NC True  | x6 x1 | p3' | x3' x6'
+NC True  | x6 x1 | p3' | x2' x6'
+NC False  | x6 x1 | p3' | x6' x0
+NC False  | x6 x1 | p3' | x6' x2
+NC False  | x6 x1 | p3' | x6' x0'
+NC False  | x6 x1 | p3' | x6' x2'
+NC True  | x6 x3 | p3' | x6'
+NC True  | x6 x3 | p3' | x0 x6'
+NC True  | x6 x3 | p3' | x1 x6'
+NC True  | x6 x3 | p3' | x3 x6'
+NC True  | x6 x3 | p3' | x2 x6'
+NC True  | x6 x3 | p3' | x0' x6'
+NC True  | x6 x3 | p3' | x1' x6'
+NC True  | x6 x3 | p3' | x2' x6'
+NC False  | x6 x3 | p3' | x6' x0
+NC False  | x6 x3 | p3' | x6' x2
+NC False  | x6 x3 | p3' | x6' x0'
+NC False  | x6 x3 | p3' | x6' x2'
+NC True  | x6 x2 | p3' | x6'
+NC True  | x6 x2 | p3' | x0 x6'
+NC True  | x6 x2 | p3' | x1 x6'
+NC True  | x6 x2 | p3' | x3 x6'
+NC True  | x6 x2 | p3' | x2 x6'
+NC True  | x6 x2 | p3' | x0' x6'
+NC True  | x6 x2 | p3' | x1' x6'
+NC True  | x6 x2 | p3' | x3' x6'
+NC False  | x6 x2 | p3' | x6' x0
+NC False  | x6 x2 | p3' | x6' x2
+NC False  | x6 x2 | p3' | x6' x0'
+NC False  | x6 x2 | p3' | x6' x2'
+NC False  | x6 x11 | p3' | x6' x11'
+NC False  | x6 x5 | p3' | x6' x5'
+NC True  | x6 x0' | p3' | x6'
+NC True  | x6 x0' | p3' | x1 x6'
+NC True  | x6 x0' | p3' | x3 x6'
+NC True  | x6 x0' | p3' | x2 x6'
+NC True  | x6 x0' | p3' | x0' x6'
+NC True  | x6 x0' | p3' | x1' x6'
+NC True  | x6 x0' | p3' | x3' x6'
+NC True  | x6 x0' | p3' | x2' x6'
+NC False  | x6 x0' | p3' | x6' x0
+NC False  | x6 x0' | p3' | x6' x2
+NC False  | x6 x0' | p3' | x6' x0'
+NC False  | x6 x0' | p3' | x6' x2'
+NC True  | x6 x1' | p3' | x6'
+NC True  | x6 x1' | p3' | x0 x6'
+NC True  | x6 x1' | p3' | x3 x6'
+NC True  | x6 x1' | p3' | x2 x6'
+NC True  | x6 x1' | p3' | x0' x6'
+NC True  | x6 x1' | p3' | x1' x6'
+NC True  | x6 x1' | p3' | x3' x6'
+NC True  | x6 x1' | p3' | x2' x6'
+NC False  | x6 x1' | p3' | x6' x0
+NC False  | x6 x1' | p3' | x6' x2
+NC False  | x6 x1' | p3' | x6' x0'
+NC False  | x6 x1' | p3' | x6' x2'
+NC True  | x6 x3' | p3' | x6'
+NC True  | x6 x3' | p3' | x0 x6'
+NC True  | x6 x3' | p3' | x1 x6'
+NC True  | x6 x3' | p3' | x2 x6'
+NC True  | x6 x3' | p3' | x0' x6'
+NC True  | x6 x3' | p3' | x1' x6'
+NC True  | x6 x3' | p3' | x3' x6'
+NC True  | x6 x3' | p3' | x2' x6'
+NC False  | x6 x3' | p3' | x6' x0
+NC False  | x6 x3' | p3' | x6' x2
+NC False  | x6 x3' | p3' | x6' x0'
+NC False  | x6 x3' | p3' | x6' x2'
+NC True  | x6 x2' | p3' | x6'
+NC True  | x6 x2' | p3' | x0 x6'
+NC True  | x6 x2' | p3' | x1 x6'
+NC True  | x6 x2' | p3' | x3 x6'
+NC True  | x6 x2' | p3' | x0' x6'
+NC True  | x6 x2' | p3' | x1' x6'
+NC True  | x6 x2' | p3' | x3' x6'
+NC True  | x6 x2' | p3' | x2' x6'
+NC False  | x6 x2' | p3' | x6' x0
+NC False  | x6 x2' | p3' | x6' x2
+NC False  | x6 x2' | p3' | x6' x0'
+NC False  | x6 x2' | p3' | x6' x2'
+NC False  | x6 x11' | p3' | x6' x11
+NC False  | x6 x5' | p3' | x6' x5
+NC False  | x0' x6 | p3' | x6'
+NC False  | x0' x6 | p3' | x0 x6'
+NC False  | x0' x6 | p3' | x1 x6'
+NC False  | x0' x6 | p3' | x3 x6'
+NC False  | x0' x6 | p3' | x2 x6'
+NC False  | x0' x6 | p3' | x0' x6'
+NC False  | x0' x6 | p3' | x1' x6'
+NC False  | x0' x6 | p3' | x3' x6'
+NC False  | x0' x6 | p3' | x2' x6'
+NC False  | x0' x6 | p3' | x6' x2
+NC False  | x0' x6 | p3' | x6' x0'
+NC False  | x0' x6 | p3' | x6' x2'
+NC False  | x0' x6' | p3' | x6
+NC False  | x0' x6' | p3' | x0 x6
+NC False  | x0' x6' | p3' | x1 x6
+NC False  | x0' x6' | p3' | x3 x6
+NC False  | x0' x6' | p3' | x2 x6
+NC False  | x0' x6' | p3' | x6 x2
+NC False  | x0' x6' | p3' | x6 x0'
+NC False  | x0' x6' | p3' | x6 x2'
+NC False  | x0' x6' | p3' | x0' x6
+NC False  | x0' x6' | p3' | x1' x6
+NC False  | x0' x6' | p3' | x3' x6
+NC False  | x0' x6' | p3' | x2' x6
+NC False  | x1' x5 | p3' | x5'
+NC False  | x1' x5 | p3' | x0 x5'
+NC False  | x1' x5 | p3' | x1 x5'
+NC False  | x1' x5 | p3' | x3 x5'
+NC False  | x1' x5 | p3' | x2 x5'
+NC False  | x1' x5 | p3' | x0' x5'
+NC False  | x1' x5 | p3' | x1' x5'
+NC False  | x1' x5 | p3' | x3' x5'
+NC False  | x1' x5 | p3' | x2' x5'
+NC False  | x1' x5 | p3' | x5' x3
+NC False  | x1' x5 | p3' | x5' x1'
+NC False  | x1' x5 | p3' | x5' x3'
+NC False  | x1' x5' | p3' | x5
+NC False  | x1' x5' | p3' | x0 x5
+NC False  | x1' x5' | p3' | x1 x5
+NC False  | x1' x5' | p3' | x3 x5
+NC False  | x1' x5' | p3' | x2 x5
+NC False  | x1' x5' | p3' | x5 x3
+NC False  | x1' x5' | p3' | x5 x1'
+NC False  | x1' x5' | p3' | x5 x3'
+NC False  | x1' x5' | p3' | x0' x5
+NC False  | x1' x5' | p3' | x1' x5
+NC False  | x1' x5' | p3' | x3' x5
+NC False  | x1' x5' | p3' | x2' x5
+NC False  | x3' x5 | p3' | x5'
+NC False  | x3' x5 | p3' | x0 x5'
+NC False  | x3' x5 | p3' | x1 x5'
+NC False  | x3' x5 | p3' | x3 x5'
+NC False  | x3' x5 | p3' | x2 x5'
+NC False  | x3' x5 | p3' | x0' x5'
+NC False  | x3' x5 | p3' | x1' x5'
+NC False  | x3' x5 | p3' | x3' x5'
+NC False  | x3' x5 | p3' | x2' x5'
+NC False  | x3' x5 | p3' | x5' x1
+NC False  | x3' x5 | p3' | x5' x1'
+NC False  | x3' x5 | p3' | x5' x3'
+NC False  | x3' x5' | p3' | x5
+NC False  | x3' x5' | p3' | x0 x5
+NC False  | x3' x5' | p3' | x1 x5
+NC False  | x3' x5' | p3' | x3 x5
+NC False  | x3' x5' | p3' | x2 x5
+NC False  | x3' x5' | p3' | x5 x1
+NC False  | x3' x5' | p3' | x5 x1'
+NC False  | x3' x5' | p3' | x5 x3'
+NC False  | x3' x5' | p3' | x0' x5
+NC False  | x3' x5' | p3' | x1' x5
+NC False  | x3' x5' | p3' | x3' x5
+NC False  | x3' x5' | p3' | x2' x5
+NC False  | x2' x6 | p3' | x6'
+NC False  | x2' x6 | p3' | x0 x6'
+NC False  | x2' x6 | p3' | x1 x6'
+NC False  | x2' x6 | p3' | x3 x6'
+NC False  | x2' x6 | p3' | x2 x6'
+NC False  | x2' x6 | p3' | x0' x6'
+NC False  | x2' x6 | p3' | x1' x6'
+NC False  | x2' x6 | p3' | x3' x6'
+NC False  | x2' x6 | p3' | x2' x6'
+NC False  | x2' x6 | p3' | x6' x0
+NC False  | x2' x6 | p3' | x6' x0'
+NC False  | x2' x6 | p3' | x6' x2'
+NC False  | x2' x6' | p3' | x6
+NC False  | x2' x6' | p3' | x0 x6
+NC False  | x2' x6' | p3' | x1 x6
+NC False  | x2' x6' | p3' | x3 x6
+NC False  | x2' x6' | p3' | x2 x6
+NC False  | x2' x6' | p3' | x6 x0
+NC False  | x2' x6' | p3' | x6 x0'
+NC False  | x2' x6' | p3' | x6 x2'
+NC False  | x2' x6' | p3' | x0' x6
+NC False  | x2' x6' | p3' | x1' x6
+NC False  | x2' x6' | p3' | x3' x6
+NC False  | x2' x6' | p3' | x2' x6
+NC True  | x4' x0 | p3' | x4
+NC True  | x4' x0 | p3' | x0 x4
+NC True  | x4' x0 | p3' | x1 x4
+NC True  | x4' x0 | p3' | x3 x4
+NC True  | x4' x0 | p3' | x2 x4
+NC True  | x4' x0 | p3' | x1' x4
+NC True  | x4' x0 | p3' | x3' x4
+NC True  | x4' x0 | p3' | x2' x4
+NC True  | x4' x1 | p3' | x4
+NC True  | x4' x1 | p3' | x0 x4
+NC True  | x4' x1 | p3' | x1 x4
+NC True  | x4' x1 | p3' | x3 x4
+NC True  | x4' x1 | p3' | x2 x4
+NC True  | x4' x1 | p3' | x0' x4
+NC True  | x4' x1 | p3' | x3' x4
+NC True  | x4' x1 | p3' | x2' x4
+NC True  | x4' x3 | p3' | x4
+NC True  | x4' x3 | p3' | x0 x4
+NC True  | x4' x3 | p3' | x1 x4
+NC True  | x4' x3 | p3' | x3 x4
+NC True  | x4' x3 | p3' | x2 x4
+NC True  | x4' x3 | p3' | x0' x4
+NC True  | x4' x3 | p3' | x1' x4
+NC True  | x4' x3 | p3' | x2' x4
+NC True  | x4' x2 | p3' | x4
+NC True  | x4' x2 | p3' | x0 x4
+NC True  | x4' x2 | p3' | x1 x4
+NC True  | x4' x2 | p3' | x3 x4
+NC True  | x4' x2 | p3' | x2 x4
+NC True  | x4' x2 | p3' | x0' x4
+NC True  | x4' x2 | p3' | x1' x4
+NC True  | x4' x2 | p3' | x3' x4
+NC True  | x4' x0' | p3' | x4
+NC True  | x4' x0' | p3' | x1 x4
+NC True  | x4' x0' | p3' | x3 x4
+NC True  | x4' x0' | p3' | x2 x4
+NC True  | x4' x0' | p3' | x0' x4
+NC True  | x4' x0' | p3' | x1' x4
+NC True  | x4' x0' | p3' | x3' x4
+NC True  | x4' x0' | p3' | x2' x4
+NC True  | x4' x1' | p3' | x4
+NC True  | x4' x1' | p3' | x0 x4
+NC True  | x4' x1' | p3' | x3 x4
+NC True  | x4' x1' | p3' | x2 x4
+NC True  | x4' x1' | p3' | x0' x4
+NC True  | x4' x1' | p3' | x1' x4
+NC True  | x4' x1' | p3' | x3' x4
+NC True  | x4' x1' | p3' | x2' x4
+NC True  | x4' x3' | p3' | x4
+NC True  | x4' x3' | p3' | x0 x4
+NC True  | x4' x3' | p3' | x1 x4
+NC True  | x4' x3' | p3' | x2 x4
+NC True  | x4' x3' | p3' | x0' x4
+NC True  | x4' x3' | p3' | x1' x4
+NC True  | x4' x3' | p3' | x3' x4
+NC True  | x4' x3' | p3' | x2' x4
+NC True  | x4' x2' | p3' | x4
+NC True  | x4' x2' | p3' | x0 x4
+NC True  | x4' x2' | p3' | x1 x4
+NC True  | x4' x2' | p3' | x3 x4
+NC True  | x4' x2' | p3' | x0' x4
+NC True  | x4' x2' | p3' | x1' x4
+NC True  | x4' x2' | p3' | x3' x4
+NC True  | x4' x2' | p3' | x2' x4
+NC True  | x11' x0 | p3' | x11
+NC True  | x11' x0 | p3' | x0 x11
+NC True  | x11' x0 | p3' | x1 x11
+NC True  | x11' x0 | p3' | x3 x11
+NC True  | x11' x0 | p3' | x2 x11
+NC True  | x11' x0 | p3' | x1' x11
+NC True  | x11' x0 | p3' | x3' x11
+NC True  | x11' x0 | p3' | x2' x11
+NC True  | x11' x1 | p3' | x11
+NC True  | x11' x1 | p3' | x0 x11
+NC True  | x11' x1 | p3' | x1 x11
+NC True  | x11' x1 | p3' | x3 x11
+NC True  | x11' x1 | p3' | x2 x11
+NC True  | x11' x1 | p3' | x0' x11
+NC True  | x11' x1 | p3' | x3' x11
+NC True  | x11' x1 | p3' | x2' x11
+NC True  | x11' x3 | p3' | x11
+NC True  | x11' x3 | p3' | x0 x11
+NC True  | x11' x3 | p3' | x1 x11
+NC True  | x11' x3 | p3' | x3 x11
+NC True  | x11' x3 | p3' | x2 x11
+NC True  | x11' x3 | p3' | x0' x11
+NC True  | x11' x3 | p3' | x1' x11
+NC True  | x11' x3 | p3' | x2' x11
+NC True  | x11' x2 | p3' | x11
+NC True  | x11' x2 | p3' | x0 x11
+NC True  | x11' x2 | p3' | x1 x11
+NC True  | x11' x2 | p3' | x3 x11
+NC True  | x11' x2 | p3' | x2 x11
+NC True  | x11' x2 | p3' | x0' x11
+NC True  | x11' x2 | p3' | x1' x11
+NC True  | x11' x2 | p3' | x3' x11
+NC False  | x11' x10 | p3' | x11 x10'
+NC False  | x11' x6 | p3' | x11 x6'
+NC True  | x11' x0' | p3' | x11
+NC True  | x11' x0' | p3' | x1 x11
+NC True  | x11' x0' | p3' | x3 x11
+NC True  | x11' x0' | p3' | x2 x11
+NC True  | x11' x0' | p3' | x0' x11
+NC True  | x11' x0' | p3' | x1' x11
+NC True  | x11' x0' | p3' | x3' x11
+NC True  | x11' x0' | p3' | x2' x11
+NC True  | x11' x1' | p3' | x11
+NC True  | x11' x1' | p3' | x0 x11
+NC True  | x11' x1' | p3' | x3 x11
+NC True  | x11' x1' | p3' | x2 x11
+NC True  | x11' x1' | p3' | x0' x11
+NC True  | x11' x1' | p3' | x1' x11
+NC True  | x11' x1' | p3' | x3' x11
+NC True  | x11' x1' | p3' | x2' x11
+NC True  | x11' x3' | p3' | x11
+NC True  | x11' x3' | p3' | x0 x11
+NC True  | x11' x3' | p3' | x1 x11
+NC True  | x11' x3' | p3' | x2 x11
+NC True  | x11' x3' | p3' | x0' x11
+NC True  | x11' x3' | p3' | x1' x11
+NC True  | x11' x3' | p3' | x3' x11
+NC True  | x11' x3' | p3' | x2' x11
+NC True  | x11' x2' | p3' | x11
+NC True  | x11' x2' | p3' | x0 x11
+NC True  | x11' x2' | p3' | x1 x11
+NC True  | x11' x2' | p3' | x3 x11
+NC True  | x11' x2' | p3' | x0' x11
+NC True  | x11' x2' | p3' | x1' x11
+NC True  | x11' x2' | p3' | x3' x11
+NC True  | x11' x2' | p3' | x2' x11
+NC False  | x11' x10' | p3' | x11 x10
+NC False  | x11' x6' | p3' | x11 x6
+NC True  | x5' x0 | p3' | x5
+NC True  | x5' x0 | p3' | x0 x5
+NC True  | x5' x0 | p3' | x1 x5
+NC True  | x5' x0 | p3' | x3 x5
+NC True  | x5' x0 | p3' | x2 x5
+NC False  | x5' x0 | p3' | x5 x1
+NC False  | x5' x0 | p3' | x5 x3
+NC False  | x5' x0 | p3' | x5 x1'
+NC False  | x5' x0 | p3' | x5 x3'
+NC True  | x5' x0 | p3' | x1' x5
+NC True  | x5' x0 | p3' | x3' x5
+NC True  | x5' x0 | p3' | x2' x5
+NC True  | x5' x1 | p3' | x5
+NC True  | x5' x1 | p3' | x0 x5
+NC True  | x5' x1 | p3' | x1 x5
+NC True  | x5' x1 | p3' | x3 x5
+NC True  | x5' x1 | p3' | x2 x5
+NC False  | x5' x1 | p3' | x5 x1
+NC False  | x5' x1 | p3' | x5 x3
+NC False  | x5' x1 | p3' | x5 x1'
+NC False  | x5' x1 | p3' | x5 x3'
+NC True  | x5' x1 | p3' | x0' x5
+NC True  | x5' x1 | p3' | x3' x5
+NC True  | x5' x1 | p3' | x2' x5
+NC True  | x5' x3 | p3' | x5
+NC True  | x5' x3 | p3' | x0 x5
+NC True  | x5' x3 | p3' | x1 x5
+NC True  | x5' x3 | p3' | x3 x5
+NC True  | x5' x3 | p3' | x2 x5
+NC False  | x5' x3 | p3' | x5 x1
+NC False  | x5' x3 | p3' | x5 x3
+NC False  | x5' x3 | p3' | x5 x1'
+NC False  | x5' x3 | p3' | x5 x3'
+NC True  | x5' x3 | p3' | x0' x5
+NC True  | x5' x3 | p3' | x1' x5
+NC True  | x5' x3 | p3' | x2' x5
+NC True  | x5' x2 | p3' | x5
+NC True  | x5' x2 | p3' | x0 x5
+NC True  | x5' x2 | p3' | x1 x5
+NC True  | x5' x2 | p3' | x3 x5
+NC True  | x5' x2 | p3' | x2 x5
+NC False  | x5' x2 | p3' | x5 x1
+NC False  | x5' x2 | p3' | x5 x3
+NC False  | x5' x2 | p3' | x5 x1'
+NC False  | x5' x2 | p3' | x5 x3'
+NC True  | x5' x2 | p3' | x0' x5
+NC True  | x5' x2 | p3' | x1' x5
+NC True  | x5' x2 | p3' | x3' x5
+NC False  | x5' x10 | p3' | x5 x10'
+NC False  | x5' x6 | p3' | x5 x6'
+NC True  | x5' x0' | p3' | x5
+NC True  | x5' x0' | p3' | x1 x5
+NC True  | x5' x0' | p3' | x3 x5
+NC True  | x5' x0' | p3' | x2 x5
+NC False  | x5' x0' | p3' | x5 x1
+NC False  | x5' x0' | p3' | x5 x3
+NC False  | x5' x0' | p3' | x5 x1'
+NC False  | x5' x0' | p3' | x5 x3'
+NC True  | x5' x0' | p3' | x0' x5
+NC True  | x5' x0' | p3' | x1' x5
+NC True  | x5' x0' | p3' | x3' x5
+NC True  | x5' x0' | p3' | x2' x5
+NC True  | x5' x1' | p3' | x5
+NC True  | x5' x1' | p3' | x0 x5
+NC True  | x5' x1' | p3' | x3 x5
+NC True  | x5' x1' | p3' | x2 x5
+NC False  | x5' x1' | p3' | x5 x1
+NC False  | x5' x1' | p3' | x5 x3
+NC False  | x5' x1' | p3' | x5 x1'
+NC False  | x5' x1' | p3' | x5 x3'
+NC True  | x5' x1' | p3' | x0' x5
+NC True  | x5' x1' | p3' | x1' x5
+NC True  | x5' x1' | p3' | x3' x5
+NC True  | x5' x1' | p3' | x2' x5
+NC True  | x5' x3' | p3' | x5
+NC True  | x5' x3' | p3' | x0 x5
+NC True  | x5' x3' | p3' | x1 x5
+NC True  | x5' x3' | p3' | x2 x5
+NC False  | x5' x3' | p3' | x5 x1
+NC False  | x5' x3' | p3' | x5 x3
+NC False  | x5' x3' | p3' | x5 x1'
+NC False  | x5' x3' | p3' | x5 x3'
+NC True  | x5' x3' | p3' | x0' x5
+NC True  | x5' x3' | p3' | x1' x5
+NC True  | x5' x3' | p3' | x3' x5
+NC True  | x5' x3' | p3' | x2' x5
+NC True  | x5' x2' | p3' | x5
+NC True  | x5' x2' | p3' | x0 x5
+NC True  | x5' x2' | p3' | x1 x5
+NC True  | x5' x2' | p3' | x3 x5
+NC False  | x5' x2' | p3' | x5 x1
+NC False  | x5' x2' | p3' | x5 x3
+NC False  | x5' x2' | p3' | x5 x1'
+NC False  | x5' x2' | p3' | x5 x3'
+NC True  | x5' x2' | p3' | x0' x5
+NC True  | x5' x2' | p3' | x1' x5
+NC True  | x5' x2' | p3' | x3' x5
+NC True  | x5' x2' | p3' | x2' x5
+NC False  | x5' x10' | p3' | x5 x10
+NC False  | x5' x6' | p3' | x5 x6
+NC True  | x10' x0 | p3' | x10
+NC True  | x10' x0 | p3' | x0 x10
+NC True  | x10' x0 | p3' | x1 x10
+NC True  | x10' x0 | p3' | x3 x10
+NC True  | x10' x0 | p3' | x2 x10
+NC True  | x10' x0 | p3' | x1' x10
+NC True  | x10' x0 | p3' | x3' x10
+NC True  | x10' x0 | p3' | x2' x10
+NC True  | x10' x1 | p3' | x10
+NC True  | x10' x1 | p3' | x0 x10
+NC True  | x10' x1 | p3' | x1 x10
+NC True  | x10' x1 | p3' | x3 x10
+NC True  | x10' x1 | p3' | x2 x10
+NC True  | x10' x1 | p3' | x0' x10
+NC True  | x10' x1 | p3' | x3' x10
+NC True  | x10' x1 | p3' | x2' x10
+NC True  | x10' x3 | p3' | x10
+NC True  | x10' x3 | p3' | x0 x10
+NC True  | x10' x3 | p3' | x1 x10
+NC True  | x10' x3 | p3' | x3 x10
+NC True  | x10' x3 | p3' | x2 x10
+NC True  | x10' x3 | p3' | x0' x10
+NC True  | x10' x3 | p3' | x1' x10
+NC True  | x10' x3 | p3' | x2' x10
+NC True  | x10' x2 | p3' | x10
+NC True  | x10' x2 | p3' | x0 x10
+NC True  | x10' x2 | p3' | x1 x10
+NC True  | x10' x2 | p3' | x3 x10
+NC True  | x10' x2 | p3' | x2 x10
+NC True  | x10' x2 | p3' | x0' x10
+NC True  | x10' x2 | p3' | x1' x10
+NC True  | x10' x2 | p3' | x3' x10
+NC False  | x10' x11 | p3' | x10 x11'
+NC False  | x10' x5 | p3' | x10 x5'
+NC True  | x10' x0' | p3' | x10
+NC True  | x10' x0' | p3' | x1 x10
+NC True  | x10' x0' | p3' | x3 x10
+NC True  | x10' x0' | p3' | x2 x10
+NC True  | x10' x0' | p3' | x0' x10
+NC True  | x10' x0' | p3' | x1' x10
+NC True  | x10' x0' | p3' | x3' x10
+NC True  | x10' x0' | p3' | x2' x10
+NC True  | x10' x1' | p3' | x10
+NC True  | x10' x1' | p3' | x0 x10
+NC True  | x10' x1' | p3' | x3 x10
+NC True  | x10' x1' | p3' | x2 x10
+NC True  | x10' x1' | p3' | x0' x10
+NC True  | x10' x1' | p3' | x1' x10
+NC True  | x10' x1' | p3' | x3' x10
+NC True  | x10' x1' | p3' | x2' x10
+NC True  | x10' x3' | p3' | x10
+NC True  | x10' x3' | p3' | x0 x10
+NC True  | x10' x3' | p3' | x1 x10
+NC True  | x10' x3' | p3' | x2 x10
+NC True  | x10' x3' | p3' | x0' x10
+NC True  | x10' x3' | p3' | x1' x10
+NC True  | x10' x3' | p3' | x3' x10
+NC True  | x10' x3' | p3' | x2' x10
+NC True  | x10' x2' | p3' | x10
+NC True  | x10' x2' | p3' | x0 x10
+NC True  | x10' x2' | p3' | x1 x10
+NC True  | x10' x2' | p3' | x3 x10
+NC True  | x10' x2' | p3' | x0' x10
+NC True  | x10' x2' | p3' | x1' x10
+NC True  | x10' x2' | p3' | x3' x10
+NC True  | x10' x2' | p3' | x2' x10
+NC False  | x10' x11' | p3' | x10 x11
+NC False  | x10' x5' | p3' | x10 x5
+NC True  | x6' x0 | p3' | x6
+NC True  | x6' x0 | p3' | x0 x6
+NC True  | x6' x0 | p3' | x1 x6
+NC True  | x6' x0 | p3' | x3 x6
+NC True  | x6' x0 | p3' | x2 x6
+NC False  | x6' x0 | p3' | x6 x0
+NC False  | x6' x0 | p3' | x6 x2
+NC False  | x6' x0 | p3' | x6 x0'
+NC False  | x6' x0 | p3' | x6 x2'
+NC True  | x6' x0 | p3' | x1' x6
+NC True  | x6' x0 | p3' | x3' x6
+NC True  | x6' x0 | p3' | x2' x6
+NC True  | x6' x1 | p3' | x6
+NC True  | x6' x1 | p3' | x0 x6
+NC True  | x6' x1 | p3' | x1 x6
+NC True  | x6' x1 | p3' | x3 x6
+NC True  | x6' x1 | p3' | x2 x6
+NC False  | x6' x1 | p3' | x6 x0
+NC False  | x6' x1 | p3' | x6 x2
+NC False  | x6' x1 | p3' | x6 x0'
+NC False  | x6' x1 | p3' | x6 x2'
+NC True  | x6' x1 | p3' | x0' x6
+NC True  | x6' x1 | p3' | x3' x6
+NC True  | x6' x1 | p3' | x2' x6
+NC True  | x6' x3 | p3' | x6
+NC True  | x6' x3 | p3' | x0 x6
+NC True  | x6' x3 | p3' | x1 x6
+NC True  | x6' x3 | p3' | x3 x6
+NC True  | x6' x3 | p3' | x2 x6
+NC False  | x6' x3 | p3' | x6 x0
+NC False  | x6' x3 | p3' | x6 x2
+NC False  | x6' x3 | p3' | x6 x0'
+NC False  | x6' x3 | p3' | x6 x2'
+NC True  | x6' x3 | p3' | x0' x6
+NC True  | x6' x3 | p3' | x1' x6
+NC True  | x6' x3 | p3' | x2' x6
+NC True  | x6' x2 | p3' | x6
+NC True  | x6' x2 | p3' | x0 x6
+NC True  | x6' x2 | p3' | x1 x6
+NC True  | x6' x2 | p3' | x3 x6
+NC True  | x6' x2 | p3' | x2 x6
+NC False  | x6' x2 | p3' | x6 x0
+NC False  | x6' x2 | p3' | x6 x2
+NC False  | x6' x2 | p3' | x6 x0'
+NC False  | x6' x2 | p3' | x6 x2'
+NC True  | x6' x2 | p3' | x0' x6
+NC True  | x6' x2 | p3' | x1' x6
+NC True  | x6' x2 | p3' | x3' x6
+NC False  | x6' x11 | p3' | x6 x11'
+NC False  | x6' x5 | p3' | x6 x5'
+NC True  | x6' x0' | p3' | x6
+NC True  | x6' x0' | p3' | x1 x6
+NC True  | x6' x0' | p3' | x3 x6
+NC True  | x6' x0' | p3' | x2 x6
+NC False  | x6' x0' | p3' | x6 x0
+NC False  | x6' x0' | p3' | x6 x2
+NC False  | x6' x0' | p3' | x6 x0'
+NC False  | x6' x0' | p3' | x6 x2'
+NC True  | x6' x0' | p3' | x0' x6
+NC True  | x6' x0' | p3' | x1' x6
+NC True  | x6' x0' | p3' | x3' x6
+NC True  | x6' x0' | p3' | x2' x6
+NC True  | x6' x1' | p3' | x6
+NC True  | x6' x1' | p3' | x0 x6
+NC True  | x6' x1' | p3' | x3 x6
+NC True  | x6' x1' | p3' | x2 x6
+NC False  | x6' x1' | p3' | x6 x0
+NC False  | x6' x1' | p3' | x6 x2
+NC False  | x6' x1' | p3' | x6 x0'
+NC False  | x6' x1' | p3' | x6 x2'
+NC True  | x6' x1' | p3' | x0' x6
+NC True  | x6' x1' | p3' | x1' x6
+NC True  | x6' x1' | p3' | x3' x6
+NC True  | x6' x1' | p3' | x2' x6
+NC True  | x6' x3' | p3' | x6
+NC True  | x6' x3' | p3' | x0 x6
+NC True  | x6' x3' | p3' | x1 x6
+NC True  | x6' x3' | p3' | x2 x6
+NC False  | x6' x3' | p3' | x6 x0
+NC False  | x6' x3' | p3' | x6 x2
+NC False  | x6' x3' | p3' | x6 x0'
+NC False  | x6' x3' | p3' | x6 x2'
+NC True  | x6' x3' | p3' | x0' x6
+NC True  | x6' x3' | p3' | x1' x6
+NC True  | x6' x3' | p3' | x3' x6
+NC True  | x6' x3' | p3' | x2' x6
+NC True  | x6' x2' | p3' | x6
+NC True  | x6' x2' | p3' | x0 x6
+NC True  | x6' x2' | p3' | x1 x6
+NC True  | x6' x2' | p3' | x3 x6
+NC False  | x6' x2' | p3' | x6 x0
+NC False  | x6' x2' | p3' | x6 x2
+NC False  | x6' x2' | p3' | x6 x0'
+NC False  | x6' x2' | p3' | x6 x2'
+NC True  | x6' x2' | p3' | x0' x6
+NC True  | x6' x2' | p3' | x1' x6
+NC True  | x6' x2' | p3' | x3' x6
+NC True  | x6' x2' | p3' | x2' x6
+NC False  | x6' x11' | p3' | x6 x11
+NC False  | x6' x5' | p3' | x6 x5
+NC True  | x1 | p2' | x0 x1'
+NC True  | x1 | p2' | x0' x1'
+NC True  | x3 | p2' | x0 x3'
+NC True  | x3 | p2' | x0' x3'
+NC True  | x2 | p2' | x0 x2'
+NC True  | x2 | p2' | x0' x2'
+NC True  | x4 | p2' | x0 x4'
+NC True  | x4 | p2' | x0' x4'
+NC True  | x11 | p2' | x0 x11'
+NC True  | x11 | p2' | x0' x11'
+NC True  | x5 | p2' | x0 x5'
+NC True  | x5 | p2' | x0' x5'
+NC True  | x10 | p2' | x0 x10'
+NC True  | x10 | p2' | x0' x10'
+NC False  | x10 | p2' | x10' x0
+NC False  | x10 | p2' | x10' x0'
+NC True  | x6 | p2' | x0 x6'
+NC True  | x6 | p2' | x0' x6'
+NC True  | x1' | p2' | x0 x1
+NC True  | x1' | p2' | x0' x1
+NC True  | x3' | p2' | x0 x3
+NC True  | x3' | p2' | x3 x11
+NC True  | x3' | p2' | x3 x11'
+NC True  | x3' | p2' | x0' x3
+NC True  | x2' | p2' | x0 x2
+NC False  | x2' | p2' | x2 x5
+NC False  | x2' | p2' | x2 x5'
+NC True  | x2' | p2' | x0' x2
+NC True  | x4' | p2' | x0 x4
+NC True  | x4' | p2' | x0' x4
+NC True  | x11' | p2' | x0 x11
+NC True  | x11' | p2' | x0' x11
+NC True  | x5' | p2' | x0 x5
+NC True  | x5' | p2' | x0' x5
+NC True  | x10' | p2' | x0 x10
+NC False  | x10' | p2' | x10 x0
+NC False  | x10' | p2' | x10 x0'
+NC True  | x10' | p2' | x0' x10
+NC True  | x6' | p2' | x0 x6
+NC True  | x6' | p2' | x0' x6
+NC False  | x0 x10 | p2' | x10'
+NC False  | x0 x10 | p2' | x0 x10'
+NC False  | x0 x10 | p2' | x0' x10'
+NC False  | x0 x10 | p2' | x10' x0
+NC False  | x0 x10' | p2' | x10
+NC False  | x0 x10' | p2' | x0 x10
+NC False  | x0 x10' | p2' | x10 x0
+NC False  | x0 x10' | p2' | x0' x10
+NC True  | x1 x0 | p2' | x1'
+NC True  | x1 x0 | p2' | x0 x1'
+NC False  | x1 x5 | p2' | x1' x5'
+NC True  | x1 x0' | p2' | x1'
+NC True  | x1 x0' | p2' | x0' x1'
+NC False  | x1 x5' | p2' | x1' x5
+NC True  | x3 x0 | p2' | x3'
+NC True  | x3 x0 | p2' | x0 x3'
+NC False  | x3 x5 | p2' | x3' x5'
+NC False  | x3 x10 | p2' | x3' x10'
+NC True  | x3 x0' | p2' | x3'
+NC True  | x3 x0' | p2' | x0' x3'
+NC False  | x3 x5' | p2' | x3' x5
+NC False  | x3 x10' | p2' | x3' x10
+NC True  | x2 x0 | p2' | x2'
+NC True  | x2 x0 | p2' | x0 x2'
+NC False  | x2 x10 | p2' | x2' x10'
+NC False  | x2 x6 | p2' | x2' x6'
+NC True  | x2 x0' | p2' | x2'
+NC True  | x2 x0' | p2' | x0' x2'
+NC False  | x2 x10' | p2' | x2' x10
+NC False  | x2 x6' | p2' | x2' x6
+NC True  | x4 x0 | p2' | x4'
+NC True  | x4 x0 | p2' | x0 x4'
+NC True  | x4 x0' | p2' | x4'
+NC True  | x4 x0' | p2' | x0' x4'
+NC True  | x11 x0 | p2' | x11'
+NC True  | x11 x0 | p2' | x0 x11'
+NC True  | x11 x0' | p2' | x11'
+NC True  | x11 x0' | p2' | x0' x11'
+NC True  | x11 x3' | p2' | x3
+NC True  | x11 x3' | p2' | x0 x3
+NC True  | x11 x3' | p2' | x3 x11
+NC True  | x11 x3' | p2' | x0' x3
+NC True  | x5 x0 | p2' | x5'
+NC True  | x5 x0 | p2' | x0 x5'
+NC False  | x5 x1 | p2' | x5' x1'
+NC False  | x5 x3 | p2' | x5' x3'
+NC False  | x5 x10 | p2' | x5' x10'
+NC True  | x5 x0' | p2' | x5'
+NC True  | x5 x0' | p2' | x0' x5'
+NC False  | x5 x1' | p2' | x5' x1
+NC False  | x5 x3' | p2' | x5' x3
+NC False  | x5 x2' | p2' | x2
+NC False  | x5 x2' | p2' | x0 x2
+NC False  | x5 x2' | p2' | x2 x5
+NC False  | x5 x2' | p2' | x0' x2
+NC False  | x5 x10' | p2' | x5' x10
+NC True  | x10 x0 | p2' | x10'
+NC True  | x10 x0 | p2' | x0 x10'
+NC False  | x10 x0 | p2' | x10' x0
+NC False  | x10 x0 | p2' | x10' x0'
+NC False  | x10 x3 | p2' | x10' x3'
+NC False  | x10 x2 | p2' | x10' x2'
+NC False  | x10 x5 | p2' | x10' x5'
+NC True  | x10 x0' | p2' | x10'
+NC True  | x10 x0' | p2' | x0' x10'
+NC False  | x10 x0' | p2' | x10' x0
+NC False  | x10 x0' | p2' | x10' x0'
+NC False  | x10 x3' | p2' | x10' x3
+NC False  | x10 x2' | p2' | x10' x2
+NC False  | x10 x5' | p2' | x10' x5
+NC True  | x6 x0 | p2' | x6'
+NC True  | x6 x0 | p2' | x0 x6'
+NC False  | x6 x2 | p2' | x6' x2'
+NC True  | x6 x0' | p2' | x6'
+NC True  | x6 x0' | p2' | x0' x6'
+NC False  | x6 x2' | p2' | x6' x2
+NC False  | x0' x10 | p2' | x10'
+NC False  | x0' x10 | p2' | x0 x10'
+NC False  | x0' x10 | p2' | x0' x10'
+NC False  | x0' x10 | p2' | x10' x0'
+NC False  | x0' x10' | p2' | x10
+NC False  | x0' x10' | p2' | x0 x10
+NC False  | x0' x10' | p2' | x10 x0'
+NC False  | x0' x10' | p2' | x0' x10
+NC True  | x1' x0 | p2' | x1
+NC True  | x1' x0 | p2' | x0 x1
+NC False  | x1' x5 | p2' | x1 x5'
+NC True  | x1' x0' | p2' | x1
+NC True  | x1' x0' | p2' | x0' x1
+NC False  | x1' x5' | p2' | x1 x5
+NC True  | x3' x0 | p2' | x3
+NC True  | x3' x0 | p2' | x0 x3
+NC True  | x3' x0 | p2' | x3 x11
+NC True  | x3' x0 | p2' | x3 x11'
+NC False  | x3' x5 | p2' | x3 x5'
+NC False  | x3' x10 | p2' | x3 x10'
+NC True  | x3' x0' | p2' | x3
+NC True  | x3' x0' | p2' | x3 x11
+NC True  | x3' x0' | p2' | x3 x11'
+NC True  | x3' x0' | p2' | x0' x3
+NC False  | x3' x5' | p2' | x3 x5
+NC False  | x3' x10' | p2' | x3 x10
+NC True  | x2' x0 | p2' | x2
+NC True  | x2' x0 | p2' | x0 x2
+NC False  | x2' x0 | p2' | x2 x5
+NC False  | x2' x0 | p2' | x2 x5'
+NC False  | x2' x10 | p2' | x2 x10'
+NC False  | x2' x6 | p2' | x2 x6'
+NC True  | x2' x0' | p2' | x2
+NC False  | x2' x0' | p2' | x2 x5
+NC False  | x2' x0' | p2' | x2 x5'
+NC True  | x2' x0' | p2' | x0' x2
+NC False  | x2' x10' | p2' | x2 x10
+NC False  | x2' x6' | p2' | x2 x6
+NC True  | x4' x0 | p2' | x4
+NC True  | x4' x0 | p2' | x0 x4
+NC True  | x4' x0' | p2' | x4
+NC True  | x4' x0' | p2' | x0' x4
+NC True  | x11' x0 | p2' | x11
+NC True  | x11' x0 | p2' | x0 x11
+NC True  | x11' x0' | p2' | x11
+NC True  | x11' x0' | p2' | x0' x11
+NC True  | x11' x3' | p2' | x3
+NC True  | x11' x3' | p2' | x0 x3
+NC True  | x11' x3' | p2' | x3 x11'
+NC True  | x11' x3' | p2' | x0' x3
+NC True  | x5' x0 | p2' | x5
+NC True  | x5' x0 | p2' | x0 x5
+NC False  | x5' x1 | p2' | x5 x1'
+NC False  | x5' x3 | p2' | x5 x3'
+NC False  | x5' x10 | p2' | x5 x10'
+NC True  | x5' x0' | p2' | x5
+NC True  | x5' x0' | p2' | x0' x5
+NC False  | x5' x1' | p2' | x5 x1
+NC False  | x5' x3' | p2' | x5 x3
+NC False  | x5' x2' | p2' | x2
+NC False  | x5' x2' | p2' | x0 x2
+NC False  | x5' x2' | p2' | x2 x5'
+NC False  | x5' x2' | p2' | x0' x2
+NC False  | x5' x10' | p2' | x5 x10
+NC True  | x10' x0 | p2' | x10
+NC True  | x10' x0 | p2' | x0 x10
+NC False  | x10' x0 | p2' | x10 x0
+NC False  | x10' x0 | p2' | x10 x0'
+NC False  | x10' x3 | p2' | x10 x3'
+NC False  | x10' x2 | p2' | x10 x2'
+NC False  | x10' x5 | p2' | x10 x5'
+NC True  | x10' x0' | p2' | x10
+NC False  | x10' x0' | p2' | x10 x0
+NC False  | x10' x0' | p2' | x10 x0'
+NC True  | x10' x0' | p2' | x0' x10
+NC False  | x10' x3' | p2' | x10 x3
+NC False  | x10' x2' | p2' | x10 x2
+NC False  | x10' x5' | p2' | x10 x5
+NC True  | x6' x0 | p2' | x6
+NC True  | x6' x0 | p2' | x0 x6
+NC False  | x6' x2 | p2' | x6 x2'
+NC True  | x6' x0' | p2' | x6
+NC True  | x6' x0' | p2' | x0' x6
+NC False  | x6' x2' | p2' | x6 x2
+NC False  | x1 x5 | p1' | x1' x5'
+NC False  | x1 x5' | p1' | x1' x5
+NC False  | x3 x11 | p1' | x3' x11'
+NC False  | x3 x5 | p1' | x3' x5'
+NC False  | x3 x11' | p1' | x3' x11
+NC False  | x3 x5' | p1' | x3' x5
+NC False  | x2 x6 | p1' | x2' x6'
+NC False  | x2 x6' | p1' | x2' x6
+NC False  | x11 x3 | p1' | x11' x3'
+NC False  | x11 x3' | p1' | x11' x3
+NC False  | x5 x1 | p1' | x5' x1'
+NC False  | x5 x3 | p1' | x5' x3'
+NC False  | x5 x10 | p1' | x5' x10'
+NC False  | x5 x1' | p1' | x5' x1
+NC False  | x5 x3' | p1' | x5' x3
+NC False  | x5 x10' | p1' | x5' x10
+NC False  | x10 x5 | p1' | x10' x5'
+NC False  | x10 x5' | p1' | x10' x5
+NC False  | x6 x2 | p1' | x6' x2'
+NC False  | x6 x2' | p1' | x6' x2
+NC False  | x1' x5 | p1' | x1 x5'
+NC False  | x1' x5' | p1' | x1 x5
+NC False  | x3' x11 | p1' | x3 x11'
+NC False  | x3' x5 | p1' | x3 x5'
+NC False  | x3' x11' | p1' | x3 x11
+NC False  | x3' x5' | p1' | x3 x5
+NC False  | x2' x6 | p1' | x2 x6'
+NC False  | x2' x6' | p1' | x2 x6
+NC False  | x11' x3 | p1' | x11 x3'
+NC False  | x11' x3' | p1' | x11 x3
+NC False  | x5' x1 | p1' | x5 x1'
+NC False  | x5' x3 | p1' | x5 x3'
+NC False  | x5' x10 | p1' | x5 x10'
+NC False  | x5' x1' | p1' | x5 x1
+NC False  | x5' x3' | p1' | x5 x3
+NC False  | x5' x10' | p1' | x5 x10
+NC False  | x10' x5 | p1' | x10 x5'
+NC False  | x10' x5' | p1' | x10 x5
+NC False  | x6' x2 | p1' | x6 x2'
+NC False  | x6' x2' | p1' | x6 x2
+NC True p3 | x1 | p2 | x0 x1'
+NC True p3 | x1 | p2 | x0' x1'
+NC True p3 | x3 | p2 | x0 x3'
+NC True p3 | x3 | p2 | x0' x3'
+NC True p3 | x2 | p2 | x0 x2'
+NC True p3 | x2 | p2 | x0' x2'
+NC True p3 | x1' | p2 | x0 x1
+NC True p3 | x1' | p2 | x0' x1
+NC True p3 | x3' | p2 | x0 x3
+NC True p3 | x3' | p2 | x0' x3
+NC True p3 | x2' | p2 | x0 x2
+NC True p3 | x2' | p2 | x0' x2
+NC True p3 | x1 x0 | p2 | x1'
+NC True p3 | x1 x0 | p2 | x0 x1'
+NC True p3 | x1 x0' | p2 | x1'
+NC True p3 | x1 x0' | p2 | x0' x1'
+NC True p3 | x3 x0 | p2 | x3'
+NC True p3 | x3 x0 | p2 | x0 x3'
+NC True p3 | x3 x0' | p2 | x3'
+NC True p3 | x3 x0' | p2 | x0' x3'
+NC True p3 | x2 x0 | p2 | x2'
+NC True p3 | x2 x0 | p2 | x0 x2'
+NC True p3 | x2 x0' | p2 | x2'
+NC True p3 | x2 x0' | p2 | x0' x2'
+NC True p3 | x11 x3' | p2 | x3
+NC True p3 | x11 x3' | p2 | x0 x3
+NC True p3 | x11 x3' | p2 | x0' x3
+NC False p3 | x5 x2' | p2 | x2
+NC False p3 | x5 x2' | p2 | x0 x2
+NC False p3 | x5 x2' | p2 | x0' x2
+NC True p3 | x1' x0 | p2 | x1
+NC True p3 | x1' x0 | p2 | x0 x1
+NC True p3 | x1' x0' | p2 | x1
+NC True p3 | x1' x0' | p2 | x0' x1
+NC True p3 | x3' x0 | p2 | x3
+NC True p3 | x3' x0 | p2 | x0 x3
+NC True p3 | x3' x0' | p2 | x3
+NC True p3 | x3' x0' | p2 | x0' x3
+NC True p3 | x2' x0 | p2 | x2
+NC True p3 | x2' x0 | p2 | x0 x2
+NC True p3 | x2' x0' | p2 | x2
+NC True p3 | x2' x0' | p2 | x0' x2
+NC True p3 | x11' x3' | p2 | x3
+NC True p3 | x11' x3' | p2 | x0 x3
+NC True p3 | x11' x3' | p2 | x0' x3
+NC False p3 | x5' x2' | p2 | x2
+NC False p3 | x5' x2' | p2 | x0 x2
+NC False p3 | x5' x2' | p2 | x0' x2
+NC True p3 | x1 | p2' | x0 x1'
+NC True p3 | x1 | p2' | x0' x1'
+NC True p3 | x3 | p2' | x0 x3'
+NC True p3 | x3 | p2' | x0' x3'
+NC True p3 | x2 | p2' | x0 x2'
+NC True p3 | x2 | p2' | x0' x2'
+NC True p3 | x1' | p2' | x0 x1
+NC True p3 | x1' | p2' | x0' x1
+NC True p3 | x3' | p2' | x0 x3
+NC True p3 | x3' | p2' | x0' x3
+NC True p3 | x2' | p2' | x0 x2
+NC True p3 | x2' | p2' | x0' x2
+NC True p3 | x1 x0 | p2' | x1'
+NC True p3 | x1 x0 | p2' | x0 x1'
+NC True p3 | x1 x0' | p2' | x1'
+NC True p3 | x1 x0' | p2' | x0' x1'
+NC True p3 | x3 x0 | p2' | x3'
+NC True p3 | x3 x0 | p2' | x0 x3'
+NC True p3 | x3 x0' | p2' | x3'
+NC True p3 | x3 x0' | p2' | x0' x3'
+NC True p3 | x2 x0 | p2' | x2'
+NC True p3 | x2 x0 | p2' | x0 x2'
+NC True p3 | x2 x0' | p2' | x2'
+NC True p3 | x2 x0' | p2' | x0' x2'
+NC True p3 | x11 x3' | p2' | x3
+NC True p3 | x11 x3' | p2' | x0 x3
+NC True p3 | x11 x3' | p2' | x0' x3
+NC False p3 | x5 x2' | p2' | x2
+NC False p3 | x5 x2' | p2' | x0 x2
+NC False p3 | x5 x2' | p2' | x0' x2
+NC True p3 | x1' x0 | p2' | x1
+NC True p3 | x1' x0 | p2' | x0 x1
+NC True p3 | x1' x0' | p2' | x1
+NC True p3 | x1' x0' | p2' | x0' x1
+NC True p3 | x3' x0 | p2' | x3
+NC True p3 | x3' x0 | p2' | x0 x3
+NC True p3 | x3' x0' | p2' | x3
+NC True p3 | x3' x0' | p2' | x0' x3
+NC True p3 | x2' x0 | p2' | x2
+NC True p3 | x2' x0 | p2' | x0 x2
+NC True p3 | x2' x0' | p2' | x2
+NC True p3 | x2' x0' | p2' | x0' x2
+NC True p3 | x11' x3' | p2' | x3
+NC True p3 | x11' x3' | p2' | x0 x3
+NC True p3 | x11' x3' | p2' | x0' x3
+NC False p3 | x5' x2' | p2' | x2
+NC False p3 | x5' x2' | p2' | x0 x2
+NC False p3 | x5' x2' | p2' | x0' x2
+NC True p3' | x1 | p2 | x0 x1'
+NC True p3' | x1 | p2 | x0' x1'
+NC True p3' | x3 | p2 | x0 x3'
+NC True p3' | x3 | p2 | x0' x3'
+NC True p3' | x2 | p2 | x0 x2'
+NC True p3' | x2 | p2 | x0' x2'
+NC True p3' | x1' | p2 | x0 x1
+NC True p3' | x1' | p2 | x0' x1
+NC True p3' | x3' | p2 | x0 x3
+NC True p3' | x3' | p2 | x0' x3
+NC True p3' | x2' | p2 | x0 x2
+NC True p3' | x2' | p2 | x0' x2
+NC True p3' | x1 x0 | p2 | x1'
+NC True p3' | x1 x0 | p2 | x0 x1'
+NC True p3' | x1 x0' | p2 | x1'
+NC True p3' | x1 x0' | p2 | x0' x1'
+NC True p3' | x3 x0 | p2 | x3'
+NC True p3' | x3 x0 | p2 | x0 x3'
+NC True p3' | x3 x0' | p2 | x3'
+NC True p3' | x3 x0' | p2 | x0' x3'
+NC True p3' | x2 x0 | p2 | x2'
+NC True p3' | x2 x0 | p2 | x0 x2'
+NC True p3' | x2 x0' | p2 | x2'
+NC True p3' | x2 x0' | p2 | x0' x2'
+NC True p3' | x11 x3' | p2 | x3
+NC True p3' | x11 x3' | p2 | x0 x3
+NC True p3' | x11 x3' | p2 | x0' x3
+NC False p3' | x5 x2' | p2 | x2
+NC False p3' | x5 x2' | p2 | x0 x2
+NC False p3' | x5 x2' | p2 | x0' x2
+NC True p3' | x1' x0 | p2 | x1
+NC True p3' | x1' x0 | p2 | x0 x1
+NC True p3' | x1' x0' | p2 | x1
+NC True p3' | x1' x0' | p2 | x0' x1
+NC True p3' | x3' x0 | p2 | x3
+NC True p3' | x3' x0 | p2 | x0 x3
+NC True p3' | x3' x0' | p2 | x3
+NC True p3' | x3' x0' | p2 | x0' x3
+NC True p3' | x2' x0 | p2 | x2
+NC True p3' | x2' x0 | p2 | x0 x2
+NC True p3' | x2' x0' | p2 | x2
+NC True p3' | x2' x0' | p2 | x0' x2
+NC True p3' | x11' x3' | p2 | x3
+NC True p3' | x11' x3' | p2 | x0 x3
+NC True p3' | x11' x3' | p2 | x0' x3
+NC False p3' | x5' x2' | p2 | x2
+NC False p3' | x5' x2' | p2 | x0 x2
+NC False p3' | x5' x2' | p2 | x0' x2
+NC True p3' | x1 | p2' | x0 x1'
+NC True p3' | x1 | p2' | x0' x1'
+NC True p3' | x3 | p2' | x0 x3'
+NC True p3' | x3 | p2' | x0' x3'
+NC True p3' | x2 | p2' | x0 x2'
+NC True p3' | x2 | p2' | x0' x2'
+NC True p3' | x1' | p2' | x0 x1
+NC True p3' | x1' | p2' | x0' x1
+NC True p3' | x3' | p2' | x0 x3
+NC True p3' | x3' | p2' | x0' x3
+NC True p3' | x2' | p2' | x0 x2
+NC True p3' | x2' | p2' | x0' x2
+NC True p3' | x1 x0 | p2' | x1'
+NC True p3' | x1 x0 | p2' | x0 x1'
+NC True p3' | x1 x0' | p2' | x1'
+NC True p3' | x1 x0' | p2' | x0' x1'
+NC True p3' | x3 x0 | p2' | x3'
+NC True p3' | x3 x0 | p2' | x0 x3'
+NC True p3' | x3 x0' | p2' | x3'
+NC True p3' | x3 x0' | p2' | x0' x3'
+NC True p3' | x2 x0 | p2' | x2'
+NC True p3' | x2 x0 | p2' | x0 x2'
+NC True p3' | x2 x0' | p2' | x2'
+NC True p3' | x2 x0' | p2' | x0' x2'
+NC True p3' | x11 x3' | p2' | x3
+NC True p3' | x11 x3' | p2' | x0 x3
+NC True p3' | x11 x3' | p2' | x0' x3
+NC False p3' | x5 x2' | p2' | x2
+NC False p3' | x5 x2' | p2' | x0 x2
+NC False p3' | x5 x2' | p2' | x0' x2
+NC True p3' | x1' x0 | p2' | x1
+NC True p3' | x1' x0 | p2' | x0 x1
+NC True p3' | x1' x0' | p2' | x1
+NC True p3' | x1' x0' | p2' | x0' x1
+NC True p3' | x3' x0 | p2' | x3
+NC True p3' | x3' x0 | p2' | x0 x3
+NC True p3' | x3' x0' | p2' | x3
+NC True p3' | x3' x0' | p2' | x0' x3
+NC True p3' | x2' x0 | p2' | x2
+NC True p3' | x2' x0 | p2' | x0 x2
+NC True p3' | x2' x0' | p2' | x2
+NC True p3' | x2' x0' | p2' | x0' x2
+NC True p3' | x11' x3' | p2' | x3
+NC True p3' | x11' x3' | p2' | x0 x3
+NC True p3' | x11' x3' | p2' | x0' x3
+NC False p3' | x5' x2' | p2' | x2
+NC False p3' | x5' x2' | p2' | x0 x2
+NC False p3' | x5' x2' | p2' | x0' x2
+{'shadow solutions': 67208, 'commuting': 64360, 'non-commuting, genuine': 1828, 'non-commuting, not genuine': 1020} 259 s

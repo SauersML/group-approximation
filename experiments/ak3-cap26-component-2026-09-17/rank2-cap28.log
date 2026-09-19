@@ -1,0 +1,115 @@
+RANK 2 CAP 28 NPERM 8 NWA 12
+depth 1 states 133
+depth 2 states 10457
+depth 3 states 74375
+depth 4 states 272242
+depth 5 states 715890
+SLOT END states 1510488 head 603136 depth 5
+resumed c28.ck: states 1510488 head 603136 depth 5
+depth 6 states 1605370
+SLOT END states 2375230 head 1377280 depth 6
+resumed c28.ck: states 2375230 head 1377280 depth 6
+depth 7 states 2790140
+SLOT END states 3922258 head 2147328 depth 7
+resumed c28.ck: states 3922258 head 2147328 depth 7
+depth 8 states 4184922
+SLOT END states 4288431 head 2966528 depth 8
+resumed c28.ck: states 4288431 head 2966528 depth 8
+SLOT END states 4628798 head 3652608 depth 8
+resumed c28.ck: states 4628798 head 3652608 depth 8
+SLOT END states 5450177 head 4156416 depth 8
+resumed c28.ck: states 5450177 head 4156416 depth 8
+depth 9 states 5470260
+SLOT END states 6300147 head 4704256 depth 9
+resumed c28.ck: states 6300147 head 4704256 depth 9
+SLOT END states 6537117 head 5276672 depth 9
+resumed c28.ck: states 6537117 head 5276672 depth 9
+depth 10 states 6621948
+SLOT END states 6770697 head 5834752 depth 10
+resumed c28.ck: states 6770697 head 5834752 depth 10
+SLOT END states 7173153 head 6383616 depth 10
+resumed c28.ck: states 7173153 head 6383616 depth 10
+depth 11 states 7557353
+SLOT END states 7981753 head 6876160 depth 11
+resumed c28.ck: states 7981753 head 6876160 depth 11
+SLOT END states 8292966 head 7512064 depth 11
+resumed c28.ck: states 8292966 head 7512064 depth 11
+depth 12 states 8328245
+SLOT END states 8594421 head 8060928 depth 12
+resumed c28.ck: states 8594421 head 8060928 depth 12
+depth 13 states 8920464
+SLOT END states 9104418 head 8446976 depth 13
+resumed c28.ck: states 9104418 head 8446976 depth 13
+depth 14 states 9392432
+SLOT END states 9399459 head 8939520 depth 14
+resumed c28.ck: states 9399459 head 8939520 depth 14
+depth 15 states 9758585
+SLOT END states 9765944 head 9395200 depth 15
+resumed c28.ck: states 9765944 head 9395200 depth 15
+depth 16 states 10053088
+SLOT END states 10068395 head 9817088 depth 16
+resumed c28.ck: states 10068395 head 9817088 depth 16
+depth 17 states 10272248
+depth 18 states 10445501
+SLOT END states 10446174 head 10273792 depth 18
+resumed c28.ck: states 10446174 head 10273792 depth 18
+depth 19 states 10582855
+depth 20 states 10693476
+# (container restart during this slot: the slot was lost with no checkpoint written, and run.sh was restarted, resuming from the same depth-18 checkpoint)
+resumed c28.ck: states 10446174 head 10273792 depth 18
+depth 19 states 10582855
+depth 20 states 10693476
+depth 21 states 10798395
+depth 22 states 10901125
+depth 23 states 11014950
+depth 24 states 11115842
+SLOT END states 11161762 head 11064320 depth 24
+resumed c28.ck: states 11161762 head 11064320 depth 24
+depth 25 states 11208376
+depth 26 states 11284007
+depth 27 states 11347010
+depth 28 states 11396072
+depth 29 states 11433175
+depth 30 states 11460518
+depth 31 states 11480452
+depth 32 states 11495247
+depth 33 states 11505932
+depth 34 states 11513150
+depth 35 states 11517965
+depth 36 states 11521312
+depth 37 states 11523684
+depth 38 states 11525701
+depth 39 states 11527265
+depth 40 states 11528646
+depth 41 states 11529957
+depth 42 states 11531146
+depth 43 states 11532015
+depth 44 states 11532666
+depth 45 states 11533133
+depth 46 states 11533553
+depth 47 states 11533897
+depth 48 states 11534245
+depth 49 states 11534472
+depth 50 states 11534636
+depth 51 states 11534729
+depth 52 states 11534820
+depth 53 states 11534891
+depth 54 states 11534966
+depth 55 states 11535010
+depth 56 states 11535046
+depth 57 states 11535064
+depth 58 states 11535091
+depth 59 states 11535104
+depth 60 states 11535121
+depth 61 states 11535130
+depth 62 states 11535137
+depth 63 states 11535141
+depth 64 states 11535148
+depth 65 states 11535156
+depth 66 states 11535166
+depth 67 states 11535170
+depth 68 states 11535176
+EXHAUSTED depth 68 states 11535176 processed 11535176; PRIM tests 11535175, goals PRIM 0
+lengths: 13:2 14:5 15:72 16:83 17:476 18:541 19:2911 20:3180 21:17339 22:18954 23:103537 24:120917 25:645260 26:809954 27:4188175 28:5623770
+dumped 11535176 states to c28.ck.txt
+FINAL exit 0

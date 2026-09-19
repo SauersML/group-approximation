@@ -1,0 +1,6 @@
+orb_e8_L2.g deg=35520 log2|G|=15 ord b=64 t=148
+  class=4 derlen=2 exp=64
+orb_e8_L3.g deg=395776 log2|G|=17 ord b=64 t=8372
+  class=4 derlen=2 exp=64
+orb_e8_L4.g deg=1015296 log2|G|=17 ord b=64 t=17282
+  class=4 derlen=2 exp=64

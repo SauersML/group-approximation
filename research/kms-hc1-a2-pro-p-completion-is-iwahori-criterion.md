@@ -211,3 +211,62 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    left is group-level input with no graded shadow, namely the
    non-homogeneous tails of `(1+X)^p` and of the Heisenberg commutators. See
    `kms-hc1-kassel-classes-survive-restricted-initial-forms`.
+
+6. **First-order edge jumps at `(p,p,p)`, `p=5,7`; reduction of the first
+   Kassel direction.** Evaluate each first-order Rees jump by functionals
+   `rho_alpha: A -> u(N_alpha)`, where `N_alpha` is the Kassel extension with
+   `(h_A t)^[p] = h_A t^p + alpha_A z` and `(h_B t)^[p] = h_B t^p + alpha_B z`.
+   This gives absolute coordinates on the 3-dimensional space
+   `W = ker(A -> u(L_p))/(J+Z)` at `(p,p,p)`.
+   - The lifts have coordinates `K=(2,0,0)`, `C1=(-2,1,1)` and `C2=(1,-1,0)`,
+     the same for `p=5,7,11,13`.
+   - For both `p=5` and `p=7`, there is one jump `2p+1 -> 3p` per edge:
+     `S_ab=(-1,-1,-1)`, `S_bc=(0,1,0)` and `S_ca=(0,0,-1)`. These are
+     independent, with determinant 1. This is the first `p=7` computation at
+     degree 21.
+   - The predicted step "the `[c,a]^p` S-pair jump equals `K`" is **false as
+     stated.** In fact `S_ca = -K/2 - C1 - C2` and
+     `K = 2(S_ca - S_ab - S_bc)`, so all three edges are needed. The triangle
+     word has multidegree `(3,1,3)` for every `p`, not `(p-2,1,p-2)`. Each
+     edge jump is the restricted p-power relation of one affine coroot, with
+     the Kassel coordinate only on `ab`.
+   - Reduction, given Open 1: if the three edge jumps are independent at
+     `(p,p,p)`, then `gr I = ker(A -> u(L_p))` through degree `3p`. That is
+     the `n=1` case of Open 2. So `n=1` is proved for `p=5,7`, and for
+     `p >= 11` it reduces to one finite statement `(E_p)`.
+   - The symbolic argument breaks at the `t^0`-reduction of the overlap
+     `(Y_cY_a)^p Y_b`. It has about `p` steps, and its cofactors have no
+     closed form. At `p=11` the program runs out of 2 GB storing
+     `u(N_alpha)` images at multidegree `(p,p-1,p)`.
+   See `kms-hc1-edge-s-pair-jumps-are-affine-coroot-p-power-relations`.
+
+7. **`(E_11)` exact; for every `p`, `(E_p)` reduces to one scalar.** Store
+   each t-part as its vector in the induced module
+   `M = u(N)/u(N)H^+`, where `H` is the edge Heisenberg subalgebra. The
+   functional is the `z`-coefficient of the vector. This makes `p=11`
+   exact, at 130-175 s per slice.
+   - At `p=11` the jumps are `S_ca=(0,0,-1)`, `S_bc=(0,1,0)` and
+     `S_ab=(-1,-1,-1)`, with determinant `-1`. So `(E_11)` holds, and
+     `gr I = ker(A -> u(L_11))` through degree 33.
+   - For every `p`, the ca jump is carried by the unique u(h)-syzygy
+     `sigma = 2e_(p-3)+3e_(p-2)` of the two `b`-ending seeds that uses
+     `e^p = 0`, the `(Y_cY_a)^p` Witt carry.
+   - Its restricted part is `6 alpha_B` for every `p >= 5`. This is a
+     derivation count with Wilson's theorem, given the seed t-parts
+     `E23^(p-2)E13^2` and `-E23^(p-2)(E21 t)^2`. Those are numeric for
+     `p <= 13`.
+   - A rotation lemma gives the other two edges. `tau = Ad(diag(1,t,t) Pi)`
+     lifts to `N_(kappa,alpha') -> N_(kappa,alpha)` with
+     `alpha'_A = alpha_B` and `alpha'_B = -alpha_A-alpha_B-kappa`. So the
+     three edge rows are the rotations of `(k,0,6)`, with determinant
+     `108(k-2)`.
+   - Hence `(E_p)` holds iff `k(p) != 2 mod p`. Equivalently, the ca syzygy
+     does not vanish on the rotation-invariant extension
+     `N_(1,-1/3,-1/3)`.
+   - Exact: `k = 0` at `p = 5, 7, 11, 13` (`p=13` from the closed-form
+     seeds alone, SEEDFORM with a capped memo). So `(E_11)` is exact and
+     `(E_13)` holds given the lift.
+   - Open: a symbolic evaluation of the `kappa`-part `k(p)`. It comes from
+     straightening in `M` and is not a derivation count.
+
+   See `kms-hc1-ca-edge-defect-is-a-witt-carry-syzygy`.

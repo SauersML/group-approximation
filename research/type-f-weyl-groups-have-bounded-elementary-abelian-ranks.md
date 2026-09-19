@@ -100,3 +100,36 @@ Proof: route `type-f-weyl-groups-have-bounded-elementary-abelian-ranks-proof`.
     (`Z/2 ≀ Z` on `T_3 × T_3`, `SL_3(F_q[t])`), so the bound of this node has
     no geometric analogue there.
   - See `commensurated-cat0-witnesses-force-finite-rational-cd`.
+- **Neretin-type (Thompson-like) completions are dead by property (T);
+  discrete completions reduce to this node** (proposed-established, w12-117,
+  2026-09-18).
+  - For any cut-out `N = F ∩ ρ^{-1}(K)` with `K` compact open in a locally
+    compact `H`, `F/N ≅ F̂/M` with `M` compact open normal. So `F/N` is
+    Haagerup (resp. amenable, resp. has only finite (T) subgroups) when `H`
+    is.
+  - Neretin groups act properly on CAT(0) cube complexes (Genevois–Lonjou–
+    Urech), so hosts built from `V`, `T`, `F` or Cremona groups with `Σ` a
+    tree-automorphism cut-out never witness `N_U`, since `SL_3(Z) ≤ U`.
+  - A discrete completion forces a finite-index normal core of `Σ`, where
+    the bound of this node applies.
+  - Grigorchuk's group has no finite-dimensional CAT(0) cut-out
+    (Izeki–Karlsson). `Z/2 ≀ Z` is a cut-out in `T_3 × T_3` and passes every
+    completion test, so only the finiteness type of the host can exclude it.
+  - See `haagerup-cut-out-completions-force-haagerup-quotients`.
+- **Every host with a coarse tameness property is dead for `N_U`; only hosts
+  coarsely as wild as `U` survive** (proposed-established, w13-117,
+  2026-09-18).
+  - For a commensurated witness, `fN ↦ fΣ` is an injective, `F`-equivariant,
+    1-Lipschitz coarse embedding of `F/N` into the Hecke graph of
+    `(⟨F, Σ⟩, Σ)`. That graph is a Cayley–Abels graph of the Schlichting
+    completion. Amenability at infinity also descends through `F̂/M`.
+  - `U` contains every `Z^n`, Osajda's non-exact group and Sapir's expander
+    group. So no host that is exact, has finite asymptotic dimension, or
+    coarsely embeds in Hilbert space witnesses `N_U`, whatever the
+    finiteness type or torsion. This includes `SL_3(Q_p) × Neretin`, which
+    the Haagerup kill misses.
+  - Almost-automorphism groups of higher-rank buildings reduce to one open
+    coarse question: are they coarsely embeddable in Hilbert space?
+  - Non-discrete type F pairs with non-A Hecke graphs exist, so this is a
+    gate, not a kill.
+  - See `commensurated-quotients-coarsely-embed-in-hecke-graphs`.

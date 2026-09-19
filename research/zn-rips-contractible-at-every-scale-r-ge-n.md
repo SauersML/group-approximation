@@ -72,3 +72,28 @@ Status on main, by dimension:
     search on it fits in about 1.6 GB of bit rows. At `(8, 8)` the search needed about 4,000 s of wall time for
     5,152 K moves, and at `(8, 9)` both the rows and the links are larger. So `(8, 9)` needs many budgeted stages,
     or a partition-level (orbit) form of the (K) move.
+  - *(8, 9), D-only is ruled out.* The D-stuck set `a8_9` (113,321 points) is itself self-blocking. The greatest
+    fixed-point pass `F(a8_9) = a8_9` removes nothing, and `kchk` confirms the set piece by piece
+    (`z8-rips-lifted-domination-certificates-fail-at-scale-9`). So `(8, 9)` needs (K) moves, just as `(8, 8)` did.
+  - *(8, 9), partial (K) certificate.* It is in `experiments/zn-rips-link-collapse-scale-9-2026-09-18/partial/`.
+    - Twelve budgeted `kzf` stages make 11,148 (K) moves and 6,602 cascaded (D) moves, taking `a8_9` down to
+      95,571 points.
+    - All 12 stages are replayed by `kzv5`, and the end sets match.
+    - This is *not* a proof of `(8, 9)`.
+  - *Next.* Resume `kzf` from `partial/end-stage-12-8-9.txt.gz` and replay each new stage with `kzv5`.
+    - At `(8, 8)`, the (K) moves were exactly the norm-8 points with `x_8 = 0`. Extrapolating, about 10k more (K)
+      moves are needed, roughly 5 CPU-hours.
+    - `(8, 10)` does not fit in 2 GB with bit adjacency (186,502 D-stuck points, about 4.3 GB). It needs sparse links.
+- **w7-103, (8, 9) closed.** `(8, 9)` is closed: `z8-rips-contractible-at-scale-9`.
+  - *Certificate.* The w6-103 partial certificate is continued by a 13th `kzf`-type stage (754 (K) moves) and then
+    by (K) moves restricted to the 11,170 norm-9 points with `x_8 = 0` that remain. These were searched as three
+    parallel segments, which were then joined. In all, the `k = 8` certificate has 299,207 moves, 22,634 of them (K).
+    Every (K) move deletes a norm-9 point with `x_8 = 0`.
+  - *Pattern.* After stage 13, deleting those 11,170 points outright leaves a set that collapses by (D) alone. So
+    at both `(8, 8)` and `(8, 9)`, (K) is needed only on the top shell `|x| = r` with `x_n = 0`.
+  - *Verification.* `vcert2` replays the (D) prefix from `Lmax_8` down to `a8_9`. `kzv5` replays everything after
+    that, in independent stretches whose end sets are compared with the predicted ones. `kzv5` and `kzv3` replay
+    `k = 2..7`.
+  - *Next.* `(8, 10)`. `kzs` (implicit SAD adjacency, `O(M + s²/8)` memory) runs at about 200 MB and about 1.6
+    CPU-s per (K) move on a 205,606-point set. There are about 19k norm-10 points with `x_8 = 0`, so the (K) phase is
+    about 8 CPU-hours. It should be run as parallel `KZ_KLIST` segments from a true D-stall set of `ilv4`.

@@ -1,0 +1,41 @@
+== slice 7 1 7 alpha 0 0
+p=7 slice<=(7,1,7) alpha=(0,0) |basis N|=57
+SUMMARY p=7 slice (7,1,7) alpha (0,0): jumps=0 sanity-fails=0
+   time 2s
+== slice 7 1 7 alpha 1 0
+p=7 slice<=(7,1,7) alpha=(1,0) |basis N|=57
+SUMMARY p=7 slice (7,1,7) alpha (1,0): jumps=0 sanity-fails=0
+   time 1s
+== slice 7 1 7 alpha 0 1
+p=7 slice<=(7,1,7) alpha=(0,1) |basis N|=57
+JUMP S(cacacacacacaca|cacacab,k=6) deg 15->21 mu (7,1,7): rho =  6*z.  zcoef 6 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (7,1,7) alpha (0,1): jumps=1 sanity-fails=0
+   time 1s
+== slice 1 7 7 alpha 0 0
+p=7 slice<=(1,7,7) alpha=(0,0) |basis N|=57
+SUMMARY p=7 slice (1,7,7) alpha (0,0): jumps=0 sanity-fails=0
+   time 2s
+== slice 1 7 7 alpha 1 0
+p=7 slice<=(1,7,7) alpha=(1,0) |basis N|=57
+JUMP S(cbcbcbcbcbcbcb|cbcba,k=4) deg 15->21 mu (1,7,7): rho =  1*z.  zcoef 1 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (1,7,7) alpha (1,0): jumps=1 sanity-fails=0
+   time 2s
+== slice 1 7 7 alpha 0 1
+p=7 slice<=(1,7,7) alpha=(0,1) |basis N|=57
+SUMMARY p=7 slice (1,7,7) alpha (0,1): jumps=0 sanity-fails=0
+   time 1s
+== slice 7 7 1 alpha 0 0
+p=7 slice<=(7,7,1) alpha=(0,0) |basis N|=57
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  6*z.  zcoef 6 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (7,7,1) alpha (0,0): jumps=1 sanity-fails=0
+   time 2s
+== slice 7 7 1 alpha 1 0
+p=7 slice<=(7,7,1) alpha=(1,0) |basis N|=57
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  5*z.  zcoef 5 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (7,7,1) alpha (1,0): jumps=1 sanity-fails=0
+   time 2s
+== slice 7 7 1 alpha 0 1
+p=7 slice<=(7,7,1) alpha=(0,1) |basis N|=57
+JUMP S(cbab|bababababababa,k=3) deg 15->21 mu (7,7,1): rho =  5*z.  zcoef 5 pure-z [target S-pair multidegree]
+SUMMARY p=7 slice (7,7,1) alpha (0,1): jumps=1 sanity-fails=0
+   time 2s

@@ -1,0 +1,2 @@
+$ python3 web_clique_lists.py 5:8070450532247929/1125899906842624   # = the double 7.168, TARGET of k5_a/k5_b
+k=4 m=5 L_m=7.168000 eps_m>=0.23980 all n>=30 pass; exceptions n>=2k+2: [12, 13, 14, 18, 19, 24]
