@@ -73,7 +73,7 @@ theorem mul_comm_of_mem_commutator {Γ : Type*} [Group Γ] (hG : IsMetabelianGro
 /-- The quotient by the derived subgroup is commutative. -/
 theorem quotient_commutator_mul_comm {Γ : Type*} [Group Γ] (a b : Γ ⧸ commutator Γ) :
     a * b = b * a :=
-  mul_comm (a : Abelianization Γ) b
+  mul_comm (G := Abelianization Γ) a b
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.quotient_commutator_mul_comm
 

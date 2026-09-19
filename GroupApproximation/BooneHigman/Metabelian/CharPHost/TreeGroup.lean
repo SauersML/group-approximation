@@ -44,23 +44,27 @@ def affVec (x : Chain.AffineElementaryGroup n (MvPolynomial σ F)) : Fin n → M
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.affVec
 
+omit [DecidableEq σ] in
 theorem affMat_mul (x y : Chain.AffineElementaryGroup n (MvPolynomial σ F)) :
     affMat (x * y) = affMat x * affMat y :=
   rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.affMat_mul
 
+omit [DecidableEq σ] in
 theorem affVec_mul (x y : Chain.AffineElementaryGroup n (MvPolynomial σ F)) :
     affVec (x * y) = affVec x + affMat x *ᵥ affVec y :=
   rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.affVec_mul
 
+omit [DecidableEq σ] in
 theorem affMat_one : affMat (1 : Chain.AffineElementaryGroup n (MvPolynomial σ F)) = 1 :=
   rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.affMat_one
 
+omit [DecidableEq σ] in
 theorem affVec_one : affVec (1 : Chain.AffineElementaryGroup n (MvPolynomial σ F)) = 0 :=
   rfl
 
