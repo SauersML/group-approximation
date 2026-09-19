@@ -1,0 +1,6 @@
+(1) c' ((b alpha)@5)^-1 = c'@4 at depth 4
+(2) c'^m = (1,1,1,c'^m,(b alpha)^m,1,...) for m = 1..12 at depth 3; (b alpha)^m nontrivial at depth 3 for 30 of m = 1..30
+(3) section at a deep prefix of t 4^oo equals c'^kappa at depth 2 on 1460 random (word, end) pairs
+(4a) sum over ends of kappa(w, eta) = c'-exponent sum on 2000 random words
+(4b) freely reduced words of length <= 5 trivial at depth 3: 10; with nonzero c'-exponent: 0
+done
