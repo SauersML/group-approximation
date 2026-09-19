@@ -20,6 +20,7 @@ distinct_from:
   compression-defects-grow-under-centralizer-closure: That proves the defect is monotone along the centralizer Galois closure, so saturating sources may be taken closed, and kills sources whose closed kernel core contains a Kazhdan subgroup infranormal in K; this is the construction problem, which must use a closed source whose centralizer K does not normalize.
   sofic-normalization-fails-for-finite-index-kazhdan-pairs: That calibration refutes every pairwise sofic normalization theorem for compressed Kazhdan pairs and isolates the chain-envelope statement (CKN); this is the construction problem that (CKN) would kill.
   ckn-forces-nonsofic-incompressible-affine-coset-wreath: That proves the chain-in-Kazhdan-envelope normalization input for killing (EK1) implies nonsoficity of an explicit affine coset wreath containing the summit wreath; this is the construction problem that input was meant to kill.
+  finite-scale-compressors-preserve-kazhdan-fixed-algebras: That proves, by mass transport along the bijection sigma(u), that a compressor preserves the Kazhdan fixed algebra whenever the cluster sizes live on finitely many scales, with no period bound; this is the construction problem, whose witness must therefore defeat that scale hypothesis or survive at the centralizer level.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -490,3 +491,53 @@ must build genuinely Hamming-approximate sofic models.
     group `M_p` and so has finite quotients. It therefore does not constrain that input.
 
     This node stays OPEN.
+21. **Mass transport splits wildness in two (2026-09-19, decomposition and calibration,
+    swarm-0917-w15-w15-titz-pull).** This attacks the Attempt 20 survivors (wild
+    compressors) with the entropy-measure dictionary: `sigma_n(u)` is a *bijection* of
+    `Y_n`, so every function `phi` on `Y_n` satisfies `sum phi ∘ u_n = sum phi`.
+    - Established `finite-scale-compressors-preserve-kazhdan-fixed-algebras`. With
+      `phi = log |cluster|`, the loss bound makes `phi` drop only slightly along `u_n` off
+      a small set. Conservation then forbids non-negligible upward jumps, provided the
+      log-size profile lives on finitely many scales (`(FS)`) or
+      `lambda_n log |Y_n| -> 0` (`(LOG)`).
+      - Consequence: tight clusters have unique targets, and
+        `Ad sigma(u)(D^(sigma L)) = D^(sigma L) = D^(sigma(u L u^-1))`.
+      - No period bound, ambient decomposition or Proposition 3.1 is used. `(FS)` is
+        incomparable with `BP_p`, and it covers the long drifting cycles of the log-drift
+        model, where no expander decomposition exists.
+      - The same argument turns the one-sided inequality `OneSided` into the two-sided
+        conclusion of `blockRatio_negligible` at one compressor, with a scale hypothesis on
+        the observable in place of `DG`. This is paper mathematics, not Lean.
+    - Calibration (doubling tower, `experiments/scale-mass-transport-2026-09-17/mt_check.py`).
+      A finite model with loss `lambda ~ 1/log |Y| -> 0` in which `u Q` strictly refines
+      `Q`, and `Ad(u)` moves random cluster signs to distance about `1/2` from `D(Q)`. So the
+      loss bound plus bijectivity cannot give invariance without a scale hypothesis, and
+      `(LOG)` is sharp up to a constant.
+
+    New decomposition of a witness's wild compressor `u`. For each sofic representation
+    and frame, one of the following holds:
+    - **(W1) fixed-algebra growth**: `D^(sigma L)` is strictly smaller than
+      `D^(sigma(u L u^-1))`. By the new node, this requires the log-size profile to spread
+      over unboundedly many scales, with `lambda_n log |Y_n|` bounded away from `0`. That is
+      a doubling-tower shape: clusters merge along `u` at every scale.
+    - **(W2) centralizer drift**: `D^(sigma L)` is preserved, but `sigma(u)` does not
+      normalize the relative commutant. Here the cluster-size observable is exhausted, so
+      a kill must feed the mass-transport concentration of item 3 of the new node with
+      isotropy or type-class observables in place of `DG`. It must also remove `DG` from
+      the remaining median and matching steps (`MedianVertexFormLocal.lean`,
+      `Matching/GlobalVariation.lean`), which is not checked.
+
+    Invariant and death:
+    - *Invariant.* The log-size profile `nu_n` of the `L`-clusters, and the refinement
+      `D^(sigma L) ⊆ D^(sigma(u L u^-1))`.
+    - *Step where every member dies.* Every compressor with `(FS)` or `(LOG)` in some
+      sofic representation dies at fixed-algebra growth: it cannot be of type W1 there.
+
+    This node stays OPEN. The defect kill still needs the centralizer level (W2), for which
+    the bounded-period route still needs (KT\*).
+
+    Next steps:
+    - Show that a sofic representation of a mapping torus `K ⋊ Z` with Kazhdan `K` never
+      carries a doubling tower (W1). One approach is to use that `K` has no finite
+      quotients to bound the number of cluster scales.
+    - Run item 3 of the new node with Kun--Thom's isotropy observable `k_n` to attack W2.
