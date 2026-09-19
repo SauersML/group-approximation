@@ -1,0 +1,2 @@
+{"group": "F", "n": 128, "tau": 1.8, "restarts": 1, "steps": 1000, "seed": 21, "D_upper": 0.09132762152837981, "sep_at_best": 1.841053933417977, "secs": 455.3, "saved": "wit_F_n128_warm_noise0.05.npy"}
+{"group": "F", "n": 128, "tau": 1.8, "restarts": 1, "steps": 1000, "seed": 22, "D_upper": 0.18442063806998732, "sep_at_best": 1.8016031237338597, "secs": 467.6, "saved": "wit_F_n128_warm_noise0.10.npy"}

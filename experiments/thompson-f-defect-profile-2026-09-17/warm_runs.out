@@ -1,0 +1,4 @@
+{"group": "F", "n": 32, "tau": 1.8, "restarts": 2, "steps": 2000, "seed": 20260917, "D_upper": 0.11323515901093062, "sep_at_best": 1.8010091233288015, "secs": 301.4, "saved": "wit_F_n32_warm_noise0.05.npy"}
+{"group": "F", "n": 32, "tau": 1.8, "restarts": 2, "steps": 2000, "seed": 20260917, "D_upper": 0.13157935918085295, "sep_at_best": 2.007017832302917, "secs": 308.2, "saved": "wit_F_n32_warm_noise0.15.npy"}
+{"group": "F", "n": 48, "tau": 1.8, "restarts": 2, "steps": 2000, "seed": 20260917, "D_upper": 0.11276511237568276, "sep_at_best": 1.8008181967337318, "secs": 399.4, "saved": "wit_F_n48_warm_noise0.05.npy"}
+{"group": "F", "n": 48, "tau": 1.8, "restarts": 2, "steps": 2000, "seed": 20260917, "D_upper": 0.12721832218627394, "sep_at_best": 2.0194476540280943, "secs": 403.3, "saved": "wit_F_n48_warm_noise0.15.npy"}
