@@ -20,17 +20,11 @@ here are the solution's, which are byte-identical to the challenge's.
 * `IsClassTransposition`: the identity is not a class transposition.
 * `IsResidueClassWiseAffine`: the identity is residue-class-wise affine.
 * `mixedIdentities`: a nontrivial constant is never a mixed identity.
-* `integerReflection`: it sends `0` to `-1`, and it exchanges the nonnegative and the negative
-  integers.
 * `IsSmoothModulus`: `1` is smooth over every `P`; `3` is not smooth over `∅`.
 * `IsClassTranspositionOver`: the identity is not one, and every one is a class transposition,
   so `CT_P(ℤ) ≤ CT(ℤ)`.
 * `IsClassShift` and `IsClassReflection`: `n ↦ n + 1` is a class shift and `n ↦ -n` a class
   reflection; the identity is neither.
-* `HasTypeAAction` and `EmbedsInTypeAGroup`: the trivial group acts on a point with type (A);
-  `ℝ` embeds in no group with an action of type (A), since such a group is countable.
-* `graphProductRelators` and `GraphProduct`: over the edgeless graph there are no relators,
-  and at an edge the two vertex groups commute in the graph product.
 
 Not yet tested here: that `LeavittResolventRing` is nonzero (it has a faithful module on
 finitely supported functions of infinite words; see the development) and that the Steinberg
@@ -107,14 +101,6 @@ theorem inl_not_mem_mixedIdentities {G : Type} [Group G] (n : ℕ) {g : G} (hg :
   rw [Monoid.Coprod.lift_apply_inl] at this
   exact hg this
 
-/-- **Positive model.** The reflection sends `0` to `-1`. -/
-theorem integerReflection_zero : integerReflection 0 = -1 :=
-  show -(0 : ℤ) - 1 = -1 by omega
-
-/-- **Positive model.** The reflection exchanges the nonnegative and the negative integers. -/
-theorem nonneg_iff_integerReflection_neg (n : ℤ) : 0 ≤ n ↔ integerReflection n < 0 :=
-  show 0 ≤ n ↔ -n - 1 < 0 by omega
-
 /-- **Positive model.** `1` has no prime factors, so it is smooth over every `P`. -/
 theorem isSmoothModulus_one (P : Set ℕ) : IsSmoothModulus P 1 := by
   intro p hp hd
@@ -143,7 +129,7 @@ theorem isClassTransposition_of_isClassTranspositionOver {P : Set ℕ} {g : Equi
   obtain ⟨r₁, m₁, r₂, m₂, -, -, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩ := h
   exact ⟨r₁, m₁, r₂, m₂, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩
 
-/-- `CT_P(ℤ)` is a subgroup of `CT(ℤ)`, as in Kourovka 17.60. -/
+/-- `CT_P(ℤ)` is a subgroup of `CT(ℤ)`, as in Kourovka 17.60 and 21.75. -/
 theorem classTranspositionGroupOver_le (P : Set ℕ) :
     classTranspositionGroupOver P ≤ classTranspositionGroup :=
   Subgroup.closure_mono fun _ hg => isClassTransposition_of_isClassTranspositionOver hg
@@ -169,46 +155,5 @@ theorem one_not_isClassReflection : ¬ IsClassReflection 1 := by
   have h := hrefl 1
   simp at h
   omega
-
-/-- **Positive model.** The trivial group acts on a point with type (A). -/
-theorem unit_hasTypeAAction : HasTypeAAction Unit := by
-  refine ⟨Unit, inferInstance, ⟨fun _ => Subsingleton.elim _ _⟩, inferInstance,
-    fun s => ?_, inferInstance⟩
-  exact (Group.fg_iff_subgroup_fg _).mp inferInstance
-
-/-- **Positive model.** The trivial group embeds in a group with an action of type (A). -/
-theorem unit_embedsInTypeAGroup : EmbedsInTypeAGroup Unit :=
-  ⟨Unit, inferInstance, unit_hasTypeAAction, MonoidHom.id Unit, Function.injective_id⟩
-
-/-- **Negative model.** `ℝ` embeds in no group with an action of type (A): such a group is
-finitely presented, hence countable. -/
-theorem multiplicative_real_not_embedsInTypeAGroup :
-    ¬ EmbedsInTypeAGroup (Multiplicative ℝ) := by
-  rintro ⟨Γ, _, ⟨S, _, -, hfp, -, -⟩, f, hf⟩
-  haveI := hfp
-  haveI := GroupApproximation.BooneHigman.countable_of_isFinitelyPresented Γ
-  haveI : Countable (Multiplicative ℝ) := hf.countable
-  haveI : Countable ℝ := (Multiplicative.ofAdd (α := ℝ)).injective.countable
-  exact Uncountable.not_countable (α := ℝ) inferInstance
-
-/-- **Negative model.** Over the edgeless graph a graph product has no relators, so it is the
-free product. -/
-theorem graphProductRelators_bot {ι : Type} (G : ι → Type) [∀ i, Group (G i)] :
-    graphProductRelators (⊥ : SimpleGraph ι) G = ∅ := by
-  ext w
-  simp [graphProductRelators]
-
-/-- **Positive model.** At an edge, the two vertex groups commute in the graph product. -/
-theorem graphProduct_commute_of_adj {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type)
-    [∀ i, Group (G i)] {i j : ι} (hij : Γ.Adj i j) (a : G i) (b : G j) :
-    Commute
-      (QuotientGroup.mk' (Subgroup.normalClosure (graphProductRelators Γ G))
-        (Monoid.CoprodI.of (M := G) a) : GraphProduct Γ G)
-      (QuotientGroup.mk' (Subgroup.normalClosure (graphProductRelators Γ G))
-        (Monoid.CoprodI.of (M := G) b)) := by
-  rw [← commutatorElement_eq_one_iff_commute, ← map_commutatorElement,
-    QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
-  apply Subgroup.subset_normalClosure
-  exact ⟨i, j, hij, a, b, rfl⟩
 
 end BooneHigman.ModelTests

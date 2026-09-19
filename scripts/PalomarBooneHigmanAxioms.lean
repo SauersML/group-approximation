@@ -29,14 +29,10 @@ def compared : List Name :=
    `BooneHigman.finitely_generated_metabelian_embeds_in_finitely_presented_simple_of,
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_simple_of,
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar_of,
-   `BooneHigman.kourovka_17_57_of,
    `BooneHigman.kourovka_17_59,
    `BooneHigman.kourovka_17_59_of,
-   `BooneHigman.kourovka_17_60_of,
-   `BooneHigman.kourovka_17_61_of,
    `BooneHigman.kourovka_21_75_of,
    `BooneHigman.kohl_factorization_conjecture_of,
-   `BooneHigman.graph_product_embeds_in_type_a_group_of,
    `BooneHigman.exists_fp_simple_with_mixed_identities_not_finitely_normally_generated_of]
 
 /-- The axioms `Palomar/comparator-boone-higman.json` permits. -/

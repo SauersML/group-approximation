@@ -279,9 +279,9 @@ roots = ["Palomar.MetabelianBooneHigmanModelTests"]
 
 # The Comparator configuration `Palomar/comparator-boone-higman.json`: the
 # Boone–Higman megasubmission (work in progress), collecting the printed questions
-# answered here (Kourovka 14.10(c), 17.57, 17.59 and 17.61, BBMZ Problems 2.7 and 5.3(7),
-# finitely generated linear groups, Llosa Isenrich–Schesler–Wu Question 1.11, and BFFHZ
-# Questions 3.1 and 3.3).  `Palomar/BooneHigmanChallenge.lean`
+# answered here (Kourovka 14.10(c), 17.59 and 21.75, BBMZ Problems 2.7 and 5.3(7), finitely
+# generated linear groups, Llosa Isenrich–Schesler–Wu Question 1.11, Kohl's factorization
+# conjecture, and BFFHZ Question 3.3).  `Palomar/BooneHigmanChallenge.lean`
 # imports Mathlib only; `Palomar/BooneHigmanSolution.lean` is a skeleton whose `_of`
 # theorems carry the propositions the development still owes.  Not in `defaultTargets`.
 [[lean_lib]]

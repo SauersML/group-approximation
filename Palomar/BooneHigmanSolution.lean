@@ -3,26 +3,20 @@ Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 import Mathlib.Algebra.FreeAlgebra
-import Mathlib.Algebra.Group.Action.Faithful
-import Mathlib.Algebra.Group.Action.Prod
 import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.RingQuot
-import Mathlib.Combinatorics.SimpleGraph.Basic
 import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.Coprod.Basic
-import Mathlib.GroupTheory.CoprodI
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.Finiteness
-import Mathlib.GroupTheory.GroupAction.Defs
 import Mathlib.GroupTheory.PresentedGroup
-import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.BooneHigman.Statement.API
 import GroupApproximation.SteinbergFP.Challenge
 import GroupApproximation.BooneHigmanLinear.FrontierFour
+import GroupApproximation.BHPalomar.LinearSelfSimilar
 import GroupApproximation.Kourovka1759.Main
-import GroupApproximation.BHPalomar.GraphProducts.Main
 
 /-!
 # Proofs for the Boone–Higman megasubmission (work in progress)
@@ -37,9 +31,8 @@ name ending `_of` and takes, as a hypothesis, the proposition the development st
 
 * the two metabelian theorems and the linear theorem take `RouteAOwed`, the four open inputs of
   route A (`GroupApproximation/BooneHigmanLinear/FrontierFour.lean`);
-* the graph-product theorem takes `GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput`;
-* the others take a proposition named here (`LinearSelfSimilarOwed`, `Kourovka1757Owed`,
-  `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`, `KohlFactorizationOwed`,
+* LISW Question 1.11 takes `RouteALinearOwed`, the three of them that build the linear host;
+* the others take a proposition named here (`Kourovka2175Owed`, `KohlFactorizationOwed`,
   `MixedIdentitiesOwed`), which is the challenge statement itself until the construction that
   proves it lands.
 
@@ -47,37 +40,39 @@ The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are 
 hypotheses removed, as the development discharges them.
 
 **Where each owed proposition stands.**
-* `RouteAOwed`: route A reduces the metabelian and linear theorems to four named Statements of
-  the metabelian chain (Suslin absorption at bad primes, the two `K₂` gaps, and the Higman–`V`
-  step-B core); each is open in the development.
-* `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
-  homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
-  that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
-* `Kourovka1760Owed`, `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an
-  explicit one-vertex higher-rank graph, simple and of type `F_∞` by Li's theorems; Matui's
-  spatial realization and the germ groups at rational points then recover `P`.
+* `RouteALinearOwed` and `RouteAOwed`: route A reduces the metabelian and linear theorems to
+  four named Statements of the metabelian chain: Suslin absorption at bad primes, the two `K₂`
+  gaps, and, for the simple envelope only, the Higman–`V` step-B core. Each is open in the
+  development.
 * `Kourovka2175Owed`: elementary, by transporting class transpositions through boxes of
   modulus four with products of class transpositions of the other group.
 * `KohlFactorizationOwed`: from Kourovka 17.59, after removing class shifts and class
   reflections to fix the nonnegative integers.
-* `EnvelopeInput` is BFFHZ Theorem C (i) ⇒ (iv) with Theorem E: a group with an action of type
-  (A) embeds in a group `H` such that `Aut_H(H ∗ F₂)` has an overgroup with an action of type
-  (A). Everything else is proved in `GroupApproximation/BHPalomar/GraphProducts/`: graph
-  products reduce to amalgams `X ∗_C (C × K)` over retracts, which a twisted conjugation
-  realizes inside `Aut_H(H ∗ F₂)`.
 * `MixedIdentitiesOwed`: the witness is Thompson's group `T`.
 
 **Review status of the mathematics** (research/artifacts/gq-bh-results-summary.md; [R] is an
 internal referee pass, [IC] an adversarial check by a second lane; none is an external review):
-Kourovka 14.10(c) [R] and Kourovka 17.59 [IC], both proved here in Lean; Kourovka 17.60, 21.75
-and Kohl's factorization conjecture [R]; Kourovka 17.57 and 17.61, BFFHZ Questions 3.1 and 3.3,
-the metabelian and linear theorems and LISW Question 1.11 [IC].
+Kourovka 14.10(c) [R] and Kourovka 17.59 [IC], both proved here in Lean; Kourovka 21.75 and
+Kohl's factorization conjecture [R]; BFFHZ Question 3.3, the metabelian and linear theorems and
+LISW Question 1.11 [IC].
 
-**Not yet in the configuration**, because their statements need vocabulary Mathlib lacks
+**Taken out of the configuration**, because a Lean proof needs a development that neither
+Mathlib nor this repository has yet; each returns if that development lands:
+* BFFHZ Question 3.1 (graph products): proved on the development side from
+  `GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput` (BFFHZ Theorems C and E), which
+  needs twisted Brin–Thompson groups, Hull–Osin mixed-identity-freeness and the finite
+  presentation of `Aut_H(H ∗ F₂)`;
+* Kourovka 17.57: the flip is an outer automorphism of order two
+  (`GroupApproximation.ClassTransposition.Out`); that every automorphism is spatial needs Matui's
+  spatial realization and Adamczewski–Bell;
+* Kourovka 17.60: a Rubin-type spatial realization and continuous eigenvalues;
+* Kourovka 17.61: an open finite-truncation step in the class-transposition presentation.
+
+**Not in the configuration**, because their statements need vocabulary Mathlib lacks
 (finiteness properties `F_n`, Thompson-like groups, decision problems over `CT(ℤ)`):
-Belk–Zaremsky Conjecture H and the FFWZ §1.2 conjecture, Kourovka 21.73 and 21.74(b),(c), Zaremsky's
-Oberwolfach 2018 Question 110, Tarocchi's and Lodha's questions, and the remaining rows of the
-summary; also the exceptional spherical Artin groups.
+Belk–Zaremsky Conjecture H and the FFWZ §1.2 conjecture, Kourovka 21.73 and 21.74(b),(c),
+Zaremsky's Oberwolfach 2018 Question 110, Tarocchi's and Lodha's questions, and the remaining
+rows of the summary; also the exceptional spherical Artin groups.
 
 The prose of this module was written by Claude (Anthropic), under the user's direction.
 -/
@@ -169,14 +164,6 @@ def mixedIdentities (G : Type) [Group G] (n : ℕ) :
   ⨅ (φ : Monoid.Coprod G (FreeGroup (Fin n)) →* G)
     (_ : φ.comp Monoid.Coprod.inl = MonoidHom.id G), φ.ker
 
-/-- The reflection `n ↦ -n - 1` of `ℤ`, which exchanges the nonnegative and the negative
-integers. -/
-def integerReflection : Equiv.Perm ℤ where
-  toFun n := -n - 1
-  invFun n := -n - 1
-  left_inv n := show -(-n - 1) - 1 = n by omega
-  right_inv n := show -(-n - 1) - 1 = n by omega
-
 /-- `m` has no prime factor outside `P ∪ {2}`. -/
 def IsSmoothModulus (P : Set ℕ) (m : ℤ) : Prop :=
   ∀ p : ℕ, p.Prime → (p : ℤ) ∣ m → p = 2 ∨ p ∈ P
@@ -208,31 +195,6 @@ def IsClassReflection (g : Equiv.Perm ℤ) : Prop :=
   ∃ r m : ℤ, 0 ≤ r ∧ r < m ∧ (∀ t : ℤ, g (r + t * m) = r - t * m) ∧
     ∀ n : ℤ, (∀ t : ℤ, n ≠ r + t * m) → g n = n
 
-/-- An action of type (A) of `Γ` (Zaremsky; Belk–Fournier-Facio–Hyde–Zaremsky, §1): a
-faithful action on a set `S` such that `Γ` is finitely presented, every point stabilizer is
-finitely generated, and `Γ` has finitely many orbits on `S × S`. -/
-def HasTypeAAction (Γ : Type) [Group Γ] : Prop :=
-  ∃ (S : Type) (_ : MulAction Γ S), FaithfulSMul Γ S ∧ Group.IsFinitelyPresented Γ ∧
-    (∀ s : S, (MulAction.stabilizer Γ s).FG) ∧
-    Finite (MulAction.orbitRel.Quotient Γ (S × S))
-
-/-- `G` satisfies the permutational Boone–Higman property: it embeds in a group admitting an
-action of type (A). -/
-def EmbedsInTypeAGroup (G : Type) [Group G] : Prop :=
-  ∃ (Γ : Type) (_ : Group Γ), HasTypeAAction Γ ∧ ∃ f : G →* Γ, Function.Injective f
-
-/-- The relators of a graph product: the commutators of elements of adjacent vertex groups. -/
-def graphProductRelators {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)] :
-    Set (Monoid.CoprodI G) :=
-  {w | ∃ i j, Γ.Adj i j ∧ ∃ (a : G i) (b : G j),
-    w = ⁅Monoid.CoprodI.of (M := G) a, Monoid.CoprodI.of (M := G) b⁆}
-
-/-- The graph product of the groups `G i` over the simple graph `Γ`: their free product,
-with `G i` and `G j` made to commute whenever `i` and `j` are adjacent. -/
-abbrev GraphProduct {ι : Type} (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)] :
-    Type :=
-  Monoid.CoprodI G ⧸ Subgroup.normalClosure (graphProductRelators Γ G)
-
 -- END SHARED BLOCK
 
 /-- The challenge's metabelian groups are the development's. -/
@@ -263,16 +225,20 @@ theorem explicit_fp_overgroup_of_all_gl_n_q_of :
         SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
   explicit_fp_overgroup_of_all_gl_n_q
 
-/-- The four open inputs of route A, named Statements of the metabelian chain that
+/-- The three linear inputs of route A, named Statements of the metabelian chain that
 `GroupApproximation/BooneHigmanLinear/FrontierFour.lean` composes: `S1`, Suslin absorption in the
-bad-prime local case; `P1`, the characteristic-`p` `K₂` gap pair; `Z1`, the characteristic-zero
-`K₂` split gap; and `H1`, the step-B core of the Higman–`V` envelope. -/
-def RouteAOwed : Prop :=
+bad-prime local case; `P1`, the characteristic-`p` `K₂` gap pair; and `Z1`, the
+characteristic-zero `K₂` split gap. They build the finitely presented self-similar linear host. -/
+def RouteALinearOwed : Prop :=
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinZLocal_BadStatement ∧
     (∀ p : ℕ, p.Prime →
       GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4) ∧
-    GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement ∧
-    GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCStepBCoreStatement
+    GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement
+
+/-- All four inputs of route A: the three linear inputs and `H1`, the step-B core of the
+Higman–`V` envelope. -/
+def RouteAOwed : Prop :=
+  RouteALinearOwed ∧ GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCStepBCoreStatement
 
 /-- BBMZ Problem 5.3(7), from route A's four inputs, through
 `GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA`. -/
@@ -280,7 +246,7 @@ theorem finitely_presented_metabelian_embeds_in_finitely_presented_simple_of
     (h : RouteAOwed) :
     ∀ (G : Type) [Group G], Group.IsFinitelyPresented G → IsMetabelianGroup G →
       EmbedsInFinitelyPresentedSimpleGroup G := by
-  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  obtain ⟨⟨hS1, hP1, hZ1⟩, hH1⟩ := h
   intro G _ hfp hmet
   exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
     (GroupApproximation.BooneHigmanLinear.finitelyPresentedMetabelianStatement_routeA
@@ -292,7 +258,7 @@ theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
     (h : RouteAOwed) :
     ∀ (G : Type) [Group G], Group.FG G → IsMetabelianGroup G →
       EmbedsInFinitelyPresentedSimpleGroup G := by
-  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  obtain ⟨⟨hS1, hP1, hZ1⟩, hH1⟩ := h
   intro G _ hfg hmet
   exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
     (GroupApproximation.BooneHigmanLinear.finitelyGeneratedMetabelianStatement_routeA
@@ -305,51 +271,23 @@ theorem finitely_generated_linear_embeds_in_finitely_presented_simple_of
     ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
       H.FG →
       EmbedsInFinitelyPresentedSimpleGroup H := by
-  obtain ⟨hS1, hP1, hZ1, hH1⟩ := h
+  obtain ⟨⟨hS1, hP1, hZ1⟩, hH1⟩ := h
   intro K _ n H hfg
   exact embedsInFinitelyPresentedSimpleGroup_iff.mpr
     (GroupApproximation.BooneHigmanLinear.finitelyGeneratedLinearStatement_routeA
       hS1 hP1 hZ1 hH1 K n H hfg)
 
-/-- The proposition the linear development owes for Llosa Isenrich–Schesler–Wu Question 1.11. -/
-def LinearSelfSimilarOwed : Prop :=
-  ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
-    H.FG →
-    ∃ (d : ℕ) (S : Subgroup (Equiv.Perm (List (Fin d)))), IsSelfSimilar S ∧
-      Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f
-
-/-- Llosa Isenrich–Schesler–Wu Question 1.11, from the proposition the linear development
-owes. -/
+/-- LISW Question 1.11, from route A's three linear inputs (it does not use `H1`), through
+`GroupApproximation.BHPalomar.LinearSelfSimilar.linearSelfSimilar_routeA` (lane pal-q111), whose
+`PalomarIsSelfSimilar` is `IsSelfSimilar` verbatim. -/
 theorem finitely_generated_linear_embeds_in_finitely_presented_self_similar_of
-    (h : LinearSelfSimilarOwed) :
+    (h : RouteALinearOwed) :
     ∀ (K : Type) [Field K] (n : ℕ) (H : Subgroup (Matrix.GeneralLinearGroup (Fin n) K)),
       H.FG →
       ∃ (d : ℕ) (S : Subgroup (Equiv.Perm (List (Fin d)))), IsSelfSimilar S ∧
-        Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f :=
-  h
-
-/-- The proposition the class-transposition development owes for Kourovka 17.57. -/
-def Kourovka1757Owed : Prop :=
-  (∀ g ∈ classTranspositionGroup,
-    integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
-  (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
-    (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
-    ∀ x : classTranspositionGroup,
-      ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
-  ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
-    integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹
-
-/-- Kourovka 17.57, from the proposition the class-transposition development owes. -/
-theorem kourovka_17_57_of (h : Kourovka1757Owed) :
-    (∀ g ∈ classTranspositionGroup,
-      integerReflection * g * integerReflection⁻¹ ∈ classTranspositionGroup) ∧
-    (∀ φ : MulAut classTranspositionGroup, ∃ h : Equiv.Perm ℤ,
-      (h ∈ classTranspositionGroup ∨ integerReflection⁻¹ * h ∈ classTranspositionGroup) ∧
-      ∀ x : classTranspositionGroup,
-        ((φ x : classTranspositionGroup) : Equiv.Perm ℤ) = h * (x : Equiv.Perm ℤ) * h⁻¹) ∧
-    ¬ ∃ h ∈ classTranspositionGroup, ∀ x ∈ classTranspositionGroup,
-      integerReflection * x * integerReflection⁻¹ = h * x * h⁻¹ :=
-  h
+        Group.IsFinitelyPresented S ∧ ∃ f : H →* S, Function.Injective f := by
+  obtain ⟨hS1, hP1, hZ1⟩ := h
+  exact GroupApproximation.BHPalomar.LinearSelfSimilar.linearSelfSimilar_routeA hS1 hP1 hZ1
 
 /-- **Kourovka 17.59**, proved outright: `GroupApproximation.Kourovka1759.kourovka_17_59`
 (lane bh-pal-kourovka59) states the same proposition over byte-identical copies of
@@ -365,28 +303,6 @@ theorem kourovka_17_59_of :
     (classTranspositionGroup : Set (Equiv.Perm ℤ)) =
       {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
   kourovka_17_59
-
-/-- The proposition the class-transposition development owes for Kourovka 17.60. -/
-def Kourovka1760Owed : Prop :=
-  ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
-    Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q
-
-/-- Kourovka 17.60, from the proposition the class-transposition development owes. -/
-theorem kourovka_17_60_of (h : Kourovka1760Owed) :
-    ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
-      Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q :=
-  h
-
-/-- The proposition the class-transposition development owes for Kourovka 17.61. -/
-def Kourovka1761Owed : Prop :=
-  ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
-    Group.IsFinitelyPresented (classTranspositionGroupOver P)
-
-/-- Kourovka 17.61, from the proposition the class-transposition development owes. -/
-theorem kourovka_17_61_of (h : Kourovka1761Owed) :
-    ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
-      Group.IsFinitelyPresented (classTranspositionGroupOver P) :=
-  h
 
 /-- The proposition the class-transposition development owes for Kourovka 21.75. -/
 def Kourovka2175Owed : Prop :=
@@ -416,31 +332,6 @@ theorem kohl_factorization_conjecture_of (h : KohlFactorizationOwed) :
       (Subgroup.closure {g | IsClassShift g ∨ IsClassReflection g ∨ IsClassTransposition g} :
         Set (Equiv.Perm ℤ)) :=
   h
-
-/-- The challenge's groups with an overgroup carrying an action of type (A) are the
-graph-product development's permutational Boone–Higman groups: the same existentials, grouped
-differently. -/
-theorem embedsInTypeAGroup_iff_satisfiesPBH {G : Type} [Group G] :
-    EmbedsInTypeAGroup G ↔ GroupApproximation.BHPalomar.GraphProducts.SatisfiesPBH G := by
-  constructor
-  · rintro ⟨Γ, _, ⟨S, _, hA⟩, f, hf⟩
-    exact ⟨Γ, inferInstance, S, inferInstance, hA, f, hf⟩
-  · rintro ⟨Γ, _, S, _, hA, f, hf⟩
-    exact ⟨Γ, inferInstance, ⟨S, inferInstance, hA⟩, f, hf⟩
-
-/-- BFFHZ Question 3.1, answered positively, from BFFHZ Theorem C (i) ⇒ (iv) together with
-Theorem E (`GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput`), through
-`GroupApproximation.BHPalomar.GraphProducts.question31_of_envelopeInput` (lane
-bh-pal-graphprod). The two graph products agree by definition, since the relators
-`a b a⁻¹ b⁻¹` there are the commutators `⁅a, b⁆` here. -/
-theorem graph_product_embeds_in_type_a_group_of
-    (h : GroupApproximation.BHPalomar.GraphProducts.EnvelopeInput) :
-    ∀ (ι : Type) [Finite ι] (Γ : SimpleGraph ι) (G : ι → Type) [∀ i, Group (G i)],
-      (∀ i, EmbedsInTypeAGroup (G i)) → EmbedsInTypeAGroup (GraphProduct Γ G) := by
-  intro ι _ Γ G _ hG
-  exact embedsInTypeAGroup_iff_satisfiesPBH.mpr
-    (GroupApproximation.BHPalomar.GraphProducts.question31_of_envelopeInput h ι Γ G
-      fun i => embedsInTypeAGroup_iff_satisfiesPBH.mp (hG i))
 
 /-- The proposition the mixed-identities development owes for BFFHZ Question 3.3. -/
 def MixedIdentitiesOwed : Prop :=
