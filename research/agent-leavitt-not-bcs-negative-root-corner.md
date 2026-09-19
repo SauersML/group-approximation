@@ -1032,3 +1032,32 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
      `||rho(z) - 1||_2`.
   2. *Prove or refute `(HR)`.* One route is flexible HS stability of `EL_n` over the stably finite
      cone ring `R_+`, which would also give flexible stability of `Gamma`.
+
+### Nonsoficity proves the Hamming cone bound; the refutation side is Pestov 3.4 (swarm-0917-w17-w17-nh-last1, calibration, 2026-09-19)
+
+- **Result (ESTABLISHED, unreviewed).** `leavitt-cone-cover-hamming-head-bound-holds`, with route
+  `leavitt-cone-cover-hamming-head-bound-proof`.
+- **Approach tried.** Test w16 next step 1 before computing: what would a congruence-quotient refutation
+  of `(QC)` prove?
+- **What was proved.**
+  - `(QC)` holds for every permutation representation of `Gamma` (Hamming form `(QC_H)`). It also holds
+    for every representation into `C_m wr Sym(d)` with `m` fixed, and for genuine representations
+    pointwise close to such maps.
+  - *Proof.* Take a counterexample and apply the set section. This gives a head-moving Hamming
+    asymptotic homomorphism of `Delta`. Simplicity and tensor powers upgrade it to a sofic
+    approximation. But `R^x <= Delta` is nonsofic (`openai-leavitt-unit-nonsofic`).
+  - Every Hamming or bounded-phase monomial asymptotic homomorphism of `Delta` collapses. So the sofic
+    form of the whole `(QC)/(HR)` split is settled.
+  - *Calibration.* If `(QC)` or `(HR)` fails, then `Delta` is hyperlinear, and `R^x` is a hyperlinear
+    nonsofic group (Pestov 3.4). If both hold, the flagship follows. Every outcome of the split
+    resolves a famous problem.
+- **Class killed.** Finite-phase monomial refutations of `(QC)`. This covers w16 next step 1 in its
+  literal form: permutation or Schreier representations of congruence quotients glued on `Delta_0`,
+  and representations induced from bounded-order characters.
+  - *Invariant:* nonsoficity of `R^x`.
+  - *Death step:* the Hamming shadowing plus tensor-power amplification.
+- **Target stays OPEN.**
+- **Next falsifiable step.** The only refutation survivors are genuinely non-monomial unitary
+  representations. The proof side must show `(QC)` for unitary representations, using a property that
+  separates hyperlinear models from sofic ones. Soficity-type inputs (finite actions, Hamming bounds,
+  LEF, RF) are now exhausted on both sides.
