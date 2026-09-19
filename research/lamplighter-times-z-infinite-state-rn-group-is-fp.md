@@ -8,7 +8,7 @@ distinct_from:
   rover-nekrashevych-group-of-lamplighter-automaton-is-fp: that is the finite-state lamplighter L, where N = K_∞; this adds an infinite-state commuting factor and shows only the two commutators are needed on top of K_∞.
 ---
 
-**ESTABLISHED** (lane bh-invent-03, 2026-09-19; elementary, given
+**ESTABLISHED** (lane bh-invent-03, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS, conditional on the unreviewed `N_L = K_∞` of the lamplighter node; one literature check owed; elementary, given
 `lift-ideal-criterion-sufficiency-holds-for-infinite-state` and
 `rover-nekrashevych-group-of-lamplighter-automaton-is-fp`; not reviewed).
 
@@ -71,3 +71,46 @@ So `V_4(G)` is finitely presented, by `lift-ideal-criterion-sufficiency-holds-fo
 
 **The open question.** Can the infinite-state coordinate carry **word-problem** hardness while its relators stay
 finitely lift-generated? A product with `Z` cannot, because the hard part must itself have hard relators.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS, conditional on one input; one literature check owed
+
+**The group: correct.**
+- **Faithful.** A pair `(g, h)` trivial on all pair-words is trivial on `X_1^n` and on `X_2^n` for every `n`.
+- **Self-similar and infinite-state.** Sections are pairs of sections, and the states of `t` are
+  `(1, t^(3k))`.
+- **Not finitely presented.** `L` is a retract of `L × Z`, and `Z/2 ≀ Z` is not finitely presented (Baumslag).
+- **Finite wreath recursion.** `a` and `b` have letter sections, and `t` has sections `t^m`.
+
+**The lift ideal: correct.**
+- `N = ⟨⟨N_L, [a,t], [b,t]⟩⟩_F` is the standard presentation of a direct product.
+- **Words in `a, b`.** On the 4-ary tree they have root permutation `(perm on x_1, id)`, and word-level sections
+  equal to their binary-tree sections, since `a` and `b` read only `x_1`. So `K_∞(F(a,b)) ⊆ K_∞(F)`.
+- **The two containments.** `K_∞ ⊆ M`, and `M` is normal and contains the commutators, so `N ⊆ M ⊆ N`.
+- **Then `V_4(G)` is finitely presented,** by `lift-ideal-criterion-sufficiency-holds-for-infinite-state`, item 1
+  (PASS).
+
+**Conditional input.**
+- `N_L = K_∞` for the lamplighter automaton is taken from `rover-nekrashevych-group-of-lamplighter-automaton-is-fp`,
+  which is unreviewed. Its structure checks:
+  - `c = b^(-1)a = σ(c, c^(-1))`, and `c²` dies at level 1. I checked this.
+  - Hopficity of `Z/2 ≀ Z`: it is finitely generated and residually finite.
+- Not re-checked: its induction step `[c, d_k] ∈ K_∞` (machine-checked there for `k ≤ 10`). Grade the conclusion as
+  conditional on that node.
+
+**Does it go beyond known results?**
+- **None of the three named criteria covers it.** Scott needs `G` finitely presented. Nekrashevych needs `G`
+  contracting; `L × Z` is not, since `L` is not. Theorem A needs `G` finite-state.
+- **Compare Röver.** Grigorchuk's group is not finitely presented, yet Röver's group `V(Grig)` is. But Grigorchuk's
+  group is contracting, so Nekrashevych's theorem covers it. The finite-state lamplighter `V_2(L)` is covered by
+  Theorem A, and by Li's `k`-graph theorem (repo node).
+- **One check owed** before calling this beyond the literature. Xin Li, arXiv:2110.04505 (*Left regular
+  representations of Garside categories II*), proves `F_∞` for topological full groups of groupoids of Garside
+  categories, including Röver–Nekrashevych-type groups and products of shifts of finite type.
+  - Whether `V_4(L × Z)` has such a model was not checked. Its factors are the lamplighter's 2-graph and the
+    Exel–Pardo/Katsura-type action `2k ↦ 3k`.
+  - The repo records that Li's criteria need a condition on the invertibles, which `L × Z`, being not finitely
+    presented, may fail.
+  - Until checked: **"not covered by Scott, Nekrashevych or the finite-state criterion"** is correct, and no claim
+    beyond that.
+
+**Verdict: PASS**, conditional on `N_L = K_∞`.
