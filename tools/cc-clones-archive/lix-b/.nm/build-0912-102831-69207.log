@@ -1,0 +1,35 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2325 oleans
+[job] acn02 cores=slurm threads=8 base=fb10852026761af24479c5cf6663869e31c61810 mods: GroupApproximation.CharClass.LIXKGenLocalHomotopy
+ℹ [8716/8838] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8768/8859] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8868/8938] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8873/8938] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8932/8938] Replayed GroupApproximation.CharClass.LIXKGenLocalEta
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:260:14: 'GroupApproximation.CharClass.KGen.lixKSection_eq_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:261:14: 'GroupApproximation.CharClass.KGen.Vmat_mulVec_lixKEtaLin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalEta.lean:262:14: 'GroupApproximation.CharClass.KGen.lixKEtaLin_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8934/8938] Replayed GroupApproximation.CharClass.LIXKGenLocalLinear
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:350:14: 'GroupApproximation.CharClass.KGen.lixKGFrame_mulVec_lixKGLin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:351:14: 'GroupApproximation.CharClass.KGen.relPullback_lixKGHomeo_eq_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8938/8938] Built GroupApproximation.CharClass.LIXKGenLocalHomotopy (250s)
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:672:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:673:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:674:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:675:14: 'GroupApproximation.CharClass.KGen.lixKChartPt_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:676:14: 'GroupApproximation.CharClass.KGen.lixKGRmap_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:677:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:678:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8938 jobs).
+EXIT=0

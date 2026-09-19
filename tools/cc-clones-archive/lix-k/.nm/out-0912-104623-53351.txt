@@ -1,0 +1,23 @@
+[job] 10:46:47 acn112 waiting for clone lock
+[job] delta sync 5a5886551..a6622e53c: 112 files changed
+===== SUMMARY
+host acn112 cores 72-79 base a6622e53c log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0912-104623-53351.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+--- errors (first 80 lines)
+39:✖ [8893/8893] Building GroupApproximation.CharClass.LIXKGenRotate (31s)
+41:error: GroupApproximation/CharClass/LIXKGenRotate.lean:130:43: Application type mismatch: The argument
+49:error: GroupApproximation/CharClass/LIXKGenRotate.lean:300:27: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+54:error: GroupApproximation/CharClass/LIXKGenRotate.lean:304:62: Type mismatch
+60:error: GroupApproximation/CharClass/LIXKGenRotate.lean:317:56: unsolved goals
+72:error: GroupApproximation/CharClass/LIXKGenRotate.lean:327:14: 'GroupApproximation.CharClass.KGen.pull_rotMap' depends on axioms outside the classical allowlist: [sorryAx]
+73:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: Lean exited with code 1
+78:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenRotate (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.CharClass.LIXKGenRotate
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

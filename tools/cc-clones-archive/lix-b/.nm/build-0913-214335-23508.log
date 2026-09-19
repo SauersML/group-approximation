@@ -1,0 +1,44 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3491 oleans
+[job] acn112 cores=64-71 threads=8 base=fc88159fc923e12653694471f2ecd6ba01612fc0 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellFirstTurnsLakeModel
+ℹ [3365/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10122/10122] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellFirstTurnsLakeModel (39s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:397:14: 'GroupApproximation.GGT.VanKampen.FirstTurn.eq_of_walkKeep' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:398:14: 'GroupApproximation.GGT.VanKampen.FirstTurn.eq_sigma_alpha_of_walkKeep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:399:14: 'GroupApproximation.GGT.VanKampen.FirstTurnOrder.pred_eq_of_firstTurn' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:400:14: 'GroupApproximation.GGT.VanKampen.FirstTurnOrder.not_of_sigma_eq_alpha' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:401:14: 'GroupApproximation.GGT.VanKampen.FirstTurnOrder.all_or_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:402:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.not_firstTurns_of_sigma_eq_alpha' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:403:14: 'GroupApproximation.GGT.VanKampen.CellPocketFaceSet.firstTurns_all_or_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:404:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.multipleEdgeLake_pocketCycle_not_firstTurnOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:405:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.doubleTouch_walk_not_firstTurnOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:406:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:407:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:408:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.walk_not_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:409:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.properArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean:410:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellFirstTurnsLakeModel.properLake_walk_not_firstTurnOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10122 jobs).
+EXIT=0

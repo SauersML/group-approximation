@@ -1,0 +1,25 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3795 oleans
+[job] acn112 cores=80-87 threads=8 base=68038d8271e45dd054d9c67ae336dcba0d6bf71b mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem
+✔ [1988/1992] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (6.4s)
+✖ [1989/1992] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (6.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:81:8: failed to synthesize instance of type class
+  Decidable (∃ w, decode n = some w ∧ wordValue (⇑φ ∘ s) w = 1)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:114:14: 'GroupApproximation.SimpleKazhdanSofic.wordValue_wordComm' depends on axioms: [propext]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:115:14: 'GroupApproximation.SimpleKazhdanSofic.wordProblemOracle_comp_injective' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:116:14: 'GroupApproximation.SimpleKazhdanSofic.turingReducible_of_query' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [1992/1992] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (7.0s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:140:21: 'GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.printedContinuumManyDegrees' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
+error: build failed
+EXIT=1

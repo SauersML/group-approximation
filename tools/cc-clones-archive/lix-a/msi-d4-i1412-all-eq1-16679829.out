@@ -1,0 +1,4 @@
+equation=eq1
+cached_forest_states=440
+coarsening_maximal_partitions=70798
+block_histogram={16: 70798}

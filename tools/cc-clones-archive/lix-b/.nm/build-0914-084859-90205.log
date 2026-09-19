@@ -1,0 +1,15 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3517 oleans
+[job] acn112 cores=64-71 threads=8 base=a7da03b57ec7da6f2c4f0c51578d807887be406e mods: GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving
+ℹ [3336/3451] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4953/4953] Built GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving (13s)
+info: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:242:14: 'GroupApproximation.GGT.VanKampen.NeighbourFaces.eqvGen_facePerm_run' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:243:14: 'GroupApproximation.GGT.VanKampen.NeighbourFaces.false_of_interleave' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:244:21: 'GroupApproximation.GGT.VanKampen.neighbourFacesNoninterleaving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4953 jobs).
+EXIT=0

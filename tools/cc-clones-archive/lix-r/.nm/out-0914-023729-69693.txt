@@ -1,0 +1,43 @@
+[job] 02:37:34 acn112 waiting for clone lock
+[job] delta sync 174130833..22f1b26f1: 19 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 22f1b26f1 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-023729-69693.log
+purged 3 stale artifact sets (source-newer=3, import-newer=0) of 3502 oleans
+--- errors (first 80 lines)
+111:✖ [10212/10215] Building GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkPassageKinds (8.5s)
+113:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkPassageKinds.lean:59:78: Unknown constant `Equiv.Perm.inv_apply_self`
+114:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkPassageKinds.lean:59:47: unsolved goals
+122:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkPassageKinds.lean:77:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.SectorFree.vertexOf_eq' depends on axioms outside the classical allowlist: [sorryAx]
+123:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+125:error: GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkPassageKinds.lean:78:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.eq_of_sectorFree_rev_both' depends on axioms outside the classical allowlist: [sorryAx]
+126:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+128:error: Lean exited with code 1
+158:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerSectorFree (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints
+BUILT GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkReclosedVertex
+BUILT GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkRotationSides
+mentioned-not-built GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkPassageKinds (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerSectorFree.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkReclosedVertex.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkRotationSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkPassageKinds
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

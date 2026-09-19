@@ -1,0 +1,141 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3441 oleans
+[job] acn112 cores=64-71 threads=8 base=bef3710aaa8fc439a3f5d8d4aaa2f8f692e82717 mods: GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences GroupApproximation.Manuscript.NonMFSentences.TransportSentencesAxiomAudit
+ℹ [3156/3219] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4424/4425] Built GroupApproximation.Manuscript.NonMFSentences.TransportSentencesAxiomAudit (11s)
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:21:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_defectAsymptoticallyTrivialInHS' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:22:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_coronaKazhdanComplementIsInvariantCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:23:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_kazhdanInequalityKillsCornerOnDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:24:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_residuallyFiniteKazhdanGroupsAreMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:25:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_movedFixedSpaceInclusionAndProjectionOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:26:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_conjugationActionsMultiplicativeModC0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:27:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_sigmaTildeIsHomomorphism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:28:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_restrictionExtendsToMaximalCStar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:29:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_compressorSatisfiesProjectionOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:30:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_stableFinitenessGivesProjectionEquality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:31:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence_commutatorHilbertSchmidtVanishing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:33:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:34:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12_single' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:35:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12Units_elementary_single_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:36:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12Units_elementary_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:37:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.outerElementary01_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:38:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.outerElementary10_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:39:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tauUnit_eq_six_elementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:40:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_eq_flat12Units' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:41:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:42:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12_fullCorner_elementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:43:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flatCornerUnits_elementaryUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:44:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flatCornerUnits_mem_elementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:45:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.cornerEmbedding_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:46:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.cornerEmbeddingToCorner_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:47:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.corner_hasKazhdanPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:48:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tauUnit_conj_fullCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:49:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_conj_corner_elementaryRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:50:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_compresses_corner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:51:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.mark3_central' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:52:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.shift_mul_blockMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:53:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.shift_conj_mark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:54:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_conj_rawC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:55:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12_rawC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:56:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.flat12_rawMovedC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:57:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_conj_c' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:58:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_c_commutator_ell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:59:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:60:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:61:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:63:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedDefectConfiguration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean:64:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4425/4425] Built GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences (14s)
+info: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:189:21: 'GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences.manuscriptPrintedFaithfulNondegenerateRepresentationEveryUnital' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/KazhdanProjectionOrderSentences.lean:190:21: 'GroupApproximation.Manuscript.NonMFSentences.KazhdanProjectionOrderSentences.manuscriptPrintedConjugatedProjectionOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4425 jobs).
+EXIT=0

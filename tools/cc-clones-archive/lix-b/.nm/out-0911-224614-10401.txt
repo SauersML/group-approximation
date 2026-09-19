@@ -1,0 +1,31 @@
+[job] 22:46:50 acn112 waiting for clone lock
+[job] delta sync b45449623..f0f56b337: 33 files changed
+===== SUMMARY
+host acn112 cores 72-79 base f0f56b337 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-224614-10401.log
+purged 55 stale artifact sets (source-newer=5, import-newer=50) of 2238 oleans
+--- errors (first 80 lines)
+24:✖ [8814/8817] Building GroupApproximation.CharClass.CohomologyKunnethStepOf (21s)
+26:error: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:93:30: Unknown identifier `SphereOddDegree.northPole`
+27:error: GroupApproximation/CharClass/CohomologyKunnethStepOf.lean:115:14: 'GroupApproximation.CharClass.KnHemi.knGen_of_injectiveOf' depends on axioms outside the classical allowlist: [sorryAx]
+28:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+31:error: Lean exited with code 1
+34:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.CohomologyKunnethHemiOf
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethStepOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethZeroOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethStepDeltaOf (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.CohomologyKunnethInjectiveOf (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/CohomologyKunnethHemiOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSphereOf.lean
+COMPILED GroupApproximation/CharClass/CohomologyKunnethSplitOf.lean
+COMPILED GroupApproximation/CharClass/RelHomotopyIdentity.lean
+COMPILED GroupApproximation/CharClass/RelativeProdContractibleOf.lean
+COMPILED GroupApproximation/CharClass/RelativeSplitField.lean
+COMPILED GroupApproximation/CharClass/RelativeSubspaceIsoOf.lean
+- GroupApproximation.CharClass.CohomologyKunnethStepOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

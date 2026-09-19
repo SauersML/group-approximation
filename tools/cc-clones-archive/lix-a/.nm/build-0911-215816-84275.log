@@ -1,0 +1,82 @@
+purged 7 stale artifact sets (source-newer=0, import-newer=7) of 2065 oleans
+[job] acn78 cores=slurm threads=8 base=19c641d2597c50d3611b6c022843ce7469e17bc4 mods: GroupApproximation.Analysis.LIXCor4PowersShape GroupApproximation.Analysis.LIXCor4PowersField GroupApproximation.Analysis.LIXCor4PowersStage
+✔ [5109/5161] Built GroupApproximation.Analysis.LIXGenericEquator (9.4s)
+✔ [5625/5670] Built GroupApproximation.Analysis.LIXLemmaSixGenerator (10s)
+ℹ [5668/5733] Built GroupApproximation.Analysis.LIXLimitAlgebra (10s)
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:178:14: 'GroupApproximation.LIX.Gen.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:179:14: 'GroupApproximation.LIX.Gen.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:180:14: 'GroupApproximation.LIX.Gen.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:181:14: 'GroupApproximation.LIX.lixTower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:182:14: 'GroupApproximation.LIX.lixIota' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:183:14: 'GroupApproximation.LIX.lixLimit_hasK1InjWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXLimitAlgebra.lean:184:21: 'GroupApproximation.LIX.lixLimit_separableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [7918/7972] Built GroupApproximation.Analysis.LIXLemmaSixShape (7.2s)
+ℹ [8429/8484] Built GroupApproximation.Analysis.LIXCor4PowersShape (8.8s)
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:330:14: 'GroupApproximation.LIX.Gen.HasSphereShape.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:331:14: 'GroupApproximation.LIX.Gen.HasSphereShape.pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:332:14: 'GroupApproximation.LIX.Gen.sphereUnitary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:333:14: 'GroupApproximation.LIX.Gen.hasSphereShape_sphereStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:334:14: 'GroupApproximation.LIX.Gen.HasSphereShape.connect' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:335:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersShape.lean:336:14: 'GroupApproximation.LIX.Gen.hasSphereShape_climb_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8701/8710] Built GroupApproximation.Analysis.LIXLemmaSixGlue (8.0s)
+✔ [8702/8710] Built GroupApproximation.Analysis.LIXLemmaSixSouth (9.6s)
+✔ [8703/8710] Built GroupApproximation.Analysis.LIXLemmaSixEquator (9.1s)
+✔ [8704/8710] Built GroupApproximation.Analysis.LIXLemmaSixField (11s)
+✔ [8705/8710] Built GroupApproximation.Analysis.LIXLemmaSixFieldGeneric (10s)
+✔ [8706/8710] Built GroupApproximation.Analysis.LIXLemmaSixFrameGeneric (8.3s)
+ℹ [8707/8710] Built GroupApproximation.Analysis.LIXCor4PowersField (10s)
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:667:14: 'GroupApproximation.LIX.Gen.equatorEmb_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:668:14: 'GroupApproximation.LIX.Gen.norm_sq_equatorInv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:669:14: 'GroupApproximation.LIX.Gen.equatorEmb_dirPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:670:14: 'GroupApproximation.LIX.Gen.extTop_genU2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:671:14: 'GroupApproximation.LIX.Gen.southAtG_eq_northFG' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersField.lean:672:14: 'GroupApproximation.LIX.Gen.exists_unitary_field_of_nullHomotopy_gauged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8708/8710] Built GroupApproximation.Analysis.LIXLemmaSixHIdx (103s)
+✔ [8709/8710] Built GroupApproximation.Analysis.LIXLemmaSixHIdxGeneric (20s)
+✖ [8710/8710] Building GroupApproximation.Analysis.LIXCor4PowersStage (23s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXCor4PowersStage.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersStage.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXCor4PowersStage.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersStage.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXCor4PowersStage.setup.json --json
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:245:14: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  2 * (1 / 2) - 1
+in the target expression
+  evalW n j f 1 r.2.1 r.2.2 = Matrix.fromBlocks (H (1 - 1) r.2.1) 0 0 (evalC n j c r.2.2)
+
+n j : ℕ
+f : ℝ → STW59.Gen.StageAlgebra n j
+hfc : Continuous f
+H : ℝ → ↑(STW59.Gen.sphereEven n) → Matrix (Fin n) (Fin n) ℂ
+hHc : Continuous fun r => H r.1 r.2
+c : Matrix (STW59.Gen.HIdx n j) (STW59.Gen.HIdx n j) C(STW59.Gen.baseY n j, ℂ)
+hagree :
+  ∀ (v : ↑(STW59.Gen.sphereEven n)) (y : STW59.Gen.baseY n j),
+    evalW n j f 1 v y = Matrix.fromBlocks (H 0 v) 0 0 (evalC n j c y)
+hA : Continuous fun r => evalW n j f (2 * r.1) r.2.1 r.2.2
+hB : Continuous fun r => Matrix.fromBlocks (H (2 * r.1 - 1) r.2.1) 0 0 (evalC n j c r.2.2)
+r : ℝ × ↑(STW59.Gen.sphereEven n) × STW59.Gen.baseY n j
+hr : r.1 = 1 / 2
+e1 : 2 * (1 / 2) = 1
+e2 : 2 * (1 / 2) - 1 = 0
+⊢ evalW n j f 1 r.2.1 r.2.2 = Matrix.fromBlocks (H (1 - 1) r.2.1) 0 0 (evalC n j c r.2.2)
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:275:13: typeclass instance problem is stuck
+  Fintype (CharClass.Gen.VIdx n ?m.62)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Fintype` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:419:14: 'GroupApproximation.LIX.Gen.false_of_path_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:420:14: 'GroupApproximation.LIX.Gen.climb_pow_notMem_gauged' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LIXCor4PowersStage.lean:421:14: 'GroupApproximation.LIX.Gen.lixLimit_pow_notMem' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Analysis/LIXCor4PowersStage.lean:422:14: 'GroupApproximation.LIX.Gen.continuousMvNEquiv_of_unitary_field' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.LIXCor4PowersStage
+error: build failed
+EXIT=1

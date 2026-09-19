@@ -1,0 +1,34 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2303 oleans
+[job] acn112 cores=80-87 threads=8 base=0f6b23ceaf3d317cd9cc928be202ab902eca9e77 mods: GroupApproximation.CharClass.CohomologyLHRingPiecesOf GroupApproximation.CharClass.CohomologyLHRingDataOf
+ℹ [2446/2487] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8719/8850] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8846/8959] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8847/8959] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8955/8959] Replayed GroupApproximation.CharClass.CohomologyLHDegreewiseOf
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:222:14: 'GroupApproximation.CharClass.LHCast.bijective_sum_lhTerm_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:223:14: 'GroupApproximation.CharClass.LHCast.bijective_pull_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHDegreewiseOf.lean:224:14: 'GroupApproximation.CharClass.LHCast.absToSub_surjective_of_gradedOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8958/8959] Built GroupApproximation.CharClass.CohomologyLHRingPiecesOf (26s)
+info: GroupApproximation/CharClass/CohomologyLHRingPiecesOf.lean:203:14: 'GroupApproximation.CharClass.LHCast.component_mul_ofOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHRingPiecesOf.lean:204:14: 'GroupApproximation.CharClass.LHCast.component_lhFunOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8959/8959] Built GroupApproximation.CharClass.CohomologyLHRingDataOf (26s)
+info: GroupApproximation/CharClass/CohomologyLHRingDataOf.lean:255:14: 'GroupApproximation.CharClass.LHCast.lhFunOf_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/CohomologyLHRingDataOf.lean:256:14: 'GroupApproximation.CharClass.LHCast.lhFunEvenOf_bijective_of_graded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8959 jobs).
+EXIT=0

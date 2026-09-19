@@ -1,0 +1,34 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3536 oleans
+[job] acn112 cores=64-71 threads=8 base=8192a5a7be2e09d8d083814f0e378c400b8cdefa mods: GroupApproximation.GGT.VanKampen.ListNoABABChanges
+ℹ [613/614] Replayed GroupApproximation.GGT.VanKampen.ListNoABABLength
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:133:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:134:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [614/614] Building GroupApproximation.GGT.VanKampen.ListNoABABChanges (7.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABChanges.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/ListNoABABChanges.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABChanges.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/ListNoABABChanges.setup.json --json
+error: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:63:68: Application type mismatch: The argument
+  a
+has type
+  α
+but is expected to have type
+  List ?m.85
+in the application
+  destutter'_sublist a
+error: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:65:24: Type mismatch
+  destutter'_ne_nil
+has type
+  ∀ (l : List ?m.108) (R : ?m.108 → ?m.108 → Prop) [inst : DecidableRel R] {a : ?m.108}, destutter' R a l ≠ []
+but is expected to have type
+  m ≠ []
+info: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:73:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_cons_add_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:74:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_add_two_le_two_mul_card' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.ListNoABABChanges
+error: build failed
+EXIT=1

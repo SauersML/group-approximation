@@ -1,0 +1,17 @@
+[job] 08:30:45 acn112 waiting for clone lock
+[job] delta sync 46f71449e..8c0c8ccdc: 405 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 8c0c8ccdc log /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.nm/build-0914-083041-24220.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3332 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosureProof (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean
+  [apply] abel_nf
+Build completed successfully (10224 jobs).
+EXIT=0
+PROBE GREEN

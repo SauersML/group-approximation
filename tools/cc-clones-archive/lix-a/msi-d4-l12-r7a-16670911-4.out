@@ -1,0 +1,2 @@
+/var/spool/slurmd/job16670916/slurm_script: line 13: 1657902 Killed                  python3 research/artifacts/search-degree4-length12-rank7-branch-a.py --shard "$SLURM_ARRAY_TASK_ID"
+[2026-08-22T04:20:06.807] error: Detected 1 oom_kill event in StepId=16670916.batch. Some of the step tasks have been OOM Killed.

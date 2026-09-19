@@ -1,0 +1,15 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4109 oleans
+[job] acn112 cores=72-79 threads=8 base=cadf4bef47d1d7b86b638d52cb92879e21a4f5c9 mods: GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup GroupApproximation.Analysis.McDuffFactor
+ℹ [2411/2418] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2417/2418] Built GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup (14s)
+info: GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean:90:14: 'GroupApproximation.GroupVonNeumann.leftRegularUnitaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2418/2418] Built GroupApproximation.Analysis.McDuffFactor (22s)
+info: GroupApproximation/Analysis/McDuffFactor.lean:77:21: 'GroupApproximation.McDuff.printedTensorHyperfiniteUnitaryContainsGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2418 jobs).
+EXIT=0

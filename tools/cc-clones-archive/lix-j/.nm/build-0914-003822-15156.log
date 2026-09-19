@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3538 oleans
+[job] acn112 cores=64-71 threads=8 base=bb887b17de93dc817fdd3d0fceaa5380f4a6c409 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.QuestionsNotFinitelyPresented
+ℹ [4149/4166] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4701/4701] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.QuestionsNotFinitelyPresented
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:131:14: 'GroupApproximation.SimpleKazhdanSofic.exists_presentedGroup_mulEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:132:14: 'GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:133:14: 'GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_main' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:134:21: 'GroupApproximation.SimpleKazhdanSofic.printedFinitelyPresentedLEFResiduallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean:135:21: 'GroupApproximation.SimpleKazhdanSofic.printedNotFinitelyPresentedOfLEFSimpleInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4701 jobs).
+EXIT=0

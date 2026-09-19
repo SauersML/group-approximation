@@ -1,0 +1,68 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4116 oleans
+[job] acn112 cores=72-79 threads=8 base=fa7ff27595426630075b70641cde7831e33c94f6 mods: GroupApproximation.Analysis.McDuffTensorHyperfinite GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct GroupApproximation.Analysis.TracialMatrixQuotientUnitBall
+ℹ [2504/2596] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2506/2596] Replayed GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup
+info: GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean:90:14: 'GroupApproximation.GroupVonNeumann.leftRegularUnitaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2561/2613] Replayed GroupApproximation.Analysis.HyperlinearOneSumModels
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:190:14: 'GroupApproximation.HyperlinearTraceVanishing.hsDistSq_ampMatrix_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:191:14: 'GroupApproximation.HyperlinearTraceVanishing.normTrace_ampMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2585/2661] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannProduct
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:251:14: 'GroupApproximation.TwistedProduct.isTwistedICC_prodCocycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:252:14: 'GroupApproximation.TwistedProduct.groupVonNeumannAlgebra_eq_twisted_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:253:14: 'GroupApproximation.TwistedProduct.curryLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2586/2661] Replayed GroupApproximation.Analysis.TwistedTensorProductAlgebra
+info: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:240:14: 'GroupApproximation.TwistedProduct.curryConj_image_twistedTensor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2588/2661] Replayed GroupApproximation.Analysis.McDuffFactor
+info: GroupApproximation/Analysis/McDuffFactor.lean:77:21: 'GroupApproximation.McDuff.printedTensorHyperfiniteUnitaryContainsGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2589/2661] Replayed GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:220:14: 'GroupApproximation.SpatialIso.conj_image_twistedTensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:221:14: 'GroupApproximation.SpatialIso.conj_image_twistedVonNeumannAlgebra_of_mulEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2662/2728] Replayed GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor
+info: GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean:130:14: 'GroupApproximation.TwistedProduct.isIIOneFactor_tensorHyperfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2665/2728] Replayed GroupApproximation.Analysis.HyperlinearTraceVanishingProof
+info: GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean:261:21: 'GroupApproximation.HyperlinearTraceVanishing.hyperlinearTracePreservingModelStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3187/3280] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3339/3341] Built GroupApproximation.Analysis.McDuffTensorHyperfinite (27s)
+info: GroupApproximation/Analysis/McDuffTensorHyperfinite.lean:81:14: 'GroupApproximation.McDuff.isMcDuffFactor_tensorHyperfinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3340/3341] Built GroupApproximation.Analysis.TracialMatrixQuotientUnitBall (26s)
+info: GroupApproximation/Analysis/TracialMatrixQuotientUnitBall.lean:232:14: 'GroupApproximation.TracialUnitBall.exists_tendsto_twoNormSq_of_cauchy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [3341/3341] Building GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (37s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.setup.json --json
+error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:76:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:127:4: (kernel) unknown constant 'GroupApproximation.OzawaEmbedding.isHilbertSchmidtNull_unitarySeq_mul'
+error: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:176:14: 'GroupApproximation.OzawaEmbedding.exists_maximalGroupCStar_hom' depends on axioms outside the classical allowlist: [GroupApproximation.OzawaEmbedding.unitaryHom._proof_5]
+  full closure: [propext, Classical.choice, Quot.sound, GroupApproximation.OzawaEmbedding.unitaryHom._proof_5]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct
+error: build failed
+EXIT=1

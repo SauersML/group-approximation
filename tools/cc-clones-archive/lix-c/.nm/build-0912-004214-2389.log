@@ -1,0 +1,74 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2306 oleans
+[job] acn112 cores=80-87 threads=8 base=d8d675324396aaa87473b37162ff85c64410ad96 mods: GroupApproximation.CharClass.ChernSplittingOfFlag GroupApproximation.CharClass.ChernSplittingOfAxiomGuard
+ℹ [2125/2176] Replayed GroupApproximation.CharClass.LIXStepDGenRealEven
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:96:14: 'GroupApproximation.CharClass.Gen.evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:97:14: 'GroupApproximation.CharClass.Gen.mem_evenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:98:14: 'GroupApproximation.CharClass.Gen.instCommRingEvenPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:99:14: 'GroupApproximation.CharClass.Gen.evenMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXStepDGenRealEven.lean:100:14: 'GroupApproximation.CharClass.Gen.evenRestrictAdd' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [3462/3463] Built GroupApproximation.CharClass.ChernSplittingOfFlag (15s)
+ℹ [3463/3463] Built GroupApproximation.CharClass.ChernSplittingOfAxiomGuard (12s)
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:18:14: 'GroupApproximation.CharClass.evenCoe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:19:14: 'GroupApproximation.CharClass.evenCoe_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:20:14: 'GroupApproximation.CharClass.evenCoe_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:21:14: 'GroupApproximation.CharClass.SplittingDataOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:22:14: 'GroupApproximation.CharClass.SplittingDataOf.evenRoot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:23:14: 'GroupApproximation.CharClass.SplittingDataOf.powerData' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:24:14: 'GroupApproximation.CharClass.hasSplittingP_of_splittingDataOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:25:14: 'GroupApproximation.CharClass.ParityP.HasSplittingP.elim' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:29:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_map_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:30:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_map_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:31:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_component_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:32:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_map_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:33:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_map_injective_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:34:14: 'GroupApproximation.CharClass.ChernSplittingOf.totalHOf_map_injective_of_leftInv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:35:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagForget_map_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:36:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagProj_zero_map_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:37:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagProj_map_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:38:14: 'GroupApproximation.CharClass.ChernSplittingOf.flagProj_map_injective_of_proj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:42:14: 'GroupApproximation.CharClass.ChernSplittingOf.chern_eq_coeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:43:14: 'GroupApproximation.CharClass.ChernSplittingOf.chern_split_of_splitPoly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:44:14: 'GroupApproximation.CharClass.ChernSplittingOf.splittingDataOf_of_splitPoly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:45:14: 'GroupApproximation.CharClass.ChernSplittingOf.aeval_taut_map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:46:14: 'GroupApproximation.CharClass.ChernSplittingOf.splitPoly_of_splitRelation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:47:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingP_of_splitRelation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:51:14: 'GroupApproximation.CharClass.ChernSplittingOf.flag_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ChernSplittingOfAxiomGuard.lean:52:14: 'GroupApproximation.CharClass.ChernSplittingOf.hasSplittingP_flag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3463 jobs).
+EXIT=0

@@ -1,0 +1,37 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3334 oleans
+[job] acn112 cores=64-71 threads=8 base=73caa38487ecbe29dedb5d09e2534e3536a04005 mods: GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors
+ℹ [2836/2953] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4846/4851] Replayed GroupApproximation.GGT.VanKampen.Estimating.UnboundMonotoneMorseIndex
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:194:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.vertex_take_prefix' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:195:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.isLambdaCQuasiGeodesicWord_take_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:196:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.index_lt_of_prefix_near' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:197:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.exists_word_replacement_morse_monotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean:198:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.morse_gap_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4851/4851] Built GroupApproximation.GGT.VanKampen.Estimating.UnboundOrientedWordConnectors (15s)
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:234:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordConnectorPair.targetWord_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:235:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.toWordSidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:236:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.exists_connectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:237:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean:238:14: 'GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_orientedClassPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4851 jobs).
+EXIT=0

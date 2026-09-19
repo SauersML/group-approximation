@@ -1,0 +1,88 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3588 oleans
+[job] acn112 cores=64-71 threads=8 base=20f65e6bebf56832df53ebea44ef198c3463ae31 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing
+ℹ [3306/3354] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10092/10092] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing (34s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:212:56: Application type mismatch: The argument
+  List.mem_append_left ?m.448 hX
+has type
+  Delta.toCombMap.alpha (sourceArc.darts.head ⋯) ∈ X ++ ?m.448
+but is expected to have type
+  Delta.toCombMap.alpha (sourceArc.darts.head hne) ∈ X
+in the application
+  List.mem_append_left targetArc.reverseDarts (List.mem_append_left ?m.448 hX)
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:344:9: Function expected at
+  reclosedMap
+but this term has type
+  ?m.28
+
+Note: Expected a function because this term is being applied to the argument
+  Delta.toCombMap
+
+Hint: The identifier `reclosedMap` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:398:9: Function expected at
+  reclosedMap
+but this term has type
+  ?m.28
+
+Note: Expected a function because this term is being applied to the argument
+  Delta.toCombMap
+
+Hint: The identifier `reclosedMap` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:400:101: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+Delta : DiscDiagram W
+f : Delta.toCombMap.Face
+j : Fin Delta.rCellCount
+X Y B A : List Delta.toCombMap.Dart
+r n : ℕ
+x✝ : Sort u_1
+reclosedMap : x✝
+hf : (cell Delta j).face ≠ f
+sourceArc targetArc : CyclicArc (cellDarts Delta j)
+htrav : (Delta.faceBoundary f).darts.rotate r = X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts
+hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A
+hs : 0 < sourceArc.length
+ht : 0 < targetArc.length
+hne : Y ++ A ≠ []
+hnospur : ∀ d ∈ invDarts Delta Y ++ invDarts Delta A, Delta.toCombMap.alpha d ∉ invDarts Delta Y ++ invDarts Delta A
+htrav' :
+  (Delta.faceBoundary f).darts.rotate (r + (X ++ targetArc.reverseDarts).length) =
+    Y ++ sourceArc.reverseDarts ++ X ++ targetArc.reverseDarts
+hPi' : (cellDarts Delta j).rotate (n + (targetArc.darts ++ B).length) = sourceArc.darts ++ A ++ targetArc.darts ++ B
+⊢ ∃ (hw : IsNoncrossingClosedWalk Delta.toCombMap (invDarts Delta Y ++ invDarts Delta A)),
+    (hw.outerCycle ⋯).FollowsBoundary ∧ sorry = Delta.toCombMap.eulerCharacteristic
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:421:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.facePerm_getLast_of_rotate_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:422:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_of_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:423:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.not_walkKeep_head_p' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:424:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.not_walkKeep_alpha_getLast_q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:425:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_chain_X' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:426:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_close_X' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:427:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_X' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:428:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_Y' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing
+error: build failed
+EXIT=1

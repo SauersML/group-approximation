@@ -1,0 +1,20 @@
+[job] 17:08:17 acn112 waiting for clone lock
+[job] delta sync a51d90dda..740983a11: 10 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 740983a11 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-170809-84720.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+--- errors (first 80 lines)
+3:✖ [1524/1524] Building GroupApproximation.Dynamics.TwoEndedShift (6.0s)
+5:error: GroupApproximation/Dynamics/TwoEndedShift.lean:185:57: failed to synthesize instance of type class
+9:error: GroupApproximation/Dynamics/TwoEndedShift.lean:448:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+10:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+14:error: Lean exited with code 1
+17:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedShift (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.TwoEndedShift
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

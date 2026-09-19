@@ -1,0 +1,118 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3976 oleans
+[job] cn1139 cores=slurm threads=8 base=def464f1bd30d062123bc5d3953faef7adaae168 mods: GroupApproximation.Dynamics.BilateralThreeCellClopen GroupApproximation.Algebra.BilateralThreeCellZOrder GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge GroupApproximation.Manuscript.ChainCore.BilateralThreeClosures GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV3
+ℹ [1724/1794] Replayed GroupApproximation.Algebra.BilateralThreeCellMatrices
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:464:14: 'GroupApproximation.BilateralThreeCell.Cell.W_conj_mem_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:465:14: 'GroupApproximation.BilateralThreeCell.Cell.c_commute_coreGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1759/1816] Replayed GroupApproximation.Algebra.BilateralThreeCellCorner
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:209:14: 'GroupApproximation.BilateralThreeCell.Cell.cornerEmbed_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:210:14: 'GroupApproximation.BilateralThreeCell.Cell.range_cornerEmbed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:211:14: 'GroupApproximation.BilateralThreeCell.Cell.unit_conj_mem_range' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellCorner.lean:212:14: 'GroupApproximation.BilateralThreeCell.Cell.isOfFinOrder_z' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2855/2924] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10513/10566] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:374:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_iff_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:375:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.exists_component_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:376:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.isSimpleClosedWalk_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:377:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_of_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:378:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.reverseAlpha_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:379:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_invDarts_outer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:380:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_outer_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10558/10575] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:79:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.unpinched_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:80:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_simple_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:81:14: 'GroupApproximation.GGT.VanKampen.pocketPinchStatement_of_pinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10569/10575] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2.lean:65:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10570/10575] Built GroupApproximation.Dynamics.BilateralThreeCellClopen (54s)
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:73:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/BilateralThreeCellClopen.lean:74:14: 'GroupApproximation.ClopenCrossedProduct.defectD_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10571/10575] Built GroupApproximation.Algebra.BilateralThreeCellZOrder (8.4s)
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:182:21: 'GroupApproximation.ClopenCrossedProduct.manuscriptSentence_bilateralThreeZCentralOfOrderChar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:183:14: 'GroupApproximation.BilateralThreeCell.ZOrder.z_pow_eq_one_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/BilateralThreeCellZOrder.lean:184:14: 'GroupApproximation.ClopenCrossedProduct.bilateralCell_orderOf_z' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10572/10575] Built GroupApproximation.Manuscript.ChainCore.BilateralThreeCellDischarge (53s)
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:127:21: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.bilateralThreeCellStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:128:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.isFinitelyGeneratedRing_cellRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeCellDischarge.lean:129:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.natCast_ringChar_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10573/10575] Built GroupApproximation.Manuscript.ChainCore.BilateralThreeClosures (15s)
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeClosures.lean:55:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.printedBilateralThree_of_reflection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/ChainCore/BilateralThreeClosures.lean:56:14: 'GroupApproximation.Manuscript.ChainCore.BilateralThree.bilateralThreeTransferStatement_of_nonzeroDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10574/10575] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection (161s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:149:8: failed to synthesize instance of type class
+  DecidablePred fun k => 2 ≤ Q.classCount k ∧ ∃ i < Q.classCount k, ∃ j, Q.classKind k i = OsinLemma94SideClass.cell j
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:153:19: Type mismatch
+  OsinLemma94SideClass.noConfusion ?m.249
+has type
+  ?m.246 ≍ ?m.248 → OsinLemma94SideClass.noConfusionType ?m.244 ?m.246 ?m.248
+but is expected to have type
+  False
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+error: build failed
+EXIT=1

@@ -1,0 +1,45 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4216 oleans
+[job] acn112 cores=64-71 threads=8 base=a44fdc00e23041645d2c0b2e45f06be573e70e99 mods: GroupApproximation.Dynamics.TwoEndedShift GroupApproximation.Algebra.FinitaryGeneralLinear
+✖ [1528/1529] Building GroupApproximation.Dynamics.TwoEndedShift (5.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Dynamics/TwoEndedShift.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Dynamics/TwoEndedShift.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Dynamics/TwoEndedShift.setup.json --json
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:184:10: Unknown constant `TopologicalSpace.SecondCountableTopology`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:186:8: Unknown constant `TopologicalSpace.metrizableSpace_of_t3_secondCountable`
+error: GroupApproximation/Dynamics/TwoEndedShift.lean:448:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:449:14: 'GroupApproximation.TwoEndedShift.chainRecurrentSet_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/TwoEndedShift.lean:450:14: 'GroupApproximation.TwoEndedShift.not_isDedekindFiniteMonoid' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [1529/1529] Building GroupApproximation.Algebra.FinitaryGeneralLinear (7.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/Algebra/FinitaryGeneralLinear.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/Algebra/FinitaryGeneralLinear.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/Algebra/FinitaryGeneralLinear.setup.json --json
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:228:6: Type mismatch
+  sub_self ?m.237
+has type
+  @HSub.hSub ?m.235 ?m.235 ?m.235 (@instHSub ?m.235 AddGroup.toSubNegMonoid.toSub) ?m.237 ?m.237 = 0
+but is expected to have type
+  @HSub.hSub ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k)
+      (@instHSub ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) LinearMap.instSub) (↑1) 1 =
+    0
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:307:28: Application type mismatch: The argument
+  Units.mul_inv (shiftGL k ^ n)
+has type
+  @HMul.hMul ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) ((ℤ →₀ k) →ₗ[k] ℤ →₀ k)
+      (@instHMul ((ℤ →₀ k) →ₗ[k] ℤ →₀ k) Module.End.instMonoid.toMulOneClass.toMul) ↑(shiftGL k ^ n)
+      ↑(shiftGL k ^ n)⁻¹ =
+    1
+but is expected to have type
+  @HMul.hMul ?m.136 ?m.136 ?m.136 (@instHMul ?m.136 instDistribOfSemiring.toMul) ?m.138 ?m.139 = 1
+in the application
+  ring_conj_sub_one (Units.mul_inv (shiftGL k ^ n))
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:367:14: 'GroupApproximation.FinitaryGL.hasFiniteMatrixSupport_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:368:14: 'GroupApproximation.FinitaryGL.supportedIn_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:369:14: 'GroupApproximation.FinitaryGL.conj_mem_GLfin' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Algebra/FinitaryGeneralLinear.lean:370:14: 'GroupApproximation.FinitaryGL.shiftGL_zpow_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Dynamics.TwoEndedShift
+- GroupApproximation.Algebra.FinitaryGeneralLinear
+error: build failed
+EXIT=1

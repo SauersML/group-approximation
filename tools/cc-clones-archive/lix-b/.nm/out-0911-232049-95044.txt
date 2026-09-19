@@ -1,0 +1,18 @@
+[job] 23:22:02 acn112 waiting for clone lock
+[job] delta sync 1ceff5341..46270ef0c: 4 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 46270ef0c log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-232049-95044.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 2232 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.LIXKLocalRestrict
+BUILT GroupApproximation.CharClass.LIXKStepCExponent
+--- rebuilt GroupApproximation modules: 25
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKLocalRestrict.lean
+COMPILED GroupApproximation/CharClass/LIXKLocalSplit.lean
+COMPILED GroupApproximation/CharClass/LIXKStepCExponent.lean
+info: GroupApproximation/CharClass/LIXKStepCExponent.lean:269:14: 'GroupApproximation.CharClass.lixK_topChern_ne_zero_exponent' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9244 jobs).
+EXIT=0
+PROBE GREEN

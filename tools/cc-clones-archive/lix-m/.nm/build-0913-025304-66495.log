@@ -1,0 +1,770 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2334 oleans
+[job] acn32 cores=slurm threads=8 base=9dda53a05821522d0c7a10ee247e6b44c5a9399d mods: GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel GroupApproximation.Manuscript.NonMF.Audit.Sec3 GroupApproximation.Manuscript.NonMF.Audit.Sec4
+ℹ [4030/4121] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4943/4945] Building GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.setup.json --json
+error: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:89:2: No goals to be solved
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:148:14: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.dU_mul_affUnit_mul_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:149:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedGammaBarAffine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:150:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDefinition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:151:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDDoublesTranslation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/AffineDoublingLiteralModel.lean:152:21: 'GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel.printedConjDRangeEvenTranslations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [4945/4945] Built GroupApproximation.Manuscript.NonMF.Audit.Sec3 (24s)
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:108:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_finitelyGeneratedGivesPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:109:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.hasKazhdanPropertyT_viaEJZ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:114:14: 'GroupApproximation.OneSidedCompressor.compressor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:115:14: 'GroupApproximation.OneSidedCompressor.compressor_compresses_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:120:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptTwoCopiesLemma' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:124:14: 'GroupApproximation.OneSidedCompressor.OneSidedInverse.e' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:125:14: 'GroupApproximation.RankDescent.ofFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:130:14: 'GroupApproximation.RankDescent.ofFull' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:134:14: 'GroupApproximation.RankDescent.ProperlyInfiniteUnit.w_one_mul_e_mul_v_one' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:139:14: 'GroupApproximation.RankDescent.e_mul_t_pow_mul_s_pow_mul_e' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:144:14: 'GroupApproximation.RankDescent.full_w0_mul_v0' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:145:14: 'GroupApproximation.RankDescent.full_w1_mul_v1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:146:14: 'GroupApproximation.RankDescent.full_w0_mul_v1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:147:14: 'GroupApproximation.RankDescent.full_w1_mul_v0' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:152:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptRankTwoNormalGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:156:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptRankTwoNormalGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:160:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.printedN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:165:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoCommutatorUpperRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:169:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoIdempotentF' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:174:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoSplitAndReduction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:179:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoConjugateRows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:180:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoGeneratorDiagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:184:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoDecomposition' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:188:14: 'GroupApproximation.RankDescent.zElt_mul_fIdem' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:189:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted.manuscriptRankTwoNormalGeneration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:195:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoMultiplicationTable' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:199:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoSixTransvectionWord' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:200:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoConjugationIntoN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:201:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.upperRoot_f_mem_printedN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:206:14: 'GroupApproximation.Manuscript.NonMFSentences.RankTwoPrintedSteps.manuscriptSentence_rankTwoUpperAndLowerRoots' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:211:14: 'GroupApproximation.RankDescent.involutionDiag_mul_upperRoot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:212:14: 'GroupApproximation.RankDescent.involutionDiag_conj_upperRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:216:14: 'GroupApproximation.OneSidedCompressor.core' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:217:14: 'GroupApproximation.OneSidedCompressor.coreIdx' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:222:14: 'GroupApproximation.OneSidedCompressor.OneSidedInverse' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:223:14: 'GroupApproximation.OneSidedCompressor.compressor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:224:14: 'GroupApproximation.OneSidedCompressor.centralMark' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:228:14: 'GroupApproximation.OneSidedCompressor.compressor_compresses_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:229:14: 'GroupApproximation.OneSidedCompressor.centralMark_commute_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:230:14: 'GroupApproximation.OneSidedCompressor.compressor_conj_centralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:231:14: 'GroupApproximation.OneSidedCompressor.defect_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:236:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:240:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_compressorPieceDef' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:244:14: 'GroupApproximation.OneSidedCompressor.OneSidedInverse.e_mul_e' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:245:14: 'GroupApproximation.OneSidedCompressor.OneSidedInverse.e_mul_s' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:246:14: 'GroupApproximation.OneSidedCompressor.OneSidedInverse.t_mul_e' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:251:14: 'GroupApproximation.OneSidedCompressor.compressorPiece_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:252:14: 'GroupApproximation.OneSidedCompressor.compressor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:253:14: 'GroupApproximation.OneSidedCompressor.compressor_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:257:14: 'GroupApproximation.OneSidedCompressor.compressor_conj_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:261:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_compressorInvertible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:266:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_compressionCellCoreAndOffDiag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:267:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourCompressionCellPrinted.compressor_conj_core_offDiag_sandwich' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:268:14: 'GroupApproximation.OneSidedCompressor.compressor_compresses_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:273:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_intertwineEntries' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:277:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_centralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:282:14: 'GroupApproximation.OneSidedCompressor.compressor_mul_centralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:287:14: 'GroupApproximation.OneSidedCompressor.compressor_conj_centralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:288:14: 'GroupApproximation.OneSidedCompressor.defect_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:293:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_centralMarkCentral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:297:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:302:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:303:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:308:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:309:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupSigma.manuscriptFullComplementaryIdempotentsUniversal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:314:21: 'GroupApproximation.Manuscript.NonMFSentences.UniversalRingSentences.manuscriptSentence_universalRingPrintedReasons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:315:21: 'GroupApproximation.Manuscript.NonMFSentences.UniversalRingSentences.universalToLeavitt_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:316:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_propertyTGivesFinitelyGenerated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:321:14: 'GroupApproximation.UniversalPair.pairInverse' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:322:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.UniversalGroupB.B' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:326:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_ringRelations' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:331:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_groupsGandL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:336:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_compressorMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:337:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_centralMark' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:341:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_steinbergPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:345:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_normalClosureOfDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:349:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_steinbergSpreadsCoefficients' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:354:14: 'GroupApproximation.ElementaryWeyl.elGen_one_mem_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:358:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_fullnessRootRewrite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:363:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_homFromBTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:367:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_defectIsEverything' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:372:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_universalProperty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:377:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_twoCopies' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:381:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_lengthTwoWords' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:382:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_pIdem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:383:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_jMapDef' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:387:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_jMapDef' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:391:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_lengthTwoWords' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:392:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_pIdem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:398:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_jMapMultiplicative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:399:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_psiIsDiag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:400:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_psiOnRoots' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:405:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_imageOfB' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:409:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_psiOnRoots' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:414:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_rhoTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:415:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_generatorNormallyGeneratesEL2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:419:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_imageOfB' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:423:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_psiLandsInEL2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:428:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_homFromELnTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:429:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_imageOfBNormallyGeneratesELn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:434:21: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectAllRanksSentences.manuscriptSentence_allRanksSignedPermutations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:435:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.elGen_mem_of_ne_signedPermutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:440:21: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.manuscriptSentence_hypothesisNeedNotPass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:446:21: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.manuscriptSentence_cornerPassesUp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:447:14: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.cornerElementaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:448:14: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.cornerElementaryHom_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:449:14: 'GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.isOperatorMF_of_injective'' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:454:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptLeavittAlgebraFullDefectRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:459:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptSimpleInfiniteRingRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:464:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedCorollarySentences.manuscriptSentence_simpleCaseIdempotentFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:465:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_simpleRingChooseAndFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:466:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedCorollarySentences.manuscriptSentence_leavittCaseSandwich' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:467:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_leavittChooseAndFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:471:21: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_simpleInfiniteRingCorollaryStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:475:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing.PrintedOneSidedRingMaximalIsometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:476:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:481:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:486:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalIsometryRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:487:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptOneSidedRingMaximalReducedCStarRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:488:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptUnitGroupNotMFAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:493:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_oneSidedMaximalChooseSubring' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:498:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_oneSidedMaximalProperIsometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:503:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedCorollarySentences.manuscriptSentence_strictCompressionWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:504:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_oneSidedMaximalStrictCompression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:505:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_pairSubringElementaryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:509:21: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_oneSidedMaximalUnitGroupNotMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:514:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRing.PrintedElementaryGroupNotMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:515:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptElementaryGroupNotMFAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:520:14: 'GroupApproximation.reducedGroupCStar_separable_stablyFinite_not_isMFAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:525:14: 'GroupApproximation.Manuscript.NonMFSentences.OneSidedSentences.manuscriptSentence_oneSidedMaximalJInjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:526:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:531:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.PrintedTorsionComplementaryIdempotents' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:532:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptTorsionComplementaryIdempotents' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:536:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptTorsionComplementaryIdempotents' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:537:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_le_mfHomKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:542:14: 'GroupApproximation.relativeElementary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:547:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptTorsionComplementaryIdempotents' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:548:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.not_isCDEOperatorMF_of_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:549:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptPositiveCharacteristicDirectFiniteness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:554:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_pairSubringCoreKazhdan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:555:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_pairSubringElementaryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:559:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.fUnit' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:560:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_matrixUnits' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:565:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_centralFiniteOrderInDefect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:570:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_matrixUnits' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:575:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.lastDiag' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:576:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_diagonalCommutators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:580:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_printedCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:581:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.printedB' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:586:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_compressorWeylAndV' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:590:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_vCompressesCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:594:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_zeroIdempotentCase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:599:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_zOrderAndNontrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:603:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_twoCommutatorsKilled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:608:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_criterionKillsCentralElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:613:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_defectElementAndZ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:618:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_zCentral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:624:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_conjugationsByV' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:629:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_positiveCharacteristic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:633:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_rootNeOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:638:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_sandwichesAndRelativeElementaryKilled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:639:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_span_le_of_elGen_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:644:14: 'GroupApproximation.JacobsonLaurent.manuscriptSentence_laurentElementaryResiduallyFiniteMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:645:14: 'GroupApproximation.JacobsonLaurent.isOperatorMF_of_injective_into_binaryLaurentGL' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:650:14: 'GroupApproximation.FinitaryLinear.binaryGLfs' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:651:14: 'GroupApproximation.FinitaryLinear.mem_binaryGLfs_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:652:14: 'GroupApproximation.FinitaryLinear.manuscriptSentence_finiteSupportStrongerThanFiniteRank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:657:14: 'GroupApproximation.FinitaryLinear.manuscriptSentence_binaryGLfsProductOfTransvections' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:663:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFour.manuscriptSentence_threeCoordinatesCarryPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:664:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFour.manuscriptSentence_fourthCoordinateMakesCompressionInvertible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:668:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFour.manuscriptSentence_fourthCoordinateMakesCompressionInvertible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:672:21: 'GroupApproximation.FinitaryLinear.manuscriptSentence_binarySLUnionInfiniteSimpleLocallyFinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:677:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_finiteSubgroupAdmitsNoProperCompression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:681:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.R' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:682:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.BinaryExampleUnitGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:688:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_leavittModuleEquivProd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:689:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_unitsEquivGLFourEqELFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:693:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_weIdentifyHWithELFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:698:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_finitelyGeneratedGivesPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:699:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_propertyTGivesFinitelyGenerated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:700:21: 'GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.headlineGroup_finitelyGenerated_via_propertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:701:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.hasKazhdanPropertyT_viaEJZ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:702:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_relationsGiveTrivialHomomorphisms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:706:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_e12OneForcesNontrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:710:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_letNBeNormalSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:715:21: 'GroupApproximation.manuscriptSentence_purelyInfiniteSimpleIsExchange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:716:14: 'GroupApproximation.PreusserSandwichExchange.binaryLeavitt_isPurelyInfiniteSimpleRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:717:14: 'GroupApproximation.PreusserSandwichExchange.binaryLeavitt_isExchangeRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:718:21: 'GroupApproximation.PreusserSandwichExchange.manuscriptSentence_preusserSandwichForExchangeRings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:719:21: 'GroupApproximation.PreusserSandwichExchange.manuscriptSentence_rankFourSandwich' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:720:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.sentence_53445fb2a2b7' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:721:14: 'GroupApproximation.BinaryLeavitt.center_eq_bot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:722:14: 'GroupApproximation.BinaryLeavitt.hasRightExchange' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:723:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.sentence_9e719f10dc89' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:724:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_purelyInfiniteExchangePreusserSandwich' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:729:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_simpleGivesTrichotomy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:730:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_idealTopGivesNEqTop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:735:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_HNontrivialAndNotMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:741:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_fixGInN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:742:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_idealZeroGivesCentral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:743:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_commutingSingleForcesScalar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:744:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_commutingGeneralForcesCentral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:748:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_thusNTrivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:749:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_HIsSimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:750:14: 'GroupApproximation.PreusserAssembly.isSimpleGroup_elementaryGroup_binaryLeavitt_via_preusser' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:751:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.RankFourEndpoint.manuscriptPropositionSimple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:756:14: 'GroupApproximation.BinaryLeavitt.center_eq_bot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:757:21: 'GroupApproximation.manuscriptSentence_leavittCentreIsBaseField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:758:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.sentence_9e719f10dc89' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:759:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.sentence_4b5ccef4a04e' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:760:14: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_centerEqF2GivesGEqOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:766:14: 'GroupApproximation.relativeElementary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:767:14: 'GroupApproximation.congruenceSubgroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:772:21: 'GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences.manuscriptSentence_reducedAndMaximalCStarClauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:777:14: 'GroupApproximation.AlgebraicK.kappa' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:782:14: 'GroupApproximation.AryLeavitt.isPurelyInfiniteSimpleRing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:788:14: 'GroupApproximation.ClassicalGLColim' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:789:14: 'GroupApproximation.elementaryColim' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:790:14: 'GroupApproximation.StableWhitehead.elementaryColim_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:791:14: 'GroupApproximation.AlgebraicK.AlgebraicKOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:796:14: 'GroupApproximation.MFQuotientUnits.IsEquivalentIdempotent' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:797:14: 'GroupApproximation.MFQuotientUnits.IsInfiniteIdempotent' depends on axioms: []
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:798:14: 'GroupApproximation.MFQuotientUnits.IsPurelyInfiniteSimpleRing' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:803:21: 'GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOneAtBaseRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:808:21: 'GroupApproximation.MFQuotientUnitsKOne.manuscriptCanonicalKOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:809:21: 'GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:813:14: 'GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_radicalLeKerKappa' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:818:21: 'GroupApproximation.CountableAbelianMFPrintedRoute.manuscriptSentence_countableAbelianIsMFPrintedRoute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:819:14: 'GroupApproximation.CountableAbelianMFPrintedRoute.maximalGroupCStar_mul_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:820:14: 'GroupApproximation.CountableAbelianMFPrintedRoute.isResiduallyFiniteDimensional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:821:14: 'GroupApproximation.CountableAbelianMFPrintedRoute.isMFAlgebra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:822:14: 'GroupApproximation.CountableAbelianMFPrintedRoute.isOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:827:14: 'GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_matrixRingAgainPurelyInfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:828:21: 'GroupApproximation.MFQuotientUnitsSteinberg.manuscriptSentence_reductionToRankOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:829:21: 'GroupApproximation.MFQuotientUnitsSteinberg.manuscriptSentence_sufficesRankOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:834:21: 'GroupApproximation.MFQuotientUnitsKOne.agpUnitKappa' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:835:21: 'GroupApproximation.MFQuotientUnitsKOne.agpUnitKappaResidue' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:836:14: 'GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_kappaSurjectiveKernelCommutator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:837:14: 'GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_kappaSurjectiveKernelCommutatorAbstract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:841:14: 'GroupApproximation.MFQuotientUnits.mfHomKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:847:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemA' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:848:21: 'GroupApproximation.MFQuotientUnitsStepOnePrinted.manuscriptSentence_stepOneParagraph' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:854:21: 'GroupApproximation.MFQuotientUnitsCornerUnits.manuscriptSentence_cornerRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:859:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRankTwo.PrintedFullComplementaryIdempotentsRankTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:860:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptFullComplementaryIdempotentsRankTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:865:21: 'GroupApproximation.MFQuotientUnitsCornerUnits.manuscriptSentence_cornerUnits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:866:14: 'GroupApproximation.MFQuotientUnitsCornerUnits.cornerUnitsHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:872:21: 'GroupApproximation.MFQuotientUnitsKOne.manuscriptAGPInputs' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:877:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemAMatrixRingAndFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:878:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemA' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:883:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemADecomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:884:21: 'GroupApproximation.MFQuotientUnits.printedItemA' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:889:21: 'GroupApproximation.MFQuotientUnitsItemB.manuscriptSentence_itemB' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:890:14: 'GroupApproximation.MFQuotientUnitsItemB.matrixCornerEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:894:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_itemAMatrixRingAndFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:895:21: 'GroupApproximation.MFQuotientUnits.printedItemAShape' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:900:21: 'GroupApproximation.MFQuotientUnitsOffLastCorner.manuscriptSentence_offLastCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:901:14: 'GroupApproximation.MFQuotientUnitsOffLastCorner.cornerMatrixEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:906:21: 'GroupApproximation.MFQuotientUnitsSteinberg.manuscriptSentence_steinbergDisplaysInRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:907:14: 'GroupApproximation.MFQuotientUnitsSteinberg.lastColumnDisplay' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:908:14: 'GroupApproximation.MFQuotientUnitsSteinberg.lastRowDisplay' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:913:21: 'GroupApproximation.MFQuotientUnitsCongruencePrinted.manuscriptSentence_congruenceModRadical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:918:21: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptDiagInElementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:919:14: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_diagInElementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:920:14: 'GroupApproximation.MFQuotientUnitsItemA.manuscriptSentence_diagInElementaryAndCommutator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:924:14: 'GroupApproximation.MFQuotientUnitsSentences.manuscriptSentence_conclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:925:21: 'GroupApproximation.MFQuotientUnitsKOne.manuscriptMFQuotientUnitsKOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:931:21: 'GroupApproximation.MFQuotientUnitsStepOnePrinted.manuscriptSentence_stepOneParagraph' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:936:21: 'GroupApproximation.MFQuotientUnitsStepOnePrinted.manuscriptSentence_stepOneParagraph' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:941:14: 'GroupApproximation.LeavittKOneFormulaSentences.PrintedLeavittMFQuotientFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:942:21: 'GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittMFQuotientFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:943:14: 'GroupApproximation.LeavittKOneFormulaSentences.manuscriptSentence_quotientByElementaryIsScalarQuotient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:944:21: 'GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:949:14: 'GroupApproximation.AryLeavitt.AryLeavittAlgebra' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:950:14: 'GroupApproximation.LeavittKOneFormulaSentences.PrintedLeavittMFQuotientFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:951:21: 'GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittMFQuotientFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:956:14: 'GroupApproximation.LeavittMFQuotientSentences.manuscriptSentence_theoremIdentifiesRadicalAndQuotient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:961:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.printedKhanhThanhDecomposition_everyArity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:962:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.scalarSurjective_everyArity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:963:14: 'GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.scalarKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:964:21: 'GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:969:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.manuscriptSentence_commutatorInElementaryPrinted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:974:14: 'GroupApproximation.LeavittKOneQuotientEvaluations.PrintedLeavittQuotientTrivialRankTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:975:21: 'GroupApproximation.LeavittKOneQuotientEvaluations.manuscriptSentence_quotientTrivialRankTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:976:14: 'GroupApproximation.LeavittKOneQuotientEvaluations.PrintedLeavittQuotientCyclicFiniteField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:977:21: 'GroupApproximation.LeavittKOneQuotientEvaluations.manuscriptSentence_quotientCyclicFiniteField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:978:21: 'GroupApproximation.LeavittScalarQuotient.manuscriptSentence_leavittScalarQuotientRankTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:979:21: 'GroupApproximation.LeavittScalarQuotient.manuscriptSentence_leavittScalarQuotientFiniteField' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean:980:21: 'GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptLeavittMFQuotientTwoAllCharacteristics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMF.AffineDoublingLiteralModel
+error: build failed
+EXIT=1

@@ -1,0 +1,29 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2327 oleans
+[job] acn112 cores=64-71 threads=8 base=924105b04ecae483c90ac07d4673c7fc16a49b52 mods: GroupApproximation.CharClass.OddPShufflePrimRoot
+ℹ [2165/2165] Built GroupApproximation.CharClass.OddPShufflePrimRoot (9.5s)
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:202:14: 'GroupApproximation.CharClass.mulPerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:203:14: 'GroupApproximation.CharClass.finRotate_pow_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:204:14: 'GroupApproximation.CharClass.mulPerm_mul_finRotate_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:205:14: 'GroupApproximation.CharClass.mulPerm_mul_finRotate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:206:14: 'GroupApproximation.CharClass.mulPerm_inv_mul_finRotate_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:207:14: 'GroupApproximation.CharClass.mulPerm_mul_finRotate_pow_of_mul_mod_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:208:14: 'GroupApproximation.CharClass.mulPerm_mul_mulPerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:209:14: 'GroupApproximation.CharClass.mulPerm_inv_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:210:14: 'GroupApproximation.CharClass.tupPermAll_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:211:14: 'GroupApproximation.CharClass.tupTAll_mul_tupPermAll_mulPerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:212:14: 'GroupApproximation.CharClass.tupTAll_pow_mul_tupPermAll_mulPerm_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:213:14: 'GroupApproximation.CharClass.tupTAll_pow_mul_tupPermAll_mulPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:214:14: 'GroupApproximation.CharClass.tupPerm_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:215:14: 'GroupApproximation.CharClass.tupPerm_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:216:14: 'GroupApproximation.CharClass.tupT_mul_tupPerm_mulPerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPShufflePrimRoot.lean:217:14: 'GroupApproximation.CharClass.tupT_pow_mul_tupPerm_mulPerm_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2165 jobs).
+EXIT=0

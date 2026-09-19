@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3582 oleans
+[job] acn112 cores=88-95 threads=8 base=8f9a70ae8c6f6851c8a79a17913bdc9e0b08ff39 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+ℹ [3295/3336] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5071/5071] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:291:21: 'GroupApproximation.GGT.VanKampen.osinLemma94JunctionFaceClause' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:293:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.facePerm_getLast_eq_head_mod' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:295:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.junctionGap_faceOf_ne_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:297:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.listVal_junctionGap_ne_one_of_mem_badJunctions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean:299:2: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_badJunctions_le_sum_boundaryBad' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5071 jobs).
+EXIT=0

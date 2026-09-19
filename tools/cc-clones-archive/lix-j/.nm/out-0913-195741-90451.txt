@@ -1,0 +1,40 @@
+[job] 19:59:15 cn1032 waiting for clone lock
+[job] delta sync 6ff3cd88f..c4cdb202b: 4 files changed
+===== SUMMARY
+host cn1032 cores slurm base c4cdb202b log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-195741-90451.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3475 oleans
+--- errors (first 80 lines)
+18:✖ [1826/1826] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration (14s)
+20:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:106:42: failed to synthesize instance of type class
+24:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:127:47: failed to synthesize instance of type class
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:133:25: Application type mismatch: The argument
+36:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:145:85: failed to synthesize instance of type class
+40:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:145:85: failed to synthesize instance of type class
+45:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:146:80: Application type mismatch: The argument
+56:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:170:14: 'GroupApproximation.SimpleKazhdanSofic.mem_closure_coeff' depends on axioms outside the classical allowlist: [sorryAx]
+57:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+59:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:171:21: 'GroupApproximation.SimpleKazhdanSofic.printedRingGeneration' depends on axioms outside the classical allowlist: [sorryAx]
+60:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+62:error: Lean exited with code 1
+65:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.RingLaurent
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRing.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationRingClosed.lean
+COMPILED GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean
+COMPILED GroupApproximation/Dynamics/ReturnPlacement.lean
+COMPILED GroupApproximation/Dynamics/TransientCells.lean
+COMPILED GroupApproximation/Dynamics/TransientCellsClosed.lean
+COMPILED GroupApproximation/Dynamics/TransientSupport.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingLaurent.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

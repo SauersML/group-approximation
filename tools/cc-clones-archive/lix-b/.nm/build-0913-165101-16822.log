@@ -1,0 +1,19 @@
+purged 3 stale artifact sets (source-newer=3, import-newer=0) of 3394 oleans
+[job] acn112 cores=64-71 threads=8 base=3ade50807c38d308ccc2158315a49bac2ca6811a mods: GroupApproximation.Dynamics.CoreSubshiftChainRecurrent
+ℹ [1271/1271] Built GroupApproximation.Dynamics.CoreSubshiftChainRecurrent (8.5s)
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:193:14: 'GroupApproximation.ChainCore.windowRel_mem_uniformity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:194:14: 'GroupApproximation.ChainCore.exists_windowRel_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:195:14: 'GroupApproximation.ChainCore.isChainRecurrent_iff_mem_coreSubshift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:196:14: 'GroupApproximation.ChainCore.chainRecurrentSet_eq_preimage_coreSubshift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:197:14: 'GroupApproximation.ChainCore.coreSubshift_eq_chainRecurrentSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/CoreSubshiftChainRecurrent.lean:198:14: 'GroupApproximation.ChainCore.isMetricChainRecurrent_iff_mem_coreSubshift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1271 jobs).
+EXIT=0

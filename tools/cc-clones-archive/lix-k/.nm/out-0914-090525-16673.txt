@@ -1,0 +1,34 @@
+[job] 09:06:50 acn121 waiting for clone lock
+[job] delta sync 73afca22d..14e7daac0: 43 files changed
+===== SUMMARY
+host acn121 cores slurm base 14e7daac0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0914-090525-16673.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3707 oleans
+--- errors (first 80 lines)
+22:✖ [10118/10118] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels (211s)
+24:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:63:2: 'change M.faceOf (M.alpha d) = g ∨ M.faceOf (M.alpha d) ∈ faces' tactic does nothing
+27:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:197:7: Invalid field `sideFaces_boundary_cycle_eq`: The environment does not contain `GroupApproximation.GGT.VanKampen.PocketFaceSet.sideFaces_boundary_cycle_eq`, so it is not possible to project the field `sideFaces_boundary_cycle_eq` from an expression
+30:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:229:40: invalid `▸` notation, expected result type of cast is 
+43:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:298:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.false_of_simple' depends on axioms outside the classical allowlist: [sorryAx]
+44:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+46:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModels.lean:299:21: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pocketPinchPosRefutation' depends on axioms outside the classical allowlist: [sorryAx]
+47:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+49:error: Lean exited with code 1
+52:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyBelow.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModels
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

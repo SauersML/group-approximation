@@ -1,0 +1,27 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3789 oleans
+[job] cn1019 cores=slurm threads=8 base=21cdcf15ba8597bfa15aa7d1d7b61b8ced01ede1 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+✖ [2177/2177] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (81s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:96:83: Type mismatch
+  hB
+has type
+  B ∈ {B | TuringReducible (charOracle B) g}
+but is expected to have type
+  Nat.RecursiveIn {g} (charOracle B)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:103:16: Variable name `B` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:136:27: failed to synthesize instance of type class
+  HasEquiv (Set ℕ)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:140:21: 'GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.printedContinuumManyDegrees' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+error: build failed
+EXIT=1

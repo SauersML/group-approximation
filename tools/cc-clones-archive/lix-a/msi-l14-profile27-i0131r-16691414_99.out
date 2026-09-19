@@ -1,0 +1,17 @@
+rotation=0
+target=3
+rootblock_peers=6
+prefix_bits=5
+prefix=3
+rootblock_masks=2
+forest_states=3460
+empty_q=3333
+free_q=0
+direct_q=121
+power_q=4
+saturation_q=2
+involution_q=0
+difference_q=0
+unresolved_q=0
+free_nonempty_q=0
+unresolved_q=0

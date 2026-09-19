@@ -1,0 +1,22 @@
+[job] 19:47:38 acn112 waiting for clone lock
+[job] delta sync 3d3f7b235..cd57d096c: 9 files changed
+===== SUMMARY
+host acn112 cores 72-79 base cd57d096c log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-194730-59133.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3465 oleans
+--- errors (first 80 lines)
+103:✖ [10186/10187] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep (77s)
+105:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:82:45: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+150:Full error:
+185:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:138:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.sigma_embedding_of_ne' depends on axioms outside the classical allowlist: [sorryAx]
+186:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+203:error: Lean exited with code 1
+206:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerProof (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

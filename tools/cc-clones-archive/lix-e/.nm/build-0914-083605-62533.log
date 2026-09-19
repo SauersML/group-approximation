@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4359 oleans
+[job] acn112 cores=72-79 threads=8 base=c23f6e753f2f0dd303b877109a8eaa433cad4b6a mods: GroupApproximation.Analysis.LocalLiftingProperty GroupApproximation.Analysis.OperatorSystemStateExtension GroupApproximation.Analysis.OperatorSystemChoiFunctional GroupApproximation.Analysis.OperatorSystemMatrixArveson
+ℹ [3002/3058] Replayed GroupApproximation.Analysis.LocalLiftingProperty
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:191:14: 'GroupApproximation.LocalLifting.IsOperatorSystem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:192:14: 'GroupApproximation.LocalLifting.IsCompletelyPositiveOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:193:14: 'GroupApproximation.LocalLifting.IsLocallyUCPLiftable' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:194:14: 'GroupApproximation.LocalLifting.HasLocalLiftingProperty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:195:14: 'GroupApproximation.LocalLifting.OperatorSystemMatrixArvesonStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/LocalLiftingProperty.lean:196:21: 'GroupApproximation.LocalLifting.hasLocalLiftingProperty_complex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [3057/3058] Built GroupApproximation.Analysis.OperatorSystemChoiFunctional (12s)
+ℹ [3058/3058] Built GroupApproximation.Analysis.OperatorSystemMatrixArveson (18s)
+info: GroupApproximation/Analysis/OperatorSystemMatrixArveson.lean:422:21: 'GroupApproximation.LocalLifting.operatorSystemMatrixArvesonStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3058 jobs).
+EXIT=0

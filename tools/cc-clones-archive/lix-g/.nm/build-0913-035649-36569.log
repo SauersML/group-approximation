@@ -1,0 +1,29 @@
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 3264 oleans
+[job] n43 cores=slurm threads=8 base=2e93f09d1d16c3460b1ec90fdc63c708eca5b3ca mods: GroupApproximation.Manuscript.NonMF.FFFParagraphFreeWitness
+ℹ [2819/2898] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4446/4446] Built GroupApproximation.Manuscript.NonMF.FFFParagraphFreeWitness (19s)
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:340:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_simplified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:342:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeSimplified_of_theorem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:344:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeFullMFRadical_of_configuration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:346:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:348:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_literatureInputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:350:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_paragraphFreeWitness_of_corrected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMF/FFFParagraphFreeWitness.lean:352:14: 'GroupApproximation.Manuscript.NonMF.FFFFreeWitness.printedTorsionFreeTheorem_of_corrected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4446 jobs).
+EXIT=0

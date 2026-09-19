@@ -1,0 +1,28 @@
+[job] 04:50:12 acn112 waiting for clone lock
+[job] delta sync 39dd43b39..e6dc0d444: 13 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e6dc0d444 log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-045006-54503.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2510 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementaryPresented
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinaryPower.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySLUnion.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBinarySimple.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearBlocks.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearGroup.lean
+COMPILED GroupApproximation/Algebra/FinitaryLinearTransvections.lean
+COMPILED GroupApproximation/Algebra/LaurentBinaryLinearMF.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonBlockAction.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonComplementaryPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonFiniteMatrices.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonKernelFinitary.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresented.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedSentences.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonSymbol.lean
+ Quot.sound]
+Build completed successfully (4609 jobs).
+EXIT=0
+PROBE GREEN

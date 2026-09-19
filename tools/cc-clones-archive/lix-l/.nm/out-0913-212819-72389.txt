@@ -1,0 +1,23 @@
+[job] 21:28:46 acn112 waiting for clone lock
+[job] delta sync f3e81c133..16d890864: 10 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 16d890864 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-212819-72389.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3794 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellCellExcisionWalk (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean
+COMPILED GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeValue.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellPinchLobes.lean
+ Quot.sound]
+Build completed successfully (10216 jobs).
+EXIT=0
+PROBE GREEN

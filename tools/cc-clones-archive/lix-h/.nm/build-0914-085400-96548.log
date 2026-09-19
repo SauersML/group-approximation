@@ -1,0 +1,11 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3719 oleans
+[job] acn112 cores=64-71 threads=8 base=0484d49b61af98653ce5b37151ecb4b5003b8a95 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel
+ℹ [3295/3376] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10196/10196] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWholeSectionWrapModel (25s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWholeSectionWrapModel.lean:474:21: 'GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10196 jobs).
+EXIT=0

@@ -1,0 +1,8 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2491 oleans
+[job] acn20 cores=slurm threads=8 base=72599dad7a0192762e27c5bcdf91ce6ea2b46999 mods: GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented
+ℹ [2833/2899] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4504/4504] Built GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonPresented (105s)
+Build completed successfully (4504 jobs).
+EXIT=0

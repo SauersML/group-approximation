@@ -1,0 +1,24 @@
+[job] 08:42:46 acn87 waiting for clone lock
+[job] delta sync fc88159fc..0fd4b8615: 138 files changed
+===== SUMMARY
+host acn87 cores slurm base 0fd4b8615 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-084206-68298.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3513 oleans
+--- errors (first 80 lines)
+6:✖ [4953/4953] Building GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving (121s)
+8:error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:67:70: Unknown constant `Equiv.Perm.inv_apply_self`
+9:error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:67:39: unsolved goals
+14:error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:167:34: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+80:error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:243:14: 'GroupApproximation.GGT.VanKampen.NeighbourFaces.false_of_interleave' depends on axioms outside the classical allowlist: [sorryAx]
+81:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+83:error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:244:21: 'GroupApproximation.GGT.VanKampen.neighbourFacesNoninterleaving' depends on axioms outside the classical allowlist: [sorryAx]
+84:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+86:error: Lean exited with code 1
+89:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

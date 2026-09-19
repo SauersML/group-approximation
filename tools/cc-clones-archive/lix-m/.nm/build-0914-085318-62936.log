@@ -1,0 +1,67 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3618 oleans
+[job] cn1013 cores=slurm threads=8 base=b8c585b7ab8ccc7e28b28c512d8fd1d165464ff3 mods: GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+ℹ [3314/3385] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4868/5078] Replayed GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:175:14: 'GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCounts.lean:176:14: 'GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4894/5078] Replayed GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+info: GroupApproximation/GGT/VanKampen/CombMapEulerHittingSet.lean:112:14: 'GroupApproximation.GGT.VanKampen.CombMap.eulerCharacteristic_le_two_mul_card_of_hitting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5076/5078] Built GroupApproximation.GGT.VanKampen.CombMapFirstReturnCountsModel (110s)
+info: GroupApproximation/GGT/VanKampen/CombMapFirstReturnCountsModel.lean:65:14: 'GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel.not_card_starts_add_two_mul_le_oneEdge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5077/5078] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions (111s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:253:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_cuttingTransitions_le_sameFaceStarts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions.lean:254:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [5078/5078] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput (16s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-m/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-m/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:74:47: Unknown identifier `p1`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:74:50: Unknown identifier `p2`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:71:47: unsolved goals
+G : Type u
+inst✝ : Group G
+Lambda : Type w
+W : Set (List (RelLetter G Lambda))
+D : RelGenSet G Lambda
+lambda c : ℝ
+eps : ℕ
+Delta : DiscDiagram W
+cuts : SectionCuts D lambda c Delta.boundaryWord
+S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts
+y y' y'' : S.diagram.toCombMap.Dart
+hy : y ∉ S.forestDarts
+hy'' : y'' ∉ S.forestDarts
+⊢ S.Joined y y''
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:190:64: Invalid field `trans`: The environment does not contain `Exists.trans`, so it is not possible to project the field `trans` from an expression
+  Exists.intro hy (Exists.intro hfk (eqvGen_facePerm ⟨y, hy⟩ hfk))
+of type
+  ∃ (hy : y ∉ S.forestDarts) (hy' : S.diagram.toCombMap.facePerm y ∉ S.forestDarts),
+    Relation.EqvGen S.forestDeleted.Adjacent ⟨y, hy⟩ ⟨S.diagram.toCombMap.facePerm y, hy'⟩
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:393:88: Unknown identifier `p`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:401:42: Unknown identifier `p`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:476:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_joined_cellOrOuter' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:477:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.hittingSet_hits' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitionsInput.lean:478:21: 'GroupApproximation.GGT.VanKampen.osinLemma94CuttingTransitionInput' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
+error: build failed
+EXIT=1

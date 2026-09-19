@@ -1,0 +1,82 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3710 oleans
+[job] acn112 cores=64-71 threads=8 base=248c486be9128e0e7ce90cd45b9f25990b2c57fc mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoCollarsEuler GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPocketBelow
+ℹ [3311/3438] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [5023/5025] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInductionBelow
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:540:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgeCutBelowInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:541:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgeCutInput.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:542:14: 'GroupApproximation.GGT.VanKampen.exists_elevenCell_of_below_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:543:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketCut.exists_large_region_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:544:14: 'GroupApproximation.GGT.VanKampen.descentInput_of_sectionPocketCut_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:545:14: 'GroupApproximation.GGT.VanKampen.osinLemma97_atParameters_of_inputs_multiBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:546:14: 'GroupApproximation.GGT.VanKampen.osinLemma97Section_of_inputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:547:14: 'GroupApproximation.GGT.VanKampen.osinSection97Inputs_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:548:14: 'GroupApproximation.GGT.VanKampen.osinLemma97Section_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:549:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:550:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCutSectionStatement.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:551:14: 'GroupApproximation.GGT.VanKampen.osinSection97PocketInputsBelow_of_parts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInductionBelow.lean:552:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5024/5025] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoCollarsEuler (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoCollarsEuler.lean:179:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollarEulerOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoCollarsEuler.lean:180:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollarEulerStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoCollarsEuler.lean:181:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.exists_twoCollars_of_ne_or_euler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5025/5025] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPocketBelow (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:332:14: 'GroupApproximation.GGT.VanKampen.SectionPocketCutBelowInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:333:14: 'GroupApproximation.GGT.VanKampen.SectionPocketCutInput.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:334:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketCut.exists_large_region_pocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:335:14: 'GroupApproximation.GGT.VanKampen.descentInput_of_sectionPocketCut_pocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:336:14: 'GroupApproximation.GGT.VanKampen.osinSection97Inputs_of_pocketInputsPocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:337:14: 'GroupApproximation.GGT.VanKampen.osinLemma97Section_of_pocketInputsPocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:338:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputsPocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:339:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketCutSectionStatement.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:340:14: 'GroupApproximation.GGT.VanKampen.osinSection97PocketInputsPocketBelow_of_parts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionPocketBelow.lean:341:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsPocketBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5025 jobs).
+EXIT=0

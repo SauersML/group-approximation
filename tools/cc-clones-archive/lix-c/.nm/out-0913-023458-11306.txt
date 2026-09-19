@@ -1,0 +1,16 @@
+[job] 02:35:36 acn172 waiting for clone lock
+[job] delta sync a5893bd6f..73c719552: 11 files changed
+===== SUMMARY
+host acn172 cores slurm base 73c719552 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-023458-11306.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2373 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Algebra.IntegerGridFinite
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/IntegerGridFinite.lean
+COMPILED GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+info: GroupApproximation/Algebra/IntegerGridFinite.lean:210:14: 'GroupApproximation.IntegerGridFinite.exists_grid_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2906 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,21 @@
+[job] 19:44:25 acn112 waiting for clone lock
+[job] delta sync 3d1ce154d..3d3f7b235: 14 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 3d3f7b235 log /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.nm/build-0913-194422-38960.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3464 oleans
+--- errors (first 80 lines)
+84:✖ [10139/10139] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep (27s)
+86:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:81:6: Unknown identifier `EdgeInsertion.sigma_embed_apply`
+87:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:69:88: unsolved goals
+123:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean:137:14: 'GroupApproximation.GGT.VanKampen.PocketTouchCorner.sigma_embedding_of_ne' depends on axioms outside the classical allowlist: [sorryAx]
+124:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+141:error: Lean exited with code 1
+144:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerStep
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

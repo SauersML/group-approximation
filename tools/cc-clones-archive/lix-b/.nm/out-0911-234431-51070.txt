@@ -1,0 +1,33 @@
+[job] 23:44:48 acn112 waiting for clone lock
+[job] delta sync b0b4e42b9..268d9b4ad: 4 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 268d9b4ad log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-234431-51070.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 2300 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.CharClass.ThomBridgeRelToAbsOf
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinPairRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinPairTautOf.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/GysinTautChartOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChartHom.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeRelToAbsOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeTotalNaturalOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeTotalOf.lean
+COMPILED GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+COMPILED GroupApproximation/CharClass/ThomDataOf.lean
+COMPILED GroupApproximation/CharClass/ThomHabsOf.lean
+COMPILED GroupApproximation/CharClass/ThomKunnethOf.lean
+COMPILED GroupApproximation/CharClass/ThomProjectivePuncturedOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+COMPILED GroupApproximation/CharClass/ThomTopLineOf.lean
+info: GroupApproximation/CharClass/ThomBridgeRelToAbsOf.lean:89:14: 'GroupApproximation.CharClass.relToAbs_bridgeTotalOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9069 jobs).
+EXIT=0
+PROBE GREEN

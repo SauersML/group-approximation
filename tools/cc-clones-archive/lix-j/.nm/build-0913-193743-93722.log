@@ -1,0 +1,134 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3471 oleans
+[job] acn112 cores=88-95 threads=8 base=00e7c08fda76c8dd72d9a0c58436d6013b3c0c5c mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerUnits
+ℹ [1525/1542] Replayed GroupApproximation.Dynamics.ClopenSwapInvolution
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1538/1542] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1539/1542] Replayed GroupApproximation.Dynamics.TransientSupport
+info: GroupApproximation/Dynamics/TransientSupport.lean:281:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:282:14: 'GroupApproximation.ClopenCrossedProduct.exists_clopen_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.exists_wandering_clopen_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:284:14: 'GroupApproximation.ClopenCrossedProduct.exists_uniform_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1540/1542] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions (9.7s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:180:14: 'GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:181:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_nbhd_disjoint_translates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:182:14: 'GroupApproximation.SimpleKazhdanSofic.exists_clopen_partition_disjoint_translates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingPartitions.lean:183:14: 'GroupApproximation.SimpleKazhdanSofic.unit_mul_eU_mul_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [1541/1542] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerUnits (8.4s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:39:83: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:41:76: Invalid projection: Projection operates on types of the form `C ...` where C is a constant. The expression
+  h
+has type `U y` which does not have the necessary form.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:41:4: unsolved goals
+case neg
+Y : Type u_1
+inst✝¹ : TopologicalSpace Y
+k : Type u_2
+inst✝ : Ring k
+U V : Set Y
+hU : IsClopen U
+hV : IsClopen V
+y : Y
+hyU : y ∈ U
+hyV : y ∉ V
+⊢ 0 = (U ∩ V).indicator 1 y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:42:74: Invalid projection: Projection operates on types of the form `C ...` where C is a constant. The expression
+  h
+has type `V y` which does not have the necessary form.
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:42:2: unsolved goals
+case neg
+Y : Type u_1
+inst✝¹ : TopologicalSpace Y
+k : Type u_2
+inst✝ : Ring k
+U V : Set Y
+hU : IsClopen U
+hV : IsClopen V
+y : Y
+hyU : y ∉ U
+⊢ 0 = (U ∩ V).indicator 1 y
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:134:14: 'GroupApproximation.SimpleKazhdanSofic.eU_mul_eU' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerUnits.lean:135:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [1542/1542] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre (8.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:45:74: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  - -?a
+in the target expression
+  (fun j => (T ^ (-j)) y) (-j) = z
+
+Y : Type u_1
+inst✝ : TopologicalSpace Y
+T : Y ≃ₜ Y
+y : Y
+h : Dense (Set.range fun j => (T ^ j) y)
+z : Y
+x✝ : z ∈ Set.range fun j => (T ^ j) y
+j : ℤ
+hj : (fun j => (T ^ j) y) j = z
+⊢ (fun j => (T ^ (-j)) y) (-j) = z
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:170:31: unsolved goals
+case «0»
+Y : Type u_1
+inst✝² : TopologicalSpace Y
+T : Y ≃ₜ Y
+inst✝¹ : TotallySeparatedSpace Y
+inst✝ : Nonempty Y
+hmin : IsMinimalSystem T
+hfree : ∀ (j : ℤ), j ≠ 0 → ∀ (y : Y), (T ^ j) y ≠ y
+⊢ 0 = 0 ∨ 0 = 1
+
+case «1»
+Y : Type u_1
+inst✝² : TopologicalSpace Y
+T : Y ≃ₜ Y
+inst✝¹ : TotallySeparatedSpace Y
+inst✝ : Nonempty Y
+hmin : IsMinimalSystem T
+hfree : ∀ (j : ℤ), j ≠ 0 → ∀ (y : Y), (T ^ j) y ≠ y
+⊢ 1 = 0 ∨ 1 = 1
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:182:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleRing' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:183:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_const_mem_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:184:14: 'GroupApproximation.SimpleKazhdanSofic.mem_center_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:185:14: 'GroupApproximation.SimpleKazhdanSofic.mem_center_iff_eq_zero_or_one' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerUnits
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre
+error: build failed
+EXIT=1
