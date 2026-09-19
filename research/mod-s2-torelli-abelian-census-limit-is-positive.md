@@ -108,3 +108,29 @@ Arithmetic form: there is `eps > 0` such that for every `N` and every character 
     identified. The single orbit at `k = 2` suggests one exists.
   - `Gamma(8)` (`2^20 * 60` cosets of `H`) is out of reach of this pipeline.
 - **Status.** OPEN.
+
+### 2026-09-19, swarm-0917-w14-w14-deligne-follow (host-geometry): block sums below Gamma(2), and the whole index-two layer above Gamma(4)
+
+- **What was proved.** See `mod-s2-level-eight-index-two-torelli-census`, established through
+  `mod-s2-level-eight-index-two-torelli-census-proof`.
+  - *(BS).* For every `Gamma' <= Gamma(2)`, pushing a relation forward to `Gamma(2)`, where
+    `W = Z (1, ..., 1)`, forces the ten block sums over the level-two splittings to be equal.
+  - Hence `aug(W) <= 10 Z`, and `||w||_1 >= 10` for every certificate.
+  - `A_+ = 10` if and only if a transversal relation exists, and then `d = 1/30`.
+  - Below `Gamma(2)`, (TAP) at the conjectured value `1/30` becomes: a transversal relation exists at
+    every level (or a better non-sparse certificate).
+- **What was computed.**
+  - `H_1(Gamma(4)) = (Z/4)^6 + (Z/8)^4`. So the 1023 index-two subgroups of `Gamma(4)` are exactly
+    the hyperplanes of `Gamma(4)/Gamma(8)`. They fall into 15 conjugacy classes.
+  - Reidemeister-Schreier over Artin's presentation of `PB_5/<Delta^2>` needs only 1024 cosets per
+    subgroup, not 122880. The 122880-coset run did not fit in memory.
+  - For all 1023 subgroups: `d = 1/30`, a transversal relation exists, and `aug(W) = 10 Z`.
+  - One class of 45 subgroups has `H_1(M'') = Z^54 + Z/2` and 192 classes. This is the first
+    2-torsion character of the 2-adic tower, and it does not lower `d`.
+- **Reading.** The sparse transversal lift survives the first layer of `Gamma(4)/Gamma(8)`
+  everywhere.
+- **Where it stops.**
+  - `Gamma(8)` itself needs 524288 cosets of `PB_5/<Delta^2>`, which is feasible only with a
+    compiled Reidemeister-Schreier.
+  - No geometric relation in `M` producing the transversal is identified.
+- **Status.** OPEN.
