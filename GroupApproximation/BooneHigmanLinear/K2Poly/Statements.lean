@@ -201,6 +201,31 @@ theorem gapOver_of_unstableNK (h : UnstableNKPolyFpStatement) :
 
 #audit_axioms GroupApproximation.BooneHigmanLinear.gapOver_of_unstableNK
 
+/-- **(A5) from the field constant statement.**  If every element of `K₂(r, F[X])` is the image
+of some element of `St(r, F)` under `C` (`ElemFP.k2PolyField_ConstStatement`, lane bh-met-90u;
+Rehmann/Nagao for a field `F`), then unstable `NK₂(r, F) = 1`. -/
+theorem unstableNKAt_of_fieldConst {F : Type} [CommRing F] {r : ℕ}
+    (h : Metabelian.ElemFP.k2PolyField_ConstStatement F r) : UnstableNKAt F r := by
+  intro u hu
+  obtain ⟨y, hy⟩ := MonoidHom.mem_range.mp (h (u : SteinbergBasic.St r (Polynomial F)) u.2)
+  have hev : SteinbergGroup.ringMap (Polynomial.evalRingHom 0 : Polynomial F →+* F)
+      (u : SteinbergBasic.St r (Polynomial F)) = 1 := congrArg Subtype.val hu
+  have hy1 : y = 1 := by
+    rw [← hy, SteinbergBasic.ringMap_ringMap, Metabelian.ElemFP.evalRingHom_zero_comp_C,
+      SteinbergBasic.ringMap_id] at hev
+    exact hev
+  apply Subtype.ext
+  show (u : SteinbergBasic.St r (Polynomial F)) = 1
+  rw [← hy, hy1, map_one]
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.unstableNKAt_of_fieldConst
+
+/-- **(A5) for all fields**, the named target of board piece A5 (owner bh-pal-wire). -/
+def FieldNKStatement : Prop :=
+  ∀ (F : Type) [Field F] (r : ℕ), 5 ≤ r → Metabelian.ElemFP.k2PolyField_ConstStatement F r
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.FieldNKStatement
+
 end LSV
 
 end BooneHigmanLinear
