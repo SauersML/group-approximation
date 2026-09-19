@@ -87,9 +87,16 @@ number of `a/A`-cones. By symmetry in `a ↔ b`, and since `{n_a, n_b < N}` is b
   at most `N/2` cones are removed from each part.
 
 **Region S′** (`n_a = N + 1`, `n_b ≥ N`).
-- **What changes.** As in S, except that pure `c_b/c_B` sets of size `≤ 2` are also descending.
-- **How they attach.** They attach with the link {descending supersets `P ⊔ Q` with `Q ⊆ c_a/c_A`}. This is a
-  pure `c_a/c_A` matching complex avoiding `∪P`, hence connected.
+- **Corrected description (after the check below).** There are no descending uppers. The descending lowers
+  are exactly `α ≥ max(β − 2, 0)`, `α + β ≥ 1`, with the upper bounds listed in the check.
+- **The proof.** Use bh-invent-11's four-step attachment in the check section:
+  1. the retraction onto `D′ = {1 ≤ α ≤ 2d_b}`;
+  2. the edge cases `(2d_b+1, 1)`;
+  3. the single `c_b` sets;
+  4. the pairs of `c_b` sets.
+
+  Every attaching link is contractible or highly connected. My original sentence, "pure `c_b/c_B` sets of size
+  `≤ 2`", understated the descending set.
 
 **Region B** (`n_a, n_b ≥ N + 2`).
 - **Descending moves.** No upper is descending. Every `P` with `|P| ≤ 3` is descending.
@@ -99,7 +106,8 @@ number of `a/A`-cones. By symmetry in `a ↔ b`, and since `{n_a, n_b < N}` is b
 - **`K(v)`.** Here `K(v)` is the full matching complex of the four contraction types. Its coordinates are
   `≥ N + 2`, so it is highly connected by (I2).
 
-**Conclusion.** Given `n`, choose `N ≥ C·n` large. Every `v` outside the bounded set `{n_a, n_b < N} ∪ {ℓ ≤ L_0}`, with `L_0` large, has
+**Conclusion.** Given `n`, choose `N ≥ C·n` large. Every `v` outside the bounded set `{n_a, n_b < N} ∪ {ℓ ≤ L_0}`, with `L_0 ≥ N/4 + C·n` (so that `d_b ≥ ℓ − N/4` is
+large in Regions S and S′), has
 an `(n−1)`-connected descending link. So `F` is of type `F_n` for every `n`, i.e. `F_∞`. ∎
 
 ## Lesson for general BH

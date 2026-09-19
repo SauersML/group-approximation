@@ -84,6 +84,16 @@ decides YES. ∎
   (`kourovka-20-44-holds-for-rank-one-slope-groups`,
   `ct-p-z-positive-ray-torsion-and-finiteness-are-decidable`).
 
+## Not Kohl's "respected partitions"
+
+- **Kohl's notion.** In Kohl's RCWA theory an rcwa mapping *respects* a residue-class partition if
+  it permutes the parts **and is affine on each part** (RCWA manual, `RespectedPartition`, `IsTame`).
+  Such a partition exists iff the mapping is tame, i.e. has finite order in `CT(Z)`.
+- **21.74(a).** It asks only that `g` **permute** the parts. The pieces of `g` may cut them.
+- **Different questions.** For example, `h = ψ_{0(2)}ψ_{1(2)}` has infinite order, so it
+  respects no partition, yet it permutes `{0(2), 1(2)}`. The decision procedure here is for the
+  permutation question. (Distinction noted by bh-ref-q11.)
+
 ## Lesson for general BH
 
 **For arithmetic hosts, "tree-like after refinement" is exactly "slopes on one positive ray".**
