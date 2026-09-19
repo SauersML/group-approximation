@@ -2,130 +2,147 @@
 rg: 2
 id: edge-pinned-gluing-reduces-rigidity-to-phantom-determinacy
 kind: claim
-title: Core edges with small stabilizers can be pinned by seeds of the edge group, which gives an isolated point with stabilizer exactly S; rigidity then holds when the vertex configuration is a continuous function of the pins, and fails to follow exactly at anchorless "phantom" cosets
+title: Without full edge stabilizers, a core edge glues when both vertex seeds induce the same clopen, expansive compactification of the edge group; the glued SFT is then a rigid relative seed with stabilizer S, and without this matching the orbit closure fails even for index-one edges
 distinct_from:
-  core-marked-gluing-of-relative-seeds: that assumes full stabilizers on core edges (FE), where core edges are finite sums of atoms; this drops (FE), pins the edge-group twist with a seed of the edge group, and isolates the one extra hypothesis rigidity needs.
-  fate-couplings-are-rigid-only-along-directed-implication-chains: that shows proximity alone does not propagate commutation; this locates where the tower's gluing meets that obstruction, namely at anchorless double cosets of limit configurations.
+  core-marked-gluing-of-relative-seeds: that assumes full stabilizers on core edges (FE), where each vertex seed induces the one-point compactification of the edge group; this allows any edge stabilizer, and replaces (FE) by matching of the induced compactifications.
+  fate-couplings-are-rigid-only-along-directed-implication-chains: that shows proximity alone does not propagate commutation; here the only couplings used are directed implications (pointers) and exact identities (shared traces).
 ---
 
-**Status.** Lane bh-invent-03, 2026-09-18; elementary lane proof, not reviewed.
-- Items 1–2 and item 3 under (PC) are **ESTABLISHED**.
-- Rigidity **without** (PC) is **OPEN**.
-- Requested by bh-invent-14 for the B_1 re-split (seed-tower board), where (FE) fails on all three stable-letter pairs.
+**ESTABLISHED** by the proof below (lane bh-invent-03, 2026-09-19; elementary lane proof, not reviewed; no priority
+claimed). Notation, (L0), (L1), atoms, domination and the F-trick are as in `relative-seeds-glue-graphs-of-groups-proof`
+and `core-marked-gluing-of-relative-seeds`.
+
+**Correction.** This supersedes the version landed in 8d6acdcd0. That version had two errors.
+- **(RS2).** Its proof ignored mixed limit configurations.
+- **Its corollary.** It said finite-index ("locally finite") core edges glue with no extra hypothesis. The example in
+  §4 refutes that already at index one.
+
+Requested by bh-invent-14 for the B_1 re-split, where (FE) fails on every stable-letter pair.
 
 ## Setting
 
-As in `core-marked-gluing-of-relative-seeds` ((K0), (KV), (E)), but with (FE) replaced by two hypotheses:
-- (DM) **definable double cosets.** For each core datum `(p, ε, k)` there is a clopen `U ⊆ Y_p` with
-  `x ∈ S'_p a_k C_ε ⟺ x^(-1).y_*^p ∈ U`. It is then read locally at every element `x`.
-- (P) **pins.** `(C_ε, S''_k) ∈ 𝓡`, with `S''_k = a_k^(-1) S'_p a_k ∩ C_ε` (the core edge stabilizer, pulled
-  back). Call the relative seed the *pin* `P_k`. Its alphabet lives on left `C_ε`-cosets, via right multiplication
-  by generators of `C_ε`.
+`𝔾`, `Λ = π_1(𝔾)`, the tree `T`, `S ≤ Λ` and its core `K` are as in `core-marked-gluing-of-relative-seeds`, with
+(K0), (KV) and (E), but **not** (FE). For a core datum `(p, ε, k)`, write:
+- `a_k`, so that the core edges of that type at the class-`p` vertex are the cosets in `S'_p a_k C_ε`;
+- `(q, ε̄, k')` for the reverse datum, and `b ∈ Λ` for the element carrying the genuine configuration across;
+- `O_k := cl(C_ε · a_k^(-1).y_*^p) ⊆ Y_p`, the **compactification of the edge group `C_ε` induced by the vertex
+  seed**.
 
-**The pin layer.** Each core vertex carries its `Y_p` layer and, on every `U`-marked coset `xC_ε`, a pin
-configuration. The rules:
-- (A) **anchoring:** "pin seed at `x`" iff "`Y_p` seed at `x a_k^(-1)`";
-- (X) **exact pin transport across the edge:** pin letters at `xc` iff reverse-pin letters at `xc t_ε`;
-- (N) **neighbour anchoring:** "reverse-pin seed at `x'`" iff "neighbour `Y_q` seed at `x' b^(-1)`".
+**Hypotheses on each core datum.**
+- (DM) **Clopen marks.** There is a clopen `U_k ⊆ Y_p` with `x ∈ S'_p a_k C_ε ⟺ x^(-1).y_*^p ∈ U_k`.
+  - Then `U_k = O_k`: `U_k` is open and meets the dense orbit exactly in `C_ε a_k^(-1).y_*^p`.
+  - So `O_k` is clopen and `C_ε`-invariant.
+- (EX) **Expansive.** `C_ε ↷ O_k` is expansive. Equivalently, there is a `C_ε`-equivariant continuous injection
+  `τ_k : O_k -> Σ_k^(C_ε)`, the **trace**. By compactness it is a sliding block code, read on the edge coset.
+- (M) **Matching.** Transport `O_(k')` to a `C_ε`-system through `φ_ε` and the translation by `b`. The `C_ε`-orbit map
+  `c.a_k^(-1).y_*^p ↦ c.(genuine neighbour point)` then extends to an equivariant homeomorphism
+  `Ψ_k : O_k -> O_(k')`.
 
-The remaining rules (type transport, pointers for out vertices, exclusivity) are those of the core-marked theorem,
-with "core edge" read through `U`.
+(EX) is needed on one side only: `τ_(k') := τ_k ∘ Ψ_k^(-1)` is a trace for the other side.
 
 ## Statement
 
-1. **(RS1).** The seed "class `p_0`, seed at `1`" has a single-point cylinder, and `Stab(y_*) = S`.
-2. **(RS2).** `Y` is the orbit closure of `y_*`.
-3. **(RS3) under (PC).** Assume (PC), **phantom determinacy**: for every core datum, on the orbit closure `Ŷ_p` of the
-   vertex-plus-pin configuration, every vertex letter is a continuous function of the pin configuration on each
-   `U`-marked coset. Then `Y` is `D`-quantum rigid for large `D`.
+Under (K0), (KV), (E), (DM), (EX) and (M), define the SFT `Y` over `Λ` as the SFT of the core-marked theorem with two
+changes:
+- **Core-edge rule.** "Core edge of datum `k`" is read at `x` as `x^(-1).y ∈ U_k`, and the neighbour must mark
+  the same coset with datum `k'`.
+- **(TR) Traces.** On every marked edge coset, the two endpoint traces agree letter by letter:
+  `τ_k(v-side) = τ_(k')(w-side)`.
+
+Then `Y` is a rigid relative seed for `(Λ, S)`:
+- (RS1) the seed cylinder is one point `y_*`, with `Stab(y_*) = S`;
+- (RS2) `Y` is the orbit closure of `y_*`;
+- (RS3) `Y` is `D`-quantum rigid for large `D`, over every field over which the vertex and edge seeds are rigid.
+
+**Special cases.**
+- **(FE).** If `a_k C_ε a_k^(-1) ⊆ S'_p`, then `O_k` is one point, and (DM), (EX), (M) are trivial. This recovers
+  `core-marked-gluing-of-relative-seeds`.
+- **Finite-index edges.** If `[V : C_ε] < ∞`, then (EX) is automatic, because a finite-index subgroup of an expansive
+  action is expansive. (DM) and (M) are genuine conditions, and §4 shows they can fail.
 
 ## Proof
 
-**1. Isolation.** At a core vertex with a seeded configuration, a `U`-marked coset has exactly one anchor
-`s a_k S''_k`-class, by (DM). By (A), its pin is the unique seeded pin configuration at that anchor. By (X), the
-pin crosses the edge. By (N), it pins the neighbour's `Y_q` configuration. So the core is pinned from the base,
-exactly as in the core-marked proof.
-- Consistency holds because the `S`-equivariant configuration exists.
-- The stabilizer argument is unchanged: a stabilizing `g` maps the base to a core vertex of the same class and
-  configuration, so `g ∈ S`.
+**Operators.** Let `(E)` be a `D`-family. For a vertex `v`, `𝒜_v` is the commutative algebra of letters at `v` (as
+in the core-marked proof).
+- **Marks.** For a core edge `f` at `v`, let `Γ_f` be the sum over data of the mark events. By the core-edge rule and
+  (L1), `Γ_f` is the same operator in `𝒜_v` and in `𝒜_w`.
+- **Traces.** Each trace symbol event `[τ(y)(c) = σ]·Γ_f` is a clopen pattern event on a bounded window. By (TR) and
+  (L1), it too is the same operator on both sides.
+- **Pointers.** `B_f` ("`v` points along `f`") and `C_f` ("`w` points along `f`") are atoms of `𝒜_v` and of `𝒜_w`
+  respectively.
+- **Exclusivity.** `B_f + Γ_f + C_f = 1`. So all three lie in `𝒜_v ∩ 𝒜_w`.
 
-**2. Density.** The classification of limit points is that of the core-marked proof, plus **phantom cosets**:
-`U`-marked cosets whose anchor has escaped, carrying seedless pins.
-- They are limits of anchors `a_n → ∞` along the coset.
-- Since `U` is clopen, every limit configuration keeps the mark.
+**Step 1 (letters are trace polynomials on marked edges).** Let `X ∈ 𝒜_v` be a letter.
+- On `O_k`, `X` is a continuous function of the configuration.
+- By (EX) and compactness, `X|_(O_k)` factors through `τ_k` and depends on finitely many trace coordinates. So
+  `X·Γ_f^(k) = h(trace events)·Γ_f^(k)` in `LC(Y_p)`, with `h` a Boolean polynomial.
+- The commutative family at `v` obeys the forbidden patterns of `Y_p`, so it represents `LC(Y_p)` (F-trick). Hence
+  this identity holds for the operators.
+- The trace events and `Γ_f` lie in `𝒜_w`. Therefore **`X Γ_f ∈ 𝒜_w`**.
 
-**3. Rigidity under (PC).**
-- **Vertex letters are pin polynomials.** By (PC) and compactness, each vertex letter at `x'` is a Boolean
-  function of finitely many pin letters on any fixed `U`-marked coset. That identity holds in `LC(Ŷ_p)`. The
-  vertex-plus-pin family on one coset is commutative: `Ŷ_p` is a finite-type recoding of `Y_p` under (PC), and
-  the F-trick applies. So the identity holds for operators. Hence on a core edge, every letter at `v` and every
-  letter at `w` is a polynomial in the **shared** pin letters of the edge coset, identified by (X).
-- **Shared pin letters commute.** They form one rigid family for `P_k`.
-- **Letters across a core edge commute.** They are polynomials in commuting shared letters.
-- **The path argument.** Along a path, the decomposition `1 = B_i + C_i + Γ_i` and the monotone chains
-  `C_i ≤ C_(i+1)` of the core-marked proof carry over.
-  - `Γ_i` is now the `U`-event, and is the same operator at both endpoints, by (X) and (A).
-  - The atom step there is replaced by the polynomial step above.
+**Step 2 (induction on distance).** Claim: `𝒜_(v_0)` and `𝒜_(v_m)` commute for every tree path `v_0, …, v_m` with
+edges `f_i`.
+- `m = 0`: `𝒜_(v_0)` is commutative.
+- **Monotone chain.** For `m ≥ 1`, write `B_i, Γ_i, C_i` for the events of `f_i`. Then `C_i ≤ C_(i+1)`: if `v_i`
+  points back along `f_i`, it is out, so it neither points along `f_(i+1)` nor marks it. Exclusivity on `f_(i+1)`
+  then gives `C_(i+1)`.
+- **Decomposition.** Let `X ∈ 𝒜_(v_0)` be an idempotent. Write `X = XB_1 + XΓ_1 + XC_1`, a sum of commuting pieces.
+  - `XΓ_1 ∈ 𝒜_(v_1)`, by Step 1. It commutes with `𝒜_(v_m)` by induction on the shorter path `v_1, …, v_m`.
+  - `XB_1 ∈ {0, B_1}`, since `B_1` is an atom of `𝒜_(v_0)`. Also `B_1 = 1 − Γ_1 − C_1 ∈ 𝒜_(v_1)`, so it commutes by
+    induction.
+  - `XC_1 ≤ C_1 ≤ C_m`, and `C_m` is an atom of `𝒜_(v_m)`. So it commutes, by domination.
 
-  So letters at any two vertices commute. ∎
+  So `X` commutes with `𝒜_(v_m)`.
 
-## Corollary: locally finite anchors
+Coordinates at one site commute by Q1, so all letters commute. This proves (RS3).
 
-Suppose every core edge group `C_ε` has **finite index** in `V_(o(ε))`, so the tree is locally finite at the core,
-and (DM) holds. Then the edge-pinned gluing is rigid, with no pin layer.
+**(RS1).** Take the seed "class `p_0`, seed at `1`".
+- **Core vertices.** Each marked edge of a genuine vertex carries its genuine trace. The neighbour's configuration
+  lies in `O_(k')`, where `τ_(k')` is injective, so the neighbour is pinned. By connectedness, all of `K` is pinned.
+- **Out vertices.** An unmarked edge at a core vertex must be pointed along by its other endpoint. So every vertex
+  off `K` is out and points toward `K`, with its pointer configuration forced.
+- **Stabilizer.** It is `S`, by the argument of the core-marked proof.
 
-**Proof.**
-- **Recoding.** Fix a right transversal `F` of `C_ε`, with `V = ⊔_(f ∈ F) C_ε f`. Recode `Y_p` by the `V`-equivariant
-  block map `y ↦ (x ↦ y|_(xF))`. This is a conjugacy, so rigidity, (RS1) and (RS2) are unchanged.
-- **Restriction is injective.** After recoding, the restriction of a configuration to any coset `xC_ε` determines
-  it, since `xC_εF = V`. It does so on the **whole** orbit closure.
-- **(PC).** A continuous bijection from a compact space onto a Hausdorff one is a homeomorphism. So the vertex
-  configuration is a continuous function of its restriction to each coset.
-- **Pins are restrictions.** Take the pin on a core coset to be the restriction itself. It is a relative seed for
-  `(C_ε, a_k^(-1) S'_p a_k ∩ C_ε)`: its `C_ε`-stabilizer is computed through injectivity. Finite-index restriction
-  keeps it of finite type and rigid, by the quasi-isometry argument of the induction lemma of 5deee0184.
-- **Rules.** Rules (A) and (N) collapse to one: the recoded vertex configurations of the two endpoints agree along
-  the edge coset through `φ_ε`. Item 3 then applies. ∎
+**(RS2).** Let `y ∈ Y`.
+- **Orientation.** Out vertices have out-degree at most 1; a seedless one is an *out-sink*. Core vertices point
+  nowhere. So, as in 5deee0184, `y` has exactly one of three things:
+  - a connected **core component** `K'` of marked edges;
+  - an out-sink;
+  - an end.
 
-**Scope.** This is the coordinator's "locally finite anchors" form, and it covers bh-invent-14's `(Z_J, F(a))`
-(6aa2688ed), whose m-adic phases supply (DM).
-- **Free edge groups.** Σ and Y have infinite index in their vertex groups, so this corollary does not apply there.
-  Phantom determinacy (PC) must be proved directly, or the route changed to (FE).
+  Two of them would force out-degree 2 somewhere on the path between them. The out-sink and end cases are
+  approximated exactly as in 5deee0184, by moving `K` far beyond the sink's escaping coset or out to the end.
+- **Approximation.** Otherwise fix `v ∈ K'` with configuration `z = lim g_n.y_*^p` in `Y_p`.
+  - Marks are clopen, so on any finite subtree the marked edges of `g_n.y_*` and of `y` eventually agree.
+  - Across each marked edge, the neighbour's configuration is `Ψ(·)` of the previous one: in `y` by (TR) and
+    injectivity, in the translates by construction.
+  - `Ψ` is continuous, so the configurations agree on the finite subtree in the limit, and the pointers toward it
+    agree as well.
+  - So `y` is a limit of translates of `y_*`. ∎
 
-## Where (PC) fails, and why that is the tower's one obstruction
+## 4. Why (M) cannot be dropped, even at index one
 
-Without (FE), a core edge is a clopen `U`-event rather than a finite sum of atoms.
-- **Phantom cosets carry free data.** By compactness, `U` also marks cosets of limit configurations whose anchor
-  has escaped. There the pin is seedless and can carry free data: the sign `±` of `C_Z` pins, or an end of a free
-  edge group.
-- **What (PC) says.** That free data is determined by the vertex configuration.
-- **Without (PC).** Two phantom cosets can carry independent free data, linked only by proximity, and
-  `fate-couplings-are-rigid-only-along-directed-implication-chains` (2e723c93e) shows proximity forces nothing.
-- **Three faces of one obstruction:**
-  - the unterminated `m`-adic sheets of `modular-machine-mortality-at-infinity-is-uniform` (d03fdfb06), at gate 4;
-  - the "one sign" left in bh-invent-14's `(Z_J, F(a))` landing (6aa2688ed);
-  - (PC) here.
+Let `Λ = Z² *_(⟨x⟩) Z²`, with vertex groups `⟨x, y⟩` and `⟨x, z⟩`. Take `S = 1` and let the core be one edge.
+- **Seeds.** Put `Y_V = C_Z(x) × C_Z(y)`. Put `Y_W = P(x) × C_Z(z)`, where `P` is an SFT compactification of `Z` with
+  period-2 tails.
+- **Other hypotheses hold.** (DM) holds: the edge coset is the seed row. (EX) holds.
+- **Different compactifications.** The induced compactifications of `⟨x⟩` are `Z ∪ {±∞}` and `Z` with four limit
+  points. They are not homeomorphic over the orbit map, so (M) fails.
+- **Mixed points.** The rule "seed at `s` ⟺ seed at `s`" alone allows mixed limits, such as `+^Z` on the `V` side with
+  a `P`-tail of either parity, or with a left tail. These are not limits of translates, so (RS2) fails.
 
-**Examples.**
-- **(PC) holds.** `V = Z^2`, `S' = ⟨y⟩`, `C_ε = ⟨x⟩`, with `C_Z` pins on rows. The vertex configuration (one point
-  × `C_Z`) *is* the pin, including at `+^Z` and `−^Z`.
-- **(FE) is the case `S'' = C_ε`.** Pins are one-point, there are no phantoms, and this recovers the core-marked
-  theorem.
-
-**For the tower.** Two ways forward, in order of preference.
-- **(i) Re-route so that core edges are (FE).** Enlarge the subgroup by the edge groups, e.g. use
-  `⟨Q, Σ⟩` in place of `Q = F(a) * ⟨t⟩`, and check that the next rung still accepts the enlarged subgroup.
-- **(ii) Verify (PC) for the actual pins.** For `(Z_J, F(a))`, (PC) asks whether the `C_Z` sign on a phantom
-  `⟨x⟩`-coset is a continuous function of the vertex's `m`-adic phases. bh-invent-14's reduction "tree data plus one
-  sign" is exactly this.
+The fix is to choose the vertex seeds so that they induce the same compactification of the edge group.
 
 ## Lesson for general BH
 
-The remaining gates of the seed tower share one mechanism: **free data at infinity**.
-- **Where it appears.** Rigidity is automatic wherever limit configurations carry no data beyond what directed
-  implications propagate: atoms, (FE) edges, locally finite trees. It breaks exactly where a clopen mark survives
-  into a limit without its anchor.
-- **Its three forms.** Phantom cosets (infinite-index edge stabilizers), unterminated m-adic sheets (machine
-  rungs), and incomparable fates (couplings).
-- **One design rule for all three.** Every mark must either come with its anchor, as with atoms and (FE), or
-  determine its free data continuously, as (PC) requires.
+**Gluing sees the edge groups through the vertex seeds.** Each vertex seed induces a compactification `O` of every
+core edge group, the orbit closure along the edge coset.
+- **The gluing condition.** The two endpoints must induce the **same** compactification, and it must be clopen and
+  expansive, i.e. readable by a local trace. That is (DM), (EX) and (M).
+- **Earlier cases.** Full edge stabilizers (FE) are the case where this compactification is a point. The phantom
+  cosets of the earlier draft are its boundary points.
+- **What does not matter.** Local finiteness of the anchors is not the operative condition. Matching is, and it
+  already fails at index one.
+- **For the seed tower.** On the B_1 pairs with free edge groups Σ and Y, bh-invent-14 should choose J's seeds so that
+  they restrict to Σ's own free-group seed on each marked coset. Free-group seeds are finite-state
+  (`relative-seeds-on-free-groups-have-fg-stabilizers`), so (DM), (EX) and (M) become finite checks.

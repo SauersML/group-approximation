@@ -43,10 +43,14 @@ large enough that every radius-2 ball of `X^1` lies in the `D`-ball of a site.
    two nonempty parts at distance `> 2D`. Then the full ultrafilter subshift is not `D`-rigid.
    - The reason: two principal points `v`, `u` separated by that single wall differ exactly on its
      dual edges.
-   - This is the expected situation for walls of graphical `C'(1/6)` presentations with relators of
-     unbounded length. A wall meets a relator in two antipodal edges, and relators are isometrically
-     embedded (recalled). Whether other paths reconnect the two sides was **not** checked.
-   - In that situation finite type also fails, because wall consistency across a long relator is not
+   - This was first expected for walls of graphical `C'(1/6)` presentations with relators of
+     unbounded length. **Correction (2026-09-19):** every edge also lies on translates of the shortest
+     relators carrying its label, so such walls acquire short links, and (W1) there is **undecided**
+     (`products-of-trees-refute-cap-coherence-join-caps-restore-it`, Section 4(b)).
+   - The original reasoning: a wall meets a relator in two antipodal edges, and relators are
+     isometrically embedded (recalled). Whether other paths reconnect the two sides was **not**
+     checked.
+   - Where (W1) does fail, finite type also fails, because wall consistency across a long relator is not
      a local rule.
 
 ## Proof
@@ -110,11 +114,13 @@ of `rigid-subshifts-over-free-factors-are-tight-almost-everywhere` gives a nonco
 - crossing walls meet;
 - adjacent parallel walls touch.
 
-**What this means for (RA′).** The Arzhantseva–Osajda and Osajda constructions, which are non-exact
-but Haagerup, lose the first property at every scale: walls pass through relators of unbounded
-length. So the full compactification is not rigid there, and not of finite type.
-- (RA′) at Osajda's input now hinges on the minimal subsets of such a boundary, which admit no
-  single-wall flips.
+**What this means for (RA′).** For the Arzhantseva–Osajda and Osajda constructions, which are
+non-exact but Haagerup, it was first claimed that they lose the first property at every scale. That
+claim is withdrawn (see the correction in part 4): whether (W1) holds there is undecided.
+- What such wall spaces do lose, uniformly, is **finite dimension**: their dual cube complexes are
+  infinite-dimensional (recalled). The proof above never uses finite dimension. But the Reiter side
+  does: `products-of-trees-refute-cap-coherence-join-caps-restore-it` shows that Reiter functions
+  need joins of all independent directions.
 - No finitely presented group acting properly and cocompactly on a finite-dimensional cube complex
-  contains a non-exact group (Campbell–Niblo, recalled). So at Osajda's input, cube-type rigidity must
-  come from walls that are not uniformly coarsely connected, exactly where this proof breaks.
+  contains a non-exact group (Campbell–Niblo, recalled). So at Osajda's input, cube-type dynamics
+  must come from infinite-dimensional wall structure.

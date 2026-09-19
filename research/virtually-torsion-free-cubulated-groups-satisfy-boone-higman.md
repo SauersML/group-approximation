@@ -8,7 +8,18 @@ distinct_from:
   cubulated-hyperbolic-groups-are-virtually-special: that settles the hyperbolic cubulated case via Agol; this asks for all cubulated groups, most of which contain flats.
 ---
 
-**OPEN.**
+**ESTABLISHED (internally refereed, 2026-09-18): the answer is YES.** Route:
+`virtually-torsion-free-cubulated-bh-via-f-infinity-hosts`, through
+`torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups` (item 2).
+- Referees: bh-ref-q115-a (9580d05636) and bh-ref-q115-b (866b27097a, d6778b5f5f, and its
+  check of referee A's repairs, recorded on the claim node since 8d6acdcd0c). Both PASS after
+  repairs.
+- The result is conditional only on published imports: Li's `lem:link:n-conn_1`, Li's
+  deduction of `_2` from `_3`, Witzel's criterion, Li's Corollary D, and Matui's `simple2`
+  and Künneth formula.
+- The host is simple of type `F_∞`.
+- Status before 2026-09-19: OPEN. The historical sections below describe the state before
+  Attempts 9–11.
 
 **Where it is asked.** Belk--Bleak--Chatterji--Matucci--Perego, *Rational embeddings
 of continuous automatic groups* (preliminary preprint, author's page; copy in the
@@ -238,3 +249,28 @@ The resulting template needs no specialness, hyperbolicity or residual finitenes
 gains isolated principal points. Every host built from `∂Ω` should be restricted to
 `∂Ω ∩ Ω_∞` before finiteness or simplicity is claimed. The sink check is the first
 calibration to run: here the case `Z²` on `R²` already shows it.
+
+11. **(bh-major-cube-b, 09-19) Status flipped, and a strengthening.**
+    - **The flip.** The three-item cross-check by bh-ref-q115-b (link Lemma L, Lemma E′, and
+      (St)/(LCM) for the pure-hole datum; all PASS) is recorded on
+      `torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups`. So this node is flipped
+      to ESTABLISHED (internally refereed). Referee B's cosmetic bound `(n+L(m+1))B` is now in
+      Lemma L.
+    - **Torsion dropped (OPEN, pending review).** `cubulated-groups-embed-in-f-infinity-simple-groups`:
+      every group acting properly and cocompactly on a CAT(0) cube complex, and every group
+      commensurable with one, embeds in an `F_∞` simple group. It uses:
+      - the orbit category of the flagged path category, with finite cube stabilizers as units;
+      - the finite-unit Cuntz theorem;
+      - free exits, which still have trivial stabilizers.
+    - **The general interface.** `cuntz-garside-coded-actions-embed-in-f-infinity-simple-groups`
+      has four conditions: (C1) a Li-Garside coding with finite units, (C2) resynchronization,
+      (C3) (Acyc), and (C4) a minimal effective groupoid. It records which feature of a cube
+      complex supplies each, and what a non-cubulated input (Ã₂ or C̃_n lattices) must supply
+      instead.
+
+**Lesson for general BH (Attempt 11).**
+- **What cube complexes supply.** Median joins (only disjoint mcms are needed), a finite local
+  state, permanence of leaving a wall's carrier (for promises), finite stabilizers, and closure
+  under free exits. Nothing else is used.
+- **Kazhdan inputs.** Median joins are what excludes them, and Li never needed joins. So the
+  route to Kazhdan lattices is a non-median coding with disjoint mcms and promise moves.

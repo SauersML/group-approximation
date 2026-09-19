@@ -36,7 +36,7 @@ theorem higmanVCTauD2_a_u {d : ℕ} {a b c k oa o1 : Fin d} {t o3 u v : List (Fi
         rw [h0, hbin1 u1 h1]
         exact List.cons_prefix_cons.mpr ⟨rfl, List.cons_prefix_cons.mpr ⟨rfl, List.nil_prefix⟩⟩
     · exact ⟨[u1], by rw [hbina u0 h0], by simp⟩
-  · simp only [List.length_cons] at hlt <;> omega
+  · simp only [List.length_cons] at hlt; omega
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_a_u
 
@@ -77,22 +77,22 @@ theorem higmanVCTauD2_classA_m {d : ℕ} {a b c k oa o1 : Fin d}
   subst e2
   subst hm1
   exact higmanVCTauD2_mkBridge hT1 hT2 (by simp) (by simp) tM tO
-    (by simp only [List.length_cons] <;> omega)
+    (by simp only [List.length_cons]; omega)
     hW1 hW2 (by simp) (by simp) wM wO
-    (by simp only [List.length_cons] <;> omega)
+    (by simp only [List.length_cons]; omega)
     (mapsCone_coneSwap_right hW1 hW2)
     (higmanVCTauD2_fix hW1 hW2 (higmanVCTauD2_inc2 [c] [] ho1b.symm)
       (higmanVCTauBridge_inc_cons [b, c] [] hoa.symm))
     (by simp) (by simp)
     ((mapsCone_coneSwap_right hW1 hW2).append (k :: t)) wO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons, List.length_append, List.length_nil]; omega)
     ((mapsCone_coneSwap_right hW1 hW2).append u') wv
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega) hv3
+    (by simp only [List.length_cons, List.length_append, List.length_nil]; omega) hv3
     ((mapsCone_coneSwap_right hW1 hW2).append (u' ++ (a :: b :: c :: k :: t).drop v.length))
     wO
     (by
       simp only [List.length_cons, List.length_append, List.length_drop,
-        List.length_nil] <;> omega)
+        List.length_nil]; omega)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_classA_m
 /-- **Class `o = a o₁ o₃`, `o₁ ≠ b`, `v` a prefix of `o` only.**  Bridge `W = ([a, b], [ā])`. -/
@@ -127,19 +127,19 @@ theorem higmanVCTauD2_classA_o {d : ℕ} {a b c k oa o1 : Fin d}
   subst hm2
   subst ho1
   exact higmanVCTauD2_mkBridge hT1 hT2 (by simp) (by simp) tM tO
-    (by simp only [List.length_cons] <;> omega)
+    (by simp only [List.length_cons]; omega)
     hW1 hW2 (by simp) (by simp) wM wO
-    (by simp only [List.length_cons] <;> omega)
+    (by simp only [List.length_cons]; omega)
     (mapsCone_coneSwap_right hW1 hW2) ((mapsCone_coneSwap_left hW1 hW2).append [c])
     (by simp) (by simp)
     ((mapsCone_coneSwap_right hW1 hW2).append (k :: t)) wO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons, List.length_append, List.length_nil]; omega)
     ((mapsCone_coneSwap_right hW1 hW2).append u') wv
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega) hv3
+    (by simp only [List.length_cons, List.length_append, List.length_nil]; omega) hv3
     wM ((mapsCone_coneSwap_right hW1 hW2).append (u' ++ (a :: o1 :: o3).drop v.length))
     (by
       simp only [List.length_cons, List.length_append, List.length_drop,
-        List.length_nil] <;> omega)
+        List.length_nil]; omega)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_classA_o
 

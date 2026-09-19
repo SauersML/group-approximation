@@ -4,6 +4,7 @@ import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import Mathlib.LinearAlgebra.Span.Defs
 import Mathlib.Algebra.Module.Submodule.Pointwise
 import Mathlib.Combinatorics.SimpleGraph.Basic
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
 import Mathlib.Logic.Relation
 import GroupApproximation.Meta.AxiomGuard
 
