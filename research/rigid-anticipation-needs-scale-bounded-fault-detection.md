@@ -8,7 +8,7 @@ distinct_from:
   seed-full-group-finite-presentation-lives-on-the-boundary: that puts the rigidity requirement on the boundary; this says which halting-rung designs can meet it there.
 ---
 
-**ESTABLISHED** (lane proof, bh-invent-11, 2026-09-18; elementary compactness; not reviewed). This
+**ESTABLISHED** (lane proof, bh-invent-11, 2026-09-18; elementary compactness; referee PASS for items 1–2 with a statement fix, items 3–4 conditional, bh-ref-engines 2026-09-19). This
 is the lane's answer to "do the unforced tails of the halting rung's backward walks form a rigid
 SFT?": **not for the raw rung**. The design constraint below is handed to the gate-4 coupling
 layer (bh-free-56, bh-star-a). No second coupling layer is proposed here.
@@ -109,3 +109,31 @@ machine walks this means detecting faults at every scale within bounded time.
   hard inputs plus Gács/DRS-type self-checking. That is the same hierarchical self-simulation that
   the master route's E2 already needs. So SEED's CAP-false direction and the master route's
   rigidity gate share one missing object: a rigid self-checking computation.
+
+## Referee (bh-ref-engines, 2026-09-19): items 1–2 PASS with a statement fix; items 3–4 conditional
+
+**Dependencies, checked here.**
+- Item 5 of `anticipation-layers-convert-totality-into-isolation`: flipping `τ` on a non-terminating basin
+  gives a point of `Y`, with difference set exactly that basin.
+- Lemma 1 of `quantum-rigid-subshifts-cluster-the-modifications-of-each-point`: the `k^2` wall family. I
+  checked (Q1)–(Q3) and the noncommutation of `diag(1,0)` with `[[1,0],[1,0]]`.
+- Both are correct; see their Referee sections.
+
+**Item 1: correct.**
+- With injective steps, two orbits that meet lie on one chain, so basins are chains.
+- The compactness form holds because the following are all clopen conditions read on a finite ball:
+  - chain segments, found through predecessors in `qS^(-1)`;
+  - non-termination;
+  - separation.
+- Chains that begin at an input (no predecessor) are also covered, since "no predecessor" is clopen too.
+  Item 4 needs this.
+
+**Item 2: correct once (SW) is stated as the proof uses it.**
+- The avoided cell must be at offset exactly `k` from the head at the time `t` in question. Otherwise the
+  initial distance `|e_j| ≤ c·j` is unbounded, and item 1 needs a fixed `d = c·k`.
+- (b″) must hold in both time directions, since both chain segments are copied.
+- Separation is correct: the cell is not written inside the window, so any two configurations drawn from the
+  two segments differ there, at distance `≥ k/2` from both heads.
+
+**Items 3–4 are conditional.** They assume that the bh-invent-03 rung satisfies (b), (b′) and (b″), which is
+asserted, not proved. Item 3 also assumes the sweep design. As design constraints they are correctly labelled.
