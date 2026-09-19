@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **Status.**
-- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; not reviewed):** Propositions 1 and 2, Theorem L, and the
+- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; Referee bh-ref-q12 2026-09-19: PASS with minor repairs for Theorem L, Propositions 1–2 and the F_∞ Theorem; the statement is a case of BHM Remark 2.13, see the Referee section):** Propositions 1 and 2, Theorem L, and the
   F_∞ Theorem.
 - **Open:** the sharp bound `h − 3` (Conjecture C, sharp at `h = 2`), and non-interval defect sets.
 - **Inputs:** the inflation formula of Björner–Wachs–Welker (*Poset fiber theorems*, Trans. AMS 357, 2005;
@@ -124,3 +124,75 @@ BBMZ Question 1.2 for a full contracting RSG with nontrivial integer flux.
     uncovered are high-dimensional.
 - **What changed.** Bounded germ extensions with an integer flux are therefore `F_∞`. The flux, which looked like a
   Houghton obstruction, costs only a factor 2 in connectivity.
+
+## Referee (bh-ref-q12, 2026-09-19): PASS with minor repairs; a proved case of BHM Remark 2.13
+
+Checked line by line.
+
+**Level-set complexes: correct.**
+- Sums of integer intervals are integer intervals, so `F ∈ Λ(D;I)` iff `I ⊆ [s_F − a_R, s_F + b_R]`.
+- `Λ` is closed under faces. Removing `(i, x_i)` widens the completion interval, since `−a_i ≤ x_i ≤ b_i`.
+
+**Theorem L: correct.**
+- *Step 1.* `C_v` is the closed star of `(n,v)`. `V = D_n ∩ [t_2 − b', t_1 + a']` is correct, and it is nonempty.
+  Nonemptiness needs `w ≤ a' + b'`, which follows from `n − w ≥ 2` and `a_i + b_i ≥ 1`. Record this, because
+  step 3 needs `Y ≠ ∅`.
+- *Step 2.* The nesting holds, because completion sets are intervals and so contain the hull of `I − u` and
+  `I − u'`.
+  - `C_(v_i) ∩ C_(v_(k+1)) = A_(v_i) ∩ A_(v_(k+1))`, and so `Y_k ∩ C_(v_(k+1)) = Z_k`.
+  - `V` is an integer interval, so `v_(k+1) = v_k + 1` and `Z_k` has width exactly `w + 1`.
+- *Step 3.* `conn(Y ∪_Z C) ≥ min(conn Y, conn Z + 1)` holds, including `Z = ∅` (value `−1`). The induction
+  hypothesis applies to `(D', width w+1)`, with `∅ ∈ Z_k`.
+- *Step 4.* Correct, with `R` read as the unassigned coordinates **among the first `n − 1`**. Only with that
+  reading is "meets `D_n` iff `w ≤ a_R + b_R`" right; fix the notation.
+  - Uncovered faces have dimension `≥ n − w − 1`. Their proper uncovered faces have the same bound, so they can be
+    attached in increasing dimension.
+  - Attaching cells of dimension `≥ d` preserves `(d−2)`-connectivity. `n − w − 3 ≥ ⌊(n−w)/2⌋ − 2` holds for
+    `n − w ≥ 2`.
+- Hand checks: `h = 2`, `D_i = {−1,0,1}`, `t = 0` gives three disjoint edges, which is `(−1)`-connected, as bound.
+
+**Proposition 1 (`K_0` contractible): correct.**
+- Completability is monotone under hiding, so a cube lies in `K_0` iff its bottom vertex is completable. A
+  completion of the bottom vertex puts the cube in one `Q_π`.
+- Finite intersections of the `Q_π` hide the finite disagreement set. They are nonempty and contractible, as
+  restricted products of intervals.
+- So the nerve is a full simplex. The nerve theorem for covers of a CW complex by subcomplexes, infinite covers
+  included, gives contractibility.
+
+**Proposition 2: correct.**
+- At a non-singular vertex (parent, item 4 as refereed), a revealing is completable iff its defect vector extends
+  to a zero-sum vector in `∏_M D_p`. So `lk↓ = Λ(D_M;{0})` inflated at each `(p,v)` by the finite, nonempty
+  `X_p^v`.
+  - Two germs at one point never span an edge in either complex.
+- The inflation formula is Björner–Wachs–Welker, *Poset fiber theorems*, Trans. AMS 357 (2005), their theorem on
+  inflated complexes. It was recalled here too, not re-read.
+- `lk_Λ F = Λ(D_(M∖S); {−s_F})`. A remaining coordinate with `D_p = {0}` is a cone point, giving a contractible
+  link.
+- `⌊(h−k)/2⌋ + k ≥ ⌊h/2⌋` for `k ≥ 0`.
+
+**The F_∞ Theorem: correct, one off-by-one.**
+- Bestvina–Brady: if every vertex above level `N` has a `c`-connected descending link and `K_0` is contractible,
+  then `K_(0,≤N)` is `c`-connected. BHM's Proposition 2.7 has the same bookkeeping.
+- Here `c = ⌊(N+1)/2⌋ − 2`, not `⌊(N+1)/2⌋ − 1` as written. **Repair the constant.** `F_∞` is unaffected.
+- Cocompactness and `F_∞` cell stabilizers come from the refereed item 4 of the parent.
+- The `SV_L` clause stays conditional on the unreviewed twisted-BT node.
+
+**Scope and credit.**
+- **The class is already asserted in BHM.** Remark 2.13 of Belk–Hyde–Matucci, arXiv:2407.03149, says that "any full,
+  bounded, contracting RSG has type F∞". This node proves that assertion for two cases:
+  - a finite defect group;
+  - a defect group `Z` with interval defect sets.
+- **Grade: attribution of the statement to BHM**, with a new, checked proof. Its new ingredient is the level-set
+  connectivity bound (Theorem L), which replaces the localization axiom used in the proof they indicate.
+- **Against Question 1.2.** It is a genuine partial answer to BBMZ Question 1.2 (arXiv:2309.06224) only relative to
+  what is proved. It covers the cases of the bounded class that BHM's remark states without proof and that their
+  indicated argument does not reach.
+- **Literature.** No paper proving BHM Remark 2.13 in detail, or treating nonzero defect, was found (searches 09-19:
+  BHM, BBMZ, Perego–Tarocchi arXiv:2412.04138, Skipper–Witzel–Zaremsky, and general searches).
+- **The surface-group paragraph.** Closed surface groups already embed in `F_∞` simple groups: they are virtually
+  compact special, so they embed undistortedly in `2V` (`virtually-compact-special-groups-undistorted-in-2v`). So
+  the pentagon application, once its three finite checks are done, would test Question 1.2. It would give
+  **no new Boone–Higman or Zaremsky-type host**. The paragraph should say so; the parent node already does.
+
+**Verdict: PASS**, with three repairs: the `R` notation in step 4, the Bestvina–Brady constant, and the
+surface-group payoff sentence.

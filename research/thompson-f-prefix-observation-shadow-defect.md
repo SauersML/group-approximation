@@ -83,3 +83,18 @@ separately.
 - **Why coarsening cannot decide it.** Lemma A.4 of the gate makes dead observations a down-set, so no
   coarsening of `π_K` — in particular none of the finite-state readings already killed — can settle
   either direction here.
+- **Tail truncation (2026-09-19, swarm-0917-w19-w19-f-break): items 1 and 2 are not separate pieces.**
+  This is proved in `thompson-f-prefix-observation-is-lossless`. For every uniform-degree `S`, which
+  includes every Guba set, the result is `δ_λ(Ψ) <= δ_λ(Ψ ∘ τ_(J+d))` for every observation `Ψ`.
+  Here `τ_j` trivialises all trees past position `j`, and `J = m` for `S_(m+1,m+d+1)`.
+  - *Proof idea.* Push `μ` through `τ_(J+d)` and `η` through `τ_J`. Splits commute with truncation,
+    so `ρ^(η')_s = (τ_(J+d))_* ρ^η_s` exactly.
+  - *Consequences.*
+    - `δ_λ(π_K) = δ_λ(id_M)`. So item 1 is **equivalent** to `thompson-f-is-not-amenable`, and item 2
+      is **true**.
+    - `thompson-f-not-amenable-from-prefix-defect` is a reformulation of the root, not a reduction of it.
+  - *The step that fails in "Status of the two pieces".* The first bullet worries that `σ_s` is not
+    injective on `X_K`. That does not matter, because `δ` is defined by laws on `M`, and the truncation
+    moves those laws into the window with every split intact.
+  - *What is left.* This node is now exactly as hard as the root. Any progress on it has to come from
+    the finite-window system `(X_(m+d+1), {σ_s})` itself.
