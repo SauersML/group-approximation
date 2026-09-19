@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **Status.**
-- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; elementary; not reviewed):** Lemmas 1–2 and Theorem 3,
+- **ESTABLISHED (lane proof, bh-finf-hyp, 2026-09-19; elementary; Referee bh-ref-q11 2026-09-19: PASS for Lemmas 1–2 and Theorem 3.1–3.3, conditional on (M1); item 4 needs Busemann normalization, see the Referee section):** Lemmas 1–2 and Theorem 3,
   under hypothesis (M1).
 - **(M1) is verified computationally, not proved.** The check covered depths ≤ 4–6 on F2, the right-angled
   pentagon group, the (4,4,4) Coxeter group, and a thick (4,4,4) building with GQ(2,2) residues
@@ -138,3 +138,26 @@ Let `Γ` be hyperbolic and prune the cone types with finite cones.
   nucleus is nontrivial. Check first whether that full closure is already known to be `F_∞`.
 - **Prove (M1) for hyperbolic groups, or find a counterexample.** It is a bounded-delay statement for left
   multiplication on ShortLex words.
+
+## Referee (bh-ref-q11, 2026-09-19): Lemmas 1–2 and Theorem 3.1–3.3 PASS conditional on (M1); item 4 as stated is VACUOUS and needs Busemann normalization; grading below
+
+**Grading.**
+- **Lemma 1: unconditional, correct.** It needs tiles of a fixed depth to partition `∂Ω`.
+- **Lemma 2: correct given (M1)**, for all depths and all `s`, with the equivariance `g·𝒯_x = 𝒯_(gx)`.
+- **(M1) is conditional.** It was checked only at depths `≤ 4–6`, on four examples. It is a bounded-lookahead statement for the base-change map on ShortLex rays. ShortLex automaticity gives fellow-travelling of `SL(x)` and `SL(sx)`, but not by itself a deterministic output with delay 1, so (M1) is a conjecture.
+  - A delay-`k` version would be enough for Lemma 2 and items 1–3, with losses of `k` per step.
+- **Theorem 3.1–3.3: correct given (M1).** The offset computation `d(w,x) − d(gy,x) = |x| − d(g,x) + |g| ∈ [0,2|g|]` is right, and gives `|h| ≤ 2|g| + 4δ`.
+  - **Precision.** BBMZ local actions are taken at the *maximal* common prefix of `g·T_1(y)`, which can be deeper than `w`. It is still at depth `≤ n + |g|`, since `g·T_1(y)` contains a depth-`(n+|g|)` tile. So each `g` still has finitely many local actions, indexed by `(h, C(y), C(w))` plus a prefix of length `≤ 2|g|`.
+
+**Item 4: the depth normalization is wrong.**
+- As stated, the hypothesis ("`g·T_1(y)` lies in a single `𝒯_1`-tile of depth `n − c` for all `g` and deep `y`") is never satisfied by a non-elementary `Γ`.
+- Take `g = u^{-1}` with `u` a prefix of `y`, `|u| = k > c`. Then `g·T_1(y) = (u^{-1}y)·C(y)` sits at depth `n − k`. Its points share only the prefix `u^{-1}y`, because `C(y)` branches within bounded depth after pruning. So it lies in no depth-`(n−c)` tile.
+- The same computation shows the flaw in the proof: with `w` at depth `n − c`, the difference `d(w,x) − d(gy,x) = |x| − d(g,x) + c` ranges over `[c−|g|, c+|g|]`. That does not give `|h| ≤ 2c + 4δ`.
+- **Correct form.** Measure the loss against the Busemann shift: "`g·T_1(y)` lies in a single `𝒯_1`-tile of depth `≥ |gy| − c`", equivalently `≥ n + β − c` with `β = |gy| − |y|`. Then `w` and `gy` are at nearly the same depth on nearly the same geodesic, so `|h| ≤ c + O(δ)`. Conversely, `|h| ≤ H` bounds that loss.
+- This is the "level = Busemann shift up to bounded error" condition of the surface and greedy-cube proofs.
+- With this correction, the reduction to BBMZ Q1.2 ("Do full, contracting RSGs have type F∞?") holds, conditional on (M1) and on the corrected far-base bound, which is itself unproved here.
+
+**Buildings.** Not verified.
+- Item 2 needs `y′y^{-1} ∈ Γ` carrying tiles, which requires a chamber-transitive and free action or a stabilizer bookkeeping that the node does not give.
+- (M1) was checked only on a `GQ(2,2)` example.
+- So "Lemma 2 and Theorem 3 are unchanged" for Kazhdan building lattices is a conjecture.

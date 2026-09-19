@@ -7,7 +7,7 @@ distinct_from:
   ct-z-orbit-transversal-dichotomy-is-collatz-hard: that shows the same group makes Kourovka 20.44 (orbit transversals) 3x+1-hard; this applies it to 19.45 (transitivity from 43 points).
 ---
 
-**ESTABLISHED** (lane proof, elementary, not reviewed). No priority claimed: the ingredients are all
+**ESTABLISHED** (lane proof, elementary; **Referee PASS** bh-ref-q11 2026-09-19, sources checked verbatim; credit Kohl's Kourovka 18.47 too). No priority claimed: the ingredients are all
 Kohl's, and he may well know this. The printed problem does not mention it.
 - **What it shows.** Kourovka 19.45 itself stays **OPEN**, but an affirmative answer is at least as
   hard as the Collatz conjecture.
@@ -68,3 +68,22 @@ So every `x ∈ [0, 42]` is `r(k)` or `a(r(k))` with `k = ⌊x/2⌋ + 1 ∈ [1, 
 - This is the same point as for subgroup orbit counts: global orbit finiteness must be built
   into a host's own action, as type (A) requires. It cannot be certified from finitely many
   observations of an embedded subgroup.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS; attribution precision
+
+**Sources read.**
+- The Kourovka Notebook, arXiv:1401.0300v46 (1 Sep 2026, 21st issue), p. 137 (19th Issue section). The node's quote of 19.45 is verbatim, and so is the "42 cannot be lowered" remark with `⟨τ_{0(2),1(2)}, τ_{0(3),2(3)}, τ_{0(7),6(7)}⟩`. 17.57 defines class transpositions as quoted.
+- Kohl, J. Group Theory 20 (2017) 1025–1030, author's PDF: Prop. 1.2(b) and Prop. 2.2 state verbatim that `G_T := ⟨τ_{0(2),1(2)}, τ_{1(2),2(4)}, τ_{1(4),2(6)}⟩` acts transitively on `N_0` iff the Collatz conjecture holds. The maps `f`, `r`, `s` match the proof node.
+
+**Checks.**
+- The moduli are `2,2 / 2,4 / 4,6`, so `m = 12`.
+- `r(j+1) ∈ {2j, 2j+1}` according to `j+1 mod 3`, and `a` swaps them. So `[0,42] ⊆ r([1,22]) ∪ a(r([1,22]))`.
+- `r(k) ~ r(T(k))` on all of `Z`. I spot-checked it (`n = 1,…,5`) and it matches Kohl's `rf = Tr` off `0(6)`, with `a` on `0(6)`.
+- `1,…,22` reach `1` under `T`, and `r(1) = 1`. The mixing hypothesis then follows from `0,…,11` lying in one orbit.
+
+So an affirmative answer to 19.45 implies the Collatz conjecture.
+
+**Attribution.**
+- Neither the 19.45 entry nor Kohl's 2017 paper, which predates 19.45 (19th issue, 2018), states this implication. I found it nowhere else (web search, 2026-09-19).
+- Kohl himself already flagged the Collatz barrier for three-class-transposition transitivity in **Kourovka 18.47(b)**: "`⟨τ_{1(2),4(6)}, τ_{1(3),2(6)}, τ_{2(3),4(6)}⟩` acts transitively on `N ∖ 0(6)` iff Collatz". That group fixes `0(6)`, so it fails 19.45's hypotheses, which is why `G_T` is the right witness.
+- Credit: the group, the equivalence and the barrier are Kohl's. The new content is only the check that `G_T` meets 19.45's two hypotheses. Please add the 18.47 pointer to the Credit line.
