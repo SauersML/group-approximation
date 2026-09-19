@@ -189,8 +189,9 @@ first.
 **Conclusion.** Let `T_sing` be the set of types whose `E` is not an atom shadow. Then `sing(g)` corresponds
 bijectively to the paths of the finite pair graph `𝒢_g` that visit `T_sing` infinitely often. Consequently:
 - `sing(g)` is either countable or of cardinality `2^{ℵ_0}`;
-- it is uncountable iff some type in `T_sing` lies in a strongly connected component of `𝒢_g` that is not a single
-  cycle, counting parallel edges.
+- it is uncountable iff some type in `T_sing`, reachable from a level-`|g|` root type, lies in a **nontrivial**
+  strongly connected component of `𝒢_g` that is not a single simple cycle, counting parallel edges. (Corrected per
+  the referee: trivial components, a single vertex without a loop, are visited at most once and do not count.)
 
 This is a finite check once `𝒢_g` is built. Building `𝒢_g` is a finite computation from the BBMZ data (joint
 signatures in a ball of radius about `R + 2|g|`, Cannon's cone types, and the morphism test). Its effectiveness is
@@ -198,14 +199,14 @@ expected but not verified here.
 
 ## Consequence for the Kazhdan program
 
-- **Conjecture U, uncountable form.** For a Kazhdan hyperbolic `Γ`, some generator `s` of `Γ ∗ Z` has a branching
-  component of `𝒢_s` meeting `T_sing`.
+- **Conjecture U, uncountable form.** For a Kazhdan hyperbolic `Γ`, some generator `s` of `Γ ∗ Z` has a `T_sing` type, reachable
+  from a root type, in a nontrivial strongly connected component of `𝒢_s` that is not a single simple cycle.
   - By Theorems A and E, this is the whole content.
   - Frontier separation (uncountable `F'_{g^k}`) puts continuum-many points over the region where singularity is
     possible. It does not place a `T_sing` type in their components.
 - **Decidable, not decided.** Deciding it for one explicit Kazhdan group, e.g. a uniform lattice or a Żuk group, is
   a finite computation. It needs the atoms of balls of radius about `R + 2|g|`. It was not run.
-- **If it fails** (all singular components are single cycles), every singular set is countable. Bounded then needs
+- **If it fails** (every reachable nontrivial component meeting `T_sing` is a single simple cycle), every singular set is countable. Bounded then needs
   only finitely many entry paths, a second finite check.
   - That would be the first real hope for a bounded, hence (by the refereed level-set theorem, once `C_r` holds)
     `F_∞`, host of a Kazhdan group.
