@@ -111,3 +111,20 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - **Step where it dies.** `tr -> 1` on `L_-`, transported by `c` to the head.
   - **Survivors.** Approximations of `P` with trace `1_(L_-)` that are not restrictions from `<P,c>`. In linear form,
     the two boundary heads must have unequal rank.
+* **Kernel-averaging descent through `E = P / L_-` (swarm-0917-w14-w14-nh-break, 2026-09-18). Dead as a class.**
+  Recorded in `jacobson-mirror-kernel-has-no-conjugation-invariant-mean`.
+  - **The class.** The infinite analogue of the finite-kernel projection `|N|^-1 sum_(n in N) u_n`. It covers:
+    - a mean on `L_-` invariant under translation and `P`-conjugation, which is (CIM);
+    - coherent Følner windows or equivariant quasi-tilings of `L_-`-orbits;
+    - co-amenability of the diagonal in `P x_E P`;
+    - rescaled projections in `L(P) ⊗̄ B`, with `U = lambda ⊗ v`, that almost commute with `P` and almost fix a
+      single nontrivial `(1,t)`.
+  - **Invariant.** Property (T) of the mirror half `E_- = EL_n(J)`, onto which `P` maps with `L_-` injected, and
+    `L_- ∩ FC(E_-) = 1`.
+  - **Step where it dies.** The averaging mean pushed to `E_-` is conjugation invariant, so it lives on
+    `FC(E_-)` by the Kazhdan finite-orbit theorem. Translation by `t notin FC(E_-)` moves it off itself.
+  - The same kill applies to `(EL_n(J), L)` directly.
+  - This kills a method, not the conclusion: `(Z^3 x| SL_3(Z), Z^3)` fails in the same way, with a residually
+    finite quotient.
+  - **Survivors.** Non-regular tracial representations of `P` that are not inherited from `<P,c>`, and direct
+    approximations of `E`.
