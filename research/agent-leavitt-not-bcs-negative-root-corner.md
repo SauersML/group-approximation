@@ -1033,6 +1033,29 @@ under both halves, and to the **full semigroup** of its relation, where lifts ma
   2. *Prove or refute `(HR)`.* One route is flexible HS stability of `EL_n` over the stably finite
      cone ring `R_+`, which would also give flexible stability of `Gamma`.
 
+### swarm-0917-w17-w17-nh-pull (obstruction-miner, stability-approximation / reframing)
+
+- **New lemma (ESTABLISHED, unreviewed).** `positive-characteristic-steinberg-unitary-images-are-finite`.
+  Every unitary `rho : St_n(A) -> U(d)`, with `n >= 3` and `m·1 = 0` in `A`, has finite image and factors through
+  `St_n(A/I)`, where `|A/I| <= m^d`. The steps are a level-ideal cycle, the exponent bound, central `K_2` for finite
+  rings, and determinants on a perfect group.
+- **Reframing of next step 1 above (ESTABLISHED, unreviewed).**
+  `leavitt-cone-head-bound-is-finite-congruence-gluing`.
+  - Every genuine representation entering `(QC)` acts on `Delta_+-` through finite groups dominated by
+    `St_20(B_+-)`, with `B_+-` finite quotients of the cones of order at most `2^d`.
+  - The halves have the elementary congruence property.
+  - `(QC)` is a gluing statement over `SL_20(F_2)^2`, and `||rho(z) - 1||_2^2 ≍ f_1`, the share of dimension moved by
+    the first edge factor.
+  - "Use congruence quotients" is therefore not a special case: it is the whole of `(QC)`.
+- **Class killed.** Head bounds through `kappa` alone, or through any finite `W ⊆ K ∩ ker rho_M`.
+  - *Invariant:* the exact model `rho_M : Gamma -> GL_40(F_2)`, given by `s_1, q, t_1 -> e_11`, `s_2 -> e_21` and
+    `t_2 -> e_12`. It kills `kappa` and puts the head at distance `sqrt 2` in the regular representation.
+  - `rho_M` satisfies every Leavitt relation except `t_i s_i = 1`.
+  - *Death step:* any inference from "`W` is `delta`-trivial" to "`z` is `eps`-trivial" with `eps < sqrt 2`.
+- **Target stays OPEN.**
+- **Next falsifiable step.** Among one-ring shadows `R_+ *_(R_0) R_- -> B` with `B` finite, bound the defect of the
+  isometry relators against `f_1` in normalized Hilbert–Schmidt norm. A uniform bound would prove `(QC)` for all
+  ring-induced gluings. A family with small defect and `f_1` bounded below would refute `(QC)`, and with it `(LNC3)`.
 ### Nonsoficity proves the Hamming cone bound; the refutation side is Pestov 3.4 (swarm-0917-w17-w17-nh-last1, calibration, 2026-09-19)
 
 - **Result (ESTABLISHED, unreviewed).** `leavitt-cone-cover-hamming-head-bound-holds`, with route
