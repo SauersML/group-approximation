@@ -1,0 +1,49 @@
+[job] 08:38:57 acn112 waiting for clone lock
+[job] delta sync 1eac00758..e81f21d8c: 30 files changed
+===== SUMMARY
+host acn112 cores 72-79 base e81f21d8c log /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.nm/build-0914-083846-24085.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4499 oleans
+--- errors (first 80 lines)
+6:✖ [4621/4624] Building GroupApproximation.Analysis.KirchbergRealDilation (8.8s)
+8:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:179:27: Invalid field `isometryOfInner`: The environment does not contain `LinearEquiv.isometryOfInner`, so it is not possible to project the field `isometryOfInner` from an expression
+11:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:183:0: Not a definitional equality: the left-hand side
+15:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:185:74: Type mismatch
+21:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:190:77: unsolved goals
+32:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:194:81: unsolved goals
+45:error: GroupApproximation/Analysis/KirchbergRealDilation.lean:198:10: This simp argument is unused:
+52:error: Lean exited with code 1
+54:✖ [4623/4624] Building GroupApproximation.Analysis.KirchbergTensorSquare (10s)
+56:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:41:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.inner_tmulC`:
+62:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:44:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.norm_tmulC`:
+68:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:47:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.tmulC_add_right`:
+74:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:50:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.tmulC_smul_right`:
+80:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:54:92: unsolved goals
+89:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:67:15: unsolved goals
+100:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:72:15: unsolved goals
+112:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:84:2: No goals to be solved
+113:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:80:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.diag_tmulC`:
+119:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:90:49: Unknown constant `TensorProduct.mkL`
+120:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:92:0: Not a definitional equality: the left-hand side
+124:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:93:46: Type mismatch
+130:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:137:8: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+133:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:142:8: `ContinuousLinearMap.smul_apply` has been deprecated: Use `smul_apply` instead
+136:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:147:38: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+139:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:166:41: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+142:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:179:39: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+145:error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:185:4: Unknown identifier `isClosed_setOfPred_isCompactOperator.preimage`
+146:error: Lean exited with code 1
+150:error: build failed
+--- per-module
+BUILT GroupApproximation.Analysis.KirchbergCompactExtraction
+mentioned-not-built GroupApproximation.Analysis.KirchbergRealDilation (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.KirchbergTensorSquare (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Analysis/KirchbergCompactExtraction.lean
+COMPILED GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+COMPILED GroupApproximation/Analysis/KirchbergRealForms.lean
+- GroupApproximation.Analysis.KirchbergTensorSquare
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

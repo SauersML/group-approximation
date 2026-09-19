@@ -1,0 +1,9 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3375 oleans
+[job] acn112 cores=64-71 threads=8 base=d5a8cf1dbcf9908c0e3eb81bb41a56406b0dfa96 mods: GroupApproximation.Dynamics.ReturnPlacement
+ℹ [1211/1211] Built GroupApproximation.Dynamics.ReturnPlacement (12s)
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1211 jobs).
+EXIT=0

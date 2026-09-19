@@ -1,0 +1,33 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2432 oleans
+[job] acn49 cores=slurm threads=8 base=5edf273beedd33a11e03abddaec6ad28b5ff5fb5 mods: GroupApproximation.CharClass.LerayHirschColSumOf GroupApproximation.CharClass.LerayHirschLadderClosedOf
+ℹ [8729/8850] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8774/8957] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8848/9048] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8849/9048] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9045/9048] Built GroupApproximation.CharClass.LerayHirschTowerSumOf (167s)
+info: GroupApproximation/CharClass/LerayHirschTowerSumOf.lean:133:14: 'GroupApproximation.CharClass.LH.lhTerm_succ_rightOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschTowerSumOf.lean:134:14: 'GroupApproximation.CharClass.LH.peelTower_eq_sumOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9046/9048] Built GroupApproximation.CharClass.LerayHirschFreeTupleOf (22s)
+info: GroupApproximation/CharClass/LerayHirschFreeTupleOf.lean:165:14: 'GroupApproximation.CharClass.LH.lhTerm_eq_zero_of_rankOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschFreeTupleOf.lean:166:14: 'GroupApproximation.CharClass.LH.peelTower_eq_range_sumOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschFreeTupleOf.lean:167:14: 'GroupApproximation.CharClass.LH.exists_freeTupleOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9047/9048] Built GroupApproximation.CharClass.LerayHirschColSumOf (22s)
+ℹ [9048/9048] Built GroupApproximation.CharClass.LerayHirschLadderClosedOf (22s)
+info: GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean:67:14: 'GroupApproximation.CharClass.LH.hasFreeTuple_cpProdOf_of_ring' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean:68:14: 'GroupApproximation.CharClass.LH.ladderRingInputOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean:69:14: 'GroupApproximation.CharClass.LH.hasFreeTuple_cpProd_generalOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LerayHirschLadderClosedOf.lean:70:14: 'GroupApproximation.CharClass.LH.hasFreeTuple_cpProdOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (9048 jobs).
+EXIT=0

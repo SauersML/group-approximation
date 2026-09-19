@@ -1,0 +1,21 @@
+[job] 11:42:29 acn112 waiting for clone lock
+[job] delta sync 3c2fa5f39..880cf6c9d: 31 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 880cf6c9d log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-114225-1118.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3726 oleans
+--- errors (first 80 lines)
+76:✖ [10321/10322] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals (90s)
+78:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:217:29: Unknown identifier `reclosedMap`
+79:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:222:31: Unknown identifier `reclosedMap`
+89:error: Lean exited with code 1
+108:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcBelow
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

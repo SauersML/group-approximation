@@ -1,0 +1,244 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3472 oleans
+[job] cn1132 cores=slurm threads=8 base=79f422ef29a4f402ef660b7b67b60390c1eb70dc mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+⚠ [1852/1854] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+warning: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.shift_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_add_intCast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:192:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_floor_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:193:14: 'GroupApproximation.SimpleKazhdanSofic.sum_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:194:14: 'GroupApproximation.SimpleKazhdanSofic.isClosed_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:195:14: 'GroupApproximation.SimpleKazhdanSofic.mapsTo_shift_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1853/1854] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage (49s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:204:14: 'GroupApproximation.SimpleKazhdanSofic.language_sturmianSubshift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:205:14: 'GroupApproximation.SimpleKazhdanSofic.fract_neg_mul_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:206:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_true_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:207:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_word_eq_of_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:208:14: 'GroupApproximation.SimpleKazhdanSofic.count_word_sturmianCoding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:209:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianEndpointsDetermineWords' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean:210:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianMinimumOnes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1854/1854] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal (51s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-j/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:84:37: linarith failed to find a contradiction
+α : ℝ
+hα : Irrational α
+ε : ℝ
+hε : 0 < ε
+m : ℕ
+hm : 1 / (↑m + 1) < ε
+j k : ℤ
+hk0 : 0 < k
+δ : ℝ := ↑k * α - ↑j
+hjk : |δ| ≤ 1 / (↑m.succ + 1)
+hδdef : δ = ↑k * α - ↑j
+hm1 : 1 / (↑(m + 1) + 1) ≤ 1 / (↑m + 1)
+hδε : |δ| < ε
+hδ1 : |δ| < 1
+hδ0 : δ ≠ 0
+kn : ℕ
+hkn : ↑kn = k
+hkpos : 0 < kn
+hkR : ↑k = ↑kn
+φ : ℝ
+s : ℝ := Int.fract φ
+hs : s = Int.fract φ
+hs0 : 0 ≤ s
+hs1 : s < 1
+hsplit : ∀ (m' : ℕ), Int.fract (φ + ↑(kn * m') * α) = Int.fract (s + ↑m' * δ)
+hceil : 1 / |δ| ≤ ↑⌈1 / |δ|⌉₊
+hδpos : 0 < |δ|
+hneg : δ < 0
+habs : |δ| = -δ
+h1 : ↑⌊s / |δ|⌋₊ ≤ s / |δ|
+h2 : s / |δ| < ↑⌊s / |δ|⌋₊ + 1
+h1' : ↑⌊s / -δ⌋₊ * -δ ≤ s
+h2' : s < (↑⌊s / |δ|⌋₊ + 1) * |δ|
+a✝ : s + ↑⌊s / |δ|⌋₊ * δ < 0
+⊢ False
+failed
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:84:68: linarith failed to find a contradiction
+α : ℝ
+hα : Irrational α
+ε : ℝ
+hε : 0 < ε
+m : ℕ
+hm : 1 / (↑m + 1) < ε
+j k : ℤ
+hk0 : 0 < k
+δ : ℝ := ↑k * α - ↑j
+hjk : |δ| ≤ 1 / (↑m.succ + 1)
+hδdef : δ = ↑k * α - ↑j
+hm1 : 1 / (↑(m + 1) + 1) ≤ 1 / (↑m + 1)
+hδε : |δ| < ε
+hδ1 : |δ| < 1
+hδ0 : δ ≠ 0
+kn : ℕ
+hkn : ↑kn = k
+hkpos : 0 < kn
+hkR : ↑k = ↑kn
+φ : ℝ
+s : ℝ := Int.fract φ
+hs : s = Int.fract φ
+hs0 : 0 ≤ s
+hs1 : s < 1
+hsplit : ∀ (m' : ℕ), Int.fract (φ + ↑(kn * m') * α) = Int.fract (s + ↑m' * δ)
+hceil : 1 / |δ| ≤ ↑⌈1 / |δ|⌉₊
+hδpos : 0 < |δ|
+hneg : δ < 0
+habs : |δ| = -δ
+h1 : ↑⌊s / |δ|⌋₊ ≤ s / |δ|
+h2 : s / |δ| < ↑⌊s / |δ|⌋₊ + 1
+h1' : ↑⌊s / |δ|⌋₊ * |δ| ≤ s
+h2' : s < (↑⌊s / -δ⌋₊ + 1) * -δ
+a✝ : 1 ≤ s + ↑⌊s / |δ|⌋₊ * δ
+⊢ False
+failed
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:87:6: linarith failed to find a contradiction
+case inl.refine_2
+α : ℝ
+hα : Irrational α
+ε : ℝ
+hε : 0 < ε
+m : ℕ
+hm : 1 / (↑m + 1) < ε
+j k : ℤ
+hk0 : 0 < k
+δ : ℝ := ↑k * α - ↑j
+hjk : |δ| ≤ 1 / (↑m.succ + 1)
+hδdef : δ = ↑k * α - ↑j
+hm1 : 1 / (↑(m + 1) + 1) ≤ 1 / (↑m + 1)
+hδε : -δ < ε
+hδ1 : |δ| < 1
+hδ0 : δ ≠ 0
+kn : ℕ
+hkn : ↑kn = k
+hkpos : 0 < kn
+hkR : ↑k = ↑kn
+φ : ℝ
+s : ℝ := Int.fract φ
+hs : s = Int.fract φ
+hs0 : 0 ≤ s
+hs1 : s < 1
+hsplit : ∀ (m' : ℕ), Int.fract (φ + ↑(kn * m') * α) = Int.fract (s + ↑m' * δ)
+hceil : 1 / |δ| ≤ ↑⌈1 / |δ|⌉₊
+hδpos : 0 < |δ|
+hneg : δ < 0
+habs : |δ| = -δ
+h1 : ↑⌊s / |δ|⌋₊ ≤ s / |δ|
+h2 : s / |δ| < ↑⌊s / |δ|⌋₊ + 1
+h1' : ↑⌊s / |δ|⌋₊ * |δ| ≤ s
+h2' : s < (↑⌊s / -δ⌋₊ + 1) * -δ
+hval : Int.fract (s + ↑⌊s / |δ|⌋₊ * δ) = s + ↑⌊s / |δ|⌋₊ * δ
+a✝ : ε ≤ s + ↑⌊s / |δ|⌋₊ * δ
+⊢ False
+failed
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:209:37: This simp argument is unused:
+  Fin.val_mk
+
+Hint: Omit it from the simp argument list.
+  simp only [WordGraph.word_apply, F̵i̵n̵.̵v̵a̵l̵_̵m̵k̵,̵ ̵zero_add] at h1
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:274:7: unknown tactic
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:273:83: unsolved goals
+α : ℝ
+hα : Irrational α
+hα0 : 0 < α
+hα1 : α < 1
+p : ℕ
+hp : 0 < p
+hper : ∀ (i : ℤ), sturmianCoding α 0 (i + ↑p) = sturmianCoding α 0 i
+hiter : ∀ (K : ℕ) (i : ℤ), sturmianCoding α 0 (i + ↑(K * p)) = sturmianCoding α 0 i
+hsum :
+  ∀ (K : ℕ),
+    (∑ i ∈ Finset.range (K * p), if sturmianCoding α 0 ↑i = true then 1 else 0) =
+      ↑K * ∑ i ∈ Finset.range p, if sturmianCoding α 0 ↑i = true then 1 else 0
+hfloor : ∀ (K : ℕ), ⌊↑(K * p) * α⌋ = ↑K * ⌊↑p * α⌋
+hsplit : ↑⌊↑p * α⌋ + Int.fract (↑p * α) = ↑p * α
+hne : ¬Int.fract (↑p * α) = 0
+hpos : 0 < Int.fract (↑p * α)
+K : ℕ
+hK : 1 / (↑K + 1) < Int.fract (↑p * α)
+hlt : (↑K + 1) * ↑p * α - 1 < (↑K + 1) * ↑⌊↑p * α⌋
+⊢ (↑K + 1) * ↑⌊↑p * α⌋ = (↑K + 1) * (↑p * α) - (↑K + 1) * Int.fract (↑p * α)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:265:44: unsolved goals
+α : ℝ
+hα : Irrational α
+hα0 : 0 < α
+hα1 : α < 1
+p : ℕ
+hp : 0 < p
+hper : ∀ (i : ℤ), sturmianCoding α 0 (i + ↑p) = sturmianCoding α 0 i
+hiter : ∀ (K : ℕ) (i : ℤ), sturmianCoding α 0 (i + ↑(K * p)) = sturmianCoding α 0 i
+hsum :
+  ∀ (K : ℕ),
+    (∑ i ∈ Finset.range (K * p), if sturmianCoding α 0 ↑i = true then 1 else 0) =
+      ↑K * ∑ i ∈ Finset.range p, if sturmianCoding α 0 ↑i = true then 1 else 0
+hfloor : ∀ (K : ℕ), ⌊↑(K * p) * α⌋ = ↑K * ⌊↑p * α⌋
+hsplit : ↑⌊↑p * α⌋ + Int.fract (↑p * α) = ↑p * α
+hne : ¬Int.fract (↑p * α) = 0
+hpos : 0 < Int.fract (↑p * α)
+K : ℕ
+hK : 1 / (↑K + 1) < Int.fract (↑p * α)
+hlt : (↑K + 1) * ↑p * α - 1 < (↑K + 1) * ↑⌊↑p * α⌋
+e : (↑K + 1) * ↑⌊↑p * α⌋ = (↑K + 1) * (↑p * α) - (↑K + 1) * Int.fract (↑p * α)
+⊢ False
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:225:91: unsolved goals
+α : ℝ
+hα : Irrational α
+hα0 : 0 < α
+hα1 : α < 1
+p : ℕ
+hp : 0 < p
+hper : ∀ (i : ℤ), sturmianCoding α 0 (i + ↑p) = sturmianCoding α 0 i
+hiter : ∀ (K : ℕ) (i : ℤ), sturmianCoding α 0 (i + ↑(K * p)) = sturmianCoding α 0 i
+hsum :
+  ∀ (K : ℕ),
+    (∑ i ∈ Finset.range (K * p), if sturmianCoding α 0 ↑i = true then 1 else 0) =
+      ↑K * ∑ i ∈ Finset.range p, if sturmianCoding α 0 ↑i = true then 1 else 0
+hfloor : ∀ (K : ℕ), ⌊↑(K * p) * α⌋ = ↑K * ⌊↑p * α⌋
+hsplit : ↑⌊↑p * α⌋ + Int.fract (↑p * α) = ↑p * α
+hfr : Int.fract (↑p * α) = 0
+⊢ False
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:322:14: 'GroupApproximation.SimpleKazhdanSofic.exists_bounded_return' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:323:14: 'GroupApproximation.SimpleKazhdanSofic.exists_right_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:324:14: 'GroupApproximation.SimpleKazhdanSofic.exists_occurrence_of_mem_carrier' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:325:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_isMinimal' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:326:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_infinite' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:327:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftInfiniteMinimal' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal
+error: build failed
+EXIT=1

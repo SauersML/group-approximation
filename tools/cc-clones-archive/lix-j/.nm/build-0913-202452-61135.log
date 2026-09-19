@@ -1,0 +1,47 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3480 oleans
+[job] acn112 cores=72-79 threads=8 base=5d40491630dbbe25797726442aa24ec493d8cd94 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftSetting
+⚠ [1972/1974] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+warning: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:206:14: 'GroupApproximation.SimpleKazhdanSofic.shift_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:207:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_add_intCast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:208:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_floor_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:209:14: 'GroupApproximation.SimpleKazhdanSofic.sum_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.isClosed_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.mapsTo_shift_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1973/1974] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftMinimal
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:358:14: 'GroupApproximation.SimpleKazhdanSofic.exists_bounded_return' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:359:14: 'GroupApproximation.SimpleKazhdanSofic.exists_right_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:360:14: 'GroupApproximation.SimpleKazhdanSofic.exists_occurrence_of_mem_carrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:361:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_isMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:362:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianSubshift_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:363:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftInfiniteMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean:364:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftClosureOfCodings' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1974/1974] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftSetting (7.4s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftSetting.lean:46:14: 'GroupApproximation.SimpleKazhdanSofic.isMinimalSubshift_iff_isMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftSetting.lean:47:21: 'GroupApproximation.SimpleKazhdanSofic.printedSturmianSubshiftInfiniteIsMinimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1974 jobs).
+EXIT=0

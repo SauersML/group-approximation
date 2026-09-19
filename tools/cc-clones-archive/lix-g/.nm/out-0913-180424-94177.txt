@@ -1,0 +1,31 @@
+[job] 18:04:35 acn112 waiting for clone lock
+[job] delta sync 1bb3e7bf0..8b0c76b7d: 11 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 8b0c76b7d log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-180424-94177.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3556 oleans
+--- errors (first 80 lines)
+6:✖ [5072/5072] Building GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep (12s)
+8:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:248:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.leftFace_mem`:
+14:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:255:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.rightFace_mem`:
+20:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:285:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+44:Full error:
+72:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:467:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.pinchStrip' depends on axioms outside the classical allowlist: [sorryAx]
+73:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:468:14: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStep_of_digon' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+84:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:471:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStepStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+85:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+87:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:472:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.stripStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+88:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+90:error: GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean:473:21: 'GroupApproximation.GGT.VanKampen.GeodesicCollar.StripStep.geodesicCollarStatement_holds' depends on axioms outside the classical allowlist: [sorryAx]
+91:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+93:error: Lean exited with code 1
+96:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

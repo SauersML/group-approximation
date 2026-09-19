@@ -1,0 +1,23 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3692 oleans
+[job] acn112 cores=64-71 threads=8 base=11c3cbcb5ab550d476220320b5634f07889745ad mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapHairModel
+ℹ [3316/3400] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10162/10162] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapHairModel (31s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapHairModel.lean:126:14: 'GroupApproximation.GGT.VanKampen.isLambdaCQuasiGeodesicWord_hair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapHairModel.lean:127:14: 'GroupApproximation.GGT.VanKampen.isLambdaCQuasiGeodesicWord_hair_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapHairModel.lean:128:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.not_mem_cycle_of_relatorCell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapHairModel.lean:129:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.not_mem_cycle_of_outer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapHairModel.lean:130:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.hair_not_mem_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10162 jobs).
+EXIT=0

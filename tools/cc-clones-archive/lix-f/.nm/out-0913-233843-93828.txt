@@ -1,0 +1,25 @@
+[job] 23:39:15 acn112 waiting for clone lock
+[job] delta sync eefd9492d..199bac76a: 3 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 199bac76a log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-233843-93828.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3628 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGoodCornersSection
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinDescentResidualsPos.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellGoodCorners.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGoodCornersSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchFirstTurnSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPositive.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchStepSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingFaces.lean
+ Quot.sound]
+Build completed successfully (10290 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,90 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3513 oleans
+[job] acn87 cores=slurm threads=8 base=0fd4b86152c8e3e5891c197c9132ffa0b210e3e4 mods: GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving
+ℹ [3364/3430] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4953/4953] Building GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving (121s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.setup.json --json
+error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:67:70: Unknown constant `Equiv.Perm.inv_apply_self`
+error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:67:39: unsolved goals
+M : CombMap
+x : M.Dart
+j : ℕ
+⊢ (M.facePerm ^ j)⁻¹ ((M.facePerm ^ j) x) = x
+error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:167:34: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?a ^ ?m * ?a ^ ?n
+in the target expression
+  (M.facePerm ^ jq * M.alpha) x₀ = (M.facePerm ^ (jq - t)) ((M.facePerm ^ t) (M.alpha x₀))
+
+M : CombMap
+hM : M.IsPlanar
+x₀ : M.Dart
+n : ℕ
+hcyc : (M.facePerm ^ n) x₀ = x₀
+hinj : ∀ (a b : ℕ), a < n → b < n → (M.facePerm ^ a) x₀ = (M.facePerm ^ b) x₀ → a = b
+r q s : ℕ
+hr : 0 < r
+hrq : r < q
+hqs : q < s
+hsn : s < n
+hA : M.faceOf (M.alpha x₀) = M.faceOf (M.alpha ((M.facePerm ^ q) x₀))
+hB : M.faceOf (M.alpha ((M.facePerm ^ r) x₀)) = M.faceOf (M.alpha ((M.facePerm ^ s) x₀))
+hAB : M.faceOf (M.alpha x₀) ≠ M.faceOf (M.alpha ((M.facePerm ^ r) x₀))
+hAf : M.faceOf (M.alpha x₀) ≠ M.faceOf x₀
+hBf : M.faceOf (M.alpha ((M.facePerm ^ r) x₀)) ≠ M.faceOf x₀
+X : ℕ → M.Dart := fun i => (M.facePerm ^ i) x₀
+hX : X = fun i => (M.facePerm ^ i) x₀
+hXf : ∀ (i : ℕ), M.faceOf (X i) = M.faceOf x₀
+hXstep : ∀ (i : ℕ), M.facePerm (X i) = X (i + 1)
+hXne : ∀ (i j : ℕ), i < n → j < n → i ≠ j → X i ≠ X j
+hX0 : X 0 = x₀
+z : M.Dart := X (n - 1)
+hzdef : z = X (n - 1)
+hz : M.facePerm z = x₀
+x : M.Dart := M.alpha z
+hxdef : x = M.alpha z
+hax : M.alpha x = z
+hsig : M.sigma x = x₀
+hxy : M.sigma.SameCycle x x₀
+hface_ne : M.faceOf (M.alpha x) ≠ M.faceOf (M.alpha x₀)
+C : PinchSplit.Cycles M x x₀ := ⋯.some
+M1 : CombMap := PinchSplit.toCombMap M x x₀
+hM1 : M1.IsPlanar
+hfp : ∀ (d : M.Dart), d ≠ z → d ≠ M.alpha x₀ → M1.facePerm d = M.facePerm d
+dq : M.Dart := X q
+hdq : dq = X q
+hmerged_f : ∀ (e : M.Dart), M.faceOf e = M.faceOf x₀ → M1.faceOf e = M1.faceOf (M.alpha x)
+hmerged_a : ∀ (e : M.Dart), M.faceOf e = M.faceOf (M.alpha x₀) → M1.faceOf e = M1.faceOf (M.alpha x)
+hface1 : M1.faceOf dq = M1.faceOf (M1.alpha dq)
+hbridge : ¬Relation.EqvGen (AvoidEdgeStep M1 dq) dq (M1.alpha dq)
+hfa : ∀ (i : ℕ), X i ≠ M.alpha dq
+hfa0 : ∀ (i : ℕ), X i ≠ M.alpha x₀
+ha : Relation.EqvGen (AvoidEdgeStep M1 dq) (X r) dq
+W : ℕ → M.Dart := fun j => (M.facePerm ^ j) (M.alpha x₀)
+hW : W = fun j => (M.facePerm ^ j) (M.alpha x₀)
+hWf : ∀ (j : ℕ), M.faceOf (W j) = M.faceOf (M.alpha x₀)
+hWstep : ∀ (j : ℕ), M.facePerm (W j) = W (j + 1)
+hex : ∃ j, W j = M.alpha dq
+jq : ℕ := Nat.find hex
+hjqdef : jq = Nat.find hex
+hjq : W jq = M.alpha dq
+hmin : ∀ t < jq, W t ≠ M.alpha dq
+hq0 : x₀ ≠ dq
+hjq1 : 1 ≤ jq
+t : ℕ
+ht1 : 1 ≤ t
+htq : t < jq
+hWt : W t = M.alpha x₀
+⊢ (M.facePerm ^ jq * M.alpha) x₀ = (M.facePerm ^ (jq - t)) ((M.facePerm ^ t) (M.alpha x₀))
+info: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:242:14: 'GroupApproximation.GGT.VanKampen.NeighbourFaces.eqvGen_facePerm_run' depends on axioms: [propext, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:243:14: 'GroupApproximation.GGT.VanKampen.NeighbourFaces.false_of_interleave' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean:244:21: 'GroupApproximation.GGT.VanKampen.neighbourFacesNoninterleaving' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.CombMapNeighbourFacesNoninterleaving
+error: build failed
+EXIT=1

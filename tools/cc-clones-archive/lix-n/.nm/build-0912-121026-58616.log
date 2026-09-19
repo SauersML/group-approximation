@@ -1,0 +1,82 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2340 oleans
+[job] acn112 cores=64-71 threads=8 base=4c762c1233c16d59a7a00ab9c75fe5b6a0baf3ca mods: GroupApproximation.CharClass.OddPTopPowerAW GroupApproximation.CharClass.OddPTopPowerAWChain GroupApproximation.CharClass.OddPTopPowerAWEval GroupApproximation.CharClass.OddPTopPowerHomotopy GroupApproximation.CharClass.OddPTopPower
+ℹ [8802/8811] Built GroupApproximation.CharClass.OddPTopPowerAW (10s)
+info: GroupApproximation/CharClass/OddPTopPowerAW.lean:387:14: 'GroupApproximation.CharClass.TopPow.vtx_vtx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTopPowerAW.lean:388:14: 'GroupApproximation.CharClass.TopPow.tagBd_vtx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTopPowerAW.lean:389:14: 'GroupApproximation.CharClass.TopPow.tupDAll_catLin_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTopPowerAW.lean:390:14: 'GroupApproximation.CharClass.TopPow.awAll_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [8803/8811] Building GroupApproximation.CharClass.OddPTopPowerAWChain (9.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/CharClass/OddPTopPowerAWChain.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTopPowerAWChain.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTopPowerAWChain.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPTopPowerAWChain.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPTopPowerAWChain.setup.json --json
+error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:323:49: Type mismatch
+  Fin.snoc (fun l => ?m.45) ?m.49 (Fin.last r)
+has type
+  ?m.41 (Fin.last r)
+but is expected to have type
+  TagSimp Y
+error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:326:47: Type mismatch
+  Fin.snoc (fun l => ?m.80) ?m.84 j.castSucc
+has type
+  ?m.76 j.castSucc
+but is expected to have type
+  TagSimp Y
+error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:335:64: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (?f + ?g) ?x
+in the target expression
+  ((catLin K Y r) ((tupAllMap K f r) x)) (Finsupp.single (tagPush f τ) 1) +
+      ((catLin K Y r) ((tupAllMap K f r) y)) (Finsupp.single (tagPush f τ) 1) =
+    ((catLin K Y r) ((tupAllMap K f r) x + (tupAllMap K f r) y)) (Finsupp.single (tagPush f τ) 1)
+
+case add
+K : Type
+inst✝ : CommRing K
+X Y : TopCat
+f : X ⟶ Y
+r : ℕ
+τ : TagSimp X
+x y : TupAll X r →₀ K
+hx :
+  (tupAllMap K f (r + 1)) (((catLin K X r) x) (Finsupp.single τ 1)) =
+    ((catLin K Y r) ((tupAllMap K f r) x)) (Finsupp.single (tagPush f τ) 1)
+hy :
+  (tupAllMap K f (r + 1)) (((catLin K X r) y) (Finsupp.single τ 1)) =
+    ((catLin K Y r) ((tupAllMap K f r) y)) (Finsupp.single (tagPush f τ) 1)
+⊢ ((catLin K Y r) ((tupAllMap K f r) x)) (Finsupp.single (tagPush f τ) 1) +
+      ((catLin K Y r) ((tupAllMap K f r) y)) (Finsupp.single (tagPush f τ) 1) =
+    ((catLin K Y r) ((tupAllMap K f r) x + (tupAllMap K f r) y)) (Finsupp.single (tagPush f τ) 1)
+error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:339:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (?a • ?f) ?x
+in the target expression
+  c • Finsupp.single (tupPush f (snocT X t τ)) 1 =
+    ((catLin K Y r) (c • (tupAllMap K f r) (Finsupp.single t 1))) (Finsupp.single (tagPush f τ) 1)
+
+case single
+K : Type
+inst✝ : CommRing K
+X Y : TopCat
+f : X ⟶ Y
+r : ℕ
+τ : TagSimp X
+t : TupAll X r
+c : K
+⊢ c • Finsupp.single (tupPush f (snocT X t τ)) 1 =
+    ((catLin K Y r) (c • (tupAllMap K f r) (Finsupp.single t 1))) (Finsupp.single (tagPush f τ) 1)
+info: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:359:14: 'GroupApproximation.CharClass.TopPow.binary_aw' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:360:14: 'GroupApproximation.CharClass.TopPow.tupDAll_awAll' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPTopPowerAWChain.lean:361:14: 'GroupApproximation.CharClass.TopPow.tupAllMap_awAll' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+✖ [8806/8811] Building GroupApproximation.CharClass.OddPDiagonalAug (24s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-n/GroupApproximation/CharClass/OddPDiagonalAug.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/lib/lean/GroupApproximation/CharClass/OddPDiagonalAug.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-n/.lake/build/ir/GroupApproximation/CharClass/OddPDiagonalAug.setup.json --json
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:262:0: (deterministic) timeout at `isDefEq`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/OddPDiagonalAug.lean:271:8: (kernel) unknown constant 'GroupApproximation.CharClass.tupD_exists_preimage_stdSimplexTop_zmod'
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPTopPowerAWChain
+- GroupApproximation.CharClass.OddPDiagonalAug
+error: build failed
+EXIT=1

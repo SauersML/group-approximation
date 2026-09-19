@@ -1,0 +1,26 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3454 oleans
+[job] acn112 cores=88-95 threads=8 base=a1d65d3bbd38f3408c48272af5ec19c202337896 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+ℹ [3367/3412] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10093/10093] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel (38s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:191:14: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.calibration_opposite_clauses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:192:21: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.planar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:194:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:196:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:198:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean:200:2: 'GroupApproximation.GGT.VanKampen.OsinPocketCellWalkFollowsModel.doubleTouchNeitherFollows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10093 jobs).
+EXIT=0

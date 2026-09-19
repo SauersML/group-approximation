@@ -1,0 +1,23 @@
+[job] 18:15:23 acn96 waiting for clone lock
+[job] delta sync fc6687b3b..fdf7b4f3a: 18 files changed
+===== SUMMARY
+host acn96 cores slurm base fdf7b4f3a log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-181351-32550.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4225 oleans
+--- errors (first 80 lines)
+11:✖ [4108/4112] Building GroupApproximation.Algebra.LaurentMonomialUnits (14s)
+13:error: GroupApproximation/Algebra/LaurentMonomialUnits.lean:87:44: `Finsupp.sum_zero` has been deprecated: Use `Finsupp.sum_fun_zero` instead
+23:error: Lean exited with code 1
+33:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.SupportedCodimension
+mentioned-not-built GroupApproximation.Algebra.LaurentMonomialUnits (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailSymbols (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedTailBalance (replayed or failed)
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedUnitGroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/SupportedCodimension.lean
+- GroupApproximation.Algebra.LaurentMonomialUnits
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

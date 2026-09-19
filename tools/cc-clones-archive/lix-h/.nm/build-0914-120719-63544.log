@@ -1,0 +1,120 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3729 oleans
+[job] acn112 cores=64-71 threads=8 base=a6f1063eab3b57a404d56cb178bbd6be61c7658a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals
+ℹ [3302/3344] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10180/10207] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalk
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalk.lean:181:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.exists_inner_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalk.lean:182:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.ofInner' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10305/10322] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopy
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:368:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionCopyInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:369:14: 'GroupApproximation.GGT.VanKampen.MultipleEdgePocketRegionInput.copyInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:370:14: 'GroupApproximation.GGT.VanKampen.multipleEdgeCutInput_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:371:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:372:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkSideRelatorCellStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:373:14: 'GroupApproximation.GGT.VanKampen.OuterOffSideForOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:374:14: 'GroupApproximation.GGT.VanKampen.SideRelatorCellForOrder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:375:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideSomeOrderStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:376:14: 'GroupApproximation.GGT.VanKampen.CellPocketCopyCleanBothOrdersStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:377:14: 'GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:378:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionCopySectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:379:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionSectionStatement.copySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:380:14: 'GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopySection_of_pinch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean:381:14: 'GroupApproximation.GGT.VanKampen.osinMultipleEdgeCutSection_of_copyPieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10306/10322] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2Copy
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean:95:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopySection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean:96:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean:97:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10318/10322] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:172:14: 'GroupApproximation.GGT.VanKampen.SectionCuts.cut_sub_lt_of_not_spansWhole' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:173:14: 'GroupApproximation.GGT.VanKampen.SectionCuts.not_spansWhole_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:174:14: 'GroupApproximation.GGT.VanKampen.SectionCuts.spansWhole_of_count_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:175:14: 'GroupApproximation.GGT.VanKampen.sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcSection.lean:176:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10321/10322] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcBelow
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean:203:14: 'GroupApproximation.GGT.VanKampen.SectionPocketFaceSetWholeSectionTwoArcInput.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean:204:14: 'GroupApproximation.GGT.VanKampen.sectionPocketFaceSetTwoArcBelowInput_of_proper_of_wholeSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean:205:14: 'GroupApproximation.GGT.VanKampen.sectionPocketCutBelowInput_of_residualsTwoArcBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean:206:14: 'GroupApproximation.GGT.VanKampen.OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement.toBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTwoArcBelow.lean:207:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketCutBelowSection_of_residualsTwoArcBelow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10322/10322] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals (138s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:205:6: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:242:14: 'GroupApproximation.GGT.VanKampen.SectionPocketInnerKeptCellStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:243:14: 'GroupApproximation.GGT.VanKampen.SectionPocketInnerWalkEulerStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:244:14: 'GroupApproximation.GGT.VanKampen.SectionPocketInnerEmptyArcsBelowStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:245:14: 'GroupApproximation.GGT.VanKampen.sectionPocketFaceSetTwoArcBelowInput_of_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketInnerWalkResiduals.lean:246:14: 'GroupApproximation.GGT.VanKampen.osinSectionPocketFaceSetWholeSectionTwoArcBelowSection_of_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkResiduals
+error: build failed
+EXIT=1

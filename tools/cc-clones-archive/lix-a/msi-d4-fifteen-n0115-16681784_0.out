@@ -1,0 +1,100 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=1 syllables=0
+carrier=6 cuts=1 syllables=0
+carrier=7 cuts=1 syllables=0
+carrier=8 cuts=1 syllables=0
+carrier=9 cuts=7 syllables=7
+carrier=10 cuts=9 syllables=9
+carrier=10 words=68 states=36
+carrier=11 cuts=26 syllables=26
+carrier=12 cuts=11 syllables=11
+carrier=13 cuts=7 syllables=7
+carrier=14 cuts=7 syllables=7
+carrier=15 cuts=25 syllables=25
+carrier=16 cuts=10 syllables=10
+carrier=17 cuts=11 syllables=11
+carrier=18 cuts=10 syllables=10
+carrier=19 cuts=11 syllables=11
+carrier=20 cuts=10 syllables=10
+carrier=20 words=508 states=89
+carrier=21 cuts=22 syllables=22
+carrier=22 cuts=10 syllables=10
+carrier=23 cuts=11 syllables=11
+carrier=24 cuts=10 syllables=10
+carrier=25 cuts=11 syllables=11
+carrier=26 cuts=10 syllables=10
+carrier=27 cuts=11 syllables=11
+carrier=28 cuts=11 syllables=11
+carrier=29 cuts=9 syllables=9
+carrier=30 cuts=10 syllables=10
+carrier=30 words=676 states=167
+carrier=31 cuts=11 syllables=11
+carrier=32 cuts=7 syllables=7
+carrier=33 cuts=12 syllables=12
+carrier=34 cuts=10 syllables=10
+carrier=35 cuts=21 syllables=21
+carrier=36 cuts=11 syllables=11
+carrier=37 cuts=12 syllables=12
+carrier=38 cuts=12 syllables=12
+carrier=39 cuts=10 syllables=10
+carrier=40 cuts=12 syllables=12
+carrier=40 words=952 states=172
+carrier=41 cuts=11 syllables=11
+carrier=42 cuts=10 syllables=10
+carrier=43 cuts=12 syllables=12
+carrier=44 cuts=11 syllables=11
+carrier=45 cuts=10 syllables=10
+carrier=46 cuts=12 syllables=12
+carrier=47 cuts=9 syllables=9
+carrier=48 cuts=9 syllables=9
+carrier=49 cuts=22 syllables=22
+carrier=50 cuts=12 syllables=12
+carrier=50 words=1220 states=179
+carrier=51 cuts=7 syllables=7
+carrier=52 cuts=9 syllables=9
+carrier=53 cuts=1 syllables=0
+carrier=54 cuts=9 syllables=9
+carrier=55 cuts=9 syllables=9
+carrier=56 cuts=8 syllables=8
+carrier=57 cuts=8 syllables=8
+carrier=58 cuts=11 syllables=11
+carrier=59 cuts=11 syllables=11
+carrier=60 cuts=9 syllables=9
+carrier=60 words=1440 states=183
+carrier=61 cuts=9 syllables=9
+carrier=62 cuts=12 syllables=12
+carrier=63 cuts=12 syllables=12
+carrier=64 cuts=12 syllables=12
+carrier=65 cuts=9 syllables=9
+carrier=66 cuts=22 syllables=22
+carrier=67 cuts=12 syllables=12
+carrier=68 cuts=11 syllables=11
+carrier=69 cuts=12 syllables=12
+carrier=70 cuts=10 syllables=10
+carrier=70 words=1668 states=213
+carrier=71 cuts=11 syllables=11
+carrier=72 cuts=11 syllables=11
+carrier=73 cuts=12 syllables=12
+carrier=74 cuts=12 syllables=12
+carrier=75 cuts=9 syllables=9
+carrier=76 cuts=10 syllables=10
+carrier=77 cuts=7 syllables=7
+carrier=78 cuts=9 syllables=9
+carrier=79 cuts=9 syllables=9
+carrier=80 cuts=10 syllables=10
+carrier=80 words=1744 states=213
+carrier=81 cuts=8 syllables=8
+carrier=82 cuts=10 syllables=10
+carrier=83 cuts=8 syllables=8
+branch=I
+carrier_states=83
+distinct_augmented_words=1848
+boundary_states=213
+nonempty_q=42
+free_nonempty_q=0
+direct_killed_q=11
+power_killed_q=31
+unresolved_q=0

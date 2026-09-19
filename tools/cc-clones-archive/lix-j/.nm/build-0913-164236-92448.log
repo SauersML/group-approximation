@@ -1,0 +1,15 @@
+purged 49 stale artifact sets (source-newer=13, import-newer=36) of 3420 oleans
+[job] acn112 cores=64-71 threads=8 base=19d96c2c5c33f7862ff39263a7d20d5e617c97d4 mods: GroupApproximation.Dynamics.ClopenSwapInvolution
+ℹ [1328/1328] Built GroupApproximation.Dynamics.ClopenSwapInvolution (6.8s)
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1328 jobs).
+EXIT=0

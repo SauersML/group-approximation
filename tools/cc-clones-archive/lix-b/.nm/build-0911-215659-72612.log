@@ -1,0 +1,57 @@
+purged 362 stale artifact sets (source-newer=5, import-newer=357) of 2527 oleans
+[job] acn112 cores=80-87 threads=8 base=9376e760541b8e84a16d1bdaa78e030cd8b36573 mods: GroupApproximation.CharClass.ThomStepCEulerOf GroupApproximation.CharClass.ThomToolkitInstanceOf GroupApproximation.CharClass.GysinFromGraded GroupApproximation.CharClass.ThomBridgeChart GroupApproximation.CharClass.ThomBundlePair GroupApproximation.CharClass.GysinRetract GroupApproximation.CharClass.GysinTautFields
+ℹ [2144/2199] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3792/3831] Built GroupApproximation.CharClass.ThomStepCEulerOf (11s)
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:254:14: 'GroupApproximation.CharClass.iso_hom_ne_zeroOf' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:255:14: 'GroupApproximation.CharClass.injective_comp_of_squareOf' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:256:14: 'GroupApproximation.CharClass.surjective_of_punctured_acyclicOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:257:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_of_chainOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:258:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_of_su_ne_zero_naturalityOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:259:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_oddOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:260:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_odd_isoOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/ThomStepCEulerOf.lean:261:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_odd_localOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8738/8821] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8754/8908] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8830/8922] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8831/8922] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8912/8922] Built GroupApproximation.CharClass.GysinFromGraded (11s)
+✔ [8913/8922] Built GroupApproximation.CharClass.ThomBridgeChart (28s)
+ℹ [8914/8922] Built GroupApproximation.CharClass.ThomToolkitInstanceOf (28s)
+info: GroupApproximation/CharClass/ThomToolkitInstanceOf.lean:133:14: 'GroupApproximation.CharClass.isZero_cohomology_of_coverOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomToolkitInstanceOf.lean:134:14: 'GroupApproximation.CharClass.cohomologyToolkitOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomToolkitInstanceOf.lean:135:14: 'GroupApproximation.CharClass.puncturedAcyclic_prodOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomToolkitInstanceOf.lean:136:14: 'GroupApproximation.CharClass.puncturedAcyclic_sphereOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/ThomToolkitInstanceOf.lean:137:14: 'GroupApproximation.CharClass.kunnethFactor_sphere_complOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8915/8922] Built GroupApproximation.CharClass.ThomBundlePair (28s)
+✖ [8916/8922] Building GroupApproximation.CharClass.GysinRetract (28s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-b/GroupApproximation/CharClass/GysinRetract.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/GysinRetract.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/lib/lean/GroupApproximation/CharClass/GysinRetract.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/GysinRetract.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.lake/build/ir/GroupApproximation/CharClass/GysinRetract.setup.json --json
+error: GroupApproximation/CharClass/GysinRetract.lean:123:4: Unknown identifier `pull_eq_of_homotopicOf`
+error: Lean exited with code 1
+✔ [8917/8922] Built GroupApproximation.CharClass.LerayHirschRankTwo (39s)
+✔ [8918/8922] Built GroupApproximation.CharClass.LerayHirschProduct (34s)
+✔ [8919/8922] Built GroupApproximation.CharClass.LerayHirschChartTwo (28s)
+✔ [8920/8922] Built GroupApproximation.CharClass.LerayHirschChartBundle (34s)
+✔ [8921/8922] Built GroupApproximation.CharClass.LerayHirschChartClass (36s)
+Some required targets logged failures:
+- GroupApproximation.CharClass.GysinRetract
+error: build failed
+EXIT=1

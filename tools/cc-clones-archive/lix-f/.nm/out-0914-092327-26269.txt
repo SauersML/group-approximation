@@ -1,0 +1,20 @@
+[job] 09:23:41 acn112 waiting for clone lock
+[job] delta sync da5afd7a8..c020f89fd: 10 files changed
+===== SUMMARY
+host acn112 cores 64-71 base c020f89fd log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0914-092327-26269.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3655 oleans
+--- errors (first 80 lines)
+31:✖ [10163/10163] Building GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (22s)
+33:error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:139:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+86:error: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean:167:14: 'GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling.arcDoublingOutput' depends on axioms outside the classical allowlist: [sorryAx]
+87:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+89:error: Lean exited with code 1
+92:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

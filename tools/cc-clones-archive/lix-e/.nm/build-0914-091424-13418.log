@@ -1,0 +1,36 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4461 oleans
+[job] acn112 cores=64-71 threads=8 base=23cc32b8a71916268a4231d236fd1b2b41c8b4b5 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.CStarNoLocalLifting
+ℹ [3199/3354] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4789/4790] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:247:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_of_perfectSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:248:14: 'GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:249:21: 'GroupApproximation.SimpleKazhdanSofic.printedMatricialExpandersStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:250:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4790/4790] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.CStarNoLocalLifting (13s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:120:14: 'GroupApproximation.SimpleKazhdanSofic.not_hasLocalLiftingProperty_of_not_hasFactorizationProperty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:121:14: 'GroupApproximation.SimpleKazhdanSofic.PrintedOzawaNoLocalLiftingGeneral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:122:14: 'GroupApproximation.SimpleKazhdanSofic.printedOzawaNoLocalLiftingGeneral_of_kirchberg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:123:14: 'GroupApproximation.SimpleKazhdanSofic.PrintedBrownFormulationNoLocalLifting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean:124:14: 'GroupApproximation.SimpleKazhdanSofic.printedBrownFormulationNoLocalLifting_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4790 jobs).
+EXIT=0

@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4048 oleans
+[job] acn112 cores=64-71 threads=8 base=f338faeb5a8a36ee1beaf02601dcd3f8fa04b88d mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapCollapseModel
+ℹ [3295/3383] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4681/4681] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapCollapseModel (11s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean:131:14: 'GroupApproximation.GGT.VanKampen.Embedded.boundaryStep_mem_part_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean:132:14: 'GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.false_of_noEdgeBetween' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapCollapseModel.lean:133:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.false_of_noEdgeBetween' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4681 jobs).
+EXIT=0

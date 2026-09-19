@@ -1,0 +1,25 @@
+[job] 11:32:38 acn112 waiting for clone lock
+[job] delta sync 8e767a357..520f03021: 46 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 520f03021 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0913-113234-56193.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3308 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SeparatedInsertion.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SpikeTransport.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletion.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionDarts.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/SurgerySpikeDeletionRegions.lean
+✔ [4917/4917] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion (9.5s)
+Build completed successfully (4917 jobs).
+EXIT=0
+PROBE GREEN

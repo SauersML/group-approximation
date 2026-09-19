@@ -1,0 +1,15 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4589 oleans
+[job] acn112 cores=64-71 threads=8 base=9c23168464f1ce523372e84364a7b373e3421f54 mods: GroupApproximation.Dynamics.ItinerarySubshift
+ℹ [937/937] Built GroupApproximation.Dynamics.ItinerarySubshift (5.1s)
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:111:14: 'GroupApproximation.ChainCore.continuous_itinerary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:112:14: 'GroupApproximation.ChainCore.itinerary_zpow_apply' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:113:14: 'GroupApproximation.ChainCore.itinerary_apply_self' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:114:14: 'GroupApproximation.ChainCore.isClosed_itinerarySubshift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:115:14: 'GroupApproximation.ChainCore.mapsTo_shift_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:116:14: 'GroupApproximation.ChainCore.continuous_oneBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:117:14: 'GroupApproximation.ChainCore.oneBlock_shift' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:118:14: 'GroupApproximation.ChainCore.oneBlock_oneBlock' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:119:14: 'GroupApproximation.ChainCore.oneBlock_itinerary' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/Dynamics/ItinerarySubshift.lean:120:14: 'GroupApproximation.ChainCore.oneBlock_image_itinerarySubshift' depends on axioms: [propext, Quot.sound]
+Build completed successfully (937 jobs).
+EXIT=0

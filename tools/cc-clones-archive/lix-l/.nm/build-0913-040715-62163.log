@@ -1,0 +1,30 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2953 oleans
+[job] acn112 cores=64-71 threads=8 base=497542415a958fb982a5168b326f84d9fe7fa66f mods: GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence
+ℹ [3587/3750] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4102/4102] Building GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence (21s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.setup.json --json
+error: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:105:50: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:211:21: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.manuscriptSentence_witnessMFHomKillsSign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:212:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.PrintedWitnessMFHomKillsSign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:213:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gammaEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:214:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gamma_hasKazhdanPropertyT' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean:215:14: 'GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence.gamma_countable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence
+error: build failed
+EXIT=1

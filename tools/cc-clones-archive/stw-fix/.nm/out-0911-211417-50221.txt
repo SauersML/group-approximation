@@ -1,0 +1,40 @@
+[job] 21:14:22 acn112 waiting for clone lock
+[job] delta sync 2bc53e089..9b3ca22cb: 30 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 9b3ca22cb log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-211417-50221.log
+purged 2 stale artifact sets (source-newer=1, import-newer=1) of 4754 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.HullSCUnconeThin
+BUILT GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator
+BUILT GroupApproximation.GGT.HullSCBoundedImageEmbedding
+BUILT GroupApproximation.GGT.HullSCBoundedImageEmbeddingLeastArea
+BUILT GroupApproximation.GGT.RelHypOsin24PublishedHullStep
+BUILT GroupApproximation.GGT.RelHypProp23FromHullStep
+BUILT GroupApproximation.GGT.RelHypProp23FromLeastAreaLeaves
+--- rebuilt GroupApproximation modules: 14
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCAuxiliaryAdjoinFinite.lean
+COMPILED GroupApproximation/GGT/HullSCBoundedImageEmbedding.lean
+COMPILED GroupApproximation/GGT/HullSCBoundedImageEmbeddingLeastArea.lean
+COMPILED GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean
+COMPILED GroupApproximation/GGT/HullSCLemma44BoundedJointRespellingHullRelator.lean
+COMPILED GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetCoordinates.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeExpansion.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaA.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeLemmaB.lean
+COMPILED GroupApproximation/GGT/HullSCUnconePathPoints.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeSides.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeThin.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeWalk.lean
+COMPILED GroupApproximation/GGT/RelHypOsin24PublishedHullStep.lean
+COMPILED GroupApproximation/GGT/RelHypProp23FromHullStep.lean
+COMPILED GroupApproximation/GGT/RelHypProp23FromLeastAreaLeaves.lean
+ Quot.sound]
+Build completed successfully (10159 jobs).
+EXIT=0
+PROBE GREEN

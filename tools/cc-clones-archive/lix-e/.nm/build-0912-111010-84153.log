@@ -1,0 +1,213 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2347 oleans
+[job] acn112 cores=64-71 threads=8 base=98e4afd446bde7572e4db410862a08cc1a33100d mods: GroupApproximation.CharClass.LIXKGenOfLocalSquare GroupApproximation.CharClass.LIXKGenChernOf GroupApproximation.CharClass.LIXKGenOfFibre GroupApproximation.CharClass.LIXKGenOfFibreThom
+ℹ [8731/8850] Replayed GroupApproximation.CharClass.ThomPuncturedRecursion
+info: GroupApproximation/CharClass/ThomPuncturedRecursion.lean:288:14: 'GroupApproximation.CharClass.PuncturedAcyclicOf.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8762/8992] Replayed GroupApproximation.CharClass.LIXKCount
+info: GroupApproximation/CharClass/LIXKCount.lean:155:14: 'GroupApproximation.CharClass.map_eq_nsmul_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKCount.lean:156:14: 'GroupApproximation.CharClass.map_ne_zero_of_localSplit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8792/9112] Replayed GroupApproximation.CharClass.GysinFromLerayHirsch
+info: GroupApproximation/CharClass/GysinFromLerayHirsch.lean:168:14: 'GroupApproximation.CharClass.GysinData.bijective_cupRight' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8805/9206] Replayed GroupApproximation.CharClass.LIXKMap
+info: GroupApproximation/CharClass/LIXKMap.lean:398:14: 'GroupApproximation.CharClass.psiVec_eq_neg_eOne_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:399:14: 'GroupApproximation.CharClass.kRoot_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKMap.lean:400:14: 'GroupApproximation.CharClass.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8812/9206] Replayed GroupApproximation.CharClass.LIXKGenMap
+info: GroupApproximation/CharClass/LIXKGenMap.lean:317:14: 'GroupApproximation.CharClass.KGen.psiVec_eq_neg_eZero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:318:14: 'GroupApproximation.CharClass.KGen.kZero_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:319:14: 'GroupApproximation.CharClass.KGen.psiVec_kRot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenMap.lean:320:14: 'GroupApproximation.CharClass.KGen.re_kZeroVec_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8815/9206] Replayed GroupApproximation.CharClass.LIXKGenSphereChartHomeo
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:199:14: 'GroupApproximation.CharClass.KGen.chartQ_clamp_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:200:14: 'GroupApproximation.CharClass.KGen.one_sub_chartQ_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphereChartHomeo.lean:201:14: 'GroupApproximation.CharClass.KGen.sphereChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8816/9206] Replayed GroupApproximation.CharClass.LIXKGenZeroChartHomeo
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:151:14: 'GroupApproximation.CharClass.KGen.isOpen_sphereNearZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:152:14: 'GroupApproximation.CharClass.KGen.psiSphere_zeroChartFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenZeroChartHomeo.lean:153:14: 'GroupApproximation.CharClass.KGen.zeroChartHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8856/9206] Replayed GroupApproximation.AlgTop.PuncturedNormedSphere
+info: GroupApproximation/AlgTop/PuncturedNormedSphere.lean:95:14: 'GroupApproximation.AlgTop.complexToEuclidean_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8916/9206] Replayed GroupApproximation.CharClass.LerayHirschGradedIso
+info: GroupApproximation/CharClass/LerayHirschGradedIso.lean:52:14: 'GroupApproximation.CharClass.LH.lerayHirschGraded_of_iso' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8932/9242] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyVanishing
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyVanishing.lean:318:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_intermediate_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8933/9242] Replayed GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereModTwoHomologyAboveDimension
+info: GroupApproximation/ThirdParty/HamSandwich/SphereOddDegree/SphereModTwoHomologyAboveDimension.lean:87:21: 'GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.sphereModTwo_above_dimension_vanishing_closed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9054/9320] Replayed GroupApproximation.CharClass.LIXKGenSphere
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:342:14: 'GroupApproximation.CharClass.KGen.normSq_cxToEuc' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:343:14: 'GroupApproximation.CharClass.KGen.cxToEuc_eucToCx' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:344:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_unitVectors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:345:14: 'GroupApproximation.CharClass.KGen.hbase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenSphere.lean:346:14: 'GroupApproximation.CharClass.KGen.hbase_two_eq_hbase_lix' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9055/9320] Replayed GroupApproximation.CharClass.LIXKPunctured
+info: GroupApproximation/CharClass/LIXKPunctured.lean:168:14: 'GroupApproximation.CharClass.isZero_inter_of_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKPunctured.lean:169:14: 'GroupApproximation.CharClass.isZero_punctured_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9056/9320] Replayed GroupApproximation.CharClass.LIXKGenPunctured
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:182:14: 'GroupApproximation.CharClass.KGen.puncturedAcyclic_lixBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:183:14: 'GroupApproximation.CharClass.KGen.puncturedVanish_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenPunctured.lean:184:14: 'GroupApproximation.CharClass.puncturedAcyclic_lixBase_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9067/9320] Replayed GroupApproximation.CharClass.LIXKGenBaseChart
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:219:14: 'GroupApproximation.CharClass.KGen.lixKBaseChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:220:14: 'GroupApproximation.CharClass.KGen.lixKFullChart_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenBaseChart.lean:221:14: 'GroupApproximation.CharClass.KGen.lixKNbhdHomeo_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9083/9320] Replayed GroupApproximation.CharClass.LIXKGenLocalPair
+info: GroupApproximation/CharClass/LIXKGenLocalPair.lean:289:14: 'GroupApproximation.CharClass.KGen.lixKZero_notMem_lixKTrivBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalPair.lean:290:14: 'GroupApproximation.CharClass.KGen.contractibleSpace_lixKTrivBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalPair.lean:291:14: 'GroupApproximation.CharClass.KGen.lixKTrivBall_subset_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9084/9320] Replayed GroupApproximation.CharClass.LIXKGenLocalNbhd
+info: GroupApproximation/CharClass/LIXKGenLocalNbhd.lean:286:14: 'GroupApproximation.CharClass.KGen.chartQ_lt_one_of_mem_lixKHsqBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalNbhd.lean:287:14: 'GroupApproximation.CharClass.KGen.circCoord_mem_Ioo_of_mem_lixKHsqBall' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalNbhd.lean:288:14: 'GroupApproximation.CharClass.KGen.injective_lixKShrink' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9086/9320] Replayed GroupApproximation.CharClass.LIXKGenLocalHomotopy
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:672:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:673:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:674:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:675:14: 'GroupApproximation.CharClass.KGen.lixKChartPt_mapsTo' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:676:14: 'GroupApproximation.CharClass.KGen.lixKGRmap_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:677:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenLocalHomotopy.lean:678:14: 'GroupApproximation.CharClass.KGen.lixKHomotopy_end_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9089/9320] Replayed GroupApproximation.CharClass.LIXKStepC
+info: GroupApproximation/CharClass/LIXKStepC.lean:134:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepC.lean:135:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_naturality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9090/9320] Replayed GroupApproximation.CharClass.LIXKStepCTwo
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:134:14: 'GroupApproximation.CharClass.eq_of_ne_zero_of_line_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:135:14: 'GroupApproximation.CharClass.localClassesAgree_of_ne_zero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKStepCTwo.lean:136:14: 'GroupApproximation.CharClass.topChernClass_ne_zero_kzero_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9103/9320] Replayed GroupApproximation.CharClass.LIXKGenTopLine
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:85:14: 'GroupApproximation.CharClass.KGen.hasTopLine_circleTimesSphere' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenTopLine.lean:86:14: 'GroupApproximation.CharClass.KGen.absEquiv_lixN' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9108/9320] Replayed GroupApproximation.CharClass.LIXKGenOfBundle
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:142:14: 'GroupApproximation.CharClass.KGen.lixK_hexactOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:143:14: 'GroupApproximation.CharClass.KGen.lixK_hcompatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:144:14: 'GroupApproximation.CharClass.KGen.lixK_hnatOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfBundle.lean:145:14: 'GroupApproximation.CharClass.KGen.lixK_hsectionOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [9317/9320] Building GroupApproximation.CharClass.LIXKGenOfFibre (17s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/CharClass/LIXKGenOfFibre.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenOfFibre.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenOfFibre.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/CharClass/LIXKGenOfFibre.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/CharClass/LIXKGenOfFibre.setup.json --json
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:110:6: failed to synthesize instance of type class
+  Membership (↑?m.88) (Set { x // x ∈ ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i)).totalSet })
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:110:88: Application type mismatch: The argument
+  q
+has type
+  ↑(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ)
+but is expected to have type
+  ↑?m.87
+in the application
+  (ConcreteCategory.hom (TopCat.isoOfHomeo ?m.80).symm.hom) q
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:132:6: failed to synthesize instance of type class
+  Membership (↑?m.87) (Set (↑(lixKPtSet n k dd i) × (Fin (lixRank n dd) → ℂ)))
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:132:88: Application type mismatch: The argument
+  w
+has type
+  { x // x ∈ ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i)).totalSet }
+but is expected to have type
+  ↑?m.88
+in the application
+  (ConcreteCategory.hom (TopCat.isoOfHomeo ?m.80).symm.inv) w
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:154:16: Unknown identifier `lixKPtTriv_symm_mapsTo`
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:152:39: unsolved goals
+ℓ : ℕ
+K : Type
+inst✝ : Field K
+n k : ℕ
+dd : Fin ℓ → ℕ
+i : Fin (k + 1)
+G : Gen.baseM n dd → Matrix (Gen.VIdx n dd) (Gen.VIdx n dd) ℂ
+hGc : Continuous G
+hGu : ∀ (m : Gen.baseM n dd), IsCornerUnitary (Gen.Vmat n m) (G m)
+u : ↑(relCohomology K (lixTotalPair n hGc hGu) (lixPuncturedInTotal n hGc hGu) (2 * lixRank n dd))
+hres :
+  (ModuleCat.Hom.hom
+        (relPullback K (cmap ((lixBundle n G hGc hGu).totalInclOn (lixKPtSet n k dd i))) ⋯ (2 * lixRank n dd)))
+      u ≠
+    0
+hinc :
+  ∀ v ∈ Subtype.val ⁻¹' ((lixBundle n G hGc hGu).restrictTo (lixKPtSet n k dd i)).puncturedSet,
+    (ConcreteCategory.hom (cmap ((lixBundle n G hGc hGu).totalInclOn (lixKPtSet n k dd i)))) v ∈
+      Subtype.val ⁻¹' (lixBundle n G hGc hGu).puncturedSet
+⊢ (ModuleCat.Hom.hom (relPullback K (cmap (lixKFibreMap n k dd i hGc hGu)) ⋯ (2 * lixRank n dd))) u ≠ 0
+info: GroupApproximation/CharClass/LIXKGenOfFibre.lean:206:14: 'GroupApproximation.CharClass.KGen.lixKFibreMap_eq_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/LIXKGenOfFibre.lean:207:14: 'GroupApproximation.CharClass.KGen.lixKFibre_relPullback_ne_zero_of_restrict' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [9318/9320] Built GroupApproximation.CharClass.LIXKGenOfLocalSquare (18s)
+info: GroupApproximation/CharClass/LIXKGenOfLocalSquare.lean:221:14: 'GroupApproximation.CharClass.KGen.restrictTo_relPullback_ne_zero_of_homotopy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfLocalSquare.lean:222:14: 'GroupApproximation.CharClass.KGen.lixKFarMap_relPullback_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfLocalSquare.lean:223:14: 'GroupApproximation.CharClass.KGen.kGenLocalNonzeroOf_of_fibre' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/CharClass/LIXKGenOfLocalSquare.lean:224:14: 'GroupApproximation.CharClass.KGen.exists_localSplit_ne_zero_kgenOf_of_fibre' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [9320/9320] Building GroupApproximation.CharClass.LIXKGenChernOf (43s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-e/GroupApproximation/CharClass/LIXKGenChernOf.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenChernOf.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/lib/lean/GroupApproximation/CharClass/LIXKGenChernOf.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/CharClass/LIXKGenChernOf.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.lake/build/ir/GroupApproximation/CharClass/LIXKGenChernOf.setup.json --json
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:56:31: Unknown identifier `tautCardOf`
+
+Note: It is not possible to treat `tautCardOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:60:27: Unknown identifier `projMapOf`
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:61:31: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:71:31: Unknown identifier `tautCardOf`
+
+Note: It is not possible to treat `tautCardOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:73:28: Unknown identifier `projMapOf`
+
+Note: It is not possible to treat `projMapOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:74:27: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:86:31: Unknown identifier `tautCardOf`
+
+Note: It is not possible to treat `tautCardOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:89:28: Unknown identifier `projMapOf`
+
+Note: It is not possible to treat `projMapOf` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:90:27: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:101:14: Unknown constant `KGen.lixChernDegOf_eq_of_graded`
+error: GroupApproximation/CharClass/LIXKGenChernOf.lean:102:14: Unknown constant `KGen.lixChernDegOf_mappingTorus`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.LIXKGenOfFibre
+- GroupApproximation.CharClass.LIXKGenChernOf
+error: build failed
+EXIT=1

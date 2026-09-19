@@ -1,0 +1,25 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4332 oleans
+[job] acn112 cores=88-95 threads=8 base=52a2622dda593529d89ead15e8c276bc2a29d5a7 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssemblyPieces
+ℹ [3833/3835] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:192:14: 'GroupApproximation.SimpleKazhdanSofic.infinite_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssembly.lean:193:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3834/3835] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitLEF.lean:97:14: 'GroupApproximation.SimpleKazhdanSofic.isLEF_of_isMarkedLimit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitLEF.lean:98:21: 'GroupApproximation.SimpleKazhdanSofic.printedMarkedLimitLEFStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3835/3835] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssemblyPieces (12s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssemblyPieces.lean:43:21: 'GroupApproximation.SimpleKazhdanSofic.printedSubshiftRingFGStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/MainAssemblyPieces.lean:44:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_two_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3835 jobs).
+EXIT=0

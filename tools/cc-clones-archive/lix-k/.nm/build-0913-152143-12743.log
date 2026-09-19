@@ -1,0 +1,37 @@
+purged 31 stale artifact sets (source-newer=9, import-newer=22) of 3132 oleans
+[job] acn112 cores=64-71 threads=8 base=97bf4bc4682d307f6523a148ef1e9b9b9bd96b8a mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
+ℹ [3358/3470] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [10087/10087] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk (27s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-k/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:103:42: Unknown identifier `mem_invDarts_iff`
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:144:31: Unknown identifier `invDarts_nodup`
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:247:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.nodup_append_four' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:248:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_leftSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:249:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_rightSide_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:250:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_invDarts_sourceArc' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:251:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.faceOf_alpha_of_mem_targetArc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:252:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.mem_walk_cases' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:253:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_of_copyClean' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:254:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.alpha_not_mem_walk_of_copyClean' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopyWalk.lean:255:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_nodup_and_alpha_not_mem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
+error: build failed
+EXIT=1

@@ -1,0 +1,47 @@
+[job] 17:45:28 acn112 waiting for clone lock
+[job] delta sync 70317e581..32ad69459: 44 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 32ad69459 log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-174517-26651.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3340 oleans
+--- errors (first 80 lines)
+3:✖ [1668/1668] Building GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement (9.2s)
+5:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:55:0: automatically included section variable(s) unused in theorem `GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation`:
+11:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:93:68: unsolved goals
+27:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:95:80: This simp argument is unused:
+36:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:4: This simp argument is unused:
+44:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:22: This simp argument is unused:
+52:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:96:40: This simp argument is unused:
+60:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:177:16: unsolved goals
+93:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:178:77: This simp argument is unused:
+101:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:179:4: This simp argument is unused:
+109:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:191:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+134:Full error:
+137:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:194:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+162:Full error:
+165:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:197:4: Type mismatch
+171:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:186:82: unsolved goals
+193:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:205:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_eq' depends on axioms outside the classical allowlist: [sorryAx]
+194:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+197:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:207:14: 'GroupApproximation.ChainCore.DynamicRankBudget.phi_placement' depends on axioms outside the classical allowlist: [sorryAx]
+198:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+200:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:208:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement' depends on axioms outside the classical allowlist: [sorryAx]
+201:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+203:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:209:14: 'GroupApproximation.ChainCore.DynamicRankBudget.unitizeGL_placementUnit' depends on axioms outside the classical allowlist: [sorryAx]
+204:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+206:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:210:14: 'GroupApproximation.ChainCore.DynamicRankBudget.placement_sub_one_apply' depends on axioms outside the classical allowlist: [sorryAx]
+207:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+209:error: GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetPlacement.lean:211:14: 'GroupApproximation.ChainCore.DynamicRankBudget.coe_placement_sub_one_apply' depends on axioms outside the classical allowlist: [sorryAx]
+210:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+212:error: Lean exited with code 1
+215:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudget.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean
+COMPILED GroupApproximation/Manuscript/OneSidedMFRadical/MFRadicalTransport.lean
+- GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetPlacement
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

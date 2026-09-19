@@ -1,0 +1,24 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4104 oleans
+[job] acn112 cores=80-87 threads=8 base=4b3f40eec0aee60f2c29cde7807bc2d6cbb01b5c mods: GroupApproximation.Analysis.HyperlinearOneSumModels GroupApproximation.Analysis.HyperlinearTraceVanishingProof GroupApproximation.Analysis.McDuffFactor
+ℹ [2432/2442] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+✖ [2440/2442] Building GroupApproximation.Analysis.McDuffFactor (6.5s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/McDuffFactor.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/McDuffFactor.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/McDuffFactor.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/McDuffFactor.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/McDuffFactor.setup.json --json
+error: GroupApproximation/Analysis/McDuffFactor.lean:1:0: import GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup failed, environment already contains 'GroupApproximation.GroupVonNeumann.instDecidableEq_groupApproximation_2' from GroupApproximation.Analysis.GroupStandardFormInstance
+error: Lean exited with code 1
+ℹ [2441/2442] Built GroupApproximation.Analysis.HyperlinearOneSumModels (8.9s)
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:190:14: 'GroupApproximation.HyperlinearTraceVanishing.hsDistSq_ampMatrix_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:191:14: 'GroupApproximation.HyperlinearTraceVanishing.normTrace_ampMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2442/2442] Built GroupApproximation.Analysis.HyperlinearTraceVanishingProof (9.0s)
+info: GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean:261:21: 'GroupApproximation.HyperlinearTraceVanishing.hyperlinearTracePreservingModelStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Analysis.McDuffFactor
+error: build failed
+EXIT=1

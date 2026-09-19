@@ -1,0 +1,21 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3512 oleans
+[job] acn112 cores=80-87 threads=8 base=d5d320909923b0ae21598775b0d82a76bdce8576 mods: GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact
+ℹ [2796/2868] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [3299/3299] Building GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-g/GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/lib/lean/GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.lake/build/ir/GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.setup.json --json
+error: GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean:244:14: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+info: GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean:282:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact.manuscriptPrintedCentralCoronaCornerExact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/OneSidedMFRadical/CentralCoronaCornerExact.lean:284:2: 'GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact.printedCentralCoronaCorner_of_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.OneSidedMFRadical.CentralCoronaCornerExact
+error: build failed
+EXIT=1
