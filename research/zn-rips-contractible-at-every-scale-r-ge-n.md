@@ -115,3 +115,16 @@ Status on main, by dimension:
   - *Next.* Continue chains A, B and C from their last stage sets in
     `experiments/zn-rips-link-collapse-scale-10-2026-09-18/segments/`, verify each stage with `vpiece6.sh`, and
     concatenate.
+- **w9-103, (8, 10) complete: `VR(Z^8, d_1; 10)` is contractible.** See `z8-rips-contractible-at-scale-10`.
+  - *Middle piece.* 18,816 (K) lines delete the top shell `T` from `O`, ending at exactly `O ∖ T`. They are in six
+    chains (A, B, E, F, C, D; 57 stages).
+    - Chain B left 1,120 points of its block. These were split into two halves `TE` and `TF`, and run with `kzs3`,
+      which tries only (K) at the listed points. No chain stalled.
+    - With the two (D) pieces of `z8-rips-scale-10-reduces-to-top-shell-link-collapses`, this gives a lifted
+      certificate of 628,231 moves from `Lmax_8` to `{e_8}`.
+  - *Verification.* Every stage was replayed by `kzv7` (AVX-512 `kzv6`) from its exact start set, in the order of
+    `O`, and seven stages also by `kzv6`. On shared input, `kzv6` and `kzv7` agree step for step. The d-prefix was
+    replayed again by `kzv6`.
+  - *Next.* `(8, 11)`. By analogy with this scale, the (D) stall should again be a top shell of norm-11 points with
+    `x_8 = 0`. The block-restricted `kzs3` and a verification queue with one session per worker make the (K) phase a
+    few wall-hours.
