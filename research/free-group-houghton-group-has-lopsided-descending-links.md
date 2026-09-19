@@ -94,6 +94,25 @@ translation, i.e. of one `b`-type and one `B`-type domain under local similarity
   contractions are isolated. There the interchange is `t·C(t) = Y ∖ C(t)`.
 
 ## Addendum (2026-09-19): T0 reduces to one connectivity statement
+**Correction (2026-09-19, same lane).** `𝓔^+` as defined below is **not** an expansion scheme for the ball
+S-structure, so the conditional theorem below is withdrawn as stated.
+- **Why.** FH Definition 6.1(1) requires every `w ∈ 𝓔(b)` to be reached from `{b}` by simple expansions.
+- **The interchange partition is not.** Its two new elements are `[f, C_b]` and `[f', C_B]`, where `f'` is a
+  **piecewise** translation, one piece landing in `C(ba)` and the rest in `C(bA)` (computed from the maps of § Proof,
+  item 3). Its image is not a ball, so the pseudovertex refines neither `{b}` nor the maximal partition.
+- **What survives.** The type-vector induction below applies verbatim to **any** admissible
+  (S-structure, scheme) pair that has these contracting vectors, trivial `𝕊(D,D)`, finitely many domain types and
+  finite `𝓔(b)`.
+- **What admissibility needs: a new S-structure, not a new scheme.**
+  - Since `X_a ≅ Y ≅ X_b`, the natural fix is a sixth domain type `π`, "a sibling pair", with representatives
+    `C(va) ⊔ C(vA)` and `C(vb) ⊔ C(vB)`, S-equivalent to each other and to `Y`.
+  - The maximal partitions become `C(b) = {b} ⊔ C(bb) ⊔ π`, i.e. `(1; b; π)`, which consumes no `a/A` cone, and
+    likewise for the other three cone types.
+  - To check: S-invariance of the partitions of `π`-domains under the pair equivalences, FH's compact ultrametric
+    property for the new domains, and then Definition 6.6. None of this is checked.
+- **The ball-scheme test** (Brown's criterion on `Δ` itself: do the rank-`k` 1-cycles die within bounded rank?) is
+  untouched and still decides T0 by itself.
+
 
 Farley–Hughes §6.2, as quoted from source by bh-invent-11: an expansion scheme `𝓔` is `n`-connected iff for every
 `b` and every `v` obtained from `{b}` by expansions, `lk({b}, Δ(𝓔(b))_[{b}, v])` is `(n−1)`-connected (Def 6.6). An
