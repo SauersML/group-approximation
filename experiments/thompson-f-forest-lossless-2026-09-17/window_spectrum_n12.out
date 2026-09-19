@@ -1,0 +1,12 @@
+n= 1 |S_n|=       1 rho_n=0.000000000 rho_n/4=0.000000000 deficiency_mass=1.000000
+n= 2 |S_n|=       3 rho_n=1.414213562 rho_n/4=0.353553391 deficiency_mass=2.500000
+n= 3 |S_n|=       9 rho_n=2.060820129 rho_n/4=0.515205032 deficiency_mass=1.712640
+n= 4 |S_n|=      28 rho_n=2.432552447 rho_n/4=0.608138112 deficiency_mass=1.231671
+n= 5 |S_n|=      90 rho_n=2.667606695 rho_n/4=0.666901674 deficiency_mass=0.959205
+n= 6 |S_n|=     297 rho_n=2.829892237 rho_n/4=0.707473059 deficiency_mass=0.786091
+n= 7 |S_n|=    1001 rho_n=2.948743576 rho_n/4=0.737185894 deficiency_mass=0.667610
+n= 8 |S_n|=    3432 rho_n=3.039689955 rho_n/4=0.759922489 deficiency_mass=0.582040
+n= 9 |S_n|=   11934 rho_n=3.111652868 rho_n/4=0.777913217 deficiency_mass=0.517509
+n=10 |S_n|=   41990 rho_n=3.170117237 rho_n/4=0.792529309 deficiency_mass=0.467186
+n=11 |S_n|=  149226 rho_n=3.218635771 rho_n/4=0.804658943 deficiency_mass=0.426855
+n=12 |S_n|=  534888 rho_n=3.259610183 rho_n/4=0.814902546 deficiency_mass=0.393806

@@ -434,3 +434,24 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     constant on the infinite connected Cayley graph, so no finite certificate can prove amenability.
   - *Survives as a computable proxy (heuristic, OPEN):* whether `sup_N` of the ansatz optimum is `1`,
     that is, whether the optimal tree-size law escapes to infinity.
+- **Is the forest-window support lossy? (swarm-0917-w15-w15-f-pull, 2026-09-19, transplanter, operator-algebras.)**
+  The w13 test vectors live on the windows `E(S_n)`. The question is whether that support alone
+  keeps them below `1`.
+  - *Established:* `thompson-f-one-sided-forest-windows-are-norm-lossless`. It is not lossy.
+    - The move graph on `S_n` is the induced Cayley subgraph on `E(S_n)`.
+    - Its top eigenvalue `rho_n` increases to `4||P||` exactly.
+    - So `F` is amenable iff `rho_n -> 4`, and the union of the windows is the positive-monoid
+      forest cone `R`.
+    - Proof: an intrinsic membership test for `R`, left translates that absorb every finite set
+      into `R` (the Ore property, via dyadic refinement), and the compression identity
+      `||K_R|| = ||K||`. The steps are checked in exact arithmetic for `n <= 7` and on 200 random
+      sets.
+  - *Decomposition:* `<f,Kf> = 4 - delta(f) - energy(f)` on `R`. Here `delta(f)` is the `l^2` mass
+    on pointer-at-root and pointer-on-leaf states, and `energy(f)` is the Dirichlet energy.
+    Amenability is exactly "both can be made small at once".
+  - *Dies at:* any ansatz family whose pointer-leaf plus pointer-at-root mass stays `>= c`
+    is capped at `||P|| >= 1 - c/4` and cannot reach `1`. This is a checkable necessary condition
+    on the w13/w14 families.
+  - *Survives:* the w13 proxy, sharpened. The support is exact, so the only open question is
+    whether the amplitude class, not the window, can approach `1`. Small exact windows are useless
+    as certificates: `rho_12 / 4 ≈ 0.815`, far below the certified `0.9397`.
