@@ -4,7 +4,9 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # The K₂ program for T2/T3: statements and wiring (lane bh-pal-wire)
 
-The dependency tree, its owners and the sources are in the swarm board `k2-poly.md`. The char-`p`
+The dependency tree, its owners and the sources are in the swarm board `k2-poly.md`. The primary
+route is now unstable 𝔸¹-invariance, Lavrenov–Sinchuk–Voronetsky arXiv:2110.11087 (section `LSV`:
+`UnstableNKPolyFpStatement` gives `TulenbaevPolyFpK2Statement` and `P1` directly). The char-`p`
 input `P1` of route A is `ONEVAR ∧ DIAG`:
 
 * ONEVAR is `ElemFP.PolyK2OneVarNilStatementOver (ZMod p)`, stable `NK₂(F_p[s₁..s_k]) = 0`;
@@ -101,8 +103,8 @@ def HorrocksMonicAt (A : Type) [CommRing A] (r : ℕ) : Prop :=
 #audit_axioms GroupApproximation.BooneHigmanLinear.HorrocksMonicAt
 
 /-- **Monic kill** (board piece MK, the deep core, owner bh-pal-wire).  Every element of
-`K₂(r, B[X])` killed by `X ↦ 0` becomes trivial, after padding to some rank `M`, in every commutative ring where
-some monic `f` becomes a unit. -/
+`K₂(r, B[X])` killed by `X ↦ 0` becomes trivial, after padding to some rank `M`, in every
+commutative ring where some monic `f` becomes a unit. -/
 def MonicKillAt (B : Type) [CommRing B] (r : ℕ) : Prop :=
   ∀ u : SteinbergBasic.K2 (Fin r) (Polynomial B),
     SteinbergBasic.K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1 →
@@ -132,6 +134,74 @@ def LocalNKFpStatement : Prop :=
 #audit_axioms GroupApproximation.BooneHigmanLinear.LocalNKFpStatement
 
 end Local
+
+
+section LSV
+
+/-- **Unstable `NK₂` vanishing over `B` at rank `r`** (the conclusion of Lavrenov–Sinchuk–
+Voronetsky, arXiv:2110.11087, Thm 1.1, for `K₂(A_{r-1}, B)`): an element of `K₂(r, B[X])` killed
+by `X ↦ 0` is trivial. -/
+def UnstableNKAt (B : Type) [CommRing B] (r : ℕ) : Prop :=
+  ∀ u : SteinbergBasic.K2 (Fin r) (Polynomial B),
+    SteinbergBasic.K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1 → u = 1
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.UnstableNKAt
+
+/-- Unstable vanishing implies stable vanishing. -/
+theorem localNKAt_of_unstableNKAt {B : Type} [CommRing B] {r : ℕ} (h : UnstableNKAt B r) :
+    LocalNKAt B r := fun u hu => ⟨r, le_rfl, by
+  rw [h u hu, map_one]⟩
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.localNKAt_of_unstableNKAt
+
+/-- **The LSV target over `F_p`**: unstable `𝔸¹`-invariance of `K₂(r, -)` for `r ≥ 5` on every
+polynomial ring `F_p[s₁..s_k]`, which is smooth over `F_p`. -/
+def UnstableNKPolyFpStatement : Prop :=
+  ∀ p : ℕ, p.Prime → ∀ k r : ℕ, 5 ≤ r → UnstableNKAt (MvPolynomial (Fin k) (ZMod p)) r
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.UnstableNKPolyFpStatement
+
+/-- **Unstable `𝔸¹`-invariance gives `K₂(r, F_p[s₁..s_k]) = ⊥` for `r ≥ 5`**, by induction on `k`
+through `MvPolynomial.finSuccEquiv`, starting from `K₂(r, F_p) = ⊥`. -/
+theorem tulenbaevPolyFpK2_of_unstableNK (h : UnstableNKPolyFpStatement) :
+    TulenbaevPolyFpK2Statement := by
+  intro p hp k N hN
+  induction k with
+  | zero =>
+    exact Metabelian.ElemFP.bhNagaoWire_K2_bot_of_ringEquiv
+      (MvPolynomial.isEmptyRingEquiv (ZMod p) (Fin 0))
+      (Metabelian.ElemFP.vdkRowExt_fieldK2Vanishing p hp N hN)
+  | succ k ih =>
+    refine Metabelian.ElemFP.bhNagaoWire_K2_bot_of_ringEquiv
+      (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv ?_
+    refine (Subgroup.eq_bot_iff_forall _).mpr fun g hg => ?_
+    have hmem := (SteinbergBasic.K2Map
+        (Polynomial.evalRingHom 0 :
+          Polynomial (MvPolynomial (Fin k) (ZMod p)) →+* MvPolynomial (Fin k) (ZMod p))
+        (⟨g, hg⟩ : SteinbergBasic.K2 (Fin N) (Polynomial (MvPolynomial (Fin k) (ZMod p))))).2
+    rw [ih] at hmem
+    have h0 : SteinbergBasic.K2Map
+        (Polynomial.evalRingHom 0 :
+          Polynomial (MvPolynomial (Fin k) (ZMod p)) →+* MvPolynomial (Fin k) (ZMod p))
+        (⟨g, hg⟩ : SteinbergBasic.K2 (Fin N) (Polynomial (MvPolynomial (Fin k) (ZMod p)))) = 1 :=
+      Subtype.ext ((Subgroup.mem_bot).mp hmem)
+    exact congrArg Subtype.val (h p hp k N hN _ h0)
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.tulenbaevPolyFpK2_of_unstableNK
+
+/-- **`P1` from the LSV target.** -/
+theorem gapOver_of_unstableNK (h : UnstableNKPolyFpStatement) :
+    ∀ p : ℕ, p.Prime → Metabelian.ElemFP.PolyK2NilGapStatementOver (ZMod p) 4 :=
+  gapOver_of_oneVar_of_injStab
+    (fun p hp k N hN u hu => localNKAt_of_unstableNKAt (h p hp k N (by omega)) u hu)
+    (fun p hp k N hN u _ => by
+      have hmem := u.2
+      rw [tulenbaevPolyFpK2_of_unstableNK h p hp k N hN] at hmem
+      exact Subtype.ext ((Subgroup.mem_bot).mp hmem))
+
+#audit_axioms GroupApproximation.BooneHigmanLinear.gapOver_of_unstableNK
+
+end LSV
 
 end BooneHigmanLinear
 end GroupApproximation

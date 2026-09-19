@@ -146,3 +146,33 @@ of three finite checks:
 So a host's infinite presentation is never the hard part. The hard part is comparing it with
 another generating set, such as the class transpositions, and that comparison lives entirely in
 the central defects of the 2-cells.
+
+## Referee (ref-k1761, 2026-09-19): PASS for O1–O4, including the pass-5 repair
+
+Checked line by line.
+- **Restriction lemma: correct.** For distinct primes `p ≠ r`, `R_b ∩ P_c` is a single class mod
+  `pr·m_Q` by CRT, and it is both a `p`-child of `R_b` and an `r`-child of `P_c`. `M|R_b` refines
+  the `p`-split of `R_b` and has fewer leaves, so the induction and the final regrowing at `P_c`
+  are valid.
+- **O1, tree case: correct.**
+  - (b) separates the child subtrees.
+  - Same root prime: induction, then (d) pushes the block permutations right.
+  - Different root primes:
+    - the common leaf set refines both root splits;
+    - the lemma makes every `p`-child subtree start with `q`;
+    - (b) groups these `q`-splits after the root;
+    - (c) swaps the root prime, and its grandchild permutation is carried right by (d).
+    - Its matching `j + pl ≡ j' + ql' (mod pq)` is correct: the grandchildren are
+      `a + (j+pl)m` and `a + (j'+ql')m` mod `pqm`.
+  - The reduction of general words (push permutations right by (d), then compare with (a)) is
+    correct.
+- **O2 precision.** Right cancellation needs one line. Suppose `gf` and `hf` have the same
+  realization. For each source cell, the target cells `f` produces from it are fixed by the
+  pattern of `f`. Their union is that cell, so the realizations of `g` and `h` coincide, and O1
+  applies. Left cancellation is O1 based at the realization of `f`.
+- **O3 and O4: correct.** Canonical maps send sub-boxes to boxes with the same split pattern, so
+  targets are determined after refinement. The two groupoid facts are standard: Gabriel–Zisman for
+  the universal groupoid of an Ore category, and vertex groups of presented connected groupoids.
+  The comb edges `x_{n,n,2}` form a spanning tree on the objects. Lemma 1 of
+  `piecewise-canonical-permutations-are-transposition-products` (surjectivity) reads correctly;
+  the rest of that node is not refereed here.
