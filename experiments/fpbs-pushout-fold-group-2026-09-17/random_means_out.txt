@@ -1,0 +1,3 @@
+n=   8 samples=40 P(K transitive)~0.72  mean Z_C2=2.00 (max 8)  mean Z_C3=1.95 (max 9)  mean Z_S3=7.95 (max 96)
+n=  16 samples=40 P(K transitive)~0.85  mean Z_C2=1.95 (max 4)  mean Z_C3=1.90 (max 9)  mean Z_S3=6.10 (max 36)
+n=  32 samples=40 P(K transitive)~0.93  mean Z_C2=2.23 (max 4)  mean Z_C3=2.05 (max 9)  mean Z_S3=7.08 (max 24)
