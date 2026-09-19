@@ -50,3 +50,17 @@ nearest tool, but it constrains only the actor's subgroups, and only for Bernoul
   * For infinite stabilizers one needs a re-rooting-invariant random normalized section. None is known.
   * Even when one exists, a class-injective cocycle on `R~` gives only an infinite-measure host (by the Mackey
     range). By item 5 of the hosting claim, amenable and free actors are excluded even there.
+- **Kazhdan poly-Haagerup exclusion (class-kill for the `R_T` branch, swarm-0917 w19, 2026-09-19).**
+  `kazhdan-relations-have-no-poly-haagerup-host` shows that the property-(T) relation `R_T` has no free host, finite
+  or infinite, whose actor has a normal series with Haagerup quotients.
+  * *Mechanism:* the host cocycle induces `C_0` Schur multipliers on `L(S)`. Compressed to `L(R_T)`, property (T)
+    makes them uniformly close to the identity. This gives an `[R]`-fixed vector field, and its argmax is a
+    finite-set-valued equivariant section.
+  * The section cohomologizes the cocycle into a finite-by-(next term) subgroup. Iterating down the series lands it
+    in a finite group, which contradicts the smoothness of the skew product.
+  * *Consequence for this claim:* for `R_T`, the actor must lie outside a class much larger than item 5 of the
+    hosting claim: Haagerup, `Z^2 ⋊ SL_2(Z)`, free-by-cyclic, `P_n`, and all extensions of these. This holds also
+    for `zeta = infinity`, and for every subgroup of the actor that carries `S`.
+  * A surviving `R_T` host needs an actor that is not normally poly-Haagerup. Every infinite (T) group is such an
+    actor.
+  * The `R_mu` branch is untouched, since `R_mu` is not known to have (T).
