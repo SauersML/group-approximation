@@ -1,0 +1,85 @@
+---
+rg: 2
+id: algebraic-t1-needs-failure-of-char-p-measure-rigidity
+kind: claim
+title: The two natural candidates for the T1 subset of Ledrappier's square fail (algebraic subsystems contain periodic points; generic orbit closures are not Z^2-minimal), and any valid subset carries a non-algebraic ergodic measure invariant under F_2 × Z^2, so the algebraic face of (RA_free) is a positive-characteristic Benoist–Quint problem
+requires:
+  - algebraic-rows-carry-rigid-free-commutants-but-never-minimality
+  - ra-forces-amenable-commutants-of-uniquely-ergodic-rigid-rows
+distinct_from:
+  algebraic-rows-carry-rigid-free-commutants-but-never-minimality: that reduces T1 on algebraic rows to a free, minimal, uniquely ergodic subset invariant under a free group of algebraic automorphisms; this rules out the algebraic and the generic candidates, and shows that any valid subset is a counterexample to measure rigidity for the joint action.
+---
+
+**Status.** Items 1–3 are lane proofs, elementary given the recalled inputs; not reviewed. **The subset is
+not found.**
+
+Recalled, not re-read:
+- (KS) density of periodic points for expansive `Z^d`-actions by automorphisms of compact zero-dimensional
+  groups (Kitchens–Schmidt), and its extension to invariant cosets. The extension is used in item 1 and is
+  **unchecked**; for the cosets `{y : Ly = c}` of Ledrappier-type shifts it is immediate, since the
+  constant `c` itself gives a fixed point when `L(1) ≠ 0`.
+- (E) Einsiedler (Bull. LMS 2004): for irreducible actions on zero-dimensional groups, `Z^d`-invariance
+  alone does not force closed invariant sets or invariant measures to be algebraic.
+
+## Setting
+
+- `X = X_L^2` and `A` are as in `algebraic-rows-carry-rigid-free-commutants-but-never-minimality`.
+- `F ≤ GL_2(A)` is free of rank 2, and `Γ = F × Z^2` acts on `X` by continuous group automorphisms.
+- A measure is **algebraic** if it is Haar measure on a coset `x + Y′` of a closed subgroup `Y′`.
+- **(BQ_2)** is the positive-characteristic analogue of Benoist–Quint measure rigidity: every
+  `Γ`-invariant ergodic probability measure on `X` is algebraic.
+
+## Statement
+
+1. **The two candidates fail.**
+   - (a) *Algebraic subsystems*, cut out by `F`-stable ideals: these are closed `Γ`-invariant subgroups
+     (dual to `F`-stable quotient modules of `A^2`). They contain `0` and are never minimal unless trivial.
+     A `Z^2`-invariant coset of an infinite closed invariant subgroup contains a periodic point by (KS),
+     so it is not minimal.
+   - (b) *Orbit closures of `Γ`-generic points*: for Haar measure these are dense, so they equal `X`. As a
+     `Z^2`-system `X` is not minimal. A `Z^2`-minimal subset is never the orbit closure of a Haar-generic
+     point.
+2. **Any valid subset refutes measure rigidity.** Let `M ⊆ X` satisfy (i)–(iii) of the parent node: `Z^2`
+   acts minimally and freely, `F·M = M`, and an `F`-fixed `Z^2`-invariant probability measure exists. Then
+   `M` carries a `Γ`-invariant ergodic measure that is **not algebraic**. So:
+   - (BQ_2) ⇒ no such `M` in `X` ⇒ the algebraic route to T1 fails;
+   - T1 on `X` ⇒ (BQ_2) fails for `Γ`.
+3. **What `Z^2` alone gives.** By (E), `Z^2`-invariance does not force algebraicity. So the whole question
+   is whether adding the non-abelian `F` restores rigidity, in the way the Zariski-dense group does in
+   Benoist–Quint on tori.
+
+## Proof
+
+**1(a).**
+- `F`-stable ideals of the dual module `A^2` are `F`-stable submodules. Their annihilators are closed
+  subgroups invariant under `A` (hence under `Z^2`) and under `F`, and they contain `0`, a fixed point.
+- An infinite minimal `Z^2`-set has no periodic point: the orbit of a periodic point is finite, closed and
+  invariant. With (KS) for cosets, a coset has a periodic point.
+
+**1(b).** Haar measure is `Γ`-ergodic, since it is already `Z^2`-mixing for Ledrappier-type shifts. Its
+generic points have dense `Γ`-orbits. A dense `Z^2`-invariant closed subset is `X`, and `X` has the fixed
+point `0`, so it is not minimal.
+
+**2.**
+- *The measure.* The `F`-fixed `Z^2`-invariant measure `μ` on `M` is `Γ`-invariant. Almost every ergodic
+  component of `μ` is `Γ`-ergodic, `Γ`-invariant and supported in `M`, which is closed and invariant.
+  Take one, `ν`.
+- *If `ν` were algebraic.* Its support would be a coset `C = x + Y′ ⊆ M`, closed and `Z^2`-invariant, so
+  `C = M` by minimality.
+  - If `Y′` is finite, `M` is finite, which contradicts freeness.
+  - If `Y′` is infinite, `C` has a periodic point by (KS), and minimality makes `M` finite: a
+    contradiction again.
+
+**3.** As cited. ∎
+
+## Lesson for general BH
+
+**The algebraic face of (RA_free) is measure rigidity in positive characteristic.**
+- Rigid algebraic rows supply the free commutant and the invariant measure for free. The missing minimal
+  subset exists exactly when a non-abelian group of algebraic automorphisms, together with the shifts,
+  admits a non-algebraic ergodic measure whose support is `Z^2`-minimal.
+- If a characteristic-2 Benoist–Quint theorem holds for such actions, then (RA_free) survives on every
+  algebraic row. If it fails in the right way, (RA_free) falls.
+
+Either way, the question has left combinatorics: it is now a question in homogeneous dynamics over
+function fields.
