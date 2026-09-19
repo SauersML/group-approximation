@@ -53,7 +53,7 @@ theorem mul_sub_one_add {p q : ℕ} (hq : 1 ≤ q) : p * (q - 1) + p = p * q := 
 
 theorem growth_Ch_of {qs : List ℕ} (hg : ∀ o, growth (D o qs) + 1 = qs.prod) (o : ℕ) :
     ∀ c, growth (Ch o c qs) + c = c * qs.prod
-  | 0 => by rw [Ch_zero, zero_mul]; rfl
+  | 0 => by simp [Ch_zero, growth]
   | c + 1 => by
     have ih := growth_Ch_of hg o c
     have h1 := hg (o + c * qs.prod)
@@ -61,7 +61,7 @@ theorem growth_Ch_of {qs : List ℕ} (hg : ∀ o, growth (D o qs) + 1 = qs.prod)
     omega
 
 theorem growth_D : ∀ (qs : List ℕ), (∀ q ∈ qs, 1 ≤ q) → ∀ o, growth (D o qs) + 1 = qs.prod
-  | [], _, o => by rw [D_nil, List.prod_nil]; rfl
+  | [], _, o => by simp [D_nil, growth]
   | q :: qs, h, o => by
     have hq := h q List.mem_cons_self
     have hc := growth_Ch_of (growth_D qs fun q' hq' => h q' (List.mem_cons_of_mem _ hq')) o q
@@ -133,7 +133,7 @@ theorem locS_layer {q : ℕ} (hq : 1 ≤ q) : ∀ (c i : ℕ), LocS i (i + c) (l
     exact locS_mono_lo (by omega) (locS_layer hq c (i + q))
 
 theorem growth_layer (q : ℕ) : ∀ (c i : ℕ), growth (layer i c q) = c * (q - 1)
-  | 0, _ => by rw [zero_mul]; rfl
+  | 0, _ => by simp [layer, growth]
   | c + 1, i => by
     rw [layer_succ, add_one_mul]
     show q - 1 + growth (layer (i + q) c q) = _

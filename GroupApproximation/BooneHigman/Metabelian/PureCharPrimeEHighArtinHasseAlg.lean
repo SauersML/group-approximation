@@ -301,9 +301,11 @@ theorem eHighArtinHasse_exists_units_of_polyFun (act : Q → M → M)
       ∀ y ∈ Set.range (eHighArtinHasse_trans V htrans), x * y = y * x := by
     rintro _ ⟨a, rfl⟩ _ ⟨b, rfl⟩
     rw [← map_mul, ← map_mul, mul_comm a b]
-  haveI : IsMulCommutative (eHighArtinHasse_alg V htrans) :=
+  have hB : IsMulCommutative (eHighArtinHasse_alg V htrans) :=
     Algebra.isMulCommutative_adjoin L hcomm
-  letI instB : CommRing (eHighArtinHasse_alg V htrans) := inferInstance
+  letI instB : CommRing (eHighArtinHasse_alg V htrans) :=
+    { Subalgebra.toRing (eHighArtinHasse_alg V htrans) with
+      mul_comm := fun a b => by exact hB.is_comm.comm a b }
   refine ⟨eHighArtinHasse_alg V htrans, instB, Subalgebra.algebra (eHighArtinHasse_alg V htrans),
     inferInstance,
     eHighArtinHasse_theta V htrans, eHighArtinHasse_sigma act hadd hmul hone V htrans hact,
