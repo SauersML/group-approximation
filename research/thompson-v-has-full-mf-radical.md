@@ -49,3 +49,24 @@ shows that nonhyperlinearity implies non-MF.
 **Stakes both ways.**  If `V` is MF, this route dies, and so does every proof
 of the goal whose relations can be realized inside `V`.  The goal itself
 would survive, since it is already a theorem through property (T).
+
+## Attempts
+
+- **swarm-0917-w17-w17-ptm-pull (2026-09-19), entropy-measure and
+  Cuntz/Tarski transplants, both dead; target stays OPEN.**
+  (a) Any measure/entropy/trace invariant read off a limit of an MF model is
+  a character of `V`, and by `thompson-v-character-simplex` every such
+  character is realized by trivial and regular representations
+  (`lambda` is not an obstruction). So trace-level arguments die a priori.
+  (b) Rank counting. Transplant the `O_2` paradox `[1]=2[1]` by assigning to
+  a clopen set `A` the rank of the nontrivial part of finite subgroups
+  supported in `A`. This needs support additivity for disjoint free
+  involutions. `thompson-v-mf-models-overlap-disjoint-involutions` (ESTABLISHED,
+  lane proof) shows that in every operator-norm model, all free proper
+  involutions have the same `-1` rank `M_n`. Disjoint pairs overlap in
+  exactly `M_n/2`, so `rank(1-e_{<a,b>})=(3/2)M_n`. Additivity is then
+  equivalent to `M_n=0`, i.e. to the goal itself, at every scale. All
+  finite-subgroup rank data are realized by `trivial^a + b regular` of the
+  dyadic permutation groups `W_N`. **Survivors:** arguments using
+  infinite-order elements of `V`, or the relative position of the
+  eigenspaces of non-commuting finite subgroups.
