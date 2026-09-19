@@ -1,0 +1,28 @@
+[job] 02:25:38 acn112 waiting for clone lock
+[job] delta sync 900f377bd..fc8b0d080: 27 files changed
+===== SUMMARY
+host acn112 cores 64-71 base fc8b0d080 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0914-022534-58234.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3700 oleans
+--- errors (first 80 lines)
+117:✖ [10325/10325] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram (23s)
+125:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsDiagram.lean:399:21: advertised closed endpoint 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.pinchDiagram_letters' has a leading input; state and prove a closed proposition instead of accepting construction data
+132:error: Lean exited with code 1
+135:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyOrderSection
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2Copy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchRefutation.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopy.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrder.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCopyOrderSection.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsNoRescue.lean
+COMPILED GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsDiagram
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

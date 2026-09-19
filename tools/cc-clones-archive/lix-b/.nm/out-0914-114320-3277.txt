@@ -1,0 +1,41 @@
+[job] 11:43:26 acn112 waiting for clone lock
+[job] delta sync 0ebe157c2..590f6ae0b: 4 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 590f6ae0b log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-114320-3277.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3537 oleans
+--- errors (first 80 lines)
+15:✖ [615/615] Building GroupApproximation.GGT.VanKampen.ListFilterMapChanges (22s)
+17:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:57:0: automatically included section variable(s) unused in theorem `GroupApproximation.GGT.VanKampen.ListNoABAB.getLast?_filterMap_range_succ`:
+23:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:64:2: failed to synthesize instance of type class
+27:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:69:9: unsolved goals
+32:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:74:34: failed to synthesize instance of type class
+36:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:88:21: failed to synthesize instance of type class
+40:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:108:21: failed to synthesize instance of type class
+44:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:115:23: failed to synthesize instance of type class
+48:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:69:18: declaration uses `sorry`
+49:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:77:37: This simp argument is unused:
+56:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:77:56: This simp argument is unused:
+64:error: GroupApproximation/GGT/VanKampen/ListFilterMapChanges.lean:128:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.card_consecutiveChanges_le' depends on axioms outside the classical allowlist: [sorryAx]
+65:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+67:error: Lean exited with code 1
+70:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.ListFilterMapChanges (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactAssembly.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMapCounts.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactWords.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+COMPILED GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean
+COMPILED GroupApproximation/GGT/VanKampen/ListNoABABLength.lean
+- GroupApproximation.GGT.VanKampen.ListFilterMapChanges
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

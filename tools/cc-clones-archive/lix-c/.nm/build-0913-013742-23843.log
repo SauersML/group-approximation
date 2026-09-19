@@ -1,0 +1,34 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2364 oleans
+[job] acn112 cores=64-71 threads=8 base=79102e615f885710fcb185a2090d7a54cf0890ac mods: GroupApproximation.Kazhdan.GHWTheoremFour GroupApproximation.Kazhdan.GHWCharPClosed
+ℹ [2823/2874] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3664/3667] Built GroupApproximation.Kazhdan.GHWFiniteReduction (22s)
+info: GroupApproximation/Kazhdan/GHWFiniteReduction.lean:43:14: 'GroupApproximation.GHW.hasHaagerupProperty_of_closure_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3665/3667] Built GroupApproximation.Kazhdan.GHWTheoremFour (9.9s)
+info: GroupApproximation/Kazhdan/GHWTheoremFour.lean:78:14: 'GroupApproximation.GHW.PrintedGHWTheoremFour' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWTheoremFour.lean:79:14: 'GroupApproximation.GHW.GHWFinitelyGeneratedCharP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWTheoremFour.lean:80:14: 'GroupApproximation.GHW.GHWFinitelyGeneratedCharZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWTheoremFour.lean:81:14: 'GroupApproximation.GHW.hasHaagerupProperty_closure_of_charP_charZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/GHWTheoremFour.lean:82:14: 'GroupApproximation.GHW.printedGHWTheoremFour_of_charP_charZero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3666/3667] Built GroupApproximation.Kazhdan.GHWCharP (19s)
+info: GroupApproximation/Kazhdan/GHWCharP.lean:306:14: 'GroupApproximation.GHW.exists_places_bounded_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:307:14: 'GroupApproximation.GHW.hasHaagerupProperty_of_isIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:308:14: 'GroupApproximation.GHW.entrySet_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:309:14: 'GroupApproximation.GHW.mem_entrySet' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:310:14: 'GroupApproximation.GHW.one_entry_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:311:14: 'GroupApproximation.GHW.entries_mem_of_mem_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:312:14: 'GroupApproximation.GHW.glMap_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:313:14: 'GroupApproximation.GHW.mem_range_glMap_of_entries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:314:14: 'GroupApproximation.GHW.hasHaagerupProperty_closure_of_charP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Kazhdan/GHWCharP.lean:315:21: 'GroupApproximation.GHW.printedGHWTheoremFourCharP' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3667/3667] Built GroupApproximation.Kazhdan.GHWCharPClosed (11s)
+info: GroupApproximation/Kazhdan/GHWCharPClosed.lean:31:21: 'GroupApproximation.GHW.ghwFinitelyGeneratedCharP' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (3667 jobs).
+EXIT=0

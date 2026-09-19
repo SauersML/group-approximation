@@ -1,0 +1,23 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2130 oleans
+[job] acn112 cores=72-79 threads=8 base=a04e741f247422a2bf8b25fa9c8bd0d8baf1b624 mods: GroupApproximation.Analysis.LIXPowersEquator GroupApproximation.Analysis.LIXPowersEquatorChart
+✖ [2397/2397] Building GroupApproximation.Analysis.LIXPowersEquatorChart (9.4s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/Analysis/LIXPowersEquatorChart.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersEquatorChart.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/Analysis/LIXPowersEquatorChart.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersEquatorChart.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/Analysis/LIXPowersEquatorChart.setup.json --json
+error: GroupApproximation/Analysis/LIXPowersEquatorChart.lean:137:4: Type mismatch
+  Continuous.comp (Continuous.comp Complex.continuous_re ?m.22) continuous_subtype_val
+has type
+  Continuous ((Complex.re ∘ ?m.17) ∘ Subtype.val)
+but is expected to have type
+  Continuous (chartHeight n)
+error: GroupApproximation/Analysis/LIXPowersEquatorChart.lean:137:32: Application type mismatch: The argument
+  continuous_apply (Fin.last n)
+has type
+  Continuous fun p => p (Fin.last n)
+but is expected to have type
+  Continuous ?m.17
+in the application
+  Continuous.comp Complex.continuous_re (continuous_apply (Fin.last n))
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.LIXPowersEquatorChart
+error: build failed
+EXIT=1

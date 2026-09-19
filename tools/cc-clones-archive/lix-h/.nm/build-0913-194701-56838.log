@@ -1,0 +1,30 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3653 oleans
+[job] acn112 cores=80-87 threads=8 base=3ceb562292e6bd38d012cf5e5ef859e0e56dc770 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra
+ℹ [3338/3405] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4800/4800] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra (14s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-h/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:148:21: No goals to be solved
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:150:21: No goals to be solved
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:152:21: No goals to be solved
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:154:21: No goals to be solved
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:254:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.D' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:255:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_gc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:256:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.expD_gQ' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:257:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.killP_listVal_ab' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:258:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchPosModelsAlgebra.lean:259:14: 'GroupApproximation.GGT.VanKampen.OsinPocketPinchPosModels.letter_casesQ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchPosModelsAlgebra
+error: build failed
+EXIT=1

@@ -1,0 +1,104 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3306 oleans
+[job] acn112 cores=80-87 threads=8 base=ad004ff1a057f87729798180d4170a4b7a75f971 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketFaces
+ℹ [3311/3428] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4995/5011] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonLabels
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:209:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_outer_of_isTwoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:210:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.phiRegionO_facePerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:211:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.phiRegionO_of_faceOf_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:212:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.sameSection_of_not_gapHoldsCorner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:213:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_exteriorAt_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean:214:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.exists_twoGonLabels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5009/5011] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonFaceClass
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:226:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.darts_prefix_of_start_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:227:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.mem_darts_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:228:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGon_pow_cases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:230:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.phiCellSideO_facePerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:232:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.faceOf_of_faceClassO_twoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:234:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.crossO_false_of_phiKeepO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:235:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_pow_of_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:236:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_alpha_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:238:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsed_pow_val_of_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:240:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.collapsed_exists_pow_of_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean:241:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5010/5011] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketClass
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:292:14: 'GroupApproximation.GGT.VanKampen.Embedded.targetBoundaryDarts_eq_darts_of_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:294:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.mem_reverseDarts_or_head_of_crossO_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:295:14: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_of_face_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:297:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.false_of_faceClassO_mem_region' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:299:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.faceClassO_of_mem_leftSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:301:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.faceClassO_of_mem_rightSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:303:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.twoGonPocketFace_of_faceClassO' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [5011/5011] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketFaces (14s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:272:14: 'GroupApproximation.GGT.VanKampen.IsSimpleClosedWalk.eqvGen_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:273:14: 'GroupApproximation.GGT.VanKampen.IsSimpleClosedWalk.eqvGen_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:275:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.twoGonPocketFace_alpha' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:277:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.twoGonPocketFace_iff_of_eqvGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:279:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.twoGonPocketFace_of_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:281:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.cell_face_not_mem_sideFaces_of_twoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFaces.lean:283:2: 'GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.ExtPhiData.disjoint_sideFaces_of_twoGon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (5011 jobs).
+EXIT=0

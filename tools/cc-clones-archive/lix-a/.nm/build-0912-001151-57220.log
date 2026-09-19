@@ -1,0 +1,119 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2303 oleans
+[job] acn112 cores=64-71 threads=8 base=f32d5ed47b578a1ba999edfa64b109dbb3b5d411 mods: GroupApproximation.CharClass.OddPWDiagonalRing GroupApproximation.CharClass.OddPWDiagonal GroupApproximation.CharClass.OddPWDiagonalCounit
+✖ [1677/1679] Building GroupApproximation.CharClass.OddPWDiagonalRing (7.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-a/GroupApproximation/CharClass/OddPWDiagonalRing.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/CharClass/OddPWDiagonalRing.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/lib/lean/GroupApproximation/CharClass/OddPWDiagonalRing.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/CharClass/OddPWDiagonalRing.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.lake/build/ir/GroupApproximation/CharClass/OddPWDiagonalRing.setup.json --json
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:78:48: Unknown identifier `sum_mul`
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:77:71: unsolved goals
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+T₁ T₂ : S
+⊢ ∑ v ∈ range m, ∑ u ∈ range v, T₁ ^ u * T₂ ^ v + ∑ u ∈ range m, T₁ ^ u * T₂ ^ m =
+    ∑ v ∈ range m, ∑ u ∈ range v, T₁ ^ u * T₂ ^ v + (∑ j ∈ range m, T₁ ^ j) * T₂ ^ m
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:86:7: unknown tactic
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:84:14: unsolved goals
+case succ
+S : Type u_1
+inst✝ : CommRing S
+t : S
+m : ℕ
+ih : t * wdNormSum m t = wdNormSum m t - 1 + t ^ m
+⊢ wdNormSum m t - 1 + t ^ m + t * t ^ m = wdNormSum m t + t ^ m - 1 + t ^ (m + 1)
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:131:5: unknown tactic
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:126:2: unsolved goals
+case pos
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+T₁ T₂ : S
+h₂ : T₂ ^ m = 1
+a b : ℕ
+hA1 : Even (a + 1) ↔ ¬Even a
+hB1 : Even (b + 1) ↔ ¬Even b
+hAB : Even (a + b) ↔ (Even a ↔ Even b)
+ha : Even a
+hb : Even b
+e1 : ¬Even (a + 1)
+e2 : ¬Even (b + 1)
+e3 : Even (a + b)
+⊢ (T₁ - 1) * T₂ + 1 * ((T₂ - 1) * 1) = (T₁ * T₂ - 1) * 1
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:121:58: unsolved goals
+case neg
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+T₁ T₂ : S
+h₂ : T₂ ^ m = 1
+a b : ℕ
+hA1 : Even (a + 1) ↔ ¬Even a
+hB1 : Even (b + 1) ↔ ¬Even b
+hAB : Even (a + b) ↔ (Even a ↔ Even b)
+ha : Even a
+hb : ¬Even b
+⊢ wdCAlt m a T₁ * wdPhi m (a + 1) b T₁ T₂ + (-1) ^ a * (wdCAlt m b T₂ * wdPhi m a (b + 1) T₁ T₂) =
+    wdCAlt m (a + b) (T₁ * T₂) * wdPhi m a b T₁ T₂
+
+case pos
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+T₁ T₂ : S
+h₂ : T₂ ^ m = 1
+a b : ℕ
+hA1 : Even (a + 1) ↔ ¬Even a
+hB1 : Even (b + 1) ↔ ¬Even b
+hAB : Even (a + b) ↔ (Even a ↔ Even b)
+ha : ¬Even a
+hb : Even b
+⊢ wdCAlt m a T₁ * wdPhi m (a + 1) b T₁ T₂ + (-1) ^ a * (wdCAlt m b T₂ * wdPhi m a (b + 1) T₁ T₂) =
+    wdCAlt m (a + b) (T₁ * T₂) * wdPhi m a b T₁ T₂
+
+case neg
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+T₁ T₂ : S
+h₂ : T₂ ^ m = 1
+a b : ℕ
+hA1 : Even (a + 1) ↔ ¬Even a
+hB1 : Even (b + 1) ↔ ¬Even b
+hAB : Even (a + b) ↔ (Even a ↔ Even b)
+ha : ¬Even a
+hb : ¬Even b
+⊢ wdCAlt m a T₁ * wdPhi m (a + 1) b T₁ T₂ + (-1) ^ a * (wdCAlt m b T₂ * wdPhi m a (b + 1) T₁ T₂) =
+    wdCAlt m (a + b) (T₁ * T₂) * wdPhi m a b T₁ T₂
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:152:86: unsolved goals
+S : Type u_1
+inst✝ : CommRing S
+m : ℕ
+⊢ ∑ x ∈ range m, ↑x = ↑(∑ v ∈ range m, v)
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:166:5: unknown tactic
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:163:62: unsolved goals
+k : ℕ
+h2 : (∑ i ∈ range (2 * k + 1), i) * 2 = (2 * k + 1) * (2 * k + 1 - 1)
+⊢ (2 * k + 1) * (2 * k) = (2 * k + 1) * k * 2
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:159:82: unsolved goals
+k : ℕ
+h2 : (∑ i ∈ range (2 * k + 1), i) * 2 = (2 * k + 1) * (2 * k + 1 - 1)
+hs : ∑ i ∈ range (2 * k + 1), i = (2 * k + 1) * k
+⊢ ↑(∑ v ∈ range (2 * k + 1), v) = 0
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:189:14: 'GroupApproximation.CharClass.wdQSum_mul_left' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:190:14: 'GroupApproximation.CharClass.wdQSum_mul_diag' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:191:14: 'GroupApproximation.CharClass.wdChain_identity' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:192:14: 'GroupApproximation.CharClass.wdQSum_one_one_zmod' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/CharClass/OddPWDiagonalRing.lean:193:14: 'GroupApproximation.CharClass.wdPhi_one_one_odd_odd' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPWDiagonalRing
+error: build failed
+EXIT=1

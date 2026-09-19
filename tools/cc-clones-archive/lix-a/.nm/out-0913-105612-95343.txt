@@ -1,0 +1,27 @@
+[job] 10:56:16 acn112 waiting for clone lock
+[job] delta sync 191fc813d..eb314a807: 81 files changed
+===== SUMMARY
+host acn112 cores 64-71 base eb314a807 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-105612-95343.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3613 oleans
+--- errors (first 80 lines)
+6:✖ [10094/10094] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs (20s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:60:26: Tactic `rewrite` failed: motive is not type correct:
+36:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:97:14: 'GroupApproximation.GGT.VanKampen.dartWord_outerArc_eq_drop_take' depends on axioms outside the classical allowlist: [sorryAx]
+37:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+42:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:99:21: 'GroupApproximation.GGT.VanKampen.osinLemma94BoundaryArcsInput' depends on axioms outside the classical allowlist: [sorryAx]
+43:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+45:error: Lean exited with code 1
+48:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/NonMF/HullCorollary73.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFiniteRadical.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullFreeFactorSuitable.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullLemma510.lean
+COMPILED GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

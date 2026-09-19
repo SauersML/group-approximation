@@ -1,0 +1,43 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4112 oleans
+[job] acn112 cores=64-71 threads=8 base=04a4259597ddb2c4400ddd42486aa02508c3f8a2 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSameCell
+ℹ [3295/3432] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10224/10238] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10226/10238] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:237:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.listVal_take_blocks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:238:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.runPos_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:239:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10238/10238] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSameCell (25s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSameCell.lean:356:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.class_segment_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSameCell.lean:357:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_sameCellWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSameCell.lean:358:14: 'GroupApproximation.GGT.VanKampen.false_of_classSameCell_value_one_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSameCell.lean:359:14: 'GroupApproximation.GGT.VanKampen.false_of_classSameCell_value_one_Y' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSameCell.lean:360:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCaseGapSpan_of_residuals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10238 jobs).
+EXIT=0

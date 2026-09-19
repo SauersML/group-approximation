@@ -1,0 +1,26 @@
+[job] 21:41:11 acn112 waiting for clone lock
+[job] delta sync 16d890864..68038d827: 17 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 68038d827 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-214105-72059.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3795 oleans
+--- errors (first 80 lines)
+4:✖ [1989/1992] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (6.8s)
+6:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:81:8: failed to synthesize instance of type class
+11:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:115:14: 'GroupApproximation.SimpleKazhdanSofic.wordProblemOracle_comp_injective' depends on axioms outside the classical allowlist: [sorryAx]
+12:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+17:error: Lean exited with code 1
+24:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

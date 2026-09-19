@@ -1,0 +1,21 @@
+[job] 16:08:05 acn37 waiting for clone lock
+[job] delta sync 0c61b41d6..bb0b9ed17: 95 files changed
+===== SUMMARY
+host acn37 cores slurm base bb0b9ed17 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-160707-1195.log
+purged 18 stale artifact sets (source-newer=3, import-newer=15) of 3305 oleans
+--- errors (first 80 lines)
+59:✖ [5009/5009] Building GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketClass (14s)
+61:error: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketClass.lean:279:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+89:error: Lean exited with code 1
+92:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketClass (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonFaceClass.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonLabels.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonPocketClass
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

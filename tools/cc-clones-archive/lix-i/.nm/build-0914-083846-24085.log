@@ -1,0 +1,151 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4499 oleans
+[job] acn112 cores=72-79 threads=8 base=e81f21d8c2abeb4fb0d9879685618b50d61fc8d8 mods: GroupApproximation.Analysis.KirchbergCompactExtraction GroupApproximation.Analysis.KirchbergRealDilation GroupApproximation.Analysis.KirchbergTensorSquare GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+ℹ [3701/3796] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4621/4624] Building GroupApproximation.Analysis.KirchbergRealDilation (8.8s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Analysis/KirchbergRealDilation.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealDilation.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealDilation.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealDilation.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealDilation.setup.json --json
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:179:27: Invalid field `isometryOfInner`: The environment does not contain `LinearEquiv.isometryOfInner`, so it is not possible to project the field `isometryOfInner` from an expression
+  translateLinear X hX g
+of type `Pre X hX ≃ₗ[ℝ] Pre X hX`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:183:0: Not a definitional equality: the left-hand side
+  (toPre X hX).symm ((translate X hX g) f)
+is not definitionally equal to the right-hand side
+  Finsupp.equivMapDomain (Equiv.mulLeft g) ((toPre X hX).symm f)
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:185:74: Type mismatch
+  rfl
+has type
+  ?m.60 = ?m.60
+but is expected to have type
+  (toPre X hX).symm ((translate X hX g) f) = Finsupp.equivMapDomain (Equiv.mulLeft g) ((toPre X hX).symm f)
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:190:77: unsolved goals
+G : Type u
+inst✝¹ : Group G
+Y : Type
+inst✝ : Fintype Y
+X : G → Matrix Y Y ℂ
+hX : IsPositiveDefinite X
+f : Pre X hX
+a : G
+x✝ : Y
+⊢ ((toPre X hX).symm f) ((Equiv.symm 1) a) x✝ = ((toPre X hX).symm f) a x✝
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:194:81: unsolved goals
+G : Type u
+inst✝¹ : Group G
+Y : Type
+inst✝ : Fintype Y
+X : G → Matrix Y Y ℂ
+hX : IsPositiveDefinite X
+g h : G
+f : Pre X hX
+a : G
+x✝ : Y
+⊢ ((toPre X hX).symm f) ((Equiv.symm (Equiv.mulLeft g * Equiv.mulLeft h)) a) x✝ =
+    ((toPre X hX).symm f) (h⁻¹ * (g⁻¹ * a)) x✝
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:198:10: This simp argument is unused:
+  mul_assoc
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵m̵u̵l̵_̵a̵s̵s̵o̵c̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✔ [4622/4624] Built GroupApproximation.Analysis.KirchbergCompactExtraction (11s)
+✖ [4623/4624] Building GroupApproximation.Analysis.KirchbergTensorSquare (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Analysis/KirchbergTensorSquare.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergTensorSquare.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergTensorSquare.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergTensorSquare.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergTensorSquare.setup.json --json
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:41:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.inner_tmulC`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:44:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.norm_tmulC`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:47:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.tmulC_add_right`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:50:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.tmulC_smul_right`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:54:92: unsolved goals
+K : Type v
+inst✝³ : NormedAddCommGroup K
+inst✝² : InnerProductSpace ℝ K
+inst✝¹ : CompleteSpace K
+ι : Type u_1
+inst✝ : Fintype ι
+u v w z : ι → K
+⊢ ∑ x, ∑ x_1, ⟪u x_1, w x⟫ * ⟪v x_1, z x⟫ = ∑ a, ∑ b, ⟪u a, w b⟫ * ⟪v a, z b⟫
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:67:15: unsolved goals
+case tmul
+K : Type v
+inst✝³ : NormedAddCommGroup K
+inst✝² : InnerProductSpace ℝ K
+inst✝¹ : CompleteSpace K
+G : Type u
+inst✝ : Group G
+σ : G →* K ≃ₗᵢ[ℝ] K
+a b : K
+⊢ 1 a ⊗ₜ[ℝ] 1 b = a ⊗ₜ[ℝ] b
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:72:15: unsolved goals
+case tmul
+K : Type v
+inst✝³ : NormedAddCommGroup K
+inst✝² : InnerProductSpace ℝ K
+inst✝¹ : CompleteSpace K
+G : Type u
+inst✝ : Group G
+σ : G →* K ≃ₗᵢ[ℝ] K
+g h : G
+a b : K
+⊢ (↑(σ g) * ↑(σ h)) a ⊗ₜ[ℝ] (↑(σ g) * ↑(σ h)) b = (σ g) ((σ h) a) ⊗ₜ[ℝ] (σ g) ((σ h) b)
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:84:2: No goals to be solved
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:80:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergTensorSquare.diag_tmulC`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:90:49: Unknown constant `TensorProduct.mkL`
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:92:0: Not a definitional equality: the left-hand side
+  (sliceFunctional ζ y) x
+is not definitionally equal to the right-hand side
+  ⟪ζ, tmulC x y⟫
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:93:46: Type mismatch
+  rfl
+has type
+  ?m.17 = ?m.17
+but is expected to have type
+  (sliceFunctional ζ y) x = ⟪ζ, tmulC x y⟫
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:137:8: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.add_apply` to `add_apply x`).
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:142:8: `ContinuousLinearMap.smul_apply` has been deprecated: Use `smul_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.smul_apply` to `smul_apply x`).
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:147:38: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.zero_apply` to `zero_apply x`).
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:166:41: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.zero_apply` to `zero_apply x`).
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:179:39: `ContinuousLinearMap.add_apply` has been deprecated: Use `add_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.add_apply` to `add_apply x`).
+error: GroupApproximation/Analysis/KirchbergTensorSquare.lean:185:4: Unknown identifier `isClosed_setOfPred_isCompactOperator.preimage`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.KirchbergRealDilation
+- GroupApproximation.Analysis.KirchbergTensorSquare
+error: build failed
+EXIT=1

@@ -1,0 +1,69 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2077 oleans
+[job] acn112 cores=88-95 threads=8 base=77f3ac926c620a0e644b7a11f254357809d2f83b mods: GroupApproximation.CharClass.OddPTupleFunctor
+✖ [2171/2171] Building GroupApproximation.CharClass.OddPTupleFunctor (7.0s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/CharClass/OddPTupleFunctor.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTupleFunctor.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/CharClass/OddPTupleFunctor.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPTupleFunctor.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/CharClass/OddPTupleFunctor.setup.json --json
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:173:15: unsolved goals
+case single
+X : TopCat
+r : ℕ
+K : Type
+inst✝ : CommRing K
+k : ℕ
+t : TupIdx X r k
+c : K
+⊢ c • Finsupp.single (tupPushIdx (𝟙 X) t) 1 = c • Finsupp.single t 1
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:181:15: unsolved goals
+case single
+X Y Z : TopCat
+r : ℕ
+K : Type
+inst✝ : CommRing K
+f : X ⟶ Y
+g : Y ⟶ Z
+k : ℕ
+t : TupIdx X r k
+c : K
+⊢ c • Finsupp.single (tupPushIdx (f ≫ g) t) 1 = c • Finsupp.single (tupPushIdx g (tupPushIdx f t)) 1
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:300:8: This simp argument is unused:
+  tupDHom_hom_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_zero, LinearMap.zero_apply,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵ ̵t̵u̵p̵D̵H̵o̵m̵_̵h̵o̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:348:57: This simp argument is unused:
+  tupDHom_hom_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [ModuleCat.hom_comp, LinearMap.comp_apply, tupD̵H̵o̵m̵_̵h̵o̵m̵_̵a̵p̵p̵l̵y̵,̵ ̵t̵u̵p̵MapHom_hom_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:348:76: This simp argument is unused:
+  tupMapHom_hom_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [ModuleCat.hom_comp, LinearMap.comp_apply, tupDHom_hom_apply,̵ ̵t̵u̵p̵M̵a̵p̵H̵o̵m̵_̵h̵o̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:367:6: This simp argument is unused:
+  tupMapHom_hom_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [tupCxMap_f, HomologicalComplex.id_f, ModuleCat.hom_id, LinearMap.id_apply,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵t̵u̵p̵M̵a̵p̵H̵o̵m̵_̵h̵o̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/CharClass/OddPTupleFunctor.lean:377:6: This simp argument is unused:
+  tupMapHom_hom_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [tupCxMap_f, HomologicalComplex.comp_f, ModuleCat.hom_comp, LinearMap.comp_apply,̵
+  ̵ ̵ ̵ ̵ ̵ ̵ ̵t̵u̵p̵M̵a̵p̵H̵o̵m̵_̵h̵o̵m̵_̵a̵p̵p̵l̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.CharClass.OddPTupleFunctor
+error: build failed
+EXIT=1

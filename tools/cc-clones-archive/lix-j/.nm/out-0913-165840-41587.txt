@@ -1,0 +1,42 @@
+[job] 16:58:44 acn112 waiting for clone lock
+[job] delta sync 19d96c2c5..1c2f0e1aa: 16 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 1c2f0e1aa log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-165840-41587.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3374 oleans
+--- errors (first 80 lines)
+3:✖ [1211/1211] Building GroupApproximation.Dynamics.ReturnPlacement (8.7s)
+5:error: GroupApproximation/Dynamics/ReturnPlacement.lean:89:10: unexpected token '\'; expected command
+6:error: GroupApproximation/Dynamics/ReturnPlacement.lean:92:2: `Set.diff_subset` has been deprecated: Use `Set.sdiff_subset` instead
+7:error: GroupApproximation/Dynamics/ReturnPlacement.lean:92:2: Type mismatch
+13:error: GroupApproximation/Dynamics/ReturnPlacement.lean:96:2: Type mismatch
+19:error: GroupApproximation/Dynamics/ReturnPlacement.lean:101:12: Tactic `rcases` failed: `left✝ : K x` is not an inductive datatype
+20:error: GroupApproximation/Dynamics/ReturnPlacement.lean:113:4: Invalid `⟨...⟩` notation: The expected type `K x` is not an inductive type
+23:error: GroupApproximation/Dynamics/ReturnPlacement.lean:114:2: `simp` made no progress
+24:error: GroupApproximation/Dynamics/ReturnPlacement.lean:134:40: Application type mismatch: The argument
+32:error: GroupApproximation/Dynamics/ReturnPlacement.lean:136:36: Application type mismatch: The argument
+40:error: GroupApproximation/Dynamics/ReturnPlacement.lean:136:64: Application type mismatch: The argument
+48:error: GroupApproximation/Dynamics/ReturnPlacement.lean:143:27: Unknown constant `Set.disjoint_empty_left`
+49:error: GroupApproximation/Dynamics/ReturnPlacement.lean:313:57: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+50:error: GroupApproximation/Dynamics/ReturnPlacement.lean:350:27: Application type mismatch: The argument
+58:error: GroupApproximation/Dynamics/ReturnPlacement.lean:373:38: Application type mismatch: The argument
+66:error: GroupApproximation/Dynamics/ReturnPlacement.lean:374:29: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+67:error: GroupApproximation/Dynamics/ReturnPlacement.lean:375:13: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+68:error: GroupApproximation/Dynamics/ReturnPlacement.lean:393:38: Application type mismatch: The argument
+76:error: GroupApproximation/Dynamics/ReturnPlacement.lean:394:15: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+77:error: GroupApproximation/Dynamics/ReturnPlacement.lean:399:38: Application type mismatch: The argument
+85:error: GroupApproximation/Dynamics/ReturnPlacement.lean:400:15: `Set.mem_diff` has been deprecated: Use `Set.mem_sdiff` instead
+88:error: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms outside the classical allowlist: [sorryAx]
+89:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+91:error: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms outside the classical allowlist: [sorryAx]
+92:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+94:error: Lean exited with code 1
+97:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.ReturnPlacement (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Dynamics/ClopenSwapInvolution.lean
+- GroupApproximation.Dynamics.ReturnPlacement
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

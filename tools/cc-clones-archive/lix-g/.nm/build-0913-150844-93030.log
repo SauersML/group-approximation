@@ -1,0 +1,74 @@
+purged 51 stale artifact sets (source-newer=18, import-newer=33) of 3514 oleans
+[job] acn09 cores=slurm threads=8 base=53ef29c55c01dbc35da05444ddf2a6eace064271 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellAbsorbed
+ℹ [3355/3413] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10133/10137] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge (85s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:186:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_weight_le_of_card_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:187:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_cons_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixCutMerge.lean:188:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10134/10137] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketDiscMerge (18s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:269:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.ofPocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:270:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:271:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_noLoop' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:272:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:273:14: 'GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry_targetArc_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketDiscMerge.lean:274:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_collapse_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10135/10137] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse (15s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:179:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_pair_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:180:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_zeroCellPocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:181:14: 'GroupApproximation.GGT.VanKampen.ZeroCellPocketMergeStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketZeroCellMergeFalse.lean:182:21: 'GroupApproximation.GGT.VanKampen.zeroCellPocketMerge' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10136/10137] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell (104s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:198:14: 'GroupApproximation.GGT.VanKampen.RealizedSectionFamily.targetArc_end_le_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:199:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCell.lean:200:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10137/10137] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellAbsorbed (31s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:512:14: 'GroupApproximation.GGT.VanKampen.Embedded.FaceSetBoundary.subset_or_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:513:14: 'GroupApproximation.GGT.VanKampen.RealizedRegionFamily.subset_of_not_disjoint_pocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:514:21: 'GroupApproximation.GGT.VanKampen.pocketMeetsContained' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:515:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_absorbed_section' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:516:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellAbsorbed.lean:517:14: 'GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_kept_of_simple_of_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10137 jobs).
+EXIT=0

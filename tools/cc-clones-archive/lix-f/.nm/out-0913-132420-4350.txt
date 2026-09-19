@@ -1,0 +1,22 @@
+[job] 13:24:24 acn112 waiting for clone lock
+[job] delta sync ca877bc45..4181011af: 71 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 4181011af log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0913-132420-4350.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2973 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchedTwoGonLobe
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonDiscCollapse.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonLobe.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchedTwoGonRegion.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanMinkowski.lean
+COMPILED GroupApproximation/Kazhdan/GHWArchimedeanWalls.lean
+COMPILED GroupApproximation/Kazhdan/GHWInterfaces.lean
+ Quot.sound]
+Build completed successfully (10088 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,22 @@
+[job] 09:25:21 acn112 waiting for clone lock
+[job] delta sync cfc754854..2486678e6: 30 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 2486678e6 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0914-092459-17882.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3532 oleans
+--- errors (first 80 lines)
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree (replayed or failed)
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+COMPILED GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+ Quot.sound]
+Build completed successfully (5055 jobs).
+EXIT=0
+PROBE GREEN

@@ -1,0 +1,27 @@
+[job] 10:43:46 acn112 waiting for clone lock
+[job] delta sync 4d3fbeb96..85fdee4bb: 10 files changed
+===== SUMMARY
+host acn112 cores 88-95 base 85fdee4bb log /projects/standard/hsiehph/sauer354/cc_clones/lix-f/.nm/build-0914-103952-13558.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3660 oleans
+--- errors (first 80 lines)
+69:✖ [10243/10244] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed (15s)
+71:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:209:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+95:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:279:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.pocketArc_darts' depends on axioms outside the classical allowlist: [sorryAx]
+96:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+98:error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean:280:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketEnclosed.exists_enclosedPocket' depends on axioms outside the classical allowlist: [sorryAx]
+99:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+101:error: Lean exited with code 1
+104:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedBridgeDoublingArc
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosedSides
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketLoopCut (replayed or failed)
+--- rebuilt GroupApproximation modules: 2
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketEnclosed
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

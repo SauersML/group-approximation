@@ -1,0 +1,21 @@
+[job] 21:30:38 acn112 waiting for clone lock
+[job] delta sync 57375553a..5c58e3ab5: 59 files changed
+===== SUMMARY
+host acn112 cores 80-87 base 5c58e3ab5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0913-213002-3572.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3474 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerNoninterleaving
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+ Quot.sound]
+Build completed successfully (10201 jobs).
+EXIT=0
+PROBE GREEN

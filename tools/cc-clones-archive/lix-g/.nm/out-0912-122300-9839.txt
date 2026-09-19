@@ -1,0 +1,39 @@
+[job] 12:23:05 acn112 waiting for clone lock
+[job] delta sync e6d20ddb4..4119ef053: 31 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 4119ef053 log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0912-122300-9839.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2430 oleans
+--- errors (first 80 lines)
+26:✖ [8827/8841] Building GroupApproximation.CharClass.OddPDiagonal (31s)
+28:error: GroupApproximation/CharClass/OddPDiagonal.lean:129:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+33:error: Lean exited with code 1
+47:✖ [8835/8841] Building GroupApproximation.CharClass.OddPTotalPackagingGood (19s)
+49:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:140:12: Variable name `a` is not explicitly referenced.
+54:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:140:14: Variable name `b` is not explicitly referenced.
+59:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:142:12: Variable name `x` is not explicitly referenced.
+64:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:196:52: This simp argument is unused:
+71:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:198:50: This simp argument is unused:
+78:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:224:18: unsolved goals
+104:error: GroupApproximation/CharClass/OddPTotalPackagingGood.lean:237:14: 'GroupApproximation.CharClass.OddPTotal.TotalReducedPowers.totalPtot_map' depends on axioms outside the classical allowlist: [sorryAx]
+105:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+107:error: Lean exited with code 1
+111:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.OddPTotalGrading
+BUILT GroupApproximation.CharClass.OddPTotalPackagingDefs
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingGood (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingExpand (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingCartan (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackagingMulSingle (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalPackaging (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalProducer (replayed or failed)
+mentioned-not-built GroupApproximation.CharClass.OddPTotalBadTwo (replayed or failed)
+--- rebuilt GroupApproximation modules: 4
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/OddPTotalGrading.lean
+COMPILED GroupApproximation/CharClass/OddPTotalInterface.lean
+COMPILED GroupApproximation/CharClass/OddPTotalPackagingDefs.lean
+- GroupApproximation.CharClass.OddPTotalPackagingGood
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

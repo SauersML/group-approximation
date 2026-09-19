@@ -1,0 +1,37 @@
+[job] 00:14:03 acn112 waiting for clone lock
+[job] delta sync e99966455..e0d824adc: 6 files changed
+===== SUMMARY
+host acn112 cores 64-71 base e0d824adc log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-001357-68038.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+--- errors (first 80 lines)
+91:✖ [10207/10209] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints (23s)
+93:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:129:58: Application type mismatch: The argument
+101:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:225:4: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+136:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:231:4: Tactic `subst` failed: invalid equality proof, it is not of the form (x = t) or (t = x)
+176:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:353:14: 'GroupApproximation.GGT.VanKampen.SectorNoninterleaving.sectorFree_of_boundaryStep' depends on axioms outside the classical allowlist: [sorryAx]
+177:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+182:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:355:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.walk_isChain_closes_of_rel' depends on axioms outside the classical allowlist: [sorryAx]
+183:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+185:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean:356:21: 'GroupApproximation.GGT.VanKampen.sectionPocketWalkNoninterleaving' depends on axioms outside the classical allowlist: [sorryAx]
+186:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+188:error: Lean exited with code 1
+200:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkNoninterleavingJoints (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean
+COMPILED GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkNoninterleavingJoints
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

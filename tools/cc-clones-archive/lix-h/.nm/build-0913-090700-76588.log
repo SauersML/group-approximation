@@ -1,0 +1,8 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 2562 oleans
+[job] acn112 cores=64-71 threads=8 base=97a6dbe0343934212c440b3f349ae4c51b0f99fc mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces
+ℹ [3299/3371] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4987/4987] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces (15s)
+Build completed successfully (4987 jobs).
+EXIT=0

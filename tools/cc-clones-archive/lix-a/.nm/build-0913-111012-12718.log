@@ -1,0 +1,20 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3716 oleans
+[job] acn112 cores=72-79 threads=8 base=6cc9d3a7d4294ea0b3f003c2e80523e9e1d5c143 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+ℹ [3295/3414] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10094/10094] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs (17s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:96:14: 'GroupApproximation.GGT.VanKampen.isLambdaCQuasiGeodesicWord_symmetricLabelAlphabet_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:97:14: 'GroupApproximation.GGT.VanKampen.dartWord_outerArc_eq_drop_take' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:98:14: 'GroupApproximation.GGT.VanKampen.SectionCuts.drop_take_eq_sectionRun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryArcs.lean:99:21: 'GroupApproximation.GGT.VanKampen.osinLemma94BoundaryArcsInput' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10094 jobs).
+EXIT=0

@@ -1,0 +1,31 @@
+[job] 19:31:51 acn112 waiting for clone lock
+[job] delta sync abcbd8c9c..121f504fe: 35 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 121f504fe log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-193144-68949.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 4019 oleans
+--- errors (first 80 lines)
+131:✖ [10097/10097] Building GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder (41s)
+133:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:188:77: unsolved goals
+211:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:198:8: unexpected token 'Π'; expected command
+212:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:507:14: Unknown identifier `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient`
+213:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:506:69: unsolved goals
+288:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:535:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_regions_of_mem_sideFaces_both' depends on axioms outside the classical allowlist: [sorryAx]
+289:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+291:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:536:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or' depends on axioms outside the classical allowlist: [sorryAx]
+292:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+294:error: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean:538:2: 'GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks' depends on axioms outside the classical allowlist: [sorryAx]
+295:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+297:error: Lean exited with code 1
+300:error: build failed
+--- per-module
+BUILT GroupApproximation.GGT.VanKampen.CyclicArcComplement
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/GGT/VanKampen/CyclicArcComplement.lean
+COMPILED GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean
+COMPILED GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean
+- GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkOrder
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

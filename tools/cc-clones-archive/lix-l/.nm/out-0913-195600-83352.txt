@@ -1,0 +1,20 @@
+[job] 19:59:16 acn131 waiting for clone lock
+[job] delta sync ae3d768ec..e0e749787: 3 files changed
+===== SUMMARY
+host acn131 cores slurm base e0e749787 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-195600-83352.log
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3792 oleans
+--- errors (first 80 lines)
+4:✖ [1985/1985] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (8.6s)
+6:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:106:17: instance `GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.degreeSetoid` must be marked with `@[reducible]` or `@[implicit_reducible]`
+10:error: Lean exited with code 1
+13:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

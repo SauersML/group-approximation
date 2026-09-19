@@ -1,0 +1,43 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3863 oleans
+[job] acn112 cores=80-87 threads=8 base=6ef3e9bd9ad6813116befd1e223b82344d1888cb mods: GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2
+ℹ [3331/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10196/10245] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:374:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_iff_nodup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:375:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.exists_component_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:376:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.isSimpleClosedWalk_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:377:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.unpinched_of_isSimpleClosedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:378:14: 'GroupApproximation.GGT.VanKampen.Surgery.MapCollapse.BoundaryCycle.reverseAlpha_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:379:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_invDarts_outer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionUnpinched.lean:380:14: 'GroupApproximation.GGT.VanKampen.PocketRegion.ofUnpinched_outer_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10197/10245] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchUnpinched
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:79:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.unpinched_of_simple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:80:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_simple_of_followsBoundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:81:14: 'GroupApproximation.GGT.VanKampen.pocketPinchStatement_of_pinched' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10258/10258] Built GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2 (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinGreendlingerResidualsV2.lean:65:14: 'GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10258 jobs).
+EXIT=0

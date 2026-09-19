@@ -1,0 +1,44 @@
+[job] 16:41:21 acn112 waiting for clone lock
+[job] delta sync 514b76e75..c7ec8e750: 78 files changed
+===== SUMMARY
+host acn112 cores 80-87 base c7ec8e750 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0913-164041-86122.log
+purged 181 stale artifact sets (source-newer=12, import-newer=169) of 4393 oleans
+--- errors (first 80 lines)
+3:✖ [1443/1443] Building GroupApproximation.Dynamics.TwoEndedShift (6.6s)
+5:error: GroupApproximation/Dynamics/TwoEndedShift.lean:59:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+15:error: GroupApproximation/Dynamics/TwoEndedShift.lean:61:10: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+25:error: GroupApproximation/Dynamics/TwoEndedShift.lean:126:8: Unknown constant `Bool.true_ne_false`
+26:error: GroupApproximation/Dynamics/TwoEndedShift.lean:152:22: Unknown constant `Bool.true_ne_false`
+27:error: GroupApproximation/Dynamics/TwoEndedShift.lean:171:8: Application type mismatch: The argument
+36:error: GroupApproximation/Dynamics/TwoEndedShift.lean:288:4: Unknown constant `Bool.true_ne_false`
+37:error: GroupApproximation/Dynamics/TwoEndedShift.lean:316:22: Unknown constant `Bool.true_ne_false`
+38:error: GroupApproximation/Dynamics/TwoEndedShift.lean:359:8: Tactic `rfl` failed: The left-hand side
+51:error: GroupApproximation/Dynamics/TwoEndedShift.lean:367:11: `Set.mem_diff_of_mem` has been deprecated: Use `Set.mem_sdiff_of_mem` instead
+52:error: GroupApproximation/Dynamics/TwoEndedShift.lean:370:10: Unknown constant `Bool.true_ne_false`
+53:error: GroupApproximation/Dynamics/TwoEndedShift.lean:375:11: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute
+57:error: GroupApproximation/Dynamics/TwoEndedShift.lean:376:6: Invalid field notation: Function `DFunLike.coe` (coerced from `ClopenCrossedProduct.coeff`) does not have a usable parameter of type `ClopenCrossedProduct ...` for which to substitute
+61:error: GroupApproximation/Dynamics/TwoEndedShift.lean:373:59: unsolved goals
+70:error: GroupApproximation/Dynamics/TwoEndedShift.lean:384:62: Function expected at
+79:error: GroupApproximation/Dynamics/TwoEndedShift.lean:386:6: Failed to rewrite using equation theorems for `ClopenCrossedProduct.defectD`
+80:error: GroupApproximation/Dynamics/TwoEndedShift.lean:399:58: Function expected at
+89:error: GroupApproximation/Dynamics/TwoEndedShift.lean:401:62: Function expected at
+96:error: GroupApproximation/Dynamics/TwoEndedShift.lean:403:62: Function expected at
+103:error: GroupApproximation/Dynamics/TwoEndedShift.lean:399:70: unsolved goals
+126:error: GroupApproximation/Dynamics/TwoEndedShift.lean:423:58: Unknown identifier `ZMod`
+127:error: GroupApproximation/Dynamics/TwoEndedShift.lean:426:31: failed to synthesize instance of type class
+131:error: GroupApproximation/Dynamics/TwoEndedShift.lean:428:26: Unknown identifier `not_isDedekindFiniteMonoid`
+132:error: GroupApproximation/Dynamics/TwoEndedShift.lean:436:21: 'GroupApproximation.TwoEndedShift.printedTwoEndedCoreAndDefect' depends on axioms outside the classical allowlist: [sorryAx]
+133:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+135:error: GroupApproximation/Dynamics/TwoEndedShift.lean:437:14: 'GroupApproximation.TwoEndedShift.chainRecurrentSet_shift' depends on axioms outside the classical allowlist: [sorryAx]
+136:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+138:error: GroupApproximation/Dynamics/TwoEndedShift.lean:438:14: Unknown constant `GroupApproximation.TwoEndedShift.not_isDedekindFiniteMonoid`
+139:error: Lean exited with code 1
+142:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.TwoEndedShift (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.TwoEndedShift
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

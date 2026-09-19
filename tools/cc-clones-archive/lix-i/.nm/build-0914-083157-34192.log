@@ -1,0 +1,254 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4448 oleans
+[job] acn112 cores=64-71 threads=8 base=1eac0075820e054f6a31dbfd36f2ae1b4ee245cf mods: GroupApproximation.Analysis.KirchbergCompactExtraction GroupApproximation.Analysis.KirchbergCompletionRepresentation GroupApproximation.Analysis.KirchbergRealForms GroupApproximation.Analysis.KirchbergRealDilation GroupApproximation.Analysis.KirchbergTensorSquare GroupApproximation.Manuscript.NinetyNineProblems.KirchbergTheorem
+ℹ [3699/3826] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✔ [4619/4624] Built GroupApproximation.Analysis.KirchbergRealForms (6.0s)
+✔ [4620/4624] Built GroupApproximation.Analysis.KirchbergCompletionRepresentation (7.0s)
+✖ [4621/4624] Building GroupApproximation.Analysis.KirchbergCompactExtraction (10s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Analysis/KirchbergCompactExtraction.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompactExtraction.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergCompactExtraction.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompactExtraction.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergCompactExtraction.setup.json --json
+error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:169:10: `LinearMap.restrict_coe_apply` has been deprecated: Use `LinearMap.coe_restrict_apply` instead
+error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:149:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergCompactExtraction.finiteDimensional_eigenspace`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:169:10: This simp argument is unused:
+  LinearMap.restrict_coe_apply
+
+Hint: Omit it from the simp argument list.
+  simp [L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵r̵e̵s̵t̵r̵i̵c̵t̵_̵c̵o̵e̵_̵a̵p̵p̵l̵y̵,̵ ̵hw, inv_smul_smul₀ hc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✖ [4623/4624] Building GroupApproximation.Analysis.KirchbergRealDilation (22s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Analysis/KirchbergRealDilation.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealDilation.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Analysis/KirchbergRealDilation.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealDilation.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Analysis/KirchbergRealDilation.setup.json --json
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:30:27: type expected, got
+  (X g : Matrix Y Y ℂ)
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:30:32: expected token
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:37:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_zero_left`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:40:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_zero_right`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:43:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_add_left`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:47:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.pairing_smul_left`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:55:36: expected token
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:55:27: Type mismatch
+  pairing A
+has type
+  (Y → ℂ) → (Y → ℂ) → ℂ
+but is expected to have type
+  ℂ
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:86:30: Function expected at
+  IsPositiveDefinite
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  X
+
+Hint: The identifier `IsPositiveDefinite` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:87:52: unsolved goals
+G : Type u
+inst✝² : Group G
+Y : Type
+inst✝¹ : Fintype Y
+inst✝ : DecidableEq Y
+X : G → Matrix Y Y ℂ
+x✝ : Sort u_1
+IsPositiveDefinite : x✝
+hX : sorry
+f f' : G →₀ Y → ℂ
+⊢ ∑ x ∈ f.support, ∑ x_1 ∈ f'.support, pairing (X (x_1⁻¹ * x)) (f' x_1) (f x) =
+    ∑ x ∈ f.support, ∑ x_1 ∈ f'.support, (starRingEnd ℂ) (pairing (X (x⁻¹ * x_1)) (f x) (f' x_1))
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:35: This simp argument is unused:
+  conj_pairing
+
+Hint: Omit it from the simp argument list.
+  simp only [Finsupp.sum, map_sum, c̵o̵n̵j̵_̵p̵a̵i̵r̵i̵n̵g̵,̵ ̵hX.conjTranspose, mul_inv_rev, inv_inv]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:67: This simp argument is unused:
+  mul_inv_rev
+
+Hint: Omit it from the simp argument list.
+  simp only [Finsupp.sum, map_sum, conj_pairing, hX.conjTranspose, m̵u̵l̵_̵inv_r̵e̵v̵,̵ ̵inv_̵i̵n̵v̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:90:80: This simp argument is unused:
+  inv_inv
+
+Hint: Omit it from the simp argument list.
+  simp only [Finsupp.sum, map_sum, conj_pairing, hX.conjTranspose, mul_inv_rev,̵ ̵i̵n̵v̵_̵i̵n̵v̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:92:37: Function expected at
+  IsPositiveDefinite
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  X
+
+Hint: The identifier `IsPositiveDefinite` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:105:8: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ∑ g ∈ f.support, ?φ g
+in the target expression
+  (fun g v => ∑ a ∈ f.support, (fun h w => pairing (X (g⁻¹ * h)) v w) a (f a)) (↑(e i)) (f ↑(e i)) =
+    ∑ j, ∑ x, ∑ y, (starRingEnd ℂ) (f (↑(e i)) x) * X ((↑(e i))⁻¹ * ↑(e j)) x y * f (↑(e j)) y
+
+G : Type u
+inst✝² : Group G
+Y : Type
+inst✝¹ : Fintype Y
+inst✝ : DecidableEq Y
+X : G → Matrix Y Y ℂ
+x✝¹ : Sort u_1
+IsPositiveDefinite : x✝¹
+hX : sorry
+f : G →₀ Y → ℂ
+e : Fin f.support.card ≃ ↥f.support := f.support.equivFin.symm
+hsum : ∀ (φ : G → ℂ), ∑ g ∈ f.support, φ g = ∑ i, φ ↑(e i)
+i : Fin f.support.card
+x✝ : i ∈ Finset.univ
+⊢ (fun g v => ∑ a ∈ f.support, (fun h w => pairing (X (g⁻¹ * h)) v w) a (f a)) (↑(e i)) (f ↑(e i)) =
+    ∑ j, ∑ x, ∑ y, (starRingEnd ℂ) (f (↑(e i)) x) * X ((↑(e i))⁻¹ * ↑(e j)) x y * f (↑(e j)) y
+
+Note: The target expression is not type-correct under the `instances` transparency level, which may have triggered the failure. This is usually caused by unfolding of semireducible definitions in prior tactic steps. Use `set_option linter.tacticCheckInstances true` to investigate the source of the issue.
+Full error:
+  function expected
+    X ((↑(e i))⁻¹ * ↑(e j)) x
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:111:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealDilation.kernelForm_translate`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:124:15: Function expected at
+  IsPositiveDefinite
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  X
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:129:37: Function expected at
+  IsPositiveDefinite
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  X
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:132:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:131:14: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:135:2: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:134:14: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:138:18: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:143:26: unsolved goals
+x✝ : Sort ?u.1
+IsPositiveDefinite : x✝
+G : Type u
+inst✝² : Group G
+Y : Type
+inst✝¹ : Fintype Y
+inst✝ : DecidableEq Y
+X : G → Matrix Y Y ℂ
+hX : sorry
+f f' : Pre X hX
+⊢ Sort ?u.85
+
+x✝ : Sort ?u.1
+IsPositiveDefinite : x✝
+G : Type u
+inst✝² : Group G
+Y : Type
+inst✝¹ : Fintype Y
+inst✝ : DecidableEq Y
+X : G → Matrix Y Y ℂ
+hX : sorry
+f f' : Pre X hX
+⊢ ?m.159
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:147:23: unsolved goals
+x✝ : Sort ?u.1
+IsPositiveDefinite : x✝
+G : Type u
+inst✝² : Group G
+Y : Type
+inst✝¹ : Fintype Y
+inst✝ : DecidableEq Y
+X : G → Matrix Y Y ℂ
+hX : sorry
+f : Pre X hX
+⊢ 0 ≤ (kernelForm X ((toPre X hX).symm f) ((toPre X hX).symm f)).re
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:161:14: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:164:14: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:167:8: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:171:7: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:179:4: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:174:18: (deterministic) timeout at `«abstract nested proofs»`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:184:11: Unknown identifier `translate`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:197:18: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:201:18: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:209:2: 'change' tactic failed, pattern
+  Finsupp.equivMapDomain (Equiv.mulLeft g) (Finsupp.single 1 w) = Finsupp.single g w
+is not definitionally equal to target
+  ((preRep X hX) g) ((toPre X hX) (Finsupp.single 1 w)) = (toPre X hX) (Finsupp.single g w)
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:207:6: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:207:11: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:215:15: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:213:8: declaration uses `sorry`
+error: GroupApproximation/Analysis/KirchbergRealDilation.lean:223:8: declaration uses `sorry`
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Analysis.KirchbergCompactExtraction
+- GroupApproximation.Analysis.KirchbergRealDilation
+error: build failed
+EXIT=1

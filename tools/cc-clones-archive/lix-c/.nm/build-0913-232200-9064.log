@@ -1,0 +1,42 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3534 oleans
+[job] acn212 cores=slurm threads=8 base=3f347c3df523490cdeea7116e88f2316d21979ac mods: GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly
+ℹ [3400/3451] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4956/5146] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:336:14: 'GroupApproximation.GGT.VanKampen.PolygonList.isChain_chunks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:337:14: 'GroupApproximation.GGT.VanKampen.PolygonList.getLast?_flatten_of_mem_getLast?' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:338:14: 'GroupApproximation.GGT.VanKampen.PolygonList.range_flatMap_getD' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:339:14: 'GroupApproximation.GGT.VanKampen.PolygonList.head?_flatten_ne_of_lt' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:340:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:341:14: 'GroupApproximation.GGT.VanKampen.PolygonList.idxOf_eq_succ_or_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:342:14: 'GroupApproximation.GGT.VanKampen.PolygonList.exists_cyclicArc_of_isChain_idxOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PolygonLists.lean:343:14: 'GroupApproximation.GGT.VanKampen.PolygonList.lt_cutAt_sectionIndex_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [10214/10214] Building GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly (239s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-c/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/lib/lean/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-c/.lake/build/ir/GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.setup.json --json
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean:94:56: Application type mismatch: The argument
+  hrho
+has type
+  0 < rho
+but is expected to have type
+  max ?m.117 rho1 ≤ rho
+in the application
+  le_trans (le_max_right ?m.117 rho1) hrho
+error: GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean:132:14: 'GroupApproximation.GGT.VanKampen.osinLemma94SameCellPocketInput_of_loopCut' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly
+error: build failed
+EXIT=1

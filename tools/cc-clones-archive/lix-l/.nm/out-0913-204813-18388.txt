@@ -1,0 +1,26 @@
+[job] 20:48:17 acn112 waiting for clone lock
+[job] delta sync 5d22e07f2..f3e81c133: 21 files changed
+===== SUMMARY
+host acn112 cores 64-71 base f3e81c133 log /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.nm/build-0913-204813-18388.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3795 oleans
+--- errors (first 80 lines)
+7:✖ [1986/1987] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (7.9s)
+9:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:74:85: unsolved goals
+23:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:112:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.wordValue_wordComm' has a leading input; state and prove a closed proposition instead of accepting construction data
+24:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:113:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.wordProblemOracle_comp_injective' has a leading input; state and prove a closed proposition instead of accepting construction data
+25:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:114:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.turingReducible_of_query' has a leading input; state and prove a closed proposition instead of accepting construction data
+26:error: Lean exited with code 1
+29:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

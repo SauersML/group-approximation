@@ -1,0 +1,30 @@
+carrier=1 cuts=1 syllables=0
+carrier=2 cuts=1 syllables=0
+carrier=3 cuts=1 syllables=0
+carrier=4 cuts=1 syllables=0
+carrier=5 cuts=10 syllables=10
+carrier=6 cuts=10 syllables=10
+carrier=7 cuts=10 syllables=10
+carrier=8 cuts=10 syllables=10
+carrier=9 cuts=10 syllables=10
+carrier=10 cuts=10 syllables=10
+carrier=10 words=84 states=18
+carrier=11 cuts=10 syllables=10
+carrier=12 cuts=10 syllables=10
+carrier=13 cuts=10 syllables=10
+carrier=14 cuts=10 syllables=10
+carrier=15 cuts=10 syllables=10
+carrier=16 cuts=10 syllables=10
+branch=II
+carrier_states=16
+distinct_augmented_words=84
+boundary_states=20
+nonempty_q=4
+free_nonempty_q=0
+direct_killed_q=0
+power_killed_q=4
+unresolved_q=0
+POWER (3, ((-5, -5), (-5, -5, -5), (-5, -5, -5, -5), (-5, -5, -5, -5, -5, -5), (5, 5), (5, 5, 5), (5, 5, 5, 5), (5, 5, 5, 5, 5, 5)), (5,), ((), (5, 5, 5), (3,), (4,), (5,)))
+POWER (3, ((-5, -5), (-5, -5, -5), (-5, -5, -5, -5), (5, 5), (5, 5, 5), (5, 5, 5, 5), (5, 5, 5, 5, 5, 5)), (5,), ((), (5, 5, 5), (3,), (4,), (5,)))
+POWER (3, ((-5, -5), (-5, -5, -5), (-5, -5, -5, -5, -5, -5), (5, 5), (5, 5, 5), (5, 5, 5, 5)), (5,), ((), (5, 5, 5), (3,), (4,), (5,)))
+POWER (3, ((-5, -5), (-5, -5, -5), (5, 5), (5, 5, 5), (5, 5, 5, 5)), (5,), ((), (5, 5, 5), (3,), (4,), (5,)))

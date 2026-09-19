@@ -1,0 +1,9 @@
+purged 4 stale artifact sets (source-newer=1, import-newer=3) of 2433 oleans
+[job] acn48 cores=slurm threads=8 base=e5d42a1ee11294d74dedbdbd5278799b98963af1 mods: GroupApproximation.CharClass.OddPTotalInterface
+ℹ [2075/2075] Built GroupApproximation.CharClass.OddPTotalInterface (22s)
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:129:14: 'GroupApproximation.CharClass.OddPTotal.evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:130:14: 'GroupApproximation.CharClass.OddPTotal.coe_evenOf' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:131:14: 'GroupApproximation.CharClass.OddPTotal.EvenReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/CharClass/OddPTotalInterface.lean:132:14: 'GroupApproximation.CharClass.OddPTotal.GradedReducedPowers' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (2075 jobs).
+EXIT=0

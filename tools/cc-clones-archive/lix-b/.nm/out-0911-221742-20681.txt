@@ -1,0 +1,33 @@
+[job] 22:18:16 cn1051 waiting for clone lock
+[job] delta sync 02212af9e..3e84d2862: 12 files changed
+===== SUMMARY
+host cn1051 cores slurm base 3e84d2862 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0911-221742-20681.log
+purged 4 stale artifact sets (source-newer=1, import-newer=3) of 2236 oleans
+--- errors (first 80 lines)
+50:✖ [9021/9023] Building GroupApproximation.CharClass.MayerVietorisPullOf (282s)
+52:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:166:6: Type mismatch
+60:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:175:30: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+83:Full error:
+95:error: GroupApproximation/CharClass/MayerVietorisPullOf.lean:165:54: This simp argument is unused:
+102:error: Lean exited with code 1
+105:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.ThomDataOf
+BUILT GroupApproximation.CharClass.ThomChernDegreewiseOf
+mentioned-not-built GroupApproximation.CharClass.ThomHabsOf (replayed or failed)
+BUILT GroupApproximation.CharClass.GysinPairTautOf
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/GysinFromGraded.lean
+COMPILED GroupApproximation/CharClass/GysinPairTautOf.lean
+COMPILED GroupApproximation/CharClass/GysinRetractOf.lean
+COMPILED GroupApproximation/CharClass/GysinSphereOf.lean
+COMPILED GroupApproximation/CharClass/ThomBridgeChart.lean
+COMPILED GroupApproximation/CharClass/ThomChernDegreewiseOf.lean
+COMPILED GroupApproximation/CharClass/ThomDataOf.lean
+COMPILED GroupApproximation/CharClass/ThomStepCEulerOf.lean
+COMPILED GroupApproximation/CharClass/ThomToolkitInstanceOf.lean
+- GroupApproximation.CharClass.MayerVietorisPullOf
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

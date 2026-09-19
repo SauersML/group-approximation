@@ -1,0 +1,17 @@
+[job] 19:59:15 n14 waiting for clone lock
+[job] delta sync 5359a1ca6..6ff3cd88f: 11 files changed
+===== SUMMARY
+host n14 cores slurm base 6ff3cd88f log /projects/standard/hsiehph/sauer354/cc_clones/lix-j/.nm/build-0913-195845-97363.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3475 oleans
+--- errors (first 80 lines)
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguage
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean
+ Quot.sound]
+Build completed successfully (1850 jobs).
+EXIT=0
+PROBE GREEN

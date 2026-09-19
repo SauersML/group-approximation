@@ -1,0 +1,14 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3633 oleans
+[job] acn112 cores=64-71 threads=8 base=8d3608c9d692d882066a9235cd3e9eae65ecae14 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchOuterDispatch
+ℹ [3295/3424] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10160/10160] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchOuterDispatch (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchOuterDispatch.lean:105:14: 'GroupApproximation.GGT.VanKampen.CellPocketOuterPinchStepSectionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchOuterDispatch.lean:106:14: 'GroupApproximation.GGT.VanKampen.cellPocketPinchSectionStatement_of_outerPinchStep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10160 jobs).
+EXIT=0

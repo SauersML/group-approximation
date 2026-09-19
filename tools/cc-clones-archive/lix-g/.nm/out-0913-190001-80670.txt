@@ -1,0 +1,31 @@
+[job] 19:00:30 acn112 waiting for clone lock
+[job] delta sync 1d23a20e8..20f65e6be: 61 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 20f65e6be log /projects/standard/hsiehph/sauer354/cc_clones/lix-g/.nm/build-0913-190001-80670.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3588 oleans
+--- errors (first 80 lines)
+6:✖ [10092/10092] Building GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing (34s)
+8:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:212:56: Application type mismatch: The argument
+16:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:344:9: Function expected at
+25:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:398:9: Function expected at
+34:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:400:101: unsolved goals
+66:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:423:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.not_walkKeep_head_p' depends on axioms outside the classical allowlist: [sorryAx]
+67:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+72:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:425:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_chain_X' depends on axioms outside the classical allowlist: [sorryAx]
+73:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+75:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:426:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.firstTurn_close_X' depends on axioms outside the classical allowlist: [sorryAx]
+76:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+78:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:427:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_X' depends on axioms outside the classical allowlist: [sorryAx]
+79:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+81:error: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoncrossing.lean:428:14: 'GroupApproximation.GGT.VanKampen.SameCellPocketNoncrossing.pocketInputs_Y' depends on axioms outside the classical allowlist: [sorryAx]
+82:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+84:error: Lean exited with code 1
+87:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoncrossing
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

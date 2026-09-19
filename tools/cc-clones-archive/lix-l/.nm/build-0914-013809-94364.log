@@ -1,0 +1,113 @@
+purged 3 stale artifact sets (source-newer=2, import-newer=1) of 3799 oleans
+[job] acn112 cores=64-71 threads=8 base=17413083365aec0308689dce4c829234420d8a24 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianQueries GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianComputability
+✔ [1990/1995] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements (6.5s)
+ℹ [1991/1995] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (6.1s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:118:14: 'GroupApproximation.SimpleKazhdanSofic.wordValue_wordComm' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:119:14: 'GroupApproximation.SimpleKazhdanSofic.wordProblemOracle_comp_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:120:14: 'GroupApproximation.SimpleKazhdanSofic.turingReducible_of_query' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1992/1995] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianQueries (6.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:93:37: This simp argument is unused:
+  Nat.lt_succ_iff
+
+Hint: Omit it from the simp argument list.
+  simp [pairsUpTo, List.mem_flatMap,̵ ̵N̵a̵t̵.̵l̵t̵_̵s̵u̵c̵c̵_̵i̵f̵f̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:123:76: Application type mismatch: The argument
+  hw
+has type
+  w.length = b
+but is expected to have type
+  w.length = w.length
+in the application
+  wordOnes_eq_prefixOnes w.get w (fun j h => getD_eq_getElem' w ?m.136) hw
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:129:37: Type mismatch
+  hj
+has type
+  j < b
+but is expected to have type
+  j < (List.ofFn w').length
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:186:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.natCast_lt_mul_iff_allWords' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:187:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.mem_language_sturmian_iff_pairs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.primrec_prefixOnes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:189:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.primrec_allWords' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianQueries.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.SturmianQueries.primrec_pairsUpTo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [1994/1995] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant (6.8s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeInvariant.lean:97:21: 'GroupApproximation.SimpleKazhdanSofic.printedWordProblemReducesUnderEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1995/1995] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem (13s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:78:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'SkewMonoidAlgebra.instRing', which is 'noncomputable'
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:81:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.elemG_eq_one_iff`:
+  [DiscreteTopology A]
+  [DecidableEq A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DiscreteTopology A] [DecidableEq A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:91:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.elemG_comm`:
+  [DiscreteTopology A]
+  [DecidableEq A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DiscreteTopology A] [DecidableEq A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:138:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.shiftComap_apply`:
+  [DiscreteTopology A]
+  [DecidableEq A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DiscreteTopology A] [DecidableEq A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:142:0: automatically included section variable(s) unused in theorem `GroupApproximation.SimpleKazhdanSofic.LanguageReduction.subshiftHomeo_apply_val`:
+  [DiscreteTopology A]
+  [DecidableEq A]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DiscreteTopology A] [DecidableEq A] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:218:2: unsolved goals
+case mpr
+A : Type
+inst✝² : TopologicalSpace A
+inst✝¹ : DiscreteTopology A
+inst✝ : DecidableEq A
+S : Subshift A ℤ
+v : List A
+h : v ∉ language S
+x : ↑S.carrier
+hn : ¬∀ (t : Fin v.length), ↑x ↑↑t = v.get t
+⊢ (∀ (t : Fin v.length), ↑x ↑↑t = v[↑t]) → 1 = 0
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:222:35: This simp argument is unused:
+  hn
+
+Hint: Omit it from the simp argument list.
+  simp [cylinderIndicator_apply,̵ ̵h̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/LanguageReducesToWordProblem.lean:317:21: 'GroupApproximation.SimpleKazhdanSofic.printedLanguageReducesToWordProblem' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianQueries
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.LanguageReducesToWordProblem
+error: build failed
+EXIT=1

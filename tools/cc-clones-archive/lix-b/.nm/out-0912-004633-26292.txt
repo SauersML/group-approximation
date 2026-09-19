@@ -1,0 +1,23 @@
+[job] 00:47:12 acn112 waiting for clone lock
+[job] delta sync 0bce68c5f..ddd327336: 38 files changed
+===== SUMMARY
+host acn112 cores 64-71 base ddd327336 log /projects/standard/hsiehph/sauer354/cc_clones/lix-b/.nm/build-0912-004633-26292.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2318 oleans
+--- errors (first 80 lines)
+19:✖ [8933/8933] Building GroupApproximation.CharClass.LIXKGenLocalLinear (29s)
+21:error: GroupApproximation/CharClass/LIXKGenLocalLinear.lean:49:5: Variable name `hGu` is not explicitly referenced.
+32:error: Lean exited with code 1
+35:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.CharClass.LIXKGenLocalLinear (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/LIXKGenLocalEta.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalSplit.lean
+COMPILED GroupApproximation/CharClass/LIXKGenLocalSplitOf.lean
+COMPILED GroupApproximation/CharClass/LIXKLocalRestrict.lean
+COMPILED GroupApproximation/CharClass/LIXKLocalSplit.lean
+- GroupApproximation.CharClass.LIXKGenLocalLinear
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

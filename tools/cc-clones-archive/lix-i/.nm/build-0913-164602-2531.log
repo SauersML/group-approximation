@@ -1,0 +1,58 @@
+purged 46 stale artifact sets (source-newer=5, import-newer=41) of 3606 oleans
+[job] acn112 cores=72-79 threads=8 base=ad33958c0db19ab096c9f565cc4dc43fa4bc617d mods: GroupApproximation.Algebra.LocallyFiniteCongruenceKernel GroupApproximation.Kazhdan.HaagerupFiniteProduct GroupApproximation.Dynamics.RankTwoKazhdanLimitStatements GroupApproximation.Dynamics.RankTwoKazhdanLimitAssembly
+ℹ [2839/2941] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+✖ [4312/4315] Building GroupApproximation.Algebra.LocallyFiniteCongruenceKernel (9.1s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-i/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/lib/lean/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-i/.lake/build/ir/GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.setup.json --json
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:99:65: Application type mismatch: The argument
+  ρ
+has type
+  @RingHom R S (@Semiring.toNonAssocSemiring R inst✝³.toSemiring) inst✝².toNonAssocSemiring
+but is expected to have type
+  @RingHom ?m.9 ?m.11 (@Semiring.toNonAssocSemiring ?m.9 CommRing.toCommSemiring.toSemiring)
+    CommRing.toCommSemiring.toNonAssocSemiring
+in the application
+  Matrix.GeneralLinearGroup.map ρ
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:164:22: Application type mismatch: The argument
+  s
+has type
+  Finset ↥(Units.map ↑ρ).ker
+but is expected to have type
+  Finset Rˣ
+in the application
+  Finset.image (fun u => ↑u - 1) s
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:169:74: Application type mismatch: The argument
+  u.inv
+has type
+  R
+of sort `Type u_1` but is expected to have type
+  u ∈ (Units.map ↑ρ).ker
+of sort `Prop` in the application
+  MonoidHom.mem_ker.mp u.inv
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:189:49: Type mismatch
+  u
+has type
+  ↑M
+but is expected to have type
+  R
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:213:14: 'GroupApproximation.ChainCore.hasLocallyFiniteKernel_of_isLocallyMatricialIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:214:14: 'GroupApproximation.ChainCore.inv_mem_of_finite_of_mul_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:215:14: Unknown constant `GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_glMap`
+error: GroupApproximation/Algebra/LocallyFiniteCongruenceKernel.lean:216:14: 'GroupApproximation.ChainCore.isLocallyFiniteGroup_ker_unitsMap' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [4315/4315] Built GroupApproximation.Kazhdan.HaagerupFiniteProduct (11s)
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:69:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Kazhdan/HaagerupFiniteProduct.lean:70:14: 'GroupApproximation.Haagerup.hasHaagerupProperty_of_injective_pi_glTwo' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.Algebra.LocallyFiniteCongruenceKernel
+error: build failed
+EXIT=1

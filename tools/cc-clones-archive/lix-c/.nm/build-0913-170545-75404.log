@@ -1,0 +1,18 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3424 oleans
+[job] acn112 cores=64-71 threads=8 base=46dd148318d89fe2369c39d38043bbf7715f906f mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkChain
+ℹ [3317/3457] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10089/10089] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkChain (23s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:268:14: 'GroupApproximation.GGT.VanKampen.closedWalk_isChain_closes_of_interleave' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:269:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_ne_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:270:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.walk_isChain_closes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkChain.lean:271:14: 'GroupApproximation.GGT.VanKampen.CellPocketWalk.exists_of_joinsCells_closedWalk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10089 jobs).
+EXIT=0

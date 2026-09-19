@@ -1,0 +1,24 @@
+[job] 16:04:48 acn112 waiting for clone lock
+[job] delta sync 5684c45bc..cd6ab594b: 3 files changed
+===== SUMMARY
+host acn112 cores 64-71 base cd6ab594b log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0913-160442-90577.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4588 oleans
+--- errors (first 80 lines)
+3:✖ [1217/1217] Building GroupApproximation.Dynamics.RefiningClopenPartitions (9.0s)
+8:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:35:32: invalid binder annotation, type is not a class instance
+12:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:46:41: invalid binder annotation, type is not a class instance
+16:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:80:41: invalid binder annotation, type is not a class instance
+20:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:93:54: invalid binder annotation, type is not a class instance
+25:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:112:14: Unknown constant `GroupApproximation.ChainCore.exists_discreteQuotient_mesh_lt`
+26:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:113:14: Unknown constant `GroupApproximation.ChainCore.exists_refiningClopenPartitions`
+27:error: GroupApproximation/Dynamics/RefiningClopenPartitions.lean:114:14: Unknown constant `GroupApproximation.ChainCore.exists_forall_proj_eq_imp_of_locallyConstant`
+28:error: Lean exited with code 1
+31:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Dynamics.RefiningClopenPartitions (replayed or failed)
+--- rebuilt GroupApproximation modules: 0
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+- GroupApproximation.Dynamics.RefiningClopenPartitions
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,31 @@
+[job] 11:52:38 acn112 waiting for clone lock
+[job] delta sync 1a4555df7..abbee4ed0: 46 files changed
+===== SUMMARY
+host acn112 cores 88-95 base abbee4ed0 log /projects/standard/hsiehph/sauer354/cc_clones/lix-h/.nm/build-0912-115224-90410.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 2403 oleans
+--- errors (first 80 lines)
+127:✖ [9261/9261] Building GroupApproximation.CharClass.ChernSplittingOfLix (49s)
+129:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:47:38: Unknown identifier `tautCardOf`
+132:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:48:77: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+137:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:73:38: Unknown identifier `tautCardOf`
+140:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:74:77: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+145:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:88:14: Unknown constant `hasSplittingPN_lixBundleOf`
+146:error: GroupApproximation/CharClass/ChernSplittingOfLix.lean:89:14: Unknown constant `hasSplittingPN_lixBundleOf_self`
+147:error: Lean exited with code 1
+150:error: build failed
+--- per-module
+BUILT GroupApproximation.CharClass.ChernSplittingOfOpsAdapter
+mentioned-not-built GroupApproximation.CharClass.ChernSplittingOfLix (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/CharClass/ChernSplittingOfCompact.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfFlagRelation.lean
+COMPILED GroupApproximation/CharClass/ChernSplittingOfOpsAdapter.lean
+COMPILED GroupApproximation/CharClass/ParityPDataNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPSplitStepDNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuCartanNarrow.lean
+COMPILED GroupApproximation/CharClass/ParityPWuTransportNarrow.lean
+- GroupApproximation.CharClass.ChernSplittingOfLix
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

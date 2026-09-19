@@ -1,0 +1,16 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3538 oleans
+[job] acn143 cores=slurm threads=8 base=97ef09ec60a9906e3c2788df6e62eb07c1becf56 mods: GroupApproximation.GGT.VanKampen.ListNoABABChanges
+ℹ [613/614] Replayed GroupApproximation.GGT.VanKampen.ListNoABABLength
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:133:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first' depends on axioms: [propext]
+info: GroupApproximation/GGT/VanKampen/ListNoABABLength.lean:134:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [614/614] Replayed GroupApproximation.GGT.VanKampen.ListNoABABChanges
+info: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:73:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_cons_add_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/ListNoABABChanges.lean:74:14: 'GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_add_two_le_two_mul_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (614 jobs).
+EXIT=0

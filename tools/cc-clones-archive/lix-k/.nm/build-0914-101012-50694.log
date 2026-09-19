@@ -1,0 +1,17 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3712 oleans
+[job] acn112 cores=72-79 threads=8 base=655d43fba8fd9e12bc46234c5a3c743774d35bbb mods: GroupApproximation.GGT.VanKampen.Estimating.OsinMultipleEdgeCutNonzero
+ℹ [3295/3404] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10041/10041] Built GroupApproximation.GGT.VanKampen.Estimating.OsinMultipleEdgeCutNonzero (33s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinMultipleEdgeCutNonzero.lean:184:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCut.toNonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinMultipleEdgeCutNonzero.lean:185:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCutNonzero.false_of_below' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinMultipleEdgeCutNonzero.lean:186:14: 'GroupApproximation.GGT.VanKampen.OsinMultipleEdgeCutNonzero.ofPocketRegion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10041 jobs).
+EXIT=0

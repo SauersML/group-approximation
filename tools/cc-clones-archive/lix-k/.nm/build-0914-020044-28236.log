@@ -1,0 +1,79 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3459 oleans
+[job] acn112 cores=80-87 threads=8 base=5d8014be4ba490820a57966eb3eeac74ff47bc6a mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerCopy GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
+ℹ [1767/1828] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerUnits
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:213:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilon_mul_epsilon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:214:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilon_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:215:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_single' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerUnits.lean:216:14: 'GroupApproximation.SimpleKazhdanSofic.General.epsilonHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2598/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:189:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:190:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:191:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [2614/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTowerCopy
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerCopy.lean:121:14: 'GroupApproximation.SimpleKazhdanSofic.General.copyGL_transvection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerCopy.lean:122:14: 'GroupApproximation.SimpleKazhdanSofic.General.copyGL_mem_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTowerCopy.lean:123:14: 'GroupApproximation.SimpleKazhdanSofic.General.copyGL_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2615/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:156:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_transvection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:157:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_mem_elementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:158:14: 'GroupApproximation.SimpleKazhdanSofic.towerCopy_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopyGroup.lean:159:14: 'GroupApproximation.SimpleKazhdanSofic.center_units_matrix_zmodTwo_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2616/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SimplicityNormalSubgroup
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:72:4: Try this:
+  [apply] abel_nf
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:78:4: Try this:
+  [apply] abel_nf
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:319:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:320:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityIsSimpleGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:321:14: 'GroupApproximation.SimpleKazhdanSofic.exists_towerCopy_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:322:14: 'GroupApproximation.SimpleKazhdanSofic.one_mem_levelIdeal_of_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:323:14: 'GroupApproximation.SimpleKazhdanSofic.eq_top_of_simplicityCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNormalSubgroup.lean:324:14: 'GroupApproximation.SimpleKazhdanSofic.printedSimplicityThroughFiniteSimpleSubgroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2617/2617] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityNormalSubgroup.lean:222:14: 'GroupApproximation.SimpleKazhdanSofic.General.exists_copyGL_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityNormalSubgroup.lean:223:14: 'GroupApproximation.SimpleKazhdanSofic.General.eq_top_of_generalCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityNormalSubgroup.lean:224:14: 'GroupApproximation.SimpleKazhdanSofic.General.isSimpleGroup_of_generalCommutatorWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralSimplicityNormalSubgroup.lean:225:14: 'GroupApproximation.SimpleKazhdanSofic.General.printedGeneralSimplicityFromWitness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (2617 jobs).
+EXIT=0

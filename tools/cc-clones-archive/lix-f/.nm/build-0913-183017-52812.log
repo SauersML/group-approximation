@@ -1,0 +1,29 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3359 oleans
+[job] n17 cores=slurm threads=8 base=30b67c8644334cc06a5dd1cee68a70eb54b647f1 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTrimDouble
+ℹ [3328/3385] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10121/10125] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinPocketArcTrim
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:230:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.dropLastArc_darts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:231:14: 'GroupApproximation.GGT.VanKampen.Embedded.CyclicArc.tailArc_darts' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:232:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimSourceLast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:233:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimTargetHead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:234:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.simple_trimSourceLast_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:235:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimSourceLast_sourceArc_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketArcTrim.lean:236:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.trimTargetHead_targetArc_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10125/10125] Built GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTrimDouble (302s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTrimDouble.lean:123:14: 'GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_trimDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10125 jobs).
+EXIT=0

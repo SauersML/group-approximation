@@ -1,0 +1,33 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3481 oleans
+[job] acn112 cores=64-71 threads=8 base=604ace823fa9a864698923a4a5ad002677f7e168 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguageCriterion
+⚠ [1849/1851] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+warning: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:1:0: 'Mathlib.Data.Real.Archimedean' has been deprecated: please replace this import by
+
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:206:14: 'GroupApproximation.SimpleKazhdanSofic.shift_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:207:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_add_intCast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:208:14: 'GroupApproximation.SimpleKazhdanSofic.sturmianCoding_eq_floor_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:209:14: 'GroupApproximation.SimpleKazhdanSofic.sum_sturmianCoding' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:210:14: 'GroupApproximation.SimpleKazhdanSofic.isClosed_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean:211:14: 'GroupApproximation.SimpleKazhdanSofic.mapsTo_shift_sturmianCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1851/1851] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguageCriterion (8.7s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguageCriterion.lean:121:14: 'GroupApproximation.SimpleKazhdanSofic.wordOnes_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguageCriterion.lean:122:14: 'GroupApproximation.SimpleKazhdanSofic.wordOnes_word_sturmianCoding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguageCriterion.lean:123:14: 'GroupApproximation.SimpleKazhdanSofic.mem_language_sturmianSubshift_iff_compare' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguageCriterion.lean:124:14: 'GroupApproximation.SimpleKazhdanSofic.intCast_lt_mul_iff_forall_mem_language' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1851 jobs).
+EXIT=0

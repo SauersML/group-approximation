@@ -1,0 +1,10 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3479 oleans
+[job] acn112 cores=64-71 threads=8 base=bb4e1f0f83fb345fb91a790a01009596475ed64e mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+ℹ [1757/1757] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration (8.4s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.unit_zpow_mul_coeff_mul_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:189:14: 'GroupApproximation.SimpleKazhdanSofic.mem_closure_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingGeneration.lean:190:21: 'GroupApproximation.SimpleKazhdanSofic.printedRingGeneration' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1757 jobs).
+EXIT=0

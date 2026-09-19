@@ -1,0 +1,31 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4111 oleans
+[job] acn112 cores=64-71 threads=8 base=81e8192e5a9b4188cb2b118cdb44c835eabc2527 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassCaseTwo
+ℹ [3297/3438] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10159/10162] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:262:14: 'GroupApproximation.GGT.VanKampen.osinLemma94Section_of_classCount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:263:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.classBudget_of_otherClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSection.lean:264:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCountInput_of_endLoops' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10161/10162] Replayed GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRunPositions
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:237:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.listVal_take_blocks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:238:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.runPos_mono' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRunPositions.lean:239:14: 'GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10162/10162] Built GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassCaseTwo (28s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCaseTwo.lean:271:14: 'GroupApproximation.GGT.VanKampen.osinLemma94ClassCaseTwo_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10162 jobs).
+EXIT=0

@@ -1,0 +1,30 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3795 oleans
+[job] acn112 cores=64-71 threads=8 base=f3e81c13371d363284ae4cf9b7e195a670ddceb2 mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant
+ℹ [1985/1987] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuumManyDegrees
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuumManyDegrees.lean:140:21: 'GroupApproximation.SimpleKazhdanSofic.ContinuumManyDegrees.printedContinuumManyDegrees' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [1986/1987] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle (7.9s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/cs-endpoint/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/cc_clones/lix-l/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean -o /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.olean -i /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/lib/lean/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.ilean -c /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.c --setup /projects/standard/hsiehph/sauer354/cc_clones/lix-l/.lake/build/ir/GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.setup.json --json
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:74:85: unsolved goals
+ι : Type u_1
+H : Type u_2
+inst✝² : Group H
+s : ι → H
+inst✝¹ : Primcodable ι
+K : Type u_3
+inst✝ : Group K
+φ : H →* K
+hφ : Function.Injective ⇑φ
+key : ∀ (x : H), φ x = 1 ↔ x = 1
+n : ℕ
+⊢ Part.some (if ∃ w, decode n = some w ∧ wordValue (⇑φ ∘ s) w = 1 then 1 else 0) =
+    Part.some (if ∃ w, decode n = some w ∧ wordValue s w = 1 then 1 else 0)
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:112:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.wordValue_wordComm' has a leading input; state and prove a closed proposition instead of accepting construction data
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:113:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.wordProblemOracle_comp_injective' has a leading input; state and prove a closed proposition instead of accepting construction data
+error: GroupApproximation/Manuscript/SimpleKazhdanSofic/WordOracle.lean:114:21: advertised closed endpoint 'GroupApproximation.SimpleKazhdanSofic.turingReducible_of_query' has a leading input; state and prove a closed proposition instead of accepting construction data
+error: Lean exited with code 1
+Some required targets logged failures:
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
+error: build failed
+EXIT=1

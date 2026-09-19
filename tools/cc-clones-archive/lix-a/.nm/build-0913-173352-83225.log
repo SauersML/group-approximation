@@ -1,0 +1,35 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3854 oleans
+[job] acn112 cores=72-79 threads=8 base=543638579b8d3de86dfe25514dde27006c73b2f4 mods: GroupApproximation.GGT.VanKampen.SimpleClosedWalkSidesDisjoint
+ℹ [3297/3382] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4649/4649] Built GroupApproximation.GGT.VanKampen.SimpleClosedWalkSidesDisjoint (13s)
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:204:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.mem_sideFaces_iff_of_eqvGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:206:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.eqvGen_walkKeep_of_mem_sideFaces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:207:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_across' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:208:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_walkKeep_of_across' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:210:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_across_of_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:212:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_across' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:213:14: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_barrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:215:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_barrier_noncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean:217:2: 'GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_barrier_noncrossing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4649 jobs).
+EXIT=0

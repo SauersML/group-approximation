@@ -1,0 +1,54 @@
+[job] 19:42:31 cn1009 waiting for clone lock
+[job] delta sync 39404b295..b993a87d8: 1 files changed
+===== SUMMARY
+host cn1009 cores slurm base b993a87d8 log /projects/standard/hsiehph/sauer354/cc_clones/lix-k/.nm/build-0913-194213-23906.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3380 oleans
+--- errors (first 80 lines)
+15:✖ [2607/2608] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (9.9s)
+17:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:41:48: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+28:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:45:6: Unknown constant `ZMod.val_add`
+29:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:44:49: unsolved goals
+36:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:49:6: Unknown constant `ZMod.val_mul`
+37:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:48:45: unsolved goals
+44:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:55:22: Unknown constant `ZMod.val_zero`
+45:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:55:15: unsolved goals
+51:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:70:18: unsolved goals
+69:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:48: Unknown constant `ZMod.val_zero`
+70:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:15: unsolved goals
+80:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:63: This simp argument is unused:
+87:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:67:75: This simp argument is unused:
+94:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:78:15: This simp argument is unused:
+101:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:41: Unknown constant `ZMod.val`
+102:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:51: Unknown constant `ZMod.val_one`
+103:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:65: Unknown constant `ZMod.val_zero`
+104:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:94:80: Unknown identifier `ite_nsmul`
+105:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:91:69: unsolved goals
+117:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:4: This simp argument is unused:
+125:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:15: This simp argument is unused:
+133:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:27: This simp argument is unused:
+141:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:46: This simp argument is unused:
+149:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:95:63: This simp argument is unused:
+157:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:110:2: `simp` made no progress
+160:Full error:
+163:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:108:76: This simp argument is unused:
+171:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:120:15: failed to synthesize instance of type class
+175:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:127:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_one' depends on axioms outside the classical allowlist: [sorryAx]
+176:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+178:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:128:14: 'GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE' depends on axioms outside the classical allowlist: [sorryAx]
+179:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+181:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCopy.lean:129:14: 'GroupApproximation.SimpleKazhdanSofic.towerHom_injective' depends on axioms outside the classical allowlist: [sorryAx]
+182:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+184:error: Lean exited with code 1
+187:error: build failed
+--- per-module
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy (replayed or failed)
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopyGroup (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerMatrixUnits.lean
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerStatement.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,30 @@
+[job] 16:49:18 acn112 waiting for clone lock
+[job] delta sync 86eeadfde..835fa3ee5: 7 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 835fa3ee5 log /projects/standard/hsiehph/sauer354/cc_clones/lix-a/.nm/build-0913-164908-10765.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3773 oleans
+--- errors (first 80 lines)
+4:✖ [1664/1664] Building GroupApproximation.Algebra.BilateralThreeCellMatrices (9.3s)
+6:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:193:11: try 'simp' instead of 'simpa'
+9:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:226:14: failed to synthesize instance of type class
+13:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:228:6: Type mismatch
+19:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:231:14: failed to synthesize instance of type class
+23:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:233:6: Type mismatch
+29:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:461:21: 'GroupApproximation.BilateralThreeCell.printedBilateralThreeCellIdentities' depends on axioms outside the classical allowlist: [sorryAx]
+30:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+32:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:462:14: 'GroupApproximation.BilateralThreeCell.Cell.z_commute_B' depends on axioms outside the classical allowlist: [sorryAx]
+33:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+35:error: GroupApproximation/Algebra/BilateralThreeCellMatrices.lean:463:14: 'GroupApproximation.BilateralThreeCell.Cell.z_mem_B' depends on axioms outside the classical allowlist: [sorryAx]
+36:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+44:error: Lean exited with code 1
+47:error: build failed
+--- per-module
+BUILT GroupApproximation.Algebra.BilateralThreeCellLevels
+mentioned-not-built GroupApproximation.Algebra.BilateralThreeCellMatrices (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/BilateralThreeCellLevels.lean
+- GroupApproximation.Algebra.BilateralThreeCellMatrices
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

@@ -1,0 +1,21 @@
+[job] 08:38:21 acn112 waiting for clone lock
+[job] delta sync c23f6e753..9890ca815: 16 files changed
+===== SUMMARY
+host acn112 cores 72-79 base 9890ca815 log /projects/standard/hsiehph/sauer354/cc_clones/lix-e/.nm/build-0914-083817-77166.log
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 4359 oleans
+--- errors (first 80 lines)
+6:✖ [4615/4617] Building GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem (10s)
+8:error: GroupApproximation/Manuscript/SimpleKazhdanSofic/GeneralTheorem.lean:161:4: try 'simp' instead of 'simpa'
+23:error: Lean exited with code 1
+45:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem (replayed or failed)
+BUILT GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitTransport
+mentioned-not-built GroupApproximation.Manuscript.SimpleKazhdanSofic.MainFromGeneral (replayed or failed)
+--- rebuilt GroupApproximation modules: 1
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitTransport.lean
+- GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

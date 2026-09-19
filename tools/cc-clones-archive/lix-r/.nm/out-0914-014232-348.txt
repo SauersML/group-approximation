@@ -1,0 +1,45 @@
+[job] 01:42:37 acn112 waiting for clone lock
+[job] delta sync ad284eb8c..174130833: 16 files changed
+===== SUMMARY
+host acn112 cores 64-71 base 174130833 log /projects/standard/hsiehph/sauer354/cc_clones/lix-r/.nm/build-0914-014232-348.log
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3481 oleans
+--- errors (first 80 lines)
+6:✖ [3286/3293] Building GroupApproximation.Analysis.KirchbergRealForms (6.3s)
+8:error: GroupApproximation/Analysis/KirchbergRealForms.lean:84:37: This simp argument is unused:
+15:error: GroupApproximation/Analysis/KirchbergRealForms.lean:86:0: automatically included section variable(s) unused in theorem `GroupApproximation.KirchbergRealForms.re_trace_conjTranspose_mul`:
+21:error: Lean exited with code 1
+22:✖ [3287/3293] Building GroupApproximation.Analysis.KirchbergCompletionRepresentation (6.0s)
+24:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:44:16: typeclass instance problem is stuck
+30:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:43:2: Alternative `ih` has not been provided
+31:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:45:6: unexpected token '('; expected command
+32:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:51:16: typeclass instance problem is stuck
+38:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:50:2: Alternative `ih` has not been provided
+39:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:52:6: unexpected token '('; expected command
+40:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:71:44: Fields missing: `map_mul'`
+41:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:76:12: Type mismatch
+47:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:75:4: Alternative `ih` has not been provided
+48:error: GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean:77:8: unexpected token '('; expected command
+49:error: Lean exited with code 1
+52:✖ [3291/3293] Building GroupApproximation.Analysis.KirchbergCompactExtraction (11s)
+54:error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:108:6: Type mismatch: After simplification, term
+60:error: GroupApproximation/Analysis/KirchbergCompactExtraction.lean:166:4: Tactic `apply` failed: could not unify the conclusion of `@funext`
+85:error: Lean exited with code 1
+91:error: build failed
+--- per-module
+BUILT GroupApproximation.Kazhdan.KazhdanNearInvariantVector
+mentioned-not-built GroupApproximation.Analysis.KirchbergCompactExtraction (replayed or failed)
+BUILT GroupApproximation.Algebra.OrthogonalRepresentationResiduallyFinite
+mentioned-not-built GroupApproximation.Analysis.KirchbergCompletionRepresentation (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.KirchbergRealForms (replayed or failed)
+BUILT GroupApproximation.Analysis.KirchbergTraceModels
+mentioned-not-built GroupApproximation.Analysis.KirchbergRealDilation (replayed or failed)
+mentioned-not-built GroupApproximation.Analysis.KirchbergTensorSquare (replayed or failed)
+--- rebuilt GroupApproximation modules: 3
+--- compiled overlay files (olean present; olean/.trace/.olean.hash newer than the source as built; a cache restore counts: same input hash)
+COMPILED GroupApproximation/Algebra/OrthogonalRepresentationResiduallyFinite.lean
+COMPILED GroupApproximation/Analysis/KirchbergTraceModels.lean
+COMPILED GroupApproximation/Kazhdan/KazhdanNearInvariantVector.lean
+- GroupApproximation.Analysis.KirchbergCompactExtraction
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

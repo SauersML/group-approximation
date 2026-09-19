@@ -1,0 +1,73 @@
+[job] 19:59:20 acn112 waiting for clone lock
+===== SUMMARY
+host acn112 cores 80-87 base 23f99b77f log /projects/standard/hsiehph/sauer354/cc_clones/stw-fix/.nm/build-0911-195912-45788.log
+purged 137 stale artifact sets (source-newer=23, import-newer=114) of 4877 oleans
+--- errors (first 80 lines)
+542:✖ [10074/10093] Building GroupApproximation.GGT.HullSCCyclicPeripheralRemoval (211s)
+544:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:88:39: failed to synthesize instance of type class
+548:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:88:18: failed to synthesize instance of type class
+552:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:89:54: Application type mismatch: The argument
+560:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:122:12: unsolved goals
+592:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:263:14: 'GroupApproximation.GGT.exists_jointWord_of_removeCyclicPeripherals' depends on axioms outside the classical allowlist: [sorryAx]
+593:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+595:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:264:14: 'GroupApproximation.GGT.removeCyclicPeripherals_relBall_subset' depends on axioms outside the classical allowlist: [sorryAx]
+596:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+598:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:265:14: 'GroupApproximation.GGT.removeCyclicPeripherals_locallyFinite' depends on axioms outside the classical allowlist: [sorryAx]
+599:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+601:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:266:14: 'GroupApproximation.GGT.removeCyclicPeripherals_alphabet_carrier_of_isEmpty' depends on axioms outside the classical allowlist: [sorryAx]
+602:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+604:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:267:14: 'GroupApproximation.GGT.removeCyclicPeripherals_isHyperbolicallyEmbedded_of_isEmpty' depends on axioms outside the classical allowlist: [sorryAx]
+605:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+607:error: GroupApproximation/GGT/HullSCCyclicPeripheralRemoval.lean:268:14: 'GroupApproximation.GGT.cyclicPeripheralRemovalStatement_of_hyperbolicity' depends on axioms outside the classical allowlist: [sorryAx]
+608:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+610:error: Lean exited with code 1
+639:✖ [10086/10093] Building GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves (309s)
+641:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:81:8: typeclass instance problem is stuck
+647:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:116:8: typeclass instance problem is stuck
+653:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:146:14: 'GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+654:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+659:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:148:14: 'GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+660:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+662:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:149:14: 'GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+663:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+665:error: GroupApproximation/GGT/HullSCOneStepQuasiGeodesicLeaves.lean:150:14: 'GroupApproximation.HullSC.hullInputsCorrected_of_quasiGeodesicLeaves' depends on axioms outside the classical allowlist: [sorryAx]
+666:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+668:error: Lean exited with code 1
+702:✖ [10090/10093] Building GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer (63s)
+704:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:157:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+708:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:159:20: Invalid field `length_lt`: The environment does not contain `Nonempty.length_lt`, so it is not possible to project the field `length_lt` from an expression
+712:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:161:18: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+716:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:162:14: Invalid field `quotient_value`: The environment does not contain `Nonempty.quotient_value`, so it is not possible to project the field `quotient_value` from an expression
+720:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:164:17: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+724:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:16: Invalid field `contiguity`: The environment does not contain `Nonempty.contiguity`, so it is not possible to project the field `contiguity` from an expression
+728:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:165:55: Invalid field `shortenedWord_isWord`: The environment does not contain `Nonempty.shortenedWord_isWord`, so it is not possible to project the field `shortenedWord_isWord` from an expression
+736:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:269:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_dehnSteps' depends on axioms outside the classical allowlist: [sorryAx]
+737:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+742:error: GroupApproximation/GGT/HullSCLemma51QuasiGeodesicTransfer.lean:271:14: 'GroupApproximation.HullSC.relativeLinearKernelArea_of_quasiGeodesicCertificates' depends on axioms outside the classical allowlist: [sorryAx]
+743:  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+745:error: Lean exited with code 1
+750:error: build failed
+--- per-module
+mentioned-not-built GroupApproximation.GGT.HullSCCyclicPeripheralRemoval (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCOneStepQuasiGeodesicLeaves (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCLemma44BoundedJointRespellingHullRelator (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeExpansion (replayed or failed)
+BUILT GroupApproximation.GGT.HullSCUnconeClosingJump
+BUILT GroupApproximation.GGT.HullSCUnconeCosetAvoidance
+BUILT GroupApproximation.GGT.HullSCUnconeTriangleConnectors
+mentioned-not-built GroupApproximation.GGT.HullSCUnconePathPoints (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeCosetCoordinates (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaA (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeWalk (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeLemmaB (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeSides (replayed or failed)
+mentioned-not-built GroupApproximation.GGT.HullSCUnconeThin (replayed or failed)
+--- rebuilt GroupApproximation modules: 6
+--- compiled overlay files (olean present and newer than the source as built)
+COMPILED GroupApproximation/GGT/HullSCUnconeClosingJump.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeCosetAvoidance.lean
+COMPILED GroupApproximation/GGT/HullSCUnconeTriangleConnectors.lean
+- GroupApproximation.GGT.HullSCLemma51QuasiGeodesicTransfer
+error: build failed
+EXIT=1
+PROBE FAILED rc=1

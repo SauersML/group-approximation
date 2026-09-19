@@ -1,0 +1,42 @@
+purged 1 stale artifact sets (source-newer=1, import-newer=0) of 3473 oleans
+[job] acn112 cores=88-95 threads=8 base=e2312fb7f15f298136219713cff4a373db23138b mods: GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre
+ℹ [1497/1541] Replayed GroupApproximation.Dynamics.ClopenSwapInvolution
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:368:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:369:14: 'GroupApproximation.ClopenCrossedProduct.IsSwapFamily.swapElement_mul_mul_swapElement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:370:14: 'GroupApproximation.ClopenCrossedProduct.unit_zpow_mul_charFn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/ClopenSwapInvolution.lean:371:14: 'GroupApproximation.ClopenCrossedProduct.exists_swapUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1538/1541] Replayed GroupApproximation.Dynamics.ReturnPlacement
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:454:14: 'GroupApproximation.Dynamics.card_returns_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:455:14: 'GroupApproximation.Dynamics.card_visits_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:456:14: 'GroupApproximation.Dynamics.exists_returnPlacement' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Dynamics/ReturnPlacement.lean:457:14: 'GroupApproximation.Dynamics.IsPlacement.disjoint_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [1539/1541] Replayed GroupApproximation.Dynamics.TransientSupport
+info: GroupApproximation/Dynamics/TransientSupport.lean:281:14: 'GroupApproximation.ClopenCrossedProduct.CoeffVanishOn.mul_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:282:14: 'GroupApproximation.ClopenCrossedProduct.exists_clopen_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:283:14: 'GroupApproximation.ClopenCrossedProduct.exists_wandering_clopen_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Dynamics/TransientSupport.lean:284:14: 'GroupApproximation.ClopenCrossedProduct.exists_uniform_return' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1541/1541] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.RingSimpleCentre (10s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:185:14: 'GroupApproximation.SimpleKazhdanSofic.isSimpleRing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:186:14: 'GroupApproximation.SimpleKazhdanSofic.coeff_const_mem_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:187:14: 'GroupApproximation.SimpleKazhdanSofic.mem_center_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/RingSimpleCentre.lean:188:14: 'GroupApproximation.SimpleKazhdanSofic.mem_center_iff_eq_zero_or_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (1541 jobs).
+EXIT=0

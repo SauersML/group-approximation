@@ -1,0 +1,27 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 3416 oleans
+[job] acn112 cores=64-71 threads=8 base=cd5865fd24052213a2bc00ef05279d74d24995a7 mods: GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonCopyCleanWalk
+ℹ [3295/3417] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [10097/10097] Built GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonCopyCleanWalk (21s)
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:209:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.vertexOf_alpha_eq_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:210:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.of_next' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:211:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.walkKeep_rotate_iff' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:212:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.rotate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:213:14: 'GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.append_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:214:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.copyClean_of_copyCleanAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:215:14: 'GroupApproximation.GGT.VanKampen.PocketWalk.exists_noncrossing_decomposition_of_copyCleanAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10097 jobs).
+EXIT=0

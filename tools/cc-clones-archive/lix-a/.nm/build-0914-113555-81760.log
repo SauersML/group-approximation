@@ -1,0 +1,58 @@
+purged 0 stale artifact sets (source-newer=0, import-newer=0) of 4138 oleans
+[job] n47 cores=slurm threads=8 base=224d5a7650503ac1aac46f6c1db979ff1125be1a mods: GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct GroupApproximation.Manuscript.SimpleKazhdanSofic.McDuffBrownFormulation
+ℹ [2482/2513] Replayed GroupApproximation.Analysis.HyperlinearOneSumModels
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:190:14: 'GroupApproximation.HyperlinearTraceVanishing.hsDistSq_ampMatrix_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/HyperlinearOneSumModels.lean:191:14: 'GroupApproximation.HyperlinearTraceVanishing.normTrace_ampMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2483/2513] Replayed GroupApproximation.Analysis.HyperlinearTraceVanishingProof
+info: GroupApproximation/Analysis/HyperlinearTraceVanishingProof.lean:261:21: 'GroupApproximation.HyperlinearTraceVanishing.hyperlinearTracePreservingModelStatement_holds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3181/3220] Replayed GroupApproximation.Analysis.GroupVonNeumannUnitaryGroup
+info: GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean:90:14: 'GroupApproximation.GroupVonNeumann.leftRegularUnitaryHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3186/3235] Replayed GroupApproximation.Analysis.VonNeumannTwistedAmplification
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:389:14: 'GroupApproximation.TwistedTensor.unitaryAmp_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean:390:14: 'GroupApproximation.TwistedTensor.ampOperator_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3187/3235] Replayed GroupApproximation.Analysis.TwistedGroupVonNeumannProduct
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:251:14: 'GroupApproximation.TwistedProduct.isTwistedICC_prodCocycle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:252:14: 'GroupApproximation.TwistedProduct.groupVonNeumannAlgebra_eq_twisted_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean:253:14: 'GroupApproximation.TwistedProduct.curryLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3188/3235] Replayed GroupApproximation.Analysis.TwistedTensorProductAlgebra
+info: GroupApproximation/Analysis/TwistedTensorProductAlgebra.lean:240:14: 'GroupApproximation.TwistedProduct.curryConj_image_twistedTensor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3190/3235] Replayed GroupApproximation.Analysis.McDuffFactor
+info: GroupApproximation/Analysis/McDuffFactor.lean:77:21: 'GroupApproximation.McDuff.printedTensorHyperfiniteUnitaryContainsGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3198/3249] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [3199/3249] Replayed GroupApproximation.Analysis.TensorHyperfiniteIIOneFactor
+info: GroupApproximation/Analysis/TensorHyperfiniteIIOneFactor.lean:130:14: 'GroupApproximation.TwistedProduct.isIIOneFactor_tensorHyperfinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3200/3249] Replayed GroupApproximation.Analysis.VonNeumannSpatialIsomorphism
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:220:14: 'GroupApproximation.SpatialIso.conj_image_twistedTensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/Analysis/VonNeumannSpatialIsomorphism.lean:221:14: 'GroupApproximation.SpatialIso.conj_image_twistedVonNeumannAlgebra_of_mulEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3201/3249] Replayed GroupApproximation.Analysis.McDuffTensorHyperfinite
+info: GroupApproximation/Analysis/McDuffTensorHyperfinite.lean:81:14: 'GroupApproximation.McDuff.isMcDuffFactor_tensorHyperfinite' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4625/4626] Built GroupApproximation.Analysis.GroupAlgebraTracialUltraproduct (224s)
+info: GroupApproximation/Analysis/GroupAlgebraTracialUltraproduct.lean:195:14: 'GroupApproximation.OzawaEmbedding.exists_maximalGroupCStar_hom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4626/4626] Built GroupApproximation.Manuscript.SimpleKazhdanSofic.McDuffBrownFormulation (212s)
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/McDuffBrownFormulation.lean:52:21: 'GroupApproximation.SimpleKazhdanSofic.printedBrownFormulationFactors' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4626 jobs).
+EXIT=0

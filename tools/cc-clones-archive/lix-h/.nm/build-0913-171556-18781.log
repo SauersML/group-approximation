@@ -1,0 +1,17 @@
+purged 2 stale artifact sets (source-newer=2, import-newer=0) of 3115 oleans
+[job] acn37 cores=slurm threads=8 base=e24b2ae3bf240a7e641447905b4661a9b8b0dd08 mods: GroupApproximation.Manuscript.NonMFSentences.CitationSweepIntroAudit
+ℹ [3366/3613] Replayed GroupApproximation.Sofic.KazhdanCornerCompression
+info: GroupApproximation/Sofic/KazhdanCornerCompression.lean:342:4: Try this:
+  [apply] abel_nf
+ℹ [4608/4608] Built GroupApproximation.Manuscript.NonMFSentences.CitationSweepIntroAudit (20s)
+info: GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean:31:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptShiftKernelIsOperatorMF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean:32:21: 'GroupApproximation.AmenableTraceTheorem.manuscriptMFNotClosedUnderIntSemidirect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean:33:21: 'GroupApproximation.Manuscript.NonMF.PriorWork.printedNegativeConnesEmbeddingSentence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (4608 jobs).
+EXIT=0
