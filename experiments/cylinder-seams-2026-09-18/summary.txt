@@ -1,0 +1,27 @@
+seams.py: checks for tall-cylinder-seams-reglue-within-quadratic-profile (all assertions passed, incl. height gap)
+$ python3 seams.py 50 1
+random: 50 surfaces checked (all lemma inequalities and opt <= alg <= bound hold)
+  tall (H >= W): 10, max alg/rho_hat^2 = 1.440; max alg/(rho^2 (1+W/H)) = 0.864
+  excised square n=3: rho_hat=1.500, W/H=3, exact b-fixed cost=4
+  excised square n=4: rho_hat=1.667, W/H=4, exact b-fixed cost=6
+  excised square n=5: rho_hat=1.750, W/H=5, exact b-fixed cost=8
+  excised square n=6: rho_hat=1.800, W/H=6, exact b-fixed cost=10
+  excised square n=7: rho_hat=1.833, W/H=7, exact b-fixed cost=12
+  excised square n=8: rho_hat=1.857, W/H=8, exact b-fixed cost=14
+  excised square n=9: rho_hat=1.875, W/H=9, exact b-fixed cost=16
+$ python3 seams.py 400 7
+random: 400 surfaces checked (all lemma inequalities and opt <= alg <= bound hold)
+  tall (H >= W): 89, max alg/rho_hat^2 = 1.562; max alg/(rho^2 (1+W/H)) = 1.000
+  excised square n=3: rho_hat=1.500, W/H=3, exact b-fixed cost=4
+  excised square n=4: rho_hat=1.667, W/H=4, exact b-fixed cost=6
+  excised square n=5: rho_hat=1.750, W/H=5, exact b-fixed cost=8
+  excised square n=6: rho_hat=1.800, W/H=6, exact b-fixed cost=10
+  excised square n=7: rho_hat=1.833, W/H=7, exact b-fixed cost=12
+  excised square n=8: rho_hat=1.857, W/H=8, exact b-fixed cost=14
+  excised square n=9: rho_hat=1.875, W/H=9, exact b-fixed cost=16
+$ python3 onerow.py 1 2 3
+lengths [1, 2, 3] n=6: rho_hat=1.333 at (s,t)=(2, 1), d1=3
+lengths [2, 4, 6] n=12: rho_hat=1.600 at (s,t)=(4, 1), d1=6
+lengths [4, 8, 12] n=24: rho_hat=1.778 at (s,t)=(8, 1), d1=12
+lengths [8, 16, 24] n=48: rho_hat=1.882 at (s,t)=(16, 1), d1=24
+lengths [16, 32, 48] n=96: rho_hat=1.939 at (s,t)=(32, 1), d1=48

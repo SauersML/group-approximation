@@ -282,3 +282,25 @@ non-permutation unitary construction.
     decomposition in direction `u`. Tall cylinders should be seam-repairable at cost `O(rho)`, and short ones crossed
     by a partner loop of length `poly(rho)`. A seam shared by several cylinders is the missing case. A transfer that
     never raises the profile was not found.
+- **w16-124, 2026-09-18 — the cylinder form of Proposition 3, with shared seams. Landed
+  `tall-cylinder-seams-reglue-within-quadratic-profile`: F(K) = 176 K^2 on the locally tall class.**
+  - **Theorem 1.** Take the horizontal cylinders `C_j` that are not torus components (at most `4 rho` of them), with
+    widths `w_j`, heights `h_j`, and `tau_j` the least height among `C_j` and its seam neighbours. Some `c'`
+    commuting with `b` differs from `c` only on top rows, at at most `96 rho^2 + 20 rho sum_j w_j/tau_j` points. So if
+    `w_j <= tau_j` for every `j`, the pair is within `176 rho^2` of commuting, with `b` unchanged.
+  - **Proof idea.** With `t = tau_j`, every orbit of `c^t` counted crosses exactly one seam.
+    - *Width lemma.* With `s = w_j`, `b^s` fixes `C_j`, so seam points into cylinders of non-dividing width are
+      few (`u_j <= 2 rho (1 + w_j/tau_j)`); the same holds from below.
+    - *Offset lemma.* Averaging over `s < w_j` bounds the defect of the best rotation class.
+    - *Regluing.* Majority classes pick distinct targets, and a width-preserving completion exists.
+  - **Theorem 2 (sharpness).** On the excised square `T_n` (`rho <= 2`, distance 1) every regluing that keeps `b`
+    costs at least `2(n-1)`, while `w_B/tau_B = n - 1`. The ratio term is needed, and short wide cylinders need
+    two-sided moves.
+  - **Theorem 3 (height gap).** If the seam joins `a` top points of `C_j` to `C_beta`, with `w_beta != w_j`, then
+    `a min(h_j, h_beta) <= 2 rho (max w + min h)`. So a mismatch of mass `a >= max w/2 >= 4 rho` forces a cylinder of
+    height `<= 8 rho`: short means `O(rho)`, not just shorter than wide.
+  - **Computation.** `seams.py` ran on 450 random multi-cylinder surfaces. It checked every inequality and compared
+    with the exact one-sided optimum (an assignment). Tall cases have `alg <= 1.57 rho_hat^2`.
+  - **Open.** Pairs with a locally wide cylinder in both directions. The next step is a two-sided width adjustment:
+    padding or deleting a column of a height-`h` cylinder costs `O(h)`. The profile should bound
+    `sum_j h_j |w_j - w'_j|` for some matchable width vector `w'`.
