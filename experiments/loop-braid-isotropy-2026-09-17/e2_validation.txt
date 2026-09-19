@@ -1,0 +1,10 @@
+mode=Y n=7 |F|=0 d=1 p=3: target H_2(Q;C) dim = 520
+  dim H_1(Q;B) = 0; rank of H_2(B)->H_2(C) = 518; coker dim = 2
+mode=Y n=7 |F|=0 d=1 p=1000003: target H_2(Q;C) dim = 520
+  dim H_1(Q;B) = 0; rank of H_2(B)->H_2(C) = 520; coker dim = 0
+mode=Y n=8 |F|=0 d=1 p=3: target H_2(Q;C) dim = 240
+  dim H_1(Q;B) = 0; rank of H_2(B)->H_2(C) = 240; coker dim = 0
+mode=Y n=9 |F|=1 d=1 p=3: target H_2(Q;C) dim = 240
+  dim H_1(Q;B) = 0; rank of H_2(B)->H_2(C) = 240; coker dim = 0
+mode=Y n=8 |F|=1 d=1 p=3: target H_2(Q;C) dim = 520
+  dim H_1(Q;B) = 0; rank of H_2(B)->H_2(C) = 518; coker dim = 2

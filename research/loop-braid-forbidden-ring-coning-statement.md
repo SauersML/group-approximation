@@ -9,6 +9,13 @@ artifacts:
   - research/artifacts/zp-loop-braid-forbidden-ring-push-reduction-2026-09-17.md
   - research/artifacts/zp-loop-braid-one-ring-push-absorbed-block-2026-09-17.md
   - experiments/loop-braid-one-ring-push-2026-09-17/absorbed_block_output.txt
+  - research/artifacts/zp-loop-braid-isotropy-spectral-sequence-2026-09-17.md
+  - experiments/loop-braid-isotropy-2026-09-17/e2_row1.py
+  - experiments/loop-braid-isotropy-2026-09-17/e2_Y11_p3.txt
+  - experiments/loop-braid-isotropy-2026-09-17/e2_validation.txt
+  - experiments/loop-braid-isotropy-2026-09-17/e2_Y12_p3.txt
+  - experiments/loop-braid-isotropy-2026-09-17/om_homology.py
+  - experiments/loop-braid-isotropy-2026-09-17/om_homology_output.txt
 ---
 
 Notation is from the artifact §0–§1.
@@ -68,3 +75,18 @@ Evidence (artifact §6):
     - (D2) a push-length Morse order on the type-{v, w} vertices, in which descending links meet
       only through one-ring pushes;
     - (D3) chains of one-ring pushes give iterated absorbed blocks, losing 3 free count per step.
+- 2026-09-19 (swarm-0917-w19-w19-z-last1, family cohomology-index): **refutation test passed, CS
+  still open.** Artifact `zp-loop-braid-isotropy-spectral-sequence-2026-09-17.md`.
+  - Tool: the P-isotropy spectral sequence of Y. By Jensen–McCammond–Meier together with cabling,
+    E^1 is a subspace coefficient system U^q ⊂ H_q(P). Row 0 splits, because the domain is strict.
+  - Theorem A: CS at N = 11 forces H_2(Q_Y) = 0 and E^2_{1,1} = H_1(Q_Y; U^1) = 0 over every
+    field.
+  - A Čech resolution of W/U turns E^2_{1,1} into the cokernel of a finite linear map
+    (`e2_row1.py`). In degree 1 the script reproduces the §6 colimit ranks, including the N = 7
+    3-torsion anomaly.
+  - At N = 11 over F_3, which is the only nonvacuous characteristic, since
+    H_1(OM(K_7); Z) = Z/3: the target has dim 288, the rank is 288, and coker = 0. At N = 12 the
+    test is vacuous.
+  - Consequence: the N = 7 obstruction mechanism does not recur in the first new degree. The
+    spectral sequence gives no further information at total degree 2. This family cannot prove CS,
+    and a proof needs geometric input (the nerve, or the one-ring push).

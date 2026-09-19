@@ -1,0 +1,2 @@
+mode=Y n=11 |F|=0 d=2 p=3: target H_3(Q;C) dim = 288
+  dim H_2(Q;B) = 0; rank of H_3(B)->H_3(C) = 288; coker dim = 0
