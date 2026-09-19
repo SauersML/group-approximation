@@ -253,4 +253,30 @@ swarm-0917 w12).**
       C2 tests;
     - normal subgroups of `A * H` not containing `[A,H]`, where the fibre sum
       is an alternating word sum in two non-commuting kernels.
+* **Every normal subgroup of complete-block free products (2026-09-19,
+  swarm-0917-w17-w17-bs-follow, operator-algebras).** This settles the second
+  remaining test above for finite factors and lines. The result is
+  `fpbs-complete-block-free-products-satisfy-identity-e` (ESTABLISHED; route
+  `fpbs-complete-block-free-products-identity-e-proof`).
+  - *Class.* `Gamma = A_1 * ... * A_m`. Each factor is either finite with
+    generators `A_i \ {e}` (a `K_n` block) or `Z` with `+-1`. `N` is any
+    infinite normal subgroup, with no commutation hypothesis. This includes
+    `PSL_2(Z)` with `{s, r, r^2}` along every infinite quotient.
+  - *Result.* On `Gamma`, `tau_p = c_p G_(mu_p)` for all `p < p_(2->2)(G)`.
+    Here `mu_p` has explicit factor weights `w_i(p)`, and the local identity
+    `(delta - mu_p) * tau_p = c_p delta` holds for every `p`. Pushing forward
+    gives `sigma^N_p = c_p G_(pi_* mu_p)` on `Q`. Then Kesten plus Brouwer
+    invariance of domain in weight space give
+    `p_c(N;G) = p^Q_(2->2) = min{p : ||lambda_Q(pi_* mu_p)|| = 1}`.
+    The pair is of type (i) iff `Q` is nonamenable and of type (iii) otherwise;
+    type (ii) never occurs on this class.
+  - *Invariant.* Green representability: `tau_p` is the Green function of a
+    finite-range walk in a finite-parameter family `W(t)`, and `W` is injective.
+  - *Where the method dies in general.* At Step 1 of the route, the local
+    identity with finitely many free weights. It comes from the cut vertices
+    of the block tree. On a graph with cycles through several blocks,
+    `tau_p` is not the Green function of any finite-range walk, and the
+    softer positivity and variational facts do not replace this.
+    Theorem B of the new node states the abstract mechanism that any other
+    class would need.
 
