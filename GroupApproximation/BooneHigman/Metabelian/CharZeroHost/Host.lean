@@ -51,8 +51,14 @@ def affHom (n : ℕ) (R : Type) [CommRing R] : Chain.AffineElementaryGroup n R �
 
 theorem affHom_injective (n : ℕ) (R : Type) [CommRing R] : Function.Injective (affHom n R) :=
   fun x y h => by
-    have h1 : x.left = y.left := congrArg SemidirectProduct.left h
-    have h2 : (x.right : GL (Fin n) R) = y.right := congrArg SemidirectProduct.right h
+    have h1 : x.left = y.left := by
+      have e := congrArg SemidirectProduct.left h
+      rwa [affHom, SemidirectProduct.map_left, SemidirectProduct.map_left, MonoidHom.id_apply,
+        MonoidHom.id_apply] at e
+    have h2 : (x.right : GL (Fin n) R) = y.right := by
+      have e := congrArg SemidirectProduct.right h
+      rwa [affHom, SemidirectProduct.map_right, SemidirectProduct.map_right, Subgroup.coe_subtype]
+        at e
     exact SemidirectProduct.ext h1 (Subtype.ext h2)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.affHom_injective

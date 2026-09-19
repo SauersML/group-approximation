@@ -37,7 +37,7 @@ theorem higmanVCTauD2_ob_u {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v : List (
         rw [h0, hbinb u1 h1]
     · right
       exact ⟨u1, by rw [hbina u0 h0]⟩
-  · simp only [List.length_cons] at hlt <;> omega
+  · simp only [List.length_cons] at hlt; omega
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_ob_u
 
@@ -63,7 +63,7 @@ theorem higmanVCTauD2_classOB {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v m' o'
   have tO := fixO o0 o'' ho0
   have ht : (a :: ob :: k :: t).length + (o0 :: o'').length <
       (a :: b :: c :: k :: t).length + (o0 :: o'').length := by
-    simp only [List.length_cons] <;> omega
+    simp only [List.length_cons]; omega
   have hu := higmanVCTauD2_ob_u hbina hbinb hv3 hlt hum huo
   have hP : [a, ob].length ≤ 3 := by simp
   have hQ : [a, b, c].length ≤ 3 := by simp
@@ -88,7 +88,7 @@ theorem higmanVCTauD2_classOB {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v m' o'
       exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tP tv hQ hv3 tM
         (tP.append _) (by
           simp only [List.length_cons, List.length_append, List.length_drop,
-            List.length_nil] <;> omega)
+            List.length_nil]; omega)
   · have hv : v.length = 3 := by
       simp only [List.length_cons, List.length_nil] at hlt
       omega
@@ -103,7 +103,7 @@ theorem higmanVCTauD2_classOB {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v m' o'
       subst e1
       subst e2
       exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tu tQ hu2 hP
-        (fixO o0 (u1 :: k :: t) ho0) tO (by simp only [List.length_cons] <;> omega)
+        (fixO o0 (u1 :: k :: t) ho0) tO (by simp only [List.length_cons]; omega)
     · have hvo : v <+: o0 :: o'' := hvmo.resolve_left hvm
       have hvl : v.length ≤ o''.length + 1 := hvo.length_le
       obtain ⟨v', hv', -⟩ := higmanVCTauD2_pre1 hvo (by omega)
@@ -116,7 +116,7 @@ theorem higmanVCTauD2_classOB {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v m' o'
       subst e2
       exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tu tv hu2 hv3 tM
         (fixO o0 (u1 :: (o0 :: o'').drop v.length) ho0) (by
-          simp only [List.length_cons, List.length_drop] <;> omega)
+          simp only [List.length_cons, List.length_drop]; omega)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_classOB
 

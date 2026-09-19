@@ -31,15 +31,17 @@ open scoped commutatorElement
 variable {X : Type*}
 
 /-- A commutator of `S₈` moving only the points `3, 4, 6, 7`. -/
-def alpha8 : Equiv.Perm (Fin 8) := ⁅Equiv.swap 3 4, Equiv.swap 3 6 * Equiv.swap 4 7⁆
+def alpha8 : Equiv.Perm (Fin 8) :=
+  ⁅(Equiv.swap 3 4 : Equiv.Perm (Fin 8)), Equiv.swap 3 6 * Equiv.swap 4 7⁆
 
 /-- A commutator of `S₈` moving only the points `3, 5, 6, 7`. -/
-def beta8 : Equiv.Perm (Fin 8) := ⁅Equiv.swap 3 5, Equiv.swap 3 6 * Equiv.swap 5 7⁆
+def beta8 : Equiv.Perm (Fin 8) :=
+  ⁅(Equiv.swap 3 5 : Equiv.Perm (Fin 8)), Equiv.swap 3 6 * Equiv.swap 5 7⁆
 
 /-- A product of two commutators of `S₈`. -/
 def rho8 : Equiv.Perm (Fin 8) :=
-  ⁅Equiv.swap 0 3, Equiv.swap 0 1 * Equiv.swap 3 4⁆ *
-    ⁅Equiv.swap 2 5, Equiv.swap 2 6 * Equiv.swap 5 7⁆
+  ⁅(Equiv.swap 0 3 : Equiv.Perm (Fin 8)), Equiv.swap 0 1 * Equiv.swap 3 4⁆ *
+    ⁅(Equiv.swap 2 5 : Equiv.Perm (Fin 8)), Equiv.swap 2 6 * Equiv.swap 5 7⁆
 
 /-- The three-cycle `(0 1 2)` of `S₈` is conjugate by `ρ` to a commutator on `3, …, 7`. -/
 theorem swap_commutator_eq_fin_eight :
@@ -86,8 +88,8 @@ theorem threeCycle_mem_of_eight_tower [TopologicalSpace X] [CompactSpace X] [T2S
   have hc : towerPerm f₀ A E hdisj ⁅alpha8, beta8⁆ ∈ N := by
     rw [hφ]
     exact hroom _ hα _ hβ (hsupp alpha8 alpha8_fix) (hsupp beta8 beta8_fix)
-  have eρ : rho8 = ⁅Equiv.swap 0 3, Equiv.swap 0 1 * Equiv.swap 3 4⁆ *
-      ⁅Equiv.swap 2 5, Equiv.swap 2 6 * Equiv.swap 5 7⁆ := rfl
+  have eρ : rho8 = ⁅(Equiv.swap 0 3 : Equiv.Perm (Fin 8)), Equiv.swap 0 1 * Equiv.swap 3 4⁆ *
+      ⁅(Equiv.swap 2 5 : Equiv.Perm (Fin 8)), Equiv.swap 2 6 * Equiv.swap 5 7⁆ := rfl
   have hρ : towerPerm f₀ A E hdisj rho8 ∈ ⁅fullGroup T, fullGroup T⁆ := by
     rw [eρ, map_mul]
     exact mul_mem (towerPerm_commutator_mem hf₀ hA hdisj _ _)

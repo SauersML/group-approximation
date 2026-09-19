@@ -243,7 +243,8 @@ theorem NearestCellCut.false_of_below {D : RelGenSet G Lambda}
     intro hn
     subst hn
     simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
-    norm_num <;> ring
+    norm_num
+    ring
   linarith
 
 /-! ## The refutation at fixed parameters -/
