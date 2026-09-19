@@ -104,3 +104,13 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - **Dead ends.** Hill-climbing over certificate moves in the slide route: finite quotients cannot prove `t = 1`. `(a,b)`-coset membership tests: superseded by the coset invariant.
 
   Next: the slide-group route `T = {x, y, t}`, i.e. `Γ'' = ⟨x,y,t | f(u_0), f(u_1)⟩` with `f(z) = z` under `t ↦ τ`. Decide whether `t = τ` follows, screening candidates by exact normal-form invariants (for example the `Z[H\G]` images of the two cell classes in the rank-2 relation module) rather than small finite quotients. Also still open at `|T| = 2`: relators mixing `H` and `T`, and generating pairs that are not Nielsen-equivalent to `(x, y)`.
+
+- **w13-048, 2026-09-18: the slide route passes every relation-module test.** Landed `c2-slide-route-passes-every-relation-module-test`.
+  - **Result.** Every slide group `Γ'' = ⟨x,y,t | f(u_0), f(u_1)⟩` with `c·m` a unit has the relation module of `G`: `Qκ` is unitriangular. Also `Z[H\G] = H(g−2)ZG`, witnessed by `s = Y(2yxYx − 2xYx − x)`.
+    - So no module or coset invariant decides `t = 1`, and the slide route is a pure relation-gap question.
+    - If `Γ'' ≅ G`, then `t` occurs at least 3 times in `f(u_0)`.
+  - **Extension of w12's invariant.** It extends to every generating pair `(x', y')` as `H(g−2)μ̄`, where `μ̄` is the transition class in `ZG/J ≅ H^2(G;ZG)` and `H(g−2)J = 0`.
+    - Non-Nielsen pairs remain open only through this class.
+  - **Screen.** Randomized slide groups are screened in `experiments/c2-slide-screen-2026-09-18/RESULTS.md`. The base group has 31 subgroups of index at most 5, against 24 for `G`. All 480 variants map onto `A_5`, `PSL(2,7)`, `A_6`, `PSL(2,8)` or `PSL(2,11)` with `t ≠ 1`, so `Λ ≠ 1` for every one of them.
+
+  Next: no tested slide group survives, since each has a small perfect quotient with `t ≠ 1`. Either search slide data outside the certificate family (other `m` with `c·m = ±h`, or `f(z)` with `t`-letters interleaved in `φ_0(z)`) for one with no such quotient, then prove `Λ = 1` by Tietze/Knuth–Bendix. Or turn the pattern into a proof of `ρ = 1`: a relation-gap detector for `(x,y,t)`-presentations of `G`, for example an equivariant (profinite or `PSL(2,q)`-family) obstruction applied to every lift of `(u_0, u_1)`.
