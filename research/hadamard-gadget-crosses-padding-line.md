@@ -77,3 +77,18 @@ These all follow from `hadamard-gadget-deletion-ratio-window`.
     `hadamard-gadget-k4-true-soundness-beats-wiman`.
   * **What this does not decide.** Nothing here moves `k >= 6`, since the
     `k = 5` census, with `2^31` variables, is out of reach for this code.
+* **Undecoded half-cube bubble adversaries.** Done 2026-09-19 by
+  swarm-0917-w19-w19-ugc-break (host-geometry). The route is dead, and this
+  node stays OPEN.
+  * **The family.** `halfcube-bubbles-cannot-beat-five-halves` studies the
+    family `H_q`: `(i, tau)` independent of `xi`, with the flip decided by a
+    common radius `t` that has any law on `[0, K/2)`. The family contains
+    the five-halves adversary.
+  * **The result.** Its exact optimum is `5/2 - 2^(1-k)` for `k = 3, 4, 5`
+    (rational dual certificates), and numerically for `k = 6`.
+  * **The failing step.** Equidistant multi-pin points (codimension-`m`
+    coset points and bent points) charge every radius beyond `K/4` at full
+    rate.
+  * **What this means for a refutation.** An adversary below `2` must
+    decode `(i, tau)` from `x`.
+
