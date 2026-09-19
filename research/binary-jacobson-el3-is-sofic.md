@@ -163,3 +163,36 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
     which is why `psi` exists there.
   - **Survivors.** Partial lifts that do not globalize. Global lifts whose `L`-module is a non-split finitary
     extension.
+* **Continuous bilateral lifts (swarm-0917-w15-w15-nh-follow, 2026-09-19). The local-rule class is dead at
+  `n >= 4`. At `n = 3` a continuous lift would prove LEF. The target stays OPEN.** Recorded in
+  `continuous-bilateral-lifts-of-jacobson-group-force-lef`.
+  - **Setting.** Wave-15 reduced the bilateral route to (ML): a measurable lift of the symbol cocycle along
+    `pr_+ : X_n -> X_+`. Equivalently, it is a faithful action `e~(xi) = sigma(e) xi + w_e(xi)` of `E` in the
+    full group `[R'_n]` of the affine action of `G_N = A^N x| SL_N(A)` on `X_N = (F_2^Z)^N`, here at `N = n`.
+  - **(C3) The topological full group `[[G_N ~ X_N]]` is LEF, for every `N`.**
+    - Free points are dense, so cocycles are unique.
+    - The finite models are the periodic points `Per_m ≅ (A/(z^m-1))^N`, with translation parts replaced by their
+      periodizations `per_m(w) = sum_k z^(km) w`. This makes a homomorphism `G_N -> Sym(Per_m)`.
+    - Locally constant cocycles only read a window, and there the periodization is exact.
+  - **(C4) The kill.** Suppose the generators of a faithful `E_n -> [R'_N]` have cocycles that are a.e. locally
+    constant. Then `E_n` embeds in `[[G_N ~ X_N]]` and is LEF. By `cohn-elementary-group-is-not-lef` this is
+    impossible for `n >= 4`, at every rank `N` and every placement.
+    - (ML) witnesses are faithful, because `pr_+` intertwines them with the faithful action of `E` on `X_+`. So
+      for `n >= 4` the free minus part of every (ML) witness is discontinuous on positive measure.
+  - **Invariant.** LEF.
+  - **Step where every member dies.** Periodization, which turns the relators into exact permutation relations on
+    `Per_m`.
+  - **Survivors.**
+    - Genuinely measurable witnesses, not a.e. equal to any finite-window rule. The union of all `Per_m` is
+      null, so measurable cocycles give no control there.
+    - At `n = 3`, continuous witnesses. By (C5) such a witness proves `EL_3(J)` LEF.
+  - **Dividing line.** A measurable lift gives soficity through Elek–Lippner, given that `R'_N` is sofic. A
+    topological lift gives LEF.
+  - **Not decided.** (ML) itself.
+  - **Observations checked but not written up as nodes.**
+    - `R' = R^- x_Q R^+` is the measured fibre product over the symbol.
+    - (ML) is the splitting of the pushout extension `1 -> L^0(X_+,[T_-]) -> (M x| P)/D -> E -> 1`.
+    - Canonical linear lifts exist on each half, because analytic and coanalytic Toeplitz compression is
+      multiplicative. The obstruction to (ML) is therefore pure gluing.
+    - Amenable subrelations always lift. So index-type and commuting-pair obstructions cannot refute (ML), and
+      neither can means.
