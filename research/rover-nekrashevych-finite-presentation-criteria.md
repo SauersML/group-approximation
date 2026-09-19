@@ -87,3 +87,27 @@ Finite presentation is not what stops the Rover--Nekrashevych route to the full 
   - The Morse function `Σ c^{|β(ρ_i)-1|}` in the step before this one has local minima at every vertex whose leaves
     all sit at height `1`. Merges cost `c - 2 > 0`, and splits and tree moves ascend. So Brown's criterion cannot be
     run with it; the 2-graph route replaces it.
+- **2026-09-18 (w11-101).**
+  - **Review of `rn-lamplighter-is-f-infinity-and-acyclic-via-a-2-graph`: no gap found.**
+    - Lemma 2 (unique factorisation) and the germ step were re-derived by hand.
+    - All computational input was recomputed by independent code, `review_two_graph.py`, which decides membership
+      in `P` from valuations rather than from the normal form. It checks:
+      - the normal form for `d ≤ (3,3)`, exhaustively;
+      - unique factorisation, in 2401 cases;
+      - the germ threshold, over `P_(M,M)` for `M ≤ 7`.
+    - Two wording fixes are recorded in the review, in
+      `torsion-germ-rn-groups-are-not-k-graph-full-groups-proof`.
+  - **The extension to Grigorchuk, basilica and Hanoi is negative for two of the three**
+    (`torsion-germ-rn-groups-are-not-k-graph-full-groups`).
+    - Rubin makes an isomorphism `V_d(H) ≅ F(G_Λ)` spatial. `Germ(F(G_Λ))` is then an open subgroupoid of the
+      Hausdorff groupoid `G_Λ`, whose isotropy embeds in `Z^k`.
+    - So a finite-order element of `H` with a nontrivial fixed-point germ excludes every aperiodic finite `k`-graph
+      model, for every `k`. So does a non-Hausdorff germ groupoid.
+    - **Grigorchuk.** `b` at `1^ω` has a germ of order 2, and the germ groupoid is non-Hausdorff.
+    - **Hanoi.** `a` at `2^ω` has a germ of order 2.
+    - **Basilica.** It passes both tests, since all fixed germs are trivial. It is left open, with a
+      hyperbolicity/quasi-flat sketch.
+    - All three `V_d` are `F_∞` anyway, by bounded automata (Belk–Hyde–Matucci; Belk–Matucci for Röver's group).
+      The 2-graph method is specific to non-contracting, `S`-arithmetic examples such as the lamplighter.
+  - Next: find which self-similar `H` admit `k`-graph models. The candidates are non-contracting affine groups
+    `x ↦ ux + b` over `S`-integers of global fields, where the `S`-unit rank gives `k`.

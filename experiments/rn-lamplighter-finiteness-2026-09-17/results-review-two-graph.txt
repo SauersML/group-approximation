@@ -1,0 +1,8 @@
+(1) e_i f_j = f_i e_(i+j), and the four ef-products are distinct and equal the fe-products: True
+    edges in P with degrees (1,0),(0,1): True
+(2) brute force (b with pi-poles allowed): |P_(m,n)| = 2^(m+n), translations Laurent polynomials, a->a(O) onto balls, m,n<=3: True
+    P_(0,0) = {id}: True
+(3) exhaustive unique factorisation, all a with d(a)<=(3,3), all p<=d(a) (2401 cases): True
+(4) germ step, exhaustive over P_(M,M), M<=7, 16 random g with pi-poles: all admissible g mu in P iff M >= M_rho(g); (M_rho, #admissible at M=7) = [(4, 8192), (2, 0), (4, 16384), (2, 16384), (6, 4096), (2, 0), (0, 16384), (2, 16384), (3, 16384), (3, 16384), (1, 16384), (4, 4096), (8, 8192), (1, 16384), (3, 4096), (4, 16384)]: True
+(5) lamplighter automaton a=sigma(a,b), b=(a,b) equals x->tx+c on O/pi^10 O up to relabelling (True, 1, 0): True
+ALL OK
