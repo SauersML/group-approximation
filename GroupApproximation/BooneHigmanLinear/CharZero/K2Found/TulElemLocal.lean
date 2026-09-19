@@ -98,6 +98,7 @@ def IsLocal : Prop :=
   ∀ (v w : I → A) (r s : I), r ≠ s → w r = 0 → w s = 0 → w ⬝ᵥ v = 0 → IsUnimodular v →
     E hX v w = ex hX r v w
 
+omit [DecidableEq I] in
 theorem dot_smul_zero {x y : I → A} (c : A) (h : x ⬝ᵥ y = 0) : x ⬝ᵥ (c • y) = 0 := by
   rw [dotProduct_smul, h, smul_zero]
 

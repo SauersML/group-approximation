@@ -42,6 +42,7 @@ noncomputable def E (v w : I → A) : SteinbergGroup I A :=
 theorem E_of_mem {v w : I → A} (h : (v, w) ∈ U I A) : E hX v w = hX.elt (v, w) h :=
   dif_pos h
 
+omit [DecidableEq I] in
 theorem memU {v w : I → A} (hv : IsUnimodular v) (hw : w ⬝ᵥ v = 0) : (v, w) ∈ U I A :=
   VdK.mk_mem_U.2 ⟨hv, hw⟩
 
@@ -54,6 +55,7 @@ theorem isUnimodular_of_apply {v : I → A} {r : I} (h : v r = 1) : IsUnimodular
 theorem dot_single {w : I → A} {r : I} (hr : w r = 0) : w ⬝ᵥ Pi.single r (1 : A) = 0 := by
   rw [dotProduct_single_one, hr]
 
+omit [DecidableEq I] in
 theorem smul_dot {w y : I → A} (c : A) (h : w ⬝ᵥ y = 0) : (c • w) ⬝ᵥ y = 0 := by
   rw [smul_dotProduct, h, smul_zero]
 
@@ -61,14 +63,17 @@ theorem dot_tl {v w : I → A} {r : I} (hr : w r = 0) (hw : w ⬝ᵥ v = 0) (c :
     w ⬝ᵥ (v + c • Pi.single r 1) = 0 := by
   rw [dotProduct_add, dotProduct_smul, dot_single hr, hw, smul_zero, add_zero]
 
+omit [DecidableEq I] in
 theorem add_dot {v w w' : I → A} (hw : w ⬝ᵥ v = 0) (hw' : w' ⬝ᵥ v = 0) :
     (w + w') ⬝ᵥ v = 0 := by
   rw [add_dotProduct, hw, hw', add_zero]
 
+omit [DecidableEq I] in
 theorem dot_add {v v' w : I → A} (hw : w ⬝ᵥ v = 0) (hw' : w ⬝ᵥ v' = 0) :
     w ⬝ᵥ (v + v') = 0 := by
   rw [dotProduct_add, hw, hw', add_zero]
 
+omit [Fintype I] in
 theorem tl_apply (v : I → A) (r : I) : (v + (1 - v r) • Pi.single r (1 : A)) r = 1 := by
   simp
 
@@ -149,6 +154,7 @@ noncomputable def ex (r : I) (v w : I → A) : SteinbergGroup I A :=
 def vhat (r s : I) (v : I → A) : I → A :=
   v + (1 - v r) • Pi.single r 1 + (1 - v s) • Pi.single s 1
 
+omit [Fintype I] in
 theorem vhat_apply_left {r s : I} (hrs : r ≠ s) (v : I → A) : vhat r s v r = 1 := by
   simp [vhat, Pi.single_eq_of_ne hrs]
 
@@ -265,9 +271,11 @@ theorem ex_add_left_of_zero {r s : I} (hrs : r ≠ s) {v v' w : I → A} (hr : w
 def qz (r s : I) (v : I → A) : I → A :=
   v - v r • Pi.single r 1 - v s • Pi.single s 1
 
+omit [Fintype I] in
 theorem qz_apply_left {r s : I} (hrs : r ≠ s) (v : I → A) : qz r s v r = 0 := by
   simp [qz, Pi.single_eq_of_ne hrs]
 
+omit [Fintype I] in
 theorem qz_apply_right {r s : I} (hrs : r ≠ s) (v : I → A) : qz r s v s = 0 := by
   simp [qz, Pi.single_eq_of_ne hrs.symm]
 
@@ -277,6 +285,7 @@ theorem dot_qz {r s : I} {v w : I → A} (hr : w r = 0) (hs : w s = 0) (hw : w �
     dot_single hs, hw]
   simp
 
+omit [Fintype I] in
 theorem qz_add (r s : I) (v v' : I → A) : qz r s (v + v') = qz r s v + qz r s v' := by
   rw [qz, qz, qz, Pi.add_apply, Pi.add_apply]
   module
