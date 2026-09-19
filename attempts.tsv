@@ -364,3 +364,4 @@
 35388818492	2026-09-18T19:58:30Z	GroupApproximation/Sofic/FiniteOrderRankMass.lean	re_trace_sq_le_matMass
 35402099184	2026-09-18T22:34:52Z	GroupApproximation/Sofic/FinitePacketCollapseCore.lean	packetRankWeight_nonneg
 35410020825	2026-09-19T00:39:20Z	GroupApproximation/Sofic/FinitePacketCoronaCollapse.lean	exists_exact_covariant_coordinates_with_terminal_collapse
+35422983641	2026-09-19T05:05:45Z	GroupApproximation/Sofic/FinitePacketCoronaCovariance.lean	totalCovarianceDefect_nonneg
