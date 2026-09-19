@@ -14,7 +14,8 @@ Source changed on main since that build: yes.
 
 **Still red after wave 1** (batch job 1328760, base d2df12ed9). A second repair landed at 55aba370a, unprobed: MSI Slurm submission is blocked. It stays OPEN until a trusted probe builds it green.
 
-**Repair landed, unprobed.** 55aba370a4: BH metabelian chain: second repair wave, unprobed (Slurm blocked). Stays OPEN until a trusted probe builds it green.
+
+**Repair landed, unprobed.** 282fc2c1df: BH chain wave 3: WittETW omit, ArtinHasseAlg heartbeats (unprobed). Stays OPEN until a trusted probe builds it green.
 
 **First errors (verbatim).**
 
