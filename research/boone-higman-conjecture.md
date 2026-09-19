@@ -739,6 +739,38 @@ loops, that contains a top-degree letter and whose loops generate all of `G`. Th
 ways out are leaving (U), with a section of weight at least 2, or leaving (Poly), with
 exponential activity.
 
+**September 19: the 1373 loop-star survivors are dead, by homology; the loops of the first one do generate G.**
+See `m11-loop-star-survivors-are-not-finitely-presented`.
+
+- *The (γ)-case is real.* In the chain survivor with root words `(a, a, e)`, the loops
+  `s, t, u` generate all of `G`. The stabilizer sections are all of `G`, and a commutator of
+  loops is a coordinate element, so the loop group contains `∏_x ι_x(G')`. It also maps onto
+  `Z^{33} ⋊ M_11`. So the loop-star leaf maps onto `G`, and no splitting argument separates
+  this recursion.
+- *But `H_1(G) = Z^3`.* A new linear descent theorem shows that an exponent-sum functional
+  `λ` survives every relation when three conditions hold:
+  - `λ(M^p − I)` lies in the span of the functionals already found;
+  - `λ` kills the closed loop-graph walks fixed by `M^p`;
+  - `λ` restricts to a valid functional on the lower letters.
+
+  The theorem applies to unit-weight polynomial recursions under a mild uniqueness
+  condition (T_p). Its key point is that stable relators spell closed walks in the
+  loop graph.
+- *All survivors.* Exact linear algebra on all 1373 survivors gives `b_1 ≥ 1` in every
+  case:
+  - `b_1 ≥ 3` for 637 chain survivors;
+  - `b_1 ≥ 2` for 673 survivors;
+  - `b_1 ≥ 1` for the other 63 (fan, cycle, scycle).
+
+  By `fully-self-replicating-fp2-groups-have-odd-cyclic-h1`, none is `FP_2`, and neither
+  is its Tits host. All 16,384 screened three-letter M_11 recursions are therefore not
+  finitely presented.
+
+*Design rule (adds to the September 19 loop-star rule)*: a finitely presented unit-weight
+polynomial host needs `Λ_S = 0`. Every exponent-sum functional must be killed by closed
+loop-graph walks whose letter sums are fixed by `M^p`. This is on top of escaping the
+loop-star obstruction. Screen with `descent.py` first; it is cheap.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively
