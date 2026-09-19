@@ -837,3 +837,34 @@ content in that region.
   event `U_n ∩ L_n`, using lattice-specific input. The candidates are the
   SLE6 slit-separation exponent of the white Γ_n clusters (predicted
   `7/48`) and a quantitative per-scale arm-sharing lemma.
+
+* **Winding law for the slit events and the rotation reduction (w21-123,
+  2026-09-19).** See `fpbs-slit-winding-law-and-rotation-reduction`.
+
+  - **Proved: winding law.** Let `E0` be the local event that the step
+    `(0,0)(1,0)` is not a usable white step. On `E0`, no white circuit
+    winds around the slit point `z0 = (1/2,0)`. So each pinch-free white
+    component carries an argument range `J_W`. Then `U_n` fails iff some
+    `J_W` contains a cell `[2kπ,(2k+1)π]`, and `D'_n(0)` fails iff some
+    `J_W` contains a cell `[kπ,(k+1)π]`. Sampling up to `n = 256` gives
+    zero violations.
+  - **Proved: sandwich.** `W_π ⊆ D'_n(0) ⊆ W_{2π}` for the
+    rotation-invariant events `W_t` = {every range is shorter than `t`}.
+  - **Proved: rotation reduction.** Averaging over rotations of the slit
+    grid, Cauchy-Schwarz gives the one-arm credit for free:
+    `d̄_n >= κ_n ū_n^2 n^{5/48-o(1)}`. So the rotated (ii) needs only
+    `κ_n >= n^{-δ}` with `2ᾱ + δ < 7/24`, where `κ_n` compares
+    antipodal slit directions with independent ones. A single wide
+    component always anticorrelates the two sides.
+  - **Numerically dead: the proxy `W_π`.** Its exponent is about 0.23,
+    above 3/16, so the rotation-invariant radial proxy cannot give (ii).
+    The event `D'_n(0) ⊆ W_{2π}` is almost all of `E0`.
+  - **Numerics.** `κ_n` decays with `δ̄ ≈ 0.007`, and `2ᾱ + δ̄ ≈ 0.25`,
+    against 7/24 ≈ 0.29.
+
+  **Next:** prove `κ_n >= n^{-δ}` for small `δ`. This is an
+  antipodal-versus-independent comparison of the rotated slit events,
+  and a candidate proof is a per-scale coupling of the angular positions
+  of wide components. Then transfer `d̄_n` back to the axis event
+  `P(D'_n(0))`, for example by RSW quasi-invariance under rotation of the
+  slit.
