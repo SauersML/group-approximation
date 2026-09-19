@@ -65,3 +65,40 @@ elementary abelian `p`-group, so the forced shape above does not exclude it.
     known whether Salo's construction can produce one.
   - **Next falsifiable step:** decide whether `Γ_p` embeds in `W(Z)` at all. For example, test
     whether its Schreier graphs on some faithful action can have bounded bandwidth.
+- **2026-09-19 (swarm-0917-w19-w19-nv-last1): the named candidate `Γ_p` is excluded from `W(Z)`
+  modulo one import (class-kill of every realization of `Γ_p`).**
+  - *New forced shape (ESTABLISHED).* `wobbling-normal-relative-t-subgroups-have-bounded-displacement`
+    shows that every element of `H` has displacement `< B = ⌊24D²/ε²⌋ + 1`, with `(Q, ε)` a Kazhdan
+    pair and `D` the maximal displacement on `Q`. So every `H`-orbit has at most `2B − 1` points,
+    and `H` has finite exponent. The proof uses a tent vector against the normal Kazhdan
+    projection. It needs no finite generation. This strengthens the window bound quoted above.
+  - *Invariant.* The point-kernel map `x ↦ K_x = Stab_M(x)`. By the bound, it takes values in
+    subgroups of index `≤ 2B − 1`, and it is `Γ_p`-equivariant for the `E`-action on subgroups of
+    `M`.
+  - *Unconditional theorem (ESTABLISHED).* `burger-laurent-pair-wobbling-point-kernels-are-congruence`
+    shows that in every embedding `Γ_p ≤ W(Z)`:
+    - every `E`-orbit `Q_x` of point kernels is finite;
+    - it is a quotient of a congruence quotient `E/E(I_x)`, `I_x ≠ 0`;
+    - the sizes `|Q_x|` are unbounded;
+    - pushing interval windows of `Z` through the kernel map gives, in each `Q_x`, sets of every
+      size with boundary `≤ 2D_S`.
+  - *How infinite orbits die.* The stabilizer of a finite-index `K` with an infinite orbit fixes a
+    non-torsion character `(α, β)` of `M`. Over `F_p(t)` that stabilizer is trivial or unipotent,
+    so `Stab_E(K)` is virtually abelian. The windows make it co-amenable, which would make `E`
+    amenable. That contradicts relative (T).
+  - *Where every member dies.* A realization of `Γ_p` in `W(Z)` or `[[X]]`, by lamplighters,
+    Salo-type constructions or anything else, would make congruence Schreier graphs of
+    `SL_2(F_p[t,t^{-1}])` of unbounded size have Cheeger constant `O(1/size)`. The Selberg property
+    forbids this (`burger-laurent-pair-not-in-wobbling-group-from-selberg-proof`).
+  - *Status.* `burger-laurent-pair-is-not-in-the-wobbling-group` stays OPEN with exactly one open
+    prerequisite, `laurent-sl2-positive-characteristic-has-selberg-property`. That prerequisite is
+    Drinfeld-based (τ) for all congruence levels. Lubotzky's survey (arXiv:1105.2389, §2.4) states
+    it in prose, and only explicitly for the prime levels.
+  - *Consequence for this claim.* Once the import lands, a positive answer needs a pair other than
+    `Γ_p`. The argument uses:
+    - `R` a finitely generated domain of characteristic `p`: Claim 6.1 and the finiteness of
+      bounded-index ideals;
+    - a spectral gap for the congruence quotients of `EL_2(R)`.
+    So the natural next candidates, `EL_2(R) ⋉ R²` over other such `R`, die in the same way
+    wherever the Selberg property is known. A surviving pair must have a base whose point-kernel
+    orbits are finite, non-congruence, or non-expanding.
