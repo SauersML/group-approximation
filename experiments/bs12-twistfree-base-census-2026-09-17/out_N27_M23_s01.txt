@@ -1,0 +1,1 @@
+N=27 M=23 (3|M: False) s=0.1 best max=0.7948 (||C-A||=0.7876, ||Z-D||=0.7948, rel err=3.1e-14, unit err=3.2e-14, restart 3)
