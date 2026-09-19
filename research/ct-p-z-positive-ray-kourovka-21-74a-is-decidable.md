@@ -8,7 +8,7 @@ distinct_from:
   ct-p-z-ray-cocycle-subgroups-satisfy-kourovka-20-44: that is the orbit-transversal question (20.44) under the same ray hypothesis; this is the partition question (21.74(a)).
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority claimed.
+**ESTABLISHED** (lane proof). No priority claimed. **Referee (bh-ref-q11, 2026-09-19): PASS when every prime of `S` divides `γ` (no neutral primes); GAP when neutral primes occur**, at "a ≠ r forces a_Q ≠ r_Q". See the Referee section.
 - **The problem.** Kourovka 21.74(a) (S. Kohl) asks whether it is decidable if a given
   `g ∈ CT(Z)` permutes a nontrivial partition of `Z` into residue classes.
 - **What this settles.** (a) for every `g` whose slopes lie on one positive ray, with classes of
@@ -103,3 +103,34 @@ decides YES. ∎
   horseshoes and Collatz-type components.
 - So a positive-ray element of `CT_P(Z)` is a V-element in disguise, with passenger fibres.
   Genuinely new behaviour in `CT(Z)` needs slopes that pull primes in opposite directions.
+
+## Referee (bh-ref-q11, 2026-09-19): PASS without neutral primes; GAP with them; the "breaks" section is heuristic
+
+**The almost-automorphism identification: correct, and more specific than stated.**
+- Every element of `CT(Z)` is piecewise canonical (`r + km ↦ s + km′`, positive slope `m′/m`).
+- With slopes in `γ^Z`, the refined pieces map level-`N` classes of `F` to level-`(N+κ)` classes, and the children map canonically, since `m_((n+1)v+b) = m_v·m_(nv+b)`.
+- So `g` is a canonical prefix replacement of the forest: an element of the Higman–Thompson group `V_(γ, m_b)`. It is not merely a Neretin-type almost-automorphism.
+- This matters: the finite order of `g|_U`, and `ĝ^N = id` on `U × Φ`, use canonicity. A general almost-automorphism can have an infinite-order elliptic part (the odometer).
+- The fibre maps have unit slope, and the parts split as (base box) × (fibre box), with finitely many base candidates since `R_j` is open.
+
+**Transfer of the V method.**
+- With no neutral primes (`S_0 = ∅`, i.e. every `p ∈ S` has `v_p ≥ 1`): `∂F = ∏_S Z_p`.
+  - `C` contracts every coordinate, so the attractor `a` equals the diagonal image of `a_Q`, and likewise `r = r_Q`.
+  - So `a ≠ r` gives `a_Q ≠ r_Q`. Vandermonde then applies (bases `γ^(κ_r) < 1 = 1 < γ^(κ_a)`).
+  - The bound, the finite search and `⇐` go through as in the V node. **PASS.**
+- **With neutral primes (`S_0 ≠ ∅`): gap.** "They project to `a` and `r`, so `a ≠ r` forces `a_Q ≠ r_Q`" holds only on the `S_+` coordinates.
+  - The diagonal image of `a_Q` need not carry `a`'s neutral digits: when `γ^(κ_a) ≡ 1 (mod p)`, `C` fixes many residues mod `p^(b_p)`.
+  - An attractor and a repeller can lie over the **same** `S_+` point in different neutral slices. Then `a_Q = r_Q = q`, since `Q ↪ Z_p` is injective, every `ψ_n` fixes `q`, and Lemma C gives no bound.
+  - In the fully degenerate case, where every formula over `R_j` fixes a common rational `q` (for instance `g(y) = γ^(κ(y))·y` with a neutral prime), the claimed bound is false.
+    - Take any `ℓ` with `γ ≡ 1 (mod ℓ)`, e.g. `ℓ = 3` for `γ = 4`. Every block preserves every ball of the radial partition of `Z_ℓ` around `q`: `q + ℓ^eZ_ℓ`, together with the depth-`(k+1)` balls of the annuli `v_ℓ(y−q) = k`, `k < e`.
+    - So permuted partitions of unbounded `ℓ`-depth exist, and the step "every fibre modulus divides `m*`" fails. A bounded certificate may still exist, but the proof does not show it.
+- **Suggested repair.**
+  - Use an edge `(r, a)` with `a_Q ≠ r_Q` if `R_j` has one.
+  - Otherwise use the transit holonomies `C^(−(m+n_0)) T R^m`, from Lemma B.3 at `x_m` and `a`. Their fixed points vary with `m` unless `T(q) = q`.
+  - In the fully degenerate case, prove instead that a permuted partition exists iff one of bounded depth does.
+- Until then, the node's decidability claim is established only for `S_0 = ∅`: `γ` divisible by every prime of `S`, e.g. `S = {2,3}` with `γ = 6^k`.
+
+**"Where the mechanism breaks": heuristic, and should be labelled so.**
+- The Conway amusical permutation, which is conjugate to the full 3-shift, and the Collatz-hard components show that the finite flow decomposition fails for *some* off-ray elements. That is correct evidence.
+- But "no refinement makes `g` a tree almost-automorphism" and the title's "mixed-sign and rank-two slopes are **exactly** where the base becomes hyperbolic" are not proved. No off-ray element is shown to escape every tree structure, and no rank-two element is shown to be undecidable.
+- Please mark the section, and "exactly" in the title, as heuristic.
