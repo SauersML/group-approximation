@@ -58,32 +58,35 @@ section Defs
 variable (p : ℕ) [Fact p.Prime]
 
 /-- `S = ⟨x_ij(f) : i, j ∈ K⟩ ≤ St_I(F_p[X])`. -/
-def k2PolyDeg_S (K : Finset I) : Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
+noncomputable def k2PolyDeg_S (K : Finset I) : Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
   rootSpan (R := Polynomial (ZMod p)) fun i j => i ∈ K ∧ j ∈ K
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_S
 
 /-- `V = ⟨x_Lj(f) : j ∈ K⟩ ≤ St_I(F_p[X])`. -/
-def k2PolyDeg_V (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
+noncomputable def k2PolyDeg_V (K : Finset I) (L : I) :
+    Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
   rootSpan (R := Polynomial (ZMod p)) fun i j => i = L ∧ j ∈ K
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_V
 
 /-- `G_{K'}(F_p[X])`, `K' = K ∪ {L}`. -/
-def k2PolyDeg_G (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
+noncomputable def k2PolyDeg_G (K : Finset I) (L : I) :
+    Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
   rootSpan (R := Polynomial (ZMod p)) fun i j => i ∈ insert L K ∧ j ∈ insert L K
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_G
 
 /-- The constants `C(G_{K'}(F_p)) ≤ St_I(F_p[X])`. -/
-def k2PolyDeg_A (K : Finset I) (L : I) : Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
+noncomputable def k2PolyDeg_A (K : Finset I) (L : I) :
+    Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
   (rootSpan (R := ZMod p) fun i j => i ∈ insert L K ∧ j ∈ insert L K).map
     (ringMap (Polynomial.C : ZMod p →+* Polynomial (ZMod p)))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_A
 
 /-- The torus `c ↦ C(h_mL(c))`; multiplicative because symbols vanish over `F_p`. -/
-def k2PolyDeg_torus (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) :
+noncomputable def k2PolyDeg_torus (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) :
     (ZMod p)ˣ →* SteinbergGroup I (Polynomial (ZMod p)) :=
   (ringMap (Polynomial.C : ZMod p →+* Polynomial (ZMod p))).comp
     (MonoidHom.mk' (fun c : (ZMod p)ˣ => h m L hmL c) fun c c' => by
@@ -93,7 +96,7 @@ def k2PolyDeg_torus (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_torus
 
 /-- The parabolic `P = T ⊔ (S ⊔ V)`. -/
-def k2PolyDeg_P (K : Finset I) (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) :
+noncomputable def k2PolyDeg_P (K : Finset I) (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) :
     Subgroup (SteinbergGroup I (Polynomial (ZMod p))) :=
   (k2PolyDeg_torus p m L n hmL hmn hLn).range ⊔ (k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L)
 
