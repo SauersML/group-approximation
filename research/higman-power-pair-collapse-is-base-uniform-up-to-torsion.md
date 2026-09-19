@@ -351,3 +351,23 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
     `U -> G` with `b^2 -> b^(odd)` was found.
   - Next: decide `k = 2` (class 14 and beyond of `G''/<<b^4>>`, running from saved workspaces). Then find
     the lift `Gamma_k -> Gamma_(k+1)` in the monolithic models.
+- **w21-053 (question (a): the cap is attained for ord(b) = 4 and 8).** Landed
+  `higman-2-quotient-cap-is-attained-for-ord-b-4-and-8` (claim and proof route).
+  - Proved or certified:
+    - `k = 2` is decided: `Gamma_2 = G/<<b^4>>` has a 2-quotient with orders `(256,4,16,64)`, all four
+      at the cap. A monolithic pc group of order `2^146` is saved (`k2-pc.g`)
+      and rechecked by `check-model.g`, including consistency.
+    - `k = 3`: `P_16(Gamma_3)` (order `2^16535`) has `ord(a) = 512 = 2^(3+6)`.
+  - Computed: the family `X_k = Gamma_k/<<[b,d,d], [b,d]^(2^(k+1)), [a,c^2]^8>>` attains the cap at
+    class `2k+10` for `k = 1, 2, 3` (orders `2^404`, `2^1221`, `2^3551`). With `[b,d]^(2^k)` instead,
+    `a^(2^(k+5)) = 1` at that class. Fourteen extra relators (for example `[b,d,b]`, `[b,d,a]`,
+    `[a,d,d]`, `[b,c]^4`) each kill the top power of `a` in `X_2` at class 14.
+    For `k = 4` the pattern breaks: `P_18(X_4)` (`2^10125`) has `ord(a) = 512`, one doubling short.
+  - Reduction: an abelian layer `A = gamma_13` and the `P`-span `W` of one linear form with
+    `f(a^128) = 1` give a normal `N` with `|A/N| = 2^(dim W)` (`dim W = 4`), taking `2^1221` to `2^480`.
+    If `X_k` attains the cap for every `k`, then `a` has infinite order in the pro-2 completion.
+  - Dead: `EpimorphismPGroup`, or `Center` on the `2^1221` group, does not finish in 20 minutes.
+    `a^128` lies in `gamma_I^2` for `I <= 12`.
+  - Next: decide whether `X_4` reaches `ord(a) = 1024` at a class `>= 19`, or which relator must
+    change from `k = 4` on. Then look for the lift `X_k -> X_(k+1)` on the abelian subgroup
+    `<d, [b,d]>`, which must double `ord(b)` and `ord([b,d])` together.
