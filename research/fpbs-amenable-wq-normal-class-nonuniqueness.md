@@ -35,3 +35,25 @@ premise is `fpbs-amenable-wq-normal-relative-subcriticality`.
   `fpbs-bs-iff-finite-relative-susceptibility`. The class claim is now
   equivalent to the premise, group by group. See that premise's `## Attempts`
   for the four direct attacks and where each stops.
+* **Import Choi–Seo's nested-barrier theorem (Theorem 2.17) to the class
+  (wave 20, host-geometry).** Dead for a large subclass, by
+  `fpbs-cs-barrier-hypothesis-fails-finite-free-capacity-normal`.
+
+  The invariant is the free-subset capacity `b(Kt)` of the cosets of a normal
+  subgroup `K`. It is the largest finite `Y ⊆ Kt` such that distinct
+  equal-length sequences from `Y` have distinct products. Roughly-branching
+  witnesses meet `Kt` in at most `b(Kt)` points.
+
+  The method dies at the magic-lemma step for every `K` with an infinite
+  finitely generated subgroup and `b(Kt) < ∞` for all `t`. There, windows
+  `A ⊆ K_0` avoid every `H ∈ H_D` and every `G_(D,E)`. This covers:
+  - every infinite finitely generated virtually nilpotent normal `K`, via
+    `b(Kt) <= L_t^d`, including `Z^2 x| F_2` and `Z^2 x| SL(2,Z)`;
+  - every `H x K` with `K` free of free subsemigroups, via `b = 1`.
+
+  The capacity is not always 1. `Z^2 x|_[[2,1],[1,1]] Z` has `b = 2`, so the
+  wave-19 cyclic core lemma does not extend, and only the count does.
+
+  Still open for this method: normal `K` containing a free subsemigroup
+  (`F_2 x F_2`, `F_2 x BS(1,2)`), where `b = ∞`, and locally finite normal
+  subgroups.
