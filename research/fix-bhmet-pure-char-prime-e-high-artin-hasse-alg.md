@@ -17,12 +17,11 @@ Source changed on main since that build: yes.
 
 
 
-**Repair landed, unprobed.** ed7f648b07: BH chain wave 5: static fixes for bh-pal-wires reds in union build b1789839564 (unprobed). Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim; from union build b1789837230 on main 296aff5838).**
+**First errors (verbatim; from probe job direct-b1789846523 on main b576f069a9).**
 
 ```
-error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:308:18: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:307:4: Type mismatch
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:332:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_exists_units_of_polyFun' depends on axioms outside the classical allowlist: [
 ```
 
