@@ -257,3 +257,20 @@ centreless invisible core, and `T_3` is the basic example.
   - *What is left.*  The step proposed by w18-111 is false, and no statement about `E_B` alone closes the
     level class.  A closing argument must move a deep trace monomial along the orbit of a nonnegative
     `σ ∈ H_B` of infinite order onto a monomial line.  Otherwise, the positive side.
+- **w20-111, 2026-09-19: Perron-Frobenius compressors (method obstruction and reduction).**
+  - *Result.*  By [[perron-frobenius-compressors-cannot-close-the-level-class]], the σ-step proposed by
+    w19-111 is false.  For a primitive nonnegative `σ ∈ SL_d(Z)` with `σ^T θ = λ θ`, `θ > 0`, the split
+    subpair `B_σ = E_θ x| <σ>` has `U_1 ≤ E_B`, `psi(C) = 1`, `C` infranormal and not normal, and `σ` a
+    compressor.  Its traces have monomials with `<w, p> < 0` for every rational `w`.  Yet all traces and
+    their `σ`-orbits stay in `{ <θ, ·> > 0 }`, and every monomial line section is pole-free.  It fails only
+    (T).  For a survivor, one primitive compressor forces `Ncone(E_B) = R^d` and `W(E_B) = ∅`, the Newton
+    data of `EL_3(R)`.  Compressor twists `u` obey
+    `v_w(u e_a) + v_w(e_b^T u^-1) ≥ -k min_i (σ^T w)_i`.
+  - *Why.*  `σ` preserves the half-space of its Perron functional, and negative monomial rays lie outside
+    it.  For a survivor, Perron-Frobenius pushes every weight of `D(E_B)` to `θ_σ > 0`, which the invariant
+    core forbids.
+  - *What is left.*  Neither a single compressor nor any Newton or weight invariant closes the level class.
+    If a generating set of nonnegative compressors is untwisted, (W2) and (M2) kill `B`.  So a survivor needs
+    essential, bounded twists over a character-free `H_B`.  The next step is to show that such twists are
+    coboundaries modulo `E_B`, starting with diagonal twists and `H^1(H_B, Q^d) = 0`.  Otherwise, the positive
+    side.
