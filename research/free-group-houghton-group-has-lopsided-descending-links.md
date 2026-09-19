@@ -152,6 +152,48 @@ applies: every ball of type `b` has children of types `a` and `A`, so no deeper 
 lopsided vertices. T0 is then decided by Brown's criterion directly, i.e. by whether the rank-`k` 1-cycles die within
 bounded rank.
 
+## Addendum 2 (2026-09-19): the direct Brown test on the ball complex
+
+`K(u)` is the complex of pairwise disjoint contracting 4-sets of `u`, and `lk↓(u) = sd K(u)`. Type vectors are
+`(s; n_a, n_a, n_b, n_b)` with `s = n_a + n_b − 1`.
+
+1. **Sinks.** Types with `n_a = 0`, such as `(k; 0,0,k+1,k+1)`, or with `n_b = 0` have `K = ∅`, since every contraction
+   type (`c_a, c_A, c_b, c_B`) needs an `a`/`A` cone **and** a `b`/`B` cone.
+   - Sinks occur at every rank, down to rank 2: `Y ≅ X_b` gives the pseudovertex `(0; 0,0,1,1)`.
+   - A sink is **isolated** in its own sublevel set.
+   - At a lopsided `v = (k+1; 1,1,k+1,k+1)`, the isolated points of `K(v)` are exactly the `c_b`/`c_B` sets `p`, and
+     each `v/p` is a sink.
+2. **Correction to the board remark ("switch transport").** A loop cannot go `v/p → v → v/q → (Δ_{r−1}) → v/p`,
+   because `v/p` is isolated in `Δ_{r−1}`. The new 1-cycles at rank `r` are exactly **sink detours**
+   `v' → u → v` through a sink `u`, where `v = u⊕e` and `v' = u⊕e'` are two of its single expansions.
+3. **Push-down lemma (large rank; lane proof, unreviewed).** Take a sink `u` with enough cones (`k ≥ 3`), and put
+   `w = u⊕e⊕e'` (rank `r+3`, type `(k+2; 2,2,k+1,k+1)`).
+   - **Move the detour onto `w`.** The square `Q(u,{e,e'})` homotopes `v' → u → v` to `v' → w → v`.
+   - **Push it off `w`.** Inside `lk↓(w)` take the path
+     `{p_e} — {p_e,q'} — {q'} — {q',q} — {q} — {q,p_e'} — {p_e'}`, where:
+     - `q'` is a `c_a`-set using the `a`-cone that `e'` created, plus old `s, b, B`;
+     - `q` is a `c_a`-set using the `a`-cone that `e` created, plus other old `s, b, B`.
+
+     The detour becomes `v' → v'/q' → w/q' → w/(q∪q') → w/q → v/q → v`, all of rank `≤ r`, with no sink on it.
+   - **Push down the new vertices.** The new rank-`r` vertices `w/q'` and `w/q` have `n_a = 2`. The loop's two
+     edges at each lie in one component of its link: use a `c_A`-set `x` on the other `A`-cone. So they push down.
+   - **Push down the lopsided ones.** After every sink detour is replaced, the loop enters each lopsided rank-`r`
+     vertex only through its main component, the `c_a`/`c_A` graph, so those push down too.
+   - **Conclusion.** For large `r`, every loop in `Δ_r` is homotopic within `Δ_{r+3}` to a loop in `Δ_{r−3}`.
+4. **What this does and does not give.**
+   - **What it gives.** `π_1(Δ_{r_0}) -> π_1(Δ_R)` is onto its image from every `Δ_r`. So no new `π_1` survives
+     at high rank: the obstruction I suspected is **not** there, and the earlier lean toward "not FP_2" is withdrawn.
+   - **What remains for `F_2`.** Loops in a fixed `Δ_{r_0}` must be killed at **bounded** rank. That needs
+     simply connected descending links above some level.
+     - At lopsided vertices the main component is `sd(G)`, where `G` is the disjointness graph of `c_a` and `c_A`
+       sets. It is connected but not simply connected.
+     - **Proposed fix: a Morse function** `h = rank − λ·min(n_a, n_b)` with `3 < λ < 6`, which is cocompact because
+       `h ≥ (6−λ)·max(n_a,n_b) − 1`. At a lopsided vertex it makes the `b/B`-cone expansions **descending**
+       (`Δh = 3−λ`) and the sink-producing `c_b/c_B` contractions ascending.
+     - To prove: those descending links are simply connected. Here the descending link is the full subcomplex of
+       `lk(v)` on descending vertices, and `𝓔`-chains couple its lower and upper parts.
+   - **Status.** T0 remains OPEN, now leaning **FP_2 true**.
+
 ## Lesson for general BH
 
 **Finite presentation of seed full groups is a Houghton-type problem, even for tree seeds.**
