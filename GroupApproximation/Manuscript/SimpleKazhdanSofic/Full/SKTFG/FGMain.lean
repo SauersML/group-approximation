@@ -206,7 +206,8 @@ theorem threeCycle_mem_of_good (hinf : Infinite S.carrier)
         (by rw [hc3']; decide +kernel) (by rw [hc3']; decide +kernel)
     rw [← hsub3, hsub4]
     exact hgood _ _ _ (by omega) (by omega) hd4 _
-      (closure_consSet_le_alternatingGroup 4 (Subgroup.subset_closure ⟨_, _, rfl, rfl⟩))
+      (closure_consSet_le_alternatingGroup 4
+        (Subgroup.subset_closure ⟨⟨0, by norm_num⟩, ⟨1, by norm_num⟩, rfl, rfl⟩))
   exact hle (alternatingGroup_le_closure_consSet K hK1 hσalt)
 
 /-- **Matui's theorem** (Internat. J. Math. 2006, Thm 5.4), for a separation radius `R`: the

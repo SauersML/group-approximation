@@ -147,15 +147,15 @@ theorem conj_xvw_of_avoid {r : I} {y : SteinbergGroup I A} (hy1 : y ∈ colAvoid
   have hr := (colConj_of_mem_rowAvoid hy2).1
   have hsingle : ∀ c : A, mat y *ᵥ Pi.single r c = Pi.single r c := by
     intro c
-    rw [show Pi.single r c = c • Pi.single r (1 : A) by rw [← Pi.single_smul', smul_eq_mul, mul_one],
+    rw [show (Pi.single r c : I → A) = c • Pi.single r (1 : A) by rw [← Pi.single_smul', smul_eq_mul, mul_one],
       Matrix.mulVec_smul, hc]
   have h1 : y * rowProd r (i r • j) * y⁻¹ = rowProd r ((i r • j) ᵥ* matInv y) :=
     conj_rowProd hy1 (by rw [Pi.smul_apply, hjr, smul_zero])
   have h2 : y * colProd r i * y⁻¹ = colProd r (mat y *ᵥ i) := by
-    rw [← colProd_sub_single_self r i (i r),
-      conj_colProd hy2 (i := i - Pi.single r (i r)) (by rw [Pi.sub_apply, Pi.single_eq_same, sub_self]),
-      Matrix.mulVec_sub,
-      hsingle, colProd_sub_single_self]
+    have h0 : (i - Pi.single r (i r)) r = 0 := by
+      rw [Pi.sub_apply, Pi.single_eq_same, sub_self]
+    rw [← colProd_sub_single_self r i (i r), conj_colProd hy2 h0, Matrix.mulVec_sub, hsingle,
+      colProd_sub_single_self]
   have h3 : y * rowProd r j * y⁻¹ = rowProd r (j ᵥ* matInv y) := conj_rowProd hy1 hjr
   have hir : (mat y *ᵥ i) r = i r := mulVec_apply_of_single_vecMul hr i
   calc y * xvw i j r * y⁻¹
