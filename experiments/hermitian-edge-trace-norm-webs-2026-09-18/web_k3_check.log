@@ -1,0 +1,3 @@
+b = 8.3139; n in [9, 400) where the windows fail: [11]
+gap b/6 - (3/4) sqrt3 >= 0.086575 > 0; tail bound holds for every n >= 16
+so for k = 3 the windows prove the rank inequality for every n >= 9 except [11]

@@ -1,0 +1,4 @@
+# graphbb.py W12/1.2.3:0,1,2,3,4,5 8.3139 4.16 3 lo hi (P_6^3), run by weblane.sh in two halves of the first free phase [0, pi/2]
+# final line of each half (resumed from checkpoints after 1200 s tries and one container restart; time is cumulative)
+W12/1.2.3:0,1,2,3,4,5 edges 12 tree 5 free phases 7 TARGET 8.3139000 T 4.160 first phase in [0.000000,0.785398]: ALL CLOSED  boxes 157089 (reused parent Z 82799)  solves 229192  min center value 8.700495 at [0.589, 0.3272, 4.8433, 0.9817, 0.8508, 5.6941, 0.589]  smallest half-width 1.31e-01  time 14182s
+W12/1.2.3:0,1,2,3,4,5 edges 12 tree 5 free phases 7 TARGET 8.3139000 T 4.160 first phase in [0.785398,1.570796]: ALL CLOSED  boxes 195311 (reused parent Z 103214)  solves 285221  min center value 8.667327 at [1.5053, 1.5053, 4.5815, 1.1781, 0.1309, 0.1309, 2.4871]  smallest half-width 1.31e-01  time 18019s

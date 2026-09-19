@@ -67,3 +67,7 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
   `hermitian-edge-trace-norm-web-rank-large-k-clique-windows`. A certificate `c(P_6^3) >= 8.3139`
   was running at the time of writing. It would give `k = 3` for every `n >= 9` except `n = 11`, and
   so close the `k = 3` exceptions other than `n = 11`.
+- 2026-09-18 (w7-078): `k = 4` is now covered, up to twelve values of `n`, by
+  `hermitian-edge-trace-norm-web-rank-k4` (the same `K_5` windows with
+  `hermitian-edge-trace-norm-clique-k5-margin`). The `P_6^3` run finished: `c(P_6^3) >= 8.3139`,
+  and `hermitian-edge-trace-norm-web-rank-k3` removes every `k = 3` exception except `n = 11`.

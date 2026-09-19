@@ -63,3 +63,14 @@ The local-minimisation ratios in `hermitian-edge-trace-norm-other-stab-facets` a
     new certificate, because the margin `eps_m` of the large-m bound grows linearly in `m`.
   - Still open among webs: `k = 4` (it needs `c_5 > 4 sqrt3`) and the listed small-`k`, small-`n`
     pairs. The largest of those is `k = 5`, `n = 143`.
+- 2026-09-18 (w7-078), **`k = 4` webs, and the margin `c_5 >= 7.0857`.**
+  `hermitian-edge-trace-norm-clique-k5-margin` proves `c_5 >= 7.0857 > 4 sqrt3` by exact SDP
+  branch-and-bound (16 slices, 938614 boxes). With `K_5` windows this gives
+  `hermitian-edge-trace-norm-web-rank-k4`: the rank inequality of `C_n^4` for every `n >= 10` except
+  `n = 12, 13, 14, 17, 18, 19, 23, 24, 28, 29, 34, 39`. The same bound closes the antihole `C̄_11`
+  (`hermitian-edge-trace-norm-odd-antihole-c11`).
+  - `c(P_6^3) >= 8.3139` (exact SDP branch-and-bound, 352400 boxes) with windows of six
+    consecutive vertices gives `hermitian-edge-trace-norm-web-rank-k3`: `k = 3` for every `n >= 8`
+    except `n = 11`.
+  - Still open among webs: `C_11^3`, and the finite lists for `k = 4..9` (largest `k = 5`,
+    `n = 143`).

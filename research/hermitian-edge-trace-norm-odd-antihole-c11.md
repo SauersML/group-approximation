@@ -7,14 +7,17 @@ artifacts:
   - experiments/hermitian-edge-trace-norm-antihole-2026-09-18/README.md
   - experiments/hermitian-edge-trace-norm-antihole-2026-09-18/graphbb.py
   - experiments/hermitian-edge-trace-norm-antihole-2026-09-18/k5hilane.sh
-  - experiments/hermitian-edge-trace-norm-antihole-2026-09-18/k5hi_n16_s7.log
+  - experiments/hermitian-edge-trace-norm-antihole-2026-09-18/k5hi_runs.log
+  - research/hermitian-edge-trace-norm-odd-antihole-c11-clique-cover.md
 distinct_from:
   hermitian-edge-trace-norm-odd-antihole-facets: that is every odd antihole; this is the single case n = 11, the only one it leaves open.
   hermitian-edge-trace-norm-clique-inequality-k5: that is c_5 >= 4 sqrt3 = 6.928; the route proposed here needs the stronger c_5 >= 45 sqrt3/11 = 7.0857 (numerical c_5 = 5 + sqrt5 = 7.236).
 ---
 
-**OPEN - reduced to a finite computation.** Let `H = C̄_11` (vertices `Z_11`, `i ~ j` iff
-`i - j` is not in `{0, 1, -1}` mod 11). Every admissible `C` on `H` should satisfy
+**ESTABLISHED (computer-assisted; certificates checked in exact rational arithmetic; unreviewed,
+not Lean-verified; route `hermitian-edge-trace-norm-odd-antihole-c11-clique-cover`).** Let
+`H = C̄_11` (vertices `Z_11`, `i ~ j` iff `i - j` is not in `{0, 1, -1}` mod 11). Every admissible
+`C` on `H` satisfies
 
 ```text
 || C ||_1  >=  9 sqrt3  =  15.5885 .
@@ -32,7 +35,7 @@ distinct_from:
 where `c_5` is the minimum trace norm over admissible `C` on `K_5`. So `c_5 >= 45 sqrt3 / 11 =
 7.08566` suffices. The numerical value is `c_5 = 5 + sqrt5 = 7.2361`, a margin of 2.1%.
 
-**The computation.** `graphbb.py K5 7.0857 3.55 3 lo hi` runs the `K_5` scheme of
+**The computation** (done: `hermitian-edge-trace-norm-clique-k5-margin`, all 16 slices closed). `graphbb.py K5 7.0857 3.55 3 lo hi` runs the `K_5` scheme of
 `hermitian-edge-trace-norm-clique-inequality-k5` with `TARGET = 7.0857` and `T = 3.55`. The same
 symmetry reduction applies: 16 slices of `theta_23 in [0, pi/2]`. The driver is `k5hilane.sh 16 <i> ...`.
 Finishing all 16 slices also proves the `K_5` claim, since `7.0857 > 6.9282`.
@@ -47,3 +50,6 @@ Finishing all 16 slices also proves the `K_5` claim, since `7.0857 > 6.9282`.
   Slice 7 (`theta_23 in [0.6872, 0.7854]`) prints `ALL CLOSED`: 59042 boxes, 83292 solves, 2765 s,
   smallest centre value `7.255450` (`k5hi_n16_s7.log`). That is about twice the boxes of the same slice at
   `6.928`. Expect about 45 CPU-minutes per slice, or roughly 12 CPU-hours for all 16. Slices 0-3 are running.
+- 2026-09-18 (w7-078): **all 16 slices closed**, so `c_5 >= 7.0857`
+  (`hermitian-edge-trace-norm-clique-k5-margin`, `k5hi_runs.log`) and this claim is proved by route
+  `hermitian-edge-trace-norm-odd-antihole-c11-clique-cover`. The CPU time was close to the estimate.
