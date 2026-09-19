@@ -1,11 +1,13 @@
 ---
 id: fix-bhpalomar-graphproducts-main
-kind: route
+kind: claim
 rg: 2
 title: "Fix GroupApproximation.BHPalomar.GraphProducts.Main: conditional on EnvelopeInput (BFFHZ Theorems C and E); chain unprobed"
-target: pbh-class-closed-under-graph-products
-status: OPEN
 ---
+
+**Status.** OPEN.
+
+Route target (moved from frontmatter): `pbh-class-closed-under-graph-products`.
 
 **Module.** `GroupApproximation/BHPalomar/GraphProducts/Main.lean`. It proves
 `question31_of_envelopeInput : EnvelopeInput → Question31`, where `Question31` is BFFHZ

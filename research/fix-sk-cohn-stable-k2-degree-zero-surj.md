@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fix-sk-cohn-stable-k2-degree-zero-surj
-kind: route
+kind: claim
 title: "Fix the SK open row (tex l.733-735): discharge LVCohnColimit.skCohnLimK2_degreeZeroSurjStatement"
 ---
 
