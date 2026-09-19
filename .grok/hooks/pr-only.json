@@ -1,0 +1,27 @@
+{
+  "description": "Grok Build PR-only repository policy. No matcher: the guard decides from the tool name itself, so a rename in the CLI cannot silently disable it.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'echo \"PR-only guard armed from $GROK_WORKSPACE_ROOT/.grok/hooks/pr-only-guard.py\"'",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$GROK_WORKSPACE_ROOT/.grok/hooks/pr-only-guard.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Sofic.ChosenNonMFTheorem
+import GroupApproximation.Sofic.MarkedMFClosed
+import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFPresentation
+
+/-!
+# Lightweight axiom audit for the chosen non-MF endpoint
+
+This deliberately imports the public chosen-witness theorem module together with
+the finite-normal criterion whose endpoints are printed below.  It gives
+reviewers and CI a fast audit target without replaying the much larger
+project-wide endpoint audit.  The reported closure contains only Lean's
+standard `propext`, `Classical.choice`, and `Quot.sound`; no mathematical or
+literature theorem is accepted as an axiom or premise of the closed non-MF
+endpoint.
+
+The literal eight-generator group is also printed below, but only at the
+boundary actually proved: its algebraic package, nontrivial mark, and
+finite-dimensional obstruction are unconditional.  No conditional analytic
+endpoint for that literal presentation is admitted to this audit surface.
+-/
+
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.countableWitness_not_isOperatorMF
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
+#audit_axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#audit_axioms GroupApproximation.ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage
+#audit_axioms GroupApproximation.ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage
+#audit_axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
+#audit_axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
+#audit_axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot
+#audit_axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel
+#audit_axioms GroupApproximation.coronaMFResidual_eq_normMFResidual
+#audit_axioms GroupApproximation.map_coronaMFResidual_le
+#audit_axioms GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot
+#audit_axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
+#audit_axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
+#audit_axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+#audit_axioms GroupApproximation.OperatorNormAmplification.exists_tensorPower_pair_far
+#audit_axioms GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
+#audit_axioms GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus
+#audit_axioms GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus
+#audit_axioms GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus
+#audit_axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto

@@ -1,0 +1,1 @@
+../metadata/CLAIM_SIGNATURES.md

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite the repository and its archived release."
+title: "Group Approximation and Rigidity"
+type: software
+authors:
+  - name: "Anonymous"
+version: 0.2.0
+date-released: 2026-08-13
+license: Apache-2.0
