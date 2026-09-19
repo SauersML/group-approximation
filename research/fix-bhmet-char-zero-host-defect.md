@@ -10,16 +10,13 @@ Recorded against `fp-metabelian-groups-satisfy-boone-higman`. It is filed as a c
 **OPEN.** Lean module `GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean` failed to build in bh-pal-wire's direct batch probe b1789834028 (09-19, base a39af618f3, empty overlay; log work/bh-pal-wire/shared/probe-b1789834028-1.log in the swarm workspace; 7 error lines). It became reachable only once bh-pal-wire's wave-2 repairs went green. Its imports built green in that probe, so this is a leaf: its errors are its own.
 It is part of the Cairn fix graph (index `board/FIX-GRAPH.md` in the swarm workspace). Owner: fix-bh-b.
 
-**Repair landed, unprobed.** 2dd8b94c03: BH metabelian: static repairs for the 8 NEW-RED modules of probe b1789834028, with fix nod. Stays OPEN until a trusted probe builds it green.
 
-**First errors (verbatim).**
+**First errors (verbatim; from union build b1789837230 on main 296aff5838).**
 
 ```
-error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:29:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputable'
-error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:35:4: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'AddMonoidAlgebra.ring', which is 'noncomputable'
-error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:51:60: Type mismatch
-error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:53:61: Type mismatch
-error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:147:7: Function expected at
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:53:10: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:56:10: Type mismatch
+error: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Defect.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.natVec_single' depends on axioms outside the classical allowlist: [sorryAx]
 ```
 
 **Kind.** mechanical (noncomputable) plus elaboration order.
