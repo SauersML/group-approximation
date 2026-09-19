@@ -20,6 +20,7 @@ namespace PalomarBooneHigmanAxioms
 def compared : List Name :=
   [`BooneHigman.explicit_fp_overgroup_of_all_gl_n_q,
    `BooneHigman.kourovka_17_59,
+   `BooneHigman.kourovka_21_75,
    `BooneHigman.kohl_factorization_conjecture]
 
 /-- The axioms `Palomar/comparator-boone-higman.json` permits. -/

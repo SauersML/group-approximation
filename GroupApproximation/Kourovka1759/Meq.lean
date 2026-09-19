@@ -170,7 +170,7 @@ theorem PD.nodup {S : Multiset Box} (h : PD S) : S.Nodup := by
   rw [Multiset.nodup_iff_count_le_one]
   intro x
   by_contra hx
-  push_neg at hx
+  push Not at hx
   have h1 : x ∈ S := Multiset.count_pos.1 (by omega)
   have h2 : x ∈ S.erase x := Multiset.count_pos.1 (by rw [Multiset.count_erase_self]; omega)
   exact h x h1 x h2 _ x.mem_r x.mem_r
