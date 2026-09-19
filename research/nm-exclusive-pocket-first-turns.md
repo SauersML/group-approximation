@@ -73,8 +73,11 @@ Osin's argument survives the exclusion of x and y:
 
 ## To check before building
 
-1. Do `ContiguityGeometry` regions satisfy (R1)? The `pasting` shelling suggests they do; check the turn
-   convention of `FaceSetBoundary`.
+1. (R1) is automatic, checked 2026-09-19. `ContiguityGeometry.boundary` is a `FaceSetBoundary` whose `BoundaryStep`
+   is `facePerm` followed by internal moves. With `facePerm = sigma ∘ alpha`, a step `d_r → e_r` gives
+   `e_r = sigma^k (alpha d_r)` past darts on region-internal edges, which is exactly `FirstTurn` for the
+   reversed dart pair of the pocket. The inner sides are y.rightSide and x.leftSide (the producer's outer sides
+   are y.leftSide and x.rightSide).
 2. Do they satisfy (R2)? Check `CyclicArc` lengths on exterior regions.
 3. Is F \ (x ∪ y) a valid `PocketFaceSet` with the kept cell (a relator cell, hence in neither region), and are
    the side bounds kept?
