@@ -83,3 +83,15 @@ next tool for them (`hermitian-edge-trace-norm-web-rank-k2` uses `P_6^2`).
   `n = 11`, so `(R_{n,3})` holds for every `n >= 8`. The same code proves `c(K_5) >= 7.168`, and
   `hermitian-edge-trace-norm-web-rank-k4-six-exceptions` reduces `k = 4` to `n = 12, 13, 14, 18, 19, 24`.
   Next: `c(K_5) >= 7.2169` would close `12, 18, 24`, and `c(P_7^4) >= 6 sqrt3` would close all six.
+- 2026-09-18 (w9-078): `experiments/hermitian-edge-trace-norm-web-k4-2026-09-18/fastbb.py` proves
+  `c(K_5) >= 7.2169` in 20027 solves. It adds two things to `graphbb_r.py`: a pinching cut on large
+  moduli (`2T + 2 sqrt3`), and a fundamental domain for `S_5 x conj x neg` on the triangle phases.
+  With it, `hermitian-edge-trace-norm-web-rank-k4-three-exceptions` reduces `k = 4` to
+  `n = 13, 14, 19`. Five-vertex windows cannot do better, even at `c_5 = 5 + sqrt5`.
+  - Sampled costs for the next windows: `c(P_7^4) >= 6 sqrt3` is about `1.1e8` boxes, and
+    `c(K_6) >= 9.17` (for `k = 5`) is about `5.5e6` boxes.
+  - Obstruction: a fixed-`Z` certificate closes an arc only up to half-width
+    `arccos(target/||C||_1) ~ 0.7`.
+  - Next: a box bound that is not linear in `K`, for instance a second-order (`Z` plus a correction
+    in the phases) or a sum-of-squares certificate in `cos`/`sin` of the phases. Alternatively,
+    a proof of `c_6 >= 9.17` or `c(P_7^4) >= 6 sqrt3` from smaller pieces by pinching.
