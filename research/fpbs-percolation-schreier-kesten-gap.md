@@ -134,3 +134,28 @@ way.
     nonunimodular group of automorphisms whose tilted weights dominate the
     counting measure of `I` on level sets of `tau_p`. A Cayley graph with
     unimodular automorphism group has no such tilt.
+- **2026-09-19, swarm-0917-w16-w16-bs-last1, operator-algebras: uniform
+  coset norms and coordinate sections.** **Established on every product of
+  regular trees with an amenable Cayley graph; the claim stays OPEN.**
+  (`fpbs-tree-products-schreier-kesten-gap-iff-not-co-amenable`.)
+  - *Method.* In `C[Lambda]` the tree sphere indicators satisfy
+    `sigma_n = P_n(sigma_1)`, with Chebyshev-type polynomials `P_n`. Under the
+    quasi-regular representation on `ℓ^2(J\Lambda)`, every coset count
+    `#(yJ ∩ S_m)` is a matrix entry of `P_m(A_1)`. The spectrum of `A_1` lies
+    in `[-(q+1) rho_J, (q+1) rho_J]`. Hence
+    `sup_y #(yJ ∩ S_m) <= (1 + 1/q)(m+1) mu_+((q+1) rho_J)^m`, which is `< q^m`
+    exponentially when `J` is not co-amenable.
+  - *What it gives.* The w15 barrier `beta(I) = q` holds exactly when `J(I)` is
+    co-amenable. On `T_1 x ... x T_n x Cay(A)` with `A` amenable, a
+    non-co-amenable `I` has a non-co-amenable coordinate section, since
+    products of co-amenable sections are co-amenable. So there the statement
+    holds as an iff for every infinite subgroup, including the Kesten normal
+    gap and all amenable subgroups.
+  - *Where it stops.* On `T x H` with `H` general, the residual is `I` with
+    `J(I)` co-amenable. Such an `I` forces `H_grp` nonamenable and
+    `I ∩ H_grp` non-co-amenable, and splits by the Goursat quotient `Q`:
+    - (R-slab) `Q` amenable, with model `Lambda x K`;
+    - (R-graph) `Q` nonamenable.
+
+    Beyond products with tree factors there is still no end to tilt toward.
+    No progress on the general statement.
