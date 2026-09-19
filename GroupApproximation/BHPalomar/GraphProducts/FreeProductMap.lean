@@ -21,7 +21,7 @@ set_option linter.unusedVariables false
 
 namespace GroupApproximation.BHPalomar.GraphProducts
 
-open Monoid CoprodI
+open Monoid Monoid.CoprodI
 
 section WordMap
 
@@ -56,7 +56,7 @@ theorem wordMap_injective (f : ∀ i, M i →* N i) (hf : ∀ i, Function.Inject
     rintro ⟨i, m⟩ ⟨j, n⟩ hij
     simp only [Sigma.mk.inj_iff] at hij
     obtain ⟨rfl, hmn⟩ := hij
-    rw [hf i (eq_of_heq hmn)]
+    rw [hf _ (eq_of_heq hmn)]
   exact Word.ext (List.map_injective_iff.mpr hinj hl)
 
 /-- **A free product of injective homomorphisms is injective.** -/
