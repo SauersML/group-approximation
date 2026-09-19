@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/fpbs/docs/cost-cycle-structure.md
   - research/artifacts/fpbs/docs/cycle-tail-hodge-gap-dictionary.md
   - research/artifacts/fpbs/docs/cost-betti-rank-gradient-calibration-2026-09-17.md
+  - research/artifacts/fpbs-marked-group-cost-limits-2026-09-19.md
 distinct_from:
   fpbs-graphing-cost-betti-cycle-dimension-identity: that proves the identity and a conditional equivalence; this asserts the unproved existence of compact near-minimizing sequences for all finitely generated groups
 ---
@@ -232,3 +233,37 @@ short-chord mass is at most L eps, so length-blind bounds that tend to 0
 are not excluded. The survivors are exactly the propagation-sensitive
 channels: T_L, the L-filled Laplacian, and Morse matchings. What would be
 needed is a controlled, propagation-L rank theory for A.
+
+### Marked-group limits (logic-computability transplant, swarm-0917-w19, 2026-09-19)
+
+*Dictionary.* The logician's move is to treat a finitely generated group as a limit of its finitely presented
+approximations in the space of marked groups:
+
+- a finite certificate plays the role of a finite-window cylinder graphing with a route radius;
+- "decided on a ball" plays the role of the cost being a function of `N cap B_R`.
+
+This gives `fpbs-bernoulli-cost-usc-on-marked-groups`: `limsup C(b_(G_n)) <= C(b_G)`, which is ESTABLISHED. It is the
+cost twin of Pichot's semicontinuity of `beta_1`.
+
+*The plan.* Prove the claim for finitely presented groups first, then pass to limits.
+
+**Where it dies:** at the limit step, for arbitrary covers. `fpbs-bernoulli-cost-jumps-a-unit-along-fp-covers`
+(ESTABLISHED) builds finitely presented `E_R = A_R *_Z Z^2` converging to `(Z wr Z) * Z`. Along this sequence cost goes
+`1 -> 2` and `beta_1` goes `0 -> 1`, although cost-Betti holds at every term and at the limit. The invariant is the
+relator-length profile: level `R` uses the relator `[r_R, c]`, of length about `8R`. Every cheap certificate on `E_R`
+has radius beyond the agreement ball.
+
+**What survives:** the enumeration-free length-canonical covers `F/<<N cap B_R>>`, which do not jump on that example.
+`fpbs-cost-betti-fg-iff-fp-and-length-canonical-cost-lsc` (ESTABLISHED) proves
+
+    CB and BA_len  <=>  T_fp and SEL_len.
+
+The new route `fpbs-cycle-tail-compactness-via-length-canonical-covers` needs two open inputs, which can
+each fail on their own:
+
+- `fpbs-cost-betti-for-finitely-presented-groups`;
+- `fpbs-bernoulli-cost-lsc-along-length-canonical-covers`.
+
+The pure L2 companion `fpbs-l2-betti-continuous-along-length-canonical-covers` is open. It is equivalent to the second
+input under CB. I could neither prove nor refute it. Artifact:
+`research/artifacts/fpbs-marked-group-cost-limits-2026-09-19.md`.
